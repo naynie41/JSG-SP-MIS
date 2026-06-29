@@ -1,0 +1,25 @@
+# Environment files (never commit real secrets)
+.env
+*/.env
+!*/.env.example
+
+# PHP / Laravel
+/api/vendor/
+/api/storage/*.key
+/api/.phpunit.result.cache
+/api/.phpunit.cache/
+
+# Node / Vite
+/web/node_modules/
+/web/dist/
+node_modules/
+
+# OS / editor
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/*
+!.vscode/extensions.json
+
+# Docker
+*.local
