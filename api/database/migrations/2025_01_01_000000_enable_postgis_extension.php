@@ -25,10 +25,10 @@ return new class extends Migration
 
     public function down(): void
     {
-        if (DB::getDriverName() !== 'pgsql') {
-            return;
-        }
-
-        DB::statement('DROP EXTENSION IF EXISTS postgis');
+        // Intentionally a no-op. PostGIS is shared database infrastructure: the
+        // postgis/postgis image also installs postgis_topology and
+        // postgis_tiger_geocoder which depend on it, so dropping it here would
+        // fail (or require CASCADE and tear down more than this migration owns).
+        // Leaving the extension in place keeps rollbacks safe and reversible.
     }
 };

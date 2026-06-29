@@ -19,7 +19,6 @@ use Illuminate\Http\JsonResponse;
 final class ApiResponse
 {
     /**
-     * @param  mixed  $data
      * @param  array<string, mixed>  $meta
      */
     public static function success(mixed $data = null, array $meta = [], int $status = 200): JsonResponse
