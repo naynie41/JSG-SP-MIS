@@ -2,8 +2,8 @@
 
 declare(strict_types=1);
 
+use App\Http\Controllers\Api\V1\AuthController;
 use App\Http\Controllers\Api\V1\HealthController;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -19,6 +19,15 @@ use Illuminate\Support\Facades\Route;
 Route::prefix('v1')->group(function (): void {
     Route::get('/health', [HealthController::class, 'show'])->name('health');
 
-    Route::get('/user', fn (Request $request) => $request->user())
-        ->middleware('auth:sanctum');
+    Route::prefix('auth')->group(function (): void {
+        Route::post('/login', [AuthController::class, 'login'])
+            ->middleware('throttle:login')
+            ->name('auth.login');
+
+        Route::middleware('auth:sanctum')->group(function (): void {
+            Route::get('/me', [AuthController::class, 'me'])->name('auth.me');
+            Route::post('/logout', [AuthController::class, 'logout'])->name('auth.logout');
+            Route::post('/password', [AuthController::class, 'changePassword'])->name('auth.password');
+        });
+    });
 });

@@ -32,6 +32,7 @@ class User extends Authenticatable
         'email',
         'password',
         'mda_id',
+        'role_id',
         'status',
         'mfa_enabled',
     ];
@@ -87,6 +88,35 @@ class User extends Authenticatable
     }
 
     /**
+     * The user's role (single role per user, PRD FR-UAM-02). Permissions are
+     * resolved through the role; authorization always checks permissions.
+     *
+     * @return BelongsTo<Role, $this>
+     */
+    public function role(): BelongsTo
+    {
+        return $this->belongsTo(Role::class);
+    }
+
+    /**
+     * The permission keys granted to this user via their role.
+     *
+     * @return list<string>
+     */
+    public function permissionKeys(): array
+    {
+        return $this->role?->permissions->pluck('key')->all() ?? [];
+    }
+
+    /**
+     * Whether the user has a given `module.action` permission.
+     */
+    public function hasPermission(string $key): bool
+    {
+        return in_array($key, $this->permissionKeys(), true);
+    }
+
+    /**
      * Explicit grants giving this user access to MDAs other than their own.
      *
      * @return HasMany<MdaAccessGrant, $this>
@@ -99,5 +129,18 @@ class User extends Authenticatable
     protected static function newFactory(): UserFactory
     {
         return UserFactory::new();
+    }
+
+    /**
+     * Invalidate all access tokens whenever the password changes
+     * (SECURITY.md §2: invalidate tokens on password change).
+     */
+    protected static function booted(): void
+    {
+        static::updated(function (User $user): void {
+            if ($user->wasChanged('password')) {
+                $user->tokens()->delete();
+            }
+        });
     }
 }
