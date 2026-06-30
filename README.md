@@ -32,7 +32,7 @@ containers. (They are only handy if you want to run tooling natively.)
 ## First-time setup
 
 ```bash
-git clone <repo-url>
+git clone https://github.com/naynie41/JSG-SP-MIS.git
 cd JSG-SP-MIS
 docker compose up -d --build
 ```
