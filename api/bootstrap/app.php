@@ -2,6 +2,7 @@
 
 declare(strict_types=1);
 
+use App\Http\Middleware\CheckPermission;
 use App\Http\Middleware\EnforceIdleTimeout;
 use App\Http\Middleware\SecurityHeaders;
 use App\Support\ApiResponse;
@@ -35,6 +36,7 @@ return Application::configure(basePath: dirname(__DIR__))
             'abilities' => CheckAbilities::class,
             'ability' => CheckForAnyAbility::class,
             'idle.timeout' => EnforceIdleTimeout::class,
+            'permission' => CheckPermission::class,
         ]);
     })
     ->withExceptions(function (Exceptions $exceptions): void {

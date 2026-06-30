@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Domain\Access\Models;
 
+use App\Domain\Access\Concerns\ScopedToMda;
 use App\Domain\Access\Enums\UserStatus;
 use Database\Factories\UserFactory;
 use Illuminate\Database\Eloquent\Concerns\HasUuids;
@@ -18,7 +19,15 @@ use Laravel\Sanctum\HasApiTokens;
 class User extends Authenticatable
 {
     /** @use HasFactory<UserFactory> */
-    use HasApiTokens, HasFactory, HasUuids, Notifiable, SoftDeletes;
+    use HasApiTokens, HasFactory, HasUuids, Notifiable, ScopedToMda, SoftDeletes;
+
+    /**
+     * Users are MDA-scoped on their `mda_id` column (not the Phase 2 default).
+     */
+    public function mdaOwnershipColumn(): string
+    {
+        return 'mda_id';
+    }
 
     /**
      * Mass-assignable attributes. The MFA secret and lockout counters are
@@ -179,13 +188,21 @@ class User extends Authenticatable
     }
 
     /**
+     * Cached list of permission keys for this instance (the Gate resolves every
+     * ability check through here, so avoid reloading the role each time).
+     *
+     * @var list<string>|null
+     */
+    private ?array $permissionKeysCache = null;
+
+    /**
      * The permission keys granted to this user via their role.
      *
      * @return list<string>
      */
     public function permissionKeys(): array
     {
-        return $this->role?->permissions->pluck('key')->all() ?? [];
+        return $this->permissionKeysCache ??= ($this->role?->permissions->pluck('key')->all() ?? []);
     }
 
     /**
@@ -194,6 +211,44 @@ class User extends Authenticatable
     public function hasPermission(string $key): bool
     {
         return in_array($key, $this->permissionKeys(), true);
+    }
+
+    /**
+     * Whether the user may see data across all MDAs (FR-UAM-03 bypass). Granted
+     * by the `cross-mda.view` permission to oversight roles.
+     */
+    public function canAccessAllMdas(): bool
+    {
+        return $this->hasPermission('cross-mda.view');
+    }
+
+    /**
+     * Cached list of MDA ids this user may access: their own MDA plus any MDA
+     * with an active (non-expired) cross-MDA grant.
+     *
+     * @var list<string>|null
+     */
+    private ?array $accessibleMdaIdsCache = null;
+
+    /**
+     * @return list<string>
+     */
+    public function accessibleMdaIds(): array
+    {
+        if ($this->accessibleMdaIdsCache !== null) {
+            return $this->accessibleMdaIdsCache;
+        }
+
+        $ids = $this->mda_id !== null ? [$this->mda_id] : [];
+
+        $granted = $this->mdaAccessGrants()
+            ->where(function ($query): void {
+                $query->whereNull('expires_at')->orWhere('expires_at', '>', now());
+            })
+            ->pluck('mda_id')
+            ->all();
+
+        return $this->accessibleMdaIdsCache = array_values(array_unique([...$ids, ...$granted]));
     }
 
     /**
