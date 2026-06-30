@@ -40,5 +40,13 @@ class AppServiceProvider extends ServiceProvider
 
             return Limit::perMinute(5)->by($email.'|'.$request->ip());
         });
+
+        // MFA challenge attempts, throttled per authenticated user (falling back
+        // to IP) to slow brute-forcing of TOTP/recovery codes.
+        RateLimiter::for('mfa', function (Request $request): Limit {
+            $key = $request->user()?->getAuthIdentifier() ?? $request->ip();
+
+            return Limit::perMinute(5)->by('mfa|'.$key);
+        });
     }
 }

@@ -24,6 +24,7 @@ class Role extends Model
         'name',
         'description',
         'is_system',
+        'requires_mfa',
     ];
 
     /**
@@ -33,6 +34,7 @@ class Role extends Model
     {
         return [
             'is_system' => 'boolean',
+            'requires_mfa' => 'boolean',
         ];
     }
 

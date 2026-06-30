@@ -93,10 +93,20 @@ class RolesAndPermissionsSeeder extends Seeder
      */
     private function seedRoles(array $permissions): void
     {
+        // Roles for which MFA is mandatory (PRD FR-UAM-04).
+        $mfaRequiredRoles = [
+            RoleKey::SystemAdministrator->value,
+            RoleKey::Executive->value,
+        ];
+
         foreach (RoleKey::cases() as $roleKey) {
             $role = Role::updateOrCreate(
                 ['key' => $roleKey->value],
-                ['name' => $roleKey->label(), 'is_system' => true],
+                [
+                    'name' => $roleKey->label(),
+                    'is_system' => true,
+                    'requires_mfa' => in_array($roleKey->value, $mfaRequiredRoles, true),
+                ],
             );
 
             $keys = $roleKey === RoleKey::SystemAdministrator

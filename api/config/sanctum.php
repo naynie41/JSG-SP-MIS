@@ -50,7 +50,9 @@ return [
     |
     */
 
-    'expiration' => null,
+    // Absolute token lifetime (minutes). Wired to the security config so all
+    // tokens expire a fixed time after issue regardless of activity (SECURITY.md §2).
+    'expiration' => (int) env('SESSION_ABSOLUTE_LIFETIME_MINUTES', 480),
 
     /*
     |--------------------------------------------------------------------------

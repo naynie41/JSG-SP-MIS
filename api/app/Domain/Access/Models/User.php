@@ -70,11 +70,91 @@ class User extends Authenticatable
             'password' => 'hashed',
             'status' => UserStatus::class,
             'mfa_secret' => 'encrypted', // encrypted at rest (SECURITY.md §2)
+            'mfa_recovery_codes' => 'encrypted:array', // one-time codes, encrypted at rest
             'mfa_enabled' => 'boolean',
             'failed_login_attempts' => 'integer',
             'locked_until' => 'datetime',
             'last_login_at' => 'datetime',
         ];
+    }
+
+    /**
+     * Whether MFA is mandatory for this user (driven by the role, FR-UAM-04).
+     */
+    public function mfaRequired(): bool
+    {
+        return (bool) $this->role?->requires_mfa;
+    }
+
+    /**
+     * Whether the account is currently locked out (FR-UAM-06).
+     */
+    public function isLocked(): bool
+    {
+        return $this->locked_until !== null && $this->locked_until->isFuture();
+    }
+
+    /**
+     * Record a failed login/MFA attempt and apply lockout with exponential
+     * backoff once the configured threshold is reached. Returns true if this
+     * attempt caused (or extended) a lock.
+     */
+    public function registerFailedAttempt(): bool
+    {
+        $this->increment('failed_login_attempts');
+
+        $max = (int) config('security.lockout.max_attempts');
+
+        if ($this->failed_login_attempts < $max) {
+            return false;
+        }
+
+        $decay = (int) config('security.lockout.decay_minutes');
+        $multiplier = max(1, (int) config('security.lockout.multiplier'));
+        $cap = (int) config('security.lockout.max_minutes');
+
+        $exponent = $this->failed_login_attempts - $max; // 0 on the first lock
+        $minutes = min($decay * ($multiplier ** $exponent), $cap);
+
+        $this->forceFill(['locked_until' => now()->addMinutes($minutes)])->save();
+
+        return true;
+    }
+
+    /**
+     * Clear lockout state after a successful authentication.
+     */
+    public function clearLockout(): void
+    {
+        if ($this->failed_login_attempts === 0 && $this->locked_until === null) {
+            return;
+        }
+
+        $this->forceFill([
+            'failed_login_attempts' => 0,
+            'locked_until' => null,
+        ])->save();
+    }
+
+    /**
+     * Consume a one-time recovery code if it matches. Returns true and removes
+     * the code on success; false otherwise (constant-time comparison).
+     */
+    public function consumeRecoveryCode(string $code): bool
+    {
+        $code = trim($code);
+        $codes = $this->mfa_recovery_codes ?? [];
+
+        foreach ($codes as $index => $stored) {
+            if (hash_equals((string) $stored, $code)) {
+                unset($codes[$index]);
+                $this->forceFill(['mfa_recovery_codes' => array_values($codes)])->save();
+
+                return true;
+            }
+        }
+
+        return false;
     }
 
     /**

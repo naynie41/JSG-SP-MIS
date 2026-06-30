@@ -125,20 +125,17 @@ class AuthTest extends TestCase
 
     public function test_login_is_rate_limited_with_generic_error(): void
     {
-        $this->makeUser();
+        // Use an unknown email so this exercises the per-IP/email throttle in
+        // isolation (no real account to lock out).
+        $credentials = ['email' => 'stranger@example.test', 'password' => 'wrong-password'];
 
         // 5 attempts are allowed per minute; the 6th is throttled.
         for ($i = 0; $i < 5; $i++) {
-            $this->postJson('/api/v1/auth/login', [
-                'email' => 'officer@example.test',
-                'password' => 'wrong-password',
-            ])->assertStatus(401);
+            $this->postJson('/api/v1/auth/login', $credentials)->assertStatus(401);
         }
 
-        $this->postJson('/api/v1/auth/login', [
-            'email' => 'officer@example.test',
-            'password' => 'wrong-password',
-        ])->assertStatus(429)->assertJsonPath('error.code', 'TOO_MANY_REQUESTS');
+        $this->postJson('/api/v1/auth/login', $credentials)
+            ->assertStatus(429)->assertJsonPath('error.code', 'TOO_MANY_REQUESTS');
     }
 
     public function test_change_password_rejects_weak_password(): void
