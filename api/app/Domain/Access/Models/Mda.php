@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Domain\Access\Models;
 
+use App\Domain\Access\Concerns\ScopedToMda;
 use App\Domain\Access\Enums\MdaStatus;
 use App\Domain\Access\Enums\MdaType;
 use App\Domain\Audit\Concerns\Auditable;
@@ -21,9 +22,18 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 class Mda extends Model
 {
     /** @use HasFactory<MdaFactory> */
-    use Auditable, HasFactory, HasUuids, SoftDeletes;
+    use Auditable, HasFactory, HasUuids, ScopedToMda, SoftDeletes;
 
     protected $table = 'mdas';
+
+    /**
+     * An MDA is scoped on its own primary key: a user sees their own MDA (and
+     * any granted MDAs), unless they hold cross-mda.view (FR-UAM-03).
+     */
+    public function mdaOwnershipColumn(): string
+    {
+        return 'id';
+    }
 
     /**
      * @var list<string>

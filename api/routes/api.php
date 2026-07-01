@@ -5,6 +5,7 @@ declare(strict_types=1);
 use App\Domain\Access\Support\TokenAbility;
 use App\Http\Controllers\Api\V1\Access\AccessController;
 use App\Http\Controllers\Api\V1\Access\MdaAccessGrantController;
+use App\Http\Controllers\Api\V1\Access\MdaController;
 use App\Http\Controllers\Api\V1\Access\UserController;
 use App\Http\Controllers\Api\V1\AuthController;
 use App\Http\Controllers\Api\V1\HealthController;
@@ -64,10 +65,39 @@ Route::prefix('v1')->group(function (): void {
         Route::get('/access/matrix', [AccessController::class, 'matrix'])
             ->middleware('permission:permission.view')->name('access.matrix');
 
-        // Representative MDA-scoped resource: the result is auto-scoped to the
-        // caller's accessible MDAs by the User model's global scope.
+        // MDA management (PRD FR-UAM-02). List/show are MDA-scoped.
+        Route::get('/mdas', [MdaController::class, 'index'])
+            ->middleware('permission:mda.view')->name('mdas.index');
+        Route::post('/mdas', [MdaController::class, 'store'])
+            ->middleware('permission:mda.create')->name('mdas.store');
+        Route::get('/mdas/{mda}', [MdaController::class, 'show'])
+            ->middleware('permission:mda.view')->name('mdas.show');
+        Route::match(['put', 'patch'], '/mdas/{mda}', [MdaController::class, 'update'])
+            ->middleware('permission:mda.edit')->name('mdas.update');
+        Route::post('/mdas/{mda}/deactivate', [MdaController::class, 'deactivate'])
+            ->middleware('permission:mda.edit')->name('mdas.deactivate');
+        Route::post('/mdas/{mda}/activate', [MdaController::class, 'activate'])
+            ->middleware('permission:mda.edit')->name('mdas.activate');
+
+        // User management (PRD FR-UAM-02, FR-UAM-03). List/show are MDA-scoped.
         Route::get('/users', [UserController::class, 'index'])
             ->middleware('permission:user.view')->name('users.index');
+        Route::post('/users', [UserController::class, 'store'])
+            ->middleware('permission:user.create')->name('users.store');
+        Route::get('/users/{user}', [UserController::class, 'show'])
+            ->middleware('permission:user.view')->name('users.show');
+        Route::match(['put', 'patch'], '/users/{user}', [UserController::class, 'update'])
+            ->middleware('permission:user.edit')->name('users.update');
+        Route::post('/users/{user}/suspend', [UserController::class, 'suspend'])
+            ->middleware('permission:user.edit')->name('users.suspend');
+        Route::post('/users/{user}/deactivate', [UserController::class, 'deactivate'])
+            ->middleware('permission:user.edit')->name('users.deactivate');
+        Route::post('/users/{user}/activate', [UserController::class, 'activate'])
+            ->middleware('permission:user.edit')->name('users.activate');
+        Route::post('/users/{user}/force-password-reset', [UserController::class, 'forcePasswordReset'])
+            ->middleware('permission:user.edit')->name('users.force-password-reset');
+        Route::post('/users/{user}/reset-mfa', [UserController::class, 'resetMfa'])
+            ->middleware('permission:user.edit')->name('users.reset-mfa');
 
         // Cross-MDA access grants (admin-managed, logged).
         Route::get('/mda-access-grants', [MdaAccessGrantController::class, 'index'])
