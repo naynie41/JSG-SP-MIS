@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Domain\Access\Models;
 
+use App\Domain\Audit\Concerns\Auditable;
 use Illuminate\Database\Eloquent\Concerns\HasUuids;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
@@ -14,7 +15,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsToMany;
  */
 class Role extends Model
 {
-    use HasUuids;
+    use Auditable, HasUuids;
 
     /**
      * @var list<string>

@@ -6,6 +6,7 @@ namespace App\Domain\Access\Models;
 
 use App\Domain\Access\Concerns\ScopedToMda;
 use App\Domain\Access\Enums\UserStatus;
+use App\Domain\Audit\Concerns\Auditable;
 use Database\Factories\UserFactory;
 use Illuminate\Database\Eloquent\Concerns\HasUuids;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -19,7 +20,7 @@ use Laravel\Sanctum\HasApiTokens;
 class User extends Authenticatable
 {
     /** @use HasFactory<UserFactory> */
-    use HasApiTokens, HasFactory, HasUuids, Notifiable, ScopedToMda, SoftDeletes;
+    use Auditable, HasApiTokens, HasFactory, HasUuids, Notifiable, ScopedToMda, SoftDeletes;
 
     /**
      * Users are MDA-scoped on their `mda_id` column (not the Phase 2 default).
@@ -27,6 +28,36 @@ class User extends Authenticatable
     public function mdaOwnershipColumn(): string
     {
         return 'mda_id';
+    }
+
+    /**
+     * Operational/auth-state columns excluded from audit (changes to only these
+     * produce no audit entry). The semantic auth events (login, lockout, MFA)
+     * are audited explicitly instead.
+     *
+     * @return list<string>
+     */
+    protected function auditExcluded(): array
+    {
+        return [
+            'last_login_at',
+            'failed_login_attempts',
+            'locked_until',
+            'remember_token',
+            'mfa_secret',
+            'mfa_recovery_codes',
+            'mfa_enabled',
+        ];
+    }
+
+    /**
+     * A user's full name is PII and is masked in audit snapshots (SECURITY.md).
+     *
+     * @return list<string>
+     */
+    protected function auditMask(): array
+    {
+        return ['name'];
     }
 
     /**

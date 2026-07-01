@@ -6,6 +6,7 @@ namespace App\Domain\Access\Models;
 
 use App\Domain\Access\Enums\MdaStatus;
 use App\Domain\Access\Enums\MdaType;
+use App\Domain\Audit\Concerns\Auditable;
 use Database\Factories\MdaFactory;
 use Illuminate\Database\Eloquent\Concerns\HasUuids;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -20,7 +21,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 class Mda extends Model
 {
     /** @use HasFactory<MdaFactory> */
-    use HasFactory, HasUuids, SoftDeletes;
+    use Auditable, HasFactory, HasUuids, SoftDeletes;
 
     protected $table = 'mdas';
 

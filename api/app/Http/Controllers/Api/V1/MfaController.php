@@ -6,6 +6,7 @@ namespace App\Http\Controllers\Api\V1;
 
 use App\Domain\Access\Events\AccountLocked;
 use App\Domain\Access\Events\MfaChallengeFailed;
+use App\Domain\Access\Events\MfaDisabled;
 use App\Domain\Access\Events\MfaEnrolled;
 use App\Domain\Access\Models\User;
 use App\Domain\Access\Services\AuthTokenIssuer;
@@ -112,6 +113,8 @@ class MfaController extends Controller
             'mfa_secret' => null,
             'mfa_recovery_codes' => null,
         ])->save();
+
+        MfaDisabled::dispatch($user);
 
         return ApiResponse::success(['mfa_enabled' => false]);
     }

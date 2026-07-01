@@ -13,6 +13,7 @@ use App\Domain\Access\Models\User;
 use Database\Seeders\RolesAndPermissionsSeeder;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Support\Facades\Event;
+use Illuminate\Testing\TestResponse;
 use PragmaRX\Google2FA\Google2FA;
 use Tests\TestCase;
 
@@ -40,7 +41,7 @@ class MfaTest extends TestCase
         return (new Google2FA)->getCurrentOtp($secret);
     }
 
-    private function login(string $password = self::PASSWORD): \Illuminate\Testing\TestResponse
+    private function login(string $password = self::PASSWORD): TestResponse
     {
         return $this->postJson('/api/v1/auth/login', [
             'email' => 'user@example.test',

@@ -2,6 +2,7 @@
 
 declare(strict_types=1);
 
+use App\Http\Middleware\AssignCorrelationId;
 use App\Http\Middleware\CheckPermission;
 use App\Http\Middleware\EnforceIdleTimeout;
 use App\Http\Middleware\SecurityHeaders;
@@ -26,8 +27,11 @@ return Application::configure(basePath: dirname(__DIR__))
         health: '/up',
     )
     ->withMiddleware(function (Middleware $middleware): void {
-        // Security headers on every API response.
-        $middleware->api(append: [
+        // Correlation id first (so it is available to everything), security
+        // headers on every API response.
+        $middleware->api(prepend: [
+            AssignCorrelationId::class,
+        ], append: [
             SecurityHeaders::class,
         ]);
 

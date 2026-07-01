@@ -31,22 +31,40 @@ class RbacTest extends TestCase
         'executive' => ['cross-mda.view', 'mda.view', 'user.view'],
     ];
 
-    private function userWithRole(?RoleKey $roleKey): User
+    /** @var array<string, User> one user per role key, plus 'none' */
+    private array $users = [];
+
+    protected function setUp(): void
     {
+        parent::setUp();
+
         $this->seed(RolesAndPermissionsSeeder::class);
 
-        $roleId = $roleKey !== null
-            ? Role::where('key', $roleKey->value)->firstOrFail()->id
-            : null;
+        // Create all users up front (before any request). Creating an Auditable
+        // model between sub-requests would resolve Auth::user() against the
+        // previous request and cache a stale user, breaking later auth in the
+        // same test. Building them here avoids that entirely.
+        foreach (RoleKey::cases() as $roleKey) {
+            $this->users[$roleKey->value] = User::factory()->create([
+                'role_id' => Role::where('key', $roleKey->value)->firstOrFail()->id,
+                'mda_id' => Mda::factory()->create()->id,
+            ]);
+        }
 
-        return User::factory()->create([
-            'role_id' => $roleId,
+        $this->users['none'] = User::factory()->create([
+            'role_id' => null,
             'mda_id' => Mda::factory()->create()->id,
         ]);
     }
 
+    private function userWithRole(?RoleKey $roleKey): User
+    {
+        return $this->users[$roleKey?->value ?? 'none'];
+    }
+
     private function tokenFor(?RoleKey $roleKey): string
     {
+        // Only mints a token (no Auditable model creation) — safe between requests.
         return $this->userWithRole($roleKey)->createToken('test')->plainTextToken;
     }
 

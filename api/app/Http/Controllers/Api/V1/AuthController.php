@@ -8,6 +8,7 @@ use App\Domain\Access\Enums\UserStatus;
 use App\Domain\Access\Events\AccountLocked;
 use App\Domain\Access\Models\User;
 use App\Domain\Access\Services\AuthTokenIssuer;
+use App\Domain\Audit\Services\AuditLogger;
 use App\Http\Controllers\Concerns\AuthResponses;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Auth\ChangePasswordRequest;
@@ -22,7 +23,10 @@ class AuthController extends Controller
 {
     use AuthResponses;
 
-    public function __construct(private readonly AuthTokenIssuer $tokens) {}
+    public function __construct(
+        private readonly AuthTokenIssuer $tokens,
+        private readonly AuditLogger $audit,
+    ) {}
 
     /**
      * Verify credentials and either issue a full token, or hand off to the MFA
@@ -42,6 +46,9 @@ class AuthController extends Controller
         }
 
         if (! $this->credentialsAreValid($user, $credentials['password'])) {
+            // Audited without the attempted email (no PII); actor set if known.
+            $this->audit->record('auth.login_failed', $user, actor: $user);
+
             if ($user !== null && $user->registerFailedAttempt()) {
                 AccountLocked::dispatch($user, $request->ip());
 
@@ -87,7 +94,10 @@ class AuthController extends Controller
      */
     public function logout(Request $request): JsonResponse
     {
-        $request->user()->currentAccessToken()->delete();
+        $user = $request->user();
+        $user->currentAccessToken()->delete();
+
+        $this->audit->record('auth.logout', $user, actor: $user);
 
         return ApiResponse::success(['message' => 'Logged out.']);
     }
