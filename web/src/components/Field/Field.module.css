@@ -4,6 +4,12 @@
   gap: var(--space-2);
 }
 
+.labelRow {
+  display: inline-flex;
+  align-items: center;
+  gap: 2px;
+}
+
 .label {
   font-family: var(--font-body);
   font-size: var(--fs-label);
@@ -13,7 +19,6 @@
 
 .required {
   color: var(--danger);
-  margin-left: 2px;
 }
 
 .message {

@@ -39,14 +39,18 @@ export function FieldShell({
 
   return (
     <div className={cn(styles.field, className)}>
-      <label htmlFor={id} className={cn(styles.label, hideLabel && 'sr-only')}>
-        {label}
+      {/* The required "*" sits outside the <label> so it is not part of the
+          field's accessible name (screen readers rely on aria-required instead). */}
+      <span className={cn(styles.labelRow, hideLabel && 'sr-only')}>
+        <label htmlFor={id} className={styles.label}>
+          {label}
+        </label>
         {required && (
           <span className={styles.required} aria-hidden="true">
             *
           </span>
         )}
-      </label>
+      </span>
       {children}
       {message && (
         <p
