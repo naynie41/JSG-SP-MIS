@@ -1,0 +1,31 @@
+.crumbs {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+  font-size: var(--fs-label);
+}
+
+.crumb {
+  color: var(--text-muted-strong);
+}
+
+.link {
+  color: var(--text-muted-strong);
+  border-radius: var(--radius-sm);
+}
+.link:hover {
+  color: var(--ink);
+  text-decoration: underline;
+}
+
+.current {
+  color: var(--ink);
+  font-weight: 500;
+}
+
+/* Mono separators (DESIGN-SYSTEM.md §5.6). */
+.sep {
+  font-family: var(--font-mono);
+  color: var(--border-strong);
+}

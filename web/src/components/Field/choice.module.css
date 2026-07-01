@@ -1,0 +1,87 @@
+.choice {
+  display: inline-flex;
+  align-items: flex-start;
+  gap: var(--space-3);
+  cursor: pointer;
+  font-size: var(--fs-ui);
+  line-height: 1.4;
+  color: var(--ink);
+}
+
+.choice.disabled {
+  cursor: not-allowed;
+  color: var(--text-muted);
+}
+
+/* Native control kept accessible but visually replaced by .box. */
+.input {
+  position: absolute;
+  opacity: 0;
+  width: 1px;
+  height: 1px;
+  margin: 0;
+}
+
+.box {
+  flex: 0 0 auto;
+  width: 20px;
+  height: 20px;
+  margin-top: 1px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--surface);
+  border: 1px solid var(--border-strong);
+  color: var(--ink);
+  transition:
+    background-color var(--transition),
+    border-color var(--transition);
+}
+
+.checkbox .box {
+  border-radius: var(--radius-sm);
+}
+.radio .box {
+  border-radius: var(--radius-full);
+}
+
+.glyph {
+  opacity: 0;
+  transition: opacity var(--transition);
+}
+
+/* Checked: lime fill, dark (ink) glyph — never white on lime. */
+.input:checked + .box {
+  background-color: var(--accent);
+  border-color: var(--accent);
+}
+.input:checked + .box .glyph {
+  opacity: 1;
+}
+
+.radio .dot {
+  width: 8px;
+  height: 8px;
+  border-radius: var(--radius-full);
+  background-color: var(--ink);
+  opacity: 0;
+  transition: opacity var(--transition);
+}
+.input:checked + .box .dot {
+  opacity: 1;
+}
+
+/* Visible keyboard focus on the surrogate box. */
+.input:focus-visible + .box {
+  outline: var(--focus-ring);
+  outline-offset: var(--focus-offset);
+}
+
+.input:disabled + .box {
+  background-color: var(--bg);
+  border-color: var(--border);
+}
+
+.text {
+  padding-top: 1px;
+}

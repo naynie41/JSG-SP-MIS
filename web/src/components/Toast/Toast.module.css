@@ -1,0 +1,80 @@
+.region {
+  position: fixed;
+  top: var(--space-4);
+  right: var(--space-4);
+  z-index: 1100;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  width: min(360px, calc(100vw - var(--space-6)));
+  pointer-events: none;
+}
+
+.toast {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-3);
+  padding: var(--space-3) var(--space-4);
+  border-radius: var(--radius-md);
+  box-shadow: var(--elev-md);
+  pointer-events: auto;
+  animation: slideIn var(--transition) ease;
+}
+
+.success {
+  background-color: var(--success-soft);
+  color: var(--success-ink);
+}
+.warning {
+  background-color: var(--warning-soft);
+  color: var(--warning-ink);
+}
+.danger {
+  background-color: var(--danger-soft);
+  color: var(--danger-ink);
+}
+.info {
+  background-color: var(--info-soft);
+  color: var(--info-ink);
+}
+
+.icon {
+  flex: 0 0 auto;
+  margin-top: 1px;
+}
+
+.content {
+  flex: 1 1 auto;
+  min-width: 0;
+}
+
+.title {
+  font-weight: 600;
+  font-size: var(--fs-ui);
+}
+
+.message {
+  font-size: var(--fs-label);
+  margin-top: 2px;
+}
+
+.dismiss {
+  appearance: none;
+  border: none;
+  background: transparent;
+  color: currentColor;
+  cursor: pointer;
+  opacity: 0.7;
+  border-radius: var(--radius-sm);
+  display: inline-flex;
+}
+.dismiss:hover {
+  opacity: 1;
+}
+
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateX(12px);
+  }
+}

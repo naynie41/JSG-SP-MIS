@@ -46,6 +46,7 @@ class AccessController extends Controller
             ->orderBy('name')
             ->get()
             ->map(fn (Role $role) => [
+                'id' => $role->id,
                 'key' => $role->key,
                 'name' => $role->name,
                 'description' => $role->description,

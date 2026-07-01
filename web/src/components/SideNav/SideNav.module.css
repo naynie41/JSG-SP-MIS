@@ -1,0 +1,136 @@
+.rail {
+  background-color: var(--forest);
+  color: var(--bg);
+  width: var(--rail-width);
+  height: 100vh;
+  position: sticky;
+  top: 0;
+  display: flex;
+  flex-direction: column;
+  flex: 0 0 auto;
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  padding: var(--space-5);
+}
+
+.brandMark {
+  width: 32px;
+  height: 32px;
+  border-radius: var(--radius-sm);
+  background-color: var(--accent);
+  color: var(--ink);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-display);
+  font-weight: 700;
+  flex: 0 0 auto;
+}
+
+.brandName {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: var(--fs-h3);
+  color: var(--bg);
+}
+
+.brandSub {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--surface-mint-2);
+}
+
+.nav {
+  flex: 1 1 auto;
+  overflow-y: auto;
+  padding: var(--space-2) var(--space-3) var(--space-5);
+}
+
+.group {
+  margin-top: var(--space-5);
+}
+
+.groupLabel {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--surface-mint-2);
+  padding: 0 var(--space-3);
+  margin-bottom: var(--space-2);
+}
+
+.item {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  padding: var(--space-3);
+  border-radius: var(--radius-md);
+  color: var(--surface-mint);
+  font-size: var(--fs-ui);
+  font-weight: 500;
+  transition:
+    background-color var(--transition),
+    color var(--transition);
+  min-height: 44px;
+}
+
+.item:hover {
+  background-color: var(--forest-2);
+  color: var(--bg);
+}
+
+/* Active: lime left-bar + accent text + forest-2 fill. */
+.active {
+  background-color: var(--forest-2);
+  color: var(--accent);
+}
+.active::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 8px;
+  bottom: 8px;
+  width: 3px;
+  border-radius: var(--radius-full);
+  background-color: var(--accent);
+}
+
+.footer {
+  padding: var(--space-3);
+  border-top: 1px solid var(--forest-2);
+}
+
+/* --- Mobile drawer --- */
+.backdrop {
+  display: none;
+}
+
+@media (max-width: 1024px) {
+  .rail {
+    position: fixed;
+    left: 0;
+    top: 0;
+    z-index: 1050;
+    transform: translateX(-100%);
+    transition: transform var(--transition);
+    box-shadow: var(--elev-lg);
+  }
+  .railOpen {
+    transform: translateX(0);
+  }
+  .backdrop {
+    display: block;
+    position: fixed;
+    inset: 0;
+    background-color: rgba(44, 53, 18, 0.4);
+    z-index: 1040;
+  }
+}

@@ -1,0 +1,102 @@
+.bar {
+  height: var(--topbar-height);
+  background-color: var(--bg);
+  border-bottom: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-4);
+  padding: 0 var(--space-5);
+  position: sticky;
+  top: 0;
+  z-index: 900;
+}
+
+.left {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  min-width: 0;
+}
+
+.menuButton {
+  appearance: none;
+  border: 1px solid var(--border);
+  background: var(--surface);
+  border-radius: var(--radius-md);
+  padding: var(--space-2);
+  cursor: pointer;
+  display: none;
+  color: var(--ink);
+}
+@media (max-width: 1024px) {
+  .menuButton {
+    display: inline-flex;
+  }
+}
+
+.right {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+}
+
+.iconButton {
+  appearance: none;
+  border: none;
+  background: transparent;
+  color: var(--text-muted-strong);
+  cursor: pointer;
+  padding: var(--space-2);
+  border-radius: var(--radius-full);
+  display: inline-flex;
+  position: relative;
+}
+.iconButton:hover {
+  background-color: var(--surface-mint);
+  color: var(--ink);
+}
+
+.dot {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  width: 7px;
+  height: 7px;
+  border-radius: var(--radius-full);
+  background-color: var(--accent);
+  border: 1.5px solid var(--bg);
+}
+
+.user {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: var(--space-1) var(--space-2);
+  border-radius: var(--radius-full);
+}
+.user:hover {
+  background-color: var(--surface-mint);
+}
+
+.userName {
+  font-size: var(--fs-label);
+  font-weight: 500;
+  color: var(--ink);
+  text-align: left;
+}
+.userRole {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--text-muted-strong);
+}
+@media (max-width: 640px) {
+  .userMeta {
+    display: none;
+  }
+}

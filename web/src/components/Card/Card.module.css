@@ -1,0 +1,73 @@
+.card {
+  background-color: var(--surface);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--elev-sm);
+  padding: var(--space-5);
+  border: 1px solid var(--border);
+}
+
+.mint {
+  background-color: var(--surface-mint);
+  border-color: transparent;
+}
+
+.flush {
+  padding: 0;
+}
+
+.header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: var(--space-4);
+  margin-bottom: var(--space-4);
+}
+
+.title {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: var(--fs-h3);
+  line-height: var(--lh-h3);
+  color: var(--ink);
+}
+
+.eyebrow {
+  margin-bottom: var(--space-2);
+}
+
+/* --- Forest KPI panel (exec dashboards; use sparingly) --- */
+.kpi {
+  background-color: var(--forest);
+  border-radius: var(--radius-lg);
+  padding: var(--space-5);
+  color: var(--bg);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  box-shadow: var(--elev-sm);
+}
+
+.kpiLabel {
+  font-family: var(--font-mono);
+  font-size: var(--fs-caption);
+  letter-spacing: var(--tracking-caption);
+  text-transform: uppercase;
+  color: var(--surface-mint);
+}
+
+.kpiValue {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 44px;
+  line-height: 1.05;
+  color: var(--bg);
+}
+
+.kpiValue .accentText {
+  color: var(--accent);
+}
+
+.kpiHint {
+  font-size: var(--fs-label);
+  color: var(--surface-mint-2);
+}

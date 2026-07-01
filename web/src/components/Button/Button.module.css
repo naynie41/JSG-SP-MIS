@@ -1,0 +1,113 @@
+.button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-2);
+  border: 1px solid transparent;
+  border-radius: var(--radius-full);
+  font-family: var(--font-body);
+  font-weight: 500;
+  white-space: nowrap;
+  cursor: pointer;
+  transition:
+    background-color var(--transition),
+    border-color var(--transition),
+    color var(--transition),
+    opacity var(--transition);
+  text-decoration: none;
+}
+
+.button:disabled,
+.button[aria-disabled='true'] {
+  cursor: not-allowed;
+  opacity: 0.4;
+}
+
+.fullWidth {
+  width: 100%;
+}
+
+/* --- Sizes --- */
+.sm {
+  height: 32px;
+  padding: 0 var(--space-3);
+  font-size: var(--fs-label);
+}
+.md {
+  height: 40px;
+  padding: 0 var(--space-4);
+  font-size: var(--fs-ui);
+}
+.lg {
+  height: 48px;
+  padding: 0 var(--space-5);
+  font-size: var(--fs-body);
+}
+
+/* --- Variant: primary (lime, dark text — never white on lime) --- */
+.primary {
+  background-color: var(--accent);
+  color: var(--ink);
+}
+.primary:hover:not(:disabled) {
+  background-color: var(--accent-hover);
+}
+.primary:active:not(:disabled) {
+  background-color: var(--accent-hover);
+  transform: translateY(1px);
+}
+
+/* --- Variant: secondary (forest, paper text) --- */
+.secondary {
+  background-color: var(--forest);
+  color: var(--bg);
+}
+.secondary:hover:not(:disabled) {
+  background-color: var(--forest-2);
+}
+.secondary:active:not(:disabled) {
+  transform: translateY(1px);
+}
+
+/* --- Variant: tertiary / ghost --- */
+.tertiary {
+  background-color: transparent;
+  color: var(--ink);
+  border-color: var(--border);
+}
+.tertiary:hover:not(:disabled) {
+  background-color: var(--surface-mint);
+}
+.tertiary:active:not(:disabled) {
+  background-color: var(--surface-mint-2);
+}
+
+/* --- Variant: danger (white text is valid on danger) --- */
+.danger {
+  background-color: var(--danger);
+  color: #ffffff;
+}
+.danger:hover:not(:disabled) {
+  background-color: var(--danger-hover);
+}
+.danger:active:not(:disabled) {
+  transform: translateY(1px);
+}
+
+/* --- Variant: link --- */
+.link {
+  background-color: transparent;
+  color: var(--forest);
+  padding-left: var(--space-1);
+  padding-right: var(--space-1);
+  height: auto;
+  border-radius: var(--radius-sm);
+}
+.link:hover:not(:disabled) {
+  text-decoration: underline;
+}
+
+.icon {
+  display: inline-flex;
+  flex: 0 0 auto;
+}
