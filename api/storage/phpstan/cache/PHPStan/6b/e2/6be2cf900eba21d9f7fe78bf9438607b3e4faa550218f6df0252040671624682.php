@@ -12,7 +12,9 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
          'namespace' => 'App\\Http\\Requests\\Registry',
          'uses' => 
         array (
+          'sourceadapterregistry' => 'App\\Domain\\Registry\\Imports\\Adapters\\SourceAdapterRegistry',
           'formrequest' => 'Illuminate\\Foundation\\Http\\FormRequest',
+          'rule' => 'Illuminate\\Validation\\Rule',
         ),
          'className' => 'App\\Http\\Requests\\Registry\\UploadImportRequest',
          'functionName' => NULL,
@@ -35,7 +37,9 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
          'namespace' => 'App\\Http\\Requests\\Registry',
          'uses' => 
         array (
+          'sourceadapterregistry' => 'App\\Domain\\Registry\\Imports\\Adapters\\SourceAdapterRegistry',
           'formrequest' => 'Illuminate\\Foundation\\Http\\FormRequest',
+          'rule' => 'Illuminate\\Validation\\Rule',
         ),
          'className' => 'App\\Http\\Requests\\Registry\\UploadImportRequest',
          'functionName' => 'authorize',
@@ -47,7 +51,9 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
            'namespace' => 'App\\Http\\Requests\\Registry',
            'uses' => 
           array (
+            'sourceadapterregistry' => 'App\\Domain\\Registry\\Imports\\Adapters\\SourceAdapterRegistry',
             'formrequest' => 'Illuminate\\Foundation\\Http\\FormRequest',
+            'rule' => 'Illuminate\\Validation\\Rule',
           ),
            'className' => 'App\\Http\\Requests\\Registry\\UploadImportRequest',
            'functionName' => NULL,
@@ -80,7 +86,9 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
          'namespace' => 'App\\Http\\Requests\\Registry',
          'uses' => 
         array (
+          'sourceadapterregistry' => 'App\\Domain\\Registry\\Imports\\Adapters\\SourceAdapterRegistry',
           'formrequest' => 'Illuminate\\Foundation\\Http\\FormRequest',
+          'rule' => 'Illuminate\\Validation\\Rule',
         ),
          'className' => 'App\\Http\\Requests\\Registry\\UploadImportRequest',
          'functionName' => 'rules',
@@ -92,7 +100,9 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
            'namespace' => 'App\\Http\\Requests\\Registry',
            'uses' => 
           array (
+            'sourceadapterregistry' => 'App\\Domain\\Registry\\Imports\\Adapters\\SourceAdapterRegistry',
             'formrequest' => 'Illuminate\\Foundation\\Http\\FormRequest',
+            'rule' => 'Illuminate\\Validation\\Rule',
           ),
            'className' => 'App\\Http\\Requests\\Registry\\UploadImportRequest',
            'functionName' => NULL,
@@ -123,7 +133,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
     ),
     1 => 
     array (
-      '/var/www/html/app/Http/Requests/Registry/UploadImportRequest.php' => 'd1679ac7e7f4f021bda81ceab0516d11f810d91629dca7179de120415382cb5e',
+      '/var/www/html/app/Http/Requests/Registry/UploadImportRequest.php' => '2a35f97799348069835241557281687614fcb92fe638bedb448c037f2309a1b9',
     ),
   ),
 ));

@@ -52,5 +52,13 @@ class AppServiceProvider extends ServiceProvider
 
             return Limit::perMinute(5)->by('mfa|'.$key);
         });
+
+        // Inbound REST registration intake (FR-REG-02), throttled per integrating
+        // account so one busy integration cannot starve others.
+        RateLimiter::for('registration-intake', function (Request $request): Limit {
+            $key = $request->user()?->getAuthIdentifier() ?? $request->ip();
+
+            return Limit::perMinute(60)->by('intake|'.$key);
+        });
     }
 }

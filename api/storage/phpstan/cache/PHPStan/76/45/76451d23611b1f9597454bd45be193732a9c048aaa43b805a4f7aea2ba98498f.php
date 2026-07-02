@@ -126,7 +126,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
     ),
     1 => 
     array (
-      '/var/www/html/app/Providers/AppServiceProvider.php' => '32b801fcbd906a03e58b838817df29c12803226bc17c536ec1eeca9e58ad8ec5',
+      '/var/www/html/app/Providers/AppServiceProvider.php' => 'a8411944932725e334fba8e64bd41812d047e3242b9674ac8ebed95aa12dd9a5',
     ),
   ),
 ));

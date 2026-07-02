@@ -6,6 +6,7 @@ namespace App\Domain\Registry\Jobs;
 
 use App\Domain\Access\Scopes\MdaScope;
 use App\Domain\Registry\Enums\ImportStatus;
+use App\Domain\Registry\Imports\Adapters\SourceAdapterRegistry;
 use App\Domain\Registry\Imports\ImportRowValidator;
 use App\Domain\Registry\Imports\SpreadsheetReader;
 use App\Domain\Registry\Models\ImportBatch;
@@ -26,7 +27,8 @@ use Throwable;
  * and a summary is written to the batch. NOTHING is committed to `beneficiaries`.
  *
  * Idempotent (re-parsing replaces the staged rows) and retry-safe. The payload
- * carries only the batch id — never PII.
+ * carries only the batch id — never PII. The batch's source adapter maps each
+ * raw record onto the canonical schema before the shared validation runs.
  */
 class ParseImportBatch implements ShouldQueue
 {
@@ -36,7 +38,7 @@ class ParseImportBatch implements ShouldQueue
 
     public function __construct(public readonly string $batchId) {}
 
-    public function handle(SpreadsheetReader $reader, ImportRowValidator $validator): void
+    public function handle(SpreadsheetReader $reader, ImportRowValidator $validator, SourceAdapterRegistry $adapters): void
     {
         $batch = ImportBatch::query()->withoutGlobalScope(MdaScope::class)->find($this->batchId);
 
@@ -57,7 +59,9 @@ class ParseImportBatch implements ShouldQueue
             return;
         }
 
-        DB::transaction(function () use ($batch, $parsed, $validator): void {
+        $adapter = $adapters->for($batch->source);
+
+        DB::transaction(function () use ($batch, $parsed, $validator, $adapter): void {
             // Idempotent re-parse: discard any previously staged rows first.
             $batch->rows()->delete();
 
@@ -67,7 +71,10 @@ class ParseImportBatch implements ShouldQueue
 
             foreach ($parsed['rows'] as $row) {
                 $total++;
-                $result = $validator->validate($row['values']);
+                // Map the raw source record onto the canonical schema, then run
+                // the SAME validation as manual registration.
+                $mapped = $adapter->map($row['values']);
+                $result = $validator->validate($mapped);
                 $errors = $result['errors'];
 
                 // Reject in-file duplicate identifiers (the DB unique rule only
@@ -90,7 +97,7 @@ class ParseImportBatch implements ShouldQueue
                 ImportRow::create([
                     'import_batch_id' => $batch->id,
                     'row_number' => $row['number'],
-                    'original_record_id' => $this->originalRecordId($row['values']),
+                    'original_record_id' => $mapped['original_record_id'] ?? null,
                     'payload' => $result['payload'],
                     'is_valid' => $isValid,
                     'errors' => $isValid ? null : $errors,
@@ -113,19 +120,5 @@ class ParseImportBatch implements ShouldQueue
             'status' => ImportStatus::Failed->value,
             'error' => Str::limit($e->getMessage(), 500),
         ]);
-    }
-
-    /**
-     * @param  array<string, string>  $values
-     */
-    private function originalRecordId(array $values): ?string
-    {
-        foreach (['original_record_id', 'record_id', 'id'] as $key) {
-            if (! empty($values[$key])) {
-                return $values[$key];
-            }
-        }
-
-        return null;
     }
 }

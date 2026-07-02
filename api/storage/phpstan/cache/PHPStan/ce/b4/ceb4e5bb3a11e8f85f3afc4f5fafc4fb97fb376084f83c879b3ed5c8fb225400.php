@@ -935,7 +935,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
     ),
     '/var/www/html/app/Providers/AppServiceProvider.php' => 
     array (
-      0 => '32b801fcbd906a03e58b838817df29c12803226bc17c536ec1eeca9e58ad8ec5',
+      0 => 'a8411944932725e334fba8e64bd41812d047e3242b9674ac8ebed95aa12dd9a5',
       1 => 
       array (
         0 => 'app\\providers\\appserviceprovider',
@@ -1177,7 +1177,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
     ),
     '/var/www/html/app/Domain/Registry/RegistryServiceProvider.php' => 
     array (
-      0 => '284627c9951ccbf5d8aed76809e2abb535afe42b929c5138c5b3858f6349dec2',
+      0 => '8468b061e271e29ca2f7c5477ae3138d50cc97f3fb9379c3b89871928a7800fa',
       1 => 
       array (
         0 => 'app\\domain\\registry\\registryserviceprovider',
@@ -1695,7 +1695,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
     ),
     '/var/www/html/app/Domain/Registry/Jobs/CommitImportBatch.php' => 
     array (
-      0 => '1e06a90921bf37712856dc058badd7bba943393cb2f3bba4f3abc526c656c19f',
+      0 => 'eb08ca9600aa76af41d9917e50c8dd9ae3ec19d76e8162c93872475a5a2759bd',
       1 => 
       array (
         0 => 'app\\domain\\registry\\jobs\\commitimportbatch',
@@ -1712,7 +1712,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
     ),
     '/var/www/html/app/Domain/Registry/Jobs/ParseImportBatch.php' => 
     array (
-      0 => 'f33bb4e56795644a835f6645c812e172299ea05482cc5f73a701c530e2a54316',
+      0 => 'ea97f19a7ebadcd686201f3013fe6cd9ebd985596d996b2726833e20a45938d7',
       1 => 
       array (
         0 => 'app\\domain\\registry\\jobs\\parseimportbatch',
@@ -1722,7 +1722,6 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         0 => 'app\\domain\\registry\\jobs\\__construct',
         1 => 'app\\domain\\registry\\jobs\\handle',
         2 => 'app\\domain\\registry\\jobs\\failed',
-        3 => 'app\\domain\\registry\\jobs\\originalrecordid',
       ),
       3 => 
       array (
@@ -1801,7 +1800,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
     ),
     '/var/www/html/app/Http/Controllers/Api/V1/Registry/ImportBatchController.php' => 
     array (
-      0 => '34bd2463569ebc8b80e05a63ee596f26d49dd6b9052973071630781f58b6bd37',
+      0 => '2a6e07fb2d0f1a53441e4bcad51863656918040e8af72527b683ece35419529d',
       1 => 
       array (
         0 => 'app\\http\\controllers\\api\\v1\\registry\\importbatchcontroller',
@@ -1819,7 +1818,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
     ),
     '/var/www/html/app/Http/Requests/Registry/UploadImportRequest.php' => 
     array (
-      0 => 'd1679ac7e7f4f021bda81ceab0516d11f810d91629dca7179de120415382cb5e',
+      0 => '2a35f97799348069835241557281687614fcb92fe638bedb448c037f2309a1b9',
       1 => 
       array (
         0 => 'app\\http\\requests\\registry\\uploadimportrequest',
@@ -1859,6 +1858,157 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
       array (
         0 => 'app\\http\\resources\\toarray',
         1 => 'app\\http\\resources\\masktail',
+      ),
+      3 => 
+      array (
+      ),
+    ),
+    '/var/www/html/app/Domain/Registry/Imports/Adapters/DefaultImportAdapter.php' => 
+    array (
+      0 => '919074dd7218fdd7ccc3ac59c0b9c3264e013e3141ef090376874ac70e2fbbd8',
+      1 => 
+      array (
+        0 => 'app\\domain\\registry\\imports\\adapters\\defaultimportadapter',
+      ),
+      2 => 
+      array (
+        0 => 'app\\domain\\registry\\imports\\adapters\\__construct',
+        1 => 'app\\domain\\registry\\imports\\adapters\\source',
+        2 => 'app\\domain\\registry\\imports\\adapters\\idkeys',
+      ),
+      3 => 
+      array (
+      ),
+    ),
+    '/var/www/html/app/Domain/Registry/Imports/Adapters/FieldMappingAdapter.php' => 
+    array (
+      0 => 'be1d9238ee2cddf7dd0bbff3d93dd0488fcd252e0950b52b1e221e64a604b7a8',
+      1 => 
+      array (
+        0 => 'app\\domain\\registry\\imports\\adapters\\fieldmappingadapter',
+      ),
+      2 => 
+      array (
+        0 => 'app\\domain\\registry\\imports\\adapters\\map',
+        1 => 'app\\domain\\registry\\imports\\adapters\\idkeys',
+        2 => 'app\\domain\\registry\\imports\\adapters\\extraaliases',
+        3 => 'app\\domain\\registry\\imports\\adapters\\aliases',
+        4 => 'app\\domain\\registry\\imports\\adapters\\extractrecordid',
+        5 => 'app\\domain\\registry\\imports\\adapters\\canonicalisekeys',
+      ),
+      3 => 
+      array (
+      ),
+    ),
+    '/var/www/html/app/Domain/Registry/Imports/Adapters/KoboAdapter.php' => 
+    array (
+      0 => 'e052ea1ddfc65f4cad8d116d951dcfc5addf48081ae92f987d3c7b5092a2db75',
+      1 => 
+      array (
+        0 => 'app\\domain\\registry\\imports\\adapters\\koboadapter',
+      ),
+      2 => 
+      array (
+        0 => 'app\\domain\\registry\\imports\\adapters\\source',
+        1 => 'app\\domain\\registry\\imports\\adapters\\idkeys',
+      ),
+      3 => 
+      array (
+      ),
+    ),
+    '/var/www/html/app/Domain/Registry/Imports/Adapters/OdkAdapter.php' => 
+    array (
+      0 => 'c1984b8e0b779f1ca03c02890b02bf86deb344756bf59bd33b5684b52e7807e5',
+      1 => 
+      array (
+        0 => 'app\\domain\\registry\\imports\\adapters\\odkadapter',
+      ),
+      2 => 
+      array (
+        0 => 'app\\domain\\registry\\imports\\adapters\\source',
+        1 => 'app\\domain\\registry\\imports\\adapters\\idkeys',
+      ),
+      3 => 
+      array (
+      ),
+    ),
+    '/var/www/html/app/Domain/Registry/Imports/Adapters/RegistrationSourceAdapter.php' => 
+    array (
+      0 => '93c718a46d1679a527b06a84c854f53cb2ac3a6162abc49167c63a570f4563e6',
+      1 => 
+      array (
+        0 => 'app\\domain\\registry\\imports\\adapters\\registrationsourceadapter',
+      ),
+      2 => 
+      array (
+        0 => 'app\\domain\\registry\\imports\\adapters\\source',
+        1 => 'app\\domain\\registry\\imports\\adapters\\map',
+      ),
+      3 => 
+      array (
+      ),
+    ),
+    '/var/www/html/app/Domain/Registry/Imports/Adapters/SourceAdapterRegistry.php' => 
+    array (
+      0 => '18a85c06aa3ed13b221e2887adfcca14e88518c07c75fc943e74949ef76a36c9',
+      1 => 
+      array (
+        0 => 'app\\domain\\registry\\imports\\adapters\\sourceadapterregistry',
+      ),
+      2 => 
+      array (
+        0 => 'app\\domain\\registry\\imports\\adapters\\register',
+        1 => 'app\\domain\\registry\\imports\\adapters\\for',
+        2 => 'app\\domain\\registry\\imports\\adapters\\has',
+        3 => 'app\\domain\\registry\\imports\\adapters\\importablesources',
+      ),
+      3 => 
+      array (
+      ),
+    ),
+    '/var/www/html/app/Domain/Registry/Services/BeneficiaryRegistrar.php' => 
+    array (
+      0 => '3f594185513d100c0746e07c8f91f2799581b8992cf4a1579f46a321868f195d',
+      1 => 
+      array (
+        0 => 'app\\domain\\registry\\services\\beneficiaryregistrar',
+      ),
+      2 => 
+      array (
+        0 => 'app\\domain\\registry\\services\\register',
+      ),
+      3 => 
+      array (
+      ),
+    ),
+    '/var/www/html/app/Http/Controllers/Api/V1/Registry/BeneficiaryIntakeController.php' => 
+    array (
+      0 => 'bc37273f44f90321e4896e5e8b9e13738e58a38dc06bf58e57c2ca813cb971bc',
+      1 => 
+      array (
+        0 => 'app\\http\\controllers\\api\\v1\\registry\\beneficiaryintakecontroller',
+      ),
+      2 => 
+      array (
+        0 => 'app\\http\\controllers\\api\\v1\\registry\\store',
+      ),
+      3 => 
+      array (
+      ),
+    ),
+    '/var/www/html/app/Http/Requests/Registry/ApiRegistrationRequest.php' => 
+    array (
+      0 => '0c10d1f4c92216eb217b6c058a89d945b42c64dd2ed3b1e565b9bdfec55cfef6',
+      1 => 
+      array (
+        0 => 'app\\http\\requests\\registry\\apiregistrationrequest',
+      ),
+      2 => 
+      array (
+        0 => 'app\\http\\requests\\registry\\authorize',
+        1 => 'app\\http\\requests\\registry\\prepareforvalidation',
+        2 => 'app\\http\\requests\\registry\\rules',
+        3 => 'app\\http\\requests\\registry\\messages',
       ),
       3 => 
       array (

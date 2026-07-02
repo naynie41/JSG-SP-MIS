@@ -11,6 +11,7 @@ use App\Http\Controllers\Api\V1\AuthController;
 use App\Http\Controllers\Api\V1\HealthController;
 use App\Http\Controllers\Api\V1\MfaController;
 use App\Http\Controllers\Api\V1\Registry\BeneficiaryController;
+use App\Http\Controllers\Api\V1\Registry\BeneficiaryIntakeController;
 use App\Http\Controllers\Api\V1\Registry\HouseholdController;
 use App\Http\Controllers\Api\V1\Registry\HouseholdMemberController;
 use App\Http\Controllers\Api\V1\Registry\ImportBatchController;
@@ -130,6 +131,12 @@ Route::prefix('v1')->group(function (): void {
             ->middleware('permission:beneficiary.view')->name('beneficiaries.imports.show');
         Route::post('/beneficiaries/imports/{batch}/confirm', [ImportBatchController::class, 'confirm'])
             ->middleware('permission:beneficiary.create')->name('beneficiaries.imports.confirm');
+
+        // Inbound REST registration intake (FR-REG-02, source=api) — rate limited.
+        Route::post('/beneficiaries/intake', [BeneficiaryIntakeController::class, 'store'])
+            ->middleware(['permission:beneficiary.create', 'throttle:registration-intake'])
+            ->name('beneficiaries.intake');
+
         Route::get('/beneficiaries', [BeneficiaryController::class, 'index'])
             ->middleware('permission:beneficiary.view')->name('beneficiaries.index');
         Route::post('/beneficiaries', [BeneficiaryController::class, 'store'])

@@ -7,9 +7,9 @@ namespace App\Domain\Registry\Jobs;
 use App\Domain\Access\Models\User;
 use App\Domain\Access\Scopes\MdaScope;
 use App\Domain\Registry\Enums\ImportStatus;
-use App\Domain\Registry\Models\Beneficiary;
 use App\Domain\Registry\Models\ImportBatch;
 use App\Domain\Registry\Models\ImportRow;
+use App\Domain\Registry\Services\BeneficiaryRegistrar;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Database\UniqueConstraintViolationException;
@@ -41,7 +41,7 @@ class CommitImportBatch implements ShouldQueue
         public readonly ?string $actorId = null,
     ) {}
 
-    public function handle(): void
+    public function handle(BeneficiaryRegistrar $registrar): void
     {
         $batch = ImportBatch::query()->withoutGlobalScope(MdaScope::class)->find($this->batchId);
 
@@ -67,18 +67,20 @@ class CommitImportBatch implements ShouldQueue
             ->where('is_valid', true)
             ->whereNull('beneficiary_id')
             ->orderBy('row_number')
-            ->chunkById(200, function ($rows) use ($batch, &$committed): void {
+            ->chunkById(200, function ($rows) use ($batch, $registrar, &$committed): void {
                 foreach ($rows as $row) {
                     /** @var ImportRow $row */
                     try {
-                        DB::transaction(function () use ($row, $batch): void {
-                            $beneficiary = new Beneficiary;
-                            $beneficiary->fill($row->payload);
-                            $beneficiary->owner_mda_id = $batch->owner_mda_id;
-                            $beneficiary->registration_source = $batch->source;
-                            $beneficiary->import_batch_id = $batch->id;
-                            $beneficiary->original_record_id = $row->original_record_id;
-                            $beneficiary->save(); // Auditable → beneficiary.created
+                        DB::transaction(function () use ($row, $batch, $registrar): void {
+                            // Same provenance-stamping choke-point as every other
+                            // inbound channel (Auditable → beneficiary.created).
+                            $beneficiary = $registrar->register(
+                                $row->payload,
+                                $batch->owner_mda_id,
+                                $batch->source,
+                                $row->original_record_id,
+                                $batch->id,
+                            );
 
                             $row->update(['beneficiary_id' => $beneficiary->id]);
                         });

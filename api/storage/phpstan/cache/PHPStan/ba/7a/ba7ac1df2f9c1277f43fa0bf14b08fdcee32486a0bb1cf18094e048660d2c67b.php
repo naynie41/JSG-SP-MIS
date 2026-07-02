@@ -2,7 +2,7 @@
 
 // odsl-/var/www/html/app/Http/Controllers/Api/V1/Registry/ImportBatchController.php-PHPStan\BetterReflection\Reflection\ReflectionClass-App\Http\Controllers\Api\V1\Registry\ImportBatchController
 return \PHPStan\Cache\CacheItem::__set_state(array(
-   'variableKey' => 'v2-6.70.0.1-8.3.31-34bd2463569ebc8b80e05a63ee596f26d49dd6b9052973071630781f58b6bd37',
+   'variableKey' => 'v2-6.70.0.1-8.3.31-2a6e07fb2d0f1a53441e4bcad51863656918040e8af72527b683ece35419529d',
    'data' => 
   array (
     'locatedSource' => 
@@ -31,7 +31,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
     array (
     ),
     'startLine' => 25,
-    'endLine' => 109,
+    'endLine' => 114,
     'startColumn' => 1,
     'endColumn' => 1,
     'parentClassName' => 'App\\Http\\Controllers\\Controller',
@@ -157,7 +157,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         ),
         'docComment' => '/** Upload a file: store it, create the batch, and queue parsing/validation. */',
         'startLine' => 48,
-        'endLine' => 75,
+        'endLine' => 80,
         'startColumn' => 5,
         'endColumn' => 5,
         'couldThrow' => false,
@@ -195,8 +195,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             'attributes' => 
             array (
             ),
-            'startLine' => 78,
-            'endLine' => 78,
+            'startLine' => 83,
+            'endLine' => 83,
             'startColumn' => 26,
             'endColumn' => 38,
             'parameterIndex' => 0,
@@ -217,8 +217,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         array (
         ),
         'docComment' => '/** Show the batch and its staged rows (the preview). */',
-        'startLine' => 78,
-        'endLine' => 87,
+        'startLine' => 83,
+        'endLine' => 92,
         'startColumn' => 5,
         'endColumn' => 5,
         'couldThrow' => false,
@@ -256,8 +256,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             'attributes' => 
             array (
             ),
-            'startLine' => 90,
-            'endLine' => 90,
+            'startLine' => 95,
+            'endLine' => 95,
             'startColumn' => 29,
             'endColumn' => 41,
             'parameterIndex' => 0,
@@ -278,8 +278,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         array (
         ),
         'docComment' => '/** Confirm the preview: queue the commit of valid rows (owner MDA only). */',
-        'startLine' => 90,
-        'endLine' => 108,
+        'startLine' => 95,
+        'endLine' => 113,
         'startColumn' => 5,
         'endColumn' => 5,
         'couldThrow' => false,

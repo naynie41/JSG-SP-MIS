@@ -56,7 +56,12 @@ class ImportBatchController extends Controller
 
         $file = $request->file('file');
         $extension = strtolower($file->getClientOriginalExtension());
-        $source = in_array($extension, ['csv', 'txt'], true) ? RegistrationSource::Csv : RegistrationSource::Excel;
+
+        // Explicit source (kobo/odk/...) selects the adapter; otherwise infer
+        // plain Excel/CSV from the file extension.
+        $source = $request->filled('source')
+            ? RegistrationSource::from($request->string('source')->value())
+            : (in_array($extension, ['csv', 'txt'], true) ? RegistrationSource::Csv : RegistrationSource::Excel);
 
         $storedPath = $file->store('imports', 'local');
 

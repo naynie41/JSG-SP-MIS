@@ -312,7 +312,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
     ),
     1 => 
     array (
-      '/var/www/html/app/Http/Controllers/Api/V1/Registry/ImportBatchController.php' => '34bd2463569ebc8b80e05a63ee596f26d49dd6b9052973071630781f58b6bd37',
+      '/var/www/html/app/Http/Controllers/Api/V1/Registry/ImportBatchController.php' => '2a6e07fb2d0f1a53441e4bcad51863656918040e8af72527b683ece35419529d',
     ),
   ),
 ));

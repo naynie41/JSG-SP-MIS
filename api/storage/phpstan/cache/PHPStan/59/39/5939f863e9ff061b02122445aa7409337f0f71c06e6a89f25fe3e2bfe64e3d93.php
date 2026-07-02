@@ -2,7 +2,7 @@
 
 // odsl-/var/www/html/app/Http/Requests/Registry/UploadImportRequest.php-PHPStan\BetterReflection\Reflection\ReflectionClass-App\Http\Requests\Registry\UploadImportRequest
 return \PHPStan\Cache\CacheItem::__set_state(array(
-   'variableKey' => 'v2-6.70.0.1-8.3.31-d1679ac7e7f4f021bda81ceab0516d11f810d91629dca7179de120415382cb5e',
+   'variableKey' => 'v2-6.70.0.1-8.3.31-2a35f97799348069835241557281687614fcb92fe638bedb448c037f2309a1b9',
    'data' => 
   array (
     'locatedSource' => 
@@ -23,13 +23,16 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
     'isBackedEnum' => false,
     'modifiers' => 0,
     'docComment' => '/**
- * Upload an Excel/CSV file for bulk beneficiary import (PRD FR-REG-02).
+ * Upload a file for bulk beneficiary import (PRD FR-REG-02). Accepts plain
+ * Excel/CSV as well as Kobo/ODK exports; the optional `source` selects the
+ * ingestion adapter (and thus the stamped provenance). When omitted, the source
+ * is inferred from the file extension (excel/csv).
  */',
     'attributes' => 
     array (
     ),
-    'startLine' => 12,
-    'endLine' => 28,
+    'startLine' => 17,
+    'endLine' => 36,
     'startColumn' => 1,
     'endColumn' => 1,
     'parentClassName' => 'Illuminate\\Foundation\\Http\\FormRequest',
@@ -67,8 +70,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         array (
         ),
         'docComment' => NULL,
-        'startLine' => 14,
-        'endLine' => 17,
+        'startLine' => 19,
+        'endLine' => 22,
         'startColumn' => 5,
         'endColumn' => 5,
         'couldThrow' => false,
@@ -104,8 +107,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         'docComment' => '/**
  * @return array<string, mixed>
  */',
-        'startLine' => 22,
-        'endLine' => 27,
+        'startLine' => 27,
+        'endLine' => 35,
         'startColumn' => 5,
         'endColumn' => 5,
         'couldThrow' => false,

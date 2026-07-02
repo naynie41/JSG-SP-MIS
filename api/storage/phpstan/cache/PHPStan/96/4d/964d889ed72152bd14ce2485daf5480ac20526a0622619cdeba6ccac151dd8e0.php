@@ -14,6 +14,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         array (
           'mdascope' => 'App\\Domain\\Access\\Scopes\\MdaScope',
           'importstatus' => 'App\\Domain\\Registry\\Enums\\ImportStatus',
+          'sourceadapterregistry' => 'App\\Domain\\Registry\\Imports\\Adapters\\SourceAdapterRegistry',
           'importrowvalidator' => 'App\\Domain\\Registry\\Imports\\ImportRowValidator',
           'spreadsheetreader' => 'App\\Domain\\Registry\\Imports\\SpreadsheetReader',
           'importbatch' => 'App\\Domain\\Registry\\Models\\ImportBatch',
@@ -2143,6 +2144,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         array (
           'mdascope' => 'App\\Domain\\Access\\Scopes\\MdaScope',
           'importstatus' => 'App\\Domain\\Registry\\Enums\\ImportStatus',
+          'sourceadapterregistry' => 'App\\Domain\\Registry\\Imports\\Adapters\\SourceAdapterRegistry',
           'importrowvalidator' => 'App\\Domain\\Registry\\Imports\\ImportRowValidator',
           'spreadsheetreader' => 'App\\Domain\\Registry\\Imports\\SpreadsheetReader',
           'importbatch' => 'App\\Domain\\Registry\\Models\\ImportBatch',
@@ -2169,6 +2171,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
           array (
             'mdascope' => 'App\\Domain\\Access\\Scopes\\MdaScope',
             'importstatus' => 'App\\Domain\\Registry\\Enums\\ImportStatus',
+            'sourceadapterregistry' => 'App\\Domain\\Registry\\Imports\\Adapters\\SourceAdapterRegistry',
             'importrowvalidator' => 'App\\Domain\\Registry\\Imports\\ImportRowValidator',
             'spreadsheetreader' => 'App\\Domain\\Registry\\Imports\\SpreadsheetReader',
             'importbatch' => 'App\\Domain\\Registry\\Models\\ImportBatch',
@@ -2216,6 +2219,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         array (
           'mdascope' => 'App\\Domain\\Access\\Scopes\\MdaScope',
           'importstatus' => 'App\\Domain\\Registry\\Enums\\ImportStatus',
+          'sourceadapterregistry' => 'App\\Domain\\Registry\\Imports\\Adapters\\SourceAdapterRegistry',
           'importrowvalidator' => 'App\\Domain\\Registry\\Imports\\ImportRowValidator',
           'spreadsheetreader' => 'App\\Domain\\Registry\\Imports\\SpreadsheetReader',
           'importbatch' => 'App\\Domain\\Registry\\Models\\ImportBatch',
@@ -2242,6 +2246,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
           array (
             'mdascope' => 'App\\Domain\\Access\\Scopes\\MdaScope',
             'importstatus' => 'App\\Domain\\Registry\\Enums\\ImportStatus',
+            'sourceadapterregistry' => 'App\\Domain\\Registry\\Imports\\Adapters\\SourceAdapterRegistry',
             'importrowvalidator' => 'App\\Domain\\Registry\\Imports\\ImportRowValidator',
             'spreadsheetreader' => 'App\\Domain\\Registry\\Imports\\SpreadsheetReader',
             'importbatch' => 'App\\Domain\\Registry\\Models\\ImportBatch',
@@ -2289,6 +2294,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         array (
           'mdascope' => 'App\\Domain\\Access\\Scopes\\MdaScope',
           'importstatus' => 'App\\Domain\\Registry\\Enums\\ImportStatus',
+          'sourceadapterregistry' => 'App\\Domain\\Registry\\Imports\\Adapters\\SourceAdapterRegistry',
           'importrowvalidator' => 'App\\Domain\\Registry\\Imports\\ImportRowValidator',
           'spreadsheetreader' => 'App\\Domain\\Registry\\Imports\\SpreadsheetReader',
           'importbatch' => 'App\\Domain\\Registry\\Models\\ImportBatch',
@@ -2315,79 +2321,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
           array (
             'mdascope' => 'App\\Domain\\Access\\Scopes\\MdaScope',
             'importstatus' => 'App\\Domain\\Registry\\Enums\\ImportStatus',
-            'importrowvalidator' => 'App\\Domain\\Registry\\Imports\\ImportRowValidator',
-            'spreadsheetreader' => 'App\\Domain\\Registry\\Imports\\SpreadsheetReader',
-            'importbatch' => 'App\\Domain\\Registry\\Models\\ImportBatch',
-            'importrow' => 'App\\Domain\\Registry\\Models\\ImportRow',
-            'queueable' => 'Illuminate\\Bus\\Queueable',
-            'shouldqueue' => 'Illuminate\\Contracts\\Queue\\ShouldQueue',
-            'dispatchable' => 'Illuminate\\Foundation\\Bus\\Dispatchable',
-            'interactswithqueue' => 'Illuminate\\Queue\\InteractsWithQueue',
-            'serializesmodels' => 'Illuminate\\Queue\\SerializesModels',
-            'db' => 'Illuminate\\Support\\Facades\\DB',
-            'storage' => 'Illuminate\\Support\\Facades\\Storage',
-            'str' => 'Illuminate\\Support\\Str',
-            'throwable' => 'Throwable',
-          ),
-           'className' => 'App\\Domain\\Registry\\Jobs\\ParseImportBatch',
-           'functionName' => NULL,
-           'templatePhpDocNodes' => 
-          array (
-          ),
-           'parent' => NULL,
-           'typeAliasesMap' => 
-          array (
-          ),
-           'bypassTypeAliases' => false,
-           'constUses' => 
-          array (
-          ),
-           'typeAliasClassName' => NULL,
-           'traitData' => NULL,
-        )),
-         'typeAliasesMap' => 
-        array (
-        ),
-         'bypassTypeAliases' => false,
-         'constUses' => 
-        array (
-        ),
-         'typeAliasClassName' => NULL,
-         'traitData' => NULL,
-      )),
-      'd8278cb93650aaa1cab0cc9dad6c2dfd' => 
-      \PHPStan\Analyser\IntermediaryNameScope::__set_state(array(
-         'namespace' => 'App\\Domain\\Registry\\Jobs',
-         'uses' => 
-        array (
-          'mdascope' => 'App\\Domain\\Access\\Scopes\\MdaScope',
-          'importstatus' => 'App\\Domain\\Registry\\Enums\\ImportStatus',
-          'importrowvalidator' => 'App\\Domain\\Registry\\Imports\\ImportRowValidator',
-          'spreadsheetreader' => 'App\\Domain\\Registry\\Imports\\SpreadsheetReader',
-          'importbatch' => 'App\\Domain\\Registry\\Models\\ImportBatch',
-          'importrow' => 'App\\Domain\\Registry\\Models\\ImportRow',
-          'queueable' => 'Illuminate\\Bus\\Queueable',
-          'shouldqueue' => 'Illuminate\\Contracts\\Queue\\ShouldQueue',
-          'dispatchable' => 'Illuminate\\Foundation\\Bus\\Dispatchable',
-          'interactswithqueue' => 'Illuminate\\Queue\\InteractsWithQueue',
-          'serializesmodels' => 'Illuminate\\Queue\\SerializesModels',
-          'db' => 'Illuminate\\Support\\Facades\\DB',
-          'storage' => 'Illuminate\\Support\\Facades\\Storage',
-          'str' => 'Illuminate\\Support\\Str',
-          'throwable' => 'Throwable',
-        ),
-         'className' => 'App\\Domain\\Registry\\Jobs\\ParseImportBatch',
-         'functionName' => 'originalRecordId',
-         'templatePhpDocNodes' => 
-        array (
-        ),
-         'parent' => 
-        \PHPStan\Analyser\IntermediaryNameScope::__set_state(array(
-           'namespace' => 'App\\Domain\\Registry\\Jobs',
-           'uses' => 
-          array (
-            'mdascope' => 'App\\Domain\\Access\\Scopes\\MdaScope',
-            'importstatus' => 'App\\Domain\\Registry\\Enums\\ImportStatus',
+            'sourceadapterregistry' => 'App\\Domain\\Registry\\Imports\\Adapters\\SourceAdapterRegistry',
             'importrowvalidator' => 'App\\Domain\\Registry\\Imports\\ImportRowValidator',
             'spreadsheetreader' => 'App\\Domain\\Registry\\Imports\\SpreadsheetReader',
             'importbatch' => 'App\\Domain\\Registry\\Models\\ImportBatch',
@@ -2431,7 +2365,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
     ),
     1 => 
     array (
-      '/var/www/html/app/Domain/Registry/Jobs/ParseImportBatch.php' => 'f33bb4e56795644a835f6645c812e172299ea05482cc5f73a701c530e2a54316',
+      '/var/www/html/app/Domain/Registry/Jobs/ParseImportBatch.php' => 'ea97f19a7ebadcd686201f3013fe6cd9ebd985596d996b2726833e20a45938d7',
       '/var/www/html/vendor/composer/../laravel/framework/src/Illuminate/Foundation/Bus/Dispatchable.php' => '551294291775e57fbd590f0ed288a91cca683d42fac08e60c87e39b73617d47b',
       '/var/www/html/vendor/composer/../laravel/framework/src/Illuminate/Queue/InteractsWithQueue.php' => '8d300c3adb967aa56c0827ba587e456e32e40fbb1c0d9f649f6bf7c0d876e937',
       '/var/www/html/vendor/composer/../laravel/framework/src/Illuminate/Support/InteractsWithTime.php' => 'ee4ef3a2e714fa539b223287a3a62b618b1d3a9e44f2e1f92981f2c3e2773ad5',

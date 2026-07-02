@@ -8,6 +8,11 @@ use App\Domain\Access\Enums\PermissionAction;
 use App\Domain\Access\Support\PermissionRegistry;
 use App\Domain\Registry\Contracts\BeneficiaryRouter;
 use App\Domain\Registry\Contracts\DuplicateChecker;
+use App\Domain\Registry\Enums\RegistrationSource;
+use App\Domain\Registry\Imports\Adapters\DefaultImportAdapter;
+use App\Domain\Registry\Imports\Adapters\KoboAdapter;
+use App\Domain\Registry\Imports\Adapters\OdkAdapter;
+use App\Domain\Registry\Imports\Adapters\SourceAdapterRegistry;
 use App\Domain\Registry\Models\Beneficiary;
 use App\Domain\Registry\Models\Household;
 use App\Domain\Registry\Models\ImportBatch;
@@ -33,6 +38,18 @@ class RegistryServiceProvider extends ServiceProvider
 
         // Fuzzy duplicate matching binds a real checker here in Phase 3.
         $this->app->bind(DuplicateChecker::class, NullDuplicateChecker::class);
+
+        // Hybrid-registry source adapters (PRD FR-REG-02). Add a new inbound
+        // source (e.g. a government system) by registering its adapter here.
+        $this->app->singleton(SourceAdapterRegistry::class, function (): SourceAdapterRegistry {
+            $registry = new SourceAdapterRegistry;
+            $registry->register(new DefaultImportAdapter(RegistrationSource::Excel));
+            $registry->register(new DefaultImportAdapter(RegistrationSource::Csv));
+            $registry->register(new KoboAdapter);
+            $registry->register(new OdkAdapter);
+
+            return $registry;
+        });
     }
 
     public function boot(): void
