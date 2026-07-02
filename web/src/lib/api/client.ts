@@ -54,3 +54,14 @@ export async function apiRequest<T>(config: AxiosRequestConfig): Promise<T> {
   const response = await http.request<ApiSuccess<T>>(config)
   return response.data.data
 }
+
+export interface Paginated<T> {
+  items: T[]
+  pagination?: { page: number; per_page: number; total: number; total_pages: number }
+}
+
+/** Perform a request and return the collection `data` plus `meta.pagination`. */
+export async function apiRequestList<T>(config: AxiosRequestConfig): Promise<Paginated<T>> {
+  const response = await http.request<ApiSuccess<T[]>>(config)
+  return { items: response.data.data, pagination: response.data.meta?.pagination }
+}

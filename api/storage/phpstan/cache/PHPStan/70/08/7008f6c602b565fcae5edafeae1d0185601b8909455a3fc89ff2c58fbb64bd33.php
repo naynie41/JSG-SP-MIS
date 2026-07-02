@@ -2,7 +2,7 @@
 
 // odsl-/var/www/html/app/Http/Controllers/Api/V1/Registry/HouseholdController.php-PHPStan\BetterReflection\Reflection\ReflectionClass-App\Http\Controllers\Api\V1\Registry\HouseholdController
 return \PHPStan\Cache\CacheItem::__set_state(array(
-   'variableKey' => 'v2-6.70.0.1-8.3.31-891d7a49ba02b8d6b45b897e469383ef3fc1387943efe167b7e40cadc7db37f2',
+   'variableKey' => 'v2-6.70.0.1-8.3.31-2ae1d606695a79016897c284e915fe115e03184884951ed9cb0c1f3990af6a91',
    'data' => 
   array (
     'locatedSource' => 
@@ -23,15 +23,17 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
     'isBackedEnum' => false,
     'modifiers' => 0,
     'docComment' => '/**
- * Household registration + owner-scoped CRUD (PRD FR-REG-01 household path, §9).
- * List/show are owner-scoped by the model\'s global MdaScope; edit/delete/head are
- * owner-only via HouseholdPolicy; every mutation is audited.
+ * Owner-scoped household browse + owner-only correction (PRD §9). Households are
+ * NOT created here — they are formed by source ingestion (see
+ * HouseholdIngestionService). List/show are owner-scoped by the model\'s global
+ * MdaScope; edit/delete/head + membership changes are owner-only via
+ * HouseholdPolicy; every mutation is audited.
  */',
     'attributes' => 
     array (
     ),
-    'startLine' => 29,
-    'endLine' => 158,
+    'startLine' => 27,
+    'endLine' => 103,
     'startColumn' => 1,
     'endColumn' => 1,
     'parentClassName' => 'App\\Http\\Controllers\\Controller',
@@ -73,8 +75,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             'attributes' => 
             array (
             ),
-            'startLine' => 31,
-            'endLine' => 31,
+            'startLine' => 29,
+            'endLine' => 29,
             'startColumn' => 27,
             'endColumn' => 42,
             'parameterIndex' => 0,
@@ -95,99 +97,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         array (
         ),
         'docComment' => NULL,
-        'startLine' => 31,
-        'endLine' => 53,
-        'startColumn' => 5,
-        'endColumn' => 5,
-        'couldThrow' => false,
-        'isClosure' => false,
-        'isGenerator' => false,
-        'isVariadic' => false,
-        'modifiers' => 1,
-        'namespace' => 'App\\Http\\Controllers\\Api\\V1\\Registry',
-        'declaringClassName' => 'App\\Http\\Controllers\\Api\\V1\\Registry\\HouseholdController',
-        'implementingClassName' => 'App\\Http\\Controllers\\Api\\V1\\Registry\\HouseholdController',
-        'currentClassName' => 'App\\Http\\Controllers\\Api\\V1\\Registry\\HouseholdController',
-        'aliasName' => NULL,
-      ),
-      'store' => 
-      array (
-        'name' => 'store',
-        'parameters' => 
-        array (
-          'request' => 
-          array (
-            'name' => 'request',
-            'default' => NULL,
-            'type' => 
-            array (
-              'class' => 'PHPStan\\BetterReflection\\Reflection\\ReflectionNamedType',
-              'data' => 
-              array (
-                'name' => 'App\\Http\\Requests\\Registry\\StoreHouseholdRequest',
-                'isIdentifier' => false,
-              ),
-            ),
-            'isVariadic' => false,
-            'byRef' => false,
-            'isPromoted' => false,
-            'attributes' => 
-            array (
-            ),
-            'startLine' => 60,
-            'endLine' => 60,
-            'startColumn' => 27,
-            'endColumn' => 56,
-            'parameterIndex' => 0,
-            'isOptional' => false,
-          ),
-          'memberships' => 
-          array (
-            'name' => 'memberships',
-            'default' => NULL,
-            'type' => 
-            array (
-              'class' => 'PHPStan\\BetterReflection\\Reflection\\ReflectionNamedType',
-              'data' => 
-              array (
-                'name' => 'App\\Domain\\Registry\\Services\\HouseholdMembershipService',
-                'isIdentifier' => false,
-              ),
-            ),
-            'isVariadic' => false,
-            'byRef' => false,
-            'isPromoted' => false,
-            'attributes' => 
-            array (
-            ),
-            'startLine' => 60,
-            'endLine' => 60,
-            'startColumn' => 59,
-            'endColumn' => 97,
-            'parameterIndex' => 1,
-            'isOptional' => false,
-          ),
-        ),
-        'returnsReference' => false,
-        'returnType' => 
-        array (
-          'class' => 'PHPStan\\BetterReflection\\Reflection\\ReflectionNamedType',
-          'data' => 
-          array (
-            'name' => 'Illuminate\\Http\\JsonResponse',
-            'isIdentifier' => false,
-          ),
-        ),
-        'attributes' => 
-        array (
-        ),
-        'docComment' => '/**
- * Create a household owned by the caller\'s MDA (FR-OWN-01), stamped as a manual
- * registration (FR-REG-03), optionally with initial members and a head. The
- * whole operation is transactional so a bad member rolls the household back.
- */',
-        'startLine' => 60,
-        'endLine' => 102,
+        'startLine' => 29,
+        'endLine' => 41,
         'startColumn' => 5,
         'endColumn' => 5,
         'couldThrow' => false,
@@ -225,8 +136,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             'attributes' => 
             array (
             ),
-            'startLine' => 104,
-            'endLine' => 104,
+            'startLine' => 43,
+            'endLine' => 43,
             'startColumn' => 26,
             'endColumn' => 42,
             'parameterIndex' => 0,
@@ -247,8 +158,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         array (
         ),
         'docComment' => NULL,
-        'startLine' => 104,
-        'endLine' => 111,
+        'startLine' => 43,
+        'endLine' => 56,
         'startColumn' => 5,
         'endColumn' => 5,
         'couldThrow' => false,
@@ -286,8 +197,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             'attributes' => 
             array (
             ),
-            'startLine' => 114,
-            'endLine' => 114,
+            'startLine' => 59,
+            'endLine' => 59,
             'startColumn' => 28,
             'endColumn' => 58,
             'parameterIndex' => 0,
@@ -312,8 +223,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             'attributes' => 
             array (
             ),
-            'startLine' => 114,
-            'endLine' => 114,
+            'startLine' => 59,
+            'endLine' => 59,
             'startColumn' => 61,
             'endColumn' => 77,
             'parameterIndex' => 1,
@@ -334,8 +245,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         array (
         ),
         'docComment' => '/** Owner-only edit of core fields (resolved without scope → 403, not 404). */',
-        'startLine' => 114,
-        'endLine' => 125,
+        'startLine' => 59,
+        'endLine' => 70,
         'startColumn' => 5,
         'endColumn' => 5,
         'couldThrow' => false,
@@ -373,8 +284,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             'attributes' => 
             array (
             ),
-            'startLine' => 128,
-            'endLine' => 128,
+            'startLine' => 73,
+            'endLine' => 73,
             'startColumn' => 29,
             'endColumn' => 45,
             'parameterIndex' => 0,
@@ -395,8 +306,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         array (
         ),
         'docComment' => '/** Owner-only soft delete (memberships are retained as history). */',
-        'startLine' => 128,
-        'endLine' => 137,
+        'startLine' => 73,
+        'endLine' => 82,
         'startColumn' => 5,
         'endColumn' => 5,
         'couldThrow' => false,
@@ -434,8 +345,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             'attributes' => 
             array (
             ),
-            'startLine' => 140,
-            'endLine' => 140,
+            'startLine' => 85,
+            'endLine' => 85,
             'startColumn' => 35,
             'endColumn' => 63,
             'parameterIndex' => 0,
@@ -460,8 +371,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             'attributes' => 
             array (
             ),
-            'startLine' => 140,
-            'endLine' => 140,
+            'startLine' => 85,
+            'endLine' => 85,
             'startColumn' => 66,
             'endColumn' => 82,
             'parameterIndex' => 1,
@@ -486,8 +397,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             'attributes' => 
             array (
             ),
-            'startLine' => 140,
-            'endLine' => 140,
+            'startLine' => 85,
+            'endLine' => 85,
             'startColumn' => 85,
             'endColumn' => 123,
             'parameterIndex' => 2,
@@ -508,8 +419,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         array (
         ),
         'docComment' => '/** Designate/replace the head (must be a current member). Owner-only. */',
-        'startLine' => 140,
-        'endLine' => 157,
+        'startLine' => 85,
+        'endLine' => 102,
         'startColumn' => 5,
         'endColumn' => 5,
         'couldThrow' => false,

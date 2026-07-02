@@ -13,6 +13,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
          'uses' => 
         array (
           'mdascope' => 'App\\Domain\\Access\\Scopes\\MdaScope',
+          'duplicatechecker' => 'App\\Domain\\Registry\\Contracts\\DuplicateChecker',
           'registrationsource' => 'App\\Domain\\Registry\\Enums\\RegistrationSource',
           'beneficiary' => 'App\\Domain\\Registry\\Models\\Beneficiary',
         ),
@@ -32,12 +33,64 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
          'typeAliasClassName' => NULL,
          'traitData' => NULL,
       )),
+      '204680dc2ce0043b3d28b9fcacbd9b3c' => 
+      \PHPStan\Analyser\IntermediaryNameScope::__set_state(array(
+         'namespace' => 'App\\Domain\\Registry\\Services',
+         'uses' => 
+        array (
+          'mdascope' => 'App\\Domain\\Access\\Scopes\\MdaScope',
+          'duplicatechecker' => 'App\\Domain\\Registry\\Contracts\\DuplicateChecker',
+          'registrationsource' => 'App\\Domain\\Registry\\Enums\\RegistrationSource',
+          'beneficiary' => 'App\\Domain\\Registry\\Models\\Beneficiary',
+        ),
+         'className' => 'App\\Domain\\Registry\\Services\\BeneficiaryRegistrar',
+         'functionName' => '__construct',
+         'templatePhpDocNodes' => 
+        array (
+        ),
+         'parent' => 
+        \PHPStan\Analyser\IntermediaryNameScope::__set_state(array(
+           'namespace' => 'App\\Domain\\Registry\\Services',
+           'uses' => 
+          array (
+            'mdascope' => 'App\\Domain\\Access\\Scopes\\MdaScope',
+            'duplicatechecker' => 'App\\Domain\\Registry\\Contracts\\DuplicateChecker',
+            'registrationsource' => 'App\\Domain\\Registry\\Enums\\RegistrationSource',
+            'beneficiary' => 'App\\Domain\\Registry\\Models\\Beneficiary',
+          ),
+           'className' => 'App\\Domain\\Registry\\Services\\BeneficiaryRegistrar',
+           'functionName' => NULL,
+           'templatePhpDocNodes' => 
+          array (
+          ),
+           'parent' => NULL,
+           'typeAliasesMap' => 
+          array (
+          ),
+           'bypassTypeAliases' => false,
+           'constUses' => 
+          array (
+          ),
+           'typeAliasClassName' => NULL,
+           'traitData' => NULL,
+        )),
+         'typeAliasesMap' => 
+        array (
+        ),
+         'bypassTypeAliases' => false,
+         'constUses' => 
+        array (
+        ),
+         'typeAliasClassName' => NULL,
+         'traitData' => NULL,
+      )),
       '09023584a4ae9049ea7f9b748a50ad5d' => 
       \PHPStan\Analyser\IntermediaryNameScope::__set_state(array(
          'namespace' => 'App\\Domain\\Registry\\Services',
          'uses' => 
         array (
           'mdascope' => 'App\\Domain\\Access\\Scopes\\MdaScope',
+          'duplicatechecker' => 'App\\Domain\\Registry\\Contracts\\DuplicateChecker',
           'registrationsource' => 'App\\Domain\\Registry\\Enums\\RegistrationSource',
           'beneficiary' => 'App\\Domain\\Registry\\Models\\Beneficiary',
         ),
@@ -52,6 +105,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
            'uses' => 
           array (
             'mdascope' => 'App\\Domain\\Access\\Scopes\\MdaScope',
+            'duplicatechecker' => 'App\\Domain\\Registry\\Contracts\\DuplicateChecker',
             'registrationsource' => 'App\\Domain\\Registry\\Enums\\RegistrationSource',
             'beneficiary' => 'App\\Domain\\Registry\\Models\\Beneficiary',
           ),
@@ -84,7 +138,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
     ),
     1 => 
     array (
-      '/var/www/html/app/Domain/Registry/Services/BeneficiaryRegistrar.php' => 'd5b65400cb1bf747046566182bfa86d5ae0ddd7477cfde64473281896f0f7d61',
+      '/var/www/html/app/Domain/Registry/Services/BeneficiaryRegistrar.php' => '116b94b44493c69cbb5dd1a91c9cf0b47fb7fb9793ce4a015b1b1c15ec350fe9',
     ),
   ),
 ));

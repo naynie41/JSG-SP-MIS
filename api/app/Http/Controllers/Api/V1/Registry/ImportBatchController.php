@@ -31,17 +31,7 @@ class ImportBatchController extends Controller
         $perPage = min(max($request->integer('per_page', 25), 1), 100);
         $page = ImportBatch::query()->latest('created_at')->paginate($perPage);
 
-        return ApiResponse::success(
-            ImportBatchResource::collection($page->items())->resolve(),
-            [
-                'pagination' => [
-                    'current_page' => $page->currentPage(),
-                    'per_page' => $page->perPage(),
-                    'total' => $page->total(),
-                    'last_page' => $page->lastPage(),
-                ],
-            ],
-        );
+        return ApiResponse::paginated(ImportBatchResource::collection($page->items())->resolve(), $page);
     }
 
     /** Upload a file: store it, create the batch, and queue parsing/validation. */

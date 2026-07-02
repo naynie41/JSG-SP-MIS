@@ -7,6 +7,7 @@ namespace App\Http\Controllers\Api\V1\Registry;
 use App\Domain\Registry\Enums\RegistrationSource;
 use App\Domain\Registry\Models\Beneficiary;
 use App\Domain\Registry\Services\BeneficiaryRegistrar;
+use App\Domain\Registry\Services\HouseholdIngestionService;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Registry\ApiRegistrationRequest;
 use App\Http\Resources\BeneficiaryResource;
@@ -23,7 +24,7 @@ use Illuminate\Support\Arr;
  */
 class BeneficiaryIntakeController extends Controller
 {
-    public function store(ApiRegistrationRequest $request, BeneficiaryRegistrar $registrar): JsonResponse
+    public function store(ApiRegistrationRequest $request, BeneficiaryRegistrar $registrar, HouseholdIngestionService $households): JsonResponse
     {
         $this->authorize('create', Beneficiary::class);
 
@@ -39,13 +40,26 @@ class BeneficiaryIntakeController extends Controller
         $idempotencyKey = $data['idempotency_key'] ?? $data['original_record_id'];
 
         $beneficiary = $registrar->register(
-            Arr::except($data, ['original_record_id', 'idempotency_key']),
+            Arr::except($data, ['original_record_id', 'idempotency_key', 'household_id', 'household_role', 'household_head']),
             $mdaId,
             RegistrationSource::Api,
             $data['original_record_id'],
             null,
             $idempotencyKey,
         );
+
+        // Form/join the household when the caller supplied a household key (§9).
+        if (! empty($data['household_id'])) {
+            $households->attach(
+                $mdaId,
+                RegistrationSource::Api,
+                null,
+                (string) $data['household_id'],
+                $beneficiary,
+                $data['household_role'] ?? null,
+                $request->boolean('household_head'),
+            );
+        }
 
         return ApiResponse::success(
             (new BeneficiaryResource($beneficiary->load('ownerMda')))->resolve(),

@@ -10,8 +10,8 @@ use Illuminate\Validation\Rule;
 
 /**
  * The canonical beneficiary-registration validation rules (PRD FR-REG-04/05),
- * shared so manual registration (StoreBeneficiaryRequest) and bulk import
- * (ImportRowValidator) enforce exactly the same mandatory fields and formats.
+ * shared so every ingestion path — bulk import (ImportRowValidator) and the REST
+ * intake (ApiRegistrationRequest) — enforces the same mandatory fields + formats.
  */
 final class BeneficiaryRules
 {

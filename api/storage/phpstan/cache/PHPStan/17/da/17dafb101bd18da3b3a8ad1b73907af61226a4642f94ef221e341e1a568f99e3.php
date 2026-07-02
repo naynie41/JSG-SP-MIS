@@ -2,7 +2,7 @@
 
 // odsl-/var/www/html/app/Domain/Registry/Imports/Adapters/FieldMappingAdapter.php-PHPStan\BetterReflection\Reflection\ReflectionClass-App\Domain\Registry\Imports\Adapters\FieldMappingAdapter
 return \PHPStan\Cache\CacheItem::__set_state(array(
-   'variableKey' => 'v2-6.70.0.1-8.3.31-be1d9238ee2cddf7dd0bbff3d93dd0488fcd252e0950b52b1e221e64a604b7a8',
+   'variableKey' => 'v2-6.70.0.1-8.3.31-653404df6a2848ef67671b39f3828b5472ae5aaa5f5a02c9f44c4bd96598cd50',
    'data' => 
   array (
     'locatedSource' => 
@@ -35,7 +35,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
     array (
     ),
     'startLine' => 16,
-    'endLine' => 113,
+    'endLine' => 130,
     'startColumn' => 1,
     'endColumn' => 1,
     'parentClassName' => NULL,
@@ -130,7 +130,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         ),
         'docComment' => NULL,
         'startLine' => 33,
-        'endLine' => 50,
+        'endLine' => 56,
         'startColumn' => 5,
         'endColumn' => 5,
         'couldThrow' => false,
@@ -169,8 +169,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
  *
  * @return list<string>
  */',
-        'startLine' => 58,
-        'endLine' => 58,
+        'startLine' => 64,
+        'endLine' => 64,
         'startColumn' => 5,
         'endColumn' => 48,
         'couldThrow' => false,
@@ -208,8 +208,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
  *
  * @return array<string, list<string>>
  */',
-        'startLine' => 65,
-        'endLine' => 68,
+        'startLine' => 71,
+        'endLine' => 74,
         'startColumn' => 5,
         'endColumn' => 5,
         'couldThrow' => false,
@@ -245,8 +245,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         'docComment' => '/**
  * @return array<string, list<string>>
  */',
-        'startLine' => 73,
-        'endLine' => 76,
+        'startLine' => 79,
+        'endLine' => 82,
         'startColumn' => 5,
         'endColumn' => 5,
         'couldThrow' => false,
@@ -284,8 +284,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             'attributes' => 
             array (
             ),
-            'startLine' => 81,
-            'endLine' => 81,
+            'startLine' => 87,
+            'endLine' => 87,
             'startColumn' => 38,
             'endColumn' => 53,
             'parameterIndex' => 0,
@@ -327,8 +327,119 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         'docComment' => '/**
  * @param  array<string, string>  $canonical
  */',
-        'startLine' => 81,
+        'startLine' => 87,
         'endLine' => 90,
+        'startColumn' => 5,
+        'endColumn' => 5,
+        'couldThrow' => false,
+        'isClosure' => false,
+        'isGenerator' => false,
+        'isVariadic' => false,
+        'modifiers' => 4,
+        'namespace' => 'App\\Domain\\Registry\\Imports\\Adapters',
+        'declaringClassName' => 'App\\Domain\\Registry\\Imports\\Adapters\\FieldMappingAdapter',
+        'implementingClassName' => 'App\\Domain\\Registry\\Imports\\Adapters\\FieldMappingAdapter',
+        'currentClassName' => 'App\\Domain\\Registry\\Imports\\Adapters\\FieldMappingAdapter',
+        'aliasName' => NULL,
+      ),
+      'firstNonEmpty' => 
+      array (
+        'name' => 'firstNonEmpty',
+        'parameters' => 
+        array (
+          'canonical' => 
+          array (
+            'name' => 'canonical',
+            'default' => NULL,
+            'type' => 
+            array (
+              'class' => 'PHPStan\\BetterReflection\\Reflection\\ReflectionNamedType',
+              'data' => 
+              array (
+                'name' => 'array',
+                'isIdentifier' => true,
+              ),
+            ),
+            'isVariadic' => false,
+            'byRef' => false,
+            'isPromoted' => false,
+            'attributes' => 
+            array (
+            ),
+            'startLine' => 98,
+            'endLine' => 98,
+            'startColumn' => 36,
+            'endColumn' => 51,
+            'parameterIndex' => 0,
+            'isOptional' => false,
+          ),
+          'keys' => 
+          array (
+            'name' => 'keys',
+            'default' => NULL,
+            'type' => 
+            array (
+              'class' => 'PHPStan\\BetterReflection\\Reflection\\ReflectionNamedType',
+              'data' => 
+              array (
+                'name' => 'array',
+                'isIdentifier' => true,
+              ),
+            ),
+            'isVariadic' => false,
+            'byRef' => false,
+            'isPromoted' => false,
+            'attributes' => 
+            array (
+            ),
+            'startLine' => 98,
+            'endLine' => 98,
+            'startColumn' => 54,
+            'endColumn' => 64,
+            'parameterIndex' => 1,
+            'isOptional' => false,
+          ),
+        ),
+        'returnsReference' => false,
+        'returnType' => 
+        array (
+          'class' => 'PHPStan\\BetterReflection\\Reflection\\ReflectionUnionType',
+          'data' => 
+          array (
+            'types' => 
+            array (
+              0 => 
+              array (
+                'class' => 'PHPStan\\BetterReflection\\Reflection\\ReflectionNamedType',
+                'data' => 
+                array (
+                  'name' => 'string',
+                  'isIdentifier' => true,
+                ),
+              ),
+              1 => 
+              array (
+                'class' => 'PHPStan\\BetterReflection\\Reflection\\ReflectionNamedType',
+                'data' => 
+                array (
+                  'name' => 'null',
+                  'isIdentifier' => true,
+                ),
+              ),
+            ),
+          ),
+        ),
+        'attributes' => 
+        array (
+        ),
+        'docComment' => '/**
+ * First non-empty value among the candidate keys, or null.
+ *
+ * @param  array<string, string>  $canonical
+ * @param  list<string>  $keys
+ */',
+        'startLine' => 98,
+        'endLine' => 107,
         'startColumn' => 5,
         'endColumn' => 5,
         'couldThrow' => false,
@@ -366,8 +477,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             'attributes' => 
             array (
             ),
-            'startLine' => 99,
-            'endLine' => 99,
+            'startLine' => 116,
+            'endLine' => 116,
             'startColumn' => 39,
             'endColumn' => 48,
             'parameterIndex' => 0,
@@ -394,8 +505,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
  * @param  array<string, mixed>  $raw
  * @return array<string, string>
  */',
-        'startLine' => 99,
-        'endLine' => 112,
+        'startLine' => 116,
+        'endLine' => 129,
         'startColumn' => 5,
         'endColumn' => 5,
         'couldThrow' => false,

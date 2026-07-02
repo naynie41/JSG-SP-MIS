@@ -9,7 +9,6 @@ use App\Domain\Access\Models\Mda;
 use App\Domain\Access\Models\Role;
 use App\Domain\Access\Models\User;
 use App\Domain\Registry\Enums\HouseholdRole;
-use App\Domain\Registry\Enums\RegistrationSource;
 use App\Domain\Registry\Models\Beneficiary;
 use App\Domain\Registry\Models\Household;
 use App\Domain\Registry\Models\HouseholdMembership;
@@ -18,9 +17,9 @@ use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
 
 /**
- * Household registration + membership lifecycle (PRD FR-REG-01 household path, §9):
- * creation with members, add/move/remove with history retention, the
- * single-open-membership rule, ownership, scoping, and audit.
+ * Household membership lifecycle (PRD §9): add/move/remove with history retention,
+ * the single-open-membership rule, head designation, ownership, scoping, and
+ * audit. Households are set up via factories (no manual create path).
  */
 class HouseholdRegistrationTest extends TestCase
 {
@@ -74,35 +73,6 @@ class HouseholdRegistrationTest extends TestCase
             'role_in_household' => $role,
             'left_at' => null,
         ]);
-    }
-
-    public function test_household_can_be_created_with_members_and_head(): void
-    {
-        $payload = [
-            'lga' => 'dutse',
-            'ward' => 'Ward 1',
-            'members' => [
-                ['beneficiary_id' => $this->benA1->id, 'role_in_household' => 'head'],
-                ['beneficiary_id' => $this->benA2->id, 'role_in_household' => 'child'],
-            ],
-            'head_beneficiary_id' => $this->benA1->id,
-        ];
-
-        $this->withToken($this->tokenFor('officerA'))
-            ->postJson('/api/v1/households', $payload)
-            ->assertCreated()
-            ->assertJsonPath('data.owner_mda_id', $this->mdaA->id)
-            ->assertJsonPath('data.registration_source', RegistrationSource::Manual->value)
-            ->assertJsonPath('data.head_beneficiary_id', $this->benA1->id)
-            ->assertJsonCount(2, 'data.members');
-
-        $this->assertDatabaseHas('households', [
-            'owner_mda_id' => $this->mdaA->id,
-            'registration_source' => RegistrationSource::Manual->value,
-            'head_beneficiary_id' => $this->benA1->id,
-        ]);
-        $this->assertDatabaseHas('audit_log', ['action' => 'household.created']);
-        $this->assertDatabaseHas('audit_log', ['action' => 'household.member_added']);
     }
 
     public function test_officer_can_add_a_member(): void

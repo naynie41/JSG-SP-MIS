@@ -244,6 +244,49 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
          'typeAliasClassName' => NULL,
          'traitData' => NULL,
       )),
+      'f86eada3d1e4b3380263436a707db4ae' => 
+      \PHPStan\Analyser\IntermediaryNameScope::__set_state(array(
+         'namespace' => 'App\\Domain\\Registry\\Imports\\Adapters',
+         'uses' => 
+        array (
+        ),
+         'className' => 'App\\Domain\\Registry\\Imports\\Adapters\\FieldMappingAdapter',
+         'functionName' => 'firstNonEmpty',
+         'templatePhpDocNodes' => 
+        array (
+        ),
+         'parent' => 
+        \PHPStan\Analyser\IntermediaryNameScope::__set_state(array(
+           'namespace' => 'App\\Domain\\Registry\\Imports\\Adapters',
+           'uses' => 
+          array (
+          ),
+           'className' => 'App\\Domain\\Registry\\Imports\\Adapters\\FieldMappingAdapter',
+           'functionName' => NULL,
+           'templatePhpDocNodes' => 
+          array (
+          ),
+           'parent' => NULL,
+           'typeAliasesMap' => 
+          array (
+          ),
+           'bypassTypeAliases' => false,
+           'constUses' => 
+          array (
+          ),
+           'typeAliasClassName' => NULL,
+           'traitData' => NULL,
+        )),
+         'typeAliasesMap' => 
+        array (
+        ),
+         'bypassTypeAliases' => false,
+         'constUses' => 
+        array (
+        ),
+         'typeAliasClassName' => NULL,
+         'traitData' => NULL,
+      )),
       '80c7af0e07bd1dae973a3a16e3565eb0' => 
       \PHPStan\Analyser\IntermediaryNameScope::__set_state(array(
          'namespace' => 'App\\Domain\\Registry\\Imports\\Adapters',
@@ -290,7 +333,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
     ),
     1 => 
     array (
-      '/var/www/html/app/Domain/Registry/Imports/Adapters/FieldMappingAdapter.php' => 'be1d9238ee2cddf7dd0bbff3d93dd0488fcd252e0950b52b1e221e64a604b7a8',
+      '/var/www/html/app/Domain/Registry/Imports/Adapters/FieldMappingAdapter.php' => '653404df6a2848ef67671b39f3828b5472ae5aaa5f5a02c9f44c4bd96598cd50',
     ),
   ),
 ));

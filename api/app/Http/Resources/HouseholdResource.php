@@ -32,6 +32,8 @@ class HouseholdResource extends JsonResource
             'lga' => $this->lga,
             'ward' => $this->ward,
             'members' => HouseholdMembershipResource::collection($this->whenLoaded('currentMemberships')),
+            // Full membership history (open + closed) for the detail view.
+            'history' => HouseholdMembershipResource::collection($this->whenLoaded('memberships')),
             'created_at' => $this->created_at?->toIso8601String(),
             'updated_at' => $this->updated_at?->toIso8601String(),
         ];

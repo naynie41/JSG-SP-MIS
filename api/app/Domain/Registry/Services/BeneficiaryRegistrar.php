@@ -5,15 +5,19 @@ declare(strict_types=1);
 namespace App\Domain\Registry\Services;
 
 use App\Domain\Access\Scopes\MdaScope;
+use App\Domain\Registry\Contracts\DuplicateChecker;
 use App\Domain\Registry\Enums\RegistrationSource;
 use App\Domain\Registry\Models\Beneficiary;
 
 /**
  * Single choke-point for persisting a beneficiary with correct provenance
- * (PRD §6.1, FR-OWN-01). Every inbound channel — manual, bulk import, Kobo/ODK,
- * the REST intake — funnels through here, so ownership and origin (source +
- * import_batch + original_record_id) are stamped consistently and the record is
- * always traceable. Creation is audited via the model's Auditable trait.
+ * (PRD §6.1, FR-OWN-01). Every inbound channel — bulk import, Kobo/ODK, the REST
+ * intake, and future sources — funnels through here, so ownership and origin
+ * (source + import_batch + original_record_id) are stamped consistently and the
+ * record is always traceable. Creation is audited via the model's Auditable trait.
+ *
+ * The pre-save duplicate-check seam (Phase 3) also lives here now that manual
+ * entry is gone, so it runs for EVERY source before a new record is saved.
  *
  * Idempotency (FR-REG-08 groundwork): when a client-supplied `idempotencyKey` is
  * given, a repeat submission with the same key (within the same MDA) returns the
@@ -22,6 +26,8 @@ use App\Domain\Registry\Models\Beneficiary;
  */
 class BeneficiaryRegistrar
 {
+    public function __construct(private readonly DuplicateChecker $duplicates) {}
+
     /**
      * @param  array<string, mixed>  $attributes  validated canonical fields
      */
@@ -44,6 +50,9 @@ class BeneficiaryRegistrar
                 return $existing; // wasRecentlyCreated === false → idempotent hit
             }
         }
+
+        // EXTENSION POINT (Phase 3): fuzzy duplicate check runs before every save.
+        $this->duplicates->check($attributes, $ownerMdaId);
 
         $beneficiary = new Beneficiary;
         $beneficiary->fill($attributes);

@@ -29,6 +29,14 @@ export const STATUS_VARIANTS: Record<string, BadgeVariant> = {
   'import.valid': 'success',
   'import.error': 'danger',
 
+  // Import batch lifecycle (FR-REG-02/06)
+  'batch.pending': 'neutral',
+  'batch.processing': 'accent',
+  'batch.preview_ready': 'info',
+  'batch.committing': 'accent',
+  'batch.completed': 'success',
+  'batch.failed': 'danger',
+
   // MDA status
   inactive: 'neutral',
 }

@@ -8,15 +8,17 @@ use App\Domain\Access\Enums\RoleKey;
 use App\Domain\Access\Models\Mda;
 use App\Domain\Access\Models\Role;
 use App\Domain\Access\Models\User;
-use App\Domain\Registry\Enums\RegistrationSource;
+use App\Domain\Registry\Enums\BeneficiaryStatus;
 use App\Domain\Registry\Models\Beneficiary;
 use Database\Seeders\RolesAndPermissionsSeeder;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
 
 /**
- * Manual individual registration + owner-scoped CRUD (PRD FR-REG-01/04/05,
- * FR-OWN-01/02): ownership stamping, provenance, validation, scoping, RBAC, audit.
+ * Owner-scoped beneficiary browse + owner-only correction (PRD FR-REG-04,
+ * FR-OWN-02): list/filter/search, scoping, owner-only edit + soft delete, audit.
+ * Ingestion is source-only, so there is no manual create path (see
+ * NoManualCreateRouteTest); records here are set up via factories.
  */
 class BeneficiaryRegistrationTest extends TestCase
 {
@@ -58,94 +60,6 @@ class BeneficiaryRegistrationTest extends TestCase
         return $this->users[$key]->createToken('test')->plainTextToken;
     }
 
-    /**
-     * @return array<string, mixed>
-     */
-    private function validPayload(array $overrides = []): array
-    {
-        return array_merge([
-            'first_name' => 'Sadiq',
-            'last_name' => 'Bello',
-            'date_of_birth' => '1990-05-10',
-            'gender' => 'male',
-            'lga' => 'dutse',
-            'ward' => 'Ward 3',
-            'nin' => '22233344455',
-            'phone' => '08031234567',
-        ], $overrides);
-    }
-
-    public function test_officer_can_register_an_individual_owned_by_their_mda_with_provenance_and_audit(): void
-    {
-        $this->withToken($this->tokenFor('officerA'))
-            ->postJson('/api/v1/beneficiaries', $this->validPayload())
-            ->assertCreated()
-            ->assertJsonPath('data.owner_mda_id', $this->mdaA->id)
-            ->assertJsonPath('data.registration_source', RegistrationSource::Manual->value)
-            ->assertJsonPath('data.first_name', 'Sadiq');
-
-        $this->assertDatabaseHas('beneficiaries', [
-            'owner_mda_id' => $this->mdaA->id,
-            'registration_source' => RegistrationSource::Manual->value,
-            'first_name' => 'Sadiq',
-            'nin' => '22233344455',
-        ]);
-
-        $this->assertDatabaseHas('audit_log', [
-            'action' => 'beneficiary.created',
-            'entity_type' => 'beneficiary',
-        ]);
-    }
-
-    public function test_identifiers_are_normalised_before_save(): void
-    {
-        $this->withToken($this->tokenFor('officerA'))
-            ->postJson('/api/v1/beneficiaries', $this->validPayload(['nin' => '222-333-444-55']))
-            ->assertCreated();
-
-        $this->assertDatabaseHas('beneficiaries', ['nin' => '22233344455']);
-    }
-
-    public function test_registration_rejects_missing_and_invalid_fields_with_standard_envelope(): void
-    {
-        $this->withToken($this->tokenFor('officerA'))
-            ->postJson('/api/v1/beneficiaries', [
-                'gender' => 'martian',
-                'nin' => '123',
-                'lga' => 'not_a_real_lga',
-                'date_of_birth' => '2999-01-01',
-            ])
-            ->assertStatus(422)
-            ->assertJsonPath('error.code', 'VALIDATION_ERROR')
-            ->assertJsonStructure(['error' => ['code', 'message', 'details' => [['field', 'message']]]])
-            ->assertJsonFragment(['field' => 'first_name'])
-            ->assertJsonFragment(['field' => 'last_name'])
-            ->assertJsonFragment(['field' => 'ward'])
-            ->assertJsonFragment(['field' => 'gender'])
-            ->assertJsonFragment(['field' => 'lga'])
-            ->assertJsonFragment(['field' => 'nin'])
-            ->assertJsonFragment(['field' => 'date_of_birth']);
-    }
-
-    public function test_registration_rejects_duplicate_nin(): void
-    {
-        Beneficiary::factory()->create(['owner_mda_id' => $this->mdaB->id, 'nin' => '99988877766']);
-
-        $this->withToken($this->tokenFor('officerA'))
-            ->postJson('/api/v1/beneficiaries', $this->validPayload(['nin' => '99988877766']))
-            ->assertStatus(422)
-            ->assertJsonPath('error.code', 'VALIDATION_ERROR')
-            ->assertJsonFragment(['field' => 'nin']);
-    }
-
-    public function test_registration_requires_beneficiary_create_permission(): void
-    {
-        // Development partner holds beneficiary.view but not beneficiary.create.
-        $this->withToken($this->tokenFor('partnerA'))
-            ->postJson('/api/v1/beneficiaries', $this->validPayload())
-            ->assertStatus(403);
-    }
-
     public function test_list_is_owner_scoped(): void
     {
         Beneficiary::factory()->count(2)->create(['owner_mda_id' => $this->mdaA->id]);
@@ -159,6 +73,35 @@ class BeneficiaryRegistrationTest extends TestCase
         foreach ($response->json('data') as $row) {
             $this->assertSame($this->mdaA->id, $row['owner_mda_id']);
         }
+    }
+
+    public function test_list_can_be_filtered_by_lga_status_and_search(): void
+    {
+        Beneficiary::factory()->create(['owner_mda_id' => $this->mdaA->id, 'lga' => 'dutse', 'last_name' => 'Findme']);
+        Beneficiary::factory()->create(['owner_mda_id' => $this->mdaA->id, 'lga' => 'gumel']);
+        Beneficiary::factory()->create(['owner_mda_id' => $this->mdaA->id, 'lga' => 'dutse', 'status' => BeneficiaryStatus::Suspended]);
+
+        // Filter by LGA.
+        $this->withToken($this->tokenFor('officerA'))
+            ->getJson('/api/v1/beneficiaries?filter[lga]=dutse')
+            ->assertOk()
+            ->assertJsonPath('meta.pagination.total', 2);
+
+        $this->app['auth']->forgetGuards();
+
+        // Filter by LGA + status.
+        $this->withToken($this->tokenFor('officerA'))
+            ->getJson('/api/v1/beneficiaries?filter[lga]=dutse&filter[status]=active')
+            ->assertOk()
+            ->assertJsonPath('meta.pagination.total', 1);
+
+        $this->app['auth']->forgetGuards();
+
+        // Search by name.
+        $this->withToken($this->tokenFor('officerA'))
+            ->getJson('/api/v1/beneficiaries?search=Findme')
+            ->assertOk()
+            ->assertJsonPath('meta.pagination.total', 1);
     }
 
     public function test_show_returns_owned_record_and_404s_out_of_scope(): void

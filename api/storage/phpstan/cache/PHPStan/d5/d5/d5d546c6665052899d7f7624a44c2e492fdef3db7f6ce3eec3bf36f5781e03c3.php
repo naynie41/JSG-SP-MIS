@@ -2,7 +2,7 @@
 
 // odsl-/var/www/html/app/Domain/Registry/Jobs/ParseImportBatch.php-PHPStan\BetterReflection\Reflection\ReflectionClass-App\Domain\Registry\Jobs\ParseImportBatch
 return \PHPStan\Cache\CacheItem::__set_state(array(
-   'variableKey' => 'v2-6.70.0.1-8.3.31-ea97f19a7ebadcd686201f3013fe6cd9ebd985596d996b2726833e20a45938d7',
+   'variableKey' => 'v2-6.70.0.1-8.3.31-115545f83c5f0a5b9627672e0de1de8970485d61a8f4304723f97169675b55d8',
    'data' => 
   array (
     'locatedSource' => 
@@ -35,7 +35,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
     array (
     ),
     'startLine' => 33,
-    'endLine' => 124,
+    'endLine' => 133,
     'startColumn' => 1,
     'endColumn' => 1,
     'parentClassName' => NULL,
@@ -284,7 +284,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         ),
         'docComment' => NULL,
         'startLine' => 41,
-        'endLine' => 115,
+        'endLine' => 118,
         'startColumn' => 5,
         'endColumn' => 5,
         'couldThrow' => false,
@@ -322,8 +322,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             'attributes' => 
             array (
             ),
-            'startLine' => 117,
-            'endLine' => 117,
+            'startLine' => 120,
+            'endLine' => 120,
             'startColumn' => 28,
             'endColumn' => 39,
             'parameterIndex' => 0,
@@ -344,8 +344,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         array (
         ),
         'docComment' => NULL,
-        'startLine' => 117,
-        'endLine' => 123,
+        'startLine' => 120,
+        'endLine' => 126,
         'startColumn' => 5,
         'endColumn' => 5,
         'couldThrow' => false,
@@ -353,6 +353,86 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         'isGenerator' => false,
         'isVariadic' => false,
         'modifiers' => 1,
+        'namespace' => 'App\\Domain\\Registry\\Jobs',
+        'declaringClassName' => 'App\\Domain\\Registry\\Jobs\\ParseImportBatch',
+        'implementingClassName' => 'App\\Domain\\Registry\\Jobs\\ParseImportBatch',
+        'currentClassName' => 'App\\Domain\\Registry\\Jobs\\ParseImportBatch',
+        'aliasName' => NULL,
+      ),
+      'isTruthy' => 
+      array (
+        'name' => 'isTruthy',
+        'parameters' => 
+        array (
+          'value' => 
+          array (
+            'name' => 'value',
+            'default' => NULL,
+            'type' => 
+            array (
+              'class' => 'PHPStan\\BetterReflection\\Reflection\\ReflectionUnionType',
+              'data' => 
+              array (
+                'types' => 
+                array (
+                  0 => 
+                  array (
+                    'class' => 'PHPStan\\BetterReflection\\Reflection\\ReflectionNamedType',
+                    'data' => 
+                    array (
+                      'name' => 'string',
+                      'isIdentifier' => true,
+                    ),
+                  ),
+                  1 => 
+                  array (
+                    'class' => 'PHPStan\\BetterReflection\\Reflection\\ReflectionNamedType',
+                    'data' => 
+                    array (
+                      'name' => 'null',
+                      'isIdentifier' => true,
+                    ),
+                  ),
+                ),
+              ),
+            ),
+            'isVariadic' => false,
+            'byRef' => false,
+            'isPromoted' => false,
+            'attributes' => 
+            array (
+            ),
+            'startLine' => 129,
+            'endLine' => 129,
+            'startColumn' => 31,
+            'endColumn' => 44,
+            'parameterIndex' => 0,
+            'isOptional' => false,
+          ),
+        ),
+        'returnsReference' => false,
+        'returnType' => 
+        array (
+          'class' => 'PHPStan\\BetterReflection\\Reflection\\ReflectionNamedType',
+          'data' => 
+          array (
+            'name' => 'bool',
+            'isIdentifier' => true,
+          ),
+        ),
+        'attributes' => 
+        array (
+        ),
+        'docComment' => '/** Interpret a source "head of household" flag. */',
+        'startLine' => 129,
+        'endLine' => 132,
+        'startColumn' => 5,
+        'endColumn' => 5,
+        'couldThrow' => false,
+        'isClosure' => false,
+        'isGenerator' => false,
+        'isVariadic' => false,
+        'modifiers' => 4,
         'namespace' => 'App\\Domain\\Registry\\Jobs',
         'declaringClassName' => 'App\\Domain\\Registry\\Jobs\\ParseImportBatch',
         'implementingClassName' => 'App\\Domain\\Registry\\Jobs\\ParseImportBatch',

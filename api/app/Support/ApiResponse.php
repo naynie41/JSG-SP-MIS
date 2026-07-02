@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Support;
 
+use Illuminate\Contracts\Pagination\LengthAwarePaginator;
 use Illuminate\Http\JsonResponse;
 
 /**
@@ -30,6 +31,27 @@ final class ApiResponse
         }
 
         return response()->json($payload, $status);
+    }
+
+    /**
+     * Success envelope for a paginated collection, with a consistent
+     * `meta.pagination` shape (CONVENTIONS.md §4).
+     *
+     * @param  array<int, mixed>  $items
+     * @param  LengthAwarePaginator<int, mixed>  $page
+     * @param  array<string, mixed>  $extraMeta
+     */
+    public static function paginated(array $items, $page, array $extraMeta = []): JsonResponse
+    {
+        return self::success($items, [
+            ...$extraMeta,
+            'pagination' => [
+                'page' => $page->currentPage(),
+                'per_page' => $page->perPage(),
+                'total' => $page->total(),
+                'total_pages' => $page->lastPage(),
+            ],
+        ]);
     }
 
     /**

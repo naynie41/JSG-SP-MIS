@@ -12,6 +12,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
          'namespace' => 'App\\Support',
          'uses' => 
         array (
+          'lengthawarepaginator' => 'Illuminate\\Contracts\\Pagination\\LengthAwarePaginator',
           'jsonresponse' => 'Illuminate\\Http\\JsonResponse',
         ),
          'className' => 'App\\Support\\ApiResponse',
@@ -35,6 +36,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
          'namespace' => 'App\\Support',
          'uses' => 
         array (
+          'lengthawarepaginator' => 'Illuminate\\Contracts\\Pagination\\LengthAwarePaginator',
           'jsonresponse' => 'Illuminate\\Http\\JsonResponse',
         ),
          'className' => 'App\\Support\\ApiResponse',
@@ -47,6 +49,54 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
            'namespace' => 'App\\Support',
            'uses' => 
           array (
+            'lengthawarepaginator' => 'Illuminate\\Contracts\\Pagination\\LengthAwarePaginator',
+            'jsonresponse' => 'Illuminate\\Http\\JsonResponse',
+          ),
+           'className' => 'App\\Support\\ApiResponse',
+           'functionName' => NULL,
+           'templatePhpDocNodes' => 
+          array (
+          ),
+           'parent' => NULL,
+           'typeAliasesMap' => 
+          array (
+          ),
+           'bypassTypeAliases' => false,
+           'constUses' => 
+          array (
+          ),
+           'typeAliasClassName' => NULL,
+           'traitData' => NULL,
+        )),
+         'typeAliasesMap' => 
+        array (
+        ),
+         'bypassTypeAliases' => false,
+         'constUses' => 
+        array (
+        ),
+         'typeAliasClassName' => NULL,
+         'traitData' => NULL,
+      )),
+      '6fe3c164fc636c53cd2fb8cc3d48be67' => 
+      \PHPStan\Analyser\IntermediaryNameScope::__set_state(array(
+         'namespace' => 'App\\Support',
+         'uses' => 
+        array (
+          'lengthawarepaginator' => 'Illuminate\\Contracts\\Pagination\\LengthAwarePaginator',
+          'jsonresponse' => 'Illuminate\\Http\\JsonResponse',
+        ),
+         'className' => 'App\\Support\\ApiResponse',
+         'functionName' => 'paginated',
+         'templatePhpDocNodes' => 
+        array (
+        ),
+         'parent' => 
+        \PHPStan\Analyser\IntermediaryNameScope::__set_state(array(
+           'namespace' => 'App\\Support',
+           'uses' => 
+          array (
+            'lengthawarepaginator' => 'Illuminate\\Contracts\\Pagination\\LengthAwarePaginator',
             'jsonresponse' => 'Illuminate\\Http\\JsonResponse',
           ),
            'className' => 'App\\Support\\ApiResponse',
@@ -80,6 +130,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
          'namespace' => 'App\\Support',
          'uses' => 
         array (
+          'lengthawarepaginator' => 'Illuminate\\Contracts\\Pagination\\LengthAwarePaginator',
           'jsonresponse' => 'Illuminate\\Http\\JsonResponse',
         ),
          'className' => 'App\\Support\\ApiResponse',
@@ -92,6 +143,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
            'namespace' => 'App\\Support',
            'uses' => 
           array (
+            'lengthawarepaginator' => 'Illuminate\\Contracts\\Pagination\\LengthAwarePaginator',
             'jsonresponse' => 'Illuminate\\Http\\JsonResponse',
           ),
            'className' => 'App\\Support\\ApiResponse',
@@ -123,7 +175,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
     ),
     1 => 
     array (
-      '/var/www/html/app/Support/ApiResponse.php' => '3334c41142b31b4d86a757aff59cf3b4bf86ad28c86e853947784a3a1ea7ebf8',
+      '/var/www/html/app/Support/ApiResponse.php' => 'e96784f149459b1ce7239487fc56a53b8ed4655417df742365cad9a3a929bc1d',
     ),
   ),
 ));

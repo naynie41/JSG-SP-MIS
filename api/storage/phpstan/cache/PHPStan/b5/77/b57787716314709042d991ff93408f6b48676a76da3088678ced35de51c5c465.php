@@ -2,7 +2,7 @@
 
 // odsl-/var/www/html/app/Domain/Registry/Services/BeneficiaryRegistrar.php-PHPStan\BetterReflection\Reflection\ReflectionClass-App\Domain\Registry\Services\BeneficiaryRegistrar
 return \PHPStan\Cache\CacheItem::__set_state(array(
-   'variableKey' => 'v2-6.70.0.1-8.3.31-d5b65400cb1bf747046566182bfa86d5ae0ddd7477cfde64473281896f0f7d61',
+   'variableKey' => 'v2-6.70.0.1-8.3.31-116b94b44493c69cbb5dd1a91c9cf0b47fb7fb9793ce4a015b1b1c15ec350fe9',
    'data' => 
   array (
     'locatedSource' => 
@@ -24,10 +24,13 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
     'modifiers' => 0,
     'docComment' => '/**
  * Single choke-point for persisting a beneficiary with correct provenance
- * (PRD §6.1, FR-OWN-01). Every inbound channel — manual, bulk import, Kobo/ODK,
- * the REST intake — funnels through here, so ownership and origin (source +
- * import_batch + original_record_id) are stamped consistently and the record is
- * always traceable. Creation is audited via the model\'s Auditable trait.
+ * (PRD §6.1, FR-OWN-01). Every inbound channel — bulk import, Kobo/ODK, the REST
+ * intake, and future sources — funnels through here, so ownership and origin
+ * (source + import_batch + original_record_id) are stamped consistently and the
+ * record is always traceable. Creation is audited via the model\'s Auditable trait.
+ *
+ * The pre-save duplicate-check seam (Phase 3) also lives here now that manual
+ * entry is gone, so it runs for EVERY source before a new record is saved.
  *
  * Idempotency (FR-REG-08 groundwork): when a client-supplied `idempotencyKey` is
  * given, a repeat submission with the same key (within the same MDA) returns the
@@ -37,8 +40,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
     'attributes' => 
     array (
     ),
-    'startLine' => 23,
-    'endLine' => 59,
+    'startLine' => 27,
+    'endLine' => 68,
     'startColumn' => 1,
     'endColumn' => 1,
     'parentClassName' => NULL,
@@ -53,9 +56,93 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
     ),
     'immediateProperties' => 
     array (
+      'duplicates' => 
+      array (
+        'declaringClassName' => 'App\\Domain\\Registry\\Services\\BeneficiaryRegistrar',
+        'implementingClassName' => 'App\\Domain\\Registry\\Services\\BeneficiaryRegistrar',
+        'name' => 'duplicates',
+        'modifiers' => 132,
+        'type' => 
+        array (
+          'class' => 'PHPStan\\BetterReflection\\Reflection\\ReflectionNamedType',
+          'data' => 
+          array (
+            'name' => 'App\\Domain\\Registry\\Contracts\\DuplicateChecker',
+            'isIdentifier' => false,
+          ),
+        ),
+        'default' => NULL,
+        'docComment' => NULL,
+        'attributes' => 
+        array (
+        ),
+        'startLine' => 29,
+        'endLine' => 29,
+        'startColumn' => 33,
+        'endColumn' => 77,
+        'isPromoted' => true,
+        'declaredAtCompileTime' => true,
+        'immediateVirtual' => false,
+        'immediateHooks' => 
+        array (
+        ),
+      ),
     ),
     'immediateMethods' => 
     array (
+      '__construct' => 
+      array (
+        'name' => '__construct',
+        'parameters' => 
+        array (
+          'duplicates' => 
+          array (
+            'name' => 'duplicates',
+            'default' => NULL,
+            'type' => 
+            array (
+              'class' => 'PHPStan\\BetterReflection\\Reflection\\ReflectionNamedType',
+              'data' => 
+              array (
+                'name' => 'App\\Domain\\Registry\\Contracts\\DuplicateChecker',
+                'isIdentifier' => false,
+              ),
+            ),
+            'isVariadic' => false,
+            'byRef' => false,
+            'isPromoted' => true,
+            'attributes' => 
+            array (
+            ),
+            'startLine' => 29,
+            'endLine' => 29,
+            'startColumn' => 33,
+            'endColumn' => 77,
+            'parameterIndex' => 0,
+            'isOptional' => false,
+          ),
+        ),
+        'returnsReference' => false,
+        'returnType' => NULL,
+        'attributes' => 
+        array (
+        ),
+        'docComment' => NULL,
+        'startLine' => 29,
+        'endLine' => 29,
+        'startColumn' => 5,
+        'endColumn' => 81,
+        'couldThrow' => false,
+        'isClosure' => false,
+        'isGenerator' => false,
+        'isVariadic' => false,
+        'modifiers' => 1,
+        'namespace' => 'App\\Domain\\Registry\\Services',
+        'declaringClassName' => 'App\\Domain\\Registry\\Services\\BeneficiaryRegistrar',
+        'implementingClassName' => 'App\\Domain\\Registry\\Services\\BeneficiaryRegistrar',
+        'currentClassName' => 'App\\Domain\\Registry\\Services\\BeneficiaryRegistrar',
+        'aliasName' => NULL,
+      ),
       'register' => 
       array (
         'name' => 'register',
@@ -80,8 +167,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             'attributes' => 
             array (
             ),
-            'startLine' => 29,
-            'endLine' => 29,
+            'startLine' => 35,
+            'endLine' => 35,
             'startColumn' => 9,
             'endColumn' => 25,
             'parameterIndex' => 0,
@@ -106,8 +193,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             'attributes' => 
             array (
             ),
-            'startLine' => 30,
-            'endLine' => 30,
+            'startLine' => 36,
+            'endLine' => 36,
             'startColumn' => 9,
             'endColumn' => 26,
             'parameterIndex' => 1,
@@ -132,8 +219,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             'attributes' => 
             array (
             ),
-            'startLine' => 31,
-            'endLine' => 31,
+            'startLine' => 37,
+            'endLine' => 37,
             'startColumn' => 9,
             'endColumn' => 34,
             'parameterIndex' => 2,
@@ -147,12 +234,12 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
               'code' => 'null',
               'attributes' => 
               array (
-                'startLine' => 32,
-                'endLine' => 32,
-                'startTokenPos' => 69,
-                'startFilePos' => 1187,
-                'endTokenPos' => 69,
-                'endFilePos' => 1190,
+                'startLine' => 38,
+                'endLine' => 38,
+                'startTokenPos' => 92,
+                'startFilePos' => 1492,
+                'endTokenPos' => 92,
+                'endFilePos' => 1495,
               ),
             ),
             'type' => 
@@ -189,8 +276,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             'attributes' => 
             array (
             ),
-            'startLine' => 32,
-            'endLine' => 32,
+            'startLine' => 38,
+            'endLine' => 38,
             'startColumn' => 9,
             'endColumn' => 40,
             'parameterIndex' => 3,
@@ -204,12 +291,12 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
               'code' => 'null',
               'attributes' => 
               array (
-                'startLine' => 33,
-                'endLine' => 33,
-                'startTokenPos' => 79,
-                'startFilePos' => 1226,
-                'endTokenPos' => 79,
-                'endFilePos' => 1229,
+                'startLine' => 39,
+                'endLine' => 39,
+                'startTokenPos' => 102,
+                'startFilePos' => 1531,
+                'endTokenPos' => 102,
+                'endFilePos' => 1534,
               ),
             ),
             'type' => 
@@ -246,8 +333,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             'attributes' => 
             array (
             ),
-            'startLine' => 33,
-            'endLine' => 33,
+            'startLine' => 39,
+            'endLine' => 39,
             'startColumn' => 9,
             'endColumn' => 37,
             'parameterIndex' => 4,
@@ -261,12 +348,12 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
               'code' => 'null',
               'attributes' => 
               array (
-                'startLine' => 34,
-                'endLine' => 34,
-                'startTokenPos' => 89,
-                'startFilePos' => 1266,
-                'endTokenPos' => 89,
-                'endFilePos' => 1269,
+                'startLine' => 40,
+                'endLine' => 40,
+                'startTokenPos' => 112,
+                'startFilePos' => 1571,
+                'endTokenPos' => 112,
+                'endFilePos' => 1574,
               ),
             ),
             'type' => 
@@ -303,8 +390,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             'attributes' => 
             array (
             ),
-            'startLine' => 34,
-            'endLine' => 34,
+            'startLine' => 40,
+            'endLine' => 40,
             'startColumn' => 9,
             'endColumn' => 38,
             'parameterIndex' => 5,
@@ -327,8 +414,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         'docComment' => '/**
  * @param  array<string, mixed>  $attributes  validated canonical fields
  */',
-        'startLine' => 28,
-        'endLine' => 58,
+        'startLine' => 34,
+        'endLine' => 67,
         'startColumn' => 5,
         'endColumn' => 5,
         'couldThrow' => false,

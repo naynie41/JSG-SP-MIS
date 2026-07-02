@@ -542,7 +542,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
     ),
     1 => 
     array (
-      '/var/www/html/app/Domain/Registry/Models/ImportRow.php' => 'd24e362c65334ed4e6cd829f3943a565e894c54f9a7ff508f0a4e833d54a1d0e',
+      '/var/www/html/app/Domain/Registry/Models/ImportRow.php' => '9666e37f0b29fc3de264dd5a9c87bb036df1aafee405ebbc5a339a0dff745310',
       '/var/www/html/vendor/composer/../laravel/framework/src/Illuminate/Database/Eloquent/Concerns/HasUuids.php' => 'f75b8db33aafd61f17652a5e4bb5b8989e62197b306e9f7ae60bb3ac2c34d534',
       '/var/www/html/vendor/composer/../laravel/framework/src/Illuminate/Database/Eloquent/Concerns/HasUniqueStringIds.php' => '3d5612d3c0a56c6c9f19e628b02085d4d68a64d9d07656742725cec78d4a79c5',
     ),

@@ -12,9 +12,11 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
          'namespace' => 'App\\Http\\Requests\\Registry',
          'uses' => 
         array (
+          'householdrole' => 'App\\Domain\\Registry\\Enums\\HouseholdRole',
           'beneficiary' => 'App\\Domain\\Registry\\Models\\Beneficiary',
           'beneficiaryrules' => 'App\\Domain\\Registry\\Support\\BeneficiaryRules',
           'formrequest' => 'Illuminate\\Foundation\\Http\\FormRequest',
+          'rule' => 'Illuminate\\Validation\\Rule',
         ),
          'className' => 'App\\Http\\Requests\\Registry\\ApiRegistrationRequest',
          'functionName' => NULL,
@@ -37,9 +39,11 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
          'namespace' => 'App\\Http\\Requests\\Registry',
          'uses' => 
         array (
+          'householdrole' => 'App\\Domain\\Registry\\Enums\\HouseholdRole',
           'beneficiary' => 'App\\Domain\\Registry\\Models\\Beneficiary',
           'beneficiaryrules' => 'App\\Domain\\Registry\\Support\\BeneficiaryRules',
           'formrequest' => 'Illuminate\\Foundation\\Http\\FormRequest',
+          'rule' => 'Illuminate\\Validation\\Rule',
         ),
          'className' => 'App\\Http\\Requests\\Registry\\ApiRegistrationRequest',
          'functionName' => 'authorize',
@@ -51,9 +55,11 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
            'namespace' => 'App\\Http\\Requests\\Registry',
            'uses' => 
           array (
+            'householdrole' => 'App\\Domain\\Registry\\Enums\\HouseholdRole',
             'beneficiary' => 'App\\Domain\\Registry\\Models\\Beneficiary',
             'beneficiaryrules' => 'App\\Domain\\Registry\\Support\\BeneficiaryRules',
             'formrequest' => 'Illuminate\\Foundation\\Http\\FormRequest',
+            'rule' => 'Illuminate\\Validation\\Rule',
           ),
            'className' => 'App\\Http\\Requests\\Registry\\ApiRegistrationRequest',
            'functionName' => NULL,
@@ -86,9 +92,11 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
          'namespace' => 'App\\Http\\Requests\\Registry',
          'uses' => 
         array (
+          'householdrole' => 'App\\Domain\\Registry\\Enums\\HouseholdRole',
           'beneficiary' => 'App\\Domain\\Registry\\Models\\Beneficiary',
           'beneficiaryrules' => 'App\\Domain\\Registry\\Support\\BeneficiaryRules',
           'formrequest' => 'Illuminate\\Foundation\\Http\\FormRequest',
+          'rule' => 'Illuminate\\Validation\\Rule',
         ),
          'className' => 'App\\Http\\Requests\\Registry\\ApiRegistrationRequest',
          'functionName' => 'prepareForValidation',
@@ -100,9 +108,11 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
            'namespace' => 'App\\Http\\Requests\\Registry',
            'uses' => 
           array (
+            'householdrole' => 'App\\Domain\\Registry\\Enums\\HouseholdRole',
             'beneficiary' => 'App\\Domain\\Registry\\Models\\Beneficiary',
             'beneficiaryrules' => 'App\\Domain\\Registry\\Support\\BeneficiaryRules',
             'formrequest' => 'Illuminate\\Foundation\\Http\\FormRequest',
+            'rule' => 'Illuminate\\Validation\\Rule',
           ),
            'className' => 'App\\Http\\Requests\\Registry\\ApiRegistrationRequest',
            'functionName' => NULL,
@@ -135,9 +145,11 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
          'namespace' => 'App\\Http\\Requests\\Registry',
          'uses' => 
         array (
+          'householdrole' => 'App\\Domain\\Registry\\Enums\\HouseholdRole',
           'beneficiary' => 'App\\Domain\\Registry\\Models\\Beneficiary',
           'beneficiaryrules' => 'App\\Domain\\Registry\\Support\\BeneficiaryRules',
           'formrequest' => 'Illuminate\\Foundation\\Http\\FormRequest',
+          'rule' => 'Illuminate\\Validation\\Rule',
         ),
          'className' => 'App\\Http\\Requests\\Registry\\ApiRegistrationRequest',
          'functionName' => 'rules',
@@ -149,9 +161,11 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
            'namespace' => 'App\\Http\\Requests\\Registry',
            'uses' => 
           array (
+            'householdrole' => 'App\\Domain\\Registry\\Enums\\HouseholdRole',
             'beneficiary' => 'App\\Domain\\Registry\\Models\\Beneficiary',
             'beneficiaryrules' => 'App\\Domain\\Registry\\Support\\BeneficiaryRules',
             'formrequest' => 'Illuminate\\Foundation\\Http\\FormRequest',
+            'rule' => 'Illuminate\\Validation\\Rule',
           ),
            'className' => 'App\\Http\\Requests\\Registry\\ApiRegistrationRequest',
            'functionName' => NULL,
@@ -184,9 +198,11 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
          'namespace' => 'App\\Http\\Requests\\Registry',
          'uses' => 
         array (
+          'householdrole' => 'App\\Domain\\Registry\\Enums\\HouseholdRole',
           'beneficiary' => 'App\\Domain\\Registry\\Models\\Beneficiary',
           'beneficiaryrules' => 'App\\Domain\\Registry\\Support\\BeneficiaryRules',
           'formrequest' => 'Illuminate\\Foundation\\Http\\FormRequest',
+          'rule' => 'Illuminate\\Validation\\Rule',
         ),
          'className' => 'App\\Http\\Requests\\Registry\\ApiRegistrationRequest',
          'functionName' => 'messages',
@@ -198,9 +214,11 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
            'namespace' => 'App\\Http\\Requests\\Registry',
            'uses' => 
           array (
+            'householdrole' => 'App\\Domain\\Registry\\Enums\\HouseholdRole',
             'beneficiary' => 'App\\Domain\\Registry\\Models\\Beneficiary',
             'beneficiaryrules' => 'App\\Domain\\Registry\\Support\\BeneficiaryRules',
             'formrequest' => 'Illuminate\\Foundation\\Http\\FormRequest',
+            'rule' => 'Illuminate\\Validation\\Rule',
           ),
            'className' => 'App\\Http\\Requests\\Registry\\ApiRegistrationRequest',
            'functionName' => NULL,
@@ -231,7 +249,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
     ),
     1 => 
     array (
-      '/var/www/html/app/Http/Requests/Registry/ApiRegistrationRequest.php' => 'ff92d73e2b9cdbc1d41594907516e9f60b9006b3ec28ac774ba724e6c8b2a571',
+      '/var/www/html/app/Http/Requests/Registry/ApiRegistrationRequest.php' => 'ee2bfcf50e698747a2a225cd17ccf286326ef6b18a10bda85bed30249d171095',
     ),
   ),
 ));

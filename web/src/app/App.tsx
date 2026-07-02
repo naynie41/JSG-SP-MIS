@@ -9,6 +9,12 @@ import { NotFoundPage } from '@/features/misc/NotFoundPage'
 import { StyleguidePage } from '@/features/styleguide/StyleguidePage'
 import { MdaListPage } from '@/features/mdas/MdaListPage'
 import { UserListPage } from '@/features/users/UserListPage'
+import { BeneficiaryListPage } from '@/features/registry/BeneficiaryListPage'
+import { BeneficiaryDetailPage } from '@/features/registry/BeneficiaryDetailPage'
+import { HouseholdListPage } from '@/features/registry/HouseholdListPage'
+import { HouseholdDetailPage } from '@/features/registry/HouseholdDetailPage'
+import { ImportListPage } from '@/features/registry/ImportListPage'
+import { ImportBatchPage } from '@/features/registry/ImportBatchPage'
 import { AppLayout } from './AppLayout'
 import { ProtectedRoute } from './ProtectedRoute'
 
@@ -48,6 +54,12 @@ export function App() {
         }
       >
         <Route index element={<DashboardPage />} />
+        <Route path="/beneficiaries" element={<BeneficiaryListPage />} />
+        <Route path="/beneficiaries/:id" element={<BeneficiaryDetailPage />} />
+        <Route path="/households" element={<HouseholdListPage />} />
+        <Route path="/households/:id" element={<HouseholdDetailPage />} />
+        <Route path="/imports" element={<ImportListPage />} />
+        <Route path="/imports/:id" element={<ImportBatchPage />} />
         <Route path="/users" element={<UserListPage />} />
         <Route path="/mdas" element={<MdaListPage />} />
         <Route path="/roles" element={<PlaceholderPage eyebrow="02 · Administration" title="Roles" />} />

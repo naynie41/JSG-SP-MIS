@@ -4,9 +4,11 @@ declare(strict_types=1);
 
 namespace App\Http\Requests\Registry;
 
+use App\Domain\Registry\Enums\HouseholdRole;
 use App\Domain\Registry\Models\Beneficiary;
 use App\Domain\Registry\Support\BeneficiaryRules;
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
 /**
  * Inbound REST registration intake (PRD FR-REG-02, source = "api"). Uses the
@@ -43,6 +45,10 @@ class ApiRegistrationRequest extends FormRequest
             'original_record_id' => ['required', 'string', 'max:255'],
             // Optional explicit idempotency key; defaults to original_record_id.
             'idempotency_key' => ['nullable', 'string', 'max:255'],
+            // Optional household grouping (§9): the source's household key + role.
+            'household_id' => ['nullable', 'string', 'max:255'],
+            'household_role' => ['nullable', Rule::enum(HouseholdRole::class)],
+            'household_head' => ['nullable', 'boolean'],
         ];
     }
 

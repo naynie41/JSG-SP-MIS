@@ -18,6 +18,9 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
  * @property string $import_batch_id
  * @property int $row_number
  * @property string|null $original_record_id
+ * @property string|null $household_ref
+ * @property string|null $household_role
+ * @property bool $household_head
  * @property array<string, mixed> $payload
  * @property bool $is_valid
  * @property list<array{field: string, message: string}>|null $errors
@@ -38,6 +41,9 @@ class ImportRow extends Model
         'import_batch_id',
         'row_number',
         'original_record_id',
+        'household_ref',
+        'household_role',
+        'household_head',
         'payload',
         'is_valid',
         'errors',
@@ -53,6 +59,7 @@ class ImportRow extends Model
             'payload' => 'array',
             'errors' => 'array',
             'is_valid' => 'boolean',
+            'household_head' => 'boolean',
             'row_number' => 'integer',
         ];
     }

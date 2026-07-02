@@ -2,7 +2,7 @@
 
 // odsl-/var/www/html/app/Domain/Registry/Support/BeneficiaryRules.php-PHPStan\BetterReflection\Reflection\ReflectionClass-App\Domain\Registry\Support\BeneficiaryRules
 return \PHPStan\Cache\CacheItem::__set_state(array(
-   'variableKey' => 'v2-6.70.0.1-8.3.31-34dc1a3809c0182afd6b1d8dbe6ea6d252ff75f5ae5e7a5273d838f97dc26a11',
+   'variableKey' => 'v2-6.70.0.1-8.3.31-22fa0ef7e1feaa4cf2bf9670b3c8c70e7e9515c6de1d5fb20022114aa6038701',
    'data' => 
   array (
     'locatedSource' => 
@@ -24,8 +24,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
     'modifiers' => 32,
     'docComment' => '/**
  * The canonical beneficiary-registration validation rules (PRD FR-REG-04/05),
- * shared so manual registration (StoreBeneficiaryRequest) and bulk import
- * (ImportRowValidator) enforce exactly the same mandatory fields and formats.
+ * shared so every ingestion path — bulk import (ImportRowValidator) and the REST
+ * intake (ApiRegistrationRequest) — enforces the same mandatory fields + formats.
  */',
     'attributes' => 
     array (

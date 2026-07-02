@@ -2,7 +2,7 @@
 
 // odsl-/var/www/html/app/Http/Resources/BeneficiaryResource.php-PHPStan\BetterReflection\Reflection\ReflectionClass-App\Http\Resources\BeneficiaryResource
 return \PHPStan\Cache\CacheItem::__set_state(array(
-   'variableKey' => 'v2-6.70.0.1-8.3.31-f08b62b7a0562537d5477254248f5c9a71dab8b34a745f0f1e21d9cd22510d9d',
+   'variableKey' => 'v2-6.70.0.1-8.3.31-0ec3c58a5fd56d855fcc69280c8af36167afa8afc4d37fa23a93bd8656d29a19',
    'data' => 
   array (
     'locatedSource' => 
@@ -33,7 +33,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
     array (
     ),
     'startLine' => 18,
-    'endLine' => 57,
+    'endLine' => 68,
     'startColumn' => 1,
     'endColumn' => 1,
     'parentClassName' => 'Illuminate\\Http\\Resources\\Json\\JsonResource',
@@ -100,7 +100,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
  * @return array<string, mixed>
  */',
         'startLine' => 23,
-        'endLine' => 46,
+        'endLine' => 57,
         'startColumn' => 5,
         'endColumn' => 5,
         'couldThrow' => false,
@@ -157,8 +157,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             'attributes' => 
             array (
             ),
-            'startLine' => 49,
-            'endLine' => 49,
+            'startLine' => 60,
+            'endLine' => 60,
             'startColumn' => 38,
             'endColumn' => 51,
             'parameterIndex' => 0,
@@ -198,8 +198,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         array (
         ),
         'docComment' => '/** Show only the last 4 digits of an identifier. */',
-        'startLine' => 49,
-        'endLine' => 56,
+        'startLine' => 60,
+        'endLine' => 67,
         'startColumn' => 5,
         'endColumn' => 5,
         'couldThrow' => false,

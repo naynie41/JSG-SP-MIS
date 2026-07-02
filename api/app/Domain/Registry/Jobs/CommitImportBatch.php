@@ -10,6 +10,7 @@ use App\Domain\Registry\Enums\ImportStatus;
 use App\Domain\Registry\Models\ImportBatch;
 use App\Domain\Registry\Models\ImportRow;
 use App\Domain\Registry\Services\BeneficiaryRegistrar;
+use App\Domain\Registry\Services\HouseholdIngestionService;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Database\UniqueConstraintViolationException;
@@ -23,8 +24,9 @@ use Throwable;
 
 /**
  * Commits the valid rows of a confirmed preview as beneficiaries owned by the
- * importing MDA, with full provenance (PRD FR-REG-02). Invalid rows are left in
- * place and reported — never silently dropped.
+ * importing MDA, with full provenance (PRD FR-REG-02). Rows that carry a source
+ * household reference also form/join a household with an open membership (§9).
+ * Invalid rows are left in place and reported — never silently dropped.
  *
  * Idempotent + retry-safe: a committed row is stamped with `beneficiary_id`, so
  * re-running (a retry, or a second confirm) never double-inserts. The payload
@@ -41,7 +43,7 @@ class CommitImportBatch implements ShouldQueue
         public readonly ?string $actorId = null,
     ) {}
 
-    public function handle(BeneficiaryRegistrar $registrar): void
+    public function handle(BeneficiaryRegistrar $registrar, HouseholdIngestionService $households): void
     {
         $batch = ImportBatch::query()->withoutGlobalScope(MdaScope::class)->find($this->batchId);
 
@@ -67,11 +69,11 @@ class CommitImportBatch implements ShouldQueue
             ->where('is_valid', true)
             ->whereNull('beneficiary_id')
             ->orderBy('row_number')
-            ->chunkById(200, function ($rows) use ($batch, $registrar, &$committed): void {
+            ->chunkById(200, function ($rows) use ($batch, $registrar, $households, &$committed): void {
                 foreach ($rows as $row) {
                     /** @var ImportRow $row */
                     try {
-                        DB::transaction(function () use ($row, $batch, $registrar): void {
+                        DB::transaction(function () use ($row, $batch, $registrar, $households): void {
                             // Same provenance-stamping choke-point as every other
                             // inbound channel (Auditable → beneficiary.created).
                             // The source record id doubles as the idempotency key
@@ -86,6 +88,19 @@ class CommitImportBatch implements ShouldQueue
                             );
 
                             $row->update(['beneficiary_id' => $beneficiary->id]);
+
+                            // Form/join the household when the source grouped rows (§9).
+                            if ($row->household_ref !== null) {
+                                $households->attach(
+                                    $batch->owner_mda_id,
+                                    $batch->source,
+                                    $batch->id,
+                                    $row->household_ref,
+                                    $beneficiary,
+                                    $row->household_role,
+                                    $row->household_head,
+                                );
+                            }
                         });
                         $committed++;
                     } catch (UniqueConstraintViolationException) {

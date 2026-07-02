@@ -140,8 +140,8 @@ Route::prefix('v1')->group(function (): void {
 
         Route::get('/beneficiaries', [BeneficiaryController::class, 'index'])
             ->middleware('permission:beneficiary.view')->name('beneficiaries.index');
-        Route::post('/beneficiaries', [BeneficiaryController::class, 'store'])
-            ->middleware('permission:beneficiary.create')->name('beneficiaries.store');
+        // NOTE: no manual create endpoint — beneficiaries enter only via source
+        // ingestion (bulk import + REST intake). See docs/registry-intake.md.
         Route::get('/beneficiaries/{beneficiary}', [BeneficiaryController::class, 'show'])
             ->middleware('permission:beneficiary.view')->name('beneficiaries.show');
         Route::match(['put', 'patch'], '/beneficiaries/{beneficiary}', [BeneficiaryController::class, 'update'])
@@ -174,8 +174,8 @@ Route::prefix('v1')->group(function (): void {
         */
         Route::get('/households', [HouseholdController::class, 'index'])
             ->middleware('permission:household.view')->name('households.index');
-        Route::post('/households', [HouseholdController::class, 'store'])
-            ->middleware('permission:household.create')->name('households.store');
+        // NOTE: no manual create endpoint — households are formed by source
+        // ingestion from the household-reference field (see HouseholdIngestionService).
         Route::get('/households/{household}', [HouseholdController::class, 'show'])
             ->middleware('permission:household.view')->name('households.show');
         Route::match(['put', 'patch'], '/households/{household}', [HouseholdController::class, 'update'])

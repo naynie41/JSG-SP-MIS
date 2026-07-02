@@ -54,28 +54,6 @@ class IdempotentIntakeTest extends TestCase
         return Beneficiary::query()->withoutGlobalScope(MdaScope::class)->count();
     }
 
-    public function test_manual_create_is_idempotent_on_key(): void
-    {
-        $payload = [
-            'first_name' => 'Amina', 'last_name' => 'Sadiq',
-            'date_of_birth' => '1990-01-01', 'gender' => 'female',
-            'lga' => 'dutse', 'ward' => 'Ward 1',
-            'idempotency_key' => 'OFFLINE-DEVICE-7-REC-42',
-        ];
-
-        $first = $this->withToken($this->token())
-            ->postJson('/api/v1/beneficiaries', $payload)
-            ->assertCreated();
-        $this->app['auth']->forgetGuards();
-
-        $second = $this->withToken($this->token())
-            ->postJson('/api/v1/beneficiaries', $payload)
-            ->assertOk(); // 200, not 201
-
-        $this->assertSame($first->json('data.id'), $second->json('data.id'));
-        $this->assertSame(1, $this->beneficiaryCount());
-    }
-
     public function test_api_intake_is_idempotent_on_original_record_id(): void
     {
         $payload = [

@@ -133,7 +133,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
     ),
     1 => 
     array (
-      '/var/www/html/app/Domain/Registry/Support/BeneficiaryRules.php' => '34dc1a3809c0182afd6b1d8dbe6ea6d252ff75f5ae5e7a5273d838f97dc26a11',
+      '/var/www/html/app/Domain/Registry/Support/BeneficiaryRules.php' => '22fa0ef7e1feaa4cf2bf9670b3c8c70e7e9515c6de1d5fb20022114aa6038701',
     ),
   ),
 ));

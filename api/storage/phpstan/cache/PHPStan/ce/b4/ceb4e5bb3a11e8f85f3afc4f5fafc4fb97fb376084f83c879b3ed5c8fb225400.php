@@ -952,7 +952,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
     ),
     '/var/www/html/app/Support/ApiResponse.php' => 
     array (
-      0 => '3334c41142b31b4d86a757aff59cf3b4bf86ad28c86e853947784a3a1ea7ebf8',
+      0 => 'e96784f149459b1ce7239487fc56a53b8ed4655417df742365cad9a3a929bc1d',
       1 => 
       array (
         0 => 'app\\support\\apiresponse',
@@ -960,7 +960,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
       2 => 
       array (
         0 => 'app\\support\\success',
-        1 => 'app\\support\\error',
+        1 => 'app\\support\\paginated',
+        2 => 'app\\support\\error',
       ),
       3 => 
       array (
@@ -1244,7 +1245,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
     ),
     '/var/www/html/app/Http/Controllers/Api/V1/Registry/BeneficiaryController.php' => 
     array (
-      0 => '0992a5036823cd7ae9b797761d89ce710e5ca4c145265f41bbeb6eb795c81d0e',
+      0 => '9e2ef514003eeb2ec9606ebc9b577598ead91583090b76232fb9c9f0b06b6ab2',
       1 => 
       array (
         0 => 'app\\http\\controllers\\api\\v1\\registry\\beneficiarycontroller',
@@ -1252,11 +1253,10 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
       2 => 
       array (
         0 => 'app\\http\\controllers\\api\\v1\\registry\\index',
-        1 => 'app\\http\\controllers\\api\\v1\\registry\\store',
-        2 => 'app\\http\\controllers\\api\\v1\\registry\\show',
-        3 => 'app\\http\\controllers\\api\\v1\\registry\\update',
-        4 => 'app\\http\\controllers\\api\\v1\\registry\\destroy',
-        5 => 'app\\http\\controllers\\api\\v1\\registry\\lookup',
+        1 => 'app\\http\\controllers\\api\\v1\\registry\\show',
+        2 => 'app\\http\\controllers\\api\\v1\\registry\\update',
+        3 => 'app\\http\\controllers\\api\\v1\\registry\\destroy',
+        4 => 'app\\http\\controllers\\api\\v1\\registry\\lookup',
       ),
       3 => 
       array (
@@ -1348,7 +1348,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
     ),
     '/var/www/html/app/Http/Resources/BeneficiaryResource.php' => 
     array (
-      0 => 'f08b62b7a0562537d5477254248f5c9a71dab8b34a745f0f1e21d9cd22510d9d',
+      0 => '0ec3c58a5fd56d855fcc69280c8af36167afa8afc4d37fa23a93bd8656d29a19',
       1 => 
       array (
         0 => 'app\\http\\resources\\beneficiaryresource',
@@ -1437,24 +1437,6 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
       array (
       ),
     ),
-    '/var/www/html/app/Http/Requests/Registry/StoreBeneficiaryRequest.php' => 
-    array (
-      0 => 'a5a4285ca43bce6715b6386247f5dfcca7c6520d6608c4d283111eb85e93e51c',
-      1 => 
-      array (
-        0 => 'app\\http\\requests\\registry\\storebeneficiaryrequest',
-      ),
-      2 => 
-      array (
-        0 => 'app\\http\\requests\\registry\\authorize',
-        1 => 'app\\http\\requests\\registry\\prepareforvalidation',
-        2 => 'app\\http\\requests\\registry\\rules',
-        3 => 'app\\http\\requests\\registry\\messages',
-      ),
-      3 => 
-      array (
-      ),
-    ),
     '/var/www/html/app/Domain/Registry/Policies/HouseholdPolicy.php' => 
     array (
       0 => '410dd832e66f56c44fde79f1961801987574f5c0efa16a3b9de67eed45b10071',
@@ -1499,7 +1481,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
     ),
     '/var/www/html/app/Http/Controllers/Api/V1/Registry/HouseholdController.php' => 
     array (
-      0 => '891d7a49ba02b8d6b45b897e469383ef3fc1387943efe167b7e40cadc7db37f2',
+      0 => '2ae1d606695a79016897c284e915fe115e03184884951ed9cb0c1f3990af6a91',
       1 => 
       array (
         0 => 'app\\http\\controllers\\api\\v1\\registry\\householdcontroller',
@@ -1507,11 +1489,10 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
       2 => 
       array (
         0 => 'app\\http\\controllers\\api\\v1\\registry\\index',
-        1 => 'app\\http\\controllers\\api\\v1\\registry\\store',
-        2 => 'app\\http\\controllers\\api\\v1\\registry\\show',
-        3 => 'app\\http\\controllers\\api\\v1\\registry\\update',
-        4 => 'app\\http\\controllers\\api\\v1\\registry\\destroy',
-        5 => 'app\\http\\controllers\\api\\v1\\registry\\designatehead',
+        1 => 'app\\http\\controllers\\api\\v1\\registry\\show',
+        2 => 'app\\http\\controllers\\api\\v1\\registry\\update',
+        3 => 'app\\http\\controllers\\api\\v1\\registry\\destroy',
+        4 => 'app\\http\\controllers\\api\\v1\\registry\\designatehead',
       ),
       3 => 
       array (
@@ -1584,22 +1565,6 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
       array (
       ),
     ),
-    '/var/www/html/app/Http/Requests/Registry/StoreHouseholdRequest.php' => 
-    array (
-      0 => '05c3690d15544d683102b755ef5f221732c1d97cf69bf32876eccfe4628143fe',
-      1 => 
-      array (
-        0 => 'app\\http\\requests\\registry\\storehouseholdrequest',
-      ),
-      2 => 
-      array (
-        0 => 'app\\http\\requests\\registry\\authorize',
-        1 => 'app\\http\\requests\\registry\\rules',
-      ),
-      3 => 
-      array (
-      ),
-    ),
     '/var/www/html/app/Http/Requests/Registry/UpdateHouseholdRequest.php' => 
     array (
       0 => '350d5386dd0150dfd1c0dcec975e78891c4d0dc69ed1f4da8441a7c31b5045d5',
@@ -1633,7 +1598,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
     ),
     '/var/www/html/app/Http/Resources/HouseholdResource.php' => 
     array (
-      0 => '318c9d2f5700c1973464eaa5f3f18acb7292b0ba13c08cce55c3f4177a9335af',
+      0 => 'fa040c2b9cdeaaedaa7b9ae96651467b6041d40d793fc9802aa24b543d0a1770',
       1 => 
       array (
         0 => 'app\\http\\resources\\householdresource',
@@ -1695,7 +1660,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
     ),
     '/var/www/html/app/Domain/Registry/Jobs/CommitImportBatch.php' => 
     array (
-      0 => '8b69b1ea48454e9240845b6e097115429e7188b02d89d4fa3e175553f62288da',
+      0 => '8af35654bfb5abde0488cd406dc1f72df2728b5ce80566e0fb0bff3274181cba',
       1 => 
       array (
         0 => 'app\\domain\\registry\\jobs\\commitimportbatch',
@@ -1712,7 +1677,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
     ),
     '/var/www/html/app/Domain/Registry/Jobs/ParseImportBatch.php' => 
     array (
-      0 => 'ea97f19a7ebadcd686201f3013fe6cd9ebd985596d996b2726833e20a45938d7',
+      0 => '115545f83c5f0a5b9627672e0de1de8970485d61a8f4304723f97169675b55d8',
       1 => 
       array (
         0 => 'app\\domain\\registry\\jobs\\parseimportbatch',
@@ -1722,6 +1687,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         0 => 'app\\domain\\registry\\jobs\\__construct',
         1 => 'app\\domain\\registry\\jobs\\handle',
         2 => 'app\\domain\\registry\\jobs\\failed',
+        3 => 'app\\domain\\registry\\jobs\\istruthy',
       ),
       3 => 
       array (
@@ -1748,7 +1714,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
     ),
     '/var/www/html/app/Domain/Registry/Models/ImportRow.php' => 
     array (
-      0 => 'd24e362c65334ed4e6cd829f3943a565e894c54f9a7ff508f0a4e833d54a1d0e',
+      0 => '9666e37f0b29fc3de264dd5a9c87bb036df1aafee405ebbc5a339a0dff745310',
       1 => 
       array (
         0 => 'app\\domain\\registry\\models\\importrow',
@@ -1784,7 +1750,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
     ),
     '/var/www/html/app/Domain/Registry/Support/BeneficiaryRules.php' => 
     array (
-      0 => '34dc1a3809c0182afd6b1d8dbe6ea6d252ff75f5ae5e7a5273d838f97dc26a11',
+      0 => '22fa0ef7e1feaa4cf2bf9670b3c8c70e7e9515c6de1d5fb20022114aa6038701',
       1 => 
       array (
         0 => 'app\\domain\\registry\\support\\beneficiaryrules',
@@ -1800,7 +1766,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
     ),
     '/var/www/html/app/Http/Controllers/Api/V1/Registry/ImportBatchController.php' => 
     array (
-      0 => '2a6e07fb2d0f1a53441e4bcad51863656918040e8af72527b683ece35419529d',
+      0 => '727027b21663850aca5ce2a83a61a80aab79b17f724b754bd659a174cbbf8b73',
       1 => 
       array (
         0 => 'app\\http\\controllers\\api\\v1\\registry\\importbatchcontroller',
@@ -1882,7 +1848,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
     ),
     '/var/www/html/app/Domain/Registry/Imports/Adapters/FieldMappingAdapter.php' => 
     array (
-      0 => 'be1d9238ee2cddf7dd0bbff3d93dd0488fcd252e0950b52b1e221e64a604b7a8',
+      0 => '653404df6a2848ef67671b39f3828b5472ae5aaa5f5a02c9f44c4bd96598cd50',
       1 => 
       array (
         0 => 'app\\domain\\registry\\imports\\adapters\\fieldmappingadapter',
@@ -1894,7 +1860,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         2 => 'app\\domain\\registry\\imports\\adapters\\extraaliases',
         3 => 'app\\domain\\registry\\imports\\adapters\\aliases',
         4 => 'app\\domain\\registry\\imports\\adapters\\extractrecordid',
-        5 => 'app\\domain\\registry\\imports\\adapters\\canonicalisekeys',
+        5 => 'app\\domain\\registry\\imports\\adapters\\firstnonempty',
+        6 => 'app\\domain\\registry\\imports\\adapters\\canonicalisekeys',
       ),
       3 => 
       array (
@@ -1968,14 +1935,15 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
     ),
     '/var/www/html/app/Domain/Registry/Services/BeneficiaryRegistrar.php' => 
     array (
-      0 => 'd5b65400cb1bf747046566182bfa86d5ae0ddd7477cfde64473281896f0f7d61',
+      0 => '116b94b44493c69cbb5dd1a91c9cf0b47fb7fb9793ce4a015b1b1c15ec350fe9',
       1 => 
       array (
         0 => 'app\\domain\\registry\\services\\beneficiaryregistrar',
       ),
       2 => 
       array (
-        0 => 'app\\domain\\registry\\services\\register',
+        0 => 'app\\domain\\registry\\services\\__construct',
+        1 => 'app\\domain\\registry\\services\\register',
       ),
       3 => 
       array (
@@ -1983,7 +1951,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
     ),
     '/var/www/html/app/Http/Controllers/Api/V1/Registry/BeneficiaryIntakeController.php' => 
     array (
-      0 => '1d8ec817599a52f3603ba83090ba0c17f6b41fe64bb3855640ae9ca9b595e2a3',
+      0 => 'dc259a5830642ebd8dfa8139aac5490fe3ab35ce31fd5b66ea8543758252f807',
       1 => 
       array (
         0 => 'app\\http\\controllers\\api\\v1\\registry\\beneficiaryintakecontroller',
@@ -1998,7 +1966,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
     ),
     '/var/www/html/app/Http/Requests/Registry/ApiRegistrationRequest.php' => 
     array (
-      0 => 'ff92d73e2b9cdbc1d41594907516e9f60b9006b3ec28ac774ba724e6c8b2a571',
+      0 => 'ee2bfcf50e698747a2a225cd17ccf286326ef6b18a10bda85bed30249d171095',
       1 => 
       array (
         0 => 'app\\http\\requests\\registry\\apiregistrationrequest',
@@ -2109,6 +2077,24 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
       2 => 
       array (
         0 => 'app\\http\\resources\\toarray',
+      ),
+      3 => 
+      array (
+      ),
+    ),
+    '/var/www/html/app/Domain/Registry/Services/HouseholdIngestionService.php' => 
+    array (
+      0 => '3d03b7f2989c95688c8c17571d6bd145622e5c4efb7d7c557ce770e4ee75e143',
+      1 => 
+      array (
+        0 => 'app\\domain\\registry\\services\\householdingestionservice',
+      ),
+      2 => 
+      array (
+        0 => 'app\\domain\\registry\\services\\__construct',
+        1 => 'app\\domain\\registry\\services\\attach',
+        2 => 'app\\domain\\registry\\services\\resolverole',
+        3 => 'app\\domain\\registry\\services\\ensuremembership',
       ),
       3 => 
       array (

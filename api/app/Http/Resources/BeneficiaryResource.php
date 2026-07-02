@@ -39,7 +39,18 @@ class BeneficiaryResource extends JsonResource
             'ward' => $this->ward,
             'registration_source' => $this->registration_source->value,
             'registration_date' => $this->registration_date->toDateString(),
+            'import_batch_id' => $this->import_batch_id,
+            'original_record_id' => $this->original_record_id,
             'status' => $this->status->value,
+            'current_household' => $this->whenLoaded('currentMembership', function () {
+                $membership = $this->currentMembership;
+
+                return $membership === null ? null : [
+                    'household_id' => $membership->household_id,
+                    'role_in_household' => $membership->role_in_household->value,
+                    'joined_at' => $membership->joined_at->toIso8601String(),
+                ];
+            }),
             'created_at' => $this->created_at?->toIso8601String(),
             'updated_at' => $this->updated_at?->toIso8601String(),
         ];

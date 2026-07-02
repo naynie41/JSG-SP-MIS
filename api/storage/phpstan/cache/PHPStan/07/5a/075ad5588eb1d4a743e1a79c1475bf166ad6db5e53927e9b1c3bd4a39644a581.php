@@ -2,7 +2,7 @@
 
 // odsl-/var/www/html/app/Http/Controllers/Api/V1/Registry/BeneficiaryController.php-PHPStan\BetterReflection\Reflection\ReflectionClass-App\Http\Controllers\Api\V1\Registry\BeneficiaryController
 return \PHPStan\Cache\CacheItem::__set_state(array(
-   'variableKey' => 'v2-6.70.0.1-8.3.31-0992a5036823cd7ae9b797761d89ce710e5ca4c145265f41bbeb6eb795c81d0e',
+   'variableKey' => 'v2-6.70.0.1-8.3.31-9e2ef514003eeb2ec9606ebc9b577598ead91583090b76232fb9c9f0b06b6ab2',
    'data' => 
   array (
     'locatedSource' => 
@@ -23,15 +23,17 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
     'isBackedEnum' => false,
     'modifiers' => 0,
     'docComment' => '/**
- * Manual individual registration + owner-scoped CRUD (PRD FR-REG-01/04/05,
- * FR-OWN-01/02). List/show are owner-scoped by the model\'s global MdaScope;
- * edit/delete are owner-only via BeneficiaryPolicy; every mutation is audited.
+ * Owner-scoped beneficiary browse + owner-only correction (PRD FR-REG-04,
+ * FR-OWN-02/03). Beneficiaries are NOT created here — ingestion is source-only
+ * (bulk import + REST intake). List/show are owner-scoped by the model\'s global
+ * MdaScope; edit/delete are owner-only via BeneficiaryPolicy; the lookup seam is
+ * the cross-MDA serve path. Every mutation is audited.
  */',
     'attributes' => 
     array (
     ),
-    'startLine' => 29,
-    'endLine' => 143,
+    'startLine' => 26,
+    'endLine' => 119,
     'startColumn' => 1,
     'endColumn' => 1,
     'parentClassName' => 'App\\Http\\Controllers\\Controller',
@@ -73,8 +75,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             'attributes' => 
             array (
             ),
-            'startLine' => 32,
-            'endLine' => 32,
+            'startLine' => 33,
+            'endLine' => 33,
             'startColumn' => 27,
             'endColumn' => 42,
             'parameterIndex' => 0,
@@ -94,128 +96,13 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         'attributes' => 
         array (
         ),
-        'docComment' => '/** List beneficiaries owned by (or visible to) the caller\'s MDA. */',
-        'startLine' => 32,
-        'endLine' => 53,
-        'startColumn' => 5,
-        'endColumn' => 5,
-        'couldThrow' => false,
-        'isClosure' => false,
-        'isGenerator' => false,
-        'isVariadic' => false,
-        'modifiers' => 1,
-        'namespace' => 'App\\Http\\Controllers\\Api\\V1\\Registry',
-        'declaringClassName' => 'App\\Http\\Controllers\\Api\\V1\\Registry\\BeneficiaryController',
-        'implementingClassName' => 'App\\Http\\Controllers\\Api\\V1\\Registry\\BeneficiaryController',
-        'currentClassName' => 'App\\Http\\Controllers\\Api\\V1\\Registry\\BeneficiaryController',
-        'aliasName' => NULL,
-      ),
-      'store' => 
-      array (
-        'name' => 'store',
-        'parameters' => 
-        array (
-          'request' => 
-          array (
-            'name' => 'request',
-            'default' => NULL,
-            'type' => 
-            array (
-              'class' => 'PHPStan\\BetterReflection\\Reflection\\ReflectionNamedType',
-              'data' => 
-              array (
-                'name' => 'App\\Http\\Requests\\Registry\\StoreBeneficiaryRequest',
-                'isIdentifier' => false,
-              ),
-            ),
-            'isVariadic' => false,
-            'byRef' => false,
-            'isPromoted' => false,
-            'attributes' => 
-            array (
-            ),
-            'startLine' => 62,
-            'endLine' => 62,
-            'startColumn' => 27,
-            'endColumn' => 58,
-            'parameterIndex' => 0,
-            'isOptional' => false,
-          ),
-          'duplicates' => 
-          array (
-            'name' => 'duplicates',
-            'default' => NULL,
-            'type' => 
-            array (
-              'class' => 'PHPStan\\BetterReflection\\Reflection\\ReflectionNamedType',
-              'data' => 
-              array (
-                'name' => 'App\\Domain\\Registry\\Contracts\\DuplicateChecker',
-                'isIdentifier' => false,
-              ),
-            ),
-            'isVariadic' => false,
-            'byRef' => false,
-            'isPromoted' => false,
-            'attributes' => 
-            array (
-            ),
-            'startLine' => 62,
-            'endLine' => 62,
-            'startColumn' => 61,
-            'endColumn' => 88,
-            'parameterIndex' => 1,
-            'isOptional' => false,
-          ),
-          'registrar' => 
-          array (
-            'name' => 'registrar',
-            'default' => NULL,
-            'type' => 
-            array (
-              'class' => 'PHPStan\\BetterReflection\\Reflection\\ReflectionNamedType',
-              'data' => 
-              array (
-                'name' => 'App\\Domain\\Registry\\Services\\BeneficiaryRegistrar',
-                'isIdentifier' => false,
-              ),
-            ),
-            'isVariadic' => false,
-            'byRef' => false,
-            'isPromoted' => false,
-            'attributes' => 
-            array (
-            ),
-            'startLine' => 62,
-            'endLine' => 62,
-            'startColumn' => 91,
-            'endColumn' => 121,
-            'parameterIndex' => 2,
-            'isOptional' => false,
-          ),
-        ),
-        'returnsReference' => false,
-        'returnType' => 
-        array (
-          'class' => 'PHPStan\\BetterReflection\\Reflection\\ReflectionNamedType',
-          'data' => 
-          array (
-            'name' => 'Illuminate\\Http\\JsonResponse',
-            'isIdentifier' => false,
-          ),
-        ),
-        'attributes' => 
-        array (
-        ),
         'docComment' => '/**
- * Register an individual (FR-REG-01). The record is owned by the caller\'s MDA
- * (FR-OWN-01) and stamped as a manual registration (FR-REG-03). An optional
- * client-supplied idempotency_key makes the intake safe to retry (FR-REG-08):
- * a repeat with the same key returns the existing record (200) not a duplicate
- * (201). The pre-save duplicate check (Phase 3) plugs in via DuplicateChecker.
+ * List beneficiaries owned by (or visible to) the caller\'s MDA, with optional
+ * search and LGA/Ward/status filters (FR-REG-04). Search matches name or the
+ * exact NIN/BVN; filters use the documented `filter[...]` params.
  */',
-        'startLine' => 62,
-        'endLine' => 89,
+        'startLine' => 33,
+        'endLine' => 63,
         'startColumn' => 5,
         'endColumn' => 5,
         'couldThrow' => false,
@@ -253,8 +140,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             'attributes' => 
             array (
             ),
-            'startLine' => 92,
-            'endLine' => 92,
+            'startLine' => 66,
+            'endLine' => 66,
             'startColumn' => 26,
             'endColumn' => 44,
             'parameterIndex' => 0,
@@ -275,8 +162,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         array (
         ),
         'docComment' => '/** Show a single beneficiary. Out-of-scope records 404 via the global scope. */',
-        'startLine' => 92,
-        'endLine' => 99,
+        'startLine' => 66,
+        'endLine' => 75,
         'startColumn' => 5,
         'endColumn' => 5,
         'couldThrow' => false,
@@ -314,8 +201,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             'attributes' => 
             array (
             ),
-            'startLine' => 106,
-            'endLine' => 106,
+            'startLine' => 82,
+            'endLine' => 82,
             'startColumn' => 28,
             'endColumn' => 60,
             'parameterIndex' => 0,
@@ -340,8 +227,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             'attributes' => 
             array (
             ),
-            'startLine' => 106,
-            'endLine' => 106,
+            'startLine' => 82,
+            'endLine' => 82,
             'startColumn' => 63,
             'endColumn' => 81,
             'parameterIndex' => 1,
@@ -366,8 +253,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
  * without the owner scope so a non-owner gets 403 (not 404): the policy is
  * the boundary, and non-owners can already see the record via the lookup seam.
  */',
-        'startLine' => 106,
-        'endLine' => 115,
+        'startLine' => 82,
+        'endLine' => 91,
         'startColumn' => 5,
         'endColumn' => 5,
         'couldThrow' => false,
@@ -405,8 +292,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             'attributes' => 
             array (
             ),
-            'startLine' => 118,
-            'endLine' => 118,
+            'startLine' => 94,
+            'endLine' => 94,
             'startColumn' => 29,
             'endColumn' => 47,
             'parameterIndex' => 0,
@@ -427,8 +314,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         array (
         ),
         'docComment' => '/** Soft-delete a beneficiary — owner MDA only, audited. */',
-        'startLine' => 118,
-        'endLine' => 127,
+        'startLine' => 94,
+        'endLine' => 103,
         'startColumn' => 5,
         'endColumn' => 5,
         'couldThrow' => false,
@@ -466,8 +353,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             'attributes' => 
             array (
             ),
-            'startLine' => 133,
-            'endLine' => 133,
+            'startLine' => 109,
+            'endLine' => 109,
             'startColumn' => 28,
             'endColumn' => 60,
             'parameterIndex' => 0,
@@ -492,8 +379,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             'attributes' => 
             array (
             ),
-            'startLine' => 133,
-            'endLine' => 133,
+            'startLine' => 109,
+            'endLine' => 109,
             'startColumn' => 63,
             'endColumn' => 94,
             'parameterIndex' => 1,
@@ -517,8 +404,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
  * Cross-MDA lookup/serve path (FR-OWN-03): exact-identifier search returning
  * only the reveal fields. Route middleware enforces beneficiary-lookup.view.
  */',
-        'startLine' => 133,
-        'endLine' => 142,
+        'startLine' => 109,
+        'endLine' => 118,
         'startColumn' => 5,
         'endColumn' => 5,
         'couldThrow' => false,

@@ -98,6 +98,9 @@ class ParseImportBatch implements ShouldQueue
                     'import_batch_id' => $batch->id,
                     'row_number' => $row['number'],
                     'original_record_id' => $mapped['original_record_id'] ?? null,
+                    'household_ref' => $mapped['household_ref'] ?? null,
+                    'household_role' => $mapped['household_role'] ?? null,
+                    'household_head' => $this->isTruthy($mapped['household_head'] ?? null),
                     'payload' => $result['payload'],
                     'is_valid' => $isValid,
                     'errors' => $isValid ? null : $errors,
@@ -120,5 +123,11 @@ class ParseImportBatch implements ShouldQueue
             'status' => ImportStatus::Failed->value,
             'error' => Str::limit($e->getMessage(), 500),
         ]);
+    }
+
+    /** Interpret a source "head of household" flag. */
+    private function isTruthy(?string $value): bool
+    {
+        return $value !== null && in_array(strtolower(trim($value)), ['1', 'true', 'yes', 'y', 'head'], true);
     }
 }

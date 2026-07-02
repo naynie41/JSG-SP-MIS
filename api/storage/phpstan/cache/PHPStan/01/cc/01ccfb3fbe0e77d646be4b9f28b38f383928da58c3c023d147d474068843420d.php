@@ -2,7 +2,7 @@
 
 // odsl-/var/www/html/app/Domain/Registry/Models/ImportRow.php-PHPStan\BetterReflection\Reflection\ReflectionClass-App\Domain\Registry\Models\ImportRow
 return \PHPStan\Cache\CacheItem::__set_state(array(
-   'variableKey' => 'v2-6.70.0.1-8.3.31-d24e362c65334ed4e6cd829f3943a565e894c54f9a7ff508f0a4e833d54a1d0e',
+   'variableKey' => 'v2-6.70.0.1-8.3.31-9666e37f0b29fc3de264dd5a9c87bb036df1aafee405ebbc5a339a0dff745310',
    'data' => 
   array (
     'locatedSource' => 
@@ -32,6 +32,9 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
  * @property string $import_batch_id
  * @property int $row_number
  * @property string|null $original_record_id
+ * @property string|null $household_ref
+ * @property string|null $household_role
+ * @property bool $household_head
  * @property array<string, mixed> $payload
  * @property bool $is_valid
  * @property list<array{field: string, message: string}>|null $errors
@@ -42,8 +45,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
     'attributes' => 
     array (
     ),
-    'startLine' => 28,
-    'endLine' => 75,
+    'startLine' => 31,
+    'endLine' => 82,
     'startColumn' => 1,
     'endColumn' => 1,
     'parentClassName' => 'Illuminate\\Database\\Eloquent\\Model',
@@ -71,20 +74,20 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
           'code' => '\'import_rows\'',
           'attributes' => 
           array (
-            'startLine' => 32,
-            'endLine' => 32,
+            'startLine' => 35,
+            'endLine' => 35,
             'startTokenPos' => 53,
-            'startFilePos' => 1011,
+            'startFilePos' => 1126,
             'endTokenPos' => 53,
-            'endFilePos' => 1023,
+            'endFilePos' => 1138,
           ),
         ),
         'docComment' => NULL,
         'attributes' => 
         array (
         ),
-        'startLine' => 32,
-        'endLine' => 32,
+        'startLine' => 35,
+        'endLine' => 35,
         'startColumn' => 5,
         'endColumn' => 37,
         'isPromoted' => false,
@@ -103,15 +106,15 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         'type' => NULL,
         'default' => 
         array (
-          'code' => '[\'import_batch_id\', \'row_number\', \'original_record_id\', \'payload\', \'is_valid\', \'errors\', \'beneficiary_id\']',
+          'code' => '[\'import_batch_id\', \'row_number\', \'original_record_id\', \'household_ref\', \'household_role\', \'household_head\', \'payload\', \'is_valid\', \'errors\', \'beneficiary_id\']',
           'attributes' => 
           array (
-            'startLine' => 37,
-            'endLine' => 45,
+            'startLine' => 40,
+            'endLine' => 51,
             'startTokenPos' => 64,
-            'startFilePos' => 1094,
-            'endTokenPos' => 87,
-            'endFilePos' => 1262,
+            'startFilePos' => 1209,
+            'endTokenPos' => 96,
+            'endFilePos' => 1454,
           ),
         ),
         'docComment' => '/**
@@ -120,8 +123,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         'attributes' => 
         array (
         ),
-        'startLine' => 37,
-        'endLine' => 45,
+        'startLine' => 40,
+        'endLine' => 51,
         'startColumn' => 5,
         'endColumn' => 6,
         'isPromoted' => false,
@@ -156,8 +159,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         'docComment' => '/**
  * @return array<string, string>
  */',
-        'startLine' => 50,
-        'endLine' => 58,
+        'startLine' => 56,
+        'endLine' => 65,
         'startColumn' => 5,
         'endColumn' => 5,
         'couldThrow' => false,
@@ -193,8 +196,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         'docComment' => '/**
  * @return BelongsTo<ImportBatch, $this>
  */',
-        'startLine' => 63,
-        'endLine' => 66,
+        'startLine' => 70,
+        'endLine' => 73,
         'startColumn' => 5,
         'endColumn' => 5,
         'couldThrow' => false,
@@ -230,8 +233,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         'docComment' => '/**
  * @return BelongsTo<Beneficiary, $this>
  */',
-        'startLine' => 71,
-        'endLine' => 74,
+        'startLine' => 78,
+        'endLine' => 81,
         'startColumn' => 5,
         'endColumn' => 5,
         'couldThrow' => false,

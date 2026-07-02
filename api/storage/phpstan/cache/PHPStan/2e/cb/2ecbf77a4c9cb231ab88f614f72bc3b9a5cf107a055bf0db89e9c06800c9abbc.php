@@ -84,7 +84,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
     ),
     1 => 
     array (
-      '/var/www/html/app/Http/Resources/HouseholdResource.php' => '318c9d2f5700c1973464eaa5f3f18acb7292b0ba13c08cce55c3f4177a9335af',
+      '/var/www/html/app/Http/Resources/HouseholdResource.php' => 'fa040c2b9cdeaaedaa7b9ae96651467b6041d40d793fc9802aa24b543d0a1770',
     ),
   ),
 ));

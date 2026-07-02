@@ -15,6 +15,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
           'registrationsource' => 'App\\Domain\\Registry\\Enums\\RegistrationSource',
           'beneficiary' => 'App\\Domain\\Registry\\Models\\Beneficiary',
           'beneficiaryregistrar' => 'App\\Domain\\Registry\\Services\\BeneficiaryRegistrar',
+          'householdingestionservice' => 'App\\Domain\\Registry\\Services\\HouseholdIngestionService',
           'controller' => 'App\\Http\\Controllers\\Controller',
           'apiregistrationrequest' => 'App\\Http\\Requests\\Registry\\ApiRegistrationRequest',
           'beneficiaryresource' => 'App\\Http\\Resources\\BeneficiaryResource',
@@ -46,6 +47,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
           'registrationsource' => 'App\\Domain\\Registry\\Enums\\RegistrationSource',
           'beneficiary' => 'App\\Domain\\Registry\\Models\\Beneficiary',
           'beneficiaryregistrar' => 'App\\Domain\\Registry\\Services\\BeneficiaryRegistrar',
+          'householdingestionservice' => 'App\\Domain\\Registry\\Services\\HouseholdIngestionService',
           'controller' => 'App\\Http\\Controllers\\Controller',
           'apiregistrationrequest' => 'App\\Http\\Requests\\Registry\\ApiRegistrationRequest',
           'beneficiaryresource' => 'App\\Http\\Resources\\BeneficiaryResource',
@@ -66,6 +68,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             'registrationsource' => 'App\\Domain\\Registry\\Enums\\RegistrationSource',
             'beneficiary' => 'App\\Domain\\Registry\\Models\\Beneficiary',
             'beneficiaryregistrar' => 'App\\Domain\\Registry\\Services\\BeneficiaryRegistrar',
+            'householdingestionservice' => 'App\\Domain\\Registry\\Services\\HouseholdIngestionService',
             'controller' => 'App\\Http\\Controllers\\Controller',
             'apiregistrationrequest' => 'App\\Http\\Requests\\Registry\\ApiRegistrationRequest',
             'beneficiaryresource' => 'App\\Http\\Resources\\BeneficiaryResource',
@@ -102,7 +105,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
     ),
     1 => 
     array (
-      '/var/www/html/app/Http/Controllers/Api/V1/Registry/BeneficiaryIntakeController.php' => '1d8ec817599a52f3603ba83090ba0c17f6b41fe64bb3855640ae9ca9b595e2a3',
+      '/var/www/html/app/Http/Controllers/Api/V1/Registry/BeneficiaryIntakeController.php' => 'dc259a5830642ebd8dfa8139aac5490fe3ab35ce31fd5b66ea8543758252f807',
     ),
   ),
 ));

@@ -13,6 +13,8 @@ use App\Domain\Registry\Enums\ImportStatus;
 use App\Domain\Registry\Enums\RegistrationSource;
 use App\Domain\Registry\Jobs\CommitImportBatch;
 use App\Domain\Registry\Models\Beneficiary;
+use App\Domain\Registry\Models\Household;
+use App\Domain\Registry\Models\HouseholdMembership;
 use App\Domain\Registry\Models\ImportBatch;
 use Database\Seeders\RolesAndPermissionsSeeder;
 use Illuminate\Foundation\Testing\RefreshDatabase;
@@ -111,6 +113,51 @@ class BulkImportTest extends TestCase
             ->assertJsonCount(4, 'data.rows')
             ->assertJsonPath('data.rows.2.is_valid', false)
             ->assertJsonFragment(['field' => 'last_name']);
+    }
+
+    public function test_import_forms_households_from_the_source_reference(): void
+    {
+        // Two rows sharing a household key; the first is flagged as head.
+        $csv = implode("\n", [
+            'first_name,last_name,date_of_birth,gender,lga,ward,original_record_id,household_id,household_role,household_head',
+            'Amina,Sadiq,1990-01-01,female,dutse,Ward 1,R1,HH-1,head,yes',
+            'Musa,Sadiq,2015-02-02,male,dutse,Ward 1,R2,HH-1,child,no',
+        ]);
+
+        $batch = $this->upload('officerA', UploadedFile::fake()->createWithContent('household.csv', $csv));
+        $this->assertSame(2, $batch->valid_rows);
+        $this->app['auth']->forgetGuards();
+
+        $this->withToken($this->tokenFor('officerA'))
+            ->postJson("/api/v1/beneficiaries/imports/{$batch->id}/confirm")
+            ->assertOk();
+
+        // Exactly one household was formed, owned + provenanced correctly.
+        $household = Household::query()->withoutGlobalScope(MdaScope::class)->get();
+        $this->assertCount(1, $household);
+        $formed = $household->first();
+        $this->assertSame($this->mdaA->id, $formed->owner_mda_id);
+        $this->assertSame(RegistrationSource::Csv, $formed->registration_source);
+        $this->assertSame('HH-1', $formed->original_record_id);
+        $this->assertSame($batch->id, $formed->import_batch_id);
+
+        // Both beneficiaries have an open membership; the flagged one is head.
+        $memberships = HouseholdMembership::query()->where('household_id', $formed->id)->get();
+        $this->assertCount(2, $memberships);
+        $this->assertSame(2, $memberships->whereNull('left_at')->count());
+        $head = Beneficiary::query()->withoutGlobalScope(MdaScope::class)->find($formed->head_beneficiary_id);
+        $this->assertSame('Amina', $head->first_name);
+
+        // Re-importing the same source does not create a second household or member.
+        $this->app['auth']->forgetGuards();
+        $batch2 = $this->upload('officerA', UploadedFile::fake()->createWithContent('household.csv', $csv));
+        $this->app['auth']->forgetGuards();
+        $this->withToken($this->tokenFor('officerA'))
+            ->postJson("/api/v1/beneficiaries/imports/{$batch2->id}/confirm")
+            ->assertOk();
+
+        $this->assertSame(1, Household::query()->withoutGlobalScope(MdaScope::class)->count());
+        $this->assertSame(2, HouseholdMembership::query()->count());
     }
 
     public function test_confirm_commits_only_valid_rows_with_provenance_and_audit(): void

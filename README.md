@@ -182,6 +182,18 @@ Roles/permissions and the audit log design are documented in
 [api/app/Domain/Audit/README.md](api/app/Domain/Audit/README.md).
 A Phase 1 requirement-mapping checklist is in [docs/PHASE-1-CHECKLIST.md](docs/PHASE-1-CHECKLIST.md).
 
+### Phase 2 — Beneficiary Registry & Ownership
+
+The registry is live under **03 · Registry** in the app: register individuals and households,
+manage household membership (with move + full history), search/filter the owner-scoped
+beneficiary list, view a beneficiary's profile, provenance, documents and household, and run the
+bulk import flow (upload → preview with row-level errors → confirm). Records enter from manual
+entry, Excel/CSV, Kobo/ODK exports, and an authenticated REST intake — all through shared
+validation with provenance stamping and ownership rules (owner-only edit; cross-MDA lookup reveals
+only summary fields). See [api/app/Domain/Registry/README.md](api/app/Domain/Registry/README.md),
+[docs/registry-intake.md](docs/registry-intake.md), and the completion checklist in
+[docs/PHASE-2-CHECKLIST.md](docs/PHASE-2-CHECKLIST.md).
+
 ---
 
 ## Running tests, lint & static analysis

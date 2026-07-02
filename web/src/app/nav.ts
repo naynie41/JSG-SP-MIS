@@ -1,4 +1,15 @@
-import { Building2, GaugeCircle, KeyRound, LayoutGrid, Share2, ShieldCheck, Users } from 'lucide-react'
+import {
+  Building2,
+  FileUp,
+  GaugeCircle,
+  Home,
+  KeyRound,
+  LayoutGrid,
+  Share2,
+  ShieldCheck,
+  UserSquare2,
+  Users,
+} from 'lucide-react'
 import type { LucideIcon } from 'lucide-react'
 
 export interface NavConfigItem {
@@ -34,7 +45,15 @@ export const NAV_CONFIG: NavConfigSection[] = [
     ],
   },
   {
-    label: '03 · System',
+    label: '03 · Registry',
+    items: [
+      { label: 'Beneficiaries', to: '/beneficiaries', icon: UserSquare2, permission: 'beneficiary.view' },
+      { label: 'Households', to: '/households', icon: Home, permission: 'household.view' },
+      { label: 'Bulk import', to: '/imports', icon: FileUp, permission: 'beneficiary.create' },
+    ],
+  },
+  {
+    label: '04 · System',
     items: [{ label: 'Style guide', to: '/styleguide', icon: LayoutGrid }],
   },
 ]

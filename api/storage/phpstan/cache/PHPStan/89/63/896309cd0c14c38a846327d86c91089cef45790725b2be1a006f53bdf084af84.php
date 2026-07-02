@@ -2,7 +2,7 @@
 
 // odsl-/var/www/html/app/Domain/Registry/Jobs/CommitImportBatch.php-PHPStan\BetterReflection\Reflection\ReflectionClass-App\Domain\Registry\Jobs\CommitImportBatch
 return \PHPStan\Cache\CacheItem::__set_state(array(
-   'variableKey' => 'v2-6.70.0.1-8.3.31-8b69b1ea48454e9240845b6e097115429e7188b02d89d4fa3e175553f62288da',
+   'variableKey' => 'v2-6.70.0.1-8.3.31-8af35654bfb5abde0488cd406dc1f72df2728b5ce80566e0fb0bff3274181cba',
    'data' => 
   array (
     'locatedSource' => 
@@ -24,8 +24,9 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
     'modifiers' => 0,
     'docComment' => '/**
  * Commits the valid rows of a confirmed preview as beneficiaries owned by the
- * importing MDA, with full provenance (PRD FR-REG-02). Invalid rows are left in
- * place and reported — never silently dropped.
+ * importing MDA, with full provenance (PRD FR-REG-02). Rows that carry a source
+ * household reference also form/join a household with an open membership (§9).
+ * Invalid rows are left in place and reported — never silently dropped.
  *
  * Idempotent + retry-safe: a committed row is stamped with `beneficiary_id`, so
  * re-running (a retry, or a second confirm) never double-inserts. The payload
@@ -34,8 +35,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
     'attributes' => 
     array (
     ),
-    'startLine' => 33,
-    'endLine' => 113,
+    'startLine' => 35,
+    'endLine' => 128,
     'startColumn' => 1,
     'endColumn' => 1,
     'parentClassName' => NULL,
@@ -75,20 +76,20 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
           'code' => '3',
           'attributes' => 
           array (
-            'startLine' => 37,
-            'endLine' => 37,
-            'startTokenPos' => 129,
-            'startFilePos' => 1282,
-            'endTokenPos' => 129,
-            'endFilePos' => 1282,
+            'startLine' => 39,
+            'endLine' => 39,
+            'startTokenPos' => 134,
+            'startFilePos' => 1448,
+            'endTokenPos' => 134,
+            'endFilePos' => 1448,
           ),
         ),
         'docComment' => NULL,
         'attributes' => 
         array (
         ),
-        'startLine' => 37,
-        'endLine' => 37,
+        'startLine' => 39,
+        'endLine' => 39,
         'startColumn' => 5,
         'endColumn' => 26,
         'isPromoted' => false,
@@ -118,8 +119,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         'attributes' => 
         array (
         ),
-        'startLine' => 40,
-        'endLine' => 40,
+        'startLine' => 42,
+        'endLine' => 42,
         'startColumn' => 9,
         'endColumn' => 39,
         'isPromoted' => true,
@@ -168,20 +169,20 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
           'code' => 'null',
           'attributes' => 
           array (
-            'startLine' => 41,
-            'endLine' => 41,
-            'startTokenPos' => 159,
-            'startFilePos' => 1403,
-            'endTokenPos' => 159,
-            'endFilePos' => 1406,
+            'startLine' => 43,
+            'endLine' => 43,
+            'startTokenPos' => 164,
+            'startFilePos' => 1569,
+            'endTokenPos' => 164,
+            'endFilePos' => 1572,
           ),
         ),
         'docComment' => NULL,
         'attributes' => 
         array (
         ),
-        'startLine' => 41,
-        'endLine' => 41,
+        'startLine' => 43,
+        'endLine' => 43,
         'startColumn' => 9,
         'endColumn' => 47,
         'isPromoted' => true,
@@ -218,8 +219,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             'attributes' => 
             array (
             ),
-            'startLine' => 40,
-            'endLine' => 40,
+            'startLine' => 42,
+            'endLine' => 42,
             'startColumn' => 9,
             'endColumn' => 39,
             'parameterIndex' => 0,
@@ -233,12 +234,12 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
               'code' => 'null',
               'attributes' => 
               array (
-                'startLine' => 41,
-                'endLine' => 41,
-                'startTokenPos' => 159,
-                'startFilePos' => 1403,
-                'endTokenPos' => 159,
-                'endFilePos' => 1406,
+                'startLine' => 43,
+                'endLine' => 43,
+                'startTokenPos' => 164,
+                'startFilePos' => 1569,
+                'endTokenPos' => 164,
+                'endFilePos' => 1572,
               ),
             ),
             'type' => 
@@ -275,8 +276,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             'attributes' => 
             array (
             ),
-            'startLine' => 41,
-            'endLine' => 41,
+            'startLine' => 43,
+            'endLine' => 43,
             'startColumn' => 9,
             'endColumn' => 47,
             'parameterIndex' => 1,
@@ -289,8 +290,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         array (
         ),
         'docComment' => NULL,
-        'startLine' => 39,
-        'endLine' => 42,
+        'startLine' => 41,
+        'endLine' => 44,
         'startColumn' => 5,
         'endColumn' => 8,
         'couldThrow' => false,
@@ -328,11 +329,37 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             'attributes' => 
             array (
             ),
-            'startLine' => 44,
-            'endLine' => 44,
+            'startLine' => 46,
+            'endLine' => 46,
             'startColumn' => 28,
             'endColumn' => 58,
             'parameterIndex' => 0,
+            'isOptional' => false,
+          ),
+          'households' => 
+          array (
+            'name' => 'households',
+            'default' => NULL,
+            'type' => 
+            array (
+              'class' => 'PHPStan\\BetterReflection\\Reflection\\ReflectionNamedType',
+              'data' => 
+              array (
+                'name' => 'App\\Domain\\Registry\\Services\\HouseholdIngestionService',
+                'isIdentifier' => false,
+              ),
+            ),
+            'isVariadic' => false,
+            'byRef' => false,
+            'isPromoted' => false,
+            'attributes' => 
+            array (
+            ),
+            'startLine' => 46,
+            'endLine' => 46,
+            'startColumn' => 61,
+            'endColumn' => 97,
+            'parameterIndex' => 1,
             'isOptional' => false,
           ),
         ),
@@ -350,8 +377,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         array (
         ),
         'docComment' => NULL,
-        'startLine' => 44,
-        'endLine' => 104,
+        'startLine' => 46,
+        'endLine' => 119,
         'startColumn' => 5,
         'endColumn' => 5,
         'couldThrow' => false,
@@ -389,8 +416,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             'attributes' => 
             array (
             ),
-            'startLine' => 106,
-            'endLine' => 106,
+            'startLine' => 121,
+            'endLine' => 121,
             'startColumn' => 28,
             'endColumn' => 39,
             'parameterIndex' => 0,
@@ -411,8 +438,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         array (
         ),
         'docComment' => NULL,
-        'startLine' => 106,
-        'endLine' => 112,
+        'startLine' => 121,
+        'endLine' => 127,
         'startColumn' => 5,
         'endColumn' => 5,
         'couldThrow' => false,

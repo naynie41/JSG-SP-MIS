@@ -46,6 +46,12 @@ abstract class FieldMappingAdapter implements RegistrationSourceAdapter
 
         $mapped['original_record_id'] = $this->extractRecordId($canonical);
 
+        // Source household grouping (PRD §9): when present, the commit step forms
+        // the household and opens a membership. Absent → a beneficiary-only source.
+        $mapped['household_ref'] = $this->firstNonEmpty($canonical, ['household_id', 'household_ref', 'household_code', 'household', 'hh_id']);
+        $mapped['household_role'] = $this->firstNonEmpty($canonical, ['household_role', 'relationship', 'role_in_household', 'hh_role']);
+        $mapped['household_head'] = $this->firstNonEmpty($canonical, ['household_head', 'is_head', 'head', 'hh_head']);
+
         return $mapped;
     }
 
@@ -80,7 +86,18 @@ abstract class FieldMappingAdapter implements RegistrationSourceAdapter
      */
     private function extractRecordId(array $canonical): ?string
     {
-        foreach (array_merge($this->idKeys(), ['original_record_id', 'record_id', 'id']) as $key) {
+        return $this->firstNonEmpty($canonical, array_merge($this->idKeys(), ['original_record_id', 'record_id', 'id']));
+    }
+
+    /**
+     * First non-empty value among the candidate keys, or null.
+     *
+     * @param  array<string, string>  $canonical
+     * @param  list<string>  $keys
+     */
+    private function firstNonEmpty(array $canonical, array $keys): ?string
+    {
+        foreach ($keys as $key) {
             if (! empty($canonical[$key])) {
                 return $canonical[$key];
             }
