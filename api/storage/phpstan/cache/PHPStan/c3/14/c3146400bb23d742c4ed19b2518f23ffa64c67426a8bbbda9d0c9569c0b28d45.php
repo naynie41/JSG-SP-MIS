@@ -2,7 +2,7 @@
 
 // osfsl-/var/www/html/database/factories/BeneficiaryFactory.php-PHPStan\BetterReflection\Reflection\ReflectionClass-Database\Factories\BeneficiaryFactory
 return \PHPStan\Cache\CacheItem::__set_state(array(
-   'variableKey' => 'v2-2da2842601298f6695dc7275f06eccf84342f5e1e822c244e720a89d0e5f7355-8.3.31-6.70.0.1',
+   'variableKey' => 'v2-60b317fb493c6b45f12022c201c743e90007e79a507cd552c92a3822e185e7a7-8.3.31-6.70.0.1',
    'data' => 
   array (
     'locatedSource' => 
@@ -23,13 +23,17 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
     'isBackedEnum' => false,
     'modifiers' => 0,
     'docComment' => '/**
+ * Synthetic beneficiaries only — never real PII. Provenance is set explicitly so
+ * the factory works even when model events are muted (e.g. under a seeder\'s
+ * WithoutModelEvents).
+ *
  * @extends Factory<Beneficiary>
  */',
     'attributes' => 
     array (
     ),
-    'startLine' => 16,
-    'endLine' => 52,
+    'startLine' => 22,
+    'endLine' => 58,
     'startColumn' => 1,
     'endColumn' => 1,
     'parentClassName' => 'Illuminate\\Database\\Eloquent\\Factories\\Factory',
@@ -56,20 +60,20 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
           'code' => '\\App\\Domain\\Registry\\Models\\Beneficiary::class',
           'attributes' => 
           array (
-            'startLine' => 18,
-            'endLine' => 18,
-            'startTokenPos' => 58,
-            'startFilePos' => 389,
-            'endTokenPos' => 60,
-            'endFilePos' => 406,
+            'startLine' => 24,
+            'endLine' => 24,
+            'startTokenPos' => 68,
+            'startFilePos' => 662,
+            'endTokenPos' => 70,
+            'endFilePos' => 679,
           ),
         ),
         'docComment' => NULL,
         'attributes' => 
         array (
         ),
-        'startLine' => 18,
-        'endLine' => 18,
+        'startLine' => 24,
+        'endLine' => 24,
         'startColumn' => 5,
         'endColumn' => 42,
         'isPromoted' => false,
@@ -104,8 +108,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         'docComment' => '/**
  * @return array<string, mixed>
  */',
-        'startLine' => 23,
-        'endLine' => 41,
+        'startLine' => 29,
+        'endLine' => 47,
         'startColumn' => 5,
         'endColumn' => 5,
         'couldThrow' => false,
@@ -139,8 +143,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         array (
         ),
         'docComment' => NULL,
-        'startLine' => 43,
-        'endLine' => 46,
+        'startLine' => 49,
+        'endLine' => 52,
         'startColumn' => 5,
         'endColumn' => 5,
         'couldThrow' => false,
@@ -174,8 +178,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         array (
         ),
         'docComment' => NULL,
-        'startLine' => 48,
-        'endLine' => 51,
+        'startLine' => 54,
+        'endLine' => 57,
         'startColumn' => 5,
         'endColumn' => 5,
         'couldThrow' => false,

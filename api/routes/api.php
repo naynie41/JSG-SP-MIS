@@ -10,6 +10,10 @@ use App\Http\Controllers\Api\V1\Access\UserController;
 use App\Http\Controllers\Api\V1\AuthController;
 use App\Http\Controllers\Api\V1\HealthController;
 use App\Http\Controllers\Api\V1\MfaController;
+use App\Http\Controllers\Api\V1\Registry\BeneficiaryController;
+use App\Http\Controllers\Api\V1\Registry\HouseholdController;
+use App\Http\Controllers\Api\V1\Registry\HouseholdMemberController;
+use App\Http\Controllers\Api\V1\Registry\OwnershipTransferController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -106,5 +110,57 @@ Route::prefix('v1')->group(function (): void {
             ->middleware('permission:mda-access.create')->name('mda-access-grants.store');
         Route::delete('/mda-access-grants/{grant}', [MdaAccessGrantController::class, 'destroy'])
             ->middleware('permission:mda-access.edit')->name('mda-access-grants.destroy');
+
+        /*
+        | Beneficiary registry (PRD FR-OWN). Owner-only edit is enforced by the
+        | BeneficiaryPolicy; the lookup/serve seam is a distinct, permission-gated
+        | cross-MDA path that bypasses the owner scope but exposes reveal fields only.
+        */
+        // Declared before the wildcard so `lookup` is never treated as an id.
+        Route::get('/beneficiaries/lookup', [BeneficiaryController::class, 'lookup'])
+            ->middleware('permission:beneficiary-lookup.view')->name('beneficiaries.lookup');
+        Route::get('/beneficiaries', [BeneficiaryController::class, 'index'])
+            ->middleware('permission:beneficiary.view')->name('beneficiaries.index');
+        Route::post('/beneficiaries', [BeneficiaryController::class, 'store'])
+            ->middleware('permission:beneficiary.create')->name('beneficiaries.store');
+        Route::get('/beneficiaries/{beneficiary}', [BeneficiaryController::class, 'show'])
+            ->middleware('permission:beneficiary.view')->name('beneficiaries.show');
+        Route::match(['put', 'patch'], '/beneficiaries/{beneficiary}', [BeneficiaryController::class, 'update'])
+            ->middleware('permission:beneficiary.edit')->name('beneficiaries.update');
+        Route::delete('/beneficiaries/{beneficiary}', [BeneficiaryController::class, 'destroy'])
+            ->middleware('permission:beneficiary.edit')->name('beneficiaries.destroy');
+
+        // Ownership transfer workflow (FR-OWN-05): request → owner approval.
+        Route::post('/beneficiaries/{beneficiary}/ownership-transfers', [OwnershipTransferController::class, 'store'])
+            ->middleware('permission:beneficiary.approve')->name('ownership-transfers.store');
+        Route::post('/ownership-transfers/{transfer}/approve', [OwnershipTransferController::class, 'approve'])
+            ->middleware('permission:beneficiary.approve')->name('ownership-transfers.approve');
+        Route::post('/ownership-transfers/{transfer}/reject', [OwnershipTransferController::class, 'reject'])
+            ->middleware('permission:beneficiary.approve')->name('ownership-transfers.reject');
+
+        /*
+        | Households (PRD FR-REG-01 household path, §9). Owner-only mutation via
+        | HouseholdPolicy; membership changes preserve history (household_memberships).
+        */
+        Route::get('/households', [HouseholdController::class, 'index'])
+            ->middleware('permission:household.view')->name('households.index');
+        Route::post('/households', [HouseholdController::class, 'store'])
+            ->middleware('permission:household.create')->name('households.store');
+        Route::get('/households/{household}', [HouseholdController::class, 'show'])
+            ->middleware('permission:household.view')->name('households.show');
+        Route::match(['put', 'patch'], '/households/{household}', [HouseholdController::class, 'update'])
+            ->middleware('permission:household.edit')->name('households.update');
+        Route::delete('/households/{household}', [HouseholdController::class, 'destroy'])
+            ->middleware('permission:household.edit')->name('households.destroy');
+        Route::post('/households/{household}/head', [HouseholdController::class, 'designateHead'])
+            ->middleware('permission:household.edit')->name('households.head');
+
+        // Membership lifecycle: add / move (with history) / remove.
+        Route::post('/households/{household}/members', [HouseholdMemberController::class, 'store'])
+            ->middleware('permission:household.edit')->name('households.members.store');
+        Route::post('/households/{household}/members/move', [HouseholdMemberController::class, 'move'])
+            ->middleware('permission:household.edit')->name('households.members.move');
+        Route::delete('/households/{household}/members/{beneficiary}', [HouseholdMemberController::class, 'destroy'])
+            ->middleware('permission:household.edit')->name('households.members.destroy');
     });
 });

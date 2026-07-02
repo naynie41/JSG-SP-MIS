@@ -18,6 +18,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
           'auditable' => 'App\\Domain\\Audit\\Concerns\\Auditable',
           'registrationsource' => 'App\\Domain\\Registry\\Enums\\RegistrationSource',
           'householdfactory' => 'Database\\Factories\\HouseholdFactory',
+          'collection' => 'Illuminate\\Database\\Eloquent\\Collection',
           'hasuuids' => 'Illuminate\\Database\\Eloquent\\Concerns\\HasUuids',
           'hasfactory' => 'Illuminate\\Database\\Eloquent\\Factories\\HasFactory',
           'model' => 'Illuminate\\Database\\Eloquent\\Model',
@@ -2372,6 +2373,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
           'auditable' => 'App\\Domain\\Audit\\Concerns\\Auditable',
           'registrationsource' => 'App\\Domain\\Registry\\Enums\\RegistrationSource',
           'householdfactory' => 'Database\\Factories\\HouseholdFactory',
+          'collection' => 'Illuminate\\Database\\Eloquent\\Collection',
           'hasuuids' => 'Illuminate\\Database\\Eloquent\\Concerns\\HasUuids',
           'hasfactory' => 'Illuminate\\Database\\Eloquent\\Factories\\HasFactory',
           'model' => 'Illuminate\\Database\\Eloquent\\Model',
@@ -2396,6 +2398,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             'auditable' => 'App\\Domain\\Audit\\Concerns\\Auditable',
             'registrationsource' => 'App\\Domain\\Registry\\Enums\\RegistrationSource',
             'householdfactory' => 'Database\\Factories\\HouseholdFactory',
+            'collection' => 'Illuminate\\Database\\Eloquent\\Collection',
             'hasuuids' => 'Illuminate\\Database\\Eloquent\\Concerns\\HasUuids',
             'hasfactory' => 'Illuminate\\Database\\Eloquent\\Factories\\HasFactory',
             'model' => 'Illuminate\\Database\\Eloquent\\Model',
@@ -2441,6 +2444,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
           'auditable' => 'App\\Domain\\Audit\\Concerns\\Auditable',
           'registrationsource' => 'App\\Domain\\Registry\\Enums\\RegistrationSource',
           'householdfactory' => 'Database\\Factories\\HouseholdFactory',
+          'collection' => 'Illuminate\\Database\\Eloquent\\Collection',
           'hasuuids' => 'Illuminate\\Database\\Eloquent\\Concerns\\HasUuids',
           'hasfactory' => 'Illuminate\\Database\\Eloquent\\Factories\\HasFactory',
           'model' => 'Illuminate\\Database\\Eloquent\\Model',
@@ -2465,6 +2469,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             'auditable' => 'App\\Domain\\Audit\\Concerns\\Auditable',
             'registrationsource' => 'App\\Domain\\Registry\\Enums\\RegistrationSource',
             'householdfactory' => 'Database\\Factories\\HouseholdFactory',
+            'collection' => 'Illuminate\\Database\\Eloquent\\Collection',
             'hasuuids' => 'Illuminate\\Database\\Eloquent\\Concerns\\HasUuids',
             'hasfactory' => 'Illuminate\\Database\\Eloquent\\Factories\\HasFactory',
             'model' => 'Illuminate\\Database\\Eloquent\\Model',
@@ -2510,6 +2515,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
           'auditable' => 'App\\Domain\\Audit\\Concerns\\Auditable',
           'registrationsource' => 'App\\Domain\\Registry\\Enums\\RegistrationSource',
           'householdfactory' => 'Database\\Factories\\HouseholdFactory',
+          'collection' => 'Illuminate\\Database\\Eloquent\\Collection',
           'hasuuids' => 'Illuminate\\Database\\Eloquent\\Concerns\\HasUuids',
           'hasfactory' => 'Illuminate\\Database\\Eloquent\\Factories\\HasFactory',
           'model' => 'Illuminate\\Database\\Eloquent\\Model',
@@ -2534,6 +2540,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             'auditable' => 'App\\Domain\\Audit\\Concerns\\Auditable',
             'registrationsource' => 'App\\Domain\\Registry\\Enums\\RegistrationSource',
             'householdfactory' => 'Database\\Factories\\HouseholdFactory',
+            'collection' => 'Illuminate\\Database\\Eloquent\\Collection',
             'hasuuids' => 'Illuminate\\Database\\Eloquent\\Concerns\\HasUuids',
             'hasfactory' => 'Illuminate\\Database\\Eloquent\\Factories\\HasFactory',
             'model' => 'Illuminate\\Database\\Eloquent\\Model',
@@ -2579,6 +2586,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
           'auditable' => 'App\\Domain\\Audit\\Concerns\\Auditable',
           'registrationsource' => 'App\\Domain\\Registry\\Enums\\RegistrationSource',
           'householdfactory' => 'Database\\Factories\\HouseholdFactory',
+          'collection' => 'Illuminate\\Database\\Eloquent\\Collection',
           'hasuuids' => 'Illuminate\\Database\\Eloquent\\Concerns\\HasUuids',
           'hasfactory' => 'Illuminate\\Database\\Eloquent\\Factories\\HasFactory',
           'model' => 'Illuminate\\Database\\Eloquent\\Model',
@@ -2603,6 +2611,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             'auditable' => 'App\\Domain\\Audit\\Concerns\\Auditable',
             'registrationsource' => 'App\\Domain\\Registry\\Enums\\RegistrationSource',
             'householdfactory' => 'Database\\Factories\\HouseholdFactory',
+            'collection' => 'Illuminate\\Database\\Eloquent\\Collection',
             'hasuuids' => 'Illuminate\\Database\\Eloquent\\Concerns\\HasUuids',
             'hasfactory' => 'Illuminate\\Database\\Eloquent\\Factories\\HasFactory',
             'model' => 'Illuminate\\Database\\Eloquent\\Model',
@@ -2648,6 +2657,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
           'auditable' => 'App\\Domain\\Audit\\Concerns\\Auditable',
           'registrationsource' => 'App\\Domain\\Registry\\Enums\\RegistrationSource',
           'householdfactory' => 'Database\\Factories\\HouseholdFactory',
+          'collection' => 'Illuminate\\Database\\Eloquent\\Collection',
           'hasuuids' => 'Illuminate\\Database\\Eloquent\\Concerns\\HasUuids',
           'hasfactory' => 'Illuminate\\Database\\Eloquent\\Factories\\HasFactory',
           'model' => 'Illuminate\\Database\\Eloquent\\Model',
@@ -2672,6 +2682,78 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             'auditable' => 'App\\Domain\\Audit\\Concerns\\Auditable',
             'registrationsource' => 'App\\Domain\\Registry\\Enums\\RegistrationSource',
             'householdfactory' => 'Database\\Factories\\HouseholdFactory',
+            'collection' => 'Illuminate\\Database\\Eloquent\\Collection',
+            'hasuuids' => 'Illuminate\\Database\\Eloquent\\Concerns\\HasUuids',
+            'hasfactory' => 'Illuminate\\Database\\Eloquent\\Factories\\HasFactory',
+            'model' => 'Illuminate\\Database\\Eloquent\\Model',
+            'belongsto' => 'Illuminate\\Database\\Eloquent\\Relations\\BelongsTo',
+            'hasmany' => 'Illuminate\\Database\\Eloquent\\Relations\\HasMany',
+            'softdeletes' => 'Illuminate\\Database\\Eloquent\\SoftDeletes',
+            'carbon' => 'Illuminate\\Support\\Carbon',
+          ),
+           'className' => 'App\\Domain\\Registry\\Models\\Household',
+           'functionName' => NULL,
+           'templatePhpDocNodes' => 
+          array (
+          ),
+           'parent' => NULL,
+           'typeAliasesMap' => 
+          array (
+          ),
+           'bypassTypeAliases' => false,
+           'constUses' => 
+          array (
+          ),
+           'typeAliasClassName' => NULL,
+           'traitData' => NULL,
+        )),
+         'typeAliasesMap' => 
+        array (
+        ),
+         'bypassTypeAliases' => false,
+         'constUses' => 
+        array (
+        ),
+         'typeAliasClassName' => NULL,
+         'traitData' => NULL,
+      )),
+      '84ff08cb1a5543e1c49be5951d168367' => 
+      \PHPStan\Analyser\IntermediaryNameScope::__set_state(array(
+         'namespace' => 'App\\Domain\\Registry\\Models',
+         'uses' => 
+        array (
+          'mdascoped' => 'App\\Domain\\Access\\Concerns\\MdaScoped',
+          'scopedtomda' => 'App\\Domain\\Access\\Concerns\\ScopedToMda',
+          'mda' => 'App\\Domain\\Access\\Models\\Mda',
+          'auditable' => 'App\\Domain\\Audit\\Concerns\\Auditable',
+          'registrationsource' => 'App\\Domain\\Registry\\Enums\\RegistrationSource',
+          'householdfactory' => 'Database\\Factories\\HouseholdFactory',
+          'collection' => 'Illuminate\\Database\\Eloquent\\Collection',
+          'hasuuids' => 'Illuminate\\Database\\Eloquent\\Concerns\\HasUuids',
+          'hasfactory' => 'Illuminate\\Database\\Eloquent\\Factories\\HasFactory',
+          'model' => 'Illuminate\\Database\\Eloquent\\Model',
+          'belongsto' => 'Illuminate\\Database\\Eloquent\\Relations\\BelongsTo',
+          'hasmany' => 'Illuminate\\Database\\Eloquent\\Relations\\HasMany',
+          'softdeletes' => 'Illuminate\\Database\\Eloquent\\SoftDeletes',
+          'carbon' => 'Illuminate\\Support\\Carbon',
+        ),
+         'className' => 'App\\Domain\\Registry\\Models\\Household',
+         'functionName' => 'currentMemberships',
+         'templatePhpDocNodes' => 
+        array (
+        ),
+         'parent' => 
+        \PHPStan\Analyser\IntermediaryNameScope::__set_state(array(
+           'namespace' => 'App\\Domain\\Registry\\Models',
+           'uses' => 
+          array (
+            'mdascoped' => 'App\\Domain\\Access\\Concerns\\MdaScoped',
+            'scopedtomda' => 'App\\Domain\\Access\\Concerns\\ScopedToMda',
+            'mda' => 'App\\Domain\\Access\\Models\\Mda',
+            'auditable' => 'App\\Domain\\Audit\\Concerns\\Auditable',
+            'registrationsource' => 'App\\Domain\\Registry\\Enums\\RegistrationSource',
+            'householdfactory' => 'Database\\Factories\\HouseholdFactory',
+            'collection' => 'Illuminate\\Database\\Eloquent\\Collection',
             'hasuuids' => 'Illuminate\\Database\\Eloquent\\Concerns\\HasUuids',
             'hasfactory' => 'Illuminate\\Database\\Eloquent\\Factories\\HasFactory',
             'model' => 'Illuminate\\Database\\Eloquent\\Model',
@@ -2717,6 +2799,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
           'auditable' => 'App\\Domain\\Audit\\Concerns\\Auditable',
           'registrationsource' => 'App\\Domain\\Registry\\Enums\\RegistrationSource',
           'householdfactory' => 'Database\\Factories\\HouseholdFactory',
+          'collection' => 'Illuminate\\Database\\Eloquent\\Collection',
           'hasuuids' => 'Illuminate\\Database\\Eloquent\\Concerns\\HasUuids',
           'hasfactory' => 'Illuminate\\Database\\Eloquent\\Factories\\HasFactory',
           'model' => 'Illuminate\\Database\\Eloquent\\Model',
@@ -2741,6 +2824,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             'auditable' => 'App\\Domain\\Audit\\Concerns\\Auditable',
             'registrationsource' => 'App\\Domain\\Registry\\Enums\\RegistrationSource',
             'householdfactory' => 'Database\\Factories\\HouseholdFactory',
+            'collection' => 'Illuminate\\Database\\Eloquent\\Collection',
             'hasuuids' => 'Illuminate\\Database\\Eloquent\\Concerns\\HasUuids',
             'hasfactory' => 'Illuminate\\Database\\Eloquent\\Factories\\HasFactory',
             'model' => 'Illuminate\\Database\\Eloquent\\Model',
@@ -2778,7 +2862,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
     ),
     1 => 
     array (
-      '/var/www/html/app/Domain/Registry/Models/Household.php' => '356216e5d3ec8e784a6c2f5cbb0f7a35985e892970d5ed0763849041c05aa9a4',
+      '/var/www/html/app/Domain/Registry/Models/Household.php' => '44045b38617a97d3984d2bb0aa47f68b8fdf856d60812bde157062fc109300e0',
       '/var/www/html/app/Domain/Audit/Concerns/Auditable.php' => '5ffa2245eaa31de5eade775b8b48dfcbbf9e33ae3b5651120046c5b92a6d4b7a',
       '/var/www/html/vendor/composer/../laravel/framework/src/Illuminate/Database/Eloquent/Factories/HasFactory.php' => 'b6cb2b164e90168e80963a5549541f5f3188a3ec8cfd368bf3611bd94fbd46a7',
       '/var/www/html/vendor/composer/../laravel/framework/src/Illuminate/Database/Eloquent/Concerns/HasUuids.php' => 'f75b8db33aafd61f17652a5e4bb5b8989e62197b306e9f7ae60bb3ac2c34d534',

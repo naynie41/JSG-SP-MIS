@@ -16,6 +16,7 @@ use Illuminate\Http\Request;
 use Illuminate\Validation\ValidationException;
 use Laravel\Sanctum\Http\Middleware\CheckAbilities;
 use Laravel\Sanctum\Http\Middleware\CheckForAnyAbility;
+use Symfony\Component\HttpKernel\Exception\AccessDeniedHttpException;
 use Symfony\Component\HttpKernel\Exception\HttpExceptionInterface;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
@@ -70,6 +71,16 @@ return Application::configure(basePath: dirname(__DIR__))
             }
 
             return ApiResponse::error('UNAUTHENTICATED', 'Authentication is required.', [], 401);
+        });
+
+        // Policy/Gate denials surface as AuthorizationException, which Laravel
+        // converts to AccessDeniedHttpException before render callbacks run.
+        $exceptions->render(function (AccessDeniedHttpException $e, Request $request) {
+            if (! ($request->is('api/*') || $request->expectsJson())) {
+                return null;
+            }
+
+            return ApiResponse::error('FORBIDDEN', 'You do not have permission to perform this action.', [], 403);
         });
 
         $exceptions->render(function (ThrottleRequestsException $e, Request $request) {

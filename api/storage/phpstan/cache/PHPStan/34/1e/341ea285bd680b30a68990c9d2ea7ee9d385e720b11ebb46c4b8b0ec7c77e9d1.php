@@ -2,7 +2,7 @@
 
 // osfsl-/var/www/html/database/factories/HouseholdFactory.php-PHPStan\BetterReflection\Reflection\ReflectionClass-Database\Factories\HouseholdFactory
 return \PHPStan\Cache\CacheItem::__set_state(array(
-   'variableKey' => 'v2-73376c1719644b1b8b9653f513b8a4f452bb118a7c46079522765722d8ba3490-8.3.31-6.70.0.1',
+   'variableKey' => 'v2-8e76d8312ec43d8d89dc471b9ca72d6129061359b19de19650c36e9826431030-8.3.31-6.70.0.1',
    'data' => 
   array (
     'locatedSource' => 
@@ -28,8 +28,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
     'attributes' => 
     array (
     ),
-    'startLine' => 14,
-    'endLine' => 30,
+    'startLine' => 15,
+    'endLine' => 33,
     'startColumn' => 1,
     'endColumn' => 1,
     'parentClassName' => 'Illuminate\\Database\\Eloquent\\Factories\\Factory',
@@ -56,20 +56,20 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
           'code' => '\\App\\Domain\\Registry\\Models\\Household::class',
           'attributes' => 
           array (
-            'startLine' => 16,
-            'endLine' => 16,
-            'startTokenPos' => 48,
-            'startFilePos' => 296,
-            'endTokenPos' => 50,
-            'endFilePos' => 311,
+            'startLine' => 17,
+            'endLine' => 17,
+            'startTokenPos' => 53,
+            'startFilePos' => 346,
+            'endTokenPos' => 55,
+            'endFilePos' => 361,
           ),
         ),
         'docComment' => NULL,
         'attributes' => 
         array (
         ),
-        'startLine' => 16,
-        'endLine' => 16,
+        'startLine' => 17,
+        'endLine' => 17,
         'startColumn' => 5,
         'endColumn' => 40,
         'isPromoted' => false,
@@ -104,8 +104,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         'docComment' => '/**
  * @return array<string, mixed>
  */',
-        'startLine' => 21,
-        'endLine' => 29,
+        'startLine' => 22,
+        'endLine' => 32,
         'startColumn' => 5,
         'endColumn' => 5,
         'couldThrow' => false,

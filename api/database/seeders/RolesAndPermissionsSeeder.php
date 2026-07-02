@@ -29,21 +29,29 @@ class RolesAndPermissionsSeeder extends Seeder
     private const ROLE_PERMISSIONS = [
         RoleKey::SpCoordination->value => [
             'cross-mda.view', 'mda.view', 'user.view', 'role.view', 'permission.view',
+            'beneficiary.view', 'beneficiary.export', 'beneficiary-lookup.view',
         ],
         RoleKey::MneOfficer->value => [
             'cross-mda.view', 'mda.view', 'user.view',
+            'beneficiary.view', 'beneficiary.export', 'beneficiary-lookup.view',
         ],
         RoleKey::MdaAdmin->value => [
             'mda.view', 'user.view', 'user.create', 'user.edit', 'role.view',
+            'beneficiary.view', 'beneficiary.create', 'beneficiary.edit', 'beneficiary.approve',
+            'beneficiary-lookup.view', 'household.view', 'household.create', 'household.edit',
         ],
         RoleKey::MdaOfficer->value => [
             'mda.view', 'user.view',
+            'beneficiary.view', 'beneficiary.create', 'beneficiary.edit',
+            'beneficiary-lookup.view', 'household.view', 'household.create', 'household.edit',
         ],
         RoleKey::DevelopmentPartner->value => [
             'mda.view',
+            'beneficiary.view',
         ],
         RoleKey::Executive->value => [
             'cross-mda.view', 'mda.view', 'user.view',
+            'beneficiary.view', 'beneficiary.export', 'beneficiary-lookup.view',
         ],
     ];
 

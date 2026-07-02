@@ -7,6 +7,7 @@ namespace Database\Factories;
 use App\Domain\Access\Models\Mda;
 use App\Domain\Registry\Enums\BeneficiaryStatus;
 use App\Domain\Registry\Enums\Gender;
+use App\Domain\Registry\Enums\Lga;
 use App\Domain\Registry\Enums\RegistrationSource;
 use App\Domain\Registry\Models\Beneficiary;
 use Illuminate\Database\Eloquent\Factories\Factory;
@@ -39,7 +40,7 @@ class BeneficiaryFactory extends Factory
             'date_of_birth' => fake()->dateTimeBetween('-70 years', '-18 years')->format('Y-m-d'),
             'gender' => fake()->randomElement(Gender::cases()),
             'address' => fake()->streetAddress(),
-            'lga' => fake()->city(),
+            'lga' => fake()->randomElement(Lga::cases())->value,
             'ward' => 'Ward '.fake()->numberBetween(1, 12),
             'status' => BeneficiaryStatus::Active,
         ];

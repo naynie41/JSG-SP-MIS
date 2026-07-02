@@ -684,7 +684,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
     ),
     '/var/www/html/app/Http/Controllers/Controller.php' => 
     array (
-      0 => '25d1c1ef8e6cc8a376553faacfba2b07d9dfaee9bdbb84f14f77517580e9deb1',
+      0 => 'd90b757ef4dfdb1146846db9d6d531024b5b2c0275f0832b9dbc5af1b4ae5091',
       1 => 
       array (
         0 => 'app\\http\\controllers\\controller',
@@ -1042,7 +1042,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
     ),
     '/var/www/html/app/Domain/Registry/Models/Beneficiary.php' => 
     array (
-      0 => '22f2558a66a39f45f90df2f35b697c420d86aefa8f3244743b21c1b94f3f6c90',
+      0 => '4be27e541df03cc5712e86b97672e0a22b9f40d512e9300d8f557d140fae361f',
       1 => 
       array (
         0 => 'app\\domain\\registry\\models\\beneficiary',
@@ -1065,7 +1065,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
     ),
     '/var/www/html/app/Domain/Registry/Models/Household.php' => 
     array (
-      0 => '356216e5d3ec8e784a6c2f5cbb0f7a35985e892970d5ed0763849041c05aa9a4',
+      0 => '44045b38617a97d3984d2bb0aa47f68b8fdf856d60812bde157062fc109300e0',
       1 => 
       array (
         0 => 'app\\domain\\registry\\models\\household',
@@ -1077,7 +1077,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         2 => 'app\\domain\\registry\\models\\ownermda',
         3 => 'app\\domain\\registry\\models\\head',
         4 => 'app\\domain\\registry\\models\\memberships',
-        5 => 'app\\domain\\registry\\models\\newfactory',
+        5 => 'app\\domain\\registry\\models\\currentmemberships',
+        6 => 'app\\domain\\registry\\models\\newfactory',
       ),
       3 => 
       array (
@@ -1097,6 +1098,549 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         2 => 'app\\domain\\registry\\models\\household',
         3 => 'app\\domain\\registry\\models\\beneficiary',
         4 => 'app\\domain\\registry\\models\\newfactory',
+      ),
+      3 => 
+      array (
+      ),
+    ),
+    '/var/www/html/app/Domain/Registry/Contracts/BeneficiaryRouter.php' => 
+    array (
+      0 => 'c51820b21d4a2b5b79e46c7eb12e85656b27b65f8ca4745d66685de3efd7c4dc',
+      1 => 
+      array (
+        0 => 'app\\domain\\registry\\contracts\\beneficiaryrouter',
+      ),
+      2 => 
+      array (
+        0 => 'app\\domain\\registry\\contracts\\suggestmdafor',
+      ),
+      3 => 
+      array (
+      ),
+    ),
+    '/var/www/html/app/Domain/Registry/Enums/OwnershipTransferStatus.php' => 
+    array (
+      0 => 'd70f4176b76b4a5dfd2cf975fddcde3a3ae0da944e841009db7c02265b7da9db',
+      1 => 
+      array (
+        0 => 'app\\domain\\registry\\enums\\ownershiptransferstatus',
+      ),
+      2 => 
+      array (
+      ),
+      3 => 
+      array (
+      ),
+    ),
+    '/var/www/html/app/Domain/Registry/Models/OwnershipTransferRequest.php' => 
+    array (
+      0 => '244f7f3ca07c9e25ed4b1542a1de21e1af7b26a1fac3024110914370c9f40c6c',
+      1 => 
+      array (
+        0 => 'app\\domain\\registry\\models\\ownershiptransferrequest',
+      ),
+      2 => 
+      array (
+        0 => 'app\\domain\\registry\\models\\casts',
+        1 => 'app\\domain\\registry\\models\\beneficiary',
+        2 => 'app\\domain\\registry\\models\\frommda',
+        3 => 'app\\domain\\registry\\models\\tomda',
+        4 => 'app\\domain\\registry\\models\\requestedby',
+        5 => 'app\\domain\\registry\\models\\newfactory',
+      ),
+      3 => 
+      array (
+      ),
+    ),
+    '/var/www/html/app/Domain/Registry/Policies/BeneficiaryPolicy.php' => 
+    array (
+      0 => '1111934cdc945cc79eaa9d89eed189b0b7a258fc6448fa88a7c19e13bfe9d5d5',
+      1 => 
+      array (
+        0 => 'app\\domain\\registry\\policies\\beneficiarypolicy',
+      ),
+      2 => 
+      array (
+        0 => 'app\\domain\\registry\\policies\\owns',
+        1 => 'app\\domain\\registry\\policies\\viewany',
+        2 => 'app\\domain\\registry\\policies\\view',
+        3 => 'app\\domain\\registry\\policies\\create',
+        4 => 'app\\domain\\registry\\policies\\update',
+        5 => 'app\\domain\\registry\\policies\\delete',
+        6 => 'app\\domain\\registry\\policies\\lookup',
+        7 => 'app\\domain\\registry\\policies\\requesttransfer',
+        8 => 'app\\domain\\registry\\policies\\decidetransfer',
+      ),
+      3 => 
+      array (
+      ),
+    ),
+    '/var/www/html/app/Domain/Registry/RegistryServiceProvider.php' => 
+    array (
+      0 => '593e55b45dbe2b358a7037f8880ff09d8b475ca7769ccdf1be53f06f7b718554',
+      1 => 
+      array (
+        0 => 'app\\domain\\registry\\registryserviceprovider',
+      ),
+      2 => 
+      array (
+        0 => 'app\\domain\\registry\\register',
+        1 => 'app\\domain\\registry\\boot',
+        2 => 'app\\domain\\registry\\registerpermissions',
+      ),
+      3 => 
+      array (
+      ),
+    ),
+    '/var/www/html/app/Domain/Registry/Services/BeneficiaryLookupService.php' => 
+    array (
+      0 => 'dedb58080e2291681f1ecbe4f2a3af76fe40c49f11d7eb9311b01355bf08a80b',
+      1 => 
+      array (
+        0 => 'app\\domain\\registry\\services\\beneficiarylookupservice',
+      ),
+      2 => 
+      array (
+        0 => 'app\\domain\\registry\\services\\__construct',
+        1 => 'app\\domain\\registry\\services\\findbyidentity',
+      ),
+      3 => 
+      array (
+      ),
+    ),
+    '/var/www/html/app/Domain/Registry/Services/NullBeneficiaryRouter.php' => 
+    array (
+      0 => 'b8880cc7b6c8d8ff8216e903ff0ca2d0acfb6bc21e8e2c1fcdad97ee4872a157',
+      1 => 
+      array (
+        0 => 'app\\domain\\registry\\services\\nullbeneficiaryrouter',
+      ),
+      2 => 
+      array (
+        0 => 'app\\domain\\registry\\services\\suggestmdafor',
+      ),
+      3 => 
+      array (
+      ),
+    ),
+    '/var/www/html/app/Domain/Registry/Services/OwnershipTransferService.php' => 
+    array (
+      0 => '1266cddac828f34462f7333ab1156d0bbb0d4dc8227692c6927b7bac507bc860',
+      1 => 
+      array (
+        0 => 'app\\domain\\registry\\services\\ownershiptransferservice',
+      ),
+      2 => 
+      array (
+        0 => 'app\\domain\\registry\\services\\__construct',
+        1 => 'app\\domain\\registry\\services\\request',
+        2 => 'app\\domain\\registry\\services\\approve',
+        3 => 'app\\domain\\registry\\services\\reject',
+        4 => 'app\\domain\\registry\\services\\assertpending',
+      ),
+      3 => 
+      array (
+      ),
+    ),
+    '/var/www/html/app/Http/Controllers/Api/V1/Registry/BeneficiaryController.php' => 
+    array (
+      0 => '82ee080673b7f8c9e361889d0b0b98e5302ec23a72958da579de07e34beae970',
+      1 => 
+      array (
+        0 => 'app\\http\\controllers\\api\\v1\\registry\\beneficiarycontroller',
+      ),
+      2 => 
+      array (
+        0 => 'app\\http\\controllers\\api\\v1\\registry\\index',
+        1 => 'app\\http\\controllers\\api\\v1\\registry\\store',
+        2 => 'app\\http\\controllers\\api\\v1\\registry\\show',
+        3 => 'app\\http\\controllers\\api\\v1\\registry\\update',
+        4 => 'app\\http\\controllers\\api\\v1\\registry\\destroy',
+        5 => 'app\\http\\controllers\\api\\v1\\registry\\lookup',
+      ),
+      3 => 
+      array (
+      ),
+    ),
+    '/var/www/html/app/Http/Controllers/Api/V1/Registry/OwnershipTransferController.php' => 
+    array (
+      0 => '20e098b5ca731a7bf7b20b3e3a1fa2cd2c5b04dd8d58f1e6b5b07a687ca479e9',
+      1 => 
+      array (
+        0 => 'app\\http\\controllers\\api\\v1\\registry\\ownershiptransfercontroller',
+      ),
+      2 => 
+      array (
+        0 => 'app\\http\\controllers\\api\\v1\\registry\\__construct',
+        1 => 'app\\http\\controllers\\api\\v1\\registry\\store',
+        2 => 'app\\http\\controllers\\api\\v1\\registry\\approve',
+        3 => 'app\\http\\controllers\\api\\v1\\registry\\reject',
+        4 => 'app\\http\\controllers\\api\\v1\\registry\\authorizedecision',
+      ),
+      3 => 
+      array (
+      ),
+    ),
+    '/var/www/html/app/Http/Requests/Registry/BeneficiaryLookupRequest.php' => 
+    array (
+      0 => 'f458080f9213b3b20bb550788e22e45a22577c12dac7700c349088025b436c70',
+      1 => 
+      array (
+        0 => 'app\\http\\requests\\registry\\beneficiarylookuprequest',
+      ),
+      2 => 
+      array (
+        0 => 'app\\http\\requests\\registry\\authorize',
+        1 => 'app\\http\\requests\\registry\\rules',
+      ),
+      3 => 
+      array (
+      ),
+    ),
+    '/var/www/html/app/Http/Requests/Registry/DecideOwnershipTransferRequest.php' => 
+    array (
+      0 => '6e8351164a7aa8fe828a041a78270a9ad861883f1e81e65aa401daa017386b9b',
+      1 => 
+      array (
+        0 => 'app\\http\\requests\\registry\\decideownershiptransferrequest',
+      ),
+      2 => 
+      array (
+        0 => 'app\\http\\requests\\registry\\authorize',
+        1 => 'app\\http\\requests\\registry\\rules',
+      ),
+      3 => 
+      array (
+      ),
+    ),
+    '/var/www/html/app/Http/Requests/Registry/StoreOwnershipTransferRequest.php' => 
+    array (
+      0 => 'f4219597e0c02f678cba8f45bf1a94243533afdfb5aaacfb646a036e3b20bee2',
+      1 => 
+      array (
+        0 => 'app\\http\\requests\\registry\\storeownershiptransferrequest',
+      ),
+      2 => 
+      array (
+        0 => 'app\\http\\requests\\registry\\authorize',
+        1 => 'app\\http\\requests\\registry\\rules',
+      ),
+      3 => 
+      array (
+      ),
+    ),
+    '/var/www/html/app/Http/Requests/Registry/UpdateBeneficiaryRequest.php' => 
+    array (
+      0 => 'f3176f882f98e6653566459523261677ae39c03810443ea2bc622818727fb34f',
+      1 => 
+      array (
+        0 => 'app\\http\\requests\\registry\\updatebeneficiaryrequest',
+      ),
+      2 => 
+      array (
+        0 => 'app\\http\\requests\\registry\\authorize',
+        1 => 'app\\http\\requests\\registry\\prepareforvalidation',
+        2 => 'app\\http\\requests\\registry\\rules',
+      ),
+      3 => 
+      array (
+      ),
+    ),
+    '/var/www/html/app/Http/Resources/BeneficiaryResource.php' => 
+    array (
+      0 => 'f08b62b7a0562537d5477254248f5c9a71dab8b34a745f0f1e21d9cd22510d9d',
+      1 => 
+      array (
+        0 => 'app\\http\\resources\\beneficiaryresource',
+      ),
+      2 => 
+      array (
+        0 => 'app\\http\\resources\\toarray',
+        1 => 'app\\http\\resources\\masktail',
+      ),
+      3 => 
+      array (
+      ),
+    ),
+    '/var/www/html/app/Http/Resources/BeneficiaryRevealResource.php' => 
+    array (
+      0 => '3ce4523b26b598ac27bfa3a760bfdca66323d99e4e39d02e9a0e527d111031b6',
+      1 => 
+      array (
+        0 => 'app\\http\\resources\\beneficiaryrevealresource',
+      ),
+      2 => 
+      array (
+        0 => 'app\\http\\resources\\toarray',
+      ),
+      3 => 
+      array (
+      ),
+    ),
+    '/var/www/html/app/Http/Resources/OwnershipTransferResource.php' => 
+    array (
+      0 => 'aea2958c7ac42e7559ec88b07559bf22bb6d14108d16daafe90233ff5112d08d',
+      1 => 
+      array (
+        0 => 'app\\http\\resources\\ownershiptransferresource',
+      ),
+      2 => 
+      array (
+        0 => 'app\\http\\resources\\toarray',
+      ),
+      3 => 
+      array (
+      ),
+    ),
+    '/var/www/html/app/Domain/Registry/Contracts/DuplicateChecker.php' => 
+    array (
+      0 => '07a38eba165f1ce7ca7cc6e0b0f418a834e27678da7ecd92825b273def8a8dcc',
+      1 => 
+      array (
+        0 => 'app\\domain\\registry\\contracts\\duplicatechecker',
+      ),
+      2 => 
+      array (
+        0 => 'app\\domain\\registry\\contracts\\check',
+      ),
+      3 => 
+      array (
+      ),
+    ),
+    '/var/www/html/app/Domain/Registry/Enums/Lga.php' => 
+    array (
+      0 => 'd5ed56dc15e9c2198671ee106d6ce61fbc909d6b76a3ab0345305e72fea1b1c2',
+      1 => 
+      array (
+        0 => 'app\\domain\\registry\\enums\\lga',
+      ),
+      2 => 
+      array (
+        0 => 'app\\domain\\registry\\enums\\label',
+      ),
+      3 => 
+      array (
+      ),
+    ),
+    '/var/www/html/app/Domain/Registry/Services/NullDuplicateChecker.php' => 
+    array (
+      0 => 'e8376873eaf21f53c01f08a4a512d7dcaf0ca0abd7a4b8263768504cb742de8a',
+      1 => 
+      array (
+        0 => 'app\\domain\\registry\\services\\nullduplicatechecker',
+      ),
+      2 => 
+      array (
+        0 => 'app\\domain\\registry\\services\\check',
+      ),
+      3 => 
+      array (
+      ),
+    ),
+    '/var/www/html/app/Http/Requests/Registry/StoreBeneficiaryRequest.php' => 
+    array (
+      0 => 'fb6b43d74a6b2f841a5bc2de1d09c859b5798c283f5612815749734fa9830ea1',
+      1 => 
+      array (
+        0 => 'app\\http\\requests\\registry\\storebeneficiaryrequest',
+      ),
+      2 => 
+      array (
+        0 => 'app\\http\\requests\\registry\\authorize',
+        1 => 'app\\http\\requests\\registry\\prepareforvalidation',
+        2 => 'app\\http\\requests\\registry\\rules',
+        3 => 'app\\http\\requests\\registry\\messages',
+      ),
+      3 => 
+      array (
+      ),
+    ),
+    '/var/www/html/app/Domain/Registry/Policies/HouseholdPolicy.php' => 
+    array (
+      0 => '410dd832e66f56c44fde79f1961801987574f5c0efa16a3b9de67eed45b10071',
+      1 => 
+      array (
+        0 => 'app\\domain\\registry\\policies\\householdpolicy',
+      ),
+      2 => 
+      array (
+        0 => 'app\\domain\\registry\\policies\\owns',
+        1 => 'app\\domain\\registry\\policies\\viewany',
+        2 => 'app\\domain\\registry\\policies\\view',
+        3 => 'app\\domain\\registry\\policies\\create',
+        4 => 'app\\domain\\registry\\policies\\update',
+        5 => 'app\\domain\\registry\\policies\\delete',
+      ),
+      3 => 
+      array (
+      ),
+    ),
+    '/var/www/html/app/Domain/Registry/Services/HouseholdMembershipService.php' => 
+    array (
+      0 => 'd2c9965d76df8330a34adb742b6f0416d1d4ee396b7b8bfaa8b3bbb78cca6364',
+      1 => 
+      array (
+        0 => 'app\\domain\\registry\\services\\householdmembershipservice',
+      ),
+      2 => 
+      array (
+        0 => 'app\\domain\\registry\\services\\__construct',
+        1 => 'app\\domain\\registry\\services\\add',
+        2 => 'app\\domain\\registry\\services\\move',
+        3 => 'app\\domain\\registry\\services\\remove',
+        4 => 'app\\domain\\registry\\services\\designatehead',
+        5 => 'app\\domain\\registry\\services\\openmembership',
+        6 => 'app\\domain\\registry\\services\\assertnoopenmembership',
+        7 => 'app\\domain\\registry\\services\\clearheadifmember',
+      ),
+      3 => 
+      array (
+      ),
+    ),
+    '/var/www/html/app/Http/Controllers/Api/V1/Registry/HouseholdController.php' => 
+    array (
+      0 => '891d7a49ba02b8d6b45b897e469383ef3fc1387943efe167b7e40cadc7db37f2',
+      1 => 
+      array (
+        0 => 'app\\http\\controllers\\api\\v1\\registry\\householdcontroller',
+      ),
+      2 => 
+      array (
+        0 => 'app\\http\\controllers\\api\\v1\\registry\\index',
+        1 => 'app\\http\\controllers\\api\\v1\\registry\\store',
+        2 => 'app\\http\\controllers\\api\\v1\\registry\\show',
+        3 => 'app\\http\\controllers\\api\\v1\\registry\\update',
+        4 => 'app\\http\\controllers\\api\\v1\\registry\\destroy',
+        5 => 'app\\http\\controllers\\api\\v1\\registry\\designatehead',
+      ),
+      3 => 
+      array (
+      ),
+    ),
+    '/var/www/html/app/Http/Controllers/Api/V1/Registry/HouseholdMemberController.php' => 
+    array (
+      0 => '7c459a526c7eefadfd7764607cbae8768694fcd9fc7bb5304a1de8b6922b6b76',
+      1 => 
+      array (
+        0 => 'app\\http\\controllers\\api\\v1\\registry\\householdmembercontroller',
+      ),
+      2 => 
+      array (
+        0 => 'app\\http\\controllers\\api\\v1\\registry\\__construct',
+        1 => 'app\\http\\controllers\\api\\v1\\registry\\store',
+        2 => 'app\\http\\controllers\\api\\v1\\registry\\move',
+        3 => 'app\\http\\controllers\\api\\v1\\registry\\destroy',
+        4 => 'app\\http\\controllers\\api\\v1\\registry\\authorizedhousehold',
+      ),
+      3 => 
+      array (
+      ),
+    ),
+    '/var/www/html/app/Http/Requests/Registry/AddHouseholdMemberRequest.php' => 
+    array (
+      0 => '07564e306c93253e300dd32ed3c41618aa01ed517d59c01eaa45206eeda1a032',
+      1 => 
+      array (
+        0 => 'app\\http\\requests\\registry\\addhouseholdmemberrequest',
+      ),
+      2 => 
+      array (
+        0 => 'app\\http\\requests\\registry\\authorize',
+        1 => 'app\\http\\requests\\registry\\rules',
+      ),
+      3 => 
+      array (
+      ),
+    ),
+    '/var/www/html/app/Http/Requests/Registry/DesignateHeadRequest.php' => 
+    array (
+      0 => '067b7d46eca10fb4c00f88dc4064d6f5893fb10497ac7c9f6f35bc5ce91d47f6',
+      1 => 
+      array (
+        0 => 'app\\http\\requests\\registry\\designateheadrequest',
+      ),
+      2 => 
+      array (
+        0 => 'app\\http\\requests\\registry\\authorize',
+        1 => 'app\\http\\requests\\registry\\rules',
+      ),
+      3 => 
+      array (
+      ),
+    ),
+    '/var/www/html/app/Http/Requests/Registry/MoveHouseholdMemberRequest.php' => 
+    array (
+      0 => 'b01dce9f46ca43e108387f9fec9177d6c1f99b7bd40d80ba405a9975b0aefd51',
+      1 => 
+      array (
+        0 => 'app\\http\\requests\\registry\\movehouseholdmemberrequest',
+      ),
+      2 => 
+      array (
+        0 => 'app\\http\\requests\\registry\\authorize',
+        1 => 'app\\http\\requests\\registry\\rules',
+      ),
+      3 => 
+      array (
+      ),
+    ),
+    '/var/www/html/app/Http/Requests/Registry/StoreHouseholdRequest.php' => 
+    array (
+      0 => '05c3690d15544d683102b755ef5f221732c1d97cf69bf32876eccfe4628143fe',
+      1 => 
+      array (
+        0 => 'app\\http\\requests\\registry\\storehouseholdrequest',
+      ),
+      2 => 
+      array (
+        0 => 'app\\http\\requests\\registry\\authorize',
+        1 => 'app\\http\\requests\\registry\\rules',
+      ),
+      3 => 
+      array (
+      ),
+    ),
+    '/var/www/html/app/Http/Requests/Registry/UpdateHouseholdRequest.php' => 
+    array (
+      0 => '350d5386dd0150dfd1c0dcec975e78891c4d0dc69ed1f4da8441a7c31b5045d5',
+      1 => 
+      array (
+        0 => 'app\\http\\requests\\registry\\updatehouseholdrequest',
+      ),
+      2 => 
+      array (
+        0 => 'app\\http\\requests\\registry\\authorize',
+        1 => 'app\\http\\requests\\registry\\rules',
+      ),
+      3 => 
+      array (
+      ),
+    ),
+    '/var/www/html/app/Http/Resources/HouseholdMembershipResource.php' => 
+    array (
+      0 => '695d973fa43eb9c0171b1685c2f6e50d1ae10c84cabd8b44c2523ab15ea1de8b',
+      1 => 
+      array (
+        0 => 'app\\http\\resources\\householdmembershipresource',
+      ),
+      2 => 
+      array (
+        0 => 'app\\http\\resources\\toarray',
+      ),
+      3 => 
+      array (
+      ),
+    ),
+    '/var/www/html/app/Http/Resources/HouseholdResource.php' => 
+    array (
+      0 => '318c9d2f5700c1973464eaa5f3f18acb7292b0ba13c08cce55c3f4177a9335af',
+      1 => 
+      array (
+        0 => 'app\\http\\resources\\householdresource',
+      ),
+      2 => 
+      array (
+        0 => 'app\\http\\resources\\toarray',
       ),
       3 => 
       array (

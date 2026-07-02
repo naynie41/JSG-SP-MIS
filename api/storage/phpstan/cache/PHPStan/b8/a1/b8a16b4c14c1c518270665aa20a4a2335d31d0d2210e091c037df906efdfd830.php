@@ -2,7 +2,7 @@
 
 // odsl-/var/www/html/app/Domain/Registry/Models/Household.php-PHPStan\BetterReflection\Reflection\ReflectionClass-App\Domain\Registry\Models\Household
 return \PHPStan\Cache\CacheItem::__set_state(array(
-   'variableKey' => 'v2-6.70.0.1-8.3.31-356216e5d3ec8e784a6c2f5cbb0f7a35985e892970d5ed0763849041c05aa9a4',
+   'variableKey' => 'v2-6.70.0.1-8.3.31-44045b38617a97d3984d2bb0aa47f68b8fdf856d60812bde157062fc109300e0',
    'data' => 
   array (
     'locatedSource' => 
@@ -36,14 +36,16 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
  * @property string|null $address
  * @property string|null $lga
  * @property string|null $ward
- * @property-read Mda $ownerMda
+ * @property-read Mda|null $ownerMda
  * @property-read Beneficiary|null $head
+ * @property-read Collection<int, HouseholdMembership> $memberships
+ * @property-read Collection<int, HouseholdMembership> $currentMemberships
  */',
     'attributes' => 
     array (
     ),
-    'startLine' => 38,
-    'endLine' => 111,
+    'startLine' => 41,
+    'endLine' => 124,
     'startColumn' => 1,
     'endColumn' => 1,
     'parentClassName' => 'Illuminate\\Database\\Eloquent\\Model',
@@ -76,20 +78,20 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
           'code' => '\'households\'',
           'attributes' => 
           array (
-            'startLine' => 43,
-            'endLine' => 43,
-            'startTokenPos' => 121,
-            'startFilePos' => 1459,
-            'endTokenPos' => 121,
-            'endFilePos' => 1470,
+            'startLine' => 46,
+            'endLine' => 46,
+            'startTokenPos' => 126,
+            'startFilePos' => 1652,
+            'endTokenPos' => 126,
+            'endFilePos' => 1663,
           ),
         ),
         'docComment' => NULL,
         'attributes' => 
         array (
         ),
-        'startLine' => 43,
-        'endLine' => 43,
+        'startLine' => 46,
+        'endLine' => 46,
         'startColumn' => 5,
         'endColumn' => 36,
         'isPromoted' => false,
@@ -111,12 +113,12 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
           'code' => '[\'owner_mda_id\', \'head_beneficiary_id\', \'registration_source\', \'registration_date\', \'import_batch_id\', \'original_record_id\', \'address\', \'lga\', \'ward\']',
           'attributes' => 
           array (
-            'startLine' => 48,
-            'endLine' => 58,
-            'startTokenPos' => 132,
-            'startFilePos' => 1541,
-            'endTokenPos' => 161,
-            'endFilePos' => 1769,
+            'startLine' => 51,
+            'endLine' => 61,
+            'startTokenPos' => 137,
+            'startFilePos' => 1734,
+            'endTokenPos' => 166,
+            'endFilePos' => 1962,
           ),
         ),
         'docComment' => '/**
@@ -125,8 +127,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         'attributes' => 
         array (
         ),
-        'startLine' => 48,
-        'endLine' => 58,
+        'startLine' => 51,
+        'endLine' => 61,
         'startColumn' => 5,
         'endColumn' => 6,
         'isPromoted' => false,
@@ -161,8 +163,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         'docComment' => '/**
  * @return array<string, string>
  */',
-        'startLine' => 63,
-        'endLine' => 69,
+        'startLine' => 66,
+        'endLine' => 72,
         'startColumn' => 5,
         'endColumn' => 5,
         'couldThrow' => false,
@@ -196,8 +198,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         array (
         ),
         'docComment' => NULL,
-        'startLine' => 71,
-        'endLine' => 81,
+        'startLine' => 74,
+        'endLine' => 84,
         'startColumn' => 5,
         'endColumn' => 5,
         'couldThrow' => false,
@@ -233,8 +235,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         'docComment' => '/**
  * @return BelongsTo<Mda, $this>
  */',
-        'startLine' => 86,
-        'endLine' => 89,
+        'startLine' => 89,
+        'endLine' => 92,
         'startColumn' => 5,
         'endColumn' => 5,
         'couldThrow' => false,
@@ -270,8 +272,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         'docComment' => '/**
  * @return BelongsTo<Beneficiary, $this>
  */',
-        'startLine' => 94,
-        'endLine' => 97,
+        'startLine' => 97,
+        'endLine' => 100,
         'startColumn' => 5,
         'endColumn' => 5,
         'couldThrow' => false,
@@ -307,8 +309,47 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         'docComment' => '/**
  * @return HasMany<HouseholdMembership, $this>
  */',
-        'startLine' => 102,
-        'endLine' => 105,
+        'startLine' => 105,
+        'endLine' => 108,
+        'startColumn' => 5,
+        'endColumn' => 5,
+        'couldThrow' => false,
+        'isClosure' => false,
+        'isGenerator' => false,
+        'isVariadic' => false,
+        'modifiers' => 1,
+        'namespace' => 'App\\Domain\\Registry\\Models',
+        'declaringClassName' => 'App\\Domain\\Registry\\Models\\Household',
+        'implementingClassName' => 'App\\Domain\\Registry\\Models\\Household',
+        'currentClassName' => 'App\\Domain\\Registry\\Models\\Household',
+        'aliasName' => NULL,
+      ),
+      'currentMemberships' => 
+      array (
+        'name' => 'currentMemberships',
+        'parameters' => 
+        array (
+        ),
+        'returnsReference' => false,
+        'returnType' => 
+        array (
+          'class' => 'PHPStan\\BetterReflection\\Reflection\\ReflectionNamedType',
+          'data' => 
+          array (
+            'name' => 'Illuminate\\Database\\Eloquent\\Relations\\HasMany',
+            'isIdentifier' => false,
+          ),
+        ),
+        'attributes' => 
+        array (
+        ),
+        'docComment' => '/**
+ * The current (open) memberships — the household\'s present composition.
+ *
+ * @return HasMany<HouseholdMembership, $this>
+ */',
+        'startLine' => 115,
+        'endLine' => 118,
         'startColumn' => 5,
         'endColumn' => 5,
         'couldThrow' => false,
@@ -342,8 +383,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         array (
         ),
         'docComment' => NULL,
-        'startLine' => 107,
-        'endLine' => 110,
+        'startLine' => 120,
+        'endLine' => 123,
         'startColumn' => 5,
         'endColumn' => 5,
         'couldThrow' => false,

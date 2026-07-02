@@ -13,6 +13,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
          'uses' => 
         array (
           'mda' => 'App\\Domain\\Access\\Models\\Mda',
+          'registrationsource' => 'App\\Domain\\Registry\\Enums\\RegistrationSource',
           'household' => 'App\\Domain\\Registry\\Models\\Household',
           'factory' => 'Illuminate\\Database\\Eloquent\\Factories\\Factory',
         ),
@@ -38,6 +39,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
          'uses' => 
         array (
           'mda' => 'App\\Domain\\Access\\Models\\Mda',
+          'registrationsource' => 'App\\Domain\\Registry\\Enums\\RegistrationSource',
           'household' => 'App\\Domain\\Registry\\Models\\Household',
           'factory' => 'Illuminate\\Database\\Eloquent\\Factories\\Factory',
         ),
@@ -52,6 +54,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
            'uses' => 
           array (
             'mda' => 'App\\Domain\\Access\\Models\\Mda',
+            'registrationsource' => 'App\\Domain\\Registry\\Enums\\RegistrationSource',
             'household' => 'App\\Domain\\Registry\\Models\\Household',
             'factory' => 'Illuminate\\Database\\Eloquent\\Factories\\Factory',
           ),
@@ -84,7 +87,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
     ),
     1 => 
     array (
-      '/var/www/html/database/factories/HouseholdFactory.php' => '73376c1719644b1b8b9653f513b8a4f452bb118a7c46079522765722d8ba3490',
+      '/var/www/html/database/factories/HouseholdFactory.php' => '8e76d8312ec43d8d89dc471b9ca72d6129061359b19de19650c36e9826431030',
     ),
   ),
 ));

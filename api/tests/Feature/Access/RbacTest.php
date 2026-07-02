@@ -23,12 +23,29 @@ class RbacTest extends TestCase
      * @var array<string, list<string>>
      */
     private const EXPECTED = [
-        'sp_coordination' => ['cross-mda.view', 'mda.view', 'user.view', 'role.view', 'permission.view'],
-        'mne_officer' => ['cross-mda.view', 'mda.view', 'user.view'],
-        'mda_admin' => ['mda.view', 'user.view', 'user.create', 'user.edit', 'role.view'],
-        'mda_officer' => ['mda.view', 'user.view'],
-        'development_partner' => ['mda.view'],
-        'executive' => ['cross-mda.view', 'mda.view', 'user.view'],
+        'sp_coordination' => [
+            'cross-mda.view', 'mda.view', 'user.view', 'role.view', 'permission.view',
+            'beneficiary.view', 'beneficiary.export', 'beneficiary-lookup.view',
+        ],
+        'mne_officer' => [
+            'cross-mda.view', 'mda.view', 'user.view',
+            'beneficiary.view', 'beneficiary.export', 'beneficiary-lookup.view',
+        ],
+        'mda_admin' => [
+            'mda.view', 'user.view', 'user.create', 'user.edit', 'role.view',
+            'beneficiary.view', 'beneficiary.create', 'beneficiary.edit', 'beneficiary.approve',
+            'beneficiary-lookup.view', 'household.view', 'household.create', 'household.edit',
+        ],
+        'mda_officer' => [
+            'mda.view', 'user.view',
+            'beneficiary.view', 'beneficiary.create', 'beneficiary.edit',
+            'beneficiary-lookup.view', 'household.view', 'household.create', 'household.edit',
+        ],
+        'development_partner' => ['mda.view', 'beneficiary.view'],
+        'executive' => [
+            'cross-mda.view', 'mda.view', 'user.view',
+            'beneficiary.view', 'beneficiary.export', 'beneficiary-lookup.view',
+        ],
     ];
 
     /** @var array<string, User> one user per role key, plus 'none' */

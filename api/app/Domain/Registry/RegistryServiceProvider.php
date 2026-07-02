@@ -1,0 +1,56 @@
+<?php
+
+declare(strict_types=1);
+
+namespace App\Domain\Registry;
+
+use App\Domain\Access\Enums\PermissionAction;
+use App\Domain\Access\Support\PermissionRegistry;
+use App\Domain\Registry\Contracts\BeneficiaryRouter;
+use App\Domain\Registry\Contracts\DuplicateChecker;
+use App\Domain\Registry\Models\Beneficiary;
+use App\Domain\Registry\Models\Household;
+use App\Domain\Registry\Policies\BeneficiaryPolicy;
+use App\Domain\Registry\Policies\HouseholdPolicy;
+use App\Domain\Registry\Services\NullBeneficiaryRouter;
+use App\Domain\Registry\Services\NullDuplicateChecker;
+use Illuminate\Support\Facades\Gate;
+use Illuminate\Support\ServiceProvider;
+
+/**
+ * Wires the Registry domain: its permissions, the beneficiary authorization
+ * policy (owner-only edit, FR-OWN-02), and the auto-route extension point
+ * (FR-OWN-04, no-op until Phase 4).
+ */
+class RegistryServiceProvider extends ServiceProvider
+{
+    public function register(): void
+    {
+        // Programme matching binds a real router here in Phase 4.
+        $this->app->bind(BeneficiaryRouter::class, NullBeneficiaryRouter::class);
+
+        // Fuzzy duplicate matching binds a real checker here in Phase 3.
+        $this->app->bind(DuplicateChecker::class, NullDuplicateChecker::class);
+    }
+
+    public function boot(): void
+    {
+        $this->registerPermissions($this->app->make(PermissionRegistry::class));
+        Gate::policy(Beneficiary::class, BeneficiaryPolicy::class);
+        Gate::policy(Household::class, HouseholdPolicy::class);
+    }
+
+    private function registerPermissions(PermissionRegistry $registry): void
+    {
+        $registry
+            ->register('beneficiary', PermissionAction::View, 'View beneficiaries')
+            ->register('beneficiary', PermissionAction::Create, 'Register beneficiaries')
+            ->register('beneficiary', PermissionAction::Edit, 'Edit beneficiary core profile (owner MDA only)')
+            ->register('beneficiary', PermissionAction::Export, 'Export beneficiaries')
+            ->register('beneficiary', PermissionAction::Approve, 'Request/approve ownership transfer')
+            ->register('beneficiary-lookup', PermissionAction::View, 'Look up beneficiaries across MDAs (reveal fields only)')
+            ->register('household', PermissionAction::View, 'View households')
+            ->register('household', PermissionAction::Create, 'Create households')
+            ->register('household', PermissionAction::Edit, 'Edit households');
+    }
+}

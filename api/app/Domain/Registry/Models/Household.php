@@ -10,6 +10,7 @@ use App\Domain\Access\Models\Mda;
 use App\Domain\Audit\Concerns\Auditable;
 use App\Domain\Registry\Enums\RegistrationSource;
 use Database\Factories\HouseholdFactory;
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Concerns\HasUuids;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -32,8 +33,10 @@ use Illuminate\Support\Carbon;
  * @property string|null $address
  * @property string|null $lga
  * @property string|null $ward
- * @property-read Mda $ownerMda
+ * @property-read Mda|null $ownerMda
  * @property-read Beneficiary|null $head
+ * @property-read Collection<int, HouseholdMembership> $memberships
+ * @property-read Collection<int, HouseholdMembership> $currentMemberships
  */
 class Household extends Model implements MdaScoped
 {
@@ -102,6 +105,16 @@ class Household extends Model implements MdaScoped
     public function memberships(): HasMany
     {
         return $this->hasMany(HouseholdMembership::class);
+    }
+
+    /**
+     * The current (open) memberships — the household's present composition.
+     *
+     * @return HasMany<HouseholdMembership, $this>
+     */
+    public function currentMemberships(): HasMany
+    {
+        return $this->hasMany(HouseholdMembership::class)->whereNull('left_at');
     }
 
     protected static function newFactory(): HouseholdFactory

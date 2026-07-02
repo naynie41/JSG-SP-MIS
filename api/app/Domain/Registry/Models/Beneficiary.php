@@ -44,7 +44,7 @@ use InvalidArgumentException;
  * @property string|null $lga
  * @property string|null $ward
  * @property BeneficiaryStatus $status
- * @property-read Mda $ownerMda
+ * @property-read Mda|null $ownerMda
  * @property-read HouseholdMembership|null $currentMembership
  */
 class Beneficiary extends Model implements MdaScoped
