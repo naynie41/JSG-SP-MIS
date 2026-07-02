@@ -1043,7 +1043,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
     ),
     '/var/www/html/app/Domain/Registry/Models/Beneficiary.php' => 
     array (
-      0 => '633522b80d7e53cb14d3e62c2b6ebbba45e16a002da8b646fb3fa7cde6cd828d',
+      0 => '215297c6d26446ec483299bae16a2a7e8574db828412cb8b23d528ef8e7efce7',
       1 => 
       array (
         0 => 'app\\domain\\registry\\models\\beneficiary',
@@ -1052,13 +1052,15 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
       array (
         0 => 'app\\domain\\registry\\models\\casts',
         1 => 'app\\domain\\registry\\models\\auditmask',
-        2 => 'app\\domain\\registry\\models\\booted',
-        3 => 'app\\domain\\registry\\models\\normalizedigits',
-        4 => 'app\\domain\\registry\\models\\fullname',
-        5 => 'app\\domain\\registry\\models\\ownermda',
-        6 => 'app\\domain\\registry\\models\\householdmemberships',
-        7 => 'app\\domain\\registry\\models\\currentmembership',
-        8 => 'app\\domain\\registry\\models\\newfactory',
+        2 => 'app\\domain\\registry\\models\\auditexcluded',
+        3 => 'app\\domain\\registry\\models\\booted',
+        4 => 'app\\domain\\registry\\models\\normalizedigits',
+        5 => 'app\\domain\\registry\\models\\blocknamedobfor',
+        6 => 'app\\domain\\registry\\models\\fullname',
+        7 => 'app\\domain\\registry\\models\\ownermda',
+        8 => 'app\\domain\\registry\\models\\householdmemberships',
+        9 => 'app\\domain\\registry\\models\\currentmembership',
+        10 => 'app\\domain\\registry\\models\\newfactory',
       ),
       3 => 
       array (
@@ -2095,6 +2097,455 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         1 => 'app\\domain\\registry\\services\\attach',
         2 => 'app\\domain\\registry\\services\\resolverole',
         3 => 'app\\domain\\registry\\services\\ensuremembership',
+      ),
+      3 => 
+      array (
+      ),
+    ),
+    '/var/www/html/app/Domain/Matching/Contracts/MatchScorer.php' => 
+    array (
+      0 => '6a50d61d435858d12704ccce8ddd03866c7b7f03fb80dd7bde921fc99e7dd470',
+      1 => 
+      array (
+        0 => 'app\\domain\\matching\\contracts\\matchscorer',
+      ),
+      2 => 
+      array (
+        0 => 'app\\domain\\matching\\contracts\\score',
+      ),
+      3 => 
+      array (
+      ),
+    ),
+    '/var/www/html/app/Domain/Matching/Engine/MatchResult.php' => 
+    array (
+      0 => '177f277ebf6c6cfd5b06e57f8a399d6c0ce1aff2a936692670fc0c3288fa7f24',
+      1 => 
+      array (
+        0 => 'app\\domain\\matching\\engine\\matchresult',
+      ),
+      2 => 
+      array (
+        0 => 'app\\domain\\matching\\engine\\__construct',
+        1 => 'app\\domain\\matching\\engine\\toarray',
+      ),
+      3 => 
+      array (
+      ),
+    ),
+    '/var/www/html/app/Domain/Matching/Engine/MatchingEngine.php' => 
+    array (
+      0 => '50c2a21850f502653e9093a8aa73ae9be74cc2840fd577e73aba69d28d48a259',
+      1 => 
+      array (
+        0 => 'app\\domain\\matching\\engine\\matchingengine',
+      ),
+      2 => 
+      array (
+        0 => 'app\\domain\\matching\\engine\\__construct',
+        1 => 'app\\domain\\matching\\engine\\match',
+        2 => 'app\\domain\\matching\\engine\\band',
+      ),
+      3 => 
+      array (
+      ),
+    ),
+    '/var/www/html/app/Domain/Matching/Enums/ExactMatchBehaviour.php' => 
+    array (
+      0 => '678a2388a77f2072a77bbef6b5c963f86773123cd014d6ad8fddd66808cd029d',
+      1 => 
+      array (
+        0 => 'app\\domain\\matching\\enums\\exactmatchbehaviour',
+      ),
+      2 => 
+      array (
+      ),
+      3 => 
+      array (
+      ),
+    ),
+    '/var/www/html/app/Domain/Matching/Enums/MatchBand.php' => 
+    array (
+      0 => 'c86d1270a2ef9b07037fa032a7842d5ccb34906203636c5d274f8399b8da7b93',
+      1 => 
+      array (
+        0 => 'app\\domain\\matching\\enums\\matchband',
+      ),
+      2 => 
+      array (
+        0 => 'app\\domain\\matching\\enums\\rank',
+      ),
+      3 => 
+      array (
+      ),
+    ),
+    '/var/www/html/app/Domain/Matching/Enums/MatchComparator.php' => 
+    array (
+      0 => '9000507548e87cb5ed6edd4a7c765d9e5c0a37bf6500ae8d2f41ecd0e648d331',
+      1 => 
+      array (
+        0 => 'app\\domain\\matching\\enums\\matchcomparator',
+      ),
+      2 => 
+      array (
+      ),
+      3 => 
+      array (
+      ),
+    ),
+    '/var/www/html/app/Domain/Matching/Enums/MatchField.php' => 
+    array (
+      0 => '1683b93bb5a6c155bceb224a0e9ef3991c5217bb58ee097062eda8ed915ae50c',
+      1 => 
+      array (
+        0 => 'app\\domain\\matching\\enums\\matchfield',
+      ),
+      2 => 
+      array (
+        0 => 'app\\domain\\matching\\enums\\isnumericidentifier',
+        1 => 'app\\domain\\matching\\enums\\values',
+      ),
+      3 => 
+      array (
+      ),
+    ),
+    '/var/www/html/app/Domain/Matching/MatchingServiceProvider.php' => 
+    array (
+      0 => 'cb1fbe7c85528c14a00f02cbb3c7f33993c3815913ae68b49ea71d401af4cec9',
+      1 => 
+      array (
+        0 => 'app\\domain\\matching\\matchingserviceprovider',
+      ),
+      2 => 
+      array (
+        0 => 'app\\domain\\matching\\register',
+        1 => 'app\\domain\\matching\\boot',
+      ),
+      3 => 
+      array (
+      ),
+    ),
+    '/var/www/html/app/Domain/Matching/Models/MatchingConfig.php' => 
+    array (
+      0 => '9cd6661890ca5fab9d7981b2008513e3963bf6ab1f66806dc733cbfd572fa7f3',
+      1 => 
+      array (
+        0 => 'app\\domain\\matching\\models\\matchingconfig',
+      ),
+      2 => 
+      array (
+        0 => 'app\\domain\\matching\\models\\casts',
+        1 => 'app\\domain\\matching\\models\\deterministickeysets',
+        2 => 'app\\domain\\matching\\models\\fuzzyfields',
+        3 => 'app\\domain\\matching\\models\\totalfuzzyweight',
+        4 => 'app\\domain\\matching\\models\\author',
+      ),
+      3 => 
+      array (
+      ),
+    ),
+    '/var/www/html/app/Domain/Matching/Scoring/Comparators/Comparator.php' => 
+    array (
+      0 => '740856faeb5ea82308fd6e030d4c97c711f900baf143252e379fd3869833b8b2',
+      1 => 
+      array (
+        0 => 'app\\domain\\matching\\scoring\\comparators\\comparator',
+      ),
+      2 => 
+      array (
+        0 => 'app\\domain\\matching\\scoring\\comparators\\compare',
+      ),
+      3 => 
+      array (
+      ),
+    ),
+    '/var/www/html/app/Domain/Matching/Scoring/Comparators/ComparatorRegistry.php' => 
+    array (
+      0 => '0b09da4939d73f4a49fac70f941cd234a548781475e41d2f2e33462570295971',
+      1 => 
+      array (
+        0 => 'app\\domain\\matching\\scoring\\comparators\\comparatorregistry',
+      ),
+      2 => 
+      array (
+        0 => 'app\\domain\\matching\\scoring\\comparators\\__construct',
+        1 => 'app\\domain\\matching\\scoring\\comparators\\get',
+      ),
+      3 => 
+      array (
+      ),
+    ),
+    '/var/www/html/app/Domain/Matching/Scoring/Comparators/ExactComparator.php' => 
+    array (
+      0 => '2e854834baf1d4b2b0c27cab629287dff0243e803432b30bc8617650682b41c0',
+      1 => 
+      array (
+        0 => 'app\\domain\\matching\\scoring\\comparators\\exactcomparator',
+      ),
+      2 => 
+      array (
+        0 => 'app\\domain\\matching\\scoring\\comparators\\compare',
+      ),
+      3 => 
+      array (
+      ),
+    ),
+    '/var/www/html/app/Domain/Matching/Scoring/Comparators/JaroWinklerComparator.php' => 
+    array (
+      0 => 'f6ab7f5b1d9902af627998b41e0149c93d4907c5d8b5a1046663b3ddcfb36eef',
+      1 => 
+      array (
+        0 => 'app\\domain\\matching\\scoring\\comparators\\jarowinklercomparator',
+      ),
+      2 => 
+      array (
+        0 => 'app\\domain\\matching\\scoring\\comparators\\compare',
+        1 => 'app\\domain\\matching\\scoring\\comparators\\jaro',
+        2 => 'app\\domain\\matching\\scoring\\comparators\\commonprefix',
+      ),
+      3 => 
+      array (
+      ),
+    ),
+    '/var/www/html/app/Domain/Matching/Scoring/Comparators/LevenshteinComparator.php' => 
+    array (
+      0 => 'e5f7a7fd57a72fc4c7b0c93f1fa47bd723e96c26e4dc89dc6ce49532b9c2c41c',
+      1 => 
+      array (
+        0 => 'app\\domain\\matching\\scoring\\comparators\\levenshteincomparator',
+      ),
+      2 => 
+      array (
+        0 => 'app\\domain\\matching\\scoring\\comparators\\compare',
+      ),
+      3 => 
+      array (
+      ),
+    ),
+    '/var/www/html/app/Domain/Matching/Scoring/FieldNormalizer.php' => 
+    array (
+      0 => '186242c59e4c3594b279d0b5aa84bb0fee5d9c7a25ef08b8e05d55541dbbc04c',
+      1 => 
+      array (
+        0 => 'app\\domain\\matching\\scoring\\fieldnormalizer',
+      ),
+      2 => 
+      array (
+        0 => 'app\\domain\\matching\\scoring\\normalize',
+      ),
+      3 => 
+      array (
+      ),
+    ),
+    '/var/www/html/app/Domain/Matching/Scoring/MatchScore.php' => 
+    array (
+      0 => '513dcbcfac8da9b6c374dd8fb72444130588375a254b1f81001299072a7331b2',
+      1 => 
+      array (
+        0 => 'app\\domain\\matching\\scoring\\matchscore',
+      ),
+      2 => 
+      array (
+        0 => 'app\\domain\\matching\\scoring\\__construct',
+        1 => 'app\\domain\\matching\\scoring\\toarray',
+      ),
+      3 => 
+      array (
+      ),
+    ),
+    '/var/www/html/app/Domain/Matching/Scoring/RuleBasedMatchScorer.php' => 
+    array (
+      0 => '840d9653435479683a1072b915545761cb3e6ff7c032e2d855572eb0a343400b',
+      1 => 
+      array (
+        0 => 'app\\domain\\matching\\scoring\\rulebasedmatchscorer',
+      ),
+      2 => 
+      array (
+        0 => 'app\\domain\\matching\\scoring\\__construct',
+        1 => 'app\\domain\\matching\\scoring\\score',
+        2 => 'app\\domain\\matching\\scoring\\keysetmatches',
+      ),
+      3 => 
+      array (
+      ),
+    ),
+    '/var/www/html/app/Domain/Matching/Services/MatchingConfigService.php' => 
+    array (
+      0 => '07537613f099b95f6c903458293aa43763376e6a82de0e235db4b5981e61d818',
+      1 => 
+      array (
+        0 => 'app\\domain\\matching\\services\\matchingconfigservice',
+      ),
+      2 => 
+      array (
+        0 => 'app\\domain\\matching\\services\\active',
+        1 => 'app\\domain\\matching\\services\\publish',
+      ),
+      3 => 
+      array (
+      ),
+    ),
+    '/var/www/html/app/Http/Controllers/Api/V1/Matching/MatchingConfigController.php' => 
+    array (
+      0 => '8d07750299805cfc568c11baae20520ccfd1307ec17c02fbbe39b9f362e91c87',
+      1 => 
+      array (
+        0 => 'app\\http\\controllers\\api\\v1\\matching\\matchingconfigcontroller',
+      ),
+      2 => 
+      array (
+        0 => 'app\\http\\controllers\\api\\v1\\matching\\__construct',
+        1 => 'app\\http\\controllers\\api\\v1\\matching\\show',
+        2 => 'app\\http\\controllers\\api\\v1\\matching\\update',
+        3 => 'app\\http\\controllers\\api\\v1\\matching\\versions',
+      ),
+      3 => 
+      array (
+      ),
+    ),
+    '/var/www/html/app/Http/Requests/Matching/UpdateMatchingConfigRequest.php' => 
+    array (
+      0 => '9076295f5525ad7ea848a81fc75818efae74efae26389f559af0a36564bb8c65',
+      1 => 
+      array (
+        0 => 'app\\http\\requests\\matching\\updatematchingconfigrequest',
+      ),
+      2 => 
+      array (
+        0 => 'app\\http\\requests\\matching\\authorize',
+        1 => 'app\\http\\requests\\matching\\rules',
+      ),
+      3 => 
+      array (
+      ),
+    ),
+    '/var/www/html/app/Http/Resources/MatchingConfigResource.php' => 
+    array (
+      0 => '38ecc1db7a62af5290cf7e98b7632f5f95c91b91992a06d98b35422b8d502dfa',
+      1 => 
+      array (
+        0 => 'app\\http\\resources\\matchingconfigresource',
+      ),
+      2 => 
+      array (
+        0 => 'app\\http\\resources\\toarray',
+      ),
+      3 => 
+      array (
+      ),
+    ),
+    '/var/www/html/app/Domain/Matching/Engine/DeterministicMatcher.php' => 
+    array (
+      0 => '0085d2d8c39e287423348cc5a81270149dd5946fb037a8959ac7a4f8215c60c4',
+      1 => 
+      array (
+        0 => 'app\\domain\\matching\\engine\\deterministicmatcher',
+      ),
+      2 => 
+      array (
+        0 => 'app\\domain\\matching\\engine\\__construct',
+        1 => 'app\\domain\\matching\\engine\\match',
+        2 => 'app\\domain\\matching\\engine\\firedkeysets',
+        3 => 'app\\domain\\matching\\engine\\normalisecandidatekeys',
+      ),
+      3 => 
+      array (
+      ),
+    ),
+    '/var/www/html/app/Domain/Registry/Services/DeterministicDuplicateFinder.php' => 
+    array (
+      0 => '9655e23a08143ca53687fc5e0b187c6772504829a171661de8dff1b10ec2f79e',
+      1 => 
+      array (
+        0 => 'app\\domain\\registry\\services\\deterministicduplicatefinder',
+      ),
+      2 => 
+      array (
+        0 => 'app\\domain\\registry\\services\\__construct',
+        1 => 'app\\domain\\registry\\services\\find',
+        2 => 'app\\domain\\registry\\services\\buildquery',
+        3 => 'app\\domain\\registry\\services\\torecord',
+      ),
+      3 => 
+      array (
+      ),
+    ),
+    '/var/www/html/app/Domain/Matching/Scoring/Comparators/DateProximityComparator.php' => 
+    array (
+      0 => 'b41853fd80c0dabe9402bc9520db835d800587f0c32036d957745fefda2bdffe',
+      1 => 
+      array (
+        0 => 'app\\domain\\matching\\scoring\\comparators\\dateproximitycomparator',
+      ),
+      2 => 
+      array (
+        0 => 'app\\domain\\matching\\scoring\\comparators\\compare',
+      ),
+      3 => 
+      array (
+      ),
+    ),
+    '/var/www/html/app/Domain/Matching/Scoring/Comparators/PhoneticComparator.php' => 
+    array (
+      0 => '16e0f06a6a024ca27942b0f9c51ecce965235d7a76c71c077039dc89cc0dd2f6',
+      1 => 
+      array (
+        0 => 'app\\domain\\matching\\scoring\\comparators\\phoneticcomparator',
+      ),
+      2 => 
+      array (
+        0 => 'app\\domain\\matching\\scoring\\comparators\\__construct',
+        1 => 'app\\domain\\matching\\scoring\\comparators\\compare',
+      ),
+      3 => 
+      array (
+      ),
+    ),
+    '/var/www/html/app/Domain/Matching/Support/PhoneticEncoder.php' => 
+    array (
+      0 => 'c3bb4cf143a17feea7d3eabdab4c278640724f5d5df1674634109f08158e033f',
+      1 => 
+      array (
+        0 => 'app\\domain\\matching\\support\\phoneticencoder',
+      ),
+      2 => 
+      array (
+        0 => 'app\\domain\\matching\\support\\code',
+        1 => 'app\\domain\\matching\\support\\block',
+      ),
+      3 => 
+      array (
+      ),
+    ),
+    '/var/www/html/app/Domain/Registry/Services/CandidateGatherer.php' => 
+    array (
+      0 => '632b8b5456fc44649577973373b5e46c005220dd95c0973d0c05e39f653af96c',
+      1 => 
+      array (
+        0 => 'app\\domain\\registry\\services\\candidategatherer',
+      ),
+      2 => 
+      array (
+        0 => 'app\\domain\\registry\\services\\__construct',
+        1 => 'app\\domain\\registry\\services\\gather',
+        2 => 'app\\domain\\registry\\services\\buildquery',
+      ),
+      3 => 
+      array (
+      ),
+    ),
+    '/var/www/html/app/Domain/Registry/Services/FuzzyDuplicateFinder.php' => 
+    array (
+      0 => 'a7b386b07c6e0a6f89553ee61002b0d02cfa51afe1f1f6a0d1dbca52b45b8881',
+      1 => 
+      array (
+        0 => 'app\\domain\\registry\\services\\fuzzyduplicatefinder',
+      ),
+      2 => 
+      array (
+        0 => 'app\\domain\\registry\\services\\__construct',
+        1 => 'app\\domain\\registry\\services\\find',
       ),
       3 => 
       array (

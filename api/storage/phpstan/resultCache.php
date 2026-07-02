@@ -3663,6 +3663,648 @@ return [
       ),
     ),
   ),
+  '/var/www/html/app/Domain/Matching/Engine/DeterministicMatcher.php' => 
+  array (
+    'PHPStan\\Rules\\DeadCode\\ConstructorWithoutImpurePointsCollector' => 
+    array (
+      0 => 
+      array (
+        0 => 'App\\Domain\\Matching\\Engine\\DeterministicMatcher',
+        1 => 
+        array (
+        ),
+      ),
+    ),
+  ),
+  '/var/www/html/app/Domain/Matching/Engine/MatchResult.php' => 
+  array (
+    'PHPStan\\Rules\\DeadCode\\ConstructorWithoutImpurePointsCollector' => 
+    array (
+      0 => 
+      array (
+        0 => 'App\\Domain\\Matching\\Engine\\MatchResult',
+        1 => 
+        array (
+        ),
+      ),
+    ),
+    'PHPStan\\Rules\\DeadCode\\MethodWithoutImpurePointsCollector' => 
+    array (
+      0 => 
+      array (
+        0 => 'App\\Domain\\Matching\\Engine\\MatchResult',
+        1 => 'toArray',
+        2 => 'App\\Domain\\Matching\\Engine\\MatchResult',
+        3 => 
+        array (
+        ),
+      ),
+    ),
+  ),
+  '/var/www/html/app/Domain/Matching/Engine/MatchingEngine.php' => 
+  array (
+    'PHPStan\\Rules\\DeadCode\\ConstructorWithoutImpurePointsCollector' => 
+    array (
+      0 => 
+      array (
+        0 => 'App\\Domain\\Matching\\Engine\\MatchingEngine',
+        1 => 
+        array (
+        ),
+      ),
+    ),
+    'PHPStan\\Rules\\DeadCode\\MethodWithoutImpurePointsCollector' => 
+    array (
+      0 => 
+      array (
+        0 => 'App\\Domain\\Matching\\Engine\\MatchingEngine',
+        1 => 'band',
+        2 => 'App\\Domain\\Matching\\Engine\\MatchingEngine',
+        3 => 
+        array (
+        ),
+      ),
+    ),
+    'PHPStan\\Rules\\DeadCode\\PossiblyPureFuncCallCollector' => 
+    array (
+      0 => 
+      array (
+        0 => 'usort',
+        1 => 37,
+      ),
+    ),
+  ),
+  '/var/www/html/app/Domain/Matching/Enums/MatchBand.php' => 
+  array (
+    'PHPStan\\Rules\\DeadCode\\MethodWithoutImpurePointsCollector' => 
+    array (
+      0 => 
+      array (
+        0 => 'App\\Domain\\Matching\\Enums\\MatchBand',
+        1 => 'rank',
+        2 => 'App\\Domain\\Matching\\Enums\\MatchBand',
+        3 => 
+        array (
+        ),
+      ),
+    ),
+  ),
+  '/var/www/html/app/Domain/Matching/Enums/MatchField.php' => 
+  array (
+    'PHPStan\\Rules\\DeadCode\\MethodWithoutImpurePointsCollector' => 
+    array (
+      0 => 
+      array (
+        0 => 'App\\Domain\\Matching\\Enums\\MatchField',
+        1 => 'values',
+        2 => 'App\\Domain\\Matching\\Enums\\MatchField',
+        3 => 
+        array (
+          0 => 'f' . "\0" . 'array_map',
+        ),
+      ),
+      1 => 
+      array (
+        0 => 'App\\Domain\\Matching\\Enums\\MatchField',
+        1 => 'isNumericIdentifier',
+        2 => 'App\\Domain\\Matching\\Enums\\MatchField',
+        3 => 
+        array (
+        ),
+      ),
+    ),
+  ),
+  '/var/www/html/app/Domain/Matching/MatchingServiceProvider.php' => 
+  array (
+    'PHPStan\\Rules\\DeadCode\\PossiblyPureMethodCallCollector' => 
+    array (
+      0 => 
+      array (
+        0 => 
+        array (
+          0 => 'App\\Domain\\Access\\Support\\PermissionRegistry',
+        ),
+        1 => 'register',
+        2 => 28,
+      ),
+    ),
+  ),
+  '/var/www/html/app/Domain/Matching/Models/MatchingConfig.php' => 
+  array (
+    'PHPStan\\Rules\\Comparison\\ConstantConditionInTraitCollector' => 
+    array (
+      0 => 
+      array (
+        0 => 'PHPStan\\Rules\\Comparison\\ImpossibleCheckTypeStaticMethodCallRule',
+        1 => 'App\\Domain\\Audit\\Concerns\\Auditable',
+        2 => 'static::created(function ($model): void {
+    $model->writeAudit(\'created\', null, $model->auditSnapshot($model->getAttributes()));
+}):24',
+        3 => NULL,
+      ),
+      1 => 
+      array (
+        0 => 'PHPStan\\Rules\\Comparison\\ImpossibleCheckTypeMethodCallRule',
+        1 => 'App\\Domain\\Audit\\Concerns\\Auditable',
+        2 => '$model->writeAudit(\'created\', null, $model->auditSnapshot($model->getAttributes())):25',
+        3 => NULL,
+      ),
+      2 => 
+      array (
+        0 => 'PHPStan\\Rules\\Comparison\\ImpossibleCheckTypeMethodCallRule',
+        1 => 'App\\Domain\\Audit\\Concerns\\Auditable',
+        2 => '$model->auditSnapshot($model->getAttributes()):25',
+        3 => NULL,
+      ),
+      3 => 
+      array (
+        0 => 'PHPStan\\Rules\\Comparison\\ImpossibleCheckTypeMethodCallRule',
+        1 => 'App\\Domain\\Audit\\Concerns\\Auditable',
+        2 => '$model->getAttributes():25',
+        3 => NULL,
+      ),
+      4 => 
+      array (
+        0 => 'PHPStan\\Rules\\Comparison\\ImpossibleCheckTypeStaticMethodCallRule',
+        1 => 'App\\Domain\\Audit\\Concerns\\Auditable',
+        2 => 'static::updated(function ($model): void {
+    $changedKeys = array_diff(array_keys($model->getChanges()), $model->allAuditExcluded());
+    if ($changedKeys === []) {
+        return;
+        // only excluded/operational columns changed — no audit noise
+    }
+    $before = [];
+    $after = [];
+    foreach ($changedKeys as $key) {
+        $before[$key] = $model->getOriginal($key);
+        $after[$key] = $model->getAttribute($key);
+    }
+    $model->writeAudit(\'updated\', $model->scrubAttributes($before), $model->scrubAttributes($after));
+}):28',
+        3 => NULL,
+      ),
+      5 => 
+      array (
+        0 => 'PHPStan\\Rules\\Comparison\\ImpossibleCheckTypeFunctionCallRule',
+        1 => 'App\\Domain\\Audit\\Concerns\\Auditable',
+        2 => 'array_diff(array_keys($model->getChanges()), $model->allAuditExcluded()):29',
+        3 => NULL,
+      ),
+      6 => 
+      array (
+        0 => 'PHPStan\\Rules\\Comparison\\ImpossibleCheckTypeFunctionCallRule',
+        1 => 'App\\Domain\\Audit\\Concerns\\Auditable',
+        2 => 'array_keys($model->getChanges()):29',
+        3 => NULL,
+      ),
+      7 => 
+      array (
+        0 => 'PHPStan\\Rules\\Comparison\\ImpossibleCheckTypeMethodCallRule',
+        1 => 'App\\Domain\\Audit\\Concerns\\Auditable',
+        2 => '$model->getChanges():29',
+        3 => NULL,
+      ),
+      8 => 
+      array (
+        0 => 'PHPStan\\Rules\\Comparison\\ImpossibleCheckTypeMethodCallRule',
+        1 => 'App\\Domain\\Audit\\Concerns\\Auditable',
+        2 => '$model->allAuditExcluded():29',
+        3 => NULL,
+      ),
+      9 => 
+      array (
+        0 => 'PHPStan\\Rules\\Comparison\\IfConstantConditionRule',
+        1 => 'App\\Domain\\Audit\\Concerns\\Auditable',
+        2 => '$changedKeys === []:31',
+        3 => NULL,
+      ),
+      10 => 
+      array (
+        0 => 'PHPStan\\Rules\\Comparison\\StrictComparisonOfDifferentTypesRule',
+        1 => 'App\\Domain\\Audit\\Concerns\\Auditable',
+        2 => '$changedKeys === []:31',
+        3 => NULL,
+      ),
+      11 => 
+      array (
+        0 => 'PHPStan\\Rules\\Comparison\\ImpossibleCheckTypeMethodCallRule',
+        1 => 'App\\Domain\\Audit\\Concerns\\Auditable',
+        2 => '$model->getOriginal($key):38',
+        3 => NULL,
+      ),
+      12 => 
+      array (
+        0 => 'PHPStan\\Rules\\Comparison\\ImpossibleCheckTypeMethodCallRule',
+        1 => 'App\\Domain\\Audit\\Concerns\\Auditable',
+        2 => '$model->getAttribute($key):39',
+        3 => NULL,
+      ),
+      13 => 
+      array (
+        0 => 'PHPStan\\Rules\\Comparison\\ImpossibleCheckTypeMethodCallRule',
+        1 => 'App\\Domain\\Audit\\Concerns\\Auditable',
+        2 => '$model->writeAudit(\'updated\', $model->scrubAttributes($before), $model->scrubAttributes($after)):42',
+        3 => NULL,
+      ),
+      14 => 
+      array (
+        0 => 'PHPStan\\Rules\\Comparison\\ImpossibleCheckTypeMethodCallRule',
+        1 => 'App\\Domain\\Audit\\Concerns\\Auditable',
+        2 => '$model->scrubAttributes($before):42',
+        3 => NULL,
+      ),
+      15 => 
+      array (
+        0 => 'PHPStan\\Rules\\Comparison\\ImpossibleCheckTypeMethodCallRule',
+        1 => 'App\\Domain\\Audit\\Concerns\\Auditable',
+        2 => '$model->scrubAttributes($after):42',
+        3 => NULL,
+      ),
+      16 => 
+      array (
+        0 => 'PHPStan\\Rules\\Comparison\\ImpossibleCheckTypeStaticMethodCallRule',
+        1 => 'App\\Domain\\Audit\\Concerns\\Auditable',
+        2 => 'static::deleted(function ($model): void {
+    $model->writeAudit(\'deleted\', $model->auditSnapshot($model->getOriginal()), null);
+}):45',
+        3 => NULL,
+      ),
+      17 => 
+      array (
+        0 => 'PHPStan\\Rules\\Comparison\\ImpossibleCheckTypeMethodCallRule',
+        1 => 'App\\Domain\\Audit\\Concerns\\Auditable',
+        2 => '$model->writeAudit(\'deleted\', $model->auditSnapshot($model->getOriginal()), null):46',
+        3 => NULL,
+      ),
+      18 => 
+      array (
+        0 => 'PHPStan\\Rules\\Comparison\\ImpossibleCheckTypeMethodCallRule',
+        1 => 'App\\Domain\\Audit\\Concerns\\Auditable',
+        2 => '$model->auditSnapshot($model->getOriginal()):46',
+        3 => NULL,
+      ),
+      19 => 
+      array (
+        0 => 'PHPStan\\Rules\\Comparison\\ImpossibleCheckTypeMethodCallRule',
+        1 => 'App\\Domain\\Audit\\Concerns\\Auditable',
+        2 => '$model->getOriginal():46',
+        3 => NULL,
+      ),
+      20 => 
+      array (
+        0 => 'PHPStan\\Rules\\Comparison\\ImpossibleCheckTypeStaticMethodCallRule',
+        1 => 'App\\Domain\\Audit\\Concerns\\Auditable',
+        2 => '\\Illuminate\\Support\\Str::snake(class_basename($this)):65',
+        3 => NULL,
+      ),
+      21 => 
+      array (
+        0 => 'PHPStan\\Rules\\Comparison\\ImpossibleCheckTypeFunctionCallRule',
+        1 => 'App\\Domain\\Audit\\Concerns\\Auditable',
+        2 => 'class_basename($this):65',
+        3 => NULL,
+      ),
+      22 => 
+      array (
+        0 => 'PHPStan\\Rules\\Comparison\\ImpossibleCheckTypeMethodCallRule',
+        1 => 'App\\Domain\\Audit\\Concerns\\Auditable',
+        2 => 'app(\\App\\Domain\\Audit\\Support\\AuditScrubber::class)->scrub($attributes, $this->auditOmit(), $this->auditMask()):94',
+        3 => NULL,
+      ),
+      23 => 
+      array (
+        0 => 'PHPStan\\Rules\\Comparison\\ImpossibleCheckTypeFunctionCallRule',
+        1 => 'App\\Domain\\Audit\\Concerns\\Auditable',
+        2 => 'app(\\App\\Domain\\Audit\\Support\\AuditScrubber::class):94',
+        3 => NULL,
+      ),
+      24 => 
+      array (
+        0 => 'PHPStan\\Rules\\Comparison\\ImpossibleCheckTypeMethodCallRule',
+        1 => 'App\\Domain\\Audit\\Concerns\\Auditable',
+        2 => '$this->auditOmit():94',
+        3 => NULL,
+      ),
+      25 => 
+      array (
+        0 => 'PHPStan\\Rules\\Comparison\\ImpossibleCheckTypeMethodCallRule',
+        1 => 'App\\Domain\\Audit\\Concerns\\Auditable',
+        2 => '$this->auditMask():94',
+        3 => NULL,
+      ),
+      26 => 
+      array (
+        0 => 'PHPStan\\Rules\\Comparison\\ImpossibleCheckTypeFunctionCallRule',
+        1 => 'App\\Domain\\Audit\\Concerns\\Auditable',
+        2 => 'array_merge([\'created_at\', \'updated_at\', \'deleted_at\'], $this->auditExcluded()):102',
+        3 => NULL,
+      ),
+      27 => 
+      array (
+        0 => 'PHPStan\\Rules\\Comparison\\ImpossibleCheckTypeMethodCallRule',
+        1 => 'App\\Domain\\Audit\\Concerns\\Auditable',
+        2 => '$this->auditExcluded():102',
+        3 => NULL,
+      ),
+      28 => 
+      array (
+        0 => 'PHPStan\\Rules\\Comparison\\ImpossibleCheckTypeMethodCallRule',
+        1 => 'App\\Domain\\Audit\\Concerns\\Auditable',
+        2 => '$this->allAuditExcluded():113',
+        3 => NULL,
+      ),
+      29 => 
+      array (
+        0 => 'PHPStan\\Rules\\Comparison\\BooleanNotConstantConditionRule',
+        1 => 'App\\Domain\\Audit\\Concerns\\Auditable',
+        2 => 'in_array($key, $excluded, true):116',
+        3 => NULL,
+      ),
+      30 => 
+      array (
+        0 => 'PHPStan\\Rules\\Comparison\\ImpossibleCheckTypeFunctionCallRule',
+        1 => 'App\\Domain\\Audit\\Concerns\\Auditable',
+        2 => 'in_array($key, $excluded, true):116',
+        3 => NULL,
+      ),
+      31 => 
+      array (
+        0 => 'PHPStan\\Rules\\Comparison\\ImpossibleCheckTypeFunctionCallRule',
+        1 => 'App\\Domain\\Audit\\Concerns\\Auditable',
+        2 => 'array_filter($attributes, fn(string $key) => !in_array($key, $excluded, true), ARRAY_FILTER_USE_KEY):114',
+        3 => NULL,
+      ),
+      32 => 
+      array (
+        0 => 'PHPStan\\Rules\\Comparison\\ImpossibleCheckTypeMethodCallRule',
+        1 => 'App\\Domain\\Audit\\Concerns\\Auditable',
+        2 => '$this->scrubAttributes($filtered):120',
+        3 => NULL,
+      ),
+      33 => 
+      array (
+        0 => 'PHPStan\\Rules\\Comparison\\ImpossibleCheckTypeMethodCallRule',
+        1 => 'App\\Domain\\Audit\\Concerns\\Auditable',
+        2 => 'app(\\App\\Domain\\Audit\\Services\\AuditLogger::class)->record($this->auditEntityName() . \'.\' . $event, $this, $before, $after):129',
+        3 => NULL,
+      ),
+      34 => 
+      array (
+        0 => 'PHPStan\\Rules\\Comparison\\ImpossibleCheckTypeFunctionCallRule',
+        1 => 'App\\Domain\\Audit\\Concerns\\Auditable',
+        2 => 'app(\\App\\Domain\\Audit\\Services\\AuditLogger::class):129',
+        3 => NULL,
+      ),
+      35 => 
+      array (
+        0 => 'PHPStan\\Rules\\Comparison\\ImpossibleCheckTypeMethodCallRule',
+        1 => 'App\\Domain\\Audit\\Concerns\\Auditable',
+        2 => '$this->auditEntityName():130',
+        3 => NULL,
+      ),
+    ),
+    'PHPStan\\Rules\\DeadCode\\MethodWithoutImpurePointsCollector' => 
+    array (
+      0 => 
+      array (
+        0 => 'App\\Domain\\Matching\\Models\\MatchingConfig',
+        1 => 'auditExcluded',
+        2 => 'App\\Domain\\Matching\\Models\\MatchingConfig',
+        3 => 
+        array (
+        ),
+      ),
+      1 => 
+      array (
+        0 => 'App\\Domain\\Matching\\Models\\MatchingConfig',
+        1 => 'auditEntityName',
+        2 => 'App\\Domain\\Matching\\Models\\MatchingConfig',
+        3 => 
+        array (
+          0 => 'm' . "\0" . 'illuminate\\support\\str' . "\0" . 'snake',
+          1 => 'f' . "\0" . 'class_basename',
+        ),
+      ),
+      2 => 
+      array (
+        0 => 'App\\Domain\\Matching\\Models\\MatchingConfig',
+        1 => 'auditOmit',
+        2 => 'App\\Domain\\Matching\\Models\\MatchingConfig',
+        3 => 
+        array (
+        ),
+      ),
+      3 => 
+      array (
+        0 => 'App\\Domain\\Matching\\Models\\MatchingConfig',
+        1 => 'auditMask',
+        2 => 'App\\Domain\\Matching\\Models\\MatchingConfig',
+        3 => 
+        array (
+        ),
+      ),
+      4 => 
+      array (
+        0 => 'App\\Domain\\Matching\\Models\\MatchingConfig',
+        1 => 'casts',
+        2 => 'App\\Domain\\Matching\\Models\\MatchingConfig',
+        3 => 
+        array (
+        ),
+      ),
+      5 => 
+      array (
+        0 => 'App\\Domain\\Matching\\Models\\MatchingConfig',
+        1 => 'deterministicKeySets',
+        2 => 'App\\Domain\\Matching\\Models\\MatchingConfig',
+        3 => 
+        array (
+        ),
+      ),
+      6 => 
+      array (
+        0 => 'App\\Domain\\Matching\\Models\\MatchingConfig',
+        1 => 'fuzzyFields',
+        2 => 'App\\Domain\\Matching\\Models\\MatchingConfig',
+        3 => 
+        array (
+        ),
+      ),
+      7 => 
+      array (
+        0 => 'App\\Domain\\Matching\\Models\\MatchingConfig',
+        1 => 'totalFuzzyWeight',
+        2 => 'App\\Domain\\Matching\\Models\\MatchingConfig',
+        3 => 
+        array (
+          0 => 'f' . "\0" . 'array_map',
+        ),
+      ),
+    ),
+    'PHPStan\\Rules\\Traits\\TraitUseCollector' => 
+    array (
+      0 => 
+      array (
+        0 => 'App\\Domain\\Audit\\Concerns\\Auditable',
+        1 => 'Illuminate\\Database\\Eloquent\\Concerns\\HasUuids',
+      ),
+    ),
+  ),
+  '/var/www/html/app/Domain/Matching/Scoring/Comparators/ComparatorRegistry.php' => 
+  array (
+    'PHPStan\\Rules\\DeadCode\\ConstructorWithoutImpurePointsCollector' => 
+    array (
+      0 => 
+      array (
+        0 => 'App\\Domain\\Matching\\Scoring\\Comparators\\ComparatorRegistry',
+        1 => 
+        array (
+          0 => 'm' . "\0" . 'app\\domain\\matching\\scoring\\comparators\\phoneticcomparator' . "\0" . '__construct',
+        ),
+      ),
+    ),
+  ),
+  '/var/www/html/app/Domain/Matching/Scoring/Comparators/DateProximityComparator.php' => 
+  array (
+    'PHPStan\\Rules\\DeadCode\\MethodWithoutImpurePointsCollector' => 
+    array (
+      0 => 
+      array (
+        0 => 'App\\Domain\\Matching\\Scoring\\Comparators\\DateProximityComparator',
+        1 => 'compare',
+        2 => 'App\\Domain\\Matching\\Scoring\\Comparators\\DateProximityComparator',
+        3 => 
+        array (
+          0 => 'f' . "\0" . 'strtotime',
+        ),
+      ),
+    ),
+  ),
+  '/var/www/html/app/Domain/Matching/Scoring/Comparators/ExactComparator.php' => 
+  array (
+    'PHPStan\\Rules\\DeadCode\\MethodWithoutImpurePointsCollector' => 
+    array (
+      0 => 
+      array (
+        0 => 'App\\Domain\\Matching\\Scoring\\Comparators\\ExactComparator',
+        1 => 'compare',
+        2 => 'App\\Domain\\Matching\\Scoring\\Comparators\\ExactComparator',
+        3 => 
+        array (
+        ),
+      ),
+    ),
+  ),
+  '/var/www/html/app/Domain/Matching/Scoring/Comparators/JaroWinklerComparator.php' => 
+  array (
+    'PHPStan\\Rules\\DeadCode\\MethodWithoutImpurePointsCollector' => 
+    array (
+      0 => 
+      array (
+        0 => 'App\\Domain\\Matching\\Scoring\\Comparators\\JaroWinklerComparator',
+        1 => 'compare',
+        2 => 'App\\Domain\\Matching\\Scoring\\Comparators\\JaroWinklerComparator',
+        3 => 
+        array (
+          0 => 'm' . "\0" . 'app\\domain\\matching\\scoring\\comparators\\jarowinklercomparator' . "\0" . 'jaro',
+          1 => 'm' . "\0" . 'app\\domain\\matching\\scoring\\comparators\\jarowinklercomparator' . "\0" . 'commonprefix',
+        ),
+      ),
+      1 => 
+      array (
+        0 => 'App\\Domain\\Matching\\Scoring\\Comparators\\JaroWinklerComparator',
+        1 => 'commonPrefix',
+        2 => 'App\\Domain\\Matching\\Scoring\\Comparators\\JaroWinklerComparator',
+        3 => 
+        array (
+        ),
+      ),
+    ),
+  ),
+  '/var/www/html/app/Domain/Matching/Scoring/Comparators/LevenshteinComparator.php' => 
+  array (
+    'PHPStan\\Rules\\DeadCode\\MethodWithoutImpurePointsCollector' => 
+    array (
+      0 => 
+      array (
+        0 => 'App\\Domain\\Matching\\Scoring\\Comparators\\LevenshteinComparator',
+        1 => 'compare',
+        2 => 'App\\Domain\\Matching\\Scoring\\Comparators\\LevenshteinComparator',
+        3 => 
+        array (
+          0 => 'f' . "\0" . 'levenshtein',
+        ),
+      ),
+    ),
+  ),
+  '/var/www/html/app/Domain/Matching/Scoring/Comparators/PhoneticComparator.php' => 
+  array (
+    'PHPStan\\Rules\\DeadCode\\ConstructorWithoutImpurePointsCollector' => 
+    array (
+      0 => 
+      array (
+        0 => 'App\\Domain\\Matching\\Scoring\\Comparators\\PhoneticComparator',
+        1 => 
+        array (
+        ),
+      ),
+    ),
+  ),
+  '/var/www/html/app/Domain/Matching/Scoring/MatchScore.php' => 
+  array (
+    'PHPStan\\Rules\\DeadCode\\ConstructorWithoutImpurePointsCollector' => 
+    array (
+      0 => 
+      array (
+        0 => 'App\\Domain\\Matching\\Scoring\\MatchScore',
+        1 => 
+        array (
+        ),
+      ),
+    ),
+    'PHPStan\\Rules\\DeadCode\\MethodWithoutImpurePointsCollector' => 
+    array (
+      0 => 
+      array (
+        0 => 'App\\Domain\\Matching\\Scoring\\MatchScore',
+        1 => 'toArray',
+        2 => 'App\\Domain\\Matching\\Scoring\\MatchScore',
+        3 => 
+        array (
+        ),
+      ),
+    ),
+  ),
+  '/var/www/html/app/Domain/Matching/Scoring/RuleBasedMatchScorer.php' => 
+  array (
+    'PHPStan\\Rules\\DeadCode\\ConstructorWithoutImpurePointsCollector' => 
+    array (
+      0 => 
+      array (
+        0 => 'App\\Domain\\Matching\\Scoring\\RuleBasedMatchScorer',
+        1 => 
+        array (
+        ),
+      ),
+    ),
+  ),
+  '/var/www/html/app/Domain/Matching/Support/PhoneticEncoder.php' => 
+  array (
+    'PHPStan\\Rules\\DeadCode\\MethodWithoutImpurePointsCollector' => 
+    array (
+      0 => 
+      array (
+        0 => 'App\\Domain\\Matching\\Support\\PhoneticEncoder',
+        1 => 'code',
+        2 => 'App\\Domain\\Matching\\Support\\PhoneticEncoder',
+        3 => 
+        array (
+          0 => 'f' . "\0" . 'preg_replace',
+          1 => 'f' . "\0" . 'str_replace',
+        ),
+      ),
+    ),
+  ),
   '/var/www/html/app/Domain/Registry/Enums/BeneficiaryStatus.php' => 
   array (
     'PHPStan\\Rules\\DeadCode\\MethodWithoutImpurePointsCollector' => 
@@ -4268,15 +4910,6 @@ return [
       0 => 
       array (
         0 => 'App\\Domain\\Registry\\Models\\Beneficiary',
-        1 => 'auditExcluded',
-        2 => 'App\\Domain\\Registry\\Models\\Beneficiary',
-        3 => 
-        array (
-        ),
-      ),
-      1 => 
-      array (
-        0 => 'App\\Domain\\Registry\\Models\\Beneficiary',
         1 => 'auditEntityName',
         2 => 'App\\Domain\\Registry\\Models\\Beneficiary',
         3 => 
@@ -4285,7 +4918,7 @@ return [
           1 => 'f' . "\0" . 'class_basename',
         ),
       ),
-      2 => 
+      1 => 
       array (
         0 => 'App\\Domain\\Registry\\Models\\Beneficiary',
         1 => 'auditOmit',
@@ -4294,7 +4927,7 @@ return [
         array (
         ),
       ),
-      3 => 
+      2 => 
       array (
         0 => 'App\\Domain\\Registry\\Models\\Beneficiary',
         1 => 'mdaOwnershipColumn',
@@ -4303,7 +4936,7 @@ return [
         array (
         ),
       ),
-      4 => 
+      3 => 
       array (
         0 => 'App\\Domain\\Registry\\Models\\Beneficiary',
         1 => 'normalizeDigits',
@@ -4311,6 +4944,18 @@ return [
         3 => 
         array (
           0 => 'f' . "\0" . 'preg_replace',
+        ),
+      ),
+      4 => 
+      array (
+        0 => 'App\\Domain\\Registry\\Models\\Beneficiary',
+        1 => 'blockNameDobFor',
+        2 => 'App\\Domain\\Registry\\Models\\Beneficiary',
+        3 => 
+        array (
+          0 => 'm' . "\0" . 'app\\domain\\matching\\support\\phoneticencoder' . "\0" . 'block',
+          1 => 'f' . "\0" . 'strtotime',
+          2 => 'f' . "\0" . 'date',
         ),
       ),
       5 => 
@@ -4342,6 +4987,15 @@ return [
         ),
       ),
       8 => 
+      array (
+        0 => 'App\\Domain\\Registry\\Models\\Beneficiary',
+        1 => 'auditExcluded',
+        2 => 'App\\Domain\\Registry\\Models\\Beneficiary',
+        3 => 
+        array (
+        ),
+      ),
+      9 => 
       array (
         0 => 'App\\Domain\\Registry\\Models\\Beneficiary',
         1 => 'fullName',
@@ -6323,6 +6977,45 @@ return [
       ),
     ),
   ),
+  '/var/www/html/app/Domain/Registry/Services/CandidateGatherer.php' => 
+  array (
+    'PHPStan\\Rules\\DeadCode\\ConstructorWithoutImpurePointsCollector' => 
+    array (
+      0 => 
+      array (
+        0 => 'App\\Domain\\Registry\\Services\\CandidateGatherer',
+        1 => 
+        array (
+        ),
+      ),
+    ),
+  ),
+  '/var/www/html/app/Domain/Registry/Services/DeterministicDuplicateFinder.php' => 
+  array (
+    'PHPStan\\Rules\\DeadCode\\ConstructorWithoutImpurePointsCollector' => 
+    array (
+      0 => 
+      array (
+        0 => 'App\\Domain\\Registry\\Services\\DeterministicDuplicateFinder',
+        1 => 
+        array (
+        ),
+      ),
+    ),
+  ),
+  '/var/www/html/app/Domain/Registry/Services/FuzzyDuplicateFinder.php' => 
+  array (
+    'PHPStan\\Rules\\DeadCode\\ConstructorWithoutImpurePointsCollector' => 
+    array (
+      0 => 
+      array (
+        0 => 'App\\Domain\\Registry\\Services\\FuzzyDuplicateFinder',
+        1 => 
+        array (
+        ),
+      ),
+    ),
+  ),
   '/var/www/html/app/Domain/Registry/Services/HouseholdIngestionService.php' => 
   array (
     'PHPStan\\Rules\\DeadCode\\ConstructorWithoutImpurePointsCollector' => 
@@ -6697,6 +7390,19 @@ return [
       0 => 
       array (
         0 => 'App\\Http\\Controllers\\Concerns\\AuthResponses',
+      ),
+    ),
+  ),
+  '/var/www/html/app/Http/Controllers/Api/V1/Matching/MatchingConfigController.php' => 
+  array (
+    'PHPStan\\Rules\\DeadCode\\ConstructorWithoutImpurePointsCollector' => 
+    array (
+      0 => 
+      array (
+        0 => 'App\\Http\\Controllers\\Api\\V1\\Matching\\MatchingConfigController',
+        1 => 
+        array (
+        ),
       ),
     ),
   ),
@@ -7528,6 +8234,25 @@ return [
       ),
     ),
   ),
+  '/var/www/html/app/Http/Requests/Matching/UpdateMatchingConfigRequest.php' => 
+  array (
+    'PHPStan\\Rules\\DeadCode\\MethodWithoutImpurePointsCollector' => 
+    array (
+      0 => 
+      array (
+        0 => 'App\\Http\\Requests\\Matching\\UpdateMatchingConfigRequest',
+        1 => 'rules',
+        2 => 'App\\Http\\Requests\\Matching\\UpdateMatchingConfigRequest',
+        3 => 
+        array (
+          0 => 'm' . "\0" . 'app\\domain\\matching\\enums\\matchfield' . "\0" . 'values',
+          1 => 'f' . "\0" . 'array_map',
+          2 => 'm' . "\0" . 'illuminate\\validation\\rule' . "\0" . 'in',
+          3 => 'm' . "\0" . 'illuminate\\validation\\rule' . "\0" . 'enum',
+        ),
+      ),
+    ),
+  ),
   '/var/www/html/app/Http/Requests/Registry/AddHouseholdMemberRequest.php' => 
   array (
     'PHPStan\\Rules\\DeadCode\\MethodWithoutImpurePointsCollector' => 
@@ -7794,70 +8519,76 @@ return [
       11 => '/var/www/html/app/Domain/Access/Services/AuthTokenIssuer.php',
       12 => '/var/www/html/app/Domain/Audit/Listeners/AuditEventSubscriber.php',
       13 => '/var/www/html/app/Domain/Audit/Services/AuditLogger.php',
-      14 => '/var/www/html/app/Domain/Registry/Contracts/BeneficiaryRouter.php',
-      15 => '/var/www/html/app/Domain/Registry/Imports/ImportRowValidator.php',
-      16 => '/var/www/html/app/Domain/Registry/Jobs/CommitImportBatch.php',
-      17 => '/var/www/html/app/Domain/Registry/Jobs/ParseImportBatch.php',
-      18 => '/var/www/html/app/Domain/Registry/Models/Beneficiary.php',
-      19 => '/var/www/html/app/Domain/Registry/Models/BeneficiaryDocument.php',
-      20 => '/var/www/html/app/Domain/Registry/Models/Household.php',
-      21 => '/var/www/html/app/Domain/Registry/Models/HouseholdMembership.php',
-      22 => '/var/www/html/app/Domain/Registry/Models/ImportBatch.php',
-      23 => '/var/www/html/app/Domain/Registry/Models/ImportRow.php',
-      24 => '/var/www/html/app/Domain/Registry/Models/OwnershipTransferRequest.php',
-      25 => '/var/www/html/app/Domain/Registry/Policies/BeneficiaryDocumentPolicy.php',
-      26 => '/var/www/html/app/Domain/Registry/Policies/BeneficiaryPolicy.php',
-      27 => '/var/www/html/app/Domain/Registry/Policies/HouseholdPolicy.php',
-      28 => '/var/www/html/app/Domain/Registry/Policies/ImportBatchPolicy.php',
-      29 => '/var/www/html/app/Domain/Registry/RegistryServiceProvider.php',
-      30 => '/var/www/html/app/Domain/Registry/Services/BeneficiaryLookupService.php',
-      31 => '/var/www/html/app/Domain/Registry/Services/BeneficiaryRegistrar.php',
-      32 => '/var/www/html/app/Domain/Registry/Services/HouseholdIngestionService.php',
-      33 => '/var/www/html/app/Domain/Registry/Services/HouseholdMembershipService.php',
-      34 => '/var/www/html/app/Domain/Registry/Services/NullBeneficiaryRouter.php',
-      35 => '/var/www/html/app/Domain/Registry/Services/OwnershipTransferService.php',
-      36 => '/var/www/html/app/Http/Controllers/Api/V1/Access/MdaAccessGrantController.php',
-      37 => '/var/www/html/app/Http/Controllers/Api/V1/Access/MdaController.php',
-      38 => '/var/www/html/app/Http/Controllers/Api/V1/Access/UserController.php',
-      39 => '/var/www/html/app/Http/Controllers/Api/V1/AuthController.php',
-      40 => '/var/www/html/app/Http/Controllers/Api/V1/MfaController.php',
-      41 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/BeneficiaryController.php',
-      42 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/BeneficiaryDocumentController.php',
-      43 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/BeneficiaryIntakeController.php',
-      44 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/HouseholdController.php',
-      45 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/HouseholdMemberController.php',
-      46 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/ImportBatchController.php',
-      47 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/OwnershipTransferController.php',
-      48 => '/var/www/html/app/Http/Middleware/CheckPermission.php',
-      49 => '/var/www/html/app/Http/Requests/Access/StoreMdaAccessGrantRequest.php',
-      50 => '/var/www/html/app/Http/Requests/Access/StoreMdaRequest.php',
-      51 => '/var/www/html/app/Http/Requests/Access/StoreUserRequest.php',
-      52 => '/var/www/html/app/Http/Requests/Access/UpdateMdaRequest.php',
-      53 => '/var/www/html/app/Http/Requests/Access/UpdateUserRequest.php',
-      54 => '/var/www/html/app/Http/Requests/Auth/ChangePasswordRequest.php',
-      55 => '/var/www/html/app/Http/Requests/Auth/MfaCodeRequest.php',
-      56 => '/var/www/html/app/Http/Requests/Registry/AddHouseholdMemberRequest.php',
-      57 => '/var/www/html/app/Http/Requests/Registry/ApiRegistrationRequest.php',
-      58 => '/var/www/html/app/Http/Requests/Registry/BeneficiaryLookupRequest.php',
-      59 => '/var/www/html/app/Http/Requests/Registry/DecideOwnershipTransferRequest.php',
-      60 => '/var/www/html/app/Http/Requests/Registry/DesignateHeadRequest.php',
-      61 => '/var/www/html/app/Http/Requests/Registry/MoveHouseholdMemberRequest.php',
-      62 => '/var/www/html/app/Http/Requests/Registry/StoreBeneficiaryRequest.php',
-      63 => '/var/www/html/app/Http/Requests/Registry/StoreHouseholdRequest.php',
-      64 => '/var/www/html/app/Http/Requests/Registry/StoreOwnershipTransferRequest.php',
-      65 => '/var/www/html/app/Http/Requests/Registry/UpdateBeneficiaryRequest.php',
-      66 => '/var/www/html/app/Http/Requests/Registry/UpdateHouseholdRequest.php',
-      67 => '/var/www/html/app/Http/Requests/Registry/UploadDocumentRequest.php',
-      68 => '/var/www/html/app/Http/Requests/Registry/UploadImportRequest.php',
-      69 => '/var/www/html/app/Http/Resources/BeneficiaryDocumentResource.php',
-      70 => '/var/www/html/app/Http/Resources/BeneficiaryResource.php',
-      71 => '/var/www/html/app/Http/Resources/BeneficiaryRevealResource.php',
-      72 => '/var/www/html/app/Http/Resources/HouseholdMembershipResource.php',
-      73 => '/var/www/html/app/Http/Resources/HouseholdResource.php',
-      74 => '/var/www/html/app/Http/Resources/ImportBatchResource.php',
-      75 => '/var/www/html/app/Http/Resources/MdaResource.php',
-      76 => '/var/www/html/app/Http/Resources/UserResource.php',
-      77 => '/var/www/html/app/Providers/AppServiceProvider.php',
+      14 => '/var/www/html/app/Domain/Matching/Models/MatchingConfig.php',
+      15 => '/var/www/html/app/Domain/Matching/Services/MatchingConfigService.php',
+      16 => '/var/www/html/app/Domain/Registry/Contracts/BeneficiaryRouter.php',
+      17 => '/var/www/html/app/Domain/Registry/Imports/ImportRowValidator.php',
+      18 => '/var/www/html/app/Domain/Registry/Jobs/CommitImportBatch.php',
+      19 => '/var/www/html/app/Domain/Registry/Jobs/ParseImportBatch.php',
+      20 => '/var/www/html/app/Domain/Registry/Models/Beneficiary.php',
+      21 => '/var/www/html/app/Domain/Registry/Models/BeneficiaryDocument.php',
+      22 => '/var/www/html/app/Domain/Registry/Models/Household.php',
+      23 => '/var/www/html/app/Domain/Registry/Models/HouseholdMembership.php',
+      24 => '/var/www/html/app/Domain/Registry/Models/ImportBatch.php',
+      25 => '/var/www/html/app/Domain/Registry/Models/ImportRow.php',
+      26 => '/var/www/html/app/Domain/Registry/Models/OwnershipTransferRequest.php',
+      27 => '/var/www/html/app/Domain/Registry/Policies/BeneficiaryDocumentPolicy.php',
+      28 => '/var/www/html/app/Domain/Registry/Policies/BeneficiaryPolicy.php',
+      29 => '/var/www/html/app/Domain/Registry/Policies/HouseholdPolicy.php',
+      30 => '/var/www/html/app/Domain/Registry/Policies/ImportBatchPolicy.php',
+      31 => '/var/www/html/app/Domain/Registry/RegistryServiceProvider.php',
+      32 => '/var/www/html/app/Domain/Registry/Services/BeneficiaryLookupService.php',
+      33 => '/var/www/html/app/Domain/Registry/Services/BeneficiaryRegistrar.php',
+      34 => '/var/www/html/app/Domain/Registry/Services/CandidateGatherer.php',
+      35 => '/var/www/html/app/Domain/Registry/Services/DeterministicDuplicateFinder.php',
+      36 => '/var/www/html/app/Domain/Registry/Services/HouseholdIngestionService.php',
+      37 => '/var/www/html/app/Domain/Registry/Services/HouseholdMembershipService.php',
+      38 => '/var/www/html/app/Domain/Registry/Services/NullBeneficiaryRouter.php',
+      39 => '/var/www/html/app/Domain/Registry/Services/OwnershipTransferService.php',
+      40 => '/var/www/html/app/Http/Controllers/Api/V1/Access/MdaAccessGrantController.php',
+      41 => '/var/www/html/app/Http/Controllers/Api/V1/Access/MdaController.php',
+      42 => '/var/www/html/app/Http/Controllers/Api/V1/Access/UserController.php',
+      43 => '/var/www/html/app/Http/Controllers/Api/V1/AuthController.php',
+      44 => '/var/www/html/app/Http/Controllers/Api/V1/Matching/MatchingConfigController.php',
+      45 => '/var/www/html/app/Http/Controllers/Api/V1/MfaController.php',
+      46 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/BeneficiaryController.php',
+      47 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/BeneficiaryDocumentController.php',
+      48 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/BeneficiaryIntakeController.php',
+      49 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/HouseholdController.php',
+      50 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/HouseholdMemberController.php',
+      51 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/ImportBatchController.php',
+      52 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/OwnershipTransferController.php',
+      53 => '/var/www/html/app/Http/Middleware/CheckPermission.php',
+      54 => '/var/www/html/app/Http/Requests/Access/StoreMdaAccessGrantRequest.php',
+      55 => '/var/www/html/app/Http/Requests/Access/StoreMdaRequest.php',
+      56 => '/var/www/html/app/Http/Requests/Access/StoreUserRequest.php',
+      57 => '/var/www/html/app/Http/Requests/Access/UpdateMdaRequest.php',
+      58 => '/var/www/html/app/Http/Requests/Access/UpdateUserRequest.php',
+      59 => '/var/www/html/app/Http/Requests/Auth/ChangePasswordRequest.php',
+      60 => '/var/www/html/app/Http/Requests/Auth/MfaCodeRequest.php',
+      61 => '/var/www/html/app/Http/Requests/Matching/UpdateMatchingConfigRequest.php',
+      62 => '/var/www/html/app/Http/Requests/Registry/AddHouseholdMemberRequest.php',
+      63 => '/var/www/html/app/Http/Requests/Registry/ApiRegistrationRequest.php',
+      64 => '/var/www/html/app/Http/Requests/Registry/BeneficiaryLookupRequest.php',
+      65 => '/var/www/html/app/Http/Requests/Registry/DecideOwnershipTransferRequest.php',
+      66 => '/var/www/html/app/Http/Requests/Registry/DesignateHeadRequest.php',
+      67 => '/var/www/html/app/Http/Requests/Registry/MoveHouseholdMemberRequest.php',
+      68 => '/var/www/html/app/Http/Requests/Registry/StoreBeneficiaryRequest.php',
+      69 => '/var/www/html/app/Http/Requests/Registry/StoreHouseholdRequest.php',
+      70 => '/var/www/html/app/Http/Requests/Registry/StoreOwnershipTransferRequest.php',
+      71 => '/var/www/html/app/Http/Requests/Registry/UpdateBeneficiaryRequest.php',
+      72 => '/var/www/html/app/Http/Requests/Registry/UpdateHouseholdRequest.php',
+      73 => '/var/www/html/app/Http/Requests/Registry/UploadDocumentRequest.php',
+      74 => '/var/www/html/app/Http/Requests/Registry/UploadImportRequest.php',
+      75 => '/var/www/html/app/Http/Resources/BeneficiaryDocumentResource.php',
+      76 => '/var/www/html/app/Http/Resources/BeneficiaryResource.php',
+      77 => '/var/www/html/app/Http/Resources/BeneficiaryRevealResource.php',
+      78 => '/var/www/html/app/Http/Resources/HouseholdMembershipResource.php',
+      79 => '/var/www/html/app/Http/Resources/HouseholdResource.php',
+      80 => '/var/www/html/app/Http/Resources/ImportBatchResource.php',
+      81 => '/var/www/html/app/Http/Resources/MdaResource.php',
+      82 => '/var/www/html/app/Http/Resources/UserResource.php',
+      83 => '/var/www/html/app/Providers/AppServiceProvider.php',
     ),
   ),
   '/var/www/html/app/Domain/Access/Concerns/ScopedToMda.php' => 
@@ -7879,70 +8610,76 @@ return [
       11 => '/var/www/html/app/Domain/Access/Services/AuthTokenIssuer.php',
       12 => '/var/www/html/app/Domain/Audit/Listeners/AuditEventSubscriber.php',
       13 => '/var/www/html/app/Domain/Audit/Services/AuditLogger.php',
-      14 => '/var/www/html/app/Domain/Registry/Contracts/BeneficiaryRouter.php',
-      15 => '/var/www/html/app/Domain/Registry/Imports/ImportRowValidator.php',
-      16 => '/var/www/html/app/Domain/Registry/Jobs/CommitImportBatch.php',
-      17 => '/var/www/html/app/Domain/Registry/Jobs/ParseImportBatch.php',
-      18 => '/var/www/html/app/Domain/Registry/Models/Beneficiary.php',
-      19 => '/var/www/html/app/Domain/Registry/Models/BeneficiaryDocument.php',
-      20 => '/var/www/html/app/Domain/Registry/Models/Household.php',
-      21 => '/var/www/html/app/Domain/Registry/Models/HouseholdMembership.php',
-      22 => '/var/www/html/app/Domain/Registry/Models/ImportBatch.php',
-      23 => '/var/www/html/app/Domain/Registry/Models/ImportRow.php',
-      24 => '/var/www/html/app/Domain/Registry/Models/OwnershipTransferRequest.php',
-      25 => '/var/www/html/app/Domain/Registry/Policies/BeneficiaryDocumentPolicy.php',
-      26 => '/var/www/html/app/Domain/Registry/Policies/BeneficiaryPolicy.php',
-      27 => '/var/www/html/app/Domain/Registry/Policies/HouseholdPolicy.php',
-      28 => '/var/www/html/app/Domain/Registry/Policies/ImportBatchPolicy.php',
-      29 => '/var/www/html/app/Domain/Registry/RegistryServiceProvider.php',
-      30 => '/var/www/html/app/Domain/Registry/Services/BeneficiaryLookupService.php',
-      31 => '/var/www/html/app/Domain/Registry/Services/BeneficiaryRegistrar.php',
-      32 => '/var/www/html/app/Domain/Registry/Services/HouseholdIngestionService.php',
-      33 => '/var/www/html/app/Domain/Registry/Services/HouseholdMembershipService.php',
-      34 => '/var/www/html/app/Domain/Registry/Services/NullBeneficiaryRouter.php',
-      35 => '/var/www/html/app/Domain/Registry/Services/OwnershipTransferService.php',
-      36 => '/var/www/html/app/Http/Controllers/Api/V1/Access/MdaAccessGrantController.php',
-      37 => '/var/www/html/app/Http/Controllers/Api/V1/Access/MdaController.php',
-      38 => '/var/www/html/app/Http/Controllers/Api/V1/Access/UserController.php',
-      39 => '/var/www/html/app/Http/Controllers/Api/V1/AuthController.php',
-      40 => '/var/www/html/app/Http/Controllers/Api/V1/MfaController.php',
-      41 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/BeneficiaryController.php',
-      42 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/BeneficiaryDocumentController.php',
-      43 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/BeneficiaryIntakeController.php',
-      44 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/HouseholdController.php',
-      45 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/HouseholdMemberController.php',
-      46 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/ImportBatchController.php',
-      47 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/OwnershipTransferController.php',
-      48 => '/var/www/html/app/Http/Middleware/CheckPermission.php',
-      49 => '/var/www/html/app/Http/Requests/Access/StoreMdaAccessGrantRequest.php',
-      50 => '/var/www/html/app/Http/Requests/Access/StoreMdaRequest.php',
-      51 => '/var/www/html/app/Http/Requests/Access/StoreUserRequest.php',
-      52 => '/var/www/html/app/Http/Requests/Access/UpdateMdaRequest.php',
-      53 => '/var/www/html/app/Http/Requests/Access/UpdateUserRequest.php',
-      54 => '/var/www/html/app/Http/Requests/Auth/ChangePasswordRequest.php',
-      55 => '/var/www/html/app/Http/Requests/Auth/MfaCodeRequest.php',
-      56 => '/var/www/html/app/Http/Requests/Registry/AddHouseholdMemberRequest.php',
-      57 => '/var/www/html/app/Http/Requests/Registry/ApiRegistrationRequest.php',
-      58 => '/var/www/html/app/Http/Requests/Registry/BeneficiaryLookupRequest.php',
-      59 => '/var/www/html/app/Http/Requests/Registry/DecideOwnershipTransferRequest.php',
-      60 => '/var/www/html/app/Http/Requests/Registry/DesignateHeadRequest.php',
-      61 => '/var/www/html/app/Http/Requests/Registry/MoveHouseholdMemberRequest.php',
-      62 => '/var/www/html/app/Http/Requests/Registry/StoreBeneficiaryRequest.php',
-      63 => '/var/www/html/app/Http/Requests/Registry/StoreHouseholdRequest.php',
-      64 => '/var/www/html/app/Http/Requests/Registry/StoreOwnershipTransferRequest.php',
-      65 => '/var/www/html/app/Http/Requests/Registry/UpdateBeneficiaryRequest.php',
-      66 => '/var/www/html/app/Http/Requests/Registry/UpdateHouseholdRequest.php',
-      67 => '/var/www/html/app/Http/Requests/Registry/UploadDocumentRequest.php',
-      68 => '/var/www/html/app/Http/Requests/Registry/UploadImportRequest.php',
-      69 => '/var/www/html/app/Http/Resources/BeneficiaryDocumentResource.php',
-      70 => '/var/www/html/app/Http/Resources/BeneficiaryResource.php',
-      71 => '/var/www/html/app/Http/Resources/BeneficiaryRevealResource.php',
-      72 => '/var/www/html/app/Http/Resources/HouseholdMembershipResource.php',
-      73 => '/var/www/html/app/Http/Resources/HouseholdResource.php',
-      74 => '/var/www/html/app/Http/Resources/ImportBatchResource.php',
-      75 => '/var/www/html/app/Http/Resources/MdaResource.php',
-      76 => '/var/www/html/app/Http/Resources/UserResource.php',
-      77 => '/var/www/html/app/Providers/AppServiceProvider.php',
+      14 => '/var/www/html/app/Domain/Matching/Models/MatchingConfig.php',
+      15 => '/var/www/html/app/Domain/Matching/Services/MatchingConfigService.php',
+      16 => '/var/www/html/app/Domain/Registry/Contracts/BeneficiaryRouter.php',
+      17 => '/var/www/html/app/Domain/Registry/Imports/ImportRowValidator.php',
+      18 => '/var/www/html/app/Domain/Registry/Jobs/CommitImportBatch.php',
+      19 => '/var/www/html/app/Domain/Registry/Jobs/ParseImportBatch.php',
+      20 => '/var/www/html/app/Domain/Registry/Models/Beneficiary.php',
+      21 => '/var/www/html/app/Domain/Registry/Models/BeneficiaryDocument.php',
+      22 => '/var/www/html/app/Domain/Registry/Models/Household.php',
+      23 => '/var/www/html/app/Domain/Registry/Models/HouseholdMembership.php',
+      24 => '/var/www/html/app/Domain/Registry/Models/ImportBatch.php',
+      25 => '/var/www/html/app/Domain/Registry/Models/ImportRow.php',
+      26 => '/var/www/html/app/Domain/Registry/Models/OwnershipTransferRequest.php',
+      27 => '/var/www/html/app/Domain/Registry/Policies/BeneficiaryDocumentPolicy.php',
+      28 => '/var/www/html/app/Domain/Registry/Policies/BeneficiaryPolicy.php',
+      29 => '/var/www/html/app/Domain/Registry/Policies/HouseholdPolicy.php',
+      30 => '/var/www/html/app/Domain/Registry/Policies/ImportBatchPolicy.php',
+      31 => '/var/www/html/app/Domain/Registry/RegistryServiceProvider.php',
+      32 => '/var/www/html/app/Domain/Registry/Services/BeneficiaryLookupService.php',
+      33 => '/var/www/html/app/Domain/Registry/Services/BeneficiaryRegistrar.php',
+      34 => '/var/www/html/app/Domain/Registry/Services/CandidateGatherer.php',
+      35 => '/var/www/html/app/Domain/Registry/Services/DeterministicDuplicateFinder.php',
+      36 => '/var/www/html/app/Domain/Registry/Services/HouseholdIngestionService.php',
+      37 => '/var/www/html/app/Domain/Registry/Services/HouseholdMembershipService.php',
+      38 => '/var/www/html/app/Domain/Registry/Services/NullBeneficiaryRouter.php',
+      39 => '/var/www/html/app/Domain/Registry/Services/OwnershipTransferService.php',
+      40 => '/var/www/html/app/Http/Controllers/Api/V1/Access/MdaAccessGrantController.php',
+      41 => '/var/www/html/app/Http/Controllers/Api/V1/Access/MdaController.php',
+      42 => '/var/www/html/app/Http/Controllers/Api/V1/Access/UserController.php',
+      43 => '/var/www/html/app/Http/Controllers/Api/V1/AuthController.php',
+      44 => '/var/www/html/app/Http/Controllers/Api/V1/Matching/MatchingConfigController.php',
+      45 => '/var/www/html/app/Http/Controllers/Api/V1/MfaController.php',
+      46 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/BeneficiaryController.php',
+      47 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/BeneficiaryDocumentController.php',
+      48 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/BeneficiaryIntakeController.php',
+      49 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/HouseholdController.php',
+      50 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/HouseholdMemberController.php',
+      51 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/ImportBatchController.php',
+      52 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/OwnershipTransferController.php',
+      53 => '/var/www/html/app/Http/Middleware/CheckPermission.php',
+      54 => '/var/www/html/app/Http/Requests/Access/StoreMdaAccessGrantRequest.php',
+      55 => '/var/www/html/app/Http/Requests/Access/StoreMdaRequest.php',
+      56 => '/var/www/html/app/Http/Requests/Access/StoreUserRequest.php',
+      57 => '/var/www/html/app/Http/Requests/Access/UpdateMdaRequest.php',
+      58 => '/var/www/html/app/Http/Requests/Access/UpdateUserRequest.php',
+      59 => '/var/www/html/app/Http/Requests/Auth/ChangePasswordRequest.php',
+      60 => '/var/www/html/app/Http/Requests/Auth/MfaCodeRequest.php',
+      61 => '/var/www/html/app/Http/Requests/Matching/UpdateMatchingConfigRequest.php',
+      62 => '/var/www/html/app/Http/Requests/Registry/AddHouseholdMemberRequest.php',
+      63 => '/var/www/html/app/Http/Requests/Registry/ApiRegistrationRequest.php',
+      64 => '/var/www/html/app/Http/Requests/Registry/BeneficiaryLookupRequest.php',
+      65 => '/var/www/html/app/Http/Requests/Registry/DecideOwnershipTransferRequest.php',
+      66 => '/var/www/html/app/Http/Requests/Registry/DesignateHeadRequest.php',
+      67 => '/var/www/html/app/Http/Requests/Registry/MoveHouseholdMemberRequest.php',
+      68 => '/var/www/html/app/Http/Requests/Registry/StoreBeneficiaryRequest.php',
+      69 => '/var/www/html/app/Http/Requests/Registry/StoreHouseholdRequest.php',
+      70 => '/var/www/html/app/Http/Requests/Registry/StoreOwnershipTransferRequest.php',
+      71 => '/var/www/html/app/Http/Requests/Registry/UpdateBeneficiaryRequest.php',
+      72 => '/var/www/html/app/Http/Requests/Registry/UpdateHouseholdRequest.php',
+      73 => '/var/www/html/app/Http/Requests/Registry/UploadDocumentRequest.php',
+      74 => '/var/www/html/app/Http/Requests/Registry/UploadImportRequest.php',
+      75 => '/var/www/html/app/Http/Resources/BeneficiaryDocumentResource.php',
+      76 => '/var/www/html/app/Http/Resources/BeneficiaryResource.php',
+      77 => '/var/www/html/app/Http/Resources/BeneficiaryRevealResource.php',
+      78 => '/var/www/html/app/Http/Resources/HouseholdMembershipResource.php',
+      79 => '/var/www/html/app/Http/Resources/HouseholdResource.php',
+      80 => '/var/www/html/app/Http/Resources/ImportBatchResource.php',
+      81 => '/var/www/html/app/Http/Resources/MdaResource.php',
+      82 => '/var/www/html/app/Http/Resources/UserResource.php',
+      83 => '/var/www/html/app/Providers/AppServiceProvider.php',
     ),
     'usedTraitDependentFiles' => 
     array (
@@ -8006,11 +8743,12 @@ return [
       3 => '/var/www/html/app/Domain/Access/Models/User.php',
       4 => '/var/www/html/app/Domain/Access/Services/PermissionSynchronizer.php',
       5 => '/var/www/html/app/Domain/Access/Support/PermissionRegistry.php',
-      6 => '/var/www/html/app/Domain/Registry/RegistryServiceProvider.php',
-      7 => '/var/www/html/app/Http/Controllers/Api/V1/Access/AccessController.php',
-      8 => '/var/www/html/app/Http/Requests/Access/StoreUserRequest.php',
-      9 => '/var/www/html/app/Http/Requests/Access/UpdateUserRequest.php',
-      10 => '/var/www/html/app/Http/Resources/UserResource.php',
+      6 => '/var/www/html/app/Domain/Matching/MatchingServiceProvider.php',
+      7 => '/var/www/html/app/Domain/Registry/RegistryServiceProvider.php',
+      8 => '/var/www/html/app/Http/Controllers/Api/V1/Access/AccessController.php',
+      9 => '/var/www/html/app/Http/Requests/Access/StoreUserRequest.php',
+      10 => '/var/www/html/app/Http/Requests/Access/UpdateUserRequest.php',
+      11 => '/var/www/html/app/Http/Resources/UserResource.php',
     ),
   ),
   '/var/www/html/app/Domain/Access/Enums/RoleKey.php' => 
@@ -8039,46 +8777,50 @@ return [
       11 => '/var/www/html/app/Domain/Access/Services/AuthTokenIssuer.php',
       12 => '/var/www/html/app/Domain/Audit/Listeners/AuditEventSubscriber.php',
       13 => '/var/www/html/app/Domain/Audit/Services/AuditLogger.php',
-      14 => '/var/www/html/app/Domain/Registry/Jobs/CommitImportBatch.php',
-      15 => '/var/www/html/app/Domain/Registry/Models/BeneficiaryDocument.php',
-      16 => '/var/www/html/app/Domain/Registry/Models/ImportBatch.php',
-      17 => '/var/www/html/app/Domain/Registry/Models/OwnershipTransferRequest.php',
-      18 => '/var/www/html/app/Domain/Registry/Policies/BeneficiaryDocumentPolicy.php',
-      19 => '/var/www/html/app/Domain/Registry/Policies/BeneficiaryPolicy.php',
-      20 => '/var/www/html/app/Domain/Registry/Policies/HouseholdPolicy.php',
-      21 => '/var/www/html/app/Domain/Registry/Policies/ImportBatchPolicy.php',
-      22 => '/var/www/html/app/Domain/Registry/Services/OwnershipTransferService.php',
-      23 => '/var/www/html/app/Http/Controllers/Api/V1/Access/MdaAccessGrantController.php',
-      24 => '/var/www/html/app/Http/Controllers/Api/V1/Access/UserController.php',
-      25 => '/var/www/html/app/Http/Controllers/Api/V1/AuthController.php',
-      26 => '/var/www/html/app/Http/Controllers/Api/V1/MfaController.php',
-      27 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/BeneficiaryDocumentController.php',
-      28 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/BeneficiaryIntakeController.php',
-      29 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/ImportBatchController.php',
-      30 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/OwnershipTransferController.php',
-      31 => '/var/www/html/app/Http/Middleware/CheckPermission.php',
-      32 => '/var/www/html/app/Http/Requests/Access/StoreMdaAccessGrantRequest.php',
-      33 => '/var/www/html/app/Http/Requests/Access/StoreMdaRequest.php',
-      34 => '/var/www/html/app/Http/Requests/Access/StoreUserRequest.php',
-      35 => '/var/www/html/app/Http/Requests/Access/UpdateMdaRequest.php',
-      36 => '/var/www/html/app/Http/Requests/Access/UpdateUserRequest.php',
-      37 => '/var/www/html/app/Http/Requests/Auth/ChangePasswordRequest.php',
-      38 => '/var/www/html/app/Http/Requests/Auth/MfaCodeRequest.php',
-      39 => '/var/www/html/app/Http/Requests/Registry/AddHouseholdMemberRequest.php',
-      40 => '/var/www/html/app/Http/Requests/Registry/ApiRegistrationRequest.php',
-      41 => '/var/www/html/app/Http/Requests/Registry/BeneficiaryLookupRequest.php',
-      42 => '/var/www/html/app/Http/Requests/Registry/DecideOwnershipTransferRequest.php',
-      43 => '/var/www/html/app/Http/Requests/Registry/DesignateHeadRequest.php',
-      44 => '/var/www/html/app/Http/Requests/Registry/MoveHouseholdMemberRequest.php',
-      45 => '/var/www/html/app/Http/Requests/Registry/StoreBeneficiaryRequest.php',
-      46 => '/var/www/html/app/Http/Requests/Registry/StoreHouseholdRequest.php',
-      47 => '/var/www/html/app/Http/Requests/Registry/StoreOwnershipTransferRequest.php',
-      48 => '/var/www/html/app/Http/Requests/Registry/UpdateBeneficiaryRequest.php',
-      49 => '/var/www/html/app/Http/Requests/Registry/UpdateHouseholdRequest.php',
-      50 => '/var/www/html/app/Http/Requests/Registry/UploadDocumentRequest.php',
-      51 => '/var/www/html/app/Http/Requests/Registry/UploadImportRequest.php',
-      52 => '/var/www/html/app/Http/Resources/UserResource.php',
-      53 => '/var/www/html/app/Providers/AppServiceProvider.php',
+      14 => '/var/www/html/app/Domain/Matching/Models/MatchingConfig.php',
+      15 => '/var/www/html/app/Domain/Matching/Services/MatchingConfigService.php',
+      16 => '/var/www/html/app/Domain/Registry/Jobs/CommitImportBatch.php',
+      17 => '/var/www/html/app/Domain/Registry/Models/BeneficiaryDocument.php',
+      18 => '/var/www/html/app/Domain/Registry/Models/ImportBatch.php',
+      19 => '/var/www/html/app/Domain/Registry/Models/OwnershipTransferRequest.php',
+      20 => '/var/www/html/app/Domain/Registry/Policies/BeneficiaryDocumentPolicy.php',
+      21 => '/var/www/html/app/Domain/Registry/Policies/BeneficiaryPolicy.php',
+      22 => '/var/www/html/app/Domain/Registry/Policies/HouseholdPolicy.php',
+      23 => '/var/www/html/app/Domain/Registry/Policies/ImportBatchPolicy.php',
+      24 => '/var/www/html/app/Domain/Registry/Services/OwnershipTransferService.php',
+      25 => '/var/www/html/app/Http/Controllers/Api/V1/Access/MdaAccessGrantController.php',
+      26 => '/var/www/html/app/Http/Controllers/Api/V1/Access/UserController.php',
+      27 => '/var/www/html/app/Http/Controllers/Api/V1/AuthController.php',
+      28 => '/var/www/html/app/Http/Controllers/Api/V1/Matching/MatchingConfigController.php',
+      29 => '/var/www/html/app/Http/Controllers/Api/V1/MfaController.php',
+      30 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/BeneficiaryDocumentController.php',
+      31 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/BeneficiaryIntakeController.php',
+      32 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/ImportBatchController.php',
+      33 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/OwnershipTransferController.php',
+      34 => '/var/www/html/app/Http/Middleware/CheckPermission.php',
+      35 => '/var/www/html/app/Http/Requests/Access/StoreMdaAccessGrantRequest.php',
+      36 => '/var/www/html/app/Http/Requests/Access/StoreMdaRequest.php',
+      37 => '/var/www/html/app/Http/Requests/Access/StoreUserRequest.php',
+      38 => '/var/www/html/app/Http/Requests/Access/UpdateMdaRequest.php',
+      39 => '/var/www/html/app/Http/Requests/Access/UpdateUserRequest.php',
+      40 => '/var/www/html/app/Http/Requests/Auth/ChangePasswordRequest.php',
+      41 => '/var/www/html/app/Http/Requests/Auth/MfaCodeRequest.php',
+      42 => '/var/www/html/app/Http/Requests/Matching/UpdateMatchingConfigRequest.php',
+      43 => '/var/www/html/app/Http/Requests/Registry/AddHouseholdMemberRequest.php',
+      44 => '/var/www/html/app/Http/Requests/Registry/ApiRegistrationRequest.php',
+      45 => '/var/www/html/app/Http/Requests/Registry/BeneficiaryLookupRequest.php',
+      46 => '/var/www/html/app/Http/Requests/Registry/DecideOwnershipTransferRequest.php',
+      47 => '/var/www/html/app/Http/Requests/Registry/DesignateHeadRequest.php',
+      48 => '/var/www/html/app/Http/Requests/Registry/MoveHouseholdMemberRequest.php',
+      49 => '/var/www/html/app/Http/Requests/Registry/StoreBeneficiaryRequest.php',
+      50 => '/var/www/html/app/Http/Requests/Registry/StoreHouseholdRequest.php',
+      51 => '/var/www/html/app/Http/Requests/Registry/StoreOwnershipTransferRequest.php',
+      52 => '/var/www/html/app/Http/Requests/Registry/UpdateBeneficiaryRequest.php',
+      53 => '/var/www/html/app/Http/Requests/Registry/UpdateHouseholdRequest.php',
+      54 => '/var/www/html/app/Http/Requests/Registry/UploadDocumentRequest.php',
+      55 => '/var/www/html/app/Http/Requests/Registry/UploadImportRequest.php',
+      56 => '/var/www/html/app/Http/Resources/UserResource.php',
+      57 => '/var/www/html/app/Providers/AppServiceProvider.php',
     ),
   ),
   '/var/www/html/app/Domain/Access/Events/AccountLocked.php' => 
@@ -8154,70 +8896,76 @@ return [
       10 => '/var/www/html/app/Domain/Access/Services/AuthTokenIssuer.php',
       11 => '/var/www/html/app/Domain/Audit/Listeners/AuditEventSubscriber.php',
       12 => '/var/www/html/app/Domain/Audit/Services/AuditLogger.php',
-      13 => '/var/www/html/app/Domain/Registry/Contracts/BeneficiaryRouter.php',
-      14 => '/var/www/html/app/Domain/Registry/Imports/ImportRowValidator.php',
-      15 => '/var/www/html/app/Domain/Registry/Jobs/CommitImportBatch.php',
-      16 => '/var/www/html/app/Domain/Registry/Jobs/ParseImportBatch.php',
-      17 => '/var/www/html/app/Domain/Registry/Models/Beneficiary.php',
-      18 => '/var/www/html/app/Domain/Registry/Models/BeneficiaryDocument.php',
-      19 => '/var/www/html/app/Domain/Registry/Models/Household.php',
-      20 => '/var/www/html/app/Domain/Registry/Models/HouseholdMembership.php',
-      21 => '/var/www/html/app/Domain/Registry/Models/ImportBatch.php',
-      22 => '/var/www/html/app/Domain/Registry/Models/ImportRow.php',
-      23 => '/var/www/html/app/Domain/Registry/Models/OwnershipTransferRequest.php',
-      24 => '/var/www/html/app/Domain/Registry/Policies/BeneficiaryDocumentPolicy.php',
-      25 => '/var/www/html/app/Domain/Registry/Policies/BeneficiaryPolicy.php',
-      26 => '/var/www/html/app/Domain/Registry/Policies/HouseholdPolicy.php',
-      27 => '/var/www/html/app/Domain/Registry/Policies/ImportBatchPolicy.php',
-      28 => '/var/www/html/app/Domain/Registry/RegistryServiceProvider.php',
-      29 => '/var/www/html/app/Domain/Registry/Services/BeneficiaryLookupService.php',
-      30 => '/var/www/html/app/Domain/Registry/Services/BeneficiaryRegistrar.php',
-      31 => '/var/www/html/app/Domain/Registry/Services/HouseholdIngestionService.php',
-      32 => '/var/www/html/app/Domain/Registry/Services/HouseholdMembershipService.php',
-      33 => '/var/www/html/app/Domain/Registry/Services/NullBeneficiaryRouter.php',
-      34 => '/var/www/html/app/Domain/Registry/Services/OwnershipTransferService.php',
-      35 => '/var/www/html/app/Http/Controllers/Api/V1/Access/MdaAccessGrantController.php',
-      36 => '/var/www/html/app/Http/Controllers/Api/V1/Access/MdaController.php',
-      37 => '/var/www/html/app/Http/Controllers/Api/V1/Access/UserController.php',
-      38 => '/var/www/html/app/Http/Controllers/Api/V1/AuthController.php',
-      39 => '/var/www/html/app/Http/Controllers/Api/V1/MfaController.php',
-      40 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/BeneficiaryController.php',
-      41 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/BeneficiaryDocumentController.php',
-      42 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/BeneficiaryIntakeController.php',
-      43 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/HouseholdController.php',
-      44 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/HouseholdMemberController.php',
-      45 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/ImportBatchController.php',
-      46 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/OwnershipTransferController.php',
-      47 => '/var/www/html/app/Http/Middleware/CheckPermission.php',
-      48 => '/var/www/html/app/Http/Requests/Access/StoreMdaAccessGrantRequest.php',
-      49 => '/var/www/html/app/Http/Requests/Access/StoreMdaRequest.php',
-      50 => '/var/www/html/app/Http/Requests/Access/StoreUserRequest.php',
-      51 => '/var/www/html/app/Http/Requests/Access/UpdateMdaRequest.php',
-      52 => '/var/www/html/app/Http/Requests/Access/UpdateUserRequest.php',
-      53 => '/var/www/html/app/Http/Requests/Auth/ChangePasswordRequest.php',
-      54 => '/var/www/html/app/Http/Requests/Auth/MfaCodeRequest.php',
-      55 => '/var/www/html/app/Http/Requests/Registry/AddHouseholdMemberRequest.php',
-      56 => '/var/www/html/app/Http/Requests/Registry/ApiRegistrationRequest.php',
-      57 => '/var/www/html/app/Http/Requests/Registry/BeneficiaryLookupRequest.php',
-      58 => '/var/www/html/app/Http/Requests/Registry/DecideOwnershipTransferRequest.php',
-      59 => '/var/www/html/app/Http/Requests/Registry/DesignateHeadRequest.php',
-      60 => '/var/www/html/app/Http/Requests/Registry/MoveHouseholdMemberRequest.php',
-      61 => '/var/www/html/app/Http/Requests/Registry/StoreBeneficiaryRequest.php',
-      62 => '/var/www/html/app/Http/Requests/Registry/StoreHouseholdRequest.php',
-      63 => '/var/www/html/app/Http/Requests/Registry/StoreOwnershipTransferRequest.php',
-      64 => '/var/www/html/app/Http/Requests/Registry/UpdateBeneficiaryRequest.php',
-      65 => '/var/www/html/app/Http/Requests/Registry/UpdateHouseholdRequest.php',
-      66 => '/var/www/html/app/Http/Requests/Registry/UploadDocumentRequest.php',
-      67 => '/var/www/html/app/Http/Requests/Registry/UploadImportRequest.php',
-      68 => '/var/www/html/app/Http/Resources/BeneficiaryDocumentResource.php',
-      69 => '/var/www/html/app/Http/Resources/BeneficiaryResource.php',
-      70 => '/var/www/html/app/Http/Resources/BeneficiaryRevealResource.php',
-      71 => '/var/www/html/app/Http/Resources/HouseholdMembershipResource.php',
-      72 => '/var/www/html/app/Http/Resources/HouseholdResource.php',
-      73 => '/var/www/html/app/Http/Resources/ImportBatchResource.php',
-      74 => '/var/www/html/app/Http/Resources/MdaResource.php',
-      75 => '/var/www/html/app/Http/Resources/UserResource.php',
-      76 => '/var/www/html/app/Providers/AppServiceProvider.php',
+      13 => '/var/www/html/app/Domain/Matching/Models/MatchingConfig.php',
+      14 => '/var/www/html/app/Domain/Matching/Services/MatchingConfigService.php',
+      15 => '/var/www/html/app/Domain/Registry/Contracts/BeneficiaryRouter.php',
+      16 => '/var/www/html/app/Domain/Registry/Imports/ImportRowValidator.php',
+      17 => '/var/www/html/app/Domain/Registry/Jobs/CommitImportBatch.php',
+      18 => '/var/www/html/app/Domain/Registry/Jobs/ParseImportBatch.php',
+      19 => '/var/www/html/app/Domain/Registry/Models/Beneficiary.php',
+      20 => '/var/www/html/app/Domain/Registry/Models/BeneficiaryDocument.php',
+      21 => '/var/www/html/app/Domain/Registry/Models/Household.php',
+      22 => '/var/www/html/app/Domain/Registry/Models/HouseholdMembership.php',
+      23 => '/var/www/html/app/Domain/Registry/Models/ImportBatch.php',
+      24 => '/var/www/html/app/Domain/Registry/Models/ImportRow.php',
+      25 => '/var/www/html/app/Domain/Registry/Models/OwnershipTransferRequest.php',
+      26 => '/var/www/html/app/Domain/Registry/Policies/BeneficiaryDocumentPolicy.php',
+      27 => '/var/www/html/app/Domain/Registry/Policies/BeneficiaryPolicy.php',
+      28 => '/var/www/html/app/Domain/Registry/Policies/HouseholdPolicy.php',
+      29 => '/var/www/html/app/Domain/Registry/Policies/ImportBatchPolicy.php',
+      30 => '/var/www/html/app/Domain/Registry/RegistryServiceProvider.php',
+      31 => '/var/www/html/app/Domain/Registry/Services/BeneficiaryLookupService.php',
+      32 => '/var/www/html/app/Domain/Registry/Services/BeneficiaryRegistrar.php',
+      33 => '/var/www/html/app/Domain/Registry/Services/CandidateGatherer.php',
+      34 => '/var/www/html/app/Domain/Registry/Services/DeterministicDuplicateFinder.php',
+      35 => '/var/www/html/app/Domain/Registry/Services/HouseholdIngestionService.php',
+      36 => '/var/www/html/app/Domain/Registry/Services/HouseholdMembershipService.php',
+      37 => '/var/www/html/app/Domain/Registry/Services/NullBeneficiaryRouter.php',
+      38 => '/var/www/html/app/Domain/Registry/Services/OwnershipTransferService.php',
+      39 => '/var/www/html/app/Http/Controllers/Api/V1/Access/MdaAccessGrantController.php',
+      40 => '/var/www/html/app/Http/Controllers/Api/V1/Access/MdaController.php',
+      41 => '/var/www/html/app/Http/Controllers/Api/V1/Access/UserController.php',
+      42 => '/var/www/html/app/Http/Controllers/Api/V1/AuthController.php',
+      43 => '/var/www/html/app/Http/Controllers/Api/V1/Matching/MatchingConfigController.php',
+      44 => '/var/www/html/app/Http/Controllers/Api/V1/MfaController.php',
+      45 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/BeneficiaryController.php',
+      46 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/BeneficiaryDocumentController.php',
+      47 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/BeneficiaryIntakeController.php',
+      48 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/HouseholdController.php',
+      49 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/HouseholdMemberController.php',
+      50 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/ImportBatchController.php',
+      51 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/OwnershipTransferController.php',
+      52 => '/var/www/html/app/Http/Middleware/CheckPermission.php',
+      53 => '/var/www/html/app/Http/Requests/Access/StoreMdaAccessGrantRequest.php',
+      54 => '/var/www/html/app/Http/Requests/Access/StoreMdaRequest.php',
+      55 => '/var/www/html/app/Http/Requests/Access/StoreUserRequest.php',
+      56 => '/var/www/html/app/Http/Requests/Access/UpdateMdaRequest.php',
+      57 => '/var/www/html/app/Http/Requests/Access/UpdateUserRequest.php',
+      58 => '/var/www/html/app/Http/Requests/Auth/ChangePasswordRequest.php',
+      59 => '/var/www/html/app/Http/Requests/Auth/MfaCodeRequest.php',
+      60 => '/var/www/html/app/Http/Requests/Matching/UpdateMatchingConfigRequest.php',
+      61 => '/var/www/html/app/Http/Requests/Registry/AddHouseholdMemberRequest.php',
+      62 => '/var/www/html/app/Http/Requests/Registry/ApiRegistrationRequest.php',
+      63 => '/var/www/html/app/Http/Requests/Registry/BeneficiaryLookupRequest.php',
+      64 => '/var/www/html/app/Http/Requests/Registry/DecideOwnershipTransferRequest.php',
+      65 => '/var/www/html/app/Http/Requests/Registry/DesignateHeadRequest.php',
+      66 => '/var/www/html/app/Http/Requests/Registry/MoveHouseholdMemberRequest.php',
+      67 => '/var/www/html/app/Http/Requests/Registry/StoreBeneficiaryRequest.php',
+      68 => '/var/www/html/app/Http/Requests/Registry/StoreHouseholdRequest.php',
+      69 => '/var/www/html/app/Http/Requests/Registry/StoreOwnershipTransferRequest.php',
+      70 => '/var/www/html/app/Http/Requests/Registry/UpdateBeneficiaryRequest.php',
+      71 => '/var/www/html/app/Http/Requests/Registry/UpdateHouseholdRequest.php',
+      72 => '/var/www/html/app/Http/Requests/Registry/UploadDocumentRequest.php',
+      73 => '/var/www/html/app/Http/Requests/Registry/UploadImportRequest.php',
+      74 => '/var/www/html/app/Http/Resources/BeneficiaryDocumentResource.php',
+      75 => '/var/www/html/app/Http/Resources/BeneficiaryResource.php',
+      76 => '/var/www/html/app/Http/Resources/BeneficiaryRevealResource.php',
+      77 => '/var/www/html/app/Http/Resources/HouseholdMembershipResource.php',
+      78 => '/var/www/html/app/Http/Resources/HouseholdResource.php',
+      79 => '/var/www/html/app/Http/Resources/ImportBatchResource.php',
+      80 => '/var/www/html/app/Http/Resources/MdaResource.php',
+      81 => '/var/www/html/app/Http/Resources/UserResource.php',
+      82 => '/var/www/html/app/Providers/AppServiceProvider.php',
     ),
   ),
   '/var/www/html/app/Domain/Access/Models/MdaAccessGrant.php' => 
@@ -8267,47 +9015,51 @@ return [
       12 => '/var/www/html/app/Domain/Access/Services/AuthTokenIssuer.php',
       13 => '/var/www/html/app/Domain/Audit/Listeners/AuditEventSubscriber.php',
       14 => '/var/www/html/app/Domain/Audit/Services/AuditLogger.php',
-      15 => '/var/www/html/app/Domain/Registry/Jobs/CommitImportBatch.php',
-      16 => '/var/www/html/app/Domain/Registry/Models/BeneficiaryDocument.php',
-      17 => '/var/www/html/app/Domain/Registry/Models/ImportBatch.php',
-      18 => '/var/www/html/app/Domain/Registry/Models/OwnershipTransferRequest.php',
-      19 => '/var/www/html/app/Domain/Registry/Policies/BeneficiaryDocumentPolicy.php',
-      20 => '/var/www/html/app/Domain/Registry/Policies/BeneficiaryPolicy.php',
-      21 => '/var/www/html/app/Domain/Registry/Policies/HouseholdPolicy.php',
-      22 => '/var/www/html/app/Domain/Registry/Policies/ImportBatchPolicy.php',
-      23 => '/var/www/html/app/Domain/Registry/Services/OwnershipTransferService.php',
-      24 => '/var/www/html/app/Http/Controllers/Api/V1/Access/AccessController.php',
-      25 => '/var/www/html/app/Http/Controllers/Api/V1/Access/MdaAccessGrantController.php',
-      26 => '/var/www/html/app/Http/Controllers/Api/V1/Access/UserController.php',
-      27 => '/var/www/html/app/Http/Controllers/Api/V1/AuthController.php',
-      28 => '/var/www/html/app/Http/Controllers/Api/V1/MfaController.php',
-      29 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/BeneficiaryDocumentController.php',
-      30 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/BeneficiaryIntakeController.php',
-      31 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/ImportBatchController.php',
-      32 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/OwnershipTransferController.php',
-      33 => '/var/www/html/app/Http/Middleware/CheckPermission.php',
-      34 => '/var/www/html/app/Http/Requests/Access/StoreMdaAccessGrantRequest.php',
-      35 => '/var/www/html/app/Http/Requests/Access/StoreMdaRequest.php',
-      36 => '/var/www/html/app/Http/Requests/Access/StoreUserRequest.php',
-      37 => '/var/www/html/app/Http/Requests/Access/UpdateMdaRequest.php',
-      38 => '/var/www/html/app/Http/Requests/Access/UpdateUserRequest.php',
-      39 => '/var/www/html/app/Http/Requests/Auth/ChangePasswordRequest.php',
-      40 => '/var/www/html/app/Http/Requests/Auth/MfaCodeRequest.php',
-      41 => '/var/www/html/app/Http/Requests/Registry/AddHouseholdMemberRequest.php',
-      42 => '/var/www/html/app/Http/Requests/Registry/ApiRegistrationRequest.php',
-      43 => '/var/www/html/app/Http/Requests/Registry/BeneficiaryLookupRequest.php',
-      44 => '/var/www/html/app/Http/Requests/Registry/DecideOwnershipTransferRequest.php',
-      45 => '/var/www/html/app/Http/Requests/Registry/DesignateHeadRequest.php',
-      46 => '/var/www/html/app/Http/Requests/Registry/MoveHouseholdMemberRequest.php',
-      47 => '/var/www/html/app/Http/Requests/Registry/StoreBeneficiaryRequest.php',
-      48 => '/var/www/html/app/Http/Requests/Registry/StoreHouseholdRequest.php',
-      49 => '/var/www/html/app/Http/Requests/Registry/StoreOwnershipTransferRequest.php',
-      50 => '/var/www/html/app/Http/Requests/Registry/UpdateBeneficiaryRequest.php',
-      51 => '/var/www/html/app/Http/Requests/Registry/UpdateHouseholdRequest.php',
-      52 => '/var/www/html/app/Http/Requests/Registry/UploadDocumentRequest.php',
-      53 => '/var/www/html/app/Http/Requests/Registry/UploadImportRequest.php',
-      54 => '/var/www/html/app/Http/Resources/UserResource.php',
-      55 => '/var/www/html/app/Providers/AppServiceProvider.php',
+      15 => '/var/www/html/app/Domain/Matching/Models/MatchingConfig.php',
+      16 => '/var/www/html/app/Domain/Matching/Services/MatchingConfigService.php',
+      17 => '/var/www/html/app/Domain/Registry/Jobs/CommitImportBatch.php',
+      18 => '/var/www/html/app/Domain/Registry/Models/BeneficiaryDocument.php',
+      19 => '/var/www/html/app/Domain/Registry/Models/ImportBatch.php',
+      20 => '/var/www/html/app/Domain/Registry/Models/OwnershipTransferRequest.php',
+      21 => '/var/www/html/app/Domain/Registry/Policies/BeneficiaryDocumentPolicy.php',
+      22 => '/var/www/html/app/Domain/Registry/Policies/BeneficiaryPolicy.php',
+      23 => '/var/www/html/app/Domain/Registry/Policies/HouseholdPolicy.php',
+      24 => '/var/www/html/app/Domain/Registry/Policies/ImportBatchPolicy.php',
+      25 => '/var/www/html/app/Domain/Registry/Services/OwnershipTransferService.php',
+      26 => '/var/www/html/app/Http/Controllers/Api/V1/Access/AccessController.php',
+      27 => '/var/www/html/app/Http/Controllers/Api/V1/Access/MdaAccessGrantController.php',
+      28 => '/var/www/html/app/Http/Controllers/Api/V1/Access/UserController.php',
+      29 => '/var/www/html/app/Http/Controllers/Api/V1/AuthController.php',
+      30 => '/var/www/html/app/Http/Controllers/Api/V1/Matching/MatchingConfigController.php',
+      31 => '/var/www/html/app/Http/Controllers/Api/V1/MfaController.php',
+      32 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/BeneficiaryDocumentController.php',
+      33 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/BeneficiaryIntakeController.php',
+      34 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/ImportBatchController.php',
+      35 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/OwnershipTransferController.php',
+      36 => '/var/www/html/app/Http/Middleware/CheckPermission.php',
+      37 => '/var/www/html/app/Http/Requests/Access/StoreMdaAccessGrantRequest.php',
+      38 => '/var/www/html/app/Http/Requests/Access/StoreMdaRequest.php',
+      39 => '/var/www/html/app/Http/Requests/Access/StoreUserRequest.php',
+      40 => '/var/www/html/app/Http/Requests/Access/UpdateMdaRequest.php',
+      41 => '/var/www/html/app/Http/Requests/Access/UpdateUserRequest.php',
+      42 => '/var/www/html/app/Http/Requests/Auth/ChangePasswordRequest.php',
+      43 => '/var/www/html/app/Http/Requests/Auth/MfaCodeRequest.php',
+      44 => '/var/www/html/app/Http/Requests/Matching/UpdateMatchingConfigRequest.php',
+      45 => '/var/www/html/app/Http/Requests/Registry/AddHouseholdMemberRequest.php',
+      46 => '/var/www/html/app/Http/Requests/Registry/ApiRegistrationRequest.php',
+      47 => '/var/www/html/app/Http/Requests/Registry/BeneficiaryLookupRequest.php',
+      48 => '/var/www/html/app/Http/Requests/Registry/DecideOwnershipTransferRequest.php',
+      49 => '/var/www/html/app/Http/Requests/Registry/DesignateHeadRequest.php',
+      50 => '/var/www/html/app/Http/Requests/Registry/MoveHouseholdMemberRequest.php',
+      51 => '/var/www/html/app/Http/Requests/Registry/StoreBeneficiaryRequest.php',
+      52 => '/var/www/html/app/Http/Requests/Registry/StoreHouseholdRequest.php',
+      53 => '/var/www/html/app/Http/Requests/Registry/StoreOwnershipTransferRequest.php',
+      54 => '/var/www/html/app/Http/Requests/Registry/UpdateBeneficiaryRequest.php',
+      55 => '/var/www/html/app/Http/Requests/Registry/UpdateHouseholdRequest.php',
+      56 => '/var/www/html/app/Http/Requests/Registry/UploadDocumentRequest.php',
+      57 => '/var/www/html/app/Http/Requests/Registry/UploadImportRequest.php',
+      58 => '/var/www/html/app/Http/Resources/UserResource.php',
+      59 => '/var/www/html/app/Providers/AppServiceProvider.php',
     ),
   ),
   '/var/www/html/app/Domain/Access/Models/User.php' => 
@@ -8328,51 +9080,63 @@ return [
       10 => '/var/www/html/app/Domain/Access/Services/AuthTokenIssuer.php',
       11 => '/var/www/html/app/Domain/Audit/Listeners/AuditEventSubscriber.php',
       12 => '/var/www/html/app/Domain/Audit/Services/AuditLogger.php',
-      13 => '/var/www/html/app/Domain/Registry/Jobs/CommitImportBatch.php',
-      14 => '/var/www/html/app/Domain/Registry/Jobs/ParseImportBatch.php',
-      15 => '/var/www/html/app/Domain/Registry/Models/BeneficiaryDocument.php',
-      16 => '/var/www/html/app/Domain/Registry/Models/ImportBatch.php',
-      17 => '/var/www/html/app/Domain/Registry/Models/ImportRow.php',
-      18 => '/var/www/html/app/Domain/Registry/Models/OwnershipTransferRequest.php',
-      19 => '/var/www/html/app/Domain/Registry/Policies/BeneficiaryDocumentPolicy.php',
-      20 => '/var/www/html/app/Domain/Registry/Policies/BeneficiaryPolicy.php',
-      21 => '/var/www/html/app/Domain/Registry/Policies/HouseholdPolicy.php',
-      22 => '/var/www/html/app/Domain/Registry/Policies/ImportBatchPolicy.php',
-      23 => '/var/www/html/app/Domain/Registry/RegistryServiceProvider.php',
-      24 => '/var/www/html/app/Domain/Registry/Services/OwnershipTransferService.php',
-      25 => '/var/www/html/app/Http/Controllers/Api/V1/Access/MdaAccessGrantController.php',
-      26 => '/var/www/html/app/Http/Controllers/Api/V1/Access/UserController.php',
-      27 => '/var/www/html/app/Http/Controllers/Api/V1/AuthController.php',
-      28 => '/var/www/html/app/Http/Controllers/Api/V1/MfaController.php',
-      29 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/BeneficiaryDocumentController.php',
-      30 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/BeneficiaryIntakeController.php',
-      31 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/ImportBatchController.php',
-      32 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/OwnershipTransferController.php',
-      33 => '/var/www/html/app/Http/Middleware/CheckPermission.php',
-      34 => '/var/www/html/app/Http/Requests/Access/StoreMdaAccessGrantRequest.php',
-      35 => '/var/www/html/app/Http/Requests/Access/StoreMdaRequest.php',
-      36 => '/var/www/html/app/Http/Requests/Access/StoreUserRequest.php',
-      37 => '/var/www/html/app/Http/Requests/Access/UpdateMdaRequest.php',
-      38 => '/var/www/html/app/Http/Requests/Access/UpdateUserRequest.php',
-      39 => '/var/www/html/app/Http/Requests/Auth/ChangePasswordRequest.php',
-      40 => '/var/www/html/app/Http/Requests/Auth/MfaCodeRequest.php',
-      41 => '/var/www/html/app/Http/Requests/Registry/AddHouseholdMemberRequest.php',
-      42 => '/var/www/html/app/Http/Requests/Registry/ApiRegistrationRequest.php',
-      43 => '/var/www/html/app/Http/Requests/Registry/BeneficiaryLookupRequest.php',
-      44 => '/var/www/html/app/Http/Requests/Registry/DecideOwnershipTransferRequest.php',
-      45 => '/var/www/html/app/Http/Requests/Registry/DesignateHeadRequest.php',
-      46 => '/var/www/html/app/Http/Requests/Registry/MoveHouseholdMemberRequest.php',
-      47 => '/var/www/html/app/Http/Requests/Registry/StoreBeneficiaryRequest.php',
-      48 => '/var/www/html/app/Http/Requests/Registry/StoreHouseholdRequest.php',
-      49 => '/var/www/html/app/Http/Requests/Registry/StoreOwnershipTransferRequest.php',
-      50 => '/var/www/html/app/Http/Requests/Registry/UpdateBeneficiaryRequest.php',
-      51 => '/var/www/html/app/Http/Requests/Registry/UpdateHouseholdRequest.php',
-      52 => '/var/www/html/app/Http/Requests/Registry/UploadDocumentRequest.php',
-      53 => '/var/www/html/app/Http/Requests/Registry/UploadImportRequest.php',
-      54 => '/var/www/html/app/Http/Resources/BeneficiaryDocumentResource.php',
-      55 => '/var/www/html/app/Http/Resources/ImportBatchResource.php',
-      56 => '/var/www/html/app/Http/Resources/UserResource.php',
-      57 => '/var/www/html/app/Providers/AppServiceProvider.php',
+      13 => '/var/www/html/app/Domain/Matching/Contracts/MatchScorer.php',
+      14 => '/var/www/html/app/Domain/Matching/Engine/DeterministicMatcher.php',
+      15 => '/var/www/html/app/Domain/Matching/Engine/MatchingEngine.php',
+      16 => '/var/www/html/app/Domain/Matching/Models/MatchingConfig.php',
+      17 => '/var/www/html/app/Domain/Matching/Scoring/RuleBasedMatchScorer.php',
+      18 => '/var/www/html/app/Domain/Matching/Services/MatchingConfigService.php',
+      19 => '/var/www/html/app/Domain/Registry/Jobs/CommitImportBatch.php',
+      20 => '/var/www/html/app/Domain/Registry/Jobs/ParseImportBatch.php',
+      21 => '/var/www/html/app/Domain/Registry/Models/BeneficiaryDocument.php',
+      22 => '/var/www/html/app/Domain/Registry/Models/ImportBatch.php',
+      23 => '/var/www/html/app/Domain/Registry/Models/ImportRow.php',
+      24 => '/var/www/html/app/Domain/Registry/Models/OwnershipTransferRequest.php',
+      25 => '/var/www/html/app/Domain/Registry/Policies/BeneficiaryDocumentPolicy.php',
+      26 => '/var/www/html/app/Domain/Registry/Policies/BeneficiaryPolicy.php',
+      27 => '/var/www/html/app/Domain/Registry/Policies/HouseholdPolicy.php',
+      28 => '/var/www/html/app/Domain/Registry/Policies/ImportBatchPolicy.php',
+      29 => '/var/www/html/app/Domain/Registry/RegistryServiceProvider.php',
+      30 => '/var/www/html/app/Domain/Registry/Services/CandidateGatherer.php',
+      31 => '/var/www/html/app/Domain/Registry/Services/DeterministicDuplicateFinder.php',
+      32 => '/var/www/html/app/Domain/Registry/Services/FuzzyDuplicateFinder.php',
+      33 => '/var/www/html/app/Domain/Registry/Services/OwnershipTransferService.php',
+      34 => '/var/www/html/app/Http/Controllers/Api/V1/Access/MdaAccessGrantController.php',
+      35 => '/var/www/html/app/Http/Controllers/Api/V1/Access/UserController.php',
+      36 => '/var/www/html/app/Http/Controllers/Api/V1/AuthController.php',
+      37 => '/var/www/html/app/Http/Controllers/Api/V1/Matching/MatchingConfigController.php',
+      38 => '/var/www/html/app/Http/Controllers/Api/V1/MfaController.php',
+      39 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/BeneficiaryDocumentController.php',
+      40 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/BeneficiaryIntakeController.php',
+      41 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/ImportBatchController.php',
+      42 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/OwnershipTransferController.php',
+      43 => '/var/www/html/app/Http/Middleware/CheckPermission.php',
+      44 => '/var/www/html/app/Http/Requests/Access/StoreMdaAccessGrantRequest.php',
+      45 => '/var/www/html/app/Http/Requests/Access/StoreMdaRequest.php',
+      46 => '/var/www/html/app/Http/Requests/Access/StoreUserRequest.php',
+      47 => '/var/www/html/app/Http/Requests/Access/UpdateMdaRequest.php',
+      48 => '/var/www/html/app/Http/Requests/Access/UpdateUserRequest.php',
+      49 => '/var/www/html/app/Http/Requests/Auth/ChangePasswordRequest.php',
+      50 => '/var/www/html/app/Http/Requests/Auth/MfaCodeRequest.php',
+      51 => '/var/www/html/app/Http/Requests/Matching/UpdateMatchingConfigRequest.php',
+      52 => '/var/www/html/app/Http/Requests/Registry/AddHouseholdMemberRequest.php',
+      53 => '/var/www/html/app/Http/Requests/Registry/ApiRegistrationRequest.php',
+      54 => '/var/www/html/app/Http/Requests/Registry/BeneficiaryLookupRequest.php',
+      55 => '/var/www/html/app/Http/Requests/Registry/DecideOwnershipTransferRequest.php',
+      56 => '/var/www/html/app/Http/Requests/Registry/DesignateHeadRequest.php',
+      57 => '/var/www/html/app/Http/Requests/Registry/MoveHouseholdMemberRequest.php',
+      58 => '/var/www/html/app/Http/Requests/Registry/StoreBeneficiaryRequest.php',
+      59 => '/var/www/html/app/Http/Requests/Registry/StoreHouseholdRequest.php',
+      60 => '/var/www/html/app/Http/Requests/Registry/StoreOwnershipTransferRequest.php',
+      61 => '/var/www/html/app/Http/Requests/Registry/UpdateBeneficiaryRequest.php',
+      62 => '/var/www/html/app/Http/Requests/Registry/UpdateHouseholdRequest.php',
+      63 => '/var/www/html/app/Http/Requests/Registry/UploadDocumentRequest.php',
+      64 => '/var/www/html/app/Http/Requests/Registry/UploadImportRequest.php',
+      65 => '/var/www/html/app/Http/Resources/BeneficiaryDocumentResource.php',
+      66 => '/var/www/html/app/Http/Resources/ImportBatchResource.php',
+      67 => '/var/www/html/app/Http/Resources/MatchingConfigResource.php',
+      68 => '/var/www/html/app/Http/Resources/UserResource.php',
+      69 => '/var/www/html/app/Providers/AppServiceProvider.php',
     ),
   ),
   '/var/www/html/app/Domain/Access/Scopes/MdaScope.php' => 
@@ -8390,15 +9154,17 @@ return [
       7 => '/var/www/html/app/Domain/Registry/Models/ImportBatch.php',
       8 => '/var/www/html/app/Domain/Registry/Services/BeneficiaryLookupService.php',
       9 => '/var/www/html/app/Domain/Registry/Services/BeneficiaryRegistrar.php',
-      10 => '/var/www/html/app/Domain/Registry/Services/HouseholdIngestionService.php',
-      11 => '/var/www/html/app/Domain/Registry/Services/HouseholdMembershipService.php',
-      12 => '/var/www/html/app/Domain/Registry/Services/OwnershipTransferService.php',
-      13 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/BeneficiaryController.php',
-      14 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/BeneficiaryDocumentController.php',
-      15 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/HouseholdController.php',
-      16 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/HouseholdMemberController.php',
-      17 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/ImportBatchController.php',
-      18 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/OwnershipTransferController.php',
+      10 => '/var/www/html/app/Domain/Registry/Services/CandidateGatherer.php',
+      11 => '/var/www/html/app/Domain/Registry/Services/DeterministicDuplicateFinder.php',
+      12 => '/var/www/html/app/Domain/Registry/Services/HouseholdIngestionService.php',
+      13 => '/var/www/html/app/Domain/Registry/Services/HouseholdMembershipService.php',
+      14 => '/var/www/html/app/Domain/Registry/Services/OwnershipTransferService.php',
+      15 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/BeneficiaryController.php',
+      16 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/BeneficiaryDocumentController.php',
+      17 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/HouseholdController.php',
+      18 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/HouseholdMemberController.php',
+      19 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/ImportBatchController.php',
+      20 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/OwnershipTransferController.php',
     ),
   ),
   '/var/www/html/app/Domain/Access/Services/AuthTokenIssuer.php' => 
@@ -8442,7 +9208,8 @@ return [
     array (
       0 => '/var/www/html/app/Domain/Access/AccessServiceProvider.php',
       1 => '/var/www/html/app/Domain/Access/Services/PermissionSynchronizer.php',
-      2 => '/var/www/html/app/Domain/Registry/RegistryServiceProvider.php',
+      2 => '/var/www/html/app/Domain/Matching/MatchingServiceProvider.php',
+      3 => '/var/www/html/app/Domain/Registry/RegistryServiceProvider.php',
     ),
   ),
   '/var/www/html/app/Domain/Access/Support/TokenAbility.php' => 
@@ -8475,84 +9242,97 @@ return [
       13 => '/var/www/html/app/Domain/Access/Services/AuthTokenIssuer.php',
       14 => '/var/www/html/app/Domain/Audit/Listeners/AuditEventSubscriber.php',
       15 => '/var/www/html/app/Domain/Audit/Services/AuditLogger.php',
-      16 => '/var/www/html/app/Domain/Registry/Contracts/BeneficiaryRouter.php',
-      17 => '/var/www/html/app/Domain/Registry/Imports/ImportRowValidator.php',
-      18 => '/var/www/html/app/Domain/Registry/Jobs/CommitImportBatch.php',
-      19 => '/var/www/html/app/Domain/Registry/Jobs/ParseImportBatch.php',
-      20 => '/var/www/html/app/Domain/Registry/Models/Beneficiary.php',
-      21 => '/var/www/html/app/Domain/Registry/Models/BeneficiaryDocument.php',
-      22 => '/var/www/html/app/Domain/Registry/Models/Household.php',
-      23 => '/var/www/html/app/Domain/Registry/Models/HouseholdMembership.php',
-      24 => '/var/www/html/app/Domain/Registry/Models/ImportBatch.php',
-      25 => '/var/www/html/app/Domain/Registry/Models/ImportRow.php',
-      26 => '/var/www/html/app/Domain/Registry/Models/OwnershipTransferRequest.php',
-      27 => '/var/www/html/app/Domain/Registry/Policies/BeneficiaryDocumentPolicy.php',
-      28 => '/var/www/html/app/Domain/Registry/Policies/BeneficiaryPolicy.php',
-      29 => '/var/www/html/app/Domain/Registry/Policies/HouseholdPolicy.php',
-      30 => '/var/www/html/app/Domain/Registry/Policies/ImportBatchPolicy.php',
-      31 => '/var/www/html/app/Domain/Registry/RegistryServiceProvider.php',
-      32 => '/var/www/html/app/Domain/Registry/Services/BeneficiaryLookupService.php',
-      33 => '/var/www/html/app/Domain/Registry/Services/BeneficiaryRegistrar.php',
-      34 => '/var/www/html/app/Domain/Registry/Services/HouseholdIngestionService.php',
-      35 => '/var/www/html/app/Domain/Registry/Services/HouseholdMembershipService.php',
-      36 => '/var/www/html/app/Domain/Registry/Services/NullBeneficiaryRouter.php',
-      37 => '/var/www/html/app/Domain/Registry/Services/OwnershipTransferService.php',
-      38 => '/var/www/html/app/Http/Controllers/Api/V1/Access/AccessController.php',
-      39 => '/var/www/html/app/Http/Controllers/Api/V1/Access/MdaAccessGrantController.php',
-      40 => '/var/www/html/app/Http/Controllers/Api/V1/Access/MdaController.php',
-      41 => '/var/www/html/app/Http/Controllers/Api/V1/Access/UserController.php',
-      42 => '/var/www/html/app/Http/Controllers/Api/V1/AuthController.php',
-      43 => '/var/www/html/app/Http/Controllers/Api/V1/MfaController.php',
-      44 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/BeneficiaryController.php',
-      45 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/BeneficiaryDocumentController.php',
-      46 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/BeneficiaryIntakeController.php',
-      47 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/HouseholdController.php',
-      48 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/HouseholdMemberController.php',
-      49 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/ImportBatchController.php',
-      50 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/OwnershipTransferController.php',
-      51 => '/var/www/html/app/Http/Middleware/CheckPermission.php',
-      52 => '/var/www/html/app/Http/Requests/Access/StoreMdaAccessGrantRequest.php',
-      53 => '/var/www/html/app/Http/Requests/Access/StoreMdaRequest.php',
-      54 => '/var/www/html/app/Http/Requests/Access/StoreUserRequest.php',
-      55 => '/var/www/html/app/Http/Requests/Access/UpdateMdaRequest.php',
-      56 => '/var/www/html/app/Http/Requests/Access/UpdateUserRequest.php',
-      57 => '/var/www/html/app/Http/Requests/Auth/ChangePasswordRequest.php',
-      58 => '/var/www/html/app/Http/Requests/Auth/MfaCodeRequest.php',
-      59 => '/var/www/html/app/Http/Requests/Registry/AddHouseholdMemberRequest.php',
-      60 => '/var/www/html/app/Http/Requests/Registry/ApiRegistrationRequest.php',
-      61 => '/var/www/html/app/Http/Requests/Registry/BeneficiaryLookupRequest.php',
-      62 => '/var/www/html/app/Http/Requests/Registry/DecideOwnershipTransferRequest.php',
-      63 => '/var/www/html/app/Http/Requests/Registry/DesignateHeadRequest.php',
-      64 => '/var/www/html/app/Http/Requests/Registry/MoveHouseholdMemberRequest.php',
-      65 => '/var/www/html/app/Http/Requests/Registry/StoreBeneficiaryRequest.php',
-      66 => '/var/www/html/app/Http/Requests/Registry/StoreHouseholdRequest.php',
-      67 => '/var/www/html/app/Http/Requests/Registry/StoreOwnershipTransferRequest.php',
-      68 => '/var/www/html/app/Http/Requests/Registry/UpdateBeneficiaryRequest.php',
-      69 => '/var/www/html/app/Http/Requests/Registry/UpdateHouseholdRequest.php',
-      70 => '/var/www/html/app/Http/Requests/Registry/UploadDocumentRequest.php',
-      71 => '/var/www/html/app/Http/Requests/Registry/UploadImportRequest.php',
-      72 => '/var/www/html/app/Http/Resources/BeneficiaryDocumentResource.php',
-      73 => '/var/www/html/app/Http/Resources/BeneficiaryResource.php',
-      74 => '/var/www/html/app/Http/Resources/BeneficiaryRevealResource.php',
-      75 => '/var/www/html/app/Http/Resources/HouseholdMembershipResource.php',
-      76 => '/var/www/html/app/Http/Resources/HouseholdResource.php',
-      77 => '/var/www/html/app/Http/Resources/ImportBatchResource.php',
-      78 => '/var/www/html/app/Http/Resources/MdaResource.php',
-      79 => '/var/www/html/app/Http/Resources/OwnershipTransferResource.php',
-      80 => '/var/www/html/app/Http/Resources/UserResource.php',
-      81 => '/var/www/html/app/Providers/AppServiceProvider.php',
+      16 => '/var/www/html/app/Domain/Matching/Contracts/MatchScorer.php',
+      17 => '/var/www/html/app/Domain/Matching/Engine/DeterministicMatcher.php',
+      18 => '/var/www/html/app/Domain/Matching/Engine/MatchingEngine.php',
+      19 => '/var/www/html/app/Domain/Matching/Models/MatchingConfig.php',
+      20 => '/var/www/html/app/Domain/Matching/Scoring/RuleBasedMatchScorer.php',
+      21 => '/var/www/html/app/Domain/Matching/Services/MatchingConfigService.php',
+      22 => '/var/www/html/app/Domain/Registry/Contracts/BeneficiaryRouter.php',
+      23 => '/var/www/html/app/Domain/Registry/Imports/ImportRowValidator.php',
+      24 => '/var/www/html/app/Domain/Registry/Jobs/CommitImportBatch.php',
+      25 => '/var/www/html/app/Domain/Registry/Jobs/ParseImportBatch.php',
+      26 => '/var/www/html/app/Domain/Registry/Models/Beneficiary.php',
+      27 => '/var/www/html/app/Domain/Registry/Models/BeneficiaryDocument.php',
+      28 => '/var/www/html/app/Domain/Registry/Models/Household.php',
+      29 => '/var/www/html/app/Domain/Registry/Models/HouseholdMembership.php',
+      30 => '/var/www/html/app/Domain/Registry/Models/ImportBatch.php',
+      31 => '/var/www/html/app/Domain/Registry/Models/ImportRow.php',
+      32 => '/var/www/html/app/Domain/Registry/Models/OwnershipTransferRequest.php',
+      33 => '/var/www/html/app/Domain/Registry/Policies/BeneficiaryDocumentPolicy.php',
+      34 => '/var/www/html/app/Domain/Registry/Policies/BeneficiaryPolicy.php',
+      35 => '/var/www/html/app/Domain/Registry/Policies/HouseholdPolicy.php',
+      36 => '/var/www/html/app/Domain/Registry/Policies/ImportBatchPolicy.php',
+      37 => '/var/www/html/app/Domain/Registry/RegistryServiceProvider.php',
+      38 => '/var/www/html/app/Domain/Registry/Services/BeneficiaryLookupService.php',
+      39 => '/var/www/html/app/Domain/Registry/Services/BeneficiaryRegistrar.php',
+      40 => '/var/www/html/app/Domain/Registry/Services/CandidateGatherer.php',
+      41 => '/var/www/html/app/Domain/Registry/Services/DeterministicDuplicateFinder.php',
+      42 => '/var/www/html/app/Domain/Registry/Services/FuzzyDuplicateFinder.php',
+      43 => '/var/www/html/app/Domain/Registry/Services/HouseholdIngestionService.php',
+      44 => '/var/www/html/app/Domain/Registry/Services/HouseholdMembershipService.php',
+      45 => '/var/www/html/app/Domain/Registry/Services/NullBeneficiaryRouter.php',
+      46 => '/var/www/html/app/Domain/Registry/Services/OwnershipTransferService.php',
+      47 => '/var/www/html/app/Http/Controllers/Api/V1/Access/AccessController.php',
+      48 => '/var/www/html/app/Http/Controllers/Api/V1/Access/MdaAccessGrantController.php',
+      49 => '/var/www/html/app/Http/Controllers/Api/V1/Access/MdaController.php',
+      50 => '/var/www/html/app/Http/Controllers/Api/V1/Access/UserController.php',
+      51 => '/var/www/html/app/Http/Controllers/Api/V1/AuthController.php',
+      52 => '/var/www/html/app/Http/Controllers/Api/V1/Matching/MatchingConfigController.php',
+      53 => '/var/www/html/app/Http/Controllers/Api/V1/MfaController.php',
+      54 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/BeneficiaryController.php',
+      55 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/BeneficiaryDocumentController.php',
+      56 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/BeneficiaryIntakeController.php',
+      57 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/HouseholdController.php',
+      58 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/HouseholdMemberController.php',
+      59 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/ImportBatchController.php',
+      60 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/OwnershipTransferController.php',
+      61 => '/var/www/html/app/Http/Middleware/CheckPermission.php',
+      62 => '/var/www/html/app/Http/Requests/Access/StoreMdaAccessGrantRequest.php',
+      63 => '/var/www/html/app/Http/Requests/Access/StoreMdaRequest.php',
+      64 => '/var/www/html/app/Http/Requests/Access/StoreUserRequest.php',
+      65 => '/var/www/html/app/Http/Requests/Access/UpdateMdaRequest.php',
+      66 => '/var/www/html/app/Http/Requests/Access/UpdateUserRequest.php',
+      67 => '/var/www/html/app/Http/Requests/Auth/ChangePasswordRequest.php',
+      68 => '/var/www/html/app/Http/Requests/Auth/MfaCodeRequest.php',
+      69 => '/var/www/html/app/Http/Requests/Matching/UpdateMatchingConfigRequest.php',
+      70 => '/var/www/html/app/Http/Requests/Registry/AddHouseholdMemberRequest.php',
+      71 => '/var/www/html/app/Http/Requests/Registry/ApiRegistrationRequest.php',
+      72 => '/var/www/html/app/Http/Requests/Registry/BeneficiaryLookupRequest.php',
+      73 => '/var/www/html/app/Http/Requests/Registry/DecideOwnershipTransferRequest.php',
+      74 => '/var/www/html/app/Http/Requests/Registry/DesignateHeadRequest.php',
+      75 => '/var/www/html/app/Http/Requests/Registry/MoveHouseholdMemberRequest.php',
+      76 => '/var/www/html/app/Http/Requests/Registry/StoreBeneficiaryRequest.php',
+      77 => '/var/www/html/app/Http/Requests/Registry/StoreHouseholdRequest.php',
+      78 => '/var/www/html/app/Http/Requests/Registry/StoreOwnershipTransferRequest.php',
+      79 => '/var/www/html/app/Http/Requests/Registry/UpdateBeneficiaryRequest.php',
+      80 => '/var/www/html/app/Http/Requests/Registry/UpdateHouseholdRequest.php',
+      81 => '/var/www/html/app/Http/Requests/Registry/UploadDocumentRequest.php',
+      82 => '/var/www/html/app/Http/Requests/Registry/UploadImportRequest.php',
+      83 => '/var/www/html/app/Http/Resources/BeneficiaryDocumentResource.php',
+      84 => '/var/www/html/app/Http/Resources/BeneficiaryResource.php',
+      85 => '/var/www/html/app/Http/Resources/BeneficiaryRevealResource.php',
+      86 => '/var/www/html/app/Http/Resources/HouseholdMembershipResource.php',
+      87 => '/var/www/html/app/Http/Resources/HouseholdResource.php',
+      88 => '/var/www/html/app/Http/Resources/ImportBatchResource.php',
+      89 => '/var/www/html/app/Http/Resources/MatchingConfigResource.php',
+      90 => '/var/www/html/app/Http/Resources/MdaResource.php',
+      91 => '/var/www/html/app/Http/Resources/OwnershipTransferResource.php',
+      92 => '/var/www/html/app/Http/Resources/UserResource.php',
+      93 => '/var/www/html/app/Providers/AppServiceProvider.php',
     ),
     'usedTraitDependentFiles' => 
     array (
       0 => '/var/www/html/app/Domain/Access/Models/Mda.php',
       1 => '/var/www/html/app/Domain/Access/Models/Role.php',
       2 => '/var/www/html/app/Domain/Access/Models/User.php',
-      3 => '/var/www/html/app/Domain/Registry/Models/Beneficiary.php',
-      4 => '/var/www/html/app/Domain/Registry/Models/BeneficiaryDocument.php',
-      5 => '/var/www/html/app/Domain/Registry/Models/Household.php',
-      6 => '/var/www/html/app/Domain/Registry/Models/HouseholdMembership.php',
-      7 => '/var/www/html/app/Domain/Registry/Models/ImportBatch.php',
-      8 => '/var/www/html/app/Domain/Registry/Models/OwnershipTransferRequest.php',
+      3 => '/var/www/html/app/Domain/Matching/Models/MatchingConfig.php',
+      4 => '/var/www/html/app/Domain/Registry/Models/Beneficiary.php',
+      5 => '/var/www/html/app/Domain/Registry/Models/BeneficiaryDocument.php',
+      6 => '/var/www/html/app/Domain/Registry/Models/Household.php',
+      7 => '/var/www/html/app/Domain/Registry/Models/HouseholdMembership.php',
+      8 => '/var/www/html/app/Domain/Registry/Models/ImportBatch.php',
+      9 => '/var/www/html/app/Domain/Registry/Models/OwnershipTransferRequest.php',
     ),
   ),
   '/var/www/html/app/Domain/Audit/Listeners/AuditEventSubscriber.php' => 
@@ -8574,6 +9354,33 @@ return [
       3 => '/var/www/html/app/Domain/Access/Services/AuthTokenIssuer.php',
       4 => '/var/www/html/app/Domain/Audit/Listeners/AuditEventSubscriber.php',
       5 => '/var/www/html/app/Domain/Audit/Services/AuditLogger.php',
+      6 => '/var/www/html/app/Domain/Matching/Models/MatchingConfig.php',
+      7 => '/var/www/html/app/Domain/Registry/Models/Beneficiary.php',
+      8 => '/var/www/html/app/Domain/Registry/Models/BeneficiaryDocument.php',
+      9 => '/var/www/html/app/Domain/Registry/Models/Household.php',
+      10 => '/var/www/html/app/Domain/Registry/Models/HouseholdMembership.php',
+      11 => '/var/www/html/app/Domain/Registry/Models/ImportBatch.php',
+      12 => '/var/www/html/app/Domain/Registry/Models/OwnershipTransferRequest.php',
+      13 => '/var/www/html/app/Domain/Registry/Services/BeneficiaryLookupService.php',
+      14 => '/var/www/html/app/Domain/Registry/Services/HouseholdIngestionService.php',
+      15 => '/var/www/html/app/Domain/Registry/Services/HouseholdMembershipService.php',
+      16 => '/var/www/html/app/Domain/Registry/Services/OwnershipTransferService.php',
+      17 => '/var/www/html/app/Http/Controllers/Api/V1/Access/UserController.php',
+      18 => '/var/www/html/app/Http/Controllers/Api/V1/AuthController.php',
+      19 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/BeneficiaryDocumentController.php',
+    ),
+  ),
+  '/var/www/html/app/Domain/Audit/Services/AuditLogger.php' => 
+  array (
+    'fileHash' => 'b7dd721cd0160cc94e7476c7e7a234701571466bcbc26b044a3710f54477c753',
+    'dependentFiles' => 
+    array (
+      0 => '/var/www/html/app/Domain/Access/Models/Mda.php',
+      1 => '/var/www/html/app/Domain/Access/Models/Role.php',
+      2 => '/var/www/html/app/Domain/Access/Models/User.php',
+      3 => '/var/www/html/app/Domain/Access/Services/AuthTokenIssuer.php',
+      4 => '/var/www/html/app/Domain/Audit/Listeners/AuditEventSubscriber.php',
+      5 => '/var/www/html/app/Domain/Matching/Models/MatchingConfig.php',
       6 => '/var/www/html/app/Domain/Registry/Models/Beneficiary.php',
       7 => '/var/www/html/app/Domain/Registry/Models/BeneficiaryDocument.php',
       8 => '/var/www/html/app/Domain/Registry/Models/Household.php',
@@ -8589,31 +9396,6 @@ return [
       18 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/BeneficiaryDocumentController.php',
     ),
   ),
-  '/var/www/html/app/Domain/Audit/Services/AuditLogger.php' => 
-  array (
-    'fileHash' => 'b7dd721cd0160cc94e7476c7e7a234701571466bcbc26b044a3710f54477c753',
-    'dependentFiles' => 
-    array (
-      0 => '/var/www/html/app/Domain/Access/Models/Mda.php',
-      1 => '/var/www/html/app/Domain/Access/Models/Role.php',
-      2 => '/var/www/html/app/Domain/Access/Models/User.php',
-      3 => '/var/www/html/app/Domain/Access/Services/AuthTokenIssuer.php',
-      4 => '/var/www/html/app/Domain/Audit/Listeners/AuditEventSubscriber.php',
-      5 => '/var/www/html/app/Domain/Registry/Models/Beneficiary.php',
-      6 => '/var/www/html/app/Domain/Registry/Models/BeneficiaryDocument.php',
-      7 => '/var/www/html/app/Domain/Registry/Models/Household.php',
-      8 => '/var/www/html/app/Domain/Registry/Models/HouseholdMembership.php',
-      9 => '/var/www/html/app/Domain/Registry/Models/ImportBatch.php',
-      10 => '/var/www/html/app/Domain/Registry/Models/OwnershipTransferRequest.php',
-      11 => '/var/www/html/app/Domain/Registry/Services/BeneficiaryLookupService.php',
-      12 => '/var/www/html/app/Domain/Registry/Services/HouseholdIngestionService.php',
-      13 => '/var/www/html/app/Domain/Registry/Services/HouseholdMembershipService.php',
-      14 => '/var/www/html/app/Domain/Registry/Services/OwnershipTransferService.php',
-      15 => '/var/www/html/app/Http/Controllers/Api/V1/Access/UserController.php',
-      16 => '/var/www/html/app/Http/Controllers/Api/V1/AuthController.php',
-      17 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/BeneficiaryDocumentController.php',
-    ),
-  ),
   '/var/www/html/app/Domain/Audit/Support/AuditScrubber.php' => 
   array (
     'fileHash' => '450d4882876ee6f46e74c731ee46cb3beb13efbcfe09ee4865142e7d9f9f1a14',
@@ -8622,12 +9404,235 @@ return [
       0 => '/var/www/html/app/Domain/Access/Models/Mda.php',
       1 => '/var/www/html/app/Domain/Access/Models/Role.php',
       2 => '/var/www/html/app/Domain/Access/Models/User.php',
-      3 => '/var/www/html/app/Domain/Registry/Models/Beneficiary.php',
-      4 => '/var/www/html/app/Domain/Registry/Models/BeneficiaryDocument.php',
-      5 => '/var/www/html/app/Domain/Registry/Models/Household.php',
-      6 => '/var/www/html/app/Domain/Registry/Models/HouseholdMembership.php',
-      7 => '/var/www/html/app/Domain/Registry/Models/ImportBatch.php',
-      8 => '/var/www/html/app/Domain/Registry/Models/OwnershipTransferRequest.php',
+      3 => '/var/www/html/app/Domain/Matching/Models/MatchingConfig.php',
+      4 => '/var/www/html/app/Domain/Registry/Models/Beneficiary.php',
+      5 => '/var/www/html/app/Domain/Registry/Models/BeneficiaryDocument.php',
+      6 => '/var/www/html/app/Domain/Registry/Models/Household.php',
+      7 => '/var/www/html/app/Domain/Registry/Models/HouseholdMembership.php',
+      8 => '/var/www/html/app/Domain/Registry/Models/ImportBatch.php',
+      9 => '/var/www/html/app/Domain/Registry/Models/OwnershipTransferRequest.php',
+    ),
+  ),
+  '/var/www/html/app/Domain/Matching/Contracts/MatchScorer.php' => 
+  array (
+    'fileHash' => '6a50d61d435858d12704ccce8ddd03866c7b7f03fb80dd7bde921fc99e7dd470',
+    'dependentFiles' => 
+    array (
+      0 => '/var/www/html/app/Domain/Matching/Engine/MatchingEngine.php',
+      1 => '/var/www/html/app/Domain/Matching/MatchingServiceProvider.php',
+      2 => '/var/www/html/app/Domain/Matching/Scoring/RuleBasedMatchScorer.php',
+    ),
+  ),
+  '/var/www/html/app/Domain/Matching/Engine/DeterministicMatcher.php' => 
+  array (
+    'fileHash' => '0085d2d8c39e287423348cc5a81270149dd5946fb037a8959ac7a4f8215c60c4',
+    'dependentFiles' => 
+    array (
+      0 => '/var/www/html/app/Domain/Registry/Services/DeterministicDuplicateFinder.php',
+    ),
+  ),
+  '/var/www/html/app/Domain/Matching/Engine/MatchResult.php' => 
+  array (
+    'fileHash' => '177f277ebf6c6cfd5b06e57f8a399d6c0ce1aff2a936692670fc0c3288fa7f24',
+    'dependentFiles' => 
+    array (
+      0 => '/var/www/html/app/Domain/Matching/Engine/DeterministicMatcher.php',
+      1 => '/var/www/html/app/Domain/Matching/Engine/MatchingEngine.php',
+      2 => '/var/www/html/app/Domain/Registry/Services/DeterministicDuplicateFinder.php',
+      3 => '/var/www/html/app/Domain/Registry/Services/FuzzyDuplicateFinder.php',
+    ),
+  ),
+  '/var/www/html/app/Domain/Matching/Engine/MatchingEngine.php' => 
+  array (
+    'fileHash' => '50c2a21850f502653e9093a8aa73ae9be74cc2840fd577e73aba69d28d48a259',
+    'dependentFiles' => 
+    array (
+      0 => '/var/www/html/app/Domain/Registry/Services/FuzzyDuplicateFinder.php',
+    ),
+  ),
+  '/var/www/html/app/Domain/Matching/Enums/ExactMatchBehaviour.php' => 
+  array (
+    'fileHash' => '678a2388a77f2072a77bbef6b5c963f86773123cd014d6ad8fddd66808cd029d',
+    'dependentFiles' => 
+    array (
+      0 => '/var/www/html/app/Domain/Matching/Contracts/MatchScorer.php',
+      1 => '/var/www/html/app/Domain/Matching/Engine/DeterministicMatcher.php',
+      2 => '/var/www/html/app/Domain/Matching/Engine/MatchingEngine.php',
+      3 => '/var/www/html/app/Domain/Matching/Models/MatchingConfig.php',
+      4 => '/var/www/html/app/Domain/Matching/Scoring/RuleBasedMatchScorer.php',
+      5 => '/var/www/html/app/Domain/Matching/Services/MatchingConfigService.php',
+      6 => '/var/www/html/app/Domain/Registry/Services/CandidateGatherer.php',
+      7 => '/var/www/html/app/Domain/Registry/Services/DeterministicDuplicateFinder.php',
+      8 => '/var/www/html/app/Domain/Registry/Services/FuzzyDuplicateFinder.php',
+      9 => '/var/www/html/app/Http/Controllers/Api/V1/Matching/MatchingConfigController.php',
+      10 => '/var/www/html/app/Http/Requests/Matching/UpdateMatchingConfigRequest.php',
+      11 => '/var/www/html/app/Http/Resources/MatchingConfigResource.php',
+    ),
+  ),
+  '/var/www/html/app/Domain/Matching/Enums/MatchBand.php' => 
+  array (
+    'fileHash' => 'c86d1270a2ef9b07037fa032a7842d5ccb34906203636c5d274f8399b8da7b93',
+    'dependentFiles' => 
+    array (
+      0 => '/var/www/html/app/Domain/Matching/Engine/DeterministicMatcher.php',
+      1 => '/var/www/html/app/Domain/Matching/Engine/MatchResult.php',
+      2 => '/var/www/html/app/Domain/Matching/Engine/MatchingEngine.php',
+      3 => '/var/www/html/app/Domain/Registry/Services/FuzzyDuplicateFinder.php',
+    ),
+  ),
+  '/var/www/html/app/Domain/Matching/Enums/MatchComparator.php' => 
+  array (
+    'fileHash' => '9000507548e87cb5ed6edd4a7c765d9e5c0a37bf6500ae8d2f41ecd0e648d331',
+    'dependentFiles' => 
+    array (
+      0 => '/var/www/html/app/Domain/Matching/Scoring/Comparators/ComparatorRegistry.php',
+      1 => '/var/www/html/app/Http/Requests/Matching/UpdateMatchingConfigRequest.php',
+    ),
+  ),
+  '/var/www/html/app/Domain/Matching/Enums/MatchField.php' => 
+  array (
+    'fileHash' => '1683b93bb5a6c155bceb224a0e9ef3991c5217bb58ee097062eda8ed915ae50c',
+    'dependentFiles' => 
+    array (
+      0 => '/var/www/html/app/Domain/Matching/Scoring/FieldNormalizer.php',
+      1 => '/var/www/html/app/Http/Requests/Matching/UpdateMatchingConfigRequest.php',
+    ),
+  ),
+  '/var/www/html/app/Domain/Matching/MatchingServiceProvider.php' => 
+  array (
+    'fileHash' => 'cb1fbe7c85528c14a00f02cbb3c7f33993c3815913ae68b49ea71d401af4cec9',
+    'dependentFiles' => 
+    array (
+    ),
+  ),
+  '/var/www/html/app/Domain/Matching/Models/MatchingConfig.php' => 
+  array (
+    'fileHash' => '9cd6661890ca5fab9d7981b2008513e3963bf6ab1f66806dc733cbfd572fa7f3',
+    'dependentFiles' => 
+    array (
+      0 => '/var/www/html/app/Domain/Matching/Contracts/MatchScorer.php',
+      1 => '/var/www/html/app/Domain/Matching/Engine/DeterministicMatcher.php',
+      2 => '/var/www/html/app/Domain/Matching/Engine/MatchingEngine.php',
+      3 => '/var/www/html/app/Domain/Matching/Scoring/RuleBasedMatchScorer.php',
+      4 => '/var/www/html/app/Domain/Matching/Services/MatchingConfigService.php',
+      5 => '/var/www/html/app/Domain/Registry/Services/CandidateGatherer.php',
+      6 => '/var/www/html/app/Domain/Registry/Services/DeterministicDuplicateFinder.php',
+      7 => '/var/www/html/app/Domain/Registry/Services/FuzzyDuplicateFinder.php',
+      8 => '/var/www/html/app/Http/Controllers/Api/V1/Matching/MatchingConfigController.php',
+      9 => '/var/www/html/app/Http/Resources/MatchingConfigResource.php',
+    ),
+  ),
+  '/var/www/html/app/Domain/Matching/Scoring/Comparators/Comparator.php' => 
+  array (
+    'fileHash' => '740856faeb5ea82308fd6e030d4c97c711f900baf143252e379fd3869833b8b2',
+    'dependentFiles' => 
+    array (
+      0 => '/var/www/html/app/Domain/Matching/Scoring/Comparators/ComparatorRegistry.php',
+      1 => '/var/www/html/app/Domain/Matching/Scoring/Comparators/DateProximityComparator.php',
+      2 => '/var/www/html/app/Domain/Matching/Scoring/Comparators/ExactComparator.php',
+      3 => '/var/www/html/app/Domain/Matching/Scoring/Comparators/JaroWinklerComparator.php',
+      4 => '/var/www/html/app/Domain/Matching/Scoring/Comparators/LevenshteinComparator.php',
+      5 => '/var/www/html/app/Domain/Matching/Scoring/Comparators/PhoneticComparator.php',
+      6 => '/var/www/html/app/Domain/Matching/Scoring/RuleBasedMatchScorer.php',
+    ),
+  ),
+  '/var/www/html/app/Domain/Matching/Scoring/Comparators/ComparatorRegistry.php' => 
+  array (
+    'fileHash' => '0b09da4939d73f4a49fac70f941cd234a548781475e41d2f2e33462570295971',
+    'dependentFiles' => 
+    array (
+      0 => '/var/www/html/app/Domain/Matching/Scoring/RuleBasedMatchScorer.php',
+    ),
+  ),
+  '/var/www/html/app/Domain/Matching/Scoring/Comparators/DateProximityComparator.php' => 
+  array (
+    'fileHash' => 'b41853fd80c0dabe9402bc9520db835d800587f0c32036d957745fefda2bdffe',
+    'dependentFiles' => 
+    array (
+      0 => '/var/www/html/app/Domain/Matching/Scoring/Comparators/ComparatorRegistry.php',
+    ),
+  ),
+  '/var/www/html/app/Domain/Matching/Scoring/Comparators/ExactComparator.php' => 
+  array (
+    'fileHash' => '2e854834baf1d4b2b0c27cab629287dff0243e803432b30bc8617650682b41c0',
+    'dependentFiles' => 
+    array (
+      0 => '/var/www/html/app/Domain/Matching/Scoring/Comparators/ComparatorRegistry.php',
+    ),
+  ),
+  '/var/www/html/app/Domain/Matching/Scoring/Comparators/JaroWinklerComparator.php' => 
+  array (
+    'fileHash' => 'f6ab7f5b1d9902af627998b41e0149c93d4907c5d8b5a1046663b3ddcfb36eef',
+    'dependentFiles' => 
+    array (
+      0 => '/var/www/html/app/Domain/Matching/Scoring/Comparators/ComparatorRegistry.php',
+      1 => '/var/www/html/app/Domain/Matching/Scoring/Comparators/PhoneticComparator.php',
+    ),
+  ),
+  '/var/www/html/app/Domain/Matching/Scoring/Comparators/LevenshteinComparator.php' => 
+  array (
+    'fileHash' => 'e5f7a7fd57a72fc4c7b0c93f1fa47bd723e96c26e4dc89dc6ce49532b9c2c41c',
+    'dependentFiles' => 
+    array (
+      0 => '/var/www/html/app/Domain/Matching/Scoring/Comparators/ComparatorRegistry.php',
+    ),
+  ),
+  '/var/www/html/app/Domain/Matching/Scoring/Comparators/PhoneticComparator.php' => 
+  array (
+    'fileHash' => '16e0f06a6a024ca27942b0f9c51ecce965235d7a76c71c077039dc89cc0dd2f6',
+    'dependentFiles' => 
+    array (
+      0 => '/var/www/html/app/Domain/Matching/Scoring/Comparators/ComparatorRegistry.php',
+    ),
+  ),
+  '/var/www/html/app/Domain/Matching/Scoring/FieldNormalizer.php' => 
+  array (
+    'fileHash' => '186242c59e4c3594b279d0b5aa84bb0fee5d9c7a25ef08b8e05d55541dbbc04c',
+    'dependentFiles' => 
+    array (
+      0 => '/var/www/html/app/Domain/Matching/Engine/DeterministicMatcher.php',
+      1 => '/var/www/html/app/Domain/Matching/Scoring/RuleBasedMatchScorer.php',
+      2 => '/var/www/html/app/Domain/Registry/Services/CandidateGatherer.php',
+      3 => '/var/www/html/app/Domain/Registry/Services/DeterministicDuplicateFinder.php',
+    ),
+  ),
+  '/var/www/html/app/Domain/Matching/Scoring/MatchScore.php' => 
+  array (
+    'fileHash' => '513dcbcfac8da9b6c374dd8fb72444130588375a254b1f81001299072a7331b2',
+    'dependentFiles' => 
+    array (
+      0 => '/var/www/html/app/Domain/Matching/Contracts/MatchScorer.php',
+      1 => '/var/www/html/app/Domain/Matching/Engine/DeterministicMatcher.php',
+      2 => '/var/www/html/app/Domain/Matching/Engine/MatchResult.php',
+      3 => '/var/www/html/app/Domain/Matching/Engine/MatchingEngine.php',
+      4 => '/var/www/html/app/Domain/Matching/Scoring/RuleBasedMatchScorer.php',
+    ),
+  ),
+  '/var/www/html/app/Domain/Matching/Scoring/RuleBasedMatchScorer.php' => 
+  array (
+    'fileHash' => '840d9653435479683a1072b915545761cb3e6ff7c032e2d855572eb0a343400b',
+    'dependentFiles' => 
+    array (
+      0 => '/var/www/html/app/Domain/Matching/MatchingServiceProvider.php',
+    ),
+  ),
+  '/var/www/html/app/Domain/Matching/Services/MatchingConfigService.php' => 
+  array (
+    'fileHash' => '07537613f099b95f6c903458293aa43763376e6a82de0e235db4b5981e61d818',
+    'dependentFiles' => 
+    array (
+      0 => '/var/www/html/app/Domain/Registry/Services/DeterministicDuplicateFinder.php',
+      1 => '/var/www/html/app/Domain/Registry/Services/FuzzyDuplicateFinder.php',
+      2 => '/var/www/html/app/Http/Controllers/Api/V1/Matching/MatchingConfigController.php',
+    ),
+  ),
+  '/var/www/html/app/Domain/Matching/Support/PhoneticEncoder.php' => 
+  array (
+    'fileHash' => 'c3bb4cf143a17feea7d3eabdab4c278640724f5d5df1674634109f08158e033f',
+    'dependentFiles' => 
+    array (
+      0 => '/var/www/html/app/Domain/Matching/Scoring/Comparators/PhoneticComparator.php',
+      1 => '/var/www/html/app/Domain/Registry/Models/Beneficiary.php',
     ),
   ),
   '/var/www/html/app/Domain/Registry/Contracts/BeneficiaryRouter.php' => 
@@ -8667,22 +9672,24 @@ return [
       10 => '/var/www/html/app/Domain/Registry/RegistryServiceProvider.php',
       11 => '/var/www/html/app/Domain/Registry/Services/BeneficiaryLookupService.php',
       12 => '/var/www/html/app/Domain/Registry/Services/BeneficiaryRegistrar.php',
-      13 => '/var/www/html/app/Domain/Registry/Services/HouseholdIngestionService.php',
-      14 => '/var/www/html/app/Domain/Registry/Services/HouseholdMembershipService.php',
-      15 => '/var/www/html/app/Domain/Registry/Services/NullBeneficiaryRouter.php',
-      16 => '/var/www/html/app/Domain/Registry/Services/OwnershipTransferService.php',
-      17 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/BeneficiaryController.php',
-      18 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/BeneficiaryDocumentController.php',
-      19 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/BeneficiaryIntakeController.php',
-      20 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/HouseholdController.php',
-      21 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/HouseholdMemberController.php',
-      22 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/OwnershipTransferController.php',
-      23 => '/var/www/html/app/Http/Requests/Registry/ApiRegistrationRequest.php',
-      24 => '/var/www/html/app/Http/Requests/Registry/StoreBeneficiaryRequest.php',
-      25 => '/var/www/html/app/Http/Requests/Registry/UpdateBeneficiaryRequest.php',
-      26 => '/var/www/html/app/Http/Resources/BeneficiaryResource.php',
-      27 => '/var/www/html/app/Http/Resources/BeneficiaryRevealResource.php',
-      28 => '/var/www/html/app/Http/Resources/HouseholdMembershipResource.php',
+      13 => '/var/www/html/app/Domain/Registry/Services/CandidateGatherer.php',
+      14 => '/var/www/html/app/Domain/Registry/Services/DeterministicDuplicateFinder.php',
+      15 => '/var/www/html/app/Domain/Registry/Services/HouseholdIngestionService.php',
+      16 => '/var/www/html/app/Domain/Registry/Services/HouseholdMembershipService.php',
+      17 => '/var/www/html/app/Domain/Registry/Services/NullBeneficiaryRouter.php',
+      18 => '/var/www/html/app/Domain/Registry/Services/OwnershipTransferService.php',
+      19 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/BeneficiaryController.php',
+      20 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/BeneficiaryDocumentController.php',
+      21 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/BeneficiaryIntakeController.php',
+      22 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/HouseholdController.php',
+      23 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/HouseholdMemberController.php',
+      24 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/OwnershipTransferController.php',
+      25 => '/var/www/html/app/Http/Requests/Registry/ApiRegistrationRequest.php',
+      26 => '/var/www/html/app/Http/Requests/Registry/StoreBeneficiaryRequest.php',
+      27 => '/var/www/html/app/Http/Requests/Registry/UpdateBeneficiaryRequest.php',
+      28 => '/var/www/html/app/Http/Resources/BeneficiaryResource.php',
+      29 => '/var/www/html/app/Http/Resources/BeneficiaryRevealResource.php',
+      30 => '/var/www/html/app/Http/Resources/HouseholdMembershipResource.php',
     ),
   ),
   '/var/www/html/app/Domain/Registry/Enums/DocumentType.php' => 
@@ -8716,23 +9723,25 @@ return [
       10 => '/var/www/html/app/Domain/Registry/RegistryServiceProvider.php',
       11 => '/var/www/html/app/Domain/Registry/Services/BeneficiaryLookupService.php',
       12 => '/var/www/html/app/Domain/Registry/Services/BeneficiaryRegistrar.php',
-      13 => '/var/www/html/app/Domain/Registry/Services/HouseholdIngestionService.php',
-      14 => '/var/www/html/app/Domain/Registry/Services/HouseholdMembershipService.php',
-      15 => '/var/www/html/app/Domain/Registry/Services/NullBeneficiaryRouter.php',
-      16 => '/var/www/html/app/Domain/Registry/Services/OwnershipTransferService.php',
-      17 => '/var/www/html/app/Domain/Registry/Support/BeneficiaryRules.php',
-      18 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/BeneficiaryController.php',
-      19 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/BeneficiaryDocumentController.php',
-      20 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/BeneficiaryIntakeController.php',
-      21 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/HouseholdController.php',
-      22 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/HouseholdMemberController.php',
-      23 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/OwnershipTransferController.php',
-      24 => '/var/www/html/app/Http/Requests/Registry/ApiRegistrationRequest.php',
-      25 => '/var/www/html/app/Http/Requests/Registry/StoreBeneficiaryRequest.php',
-      26 => '/var/www/html/app/Http/Requests/Registry/UpdateBeneficiaryRequest.php',
-      27 => '/var/www/html/app/Http/Resources/BeneficiaryResource.php',
-      28 => '/var/www/html/app/Http/Resources/BeneficiaryRevealResource.php',
-      29 => '/var/www/html/app/Http/Resources/HouseholdMembershipResource.php',
+      13 => '/var/www/html/app/Domain/Registry/Services/CandidateGatherer.php',
+      14 => '/var/www/html/app/Domain/Registry/Services/DeterministicDuplicateFinder.php',
+      15 => '/var/www/html/app/Domain/Registry/Services/HouseholdIngestionService.php',
+      16 => '/var/www/html/app/Domain/Registry/Services/HouseholdMembershipService.php',
+      17 => '/var/www/html/app/Domain/Registry/Services/NullBeneficiaryRouter.php',
+      18 => '/var/www/html/app/Domain/Registry/Services/OwnershipTransferService.php',
+      19 => '/var/www/html/app/Domain/Registry/Support/BeneficiaryRules.php',
+      20 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/BeneficiaryController.php',
+      21 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/BeneficiaryDocumentController.php',
+      22 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/BeneficiaryIntakeController.php',
+      23 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/HouseholdController.php',
+      24 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/HouseholdMemberController.php',
+      25 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/OwnershipTransferController.php',
+      26 => '/var/www/html/app/Http/Requests/Registry/ApiRegistrationRequest.php',
+      27 => '/var/www/html/app/Http/Requests/Registry/StoreBeneficiaryRequest.php',
+      28 => '/var/www/html/app/Http/Requests/Registry/UpdateBeneficiaryRequest.php',
+      29 => '/var/www/html/app/Http/Resources/BeneficiaryResource.php',
+      30 => '/var/www/html/app/Http/Resources/BeneficiaryRevealResource.php',
+      31 => '/var/www/html/app/Http/Resources/HouseholdMembershipResource.php',
     ),
   ),
   '/var/www/html/app/Domain/Registry/Enums/HouseholdRole.php' => 
@@ -8817,25 +9826,27 @@ return [
       19 => '/var/www/html/app/Domain/Registry/RegistryServiceProvider.php',
       20 => '/var/www/html/app/Domain/Registry/Services/BeneficiaryLookupService.php',
       21 => '/var/www/html/app/Domain/Registry/Services/BeneficiaryRegistrar.php',
-      22 => '/var/www/html/app/Domain/Registry/Services/HouseholdIngestionService.php',
-      23 => '/var/www/html/app/Domain/Registry/Services/HouseholdMembershipService.php',
-      24 => '/var/www/html/app/Domain/Registry/Services/NullBeneficiaryRouter.php',
-      25 => '/var/www/html/app/Domain/Registry/Services/OwnershipTransferService.php',
-      26 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/BeneficiaryController.php',
-      27 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/BeneficiaryDocumentController.php',
-      28 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/BeneficiaryIntakeController.php',
-      29 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/HouseholdController.php',
-      30 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/HouseholdMemberController.php',
-      31 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/ImportBatchController.php',
-      32 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/OwnershipTransferController.php',
-      33 => '/var/www/html/app/Http/Requests/Registry/ApiRegistrationRequest.php',
-      34 => '/var/www/html/app/Http/Requests/Registry/StoreBeneficiaryRequest.php',
-      35 => '/var/www/html/app/Http/Requests/Registry/UpdateBeneficiaryRequest.php',
-      36 => '/var/www/html/app/Http/Resources/BeneficiaryResource.php',
-      37 => '/var/www/html/app/Http/Resources/BeneficiaryRevealResource.php',
-      38 => '/var/www/html/app/Http/Resources/HouseholdMembershipResource.php',
-      39 => '/var/www/html/app/Http/Resources/HouseholdResource.php',
-      40 => '/var/www/html/app/Http/Resources/ImportBatchResource.php',
+      22 => '/var/www/html/app/Domain/Registry/Services/CandidateGatherer.php',
+      23 => '/var/www/html/app/Domain/Registry/Services/DeterministicDuplicateFinder.php',
+      24 => '/var/www/html/app/Domain/Registry/Services/HouseholdIngestionService.php',
+      25 => '/var/www/html/app/Domain/Registry/Services/HouseholdMembershipService.php',
+      26 => '/var/www/html/app/Domain/Registry/Services/NullBeneficiaryRouter.php',
+      27 => '/var/www/html/app/Domain/Registry/Services/OwnershipTransferService.php',
+      28 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/BeneficiaryController.php',
+      29 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/BeneficiaryDocumentController.php',
+      30 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/BeneficiaryIntakeController.php',
+      31 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/HouseholdController.php',
+      32 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/HouseholdMemberController.php',
+      33 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/ImportBatchController.php',
+      34 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/OwnershipTransferController.php',
+      35 => '/var/www/html/app/Http/Requests/Registry/ApiRegistrationRequest.php',
+      36 => '/var/www/html/app/Http/Requests/Registry/StoreBeneficiaryRequest.php',
+      37 => '/var/www/html/app/Http/Requests/Registry/UpdateBeneficiaryRequest.php',
+      38 => '/var/www/html/app/Http/Resources/BeneficiaryResource.php',
+      39 => '/var/www/html/app/Http/Resources/BeneficiaryRevealResource.php',
+      40 => '/var/www/html/app/Http/Resources/HouseholdMembershipResource.php',
+      41 => '/var/www/html/app/Http/Resources/HouseholdResource.php',
+      42 => '/var/www/html/app/Http/Resources/ImportBatchResource.php',
     ),
   ),
   '/var/www/html/app/Domain/Registry/Imports/Adapters/DefaultImportAdapter.php' => 
@@ -8931,7 +9942,7 @@ return [
   ),
   '/var/www/html/app/Domain/Registry/Models/Beneficiary.php' => 
   array (
-    'fileHash' => '633522b80d7e53cb14d3e62c2b6ebbba45e16a002da8b646fb3fa7cde6cd828d',
+    'fileHash' => '215297c6d26446ec483299bae16a2a7e8574db828412cb8b23d528ef8e7efce7',
     'dependentFiles' => 
     array (
       0 => '/var/www/html/app/Domain/Registry/Contracts/BeneficiaryRouter.php',
@@ -8950,26 +9961,28 @@ return [
       13 => '/var/www/html/app/Domain/Registry/RegistryServiceProvider.php',
       14 => '/var/www/html/app/Domain/Registry/Services/BeneficiaryLookupService.php',
       15 => '/var/www/html/app/Domain/Registry/Services/BeneficiaryRegistrar.php',
-      16 => '/var/www/html/app/Domain/Registry/Services/HouseholdIngestionService.php',
-      17 => '/var/www/html/app/Domain/Registry/Services/HouseholdMembershipService.php',
-      18 => '/var/www/html/app/Domain/Registry/Services/NullBeneficiaryRouter.php',
-      19 => '/var/www/html/app/Domain/Registry/Services/OwnershipTransferService.php',
-      20 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/BeneficiaryController.php',
-      21 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/BeneficiaryDocumentController.php',
-      22 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/BeneficiaryIntakeController.php',
-      23 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/HouseholdController.php',
-      24 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/HouseholdMemberController.php',
-      25 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/OwnershipTransferController.php',
-      26 => '/var/www/html/app/Http/Requests/Registry/ApiRegistrationRequest.php',
-      27 => '/var/www/html/app/Http/Requests/Registry/StoreBeneficiaryRequest.php',
-      28 => '/var/www/html/app/Http/Requests/Registry/UpdateBeneficiaryRequest.php',
-      29 => '/var/www/html/app/Http/Resources/BeneficiaryDocumentResource.php',
-      30 => '/var/www/html/app/Http/Resources/BeneficiaryResource.php',
-      31 => '/var/www/html/app/Http/Resources/BeneficiaryRevealResource.php',
-      32 => '/var/www/html/app/Http/Resources/HouseholdMembershipResource.php',
-      33 => '/var/www/html/app/Http/Resources/HouseholdResource.php',
-      34 => '/var/www/html/app/Http/Resources/ImportRowResource.php',
-      35 => '/var/www/html/app/Http/Resources/OwnershipTransferResource.php',
+      16 => '/var/www/html/app/Domain/Registry/Services/CandidateGatherer.php',
+      17 => '/var/www/html/app/Domain/Registry/Services/DeterministicDuplicateFinder.php',
+      18 => '/var/www/html/app/Domain/Registry/Services/HouseholdIngestionService.php',
+      19 => '/var/www/html/app/Domain/Registry/Services/HouseholdMembershipService.php',
+      20 => '/var/www/html/app/Domain/Registry/Services/NullBeneficiaryRouter.php',
+      21 => '/var/www/html/app/Domain/Registry/Services/OwnershipTransferService.php',
+      22 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/BeneficiaryController.php',
+      23 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/BeneficiaryDocumentController.php',
+      24 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/BeneficiaryIntakeController.php',
+      25 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/HouseholdController.php',
+      26 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/HouseholdMemberController.php',
+      27 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/OwnershipTransferController.php',
+      28 => '/var/www/html/app/Http/Requests/Registry/ApiRegistrationRequest.php',
+      29 => '/var/www/html/app/Http/Requests/Registry/StoreBeneficiaryRequest.php',
+      30 => '/var/www/html/app/Http/Requests/Registry/UpdateBeneficiaryRequest.php',
+      31 => '/var/www/html/app/Http/Resources/BeneficiaryDocumentResource.php',
+      32 => '/var/www/html/app/Http/Resources/BeneficiaryResource.php',
+      33 => '/var/www/html/app/Http/Resources/BeneficiaryRevealResource.php',
+      34 => '/var/www/html/app/Http/Resources/HouseholdMembershipResource.php',
+      35 => '/var/www/html/app/Http/Resources/HouseholdResource.php',
+      36 => '/var/www/html/app/Http/Resources/ImportRowResource.php',
+      37 => '/var/www/html/app/Http/Resources/OwnershipTransferResource.php',
     ),
   ),
   '/var/www/html/app/Domain/Registry/Models/BeneficiaryDocument.php' => 
@@ -9021,23 +10034,25 @@ return [
       10 => '/var/www/html/app/Domain/Registry/RegistryServiceProvider.php',
       11 => '/var/www/html/app/Domain/Registry/Services/BeneficiaryLookupService.php',
       12 => '/var/www/html/app/Domain/Registry/Services/BeneficiaryRegistrar.php',
-      13 => '/var/www/html/app/Domain/Registry/Services/HouseholdIngestionService.php',
-      14 => '/var/www/html/app/Domain/Registry/Services/HouseholdMembershipService.php',
-      15 => '/var/www/html/app/Domain/Registry/Services/NullBeneficiaryRouter.php',
-      16 => '/var/www/html/app/Domain/Registry/Services/OwnershipTransferService.php',
-      17 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/BeneficiaryController.php',
-      18 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/BeneficiaryDocumentController.php',
-      19 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/BeneficiaryIntakeController.php',
-      20 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/HouseholdController.php',
-      21 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/HouseholdMemberController.php',
-      22 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/OwnershipTransferController.php',
-      23 => '/var/www/html/app/Http/Requests/Registry/ApiRegistrationRequest.php',
-      24 => '/var/www/html/app/Http/Requests/Registry/StoreBeneficiaryRequest.php',
-      25 => '/var/www/html/app/Http/Requests/Registry/UpdateBeneficiaryRequest.php',
-      26 => '/var/www/html/app/Http/Resources/BeneficiaryResource.php',
-      27 => '/var/www/html/app/Http/Resources/BeneficiaryRevealResource.php',
-      28 => '/var/www/html/app/Http/Resources/HouseholdMembershipResource.php',
-      29 => '/var/www/html/app/Http/Resources/HouseholdResource.php',
+      13 => '/var/www/html/app/Domain/Registry/Services/CandidateGatherer.php',
+      14 => '/var/www/html/app/Domain/Registry/Services/DeterministicDuplicateFinder.php',
+      15 => '/var/www/html/app/Domain/Registry/Services/HouseholdIngestionService.php',
+      16 => '/var/www/html/app/Domain/Registry/Services/HouseholdMembershipService.php',
+      17 => '/var/www/html/app/Domain/Registry/Services/NullBeneficiaryRouter.php',
+      18 => '/var/www/html/app/Domain/Registry/Services/OwnershipTransferService.php',
+      19 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/BeneficiaryController.php',
+      20 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/BeneficiaryDocumentController.php',
+      21 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/BeneficiaryIntakeController.php',
+      22 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/HouseholdController.php',
+      23 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/HouseholdMemberController.php',
+      24 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/OwnershipTransferController.php',
+      25 => '/var/www/html/app/Http/Requests/Registry/ApiRegistrationRequest.php',
+      26 => '/var/www/html/app/Http/Requests/Registry/StoreBeneficiaryRequest.php',
+      27 => '/var/www/html/app/Http/Requests/Registry/UpdateBeneficiaryRequest.php',
+      28 => '/var/www/html/app/Http/Resources/BeneficiaryResource.php',
+      29 => '/var/www/html/app/Http/Resources/BeneficiaryRevealResource.php',
+      30 => '/var/www/html/app/Http/Resources/HouseholdMembershipResource.php',
+      31 => '/var/www/html/app/Http/Resources/HouseholdResource.php',
     ),
   ),
   '/var/www/html/app/Domain/Registry/Models/ImportBatch.php' => 
@@ -9136,6 +10151,28 @@ return [
       1 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/BeneficiaryIntakeController.php',
     ),
   ),
+  '/var/www/html/app/Domain/Registry/Services/CandidateGatherer.php' => 
+  array (
+    'fileHash' => '632b8b5456fc44649577973373b5e46c005220dd95c0973d0c05e39f653af96c',
+    'dependentFiles' => 
+    array (
+      0 => '/var/www/html/app/Domain/Registry/Services/FuzzyDuplicateFinder.php',
+    ),
+  ),
+  '/var/www/html/app/Domain/Registry/Services/DeterministicDuplicateFinder.php' => 
+  array (
+    'fileHash' => '9655e23a08143ca53687fc5e0b187c6772504829a171661de8dff1b10ec2f79e',
+    'dependentFiles' => 
+    array (
+    ),
+  ),
+  '/var/www/html/app/Domain/Registry/Services/FuzzyDuplicateFinder.php' => 
+  array (
+    'fileHash' => 'a7b386b07c6e0a6f89553ee61002b0d02cfa51afe1f1f6a0d1dbca52b45b8881',
+    'dependentFiles' => 
+    array (
+    ),
+  ),
   '/var/www/html/app/Domain/Registry/Services/HouseholdIngestionService.php' => 
   array (
     'fileHash' => '3d03b7f2989c95688c8c17571d6bd145622e5c4efb7d7c557ce770e4ee75e143',
@@ -9230,6 +10267,13 @@ return [
     array (
     ),
   ),
+  '/var/www/html/app/Http/Controllers/Api/V1/Matching/MatchingConfigController.php' => 
+  array (
+    'fileHash' => '8d07750299805cfc568c11baae20520ccfd1307ec17c02fbbe39b9f362e91c87',
+    'dependentFiles' => 
+    array (
+    ),
+  ),
   '/var/www/html/app/Http/Controllers/Api/V1/MfaController.php' => 
   array (
     'fileHash' => '50ff7f80419d750c29cbe71aecf3e8b00903ede510b7309895254a182f87b427',
@@ -9311,14 +10355,15 @@ return [
       3 => '/var/www/html/app/Http/Controllers/Api/V1/Access/UserController.php',
       4 => '/var/www/html/app/Http/Controllers/Api/V1/AuthController.php',
       5 => '/var/www/html/app/Http/Controllers/Api/V1/HealthController.php',
-      6 => '/var/www/html/app/Http/Controllers/Api/V1/MfaController.php',
-      7 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/BeneficiaryController.php',
-      8 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/BeneficiaryDocumentController.php',
-      9 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/BeneficiaryIntakeController.php',
-      10 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/HouseholdController.php',
-      11 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/HouseholdMemberController.php',
-      12 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/ImportBatchController.php',
-      13 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/OwnershipTransferController.php',
+      6 => '/var/www/html/app/Http/Controllers/Api/V1/Matching/MatchingConfigController.php',
+      7 => '/var/www/html/app/Http/Controllers/Api/V1/MfaController.php',
+      8 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/BeneficiaryController.php',
+      9 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/BeneficiaryDocumentController.php',
+      10 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/BeneficiaryIntakeController.php',
+      11 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/HouseholdController.php',
+      12 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/HouseholdMemberController.php',
+      13 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/ImportBatchController.php',
+      14 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/OwnershipTransferController.php',
     ),
   ),
   '/var/www/html/app/Http/Middleware/AssignCorrelationId.php' => 
@@ -9426,6 +10471,14 @@ return [
     'dependentFiles' => 
     array (
       0 => '/var/www/html/app/Http/Controllers/Api/V1/MfaController.php',
+    ),
+  ),
+  '/var/www/html/app/Http/Requests/Matching/UpdateMatchingConfigRequest.php' => 
+  array (
+    'fileHash' => '9076295f5525ad7ea848a81fc75818efae74efae26389f559af0a36564bb8c65',
+    'dependentFiles' => 
+    array (
+      0 => '/var/www/html/app/Http/Controllers/Api/V1/Matching/MatchingConfigController.php',
     ),
   ),
   '/var/www/html/app/Http/Requests/Registry/AddHouseholdMemberRequest.php' => 
@@ -9574,6 +10627,14 @@ return [
       0 => '/var/www/html/app/Http/Resources/ImportBatchResource.php',
     ),
   ),
+  '/var/www/html/app/Http/Resources/MatchingConfigResource.php' => 
+  array (
+    'fileHash' => '38ecc1db7a62af5290cf7e98b7632f5f95c91b91992a06d98b35422b8d502dfa',
+    'dependentFiles' => 
+    array (
+      0 => '/var/www/html/app/Http/Controllers/Api/V1/Matching/MatchingConfigController.php',
+    ),
+  ),
   '/var/www/html/app/Http/Resources/MdaResource.php' => 
   array (
     'fileHash' => '5fa1ed647f5b13e5a2e48cc3c33f0c04f1e7b6ad29de9c82ae722e64631d0ebe',
@@ -9618,16 +10679,17 @@ return [
       3 => '/var/www/html/app/Http/Controllers/Api/V1/Access/UserController.php',
       4 => '/var/www/html/app/Http/Controllers/Api/V1/AuthController.php',
       5 => '/var/www/html/app/Http/Controllers/Api/V1/HealthController.php',
-      6 => '/var/www/html/app/Http/Controllers/Api/V1/MfaController.php',
-      7 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/BeneficiaryController.php',
-      8 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/BeneficiaryDocumentController.php',
-      9 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/BeneficiaryIntakeController.php',
-      10 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/HouseholdController.php',
-      11 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/HouseholdMemberController.php',
-      12 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/ImportBatchController.php',
-      13 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/OwnershipTransferController.php',
-      14 => '/var/www/html/app/Http/Middleware/CheckPermission.php',
-      15 => '/var/www/html/app/Http/Middleware/EnforceIdleTimeout.php',
+      6 => '/var/www/html/app/Http/Controllers/Api/V1/Matching/MatchingConfigController.php',
+      7 => '/var/www/html/app/Http/Controllers/Api/V1/MfaController.php',
+      8 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/BeneficiaryController.php',
+      9 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/BeneficiaryDocumentController.php',
+      10 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/BeneficiaryIntakeController.php',
+      11 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/HouseholdController.php',
+      12 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/HouseholdMemberController.php',
+      13 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/ImportBatchController.php',
+      14 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/OwnershipTransferController.php',
+      15 => '/var/www/html/app/Http/Middleware/CheckPermission.php',
+      16 => '/var/www/html/app/Http/Middleware/EnforceIdleTimeout.php',
     ),
   ),
 ),
@@ -10249,6 +11311,112 @@ return [
     2 => 'nesbot/carbon',
   ),
   '/var/www/html/app/Domain/Registry/Services/HouseholdIngestionService.php' => 
+  array (
+    0 => 'laravel/framework',
+  ),
+  '/var/www/html/app/Domain/Matching/Contracts/MatchScorer.php' => 
+  array (
+    0 => 'laravel/framework',
+  ),
+  '/var/www/html/app/Domain/Matching/Engine/MatchResult.php' => 
+  array (
+  ),
+  '/var/www/html/app/Domain/Matching/Engine/MatchingEngine.php' => 
+  array (
+    0 => 'laravel/framework',
+  ),
+  '/var/www/html/app/Domain/Matching/Enums/ExactMatchBehaviour.php' => 
+  array (
+  ),
+  '/var/www/html/app/Domain/Matching/Enums/MatchBand.php' => 
+  array (
+  ),
+  '/var/www/html/app/Domain/Matching/Enums/MatchComparator.php' => 
+  array (
+  ),
+  '/var/www/html/app/Domain/Matching/Enums/MatchField.php' => 
+  array (
+  ),
+  '/var/www/html/app/Domain/Matching/MatchingServiceProvider.php' => 
+  array (
+    0 => 'laravel/framework',
+    1 => 'psr/container',
+  ),
+  '/var/www/html/app/Domain/Matching/Models/MatchingConfig.php' => 
+  array (
+    0 => 'laravel/framework',
+    1 => 'laravel/sanctum',
+  ),
+  '/var/www/html/app/Domain/Matching/Scoring/Comparators/Comparator.php' => 
+  array (
+  ),
+  '/var/www/html/app/Domain/Matching/Scoring/Comparators/ComparatorRegistry.php' => 
+  array (
+  ),
+  '/var/www/html/app/Domain/Matching/Scoring/Comparators/ExactComparator.php' => 
+  array (
+  ),
+  '/var/www/html/app/Domain/Matching/Scoring/Comparators/JaroWinklerComparator.php' => 
+  array (
+  ),
+  '/var/www/html/app/Domain/Matching/Scoring/Comparators/LevenshteinComparator.php' => 
+  array (
+  ),
+  '/var/www/html/app/Domain/Matching/Scoring/FieldNormalizer.php' => 
+  array (
+  ),
+  '/var/www/html/app/Domain/Matching/Scoring/MatchScore.php' => 
+  array (
+  ),
+  '/var/www/html/app/Domain/Matching/Scoring/RuleBasedMatchScorer.php' => 
+  array (
+    0 => 'laravel/framework',
+  ),
+  '/var/www/html/app/Domain/Matching/Services/MatchingConfigService.php' => 
+  array (
+    0 => 'laravel/framework',
+    1 => 'laravel/sanctum',
+  ),
+  '/var/www/html/app/Http/Controllers/Api/V1/Matching/MatchingConfigController.php' => 
+  array (
+    0 => 'laravel/framework',
+    1 => 'symfony/http-foundation',
+    2 => 'laravel/sanctum',
+  ),
+  '/var/www/html/app/Http/Requests/Matching/UpdateMatchingConfigRequest.php' => 
+  array (
+    0 => 'laravel/framework',
+    1 => 'symfony/http-foundation',
+    2 => 'laravel/sanctum',
+  ),
+  '/var/www/html/app/Http/Resources/MatchingConfigResource.php' => 
+  array (
+    0 => 'laravel/framework',
+    1 => 'symfony/http-foundation',
+    2 => 'nesbot/carbon',
+  ),
+  '/var/www/html/app/Domain/Matching/Engine/DeterministicMatcher.php' => 
+  array (
+    0 => 'laravel/framework',
+  ),
+  '/var/www/html/app/Domain/Registry/Services/DeterministicDuplicateFinder.php' => 
+  array (
+    0 => 'laravel/framework',
+  ),
+  '/var/www/html/app/Domain/Matching/Scoring/Comparators/DateProximityComparator.php' => 
+  array (
+  ),
+  '/var/www/html/app/Domain/Matching/Scoring/Comparators/PhoneticComparator.php' => 
+  array (
+  ),
+  '/var/www/html/app/Domain/Matching/Support/PhoneticEncoder.php' => 
+  array (
+  ),
+  '/var/www/html/app/Domain/Registry/Services/CandidateGatherer.php' => 
+  array (
+    0 => 'laravel/framework',
+  ),
+  '/var/www/html/app/Domain/Registry/Services/FuzzyDuplicateFinder.php' => 
   array (
     0 => 'laravel/framework',
   ),
@@ -15482,6 +16650,2545 @@ return [
       ),
     )),
   ),
+  '/var/www/html/app/Domain/Matching/Contracts/MatchScorer.php' => 
+  array (
+    0 => 
+    \PHPStan\Dependency\ExportedNode\ExportedInterfaceNode::__set_state(array(
+       'name' => 'App\\Domain\\Matching\\Contracts\\MatchScorer',
+       'phpDoc' => 
+      \PHPStan\Dependency\ExportedNode\ExportedPhpDocNode::__set_state(array(
+         'phpDocString' => '/**
+ * Scores one candidate record against one existing record under a matching
+ * configuration (PRD FR-DUP-03). This is the SINGLE seam an alternative scorer
+ * implements — including a future external/AI scorer (FR-DUP-07) — so callers
+ * (the MatchingEngine, the pre-save duplicate check, the standalone lookup) never
+ * change when the scoring strategy changes.
+ *
+ * ## Contract
+ * - Input records are associative arrays of canonical beneficiary fields
+ *   (`nin`, `bvn`, `phone`, `first_name`, `last_name`, `date_of_birth`, `gender`,
+ *   `lga`, `ward`, …). Values may be null/absent; implementations MUST treat a
+ *   missing value on either side as "no evidence" (never a positive match).
+ * - The returned {@see MatchScore} carries: a normalised composite in `[0,1]`, a
+ *   `deterministic` flag (a decisive exact key set matched), and a structured,
+ *   PII-free `explanation` of which rules fired (field NAMES + similarities only,
+ *   never the raw values) — for transparency and audit.
+ * - Banding (exact/probable/none) is applied by the engine from the config
+ *   thresholds, NOT by the scorer. A scorer only measures similarity.
+ * - Implementations MUST be pure (no side effects) and deterministic for a given
+ *   input, so results are reproducible and auditable.
+ *
+ * The built-in {@see RuleBasedMatchScorer} provides the deterministic + fuzzy
+ * scorer. To add an AI scorer later, implement this interface and bind it in the
+ * MatchingServiceProvider — no caller edits needed.
+ */',
+         'namespace' => 'App\\Domain\\Matching\\Contracts',
+         'uses' => 
+        array (
+          'matchingconfig' => 'App\\Domain\\Matching\\Models\\MatchingConfig',
+          'matchscore' => 'App\\Domain\\Matching\\Scoring\\MatchScore',
+          'rulebasedmatchscorer' => 'App\\Domain\\Matching\\Scoring\\RuleBasedMatchScorer',
+        ),
+         'constUses' => 
+        array (
+        ),
+      )),
+       'extends' => 
+      array (
+      ),
+       'statements' => 
+      array (
+        0 => 
+        \PHPStan\Dependency\ExportedNode\ExportedMethodNode::__set_state(array(
+           'name' => 'score',
+           'phpDoc' => 
+          \PHPStan\Dependency\ExportedNode\ExportedPhpDocNode::__set_state(array(
+             'phpDocString' => '/**
+     * @param  array<string, mixed>  $candidate  the record being checked
+     * @param  array<string, mixed>  $existing  an existing registry record
+     */',
+             'namespace' => 'App\\Domain\\Matching\\Contracts',
+             'uses' => 
+            array (
+              'matchingconfig' => 'App\\Domain\\Matching\\Models\\MatchingConfig',
+              'matchscore' => 'App\\Domain\\Matching\\Scoring\\MatchScore',
+              'rulebasedmatchscorer' => 'App\\Domain\\Matching\\Scoring\\RuleBasedMatchScorer',
+            ),
+             'constUses' => 
+            array (
+            ),
+          )),
+           'byRef' => false,
+           'public' => true,
+           'private' => false,
+           'abstract' => false,
+           'final' => false,
+           'static' => false,
+           'returnType' => 'App\\Domain\\Matching\\Scoring\\MatchScore',
+           'parameters' => 
+          array (
+            0 => 
+            \PHPStan\Dependency\ExportedNode\ExportedParameterNode::__set_state(array(
+               'name' => 'candidate',
+               'type' => 'array',
+               'byRef' => false,
+               'variadic' => false,
+               'hasDefault' => false,
+               'attributes' => 
+              array (
+              ),
+               'phpDoc' => NULL,
+               'flags' => 0,
+            )),
+            1 => 
+            \PHPStan\Dependency\ExportedNode\ExportedParameterNode::__set_state(array(
+               'name' => 'existing',
+               'type' => 'array',
+               'byRef' => false,
+               'variadic' => false,
+               'hasDefault' => false,
+               'attributes' => 
+              array (
+              ),
+               'phpDoc' => NULL,
+               'flags' => 0,
+            )),
+            2 => 
+            \PHPStan\Dependency\ExportedNode\ExportedParameterNode::__set_state(array(
+               'name' => 'config',
+               'type' => 'App\\Domain\\Matching\\Models\\MatchingConfig',
+               'byRef' => false,
+               'variadic' => false,
+               'hasDefault' => false,
+               'attributes' => 
+              array (
+              ),
+               'phpDoc' => NULL,
+               'flags' => 0,
+            )),
+          ),
+           'attributes' => 
+          array (
+          ),
+        )),
+      ),
+    )),
+  ),
+  '/var/www/html/app/Domain/Matching/Engine/DeterministicMatcher.php' => 
+  array (
+    0 => 
+    \PHPStan\Dependency\ExportedNode\ExportedClassNode::__set_state(array(
+       'name' => 'App\\Domain\\Matching\\Engine\\DeterministicMatcher',
+       'phpDoc' => 
+      \PHPStan\Dependency\ExportedNode\ExportedPhpDocNode::__set_state(array(
+         'phpDocString' => '/**
+ * Deterministic (exact-key) matching (PRD FR-DUP-03). Surfaces an `exact`-band
+ * result whenever every field of a configured key set (default `[nin]`, `[bvn]`)
+ * is present and equal on both records — citing the key(s) that fired.
+ *
+ * This works in memory, so it serves both **within-batch** dedup (the candidate
+ * against other not-yet-persisted records) and confirmation of the index-backed
+ * registry candidates. It NEVER blocks: it only returns what it finds — enforcing
+ * is the caller\'s decision (the "never hard-block" rule).
+ */',
+         'namespace' => 'App\\Domain\\Matching\\Engine',
+         'uses' => 
+        array (
+          'matchband' => 'App\\Domain\\Matching\\Enums\\MatchBand',
+          'matchingconfig' => 'App\\Domain\\Matching\\Models\\MatchingConfig',
+          'fieldnormalizer' => 'App\\Domain\\Matching\\Scoring\\FieldNormalizer',
+          'matchscore' => 'App\\Domain\\Matching\\Scoring\\MatchScore',
+        ),
+         'constUses' => 
+        array (
+        ),
+      )),
+       'abstract' => false,
+       'final' => false,
+       'extends' => NULL,
+       'implements' => 
+      array (
+      ),
+       'usedTraits' => 
+      array (
+      ),
+       'traitUseAdaptations' => 
+      array (
+      ),
+       'statements' => 
+      array (
+        0 => 
+        \PHPStan\Dependency\ExportedNode\ExportedMethodNode::__set_state(array(
+           'name' => '__construct',
+           'phpDoc' => NULL,
+           'byRef' => false,
+           'public' => true,
+           'private' => false,
+           'abstract' => false,
+           'final' => false,
+           'static' => false,
+           'returnType' => NULL,
+           'parameters' => 
+          array (
+            0 => 
+            \PHPStan\Dependency\ExportedNode\ExportedParameterNode::__set_state(array(
+               'name' => 'normalizer',
+               'type' => 'App\\Domain\\Matching\\Scoring\\FieldNormalizer',
+               'byRef' => false,
+               'variadic' => false,
+               'hasDefault' => false,
+               'attributes' => 
+              array (
+              ),
+               'phpDoc' => NULL,
+               'flags' => 68,
+            )),
+          ),
+           'attributes' => 
+          array (
+          ),
+        )),
+        1 => 
+        \PHPStan\Dependency\ExportedNode\ExportedMethodNode::__set_state(array(
+           'name' => 'match',
+           'phpDoc' => 
+          \PHPStan\Dependency\ExportedNode\ExportedPhpDocNode::__set_state(array(
+             'phpDocString' => '/**
+     * @param  array<string, mixed>  $candidate
+     * @param  iterable<array<string, mixed>>  $existing  each may carry an `id`
+     * @return list<MatchResult> exact matches only
+     */',
+             'namespace' => 'App\\Domain\\Matching\\Engine',
+             'uses' => 
+            array (
+              'matchband' => 'App\\Domain\\Matching\\Enums\\MatchBand',
+              'matchingconfig' => 'App\\Domain\\Matching\\Models\\MatchingConfig',
+              'fieldnormalizer' => 'App\\Domain\\Matching\\Scoring\\FieldNormalizer',
+              'matchscore' => 'App\\Domain\\Matching\\Scoring\\MatchScore',
+            ),
+             'constUses' => 
+            array (
+            ),
+          )),
+           'byRef' => false,
+           'public' => true,
+           'private' => false,
+           'abstract' => false,
+           'final' => false,
+           'static' => false,
+           'returnType' => 'array',
+           'parameters' => 
+          array (
+            0 => 
+            \PHPStan\Dependency\ExportedNode\ExportedParameterNode::__set_state(array(
+               'name' => 'candidate',
+               'type' => 'array',
+               'byRef' => false,
+               'variadic' => false,
+               'hasDefault' => false,
+               'attributes' => 
+              array (
+              ),
+               'phpDoc' => NULL,
+               'flags' => 0,
+            )),
+            1 => 
+            \PHPStan\Dependency\ExportedNode\ExportedParameterNode::__set_state(array(
+               'name' => 'existing',
+               'type' => 'iterable',
+               'byRef' => false,
+               'variadic' => false,
+               'hasDefault' => false,
+               'attributes' => 
+              array (
+              ),
+               'phpDoc' => NULL,
+               'flags' => 0,
+            )),
+            2 => 
+            \PHPStan\Dependency\ExportedNode\ExportedParameterNode::__set_state(array(
+               'name' => 'config',
+               'type' => 'App\\Domain\\Matching\\Models\\MatchingConfig',
+               'byRef' => false,
+               'variadic' => false,
+               'hasDefault' => false,
+               'attributes' => 
+              array (
+              ),
+               'phpDoc' => NULL,
+               'flags' => 0,
+            )),
+          ),
+           'attributes' => 
+          array (
+          ),
+        )),
+      ),
+       'attributes' => 
+      array (
+      ),
+    )),
+  ),
+  '/var/www/html/app/Domain/Matching/Engine/MatchResult.php' => 
+  array (
+    0 => 
+    \PHPStan\Dependency\ExportedNode\ExportedClassNode::__set_state(array(
+       'name' => 'App\\Domain\\Matching\\Engine\\MatchResult',
+       'phpDoc' => 
+      \PHPStan\Dependency\ExportedNode\ExportedPhpDocNode::__set_state(array(
+         'phpDocString' => '/**
+ * The engine\'s verdict for one candidate-vs-existing comparison: the outcome band
+ * plus the score and its per-rule explanation (PRD FR-DUP-03/06). `reference` is
+ * the existing record\'s id when supplied.
+ */',
+         'namespace' => 'App\\Domain\\Matching\\Engine',
+         'uses' => 
+        array (
+          'matchband' => 'App\\Domain\\Matching\\Enums\\MatchBand',
+          'matchscore' => 'App\\Domain\\Matching\\Scoring\\MatchScore',
+        ),
+         'constUses' => 
+        array (
+        ),
+      )),
+       'abstract' => false,
+       'final' => true,
+       'extends' => NULL,
+       'implements' => 
+      array (
+      ),
+       'usedTraits' => 
+      array (
+      ),
+       'traitUseAdaptations' => 
+      array (
+      ),
+       'statements' => 
+      array (
+        0 => 
+        \PHPStan\Dependency\ExportedNode\ExportedMethodNode::__set_state(array(
+           'name' => '__construct',
+           'phpDoc' => NULL,
+           'byRef' => false,
+           'public' => true,
+           'private' => false,
+           'abstract' => false,
+           'final' => false,
+           'static' => false,
+           'returnType' => NULL,
+           'parameters' => 
+          array (
+            0 => 
+            \PHPStan\Dependency\ExportedNode\ExportedParameterNode::__set_state(array(
+               'name' => 'reference',
+               'type' => '?string',
+               'byRef' => false,
+               'variadic' => false,
+               'hasDefault' => false,
+               'attributes' => 
+              array (
+              ),
+               'phpDoc' => NULL,
+               'flags' => 1,
+            )),
+            1 => 
+            \PHPStan\Dependency\ExportedNode\ExportedParameterNode::__set_state(array(
+               'name' => 'band',
+               'type' => 'App\\Domain\\Matching\\Enums\\MatchBand',
+               'byRef' => false,
+               'variadic' => false,
+               'hasDefault' => false,
+               'attributes' => 
+              array (
+              ),
+               'phpDoc' => NULL,
+               'flags' => 1,
+            )),
+            2 => 
+            \PHPStan\Dependency\ExportedNode\ExportedParameterNode::__set_state(array(
+               'name' => 'score',
+               'type' => 'App\\Domain\\Matching\\Scoring\\MatchScore',
+               'byRef' => false,
+               'variadic' => false,
+               'hasDefault' => false,
+               'attributes' => 
+              array (
+              ),
+               'phpDoc' => NULL,
+               'flags' => 1,
+            )),
+          ),
+           'attributes' => 
+          array (
+          ),
+        )),
+        1 => 
+        \PHPStan\Dependency\ExportedNode\ExportedMethodNode::__set_state(array(
+           'name' => 'toArray',
+           'phpDoc' => 
+          \PHPStan\Dependency\ExportedNode\ExportedPhpDocNode::__set_state(array(
+             'phpDocString' => '/**
+     * @return array{reference: string|null, band: string, score: float, deterministic: bool, explanation: list<array<string, mixed>>}
+     */',
+             'namespace' => 'App\\Domain\\Matching\\Engine',
+             'uses' => 
+            array (
+              'matchband' => 'App\\Domain\\Matching\\Enums\\MatchBand',
+              'matchscore' => 'App\\Domain\\Matching\\Scoring\\MatchScore',
+            ),
+             'constUses' => 
+            array (
+            ),
+          )),
+           'byRef' => false,
+           'public' => true,
+           'private' => false,
+           'abstract' => false,
+           'final' => false,
+           'static' => false,
+           'returnType' => 'array',
+           'parameters' => 
+          array (
+          ),
+           'attributes' => 
+          array (
+          ),
+        )),
+      ),
+       'attributes' => 
+      array (
+      ),
+    )),
+  ),
+  '/var/www/html/app/Domain/Matching/Engine/MatchingEngine.php' => 
+  array (
+    0 => 
+    \PHPStan\Dependency\ExportedNode\ExportedClassNode::__set_state(array(
+       'name' => 'App\\Domain\\Matching\\Engine\\MatchingEngine',
+       'phpDoc' => 
+      \PHPStan\Dependency\ExportedNode\ExportedPhpDocNode::__set_state(array(
+         'phpDocString' => '/**
+ * Runs a candidate record against a set of existing records under a matching
+ * configuration and returns a banded {@see MatchResult} per comparison
+ * (PRD FR-DUP-03). Pure orchestration: scoring is delegated to the pluggable
+ * {@see MatchScorer}; banding applies the config thresholds. Candidate selection
+ * (blocking) is the caller\'s responsibility — this engine only scores + bands.
+ */',
+         'namespace' => 'App\\Domain\\Matching\\Engine',
+         'uses' => 
+        array (
+          'matchscorer' => 'App\\Domain\\Matching\\Contracts\\MatchScorer',
+          'matchband' => 'App\\Domain\\Matching\\Enums\\MatchBand',
+          'matchingconfig' => 'App\\Domain\\Matching\\Models\\MatchingConfig',
+          'matchscore' => 'App\\Domain\\Matching\\Scoring\\MatchScore',
+        ),
+         'constUses' => 
+        array (
+        ),
+      )),
+       'abstract' => false,
+       'final' => false,
+       'extends' => NULL,
+       'implements' => 
+      array (
+      ),
+       'usedTraits' => 
+      array (
+      ),
+       'traitUseAdaptations' => 
+      array (
+      ),
+       'statements' => 
+      array (
+        0 => 
+        \PHPStan\Dependency\ExportedNode\ExportedMethodNode::__set_state(array(
+           'name' => '__construct',
+           'phpDoc' => NULL,
+           'byRef' => false,
+           'public' => true,
+           'private' => false,
+           'abstract' => false,
+           'final' => false,
+           'static' => false,
+           'returnType' => NULL,
+           'parameters' => 
+          array (
+            0 => 
+            \PHPStan\Dependency\ExportedNode\ExportedParameterNode::__set_state(array(
+               'name' => 'scorer',
+               'type' => 'App\\Domain\\Matching\\Contracts\\MatchScorer',
+               'byRef' => false,
+               'variadic' => false,
+               'hasDefault' => false,
+               'attributes' => 
+              array (
+              ),
+               'phpDoc' => NULL,
+               'flags' => 68,
+            )),
+          ),
+           'attributes' => 
+          array (
+          ),
+        )),
+        1 => 
+        \PHPStan\Dependency\ExportedNode\ExportedMethodNode::__set_state(array(
+           'name' => 'match',
+           'phpDoc' => 
+          \PHPStan\Dependency\ExportedNode\ExportedPhpDocNode::__set_state(array(
+             'phpDocString' => '/**
+     * @param  array<string, mixed>  $candidate
+     * @param  iterable<array<string, mixed>>  $existingRecords  each may carry an `id`
+     * @return list<MatchResult> ranked most-confident first
+     */',
+             'namespace' => 'App\\Domain\\Matching\\Engine',
+             'uses' => 
+            array (
+              'matchscorer' => 'App\\Domain\\Matching\\Contracts\\MatchScorer',
+              'matchband' => 'App\\Domain\\Matching\\Enums\\MatchBand',
+              'matchingconfig' => 'App\\Domain\\Matching\\Models\\MatchingConfig',
+              'matchscore' => 'App\\Domain\\Matching\\Scoring\\MatchScore',
+            ),
+             'constUses' => 
+            array (
+            ),
+          )),
+           'byRef' => false,
+           'public' => true,
+           'private' => false,
+           'abstract' => false,
+           'final' => false,
+           'static' => false,
+           'returnType' => 'array',
+           'parameters' => 
+          array (
+            0 => 
+            \PHPStan\Dependency\ExportedNode\ExportedParameterNode::__set_state(array(
+               'name' => 'candidate',
+               'type' => 'array',
+               'byRef' => false,
+               'variadic' => false,
+               'hasDefault' => false,
+               'attributes' => 
+              array (
+              ),
+               'phpDoc' => NULL,
+               'flags' => 0,
+            )),
+            1 => 
+            \PHPStan\Dependency\ExportedNode\ExportedParameterNode::__set_state(array(
+               'name' => 'existingRecords',
+               'type' => 'iterable',
+               'byRef' => false,
+               'variadic' => false,
+               'hasDefault' => false,
+               'attributes' => 
+              array (
+              ),
+               'phpDoc' => NULL,
+               'flags' => 0,
+            )),
+            2 => 
+            \PHPStan\Dependency\ExportedNode\ExportedParameterNode::__set_state(array(
+               'name' => 'config',
+               'type' => 'App\\Domain\\Matching\\Models\\MatchingConfig',
+               'byRef' => false,
+               'variadic' => false,
+               'hasDefault' => false,
+               'attributes' => 
+              array (
+              ),
+               'phpDoc' => NULL,
+               'flags' => 0,
+            )),
+          ),
+           'attributes' => 
+          array (
+          ),
+        )),
+      ),
+       'attributes' => 
+      array (
+      ),
+    )),
+  ),
+  '/var/www/html/app/Domain/Matching/Enums/ExactMatchBehaviour.php' => 
+  array (
+    0 => 
+    \PHPStan\Dependency\ExportedNode\ExportedEnumNode::__set_state(array(
+       'name' => 'App\\Domain\\Matching\\Enums\\ExactMatchBehaviour',
+       'scalarType' => 'string',
+       'phpDoc' => 
+      \PHPStan\Dependency\ExportedNode\ExportedPhpDocNode::__set_state(array(
+         'phpDocString' => '/**
+ * What the system should do when a deterministic (exact) key set matches
+ * (PRD FR-DUP-03/05). Stored on the config; acted on by the caller downstream.
+ *
+ * - AutoLink — treat as the same person automatically (block the duplicate /
+ *              route to serve) without a confirmation step.
+ * - Confirm  — surface the exact match for a human to confirm before acting.
+ */',
+         'namespace' => 'App\\Domain\\Matching\\Enums',
+         'uses' => 
+        array (
+        ),
+         'constUses' => 
+        array (
+        ),
+      )),
+       'implements' => 
+      array (
+      ),
+       'statements' => 
+      array (
+        0 => 
+        \PHPStan\Dependency\ExportedNode\ExportedEnumCaseNode::__set_state(array(
+           'name' => 'AutoLink',
+           'value' => '\'auto_link\'',
+           'phpDoc' => NULL,
+        )),
+        1 => 
+        \PHPStan\Dependency\ExportedNode\ExportedEnumCaseNode::__set_state(array(
+           'name' => 'Confirm',
+           'value' => '\'confirm\'',
+           'phpDoc' => NULL,
+        )),
+      ),
+       'attributes' => 
+      array (
+      ),
+    )),
+  ),
+  '/var/www/html/app/Domain/Matching/Enums/MatchBand.php' => 
+  array (
+    0 => 
+    \PHPStan\Dependency\ExportedNode\ExportedEnumNode::__set_state(array(
+       'name' => 'App\\Domain\\Matching\\Enums\\MatchBand',
+       'scalarType' => 'string',
+       'phpDoc' => 
+      \PHPStan\Dependency\ExportedNode\ExportedPhpDocNode::__set_state(array(
+         'phpDocString' => '/**
+ * The three outcome bands of a duplicate check (PRD FR-DUP-03).
+ *
+ * - Exact    — a deterministic key set matched (e.g. NIN) or the score cleared
+ *              the optional auto-accept threshold; treat as the same person.
+ * - Probable — the fuzzy score cleared the review threshold; needs human review.
+ * - None     — below the review threshold; not a match.
+ */',
+         'namespace' => 'App\\Domain\\Matching\\Enums',
+         'uses' => 
+        array (
+        ),
+         'constUses' => 
+        array (
+        ),
+      )),
+       'implements' => 
+      array (
+      ),
+       'statements' => 
+      array (
+        0 => 
+        \PHPStan\Dependency\ExportedNode\ExportedEnumCaseNode::__set_state(array(
+           'name' => 'Exact',
+           'value' => '\'exact\'',
+           'phpDoc' => NULL,
+        )),
+        1 => 
+        \PHPStan\Dependency\ExportedNode\ExportedEnumCaseNode::__set_state(array(
+           'name' => 'Probable',
+           'value' => '\'probable\'',
+           'phpDoc' => NULL,
+        )),
+        2 => 
+        \PHPStan\Dependency\ExportedNode\ExportedEnumCaseNode::__set_state(array(
+           'name' => 'None',
+           'value' => '\'none\'',
+           'phpDoc' => NULL,
+        )),
+        3 => 
+        \PHPStan\Dependency\ExportedNode\ExportedMethodNode::__set_state(array(
+           'name' => 'rank',
+           'phpDoc' => 
+          \PHPStan\Dependency\ExportedNode\ExportedPhpDocNode::__set_state(array(
+             'phpDocString' => '/** Higher = more confident; used to rank results. */',
+             'namespace' => 'App\\Domain\\Matching\\Enums',
+             'uses' => 
+            array (
+            ),
+             'constUses' => 
+            array (
+            ),
+          )),
+           'byRef' => false,
+           'public' => true,
+           'private' => false,
+           'abstract' => false,
+           'final' => false,
+           'static' => false,
+           'returnType' => 'int',
+           'parameters' => 
+          array (
+          ),
+           'attributes' => 
+          array (
+          ),
+        )),
+      ),
+       'attributes' => 
+      array (
+      ),
+    )),
+  ),
+  '/var/www/html/app/Domain/Matching/Enums/MatchComparator.php' => 
+  array (
+    0 => 
+    \PHPStan\Dependency\ExportedNode\ExportedEnumNode::__set_state(array(
+       'name' => 'App\\Domain\\Matching\\Enums\\MatchComparator',
+       'scalarType' => 'string',
+       'phpDoc' => 
+      \PHPStan\Dependency\ExportedNode\ExportedPhpDocNode::__set_state(array(
+         'phpDocString' => '/**
+ * The built-in field comparators a fuzzy rule may use (PRD FR-DUP-03). Each maps
+ * to a Comparator implementation returning a 0..1 similarity.
+ */',
+         'namespace' => 'App\\Domain\\Matching\\Enums',
+         'uses' => 
+        array (
+        ),
+         'constUses' => 
+        array (
+        ),
+      )),
+       'implements' => 
+      array (
+      ),
+       'statements' => 
+      array (
+        0 => 
+        \PHPStan\Dependency\ExportedNode\ExportedEnumCaseNode::__set_state(array(
+           'name' => 'Exact',
+           'value' => '\'exact\'',
+           'phpDoc' => NULL,
+        )),
+        1 => 
+        \PHPStan\Dependency\ExportedNode\ExportedEnumCaseNode::__set_state(array(
+           'name' => 'JaroWinkler',
+           'value' => '\'jaro_winkler\'',
+           'phpDoc' => NULL,
+        )),
+        2 => 
+        \PHPStan\Dependency\ExportedNode\ExportedEnumCaseNode::__set_state(array(
+           'name' => 'Levenshtein',
+           'value' => '\'levenshtein\'',
+           'phpDoc' => NULL,
+        )),
+        3 => 
+        \PHPStan\Dependency\ExportedNode\ExportedEnumCaseNode::__set_state(array(
+           'name' => 'Phonetic',
+           'value' => '\'phonetic\'',
+           'phpDoc' => NULL,
+        )),
+        4 => 
+        \PHPStan\Dependency\ExportedNode\ExportedEnumCaseNode::__set_state(array(
+           'name' => 'DateProximity',
+           'value' => '\'date_proximity\'',
+           'phpDoc' => NULL,
+        )),
+      ),
+       'attributes' => 
+      array (
+      ),
+    )),
+  ),
+  '/var/www/html/app/Domain/Matching/Enums/MatchField.php' => 
+  array (
+    0 => 
+    \PHPStan\Dependency\ExportedNode\ExportedEnumNode::__set_state(array(
+       'name' => 'App\\Domain\\Matching\\Enums\\MatchField',
+       'scalarType' => 'string',
+       'phpDoc' => 
+      \PHPStan\Dependency\ExportedNode\ExportedPhpDocNode::__set_state(array(
+         'phpDocString' => '/**
+ * Beneficiary fields that matching rules may reference (PRD FR-DUP-02). Used to
+ * validate admin-supplied configuration and to normalise values before comparison.
+ */',
+         'namespace' => 'App\\Domain\\Matching\\Enums',
+         'uses' => 
+        array (
+        ),
+         'constUses' => 
+        array (
+        ),
+      )),
+       'implements' => 
+      array (
+      ),
+       'statements' => 
+      array (
+        0 => 
+        \PHPStan\Dependency\ExportedNode\ExportedEnumCaseNode::__set_state(array(
+           'name' => 'Nin',
+           'value' => '\'nin\'',
+           'phpDoc' => NULL,
+        )),
+        1 => 
+        \PHPStan\Dependency\ExportedNode\ExportedEnumCaseNode::__set_state(array(
+           'name' => 'Bvn',
+           'value' => '\'bvn\'',
+           'phpDoc' => NULL,
+        )),
+        2 => 
+        \PHPStan\Dependency\ExportedNode\ExportedEnumCaseNode::__set_state(array(
+           'name' => 'Phone',
+           'value' => '\'phone\'',
+           'phpDoc' => NULL,
+        )),
+        3 => 
+        \PHPStan\Dependency\ExportedNode\ExportedEnumCaseNode::__set_state(array(
+           'name' => 'FirstName',
+           'value' => '\'first_name\'',
+           'phpDoc' => NULL,
+        )),
+        4 => 
+        \PHPStan\Dependency\ExportedNode\ExportedEnumCaseNode::__set_state(array(
+           'name' => 'MiddleName',
+           'value' => '\'middle_name\'',
+           'phpDoc' => NULL,
+        )),
+        5 => 
+        \PHPStan\Dependency\ExportedNode\ExportedEnumCaseNode::__set_state(array(
+           'name' => 'LastName',
+           'value' => '\'last_name\'',
+           'phpDoc' => NULL,
+        )),
+        6 => 
+        \PHPStan\Dependency\ExportedNode\ExportedEnumCaseNode::__set_state(array(
+           'name' => 'DateOfBirth',
+           'value' => '\'date_of_birth\'',
+           'phpDoc' => NULL,
+        )),
+        7 => 
+        \PHPStan\Dependency\ExportedNode\ExportedEnumCaseNode::__set_state(array(
+           'name' => 'Gender',
+           'value' => '\'gender\'',
+           'phpDoc' => NULL,
+        )),
+        8 => 
+        \PHPStan\Dependency\ExportedNode\ExportedEnumCaseNode::__set_state(array(
+           'name' => 'Lga',
+           'value' => '\'lga\'',
+           'phpDoc' => NULL,
+        )),
+        9 => 
+        \PHPStan\Dependency\ExportedNode\ExportedEnumCaseNode::__set_state(array(
+           'name' => 'Ward',
+           'value' => '\'ward\'',
+           'phpDoc' => NULL,
+        )),
+        10 => 
+        \PHPStan\Dependency\ExportedNode\ExportedMethodNode::__set_state(array(
+           'name' => 'isNumericIdentifier',
+           'phpDoc' => 
+          \PHPStan\Dependency\ExportedNode\ExportedPhpDocNode::__set_state(array(
+             'phpDocString' => '/** Identifier-style fields are normalised to digits only before comparison. */',
+             'namespace' => 'App\\Domain\\Matching\\Enums',
+             'uses' => 
+            array (
+            ),
+             'constUses' => 
+            array (
+            ),
+          )),
+           'byRef' => false,
+           'public' => true,
+           'private' => false,
+           'abstract' => false,
+           'final' => false,
+           'static' => false,
+           'returnType' => 'bool',
+           'parameters' => 
+          array (
+          ),
+           'attributes' => 
+          array (
+          ),
+        )),
+        11 => 
+        \PHPStan\Dependency\ExportedNode\ExportedMethodNode::__set_state(array(
+           'name' => 'values',
+           'phpDoc' => 
+          \PHPStan\Dependency\ExportedNode\ExportedPhpDocNode::__set_state(array(
+             'phpDocString' => '/**
+     * @return list<string>
+     */',
+             'namespace' => 'App\\Domain\\Matching\\Enums',
+             'uses' => 
+            array (
+            ),
+             'constUses' => 
+            array (
+            ),
+          )),
+           'byRef' => false,
+           'public' => true,
+           'private' => false,
+           'abstract' => false,
+           'final' => false,
+           'static' => true,
+           'returnType' => 'array',
+           'parameters' => 
+          array (
+          ),
+           'attributes' => 
+          array (
+          ),
+        )),
+      ),
+       'attributes' => 
+      array (
+      ),
+    )),
+  ),
+  '/var/www/html/app/Domain/Matching/MatchingServiceProvider.php' => 
+  array (
+    0 => 
+    \PHPStan\Dependency\ExportedNode\ExportedClassNode::__set_state(array(
+       'name' => 'App\\Domain\\Matching\\MatchingServiceProvider',
+       'phpDoc' => 
+      \PHPStan\Dependency\ExportedNode\ExportedPhpDocNode::__set_state(array(
+         'phpDocString' => '/**
+ * Wires the Matching domain (PRD FR-DUP): the pluggable scorer binding and the
+ * admin permissions for viewing/configuring the matching rules. A future AI
+ * scorer (FR-DUP-07) is enabled by rebinding {@see MatchScorer} here only.
+ */',
+         'namespace' => 'App\\Domain\\Matching',
+         'uses' => 
+        array (
+          'permissionaction' => 'App\\Domain\\Access\\Enums\\PermissionAction',
+          'permissionregistry' => 'App\\Domain\\Access\\Support\\PermissionRegistry',
+          'matchscorer' => 'App\\Domain\\Matching\\Contracts\\MatchScorer',
+          'rulebasedmatchscorer' => 'App\\Domain\\Matching\\Scoring\\RuleBasedMatchScorer',
+          'serviceprovider' => 'Illuminate\\Support\\ServiceProvider',
+        ),
+         'constUses' => 
+        array (
+        ),
+      )),
+       'abstract' => false,
+       'final' => false,
+       'extends' => 'Illuminate\\Support\\ServiceProvider',
+       'implements' => 
+      array (
+      ),
+       'usedTraits' => 
+      array (
+      ),
+       'traitUseAdaptations' => 
+      array (
+      ),
+       'statements' => 
+      array (
+        0 => 
+        \PHPStan\Dependency\ExportedNode\ExportedMethodNode::__set_state(array(
+           'name' => 'register',
+           'phpDoc' => NULL,
+           'byRef' => false,
+           'public' => true,
+           'private' => false,
+           'abstract' => false,
+           'final' => false,
+           'static' => false,
+           'returnType' => 'void',
+           'parameters' => 
+          array (
+          ),
+           'attributes' => 
+          array (
+          ),
+        )),
+        1 => 
+        \PHPStan\Dependency\ExportedNode\ExportedMethodNode::__set_state(array(
+           'name' => 'boot',
+           'phpDoc' => NULL,
+           'byRef' => false,
+           'public' => true,
+           'private' => false,
+           'abstract' => false,
+           'final' => false,
+           'static' => false,
+           'returnType' => 'void',
+           'parameters' => 
+          array (
+          ),
+           'attributes' => 
+          array (
+          ),
+        )),
+      ),
+       'attributes' => 
+      array (
+      ),
+    )),
+  ),
+  '/var/www/html/app/Domain/Matching/Models/MatchingConfig.php' => 
+  array (
+    0 => 
+    \PHPStan\Dependency\ExportedNode\ExportedClassNode::__set_state(array(
+       'name' => 'App\\Domain\\Matching\\Models\\MatchingConfig',
+       'phpDoc' => 
+      \PHPStan\Dependency\ExportedNode\ExportedPhpDocNode::__set_state(array(
+         'phpDocString' => '/**
+ * A versioned duplicate-matching configuration (PRD FR-DUP-02/03). Each row is an
+ * immutable version; the active one drives the engine. Auditable, so every
+ * published change is recorded.
+ *
+ * @property string $id
+ * @property int $version
+ * @property bool $is_active
+ * @property list<list<string>> $deterministic_rules
+ * @property list<array{field: string, comparator: string, weight: float}> $fuzzy_fields
+ * @property float $review_threshold
+ * @property float|null $auto_accept_threshold
+ * @property ExactMatchBehaviour $exact_match_behaviour
+ * @property string|null $description
+ * @property string|null $created_by
+ * @property-read User|null $author
+ */',
+         'namespace' => 'App\\Domain\\Matching\\Models',
+         'uses' => 
+        array (
+          'user' => 'App\\Domain\\Access\\Models\\User',
+          'auditable' => 'App\\Domain\\Audit\\Concerns\\Auditable',
+          'exactmatchbehaviour' => 'App\\Domain\\Matching\\Enums\\ExactMatchBehaviour',
+          'hasuuids' => 'Illuminate\\Database\\Eloquent\\Concerns\\HasUuids',
+          'model' => 'Illuminate\\Database\\Eloquent\\Model',
+          'belongsto' => 'Illuminate\\Database\\Eloquent\\Relations\\BelongsTo',
+        ),
+         'constUses' => 
+        array (
+        ),
+      )),
+       'abstract' => false,
+       'final' => false,
+       'extends' => 'Illuminate\\Database\\Eloquent\\Model',
+       'implements' => 
+      array (
+      ),
+       'usedTraits' => 
+      array (
+        0 => 'App\\Domain\\Audit\\Concerns\\Auditable',
+        1 => 'Illuminate\\Database\\Eloquent\\Concerns\\HasUuids',
+      ),
+       'traitUseAdaptations' => 
+      array (
+      ),
+       'statements' => 
+      array (
+        0 => 
+        \PHPStan\Dependency\ExportedNode\ExportedPropertiesNode::__set_state(array(
+           'names' => 
+          array (
+            0 => 'table',
+          ),
+           'phpDoc' => NULL,
+           'type' => NULL,
+           'public' => false,
+           'private' => false,
+           'static' => false,
+           'readonly' => false,
+           'abstract' => false,
+           'final' => false,
+           'publicSet' => false,
+           'protectedSet' => false,
+           'privateSet' => false,
+           'virtual' => false,
+           'attributes' => 
+          array (
+          ),
+           'hooks' => 
+          array (
+          ),
+        )),
+        1 => 
+        \PHPStan\Dependency\ExportedNode\ExportedPropertiesNode::__set_state(array(
+           'names' => 
+          array (
+            0 => 'fillable',
+          ),
+           'phpDoc' => 
+          \PHPStan\Dependency\ExportedNode\ExportedPhpDocNode::__set_state(array(
+             'phpDocString' => '/**
+     * @var list<string>
+     */',
+             'namespace' => 'App\\Domain\\Matching\\Models',
+             'uses' => 
+            array (
+              'user' => 'App\\Domain\\Access\\Models\\User',
+              'auditable' => 'App\\Domain\\Audit\\Concerns\\Auditable',
+              'exactmatchbehaviour' => 'App\\Domain\\Matching\\Enums\\ExactMatchBehaviour',
+              'hasuuids' => 'Illuminate\\Database\\Eloquent\\Concerns\\HasUuids',
+              'model' => 'Illuminate\\Database\\Eloquent\\Model',
+              'belongsto' => 'Illuminate\\Database\\Eloquent\\Relations\\BelongsTo',
+            ),
+             'constUses' => 
+            array (
+            ),
+          )),
+           'type' => NULL,
+           'public' => false,
+           'private' => false,
+           'static' => false,
+           'readonly' => false,
+           'abstract' => false,
+           'final' => false,
+           'publicSet' => false,
+           'protectedSet' => false,
+           'privateSet' => false,
+           'virtual' => false,
+           'attributes' => 
+          array (
+          ),
+           'hooks' => 
+          array (
+          ),
+        )),
+        2 => 
+        \PHPStan\Dependency\ExportedNode\ExportedMethodNode::__set_state(array(
+           'name' => 'casts',
+           'phpDoc' => 
+          \PHPStan\Dependency\ExportedNode\ExportedPhpDocNode::__set_state(array(
+             'phpDocString' => '/**
+     * @return array<string, string>
+     */',
+             'namespace' => 'App\\Domain\\Matching\\Models',
+             'uses' => 
+            array (
+              'user' => 'App\\Domain\\Access\\Models\\User',
+              'auditable' => 'App\\Domain\\Audit\\Concerns\\Auditable',
+              'exactmatchbehaviour' => 'App\\Domain\\Matching\\Enums\\ExactMatchBehaviour',
+              'hasuuids' => 'Illuminate\\Database\\Eloquent\\Concerns\\HasUuids',
+              'model' => 'Illuminate\\Database\\Eloquent\\Model',
+              'belongsto' => 'Illuminate\\Database\\Eloquent\\Relations\\BelongsTo',
+            ),
+             'constUses' => 
+            array (
+            ),
+          )),
+           'byRef' => false,
+           'public' => false,
+           'private' => false,
+           'abstract' => false,
+           'final' => false,
+           'static' => false,
+           'returnType' => 'array',
+           'parameters' => 
+          array (
+          ),
+           'attributes' => 
+          array (
+          ),
+        )),
+        3 => 
+        \PHPStan\Dependency\ExportedNode\ExportedMethodNode::__set_state(array(
+           'name' => 'deterministicKeySets',
+           'phpDoc' => 
+          \PHPStan\Dependency\ExportedNode\ExportedPhpDocNode::__set_state(array(
+             'phpDocString' => '/**
+     * Deterministic exact-match key sets — a candidate matches if every field in
+     * any one set is present and equal.
+     *
+     * @return list<list<string>>
+     */',
+             'namespace' => 'App\\Domain\\Matching\\Models',
+             'uses' => 
+            array (
+              'user' => 'App\\Domain\\Access\\Models\\User',
+              'auditable' => 'App\\Domain\\Audit\\Concerns\\Auditable',
+              'exactmatchbehaviour' => 'App\\Domain\\Matching\\Enums\\ExactMatchBehaviour',
+              'hasuuids' => 'Illuminate\\Database\\Eloquent\\Concerns\\HasUuids',
+              'model' => 'Illuminate\\Database\\Eloquent\\Model',
+              'belongsto' => 'Illuminate\\Database\\Eloquent\\Relations\\BelongsTo',
+            ),
+             'constUses' => 
+            array (
+            ),
+          )),
+           'byRef' => false,
+           'public' => true,
+           'private' => false,
+           'abstract' => false,
+           'final' => false,
+           'static' => false,
+           'returnType' => 'array',
+           'parameters' => 
+          array (
+          ),
+           'attributes' => 
+          array (
+          ),
+        )),
+        4 => 
+        \PHPStan\Dependency\ExportedNode\ExportedMethodNode::__set_state(array(
+           'name' => 'fuzzyFields',
+           'phpDoc' => 
+          \PHPStan\Dependency\ExportedNode\ExportedPhpDocNode::__set_state(array(
+             'phpDocString' => '/**
+     * @return list<array{field: string, comparator: string, weight: float}>
+     */',
+             'namespace' => 'App\\Domain\\Matching\\Models',
+             'uses' => 
+            array (
+              'user' => 'App\\Domain\\Access\\Models\\User',
+              'auditable' => 'App\\Domain\\Audit\\Concerns\\Auditable',
+              'exactmatchbehaviour' => 'App\\Domain\\Matching\\Enums\\ExactMatchBehaviour',
+              'hasuuids' => 'Illuminate\\Database\\Eloquent\\Concerns\\HasUuids',
+              'model' => 'Illuminate\\Database\\Eloquent\\Model',
+              'belongsto' => 'Illuminate\\Database\\Eloquent\\Relations\\BelongsTo',
+            ),
+             'constUses' => 
+            array (
+            ),
+          )),
+           'byRef' => false,
+           'public' => true,
+           'private' => false,
+           'abstract' => false,
+           'final' => false,
+           'static' => false,
+           'returnType' => 'array',
+           'parameters' => 
+          array (
+          ),
+           'attributes' => 
+          array (
+          ),
+        )),
+        5 => 
+        \PHPStan\Dependency\ExportedNode\ExportedMethodNode::__set_state(array(
+           'name' => 'totalFuzzyWeight',
+           'phpDoc' => 
+          \PHPStan\Dependency\ExportedNode\ExportedPhpDocNode::__set_state(array(
+             'phpDocString' => '/** Sum of the configured fuzzy weights (the score denominator). */',
+             'namespace' => 'App\\Domain\\Matching\\Models',
+             'uses' => 
+            array (
+              'user' => 'App\\Domain\\Access\\Models\\User',
+              'auditable' => 'App\\Domain\\Audit\\Concerns\\Auditable',
+              'exactmatchbehaviour' => 'App\\Domain\\Matching\\Enums\\ExactMatchBehaviour',
+              'hasuuids' => 'Illuminate\\Database\\Eloquent\\Concerns\\HasUuids',
+              'model' => 'Illuminate\\Database\\Eloquent\\Model',
+              'belongsto' => 'Illuminate\\Database\\Eloquent\\Relations\\BelongsTo',
+            ),
+             'constUses' => 
+            array (
+            ),
+          )),
+           'byRef' => false,
+           'public' => true,
+           'private' => false,
+           'abstract' => false,
+           'final' => false,
+           'static' => false,
+           'returnType' => 'float',
+           'parameters' => 
+          array (
+          ),
+           'attributes' => 
+          array (
+          ),
+        )),
+        6 => 
+        \PHPStan\Dependency\ExportedNode\ExportedMethodNode::__set_state(array(
+           'name' => 'author',
+           'phpDoc' => 
+          \PHPStan\Dependency\ExportedNode\ExportedPhpDocNode::__set_state(array(
+             'phpDocString' => '/**
+     * @return BelongsTo<User, $this>
+     */',
+             'namespace' => 'App\\Domain\\Matching\\Models',
+             'uses' => 
+            array (
+              'user' => 'App\\Domain\\Access\\Models\\User',
+              'auditable' => 'App\\Domain\\Audit\\Concerns\\Auditable',
+              'exactmatchbehaviour' => 'App\\Domain\\Matching\\Enums\\ExactMatchBehaviour',
+              'hasuuids' => 'Illuminate\\Database\\Eloquent\\Concerns\\HasUuids',
+              'model' => 'Illuminate\\Database\\Eloquent\\Model',
+              'belongsto' => 'Illuminate\\Database\\Eloquent\\Relations\\BelongsTo',
+            ),
+             'constUses' => 
+            array (
+            ),
+          )),
+           'byRef' => false,
+           'public' => true,
+           'private' => false,
+           'abstract' => false,
+           'final' => false,
+           'static' => false,
+           'returnType' => 'Illuminate\\Database\\Eloquent\\Relations\\BelongsTo',
+           'parameters' => 
+          array (
+          ),
+           'attributes' => 
+          array (
+          ),
+        )),
+      ),
+       'attributes' => 
+      array (
+      ),
+    )),
+  ),
+  '/var/www/html/app/Domain/Matching/Scoring/Comparators/Comparator.php' => 
+  array (
+    0 => 
+    \PHPStan\Dependency\ExportedNode\ExportedInterfaceNode::__set_state(array(
+       'name' => 'App\\Domain\\Matching\\Scoring\\Comparators\\Comparator',
+       'phpDoc' => 
+      \PHPStan\Dependency\ExportedNode\ExportedPhpDocNode::__set_state(array(
+         'phpDocString' => '/**
+ * Compares two already-normalised field values and returns a similarity in
+ * `[0, 1]` (0 = no similarity, 1 = identical). A null/empty value on either side
+ * yields 0 — a missing value is never evidence of a match.
+ */',
+         'namespace' => 'App\\Domain\\Matching\\Scoring\\Comparators',
+         'uses' => 
+        array (
+        ),
+         'constUses' => 
+        array (
+        ),
+      )),
+       'extends' => 
+      array (
+      ),
+       'statements' => 
+      array (
+        0 => 
+        \PHPStan\Dependency\ExportedNode\ExportedMethodNode::__set_state(array(
+           'name' => 'compare',
+           'phpDoc' => NULL,
+           'byRef' => false,
+           'public' => true,
+           'private' => false,
+           'abstract' => false,
+           'final' => false,
+           'static' => false,
+           'returnType' => 'float',
+           'parameters' => 
+          array (
+            0 => 
+            \PHPStan\Dependency\ExportedNode\ExportedParameterNode::__set_state(array(
+               'name' => 'a',
+               'type' => '?string',
+               'byRef' => false,
+               'variadic' => false,
+               'hasDefault' => false,
+               'attributes' => 
+              array (
+              ),
+               'phpDoc' => NULL,
+               'flags' => 0,
+            )),
+            1 => 
+            \PHPStan\Dependency\ExportedNode\ExportedParameterNode::__set_state(array(
+               'name' => 'b',
+               'type' => '?string',
+               'byRef' => false,
+               'variadic' => false,
+               'hasDefault' => false,
+               'attributes' => 
+              array (
+              ),
+               'phpDoc' => NULL,
+               'flags' => 0,
+            )),
+          ),
+           'attributes' => 
+          array (
+          ),
+        )),
+      ),
+    )),
+  ),
+  '/var/www/html/app/Domain/Matching/Scoring/Comparators/ComparatorRegistry.php' => 
+  array (
+    0 => 
+    \PHPStan\Dependency\ExportedNode\ExportedClassNode::__set_state(array(
+       'name' => 'App\\Domain\\Matching\\Scoring\\Comparators\\ComparatorRegistry',
+       'phpDoc' => 
+      \PHPStan\Dependency\ExportedNode\ExportedPhpDocNode::__set_state(array(
+         'phpDocString' => '/**
+ * Resolves a {@see Comparator} for a configured comparator key. New comparators
+ * are added by registering them here — the scorer never changes.
+ */',
+         'namespace' => 'App\\Domain\\Matching\\Scoring\\Comparators',
+         'uses' => 
+        array (
+          'matchcomparator' => 'App\\Domain\\Matching\\Enums\\MatchComparator',
+          'invalidargumentexception' => 'InvalidArgumentException',
+        ),
+         'constUses' => 
+        array (
+        ),
+      )),
+       'abstract' => false,
+       'final' => false,
+       'extends' => NULL,
+       'implements' => 
+      array (
+      ),
+       'usedTraits' => 
+      array (
+      ),
+       'traitUseAdaptations' => 
+      array (
+      ),
+       'statements' => 
+      array (
+        0 => 
+        \PHPStan\Dependency\ExportedNode\ExportedMethodNode::__set_state(array(
+           'name' => '__construct',
+           'phpDoc' => NULL,
+           'byRef' => false,
+           'public' => true,
+           'private' => false,
+           'abstract' => false,
+           'final' => false,
+           'static' => false,
+           'returnType' => NULL,
+           'parameters' => 
+          array (
+          ),
+           'attributes' => 
+          array (
+          ),
+        )),
+        1 => 
+        \PHPStan\Dependency\ExportedNode\ExportedMethodNode::__set_state(array(
+           'name' => 'get',
+           'phpDoc' => NULL,
+           'byRef' => false,
+           'public' => true,
+           'private' => false,
+           'abstract' => false,
+           'final' => false,
+           'static' => false,
+           'returnType' => 'App\\Domain\\Matching\\Scoring\\Comparators\\Comparator',
+           'parameters' => 
+          array (
+            0 => 
+            \PHPStan\Dependency\ExportedNode\ExportedParameterNode::__set_state(array(
+               'name' => 'comparator',
+               'type' => 'string',
+               'byRef' => false,
+               'variadic' => false,
+               'hasDefault' => false,
+               'attributes' => 
+              array (
+              ),
+               'phpDoc' => NULL,
+               'flags' => 0,
+            )),
+          ),
+           'attributes' => 
+          array (
+          ),
+        )),
+      ),
+       'attributes' => 
+      array (
+      ),
+    )),
+  ),
+  '/var/www/html/app/Domain/Matching/Scoring/Comparators/DateProximityComparator.php' => 
+  array (
+    0 => 
+    \PHPStan\Dependency\ExportedNode\ExportedClassNode::__set_state(array(
+       'name' => 'App\\Domain\\Matching\\Scoring\\Comparators\\DateProximityComparator',
+       'phpDoc' => 
+      \PHPStan\Dependency\ExportedNode\ExportedPhpDocNode::__set_state(array(
+         'phpDocString' => '/**
+ * Date-of-birth proximity (PRD FR-DUP-03): exact dates score 1.0; nearby dates
+ * (typos, transposed digits) decay linearly to 0 over a ~3-year window, so a
+ * plausible DOB typo still contributes to the score rather than zeroing it.
+ */',
+         'namespace' => 'App\\Domain\\Matching\\Scoring\\Comparators',
+         'uses' => 
+        array (
+        ),
+         'constUses' => 
+        array (
+        ),
+      )),
+       'abstract' => false,
+       'final' => false,
+       'extends' => NULL,
+       'implements' => 
+      array (
+        0 => 'App\\Domain\\Matching\\Scoring\\Comparators\\Comparator',
+      ),
+       'usedTraits' => 
+      array (
+      ),
+       'traitUseAdaptations' => 
+      array (
+      ),
+       'statements' => 
+      array (
+        0 => 
+        \PHPStan\Dependency\ExportedNode\ExportedMethodNode::__set_state(array(
+           'name' => 'compare',
+           'phpDoc' => NULL,
+           'byRef' => false,
+           'public' => true,
+           'private' => false,
+           'abstract' => false,
+           'final' => false,
+           'static' => false,
+           'returnType' => 'float',
+           'parameters' => 
+          array (
+            0 => 
+            \PHPStan\Dependency\ExportedNode\ExportedParameterNode::__set_state(array(
+               'name' => 'a',
+               'type' => '?string',
+               'byRef' => false,
+               'variadic' => false,
+               'hasDefault' => false,
+               'attributes' => 
+              array (
+              ),
+               'phpDoc' => NULL,
+               'flags' => 0,
+            )),
+            1 => 
+            \PHPStan\Dependency\ExportedNode\ExportedParameterNode::__set_state(array(
+               'name' => 'b',
+               'type' => '?string',
+               'byRef' => false,
+               'variadic' => false,
+               'hasDefault' => false,
+               'attributes' => 
+              array (
+              ),
+               'phpDoc' => NULL,
+               'flags' => 0,
+            )),
+          ),
+           'attributes' => 
+          array (
+          ),
+        )),
+      ),
+       'attributes' => 
+      array (
+      ),
+    )),
+  ),
+  '/var/www/html/app/Domain/Matching/Scoring/Comparators/ExactComparator.php' => 
+  array (
+    0 => 
+    \PHPStan\Dependency\ExportedNode\ExportedClassNode::__set_state(array(
+       'name' => 'App\\Domain\\Matching\\Scoring\\Comparators\\ExactComparator',
+       'phpDoc' => 
+      \PHPStan\Dependency\ExportedNode\ExportedPhpDocNode::__set_state(array(
+         'phpDocString' => '/** Exact equality on the normalised values (1.0 or 0.0). */',
+         'namespace' => 'App\\Domain\\Matching\\Scoring\\Comparators',
+         'uses' => 
+        array (
+        ),
+         'constUses' => 
+        array (
+        ),
+      )),
+       'abstract' => false,
+       'final' => false,
+       'extends' => NULL,
+       'implements' => 
+      array (
+        0 => 'App\\Domain\\Matching\\Scoring\\Comparators\\Comparator',
+      ),
+       'usedTraits' => 
+      array (
+      ),
+       'traitUseAdaptations' => 
+      array (
+      ),
+       'statements' => 
+      array (
+        0 => 
+        \PHPStan\Dependency\ExportedNode\ExportedMethodNode::__set_state(array(
+           'name' => 'compare',
+           'phpDoc' => NULL,
+           'byRef' => false,
+           'public' => true,
+           'private' => false,
+           'abstract' => false,
+           'final' => false,
+           'static' => false,
+           'returnType' => 'float',
+           'parameters' => 
+          array (
+            0 => 
+            \PHPStan\Dependency\ExportedNode\ExportedParameterNode::__set_state(array(
+               'name' => 'a',
+               'type' => '?string',
+               'byRef' => false,
+               'variadic' => false,
+               'hasDefault' => false,
+               'attributes' => 
+              array (
+              ),
+               'phpDoc' => NULL,
+               'flags' => 0,
+            )),
+            1 => 
+            \PHPStan\Dependency\ExportedNode\ExportedParameterNode::__set_state(array(
+               'name' => 'b',
+               'type' => '?string',
+               'byRef' => false,
+               'variadic' => false,
+               'hasDefault' => false,
+               'attributes' => 
+              array (
+              ),
+               'phpDoc' => NULL,
+               'flags' => 0,
+            )),
+          ),
+           'attributes' => 
+          array (
+          ),
+        )),
+      ),
+       'attributes' => 
+      array (
+      ),
+    )),
+  ),
+  '/var/www/html/app/Domain/Matching/Scoring/Comparators/JaroWinklerComparator.php' => 
+  array (
+    0 => 
+    \PHPStan\Dependency\ExportedNode\ExportedClassNode::__set_state(array(
+       'name' => 'App\\Domain\\Matching\\Scoring\\Comparators\\JaroWinklerComparator',
+       'phpDoc' => 
+      \PHPStan\Dependency\ExportedNode\ExportedPhpDocNode::__set_state(array(
+         'phpDocString' => '/**
+ * Jaro-Winkler string similarity (`[0, 1]`) — the default for names, tolerant of
+ * typos and transpositions while rewarding a shared prefix. Pure PHP so it runs
+ * identically on PostgreSQL and sqlite (no pg_trgm dependency).
+ */',
+         'namespace' => 'App\\Domain\\Matching\\Scoring\\Comparators',
+         'uses' => 
+        array (
+        ),
+         'constUses' => 
+        array (
+        ),
+      )),
+       'abstract' => false,
+       'final' => false,
+       'extends' => NULL,
+       'implements' => 
+      array (
+        0 => 'App\\Domain\\Matching\\Scoring\\Comparators\\Comparator',
+      ),
+       'usedTraits' => 
+      array (
+      ),
+       'traitUseAdaptations' => 
+      array (
+      ),
+       'statements' => 
+      array (
+        0 => 
+        \PHPStan\Dependency\ExportedNode\ExportedMethodNode::__set_state(array(
+           'name' => 'compare',
+           'phpDoc' => NULL,
+           'byRef' => false,
+           'public' => true,
+           'private' => false,
+           'abstract' => false,
+           'final' => false,
+           'static' => false,
+           'returnType' => 'float',
+           'parameters' => 
+          array (
+            0 => 
+            \PHPStan\Dependency\ExportedNode\ExportedParameterNode::__set_state(array(
+               'name' => 'a',
+               'type' => '?string',
+               'byRef' => false,
+               'variadic' => false,
+               'hasDefault' => false,
+               'attributes' => 
+              array (
+              ),
+               'phpDoc' => NULL,
+               'flags' => 0,
+            )),
+            1 => 
+            \PHPStan\Dependency\ExportedNode\ExportedParameterNode::__set_state(array(
+               'name' => 'b',
+               'type' => '?string',
+               'byRef' => false,
+               'variadic' => false,
+               'hasDefault' => false,
+               'attributes' => 
+              array (
+              ),
+               'phpDoc' => NULL,
+               'flags' => 0,
+            )),
+          ),
+           'attributes' => 
+          array (
+          ),
+        )),
+      ),
+       'attributes' => 
+      array (
+      ),
+    )),
+  ),
+  '/var/www/html/app/Domain/Matching/Scoring/Comparators/LevenshteinComparator.php' => 
+  array (
+    0 => 
+    \PHPStan\Dependency\ExportedNode\ExportedClassNode::__set_state(array(
+       'name' => 'App\\Domain\\Matching\\Scoring\\Comparators\\LevenshteinComparator',
+       'phpDoc' => 
+      \PHPStan\Dependency\ExportedNode\ExportedPhpDocNode::__set_state(array(
+         'phpDocString' => '/**
+ * Normalised Levenshtein similarity: `1 - distance / maxLength` in `[0, 1]`.
+ */',
+         'namespace' => 'App\\Domain\\Matching\\Scoring\\Comparators',
+         'uses' => 
+        array (
+        ),
+         'constUses' => 
+        array (
+        ),
+      )),
+       'abstract' => false,
+       'final' => false,
+       'extends' => NULL,
+       'implements' => 
+      array (
+        0 => 'App\\Domain\\Matching\\Scoring\\Comparators\\Comparator',
+      ),
+       'usedTraits' => 
+      array (
+      ),
+       'traitUseAdaptations' => 
+      array (
+      ),
+       'statements' => 
+      array (
+        0 => 
+        \PHPStan\Dependency\ExportedNode\ExportedMethodNode::__set_state(array(
+           'name' => 'compare',
+           'phpDoc' => NULL,
+           'byRef' => false,
+           'public' => true,
+           'private' => false,
+           'abstract' => false,
+           'final' => false,
+           'static' => false,
+           'returnType' => 'float',
+           'parameters' => 
+          array (
+            0 => 
+            \PHPStan\Dependency\ExportedNode\ExportedParameterNode::__set_state(array(
+               'name' => 'a',
+               'type' => '?string',
+               'byRef' => false,
+               'variadic' => false,
+               'hasDefault' => false,
+               'attributes' => 
+              array (
+              ),
+               'phpDoc' => NULL,
+               'flags' => 0,
+            )),
+            1 => 
+            \PHPStan\Dependency\ExportedNode\ExportedParameterNode::__set_state(array(
+               'name' => 'b',
+               'type' => '?string',
+               'byRef' => false,
+               'variadic' => false,
+               'hasDefault' => false,
+               'attributes' => 
+              array (
+              ),
+               'phpDoc' => NULL,
+               'flags' => 0,
+            )),
+          ),
+           'attributes' => 
+          array (
+          ),
+        )),
+      ),
+       'attributes' => 
+      array (
+      ),
+    )),
+  ),
+  '/var/www/html/app/Domain/Matching/Scoring/Comparators/PhoneticComparator.php' => 
+  array (
+    0 => 
+    \PHPStan\Dependency\ExportedNode\ExportedClassNode::__set_state(array(
+       'name' => 'App\\Domain\\Matching\\Scoring\\Comparators\\PhoneticComparator',
+       'phpDoc' => 
+      \PHPStan\Dependency\ExportedNode\ExportedPhpDocNode::__set_state(array(
+         'phpDocString' => '/**
+ * Name similarity that blends phonetics with edit distance (PRD FR-DUP-03): a
+ * phonetic-code match scores 1.0 (handles Hausa/Nigerian spelling variance);
+ * otherwise it falls back to Jaro-Winkler so near-misses still score.
+ */',
+         'namespace' => 'App\\Domain\\Matching\\Scoring\\Comparators',
+         'uses' => 
+        array (
+          'phoneticencoder' => 'App\\Domain\\Matching\\Support\\PhoneticEncoder',
+        ),
+         'constUses' => 
+        array (
+        ),
+      )),
+       'abstract' => false,
+       'final' => false,
+       'extends' => NULL,
+       'implements' => 
+      array (
+        0 => 'App\\Domain\\Matching\\Scoring\\Comparators\\Comparator',
+      ),
+       'usedTraits' => 
+      array (
+      ),
+       'traitUseAdaptations' => 
+      array (
+      ),
+       'statements' => 
+      array (
+        0 => 
+        \PHPStan\Dependency\ExportedNode\ExportedMethodNode::__set_state(array(
+           'name' => '__construct',
+           'phpDoc' => NULL,
+           'byRef' => false,
+           'public' => true,
+           'private' => false,
+           'abstract' => false,
+           'final' => false,
+           'static' => false,
+           'returnType' => NULL,
+           'parameters' => 
+          array (
+            0 => 
+            \PHPStan\Dependency\ExportedNode\ExportedParameterNode::__set_state(array(
+               'name' => 'encoder',
+               'type' => 'App\\Domain\\Matching\\Support\\PhoneticEncoder',
+               'byRef' => false,
+               'variadic' => false,
+               'hasDefault' => true,
+               'attributes' => 
+              array (
+              ),
+               'phpDoc' => NULL,
+               'flags' => 68,
+            )),
+            1 => 
+            \PHPStan\Dependency\ExportedNode\ExportedParameterNode::__set_state(array(
+               'name' => 'fallback',
+               'type' => 'App\\Domain\\Matching\\Scoring\\Comparators\\JaroWinklerComparator',
+               'byRef' => false,
+               'variadic' => false,
+               'hasDefault' => true,
+               'attributes' => 
+              array (
+              ),
+               'phpDoc' => NULL,
+               'flags' => 68,
+            )),
+          ),
+           'attributes' => 
+          array (
+          ),
+        )),
+        1 => 
+        \PHPStan\Dependency\ExportedNode\ExportedMethodNode::__set_state(array(
+           'name' => 'compare',
+           'phpDoc' => NULL,
+           'byRef' => false,
+           'public' => true,
+           'private' => false,
+           'abstract' => false,
+           'final' => false,
+           'static' => false,
+           'returnType' => 'float',
+           'parameters' => 
+          array (
+            0 => 
+            \PHPStan\Dependency\ExportedNode\ExportedParameterNode::__set_state(array(
+               'name' => 'a',
+               'type' => '?string',
+               'byRef' => false,
+               'variadic' => false,
+               'hasDefault' => false,
+               'attributes' => 
+              array (
+              ),
+               'phpDoc' => NULL,
+               'flags' => 0,
+            )),
+            1 => 
+            \PHPStan\Dependency\ExportedNode\ExportedParameterNode::__set_state(array(
+               'name' => 'b',
+               'type' => '?string',
+               'byRef' => false,
+               'variadic' => false,
+               'hasDefault' => false,
+               'attributes' => 
+              array (
+              ),
+               'phpDoc' => NULL,
+               'flags' => 0,
+            )),
+          ),
+           'attributes' => 
+          array (
+          ),
+        )),
+      ),
+       'attributes' => 
+      array (
+      ),
+    )),
+  ),
+  '/var/www/html/app/Domain/Matching/Scoring/FieldNormalizer.php' => 
+  array (
+    0 => 
+    \PHPStan\Dependency\ExportedNode\ExportedClassNode::__set_state(array(
+       'name' => 'App\\Domain\\Matching\\Scoring\\FieldNormalizer',
+       'phpDoc' => 
+      \PHPStan\Dependency\ExportedNode\ExportedPhpDocNode::__set_state(array(
+         'phpDocString' => '/**
+ * Normalises a raw field value into a comparable form before scoring:
+ * identifiers → digits only; dates → `Y-m-d`; everything else → lower-cased,
+ * whitespace-collapsed text. Returns null when nothing comparable remains.
+ */',
+         'namespace' => 'App\\Domain\\Matching\\Scoring',
+         'uses' => 
+        array (
+          'matchfield' => 'App\\Domain\\Matching\\Enums\\MatchField',
+        ),
+         'constUses' => 
+        array (
+        ),
+      )),
+       'abstract' => false,
+       'final' => false,
+       'extends' => NULL,
+       'implements' => 
+      array (
+      ),
+       'usedTraits' => 
+      array (
+      ),
+       'traitUseAdaptations' => 
+      array (
+      ),
+       'statements' => 
+      array (
+        0 => 
+        \PHPStan\Dependency\ExportedNode\ExportedMethodNode::__set_state(array(
+           'name' => 'normalize',
+           'phpDoc' => NULL,
+           'byRef' => false,
+           'public' => true,
+           'private' => false,
+           'abstract' => false,
+           'final' => false,
+           'static' => false,
+           'returnType' => '?string',
+           'parameters' => 
+          array (
+            0 => 
+            \PHPStan\Dependency\ExportedNode\ExportedParameterNode::__set_state(array(
+               'name' => 'field',
+               'type' => 'string',
+               'byRef' => false,
+               'variadic' => false,
+               'hasDefault' => false,
+               'attributes' => 
+              array (
+              ),
+               'phpDoc' => NULL,
+               'flags' => 0,
+            )),
+            1 => 
+            \PHPStan\Dependency\ExportedNode\ExportedParameterNode::__set_state(array(
+               'name' => 'value',
+               'type' => 'mixed',
+               'byRef' => false,
+               'variadic' => false,
+               'hasDefault' => false,
+               'attributes' => 
+              array (
+              ),
+               'phpDoc' => NULL,
+               'flags' => 0,
+            )),
+          ),
+           'attributes' => 
+          array (
+          ),
+        )),
+      ),
+       'attributes' => 
+      array (
+      ),
+    )),
+  ),
+  '/var/www/html/app/Domain/Matching/Scoring/MatchScore.php' => 
+  array (
+    0 => 
+    \PHPStan\Dependency\ExportedNode\ExportedClassNode::__set_state(array(
+       'name' => 'App\\Domain\\Matching\\Scoring\\MatchScore',
+       'phpDoc' => 
+      \PHPStan\Dependency\ExportedNode\ExportedPhpDocNode::__set_state(array(
+         'phpDocString' => '/**
+ * The result of scoring one candidate against one existing record. Carries the
+ * normalised composite score, whether a deterministic key set matched, and a
+ * PII-free, per-rule explanation (field names + similarities only — never the
+ * raw values) for transparency and audit (PRD FR-DUP-03).
+ */',
+         'namespace' => 'App\\Domain\\Matching\\Scoring',
+         'uses' => 
+        array (
+        ),
+         'constUses' => 
+        array (
+        ),
+      )),
+       'abstract' => false,
+       'final' => true,
+       'extends' => NULL,
+       'implements' => 
+      array (
+      ),
+       'usedTraits' => 
+      array (
+      ),
+       'traitUseAdaptations' => 
+      array (
+      ),
+       'statements' => 
+      array (
+        0 => 
+        \PHPStan\Dependency\ExportedNode\ExportedMethodNode::__set_state(array(
+           'name' => '__construct',
+           'phpDoc' => 
+          \PHPStan\Dependency\ExportedNode\ExportedPhpDocNode::__set_state(array(
+             'phpDocString' => '/**
+     * @param  list<array<string, mixed>>  $explanation  ordered rules that were evaluated
+     */',
+             'namespace' => 'App\\Domain\\Matching\\Scoring',
+             'uses' => 
+            array (
+            ),
+             'constUses' => 
+            array (
+            ),
+          )),
+           'byRef' => false,
+           'public' => true,
+           'private' => false,
+           'abstract' => false,
+           'final' => false,
+           'static' => false,
+           'returnType' => NULL,
+           'parameters' => 
+          array (
+            0 => 
+            \PHPStan\Dependency\ExportedNode\ExportedParameterNode::__set_state(array(
+               'name' => 'composite',
+               'type' => 'float',
+               'byRef' => false,
+               'variadic' => false,
+               'hasDefault' => false,
+               'attributes' => 
+              array (
+              ),
+               'phpDoc' => NULL,
+               'flags' => 1,
+            )),
+            1 => 
+            \PHPStan\Dependency\ExportedNode\ExportedParameterNode::__set_state(array(
+               'name' => 'deterministic',
+               'type' => 'bool',
+               'byRef' => false,
+               'variadic' => false,
+               'hasDefault' => false,
+               'attributes' => 
+              array (
+              ),
+               'phpDoc' => NULL,
+               'flags' => 1,
+            )),
+            2 => 
+            \PHPStan\Dependency\ExportedNode\ExportedParameterNode::__set_state(array(
+               'name' => 'explanation',
+               'type' => 'array',
+               'byRef' => false,
+               'variadic' => false,
+               'hasDefault' => false,
+               'attributes' => 
+              array (
+              ),
+               'phpDoc' => NULL,
+               'flags' => 1,
+            )),
+          ),
+           'attributes' => 
+          array (
+          ),
+        )),
+        1 => 
+        \PHPStan\Dependency\ExportedNode\ExportedMethodNode::__set_state(array(
+           'name' => 'toArray',
+           'phpDoc' => 
+          \PHPStan\Dependency\ExportedNode\ExportedPhpDocNode::__set_state(array(
+             'phpDocString' => '/**
+     * @return array{composite: float, deterministic: bool, explanation: list<array<string, mixed>>}
+     */',
+             'namespace' => 'App\\Domain\\Matching\\Scoring',
+             'uses' => 
+            array (
+            ),
+             'constUses' => 
+            array (
+            ),
+          )),
+           'byRef' => false,
+           'public' => true,
+           'private' => false,
+           'abstract' => false,
+           'final' => false,
+           'static' => false,
+           'returnType' => 'array',
+           'parameters' => 
+          array (
+          ),
+           'attributes' => 
+          array (
+          ),
+        )),
+      ),
+       'attributes' => 
+      array (
+      ),
+    )),
+  ),
+  '/var/www/html/app/Domain/Matching/Scoring/RuleBasedMatchScorer.php' => 
+  array (
+    0 => 
+    \PHPStan\Dependency\ExportedNode\ExportedClassNode::__set_state(array(
+       'name' => 'App\\Domain\\Matching\\Scoring\\RuleBasedMatchScorer',
+       'phpDoc' => 
+      \PHPStan\Dependency\ExportedNode\ExportedPhpDocNode::__set_state(array(
+         'phpDocString' => '/**
+ * The built-in deterministic + fuzzy scorer (PRD FR-DUP-03).
+ *
+ * Deterministic: each configured key set (e.g. `[nin]`, `[bvn]`) is a match when
+ * every field in the set is present and equal on both records — one hit flags the
+ * score as deterministic. Fuzzy: each weighted field is compared with its
+ * comparator; the composite is the weighted-average similarity, normalised by the
+ * total configured weight, so it stays in `[0,1]` regardless of how weights are set.
+ */',
+         'namespace' => 'App\\Domain\\Matching\\Scoring',
+         'uses' => 
+        array (
+          'matchscorer' => 'App\\Domain\\Matching\\Contracts\\MatchScorer',
+          'matchingconfig' => 'App\\Domain\\Matching\\Models\\MatchingConfig',
+          'comparatorregistry' => 'App\\Domain\\Matching\\Scoring\\Comparators\\ComparatorRegistry',
+        ),
+         'constUses' => 
+        array (
+        ),
+      )),
+       'abstract' => false,
+       'final' => false,
+       'extends' => NULL,
+       'implements' => 
+      array (
+        0 => 'App\\Domain\\Matching\\Contracts\\MatchScorer',
+      ),
+       'usedTraits' => 
+      array (
+      ),
+       'traitUseAdaptations' => 
+      array (
+      ),
+       'statements' => 
+      array (
+        0 => 
+        \PHPStan\Dependency\ExportedNode\ExportedMethodNode::__set_state(array(
+           'name' => '__construct',
+           'phpDoc' => NULL,
+           'byRef' => false,
+           'public' => true,
+           'private' => false,
+           'abstract' => false,
+           'final' => false,
+           'static' => false,
+           'returnType' => NULL,
+           'parameters' => 
+          array (
+            0 => 
+            \PHPStan\Dependency\ExportedNode\ExportedParameterNode::__set_state(array(
+               'name' => 'comparators',
+               'type' => 'App\\Domain\\Matching\\Scoring\\Comparators\\ComparatorRegistry',
+               'byRef' => false,
+               'variadic' => false,
+               'hasDefault' => false,
+               'attributes' => 
+              array (
+              ),
+               'phpDoc' => NULL,
+               'flags' => 68,
+            )),
+            1 => 
+            \PHPStan\Dependency\ExportedNode\ExportedParameterNode::__set_state(array(
+               'name' => 'normalizer',
+               'type' => 'App\\Domain\\Matching\\Scoring\\FieldNormalizer',
+               'byRef' => false,
+               'variadic' => false,
+               'hasDefault' => false,
+               'attributes' => 
+              array (
+              ),
+               'phpDoc' => NULL,
+               'flags' => 68,
+            )),
+          ),
+           'attributes' => 
+          array (
+          ),
+        )),
+        1 => 
+        \PHPStan\Dependency\ExportedNode\ExportedMethodNode::__set_state(array(
+           'name' => 'score',
+           'phpDoc' => NULL,
+           'byRef' => false,
+           'public' => true,
+           'private' => false,
+           'abstract' => false,
+           'final' => false,
+           'static' => false,
+           'returnType' => 'App\\Domain\\Matching\\Scoring\\MatchScore',
+           'parameters' => 
+          array (
+            0 => 
+            \PHPStan\Dependency\ExportedNode\ExportedParameterNode::__set_state(array(
+               'name' => 'candidate',
+               'type' => 'array',
+               'byRef' => false,
+               'variadic' => false,
+               'hasDefault' => false,
+               'attributes' => 
+              array (
+              ),
+               'phpDoc' => NULL,
+               'flags' => 0,
+            )),
+            1 => 
+            \PHPStan\Dependency\ExportedNode\ExportedParameterNode::__set_state(array(
+               'name' => 'existing',
+               'type' => 'array',
+               'byRef' => false,
+               'variadic' => false,
+               'hasDefault' => false,
+               'attributes' => 
+              array (
+              ),
+               'phpDoc' => NULL,
+               'flags' => 0,
+            )),
+            2 => 
+            \PHPStan\Dependency\ExportedNode\ExportedParameterNode::__set_state(array(
+               'name' => 'config',
+               'type' => 'App\\Domain\\Matching\\Models\\MatchingConfig',
+               'byRef' => false,
+               'variadic' => false,
+               'hasDefault' => false,
+               'attributes' => 
+              array (
+              ),
+               'phpDoc' => NULL,
+               'flags' => 0,
+            )),
+          ),
+           'attributes' => 
+          array (
+          ),
+        )),
+      ),
+       'attributes' => 
+      array (
+      ),
+    )),
+  ),
+  '/var/www/html/app/Domain/Matching/Services/MatchingConfigService.php' => 
+  array (
+    0 => 
+    \PHPStan\Dependency\ExportedNode\ExportedClassNode::__set_state(array(
+       'name' => 'App\\Domain\\Matching\\Services\\MatchingConfigService',
+       'phpDoc' => 
+      \PHPStan\Dependency\ExportedNode\ExportedPhpDocNode::__set_state(array(
+         'phpDocString' => '/**
+ * Reads the active matching configuration and publishes new VERSIONS of it
+ * (PRD FR-DUP-02). Publishing is append-only: the prior active version is
+ * deactivated and a new numbered version is created, so history stays intact and
+ * every change is audited via the model\'s Auditable trait.
+ */',
+         'namespace' => 'App\\Domain\\Matching\\Services',
+         'uses' => 
+        array (
+          'user' => 'App\\Domain\\Access\\Models\\User',
+          'matchingconfig' => 'App\\Domain\\Matching\\Models\\MatchingConfig',
+          'db' => 'Illuminate\\Support\\Facades\\DB',
+        ),
+         'constUses' => 
+        array (
+        ),
+      )),
+       'abstract' => false,
+       'final' => false,
+       'extends' => NULL,
+       'implements' => 
+      array (
+      ),
+       'usedTraits' => 
+      array (
+      ),
+       'traitUseAdaptations' => 
+      array (
+      ),
+       'statements' => 
+      array (
+        0 => 
+        \PHPStan\Dependency\ExportedNode\ExportedMethodNode::__set_state(array(
+           'name' => 'active',
+           'phpDoc' => NULL,
+           'byRef' => false,
+           'public' => true,
+           'private' => false,
+           'abstract' => false,
+           'final' => false,
+           'static' => false,
+           'returnType' => 'App\\Domain\\Matching\\Models\\MatchingConfig',
+           'parameters' => 
+          array (
+          ),
+           'attributes' => 
+          array (
+          ),
+        )),
+        1 => 
+        \PHPStan\Dependency\ExportedNode\ExportedMethodNode::__set_state(array(
+           'name' => 'publish',
+           'phpDoc' => 
+          \PHPStan\Dependency\ExportedNode\ExportedPhpDocNode::__set_state(array(
+             'phpDocString' => '/**
+     * Publish a new active version from validated attributes.
+     *
+     * @param  array<string, mixed>  $attributes
+     */',
+             'namespace' => 'App\\Domain\\Matching\\Services',
+             'uses' => 
+            array (
+              'user' => 'App\\Domain\\Access\\Models\\User',
+              'matchingconfig' => 'App\\Domain\\Matching\\Models\\MatchingConfig',
+              'db' => 'Illuminate\\Support\\Facades\\DB',
+            ),
+             'constUses' => 
+            array (
+            ),
+          )),
+           'byRef' => false,
+           'public' => true,
+           'private' => false,
+           'abstract' => false,
+           'final' => false,
+           'static' => false,
+           'returnType' => 'App\\Domain\\Matching\\Models\\MatchingConfig',
+           'parameters' => 
+          array (
+            0 => 
+            \PHPStan\Dependency\ExportedNode\ExportedParameterNode::__set_state(array(
+               'name' => 'attributes',
+               'type' => 'array',
+               'byRef' => false,
+               'variadic' => false,
+               'hasDefault' => false,
+               'attributes' => 
+              array (
+              ),
+               'phpDoc' => NULL,
+               'flags' => 0,
+            )),
+            1 => 
+            \PHPStan\Dependency\ExportedNode\ExportedParameterNode::__set_state(array(
+               'name' => 'actor',
+               'type' => '?App\\Domain\\Access\\Models\\User',
+               'byRef' => false,
+               'variadic' => false,
+               'hasDefault' => true,
+               'attributes' => 
+              array (
+              ),
+               'phpDoc' => NULL,
+               'flags' => 0,
+            )),
+          ),
+           'attributes' => 
+          array (
+          ),
+        )),
+      ),
+       'attributes' => 
+      array (
+      ),
+    )),
+  ),
+  '/var/www/html/app/Domain/Matching/Support/PhoneticEncoder.php' => 
+  array (
+    0 => 
+    \PHPStan\Dependency\ExportedNode\ExportedClassNode::__set_state(array(
+       'name' => 'App\\Domain\\Matching\\Support\\PhoneticEncoder',
+       'phpDoc' => 
+      \PHPStan\Dependency\ExportedNode\ExportedPhpDocNode::__set_state(array(
+         'phpDocString' => '/**
+ * A lightweight phonetic encoder tuned for Hausa/Nigerian name variance
+ * (PRD FR-DUP-03). It folds common spelling variants onto a shared consonant
+ * skeleton so that, e.g., Muhammad / Mohammed / Muhammadu, Ibrahim / Ibraheem,
+ * Sani / Saani, and Sadiq / Saddiq / Sadqi (transposed) all encode alike.
+ *
+ * Used two ways: the full `code()` drives the phonetic name comparator; the short
+ * `block()` prefix drives candidate blocking (higher recall for the same key).
+ */',
+         'namespace' => 'App\\Domain\\Matching\\Support',
+         'uses' => 
+        array (
+        ),
+         'constUses' => 
+        array (
+        ),
+      )),
+       'abstract' => false,
+       'final' => false,
+       'extends' => NULL,
+       'implements' => 
+      array (
+      ),
+       'usedTraits' => 
+      array (
+      ),
+       'traitUseAdaptations' => 
+      array (
+      ),
+       'statements' => 
+      array (
+        0 => 
+        \PHPStan\Dependency\ExportedNode\ExportedMethodNode::__set_state(array(
+           'name' => 'code',
+           'phpDoc' => 
+          \PHPStan\Dependency\ExportedNode\ExportedPhpDocNode::__set_state(array(
+             'phpDocString' => '/** Full consonant-skeleton code (first letter preserved, doubles collapsed). */',
+             'namespace' => 'App\\Domain\\Matching\\Support',
+             'uses' => 
+            array (
+            ),
+             'constUses' => 
+            array (
+            ),
+          )),
+           'byRef' => false,
+           'public' => true,
+           'private' => false,
+           'abstract' => false,
+           'final' => false,
+           'static' => false,
+           'returnType' => 'string',
+           'parameters' => 
+          array (
+            0 => 
+            \PHPStan\Dependency\ExportedNode\ExportedParameterNode::__set_state(array(
+               'name' => 'name',
+               'type' => 'string',
+               'byRef' => false,
+               'variadic' => false,
+               'hasDefault' => false,
+               'attributes' => 
+              array (
+              ),
+               'phpDoc' => NULL,
+               'flags' => 0,
+            )),
+          ),
+           'attributes' => 
+          array (
+          ),
+        )),
+        1 => 
+        \PHPStan\Dependency\ExportedNode\ExportedMethodNode::__set_state(array(
+           'name' => 'block',
+           'phpDoc' => 
+          \PHPStan\Dependency\ExportedNode\ExportedPhpDocNode::__set_state(array(
+             'phpDocString' => '/** Short blocking prefix of the code (groups more variants together). */',
+             'namespace' => 'App\\Domain\\Matching\\Support',
+             'uses' => 
+            array (
+            ),
+             'constUses' => 
+            array (
+            ),
+          )),
+           'byRef' => false,
+           'public' => true,
+           'private' => false,
+           'abstract' => false,
+           'final' => false,
+           'static' => false,
+           'returnType' => 'string',
+           'parameters' => 
+          array (
+            0 => 
+            \PHPStan\Dependency\ExportedNode\ExportedParameterNode::__set_state(array(
+               'name' => 'name',
+               'type' => 'string',
+               'byRef' => false,
+               'variadic' => false,
+               'hasDefault' => false,
+               'attributes' => 
+              array (
+              ),
+               'phpDoc' => NULL,
+               'flags' => 0,
+            )),
+          ),
+           'attributes' => 
+          array (
+          ),
+        )),
+      ),
+       'attributes' => 
+      array (
+      ),
+    )),
+  ),
   '/var/www/html/app/Domain/Registry/Contracts/BeneficiaryRouter.php' => 
   array (
     0 => 
@@ -17705,6 +21412,7 @@ return [
  * @property string|null $address
  * @property string|null $lga
  * @property string|null $ward
+ * @property string|null $block_name_dob
  * @property BeneficiaryStatus $status
  * @property-read Mda|null $ownerMda
  * @property-read HouseholdMembership|null $currentMembership
@@ -17716,6 +21424,7 @@ return [
           'scopedtomda' => 'App\\Domain\\Access\\Concerns\\ScopedToMda',
           'mda' => 'App\\Domain\\Access\\Models\\Mda',
           'auditable' => 'App\\Domain\\Audit\\Concerns\\Auditable',
+          'phoneticencoder' => 'App\\Domain\\Matching\\Support\\PhoneticEncoder',
           'beneficiarystatus' => 'App\\Domain\\Registry\\Enums\\BeneficiaryStatus',
           'gender' => 'App\\Domain\\Registry\\Enums\\Gender',
           'registrationsource' => 'App\\Domain\\Registry\\Enums\\RegistrationSource',
@@ -17797,6 +21506,7 @@ return [
               'scopedtomda' => 'App\\Domain\\Access\\Concerns\\ScopedToMda',
               'mda' => 'App\\Domain\\Access\\Models\\Mda',
               'auditable' => 'App\\Domain\\Audit\\Concerns\\Auditable',
+              'phoneticencoder' => 'App\\Domain\\Matching\\Support\\PhoneticEncoder',
               'beneficiarystatus' => 'App\\Domain\\Registry\\Enums\\BeneficiaryStatus',
               'gender' => 'App\\Domain\\Registry\\Enums\\Gender',
               'registrationsource' => 'App\\Domain\\Registry\\Enums\\RegistrationSource',
@@ -17854,6 +21564,7 @@ return [
               'scopedtomda' => 'App\\Domain\\Access\\Concerns\\ScopedToMda',
               'mda' => 'App\\Domain\\Access\\Models\\Mda',
               'auditable' => 'App\\Domain\\Audit\\Concerns\\Auditable',
+              'phoneticencoder' => 'App\\Domain\\Matching\\Support\\PhoneticEncoder',
               'beneficiarystatus' => 'App\\Domain\\Registry\\Enums\\BeneficiaryStatus',
               'gender' => 'App\\Domain\\Registry\\Enums\\Gender',
               'registrationsource' => 'App\\Domain\\Registry\\Enums\\RegistrationSource',
@@ -17908,6 +21619,7 @@ return [
               'scopedtomda' => 'App\\Domain\\Access\\Concerns\\ScopedToMda',
               'mda' => 'App\\Domain\\Access\\Models\\Mda',
               'auditable' => 'App\\Domain\\Audit\\Concerns\\Auditable',
+              'phoneticencoder' => 'App\\Domain\\Matching\\Support\\PhoneticEncoder',
               'beneficiarystatus' => 'App\\Domain\\Registry\\Enums\\BeneficiaryStatus',
               'gender' => 'App\\Domain\\Registry\\Enums\\Gender',
               'registrationsource' => 'App\\Domain\\Registry\\Enums\\RegistrationSource',
@@ -17959,6 +21671,7 @@ return [
               'scopedtomda' => 'App\\Domain\\Access\\Concerns\\ScopedToMda',
               'mda' => 'App\\Domain\\Access\\Models\\Mda',
               'auditable' => 'App\\Domain\\Audit\\Concerns\\Auditable',
+              'phoneticencoder' => 'App\\Domain\\Matching\\Support\\PhoneticEncoder',
               'beneficiarystatus' => 'App\\Domain\\Registry\\Enums\\BeneficiaryStatus',
               'gender' => 'App\\Domain\\Registry\\Enums\\Gender',
               'registrationsource' => 'App\\Domain\\Registry\\Enums\\RegistrationSource',
@@ -18009,6 +21722,7 @@ return [
               'scopedtomda' => 'App\\Domain\\Access\\Concerns\\ScopedToMda',
               'mda' => 'App\\Domain\\Access\\Models\\Mda',
               'auditable' => 'App\\Domain\\Audit\\Concerns\\Auditable',
+              'phoneticencoder' => 'App\\Domain\\Matching\\Support\\PhoneticEncoder',
               'beneficiarystatus' => 'App\\Domain\\Registry\\Enums\\BeneficiaryStatus',
               'gender' => 'App\\Domain\\Registry\\Enums\\Gender',
               'registrationsource' => 'App\\Domain\\Registry\\Enums\\RegistrationSource',
@@ -18043,6 +21757,57 @@ return [
         )),
         6 => 
         \PHPStan\Dependency\ExportedNode\ExportedMethodNode::__set_state(array(
+           'name' => 'auditExcluded',
+           'phpDoc' => 
+          \PHPStan\Dependency\ExportedNode\ExportedPhpDocNode::__set_state(array(
+             'phpDocString' => '/**
+     * The derived matching blocking key is operational (and name-derived) — keep
+     * it out of the audit trail.
+     *
+     * @return list<string>
+     */',
+             'namespace' => 'App\\Domain\\Registry\\Models',
+             'uses' => 
+            array (
+              'mdascoped' => 'App\\Domain\\Access\\Concerns\\MdaScoped',
+              'scopedtomda' => 'App\\Domain\\Access\\Concerns\\ScopedToMda',
+              'mda' => 'App\\Domain\\Access\\Models\\Mda',
+              'auditable' => 'App\\Domain\\Audit\\Concerns\\Auditable',
+              'phoneticencoder' => 'App\\Domain\\Matching\\Support\\PhoneticEncoder',
+              'beneficiarystatus' => 'App\\Domain\\Registry\\Enums\\BeneficiaryStatus',
+              'gender' => 'App\\Domain\\Registry\\Enums\\Gender',
+              'registrationsource' => 'App\\Domain\\Registry\\Enums\\RegistrationSource',
+              'beneficiaryfactory' => 'Database\\Factories\\BeneficiaryFactory',
+              'hasuuids' => 'Illuminate\\Database\\Eloquent\\Concerns\\HasUuids',
+              'hasfactory' => 'Illuminate\\Database\\Eloquent\\Factories\\HasFactory',
+              'model' => 'Illuminate\\Database\\Eloquent\\Model',
+              'belongsto' => 'Illuminate\\Database\\Eloquent\\Relations\\BelongsTo',
+              'hasmany' => 'Illuminate\\Database\\Eloquent\\Relations\\HasMany',
+              'hasone' => 'Illuminate\\Database\\Eloquent\\Relations\\HasOne',
+              'softdeletes' => 'Illuminate\\Database\\Eloquent\\SoftDeletes',
+              'carbon' => 'Illuminate\\Support\\Carbon',
+              'invalidargumentexception' => 'InvalidArgumentException',
+            ),
+             'constUses' => 
+            array (
+            ),
+          )),
+           'byRef' => false,
+           'public' => false,
+           'private' => false,
+           'abstract' => false,
+           'final' => false,
+           'static' => false,
+           'returnType' => 'array',
+           'parameters' => 
+          array (
+          ),
+           'attributes' => 
+          array (
+          ),
+        )),
+        7 => 
+        \PHPStan\Dependency\ExportedNode\ExportedMethodNode::__set_state(array(
            'name' => 'booted',
            'phpDoc' => NULL,
            'byRef' => false,
@@ -18059,7 +21824,7 @@ return [
           array (
           ),
         )),
-        7 => 
+        8 => 
         \PHPStan\Dependency\ExportedNode\ExportedMethodNode::__set_state(array(
            'name' => 'normalizeDigits',
            'phpDoc' => 
@@ -18075,6 +21840,7 @@ return [
               'scopedtomda' => 'App\\Domain\\Access\\Concerns\\ScopedToMda',
               'mda' => 'App\\Domain\\Access\\Models\\Mda',
               'auditable' => 'App\\Domain\\Audit\\Concerns\\Auditable',
+              'phoneticencoder' => 'App\\Domain\\Matching\\Support\\PhoneticEncoder',
               'beneficiarystatus' => 'App\\Domain\\Registry\\Enums\\BeneficiaryStatus',
               'gender' => 'App\\Domain\\Registry\\Enums\\Gender',
               'registrationsource' => 'App\\Domain\\Registry\\Enums\\RegistrationSource',
@@ -18120,7 +21886,82 @@ return [
           array (
           ),
         )),
-        8 => 
+        9 => 
+        \PHPStan\Dependency\ExportedNode\ExportedMethodNode::__set_state(array(
+           'name' => 'blockNameDobFor',
+           'phpDoc' => 
+          \PHPStan\Dependency\ExportedNode\ExportedPhpDocNode::__set_state(array(
+             'phpDocString' => '/**
+     * The fuzzy-matching blocking key: phonetic(last_name) | dob_year (PRD
+     * FR-DUP-03). Used both to maintain the column and to build the gather query.
+     */',
+             'namespace' => 'App\\Domain\\Registry\\Models',
+             'uses' => 
+            array (
+              'mdascoped' => 'App\\Domain\\Access\\Concerns\\MdaScoped',
+              'scopedtomda' => 'App\\Domain\\Access\\Concerns\\ScopedToMda',
+              'mda' => 'App\\Domain\\Access\\Models\\Mda',
+              'auditable' => 'App\\Domain\\Audit\\Concerns\\Auditable',
+              'phoneticencoder' => 'App\\Domain\\Matching\\Support\\PhoneticEncoder',
+              'beneficiarystatus' => 'App\\Domain\\Registry\\Enums\\BeneficiaryStatus',
+              'gender' => 'App\\Domain\\Registry\\Enums\\Gender',
+              'registrationsource' => 'App\\Domain\\Registry\\Enums\\RegistrationSource',
+              'beneficiaryfactory' => 'Database\\Factories\\BeneficiaryFactory',
+              'hasuuids' => 'Illuminate\\Database\\Eloquent\\Concerns\\HasUuids',
+              'hasfactory' => 'Illuminate\\Database\\Eloquent\\Factories\\HasFactory',
+              'model' => 'Illuminate\\Database\\Eloquent\\Model',
+              'belongsto' => 'Illuminate\\Database\\Eloquent\\Relations\\BelongsTo',
+              'hasmany' => 'Illuminate\\Database\\Eloquent\\Relations\\HasMany',
+              'hasone' => 'Illuminate\\Database\\Eloquent\\Relations\\HasOne',
+              'softdeletes' => 'Illuminate\\Database\\Eloquent\\SoftDeletes',
+              'carbon' => 'Illuminate\\Support\\Carbon',
+              'invalidargumentexception' => 'InvalidArgumentException',
+            ),
+             'constUses' => 
+            array (
+            ),
+          )),
+           'byRef' => false,
+           'public' => true,
+           'private' => false,
+           'abstract' => false,
+           'final' => false,
+           'static' => true,
+           'returnType' => '?string',
+           'parameters' => 
+          array (
+            0 => 
+            \PHPStan\Dependency\ExportedNode\ExportedParameterNode::__set_state(array(
+               'name' => 'lastName',
+               'type' => '?string',
+               'byRef' => false,
+               'variadic' => false,
+               'hasDefault' => false,
+               'attributes' => 
+              array (
+              ),
+               'phpDoc' => NULL,
+               'flags' => 0,
+            )),
+            1 => 
+            \PHPStan\Dependency\ExportedNode\ExportedParameterNode::__set_state(array(
+               'name' => 'dob',
+               'type' => '?string',
+               'byRef' => false,
+               'variadic' => false,
+               'hasDefault' => false,
+               'attributes' => 
+              array (
+              ),
+               'phpDoc' => NULL,
+               'flags' => 0,
+            )),
+          ),
+           'attributes' => 
+          array (
+          ),
+        )),
+        10 => 
         \PHPStan\Dependency\ExportedNode\ExportedMethodNode::__set_state(array(
            'name' => 'fullName',
            'phpDoc' => NULL,
@@ -18138,7 +21979,7 @@ return [
           array (
           ),
         )),
-        9 => 
+        11 => 
         \PHPStan\Dependency\ExportedNode\ExportedMethodNode::__set_state(array(
            'name' => 'ownerMda',
            'phpDoc' => 
@@ -18153,6 +21994,7 @@ return [
               'scopedtomda' => 'App\\Domain\\Access\\Concerns\\ScopedToMda',
               'mda' => 'App\\Domain\\Access\\Models\\Mda',
               'auditable' => 'App\\Domain\\Audit\\Concerns\\Auditable',
+              'phoneticencoder' => 'App\\Domain\\Matching\\Support\\PhoneticEncoder',
               'beneficiarystatus' => 'App\\Domain\\Registry\\Enums\\BeneficiaryStatus',
               'gender' => 'App\\Domain\\Registry\\Enums\\Gender',
               'registrationsource' => 'App\\Domain\\Registry\\Enums\\RegistrationSource',
@@ -18185,7 +22027,7 @@ return [
           array (
           ),
         )),
-        10 => 
+        12 => 
         \PHPStan\Dependency\ExportedNode\ExportedMethodNode::__set_state(array(
            'name' => 'householdMemberships',
            'phpDoc' => 
@@ -18200,6 +22042,7 @@ return [
               'scopedtomda' => 'App\\Domain\\Access\\Concerns\\ScopedToMda',
               'mda' => 'App\\Domain\\Access\\Models\\Mda',
               'auditable' => 'App\\Domain\\Audit\\Concerns\\Auditable',
+              'phoneticencoder' => 'App\\Domain\\Matching\\Support\\PhoneticEncoder',
               'beneficiarystatus' => 'App\\Domain\\Registry\\Enums\\BeneficiaryStatus',
               'gender' => 'App\\Domain\\Registry\\Enums\\Gender',
               'registrationsource' => 'App\\Domain\\Registry\\Enums\\RegistrationSource',
@@ -18232,7 +22075,7 @@ return [
           array (
           ),
         )),
-        11 => 
+        13 => 
         \PHPStan\Dependency\ExportedNode\ExportedMethodNode::__set_state(array(
            'name' => 'currentMembership',
            'phpDoc' => 
@@ -18249,6 +22092,7 @@ return [
               'scopedtomda' => 'App\\Domain\\Access\\Concerns\\ScopedToMda',
               'mda' => 'App\\Domain\\Access\\Models\\Mda',
               'auditable' => 'App\\Domain\\Audit\\Concerns\\Auditable',
+              'phoneticencoder' => 'App\\Domain\\Matching\\Support\\PhoneticEncoder',
               'beneficiarystatus' => 'App\\Domain\\Registry\\Enums\\BeneficiaryStatus',
               'gender' => 'App\\Domain\\Registry\\Enums\\Gender',
               'registrationsource' => 'App\\Domain\\Registry\\Enums\\RegistrationSource',
@@ -18281,7 +22125,7 @@ return [
           array (
           ),
         )),
-        12 => 
+        14 => 
         \PHPStan\Dependency\ExportedNode\ExportedMethodNode::__set_state(array(
            'name' => 'newFactory',
            'phpDoc' => NULL,
@@ -21768,6 +25612,722 @@ return [
       ),
     )),
   ),
+  '/var/www/html/app/Domain/Registry/Services/CandidateGatherer.php' => 
+  array (
+    0 => 
+    \PHPStan\Dependency\ExportedNode\ExportedClassNode::__set_state(array(
+       'name' => 'App\\Domain\\Registry\\Services\\CandidateGatherer',
+       'phpDoc' => 
+      \PHPStan\Dependency\ExportedNode\ExportedPhpDocNode::__set_state(array(
+         'phpDocString' => '/**
+ * Candidate blocking for fuzzy matching (PRD FR-DUP-03, NFR-PERF-01). Instead of
+ * scoring against the whole registry, it gathers only records that share a
+ * blocking key with the candidate — all index-backed exact lookups:
+ *
+ *  - NIN / BVN (partial-unique indexes)
+ *  - phone (indexed)
+ *  - `block_name_dob` = phonetic(last_name)|dob_year (indexed)
+ *
+ * The gathered set is hard-capped, so even a very common block stays bounded.
+ * Cross-MDA (duplicates span MDAs); read-only.
+ */',
+         'namespace' => 'App\\Domain\\Registry\\Services',
+         'uses' => 
+        array (
+          'mdascope' => 'App\\Domain\\Access\\Scopes\\MdaScope',
+          'matchingconfig' => 'App\\Domain\\Matching\\Models\\MatchingConfig',
+          'fieldnormalizer' => 'App\\Domain\\Matching\\Scoring\\FieldNormalizer',
+          'beneficiary' => 'App\\Domain\\Registry\\Models\\Beneficiary',
+          'builder' => 'Illuminate\\Database\\Eloquent\\Builder',
+        ),
+         'constUses' => 
+        array (
+        ),
+      )),
+       'abstract' => false,
+       'final' => false,
+       'extends' => NULL,
+       'implements' => 
+      array (
+      ),
+       'usedTraits' => 
+      array (
+      ),
+       'traitUseAdaptations' => 
+      array (
+      ),
+       'statements' => 
+      array (
+        0 => 
+        \PHPStan\Dependency\ExportedNode\ExportedClassConstantsNode::__set_state(array(
+           'constants' => 
+          array (
+            0 => 
+            \PHPStan\Dependency\ExportedNode\ExportedClassConstantNode::__set_state(array(
+               'name' => 'MAX_CANDIDATES',
+               'value' => '200',
+               'attributes' => 
+              array (
+              ),
+            )),
+          ),
+           'public' => true,
+           'private' => false,
+           'final' => false,
+           'phpDoc' => 
+          \PHPStan\Dependency\ExportedNode\ExportedPhpDocNode::__set_state(array(
+             'phpDocString' => '/** Safety cap on the candidate set regardless of block size. */',
+             'namespace' => 'App\\Domain\\Registry\\Services',
+             'uses' => 
+            array (
+              'mdascope' => 'App\\Domain\\Access\\Scopes\\MdaScope',
+              'matchingconfig' => 'App\\Domain\\Matching\\Models\\MatchingConfig',
+              'fieldnormalizer' => 'App\\Domain\\Matching\\Scoring\\FieldNormalizer',
+              'beneficiary' => 'App\\Domain\\Registry\\Models\\Beneficiary',
+              'builder' => 'Illuminate\\Database\\Eloquent\\Builder',
+            ),
+             'constUses' => 
+            array (
+            ),
+          )),
+        )),
+        1 => 
+        \PHPStan\Dependency\ExportedNode\ExportedMethodNode::__set_state(array(
+           'name' => '__construct',
+           'phpDoc' => NULL,
+           'byRef' => false,
+           'public' => true,
+           'private' => false,
+           'abstract' => false,
+           'final' => false,
+           'static' => false,
+           'returnType' => NULL,
+           'parameters' => 
+          array (
+            0 => 
+            \PHPStan\Dependency\ExportedNode\ExportedParameterNode::__set_state(array(
+               'name' => 'normalizer',
+               'type' => 'App\\Domain\\Matching\\Scoring\\FieldNormalizer',
+               'byRef' => false,
+               'variadic' => false,
+               'hasDefault' => false,
+               'attributes' => 
+              array (
+              ),
+               'phpDoc' => NULL,
+               'flags' => 68,
+            )),
+          ),
+           'attributes' => 
+          array (
+          ),
+        )),
+        2 => 
+        \PHPStan\Dependency\ExportedNode\ExportedMethodNode::__set_state(array(
+           'name' => 'gather',
+           'phpDoc' => 
+          \PHPStan\Dependency\ExportedNode\ExportedPhpDocNode::__set_state(array(
+             'phpDocString' => '/**
+     * @param  array<string, mixed>  $candidate
+     * @return list<array<string, mixed>>
+     */',
+             'namespace' => 'App\\Domain\\Registry\\Services',
+             'uses' => 
+            array (
+              'mdascope' => 'App\\Domain\\Access\\Scopes\\MdaScope',
+              'matchingconfig' => 'App\\Domain\\Matching\\Models\\MatchingConfig',
+              'fieldnormalizer' => 'App\\Domain\\Matching\\Scoring\\FieldNormalizer',
+              'beneficiary' => 'App\\Domain\\Registry\\Models\\Beneficiary',
+              'builder' => 'Illuminate\\Database\\Eloquent\\Builder',
+            ),
+             'constUses' => 
+            array (
+            ),
+          )),
+           'byRef' => false,
+           'public' => true,
+           'private' => false,
+           'abstract' => false,
+           'final' => false,
+           'static' => false,
+           'returnType' => 'array',
+           'parameters' => 
+          array (
+            0 => 
+            \PHPStan\Dependency\ExportedNode\ExportedParameterNode::__set_state(array(
+               'name' => 'candidate',
+               'type' => 'array',
+               'byRef' => false,
+               'variadic' => false,
+               'hasDefault' => false,
+               'attributes' => 
+              array (
+              ),
+               'phpDoc' => NULL,
+               'flags' => 0,
+            )),
+            1 => 
+            \PHPStan\Dependency\ExportedNode\ExportedParameterNode::__set_state(array(
+               'name' => 'config',
+               'type' => 'App\\Domain\\Matching\\Models\\MatchingConfig',
+               'byRef' => false,
+               'variadic' => false,
+               'hasDefault' => false,
+               'attributes' => 
+              array (
+              ),
+               'phpDoc' => NULL,
+               'flags' => 0,
+            )),
+            2 => 
+            \PHPStan\Dependency\ExportedNode\ExportedParameterNode::__set_state(array(
+               'name' => 'excludeId',
+               'type' => '?string',
+               'byRef' => false,
+               'variadic' => false,
+               'hasDefault' => true,
+               'attributes' => 
+              array (
+              ),
+               'phpDoc' => NULL,
+               'flags' => 0,
+            )),
+          ),
+           'attributes' => 
+          array (
+          ),
+        )),
+        3 => 
+        \PHPStan\Dependency\ExportedNode\ExportedMethodNode::__set_state(array(
+           'name' => 'buildQuery',
+           'phpDoc' => 
+          \PHPStan\Dependency\ExportedNode\ExportedPhpDocNode::__set_state(array(
+             'phpDocString' => '/**
+     * The index-backed blocking query, or null when the candidate yields no usable
+     * blocking key (so we never fall back to a full-table scan).
+     *
+     * @param  array<string, mixed>  $candidate
+     */',
+             'namespace' => 'App\\Domain\\Registry\\Services',
+             'uses' => 
+            array (
+              'mdascope' => 'App\\Domain\\Access\\Scopes\\MdaScope',
+              'matchingconfig' => 'App\\Domain\\Matching\\Models\\MatchingConfig',
+              'fieldnormalizer' => 'App\\Domain\\Matching\\Scoring\\FieldNormalizer',
+              'beneficiary' => 'App\\Domain\\Registry\\Models\\Beneficiary',
+              'builder' => 'Illuminate\\Database\\Eloquent\\Builder',
+            ),
+             'constUses' => 
+            array (
+            ),
+          )),
+           'byRef' => false,
+           'public' => true,
+           'private' => false,
+           'abstract' => false,
+           'final' => false,
+           'static' => false,
+           'returnType' => '?Illuminate\\Database\\Eloquent\\Builder',
+           'parameters' => 
+          array (
+            0 => 
+            \PHPStan\Dependency\ExportedNode\ExportedParameterNode::__set_state(array(
+               'name' => 'candidate',
+               'type' => 'array',
+               'byRef' => false,
+               'variadic' => false,
+               'hasDefault' => false,
+               'attributes' => 
+              array (
+              ),
+               'phpDoc' => NULL,
+               'flags' => 0,
+            )),
+            1 => 
+            \PHPStan\Dependency\ExportedNode\ExportedParameterNode::__set_state(array(
+               'name' => 'config',
+               'type' => 'App\\Domain\\Matching\\Models\\MatchingConfig',
+               'byRef' => false,
+               'variadic' => false,
+               'hasDefault' => false,
+               'attributes' => 
+              array (
+              ),
+               'phpDoc' => NULL,
+               'flags' => 0,
+            )),
+            2 => 
+            \PHPStan\Dependency\ExportedNode\ExportedParameterNode::__set_state(array(
+               'name' => 'excludeId',
+               'type' => '?string',
+               'byRef' => false,
+               'variadic' => false,
+               'hasDefault' => true,
+               'attributes' => 
+              array (
+              ),
+               'phpDoc' => NULL,
+               'flags' => 0,
+            )),
+          ),
+           'attributes' => 
+          array (
+          ),
+        )),
+      ),
+       'attributes' => 
+      array (
+      ),
+    )),
+  ),
+  '/var/www/html/app/Domain/Registry/Services/DeterministicDuplicateFinder.php' => 
+  array (
+    0 => 
+    \PHPStan\Dependency\ExportedNode\ExportedClassNode::__set_state(array(
+       'name' => 'App\\Domain\\Registry\\Services\\DeterministicDuplicateFinder',
+       'phpDoc' => 
+      \PHPStan\Dependency\ExportedNode\ExportedPhpDocNode::__set_state(array(
+         'phpDocString' => '/**
+ * Finds deterministic (exact-key) duplicates of a candidate against the existing
+ * registry (PRD FR-DUP-03). The lookup is index-backed: it queries the
+ * beneficiaries table on the configured key fields (default NIN/BVN), which are
+ * covered by the Phase 2 partial-unique indexes — so the exact path never
+ * full-table scans. The duplicate check spans all MDAs (register once, serve
+ * many), so the owner scope is bypassed. Read-only: it surfaces matches, it does
+ * not block.
+ */',
+         'namespace' => 'App\\Domain\\Registry\\Services',
+         'uses' => 
+        array (
+          'mdascope' => 'App\\Domain\\Access\\Scopes\\MdaScope',
+          'deterministicmatcher' => 'App\\Domain\\Matching\\Engine\\DeterministicMatcher',
+          'matchresult' => 'App\\Domain\\Matching\\Engine\\MatchResult',
+          'matchingconfig' => 'App\\Domain\\Matching\\Models\\MatchingConfig',
+          'fieldnormalizer' => 'App\\Domain\\Matching\\Scoring\\FieldNormalizer',
+          'matchingconfigservice' => 'App\\Domain\\Matching\\Services\\MatchingConfigService',
+          'beneficiary' => 'App\\Domain\\Registry\\Models\\Beneficiary',
+          'builder' => 'Illuminate\\Database\\Eloquent\\Builder',
+        ),
+         'constUses' => 
+        array (
+        ),
+      )),
+       'abstract' => false,
+       'final' => false,
+       'extends' => NULL,
+       'implements' => 
+      array (
+      ),
+       'usedTraits' => 
+      array (
+      ),
+       'traitUseAdaptations' => 
+      array (
+      ),
+       'statements' => 
+      array (
+        0 => 
+        \PHPStan\Dependency\ExportedNode\ExportedMethodNode::__set_state(array(
+           'name' => '__construct',
+           'phpDoc' => NULL,
+           'byRef' => false,
+           'public' => true,
+           'private' => false,
+           'abstract' => false,
+           'final' => false,
+           'static' => false,
+           'returnType' => NULL,
+           'parameters' => 
+          array (
+            0 => 
+            \PHPStan\Dependency\ExportedNode\ExportedParameterNode::__set_state(array(
+               'name' => 'matcher',
+               'type' => 'App\\Domain\\Matching\\Engine\\DeterministicMatcher',
+               'byRef' => false,
+               'variadic' => false,
+               'hasDefault' => false,
+               'attributes' => 
+              array (
+              ),
+               'phpDoc' => NULL,
+               'flags' => 68,
+            )),
+            1 => 
+            \PHPStan\Dependency\ExportedNode\ExportedParameterNode::__set_state(array(
+               'name' => 'normalizer',
+               'type' => 'App\\Domain\\Matching\\Scoring\\FieldNormalizer',
+               'byRef' => false,
+               'variadic' => false,
+               'hasDefault' => false,
+               'attributes' => 
+              array (
+              ),
+               'phpDoc' => NULL,
+               'flags' => 68,
+            )),
+            2 => 
+            \PHPStan\Dependency\ExportedNode\ExportedParameterNode::__set_state(array(
+               'name' => 'configs',
+               'type' => 'App\\Domain\\Matching\\Services\\MatchingConfigService',
+               'byRef' => false,
+               'variadic' => false,
+               'hasDefault' => false,
+               'attributes' => 
+              array (
+              ),
+               'phpDoc' => NULL,
+               'flags' => 68,
+            )),
+          ),
+           'attributes' => 
+          array (
+          ),
+        )),
+        1 => 
+        \PHPStan\Dependency\ExportedNode\ExportedMethodNode::__set_state(array(
+           'name' => 'find',
+           'phpDoc' => 
+          \PHPStan\Dependency\ExportedNode\ExportedPhpDocNode::__set_state(array(
+             'phpDocString' => '/**
+     * @param  array<string, mixed>  $candidate
+     * @return list<MatchResult>
+     */',
+             'namespace' => 'App\\Domain\\Registry\\Services',
+             'uses' => 
+            array (
+              'mdascope' => 'App\\Domain\\Access\\Scopes\\MdaScope',
+              'deterministicmatcher' => 'App\\Domain\\Matching\\Engine\\DeterministicMatcher',
+              'matchresult' => 'App\\Domain\\Matching\\Engine\\MatchResult',
+              'matchingconfig' => 'App\\Domain\\Matching\\Models\\MatchingConfig',
+              'fieldnormalizer' => 'App\\Domain\\Matching\\Scoring\\FieldNormalizer',
+              'matchingconfigservice' => 'App\\Domain\\Matching\\Services\\MatchingConfigService',
+              'beneficiary' => 'App\\Domain\\Registry\\Models\\Beneficiary',
+              'builder' => 'Illuminate\\Database\\Eloquent\\Builder',
+            ),
+             'constUses' => 
+            array (
+            ),
+          )),
+           'byRef' => false,
+           'public' => true,
+           'private' => false,
+           'abstract' => false,
+           'final' => false,
+           'static' => false,
+           'returnType' => 'array',
+           'parameters' => 
+          array (
+            0 => 
+            \PHPStan\Dependency\ExportedNode\ExportedParameterNode::__set_state(array(
+               'name' => 'candidate',
+               'type' => 'array',
+               'byRef' => false,
+               'variadic' => false,
+               'hasDefault' => false,
+               'attributes' => 
+              array (
+              ),
+               'phpDoc' => NULL,
+               'flags' => 0,
+            )),
+            1 => 
+            \PHPStan\Dependency\ExportedNode\ExportedParameterNode::__set_state(array(
+               'name' => 'config',
+               'type' => '?App\\Domain\\Matching\\Models\\MatchingConfig',
+               'byRef' => false,
+               'variadic' => false,
+               'hasDefault' => true,
+               'attributes' => 
+              array (
+              ),
+               'phpDoc' => NULL,
+               'flags' => 0,
+            )),
+            2 => 
+            \PHPStan\Dependency\ExportedNode\ExportedParameterNode::__set_state(array(
+               'name' => 'excludeId',
+               'type' => '?string',
+               'byRef' => false,
+               'variadic' => false,
+               'hasDefault' => true,
+               'attributes' => 
+              array (
+              ),
+               'phpDoc' => NULL,
+               'flags' => 0,
+            )),
+          ),
+           'attributes' => 
+          array (
+          ),
+        )),
+        2 => 
+        \PHPStan\Dependency\ExportedNode\ExportedMethodNode::__set_state(array(
+           'name' => 'buildQuery',
+           'phpDoc' => 
+          \PHPStan\Dependency\ExportedNode\ExportedPhpDocNode::__set_state(array(
+             'phpDocString' => '/**
+     * Build the index-backed exact-key query, or null when the candidate has no
+     * usable deterministic key (guards against a full-table scan).
+     *
+     * @param  array<string, mixed>  $candidate
+     */',
+             'namespace' => 'App\\Domain\\Registry\\Services',
+             'uses' => 
+            array (
+              'mdascope' => 'App\\Domain\\Access\\Scopes\\MdaScope',
+              'deterministicmatcher' => 'App\\Domain\\Matching\\Engine\\DeterministicMatcher',
+              'matchresult' => 'App\\Domain\\Matching\\Engine\\MatchResult',
+              'matchingconfig' => 'App\\Domain\\Matching\\Models\\MatchingConfig',
+              'fieldnormalizer' => 'App\\Domain\\Matching\\Scoring\\FieldNormalizer',
+              'matchingconfigservice' => 'App\\Domain\\Matching\\Services\\MatchingConfigService',
+              'beneficiary' => 'App\\Domain\\Registry\\Models\\Beneficiary',
+              'builder' => 'Illuminate\\Database\\Eloquent\\Builder',
+            ),
+             'constUses' => 
+            array (
+            ),
+          )),
+           'byRef' => false,
+           'public' => true,
+           'private' => false,
+           'abstract' => false,
+           'final' => false,
+           'static' => false,
+           'returnType' => '?Illuminate\\Database\\Eloquent\\Builder',
+           'parameters' => 
+          array (
+            0 => 
+            \PHPStan\Dependency\ExportedNode\ExportedParameterNode::__set_state(array(
+               'name' => 'candidate',
+               'type' => 'array',
+               'byRef' => false,
+               'variadic' => false,
+               'hasDefault' => false,
+               'attributes' => 
+              array (
+              ),
+               'phpDoc' => NULL,
+               'flags' => 0,
+            )),
+            1 => 
+            \PHPStan\Dependency\ExportedNode\ExportedParameterNode::__set_state(array(
+               'name' => 'config',
+               'type' => 'App\\Domain\\Matching\\Models\\MatchingConfig',
+               'byRef' => false,
+               'variadic' => false,
+               'hasDefault' => false,
+               'attributes' => 
+              array (
+              ),
+               'phpDoc' => NULL,
+               'flags' => 0,
+            )),
+            2 => 
+            \PHPStan\Dependency\ExportedNode\ExportedParameterNode::__set_state(array(
+               'name' => 'excludeId',
+               'type' => '?string',
+               'byRef' => false,
+               'variadic' => false,
+               'hasDefault' => true,
+               'attributes' => 
+              array (
+              ),
+               'phpDoc' => NULL,
+               'flags' => 0,
+            )),
+          ),
+           'attributes' => 
+          array (
+          ),
+        )),
+      ),
+       'attributes' => 
+      array (
+      ),
+    )),
+  ),
+  '/var/www/html/app/Domain/Registry/Services/FuzzyDuplicateFinder.php' => 
+  array (
+    0 => 
+    \PHPStan\Dependency\ExportedNode\ExportedClassNode::__set_state(array(
+       'name' => 'App\\Domain\\Registry\\Services\\FuzzyDuplicateFinder',
+       'phpDoc' => 
+      \PHPStan\Dependency\ExportedNode\ExportedPhpDocNode::__set_state(array(
+         'phpDocString' => '/**
+ * Fuzzy duplicate check against the registry (PRD FR-DUP-03): blocks to a small
+ * candidate set, scores each with the configured weighted comparators, and bands
+ * the results. Returns only the interesting matches (exact + probable), ranked.
+ *
+ * Read-only: it surfaces matches, it does not block. Runs inline for single
+ * lookups (bounded candidate set keeps it within NFR-PERF-01\'s 5s) and from the
+ * queue worker for batches.
+ */',
+         'namespace' => 'App\\Domain\\Registry\\Services',
+         'uses' => 
+        array (
+          'matchingengine' => 'App\\Domain\\Matching\\Engine\\MatchingEngine',
+          'matchresult' => 'App\\Domain\\Matching\\Engine\\MatchResult',
+          'matchband' => 'App\\Domain\\Matching\\Enums\\MatchBand',
+          'matchingconfig' => 'App\\Domain\\Matching\\Models\\MatchingConfig',
+          'matchingconfigservice' => 'App\\Domain\\Matching\\Services\\MatchingConfigService',
+        ),
+         'constUses' => 
+        array (
+        ),
+      )),
+       'abstract' => false,
+       'final' => false,
+       'extends' => NULL,
+       'implements' => 
+      array (
+      ),
+       'usedTraits' => 
+      array (
+      ),
+       'traitUseAdaptations' => 
+      array (
+      ),
+       'statements' => 
+      array (
+        0 => 
+        \PHPStan\Dependency\ExportedNode\ExportedMethodNode::__set_state(array(
+           'name' => '__construct',
+           'phpDoc' => NULL,
+           'byRef' => false,
+           'public' => true,
+           'private' => false,
+           'abstract' => false,
+           'final' => false,
+           'static' => false,
+           'returnType' => NULL,
+           'parameters' => 
+          array (
+            0 => 
+            \PHPStan\Dependency\ExportedNode\ExportedParameterNode::__set_state(array(
+               'name' => 'gatherer',
+               'type' => 'App\\Domain\\Registry\\Services\\CandidateGatherer',
+               'byRef' => false,
+               'variadic' => false,
+               'hasDefault' => false,
+               'attributes' => 
+              array (
+              ),
+               'phpDoc' => NULL,
+               'flags' => 68,
+            )),
+            1 => 
+            \PHPStan\Dependency\ExportedNode\ExportedParameterNode::__set_state(array(
+               'name' => 'engine',
+               'type' => 'App\\Domain\\Matching\\Engine\\MatchingEngine',
+               'byRef' => false,
+               'variadic' => false,
+               'hasDefault' => false,
+               'attributes' => 
+              array (
+              ),
+               'phpDoc' => NULL,
+               'flags' => 68,
+            )),
+            2 => 
+            \PHPStan\Dependency\ExportedNode\ExportedParameterNode::__set_state(array(
+               'name' => 'configs',
+               'type' => 'App\\Domain\\Matching\\Services\\MatchingConfigService',
+               'byRef' => false,
+               'variadic' => false,
+               'hasDefault' => false,
+               'attributes' => 
+              array (
+              ),
+               'phpDoc' => NULL,
+               'flags' => 68,
+            )),
+          ),
+           'attributes' => 
+          array (
+          ),
+        )),
+        1 => 
+        \PHPStan\Dependency\ExportedNode\ExportedMethodNode::__set_state(array(
+           'name' => 'find',
+           'phpDoc' => 
+          \PHPStan\Dependency\ExportedNode\ExportedPhpDocNode::__set_state(array(
+             'phpDocString' => '/**
+     * @param  array<string, mixed>  $candidate
+     * @return list<MatchResult>  exact + probable matches, most-confident first
+     */',
+             'namespace' => 'App\\Domain\\Registry\\Services',
+             'uses' => 
+            array (
+              'matchingengine' => 'App\\Domain\\Matching\\Engine\\MatchingEngine',
+              'matchresult' => 'App\\Domain\\Matching\\Engine\\MatchResult',
+              'matchband' => 'App\\Domain\\Matching\\Enums\\MatchBand',
+              'matchingconfig' => 'App\\Domain\\Matching\\Models\\MatchingConfig',
+              'matchingconfigservice' => 'App\\Domain\\Matching\\Services\\MatchingConfigService',
+            ),
+             'constUses' => 
+            array (
+            ),
+          )),
+           'byRef' => false,
+           'public' => true,
+           'private' => false,
+           'abstract' => false,
+           'final' => false,
+           'static' => false,
+           'returnType' => 'array',
+           'parameters' => 
+          array (
+            0 => 
+            \PHPStan\Dependency\ExportedNode\ExportedParameterNode::__set_state(array(
+               'name' => 'candidate',
+               'type' => 'array',
+               'byRef' => false,
+               'variadic' => false,
+               'hasDefault' => false,
+               'attributes' => 
+              array (
+              ),
+               'phpDoc' => NULL,
+               'flags' => 0,
+            )),
+            1 => 
+            \PHPStan\Dependency\ExportedNode\ExportedParameterNode::__set_state(array(
+               'name' => 'config',
+               'type' => '?App\\Domain\\Matching\\Models\\MatchingConfig',
+               'byRef' => false,
+               'variadic' => false,
+               'hasDefault' => true,
+               'attributes' => 
+              array (
+              ),
+               'phpDoc' => NULL,
+               'flags' => 0,
+            )),
+            2 => 
+            \PHPStan\Dependency\ExportedNode\ExportedParameterNode::__set_state(array(
+               'name' => 'excludeId',
+               'type' => '?string',
+               'byRef' => false,
+               'variadic' => false,
+               'hasDefault' => true,
+               'attributes' => 
+              array (
+              ),
+               'phpDoc' => NULL,
+               'flags' => 0,
+            )),
+          ),
+           'attributes' => 
+          array (
+          ),
+        )),
+      ),
+       'attributes' => 
+      array (
+      ),
+    )),
+  ),
   '/var/www/html/app/Domain/Registry/Services/HouseholdIngestionService.php' => 
   array (
     0 => 
@@ -24154,6 +28714,202 @@ return [
               'jsonresponse' => 'Illuminate\\Http\\JsonResponse',
               'db' => 'Illuminate\\Support\\Facades\\DB',
               'throwable' => 'Throwable',
+            ),
+             'constUses' => 
+            array (
+            ),
+          )),
+           'byRef' => false,
+           'public' => true,
+           'private' => false,
+           'abstract' => false,
+           'final' => false,
+           'static' => false,
+           'returnType' => 'Illuminate\\Http\\JsonResponse',
+           'parameters' => 
+          array (
+          ),
+           'attributes' => 
+          array (
+          ),
+        )),
+      ),
+       'attributes' => 
+      array (
+      ),
+    )),
+  ),
+  '/var/www/html/app/Http/Controllers/Api/V1/Matching/MatchingConfigController.php' => 
+  array (
+    0 => 
+    \PHPStan\Dependency\ExportedNode\ExportedClassNode::__set_state(array(
+       'name' => 'App\\Http\\Controllers\\Api\\V1\\Matching\\MatchingConfigController',
+       'phpDoc' => 
+      \PHPStan\Dependency\ExportedNode\ExportedPhpDocNode::__set_state(array(
+         'phpDocString' => '/**
+ * Admin management of the duplicate-matching configuration (PRD FR-DUP-02).
+ * Read is gated by `matching.view`; publishing a new version by `matching.edit`
+ * (System Administrator). Every publish is a new immutable version, audited.
+ */',
+         'namespace' => 'App\\Http\\Controllers\\Api\\V1\\Matching',
+         'uses' => 
+        array (
+          'matchingconfig' => 'App\\Domain\\Matching\\Models\\MatchingConfig',
+          'matchingconfigservice' => 'App\\Domain\\Matching\\Services\\MatchingConfigService',
+          'controller' => 'App\\Http\\Controllers\\Controller',
+          'updatematchingconfigrequest' => 'App\\Http\\Requests\\Matching\\UpdateMatchingConfigRequest',
+          'matchingconfigresource' => 'App\\Http\\Resources\\MatchingConfigResource',
+          'apiresponse' => 'App\\Support\\ApiResponse',
+          'jsonresponse' => 'Illuminate\\Http\\JsonResponse',
+        ),
+         'constUses' => 
+        array (
+        ),
+      )),
+       'abstract' => false,
+       'final' => false,
+       'extends' => 'App\\Http\\Controllers\\Controller',
+       'implements' => 
+      array (
+      ),
+       'usedTraits' => 
+      array (
+      ),
+       'traitUseAdaptations' => 
+      array (
+      ),
+       'statements' => 
+      array (
+        0 => 
+        \PHPStan\Dependency\ExportedNode\ExportedMethodNode::__set_state(array(
+           'name' => '__construct',
+           'phpDoc' => NULL,
+           'byRef' => false,
+           'public' => true,
+           'private' => false,
+           'abstract' => false,
+           'final' => false,
+           'static' => false,
+           'returnType' => NULL,
+           'parameters' => 
+          array (
+            0 => 
+            \PHPStan\Dependency\ExportedNode\ExportedParameterNode::__set_state(array(
+               'name' => 'configs',
+               'type' => 'App\\Domain\\Matching\\Services\\MatchingConfigService',
+               'byRef' => false,
+               'variadic' => false,
+               'hasDefault' => false,
+               'attributes' => 
+              array (
+              ),
+               'phpDoc' => NULL,
+               'flags' => 68,
+            )),
+          ),
+           'attributes' => 
+          array (
+          ),
+        )),
+        1 => 
+        \PHPStan\Dependency\ExportedNode\ExportedMethodNode::__set_state(array(
+           'name' => 'show',
+           'phpDoc' => 
+          \PHPStan\Dependency\ExportedNode\ExportedPhpDocNode::__set_state(array(
+             'phpDocString' => '/** The current active configuration. */',
+             'namespace' => 'App\\Http\\Controllers\\Api\\V1\\Matching',
+             'uses' => 
+            array (
+              'matchingconfig' => 'App\\Domain\\Matching\\Models\\MatchingConfig',
+              'matchingconfigservice' => 'App\\Domain\\Matching\\Services\\MatchingConfigService',
+              'controller' => 'App\\Http\\Controllers\\Controller',
+              'updatematchingconfigrequest' => 'App\\Http\\Requests\\Matching\\UpdateMatchingConfigRequest',
+              'matchingconfigresource' => 'App\\Http\\Resources\\MatchingConfigResource',
+              'apiresponse' => 'App\\Support\\ApiResponse',
+              'jsonresponse' => 'Illuminate\\Http\\JsonResponse',
+            ),
+             'constUses' => 
+            array (
+            ),
+          )),
+           'byRef' => false,
+           'public' => true,
+           'private' => false,
+           'abstract' => false,
+           'final' => false,
+           'static' => false,
+           'returnType' => 'Illuminate\\Http\\JsonResponse',
+           'parameters' => 
+          array (
+          ),
+           'attributes' => 
+          array (
+          ),
+        )),
+        2 => 
+        \PHPStan\Dependency\ExportedNode\ExportedMethodNode::__set_state(array(
+           'name' => 'update',
+           'phpDoc' => 
+          \PHPStan\Dependency\ExportedNode\ExportedPhpDocNode::__set_state(array(
+             'phpDocString' => '/** Publish a new active version. */',
+             'namespace' => 'App\\Http\\Controllers\\Api\\V1\\Matching',
+             'uses' => 
+            array (
+              'matchingconfig' => 'App\\Domain\\Matching\\Models\\MatchingConfig',
+              'matchingconfigservice' => 'App\\Domain\\Matching\\Services\\MatchingConfigService',
+              'controller' => 'App\\Http\\Controllers\\Controller',
+              'updatematchingconfigrequest' => 'App\\Http\\Requests\\Matching\\UpdateMatchingConfigRequest',
+              'matchingconfigresource' => 'App\\Http\\Resources\\MatchingConfigResource',
+              'apiresponse' => 'App\\Support\\ApiResponse',
+              'jsonresponse' => 'Illuminate\\Http\\JsonResponse',
+            ),
+             'constUses' => 
+            array (
+            ),
+          )),
+           'byRef' => false,
+           'public' => true,
+           'private' => false,
+           'abstract' => false,
+           'final' => false,
+           'static' => false,
+           'returnType' => 'Illuminate\\Http\\JsonResponse',
+           'parameters' => 
+          array (
+            0 => 
+            \PHPStan\Dependency\ExportedNode\ExportedParameterNode::__set_state(array(
+               'name' => 'request',
+               'type' => 'App\\Http\\Requests\\Matching\\UpdateMatchingConfigRequest',
+               'byRef' => false,
+               'variadic' => false,
+               'hasDefault' => false,
+               'attributes' => 
+              array (
+              ),
+               'phpDoc' => NULL,
+               'flags' => 0,
+            )),
+          ),
+           'attributes' => 
+          array (
+          ),
+        )),
+        3 => 
+        \PHPStan\Dependency\ExportedNode\ExportedMethodNode::__set_state(array(
+           'name' => 'versions',
+           'phpDoc' => 
+          \PHPStan\Dependency\ExportedNode\ExportedPhpDocNode::__set_state(array(
+             'phpDocString' => '/** Full version history, newest first. */',
+             'namespace' => 'App\\Http\\Controllers\\Api\\V1\\Matching',
+             'uses' => 
+            array (
+              'matchingconfig' => 'App\\Domain\\Matching\\Models\\MatchingConfig',
+              'matchingconfigservice' => 'App\\Domain\\Matching\\Services\\MatchingConfigService',
+              'controller' => 'App\\Http\\Controllers\\Controller',
+              'updatematchingconfigrequest' => 'App\\Http\\Requests\\Matching\\UpdateMatchingConfigRequest',
+              'matchingconfigresource' => 'App\\Http\\Resources\\MatchingConfigResource',
+              'apiresponse' => 'App\\Support\\ApiResponse',
+              'jsonresponse' => 'Illuminate\\Http\\JsonResponse',
             ),
              'constUses' => 
             array (
@@ -27644,6 +32400,104 @@ return [
       ),
     )),
   ),
+  '/var/www/html/app/Http/Requests/Matching/UpdateMatchingConfigRequest.php' => 
+  array (
+    0 => 
+    \PHPStan\Dependency\ExportedNode\ExportedClassNode::__set_state(array(
+       'name' => 'App\\Http\\Requests\\Matching\\UpdateMatchingConfigRequest',
+       'phpDoc' => 
+      \PHPStan\Dependency\ExportedNode\ExportedPhpDocNode::__set_state(array(
+         'phpDocString' => '/**
+ * Publish a new version of the matching configuration (PRD FR-DUP-02/03). Fields
+ * must reference known beneficiary fields; comparators/behaviour must be known
+ * enums; the optional auto-accept threshold must be ≥ the review threshold.
+ */',
+         'namespace' => 'App\\Http\\Requests\\Matching',
+         'uses' => 
+        array (
+          'exactmatchbehaviour' => 'App\\Domain\\Matching\\Enums\\ExactMatchBehaviour',
+          'matchcomparator' => 'App\\Domain\\Matching\\Enums\\MatchComparator',
+          'matchfield' => 'App\\Domain\\Matching\\Enums\\MatchField',
+          'formrequest' => 'Illuminate\\Foundation\\Http\\FormRequest',
+          'rule' => 'Illuminate\\Validation\\Rule',
+        ),
+         'constUses' => 
+        array (
+        ),
+      )),
+       'abstract' => false,
+       'final' => false,
+       'extends' => 'Illuminate\\Foundation\\Http\\FormRequest',
+       'implements' => 
+      array (
+      ),
+       'usedTraits' => 
+      array (
+      ),
+       'traitUseAdaptations' => 
+      array (
+      ),
+       'statements' => 
+      array (
+        0 => 
+        \PHPStan\Dependency\ExportedNode\ExportedMethodNode::__set_state(array(
+           'name' => 'authorize',
+           'phpDoc' => NULL,
+           'byRef' => false,
+           'public' => true,
+           'private' => false,
+           'abstract' => false,
+           'final' => false,
+           'static' => false,
+           'returnType' => 'bool',
+           'parameters' => 
+          array (
+          ),
+           'attributes' => 
+          array (
+          ),
+        )),
+        1 => 
+        \PHPStan\Dependency\ExportedNode\ExportedMethodNode::__set_state(array(
+           'name' => 'rules',
+           'phpDoc' => 
+          \PHPStan\Dependency\ExportedNode\ExportedPhpDocNode::__set_state(array(
+             'phpDocString' => '/**
+     * @return array<string, mixed>
+     */',
+             'namespace' => 'App\\Http\\Requests\\Matching',
+             'uses' => 
+            array (
+              'exactmatchbehaviour' => 'App\\Domain\\Matching\\Enums\\ExactMatchBehaviour',
+              'matchcomparator' => 'App\\Domain\\Matching\\Enums\\MatchComparator',
+              'matchfield' => 'App\\Domain\\Matching\\Enums\\MatchField',
+              'formrequest' => 'Illuminate\\Foundation\\Http\\FormRequest',
+              'rule' => 'Illuminate\\Validation\\Rule',
+            ),
+             'constUses' => 
+            array (
+            ),
+          )),
+           'byRef' => false,
+           'public' => true,
+           'private' => false,
+           'abstract' => false,
+           'final' => false,
+           'static' => false,
+           'returnType' => 'array',
+           'parameters' => 
+          array (
+          ),
+           'attributes' => 
+          array (
+          ),
+        )),
+      ),
+       'attributes' => 
+      array (
+      ),
+    )),
+  ),
   '/var/www/html/app/Http/Requests/Registry/AddHouseholdMemberRequest.php' => 
   array (
     0 => 
@@ -29300,6 +34154,93 @@ return [
              'uses' => 
             array (
               'importrow' => 'App\\Domain\\Registry\\Models\\ImportRow',
+              'request' => 'Illuminate\\Http\\Request',
+              'jsonresource' => 'Illuminate\\Http\\Resources\\Json\\JsonResource',
+            ),
+             'constUses' => 
+            array (
+            ),
+          )),
+           'byRef' => false,
+           'public' => true,
+           'private' => false,
+           'abstract' => false,
+           'final' => false,
+           'static' => false,
+           'returnType' => 'array',
+           'parameters' => 
+          array (
+            0 => 
+            \PHPStan\Dependency\ExportedNode\ExportedParameterNode::__set_state(array(
+               'name' => 'request',
+               'type' => 'Illuminate\\Http\\Request',
+               'byRef' => false,
+               'variadic' => false,
+               'hasDefault' => false,
+               'attributes' => 
+              array (
+              ),
+               'phpDoc' => NULL,
+               'flags' => 0,
+            )),
+          ),
+           'attributes' => 
+          array (
+          ),
+        )),
+      ),
+       'attributes' => 
+      array (
+      ),
+    )),
+  ),
+  '/var/www/html/app/Http/Resources/MatchingConfigResource.php' => 
+  array (
+    0 => 
+    \PHPStan\Dependency\ExportedNode\ExportedClassNode::__set_state(array(
+       'name' => 'App\\Http\\Resources\\MatchingConfigResource',
+       'phpDoc' => 
+      \PHPStan\Dependency\ExportedNode\ExportedPhpDocNode::__set_state(array(
+         'phpDocString' => '/**
+ * @mixin MatchingConfig
+ */',
+         'namespace' => 'App\\Http\\Resources',
+         'uses' => 
+        array (
+          'matchingconfig' => 'App\\Domain\\Matching\\Models\\MatchingConfig',
+          'request' => 'Illuminate\\Http\\Request',
+          'jsonresource' => 'Illuminate\\Http\\Resources\\Json\\JsonResource',
+        ),
+         'constUses' => 
+        array (
+        ),
+      )),
+       'abstract' => false,
+       'final' => false,
+       'extends' => 'Illuminate\\Http\\Resources\\Json\\JsonResource',
+       'implements' => 
+      array (
+      ),
+       'usedTraits' => 
+      array (
+      ),
+       'traitUseAdaptations' => 
+      array (
+      ),
+       'statements' => 
+      array (
+        0 => 
+        \PHPStan\Dependency\ExportedNode\ExportedMethodNode::__set_state(array(
+           'name' => 'toArray',
+           'phpDoc' => 
+          \PHPStan\Dependency\ExportedNode\ExportedPhpDocNode::__set_state(array(
+             'phpDocString' => '/**
+     * @return array<string, mixed>
+     */',
+             'namespace' => 'App\\Http\\Resources',
+             'uses' => 
+            array (
+              'matchingconfig' => 'App\\Domain\\Matching\\Models\\MatchingConfig',
               'request' => 'Illuminate\\Http\\Request',
               'jsonresource' => 'Illuminate\\Http\\Resources\\Json\\JsonResource',
             ),

@@ -8,6 +8,7 @@ use App\Domain\Access\Concerns\MdaScoped;
 use App\Domain\Access\Concerns\ScopedToMda;
 use App\Domain\Access\Models\Mda;
 use App\Domain\Audit\Concerns\Auditable;
+use App\Domain\Matching\Support\PhoneticEncoder;
 use App\Domain\Registry\Enums\BeneficiaryStatus;
 use App\Domain\Registry\Enums\Gender;
 use App\Domain\Registry\Enums\RegistrationSource;
@@ -44,6 +45,7 @@ use InvalidArgumentException;
  * @property string|null $address
  * @property string|null $lga
  * @property string|null $ward
+ * @property string|null $block_name_dob
  * @property BeneficiaryStatus $status
  * @property-read Mda|null $ownerMda
  * @property-read HouseholdMembership|null $currentMembership
@@ -76,6 +78,7 @@ class Beneficiary extends Model implements MdaScoped
         'address',
         'lga',
         'ward',
+        'block_name_dob',
         'status',
     ];
 
@@ -122,6 +125,17 @@ class Beneficiary extends Model implements MdaScoped
         return ['first_name', 'middle_name', 'last_name'];
     }
 
+    /**
+     * The derived matching blocking key is operational (and name-derived) — keep
+     * it out of the audit trail.
+     *
+     * @return list<string>
+     */
+    protected function auditExcluded(): array
+    {
+        return ['block_name_dob'];
+    }
+
     protected static function booted(): void
     {
         // Provenance defaults on creation (FR-REG-03): manual entry, dated today.
@@ -134,8 +148,8 @@ class Beneficiary extends Model implements MdaScoped
             }
         });
 
-        // Normalise identifiers on every save and enforce the 11-digit rule
-        // (CONVENTIONS.md §6). Matching logic itself is Phase 3.
+        // Normalise identifiers on every save, enforce the 11-digit rule
+        // (CONVENTIONS.md §6), and maintain the fuzzy-matching blocking key.
         static::saving(function (Beneficiary $beneficiary): void {
             $beneficiary->nin = self::normalizeDigits($beneficiary->nin);
             $beneficiary->bvn = self::normalizeDigits($beneficiary->bvn);
@@ -146,6 +160,11 @@ class Beneficiary extends Model implements MdaScoped
                     throw new InvalidArgumentException("The {$field} must be exactly 11 digits.");
                 }
             }
+
+            $beneficiary->block_name_dob = self::blockNameDobFor(
+                $beneficiary->last_name,
+                $beneficiary->date_of_birth?->toDateString(),
+            );
         });
     }
 
@@ -161,6 +180,18 @@ class Beneficiary extends Model implements MdaScoped
         $digits = preg_replace('/\D+/', '', $value) ?? '';
 
         return $digits === '' ? null : $digits;
+    }
+
+    /**
+     * The fuzzy-matching blocking key: phonetic(last_name) | dob_year (PRD
+     * FR-DUP-03). Used both to maintain the column and to build the gather query.
+     */
+    public static function blockNameDobFor(?string $lastName, ?string $dob): ?string
+    {
+        $code = $lastName !== null && $lastName !== '' ? (new PhoneticEncoder)->block($lastName) : '';
+        $year = $dob !== null && $dob !== '' && ($ts = strtotime($dob)) !== false ? date('Y', $ts) : '';
+
+        return $code === '' && $year === '' ? null : $code.'|'.$year;
     }
 
     public function fullName(): string

@@ -210,7 +210,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
     ),
     1 => 
     array (
-      '/var/www/html/database/factories/BeneficiaryFactory.php' => '60b317fb493c6b45f12022c201c743e90007e79a507cd552c92a3822e185e7a7',
+      '/var/www/html/database/factories/BeneficiaryFactory.php' => '245ae0db44b0411ff4ed623d7a491b2ee0814cd4069c4137ac92a8f5c67751e7',
     ),
   ),
 ));

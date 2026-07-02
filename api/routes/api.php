@@ -9,6 +9,7 @@ use App\Http\Controllers\Api\V1\Access\MdaController;
 use App\Http\Controllers\Api\V1\Access\UserController;
 use App\Http\Controllers\Api\V1\AuthController;
 use App\Http\Controllers\Api\V1\HealthController;
+use App\Http\Controllers\Api\V1\Matching\MatchingConfigController;
 use App\Http\Controllers\Api\V1\MfaController;
 use App\Http\Controllers\Api\V1\Registry\BeneficiaryController;
 use App\Http\Controllers\Api\V1\Registry\BeneficiaryDocumentController;
@@ -113,6 +114,14 @@ Route::prefix('v1')->group(function (): void {
             ->middleware('permission:mda-access.create')->name('mda-access-grants.store');
         Route::delete('/mda-access-grants/{grant}', [MdaAccessGrantController::class, 'destroy'])
             ->middleware('permission:mda-access.edit')->name('mda-access-grants.destroy');
+
+        // Duplicate-matching configuration (PRD FR-DUP-02/03) — admin-managed, versioned.
+        Route::get('/matching/config', [MatchingConfigController::class, 'show'])
+            ->middleware('permission:matching.view')->name('matching.config.show');
+        Route::put('/matching/config', [MatchingConfigController::class, 'update'])
+            ->middleware('permission:matching.edit')->name('matching.config.update');
+        Route::get('/matching/config/versions', [MatchingConfigController::class, 'versions'])
+            ->middleware('permission:matching.view')->name('matching.config.versions');
 
         /*
         | Beneficiary registry (PRD FR-OWN). Owner-only edit is enforced by the

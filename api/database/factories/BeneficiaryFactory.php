@@ -28,6 +28,9 @@ class BeneficiaryFactory extends Factory
      */
     public function definition(): array
     {
+        $lastName = fake()->lastName();
+        $dob = fake()->dateTimeBetween('-70 years', '-18 years')->format('Y-m-d');
+
         return [
             'owner_mda_id' => Mda::factory(),
             'registration_source' => RegistrationSource::Manual,
@@ -36,13 +39,17 @@ class BeneficiaryFactory extends Factory
             'bvn' => fake()->unique()->numerify('###########'),
             'phone' => fake()->numerify('080########'),
             'first_name' => fake()->firstName(),
-            'last_name' => fake()->lastName(),
-            'date_of_birth' => fake()->dateTimeBetween('-70 years', '-18 years')->format('Y-m-d'),
+            'last_name' => $lastName,
+            'date_of_birth' => $dob,
             'gender' => fake()->randomElement(Gender::cases()),
             'address' => fake()->streetAddress(),
             'lga' => fake()->randomElement(Lga::cases())->value,
             'ward' => 'Ward '.fake()->numberBetween(1, 12),
             'status' => BeneficiaryStatus::Active,
+            // Populated here too so the blocking key exists even when a seeder
+            // mutes model events (WithoutModelEvents); the model hook keeps it
+            // fresh on later saves.
+            'block_name_dob' => Beneficiary::blockNameDobFor($lastName, $dob),
         ];
     }
 
