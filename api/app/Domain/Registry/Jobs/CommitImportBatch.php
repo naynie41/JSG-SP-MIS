@@ -74,12 +74,15 @@ class CommitImportBatch implements ShouldQueue
                         DB::transaction(function () use ($row, $batch, $registrar): void {
                             // Same provenance-stamping choke-point as every other
                             // inbound channel (Auditable → beneficiary.created).
+                            // The source record id doubles as the idempotency key
+                            // so re-importing the same export doesn't duplicate.
                             $beneficiary = $registrar->register(
                                 $row->payload,
                                 $batch->owner_mda_id,
                                 $batch->source,
                                 $row->original_record_id,
                                 $batch->id,
+                                $row->original_record_id,
                             );
 
                             $row->update(['beneficiary_id' => $beneficiary->id]);

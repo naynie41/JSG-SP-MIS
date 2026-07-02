@@ -11,6 +11,7 @@ use App\Http\Controllers\Api\V1\AuthController;
 use App\Http\Controllers\Api\V1\HealthController;
 use App\Http\Controllers\Api\V1\MfaController;
 use App\Http\Controllers\Api\V1\Registry\BeneficiaryController;
+use App\Http\Controllers\Api\V1\Registry\BeneficiaryDocumentController;
 use App\Http\Controllers\Api\V1\Registry\BeneficiaryIntakeController;
 use App\Http\Controllers\Api\V1\Registry\HouseholdController;
 use App\Http\Controllers\Api\V1\Registry\HouseholdMemberController;
@@ -147,6 +148,17 @@ Route::prefix('v1')->group(function (): void {
             ->middleware('permission:beneficiary.edit')->name('beneficiaries.update');
         Route::delete('/beneficiaries/{beneficiary}', [BeneficiaryController::class, 'destroy'])
             ->middleware('permission:beneficiary.edit')->name('beneficiaries.destroy');
+
+        // Supporting documents (FR-REG-07): owner-only upload/delete, in-scope
+        // list/download. Files are streamed via the download action, never static.
+        Route::get('/beneficiaries/{beneficiary}/documents', [BeneficiaryDocumentController::class, 'index'])
+            ->middleware('permission:beneficiary.view')->name('beneficiaries.documents.index');
+        Route::post('/beneficiaries/{beneficiary}/documents', [BeneficiaryDocumentController::class, 'store'])
+            ->middleware('permission:beneficiary.edit')->name('beneficiaries.documents.store');
+        Route::get('/beneficiaries/{beneficiary}/documents/{document}/download', [BeneficiaryDocumentController::class, 'download'])
+            ->middleware('permission:beneficiary.view')->name('beneficiaries.documents.download');
+        Route::delete('/beneficiaries/{beneficiary}/documents/{document}', [BeneficiaryDocumentController::class, 'destroy'])
+            ->middleware('permission:beneficiary.edit')->name('beneficiaries.documents.destroy');
 
         // Ownership transfer workflow (FR-OWN-05): request → owner approval.
         Route::post('/beneficiaries/{beneficiary}/ownership-transfers', [OwnershipTransferController::class, 'store'])

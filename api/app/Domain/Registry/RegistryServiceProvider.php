@@ -14,8 +14,10 @@ use App\Domain\Registry\Imports\Adapters\KoboAdapter;
 use App\Domain\Registry\Imports\Adapters\OdkAdapter;
 use App\Domain\Registry\Imports\Adapters\SourceAdapterRegistry;
 use App\Domain\Registry\Models\Beneficiary;
+use App\Domain\Registry\Models\BeneficiaryDocument;
 use App\Domain\Registry\Models\Household;
 use App\Domain\Registry\Models\ImportBatch;
+use App\Domain\Registry\Policies\BeneficiaryDocumentPolicy;
 use App\Domain\Registry\Policies\BeneficiaryPolicy;
 use App\Domain\Registry\Policies\HouseholdPolicy;
 use App\Domain\Registry\Policies\ImportBatchPolicy;
@@ -58,6 +60,7 @@ class RegistryServiceProvider extends ServiceProvider
         Gate::policy(Beneficiary::class, BeneficiaryPolicy::class);
         Gate::policy(Household::class, HouseholdPolicy::class);
         Gate::policy(ImportBatch::class, ImportBatchPolicy::class);
+        Gate::policy(BeneficiaryDocument::class, BeneficiaryDocumentPolicy::class);
     }
 
     private function registerPermissions(PermissionRegistry $registry): void

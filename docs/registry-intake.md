@@ -81,6 +81,44 @@ New sources plug in behind a small adapter interface without touching core
 registry logic. See `api/app/Domain/Registry/README.md` for the adapter contract
 and a worked example.
 
+## 4. Idempotent intake (offline-capture groundwork — FR-REG-08)
+
+Create/intake paths accept an optional **client-supplied idempotency key** so a
+future offline client can flush its queue safely without creating duplicates.
+
+- `POST /beneficiaries` and `POST /beneficiaries/intake` accept `idempotency_key`
+  (the intake endpoint defaults it to `original_record_id` when omitted).
+- The key is unique **per owning MDA**. A repeat submission with the same key
+  resolves to the existing record and returns **`200 OK`** (a first submission
+  returns `201 Created`).
+- Bulk import uses each row's `original_record_id` as the key, so re-importing the
+  same Kobo/ODK/Excel export does not double-insert.
+
+The offline client and sync engine themselves are **out of scope here** — this is
+only the idempotent, documented intake they will build on.
+
+## 5. Supporting documents (FR-REG-07)
+
+Attach scanned documents (national ID, birth certificate, proof of residence,
+passport photo, attestation, other) to a beneficiary.
+
+```
+GET    /api/v1/beneficiaries/{id}/documents                     (list metadata)
+POST   /api/v1/beneficiaries/{id}/documents                     (multipart: file, document_type)
+GET    /api/v1/beneficiaries/{id}/documents/{doc}/download      (stream the file)
+DELETE /api/v1/beneficiaries/{id}/documents/{doc}               (soft delete)
+```
+
+- **Validation:** PDF/JPEG/PNG only, ≤ 5 MB, checked by both extension and actual
+  content type (`mimetypes` via finfo), per SECURITY.md §5.
+- **Storage:** files are written to a private disk **outside the web root** with a
+  random generated name; they are only ever returned through the authorized
+  download action (never served statically). A SHA-256 checksum is stored.
+- **Access control:** list/download require `beneficiary.view` and ownership (or
+  `cross-mda.view`); upload/delete are **owner-MDA only** (`beneficiary.edit`).
+- **Audit:** uploads and deletes are audited via the model; downloads record a
+  `beneficiary_document.downloaded` entry (sensitive-PII access).
+
 ## Traceability guarantee
 
 Every ingested record carries `registration_source` **and**

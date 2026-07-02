@@ -2365,7 +2365,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
     ),
     1 => 
     array (
-      '/var/www/html/app/Domain/Registry/Jobs/CommitImportBatch.php' => 'eb08ca9600aa76af41d9917e50c8dd9ae3ec19d76e8162c93872475a5a2759bd',
+      '/var/www/html/app/Domain/Registry/Jobs/CommitImportBatch.php' => '8b69b1ea48454e9240845b6e097115429e7188b02d89d4fa3e175553f62288da',
       '/var/www/html/vendor/composer/../laravel/framework/src/Illuminate/Foundation/Bus/Dispatchable.php' => '551294291775e57fbd590f0ed288a91cca683d42fac08e60c87e39b73617d47b',
       '/var/www/html/vendor/composer/../laravel/framework/src/Illuminate/Queue/InteractsWithQueue.php' => '8d300c3adb967aa56c0827ba587e456e32e40fbb1c0d9f649f6bf7c0d876e937',
       '/var/www/html/vendor/composer/../laravel/framework/src/Illuminate/Support/InteractsWithTime.php' => 'ee4ef3a2e714fa539b223287a3a62b618b1d3a9e44f2e1f92981f2c3e2773ad5',

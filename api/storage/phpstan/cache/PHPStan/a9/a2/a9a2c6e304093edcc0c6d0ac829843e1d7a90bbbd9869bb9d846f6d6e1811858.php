@@ -231,7 +231,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
     ),
     1 => 
     array (
-      '/var/www/html/app/Http/Requests/Registry/StoreBeneficiaryRequest.php' => 'd9b73a15b5aa4dd98d3bf37f5299c31c63319ce240436326407235d270f505a2',
+      '/var/www/html/app/Http/Requests/Registry/StoreBeneficiaryRequest.php' => 'a5a4285ca43bce6715b6386247f5dfcca7c6520d6608c4d283111eb85e93e51c',
     ),
   ),
 ));

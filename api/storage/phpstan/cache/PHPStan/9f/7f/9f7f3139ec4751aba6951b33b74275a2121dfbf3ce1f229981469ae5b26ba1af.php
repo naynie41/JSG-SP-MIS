@@ -2,7 +2,7 @@
 
 // odsl-/var/www/html/app/Http/Requests/Registry/StoreBeneficiaryRequest.php-PHPStan\BetterReflection\Reflection\ReflectionClass-App\Http\Requests\Registry\StoreBeneficiaryRequest
 return \PHPStan\Cache\CacheItem::__set_state(array(
-   'variableKey' => 'v2-6.70.0.1-8.3.31-d9b73a15b5aa4dd98d3bf37f5299c31c63319ce240436326407235d270f505a2',
+   'variableKey' => 'v2-6.70.0.1-8.3.31-a5a4285ca43bce6715b6386247f5dfcca7c6520d6608c4d283111eb85e93e51c',
    'data' => 
   array (
     'locatedSource' => 
@@ -33,7 +33,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
     array (
     ),
     'startLine' => 18,
-    'endLine' => 53,
+    'endLine' => 58,
     'startColumn' => 1,
     'endColumn' => 1,
     'parentClassName' => 'Illuminate\\Foundation\\Http\\FormRequest',
@@ -147,7 +147,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
  * @return array<string, mixed>
  */',
         'startLine' => 41,
-        'endLine' => 44,
+        'endLine' => 49,
         'startColumn' => 5,
         'endColumn' => 5,
         'couldThrow' => false,
@@ -183,8 +183,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         'docComment' => '/**
  * @return array<string, string>
  */',
-        'startLine' => 49,
-        'endLine' => 52,
+        'startLine' => 54,
+        'endLine' => 57,
         'startColumn' => 5,
         'endColumn' => 5,
         'couldThrow' => false,

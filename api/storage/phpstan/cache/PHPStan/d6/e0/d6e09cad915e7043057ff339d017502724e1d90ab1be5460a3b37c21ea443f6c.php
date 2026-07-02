@@ -12,6 +12,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
          'namespace' => 'App\\Domain\\Registry\\Services',
          'uses' => 
         array (
+          'mdascope' => 'App\\Domain\\Access\\Scopes\\MdaScope',
           'registrationsource' => 'App\\Domain\\Registry\\Enums\\RegistrationSource',
           'beneficiary' => 'App\\Domain\\Registry\\Models\\Beneficiary',
         ),
@@ -36,6 +37,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
          'namespace' => 'App\\Domain\\Registry\\Services',
          'uses' => 
         array (
+          'mdascope' => 'App\\Domain\\Access\\Scopes\\MdaScope',
           'registrationsource' => 'App\\Domain\\Registry\\Enums\\RegistrationSource',
           'beneficiary' => 'App\\Domain\\Registry\\Models\\Beneficiary',
         ),
@@ -49,6 +51,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
            'namespace' => 'App\\Domain\\Registry\\Services',
            'uses' => 
           array (
+            'mdascope' => 'App\\Domain\\Access\\Scopes\\MdaScope',
             'registrationsource' => 'App\\Domain\\Registry\\Enums\\RegistrationSource',
             'beneficiary' => 'App\\Domain\\Registry\\Models\\Beneficiary',
           ),
@@ -81,7 +84,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
     ),
     1 => 
     array (
-      '/var/www/html/app/Domain/Registry/Services/BeneficiaryRegistrar.php' => '3f594185513d100c0746e07c8f91f2799581b8992cf4a1579f46a321868f195d',
+      '/var/www/html/app/Domain/Registry/Services/BeneficiaryRegistrar.php' => 'd5b65400cb1bf747046566182bfa86d5ae0ddd7477cfde64473281896f0f7d61',
     ),
   ),
 ));

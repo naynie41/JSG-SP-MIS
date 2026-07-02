@@ -2,7 +2,7 @@
 
 // odsl-/var/www/html/app/Http/Controllers/Api/V1/Registry/BeneficiaryController.php-PHPStan\BetterReflection\Reflection\ReflectionClass-App\Http\Controllers\Api\V1\Registry\BeneficiaryController
 return \PHPStan\Cache\CacheItem::__set_state(array(
-   'variableKey' => 'v2-6.70.0.1-8.3.31-82ee080673b7f8c9e361889d0b0b98e5302ec23a72958da579de07e34beae970',
+   'variableKey' => 'v2-6.70.0.1-8.3.31-0992a5036823cd7ae9b797761d89ce710e5ca4c145265f41bbeb6eb795c81d0e',
    'data' => 
   array (
     'locatedSource' => 
@@ -30,8 +30,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
     'attributes' => 
     array (
     ),
-    'startLine' => 27,
-    'endLine' => 133,
+    'startLine' => 29,
+    'endLine' => 143,
     'startColumn' => 1,
     'endColumn' => 1,
     'parentClassName' => 'App\\Http\\Controllers\\Controller',
@@ -73,8 +73,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             'attributes' => 
             array (
             ),
-            'startLine' => 30,
-            'endLine' => 30,
+            'startLine' => 32,
+            'endLine' => 32,
             'startColumn' => 27,
             'endColumn' => 42,
             'parameterIndex' => 0,
@@ -95,8 +95,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         array (
         ),
         'docComment' => '/** List beneficiaries owned by (or visible to) the caller\'s MDA. */',
-        'startLine' => 30,
-        'endLine' => 51,
+        'startLine' => 32,
+        'endLine' => 53,
         'startColumn' => 5,
         'endColumn' => 5,
         'couldThrow' => false,
@@ -134,8 +134,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             'attributes' => 
             array (
             ),
-            'startLine' => 58,
-            'endLine' => 58,
+            'startLine' => 62,
+            'endLine' => 62,
             'startColumn' => 27,
             'endColumn' => 58,
             'parameterIndex' => 0,
@@ -160,11 +160,37 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             'attributes' => 
             array (
             ),
-            'startLine' => 58,
-            'endLine' => 58,
+            'startLine' => 62,
+            'endLine' => 62,
             'startColumn' => 61,
             'endColumn' => 88,
             'parameterIndex' => 1,
+            'isOptional' => false,
+          ),
+          'registrar' => 
+          array (
+            'name' => 'registrar',
+            'default' => NULL,
+            'type' => 
+            array (
+              'class' => 'PHPStan\\BetterReflection\\Reflection\\ReflectionNamedType',
+              'data' => 
+              array (
+                'name' => 'App\\Domain\\Registry\\Services\\BeneficiaryRegistrar',
+                'isIdentifier' => false,
+              ),
+            ),
+            'isVariadic' => false,
+            'byRef' => false,
+            'isPromoted' => false,
+            'attributes' => 
+            array (
+            ),
+            'startLine' => 62,
+            'endLine' => 62,
+            'startColumn' => 91,
+            'endColumn' => 121,
+            'parameterIndex' => 2,
             'isOptional' => false,
           ),
         ),
@@ -183,11 +209,13 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         ),
         'docComment' => '/**
  * Register an individual (FR-REG-01). The record is owned by the caller\'s MDA
- * (FR-OWN-01) and stamped as a manual registration (FR-REG-03). The pre-save
- * duplicate check (Phase 3) plugs in via the DuplicateChecker seam.
+ * (FR-OWN-01) and stamped as a manual registration (FR-REG-03). An optional
+ * client-supplied idempotency_key makes the intake safe to retry (FR-REG-08):
+ * a repeat with the same key returns the existing record (200) not a duplicate
+ * (201). The pre-save duplicate check (Phase 3) plugs in via DuplicateChecker.
  */',
-        'startLine' => 58,
-        'endLine' => 79,
+        'startLine' => 62,
+        'endLine' => 89,
         'startColumn' => 5,
         'endColumn' => 5,
         'couldThrow' => false,
@@ -225,8 +253,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             'attributes' => 
             array (
             ),
-            'startLine' => 82,
-            'endLine' => 82,
+            'startLine' => 92,
+            'endLine' => 92,
             'startColumn' => 26,
             'endColumn' => 44,
             'parameterIndex' => 0,
@@ -247,8 +275,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         array (
         ),
         'docComment' => '/** Show a single beneficiary. Out-of-scope records 404 via the global scope. */',
-        'startLine' => 82,
-        'endLine' => 89,
+        'startLine' => 92,
+        'endLine' => 99,
         'startColumn' => 5,
         'endColumn' => 5,
         'couldThrow' => false,
@@ -286,8 +314,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             'attributes' => 
             array (
             ),
-            'startLine' => 96,
-            'endLine' => 96,
+            'startLine' => 106,
+            'endLine' => 106,
             'startColumn' => 28,
             'endColumn' => 60,
             'parameterIndex' => 0,
@@ -312,8 +340,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             'attributes' => 
             array (
             ),
-            'startLine' => 96,
-            'endLine' => 96,
+            'startLine' => 106,
+            'endLine' => 106,
             'startColumn' => 63,
             'endColumn' => 81,
             'parameterIndex' => 1,
@@ -338,8 +366,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
  * without the owner scope so a non-owner gets 403 (not 404): the policy is
  * the boundary, and non-owners can already see the record via the lookup seam.
  */',
-        'startLine' => 96,
-        'endLine' => 105,
+        'startLine' => 106,
+        'endLine' => 115,
         'startColumn' => 5,
         'endColumn' => 5,
         'couldThrow' => false,
@@ -377,8 +405,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             'attributes' => 
             array (
             ),
-            'startLine' => 108,
-            'endLine' => 108,
+            'startLine' => 118,
+            'endLine' => 118,
             'startColumn' => 29,
             'endColumn' => 47,
             'parameterIndex' => 0,
@@ -399,8 +427,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         array (
         ),
         'docComment' => '/** Soft-delete a beneficiary — owner MDA only, audited. */',
-        'startLine' => 108,
-        'endLine' => 117,
+        'startLine' => 118,
+        'endLine' => 127,
         'startColumn' => 5,
         'endColumn' => 5,
         'couldThrow' => false,
@@ -438,8 +466,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             'attributes' => 
             array (
             ),
-            'startLine' => 123,
-            'endLine' => 123,
+            'startLine' => 133,
+            'endLine' => 133,
             'startColumn' => 28,
             'endColumn' => 60,
             'parameterIndex' => 0,
@@ -464,8 +492,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             'attributes' => 
             array (
             ),
-            'startLine' => 123,
-            'endLine' => 123,
+            'startLine' => 133,
+            'endLine' => 133,
             'startColumn' => 63,
             'endColumn' => 94,
             'parameterIndex' => 1,
@@ -489,8 +517,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
  * Cross-MDA lookup/serve path (FR-OWN-03): exact-identifier search returning
  * only the reveal fields. Route middleware enforces beneficiary-lookup.view.
  */',
-        'startLine' => 123,
-        'endLine' => 132,
+        'startLine' => 133,
+        'endLine' => 142,
         'startColumn' => 5,
         'endColumn' => 5,
         'couldThrow' => false,

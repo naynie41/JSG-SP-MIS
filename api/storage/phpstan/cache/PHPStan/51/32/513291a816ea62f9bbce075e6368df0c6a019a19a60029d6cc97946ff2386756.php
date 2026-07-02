@@ -102,7 +102,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
     ),
     1 => 
     array (
-      '/var/www/html/app/Http/Controllers/Api/V1/Registry/BeneficiaryIntakeController.php' => 'bc37273f44f90321e4896e5e8b9e13738e58a38dc06bf58e57c2ca813cb971bc',
+      '/var/www/html/app/Http/Controllers/Api/V1/Registry/BeneficiaryIntakeController.php' => '1d8ec817599a52f3603ba83090ba0c17f6b41fe64bb3855640ae9ca9b595e2a3',
     ),
   ),
 ));

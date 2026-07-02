@@ -40,7 +40,12 @@ class StoreBeneficiaryRequest extends FormRequest
      */
     public function rules(): array
     {
-        return BeneficiaryRules::forRegistration();
+        return [
+            ...BeneficiaryRules::forRegistration(),
+            // Offline/retry-safe intake (FR-REG-08): optional client-supplied keys.
+            'original_record_id' => ['nullable', 'string', 'max:255'],
+            'idempotency_key' => ['nullable', 'string', 'max:255'],
+        ];
     }
 
     /**

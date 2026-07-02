@@ -34,16 +34,22 @@ class BeneficiaryIntakeController extends Controller
 
         $data = $request->validated();
 
+        // The caller's own record id is the natural idempotency key, so repeat
+        // submissions (e.g. an offline client retrying) don't duplicate (FR-REG-08).
+        $idempotencyKey = $data['idempotency_key'] ?? $data['original_record_id'];
+
         $beneficiary = $registrar->register(
-            Arr::except($data, ['original_record_id']),
+            Arr::except($data, ['original_record_id', 'idempotency_key']),
             $mdaId,
             RegistrationSource::Api,
             $data['original_record_id'],
+            null,
+            $idempotencyKey,
         );
 
         return ApiResponse::success(
             (new BeneficiaryResource($beneficiary->load('ownerMda')))->resolve(),
-            status: 201,
+            status: $beneficiary->wasRecentlyCreated ? 201 : 200,
         );
     }
 }

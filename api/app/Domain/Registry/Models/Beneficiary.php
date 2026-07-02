@@ -32,6 +32,7 @@ use InvalidArgumentException;
  * @property Carbon $registration_date
  * @property string|null $import_batch_id
  * @property string|null $original_record_id
+ * @property string|null $idempotency_key
  * @property string|null $nin
  * @property string|null $bvn
  * @property string|null $phone
@@ -63,6 +64,7 @@ class Beneficiary extends Model implements MdaScoped
         'registration_date',
         'import_batch_id',
         'original_record_id',
+        'idempotency_key',
         'nin',
         'bvn',
         'phone',

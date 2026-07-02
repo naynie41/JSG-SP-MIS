@@ -1042,7 +1042,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
     ),
     '/var/www/html/app/Domain/Registry/Models/Beneficiary.php' => 
     array (
-      0 => '4be27e541df03cc5712e86b97672e0a22b9f40d512e9300d8f557d140fae361f',
+      0 => '633522b80d7e53cb14d3e62c2b6ebbba45e16a002da8b646fb3fa7cde6cd828d',
       1 => 
       array (
         0 => 'app\\domain\\registry\\models\\beneficiary',
@@ -1177,7 +1177,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
     ),
     '/var/www/html/app/Domain/Registry/RegistryServiceProvider.php' => 
     array (
-      0 => '8468b061e271e29ca2f7c5477ae3138d50cc97f3fb9379c3b89871928a7800fa',
+      0 => '694d9f26f779408733a419f79e2b5c4ee2f4620c4401cd8443e422886048b3c8',
       1 => 
       array (
         0 => 'app\\domain\\registry\\registryserviceprovider',
@@ -1244,7 +1244,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
     ),
     '/var/www/html/app/Http/Controllers/Api/V1/Registry/BeneficiaryController.php' => 
     array (
-      0 => '82ee080673b7f8c9e361889d0b0b98e5302ec23a72958da579de07e34beae970',
+      0 => '0992a5036823cd7ae9b797761d89ce710e5ca4c145265f41bbeb6eb795c81d0e',
       1 => 
       array (
         0 => 'app\\http\\controllers\\api\\v1\\registry\\beneficiarycontroller',
@@ -1439,7 +1439,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
     ),
     '/var/www/html/app/Http/Requests/Registry/StoreBeneficiaryRequest.php' => 
     array (
-      0 => 'd9b73a15b5aa4dd98d3bf37f5299c31c63319ce240436326407235d270f505a2',
+      0 => 'a5a4285ca43bce6715b6386247f5dfcca7c6520d6608c4d283111eb85e93e51c',
       1 => 
       array (
         0 => 'app\\http\\requests\\registry\\storebeneficiaryrequest',
@@ -1695,7 +1695,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
     ),
     '/var/www/html/app/Domain/Registry/Jobs/CommitImportBatch.php' => 
     array (
-      0 => 'eb08ca9600aa76af41d9917e50c8dd9ae3ec19d76e8162c93872475a5a2759bd',
+      0 => '8b69b1ea48454e9240845b6e097115429e7188b02d89d4fa3e175553f62288da',
       1 => 
       array (
         0 => 'app\\domain\\registry\\jobs\\commitimportbatch',
@@ -1968,7 +1968,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
     ),
     '/var/www/html/app/Domain/Registry/Services/BeneficiaryRegistrar.php' => 
     array (
-      0 => '3f594185513d100c0746e07c8f91f2799581b8992cf4a1579f46a321868f195d',
+      0 => 'd5b65400cb1bf747046566182bfa86d5ae0ddd7477cfde64473281896f0f7d61',
       1 => 
       array (
         0 => 'app\\domain\\registry\\services\\beneficiaryregistrar',
@@ -1983,7 +1983,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
     ),
     '/var/www/html/app/Http/Controllers/Api/V1/Registry/BeneficiaryIntakeController.php' => 
     array (
-      0 => 'bc37273f44f90321e4896e5e8b9e13738e58a38dc06bf58e57c2ca813cb971bc',
+      0 => '1d8ec817599a52f3603ba83090ba0c17f6b41fe64bb3855640ae9ca9b595e2a3',
       1 => 
       array (
         0 => 'app\\http\\controllers\\api\\v1\\registry\\beneficiaryintakecontroller',
@@ -1998,7 +1998,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
     ),
     '/var/www/html/app/Http/Requests/Registry/ApiRegistrationRequest.php' => 
     array (
-      0 => '0c10d1f4c92216eb217b6c058a89d945b42c64dd2ed3b1e565b9bdfec55cfef6',
+      0 => 'ff92d73e2b9cdbc1d41594907516e9f60b9006b3ec28ac774ba724e6c8b2a571',
       1 => 
       array (
         0 => 'app\\http\\requests\\registry\\apiregistrationrequest',
@@ -2009,6 +2009,106 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         1 => 'app\\http\\requests\\registry\\prepareforvalidation',
         2 => 'app\\http\\requests\\registry\\rules',
         3 => 'app\\http\\requests\\registry\\messages',
+      ),
+      3 => 
+      array (
+      ),
+    ),
+    '/var/www/html/app/Domain/Registry/Enums/DocumentType.php' => 
+    array (
+      0 => 'cf9aba8c72b97c2ecc84ca3cfe3afaf6a57c8b64e3f836108148546718de81f9',
+      1 => 
+      array (
+        0 => 'app\\domain\\registry\\enums\\documenttype',
+      ),
+      2 => 
+      array (
+        0 => 'app\\domain\\registry\\enums\\label',
+      ),
+      3 => 
+      array (
+      ),
+    ),
+    '/var/www/html/app/Domain/Registry/Models/BeneficiaryDocument.php' => 
+    array (
+      0 => 'd170b6181fe2aab6cae7df0836504401d1695927cddce77b5af670c8f617336f',
+      1 => 
+      array (
+        0 => 'app\\domain\\registry\\models\\beneficiarydocument',
+      ),
+      2 => 
+      array (
+        0 => 'app\\domain\\registry\\models\\casts',
+        1 => 'app\\domain\\registry\\models\\beneficiary',
+        2 => 'app\\domain\\registry\\models\\ownermda',
+        3 => 'app\\domain\\registry\\models\\uploadedby',
+      ),
+      3 => 
+      array (
+      ),
+    ),
+    '/var/www/html/app/Domain/Registry/Policies/BeneficiaryDocumentPolicy.php' => 
+    array (
+      0 => '9e23efa04bb22ffd3f3220edc27a1a0028a3b74d9430279ba7a6cedc6ac089ea',
+      1 => 
+      array (
+        0 => 'app\\domain\\registry\\policies\\beneficiarydocumentpolicy',
+      ),
+      2 => 
+      array (
+        0 => 'app\\domain\\registry\\policies\\owns',
+        1 => 'app\\domain\\registry\\policies\\view',
+        2 => 'app\\domain\\registry\\policies\\delete',
+      ),
+      3 => 
+      array (
+      ),
+    ),
+    '/var/www/html/app/Http/Controllers/Api/V1/Registry/BeneficiaryDocumentController.php' => 
+    array (
+      0 => '5bab416b085de642311defe5f1f603be28b27d4deb4de2a61d3946ba48a7a446',
+      1 => 
+      array (
+        0 => 'app\\http\\controllers\\api\\v1\\registry\\beneficiarydocumentcontroller',
+      ),
+      2 => 
+      array (
+        0 => 'app\\http\\controllers\\api\\v1\\registry\\__construct',
+        1 => 'app\\http\\controllers\\api\\v1\\registry\\index',
+        2 => 'app\\http\\controllers\\api\\v1\\registry\\store',
+        3 => 'app\\http\\controllers\\api\\v1\\registry\\download',
+        4 => 'app\\http\\controllers\\api\\v1\\registry\\destroy',
+      ),
+      3 => 
+      array (
+      ),
+    ),
+    '/var/www/html/app/Http/Requests/Registry/UploadDocumentRequest.php' => 
+    array (
+      0 => 'afb6739df07c937169649c6eed7595493ff9b7309ac9e9a5850ebb71d16af65f',
+      1 => 
+      array (
+        0 => 'app\\http\\requests\\registry\\uploaddocumentrequest',
+      ),
+      2 => 
+      array (
+        0 => 'app\\http\\requests\\registry\\authorize',
+        1 => 'app\\http\\requests\\registry\\rules',
+      ),
+      3 => 
+      array (
+      ),
+    ),
+    '/var/www/html/app/Http/Resources/BeneficiaryDocumentResource.php' => 
+    array (
+      0 => '0d2261cfd0468528cdcec37bfc06d23090ccda08d6f24ac1b776fc6f4dfb6bea',
+      1 => 
+      array (
+        0 => 'app\\http\\resources\\beneficiarydocumentresource',
+      ),
+      2 => 
+      array (
+        0 => 'app\\http\\resources\\toarray',
       ),
       3 => 
       array (

@@ -2,7 +2,7 @@
 
 // odsl-/var/www/html/app/Domain/Registry/Jobs/CommitImportBatch.php-PHPStan\BetterReflection\Reflection\ReflectionClass-App\Domain\Registry\Jobs\CommitImportBatch
 return \PHPStan\Cache\CacheItem::__set_state(array(
-   'variableKey' => 'v2-6.70.0.1-8.3.31-eb08ca9600aa76af41d9917e50c8dd9ae3ec19d76e8162c93872475a5a2759bd',
+   'variableKey' => 'v2-6.70.0.1-8.3.31-8b69b1ea48454e9240845b6e097115429e7188b02d89d4fa3e175553f62288da',
    'data' => 
   array (
     'locatedSource' => 
@@ -35,7 +35,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
     array (
     ),
     'startLine' => 33,
-    'endLine' => 110,
+    'endLine' => 113,
     'startColumn' => 1,
     'endColumn' => 1,
     'parentClassName' => NULL,
@@ -351,7 +351,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         ),
         'docComment' => NULL,
         'startLine' => 44,
-        'endLine' => 101,
+        'endLine' => 104,
         'startColumn' => 5,
         'endColumn' => 5,
         'couldThrow' => false,
@@ -389,8 +389,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             'attributes' => 
             array (
             ),
-            'startLine' => 103,
-            'endLine' => 103,
+            'startLine' => 106,
+            'endLine' => 106,
             'startColumn' => 28,
             'endColumn' => 39,
             'parameterIndex' => 0,
@@ -411,8 +411,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         array (
         ),
         'docComment' => NULL,
-        'startLine' => 103,
-        'endLine' => 109,
+        'startLine' => 106,
+        'endLine' => 112,
         'startColumn' => 5,
         'endColumn' => 5,
         'couldThrow' => false,

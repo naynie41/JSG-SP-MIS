@@ -41,6 +41,8 @@ class ApiRegistrationRequest extends FormRequest
         return [
             ...BeneficiaryRules::forRegistration(),
             'original_record_id' => ['required', 'string', 'max:255'],
+            // Optional explicit idempotency key; defaults to original_record_id.
+            'idempotency_key' => ['nullable', 'string', 'max:255'],
         ];
     }
 

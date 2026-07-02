@@ -9,6 +9,7 @@ use App\Domain\Registry\Contracts\DuplicateChecker;
 use App\Domain\Registry\Enums\RegistrationSource;
 use App\Domain\Registry\Models\Beneficiary;
 use App\Domain\Registry\Services\BeneficiaryLookupService;
+use App\Domain\Registry\Services\BeneficiaryRegistrar;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Registry\BeneficiaryLookupRequest;
 use App\Http\Requests\Registry\StoreBeneficiaryRequest;
@@ -18,6 +19,7 @@ use App\Http\Resources\BeneficiaryRevealResource;
 use App\Support\ApiResponse;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
+use Illuminate\Support\Arr;
 
 /**
  * Manual individual registration + owner-scoped CRUD (PRD FR-REG-01/04/05,
@@ -52,10 +54,12 @@ class BeneficiaryController extends Controller
 
     /**
      * Register an individual (FR-REG-01). The record is owned by the caller's MDA
-     * (FR-OWN-01) and stamped as a manual registration (FR-REG-03). The pre-save
-     * duplicate check (Phase 3) plugs in via the DuplicateChecker seam.
+     * (FR-OWN-01) and stamped as a manual registration (FR-REG-03). An optional
+     * client-supplied idempotency_key makes the intake safe to retry (FR-REG-08):
+     * a repeat with the same key returns the existing record (200) not a duplicate
+     * (201). The pre-save duplicate check (Phase 3) plugs in via DuplicateChecker.
      */
-    public function store(StoreBeneficiaryRequest $request, DuplicateChecker $duplicates): JsonResponse
+    public function store(StoreBeneficiaryRequest $request, DuplicateChecker $duplicates, BeneficiaryRegistrar $registrar): JsonResponse
     {
         $this->authorize('create', Beneficiary::class);
 
@@ -69,13 +73,19 @@ class BeneficiaryController extends Controller
         // EXTENSION POINT (Phase 3): fuzzy duplicate check runs here before save.
         $duplicates->check($data, $mdaId);
 
-        $beneficiary = Beneficiary::create([
-            ...$data,
-            'owner_mda_id' => $mdaId,
-            'registration_source' => RegistrationSource::Manual,
-        ]);
+        $beneficiary = $registrar->register(
+            Arr::except($data, ['idempotency_key', 'original_record_id']),
+            $mdaId,
+            RegistrationSource::Manual,
+            $data['original_record_id'] ?? null,
+            null,
+            $data['idempotency_key'] ?? null,
+        );
 
-        return ApiResponse::success((new BeneficiaryResource($beneficiary->load('ownerMda')))->resolve(), status: 201);
+        return ApiResponse::success(
+            (new BeneficiaryResource($beneficiary->load('ownerMda')))->resolve(),
+            status: $beneficiary->wasRecentlyCreated ? 201 : 200,
+        );
     }
 
     /** Show a single beneficiary. Out-of-scope records 404 via the global scope. */
