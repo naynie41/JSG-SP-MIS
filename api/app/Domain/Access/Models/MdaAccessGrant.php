@@ -7,10 +7,19 @@ namespace App\Domain\Access\Models;
 use Illuminate\Database\Eloquent\Concerns\HasUuids;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Support\Carbon;
 
 /**
  * An explicit grant allowing a user to access an MDA other than their own
  * (PRD FR-UAM-03, FR-DSH-01). Consumed by the central MDA data-scoping logic.
+ *
+ * @property string $id
+ * @property string $user_id
+ * @property string $mda_id
+ * @property string|null $granted_by
+ * @property string|null $reason
+ * @property Carbon|null $expires_at
+ * @property Carbon|null $created_at
  */
 class MdaAccessGrant extends Model
 {

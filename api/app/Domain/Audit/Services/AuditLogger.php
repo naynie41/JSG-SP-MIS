@@ -41,9 +41,9 @@ class AuditLogger
             'entity_id' => $context['entity_id'] ?? $entity?->getKey(),
             'before' => $before,
             'after' => $after,
-            'ip_address' => $request?->ip(),
-            'user_agent' => $request !== null ? mb_substr((string) $request->userAgent(), 0, 1000) : null,
-            'correlation_id' => $request?->attributes->get('correlation_id'),
+            'ip_address' => $request->ip(),
+            'user_agent' => mb_substr((string) $request->userAgent(), 0, 1000) ?: null,
+            'correlation_id' => $request->attributes->get('correlation_id'),
             'created_at' => now(),
         ]);
     }

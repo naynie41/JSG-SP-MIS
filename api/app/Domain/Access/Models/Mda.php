@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Domain\Access\Models;
 
+use App\Domain\Access\Concerns\MdaScoped;
 use App\Domain\Access\Concerns\ScopedToMda;
 use App\Domain\Access\Enums\MdaStatus;
 use App\Domain\Access\Enums\MdaType;
@@ -14,12 +15,24 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Support\Carbon;
 
 /**
  * A Ministry, Department or Agency. Owns its users and (later) the beneficiary
  * records it originates.
+ *
+ * @property string $id
+ * @property string $name
+ * @property MdaType $type
+ * @property MdaStatus $status
+ * @property string|null $contact_person
+ * @property string|null $contact_email
+ * @property string|null $contact_phone
+ * @property string|null $address
+ * @property Carbon|null $created_at
+ * @property Carbon|null $updated_at
  */
-class Mda extends Model
+class Mda extends Model implements MdaScoped
 {
     /** @use HasFactory<MdaFactory> */
     use Auditable, HasFactory, HasUuids, ScopedToMda, SoftDeletes;

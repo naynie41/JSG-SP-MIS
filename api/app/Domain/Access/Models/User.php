@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Domain\Access\Models;
 
+use App\Domain\Access\Concerns\MdaScoped;
 use App\Domain\Access\Concerns\ScopedToMda;
 use App\Domain\Access\Enums\UserStatus;
 use App\Domain\Audit\Concerns\Auditable;
@@ -15,9 +16,28 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Support\Carbon;
 use Laravel\Sanctum\HasApiTokens;
 
-class User extends Authenticatable
+/**
+ * @property string $id
+ * @property string $name
+ * @property string $email
+ * @property Carbon|null $email_verified_at
+ * @property string $password
+ * @property string|null $mda_id
+ * @property string|null $role_id
+ * @property UserStatus $status
+ * @property string|null $mfa_secret
+ * @property list<string>|null $mfa_recovery_codes
+ * @property bool $mfa_enabled
+ * @property int $failed_login_attempts
+ * @property Carbon|null $locked_until
+ * @property Carbon|null $last_login_at
+ * @property-read Mda|null $mda
+ * @property-read Role|null $role
+ */
+class User extends Authenticatable implements MdaScoped
 {
     /** @use HasFactory<UserFactory> */
     use Auditable, HasApiTokens, HasFactory, HasUuids, Notifiable, ScopedToMda, SoftDeletes;

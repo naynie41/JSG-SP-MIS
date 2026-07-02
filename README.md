@@ -122,18 +122,86 @@ docker compose exec api php artisan migrate:fresh --seed   # rebuild from scratc
 The first migration enables the PostGIS extension, so later spatial migrations
 can use geometry/geography columns.
 
+### Seeded data
+
+`--seed` (run automatically on first boot) creates:
+
+- the **seven roles** and their permissions (FR-UAM-01/05),
+- **two sample MDAs** (Ministry of Health; Ministry of Women Affairs & Social Development),
+- **one System Administrator** account for first login (below).
+
 ---
 
-## Running tests
+## First login (seeded admin + MFA)
+
+Open the app at **http://localhost:5173**.
+
+| Field    | Value                                    |
+| -------- | ---------------------------------------- |
+| Email    | `admin@spmis.local`                      |
+| Password | `ChangeMe!Admin12345`                    |
+
+> These come from `SEED_ADMIN_EMAIL` / `SEED_ADMIN_PASSWORD` in `api/.env.example`.
+> **Change them for any shared/production environment** (the seeder skips production).
+
+The System Administrator role **requires MFA**, so on first sign-in you'll see a
+**"Set up MFA"** screen with a setup key and recovery codes:
+
+1. Add the setup key to an authenticator app (Google Authenticator, Authy, 1Password…),
+   **or** generate the current code from the terminal:
+   ```bash
+   docker compose exec -u www-data api php artisan tinker \
+     --execute="echo (new PragmaRX\Google2FA\Google2FA)->getCurrentOtp('PASTE_SETUP_KEY');"
+   ```
+2. Enter the 6-digit code, **save the recovery codes**, and you're in.
+3. On later logins you'll get the shorter **"Two-factor check"** step (same code source).
+
+---
+
+## Walkthrough: manage MDAs & users
+
+Signed in as the admin:
+
+1. **Create an MDA** — side rail → **MDAs** → **Create MDA** (name + type). It appears in the
+   scoped list; use the row menu to **Edit** or **Deactivate/Activate**.
+2. **Create a user** — side rail → **Users** → **Create user**. Set name/email, **assign the MDA**
+   you just created and a **role** (e.g. *MDA Officer*), and a temporary password. Validation errors
+   from the API render inline; success shows a toast.
+3. **See scoping & RBAC in action** — sign out and sign in as the new user. They only see data for
+   their MDA, and the navigation only shows sections their role permits. Actions they can't perform
+   are hidden. (The server enforces this regardless of the UI.)
+4. **Everything is audited** — each create/edit/status change and the auth events are written to the
+   append-only `audit_log` (secrets redacted, PII masked). Inspect with:
+   ```bash
+   docker compose exec -u www-data api php artisan tinker \
+     --execute="\App\Domain\Audit\Models\AuditLog::latest('created_at')->take(10)->get(['action','entity_type','actor_id','created_at'])->each(fn(\$a)=>print(\$a->action.' '.\$a->entity_type.PHP_EOL));"
+   ```
+
+Roles/permissions and the audit log design are documented in
+[api/app/Domain/Access/README.md](api/app/Domain/Access/README.md) and
+[api/app/Domain/Audit/README.md](api/app/Domain/Audit/README.md).
+A Phase 1 requirement-mapping checklist is in [docs/PHASE-1-CHECKLIST.md](docs/PHASE-1-CHECKLIST.md).
+
+---
+
+## Running tests, lint & static analysis
 
 ```bash
-# Backend (PHPUnit / Pest)
-docker compose exec api php artisan test
+# --- Backend (Laravel) ---
+docker compose exec -u www-data api php artisan test          # PHPUnit suite
+docker compose exec -u www-data api ./vendor/bin/pint --test  # code style (lint)
+docker compose exec -u www-data api ./vendor/bin/phpstan analyse --memory-limit=512M  # static analysis (Larastan lvl 5)
+# convenience: run all three
+docker compose exec -u www-data api composer check
 
-# Frontend
-docker compose exec web npm run test    # (test runner added with the first UI feature)
-docker compose exec web npm run lint
+# --- Frontend (React) ---
+docker compose exec web npm run test        # Vitest + Testing Library
+docker compose exec web npm run lint        # oxlint
+docker compose exec web npx tsc -b          # TypeScript typecheck
+docker compose exec web npm run build       # production build
 ```
+
+All of the above should be green on a fresh clone.
 
 ---
 

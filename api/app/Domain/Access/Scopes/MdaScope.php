@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Domain\Access\Scopes;
 
+use App\Domain\Access\Concerns\MdaScoped;
 use App\Domain\Access\Models\User;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
@@ -41,6 +42,11 @@ class MdaScope implements Scope
 
         // Oversight roles see across all MDAs.
         if ($user->canAccessAllMdas()) {
+            return;
+        }
+
+        // Only models that opt into MDA scoping expose an ownership column.
+        if (! $model instanceof MdaScoped) {
             return;
         }
 

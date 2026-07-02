@@ -1,0 +1,17020 @@
+<?php declare(strict_types = 1);
+
+return [
+	'lastFullAnalysisTime' => 1782943510,
+	'meta' => array (
+  'cacheVersion' => 'v13-packageDependencies',
+  'phpstanVersion' => '2.2.3',
+  'fnsr' => false,
+  'metaExtensions' => 
+  array (
+  ),
+  'phpVersion' => 80331,
+  'projectConfig' => '{conditionalTags: {Larastan\\Larastan\\Rules\\NoEnvCallsOutsideOfConfigRule: {phpstan.rules.rule: %noEnvCallsOutsideOfConfig%}, Larastan\\Larastan\\Rules\\NoModelMakeRule: {phpstan.rules.rule: %noModelMake%}, Larastan\\Larastan\\Rules\\NoUnnecessaryCollectionCallRule: {phpstan.rules.rule: %noUnnecessaryCollectionCall%}, Larastan\\Larastan\\Rules\\NoUnnecessaryEnumerableToArrayCallsRule: {phpstan.rules.rule: %noUnnecessaryEnumerableToArrayCalls%}, Larastan\\Larastan\\Rules\\OctaneCompatibilityRule: {phpstan.rules.rule: %checkOctaneCompatibility%}, Larastan\\Larastan\\Rules\\UnusedViewsRule: {phpstan.rules.rule: %checkUnusedViews%}, Larastan\\Larastan\\Rules\\NoMissingTranslationsRule: {phpstan.rules.rule: %checkMissingTranslations%}, Larastan\\Larastan\\Rules\\ModelAppendsRule: {phpstan.rules.rule: %checkModelAppends%}, Larastan\\Larastan\\Rules\\NoPublicModelScopeAndAccessorRule: {phpstan.rules.rule: %checkModelMethodVisibility%}, Larastan\\Larastan\\Rules\\NoAuthFacadeInRequestScopeRule: {phpstan.rules.rule: %checkAuthCallsWhenInRequestScope%}, Larastan\\Larastan\\Rules\\NoAuthHelperInRequestScopeRule: {phpstan.rules.rule: %checkAuthCallsWhenInRequestScope%}, Larastan\\Larastan\\ReturnTypes\\Helpers\\EnvFunctionDynamicFunctionReturnTypeExtension: {phpstan.broker.dynamicFunctionReturnTypeExtension: %generalizeEnvReturnType%}, Larastan\\Larastan\\ReturnTypes\\Helpers\\ConfigFunctionDynamicFunctionReturnTypeExtension: {phpstan.broker.dynamicFunctionReturnTypeExtension: %checkConfigTypes%}, Larastan\\Larastan\\ReturnTypes\\ConfigRepositoryDynamicMethodReturnTypeExtension: {phpstan.broker.dynamicMethodReturnTypeExtension: %checkConfigTypes%}, Larastan\\Larastan\\ReturnTypes\\ConfigFacadeCollectionDynamicStaticMethodReturnTypeExtension: {phpstan.broker.dynamicStaticMethodReturnTypeExtension: %checkConfigTypes%}, Larastan\\Larastan\\Rules\\ConfigCollectionRule: {phpstan.rules.rule: %checkConfigTypes%}}, parameters: {universalObjectCratesClasses: [Illuminate\\Http\\Request, Illuminate\\Support\\Optional], earlyTerminatingFunctionCalls: [abort, dd], mixinExcludeClasses: [Eloquent], bootstrapFiles: [bootstrap.php], checkOctaneCompatibility: false, noEnvCallsOutsideOfConfig: true, noModelMake: true, noUnnecessaryCollectionCall: true, noUnnecessaryCollectionCallOnly: [], noUnnecessaryCollectionCallExcept: [], noUnnecessaryEnumerableToArrayCalls: false, squashedMigrationsPath: [], databaseMigrationsPath: [], disableMigrationScan: false, disableSchemaScan: false, configDirectories: [], viewDirectories: [], translationDirectories: [], checkModelProperties: false, checkUnusedViews: false, checkMissingTranslations: false, checkModelAppends: true, checkModelMethodVisibility: false, generalizeEnvReturnType: false, checkConfigTypes: false, checkAuthCallsWhenInRequestScope: false, parseModelCastsMethod: false, enableMigrationCache: false, level: 5, paths: [/var/www/html/app], tmpDir: /var/www/html/storage/phpstan}, rules: [Larastan\\Larastan\\Rules\\UselessConstructs\\NoUselessWithFunctionCallsRule, Larastan\\Larastan\\Rules\\UselessConstructs\\NoUselessValueFunctionCallsRule, Larastan\\Larastan\\Rules\\DeferrableServiceProviderMissingProvidesRule, Larastan\\Larastan\\Rules\\ConsoleCommand\\UndefinedArgumentOrOptionRule], services: {{class: Larastan\\Larastan\\Methods\\RelationForwardsCallsExtension, tags: [phpstan.broker.methodsClassReflectionExtension]}, {class: Larastan\\Larastan\\Methods\\ModelForwardsCallsExtension, tags: [phpstan.broker.methodsClassReflectionExtension]}, {class: Larastan\\Larastan\\Methods\\EloquentBuilderForwardsCallsExtension, tags: [phpstan.broker.methodsClassReflectionExtension]}, {class: Larastan\\Larastan\\Methods\\HigherOrderTapProxyExtension, tags: [phpstan.broker.methodsClassReflectionExtension]}, {class: Larastan\\Larastan\\Methods\\HigherOrderCollectionProxyExtension, tags: [phpstan.broker.methodsClassReflectionExtension]}, {class: Larastan\\Larastan\\Methods\\StorageMethodsClassReflectionExtension, tags: [phpstan.broker.methodsClassReflectionExtension]}, {class: Larastan\\Larastan\\Methods\\ContractsMethodsExtension, tags: [phpstan.broker.methodsClassReflectionExtension]}, {class: Larastan\\Larastan\\Methods\\FacadesMethodsExtension, tags: [phpstan.broker.methodsClassReflectionExtension]}, {class: Larastan\\Larastan\\Methods\\ManagersMethodsExtension, tags: [phpstan.broker.methodsClassReflectionExtension]}, {class: Larastan\\Larastan\\Methods\\AuthsMethodsExtension, tags: [phpstan.broker.methodsClassReflectionExtension]}, {class: Larastan\\Larastan\\Methods\\ModelFactoryMethodsClassReflectionExtension, tags: [phpstan.broker.methodsClassReflectionExtension]}, {class: Larastan\\Larastan\\Methods\\RedirectResponseMethodsClassReflectionExtension, tags: [phpstan.broker.methodsClassReflectionExtension]}, {class: Larastan\\Larastan\\Methods\\MacroMethodsClassReflectionExtension, tags: [phpstan.broker.methodsClassReflectionExtension]}, {class: Larastan\\Larastan\\Methods\\ViewWithMethodsClassReflectionExtension, tags: [phpstan.broker.methodsClassReflectionExtension]}, {class: Larastan\\Larastan\\Properties\\ModelAccessorExtension, tags: [phpstan.broker.propertiesClassReflectionExtension]}, {class: Larastan\\Larastan\\Properties\\ModelPropertyExtension, tags: [phpstan.broker.propertiesClassReflectionExtension]}, {class: Larastan\\Larastan\\Properties\\HigherOrderCollectionProxyPropertyExtension, tags: [phpstan.broker.propertiesClassReflectionExtension]}, {class: Larastan\\Larastan\\ReturnTypes\\HigherOrderTapProxyExtension, tags: [phpstan.broker.dynamicMethodReturnTypeExtension]}, {class: Larastan\\Larastan\\ReturnTypes\\ContainerArrayAccessDynamicMethodReturnTypeExtension, tags: [phpstan.broker.dynamicMethodReturnTypeExtension], arguments: {className: Illuminate\\Contracts\\Container\\Container}}, {class: Larastan\\Larastan\\ReturnTypes\\ContainerArrayAccessDynamicMethodReturnTypeExtension, tags: [phpstan.broker.dynamicMethodReturnTypeExtension], arguments: {className: Illuminate\\Container\\Container}}, {class: Larastan\\Larastan\\ReturnTypes\\ContainerArrayAccessDynamicMethodReturnTypeExtension, tags: [phpstan.broker.dynamicMethodReturnTypeExtension], arguments: {className: Illuminate\\Foundation\\Application}}, {class: Larastan\\Larastan\\ReturnTypes\\ContainerArrayAccessDynamicMethodReturnTypeExtension, tags: [phpstan.broker.dynamicMethodReturnTypeExtension], arguments: {className: Illuminate\\Contracts\\Foundation\\Application}}, {class: Larastan\\Larastan\\Properties\\ModelRelationsExtension, tags: [phpstan.broker.propertiesClassReflectionExtension]}, {class: Larastan\\Larastan\\ReturnTypes\\ModelOnlyDynamicMethodReturnTypeExtension, tags: [phpstan.broker.dynamicMethodReturnTypeExtension]}, {class: Larastan\\Larastan\\ReturnTypes\\ModelFactoryDynamicStaticMethodReturnTypeExtension, tags: [phpstan.broker.dynamicStaticMethodReturnTypeExtension]}, {class: Larastan\\Larastan\\ReturnTypes\\ModelDynamicStaticMethodReturnTypeExtension, tags: [phpstan.broker.dynamicStaticMethodReturnTypeExtension]}, {class: Larastan\\Larastan\\ReturnTypes\\AppMakeDynamicReturnTypeExtension, tags: [phpstan.broker.dynamicStaticMethodReturnTypeExtension]}, {class: Larastan\\Larastan\\ReturnTypes\\AuthExtension, tags: [phpstan.broker.dynamicStaticMethodReturnTypeExtension]}, {class: Larastan\\Larastan\\ReturnTypes\\GuardDynamicStaticMethodReturnTypeExtension, tags: [phpstan.broker.dynamicStaticMethodReturnTypeExtension]}, {class: Larastan\\Larastan\\ReturnTypes\\AuthManagerExtension, tags: [phpstan.broker.dynamicMethodReturnTypeExtension]}, {class: Larastan\\Larastan\\ReturnTypes\\DateExtension, tags: [phpstan.broker.dynamicStaticMethodReturnTypeExtension]}, {class: Larastan\\Larastan\\ReturnTypes\\GuardExtension, tags: [phpstan.broker.dynamicMethodReturnTypeExtension]}, {class: Larastan\\Larastan\\ReturnTypes\\RequestFileExtension, tags: [phpstan.broker.dynamicMethodReturnTypeExtension]}, {class: Larastan\\Larastan\\ReturnTypes\\RequestRouteExtension, tags: [phpstan.broker.dynamicMethodReturnTypeExtension]}, {class: Larastan\\Larastan\\ReturnTypes\\RequestUserExtension, tags: [phpstan.broker.dynamicMethodReturnTypeExtension]}, {class: Larastan\\Larastan\\ReturnTypes\\EloquentBuilderExtension, tags: [phpstan.broker.dynamicMethodReturnTypeExtension]}, {class: Larastan\\Larastan\\ReturnTypes\\RelationCollectionExtension, tags: [phpstan.broker.dynamicMethodReturnTypeExtension]}, {class: Larastan\\Larastan\\ReturnTypes\\TestCaseExtension, tags: [phpstan.broker.dynamicMethodReturnTypeExtension]}, {class: Larastan\\Larastan\\Support\\CollectionHelper}, {class: Larastan\\Larastan\\ReturnTypes\\Helpers\\AuthExtension, tags: [phpstan.broker.dynamicFunctionReturnTypeExtension]}, {class: Larastan\\Larastan\\ReturnTypes\\Helpers\\CollectExtension, tags: [phpstan.broker.dynamicFunctionReturnTypeExtension]}, {class: Larastan\\Larastan\\ReturnTypes\\Helpers\\NowAndTodayExtension, tags: [phpstan.broker.dynamicFunctionReturnTypeExtension]}, {class: Larastan\\Larastan\\ReturnTypes\\Helpers\\ResponseExtension, tags: [phpstan.broker.dynamicFunctionReturnTypeExtension]}, {class: Larastan\\Larastan\\ReturnTypes\\Helpers\\ValidatorExtension, tags: [phpstan.broker.dynamicFunctionReturnTypeExtension]}, {class: Larastan\\Larastan\\ReturnTypes\\Helpers\\LiteralExtension, tags: [phpstan.broker.dynamicFunctionReturnTypeExtension]}, {class: Larastan\\Larastan\\ReturnTypes\\CollectionFilterRejectDynamicReturnTypeExtension, tags: [phpstan.broker.dynamicMethodReturnTypeExtension]}, {class: Larastan\\Larastan\\ReturnTypes\\CollectionWhereNotNullDynamicReturnTypeExtension, tags: [phpstan.broker.dynamicMethodReturnTypeExtension]}, {class: Larastan\\Larastan\\ReturnTypes\\NewModelQueryDynamicMethodReturnTypeExtension, tags: [phpstan.broker.dynamicMethodReturnTypeExtension]}, {class: Larastan\\Larastan\\ReturnTypes\\FactoryDynamicMethodReturnTypeExtension, tags: [phpstan.broker.dynamicMethodReturnTypeExtension]}, {class: Larastan\\Larastan\\Types\\AbortIfFunctionTypeSpecifyingExtension, tags: [phpstan.typeSpecifier.functionTypeSpecifyingExtension], arguments: {methodName: abort, negate: false}}, {class: Larastan\\Larastan\\Types\\AbortIfFunctionTypeSpecifyingExtension, tags: [phpstan.typeSpecifier.functionTypeSpecifyingExtension], arguments: {methodName: abort, negate: true}}, {class: Larastan\\Larastan\\Types\\AbortIfFunctionTypeSpecifyingExtension, tags: [phpstan.typeSpecifier.functionTypeSpecifyingExtension], arguments: {methodName: throw, negate: false}}, {class: Larastan\\Larastan\\Types\\AbortIfFunctionTypeSpecifyingExtension, tags: [phpstan.typeSpecifier.functionTypeSpecifyingExtension], arguments: {methodName: throw, negate: true}}, {class: Larastan\\Larastan\\ReturnTypes\\Helpers\\AppExtension, tags: [phpstan.broker.dynamicFunctionReturnTypeExtension]}, {class: Larastan\\Larastan\\ReturnTypes\\Helpers\\ValueExtension, tags: [phpstan.broker.dynamicFunctionReturnTypeExtension]}, {class: Larastan\\Larastan\\ReturnTypes\\Helpers\\StrExtension, tags: [phpstan.broker.dynamicFunctionReturnTypeExtension]}, {class: Larastan\\Larastan\\ReturnTypes\\Helpers\\TapExtension, tags: [phpstan.broker.dynamicFunctionReturnTypeExtension]}, {class: Larastan\\Larastan\\ReturnTypes\\StorageDynamicStaticMethodReturnTypeExtension, tags: [phpstan.broker.dynamicStaticMethodReturnTypeExtension]}, {class: Larastan\\Larastan\\Types\\GenericEloquentCollectionTypeNodeResolverExtension, tags: [phpstan.phpDoc.typeNodeResolverExtension]}, {class: Larastan\\Larastan\\Types\\ViewStringTypeNodeResolverExtension, tags: [phpstan.phpDoc.typeNodeResolverExtension]}, {class: Larastan\\Larastan\\Rules\\OctaneCompatibilityRule}, {class: Larastan\\Larastan\\Rules\\NoEnvCallsOutsideOfConfigRule, arguments: {configDirectories: %configDirectories%}}, {class: Larastan\\Larastan\\Rules\\NoModelMakeRule}, {class: Larastan\\Larastan\\Rules\\NoUnnecessaryCollectionCallRule, arguments: {onlyMethods: %noUnnecessaryCollectionCallOnly%, excludeMethods: %noUnnecessaryCollectionCallExcept%}}, {class: Larastan\\Larastan\\Rules\\NoUnnecessaryEnumerableToArrayCallsRule}, {class: Larastan\\Larastan\\Rules\\ModelAppendsRule}, {class: Larastan\\Larastan\\Rules\\NoPublicModelScopeAndAccessorRule}, {class: Larastan\\Larastan\\Types\\GenericEloquentBuilderTypeNodeResolverExtension, tags: [phpstan.phpDoc.typeNodeResolverExtension]}, {class: Larastan\\Larastan\\ReturnTypes\\AppEnvironmentReturnTypeExtension, tags: [phpstan.broker.dynamicMethodReturnTypeExtension], arguments: {class: Illuminate\\Foundation\\Application}}, {class: Larastan\\Larastan\\ReturnTypes\\AppEnvironmentReturnTypeExtension, tags: [phpstan.broker.dynamicMethodReturnTypeExtension], arguments: {class: Illuminate\\Contracts\\Foundation\\Application}}, {class: Larastan\\Larastan\\ReturnTypes\\AppFacadeEnvironmentReturnTypeExtension, tags: [phpstan.broker.dynamicStaticMethodReturnTypeExtension]}, {class: Larastan\\Larastan\\Types\\ModelProperty\\ModelPropertyTypeNodeResolverExtension, tags: [phpstan.phpDoc.typeNodeResolverExtension], arguments: {active: %checkModelProperties%}}, {class: Larastan\\Larastan\\Types\\CollectionOf\\CollectionOfTypeNodeResolverExtension, tags: [phpstan.phpDoc.typeNodeResolverExtension]}, {class: Larastan\\Larastan\\Properties\\MigrationHelper, arguments: {databaseMigrationPath: %databaseMigrationsPath%, disableMigrationScan: %disableMigrationScan%, parser: @migrationsParser, reflectionProvider: @reflectionProvider}}, iamcalSqlParser: {class: Larastan\\Larastan\\SQL\\IamcalSqlParser, autowired: false}, sqlParserFactory: {class: Larastan\\Larastan\\SQL\\SqlParserFactory, arguments: {iamcalSqlParser: @iamcalSqlParser}}, sqlParser: {type: Larastan\\Larastan\\SQL\\SqlParser, factory: [@sqlParserFactory, create]}, {class: Larastan\\Larastan\\Properties\\SquashedMigrationHelper, arguments: {schemaPaths: %squashedMigrationsPath%, disableSchemaScan: %disableSchemaScan%}}, {class: Larastan\\Larastan\\Properties\\ModelCastHelper, arguments: {parser: @currentPhpVersionSimpleDirectParser, parseModelCastsMethod: %parseModelCastsMethod%}}, {class: Larastan\\Larastan\\Properties\\MigrationCache, arguments: {cacheDirectory: %tmpDir%, enabled: %enableMigrationCache%}}, {class: Larastan\\Larastan\\Properties\\ModelPropertyHelper}, {class: Larastan\\Larastan\\Rules\\ModelRuleHelper}, {class: Larastan\\Larastan\\Methods\\BuilderHelper, arguments: {checkProperties: %checkModelProperties%}}, {class: Larastan\\Larastan\\Rules\\RelationExistenceRule, tags: [phpstan.rules.rule]}, {class: Larastan\\Larastan\\Rules\\CheckDispatchArgumentTypesCompatibleWithClassConstructorRule, arguments: {dispatchableClass: Illuminate\\Foundation\\Bus\\Dispatchable}, tags: [phpstan.rules.rule]}, {class: Larastan\\Larastan\\Rules\\CheckDispatchArgumentTypesCompatibleWithClassConstructorRule, arguments: {dispatchableClass: Illuminate\\Foundation\\Events\\Dispatchable}, tags: [phpstan.rules.rule]}, {class: Larastan\\Larastan\\Properties\\Schema\\MySqlDataTypeToPhpTypeConverter}, {class: Larastan\\Larastan\\LarastanStubFilesExtension, tags: [phpstan.stubFilesExtension]}, {class: Larastan\\Larastan\\Rules\\UnusedViewsRule}, {class: Larastan\\Larastan\\Collectors\\UsedViewFunctionCollector, tags: [phpstan.collector]}, {class: Larastan\\Larastan\\Collectors\\UsedEmailViewCollector, tags: [phpstan.collector]}, {class: Larastan\\Larastan\\Collectors\\UsedViewMakeCollector, tags: [phpstan.collector]}, {class: Larastan\\Larastan\\Collectors\\UsedViewFacadeMakeCollector, tags: [phpstan.collector]}, {class: Larastan\\Larastan\\Collectors\\UsedRouteFacadeViewCollector, tags: [phpstan.collector]}, {class: Larastan\\Larastan\\Collectors\\UsedViewInAnotherViewCollector}, {class: Larastan\\Larastan\\Support\\ViewFileHelper, arguments: {viewDirectories: %viewDirectories%}}, {class: Larastan\\Larastan\\Support\\ViewParser, arguments: {parser: @currentPhpVersionSimpleDirectParser}}, {class: Larastan\\Larastan\\Rules\\NoMissingTranslationsRule, arguments: {translationDirectories: %translationDirectories%}}, {class: Larastan\\Larastan\\Collectors\\UsedTranslationFunctionCollector, tags: [phpstan.collector]}, {class: Larastan\\Larastan\\Collectors\\UsedTranslationTranslatorCollector, tags: [phpstan.collector]}, {class: Larastan\\Larastan\\Collectors\\UsedTranslationFacadeCollector, tags: [phpstan.collector]}, {class: Larastan\\Larastan\\Collectors\\UsedTranslationViewCollector}, {class: Larastan\\Larastan\\ReturnTypes\\ApplicationMakeDynamicReturnTypeExtension, tags: [phpstan.broker.dynamicMethodReturnTypeExtension]}, {class: Larastan\\Larastan\\ReturnTypes\\ContainerMakeDynamicReturnTypeExtension, tags: [phpstan.broker.dynamicMethodReturnTypeExtension]}, {class: Larastan\\Larastan\\ReturnTypes\\ConsoleCommand\\ArgumentDynamicReturnTypeExtension, tags: [phpstan.broker.dynamicMethodReturnTypeExtension]}, {class: Larastan\\Larastan\\ReturnTypes\\ConsoleCommand\\HasArgumentDynamicReturnTypeExtension, tags: [phpstan.broker.dynamicMethodReturnTypeExtension]}, {class: Larastan\\Larastan\\ReturnTypes\\ConsoleCommand\\OptionDynamicReturnTypeExtension, tags: [phpstan.broker.dynamicMethodReturnTypeExtension]}, {class: Larastan\\Larastan\\ReturnTypes\\ConsoleCommand\\HasOptionDynamicReturnTypeExtension, tags: [phpstan.broker.dynamicMethodReturnTypeExtension]}, {class: Larastan\\Larastan\\ReturnTypes\\TranslatorGetReturnTypeExtension, tags: [phpstan.broker.dynamicMethodReturnTypeExtension]}, {class: Larastan\\Larastan\\ReturnTypes\\LangGetReturnTypeExtension, tags: [phpstan.broker.dynamicStaticMethodReturnTypeExtension]}, {class: Larastan\\Larastan\\ReturnTypes\\TransHelperReturnTypeExtension, tags: [phpstan.broker.dynamicFunctionReturnTypeExtension]}, {class: Larastan\\Larastan\\ReturnTypes\\DoubleUnderscoreHelperReturnTypeExtension, tags: [phpstan.broker.dynamicFunctionReturnTypeExtension]}, {class: Larastan\\Larastan\\ReturnTypes\\AppMakeHelper}, {class: Larastan\\Larastan\\Internal\\ConsoleApplicationResolver}, {class: Larastan\\Larastan\\Internal\\ConsoleApplicationHelper}, {class: Larastan\\Larastan\\Support\\HigherOrderCollectionProxyHelper}, {class: Larastan\\Larastan\\ReturnTypes\\Helpers\\ConfigFunctionDynamicFunctionReturnTypeExtension}, {class: Larastan\\Larastan\\ReturnTypes\\ConfigRepositoryDynamicMethodReturnTypeExtension}, {class: Larastan\\Larastan\\ReturnTypes\\ConfigFacadeCollectionDynamicStaticMethodReturnTypeExtension}, {class: Larastan\\Larastan\\Support\\ConfigParser, arguments: {parser: @currentPhpVersionSimpleDirectParser, configPaths: %configDirectories%, treatPhpDocTypesAsCertain: %treatPhpDocTypesAsCertain%}}, {class: Larastan\\Larastan\\Internal\\ConfigHelper}, {class: Larastan\\Larastan\\ReturnTypes\\Helpers\\EnvFunctionDynamicFunctionReturnTypeExtension}, {class: Larastan\\Larastan\\ReturnTypes\\FormRequestSafeDynamicMethodReturnTypeExtension, tags: [phpstan.broker.dynamicMethodReturnTypeExtension]}, {class: Larastan\\Larastan\\ReturnTypes\\EloquentCollectionMapDynamicReturnTypeExtension, tags: [phpstan.broker.dynamicMethodReturnTypeExtension]}, {class: Larastan\\Larastan\\Rules\\NoAuthFacadeInRequestScopeRule}, {class: Larastan\\Larastan\\Rules\\NoAuthHelperInRequestScopeRule}, {class: Larastan\\Larastan\\Rules\\ConfigCollectionRule}, {class: Illuminate\\Filesystem\\Filesystem, autowired: self}, migrationsParser: {class: PHPStan\\Parser\\CachedParser, arguments: {originalParser: @currentPhpVersionSimpleDirectParser, cachedNodesByStringCountMax: %cache.nodesByStringCountMax%}, autowired: false}}}',
+  'analysedPaths' => 
+  array (
+    0 => '/var/www/html/app',
+  ),
+  'scannedFiles' => 
+  array (
+  ),
+  'composerLocks' => 
+  array (
+    '/var/www/html/composer.lock' => '50c13094142a0a415ea081491ccf52638fd6aa09fa3bfad56163a895ac52f51a',
+  ),
+  'composerInstalled' => 
+  array (
+    '/var/www/html/vendor/composer/installed.php' => 
+    array (
+      'versions' => 
+      array (
+        'brick/math' => 
+        array (
+          'pretty_version' => '0.14.8',
+          'version' => '0.14.8.0',
+          'reference' => '63422359a44b7f06cae63c3b429b59e8efcc0629',
+          'type' => 'library',
+          'install_path' => '/var/www/html/vendor/composer/../brick/math',
+          'aliases' => 
+          array (
+          ),
+          'dev_requirement' => false,
+        ),
+        'carbonphp/carbon-doctrine-types' => 
+        array (
+          'pretty_version' => '3.2.0',
+          'version' => '3.2.0.0',
+          'reference' => '18ba5ddfec8976260ead6e866180bd5d2f71aa1d',
+          'type' => 'library',
+          'install_path' => '/var/www/html/vendor/composer/../carbonphp/carbon-doctrine-types',
+          'aliases' => 
+          array (
+          ),
+          'dev_requirement' => false,
+        ),
+        'cordoval/hamcrest-php' => 
+        array (
+          'dev_requirement' => true,
+          'replaced' => 
+          array (
+            0 => '*',
+          ),
+        ),
+        'davedevelopment/hamcrest-php' => 
+        array (
+          'dev_requirement' => true,
+          'replaced' => 
+          array (
+            0 => '*',
+          ),
+        ),
+        'dflydev/dot-access-data' => 
+        array (
+          'pretty_version' => 'v3.0.3',
+          'version' => '3.0.3.0',
+          'reference' => 'a23a2bf4f31d3518f3ecb38660c95715dfead60f',
+          'type' => 'library',
+          'install_path' => '/var/www/html/vendor/composer/../dflydev/dot-access-data',
+          'aliases' => 
+          array (
+          ),
+          'dev_requirement' => false,
+        ),
+        'doctrine/inflector' => 
+        array (
+          'pretty_version' => '2.1.0',
+          'version' => '2.1.0.0',
+          'reference' => '6d6c96277ea252fc1304627204c3d5e6e15faa3b',
+          'type' => 'library',
+          'install_path' => '/var/www/html/vendor/composer/../doctrine/inflector',
+          'aliases' => 
+          array (
+          ),
+          'dev_requirement' => false,
+        ),
+        'doctrine/lexer' => 
+        array (
+          'pretty_version' => '3.0.1',
+          'version' => '3.0.1.0',
+          'reference' => '31ad66abc0fc9e1a1f2d9bc6a42668d2fbbcd6dd',
+          'type' => 'library',
+          'install_path' => '/var/www/html/vendor/composer/../doctrine/lexer',
+          'aliases' => 
+          array (
+          ),
+          'dev_requirement' => false,
+        ),
+        'dragonmantank/cron-expression' => 
+        array (
+          'pretty_version' => 'v3.6.0',
+          'version' => '3.6.0.0',
+          'reference' => 'd61a8a9604ec1f8c3d150d09db6ce98b32675013',
+          'type' => 'library',
+          'install_path' => '/var/www/html/vendor/composer/../dragonmantank/cron-expression',
+          'aliases' => 
+          array (
+          ),
+          'dev_requirement' => false,
+        ),
+        'egulias/email-validator' => 
+        array (
+          'pretty_version' => '4.0.4',
+          'version' => '4.0.4.0',
+          'reference' => 'd42c8731f0624ad6bdc8d3e5e9a4524f68801cfa',
+          'type' => 'library',
+          'install_path' => '/var/www/html/vendor/composer/../egulias/email-validator',
+          'aliases' => 
+          array (
+          ),
+          'dev_requirement' => false,
+        ),
+        'fakerphp/faker' => 
+        array (
+          'pretty_version' => 'v1.24.1',
+          'version' => '1.24.1.0',
+          'reference' => 'e0ee18eb1e6dc3cda3ce9fd97e5a0689a88a64b5',
+          'type' => 'library',
+          'install_path' => '/var/www/html/vendor/composer/../fakerphp/faker',
+          'aliases' => 
+          array (
+          ),
+          'dev_requirement' => true,
+        ),
+        'filp/whoops' => 
+        array (
+          'pretty_version' => '2.18.4',
+          'version' => '2.18.4.0',
+          'reference' => 'd2102955e48b9fd9ab24280a7ad12ed552752c4d',
+          'type' => 'library',
+          'install_path' => '/var/www/html/vendor/composer/../filp/whoops',
+          'aliases' => 
+          array (
+          ),
+          'dev_requirement' => true,
+        ),
+        'fruitcake/php-cors' => 
+        array (
+          'pretty_version' => 'v1.4.0',
+          'version' => '1.4.0.0',
+          'reference' => '38aaa6c3fd4c157ffe2a4d10aa8b9b16ba8de379',
+          'type' => 'library',
+          'install_path' => '/var/www/html/vendor/composer/../fruitcake/php-cors',
+          'aliases' => 
+          array (
+          ),
+          'dev_requirement' => false,
+        ),
+        'graham-campbell/result-type' => 
+        array (
+          'pretty_version' => 'v1.1.4',
+          'version' => '1.1.4.0',
+          'reference' => 'e01f4a821471308ba86aa202fed6698b6b695e3b',
+          'type' => 'library',
+          'install_path' => '/var/www/html/vendor/composer/../graham-campbell/result-type',
+          'aliases' => 
+          array (
+          ),
+          'dev_requirement' => false,
+        ),
+        'guzzlehttp/guzzle' => 
+        array (
+          'pretty_version' => '7.12.3',
+          'version' => '7.12.3.0',
+          'reference' => '9aa17bcdd777ee31df9fc83c337ca4ca2340def3',
+          'type' => 'library',
+          'install_path' => '/var/www/html/vendor/composer/../guzzlehttp/guzzle',
+          'aliases' => 
+          array (
+          ),
+          'dev_requirement' => false,
+        ),
+        'guzzlehttp/promises' => 
+        array (
+          'pretty_version' => '2.5.0',
+          'version' => '2.5.0.0',
+          'reference' => '4360e982f87f5f258bf872d094647791db2f4c8e',
+          'type' => 'library',
+          'install_path' => '/var/www/html/vendor/composer/../guzzlehttp/promises',
+          'aliases' => 
+          array (
+          ),
+          'dev_requirement' => false,
+        ),
+        'guzzlehttp/psr7' => 
+        array (
+          'pretty_version' => '2.12.3',
+          'version' => '2.12.3.0',
+          'reference' => '7ec62dc3f44aa218487dbed81a9bf9bc647be55d',
+          'type' => 'library',
+          'install_path' => '/var/www/html/vendor/composer/../guzzlehttp/psr7',
+          'aliases' => 
+          array (
+          ),
+          'dev_requirement' => false,
+        ),
+        'guzzlehttp/uri-template' => 
+        array (
+          'pretty_version' => 'v1.0.8',
+          'version' => '1.0.8.0',
+          'reference' => '9c19128923b05a5d7355e5d2318d7808b7e33bbd',
+          'type' => 'library',
+          'install_path' => '/var/www/html/vendor/composer/../guzzlehttp/uri-template',
+          'aliases' => 
+          array (
+          ),
+          'dev_requirement' => false,
+        ),
+        'hamcrest/hamcrest-php' => 
+        array (
+          'pretty_version' => 'v2.1.1',
+          'version' => '2.1.1.0',
+          'reference' => 'f8b1c0173b22fa6ec77a81fe63e5b01eba7e6487',
+          'type' => 'library',
+          'install_path' => '/var/www/html/vendor/composer/../hamcrest/hamcrest-php',
+          'aliases' => 
+          array (
+          ),
+          'dev_requirement' => true,
+        ),
+        'iamcal/sql-parser' => 
+        array (
+          'pretty_version' => 'v0.7',
+          'version' => '0.7.0.0',
+          'reference' => '610392f38de49a44dab08dc1659960a29874c4b8',
+          'type' => 'library',
+          'install_path' => '/var/www/html/vendor/composer/../iamcal/sql-parser',
+          'aliases' => 
+          array (
+          ),
+          'dev_requirement' => true,
+        ),
+        'illuminate/auth' => 
+        array (
+          'dev_requirement' => false,
+          'replaced' => 
+          array (
+            0 => 'v12.62.0',
+          ),
+        ),
+        'illuminate/broadcasting' => 
+        array (
+          'dev_requirement' => false,
+          'replaced' => 
+          array (
+            0 => 'v12.62.0',
+          ),
+        ),
+        'illuminate/bus' => 
+        array (
+          'dev_requirement' => false,
+          'replaced' => 
+          array (
+            0 => 'v12.62.0',
+          ),
+        ),
+        'illuminate/cache' => 
+        array (
+          'dev_requirement' => false,
+          'replaced' => 
+          array (
+            0 => 'v12.62.0',
+          ),
+        ),
+        'illuminate/collections' => 
+        array (
+          'dev_requirement' => false,
+          'replaced' => 
+          array (
+            0 => 'v12.62.0',
+          ),
+        ),
+        'illuminate/concurrency' => 
+        array (
+          'dev_requirement' => false,
+          'replaced' => 
+          array (
+            0 => 'v12.62.0',
+          ),
+        ),
+        'illuminate/conditionable' => 
+        array (
+          'dev_requirement' => false,
+          'replaced' => 
+          array (
+            0 => 'v12.62.0',
+          ),
+        ),
+        'illuminate/config' => 
+        array (
+          'dev_requirement' => false,
+          'replaced' => 
+          array (
+            0 => 'v12.62.0',
+          ),
+        ),
+        'illuminate/console' => 
+        array (
+          'dev_requirement' => false,
+          'replaced' => 
+          array (
+            0 => 'v12.62.0',
+          ),
+        ),
+        'illuminate/container' => 
+        array (
+          'dev_requirement' => false,
+          'replaced' => 
+          array (
+            0 => 'v12.62.0',
+          ),
+        ),
+        'illuminate/contracts' => 
+        array (
+          'dev_requirement' => false,
+          'replaced' => 
+          array (
+            0 => 'v12.62.0',
+          ),
+        ),
+        'illuminate/cookie' => 
+        array (
+          'dev_requirement' => false,
+          'replaced' => 
+          array (
+            0 => 'v12.62.0',
+          ),
+        ),
+        'illuminate/database' => 
+        array (
+          'dev_requirement' => false,
+          'replaced' => 
+          array (
+            0 => 'v12.62.0',
+          ),
+        ),
+        'illuminate/encryption' => 
+        array (
+          'dev_requirement' => false,
+          'replaced' => 
+          array (
+            0 => 'v12.62.0',
+          ),
+        ),
+        'illuminate/events' => 
+        array (
+          'dev_requirement' => false,
+          'replaced' => 
+          array (
+            0 => 'v12.62.0',
+          ),
+        ),
+        'illuminate/filesystem' => 
+        array (
+          'dev_requirement' => false,
+          'replaced' => 
+          array (
+            0 => 'v12.62.0',
+          ),
+        ),
+        'illuminate/hashing' => 
+        array (
+          'dev_requirement' => false,
+          'replaced' => 
+          array (
+            0 => 'v12.62.0',
+          ),
+        ),
+        'illuminate/http' => 
+        array (
+          'dev_requirement' => false,
+          'replaced' => 
+          array (
+            0 => 'v12.62.0',
+          ),
+        ),
+        'illuminate/json-schema' => 
+        array (
+          'dev_requirement' => false,
+          'replaced' => 
+          array (
+            0 => 'v12.62.0',
+          ),
+        ),
+        'illuminate/log' => 
+        array (
+          'dev_requirement' => false,
+          'replaced' => 
+          array (
+            0 => 'v12.62.0',
+          ),
+        ),
+        'illuminate/macroable' => 
+        array (
+          'dev_requirement' => false,
+          'replaced' => 
+          array (
+            0 => 'v12.62.0',
+          ),
+        ),
+        'illuminate/mail' => 
+        array (
+          'dev_requirement' => false,
+          'replaced' => 
+          array (
+            0 => 'v12.62.0',
+          ),
+        ),
+        'illuminate/notifications' => 
+        array (
+          'dev_requirement' => false,
+          'replaced' => 
+          array (
+            0 => 'v12.62.0',
+          ),
+        ),
+        'illuminate/pagination' => 
+        array (
+          'dev_requirement' => false,
+          'replaced' => 
+          array (
+            0 => 'v12.62.0',
+          ),
+        ),
+        'illuminate/pipeline' => 
+        array (
+          'dev_requirement' => false,
+          'replaced' => 
+          array (
+            0 => 'v12.62.0',
+          ),
+        ),
+        'illuminate/process' => 
+        array (
+          'dev_requirement' => false,
+          'replaced' => 
+          array (
+            0 => 'v12.62.0',
+          ),
+        ),
+        'illuminate/queue' => 
+        array (
+          'dev_requirement' => false,
+          'replaced' => 
+          array (
+            0 => 'v12.62.0',
+          ),
+        ),
+        'illuminate/redis' => 
+        array (
+          'dev_requirement' => false,
+          'replaced' => 
+          array (
+            0 => 'v12.62.0',
+          ),
+        ),
+        'illuminate/reflection' => 
+        array (
+          'dev_requirement' => false,
+          'replaced' => 
+          array (
+            0 => 'v12.62.0',
+          ),
+        ),
+        'illuminate/routing' => 
+        array (
+          'dev_requirement' => false,
+          'replaced' => 
+          array (
+            0 => 'v12.62.0',
+          ),
+        ),
+        'illuminate/session' => 
+        array (
+          'dev_requirement' => false,
+          'replaced' => 
+          array (
+            0 => 'v12.62.0',
+          ),
+        ),
+        'illuminate/support' => 
+        array (
+          'dev_requirement' => false,
+          'replaced' => 
+          array (
+            0 => 'v12.62.0',
+          ),
+        ),
+        'illuminate/testing' => 
+        array (
+          'dev_requirement' => false,
+          'replaced' => 
+          array (
+            0 => 'v12.62.0',
+          ),
+        ),
+        'illuminate/translation' => 
+        array (
+          'dev_requirement' => false,
+          'replaced' => 
+          array (
+            0 => 'v12.62.0',
+          ),
+        ),
+        'illuminate/validation' => 
+        array (
+          'dev_requirement' => false,
+          'replaced' => 
+          array (
+            0 => 'v12.62.0',
+          ),
+        ),
+        'illuminate/view' => 
+        array (
+          'dev_requirement' => false,
+          'replaced' => 
+          array (
+            0 => 'v12.62.0',
+          ),
+        ),
+        'kodova/hamcrest-php' => 
+        array (
+          'dev_requirement' => true,
+          'replaced' => 
+          array (
+            0 => '*',
+          ),
+        ),
+        'larastan/larastan' => 
+        array (
+          'pretty_version' => 'v3.10.0',
+          'version' => '3.10.0.0',
+          'reference' => '2970f83398154178a739609c244577267c7ee8eb',
+          'type' => 'phpstan-extension',
+          'install_path' => '/var/www/html/vendor/composer/../larastan/larastan',
+          'aliases' => 
+          array (
+          ),
+          'dev_requirement' => true,
+        ),
+        'laravel/framework' => 
+        array (
+          'pretty_version' => 'v12.62.0',
+          'version' => '12.62.0.0',
+          'reference' => 'f7e61eb1e0e06a38996802b769bce9127aec227c',
+          'type' => 'library',
+          'install_path' => '/var/www/html/vendor/composer/../laravel/framework',
+          'aliases' => 
+          array (
+          ),
+          'dev_requirement' => false,
+        ),
+        'laravel/pail' => 
+        array (
+          'pretty_version' => 'v1.2.7',
+          'version' => '1.2.7.0',
+          'reference' => '2f7d27dada8effc48b8c424445a69cca7007daaa',
+          'type' => 'library',
+          'install_path' => '/var/www/html/vendor/composer/../laravel/pail',
+          'aliases' => 
+          array (
+          ),
+          'dev_requirement' => true,
+        ),
+        'laravel/pint' => 
+        array (
+          'pretty_version' => 'v1.29.3',
+          'version' => '1.29.3.0',
+          'reference' => 'da1d1111a6aa2e082d2a388b194afe1ba0a05d14',
+          'type' => 'project',
+          'install_path' => '/var/www/html/vendor/composer/../laravel/pint',
+          'aliases' => 
+          array (
+          ),
+          'dev_requirement' => true,
+        ),
+        'laravel/prompts' => 
+        array (
+          'pretty_version' => 'v0.3.21',
+          'version' => '0.3.21.0',
+          'reference' => '7753c65c281c2550c7c183f14e18062073b7d821',
+          'type' => 'library',
+          'install_path' => '/var/www/html/vendor/composer/../laravel/prompts',
+          'aliases' => 
+          array (
+          ),
+          'dev_requirement' => false,
+        ),
+        'laravel/sail' => 
+        array (
+          'pretty_version' => 'v1.63.0',
+          'version' => '1.63.0.0',
+          'reference' => '51bbce3f803c1d386cabbb44e618c955a12ff5fc',
+          'type' => 'library',
+          'install_path' => '/var/www/html/vendor/composer/../laravel/sail',
+          'aliases' => 
+          array (
+          ),
+          'dev_requirement' => true,
+        ),
+        'laravel/sanctum' => 
+        array (
+          'pretty_version' => 'v4.3.2',
+          'version' => '4.3.2.0',
+          'reference' => '2a9bccc18e9907808e0018dd15fa643937886b1e',
+          'type' => 'library',
+          'install_path' => '/var/www/html/vendor/composer/../laravel/sanctum',
+          'aliases' => 
+          array (
+          ),
+          'dev_requirement' => false,
+        ),
+        'laravel/serializable-closure' => 
+        array (
+          'pretty_version' => 'v2.0.13',
+          'version' => '2.0.13.0',
+          'reference' => 'b566ee0dd251f3c4078bed003a7ce015f5ea6dce',
+          'type' => 'library',
+          'install_path' => '/var/www/html/vendor/composer/../laravel/serializable-closure',
+          'aliases' => 
+          array (
+          ),
+          'dev_requirement' => false,
+        ),
+        'laravel/tinker' => 
+        array (
+          'pretty_version' => 'v2.11.1',
+          'version' => '2.11.1.0',
+          'reference' => 'c9f80cc835649b5c1842898fb043f8cc098dd741',
+          'type' => 'library',
+          'install_path' => '/var/www/html/vendor/composer/../laravel/tinker',
+          'aliases' => 
+          array (
+          ),
+          'dev_requirement' => false,
+        ),
+        'league/commonmark' => 
+        array (
+          'pretty_version' => '2.8.2',
+          'version' => '2.8.2.0',
+          'reference' => '59fb075d2101740c337c7216e3f32b36c204218b',
+          'type' => 'library',
+          'install_path' => '/var/www/html/vendor/composer/../league/commonmark',
+          'aliases' => 
+          array (
+          ),
+          'dev_requirement' => false,
+        ),
+        'league/config' => 
+        array (
+          'pretty_version' => 'v1.2.0',
+          'version' => '1.2.0.0',
+          'reference' => '754b3604fb2984c71f4af4a9cbe7b57f346ec1f3',
+          'type' => 'library',
+          'install_path' => '/var/www/html/vendor/composer/../league/config',
+          'aliases' => 
+          array (
+          ),
+          'dev_requirement' => false,
+        ),
+        'league/flysystem' => 
+        array (
+          'pretty_version' => '3.35.1',
+          'version' => '3.35.1.0',
+          'reference' => 'f23af6c5aafd958a7593029a271d77baf5ed793c',
+          'type' => 'library',
+          'install_path' => '/var/www/html/vendor/composer/../league/flysystem',
+          'aliases' => 
+          array (
+          ),
+          'dev_requirement' => false,
+        ),
+        'league/flysystem-local' => 
+        array (
+          'pretty_version' => '3.31.0',
+          'version' => '3.31.0.0',
+          'reference' => '2f669db18a4c20c755c2bb7d3a7b0b2340488079',
+          'type' => 'library',
+          'install_path' => '/var/www/html/vendor/composer/../league/flysystem-local',
+          'aliases' => 
+          array (
+          ),
+          'dev_requirement' => false,
+        ),
+        'league/mime-type-detection' => 
+        array (
+          'pretty_version' => '1.16.0',
+          'version' => '1.16.0.0',
+          'reference' => '2d6702ff215bf922936ccc1ad31007edc76451b9',
+          'type' => 'library',
+          'install_path' => '/var/www/html/vendor/composer/../league/mime-type-detection',
+          'aliases' => 
+          array (
+          ),
+          'dev_requirement' => false,
+        ),
+        'league/uri' => 
+        array (
+          'pretty_version' => '7.8.1',
+          'version' => '7.8.1.0',
+          'reference' => '08cf38e3924d4f56238125547b5720496fac8fd4',
+          'type' => 'library',
+          'install_path' => '/var/www/html/vendor/composer/../league/uri',
+          'aliases' => 
+          array (
+          ),
+          'dev_requirement' => false,
+        ),
+        'league/uri-interfaces' => 
+        array (
+          'pretty_version' => '7.8.1',
+          'version' => '7.8.1.0',
+          'reference' => '85d5c77c5d6d3af6c54db4a78246364908f3c928',
+          'type' => 'library',
+          'install_path' => '/var/www/html/vendor/composer/../league/uri-interfaces',
+          'aliases' => 
+          array (
+          ),
+          'dev_requirement' => false,
+        ),
+        'mockery/mockery' => 
+        array (
+          'pretty_version' => '1.6.12',
+          'version' => '1.6.12.0',
+          'reference' => '1f4efdd7d3beafe9807b08156dfcb176d18f1699',
+          'type' => 'library',
+          'install_path' => '/var/www/html/vendor/composer/../mockery/mockery',
+          'aliases' => 
+          array (
+          ),
+          'dev_requirement' => true,
+        ),
+        'monolog/monolog' => 
+        array (
+          'pretty_version' => '3.10.0',
+          'version' => '3.10.0.0',
+          'reference' => 'b321dd6749f0bf7189444158a3ce785cc16d69b0',
+          'type' => 'library',
+          'install_path' => '/var/www/html/vendor/composer/../monolog/monolog',
+          'aliases' => 
+          array (
+          ),
+          'dev_requirement' => false,
+        ),
+        'mtdowling/cron-expression' => 
+        array (
+          'dev_requirement' => false,
+          'replaced' => 
+          array (
+            0 => '^1.0',
+          ),
+        ),
+        'myclabs/deep-copy' => 
+        array (
+          'pretty_version' => '1.13.4',
+          'version' => '1.13.4.0',
+          'reference' => '07d290f0c47959fd5eed98c95ee5602db07e0b6a',
+          'type' => 'library',
+          'install_path' => '/var/www/html/vendor/composer/../myclabs/deep-copy',
+          'aliases' => 
+          array (
+          ),
+          'dev_requirement' => true,
+        ),
+        'nesbot/carbon' => 
+        array (
+          'pretty_version' => '3.13.0',
+          'version' => '3.13.0.0',
+          'reference' => '40f6618f052df16b545f626fbf9a878e6497d16a',
+          'type' => 'library',
+          'install_path' => '/var/www/html/vendor/composer/../nesbot/carbon',
+          'aliases' => 
+          array (
+          ),
+          'dev_requirement' => false,
+        ),
+        'nette/schema' => 
+        array (
+          'pretty_version' => 'v1.3.5',
+          'version' => '1.3.5.0',
+          'reference' => 'f0ab1a3cda782dbc5da270d28545236aa80c4002',
+          'type' => 'library',
+          'install_path' => '/var/www/html/vendor/composer/../nette/schema',
+          'aliases' => 
+          array (
+          ),
+          'dev_requirement' => false,
+        ),
+        'nette/utils' => 
+        array (
+          'pretty_version' => 'v4.1.4',
+          'version' => '4.1.4.0',
+          'reference' => '7da6c396d7ebe142bc857c20479d5e70a5e1aac7',
+          'type' => 'library',
+          'install_path' => '/var/www/html/vendor/composer/../nette/utils',
+          'aliases' => 
+          array (
+          ),
+          'dev_requirement' => false,
+        ),
+        'nikic/php-parser' => 
+        array (
+          'pretty_version' => 'v5.7.0',
+          'version' => '5.7.0.0',
+          'reference' => 'dca41cd15c2ac9d055ad70dbfd011130757d1f82',
+          'type' => 'library',
+          'install_path' => '/var/www/html/vendor/composer/../nikic/php-parser',
+          'aliases' => 
+          array (
+          ),
+          'dev_requirement' => false,
+        ),
+        'nunomaduro/collision' => 
+        array (
+          'pretty_version' => 'v8.9.4',
+          'version' => '8.9.4.0',
+          'reference' => '716af8f95a470e9094cfca09ed897b023be191a5',
+          'type' => 'library',
+          'install_path' => '/var/www/html/vendor/composer/../nunomaduro/collision',
+          'aliases' => 
+          array (
+          ),
+          'dev_requirement' => true,
+        ),
+        'nunomaduro/termwind' => 
+        array (
+          'pretty_version' => 'v2.4.0',
+          'version' => '2.4.0.0',
+          'reference' => '712a31b768f5daea284c2169a7d227031001b9a8',
+          'type' => 'library',
+          'install_path' => '/var/www/html/vendor/composer/../nunomaduro/termwind',
+          'aliases' => 
+          array (
+          ),
+          'dev_requirement' => false,
+        ),
+        'paragonie/constant_time_encoding' => 
+        array (
+          'pretty_version' => 'v3.1.3',
+          'version' => '3.1.3.0',
+          'reference' => 'd5b01a39b3415c2cd581d3bd3a3575c1ebbd8e77',
+          'type' => 'library',
+          'install_path' => '/var/www/html/vendor/composer/../paragonie/constant_time_encoding',
+          'aliases' => 
+          array (
+          ),
+          'dev_requirement' => false,
+        ),
+        'paragonie/random_compat' => 
+        array (
+          'pretty_version' => 'v9.99.100',
+          'version' => '9.99.100.0',
+          'reference' => '996434e5492cb4c3edcb9168db6fbb1359ef965a',
+          'type' => 'library',
+          'install_path' => '/var/www/html/vendor/composer/../paragonie/random_compat',
+          'aliases' => 
+          array (
+          ),
+          'dev_requirement' => false,
+        ),
+        'phar-io/manifest' => 
+        array (
+          'pretty_version' => '2.0.4',
+          'version' => '2.0.4.0',
+          'reference' => '54750ef60c58e43759730615a392c31c80e23176',
+          'type' => 'library',
+          'install_path' => '/var/www/html/vendor/composer/../phar-io/manifest',
+          'aliases' => 
+          array (
+          ),
+          'dev_requirement' => true,
+        ),
+        'phar-io/version' => 
+        array (
+          'pretty_version' => '3.2.1',
+          'version' => '3.2.1.0',
+          'reference' => '4f7fd7836c6f332bb2933569e566a0d6c4cbed74',
+          'type' => 'library',
+          'install_path' => '/var/www/html/vendor/composer/../phar-io/version',
+          'aliases' => 
+          array (
+          ),
+          'dev_requirement' => true,
+        ),
+        'php-amqplib/php-amqplib' => 
+        array (
+          'pretty_version' => 'v3.7.4',
+          'version' => '3.7.4.0',
+          'reference' => '381b6f7c600e0e0c7463cdd7f7a1a3bc6268e5fd',
+          'type' => 'library',
+          'install_path' => '/var/www/html/vendor/composer/../php-amqplib/php-amqplib',
+          'aliases' => 
+          array (
+          ),
+          'dev_requirement' => false,
+        ),
+        'phpoption/phpoption' => 
+        array (
+          'pretty_version' => '1.9.5',
+          'version' => '1.9.5.0',
+          'reference' => '75365b91986c2405cf5e1e012c5595cd487a98be',
+          'type' => 'library',
+          'install_path' => '/var/www/html/vendor/composer/../phpoption/phpoption',
+          'aliases' => 
+          array (
+          ),
+          'dev_requirement' => false,
+        ),
+        'phpseclib/phpseclib' => 
+        array (
+          'pretty_version' => '3.0.55',
+          'version' => '3.0.55.0',
+          'reference' => 'db9744e6d47e742b1f974e965ad49bdd041105af',
+          'type' => 'library',
+          'install_path' => '/var/www/html/vendor/composer/../phpseclib/phpseclib',
+          'aliases' => 
+          array (
+          ),
+          'dev_requirement' => false,
+        ),
+        'phpstan/phpstan' => 
+        array (
+          'pretty_version' => '2.2.3',
+          'version' => '2.2.3.0',
+          'reference' => '4048833dd47b377287818841877fb3087289509c',
+          'type' => 'library',
+          'install_path' => '/var/www/html/vendor/composer/../phpstan/phpstan',
+          'aliases' => 
+          array (
+          ),
+          'dev_requirement' => true,
+        ),
+        'phpunit/php-code-coverage' => 
+        array (
+          'pretty_version' => '11.0.12',
+          'version' => '11.0.12.0',
+          'reference' => '2c1ed04922802c15e1de5d7447b4856de949cf56',
+          'type' => 'library',
+          'install_path' => '/var/www/html/vendor/composer/../phpunit/php-code-coverage',
+          'aliases' => 
+          array (
+          ),
+          'dev_requirement' => true,
+        ),
+        'phpunit/php-file-iterator' => 
+        array (
+          'pretty_version' => '5.1.1',
+          'version' => '5.1.1.0',
+          'reference' => '2f3a64888c814fc235386b7387dd5b5ed92ad903',
+          'type' => 'library',
+          'install_path' => '/var/www/html/vendor/composer/../phpunit/php-file-iterator',
+          'aliases' => 
+          array (
+          ),
+          'dev_requirement' => true,
+        ),
+        'phpunit/php-invoker' => 
+        array (
+          'pretty_version' => '5.0.1',
+          'version' => '5.0.1.0',
+          'reference' => 'c1ca3814734c07492b3d4c5f794f4b0995333da2',
+          'type' => 'library',
+          'install_path' => '/var/www/html/vendor/composer/../phpunit/php-invoker',
+          'aliases' => 
+          array (
+          ),
+          'dev_requirement' => true,
+        ),
+        'phpunit/php-text-template' => 
+        array (
+          'pretty_version' => '4.0.1',
+          'version' => '4.0.1.0',
+          'reference' => '3e0404dc6b300e6bf56415467ebcb3fe4f33e964',
+          'type' => 'library',
+          'install_path' => '/var/www/html/vendor/composer/../phpunit/php-text-template',
+          'aliases' => 
+          array (
+          ),
+          'dev_requirement' => true,
+        ),
+        'phpunit/php-timer' => 
+        array (
+          'pretty_version' => '7.0.1',
+          'version' => '7.0.1.0',
+          'reference' => '3b415def83fbcb41f991d9ebf16ae4ad8b7837b3',
+          'type' => 'library',
+          'install_path' => '/var/www/html/vendor/composer/../phpunit/php-timer',
+          'aliases' => 
+          array (
+          ),
+          'dev_requirement' => true,
+        ),
+        'phpunit/phpunit' => 
+        array (
+          'pretty_version' => '11.5.55',
+          'version' => '11.5.55.0',
+          'reference' => 'adc7262fccc12de2b30f12a8aa0b33775d814f00',
+          'type' => 'library',
+          'install_path' => '/var/www/html/vendor/composer/../phpunit/phpunit',
+          'aliases' => 
+          array (
+          ),
+          'dev_requirement' => true,
+        ),
+        'pragmarx/google2fa' => 
+        array (
+          'pretty_version' => 'v8.0.3',
+          'version' => '8.0.3.0',
+          'reference' => '6f8d87ebd5afbf7790bde1ffc7579c7c705e0fad',
+          'type' => 'library',
+          'install_path' => '/var/www/html/vendor/composer/../pragmarx/google2fa',
+          'aliases' => 
+          array (
+          ),
+          'dev_requirement' => false,
+        ),
+        'predis/predis' => 
+        array (
+          'pretty_version' => 'v3.5.1',
+          'version' => '3.5.1.0',
+          'reference' => '5c996db191ee2d9bafe651f454b1fca16754271b',
+          'type' => 'library',
+          'install_path' => '/var/www/html/vendor/composer/../predis/predis',
+          'aliases' => 
+          array (
+          ),
+          'dev_requirement' => false,
+        ),
+        'psr/clock' => 
+        array (
+          'pretty_version' => '1.0.0',
+          'version' => '1.0.0.0',
+          'reference' => 'e41a24703d4560fd0acb709162f73b8adfc3aa0d',
+          'type' => 'library',
+          'install_path' => '/var/www/html/vendor/composer/../psr/clock',
+          'aliases' => 
+          array (
+          ),
+          'dev_requirement' => false,
+        ),
+        'psr/clock-implementation' => 
+        array (
+          'dev_requirement' => false,
+          'provided' => 
+          array (
+            0 => '1.0',
+          ),
+        ),
+        'psr/container' => 
+        array (
+          'pretty_version' => '2.0.2',
+          'version' => '2.0.2.0',
+          'reference' => 'c71ecc56dfe541dbd90c5360474fbc405f8d5963',
+          'type' => 'library',
+          'install_path' => '/var/www/html/vendor/composer/../psr/container',
+          'aliases' => 
+          array (
+          ),
+          'dev_requirement' => false,
+        ),
+        'psr/container-implementation' => 
+        array (
+          'dev_requirement' => false,
+          'provided' => 
+          array (
+            0 => '1.1|2.0',
+          ),
+        ),
+        'psr/event-dispatcher' => 
+        array (
+          'pretty_version' => '1.0.0',
+          'version' => '1.0.0.0',
+          'reference' => 'dbefd12671e8a14ec7f180cab83036ed26714bb0',
+          'type' => 'library',
+          'install_path' => '/var/www/html/vendor/composer/../psr/event-dispatcher',
+          'aliases' => 
+          array (
+          ),
+          'dev_requirement' => false,
+        ),
+        'psr/event-dispatcher-implementation' => 
+        array (
+          'dev_requirement' => false,
+          'provided' => 
+          array (
+            0 => '1.0',
+          ),
+        ),
+        'psr/http-client' => 
+        array (
+          'pretty_version' => '1.0.3',
+          'version' => '1.0.3.0',
+          'reference' => 'bb5906edc1c324c9a05aa0873d40117941e5fa90',
+          'type' => 'library',
+          'install_path' => '/var/www/html/vendor/composer/../psr/http-client',
+          'aliases' => 
+          array (
+          ),
+          'dev_requirement' => false,
+        ),
+        'psr/http-client-implementation' => 
+        array (
+          'dev_requirement' => false,
+          'provided' => 
+          array (
+            0 => '1.0',
+          ),
+        ),
+        'psr/http-factory' => 
+        array (
+          'pretty_version' => '1.1.0',
+          'version' => '1.1.0.0',
+          'reference' => '2b4765fddfe3b508ac62f829e852b1501d3f6e8a',
+          'type' => 'library',
+          'install_path' => '/var/www/html/vendor/composer/../psr/http-factory',
+          'aliases' => 
+          array (
+          ),
+          'dev_requirement' => false,
+        ),
+        'psr/http-factory-implementation' => 
+        array (
+          'dev_requirement' => false,
+          'provided' => 
+          array (
+            0 => '1.0',
+          ),
+        ),
+        'psr/http-message' => 
+        array (
+          'pretty_version' => '2.0',
+          'version' => '2.0.0.0',
+          'reference' => '402d35bcb92c70c026d1a6a9883f06b2ead23d71',
+          'type' => 'library',
+          'install_path' => '/var/www/html/vendor/composer/../psr/http-message',
+          'aliases' => 
+          array (
+          ),
+          'dev_requirement' => false,
+        ),
+        'psr/http-message-implementation' => 
+        array (
+          'dev_requirement' => false,
+          'provided' => 
+          array (
+            0 => '1.0',
+          ),
+        ),
+        'psr/log' => 
+        array (
+          'pretty_version' => '3.0.2',
+          'version' => '3.0.2.0',
+          'reference' => 'f16e1d5863e37f8d8c2a01719f5b34baa2b714d3',
+          'type' => 'library',
+          'install_path' => '/var/www/html/vendor/composer/../psr/log',
+          'aliases' => 
+          array (
+          ),
+          'dev_requirement' => false,
+        ),
+        'psr/log-implementation' => 
+        array (
+          'dev_requirement' => false,
+          'provided' => 
+          array (
+            0 => '1.0|2.0|3.0',
+            1 => '3.0.0',
+          ),
+        ),
+        'psr/simple-cache' => 
+        array (
+          'pretty_version' => '3.0.0',
+          'version' => '3.0.0.0',
+          'reference' => '764e0b3939f5ca87cb904f570ef9be2d78a07865',
+          'type' => 'library',
+          'install_path' => '/var/www/html/vendor/composer/../psr/simple-cache',
+          'aliases' => 
+          array (
+          ),
+          'dev_requirement' => false,
+        ),
+        'psr/simple-cache-implementation' => 
+        array (
+          'dev_requirement' => false,
+          'provided' => 
+          array (
+            0 => '1.0|2.0|3.0',
+          ),
+        ),
+        'psy/psysh' => 
+        array (
+          'pretty_version' => 'v0.12.23',
+          'version' => '0.12.23.0',
+          'reference' => '4dcc0f08047d52bbde475eda481146fd8e27e1a4',
+          'type' => 'library',
+          'install_path' => '/var/www/html/vendor/composer/../psy/psysh',
+          'aliases' => 
+          array (
+          ),
+          'dev_requirement' => false,
+        ),
+        'ralouphie/getallheaders' => 
+        array (
+          'pretty_version' => '3.0.3',
+          'version' => '3.0.3.0',
+          'reference' => '120b605dfeb996808c31b6477290a714d356e822',
+          'type' => 'library',
+          'install_path' => '/var/www/html/vendor/composer/../ralouphie/getallheaders',
+          'aliases' => 
+          array (
+          ),
+          'dev_requirement' => false,
+        ),
+        'ramsey/collection' => 
+        array (
+          'pretty_version' => '2.1.1',
+          'version' => '2.1.1.0',
+          'reference' => '344572933ad0181accbf4ba763e85a0306a8c5e2',
+          'type' => 'library',
+          'install_path' => '/var/www/html/vendor/composer/../ramsey/collection',
+          'aliases' => 
+          array (
+          ),
+          'dev_requirement' => false,
+        ),
+        'ramsey/uuid' => 
+        array (
+          'pretty_version' => '4.9.3',
+          'version' => '4.9.3.0',
+          'reference' => '1df15849d00943a67d677dc9cfd80795f038c9f8',
+          'type' => 'library',
+          'install_path' => '/var/www/html/vendor/composer/../ramsey/uuid',
+          'aliases' => 
+          array (
+          ),
+          'dev_requirement' => false,
+        ),
+        'rhumsaa/uuid' => 
+        array (
+          'dev_requirement' => false,
+          'replaced' => 
+          array (
+            0 => '4.9.3',
+          ),
+        ),
+        'sebastian/cli-parser' => 
+        array (
+          'pretty_version' => '3.0.2',
+          'version' => '3.0.2.0',
+          'reference' => '15c5dd40dc4f38794d383bb95465193f5e0ae180',
+          'type' => 'library',
+          'install_path' => '/var/www/html/vendor/composer/../sebastian/cli-parser',
+          'aliases' => 
+          array (
+          ),
+          'dev_requirement' => true,
+        ),
+        'sebastian/code-unit' => 
+        array (
+          'pretty_version' => '3.0.3',
+          'version' => '3.0.3.0',
+          'reference' => '54391c61e4af8078e5b276ab082b6d3c54c9ad64',
+          'type' => 'library',
+          'install_path' => '/var/www/html/vendor/composer/../sebastian/code-unit',
+          'aliases' => 
+          array (
+          ),
+          'dev_requirement' => true,
+        ),
+        'sebastian/code-unit-reverse-lookup' => 
+        array (
+          'pretty_version' => '4.0.1',
+          'version' => '4.0.1.0',
+          'reference' => '183a9b2632194febd219bb9246eee421dad8d45e',
+          'type' => 'library',
+          'install_path' => '/var/www/html/vendor/composer/../sebastian/code-unit-reverse-lookup',
+          'aliases' => 
+          array (
+          ),
+          'dev_requirement' => true,
+        ),
+        'sebastian/comparator' => 
+        array (
+          'pretty_version' => '6.3.3',
+          'version' => '6.3.3.0',
+          'reference' => '2c95e1e86cb8dd41beb8d502057d1081ccc8eca9',
+          'type' => 'library',
+          'install_path' => '/var/www/html/vendor/composer/../sebastian/comparator',
+          'aliases' => 
+          array (
+          ),
+          'dev_requirement' => true,
+        ),
+        'sebastian/complexity' => 
+        array (
+          'pretty_version' => '4.0.1',
+          'version' => '4.0.1.0',
+          'reference' => 'ee41d384ab1906c68852636b6de493846e13e5a0',
+          'type' => 'library',
+          'install_path' => '/var/www/html/vendor/composer/../sebastian/complexity',
+          'aliases' => 
+          array (
+          ),
+          'dev_requirement' => true,
+        ),
+        'sebastian/diff' => 
+        array (
+          'pretty_version' => '6.0.2',
+          'version' => '6.0.2.0',
+          'reference' => 'b4ccd857127db5d41a5b676f24b51371d76d8544',
+          'type' => 'library',
+          'install_path' => '/var/www/html/vendor/composer/../sebastian/diff',
+          'aliases' => 
+          array (
+          ),
+          'dev_requirement' => true,
+        ),
+        'sebastian/environment' => 
+        array (
+          'pretty_version' => '7.2.1',
+          'version' => '7.2.1.0',
+          'reference' => 'a5c75038693ad2e8d4b6c15ba2403532647830c4',
+          'type' => 'library',
+          'install_path' => '/var/www/html/vendor/composer/../sebastian/environment',
+          'aliases' => 
+          array (
+          ),
+          'dev_requirement' => true,
+        ),
+        'sebastian/exporter' => 
+        array (
+          'pretty_version' => '6.3.2',
+          'version' => '6.3.2.0',
+          'reference' => '70a298763b40b213ec087c51c739efcaa90bcd74',
+          'type' => 'library',
+          'install_path' => '/var/www/html/vendor/composer/../sebastian/exporter',
+          'aliases' => 
+          array (
+          ),
+          'dev_requirement' => true,
+        ),
+        'sebastian/global-state' => 
+        array (
+          'pretty_version' => '7.0.2',
+          'version' => '7.0.2.0',
+          'reference' => '3be331570a721f9a4b5917f4209773de17f747d7',
+          'type' => 'library',
+          'install_path' => '/var/www/html/vendor/composer/../sebastian/global-state',
+          'aliases' => 
+          array (
+          ),
+          'dev_requirement' => true,
+        ),
+        'sebastian/lines-of-code' => 
+        array (
+          'pretty_version' => '3.0.1',
+          'version' => '3.0.1.0',
+          'reference' => 'd36ad0d782e5756913e42ad87cb2890f4ffe467a',
+          'type' => 'library',
+          'install_path' => '/var/www/html/vendor/composer/../sebastian/lines-of-code',
+          'aliases' => 
+          array (
+          ),
+          'dev_requirement' => true,
+        ),
+        'sebastian/object-enumerator' => 
+        array (
+          'pretty_version' => '6.0.1',
+          'version' => '6.0.1.0',
+          'reference' => 'f5b498e631a74204185071eb41f33f38d64608aa',
+          'type' => 'library',
+          'install_path' => '/var/www/html/vendor/composer/../sebastian/object-enumerator',
+          'aliases' => 
+          array (
+          ),
+          'dev_requirement' => true,
+        ),
+        'sebastian/object-reflector' => 
+        array (
+          'pretty_version' => '4.0.1',
+          'version' => '4.0.1.0',
+          'reference' => '6e1a43b411b2ad34146dee7524cb13a068bb35f9',
+          'type' => 'library',
+          'install_path' => '/var/www/html/vendor/composer/../sebastian/object-reflector',
+          'aliases' => 
+          array (
+          ),
+          'dev_requirement' => true,
+        ),
+        'sebastian/recursion-context' => 
+        array (
+          'pretty_version' => '6.0.3',
+          'version' => '6.0.3.0',
+          'reference' => 'f6458abbf32a6c8174f8f26261475dc133b3d9dc',
+          'type' => 'library',
+          'install_path' => '/var/www/html/vendor/composer/../sebastian/recursion-context',
+          'aliases' => 
+          array (
+          ),
+          'dev_requirement' => true,
+        ),
+        'sebastian/type' => 
+        array (
+          'pretty_version' => '5.1.3',
+          'version' => '5.1.3.0',
+          'reference' => 'f77d2d4e78738c98d9a68d2596fe5e8fa380f449',
+          'type' => 'library',
+          'install_path' => '/var/www/html/vendor/composer/../sebastian/type',
+          'aliases' => 
+          array (
+          ),
+          'dev_requirement' => true,
+        ),
+        'sebastian/version' => 
+        array (
+          'pretty_version' => '5.0.2',
+          'version' => '5.0.2.0',
+          'reference' => 'c687e3387b99f5b03b6caa64c74b63e2936ff874',
+          'type' => 'library',
+          'install_path' => '/var/www/html/vendor/composer/../sebastian/version',
+          'aliases' => 
+          array (
+          ),
+          'dev_requirement' => true,
+        ),
+        'spatie/once' => 
+        array (
+          'dev_requirement' => false,
+          'replaced' => 
+          array (
+            0 => '*',
+          ),
+        ),
+        'staabm/side-effects-detector' => 
+        array (
+          'pretty_version' => '1.0.5',
+          'version' => '1.0.5.0',
+          'reference' => 'd8334211a140ce329c13726d4a715adbddd0a163',
+          'type' => 'library',
+          'install_path' => '/var/www/html/vendor/composer/../staabm/side-effects-detector',
+          'aliases' => 
+          array (
+          ),
+          'dev_requirement' => true,
+        ),
+        'symfony/clock' => 
+        array (
+          'pretty_version' => 'v7.4.8',
+          'version' => '7.4.8.0',
+          'reference' => '674fa3b98e21531dd040e613479f5f6fa8f32111',
+          'type' => 'library',
+          'install_path' => '/var/www/html/vendor/composer/../symfony/clock',
+          'aliases' => 
+          array (
+          ),
+          'dev_requirement' => false,
+        ),
+        'symfony/console' => 
+        array (
+          'pretty_version' => 'v7.4.14',
+          'version' => '7.4.14.0',
+          'reference' => '92f58bc4bf97a92ed1b9f367f0cd44f20bde0e87',
+          'type' => 'library',
+          'install_path' => '/var/www/html/vendor/composer/../symfony/console',
+          'aliases' => 
+          array (
+          ),
+          'dev_requirement' => false,
+        ),
+        'symfony/css-selector' => 
+        array (
+          'pretty_version' => 'v7.4.9',
+          'version' => '7.4.9.0',
+          'reference' => 'b75663ed96cf4756e28e3105476f220f92886cc4',
+          'type' => 'library',
+          'install_path' => '/var/www/html/vendor/composer/../symfony/css-selector',
+          'aliases' => 
+          array (
+          ),
+          'dev_requirement' => false,
+        ),
+        'symfony/deprecation-contracts' => 
+        array (
+          'pretty_version' => 'v3.7.1',
+          'version' => '3.7.1.0',
+          'reference' => 'f3202fa1b5097b0af062dc978b32ecf63404e31d',
+          'type' => 'library',
+          'install_path' => '/var/www/html/vendor/composer/../symfony/deprecation-contracts',
+          'aliases' => 
+          array (
+          ),
+          'dev_requirement' => false,
+        ),
+        'symfony/error-handler' => 
+        array (
+          'pretty_version' => 'v7.4.14',
+          'version' => '7.4.14.0',
+          'reference' => '4e1a093b481f323e6e326451f9760c3868430673',
+          'type' => 'library',
+          'install_path' => '/var/www/html/vendor/composer/../symfony/error-handler',
+          'aliases' => 
+          array (
+          ),
+          'dev_requirement' => false,
+        ),
+        'symfony/event-dispatcher' => 
+        array (
+          'pretty_version' => 'v7.4.14',
+          'version' => '7.4.14.0',
+          'reference' => '51fe3d170227be8d1772214b82ae506e15ed78ff',
+          'type' => 'library',
+          'install_path' => '/var/www/html/vendor/composer/../symfony/event-dispatcher',
+          'aliases' => 
+          array (
+          ),
+          'dev_requirement' => false,
+        ),
+        'symfony/event-dispatcher-contracts' => 
+        array (
+          'pretty_version' => 'v3.7.1',
+          'version' => '3.7.1.0',
+          'reference' => 'c7de7a00ffb67842132da02ea92988a39ccd9f4e',
+          'type' => 'library',
+          'install_path' => '/var/www/html/vendor/composer/../symfony/event-dispatcher-contracts',
+          'aliases' => 
+          array (
+          ),
+          'dev_requirement' => false,
+        ),
+        'symfony/event-dispatcher-implementation' => 
+        array (
+          'dev_requirement' => false,
+          'provided' => 
+          array (
+            0 => '2.0|3.0',
+          ),
+        ),
+        'symfony/finder' => 
+        array (
+          'pretty_version' => 'v7.4.14',
+          'version' => '7.4.14.0',
+          'reference' => '13b38720174286f55d1761152b575a8d1436fc25',
+          'type' => 'library',
+          'install_path' => '/var/www/html/vendor/composer/../symfony/finder',
+          'aliases' => 
+          array (
+          ),
+          'dev_requirement' => false,
+        ),
+        'symfony/http-foundation' => 
+        array (
+          'pretty_version' => 'v7.4.14',
+          'version' => '7.4.14.0',
+          'reference' => '06db5ae1552177bf8572f8908839f12e3c06aed3',
+          'type' => 'library',
+          'install_path' => '/var/www/html/vendor/composer/../symfony/http-foundation',
+          'aliases' => 
+          array (
+          ),
+          'dev_requirement' => false,
+        ),
+        'symfony/http-kernel' => 
+        array (
+          'pretty_version' => 'v7.4.14',
+          'version' => '7.4.14.0',
+          'reference' => 'e99af79b1e776646eda0e1c23b7b45c184ff99be',
+          'type' => 'library',
+          'install_path' => '/var/www/html/vendor/composer/../symfony/http-kernel',
+          'aliases' => 
+          array (
+          ),
+          'dev_requirement' => false,
+        ),
+        'symfony/mailer' => 
+        array (
+          'pretty_version' => 'v7.4.14',
+          'version' => '7.4.14.0',
+          'reference' => 'f88ce03ae73e3edb5c176ce1f337709996e88495',
+          'type' => 'library',
+          'install_path' => '/var/www/html/vendor/composer/../symfony/mailer',
+          'aliases' => 
+          array (
+          ),
+          'dev_requirement' => false,
+        ),
+        'symfony/mime' => 
+        array (
+          'pretty_version' => 'v7.4.13',
+          'version' => '7.4.13.0',
+          'reference' => 'a845722765c4f6b2ce88beaf4f4479975b186770',
+          'type' => 'library',
+          'install_path' => '/var/www/html/vendor/composer/../symfony/mime',
+          'aliases' => 
+          array (
+          ),
+          'dev_requirement' => false,
+        ),
+        'symfony/polyfill-ctype' => 
+        array (
+          'pretty_version' => 'v1.37.0',
+          'version' => '1.37.0.0',
+          'reference' => '141046a8f9477948ff284fa65be2095baafb94f2',
+          'type' => 'library',
+          'install_path' => '/var/www/html/vendor/composer/../symfony/polyfill-ctype',
+          'aliases' => 
+          array (
+          ),
+          'dev_requirement' => false,
+        ),
+        'symfony/polyfill-intl-grapheme' => 
+        array (
+          'pretty_version' => 'v1.38.1',
+          'version' => '1.38.1.0',
+          'reference' => 'e9247d281d694a5120554d9afaf54e070e88a603',
+          'type' => 'library',
+          'install_path' => '/var/www/html/vendor/composer/../symfony/polyfill-intl-grapheme',
+          'aliases' => 
+          array (
+          ),
+          'dev_requirement' => false,
+        ),
+        'symfony/polyfill-intl-idn' => 
+        array (
+          'pretty_version' => 'v1.38.1',
+          'version' => '1.38.1.0',
+          'reference' => 'dc21118016c039a66235cf93d96b435ffb282412',
+          'type' => 'library',
+          'install_path' => '/var/www/html/vendor/composer/../symfony/polyfill-intl-idn',
+          'aliases' => 
+          array (
+          ),
+          'dev_requirement' => false,
+        ),
+        'symfony/polyfill-intl-normalizer' => 
+        array (
+          'pretty_version' => 'v1.38.0',
+          'version' => '1.38.0.0',
+          'reference' => '2d446c214bdbe5b71bde5011b060a05fece3ae6b',
+          'type' => 'library',
+          'install_path' => '/var/www/html/vendor/composer/../symfony/polyfill-intl-normalizer',
+          'aliases' => 
+          array (
+          ),
+          'dev_requirement' => false,
+        ),
+        'symfony/polyfill-mbstring' => 
+        array (
+          'pretty_version' => 'v1.38.2',
+          'version' => '1.38.2.0',
+          'reference' => 'd3d318bad5e7a1bfbd026009c8bfb8d8f99ae6b6',
+          'type' => 'library',
+          'install_path' => '/var/www/html/vendor/composer/../symfony/polyfill-mbstring',
+          'aliases' => 
+          array (
+          ),
+          'dev_requirement' => false,
+        ),
+        'symfony/polyfill-php80' => 
+        array (
+          'pretty_version' => 'v1.37.0',
+          'version' => '1.37.0.0',
+          'reference' => 'dfb55726c3a76ea3b6459fcfda1ec2d80a682411',
+          'type' => 'library',
+          'install_path' => '/var/www/html/vendor/composer/../symfony/polyfill-php80',
+          'aliases' => 
+          array (
+          ),
+          'dev_requirement' => false,
+        ),
+        'symfony/polyfill-php83' => 
+        array (
+          'pretty_version' => 'v1.38.2',
+          'version' => '1.38.2.0',
+          'reference' => '796a26abb75ce49f3a84433cd81bf1009d73d5f8',
+          'type' => 'library',
+          'install_path' => '/var/www/html/vendor/composer/../symfony/polyfill-php83',
+          'aliases' => 
+          array (
+          ),
+          'dev_requirement' => false,
+        ),
+        'symfony/polyfill-php84' => 
+        array (
+          'pretty_version' => 'v1.38.1',
+          'version' => '1.38.1.0',
+          'reference' => 'f4e1dfaee5b74aba5964fe1fd4dfc7ba5e3085fa',
+          'type' => 'library',
+          'install_path' => '/var/www/html/vendor/composer/../symfony/polyfill-php84',
+          'aliases' => 
+          array (
+          ),
+          'dev_requirement' => false,
+        ),
+        'symfony/polyfill-php85' => 
+        array (
+          'pretty_version' => 'v1.38.1',
+          'version' => '1.38.1.0',
+          'reference' => 'ba2ba04f3352cfa2dcbbcb90aee13ed967f505b1',
+          'type' => 'library',
+          'install_path' => '/var/www/html/vendor/composer/../symfony/polyfill-php85',
+          'aliases' => 
+          array (
+          ),
+          'dev_requirement' => false,
+        ),
+        'symfony/polyfill-uuid' => 
+        array (
+          'pretty_version' => 'v1.37.0',
+          'version' => '1.37.0.0',
+          'reference' => '26dfec253c4cf3e51b541b52ddf7e42cb0908e94',
+          'type' => 'library',
+          'install_path' => '/var/www/html/vendor/composer/../symfony/polyfill-uuid',
+          'aliases' => 
+          array (
+          ),
+          'dev_requirement' => false,
+        ),
+        'symfony/process' => 
+        array (
+          'pretty_version' => 'v7.4.13',
+          'version' => '7.4.13.0',
+          'reference' => 'f5804be144caceb570f6747519999636b664f24c',
+          'type' => 'library',
+          'install_path' => '/var/www/html/vendor/composer/../symfony/process',
+          'aliases' => 
+          array (
+          ),
+          'dev_requirement' => false,
+        ),
+        'symfony/routing' => 
+        array (
+          'pretty_version' => 'v7.4.13',
+          'version' => '7.4.13.0',
+          'reference' => '3a162171bb008e5e0f15dce6581373a4c0e8390d',
+          'type' => 'library',
+          'install_path' => '/var/www/html/vendor/composer/../symfony/routing',
+          'aliases' => 
+          array (
+          ),
+          'dev_requirement' => false,
+        ),
+        'symfony/service-contracts' => 
+        array (
+          'pretty_version' => 'v3.7.1',
+          'version' => '3.7.1.0',
+          'reference' => 'c0a284bab1ed8aa0417e3d69250ab437739563a0',
+          'type' => 'library',
+          'install_path' => '/var/www/html/vendor/composer/../symfony/service-contracts',
+          'aliases' => 
+          array (
+          ),
+          'dev_requirement' => false,
+        ),
+        'symfony/string' => 
+        array (
+          'pretty_version' => 'v7.4.13',
+          'version' => '7.4.13.0',
+          'reference' => '961683010db3b27ec6ebcd7308e6e1ee8fa7ffde',
+          'type' => 'library',
+          'install_path' => '/var/www/html/vendor/composer/../symfony/string',
+          'aliases' => 
+          array (
+          ),
+          'dev_requirement' => false,
+        ),
+        'symfony/translation' => 
+        array (
+          'pretty_version' => 'v7.4.14',
+          'version' => '7.4.14.0',
+          'reference' => 'a1af4dacb24eb7ef4f1ca71b94da8ddbce572281',
+          'type' => 'library',
+          'install_path' => '/var/www/html/vendor/composer/../symfony/translation',
+          'aliases' => 
+          array (
+          ),
+          'dev_requirement' => false,
+        ),
+        'symfony/translation-contracts' => 
+        array (
+          'pretty_version' => 'v3.7.1',
+          'version' => '3.7.1.0',
+          'reference' => 'ccb206b98faccc511ebae8e5fad50f2dc0b30621',
+          'type' => 'library',
+          'install_path' => '/var/www/html/vendor/composer/../symfony/translation-contracts',
+          'aliases' => 
+          array (
+          ),
+          'dev_requirement' => false,
+        ),
+        'symfony/translation-implementation' => 
+        array (
+          'dev_requirement' => false,
+          'provided' => 
+          array (
+            0 => '2.3|3.0',
+          ),
+        ),
+        'symfony/uid' => 
+        array (
+          'pretty_version' => 'v7.4.9',
+          'version' => '7.4.9.0',
+          'reference' => '2676b524340abcfe4d6151ec698463cebafee439',
+          'type' => 'library',
+          'install_path' => '/var/www/html/vendor/composer/../symfony/uid',
+          'aliases' => 
+          array (
+          ),
+          'dev_requirement' => false,
+        ),
+        'symfony/var-dumper' => 
+        array (
+          'pretty_version' => 'v7.4.14',
+          'version' => '7.4.14.0',
+          'reference' => '9a3a56a4a1e65a5cb4f8d13801fe8ab0a170e358',
+          'type' => 'library',
+          'install_path' => '/var/www/html/vendor/composer/../symfony/var-dumper',
+          'aliases' => 
+          array (
+          ),
+          'dev_requirement' => false,
+        ),
+        'symfony/yaml' => 
+        array (
+          'pretty_version' => 'v7.4.14',
+          'version' => '7.4.14.0',
+          'reference' => 'f8f328665ace2370d1e10645b807ba1646dc7dcc',
+          'type' => 'library',
+          'install_path' => '/var/www/html/vendor/composer/../symfony/yaml',
+          'aliases' => 
+          array (
+          ),
+          'dev_requirement' => true,
+        ),
+        'theseer/tokenizer' => 
+        array (
+          'pretty_version' => '1.3.1',
+          'version' => '1.3.1.0',
+          'reference' => 'b7489ce515e168639d17feec34b8847c326b0b3c',
+          'type' => 'library',
+          'install_path' => '/var/www/html/vendor/composer/../theseer/tokenizer',
+          'aliases' => 
+          array (
+          ),
+          'dev_requirement' => true,
+        ),
+        'tijsverkoyen/css-to-inline-styles' => 
+        array (
+          'pretty_version' => 'v2.4.0',
+          'version' => '2.4.0.0',
+          'reference' => 'f0292ccf0ec75843d65027214426b6b163b48b41',
+          'type' => 'library',
+          'install_path' => '/var/www/html/vendor/composer/../tijsverkoyen/css-to-inline-styles',
+          'aliases' => 
+          array (
+          ),
+          'dev_requirement' => false,
+        ),
+        'videlalvaro/php-amqplib' => 
+        array (
+          'dev_requirement' => false,
+          'replaced' => 
+          array (
+            0 => 'v3.7.4',
+          ),
+        ),
+        'vladimir-yuldashev/laravel-queue-rabbitmq' => 
+        array (
+          'pretty_version' => 'v15.0.0',
+          'version' => '15.0.0.0',
+          'reference' => 'fd685fa1a890b82011e9cf25d990e14221c395ad',
+          'type' => 'library',
+          'install_path' => '/var/www/html/vendor/composer/../vladimir-yuldashev/laravel-queue-rabbitmq',
+          'aliases' => 
+          array (
+          ),
+          'dev_requirement' => false,
+        ),
+        'vlucas/phpdotenv' => 
+        array (
+          'pretty_version' => 'v5.6.3',
+          'version' => '5.6.3.0',
+          'reference' => '955e7815d677a3eaa7075231212f2110983adecc',
+          'type' => 'library',
+          'install_path' => '/var/www/html/vendor/composer/../vlucas/phpdotenv',
+          'aliases' => 
+          array (
+          ),
+          'dev_requirement' => false,
+        ),
+        'voku/portable-ascii' => 
+        array (
+          'pretty_version' => '2.1.1',
+          'version' => '2.1.1.0',
+          'reference' => '8e1051fe39379367aecf014f41744ce7539a856f',
+          'type' => 'library',
+          'install_path' => '/var/www/html/vendor/composer/../voku/portable-ascii',
+          'aliases' => 
+          array (
+          ),
+          'dev_requirement' => false,
+        ),
+      ),
+    ),
+  ),
+  'executedFilesHashes' => 
+  array (
+    '/var/www/html/vendor/larastan/larastan/bootstrap.php' => '5a3eacbf63b3e41659adfee92facededf8e020a932800f93c9a8b0e67f235805',
+    'phar:///var/www/html/vendor/phpstan/phpstan/phpstan.phar/stubs/runtime/Attribute85.php' => 'cb8b31e82c61ce197871c9e8a6f122256751f2ab606dd2be90846d4fa5f8933e',
+    'phar:///var/www/html/vendor/phpstan/phpstan/phpstan.phar/stubs/runtime/ReflectionAttribute.php' => 'c0068e383717870a304781d462f7e2afe1c6f24e9133851852a2aca96b4fa26f',
+    'phar:///var/www/html/vendor/phpstan/phpstan/phpstan.phar/stubs/runtime/ReflectionIntersectionType.php' => '65fe0a8bc6fe285d8ddc8798ab5b9299920af70db5ad74596bc08df823e7c5d9',
+    'phar:///var/www/html/vendor/phpstan/phpstan/phpstan.phar/stubs/runtime/ReflectionUnionType.php' => '1e2fe940e4ba4e00d9ee6adb2af3ee1bf333e6f8afe61c61deb038886d293427',
+  ),
+  'phpExtensions' => 
+  array (
+    0 => 'Core',
+    1 => 'PDO',
+    2 => 'Phar',
+    3 => 'Reflection',
+    4 => 'SPL',
+    5 => 'SimpleXML',
+    6 => 'Zend OPcache',
+    7 => 'bcmath',
+    8 => 'ctype',
+    9 => 'curl',
+    10 => 'date',
+    11 => 'dom',
+    12 => 'fileinfo',
+    13 => 'filter',
+    14 => 'hash',
+    15 => 'iconv',
+    16 => 'intl',
+    17 => 'json',
+    18 => 'libxml',
+    19 => 'mbstring',
+    20 => 'mysqlnd',
+    21 => 'openssl',
+    22 => 'pcntl',
+    23 => 'pcre',
+    24 => 'pdo_pgsql',
+    25 => 'pdo_sqlite',
+    26 => 'pgsql',
+    27 => 'posix',
+    28 => 'random',
+    29 => 'readline',
+    30 => 'session',
+    31 => 'sockets',
+    32 => 'sodium',
+    33 => 'sqlite3',
+    34 => 'standard',
+    35 => 'tokenizer',
+    36 => 'xml',
+    37 => 'xmlreader',
+    38 => 'xmlwriter',
+    39 => 'zip',
+    40 => 'zlib',
+  ),
+  'stubFiles' => 
+  array (
+  ),
+  'level' => '5',
+),
+	'projectExtensionFiles' => array (
+),
+	'errorsCallback' => static function (): array { return array (
+); },
+	'locallyIgnoredErrorsCallback' => static function (): array { return array (
+); },
+	'linesToIgnore' => array (
+),
+	'unmatchedLineIgnores' => array (
+),
+	'collectedDataCallback' => static function (): array { return array (
+  '/var/www/html/app/Domain/Access/AccessServiceProvider.php' => 
+  array (
+    'PHPStan\\Rules\\DeadCode\\PossiblyPureMethodCallCollector' => 
+    array (
+      0 => 
+      array (
+        0 => 
+        array (
+          0 => 'App\\Domain\\Access\\Support\\PermissionRegistry',
+        ),
+        1 => 'register',
+        2 => 38,
+      ),
+    ),
+    'PHPStan\\Rules\\DeadCode\\PossiblyPureStaticCallCollector' => 
+    array (
+      0 => 
+      array (
+        0 => 'Illuminate\\Support\\Facades\\Gate',
+        1 => 'before',
+        2 => 61,
+      ),
+    ),
+  ),
+  '/var/www/html/app/Domain/Access/Concerns/ScopedToMda.php' => 
+  array (
+    'PHPStan\\Rules\\Traits\\TraitDeclarationCollector' => 
+    array (
+      0 => 
+      array (
+        0 => 'App\\Domain\\Access\\Concerns\\ScopedToMda',
+        1 => 17,
+      ),
+    ),
+  ),
+  '/var/www/html/app/Domain/Access/Enums/MdaStatus.php' => 
+  array (
+    'PHPStan\\Rules\\DeadCode\\MethodWithoutImpurePointsCollector' => 
+    array (
+      0 => 
+      array (
+        0 => 'App\\Domain\\Access\\Enums\\MdaStatus',
+        1 => 'label',
+        2 => 'App\\Domain\\Access\\Enums\\MdaStatus',
+        3 => 
+        array (
+        ),
+      ),
+    ),
+  ),
+  '/var/www/html/app/Domain/Access/Enums/MdaType.php' => 
+  array (
+    'PHPStan\\Rules\\DeadCode\\MethodWithoutImpurePointsCollector' => 
+    array (
+      0 => 
+      array (
+        0 => 'App\\Domain\\Access\\Enums\\MdaType',
+        1 => 'label',
+        2 => 'App\\Domain\\Access\\Enums\\MdaType',
+        3 => 
+        array (
+        ),
+      ),
+    ),
+  ),
+  '/var/www/html/app/Domain/Access/Enums/PermissionAction.php' => 
+  array (
+    'PHPStan\\Rules\\DeadCode\\MethodWithoutImpurePointsCollector' => 
+    array (
+      0 => 
+      array (
+        0 => 'App\\Domain\\Access\\Enums\\PermissionAction',
+        1 => 'label',
+        2 => 'App\\Domain\\Access\\Enums\\PermissionAction',
+        3 => 
+        array (
+        ),
+      ),
+    ),
+  ),
+  '/var/www/html/app/Domain/Access/Enums/RoleKey.php' => 
+  array (
+    'PHPStan\\Rules\\DeadCode\\MethodWithoutImpurePointsCollector' => 
+    array (
+      0 => 
+      array (
+        0 => 'App\\Domain\\Access\\Enums\\RoleKey',
+        1 => 'label',
+        2 => 'App\\Domain\\Access\\Enums\\RoleKey',
+        3 => 
+        array (
+        ),
+      ),
+    ),
+  ),
+  '/var/www/html/app/Domain/Access/Enums/UserStatus.php' => 
+  array (
+    'PHPStan\\Rules\\DeadCode\\MethodWithoutImpurePointsCollector' => 
+    array (
+      0 => 
+      array (
+        0 => 'App\\Domain\\Access\\Enums\\UserStatus',
+        1 => 'label',
+        2 => 'App\\Domain\\Access\\Enums\\UserStatus',
+        3 => 
+        array (
+        ),
+      ),
+    ),
+  ),
+  '/var/www/html/app/Domain/Access/Events/AccountLocked.php' => 
+  array (
+    'PHPStan\\Rules\\DeadCode\\ConstructorWithoutImpurePointsCollector' => 
+    array (
+      0 => 
+      array (
+        0 => 'App\\Domain\\Access\\Events\\AccountLocked',
+        1 => 
+        array (
+        ),
+      ),
+    ),
+    'PHPStan\\Rules\\Traits\\TraitUseCollector' => 
+    array (
+      0 => 
+      array (
+        0 => 'Illuminate\\Foundation\\Events\\Dispatchable',
+      ),
+    ),
+  ),
+  '/var/www/html/app/Domain/Access/Events/CrossMdaAccessGranted.php' => 
+  array (
+    'PHPStan\\Rules\\DeadCode\\ConstructorWithoutImpurePointsCollector' => 
+    array (
+      0 => 
+      array (
+        0 => 'App\\Domain\\Access\\Events\\CrossMdaAccessGranted',
+        1 => 
+        array (
+        ),
+      ),
+    ),
+    'PHPStan\\Rules\\Traits\\TraitUseCollector' => 
+    array (
+      0 => 
+      array (
+        0 => 'Illuminate\\Foundation\\Events\\Dispatchable',
+      ),
+    ),
+  ),
+  '/var/www/html/app/Domain/Access/Events/CrossMdaAccessRevoked.php' => 
+  array (
+    'PHPStan\\Rules\\DeadCode\\ConstructorWithoutImpurePointsCollector' => 
+    array (
+      0 => 
+      array (
+        0 => 'App\\Domain\\Access\\Events\\CrossMdaAccessRevoked',
+        1 => 
+        array (
+        ),
+      ),
+    ),
+    'PHPStan\\Rules\\Traits\\TraitUseCollector' => 
+    array (
+      0 => 
+      array (
+        0 => 'Illuminate\\Foundation\\Events\\Dispatchable',
+      ),
+    ),
+  ),
+  '/var/www/html/app/Domain/Access/Events/MfaChallengeFailed.php' => 
+  array (
+    'PHPStan\\Rules\\DeadCode\\ConstructorWithoutImpurePointsCollector' => 
+    array (
+      0 => 
+      array (
+        0 => 'App\\Domain\\Access\\Events\\MfaChallengeFailed',
+        1 => 
+        array (
+        ),
+      ),
+    ),
+    'PHPStan\\Rules\\Traits\\TraitUseCollector' => 
+    array (
+      0 => 
+      array (
+        0 => 'Illuminate\\Foundation\\Events\\Dispatchable',
+      ),
+    ),
+  ),
+  '/var/www/html/app/Domain/Access/Events/MfaDisabled.php' => 
+  array (
+    'PHPStan\\Rules\\DeadCode\\ConstructorWithoutImpurePointsCollector' => 
+    array (
+      0 => 
+      array (
+        0 => 'App\\Domain\\Access\\Events\\MfaDisabled',
+        1 => 
+        array (
+        ),
+      ),
+    ),
+    'PHPStan\\Rules\\Traits\\TraitUseCollector' => 
+    array (
+      0 => 
+      array (
+        0 => 'Illuminate\\Foundation\\Events\\Dispatchable',
+      ),
+    ),
+  ),
+  '/var/www/html/app/Domain/Access/Events/MfaEnrolled.php' => 
+  array (
+    'PHPStan\\Rules\\DeadCode\\ConstructorWithoutImpurePointsCollector' => 
+    array (
+      0 => 
+      array (
+        0 => 'App\\Domain\\Access\\Events\\MfaEnrolled',
+        1 => 
+        array (
+        ),
+      ),
+    ),
+    'PHPStan\\Rules\\Traits\\TraitUseCollector' => 
+    array (
+      0 => 
+      array (
+        0 => 'Illuminate\\Foundation\\Events\\Dispatchable',
+      ),
+    ),
+  ),
+  '/var/www/html/app/Domain/Access/Models/Mda.php' => 
+  array (
+    'PHPStan\\Rules\\Comparison\\ConstantConditionInTraitCollector' => 
+    array (
+      0 => 
+      array (
+        0 => 'PHPStan\\Rules\\Comparison\\ImpossibleCheckTypeStaticMethodCallRule',
+        1 => 'App\\Domain\\Audit\\Concerns\\Auditable',
+        2 => 'static::created(function ($model): void {
+    $model->writeAudit(\'created\', null, $model->auditSnapshot($model->getAttributes()));
+}):24',
+        3 => NULL,
+      ),
+      1 => 
+      array (
+        0 => 'PHPStan\\Rules\\Comparison\\ImpossibleCheckTypeMethodCallRule',
+        1 => 'App\\Domain\\Audit\\Concerns\\Auditable',
+        2 => '$model->writeAudit(\'created\', null, $model->auditSnapshot($model->getAttributes())):25',
+        3 => NULL,
+      ),
+      2 => 
+      array (
+        0 => 'PHPStan\\Rules\\Comparison\\ImpossibleCheckTypeMethodCallRule',
+        1 => 'App\\Domain\\Audit\\Concerns\\Auditable',
+        2 => '$model->auditSnapshot($model->getAttributes()):25',
+        3 => NULL,
+      ),
+      3 => 
+      array (
+        0 => 'PHPStan\\Rules\\Comparison\\ImpossibleCheckTypeMethodCallRule',
+        1 => 'App\\Domain\\Audit\\Concerns\\Auditable',
+        2 => '$model->getAttributes():25',
+        3 => NULL,
+      ),
+      4 => 
+      array (
+        0 => 'PHPStan\\Rules\\Comparison\\ImpossibleCheckTypeStaticMethodCallRule',
+        1 => 'App\\Domain\\Audit\\Concerns\\Auditable',
+        2 => 'static::updated(function ($model): void {
+    $changedKeys = array_diff(array_keys($model->getChanges()), $model->allAuditExcluded());
+    if ($changedKeys === []) {
+        return;
+        // only excluded/operational columns changed — no audit noise
+    }
+    $before = [];
+    $after = [];
+    foreach ($changedKeys as $key) {
+        $before[$key] = $model->getOriginal($key);
+        $after[$key] = $model->getAttribute($key);
+    }
+    $model->writeAudit(\'updated\', $model->scrubAttributes($before), $model->scrubAttributes($after));
+}):28',
+        3 => NULL,
+      ),
+      5 => 
+      array (
+        0 => 'PHPStan\\Rules\\Comparison\\ImpossibleCheckTypeFunctionCallRule',
+        1 => 'App\\Domain\\Audit\\Concerns\\Auditable',
+        2 => 'array_diff(array_keys($model->getChanges()), $model->allAuditExcluded()):29',
+        3 => NULL,
+      ),
+      6 => 
+      array (
+        0 => 'PHPStan\\Rules\\Comparison\\ImpossibleCheckTypeFunctionCallRule',
+        1 => 'App\\Domain\\Audit\\Concerns\\Auditable',
+        2 => 'array_keys($model->getChanges()):29',
+        3 => NULL,
+      ),
+      7 => 
+      array (
+        0 => 'PHPStan\\Rules\\Comparison\\ImpossibleCheckTypeMethodCallRule',
+        1 => 'App\\Domain\\Audit\\Concerns\\Auditable',
+        2 => '$model->getChanges():29',
+        3 => NULL,
+      ),
+      8 => 
+      array (
+        0 => 'PHPStan\\Rules\\Comparison\\ImpossibleCheckTypeMethodCallRule',
+        1 => 'App\\Domain\\Audit\\Concerns\\Auditable',
+        2 => '$model->allAuditExcluded():29',
+        3 => NULL,
+      ),
+      9 => 
+      array (
+        0 => 'PHPStan\\Rules\\Comparison\\IfConstantConditionRule',
+        1 => 'App\\Domain\\Audit\\Concerns\\Auditable',
+        2 => '$changedKeys === []:31',
+        3 => NULL,
+      ),
+      10 => 
+      array (
+        0 => 'PHPStan\\Rules\\Comparison\\StrictComparisonOfDifferentTypesRule',
+        1 => 'App\\Domain\\Audit\\Concerns\\Auditable',
+        2 => '$changedKeys === []:31',
+        3 => NULL,
+      ),
+      11 => 
+      array (
+        0 => 'PHPStan\\Rules\\Comparison\\ImpossibleCheckTypeMethodCallRule',
+        1 => 'App\\Domain\\Audit\\Concerns\\Auditable',
+        2 => '$model->getOriginal($key):38',
+        3 => NULL,
+      ),
+      12 => 
+      array (
+        0 => 'PHPStan\\Rules\\Comparison\\ImpossibleCheckTypeMethodCallRule',
+        1 => 'App\\Domain\\Audit\\Concerns\\Auditable',
+        2 => '$model->getAttribute($key):39',
+        3 => NULL,
+      ),
+      13 => 
+      array (
+        0 => 'PHPStan\\Rules\\Comparison\\ImpossibleCheckTypeMethodCallRule',
+        1 => 'App\\Domain\\Audit\\Concerns\\Auditable',
+        2 => '$model->writeAudit(\'updated\', $model->scrubAttributes($before), $model->scrubAttributes($after)):42',
+        3 => NULL,
+      ),
+      14 => 
+      array (
+        0 => 'PHPStan\\Rules\\Comparison\\ImpossibleCheckTypeMethodCallRule',
+        1 => 'App\\Domain\\Audit\\Concerns\\Auditable',
+        2 => '$model->scrubAttributes($before):42',
+        3 => NULL,
+      ),
+      15 => 
+      array (
+        0 => 'PHPStan\\Rules\\Comparison\\ImpossibleCheckTypeMethodCallRule',
+        1 => 'App\\Domain\\Audit\\Concerns\\Auditable',
+        2 => '$model->scrubAttributes($after):42',
+        3 => NULL,
+      ),
+      16 => 
+      array (
+        0 => 'PHPStan\\Rules\\Comparison\\ImpossibleCheckTypeStaticMethodCallRule',
+        1 => 'App\\Domain\\Audit\\Concerns\\Auditable',
+        2 => 'static::deleted(function ($model): void {
+    $model->writeAudit(\'deleted\', $model->auditSnapshot($model->getOriginal()), null);
+}):45',
+        3 => NULL,
+      ),
+      17 => 
+      array (
+        0 => 'PHPStan\\Rules\\Comparison\\ImpossibleCheckTypeMethodCallRule',
+        1 => 'App\\Domain\\Audit\\Concerns\\Auditable',
+        2 => '$model->writeAudit(\'deleted\', $model->auditSnapshot($model->getOriginal()), null):46',
+        3 => NULL,
+      ),
+      18 => 
+      array (
+        0 => 'PHPStan\\Rules\\Comparison\\ImpossibleCheckTypeMethodCallRule',
+        1 => 'App\\Domain\\Audit\\Concerns\\Auditable',
+        2 => '$model->auditSnapshot($model->getOriginal()):46',
+        3 => NULL,
+      ),
+      19 => 
+      array (
+        0 => 'PHPStan\\Rules\\Comparison\\ImpossibleCheckTypeMethodCallRule',
+        1 => 'App\\Domain\\Audit\\Concerns\\Auditable',
+        2 => '$model->getOriginal():46',
+        3 => NULL,
+      ),
+      20 => 
+      array (
+        0 => 'PHPStan\\Rules\\Comparison\\ImpossibleCheckTypeStaticMethodCallRule',
+        1 => 'App\\Domain\\Audit\\Concerns\\Auditable',
+        2 => '\\Illuminate\\Support\\Str::snake(class_basename($this)):65',
+        3 => NULL,
+      ),
+      21 => 
+      array (
+        0 => 'PHPStan\\Rules\\Comparison\\ImpossibleCheckTypeFunctionCallRule',
+        1 => 'App\\Domain\\Audit\\Concerns\\Auditable',
+        2 => 'class_basename($this):65',
+        3 => NULL,
+      ),
+      22 => 
+      array (
+        0 => 'PHPStan\\Rules\\Comparison\\ImpossibleCheckTypeMethodCallRule',
+        1 => 'App\\Domain\\Audit\\Concerns\\Auditable',
+        2 => 'app(\\App\\Domain\\Audit\\Support\\AuditScrubber::class)->scrub($attributes, $this->auditOmit(), $this->auditMask()):94',
+        3 => NULL,
+      ),
+      23 => 
+      array (
+        0 => 'PHPStan\\Rules\\Comparison\\ImpossibleCheckTypeFunctionCallRule',
+        1 => 'App\\Domain\\Audit\\Concerns\\Auditable',
+        2 => 'app(\\App\\Domain\\Audit\\Support\\AuditScrubber::class):94',
+        3 => NULL,
+      ),
+      24 => 
+      array (
+        0 => 'PHPStan\\Rules\\Comparison\\ImpossibleCheckTypeMethodCallRule',
+        1 => 'App\\Domain\\Audit\\Concerns\\Auditable',
+        2 => '$this->auditOmit():94',
+        3 => NULL,
+      ),
+      25 => 
+      array (
+        0 => 'PHPStan\\Rules\\Comparison\\ImpossibleCheckTypeMethodCallRule',
+        1 => 'App\\Domain\\Audit\\Concerns\\Auditable',
+        2 => '$this->auditMask():94',
+        3 => NULL,
+      ),
+      26 => 
+      array (
+        0 => 'PHPStan\\Rules\\Comparison\\ImpossibleCheckTypeFunctionCallRule',
+        1 => 'App\\Domain\\Audit\\Concerns\\Auditable',
+        2 => 'array_merge([\'created_at\', \'updated_at\', \'deleted_at\'], $this->auditExcluded()):102',
+        3 => NULL,
+      ),
+      27 => 
+      array (
+        0 => 'PHPStan\\Rules\\Comparison\\ImpossibleCheckTypeMethodCallRule',
+        1 => 'App\\Domain\\Audit\\Concerns\\Auditable',
+        2 => '$this->auditExcluded():102',
+        3 => NULL,
+      ),
+      28 => 
+      array (
+        0 => 'PHPStan\\Rules\\Comparison\\ImpossibleCheckTypeMethodCallRule',
+        1 => 'App\\Domain\\Audit\\Concerns\\Auditable',
+        2 => '$this->allAuditExcluded():113',
+        3 => NULL,
+      ),
+      29 => 
+      array (
+        0 => 'PHPStan\\Rules\\Comparison\\BooleanNotConstantConditionRule',
+        1 => 'App\\Domain\\Audit\\Concerns\\Auditable',
+        2 => 'in_array($key, $excluded, true):116',
+        3 => NULL,
+      ),
+      30 => 
+      array (
+        0 => 'PHPStan\\Rules\\Comparison\\ImpossibleCheckTypeFunctionCallRule',
+        1 => 'App\\Domain\\Audit\\Concerns\\Auditable',
+        2 => 'in_array($key, $excluded, true):116',
+        3 => NULL,
+      ),
+      31 => 
+      array (
+        0 => 'PHPStan\\Rules\\Comparison\\ImpossibleCheckTypeFunctionCallRule',
+        1 => 'App\\Domain\\Audit\\Concerns\\Auditable',
+        2 => 'array_filter($attributes, fn(string $key) => !in_array($key, $excluded, true), ARRAY_FILTER_USE_KEY):114',
+        3 => NULL,
+      ),
+      32 => 
+      array (
+        0 => 'PHPStan\\Rules\\Comparison\\ImpossibleCheckTypeMethodCallRule',
+        1 => 'App\\Domain\\Audit\\Concerns\\Auditable',
+        2 => '$this->scrubAttributes($filtered):120',
+        3 => NULL,
+      ),
+      33 => 
+      array (
+        0 => 'PHPStan\\Rules\\Comparison\\ImpossibleCheckTypeMethodCallRule',
+        1 => 'App\\Domain\\Audit\\Concerns\\Auditable',
+        2 => 'app(\\App\\Domain\\Audit\\Services\\AuditLogger::class)->record($this->auditEntityName() . \'.\' . $event, $this, $before, $after):129',
+        3 => NULL,
+      ),
+      34 => 
+      array (
+        0 => 'PHPStan\\Rules\\Comparison\\ImpossibleCheckTypeFunctionCallRule',
+        1 => 'App\\Domain\\Audit\\Concerns\\Auditable',
+        2 => 'app(\\App\\Domain\\Audit\\Services\\AuditLogger::class):129',
+        3 => NULL,
+      ),
+      35 => 
+      array (
+        0 => 'PHPStan\\Rules\\Comparison\\ImpossibleCheckTypeMethodCallRule',
+        1 => 'App\\Domain\\Audit\\Concerns\\Auditable',
+        2 => '$this->auditEntityName():130',
+        3 => NULL,
+      ),
+      36 => 
+      array (
+        0 => 'PHPStan\\Rules\\Comparison\\ImpossibleCheckTypeStaticMethodCallRule',
+        1 => 'App\\Domain\\Access\\Concerns\\ScopedToMda',
+        2 => 'static::addGlobalScope(new \\App\\Domain\\Access\\Scopes\\MdaScope()):21',
+        3 => NULL,
+      ),
+    ),
+    'PHPStan\\Rules\\DeadCode\\MethodWithoutImpurePointsCollector' => 
+    array (
+      0 => 
+      array (
+        0 => 'App\\Domain\\Access\\Models\\Mda',
+        1 => 'auditExcluded',
+        2 => 'App\\Domain\\Access\\Models\\Mda',
+        3 => 
+        array (
+        ),
+      ),
+      1 => 
+      array (
+        0 => 'App\\Domain\\Access\\Models\\Mda',
+        1 => 'auditEntityName',
+        2 => 'App\\Domain\\Access\\Models\\Mda',
+        3 => 
+        array (
+          0 => 'm' . "\0" . 'illuminate\\support\\str' . "\0" . 'snake',
+          1 => 'f' . "\0" . 'class_basename',
+        ),
+      ),
+      2 => 
+      array (
+        0 => 'App\\Domain\\Access\\Models\\Mda',
+        1 => 'auditOmit',
+        2 => 'App\\Domain\\Access\\Models\\Mda',
+        3 => 
+        array (
+        ),
+      ),
+      3 => 
+      array (
+        0 => 'App\\Domain\\Access\\Models\\Mda',
+        1 => 'auditMask',
+        2 => 'App\\Domain\\Access\\Models\\Mda',
+        3 => 
+        array (
+        ),
+      ),
+      4 => 
+      array (
+        0 => 'App\\Domain\\Access\\Models\\Mda',
+        1 => 'newFactory',
+        2 => 'App\\Domain\\Access\\Models\\Mda',
+        3 => 
+        array (
+          0 => 'm' . "\0" . 'illuminate\\database\\eloquent\\factories\\factory' . "\0" . 'new',
+        ),
+      ),
+      5 => 
+      array (
+        0 => 'App\\Domain\\Access\\Models\\Mda',
+        1 => 'mdaOwnershipColumn',
+        2 => 'App\\Domain\\Access\\Models\\Mda',
+        3 => 
+        array (
+        ),
+      ),
+      6 => 
+      array (
+        0 => 'App\\Domain\\Access\\Models\\Mda',
+        1 => 'casts',
+        2 => 'App\\Domain\\Access\\Models\\Mda',
+        3 => 
+        array (
+        ),
+      ),
+    ),
+    'PHPStan\\Rules\\DeadCode\\PossiblyPureStaticCallCollector' => 
+    array (
+      0 => 
+      array (
+        0 => 'Illuminate\\Database\\Eloquent\\Model',
+        1 => 'addGlobalScope',
+        2 => 21,
+      ),
+    ),
+    'PHPStan\\Rules\\Traits\\TraitUseCollector' => 
+    array (
+      0 => 
+      array (
+        0 => 'App\\Domain\\Audit\\Concerns\\Auditable',
+        1 => 'Illuminate\\Database\\Eloquent\\Factories\\HasFactory',
+        2 => 'Illuminate\\Database\\Eloquent\\Concerns\\HasUuids',
+        3 => 'App\\Domain\\Access\\Concerns\\ScopedToMda',
+        4 => 'Illuminate\\Database\\Eloquent\\SoftDeletes',
+      ),
+    ),
+  ),
+  '/var/www/html/app/Domain/Access/Models/MdaAccessGrant.php' => 
+  array (
+    'PHPStan\\Rules\\DeadCode\\MethodWithoutImpurePointsCollector' => 
+    array (
+      0 => 
+      array (
+        0 => 'App\\Domain\\Access\\Models\\MdaAccessGrant',
+        1 => 'casts',
+        2 => 'App\\Domain\\Access\\Models\\MdaAccessGrant',
+        3 => 
+        array (
+        ),
+      ),
+    ),
+    'PHPStan\\Rules\\Traits\\TraitUseCollector' => 
+    array (
+      0 => 
+      array (
+        0 => 'Illuminate\\Database\\Eloquent\\Concerns\\HasUuids',
+      ),
+    ),
+  ),
+  '/var/www/html/app/Domain/Access/Models/Permission.php' => 
+  array (
+    'PHPStan\\Rules\\DeadCode\\MethodWithoutImpurePointsCollector' => 
+    array (
+      0 => 
+      array (
+        0 => 'App\\Domain\\Access\\Models\\Permission',
+        1 => 'casts',
+        2 => 'App\\Domain\\Access\\Models\\Permission',
+        3 => 
+        array (
+        ),
+      ),
+    ),
+    'PHPStan\\Rules\\Traits\\TraitUseCollector' => 
+    array (
+      0 => 
+      array (
+        0 => 'Illuminate\\Database\\Eloquent\\Concerns\\HasUuids',
+      ),
+    ),
+  ),
+  '/var/www/html/app/Domain/Access/Models/Role.php' => 
+  array (
+    'PHPStan\\Rules\\Comparison\\ConstantConditionInTraitCollector' => 
+    array (
+      0 => 
+      array (
+        0 => 'PHPStan\\Rules\\Comparison\\ImpossibleCheckTypeStaticMethodCallRule',
+        1 => 'App\\Domain\\Audit\\Concerns\\Auditable',
+        2 => 'static::created(function ($model): void {
+    $model->writeAudit(\'created\', null, $model->auditSnapshot($model->getAttributes()));
+}):24',
+        3 => NULL,
+      ),
+      1 => 
+      array (
+        0 => 'PHPStan\\Rules\\Comparison\\ImpossibleCheckTypeMethodCallRule',
+        1 => 'App\\Domain\\Audit\\Concerns\\Auditable',
+        2 => '$model->writeAudit(\'created\', null, $model->auditSnapshot($model->getAttributes())):25',
+        3 => NULL,
+      ),
+      2 => 
+      array (
+        0 => 'PHPStan\\Rules\\Comparison\\ImpossibleCheckTypeMethodCallRule',
+        1 => 'App\\Domain\\Audit\\Concerns\\Auditable',
+        2 => '$model->auditSnapshot($model->getAttributes()):25',
+        3 => NULL,
+      ),
+      3 => 
+      array (
+        0 => 'PHPStan\\Rules\\Comparison\\ImpossibleCheckTypeMethodCallRule',
+        1 => 'App\\Domain\\Audit\\Concerns\\Auditable',
+        2 => '$model->getAttributes():25',
+        3 => NULL,
+      ),
+      4 => 
+      array (
+        0 => 'PHPStan\\Rules\\Comparison\\ImpossibleCheckTypeStaticMethodCallRule',
+        1 => 'App\\Domain\\Audit\\Concerns\\Auditable',
+        2 => 'static::updated(function ($model): void {
+    $changedKeys = array_diff(array_keys($model->getChanges()), $model->allAuditExcluded());
+    if ($changedKeys === []) {
+        return;
+        // only excluded/operational columns changed — no audit noise
+    }
+    $before = [];
+    $after = [];
+    foreach ($changedKeys as $key) {
+        $before[$key] = $model->getOriginal($key);
+        $after[$key] = $model->getAttribute($key);
+    }
+    $model->writeAudit(\'updated\', $model->scrubAttributes($before), $model->scrubAttributes($after));
+}):28',
+        3 => NULL,
+      ),
+      5 => 
+      array (
+        0 => 'PHPStan\\Rules\\Comparison\\ImpossibleCheckTypeFunctionCallRule',
+        1 => 'App\\Domain\\Audit\\Concerns\\Auditable',
+        2 => 'array_diff(array_keys($model->getChanges()), $model->allAuditExcluded()):29',
+        3 => NULL,
+      ),
+      6 => 
+      array (
+        0 => 'PHPStan\\Rules\\Comparison\\ImpossibleCheckTypeFunctionCallRule',
+        1 => 'App\\Domain\\Audit\\Concerns\\Auditable',
+        2 => 'array_keys($model->getChanges()):29',
+        3 => NULL,
+      ),
+      7 => 
+      array (
+        0 => 'PHPStan\\Rules\\Comparison\\ImpossibleCheckTypeMethodCallRule',
+        1 => 'App\\Domain\\Audit\\Concerns\\Auditable',
+        2 => '$model->getChanges():29',
+        3 => NULL,
+      ),
+      8 => 
+      array (
+        0 => 'PHPStan\\Rules\\Comparison\\ImpossibleCheckTypeMethodCallRule',
+        1 => 'App\\Domain\\Audit\\Concerns\\Auditable',
+        2 => '$model->allAuditExcluded():29',
+        3 => NULL,
+      ),
+      9 => 
+      array (
+        0 => 'PHPStan\\Rules\\Comparison\\IfConstantConditionRule',
+        1 => 'App\\Domain\\Audit\\Concerns\\Auditable',
+        2 => '$changedKeys === []:31',
+        3 => NULL,
+      ),
+      10 => 
+      array (
+        0 => 'PHPStan\\Rules\\Comparison\\StrictComparisonOfDifferentTypesRule',
+        1 => 'App\\Domain\\Audit\\Concerns\\Auditable',
+        2 => '$changedKeys === []:31',
+        3 => NULL,
+      ),
+      11 => 
+      array (
+        0 => 'PHPStan\\Rules\\Comparison\\ImpossibleCheckTypeMethodCallRule',
+        1 => 'App\\Domain\\Audit\\Concerns\\Auditable',
+        2 => '$model->getOriginal($key):38',
+        3 => NULL,
+      ),
+      12 => 
+      array (
+        0 => 'PHPStan\\Rules\\Comparison\\ImpossibleCheckTypeMethodCallRule',
+        1 => 'App\\Domain\\Audit\\Concerns\\Auditable',
+        2 => '$model->getAttribute($key):39',
+        3 => NULL,
+      ),
+      13 => 
+      array (
+        0 => 'PHPStan\\Rules\\Comparison\\ImpossibleCheckTypeMethodCallRule',
+        1 => 'App\\Domain\\Audit\\Concerns\\Auditable',
+        2 => '$model->writeAudit(\'updated\', $model->scrubAttributes($before), $model->scrubAttributes($after)):42',
+        3 => NULL,
+      ),
+      14 => 
+      array (
+        0 => 'PHPStan\\Rules\\Comparison\\ImpossibleCheckTypeMethodCallRule',
+        1 => 'App\\Domain\\Audit\\Concerns\\Auditable',
+        2 => '$model->scrubAttributes($before):42',
+        3 => NULL,
+      ),
+      15 => 
+      array (
+        0 => 'PHPStan\\Rules\\Comparison\\ImpossibleCheckTypeMethodCallRule',
+        1 => 'App\\Domain\\Audit\\Concerns\\Auditable',
+        2 => '$model->scrubAttributes($after):42',
+        3 => NULL,
+      ),
+      16 => 
+      array (
+        0 => 'PHPStan\\Rules\\Comparison\\ImpossibleCheckTypeStaticMethodCallRule',
+        1 => 'App\\Domain\\Audit\\Concerns\\Auditable',
+        2 => 'static::deleted(function ($model): void {
+    $model->writeAudit(\'deleted\', $model->auditSnapshot($model->getOriginal()), null);
+}):45',
+        3 => NULL,
+      ),
+      17 => 
+      array (
+        0 => 'PHPStan\\Rules\\Comparison\\ImpossibleCheckTypeMethodCallRule',
+        1 => 'App\\Domain\\Audit\\Concerns\\Auditable',
+        2 => '$model->writeAudit(\'deleted\', $model->auditSnapshot($model->getOriginal()), null):46',
+        3 => NULL,
+      ),
+      18 => 
+      array (
+        0 => 'PHPStan\\Rules\\Comparison\\ImpossibleCheckTypeMethodCallRule',
+        1 => 'App\\Domain\\Audit\\Concerns\\Auditable',
+        2 => '$model->auditSnapshot($model->getOriginal()):46',
+        3 => NULL,
+      ),
+      19 => 
+      array (
+        0 => 'PHPStan\\Rules\\Comparison\\ImpossibleCheckTypeMethodCallRule',
+        1 => 'App\\Domain\\Audit\\Concerns\\Auditable',
+        2 => '$model->getOriginal():46',
+        3 => NULL,
+      ),
+      20 => 
+      array (
+        0 => 'PHPStan\\Rules\\Comparison\\ImpossibleCheckTypeStaticMethodCallRule',
+        1 => 'App\\Domain\\Audit\\Concerns\\Auditable',
+        2 => '\\Illuminate\\Support\\Str::snake(class_basename($this)):65',
+        3 => NULL,
+      ),
+      21 => 
+      array (
+        0 => 'PHPStan\\Rules\\Comparison\\ImpossibleCheckTypeFunctionCallRule',
+        1 => 'App\\Domain\\Audit\\Concerns\\Auditable',
+        2 => 'class_basename($this):65',
+        3 => NULL,
+      ),
+      22 => 
+      array (
+        0 => 'PHPStan\\Rules\\Comparison\\ImpossibleCheckTypeMethodCallRule',
+        1 => 'App\\Domain\\Audit\\Concerns\\Auditable',
+        2 => 'app(\\App\\Domain\\Audit\\Support\\AuditScrubber::class)->scrub($attributes, $this->auditOmit(), $this->auditMask()):94',
+        3 => NULL,
+      ),
+      23 => 
+      array (
+        0 => 'PHPStan\\Rules\\Comparison\\ImpossibleCheckTypeFunctionCallRule',
+        1 => 'App\\Domain\\Audit\\Concerns\\Auditable',
+        2 => 'app(\\App\\Domain\\Audit\\Support\\AuditScrubber::class):94',
+        3 => NULL,
+      ),
+      24 => 
+      array (
+        0 => 'PHPStan\\Rules\\Comparison\\ImpossibleCheckTypeMethodCallRule',
+        1 => 'App\\Domain\\Audit\\Concerns\\Auditable',
+        2 => '$this->auditOmit():94',
+        3 => NULL,
+      ),
+      25 => 
+      array (
+        0 => 'PHPStan\\Rules\\Comparison\\ImpossibleCheckTypeMethodCallRule',
+        1 => 'App\\Domain\\Audit\\Concerns\\Auditable',
+        2 => '$this->auditMask():94',
+        3 => NULL,
+      ),
+      26 => 
+      array (
+        0 => 'PHPStan\\Rules\\Comparison\\ImpossibleCheckTypeFunctionCallRule',
+        1 => 'App\\Domain\\Audit\\Concerns\\Auditable',
+        2 => 'array_merge([\'created_at\', \'updated_at\', \'deleted_at\'], $this->auditExcluded()):102',
+        3 => NULL,
+      ),
+      27 => 
+      array (
+        0 => 'PHPStan\\Rules\\Comparison\\ImpossibleCheckTypeMethodCallRule',
+        1 => 'App\\Domain\\Audit\\Concerns\\Auditable',
+        2 => '$this->auditExcluded():102',
+        3 => NULL,
+      ),
+      28 => 
+      array (
+        0 => 'PHPStan\\Rules\\Comparison\\ImpossibleCheckTypeMethodCallRule',
+        1 => 'App\\Domain\\Audit\\Concerns\\Auditable',
+        2 => '$this->allAuditExcluded():113',
+        3 => NULL,
+      ),
+      29 => 
+      array (
+        0 => 'PHPStan\\Rules\\Comparison\\BooleanNotConstantConditionRule',
+        1 => 'App\\Domain\\Audit\\Concerns\\Auditable',
+        2 => 'in_array($key, $excluded, true):116',
+        3 => NULL,
+      ),
+      30 => 
+      array (
+        0 => 'PHPStan\\Rules\\Comparison\\ImpossibleCheckTypeFunctionCallRule',
+        1 => 'App\\Domain\\Audit\\Concerns\\Auditable',
+        2 => 'in_array($key, $excluded, true):116',
+        3 => NULL,
+      ),
+      31 => 
+      array (
+        0 => 'PHPStan\\Rules\\Comparison\\ImpossibleCheckTypeFunctionCallRule',
+        1 => 'App\\Domain\\Audit\\Concerns\\Auditable',
+        2 => 'array_filter($attributes, fn(string $key) => !in_array($key, $excluded, true), ARRAY_FILTER_USE_KEY):114',
+        3 => NULL,
+      ),
+      32 => 
+      array (
+        0 => 'PHPStan\\Rules\\Comparison\\ImpossibleCheckTypeMethodCallRule',
+        1 => 'App\\Domain\\Audit\\Concerns\\Auditable',
+        2 => '$this->scrubAttributes($filtered):120',
+        3 => NULL,
+      ),
+      33 => 
+      array (
+        0 => 'PHPStan\\Rules\\Comparison\\ImpossibleCheckTypeMethodCallRule',
+        1 => 'App\\Domain\\Audit\\Concerns\\Auditable',
+        2 => 'app(\\App\\Domain\\Audit\\Services\\AuditLogger::class)->record($this->auditEntityName() . \'.\' . $event, $this, $before, $after):129',
+        3 => NULL,
+      ),
+      34 => 
+      array (
+        0 => 'PHPStan\\Rules\\Comparison\\ImpossibleCheckTypeFunctionCallRule',
+        1 => 'App\\Domain\\Audit\\Concerns\\Auditable',
+        2 => 'app(\\App\\Domain\\Audit\\Services\\AuditLogger::class):129',
+        3 => NULL,
+      ),
+      35 => 
+      array (
+        0 => 'PHPStan\\Rules\\Comparison\\ImpossibleCheckTypeMethodCallRule',
+        1 => 'App\\Domain\\Audit\\Concerns\\Auditable',
+        2 => '$this->auditEntityName():130',
+        3 => NULL,
+      ),
+    ),
+    'PHPStan\\Rules\\DeadCode\\MethodWithoutImpurePointsCollector' => 
+    array (
+      0 => 
+      array (
+        0 => 'App\\Domain\\Access\\Models\\Role',
+        1 => 'auditExcluded',
+        2 => 'App\\Domain\\Access\\Models\\Role',
+        3 => 
+        array (
+        ),
+      ),
+      1 => 
+      array (
+        0 => 'App\\Domain\\Access\\Models\\Role',
+        1 => 'auditEntityName',
+        2 => 'App\\Domain\\Access\\Models\\Role',
+        3 => 
+        array (
+          0 => 'm' . "\0" . 'illuminate\\support\\str' . "\0" . 'snake',
+          1 => 'f' . "\0" . 'class_basename',
+        ),
+      ),
+      2 => 
+      array (
+        0 => 'App\\Domain\\Access\\Models\\Role',
+        1 => 'auditOmit',
+        2 => 'App\\Domain\\Access\\Models\\Role',
+        3 => 
+        array (
+        ),
+      ),
+      3 => 
+      array (
+        0 => 'App\\Domain\\Access\\Models\\Role',
+        1 => 'auditMask',
+        2 => 'App\\Domain\\Access\\Models\\Role',
+        3 => 
+        array (
+        ),
+      ),
+      4 => 
+      array (
+        0 => 'App\\Domain\\Access\\Models\\Role',
+        1 => 'casts',
+        2 => 'App\\Domain\\Access\\Models\\Role',
+        3 => 
+        array (
+        ),
+      ),
+    ),
+    'PHPStan\\Rules\\Traits\\TraitUseCollector' => 
+    array (
+      0 => 
+      array (
+        0 => 'App\\Domain\\Audit\\Concerns\\Auditable',
+        1 => 'Illuminate\\Database\\Eloquent\\Concerns\\HasUuids',
+      ),
+    ),
+  ),
+  '/var/www/html/app/Domain/Access/Models/User.php' => 
+  array (
+    'PHPStan\\Rules\\Comparison\\ConstantConditionInTraitCollector' => 
+    array (
+      0 => 
+      array (
+        0 => 'PHPStan\\Rules\\Comparison\\ImpossibleCheckTypeStaticMethodCallRule',
+        1 => 'App\\Domain\\Audit\\Concerns\\Auditable',
+        2 => 'static::created(function ($model): void {
+    $model->writeAudit(\'created\', null, $model->auditSnapshot($model->getAttributes()));
+}):24',
+        3 => NULL,
+      ),
+      1 => 
+      array (
+        0 => 'PHPStan\\Rules\\Comparison\\ImpossibleCheckTypeMethodCallRule',
+        1 => 'App\\Domain\\Audit\\Concerns\\Auditable',
+        2 => '$model->writeAudit(\'created\', null, $model->auditSnapshot($model->getAttributes())):25',
+        3 => NULL,
+      ),
+      2 => 
+      array (
+        0 => 'PHPStan\\Rules\\Comparison\\ImpossibleCheckTypeMethodCallRule',
+        1 => 'App\\Domain\\Audit\\Concerns\\Auditable',
+        2 => '$model->auditSnapshot($model->getAttributes()):25',
+        3 => NULL,
+      ),
+      3 => 
+      array (
+        0 => 'PHPStan\\Rules\\Comparison\\ImpossibleCheckTypeMethodCallRule',
+        1 => 'App\\Domain\\Audit\\Concerns\\Auditable',
+        2 => '$model->getAttributes():25',
+        3 => NULL,
+      ),
+      4 => 
+      array (
+        0 => 'PHPStan\\Rules\\Comparison\\ImpossibleCheckTypeStaticMethodCallRule',
+        1 => 'App\\Domain\\Audit\\Concerns\\Auditable',
+        2 => 'static::updated(function ($model): void {
+    $changedKeys = array_diff(array_keys($model->getChanges()), $model->allAuditExcluded());
+    if ($changedKeys === []) {
+        return;
+        // only excluded/operational columns changed — no audit noise
+    }
+    $before = [];
+    $after = [];
+    foreach ($changedKeys as $key) {
+        $before[$key] = $model->getOriginal($key);
+        $after[$key] = $model->getAttribute($key);
+    }
+    $model->writeAudit(\'updated\', $model->scrubAttributes($before), $model->scrubAttributes($after));
+}):28',
+        3 => NULL,
+      ),
+      5 => 
+      array (
+        0 => 'PHPStan\\Rules\\Comparison\\ImpossibleCheckTypeFunctionCallRule',
+        1 => 'App\\Domain\\Audit\\Concerns\\Auditable',
+        2 => 'array_diff(array_keys($model->getChanges()), $model->allAuditExcluded()):29',
+        3 => NULL,
+      ),
+      6 => 
+      array (
+        0 => 'PHPStan\\Rules\\Comparison\\ImpossibleCheckTypeFunctionCallRule',
+        1 => 'App\\Domain\\Audit\\Concerns\\Auditable',
+        2 => 'array_keys($model->getChanges()):29',
+        3 => NULL,
+      ),
+      7 => 
+      array (
+        0 => 'PHPStan\\Rules\\Comparison\\ImpossibleCheckTypeMethodCallRule',
+        1 => 'App\\Domain\\Audit\\Concerns\\Auditable',
+        2 => '$model->getChanges():29',
+        3 => NULL,
+      ),
+      8 => 
+      array (
+        0 => 'PHPStan\\Rules\\Comparison\\ImpossibleCheckTypeMethodCallRule',
+        1 => 'App\\Domain\\Audit\\Concerns\\Auditable',
+        2 => '$model->allAuditExcluded():29',
+        3 => NULL,
+      ),
+      9 => 
+      array (
+        0 => 'PHPStan\\Rules\\Comparison\\IfConstantConditionRule',
+        1 => 'App\\Domain\\Audit\\Concerns\\Auditable',
+        2 => '$changedKeys === []:31',
+        3 => NULL,
+      ),
+      10 => 
+      array (
+        0 => 'PHPStan\\Rules\\Comparison\\StrictComparisonOfDifferentTypesRule',
+        1 => 'App\\Domain\\Audit\\Concerns\\Auditable',
+        2 => '$changedKeys === []:31',
+        3 => NULL,
+      ),
+      11 => 
+      array (
+        0 => 'PHPStan\\Rules\\Comparison\\ImpossibleCheckTypeMethodCallRule',
+        1 => 'App\\Domain\\Audit\\Concerns\\Auditable',
+        2 => '$model->getOriginal($key):38',
+        3 => NULL,
+      ),
+      12 => 
+      array (
+        0 => 'PHPStan\\Rules\\Comparison\\ImpossibleCheckTypeMethodCallRule',
+        1 => 'App\\Domain\\Audit\\Concerns\\Auditable',
+        2 => '$model->getAttribute($key):39',
+        3 => NULL,
+      ),
+      13 => 
+      array (
+        0 => 'PHPStan\\Rules\\Comparison\\ImpossibleCheckTypeMethodCallRule',
+        1 => 'App\\Domain\\Audit\\Concerns\\Auditable',
+        2 => '$model->writeAudit(\'updated\', $model->scrubAttributes($before), $model->scrubAttributes($after)):42',
+        3 => NULL,
+      ),
+      14 => 
+      array (
+        0 => 'PHPStan\\Rules\\Comparison\\ImpossibleCheckTypeMethodCallRule',
+        1 => 'App\\Domain\\Audit\\Concerns\\Auditable',
+        2 => '$model->scrubAttributes($before):42',
+        3 => NULL,
+      ),
+      15 => 
+      array (
+        0 => 'PHPStan\\Rules\\Comparison\\ImpossibleCheckTypeMethodCallRule',
+        1 => 'App\\Domain\\Audit\\Concerns\\Auditable',
+        2 => '$model->scrubAttributes($after):42',
+        3 => NULL,
+      ),
+      16 => 
+      array (
+        0 => 'PHPStan\\Rules\\Comparison\\ImpossibleCheckTypeStaticMethodCallRule',
+        1 => 'App\\Domain\\Audit\\Concerns\\Auditable',
+        2 => 'static::deleted(function ($model): void {
+    $model->writeAudit(\'deleted\', $model->auditSnapshot($model->getOriginal()), null);
+}):45',
+        3 => NULL,
+      ),
+      17 => 
+      array (
+        0 => 'PHPStan\\Rules\\Comparison\\ImpossibleCheckTypeMethodCallRule',
+        1 => 'App\\Domain\\Audit\\Concerns\\Auditable',
+        2 => '$model->writeAudit(\'deleted\', $model->auditSnapshot($model->getOriginal()), null):46',
+        3 => NULL,
+      ),
+      18 => 
+      array (
+        0 => 'PHPStan\\Rules\\Comparison\\ImpossibleCheckTypeMethodCallRule',
+        1 => 'App\\Domain\\Audit\\Concerns\\Auditable',
+        2 => '$model->auditSnapshot($model->getOriginal()):46',
+        3 => NULL,
+      ),
+      19 => 
+      array (
+        0 => 'PHPStan\\Rules\\Comparison\\ImpossibleCheckTypeMethodCallRule',
+        1 => 'App\\Domain\\Audit\\Concerns\\Auditable',
+        2 => '$model->getOriginal():46',
+        3 => NULL,
+      ),
+      20 => 
+      array (
+        0 => 'PHPStan\\Rules\\Comparison\\ImpossibleCheckTypeStaticMethodCallRule',
+        1 => 'App\\Domain\\Audit\\Concerns\\Auditable',
+        2 => '\\Illuminate\\Support\\Str::snake(class_basename($this)):65',
+        3 => NULL,
+      ),
+      21 => 
+      array (
+        0 => 'PHPStan\\Rules\\Comparison\\ImpossibleCheckTypeFunctionCallRule',
+        1 => 'App\\Domain\\Audit\\Concerns\\Auditable',
+        2 => 'class_basename($this):65',
+        3 => NULL,
+      ),
+      22 => 
+      array (
+        0 => 'PHPStan\\Rules\\Comparison\\ImpossibleCheckTypeMethodCallRule',
+        1 => 'App\\Domain\\Audit\\Concerns\\Auditable',
+        2 => 'app(\\App\\Domain\\Audit\\Support\\AuditScrubber::class)->scrub($attributes, $this->auditOmit(), $this->auditMask()):94',
+        3 => NULL,
+      ),
+      23 => 
+      array (
+        0 => 'PHPStan\\Rules\\Comparison\\ImpossibleCheckTypeFunctionCallRule',
+        1 => 'App\\Domain\\Audit\\Concerns\\Auditable',
+        2 => 'app(\\App\\Domain\\Audit\\Support\\AuditScrubber::class):94',
+        3 => NULL,
+      ),
+      24 => 
+      array (
+        0 => 'PHPStan\\Rules\\Comparison\\ImpossibleCheckTypeMethodCallRule',
+        1 => 'App\\Domain\\Audit\\Concerns\\Auditable',
+        2 => '$this->auditOmit():94',
+        3 => NULL,
+      ),
+      25 => 
+      array (
+        0 => 'PHPStan\\Rules\\Comparison\\ImpossibleCheckTypeMethodCallRule',
+        1 => 'App\\Domain\\Audit\\Concerns\\Auditable',
+        2 => '$this->auditMask():94',
+        3 => NULL,
+      ),
+      26 => 
+      array (
+        0 => 'PHPStan\\Rules\\Comparison\\ImpossibleCheckTypeFunctionCallRule',
+        1 => 'App\\Domain\\Audit\\Concerns\\Auditable',
+        2 => 'array_merge([\'created_at\', \'updated_at\', \'deleted_at\'], $this->auditExcluded()):102',
+        3 => NULL,
+      ),
+      27 => 
+      array (
+        0 => 'PHPStan\\Rules\\Comparison\\ImpossibleCheckTypeMethodCallRule',
+        1 => 'App\\Domain\\Audit\\Concerns\\Auditable',
+        2 => '$this->auditExcluded():102',
+        3 => NULL,
+      ),
+      28 => 
+      array (
+        0 => 'PHPStan\\Rules\\Comparison\\ImpossibleCheckTypeMethodCallRule',
+        1 => 'App\\Domain\\Audit\\Concerns\\Auditable',
+        2 => '$this->allAuditExcluded():113',
+        3 => NULL,
+      ),
+      29 => 
+      array (
+        0 => 'PHPStan\\Rules\\Comparison\\BooleanNotConstantConditionRule',
+        1 => 'App\\Domain\\Audit\\Concerns\\Auditable',
+        2 => 'in_array($key, $excluded, true):116',
+        3 => NULL,
+      ),
+      30 => 
+      array (
+        0 => 'PHPStan\\Rules\\Comparison\\ImpossibleCheckTypeFunctionCallRule',
+        1 => 'App\\Domain\\Audit\\Concerns\\Auditable',
+        2 => 'in_array($key, $excluded, true):116',
+        3 => NULL,
+      ),
+      31 => 
+      array (
+        0 => 'PHPStan\\Rules\\Comparison\\ImpossibleCheckTypeFunctionCallRule',
+        1 => 'App\\Domain\\Audit\\Concerns\\Auditable',
+        2 => 'array_filter($attributes, fn(string $key) => !in_array($key, $excluded, true), ARRAY_FILTER_USE_KEY):114',
+        3 => NULL,
+      ),
+      32 => 
+      array (
+        0 => 'PHPStan\\Rules\\Comparison\\ImpossibleCheckTypeMethodCallRule',
+        1 => 'App\\Domain\\Audit\\Concerns\\Auditable',
+        2 => '$this->scrubAttributes($filtered):120',
+        3 => NULL,
+      ),
+      33 => 
+      array (
+        0 => 'PHPStan\\Rules\\Comparison\\ImpossibleCheckTypeMethodCallRule',
+        1 => 'App\\Domain\\Audit\\Concerns\\Auditable',
+        2 => 'app(\\App\\Domain\\Audit\\Services\\AuditLogger::class)->record($this->auditEntityName() . \'.\' . $event, $this, $before, $after):129',
+        3 => NULL,
+      ),
+      34 => 
+      array (
+        0 => 'PHPStan\\Rules\\Comparison\\ImpossibleCheckTypeFunctionCallRule',
+        1 => 'App\\Domain\\Audit\\Concerns\\Auditable',
+        2 => 'app(\\App\\Domain\\Audit\\Services\\AuditLogger::class):129',
+        3 => NULL,
+      ),
+      35 => 
+      array (
+        0 => 'PHPStan\\Rules\\Comparison\\ImpossibleCheckTypeMethodCallRule',
+        1 => 'App\\Domain\\Audit\\Concerns\\Auditable',
+        2 => '$this->auditEntityName():130',
+        3 => NULL,
+      ),
+      36 => 
+      array (
+        0 => 'PHPStan\\Rules\\Comparison\\ImpossibleCheckTypeStaticMethodCallRule',
+        1 => 'App\\Domain\\Access\\Concerns\\ScopedToMda',
+        2 => 'static::addGlobalScope(new \\App\\Domain\\Access\\Scopes\\MdaScope()):21',
+        3 => NULL,
+      ),
+    ),
+    'PHPStan\\Rules\\DeadCode\\MethodWithoutImpurePointsCollector' => 
+    array (
+      0 => 
+      array (
+        0 => 'App\\Domain\\Access\\Models\\User',
+        1 => 'auditEntityName',
+        2 => 'App\\Domain\\Access\\Models\\User',
+        3 => 
+        array (
+          0 => 'm' . "\0" . 'illuminate\\support\\str' . "\0" . 'snake',
+          1 => 'f' . "\0" . 'class_basename',
+        ),
+      ),
+      1 => 
+      array (
+        0 => 'App\\Domain\\Access\\Models\\User',
+        1 => 'auditOmit',
+        2 => 'App\\Domain\\Access\\Models\\User',
+        3 => 
+        array (
+        ),
+      ),
+      2 => 
+      array (
+        0 => 'App\\Domain\\Access\\Models\\User',
+        1 => 'newFactory',
+        2 => 'App\\Domain\\Access\\Models\\User',
+        3 => 
+        array (
+          0 => 'm' . "\0" . 'illuminate\\database\\eloquent\\factories\\factory' . "\0" . 'new',
+        ),
+      ),
+      3 => 
+      array (
+        0 => 'App\\Domain\\Access\\Models\\User',
+        1 => 'mdaOwnershipColumn',
+        2 => 'App\\Domain\\Access\\Models\\User',
+        3 => 
+        array (
+        ),
+      ),
+      4 => 
+      array (
+        0 => 'App\\Domain\\Access\\Models\\User',
+        1 => 'auditExcluded',
+        2 => 'App\\Domain\\Access\\Models\\User',
+        3 => 
+        array (
+        ),
+      ),
+      5 => 
+      array (
+        0 => 'App\\Domain\\Access\\Models\\User',
+        1 => 'auditMask',
+        2 => 'App\\Domain\\Access\\Models\\User',
+        3 => 
+        array (
+        ),
+      ),
+      6 => 
+      array (
+        0 => 'App\\Domain\\Access\\Models\\User',
+        1 => 'casts',
+        2 => 'App\\Domain\\Access\\Models\\User',
+        3 => 
+        array (
+        ),
+      ),
+      7 => 
+      array (
+        0 => 'App\\Domain\\Access\\Models\\User',
+        1 => 'mfaRequired',
+        2 => 'App\\Domain\\Access\\Models\\User',
+        3 => 
+        array (
+        ),
+      ),
+    ),
+    'PHPStan\\Rules\\DeadCode\\PossiblyPureStaticCallCollector' => 
+    array (
+      0 => 
+      array (
+        0 => 'Illuminate\\Database\\Eloquent\\Model',
+        1 => 'addGlobalScope',
+        2 => 21,
+      ),
+    ),
+    'PHPStan\\Rules\\Traits\\TraitUseCollector' => 
+    array (
+      0 => 
+      array (
+        0 => 'App\\Domain\\Audit\\Concerns\\Auditable',
+        1 => 'Laravel\\Sanctum\\HasApiTokens',
+        2 => 'Illuminate\\Database\\Eloquent\\Factories\\HasFactory',
+        3 => 'Illuminate\\Database\\Eloquent\\Concerns\\HasUuids',
+        4 => 'Illuminate\\Notifications\\Notifiable',
+        5 => 'App\\Domain\\Access\\Concerns\\ScopedToMda',
+        6 => 'Illuminate\\Database\\Eloquent\\SoftDeletes',
+      ),
+    ),
+  ),
+  '/var/www/html/app/Domain/Access/Services/AuthTokenIssuer.php' => 
+  array (
+    'PHPStan\\Rules\\DeadCode\\ConstructorWithoutImpurePointsCollector' => 
+    array (
+      0 => 
+      array (
+        0 => 'App\\Domain\\Access\\Services\\AuthTokenIssuer',
+        1 => 
+        array (
+        ),
+      ),
+    ),
+    'PHPStan\\Rules\\DeadCode\\MethodWithoutImpurePointsCollector' => 
+    array (
+      0 => 
+      array (
+        0 => 'App\\Domain\\Access\\Services\\AuthTokenIssuer',
+        1 => 'ttl',
+        2 => 'App\\Domain\\Access\\Services\\AuthTokenIssuer',
+        3 => 
+        array (
+          0 => 'f' . "\0" . 'config',
+        ),
+      ),
+    ),
+    'PHPStan\\Rules\\Methods\\NamedArgumentParameterMethodCallsCollector' => 
+    array (
+      0 => 
+      array (
+        0 => 'App\\Domain\\Audit\\Services\\AuditLogger',
+        1 => 'record',
+        2 => 'actor',
+        3 => 30,
+      ),
+    ),
+  ),
+  '/var/www/html/app/Domain/Access/Services/MfaService.php' => 
+  array (
+    'PHPStan\\Rules\\DeadCode\\ConstructorWithoutImpurePointsCollector' => 
+    array (
+      0 => 
+      array (
+        0 => 'App\\Domain\\Access\\Services\\MfaService',
+        1 => 
+        array (
+        ),
+      ),
+    ),
+  ),
+  '/var/www/html/app/Domain/Access/Services/PermissionSynchronizer.php' => 
+  array (
+    'PHPStan\\Rules\\DeadCode\\ConstructorWithoutImpurePointsCollector' => 
+    array (
+      0 => 
+      array (
+        0 => 'App\\Domain\\Access\\Services\\PermissionSynchronizer',
+        1 => 
+        array (
+        ),
+      ),
+    ),
+    'PHPStan\\Rules\\DeadCode\\MethodWithoutImpurePointsCollector' => 
+    array (
+      0 => 
+      array (
+        0 => 'App\\Domain\\Access\\Services\\PermissionSynchronizer',
+        1 => 'sync',
+        2 => 'App\\Domain\\Access\\Services\\PermissionSynchronizer',
+        3 => 
+        array (
+          0 => 'm' . "\0" . 'app\\domain\\access\\support\\permissionregistry' . "\0" . 'all',
+          1 => 'm' . "\0" . 'illuminate\\database\\eloquent\\builder' . "\0" . 'updateorcreate',
+        ),
+      ),
+    ),
+    'PHPStan\\Rules\\DeadCode\\PossiblyPureStaticCallCollector' => 
+    array (
+      0 => 
+      array (
+        0 => 'Illuminate\\Database\\Eloquent\\Builder',
+        1 => 'updateOrCreate',
+        2 => 27,
+      ),
+    ),
+  ),
+  '/var/www/html/app/Domain/Access/Support/PermissionRegistry.php' => 
+  array (
+    'PHPStan\\Rules\\DeadCode\\MethodWithoutImpurePointsCollector' => 
+    array (
+      0 => 
+      array (
+        0 => 'App\\Domain\\Access\\Support\\PermissionRegistry',
+        1 => 'keys',
+        2 => 'App\\Domain\\Access\\Support\\PermissionRegistry',
+        3 => 
+        array (
+          0 => 'm' . "\0" . 'app\\domain\\access\\support\\permissionregistry' . "\0" . 'all',
+        ),
+      ),
+    ),
+    'PHPStan\\Rules\\DeadCode\\PossiblyPureFuncCallCollector' => 
+    array (
+      0 => 
+      array (
+        0 => 'ksort',
+        1 => 43,
+      ),
+    ),
+  ),
+  '/var/www/html/app/Domain/Audit/Concerns/Auditable.php' => 
+  array (
+    'PHPStan\\Rules\\Traits\\TraitDeclarationCollector' => 
+    array (
+      0 => 
+      array (
+        0 => 'App\\Domain\\Audit\\Concerns\\Auditable',
+        1 => 20,
+      ),
+    ),
+  ),
+  '/var/www/html/app/Domain/Audit/Listeners/AuditEventSubscriber.php' => 
+  array (
+    'PHPStan\\Rules\\DeadCode\\ConstructorWithoutImpurePointsCollector' => 
+    array (
+      0 => 
+      array (
+        0 => 'App\\Domain\\Audit\\Listeners\\AuditEventSubscriber',
+        1 => 
+        array (
+        ),
+      ),
+    ),
+    'PHPStan\\Rules\\DeadCode\\MethodWithoutImpurePointsCollector' => 
+    array (
+      0 => 
+      array (
+        0 => 'App\\Domain\\Audit\\Listeners\\AuditEventSubscriber',
+        1 => 'subscribe',
+        2 => 'App\\Domain\\Audit\\Listeners\\AuditEventSubscriber',
+        3 => 
+        array (
+        ),
+      ),
+    ),
+    'PHPStan\\Rules\\Methods\\NamedArgumentParameterMethodCallsCollector' => 
+    array (
+      0 => 
+      array (
+        0 => 'App\\Domain\\Audit\\Services\\AuditLogger',
+        1 => 'record',
+        2 => 'actor',
+        3 => 27,
+      ),
+      1 => 
+      array (
+        0 => 'App\\Domain\\Audit\\Services\\AuditLogger',
+        1 => 'record',
+        2 => 'actor',
+        3 => 32,
+      ),
+      2 => 
+      array (
+        0 => 'App\\Domain\\Audit\\Services\\AuditLogger',
+        1 => 'record',
+        2 => 'actor',
+        3 => 37,
+      ),
+      3 => 
+      array (
+        0 => 'App\\Domain\\Audit\\Services\\AuditLogger',
+        1 => 'record',
+        2 => 'actor',
+        3 => 42,
+      ),
+      4 => 
+      array (
+        0 => 'App\\Domain\\Audit\\Services\\AuditLogger',
+        1 => 'record',
+        2 => 'after',
+        3 => 50,
+      ),
+      5 => 
+      array (
+        0 => 'App\\Domain\\Audit\\Services\\AuditLogger',
+        1 => 'record',
+        2 => 'actor',
+        3 => 55,
+      ),
+      6 => 
+      array (
+        0 => 'App\\Domain\\Audit\\Services\\AuditLogger',
+        1 => 'record',
+        2 => 'before',
+        3 => 64,
+      ),
+      7 => 
+      array (
+        0 => 'App\\Domain\\Audit\\Services\\AuditLogger',
+        1 => 'record',
+        2 => 'actor',
+        3 => 68,
+      ),
+    ),
+  ),
+  '/var/www/html/app/Domain/Audit/Models/AuditLog.php' => 
+  array (
+    'PHPStan\\Rules\\DeadCode\\MethodWithoutImpurePointsCollector' => 
+    array (
+      0 => 
+      array (
+        0 => 'App\\Domain\\Audit\\Models\\AuditLog',
+        1 => 'casts',
+        2 => 'App\\Domain\\Audit\\Models\\AuditLog',
+        3 => 
+        array (
+        ),
+      ),
+    ),
+    'PHPStan\\Rules\\Traits\\TraitUseCollector' => 
+    array (
+      0 => 
+      array (
+        0 => 'Illuminate\\Database\\Eloquent\\Concerns\\HasUuids',
+      ),
+    ),
+  ),
+  '/var/www/html/app/Domain/Audit/Support/AuditScrubber.php' => 
+  array (
+    'PHPStan\\Rules\\DeadCode\\MethodWithoutImpurePointsCollector' => 
+    array (
+      0 => 
+      array (
+        0 => 'App\\Domain\\Audit\\Support\\AuditScrubber',
+        1 => 'scrub',
+        2 => 'App\\Domain\\Audit\\Support\\AuditScrubber',
+        3 => 
+        array (
+          0 => 'f' . "\0" . 'array_map',
+          1 => 'f' . "\0" . 'config',
+          2 => 'm' . "\0" . 'app\\domain\\audit\\support\\auditscrubber' . "\0" . 'mask',
+        ),
+      ),
+      1 => 
+      array (
+        0 => 'App\\Domain\\Audit\\Support\\AuditScrubber',
+        1 => 'mask',
+        2 => 'App\\Domain\\Audit\\Support\\AuditScrubber',
+        3 => 
+        array (
+          0 => 'f' . "\0" . 'config',
+        ),
+      ),
+    ),
+  ),
+  '/var/www/html/app/Domain/Registry/Enums/BeneficiaryStatus.php' => 
+  array (
+    'PHPStan\\Rules\\DeadCode\\MethodWithoutImpurePointsCollector' => 
+    array (
+      0 => 
+      array (
+        0 => 'App\\Domain\\Registry\\Enums\\BeneficiaryStatus',
+        1 => 'label',
+        2 => 'App\\Domain\\Registry\\Enums\\BeneficiaryStatus',
+        3 => 
+        array (
+        ),
+      ),
+    ),
+  ),
+  '/var/www/html/app/Domain/Registry/Enums/Gender.php' => 
+  array (
+    'PHPStan\\Rules\\DeadCode\\MethodWithoutImpurePointsCollector' => 
+    array (
+      0 => 
+      array (
+        0 => 'App\\Domain\\Registry\\Enums\\Gender',
+        1 => 'label',
+        2 => 'App\\Domain\\Registry\\Enums\\Gender',
+        3 => 
+        array (
+        ),
+      ),
+    ),
+  ),
+  '/var/www/html/app/Domain/Registry/Enums/HouseholdRole.php' => 
+  array (
+    'PHPStan\\Rules\\DeadCode\\MethodWithoutImpurePointsCollector' => 
+    array (
+      0 => 
+      array (
+        0 => 'App\\Domain\\Registry\\Enums\\HouseholdRole',
+        1 => 'label',
+        2 => 'App\\Domain\\Registry\\Enums\\HouseholdRole',
+        3 => 
+        array (
+        ),
+      ),
+    ),
+  ),
+  '/var/www/html/app/Domain/Registry/Models/Beneficiary.php' => 
+  array (
+    'PHPStan\\Rules\\Comparison\\ConstantConditionInTraitCollector' => 
+    array (
+      0 => 
+      array (
+        0 => 'PHPStan\\Rules\\Comparison\\ImpossibleCheckTypeStaticMethodCallRule',
+        1 => 'App\\Domain\\Audit\\Concerns\\Auditable',
+        2 => 'static::created(function ($model): void {
+    $model->writeAudit(\'created\', null, $model->auditSnapshot($model->getAttributes()));
+}):24',
+        3 => NULL,
+      ),
+      1 => 
+      array (
+        0 => 'PHPStan\\Rules\\Comparison\\ImpossibleCheckTypeMethodCallRule',
+        1 => 'App\\Domain\\Audit\\Concerns\\Auditable',
+        2 => '$model->writeAudit(\'created\', null, $model->auditSnapshot($model->getAttributes())):25',
+        3 => NULL,
+      ),
+      2 => 
+      array (
+        0 => 'PHPStan\\Rules\\Comparison\\ImpossibleCheckTypeMethodCallRule',
+        1 => 'App\\Domain\\Audit\\Concerns\\Auditable',
+        2 => '$model->auditSnapshot($model->getAttributes()):25',
+        3 => NULL,
+      ),
+      3 => 
+      array (
+        0 => 'PHPStan\\Rules\\Comparison\\ImpossibleCheckTypeMethodCallRule',
+        1 => 'App\\Domain\\Audit\\Concerns\\Auditable',
+        2 => '$model->getAttributes():25',
+        3 => NULL,
+      ),
+      4 => 
+      array (
+        0 => 'PHPStan\\Rules\\Comparison\\ImpossibleCheckTypeStaticMethodCallRule',
+        1 => 'App\\Domain\\Audit\\Concerns\\Auditable',
+        2 => 'static::updated(function ($model): void {
+    $changedKeys = array_diff(array_keys($model->getChanges()), $model->allAuditExcluded());
+    if ($changedKeys === []) {
+        return;
+        // only excluded/operational columns changed — no audit noise
+    }
+    $before = [];
+    $after = [];
+    foreach ($changedKeys as $key) {
+        $before[$key] = $model->getOriginal($key);
+        $after[$key] = $model->getAttribute($key);
+    }
+    $model->writeAudit(\'updated\', $model->scrubAttributes($before), $model->scrubAttributes($after));
+}):28',
+        3 => NULL,
+      ),
+      5 => 
+      array (
+        0 => 'PHPStan\\Rules\\Comparison\\ImpossibleCheckTypeFunctionCallRule',
+        1 => 'App\\Domain\\Audit\\Concerns\\Auditable',
+        2 => 'array_diff(array_keys($model->getChanges()), $model->allAuditExcluded()):29',
+        3 => NULL,
+      ),
+      6 => 
+      array (
+        0 => 'PHPStan\\Rules\\Comparison\\ImpossibleCheckTypeFunctionCallRule',
+        1 => 'App\\Domain\\Audit\\Concerns\\Auditable',
+        2 => 'array_keys($model->getChanges()):29',
+        3 => NULL,
+      ),
+      7 => 
+      array (
+        0 => 'PHPStan\\Rules\\Comparison\\ImpossibleCheckTypeMethodCallRule',
+        1 => 'App\\Domain\\Audit\\Concerns\\Auditable',
+        2 => '$model->getChanges():29',
+        3 => NULL,
+      ),
+      8 => 
+      array (
+        0 => 'PHPStan\\Rules\\Comparison\\ImpossibleCheckTypeMethodCallRule',
+        1 => 'App\\Domain\\Audit\\Concerns\\Auditable',
+        2 => '$model->allAuditExcluded():29',
+        3 => NULL,
+      ),
+      9 => 
+      array (
+        0 => 'PHPStan\\Rules\\Comparison\\IfConstantConditionRule',
+        1 => 'App\\Domain\\Audit\\Concerns\\Auditable',
+        2 => '$changedKeys === []:31',
+        3 => NULL,
+      ),
+      10 => 
+      array (
+        0 => 'PHPStan\\Rules\\Comparison\\StrictComparisonOfDifferentTypesRule',
+        1 => 'App\\Domain\\Audit\\Concerns\\Auditable',
+        2 => '$changedKeys === []:31',
+        3 => NULL,
+      ),
+      11 => 
+      array (
+        0 => 'PHPStan\\Rules\\Comparison\\ImpossibleCheckTypeMethodCallRule',
+        1 => 'App\\Domain\\Audit\\Concerns\\Auditable',
+        2 => '$model->getOriginal($key):38',
+        3 => NULL,
+      ),
+      12 => 
+      array (
+        0 => 'PHPStan\\Rules\\Comparison\\ImpossibleCheckTypeMethodCallRule',
+        1 => 'App\\Domain\\Audit\\Concerns\\Auditable',
+        2 => '$model->getAttribute($key):39',
+        3 => NULL,
+      ),
+      13 => 
+      array (
+        0 => 'PHPStan\\Rules\\Comparison\\ImpossibleCheckTypeMethodCallRule',
+        1 => 'App\\Domain\\Audit\\Concerns\\Auditable',
+        2 => '$model->writeAudit(\'updated\', $model->scrubAttributes($before), $model->scrubAttributes($after)):42',
+        3 => NULL,
+      ),
+      14 => 
+      array (
+        0 => 'PHPStan\\Rules\\Comparison\\ImpossibleCheckTypeMethodCallRule',
+        1 => 'App\\Domain\\Audit\\Concerns\\Auditable',
+        2 => '$model->scrubAttributes($before):42',
+        3 => NULL,
+      ),
+      15 => 
+      array (
+        0 => 'PHPStan\\Rules\\Comparison\\ImpossibleCheckTypeMethodCallRule',
+        1 => 'App\\Domain\\Audit\\Concerns\\Auditable',
+        2 => '$model->scrubAttributes($after):42',
+        3 => NULL,
+      ),
+      16 => 
+      array (
+        0 => 'PHPStan\\Rules\\Comparison\\ImpossibleCheckTypeStaticMethodCallRule',
+        1 => 'App\\Domain\\Audit\\Concerns\\Auditable',
+        2 => 'static::deleted(function ($model): void {
+    $model->writeAudit(\'deleted\', $model->auditSnapshot($model->getOriginal()), null);
+}):45',
+        3 => NULL,
+      ),
+      17 => 
+      array (
+        0 => 'PHPStan\\Rules\\Comparison\\ImpossibleCheckTypeMethodCallRule',
+        1 => 'App\\Domain\\Audit\\Concerns\\Auditable',
+        2 => '$model->writeAudit(\'deleted\', $model->auditSnapshot($model->getOriginal()), null):46',
+        3 => NULL,
+      ),
+      18 => 
+      array (
+        0 => 'PHPStan\\Rules\\Comparison\\ImpossibleCheckTypeMethodCallRule',
+        1 => 'App\\Domain\\Audit\\Concerns\\Auditable',
+        2 => '$model->auditSnapshot($model->getOriginal()):46',
+        3 => NULL,
+      ),
+      19 => 
+      array (
+        0 => 'PHPStan\\Rules\\Comparison\\ImpossibleCheckTypeMethodCallRule',
+        1 => 'App\\Domain\\Audit\\Concerns\\Auditable',
+        2 => '$model->getOriginal():46',
+        3 => NULL,
+      ),
+      20 => 
+      array (
+        0 => 'PHPStan\\Rules\\Comparison\\ImpossibleCheckTypeStaticMethodCallRule',
+        1 => 'App\\Domain\\Audit\\Concerns\\Auditable',
+        2 => '\\Illuminate\\Support\\Str::snake(class_basename($this)):65',
+        3 => NULL,
+      ),
+      21 => 
+      array (
+        0 => 'PHPStan\\Rules\\Comparison\\ImpossibleCheckTypeFunctionCallRule',
+        1 => 'App\\Domain\\Audit\\Concerns\\Auditable',
+        2 => 'class_basename($this):65',
+        3 => NULL,
+      ),
+      22 => 
+      array (
+        0 => 'PHPStan\\Rules\\Comparison\\ImpossibleCheckTypeMethodCallRule',
+        1 => 'App\\Domain\\Audit\\Concerns\\Auditable',
+        2 => 'app(\\App\\Domain\\Audit\\Support\\AuditScrubber::class)->scrub($attributes, $this->auditOmit(), $this->auditMask()):94',
+        3 => NULL,
+      ),
+      23 => 
+      array (
+        0 => 'PHPStan\\Rules\\Comparison\\ImpossibleCheckTypeFunctionCallRule',
+        1 => 'App\\Domain\\Audit\\Concerns\\Auditable',
+        2 => 'app(\\App\\Domain\\Audit\\Support\\AuditScrubber::class):94',
+        3 => NULL,
+      ),
+      24 => 
+      array (
+        0 => 'PHPStan\\Rules\\Comparison\\ImpossibleCheckTypeMethodCallRule',
+        1 => 'App\\Domain\\Audit\\Concerns\\Auditable',
+        2 => '$this->auditOmit():94',
+        3 => NULL,
+      ),
+      25 => 
+      array (
+        0 => 'PHPStan\\Rules\\Comparison\\ImpossibleCheckTypeMethodCallRule',
+        1 => 'App\\Domain\\Audit\\Concerns\\Auditable',
+        2 => '$this->auditMask():94',
+        3 => NULL,
+      ),
+      26 => 
+      array (
+        0 => 'PHPStan\\Rules\\Comparison\\ImpossibleCheckTypeFunctionCallRule',
+        1 => 'App\\Domain\\Audit\\Concerns\\Auditable',
+        2 => 'array_merge([\'created_at\', \'updated_at\', \'deleted_at\'], $this->auditExcluded()):102',
+        3 => NULL,
+      ),
+      27 => 
+      array (
+        0 => 'PHPStan\\Rules\\Comparison\\ImpossibleCheckTypeMethodCallRule',
+        1 => 'App\\Domain\\Audit\\Concerns\\Auditable',
+        2 => '$this->auditExcluded():102',
+        3 => NULL,
+      ),
+      28 => 
+      array (
+        0 => 'PHPStan\\Rules\\Comparison\\ImpossibleCheckTypeMethodCallRule',
+        1 => 'App\\Domain\\Audit\\Concerns\\Auditable',
+        2 => '$this->allAuditExcluded():113',
+        3 => NULL,
+      ),
+      29 => 
+      array (
+        0 => 'PHPStan\\Rules\\Comparison\\BooleanNotConstantConditionRule',
+        1 => 'App\\Domain\\Audit\\Concerns\\Auditable',
+        2 => 'in_array($key, $excluded, true):116',
+        3 => NULL,
+      ),
+      30 => 
+      array (
+        0 => 'PHPStan\\Rules\\Comparison\\ImpossibleCheckTypeFunctionCallRule',
+        1 => 'App\\Domain\\Audit\\Concerns\\Auditable',
+        2 => 'in_array($key, $excluded, true):116',
+        3 => NULL,
+      ),
+      31 => 
+      array (
+        0 => 'PHPStan\\Rules\\Comparison\\ImpossibleCheckTypeFunctionCallRule',
+        1 => 'App\\Domain\\Audit\\Concerns\\Auditable',
+        2 => 'array_filter($attributes, fn(string $key) => !in_array($key, $excluded, true), ARRAY_FILTER_USE_KEY):114',
+        3 => NULL,
+      ),
+      32 => 
+      array (
+        0 => 'PHPStan\\Rules\\Comparison\\ImpossibleCheckTypeMethodCallRule',
+        1 => 'App\\Domain\\Audit\\Concerns\\Auditable',
+        2 => '$this->scrubAttributes($filtered):120',
+        3 => NULL,
+      ),
+      33 => 
+      array (
+        0 => 'PHPStan\\Rules\\Comparison\\ImpossibleCheckTypeMethodCallRule',
+        1 => 'App\\Domain\\Audit\\Concerns\\Auditable',
+        2 => 'app(\\App\\Domain\\Audit\\Services\\AuditLogger::class)->record($this->auditEntityName() . \'.\' . $event, $this, $before, $after):129',
+        3 => NULL,
+      ),
+      34 => 
+      array (
+        0 => 'PHPStan\\Rules\\Comparison\\ImpossibleCheckTypeFunctionCallRule',
+        1 => 'App\\Domain\\Audit\\Concerns\\Auditable',
+        2 => 'app(\\App\\Domain\\Audit\\Services\\AuditLogger::class):129',
+        3 => NULL,
+      ),
+      35 => 
+      array (
+        0 => 'PHPStan\\Rules\\Comparison\\ImpossibleCheckTypeMethodCallRule',
+        1 => 'App\\Domain\\Audit\\Concerns\\Auditable',
+        2 => '$this->auditEntityName():130',
+        3 => NULL,
+      ),
+      36 => 
+      array (
+        0 => 'PHPStan\\Rules\\Comparison\\ImpossibleCheckTypeStaticMethodCallRule',
+        1 => 'App\\Domain\\Access\\Concerns\\ScopedToMda',
+        2 => 'static::addGlobalScope(new \\App\\Domain\\Access\\Scopes\\MdaScope()):21',
+        3 => NULL,
+      ),
+    ),
+    'PHPStan\\Rules\\DeadCode\\MethodWithoutImpurePointsCollector' => 
+    array (
+      0 => 
+      array (
+        0 => 'App\\Domain\\Registry\\Models\\Beneficiary',
+        1 => 'auditExcluded',
+        2 => 'App\\Domain\\Registry\\Models\\Beneficiary',
+        3 => 
+        array (
+        ),
+      ),
+      1 => 
+      array (
+        0 => 'App\\Domain\\Registry\\Models\\Beneficiary',
+        1 => 'auditEntityName',
+        2 => 'App\\Domain\\Registry\\Models\\Beneficiary',
+        3 => 
+        array (
+          0 => 'm' . "\0" . 'illuminate\\support\\str' . "\0" . 'snake',
+          1 => 'f' . "\0" . 'class_basename',
+        ),
+      ),
+      2 => 
+      array (
+        0 => 'App\\Domain\\Registry\\Models\\Beneficiary',
+        1 => 'auditOmit',
+        2 => 'App\\Domain\\Registry\\Models\\Beneficiary',
+        3 => 
+        array (
+        ),
+      ),
+      3 => 
+      array (
+        0 => 'App\\Domain\\Registry\\Models\\Beneficiary',
+        1 => 'mdaOwnershipColumn',
+        2 => 'App\\Domain\\Registry\\Models\\Beneficiary',
+        3 => 
+        array (
+        ),
+      ),
+      4 => 
+      array (
+        0 => 'App\\Domain\\Registry\\Models\\Beneficiary',
+        1 => 'normalizeDigits',
+        2 => 'App\\Domain\\Registry\\Models\\Beneficiary',
+        3 => 
+        array (
+          0 => 'f' . "\0" . 'preg_replace',
+        ),
+      ),
+      5 => 
+      array (
+        0 => 'App\\Domain\\Registry\\Models\\Beneficiary',
+        1 => 'newFactory',
+        2 => 'App\\Domain\\Registry\\Models\\Beneficiary',
+        3 => 
+        array (
+          0 => 'm' . "\0" . 'illuminate\\database\\eloquent\\factories\\factory' . "\0" . 'new',
+        ),
+      ),
+      6 => 
+      array (
+        0 => 'App\\Domain\\Registry\\Models\\Beneficiary',
+        1 => 'casts',
+        2 => 'App\\Domain\\Registry\\Models\\Beneficiary',
+        3 => 
+        array (
+        ),
+      ),
+      7 => 
+      array (
+        0 => 'App\\Domain\\Registry\\Models\\Beneficiary',
+        1 => 'auditMask',
+        2 => 'App\\Domain\\Registry\\Models\\Beneficiary',
+        3 => 
+        array (
+        ),
+      ),
+      8 => 
+      array (
+        0 => 'App\\Domain\\Registry\\Models\\Beneficiary',
+        1 => 'fullName',
+        2 => 'App\\Domain\\Registry\\Models\\Beneficiary',
+        3 => 
+        array (
+          0 => 'f' . "\0" . 'array_filter',
+        ),
+      ),
+    ),
+    'PHPStan\\Rules\\DeadCode\\PossiblyPureStaticCallCollector' => 
+    array (
+      0 => 
+      array (
+        0 => 'Illuminate\\Database\\Eloquent\\Model',
+        1 => 'addGlobalScope',
+        2 => 21,
+      ),
+    ),
+    'PHPStan\\Rules\\Traits\\TraitUseCollector' => 
+    array (
+      0 => 
+      array (
+        0 => 'App\\Domain\\Audit\\Concerns\\Auditable',
+        1 => 'Illuminate\\Database\\Eloquent\\Factories\\HasFactory',
+        2 => 'Illuminate\\Database\\Eloquent\\Concerns\\HasUuids',
+        3 => 'App\\Domain\\Access\\Concerns\\ScopedToMda',
+        4 => 'Illuminate\\Database\\Eloquent\\SoftDeletes',
+      ),
+    ),
+  ),
+  '/var/www/html/app/Domain/Registry/Models/Household.php' => 
+  array (
+    'PHPStan\\Rules\\Comparison\\ConstantConditionInTraitCollector' => 
+    array (
+      0 => 
+      array (
+        0 => 'PHPStan\\Rules\\Comparison\\ImpossibleCheckTypeStaticMethodCallRule',
+        1 => 'App\\Domain\\Audit\\Concerns\\Auditable',
+        2 => 'static::created(function ($model): void {
+    $model->writeAudit(\'created\', null, $model->auditSnapshot($model->getAttributes()));
+}):24',
+        3 => NULL,
+      ),
+      1 => 
+      array (
+        0 => 'PHPStan\\Rules\\Comparison\\ImpossibleCheckTypeMethodCallRule',
+        1 => 'App\\Domain\\Audit\\Concerns\\Auditable',
+        2 => '$model->writeAudit(\'created\', null, $model->auditSnapshot($model->getAttributes())):25',
+        3 => NULL,
+      ),
+      2 => 
+      array (
+        0 => 'PHPStan\\Rules\\Comparison\\ImpossibleCheckTypeMethodCallRule',
+        1 => 'App\\Domain\\Audit\\Concerns\\Auditable',
+        2 => '$model->auditSnapshot($model->getAttributes()):25',
+        3 => NULL,
+      ),
+      3 => 
+      array (
+        0 => 'PHPStan\\Rules\\Comparison\\ImpossibleCheckTypeMethodCallRule',
+        1 => 'App\\Domain\\Audit\\Concerns\\Auditable',
+        2 => '$model->getAttributes():25',
+        3 => NULL,
+      ),
+      4 => 
+      array (
+        0 => 'PHPStan\\Rules\\Comparison\\ImpossibleCheckTypeStaticMethodCallRule',
+        1 => 'App\\Domain\\Audit\\Concerns\\Auditable',
+        2 => 'static::updated(function ($model): void {
+    $changedKeys = array_diff(array_keys($model->getChanges()), $model->allAuditExcluded());
+    if ($changedKeys === []) {
+        return;
+        // only excluded/operational columns changed — no audit noise
+    }
+    $before = [];
+    $after = [];
+    foreach ($changedKeys as $key) {
+        $before[$key] = $model->getOriginal($key);
+        $after[$key] = $model->getAttribute($key);
+    }
+    $model->writeAudit(\'updated\', $model->scrubAttributes($before), $model->scrubAttributes($after));
+}):28',
+        3 => NULL,
+      ),
+      5 => 
+      array (
+        0 => 'PHPStan\\Rules\\Comparison\\ImpossibleCheckTypeFunctionCallRule',
+        1 => 'App\\Domain\\Audit\\Concerns\\Auditable',
+        2 => 'array_diff(array_keys($model->getChanges()), $model->allAuditExcluded()):29',
+        3 => NULL,
+      ),
+      6 => 
+      array (
+        0 => 'PHPStan\\Rules\\Comparison\\ImpossibleCheckTypeFunctionCallRule',
+        1 => 'App\\Domain\\Audit\\Concerns\\Auditable',
+        2 => 'array_keys($model->getChanges()):29',
+        3 => NULL,
+      ),
+      7 => 
+      array (
+        0 => 'PHPStan\\Rules\\Comparison\\ImpossibleCheckTypeMethodCallRule',
+        1 => 'App\\Domain\\Audit\\Concerns\\Auditable',
+        2 => '$model->getChanges():29',
+        3 => NULL,
+      ),
+      8 => 
+      array (
+        0 => 'PHPStan\\Rules\\Comparison\\ImpossibleCheckTypeMethodCallRule',
+        1 => 'App\\Domain\\Audit\\Concerns\\Auditable',
+        2 => '$model->allAuditExcluded():29',
+        3 => NULL,
+      ),
+      9 => 
+      array (
+        0 => 'PHPStan\\Rules\\Comparison\\IfConstantConditionRule',
+        1 => 'App\\Domain\\Audit\\Concerns\\Auditable',
+        2 => '$changedKeys === []:31',
+        3 => NULL,
+      ),
+      10 => 
+      array (
+        0 => 'PHPStan\\Rules\\Comparison\\StrictComparisonOfDifferentTypesRule',
+        1 => 'App\\Domain\\Audit\\Concerns\\Auditable',
+        2 => '$changedKeys === []:31',
+        3 => NULL,
+      ),
+      11 => 
+      array (
+        0 => 'PHPStan\\Rules\\Comparison\\ImpossibleCheckTypeMethodCallRule',
+        1 => 'App\\Domain\\Audit\\Concerns\\Auditable',
+        2 => '$model->getOriginal($key):38',
+        3 => NULL,
+      ),
+      12 => 
+      array (
+        0 => 'PHPStan\\Rules\\Comparison\\ImpossibleCheckTypeMethodCallRule',
+        1 => 'App\\Domain\\Audit\\Concerns\\Auditable',
+        2 => '$model->getAttribute($key):39',
+        3 => NULL,
+      ),
+      13 => 
+      array (
+        0 => 'PHPStan\\Rules\\Comparison\\ImpossibleCheckTypeMethodCallRule',
+        1 => 'App\\Domain\\Audit\\Concerns\\Auditable',
+        2 => '$model->writeAudit(\'updated\', $model->scrubAttributes($before), $model->scrubAttributes($after)):42',
+        3 => NULL,
+      ),
+      14 => 
+      array (
+        0 => 'PHPStan\\Rules\\Comparison\\ImpossibleCheckTypeMethodCallRule',
+        1 => 'App\\Domain\\Audit\\Concerns\\Auditable',
+        2 => '$model->scrubAttributes($before):42',
+        3 => NULL,
+      ),
+      15 => 
+      array (
+        0 => 'PHPStan\\Rules\\Comparison\\ImpossibleCheckTypeMethodCallRule',
+        1 => 'App\\Domain\\Audit\\Concerns\\Auditable',
+        2 => '$model->scrubAttributes($after):42',
+        3 => NULL,
+      ),
+      16 => 
+      array (
+        0 => 'PHPStan\\Rules\\Comparison\\ImpossibleCheckTypeStaticMethodCallRule',
+        1 => 'App\\Domain\\Audit\\Concerns\\Auditable',
+        2 => 'static::deleted(function ($model): void {
+    $model->writeAudit(\'deleted\', $model->auditSnapshot($model->getOriginal()), null);
+}):45',
+        3 => NULL,
+      ),
+      17 => 
+      array (
+        0 => 'PHPStan\\Rules\\Comparison\\ImpossibleCheckTypeMethodCallRule',
+        1 => 'App\\Domain\\Audit\\Concerns\\Auditable',
+        2 => '$model->writeAudit(\'deleted\', $model->auditSnapshot($model->getOriginal()), null):46',
+        3 => NULL,
+      ),
+      18 => 
+      array (
+        0 => 'PHPStan\\Rules\\Comparison\\ImpossibleCheckTypeMethodCallRule',
+        1 => 'App\\Domain\\Audit\\Concerns\\Auditable',
+        2 => '$model->auditSnapshot($model->getOriginal()):46',
+        3 => NULL,
+      ),
+      19 => 
+      array (
+        0 => 'PHPStan\\Rules\\Comparison\\ImpossibleCheckTypeMethodCallRule',
+        1 => 'App\\Domain\\Audit\\Concerns\\Auditable',
+        2 => '$model->getOriginal():46',
+        3 => NULL,
+      ),
+      20 => 
+      array (
+        0 => 'PHPStan\\Rules\\Comparison\\ImpossibleCheckTypeStaticMethodCallRule',
+        1 => 'App\\Domain\\Audit\\Concerns\\Auditable',
+        2 => '\\Illuminate\\Support\\Str::snake(class_basename($this)):65',
+        3 => NULL,
+      ),
+      21 => 
+      array (
+        0 => 'PHPStan\\Rules\\Comparison\\ImpossibleCheckTypeFunctionCallRule',
+        1 => 'App\\Domain\\Audit\\Concerns\\Auditable',
+        2 => 'class_basename($this):65',
+        3 => NULL,
+      ),
+      22 => 
+      array (
+        0 => 'PHPStan\\Rules\\Comparison\\ImpossibleCheckTypeMethodCallRule',
+        1 => 'App\\Domain\\Audit\\Concerns\\Auditable',
+        2 => 'app(\\App\\Domain\\Audit\\Support\\AuditScrubber::class)->scrub($attributes, $this->auditOmit(), $this->auditMask()):94',
+        3 => NULL,
+      ),
+      23 => 
+      array (
+        0 => 'PHPStan\\Rules\\Comparison\\ImpossibleCheckTypeFunctionCallRule',
+        1 => 'App\\Domain\\Audit\\Concerns\\Auditable',
+        2 => 'app(\\App\\Domain\\Audit\\Support\\AuditScrubber::class):94',
+        3 => NULL,
+      ),
+      24 => 
+      array (
+        0 => 'PHPStan\\Rules\\Comparison\\ImpossibleCheckTypeMethodCallRule',
+        1 => 'App\\Domain\\Audit\\Concerns\\Auditable',
+        2 => '$this->auditOmit():94',
+        3 => NULL,
+      ),
+      25 => 
+      array (
+        0 => 'PHPStan\\Rules\\Comparison\\ImpossibleCheckTypeMethodCallRule',
+        1 => 'App\\Domain\\Audit\\Concerns\\Auditable',
+        2 => '$this->auditMask():94',
+        3 => NULL,
+      ),
+      26 => 
+      array (
+        0 => 'PHPStan\\Rules\\Comparison\\ImpossibleCheckTypeFunctionCallRule',
+        1 => 'App\\Domain\\Audit\\Concerns\\Auditable',
+        2 => 'array_merge([\'created_at\', \'updated_at\', \'deleted_at\'], $this->auditExcluded()):102',
+        3 => NULL,
+      ),
+      27 => 
+      array (
+        0 => 'PHPStan\\Rules\\Comparison\\ImpossibleCheckTypeMethodCallRule',
+        1 => 'App\\Domain\\Audit\\Concerns\\Auditable',
+        2 => '$this->auditExcluded():102',
+        3 => NULL,
+      ),
+      28 => 
+      array (
+        0 => 'PHPStan\\Rules\\Comparison\\ImpossibleCheckTypeMethodCallRule',
+        1 => 'App\\Domain\\Audit\\Concerns\\Auditable',
+        2 => '$this->allAuditExcluded():113',
+        3 => NULL,
+      ),
+      29 => 
+      array (
+        0 => 'PHPStan\\Rules\\Comparison\\BooleanNotConstantConditionRule',
+        1 => 'App\\Domain\\Audit\\Concerns\\Auditable',
+        2 => 'in_array($key, $excluded, true):116',
+        3 => NULL,
+      ),
+      30 => 
+      array (
+        0 => 'PHPStan\\Rules\\Comparison\\ImpossibleCheckTypeFunctionCallRule',
+        1 => 'App\\Domain\\Audit\\Concerns\\Auditable',
+        2 => 'in_array($key, $excluded, true):116',
+        3 => NULL,
+      ),
+      31 => 
+      array (
+        0 => 'PHPStan\\Rules\\Comparison\\ImpossibleCheckTypeFunctionCallRule',
+        1 => 'App\\Domain\\Audit\\Concerns\\Auditable',
+        2 => 'array_filter($attributes, fn(string $key) => !in_array($key, $excluded, true), ARRAY_FILTER_USE_KEY):114',
+        3 => NULL,
+      ),
+      32 => 
+      array (
+        0 => 'PHPStan\\Rules\\Comparison\\ImpossibleCheckTypeMethodCallRule',
+        1 => 'App\\Domain\\Audit\\Concerns\\Auditable',
+        2 => '$this->scrubAttributes($filtered):120',
+        3 => NULL,
+      ),
+      33 => 
+      array (
+        0 => 'PHPStan\\Rules\\Comparison\\ImpossibleCheckTypeMethodCallRule',
+        1 => 'App\\Domain\\Audit\\Concerns\\Auditable',
+        2 => 'app(\\App\\Domain\\Audit\\Services\\AuditLogger::class)->record($this->auditEntityName() . \'.\' . $event, $this, $before, $after):129',
+        3 => NULL,
+      ),
+      34 => 
+      array (
+        0 => 'PHPStan\\Rules\\Comparison\\ImpossibleCheckTypeFunctionCallRule',
+        1 => 'App\\Domain\\Audit\\Concerns\\Auditable',
+        2 => 'app(\\App\\Domain\\Audit\\Services\\AuditLogger::class):129',
+        3 => NULL,
+      ),
+      35 => 
+      array (
+        0 => 'PHPStan\\Rules\\Comparison\\ImpossibleCheckTypeMethodCallRule',
+        1 => 'App\\Domain\\Audit\\Concerns\\Auditable',
+        2 => '$this->auditEntityName():130',
+        3 => NULL,
+      ),
+      36 => 
+      array (
+        0 => 'PHPStan\\Rules\\Comparison\\ImpossibleCheckTypeStaticMethodCallRule',
+        1 => 'App\\Domain\\Access\\Concerns\\ScopedToMda',
+        2 => 'static::addGlobalScope(new \\App\\Domain\\Access\\Scopes\\MdaScope()):21',
+        3 => NULL,
+      ),
+    ),
+    'PHPStan\\Rules\\DeadCode\\MethodWithoutImpurePointsCollector' => 
+    array (
+      0 => 
+      array (
+        0 => 'App\\Domain\\Registry\\Models\\Household',
+        1 => 'auditExcluded',
+        2 => 'App\\Domain\\Registry\\Models\\Household',
+        3 => 
+        array (
+        ),
+      ),
+      1 => 
+      array (
+        0 => 'App\\Domain\\Registry\\Models\\Household',
+        1 => 'auditEntityName',
+        2 => 'App\\Domain\\Registry\\Models\\Household',
+        3 => 
+        array (
+          0 => 'm' . "\0" . 'illuminate\\support\\str' . "\0" . 'snake',
+          1 => 'f' . "\0" . 'class_basename',
+        ),
+      ),
+      2 => 
+      array (
+        0 => 'App\\Domain\\Registry\\Models\\Household',
+        1 => 'auditOmit',
+        2 => 'App\\Domain\\Registry\\Models\\Household',
+        3 => 
+        array (
+        ),
+      ),
+      3 => 
+      array (
+        0 => 'App\\Domain\\Registry\\Models\\Household',
+        1 => 'auditMask',
+        2 => 'App\\Domain\\Registry\\Models\\Household',
+        3 => 
+        array (
+        ),
+      ),
+      4 => 
+      array (
+        0 => 'App\\Domain\\Registry\\Models\\Household',
+        1 => 'mdaOwnershipColumn',
+        2 => 'App\\Domain\\Registry\\Models\\Household',
+        3 => 
+        array (
+        ),
+      ),
+      5 => 
+      array (
+        0 => 'App\\Domain\\Registry\\Models\\Household',
+        1 => 'newFactory',
+        2 => 'App\\Domain\\Registry\\Models\\Household',
+        3 => 
+        array (
+          0 => 'm' . "\0" . 'illuminate\\database\\eloquent\\factories\\factory' . "\0" . 'new',
+        ),
+      ),
+      6 => 
+      array (
+        0 => 'App\\Domain\\Registry\\Models\\Household',
+        1 => 'casts',
+        2 => 'App\\Domain\\Registry\\Models\\Household',
+        3 => 
+        array (
+        ),
+      ),
+    ),
+    'PHPStan\\Rules\\DeadCode\\PossiblyPureStaticCallCollector' => 
+    array (
+      0 => 
+      array (
+        0 => 'Illuminate\\Database\\Eloquent\\Model',
+        1 => 'addGlobalScope',
+        2 => 21,
+      ),
+    ),
+    'PHPStan\\Rules\\Traits\\TraitUseCollector' => 
+    array (
+      0 => 
+      array (
+        0 => 'App\\Domain\\Audit\\Concerns\\Auditable',
+        1 => 'Illuminate\\Database\\Eloquent\\Factories\\HasFactory',
+        2 => 'Illuminate\\Database\\Eloquent\\Concerns\\HasUuids',
+        3 => 'App\\Domain\\Access\\Concerns\\ScopedToMda',
+        4 => 'Illuminate\\Database\\Eloquent\\SoftDeletes',
+      ),
+    ),
+  ),
+  '/var/www/html/app/Domain/Registry/Models/HouseholdMembership.php' => 
+  array (
+    'PHPStan\\Rules\\Comparison\\ConstantConditionInTraitCollector' => 
+    array (
+      0 => 
+      array (
+        0 => 'PHPStan\\Rules\\Comparison\\ImpossibleCheckTypeStaticMethodCallRule',
+        1 => 'App\\Domain\\Audit\\Concerns\\Auditable',
+        2 => 'static::created(function ($model): void {
+    $model->writeAudit(\'created\', null, $model->auditSnapshot($model->getAttributes()));
+}):24',
+        3 => NULL,
+      ),
+      1 => 
+      array (
+        0 => 'PHPStan\\Rules\\Comparison\\ImpossibleCheckTypeMethodCallRule',
+        1 => 'App\\Domain\\Audit\\Concerns\\Auditable',
+        2 => '$model->writeAudit(\'created\', null, $model->auditSnapshot($model->getAttributes())):25',
+        3 => NULL,
+      ),
+      2 => 
+      array (
+        0 => 'PHPStan\\Rules\\Comparison\\ImpossibleCheckTypeMethodCallRule',
+        1 => 'App\\Domain\\Audit\\Concerns\\Auditable',
+        2 => '$model->auditSnapshot($model->getAttributes()):25',
+        3 => NULL,
+      ),
+      3 => 
+      array (
+        0 => 'PHPStan\\Rules\\Comparison\\ImpossibleCheckTypeMethodCallRule',
+        1 => 'App\\Domain\\Audit\\Concerns\\Auditable',
+        2 => '$model->getAttributes():25',
+        3 => NULL,
+      ),
+      4 => 
+      array (
+        0 => 'PHPStan\\Rules\\Comparison\\ImpossibleCheckTypeStaticMethodCallRule',
+        1 => 'App\\Domain\\Audit\\Concerns\\Auditable',
+        2 => 'static::updated(function ($model): void {
+    $changedKeys = array_diff(array_keys($model->getChanges()), $model->allAuditExcluded());
+    if ($changedKeys === []) {
+        return;
+        // only excluded/operational columns changed — no audit noise
+    }
+    $before = [];
+    $after = [];
+    foreach ($changedKeys as $key) {
+        $before[$key] = $model->getOriginal($key);
+        $after[$key] = $model->getAttribute($key);
+    }
+    $model->writeAudit(\'updated\', $model->scrubAttributes($before), $model->scrubAttributes($after));
+}):28',
+        3 => NULL,
+      ),
+      5 => 
+      array (
+        0 => 'PHPStan\\Rules\\Comparison\\ImpossibleCheckTypeFunctionCallRule',
+        1 => 'App\\Domain\\Audit\\Concerns\\Auditable',
+        2 => 'array_diff(array_keys($model->getChanges()), $model->allAuditExcluded()):29',
+        3 => NULL,
+      ),
+      6 => 
+      array (
+        0 => 'PHPStan\\Rules\\Comparison\\ImpossibleCheckTypeFunctionCallRule',
+        1 => 'App\\Domain\\Audit\\Concerns\\Auditable',
+        2 => 'array_keys($model->getChanges()):29',
+        3 => NULL,
+      ),
+      7 => 
+      array (
+        0 => 'PHPStan\\Rules\\Comparison\\ImpossibleCheckTypeMethodCallRule',
+        1 => 'App\\Domain\\Audit\\Concerns\\Auditable',
+        2 => '$model->getChanges():29',
+        3 => NULL,
+      ),
+      8 => 
+      array (
+        0 => 'PHPStan\\Rules\\Comparison\\ImpossibleCheckTypeMethodCallRule',
+        1 => 'App\\Domain\\Audit\\Concerns\\Auditable',
+        2 => '$model->allAuditExcluded():29',
+        3 => NULL,
+      ),
+      9 => 
+      array (
+        0 => 'PHPStan\\Rules\\Comparison\\IfConstantConditionRule',
+        1 => 'App\\Domain\\Audit\\Concerns\\Auditable',
+        2 => '$changedKeys === []:31',
+        3 => NULL,
+      ),
+      10 => 
+      array (
+        0 => 'PHPStan\\Rules\\Comparison\\StrictComparisonOfDifferentTypesRule',
+        1 => 'App\\Domain\\Audit\\Concerns\\Auditable',
+        2 => '$changedKeys === []:31',
+        3 => NULL,
+      ),
+      11 => 
+      array (
+        0 => 'PHPStan\\Rules\\Comparison\\ImpossibleCheckTypeMethodCallRule',
+        1 => 'App\\Domain\\Audit\\Concerns\\Auditable',
+        2 => '$model->getOriginal($key):38',
+        3 => NULL,
+      ),
+      12 => 
+      array (
+        0 => 'PHPStan\\Rules\\Comparison\\ImpossibleCheckTypeMethodCallRule',
+        1 => 'App\\Domain\\Audit\\Concerns\\Auditable',
+        2 => '$model->getAttribute($key):39',
+        3 => NULL,
+      ),
+      13 => 
+      array (
+        0 => 'PHPStan\\Rules\\Comparison\\ImpossibleCheckTypeMethodCallRule',
+        1 => 'App\\Domain\\Audit\\Concerns\\Auditable',
+        2 => '$model->writeAudit(\'updated\', $model->scrubAttributes($before), $model->scrubAttributes($after)):42',
+        3 => NULL,
+      ),
+      14 => 
+      array (
+        0 => 'PHPStan\\Rules\\Comparison\\ImpossibleCheckTypeMethodCallRule',
+        1 => 'App\\Domain\\Audit\\Concerns\\Auditable',
+        2 => '$model->scrubAttributes($before):42',
+        3 => NULL,
+      ),
+      15 => 
+      array (
+        0 => 'PHPStan\\Rules\\Comparison\\ImpossibleCheckTypeMethodCallRule',
+        1 => 'App\\Domain\\Audit\\Concerns\\Auditable',
+        2 => '$model->scrubAttributes($after):42',
+        3 => NULL,
+      ),
+      16 => 
+      array (
+        0 => 'PHPStan\\Rules\\Comparison\\ImpossibleCheckTypeStaticMethodCallRule',
+        1 => 'App\\Domain\\Audit\\Concerns\\Auditable',
+        2 => 'static::deleted(function ($model): void {
+    $model->writeAudit(\'deleted\', $model->auditSnapshot($model->getOriginal()), null);
+}):45',
+        3 => NULL,
+      ),
+      17 => 
+      array (
+        0 => 'PHPStan\\Rules\\Comparison\\ImpossibleCheckTypeMethodCallRule',
+        1 => 'App\\Domain\\Audit\\Concerns\\Auditable',
+        2 => '$model->writeAudit(\'deleted\', $model->auditSnapshot($model->getOriginal()), null):46',
+        3 => NULL,
+      ),
+      18 => 
+      array (
+        0 => 'PHPStan\\Rules\\Comparison\\ImpossibleCheckTypeMethodCallRule',
+        1 => 'App\\Domain\\Audit\\Concerns\\Auditable',
+        2 => '$model->auditSnapshot($model->getOriginal()):46',
+        3 => NULL,
+      ),
+      19 => 
+      array (
+        0 => 'PHPStan\\Rules\\Comparison\\ImpossibleCheckTypeMethodCallRule',
+        1 => 'App\\Domain\\Audit\\Concerns\\Auditable',
+        2 => '$model->getOriginal():46',
+        3 => NULL,
+      ),
+      20 => 
+      array (
+        0 => 'PHPStan\\Rules\\Comparison\\ImpossibleCheckTypeStaticMethodCallRule',
+        1 => 'App\\Domain\\Audit\\Concerns\\Auditable',
+        2 => '\\Illuminate\\Support\\Str::snake(class_basename($this)):65',
+        3 => NULL,
+      ),
+      21 => 
+      array (
+        0 => 'PHPStan\\Rules\\Comparison\\ImpossibleCheckTypeFunctionCallRule',
+        1 => 'App\\Domain\\Audit\\Concerns\\Auditable',
+        2 => 'class_basename($this):65',
+        3 => NULL,
+      ),
+      22 => 
+      array (
+        0 => 'PHPStan\\Rules\\Comparison\\ImpossibleCheckTypeMethodCallRule',
+        1 => 'App\\Domain\\Audit\\Concerns\\Auditable',
+        2 => 'app(\\App\\Domain\\Audit\\Support\\AuditScrubber::class)->scrub($attributes, $this->auditOmit(), $this->auditMask()):94',
+        3 => NULL,
+      ),
+      23 => 
+      array (
+        0 => 'PHPStan\\Rules\\Comparison\\ImpossibleCheckTypeFunctionCallRule',
+        1 => 'App\\Domain\\Audit\\Concerns\\Auditable',
+        2 => 'app(\\App\\Domain\\Audit\\Support\\AuditScrubber::class):94',
+        3 => NULL,
+      ),
+      24 => 
+      array (
+        0 => 'PHPStan\\Rules\\Comparison\\ImpossibleCheckTypeMethodCallRule',
+        1 => 'App\\Domain\\Audit\\Concerns\\Auditable',
+        2 => '$this->auditOmit():94',
+        3 => NULL,
+      ),
+      25 => 
+      array (
+        0 => 'PHPStan\\Rules\\Comparison\\ImpossibleCheckTypeMethodCallRule',
+        1 => 'App\\Domain\\Audit\\Concerns\\Auditable',
+        2 => '$this->auditMask():94',
+        3 => NULL,
+      ),
+      26 => 
+      array (
+        0 => 'PHPStan\\Rules\\Comparison\\ImpossibleCheckTypeFunctionCallRule',
+        1 => 'App\\Domain\\Audit\\Concerns\\Auditable',
+        2 => 'array_merge([\'created_at\', \'updated_at\', \'deleted_at\'], $this->auditExcluded()):102',
+        3 => NULL,
+      ),
+      27 => 
+      array (
+        0 => 'PHPStan\\Rules\\Comparison\\ImpossibleCheckTypeMethodCallRule',
+        1 => 'App\\Domain\\Audit\\Concerns\\Auditable',
+        2 => '$this->auditExcluded():102',
+        3 => NULL,
+      ),
+      28 => 
+      array (
+        0 => 'PHPStan\\Rules\\Comparison\\ImpossibleCheckTypeMethodCallRule',
+        1 => 'App\\Domain\\Audit\\Concerns\\Auditable',
+        2 => '$this->allAuditExcluded():113',
+        3 => NULL,
+      ),
+      29 => 
+      array (
+        0 => 'PHPStan\\Rules\\Comparison\\BooleanNotConstantConditionRule',
+        1 => 'App\\Domain\\Audit\\Concerns\\Auditable',
+        2 => 'in_array($key, $excluded, true):116',
+        3 => NULL,
+      ),
+      30 => 
+      array (
+        0 => 'PHPStan\\Rules\\Comparison\\ImpossibleCheckTypeFunctionCallRule',
+        1 => 'App\\Domain\\Audit\\Concerns\\Auditable',
+        2 => 'in_array($key, $excluded, true):116',
+        3 => NULL,
+      ),
+      31 => 
+      array (
+        0 => 'PHPStan\\Rules\\Comparison\\ImpossibleCheckTypeFunctionCallRule',
+        1 => 'App\\Domain\\Audit\\Concerns\\Auditable',
+        2 => 'array_filter($attributes, fn(string $key) => !in_array($key, $excluded, true), ARRAY_FILTER_USE_KEY):114',
+        3 => NULL,
+      ),
+      32 => 
+      array (
+        0 => 'PHPStan\\Rules\\Comparison\\ImpossibleCheckTypeMethodCallRule',
+        1 => 'App\\Domain\\Audit\\Concerns\\Auditable',
+        2 => '$this->scrubAttributes($filtered):120',
+        3 => NULL,
+      ),
+      33 => 
+      array (
+        0 => 'PHPStan\\Rules\\Comparison\\ImpossibleCheckTypeMethodCallRule',
+        1 => 'App\\Domain\\Audit\\Concerns\\Auditable',
+        2 => 'app(\\App\\Domain\\Audit\\Services\\AuditLogger::class)->record($this->auditEntityName() . \'.\' . $event, $this, $before, $after):129',
+        3 => NULL,
+      ),
+      34 => 
+      array (
+        0 => 'PHPStan\\Rules\\Comparison\\ImpossibleCheckTypeFunctionCallRule',
+        1 => 'App\\Domain\\Audit\\Concerns\\Auditable',
+        2 => 'app(\\App\\Domain\\Audit\\Services\\AuditLogger::class):129',
+        3 => NULL,
+      ),
+      35 => 
+      array (
+        0 => 'PHPStan\\Rules\\Comparison\\ImpossibleCheckTypeMethodCallRule',
+        1 => 'App\\Domain\\Audit\\Concerns\\Auditable',
+        2 => '$this->auditEntityName():130',
+        3 => NULL,
+      ),
+    ),
+    'PHPStan\\Rules\\DeadCode\\MethodWithoutImpurePointsCollector' => 
+    array (
+      0 => 
+      array (
+        0 => 'App\\Domain\\Registry\\Models\\HouseholdMembership',
+        1 => 'auditExcluded',
+        2 => 'App\\Domain\\Registry\\Models\\HouseholdMembership',
+        3 => 
+        array (
+        ),
+      ),
+      1 => 
+      array (
+        0 => 'App\\Domain\\Registry\\Models\\HouseholdMembership',
+        1 => 'auditEntityName',
+        2 => 'App\\Domain\\Registry\\Models\\HouseholdMembership',
+        3 => 
+        array (
+          0 => 'm' . "\0" . 'illuminate\\support\\str' . "\0" . 'snake',
+          1 => 'f' . "\0" . 'class_basename',
+        ),
+      ),
+      2 => 
+      array (
+        0 => 'App\\Domain\\Registry\\Models\\HouseholdMembership',
+        1 => 'auditOmit',
+        2 => 'App\\Domain\\Registry\\Models\\HouseholdMembership',
+        3 => 
+        array (
+        ),
+      ),
+      3 => 
+      array (
+        0 => 'App\\Domain\\Registry\\Models\\HouseholdMembership',
+        1 => 'auditMask',
+        2 => 'App\\Domain\\Registry\\Models\\HouseholdMembership',
+        3 => 
+        array (
+        ),
+      ),
+      4 => 
+      array (
+        0 => 'App\\Domain\\Registry\\Models\\HouseholdMembership',
+        1 => 'newFactory',
+        2 => 'App\\Domain\\Registry\\Models\\HouseholdMembership',
+        3 => 
+        array (
+          0 => 'm' . "\0" . 'illuminate\\database\\eloquent\\factories\\factory' . "\0" . 'new',
+        ),
+      ),
+      5 => 
+      array (
+        0 => 'App\\Domain\\Registry\\Models\\HouseholdMembership',
+        1 => 'casts',
+        2 => 'App\\Domain\\Registry\\Models\\HouseholdMembership',
+        3 => 
+        array (
+        ),
+      ),
+    ),
+    'PHPStan\\Rules\\Traits\\TraitUseCollector' => 
+    array (
+      0 => 
+      array (
+        0 => 'App\\Domain\\Audit\\Concerns\\Auditable',
+        1 => 'Illuminate\\Database\\Eloquent\\Factories\\HasFactory',
+        2 => 'Illuminate\\Database\\Eloquent\\Concerns\\HasUuids',
+      ),
+    ),
+  ),
+  '/var/www/html/app/Http/Controllers/Api/V1/Access/MdaAccessGrantController.php' => 
+  array (
+    'PHPStan\\Rules\\DeadCode\\PossiblyPureStaticCallCollector' => 
+    array (
+      0 => 
+      array (
+        0 => 'App\\Domain\\Access\\Events\\CrossMdaAccessGranted',
+        1 => 'dispatch',
+        2 => 46,
+      ),
+      1 => 
+      array (
+        0 => 'App\\Domain\\Access\\Events\\CrossMdaAccessRevoked',
+        1 => 'dispatch',
+        2 => 53,
+      ),
+    ),
+  ),
+  '/var/www/html/app/Http/Controllers/Api/V1/Access/MdaController.php' => 
+  array (
+    'PHPStan\\Rules\\DeadCode\\MethodWithoutImpurePointsCollector' => 
+    array (
+      0 => 
+      array (
+        0 => 'App\\Http\\Controllers\\Api\\V1\\Access\\MdaController',
+        1 => 'show',
+        2 => 'App\\Http\\Controllers\\Api\\V1\\Access\\MdaController',
+        3 => 
+        array (
+          0 => 'm' . "\0" . 'app\\support\\apiresponse' . "\0" . 'success',
+          1 => 'm' . "\0" . 'illuminate\\http\\resources\\json\\jsonresource' . "\0" . '__construct',
+          2 => 'm' . "\0" . 'illuminate\\http\\resources\\json\\jsonresource' . "\0" . 'resolve',
+        ),
+      ),
+    ),
+  ),
+  '/var/www/html/app/Http/Controllers/Api/V1/Access/UserController.php' => 
+  array (
+    'PHPStan\\Rules\\DeadCode\\ConstructorWithoutImpurePointsCollector' => 
+    array (
+      0 => 
+      array (
+        0 => 'App\\Http\\Controllers\\Api\\V1\\Access\\UserController',
+        1 => 
+        array (
+        ),
+      ),
+    ),
+    'PHPStan\\Rules\\DeadCode\\MethodWithoutImpurePointsCollector' => 
+    array (
+      0 => 
+      array (
+        0 => 'App\\Http\\Controllers\\Api\\V1\\Access\\UserController',
+        1 => 'suspend',
+        2 => 'App\\Http\\Controllers\\Api\\V1\\Access\\UserController',
+        3 => 
+        array (
+          0 => 'm' . "\0" . 'app\\http\\controllers\\api\\v1\\access\\usercontroller' . "\0" . 'changestatus',
+        ),
+      ),
+      1 => 
+      array (
+        0 => 'App\\Http\\Controllers\\Api\\V1\\Access\\UserController',
+        1 => 'deactivate',
+        2 => 'App\\Http\\Controllers\\Api\\V1\\Access\\UserController',
+        3 => 
+        array (
+          0 => 'm' . "\0" . 'app\\http\\controllers\\api\\v1\\access\\usercontroller' . "\0" . 'changestatus',
+        ),
+      ),
+      2 => 
+      array (
+        0 => 'App\\Http\\Controllers\\Api\\V1\\Access\\UserController',
+        1 => 'activate',
+        2 => 'App\\Http\\Controllers\\Api\\V1\\Access\\UserController',
+        3 => 
+        array (
+          0 => 'm' . "\0" . 'app\\http\\controllers\\api\\v1\\access\\usercontroller' . "\0" . 'changestatus',
+        ),
+      ),
+    ),
+  ),
+  '/var/www/html/app/Http/Controllers/Api/V1/AuthController.php' => 
+  array (
+    'PHPStan\\Rules\\Comparison\\ConstantConditionInTraitCollector' => 
+    array (
+      0 => 
+      array (
+        0 => 'PHPStan\\Rules\\Comparison\\ImpossibleCheckTypeStaticMethodCallRule',
+        1 => 'App\\Http\\Controllers\\Concerns\\AuthResponses',
+        2 => '\\App\\Support\\ApiResponse::error(\'INVALID_CREDENTIALS\', \'Invalid credentials.\', [], 401):22',
+        3 => NULL,
+      ),
+      1 => 
+      array (
+        0 => 'PHPStan\\Rules\\Comparison\\ImpossibleCheckTypeStaticMethodCallRule',
+        1 => 'App\\Http\\Controllers\\Concerns\\AuthResponses',
+        2 => '\\App\\Support\\ApiResponse::error(\'ACCOUNT_LOCKED\', \'Your account is temporarily locked due to multiple failed login attempts. Please try again later.\', [], 423):31',
+        3 => NULL,
+      ),
+      2 => 
+      array (
+        0 => 'PHPStan\\Rules\\Comparison\\IfConstantConditionRule',
+        1 => 'App\\Http\\Controllers\\Concerns\\AuthResponses',
+        2 => '$user->locked_until !== null:38',
+        3 => NULL,
+      ),
+      3 => 
+      array (
+        0 => 'PHPStan\\Rules\\Comparison\\StrictComparisonOfDifferentTypesRule',
+        1 => 'App\\Http\\Controllers\\Concerns\\AuthResponses',
+        2 => '$user->locked_until !== null:38',
+        3 => NULL,
+      ),
+      4 => 
+      array (
+        0 => 'PHPStan\\Rules\\Comparison\\ImpossibleCheckTypeFunctionCallRule',
+        1 => 'App\\Http\\Controllers\\Concerns\\AuthResponses',
+        2 => 'max(0, $user->locked_until->getTimestamp() - now()->getTimestamp()):39',
+        3 => NULL,
+      ),
+      5 => 
+      array (
+        0 => 'PHPStan\\Rules\\Comparison\\ImpossibleCheckTypeMethodCallRule',
+        1 => 'App\\Http\\Controllers\\Concerns\\AuthResponses',
+        2 => '$user->locked_until->getTimestamp():39',
+        3 => NULL,
+      ),
+      6 => 
+      array (
+        0 => 'PHPStan\\Rules\\Comparison\\ImpossibleCheckTypeMethodCallRule',
+        1 => 'App\\Http\\Controllers\\Concerns\\AuthResponses',
+        2 => 'now()->getTimestamp():39',
+        3 => NULL,
+      ),
+      7 => 
+      array (
+        0 => 'PHPStan\\Rules\\Comparison\\ImpossibleCheckTypeFunctionCallRule',
+        1 => 'App\\Http\\Controllers\\Concerns\\AuthResponses',
+        2 => 'now():39',
+        3 => NULL,
+      ),
+      8 => 
+      array (
+        0 => 'PHPStan\\Rules\\Comparison\\ImpossibleCheckTypeMethodCallRule',
+        1 => 'App\\Http\\Controllers\\Concerns\\AuthResponses',
+        2 => '$response->headers->set(\'Retry-After\', (string) $retryAfter):40',
+        3 => NULL,
+      ),
+    ),
+    'PHPStan\\Rules\\DeadCode\\ConstructorWithoutImpurePointsCollector' => 
+    array (
+      0 => 
+      array (
+        0 => 'App\\Http\\Controllers\\Api\\V1\\AuthController',
+        1 => 
+        array (
+        ),
+      ),
+    ),
+    'PHPStan\\Rules\\DeadCode\\MethodWithoutImpurePointsCollector' => 
+    array (
+      0 => 
+      array (
+        0 => 'App\\Http\\Controllers\\Api\\V1\\AuthController',
+        1 => 'invalidCredentials',
+        2 => 'App\\Http\\Controllers\\Api\\V1\\AuthController',
+        3 => 
+        array (
+          0 => 'm' . "\0" . 'app\\support\\apiresponse' . "\0" . 'error',
+        ),
+      ),
+    ),
+    'PHPStan\\Rules\\DeadCode\\PossiblyPureStaticCallCollector' => 
+    array (
+      0 => 
+      array (
+        0 => 'App\\Domain\\Access\\Events\\AccountLocked',
+        1 => 'dispatch',
+        2 => 53,
+      ),
+      1 => 
+      array (
+        0 => 'Illuminate\\Support\\Facades\\Hash',
+        1 => 'make',
+        2 => 140,
+      ),
+    ),
+    'PHPStan\\Rules\\Methods\\NamedArgumentParameterMethodCallsCollector' => 
+    array (
+      0 => 
+      array (
+        0 => 'App\\Domain\\Audit\\Services\\AuditLogger',
+        1 => 'record',
+        2 => 'actor',
+        3 => 50,
+      ),
+      1 => 
+      array (
+        0 => 'App\\Domain\\Audit\\Services\\AuditLogger',
+        1 => 'record',
+        2 => 'actor',
+        3 => 100,
+      ),
+    ),
+    'PHPStan\\Rules\\Traits\\TraitUseCollector' => 
+    array (
+      0 => 
+      array (
+        0 => 'App\\Http\\Controllers\\Concerns\\AuthResponses',
+      ),
+    ),
+  ),
+  '/var/www/html/app/Http/Controllers/Api/V1/MfaController.php' => 
+  array (
+    'PHPStan\\Rules\\Comparison\\ConstantConditionInTraitCollector' => 
+    array (
+      0 => 
+      array (
+        0 => 'PHPStan\\Rules\\Comparison\\ImpossibleCheckTypeStaticMethodCallRule',
+        1 => 'App\\Http\\Controllers\\Concerns\\AuthResponses',
+        2 => '\\App\\Support\\ApiResponse::error(\'INVALID_CREDENTIALS\', \'Invalid credentials.\', [], 401):22',
+        3 => NULL,
+      ),
+      1 => 
+      array (
+        0 => 'PHPStan\\Rules\\Comparison\\ImpossibleCheckTypeStaticMethodCallRule',
+        1 => 'App\\Http\\Controllers\\Concerns\\AuthResponses',
+        2 => '\\App\\Support\\ApiResponse::error(\'ACCOUNT_LOCKED\', \'Your account is temporarily locked due to multiple failed login attempts. Please try again later.\', [], 423):31',
+        3 => NULL,
+      ),
+      2 => 
+      array (
+        0 => 'PHPStan\\Rules\\Comparison\\IfConstantConditionRule',
+        1 => 'App\\Http\\Controllers\\Concerns\\AuthResponses',
+        2 => '$user->locked_until !== null:38',
+        3 => NULL,
+      ),
+      3 => 
+      array (
+        0 => 'PHPStan\\Rules\\Comparison\\StrictComparisonOfDifferentTypesRule',
+        1 => 'App\\Http\\Controllers\\Concerns\\AuthResponses',
+        2 => '$user->locked_until !== null:38',
+        3 => NULL,
+      ),
+      4 => 
+      array (
+        0 => 'PHPStan\\Rules\\Comparison\\ImpossibleCheckTypeFunctionCallRule',
+        1 => 'App\\Http\\Controllers\\Concerns\\AuthResponses',
+        2 => 'max(0, $user->locked_until->getTimestamp() - now()->getTimestamp()):39',
+        3 => NULL,
+      ),
+      5 => 
+      array (
+        0 => 'PHPStan\\Rules\\Comparison\\ImpossibleCheckTypeMethodCallRule',
+        1 => 'App\\Http\\Controllers\\Concerns\\AuthResponses',
+        2 => '$user->locked_until->getTimestamp():39',
+        3 => NULL,
+      ),
+      6 => 
+      array (
+        0 => 'PHPStan\\Rules\\Comparison\\ImpossibleCheckTypeMethodCallRule',
+        1 => 'App\\Http\\Controllers\\Concerns\\AuthResponses',
+        2 => 'now()->getTimestamp():39',
+        3 => NULL,
+      ),
+      7 => 
+      array (
+        0 => 'PHPStan\\Rules\\Comparison\\ImpossibleCheckTypeFunctionCallRule',
+        1 => 'App\\Http\\Controllers\\Concerns\\AuthResponses',
+        2 => 'now():39',
+        3 => NULL,
+      ),
+      8 => 
+      array (
+        0 => 'PHPStan\\Rules\\Comparison\\ImpossibleCheckTypeMethodCallRule',
+        1 => 'App\\Http\\Controllers\\Concerns\\AuthResponses',
+        2 => '$response->headers->set(\'Retry-After\', (string) $retryAfter):40',
+        3 => NULL,
+      ),
+    ),
+    'PHPStan\\Rules\\DeadCode\\ConstructorWithoutImpurePointsCollector' => 
+    array (
+      0 => 
+      array (
+        0 => 'App\\Http\\Controllers\\Api\\V1\\MfaController',
+        1 => 
+        array (
+        ),
+      ),
+    ),
+    'PHPStan\\Rules\\DeadCode\\MethodWithoutImpurePointsCollector' => 
+    array (
+      0 => 
+      array (
+        0 => 'App\\Http\\Controllers\\Api\\V1\\MfaController',
+        1 => 'invalidCredentials',
+        2 => 'App\\Http\\Controllers\\Api\\V1\\MfaController',
+        3 => 
+        array (
+          0 => 'm' . "\0" . 'app\\support\\apiresponse' . "\0" . 'error',
+        ),
+      ),
+    ),
+    'PHPStan\\Rules\\DeadCode\\PossiblyPureStaticCallCollector' => 
+    array (
+      0 => 
+      array (
+        0 => 'App\\Domain\\Access\\Events\\MfaEnrolled',
+        1 => 'dispatch',
+        2 => 78,
+      ),
+      1 => 
+      array (
+        0 => 'App\\Domain\\Access\\Events\\MfaDisabled',
+        1 => 'dispatch',
+        2 => 117,
+      ),
+      2 => 
+      array (
+        0 => 'App\\Domain\\Access\\Events\\MfaChallengeFailed',
+        1 => 'dispatch',
+        2 => 136,
+      ),
+      3 => 
+      array (
+        0 => 'App\\Domain\\Access\\Events\\AccountLocked',
+        1 => 'dispatch',
+        2 => 139,
+      ),
+    ),
+    'PHPStan\\Rules\\Traits\\TraitUseCollector' => 
+    array (
+      0 => 
+      array (
+        0 => 'App\\Http\\Controllers\\Concerns\\AuthResponses',
+      ),
+    ),
+  ),
+  '/var/www/html/app/Http/Controllers/Concerns/AuthResponses.php' => 
+  array (
+    'PHPStan\\Rules\\Traits\\TraitDeclarationCollector' => 
+    array (
+      0 => 
+      array (
+        0 => 'App\\Http\\Controllers\\Concerns\\AuthResponses',
+        1 => 14,
+      ),
+    ),
+  ),
+  '/var/www/html/app/Http/Middleware/AssignCorrelationId.php' => 
+  array (
+    'PHPStan\\Rules\\DeadCode\\MethodWithoutImpurePointsCollector' => 
+    array (
+      0 => 
+      array (
+        0 => 'App\\Http\\Middleware\\AssignCorrelationId',
+        1 => 'normalize',
+        2 => 'App\\Http\\Middleware\\AssignCorrelationId',
+        3 => 
+        array (
+          0 => 'm' . "\0" . 'illuminate\\support\\str' . "\0" . 'isuuid',
+        ),
+      ),
+    ),
+  ),
+  '/var/www/html/app/Http/Requests/Access/Concerns/ValidatesUserAssignment.php' => 
+  array (
+    'PHPStan\\Rules\\Traits\\TraitDeclarationCollector' => 
+    array (
+      0 => 
+      array (
+        0 => 'App\\Http\\Requests\\Access\\Concerns\\ValidatesUserAssignment',
+        1 => 16,
+      ),
+    ),
+  ),
+  '/var/www/html/app/Http/Requests/Access/StoreMdaRequest.php' => 
+  array (
+    'PHPStan\\Rules\\DeadCode\\MethodWithoutImpurePointsCollector' => 
+    array (
+      0 => 
+      array (
+        0 => 'App\\Http\\Requests\\Access\\StoreMdaRequest',
+        1 => 'rules',
+        2 => 'App\\Http\\Requests\\Access\\StoreMdaRequest',
+        3 => 
+        array (
+          0 => 'm' . "\0" . 'illuminate\\validation\\rule' . "\0" . 'unique',
+          1 => 'm' . "\0" . 'illuminate\\validation\\rule' . "\0" . 'enum',
+        ),
+      ),
+    ),
+  ),
+  '/var/www/html/app/Http/Requests/Access/StoreUserRequest.php' => 
+  array (
+    'PHPStan\\Rules\\Comparison\\ConstantConditionInTraitCollector' => 
+    array (
+      0 => 
+      array (
+        0 => 'PHPStan\\Rules\\Comparison\\ImpossibleCheckTypeMethodCallRule',
+        1 => 'App\\Http\\Requests\\Access\\Concerns\\ValidatesUserAssignment',
+        2 => '$this->user():21',
+        3 => NULL,
+      ),
+      1 => 
+      array (
+        0 => 'PHPStan\\Rules\\Comparison\\IfConstantConditionRule',
+        1 => 'App\\Http\\Requests\\Access\\Concerns\\ValidatesUserAssignment',
+        2 => '$value === null || $actor === null || $actor->canAccessAllMdas():23',
+        3 => NULL,
+      ),
+      2 => 
+      array (
+        0 => 'PHPStan\\Rules\\Comparison\\StrictComparisonOfDifferentTypesRule',
+        1 => 'App\\Http\\Requests\\Access\\Concerns\\ValidatesUserAssignment',
+        2 => '$value === null:23',
+        3 => NULL,
+      ),
+      3 => 
+      array (
+        0 => 'PHPStan\\Rules\\Comparison\\StrictComparisonOfDifferentTypesRule',
+        1 => 'App\\Http\\Requests\\Access\\Concerns\\ValidatesUserAssignment',
+        2 => '$actor === null:23',
+        3 => NULL,
+      ),
+      4 => 
+      array (
+        0 => 'PHPStan\\Rules\\Comparison\\BooleanOrConstantConditionRule',
+        1 => 'App\\Http\\Requests\\Access\\Concerns\\ValidatesUserAssignment',
+        2 => '$value === null:23',
+        3 => NULL,
+      ),
+      5 => 
+      array (
+        0 => 'PHPStan\\Rules\\Comparison\\BooleanOrConstantConditionRule',
+        1 => 'App\\Http\\Requests\\Access\\Concerns\\ValidatesUserAssignment',
+        2 => '$actor === null:23',
+        3 => NULL,
+      ),
+      6 => 
+      array (
+        0 => 'PHPStan\\Rules\\Comparison\\BooleanOrConstantConditionRule',
+        1 => 'App\\Http\\Requests\\Access\\Concerns\\ValidatesUserAssignment',
+        2 => '$value === null || $actor === null:23',
+        3 => NULL,
+      ),
+      7 => 
+      array (
+        0 => 'PHPStan\\Rules\\Comparison\\ImpossibleCheckTypeMethodCallRule',
+        1 => 'App\\Http\\Requests\\Access\\Concerns\\ValidatesUserAssignment',
+        2 => '$actor->canAccessAllMdas():23',
+        3 => NULL,
+      ),
+      8 => 
+      array (
+        0 => 'PHPStan\\Rules\\Comparison\\BooleanOrConstantConditionRule',
+        1 => 'App\\Http\\Requests\\Access\\Concerns\\ValidatesUserAssignment',
+        2 => '$value === null || $actor === null:23',
+        3 => NULL,
+      ),
+      9 => 
+      array (
+        0 => 'PHPStan\\Rules\\Comparison\\BooleanOrConstantConditionRule',
+        1 => 'App\\Http\\Requests\\Access\\Concerns\\ValidatesUserAssignment',
+        2 => '$actor->canAccessAllMdas():23',
+        3 => NULL,
+      ),
+      10 => 
+      array (
+        0 => 'PHPStan\\Rules\\Comparison\\BooleanOrConstantConditionRule',
+        1 => 'App\\Http\\Requests\\Access\\Concerns\\ValidatesUserAssignment',
+        2 => '$value === null || $actor === null || $actor->canAccessAllMdas():23',
+        3 => NULL,
+      ),
+      11 => 
+      array (
+        0 => 'PHPStan\\Rules\\Comparison\\IfConstantConditionRule',
+        1 => 'App\\Http\\Requests\\Access\\Concerns\\ValidatesUserAssignment',
+        2 => '!in_array($value, $actor->accessibleMdaIds(), true):27',
+        3 => NULL,
+      ),
+      12 => 
+      array (
+        0 => 'PHPStan\\Rules\\Comparison\\ImpossibleCheckTypeMethodCallRule',
+        1 => 'App\\Http\\Requests\\Access\\Concerns\\ValidatesUserAssignment',
+        2 => '$actor->accessibleMdaIds():27',
+        3 => NULL,
+      ),
+      13 => 
+      array (
+        0 => 'PHPStan\\Rules\\Comparison\\BooleanNotConstantConditionRule',
+        1 => 'App\\Http\\Requests\\Access\\Concerns\\ValidatesUserAssignment',
+        2 => 'in_array($value, $actor->accessibleMdaIds(), true):27',
+        3 => NULL,
+      ),
+      14 => 
+      array (
+        0 => 'PHPStan\\Rules\\Comparison\\ImpossibleCheckTypeFunctionCallRule',
+        1 => 'App\\Http\\Requests\\Access\\Concerns\\ValidatesUserAssignment',
+        2 => 'in_array($value, $actor->accessibleMdaIds(), true):27',
+        3 => NULL,
+      ),
+      15 => 
+      array (
+        0 => 'PHPStan\\Rules\\Comparison\\ImpossibleCheckTypeMethodCallRule',
+        1 => 'App\\Http\\Requests\\Access\\Concerns\\ValidatesUserAssignment',
+        2 => '$this->user():36',
+        3 => NULL,
+      ),
+      16 => 
+      array (
+        0 => 'PHPStan\\Rules\\Comparison\\IfConstantConditionRule',
+        1 => 'App\\Http\\Requests\\Access\\Concerns\\ValidatesUserAssignment',
+        2 => '$actor === null || $actor->canAccessAllMdas():38',
+        3 => NULL,
+      ),
+      17 => 
+      array (
+        0 => 'PHPStan\\Rules\\Comparison\\StrictComparisonOfDifferentTypesRule',
+        1 => 'App\\Http\\Requests\\Access\\Concerns\\ValidatesUserAssignment',
+        2 => '$actor === null:38',
+        3 => NULL,
+      ),
+      18 => 
+      array (
+        0 => 'PHPStan\\Rules\\Comparison\\ImpossibleCheckTypeMethodCallRule',
+        1 => 'App\\Http\\Requests\\Access\\Concerns\\ValidatesUserAssignment',
+        2 => '$actor->canAccessAllMdas():38',
+        3 => NULL,
+      ),
+      19 => 
+      array (
+        0 => 'PHPStan\\Rules\\Comparison\\BooleanOrConstantConditionRule',
+        1 => 'App\\Http\\Requests\\Access\\Concerns\\ValidatesUserAssignment',
+        2 => '$actor === null:38',
+        3 => NULL,
+      ),
+      20 => 
+      array (
+        0 => 'PHPStan\\Rules\\Comparison\\BooleanOrConstantConditionRule',
+        1 => 'App\\Http\\Requests\\Access\\Concerns\\ValidatesUserAssignment',
+        2 => '$actor->canAccessAllMdas():38',
+        3 => NULL,
+      ),
+      21 => 
+      array (
+        0 => 'PHPStan\\Rules\\Comparison\\BooleanOrConstantConditionRule',
+        1 => 'App\\Http\\Requests\\Access\\Concerns\\ValidatesUserAssignment',
+        2 => '$actor === null || $actor->canAccessAllMdas():38',
+        3 => NULL,
+      ),
+      22 => 
+      array (
+        0 => 'PHPStan\\Rules\\Comparison\\ImpossibleCheckTypeStaticMethodCallRule',
+        1 => 'App\\Http\\Requests\\Access\\Concerns\\ValidatesUserAssignment',
+        2 => '\\App\\Domain\\Access\\Models\\Role::with(\'permissions\'):42',
+        3 => NULL,
+      ),
+      23 => 
+      array (
+        0 => 'PHPStan\\Rules\\Comparison\\ImpossibleCheckTypeMethodCallRule',
+        1 => 'App\\Http\\Requests\\Access\\Concerns\\ValidatesUserAssignment',
+        2 => '\\App\\Domain\\Access\\Models\\Role::with(\'permissions\')->find($value):42',
+        3 => NULL,
+      ),
+      24 => 
+      array (
+        0 => 'PHPStan\\Rules\\Comparison\\IfConstantConditionRule',
+        1 => 'App\\Http\\Requests\\Access\\Concerns\\ValidatesUserAssignment',
+        2 => '$role === null:44',
+        3 => NULL,
+      ),
+      25 => 
+      array (
+        0 => 'PHPStan\\Rules\\Comparison\\StrictComparisonOfDifferentTypesRule',
+        1 => 'App\\Http\\Requests\\Access\\Concerns\\ValidatesUserAssignment',
+        2 => '$role === null:44',
+        3 => NULL,
+      ),
+      26 => 
+      array (
+        0 => 'PHPStan\\Rules\\Comparison\\ImpossibleCheckTypeFunctionCallRule',
+        1 => 'App\\Http\\Requests\\Access\\Concerns\\ValidatesUserAssignment',
+        2 => 'array_diff($role->permissions->pluck(\'key\')->all(), $actor->permissionKeys()):48',
+        3 => NULL,
+      ),
+      27 => 
+      array (
+        0 => 'PHPStan\\Rules\\Comparison\\ImpossibleCheckTypeMethodCallRule',
+        1 => 'App\\Http\\Requests\\Access\\Concerns\\ValidatesUserAssignment',
+        2 => '$role->permissions->pluck(\'key\')->all():49',
+        3 => NULL,
+      ),
+      28 => 
+      array (
+        0 => 'PHPStan\\Rules\\Comparison\\ImpossibleCheckTypeMethodCallRule',
+        1 => 'App\\Http\\Requests\\Access\\Concerns\\ValidatesUserAssignment',
+        2 => '$role->permissions->pluck(\'key\'):49',
+        3 => NULL,
+      ),
+      29 => 
+      array (
+        0 => 'PHPStan\\Rules\\Comparison\\ImpossibleCheckTypeMethodCallRule',
+        1 => 'App\\Http\\Requests\\Access\\Concerns\\ValidatesUserAssignment',
+        2 => '$actor->permissionKeys():50',
+        3 => NULL,
+      ),
+      30 => 
+      array (
+        0 => 'PHPStan\\Rules\\Comparison\\IfConstantConditionRule',
+        1 => 'App\\Http\\Requests\\Access\\Concerns\\ValidatesUserAssignment',
+        2 => '$extraPermissions !== []:53',
+        3 => NULL,
+      ),
+      31 => 
+      array (
+        0 => 'PHPStan\\Rules\\Comparison\\StrictComparisonOfDifferentTypesRule',
+        1 => 'App\\Http\\Requests\\Access\\Concerns\\ValidatesUserAssignment',
+        2 => '$extraPermissions !== []:53',
+        3 => NULL,
+      ),
+    ),
+    'PHPStan\\Rules\\DeadCode\\MethodWithoutImpurePointsCollector' => 
+    array (
+      0 => 
+      array (
+        0 => 'App\\Http\\Requests\\Access\\StoreUserRequest',
+        1 => 'accessibleMdaRule',
+        2 => 'App\\Http\\Requests\\Access\\StoreUserRequest',
+        3 => 
+        array (
+        ),
+      ),
+      1 => 
+      array (
+        0 => 'App\\Http\\Requests\\Access\\StoreUserRequest',
+        1 => 'assignableRoleRule',
+        2 => 'App\\Http\\Requests\\Access\\StoreUserRequest',
+        3 => 
+        array (
+        ),
+      ),
+    ),
+    'PHPStan\\Rules\\Traits\\TraitUseCollector' => 
+    array (
+      0 => 
+      array (
+        0 => 'App\\Http\\Requests\\Access\\Concerns\\ValidatesUserAssignment',
+      ),
+    ),
+  ),
+  '/var/www/html/app/Http/Requests/Access/UpdateUserRequest.php' => 
+  array (
+    'PHPStan\\Rules\\Comparison\\ConstantConditionInTraitCollector' => 
+    array (
+      0 => 
+      array (
+        0 => 'PHPStan\\Rules\\Comparison\\ImpossibleCheckTypeMethodCallRule',
+        1 => 'App\\Http\\Requests\\Access\\Concerns\\ValidatesUserAssignment',
+        2 => '$this->user():21',
+        3 => NULL,
+      ),
+      1 => 
+      array (
+        0 => 'PHPStan\\Rules\\Comparison\\IfConstantConditionRule',
+        1 => 'App\\Http\\Requests\\Access\\Concerns\\ValidatesUserAssignment',
+        2 => '$value === null || $actor === null || $actor->canAccessAllMdas():23',
+        3 => NULL,
+      ),
+      2 => 
+      array (
+        0 => 'PHPStan\\Rules\\Comparison\\StrictComparisonOfDifferentTypesRule',
+        1 => 'App\\Http\\Requests\\Access\\Concerns\\ValidatesUserAssignment',
+        2 => '$value === null:23',
+        3 => NULL,
+      ),
+      3 => 
+      array (
+        0 => 'PHPStan\\Rules\\Comparison\\StrictComparisonOfDifferentTypesRule',
+        1 => 'App\\Http\\Requests\\Access\\Concerns\\ValidatesUserAssignment',
+        2 => '$actor === null:23',
+        3 => NULL,
+      ),
+      4 => 
+      array (
+        0 => 'PHPStan\\Rules\\Comparison\\BooleanOrConstantConditionRule',
+        1 => 'App\\Http\\Requests\\Access\\Concerns\\ValidatesUserAssignment',
+        2 => '$value === null:23',
+        3 => NULL,
+      ),
+      5 => 
+      array (
+        0 => 'PHPStan\\Rules\\Comparison\\BooleanOrConstantConditionRule',
+        1 => 'App\\Http\\Requests\\Access\\Concerns\\ValidatesUserAssignment',
+        2 => '$actor === null:23',
+        3 => NULL,
+      ),
+      6 => 
+      array (
+        0 => 'PHPStan\\Rules\\Comparison\\BooleanOrConstantConditionRule',
+        1 => 'App\\Http\\Requests\\Access\\Concerns\\ValidatesUserAssignment',
+        2 => '$value === null || $actor === null:23',
+        3 => NULL,
+      ),
+      7 => 
+      array (
+        0 => 'PHPStan\\Rules\\Comparison\\ImpossibleCheckTypeMethodCallRule',
+        1 => 'App\\Http\\Requests\\Access\\Concerns\\ValidatesUserAssignment',
+        2 => '$actor->canAccessAllMdas():23',
+        3 => NULL,
+      ),
+      8 => 
+      array (
+        0 => 'PHPStan\\Rules\\Comparison\\BooleanOrConstantConditionRule',
+        1 => 'App\\Http\\Requests\\Access\\Concerns\\ValidatesUserAssignment',
+        2 => '$value === null || $actor === null:23',
+        3 => NULL,
+      ),
+      9 => 
+      array (
+        0 => 'PHPStan\\Rules\\Comparison\\BooleanOrConstantConditionRule',
+        1 => 'App\\Http\\Requests\\Access\\Concerns\\ValidatesUserAssignment',
+        2 => '$actor->canAccessAllMdas():23',
+        3 => NULL,
+      ),
+      10 => 
+      array (
+        0 => 'PHPStan\\Rules\\Comparison\\BooleanOrConstantConditionRule',
+        1 => 'App\\Http\\Requests\\Access\\Concerns\\ValidatesUserAssignment',
+        2 => '$value === null || $actor === null || $actor->canAccessAllMdas():23',
+        3 => NULL,
+      ),
+      11 => 
+      array (
+        0 => 'PHPStan\\Rules\\Comparison\\IfConstantConditionRule',
+        1 => 'App\\Http\\Requests\\Access\\Concerns\\ValidatesUserAssignment',
+        2 => '!in_array($value, $actor->accessibleMdaIds(), true):27',
+        3 => NULL,
+      ),
+      12 => 
+      array (
+        0 => 'PHPStan\\Rules\\Comparison\\ImpossibleCheckTypeMethodCallRule',
+        1 => 'App\\Http\\Requests\\Access\\Concerns\\ValidatesUserAssignment',
+        2 => '$actor->accessibleMdaIds():27',
+        3 => NULL,
+      ),
+      13 => 
+      array (
+        0 => 'PHPStan\\Rules\\Comparison\\BooleanNotConstantConditionRule',
+        1 => 'App\\Http\\Requests\\Access\\Concerns\\ValidatesUserAssignment',
+        2 => 'in_array($value, $actor->accessibleMdaIds(), true):27',
+        3 => NULL,
+      ),
+      14 => 
+      array (
+        0 => 'PHPStan\\Rules\\Comparison\\ImpossibleCheckTypeFunctionCallRule',
+        1 => 'App\\Http\\Requests\\Access\\Concerns\\ValidatesUserAssignment',
+        2 => 'in_array($value, $actor->accessibleMdaIds(), true):27',
+        3 => NULL,
+      ),
+      15 => 
+      array (
+        0 => 'PHPStan\\Rules\\Comparison\\ImpossibleCheckTypeMethodCallRule',
+        1 => 'App\\Http\\Requests\\Access\\Concerns\\ValidatesUserAssignment',
+        2 => '$this->user():36',
+        3 => NULL,
+      ),
+      16 => 
+      array (
+        0 => 'PHPStan\\Rules\\Comparison\\IfConstantConditionRule',
+        1 => 'App\\Http\\Requests\\Access\\Concerns\\ValidatesUserAssignment',
+        2 => '$actor === null || $actor->canAccessAllMdas():38',
+        3 => NULL,
+      ),
+      17 => 
+      array (
+        0 => 'PHPStan\\Rules\\Comparison\\StrictComparisonOfDifferentTypesRule',
+        1 => 'App\\Http\\Requests\\Access\\Concerns\\ValidatesUserAssignment',
+        2 => '$actor === null:38',
+        3 => NULL,
+      ),
+      18 => 
+      array (
+        0 => 'PHPStan\\Rules\\Comparison\\ImpossibleCheckTypeMethodCallRule',
+        1 => 'App\\Http\\Requests\\Access\\Concerns\\ValidatesUserAssignment',
+        2 => '$actor->canAccessAllMdas():38',
+        3 => NULL,
+      ),
+      19 => 
+      array (
+        0 => 'PHPStan\\Rules\\Comparison\\BooleanOrConstantConditionRule',
+        1 => 'App\\Http\\Requests\\Access\\Concerns\\ValidatesUserAssignment',
+        2 => '$actor === null:38',
+        3 => NULL,
+      ),
+      20 => 
+      array (
+        0 => 'PHPStan\\Rules\\Comparison\\BooleanOrConstantConditionRule',
+        1 => 'App\\Http\\Requests\\Access\\Concerns\\ValidatesUserAssignment',
+        2 => '$actor->canAccessAllMdas():38',
+        3 => NULL,
+      ),
+      21 => 
+      array (
+        0 => 'PHPStan\\Rules\\Comparison\\BooleanOrConstantConditionRule',
+        1 => 'App\\Http\\Requests\\Access\\Concerns\\ValidatesUserAssignment',
+        2 => '$actor === null || $actor->canAccessAllMdas():38',
+        3 => NULL,
+      ),
+      22 => 
+      array (
+        0 => 'PHPStan\\Rules\\Comparison\\ImpossibleCheckTypeStaticMethodCallRule',
+        1 => 'App\\Http\\Requests\\Access\\Concerns\\ValidatesUserAssignment',
+        2 => '\\App\\Domain\\Access\\Models\\Role::with(\'permissions\'):42',
+        3 => NULL,
+      ),
+      23 => 
+      array (
+        0 => 'PHPStan\\Rules\\Comparison\\ImpossibleCheckTypeMethodCallRule',
+        1 => 'App\\Http\\Requests\\Access\\Concerns\\ValidatesUserAssignment',
+        2 => '\\App\\Domain\\Access\\Models\\Role::with(\'permissions\')->find($value):42',
+        3 => NULL,
+      ),
+      24 => 
+      array (
+        0 => 'PHPStan\\Rules\\Comparison\\IfConstantConditionRule',
+        1 => 'App\\Http\\Requests\\Access\\Concerns\\ValidatesUserAssignment',
+        2 => '$role === null:44',
+        3 => NULL,
+      ),
+      25 => 
+      array (
+        0 => 'PHPStan\\Rules\\Comparison\\StrictComparisonOfDifferentTypesRule',
+        1 => 'App\\Http\\Requests\\Access\\Concerns\\ValidatesUserAssignment',
+        2 => '$role === null:44',
+        3 => NULL,
+      ),
+      26 => 
+      array (
+        0 => 'PHPStan\\Rules\\Comparison\\ImpossibleCheckTypeFunctionCallRule',
+        1 => 'App\\Http\\Requests\\Access\\Concerns\\ValidatesUserAssignment',
+        2 => 'array_diff($role->permissions->pluck(\'key\')->all(), $actor->permissionKeys()):48',
+        3 => NULL,
+      ),
+      27 => 
+      array (
+        0 => 'PHPStan\\Rules\\Comparison\\ImpossibleCheckTypeMethodCallRule',
+        1 => 'App\\Http\\Requests\\Access\\Concerns\\ValidatesUserAssignment',
+        2 => '$role->permissions->pluck(\'key\')->all():49',
+        3 => NULL,
+      ),
+      28 => 
+      array (
+        0 => 'PHPStan\\Rules\\Comparison\\ImpossibleCheckTypeMethodCallRule',
+        1 => 'App\\Http\\Requests\\Access\\Concerns\\ValidatesUserAssignment',
+        2 => '$role->permissions->pluck(\'key\'):49',
+        3 => NULL,
+      ),
+      29 => 
+      array (
+        0 => 'PHPStan\\Rules\\Comparison\\ImpossibleCheckTypeMethodCallRule',
+        1 => 'App\\Http\\Requests\\Access\\Concerns\\ValidatesUserAssignment',
+        2 => '$actor->permissionKeys():50',
+        3 => NULL,
+      ),
+      30 => 
+      array (
+        0 => 'PHPStan\\Rules\\Comparison\\IfConstantConditionRule',
+        1 => 'App\\Http\\Requests\\Access\\Concerns\\ValidatesUserAssignment',
+        2 => '$extraPermissions !== []:53',
+        3 => NULL,
+      ),
+      31 => 
+      array (
+        0 => 'PHPStan\\Rules\\Comparison\\StrictComparisonOfDifferentTypesRule',
+        1 => 'App\\Http\\Requests\\Access\\Concerns\\ValidatesUserAssignment',
+        2 => '$extraPermissions !== []:53',
+        3 => NULL,
+      ),
+    ),
+    'PHPStan\\Rules\\DeadCode\\MethodWithoutImpurePointsCollector' => 
+    array (
+      0 => 
+      array (
+        0 => 'App\\Http\\Requests\\Access\\UpdateUserRequest',
+        1 => 'accessibleMdaRule',
+        2 => 'App\\Http\\Requests\\Access\\UpdateUserRequest',
+        3 => 
+        array (
+        ),
+      ),
+      1 => 
+      array (
+        0 => 'App\\Http\\Requests\\Access\\UpdateUserRequest',
+        1 => 'assignableRoleRule',
+        2 => 'App\\Http\\Requests\\Access\\UpdateUserRequest',
+        3 => 
+        array (
+        ),
+      ),
+    ),
+    'PHPStan\\Rules\\Traits\\TraitUseCollector' => 
+    array (
+      0 => 
+      array (
+        0 => 'App\\Http\\Requests\\Access\\Concerns\\ValidatesUserAssignment',
+      ),
+    ),
+  ),
+  '/var/www/html/app/Http/Requests/Auth/ChangePasswordRequest.php' => 
+  array (
+    'PHPStan\\Rules\\DeadCode\\MethodWithoutImpurePointsCollector' => 
+    array (
+      0 => 
+      array (
+        0 => 'App\\Http\\Requests\\Auth\\ChangePasswordRequest',
+        1 => 'rules',
+        2 => 'App\\Http\\Requests\\Auth\\ChangePasswordRequest',
+        3 => 
+        array (
+          0 => 'm' . "\0" . 'app\\domain\\access\\support\\passwordrules' . "\0" . 'default',
+        ),
+      ),
+      1 => 
+      array (
+        0 => 'App\\Http\\Requests\\Auth\\ChangePasswordRequest',
+        1 => 'messages',
+        2 => 'App\\Http\\Requests\\Auth\\ChangePasswordRequest',
+        3 => 
+        array (
+        ),
+      ),
+    ),
+  ),
+  '/var/www/html/app/Http/Requests/Auth/LoginRequest.php' => 
+  array (
+    'PHPStan\\Rules\\DeadCode\\MethodWithoutImpurePointsCollector' => 
+    array (
+      0 => 
+      array (
+        0 => 'App\\Http\\Requests\\Auth\\LoginRequest',
+        1 => 'authorize',
+        2 => 'App\\Http\\Requests\\Auth\\LoginRequest',
+        3 => 
+        array (
+        ),
+      ),
+      1 => 
+      array (
+        0 => 'App\\Http\\Requests\\Auth\\LoginRequest',
+        1 => 'rules',
+        2 => 'App\\Http\\Requests\\Auth\\LoginRequest',
+        3 => 
+        array (
+        ),
+      ),
+    ),
+  ),
+  '/var/www/html/app/Http/Requests/Auth/MfaCodeRequest.php' => 
+  array (
+    'PHPStan\\Rules\\DeadCode\\MethodWithoutImpurePointsCollector' => 
+    array (
+      0 => 
+      array (
+        0 => 'App\\Http\\Requests\\Auth\\MfaCodeRequest',
+        1 => 'rules',
+        2 => 'App\\Http\\Requests\\Auth\\MfaCodeRequest',
+        3 => 
+        array (
+        ),
+      ),
+    ),
+  ),
+  '/var/www/html/app/Providers/AppServiceProvider.php' => 
+  array (
+    'PHPStan\\Rules\\DeadCode\\PossiblyPureStaticCallCollector' => 
+    array (
+      0 => 
+      array (
+        0 => 'Illuminate\\Support\\Facades\\RateLimiter',
+        1 => 'for',
+        2 => 42,
+      ),
+      1 => 
+      array (
+        0 => 'Illuminate\\Support\\Facades\\RateLimiter',
+        1 => 'for',
+        2 => 50,
+      ),
+    ),
+  ),
+); },
+	'dependencies' => array (
+  '/var/www/html/app/Console/Commands/SyncPermissions.php' => 
+  array (
+    'fileHash' => 'a15ce2880d7eee73801a299afa2d9b17692d99829027828c517350963cffe228',
+    'dependentFiles' => 
+    array (
+    ),
+  ),
+  '/var/www/html/app/Domain/Access/AccessServiceProvider.php' => 
+  array (
+    'fileHash' => 'b8f8c5900bc2153886950a36d8a699e521d1b2978759e6dfa6440116e0d8f420',
+    'dependentFiles' => 
+    array (
+    ),
+  ),
+  '/var/www/html/app/Domain/Access/Concerns/MdaScoped.php' => 
+  array (
+    'fileHash' => '2fadd691a2db6e606382ae75b14bc56fb148c7f30cb6627c117f29e986254836',
+    'dependentFiles' => 
+    array (
+      0 => '/var/www/html/app/Domain/Access/AccessServiceProvider.php',
+      1 => '/var/www/html/app/Domain/Access/Events/AccountLocked.php',
+      2 => '/var/www/html/app/Domain/Access/Events/CrossMdaAccessGranted.php',
+      3 => '/var/www/html/app/Domain/Access/Events/CrossMdaAccessRevoked.php',
+      4 => '/var/www/html/app/Domain/Access/Events/MfaChallengeFailed.php',
+      5 => '/var/www/html/app/Domain/Access/Events/MfaDisabled.php',
+      6 => '/var/www/html/app/Domain/Access/Events/MfaEnrolled.php',
+      7 => '/var/www/html/app/Domain/Access/Models/Mda.php',
+      8 => '/var/www/html/app/Domain/Access/Models/MdaAccessGrant.php',
+      9 => '/var/www/html/app/Domain/Access/Models/User.php',
+      10 => '/var/www/html/app/Domain/Access/Scopes/MdaScope.php',
+      11 => '/var/www/html/app/Domain/Access/Services/AuthTokenIssuer.php',
+      12 => '/var/www/html/app/Domain/Audit/Listeners/AuditEventSubscriber.php',
+      13 => '/var/www/html/app/Domain/Audit/Services/AuditLogger.php',
+      14 => '/var/www/html/app/Domain/Registry/Models/Beneficiary.php',
+      15 => '/var/www/html/app/Domain/Registry/Models/Household.php',
+      16 => '/var/www/html/app/Domain/Registry/Models/HouseholdMembership.php',
+      17 => '/var/www/html/app/Http/Controllers/Api/V1/Access/MdaAccessGrantController.php',
+      18 => '/var/www/html/app/Http/Controllers/Api/V1/Access/MdaController.php',
+      19 => '/var/www/html/app/Http/Controllers/Api/V1/Access/UserController.php',
+      20 => '/var/www/html/app/Http/Controllers/Api/V1/AuthController.php',
+      21 => '/var/www/html/app/Http/Controllers/Api/V1/MfaController.php',
+      22 => '/var/www/html/app/Http/Middleware/CheckPermission.php',
+      23 => '/var/www/html/app/Http/Requests/Access/StoreMdaAccessGrantRequest.php',
+      24 => '/var/www/html/app/Http/Requests/Access/StoreMdaRequest.php',
+      25 => '/var/www/html/app/Http/Requests/Access/StoreUserRequest.php',
+      26 => '/var/www/html/app/Http/Requests/Access/UpdateMdaRequest.php',
+      27 => '/var/www/html/app/Http/Requests/Access/UpdateUserRequest.php',
+      28 => '/var/www/html/app/Http/Requests/Auth/ChangePasswordRequest.php',
+      29 => '/var/www/html/app/Http/Requests/Auth/MfaCodeRequest.php',
+      30 => '/var/www/html/app/Http/Resources/MdaResource.php',
+      31 => '/var/www/html/app/Http/Resources/UserResource.php',
+      32 => '/var/www/html/app/Providers/AppServiceProvider.php',
+    ),
+  ),
+  '/var/www/html/app/Domain/Access/Concerns/ScopedToMda.php' => 
+  array (
+    'fileHash' => '71fc767929ce4cf3fedf8bf8371e29b9fd1102308666d911286f798b453ab3b6',
+    'dependentFiles' => 
+    array (
+      0 => '/var/www/html/app/Domain/Access/AccessServiceProvider.php',
+      1 => '/var/www/html/app/Domain/Access/Events/AccountLocked.php',
+      2 => '/var/www/html/app/Domain/Access/Events/CrossMdaAccessGranted.php',
+      3 => '/var/www/html/app/Domain/Access/Events/CrossMdaAccessRevoked.php',
+      4 => '/var/www/html/app/Domain/Access/Events/MfaChallengeFailed.php',
+      5 => '/var/www/html/app/Domain/Access/Events/MfaDisabled.php',
+      6 => '/var/www/html/app/Domain/Access/Events/MfaEnrolled.php',
+      7 => '/var/www/html/app/Domain/Access/Models/Mda.php',
+      8 => '/var/www/html/app/Domain/Access/Models/MdaAccessGrant.php',
+      9 => '/var/www/html/app/Domain/Access/Models/User.php',
+      10 => '/var/www/html/app/Domain/Access/Scopes/MdaScope.php',
+      11 => '/var/www/html/app/Domain/Access/Services/AuthTokenIssuer.php',
+      12 => '/var/www/html/app/Domain/Audit/Listeners/AuditEventSubscriber.php',
+      13 => '/var/www/html/app/Domain/Audit/Services/AuditLogger.php',
+      14 => '/var/www/html/app/Domain/Registry/Models/Beneficiary.php',
+      15 => '/var/www/html/app/Domain/Registry/Models/Household.php',
+      16 => '/var/www/html/app/Domain/Registry/Models/HouseholdMembership.php',
+      17 => '/var/www/html/app/Http/Controllers/Api/V1/Access/MdaAccessGrantController.php',
+      18 => '/var/www/html/app/Http/Controllers/Api/V1/Access/MdaController.php',
+      19 => '/var/www/html/app/Http/Controllers/Api/V1/Access/UserController.php',
+      20 => '/var/www/html/app/Http/Controllers/Api/V1/AuthController.php',
+      21 => '/var/www/html/app/Http/Controllers/Api/V1/MfaController.php',
+      22 => '/var/www/html/app/Http/Middleware/CheckPermission.php',
+      23 => '/var/www/html/app/Http/Requests/Access/StoreMdaAccessGrantRequest.php',
+      24 => '/var/www/html/app/Http/Requests/Access/StoreMdaRequest.php',
+      25 => '/var/www/html/app/Http/Requests/Access/StoreUserRequest.php',
+      26 => '/var/www/html/app/Http/Requests/Access/UpdateMdaRequest.php',
+      27 => '/var/www/html/app/Http/Requests/Access/UpdateUserRequest.php',
+      28 => '/var/www/html/app/Http/Requests/Auth/ChangePasswordRequest.php',
+      29 => '/var/www/html/app/Http/Requests/Auth/MfaCodeRequest.php',
+      30 => '/var/www/html/app/Http/Resources/MdaResource.php',
+      31 => '/var/www/html/app/Http/Resources/UserResource.php',
+      32 => '/var/www/html/app/Providers/AppServiceProvider.php',
+    ),
+    'usedTraitDependentFiles' => 
+    array (
+      0 => '/var/www/html/app/Domain/Access/Models/Mda.php',
+      1 => '/var/www/html/app/Domain/Access/Models/User.php',
+      2 => '/var/www/html/app/Domain/Registry/Models/Beneficiary.php',
+      3 => '/var/www/html/app/Domain/Registry/Models/Household.php',
+    ),
+  ),
+  '/var/www/html/app/Domain/Access/Enums/MdaStatus.php' => 
+  array (
+    'fileHash' => 'e9faac3708c3f9fbc1945297e817958bc2d35d5309d73163fb40623a6873271b',
+    'dependentFiles' => 
+    array (
+      0 => '/var/www/html/app/Domain/Access/Models/Mda.php',
+      1 => '/var/www/html/app/Domain/Access/Models/MdaAccessGrant.php',
+      2 => '/var/www/html/app/Domain/Access/Models/User.php',
+      3 => '/var/www/html/app/Domain/Registry/Models/Beneficiary.php',
+      4 => '/var/www/html/app/Domain/Registry/Models/Household.php',
+      5 => '/var/www/html/app/Http/Controllers/Api/V1/Access/MdaController.php',
+      6 => '/var/www/html/app/Http/Requests/Access/StoreMdaRequest.php',
+      7 => '/var/www/html/app/Http/Resources/MdaResource.php',
+      8 => '/var/www/html/app/Http/Resources/UserResource.php',
+    ),
+  ),
+  '/var/www/html/app/Domain/Access/Enums/MdaType.php' => 
+  array (
+    'fileHash' => '2f2eac5be5df3d3e78bfa2fb247db4e72e2d878b2cff841ce227cd205888ab4b',
+    'dependentFiles' => 
+    array (
+      0 => '/var/www/html/app/Domain/Access/Models/Mda.php',
+      1 => '/var/www/html/app/Domain/Access/Models/MdaAccessGrant.php',
+      2 => '/var/www/html/app/Domain/Access/Models/User.php',
+      3 => '/var/www/html/app/Domain/Registry/Models/Beneficiary.php',
+      4 => '/var/www/html/app/Domain/Registry/Models/Household.php',
+      5 => '/var/www/html/app/Http/Controllers/Api/V1/Access/MdaController.php',
+      6 => '/var/www/html/app/Http/Requests/Access/StoreMdaRequest.php',
+      7 => '/var/www/html/app/Http/Requests/Access/UpdateMdaRequest.php',
+      8 => '/var/www/html/app/Http/Resources/MdaResource.php',
+      9 => '/var/www/html/app/Http/Resources/UserResource.php',
+    ),
+  ),
+  '/var/www/html/app/Domain/Access/Enums/PermissionAction.php' => 
+  array (
+    'fileHash' => '0b5f8b6fa4ffbafe23ced98bd900648fb725b0d0bbd4773372d7a4abdbd5bc87',
+    'dependentFiles' => 
+    array (
+      0 => '/var/www/html/app/Domain/Access/AccessServiceProvider.php',
+      1 => '/var/www/html/app/Domain/Access/Models/Permission.php',
+      2 => '/var/www/html/app/Domain/Access/Models/Role.php',
+      3 => '/var/www/html/app/Domain/Access/Models/User.php',
+      4 => '/var/www/html/app/Domain/Access/Services/PermissionSynchronizer.php',
+      5 => '/var/www/html/app/Domain/Access/Support/PermissionRegistry.php',
+      6 => '/var/www/html/app/Http/Controllers/Api/V1/Access/AccessController.php',
+      7 => '/var/www/html/app/Http/Requests/Access/StoreUserRequest.php',
+      8 => '/var/www/html/app/Http/Requests/Access/UpdateUserRequest.php',
+      9 => '/var/www/html/app/Http/Resources/UserResource.php',
+    ),
+  ),
+  '/var/www/html/app/Domain/Access/Enums/RoleKey.php' => 
+  array (
+    'fileHash' => 'aa800acebadff237b3c94d7c656afe6bb41249a9394e49867aae94dd38406890',
+    'dependentFiles' => 
+    array (
+    ),
+  ),
+  '/var/www/html/app/Domain/Access/Enums/UserStatus.php' => 
+  array (
+    'fileHash' => 'dd2233f8e9ec3c328794b59602d7d49b02e9b7b745d221c91176b9e4e92566b7',
+    'dependentFiles' => 
+    array (
+      0 => '/var/www/html/app/Domain/Access/AccessServiceProvider.php',
+      1 => '/var/www/html/app/Domain/Access/Events/AccountLocked.php',
+      2 => '/var/www/html/app/Domain/Access/Events/CrossMdaAccessGranted.php',
+      3 => '/var/www/html/app/Domain/Access/Events/CrossMdaAccessRevoked.php',
+      4 => '/var/www/html/app/Domain/Access/Events/MfaChallengeFailed.php',
+      5 => '/var/www/html/app/Domain/Access/Events/MfaDisabled.php',
+      6 => '/var/www/html/app/Domain/Access/Events/MfaEnrolled.php',
+      7 => '/var/www/html/app/Domain/Access/Models/Mda.php',
+      8 => '/var/www/html/app/Domain/Access/Models/MdaAccessGrant.php',
+      9 => '/var/www/html/app/Domain/Access/Models/User.php',
+      10 => '/var/www/html/app/Domain/Access/Scopes/MdaScope.php',
+      11 => '/var/www/html/app/Domain/Access/Services/AuthTokenIssuer.php',
+      12 => '/var/www/html/app/Domain/Audit/Listeners/AuditEventSubscriber.php',
+      13 => '/var/www/html/app/Domain/Audit/Services/AuditLogger.php',
+      14 => '/var/www/html/app/Http/Controllers/Api/V1/Access/MdaAccessGrantController.php',
+      15 => '/var/www/html/app/Http/Controllers/Api/V1/Access/UserController.php',
+      16 => '/var/www/html/app/Http/Controllers/Api/V1/AuthController.php',
+      17 => '/var/www/html/app/Http/Controllers/Api/V1/MfaController.php',
+      18 => '/var/www/html/app/Http/Middleware/CheckPermission.php',
+      19 => '/var/www/html/app/Http/Requests/Access/StoreMdaAccessGrantRequest.php',
+      20 => '/var/www/html/app/Http/Requests/Access/StoreMdaRequest.php',
+      21 => '/var/www/html/app/Http/Requests/Access/StoreUserRequest.php',
+      22 => '/var/www/html/app/Http/Requests/Access/UpdateMdaRequest.php',
+      23 => '/var/www/html/app/Http/Requests/Access/UpdateUserRequest.php',
+      24 => '/var/www/html/app/Http/Requests/Auth/ChangePasswordRequest.php',
+      25 => '/var/www/html/app/Http/Requests/Auth/MfaCodeRequest.php',
+      26 => '/var/www/html/app/Http/Resources/UserResource.php',
+      27 => '/var/www/html/app/Providers/AppServiceProvider.php',
+    ),
+  ),
+  '/var/www/html/app/Domain/Access/Events/AccountLocked.php' => 
+  array (
+    'fileHash' => '6a29d3eca8dbf739f869de93b8a568d5037a63503f89546132dade060171a98d',
+    'dependentFiles' => 
+    array (
+      0 => '/var/www/html/app/Domain/Audit/Listeners/AuditEventSubscriber.php',
+      1 => '/var/www/html/app/Http/Controllers/Api/V1/AuthController.php',
+      2 => '/var/www/html/app/Http/Controllers/Api/V1/MfaController.php',
+    ),
+  ),
+  '/var/www/html/app/Domain/Access/Events/CrossMdaAccessGranted.php' => 
+  array (
+    'fileHash' => '04ece9def707b952cf591d09bc34d387d49e33f6006f2e643c1eb5329ff8f1d6',
+    'dependentFiles' => 
+    array (
+      0 => '/var/www/html/app/Domain/Audit/Listeners/AuditEventSubscriber.php',
+      1 => '/var/www/html/app/Http/Controllers/Api/V1/Access/MdaAccessGrantController.php',
+    ),
+  ),
+  '/var/www/html/app/Domain/Access/Events/CrossMdaAccessRevoked.php' => 
+  array (
+    'fileHash' => '7eef2c7af90de99a2eb106983c061e4a9c7c4660702a72d4e4e4dc3007c1349b',
+    'dependentFiles' => 
+    array (
+      0 => '/var/www/html/app/Domain/Audit/Listeners/AuditEventSubscriber.php',
+      1 => '/var/www/html/app/Http/Controllers/Api/V1/Access/MdaAccessGrantController.php',
+    ),
+  ),
+  '/var/www/html/app/Domain/Access/Events/MfaChallengeFailed.php' => 
+  array (
+    'fileHash' => '6594ed4939885c3f4ad9ecfce9678f70e8ea9c9235a73a1bf5199506c782e798',
+    'dependentFiles' => 
+    array (
+      0 => '/var/www/html/app/Domain/Audit/Listeners/AuditEventSubscriber.php',
+      1 => '/var/www/html/app/Http/Controllers/Api/V1/MfaController.php',
+    ),
+  ),
+  '/var/www/html/app/Domain/Access/Events/MfaDisabled.php' => 
+  array (
+    'fileHash' => '44ad54a153cdbc05a6ffa065bc9184bfe23dbc52c8e1487efd6bb6bd5be2c612',
+    'dependentFiles' => 
+    array (
+      0 => '/var/www/html/app/Domain/Audit/Listeners/AuditEventSubscriber.php',
+      1 => '/var/www/html/app/Http/Controllers/Api/V1/MfaController.php',
+    ),
+  ),
+  '/var/www/html/app/Domain/Access/Events/MfaEnrolled.php' => 
+  array (
+    'fileHash' => '54bd3fb003c5ee5fc3ac649ad69aee0b2cb788a097da24ba49f4b148bb25f3cf',
+    'dependentFiles' => 
+    array (
+      0 => '/var/www/html/app/Domain/Audit/Listeners/AuditEventSubscriber.php',
+      1 => '/var/www/html/app/Http/Controllers/Api/V1/MfaController.php',
+    ),
+  ),
+  '/var/www/html/app/Domain/Access/Models/Mda.php' => 
+  array (
+    'fileHash' => 'f6259a074f9d66f3a1d70b6a00eb78cc70d713a12cedc5cf8128f26f0dcdfefd',
+    'dependentFiles' => 
+    array (
+      0 => '/var/www/html/app/Domain/Access/AccessServiceProvider.php',
+      1 => '/var/www/html/app/Domain/Access/Events/AccountLocked.php',
+      2 => '/var/www/html/app/Domain/Access/Events/CrossMdaAccessGranted.php',
+      3 => '/var/www/html/app/Domain/Access/Events/CrossMdaAccessRevoked.php',
+      4 => '/var/www/html/app/Domain/Access/Events/MfaChallengeFailed.php',
+      5 => '/var/www/html/app/Domain/Access/Events/MfaDisabled.php',
+      6 => '/var/www/html/app/Domain/Access/Events/MfaEnrolled.php',
+      7 => '/var/www/html/app/Domain/Access/Models/MdaAccessGrant.php',
+      8 => '/var/www/html/app/Domain/Access/Models/User.php',
+      9 => '/var/www/html/app/Domain/Access/Scopes/MdaScope.php',
+      10 => '/var/www/html/app/Domain/Access/Services/AuthTokenIssuer.php',
+      11 => '/var/www/html/app/Domain/Audit/Listeners/AuditEventSubscriber.php',
+      12 => '/var/www/html/app/Domain/Audit/Services/AuditLogger.php',
+      13 => '/var/www/html/app/Domain/Registry/Models/Beneficiary.php',
+      14 => '/var/www/html/app/Domain/Registry/Models/Household.php',
+      15 => '/var/www/html/app/Domain/Registry/Models/HouseholdMembership.php',
+      16 => '/var/www/html/app/Http/Controllers/Api/V1/Access/MdaAccessGrantController.php',
+      17 => '/var/www/html/app/Http/Controllers/Api/V1/Access/MdaController.php',
+      18 => '/var/www/html/app/Http/Controllers/Api/V1/Access/UserController.php',
+      19 => '/var/www/html/app/Http/Controllers/Api/V1/AuthController.php',
+      20 => '/var/www/html/app/Http/Controllers/Api/V1/MfaController.php',
+      21 => '/var/www/html/app/Http/Middleware/CheckPermission.php',
+      22 => '/var/www/html/app/Http/Requests/Access/StoreMdaAccessGrantRequest.php',
+      23 => '/var/www/html/app/Http/Requests/Access/StoreMdaRequest.php',
+      24 => '/var/www/html/app/Http/Requests/Access/StoreUserRequest.php',
+      25 => '/var/www/html/app/Http/Requests/Access/UpdateMdaRequest.php',
+      26 => '/var/www/html/app/Http/Requests/Access/UpdateUserRequest.php',
+      27 => '/var/www/html/app/Http/Requests/Auth/ChangePasswordRequest.php',
+      28 => '/var/www/html/app/Http/Requests/Auth/MfaCodeRequest.php',
+      29 => '/var/www/html/app/Http/Resources/MdaResource.php',
+      30 => '/var/www/html/app/Http/Resources/UserResource.php',
+      31 => '/var/www/html/app/Providers/AppServiceProvider.php',
+    ),
+  ),
+  '/var/www/html/app/Domain/Access/Models/MdaAccessGrant.php' => 
+  array (
+    'fileHash' => '80454f5cca1295177440dad59922c69b175d5bf25e20ef46174a8e4a926daa17',
+    'dependentFiles' => 
+    array (
+      0 => '/var/www/html/app/Domain/Access/Events/CrossMdaAccessGranted.php',
+      1 => '/var/www/html/app/Domain/Access/Events/CrossMdaAccessRevoked.php',
+      2 => '/var/www/html/app/Domain/Access/Models/Mda.php',
+      3 => '/var/www/html/app/Domain/Access/Models/User.php',
+      4 => '/var/www/html/app/Domain/Audit/Listeners/AuditEventSubscriber.php',
+      5 => '/var/www/html/app/Http/Controllers/Api/V1/Access/MdaAccessGrantController.php',
+    ),
+  ),
+  '/var/www/html/app/Domain/Access/Models/Permission.php' => 
+  array (
+    'fileHash' => '10a3ce0147c4289ad1e25d1b39dbaee4a20a0abd50fcc9cdaba4123df82b5e8b',
+    'dependentFiles' => 
+    array (
+      0 => '/var/www/html/app/Domain/Access/Models/Role.php',
+      1 => '/var/www/html/app/Domain/Access/Models/User.php',
+      2 => '/var/www/html/app/Domain/Access/Services/PermissionSynchronizer.php',
+      3 => '/var/www/html/app/Http/Controllers/Api/V1/Access/AccessController.php',
+      4 => '/var/www/html/app/Http/Requests/Access/StoreUserRequest.php',
+      5 => '/var/www/html/app/Http/Requests/Access/UpdateUserRequest.php',
+      6 => '/var/www/html/app/Http/Resources/UserResource.php',
+    ),
+  ),
+  '/var/www/html/app/Domain/Access/Models/Role.php' => 
+  array (
+    'fileHash' => 'bd952984b7e25955c8dbbf0131d0cfb90debde15bc116b18e5caf338c07a6052',
+    'dependentFiles' => 
+    array (
+      0 => '/var/www/html/app/Domain/Access/AccessServiceProvider.php',
+      1 => '/var/www/html/app/Domain/Access/Events/AccountLocked.php',
+      2 => '/var/www/html/app/Domain/Access/Events/CrossMdaAccessGranted.php',
+      3 => '/var/www/html/app/Domain/Access/Events/CrossMdaAccessRevoked.php',
+      4 => '/var/www/html/app/Domain/Access/Events/MfaChallengeFailed.php',
+      5 => '/var/www/html/app/Domain/Access/Events/MfaDisabled.php',
+      6 => '/var/www/html/app/Domain/Access/Events/MfaEnrolled.php',
+      7 => '/var/www/html/app/Domain/Access/Models/Mda.php',
+      8 => '/var/www/html/app/Domain/Access/Models/MdaAccessGrant.php',
+      9 => '/var/www/html/app/Domain/Access/Models/Permission.php',
+      10 => '/var/www/html/app/Domain/Access/Models/User.php',
+      11 => '/var/www/html/app/Domain/Access/Scopes/MdaScope.php',
+      12 => '/var/www/html/app/Domain/Access/Services/AuthTokenIssuer.php',
+      13 => '/var/www/html/app/Domain/Audit/Listeners/AuditEventSubscriber.php',
+      14 => '/var/www/html/app/Domain/Audit/Services/AuditLogger.php',
+      15 => '/var/www/html/app/Http/Controllers/Api/V1/Access/AccessController.php',
+      16 => '/var/www/html/app/Http/Controllers/Api/V1/Access/MdaAccessGrantController.php',
+      17 => '/var/www/html/app/Http/Controllers/Api/V1/Access/UserController.php',
+      18 => '/var/www/html/app/Http/Controllers/Api/V1/AuthController.php',
+      19 => '/var/www/html/app/Http/Controllers/Api/V1/MfaController.php',
+      20 => '/var/www/html/app/Http/Middleware/CheckPermission.php',
+      21 => '/var/www/html/app/Http/Requests/Access/StoreMdaAccessGrantRequest.php',
+      22 => '/var/www/html/app/Http/Requests/Access/StoreMdaRequest.php',
+      23 => '/var/www/html/app/Http/Requests/Access/StoreUserRequest.php',
+      24 => '/var/www/html/app/Http/Requests/Access/UpdateMdaRequest.php',
+      25 => '/var/www/html/app/Http/Requests/Access/UpdateUserRequest.php',
+      26 => '/var/www/html/app/Http/Requests/Auth/ChangePasswordRequest.php',
+      27 => '/var/www/html/app/Http/Requests/Auth/MfaCodeRequest.php',
+      28 => '/var/www/html/app/Http/Resources/UserResource.php',
+      29 => '/var/www/html/app/Providers/AppServiceProvider.php',
+    ),
+  ),
+  '/var/www/html/app/Domain/Access/Models/User.php' => 
+  array (
+    'fileHash' => 'ca09043f98e418ab889b12f7312deef7f00c09162d6de61ef5350c3a68c9fc2d',
+    'dependentFiles' => 
+    array (
+      0 => '/var/www/html/app/Domain/Access/AccessServiceProvider.php',
+      1 => '/var/www/html/app/Domain/Access/Events/AccountLocked.php',
+      2 => '/var/www/html/app/Domain/Access/Events/CrossMdaAccessGranted.php',
+      3 => '/var/www/html/app/Domain/Access/Events/CrossMdaAccessRevoked.php',
+      4 => '/var/www/html/app/Domain/Access/Events/MfaChallengeFailed.php',
+      5 => '/var/www/html/app/Domain/Access/Events/MfaDisabled.php',
+      6 => '/var/www/html/app/Domain/Access/Events/MfaEnrolled.php',
+      7 => '/var/www/html/app/Domain/Access/Models/Mda.php',
+      8 => '/var/www/html/app/Domain/Access/Models/MdaAccessGrant.php',
+      9 => '/var/www/html/app/Domain/Access/Scopes/MdaScope.php',
+      10 => '/var/www/html/app/Domain/Access/Services/AuthTokenIssuer.php',
+      11 => '/var/www/html/app/Domain/Audit/Listeners/AuditEventSubscriber.php',
+      12 => '/var/www/html/app/Domain/Audit/Services/AuditLogger.php',
+      13 => '/var/www/html/app/Http/Controllers/Api/V1/Access/MdaAccessGrantController.php',
+      14 => '/var/www/html/app/Http/Controllers/Api/V1/Access/UserController.php',
+      15 => '/var/www/html/app/Http/Controllers/Api/V1/AuthController.php',
+      16 => '/var/www/html/app/Http/Controllers/Api/V1/MfaController.php',
+      17 => '/var/www/html/app/Http/Middleware/CheckPermission.php',
+      18 => '/var/www/html/app/Http/Requests/Access/StoreMdaAccessGrantRequest.php',
+      19 => '/var/www/html/app/Http/Requests/Access/StoreMdaRequest.php',
+      20 => '/var/www/html/app/Http/Requests/Access/StoreUserRequest.php',
+      21 => '/var/www/html/app/Http/Requests/Access/UpdateMdaRequest.php',
+      22 => '/var/www/html/app/Http/Requests/Access/UpdateUserRequest.php',
+      23 => '/var/www/html/app/Http/Requests/Auth/ChangePasswordRequest.php',
+      24 => '/var/www/html/app/Http/Requests/Auth/MfaCodeRequest.php',
+      25 => '/var/www/html/app/Http/Resources/UserResource.php',
+      26 => '/var/www/html/app/Providers/AppServiceProvider.php',
+    ),
+  ),
+  '/var/www/html/app/Domain/Access/Scopes/MdaScope.php' => 
+  array (
+    'fileHash' => '478e85b109874681106a1684c196f21c2dba4647cfa7797df0be396bd0b242d5',
+    'dependentFiles' => 
+    array (
+      0 => '/var/www/html/app/Domain/Access/Models/Mda.php',
+      1 => '/var/www/html/app/Domain/Access/Models/User.php',
+      2 => '/var/www/html/app/Domain/Registry/Models/Beneficiary.php',
+      3 => '/var/www/html/app/Domain/Registry/Models/Household.php',
+    ),
+  ),
+  '/var/www/html/app/Domain/Access/Services/AuthTokenIssuer.php' => 
+  array (
+    'fileHash' => 'a397c3e455de0cf57964b04e9301026d36aa0adadad89fe441de443434662e96',
+    'dependentFiles' => 
+    array (
+      0 => '/var/www/html/app/Http/Controllers/Api/V1/AuthController.php',
+      1 => '/var/www/html/app/Http/Controllers/Api/V1/MfaController.php',
+    ),
+  ),
+  '/var/www/html/app/Domain/Access/Services/MfaService.php' => 
+  array (
+    'fileHash' => 'a461e4a67b29fa5edec85d8f0da273e64e8bf3adb0fe670b1055592433c4ebd9',
+    'dependentFiles' => 
+    array (
+      0 => '/var/www/html/app/Http/Controllers/Api/V1/MfaController.php',
+    ),
+  ),
+  '/var/www/html/app/Domain/Access/Services/PermissionSynchronizer.php' => 
+  array (
+    'fileHash' => 'a533bcaaf7a6ec8c525f40b8237cb509e97afae3ad2702df976e2d016c108aad',
+    'dependentFiles' => 
+    array (
+      0 => '/var/www/html/app/Console/Commands/SyncPermissions.php',
+    ),
+  ),
+  '/var/www/html/app/Domain/Access/Support/PasswordRules.php' => 
+  array (
+    'fileHash' => '317ee13fcbbfd9a9df5acc408f9089882c0ef520a7054682186e23cb08d05c78',
+    'dependentFiles' => 
+    array (
+      0 => '/var/www/html/app/Http/Requests/Access/StoreUserRequest.php',
+      1 => '/var/www/html/app/Http/Requests/Auth/ChangePasswordRequest.php',
+    ),
+  ),
+  '/var/www/html/app/Domain/Access/Support/PermissionRegistry.php' => 
+  array (
+    'fileHash' => '20daabc96a55522ab4e4f813d5324aa53f9abe348f62d712fdfe17865616e788',
+    'dependentFiles' => 
+    array (
+      0 => '/var/www/html/app/Domain/Access/AccessServiceProvider.php',
+      1 => '/var/www/html/app/Domain/Access/Services/PermissionSynchronizer.php',
+    ),
+  ),
+  '/var/www/html/app/Domain/Access/Support/TokenAbility.php' => 
+  array (
+    'fileHash' => 'f8c1ef67e624053f707a6ca7ca5dff8c4b47a40260e8d9f696eceecf0f9a5cee',
+    'dependentFiles' => 
+    array (
+      0 => '/var/www/html/app/Domain/Access/Services/AuthTokenIssuer.php',
+      1 => '/var/www/html/app/Http/Controllers/Api/V1/MfaController.php',
+    ),
+  ),
+  '/var/www/html/app/Domain/Audit/Concerns/Auditable.php' => 
+  array (
+    'fileHash' => '5ffa2245eaa31de5eade775b8b48dfcbbf9e33ae3b5651120046c5b92a6d4b7a',
+    'dependentFiles' => 
+    array (
+      0 => '/var/www/html/app/Domain/Access/AccessServiceProvider.php',
+      1 => '/var/www/html/app/Domain/Access/Events/AccountLocked.php',
+      2 => '/var/www/html/app/Domain/Access/Events/CrossMdaAccessGranted.php',
+      3 => '/var/www/html/app/Domain/Access/Events/CrossMdaAccessRevoked.php',
+      4 => '/var/www/html/app/Domain/Access/Events/MfaChallengeFailed.php',
+      5 => '/var/www/html/app/Domain/Access/Events/MfaDisabled.php',
+      6 => '/var/www/html/app/Domain/Access/Events/MfaEnrolled.php',
+      7 => '/var/www/html/app/Domain/Access/Models/Mda.php',
+      8 => '/var/www/html/app/Domain/Access/Models/MdaAccessGrant.php',
+      9 => '/var/www/html/app/Domain/Access/Models/Permission.php',
+      10 => '/var/www/html/app/Domain/Access/Models/Role.php',
+      11 => '/var/www/html/app/Domain/Access/Models/User.php',
+      12 => '/var/www/html/app/Domain/Access/Scopes/MdaScope.php',
+      13 => '/var/www/html/app/Domain/Access/Services/AuthTokenIssuer.php',
+      14 => '/var/www/html/app/Domain/Audit/Listeners/AuditEventSubscriber.php',
+      15 => '/var/www/html/app/Domain/Audit/Services/AuditLogger.php',
+      16 => '/var/www/html/app/Domain/Registry/Models/Beneficiary.php',
+      17 => '/var/www/html/app/Domain/Registry/Models/Household.php',
+      18 => '/var/www/html/app/Domain/Registry/Models/HouseholdMembership.php',
+      19 => '/var/www/html/app/Http/Controllers/Api/V1/Access/AccessController.php',
+      20 => '/var/www/html/app/Http/Controllers/Api/V1/Access/MdaAccessGrantController.php',
+      21 => '/var/www/html/app/Http/Controllers/Api/V1/Access/MdaController.php',
+      22 => '/var/www/html/app/Http/Controllers/Api/V1/Access/UserController.php',
+      23 => '/var/www/html/app/Http/Controllers/Api/V1/AuthController.php',
+      24 => '/var/www/html/app/Http/Controllers/Api/V1/MfaController.php',
+      25 => '/var/www/html/app/Http/Middleware/CheckPermission.php',
+      26 => '/var/www/html/app/Http/Requests/Access/StoreMdaAccessGrantRequest.php',
+      27 => '/var/www/html/app/Http/Requests/Access/StoreMdaRequest.php',
+      28 => '/var/www/html/app/Http/Requests/Access/StoreUserRequest.php',
+      29 => '/var/www/html/app/Http/Requests/Access/UpdateMdaRequest.php',
+      30 => '/var/www/html/app/Http/Requests/Access/UpdateUserRequest.php',
+      31 => '/var/www/html/app/Http/Requests/Auth/ChangePasswordRequest.php',
+      32 => '/var/www/html/app/Http/Requests/Auth/MfaCodeRequest.php',
+      33 => '/var/www/html/app/Http/Resources/MdaResource.php',
+      34 => '/var/www/html/app/Http/Resources/UserResource.php',
+      35 => '/var/www/html/app/Providers/AppServiceProvider.php',
+    ),
+    'usedTraitDependentFiles' => 
+    array (
+      0 => '/var/www/html/app/Domain/Access/Models/Mda.php',
+      1 => '/var/www/html/app/Domain/Access/Models/Role.php',
+      2 => '/var/www/html/app/Domain/Access/Models/User.php',
+      3 => '/var/www/html/app/Domain/Registry/Models/Beneficiary.php',
+      4 => '/var/www/html/app/Domain/Registry/Models/Household.php',
+      5 => '/var/www/html/app/Domain/Registry/Models/HouseholdMembership.php',
+    ),
+  ),
+  '/var/www/html/app/Domain/Audit/Listeners/AuditEventSubscriber.php' => 
+  array (
+    'fileHash' => '6518033cd102eb7de41ee766f68b6b905cc3ff54f7392d3101b3a83c87310c7a',
+    'dependentFiles' => 
+    array (
+      0 => '/var/www/html/app/Providers/AppServiceProvider.php',
+    ),
+  ),
+  '/var/www/html/app/Domain/Audit/Models/AuditLog.php' => 
+  array (
+    'fileHash' => '7990b6b04f64b90d3ea36b5735a22ea90fb3d906fdc2738ef33f7621234761ef',
+    'dependentFiles' => 
+    array (
+      0 => '/var/www/html/app/Domain/Access/Models/Mda.php',
+      1 => '/var/www/html/app/Domain/Access/Models/Role.php',
+      2 => '/var/www/html/app/Domain/Access/Models/User.php',
+      3 => '/var/www/html/app/Domain/Access/Services/AuthTokenIssuer.php',
+      4 => '/var/www/html/app/Domain/Audit/Listeners/AuditEventSubscriber.php',
+      5 => '/var/www/html/app/Domain/Audit/Services/AuditLogger.php',
+      6 => '/var/www/html/app/Domain/Registry/Models/Beneficiary.php',
+      7 => '/var/www/html/app/Domain/Registry/Models/Household.php',
+      8 => '/var/www/html/app/Domain/Registry/Models/HouseholdMembership.php',
+      9 => '/var/www/html/app/Http/Controllers/Api/V1/Access/UserController.php',
+      10 => '/var/www/html/app/Http/Controllers/Api/V1/AuthController.php',
+    ),
+  ),
+  '/var/www/html/app/Domain/Audit/Services/AuditLogger.php' => 
+  array (
+    'fileHash' => 'b7dd721cd0160cc94e7476c7e7a234701571466bcbc26b044a3710f54477c753',
+    'dependentFiles' => 
+    array (
+      0 => '/var/www/html/app/Domain/Access/Models/Mda.php',
+      1 => '/var/www/html/app/Domain/Access/Models/Role.php',
+      2 => '/var/www/html/app/Domain/Access/Models/User.php',
+      3 => '/var/www/html/app/Domain/Access/Services/AuthTokenIssuer.php',
+      4 => '/var/www/html/app/Domain/Audit/Listeners/AuditEventSubscriber.php',
+      5 => '/var/www/html/app/Domain/Registry/Models/Beneficiary.php',
+      6 => '/var/www/html/app/Domain/Registry/Models/Household.php',
+      7 => '/var/www/html/app/Domain/Registry/Models/HouseholdMembership.php',
+      8 => '/var/www/html/app/Http/Controllers/Api/V1/Access/UserController.php',
+      9 => '/var/www/html/app/Http/Controllers/Api/V1/AuthController.php',
+    ),
+  ),
+  '/var/www/html/app/Domain/Audit/Support/AuditScrubber.php' => 
+  array (
+    'fileHash' => '450d4882876ee6f46e74c731ee46cb3beb13efbcfe09ee4865142e7d9f9f1a14',
+    'dependentFiles' => 
+    array (
+      0 => '/var/www/html/app/Domain/Access/Models/Mda.php',
+      1 => '/var/www/html/app/Domain/Access/Models/Role.php',
+      2 => '/var/www/html/app/Domain/Access/Models/User.php',
+      3 => '/var/www/html/app/Domain/Registry/Models/Beneficiary.php',
+      4 => '/var/www/html/app/Domain/Registry/Models/Household.php',
+      5 => '/var/www/html/app/Domain/Registry/Models/HouseholdMembership.php',
+    ),
+  ),
+  '/var/www/html/app/Domain/Registry/Enums/BeneficiaryStatus.php' => 
+  array (
+    'fileHash' => '7e1b800d5f869d042d11ac0ca74c755e2d1a4637c064faaee90822c18b9bef55',
+    'dependentFiles' => 
+    array (
+      0 => '/var/www/html/app/Domain/Registry/Models/Beneficiary.php',
+      1 => '/var/www/html/app/Domain/Registry/Models/Household.php',
+      2 => '/var/www/html/app/Domain/Registry/Models/HouseholdMembership.php',
+    ),
+  ),
+  '/var/www/html/app/Domain/Registry/Enums/Gender.php' => 
+  array (
+    'fileHash' => 'f204b0d5de690aaa15205fb62b4efaa6c482a7017f0574547d98b31f26c01210',
+    'dependentFiles' => 
+    array (
+      0 => '/var/www/html/app/Domain/Registry/Models/Beneficiary.php',
+      1 => '/var/www/html/app/Domain/Registry/Models/Household.php',
+      2 => '/var/www/html/app/Domain/Registry/Models/HouseholdMembership.php',
+    ),
+  ),
+  '/var/www/html/app/Domain/Registry/Enums/HouseholdRole.php' => 
+  array (
+    'fileHash' => '907a1b1a00c1261bc25cba7fed52177ddde817c7ac6b3fb85e5016bc2333fe40',
+    'dependentFiles' => 
+    array (
+      0 => '/var/www/html/app/Domain/Registry/Models/Beneficiary.php',
+      1 => '/var/www/html/app/Domain/Registry/Models/Household.php',
+      2 => '/var/www/html/app/Domain/Registry/Models/HouseholdMembership.php',
+    ),
+  ),
+  '/var/www/html/app/Domain/Registry/Enums/RegistrationSource.php' => 
+  array (
+    'fileHash' => '7740d9ad863728c6504681d12c7220cfec980f8f54643174903fc6cc95c204bb',
+    'dependentFiles' => 
+    array (
+      0 => '/var/www/html/app/Domain/Registry/Models/Beneficiary.php',
+      1 => '/var/www/html/app/Domain/Registry/Models/Household.php',
+      2 => '/var/www/html/app/Domain/Registry/Models/HouseholdMembership.php',
+    ),
+  ),
+  '/var/www/html/app/Domain/Registry/Models/Beneficiary.php' => 
+  array (
+    'fileHash' => '22f2558a66a39f45f90df2f35b697c420d86aefa8f3244743b21c1b94f3f6c90',
+    'dependentFiles' => 
+    array (
+      0 => '/var/www/html/app/Domain/Registry/Models/Household.php',
+      1 => '/var/www/html/app/Domain/Registry/Models/HouseholdMembership.php',
+    ),
+  ),
+  '/var/www/html/app/Domain/Registry/Models/Household.php' => 
+  array (
+    'fileHash' => '356216e5d3ec8e784a6c2f5cbb0f7a35985e892970d5ed0763849041c05aa9a4',
+    'dependentFiles' => 
+    array (
+      0 => '/var/www/html/app/Domain/Registry/Models/Beneficiary.php',
+      1 => '/var/www/html/app/Domain/Registry/Models/HouseholdMembership.php',
+    ),
+  ),
+  '/var/www/html/app/Domain/Registry/Models/HouseholdMembership.php' => 
+  array (
+    'fileHash' => 'd16869f3e73b469a4e1aeb88440bda81436f5a244cc987d5cbcb4618797c08ce',
+    'dependentFiles' => 
+    array (
+      0 => '/var/www/html/app/Domain/Registry/Models/Beneficiary.php',
+      1 => '/var/www/html/app/Domain/Registry/Models/Household.php',
+    ),
+  ),
+  '/var/www/html/app/Http/Controllers/Api/V1/Access/AccessController.php' => 
+  array (
+    'fileHash' => '50e08fd003e95002e51e920225053678139ff7ff176e81700ecf1cc5d9165613',
+    'dependentFiles' => 
+    array (
+    ),
+  ),
+  '/var/www/html/app/Http/Controllers/Api/V1/Access/MdaAccessGrantController.php' => 
+  array (
+    'fileHash' => 'f9c76533b24c0d12a84f8ce3bdb1a696b4d9357acfe4f888621b2b86bf2ab766',
+    'dependentFiles' => 
+    array (
+    ),
+  ),
+  '/var/www/html/app/Http/Controllers/Api/V1/Access/MdaController.php' => 
+  array (
+    'fileHash' => '7ec7474c87905b45c71323a128479fe5736073383d6b7137424282be6b83bb9a',
+    'dependentFiles' => 
+    array (
+    ),
+  ),
+  '/var/www/html/app/Http/Controllers/Api/V1/Access/UserController.php' => 
+  array (
+    'fileHash' => '43d44f96ff1713f4d921ab04efad2612e72dbe442c58709fa54c48e39c9726a6',
+    'dependentFiles' => 
+    array (
+    ),
+  ),
+  '/var/www/html/app/Http/Controllers/Api/V1/AuthController.php' => 
+  array (
+    'fileHash' => '32b23f3f6e7c8b13457e68a81c3aad585b6e819d3bae83cc6921126f77ddfb18',
+    'dependentFiles' => 
+    array (
+    ),
+  ),
+  '/var/www/html/app/Http/Controllers/Api/V1/HealthController.php' => 
+  array (
+    'fileHash' => '26d690b2b0b2ae7d192487f87e9c6bda8ffe434a6aac9ada2ebf73cfa171000b',
+    'dependentFiles' => 
+    array (
+    ),
+  ),
+  '/var/www/html/app/Http/Controllers/Api/V1/MfaController.php' => 
+  array (
+    'fileHash' => '50ff7f80419d750c29cbe71aecf3e8b00903ede510b7309895254a182f87b427',
+    'dependentFiles' => 
+    array (
+    ),
+  ),
+  '/var/www/html/app/Http/Controllers/Concerns/AuthResponses.php' => 
+  array (
+    'fileHash' => '7667385dda4e1e79049e0e5548d395e0bccb4835c3d5bb8f84700606f42c2237',
+    'dependentFiles' => 
+    array (
+      0 => '/var/www/html/app/Http/Controllers/Api/V1/AuthController.php',
+      1 => '/var/www/html/app/Http/Controllers/Api/V1/MfaController.php',
+    ),
+    'usedTraitDependentFiles' => 
+    array (
+      0 => '/var/www/html/app/Http/Controllers/Api/V1/AuthController.php',
+      1 => '/var/www/html/app/Http/Controllers/Api/V1/MfaController.php',
+    ),
+  ),
+  '/var/www/html/app/Http/Controllers/Controller.php' => 
+  array (
+    'fileHash' => '25d1c1ef8e6cc8a376553faacfba2b07d9dfaee9bdbb84f14f77517580e9deb1',
+    'dependentFiles' => 
+    array (
+      0 => '/var/www/html/app/Http/Controllers/Api/V1/Access/AccessController.php',
+      1 => '/var/www/html/app/Http/Controllers/Api/V1/Access/MdaAccessGrantController.php',
+      2 => '/var/www/html/app/Http/Controllers/Api/V1/Access/MdaController.php',
+      3 => '/var/www/html/app/Http/Controllers/Api/V1/Access/UserController.php',
+      4 => '/var/www/html/app/Http/Controllers/Api/V1/AuthController.php',
+      5 => '/var/www/html/app/Http/Controllers/Api/V1/HealthController.php',
+      6 => '/var/www/html/app/Http/Controllers/Api/V1/MfaController.php',
+    ),
+  ),
+  '/var/www/html/app/Http/Middleware/AssignCorrelationId.php' => 
+  array (
+    'fileHash' => 'd0f79e54d7c6e370dc251e9c69ec8d2128bedf2439c761f8d0d7248b0ffc916c',
+    'dependentFiles' => 
+    array (
+    ),
+  ),
+  '/var/www/html/app/Http/Middleware/CheckPermission.php' => 
+  array (
+    'fileHash' => 'ee846aa86881be0e8842ebc9f0a6e8599049f9391cc35cf36b5f7198ffa53848',
+    'dependentFiles' => 
+    array (
+    ),
+  ),
+  '/var/www/html/app/Http/Middleware/EnforceIdleTimeout.php' => 
+  array (
+    'fileHash' => '863b0f571f67a8de04573d540f43ea200a948453bee71f1c6d74268f20e95474',
+    'dependentFiles' => 
+    array (
+    ),
+  ),
+  '/var/www/html/app/Http/Middleware/SecurityHeaders.php' => 
+  array (
+    'fileHash' => '8a55a32aeca228ea44bfc2f1d4fac4f5c2fef9316d3c02f4cea22db191091f77',
+    'dependentFiles' => 
+    array (
+    ),
+  ),
+  '/var/www/html/app/Http/Requests/Access/Concerns/ValidatesUserAssignment.php' => 
+  array (
+    'fileHash' => '40b10566425852eee9be53a458d6692834db12e86769be4b53d1afcf1be12d82',
+    'dependentFiles' => 
+    array (
+      0 => '/var/www/html/app/Http/Controllers/Api/V1/Access/UserController.php',
+      1 => '/var/www/html/app/Http/Requests/Access/StoreUserRequest.php',
+      2 => '/var/www/html/app/Http/Requests/Access/UpdateUserRequest.php',
+    ),
+    'usedTraitDependentFiles' => 
+    array (
+      0 => '/var/www/html/app/Http/Requests/Access/StoreUserRequest.php',
+      1 => '/var/www/html/app/Http/Requests/Access/UpdateUserRequest.php',
+    ),
+  ),
+  '/var/www/html/app/Http/Requests/Access/StoreMdaAccessGrantRequest.php' => 
+  array (
+    'fileHash' => 'e6bc2252404ad6131f57dad8416b11eaef9111709831eee428f916a906014314',
+    'dependentFiles' => 
+    array (
+      0 => '/var/www/html/app/Http/Controllers/Api/V1/Access/MdaAccessGrantController.php',
+    ),
+  ),
+  '/var/www/html/app/Http/Requests/Access/StoreMdaRequest.php' => 
+  array (
+    'fileHash' => '03ed5c60ecc16b84666a5a7418d6cade5a867388d7ed2594e02589b485dfe3c1',
+    'dependentFiles' => 
+    array (
+      0 => '/var/www/html/app/Http/Controllers/Api/V1/Access/MdaController.php',
+    ),
+  ),
+  '/var/www/html/app/Http/Requests/Access/StoreUserRequest.php' => 
+  array (
+    'fileHash' => 'f349e6c1678140ef35ae42e36546aa277a72c7a116a68d23a63dfec63f1faf86',
+    'dependentFiles' => 
+    array (
+      0 => '/var/www/html/app/Http/Controllers/Api/V1/Access/UserController.php',
+    ),
+  ),
+  '/var/www/html/app/Http/Requests/Access/UpdateMdaRequest.php' => 
+  array (
+    'fileHash' => '52c9213c75f4ac6fd7fd8ec2a344f1db183482f5f213b98c4a28a0e1d00c0902',
+    'dependentFiles' => 
+    array (
+      0 => '/var/www/html/app/Http/Controllers/Api/V1/Access/MdaController.php',
+    ),
+  ),
+  '/var/www/html/app/Http/Requests/Access/UpdateUserRequest.php' => 
+  array (
+    'fileHash' => '4daa319b420138dc3ef25da6ae21217100885402c8ed4b1551356861bfd3b166',
+    'dependentFiles' => 
+    array (
+      0 => '/var/www/html/app/Http/Controllers/Api/V1/Access/UserController.php',
+    ),
+  ),
+  '/var/www/html/app/Http/Requests/Auth/ChangePasswordRequest.php' => 
+  array (
+    'fileHash' => '8911eacd2e7f58fb84737e5289c3b08879ce73d6bbe9165dc0fe08e41088ec23',
+    'dependentFiles' => 
+    array (
+      0 => '/var/www/html/app/Http/Controllers/Api/V1/AuthController.php',
+    ),
+  ),
+  '/var/www/html/app/Http/Requests/Auth/LoginRequest.php' => 
+  array (
+    'fileHash' => '7f58be90096c7569dbbeff52230a5257e88981cb85acaaee8816fba7a180ecad',
+    'dependentFiles' => 
+    array (
+      0 => '/var/www/html/app/Http/Controllers/Api/V1/AuthController.php',
+    ),
+  ),
+  '/var/www/html/app/Http/Requests/Auth/MfaCodeRequest.php' => 
+  array (
+    'fileHash' => '7edac0c330cecc44206e11611bd4f02b097ba11267b302eac37f373686073ae4',
+    'dependentFiles' => 
+    array (
+      0 => '/var/www/html/app/Http/Controllers/Api/V1/MfaController.php',
+    ),
+  ),
+  '/var/www/html/app/Http/Resources/MdaResource.php' => 
+  array (
+    'fileHash' => '5fa1ed647f5b13e5a2e48cc3c33f0c04f1e7b6ad29de9c82ae722e64631d0ebe',
+    'dependentFiles' => 
+    array (
+      0 => '/var/www/html/app/Http/Controllers/Api/V1/Access/MdaController.php',
+    ),
+  ),
+  '/var/www/html/app/Http/Resources/UserResource.php' => 
+  array (
+    'fileHash' => '5da0c98084da01f9c663dd20d1aacfa3f724546d6904d627e50ac354b387a8ad',
+    'dependentFiles' => 
+    array (
+      0 => '/var/www/html/app/Http/Controllers/Api/V1/Access/UserController.php',
+      1 => '/var/www/html/app/Http/Controllers/Api/V1/AuthController.php',
+      2 => '/var/www/html/app/Http/Controllers/Api/V1/MfaController.php',
+    ),
+  ),
+  '/var/www/html/app/Providers/AppServiceProvider.php' => 
+  array (
+    'fileHash' => '32b801fcbd906a03e58b838817df29c12803226bc17c536ec1eeca9e58ad8ec5',
+    'dependentFiles' => 
+    array (
+    ),
+  ),
+  '/var/www/html/app/Support/ApiResponse.php' => 
+  array (
+    'fileHash' => '3334c41142b31b4d86a757aff59cf3b4bf86ad28c86e853947784a3a1ea7ebf8',
+    'dependentFiles' => 
+    array (
+      0 => '/var/www/html/app/Http/Controllers/Api/V1/Access/AccessController.php',
+      1 => '/var/www/html/app/Http/Controllers/Api/V1/Access/MdaAccessGrantController.php',
+      2 => '/var/www/html/app/Http/Controllers/Api/V1/Access/MdaController.php',
+      3 => '/var/www/html/app/Http/Controllers/Api/V1/Access/UserController.php',
+      4 => '/var/www/html/app/Http/Controllers/Api/V1/AuthController.php',
+      5 => '/var/www/html/app/Http/Controllers/Api/V1/HealthController.php',
+      6 => '/var/www/html/app/Http/Controllers/Api/V1/MfaController.php',
+      7 => '/var/www/html/app/Http/Middleware/CheckPermission.php',
+      8 => '/var/www/html/app/Http/Middleware/EnforceIdleTimeout.php',
+    ),
+  ),
+),
+	'packageDependencies' => array (
+  '/var/www/html/app/Domain/Access/AccessServiceProvider.php' => 
+  array (
+    0 => 'laravel/framework',
+    1 => 'psr/container',
+    2 => 'laravel/sanctum',
+  ),
+  '/var/www/html/app/Domain/Access/Concerns/ScopedToMda.php' => 
+  array (
+  ),
+  '/var/www/html/app/Domain/Access/Enums/MdaStatus.php' => 
+  array (
+  ),
+  '/var/www/html/app/Domain/Access/Enums/UserStatus.php' => 
+  array (
+  ),
+  '/var/www/html/app/Domain/Access/Events/CrossMdaAccessRevoked.php' => 
+  array (
+    0 => 'laravel/framework',
+    1 => 'laravel/sanctum',
+  ),
+  '/var/www/html/app/Domain/Access/Events/MfaChallengeFailed.php' => 
+  array (
+    0 => 'laravel/framework',
+    1 => 'laravel/sanctum',
+  ),
+  '/var/www/html/app/Domain/Access/Models/MdaAccessGrant.php' => 
+  array (
+    0 => 'laravel/framework',
+    1 => 'laravel/sanctum',
+  ),
+  '/var/www/html/app/Domain/Access/Models/Permission.php' => 
+  array (
+    0 => 'laravel/framework',
+  ),
+  '/var/www/html/app/Domain/Access/Models/Role.php' => 
+  array (
+    0 => 'laravel/framework',
+  ),
+  '/var/www/html/app/Domain/Access/Models/User.php' => 
+  array (
+    0 => 'laravel/framework',
+    1 => 'laravel/sanctum',
+    2 => 'nesbot/carbon',
+  ),
+  '/var/www/html/app/Domain/Access/Services/AuthTokenIssuer.php' => 
+  array (
+    0 => 'laravel/framework',
+    1 => 'laravel/sanctum',
+    2 => 'nesbot/carbon',
+  ),
+  '/var/www/html/app/Domain/Access/Services/MfaService.php' => 
+  array (
+    0 => 'pragmarx/google2fa',
+    1 => 'laravel/framework',
+  ),
+  '/var/www/html/app/Domain/Access/Support/PasswordRules.php' => 
+  array (
+    0 => 'laravel/framework',
+  ),
+  '/var/www/html/app/Domain/Access/Support/PermissionRegistry.php' => 
+  array (
+  ),
+  '/var/www/html/app/Domain/Audit/Concerns/Auditable.php' => 
+  array (
+  ),
+  '/var/www/html/app/Domain/Audit/Models/AuditLog.php' => 
+  array (
+    0 => 'laravel/framework',
+  ),
+  '/var/www/html/app/Http/Controllers/Api/V1/HealthController.php' => 
+  array (
+    0 => 'laravel/framework',
+    1 => 'symfony/http-foundation',
+    2 => 'nesbot/carbon',
+  ),
+  '/var/www/html/app/Http/Requests/Access/StoreUserRequest.php' => 
+  array (
+    0 => 'laravel/framework',
+    1 => 'symfony/http-foundation',
+    2 => 'laravel/sanctum',
+  ),
+  '/var/www/html/app/Http/Requests/Auth/ChangePasswordRequest.php' => 
+  array (
+    0 => 'laravel/framework',
+    1 => 'symfony/http-foundation',
+    2 => 'laravel/sanctum',
+  ),
+  '/var/www/html/app/Console/Commands/SyncPermissions.php' => 
+  array (
+    0 => 'symfony/console',
+    1 => 'laravel/framework',
+  ),
+  '/var/www/html/app/Domain/Access/Enums/RoleKey.php' => 
+  array (
+  ),
+  '/var/www/html/app/Domain/Access/Events/AccountLocked.php' => 
+  array (
+    0 => 'laravel/framework',
+    1 => 'laravel/sanctum',
+  ),
+  '/var/www/html/app/Domain/Access/Events/CrossMdaAccessGranted.php' => 
+  array (
+    0 => 'laravel/framework',
+    1 => 'laravel/sanctum',
+  ),
+  '/var/www/html/app/Domain/Access/Events/MfaDisabled.php' => 
+  array (
+    0 => 'laravel/framework',
+    1 => 'laravel/sanctum',
+  ),
+  '/var/www/html/app/Domain/Access/Models/Mda.php' => 
+  array (
+    0 => 'laravel/framework',
+    1 => 'laravel/sanctum',
+  ),
+  '/var/www/html/app/Domain/Access/Scopes/MdaScope.php' => 
+  array (
+    0 => 'laravel/framework',
+    1 => 'symfony/http-foundation',
+    2 => 'laravel/sanctum',
+  ),
+  '/var/www/html/app/Domain/Access/Services/PermissionSynchronizer.php' => 
+  array (
+    0 => 'laravel/framework',
+  ),
+  '/var/www/html/app/Http/Controllers/Api/V1/Access/AccessController.php' => 
+  array (
+    0 => 'laravel/framework',
+    1 => 'symfony/http-foundation',
+  ),
+  '/var/www/html/app/Http/Controllers/Api/V1/Access/UserController.php' => 
+  array (
+    0 => 'laravel/framework',
+    1 => 'symfony/http-foundation',
+    2 => 'laravel/sanctum',
+  ),
+  '/var/www/html/app/Http/Controllers/Api/V1/MfaController.php' => 
+  array (
+    0 => 'laravel/framework',
+    1 => 'symfony/http-foundation',
+    2 => 'laravel/sanctum',
+    3 => 'nesbot/carbon',
+  ),
+  '/var/www/html/app/Http/Controllers/Concerns/AuthResponses.php' => 
+  array (
+  ),
+  '/var/www/html/app/Http/Middleware/AssignCorrelationId.php' => 
+  array (
+    0 => 'laravel/framework',
+    1 => 'symfony/http-foundation',
+    2 => 'ramsey/uuid',
+  ),
+  '/var/www/html/app/Http/Middleware/SecurityHeaders.php' => 
+  array (
+    0 => 'laravel/framework',
+    1 => 'symfony/http-foundation',
+  ),
+  '/var/www/html/app/Http/Requests/Access/Concerns/ValidatesUserAssignment.php' => 
+  array (
+  ),
+  '/var/www/html/app/Http/Requests/Access/StoreMdaAccessGrantRequest.php' => 
+  array (
+    0 => 'laravel/framework',
+    1 => 'symfony/http-foundation',
+    2 => 'laravel/sanctum',
+  ),
+  '/var/www/html/app/Http/Requests/Auth/LoginRequest.php' => 
+  array (
+    0 => 'laravel/framework',
+    1 => 'symfony/http-foundation',
+  ),
+  '/var/www/html/app/Http/Resources/MdaResource.php' => 
+  array (
+    0 => 'laravel/framework',
+    1 => 'symfony/http-foundation',
+    2 => 'nesbot/carbon',
+  ),
+  '/var/www/html/app/Providers/AppServiceProvider.php' => 
+  array (
+    0 => 'laravel/framework',
+    1 => 'symfony/http-foundation',
+    2 => 'laravel/sanctum',
+  ),
+  '/var/www/html/app/Domain/Access/Enums/MdaType.php' => 
+  array (
+  ),
+  '/var/www/html/app/Domain/Access/Enums/PermissionAction.php' => 
+  array (
+  ),
+  '/var/www/html/app/Domain/Access/Events/MfaEnrolled.php' => 
+  array (
+    0 => 'laravel/framework',
+    1 => 'laravel/sanctum',
+  ),
+  '/var/www/html/app/Domain/Access/Support/TokenAbility.php' => 
+  array (
+  ),
+  '/var/www/html/app/Domain/Audit/Listeners/AuditEventSubscriber.php' => 
+  array (
+    0 => 'laravel/framework',
+    1 => 'laravel/sanctum',
+    2 => 'nesbot/carbon',
+  ),
+  '/var/www/html/app/Domain/Audit/Services/AuditLogger.php' => 
+  array (
+    0 => 'laravel/framework',
+    1 => 'symfony/http-foundation',
+    2 => 'laravel/sanctum',
+    3 => 'nesbot/carbon',
+  ),
+  '/var/www/html/app/Domain/Audit/Support/AuditScrubber.php' => 
+  array (
+    0 => 'laravel/framework',
+  ),
+  '/var/www/html/app/Http/Controllers/Api/V1/Access/MdaAccessGrantController.php' => 
+  array (
+    0 => 'laravel/framework',
+    1 => 'symfony/http-foundation',
+    2 => 'laravel/sanctum',
+    3 => 'nesbot/carbon',
+  ),
+  '/var/www/html/app/Http/Controllers/Api/V1/Access/MdaController.php' => 
+  array (
+    0 => 'laravel/framework',
+    1 => 'symfony/http-foundation',
+  ),
+  '/var/www/html/app/Http/Controllers/Api/V1/AuthController.php' => 
+  array (
+    0 => 'laravel/framework',
+    1 => 'symfony/http-foundation',
+    2 => 'laravel/sanctum',
+    3 => 'nesbot/carbon',
+  ),
+  '/var/www/html/app/Http/Controllers/Controller.php' => 
+  array (
+  ),
+  '/var/www/html/app/Http/Middleware/CheckPermission.php' => 
+  array (
+    0 => 'laravel/framework',
+    1 => 'symfony/http-foundation',
+    2 => 'laravel/sanctum',
+  ),
+  '/var/www/html/app/Http/Middleware/EnforceIdleTimeout.php' => 
+  array (
+    0 => 'laravel/framework',
+    1 => 'symfony/http-foundation',
+    2 => 'laravel/sanctum',
+    3 => 'nesbot/carbon',
+  ),
+  '/var/www/html/app/Http/Requests/Access/StoreMdaRequest.php' => 
+  array (
+    0 => 'laravel/framework',
+    1 => 'symfony/http-foundation',
+    2 => 'laravel/sanctum',
+  ),
+  '/var/www/html/app/Http/Requests/Access/UpdateMdaRequest.php' => 
+  array (
+    0 => 'laravel/framework',
+    1 => 'symfony/http-foundation',
+    2 => 'laravel/sanctum',
+  ),
+  '/var/www/html/app/Http/Requests/Access/UpdateUserRequest.php' => 
+  array (
+    0 => 'laravel/framework',
+    1 => 'symfony/http-foundation',
+    2 => 'laravel/sanctum',
+  ),
+  '/var/www/html/app/Http/Requests/Auth/MfaCodeRequest.php' => 
+  array (
+    0 => 'laravel/framework',
+    1 => 'symfony/http-foundation',
+    2 => 'laravel/sanctum',
+  ),
+  '/var/www/html/app/Http/Resources/UserResource.php' => 
+  array (
+    0 => 'laravel/framework',
+    1 => 'symfony/http-foundation',
+    2 => 'laravel/sanctum',
+    3 => 'nesbot/carbon',
+  ),
+  '/var/www/html/app/Support/ApiResponse.php' => 
+  array (
+    0 => 'laravel/framework',
+    1 => 'symfony/http-foundation',
+  ),
+  '/var/www/html/app/Domain/Access/Concerns/MdaScoped.php' => 
+  array (
+  ),
+  '/var/www/html/app/Domain/Registry/Enums/BeneficiaryStatus.php' => 
+  array (
+  ),
+  '/var/www/html/app/Domain/Registry/Enums/Gender.php' => 
+  array (
+  ),
+  '/var/www/html/app/Domain/Registry/Enums/HouseholdRole.php' => 
+  array (
+  ),
+  '/var/www/html/app/Domain/Registry/Enums/RegistrationSource.php' => 
+  array (
+  ),
+  '/var/www/html/app/Domain/Registry/Models/Beneficiary.php' => 
+  array (
+    0 => 'laravel/framework',
+    1 => 'nesbot/carbon',
+  ),
+  '/var/www/html/app/Domain/Registry/Models/Household.php' => 
+  array (
+    0 => 'laravel/framework',
+    1 => 'nesbot/carbon',
+  ),
+  '/var/www/html/app/Domain/Registry/Models/HouseholdMembership.php' => 
+  array (
+    0 => 'laravel/framework',
+    1 => 'nesbot/carbon',
+  ),
+),
+	'exportedNodesCallback' => static function (): array { return array (
+  '/var/www/html/app/Console/Commands/SyncPermissions.php' => 
+  array (
+    0 => 
+    \PHPStan\Dependency\ExportedNode\ExportedClassNode::__set_state(array(
+       'name' => 'App\\Console\\Commands\\SyncPermissions',
+       'phpDoc' => 
+      \PHPStan\Dependency\ExportedNode\ExportedPhpDocNode::__set_state(array(
+         'phpDocString' => '/**
+ * Syncs the registered module permissions into the database. Run after adding
+ * permissions to a module\'s registration.
+ */',
+         'namespace' => 'App\\Console\\Commands',
+         'uses' => 
+        array (
+          'permissionsynchronizer' => 'App\\Domain\\Access\\Services\\PermissionSynchronizer',
+          'command' => 'Illuminate\\Console\\Command',
+        ),
+         'constUses' => 
+        array (
+        ),
+      )),
+       'abstract' => false,
+       'final' => false,
+       'extends' => 'Illuminate\\Console\\Command',
+       'implements' => 
+      array (
+      ),
+       'usedTraits' => 
+      array (
+      ),
+       'traitUseAdaptations' => 
+      array (
+      ),
+       'statements' => 
+      array (
+        0 => 
+        \PHPStan\Dependency\ExportedNode\ExportedPropertiesNode::__set_state(array(
+           'names' => 
+          array (
+            0 => 'signature',
+          ),
+           'phpDoc' => NULL,
+           'type' => NULL,
+           'public' => false,
+           'private' => false,
+           'static' => false,
+           'readonly' => false,
+           'abstract' => false,
+           'final' => false,
+           'publicSet' => false,
+           'protectedSet' => false,
+           'privateSet' => false,
+           'virtual' => false,
+           'attributes' => 
+          array (
+          ),
+           'hooks' => 
+          array (
+          ),
+        )),
+        1 => 
+        \PHPStan\Dependency\ExportedNode\ExportedPropertiesNode::__set_state(array(
+           'names' => 
+          array (
+            0 => 'description',
+          ),
+           'phpDoc' => NULL,
+           'type' => NULL,
+           'public' => false,
+           'private' => false,
+           'static' => false,
+           'readonly' => false,
+           'abstract' => false,
+           'final' => false,
+           'publicSet' => false,
+           'protectedSet' => false,
+           'privateSet' => false,
+           'virtual' => false,
+           'attributes' => 
+          array (
+          ),
+           'hooks' => 
+          array (
+          ),
+        )),
+        2 => 
+        \PHPStan\Dependency\ExportedNode\ExportedMethodNode::__set_state(array(
+           'name' => 'handle',
+           'phpDoc' => NULL,
+           'byRef' => false,
+           'public' => true,
+           'private' => false,
+           'abstract' => false,
+           'final' => false,
+           'static' => false,
+           'returnType' => 'int',
+           'parameters' => 
+          array (
+            0 => 
+            \PHPStan\Dependency\ExportedNode\ExportedParameterNode::__set_state(array(
+               'name' => 'synchronizer',
+               'type' => 'App\\Domain\\Access\\Services\\PermissionSynchronizer',
+               'byRef' => false,
+               'variadic' => false,
+               'hasDefault' => false,
+               'attributes' => 
+              array (
+              ),
+               'phpDoc' => NULL,
+               'flags' => 0,
+            )),
+          ),
+           'attributes' => 
+          array (
+          ),
+        )),
+      ),
+       'attributes' => 
+      array (
+      ),
+    )),
+  ),
+  '/var/www/html/app/Domain/Access/AccessServiceProvider.php' => 
+  array (
+    0 => 
+    \PHPStan\Dependency\ExportedNode\ExportedClassNode::__set_state(array(
+       'name' => 'App\\Domain\\Access\\AccessServiceProvider',
+       'phpDoc' => 
+      \PHPStan\Dependency\ExportedNode\ExportedPhpDocNode::__set_state(array(
+         'phpDocString' => '/**
+ * Wires the Access domain: the permission registry, this module\'s permissions,
+ * and the Gate bridge that resolves any `module.action` ability against the
+ * authenticated user\'s role permissions (authorization is server-side and
+ * deny-by-default, SECURITY.md).
+ */',
+         'namespace' => 'App\\Domain\\Access',
+         'uses' => 
+        array (
+          'permissionaction' => 'App\\Domain\\Access\\Enums\\PermissionAction',
+          'user' => 'App\\Domain\\Access\\Models\\User',
+          'permissionregistry' => 'App\\Domain\\Access\\Support\\PermissionRegistry',
+          'gate' => 'Illuminate\\Support\\Facades\\Gate',
+          'serviceprovider' => 'Illuminate\\Support\\ServiceProvider',
+        ),
+         'constUses' => 
+        array (
+        ),
+      )),
+       'abstract' => false,
+       'final' => false,
+       'extends' => 'Illuminate\\Support\\ServiceProvider',
+       'implements' => 
+      array (
+      ),
+       'usedTraits' => 
+      array (
+      ),
+       'traitUseAdaptations' => 
+      array (
+      ),
+       'statements' => 
+      array (
+        0 => 
+        \PHPStan\Dependency\ExportedNode\ExportedMethodNode::__set_state(array(
+           'name' => 'register',
+           'phpDoc' => NULL,
+           'byRef' => false,
+           'public' => true,
+           'private' => false,
+           'abstract' => false,
+           'final' => false,
+           'static' => false,
+           'returnType' => 'void',
+           'parameters' => 
+          array (
+          ),
+           'attributes' => 
+          array (
+          ),
+        )),
+        1 => 
+        \PHPStan\Dependency\ExportedNode\ExportedMethodNode::__set_state(array(
+           'name' => 'boot',
+           'phpDoc' => NULL,
+           'byRef' => false,
+           'public' => true,
+           'private' => false,
+           'abstract' => false,
+           'final' => false,
+           'static' => false,
+           'returnType' => 'void',
+           'parameters' => 
+          array (
+          ),
+           'attributes' => 
+          array (
+          ),
+        )),
+      ),
+       'attributes' => 
+      array (
+      ),
+    )),
+  ),
+  '/var/www/html/app/Domain/Access/Concerns/MdaScoped.php' => 
+  array (
+    0 => 
+    \PHPStan\Dependency\ExportedNode\ExportedInterfaceNode::__set_state(array(
+       'name' => 'App\\Domain\\Access\\Concerns\\MdaScoped',
+       'phpDoc' => 
+      \PHPStan\Dependency\ExportedNode\ExportedPhpDocNode::__set_state(array(
+         'phpDocString' => '/**
+ * Implemented (via the ScopedToMda trait) by models that carry an owning-MDA
+ * column, so the global scope can resolve the column in a type-safe way.
+ */',
+         'namespace' => 'App\\Domain\\Access\\Concerns',
+         'uses' => 
+        array (
+        ),
+         'constUses' => 
+        array (
+        ),
+      )),
+       'extends' => 
+      array (
+      ),
+       'statements' => 
+      array (
+        0 => 
+        \PHPStan\Dependency\ExportedNode\ExportedMethodNode::__set_state(array(
+           'name' => 'mdaOwnershipColumn',
+           'phpDoc' => NULL,
+           'byRef' => false,
+           'public' => true,
+           'private' => false,
+           'abstract' => false,
+           'final' => false,
+           'static' => false,
+           'returnType' => 'string',
+           'parameters' => 
+          array (
+          ),
+           'attributes' => 
+          array (
+          ),
+        )),
+      ),
+    )),
+  ),
+  '/var/www/html/app/Domain/Access/Concerns/ScopedToMda.php' => 
+  array (
+    0 => 
+    \PHPStan\Dependency\ExportedNode\ExportedTraitNode::__set_state(array(
+       'name' => 'App\\Domain\\Access\\Concerns\\ScopedToMda',
+       'phpDoc' => 
+      \PHPStan\Dependency\ExportedNode\ExportedPhpDocNode::__set_state(array(
+         'phpDocString' => '/**
+ * Opt-in MDA data-scoping for a model. Adding this trait applies the central
+ * MdaScope global scope, so the model is automatically restricted to the
+ * authenticated user\'s accessible MDAs (FR-UAM-03, FR-DSH-01).
+ *
+ * Phase 2+ models (e.g. beneficiaries with an `owner_mda_id`) just `use
+ * ScopedToMda`. Models whose MDA column differs override mdaOwnershipColumn().
+ */',
+         'namespace' => 'App\\Domain\\Access\\Concerns',
+         'uses' => 
+        array (
+          'mdascope' => 'App\\Domain\\Access\\Scopes\\MdaScope',
+        ),
+         'constUses' => 
+        array (
+        ),
+      )),
+       'usedTraits' => 
+      array (
+      ),
+       'traitUseAdaptations' => 
+      array (
+      ),
+       'statements' => 
+      array (
+        0 => 
+        \PHPStan\Dependency\ExportedNode\ExportedMethodNode::__set_state(array(
+           'name' => 'bootScopedToMda',
+           'phpDoc' => NULL,
+           'byRef' => false,
+           'public' => true,
+           'private' => false,
+           'abstract' => false,
+           'final' => false,
+           'static' => true,
+           'returnType' => 'void',
+           'parameters' => 
+          array (
+          ),
+           'attributes' => 
+          array (
+          ),
+        )),
+        1 => 
+        \PHPStan\Dependency\ExportedNode\ExportedMethodNode::__set_state(array(
+           'name' => 'mdaOwnershipColumn',
+           'phpDoc' => 
+          \PHPStan\Dependency\ExportedNode\ExportedPhpDocNode::__set_state(array(
+             'phpDocString' => '/**
+     * The column holding the owning MDA\'s id. Defaults to the Phase 2 ownership
+     * convention; override where the column differs (e.g. User uses `mda_id`).
+     */',
+             'namespace' => 'App\\Domain\\Access\\Concerns',
+             'uses' => 
+            array (
+              'mdascope' => 'App\\Domain\\Access\\Scopes\\MdaScope',
+            ),
+             'constUses' => 
+            array (
+            ),
+          )),
+           'byRef' => false,
+           'public' => true,
+           'private' => false,
+           'abstract' => false,
+           'final' => false,
+           'static' => false,
+           'returnType' => 'string',
+           'parameters' => 
+          array (
+          ),
+           'attributes' => 
+          array (
+          ),
+        )),
+      ),
+       'attributes' => 
+      array (
+      ),
+    )),
+  ),
+  '/var/www/html/app/Domain/Access/Enums/MdaStatus.php' => 
+  array (
+    0 => 
+    \PHPStan\Dependency\ExportedNode\ExportedEnumNode::__set_state(array(
+       'name' => 'App\\Domain\\Access\\Enums\\MdaStatus',
+       'scalarType' => 'string',
+       'phpDoc' => 
+      \PHPStan\Dependency\ExportedNode\ExportedPhpDocNode::__set_state(array(
+         'phpDocString' => '/**
+ * Lifecycle status of an MDA on the platform.
+ */',
+         'namespace' => 'App\\Domain\\Access\\Enums',
+         'uses' => 
+        array (
+        ),
+         'constUses' => 
+        array (
+        ),
+      )),
+       'implements' => 
+      array (
+      ),
+       'statements' => 
+      array (
+        0 => 
+        \PHPStan\Dependency\ExportedNode\ExportedEnumCaseNode::__set_state(array(
+           'name' => 'Active',
+           'value' => '\'active\'',
+           'phpDoc' => NULL,
+        )),
+        1 => 
+        \PHPStan\Dependency\ExportedNode\ExportedEnumCaseNode::__set_state(array(
+           'name' => 'Inactive',
+           'value' => '\'inactive\'',
+           'phpDoc' => NULL,
+        )),
+        2 => 
+        \PHPStan\Dependency\ExportedNode\ExportedMethodNode::__set_state(array(
+           'name' => 'label',
+           'phpDoc' => NULL,
+           'byRef' => false,
+           'public' => true,
+           'private' => false,
+           'abstract' => false,
+           'final' => false,
+           'static' => false,
+           'returnType' => 'string',
+           'parameters' => 
+          array (
+          ),
+           'attributes' => 
+          array (
+          ),
+        )),
+      ),
+       'attributes' => 
+      array (
+      ),
+    )),
+  ),
+  '/var/www/html/app/Domain/Access/Enums/MdaType.php' => 
+  array (
+    0 => 
+    \PHPStan\Dependency\ExportedNode\ExportedEnumNode::__set_state(array(
+       'name' => 'App\\Domain\\Access\\Enums\\MdaType',
+       'scalarType' => 'string',
+       'phpDoc' => 
+      \PHPStan\Dependency\ExportedNode\ExportedPhpDocNode::__set_state(array(
+         'phpDocString' => '/**
+ * The kind of government body an MDA represents (PRD §9: MDA "type").
+ */',
+         'namespace' => 'App\\Domain\\Access\\Enums',
+         'uses' => 
+        array (
+        ),
+         'constUses' => 
+        array (
+        ),
+      )),
+       'implements' => 
+      array (
+      ),
+       'statements' => 
+      array (
+        0 => 
+        \PHPStan\Dependency\ExportedNode\ExportedEnumCaseNode::__set_state(array(
+           'name' => 'Ministry',
+           'value' => '\'ministry\'',
+           'phpDoc' => NULL,
+        )),
+        1 => 
+        \PHPStan\Dependency\ExportedNode\ExportedEnumCaseNode::__set_state(array(
+           'name' => 'Department',
+           'value' => '\'department\'',
+           'phpDoc' => NULL,
+        )),
+        2 => 
+        \PHPStan\Dependency\ExportedNode\ExportedEnumCaseNode::__set_state(array(
+           'name' => 'Agency',
+           'value' => '\'agency\'',
+           'phpDoc' => NULL,
+        )),
+        3 => 
+        \PHPStan\Dependency\ExportedNode\ExportedMethodNode::__set_state(array(
+           'name' => 'label',
+           'phpDoc' => NULL,
+           'byRef' => false,
+           'public' => true,
+           'private' => false,
+           'abstract' => false,
+           'final' => false,
+           'static' => false,
+           'returnType' => 'string',
+           'parameters' => 
+          array (
+          ),
+           'attributes' => 
+          array (
+          ),
+        )),
+      ),
+       'attributes' => 
+      array (
+      ),
+    )),
+  ),
+  '/var/www/html/app/Domain/Access/Enums/PermissionAction.php' => 
+  array (
+    0 => 
+    \PHPStan\Dependency\ExportedNode\ExportedEnumNode::__set_state(array(
+       'name' => 'App\\Domain\\Access\\Enums\\PermissionAction',
+       'scalarType' => 'string',
+       'phpDoc' => 
+      \PHPStan\Dependency\ExportedNode\ExportedPhpDocNode::__set_state(array(
+         'phpDocString' => '/**
+ * The action half of a `module.action` permission (PRD FR-UAM-05).
+ * Every module registers permissions using these actions so authorization
+ * stays consistent across the system.
+ */',
+         'namespace' => 'App\\Domain\\Access\\Enums',
+         'uses' => 
+        array (
+        ),
+         'constUses' => 
+        array (
+        ),
+      )),
+       'implements' => 
+      array (
+      ),
+       'statements' => 
+      array (
+        0 => 
+        \PHPStan\Dependency\ExportedNode\ExportedEnumCaseNode::__set_state(array(
+           'name' => 'View',
+           'value' => '\'view\'',
+           'phpDoc' => NULL,
+        )),
+        1 => 
+        \PHPStan\Dependency\ExportedNode\ExportedEnumCaseNode::__set_state(array(
+           'name' => 'Create',
+           'value' => '\'create\'',
+           'phpDoc' => NULL,
+        )),
+        2 => 
+        \PHPStan\Dependency\ExportedNode\ExportedEnumCaseNode::__set_state(array(
+           'name' => 'Edit',
+           'value' => '\'edit\'',
+           'phpDoc' => NULL,
+        )),
+        3 => 
+        \PHPStan\Dependency\ExportedNode\ExportedEnumCaseNode::__set_state(array(
+           'name' => 'Approve',
+           'value' => '\'approve\'',
+           'phpDoc' => NULL,
+        )),
+        4 => 
+        \PHPStan\Dependency\ExportedNode\ExportedEnumCaseNode::__set_state(array(
+           'name' => 'Export',
+           'value' => '\'export\'',
+           'phpDoc' => NULL,
+        )),
+        5 => 
+        \PHPStan\Dependency\ExportedNode\ExportedMethodNode::__set_state(array(
+           'name' => 'label',
+           'phpDoc' => NULL,
+           'byRef' => false,
+           'public' => true,
+           'private' => false,
+           'abstract' => false,
+           'final' => false,
+           'static' => false,
+           'returnType' => 'string',
+           'parameters' => 
+          array (
+          ),
+           'attributes' => 
+          array (
+          ),
+        )),
+      ),
+       'attributes' => 
+      array (
+      ),
+    )),
+  ),
+  '/var/www/html/app/Domain/Access/Enums/RoleKey.php' => 
+  array (
+    0 => 
+    \PHPStan\Dependency\ExportedNode\ExportedEnumNode::__set_state(array(
+       'name' => 'App\\Domain\\Access\\Enums\\RoleKey',
+       'scalarType' => 'string',
+       'phpDoc' => 
+      \PHPStan\Dependency\ExportedNode\ExportedPhpDocNode::__set_state(array(
+         'phpDocString' => '/**
+ * The seven predefined roles from PRD FR-UAM-01. These are seeded as data;
+ * this enum gives code a type-safe handle on the well-known role keys.
+ */',
+         'namespace' => 'App\\Domain\\Access\\Enums',
+         'uses' => 
+        array (
+        ),
+         'constUses' => 
+        array (
+        ),
+      )),
+       'implements' => 
+      array (
+      ),
+       'statements' => 
+      array (
+        0 => 
+        \PHPStan\Dependency\ExportedNode\ExportedEnumCaseNode::__set_state(array(
+           'name' => 'Executive',
+           'value' => '\'executive\'',
+           'phpDoc' => NULL,
+        )),
+        1 => 
+        \PHPStan\Dependency\ExportedNode\ExportedEnumCaseNode::__set_state(array(
+           'name' => 'SpCoordination',
+           'value' => '\'sp_coordination\'',
+           'phpDoc' => NULL,
+        )),
+        2 => 
+        \PHPStan\Dependency\ExportedNode\ExportedEnumCaseNode::__set_state(array(
+           'name' => 'MneOfficer',
+           'value' => '\'mne_officer\'',
+           'phpDoc' => NULL,
+        )),
+        3 => 
+        \PHPStan\Dependency\ExportedNode\ExportedEnumCaseNode::__set_state(array(
+           'name' => 'MdaOfficer',
+           'value' => '\'mda_officer\'',
+           'phpDoc' => NULL,
+        )),
+        4 => 
+        \PHPStan\Dependency\ExportedNode\ExportedEnumCaseNode::__set_state(array(
+           'name' => 'MdaAdmin',
+           'value' => '\'mda_admin\'',
+           'phpDoc' => NULL,
+        )),
+        5 => 
+        \PHPStan\Dependency\ExportedNode\ExportedEnumCaseNode::__set_state(array(
+           'name' => 'DevelopmentPartner',
+           'value' => '\'development_partner\'',
+           'phpDoc' => NULL,
+        )),
+        6 => 
+        \PHPStan\Dependency\ExportedNode\ExportedEnumCaseNode::__set_state(array(
+           'name' => 'SystemAdministrator',
+           'value' => '\'system_administrator\'',
+           'phpDoc' => NULL,
+        )),
+        7 => 
+        \PHPStan\Dependency\ExportedNode\ExportedMethodNode::__set_state(array(
+           'name' => 'label',
+           'phpDoc' => NULL,
+           'byRef' => false,
+           'public' => true,
+           'private' => false,
+           'abstract' => false,
+           'final' => false,
+           'static' => false,
+           'returnType' => 'string',
+           'parameters' => 
+          array (
+          ),
+           'attributes' => 
+          array (
+          ),
+        )),
+      ),
+       'attributes' => 
+      array (
+      ),
+    )),
+  ),
+  '/var/www/html/app/Domain/Access/Enums/UserStatus.php' => 
+  array (
+    0 => 
+    \PHPStan\Dependency\ExportedNode\ExportedEnumNode::__set_state(array(
+       'name' => 'App\\Domain\\Access\\Enums\\UserStatus',
+       'scalarType' => 'string',
+       'phpDoc' => 
+      \PHPStan\Dependency\ExportedNode\ExportedPhpDocNode::__set_state(array(
+         'phpDocString' => '/**
+ * Account status of a user (PRD FR-UAM-02: create, edit, suspend, deactivate).
+ * Only `Active` users may authenticate (enforced in the auth build step).
+ */',
+         'namespace' => 'App\\Domain\\Access\\Enums',
+         'uses' => 
+        array (
+        ),
+         'constUses' => 
+        array (
+        ),
+      )),
+       'implements' => 
+      array (
+      ),
+       'statements' => 
+      array (
+        0 => 
+        \PHPStan\Dependency\ExportedNode\ExportedEnumCaseNode::__set_state(array(
+           'name' => 'Active',
+           'value' => '\'active\'',
+           'phpDoc' => NULL,
+        )),
+        1 => 
+        \PHPStan\Dependency\ExportedNode\ExportedEnumCaseNode::__set_state(array(
+           'name' => 'Suspended',
+           'value' => '\'suspended\'',
+           'phpDoc' => NULL,
+        )),
+        2 => 
+        \PHPStan\Dependency\ExportedNode\ExportedEnumCaseNode::__set_state(array(
+           'name' => 'Deactivated',
+           'value' => '\'deactivated\'',
+           'phpDoc' => NULL,
+        )),
+        3 => 
+        \PHPStan\Dependency\ExportedNode\ExportedMethodNode::__set_state(array(
+           'name' => 'label',
+           'phpDoc' => NULL,
+           'byRef' => false,
+           'public' => true,
+           'private' => false,
+           'abstract' => false,
+           'final' => false,
+           'static' => false,
+           'returnType' => 'string',
+           'parameters' => 
+          array (
+          ),
+           'attributes' => 
+          array (
+          ),
+        )),
+      ),
+       'attributes' => 
+      array (
+      ),
+    )),
+  ),
+  '/var/www/html/app/Domain/Access/Events/AccountLocked.php' => 
+  array (
+    0 => 
+    \PHPStan\Dependency\ExportedNode\ExportedClassNode::__set_state(array(
+       'name' => 'App\\Domain\\Access\\Events\\AccountLocked',
+       'phpDoc' => 
+      \PHPStan\Dependency\ExportedNode\ExportedPhpDocNode::__set_state(array(
+         'phpDocString' => '/**
+ * Fired when an account is locked out after too many failed attempts. Audit
+ * hook — the audit-log step (next) will listen for this (FR-UAM-06, FR-AUD-01).
+ */',
+         'namespace' => 'App\\Domain\\Access\\Events',
+         'uses' => 
+        array (
+          'user' => 'App\\Domain\\Access\\Models\\User',
+          'dispatchable' => 'Illuminate\\Foundation\\Events\\Dispatchable',
+        ),
+         'constUses' => 
+        array (
+        ),
+      )),
+       'abstract' => false,
+       'final' => false,
+       'extends' => NULL,
+       'implements' => 
+      array (
+      ),
+       'usedTraits' => 
+      array (
+        0 => 'Illuminate\\Foundation\\Events\\Dispatchable',
+      ),
+       'traitUseAdaptations' => 
+      array (
+      ),
+       'statements' => 
+      array (
+        0 => 
+        \PHPStan\Dependency\ExportedNode\ExportedMethodNode::__set_state(array(
+           'name' => '__construct',
+           'phpDoc' => NULL,
+           'byRef' => false,
+           'public' => true,
+           'private' => false,
+           'abstract' => false,
+           'final' => false,
+           'static' => false,
+           'returnType' => NULL,
+           'parameters' => 
+          array (
+            0 => 
+            \PHPStan\Dependency\ExportedNode\ExportedParameterNode::__set_state(array(
+               'name' => 'user',
+               'type' => 'App\\Domain\\Access\\Models\\User',
+               'byRef' => false,
+               'variadic' => false,
+               'hasDefault' => false,
+               'attributes' => 
+              array (
+              ),
+               'phpDoc' => NULL,
+               'flags' => 65,
+            )),
+            1 => 
+            \PHPStan\Dependency\ExportedNode\ExportedParameterNode::__set_state(array(
+               'name' => 'ip',
+               'type' => '?string',
+               'byRef' => false,
+               'variadic' => false,
+               'hasDefault' => true,
+               'attributes' => 
+              array (
+              ),
+               'phpDoc' => NULL,
+               'flags' => 65,
+            )),
+          ),
+           'attributes' => 
+          array (
+          ),
+        )),
+      ),
+       'attributes' => 
+      array (
+      ),
+    )),
+  ),
+  '/var/www/html/app/Domain/Access/Events/CrossMdaAccessGranted.php' => 
+  array (
+    0 => 
+    \PHPStan\Dependency\ExportedNode\ExportedClassNode::__set_state(array(
+       'name' => 'App\\Domain\\Access\\Events\\CrossMdaAccessGranted',
+       'phpDoc' => 
+      \PHPStan\Dependency\ExportedNode\ExportedPhpDocNode::__set_state(array(
+         'phpDocString' => '/**
+ * Fired when a cross-MDA access grant is created (FR-DSH-01). Audit hook — the
+ * audit-log step will listen to record who granted what to whom (FR-AUD-01).
+ */',
+         'namespace' => 'App\\Domain\\Access\\Events',
+         'uses' => 
+        array (
+          'mdaaccessgrant' => 'App\\Domain\\Access\\Models\\MdaAccessGrant',
+          'user' => 'App\\Domain\\Access\\Models\\User',
+          'dispatchable' => 'Illuminate\\Foundation\\Events\\Dispatchable',
+        ),
+         'constUses' => 
+        array (
+        ),
+      )),
+       'abstract' => false,
+       'final' => false,
+       'extends' => NULL,
+       'implements' => 
+      array (
+      ),
+       'usedTraits' => 
+      array (
+        0 => 'Illuminate\\Foundation\\Events\\Dispatchable',
+      ),
+       'traitUseAdaptations' => 
+      array (
+      ),
+       'statements' => 
+      array (
+        0 => 
+        \PHPStan\Dependency\ExportedNode\ExportedMethodNode::__set_state(array(
+           'name' => '__construct',
+           'phpDoc' => NULL,
+           'byRef' => false,
+           'public' => true,
+           'private' => false,
+           'abstract' => false,
+           'final' => false,
+           'static' => false,
+           'returnType' => NULL,
+           'parameters' => 
+          array (
+            0 => 
+            \PHPStan\Dependency\ExportedNode\ExportedParameterNode::__set_state(array(
+               'name' => 'grant',
+               'type' => 'App\\Domain\\Access\\Models\\MdaAccessGrant',
+               'byRef' => false,
+               'variadic' => false,
+               'hasDefault' => false,
+               'attributes' => 
+              array (
+              ),
+               'phpDoc' => NULL,
+               'flags' => 65,
+            )),
+            1 => 
+            \PHPStan\Dependency\ExportedNode\ExportedParameterNode::__set_state(array(
+               'name' => 'actor',
+               'type' => '?App\\Domain\\Access\\Models\\User',
+               'byRef' => false,
+               'variadic' => false,
+               'hasDefault' => true,
+               'attributes' => 
+              array (
+              ),
+               'phpDoc' => NULL,
+               'flags' => 65,
+            )),
+          ),
+           'attributes' => 
+          array (
+          ),
+        )),
+      ),
+       'attributes' => 
+      array (
+      ),
+    )),
+  ),
+  '/var/www/html/app/Domain/Access/Events/CrossMdaAccessRevoked.php' => 
+  array (
+    0 => 
+    \PHPStan\Dependency\ExportedNode\ExportedClassNode::__set_state(array(
+       'name' => 'App\\Domain\\Access\\Events\\CrossMdaAccessRevoked',
+       'phpDoc' => 
+      \PHPStan\Dependency\ExportedNode\ExportedPhpDocNode::__set_state(array(
+         'phpDocString' => '/**
+ * Fired when a cross-MDA access grant is revoked (FR-DSH-01). Audit hook for the
+ * audit-log step (FR-AUD-01).
+ */',
+         'namespace' => 'App\\Domain\\Access\\Events',
+         'uses' => 
+        array (
+          'mdaaccessgrant' => 'App\\Domain\\Access\\Models\\MdaAccessGrant',
+          'user' => 'App\\Domain\\Access\\Models\\User',
+          'dispatchable' => 'Illuminate\\Foundation\\Events\\Dispatchable',
+        ),
+         'constUses' => 
+        array (
+        ),
+      )),
+       'abstract' => false,
+       'final' => false,
+       'extends' => NULL,
+       'implements' => 
+      array (
+      ),
+       'usedTraits' => 
+      array (
+        0 => 'Illuminate\\Foundation\\Events\\Dispatchable',
+      ),
+       'traitUseAdaptations' => 
+      array (
+      ),
+       'statements' => 
+      array (
+        0 => 
+        \PHPStan\Dependency\ExportedNode\ExportedMethodNode::__set_state(array(
+           'name' => '__construct',
+           'phpDoc' => NULL,
+           'byRef' => false,
+           'public' => true,
+           'private' => false,
+           'abstract' => false,
+           'final' => false,
+           'static' => false,
+           'returnType' => NULL,
+           'parameters' => 
+          array (
+            0 => 
+            \PHPStan\Dependency\ExportedNode\ExportedParameterNode::__set_state(array(
+               'name' => 'grant',
+               'type' => 'App\\Domain\\Access\\Models\\MdaAccessGrant',
+               'byRef' => false,
+               'variadic' => false,
+               'hasDefault' => false,
+               'attributes' => 
+              array (
+              ),
+               'phpDoc' => NULL,
+               'flags' => 65,
+            )),
+            1 => 
+            \PHPStan\Dependency\ExportedNode\ExportedParameterNode::__set_state(array(
+               'name' => 'actor',
+               'type' => '?App\\Domain\\Access\\Models\\User',
+               'byRef' => false,
+               'variadic' => false,
+               'hasDefault' => true,
+               'attributes' => 
+              array (
+              ),
+               'phpDoc' => NULL,
+               'flags' => 65,
+            )),
+          ),
+           'attributes' => 
+          array (
+          ),
+        )),
+      ),
+       'attributes' => 
+      array (
+      ),
+    )),
+  ),
+  '/var/www/html/app/Domain/Access/Events/MfaChallengeFailed.php' => 
+  array (
+    0 => 
+    \PHPStan\Dependency\ExportedNode\ExportedClassNode::__set_state(array(
+       'name' => 'App\\Domain\\Access\\Events\\MfaChallengeFailed',
+       'phpDoc' => 
+      \PHPStan\Dependency\ExportedNode\ExportedPhpDocNode::__set_state(array(
+         'phpDocString' => '/**
+ * Fired when an MFA challenge (TOTP or recovery code) fails. Audit hook — the
+ * audit-log step (next) will listen for this (FR-AUD-01).
+ */',
+         'namespace' => 'App\\Domain\\Access\\Events',
+         'uses' => 
+        array (
+          'user' => 'App\\Domain\\Access\\Models\\User',
+          'dispatchable' => 'Illuminate\\Foundation\\Events\\Dispatchable',
+        ),
+         'constUses' => 
+        array (
+        ),
+      )),
+       'abstract' => false,
+       'final' => false,
+       'extends' => NULL,
+       'implements' => 
+      array (
+      ),
+       'usedTraits' => 
+      array (
+        0 => 'Illuminate\\Foundation\\Events\\Dispatchable',
+      ),
+       'traitUseAdaptations' => 
+      array (
+      ),
+       'statements' => 
+      array (
+        0 => 
+        \PHPStan\Dependency\ExportedNode\ExportedMethodNode::__set_state(array(
+           'name' => '__construct',
+           'phpDoc' => NULL,
+           'byRef' => false,
+           'public' => true,
+           'private' => false,
+           'abstract' => false,
+           'final' => false,
+           'static' => false,
+           'returnType' => NULL,
+           'parameters' => 
+          array (
+            0 => 
+            \PHPStan\Dependency\ExportedNode\ExportedParameterNode::__set_state(array(
+               'name' => 'user',
+               'type' => 'App\\Domain\\Access\\Models\\User',
+               'byRef' => false,
+               'variadic' => false,
+               'hasDefault' => false,
+               'attributes' => 
+              array (
+              ),
+               'phpDoc' => NULL,
+               'flags' => 65,
+            )),
+            1 => 
+            \PHPStan\Dependency\ExportedNode\ExportedParameterNode::__set_state(array(
+               'name' => 'ip',
+               'type' => '?string',
+               'byRef' => false,
+               'variadic' => false,
+               'hasDefault' => true,
+               'attributes' => 
+              array (
+              ),
+               'phpDoc' => NULL,
+               'flags' => 65,
+            )),
+          ),
+           'attributes' => 
+          array (
+          ),
+        )),
+      ),
+       'attributes' => 
+      array (
+      ),
+    )),
+  ),
+  '/var/www/html/app/Domain/Access/Events/MfaDisabled.php' => 
+  array (
+    0 => 
+    \PHPStan\Dependency\ExportedNode\ExportedClassNode::__set_state(array(
+       'name' => 'App\\Domain\\Access\\Events\\MfaDisabled',
+       'phpDoc' => 
+      \PHPStan\Dependency\ExportedNode\ExportedPhpDocNode::__set_state(array(
+         'phpDocString' => '/**
+ * Fired when a user disables MFA. Audit hook (FR-AUD-01).
+ */',
+         'namespace' => 'App\\Domain\\Access\\Events',
+         'uses' => 
+        array (
+          'user' => 'App\\Domain\\Access\\Models\\User',
+          'dispatchable' => 'Illuminate\\Foundation\\Events\\Dispatchable',
+        ),
+         'constUses' => 
+        array (
+        ),
+      )),
+       'abstract' => false,
+       'final' => false,
+       'extends' => NULL,
+       'implements' => 
+      array (
+      ),
+       'usedTraits' => 
+      array (
+        0 => 'Illuminate\\Foundation\\Events\\Dispatchable',
+      ),
+       'traitUseAdaptations' => 
+      array (
+      ),
+       'statements' => 
+      array (
+        0 => 
+        \PHPStan\Dependency\ExportedNode\ExportedMethodNode::__set_state(array(
+           'name' => '__construct',
+           'phpDoc' => NULL,
+           'byRef' => false,
+           'public' => true,
+           'private' => false,
+           'abstract' => false,
+           'final' => false,
+           'static' => false,
+           'returnType' => NULL,
+           'parameters' => 
+          array (
+            0 => 
+            \PHPStan\Dependency\ExportedNode\ExportedParameterNode::__set_state(array(
+               'name' => 'user',
+               'type' => 'App\\Domain\\Access\\Models\\User',
+               'byRef' => false,
+               'variadic' => false,
+               'hasDefault' => false,
+               'attributes' => 
+              array (
+              ),
+               'phpDoc' => NULL,
+               'flags' => 65,
+            )),
+          ),
+           'attributes' => 
+          array (
+          ),
+        )),
+      ),
+       'attributes' => 
+      array (
+      ),
+    )),
+  ),
+  '/var/www/html/app/Domain/Access/Events/MfaEnrolled.php' => 
+  array (
+    0 => 
+    \PHPStan\Dependency\ExportedNode\ExportedClassNode::__set_state(array(
+       'name' => 'App\\Domain\\Access\\Events\\MfaEnrolled',
+       'phpDoc' => 
+      \PHPStan\Dependency\ExportedNode\ExportedPhpDocNode::__set_state(array(
+         'phpDocString' => '/**
+ * Fired when a user enables MFA. Audit hook — the audit-log step (next) will
+ * listen for this to record the enrolment (FR-AUD-01).
+ */',
+         'namespace' => 'App\\Domain\\Access\\Events',
+         'uses' => 
+        array (
+          'user' => 'App\\Domain\\Access\\Models\\User',
+          'dispatchable' => 'Illuminate\\Foundation\\Events\\Dispatchable',
+        ),
+         'constUses' => 
+        array (
+        ),
+      )),
+       'abstract' => false,
+       'final' => false,
+       'extends' => NULL,
+       'implements' => 
+      array (
+      ),
+       'usedTraits' => 
+      array (
+        0 => 'Illuminate\\Foundation\\Events\\Dispatchable',
+      ),
+       'traitUseAdaptations' => 
+      array (
+      ),
+       'statements' => 
+      array (
+        0 => 
+        \PHPStan\Dependency\ExportedNode\ExportedMethodNode::__set_state(array(
+           'name' => '__construct',
+           'phpDoc' => NULL,
+           'byRef' => false,
+           'public' => true,
+           'private' => false,
+           'abstract' => false,
+           'final' => false,
+           'static' => false,
+           'returnType' => NULL,
+           'parameters' => 
+          array (
+            0 => 
+            \PHPStan\Dependency\ExportedNode\ExportedParameterNode::__set_state(array(
+               'name' => 'user',
+               'type' => 'App\\Domain\\Access\\Models\\User',
+               'byRef' => false,
+               'variadic' => false,
+               'hasDefault' => false,
+               'attributes' => 
+              array (
+              ),
+               'phpDoc' => NULL,
+               'flags' => 65,
+            )),
+          ),
+           'attributes' => 
+          array (
+          ),
+        )),
+      ),
+       'attributes' => 
+      array (
+      ),
+    )),
+  ),
+  '/var/www/html/app/Domain/Access/Models/Mda.php' => 
+  array (
+    0 => 
+    \PHPStan\Dependency\ExportedNode\ExportedClassNode::__set_state(array(
+       'name' => 'App\\Domain\\Access\\Models\\Mda',
+       'phpDoc' => 
+      \PHPStan\Dependency\ExportedNode\ExportedPhpDocNode::__set_state(array(
+         'phpDocString' => '/**
+ * A Ministry, Department or Agency. Owns its users and (later) the beneficiary
+ * records it originates.
+ *
+ * @property string $id
+ * @property string $name
+ * @property MdaType $type
+ * @property MdaStatus $status
+ * @property string|null $contact_person
+ * @property string|null $contact_email
+ * @property string|null $contact_phone
+ * @property string|null $address
+ * @property Carbon|null $created_at
+ * @property Carbon|null $updated_at
+ */',
+         'namespace' => 'App\\Domain\\Access\\Models',
+         'uses' => 
+        array (
+          'mdascoped' => 'App\\Domain\\Access\\Concerns\\MdaScoped',
+          'scopedtomda' => 'App\\Domain\\Access\\Concerns\\ScopedToMda',
+          'mdastatus' => 'App\\Domain\\Access\\Enums\\MdaStatus',
+          'mdatype' => 'App\\Domain\\Access\\Enums\\MdaType',
+          'auditable' => 'App\\Domain\\Audit\\Concerns\\Auditable',
+          'mdafactory' => 'Database\\Factories\\MdaFactory',
+          'hasuuids' => 'Illuminate\\Database\\Eloquent\\Concerns\\HasUuids',
+          'hasfactory' => 'Illuminate\\Database\\Eloquent\\Factories\\HasFactory',
+          'model' => 'Illuminate\\Database\\Eloquent\\Model',
+          'hasmany' => 'Illuminate\\Database\\Eloquent\\Relations\\HasMany',
+          'softdeletes' => 'Illuminate\\Database\\Eloquent\\SoftDeletes',
+          'carbon' => 'Illuminate\\Support\\Carbon',
+        ),
+         'constUses' => 
+        array (
+        ),
+      )),
+       'abstract' => false,
+       'final' => false,
+       'extends' => 'Illuminate\\Database\\Eloquent\\Model',
+       'implements' => 
+      array (
+        0 => 'App\\Domain\\Access\\Concerns\\MdaScoped',
+      ),
+       'usedTraits' => 
+      array (
+        0 => 'App\\Domain\\Audit\\Concerns\\Auditable',
+        1 => 'Illuminate\\Database\\Eloquent\\Factories\\HasFactory',
+        2 => 'Illuminate\\Database\\Eloquent\\Concerns\\HasUuids',
+        3 => 'App\\Domain\\Access\\Concerns\\ScopedToMda',
+        4 => 'Illuminate\\Database\\Eloquent\\SoftDeletes',
+      ),
+       'traitUseAdaptations' => 
+      array (
+      ),
+       'statements' => 
+      array (
+        0 => 
+        \PHPStan\Dependency\ExportedNode\ExportedPropertiesNode::__set_state(array(
+           'names' => 
+          array (
+            0 => 'table',
+          ),
+           'phpDoc' => NULL,
+           'type' => NULL,
+           'public' => false,
+           'private' => false,
+           'static' => false,
+           'readonly' => false,
+           'abstract' => false,
+           'final' => false,
+           'publicSet' => false,
+           'protectedSet' => false,
+           'privateSet' => false,
+           'virtual' => false,
+           'attributes' => 
+          array (
+          ),
+           'hooks' => 
+          array (
+          ),
+        )),
+        1 => 
+        \PHPStan\Dependency\ExportedNode\ExportedMethodNode::__set_state(array(
+           'name' => 'mdaOwnershipColumn',
+           'phpDoc' => 
+          \PHPStan\Dependency\ExportedNode\ExportedPhpDocNode::__set_state(array(
+             'phpDocString' => '/**
+     * An MDA is scoped on its own primary key: a user sees their own MDA (and
+     * any granted MDAs), unless they hold cross-mda.view (FR-UAM-03).
+     */',
+             'namespace' => 'App\\Domain\\Access\\Models',
+             'uses' => 
+            array (
+              'mdascoped' => 'App\\Domain\\Access\\Concerns\\MdaScoped',
+              'scopedtomda' => 'App\\Domain\\Access\\Concerns\\ScopedToMda',
+              'mdastatus' => 'App\\Domain\\Access\\Enums\\MdaStatus',
+              'mdatype' => 'App\\Domain\\Access\\Enums\\MdaType',
+              'auditable' => 'App\\Domain\\Audit\\Concerns\\Auditable',
+              'mdafactory' => 'Database\\Factories\\MdaFactory',
+              'hasuuids' => 'Illuminate\\Database\\Eloquent\\Concerns\\HasUuids',
+              'hasfactory' => 'Illuminate\\Database\\Eloquent\\Factories\\HasFactory',
+              'model' => 'Illuminate\\Database\\Eloquent\\Model',
+              'hasmany' => 'Illuminate\\Database\\Eloquent\\Relations\\HasMany',
+              'softdeletes' => 'Illuminate\\Database\\Eloquent\\SoftDeletes',
+              'carbon' => 'Illuminate\\Support\\Carbon',
+            ),
+             'constUses' => 
+            array (
+            ),
+          )),
+           'byRef' => false,
+           'public' => true,
+           'private' => false,
+           'abstract' => false,
+           'final' => false,
+           'static' => false,
+           'returnType' => 'string',
+           'parameters' => 
+          array (
+          ),
+           'attributes' => 
+          array (
+          ),
+        )),
+        2 => 
+        \PHPStan\Dependency\ExportedNode\ExportedPropertiesNode::__set_state(array(
+           'names' => 
+          array (
+            0 => 'fillable',
+          ),
+           'phpDoc' => 
+          \PHPStan\Dependency\ExportedNode\ExportedPhpDocNode::__set_state(array(
+             'phpDocString' => '/**
+     * @var list<string>
+     */',
+             'namespace' => 'App\\Domain\\Access\\Models',
+             'uses' => 
+            array (
+              'mdascoped' => 'App\\Domain\\Access\\Concerns\\MdaScoped',
+              'scopedtomda' => 'App\\Domain\\Access\\Concerns\\ScopedToMda',
+              'mdastatus' => 'App\\Domain\\Access\\Enums\\MdaStatus',
+              'mdatype' => 'App\\Domain\\Access\\Enums\\MdaType',
+              'auditable' => 'App\\Domain\\Audit\\Concerns\\Auditable',
+              'mdafactory' => 'Database\\Factories\\MdaFactory',
+              'hasuuids' => 'Illuminate\\Database\\Eloquent\\Concerns\\HasUuids',
+              'hasfactory' => 'Illuminate\\Database\\Eloquent\\Factories\\HasFactory',
+              'model' => 'Illuminate\\Database\\Eloquent\\Model',
+              'hasmany' => 'Illuminate\\Database\\Eloquent\\Relations\\HasMany',
+              'softdeletes' => 'Illuminate\\Database\\Eloquent\\SoftDeletes',
+              'carbon' => 'Illuminate\\Support\\Carbon',
+            ),
+             'constUses' => 
+            array (
+            ),
+          )),
+           'type' => NULL,
+           'public' => false,
+           'private' => false,
+           'static' => false,
+           'readonly' => false,
+           'abstract' => false,
+           'final' => false,
+           'publicSet' => false,
+           'protectedSet' => false,
+           'privateSet' => false,
+           'virtual' => false,
+           'attributes' => 
+          array (
+          ),
+           'hooks' => 
+          array (
+          ),
+        )),
+        3 => 
+        \PHPStan\Dependency\ExportedNode\ExportedPropertiesNode::__set_state(array(
+           'names' => 
+          array (
+            0 => 'attributes',
+          ),
+           'phpDoc' => 
+          \PHPStan\Dependency\ExportedNode\ExportedPhpDocNode::__set_state(array(
+             'phpDocString' => '/**
+     * Model-level default mirroring the database default.
+     *
+     * @var array<string, mixed>
+     */',
+             'namespace' => 'App\\Domain\\Access\\Models',
+             'uses' => 
+            array (
+              'mdascoped' => 'App\\Domain\\Access\\Concerns\\MdaScoped',
+              'scopedtomda' => 'App\\Domain\\Access\\Concerns\\ScopedToMda',
+              'mdastatus' => 'App\\Domain\\Access\\Enums\\MdaStatus',
+              'mdatype' => 'App\\Domain\\Access\\Enums\\MdaType',
+              'auditable' => 'App\\Domain\\Audit\\Concerns\\Auditable',
+              'mdafactory' => 'Database\\Factories\\MdaFactory',
+              'hasuuids' => 'Illuminate\\Database\\Eloquent\\Concerns\\HasUuids',
+              'hasfactory' => 'Illuminate\\Database\\Eloquent\\Factories\\HasFactory',
+              'model' => 'Illuminate\\Database\\Eloquent\\Model',
+              'hasmany' => 'Illuminate\\Database\\Eloquent\\Relations\\HasMany',
+              'softdeletes' => 'Illuminate\\Database\\Eloquent\\SoftDeletes',
+              'carbon' => 'Illuminate\\Support\\Carbon',
+            ),
+             'constUses' => 
+            array (
+            ),
+          )),
+           'type' => NULL,
+           'public' => false,
+           'private' => false,
+           'static' => false,
+           'readonly' => false,
+           'abstract' => false,
+           'final' => false,
+           'publicSet' => false,
+           'protectedSet' => false,
+           'privateSet' => false,
+           'virtual' => false,
+           'attributes' => 
+          array (
+          ),
+           'hooks' => 
+          array (
+          ),
+        )),
+        4 => 
+        \PHPStan\Dependency\ExportedNode\ExportedMethodNode::__set_state(array(
+           'name' => 'casts',
+           'phpDoc' => 
+          \PHPStan\Dependency\ExportedNode\ExportedPhpDocNode::__set_state(array(
+             'phpDocString' => '/**
+     * @return array<string, string>
+     */',
+             'namespace' => 'App\\Domain\\Access\\Models',
+             'uses' => 
+            array (
+              'mdascoped' => 'App\\Domain\\Access\\Concerns\\MdaScoped',
+              'scopedtomda' => 'App\\Domain\\Access\\Concerns\\ScopedToMda',
+              'mdastatus' => 'App\\Domain\\Access\\Enums\\MdaStatus',
+              'mdatype' => 'App\\Domain\\Access\\Enums\\MdaType',
+              'auditable' => 'App\\Domain\\Audit\\Concerns\\Auditable',
+              'mdafactory' => 'Database\\Factories\\MdaFactory',
+              'hasuuids' => 'Illuminate\\Database\\Eloquent\\Concerns\\HasUuids',
+              'hasfactory' => 'Illuminate\\Database\\Eloquent\\Factories\\HasFactory',
+              'model' => 'Illuminate\\Database\\Eloquent\\Model',
+              'hasmany' => 'Illuminate\\Database\\Eloquent\\Relations\\HasMany',
+              'softdeletes' => 'Illuminate\\Database\\Eloquent\\SoftDeletes',
+              'carbon' => 'Illuminate\\Support\\Carbon',
+            ),
+             'constUses' => 
+            array (
+            ),
+          )),
+           'byRef' => false,
+           'public' => false,
+           'private' => false,
+           'abstract' => false,
+           'final' => false,
+           'static' => false,
+           'returnType' => 'array',
+           'parameters' => 
+          array (
+          ),
+           'attributes' => 
+          array (
+          ),
+        )),
+        5 => 
+        \PHPStan\Dependency\ExportedNode\ExportedMethodNode::__set_state(array(
+           'name' => 'users',
+           'phpDoc' => 
+          \PHPStan\Dependency\ExportedNode\ExportedPhpDocNode::__set_state(array(
+             'phpDocString' => '/**
+     * @return HasMany<User, $this>
+     */',
+             'namespace' => 'App\\Domain\\Access\\Models',
+             'uses' => 
+            array (
+              'mdascoped' => 'App\\Domain\\Access\\Concerns\\MdaScoped',
+              'scopedtomda' => 'App\\Domain\\Access\\Concerns\\ScopedToMda',
+              'mdastatus' => 'App\\Domain\\Access\\Enums\\MdaStatus',
+              'mdatype' => 'App\\Domain\\Access\\Enums\\MdaType',
+              'auditable' => 'App\\Domain\\Audit\\Concerns\\Auditable',
+              'mdafactory' => 'Database\\Factories\\MdaFactory',
+              'hasuuids' => 'Illuminate\\Database\\Eloquent\\Concerns\\HasUuids',
+              'hasfactory' => 'Illuminate\\Database\\Eloquent\\Factories\\HasFactory',
+              'model' => 'Illuminate\\Database\\Eloquent\\Model',
+              'hasmany' => 'Illuminate\\Database\\Eloquent\\Relations\\HasMany',
+              'softdeletes' => 'Illuminate\\Database\\Eloquent\\SoftDeletes',
+              'carbon' => 'Illuminate\\Support\\Carbon',
+            ),
+             'constUses' => 
+            array (
+            ),
+          )),
+           'byRef' => false,
+           'public' => true,
+           'private' => false,
+           'abstract' => false,
+           'final' => false,
+           'static' => false,
+           'returnType' => 'Illuminate\\Database\\Eloquent\\Relations\\HasMany',
+           'parameters' => 
+          array (
+          ),
+           'attributes' => 
+          array (
+          ),
+        )),
+        6 => 
+        \PHPStan\Dependency\ExportedNode\ExportedMethodNode::__set_state(array(
+           'name' => 'accessGrants',
+           'phpDoc' => 
+          \PHPStan\Dependency\ExportedNode\ExportedPhpDocNode::__set_state(array(
+             'phpDocString' => '/**
+     * Cross-MDA grants that give other users access to this MDA.
+     *
+     * @return HasMany<MdaAccessGrant, $this>
+     */',
+             'namespace' => 'App\\Domain\\Access\\Models',
+             'uses' => 
+            array (
+              'mdascoped' => 'App\\Domain\\Access\\Concerns\\MdaScoped',
+              'scopedtomda' => 'App\\Domain\\Access\\Concerns\\ScopedToMda',
+              'mdastatus' => 'App\\Domain\\Access\\Enums\\MdaStatus',
+              'mdatype' => 'App\\Domain\\Access\\Enums\\MdaType',
+              'auditable' => 'App\\Domain\\Audit\\Concerns\\Auditable',
+              'mdafactory' => 'Database\\Factories\\MdaFactory',
+              'hasuuids' => 'Illuminate\\Database\\Eloquent\\Concerns\\HasUuids',
+              'hasfactory' => 'Illuminate\\Database\\Eloquent\\Factories\\HasFactory',
+              'model' => 'Illuminate\\Database\\Eloquent\\Model',
+              'hasmany' => 'Illuminate\\Database\\Eloquent\\Relations\\HasMany',
+              'softdeletes' => 'Illuminate\\Database\\Eloquent\\SoftDeletes',
+              'carbon' => 'Illuminate\\Support\\Carbon',
+            ),
+             'constUses' => 
+            array (
+            ),
+          )),
+           'byRef' => false,
+           'public' => true,
+           'private' => false,
+           'abstract' => false,
+           'final' => false,
+           'static' => false,
+           'returnType' => 'Illuminate\\Database\\Eloquent\\Relations\\HasMany',
+           'parameters' => 
+          array (
+          ),
+           'attributes' => 
+          array (
+          ),
+        )),
+        7 => 
+        \PHPStan\Dependency\ExportedNode\ExportedMethodNode::__set_state(array(
+           'name' => 'newFactory',
+           'phpDoc' => NULL,
+           'byRef' => false,
+           'public' => false,
+           'private' => false,
+           'abstract' => false,
+           'final' => false,
+           'static' => true,
+           'returnType' => 'Database\\Factories\\MdaFactory',
+           'parameters' => 
+          array (
+          ),
+           'attributes' => 
+          array (
+          ),
+        )),
+      ),
+       'attributes' => 
+      array (
+      ),
+    )),
+  ),
+  '/var/www/html/app/Domain/Access/Models/MdaAccessGrant.php' => 
+  array (
+    0 => 
+    \PHPStan\Dependency\ExportedNode\ExportedClassNode::__set_state(array(
+       'name' => 'App\\Domain\\Access\\Models\\MdaAccessGrant',
+       'phpDoc' => 
+      \PHPStan\Dependency\ExportedNode\ExportedPhpDocNode::__set_state(array(
+         'phpDocString' => '/**
+ * An explicit grant allowing a user to access an MDA other than their own
+ * (PRD FR-UAM-03, FR-DSH-01). Consumed by the central MDA data-scoping logic.
+ *
+ * @property string $id
+ * @property string $user_id
+ * @property string $mda_id
+ * @property string|null $granted_by
+ * @property string|null $reason
+ * @property Carbon|null $expires_at
+ * @property Carbon|null $created_at
+ */',
+         'namespace' => 'App\\Domain\\Access\\Models',
+         'uses' => 
+        array (
+          'hasuuids' => 'Illuminate\\Database\\Eloquent\\Concerns\\HasUuids',
+          'model' => 'Illuminate\\Database\\Eloquent\\Model',
+          'belongsto' => 'Illuminate\\Database\\Eloquent\\Relations\\BelongsTo',
+          'carbon' => 'Illuminate\\Support\\Carbon',
+        ),
+         'constUses' => 
+        array (
+        ),
+      )),
+       'abstract' => false,
+       'final' => false,
+       'extends' => 'Illuminate\\Database\\Eloquent\\Model',
+       'implements' => 
+      array (
+      ),
+       'usedTraits' => 
+      array (
+        0 => 'Illuminate\\Database\\Eloquent\\Concerns\\HasUuids',
+      ),
+       'traitUseAdaptations' => 
+      array (
+      ),
+       'statements' => 
+      array (
+        0 => 
+        \PHPStan\Dependency\ExportedNode\ExportedPropertiesNode::__set_state(array(
+           'names' => 
+          array (
+            0 => 'table',
+          ),
+           'phpDoc' => NULL,
+           'type' => NULL,
+           'public' => false,
+           'private' => false,
+           'static' => false,
+           'readonly' => false,
+           'abstract' => false,
+           'final' => false,
+           'publicSet' => false,
+           'protectedSet' => false,
+           'privateSet' => false,
+           'virtual' => false,
+           'attributes' => 
+          array (
+          ),
+           'hooks' => 
+          array (
+          ),
+        )),
+        1 => 
+        \PHPStan\Dependency\ExportedNode\ExportedPropertiesNode::__set_state(array(
+           'names' => 
+          array (
+            0 => 'fillable',
+          ),
+           'phpDoc' => 
+          \PHPStan\Dependency\ExportedNode\ExportedPhpDocNode::__set_state(array(
+             'phpDocString' => '/**
+     * @var list<string>
+     */',
+             'namespace' => 'App\\Domain\\Access\\Models',
+             'uses' => 
+            array (
+              'hasuuids' => 'Illuminate\\Database\\Eloquent\\Concerns\\HasUuids',
+              'model' => 'Illuminate\\Database\\Eloquent\\Model',
+              'belongsto' => 'Illuminate\\Database\\Eloquent\\Relations\\BelongsTo',
+              'carbon' => 'Illuminate\\Support\\Carbon',
+            ),
+             'constUses' => 
+            array (
+            ),
+          )),
+           'type' => NULL,
+           'public' => false,
+           'private' => false,
+           'static' => false,
+           'readonly' => false,
+           'abstract' => false,
+           'final' => false,
+           'publicSet' => false,
+           'protectedSet' => false,
+           'privateSet' => false,
+           'virtual' => false,
+           'attributes' => 
+          array (
+          ),
+           'hooks' => 
+          array (
+          ),
+        )),
+        2 => 
+        \PHPStan\Dependency\ExportedNode\ExportedMethodNode::__set_state(array(
+           'name' => 'casts',
+           'phpDoc' => 
+          \PHPStan\Dependency\ExportedNode\ExportedPhpDocNode::__set_state(array(
+             'phpDocString' => '/**
+     * @return array<string, string>
+     */',
+             'namespace' => 'App\\Domain\\Access\\Models',
+             'uses' => 
+            array (
+              'hasuuids' => 'Illuminate\\Database\\Eloquent\\Concerns\\HasUuids',
+              'model' => 'Illuminate\\Database\\Eloquent\\Model',
+              'belongsto' => 'Illuminate\\Database\\Eloquent\\Relations\\BelongsTo',
+              'carbon' => 'Illuminate\\Support\\Carbon',
+            ),
+             'constUses' => 
+            array (
+            ),
+          )),
+           'byRef' => false,
+           'public' => false,
+           'private' => false,
+           'abstract' => false,
+           'final' => false,
+           'static' => false,
+           'returnType' => 'array',
+           'parameters' => 
+          array (
+          ),
+           'attributes' => 
+          array (
+          ),
+        )),
+        3 => 
+        \PHPStan\Dependency\ExportedNode\ExportedMethodNode::__set_state(array(
+           'name' => 'user',
+           'phpDoc' => 
+          \PHPStan\Dependency\ExportedNode\ExportedPhpDocNode::__set_state(array(
+             'phpDocString' => '/**
+     * @return BelongsTo<User, $this>
+     */',
+             'namespace' => 'App\\Domain\\Access\\Models',
+             'uses' => 
+            array (
+              'hasuuids' => 'Illuminate\\Database\\Eloquent\\Concerns\\HasUuids',
+              'model' => 'Illuminate\\Database\\Eloquent\\Model',
+              'belongsto' => 'Illuminate\\Database\\Eloquent\\Relations\\BelongsTo',
+              'carbon' => 'Illuminate\\Support\\Carbon',
+            ),
+             'constUses' => 
+            array (
+            ),
+          )),
+           'byRef' => false,
+           'public' => true,
+           'private' => false,
+           'abstract' => false,
+           'final' => false,
+           'static' => false,
+           'returnType' => 'Illuminate\\Database\\Eloquent\\Relations\\BelongsTo',
+           'parameters' => 
+          array (
+          ),
+           'attributes' => 
+          array (
+          ),
+        )),
+        4 => 
+        \PHPStan\Dependency\ExportedNode\ExportedMethodNode::__set_state(array(
+           'name' => 'mda',
+           'phpDoc' => 
+          \PHPStan\Dependency\ExportedNode\ExportedPhpDocNode::__set_state(array(
+             'phpDocString' => '/**
+     * @return BelongsTo<Mda, $this>
+     */',
+             'namespace' => 'App\\Domain\\Access\\Models',
+             'uses' => 
+            array (
+              'hasuuids' => 'Illuminate\\Database\\Eloquent\\Concerns\\HasUuids',
+              'model' => 'Illuminate\\Database\\Eloquent\\Model',
+              'belongsto' => 'Illuminate\\Database\\Eloquent\\Relations\\BelongsTo',
+              'carbon' => 'Illuminate\\Support\\Carbon',
+            ),
+             'constUses' => 
+            array (
+            ),
+          )),
+           'byRef' => false,
+           'public' => true,
+           'private' => false,
+           'abstract' => false,
+           'final' => false,
+           'static' => false,
+           'returnType' => 'Illuminate\\Database\\Eloquent\\Relations\\BelongsTo',
+           'parameters' => 
+          array (
+          ),
+           'attributes' => 
+          array (
+          ),
+        )),
+        5 => 
+        \PHPStan\Dependency\ExportedNode\ExportedMethodNode::__set_state(array(
+           'name' => 'grantedBy',
+           'phpDoc' => 
+          \PHPStan\Dependency\ExportedNode\ExportedPhpDocNode::__set_state(array(
+             'phpDocString' => '/**
+     * @return BelongsTo<User, $this>
+     */',
+             'namespace' => 'App\\Domain\\Access\\Models',
+             'uses' => 
+            array (
+              'hasuuids' => 'Illuminate\\Database\\Eloquent\\Concerns\\HasUuids',
+              'model' => 'Illuminate\\Database\\Eloquent\\Model',
+              'belongsto' => 'Illuminate\\Database\\Eloquent\\Relations\\BelongsTo',
+              'carbon' => 'Illuminate\\Support\\Carbon',
+            ),
+             'constUses' => 
+            array (
+            ),
+          )),
+           'byRef' => false,
+           'public' => true,
+           'private' => false,
+           'abstract' => false,
+           'final' => false,
+           'static' => false,
+           'returnType' => 'Illuminate\\Database\\Eloquent\\Relations\\BelongsTo',
+           'parameters' => 
+          array (
+          ),
+           'attributes' => 
+          array (
+          ),
+        )),
+      ),
+       'attributes' => 
+      array (
+      ),
+    )),
+  ),
+  '/var/www/html/app/Domain/Access/Models/Permission.php' => 
+  array (
+    0 => 
+    \PHPStan\Dependency\ExportedNode\ExportedClassNode::__set_state(array(
+       'name' => 'App\\Domain\\Access\\Models\\Permission',
+       'phpDoc' => 
+      \PHPStan\Dependency\ExportedNode\ExportedPhpDocNode::__set_state(array(
+         'phpDocString' => '/**
+ * A single `module.action` permission (PRD FR-UAM-05). The `key` (e.g.
+ * "user.create") is the stable identifier code authorizes against.
+ *
+ * @property string $id
+ * @property string $key
+ * @property string $module
+ * @property PermissionAction $action
+ * @property string|null $description
+ */',
+         'namespace' => 'App\\Domain\\Access\\Models',
+         'uses' => 
+        array (
+          'permissionaction' => 'App\\Domain\\Access\\Enums\\PermissionAction',
+          'hasuuids' => 'Illuminate\\Database\\Eloquent\\Concerns\\HasUuids',
+          'model' => 'Illuminate\\Database\\Eloquent\\Model',
+          'belongstomany' => 'Illuminate\\Database\\Eloquent\\Relations\\BelongsToMany',
+        ),
+         'constUses' => 
+        array (
+        ),
+      )),
+       'abstract' => false,
+       'final' => false,
+       'extends' => 'Illuminate\\Database\\Eloquent\\Model',
+       'implements' => 
+      array (
+      ),
+       'usedTraits' => 
+      array (
+        0 => 'Illuminate\\Database\\Eloquent\\Concerns\\HasUuids',
+      ),
+       'traitUseAdaptations' => 
+      array (
+      ),
+       'statements' => 
+      array (
+        0 => 
+        \PHPStan\Dependency\ExportedNode\ExportedPropertiesNode::__set_state(array(
+           'names' => 
+          array (
+            0 => 'fillable',
+          ),
+           'phpDoc' => 
+          \PHPStan\Dependency\ExportedNode\ExportedPhpDocNode::__set_state(array(
+             'phpDocString' => '/**
+     * @var list<string>
+     */',
+             'namespace' => 'App\\Domain\\Access\\Models',
+             'uses' => 
+            array (
+              'permissionaction' => 'App\\Domain\\Access\\Enums\\PermissionAction',
+              'hasuuids' => 'Illuminate\\Database\\Eloquent\\Concerns\\HasUuids',
+              'model' => 'Illuminate\\Database\\Eloquent\\Model',
+              'belongstomany' => 'Illuminate\\Database\\Eloquent\\Relations\\BelongsToMany',
+            ),
+             'constUses' => 
+            array (
+            ),
+          )),
+           'type' => NULL,
+           'public' => false,
+           'private' => false,
+           'static' => false,
+           'readonly' => false,
+           'abstract' => false,
+           'final' => false,
+           'publicSet' => false,
+           'protectedSet' => false,
+           'privateSet' => false,
+           'virtual' => false,
+           'attributes' => 
+          array (
+          ),
+           'hooks' => 
+          array (
+          ),
+        )),
+        1 => 
+        \PHPStan\Dependency\ExportedNode\ExportedMethodNode::__set_state(array(
+           'name' => 'casts',
+           'phpDoc' => 
+          \PHPStan\Dependency\ExportedNode\ExportedPhpDocNode::__set_state(array(
+             'phpDocString' => '/**
+     * @return array<string, string>
+     */',
+             'namespace' => 'App\\Domain\\Access\\Models',
+             'uses' => 
+            array (
+              'permissionaction' => 'App\\Domain\\Access\\Enums\\PermissionAction',
+              'hasuuids' => 'Illuminate\\Database\\Eloquent\\Concerns\\HasUuids',
+              'model' => 'Illuminate\\Database\\Eloquent\\Model',
+              'belongstomany' => 'Illuminate\\Database\\Eloquent\\Relations\\BelongsToMany',
+            ),
+             'constUses' => 
+            array (
+            ),
+          )),
+           'byRef' => false,
+           'public' => false,
+           'private' => false,
+           'abstract' => false,
+           'final' => false,
+           'static' => false,
+           'returnType' => 'array',
+           'parameters' => 
+          array (
+          ),
+           'attributes' => 
+          array (
+          ),
+        )),
+        2 => 
+        \PHPStan\Dependency\ExportedNode\ExportedMethodNode::__set_state(array(
+           'name' => 'roles',
+           'phpDoc' => 
+          \PHPStan\Dependency\ExportedNode\ExportedPhpDocNode::__set_state(array(
+             'phpDocString' => '/**
+     * @return BelongsToMany<Role, $this>
+     */',
+             'namespace' => 'App\\Domain\\Access\\Models',
+             'uses' => 
+            array (
+              'permissionaction' => 'App\\Domain\\Access\\Enums\\PermissionAction',
+              'hasuuids' => 'Illuminate\\Database\\Eloquent\\Concerns\\HasUuids',
+              'model' => 'Illuminate\\Database\\Eloquent\\Model',
+              'belongstomany' => 'Illuminate\\Database\\Eloquent\\Relations\\BelongsToMany',
+            ),
+             'constUses' => 
+            array (
+            ),
+          )),
+           'byRef' => false,
+           'public' => true,
+           'private' => false,
+           'abstract' => false,
+           'final' => false,
+           'static' => false,
+           'returnType' => 'Illuminate\\Database\\Eloquent\\Relations\\BelongsToMany',
+           'parameters' => 
+          array (
+          ),
+           'attributes' => 
+          array (
+          ),
+        )),
+      ),
+       'attributes' => 
+      array (
+      ),
+    )),
+  ),
+  '/var/www/html/app/Domain/Access/Models/Role.php' => 
+  array (
+    0 => 
+    \PHPStan\Dependency\ExportedNode\ExportedClassNode::__set_state(array(
+       'name' => 'App\\Domain\\Access\\Models\\Role',
+       'phpDoc' => 
+      \PHPStan\Dependency\ExportedNode\ExportedPhpDocNode::__set_state(array(
+         'phpDocString' => '/**
+ * A role is a named bundle of permissions (PRD FR-UAM-01). Authorization is
+ * always checked against permissions, never role names (CONVENTIONS.md).
+ *
+ * @property string $id
+ * @property string $key
+ * @property string $name
+ * @property string|null $description
+ * @property bool $is_system
+ * @property bool $requires_mfa
+ * @property-read Collection<int, Permission> $permissions
+ */',
+         'namespace' => 'App\\Domain\\Access\\Models',
+         'uses' => 
+        array (
+          'auditable' => 'App\\Domain\\Audit\\Concerns\\Auditable',
+          'collection' => 'Illuminate\\Database\\Eloquent\\Collection',
+          'hasuuids' => 'Illuminate\\Database\\Eloquent\\Concerns\\HasUuids',
+          'model' => 'Illuminate\\Database\\Eloquent\\Model',
+          'belongstomany' => 'Illuminate\\Database\\Eloquent\\Relations\\BelongsToMany',
+        ),
+         'constUses' => 
+        array (
+        ),
+      )),
+       'abstract' => false,
+       'final' => false,
+       'extends' => 'Illuminate\\Database\\Eloquent\\Model',
+       'implements' => 
+      array (
+      ),
+       'usedTraits' => 
+      array (
+        0 => 'App\\Domain\\Audit\\Concerns\\Auditable',
+        1 => 'Illuminate\\Database\\Eloquent\\Concerns\\HasUuids',
+      ),
+       'traitUseAdaptations' => 
+      array (
+      ),
+       'statements' => 
+      array (
+        0 => 
+        \PHPStan\Dependency\ExportedNode\ExportedPropertiesNode::__set_state(array(
+           'names' => 
+          array (
+            0 => 'fillable',
+          ),
+           'phpDoc' => 
+          \PHPStan\Dependency\ExportedNode\ExportedPhpDocNode::__set_state(array(
+             'phpDocString' => '/**
+     * @var list<string>
+     */',
+             'namespace' => 'App\\Domain\\Access\\Models',
+             'uses' => 
+            array (
+              'auditable' => 'App\\Domain\\Audit\\Concerns\\Auditable',
+              'collection' => 'Illuminate\\Database\\Eloquent\\Collection',
+              'hasuuids' => 'Illuminate\\Database\\Eloquent\\Concerns\\HasUuids',
+              'model' => 'Illuminate\\Database\\Eloquent\\Model',
+              'belongstomany' => 'Illuminate\\Database\\Eloquent\\Relations\\BelongsToMany',
+            ),
+             'constUses' => 
+            array (
+            ),
+          )),
+           'type' => NULL,
+           'public' => false,
+           'private' => false,
+           'static' => false,
+           'readonly' => false,
+           'abstract' => false,
+           'final' => false,
+           'publicSet' => false,
+           'protectedSet' => false,
+           'privateSet' => false,
+           'virtual' => false,
+           'attributes' => 
+          array (
+          ),
+           'hooks' => 
+          array (
+          ),
+        )),
+        1 => 
+        \PHPStan\Dependency\ExportedNode\ExportedMethodNode::__set_state(array(
+           'name' => 'casts',
+           'phpDoc' => 
+          \PHPStan\Dependency\ExportedNode\ExportedPhpDocNode::__set_state(array(
+             'phpDocString' => '/**
+     * @return array<string, string>
+     */',
+             'namespace' => 'App\\Domain\\Access\\Models',
+             'uses' => 
+            array (
+              'auditable' => 'App\\Domain\\Audit\\Concerns\\Auditable',
+              'collection' => 'Illuminate\\Database\\Eloquent\\Collection',
+              'hasuuids' => 'Illuminate\\Database\\Eloquent\\Concerns\\HasUuids',
+              'model' => 'Illuminate\\Database\\Eloquent\\Model',
+              'belongstomany' => 'Illuminate\\Database\\Eloquent\\Relations\\BelongsToMany',
+            ),
+             'constUses' => 
+            array (
+            ),
+          )),
+           'byRef' => false,
+           'public' => false,
+           'private' => false,
+           'abstract' => false,
+           'final' => false,
+           'static' => false,
+           'returnType' => 'array',
+           'parameters' => 
+          array (
+          ),
+           'attributes' => 
+          array (
+          ),
+        )),
+        2 => 
+        \PHPStan\Dependency\ExportedNode\ExportedMethodNode::__set_state(array(
+           'name' => 'permissions',
+           'phpDoc' => 
+          \PHPStan\Dependency\ExportedNode\ExportedPhpDocNode::__set_state(array(
+             'phpDocString' => '/**
+     * @return BelongsToMany<Permission, $this>
+     */',
+             'namespace' => 'App\\Domain\\Access\\Models',
+             'uses' => 
+            array (
+              'auditable' => 'App\\Domain\\Audit\\Concerns\\Auditable',
+              'collection' => 'Illuminate\\Database\\Eloquent\\Collection',
+              'hasuuids' => 'Illuminate\\Database\\Eloquent\\Concerns\\HasUuids',
+              'model' => 'Illuminate\\Database\\Eloquent\\Model',
+              'belongstomany' => 'Illuminate\\Database\\Eloquent\\Relations\\BelongsToMany',
+            ),
+             'constUses' => 
+            array (
+            ),
+          )),
+           'byRef' => false,
+           'public' => true,
+           'private' => false,
+           'abstract' => false,
+           'final' => false,
+           'static' => false,
+           'returnType' => 'Illuminate\\Database\\Eloquent\\Relations\\BelongsToMany',
+           'parameters' => 
+          array (
+          ),
+           'attributes' => 
+          array (
+          ),
+        )),
+      ),
+       'attributes' => 
+      array (
+      ),
+    )),
+  ),
+  '/var/www/html/app/Domain/Access/Models/User.php' => 
+  array (
+    0 => 
+    \PHPStan\Dependency\ExportedNode\ExportedClassNode::__set_state(array(
+       'name' => 'App\\Domain\\Access\\Models\\User',
+       'phpDoc' => 
+      \PHPStan\Dependency\ExportedNode\ExportedPhpDocNode::__set_state(array(
+         'phpDocString' => '/**
+ * @property string $id
+ * @property string $name
+ * @property string $email
+ * @property Carbon|null $email_verified_at
+ * @property string $password
+ * @property string|null $mda_id
+ * @property string|null $role_id
+ * @property UserStatus $status
+ * @property string|null $mfa_secret
+ * @property list<string>|null $mfa_recovery_codes
+ * @property bool $mfa_enabled
+ * @property int $failed_login_attempts
+ * @property Carbon|null $locked_until
+ * @property Carbon|null $last_login_at
+ * @property-read Mda|null $mda
+ * @property-read Role|null $role
+ */',
+         'namespace' => 'App\\Domain\\Access\\Models',
+         'uses' => 
+        array (
+          'mdascoped' => 'App\\Domain\\Access\\Concerns\\MdaScoped',
+          'scopedtomda' => 'App\\Domain\\Access\\Concerns\\ScopedToMda',
+          'userstatus' => 'App\\Domain\\Access\\Enums\\UserStatus',
+          'auditable' => 'App\\Domain\\Audit\\Concerns\\Auditable',
+          'userfactory' => 'Database\\Factories\\UserFactory',
+          'hasuuids' => 'Illuminate\\Database\\Eloquent\\Concerns\\HasUuids',
+          'hasfactory' => 'Illuminate\\Database\\Eloquent\\Factories\\HasFactory',
+          'belongsto' => 'Illuminate\\Database\\Eloquent\\Relations\\BelongsTo',
+          'hasmany' => 'Illuminate\\Database\\Eloquent\\Relations\\HasMany',
+          'softdeletes' => 'Illuminate\\Database\\Eloquent\\SoftDeletes',
+          'authenticatable' => 'Illuminate\\Foundation\\Auth\\User',
+          'notifiable' => 'Illuminate\\Notifications\\Notifiable',
+          'carbon' => 'Illuminate\\Support\\Carbon',
+          'hasapitokens' => 'Laravel\\Sanctum\\HasApiTokens',
+        ),
+         'constUses' => 
+        array (
+        ),
+      )),
+       'abstract' => false,
+       'final' => false,
+       'extends' => 'Illuminate\\Foundation\\Auth\\User',
+       'implements' => 
+      array (
+        0 => 'App\\Domain\\Access\\Concerns\\MdaScoped',
+      ),
+       'usedTraits' => 
+      array (
+        0 => 'App\\Domain\\Audit\\Concerns\\Auditable',
+        1 => 'Laravel\\Sanctum\\HasApiTokens',
+        2 => 'Illuminate\\Database\\Eloquent\\Factories\\HasFactory',
+        3 => 'Illuminate\\Database\\Eloquent\\Concerns\\HasUuids',
+        4 => 'Illuminate\\Notifications\\Notifiable',
+        5 => 'App\\Domain\\Access\\Concerns\\ScopedToMda',
+        6 => 'Illuminate\\Database\\Eloquent\\SoftDeletes',
+      ),
+       'traitUseAdaptations' => 
+      array (
+      ),
+       'statements' => 
+      array (
+        0 => 
+        \PHPStan\Dependency\ExportedNode\ExportedMethodNode::__set_state(array(
+           'name' => 'mdaOwnershipColumn',
+           'phpDoc' => 
+          \PHPStan\Dependency\ExportedNode\ExportedPhpDocNode::__set_state(array(
+             'phpDocString' => '/**
+     * Users are MDA-scoped on their `mda_id` column (not the Phase 2 default).
+     */',
+             'namespace' => 'App\\Domain\\Access\\Models',
+             'uses' => 
+            array (
+              'mdascoped' => 'App\\Domain\\Access\\Concerns\\MdaScoped',
+              'scopedtomda' => 'App\\Domain\\Access\\Concerns\\ScopedToMda',
+              'userstatus' => 'App\\Domain\\Access\\Enums\\UserStatus',
+              'auditable' => 'App\\Domain\\Audit\\Concerns\\Auditable',
+              'userfactory' => 'Database\\Factories\\UserFactory',
+              'hasuuids' => 'Illuminate\\Database\\Eloquent\\Concerns\\HasUuids',
+              'hasfactory' => 'Illuminate\\Database\\Eloquent\\Factories\\HasFactory',
+              'belongsto' => 'Illuminate\\Database\\Eloquent\\Relations\\BelongsTo',
+              'hasmany' => 'Illuminate\\Database\\Eloquent\\Relations\\HasMany',
+              'softdeletes' => 'Illuminate\\Database\\Eloquent\\SoftDeletes',
+              'authenticatable' => 'Illuminate\\Foundation\\Auth\\User',
+              'notifiable' => 'Illuminate\\Notifications\\Notifiable',
+              'carbon' => 'Illuminate\\Support\\Carbon',
+              'hasapitokens' => 'Laravel\\Sanctum\\HasApiTokens',
+            ),
+             'constUses' => 
+            array (
+            ),
+          )),
+           'byRef' => false,
+           'public' => true,
+           'private' => false,
+           'abstract' => false,
+           'final' => false,
+           'static' => false,
+           'returnType' => 'string',
+           'parameters' => 
+          array (
+          ),
+           'attributes' => 
+          array (
+          ),
+        )),
+        1 => 
+        \PHPStan\Dependency\ExportedNode\ExportedMethodNode::__set_state(array(
+           'name' => 'auditExcluded',
+           'phpDoc' => 
+          \PHPStan\Dependency\ExportedNode\ExportedPhpDocNode::__set_state(array(
+             'phpDocString' => '/**
+     * Operational/auth-state columns excluded from audit (changes to only these
+     * produce no audit entry). The semantic auth events (login, lockout, MFA)
+     * are audited explicitly instead.
+     *
+     * @return list<string>
+     */',
+             'namespace' => 'App\\Domain\\Access\\Models',
+             'uses' => 
+            array (
+              'mdascoped' => 'App\\Domain\\Access\\Concerns\\MdaScoped',
+              'scopedtomda' => 'App\\Domain\\Access\\Concerns\\ScopedToMda',
+              'userstatus' => 'App\\Domain\\Access\\Enums\\UserStatus',
+              'auditable' => 'App\\Domain\\Audit\\Concerns\\Auditable',
+              'userfactory' => 'Database\\Factories\\UserFactory',
+              'hasuuids' => 'Illuminate\\Database\\Eloquent\\Concerns\\HasUuids',
+              'hasfactory' => 'Illuminate\\Database\\Eloquent\\Factories\\HasFactory',
+              'belongsto' => 'Illuminate\\Database\\Eloquent\\Relations\\BelongsTo',
+              'hasmany' => 'Illuminate\\Database\\Eloquent\\Relations\\HasMany',
+              'softdeletes' => 'Illuminate\\Database\\Eloquent\\SoftDeletes',
+              'authenticatable' => 'Illuminate\\Foundation\\Auth\\User',
+              'notifiable' => 'Illuminate\\Notifications\\Notifiable',
+              'carbon' => 'Illuminate\\Support\\Carbon',
+              'hasapitokens' => 'Laravel\\Sanctum\\HasApiTokens',
+            ),
+             'constUses' => 
+            array (
+            ),
+          )),
+           'byRef' => false,
+           'public' => false,
+           'private' => false,
+           'abstract' => false,
+           'final' => false,
+           'static' => false,
+           'returnType' => 'array',
+           'parameters' => 
+          array (
+          ),
+           'attributes' => 
+          array (
+          ),
+        )),
+        2 => 
+        \PHPStan\Dependency\ExportedNode\ExportedMethodNode::__set_state(array(
+           'name' => 'auditMask',
+           'phpDoc' => 
+          \PHPStan\Dependency\ExportedNode\ExportedPhpDocNode::__set_state(array(
+             'phpDocString' => '/**
+     * A user\'s full name is PII and is masked in audit snapshots (SECURITY.md).
+     *
+     * @return list<string>
+     */',
+             'namespace' => 'App\\Domain\\Access\\Models',
+             'uses' => 
+            array (
+              'mdascoped' => 'App\\Domain\\Access\\Concerns\\MdaScoped',
+              'scopedtomda' => 'App\\Domain\\Access\\Concerns\\ScopedToMda',
+              'userstatus' => 'App\\Domain\\Access\\Enums\\UserStatus',
+              'auditable' => 'App\\Domain\\Audit\\Concerns\\Auditable',
+              'userfactory' => 'Database\\Factories\\UserFactory',
+              'hasuuids' => 'Illuminate\\Database\\Eloquent\\Concerns\\HasUuids',
+              'hasfactory' => 'Illuminate\\Database\\Eloquent\\Factories\\HasFactory',
+              'belongsto' => 'Illuminate\\Database\\Eloquent\\Relations\\BelongsTo',
+              'hasmany' => 'Illuminate\\Database\\Eloquent\\Relations\\HasMany',
+              'softdeletes' => 'Illuminate\\Database\\Eloquent\\SoftDeletes',
+              'authenticatable' => 'Illuminate\\Foundation\\Auth\\User',
+              'notifiable' => 'Illuminate\\Notifications\\Notifiable',
+              'carbon' => 'Illuminate\\Support\\Carbon',
+              'hasapitokens' => 'Laravel\\Sanctum\\HasApiTokens',
+            ),
+             'constUses' => 
+            array (
+            ),
+          )),
+           'byRef' => false,
+           'public' => false,
+           'private' => false,
+           'abstract' => false,
+           'final' => false,
+           'static' => false,
+           'returnType' => 'array',
+           'parameters' => 
+          array (
+          ),
+           'attributes' => 
+          array (
+          ),
+        )),
+        3 => 
+        \PHPStan\Dependency\ExportedNode\ExportedPropertiesNode::__set_state(array(
+           'names' => 
+          array (
+            0 => 'fillable',
+          ),
+           'phpDoc' => 
+          \PHPStan\Dependency\ExportedNode\ExportedPhpDocNode::__set_state(array(
+             'phpDocString' => '/**
+     * Mass-assignable attributes. The MFA secret and lockout counters are
+     * intentionally excluded — they are managed by application logic, never
+     * by mass assignment (SECURITY.md).
+     *
+     * @var list<string>
+     */',
+             'namespace' => 'App\\Domain\\Access\\Models',
+             'uses' => 
+            array (
+              'mdascoped' => 'App\\Domain\\Access\\Concerns\\MdaScoped',
+              'scopedtomda' => 'App\\Domain\\Access\\Concerns\\ScopedToMda',
+              'userstatus' => 'App\\Domain\\Access\\Enums\\UserStatus',
+              'auditable' => 'App\\Domain\\Audit\\Concerns\\Auditable',
+              'userfactory' => 'Database\\Factories\\UserFactory',
+              'hasuuids' => 'Illuminate\\Database\\Eloquent\\Concerns\\HasUuids',
+              'hasfactory' => 'Illuminate\\Database\\Eloquent\\Factories\\HasFactory',
+              'belongsto' => 'Illuminate\\Database\\Eloquent\\Relations\\BelongsTo',
+              'hasmany' => 'Illuminate\\Database\\Eloquent\\Relations\\HasMany',
+              'softdeletes' => 'Illuminate\\Database\\Eloquent\\SoftDeletes',
+              'authenticatable' => 'Illuminate\\Foundation\\Auth\\User',
+              'notifiable' => 'Illuminate\\Notifications\\Notifiable',
+              'carbon' => 'Illuminate\\Support\\Carbon',
+              'hasapitokens' => 'Laravel\\Sanctum\\HasApiTokens',
+            ),
+             'constUses' => 
+            array (
+            ),
+          )),
+           'type' => NULL,
+           'public' => false,
+           'private' => false,
+           'static' => false,
+           'readonly' => false,
+           'abstract' => false,
+           'final' => false,
+           'publicSet' => false,
+           'protectedSet' => false,
+           'privateSet' => false,
+           'virtual' => false,
+           'attributes' => 
+          array (
+          ),
+           'hooks' => 
+          array (
+          ),
+        )),
+        4 => 
+        \PHPStan\Dependency\ExportedNode\ExportedPropertiesNode::__set_state(array(
+           'names' => 
+          array (
+            0 => 'attributes',
+          ),
+           'phpDoc' => 
+          \PHPStan\Dependency\ExportedNode\ExportedPhpDocNode::__set_state(array(
+             'phpDocString' => '/**
+     * Model-level defaults mirroring the database defaults so freshly
+     * instantiated models match what is persisted.
+     *
+     * @var array<string, mixed>
+     */',
+             'namespace' => 'App\\Domain\\Access\\Models',
+             'uses' => 
+            array (
+              'mdascoped' => 'App\\Domain\\Access\\Concerns\\MdaScoped',
+              'scopedtomda' => 'App\\Domain\\Access\\Concerns\\ScopedToMda',
+              'userstatus' => 'App\\Domain\\Access\\Enums\\UserStatus',
+              'auditable' => 'App\\Domain\\Audit\\Concerns\\Auditable',
+              'userfactory' => 'Database\\Factories\\UserFactory',
+              'hasuuids' => 'Illuminate\\Database\\Eloquent\\Concerns\\HasUuids',
+              'hasfactory' => 'Illuminate\\Database\\Eloquent\\Factories\\HasFactory',
+              'belongsto' => 'Illuminate\\Database\\Eloquent\\Relations\\BelongsTo',
+              'hasmany' => 'Illuminate\\Database\\Eloquent\\Relations\\HasMany',
+              'softdeletes' => 'Illuminate\\Database\\Eloquent\\SoftDeletes',
+              'authenticatable' => 'Illuminate\\Foundation\\Auth\\User',
+              'notifiable' => 'Illuminate\\Notifications\\Notifiable',
+              'carbon' => 'Illuminate\\Support\\Carbon',
+              'hasapitokens' => 'Laravel\\Sanctum\\HasApiTokens',
+            ),
+             'constUses' => 
+            array (
+            ),
+          )),
+           'type' => NULL,
+           'public' => false,
+           'private' => false,
+           'static' => false,
+           'readonly' => false,
+           'abstract' => false,
+           'final' => false,
+           'publicSet' => false,
+           'protectedSet' => false,
+           'privateSet' => false,
+           'virtual' => false,
+           'attributes' => 
+          array (
+          ),
+           'hooks' => 
+          array (
+          ),
+        )),
+        5 => 
+        \PHPStan\Dependency\ExportedNode\ExportedPropertiesNode::__set_state(array(
+           'names' => 
+          array (
+            0 => 'hidden',
+          ),
+           'phpDoc' => 
+          \PHPStan\Dependency\ExportedNode\ExportedPhpDocNode::__set_state(array(
+             'phpDocString' => '/**
+     * Attributes hidden from serialization. The MFA secret is never exposed.
+     *
+     * @var list<string>
+     */',
+             'namespace' => 'App\\Domain\\Access\\Models',
+             'uses' => 
+            array (
+              'mdascoped' => 'App\\Domain\\Access\\Concerns\\MdaScoped',
+              'scopedtomda' => 'App\\Domain\\Access\\Concerns\\ScopedToMda',
+              'userstatus' => 'App\\Domain\\Access\\Enums\\UserStatus',
+              'auditable' => 'App\\Domain\\Audit\\Concerns\\Auditable',
+              'userfactory' => 'Database\\Factories\\UserFactory',
+              'hasuuids' => 'Illuminate\\Database\\Eloquent\\Concerns\\HasUuids',
+              'hasfactory' => 'Illuminate\\Database\\Eloquent\\Factories\\HasFactory',
+              'belongsto' => 'Illuminate\\Database\\Eloquent\\Relations\\BelongsTo',
+              'hasmany' => 'Illuminate\\Database\\Eloquent\\Relations\\HasMany',
+              'softdeletes' => 'Illuminate\\Database\\Eloquent\\SoftDeletes',
+              'authenticatable' => 'Illuminate\\Foundation\\Auth\\User',
+              'notifiable' => 'Illuminate\\Notifications\\Notifiable',
+              'carbon' => 'Illuminate\\Support\\Carbon',
+              'hasapitokens' => 'Laravel\\Sanctum\\HasApiTokens',
+            ),
+             'constUses' => 
+            array (
+            ),
+          )),
+           'type' => NULL,
+           'public' => false,
+           'private' => false,
+           'static' => false,
+           'readonly' => false,
+           'abstract' => false,
+           'final' => false,
+           'publicSet' => false,
+           'protectedSet' => false,
+           'privateSet' => false,
+           'virtual' => false,
+           'attributes' => 
+          array (
+          ),
+           'hooks' => 
+          array (
+          ),
+        )),
+        6 => 
+        \PHPStan\Dependency\ExportedNode\ExportedMethodNode::__set_state(array(
+           'name' => 'casts',
+           'phpDoc' => 
+          \PHPStan\Dependency\ExportedNode\ExportedPhpDocNode::__set_state(array(
+             'phpDocString' => '/**
+     * @return array<string, string>
+     */',
+             'namespace' => 'App\\Domain\\Access\\Models',
+             'uses' => 
+            array (
+              'mdascoped' => 'App\\Domain\\Access\\Concerns\\MdaScoped',
+              'scopedtomda' => 'App\\Domain\\Access\\Concerns\\ScopedToMda',
+              'userstatus' => 'App\\Domain\\Access\\Enums\\UserStatus',
+              'auditable' => 'App\\Domain\\Audit\\Concerns\\Auditable',
+              'userfactory' => 'Database\\Factories\\UserFactory',
+              'hasuuids' => 'Illuminate\\Database\\Eloquent\\Concerns\\HasUuids',
+              'hasfactory' => 'Illuminate\\Database\\Eloquent\\Factories\\HasFactory',
+              'belongsto' => 'Illuminate\\Database\\Eloquent\\Relations\\BelongsTo',
+              'hasmany' => 'Illuminate\\Database\\Eloquent\\Relations\\HasMany',
+              'softdeletes' => 'Illuminate\\Database\\Eloquent\\SoftDeletes',
+              'authenticatable' => 'Illuminate\\Foundation\\Auth\\User',
+              'notifiable' => 'Illuminate\\Notifications\\Notifiable',
+              'carbon' => 'Illuminate\\Support\\Carbon',
+              'hasapitokens' => 'Laravel\\Sanctum\\HasApiTokens',
+            ),
+             'constUses' => 
+            array (
+            ),
+          )),
+           'byRef' => false,
+           'public' => false,
+           'private' => false,
+           'abstract' => false,
+           'final' => false,
+           'static' => false,
+           'returnType' => 'array',
+           'parameters' => 
+          array (
+          ),
+           'attributes' => 
+          array (
+          ),
+        )),
+        7 => 
+        \PHPStan\Dependency\ExportedNode\ExportedMethodNode::__set_state(array(
+           'name' => 'mfaRequired',
+           'phpDoc' => 
+          \PHPStan\Dependency\ExportedNode\ExportedPhpDocNode::__set_state(array(
+             'phpDocString' => '/**
+     * Whether MFA is mandatory for this user (driven by the role, FR-UAM-04).
+     */',
+             'namespace' => 'App\\Domain\\Access\\Models',
+             'uses' => 
+            array (
+              'mdascoped' => 'App\\Domain\\Access\\Concerns\\MdaScoped',
+              'scopedtomda' => 'App\\Domain\\Access\\Concerns\\ScopedToMda',
+              'userstatus' => 'App\\Domain\\Access\\Enums\\UserStatus',
+              'auditable' => 'App\\Domain\\Audit\\Concerns\\Auditable',
+              'userfactory' => 'Database\\Factories\\UserFactory',
+              'hasuuids' => 'Illuminate\\Database\\Eloquent\\Concerns\\HasUuids',
+              'hasfactory' => 'Illuminate\\Database\\Eloquent\\Factories\\HasFactory',
+              'belongsto' => 'Illuminate\\Database\\Eloquent\\Relations\\BelongsTo',
+              'hasmany' => 'Illuminate\\Database\\Eloquent\\Relations\\HasMany',
+              'softdeletes' => 'Illuminate\\Database\\Eloquent\\SoftDeletes',
+              'authenticatable' => 'Illuminate\\Foundation\\Auth\\User',
+              'notifiable' => 'Illuminate\\Notifications\\Notifiable',
+              'carbon' => 'Illuminate\\Support\\Carbon',
+              'hasapitokens' => 'Laravel\\Sanctum\\HasApiTokens',
+            ),
+             'constUses' => 
+            array (
+            ),
+          )),
+           'byRef' => false,
+           'public' => true,
+           'private' => false,
+           'abstract' => false,
+           'final' => false,
+           'static' => false,
+           'returnType' => 'bool',
+           'parameters' => 
+          array (
+          ),
+           'attributes' => 
+          array (
+          ),
+        )),
+        8 => 
+        \PHPStan\Dependency\ExportedNode\ExportedMethodNode::__set_state(array(
+           'name' => 'isLocked',
+           'phpDoc' => 
+          \PHPStan\Dependency\ExportedNode\ExportedPhpDocNode::__set_state(array(
+             'phpDocString' => '/**
+     * Whether the account is currently locked out (FR-UAM-06).
+     */',
+             'namespace' => 'App\\Domain\\Access\\Models',
+             'uses' => 
+            array (
+              'mdascoped' => 'App\\Domain\\Access\\Concerns\\MdaScoped',
+              'scopedtomda' => 'App\\Domain\\Access\\Concerns\\ScopedToMda',
+              'userstatus' => 'App\\Domain\\Access\\Enums\\UserStatus',
+              'auditable' => 'App\\Domain\\Audit\\Concerns\\Auditable',
+              'userfactory' => 'Database\\Factories\\UserFactory',
+              'hasuuids' => 'Illuminate\\Database\\Eloquent\\Concerns\\HasUuids',
+              'hasfactory' => 'Illuminate\\Database\\Eloquent\\Factories\\HasFactory',
+              'belongsto' => 'Illuminate\\Database\\Eloquent\\Relations\\BelongsTo',
+              'hasmany' => 'Illuminate\\Database\\Eloquent\\Relations\\HasMany',
+              'softdeletes' => 'Illuminate\\Database\\Eloquent\\SoftDeletes',
+              'authenticatable' => 'Illuminate\\Foundation\\Auth\\User',
+              'notifiable' => 'Illuminate\\Notifications\\Notifiable',
+              'carbon' => 'Illuminate\\Support\\Carbon',
+              'hasapitokens' => 'Laravel\\Sanctum\\HasApiTokens',
+            ),
+             'constUses' => 
+            array (
+            ),
+          )),
+           'byRef' => false,
+           'public' => true,
+           'private' => false,
+           'abstract' => false,
+           'final' => false,
+           'static' => false,
+           'returnType' => 'bool',
+           'parameters' => 
+          array (
+          ),
+           'attributes' => 
+          array (
+          ),
+        )),
+        9 => 
+        \PHPStan\Dependency\ExportedNode\ExportedMethodNode::__set_state(array(
+           'name' => 'registerFailedAttempt',
+           'phpDoc' => 
+          \PHPStan\Dependency\ExportedNode\ExportedPhpDocNode::__set_state(array(
+             'phpDocString' => '/**
+     * Record a failed login/MFA attempt and apply lockout with exponential
+     * backoff once the configured threshold is reached. Returns true if this
+     * attempt caused (or extended) a lock.
+     */',
+             'namespace' => 'App\\Domain\\Access\\Models',
+             'uses' => 
+            array (
+              'mdascoped' => 'App\\Domain\\Access\\Concerns\\MdaScoped',
+              'scopedtomda' => 'App\\Domain\\Access\\Concerns\\ScopedToMda',
+              'userstatus' => 'App\\Domain\\Access\\Enums\\UserStatus',
+              'auditable' => 'App\\Domain\\Audit\\Concerns\\Auditable',
+              'userfactory' => 'Database\\Factories\\UserFactory',
+              'hasuuids' => 'Illuminate\\Database\\Eloquent\\Concerns\\HasUuids',
+              'hasfactory' => 'Illuminate\\Database\\Eloquent\\Factories\\HasFactory',
+              'belongsto' => 'Illuminate\\Database\\Eloquent\\Relations\\BelongsTo',
+              'hasmany' => 'Illuminate\\Database\\Eloquent\\Relations\\HasMany',
+              'softdeletes' => 'Illuminate\\Database\\Eloquent\\SoftDeletes',
+              'authenticatable' => 'Illuminate\\Foundation\\Auth\\User',
+              'notifiable' => 'Illuminate\\Notifications\\Notifiable',
+              'carbon' => 'Illuminate\\Support\\Carbon',
+              'hasapitokens' => 'Laravel\\Sanctum\\HasApiTokens',
+            ),
+             'constUses' => 
+            array (
+            ),
+          )),
+           'byRef' => false,
+           'public' => true,
+           'private' => false,
+           'abstract' => false,
+           'final' => false,
+           'static' => false,
+           'returnType' => 'bool',
+           'parameters' => 
+          array (
+          ),
+           'attributes' => 
+          array (
+          ),
+        )),
+        10 => 
+        \PHPStan\Dependency\ExportedNode\ExportedMethodNode::__set_state(array(
+           'name' => 'clearLockout',
+           'phpDoc' => 
+          \PHPStan\Dependency\ExportedNode\ExportedPhpDocNode::__set_state(array(
+             'phpDocString' => '/**
+     * Clear lockout state after a successful authentication.
+     */',
+             'namespace' => 'App\\Domain\\Access\\Models',
+             'uses' => 
+            array (
+              'mdascoped' => 'App\\Domain\\Access\\Concerns\\MdaScoped',
+              'scopedtomda' => 'App\\Domain\\Access\\Concerns\\ScopedToMda',
+              'userstatus' => 'App\\Domain\\Access\\Enums\\UserStatus',
+              'auditable' => 'App\\Domain\\Audit\\Concerns\\Auditable',
+              'userfactory' => 'Database\\Factories\\UserFactory',
+              'hasuuids' => 'Illuminate\\Database\\Eloquent\\Concerns\\HasUuids',
+              'hasfactory' => 'Illuminate\\Database\\Eloquent\\Factories\\HasFactory',
+              'belongsto' => 'Illuminate\\Database\\Eloquent\\Relations\\BelongsTo',
+              'hasmany' => 'Illuminate\\Database\\Eloquent\\Relations\\HasMany',
+              'softdeletes' => 'Illuminate\\Database\\Eloquent\\SoftDeletes',
+              'authenticatable' => 'Illuminate\\Foundation\\Auth\\User',
+              'notifiable' => 'Illuminate\\Notifications\\Notifiable',
+              'carbon' => 'Illuminate\\Support\\Carbon',
+              'hasapitokens' => 'Laravel\\Sanctum\\HasApiTokens',
+            ),
+             'constUses' => 
+            array (
+            ),
+          )),
+           'byRef' => false,
+           'public' => true,
+           'private' => false,
+           'abstract' => false,
+           'final' => false,
+           'static' => false,
+           'returnType' => 'void',
+           'parameters' => 
+          array (
+          ),
+           'attributes' => 
+          array (
+          ),
+        )),
+        11 => 
+        \PHPStan\Dependency\ExportedNode\ExportedMethodNode::__set_state(array(
+           'name' => 'consumeRecoveryCode',
+           'phpDoc' => 
+          \PHPStan\Dependency\ExportedNode\ExportedPhpDocNode::__set_state(array(
+             'phpDocString' => '/**
+     * Consume a one-time recovery code if it matches. Returns true and removes
+     * the code on success; false otherwise (constant-time comparison).
+     */',
+             'namespace' => 'App\\Domain\\Access\\Models',
+             'uses' => 
+            array (
+              'mdascoped' => 'App\\Domain\\Access\\Concerns\\MdaScoped',
+              'scopedtomda' => 'App\\Domain\\Access\\Concerns\\ScopedToMda',
+              'userstatus' => 'App\\Domain\\Access\\Enums\\UserStatus',
+              'auditable' => 'App\\Domain\\Audit\\Concerns\\Auditable',
+              'userfactory' => 'Database\\Factories\\UserFactory',
+              'hasuuids' => 'Illuminate\\Database\\Eloquent\\Concerns\\HasUuids',
+              'hasfactory' => 'Illuminate\\Database\\Eloquent\\Factories\\HasFactory',
+              'belongsto' => 'Illuminate\\Database\\Eloquent\\Relations\\BelongsTo',
+              'hasmany' => 'Illuminate\\Database\\Eloquent\\Relations\\HasMany',
+              'softdeletes' => 'Illuminate\\Database\\Eloquent\\SoftDeletes',
+              'authenticatable' => 'Illuminate\\Foundation\\Auth\\User',
+              'notifiable' => 'Illuminate\\Notifications\\Notifiable',
+              'carbon' => 'Illuminate\\Support\\Carbon',
+              'hasapitokens' => 'Laravel\\Sanctum\\HasApiTokens',
+            ),
+             'constUses' => 
+            array (
+            ),
+          )),
+           'byRef' => false,
+           'public' => true,
+           'private' => false,
+           'abstract' => false,
+           'final' => false,
+           'static' => false,
+           'returnType' => 'bool',
+           'parameters' => 
+          array (
+            0 => 
+            \PHPStan\Dependency\ExportedNode\ExportedParameterNode::__set_state(array(
+               'name' => 'code',
+               'type' => 'string',
+               'byRef' => false,
+               'variadic' => false,
+               'hasDefault' => false,
+               'attributes' => 
+              array (
+              ),
+               'phpDoc' => NULL,
+               'flags' => 0,
+            )),
+          ),
+           'attributes' => 
+          array (
+          ),
+        )),
+        12 => 
+        \PHPStan\Dependency\ExportedNode\ExportedMethodNode::__set_state(array(
+           'name' => 'mda',
+           'phpDoc' => 
+          \PHPStan\Dependency\ExportedNode\ExportedPhpDocNode::__set_state(array(
+             'phpDocString' => '/**
+     * The MDA this user belongs to (nullable for non-MDA-bound roles).
+     *
+     * @return BelongsTo<Mda, $this>
+     */',
+             'namespace' => 'App\\Domain\\Access\\Models',
+             'uses' => 
+            array (
+              'mdascoped' => 'App\\Domain\\Access\\Concerns\\MdaScoped',
+              'scopedtomda' => 'App\\Domain\\Access\\Concerns\\ScopedToMda',
+              'userstatus' => 'App\\Domain\\Access\\Enums\\UserStatus',
+              'auditable' => 'App\\Domain\\Audit\\Concerns\\Auditable',
+              'userfactory' => 'Database\\Factories\\UserFactory',
+              'hasuuids' => 'Illuminate\\Database\\Eloquent\\Concerns\\HasUuids',
+              'hasfactory' => 'Illuminate\\Database\\Eloquent\\Factories\\HasFactory',
+              'belongsto' => 'Illuminate\\Database\\Eloquent\\Relations\\BelongsTo',
+              'hasmany' => 'Illuminate\\Database\\Eloquent\\Relations\\HasMany',
+              'softdeletes' => 'Illuminate\\Database\\Eloquent\\SoftDeletes',
+              'authenticatable' => 'Illuminate\\Foundation\\Auth\\User',
+              'notifiable' => 'Illuminate\\Notifications\\Notifiable',
+              'carbon' => 'Illuminate\\Support\\Carbon',
+              'hasapitokens' => 'Laravel\\Sanctum\\HasApiTokens',
+            ),
+             'constUses' => 
+            array (
+            ),
+          )),
+           'byRef' => false,
+           'public' => true,
+           'private' => false,
+           'abstract' => false,
+           'final' => false,
+           'static' => false,
+           'returnType' => 'Illuminate\\Database\\Eloquent\\Relations\\BelongsTo',
+           'parameters' => 
+          array (
+          ),
+           'attributes' => 
+          array (
+          ),
+        )),
+        13 => 
+        \PHPStan\Dependency\ExportedNode\ExportedMethodNode::__set_state(array(
+           'name' => 'role',
+           'phpDoc' => 
+          \PHPStan\Dependency\ExportedNode\ExportedPhpDocNode::__set_state(array(
+             'phpDocString' => '/**
+     * The user\'s role (single role per user, PRD FR-UAM-02). Permissions are
+     * resolved through the role; authorization always checks permissions.
+     *
+     * @return BelongsTo<Role, $this>
+     */',
+             'namespace' => 'App\\Domain\\Access\\Models',
+             'uses' => 
+            array (
+              'mdascoped' => 'App\\Domain\\Access\\Concerns\\MdaScoped',
+              'scopedtomda' => 'App\\Domain\\Access\\Concerns\\ScopedToMda',
+              'userstatus' => 'App\\Domain\\Access\\Enums\\UserStatus',
+              'auditable' => 'App\\Domain\\Audit\\Concerns\\Auditable',
+              'userfactory' => 'Database\\Factories\\UserFactory',
+              'hasuuids' => 'Illuminate\\Database\\Eloquent\\Concerns\\HasUuids',
+              'hasfactory' => 'Illuminate\\Database\\Eloquent\\Factories\\HasFactory',
+              'belongsto' => 'Illuminate\\Database\\Eloquent\\Relations\\BelongsTo',
+              'hasmany' => 'Illuminate\\Database\\Eloquent\\Relations\\HasMany',
+              'softdeletes' => 'Illuminate\\Database\\Eloquent\\SoftDeletes',
+              'authenticatable' => 'Illuminate\\Foundation\\Auth\\User',
+              'notifiable' => 'Illuminate\\Notifications\\Notifiable',
+              'carbon' => 'Illuminate\\Support\\Carbon',
+              'hasapitokens' => 'Laravel\\Sanctum\\HasApiTokens',
+            ),
+             'constUses' => 
+            array (
+            ),
+          )),
+           'byRef' => false,
+           'public' => true,
+           'private' => false,
+           'abstract' => false,
+           'final' => false,
+           'static' => false,
+           'returnType' => 'Illuminate\\Database\\Eloquent\\Relations\\BelongsTo',
+           'parameters' => 
+          array (
+          ),
+           'attributes' => 
+          array (
+          ),
+        )),
+        14 => 
+        \PHPStan\Dependency\ExportedNode\ExportedMethodNode::__set_state(array(
+           'name' => 'permissionKeys',
+           'phpDoc' => 
+          \PHPStan\Dependency\ExportedNode\ExportedPhpDocNode::__set_state(array(
+             'phpDocString' => '/**
+     * The permission keys granted to this user via their role.
+     *
+     * @return list<string>
+     */',
+             'namespace' => 'App\\Domain\\Access\\Models',
+             'uses' => 
+            array (
+              'mdascoped' => 'App\\Domain\\Access\\Concerns\\MdaScoped',
+              'scopedtomda' => 'App\\Domain\\Access\\Concerns\\ScopedToMda',
+              'userstatus' => 'App\\Domain\\Access\\Enums\\UserStatus',
+              'auditable' => 'App\\Domain\\Audit\\Concerns\\Auditable',
+              'userfactory' => 'Database\\Factories\\UserFactory',
+              'hasuuids' => 'Illuminate\\Database\\Eloquent\\Concerns\\HasUuids',
+              'hasfactory' => 'Illuminate\\Database\\Eloquent\\Factories\\HasFactory',
+              'belongsto' => 'Illuminate\\Database\\Eloquent\\Relations\\BelongsTo',
+              'hasmany' => 'Illuminate\\Database\\Eloquent\\Relations\\HasMany',
+              'softdeletes' => 'Illuminate\\Database\\Eloquent\\SoftDeletes',
+              'authenticatable' => 'Illuminate\\Foundation\\Auth\\User',
+              'notifiable' => 'Illuminate\\Notifications\\Notifiable',
+              'carbon' => 'Illuminate\\Support\\Carbon',
+              'hasapitokens' => 'Laravel\\Sanctum\\HasApiTokens',
+            ),
+             'constUses' => 
+            array (
+            ),
+          )),
+           'byRef' => false,
+           'public' => true,
+           'private' => false,
+           'abstract' => false,
+           'final' => false,
+           'static' => false,
+           'returnType' => 'array',
+           'parameters' => 
+          array (
+          ),
+           'attributes' => 
+          array (
+          ),
+        )),
+        15 => 
+        \PHPStan\Dependency\ExportedNode\ExportedMethodNode::__set_state(array(
+           'name' => 'hasPermission',
+           'phpDoc' => 
+          \PHPStan\Dependency\ExportedNode\ExportedPhpDocNode::__set_state(array(
+             'phpDocString' => '/**
+     * Whether the user has a given `module.action` permission.
+     */',
+             'namespace' => 'App\\Domain\\Access\\Models',
+             'uses' => 
+            array (
+              'mdascoped' => 'App\\Domain\\Access\\Concerns\\MdaScoped',
+              'scopedtomda' => 'App\\Domain\\Access\\Concerns\\ScopedToMda',
+              'userstatus' => 'App\\Domain\\Access\\Enums\\UserStatus',
+              'auditable' => 'App\\Domain\\Audit\\Concerns\\Auditable',
+              'userfactory' => 'Database\\Factories\\UserFactory',
+              'hasuuids' => 'Illuminate\\Database\\Eloquent\\Concerns\\HasUuids',
+              'hasfactory' => 'Illuminate\\Database\\Eloquent\\Factories\\HasFactory',
+              'belongsto' => 'Illuminate\\Database\\Eloquent\\Relations\\BelongsTo',
+              'hasmany' => 'Illuminate\\Database\\Eloquent\\Relations\\HasMany',
+              'softdeletes' => 'Illuminate\\Database\\Eloquent\\SoftDeletes',
+              'authenticatable' => 'Illuminate\\Foundation\\Auth\\User',
+              'notifiable' => 'Illuminate\\Notifications\\Notifiable',
+              'carbon' => 'Illuminate\\Support\\Carbon',
+              'hasapitokens' => 'Laravel\\Sanctum\\HasApiTokens',
+            ),
+             'constUses' => 
+            array (
+            ),
+          )),
+           'byRef' => false,
+           'public' => true,
+           'private' => false,
+           'abstract' => false,
+           'final' => false,
+           'static' => false,
+           'returnType' => 'bool',
+           'parameters' => 
+          array (
+            0 => 
+            \PHPStan\Dependency\ExportedNode\ExportedParameterNode::__set_state(array(
+               'name' => 'key',
+               'type' => 'string',
+               'byRef' => false,
+               'variadic' => false,
+               'hasDefault' => false,
+               'attributes' => 
+              array (
+              ),
+               'phpDoc' => NULL,
+               'flags' => 0,
+            )),
+          ),
+           'attributes' => 
+          array (
+          ),
+        )),
+        16 => 
+        \PHPStan\Dependency\ExportedNode\ExportedMethodNode::__set_state(array(
+           'name' => 'canAccessAllMdas',
+           'phpDoc' => 
+          \PHPStan\Dependency\ExportedNode\ExportedPhpDocNode::__set_state(array(
+             'phpDocString' => '/**
+     * Whether the user may see data across all MDAs (FR-UAM-03 bypass). Granted
+     * by the `cross-mda.view` permission to oversight roles.
+     */',
+             'namespace' => 'App\\Domain\\Access\\Models',
+             'uses' => 
+            array (
+              'mdascoped' => 'App\\Domain\\Access\\Concerns\\MdaScoped',
+              'scopedtomda' => 'App\\Domain\\Access\\Concerns\\ScopedToMda',
+              'userstatus' => 'App\\Domain\\Access\\Enums\\UserStatus',
+              'auditable' => 'App\\Domain\\Audit\\Concerns\\Auditable',
+              'userfactory' => 'Database\\Factories\\UserFactory',
+              'hasuuids' => 'Illuminate\\Database\\Eloquent\\Concerns\\HasUuids',
+              'hasfactory' => 'Illuminate\\Database\\Eloquent\\Factories\\HasFactory',
+              'belongsto' => 'Illuminate\\Database\\Eloquent\\Relations\\BelongsTo',
+              'hasmany' => 'Illuminate\\Database\\Eloquent\\Relations\\HasMany',
+              'softdeletes' => 'Illuminate\\Database\\Eloquent\\SoftDeletes',
+              'authenticatable' => 'Illuminate\\Foundation\\Auth\\User',
+              'notifiable' => 'Illuminate\\Notifications\\Notifiable',
+              'carbon' => 'Illuminate\\Support\\Carbon',
+              'hasapitokens' => 'Laravel\\Sanctum\\HasApiTokens',
+            ),
+             'constUses' => 
+            array (
+            ),
+          )),
+           'byRef' => false,
+           'public' => true,
+           'private' => false,
+           'abstract' => false,
+           'final' => false,
+           'static' => false,
+           'returnType' => 'bool',
+           'parameters' => 
+          array (
+          ),
+           'attributes' => 
+          array (
+          ),
+        )),
+        17 => 
+        \PHPStan\Dependency\ExportedNode\ExportedMethodNode::__set_state(array(
+           'name' => 'accessibleMdaIds',
+           'phpDoc' => 
+          \PHPStan\Dependency\ExportedNode\ExportedPhpDocNode::__set_state(array(
+             'phpDocString' => '/**
+     * @return list<string>
+     */',
+             'namespace' => 'App\\Domain\\Access\\Models',
+             'uses' => 
+            array (
+              'mdascoped' => 'App\\Domain\\Access\\Concerns\\MdaScoped',
+              'scopedtomda' => 'App\\Domain\\Access\\Concerns\\ScopedToMda',
+              'userstatus' => 'App\\Domain\\Access\\Enums\\UserStatus',
+              'auditable' => 'App\\Domain\\Audit\\Concerns\\Auditable',
+              'userfactory' => 'Database\\Factories\\UserFactory',
+              'hasuuids' => 'Illuminate\\Database\\Eloquent\\Concerns\\HasUuids',
+              'hasfactory' => 'Illuminate\\Database\\Eloquent\\Factories\\HasFactory',
+              'belongsto' => 'Illuminate\\Database\\Eloquent\\Relations\\BelongsTo',
+              'hasmany' => 'Illuminate\\Database\\Eloquent\\Relations\\HasMany',
+              'softdeletes' => 'Illuminate\\Database\\Eloquent\\SoftDeletes',
+              'authenticatable' => 'Illuminate\\Foundation\\Auth\\User',
+              'notifiable' => 'Illuminate\\Notifications\\Notifiable',
+              'carbon' => 'Illuminate\\Support\\Carbon',
+              'hasapitokens' => 'Laravel\\Sanctum\\HasApiTokens',
+            ),
+             'constUses' => 
+            array (
+            ),
+          )),
+           'byRef' => false,
+           'public' => true,
+           'private' => false,
+           'abstract' => false,
+           'final' => false,
+           'static' => false,
+           'returnType' => 'array',
+           'parameters' => 
+          array (
+          ),
+           'attributes' => 
+          array (
+          ),
+        )),
+        18 => 
+        \PHPStan\Dependency\ExportedNode\ExportedMethodNode::__set_state(array(
+           'name' => 'mdaAccessGrants',
+           'phpDoc' => 
+          \PHPStan\Dependency\ExportedNode\ExportedPhpDocNode::__set_state(array(
+             'phpDocString' => '/**
+     * Explicit grants giving this user access to MDAs other than their own.
+     *
+     * @return HasMany<MdaAccessGrant, $this>
+     */',
+             'namespace' => 'App\\Domain\\Access\\Models',
+             'uses' => 
+            array (
+              'mdascoped' => 'App\\Domain\\Access\\Concerns\\MdaScoped',
+              'scopedtomda' => 'App\\Domain\\Access\\Concerns\\ScopedToMda',
+              'userstatus' => 'App\\Domain\\Access\\Enums\\UserStatus',
+              'auditable' => 'App\\Domain\\Audit\\Concerns\\Auditable',
+              'userfactory' => 'Database\\Factories\\UserFactory',
+              'hasuuids' => 'Illuminate\\Database\\Eloquent\\Concerns\\HasUuids',
+              'hasfactory' => 'Illuminate\\Database\\Eloquent\\Factories\\HasFactory',
+              'belongsto' => 'Illuminate\\Database\\Eloquent\\Relations\\BelongsTo',
+              'hasmany' => 'Illuminate\\Database\\Eloquent\\Relations\\HasMany',
+              'softdeletes' => 'Illuminate\\Database\\Eloquent\\SoftDeletes',
+              'authenticatable' => 'Illuminate\\Foundation\\Auth\\User',
+              'notifiable' => 'Illuminate\\Notifications\\Notifiable',
+              'carbon' => 'Illuminate\\Support\\Carbon',
+              'hasapitokens' => 'Laravel\\Sanctum\\HasApiTokens',
+            ),
+             'constUses' => 
+            array (
+            ),
+          )),
+           'byRef' => false,
+           'public' => true,
+           'private' => false,
+           'abstract' => false,
+           'final' => false,
+           'static' => false,
+           'returnType' => 'Illuminate\\Database\\Eloquent\\Relations\\HasMany',
+           'parameters' => 
+          array (
+          ),
+           'attributes' => 
+          array (
+          ),
+        )),
+        19 => 
+        \PHPStan\Dependency\ExportedNode\ExportedMethodNode::__set_state(array(
+           'name' => 'newFactory',
+           'phpDoc' => NULL,
+           'byRef' => false,
+           'public' => false,
+           'private' => false,
+           'abstract' => false,
+           'final' => false,
+           'static' => true,
+           'returnType' => 'Database\\Factories\\UserFactory',
+           'parameters' => 
+          array (
+          ),
+           'attributes' => 
+          array (
+          ),
+        )),
+        20 => 
+        \PHPStan\Dependency\ExportedNode\ExportedMethodNode::__set_state(array(
+           'name' => 'booted',
+           'phpDoc' => 
+          \PHPStan\Dependency\ExportedNode\ExportedPhpDocNode::__set_state(array(
+             'phpDocString' => '/**
+     * Invalidate all access tokens whenever the password changes
+     * (SECURITY.md §2: invalidate tokens on password change).
+     */',
+             'namespace' => 'App\\Domain\\Access\\Models',
+             'uses' => 
+            array (
+              'mdascoped' => 'App\\Domain\\Access\\Concerns\\MdaScoped',
+              'scopedtomda' => 'App\\Domain\\Access\\Concerns\\ScopedToMda',
+              'userstatus' => 'App\\Domain\\Access\\Enums\\UserStatus',
+              'auditable' => 'App\\Domain\\Audit\\Concerns\\Auditable',
+              'userfactory' => 'Database\\Factories\\UserFactory',
+              'hasuuids' => 'Illuminate\\Database\\Eloquent\\Concerns\\HasUuids',
+              'hasfactory' => 'Illuminate\\Database\\Eloquent\\Factories\\HasFactory',
+              'belongsto' => 'Illuminate\\Database\\Eloquent\\Relations\\BelongsTo',
+              'hasmany' => 'Illuminate\\Database\\Eloquent\\Relations\\HasMany',
+              'softdeletes' => 'Illuminate\\Database\\Eloquent\\SoftDeletes',
+              'authenticatable' => 'Illuminate\\Foundation\\Auth\\User',
+              'notifiable' => 'Illuminate\\Notifications\\Notifiable',
+              'carbon' => 'Illuminate\\Support\\Carbon',
+              'hasapitokens' => 'Laravel\\Sanctum\\HasApiTokens',
+            ),
+             'constUses' => 
+            array (
+            ),
+          )),
+           'byRef' => false,
+           'public' => false,
+           'private' => false,
+           'abstract' => false,
+           'final' => false,
+           'static' => true,
+           'returnType' => 'void',
+           'parameters' => 
+          array (
+          ),
+           'attributes' => 
+          array (
+          ),
+        )),
+      ),
+       'attributes' => 
+      array (
+      ),
+    )),
+  ),
+  '/var/www/html/app/Domain/Access/Scopes/MdaScope.php' => 
+  array (
+    0 => 
+    \PHPStan\Dependency\ExportedNode\ExportedClassNode::__set_state(array(
+       'name' => 'App\\Domain\\Access\\Scopes\\MdaScope',
+       'phpDoc' => 
+      \PHPStan\Dependency\ExportedNode\ExportedPhpDocNode::__set_state(array(
+         'phpDocString' => '/**
+ * Central MDA data-scoping (PRD FR-UAM-03, FR-DSH-01). Restricts every query on
+ * an MDA-owned model to the authenticated user\'s accessible MDAs:
+ *
+ *  - No authenticated user (console, queue, pre-auth) → no restriction.
+ *  - User holds the `cross-mda.view` permission → no restriction (oversight roles).
+ *  - Otherwise → limited to the user\'s own MDA plus any active cross-MDA grants.
+ *
+ * Applied via the ScopedToMda trait so modules opt in by default and scoping is
+ * never re-implemented ad hoc in controllers (SECURITY.md §3).
+ */',
+         'namespace' => 'App\\Domain\\Access\\Scopes',
+         'uses' => 
+        array (
+          'mdascoped' => 'App\\Domain\\Access\\Concerns\\MdaScoped',
+          'user' => 'App\\Domain\\Access\\Models\\User',
+          'builder' => 'Illuminate\\Database\\Eloquent\\Builder',
+          'model' => 'Illuminate\\Database\\Eloquent\\Model',
+          'scope' => 'Illuminate\\Database\\Eloquent\\Scope',
+          'auth' => 'Illuminate\\Support\\Facades\\Auth',
+        ),
+         'constUses' => 
+        array (
+        ),
+      )),
+       'abstract' => false,
+       'final' => false,
+       'extends' => NULL,
+       'implements' => 
+      array (
+        0 => 'Illuminate\\Database\\Eloquent\\Scope',
+      ),
+       'usedTraits' => 
+      array (
+      ),
+       'traitUseAdaptations' => 
+      array (
+      ),
+       'statements' => 
+      array (
+        0 => 
+        \PHPStan\Dependency\ExportedNode\ExportedMethodNode::__set_state(array(
+           'name' => 'apply',
+           'phpDoc' => NULL,
+           'byRef' => false,
+           'public' => true,
+           'private' => false,
+           'abstract' => false,
+           'final' => false,
+           'static' => false,
+           'returnType' => 'void',
+           'parameters' => 
+          array (
+            0 => 
+            \PHPStan\Dependency\ExportedNode\ExportedParameterNode::__set_state(array(
+               'name' => 'builder',
+               'type' => 'Illuminate\\Database\\Eloquent\\Builder',
+               'byRef' => false,
+               'variadic' => false,
+               'hasDefault' => false,
+               'attributes' => 
+              array (
+              ),
+               'phpDoc' => NULL,
+               'flags' => 0,
+            )),
+            1 => 
+            \PHPStan\Dependency\ExportedNode\ExportedParameterNode::__set_state(array(
+               'name' => 'model',
+               'type' => 'Illuminate\\Database\\Eloquent\\Model',
+               'byRef' => false,
+               'variadic' => false,
+               'hasDefault' => false,
+               'attributes' => 
+              array (
+              ),
+               'phpDoc' => NULL,
+               'flags' => 0,
+            )),
+          ),
+           'attributes' => 
+          array (
+          ),
+        )),
+      ),
+       'attributes' => 
+      array (
+      ),
+    )),
+  ),
+  '/var/www/html/app/Domain/Access/Services/AuthTokenIssuer.php' => 
+  array (
+    0 => 
+    \PHPStan\Dependency\ExportedNode\ExportedClassNode::__set_state(array(
+       'name' => 'App\\Domain\\Access\\Services\\AuthTokenIssuer',
+       'phpDoc' => 
+      \PHPStan\Dependency\ExportedNode\ExportedPhpDocNode::__set_state(array(
+         'phpDocString' => '/**
+ * Issues Sanctum tokens for the various stages of the authentication flow.
+ */',
+         'namespace' => 'App\\Domain\\Access\\Services',
+         'uses' => 
+        array (
+          'user' => 'App\\Domain\\Access\\Models\\User',
+          'tokenability' => 'App\\Domain\\Access\\Support\\TokenAbility',
+          'auditlogger' => 'App\\Domain\\Audit\\Services\\AuditLogger',
+        ),
+         'constUses' => 
+        array (
+        ),
+      )),
+       'abstract' => false,
+       'final' => false,
+       'extends' => NULL,
+       'implements' => 
+      array (
+      ),
+       'usedTraits' => 
+      array (
+      ),
+       'traitUseAdaptations' => 
+      array (
+      ),
+       'statements' => 
+      array (
+        0 => 
+        \PHPStan\Dependency\ExportedNode\ExportedMethodNode::__set_state(array(
+           'name' => '__construct',
+           'phpDoc' => NULL,
+           'byRef' => false,
+           'public' => true,
+           'private' => false,
+           'abstract' => false,
+           'final' => false,
+           'static' => false,
+           'returnType' => NULL,
+           'parameters' => 
+          array (
+            0 => 
+            \PHPStan\Dependency\ExportedNode\ExportedParameterNode::__set_state(array(
+               'name' => 'audit',
+               'type' => 'App\\Domain\\Audit\\Services\\AuditLogger',
+               'byRef' => false,
+               'variadic' => false,
+               'hasDefault' => false,
+               'attributes' => 
+              array (
+              ),
+               'phpDoc' => NULL,
+               'flags' => 68,
+            )),
+          ),
+           'attributes' => 
+          array (
+          ),
+        )),
+        1 => 
+        \PHPStan\Dependency\ExportedNode\ExportedMethodNode::__set_state(array(
+           'name' => 'issueFull',
+           'phpDoc' => 
+          \PHPStan\Dependency\ExportedNode\ExportedPhpDocNode::__set_state(array(
+             'phpDocString' => '/**
+     * Complete authentication: clear lockout, stamp last login, and issue a
+     * full-access token. Returned to the client only after MFA (if required).
+     * This is the single point where a login completes, so it is audited here.
+     */',
+             'namespace' => 'App\\Domain\\Access\\Services',
+             'uses' => 
+            array (
+              'user' => 'App\\Domain\\Access\\Models\\User',
+              'tokenability' => 'App\\Domain\\Access\\Support\\TokenAbility',
+              'auditlogger' => 'App\\Domain\\Audit\\Services\\AuditLogger',
+            ),
+             'constUses' => 
+            array (
+            ),
+          )),
+           'byRef' => false,
+           'public' => true,
+           'private' => false,
+           'abstract' => false,
+           'final' => false,
+           'static' => false,
+           'returnType' => 'string',
+           'parameters' => 
+          array (
+            0 => 
+            \PHPStan\Dependency\ExportedNode\ExportedParameterNode::__set_state(array(
+               'name' => 'user',
+               'type' => 'App\\Domain\\Access\\Models\\User',
+               'byRef' => false,
+               'variadic' => false,
+               'hasDefault' => false,
+               'attributes' => 
+              array (
+              ),
+               'phpDoc' => NULL,
+               'flags' => 0,
+            )),
+          ),
+           'attributes' => 
+          array (
+          ),
+        )),
+        2 => 
+        \PHPStan\Dependency\ExportedNode\ExportedMethodNode::__set_state(array(
+           'name' => 'issueChallenge',
+           'phpDoc' => 
+          \PHPStan\Dependency\ExportedNode\ExportedPhpDocNode::__set_state(array(
+             'phpDocString' => '/**
+     * Short-lived token that may ONLY be used to pass the MFA challenge.
+     */',
+             'namespace' => 'App\\Domain\\Access\\Services',
+             'uses' => 
+            array (
+              'user' => 'App\\Domain\\Access\\Models\\User',
+              'tokenability' => 'App\\Domain\\Access\\Support\\TokenAbility',
+              'auditlogger' => 'App\\Domain\\Audit\\Services\\AuditLogger',
+            ),
+             'constUses' => 
+            array (
+            ),
+          )),
+           'byRef' => false,
+           'public' => true,
+           'private' => false,
+           'abstract' => false,
+           'final' => false,
+           'static' => false,
+           'returnType' => 'string',
+           'parameters' => 
+          array (
+            0 => 
+            \PHPStan\Dependency\ExportedNode\ExportedParameterNode::__set_state(array(
+               'name' => 'user',
+               'type' => 'App\\Domain\\Access\\Models\\User',
+               'byRef' => false,
+               'variadic' => false,
+               'hasDefault' => false,
+               'attributes' => 
+              array (
+              ),
+               'phpDoc' => NULL,
+               'flags' => 0,
+            )),
+          ),
+           'attributes' => 
+          array (
+          ),
+        )),
+        3 => 
+        \PHPStan\Dependency\ExportedNode\ExportedMethodNode::__set_state(array(
+           'name' => 'issueSetup',
+           'phpDoc' => 
+          \PHPStan\Dependency\ExportedNode\ExportedPhpDocNode::__set_state(array(
+             'phpDocString' => '/**
+     * Short-lived token that may ONLY be used to enrol/verify MFA (for users in
+     * MFA-required roles who have not enrolled yet).
+     */',
+             'namespace' => 'App\\Domain\\Access\\Services',
+             'uses' => 
+            array (
+              'user' => 'App\\Domain\\Access\\Models\\User',
+              'tokenability' => 'App\\Domain\\Access\\Support\\TokenAbility',
+              'auditlogger' => 'App\\Domain\\Audit\\Services\\AuditLogger',
+            ),
+             'constUses' => 
+            array (
+            ),
+          )),
+           'byRef' => false,
+           'public' => true,
+           'private' => false,
+           'abstract' => false,
+           'final' => false,
+           'static' => false,
+           'returnType' => 'string',
+           'parameters' => 
+          array (
+            0 => 
+            \PHPStan\Dependency\ExportedNode\ExportedParameterNode::__set_state(array(
+               'name' => 'user',
+               'type' => 'App\\Domain\\Access\\Models\\User',
+               'byRef' => false,
+               'variadic' => false,
+               'hasDefault' => false,
+               'attributes' => 
+              array (
+              ),
+               'phpDoc' => NULL,
+               'flags' => 0,
+            )),
+          ),
+           'attributes' => 
+          array (
+          ),
+        )),
+      ),
+       'attributes' => 
+      array (
+      ),
+    )),
+  ),
+  '/var/www/html/app/Domain/Access/Services/MfaService.php' => 
+  array (
+    0 => 
+    \PHPStan\Dependency\ExportedNode\ExportedClassNode::__set_state(array(
+       'name' => 'App\\Domain\\Access\\Services\\MfaService',
+       'phpDoc' => 
+      \PHPStan\Dependency\ExportedNode\ExportedPhpDocNode::__set_state(array(
+         'phpDocString' => '/**
+ * TOTP MFA helper (PRD FR-UAM-04). Wraps the google2fa library for secret
+ * generation, provisioning URIs and code verification, and generates one-time
+ * recovery codes. No secret is ever logged.
+ */',
+         'namespace' => 'App\\Domain\\Access\\Services',
+         'uses' => 
+        array (
+          'str' => 'Illuminate\\Support\\Str',
+          'google2fa' => 'PragmaRX\\Google2FA\\Google2FA',
+        ),
+         'constUses' => 
+        array (
+        ),
+      )),
+       'abstract' => false,
+       'final' => false,
+       'extends' => NULL,
+       'implements' => 
+      array (
+      ),
+       'usedTraits' => 
+      array (
+      ),
+       'traitUseAdaptations' => 
+      array (
+      ),
+       'statements' => 
+      array (
+        0 => 
+        \PHPStan\Dependency\ExportedNode\ExportedMethodNode::__set_state(array(
+           'name' => '__construct',
+           'phpDoc' => NULL,
+           'byRef' => false,
+           'public' => true,
+           'private' => false,
+           'abstract' => false,
+           'final' => false,
+           'static' => false,
+           'returnType' => NULL,
+           'parameters' => 
+          array (
+            0 => 
+            \PHPStan\Dependency\ExportedNode\ExportedParameterNode::__set_state(array(
+               'name' => 'google2fa',
+               'type' => 'PragmaRX\\Google2FA\\Google2FA',
+               'byRef' => false,
+               'variadic' => false,
+               'hasDefault' => false,
+               'attributes' => 
+              array (
+              ),
+               'phpDoc' => NULL,
+               'flags' => 68,
+            )),
+          ),
+           'attributes' => 
+          array (
+          ),
+        )),
+        1 => 
+        \PHPStan\Dependency\ExportedNode\ExportedMethodNode::__set_state(array(
+           'name' => 'generateSecret',
+           'phpDoc' => 
+          \PHPStan\Dependency\ExportedNode\ExportedPhpDocNode::__set_state(array(
+             'phpDocString' => '/**
+     * Generate a new base32 TOTP secret.
+     */',
+             'namespace' => 'App\\Domain\\Access\\Services',
+             'uses' => 
+            array (
+              'str' => 'Illuminate\\Support\\Str',
+              'google2fa' => 'PragmaRX\\Google2FA\\Google2FA',
+            ),
+             'constUses' => 
+            array (
+            ),
+          )),
+           'byRef' => false,
+           'public' => true,
+           'private' => false,
+           'abstract' => false,
+           'final' => false,
+           'static' => false,
+           'returnType' => 'string',
+           'parameters' => 
+          array (
+          ),
+           'attributes' => 
+          array (
+          ),
+        )),
+        2 => 
+        \PHPStan\Dependency\ExportedNode\ExportedMethodNode::__set_state(array(
+           'name' => 'provisioningUri',
+           'phpDoc' => 
+          \PHPStan\Dependency\ExportedNode\ExportedPhpDocNode::__set_state(array(
+             'phpDocString' => '/**
+     * Build the otpauth:// provisioning URI the authenticator app encodes as a QR.
+     */',
+             'namespace' => 'App\\Domain\\Access\\Services',
+             'uses' => 
+            array (
+              'str' => 'Illuminate\\Support\\Str',
+              'google2fa' => 'PragmaRX\\Google2FA\\Google2FA',
+            ),
+             'constUses' => 
+            array (
+            ),
+          )),
+           'byRef' => false,
+           'public' => true,
+           'private' => false,
+           'abstract' => false,
+           'final' => false,
+           'static' => false,
+           'returnType' => 'string',
+           'parameters' => 
+          array (
+            0 => 
+            \PHPStan\Dependency\ExportedNode\ExportedParameterNode::__set_state(array(
+               'name' => 'accountIdentifier',
+               'type' => 'string',
+               'byRef' => false,
+               'variadic' => false,
+               'hasDefault' => false,
+               'attributes' => 
+              array (
+              ),
+               'phpDoc' => NULL,
+               'flags' => 0,
+            )),
+            1 => 
+            \PHPStan\Dependency\ExportedNode\ExportedParameterNode::__set_state(array(
+               'name' => 'secret',
+               'type' => 'string',
+               'byRef' => false,
+               'variadic' => false,
+               'hasDefault' => false,
+               'attributes' => 
+              array (
+              ),
+               'phpDoc' => NULL,
+               'flags' => 0,
+            )),
+          ),
+           'attributes' => 
+          array (
+          ),
+        )),
+        3 => 
+        \PHPStan\Dependency\ExportedNode\ExportedMethodNode::__set_state(array(
+           'name' => 'verifyCode',
+           'phpDoc' => 
+          \PHPStan\Dependency\ExportedNode\ExportedPhpDocNode::__set_state(array(
+             'phpDocString' => '/**
+     * Verify a TOTP code against the secret, tolerating clock drift via the
+     * configured window.
+     */',
+             'namespace' => 'App\\Domain\\Access\\Services',
+             'uses' => 
+            array (
+              'str' => 'Illuminate\\Support\\Str',
+              'google2fa' => 'PragmaRX\\Google2FA\\Google2FA',
+            ),
+             'constUses' => 
+            array (
+            ),
+          )),
+           'byRef' => false,
+           'public' => true,
+           'private' => false,
+           'abstract' => false,
+           'final' => false,
+           'static' => false,
+           'returnType' => 'bool',
+           'parameters' => 
+          array (
+            0 => 
+            \PHPStan\Dependency\ExportedNode\ExportedParameterNode::__set_state(array(
+               'name' => 'secret',
+               'type' => 'string',
+               'byRef' => false,
+               'variadic' => false,
+               'hasDefault' => false,
+               'attributes' => 
+              array (
+              ),
+               'phpDoc' => NULL,
+               'flags' => 0,
+            )),
+            1 => 
+            \PHPStan\Dependency\ExportedNode\ExportedParameterNode::__set_state(array(
+               'name' => 'code',
+               'type' => 'string',
+               'byRef' => false,
+               'variadic' => false,
+               'hasDefault' => false,
+               'attributes' => 
+              array (
+              ),
+               'phpDoc' => NULL,
+               'flags' => 0,
+            )),
+          ),
+           'attributes' => 
+          array (
+          ),
+        )),
+        4 => 
+        \PHPStan\Dependency\ExportedNode\ExportedMethodNode::__set_state(array(
+           'name' => 'generateRecoveryCodes',
+           'phpDoc' => 
+          \PHPStan\Dependency\ExportedNode\ExportedPhpDocNode::__set_state(array(
+             'phpDocString' => '/**
+     * Generate a fresh set of one-time recovery codes (plaintext). Callers must
+     * store them encrypted and show them to the user only once.
+     *
+     * @return list<string>
+     */',
+             'namespace' => 'App\\Domain\\Access\\Services',
+             'uses' => 
+            array (
+              'str' => 'Illuminate\\Support\\Str',
+              'google2fa' => 'PragmaRX\\Google2FA\\Google2FA',
+            ),
+             'constUses' => 
+            array (
+            ),
+          )),
+           'byRef' => false,
+           'public' => true,
+           'private' => false,
+           'abstract' => false,
+           'final' => false,
+           'static' => false,
+           'returnType' => 'array',
+           'parameters' => 
+          array (
+          ),
+           'attributes' => 
+          array (
+          ),
+        )),
+      ),
+       'attributes' => 
+      array (
+      ),
+    )),
+  ),
+  '/var/www/html/app/Domain/Access/Services/PermissionSynchronizer.php' => 
+  array (
+    0 => 
+    \PHPStan\Dependency\ExportedNode\ExportedClassNode::__set_state(array(
+       'name' => 'App\\Domain\\Access\\Services\\PermissionSynchronizer',
+       'phpDoc' => 
+      \PHPStan\Dependency\ExportedNode\ExportedPhpDocNode::__set_state(array(
+         'phpDocString' => '/**
+ * Persists the registered permissions (PermissionRegistry) to the database.
+ * Idempotent: upserts by key. Does not delete unknown rows, so a permission a
+ * module stops registering must be removed deliberately.
+ */',
+         'namespace' => 'App\\Domain\\Access\\Services',
+         'uses' => 
+        array (
+          'permission' => 'App\\Domain\\Access\\Models\\Permission',
+          'permissionregistry' => 'App\\Domain\\Access\\Support\\PermissionRegistry',
+        ),
+         'constUses' => 
+        array (
+        ),
+      )),
+       'abstract' => false,
+       'final' => false,
+       'extends' => NULL,
+       'implements' => 
+      array (
+      ),
+       'usedTraits' => 
+      array (
+      ),
+       'traitUseAdaptations' => 
+      array (
+      ),
+       'statements' => 
+      array (
+        0 => 
+        \PHPStan\Dependency\ExportedNode\ExportedMethodNode::__set_state(array(
+           'name' => '__construct',
+           'phpDoc' => NULL,
+           'byRef' => false,
+           'public' => true,
+           'private' => false,
+           'abstract' => false,
+           'final' => false,
+           'static' => false,
+           'returnType' => NULL,
+           'parameters' => 
+          array (
+            0 => 
+            \PHPStan\Dependency\ExportedNode\ExportedParameterNode::__set_state(array(
+               'name' => 'registry',
+               'type' => 'App\\Domain\\Access\\Support\\PermissionRegistry',
+               'byRef' => false,
+               'variadic' => false,
+               'hasDefault' => false,
+               'attributes' => 
+              array (
+              ),
+               'phpDoc' => NULL,
+               'flags' => 68,
+            )),
+          ),
+           'attributes' => 
+          array (
+          ),
+        )),
+        1 => 
+        \PHPStan\Dependency\ExportedNode\ExportedMethodNode::__set_state(array(
+           'name' => 'sync',
+           'phpDoc' => 
+          \PHPStan\Dependency\ExportedNode\ExportedPhpDocNode::__set_state(array(
+             'phpDocString' => '/**
+     * @return int the number of permissions synced
+     */',
+             'namespace' => 'App\\Domain\\Access\\Services',
+             'uses' => 
+            array (
+              'permission' => 'App\\Domain\\Access\\Models\\Permission',
+              'permissionregistry' => 'App\\Domain\\Access\\Support\\PermissionRegistry',
+            ),
+             'constUses' => 
+            array (
+            ),
+          )),
+           'byRef' => false,
+           'public' => true,
+           'private' => false,
+           'abstract' => false,
+           'final' => false,
+           'static' => false,
+           'returnType' => 'int',
+           'parameters' => 
+          array (
+          ),
+           'attributes' => 
+          array (
+          ),
+        )),
+      ),
+       'attributes' => 
+      array (
+      ),
+    )),
+  ),
+  '/var/www/html/app/Domain/Access/Support/PasswordRules.php' => 
+  array (
+    0 => 
+    \PHPStan\Dependency\ExportedNode\ExportedClassNode::__set_state(array(
+       'name' => 'App\\Domain\\Access\\Support\\PasswordRules',
+       'phpDoc' => 
+      \PHPStan\Dependency\ExportedNode\ExportedPhpDocNode::__set_state(array(
+         'phpDocString' => '/**
+ * Central password policy (SECURITY.md §2): minimum 12 characters and checked
+ * against known breached passwords (HaveIBeenPwned k-anonymity range API).
+ *
+ * Reused anywhere a password is set so the policy stays consistent.
+ */',
+         'namespace' => 'App\\Domain\\Access\\Support',
+         'uses' => 
+        array (
+          'rule' => 'Illuminate\\Contracts\\Validation\\Rule',
+          'password' => 'Illuminate\\Validation\\Rules\\Password',
+        ),
+         'constUses' => 
+        array (
+        ),
+      )),
+       'abstract' => false,
+       'final' => true,
+       'extends' => NULL,
+       'implements' => 
+      array (
+      ),
+       'usedTraits' => 
+      array (
+      ),
+       'traitUseAdaptations' => 
+      array (
+      ),
+       'statements' => 
+      array (
+        0 => 
+        \PHPStan\Dependency\ExportedNode\ExportedMethodNode::__set_state(array(
+           'name' => 'default',
+           'phpDoc' => 
+          \PHPStan\Dependency\ExportedNode\ExportedPhpDocNode::__set_state(array(
+             'phpDocString' => '/**
+     * @return array<int, Rule|Password|string>
+     */',
+             'namespace' => 'App\\Domain\\Access\\Support',
+             'uses' => 
+            array (
+              'rule' => 'Illuminate\\Contracts\\Validation\\Rule',
+              'password' => 'Illuminate\\Validation\\Rules\\Password',
+            ),
+             'constUses' => 
+            array (
+            ),
+          )),
+           'byRef' => false,
+           'public' => true,
+           'private' => false,
+           'abstract' => false,
+           'final' => false,
+           'static' => true,
+           'returnType' => 'array',
+           'parameters' => 
+          array (
+          ),
+           'attributes' => 
+          array (
+          ),
+        )),
+      ),
+       'attributes' => 
+      array (
+      ),
+    )),
+  ),
+  '/var/www/html/app/Domain/Access/Support/PermissionRegistry.php' => 
+  array (
+    0 => 
+    \PHPStan\Dependency\ExportedNode\ExportedClassNode::__set_state(array(
+       'name' => 'App\\Domain\\Access\\Support\\PermissionRegistry',
+       'phpDoc' => 
+      \PHPStan\Dependency\ExportedNode\ExportedPhpDocNode::__set_state(array(
+         'phpDocString' => '/**
+ * In-memory registry of the permissions every module declares it needs
+ * (PRD FR-UAM-05). Modules register their `module.action` permissions (typically
+ * from their service provider\'s boot()); PermissionSynchronizer then persists
+ * them to the database. This is the single source of truth for what permissions
+ * exist in the system.
+ */',
+         'namespace' => 'App\\Domain\\Access\\Support',
+         'uses' => 
+        array (
+          'permissionaction' => 'App\\Domain\\Access\\Enums\\PermissionAction',
+        ),
+         'constUses' => 
+        array (
+        ),
+      )),
+       'abstract' => false,
+       'final' => true,
+       'extends' => NULL,
+       'implements' => 
+      array (
+      ),
+       'usedTraits' => 
+      array (
+      ),
+       'traitUseAdaptations' => 
+      array (
+      ),
+       'statements' => 
+      array (
+        0 => 
+        \PHPStan\Dependency\ExportedNode\ExportedMethodNode::__set_state(array(
+           'name' => 'register',
+           'phpDoc' => NULL,
+           'byRef' => false,
+           'public' => true,
+           'private' => false,
+           'abstract' => false,
+           'final' => false,
+           'static' => false,
+           'returnType' => 'static',
+           'parameters' => 
+          array (
+            0 => 
+            \PHPStan\Dependency\ExportedNode\ExportedParameterNode::__set_state(array(
+               'name' => 'module',
+               'type' => 'string',
+               'byRef' => false,
+               'variadic' => false,
+               'hasDefault' => false,
+               'attributes' => 
+              array (
+              ),
+               'phpDoc' => NULL,
+               'flags' => 0,
+            )),
+            1 => 
+            \PHPStan\Dependency\ExportedNode\ExportedParameterNode::__set_state(array(
+               'name' => 'action',
+               'type' => 'App\\Domain\\Access\\Enums\\PermissionAction',
+               'byRef' => false,
+               'variadic' => false,
+               'hasDefault' => false,
+               'attributes' => 
+              array (
+              ),
+               'phpDoc' => NULL,
+               'flags' => 0,
+            )),
+            2 => 
+            \PHPStan\Dependency\ExportedNode\ExportedParameterNode::__set_state(array(
+               'name' => 'description',
+               'type' => 'string',
+               'byRef' => false,
+               'variadic' => false,
+               'hasDefault' => true,
+               'attributes' => 
+              array (
+              ),
+               'phpDoc' => NULL,
+               'flags' => 0,
+            )),
+          ),
+           'attributes' => 
+          array (
+          ),
+        )),
+        1 => 
+        \PHPStan\Dependency\ExportedNode\ExportedMethodNode::__set_state(array(
+           'name' => 'all',
+           'phpDoc' => 
+          \PHPStan\Dependency\ExportedNode\ExportedPhpDocNode::__set_state(array(
+             'phpDocString' => '/**
+     * All registered permission definitions, keyed and sorted by key.
+     *
+     * @return array<string, array{module: string, action: string, description: string}>
+     */',
+             'namespace' => 'App\\Domain\\Access\\Support',
+             'uses' => 
+            array (
+              'permissionaction' => 'App\\Domain\\Access\\Enums\\PermissionAction',
+            ),
+             'constUses' => 
+            array (
+            ),
+          )),
+           'byRef' => false,
+           'public' => true,
+           'private' => false,
+           'abstract' => false,
+           'final' => false,
+           'static' => false,
+           'returnType' => 'array',
+           'parameters' => 
+          array (
+          ),
+           'attributes' => 
+          array (
+          ),
+        )),
+        2 => 
+        \PHPStan\Dependency\ExportedNode\ExportedMethodNode::__set_state(array(
+           'name' => 'keys',
+           'phpDoc' => 
+          \PHPStan\Dependency\ExportedNode\ExportedPhpDocNode::__set_state(array(
+             'phpDocString' => '/**
+     * @return list<string>
+     */',
+             'namespace' => 'App\\Domain\\Access\\Support',
+             'uses' => 
+            array (
+              'permissionaction' => 'App\\Domain\\Access\\Enums\\PermissionAction',
+            ),
+             'constUses' => 
+            array (
+            ),
+          )),
+           'byRef' => false,
+           'public' => true,
+           'private' => false,
+           'abstract' => false,
+           'final' => false,
+           'static' => false,
+           'returnType' => 'array',
+           'parameters' => 
+          array (
+          ),
+           'attributes' => 
+          array (
+          ),
+        )),
+      ),
+       'attributes' => 
+      array (
+      ),
+    )),
+  ),
+  '/var/www/html/app/Domain/Access/Support/TokenAbility.php' => 
+  array (
+    0 => 
+    \PHPStan\Dependency\ExportedNode\ExportedClassNode::__set_state(array(
+       'name' => 'App\\Domain\\Access\\Support\\TokenAbility',
+       'phpDoc' => 
+      \PHPStan\Dependency\ExportedNode\ExportedPhpDocNode::__set_state(array(
+         'phpDocString' => '/**
+ * Sanctum token ability constants used to distinguish stages of the auth flow.
+ *
+ *  - FULL: a fully authenticated session token (granted after MFA, if required).
+ *  - MFA_CHALLENGE: short-lived token issued after password verification when the
+ *    user must still pass a TOTP/recovery challenge. Can ONLY hit /mfa/challenge.
+ *  - MFA_SETUP: short-lived token issued when an MFA-required user has not yet
+ *    enrolled. Can ONLY hit the MFA enrol/verify endpoints.
+ */',
+         'namespace' => 'App\\Domain\\Access\\Support',
+         'uses' => 
+        array (
+        ),
+         'constUses' => 
+        array (
+        ),
+      )),
+       'abstract' => false,
+       'final' => true,
+       'extends' => NULL,
+       'implements' => 
+      array (
+      ),
+       'usedTraits' => 
+      array (
+      ),
+       'traitUseAdaptations' => 
+      array (
+      ),
+       'statements' => 
+      array (
+        0 => 
+        \PHPStan\Dependency\ExportedNode\ExportedClassConstantsNode::__set_state(array(
+           'constants' => 
+          array (
+            0 => 
+            \PHPStan\Dependency\ExportedNode\ExportedClassConstantNode::__set_state(array(
+               'name' => 'FULL',
+               'value' => '\'*\'',
+               'attributes' => 
+              array (
+              ),
+            )),
+          ),
+           'public' => true,
+           'private' => false,
+           'final' => false,
+           'phpDoc' => NULL,
+        )),
+        1 => 
+        \PHPStan\Dependency\ExportedNode\ExportedClassConstantsNode::__set_state(array(
+           'constants' => 
+          array (
+            0 => 
+            \PHPStan\Dependency\ExportedNode\ExportedClassConstantNode::__set_state(array(
+               'name' => 'MFA_CHALLENGE',
+               'value' => '\'mfa-challenge\'',
+               'attributes' => 
+              array (
+              ),
+            )),
+          ),
+           'public' => true,
+           'private' => false,
+           'final' => false,
+           'phpDoc' => NULL,
+        )),
+        2 => 
+        \PHPStan\Dependency\ExportedNode\ExportedClassConstantsNode::__set_state(array(
+           'constants' => 
+          array (
+            0 => 
+            \PHPStan\Dependency\ExportedNode\ExportedClassConstantNode::__set_state(array(
+               'name' => 'MFA_SETUP',
+               'value' => '\'mfa-setup\'',
+               'attributes' => 
+              array (
+              ),
+            )),
+          ),
+           'public' => true,
+           'private' => false,
+           'final' => false,
+           'phpDoc' => NULL,
+        )),
+      ),
+       'attributes' => 
+      array (
+      ),
+    )),
+  ),
+  '/var/www/html/app/Domain/Audit/Concerns/Auditable.php' => 
+  array (
+    0 => 
+    \PHPStan\Dependency\ExportedNode\ExportedTraitNode::__set_state(array(
+       'name' => 'App\\Domain\\Audit\\Concerns\\Auditable',
+       'phpDoc' => 
+      \PHPStan\Dependency\ExportedNode\ExportedPhpDocNode::__set_state(array(
+         'phpDocString' => '/**
+ * Records create/update/delete of a model to the audit log (FR-AUD-01) with
+ * scrubbed before/after snapshots. Add this trait to any model that should be
+ * audited — future modules get consistent auditing for free.
+ *
+ * Override auditExcluded() for operational columns that should not generate
+ * audit noise (e.g. last_login_at). Secrets/PII are handled globally by the
+ * AuditScrubber (config/audit.php).
+ */',
+         'namespace' => 'App\\Domain\\Audit\\Concerns',
+         'uses' => 
+        array (
+          'auditlogger' => 'App\\Domain\\Audit\\Services\\AuditLogger',
+          'auditscrubber' => 'App\\Domain\\Audit\\Support\\AuditScrubber',
+          'str' => 'Illuminate\\Support\\Str',
+        ),
+         'constUses' => 
+        array (
+        ),
+      )),
+       'usedTraits' => 
+      array (
+      ),
+       'traitUseAdaptations' => 
+      array (
+      ),
+       'statements' => 
+      array (
+        0 => 
+        \PHPStan\Dependency\ExportedNode\ExportedMethodNode::__set_state(array(
+           'name' => 'bootAuditable',
+           'phpDoc' => NULL,
+           'byRef' => false,
+           'public' => true,
+           'private' => false,
+           'abstract' => false,
+           'final' => false,
+           'static' => true,
+           'returnType' => 'void',
+           'parameters' => 
+          array (
+          ),
+           'attributes' => 
+          array (
+          ),
+        )),
+        1 => 
+        \PHPStan\Dependency\ExportedNode\ExportedMethodNode::__set_state(array(
+           'name' => 'auditExcluded',
+           'phpDoc' => 
+          \PHPStan\Dependency\ExportedNode\ExportedPhpDocNode::__set_state(array(
+             'phpDocString' => '/**
+     * Columns that never produce an audit entry on change.
+     *
+     * @return list<string>
+     */',
+             'namespace' => 'App\\Domain\\Audit\\Concerns',
+             'uses' => 
+            array (
+              'auditlogger' => 'App\\Domain\\Audit\\Services\\AuditLogger',
+              'auditscrubber' => 'App\\Domain\\Audit\\Support\\AuditScrubber',
+              'str' => 'Illuminate\\Support\\Str',
+            ),
+             'constUses' => 
+            array (
+            ),
+          )),
+           'byRef' => false,
+           'public' => false,
+           'private' => false,
+           'abstract' => false,
+           'final' => false,
+           'static' => false,
+           'returnType' => 'array',
+           'parameters' => 
+          array (
+          ),
+           'attributes' => 
+          array (
+          ),
+        )),
+        2 => 
+        \PHPStan\Dependency\ExportedNode\ExportedMethodNode::__set_state(array(
+           'name' => 'auditEntityName',
+           'phpDoc' => 
+          \PHPStan\Dependency\ExportedNode\ExportedPhpDocNode::__set_state(array(
+             'phpDocString' => '/**
+     * The entity name used in the action and entity_type (e.g. "user").
+     */',
+             'namespace' => 'App\\Domain\\Audit\\Concerns',
+             'uses' => 
+            array (
+              'auditlogger' => 'App\\Domain\\Audit\\Services\\AuditLogger',
+              'auditscrubber' => 'App\\Domain\\Audit\\Support\\AuditScrubber',
+              'str' => 'Illuminate\\Support\\Str',
+            ),
+             'constUses' => 
+            array (
+            ),
+          )),
+           'byRef' => false,
+           'public' => true,
+           'private' => false,
+           'abstract' => false,
+           'final' => false,
+           'static' => false,
+           'returnType' => 'string',
+           'parameters' => 
+          array (
+          ),
+           'attributes' => 
+          array (
+          ),
+        )),
+        3 => 
+        \PHPStan\Dependency\ExportedNode\ExportedMethodNode::__set_state(array(
+           'name' => 'auditOmit',
+           'phpDoc' => 
+          \PHPStan\Dependency\ExportedNode\ExportedPhpDocNode::__set_state(array(
+             'phpDocString' => '/**
+     * Model-specific secret fields to redact (merged with the global list).
+     *
+     * @return list<string>
+     */',
+             'namespace' => 'App\\Domain\\Audit\\Concerns',
+             'uses' => 
+            array (
+              'auditlogger' => 'App\\Domain\\Audit\\Services\\AuditLogger',
+              'auditscrubber' => 'App\\Domain\\Audit\\Support\\AuditScrubber',
+              'str' => 'Illuminate\\Support\\Str',
+            ),
+             'constUses' => 
+            array (
+            ),
+          )),
+           'byRef' => false,
+           'public' => false,
+           'private' => false,
+           'abstract' => false,
+           'final' => false,
+           'static' => false,
+           'returnType' => 'array',
+           'parameters' => 
+          array (
+          ),
+           'attributes' => 
+          array (
+          ),
+        )),
+        4 => 
+        \PHPStan\Dependency\ExportedNode\ExportedMethodNode::__set_state(array(
+           'name' => 'auditMask',
+           'phpDoc' => 
+          \PHPStan\Dependency\ExportedNode\ExportedPhpDocNode::__set_state(array(
+             'phpDocString' => '/**
+     * Model-specific PII fields to mask (merged with the global list).
+     *
+     * @return list<string>
+     */',
+             'namespace' => 'App\\Domain\\Audit\\Concerns',
+             'uses' => 
+            array (
+              'auditlogger' => 'App\\Domain\\Audit\\Services\\AuditLogger',
+              'auditscrubber' => 'App\\Domain\\Audit\\Support\\AuditScrubber',
+              'str' => 'Illuminate\\Support\\Str',
+            ),
+             'constUses' => 
+            array (
+            ),
+          )),
+           'byRef' => false,
+           'public' => false,
+           'private' => false,
+           'abstract' => false,
+           'final' => false,
+           'static' => false,
+           'returnType' => 'array',
+           'parameters' => 
+          array (
+          ),
+           'attributes' => 
+          array (
+          ),
+        )),
+        5 => 
+        \PHPStan\Dependency\ExportedNode\ExportedMethodNode::__set_state(array(
+           'name' => 'scrubAttributes',
+           'phpDoc' => 
+          \PHPStan\Dependency\ExportedNode\ExportedPhpDocNode::__set_state(array(
+             'phpDocString' => '/**
+     * @param  array<string, mixed>  $attributes
+     * @return array<string, mixed>
+     */',
+             'namespace' => 'App\\Domain\\Audit\\Concerns',
+             'uses' => 
+            array (
+              'auditlogger' => 'App\\Domain\\Audit\\Services\\AuditLogger',
+              'auditscrubber' => 'App\\Domain\\Audit\\Support\\AuditScrubber',
+              'str' => 'Illuminate\\Support\\Str',
+            ),
+             'constUses' => 
+            array (
+            ),
+          )),
+           'byRef' => false,
+           'public' => true,
+           'private' => false,
+           'abstract' => false,
+           'final' => false,
+           'static' => false,
+           'returnType' => 'array',
+           'parameters' => 
+          array (
+            0 => 
+            \PHPStan\Dependency\ExportedNode\ExportedParameterNode::__set_state(array(
+               'name' => 'attributes',
+               'type' => 'array',
+               'byRef' => false,
+               'variadic' => false,
+               'hasDefault' => false,
+               'attributes' => 
+              array (
+              ),
+               'phpDoc' => NULL,
+               'flags' => 0,
+            )),
+          ),
+           'attributes' => 
+          array (
+          ),
+        )),
+      ),
+       'attributes' => 
+      array (
+      ),
+    )),
+  ),
+  '/var/www/html/app/Domain/Audit/Listeners/AuditEventSubscriber.php' => 
+  array (
+    0 => 
+    \PHPStan\Dependency\ExportedNode\ExportedClassNode::__set_state(array(
+       'name' => 'App\\Domain\\Audit\\Listeners\\AuditEventSubscriber',
+       'phpDoc' => 
+      \PHPStan\Dependency\ExportedNode\ExportedPhpDocNode::__set_state(array(
+         'phpDocString' => '/**
+ * Retro-wires existing domain events into the audit log (FR-AUD-01): lockouts,
+ * MFA enrolment/disable/failures, and cross-MDA grant changes. New modules can
+ * either emit events handled here or use the Auditable trait.
+ */',
+         'namespace' => 'App\\Domain\\Audit\\Listeners',
+         'uses' => 
+        array (
+          'accountlocked' => 'App\\Domain\\Access\\Events\\AccountLocked',
+          'crossmdaaccessgranted' => 'App\\Domain\\Access\\Events\\CrossMdaAccessGranted',
+          'crossmdaaccessrevoked' => 'App\\Domain\\Access\\Events\\CrossMdaAccessRevoked',
+          'mfachallengefailed' => 'App\\Domain\\Access\\Events\\MfaChallengeFailed',
+          'mfadisabled' => 'App\\Domain\\Access\\Events\\MfaDisabled',
+          'mfaenrolled' => 'App\\Domain\\Access\\Events\\MfaEnrolled',
+          'auditlogger' => 'App\\Domain\\Audit\\Services\\AuditLogger',
+          'dispatcher' => 'Illuminate\\Events\\Dispatcher',
+        ),
+         'constUses' => 
+        array (
+        ),
+      )),
+       'abstract' => false,
+       'final' => false,
+       'extends' => NULL,
+       'implements' => 
+      array (
+      ),
+       'usedTraits' => 
+      array (
+      ),
+       'traitUseAdaptations' => 
+      array (
+      ),
+       'statements' => 
+      array (
+        0 => 
+        \PHPStan\Dependency\ExportedNode\ExportedMethodNode::__set_state(array(
+           'name' => '__construct',
+           'phpDoc' => NULL,
+           'byRef' => false,
+           'public' => true,
+           'private' => false,
+           'abstract' => false,
+           'final' => false,
+           'static' => false,
+           'returnType' => NULL,
+           'parameters' => 
+          array (
+            0 => 
+            \PHPStan\Dependency\ExportedNode\ExportedParameterNode::__set_state(array(
+               'name' => 'audit',
+               'type' => 'App\\Domain\\Audit\\Services\\AuditLogger',
+               'byRef' => false,
+               'variadic' => false,
+               'hasDefault' => false,
+               'attributes' => 
+              array (
+              ),
+               'phpDoc' => NULL,
+               'flags' => 68,
+            )),
+          ),
+           'attributes' => 
+          array (
+          ),
+        )),
+        1 => 
+        \PHPStan\Dependency\ExportedNode\ExportedMethodNode::__set_state(array(
+           'name' => 'handleAccountLocked',
+           'phpDoc' => NULL,
+           'byRef' => false,
+           'public' => true,
+           'private' => false,
+           'abstract' => false,
+           'final' => false,
+           'static' => false,
+           'returnType' => 'void',
+           'parameters' => 
+          array (
+            0 => 
+            \PHPStan\Dependency\ExportedNode\ExportedParameterNode::__set_state(array(
+               'name' => 'event',
+               'type' => 'App\\Domain\\Access\\Events\\AccountLocked',
+               'byRef' => false,
+               'variadic' => false,
+               'hasDefault' => false,
+               'attributes' => 
+              array (
+              ),
+               'phpDoc' => NULL,
+               'flags' => 0,
+            )),
+          ),
+           'attributes' => 
+          array (
+          ),
+        )),
+        2 => 
+        \PHPStan\Dependency\ExportedNode\ExportedMethodNode::__set_state(array(
+           'name' => 'handleMfaEnrolled',
+           'phpDoc' => NULL,
+           'byRef' => false,
+           'public' => true,
+           'private' => false,
+           'abstract' => false,
+           'final' => false,
+           'static' => false,
+           'returnType' => 'void',
+           'parameters' => 
+          array (
+            0 => 
+            \PHPStan\Dependency\ExportedNode\ExportedParameterNode::__set_state(array(
+               'name' => 'event',
+               'type' => 'App\\Domain\\Access\\Events\\MfaEnrolled',
+               'byRef' => false,
+               'variadic' => false,
+               'hasDefault' => false,
+               'attributes' => 
+              array (
+              ),
+               'phpDoc' => NULL,
+               'flags' => 0,
+            )),
+          ),
+           'attributes' => 
+          array (
+          ),
+        )),
+        3 => 
+        \PHPStan\Dependency\ExportedNode\ExportedMethodNode::__set_state(array(
+           'name' => 'handleMfaDisabled',
+           'phpDoc' => NULL,
+           'byRef' => false,
+           'public' => true,
+           'private' => false,
+           'abstract' => false,
+           'final' => false,
+           'static' => false,
+           'returnType' => 'void',
+           'parameters' => 
+          array (
+            0 => 
+            \PHPStan\Dependency\ExportedNode\ExportedParameterNode::__set_state(array(
+               'name' => 'event',
+               'type' => 'App\\Domain\\Access\\Events\\MfaDisabled',
+               'byRef' => false,
+               'variadic' => false,
+               'hasDefault' => false,
+               'attributes' => 
+              array (
+              ),
+               'phpDoc' => NULL,
+               'flags' => 0,
+            )),
+          ),
+           'attributes' => 
+          array (
+          ),
+        )),
+        4 => 
+        \PHPStan\Dependency\ExportedNode\ExportedMethodNode::__set_state(array(
+           'name' => 'handleMfaChallengeFailed',
+           'phpDoc' => NULL,
+           'byRef' => false,
+           'public' => true,
+           'private' => false,
+           'abstract' => false,
+           'final' => false,
+           'static' => false,
+           'returnType' => 'void',
+           'parameters' => 
+          array (
+            0 => 
+            \PHPStan\Dependency\ExportedNode\ExportedParameterNode::__set_state(array(
+               'name' => 'event',
+               'type' => 'App\\Domain\\Access\\Events\\MfaChallengeFailed',
+               'byRef' => false,
+               'variadic' => false,
+               'hasDefault' => false,
+               'attributes' => 
+              array (
+              ),
+               'phpDoc' => NULL,
+               'flags' => 0,
+            )),
+          ),
+           'attributes' => 
+          array (
+          ),
+        )),
+        5 => 
+        \PHPStan\Dependency\ExportedNode\ExportedMethodNode::__set_state(array(
+           'name' => 'handleCrossMdaAccessGranted',
+           'phpDoc' => NULL,
+           'byRef' => false,
+           'public' => true,
+           'private' => false,
+           'abstract' => false,
+           'final' => false,
+           'static' => false,
+           'returnType' => 'void',
+           'parameters' => 
+          array (
+            0 => 
+            \PHPStan\Dependency\ExportedNode\ExportedParameterNode::__set_state(array(
+               'name' => 'event',
+               'type' => 'App\\Domain\\Access\\Events\\CrossMdaAccessGranted',
+               'byRef' => false,
+               'variadic' => false,
+               'hasDefault' => false,
+               'attributes' => 
+              array (
+              ),
+               'phpDoc' => NULL,
+               'flags' => 0,
+            )),
+          ),
+           'attributes' => 
+          array (
+          ),
+        )),
+        6 => 
+        \PHPStan\Dependency\ExportedNode\ExportedMethodNode::__set_state(array(
+           'name' => 'handleCrossMdaAccessRevoked',
+           'phpDoc' => NULL,
+           'byRef' => false,
+           'public' => true,
+           'private' => false,
+           'abstract' => false,
+           'final' => false,
+           'static' => false,
+           'returnType' => 'void',
+           'parameters' => 
+          array (
+            0 => 
+            \PHPStan\Dependency\ExportedNode\ExportedParameterNode::__set_state(array(
+               'name' => 'event',
+               'type' => 'App\\Domain\\Access\\Events\\CrossMdaAccessRevoked',
+               'byRef' => false,
+               'variadic' => false,
+               'hasDefault' => false,
+               'attributes' => 
+              array (
+              ),
+               'phpDoc' => NULL,
+               'flags' => 0,
+            )),
+          ),
+           'attributes' => 
+          array (
+          ),
+        )),
+        7 => 
+        \PHPStan\Dependency\ExportedNode\ExportedMethodNode::__set_state(array(
+           'name' => 'subscribe',
+           'phpDoc' => 
+          \PHPStan\Dependency\ExportedNode\ExportedPhpDocNode::__set_state(array(
+             'phpDocString' => '/**
+     * @return array<class-string, string>
+     */',
+             'namespace' => 'App\\Domain\\Audit\\Listeners',
+             'uses' => 
+            array (
+              'accountlocked' => 'App\\Domain\\Access\\Events\\AccountLocked',
+              'crossmdaaccessgranted' => 'App\\Domain\\Access\\Events\\CrossMdaAccessGranted',
+              'crossmdaaccessrevoked' => 'App\\Domain\\Access\\Events\\CrossMdaAccessRevoked',
+              'mfachallengefailed' => 'App\\Domain\\Access\\Events\\MfaChallengeFailed',
+              'mfadisabled' => 'App\\Domain\\Access\\Events\\MfaDisabled',
+              'mfaenrolled' => 'App\\Domain\\Access\\Events\\MfaEnrolled',
+              'auditlogger' => 'App\\Domain\\Audit\\Services\\AuditLogger',
+              'dispatcher' => 'Illuminate\\Events\\Dispatcher',
+            ),
+             'constUses' => 
+            array (
+            ),
+          )),
+           'byRef' => false,
+           'public' => true,
+           'private' => false,
+           'abstract' => false,
+           'final' => false,
+           'static' => false,
+           'returnType' => 'array',
+           'parameters' => 
+          array (
+            0 => 
+            \PHPStan\Dependency\ExportedNode\ExportedParameterNode::__set_state(array(
+               'name' => 'events',
+               'type' => 'Illuminate\\Events\\Dispatcher',
+               'byRef' => false,
+               'variadic' => false,
+               'hasDefault' => false,
+               'attributes' => 
+              array (
+              ),
+               'phpDoc' => NULL,
+               'flags' => 0,
+            )),
+          ),
+           'attributes' => 
+          array (
+          ),
+        )),
+      ),
+       'attributes' => 
+      array (
+      ),
+    )),
+  ),
+  '/var/www/html/app/Domain/Audit/Models/AuditLog.php' => 
+  array (
+    0 => 
+    \PHPStan\Dependency\ExportedNode\ExportedClassNode::__set_state(array(
+       'name' => 'App\\Domain\\Audit\\Models\\AuditLog',
+       'phpDoc' => 
+      \PHPStan\Dependency\ExportedNode\ExportedPhpDocNode::__set_state(array(
+         'phpDocString' => '/**
+ * An immutable audit log entry (FR-AUD-01). Append-only: the model refuses to be
+ * updated or deleted in application code, and the database enforces the same with
+ * triggers (NFR-AUD-01). Never make this model Auditable (no recursion).
+ */',
+         'namespace' => 'App\\Domain\\Audit\\Models',
+         'uses' => 
+        array (
+          'hasuuids' => 'Illuminate\\Database\\Eloquent\\Concerns\\HasUuids',
+          'model' => 'Illuminate\\Database\\Eloquent\\Model',
+          'runtimeexception' => 'RuntimeException',
+        ),
+         'constUses' => 
+        array (
+        ),
+      )),
+       'abstract' => false,
+       'final' => false,
+       'extends' => 'Illuminate\\Database\\Eloquent\\Model',
+       'implements' => 
+      array (
+      ),
+       'usedTraits' => 
+      array (
+        0 => 'Illuminate\\Database\\Eloquent\\Concerns\\HasUuids',
+      ),
+       'traitUseAdaptations' => 
+      array (
+      ),
+       'statements' => 
+      array (
+        0 => 
+        \PHPStan\Dependency\ExportedNode\ExportedPropertiesNode::__set_state(array(
+           'names' => 
+          array (
+            0 => 'timestamps',
+          ),
+           'phpDoc' => NULL,
+           'type' => NULL,
+           'public' => true,
+           'private' => false,
+           'static' => false,
+           'readonly' => false,
+           'abstract' => false,
+           'final' => false,
+           'publicSet' => false,
+           'protectedSet' => false,
+           'privateSet' => false,
+           'virtual' => false,
+           'attributes' => 
+          array (
+          ),
+           'hooks' => 
+          array (
+          ),
+        )),
+        1 => 
+        \PHPStan\Dependency\ExportedNode\ExportedPropertiesNode::__set_state(array(
+           'names' => 
+          array (
+            0 => 'table',
+          ),
+           'phpDoc' => NULL,
+           'type' => NULL,
+           'public' => false,
+           'private' => false,
+           'static' => false,
+           'readonly' => false,
+           'abstract' => false,
+           'final' => false,
+           'publicSet' => false,
+           'protectedSet' => false,
+           'privateSet' => false,
+           'virtual' => false,
+           'attributes' => 
+          array (
+          ),
+           'hooks' => 
+          array (
+          ),
+        )),
+        2 => 
+        \PHPStan\Dependency\ExportedNode\ExportedPropertiesNode::__set_state(array(
+           'names' => 
+          array (
+            0 => 'fillable',
+          ),
+           'phpDoc' => NULL,
+           'type' => NULL,
+           'public' => false,
+           'private' => false,
+           'static' => false,
+           'readonly' => false,
+           'abstract' => false,
+           'final' => false,
+           'publicSet' => false,
+           'protectedSet' => false,
+           'privateSet' => false,
+           'virtual' => false,
+           'attributes' => 
+          array (
+          ),
+           'hooks' => 
+          array (
+          ),
+        )),
+        3 => 
+        \PHPStan\Dependency\ExportedNode\ExportedMethodNode::__set_state(array(
+           'name' => 'casts',
+           'phpDoc' => 
+          \PHPStan\Dependency\ExportedNode\ExportedPhpDocNode::__set_state(array(
+             'phpDocString' => '/**
+     * @return array<string, string>
+     */',
+             'namespace' => 'App\\Domain\\Audit\\Models',
+             'uses' => 
+            array (
+              'hasuuids' => 'Illuminate\\Database\\Eloquent\\Concerns\\HasUuids',
+              'model' => 'Illuminate\\Database\\Eloquent\\Model',
+              'runtimeexception' => 'RuntimeException',
+            ),
+             'constUses' => 
+            array (
+            ),
+          )),
+           'byRef' => false,
+           'public' => false,
+           'private' => false,
+           'abstract' => false,
+           'final' => false,
+           'static' => false,
+           'returnType' => 'array',
+           'parameters' => 
+          array (
+          ),
+           'attributes' => 
+          array (
+          ),
+        )),
+        4 => 
+        \PHPStan\Dependency\ExportedNode\ExportedMethodNode::__set_state(array(
+           'name' => 'booted',
+           'phpDoc' => 
+          \PHPStan\Dependency\ExportedNode\ExportedPhpDocNode::__set_state(array(
+             'phpDocString' => '/**
+     * Application-level append-only guard (defence in depth alongside the DB
+     * triggers; also enforced on sqlite used in tests).
+     */',
+             'namespace' => 'App\\Domain\\Audit\\Models',
+             'uses' => 
+            array (
+              'hasuuids' => 'Illuminate\\Database\\Eloquent\\Concerns\\HasUuids',
+              'model' => 'Illuminate\\Database\\Eloquent\\Model',
+              'runtimeexception' => 'RuntimeException',
+            ),
+             'constUses' => 
+            array (
+            ),
+          )),
+           'byRef' => false,
+           'public' => false,
+           'private' => false,
+           'abstract' => false,
+           'final' => false,
+           'static' => true,
+           'returnType' => 'void',
+           'parameters' => 
+          array (
+          ),
+           'attributes' => 
+          array (
+          ),
+        )),
+      ),
+       'attributes' => 
+      array (
+      ),
+    )),
+  ),
+  '/var/www/html/app/Domain/Audit/Services/AuditLogger.php' => 
+  array (
+    0 => 
+    \PHPStan\Dependency\ExportedNode\ExportedClassNode::__set_state(array(
+       'name' => 'App\\Domain\\Audit\\Services\\AuditLogger',
+       'phpDoc' => 
+      \PHPStan\Dependency\ExportedNode\ExportedPhpDocNode::__set_state(array(
+         'phpDocString' => '/**
+ * Single entry point for writing audit entries (FR-AUD-01). Captures the actor
+ * and request context automatically; callers supply the action and (already
+ * scrubbed) before/after snapshots.
+ */',
+         'namespace' => 'App\\Domain\\Audit\\Services',
+         'uses' => 
+        array (
+          'user' => 'App\\Domain\\Access\\Models\\User',
+          'auditlog' => 'App\\Domain\\Audit\\Models\\AuditLog',
+          'authenticatable' => 'Illuminate\\Contracts\\Auth\\Authenticatable',
+          'model' => 'Illuminate\\Database\\Eloquent\\Model',
+          'auth' => 'Illuminate\\Support\\Facades\\Auth',
+        ),
+         'constUses' => 
+        array (
+        ),
+      )),
+       'abstract' => false,
+       'final' => false,
+       'extends' => NULL,
+       'implements' => 
+      array (
+      ),
+       'usedTraits' => 
+      array (
+      ),
+       'traitUseAdaptations' => 
+      array (
+      ),
+       'statements' => 
+      array (
+        0 => 
+        \PHPStan\Dependency\ExportedNode\ExportedMethodNode::__set_state(array(
+           'name' => 'record',
+           'phpDoc' => 
+          \PHPStan\Dependency\ExportedNode\ExportedPhpDocNode::__set_state(array(
+             'phpDocString' => '/**
+     * @param  array<string, mixed>|null  $before
+     * @param  array<string, mixed>|null  $after
+     * @param  array<string, mixed>  $context  optional overrides: entity_type, entity_id, actor_id, actor_mda_id
+     */',
+             'namespace' => 'App\\Domain\\Audit\\Services',
+             'uses' => 
+            array (
+              'user' => 'App\\Domain\\Access\\Models\\User',
+              'auditlog' => 'App\\Domain\\Audit\\Models\\AuditLog',
+              'authenticatable' => 'Illuminate\\Contracts\\Auth\\Authenticatable',
+              'model' => 'Illuminate\\Database\\Eloquent\\Model',
+              'auth' => 'Illuminate\\Support\\Facades\\Auth',
+            ),
+             'constUses' => 
+            array (
+            ),
+          )),
+           'byRef' => false,
+           'public' => true,
+           'private' => false,
+           'abstract' => false,
+           'final' => false,
+           'static' => false,
+           'returnType' => 'App\\Domain\\Audit\\Models\\AuditLog',
+           'parameters' => 
+          array (
+            0 => 
+            \PHPStan\Dependency\ExportedNode\ExportedParameterNode::__set_state(array(
+               'name' => 'action',
+               'type' => 'string',
+               'byRef' => false,
+               'variadic' => false,
+               'hasDefault' => false,
+               'attributes' => 
+              array (
+              ),
+               'phpDoc' => NULL,
+               'flags' => 0,
+            )),
+            1 => 
+            \PHPStan\Dependency\ExportedNode\ExportedParameterNode::__set_state(array(
+               'name' => 'entity',
+               'type' => '?Illuminate\\Database\\Eloquent\\Model',
+               'byRef' => false,
+               'variadic' => false,
+               'hasDefault' => true,
+               'attributes' => 
+              array (
+              ),
+               'phpDoc' => NULL,
+               'flags' => 0,
+            )),
+            2 => 
+            \PHPStan\Dependency\ExportedNode\ExportedParameterNode::__set_state(array(
+               'name' => 'before',
+               'type' => '?array',
+               'byRef' => false,
+               'variadic' => false,
+               'hasDefault' => true,
+               'attributes' => 
+              array (
+              ),
+               'phpDoc' => NULL,
+               'flags' => 0,
+            )),
+            3 => 
+            \PHPStan\Dependency\ExportedNode\ExportedParameterNode::__set_state(array(
+               'name' => 'after',
+               'type' => '?array',
+               'byRef' => false,
+               'variadic' => false,
+               'hasDefault' => true,
+               'attributes' => 
+              array (
+              ),
+               'phpDoc' => NULL,
+               'flags' => 0,
+            )),
+            4 => 
+            \PHPStan\Dependency\ExportedNode\ExportedParameterNode::__set_state(array(
+               'name' => 'actor',
+               'type' => '?Illuminate\\Contracts\\Auth\\Authenticatable',
+               'byRef' => false,
+               'variadic' => false,
+               'hasDefault' => true,
+               'attributes' => 
+              array (
+              ),
+               'phpDoc' => NULL,
+               'flags' => 0,
+            )),
+            5 => 
+            \PHPStan\Dependency\ExportedNode\ExportedParameterNode::__set_state(array(
+               'name' => 'context',
+               'type' => 'array',
+               'byRef' => false,
+               'variadic' => false,
+               'hasDefault' => true,
+               'attributes' => 
+              array (
+              ),
+               'phpDoc' => NULL,
+               'flags' => 0,
+            )),
+          ),
+           'attributes' => 
+          array (
+          ),
+        )),
+      ),
+       'attributes' => 
+      array (
+      ),
+    )),
+  ),
+  '/var/www/html/app/Domain/Audit/Support/AuditScrubber.php' => 
+  array (
+    0 => 
+    \PHPStan\Dependency\ExportedNode\ExportedClassNode::__set_state(array(
+       'name' => 'App\\Domain\\Audit\\Support\\AuditScrubber',
+       'phpDoc' => 
+      \PHPStan\Dependency\ExportedNode\ExportedPhpDocNode::__set_state(array(
+         'phpDocString' => '/**
+ * Removes secrets and masks PII from audit before/after snapshots so the audit
+ * log never stores raw secrets or personal data (SECURITY.md §6).
+ */',
+         'namespace' => 'App\\Domain\\Audit\\Support',
+         'uses' => 
+        array (
+        ),
+         'constUses' => 
+        array (
+        ),
+      )),
+       'abstract' => false,
+       'final' => false,
+       'extends' => NULL,
+       'implements' => 
+      array (
+      ),
+       'usedTraits' => 
+      array (
+      ),
+       'traitUseAdaptations' => 
+      array (
+      ),
+       'statements' => 
+      array (
+        0 => 
+        \PHPStan\Dependency\ExportedNode\ExportedMethodNode::__set_state(array(
+           'name' => 'scrub',
+           'phpDoc' => 
+          \PHPStan\Dependency\ExportedNode\ExportedPhpDocNode::__set_state(array(
+             'phpDocString' => '/**
+     * @param  array<string, mixed>  $attributes
+     * @param  list<string>  $extraOmit  model-specific secret fields
+     * @param  list<string>  $extraMask  model-specific PII fields
+     * @return array<string, mixed>
+     */',
+             'namespace' => 'App\\Domain\\Audit\\Support',
+             'uses' => 
+            array (
+            ),
+             'constUses' => 
+            array (
+            ),
+          )),
+           'byRef' => false,
+           'public' => true,
+           'private' => false,
+           'abstract' => false,
+           'final' => false,
+           'static' => false,
+           'returnType' => 'array',
+           'parameters' => 
+          array (
+            0 => 
+            \PHPStan\Dependency\ExportedNode\ExportedParameterNode::__set_state(array(
+               'name' => 'attributes',
+               'type' => 'array',
+               'byRef' => false,
+               'variadic' => false,
+               'hasDefault' => false,
+               'attributes' => 
+              array (
+              ),
+               'phpDoc' => NULL,
+               'flags' => 0,
+            )),
+            1 => 
+            \PHPStan\Dependency\ExportedNode\ExportedParameterNode::__set_state(array(
+               'name' => 'extraOmit',
+               'type' => 'array',
+               'byRef' => false,
+               'variadic' => false,
+               'hasDefault' => true,
+               'attributes' => 
+              array (
+              ),
+               'phpDoc' => NULL,
+               'flags' => 0,
+            )),
+            2 => 
+            \PHPStan\Dependency\ExportedNode\ExportedParameterNode::__set_state(array(
+               'name' => 'extraMask',
+               'type' => 'array',
+               'byRef' => false,
+               'variadic' => false,
+               'hasDefault' => true,
+               'attributes' => 
+              array (
+              ),
+               'phpDoc' => NULL,
+               'flags' => 0,
+            )),
+          ),
+           'attributes' => 
+          array (
+          ),
+        )),
+      ),
+       'attributes' => 
+      array (
+      ),
+    )),
+  ),
+  '/var/www/html/app/Domain/Registry/Enums/BeneficiaryStatus.php' => 
+  array (
+    0 => 
+    \PHPStan\Dependency\ExportedNode\ExportedEnumNode::__set_state(array(
+       'name' => 'App\\Domain\\Registry\\Enums\\BeneficiaryStatus',
+       'scalarType' => 'string',
+       'phpDoc' => 
+      \PHPStan\Dependency\ExportedNode\ExportedPhpDocNode::__set_state(array(
+         'phpDocString' => '/**
+ * Beneficiary lifecycle status. Maps to the shared status → badge variants
+ * (DESIGN-SYSTEM.md §5.8): active→success, suspended→warning, flagged→danger.
+ */',
+         'namespace' => 'App\\Domain\\Registry\\Enums',
+         'uses' => 
+        array (
+        ),
+         'constUses' => 
+        array (
+        ),
+      )),
+       'implements' => 
+      array (
+      ),
+       'statements' => 
+      array (
+        0 => 
+        \PHPStan\Dependency\ExportedNode\ExportedEnumCaseNode::__set_state(array(
+           'name' => 'Active',
+           'value' => '\'active\'',
+           'phpDoc' => NULL,
+        )),
+        1 => 
+        \PHPStan\Dependency\ExportedNode\ExportedEnumCaseNode::__set_state(array(
+           'name' => 'Suspended',
+           'value' => '\'suspended\'',
+           'phpDoc' => NULL,
+        )),
+        2 => 
+        \PHPStan\Dependency\ExportedNode\ExportedEnumCaseNode::__set_state(array(
+           'name' => 'Flagged',
+           'value' => '\'flagged\'',
+           'phpDoc' => NULL,
+        )),
+        3 => 
+        \PHPStan\Dependency\ExportedNode\ExportedMethodNode::__set_state(array(
+           'name' => 'label',
+           'phpDoc' => NULL,
+           'byRef' => false,
+           'public' => true,
+           'private' => false,
+           'abstract' => false,
+           'final' => false,
+           'static' => false,
+           'returnType' => 'string',
+           'parameters' => 
+          array (
+          ),
+           'attributes' => 
+          array (
+          ),
+        )),
+      ),
+       'attributes' => 
+      array (
+      ),
+    )),
+  ),
+  '/var/www/html/app/Domain/Registry/Enums/Gender.php' => 
+  array (
+    0 => 
+    \PHPStan\Dependency\ExportedNode\ExportedEnumNode::__set_state(array(
+       'name' => 'App\\Domain\\Registry\\Enums\\Gender',
+       'scalarType' => 'string',
+       'phpDoc' => NULL,
+       'implements' => 
+      array (
+      ),
+       'statements' => 
+      array (
+        0 => 
+        \PHPStan\Dependency\ExportedNode\ExportedEnumCaseNode::__set_state(array(
+           'name' => 'Male',
+           'value' => '\'male\'',
+           'phpDoc' => NULL,
+        )),
+        1 => 
+        \PHPStan\Dependency\ExportedNode\ExportedEnumCaseNode::__set_state(array(
+           'name' => 'Female',
+           'value' => '\'female\'',
+           'phpDoc' => NULL,
+        )),
+        2 => 
+        \PHPStan\Dependency\ExportedNode\ExportedEnumCaseNode::__set_state(array(
+           'name' => 'Other',
+           'value' => '\'other\'',
+           'phpDoc' => NULL,
+        )),
+        3 => 
+        \PHPStan\Dependency\ExportedNode\ExportedMethodNode::__set_state(array(
+           'name' => 'label',
+           'phpDoc' => NULL,
+           'byRef' => false,
+           'public' => true,
+           'private' => false,
+           'abstract' => false,
+           'final' => false,
+           'static' => false,
+           'returnType' => 'string',
+           'parameters' => 
+          array (
+          ),
+           'attributes' => 
+          array (
+          ),
+        )),
+      ),
+       'attributes' => 
+      array (
+      ),
+    )),
+  ),
+  '/var/www/html/app/Domain/Registry/Enums/HouseholdRole.php' => 
+  array (
+    0 => 
+    \PHPStan\Dependency\ExportedNode\ExportedEnumNode::__set_state(array(
+       'name' => 'App\\Domain\\Registry\\Enums\\HouseholdRole',
+       'scalarType' => 'string',
+       'phpDoc' => 
+      \PHPStan\Dependency\ExportedNode\ExportedPhpDocNode::__set_state(array(
+         'phpDocString' => '/**
+ * A member\'s role within a household (relative to the head).
+ */',
+         'namespace' => 'App\\Domain\\Registry\\Enums',
+         'uses' => 
+        array (
+        ),
+         'constUses' => 
+        array (
+        ),
+      )),
+       'implements' => 
+      array (
+      ),
+       'statements' => 
+      array (
+        0 => 
+        \PHPStan\Dependency\ExportedNode\ExportedEnumCaseNode::__set_state(array(
+           'name' => 'Head',
+           'value' => '\'head\'',
+           'phpDoc' => NULL,
+        )),
+        1 => 
+        \PHPStan\Dependency\ExportedNode\ExportedEnumCaseNode::__set_state(array(
+           'name' => 'Spouse',
+           'value' => '\'spouse\'',
+           'phpDoc' => NULL,
+        )),
+        2 => 
+        \PHPStan\Dependency\ExportedNode\ExportedEnumCaseNode::__set_state(array(
+           'name' => 'Child',
+           'value' => '\'child\'',
+           'phpDoc' => NULL,
+        )),
+        3 => 
+        \PHPStan\Dependency\ExportedNode\ExportedEnumCaseNode::__set_state(array(
+           'name' => 'Dependent',
+           'value' => '\'dependent\'',
+           'phpDoc' => NULL,
+        )),
+        4 => 
+        \PHPStan\Dependency\ExportedNode\ExportedEnumCaseNode::__set_state(array(
+           'name' => 'Other',
+           'value' => '\'other\'',
+           'phpDoc' => NULL,
+        )),
+        5 => 
+        \PHPStan\Dependency\ExportedNode\ExportedMethodNode::__set_state(array(
+           'name' => 'label',
+           'phpDoc' => NULL,
+           'byRef' => false,
+           'public' => true,
+           'private' => false,
+           'abstract' => false,
+           'final' => false,
+           'static' => false,
+           'returnType' => 'string',
+           'parameters' => 
+          array (
+          ),
+           'attributes' => 
+          array (
+          ),
+        )),
+      ),
+       'attributes' => 
+      array (
+      ),
+    )),
+  ),
+  '/var/www/html/app/Domain/Registry/Enums/RegistrationSource.php' => 
+  array (
+    0 => 
+    \PHPStan\Dependency\ExportedNode\ExportedEnumNode::__set_state(array(
+       'name' => 'App\\Domain\\Registry\\Enums\\RegistrationSource',
+       'scalarType' => 'string',
+       'phpDoc' => 
+      \PHPStan\Dependency\ExportedNode\ExportedPhpDocNode::__set_state(array(
+         'phpDocString' => '/**
+ * Where a beneficiary/household record came from (PRD §6.1 provenance). Phase 2
+ * ingests `manual` and `excel`/`csv`; the other sources have endpoints later but
+ * their provenance values are defined now.
+ */',
+         'namespace' => 'App\\Domain\\Registry\\Enums',
+         'uses' => 
+        array (
+        ),
+         'constUses' => 
+        array (
+        ),
+      )),
+       'implements' => 
+      array (
+      ),
+       'statements' => 
+      array (
+        0 => 
+        \PHPStan\Dependency\ExportedNode\ExportedEnumCaseNode::__set_state(array(
+           'name' => 'Manual',
+           'value' => '\'manual\'',
+           'phpDoc' => NULL,
+        )),
+        1 => 
+        \PHPStan\Dependency\ExportedNode\ExportedEnumCaseNode::__set_state(array(
+           'name' => 'Excel',
+           'value' => '\'excel\'',
+           'phpDoc' => NULL,
+        )),
+        2 => 
+        \PHPStan\Dependency\ExportedNode\ExportedEnumCaseNode::__set_state(array(
+           'name' => 'Csv',
+           'value' => '\'csv\'',
+           'phpDoc' => NULL,
+        )),
+        3 => 
+        \PHPStan\Dependency\ExportedNode\ExportedEnumCaseNode::__set_state(array(
+           'name' => 'Kobo',
+           'value' => '\'kobo\'',
+           'phpDoc' => NULL,
+        )),
+        4 => 
+        \PHPStan\Dependency\ExportedNode\ExportedEnumCaseNode::__set_state(array(
+           'name' => 'Odk',
+           'value' => '\'odk\'',
+           'phpDoc' => NULL,
+        )),
+        5 => 
+        \PHPStan\Dependency\ExportedNode\ExportedEnumCaseNode::__set_state(array(
+           'name' => 'Api',
+           'value' => '\'api\'',
+           'phpDoc' => NULL,
+        )),
+        6 => 
+        \PHPStan\Dependency\ExportedNode\ExportedEnumCaseNode::__set_state(array(
+           'name' => 'Socu',
+           'value' => '\'socu\'',
+           'phpDoc' => NULL,
+        )),
+        7 => 
+        \PHPStan\Dependency\ExportedNode\ExportedEnumCaseNode::__set_state(array(
+           'name' => 'GovernmentSystem',
+           'value' => '\'government_system\'',
+           'phpDoc' => NULL,
+        )),
+      ),
+       'attributes' => 
+      array (
+      ),
+    )),
+  ),
+  '/var/www/html/app/Domain/Registry/Models/Beneficiary.php' => 
+  array (
+    0 => 
+    \PHPStan\Dependency\ExportedNode\ExportedClassNode::__set_state(array(
+       'name' => 'App\\Domain\\Registry\\Models\\Beneficiary',
+       'phpDoc' => 
+      \PHPStan\Dependency\ExportedNode\ExportedPhpDocNode::__set_state(array(
+         'phpDocString' => '/**
+ * A beneficiary — the registry\'s core record (PRD FR-REG-01/03/04, FR-OWN-01).
+ * Owned by an MDA and MDA-scoped via `owner_mda_id`; audited via Auditable.
+ *
+ * @property string $id
+ * @property string $owner_mda_id
+ * @property RegistrationSource $registration_source
+ * @property Carbon $registration_date
+ * @property string|null $import_batch_id
+ * @property string|null $original_record_id
+ * @property string|null $nin
+ * @property string|null $bvn
+ * @property string|null $phone
+ * @property string $first_name
+ * @property string|null $middle_name
+ * @property string $last_name
+ * @property Carbon|null $date_of_birth
+ * @property Gender|null $gender
+ * @property string|null $address
+ * @property string|null $lga
+ * @property string|null $ward
+ * @property BeneficiaryStatus $status
+ * @property-read Mda $ownerMda
+ * @property-read HouseholdMembership|null $currentMembership
+ */',
+         'namespace' => 'App\\Domain\\Registry\\Models',
+         'uses' => 
+        array (
+          'mdascoped' => 'App\\Domain\\Access\\Concerns\\MdaScoped',
+          'scopedtomda' => 'App\\Domain\\Access\\Concerns\\ScopedToMda',
+          'mda' => 'App\\Domain\\Access\\Models\\Mda',
+          'auditable' => 'App\\Domain\\Audit\\Concerns\\Auditable',
+          'beneficiarystatus' => 'App\\Domain\\Registry\\Enums\\BeneficiaryStatus',
+          'gender' => 'App\\Domain\\Registry\\Enums\\Gender',
+          'registrationsource' => 'App\\Domain\\Registry\\Enums\\RegistrationSource',
+          'beneficiaryfactory' => 'Database\\Factories\\BeneficiaryFactory',
+          'hasuuids' => 'Illuminate\\Database\\Eloquent\\Concerns\\HasUuids',
+          'hasfactory' => 'Illuminate\\Database\\Eloquent\\Factories\\HasFactory',
+          'model' => 'Illuminate\\Database\\Eloquent\\Model',
+          'belongsto' => 'Illuminate\\Database\\Eloquent\\Relations\\BelongsTo',
+          'hasmany' => 'Illuminate\\Database\\Eloquent\\Relations\\HasMany',
+          'hasone' => 'Illuminate\\Database\\Eloquent\\Relations\\HasOne',
+          'softdeletes' => 'Illuminate\\Database\\Eloquent\\SoftDeletes',
+          'carbon' => 'Illuminate\\Support\\Carbon',
+          'invalidargumentexception' => 'InvalidArgumentException',
+        ),
+         'constUses' => 
+        array (
+        ),
+      )),
+       'abstract' => false,
+       'final' => false,
+       'extends' => 'Illuminate\\Database\\Eloquent\\Model',
+       'implements' => 
+      array (
+        0 => 'App\\Domain\\Access\\Concerns\\MdaScoped',
+      ),
+       'usedTraits' => 
+      array (
+        0 => 'App\\Domain\\Audit\\Concerns\\Auditable',
+        1 => 'Illuminate\\Database\\Eloquent\\Factories\\HasFactory',
+        2 => 'Illuminate\\Database\\Eloquent\\Concerns\\HasUuids',
+        3 => 'App\\Domain\\Access\\Concerns\\ScopedToMda',
+        4 => 'Illuminate\\Database\\Eloquent\\SoftDeletes',
+      ),
+       'traitUseAdaptations' => 
+      array (
+      ),
+       'statements' => 
+      array (
+        0 => 
+        \PHPStan\Dependency\ExportedNode\ExportedPropertiesNode::__set_state(array(
+           'names' => 
+          array (
+            0 => 'table',
+          ),
+           'phpDoc' => NULL,
+           'type' => NULL,
+           'public' => false,
+           'private' => false,
+           'static' => false,
+           'readonly' => false,
+           'abstract' => false,
+           'final' => false,
+           'publicSet' => false,
+           'protectedSet' => false,
+           'privateSet' => false,
+           'virtual' => false,
+           'attributes' => 
+          array (
+          ),
+           'hooks' => 
+          array (
+          ),
+        )),
+        1 => 
+        \PHPStan\Dependency\ExportedNode\ExportedPropertiesNode::__set_state(array(
+           'names' => 
+          array (
+            0 => 'fillable',
+          ),
+           'phpDoc' => 
+          \PHPStan\Dependency\ExportedNode\ExportedPhpDocNode::__set_state(array(
+             'phpDocString' => '/**
+     * @var list<string>
+     */',
+             'namespace' => 'App\\Domain\\Registry\\Models',
+             'uses' => 
+            array (
+              'mdascoped' => 'App\\Domain\\Access\\Concerns\\MdaScoped',
+              'scopedtomda' => 'App\\Domain\\Access\\Concerns\\ScopedToMda',
+              'mda' => 'App\\Domain\\Access\\Models\\Mda',
+              'auditable' => 'App\\Domain\\Audit\\Concerns\\Auditable',
+              'beneficiarystatus' => 'App\\Domain\\Registry\\Enums\\BeneficiaryStatus',
+              'gender' => 'App\\Domain\\Registry\\Enums\\Gender',
+              'registrationsource' => 'App\\Domain\\Registry\\Enums\\RegistrationSource',
+              'beneficiaryfactory' => 'Database\\Factories\\BeneficiaryFactory',
+              'hasuuids' => 'Illuminate\\Database\\Eloquent\\Concerns\\HasUuids',
+              'hasfactory' => 'Illuminate\\Database\\Eloquent\\Factories\\HasFactory',
+              'model' => 'Illuminate\\Database\\Eloquent\\Model',
+              'belongsto' => 'Illuminate\\Database\\Eloquent\\Relations\\BelongsTo',
+              'hasmany' => 'Illuminate\\Database\\Eloquent\\Relations\\HasMany',
+              'hasone' => 'Illuminate\\Database\\Eloquent\\Relations\\HasOne',
+              'softdeletes' => 'Illuminate\\Database\\Eloquent\\SoftDeletes',
+              'carbon' => 'Illuminate\\Support\\Carbon',
+              'invalidargumentexception' => 'InvalidArgumentException',
+            ),
+             'constUses' => 
+            array (
+            ),
+          )),
+           'type' => NULL,
+           'public' => false,
+           'private' => false,
+           'static' => false,
+           'readonly' => false,
+           'abstract' => false,
+           'final' => false,
+           'publicSet' => false,
+           'protectedSet' => false,
+           'privateSet' => false,
+           'virtual' => false,
+           'attributes' => 
+          array (
+          ),
+           'hooks' => 
+          array (
+          ),
+        )),
+        2 => 
+        \PHPStan\Dependency\ExportedNode\ExportedPropertiesNode::__set_state(array(
+           'names' => 
+          array (
+            0 => 'hidden',
+          ),
+           'phpDoc' => 
+          \PHPStan\Dependency\ExportedNode\ExportedPhpDocNode::__set_state(array(
+             'phpDocString' => '/**
+     * NIN/BVN are national identifiers — never exposed by default serialization;
+     * screens reveal them (masked) through a permission-gated resource.
+     *
+     * @var list<string>
+     */',
+             'namespace' => 'App\\Domain\\Registry\\Models',
+             'uses' => 
+            array (
+              'mdascoped' => 'App\\Domain\\Access\\Concerns\\MdaScoped',
+              'scopedtomda' => 'App\\Domain\\Access\\Concerns\\ScopedToMda',
+              'mda' => 'App\\Domain\\Access\\Models\\Mda',
+              'auditable' => 'App\\Domain\\Audit\\Concerns\\Auditable',
+              'beneficiarystatus' => 'App\\Domain\\Registry\\Enums\\BeneficiaryStatus',
+              'gender' => 'App\\Domain\\Registry\\Enums\\Gender',
+              'registrationsource' => 'App\\Domain\\Registry\\Enums\\RegistrationSource',
+              'beneficiaryfactory' => 'Database\\Factories\\BeneficiaryFactory',
+              'hasuuids' => 'Illuminate\\Database\\Eloquent\\Concerns\\HasUuids',
+              'hasfactory' => 'Illuminate\\Database\\Eloquent\\Factories\\HasFactory',
+              'model' => 'Illuminate\\Database\\Eloquent\\Model',
+              'belongsto' => 'Illuminate\\Database\\Eloquent\\Relations\\BelongsTo',
+              'hasmany' => 'Illuminate\\Database\\Eloquent\\Relations\\HasMany',
+              'hasone' => 'Illuminate\\Database\\Eloquent\\Relations\\HasOne',
+              'softdeletes' => 'Illuminate\\Database\\Eloquent\\SoftDeletes',
+              'carbon' => 'Illuminate\\Support\\Carbon',
+              'invalidargumentexception' => 'InvalidArgumentException',
+            ),
+             'constUses' => 
+            array (
+            ),
+          )),
+           'type' => NULL,
+           'public' => false,
+           'private' => false,
+           'static' => false,
+           'readonly' => false,
+           'abstract' => false,
+           'final' => false,
+           'publicSet' => false,
+           'protectedSet' => false,
+           'privateSet' => false,
+           'virtual' => false,
+           'attributes' => 
+          array (
+          ),
+           'hooks' => 
+          array (
+          ),
+        )),
+        3 => 
+        \PHPStan\Dependency\ExportedNode\ExportedPropertiesNode::__set_state(array(
+           'names' => 
+          array (
+            0 => 'attributes',
+          ),
+           'phpDoc' => 
+          \PHPStan\Dependency\ExportedNode\ExportedPhpDocNode::__set_state(array(
+             'phpDocString' => '/**
+     * @var array<string, mixed>
+     */',
+             'namespace' => 'App\\Domain\\Registry\\Models',
+             'uses' => 
+            array (
+              'mdascoped' => 'App\\Domain\\Access\\Concerns\\MdaScoped',
+              'scopedtomda' => 'App\\Domain\\Access\\Concerns\\ScopedToMda',
+              'mda' => 'App\\Domain\\Access\\Models\\Mda',
+              'auditable' => 'App\\Domain\\Audit\\Concerns\\Auditable',
+              'beneficiarystatus' => 'App\\Domain\\Registry\\Enums\\BeneficiaryStatus',
+              'gender' => 'App\\Domain\\Registry\\Enums\\Gender',
+              'registrationsource' => 'App\\Domain\\Registry\\Enums\\RegistrationSource',
+              'beneficiaryfactory' => 'Database\\Factories\\BeneficiaryFactory',
+              'hasuuids' => 'Illuminate\\Database\\Eloquent\\Concerns\\HasUuids',
+              'hasfactory' => 'Illuminate\\Database\\Eloquent\\Factories\\HasFactory',
+              'model' => 'Illuminate\\Database\\Eloquent\\Model',
+              'belongsto' => 'Illuminate\\Database\\Eloquent\\Relations\\BelongsTo',
+              'hasmany' => 'Illuminate\\Database\\Eloquent\\Relations\\HasMany',
+              'hasone' => 'Illuminate\\Database\\Eloquent\\Relations\\HasOne',
+              'softdeletes' => 'Illuminate\\Database\\Eloquent\\SoftDeletes',
+              'carbon' => 'Illuminate\\Support\\Carbon',
+              'invalidargumentexception' => 'InvalidArgumentException',
+            ),
+             'constUses' => 
+            array (
+            ),
+          )),
+           'type' => NULL,
+           'public' => false,
+           'private' => false,
+           'static' => false,
+           'readonly' => false,
+           'abstract' => false,
+           'final' => false,
+           'publicSet' => false,
+           'protectedSet' => false,
+           'privateSet' => false,
+           'virtual' => false,
+           'attributes' => 
+          array (
+          ),
+           'hooks' => 
+          array (
+          ),
+        )),
+        4 => 
+        \PHPStan\Dependency\ExportedNode\ExportedMethodNode::__set_state(array(
+           'name' => 'casts',
+           'phpDoc' => 
+          \PHPStan\Dependency\ExportedNode\ExportedPhpDocNode::__set_state(array(
+             'phpDocString' => '/**
+     * @return array<string, string>
+     */',
+             'namespace' => 'App\\Domain\\Registry\\Models',
+             'uses' => 
+            array (
+              'mdascoped' => 'App\\Domain\\Access\\Concerns\\MdaScoped',
+              'scopedtomda' => 'App\\Domain\\Access\\Concerns\\ScopedToMda',
+              'mda' => 'App\\Domain\\Access\\Models\\Mda',
+              'auditable' => 'App\\Domain\\Audit\\Concerns\\Auditable',
+              'beneficiarystatus' => 'App\\Domain\\Registry\\Enums\\BeneficiaryStatus',
+              'gender' => 'App\\Domain\\Registry\\Enums\\Gender',
+              'registrationsource' => 'App\\Domain\\Registry\\Enums\\RegistrationSource',
+              'beneficiaryfactory' => 'Database\\Factories\\BeneficiaryFactory',
+              'hasuuids' => 'Illuminate\\Database\\Eloquent\\Concerns\\HasUuids',
+              'hasfactory' => 'Illuminate\\Database\\Eloquent\\Factories\\HasFactory',
+              'model' => 'Illuminate\\Database\\Eloquent\\Model',
+              'belongsto' => 'Illuminate\\Database\\Eloquent\\Relations\\BelongsTo',
+              'hasmany' => 'Illuminate\\Database\\Eloquent\\Relations\\HasMany',
+              'hasone' => 'Illuminate\\Database\\Eloquent\\Relations\\HasOne',
+              'softdeletes' => 'Illuminate\\Database\\Eloquent\\SoftDeletes',
+              'carbon' => 'Illuminate\\Support\\Carbon',
+              'invalidargumentexception' => 'InvalidArgumentException',
+            ),
+             'constUses' => 
+            array (
+            ),
+          )),
+           'byRef' => false,
+           'public' => false,
+           'private' => false,
+           'abstract' => false,
+           'final' => false,
+           'static' => false,
+           'returnType' => 'array',
+           'parameters' => 
+          array (
+          ),
+           'attributes' => 
+          array (
+          ),
+        )),
+        5 => 
+        \PHPStan\Dependency\ExportedNode\ExportedMethodNode::__set_state(array(
+           'name' => 'auditMask',
+           'phpDoc' => 
+          \PHPStan\Dependency\ExportedNode\ExportedPhpDocNode::__set_state(array(
+             'phpDocString' => '/**
+     * A beneficiary\'s name is PII — masked in audit snapshots (SECURITY.md §6).
+     * NIN/BVN/phone/address/DOB are masked by the global audit config.
+     *
+     * @return list<string>
+     */',
+             'namespace' => 'App\\Domain\\Registry\\Models',
+             'uses' => 
+            array (
+              'mdascoped' => 'App\\Domain\\Access\\Concerns\\MdaScoped',
+              'scopedtomda' => 'App\\Domain\\Access\\Concerns\\ScopedToMda',
+              'mda' => 'App\\Domain\\Access\\Models\\Mda',
+              'auditable' => 'App\\Domain\\Audit\\Concerns\\Auditable',
+              'beneficiarystatus' => 'App\\Domain\\Registry\\Enums\\BeneficiaryStatus',
+              'gender' => 'App\\Domain\\Registry\\Enums\\Gender',
+              'registrationsource' => 'App\\Domain\\Registry\\Enums\\RegistrationSource',
+              'beneficiaryfactory' => 'Database\\Factories\\BeneficiaryFactory',
+              'hasuuids' => 'Illuminate\\Database\\Eloquent\\Concerns\\HasUuids',
+              'hasfactory' => 'Illuminate\\Database\\Eloquent\\Factories\\HasFactory',
+              'model' => 'Illuminate\\Database\\Eloquent\\Model',
+              'belongsto' => 'Illuminate\\Database\\Eloquent\\Relations\\BelongsTo',
+              'hasmany' => 'Illuminate\\Database\\Eloquent\\Relations\\HasMany',
+              'hasone' => 'Illuminate\\Database\\Eloquent\\Relations\\HasOne',
+              'softdeletes' => 'Illuminate\\Database\\Eloquent\\SoftDeletes',
+              'carbon' => 'Illuminate\\Support\\Carbon',
+              'invalidargumentexception' => 'InvalidArgumentException',
+            ),
+             'constUses' => 
+            array (
+            ),
+          )),
+           'byRef' => false,
+           'public' => false,
+           'private' => false,
+           'abstract' => false,
+           'final' => false,
+           'static' => false,
+           'returnType' => 'array',
+           'parameters' => 
+          array (
+          ),
+           'attributes' => 
+          array (
+          ),
+        )),
+        6 => 
+        \PHPStan\Dependency\ExportedNode\ExportedMethodNode::__set_state(array(
+           'name' => 'booted',
+           'phpDoc' => NULL,
+           'byRef' => false,
+           'public' => false,
+           'private' => false,
+           'abstract' => false,
+           'final' => false,
+           'static' => true,
+           'returnType' => 'void',
+           'parameters' => 
+          array (
+          ),
+           'attributes' => 
+          array (
+          ),
+        )),
+        7 => 
+        \PHPStan\Dependency\ExportedNode\ExportedMethodNode::__set_state(array(
+           'name' => 'normalizeDigits',
+           'phpDoc' => 
+          \PHPStan\Dependency\ExportedNode\ExportedPhpDocNode::__set_state(array(
+             'phpDocString' => '/**
+     * Strip all non-digits; return null when nothing remains (so the column is
+     * NULL, not an empty string — required for the partial unique indexes).
+     */',
+             'namespace' => 'App\\Domain\\Registry\\Models',
+             'uses' => 
+            array (
+              'mdascoped' => 'App\\Domain\\Access\\Concerns\\MdaScoped',
+              'scopedtomda' => 'App\\Domain\\Access\\Concerns\\ScopedToMda',
+              'mda' => 'App\\Domain\\Access\\Models\\Mda',
+              'auditable' => 'App\\Domain\\Audit\\Concerns\\Auditable',
+              'beneficiarystatus' => 'App\\Domain\\Registry\\Enums\\BeneficiaryStatus',
+              'gender' => 'App\\Domain\\Registry\\Enums\\Gender',
+              'registrationsource' => 'App\\Domain\\Registry\\Enums\\RegistrationSource',
+              'beneficiaryfactory' => 'Database\\Factories\\BeneficiaryFactory',
+              'hasuuids' => 'Illuminate\\Database\\Eloquent\\Concerns\\HasUuids',
+              'hasfactory' => 'Illuminate\\Database\\Eloquent\\Factories\\HasFactory',
+              'model' => 'Illuminate\\Database\\Eloquent\\Model',
+              'belongsto' => 'Illuminate\\Database\\Eloquent\\Relations\\BelongsTo',
+              'hasmany' => 'Illuminate\\Database\\Eloquent\\Relations\\HasMany',
+              'hasone' => 'Illuminate\\Database\\Eloquent\\Relations\\HasOne',
+              'softdeletes' => 'Illuminate\\Database\\Eloquent\\SoftDeletes',
+              'carbon' => 'Illuminate\\Support\\Carbon',
+              'invalidargumentexception' => 'InvalidArgumentException',
+            ),
+             'constUses' => 
+            array (
+            ),
+          )),
+           'byRef' => false,
+           'public' => true,
+           'private' => false,
+           'abstract' => false,
+           'final' => false,
+           'static' => true,
+           'returnType' => '?string',
+           'parameters' => 
+          array (
+            0 => 
+            \PHPStan\Dependency\ExportedNode\ExportedParameterNode::__set_state(array(
+               'name' => 'value',
+               'type' => '?string',
+               'byRef' => false,
+               'variadic' => false,
+               'hasDefault' => false,
+               'attributes' => 
+              array (
+              ),
+               'phpDoc' => NULL,
+               'flags' => 0,
+            )),
+          ),
+           'attributes' => 
+          array (
+          ),
+        )),
+        8 => 
+        \PHPStan\Dependency\ExportedNode\ExportedMethodNode::__set_state(array(
+           'name' => 'fullName',
+           'phpDoc' => NULL,
+           'byRef' => false,
+           'public' => true,
+           'private' => false,
+           'abstract' => false,
+           'final' => false,
+           'static' => false,
+           'returnType' => 'string',
+           'parameters' => 
+          array (
+          ),
+           'attributes' => 
+          array (
+          ),
+        )),
+        9 => 
+        \PHPStan\Dependency\ExportedNode\ExportedMethodNode::__set_state(array(
+           'name' => 'ownerMda',
+           'phpDoc' => 
+          \PHPStan\Dependency\ExportedNode\ExportedPhpDocNode::__set_state(array(
+             'phpDocString' => '/**
+     * @return BelongsTo<Mda, $this>
+     */',
+             'namespace' => 'App\\Domain\\Registry\\Models',
+             'uses' => 
+            array (
+              'mdascoped' => 'App\\Domain\\Access\\Concerns\\MdaScoped',
+              'scopedtomda' => 'App\\Domain\\Access\\Concerns\\ScopedToMda',
+              'mda' => 'App\\Domain\\Access\\Models\\Mda',
+              'auditable' => 'App\\Domain\\Audit\\Concerns\\Auditable',
+              'beneficiarystatus' => 'App\\Domain\\Registry\\Enums\\BeneficiaryStatus',
+              'gender' => 'App\\Domain\\Registry\\Enums\\Gender',
+              'registrationsource' => 'App\\Domain\\Registry\\Enums\\RegistrationSource',
+              'beneficiaryfactory' => 'Database\\Factories\\BeneficiaryFactory',
+              'hasuuids' => 'Illuminate\\Database\\Eloquent\\Concerns\\HasUuids',
+              'hasfactory' => 'Illuminate\\Database\\Eloquent\\Factories\\HasFactory',
+              'model' => 'Illuminate\\Database\\Eloquent\\Model',
+              'belongsto' => 'Illuminate\\Database\\Eloquent\\Relations\\BelongsTo',
+              'hasmany' => 'Illuminate\\Database\\Eloquent\\Relations\\HasMany',
+              'hasone' => 'Illuminate\\Database\\Eloquent\\Relations\\HasOne',
+              'softdeletes' => 'Illuminate\\Database\\Eloquent\\SoftDeletes',
+              'carbon' => 'Illuminate\\Support\\Carbon',
+              'invalidargumentexception' => 'InvalidArgumentException',
+            ),
+             'constUses' => 
+            array (
+            ),
+          )),
+           'byRef' => false,
+           'public' => true,
+           'private' => false,
+           'abstract' => false,
+           'final' => false,
+           'static' => false,
+           'returnType' => 'Illuminate\\Database\\Eloquent\\Relations\\BelongsTo',
+           'parameters' => 
+          array (
+          ),
+           'attributes' => 
+          array (
+          ),
+        )),
+        10 => 
+        \PHPStan\Dependency\ExportedNode\ExportedMethodNode::__set_state(array(
+           'name' => 'householdMemberships',
+           'phpDoc' => 
+          \PHPStan\Dependency\ExportedNode\ExportedPhpDocNode::__set_state(array(
+             'phpDocString' => '/**
+     * @return HasMany<HouseholdMembership, $this>
+     */',
+             'namespace' => 'App\\Domain\\Registry\\Models',
+             'uses' => 
+            array (
+              'mdascoped' => 'App\\Domain\\Access\\Concerns\\MdaScoped',
+              'scopedtomda' => 'App\\Domain\\Access\\Concerns\\ScopedToMda',
+              'mda' => 'App\\Domain\\Access\\Models\\Mda',
+              'auditable' => 'App\\Domain\\Audit\\Concerns\\Auditable',
+              'beneficiarystatus' => 'App\\Domain\\Registry\\Enums\\BeneficiaryStatus',
+              'gender' => 'App\\Domain\\Registry\\Enums\\Gender',
+              'registrationsource' => 'App\\Domain\\Registry\\Enums\\RegistrationSource',
+              'beneficiaryfactory' => 'Database\\Factories\\BeneficiaryFactory',
+              'hasuuids' => 'Illuminate\\Database\\Eloquent\\Concerns\\HasUuids',
+              'hasfactory' => 'Illuminate\\Database\\Eloquent\\Factories\\HasFactory',
+              'model' => 'Illuminate\\Database\\Eloquent\\Model',
+              'belongsto' => 'Illuminate\\Database\\Eloquent\\Relations\\BelongsTo',
+              'hasmany' => 'Illuminate\\Database\\Eloquent\\Relations\\HasMany',
+              'hasone' => 'Illuminate\\Database\\Eloquent\\Relations\\HasOne',
+              'softdeletes' => 'Illuminate\\Database\\Eloquent\\SoftDeletes',
+              'carbon' => 'Illuminate\\Support\\Carbon',
+              'invalidargumentexception' => 'InvalidArgumentException',
+            ),
+             'constUses' => 
+            array (
+            ),
+          )),
+           'byRef' => false,
+           'public' => true,
+           'private' => false,
+           'abstract' => false,
+           'final' => false,
+           'static' => false,
+           'returnType' => 'Illuminate\\Database\\Eloquent\\Relations\\HasMany',
+           'parameters' => 
+          array (
+          ),
+           'attributes' => 
+          array (
+          ),
+        )),
+        11 => 
+        \PHPStan\Dependency\ExportedNode\ExportedMethodNode::__set_state(array(
+           'name' => 'currentMembership',
+           'phpDoc' => 
+          \PHPStan\Dependency\ExportedNode\ExportedPhpDocNode::__set_state(array(
+             'phpDocString' => '/**
+     * The beneficiary\'s current (open) household membership, if any.
+     *
+     * @return HasOne<HouseholdMembership, $this>
+     */',
+             'namespace' => 'App\\Domain\\Registry\\Models',
+             'uses' => 
+            array (
+              'mdascoped' => 'App\\Domain\\Access\\Concerns\\MdaScoped',
+              'scopedtomda' => 'App\\Domain\\Access\\Concerns\\ScopedToMda',
+              'mda' => 'App\\Domain\\Access\\Models\\Mda',
+              'auditable' => 'App\\Domain\\Audit\\Concerns\\Auditable',
+              'beneficiarystatus' => 'App\\Domain\\Registry\\Enums\\BeneficiaryStatus',
+              'gender' => 'App\\Domain\\Registry\\Enums\\Gender',
+              'registrationsource' => 'App\\Domain\\Registry\\Enums\\RegistrationSource',
+              'beneficiaryfactory' => 'Database\\Factories\\BeneficiaryFactory',
+              'hasuuids' => 'Illuminate\\Database\\Eloquent\\Concerns\\HasUuids',
+              'hasfactory' => 'Illuminate\\Database\\Eloquent\\Factories\\HasFactory',
+              'model' => 'Illuminate\\Database\\Eloquent\\Model',
+              'belongsto' => 'Illuminate\\Database\\Eloquent\\Relations\\BelongsTo',
+              'hasmany' => 'Illuminate\\Database\\Eloquent\\Relations\\HasMany',
+              'hasone' => 'Illuminate\\Database\\Eloquent\\Relations\\HasOne',
+              'softdeletes' => 'Illuminate\\Database\\Eloquent\\SoftDeletes',
+              'carbon' => 'Illuminate\\Support\\Carbon',
+              'invalidargumentexception' => 'InvalidArgumentException',
+            ),
+             'constUses' => 
+            array (
+            ),
+          )),
+           'byRef' => false,
+           'public' => true,
+           'private' => false,
+           'abstract' => false,
+           'final' => false,
+           'static' => false,
+           'returnType' => 'Illuminate\\Database\\Eloquent\\Relations\\HasOne',
+           'parameters' => 
+          array (
+          ),
+           'attributes' => 
+          array (
+          ),
+        )),
+        12 => 
+        \PHPStan\Dependency\ExportedNode\ExportedMethodNode::__set_state(array(
+           'name' => 'newFactory',
+           'phpDoc' => NULL,
+           'byRef' => false,
+           'public' => false,
+           'private' => false,
+           'abstract' => false,
+           'final' => false,
+           'static' => true,
+           'returnType' => 'Database\\Factories\\BeneficiaryFactory',
+           'parameters' => 
+          array (
+          ),
+           'attributes' => 
+          array (
+          ),
+        )),
+      ),
+       'attributes' => 
+      array (
+      ),
+    )),
+  ),
+  '/var/www/html/app/Domain/Registry/Models/Household.php' => 
+  array (
+    0 => 
+    \PHPStan\Dependency\ExportedNode\ExportedClassNode::__set_state(array(
+       'name' => 'App\\Domain\\Registry\\Models\\Household',
+       'phpDoc' => 
+      \PHPStan\Dependency\ExportedNode\ExportedPhpDocNode::__set_state(array(
+         'phpDocString' => '/**
+ * A household — optional grouping of beneficiaries (PRD FR-REG-01, §9).
+ * Owned by an MDA and MDA-scoped via `owner_mda_id`; audited via Auditable.
+ *
+ * @property string $id
+ * @property string $owner_mda_id
+ * @property string|null $head_beneficiary_id
+ * @property RegistrationSource $registration_source
+ * @property Carbon $registration_date
+ * @property string|null $import_batch_id
+ * @property string|null $original_record_id
+ * @property string|null $address
+ * @property string|null $lga
+ * @property string|null $ward
+ * @property-read Mda $ownerMda
+ * @property-read Beneficiary|null $head
+ */',
+         'namespace' => 'App\\Domain\\Registry\\Models',
+         'uses' => 
+        array (
+          'mdascoped' => 'App\\Domain\\Access\\Concerns\\MdaScoped',
+          'scopedtomda' => 'App\\Domain\\Access\\Concerns\\ScopedToMda',
+          'mda' => 'App\\Domain\\Access\\Models\\Mda',
+          'auditable' => 'App\\Domain\\Audit\\Concerns\\Auditable',
+          'registrationsource' => 'App\\Domain\\Registry\\Enums\\RegistrationSource',
+          'householdfactory' => 'Database\\Factories\\HouseholdFactory',
+          'hasuuids' => 'Illuminate\\Database\\Eloquent\\Concerns\\HasUuids',
+          'hasfactory' => 'Illuminate\\Database\\Eloquent\\Factories\\HasFactory',
+          'model' => 'Illuminate\\Database\\Eloquent\\Model',
+          'belongsto' => 'Illuminate\\Database\\Eloquent\\Relations\\BelongsTo',
+          'hasmany' => 'Illuminate\\Database\\Eloquent\\Relations\\HasMany',
+          'softdeletes' => 'Illuminate\\Database\\Eloquent\\SoftDeletes',
+          'carbon' => 'Illuminate\\Support\\Carbon',
+        ),
+         'constUses' => 
+        array (
+        ),
+      )),
+       'abstract' => false,
+       'final' => false,
+       'extends' => 'Illuminate\\Database\\Eloquent\\Model',
+       'implements' => 
+      array (
+        0 => 'App\\Domain\\Access\\Concerns\\MdaScoped',
+      ),
+       'usedTraits' => 
+      array (
+        0 => 'App\\Domain\\Audit\\Concerns\\Auditable',
+        1 => 'Illuminate\\Database\\Eloquent\\Factories\\HasFactory',
+        2 => 'Illuminate\\Database\\Eloquent\\Concerns\\HasUuids',
+        3 => 'App\\Domain\\Access\\Concerns\\ScopedToMda',
+        4 => 'Illuminate\\Database\\Eloquent\\SoftDeletes',
+      ),
+       'traitUseAdaptations' => 
+      array (
+      ),
+       'statements' => 
+      array (
+        0 => 
+        \PHPStan\Dependency\ExportedNode\ExportedPropertiesNode::__set_state(array(
+           'names' => 
+          array (
+            0 => 'table',
+          ),
+           'phpDoc' => NULL,
+           'type' => NULL,
+           'public' => false,
+           'private' => false,
+           'static' => false,
+           'readonly' => false,
+           'abstract' => false,
+           'final' => false,
+           'publicSet' => false,
+           'protectedSet' => false,
+           'privateSet' => false,
+           'virtual' => false,
+           'attributes' => 
+          array (
+          ),
+           'hooks' => 
+          array (
+          ),
+        )),
+        1 => 
+        \PHPStan\Dependency\ExportedNode\ExportedPropertiesNode::__set_state(array(
+           'names' => 
+          array (
+            0 => 'fillable',
+          ),
+           'phpDoc' => 
+          \PHPStan\Dependency\ExportedNode\ExportedPhpDocNode::__set_state(array(
+             'phpDocString' => '/**
+     * @var list<string>
+     */',
+             'namespace' => 'App\\Domain\\Registry\\Models',
+             'uses' => 
+            array (
+              'mdascoped' => 'App\\Domain\\Access\\Concerns\\MdaScoped',
+              'scopedtomda' => 'App\\Domain\\Access\\Concerns\\ScopedToMda',
+              'mda' => 'App\\Domain\\Access\\Models\\Mda',
+              'auditable' => 'App\\Domain\\Audit\\Concerns\\Auditable',
+              'registrationsource' => 'App\\Domain\\Registry\\Enums\\RegistrationSource',
+              'householdfactory' => 'Database\\Factories\\HouseholdFactory',
+              'hasuuids' => 'Illuminate\\Database\\Eloquent\\Concerns\\HasUuids',
+              'hasfactory' => 'Illuminate\\Database\\Eloquent\\Factories\\HasFactory',
+              'model' => 'Illuminate\\Database\\Eloquent\\Model',
+              'belongsto' => 'Illuminate\\Database\\Eloquent\\Relations\\BelongsTo',
+              'hasmany' => 'Illuminate\\Database\\Eloquent\\Relations\\HasMany',
+              'softdeletes' => 'Illuminate\\Database\\Eloquent\\SoftDeletes',
+              'carbon' => 'Illuminate\\Support\\Carbon',
+            ),
+             'constUses' => 
+            array (
+            ),
+          )),
+           'type' => NULL,
+           'public' => false,
+           'private' => false,
+           'static' => false,
+           'readonly' => false,
+           'abstract' => false,
+           'final' => false,
+           'publicSet' => false,
+           'protectedSet' => false,
+           'privateSet' => false,
+           'virtual' => false,
+           'attributes' => 
+          array (
+          ),
+           'hooks' => 
+          array (
+          ),
+        )),
+        2 => 
+        \PHPStan\Dependency\ExportedNode\ExportedMethodNode::__set_state(array(
+           'name' => 'casts',
+           'phpDoc' => 
+          \PHPStan\Dependency\ExportedNode\ExportedPhpDocNode::__set_state(array(
+             'phpDocString' => '/**
+     * @return array<string, string>
+     */',
+             'namespace' => 'App\\Domain\\Registry\\Models',
+             'uses' => 
+            array (
+              'mdascoped' => 'App\\Domain\\Access\\Concerns\\MdaScoped',
+              'scopedtomda' => 'App\\Domain\\Access\\Concerns\\ScopedToMda',
+              'mda' => 'App\\Domain\\Access\\Models\\Mda',
+              'auditable' => 'App\\Domain\\Audit\\Concerns\\Auditable',
+              'registrationsource' => 'App\\Domain\\Registry\\Enums\\RegistrationSource',
+              'householdfactory' => 'Database\\Factories\\HouseholdFactory',
+              'hasuuids' => 'Illuminate\\Database\\Eloquent\\Concerns\\HasUuids',
+              'hasfactory' => 'Illuminate\\Database\\Eloquent\\Factories\\HasFactory',
+              'model' => 'Illuminate\\Database\\Eloquent\\Model',
+              'belongsto' => 'Illuminate\\Database\\Eloquent\\Relations\\BelongsTo',
+              'hasmany' => 'Illuminate\\Database\\Eloquent\\Relations\\HasMany',
+              'softdeletes' => 'Illuminate\\Database\\Eloquent\\SoftDeletes',
+              'carbon' => 'Illuminate\\Support\\Carbon',
+            ),
+             'constUses' => 
+            array (
+            ),
+          )),
+           'byRef' => false,
+           'public' => false,
+           'private' => false,
+           'abstract' => false,
+           'final' => false,
+           'static' => false,
+           'returnType' => 'array',
+           'parameters' => 
+          array (
+          ),
+           'attributes' => 
+          array (
+          ),
+        )),
+        3 => 
+        \PHPStan\Dependency\ExportedNode\ExportedMethodNode::__set_state(array(
+           'name' => 'booted',
+           'phpDoc' => NULL,
+           'byRef' => false,
+           'public' => false,
+           'private' => false,
+           'abstract' => false,
+           'final' => false,
+           'static' => true,
+           'returnType' => 'void',
+           'parameters' => 
+          array (
+          ),
+           'attributes' => 
+          array (
+          ),
+        )),
+        4 => 
+        \PHPStan\Dependency\ExportedNode\ExportedMethodNode::__set_state(array(
+           'name' => 'ownerMda',
+           'phpDoc' => 
+          \PHPStan\Dependency\ExportedNode\ExportedPhpDocNode::__set_state(array(
+             'phpDocString' => '/**
+     * @return BelongsTo<Mda, $this>
+     */',
+             'namespace' => 'App\\Domain\\Registry\\Models',
+             'uses' => 
+            array (
+              'mdascoped' => 'App\\Domain\\Access\\Concerns\\MdaScoped',
+              'scopedtomda' => 'App\\Domain\\Access\\Concerns\\ScopedToMda',
+              'mda' => 'App\\Domain\\Access\\Models\\Mda',
+              'auditable' => 'App\\Domain\\Audit\\Concerns\\Auditable',
+              'registrationsource' => 'App\\Domain\\Registry\\Enums\\RegistrationSource',
+              'householdfactory' => 'Database\\Factories\\HouseholdFactory',
+              'hasuuids' => 'Illuminate\\Database\\Eloquent\\Concerns\\HasUuids',
+              'hasfactory' => 'Illuminate\\Database\\Eloquent\\Factories\\HasFactory',
+              'model' => 'Illuminate\\Database\\Eloquent\\Model',
+              'belongsto' => 'Illuminate\\Database\\Eloquent\\Relations\\BelongsTo',
+              'hasmany' => 'Illuminate\\Database\\Eloquent\\Relations\\HasMany',
+              'softdeletes' => 'Illuminate\\Database\\Eloquent\\SoftDeletes',
+              'carbon' => 'Illuminate\\Support\\Carbon',
+            ),
+             'constUses' => 
+            array (
+            ),
+          )),
+           'byRef' => false,
+           'public' => true,
+           'private' => false,
+           'abstract' => false,
+           'final' => false,
+           'static' => false,
+           'returnType' => 'Illuminate\\Database\\Eloquent\\Relations\\BelongsTo',
+           'parameters' => 
+          array (
+          ),
+           'attributes' => 
+          array (
+          ),
+        )),
+        5 => 
+        \PHPStan\Dependency\ExportedNode\ExportedMethodNode::__set_state(array(
+           'name' => 'head',
+           'phpDoc' => 
+          \PHPStan\Dependency\ExportedNode\ExportedPhpDocNode::__set_state(array(
+             'phpDocString' => '/**
+     * @return BelongsTo<Beneficiary, $this>
+     */',
+             'namespace' => 'App\\Domain\\Registry\\Models',
+             'uses' => 
+            array (
+              'mdascoped' => 'App\\Domain\\Access\\Concerns\\MdaScoped',
+              'scopedtomda' => 'App\\Domain\\Access\\Concerns\\ScopedToMda',
+              'mda' => 'App\\Domain\\Access\\Models\\Mda',
+              'auditable' => 'App\\Domain\\Audit\\Concerns\\Auditable',
+              'registrationsource' => 'App\\Domain\\Registry\\Enums\\RegistrationSource',
+              'householdfactory' => 'Database\\Factories\\HouseholdFactory',
+              'hasuuids' => 'Illuminate\\Database\\Eloquent\\Concerns\\HasUuids',
+              'hasfactory' => 'Illuminate\\Database\\Eloquent\\Factories\\HasFactory',
+              'model' => 'Illuminate\\Database\\Eloquent\\Model',
+              'belongsto' => 'Illuminate\\Database\\Eloquent\\Relations\\BelongsTo',
+              'hasmany' => 'Illuminate\\Database\\Eloquent\\Relations\\HasMany',
+              'softdeletes' => 'Illuminate\\Database\\Eloquent\\SoftDeletes',
+              'carbon' => 'Illuminate\\Support\\Carbon',
+            ),
+             'constUses' => 
+            array (
+            ),
+          )),
+           'byRef' => false,
+           'public' => true,
+           'private' => false,
+           'abstract' => false,
+           'final' => false,
+           'static' => false,
+           'returnType' => 'Illuminate\\Database\\Eloquent\\Relations\\BelongsTo',
+           'parameters' => 
+          array (
+          ),
+           'attributes' => 
+          array (
+          ),
+        )),
+        6 => 
+        \PHPStan\Dependency\ExportedNode\ExportedMethodNode::__set_state(array(
+           'name' => 'memberships',
+           'phpDoc' => 
+          \PHPStan\Dependency\ExportedNode\ExportedPhpDocNode::__set_state(array(
+             'phpDocString' => '/**
+     * @return HasMany<HouseholdMembership, $this>
+     */',
+             'namespace' => 'App\\Domain\\Registry\\Models',
+             'uses' => 
+            array (
+              'mdascoped' => 'App\\Domain\\Access\\Concerns\\MdaScoped',
+              'scopedtomda' => 'App\\Domain\\Access\\Concerns\\ScopedToMda',
+              'mda' => 'App\\Domain\\Access\\Models\\Mda',
+              'auditable' => 'App\\Domain\\Audit\\Concerns\\Auditable',
+              'registrationsource' => 'App\\Domain\\Registry\\Enums\\RegistrationSource',
+              'householdfactory' => 'Database\\Factories\\HouseholdFactory',
+              'hasuuids' => 'Illuminate\\Database\\Eloquent\\Concerns\\HasUuids',
+              'hasfactory' => 'Illuminate\\Database\\Eloquent\\Factories\\HasFactory',
+              'model' => 'Illuminate\\Database\\Eloquent\\Model',
+              'belongsto' => 'Illuminate\\Database\\Eloquent\\Relations\\BelongsTo',
+              'hasmany' => 'Illuminate\\Database\\Eloquent\\Relations\\HasMany',
+              'softdeletes' => 'Illuminate\\Database\\Eloquent\\SoftDeletes',
+              'carbon' => 'Illuminate\\Support\\Carbon',
+            ),
+             'constUses' => 
+            array (
+            ),
+          )),
+           'byRef' => false,
+           'public' => true,
+           'private' => false,
+           'abstract' => false,
+           'final' => false,
+           'static' => false,
+           'returnType' => 'Illuminate\\Database\\Eloquent\\Relations\\HasMany',
+           'parameters' => 
+          array (
+          ),
+           'attributes' => 
+          array (
+          ),
+        )),
+        7 => 
+        \PHPStan\Dependency\ExportedNode\ExportedMethodNode::__set_state(array(
+           'name' => 'newFactory',
+           'phpDoc' => NULL,
+           'byRef' => false,
+           'public' => false,
+           'private' => false,
+           'abstract' => false,
+           'final' => false,
+           'static' => true,
+           'returnType' => 'Database\\Factories\\HouseholdFactory',
+           'parameters' => 
+          array (
+          ),
+           'attributes' => 
+          array (
+          ),
+        )),
+      ),
+       'attributes' => 
+      array (
+      ),
+    )),
+  ),
+  '/var/www/html/app/Domain/Registry/Models/HouseholdMembership.php' => 
+  array (
+    0 => 
+    \PHPStan\Dependency\ExportedNode\ExportedClassNode::__set_state(array(
+       'name' => 'App\\Domain\\Registry\\Models\\HouseholdMembership',
+       'phpDoc' => 
+      \PHPStan\Dependency\ExportedNode\ExportedPhpDocNode::__set_state(array(
+         'phpDocString' => '/**
+ * A beneficiary\'s membership of a household over time. Open while `left_at` is
+ * null; the DB enforces at most one open membership per beneficiary. Audited so
+ * moves/splits are traceable.
+ *
+ * @property string $id
+ * @property string $household_id
+ * @property string $beneficiary_id
+ * @property HouseholdRole $role_in_household
+ * @property Carbon $joined_at
+ * @property Carbon|null $left_at
+ * @property-read Household $household
+ * @property-read Beneficiary $beneficiary
+ */',
+         'namespace' => 'App\\Domain\\Registry\\Models',
+         'uses' => 
+        array (
+          'auditable' => 'App\\Domain\\Audit\\Concerns\\Auditable',
+          'householdrole' => 'App\\Domain\\Registry\\Enums\\HouseholdRole',
+          'householdmembershipfactory' => 'Database\\Factories\\HouseholdMembershipFactory',
+          'hasuuids' => 'Illuminate\\Database\\Eloquent\\Concerns\\HasUuids',
+          'hasfactory' => 'Illuminate\\Database\\Eloquent\\Factories\\HasFactory',
+          'model' => 'Illuminate\\Database\\Eloquent\\Model',
+          'belongsto' => 'Illuminate\\Database\\Eloquent\\Relations\\BelongsTo',
+          'carbon' => 'Illuminate\\Support\\Carbon',
+        ),
+         'constUses' => 
+        array (
+        ),
+      )),
+       'abstract' => false,
+       'final' => false,
+       'extends' => 'Illuminate\\Database\\Eloquent\\Model',
+       'implements' => 
+      array (
+      ),
+       'usedTraits' => 
+      array (
+        0 => 'App\\Domain\\Audit\\Concerns\\Auditable',
+        1 => 'Illuminate\\Database\\Eloquent\\Factories\\HasFactory',
+        2 => 'Illuminate\\Database\\Eloquent\\Concerns\\HasUuids',
+      ),
+       'traitUseAdaptations' => 
+      array (
+      ),
+       'statements' => 
+      array (
+        0 => 
+        \PHPStan\Dependency\ExportedNode\ExportedPropertiesNode::__set_state(array(
+           'names' => 
+          array (
+            0 => 'table',
+          ),
+           'phpDoc' => NULL,
+           'type' => NULL,
+           'public' => false,
+           'private' => false,
+           'static' => false,
+           'readonly' => false,
+           'abstract' => false,
+           'final' => false,
+           'publicSet' => false,
+           'protectedSet' => false,
+           'privateSet' => false,
+           'virtual' => false,
+           'attributes' => 
+          array (
+          ),
+           'hooks' => 
+          array (
+          ),
+        )),
+        1 => 
+        \PHPStan\Dependency\ExportedNode\ExportedPropertiesNode::__set_state(array(
+           'names' => 
+          array (
+            0 => 'fillable',
+          ),
+           'phpDoc' => 
+          \PHPStan\Dependency\ExportedNode\ExportedPhpDocNode::__set_state(array(
+             'phpDocString' => '/**
+     * @var list<string>
+     */',
+             'namespace' => 'App\\Domain\\Registry\\Models',
+             'uses' => 
+            array (
+              'auditable' => 'App\\Domain\\Audit\\Concerns\\Auditable',
+              'householdrole' => 'App\\Domain\\Registry\\Enums\\HouseholdRole',
+              'householdmembershipfactory' => 'Database\\Factories\\HouseholdMembershipFactory',
+              'hasuuids' => 'Illuminate\\Database\\Eloquent\\Concerns\\HasUuids',
+              'hasfactory' => 'Illuminate\\Database\\Eloquent\\Factories\\HasFactory',
+              'model' => 'Illuminate\\Database\\Eloquent\\Model',
+              'belongsto' => 'Illuminate\\Database\\Eloquent\\Relations\\BelongsTo',
+              'carbon' => 'Illuminate\\Support\\Carbon',
+            ),
+             'constUses' => 
+            array (
+            ),
+          )),
+           'type' => NULL,
+           'public' => false,
+           'private' => false,
+           'static' => false,
+           'readonly' => false,
+           'abstract' => false,
+           'final' => false,
+           'publicSet' => false,
+           'protectedSet' => false,
+           'privateSet' => false,
+           'virtual' => false,
+           'attributes' => 
+          array (
+          ),
+           'hooks' => 
+          array (
+          ),
+        )),
+        2 => 
+        \PHPStan\Dependency\ExportedNode\ExportedMethodNode::__set_state(array(
+           'name' => 'casts',
+           'phpDoc' => 
+          \PHPStan\Dependency\ExportedNode\ExportedPhpDocNode::__set_state(array(
+             'phpDocString' => '/**
+     * @return array<string, string>
+     */',
+             'namespace' => 'App\\Domain\\Registry\\Models',
+             'uses' => 
+            array (
+              'auditable' => 'App\\Domain\\Audit\\Concerns\\Auditable',
+              'householdrole' => 'App\\Domain\\Registry\\Enums\\HouseholdRole',
+              'householdmembershipfactory' => 'Database\\Factories\\HouseholdMembershipFactory',
+              'hasuuids' => 'Illuminate\\Database\\Eloquent\\Concerns\\HasUuids',
+              'hasfactory' => 'Illuminate\\Database\\Eloquent\\Factories\\HasFactory',
+              'model' => 'Illuminate\\Database\\Eloquent\\Model',
+              'belongsto' => 'Illuminate\\Database\\Eloquent\\Relations\\BelongsTo',
+              'carbon' => 'Illuminate\\Support\\Carbon',
+            ),
+             'constUses' => 
+            array (
+            ),
+          )),
+           'byRef' => false,
+           'public' => false,
+           'private' => false,
+           'abstract' => false,
+           'final' => false,
+           'static' => false,
+           'returnType' => 'array',
+           'parameters' => 
+          array (
+          ),
+           'attributes' => 
+          array (
+          ),
+        )),
+        3 => 
+        \PHPStan\Dependency\ExportedNode\ExportedMethodNode::__set_state(array(
+           'name' => 'booted',
+           'phpDoc' => NULL,
+           'byRef' => false,
+           'public' => false,
+           'private' => false,
+           'abstract' => false,
+           'final' => false,
+           'static' => true,
+           'returnType' => 'void',
+           'parameters' => 
+          array (
+          ),
+           'attributes' => 
+          array (
+          ),
+        )),
+        4 => 
+        \PHPStan\Dependency\ExportedNode\ExportedMethodNode::__set_state(array(
+           'name' => 'household',
+           'phpDoc' => 
+          \PHPStan\Dependency\ExportedNode\ExportedPhpDocNode::__set_state(array(
+             'phpDocString' => '/**
+     * @return BelongsTo<Household, $this>
+     */',
+             'namespace' => 'App\\Domain\\Registry\\Models',
+             'uses' => 
+            array (
+              'auditable' => 'App\\Domain\\Audit\\Concerns\\Auditable',
+              'householdrole' => 'App\\Domain\\Registry\\Enums\\HouseholdRole',
+              'householdmembershipfactory' => 'Database\\Factories\\HouseholdMembershipFactory',
+              'hasuuids' => 'Illuminate\\Database\\Eloquent\\Concerns\\HasUuids',
+              'hasfactory' => 'Illuminate\\Database\\Eloquent\\Factories\\HasFactory',
+              'model' => 'Illuminate\\Database\\Eloquent\\Model',
+              'belongsto' => 'Illuminate\\Database\\Eloquent\\Relations\\BelongsTo',
+              'carbon' => 'Illuminate\\Support\\Carbon',
+            ),
+             'constUses' => 
+            array (
+            ),
+          )),
+           'byRef' => false,
+           'public' => true,
+           'private' => false,
+           'abstract' => false,
+           'final' => false,
+           'static' => false,
+           'returnType' => 'Illuminate\\Database\\Eloquent\\Relations\\BelongsTo',
+           'parameters' => 
+          array (
+          ),
+           'attributes' => 
+          array (
+          ),
+        )),
+        5 => 
+        \PHPStan\Dependency\ExportedNode\ExportedMethodNode::__set_state(array(
+           'name' => 'beneficiary',
+           'phpDoc' => 
+          \PHPStan\Dependency\ExportedNode\ExportedPhpDocNode::__set_state(array(
+             'phpDocString' => '/**
+     * @return BelongsTo<Beneficiary, $this>
+     */',
+             'namespace' => 'App\\Domain\\Registry\\Models',
+             'uses' => 
+            array (
+              'auditable' => 'App\\Domain\\Audit\\Concerns\\Auditable',
+              'householdrole' => 'App\\Domain\\Registry\\Enums\\HouseholdRole',
+              'householdmembershipfactory' => 'Database\\Factories\\HouseholdMembershipFactory',
+              'hasuuids' => 'Illuminate\\Database\\Eloquent\\Concerns\\HasUuids',
+              'hasfactory' => 'Illuminate\\Database\\Eloquent\\Factories\\HasFactory',
+              'model' => 'Illuminate\\Database\\Eloquent\\Model',
+              'belongsto' => 'Illuminate\\Database\\Eloquent\\Relations\\BelongsTo',
+              'carbon' => 'Illuminate\\Support\\Carbon',
+            ),
+             'constUses' => 
+            array (
+            ),
+          )),
+           'byRef' => false,
+           'public' => true,
+           'private' => false,
+           'abstract' => false,
+           'final' => false,
+           'static' => false,
+           'returnType' => 'Illuminate\\Database\\Eloquent\\Relations\\BelongsTo',
+           'parameters' => 
+          array (
+          ),
+           'attributes' => 
+          array (
+          ),
+        )),
+        6 => 
+        \PHPStan\Dependency\ExportedNode\ExportedMethodNode::__set_state(array(
+           'name' => 'newFactory',
+           'phpDoc' => NULL,
+           'byRef' => false,
+           'public' => false,
+           'private' => false,
+           'abstract' => false,
+           'final' => false,
+           'static' => true,
+           'returnType' => 'Database\\Factories\\HouseholdMembershipFactory',
+           'parameters' => 
+          array (
+          ),
+           'attributes' => 
+          array (
+          ),
+        )),
+      ),
+       'attributes' => 
+      array (
+      ),
+    )),
+  ),
+  '/var/www/html/app/Http/Controllers/Api/V1/Access/AccessController.php' => 
+  array (
+    0 => 
+    \PHPStan\Dependency\ExportedNode\ExportedClassNode::__set_state(array(
+       'name' => 'App\\Http\\Controllers\\Api\\V1\\Access\\AccessController',
+       'phpDoc' => 
+      \PHPStan\Dependency\ExportedNode\ExportedPhpDocNode::__set_state(array(
+         'phpDocString' => '/**
+ * Read-only administration views over the RBAC model (PRD FR-UAM-05): the
+ * permission catalogue, the roles, and the role × permission matrix. Each
+ * action is guarded by an explicit permission (see routes/api.php).
+ */',
+         'namespace' => 'App\\Http\\Controllers\\Api\\V1\\Access',
+         'uses' => 
+        array (
+          'permission' => 'App\\Domain\\Access\\Models\\Permission',
+          'role' => 'App\\Domain\\Access\\Models\\Role',
+          'controller' => 'App\\Http\\Controllers\\Controller',
+          'apiresponse' => 'App\\Support\\ApiResponse',
+          'jsonresponse' => 'Illuminate\\Http\\JsonResponse',
+        ),
+         'constUses' => 
+        array (
+        ),
+      )),
+       'abstract' => false,
+       'final' => false,
+       'extends' => 'App\\Http\\Controllers\\Controller',
+       'implements' => 
+      array (
+      ),
+       'usedTraits' => 
+      array (
+      ),
+       'traitUseAdaptations' => 
+      array (
+      ),
+       'statements' => 
+      array (
+        0 => 
+        \PHPStan\Dependency\ExportedNode\ExportedMethodNode::__set_state(array(
+           'name' => 'permissions',
+           'phpDoc' => 
+          \PHPStan\Dependency\ExportedNode\ExportedPhpDocNode::__set_state(array(
+             'phpDocString' => '/**
+     * The permission catalogue, grouped by module.
+     */',
+             'namespace' => 'App\\Http\\Controllers\\Api\\V1\\Access',
+             'uses' => 
+            array (
+              'permission' => 'App\\Domain\\Access\\Models\\Permission',
+              'role' => 'App\\Domain\\Access\\Models\\Role',
+              'controller' => 'App\\Http\\Controllers\\Controller',
+              'apiresponse' => 'App\\Support\\ApiResponse',
+              'jsonresponse' => 'Illuminate\\Http\\JsonResponse',
+            ),
+             'constUses' => 
+            array (
+            ),
+          )),
+           'byRef' => false,
+           'public' => true,
+           'private' => false,
+           'abstract' => false,
+           'final' => false,
+           'static' => false,
+           'returnType' => 'Illuminate\\Http\\JsonResponse',
+           'parameters' => 
+          array (
+          ),
+           'attributes' => 
+          array (
+          ),
+        )),
+        1 => 
+        \PHPStan\Dependency\ExportedNode\ExportedMethodNode::__set_state(array(
+           'name' => 'roles',
+           'phpDoc' => 
+          \PHPStan\Dependency\ExportedNode\ExportedPhpDocNode::__set_state(array(
+             'phpDocString' => '/**
+     * All roles with the permission keys they grant.
+     */',
+             'namespace' => 'App\\Http\\Controllers\\Api\\V1\\Access',
+             'uses' => 
+            array (
+              'permission' => 'App\\Domain\\Access\\Models\\Permission',
+              'role' => 'App\\Domain\\Access\\Models\\Role',
+              'controller' => 'App\\Http\\Controllers\\Controller',
+              'apiresponse' => 'App\\Support\\ApiResponse',
+              'jsonresponse' => 'Illuminate\\Http\\JsonResponse',
+            ),
+             'constUses' => 
+            array (
+            ),
+          )),
+           'byRef' => false,
+           'public' => true,
+           'private' => false,
+           'abstract' => false,
+           'final' => false,
+           'static' => false,
+           'returnType' => 'Illuminate\\Http\\JsonResponse',
+           'parameters' => 
+          array (
+          ),
+           'attributes' => 
+          array (
+          ),
+        )),
+        2 => 
+        \PHPStan\Dependency\ExportedNode\ExportedMethodNode::__set_state(array(
+           'name' => 'matrix',
+           'phpDoc' => 
+          \PHPStan\Dependency\ExportedNode\ExportedPhpDocNode::__set_state(array(
+             'phpDocString' => '/**
+     * The role × permission matrix: the full permission key list plus, for each
+     * role, the keys it holds. Lets an admin see exactly who can do what.
+     */',
+             'namespace' => 'App\\Http\\Controllers\\Api\\V1\\Access',
+             'uses' => 
+            array (
+              'permission' => 'App\\Domain\\Access\\Models\\Permission',
+              'role' => 'App\\Domain\\Access\\Models\\Role',
+              'controller' => 'App\\Http\\Controllers\\Controller',
+              'apiresponse' => 'App\\Support\\ApiResponse',
+              'jsonresponse' => 'Illuminate\\Http\\JsonResponse',
+            ),
+             'constUses' => 
+            array (
+            ),
+          )),
+           'byRef' => false,
+           'public' => true,
+           'private' => false,
+           'abstract' => false,
+           'final' => false,
+           'static' => false,
+           'returnType' => 'Illuminate\\Http\\JsonResponse',
+           'parameters' => 
+          array (
+          ),
+           'attributes' => 
+          array (
+          ),
+        )),
+      ),
+       'attributes' => 
+      array (
+      ),
+    )),
+  ),
+  '/var/www/html/app/Http/Controllers/Api/V1/Access/MdaAccessGrantController.php' => 
+  array (
+    0 => 
+    \PHPStan\Dependency\ExportedNode\ExportedClassNode::__set_state(array(
+       'name' => 'App\\Http\\Controllers\\Api\\V1\\Access\\MdaAccessGrantController',
+       'phpDoc' => 
+      \PHPStan\Dependency\ExportedNode\ExportedPhpDocNode::__set_state(array(
+         'phpDocString' => '/**
+ * Admin management of cross-MDA access grants (PRD FR-UAM-03, FR-DSH-01). A grant
+ * lets a user access another MDA\'s scoped data; grants are auditable (who granted,
+ * why, until when) and emit events for the audit log.
+ */',
+         'namespace' => 'App\\Http\\Controllers\\Api\\V1\\Access',
+         'uses' => 
+        array (
+          'crossmdaaccessgranted' => 'App\\Domain\\Access\\Events\\CrossMdaAccessGranted',
+          'crossmdaaccessrevoked' => 'App\\Domain\\Access\\Events\\CrossMdaAccessRevoked',
+          'mdaaccessgrant' => 'App\\Domain\\Access\\Models\\MdaAccessGrant',
+          'controller' => 'App\\Http\\Controllers\\Controller',
+          'storemdaaccessgrantrequest' => 'App\\Http\\Requests\\Access\\StoreMdaAccessGrantRequest',
+          'apiresponse' => 'App\\Support\\ApiResponse',
+          'jsonresponse' => 'Illuminate\\Http\\JsonResponse',
+          'request' => 'Illuminate\\Http\\Request',
+        ),
+         'constUses' => 
+        array (
+        ),
+      )),
+       'abstract' => false,
+       'final' => false,
+       'extends' => 'App\\Http\\Controllers\\Controller',
+       'implements' => 
+      array (
+      ),
+       'usedTraits' => 
+      array (
+      ),
+       'traitUseAdaptations' => 
+      array (
+      ),
+       'statements' => 
+      array (
+        0 => 
+        \PHPStan\Dependency\ExportedNode\ExportedMethodNode::__set_state(array(
+           'name' => 'index',
+           'phpDoc' => NULL,
+           'byRef' => false,
+           'public' => true,
+           'private' => false,
+           'abstract' => false,
+           'final' => false,
+           'static' => false,
+           'returnType' => 'Illuminate\\Http\\JsonResponse',
+           'parameters' => 
+          array (
+          ),
+           'attributes' => 
+          array (
+          ),
+        )),
+        1 => 
+        \PHPStan\Dependency\ExportedNode\ExportedMethodNode::__set_state(array(
+           'name' => 'store',
+           'phpDoc' => NULL,
+           'byRef' => false,
+           'public' => true,
+           'private' => false,
+           'abstract' => false,
+           'final' => false,
+           'static' => false,
+           'returnType' => 'Illuminate\\Http\\JsonResponse',
+           'parameters' => 
+          array (
+            0 => 
+            \PHPStan\Dependency\ExportedNode\ExportedParameterNode::__set_state(array(
+               'name' => 'request',
+               'type' => 'App\\Http\\Requests\\Access\\StoreMdaAccessGrantRequest',
+               'byRef' => false,
+               'variadic' => false,
+               'hasDefault' => false,
+               'attributes' => 
+              array (
+              ),
+               'phpDoc' => NULL,
+               'flags' => 0,
+            )),
+          ),
+           'attributes' => 
+          array (
+          ),
+        )),
+        2 => 
+        \PHPStan\Dependency\ExportedNode\ExportedMethodNode::__set_state(array(
+           'name' => 'destroy',
+           'phpDoc' => NULL,
+           'byRef' => false,
+           'public' => true,
+           'private' => false,
+           'abstract' => false,
+           'final' => false,
+           'static' => false,
+           'returnType' => 'Illuminate\\Http\\JsonResponse',
+           'parameters' => 
+          array (
+            0 => 
+            \PHPStan\Dependency\ExportedNode\ExportedParameterNode::__set_state(array(
+               'name' => 'request',
+               'type' => 'Illuminate\\Http\\Request',
+               'byRef' => false,
+               'variadic' => false,
+               'hasDefault' => false,
+               'attributes' => 
+              array (
+              ),
+               'phpDoc' => NULL,
+               'flags' => 0,
+            )),
+            1 => 
+            \PHPStan\Dependency\ExportedNode\ExportedParameterNode::__set_state(array(
+               'name' => 'grant',
+               'type' => 'App\\Domain\\Access\\Models\\MdaAccessGrant',
+               'byRef' => false,
+               'variadic' => false,
+               'hasDefault' => false,
+               'attributes' => 
+              array (
+              ),
+               'phpDoc' => NULL,
+               'flags' => 0,
+            )),
+          ),
+           'attributes' => 
+          array (
+          ),
+        )),
+      ),
+       'attributes' => 
+      array (
+      ),
+    )),
+  ),
+  '/var/www/html/app/Http/Controllers/Api/V1/Access/MdaController.php' => 
+  array (
+    0 => 
+    \PHPStan\Dependency\ExportedNode\ExportedClassNode::__set_state(array(
+       'name' => 'App\\Http\\Controllers\\Api\\V1\\Access\\MdaController',
+       'phpDoc' => 
+      \PHPStan\Dependency\ExportedNode\ExportedPhpDocNode::__set_state(array(
+         'phpDocString' => '/**
+ * Admin management of MDAs (PRD FR-UAM-02). List/show are MDA-scoped by the
+ * model\'s global scope; every action declares its permission in routes/api.php;
+ * every mutation is audited by the Auditable model.
+ */',
+         'namespace' => 'App\\Http\\Controllers\\Api\\V1\\Access',
+         'uses' => 
+        array (
+          'mdastatus' => 'App\\Domain\\Access\\Enums\\MdaStatus',
+          'mda' => 'App\\Domain\\Access\\Models\\Mda',
+          'controller' => 'App\\Http\\Controllers\\Controller',
+          'storemdarequest' => 'App\\Http\\Requests\\Access\\StoreMdaRequest',
+          'updatemdarequest' => 'App\\Http\\Requests\\Access\\UpdateMdaRequest',
+          'mdaresource' => 'App\\Http\\Resources\\MdaResource',
+          'apiresponse' => 'App\\Support\\ApiResponse',
+          'jsonresponse' => 'Illuminate\\Http\\JsonResponse',
+        ),
+         'constUses' => 
+        array (
+        ),
+      )),
+       'abstract' => false,
+       'final' => false,
+       'extends' => 'App\\Http\\Controllers\\Controller',
+       'implements' => 
+      array (
+      ),
+       'usedTraits' => 
+      array (
+      ),
+       'traitUseAdaptations' => 
+      array (
+      ),
+       'statements' => 
+      array (
+        0 => 
+        \PHPStan\Dependency\ExportedNode\ExportedMethodNode::__set_state(array(
+           'name' => 'index',
+           'phpDoc' => NULL,
+           'byRef' => false,
+           'public' => true,
+           'private' => false,
+           'abstract' => false,
+           'final' => false,
+           'static' => false,
+           'returnType' => 'Illuminate\\Http\\JsonResponse',
+           'parameters' => 
+          array (
+          ),
+           'attributes' => 
+          array (
+          ),
+        )),
+        1 => 
+        \PHPStan\Dependency\ExportedNode\ExportedMethodNode::__set_state(array(
+           'name' => 'store',
+           'phpDoc' => NULL,
+           'byRef' => false,
+           'public' => true,
+           'private' => false,
+           'abstract' => false,
+           'final' => false,
+           'static' => false,
+           'returnType' => 'Illuminate\\Http\\JsonResponse',
+           'parameters' => 
+          array (
+            0 => 
+            \PHPStan\Dependency\ExportedNode\ExportedParameterNode::__set_state(array(
+               'name' => 'request',
+               'type' => 'App\\Http\\Requests\\Access\\StoreMdaRequest',
+               'byRef' => false,
+               'variadic' => false,
+               'hasDefault' => false,
+               'attributes' => 
+              array (
+              ),
+               'phpDoc' => NULL,
+               'flags' => 0,
+            )),
+          ),
+           'attributes' => 
+          array (
+          ),
+        )),
+        2 => 
+        \PHPStan\Dependency\ExportedNode\ExportedMethodNode::__set_state(array(
+           'name' => 'show',
+           'phpDoc' => NULL,
+           'byRef' => false,
+           'public' => true,
+           'private' => false,
+           'abstract' => false,
+           'final' => false,
+           'static' => false,
+           'returnType' => 'Illuminate\\Http\\JsonResponse',
+           'parameters' => 
+          array (
+            0 => 
+            \PHPStan\Dependency\ExportedNode\ExportedParameterNode::__set_state(array(
+               'name' => 'mda',
+               'type' => 'App\\Domain\\Access\\Models\\Mda',
+               'byRef' => false,
+               'variadic' => false,
+               'hasDefault' => false,
+               'attributes' => 
+              array (
+              ),
+               'phpDoc' => NULL,
+               'flags' => 0,
+            )),
+          ),
+           'attributes' => 
+          array (
+          ),
+        )),
+        3 => 
+        \PHPStan\Dependency\ExportedNode\ExportedMethodNode::__set_state(array(
+           'name' => 'update',
+           'phpDoc' => NULL,
+           'byRef' => false,
+           'public' => true,
+           'private' => false,
+           'abstract' => false,
+           'final' => false,
+           'static' => false,
+           'returnType' => 'Illuminate\\Http\\JsonResponse',
+           'parameters' => 
+          array (
+            0 => 
+            \PHPStan\Dependency\ExportedNode\ExportedParameterNode::__set_state(array(
+               'name' => 'request',
+               'type' => 'App\\Http\\Requests\\Access\\UpdateMdaRequest',
+               'byRef' => false,
+               'variadic' => false,
+               'hasDefault' => false,
+               'attributes' => 
+              array (
+              ),
+               'phpDoc' => NULL,
+               'flags' => 0,
+            )),
+            1 => 
+            \PHPStan\Dependency\ExportedNode\ExportedParameterNode::__set_state(array(
+               'name' => 'mda',
+               'type' => 'App\\Domain\\Access\\Models\\Mda',
+               'byRef' => false,
+               'variadic' => false,
+               'hasDefault' => false,
+               'attributes' => 
+              array (
+              ),
+               'phpDoc' => NULL,
+               'flags' => 0,
+            )),
+          ),
+           'attributes' => 
+          array (
+          ),
+        )),
+        4 => 
+        \PHPStan\Dependency\ExportedNode\ExportedMethodNode::__set_state(array(
+           'name' => 'deactivate',
+           'phpDoc' => NULL,
+           'byRef' => false,
+           'public' => true,
+           'private' => false,
+           'abstract' => false,
+           'final' => false,
+           'static' => false,
+           'returnType' => 'Illuminate\\Http\\JsonResponse',
+           'parameters' => 
+          array (
+            0 => 
+            \PHPStan\Dependency\ExportedNode\ExportedParameterNode::__set_state(array(
+               'name' => 'mda',
+               'type' => 'App\\Domain\\Access\\Models\\Mda',
+               'byRef' => false,
+               'variadic' => false,
+               'hasDefault' => false,
+               'attributes' => 
+              array (
+              ),
+               'phpDoc' => NULL,
+               'flags' => 0,
+            )),
+          ),
+           'attributes' => 
+          array (
+          ),
+        )),
+        5 => 
+        \PHPStan\Dependency\ExportedNode\ExportedMethodNode::__set_state(array(
+           'name' => 'activate',
+           'phpDoc' => NULL,
+           'byRef' => false,
+           'public' => true,
+           'private' => false,
+           'abstract' => false,
+           'final' => false,
+           'static' => false,
+           'returnType' => 'Illuminate\\Http\\JsonResponse',
+           'parameters' => 
+          array (
+            0 => 
+            \PHPStan\Dependency\ExportedNode\ExportedParameterNode::__set_state(array(
+               'name' => 'mda',
+               'type' => 'App\\Domain\\Access\\Models\\Mda',
+               'byRef' => false,
+               'variadic' => false,
+               'hasDefault' => false,
+               'attributes' => 
+              array (
+              ),
+               'phpDoc' => NULL,
+               'flags' => 0,
+            )),
+          ),
+           'attributes' => 
+          array (
+          ),
+        )),
+      ),
+       'attributes' => 
+      array (
+      ),
+    )),
+  ),
+  '/var/www/html/app/Http/Controllers/Api/V1/Access/UserController.php' => 
+  array (
+    0 => 
+    \PHPStan\Dependency\ExportedNode\ExportedClassNode::__set_state(array(
+       'name' => 'App\\Http\\Controllers\\Api\\V1\\Access\\UserController',
+       'phpDoc' => 
+      \PHPStan\Dependency\ExportedNode\ExportedPhpDocNode::__set_state(array(
+         'phpDocString' => '/**
+ * Admin management of users (PRD FR-UAM-02, FR-UAM-03). Results are MDA-scoped by
+ * the User model\'s global scope; each route declares its permission; every
+ * mutation is audited (create/update/status via the Auditable model, and the
+ * token/MFA actions explicitly, since they touch non-audited columns).
+ */',
+         'namespace' => 'App\\Http\\Controllers\\Api\\V1\\Access',
+         'uses' => 
+        array (
+          'userstatus' => 'App\\Domain\\Access\\Enums\\UserStatus',
+          'user' => 'App\\Domain\\Access\\Models\\User',
+          'auditlogger' => 'App\\Domain\\Audit\\Services\\AuditLogger',
+          'controller' => 'App\\Http\\Controllers\\Controller',
+          'storeuserrequest' => 'App\\Http\\Requests\\Access\\StoreUserRequest',
+          'updateuserrequest' => 'App\\Http\\Requests\\Access\\UpdateUserRequest',
+          'userresource' => 'App\\Http\\Resources\\UserResource',
+          'apiresponse' => 'App\\Support\\ApiResponse',
+          'jsonresponse' => 'Illuminate\\Http\\JsonResponse',
+        ),
+         'constUses' => 
+        array (
+        ),
+      )),
+       'abstract' => false,
+       'final' => false,
+       'extends' => 'App\\Http\\Controllers\\Controller',
+       'implements' => 
+      array (
+      ),
+       'usedTraits' => 
+      array (
+      ),
+       'traitUseAdaptations' => 
+      array (
+      ),
+       'statements' => 
+      array (
+        0 => 
+        \PHPStan\Dependency\ExportedNode\ExportedMethodNode::__set_state(array(
+           'name' => '__construct',
+           'phpDoc' => NULL,
+           'byRef' => false,
+           'public' => true,
+           'private' => false,
+           'abstract' => false,
+           'final' => false,
+           'static' => false,
+           'returnType' => NULL,
+           'parameters' => 
+          array (
+            0 => 
+            \PHPStan\Dependency\ExportedNode\ExportedParameterNode::__set_state(array(
+               'name' => 'audit',
+               'type' => 'App\\Domain\\Audit\\Services\\AuditLogger',
+               'byRef' => false,
+               'variadic' => false,
+               'hasDefault' => false,
+               'attributes' => 
+              array (
+              ),
+               'phpDoc' => NULL,
+               'flags' => 68,
+            )),
+          ),
+           'attributes' => 
+          array (
+          ),
+        )),
+        1 => 
+        \PHPStan\Dependency\ExportedNode\ExportedMethodNode::__set_state(array(
+           'name' => 'index',
+           'phpDoc' => NULL,
+           'byRef' => false,
+           'public' => true,
+           'private' => false,
+           'abstract' => false,
+           'final' => false,
+           'static' => false,
+           'returnType' => 'Illuminate\\Http\\JsonResponse',
+           'parameters' => 
+          array (
+          ),
+           'attributes' => 
+          array (
+          ),
+        )),
+        2 => 
+        \PHPStan\Dependency\ExportedNode\ExportedMethodNode::__set_state(array(
+           'name' => 'store',
+           'phpDoc' => NULL,
+           'byRef' => false,
+           'public' => true,
+           'private' => false,
+           'abstract' => false,
+           'final' => false,
+           'static' => false,
+           'returnType' => 'Illuminate\\Http\\JsonResponse',
+           'parameters' => 
+          array (
+            0 => 
+            \PHPStan\Dependency\ExportedNode\ExportedParameterNode::__set_state(array(
+               'name' => 'request',
+               'type' => 'App\\Http\\Requests\\Access\\StoreUserRequest',
+               'byRef' => false,
+               'variadic' => false,
+               'hasDefault' => false,
+               'attributes' => 
+              array (
+              ),
+               'phpDoc' => NULL,
+               'flags' => 0,
+            )),
+          ),
+           'attributes' => 
+          array (
+          ),
+        )),
+        3 => 
+        \PHPStan\Dependency\ExportedNode\ExportedMethodNode::__set_state(array(
+           'name' => 'show',
+           'phpDoc' => NULL,
+           'byRef' => false,
+           'public' => true,
+           'private' => false,
+           'abstract' => false,
+           'final' => false,
+           'static' => false,
+           'returnType' => 'Illuminate\\Http\\JsonResponse',
+           'parameters' => 
+          array (
+            0 => 
+            \PHPStan\Dependency\ExportedNode\ExportedParameterNode::__set_state(array(
+               'name' => 'user',
+               'type' => 'App\\Domain\\Access\\Models\\User',
+               'byRef' => false,
+               'variadic' => false,
+               'hasDefault' => false,
+               'attributes' => 
+              array (
+              ),
+               'phpDoc' => NULL,
+               'flags' => 0,
+            )),
+          ),
+           'attributes' => 
+          array (
+          ),
+        )),
+        4 => 
+        \PHPStan\Dependency\ExportedNode\ExportedMethodNode::__set_state(array(
+           'name' => 'update',
+           'phpDoc' => NULL,
+           'byRef' => false,
+           'public' => true,
+           'private' => false,
+           'abstract' => false,
+           'final' => false,
+           'static' => false,
+           'returnType' => 'Illuminate\\Http\\JsonResponse',
+           'parameters' => 
+          array (
+            0 => 
+            \PHPStan\Dependency\ExportedNode\ExportedParameterNode::__set_state(array(
+               'name' => 'request',
+               'type' => 'App\\Http\\Requests\\Access\\UpdateUserRequest',
+               'byRef' => false,
+               'variadic' => false,
+               'hasDefault' => false,
+               'attributes' => 
+              array (
+              ),
+               'phpDoc' => NULL,
+               'flags' => 0,
+            )),
+            1 => 
+            \PHPStan\Dependency\ExportedNode\ExportedParameterNode::__set_state(array(
+               'name' => 'user',
+               'type' => 'App\\Domain\\Access\\Models\\User',
+               'byRef' => false,
+               'variadic' => false,
+               'hasDefault' => false,
+               'attributes' => 
+              array (
+              ),
+               'phpDoc' => NULL,
+               'flags' => 0,
+            )),
+          ),
+           'attributes' => 
+          array (
+          ),
+        )),
+        5 => 
+        \PHPStan\Dependency\ExportedNode\ExportedMethodNode::__set_state(array(
+           'name' => 'suspend',
+           'phpDoc' => NULL,
+           'byRef' => false,
+           'public' => true,
+           'private' => false,
+           'abstract' => false,
+           'final' => false,
+           'static' => false,
+           'returnType' => 'Illuminate\\Http\\JsonResponse',
+           'parameters' => 
+          array (
+            0 => 
+            \PHPStan\Dependency\ExportedNode\ExportedParameterNode::__set_state(array(
+               'name' => 'user',
+               'type' => 'App\\Domain\\Access\\Models\\User',
+               'byRef' => false,
+               'variadic' => false,
+               'hasDefault' => false,
+               'attributes' => 
+              array (
+              ),
+               'phpDoc' => NULL,
+               'flags' => 0,
+            )),
+          ),
+           'attributes' => 
+          array (
+          ),
+        )),
+        6 => 
+        \PHPStan\Dependency\ExportedNode\ExportedMethodNode::__set_state(array(
+           'name' => 'deactivate',
+           'phpDoc' => NULL,
+           'byRef' => false,
+           'public' => true,
+           'private' => false,
+           'abstract' => false,
+           'final' => false,
+           'static' => false,
+           'returnType' => 'Illuminate\\Http\\JsonResponse',
+           'parameters' => 
+          array (
+            0 => 
+            \PHPStan\Dependency\ExportedNode\ExportedParameterNode::__set_state(array(
+               'name' => 'user',
+               'type' => 'App\\Domain\\Access\\Models\\User',
+               'byRef' => false,
+               'variadic' => false,
+               'hasDefault' => false,
+               'attributes' => 
+              array (
+              ),
+               'phpDoc' => NULL,
+               'flags' => 0,
+            )),
+          ),
+           'attributes' => 
+          array (
+          ),
+        )),
+        7 => 
+        \PHPStan\Dependency\ExportedNode\ExportedMethodNode::__set_state(array(
+           'name' => 'activate',
+           'phpDoc' => NULL,
+           'byRef' => false,
+           'public' => true,
+           'private' => false,
+           'abstract' => false,
+           'final' => false,
+           'static' => false,
+           'returnType' => 'Illuminate\\Http\\JsonResponse',
+           'parameters' => 
+          array (
+            0 => 
+            \PHPStan\Dependency\ExportedNode\ExportedParameterNode::__set_state(array(
+               'name' => 'user',
+               'type' => 'App\\Domain\\Access\\Models\\User',
+               'byRef' => false,
+               'variadic' => false,
+               'hasDefault' => false,
+               'attributes' => 
+              array (
+              ),
+               'phpDoc' => NULL,
+               'flags' => 0,
+            )),
+          ),
+           'attributes' => 
+          array (
+          ),
+        )),
+        8 => 
+        \PHPStan\Dependency\ExportedNode\ExportedMethodNode::__set_state(array(
+           'name' => 'forcePasswordReset',
+           'phpDoc' => 
+          \PHPStan\Dependency\ExportedNode\ExportedPhpDocNode::__set_state(array(
+             'phpDocString' => '/**
+     * Force the user to set a new password: revoke their tokens (immediate
+     * logout) and audit the request. Delivery of the reset link is a later phase.
+     */',
+             'namespace' => 'App\\Http\\Controllers\\Api\\V1\\Access',
+             'uses' => 
+            array (
+              'userstatus' => 'App\\Domain\\Access\\Enums\\UserStatus',
+              'user' => 'App\\Domain\\Access\\Models\\User',
+              'auditlogger' => 'App\\Domain\\Audit\\Services\\AuditLogger',
+              'controller' => 'App\\Http\\Controllers\\Controller',
+              'storeuserrequest' => 'App\\Http\\Requests\\Access\\StoreUserRequest',
+              'updateuserrequest' => 'App\\Http\\Requests\\Access\\UpdateUserRequest',
+              'userresource' => 'App\\Http\\Resources\\UserResource',
+              'apiresponse' => 'App\\Support\\ApiResponse',
+              'jsonresponse' => 'Illuminate\\Http\\JsonResponse',
+            ),
+             'constUses' => 
+            array (
+            ),
+          )),
+           'byRef' => false,
+           'public' => true,
+           'private' => false,
+           'abstract' => false,
+           'final' => false,
+           'static' => false,
+           'returnType' => 'Illuminate\\Http\\JsonResponse',
+           'parameters' => 
+          array (
+            0 => 
+            \PHPStan\Dependency\ExportedNode\ExportedParameterNode::__set_state(array(
+               'name' => 'user',
+               'type' => 'App\\Domain\\Access\\Models\\User',
+               'byRef' => false,
+               'variadic' => false,
+               'hasDefault' => false,
+               'attributes' => 
+              array (
+              ),
+               'phpDoc' => NULL,
+               'flags' => 0,
+            )),
+          ),
+           'attributes' => 
+          array (
+          ),
+        )),
+        9 => 
+        \PHPStan\Dependency\ExportedNode\ExportedMethodNode::__set_state(array(
+           'name' => 'resetMfa',
+           'phpDoc' => 
+          \PHPStan\Dependency\ExportedNode\ExportedPhpDocNode::__set_state(array(
+             'phpDocString' => '/**
+     * Reset the user\'s MFA (e.g. lost device). Clears their secret/recovery codes
+     * and revokes tokens; if their role requires MFA they must re-enrol at next
+     * login (FR-UAM-04).
+     */',
+             'namespace' => 'App\\Http\\Controllers\\Api\\V1\\Access',
+             'uses' => 
+            array (
+              'userstatus' => 'App\\Domain\\Access\\Enums\\UserStatus',
+              'user' => 'App\\Domain\\Access\\Models\\User',
+              'auditlogger' => 'App\\Domain\\Audit\\Services\\AuditLogger',
+              'controller' => 'App\\Http\\Controllers\\Controller',
+              'storeuserrequest' => 'App\\Http\\Requests\\Access\\StoreUserRequest',
+              'updateuserrequest' => 'App\\Http\\Requests\\Access\\UpdateUserRequest',
+              'userresource' => 'App\\Http\\Resources\\UserResource',
+              'apiresponse' => 'App\\Support\\ApiResponse',
+              'jsonresponse' => 'Illuminate\\Http\\JsonResponse',
+            ),
+             'constUses' => 
+            array (
+            ),
+          )),
+           'byRef' => false,
+           'public' => true,
+           'private' => false,
+           'abstract' => false,
+           'final' => false,
+           'static' => false,
+           'returnType' => 'Illuminate\\Http\\JsonResponse',
+           'parameters' => 
+          array (
+            0 => 
+            \PHPStan\Dependency\ExportedNode\ExportedParameterNode::__set_state(array(
+               'name' => 'user',
+               'type' => 'App\\Domain\\Access\\Models\\User',
+               'byRef' => false,
+               'variadic' => false,
+               'hasDefault' => false,
+               'attributes' => 
+              array (
+              ),
+               'phpDoc' => NULL,
+               'flags' => 0,
+            )),
+          ),
+           'attributes' => 
+          array (
+          ),
+        )),
+      ),
+       'attributes' => 
+      array (
+      ),
+    )),
+  ),
+  '/var/www/html/app/Http/Controllers/Api/V1/AuthController.php' => 
+  array (
+    0 => 
+    \PHPStan\Dependency\ExportedNode\ExportedClassNode::__set_state(array(
+       'name' => 'App\\Http\\Controllers\\Api\\V1\\AuthController',
+       'phpDoc' => NULL,
+       'abstract' => false,
+       'final' => false,
+       'extends' => 'App\\Http\\Controllers\\Controller',
+       'implements' => 
+      array (
+      ),
+       'usedTraits' => 
+      array (
+        0 => 'App\\Http\\Controllers\\Concerns\\AuthResponses',
+      ),
+       'traitUseAdaptations' => 
+      array (
+      ),
+       'statements' => 
+      array (
+        0 => 
+        \PHPStan\Dependency\ExportedNode\ExportedMethodNode::__set_state(array(
+           'name' => '__construct',
+           'phpDoc' => NULL,
+           'byRef' => false,
+           'public' => true,
+           'private' => false,
+           'abstract' => false,
+           'final' => false,
+           'static' => false,
+           'returnType' => NULL,
+           'parameters' => 
+          array (
+            0 => 
+            \PHPStan\Dependency\ExportedNode\ExportedParameterNode::__set_state(array(
+               'name' => 'tokens',
+               'type' => 'App\\Domain\\Access\\Services\\AuthTokenIssuer',
+               'byRef' => false,
+               'variadic' => false,
+               'hasDefault' => false,
+               'attributes' => 
+              array (
+              ),
+               'phpDoc' => NULL,
+               'flags' => 68,
+            )),
+            1 => 
+            \PHPStan\Dependency\ExportedNode\ExportedParameterNode::__set_state(array(
+               'name' => 'audit',
+               'type' => 'App\\Domain\\Audit\\Services\\AuditLogger',
+               'byRef' => false,
+               'variadic' => false,
+               'hasDefault' => false,
+               'attributes' => 
+              array (
+              ),
+               'phpDoc' => NULL,
+               'flags' => 68,
+            )),
+          ),
+           'attributes' => 
+          array (
+          ),
+        )),
+        1 => 
+        \PHPStan\Dependency\ExportedNode\ExportedMethodNode::__set_state(array(
+           'name' => 'login',
+           'phpDoc' => 
+          \PHPStan\Dependency\ExportedNode\ExportedPhpDocNode::__set_state(array(
+             'phpDocString' => '/**
+     * Verify credentials and either issue a full token, or hand off to the MFA
+     * flow (PRD FR-UAM-04). All credential failures return the same generic
+     * error so account existence, status and lock state are never revealed
+     * (SECURITY.md §2). Failed attempts drive account lockout (FR-UAM-06).
+     */',
+             'namespace' => 'App\\Http\\Controllers\\Api\\V1',
+             'uses' => 
+            array (
+              'userstatus' => 'App\\Domain\\Access\\Enums\\UserStatus',
+              'accountlocked' => 'App\\Domain\\Access\\Events\\AccountLocked',
+              'user' => 'App\\Domain\\Access\\Models\\User',
+              'authtokenissuer' => 'App\\Domain\\Access\\Services\\AuthTokenIssuer',
+              'auditlogger' => 'App\\Domain\\Audit\\Services\\AuditLogger',
+              'authresponses' => 'App\\Http\\Controllers\\Concerns\\AuthResponses',
+              'controller' => 'App\\Http\\Controllers\\Controller',
+              'changepasswordrequest' => 'App\\Http\\Requests\\Auth\\ChangePasswordRequest',
+              'loginrequest' => 'App\\Http\\Requests\\Auth\\LoginRequest',
+              'userresource' => 'App\\Http\\Resources\\UserResource',
+              'apiresponse' => 'App\\Support\\ApiResponse',
+              'jsonresponse' => 'Illuminate\\Http\\JsonResponse',
+              'request' => 'Illuminate\\Http\\Request',
+              'hash' => 'Illuminate\\Support\\Facades\\Hash',
+            ),
+             'constUses' => 
+            array (
+            ),
+          )),
+           'byRef' => false,
+           'public' => true,
+           'private' => false,
+           'abstract' => false,
+           'final' => false,
+           'static' => false,
+           'returnType' => 'Illuminate\\Http\\JsonResponse',
+           'parameters' => 
+          array (
+            0 => 
+            \PHPStan\Dependency\ExportedNode\ExportedParameterNode::__set_state(array(
+               'name' => 'request',
+               'type' => 'App\\Http\\Requests\\Auth\\LoginRequest',
+               'byRef' => false,
+               'variadic' => false,
+               'hasDefault' => false,
+               'attributes' => 
+              array (
+              ),
+               'phpDoc' => NULL,
+               'flags' => 0,
+            )),
+          ),
+           'attributes' => 
+          array (
+          ),
+        )),
+        2 => 
+        \PHPStan\Dependency\ExportedNode\ExportedMethodNode::__set_state(array(
+           'name' => 'me',
+           'phpDoc' => 
+          \PHPStan\Dependency\ExportedNode\ExportedPhpDocNode::__set_state(array(
+             'phpDocString' => '/**
+     * Return the authenticated user with role, permissions and MDA.
+     */',
+             'namespace' => 'App\\Http\\Controllers\\Api\\V1',
+             'uses' => 
+            array (
+              'userstatus' => 'App\\Domain\\Access\\Enums\\UserStatus',
+              'accountlocked' => 'App\\Domain\\Access\\Events\\AccountLocked',
+              'user' => 'App\\Domain\\Access\\Models\\User',
+              'authtokenissuer' => 'App\\Domain\\Access\\Services\\AuthTokenIssuer',
+              'auditlogger' => 'App\\Domain\\Audit\\Services\\AuditLogger',
+              'authresponses' => 'App\\Http\\Controllers\\Concerns\\AuthResponses',
+              'controller' => 'App\\Http\\Controllers\\Controller',
+              'changepasswordrequest' => 'App\\Http\\Requests\\Auth\\ChangePasswordRequest',
+              'loginrequest' => 'App\\Http\\Requests\\Auth\\LoginRequest',
+              'userresource' => 'App\\Http\\Resources\\UserResource',
+              'apiresponse' => 'App\\Support\\ApiResponse',
+              'jsonresponse' => 'Illuminate\\Http\\JsonResponse',
+              'request' => 'Illuminate\\Http\\Request',
+              'hash' => 'Illuminate\\Support\\Facades\\Hash',
+            ),
+             'constUses' => 
+            array (
+            ),
+          )),
+           'byRef' => false,
+           'public' => true,
+           'private' => false,
+           'abstract' => false,
+           'final' => false,
+           'static' => false,
+           'returnType' => 'Illuminate\\Http\\JsonResponse',
+           'parameters' => 
+          array (
+            0 => 
+            \PHPStan\Dependency\ExportedNode\ExportedParameterNode::__set_state(array(
+               'name' => 'request',
+               'type' => 'Illuminate\\Http\\Request',
+               'byRef' => false,
+               'variadic' => false,
+               'hasDefault' => false,
+               'attributes' => 
+              array (
+              ),
+               'phpDoc' => NULL,
+               'flags' => 0,
+            )),
+          ),
+           'attributes' => 
+          array (
+          ),
+        )),
+        3 => 
+        \PHPStan\Dependency\ExportedNode\ExportedMethodNode::__set_state(array(
+           'name' => 'logout',
+           'phpDoc' => 
+          \PHPStan\Dependency\ExportedNode\ExportedPhpDocNode::__set_state(array(
+             'phpDocString' => '/**
+     * Revoke the token used for the current request.
+     */',
+             'namespace' => 'App\\Http\\Controllers\\Api\\V1',
+             'uses' => 
+            array (
+              'userstatus' => 'App\\Domain\\Access\\Enums\\UserStatus',
+              'accountlocked' => 'App\\Domain\\Access\\Events\\AccountLocked',
+              'user' => 'App\\Domain\\Access\\Models\\User',
+              'authtokenissuer' => 'App\\Domain\\Access\\Services\\AuthTokenIssuer',
+              'auditlogger' => 'App\\Domain\\Audit\\Services\\AuditLogger',
+              'authresponses' => 'App\\Http\\Controllers\\Concerns\\AuthResponses',
+              'controller' => 'App\\Http\\Controllers\\Controller',
+              'changepasswordrequest' => 'App\\Http\\Requests\\Auth\\ChangePasswordRequest',
+              'loginrequest' => 'App\\Http\\Requests\\Auth\\LoginRequest',
+              'userresource' => 'App\\Http\\Resources\\UserResource',
+              'apiresponse' => 'App\\Support\\ApiResponse',
+              'jsonresponse' => 'Illuminate\\Http\\JsonResponse',
+              'request' => 'Illuminate\\Http\\Request',
+              'hash' => 'Illuminate\\Support\\Facades\\Hash',
+            ),
+             'constUses' => 
+            array (
+            ),
+          )),
+           'byRef' => false,
+           'public' => true,
+           'private' => false,
+           'abstract' => false,
+           'final' => false,
+           'static' => false,
+           'returnType' => 'Illuminate\\Http\\JsonResponse',
+           'parameters' => 
+          array (
+            0 => 
+            \PHPStan\Dependency\ExportedNode\ExportedParameterNode::__set_state(array(
+               'name' => 'request',
+               'type' => 'Illuminate\\Http\\Request',
+               'byRef' => false,
+               'variadic' => false,
+               'hasDefault' => false,
+               'attributes' => 
+              array (
+              ),
+               'phpDoc' => NULL,
+               'flags' => 0,
+            )),
+          ),
+           'attributes' => 
+          array (
+          ),
+        )),
+        4 => 
+        \PHPStan\Dependency\ExportedNode\ExportedMethodNode::__set_state(array(
+           'name' => 'changePassword',
+           'phpDoc' => 
+          \PHPStan\Dependency\ExportedNode\ExportedPhpDocNode::__set_state(array(
+             'phpDocString' => '/**
+     * Change the authenticated user\'s password. Saving a changed password
+     * invalidates every existing token (handled on the User model).
+     */',
+             'namespace' => 'App\\Http\\Controllers\\Api\\V1',
+             'uses' => 
+            array (
+              'userstatus' => 'App\\Domain\\Access\\Enums\\UserStatus',
+              'accountlocked' => 'App\\Domain\\Access\\Events\\AccountLocked',
+              'user' => 'App\\Domain\\Access\\Models\\User',
+              'authtokenissuer' => 'App\\Domain\\Access\\Services\\AuthTokenIssuer',
+              'auditlogger' => 'App\\Domain\\Audit\\Services\\AuditLogger',
+              'authresponses' => 'App\\Http\\Controllers\\Concerns\\AuthResponses',
+              'controller' => 'App\\Http\\Controllers\\Controller',
+              'changepasswordrequest' => 'App\\Http\\Requests\\Auth\\ChangePasswordRequest',
+              'loginrequest' => 'App\\Http\\Requests\\Auth\\LoginRequest',
+              'userresource' => 'App\\Http\\Resources\\UserResource',
+              'apiresponse' => 'App\\Support\\ApiResponse',
+              'jsonresponse' => 'Illuminate\\Http\\JsonResponse',
+              'request' => 'Illuminate\\Http\\Request',
+              'hash' => 'Illuminate\\Support\\Facades\\Hash',
+            ),
+             'constUses' => 
+            array (
+            ),
+          )),
+           'byRef' => false,
+           'public' => true,
+           'private' => false,
+           'abstract' => false,
+           'final' => false,
+           'static' => false,
+           'returnType' => 'Illuminate\\Http\\JsonResponse',
+           'parameters' => 
+          array (
+            0 => 
+            \PHPStan\Dependency\ExportedNode\ExportedParameterNode::__set_state(array(
+               'name' => 'request',
+               'type' => 'App\\Http\\Requests\\Auth\\ChangePasswordRequest',
+               'byRef' => false,
+               'variadic' => false,
+               'hasDefault' => false,
+               'attributes' => 
+              array (
+              ),
+               'phpDoc' => NULL,
+               'flags' => 0,
+            )),
+          ),
+           'attributes' => 
+          array (
+          ),
+        )),
+      ),
+       'attributes' => 
+      array (
+      ),
+    )),
+  ),
+  '/var/www/html/app/Http/Controllers/Api/V1/HealthController.php' => 
+  array (
+    0 => 
+    \PHPStan\Dependency\ExportedNode\ExportedClassNode::__set_state(array(
+       'name' => 'App\\Http\\Controllers\\Api\\V1\\HealthController',
+       'phpDoc' => NULL,
+       'abstract' => false,
+       'final' => false,
+       'extends' => 'App\\Http\\Controllers\\Controller',
+       'implements' => 
+      array (
+      ),
+       'usedTraits' => 
+      array (
+      ),
+       'traitUseAdaptations' => 
+      array (
+      ),
+       'statements' => 
+      array (
+        0 => 
+        \PHPStan\Dependency\ExportedNode\ExportedMethodNode::__set_state(array(
+           'name' => 'show',
+           'phpDoc' => 
+          \PHPStan\Dependency\ExportedNode\ExportedPhpDocNode::__set_state(array(
+             'phpDocString' => '/**
+     * Liveness/readiness probe.
+     *
+     * Confirms the API is up, the database is reachable, and the PostGIS
+     * extension is installed. Returns 200 only when the database is healthy,
+     * otherwise 503 with the standard error envelope.
+     */',
+             'namespace' => 'App\\Http\\Controllers\\Api\\V1',
+             'uses' => 
+            array (
+              'controller' => 'App\\Http\\Controllers\\Controller',
+              'apiresponse' => 'App\\Support\\ApiResponse',
+              'jsonresponse' => 'Illuminate\\Http\\JsonResponse',
+              'db' => 'Illuminate\\Support\\Facades\\DB',
+              'throwable' => 'Throwable',
+            ),
+             'constUses' => 
+            array (
+            ),
+          )),
+           'byRef' => false,
+           'public' => true,
+           'private' => false,
+           'abstract' => false,
+           'final' => false,
+           'static' => false,
+           'returnType' => 'Illuminate\\Http\\JsonResponse',
+           'parameters' => 
+          array (
+          ),
+           'attributes' => 
+          array (
+          ),
+        )),
+      ),
+       'attributes' => 
+      array (
+      ),
+    )),
+  ),
+  '/var/www/html/app/Http/Controllers/Api/V1/MfaController.php' => 
+  array (
+    0 => 
+    \PHPStan\Dependency\ExportedNode\ExportedClassNode::__set_state(array(
+       'name' => 'App\\Http\\Controllers\\Api\\V1\\MfaController',
+       'phpDoc' => NULL,
+       'abstract' => false,
+       'final' => false,
+       'extends' => 'App\\Http\\Controllers\\Controller',
+       'implements' => 
+      array (
+      ),
+       'usedTraits' => 
+      array (
+        0 => 'App\\Http\\Controllers\\Concerns\\AuthResponses',
+      ),
+       'traitUseAdaptations' => 
+      array (
+      ),
+       'statements' => 
+      array (
+        0 => 
+        \PHPStan\Dependency\ExportedNode\ExportedMethodNode::__set_state(array(
+           'name' => '__construct',
+           'phpDoc' => NULL,
+           'byRef' => false,
+           'public' => true,
+           'private' => false,
+           'abstract' => false,
+           'final' => false,
+           'static' => false,
+           'returnType' => NULL,
+           'parameters' => 
+          array (
+            0 => 
+            \PHPStan\Dependency\ExportedNode\ExportedParameterNode::__set_state(array(
+               'name' => 'mfa',
+               'type' => 'App\\Domain\\Access\\Services\\MfaService',
+               'byRef' => false,
+               'variadic' => false,
+               'hasDefault' => false,
+               'attributes' => 
+              array (
+              ),
+               'phpDoc' => NULL,
+               'flags' => 68,
+            )),
+            1 => 
+            \PHPStan\Dependency\ExportedNode\ExportedParameterNode::__set_state(array(
+               'name' => 'tokens',
+               'type' => 'App\\Domain\\Access\\Services\\AuthTokenIssuer',
+               'byRef' => false,
+               'variadic' => false,
+               'hasDefault' => false,
+               'attributes' => 
+              array (
+              ),
+               'phpDoc' => NULL,
+               'flags' => 68,
+            )),
+          ),
+           'attributes' => 
+          array (
+          ),
+        )),
+        1 => 
+        \PHPStan\Dependency\ExportedNode\ExportedMethodNode::__set_state(array(
+           'name' => 'enroll',
+           'phpDoc' => 
+          \PHPStan\Dependency\ExportedNode\ExportedPhpDocNode::__set_state(array(
+             'phpDocString' => '/**
+     * Begin enrolment: generate a secret + recovery codes and return the
+     * provisioning URI. MFA is not active until verified. Secret and recovery
+     * codes are stored encrypted; the plaintext recovery codes are shown ONCE.
+     */',
+             'namespace' => 'App\\Http\\Controllers\\Api\\V1',
+             'uses' => 
+            array (
+              'accountlocked' => 'App\\Domain\\Access\\Events\\AccountLocked',
+              'mfachallengefailed' => 'App\\Domain\\Access\\Events\\MfaChallengeFailed',
+              'mfadisabled' => 'App\\Domain\\Access\\Events\\MfaDisabled',
+              'mfaenrolled' => 'App\\Domain\\Access\\Events\\MfaEnrolled',
+              'user' => 'App\\Domain\\Access\\Models\\User',
+              'authtokenissuer' => 'App\\Domain\\Access\\Services\\AuthTokenIssuer',
+              'mfaservice' => 'App\\Domain\\Access\\Services\\MfaService',
+              'tokenability' => 'App\\Domain\\Access\\Support\\TokenAbility',
+              'authresponses' => 'App\\Http\\Controllers\\Concerns\\AuthResponses',
+              'controller' => 'App\\Http\\Controllers\\Controller',
+              'mfacoderequest' => 'App\\Http\\Requests\\Auth\\MfaCodeRequest',
+              'userresource' => 'App\\Http\\Resources\\UserResource',
+              'apiresponse' => 'App\\Support\\ApiResponse',
+              'jsonresponse' => 'Illuminate\\Http\\JsonResponse',
+              'request' => 'Illuminate\\Http\\Request',
+            ),
+             'constUses' => 
+            array (
+            ),
+          )),
+           'byRef' => false,
+           'public' => true,
+           'private' => false,
+           'abstract' => false,
+           'final' => false,
+           'static' => false,
+           'returnType' => 'Illuminate\\Http\\JsonResponse',
+           'parameters' => 
+          array (
+            0 => 
+            \PHPStan\Dependency\ExportedNode\ExportedParameterNode::__set_state(array(
+               'name' => 'request',
+               'type' => 'Illuminate\\Http\\Request',
+               'byRef' => false,
+               'variadic' => false,
+               'hasDefault' => false,
+               'attributes' => 
+              array (
+              ),
+               'phpDoc' => NULL,
+               'flags' => 0,
+            )),
+          ),
+           'attributes' => 
+          array (
+          ),
+        )),
+        2 => 
+        \PHPStan\Dependency\ExportedNode\ExportedMethodNode::__set_state(array(
+           'name' => 'verify',
+           'phpDoc' => 
+          \PHPStan\Dependency\ExportedNode\ExportedPhpDocNode::__set_state(array(
+             'phpDocString' => '/**
+     * Verify a TOTP code and enable MFA. If the caller used a short-lived setup
+     * token (MFA-required role completing first-time setup), they are promoted
+     * to a full token and considered logged in.
+     */',
+             'namespace' => 'App\\Http\\Controllers\\Api\\V1',
+             'uses' => 
+            array (
+              'accountlocked' => 'App\\Domain\\Access\\Events\\AccountLocked',
+              'mfachallengefailed' => 'App\\Domain\\Access\\Events\\MfaChallengeFailed',
+              'mfadisabled' => 'App\\Domain\\Access\\Events\\MfaDisabled',
+              'mfaenrolled' => 'App\\Domain\\Access\\Events\\MfaEnrolled',
+              'user' => 'App\\Domain\\Access\\Models\\User',
+              'authtokenissuer' => 'App\\Domain\\Access\\Services\\AuthTokenIssuer',
+              'mfaservice' => 'App\\Domain\\Access\\Services\\MfaService',
+              'tokenability' => 'App\\Domain\\Access\\Support\\TokenAbility',
+              'authresponses' => 'App\\Http\\Controllers\\Concerns\\AuthResponses',
+              'controller' => 'App\\Http\\Controllers\\Controller',
+              'mfacoderequest' => 'App\\Http\\Requests\\Auth\\MfaCodeRequest',
+              'userresource' => 'App\\Http\\Resources\\UserResource',
+              'apiresponse' => 'App\\Support\\ApiResponse',
+              'jsonresponse' => 'Illuminate\\Http\\JsonResponse',
+              'request' => 'Illuminate\\Http\\Request',
+            ),
+             'constUses' => 
+            array (
+            ),
+          )),
+           'byRef' => false,
+           'public' => true,
+           'private' => false,
+           'abstract' => false,
+           'final' => false,
+           'static' => false,
+           'returnType' => 'Illuminate\\Http\\JsonResponse',
+           'parameters' => 
+          array (
+            0 => 
+            \PHPStan\Dependency\ExportedNode\ExportedParameterNode::__set_state(array(
+               'name' => 'request',
+               'type' => 'App\\Http\\Requests\\Auth\\MfaCodeRequest',
+               'byRef' => false,
+               'variadic' => false,
+               'hasDefault' => false,
+               'attributes' => 
+              array (
+              ),
+               'phpDoc' => NULL,
+               'flags' => 0,
+            )),
+          ),
+           'attributes' => 
+          array (
+          ),
+        )),
+        3 => 
+        \PHPStan\Dependency\ExportedNode\ExportedMethodNode::__set_state(array(
+           'name' => 'disable',
+           'phpDoc' => 
+          \PHPStan\Dependency\ExportedNode\ExportedPhpDocNode::__set_state(array(
+             'phpDocString' => '/**
+     * Disable MFA. Forbidden for roles that require MFA. Requires a valid
+     * current TOTP or recovery code to authorize the change.
+     */',
+             'namespace' => 'App\\Http\\Controllers\\Api\\V1',
+             'uses' => 
+            array (
+              'accountlocked' => 'App\\Domain\\Access\\Events\\AccountLocked',
+              'mfachallengefailed' => 'App\\Domain\\Access\\Events\\MfaChallengeFailed',
+              'mfadisabled' => 'App\\Domain\\Access\\Events\\MfaDisabled',
+              'mfaenrolled' => 'App\\Domain\\Access\\Events\\MfaEnrolled',
+              'user' => 'App\\Domain\\Access\\Models\\User',
+              'authtokenissuer' => 'App\\Domain\\Access\\Services\\AuthTokenIssuer',
+              'mfaservice' => 'App\\Domain\\Access\\Services\\MfaService',
+              'tokenability' => 'App\\Domain\\Access\\Support\\TokenAbility',
+              'authresponses' => 'App\\Http\\Controllers\\Concerns\\AuthResponses',
+              'controller' => 'App\\Http\\Controllers\\Controller',
+              'mfacoderequest' => 'App\\Http\\Requests\\Auth\\MfaCodeRequest',
+              'userresource' => 'App\\Http\\Resources\\UserResource',
+              'apiresponse' => 'App\\Support\\ApiResponse',
+              'jsonresponse' => 'Illuminate\\Http\\JsonResponse',
+              'request' => 'Illuminate\\Http\\Request',
+            ),
+             'constUses' => 
+            array (
+            ),
+          )),
+           'byRef' => false,
+           'public' => true,
+           'private' => false,
+           'abstract' => false,
+           'final' => false,
+           'static' => false,
+           'returnType' => 'Illuminate\\Http\\JsonResponse',
+           'parameters' => 
+          array (
+            0 => 
+            \PHPStan\Dependency\ExportedNode\ExportedParameterNode::__set_state(array(
+               'name' => 'request',
+               'type' => 'App\\Http\\Requests\\Auth\\MfaCodeRequest',
+               'byRef' => false,
+               'variadic' => false,
+               'hasDefault' => false,
+               'attributes' => 
+              array (
+              ),
+               'phpDoc' => NULL,
+               'flags' => 0,
+            )),
+          ),
+           'attributes' => 
+          array (
+          ),
+        )),
+        4 => 
+        \PHPStan\Dependency\ExportedNode\ExportedMethodNode::__set_state(array(
+           'name' => 'challenge',
+           'phpDoc' => 
+          \PHPStan\Dependency\ExportedNode\ExportedPhpDocNode::__set_state(array(
+             'phpDocString' => '/**
+     * Complete login by passing the MFA challenge (TOTP or recovery code).
+     * On success the challenge token is swapped for a full session token.
+     * Failures count toward account lockout (FR-UAM-06).
+     */',
+             'namespace' => 'App\\Http\\Controllers\\Api\\V1',
+             'uses' => 
+            array (
+              'accountlocked' => 'App\\Domain\\Access\\Events\\AccountLocked',
+              'mfachallengefailed' => 'App\\Domain\\Access\\Events\\MfaChallengeFailed',
+              'mfadisabled' => 'App\\Domain\\Access\\Events\\MfaDisabled',
+              'mfaenrolled' => 'App\\Domain\\Access\\Events\\MfaEnrolled',
+              'user' => 'App\\Domain\\Access\\Models\\User',
+              'authtokenissuer' => 'App\\Domain\\Access\\Services\\AuthTokenIssuer',
+              'mfaservice' => 'App\\Domain\\Access\\Services\\MfaService',
+              'tokenability' => 'App\\Domain\\Access\\Support\\TokenAbility',
+              'authresponses' => 'App\\Http\\Controllers\\Concerns\\AuthResponses',
+              'controller' => 'App\\Http\\Controllers\\Controller',
+              'mfacoderequest' => 'App\\Http\\Requests\\Auth\\MfaCodeRequest',
+              'userresource' => 'App\\Http\\Resources\\UserResource',
+              'apiresponse' => 'App\\Support\\ApiResponse',
+              'jsonresponse' => 'Illuminate\\Http\\JsonResponse',
+              'request' => 'Illuminate\\Http\\Request',
+            ),
+             'constUses' => 
+            array (
+            ),
+          )),
+           'byRef' => false,
+           'public' => true,
+           'private' => false,
+           'abstract' => false,
+           'final' => false,
+           'static' => false,
+           'returnType' => 'Illuminate\\Http\\JsonResponse',
+           'parameters' => 
+          array (
+            0 => 
+            \PHPStan\Dependency\ExportedNode\ExportedParameterNode::__set_state(array(
+               'name' => 'request',
+               'type' => 'App\\Http\\Requests\\Auth\\MfaCodeRequest',
+               'byRef' => false,
+               'variadic' => false,
+               'hasDefault' => false,
+               'attributes' => 
+              array (
+              ),
+               'phpDoc' => NULL,
+               'flags' => 0,
+            )),
+          ),
+           'attributes' => 
+          array (
+          ),
+        )),
+      ),
+       'attributes' => 
+      array (
+      ),
+    )),
+  ),
+  '/var/www/html/app/Http/Controllers/Concerns/AuthResponses.php' => 
+  array (
+    0 => 
+    \PHPStan\Dependency\ExportedNode\ExportedTraitNode::__set_state(array(
+       'name' => 'App\\Http\\Controllers\\Concerns\\AuthResponses',
+       'phpDoc' => 
+      \PHPStan\Dependency\ExportedNode\ExportedPhpDocNode::__set_state(array(
+         'phpDocString' => '/**
+ * Shared auth error responses so login and the MFA challenge stay consistent.
+ */',
+         'namespace' => 'App\\Http\\Controllers\\Concerns',
+         'uses' => 
+        array (
+          'user' => 'App\\Domain\\Access\\Models\\User',
+          'apiresponse' => 'App\\Support\\ApiResponse',
+          'jsonresponse' => 'Illuminate\\Http\\JsonResponse',
+        ),
+         'constUses' => 
+        array (
+        ),
+      )),
+       'usedTraits' => 
+      array (
+      ),
+       'traitUseAdaptations' => 
+      array (
+      ),
+       'statements' => 
+      array (
+        0 => 
+        \PHPStan\Dependency\ExportedNode\ExportedMethodNode::__set_state(array(
+           'name' => 'invalidCredentials',
+           'phpDoc' => 
+          \PHPStan\Dependency\ExportedNode\ExportedPhpDocNode::__set_state(array(
+             'phpDocString' => '/**
+     * Generic credential failure — does not reveal whether the account exists
+     * (SECURITY.md §2).
+     */',
+             'namespace' => 'App\\Http\\Controllers\\Concerns',
+             'uses' => 
+            array (
+              'user' => 'App\\Domain\\Access\\Models\\User',
+              'apiresponse' => 'App\\Support\\ApiResponse',
+              'jsonresponse' => 'Illuminate\\Http\\JsonResponse',
+            ),
+             'constUses' => 
+            array (
+            ),
+          )),
+           'byRef' => false,
+           'public' => false,
+           'private' => false,
+           'abstract' => false,
+           'final' => false,
+           'static' => false,
+           'returnType' => 'Illuminate\\Http\\JsonResponse',
+           'parameters' => 
+          array (
+          ),
+           'attributes' => 
+          array (
+          ),
+        )),
+        1 => 
+        \PHPStan\Dependency\ExportedNode\ExportedMethodNode::__set_state(array(
+           'name' => 'accountLocked',
+           'phpDoc' => 
+          \PHPStan\Dependency\ExportedNode\ExportedPhpDocNode::__set_state(array(
+             'phpDocString' => '/**
+     * Account temporarily locked after too many failed attempts (FR-UAM-06).
+     * Includes a Retry-After header with the seconds until the lock clears.
+     */',
+             'namespace' => 'App\\Http\\Controllers\\Concerns',
+             'uses' => 
+            array (
+              'user' => 'App\\Domain\\Access\\Models\\User',
+              'apiresponse' => 'App\\Support\\ApiResponse',
+              'jsonresponse' => 'Illuminate\\Http\\JsonResponse',
+            ),
+             'constUses' => 
+            array (
+            ),
+          )),
+           'byRef' => false,
+           'public' => false,
+           'private' => false,
+           'abstract' => false,
+           'final' => false,
+           'static' => false,
+           'returnType' => 'Illuminate\\Http\\JsonResponse',
+           'parameters' => 
+          array (
+            0 => 
+            \PHPStan\Dependency\ExportedNode\ExportedParameterNode::__set_state(array(
+               'name' => 'user',
+               'type' => 'App\\Domain\\Access\\Models\\User',
+               'byRef' => false,
+               'variadic' => false,
+               'hasDefault' => false,
+               'attributes' => 
+              array (
+              ),
+               'phpDoc' => NULL,
+               'flags' => 0,
+            )),
+          ),
+           'attributes' => 
+          array (
+          ),
+        )),
+      ),
+       'attributes' => 
+      array (
+      ),
+    )),
+  ),
+  '/var/www/html/app/Http/Controllers/Controller.php' => 
+  array (
+    0 => 
+    \PHPStan\Dependency\ExportedNode\ExportedClassNode::__set_state(array(
+       'name' => 'App\\Http\\Controllers\\Controller',
+       'phpDoc' => NULL,
+       'abstract' => true,
+       'final' => false,
+       'extends' => NULL,
+       'implements' => 
+      array (
+      ),
+       'usedTraits' => 
+      array (
+      ),
+       'traitUseAdaptations' => 
+      array (
+      ),
+       'statements' => 
+      array (
+      ),
+       'attributes' => 
+      array (
+      ),
+    )),
+  ),
+  '/var/www/html/app/Http/Middleware/AssignCorrelationId.php' => 
+  array (
+    0 => 
+    \PHPStan\Dependency\ExportedNode\ExportedClassNode::__set_state(array(
+       'name' => 'App\\Http\\Middleware\\AssignCorrelationId',
+       'phpDoc' => 
+      \PHPStan\Dependency\ExportedNode\ExportedPhpDocNode::__set_state(array(
+         'phpDocString' => '/**
+ * Assigns a correlation/request id to each request (honouring an incoming
+ * X-Correlation-Id / X-Request-Id header, otherwise generating one), exposes it
+ * on the request for the audit log, and echoes it back in the response header.
+ */',
+         'namespace' => 'App\\Http\\Middleware',
+         'uses' => 
+        array (
+          'closure' => 'Closure',
+          'request' => 'Illuminate\\Http\\Request',
+          'str' => 'Illuminate\\Support\\Str',
+          'response' => 'Symfony\\Component\\HttpFoundation\\Response',
+        ),
+         'constUses' => 
+        array (
+        ),
+      )),
+       'abstract' => false,
+       'final' => false,
+       'extends' => NULL,
+       'implements' => 
+      array (
+      ),
+       'usedTraits' => 
+      array (
+      ),
+       'traitUseAdaptations' => 
+      array (
+      ),
+       'statements' => 
+      array (
+        0 => 
+        \PHPStan\Dependency\ExportedNode\ExportedMethodNode::__set_state(array(
+           'name' => 'handle',
+           'phpDoc' => NULL,
+           'byRef' => false,
+           'public' => true,
+           'private' => false,
+           'abstract' => false,
+           'final' => false,
+           'static' => false,
+           'returnType' => 'Symfony\\Component\\HttpFoundation\\Response',
+           'parameters' => 
+          array (
+            0 => 
+            \PHPStan\Dependency\ExportedNode\ExportedParameterNode::__set_state(array(
+               'name' => 'request',
+               'type' => 'Illuminate\\Http\\Request',
+               'byRef' => false,
+               'variadic' => false,
+               'hasDefault' => false,
+               'attributes' => 
+              array (
+              ),
+               'phpDoc' => NULL,
+               'flags' => 0,
+            )),
+            1 => 
+            \PHPStan\Dependency\ExportedNode\ExportedParameterNode::__set_state(array(
+               'name' => 'next',
+               'type' => 'Closure',
+               'byRef' => false,
+               'variadic' => false,
+               'hasDefault' => false,
+               'attributes' => 
+              array (
+              ),
+               'phpDoc' => NULL,
+               'flags' => 0,
+            )),
+          ),
+           'attributes' => 
+          array (
+          ),
+        )),
+      ),
+       'attributes' => 
+      array (
+      ),
+    )),
+  ),
+  '/var/www/html/app/Http/Middleware/CheckPermission.php' => 
+  array (
+    0 => 
+    \PHPStan\Dependency\ExportedNode\ExportedClassNode::__set_state(array(
+       'name' => 'App\\Http\\Middleware\\CheckPermission',
+       'phpDoc' => 
+      \PHPStan\Dependency\ExportedNode\ExportedPhpDocNode::__set_state(array(
+         'phpDocString' => '/**
+ * Authorizes a request against one or more `module.action` permissions
+ * (PRD FR-UAM-05). Access is denied by default: the user must hold at least one
+ * of the declared permissions, otherwise a 403 is returned in the standard
+ * error envelope. Authorization is enforced server-side (SECURITY.md).
+ *
+ * Usage: ->middleware(\'permission:user.view\') or \'permission:role.view,role.edit\'
+ */',
+         'namespace' => 'App\\Http\\Middleware',
+         'uses' => 
+        array (
+          'apiresponse' => 'App\\Support\\ApiResponse',
+          'closure' => 'Closure',
+          'request' => 'Illuminate\\Http\\Request',
+          'response' => 'Symfony\\Component\\HttpFoundation\\Response',
+        ),
+         'constUses' => 
+        array (
+        ),
+      )),
+       'abstract' => false,
+       'final' => false,
+       'extends' => NULL,
+       'implements' => 
+      array (
+      ),
+       'usedTraits' => 
+      array (
+      ),
+       'traitUseAdaptations' => 
+      array (
+      ),
+       'statements' => 
+      array (
+        0 => 
+        \PHPStan\Dependency\ExportedNode\ExportedMethodNode::__set_state(array(
+           'name' => 'handle',
+           'phpDoc' => NULL,
+           'byRef' => false,
+           'public' => true,
+           'private' => false,
+           'abstract' => false,
+           'final' => false,
+           'static' => false,
+           'returnType' => 'Symfony\\Component\\HttpFoundation\\Response',
+           'parameters' => 
+          array (
+            0 => 
+            \PHPStan\Dependency\ExportedNode\ExportedParameterNode::__set_state(array(
+               'name' => 'request',
+               'type' => 'Illuminate\\Http\\Request',
+               'byRef' => false,
+               'variadic' => false,
+               'hasDefault' => false,
+               'attributes' => 
+              array (
+              ),
+               'phpDoc' => NULL,
+               'flags' => 0,
+            )),
+            1 => 
+            \PHPStan\Dependency\ExportedNode\ExportedParameterNode::__set_state(array(
+               'name' => 'next',
+               'type' => 'Closure',
+               'byRef' => false,
+               'variadic' => false,
+               'hasDefault' => false,
+               'attributes' => 
+              array (
+              ),
+               'phpDoc' => NULL,
+               'flags' => 0,
+            )),
+            2 => 
+            \PHPStan\Dependency\ExportedNode\ExportedParameterNode::__set_state(array(
+               'name' => 'permissions',
+               'type' => 'string',
+               'byRef' => false,
+               'variadic' => true,
+               'hasDefault' => false,
+               'attributes' => 
+              array (
+              ),
+               'phpDoc' => NULL,
+               'flags' => 0,
+            )),
+          ),
+           'attributes' => 
+          array (
+          ),
+        )),
+      ),
+       'attributes' => 
+      array (
+      ),
+    )),
+  ),
+  '/var/www/html/app/Http/Middleware/EnforceIdleTimeout.php' => 
+  array (
+    0 => 
+    \PHPStan\Dependency\ExportedNode\ExportedClassNode::__set_state(array(
+       'name' => 'App\\Http\\Middleware\\EnforceIdleTimeout',
+       'phpDoc' => 
+      \PHPStan\Dependency\ExportedNode\ExportedPhpDocNode::__set_state(array(
+         'phpDocString' => '/**
+ * Enforces the session idle timeout (SECURITY.md §2). A token that has not been
+ * used within the configured window is revoked and rejected.
+ *
+ * Runs BEFORE auth:sanctum so it reads the token\'s previous last_used_at, before
+ * Sanctum updates it to "now" for the current request.
+ */',
+         'namespace' => 'App\\Http\\Middleware',
+         'uses' => 
+        array (
+          'apiresponse' => 'App\\Support\\ApiResponse',
+          'closure' => 'Closure',
+          'request' => 'Illuminate\\Http\\Request',
+          'personalaccesstoken' => 'Laravel\\Sanctum\\PersonalAccessToken',
+          'response' => 'Symfony\\Component\\HttpFoundation\\Response',
+        ),
+         'constUses' => 
+        array (
+        ),
+      )),
+       'abstract' => false,
+       'final' => false,
+       'extends' => NULL,
+       'implements' => 
+      array (
+      ),
+       'usedTraits' => 
+      array (
+      ),
+       'traitUseAdaptations' => 
+      array (
+      ),
+       'statements' => 
+      array (
+        0 => 
+        \PHPStan\Dependency\ExportedNode\ExportedMethodNode::__set_state(array(
+           'name' => 'handle',
+           'phpDoc' => NULL,
+           'byRef' => false,
+           'public' => true,
+           'private' => false,
+           'abstract' => false,
+           'final' => false,
+           'static' => false,
+           'returnType' => 'Symfony\\Component\\HttpFoundation\\Response',
+           'parameters' => 
+          array (
+            0 => 
+            \PHPStan\Dependency\ExportedNode\ExportedParameterNode::__set_state(array(
+               'name' => 'request',
+               'type' => 'Illuminate\\Http\\Request',
+               'byRef' => false,
+               'variadic' => false,
+               'hasDefault' => false,
+               'attributes' => 
+              array (
+              ),
+               'phpDoc' => NULL,
+               'flags' => 0,
+            )),
+            1 => 
+            \PHPStan\Dependency\ExportedNode\ExportedParameterNode::__set_state(array(
+               'name' => 'next',
+               'type' => 'Closure',
+               'byRef' => false,
+               'variadic' => false,
+               'hasDefault' => false,
+               'attributes' => 
+              array (
+              ),
+               'phpDoc' => NULL,
+               'flags' => 0,
+            )),
+          ),
+           'attributes' => 
+          array (
+          ),
+        )),
+      ),
+       'attributes' => 
+      array (
+      ),
+    )),
+  ),
+  '/var/www/html/app/Http/Middleware/SecurityHeaders.php' => 
+  array (
+    0 => 
+    \PHPStan\Dependency\ExportedNode\ExportedClassNode::__set_state(array(
+       'name' => 'App\\Http\\Middleware\\SecurityHeaders',
+       'phpDoc' => 
+      \PHPStan\Dependency\ExportedNode\ExportedPhpDocNode::__set_state(array(
+         'phpDocString' => '/**
+ * Applies baseline HTTP security headers to every API response.
+ *
+ * The API serves JSON only, so a restrictive Content-Security-Policy is safe.
+ * HSTS is only emitted over HTTPS so it does not break plain-HTTP local dev.
+ */',
+         'namespace' => 'App\\Http\\Middleware',
+         'uses' => 
+        array (
+          'closure' => 'Closure',
+          'request' => 'Illuminate\\Http\\Request',
+          'response' => 'Symfony\\Component\\HttpFoundation\\Response',
+        ),
+         'constUses' => 
+        array (
+        ),
+      )),
+       'abstract' => false,
+       'final' => false,
+       'extends' => NULL,
+       'implements' => 
+      array (
+      ),
+       'usedTraits' => 
+      array (
+      ),
+       'traitUseAdaptations' => 
+      array (
+      ),
+       'statements' => 
+      array (
+        0 => 
+        \PHPStan\Dependency\ExportedNode\ExportedMethodNode::__set_state(array(
+           'name' => 'handle',
+           'phpDoc' => NULL,
+           'byRef' => false,
+           'public' => true,
+           'private' => false,
+           'abstract' => false,
+           'final' => false,
+           'static' => false,
+           'returnType' => 'Symfony\\Component\\HttpFoundation\\Response',
+           'parameters' => 
+          array (
+            0 => 
+            \PHPStan\Dependency\ExportedNode\ExportedParameterNode::__set_state(array(
+               'name' => 'request',
+               'type' => 'Illuminate\\Http\\Request',
+               'byRef' => false,
+               'variadic' => false,
+               'hasDefault' => false,
+               'attributes' => 
+              array (
+              ),
+               'phpDoc' => NULL,
+               'flags' => 0,
+            )),
+            1 => 
+            \PHPStan\Dependency\ExportedNode\ExportedParameterNode::__set_state(array(
+               'name' => 'next',
+               'type' => 'Closure',
+               'byRef' => false,
+               'variadic' => false,
+               'hasDefault' => false,
+               'attributes' => 
+              array (
+              ),
+               'phpDoc' => NULL,
+               'flags' => 0,
+            )),
+          ),
+           'attributes' => 
+          array (
+          ),
+        )),
+      ),
+       'attributes' => 
+      array (
+      ),
+    )),
+  ),
+  '/var/www/html/app/Http/Requests/Access/Concerns/ValidatesUserAssignment.php' => 
+  array (
+    0 => 
+    \PHPStan\Dependency\ExportedNode\ExportedTraitNode::__set_state(array(
+       'name' => 'App\\Http\\Requests\\Access\\Concerns\\ValidatesUserAssignment',
+       'phpDoc' => 
+      \PHPStan\Dependency\ExportedNode\ExportedPhpDocNode::__set_state(array(
+         'phpDocString' => '/**
+ * Validation rules that keep user creation/editing within the actor\'s authority
+ * (SECURITY.md, least privilege): an actor may only place users in MDAs they can
+ * access, and may only assign roles whose permissions they themselves hold (no
+ * privilege escalation). Holders of cross-mda.view bypass both.
+ */',
+         'namespace' => 'App\\Http\\Requests\\Access\\Concerns',
+         'uses' => 
+        array (
+          'role' => 'App\\Domain\\Access\\Models\\Role',
+          'closure' => 'Closure',
+        ),
+         'constUses' => 
+        array (
+        ),
+      )),
+       'usedTraits' => 
+      array (
+      ),
+       'traitUseAdaptations' => 
+      array (
+      ),
+       'statements' => 
+      array (
+        0 => 
+        \PHPStan\Dependency\ExportedNode\ExportedMethodNode::__set_state(array(
+           'name' => 'accessibleMdaRule',
+           'phpDoc' => NULL,
+           'byRef' => false,
+           'public' => false,
+           'private' => false,
+           'abstract' => false,
+           'final' => false,
+           'static' => false,
+           'returnType' => 'Closure',
+           'parameters' => 
+          array (
+          ),
+           'attributes' => 
+          array (
+          ),
+        )),
+        1 => 
+        \PHPStan\Dependency\ExportedNode\ExportedMethodNode::__set_state(array(
+           'name' => 'assignableRoleRule',
+           'phpDoc' => NULL,
+           'byRef' => false,
+           'public' => false,
+           'private' => false,
+           'abstract' => false,
+           'final' => false,
+           'static' => false,
+           'returnType' => 'Closure',
+           'parameters' => 
+          array (
+          ),
+           'attributes' => 
+          array (
+          ),
+        )),
+      ),
+       'attributes' => 
+      array (
+      ),
+    )),
+  ),
+  '/var/www/html/app/Http/Requests/Access/StoreMdaAccessGrantRequest.php' => 
+  array (
+    0 => 
+    \PHPStan\Dependency\ExportedNode\ExportedClassNode::__set_state(array(
+       'name' => 'App\\Http\\Requests\\Access\\StoreMdaAccessGrantRequest',
+       'phpDoc' => NULL,
+       'abstract' => false,
+       'final' => false,
+       'extends' => 'Illuminate\\Foundation\\Http\\FormRequest',
+       'implements' => 
+      array (
+      ),
+       'usedTraits' => 
+      array (
+      ),
+       'traitUseAdaptations' => 
+      array (
+      ),
+       'statements' => 
+      array (
+        0 => 
+        \PHPStan\Dependency\ExportedNode\ExportedMethodNode::__set_state(array(
+           'name' => 'authorize',
+           'phpDoc' => NULL,
+           'byRef' => false,
+           'public' => true,
+           'private' => false,
+           'abstract' => false,
+           'final' => false,
+           'static' => false,
+           'returnType' => 'bool',
+           'parameters' => 
+          array (
+          ),
+           'attributes' => 
+          array (
+          ),
+        )),
+        1 => 
+        \PHPStan\Dependency\ExportedNode\ExportedMethodNode::__set_state(array(
+           'name' => 'rules',
+           'phpDoc' => 
+          \PHPStan\Dependency\ExportedNode\ExportedPhpDocNode::__set_state(array(
+             'phpDocString' => '/**
+     * @return array<string, mixed>
+     */',
+             'namespace' => 'App\\Http\\Requests\\Access',
+             'uses' => 
+            array (
+              'formrequest' => 'Illuminate\\Foundation\\Http\\FormRequest',
+              'rule' => 'Illuminate\\Validation\\Rule',
+            ),
+             'constUses' => 
+            array (
+            ),
+          )),
+           'byRef' => false,
+           'public' => true,
+           'private' => false,
+           'abstract' => false,
+           'final' => false,
+           'static' => false,
+           'returnType' => 'array',
+           'parameters' => 
+          array (
+          ),
+           'attributes' => 
+          array (
+          ),
+        )),
+      ),
+       'attributes' => 
+      array (
+      ),
+    )),
+  ),
+  '/var/www/html/app/Http/Requests/Access/StoreMdaRequest.php' => 
+  array (
+    0 => 
+    \PHPStan\Dependency\ExportedNode\ExportedClassNode::__set_state(array(
+       'name' => 'App\\Http\\Requests\\Access\\StoreMdaRequest',
+       'phpDoc' => NULL,
+       'abstract' => false,
+       'final' => false,
+       'extends' => 'Illuminate\\Foundation\\Http\\FormRequest',
+       'implements' => 
+      array (
+      ),
+       'usedTraits' => 
+      array (
+      ),
+       'traitUseAdaptations' => 
+      array (
+      ),
+       'statements' => 
+      array (
+        0 => 
+        \PHPStan\Dependency\ExportedNode\ExportedMethodNode::__set_state(array(
+           'name' => 'authorize',
+           'phpDoc' => NULL,
+           'byRef' => false,
+           'public' => true,
+           'private' => false,
+           'abstract' => false,
+           'final' => false,
+           'static' => false,
+           'returnType' => 'bool',
+           'parameters' => 
+          array (
+          ),
+           'attributes' => 
+          array (
+          ),
+        )),
+        1 => 
+        \PHPStan\Dependency\ExportedNode\ExportedMethodNode::__set_state(array(
+           'name' => 'rules',
+           'phpDoc' => 
+          \PHPStan\Dependency\ExportedNode\ExportedPhpDocNode::__set_state(array(
+             'phpDocString' => '/**
+     * @return array<string, mixed>
+     */',
+             'namespace' => 'App\\Http\\Requests\\Access',
+             'uses' => 
+            array (
+              'mdastatus' => 'App\\Domain\\Access\\Enums\\MdaStatus',
+              'mdatype' => 'App\\Domain\\Access\\Enums\\MdaType',
+              'formrequest' => 'Illuminate\\Foundation\\Http\\FormRequest',
+              'rule' => 'Illuminate\\Validation\\Rule',
+            ),
+             'constUses' => 
+            array (
+            ),
+          )),
+           'byRef' => false,
+           'public' => true,
+           'private' => false,
+           'abstract' => false,
+           'final' => false,
+           'static' => false,
+           'returnType' => 'array',
+           'parameters' => 
+          array (
+          ),
+           'attributes' => 
+          array (
+          ),
+        )),
+      ),
+       'attributes' => 
+      array (
+      ),
+    )),
+  ),
+  '/var/www/html/app/Http/Requests/Access/StoreUserRequest.php' => 
+  array (
+    0 => 
+    \PHPStan\Dependency\ExportedNode\ExportedClassNode::__set_state(array(
+       'name' => 'App\\Http\\Requests\\Access\\StoreUserRequest',
+       'phpDoc' => NULL,
+       'abstract' => false,
+       'final' => false,
+       'extends' => 'Illuminate\\Foundation\\Http\\FormRequest',
+       'implements' => 
+      array (
+      ),
+       'usedTraits' => 
+      array (
+        0 => 'App\\Http\\Requests\\Access\\Concerns\\ValidatesUserAssignment',
+      ),
+       'traitUseAdaptations' => 
+      array (
+      ),
+       'statements' => 
+      array (
+        0 => 
+        \PHPStan\Dependency\ExportedNode\ExportedMethodNode::__set_state(array(
+           'name' => 'authorize',
+           'phpDoc' => NULL,
+           'byRef' => false,
+           'public' => true,
+           'private' => false,
+           'abstract' => false,
+           'final' => false,
+           'static' => false,
+           'returnType' => 'bool',
+           'parameters' => 
+          array (
+          ),
+           'attributes' => 
+          array (
+          ),
+        )),
+        1 => 
+        \PHPStan\Dependency\ExportedNode\ExportedMethodNode::__set_state(array(
+           'name' => 'rules',
+           'phpDoc' => 
+          \PHPStan\Dependency\ExportedNode\ExportedPhpDocNode::__set_state(array(
+             'phpDocString' => '/**
+     * @return array<string, mixed>
+     */',
+             'namespace' => 'App\\Http\\Requests\\Access',
+             'uses' => 
+            array (
+              'userstatus' => 'App\\Domain\\Access\\Enums\\UserStatus',
+              'passwordrules' => 'App\\Domain\\Access\\Support\\PasswordRules',
+              'validatesuserassignment' => 'App\\Http\\Requests\\Access\\Concerns\\ValidatesUserAssignment',
+              'formrequest' => 'Illuminate\\Foundation\\Http\\FormRequest',
+              'rule' => 'Illuminate\\Validation\\Rule',
+            ),
+             'constUses' => 
+            array (
+            ),
+          )),
+           'byRef' => false,
+           'public' => true,
+           'private' => false,
+           'abstract' => false,
+           'final' => false,
+           'static' => false,
+           'returnType' => 'array',
+           'parameters' => 
+          array (
+          ),
+           'attributes' => 
+          array (
+          ),
+        )),
+      ),
+       'attributes' => 
+      array (
+      ),
+    )),
+  ),
+  '/var/www/html/app/Http/Requests/Access/UpdateMdaRequest.php' => 
+  array (
+    0 => 
+    \PHPStan\Dependency\ExportedNode\ExportedClassNode::__set_state(array(
+       'name' => 'App\\Http\\Requests\\Access\\UpdateMdaRequest',
+       'phpDoc' => NULL,
+       'abstract' => false,
+       'final' => false,
+       'extends' => 'Illuminate\\Foundation\\Http\\FormRequest',
+       'implements' => 
+      array (
+      ),
+       'usedTraits' => 
+      array (
+      ),
+       'traitUseAdaptations' => 
+      array (
+      ),
+       'statements' => 
+      array (
+        0 => 
+        \PHPStan\Dependency\ExportedNode\ExportedMethodNode::__set_state(array(
+           'name' => 'authorize',
+           'phpDoc' => NULL,
+           'byRef' => false,
+           'public' => true,
+           'private' => false,
+           'abstract' => false,
+           'final' => false,
+           'static' => false,
+           'returnType' => 'bool',
+           'parameters' => 
+          array (
+          ),
+           'attributes' => 
+          array (
+          ),
+        )),
+        1 => 
+        \PHPStan\Dependency\ExportedNode\ExportedMethodNode::__set_state(array(
+           'name' => 'rules',
+           'phpDoc' => 
+          \PHPStan\Dependency\ExportedNode\ExportedPhpDocNode::__set_state(array(
+             'phpDocString' => '/**
+     * @return array<string, mixed>
+     */',
+             'namespace' => 'App\\Http\\Requests\\Access',
+             'uses' => 
+            array (
+              'mdatype' => 'App\\Domain\\Access\\Enums\\MdaType',
+              'formrequest' => 'Illuminate\\Foundation\\Http\\FormRequest',
+              'rule' => 'Illuminate\\Validation\\Rule',
+            ),
+             'constUses' => 
+            array (
+            ),
+          )),
+           'byRef' => false,
+           'public' => true,
+           'private' => false,
+           'abstract' => false,
+           'final' => false,
+           'static' => false,
+           'returnType' => 'array',
+           'parameters' => 
+          array (
+          ),
+           'attributes' => 
+          array (
+          ),
+        )),
+      ),
+       'attributes' => 
+      array (
+      ),
+    )),
+  ),
+  '/var/www/html/app/Http/Requests/Access/UpdateUserRequest.php' => 
+  array (
+    0 => 
+    \PHPStan\Dependency\ExportedNode\ExportedClassNode::__set_state(array(
+       'name' => 'App\\Http\\Requests\\Access\\UpdateUserRequest',
+       'phpDoc' => NULL,
+       'abstract' => false,
+       'final' => false,
+       'extends' => 'Illuminate\\Foundation\\Http\\FormRequest',
+       'implements' => 
+      array (
+      ),
+       'usedTraits' => 
+      array (
+        0 => 'App\\Http\\Requests\\Access\\Concerns\\ValidatesUserAssignment',
+      ),
+       'traitUseAdaptations' => 
+      array (
+      ),
+       'statements' => 
+      array (
+        0 => 
+        \PHPStan\Dependency\ExportedNode\ExportedMethodNode::__set_state(array(
+           'name' => 'authorize',
+           'phpDoc' => NULL,
+           'byRef' => false,
+           'public' => true,
+           'private' => false,
+           'abstract' => false,
+           'final' => false,
+           'static' => false,
+           'returnType' => 'bool',
+           'parameters' => 
+          array (
+          ),
+           'attributes' => 
+          array (
+          ),
+        )),
+        1 => 
+        \PHPStan\Dependency\ExportedNode\ExportedMethodNode::__set_state(array(
+           'name' => 'rules',
+           'phpDoc' => 
+          \PHPStan\Dependency\ExportedNode\ExportedPhpDocNode::__set_state(array(
+             'phpDocString' => '/**
+     * @return array<string, mixed>
+     */',
+             'namespace' => 'App\\Http\\Requests\\Access',
+             'uses' => 
+            array (
+              'userstatus' => 'App\\Domain\\Access\\Enums\\UserStatus',
+              'validatesuserassignment' => 'App\\Http\\Requests\\Access\\Concerns\\ValidatesUserAssignment',
+              'formrequest' => 'Illuminate\\Foundation\\Http\\FormRequest',
+              'rule' => 'Illuminate\\Validation\\Rule',
+            ),
+             'constUses' => 
+            array (
+            ),
+          )),
+           'byRef' => false,
+           'public' => true,
+           'private' => false,
+           'abstract' => false,
+           'final' => false,
+           'static' => false,
+           'returnType' => 'array',
+           'parameters' => 
+          array (
+          ),
+           'attributes' => 
+          array (
+          ),
+        )),
+      ),
+       'attributes' => 
+      array (
+      ),
+    )),
+  ),
+  '/var/www/html/app/Http/Requests/Auth/ChangePasswordRequest.php' => 
+  array (
+    0 => 
+    \PHPStan\Dependency\ExportedNode\ExportedClassNode::__set_state(array(
+       'name' => 'App\\Http\\Requests\\Auth\\ChangePasswordRequest',
+       'phpDoc' => NULL,
+       'abstract' => false,
+       'final' => false,
+       'extends' => 'Illuminate\\Foundation\\Http\\FormRequest',
+       'implements' => 
+      array (
+      ),
+       'usedTraits' => 
+      array (
+      ),
+       'traitUseAdaptations' => 
+      array (
+      ),
+       'statements' => 
+      array (
+        0 => 
+        \PHPStan\Dependency\ExportedNode\ExportedMethodNode::__set_state(array(
+           'name' => 'authorize',
+           'phpDoc' => NULL,
+           'byRef' => false,
+           'public' => true,
+           'private' => false,
+           'abstract' => false,
+           'final' => false,
+           'static' => false,
+           'returnType' => 'bool',
+           'parameters' => 
+          array (
+          ),
+           'attributes' => 
+          array (
+          ),
+        )),
+        1 => 
+        \PHPStan\Dependency\ExportedNode\ExportedMethodNode::__set_state(array(
+           'name' => 'rules',
+           'phpDoc' => 
+          \PHPStan\Dependency\ExportedNode\ExportedPhpDocNode::__set_state(array(
+             'phpDocString' => '/**
+     * @return array<string, mixed>
+     */',
+             'namespace' => 'App\\Http\\Requests\\Auth',
+             'uses' => 
+            array (
+              'passwordrules' => 'App\\Domain\\Access\\Support\\PasswordRules',
+              'formrequest' => 'Illuminate\\Foundation\\Http\\FormRequest',
+            ),
+             'constUses' => 
+            array (
+            ),
+          )),
+           'byRef' => false,
+           'public' => true,
+           'private' => false,
+           'abstract' => false,
+           'final' => false,
+           'static' => false,
+           'returnType' => 'array',
+           'parameters' => 
+          array (
+          ),
+           'attributes' => 
+          array (
+          ),
+        )),
+        2 => 
+        \PHPStan\Dependency\ExportedNode\ExportedMethodNode::__set_state(array(
+           'name' => 'messages',
+           'phpDoc' => 
+          \PHPStan\Dependency\ExportedNode\ExportedPhpDocNode::__set_state(array(
+             'phpDocString' => '/**
+     * @return array<string, string>
+     */',
+             'namespace' => 'App\\Http\\Requests\\Auth',
+             'uses' => 
+            array (
+              'passwordrules' => 'App\\Domain\\Access\\Support\\PasswordRules',
+              'formrequest' => 'Illuminate\\Foundation\\Http\\FormRequest',
+            ),
+             'constUses' => 
+            array (
+            ),
+          )),
+           'byRef' => false,
+           'public' => true,
+           'private' => false,
+           'abstract' => false,
+           'final' => false,
+           'static' => false,
+           'returnType' => 'array',
+           'parameters' => 
+          array (
+          ),
+           'attributes' => 
+          array (
+          ),
+        )),
+      ),
+       'attributes' => 
+      array (
+      ),
+    )),
+  ),
+  '/var/www/html/app/Http/Requests/Auth/LoginRequest.php' => 
+  array (
+    0 => 
+    \PHPStan\Dependency\ExportedNode\ExportedClassNode::__set_state(array(
+       'name' => 'App\\Http\\Requests\\Auth\\LoginRequest',
+       'phpDoc' => NULL,
+       'abstract' => false,
+       'final' => false,
+       'extends' => 'Illuminate\\Foundation\\Http\\FormRequest',
+       'implements' => 
+      array (
+      ),
+       'usedTraits' => 
+      array (
+      ),
+       'traitUseAdaptations' => 
+      array (
+      ),
+       'statements' => 
+      array (
+        0 => 
+        \PHPStan\Dependency\ExportedNode\ExportedMethodNode::__set_state(array(
+           'name' => 'authorize',
+           'phpDoc' => NULL,
+           'byRef' => false,
+           'public' => true,
+           'private' => false,
+           'abstract' => false,
+           'final' => false,
+           'static' => false,
+           'returnType' => 'bool',
+           'parameters' => 
+          array (
+          ),
+           'attributes' => 
+          array (
+          ),
+        )),
+        1 => 
+        \PHPStan\Dependency\ExportedNode\ExportedMethodNode::__set_state(array(
+           'name' => 'rules',
+           'phpDoc' => 
+          \PHPStan\Dependency\ExportedNode\ExportedPhpDocNode::__set_state(array(
+             'phpDocString' => '/**
+     * @return array<string, mixed>
+     */',
+             'namespace' => 'App\\Http\\Requests\\Auth',
+             'uses' => 
+            array (
+              'formrequest' => 'Illuminate\\Foundation\\Http\\FormRequest',
+            ),
+             'constUses' => 
+            array (
+            ),
+          )),
+           'byRef' => false,
+           'public' => true,
+           'private' => false,
+           'abstract' => false,
+           'final' => false,
+           'static' => false,
+           'returnType' => 'array',
+           'parameters' => 
+          array (
+          ),
+           'attributes' => 
+          array (
+          ),
+        )),
+      ),
+       'attributes' => 
+      array (
+      ),
+    )),
+  ),
+  '/var/www/html/app/Http/Requests/Auth/MfaCodeRequest.php' => 
+  array (
+    0 => 
+    \PHPStan\Dependency\ExportedNode\ExportedClassNode::__set_state(array(
+       'name' => 'App\\Http\\Requests\\Auth\\MfaCodeRequest',
+       'phpDoc' => 
+      \PHPStan\Dependency\ExportedNode\ExportedPhpDocNode::__set_state(array(
+         'phpDocString' => '/**
+ * A single MFA code field, used for verify, challenge and disable. The value may
+ * be a 6-digit TOTP code or a one-time recovery code (the controller decides).
+ */',
+         'namespace' => 'App\\Http\\Requests\\Auth',
+         'uses' => 
+        array (
+          'formrequest' => 'Illuminate\\Foundation\\Http\\FormRequest',
+        ),
+         'constUses' => 
+        array (
+        ),
+      )),
+       'abstract' => false,
+       'final' => false,
+       'extends' => 'Illuminate\\Foundation\\Http\\FormRequest',
+       'implements' => 
+      array (
+      ),
+       'usedTraits' => 
+      array (
+      ),
+       'traitUseAdaptations' => 
+      array (
+      ),
+       'statements' => 
+      array (
+        0 => 
+        \PHPStan\Dependency\ExportedNode\ExportedMethodNode::__set_state(array(
+           'name' => 'authorize',
+           'phpDoc' => NULL,
+           'byRef' => false,
+           'public' => true,
+           'private' => false,
+           'abstract' => false,
+           'final' => false,
+           'static' => false,
+           'returnType' => 'bool',
+           'parameters' => 
+          array (
+          ),
+           'attributes' => 
+          array (
+          ),
+        )),
+        1 => 
+        \PHPStan\Dependency\ExportedNode\ExportedMethodNode::__set_state(array(
+           'name' => 'rules',
+           'phpDoc' => 
+          \PHPStan\Dependency\ExportedNode\ExportedPhpDocNode::__set_state(array(
+             'phpDocString' => '/**
+     * @return array<string, mixed>
+     */',
+             'namespace' => 'App\\Http\\Requests\\Auth',
+             'uses' => 
+            array (
+              'formrequest' => 'Illuminate\\Foundation\\Http\\FormRequest',
+            ),
+             'constUses' => 
+            array (
+            ),
+          )),
+           'byRef' => false,
+           'public' => true,
+           'private' => false,
+           'abstract' => false,
+           'final' => false,
+           'static' => false,
+           'returnType' => 'array',
+           'parameters' => 
+          array (
+          ),
+           'attributes' => 
+          array (
+          ),
+        )),
+      ),
+       'attributes' => 
+      array (
+      ),
+    )),
+  ),
+  '/var/www/html/app/Http/Resources/MdaResource.php' => 
+  array (
+    0 => 
+    \PHPStan\Dependency\ExportedNode\ExportedClassNode::__set_state(array(
+       'name' => 'App\\Http\\Resources\\MdaResource',
+       'phpDoc' => 
+      \PHPStan\Dependency\ExportedNode\ExportedPhpDocNode::__set_state(array(
+         'phpDocString' => '/**
+ * @mixin Mda
+ */',
+         'namespace' => 'App\\Http\\Resources',
+         'uses' => 
+        array (
+          'mda' => 'App\\Domain\\Access\\Models\\Mda',
+          'request' => 'Illuminate\\Http\\Request',
+          'jsonresource' => 'Illuminate\\Http\\Resources\\Json\\JsonResource',
+        ),
+         'constUses' => 
+        array (
+        ),
+      )),
+       'abstract' => false,
+       'final' => false,
+       'extends' => 'Illuminate\\Http\\Resources\\Json\\JsonResource',
+       'implements' => 
+      array (
+      ),
+       'usedTraits' => 
+      array (
+      ),
+       'traitUseAdaptations' => 
+      array (
+      ),
+       'statements' => 
+      array (
+        0 => 
+        \PHPStan\Dependency\ExportedNode\ExportedMethodNode::__set_state(array(
+           'name' => 'toArray',
+           'phpDoc' => 
+          \PHPStan\Dependency\ExportedNode\ExportedPhpDocNode::__set_state(array(
+             'phpDocString' => '/**
+     * @return array<string, mixed>
+     */',
+             'namespace' => 'App\\Http\\Resources',
+             'uses' => 
+            array (
+              'mda' => 'App\\Domain\\Access\\Models\\Mda',
+              'request' => 'Illuminate\\Http\\Request',
+              'jsonresource' => 'Illuminate\\Http\\Resources\\Json\\JsonResource',
+            ),
+             'constUses' => 
+            array (
+            ),
+          )),
+           'byRef' => false,
+           'public' => true,
+           'private' => false,
+           'abstract' => false,
+           'final' => false,
+           'static' => false,
+           'returnType' => 'array',
+           'parameters' => 
+          array (
+            0 => 
+            \PHPStan\Dependency\ExportedNode\ExportedParameterNode::__set_state(array(
+               'name' => 'request',
+               'type' => 'Illuminate\\Http\\Request',
+               'byRef' => false,
+               'variadic' => false,
+               'hasDefault' => false,
+               'attributes' => 
+              array (
+              ),
+               'phpDoc' => NULL,
+               'flags' => 0,
+            )),
+          ),
+           'attributes' => 
+          array (
+          ),
+        )),
+      ),
+       'attributes' => 
+      array (
+      ),
+    )),
+  ),
+  '/var/www/html/app/Http/Resources/UserResource.php' => 
+  array (
+    0 => 
+    \PHPStan\Dependency\ExportedNode\ExportedClassNode::__set_state(array(
+       'name' => 'App\\Http\\Resources\\UserResource',
+       'phpDoc' => 
+      \PHPStan\Dependency\ExportedNode\ExportedPhpDocNode::__set_state(array(
+         'phpDocString' => '/**
+ * Serializes the authenticated user with their role, permissions and MDA.
+ * JSON keys are snake_case per CONVENTIONS.md. Never exposes password/MFA secret.
+ *
+ * @mixin User
+ */',
+         'namespace' => 'App\\Http\\Resources',
+         'uses' => 
+        array (
+          'user' => 'App\\Domain\\Access\\Models\\User',
+          'request' => 'Illuminate\\Http\\Request',
+          'jsonresource' => 'Illuminate\\Http\\Resources\\Json\\JsonResource',
+        ),
+         'constUses' => 
+        array (
+        ),
+      )),
+       'abstract' => false,
+       'final' => false,
+       'extends' => 'Illuminate\\Http\\Resources\\Json\\JsonResource',
+       'implements' => 
+      array (
+      ),
+       'usedTraits' => 
+      array (
+      ),
+       'traitUseAdaptations' => 
+      array (
+      ),
+       'statements' => 
+      array (
+        0 => 
+        \PHPStan\Dependency\ExportedNode\ExportedMethodNode::__set_state(array(
+           'name' => 'toArray',
+           'phpDoc' => 
+          \PHPStan\Dependency\ExportedNode\ExportedPhpDocNode::__set_state(array(
+             'phpDocString' => '/**
+     * @return array<string, mixed>
+     */',
+             'namespace' => 'App\\Http\\Resources',
+             'uses' => 
+            array (
+              'user' => 'App\\Domain\\Access\\Models\\User',
+              'request' => 'Illuminate\\Http\\Request',
+              'jsonresource' => 'Illuminate\\Http\\Resources\\Json\\JsonResource',
+            ),
+             'constUses' => 
+            array (
+            ),
+          )),
+           'byRef' => false,
+           'public' => true,
+           'private' => false,
+           'abstract' => false,
+           'final' => false,
+           'static' => false,
+           'returnType' => 'array',
+           'parameters' => 
+          array (
+            0 => 
+            \PHPStan\Dependency\ExportedNode\ExportedParameterNode::__set_state(array(
+               'name' => 'request',
+               'type' => 'Illuminate\\Http\\Request',
+               'byRef' => false,
+               'variadic' => false,
+               'hasDefault' => false,
+               'attributes' => 
+              array (
+              ),
+               'phpDoc' => NULL,
+               'flags' => 0,
+            )),
+          ),
+           'attributes' => 
+          array (
+          ),
+        )),
+      ),
+       'attributes' => 
+      array (
+      ),
+    )),
+  ),
+  '/var/www/html/app/Providers/AppServiceProvider.php' => 
+  array (
+    0 => 
+    \PHPStan\Dependency\ExportedNode\ExportedClassNode::__set_state(array(
+       'name' => 'App\\Providers\\AppServiceProvider',
+       'phpDoc' => NULL,
+       'abstract' => false,
+       'final' => false,
+       'extends' => 'Illuminate\\Support\\ServiceProvider',
+       'implements' => 
+      array (
+      ),
+       'usedTraits' => 
+      array (
+      ),
+       'traitUseAdaptations' => 
+      array (
+      ),
+       'statements' => 
+      array (
+        0 => 
+        \PHPStan\Dependency\ExportedNode\ExportedMethodNode::__set_state(array(
+           'name' => 'register',
+           'phpDoc' => 
+          \PHPStan\Dependency\ExportedNode\ExportedPhpDocNode::__set_state(array(
+             'phpDocString' => '/**
+     * Register any application services.
+     */',
+             'namespace' => 'App\\Providers',
+             'uses' => 
+            array (
+              'auditeventsubscriber' => 'App\\Domain\\Audit\\Listeners\\AuditEventSubscriber',
+              'limit' => 'Illuminate\\Cache\\RateLimiting\\Limit',
+              'request' => 'Illuminate\\Http\\Request',
+              'event' => 'Illuminate\\Support\\Facades\\Event',
+              'ratelimiter' => 'Illuminate\\Support\\Facades\\RateLimiter',
+              'serviceprovider' => 'Illuminate\\Support\\ServiceProvider',
+              'str' => 'Illuminate\\Support\\Str',
+            ),
+             'constUses' => 
+            array (
+            ),
+          )),
+           'byRef' => false,
+           'public' => true,
+           'private' => false,
+           'abstract' => false,
+           'final' => false,
+           'static' => false,
+           'returnType' => 'void',
+           'parameters' => 
+          array (
+          ),
+           'attributes' => 
+          array (
+          ),
+        )),
+        1 => 
+        \PHPStan\Dependency\ExportedNode\ExportedMethodNode::__set_state(array(
+           'name' => 'boot',
+           'phpDoc' => 
+          \PHPStan\Dependency\ExportedNode\ExportedPhpDocNode::__set_state(array(
+             'phpDocString' => '/**
+     * Bootstrap any application services.
+     */',
+             'namespace' => 'App\\Providers',
+             'uses' => 
+            array (
+              'auditeventsubscriber' => 'App\\Domain\\Audit\\Listeners\\AuditEventSubscriber',
+              'limit' => 'Illuminate\\Cache\\RateLimiting\\Limit',
+              'request' => 'Illuminate\\Http\\Request',
+              'event' => 'Illuminate\\Support\\Facades\\Event',
+              'ratelimiter' => 'Illuminate\\Support\\Facades\\RateLimiter',
+              'serviceprovider' => 'Illuminate\\Support\\ServiceProvider',
+              'str' => 'Illuminate\\Support\\Str',
+            ),
+             'constUses' => 
+            array (
+            ),
+          )),
+           'byRef' => false,
+           'public' => true,
+           'private' => false,
+           'abstract' => false,
+           'final' => false,
+           'static' => false,
+           'returnType' => 'void',
+           'parameters' => 
+          array (
+          ),
+           'attributes' => 
+          array (
+          ),
+        )),
+      ),
+       'attributes' => 
+      array (
+      ),
+    )),
+  ),
+  '/var/www/html/app/Support/ApiResponse.php' => 
+  array (
+    0 => 
+    \PHPStan\Dependency\ExportedNode\ExportedClassNode::__set_state(array(
+       'name' => 'App\\Support\\ApiResponse',
+       'phpDoc' => 
+      \PHPStan\Dependency\ExportedNode\ExportedPhpDocNode::__set_state(array(
+         'phpDocString' => '/**
+ * Central factory for the SP-MIS API response envelopes.
+ *
+ * Every endpoint MUST return through here so the success/error shapes stay
+ * identical across the whole API (see docs/CONVENTIONS.md §4). JSON keys are
+ * snake_case to match the database and Eloquent models.
+ *
+ *   success: { "data": {...}, "meta": {...} }
+ *   error:   { "error": { "code", "message", "details": [ {"field","message"} ] } }
+ */',
+         'namespace' => 'App\\Support',
+         'uses' => 
+        array (
+          'jsonresponse' => 'Illuminate\\Http\\JsonResponse',
+        ),
+         'constUses' => 
+        array (
+        ),
+      )),
+       'abstract' => false,
+       'final' => true,
+       'extends' => NULL,
+       'implements' => 
+      array (
+      ),
+       'usedTraits' => 
+      array (
+      ),
+       'traitUseAdaptations' => 
+      array (
+      ),
+       'statements' => 
+      array (
+        0 => 
+        \PHPStan\Dependency\ExportedNode\ExportedMethodNode::__set_state(array(
+           'name' => 'success',
+           'phpDoc' => 
+          \PHPStan\Dependency\ExportedNode\ExportedPhpDocNode::__set_state(array(
+             'phpDocString' => '/**
+     * @param  array<string, mixed>  $meta
+     */',
+             'namespace' => 'App\\Support',
+             'uses' => 
+            array (
+              'jsonresponse' => 'Illuminate\\Http\\JsonResponse',
+            ),
+             'constUses' => 
+            array (
+            ),
+          )),
+           'byRef' => false,
+           'public' => true,
+           'private' => false,
+           'abstract' => false,
+           'final' => false,
+           'static' => true,
+           'returnType' => 'Illuminate\\Http\\JsonResponse',
+           'parameters' => 
+          array (
+            0 => 
+            \PHPStan\Dependency\ExportedNode\ExportedParameterNode::__set_state(array(
+               'name' => 'data',
+               'type' => '?mixed',
+               'byRef' => false,
+               'variadic' => false,
+               'hasDefault' => true,
+               'attributes' => 
+              array (
+              ),
+               'phpDoc' => NULL,
+               'flags' => 0,
+            )),
+            1 => 
+            \PHPStan\Dependency\ExportedNode\ExportedParameterNode::__set_state(array(
+               'name' => 'meta',
+               'type' => 'array',
+               'byRef' => false,
+               'variadic' => false,
+               'hasDefault' => true,
+               'attributes' => 
+              array (
+              ),
+               'phpDoc' => NULL,
+               'flags' => 0,
+            )),
+            2 => 
+            \PHPStan\Dependency\ExportedNode\ExportedParameterNode::__set_state(array(
+               'name' => 'status',
+               'type' => 'int',
+               'byRef' => false,
+               'variadic' => false,
+               'hasDefault' => true,
+               'attributes' => 
+              array (
+              ),
+               'phpDoc' => NULL,
+               'flags' => 0,
+            )),
+          ),
+           'attributes' => 
+          array (
+          ),
+        )),
+        1 => 
+        \PHPStan\Dependency\ExportedNode\ExportedMethodNode::__set_state(array(
+           'name' => 'error',
+           'phpDoc' => 
+          \PHPStan\Dependency\ExportedNode\ExportedPhpDocNode::__set_state(array(
+             'phpDocString' => '/**
+     * @param  array<int, array<string, mixed>>  $details
+     */',
+             'namespace' => 'App\\Support',
+             'uses' => 
+            array (
+              'jsonresponse' => 'Illuminate\\Http\\JsonResponse',
+            ),
+             'constUses' => 
+            array (
+            ),
+          )),
+           'byRef' => false,
+           'public' => true,
+           'private' => false,
+           'abstract' => false,
+           'final' => false,
+           'static' => true,
+           'returnType' => 'Illuminate\\Http\\JsonResponse',
+           'parameters' => 
+          array (
+            0 => 
+            \PHPStan\Dependency\ExportedNode\ExportedParameterNode::__set_state(array(
+               'name' => 'code',
+               'type' => 'string',
+               'byRef' => false,
+               'variadic' => false,
+               'hasDefault' => false,
+               'attributes' => 
+              array (
+              ),
+               'phpDoc' => NULL,
+               'flags' => 0,
+            )),
+            1 => 
+            \PHPStan\Dependency\ExportedNode\ExportedParameterNode::__set_state(array(
+               'name' => 'message',
+               'type' => 'string',
+               'byRef' => false,
+               'variadic' => false,
+               'hasDefault' => false,
+               'attributes' => 
+              array (
+              ),
+               'phpDoc' => NULL,
+               'flags' => 0,
+            )),
+            2 => 
+            \PHPStan\Dependency\ExportedNode\ExportedParameterNode::__set_state(array(
+               'name' => 'details',
+               'type' => 'array',
+               'byRef' => false,
+               'variadic' => false,
+               'hasDefault' => true,
+               'attributes' => 
+              array (
+              ),
+               'phpDoc' => NULL,
+               'flags' => 0,
+            )),
+            3 => 
+            \PHPStan\Dependency\ExportedNode\ExportedParameterNode::__set_state(array(
+               'name' => 'status',
+               'type' => 'int',
+               'byRef' => false,
+               'variadic' => false,
+               'hasDefault' => true,
+               'attributes' => 
+              array (
+              ),
+               'phpDoc' => NULL,
+               'flags' => 0,
+            )),
+          ),
+           'attributes' => 
+          array (
+          ),
+        )),
+      ),
+       'attributes' => 
+      array (
+      ),
+    )),
+  ),
+); },
+];

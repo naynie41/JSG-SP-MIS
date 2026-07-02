@@ -22,16 +22,17 @@ class AccessController extends Controller
      */
     public function permissions(): JsonResponse
     {
-        $grouped = Permission::query()
-            ->orderBy('module')
-            ->orderBy('action')
-            ->get()
-            ->groupBy('module')
-            ->map(fn ($items) => $items->map(fn (Permission $p) => [
-                'key' => $p->key,
-                'action' => $p->action->value,
-                'description' => $p->description,
-            ])->values());
+        $permissions = Permission::query()->orderBy('module')->orderBy('action')->get();
+
+        /** @var array<string, list<array{key: string, action: string, description: string|null}>> $grouped */
+        $grouped = [];
+        foreach ($permissions as $permission) {
+            $grouped[$permission->module][] = [
+                'key' => $permission->key,
+                'action' => $permission->action->value,
+                'description' => $permission->description,
+            ];
+        }
 
         return ApiResponse::success(['modules' => $grouped]);
     }
