@@ -2,7 +2,7 @@
 
 // odsl-/var/www/html/app/Http/Requests/Registry/StoreBeneficiaryRequest.php-PHPStan\BetterReflection\Reflection\ReflectionClass-App\Http\Requests\Registry\StoreBeneficiaryRequest
 return \PHPStan\Cache\CacheItem::__set_state(array(
-   'variableKey' => 'v2-6.70.0.1-8.3.31-fb6b43d74a6b2f841a5bc2de1d09c859b5798c283f5612815749734fa9830ea1',
+   'variableKey' => 'v2-6.70.0.1-8.3.31-d9b73a15b5aa4dd98d3bf37f5299c31c63319ce240436326407235d270f505a2',
    'data' => 
   array (
     'locatedSource' => 
@@ -26,13 +26,14 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
  * Manual individual registration (PRD FR-REG-01/04/05). Mandatory identity fields
  * and formats are enforced here; invalid input is rejected with the standard
  * validation-error envelope. Ownership and provenance are set by the controller,
- * never accepted from the client.
+ * never accepted from the client. Rules are shared with bulk import so both paths
+ * validate identically (see BeneficiaryRules).
  */',
     'attributes' => 
     array (
     ),
-    'startLine' => 19,
-    'endLine' => 71,
+    'startLine' => 18,
+    'endLine' => 53,
     'startColumn' => 1,
     'endColumn' => 1,
     'parentClassName' => 'Illuminate\\Foundation\\Http\\FormRequest',
@@ -70,8 +71,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         array (
         ),
         'docComment' => NULL,
-        'startLine' => 21,
-        'endLine' => 24,
+        'startLine' => 20,
+        'endLine' => 23,
         'startColumn' => 5,
         'endColumn' => 5,
         'couldThrow' => false,
@@ -108,8 +109,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
  * Normalise identifiers before validation so digit rules and uniqueness see
  * clean values (mirrors the model\'s on-save normalisation, CONVENTIONS.md §6).
  */',
-        'startLine' => 30,
-        'endLine' => 37,
+        'startLine' => 29,
+        'endLine' => 36,
         'startColumn' => 5,
         'endColumn' => 5,
         'couldThrow' => false,
@@ -145,8 +146,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         'docComment' => '/**
  * @return array<string, mixed>
  */',
-        'startLine' => 42,
-        'endLine' => 59,
+        'startLine' => 41,
+        'endLine' => 44,
         'startColumn' => 5,
         'endColumn' => 5,
         'couldThrow' => false,
@@ -182,8 +183,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         'docComment' => '/**
  * @return array<string, string>
  */',
-        'startLine' => 64,
-        'endLine' => 70,
+        'startLine' => 49,
+        'endLine' => 52,
         'startColumn' => 5,
         'endColumn' => 5,
         'couldThrow' => false,

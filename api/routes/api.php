@@ -13,6 +13,7 @@ use App\Http\Controllers\Api\V1\MfaController;
 use App\Http\Controllers\Api\V1\Registry\BeneficiaryController;
 use App\Http\Controllers\Api\V1\Registry\HouseholdController;
 use App\Http\Controllers\Api\V1\Registry\HouseholdMemberController;
+use App\Http\Controllers\Api\V1\Registry\ImportBatchController;
 use App\Http\Controllers\Api\V1\Registry\OwnershipTransferController;
 use Illuminate\Support\Facades\Route;
 
@@ -116,9 +117,19 @@ Route::prefix('v1')->group(function (): void {
         | BeneficiaryPolicy; the lookup/serve seam is a distinct, permission-gated
         | cross-MDA path that bypasses the owner scope but exposes reveal fields only.
         */
-        // Declared before the wildcard so `lookup` is never treated as an id.
+        // Declared before the wildcard so `lookup`/`imports` are never treated as ids.
         Route::get('/beneficiaries/lookup', [BeneficiaryController::class, 'lookup'])
             ->middleware('permission:beneficiary-lookup.view')->name('beneficiaries.lookup');
+
+        // Bulk import (Excel/CSV) — upload → preview → confirm → commit (FR-REG-02/06).
+        Route::get('/beneficiaries/imports', [ImportBatchController::class, 'index'])
+            ->middleware('permission:beneficiary.view')->name('beneficiaries.imports.index');
+        Route::post('/beneficiaries/imports', [ImportBatchController::class, 'store'])
+            ->middleware('permission:beneficiary.create')->name('beneficiaries.imports.store');
+        Route::get('/beneficiaries/imports/{batch}', [ImportBatchController::class, 'show'])
+            ->middleware('permission:beneficiary.view')->name('beneficiaries.imports.show');
+        Route::post('/beneficiaries/imports/{batch}/confirm', [ImportBatchController::class, 'confirm'])
+            ->middleware('permission:beneficiary.create')->name('beneficiaries.imports.confirm');
         Route::get('/beneficiaries', [BeneficiaryController::class, 'index'])
             ->middleware('permission:beneficiary.view')->name('beneficiaries.index');
         Route::post('/beneficiaries', [BeneficiaryController::class, 'store'])

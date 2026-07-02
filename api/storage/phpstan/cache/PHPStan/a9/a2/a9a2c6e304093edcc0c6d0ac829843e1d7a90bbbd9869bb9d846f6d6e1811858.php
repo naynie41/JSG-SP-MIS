@@ -12,11 +12,9 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
          'namespace' => 'App\\Http\\Requests\\Registry',
          'uses' => 
         array (
-          'gender' => 'App\\Domain\\Registry\\Enums\\Gender',
-          'lga' => 'App\\Domain\\Registry\\Enums\\Lga',
           'beneficiary' => 'App\\Domain\\Registry\\Models\\Beneficiary',
+          'beneficiaryrules' => 'App\\Domain\\Registry\\Support\\BeneficiaryRules',
           'formrequest' => 'Illuminate\\Foundation\\Http\\FormRequest',
-          'rule' => 'Illuminate\\Validation\\Rule',
         ),
          'className' => 'App\\Http\\Requests\\Registry\\StoreBeneficiaryRequest',
          'functionName' => NULL,
@@ -39,11 +37,9 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
          'namespace' => 'App\\Http\\Requests\\Registry',
          'uses' => 
         array (
-          'gender' => 'App\\Domain\\Registry\\Enums\\Gender',
-          'lga' => 'App\\Domain\\Registry\\Enums\\Lga',
           'beneficiary' => 'App\\Domain\\Registry\\Models\\Beneficiary',
+          'beneficiaryrules' => 'App\\Domain\\Registry\\Support\\BeneficiaryRules',
           'formrequest' => 'Illuminate\\Foundation\\Http\\FormRequest',
-          'rule' => 'Illuminate\\Validation\\Rule',
         ),
          'className' => 'App\\Http\\Requests\\Registry\\StoreBeneficiaryRequest',
          'functionName' => 'authorize',
@@ -55,11 +51,9 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
            'namespace' => 'App\\Http\\Requests\\Registry',
            'uses' => 
           array (
-            'gender' => 'App\\Domain\\Registry\\Enums\\Gender',
-            'lga' => 'App\\Domain\\Registry\\Enums\\Lga',
             'beneficiary' => 'App\\Domain\\Registry\\Models\\Beneficiary',
+            'beneficiaryrules' => 'App\\Domain\\Registry\\Support\\BeneficiaryRules',
             'formrequest' => 'Illuminate\\Foundation\\Http\\FormRequest',
-            'rule' => 'Illuminate\\Validation\\Rule',
           ),
            'className' => 'App\\Http\\Requests\\Registry\\StoreBeneficiaryRequest',
            'functionName' => NULL,
@@ -92,11 +86,9 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
          'namespace' => 'App\\Http\\Requests\\Registry',
          'uses' => 
         array (
-          'gender' => 'App\\Domain\\Registry\\Enums\\Gender',
-          'lga' => 'App\\Domain\\Registry\\Enums\\Lga',
           'beneficiary' => 'App\\Domain\\Registry\\Models\\Beneficiary',
+          'beneficiaryrules' => 'App\\Domain\\Registry\\Support\\BeneficiaryRules',
           'formrequest' => 'Illuminate\\Foundation\\Http\\FormRequest',
-          'rule' => 'Illuminate\\Validation\\Rule',
         ),
          'className' => 'App\\Http\\Requests\\Registry\\StoreBeneficiaryRequest',
          'functionName' => 'prepareForValidation',
@@ -108,11 +100,9 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
            'namespace' => 'App\\Http\\Requests\\Registry',
            'uses' => 
           array (
-            'gender' => 'App\\Domain\\Registry\\Enums\\Gender',
-            'lga' => 'App\\Domain\\Registry\\Enums\\Lga',
             'beneficiary' => 'App\\Domain\\Registry\\Models\\Beneficiary',
+            'beneficiaryrules' => 'App\\Domain\\Registry\\Support\\BeneficiaryRules',
             'formrequest' => 'Illuminate\\Foundation\\Http\\FormRequest',
-            'rule' => 'Illuminate\\Validation\\Rule',
           ),
            'className' => 'App\\Http\\Requests\\Registry\\StoreBeneficiaryRequest',
            'functionName' => NULL,
@@ -145,11 +135,9 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
          'namespace' => 'App\\Http\\Requests\\Registry',
          'uses' => 
         array (
-          'gender' => 'App\\Domain\\Registry\\Enums\\Gender',
-          'lga' => 'App\\Domain\\Registry\\Enums\\Lga',
           'beneficiary' => 'App\\Domain\\Registry\\Models\\Beneficiary',
+          'beneficiaryrules' => 'App\\Domain\\Registry\\Support\\BeneficiaryRules',
           'formrequest' => 'Illuminate\\Foundation\\Http\\FormRequest',
-          'rule' => 'Illuminate\\Validation\\Rule',
         ),
          'className' => 'App\\Http\\Requests\\Registry\\StoreBeneficiaryRequest',
          'functionName' => 'rules',
@@ -161,11 +149,9 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
            'namespace' => 'App\\Http\\Requests\\Registry',
            'uses' => 
           array (
-            'gender' => 'App\\Domain\\Registry\\Enums\\Gender',
-            'lga' => 'App\\Domain\\Registry\\Enums\\Lga',
             'beneficiary' => 'App\\Domain\\Registry\\Models\\Beneficiary',
+            'beneficiaryrules' => 'App\\Domain\\Registry\\Support\\BeneficiaryRules',
             'formrequest' => 'Illuminate\\Foundation\\Http\\FormRequest',
-            'rule' => 'Illuminate\\Validation\\Rule',
           ),
            'className' => 'App\\Http\\Requests\\Registry\\StoreBeneficiaryRequest',
            'functionName' => NULL,
@@ -198,11 +184,9 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
          'namespace' => 'App\\Http\\Requests\\Registry',
          'uses' => 
         array (
-          'gender' => 'App\\Domain\\Registry\\Enums\\Gender',
-          'lga' => 'App\\Domain\\Registry\\Enums\\Lga',
           'beneficiary' => 'App\\Domain\\Registry\\Models\\Beneficiary',
+          'beneficiaryrules' => 'App\\Domain\\Registry\\Support\\BeneficiaryRules',
           'formrequest' => 'Illuminate\\Foundation\\Http\\FormRequest',
-          'rule' => 'Illuminate\\Validation\\Rule',
         ),
          'className' => 'App\\Http\\Requests\\Registry\\StoreBeneficiaryRequest',
          'functionName' => 'messages',
@@ -214,11 +198,9 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
            'namespace' => 'App\\Http\\Requests\\Registry',
            'uses' => 
           array (
-            'gender' => 'App\\Domain\\Registry\\Enums\\Gender',
-            'lga' => 'App\\Domain\\Registry\\Enums\\Lga',
             'beneficiary' => 'App\\Domain\\Registry\\Models\\Beneficiary',
+            'beneficiaryrules' => 'App\\Domain\\Registry\\Support\\BeneficiaryRules',
             'formrequest' => 'Illuminate\\Foundation\\Http\\FormRequest',
-            'rule' => 'Illuminate\\Validation\\Rule',
           ),
            'className' => 'App\\Http\\Requests\\Registry\\StoreBeneficiaryRequest',
            'functionName' => NULL,
@@ -249,7 +231,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
     ),
     1 => 
     array (
-      '/var/www/html/app/Http/Requests/Registry/StoreBeneficiaryRequest.php' => 'fb6b43d74a6b2f841a5bc2de1d09c859b5798c283f5612815749734fa9830ea1',
+      '/var/www/html/app/Http/Requests/Registry/StoreBeneficiaryRequest.php' => 'd9b73a15b5aa4dd98d3bf37f5299c31c63319ce240436326407235d270f505a2',
     ),
   ),
 ));

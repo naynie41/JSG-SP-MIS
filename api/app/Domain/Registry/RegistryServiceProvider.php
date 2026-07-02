@@ -10,8 +10,10 @@ use App\Domain\Registry\Contracts\BeneficiaryRouter;
 use App\Domain\Registry\Contracts\DuplicateChecker;
 use App\Domain\Registry\Models\Beneficiary;
 use App\Domain\Registry\Models\Household;
+use App\Domain\Registry\Models\ImportBatch;
 use App\Domain\Registry\Policies\BeneficiaryPolicy;
 use App\Domain\Registry\Policies\HouseholdPolicy;
+use App\Domain\Registry\Policies\ImportBatchPolicy;
 use App\Domain\Registry\Services\NullBeneficiaryRouter;
 use App\Domain\Registry\Services\NullDuplicateChecker;
 use Illuminate\Support\Facades\Gate;
@@ -38,6 +40,7 @@ class RegistryServiceProvider extends ServiceProvider
         $this->registerPermissions($this->app->make(PermissionRegistry::class));
         Gate::policy(Beneficiary::class, BeneficiaryPolicy::class);
         Gate::policy(Household::class, HouseholdPolicy::class);
+        Gate::policy(ImportBatch::class, ImportBatchPolicy::class);
     }
 
     private function registerPermissions(PermissionRegistry $registry): void

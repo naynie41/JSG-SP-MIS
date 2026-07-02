@@ -10,6 +10,7 @@ RUN chmod +x /usr/local/bin/install-php-extensions && \
         sockets \
         intl \
         zip \
+        gd \
         bcmath \
         pcntl \
         opcache \

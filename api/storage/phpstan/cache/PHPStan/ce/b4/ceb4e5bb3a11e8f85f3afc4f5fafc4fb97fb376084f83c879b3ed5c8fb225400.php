@@ -1177,7 +1177,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
     ),
     '/var/www/html/app/Domain/Registry/RegistryServiceProvider.php' => 
     array (
-      0 => '593e55b45dbe2b358a7037f8880ff09d8b475ca7769ccdf1be53f06f7b718554',
+      0 => '284627c9951ccbf5d8aed76809e2abb535afe42b929c5138c5b3858f6349dec2',
       1 => 
       array (
         0 => 'app\\domain\\registry\\registryserviceprovider',
@@ -1439,7 +1439,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
     ),
     '/var/www/html/app/Http/Requests/Registry/StoreBeneficiaryRequest.php' => 
     array (
-      0 => 'fb6b43d74a6b2f841a5bc2de1d09c859b5798c283f5612815749734fa9830ea1',
+      0 => 'd9b73a15b5aa4dd98d3bf37f5299c31c63319ce240436326407235d270f505a2',
       1 => 
       array (
         0 => 'app\\http\\requests\\registry\\storebeneficiaryrequest',
@@ -1641,6 +1641,224 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
       2 => 
       array (
         0 => 'app\\http\\resources\\toarray',
+      ),
+      3 => 
+      array (
+      ),
+    ),
+    '/var/www/html/app/Domain/Registry/Enums/ImportStatus.php' => 
+    array (
+      0 => 'eba19626b5869f30aa8bb267c0aa2a97f16ffe33b3f0b9b278cf3c628f8b6f5a',
+      1 => 
+      array (
+        0 => 'app\\domain\\registry\\enums\\importstatus',
+      ),
+      2 => 
+      array (
+      ),
+      3 => 
+      array (
+      ),
+    ),
+    '/var/www/html/app/Domain/Registry/Imports/ImportRowValidator.php' => 
+    array (
+      0 => '4b9cd3a7db3904c03bbb28845ca5b9a22db37908f162717ace54e63d2c63f790',
+      1 => 
+      array (
+        0 => 'app\\domain\\registry\\imports\\importrowvalidator',
+      ),
+      2 => 
+      array (
+        0 => 'app\\domain\\registry\\imports\\validate',
+        1 => 'app\\domain\\registry\\imports\\normalise',
+      ),
+      3 => 
+      array (
+      ),
+    ),
+    '/var/www/html/app/Domain/Registry/Imports/SpreadsheetReader.php' => 
+    array (
+      0 => 'fcd2abdccef905df4648c583dc1187bcf5cff2fb9510ef7387dc600beeba5581',
+      1 => 
+      array (
+        0 => 'app\\domain\\registry\\imports\\spreadsheetreader',
+      ),
+      2 => 
+      array (
+        0 => 'app\\domain\\registry\\imports\\read',
+        1 => 'app\\domain\\registry\\imports\\canonicalheader',
+        2 => 'app\\domain\\registry\\imports\\stringify',
+      ),
+      3 => 
+      array (
+      ),
+    ),
+    '/var/www/html/app/Domain/Registry/Jobs/CommitImportBatch.php' => 
+    array (
+      0 => '1e06a90921bf37712856dc058badd7bba943393cb2f3bba4f3abc526c656c19f',
+      1 => 
+      array (
+        0 => 'app\\domain\\registry\\jobs\\commitimportbatch',
+      ),
+      2 => 
+      array (
+        0 => 'app\\domain\\registry\\jobs\\__construct',
+        1 => 'app\\domain\\registry\\jobs\\handle',
+        2 => 'app\\domain\\registry\\jobs\\failed',
+      ),
+      3 => 
+      array (
+      ),
+    ),
+    '/var/www/html/app/Domain/Registry/Jobs/ParseImportBatch.php' => 
+    array (
+      0 => 'f33bb4e56795644a835f6645c812e172299ea05482cc5f73a701c530e2a54316',
+      1 => 
+      array (
+        0 => 'app\\domain\\registry\\jobs\\parseimportbatch',
+      ),
+      2 => 
+      array (
+        0 => 'app\\domain\\registry\\jobs\\__construct',
+        1 => 'app\\domain\\registry\\jobs\\handle',
+        2 => 'app\\domain\\registry\\jobs\\failed',
+        3 => 'app\\domain\\registry\\jobs\\originalrecordid',
+      ),
+      3 => 
+      array (
+      ),
+    ),
+    '/var/www/html/app/Domain/Registry/Models/ImportBatch.php' => 
+    array (
+      0 => 'a66e9b8fa65841db4cdccc686b78fa351a064de97bad1a1078c3b96d8ff7c006',
+      1 => 
+      array (
+        0 => 'app\\domain\\registry\\models\\importbatch',
+      ),
+      2 => 
+      array (
+        0 => 'app\\domain\\registry\\models\\casts',
+        1 => 'app\\domain\\registry\\models\\auditexcluded',
+        2 => 'app\\domain\\registry\\models\\ownermda',
+        3 => 'app\\domain\\registry\\models\\uploadedby',
+        4 => 'app\\domain\\registry\\models\\rows',
+      ),
+      3 => 
+      array (
+      ),
+    ),
+    '/var/www/html/app/Domain/Registry/Models/ImportRow.php' => 
+    array (
+      0 => 'd24e362c65334ed4e6cd829f3943a565e894c54f9a7ff508f0a4e833d54a1d0e',
+      1 => 
+      array (
+        0 => 'app\\domain\\registry\\models\\importrow',
+      ),
+      2 => 
+      array (
+        0 => 'app\\domain\\registry\\models\\casts',
+        1 => 'app\\domain\\registry\\models\\batch',
+        2 => 'app\\domain\\registry\\models\\beneficiary',
+      ),
+      3 => 
+      array (
+      ),
+    ),
+    '/var/www/html/app/Domain/Registry/Policies/ImportBatchPolicy.php' => 
+    array (
+      0 => 'decd4c37aec185115f989b7700ec37dfa6ba3c9083c9579191d7da8438b86e0f',
+      1 => 
+      array (
+        0 => 'app\\domain\\registry\\policies\\importbatchpolicy',
+      ),
+      2 => 
+      array (
+        0 => 'app\\domain\\registry\\policies\\owns',
+        1 => 'app\\domain\\registry\\policies\\viewany',
+        2 => 'app\\domain\\registry\\policies\\view',
+        3 => 'app\\domain\\registry\\policies\\create',
+        4 => 'app\\domain\\registry\\policies\\commit',
+      ),
+      3 => 
+      array (
+      ),
+    ),
+    '/var/www/html/app/Domain/Registry/Support/BeneficiaryRules.php' => 
+    array (
+      0 => '34dc1a3809c0182afd6b1d8dbe6ea6d252ff75f5ae5e7a5273d838f97dc26a11',
+      1 => 
+      array (
+        0 => 'app\\domain\\registry\\support\\beneficiaryrules',
+      ),
+      2 => 
+      array (
+        0 => 'app\\domain\\registry\\support\\forregistration',
+        1 => 'app\\domain\\registry\\support\\messages',
+      ),
+      3 => 
+      array (
+      ),
+    ),
+    '/var/www/html/app/Http/Controllers/Api/V1/Registry/ImportBatchController.php' => 
+    array (
+      0 => '34bd2463569ebc8b80e05a63ee596f26d49dd6b9052973071630781f58b6bd37',
+      1 => 
+      array (
+        0 => 'app\\http\\controllers\\api\\v1\\registry\\importbatchcontroller',
+      ),
+      2 => 
+      array (
+        0 => 'app\\http\\controllers\\api\\v1\\registry\\index',
+        1 => 'app\\http\\controllers\\api\\v1\\registry\\store',
+        2 => 'app\\http\\controllers\\api\\v1\\registry\\show',
+        3 => 'app\\http\\controllers\\api\\v1\\registry\\confirm',
+      ),
+      3 => 
+      array (
+      ),
+    ),
+    '/var/www/html/app/Http/Requests/Registry/UploadImportRequest.php' => 
+    array (
+      0 => 'd1679ac7e7f4f021bda81ceab0516d11f810d91629dca7179de120415382cb5e',
+      1 => 
+      array (
+        0 => 'app\\http\\requests\\registry\\uploadimportrequest',
+      ),
+      2 => 
+      array (
+        0 => 'app\\http\\requests\\registry\\authorize',
+        1 => 'app\\http\\requests\\registry\\rules',
+      ),
+      3 => 
+      array (
+      ),
+    ),
+    '/var/www/html/app/Http/Resources/ImportBatchResource.php' => 
+    array (
+      0 => '90c7159b7d0375327ab96129427015ff398c3ffed15e148bf260f5d45728f1f1',
+      1 => 
+      array (
+        0 => 'app\\http\\resources\\importbatchresource',
+      ),
+      2 => 
+      array (
+        0 => 'app\\http\\resources\\toarray',
+      ),
+      3 => 
+      array (
+      ),
+    ),
+    '/var/www/html/app/Http/Resources/ImportRowResource.php' => 
+    array (
+      0 => 'a9ceadcfab082a762c9d3bf8ef8746b7c0e8ccae93dd2e68e0b735d24110648e',
+      1 => 
+      array (
+        0 => 'app\\http\\resources\\importrowresource',
+      ),
+      2 => 
+      array (
+        0 => 'app\\http\\resources\\toarray',
+        1 => 'app\\http\\resources\\masktail',
       ),
       3 => 
       array (
