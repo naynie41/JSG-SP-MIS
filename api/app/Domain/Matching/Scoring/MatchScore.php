@@ -32,4 +32,27 @@ final readonly class MatchScore
             'explanation' => $this->explanation,
         ];
     }
+
+    /**
+     * The field names that drove the match (deterministic keys + strong fuzzy
+     * fields) — for transparency; never the raw values. Shared by the batch
+     * screener and the ad-hoc serve search so both explain matches identically.
+     *
+     * @return list<string>
+     */
+    public function matchedFields(): array
+    {
+        $fields = [];
+        foreach ($this->explanation as $entry) {
+            if (($entry['type'] ?? null) === 'deterministic' && ($entry['matched'] ?? false)) {
+                foreach ($entry['fields'] as $field) {
+                    $fields[] = $field;
+                }
+            } elseif (($entry['type'] ?? null) === 'fuzzy' && ($entry['similarity'] ?? 0.0) >= 0.85) {
+                $fields[] = $entry['field'];
+            }
+        }
+
+        return array_values(array_unique($fields));
+    }
 }

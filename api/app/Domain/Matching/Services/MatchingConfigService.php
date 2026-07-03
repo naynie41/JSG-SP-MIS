@@ -21,6 +21,12 @@ class MatchingConfigService
         return MatchingConfig::query()->where('is_active', true)->orderByDesc('version')->firstOrFail();
     }
 
+    /** The active config, or null when matching is not yet configured. */
+    public function activeOrNull(): ?MatchingConfig
+    {
+        return MatchingConfig::query()->where('is_active', true)->orderByDesc('version')->first();
+    }
+
     /**
      * Publish a new active version from validated attributes.
      *

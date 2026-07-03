@@ -133,7 +133,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
     ),
     1 => 
     array (
-      '/var/www/html/app/Http/Resources/ImportRowResource.php' => 'a9ceadcfab082a762c9d3bf8ef8746b7c0e8ccae93dd2e68e0b735d24110648e',
+      '/var/www/html/app/Http/Resources/ImportRowResource.php' => '80a859a3e582d1662d3400383ba8ccc6a8e1d9ed18bb4e631da561903b5f3301',
     ),
   ),
 ));

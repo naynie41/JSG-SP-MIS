@@ -2,7 +2,7 @@
 
 // odsl-/var/www/html/app/Domain/Registry/Services/FuzzyDuplicateFinder.php-PHPStan\BetterReflection\Reflection\ReflectionClass-App\Domain\Registry\Services\FuzzyDuplicateFinder
 return \PHPStan\Cache\CacheItem::__set_state(array(
-   'variableKey' => 'v2-6.70.0.1-8.3.31-a7b386b07c6e0a6f89553ee61002b0d02cfa51afe1f1f6a0d1dbca52b45b8881',
+   'variableKey' => 'v2-6.70.0.1-8.3.31-eda21affa7c5836adb860d4995a7a09f251d6fad3b6618578d9c086992789d77',
    'data' => 
   array (
     'locatedSource' => 
@@ -293,9 +293,9 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
                 'startLine' => 34,
                 'endLine' => 34,
                 'startTokenPos' => 107,
-                'startFilePos' => 1198,
+                'startFilePos' => 1197,
                 'endTokenPos' => 107,
-                'endFilePos' => 1201,
+                'endFilePos' => 1200,
               ),
             ),
             'type' => 
@@ -350,9 +350,9 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
                 'startLine' => 34,
                 'endLine' => 34,
                 'startTokenPos' => 117,
-                'startFilePos' => 1225,
+                'startFilePos' => 1224,
                 'endTokenPos' => 117,
-                'endFilePos' => 1228,
+                'endFilePos' => 1227,
               ),
             ),
             'type' => 
@@ -412,7 +412,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         ),
         'docComment' => '/**
  * @param  array<string, mixed>  $candidate
- * @return list<MatchResult>  exact + probable matches, most-confident first
+ * @return list<MatchResult> exact + probable matches, most-confident first
  */',
         'startLine' => 34,
         'endLine' => 42,

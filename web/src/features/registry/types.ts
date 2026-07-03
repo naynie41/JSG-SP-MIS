@@ -54,6 +54,95 @@ export interface RevealMatch {
   status: BeneficiaryStatus
 }
 
+export type MatchBand = 'exact' | 'probable' | 'none'
+export type MatchCandidateType = 'registry' | 'batch'
+
+/**
+ * The reveal payload for a match (FR-DUP-04): enough to recognise an existing
+ * record, never the full profile. `id` is null for a within-batch peer (not yet
+ * persisted); Phase 4 fills programmes/benefits.
+ */
+export interface MatchReveal {
+  id: string | null
+  row_number?: number
+  full_name: string
+  owner_mda: { id: string; name: string | null } | null
+  registration_source: string
+  registration_date: string | null
+  lga: string | null
+  ward: string | null
+  status: string
+  programmes: unknown[]
+  benefits: { summary: string | null; items: unknown[] }
+}
+
+/** One candidate attached to a flagged import row (registry or within-batch peer). */
+export interface MatchCandidate {
+  type: MatchCandidateType
+  band: Exclude<MatchBand, 'none'>
+  score: number
+  matched_fields: string[]
+  reveal: MatchReveal | null
+}
+
+/** A ranked result from the standalone duplicate search (/beneficiaries/search). */
+export interface SearchCandidate {
+  band: Exclude<MatchBand, 'none'>
+  score: number
+  matched_fields: string[]
+  beneficiary: MatchReveal
+}
+
+export type ImportRowResolution = 'new' | 'link' | 'skip'
+export type ServeRequestStatus = 'pending' | 'accepted' | 'declined'
+
+/** A request-to-serve an existing beneficiary owned by another MDA (FR-DUP-05). */
+export interface ServeRequest {
+  id: string
+  beneficiary_id: string
+  from_mda_id: string
+  to_mda_id: string
+  status: ServeRequestStatus
+  reason: string | null
+  decided_at: string | null
+  decision_reason: string | null
+  created_at: string | null
+}
+
+export type MatchComparator = 'exact' | 'jaro_winkler' | 'levenshtein' | 'phonetic' | 'date_proximity'
+export type ExactMatchBehaviour = 'auto_link' | 'confirm'
+
+export interface FuzzyFieldRule {
+  field: string
+  comparator: MatchComparator
+  weight: number
+}
+
+/** The versioned duplicate-matching configuration (FR-DUP-02/03). */
+export interface MatchingConfig {
+  id: string
+  version: number
+  is_active: boolean
+  deterministic_rules: string[][]
+  fuzzy_fields: FuzzyFieldRule[]
+  review_threshold: number
+  auto_accept_threshold: number | null
+  exact_match_behaviour: ExactMatchBehaviour
+  description: string | null
+  created_by: string | null
+  created_at: string | null
+  updated_at: string | null
+}
+
+export interface MatchingConfigInput {
+  deterministic_rules: string[][]
+  fuzzy_fields: FuzzyFieldRule[]
+  review_threshold: number
+  auto_accept_threshold: number | null
+  exact_match_behaviour: ExactMatchBehaviour
+  description?: string | null
+}
+
 export interface HouseholdMembership {
   id: string
   household_id: string
@@ -94,6 +183,10 @@ export interface ImportRow {
   is_valid: boolean
   errors: { field: string; message: string }[]
   beneficiary_id: string | null
+  resolution: ImportRowResolution | null
+  resolution_note: string | null
+  resolved_beneficiary_id: string | null
+  match: { band: MatchBand; candidates: MatchCandidate[] }
   preview: {
     first_name: string | null
     last_name: string | null
@@ -119,6 +212,8 @@ export interface ImportBatch {
     valid_rows: number
     invalid_rows: number
     committed_rows: number
+    served_rows: number
+    skipped_rows: number
   }
   error: string | null
   rows?: ImportRow[]

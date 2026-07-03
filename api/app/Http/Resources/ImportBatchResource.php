@@ -33,6 +33,8 @@ class ImportBatchResource extends JsonResource
                 'valid_rows' => $this->valid_rows,
                 'invalid_rows' => $this->invalid_rows,
                 'committed_rows' => $this->committed_rows,
+                'served_rows' => $this->served_rows,
+                'skipped_rows' => $this->skipped_rows,
             ],
             'error' => $this->error,
             'rows' => ImportRowResource::collection($this->whenLoaded('rows')),

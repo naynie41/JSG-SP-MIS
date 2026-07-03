@@ -2,7 +2,7 @@
 
 // odsl-/var/www/html/app/Domain/Registry/Jobs/CommitImportBatch.php-PHPStan\BetterReflection\Reflection\ReflectionClass-App\Domain\Registry\Jobs\CommitImportBatch
 return \PHPStan\Cache\CacheItem::__set_state(array(
-   'variableKey' => 'v2-6.70.0.1-8.3.31-8af35654bfb5abde0488cd406dc1f72df2728b5ce80566e0fb0bff3274181cba',
+   'variableKey' => 'v2-6.70.0.1-8.3.31-3280c5a9e81eb26a312d276f5b3ebe29f0c4bbf0a571c34d2f979551e6543796',
    'data' => 
   array (
     'locatedSource' => 
@@ -23,20 +23,22 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
     'isBackedEnum' => false,
     'modifiers' => 0,
     'docComment' => '/**
- * Commits the valid rows of a confirmed preview as beneficiaries owned by the
- * importing MDA, with full provenance (PRD FR-REG-02). Rows that carry a source
- * household reference also form/join a household with an open membership (§9).
- * Invalid rows are left in place and reported — never silently dropped.
+ * Commits the confirmed preview (PRD FR-REG-02, FR-DUP-05). Per row, honouring the
+ * officer\'s resolution: NEW → create a beneficiary (owned by the importing MDA,
+ * full provenance, forming/joining a household on a source reference); LINK → raise
+ * a request-to-serve the matched existing beneficiary (no new record, ownership
+ * unchanged); SKIP (or an unresolved flagged row) → nothing. Non-flagged rows
+ * default to NEW. Invalid rows are left in place and reported.
  *
- * Idempotent + retry-safe: a committed row is stamped with `beneficiary_id`, so
- * re-running (a retry, or a second confirm) never double-inserts. The payload
- * carries only IDs (batch id + confirming user id).
+ * Idempotent + retry-safe: a created row is stamped with `beneficiary_id` and
+ * serve requests dedupe on the pending state, so re-running never double-inserts.
+ * The payload carries only IDs (batch id + confirming user id).
  */',
     'attributes' => 
     array (
     ),
-    'startLine' => 35,
-    'endLine' => 128,
+    'startLine' => 40,
+    'endLine' => 183,
     'startColumn' => 1,
     'endColumn' => 1,
     'parentClassName' => NULL,
@@ -76,20 +78,20 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
           'code' => '3',
           'attributes' => 
           array (
-            'startLine' => 39,
-            'endLine' => 39,
-            'startTokenPos' => 134,
-            'startFilePos' => 1448,
-            'endTokenPos' => 134,
-            'endFilePos' => 1448,
+            'startLine' => 44,
+            'endLine' => 44,
+            'startTokenPos' => 149,
+            'startFilePos' => 1775,
+            'endTokenPos' => 149,
+            'endFilePos' => 1775,
           ),
         ),
         'docComment' => NULL,
         'attributes' => 
         array (
         ),
-        'startLine' => 39,
-        'endLine' => 39,
+        'startLine' => 44,
+        'endLine' => 44,
         'startColumn' => 5,
         'endColumn' => 26,
         'isPromoted' => false,
@@ -119,8 +121,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         'attributes' => 
         array (
         ),
-        'startLine' => 42,
-        'endLine' => 42,
+        'startLine' => 47,
+        'endLine' => 47,
         'startColumn' => 9,
         'endColumn' => 39,
         'isPromoted' => true,
@@ -169,20 +171,20 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
           'code' => 'null',
           'attributes' => 
           array (
-            'startLine' => 43,
-            'endLine' => 43,
-            'startTokenPos' => 164,
-            'startFilePos' => 1569,
-            'endTokenPos' => 164,
-            'endFilePos' => 1572,
+            'startLine' => 48,
+            'endLine' => 48,
+            'startTokenPos' => 179,
+            'startFilePos' => 1896,
+            'endTokenPos' => 179,
+            'endFilePos' => 1899,
           ),
         ),
         'docComment' => NULL,
         'attributes' => 
         array (
         ),
-        'startLine' => 43,
-        'endLine' => 43,
+        'startLine' => 48,
+        'endLine' => 48,
         'startColumn' => 9,
         'endColumn' => 47,
         'isPromoted' => true,
@@ -219,8 +221,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             'attributes' => 
             array (
             ),
-            'startLine' => 42,
-            'endLine' => 42,
+            'startLine' => 47,
+            'endLine' => 47,
             'startColumn' => 9,
             'endColumn' => 39,
             'parameterIndex' => 0,
@@ -234,12 +236,12 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
               'code' => 'null',
               'attributes' => 
               array (
-                'startLine' => 43,
-                'endLine' => 43,
-                'startTokenPos' => 164,
-                'startFilePos' => 1569,
-                'endTokenPos' => 164,
-                'endFilePos' => 1572,
+                'startLine' => 48,
+                'endLine' => 48,
+                'startTokenPos' => 179,
+                'startFilePos' => 1896,
+                'endTokenPos' => 179,
+                'endFilePos' => 1899,
               ),
             ),
             'type' => 
@@ -276,8 +278,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             'attributes' => 
             array (
             ),
-            'startLine' => 43,
-            'endLine' => 43,
+            'startLine' => 48,
+            'endLine' => 48,
             'startColumn' => 9,
             'endColumn' => 47,
             'parameterIndex' => 1,
@@ -290,8 +292,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         array (
         ),
         'docComment' => NULL,
-        'startLine' => 41,
-        'endLine' => 44,
+        'startLine' => 46,
+        'endLine' => 49,
         'startColumn' => 5,
         'endColumn' => 8,
         'couldThrow' => false,
@@ -329,8 +331,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             'attributes' => 
             array (
             ),
-            'startLine' => 46,
-            'endLine' => 46,
+            'startLine' => 51,
+            'endLine' => 51,
             'startColumn' => 28,
             'endColumn' => 58,
             'parameterIndex' => 0,
@@ -355,11 +357,37 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             'attributes' => 
             array (
             ),
-            'startLine' => 46,
-            'endLine' => 46,
+            'startLine' => 51,
+            'endLine' => 51,
             'startColumn' => 61,
             'endColumn' => 97,
             'parameterIndex' => 1,
+            'isOptional' => false,
+          ),
+          'serveRequests' => 
+          array (
+            'name' => 'serveRequests',
+            'default' => NULL,
+            'type' => 
+            array (
+              'class' => 'PHPStan\\BetterReflection\\Reflection\\ReflectionNamedType',
+              'data' => 
+              array (
+                'name' => 'App\\Domain\\Registry\\Services\\ServeRequestService',
+                'isIdentifier' => false,
+              ),
+            ),
+            'isVariadic' => false,
+            'byRef' => false,
+            'isPromoted' => false,
+            'attributes' => 
+            array (
+            ),
+            'startLine' => 51,
+            'endLine' => 51,
+            'startColumn' => 100,
+            'endColumn' => 133,
+            'parameterIndex' => 2,
             'isOptional' => false,
           ),
         ),
@@ -377,8 +405,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         array (
         ),
         'docComment' => NULL,
-        'startLine' => 46,
-        'endLine' => 119,
+        'startLine' => 51,
+        'endLine' => 146,
         'startColumn' => 5,
         'endColumn' => 5,
         'couldThrow' => false,
@@ -386,6 +414,247 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         'isGenerator' => false,
         'isVariadic' => false,
         'modifiers' => 1,
+        'namespace' => 'App\\Domain\\Registry\\Jobs',
+        'declaringClassName' => 'App\\Domain\\Registry\\Jobs\\CommitImportBatch',
+        'implementingClassName' => 'App\\Domain\\Registry\\Jobs\\CommitImportBatch',
+        'currentClassName' => 'App\\Domain\\Registry\\Jobs\\CommitImportBatch',
+        'aliasName' => NULL,
+      ),
+      'effectiveResolution' => 
+      array (
+        'name' => 'effectiveResolution',
+        'parameters' => 
+        array (
+          'row' => 
+          array (
+            'name' => 'row',
+            'default' => NULL,
+            'type' => 
+            array (
+              'class' => 'PHPStan\\BetterReflection\\Reflection\\ReflectionNamedType',
+              'data' => 
+              array (
+                'name' => 'App\\Domain\\Registry\\Models\\ImportRow',
+                'isIdentifier' => false,
+              ),
+            ),
+            'isVariadic' => false,
+            'byRef' => false,
+            'isPromoted' => false,
+            'attributes' => 
+            array (
+            ),
+            'startLine' => 152,
+            'endLine' => 152,
+            'startColumn' => 42,
+            'endColumn' => 55,
+            'parameterIndex' => 0,
+            'isOptional' => false,
+          ),
+        ),
+        'returnsReference' => false,
+        'returnType' => 
+        array (
+          'class' => 'PHPStan\\BetterReflection\\Reflection\\ReflectionUnionType',
+          'data' => 
+          array (
+            'types' => 
+            array (
+              0 => 
+              array (
+                'class' => 'PHPStan\\BetterReflection\\Reflection\\ReflectionNamedType',
+                'data' => 
+                array (
+                  'name' => 'App\\Domain\\Registry\\Enums\\ImportRowResolution',
+                  'isIdentifier' => false,
+                ),
+              ),
+              1 => 
+              array (
+                'class' => 'PHPStan\\BetterReflection\\Reflection\\ReflectionNamedType',
+                'data' => 
+                array (
+                  'name' => 'null',
+                  'isIdentifier' => true,
+                ),
+              ),
+            ),
+          ),
+        ),
+        'attributes' => 
+        array (
+        ),
+        'docComment' => '/**
+ * A row\'s effective decision: an explicit resolution, else NEW for a
+ * non-flagged row, else null (flagged + unresolved → create nothing).
+ */',
+        'startLine' => 152,
+        'endLine' => 159,
+        'startColumn' => 5,
+        'endColumn' => 5,
+        'couldThrow' => false,
+        'isClosure' => false,
+        'isGenerator' => false,
+        'isVariadic' => false,
+        'modifiers' => 4,
+        'namespace' => 'App\\Domain\\Registry\\Jobs',
+        'declaringClassName' => 'App\\Domain\\Registry\\Jobs\\CommitImportBatch',
+        'implementingClassName' => 'App\\Domain\\Registry\\Jobs\\CommitImportBatch',
+        'currentClassName' => 'App\\Domain\\Registry\\Jobs\\CommitImportBatch',
+        'aliasName' => NULL,
+      ),
+      'serve' => 
+      array (
+        'name' => 'serve',
+        'parameters' => 
+        array (
+          'row' => 
+          array (
+            'name' => 'row',
+            'default' => NULL,
+            'type' => 
+            array (
+              'class' => 'PHPStan\\BetterReflection\\Reflection\\ReflectionNamedType',
+              'data' => 
+              array (
+                'name' => 'App\\Domain\\Registry\\Models\\ImportRow',
+                'isIdentifier' => false,
+              ),
+            ),
+            'isVariadic' => false,
+            'byRef' => false,
+            'isPromoted' => false,
+            'attributes' => 
+            array (
+            ),
+            'startLine' => 162,
+            'endLine' => 162,
+            'startColumn' => 28,
+            'endColumn' => 41,
+            'parameterIndex' => 0,
+            'isOptional' => false,
+          ),
+          'batch' => 
+          array (
+            'name' => 'batch',
+            'default' => NULL,
+            'type' => 
+            array (
+              'class' => 'PHPStan\\BetterReflection\\Reflection\\ReflectionNamedType',
+              'data' => 
+              array (
+                'name' => 'App\\Domain\\Registry\\Models\\ImportBatch',
+                'isIdentifier' => false,
+              ),
+            ),
+            'isVariadic' => false,
+            'byRef' => false,
+            'isPromoted' => false,
+            'attributes' => 
+            array (
+            ),
+            'startLine' => 162,
+            'endLine' => 162,
+            'startColumn' => 44,
+            'endColumn' => 61,
+            'parameterIndex' => 1,
+            'isOptional' => false,
+          ),
+          'serveRequests' => 
+          array (
+            'name' => 'serveRequests',
+            'default' => NULL,
+            'type' => 
+            array (
+              'class' => 'PHPStan\\BetterReflection\\Reflection\\ReflectionNamedType',
+              'data' => 
+              array (
+                'name' => 'App\\Domain\\Registry\\Services\\ServeRequestService',
+                'isIdentifier' => false,
+              ),
+            ),
+            'isVariadic' => false,
+            'byRef' => false,
+            'isPromoted' => false,
+            'attributes' => 
+            array (
+            ),
+            'startLine' => 162,
+            'endLine' => 162,
+            'startColumn' => 64,
+            'endColumn' => 97,
+            'parameterIndex' => 2,
+            'isOptional' => false,
+          ),
+          'actor' => 
+          array (
+            'name' => 'actor',
+            'default' => NULL,
+            'type' => 
+            array (
+              'class' => 'PHPStan\\BetterReflection\\Reflection\\ReflectionUnionType',
+              'data' => 
+              array (
+                'types' => 
+                array (
+                  0 => 
+                  array (
+                    'class' => 'PHPStan\\BetterReflection\\Reflection\\ReflectionNamedType',
+                    'data' => 
+                    array (
+                      'name' => 'App\\Domain\\Access\\Models\\User',
+                      'isIdentifier' => false,
+                    ),
+                  ),
+                  1 => 
+                  array (
+                    'class' => 'PHPStan\\BetterReflection\\Reflection\\ReflectionNamedType',
+                    'data' => 
+                    array (
+                      'name' => 'null',
+                      'isIdentifier' => true,
+                    ),
+                  ),
+                ),
+              ),
+            ),
+            'isVariadic' => false,
+            'byRef' => false,
+            'isPromoted' => false,
+            'attributes' => 
+            array (
+            ),
+            'startLine' => 162,
+            'endLine' => 162,
+            'startColumn' => 100,
+            'endColumn' => 111,
+            'parameterIndex' => 3,
+            'isOptional' => false,
+          ),
+        ),
+        'returnsReference' => false,
+        'returnType' => 
+        array (
+          'class' => 'PHPStan\\BetterReflection\\Reflection\\ReflectionNamedType',
+          'data' => 
+          array (
+            'name' => 'void',
+            'isIdentifier' => true,
+          ),
+        ),
+        'attributes' => 
+        array (
+        ),
+        'docComment' => '/** Raise a request-to-serve for a LINK row — never creates a beneficiary. */',
+        'startLine' => 162,
+        'endLine' => 174,
+        'startColumn' => 5,
+        'endColumn' => 5,
+        'couldThrow' => false,
+        'isClosure' => false,
+        'isGenerator' => false,
+        'isVariadic' => false,
+        'modifiers' => 4,
         'namespace' => 'App\\Domain\\Registry\\Jobs',
         'declaringClassName' => 'App\\Domain\\Registry\\Jobs\\CommitImportBatch',
         'implementingClassName' => 'App\\Domain\\Registry\\Jobs\\CommitImportBatch',
@@ -416,8 +685,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             'attributes' => 
             array (
             ),
-            'startLine' => 121,
-            'endLine' => 121,
+            'startLine' => 176,
+            'endLine' => 176,
             'startColumn' => 28,
             'endColumn' => 39,
             'parameterIndex' => 0,
@@ -438,8 +707,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         array (
         ),
         'docComment' => NULL,
-        'startLine' => 121,
-        'endLine' => 127,
+        'startLine' => 176,
+        'endLine' => 182,
         'startColumn' => 5,
         'endColumn' => 5,
         'couldThrow' => false,

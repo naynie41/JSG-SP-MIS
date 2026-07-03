@@ -5,12 +5,17 @@ declare(strict_types=1);
 namespace App\Domain\Registry\Jobs;
 
 use App\Domain\Access\Scopes\MdaScope;
+use App\Domain\Matching\Enums\ExactMatchBehaviour;
+use App\Domain\Matching\Models\MatchingConfig;
+use App\Domain\Matching\Services\MatchingConfigService;
+use App\Domain\Registry\Enums\ImportRowResolution;
 use App\Domain\Registry\Enums\ImportStatus;
 use App\Domain\Registry\Imports\Adapters\SourceAdapterRegistry;
 use App\Domain\Registry\Imports\ImportRowValidator;
 use App\Domain\Registry\Imports\SpreadsheetReader;
 use App\Domain\Registry\Models\ImportBatch;
 use App\Domain\Registry\Models\ImportRow;
+use App\Domain\Registry\Services\BatchDuplicateScreener;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
@@ -28,7 +33,9 @@ use Throwable;
  *
  * Idempotent (re-parsing replaces the staged rows) and retry-safe. The payload
  * carries only the batch id — never PII. The batch's source adapter maps each
- * raw record onto the canonical schema before the shared validation runs.
+ * raw record onto the canonical schema before the shared validation runs, and the
+ * duplicate check (FR-DUP-01) annotates each row against the registry and earlier
+ * rows in the batch.
  */
 class ParseImportBatch implements ShouldQueue
 {
@@ -38,7 +45,7 @@ class ParseImportBatch implements ShouldQueue
 
     public function __construct(public readonly string $batchId) {}
 
-    public function handle(SpreadsheetReader $reader, ImportRowValidator $validator, SourceAdapterRegistry $adapters): void
+    public function handle(SpreadsheetReader $reader, ImportRowValidator $validator, SourceAdapterRegistry $adapters, BatchDuplicateScreener $screener, MatchingConfigService $configs): void
     {
         $batch = ImportBatch::query()->withoutGlobalScope(MdaScope::class)->find($this->batchId);
 
@@ -60,8 +67,9 @@ class ParseImportBatch implements ShouldQueue
         }
 
         $adapter = $adapters->for($batch->source);
+        $matchConfig = $configs->activeOrNull(); // null → matching not configured; skip screening
 
-        DB::transaction(function () use ($batch, $parsed, $validator, $adapter): void {
+        DB::transaction(function () use ($batch, $parsed, $validator, $adapter, $screener, $matchConfig): void {
             // Idempotent re-parse: discard any previously staged rows first.
             $batch->rows()->delete();
 
@@ -94,6 +102,15 @@ class ParseImportBatch implements ShouldQueue
                 $isValid = $errors === [];
                 $valid += $isValid ? 1 : 0;
 
+                // Duplicate check (FR-DUP-01): registry + earlier rows in the batch.
+                $match = $matchConfig !== null
+                    ? $screener->screen($result['payload'], $row['number'], $matchConfig)
+                    : ['band' => null, 'candidates' => null];
+
+                // Deterministic-exact behaviour (FR-DUP-03/05): auto-link when so
+                // configured and there is an existing exact registry match.
+                [$resolution, $resolvedBeneficiaryId] = $this->autoResolve($match, $matchConfig);
+
                 ImportRow::create([
                     'import_batch_id' => $batch->id,
                     'row_number' => $row['number'],
@@ -104,6 +121,11 @@ class ParseImportBatch implements ShouldQueue
                     'payload' => $result['payload'],
                     'is_valid' => $isValid,
                     'errors' => $isValid ? null : $errors,
+                    'match_band' => $match['band'],
+                    'match_candidates' => $match['candidates'],
+                    'resolution' => $resolution,
+                    'resolved_beneficiary_id' => $resolvedBeneficiaryId,
+                    'resolved_at' => $resolution !== null ? now() : null,
                 ]);
             }
 
@@ -129,5 +151,28 @@ class ParseImportBatch implements ShouldQueue
     private function isTruthy(?string $value): bool
     {
         return $value !== null && in_array(strtolower(trim($value)), ['1', 'true', 'yes', 'y', 'head'], true);
+    }
+
+    /**
+     * Pre-resolve a row to LINK when the config auto-links exact matches and an
+     * existing registry beneficiary matched exactly. Otherwise leaves it for the
+     * officer to decide.
+     *
+     * @param  array{band: ?string, candidates: ?list<array<string, mixed>>}  $match
+     * @return array{0: ?string, 1: ?string} [resolution, resolved_beneficiary_id]
+     */
+    private function autoResolve(array $match, ?MatchingConfig $config): array
+    {
+        if ($config === null || $match['band'] !== 'exact' || $config->exact_match_behaviour !== ExactMatchBehaviour::AutoLink) {
+            return [null, null];
+        }
+
+        foreach ($match['candidates'] ?? [] as $candidate) {
+            if (($candidate['type'] ?? null) === 'registry' && ($candidate['band'] ?? null) === 'exact') {
+                return [ImportRowResolution::Link->value, (string) $candidate['reference']];
+            }
+        }
+
+        return [null, null];
     }
 }

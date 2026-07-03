@@ -1,8 +1,8 @@
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query'
 import { useToast } from '@/components/Toast/ToastProvider'
-import { beneficiaryApi, documentApi, householdApi, importApi } from './api'
-import type { BeneficiaryListParams } from './api'
-import type { BeneficiaryInput, HouseholdRole } from './types'
+import { beneficiaryApi, documentApi, householdApi, importApi, matchingApi, serveRequestApi } from './api'
+import type { BeneficiaryListParams, ResolveRowInput, SearchQuery } from './api'
+import type { BeneficiaryInput, HouseholdRole, MatchingConfigInput } from './types'
 
 /* ----------------------------------------------------------------- beneficiaries */
 
@@ -174,7 +174,79 @@ export function useConfirmImport() {
       qc.invalidateQueries({ queryKey: ['import', batch.id] })
       qc.invalidateQueries({ queryKey: ['imports'] })
       qc.invalidateQueries({ queryKey: ['beneficiaries'] })
-      toast.success('Import confirmed', 'Valid rows are being committed.')
+      toast.success('Import confirmed', 'Only new rows are committed; linked rows raise a serve request.')
+    },
+  })
+}
+
+/** Resolve a flagged preview row (FR-DUP-05). Refreshes the batch preview. */
+export function useResolveRow(batchId: string) {
+  const qc = useQueryClient()
+  return useMutation({
+    mutationFn: ({ rowNumber, input }: { rowNumber: number; input: ResolveRowInput }) =>
+      importApi.resolveRow(batchId, rowNumber, input),
+    onSuccess: () => qc.invalidateQueries({ queryKey: ['import', batchId] }),
+  })
+}
+
+/* ------------------------------------------------------------ duplicate search */
+
+export function useDuplicateSearch() {
+  return useMutation({
+    mutationFn: (query: SearchQuery) => beneficiaryApi.search(query),
+  })
+}
+
+/* ------------------------------------------------------------- serve requests */
+
+export function useServeRequests(enabled = true) {
+  return useQuery({ queryKey: ['serve-requests'], queryFn: () => serveRequestApi.list(), enabled })
+}
+
+export function useRaiseServeRequest() {
+  const qc = useQueryClient()
+  const toast = useToast()
+  return useMutation({
+    mutationFn: (input: { beneficiary_id: string; reason?: string }) => serveRequestApi.raise(input),
+    onSuccess: () => {
+      qc.invalidateQueries({ queryKey: ['serve-requests'] })
+      toast.success('Request to serve sent', 'Routed to the owning MDA for approval.')
+    },
+  })
+}
+
+export function useDecideServeRequest() {
+  const qc = useQueryClient()
+  const toast = useToast()
+  return useMutation({
+    mutationFn: ({ id, accept, reason }: { id: string; accept: boolean; reason?: string }) =>
+      accept ? serveRequestApi.accept(id, reason) : serveRequestApi.decline(id, reason),
+    onSuccess: (request) => {
+      qc.invalidateQueries({ queryKey: ['serve-requests'] })
+      toast.success(request.status === 'accepted' ? 'Serve request accepted' : 'Serve request declined')
+    },
+  })
+}
+
+/* --------------------------------------------------------- matching config */
+
+export function useMatchingConfig(enabled = true) {
+  return useQuery({ queryKey: ['matching-config'], queryFn: () => matchingApi.getConfig(), enabled })
+}
+
+export function useMatchingVersions(enabled = true) {
+  return useQuery({ queryKey: ['matching-versions'], queryFn: () => matchingApi.versions(), enabled })
+}
+
+export function usePublishMatchingConfig() {
+  const qc = useQueryClient()
+  const toast = useToast()
+  return useMutation({
+    mutationFn: (input: MatchingConfigInput) => matchingApi.publish(input),
+    onSuccess: (config) => {
+      qc.invalidateQueries({ queryKey: ['matching-config'] })
+      qc.invalidateQueries({ queryKey: ['matching-versions'] })
+      toast.success('Matching rules published', `Version ${config.version} is now active.`)
     },
   })
 }

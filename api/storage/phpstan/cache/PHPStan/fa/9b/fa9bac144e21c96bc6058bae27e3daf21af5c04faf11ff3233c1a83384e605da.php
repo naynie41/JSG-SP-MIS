@@ -2,7 +2,7 @@
 
 // odsl-/var/www/html/app/Http/Resources/BeneficiaryRevealResource.php-PHPStan\BetterReflection\Reflection\ReflectionClass-App\Http\Resources\BeneficiaryRevealResource
 return \PHPStan\Cache\CacheItem::__set_state(array(
-   'variableKey' => 'v2-6.70.0.1-8.3.31-3ce4523b26b598ac27bfa3a760bfdca66323d99e4e39d02e9a0e527d111031b6',
+   'variableKey' => 'v2-6.70.0.1-8.3.31-c8ef0771e6aff86b7d8c525da3128df415a7832501f2b8dbcda1aab4dab631b9',
    'data' => 
   array (
     'locatedSource' => 
@@ -25,16 +25,19 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
     'docComment' => '/**
  * The minimal cross-MDA "reveal" projection (PRD FR-OWN-03 / FR-DUP-04): just
  * enough for another MDA to recognise an existing beneficiary and coordinate —
- * name + id, owner MDA, source, registration date, LGA/Ward, status. Never
- * exposes NIN/BVN/phone/address/DOB.
+ * name + id, owner MDA, source, registration date, LGA/Ward, status, and the
+ * programme(s) + benefits-received sections. Never exposes NIN/BVN/phone/address/DOB.
+ *
+ * The programme/benefit sections are present-but-empty until Phase 4 (enrolment +
+ * benefit ledger); they populate from the loaded relations with no shape change.
  *
  * @mixin Beneficiary
  */',
     'attributes' => 
     array (
     ),
-    'startLine' => 19,
-    'endLine' => 37,
+    'startLine' => 22,
+    'endLine' => 43,
     'startColumn' => 1,
     'endColumn' => 1,
     'parentClassName' => 'Illuminate\\Http\\Resources\\Json\\JsonResource',
@@ -76,8 +79,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             'attributes' => 
             array (
             ),
-            'startLine' => 24,
-            'endLine' => 24,
+            'startLine' => 27,
+            'endLine' => 27,
             'startColumn' => 29,
             'endColumn' => 44,
             'parameterIndex' => 0,
@@ -100,8 +103,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         'docComment' => '/**
  * @return array<string, mixed>
  */',
-        'startLine' => 24,
-        'endLine' => 36,
+        'startLine' => 27,
+        'endLine' => 42,
         'startColumn' => 5,
         'endColumn' => 5,
         'couldThrow' => false,

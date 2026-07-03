@@ -18,6 +18,7 @@ use App\Http\Controllers\Api\V1\Registry\HouseholdController;
 use App\Http\Controllers\Api\V1\Registry\HouseholdMemberController;
 use App\Http\Controllers\Api\V1\Registry\ImportBatchController;
 use App\Http\Controllers\Api\V1\Registry\OwnershipTransferController;
+use App\Http\Controllers\Api\V1\Registry\ServeRequestController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -128,9 +129,12 @@ Route::prefix('v1')->group(function (): void {
         | BeneficiaryPolicy; the lookup/serve seam is a distinct, permission-gated
         | cross-MDA path that bypasses the owner scope but exposes reveal fields only.
         */
-        // Declared before the wildcard so `lookup`/`imports` are never treated as ids.
+        // Declared before the wildcard so `lookup`/`search`/`imports` are never treated as ids.
         Route::get('/beneficiaries/lookup', [BeneficiaryController::class, 'lookup'])
             ->middleware('permission:beneficiary-lookup.view')->name('beneficiaries.lookup');
+        // Fuzzy "serve many" duplicate search — same engine, reveal-only (FR-DUP-04).
+        Route::get('/beneficiaries/search', [BeneficiaryController::class, 'search'])
+            ->middleware('permission:beneficiary-lookup.view')->name('beneficiaries.search');
 
         // Bulk import (Excel/CSV) — upload → preview → confirm → commit (FR-REG-02/06).
         Route::get('/beneficiaries/imports', [ImportBatchController::class, 'index'])
@@ -139,8 +143,22 @@ Route::prefix('v1')->group(function (): void {
             ->middleware('permission:beneficiary.create')->name('beneficiaries.imports.store');
         Route::get('/beneficiaries/imports/{batch}', [ImportBatchController::class, 'show'])
             ->middleware('permission:beneficiary.view')->name('beneficiaries.imports.show');
+        // Resolve a flagged row: new (with justification) / link-serve / skip (FR-DUP-05).
+        Route::post('/beneficiaries/imports/{batch}/rows/{rowNumber}/resolve', [ImportBatchController::class, 'resolveRow'])
+            ->middleware('permission:beneficiary.create')->name('beneficiaries.imports.rows.resolve');
         Route::post('/beneficiaries/imports/{batch}/confirm', [ImportBatchController::class, 'confirm'])
             ->middleware('permission:beneficiary.create')->name('beneficiaries.imports.confirm');
+
+        // Request-to-serve (FR-DUP-05): raise from a search result; list; owner
+        // accepts/declines (no ownership change).
+        Route::post('/serve-requests', [ServeRequestController::class, 'store'])
+            ->middleware('permission:beneficiary.create')->name('serve-requests.store');
+        Route::get('/serve-requests', [ServeRequestController::class, 'index'])
+            ->middleware('permission:beneficiary.view')->name('serve-requests.index');
+        Route::post('/serve-requests/{serveRequest}/accept', [ServeRequestController::class, 'accept'])
+            ->middleware('permission:beneficiary.approve')->name('serve-requests.accept');
+        Route::post('/serve-requests/{serveRequest}/decline', [ServeRequestController::class, 'decline'])
+            ->middleware('permission:beneficiary.approve')->name('serve-requests.decline');
 
         // Inbound REST registration intake (FR-REG-02, source=api) — rate limited.
         Route::post('/beneficiaries/intake', [BeneficiaryIntakeController::class, 'store'])

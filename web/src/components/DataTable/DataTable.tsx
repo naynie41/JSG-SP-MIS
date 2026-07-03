@@ -1,5 +1,5 @@
 import type { ReactNode } from 'react'
-import { ArrowDown, ArrowUp, ArrowUpDown, ChevronLeft, ChevronRight, Inbox } from 'lucide-react'
+import { ArrowDown, ArrowUp, ArrowUpDown, ChevronDown, ChevronLeft, ChevronRight, Inbox } from 'lucide-react'
 import { cn } from '@/lib/utils/cn'
 import { Icon } from '@/components/Icon/Icon'
 import { Button } from '@/components/Button/Button'
@@ -38,6 +38,10 @@ export interface DataTableProps<T> {
   onSortChange?: (key: string) => void
   selectedIds?: ReadonlySet<string>
   onToggleRow?: (id: string) => void
+  /** Render an expansion panel below a row (adds a leading disclosure column). */
+  renderExpanded?: (row: T) => ReactNode
+  expandedIds?: ReadonlySet<string>
+  onToggleExpand?: (id: string) => void
   emptyTitle?: string
   emptyAction?: ReactNode
   pagination?: PaginationState

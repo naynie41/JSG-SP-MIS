@@ -84,7 +84,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
     ),
     1 => 
     array (
-      '/var/www/html/app/Http/Resources/BeneficiaryRevealResource.php' => '3ce4523b26b598ac27bfa3a760bfdca66323d99e4e39d02e9a0e527d111031b6',
+      '/var/www/html/app/Http/Resources/BeneficiaryRevealResource.php' => 'c8ef0771e6aff86b7d8c525da3128df415a7832501f2b8dbcda1aab4dab631b9',
     ),
   ),
 ));

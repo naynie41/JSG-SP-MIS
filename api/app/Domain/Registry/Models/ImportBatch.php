@@ -16,6 +16,7 @@ use Illuminate\Database\Eloquent\Concerns\HasUuids;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Support\Carbon;
 
 /**
  * A bulk import batch (PRD FR-REG-02/06). Owned by, and MDA-scoped to, the
@@ -33,7 +34,11 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
  * @property int $valid_rows
  * @property int $invalid_rows
  * @property int $committed_rows
+ * @property int $served_rows
+ * @property int $skipped_rows
  * @property string|null $error
+ * @property Carbon|null $created_at
+ * @property Carbon|null $updated_at
  * @property-read Mda|null $ownerMda
  * @property-read User|null $uploadedBy
  * @property-read Collection<int, ImportRow> $rows
@@ -58,6 +63,8 @@ class ImportBatch extends Model implements MdaScoped
         'valid_rows',
         'invalid_rows',
         'committed_rows',
+        'served_rows',
+        'skipped_rows',
         'error',
     ];
 
@@ -73,6 +80,8 @@ class ImportBatch extends Model implements MdaScoped
             'valid_rows' => 'integer',
             'invalid_rows' => 'integer',
             'committed_rows' => 'integer',
+            'served_rows' => 'integer',
+            'skipped_rows' => 'integer',
         ];
     }
 
@@ -83,7 +92,7 @@ class ImportBatch extends Model implements MdaScoped
      */
     protected function auditExcluded(): array
     {
-        return ['total_rows', 'valid_rows', 'invalid_rows', 'committed_rows'];
+        return ['total_rows', 'valid_rows', 'invalid_rows', 'committed_rows', 'served_rows', 'skipped_rows'];
     }
 
     /**

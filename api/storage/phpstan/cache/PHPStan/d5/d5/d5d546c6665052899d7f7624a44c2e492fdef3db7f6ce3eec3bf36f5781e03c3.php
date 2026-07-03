@@ -2,7 +2,7 @@
 
 // odsl-/var/www/html/app/Domain/Registry/Jobs/ParseImportBatch.php-PHPStan\BetterReflection\Reflection\ReflectionClass-App\Domain\Registry\Jobs\ParseImportBatch
 return \PHPStan\Cache\CacheItem::__set_state(array(
-   'variableKey' => 'v2-6.70.0.1-8.3.31-115545f83c5f0a5b9627672e0de1de8970485d61a8f4304723f97169675b55d8',
+   'variableKey' => 'v2-6.70.0.1-8.3.31-4abc15c59bca8fc32bab44ba13d4d32cdcfff0f8943b9c70d14ecb18602d181b',
    'data' => 
   array (
     'locatedSource' => 
@@ -29,13 +29,15 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
  *
  * Idempotent (re-parsing replaces the staged rows) and retry-safe. The payload
  * carries only the batch id — never PII. The batch\'s source adapter maps each
- * raw record onto the canonical schema before the shared validation runs.
+ * raw record onto the canonical schema before the shared validation runs, and the
+ * duplicate check (FR-DUP-01) annotates each row against the registry and earlier
+ * rows in the batch.
  */',
     'attributes' => 
     array (
     ),
-    'startLine' => 33,
-    'endLine' => 133,
+    'startLine' => 40,
+    'endLine' => 178,
     'startColumn' => 1,
     'endColumn' => 1,
     'parentClassName' => NULL,
@@ -75,20 +77,20 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
           'code' => '3',
           'attributes' => 
           array (
-            'startLine' => 37,
-            'endLine' => 37,
-            'startTokenPos' => 129,
-            'startFilePos' => 1352,
-            'endTokenPos' => 129,
-            'endFilePos' => 1352,
+            'startLine' => 44,
+            'endLine' => 44,
+            'startTokenPos' => 154,
+            'startFilePos' => 1727,
+            'endTokenPos' => 154,
+            'endFilePos' => 1727,
           ),
         ),
         'docComment' => NULL,
         'attributes' => 
         array (
         ),
-        'startLine' => 37,
-        'endLine' => 37,
+        'startLine' => 44,
+        'endLine' => 44,
         'startColumn' => 5,
         'endColumn' => 26,
         'isPromoted' => false,
@@ -118,8 +120,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         'attributes' => 
         array (
         ),
-        'startLine' => 39,
-        'endLine' => 39,
+        'startLine' => 46,
+        'endLine' => 46,
         'startColumn' => 33,
         'endColumn' => 63,
         'isPromoted' => true,
@@ -156,8 +158,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             'attributes' => 
             array (
             ),
-            'startLine' => 39,
-            'endLine' => 39,
+            'startLine' => 46,
+            'endLine' => 46,
             'startColumn' => 33,
             'endColumn' => 63,
             'parameterIndex' => 0,
@@ -170,8 +172,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         array (
         ),
         'docComment' => NULL,
-        'startLine' => 39,
-        'endLine' => 39,
+        'startLine' => 46,
+        'endLine' => 46,
         'startColumn' => 5,
         'endColumn' => 67,
         'couldThrow' => false,
@@ -209,8 +211,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             'attributes' => 
             array (
             ),
-            'startLine' => 41,
-            'endLine' => 41,
+            'startLine' => 48,
+            'endLine' => 48,
             'startColumn' => 28,
             'endColumn' => 52,
             'parameterIndex' => 0,
@@ -235,8 +237,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             'attributes' => 
             array (
             ),
-            'startLine' => 41,
-            'endLine' => 41,
+            'startLine' => 48,
+            'endLine' => 48,
             'startColumn' => 55,
             'endColumn' => 83,
             'parameterIndex' => 1,
@@ -261,11 +263,63 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             'attributes' => 
             array (
             ),
-            'startLine' => 41,
-            'endLine' => 41,
+            'startLine' => 48,
+            'endLine' => 48,
             'startColumn' => 86,
             'endColumn' => 116,
             'parameterIndex' => 2,
+            'isOptional' => false,
+          ),
+          'screener' => 
+          array (
+            'name' => 'screener',
+            'default' => NULL,
+            'type' => 
+            array (
+              'class' => 'PHPStan\\BetterReflection\\Reflection\\ReflectionNamedType',
+              'data' => 
+              array (
+                'name' => 'App\\Domain\\Registry\\Services\\BatchDuplicateScreener',
+                'isIdentifier' => false,
+              ),
+            ),
+            'isVariadic' => false,
+            'byRef' => false,
+            'isPromoted' => false,
+            'attributes' => 
+            array (
+            ),
+            'startLine' => 48,
+            'endLine' => 48,
+            'startColumn' => 119,
+            'endColumn' => 150,
+            'parameterIndex' => 3,
+            'isOptional' => false,
+          ),
+          'configs' => 
+          array (
+            'name' => 'configs',
+            'default' => NULL,
+            'type' => 
+            array (
+              'class' => 'PHPStan\\BetterReflection\\Reflection\\ReflectionNamedType',
+              'data' => 
+              array (
+                'name' => 'App\\Domain\\Matching\\Services\\MatchingConfigService',
+                'isIdentifier' => false,
+              ),
+            ),
+            'isVariadic' => false,
+            'byRef' => false,
+            'isPromoted' => false,
+            'attributes' => 
+            array (
+            ),
+            'startLine' => 48,
+            'endLine' => 48,
+            'startColumn' => 153,
+            'endColumn' => 182,
+            'parameterIndex' => 4,
             'isOptional' => false,
           ),
         ),
@@ -283,8 +337,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         array (
         ),
         'docComment' => NULL,
-        'startLine' => 41,
-        'endLine' => 118,
+        'startLine' => 48,
+        'endLine' => 140,
         'startColumn' => 5,
         'endColumn' => 5,
         'couldThrow' => false,
@@ -322,8 +376,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             'attributes' => 
             array (
             ),
-            'startLine' => 120,
-            'endLine' => 120,
+            'startLine' => 142,
+            'endLine' => 142,
             'startColumn' => 28,
             'endColumn' => 39,
             'parameterIndex' => 0,
@@ -344,8 +398,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         array (
         ),
         'docComment' => NULL,
-        'startLine' => 120,
-        'endLine' => 126,
+        'startLine' => 142,
+        'endLine' => 148,
         'startColumn' => 5,
         'endColumn' => 5,
         'couldThrow' => false,
@@ -402,8 +456,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             'attributes' => 
             array (
             ),
-            'startLine' => 129,
-            'endLine' => 129,
+            'startLine' => 151,
+            'endLine' => 151,
             'startColumn' => 31,
             'endColumn' => 44,
             'parameterIndex' => 0,
@@ -424,8 +478,121 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         array (
         ),
         'docComment' => '/** Interpret a source "head of household" flag. */',
-        'startLine' => 129,
-        'endLine' => 132,
+        'startLine' => 151,
+        'endLine' => 154,
+        'startColumn' => 5,
+        'endColumn' => 5,
+        'couldThrow' => false,
+        'isClosure' => false,
+        'isGenerator' => false,
+        'isVariadic' => false,
+        'modifiers' => 4,
+        'namespace' => 'App\\Domain\\Registry\\Jobs',
+        'declaringClassName' => 'App\\Domain\\Registry\\Jobs\\ParseImportBatch',
+        'implementingClassName' => 'App\\Domain\\Registry\\Jobs\\ParseImportBatch',
+        'currentClassName' => 'App\\Domain\\Registry\\Jobs\\ParseImportBatch',
+        'aliasName' => NULL,
+      ),
+      'autoResolve' => 
+      array (
+        'name' => 'autoResolve',
+        'parameters' => 
+        array (
+          'match' => 
+          array (
+            'name' => 'match',
+            'default' => NULL,
+            'type' => 
+            array (
+              'class' => 'PHPStan\\BetterReflection\\Reflection\\ReflectionNamedType',
+              'data' => 
+              array (
+                'name' => 'array',
+                'isIdentifier' => true,
+              ),
+            ),
+            'isVariadic' => false,
+            'byRef' => false,
+            'isPromoted' => false,
+            'attributes' => 
+            array (
+            ),
+            'startLine' => 164,
+            'endLine' => 164,
+            'startColumn' => 34,
+            'endColumn' => 45,
+            'parameterIndex' => 0,
+            'isOptional' => false,
+          ),
+          'config' => 
+          array (
+            'name' => 'config',
+            'default' => NULL,
+            'type' => 
+            array (
+              'class' => 'PHPStan\\BetterReflection\\Reflection\\ReflectionUnionType',
+              'data' => 
+              array (
+                'types' => 
+                array (
+                  0 => 
+                  array (
+                    'class' => 'PHPStan\\BetterReflection\\Reflection\\ReflectionNamedType',
+                    'data' => 
+                    array (
+                      'name' => 'App\\Domain\\Matching\\Models\\MatchingConfig',
+                      'isIdentifier' => false,
+                    ),
+                  ),
+                  1 => 
+                  array (
+                    'class' => 'PHPStan\\BetterReflection\\Reflection\\ReflectionNamedType',
+                    'data' => 
+                    array (
+                      'name' => 'null',
+                      'isIdentifier' => true,
+                    ),
+                  ),
+                ),
+              ),
+            ),
+            'isVariadic' => false,
+            'byRef' => false,
+            'isPromoted' => false,
+            'attributes' => 
+            array (
+            ),
+            'startLine' => 164,
+            'endLine' => 164,
+            'startColumn' => 48,
+            'endColumn' => 70,
+            'parameterIndex' => 1,
+            'isOptional' => false,
+          ),
+        ),
+        'returnsReference' => false,
+        'returnType' => 
+        array (
+          'class' => 'PHPStan\\BetterReflection\\Reflection\\ReflectionNamedType',
+          'data' => 
+          array (
+            'name' => 'array',
+            'isIdentifier' => true,
+          ),
+        ),
+        'attributes' => 
+        array (
+        ),
+        'docComment' => '/**
+ * Pre-resolve a row to LINK when the config auto-links exact matches and an
+ * existing registry beneficiary matched exactly. Otherwise leaves it for the
+ * officer to decide.
+ *
+ * @param  array{band: ?string, candidates: ?list<array<string, mixed>>}  $match
+ * @return array{0: ?string, 1: ?string} [resolution, resolved_beneficiary_id]
+ */',
+        'startLine' => 164,
+        'endLine' => 177,
         'startColumn' => 5,
         'endColumn' => 5,
         'couldThrow' => false,

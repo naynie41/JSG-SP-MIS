@@ -7,6 +7,7 @@ namespace App\Domain\Registry\Models;
 use Illuminate\Database\Eloquent\Concerns\HasUuids;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Support\Carbon;
 
 /**
  * One staged source row of a bulk import (PRD FR-REG-06). Holds the normalised
@@ -24,6 +25,13 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
  * @property array<string, mixed> $payload
  * @property bool $is_valid
  * @property list<array{field: string, message: string}>|null $errors
+ * @property string|null $match_band
+ * @property list<array<string, mixed>>|null $match_candidates
+ * @property string|null $resolution
+ * @property string|null $resolution_note
+ * @property string|null $resolved_beneficiary_id
+ * @property string|null $resolved_by
+ * @property Carbon|null $resolved_at
  * @property string|null $beneficiary_id
  * @property-read ImportBatch $batch
  * @property-read Beneficiary|null $beneficiary
@@ -47,6 +55,13 @@ class ImportRow extends Model
         'payload',
         'is_valid',
         'errors',
+        'match_band',
+        'match_candidates',
+        'resolution',
+        'resolution_note',
+        'resolved_beneficiary_id',
+        'resolved_by',
+        'resolved_at',
         'beneficiary_id',
     ];
 
@@ -58,9 +73,11 @@ class ImportRow extends Model
         return [
             'payload' => 'array',
             'errors' => 'array',
+            'match_candidates' => 'array',
             'is_valid' => 'boolean',
             'household_head' => 'boolean',
             'row_number' => 'integer',
+            'resolved_at' => 'datetime',
         ];
     }
 

@@ -2,7 +2,7 @@
 
 // odsl-/var/www/html/app/Http/Controllers/Api/V1/Registry/BeneficiaryController.php-PHPStan\BetterReflection\Reflection\ReflectionClass-App\Http\Controllers\Api\V1\Registry\BeneficiaryController
 return \PHPStan\Cache\CacheItem::__set_state(array(
-   'variableKey' => 'v2-6.70.0.1-8.3.31-9e2ef514003eeb2ec9606ebc9b577598ead91583090b76232fb9c9f0b06b6ab2',
+   'variableKey' => 'v2-6.70.0.1-8.3.31-1fc22dead786de1d7ae79e2423506f5e8b3ad69d64949cbff8259324dc693324',
    'data' => 
   array (
     'locatedSource' => 
@@ -32,8 +32,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
     'attributes' => 
     array (
     ),
-    'startLine' => 26,
-    'endLine' => 119,
+    'startLine' => 32,
+    'endLine' => 170,
     'startColumn' => 1,
     'endColumn' => 1,
     'parentClassName' => 'App\\Http\\Controllers\\Controller',
@@ -75,8 +75,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             'attributes' => 
             array (
             ),
-            'startLine' => 33,
-            'endLine' => 33,
+            'startLine' => 39,
+            'endLine' => 39,
             'startColumn' => 27,
             'endColumn' => 42,
             'parameterIndex' => 0,
@@ -101,8 +101,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
  * search and LGA/Ward/status filters (FR-REG-04). Search matches name or the
  * exact NIN/BVN; filters use the documented `filter[...]` params.
  */',
-        'startLine' => 33,
-        'endLine' => 63,
+        'startLine' => 39,
+        'endLine' => 69,
         'startColumn' => 5,
         'endColumn' => 5,
         'couldThrow' => false,
@@ -140,8 +140,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             'attributes' => 
             array (
             ),
-            'startLine' => 66,
-            'endLine' => 66,
+            'startLine' => 72,
+            'endLine' => 72,
             'startColumn' => 26,
             'endColumn' => 44,
             'parameterIndex' => 0,
@@ -162,8 +162,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         array (
         ),
         'docComment' => '/** Show a single beneficiary. Out-of-scope records 404 via the global scope. */',
-        'startLine' => 66,
-        'endLine' => 75,
+        'startLine' => 72,
+        'endLine' => 81,
         'startColumn' => 5,
         'endColumn' => 5,
         'couldThrow' => false,
@@ -201,8 +201,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             'attributes' => 
             array (
             ),
-            'startLine' => 82,
-            'endLine' => 82,
+            'startLine' => 88,
+            'endLine' => 88,
             'startColumn' => 28,
             'endColumn' => 60,
             'parameterIndex' => 0,
@@ -227,8 +227,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             'attributes' => 
             array (
             ),
-            'startLine' => 82,
-            'endLine' => 82,
+            'startLine' => 88,
+            'endLine' => 88,
             'startColumn' => 63,
             'endColumn' => 81,
             'parameterIndex' => 1,
@@ -253,8 +253,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
  * without the owner scope so a non-owner gets 403 (not 404): the policy is
  * the boundary, and non-owners can already see the record via the lookup seam.
  */',
-        'startLine' => 82,
-        'endLine' => 91,
+        'startLine' => 88,
+        'endLine' => 97,
         'startColumn' => 5,
         'endColumn' => 5,
         'couldThrow' => false,
@@ -292,8 +292,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             'attributes' => 
             array (
             ),
-            'startLine' => 94,
-            'endLine' => 94,
+            'startLine' => 100,
+            'endLine' => 100,
             'startColumn' => 29,
             'endColumn' => 47,
             'parameterIndex' => 0,
@@ -314,8 +314,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         array (
         ),
         'docComment' => '/** Soft-delete a beneficiary — owner MDA only, audited. */',
-        'startLine' => 94,
-        'endLine' => 103,
+        'startLine' => 100,
+        'endLine' => 109,
         'startColumn' => 5,
         'endColumn' => 5,
         'couldThrow' => false,
@@ -353,8 +353,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             'attributes' => 
             array (
             ),
-            'startLine' => 109,
-            'endLine' => 109,
+            'startLine' => 115,
+            'endLine' => 115,
             'startColumn' => 28,
             'endColumn' => 60,
             'parameterIndex' => 0,
@@ -379,8 +379,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             'attributes' => 
             array (
             ),
-            'startLine' => 109,
-            'endLine' => 109,
+            'startLine' => 115,
+            'endLine' => 115,
             'startColumn' => 63,
             'endColumn' => 94,
             'parameterIndex' => 1,
@@ -404,8 +404,153 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
  * Cross-MDA lookup/serve path (FR-OWN-03): exact-identifier search returning
  * only the reveal fields. Route middleware enforces beneficiary-lookup.view.
  */',
-        'startLine' => 109,
-        'endLine' => 118,
+        'startLine' => 115,
+        'endLine' => 124,
+        'startColumn' => 5,
+        'endColumn' => 5,
+        'couldThrow' => false,
+        'isClosure' => false,
+        'isGenerator' => false,
+        'isVariadic' => false,
+        'modifiers' => 1,
+        'namespace' => 'App\\Http\\Controllers\\Api\\V1\\Registry',
+        'declaringClassName' => 'App\\Http\\Controllers\\Api\\V1\\Registry\\BeneficiaryController',
+        'implementingClassName' => 'App\\Http\\Controllers\\Api\\V1\\Registry\\BeneficiaryController',
+        'currentClassName' => 'App\\Http\\Controllers\\Api\\V1\\Registry\\BeneficiaryController',
+        'aliasName' => NULL,
+      ),
+      'search' => 
+      array (
+        'name' => 'search',
+        'parameters' => 
+        array (
+          'request' => 
+          array (
+            'name' => 'request',
+            'default' => NULL,
+            'type' => 
+            array (
+              'class' => 'PHPStan\\BetterReflection\\Reflection\\ReflectionNamedType',
+              'data' => 
+              array (
+                'name' => 'App\\Http\\Requests\\Registry\\BeneficiaryMatchSearchRequest',
+                'isIdentifier' => false,
+              ),
+            ),
+            'isVariadic' => false,
+            'byRef' => false,
+            'isPromoted' => false,
+            'attributes' => 
+            array (
+            ),
+            'startLine' => 134,
+            'endLine' => 134,
+            'startColumn' => 9,
+            'endColumn' => 46,
+            'parameterIndex' => 0,
+            'isOptional' => false,
+          ),
+          'finder' => 
+          array (
+            'name' => 'finder',
+            'default' => NULL,
+            'type' => 
+            array (
+              'class' => 'PHPStan\\BetterReflection\\Reflection\\ReflectionNamedType',
+              'data' => 
+              array (
+                'name' => 'App\\Domain\\Registry\\Services\\FuzzyDuplicateFinder',
+                'isIdentifier' => false,
+              ),
+            ),
+            'isVariadic' => false,
+            'byRef' => false,
+            'isPromoted' => false,
+            'attributes' => 
+            array (
+            ),
+            'startLine' => 135,
+            'endLine' => 135,
+            'startColumn' => 9,
+            'endColumn' => 36,
+            'parameterIndex' => 1,
+            'isOptional' => false,
+          ),
+          'configs' => 
+          array (
+            'name' => 'configs',
+            'default' => NULL,
+            'type' => 
+            array (
+              'class' => 'PHPStan\\BetterReflection\\Reflection\\ReflectionNamedType',
+              'data' => 
+              array (
+                'name' => 'App\\Domain\\Matching\\Services\\MatchingConfigService',
+                'isIdentifier' => false,
+              ),
+            ),
+            'isVariadic' => false,
+            'byRef' => false,
+            'isPromoted' => false,
+            'attributes' => 
+            array (
+            ),
+            'startLine' => 136,
+            'endLine' => 136,
+            'startColumn' => 9,
+            'endColumn' => 38,
+            'parameterIndex' => 2,
+            'isOptional' => false,
+          ),
+          'audit' => 
+          array (
+            'name' => 'audit',
+            'default' => NULL,
+            'type' => 
+            array (
+              'class' => 'PHPStan\\BetterReflection\\Reflection\\ReflectionNamedType',
+              'data' => 
+              array (
+                'name' => 'App\\Domain\\Audit\\Services\\AuditLogger',
+                'isIdentifier' => false,
+              ),
+            ),
+            'isVariadic' => false,
+            'byRef' => false,
+            'isPromoted' => false,
+            'attributes' => 
+            array (
+            ),
+            'startLine' => 137,
+            'endLine' => 137,
+            'startColumn' => 9,
+            'endColumn' => 26,
+            'parameterIndex' => 3,
+            'isOptional' => false,
+          ),
+        ),
+        'returnsReference' => false,
+        'returnType' => 
+        array (
+          'class' => 'PHPStan\\BetterReflection\\Reflection\\ReflectionNamedType',
+          'data' => 
+          array (
+            'name' => 'Illuminate\\Http\\JsonResponse',
+            'isIdentifier' => false,
+          ),
+        ),
+        'attributes' => 
+        array (
+        ),
+        'docComment' => '/**
+ * Fuzzy "serve many" search (FR-DUP-04): runs the SAME engine as import
+ * screening against partial identity details and returns ranked candidates
+ * (exact + probable) as reveal-only projections, across all MDAs. From a
+ * result the caller can raise a request-to-serve (see ServeRequestController).
+ * Read-only and audited (identifiers used + hit count, never their values).
+ */',
+        'startLine' => 133,
+        'endLine' => 169,
         'startColumn' => 5,
         'endColumn' => 5,
         'couldThrow' => false,

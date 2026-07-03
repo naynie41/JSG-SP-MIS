@@ -5,13 +5,19 @@ declare(strict_types=1);
 namespace App\Http\Controllers\Api\V1\Registry;
 
 use App\Domain\Access\Scopes\MdaScope;
+use App\Domain\Audit\Services\AuditLogger;
+use App\Domain\Matching\Engine\MatchResult;
+use App\Domain\Matching\Services\MatchingConfigService;
 use App\Domain\Registry\Models\Beneficiary;
 use App\Domain\Registry\Services\BeneficiaryLookupService;
+use App\Domain\Registry\Services\FuzzyDuplicateFinder;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Registry\BeneficiaryLookupRequest;
+use App\Http\Requests\Registry\BeneficiaryMatchSearchRequest;
 use App\Http\Requests\Registry\UpdateBeneficiaryRequest;
 use App\Http\Resources\BeneficiaryResource;
 use App\Http\Resources\BeneficiaryRevealResource;
+use App\Http\Resources\MatchCandidateResource;
 use App\Support\ApiResponse;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
@@ -115,5 +121,50 @@ class BeneficiaryController extends Controller
         );
 
         return ApiResponse::success(['matches' => BeneficiaryRevealResource::collection($matches)->resolve()]);
+    }
+
+    /**
+     * Fuzzy "serve many" search (FR-DUP-04): runs the SAME engine as import
+     * screening against partial identity details and returns ranked candidates
+     * (exact + probable) as reveal-only projections, across all MDAs. From a
+     * result the caller can raise a request-to-serve (see ServeRequestController).
+     * Read-only and audited (identifiers used + hit count, never their values).
+     */
+    public function search(
+        BeneficiaryMatchSearchRequest $request,
+        FuzzyDuplicateFinder $finder,
+        MatchingConfigService $configs,
+        AuditLogger $audit,
+    ): JsonResponse {
+        $query = $request->canonicalQuery();
+        $config = $configs->activeOrNull();
+
+        // Matching not yet configured → nothing to rank against.
+        $results = $config === null ? [] : $finder->find($query, $config);
+
+        // Resolve the matched records reveal-only (bypass the owner scope, but only
+        // ever expose reveal fields — the serve seam, same as import previews).
+        $ids = array_values(array_filter(array_map(static fn (MatchResult $r) => $r->reference, $results)));
+        $beneficiaries = Beneficiary::query()
+            ->withoutGlobalScope(MdaScope::class)
+            ->with(['ownerMda' => fn ($q) => $q->withoutGlobalScope(MdaScope::class)->select('id', 'name')])
+            ->whereIn('id', $ids)
+            ->get()
+            ->keyBy('id');
+
+        $candidates = [];
+        foreach ($results as $result) {
+            $beneficiary = $beneficiaries->get($result->reference);
+            if ($beneficiary !== null) {
+                $candidates[] = ['result' => $result, 'beneficiary' => $beneficiary];
+            }
+        }
+
+        $audit->record('beneficiary.match_search', null, after: [
+            'by' => array_keys($query),
+            'matches' => count($candidates),
+        ]);
+
+        return ApiResponse::success(['candidates' => MatchCandidateResource::collection($candidates)->resolve()]);
     }
 }

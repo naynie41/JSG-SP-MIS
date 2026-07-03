@@ -14,11 +14,14 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         array (
           'user' => 'App\\Domain\\Access\\Models\\User',
           'mdascope' => 'App\\Domain\\Access\\Scopes\\MdaScope',
+          'importrowresolution' => 'App\\Domain\\Registry\\Enums\\ImportRowResolution',
           'importstatus' => 'App\\Domain\\Registry\\Enums\\ImportStatus',
+          'beneficiary' => 'App\\Domain\\Registry\\Models\\Beneficiary',
           'importbatch' => 'App\\Domain\\Registry\\Models\\ImportBatch',
           'importrow' => 'App\\Domain\\Registry\\Models\\ImportRow',
           'beneficiaryregistrar' => 'App\\Domain\\Registry\\Services\\BeneficiaryRegistrar',
           'householdingestionservice' => 'App\\Domain\\Registry\\Services\\HouseholdIngestionService',
+          'serverequestservice' => 'App\\Domain\\Registry\\Services\\ServeRequestService',
           'queueable' => 'Illuminate\\Bus\\Queueable',
           'shouldqueue' => 'Illuminate\\Contracts\\Queue\\ShouldQueue',
           'uniqueconstraintviolationexception' => 'Illuminate\\Database\\UniqueConstraintViolationException',
@@ -2145,11 +2148,14 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         array (
           'user' => 'App\\Domain\\Access\\Models\\User',
           'mdascope' => 'App\\Domain\\Access\\Scopes\\MdaScope',
+          'importrowresolution' => 'App\\Domain\\Registry\\Enums\\ImportRowResolution',
           'importstatus' => 'App\\Domain\\Registry\\Enums\\ImportStatus',
+          'beneficiary' => 'App\\Domain\\Registry\\Models\\Beneficiary',
           'importbatch' => 'App\\Domain\\Registry\\Models\\ImportBatch',
           'importrow' => 'App\\Domain\\Registry\\Models\\ImportRow',
           'beneficiaryregistrar' => 'App\\Domain\\Registry\\Services\\BeneficiaryRegistrar',
           'householdingestionservice' => 'App\\Domain\\Registry\\Services\\HouseholdIngestionService',
+          'serverequestservice' => 'App\\Domain\\Registry\\Services\\ServeRequestService',
           'queueable' => 'Illuminate\\Bus\\Queueable',
           'shouldqueue' => 'Illuminate\\Contracts\\Queue\\ShouldQueue',
           'uniqueconstraintviolationexception' => 'Illuminate\\Database\\UniqueConstraintViolationException',
@@ -2173,11 +2179,14 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
           array (
             'user' => 'App\\Domain\\Access\\Models\\User',
             'mdascope' => 'App\\Domain\\Access\\Scopes\\MdaScope',
+            'importrowresolution' => 'App\\Domain\\Registry\\Enums\\ImportRowResolution',
             'importstatus' => 'App\\Domain\\Registry\\Enums\\ImportStatus',
+            'beneficiary' => 'App\\Domain\\Registry\\Models\\Beneficiary',
             'importbatch' => 'App\\Domain\\Registry\\Models\\ImportBatch',
             'importrow' => 'App\\Domain\\Registry\\Models\\ImportRow',
             'beneficiaryregistrar' => 'App\\Domain\\Registry\\Services\\BeneficiaryRegistrar',
             'householdingestionservice' => 'App\\Domain\\Registry\\Services\\HouseholdIngestionService',
+            'serverequestservice' => 'App\\Domain\\Registry\\Services\\ServeRequestService',
             'queueable' => 'Illuminate\\Bus\\Queueable',
             'shouldqueue' => 'Illuminate\\Contracts\\Queue\\ShouldQueue',
             'uniqueconstraintviolationexception' => 'Illuminate\\Database\\UniqueConstraintViolationException',
@@ -2222,11 +2231,14 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         array (
           'user' => 'App\\Domain\\Access\\Models\\User',
           'mdascope' => 'App\\Domain\\Access\\Scopes\\MdaScope',
+          'importrowresolution' => 'App\\Domain\\Registry\\Enums\\ImportRowResolution',
           'importstatus' => 'App\\Domain\\Registry\\Enums\\ImportStatus',
+          'beneficiary' => 'App\\Domain\\Registry\\Models\\Beneficiary',
           'importbatch' => 'App\\Domain\\Registry\\Models\\ImportBatch',
           'importrow' => 'App\\Domain\\Registry\\Models\\ImportRow',
           'beneficiaryregistrar' => 'App\\Domain\\Registry\\Services\\BeneficiaryRegistrar',
           'householdingestionservice' => 'App\\Domain\\Registry\\Services\\HouseholdIngestionService',
+          'serverequestservice' => 'App\\Domain\\Registry\\Services\\ServeRequestService',
           'queueable' => 'Illuminate\\Bus\\Queueable',
           'shouldqueue' => 'Illuminate\\Contracts\\Queue\\ShouldQueue',
           'uniqueconstraintviolationexception' => 'Illuminate\\Database\\UniqueConstraintViolationException',
@@ -2250,11 +2262,180 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
           array (
             'user' => 'App\\Domain\\Access\\Models\\User',
             'mdascope' => 'App\\Domain\\Access\\Scopes\\MdaScope',
+            'importrowresolution' => 'App\\Domain\\Registry\\Enums\\ImportRowResolution',
             'importstatus' => 'App\\Domain\\Registry\\Enums\\ImportStatus',
+            'beneficiary' => 'App\\Domain\\Registry\\Models\\Beneficiary',
             'importbatch' => 'App\\Domain\\Registry\\Models\\ImportBatch',
             'importrow' => 'App\\Domain\\Registry\\Models\\ImportRow',
             'beneficiaryregistrar' => 'App\\Domain\\Registry\\Services\\BeneficiaryRegistrar',
             'householdingestionservice' => 'App\\Domain\\Registry\\Services\\HouseholdIngestionService',
+            'serverequestservice' => 'App\\Domain\\Registry\\Services\\ServeRequestService',
+            'queueable' => 'Illuminate\\Bus\\Queueable',
+            'shouldqueue' => 'Illuminate\\Contracts\\Queue\\ShouldQueue',
+            'uniqueconstraintviolationexception' => 'Illuminate\\Database\\UniqueConstraintViolationException',
+            'dispatchable' => 'Illuminate\\Foundation\\Bus\\Dispatchable',
+            'interactswithqueue' => 'Illuminate\\Queue\\InteractsWithQueue',
+            'serializesmodels' => 'Illuminate\\Queue\\SerializesModels',
+            'auth' => 'Illuminate\\Support\\Facades\\Auth',
+            'db' => 'Illuminate\\Support\\Facades\\DB',
+            'str' => 'Illuminate\\Support\\Str',
+            'throwable' => 'Throwable',
+          ),
+           'className' => 'App\\Domain\\Registry\\Jobs\\CommitImportBatch',
+           'functionName' => NULL,
+           'templatePhpDocNodes' => 
+          array (
+          ),
+           'parent' => NULL,
+           'typeAliasesMap' => 
+          array (
+          ),
+           'bypassTypeAliases' => false,
+           'constUses' => 
+          array (
+          ),
+           'typeAliasClassName' => NULL,
+           'traitData' => NULL,
+        )),
+         'typeAliasesMap' => 
+        array (
+        ),
+         'bypassTypeAliases' => false,
+         'constUses' => 
+        array (
+        ),
+         'typeAliasClassName' => NULL,
+         'traitData' => NULL,
+      )),
+      '23708ea11c003f405ca0a8f81025e028' => 
+      \PHPStan\Analyser\IntermediaryNameScope::__set_state(array(
+         'namespace' => 'App\\Domain\\Registry\\Jobs',
+         'uses' => 
+        array (
+          'user' => 'App\\Domain\\Access\\Models\\User',
+          'mdascope' => 'App\\Domain\\Access\\Scopes\\MdaScope',
+          'importrowresolution' => 'App\\Domain\\Registry\\Enums\\ImportRowResolution',
+          'importstatus' => 'App\\Domain\\Registry\\Enums\\ImportStatus',
+          'beneficiary' => 'App\\Domain\\Registry\\Models\\Beneficiary',
+          'importbatch' => 'App\\Domain\\Registry\\Models\\ImportBatch',
+          'importrow' => 'App\\Domain\\Registry\\Models\\ImportRow',
+          'beneficiaryregistrar' => 'App\\Domain\\Registry\\Services\\BeneficiaryRegistrar',
+          'householdingestionservice' => 'App\\Domain\\Registry\\Services\\HouseholdIngestionService',
+          'serverequestservice' => 'App\\Domain\\Registry\\Services\\ServeRequestService',
+          'queueable' => 'Illuminate\\Bus\\Queueable',
+          'shouldqueue' => 'Illuminate\\Contracts\\Queue\\ShouldQueue',
+          'uniqueconstraintviolationexception' => 'Illuminate\\Database\\UniqueConstraintViolationException',
+          'dispatchable' => 'Illuminate\\Foundation\\Bus\\Dispatchable',
+          'interactswithqueue' => 'Illuminate\\Queue\\InteractsWithQueue',
+          'serializesmodels' => 'Illuminate\\Queue\\SerializesModels',
+          'auth' => 'Illuminate\\Support\\Facades\\Auth',
+          'db' => 'Illuminate\\Support\\Facades\\DB',
+          'str' => 'Illuminate\\Support\\Str',
+          'throwable' => 'Throwable',
+        ),
+         'className' => 'App\\Domain\\Registry\\Jobs\\CommitImportBatch',
+         'functionName' => 'effectiveResolution',
+         'templatePhpDocNodes' => 
+        array (
+        ),
+         'parent' => 
+        \PHPStan\Analyser\IntermediaryNameScope::__set_state(array(
+           'namespace' => 'App\\Domain\\Registry\\Jobs',
+           'uses' => 
+          array (
+            'user' => 'App\\Domain\\Access\\Models\\User',
+            'mdascope' => 'App\\Domain\\Access\\Scopes\\MdaScope',
+            'importrowresolution' => 'App\\Domain\\Registry\\Enums\\ImportRowResolution',
+            'importstatus' => 'App\\Domain\\Registry\\Enums\\ImportStatus',
+            'beneficiary' => 'App\\Domain\\Registry\\Models\\Beneficiary',
+            'importbatch' => 'App\\Domain\\Registry\\Models\\ImportBatch',
+            'importrow' => 'App\\Domain\\Registry\\Models\\ImportRow',
+            'beneficiaryregistrar' => 'App\\Domain\\Registry\\Services\\BeneficiaryRegistrar',
+            'householdingestionservice' => 'App\\Domain\\Registry\\Services\\HouseholdIngestionService',
+            'serverequestservice' => 'App\\Domain\\Registry\\Services\\ServeRequestService',
+            'queueable' => 'Illuminate\\Bus\\Queueable',
+            'shouldqueue' => 'Illuminate\\Contracts\\Queue\\ShouldQueue',
+            'uniqueconstraintviolationexception' => 'Illuminate\\Database\\UniqueConstraintViolationException',
+            'dispatchable' => 'Illuminate\\Foundation\\Bus\\Dispatchable',
+            'interactswithqueue' => 'Illuminate\\Queue\\InteractsWithQueue',
+            'serializesmodels' => 'Illuminate\\Queue\\SerializesModels',
+            'auth' => 'Illuminate\\Support\\Facades\\Auth',
+            'db' => 'Illuminate\\Support\\Facades\\DB',
+            'str' => 'Illuminate\\Support\\Str',
+            'throwable' => 'Throwable',
+          ),
+           'className' => 'App\\Domain\\Registry\\Jobs\\CommitImportBatch',
+           'functionName' => NULL,
+           'templatePhpDocNodes' => 
+          array (
+          ),
+           'parent' => NULL,
+           'typeAliasesMap' => 
+          array (
+          ),
+           'bypassTypeAliases' => false,
+           'constUses' => 
+          array (
+          ),
+           'typeAliasClassName' => NULL,
+           'traitData' => NULL,
+        )),
+         'typeAliasesMap' => 
+        array (
+        ),
+         'bypassTypeAliases' => false,
+         'constUses' => 
+        array (
+        ),
+         'typeAliasClassName' => NULL,
+         'traitData' => NULL,
+      )),
+      '7429e879cc966810168740705376ebeb' => 
+      \PHPStan\Analyser\IntermediaryNameScope::__set_state(array(
+         'namespace' => 'App\\Domain\\Registry\\Jobs',
+         'uses' => 
+        array (
+          'user' => 'App\\Domain\\Access\\Models\\User',
+          'mdascope' => 'App\\Domain\\Access\\Scopes\\MdaScope',
+          'importrowresolution' => 'App\\Domain\\Registry\\Enums\\ImportRowResolution',
+          'importstatus' => 'App\\Domain\\Registry\\Enums\\ImportStatus',
+          'beneficiary' => 'App\\Domain\\Registry\\Models\\Beneficiary',
+          'importbatch' => 'App\\Domain\\Registry\\Models\\ImportBatch',
+          'importrow' => 'App\\Domain\\Registry\\Models\\ImportRow',
+          'beneficiaryregistrar' => 'App\\Domain\\Registry\\Services\\BeneficiaryRegistrar',
+          'householdingestionservice' => 'App\\Domain\\Registry\\Services\\HouseholdIngestionService',
+          'serverequestservice' => 'App\\Domain\\Registry\\Services\\ServeRequestService',
+          'queueable' => 'Illuminate\\Bus\\Queueable',
+          'shouldqueue' => 'Illuminate\\Contracts\\Queue\\ShouldQueue',
+          'uniqueconstraintviolationexception' => 'Illuminate\\Database\\UniqueConstraintViolationException',
+          'dispatchable' => 'Illuminate\\Foundation\\Bus\\Dispatchable',
+          'interactswithqueue' => 'Illuminate\\Queue\\InteractsWithQueue',
+          'serializesmodels' => 'Illuminate\\Queue\\SerializesModels',
+          'auth' => 'Illuminate\\Support\\Facades\\Auth',
+          'db' => 'Illuminate\\Support\\Facades\\DB',
+          'str' => 'Illuminate\\Support\\Str',
+          'throwable' => 'Throwable',
+        ),
+         'className' => 'App\\Domain\\Registry\\Jobs\\CommitImportBatch',
+         'functionName' => 'serve',
+         'templatePhpDocNodes' => 
+        array (
+        ),
+         'parent' => 
+        \PHPStan\Analyser\IntermediaryNameScope::__set_state(array(
+           'namespace' => 'App\\Domain\\Registry\\Jobs',
+           'uses' => 
+          array (
+            'user' => 'App\\Domain\\Access\\Models\\User',
+            'mdascope' => 'App\\Domain\\Access\\Scopes\\MdaScope',
+            'importrowresolution' => 'App\\Domain\\Registry\\Enums\\ImportRowResolution',
+            'importstatus' => 'App\\Domain\\Registry\\Enums\\ImportStatus',
+            'beneficiary' => 'App\\Domain\\Registry\\Models\\Beneficiary',
+            'importbatch' => 'App\\Domain\\Registry\\Models\\ImportBatch',
+            'importrow' => 'App\\Domain\\Registry\\Models\\ImportRow',
+            'beneficiaryregistrar' => 'App\\Domain\\Registry\\Services\\BeneficiaryRegistrar',
+            'householdingestionservice' => 'App\\Domain\\Registry\\Services\\HouseholdIngestionService',
+            'serverequestservice' => 'App\\Domain\\Registry\\Services\\ServeRequestService',
             'queueable' => 'Illuminate\\Bus\\Queueable',
             'shouldqueue' => 'Illuminate\\Contracts\\Queue\\ShouldQueue',
             'uniqueconstraintviolationexception' => 'Illuminate\\Database\\UniqueConstraintViolationException',
@@ -2299,11 +2480,14 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         array (
           'user' => 'App\\Domain\\Access\\Models\\User',
           'mdascope' => 'App\\Domain\\Access\\Scopes\\MdaScope',
+          'importrowresolution' => 'App\\Domain\\Registry\\Enums\\ImportRowResolution',
           'importstatus' => 'App\\Domain\\Registry\\Enums\\ImportStatus',
+          'beneficiary' => 'App\\Domain\\Registry\\Models\\Beneficiary',
           'importbatch' => 'App\\Domain\\Registry\\Models\\ImportBatch',
           'importrow' => 'App\\Domain\\Registry\\Models\\ImportRow',
           'beneficiaryregistrar' => 'App\\Domain\\Registry\\Services\\BeneficiaryRegistrar',
           'householdingestionservice' => 'App\\Domain\\Registry\\Services\\HouseholdIngestionService',
+          'serverequestservice' => 'App\\Domain\\Registry\\Services\\ServeRequestService',
           'queueable' => 'Illuminate\\Bus\\Queueable',
           'shouldqueue' => 'Illuminate\\Contracts\\Queue\\ShouldQueue',
           'uniqueconstraintviolationexception' => 'Illuminate\\Database\\UniqueConstraintViolationException',
@@ -2327,11 +2511,14 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
           array (
             'user' => 'App\\Domain\\Access\\Models\\User',
             'mdascope' => 'App\\Domain\\Access\\Scopes\\MdaScope',
+            'importrowresolution' => 'App\\Domain\\Registry\\Enums\\ImportRowResolution',
             'importstatus' => 'App\\Domain\\Registry\\Enums\\ImportStatus',
+            'beneficiary' => 'App\\Domain\\Registry\\Models\\Beneficiary',
             'importbatch' => 'App\\Domain\\Registry\\Models\\ImportBatch',
             'importrow' => 'App\\Domain\\Registry\\Models\\ImportRow',
             'beneficiaryregistrar' => 'App\\Domain\\Registry\\Services\\BeneficiaryRegistrar',
             'householdingestionservice' => 'App\\Domain\\Registry\\Services\\HouseholdIngestionService',
+            'serverequestservice' => 'App\\Domain\\Registry\\Services\\ServeRequestService',
             'queueable' => 'Illuminate\\Bus\\Queueable',
             'shouldqueue' => 'Illuminate\\Contracts\\Queue\\ShouldQueue',
             'uniqueconstraintviolationexception' => 'Illuminate\\Database\\UniqueConstraintViolationException',
@@ -2372,7 +2559,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
     ),
     1 => 
     array (
-      '/var/www/html/app/Domain/Registry/Jobs/CommitImportBatch.php' => '8af35654bfb5abde0488cd406dc1f72df2728b5ce80566e0fb0bff3274181cba',
+      '/var/www/html/app/Domain/Registry/Jobs/CommitImportBatch.php' => '3280c5a9e81eb26a312d276f5b3ebe29f0c4bbf0a571c34d2f979551e6543796',
       '/var/www/html/vendor/composer/../laravel/framework/src/Illuminate/Foundation/Bus/Dispatchable.php' => '551294291775e57fbd590f0ed288a91cca683d42fac08e60c87e39b73617d47b',
       '/var/www/html/vendor/composer/../laravel/framework/src/Illuminate/Queue/InteractsWithQueue.php' => '8d300c3adb967aa56c0827ba587e456e32e40fbb1c0d9f649f6bf7c0d876e937',
       '/var/www/html/vendor/composer/../laravel/framework/src/Illuminate/Support/InteractsWithTime.php' => 'ee4ef3a2e714fa539b223287a3a62b618b1d3a9e44f2e1f92981f2c3e2773ad5',

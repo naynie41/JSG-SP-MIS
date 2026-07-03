@@ -2,7 +2,7 @@
 
 // odsl-/var/www/html/app/Domain/Matching/Scoring/MatchScore.php-PHPStan\BetterReflection\Reflection\ReflectionClass-App\Domain\Matching\Scoring\MatchScore
 return \PHPStan\Cache\CacheItem::__set_state(array(
-   'variableKey' => 'v2-6.70.0.1-8.3.31-513dcbcfac8da9b6c374dd8fb72444130588375a254b1f81001299072a7331b2',
+   'variableKey' => 'v2-6.70.0.1-8.3.31-d10013b3839213a53ec095f90028cd01c498c90eb70d443d1be58b800cfc2f30',
    'data' => 
   array (
     'locatedSource' => 
@@ -32,7 +32,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
     array (
     ),
     'startLine' => 13,
-    'endLine' => 35,
+    'endLine' => 58,
     'startColumn' => 1,
     'endColumn' => 1,
     'parentClassName' => NULL,
@@ -274,6 +274,47 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
  */',
         'startLine' => 27,
         'endLine' => 34,
+        'startColumn' => 5,
+        'endColumn' => 5,
+        'couldThrow' => false,
+        'isClosure' => false,
+        'isGenerator' => false,
+        'isVariadic' => false,
+        'modifiers' => 1,
+        'namespace' => 'App\\Domain\\Matching\\Scoring',
+        'declaringClassName' => 'App\\Domain\\Matching\\Scoring\\MatchScore',
+        'implementingClassName' => 'App\\Domain\\Matching\\Scoring\\MatchScore',
+        'currentClassName' => 'App\\Domain\\Matching\\Scoring\\MatchScore',
+        'aliasName' => NULL,
+      ),
+      'matchedFields' => 
+      array (
+        'name' => 'matchedFields',
+        'parameters' => 
+        array (
+        ),
+        'returnsReference' => false,
+        'returnType' => 
+        array (
+          'class' => 'PHPStan\\BetterReflection\\Reflection\\ReflectionNamedType',
+          'data' => 
+          array (
+            'name' => 'array',
+            'isIdentifier' => true,
+          ),
+        ),
+        'attributes' => 
+        array (
+        ),
+        'docComment' => '/**
+ * The field names that drove the match (deterministic keys + strong fuzzy
+ * fields) — for transparency; never the raw values. Shared by the batch
+ * screener and the ad-hoc serve search so both explain matches identically.
+ *
+ * @return list<string>
+ */',
+        'startLine' => 43,
+        'endLine' => 57,
         'startColumn' => 5,
         'endColumn' => 5,
         'couldThrow' => false,

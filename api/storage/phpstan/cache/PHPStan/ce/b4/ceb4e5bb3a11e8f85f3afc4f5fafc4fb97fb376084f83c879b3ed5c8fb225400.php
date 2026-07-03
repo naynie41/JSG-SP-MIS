@@ -1180,7 +1180,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
     ),
     '/var/www/html/app/Domain/Registry/RegistryServiceProvider.php' => 
     array (
-      0 => '694d9f26f779408733a419f79e2b5c4ee2f4620c4401cd8443e422886048b3c8',
+      0 => '2184b2a11cb88d2b44ea3ed3cd680a841168ff5cabca1720fefbb3bebaef223b',
       1 => 
       array (
         0 => 'app\\domain\\registry\\registryserviceprovider',
@@ -1247,7 +1247,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
     ),
     '/var/www/html/app/Http/Controllers/Api/V1/Registry/BeneficiaryController.php' => 
     array (
-      0 => '9e2ef514003eeb2ec9606ebc9b577598ead91583090b76232fb9c9f0b06b6ab2',
+      0 => '1fc22dead786de1d7ae79e2423506f5e8b3ad69d64949cbff8259324dc693324',
       1 => 
       array (
         0 => 'app\\http\\controllers\\api\\v1\\registry\\beneficiarycontroller',
@@ -1259,6 +1259,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         2 => 'app\\http\\controllers\\api\\v1\\registry\\update',
         3 => 'app\\http\\controllers\\api\\v1\\registry\\destroy',
         4 => 'app\\http\\controllers\\api\\v1\\registry\\lookup',
+        5 => 'app\\http\\controllers\\api\\v1\\registry\\search',
       ),
       3 => 
       array (
@@ -1366,7 +1367,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
     ),
     '/var/www/html/app/Http/Resources/BeneficiaryRevealResource.php' => 
     array (
-      0 => '3ce4523b26b598ac27bfa3a760bfdca66323d99e4e39d02e9a0e527d111031b6',
+      0 => 'c8ef0771e6aff86b7d8c525da3128df415a7832501f2b8dbcda1aab4dab631b9',
       1 => 
       array (
         0 => 'app\\http\\resources\\beneficiaryrevealresource',
@@ -1662,7 +1663,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
     ),
     '/var/www/html/app/Domain/Registry/Jobs/CommitImportBatch.php' => 
     array (
-      0 => '8af35654bfb5abde0488cd406dc1f72df2728b5ce80566e0fb0bff3274181cba',
+      0 => '3280c5a9e81eb26a312d276f5b3ebe29f0c4bbf0a571c34d2f979551e6543796',
       1 => 
       array (
         0 => 'app\\domain\\registry\\jobs\\commitimportbatch',
@@ -1671,7 +1672,9 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
       array (
         0 => 'app\\domain\\registry\\jobs\\__construct',
         1 => 'app\\domain\\registry\\jobs\\handle',
-        2 => 'app\\domain\\registry\\jobs\\failed',
+        2 => 'app\\domain\\registry\\jobs\\effectiveresolution',
+        3 => 'app\\domain\\registry\\jobs\\serve',
+        4 => 'app\\domain\\registry\\jobs\\failed',
       ),
       3 => 
       array (
@@ -1679,7 +1682,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
     ),
     '/var/www/html/app/Domain/Registry/Jobs/ParseImportBatch.php' => 
     array (
-      0 => '115545f83c5f0a5b9627672e0de1de8970485d61a8f4304723f97169675b55d8',
+      0 => '4abc15c59bca8fc32bab44ba13d4d32cdcfff0f8943b9c70d14ecb18602d181b',
       1 => 
       array (
         0 => 'app\\domain\\registry\\jobs\\parseimportbatch',
@@ -1690,6 +1693,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         1 => 'app\\domain\\registry\\jobs\\handle',
         2 => 'app\\domain\\registry\\jobs\\failed',
         3 => 'app\\domain\\registry\\jobs\\istruthy',
+        4 => 'app\\domain\\registry\\jobs\\autoresolve',
       ),
       3 => 
       array (
@@ -1697,7 +1701,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
     ),
     '/var/www/html/app/Domain/Registry/Models/ImportBatch.php' => 
     array (
-      0 => 'a66e9b8fa65841db4cdccc686b78fa351a064de97bad1a1078c3b96d8ff7c006',
+      0 => '86c20e2dea6d76b13ec504730750f8332c50d54d9385fb3c94bce96b260d98a9',
       1 => 
       array (
         0 => 'app\\domain\\registry\\models\\importbatch',
@@ -1716,7 +1720,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
     ),
     '/var/www/html/app/Domain/Registry/Models/ImportRow.php' => 
     array (
-      0 => '9666e37f0b29fc3de264dd5a9c87bb036df1aafee405ebbc5a339a0dff745310',
+      0 => 'aaad26e56a07ae6f82c0511c68061c99209b4a97158956b8a49a856ec10bd58e',
       1 => 
       array (
         0 => 'app\\domain\\registry\\models\\importrow',
@@ -1768,7 +1772,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
     ),
     '/var/www/html/app/Http/Controllers/Api/V1/Registry/ImportBatchController.php' => 
     array (
-      0 => '727027b21663850aca5ce2a83a61a80aab79b17f724b754bd659a174cbbf8b73',
+      0 => '2a4f835b4a503838d2542f6dde9c28d753e0411679d9accde5e976fb4eccfcdc',
       1 => 
       array (
         0 => 'app\\http\\controllers\\api\\v1\\registry\\importbatchcontroller',
@@ -1778,7 +1782,11 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         0 => 'app\\http\\controllers\\api\\v1\\registry\\index',
         1 => 'app\\http\\controllers\\api\\v1\\registry\\store',
         2 => 'app\\http\\controllers\\api\\v1\\registry\\show',
-        3 => 'app\\http\\controllers\\api\\v1\\registry\\confirm',
+        3 => 'app\\http\\controllers\\api\\v1\\registry\\attachmatchreveals',
+        4 => 'app\\http\\controllers\\api\\v1\\registry\\registryreveal',
+        5 => 'app\\http\\controllers\\api\\v1\\registry\\batchreveal',
+        6 => 'app\\http\\controllers\\api\\v1\\registry\\resolverow',
+        7 => 'app\\http\\controllers\\api\\v1\\registry\\confirm',
       ),
       3 => 
       array (
@@ -1802,7 +1810,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
     ),
     '/var/www/html/app/Http/Resources/ImportBatchResource.php' => 
     array (
-      0 => '90c7159b7d0375327ab96129427015ff398c3ffed15e148bf260f5d45728f1f1',
+      0 => '200effaf8580e10b8960eb40a508c806be80056486629efd77d104672f4485d1',
       1 => 
       array (
         0 => 'app\\http\\resources\\importbatchresource',
@@ -1817,7 +1825,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
     ),
     '/var/www/html/app/Http/Resources/ImportRowResource.php' => 
     array (
-      0 => 'a9ceadcfab082a762c9d3bf8ef8746b7c0e8ccae93dd2e68e0b735d24110648e',
+      0 => '80a859a3e582d1662d3400383ba8ccc6a8e1d9ed18bb4e631da561903b5f3301',
       1 => 
       array (
         0 => 'app\\http\\resources\\importrowresource',
@@ -2339,7 +2347,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
     ),
     '/var/www/html/app/Domain/Matching/Scoring/MatchScore.php' => 
     array (
-      0 => '513dcbcfac8da9b6c374dd8fb72444130588375a254b1f81001299072a7331b2',
+      0 => 'd10013b3839213a53ec095f90028cd01c498c90eb70d443d1be58b800cfc2f30',
       1 => 
       array (
         0 => 'app\\domain\\matching\\scoring\\matchscore',
@@ -2348,6 +2356,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
       array (
         0 => 'app\\domain\\matching\\scoring\\__construct',
         1 => 'app\\domain\\matching\\scoring\\toarray',
+        2 => 'app\\domain\\matching\\scoring\\matchedfields',
       ),
       3 => 
       array (
@@ -2372,7 +2381,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
     ),
     '/var/www/html/app/Domain/Matching/Services/MatchingConfigService.php' => 
     array (
-      0 => '07537613f099b95f6c903458293aa43763376e6a82de0e235db4b5981e61d818',
+      0 => '2b4650d34729b72834d7269f49c58eb0150cfdf4bfb64ecc9ac14e10749543d7',
       1 => 
       array (
         0 => 'app\\domain\\matching\\services\\matchingconfigservice',
@@ -2380,7 +2389,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
       2 => 
       array (
         0 => 'app\\domain\\matching\\services\\active',
-        1 => 'app\\domain\\matching\\services\\publish',
+        1 => 'app\\domain\\matching\\services\\activeornull',
+        2 => 'app\\domain\\matching\\services\\publish',
       ),
       3 => 
       array (
@@ -2537,7 +2547,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
     ),
     '/var/www/html/app/Domain/Registry/Services/FuzzyDuplicateFinder.php' => 
     array (
-      0 => 'a7b386b07c6e0a6f89553ee61002b0d02cfa51afe1f1f6a0d1dbca52b45b8881',
+      0 => 'eda21affa7c5836adb860d4995a7a09f251d6fad3b6618578d9c086992789d77',
       1 => 
       array (
         0 => 'app\\domain\\registry\\services\\fuzzyduplicatefinder',
@@ -2546,6 +2556,223 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
       array (
         0 => 'app\\domain\\registry\\services\\__construct',
         1 => 'app\\domain\\registry\\services\\find',
+      ),
+      3 => 
+      array (
+      ),
+    ),
+    '/var/www/html/app/Domain/Registry/Services/BatchDuplicateScreener.php' => 
+    array (
+      0 => '5b7f678638e3747c7764e4369488bdd1db43fe9e169695f6564c865cef830336',
+      1 => 
+      array (
+        0 => 'app\\domain\\registry\\services\\batchduplicatescreener',
+      ),
+      2 => 
+      array (
+        0 => 'app\\domain\\registry\\services\\__construct',
+        1 => 'app\\domain\\registry\\services\\screen',
+        2 => 'app\\domain\\registry\\services\\matchwithinbatch',
+        3 => 'app\\domain\\registry\\services\\remember',
+        4 => 'app\\domain\\registry\\services\\blockkeys',
+        5 => 'app\\domain\\registry\\services\\entry',
+        6 => 'app\\domain\\registry\\services\\highestband',
+      ),
+      3 => 
+      array (
+      ),
+    ),
+    '/var/www/html/app/Domain/Registry/Enums/ImportRowResolution.php' => 
+    array (
+      0 => '8fbd368d9a76ef08c568e55e72405f54cac5c5f6ed0711367da81374414adacd',
+      1 => 
+      array (
+        0 => 'app\\domain\\registry\\enums\\importrowresolution',
+      ),
+      2 => 
+      array (
+      ),
+      3 => 
+      array (
+      ),
+    ),
+    '/var/www/html/app/Domain/Registry/Enums/ServeRequestStatus.php' => 
+    array (
+      0 => '9981651df40b343c4d6a7c724f8af40b32fb31ee6116b5efc362074a9389555e',
+      1 => 
+      array (
+        0 => 'app\\domain\\registry\\enums\\serverequeststatus',
+      ),
+      2 => 
+      array (
+      ),
+      3 => 
+      array (
+      ),
+    ),
+    '/var/www/html/app/Domain/Registry/Models/ServeRequest.php' => 
+    array (
+      0 => '1e0af1b50c5c97d0da73fcec466b05fc61d188609fa79bf6515116421860b4c8',
+      1 => 
+      array (
+        0 => 'app\\domain\\registry\\models\\serverequest',
+      ),
+      2 => 
+      array (
+        0 => 'app\\domain\\registry\\models\\casts',
+        1 => 'app\\domain\\registry\\models\\beneficiary',
+        2 => 'app\\domain\\registry\\models\\frommda',
+        3 => 'app\\domain\\registry\\models\\tomda',
+      ),
+      3 => 
+      array (
+      ),
+    ),
+    '/var/www/html/app/Domain/Registry/Policies/ServeRequestPolicy.php' => 
+    array (
+      0 => '07dc363a639987401937030822344dea8af2f2eef89d312ab1d74cf4f32743d7',
+      1 => 
+      array (
+        0 => 'app\\domain\\registry\\policies\\serverequestpolicy',
+      ),
+      2 => 
+      array (
+        0 => 'app\\domain\\registry\\policies\\view',
+        1 => 'app\\domain\\registry\\policies\\decide',
+      ),
+      3 => 
+      array (
+      ),
+    ),
+    '/var/www/html/app/Domain/Registry/Services/ServeRequestService.php' => 
+    array (
+      0 => '912dc46136a725f89343172dce8cfd7d139fcd098acd2f67abc75f193263edf1',
+      1 => 
+      array (
+        0 => 'app\\domain\\registry\\services\\serverequestservice',
+      ),
+      2 => 
+      array (
+        0 => 'app\\domain\\registry\\services\\__construct',
+        1 => 'app\\domain\\registry\\services\\request',
+        2 => 'app\\domain\\registry\\services\\accept',
+        3 => 'app\\domain\\registry\\services\\decline',
+        4 => 'app\\domain\\registry\\services\\decide',
+      ),
+      3 => 
+      array (
+      ),
+    ),
+    '/var/www/html/app/Http/Controllers/Api/V1/Registry/ServeRequestController.php' => 
+    array (
+      0 => '027bc013e08514d623eaea8095f6c6cf01d0922cd27a57c0928705667722ff51',
+      1 => 
+      array (
+        0 => 'app\\http\\controllers\\api\\v1\\registry\\serverequestcontroller',
+      ),
+      2 => 
+      array (
+        0 => 'app\\http\\controllers\\api\\v1\\registry\\__construct',
+        1 => 'app\\http\\controllers\\api\\v1\\registry\\index',
+        2 => 'app\\http\\controllers\\api\\v1\\registry\\store',
+        3 => 'app\\http\\controllers\\api\\v1\\registry\\accept',
+        4 => 'app\\http\\controllers\\api\\v1\\registry\\decline',
+        5 => 'app\\http\\controllers\\api\\v1\\registry\\decide',
+      ),
+      3 => 
+      array (
+      ),
+    ),
+    '/var/www/html/app/Http/Requests/Registry/DecideServeRequestRequest.php' => 
+    array (
+      0 => '076f07721e92809abf32154d23442e72c0d804108971a3765b6a9aebdd9c259d',
+      1 => 
+      array (
+        0 => 'app\\http\\requests\\registry\\decideserverequestrequest',
+      ),
+      2 => 
+      array (
+        0 => 'app\\http\\requests\\registry\\authorize',
+        1 => 'app\\http\\requests\\registry\\rules',
+      ),
+      3 => 
+      array (
+      ),
+    ),
+    '/var/www/html/app/Http/Requests/Registry/ResolveImportRowRequest.php' => 
+    array (
+      0 => 'd1d5edf7340532d674e91b35401b0b7fdf91e77e7b4f1d09cd120c9ac843a1e6',
+      1 => 
+      array (
+        0 => 'app\\http\\requests\\registry\\resolveimportrowrequest',
+      ),
+      2 => 
+      array (
+        0 => 'app\\http\\requests\\registry\\authorize',
+        1 => 'app\\http\\requests\\registry\\rules',
+      ),
+      3 => 
+      array (
+      ),
+    ),
+    '/var/www/html/app/Http/Resources/ServeRequestResource.php' => 
+    array (
+      0 => 'e541465da58150b5dc3921407582c97bf7830785079ed0a98f6a45ba1e4a3c84',
+      1 => 
+      array (
+        0 => 'app\\http\\resources\\serverequestresource',
+      ),
+      2 => 
+      array (
+        0 => 'app\\http\\resources\\toarray',
+      ),
+      3 => 
+      array (
+      ),
+    ),
+    '/var/www/html/app/Http/Requests/Registry/BeneficiaryMatchSearchRequest.php' => 
+    array (
+      0 => '1b4290d5a5679151a5dad48eec13c2e0b08af0d2cb74a77a77023916479eb365',
+      1 => 
+      array (
+        0 => 'app\\http\\requests\\registry\\beneficiarymatchsearchrequest',
+      ),
+      2 => 
+      array (
+        0 => 'app\\http\\requests\\registry\\authorize',
+        1 => 'app\\http\\requests\\registry\\rules',
+        2 => 'app\\http\\requests\\registry\\canonicalquery',
+      ),
+      3 => 
+      array (
+      ),
+    ),
+    '/var/www/html/app/Http/Requests/Registry/RaiseServeRequestRequest.php' => 
+    array (
+      0 => '60716da152db370b580265944d0a74a0a492e521d6f4175ff045879a0eed0c43',
+      1 => 
+      array (
+        0 => 'app\\http\\requests\\registry\\raiseserverequestrequest',
+      ),
+      2 => 
+      array (
+        0 => 'app\\http\\requests\\registry\\authorize',
+        1 => 'app\\http\\requests\\registry\\rules',
+      ),
+      3 => 
+      array (
+      ),
+    ),
+    '/var/www/html/app/Http/Resources/MatchCandidateResource.php' => 
+    array (
+      0 => '313eaec58bab0c16e72ff27c5c7e69424cc86dc13f9d1a25fcb41ec7a3021549',
+      1 => 
+      array (
+        0 => 'app\\http\\resources\\matchcandidateresource',
+      ),
+      2 => 
+      array (
+        0 => 'app\\http\\resources\\toarray',
       ),
       3 => 
       array (

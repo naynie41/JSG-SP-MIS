@@ -115,10 +115,53 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
          'typeAliasClassName' => NULL,
          'traitData' => NULL,
       )),
+      'cf964ea0d238f6d6ba9105390b7d0b39' => 
+      \PHPStan\Analyser\IntermediaryNameScope::__set_state(array(
+         'namespace' => 'App\\Domain\\Matching\\Scoring',
+         'uses' => 
+        array (
+        ),
+         'className' => 'App\\Domain\\Matching\\Scoring\\MatchScore',
+         'functionName' => 'matchedFields',
+         'templatePhpDocNodes' => 
+        array (
+        ),
+         'parent' => 
+        \PHPStan\Analyser\IntermediaryNameScope::__set_state(array(
+           'namespace' => 'App\\Domain\\Matching\\Scoring',
+           'uses' => 
+          array (
+          ),
+           'className' => 'App\\Domain\\Matching\\Scoring\\MatchScore',
+           'functionName' => NULL,
+           'templatePhpDocNodes' => 
+          array (
+          ),
+           'parent' => NULL,
+           'typeAliasesMap' => 
+          array (
+          ),
+           'bypassTypeAliases' => false,
+           'constUses' => 
+          array (
+          ),
+           'typeAliasClassName' => NULL,
+           'traitData' => NULL,
+        )),
+         'typeAliasesMap' => 
+        array (
+        ),
+         'bypassTypeAliases' => false,
+         'constUses' => 
+        array (
+        ),
+         'typeAliasClassName' => NULL,
+         'traitData' => NULL,
+      )),
     ),
     1 => 
     array (
-      '/var/www/html/app/Domain/Matching/Scoring/MatchScore.php' => '513dcbcfac8da9b6c374dd8fb72444130588375a254b1f81001299072a7331b2',
+      '/var/www/html/app/Domain/Matching/Scoring/MatchScore.php' => 'd10013b3839213a53ec095f90028cd01c498c90eb70d443d1be58b800cfc2f30',
     ),
   ),
 ));

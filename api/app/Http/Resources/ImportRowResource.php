@@ -29,6 +29,15 @@ class ImportRowResource extends JsonResource
             'is_valid' => $this->is_valid,
             'errors' => $this->errors ?? [],
             'beneficiary_id' => $this->beneficiary_id,
+            'resolution' => $this->resolution,
+            'resolution_note' => $this->resolution_note,
+            'resolved_beneficiary_id' => $this->resolved_beneficiary_id,
+            // Duplicate outcome (FR-DUP-01/04). The controller attaches the resolved
+            // reveal payloads as `match_view`; fall back to the stored band.
+            'match' => $this->resource->getAttribute('match_view') ?? [
+                'band' => $this->match_band ?? 'none',
+                'candidates' => [],
+            ],
             'preview' => [
                 'first_name' => $payload['first_name'] ?? null,
                 'last_name' => $payload['last_name'] ?? null,

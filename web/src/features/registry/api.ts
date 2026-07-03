@@ -9,8 +9,34 @@ import type {
   HouseholdMembership,
   HouseholdRole,
   ImportBatch,
+  ImportRow,
+  ImportRowResolution,
+  MatchingConfig,
+  MatchingConfigInput,
   RevealMatch,
+  SearchCandidate,
+  ServeRequest,
 } from './types'
+
+/** Partial identity details fed to the duplicate-search engine (FR-DUP-04). */
+export interface SearchQuery {
+  nin?: string
+  bvn?: string
+  phone?: string
+  first_name?: string
+  middle_name?: string
+  last_name?: string
+  date_of_birth?: string
+  gender?: string
+  lga?: string
+  ward?: string
+}
+
+export interface ResolveRowInput {
+  resolution: ImportRowResolution
+  note?: string
+  beneficiary_id?: string
+}
 
 export interface BeneficiaryListParams {
   page?: number
@@ -54,6 +80,52 @@ export const beneficiaryApi = {
       params,
     })
     return matches
+  },
+  /** Fuzzy "serve many" search (FR-DUP-04): ranked reveal-only candidates. */
+  async search(query: SearchQuery): Promise<SearchCandidate[]> {
+    const { candidates } = await apiRequest<{ candidates: SearchCandidate[] }>({
+      method: 'GET',
+      url: '/beneficiaries/search',
+      params: query,
+    })
+    return candidates
+  },
+}
+
+/** Request-to-serve workflow (FR-DUP-05, FR-OWN-03) — never transfers ownership. */
+export const serveRequestApi = {
+  async list(): Promise<ServeRequest[]> {
+    const { serve_requests } = await apiRequest<{ serve_requests: ServeRequest[] }>({
+      method: 'GET',
+      url: '/serve-requests',
+    })
+    return serve_requests
+  },
+  raise(input: { beneficiary_id: string; reason?: string }): Promise<ServeRequest> {
+    return apiRequest<ServeRequest>({ method: 'POST', url: '/serve-requests', data: input })
+  },
+  accept(id: string, reason?: string): Promise<ServeRequest> {
+    return apiRequest<ServeRequest>({ method: 'POST', url: `/serve-requests/${id}/accept`, data: { reason } })
+  },
+  decline(id: string, reason?: string): Promise<ServeRequest> {
+    return apiRequest<ServeRequest>({ method: 'POST', url: `/serve-requests/${id}/decline`, data: { reason } })
+  },
+}
+
+/** Duplicate-matching configuration admin (FR-DUP-02/03). */
+export const matchingApi = {
+  getConfig(): Promise<MatchingConfig> {
+    return apiRequest<MatchingConfig>({ method: 'GET', url: '/matching/config' })
+  },
+  async versions(): Promise<MatchingConfig[]> {
+    const { versions } = await apiRequest<{ versions: MatchingConfig[] }>({
+      method: 'GET',
+      url: '/matching/config/versions',
+    })
+    return versions
+  },
+  publish(input: MatchingConfigInput): Promise<MatchingConfig> {
+    return apiRequest<MatchingConfig>({ method: 'PUT', url: '/matching/config', data: input })
   },
 }
 
@@ -100,6 +172,14 @@ export const importApi = {
   },
   confirm(id: string): Promise<ImportBatch> {
     return apiRequest<ImportBatch>({ method: 'POST', url: `/beneficiaries/imports/${id}/confirm` })
+  },
+  /** Resolve a flagged preview row: new (with justification) / link-serve / skip (FR-DUP-05). */
+  resolveRow(batchId: string, rowNumber: number, input: ResolveRowInput): Promise<ImportRow> {
+    return apiRequest<ImportRow>({
+      method: 'POST',
+      url: `/beneficiaries/imports/${batchId}/rows/${rowNumber}/resolve`,
+      data: input,
+    })
   },
 }
 
