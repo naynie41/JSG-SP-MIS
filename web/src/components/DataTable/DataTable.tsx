@@ -1,3 +1,4 @@
+import { Fragment } from 'react'
 import type { ReactNode } from 'react'
 import { ArrowDown, ArrowUp, ArrowUpDown, ChevronDown, ChevronLeft, ChevronRight, Inbox } from 'lucide-react'
 import { cn } from '@/lib/utils/cn'
@@ -63,12 +64,16 @@ export function DataTable<T>({
   onSortChange,
   selectedIds,
   onToggleRow,
+  renderExpanded,
+  expandedIds,
+  onToggleExpand,
   emptyTitle = 'Nothing here yet',
   emptyAction,
   pagination,
 }: DataTableProps<T>) {
   const selectable = Boolean(onToggleRow)
-  const colSpan = columns.length + (selectable ? 1 : 0)
+  const expandable = Boolean(renderExpanded)
+  const colSpan = columns.length + (selectable ? 1 : 0) + (expandable ? 1 : 0)
 
   return (
     <div className={styles.container}>
@@ -77,6 +82,7 @@ export function DataTable<T>({
           <caption className="sr-only">{caption}</caption>
           <thead>
             <tr>
+              {expandable && <th className={cn(styles.th, styles.checkboxCell)} aria-label="Expand" />}
               {selectable && <th className={cn(styles.th, styles.checkboxCell)} aria-label="Select" />}
               {columns.map((col) => {
                 const isSorted = sort?.key === col.key
@@ -108,6 +114,7 @@ export function DataTable<T>({
             {loading &&
               Array.from({ length: skeletonRows }).map((_, rowIndex) => (
                 <tr key={`skeleton-${rowIndex}`}>
+                  {expandable && <td className={styles.td} />}
                   {selectable && <td className={styles.td} />}
                   {columns.map((col) => (
                     <td key={col.key} className={styles.td}>
@@ -133,27 +140,48 @@ export function DataTable<T>({
               rows.map((row, rowIndex) => {
                 const id = getRowId(row)
                 const isSelected = selectedIds?.has(id) ?? false
+                const isExpanded = expandedIds?.has(id) ?? false
+                const isLast = rowIndex === rows.length - 1
                 return (
-                  <tr
-                    key={id}
-                    className={cn(styles.row, isSelected && styles.selected, rowIndex === rows.length - 1 && styles.lastRow)}
-                  >
-                    {selectable && (
-                      <td className={cn(styles.td, styles.checkboxCell)}>
-                        <Checkbox
-                          label={`Select row ${rowIndex + 1}`}
-                          hideLabel
-                          checked={isSelected}
-                          onChange={() => onToggleRow?.(id)}
-                        />
-                      </td>
+                  <Fragment key={id}>
+                    <tr className={cn(styles.row, isSelected && styles.selected, isLast && !isExpanded && styles.lastRow)}>
+                      {expandable && (
+                        <td className={cn(styles.td, styles.checkboxCell)}>
+                          <button
+                            type="button"
+                            className={styles.disclosure}
+                            aria-expanded={isExpanded}
+                            aria-label={isExpanded ? `Collapse row ${rowIndex + 1}` : `Expand row ${rowIndex + 1}`}
+                            onClick={() => onToggleExpand?.(id)}
+                          >
+                            <Icon icon={ChevronDown} size={16} className={cn(styles.chevron, isExpanded && styles.chevronOpen)} />
+                          </button>
+                        </td>
+                      )}
+                      {selectable && (
+                        <td className={cn(styles.td, styles.checkboxCell)}>
+                          <Checkbox
+                            label={`Select row ${rowIndex + 1}`}
+                            hideLabel
+                            checked={isSelected}
+                            onChange={() => onToggleRow?.(id)}
+                          />
+                        </td>
+                      )}
+                      {columns.map((col) => (
+                        <td key={col.key} className={cn(styles.td, col.align === 'right' && styles.right)}>
+                          {col.render(row)}
+                        </td>
+                      ))}
+                    </tr>
+                    {expandable && isExpanded && (
+                      <tr className={styles.expandedRow}>
+                        <td className={cn(styles.td, isLast && styles.lastRow)} colSpan={colSpan}>
+                          {renderExpanded!(row)}
+                        </td>
+                      </tr>
                     )}
-                    {columns.map((col) => (
-                      <td key={col.key} className={cn(styles.td, col.align === 'right' && styles.right)}>
-                        {col.render(row)}
-                      </td>
-                    ))}
-                  </tr>
+                  </Fragment>
                 )
               })}
           </tbody>

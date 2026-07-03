@@ -8,10 +8,10 @@ import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 import { ToastProvider } from '@/components/Toast/ToastProvider'
 import { ImportBatchPage } from './ImportBatchPage'
 import { importApi } from './api'
-import type { ImportBatch } from './types'
+import type { ImportBatch, MatchReveal } from './types'
 
 vi.mock('./api', () => ({
-  importApi: { list: vi.fn(), get: vi.fn(), upload: vi.fn(), confirm: vi.fn() },
+  importApi: { list: vi.fn(), get: vi.fn(), upload: vi.fn(), confirm: vi.fn(), resolveRow: vi.fn() },
 }))
 
 vi.mock('@/lib/auth/AuthProvider', () => ({
@@ -25,6 +25,20 @@ vi.mock('@/lib/auth/AuthProvider', () => ({
 
 const get = importApi.get as Mock
 const confirm = importApi.confirm as Mock
+const resolveRow = importApi.resolveRow as Mock
+
+const reveal: MatchReveal = {
+  id: 'ben-9',
+  full_name: 'Zainab Umar',
+  owner_mda: { id: 'm-2', name: 'Health' },
+  registration_source: 'kobo',
+  registration_date: '2025-01-01',
+  lga: 'dutse',
+  ward: 'Ward 1',
+  status: 'active',
+  programmes: [],
+  benefits: { summary: null, items: [] },
+}
 
 function makeBatch(): ImportBatch {
   return {
@@ -34,7 +48,7 @@ function makeBatch(): ImportBatch {
     original_filename: 'beneficiaries.csv',
     source: 'csv',
     status: 'preview_ready',
-    summary: { total_rows: 2, valid_rows: 1, invalid_rows: 1, committed_rows: 0 },
+    summary: { total_rows: 1, valid_rows: 1, invalid_rows: 0, committed_rows: 0, served_rows: 0, skipped_rows: 0 },
     error: null,
     rows: [
       {
@@ -43,15 +57,14 @@ function makeBatch(): ImportBatch {
         is_valid: true,
         errors: [],
         beneficiary_id: null,
-        preview: { first_name: 'Amina', last_name: 'Sadiq', nin: null, bvn: null, phone: null, date_of_birth: '1990-01-01', gender: 'female', lga: 'dutse', ward: 'Ward 1' },
-      },
-      {
-        row_number: 2,
-        original_record_id: 'EXT-2',
-        is_valid: false,
-        errors: [{ field: 'last_name', message: 'Last name is required' }],
-        beneficiary_id: null,
-        preview: { first_name: 'Bad', last_name: null, nin: null, bvn: null, phone: null, date_of_birth: null, gender: null, lga: null, ward: null },
+        resolution: null,
+        resolution_note: null,
+        resolved_beneficiary_id: null,
+        match: {
+          band: 'exact',
+          candidates: [{ type: 'registry', band: 'exact', score: 1, matched_fields: ['nin'], reveal }],
+        },
+        preview: { first_name: 'Zainab', last_name: 'Umaru', nin: null, bvn: null, phone: null, date_of_birth: '1990-01-01', gender: 'female', lga: 'dutse', ward: 'Ward 1' },
       },
     ],
     created_at: null,
@@ -74,30 +87,60 @@ function renderPage(ui: ReactNode) {
   )
 }
 
-describe('ImportBatchPage', () => {
+describe('ImportBatchPage — duplicate resolution', () => {
   beforeEach(() => vi.clearAllMocks())
 
-  it('shows the preview summary and row-level errors', async () => {
+  it('shows a match badge and reveals the existing record on expand', async () => {
     get.mockResolvedValue(makeBatch())
-
-    renderPage(<ImportBatchPage />)
-
-    // Summary + per-row validation.
-    expect((await screen.findAllByText('Valid')).length).toBeGreaterThan(0)
-    expect(screen.getByText('Error')).toBeInTheDocument()
-    expect(screen.getByText(/Last name is required/)).toBeInTheDocument()
-  })
-
-  it('confirms the batch, committing only valid rows', async () => {
-    get.mockResolvedValue(makeBatch())
-    confirm.mockResolvedValue({ ...makeBatch(), status: 'completed', summary: { total_rows: 2, valid_rows: 1, invalid_rows: 1, committed_rows: 1 } })
-
     const user = userEvent.setup()
     renderPage(<ImportBatchPage />)
 
-    const confirmButton = await screen.findByRole('button', { name: /confirm & commit 1 valid/i })
-    await user.click(confirmButton)
+    // Match badge in the row.
+    expect((await screen.findAllByText('Exact')).length).toBeGreaterThan(0)
 
+    // Expand the flagged row → the reveal panel discloses the existing record.
+    await user.click(screen.getByRole('button', { name: /expand row 1/i }))
+    expect(await screen.findByText('Zainab Umar')).toBeInTheDocument()
+    expect(screen.getByText('Health')).toBeInTheDocument()
+    // Phase-4 sections present but empty (programmes + benefits).
+    expect(screen.getAllByText(/populates in Phase 4/i)).toHaveLength(2)
+  })
+
+  it('resolves a flagged row as link / request-to-serve without creating a duplicate', async () => {
+    get.mockResolvedValue(makeBatch())
+    resolveRow.mockResolvedValue({ ...makeBatch().rows![0], resolution: 'link', resolved_beneficiary_id: 'ben-9' })
+    const user = userEvent.setup()
+    renderPage(<ImportBatchPage />)
+
+    await user.click(await screen.findByRole('button', { name: /expand row 1/i }))
+    // Link is the default decision when a registry candidate exists.
+    await user.click(screen.getByRole('button', { name: /save decision/i }))
+
+    await waitFor(() =>
+      expect(resolveRow).toHaveBeenCalledWith('batch-1', 1, { resolution: 'link', note: undefined, beneficiary_id: 'ben-9' }),
+    )
+  })
+
+  it('requires a justification to create a flagged row as new', async () => {
+    get.mockResolvedValue(makeBatch())
+    const user = userEvent.setup()
+    renderPage(<ImportBatchPage />)
+
+    await user.click(await screen.findByRole('button', { name: /expand row 1/i }))
+    await user.click(screen.getByLabelText(/create as new/i))
+    await user.click(screen.getByRole('button', { name: /save decision/i }))
+
+    expect(await screen.findByText(/justification is required/i)).toBeInTheDocument()
+    expect(resolveRow).not.toHaveBeenCalled()
+  })
+
+  it('confirms the batch', async () => {
+    get.mockResolvedValue(makeBatch())
+    confirm.mockResolvedValue({ ...makeBatch(), status: 'completed' })
+    const user = userEvent.setup()
+    renderPage(<ImportBatchPage />)
+
+    await user.click(await screen.findByRole('button', { name: /confirm & commit/i }))
     await waitFor(() => expect(confirm).toHaveBeenCalledWith('batch-1'))
   })
 })

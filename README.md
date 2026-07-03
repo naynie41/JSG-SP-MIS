@@ -194,6 +194,25 @@ only summary fields). See [api/app/Domain/Registry/README.md](api/app/Domain/Reg
 [docs/registry-intake.md](docs/registry-intake.md), and the completion checklist in
 [docs/PHASE-2-CHECKLIST.md](docs/PHASE-2-CHECKLIST.md).
 
+### Phase 3 — Duplicate Verification & Serve
+
+A configurable duplicate check runs **before any new record is saved** — per import row against the
+registry **and** against earlier rows in the same batch — and as a standalone **Duplicate search**.
+Deterministic (NIN/BVN) and fuzzy (phonetic names, DOB proximity) matching produce **exact /
+probable / none** bands; matches surface a **reveal** (name, owner MDA, source, LGA/Ward, status)
+without exposing the full profile. An officer resolves each flagged row — **create new** (with a
+justification), **link / request-to-serve**, or **skip** — and on confirm only new rows are created;
+linked rows raise a **request-to-serve** routed to the owner MDA that **never transfers ownership**.
+Every decision is audited. The matching rules, weights and thresholds are **admin-editable and
+versioned** under **03 · Registry → Matching rules**. Candidate blocking keeps checks fast on a large
+registry. See [api/app/Domain/Matching/README.md](api/app/Domain/Matching/README.md) (defaults +
+tuning guide) and the completion checklist in [docs/PHASE-3-CHECKLIST.md](docs/PHASE-3-CHECKLIST.md).
+
+> **Demo seeders (local only):** `db:seed --class="Database\Seeders\LocalDevSeeder"` adds a non-MFA
+> admin plus two MDA accounts (an officer and an owning-MDA admin) so you can click the full
+> resolution + serve flow; `db:seed --class="Database\Seeders\MatchFixtureSeeder"` plants a labelled,
+> synthetic duplicate set across two MDAs for the Duplicate search screen.
+
 ---
 
 ## Running tests, lint & static analysis

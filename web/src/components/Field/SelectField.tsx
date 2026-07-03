@@ -37,7 +37,9 @@ export const SelectField = forwardRef<HTMLSelectElement, SelectFieldProps>(funct
         aria-invalid={error ? true : undefined}
         aria-describedby={helper || error ? fieldMessageId(fieldId) : undefined}
         aria-required={required || undefined}
-        defaultValue={placeholder ? '' : undefined}
+        // Only seed a default when uncontrolled — a controlled `value` (even '')
+        // owns the selection and setting both would make the select ambiguous.
+        defaultValue={placeholder && rest.value === undefined ? '' : undefined}
         {...rest}
       >
         {placeholder && (

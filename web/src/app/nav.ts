@@ -5,8 +5,11 @@ import {
   Home,
   KeyRound,
   LayoutGrid,
+  ScanSearch,
+  Send,
   Share2,
   ShieldCheck,
+  SlidersHorizontal,
   UserSquare2,
   Users,
 } from 'lucide-react'
@@ -50,6 +53,9 @@ export const NAV_CONFIG: NavConfigSection[] = [
       { label: 'Beneficiaries', to: '/beneficiaries', icon: UserSquare2, permission: 'beneficiary.view' },
       { label: 'Households', to: '/households', icon: Home, permission: 'household.view' },
       { label: 'Bulk import', to: '/imports', icon: FileUp, permission: 'beneficiary.create' },
+      { label: 'Duplicate search', to: '/duplicate-search', icon: ScanSearch, permission: 'beneficiary-lookup.view' },
+      { label: 'Serve requests', to: '/serve-requests', icon: Send, permission: 'beneficiary.view' },
+      { label: 'Matching rules', to: '/matching', icon: SlidersHorizontal, permission: 'matching.view' },
     ],
   },
   {

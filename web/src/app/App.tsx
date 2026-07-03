@@ -15,6 +15,9 @@ import { HouseholdListPage } from '@/features/registry/HouseholdListPage'
 import { HouseholdDetailPage } from '@/features/registry/HouseholdDetailPage'
 import { ImportListPage } from '@/features/registry/ImportListPage'
 import { ImportBatchPage } from '@/features/registry/ImportBatchPage'
+import { DuplicateSearchPage } from '@/features/registry/DuplicateSearchPage'
+import { ServeRequestsPage } from '@/features/registry/ServeRequestsPage'
+import { MatchingConfigPage } from '@/features/registry/MatchingConfigPage'
 import { AppLayout } from './AppLayout'
 import { ProtectedRoute } from './ProtectedRoute'
 
@@ -60,6 +63,9 @@ export function App() {
         <Route path="/households/:id" element={<HouseholdDetailPage />} />
         <Route path="/imports" element={<ImportListPage />} />
         <Route path="/imports/:id" element={<ImportBatchPage />} />
+        <Route path="/duplicate-search" element={<DuplicateSearchPage />} />
+        <Route path="/serve-requests" element={<ServeRequestsPage />} />
+        <Route path="/matching" element={<MatchingConfigPage />} />
         <Route path="/users" element={<UserListPage />} />
         <Route path="/mdas" element={<MdaListPage />} />
         <Route path="/roles" element={<PlaceholderPage eyebrow="02 · Administration" title="Roles" />} />

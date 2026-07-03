@@ -144,3 +144,168 @@
   gap: var(--space-4);
   flex-wrap: wrap;
 }
+
+/* --- Match reveal panel (FR-DUP-04) --- */
+.reveal {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+  padding: var(--space-4);
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+}
+
+.revealHead {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: var(--space-3);
+}
+
+.revealName {
+  font-family: var(--font-display);
+  font-size: 18px;
+  font-weight: 600;
+}
+
+.phase4 {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-4);
+  padding-top: var(--space-3);
+  border-top: 1px dashed var(--border-strong);
+}
+
+@media (max-width: 640px) {
+  .phase4 {
+    grid-template-columns: 1fr;
+  }
+}
+
+.phase4Section {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+}
+
+/* --- Import row review (FR-DUP-05) --- */
+.reviewPanel {
+  display: grid;
+  grid-template-columns: 1.2fr 1fr;
+  gap: var(--space-4);
+  padding: var(--space-4);
+}
+
+@media (max-width: 1024px) {
+  .reviewPanel {
+    grid-template-columns: 1fr;
+  }
+}
+
+.resolveBox {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+  padding: var(--space-4);
+  background: var(--surface-mint);
+  border-radius: var(--radius-lg);
+}
+
+.candidateList {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+
+.candidate {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+  padding: var(--space-3);
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+}
+
+.candidateMeta {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  flex-wrap: wrap;
+}
+
+.matchedFields {
+  display: flex;
+  gap: var(--space-1);
+  flex-wrap: wrap;
+}
+
+.bulkBar {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  flex-wrap: wrap;
+  padding: var(--space-3) var(--space-4);
+  background: var(--accent-soft);
+  border-radius: var(--radius-md);
+  margin-bottom: var(--space-4);
+}
+
+.bulkCount {
+  font-weight: 600;
+}
+
+.spacer {
+  flex: 1;
+}
+
+/* --- Matching config (FR-DUP-02/03) --- */
+.ruleRow {
+  display: grid;
+  grid-template-columns: 1.4fr 1.4fr 0.8fr auto;
+  gap: var(--space-3);
+  align-items: end;
+}
+
+@media (max-width: 768px) {
+  .ruleRow {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+.weightBar {
+  height: 6px;
+  border-radius: var(--radius-full);
+  background: var(--accent);
+  min-width: 2px;
+}
+
+.weightTrack {
+  height: 6px;
+  border-radius: var(--radius-full);
+  background: var(--border);
+  overflow: hidden;
+}
+
+.chipRow {
+  display: flex;
+  gap: var(--space-2);
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+.chipRemove {
+  margin-left: var(--space-1);
+  padding: 0 2px;
+  border: none;
+  background: none;
+  color: inherit;
+  font-size: 14px;
+  line-height: 1;
+  cursor: pointer;
+  border-radius: var(--radius-sm);
+}
+.chipRemove:hover {
+  color: var(--danger-ink);
+}

@@ -66,3 +66,47 @@ export const IMPORT_STATUS_LABELS: Record<string, string> = {
   completed: 'Completed',
   failed: 'Failed',
 }
+
+export const MATCH_BAND_LABELS: Record<string, string> = {
+  exact: 'Exact',
+  probable: 'Probable',
+  none: 'No match',
+}
+
+export const RESOLUTION_LABELS: Record<string, string> = {
+  new: 'Create new',
+  link: 'Link / serve',
+  skip: 'Skip',
+}
+
+export const SERVE_STATUS_LABELS: Record<string, string> = {
+  pending: 'Pending',
+  accepted: 'Accepted',
+  declined: 'Declined',
+}
+
+export const COMPARATOR_OPTIONS: SelectOption[] = [
+  { value: 'exact', label: 'Exact' },
+  { value: 'jaro_winkler', label: 'Jaro–Winkler' },
+  { value: 'levenshtein', label: 'Levenshtein' },
+  { value: 'phonetic', label: 'Phonetic (Hausa)' },
+  { value: 'date_proximity', label: 'Date proximity' },
+]
+
+export const MATCH_FIELD_OPTIONS: SelectOption[] = [
+  { value: 'nin', label: 'NIN' },
+  { value: 'bvn', label: 'BVN' },
+  { value: 'phone', label: 'Phone' },
+  { value: 'first_name', label: 'First name' },
+  { value: 'middle_name', label: 'Middle name' },
+  { value: 'last_name', label: 'Last name' },
+  { value: 'date_of_birth', label: 'Date of birth' },
+  { value: 'gender', label: 'Gender' },
+  { value: 'lga', label: 'LGA' },
+  { value: 'ward', label: 'Ward' },
+]
+
+export const EXACT_BEHAVIOUR_OPTIONS: SelectOption[] = [
+  { value: 'confirm', label: 'Confirm — a human confirms each exact match' },
+  { value: 'auto_link', label: 'Auto-link — treat exact matches as the same person' },
+]
