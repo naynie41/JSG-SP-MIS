@@ -8,12 +8,20 @@ use App\Http\Controllers\Api\V1\Access\MdaAccessGrantController;
 use App\Http\Controllers\Api\V1\Access\MdaController;
 use App\Http\Controllers\Api\V1\Access\UserController;
 use App\Http\Controllers\Api\V1\AuthController;
+use App\Http\Controllers\Api\V1\Benefit\BenefitController;
+use App\Http\Controllers\Api\V1\Benefit\BenefitFlagController;
+use App\Http\Controllers\Api\V1\Benefit\BenefitImportController;
+use App\Http\Controllers\Api\V1\Benefit\DoubleDippingRuleController;
 use App\Http\Controllers\Api\V1\HealthController;
 use App\Http\Controllers\Api\V1\Matching\MatchingConfigController;
 use App\Http\Controllers\Api\V1\MfaController;
+use App\Http\Controllers\Api\V1\Programme\ActivityController;
+use App\Http\Controllers\Api\V1\Programme\EnrollmentController;
+use App\Http\Controllers\Api\V1\Programme\ProgrammeController;
 use App\Http\Controllers\Api\V1\Registry\BeneficiaryController;
 use App\Http\Controllers\Api\V1\Registry\BeneficiaryDocumentController;
 use App\Http\Controllers\Api\V1\Registry\BeneficiaryIntakeController;
+use App\Http\Controllers\Api\V1\Registry\BeneficiaryRoutingController;
 use App\Http\Controllers\Api\V1\Registry\HouseholdController;
 use App\Http\Controllers\Api\V1\Registry\HouseholdMemberController;
 use App\Http\Controllers\Api\V1\Registry\ImportBatchController;
@@ -219,5 +227,98 @@ Route::prefix('v1')->group(function (): void {
             ->middleware('permission:household.edit')->name('households.members.move');
         Route::delete('/households/{household}/members/{beneficiary}', [HouseholdMemberController::class, 'destroy'])
             ->middleware('permission:household.edit')->name('households.members.destroy');
+
+        /*
+        | Programmes & activities (PRD FR-PRG-01/02). List/show are MDA-scoped
+        | (oversight sees all); create/update/archive are owner-MDA only via policy.
+        */
+        Route::get('/programmes', [ProgrammeController::class, 'index'])
+            ->middleware('permission:programme.view')->name('programmes.index');
+        Route::post('/programmes', [ProgrammeController::class, 'store'])
+            ->middleware('permission:programme.create')->name('programmes.store');
+        Route::get('/programmes/{programme}/budget', [ProgrammeController::class, 'budget'])
+            ->middleware('permission:programme.view')->name('programmes.budget');
+        Route::get('/programmes/{programme}', [ProgrammeController::class, 'show'])
+            ->middleware('permission:programme.view')->name('programmes.show');
+        Route::match(['put', 'patch'], '/programmes/{programme}', [ProgrammeController::class, 'update'])
+            ->middleware('permission:programme.edit')->name('programmes.update');
+        Route::post('/programmes/{programme}/archive', [ProgrammeController::class, 'archive'])
+            ->middleware('permission:programme.edit')->name('programmes.archive');
+
+        Route::get('/activities', [ActivityController::class, 'index'])
+            ->middleware('permission:activity.view')->name('activities.index');
+        Route::post('/activities', [ActivityController::class, 'store'])
+            ->middleware('permission:activity.create')->name('activities.store');
+        Route::get('/activities/{activity}/budget', [ActivityController::class, 'budget'])
+            ->middleware('permission:activity.view')->name('activities.budget');
+        Route::get('/activities/{activity}', [ActivityController::class, 'show'])
+            ->middleware('permission:activity.view')->name('activities.show');
+        Route::match(['put', 'patch'], '/activities/{activity}', [ActivityController::class, 'update'])
+            ->middleware('permission:activity.edit')->name('activities.update');
+        Route::post('/activities/{activity}/archive', [ActivityController::class, 'archive'])
+            ->middleware('permission:activity.edit')->name('activities.archive');
+
+        // Enrollment / assignment (FR-PRG-03): single + bulk into a programme, by the
+        // owner MDA; a served (non-owned) beneficiary is allowed via the serve seam.
+        Route::get('/enrollments', [EnrollmentController::class, 'index'])
+            ->middleware('permission:enrollment.view')->name('enrollments.index');
+        Route::post('/programmes/{programme}/enrollments', [EnrollmentController::class, 'store'])
+            ->middleware('permission:enrollment.create')->name('programmes.enrollments.store');
+        Route::post('/programmes/{programme}/enrollments/bulk', [EnrollmentController::class, 'bulk'])
+            ->middleware('permission:enrollment.create')->name('programmes.enrollments.bulk');
+        Route::match(['put', 'patch'], '/enrollments/{enrollment}', [EnrollmentController::class, 'update'])
+            ->middleware('permission:enrollment.edit')->name('enrollments.update');
+
+        /*
+        | Benefit ledger (FR-BEN-01/02/04, §8.3). Records DELIVERY, never money.
+        | List/show scoped to the delivering MDA; the per-beneficiary ledger reads
+        | across MDAs for the owner/deliverer/oversight. Recording requires the
+        | beneficiary be enrolled (which is the serve gate for a non-owned one).
+        */
+        Route::get('/benefits', [BenefitController::class, 'index'])
+            ->middleware('permission:benefit.view')->name('benefits.index');
+        // Declared before the {benefit} wildcard so `aggregate` is never treated as an id.
+        Route::get('/benefits/aggregate', [BenefitController::class, 'aggregate'])
+            ->middleware('permission:benefit.view')->name('benefits.aggregate');
+        Route::post('/benefits', [BenefitController::class, 'store'])
+            ->middleware('permission:benefit.create')->name('benefits.store');
+        Route::get('/benefits/{benefit}', [BenefitController::class, 'show'])
+            ->middleware('permission:benefit.view')->name('benefits.show');
+        Route::post('/benefits/{benefit}/verify', [BenefitController::class, 'verify'])
+            ->middleware('permission:benefit.approve')->name('benefits.verify');
+        Route::get('/beneficiaries/{beneficiary}/benefits', [BenefitController::class, 'ledger'])
+            ->middleware('permission:benefit.view')->name('beneficiaries.benefits');
+
+        // Auto-route / programme matching (FR-OWN-04): suggest, then confirm (audited).
+        Route::get('/beneficiaries/{beneficiary}/routing-suggestions', [BeneficiaryRoutingController::class, 'suggestions'])
+            ->middleware('permission:beneficiary.view')->name('beneficiaries.routing.suggestions');
+        Route::post('/beneficiaries/{beneficiary}/routing-assignments', [BeneficiaryRoutingController::class, 'assign'])
+            ->middleware('permission:enrollment.create')->name('beneficiaries.routing.assign');
+
+        // Bulk benefit delivery (§8.3): upload a delivery list keyed to an activity
+        // → preview → confirm → commit benefits. Reuses the Phase 2 import lifecycle.
+        Route::get('/benefit-imports', [BenefitImportController::class, 'index'])
+            ->middleware('permission:benefit.view')->name('benefit-imports.index');
+        Route::post('/benefit-imports', [BenefitImportController::class, 'store'])
+            ->middleware('permission:benefit.create')->name('benefit-imports.store');
+        Route::get('/benefit-imports/{batch}', [BenefitImportController::class, 'show'])
+            ->middleware('permission:benefit.view')->name('benefit-imports.show');
+        Route::post('/benefit-imports/{batch}/confirm', [BenefitImportController::class, 'confirm'])
+            ->middleware('permission:benefit.create')->name('benefit-imports.confirm');
+
+        // Double-dipping (FR-BEN-05): configurable rules (admin) + flags for review.
+        Route::get('/double-dipping-rules', [DoubleDippingRuleController::class, 'index'])
+            ->middleware('permission:double-dipping.view')->name('double-dipping-rules.index');
+        Route::post('/double-dipping-rules', [DoubleDippingRuleController::class, 'store'])
+            ->middleware('permission:double-dipping.edit')->name('double-dipping-rules.store');
+        Route::match(['put', 'patch'], '/double-dipping-rules/{rule}', [DoubleDippingRuleController::class, 'update'])
+            ->middleware('permission:double-dipping.edit')->name('double-dipping-rules.update');
+        Route::delete('/double-dipping-rules/{rule}', [DoubleDippingRuleController::class, 'destroy'])
+            ->middleware('permission:double-dipping.edit')->name('double-dipping-rules.destroy');
+
+        Route::get('/benefit-flags', [BenefitFlagController::class, 'index'])
+            ->middleware('permission:benefit.view')->name('benefit-flags.index');
+        Route::post('/benefit-flags/{flag}/review', [BenefitFlagController::class, 'review'])
+            ->middleware('permission:benefit.approve')->name('benefit-flags.review');
     });
 });

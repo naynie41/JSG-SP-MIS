@@ -12,6 +12,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
          'namespace' => 'App\\Http\\Resources',
          'uses' => 
         array (
+          'beneficiaryrevealpresenter' => 'App\\Domain\\Benefit\\Services\\BeneficiaryRevealPresenter',
           'beneficiary' => 'App\\Domain\\Registry\\Models\\Beneficiary',
           'request' => 'Illuminate\\Http\\Request',
           'jsonresource' => 'Illuminate\\Http\\Resources\\Json\\JsonResource',
@@ -37,6 +38,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
          'namespace' => 'App\\Http\\Resources',
          'uses' => 
         array (
+          'beneficiaryrevealpresenter' => 'App\\Domain\\Benefit\\Services\\BeneficiaryRevealPresenter',
           'beneficiary' => 'App\\Domain\\Registry\\Models\\Beneficiary',
           'request' => 'Illuminate\\Http\\Request',
           'jsonresource' => 'Illuminate\\Http\\Resources\\Json\\JsonResource',
@@ -51,6 +53,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
            'namespace' => 'App\\Http\\Resources',
            'uses' => 
           array (
+            'beneficiaryrevealpresenter' => 'App\\Domain\\Benefit\\Services\\BeneficiaryRevealPresenter',
             'beneficiary' => 'App\\Domain\\Registry\\Models\\Beneficiary',
             'request' => 'Illuminate\\Http\\Request',
             'jsonresource' => 'Illuminate\\Http\\Resources\\Json\\JsonResource',
@@ -84,7 +87,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
     ),
     1 => 
     array (
-      '/var/www/html/app/Http/Resources/BeneficiaryRevealResource.php' => 'c8ef0771e6aff86b7d8c525da3128df415a7832501f2b8dbcda1aab4dab631b9',
+      '/var/www/html/app/Http/Resources/BeneficiaryRevealResource.php' => '2db79a83890cad14c931c638c13a0e96a895d2aaabbe25a06b2325547dda2461',
     ),
   ),
 ));

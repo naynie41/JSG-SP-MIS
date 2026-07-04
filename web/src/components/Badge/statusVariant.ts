@@ -29,6 +29,32 @@ export const STATUS_VARIANTS: Record<string, BadgeVariant> = {
   'resolution.link': 'info',
   'resolution.skip': 'neutral',
 
+  // Programme / activity lifecycle (FR-PRG-01/02)
+  'programme.draft': 'neutral',
+  'programme.active': 'success',
+  'programme.closed': 'warning',
+  'programme.archived': 'neutral',
+
+  // Programme type
+  'type.individual': 'info',
+  'type.household': 'accent',
+
+  // Enrollment lifecycle (FR-PRG-03)
+  'enrollment.enrolled': 'success',
+  'enrollment.suspended': 'warning',
+  'enrollment.exited': 'neutral',
+  'enrollment.graduated': 'info',
+
+  // Benefit ledger status (FR-BEN-02)
+  'benefit.recorded': 'info',
+  'benefit.verified': 'success',
+  'benefit.reversed': 'neutral',
+
+  // Double-dipping flag (FR-BEN-05)
+  'flag.open': 'warning',
+  'flag.confirmed': 'danger',
+  'flag.dismissed': 'neutral',
+
   // Referral lifecycle
   'referral.created': 'neutral',
   'referral.accepted': 'info',

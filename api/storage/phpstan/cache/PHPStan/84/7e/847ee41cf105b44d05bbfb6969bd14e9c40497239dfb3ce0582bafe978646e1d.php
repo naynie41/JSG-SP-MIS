@@ -14,6 +14,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         array (
           'permissionaction' => 'App\\Domain\\Access\\Enums\\PermissionAction',
           'permissionregistry' => 'App\\Domain\\Access\\Support\\PermissionRegistry',
+          'programmematchingrouter' => 'App\\Domain\\Programme\\Services\\ProgrammeMatchingRouter',
           'beneficiaryrouter' => 'App\\Domain\\Registry\\Contracts\\BeneficiaryRouter',
           'duplicatechecker' => 'App\\Domain\\Registry\\Contracts\\DuplicateChecker',
           'registrationsource' => 'App\\Domain\\Registry\\Enums\\RegistrationSource',
@@ -31,7 +32,6 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
           'householdpolicy' => 'App\\Domain\\Registry\\Policies\\HouseholdPolicy',
           'importbatchpolicy' => 'App\\Domain\\Registry\\Policies\\ImportBatchPolicy',
           'serverequestpolicy' => 'App\\Domain\\Registry\\Policies\\ServeRequestPolicy',
-          'nullbeneficiaryrouter' => 'App\\Domain\\Registry\\Services\\NullBeneficiaryRouter',
           'nullduplicatechecker' => 'App\\Domain\\Registry\\Services\\NullDuplicateChecker',
           'gate' => 'Illuminate\\Support\\Facades\\Gate',
           'serviceprovider' => 'Illuminate\\Support\\ServiceProvider',
@@ -59,6 +59,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         array (
           'permissionaction' => 'App\\Domain\\Access\\Enums\\PermissionAction',
           'permissionregistry' => 'App\\Domain\\Access\\Support\\PermissionRegistry',
+          'programmematchingrouter' => 'App\\Domain\\Programme\\Services\\ProgrammeMatchingRouter',
           'beneficiaryrouter' => 'App\\Domain\\Registry\\Contracts\\BeneficiaryRouter',
           'duplicatechecker' => 'App\\Domain\\Registry\\Contracts\\DuplicateChecker',
           'registrationsource' => 'App\\Domain\\Registry\\Enums\\RegistrationSource',
@@ -76,7 +77,6 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
           'householdpolicy' => 'App\\Domain\\Registry\\Policies\\HouseholdPolicy',
           'importbatchpolicy' => 'App\\Domain\\Registry\\Policies\\ImportBatchPolicy',
           'serverequestpolicy' => 'App\\Domain\\Registry\\Policies\\ServeRequestPolicy',
-          'nullbeneficiaryrouter' => 'App\\Domain\\Registry\\Services\\NullBeneficiaryRouter',
           'nullduplicatechecker' => 'App\\Domain\\Registry\\Services\\NullDuplicateChecker',
           'gate' => 'Illuminate\\Support\\Facades\\Gate',
           'serviceprovider' => 'Illuminate\\Support\\ServiceProvider',
@@ -93,6 +93,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
           array (
             'permissionaction' => 'App\\Domain\\Access\\Enums\\PermissionAction',
             'permissionregistry' => 'App\\Domain\\Access\\Support\\PermissionRegistry',
+            'programmematchingrouter' => 'App\\Domain\\Programme\\Services\\ProgrammeMatchingRouter',
             'beneficiaryrouter' => 'App\\Domain\\Registry\\Contracts\\BeneficiaryRouter',
             'duplicatechecker' => 'App\\Domain\\Registry\\Contracts\\DuplicateChecker',
             'registrationsource' => 'App\\Domain\\Registry\\Enums\\RegistrationSource',
@@ -110,7 +111,6 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             'householdpolicy' => 'App\\Domain\\Registry\\Policies\\HouseholdPolicy',
             'importbatchpolicy' => 'App\\Domain\\Registry\\Policies\\ImportBatchPolicy',
             'serverequestpolicy' => 'App\\Domain\\Registry\\Policies\\ServeRequestPolicy',
-            'nullbeneficiaryrouter' => 'App\\Domain\\Registry\\Services\\NullBeneficiaryRouter',
             'nullduplicatechecker' => 'App\\Domain\\Registry\\Services\\NullDuplicateChecker',
             'gate' => 'Illuminate\\Support\\Facades\\Gate',
             'serviceprovider' => 'Illuminate\\Support\\ServiceProvider',
@@ -148,6 +148,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         array (
           'permissionaction' => 'App\\Domain\\Access\\Enums\\PermissionAction',
           'permissionregistry' => 'App\\Domain\\Access\\Support\\PermissionRegistry',
+          'programmematchingrouter' => 'App\\Domain\\Programme\\Services\\ProgrammeMatchingRouter',
           'beneficiaryrouter' => 'App\\Domain\\Registry\\Contracts\\BeneficiaryRouter',
           'duplicatechecker' => 'App\\Domain\\Registry\\Contracts\\DuplicateChecker',
           'registrationsource' => 'App\\Domain\\Registry\\Enums\\RegistrationSource',
@@ -165,7 +166,6 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
           'householdpolicy' => 'App\\Domain\\Registry\\Policies\\HouseholdPolicy',
           'importbatchpolicy' => 'App\\Domain\\Registry\\Policies\\ImportBatchPolicy',
           'serverequestpolicy' => 'App\\Domain\\Registry\\Policies\\ServeRequestPolicy',
-          'nullbeneficiaryrouter' => 'App\\Domain\\Registry\\Services\\NullBeneficiaryRouter',
           'nullduplicatechecker' => 'App\\Domain\\Registry\\Services\\NullDuplicateChecker',
           'gate' => 'Illuminate\\Support\\Facades\\Gate',
           'serviceprovider' => 'Illuminate\\Support\\ServiceProvider',
@@ -182,6 +182,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
           array (
             'permissionaction' => 'App\\Domain\\Access\\Enums\\PermissionAction',
             'permissionregistry' => 'App\\Domain\\Access\\Support\\PermissionRegistry',
+            'programmematchingrouter' => 'App\\Domain\\Programme\\Services\\ProgrammeMatchingRouter',
             'beneficiaryrouter' => 'App\\Domain\\Registry\\Contracts\\BeneficiaryRouter',
             'duplicatechecker' => 'App\\Domain\\Registry\\Contracts\\DuplicateChecker',
             'registrationsource' => 'App\\Domain\\Registry\\Enums\\RegistrationSource',
@@ -199,7 +200,6 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             'householdpolicy' => 'App\\Domain\\Registry\\Policies\\HouseholdPolicy',
             'importbatchpolicy' => 'App\\Domain\\Registry\\Policies\\ImportBatchPolicy',
             'serverequestpolicy' => 'App\\Domain\\Registry\\Policies\\ServeRequestPolicy',
-            'nullbeneficiaryrouter' => 'App\\Domain\\Registry\\Services\\NullBeneficiaryRouter',
             'nullduplicatechecker' => 'App\\Domain\\Registry\\Services\\NullDuplicateChecker',
             'gate' => 'Illuminate\\Support\\Facades\\Gate',
             'serviceprovider' => 'Illuminate\\Support\\ServiceProvider',
@@ -237,6 +237,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         array (
           'permissionaction' => 'App\\Domain\\Access\\Enums\\PermissionAction',
           'permissionregistry' => 'App\\Domain\\Access\\Support\\PermissionRegistry',
+          'programmematchingrouter' => 'App\\Domain\\Programme\\Services\\ProgrammeMatchingRouter',
           'beneficiaryrouter' => 'App\\Domain\\Registry\\Contracts\\BeneficiaryRouter',
           'duplicatechecker' => 'App\\Domain\\Registry\\Contracts\\DuplicateChecker',
           'registrationsource' => 'App\\Domain\\Registry\\Enums\\RegistrationSource',
@@ -254,7 +255,6 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
           'householdpolicy' => 'App\\Domain\\Registry\\Policies\\HouseholdPolicy',
           'importbatchpolicy' => 'App\\Domain\\Registry\\Policies\\ImportBatchPolicy',
           'serverequestpolicy' => 'App\\Domain\\Registry\\Policies\\ServeRequestPolicy',
-          'nullbeneficiaryrouter' => 'App\\Domain\\Registry\\Services\\NullBeneficiaryRouter',
           'nullduplicatechecker' => 'App\\Domain\\Registry\\Services\\NullDuplicateChecker',
           'gate' => 'Illuminate\\Support\\Facades\\Gate',
           'serviceprovider' => 'Illuminate\\Support\\ServiceProvider',
@@ -271,6 +271,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
           array (
             'permissionaction' => 'App\\Domain\\Access\\Enums\\PermissionAction',
             'permissionregistry' => 'App\\Domain\\Access\\Support\\PermissionRegistry',
+            'programmematchingrouter' => 'App\\Domain\\Programme\\Services\\ProgrammeMatchingRouter',
             'beneficiaryrouter' => 'App\\Domain\\Registry\\Contracts\\BeneficiaryRouter',
             'duplicatechecker' => 'App\\Domain\\Registry\\Contracts\\DuplicateChecker',
             'registrationsource' => 'App\\Domain\\Registry\\Enums\\RegistrationSource',
@@ -288,7 +289,6 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             'householdpolicy' => 'App\\Domain\\Registry\\Policies\\HouseholdPolicy',
             'importbatchpolicy' => 'App\\Domain\\Registry\\Policies\\ImportBatchPolicy',
             'serverequestpolicy' => 'App\\Domain\\Registry\\Policies\\ServeRequestPolicy',
-            'nullbeneficiaryrouter' => 'App\\Domain\\Registry\\Services\\NullBeneficiaryRouter',
             'nullduplicatechecker' => 'App\\Domain\\Registry\\Services\\NullDuplicateChecker',
             'gate' => 'Illuminate\\Support\\Facades\\Gate',
             'serviceprovider' => 'Illuminate\\Support\\ServiceProvider',
@@ -322,7 +322,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
     ),
     1 => 
     array (
-      '/var/www/html/app/Domain/Registry/RegistryServiceProvider.php' => '2184b2a11cb88d2b44ea3ed3cd680a841168ff5cabca1720fefbb3bebaef223b',
+      '/var/www/html/app/Domain/Registry/RegistryServiceProvider.php' => '6141b63778379014d0aaa2783b142586abc9dd0a3b6b0e627d9d50a06488f90b',
     ),
   ),
 ));

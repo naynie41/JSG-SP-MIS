@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Http\Resources;
 
+use App\Domain\Benefit\Services\BeneficiaryRevealPresenter;
 use App\Domain\Registry\Models\Beneficiary;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
@@ -14,8 +15,9 @@ use Illuminate\Http\Resources\Json\JsonResource;
  * name + id, owner MDA, source, registration date, LGA/Ward, status, and the
  * programme(s) + benefits-received sections. Never exposes NIN/BVN/phone/address/DOB.
  *
- * The programme/benefit sections are present-but-empty until Phase 4 (enrolment +
- * benefit ledger); they populate from the loaded relations with no shape change.
+ * The programme/benefit sections read real enrolment + ledger data (FR-DUP-04),
+ * respecting visibility: exact monetary values are shown only to the beneficiary's
+ * owner MDA or oversight (see BeneficiaryRevealPresenter).
  *
  * @mixin Beneficiary
  */
@@ -26,6 +28,8 @@ class BeneficiaryRevealResource extends JsonResource
      */
     public function toArray(Request $request): array
     {
+        $sections = app(BeneficiaryRevealPresenter::class)->sections($this->resource, $request->user());
+
         return [
             'id' => $this->id,
             'full_name' => $this->fullName(),
@@ -35,9 +39,8 @@ class BeneficiaryRevealResource extends JsonResource
             'lga' => $this->lga,
             'ward' => $this->ward,
             'status' => $this->status->value,
-            // Phase 4 fills these from enrolments + the benefit ledger.
-            'programmes' => [],
-            'benefits' => ['summary' => null, 'items' => []],
+            'programmes' => $sections['programmes'],
+            'benefits' => $sections['benefits'],
         ];
     }
 }

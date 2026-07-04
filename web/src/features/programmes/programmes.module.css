@@ -1,0 +1,119 @@
+/* Programmes & benefits feature layout — composes shared primitives; tokens only. */
+
+.stack {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+}
+
+.rowActions {
+  display: flex;
+  gap: var(--space-2);
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+.note {
+  font-size: var(--fs-label);
+  color: var(--text-muted-strong);
+}
+
+.mono {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  letter-spacing: 0.02em;
+}
+
+.filters {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  gap: var(--space-3);
+  margin-bottom: var(--space-4);
+}
+
+.searchField {
+  flex: 1 1 240px;
+}
+.filterField {
+  flex: 0 1 180px;
+}
+
+/* KPI budget headline (forest panels) */
+.kpiRow {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: var(--space-4);
+  margin-bottom: var(--space-5);
+}
+
+/* Budget progress bar */
+.budgetTrack {
+  height: 8px;
+  border-radius: var(--radius-full);
+  background: var(--border);
+  overflow: hidden;
+  margin-top: var(--space-2);
+}
+.budgetFill {
+  height: 8px;
+  border-radius: var(--radius-full);
+  background: var(--accent);
+}
+.budgetOver {
+  background: var(--danger);
+}
+
+/* Eligibility criterion editor rows */
+.criterionRow {
+  display: grid;
+  grid-template-columns: 1fr 1fr auto;
+  gap: var(--space-3);
+  align-items: end;
+}
+
+@media (max-width: 640px) {
+  .criterionRow {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+.chipRow {
+  display: flex;
+  gap: var(--space-2);
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+.dl {
+  display: grid;
+  grid-template-columns: minmax(140px, max-content) 1fr;
+  gap: var(--space-2) var(--space-4);
+  margin: 0;
+}
+.dl dt {
+  font-size: var(--fs-label);
+  color: var(--text-muted-strong);
+}
+.dl dd {
+  margin: 0;
+  font-size: 14px;
+}
+
+/* "Records delivery, not payment" affordance */
+.notice {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-2);
+  padding: var(--space-3) var(--space-4);
+  border-radius: var(--radius-md);
+  background: var(--info-soft);
+  color: var(--info-ink);
+  font-size: var(--fs-label);
+}
+
+.bulkResult {
+  display: flex;
+  gap: var(--space-4);
+  flex-wrap: wrap;
+}

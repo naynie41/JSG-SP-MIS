@@ -18,6 +18,11 @@ import { ImportBatchPage } from '@/features/registry/ImportBatchPage'
 import { DuplicateSearchPage } from '@/features/registry/DuplicateSearchPage'
 import { ServeRequestsPage } from '@/features/registry/ServeRequestsPage'
 import { MatchingConfigPage } from '@/features/registry/MatchingConfigPage'
+import { ProgrammeListPage } from '@/features/programmes/ProgrammeListPage'
+import { ProgrammeDetailPage } from '@/features/programmes/ProgrammeDetailPage'
+import { RecordBenefitPage } from '@/features/benefits/RecordBenefitPage'
+import { BulkDeliveryPage } from '@/features/benefits/BulkDeliveryPage'
+import { BenefitLedgerPage } from '@/features/benefits/BenefitLedgerPage'
 import { AppLayout } from './AppLayout'
 import { ProtectedRoute } from './ProtectedRoute'
 
@@ -66,6 +71,11 @@ export function App() {
         <Route path="/duplicate-search" element={<DuplicateSearchPage />} />
         <Route path="/serve-requests" element={<ServeRequestsPage />} />
         <Route path="/matching" element={<MatchingConfigPage />} />
+        <Route path="/programmes" element={<ProgrammeListPage />} />
+        <Route path="/programmes/:id" element={<ProgrammeDetailPage />} />
+        <Route path="/benefits/record" element={<RecordBenefitPage />} />
+        <Route path="/benefits/bulk" element={<BulkDeliveryPage />} />
+        <Route path="/benefits/ledger" element={<BenefitLedgerPage />} />
         <Route path="/users" element={<UserListPage />} />
         <Route path="/mdas" element={<MdaListPage />} />
         <Route path="/roles" element={<PlaceholderPage eyebrow="02 · Administration" title="Roles" />} />

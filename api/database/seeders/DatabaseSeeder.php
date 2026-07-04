@@ -19,9 +19,11 @@ class DatabaseSeeder extends Seeder
         $this->call([
             RolesAndPermissionsSeeder::class,
             MatchingConfigSeeder::class,
+            DoubleDippingRuleSeeder::class,
             SampleMdaSeeder::class,
             DevUserSeeder::class,
             RegistrySampleSeeder::class,
+            ProgrammeSampleSeeder::class,
         ]);
     }
 }

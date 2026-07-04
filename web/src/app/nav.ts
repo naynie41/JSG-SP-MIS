@@ -1,5 +1,8 @@
 import {
+  BarChart3,
   Building2,
+  ClipboardList,
+  Coins,
   FileUp,
   GaugeCircle,
   Home,
@@ -10,6 +13,7 @@ import {
   Share2,
   ShieldCheck,
   SlidersHorizontal,
+  Upload,
   UserSquare2,
   Users,
 } from 'lucide-react'
@@ -59,7 +63,16 @@ export const NAV_CONFIG: NavConfigSection[] = [
     ],
   },
   {
-    label: '04 · System',
+    label: '04 · Programmes',
+    items: [
+      { label: 'Programmes', to: '/programmes', icon: ClipboardList, permission: 'programme.view' },
+      { label: 'Record benefit', to: '/benefits/record', icon: Coins, permission: 'benefit.create' },
+      { label: 'Bulk delivery', to: '/benefits/bulk', icon: Upload, permission: 'benefit.create' },
+      { label: 'Benefit ledger', to: '/benefits/ledger', icon: BarChart3, permission: 'benefit.view' },
+    ],
+  },
+  {
+    label: '05 · System',
     items: [{ label: 'Style guide', to: '/styleguide', icon: LayoutGrid }],
   },
 ]

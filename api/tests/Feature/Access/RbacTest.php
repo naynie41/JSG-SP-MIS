@@ -26,25 +26,37 @@ class RbacTest extends TestCase
         'sp_coordination' => [
             'cross-mda.view', 'mda.view', 'user.view', 'role.view', 'permission.view',
             'beneficiary.view', 'beneficiary.export', 'beneficiary-lookup.view',
+            'programme.view', 'activity.view', 'enrollment.view', 'benefit.view',
+            'double-dipping.view', 'double-dipping.edit',
         ],
         'mne_officer' => [
             'cross-mda.view', 'mda.view', 'user.view',
             'beneficiary.view', 'beneficiary.export', 'beneficiary-lookup.view',
+            'programme.view', 'activity.view', 'enrollment.view', 'benefit.view',
         ],
         'mda_admin' => [
             'mda.view', 'user.view', 'user.create', 'user.edit', 'role.view',
             'beneficiary.view', 'beneficiary.create', 'beneficiary.edit', 'beneficiary.approve',
             'beneficiary-lookup.view', 'household.view', 'household.create', 'household.edit',
+            'programme.view', 'programme.create', 'programme.edit',
+            'activity.view', 'activity.create', 'activity.edit',
+            'enrollment.view', 'enrollment.create', 'enrollment.edit',
+            'benefit.view', 'benefit.create', 'benefit.approve',
         ],
         'mda_officer' => [
             'mda.view', 'user.view',
             'beneficiary.view', 'beneficiary.create', 'beneficiary.edit',
             'beneficiary-lookup.view', 'household.view', 'household.create', 'household.edit',
+            'programme.view', 'programme.create', 'programme.edit',
+            'activity.view', 'activity.create', 'activity.edit',
+            'enrollment.view', 'enrollment.create', 'enrollment.edit',
+            'benefit.view', 'benefit.create', 'benefit.approve',
         ],
-        'development_partner' => ['mda.view', 'beneficiary.view'],
+        'development_partner' => ['mda.view', 'beneficiary.view', 'programme.view', 'activity.view', 'enrollment.view', 'benefit.view'],
         'executive' => [
             'cross-mda.view', 'mda.view', 'user.view',
             'beneficiary.view', 'beneficiary.export', 'beneficiary-lookup.view',
+            'programme.view', 'activity.view', 'enrollment.view', 'benefit.view',
         ],
     ];
 

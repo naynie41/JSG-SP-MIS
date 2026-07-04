@@ -97,14 +97,15 @@ class ImportDuplicateScreeningTest extends TestCase
         $this->assertContains('nin', $response->json('data.rows.0.match.candidates.0.matched_fields'));
     }
 
-    public function test_the_reveal_exposes_only_permitted_fields_and_empty_phase4_sections(): void
+    public function test_the_reveal_exposes_only_permitted_fields_and_programme_benefit_sections(): void
     {
         [, $response] = $this->preview();
 
-        // Phase 4 sections render present-but-empty.
+        // Programme/benefit sections are present; this matched record has none yet.
         $response
             ->assertJsonPath('data.rows.0.match.candidates.0.reveal.programmes', [])
-            ->assertJsonPath('data.rows.0.match.candidates.0.reveal.benefits', ['summary' => null, 'items' => []]);
+            ->assertJsonPath('data.rows.0.match.candidates.0.reveal.benefits.summary.count', 0)
+            ->assertJsonPath('data.rows.0.match.candidates.0.reveal.benefits.items', []);
 
         // Sensitive fields are never leaked in the reveal.
         $reveal = $response->json('data.rows.0.match.candidates.0.reveal');

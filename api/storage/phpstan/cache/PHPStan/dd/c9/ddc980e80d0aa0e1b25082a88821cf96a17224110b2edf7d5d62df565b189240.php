@@ -2,7 +2,7 @@
 
 // odsl-/var/www/html/app/Domain/Registry/RegistryServiceProvider.php-PHPStan\BetterReflection\Reflection\ReflectionClass-App\Domain\Registry\RegistryServiceProvider
 return \PHPStan\Cache\CacheItem::__set_state(array(
-   'variableKey' => 'v2-6.70.0.1-8.3.31-2184b2a11cb88d2b44ea3ed3cd680a841168ff5cabca1720fefbb3bebaef223b',
+   'variableKey' => 'v2-6.70.0.1-8.3.31-6141b63778379014d0aaa2783b142586abc9dd0a3b6b0e627d9d50a06488f90b',
    'data' => 
   array (
     'locatedSource' => 

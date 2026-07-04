@@ -6,6 +6,7 @@ namespace App\Domain\Registry;
 
 use App\Domain\Access\Enums\PermissionAction;
 use App\Domain\Access\Support\PermissionRegistry;
+use App\Domain\Programme\Services\ProgrammeMatchingRouter;
 use App\Domain\Registry\Contracts\BeneficiaryRouter;
 use App\Domain\Registry\Contracts\DuplicateChecker;
 use App\Domain\Registry\Enums\RegistrationSource;
@@ -23,7 +24,6 @@ use App\Domain\Registry\Policies\BeneficiaryPolicy;
 use App\Domain\Registry\Policies\HouseholdPolicy;
 use App\Domain\Registry\Policies\ImportBatchPolicy;
 use App\Domain\Registry\Policies\ServeRequestPolicy;
-use App\Domain\Registry\Services\NullBeneficiaryRouter;
 use App\Domain\Registry\Services\NullDuplicateChecker;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\ServiceProvider;
@@ -37,8 +37,8 @@ class RegistryServiceProvider extends ServiceProvider
 {
     public function register(): void
     {
-        // Programme matching binds a real router here in Phase 4.
-        $this->app->bind(BeneficiaryRouter::class, NullBeneficiaryRouter::class);
+        // Programme matching (FR-OWN-04): suggest-then-confirm auto-routing.
+        $this->app->bind(BeneficiaryRouter::class, ProgrammeMatchingRouter::class);
 
         // Fuzzy duplicate matching binds a real checker here in Phase 3.
         $this->app->bind(DuplicateChecker::class, NullDuplicateChecker::class);

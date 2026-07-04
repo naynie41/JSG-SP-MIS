@@ -8,6 +8,7 @@ import { Card } from '@/components/Card/Card'
 import { Tabs } from '@/components/Tabs/Tabs'
 import { Spinner } from '@/components/Spinner/Spinner'
 import { useAuth } from '@/lib/auth/AuthProvider'
+import { BenefitsPanel } from '@/features/benefits/BenefitsPanel'
 import { EditBeneficiaryModal } from './EditBeneficiaryModal'
 import { DocumentsPanel } from './DocumentsPanel'
 import { REGISTRATION_SOURCE_LABELS, titleCase } from './constants'
@@ -150,6 +151,9 @@ export function BeneficiaryDetailPage() {
       <Tabs
         items={[
           { id: 'profile', label: 'Profile', content: <ProfileTab beneficiary={beneficiary} /> },
+          ...(hasPermission('benefit.view')
+            ? [{ id: 'benefits', label: 'Benefits', content: <BenefitsPanel beneficiaryId={beneficiary.id} /> }]
+            : []),
           {
             id: 'documents',
             label: 'Documents',

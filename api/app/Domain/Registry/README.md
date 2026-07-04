@@ -111,7 +111,7 @@ row-level error reporting, and provenance stamping — no other changes required
 | **FR-OWN-01** First MDA owns the record | `owner_mda_id` stamped from the caller's MDA on every create |
 | **FR-OWN-02** Owner-only edit of core profile | `BeneficiaryPolicy@update`; UI shows edit only to the owner (server still enforces → 403) |
 | **FR-OWN-03** Non-owner lookup / serve path | `BeneficiaryLookupService` + `BeneficiaryRevealResource`; UI `LookupModal` (reveal fields only) |
-| **FR-OWN-04** Auto-route / assign hook | `BeneficiaryRouter` seam (no-op until Phase 4) |
+| **FR-OWN-04** Auto-route / assign hook | `BeneficiaryRouter` → `ProgrammeMatchingRouter` (Phase 4): `GET /beneficiaries/{id}/routing-suggestions?need=`, `POST /beneficiaries/{id}/routing-assignments` — suggest-then-confirm, explicit + audited, never silent |
 | **FR-OWN-05** Ownership transfer with owner approval | `OwnershipTransferController` + `OwnershipTransferService` (request → approve/reject), audited |
 
 Households (PRD §9): `HouseholdController` + `HouseholdMembershipService` keep full

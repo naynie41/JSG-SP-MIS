@@ -213,6 +213,28 @@ tuning guide) and the completion checklist in [docs/PHASE-3-CHECKLIST.md](docs/P
 > resolution + serve flow; `db:seed --class="Database\Seeders\MatchFixtureSeeder"` plants a labelled,
 > synthetic duplicate set across two MDAs for the Duplicate search screen.
 
+### Phase 4 — Programmes, Activities & Benefit Ledger
+
+MDAs configure **programmes** (individual or household) and **activities** under
+**04 · Programmes**, then **enroll** individuals/households (single + bulk, with
+eligibility flags). Officers **record benefit deliveries** (§8.3) — select
+beneficiary → programme/activity → type/quantity/value/funding/date → **verify**
+(field-confirmation or signature; OTP/biometric stubbed) → save — or **bulk-deliver**
+from a distribution list. A serving MDA can deliver to a beneficiary it does not own.
+The **benefit ledger** shows a beneficiary's complete cross-MDA history; the ledger
+aggregates by programme/MDA/LGA and drives **budget allocated-vs-utilized** (forest
+KPI panel). **Double-dipping** across MDAs is flagged (configurable, never blocks),
+the duplicate-match reveal now shows real programmes + benefits, and **auto-route**
+suggests-then-confirms a matching programme.
+
+> **Records delivery, not payment (§2.3):** SP-MIS never moves money — every
+> monetary value is data (kobo, NGN). See
+> [api/app/Domain/Programme/README.md](api/app/Domain/Programme/README.md),
+> [api/app/Domain/Benefit/README.md](api/app/Domain/Benefit/README.md) (double-dipping
+> + verification config) and [docs/PHASE-4-CHECKLIST.md](docs/PHASE-4-CHECKLIST.md).
+> **Sample data (local only):** `db:seed --class="Database\Seeders\ProgrammeSampleSeeder"`
+> plants programmes/activities/enrolments + cross-MDA benefits incl. a double-dipping case.
+
 ---
 
 ## Running tests, lint & static analysis

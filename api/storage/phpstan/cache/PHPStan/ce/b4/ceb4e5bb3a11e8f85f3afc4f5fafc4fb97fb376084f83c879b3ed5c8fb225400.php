@@ -1180,7 +1180,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
     ),
     '/var/www/html/app/Domain/Registry/RegistryServiceProvider.php' => 
     array (
-      0 => '2184b2a11cb88d2b44ea3ed3cd680a841168ff5cabca1720fefbb3bebaef223b',
+      0 => '6141b63778379014d0aaa2783b142586abc9dd0a3b6b0e627d9d50a06488f90b',
       1 => 
       array (
         0 => 'app\\domain\\registry\\registryserviceprovider',
@@ -1367,7 +1367,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
     ),
     '/var/www/html/app/Http/Resources/BeneficiaryRevealResource.php' => 
     array (
-      0 => 'c8ef0771e6aff86b7d8c525da3128df415a7832501f2b8dbcda1aab4dab631b9',
+      0 => '2db79a83890cad14c931c638c13a0e96a895d2aaabbe25a06b2325547dda2461',
       1 => 
       array (
         0 => 'app\\http\\resources\\beneficiaryrevealresource',
@@ -2769,6 +2769,1258 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
       1 => 
       array (
         0 => 'app\\http\\resources\\matchcandidateresource',
+      ),
+      2 => 
+      array (
+        0 => 'app\\http\\resources\\toarray',
+      ),
+      3 => 
+      array (
+      ),
+    ),
+    '/var/www/html/app/Domain/Programme/Enums/ActivityStatus.php' => 
+    array (
+      0 => '43f8da6856eaa64bdf694ad3deb25a535a3180c01aba72a3bd318d6026b9b895',
+      1 => 
+      array (
+        0 => 'app\\domain\\programme\\enums\\activitystatus',
+      ),
+      2 => 
+      array (
+      ),
+      3 => 
+      array (
+      ),
+    ),
+    '/var/www/html/app/Domain/Programme/Enums/ProgrammeStatus.php' => 
+    array (
+      0 => '78416a03f16f08f24491cb232a14fbd68fa9481efc3a7c00a835a50068510319',
+      1 => 
+      array (
+        0 => 'app\\domain\\programme\\enums\\programmestatus',
+      ),
+      2 => 
+      array (
+      ),
+      3 => 
+      array (
+      ),
+    ),
+    '/var/www/html/app/Domain/Programme/Enums/ProgrammeType.php' => 
+    array (
+      0 => 'f7533f8bf155e48ab593cc811fb903d75a9185855694c0ec87ed7a057232a2dd',
+      1 => 
+      array (
+        0 => 'app\\domain\\programme\\enums\\programmetype',
+      ),
+      2 => 
+      array (
+      ),
+      3 => 
+      array (
+      ),
+    ),
+    '/var/www/html/app/Domain/Programme/Models/Activity.php' => 
+    array (
+      0 => 'df2f9e14ac484b9e848f863c52ff06f50e5a57f9227d3d7ca592ee4f07697104',
+      1 => 
+      array (
+        0 => 'app\\domain\\programme\\models\\activity',
+      ),
+      2 => 
+      array (
+        0 => 'app\\domain\\programme\\models\\casts',
+        1 => 'app\\domain\\programme\\models\\newfactory',
+        2 => 'app\\domain\\programme\\models\\programme',
+        3 => 'app\\domain\\programme\\models\\ownermda',
+        4 => 'app\\domain\\programme\\models\\creator',
+      ),
+      3 => 
+      array (
+      ),
+    ),
+    '/var/www/html/app/Domain/Programme/Models/Programme.php' => 
+    array (
+      0 => '29927c4b3c1683a50fdac2e434aedbe22dd9e228125bc7e8132914af39506157',
+      1 => 
+      array (
+        0 => 'app\\domain\\programme\\models\\programme',
+      ),
+      2 => 
+      array (
+        0 => 'app\\domain\\programme\\models\\casts',
+        1 => 'app\\domain\\programme\\models\\newfactory',
+        2 => 'app\\domain\\programme\\models\\ownermda',
+        3 => 'app\\domain\\programme\\models\\creator',
+        4 => 'app\\domain\\programme\\models\\activities',
+      ),
+      3 => 
+      array (
+      ),
+    ),
+    '/var/www/html/app/Domain/Programme/Policies/ActivityPolicy.php' => 
+    array (
+      0 => '399b0858e44b3bd7306e68de71ce3aa2a68edff5ed5ff7341c986e97ef0c2606',
+      1 => 
+      array (
+        0 => 'app\\domain\\programme\\policies\\activitypolicy',
+      ),
+      2 => 
+      array (
+        0 => 'app\\domain\\programme\\policies\\owns',
+        1 => 'app\\domain\\programme\\policies\\viewany',
+        2 => 'app\\domain\\programme\\policies\\view',
+        3 => 'app\\domain\\programme\\policies\\create',
+        4 => 'app\\domain\\programme\\policies\\update',
+      ),
+      3 => 
+      array (
+      ),
+    ),
+    '/var/www/html/app/Domain/Programme/Policies/ProgrammePolicy.php' => 
+    array (
+      0 => '23504f3795b12918b54c958f467a1e53323e38d3b4e72c629d7f6af8ae0192db',
+      1 => 
+      array (
+        0 => 'app\\domain\\programme\\policies\\programmepolicy',
+      ),
+      2 => 
+      array (
+        0 => 'app\\domain\\programme\\policies\\owns',
+        1 => 'app\\domain\\programme\\policies\\viewany',
+        2 => 'app\\domain\\programme\\policies\\view',
+        3 => 'app\\domain\\programme\\policies\\create',
+        4 => 'app\\domain\\programme\\policies\\update',
+      ),
+      3 => 
+      array (
+      ),
+    ),
+    '/var/www/html/app/Domain/Programme/ProgrammeServiceProvider.php' => 
+    array (
+      0 => 'b7e9225ce63bfbc50ca533031f419a8c5fdf23ca573e3b16c54a93aac25f614c',
+      1 => 
+      array (
+        0 => 'app\\domain\\programme\\programmeserviceprovider',
+      ),
+      2 => 
+      array (
+        0 => 'app\\domain\\programme\\boot',
+      ),
+      3 => 
+      array (
+      ),
+    ),
+    '/var/www/html/app/Http/Controllers/Api/V1/Programme/ActivityController.php' => 
+    array (
+      0 => 'a9206de927be0c78a4351fbe749852856d0c5d6270a60e8047f1e35d2fa93da5',
+      1 => 
+      array (
+        0 => 'app\\http\\controllers\\api\\v1\\programme\\activitycontroller',
+      ),
+      2 => 
+      array (
+        0 => 'app\\http\\controllers\\api\\v1\\programme\\index',
+        1 => 'app\\http\\controllers\\api\\v1\\programme\\store',
+        2 => 'app\\http\\controllers\\api\\v1\\programme\\show',
+        3 => 'app\\http\\controllers\\api\\v1\\programme\\update',
+        4 => 'app\\http\\controllers\\api\\v1\\programme\\budget',
+        5 => 'app\\http\\controllers\\api\\v1\\programme\\archive',
+      ),
+      3 => 
+      array (
+      ),
+    ),
+    '/var/www/html/app/Http/Controllers/Api/V1/Programme/ProgrammeController.php' => 
+    array (
+      0 => '069f3b51632d40462cad70a03276d790d4b2d45508d0b9aab8314f970ed3dc5d',
+      1 => 
+      array (
+        0 => 'app\\http\\controllers\\api\\v1\\programme\\programmecontroller',
+      ),
+      2 => 
+      array (
+        0 => 'app\\http\\controllers\\api\\v1\\programme\\index',
+        1 => 'app\\http\\controllers\\api\\v1\\programme\\store',
+        2 => 'app\\http\\controllers\\api\\v1\\programme\\show',
+        3 => 'app\\http\\controllers\\api\\v1\\programme\\update',
+        4 => 'app\\http\\controllers\\api\\v1\\programme\\budget',
+        5 => 'app\\http\\controllers\\api\\v1\\programme\\archive',
+      ),
+      3 => 
+      array (
+      ),
+    ),
+    '/var/www/html/app/Http/Requests/Programme/StoreActivityRequest.php' => 
+    array (
+      0 => 'bc474a884a4451911febab989b7ac401ac0b44c83853198d698ed257d289a42b',
+      1 => 
+      array (
+        0 => 'app\\http\\requests\\programme\\storeactivityrequest',
+      ),
+      2 => 
+      array (
+        0 => 'app\\http\\requests\\programme\\authorize',
+        1 => 'app\\http\\requests\\programme\\rules',
+      ),
+      3 => 
+      array (
+      ),
+    ),
+    '/var/www/html/app/Http/Requests/Programme/StoreProgrammeRequest.php' => 
+    array (
+      0 => 'cb043d522e83f67310320621168b0c9b9fde7761bfe0241fe2fe7ca4d171ce0a',
+      1 => 
+      array (
+        0 => 'app\\http\\requests\\programme\\storeprogrammerequest',
+      ),
+      2 => 
+      array (
+        0 => 'app\\http\\requests\\programme\\authorize',
+        1 => 'app\\http\\requests\\programme\\rules',
+      ),
+      3 => 
+      array (
+      ),
+    ),
+    '/var/www/html/app/Http/Requests/Programme/UpdateActivityRequest.php' => 
+    array (
+      0 => 'fcbb3a0b85e1824de2b965a1efff76e669757c7218894433c436dab32d512a77',
+      1 => 
+      array (
+        0 => 'app\\http\\requests\\programme\\updateactivityrequest',
+      ),
+      2 => 
+      array (
+        0 => 'app\\http\\requests\\programme\\authorize',
+        1 => 'app\\http\\requests\\programme\\rules',
+      ),
+      3 => 
+      array (
+      ),
+    ),
+    '/var/www/html/app/Http/Requests/Programme/UpdateProgrammeRequest.php' => 
+    array (
+      0 => '29d5b04f1e2a118fff2691e740421f615174f81760cf305e4a99fb6d107b233d',
+      1 => 
+      array (
+        0 => 'app\\http\\requests\\programme\\updateprogrammerequest',
+      ),
+      2 => 
+      array (
+        0 => 'app\\http\\requests\\programme\\authorize',
+        1 => 'app\\http\\requests\\programme\\rules',
+      ),
+      3 => 
+      array (
+      ),
+    ),
+    '/var/www/html/app/Http/Resources/ActivityResource.php' => 
+    array (
+      0 => '8896e22747987380f61937ab094e1962fa48974c3e67c8214f6e107b755a125d',
+      1 => 
+      array (
+        0 => 'app\\http\\resources\\activityresource',
+      ),
+      2 => 
+      array (
+        0 => 'app\\http\\resources\\toarray',
+      ),
+      3 => 
+      array (
+      ),
+    ),
+    '/var/www/html/app/Http/Resources/ProgrammeResource.php' => 
+    array (
+      0 => 'c06d406aa18e268910b7e00974fb2fa2d18417303c043a697f0db285f10894a8',
+      1 => 
+      array (
+        0 => 'app\\http\\resources\\programmeresource',
+      ),
+      2 => 
+      array (
+        0 => 'app\\http\\resources\\toarray',
+      ),
+      3 => 
+      array (
+      ),
+    ),
+    '/var/www/html/app/Domain/Programme/Enums/EnrollmentStatus.php' => 
+    array (
+      0 => '23c087bf0daac86688a3623d9011f65f29a54741ddc970324108ca661b66b230',
+      1 => 
+      array (
+        0 => 'app\\domain\\programme\\enums\\enrollmentstatus',
+      ),
+      2 => 
+      array (
+      ),
+      3 => 
+      array (
+      ),
+    ),
+    '/var/www/html/app/Domain/Programme/Models/Enrollment.php' => 
+    array (
+      0 => '933420c81e4fee74f76bbef3b28ef68f6a6e174f052b173ef9304e9d6621a09c',
+      1 => 
+      array (
+        0 => 'app\\domain\\programme\\models\\enrollment',
+      ),
+      2 => 
+      array (
+        0 => 'app\\domain\\programme\\models\\mdaownershipcolumn',
+        1 => 'app\\domain\\programme\\models\\casts',
+        2 => 'app\\domain\\programme\\models\\newfactory',
+        3 => 'app\\domain\\programme\\models\\programme',
+        4 => 'app\\domain\\programme\\models\\activity',
+        5 => 'app\\domain\\programme\\models\\mda',
+        6 => 'app\\domain\\programme\\models\\beneficiary',
+        7 => 'app\\domain\\programme\\models\\household',
+      ),
+      3 => 
+      array (
+      ),
+    ),
+    '/var/www/html/app/Domain/Programme/Policies/EnrollmentPolicy.php' => 
+    array (
+      0 => '02e9c82781b36e0d3aa2cbb66df2570d9d17855306fc0a15d89b252a6962aa04',
+      1 => 
+      array (
+        0 => 'app\\domain\\programme\\policies\\enrollmentpolicy',
+      ),
+      2 => 
+      array (
+        0 => 'app\\domain\\programme\\policies\\viewany',
+        1 => 'app\\domain\\programme\\policies\\view',
+        2 => 'app\\domain\\programme\\policies\\create',
+        3 => 'app\\domain\\programme\\policies\\update',
+      ),
+      3 => 
+      array (
+      ),
+    ),
+    '/var/www/html/app/Domain/Programme/Services/EligibilityEvaluator.php' => 
+    array (
+      0 => 'd03fc48242bc0d11e9cf36e0f43ce3e21e2f3190e09052d97768cf16d638f25f',
+      1 => 
+      array (
+        0 => 'app\\domain\\programme\\services\\eligibilityevaluator',
+      ),
+      2 => 
+      array (
+        0 => 'app\\domain\\programme\\services\\evaluate',
+        1 => 'app\\domain\\programme\\services\\satisfies',
+        2 => 'app\\domain\\programme\\services\\matches',
+        3 => 'app\\domain\\programme\\services\\subjectattributes',
+      ),
+      3 => 
+      array (
+      ),
+    ),
+    '/var/www/html/app/Domain/Programme/Services/EnrollmentService.php' => 
+    array (
+      0 => 'c6502597e8cc87ac61d71e9305e751dfc7fbd1a95c3906c9d8e5ffe813e88638',
+      1 => 
+      array (
+        0 => 'app\\domain\\programme\\services\\enrollmentservice',
+      ),
+      2 => 
+      array (
+        0 => 'app\\domain\\programme\\services\\__construct',
+        1 => 'app\\domain\\programme\\services\\canserve',
+        2 => 'app\\domain\\programme\\services\\enroll',
+        3 => 'app\\domain\\programme\\services\\hasopenenrollment',
+        4 => 'app\\domain\\programme\\services\\outcome',
+      ),
+      3 => 
+      array (
+      ),
+    ),
+    '/var/www/html/app/Http/Controllers/Api/V1/Programme/EnrollmentController.php' => 
+    array (
+      0 => 'b4c01173ad864225a60ea9ed0640513cd726e04c156f36c14cb7d5c67c45f327',
+      1 => 
+      array (
+        0 => 'app\\http\\controllers\\api\\v1\\programme\\enrollmentcontroller',
+      ),
+      2 => 
+      array (
+        0 => 'app\\http\\controllers\\api\\v1\\programme\\__construct',
+        1 => 'app\\http\\controllers\\api\\v1\\programme\\index',
+        2 => 'app\\http\\controllers\\api\\v1\\programme\\store',
+        3 => 'app\\http\\controllers\\api\\v1\\programme\\bulk',
+        4 => 'app\\http\\controllers\\api\\v1\\programme\\update',
+        5 => 'app\\http\\controllers\\api\\v1\\programme\\programme',
+        6 => 'app\\http\\controllers\\api\\v1\\programme\\typemismatch',
+        7 => 'app\\http\\controllers\\api\\v1\\programme\\activitymismatch',
+      ),
+      3 => 
+      array (
+      ),
+    ),
+    '/var/www/html/app/Http/Requests/Programme/BulkEnrollmentRequest.php' => 
+    array (
+      0 => '253d751c162b28e8bda1e2f201756ed095106ec5cbcdaf4533e7ffcf59fa18e1',
+      1 => 
+      array (
+        0 => 'app\\http\\requests\\programme\\bulkenrollmentrequest',
+      ),
+      2 => 
+      array (
+        0 => 'app\\http\\requests\\programme\\authorize',
+        1 => 'app\\http\\requests\\programme\\rules',
+        2 => 'app\\http\\requests\\programme\\withvalidator',
+      ),
+      3 => 
+      array (
+      ),
+    ),
+    '/var/www/html/app/Http/Requests/Programme/StoreEnrollmentRequest.php' => 
+    array (
+      0 => 'a47a5dc911452a2404e25ae490422801531025b3d485c613539079cd16cb041c',
+      1 => 
+      array (
+        0 => 'app\\http\\requests\\programme\\storeenrollmentrequest',
+      ),
+      2 => 
+      array (
+        0 => 'app\\http\\requests\\programme\\authorize',
+        1 => 'app\\http\\requests\\programme\\rules',
+        2 => 'app\\http\\requests\\programme\\withvalidator',
+      ),
+      3 => 
+      array (
+      ),
+    ),
+    '/var/www/html/app/Http/Requests/Programme/UpdateEnrollmentRequest.php' => 
+    array (
+      0 => '6a9a7dbce1999bb954fee7c9ae19f8ab802e3156137938bf6605889fd017db61',
+      1 => 
+      array (
+        0 => 'app\\http\\requests\\programme\\updateenrollmentrequest',
+      ),
+      2 => 
+      array (
+        0 => 'app\\http\\requests\\programme\\authorize',
+        1 => 'app\\http\\requests\\programme\\rules',
+      ),
+      3 => 
+      array (
+      ),
+    ),
+    '/var/www/html/app/Http/Resources/EnrollmentResource.php' => 
+    array (
+      0 => 'cb4cdaf67a78d03ffcb79afc54611185d3dc1117ab58a8c29b6dd70f461684ff',
+      1 => 
+      array (
+        0 => 'app\\http\\resources\\enrollmentresource',
+      ),
+      2 => 
+      array (
+        0 => 'app\\http\\resources\\toarray',
+      ),
+      3 => 
+      array (
+      ),
+    ),
+    '/var/www/html/app/Domain/Benefit/BenefitServiceProvider.php' => 
+    array (
+      0 => '1dfbe8cede683dfbcf72d61bea79c296d832894bc81dbdb89f6ccb6a69a9af1c',
+      1 => 
+      array (
+        0 => 'app\\domain\\benefit\\benefitserviceprovider',
+      ),
+      2 => 
+      array (
+        0 => 'app\\domain\\benefit\\register',
+        1 => 'app\\domain\\benefit\\boot',
+      ),
+      3 => 
+      array (
+      ),
+    ),
+    '/var/www/html/app/Domain/Benefit/Contracts/BenefitVerifier.php' => 
+    array (
+      0 => '2914f04c3916f269a43bb87644374e647d9ac331fbef598c974a7c8d88c4d308',
+      1 => 
+      array (
+        0 => 'app\\domain\\benefit\\contracts\\benefitverifier',
+      ),
+      2 => 
+      array (
+        0 => 'app\\domain\\benefit\\contracts\\method',
+        1 => 'app\\domain\\benefit\\contracts\\isavailable',
+        2 => 'app\\domain\\benefit\\contracts\\verify',
+      ),
+      3 => 
+      array (
+      ),
+    ),
+    '/var/www/html/app/Domain/Benefit/Enums/BenefitStatus.php' => 
+    array (
+      0 => '627a35d7caf6a58013c56a9a88f1f2bab1b22b0ef211c24c7532cc783980f1f5',
+      1 => 
+      array (
+        0 => 'app\\domain\\benefit\\enums\\benefitstatus',
+      ),
+      2 => 
+      array (
+      ),
+      3 => 
+      array (
+      ),
+    ),
+    '/var/www/html/app/Domain/Benefit/Enums/BenefitType.php' => 
+    array (
+      0 => '859686fa1a6b5a797ee1c3ad8f0cd1a4295fc5f30a339ad35b0e0cf9380834f9',
+      1 => 
+      array (
+        0 => 'app\\domain\\benefit\\enums\\benefittype',
+      ),
+      2 => 
+      array (
+      ),
+      3 => 
+      array (
+      ),
+    ),
+    '/var/www/html/app/Domain/Benefit/Enums/VerificationMethod.php' => 
+    array (
+      0 => '8505d69a5622d4029d70c386d38d48b896283f72ecf7529a743042b67509b776',
+      1 => 
+      array (
+        0 => 'app\\domain\\benefit\\enums\\verificationmethod',
+      ),
+      2 => 
+      array (
+      ),
+      3 => 
+      array (
+      ),
+    ),
+    '/var/www/html/app/Domain/Benefit/Exceptions/NotEnrolledException.php' => 
+    array (
+      0 => '544aa1339ed92409a1916afc27441a1d6e9a48a336c375e582f53c876c26755d',
+      1 => 
+      array (
+        0 => 'app\\domain\\benefit\\exceptions\\notenrolledexception',
+      ),
+      2 => 
+      array (
+      ),
+      3 => 
+      array (
+      ),
+    ),
+    '/var/www/html/app/Domain/Benefit/Exceptions/VerificationUnavailableException.php' => 
+    array (
+      0 => '7c123cef72df6699b8b2bb7871fa4c51fa54246ace53407b118d2a88a998aa0a',
+      1 => 
+      array (
+        0 => 'app\\domain\\benefit\\exceptions\\verificationunavailableexception',
+      ),
+      2 => 
+      array (
+      ),
+      3 => 
+      array (
+      ),
+    ),
+    '/var/www/html/app/Domain/Benefit/Models/Benefit.php' => 
+    array (
+      0 => '564535f42ca329420820ed8e0e402e226d374dbd19b2768211ad217235b9e729',
+      1 => 
+      array (
+        0 => 'app\\domain\\benefit\\models\\benefit',
+      ),
+      2 => 
+      array (
+        0 => 'app\\domain\\benefit\\models\\mdaownershipcolumn',
+        1 => 'app\\domain\\benefit\\models\\casts',
+        2 => 'app\\domain\\benefit\\models\\newfactory',
+        3 => 'app\\domain\\benefit\\models\\beneficiary',
+        4 => 'app\\domain\\benefit\\models\\programme',
+        5 => 'app\\domain\\benefit\\models\\activity',
+        6 => 'app\\domain\\benefit\\models\\enrollment',
+        7 => 'app\\domain\\benefit\\models\\mda',
+      ),
+      3 => 
+      array (
+      ),
+    ),
+    '/var/www/html/app/Domain/Benefit/Policies/BenefitPolicy.php' => 
+    array (
+      0 => '6d5966f5e858885c0933026bf20ebc2f6e0e26ad929661cc5efb55771e9353eb',
+      1 => 
+      array (
+        0 => 'app\\domain\\benefit\\policies\\benefitpolicy',
+      ),
+      2 => 
+      array (
+        0 => 'app\\domain\\benefit\\policies\\viewany',
+        1 => 'app\\domain\\benefit\\policies\\view',
+        2 => 'app\\domain\\benefit\\policies\\record',
+        3 => 'app\\domain\\benefit\\policies\\verify',
+      ),
+      3 => 
+      array (
+      ),
+    ),
+    '/var/www/html/app/Domain/Benefit/Services/BenefitRecorder.php' => 
+    array (
+      0 => 'e9054a4288d1ce2509f798ec5a37ef3eff783d2815cad9ac78f2fc2f45fe4dfd',
+      1 => 
+      array (
+        0 => 'app\\domain\\benefit\\services\\benefitrecorder',
+      ),
+      2 => 
+      array (
+        0 => 'app\\domain\\benefit\\services\\__construct',
+        1 => 'app\\domain\\benefit\\services\\record',
+        2 => 'app\\domain\\benefit\\services\\verify',
+        3 => 'app\\domain\\benefit\\services\\applyverification',
+      ),
+      3 => 
+      array (
+      ),
+    ),
+    '/var/www/html/app/Domain/Benefit/Services/VerifierRegistry.php' => 
+    array (
+      0 => 'f1c4d4bfced43a4b2e3e887ab70c21a49a2aa3cb93052c25cf7bb1f4e3dc9f5f',
+      1 => 
+      array (
+        0 => 'app\\domain\\benefit\\services\\verifierregistry',
+      ),
+      2 => 
+      array (
+        0 => 'app\\domain\\benefit\\services\\__construct',
+        1 => 'app\\domain\\benefit\\services\\for',
+        2 => 'app\\domain\\benefit\\services\\availablemethods',
+      ),
+      3 => 
+      array (
+      ),
+    ),
+    '/var/www/html/app/Domain/Benefit/Services/Verifiers/BiometricVerifier.php' => 
+    array (
+      0 => '17c57ed3428c04e668f14a8c435d3184763aa7faeaa855013f4c85ee369f8100',
+      1 => 
+      array (
+        0 => 'app\\domain\\benefit\\services\\verifiers\\biometricverifier',
+      ),
+      2 => 
+      array (
+        0 => 'app\\domain\\benefit\\services\\verifiers\\method',
+        1 => 'app\\domain\\benefit\\services\\verifiers\\isavailable',
+        2 => 'app\\domain\\benefit\\services\\verifiers\\verify',
+      ),
+      3 => 
+      array (
+      ),
+    ),
+    '/var/www/html/app/Domain/Benefit/Services/Verifiers/FieldConfirmationVerifier.php' => 
+    array (
+      0 => '373c313df25098b85dc3245877fe1097cfed10247579ad3cebf3e745a7d50ca5',
+      1 => 
+      array (
+        0 => 'app\\domain\\benefit\\services\\verifiers\\fieldconfirmationverifier',
+      ),
+      2 => 
+      array (
+        0 => 'app\\domain\\benefit\\services\\verifiers\\method',
+        1 => 'app\\domain\\benefit\\services\\verifiers\\isavailable',
+        2 => 'app\\domain\\benefit\\services\\verifiers\\verify',
+      ),
+      3 => 
+      array (
+      ),
+    ),
+    '/var/www/html/app/Domain/Benefit/Services/Verifiers/OtpVerifier.php' => 
+    array (
+      0 => 'ecb6f708ce2a33a84675fd23c41dba534b2efb91951d1109fc2f4f5ec8d8007c',
+      1 => 
+      array (
+        0 => 'app\\domain\\benefit\\services\\verifiers\\otpverifier',
+      ),
+      2 => 
+      array (
+        0 => 'app\\domain\\benefit\\services\\verifiers\\method',
+        1 => 'app\\domain\\benefit\\services\\verifiers\\isavailable',
+        2 => 'app\\domain\\benefit\\services\\verifiers\\verify',
+      ),
+      3 => 
+      array (
+      ),
+    ),
+    '/var/www/html/app/Domain/Benefit/Services/Verifiers/SignatureVerifier.php' => 
+    array (
+      0 => '334014f32f9dff40140229cbd1b99511daede26fc65ee14eb5b3a26d1f7308ec',
+      1 => 
+      array (
+        0 => 'app\\domain\\benefit\\services\\verifiers\\signatureverifier',
+      ),
+      2 => 
+      array (
+        0 => 'app\\domain\\benefit\\services\\verifiers\\method',
+        1 => 'app\\domain\\benefit\\services\\verifiers\\isavailable',
+        2 => 'app\\domain\\benefit\\services\\verifiers\\verify',
+      ),
+      3 => 
+      array (
+      ),
+    ),
+    '/var/www/html/app/Http/Controllers/Api/V1/Benefit/BenefitController.php' => 
+    array (
+      0 => '0b7858b554b21a7a12ebe4403770f735b1006f5df231b3f0496d9f142829acf3',
+      1 => 
+      array (
+        0 => 'app\\http\\controllers\\api\\v1\\benefit\\benefitcontroller',
+      ),
+      2 => 
+      array (
+        0 => 'app\\http\\controllers\\api\\v1\\benefit\\__construct',
+        1 => 'app\\http\\controllers\\api\\v1\\benefit\\index',
+        2 => 'app\\http\\controllers\\api\\v1\\benefit\\aggregate',
+        3 => 'app\\http\\controllers\\api\\v1\\benefit\\store',
+        4 => 'app\\http\\controllers\\api\\v1\\benefit\\show',
+        5 => 'app\\http\\controllers\\api\\v1\\benefit\\verify',
+        6 => 'app\\http\\controllers\\api\\v1\\benefit\\ledger',
+        7 => 'app\\http\\controllers\\api\\v1\\benefit\\canviewledger',
+        8 => 'app\\http\\controllers\\api\\v1\\benefit\\activitymismatch',
+      ),
+      3 => 
+      array (
+      ),
+    ),
+    '/var/www/html/app/Http/Requests/Benefit/RecordBenefitRequest.php' => 
+    array (
+      0 => '0edc35a02a258ff94b533d768a4b302bfb6c45d8759bc7c034b2f1e4157c3a04',
+      1 => 
+      array (
+        0 => 'app\\http\\requests\\benefit\\recordbenefitrequest',
+      ),
+      2 => 
+      array (
+        0 => 'app\\http\\requests\\benefit\\authorize',
+        1 => 'app\\http\\requests\\benefit\\rules',
+      ),
+      3 => 
+      array (
+      ),
+    ),
+    '/var/www/html/app/Http/Requests/Benefit/VerifyBenefitRequest.php' => 
+    array (
+      0 => 'b5526966e6ce6f64e9cc7d3607fdd10bd03a6f59dd4997a8992d3c369d370236',
+      1 => 
+      array (
+        0 => 'app\\http\\requests\\benefit\\verifybenefitrequest',
+      ),
+      2 => 
+      array (
+        0 => 'app\\http\\requests\\benefit\\authorize',
+        1 => 'app\\http\\requests\\benefit\\rules',
+      ),
+      3 => 
+      array (
+      ),
+    ),
+    '/var/www/html/app/Http/Resources/BenefitResource.php' => 
+    array (
+      0 => '3e1e8b872055d5542f7c5c954b9202329ec003d429c02286b7fe4d8f4e14fc4c',
+      1 => 
+      array (
+        0 => 'app\\http\\resources\\benefitresource',
+      ),
+      2 => 
+      array (
+        0 => 'app\\http\\resources\\toarray',
+      ),
+      3 => 
+      array (
+      ),
+    ),
+    '/var/www/html/app/Domain/Benefit/Imports/BenefitDeliveryRowValidator.php' => 
+    array (
+      0 => '3c2ee5bdffc2e6f77ddb04d6b6a0593a8b16446940c46071edfa72f4f421fcb0',
+      1 => 
+      array (
+        0 => 'app\\domain\\benefit\\imports\\benefitdeliveryrowvalidator',
+      ),
+      2 => 
+      array (
+        0 => 'app\\domain\\benefit\\imports\\__construct',
+        1 => 'app\\domain\\benefit\\imports\\validate',
+        2 => 'app\\domain\\benefit\\imports\\resolvebeneficiary',
+        3 => 'app\\domain\\benefit\\imports\\benefitfields',
+        4 => 'app\\domain\\benefit\\imports\\parsedate',
+      ),
+      3 => 
+      array (
+      ),
+    ),
+    '/var/www/html/app/Domain/Benefit/Jobs/CommitBenefitImport.php' => 
+    array (
+      0 => '1e063819f9185f617188f6d9636fdb3d87964dade52f23bfa833b261864abf82',
+      1 => 
+      array (
+        0 => 'app\\domain\\benefit\\jobs\\commitbenefitimport',
+      ),
+      2 => 
+      array (
+        0 => 'app\\domain\\benefit\\jobs\\__construct',
+        1 => 'app\\domain\\benefit\\jobs\\handle',
+        2 => 'app\\domain\\benefit\\jobs\\commitrow',
+        3 => 'app\\domain\\benefit\\jobs\\failed',
+      ),
+      3 => 
+      array (
+      ),
+    ),
+    '/var/www/html/app/Domain/Benefit/Jobs/ParseBenefitImport.php' => 
+    array (
+      0 => '85b1a3d2f8eff2ff0cb82a93373fbd16c06ea0e9c5fc23fbbb03e4fb7240ba38',
+      1 => 
+      array (
+        0 => 'app\\domain\\benefit\\jobs\\parsebenefitimport',
+      ),
+      2 => 
+      array (
+        0 => 'app\\domain\\benefit\\jobs\\__construct',
+        1 => 'app\\domain\\benefit\\jobs\\handle',
+        2 => 'app\\domain\\benefit\\jobs\\failed',
+      ),
+      3 => 
+      array (
+      ),
+    ),
+    '/var/www/html/app/Domain/Benefit/Models/BenefitImportBatch.php' => 
+    array (
+      0 => 'ab0350f31226f879a93debe2a0daf5bde93fabb2f916626b5d1c96fdd2e8be1c',
+      1 => 
+      array (
+        0 => 'app\\domain\\benefit\\models\\benefitimportbatch',
+      ),
+      2 => 
+      array (
+        0 => 'app\\domain\\benefit\\models\\mdaownershipcolumn',
+        1 => 'app\\domain\\benefit\\models\\auditexcluded',
+        2 => 'app\\domain\\benefit\\models\\casts',
+        3 => 'app\\domain\\benefit\\models\\newfactory',
+        4 => 'app\\domain\\benefit\\models\\activity',
+        5 => 'app\\domain\\benefit\\models\\programme',
+        6 => 'app\\domain\\benefit\\models\\mda',
+        7 => 'app\\domain\\benefit\\models\\rows',
+      ),
+      3 => 
+      array (
+      ),
+    ),
+    '/var/www/html/app/Domain/Benefit/Models/BenefitImportRow.php' => 
+    array (
+      0 => '45c6e24e2d5747581b0b72e68d5d5b0caf8563e1fabee0accbf13df9ee5010f5',
+      1 => 
+      array (
+        0 => 'app\\domain\\benefit\\models\\benefitimportrow',
+      ),
+      2 => 
+      array (
+        0 => 'app\\domain\\benefit\\models\\casts',
+        1 => 'app\\domain\\benefit\\models\\newfactory',
+        2 => 'app\\domain\\benefit\\models\\batch',
+        3 => 'app\\domain\\benefit\\models\\beneficiary',
+      ),
+      3 => 
+      array (
+      ),
+    ),
+    '/var/www/html/app/Domain/Benefit/Policies/BenefitImportPolicy.php' => 
+    array (
+      0 => '10a8ecfe0c8f26bc4d0c82a944cb72c69e758aa095a28f8273e966ce0a9090f2',
+      1 => 
+      array (
+        0 => 'app\\domain\\benefit\\policies\\benefitimportpolicy',
+      ),
+      2 => 
+      array (
+        0 => 'app\\domain\\benefit\\policies\\viewany',
+        1 => 'app\\domain\\benefit\\policies\\view',
+        2 => 'app\\domain\\benefit\\policies\\create',
+        3 => 'app\\domain\\benefit\\policies\\commit',
+      ),
+      3 => 
+      array (
+      ),
+    ),
+    '/var/www/html/app/Http/Controllers/Api/V1/Benefit/BenefitImportController.php' => 
+    array (
+      0 => 'bd077b03e5a66c88830d07269fdfebd9c7797a9f8ac351f8f72f6493c80fe96f',
+      1 => 
+      array (
+        0 => 'app\\http\\controllers\\api\\v1\\benefit\\benefitimportcontroller',
+      ),
+      2 => 
+      array (
+        0 => 'app\\http\\controllers\\api\\v1\\benefit\\index',
+        1 => 'app\\http\\controllers\\api\\v1\\benefit\\store',
+        2 => 'app\\http\\controllers\\api\\v1\\benefit\\show',
+        3 => 'app\\http\\controllers\\api\\v1\\benefit\\confirm',
+      ),
+      3 => 
+      array (
+      ),
+    ),
+    '/var/www/html/app/Http/Requests/Benefit/UploadBenefitImportRequest.php' => 
+    array (
+      0 => 'b3471ffc12227b1197cebff60c27d730338974328505cd3306ccd31858749642',
+      1 => 
+      array (
+        0 => 'app\\http\\requests\\benefit\\uploadbenefitimportrequest',
+      ),
+      2 => 
+      array (
+        0 => 'app\\http\\requests\\benefit\\authorize',
+        1 => 'app\\http\\requests\\benefit\\rules',
+      ),
+      3 => 
+      array (
+      ),
+    ),
+    '/var/www/html/app/Http/Resources/BenefitImportBatchResource.php' => 
+    array (
+      0 => '4206e5a4c0f5a5b0f551b2bb83d1bfa3573f980e22bfaf77146a7f99104897cb',
+      1 => 
+      array (
+        0 => 'app\\http\\resources\\benefitimportbatchresource',
+      ),
+      2 => 
+      array (
+        0 => 'app\\http\\resources\\toarray',
+      ),
+      3 => 
+      array (
+      ),
+    ),
+    '/var/www/html/app/Http/Resources/BenefitImportRowResource.php' => 
+    array (
+      0 => '67621425eab3b5b79e039e8b46a3a2832e2bcf41763883901caeb7315a900483',
+      1 => 
+      array (
+        0 => 'app\\http\\resources\\benefitimportrowresource',
+      ),
+      2 => 
+      array (
+        0 => 'app\\http\\resources\\toarray',
+      ),
+      3 => 
+      array (
+      ),
+    ),
+    '/var/www/html/app/Domain/Benefit/Services/LedgerAggregator.php' => 
+    array (
+      0 => '85827d48734c69866401b86c71256edfbb2ad036dffbf98d926633d52994568c',
+      1 => 
+      array (
+        0 => 'app\\domain\\benefit\\services\\ledgeraggregator',
+      ),
+      2 => 
+      array (
+        0 => 'app\\domain\\benefit\\services\\programmebudget',
+        1 => 'app\\domain\\benefit\\services\\activitybudget',
+        2 => 'app\\domain\\benefit\\services\\aggregate',
+        3 => 'app\\domain\\benefit\\services\\budget',
+        4 => 'app\\domain\\benefit\\services\\totals',
+        5 => 'app\\domain\\benefit\\services\\applyfilters',
+      ),
+      3 => 
+      array (
+      ),
+    ),
+    '/var/www/html/app/Http/Requests/Benefit/AggregateBenefitsRequest.php' => 
+    array (
+      0 => '786d3d1fa451637ebf097f2347ae932676d4c01f399c5d143dc923b46ccc5227',
+      1 => 
+      array (
+        0 => 'app\\http\\requests\\benefit\\aggregatebenefitsrequest',
+      ),
+      2 => 
+      array (
+        0 => 'app\\http\\requests\\benefit\\authorize',
+        1 => 'app\\http\\requests\\benefit\\rules',
+      ),
+      3 => 
+      array (
+      ),
+    ),
+    '/var/www/html/app/Domain/Benefit/Enums/BenefitFlagStatus.php' => 
+    array (
+      0 => '71a52154e6516472ff20f3e4402a6d9612558a5ee443e189fdc8de2f9f4699ff',
+      1 => 
+      array (
+        0 => 'app\\domain\\benefit\\enums\\benefitflagstatus',
+      ),
+      2 => 
+      array (
+      ),
+      3 => 
+      array (
+      ),
+    ),
+    '/var/www/html/app/Domain/Benefit/Models/BenefitFlag.php' => 
+    array (
+      0 => '611280023203f333dc50f797d13717b72575efa9f63983a358d118d5e3227c8a',
+      1 => 
+      array (
+        0 => 'app\\domain\\benefit\\models\\benefitflag',
+      ),
+      2 => 
+      array (
+        0 => 'app\\domain\\benefit\\models\\casts',
+        1 => 'app\\domain\\benefit\\models\\beneficiary',
+        2 => 'app\\domain\\benefit\\models\\frommda',
+        3 => 'app\\domain\\benefit\\models\\othermda',
+      ),
+      3 => 
+      array (
+      ),
+    ),
+    '/var/www/html/app/Domain/Benefit/Models/DoubleDippingRule.php' => 
+    array (
+      0 => 'ebc75dd07505f13868661f44d1c40d38be2b3c18051c597b98c936beadcfb282',
+      1 => 
+      array (
+        0 => 'app\\domain\\benefit\\models\\doubledippingrule',
+      ),
+      2 => 
+      array (
+        0 => 'app\\domain\\benefit\\models\\casts',
+        1 => 'app\\domain\\benefit\\models\\newfactory',
+        2 => 'app\\domain\\benefit\\models\\appliesto',
+      ),
+      3 => 
+      array (
+      ),
+    ),
+    '/var/www/html/app/Domain/Benefit/Policies/BenefitFlagPolicy.php' => 
+    array (
+      0 => '2812db42916166d70b3c45810283bba041b21201f14b442e225899a3ac50250a',
+      1 => 
+      array (
+        0 => 'app\\domain\\benefit\\policies\\benefitflagpolicy',
+      ),
+      2 => 
+      array (
+        0 => 'app\\domain\\benefit\\policies\\involves',
+        1 => 'app\\domain\\benefit\\policies\\viewany',
+        2 => 'app\\domain\\benefit\\policies\\view',
+        3 => 'app\\domain\\benefit\\policies\\review',
+      ),
+      3 => 
+      array (
+      ),
+    ),
+    '/var/www/html/app/Domain/Benefit/Policies/DoubleDippingRulePolicy.php' => 
+    array (
+      0 => '672df5b5a5b34b1ce2064b4e74450d059c54c004a4b96dbfd8ce957765118f12',
+      1 => 
+      array (
+        0 => 'app\\domain\\benefit\\policies\\doubledippingrulepolicy',
+      ),
+      2 => 
+      array (
+        0 => 'app\\domain\\benefit\\policies\\viewany',
+        1 => 'app\\domain\\benefit\\policies\\create',
+        2 => 'app\\domain\\benefit\\policies\\update',
+        3 => 'app\\domain\\benefit\\policies\\delete',
+      ),
+      3 => 
+      array (
+      ),
+    ),
+    '/var/www/html/app/Domain/Benefit/Services/BeneficiaryRevealPresenter.php' => 
+    array (
+      0 => 'cc21e6d221438957fb4d3016378ded86ce0e1400401dfcd7472849636d00d694',
+      1 => 
+      array (
+        0 => 'app\\domain\\benefit\\services\\beneficiaryrevealpresenter',
+      ),
+      2 => 
+      array (
+        0 => 'app\\domain\\benefit\\services\\sections',
+        1 => 'app\\domain\\benefit\\services\\programmes',
+        2 => 'app\\domain\\benefit\\services\\benefits',
+      ),
+      3 => 
+      array (
+      ),
+    ),
+    '/var/www/html/app/Domain/Benefit/Services/DoubleDippingDetector.php' => 
+    array (
+      0 => '7f9b6d0217777eb739d596d5079284332f2510b2e343d5aeb97097dfee5a7e6e',
+      1 => 
+      array (
+        0 => 'app\\domain\\benefit\\services\\doubledippingdetector',
+      ),
+      2 => 
+      array (
+        0 => 'app\\domain\\benefit\\services\\check',
+        1 => 'app\\domain\\benefit\\services\\raiseflag',
+      ),
+      3 => 
+      array (
+      ),
+    ),
+    '/var/www/html/app/Domain/Programme/Services/ProgrammeMatcher.php' => 
+    array (
+      0 => '9121e730f812033429c89d29df90b96248bc7ad435819e2a2627ac9fe41369f4',
+      1 => 
+      array (
+        0 => 'app\\domain\\programme\\services\\programmematcher',
+      ),
+      2 => 
+      array (
+        0 => 'app\\domain\\programme\\services\\__construct',
+        1 => 'app\\domain\\programme\\services\\suggest',
+        2 => 'app\\domain\\programme\\services\\matchesneed',
+      ),
+      3 => 
+      array (
+      ),
+    ),
+    '/var/www/html/app/Domain/Programme/Services/ProgrammeMatchingRouter.php' => 
+    array (
+      0 => '3d3cf7ca199d082af146a0b41b345f3316a32ab597b68b28d4692bd671934e32',
+      1 => 
+      array (
+        0 => 'app\\domain\\programme\\services\\programmematchingrouter',
+      ),
+      2 => 
+      array (
+        0 => 'app\\domain\\programme\\services\\__construct',
+        1 => 'app\\domain\\programme\\services\\suggestmdafor',
+      ),
+      3 => 
+      array (
+      ),
+    ),
+    '/var/www/html/app/Http/Controllers/Api/V1/Benefit/BenefitFlagController.php' => 
+    array (
+      0 => 'e6e224288cfd68241756554f0c5a18ceb755abdb6acee25c46c494c7cac57f4d',
+      1 => 
+      array (
+        0 => 'app\\http\\controllers\\api\\v1\\benefit\\benefitflagcontroller',
+      ),
+      2 => 
+      array (
+        0 => 'app\\http\\controllers\\api\\v1\\benefit\\index',
+        1 => 'app\\http\\controllers\\api\\v1\\benefit\\review',
+      ),
+      3 => 
+      array (
+      ),
+    ),
+    '/var/www/html/app/Http/Controllers/Api/V1/Benefit/DoubleDippingRuleController.php' => 
+    array (
+      0 => '359000777264b5d2490ef218e1616271d253634a8e0789e8577b68a64f642626',
+      1 => 
+      array (
+        0 => 'app\\http\\controllers\\api\\v1\\benefit\\doubledippingrulecontroller',
+      ),
+      2 => 
+      array (
+        0 => 'app\\http\\controllers\\api\\v1\\benefit\\index',
+        1 => 'app\\http\\controllers\\api\\v1\\benefit\\store',
+        2 => 'app\\http\\controllers\\api\\v1\\benefit\\update',
+        3 => 'app\\http\\controllers\\api\\v1\\benefit\\destroy',
+      ),
+      3 => 
+      array (
+      ),
+    ),
+    '/var/www/html/app/Http/Controllers/Api/V1/Registry/BeneficiaryRoutingController.php' => 
+    array (
+      0 => '40da39ba7294c045f1d0fe331406d3567943d0790c86c2589402035cdf6d60d1',
+      1 => 
+      array (
+        0 => 'app\\http\\controllers\\api\\v1\\registry\\beneficiaryroutingcontroller',
+      ),
+      2 => 
+      array (
+        0 => 'app\\http\\controllers\\api\\v1\\registry\\suggestions',
+        1 => 'app\\http\\controllers\\api\\v1\\registry\\assign',
+      ),
+      3 => 
+      array (
+      ),
+    ),
+    '/var/www/html/app/Http/Requests/Benefit/ReviewBenefitFlagRequest.php' => 
+    array (
+      0 => '76f1141c8dbde6018a359c7d955eb65719d30e96637e0c9753fa6a960a06b8d6',
+      1 => 
+      array (
+        0 => 'app\\http\\requests\\benefit\\reviewbenefitflagrequest',
+      ),
+      2 => 
+      array (
+        0 => 'app\\http\\requests\\benefit\\authorize',
+        1 => 'app\\http\\requests\\benefit\\rules',
+      ),
+      3 => 
+      array (
+      ),
+    ),
+    '/var/www/html/app/Http/Requests/Benefit/StoreDoubleDippingRuleRequest.php' => 
+    array (
+      0 => '41b2b01f79bdcf86f9ed0f80f5953fecf3929efd8d993b46df0fb61f328cfda0',
+      1 => 
+      array (
+        0 => 'app\\http\\requests\\benefit\\storedoubledippingrulerequest',
+      ),
+      2 => 
+      array (
+        0 => 'app\\http\\requests\\benefit\\authorize',
+        1 => 'app\\http\\requests\\benefit\\rules',
+      ),
+      3 => 
+      array (
+      ),
+    ),
+    '/var/www/html/app/Http/Requests/Registry/RouteAssignmentRequest.php' => 
+    array (
+      0 => 'c45ed110e8092630751cf3b91c3fa631ffd10d427cd32a3fc4a9efce7d2571f2',
+      1 => 
+      array (
+        0 => 'app\\http\\requests\\registry\\routeassignmentrequest',
+      ),
+      2 => 
+      array (
+        0 => 'app\\http\\requests\\registry\\authorize',
+        1 => 'app\\http\\requests\\registry\\rules',
+      ),
+      3 => 
+      array (
+      ),
+    ),
+    '/var/www/html/app/Http/Resources/BenefitFlagResource.php' => 
+    array (
+      0 => '3a96530a9409f311be457d9ea65482bb6900b03f90b23e6193f3f4e85a132a0b',
+      1 => 
+      array (
+        0 => 'app\\http\\resources\\benefitflagresource',
+      ),
+      2 => 
+      array (
+        0 => 'app\\http\\resources\\toarray',
+      ),
+      3 => 
+      array (
+      ),
+    ),
+    '/var/www/html/app/Http/Resources/DoubleDippingRuleResource.php' => 
+    array (
+      0 => 'c63f9cd589be9d908020191ea67dbcc093dbdf9ff818303a6a8a91754a3d4bf8',
+      1 => 
+      array (
+        0 => 'app\\http\\resources\\doubledippingruleresource',
       ),
       2 => 
       array (

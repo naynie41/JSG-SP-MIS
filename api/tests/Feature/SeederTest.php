@@ -9,6 +9,10 @@ use App\Domain\Access\Models\Mda;
 use App\Domain\Access\Models\Permission;
 use App\Domain\Access\Models\Role;
 use App\Domain\Access\Models\User;
+use App\Domain\Benefit\Models\Benefit;
+use App\Domain\Benefit\Models\BenefitFlag;
+use App\Domain\Programme\Models\Enrollment;
+use App\Domain\Programme\Models\Programme;
 use App\Domain\Registry\Models\Beneficiary;
 use Database\Seeders\DatabaseSeeder;
 use Illuminate\Foundation\Testing\RefreshDatabase;
@@ -51,5 +55,14 @@ class SeederTest extends TestCase
         // Sample beneficiaries spread across both sample MDAs (cross-MDA test data).
         $this->assertSame(6, Beneficiary::count());
         $this->assertSame(2, Beneficiary::query()->distinct()->count('owner_mda_id'));
+
+        // Phase 4 sample data: individual + household programmes, enrolments, a
+        // spread of benefits across both MDAs, and a cross-MDA double-dipping flag.
+        $this->assertGreaterThanOrEqual(3, Programme::count());
+        $this->assertTrue(Programme::query()->where('type', 'household')->exists());
+        $this->assertTrue(Programme::query()->where('type', 'individual')->exists());
+        $this->assertTrue(Enrollment::query()->whereNotNull('household_id')->exists());
+        $this->assertSame(2, Benefit::query()->distinct()->count('mda_id')); // cross-MDA deliveries
+        $this->assertGreaterThanOrEqual(1, BenefitFlag::count()); // double-dipping flagged, not blocked
     }
 }
