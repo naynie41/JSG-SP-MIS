@@ -2397,6 +2397,91 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
          'typeAliasClassName' => NULL,
          'traitData' => NULL,
       )),
+      '0f8d5a0367a37a84aae88f21c6bab49f' => 
+      \PHPStan\Analyser\IntermediaryNameScope::__set_state(array(
+         'namespace' => 'App\\Domain\\Registry\\Jobs',
+         'uses' => 
+        array (
+          'mdascope' => 'App\\Domain\\Access\\Scopes\\MdaScope',
+          'exactmatchbehaviour' => 'App\\Domain\\Matching\\Enums\\ExactMatchBehaviour',
+          'matchingconfig' => 'App\\Domain\\Matching\\Models\\MatchingConfig',
+          'matchingconfigservice' => 'App\\Domain\\Matching\\Services\\MatchingConfigService',
+          'importrowresolution' => 'App\\Domain\\Registry\\Enums\\ImportRowResolution',
+          'importstatus' => 'App\\Domain\\Registry\\Enums\\ImportStatus',
+          'sourceadapterregistry' => 'App\\Domain\\Registry\\Imports\\Adapters\\SourceAdapterRegistry',
+          'importrowvalidator' => 'App\\Domain\\Registry\\Imports\\ImportRowValidator',
+          'spreadsheetreader' => 'App\\Domain\\Registry\\Imports\\SpreadsheetReader',
+          'importbatch' => 'App\\Domain\\Registry\\Models\\ImportBatch',
+          'importrow' => 'App\\Domain\\Registry\\Models\\ImportRow',
+          'batchduplicatescreener' => 'App\\Domain\\Registry\\Services\\BatchDuplicateScreener',
+          'queueable' => 'Illuminate\\Bus\\Queueable',
+          'shouldqueue' => 'Illuminate\\Contracts\\Queue\\ShouldQueue',
+          'dispatchable' => 'Illuminate\\Foundation\\Bus\\Dispatchable',
+          'interactswithqueue' => 'Illuminate\\Queue\\InteractsWithQueue',
+          'serializesmodels' => 'Illuminate\\Queue\\SerializesModels',
+          'db' => 'Illuminate\\Support\\Facades\\DB',
+          'storage' => 'Illuminate\\Support\\Facades\\Storage',
+          'str' => 'Illuminate\\Support\\Str',
+          'throwable' => 'Throwable',
+        ),
+         'className' => 'App\\Domain\\Registry\\Jobs\\ParseImportBatch',
+         'functionName' => 'tag',
+         'templatePhpDocNodes' => 
+        array (
+        ),
+         'parent' => 
+        \PHPStan\Analyser\IntermediaryNameScope::__set_state(array(
+           'namespace' => 'App\\Domain\\Registry\\Jobs',
+           'uses' => 
+          array (
+            'mdascope' => 'App\\Domain\\Access\\Scopes\\MdaScope',
+            'exactmatchbehaviour' => 'App\\Domain\\Matching\\Enums\\ExactMatchBehaviour',
+            'matchingconfig' => 'App\\Domain\\Matching\\Models\\MatchingConfig',
+            'matchingconfigservice' => 'App\\Domain\\Matching\\Services\\MatchingConfigService',
+            'importrowresolution' => 'App\\Domain\\Registry\\Enums\\ImportRowResolution',
+            'importstatus' => 'App\\Domain\\Registry\\Enums\\ImportStatus',
+            'sourceadapterregistry' => 'App\\Domain\\Registry\\Imports\\Adapters\\SourceAdapterRegistry',
+            'importrowvalidator' => 'App\\Domain\\Registry\\Imports\\ImportRowValidator',
+            'spreadsheetreader' => 'App\\Domain\\Registry\\Imports\\SpreadsheetReader',
+            'importbatch' => 'App\\Domain\\Registry\\Models\\ImportBatch',
+            'importrow' => 'App\\Domain\\Registry\\Models\\ImportRow',
+            'batchduplicatescreener' => 'App\\Domain\\Registry\\Services\\BatchDuplicateScreener',
+            'queueable' => 'Illuminate\\Bus\\Queueable',
+            'shouldqueue' => 'Illuminate\\Contracts\\Queue\\ShouldQueue',
+            'dispatchable' => 'Illuminate\\Foundation\\Bus\\Dispatchable',
+            'interactswithqueue' => 'Illuminate\\Queue\\InteractsWithQueue',
+            'serializesmodels' => 'Illuminate\\Queue\\SerializesModels',
+            'db' => 'Illuminate\\Support\\Facades\\DB',
+            'storage' => 'Illuminate\\Support\\Facades\\Storage',
+            'str' => 'Illuminate\\Support\\Str',
+            'throwable' => 'Throwable',
+          ),
+           'className' => 'App\\Domain\\Registry\\Jobs\\ParseImportBatch',
+           'functionName' => NULL,
+           'templatePhpDocNodes' => 
+          array (
+          ),
+           'parent' => NULL,
+           'typeAliasesMap' => 
+          array (
+          ),
+           'bypassTypeAliases' => false,
+           'constUses' => 
+          array (
+          ),
+           'typeAliasClassName' => NULL,
+           'traitData' => NULL,
+        )),
+         'typeAliasesMap' => 
+        array (
+        ),
+         'bypassTypeAliases' => false,
+         'constUses' => 
+        array (
+        ),
+         'typeAliasClassName' => NULL,
+         'traitData' => NULL,
+      )),
       '723c64618854735e7ebaef88158943e5' => 
       \PHPStan\Analyser\IntermediaryNameScope::__set_state(array(
          'namespace' => 'App\\Domain\\Registry\\Jobs',
@@ -2570,7 +2655,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
     ),
     1 => 
     array (
-      '/var/www/html/app/Domain/Registry/Jobs/ParseImportBatch.php' => '4abc15c59bca8fc32bab44ba13d4d32cdcfff0f8943b9c70d14ecb18602d181b',
+      '/var/www/html/app/Domain/Registry/Jobs/ParseImportBatch.php' => '62156c677d92f573206d8d0f30c99dc5bb2a6ee38789e4ddded27648523f35aa',
       '/var/www/html/vendor/composer/../laravel/framework/src/Illuminate/Foundation/Bus/Dispatchable.php' => '551294291775e57fbd590f0ed288a91cca683d42fac08e60c87e39b73617d47b',
       '/var/www/html/vendor/composer/../laravel/framework/src/Illuminate/Queue/InteractsWithQueue.php' => '8d300c3adb967aa56c0827ba587e456e32e40fbb1c0d9f649f6bf7c0d876e937',
       '/var/www/html/vendor/composer/../laravel/framework/src/Illuminate/Support/InteractsWithTime.php' => 'ee4ef3a2e714fa539b223287a3a62b618b1d3a9e44f2e1f92981f2c3e2773ad5',

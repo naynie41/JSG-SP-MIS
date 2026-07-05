@@ -7616,6 +7616,16 @@ return [
       0 => 
       array (
         0 => 'App\\Domain\\Registry\\Jobs\\ParseImportBatch',
+        1 => 'tag',
+        2 => 'App\\Domain\\Registry\\Jobs\\ParseImportBatch',
+        3 => 
+        array (
+          0 => 'f' . "\0" . 'array_map',
+        ),
+      ),
+      1 => 
+      array (
+        0 => 'App\\Domain\\Registry\\Jobs\\ParseImportBatch',
         1 => 'isTruthy',
         2 => 'App\\Domain\\Registry\\Jobs\\ParseImportBatch',
         3 => 
@@ -7635,7 +7645,7 @@ return [
       array (
         0 => 'Illuminate\\Database\\Eloquent\\Builder',
         1 => 'create',
-        2 => 114,
+        2 => 135,
       ),
     ),
     'PHPStan\\Rules\\Traits\\TraitUseCollector' => 
@@ -10613,6 +10623,15 @@ return [
       0 => 
       array (
         0 => 'App\\Domain\\Registry\\Support\\BeneficiaryRules',
+        1 => 'isIdentityField',
+        2 => 'App\\Domain\\Registry\\Support\\BeneficiaryRules',
+        3 => 
+        array (
+        ),
+      ),
+      1 => 
+      array (
+        0 => 'App\\Domain\\Registry\\Support\\BeneficiaryRules',
         1 => 'forRegistration',
         2 => 'App\\Domain\\Registry\\Support\\BeneficiaryRules',
         3 => 
@@ -10621,7 +10640,7 @@ return [
           1 => 'm' . "\0" . 'illuminate\\validation\\rule' . "\0" . 'enum',
         ),
       ),
-      1 => 
+      2 => 
       array (
         0 => 'App\\Domain\\Registry\\Support\\BeneficiaryRules',
         1 => 'messages',
@@ -15031,7 +15050,7 @@ return [
   ),
   '/var/www/html/app/Domain/Registry/Imports/ImportRowValidator.php' => 
   array (
-    'fileHash' => '4b9cd3a7db3904c03bbb28845ca5b9a22db37908f162717ace54e63d2c63f790',
+    'fileHash' => '9d396786d1ddc150f07d8a959b6e2340fe49b9dbe397f289593986f61fdf08ed',
     'dependentFiles' => 
     array (
       0 => '/var/www/html/app/Domain/Registry/Jobs/ParseImportBatch.php',
@@ -15056,7 +15075,7 @@ return [
   ),
   '/var/www/html/app/Domain/Registry/Jobs/ParseImportBatch.php' => 
   array (
-    'fileHash' => '4abc15c59bca8fc32bab44ba13d4d32cdcfff0f8943b9c70d14ecb18602d181b',
+    'fileHash' => '62156c677d92f573206d8d0f30c99dc5bb2a6ee38789e4ddded27648523f35aa',
     'dependentFiles' => 
     array (
       0 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/ImportBatchController.php',
@@ -15249,7 +15268,7 @@ return [
   ),
   '/var/www/html/app/Domain/Registry/Models/ImportBatch.php' => 
   array (
-    'fileHash' => '86c20e2dea6d76b13ec504730750f8332c50d54d9385fb3c94bce96b260d98a9',
+    'fileHash' => 'bf99d10c5913c0c49e59a59b19a4b09735e182f15f785f281560d6668397de6a',
     'dependentFiles' => 
     array (
       0 => '/var/www/html/app/Domain/Registry/Jobs/CommitImportBatch.php',
@@ -15449,7 +15468,7 @@ return [
   ),
   '/var/www/html/app/Domain/Registry/Support/BeneficiaryRules.php' => 
   array (
-    'fileHash' => '22fa0ef7e1feaa4cf2bf9670b3c8c70e7e9515c6de1d5fb20022114aa6038701',
+    'fileHash' => 'e8b474377cefbfb1f1c2f1b854667e5cbdbf891eedf01a3498998eb8ad381254',
     'dependentFiles' => 
     array (
       0 => '/var/www/html/app/Domain/Registry/Imports/ImportRowValidator.php',
@@ -16120,7 +16139,7 @@ return [
   ),
   '/var/www/html/app/Http/Resources/ImportBatchResource.php' => 
   array (
-    'fileHash' => '200effaf8580e10b8960eb40a508c806be80056486629efd77d104672f4485d1',
+    'fileHash' => 'ce46515a205a64a685ba33918cd8f239a71b70fdde64b8c4e86e345018f8ec2c',
     'dependentFiles' => 
     array (
       0 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/ImportBatchController.php',
@@ -35076,9 +35095,16 @@ return [
       \PHPStan\Dependency\ExportedNode\ExportedPhpDocNode::__set_state(array(
          'phpDocString' => '/**
  * Normalises and validates a single import row using the SAME rules as manual
- * registration (BeneficiaryRules), so a file row is accepted iff the equivalent
- * manual registration would be (PRD FR-REG-05). Returns the cleaned payload plus
- * a structured, row-level error list for the preview (FR-REG-06).
+ * registration (BeneficiaryRules), then classifies each failure per the PRD §9
+ * locked decision:
+ *   - A PRESENT-but-malformed IDENTITY field (name/phone/NIN/BVN) rejects the whole
+ *     row — it is never partial-saved (FR-REG-05). Absent optional NIN/BVN is valid.
+ *   - A NON-IDENTITY field failure drops/flags just that field (nulled in the
+ *     returned payload); the row still saves (FR-REG-09).
+ *   - A NIN/BVN uniqueness hit is a DUPLICATE signal, not a malformed-field reject;
+ *     it is surfaced separately so the duplicate/serve flow (not the error report)
+ *     handles it.
+ * The three buckets feed the preview + batch error report (FR-REG-06).
  */',
          'namespace' => 'App\\Domain\\Registry\\Imports',
          'uses' => 
@@ -35112,7 +35138,12 @@ return [
           \PHPStan\Dependency\ExportedNode\ExportedPhpDocNode::__set_state(array(
              'phpDocString' => '/**
      * @param  array<string, string>  $values  header-keyed source values
-     * @return array{payload: array<string, mixed>, valid: bool, errors: list<array{field: string, message: string}>}
+     * @return array{
+     *     payload: array<string, mixed>,
+     *     identity_errors: list<array{field: string, message: string}>,
+     *     dropped_fields: list<array{field: string, message: string}>,
+     *     duplicate_errors: list<array{field: string, message: string}>,
+     * }
      */',
              'namespace' => 'App\\Domain\\Registry\\Imports',
              'uses' => 
@@ -37558,6 +37589,8 @@ return [
  * @property int $total_rows
  * @property int $valid_rows
  * @property int $invalid_rows
+ * @property int $rejected_rows
+ * @property int $dropped_field_rows
  * @property int $committed_rows
  * @property int $served_rows
  * @property int $skipped_rows
@@ -42663,6 +42696,110 @@ return [
        'statements' => 
       array (
         0 => 
+        \PHPStan\Dependency\ExportedNode\ExportedClassConstantsNode::__set_state(array(
+           'constants' => 
+          array (
+            0 => 
+            \PHPStan\Dependency\ExportedNode\ExportedClassConstantNode::__set_state(array(
+               'name' => 'IDENTITY_FIELDS',
+               'value' => '[\'first_name\', \'middle_name\', \'last_name\', \'phone\', \'nin\', \'bvn\']',
+               'attributes' => 
+              array (
+              ),
+            )),
+          ),
+           'public' => true,
+           'private' => false,
+           'final' => false,
+           'phpDoc' => 
+          \PHPStan\Dependency\ExportedNode\ExportedPhpDocNode::__set_state(array(
+             'phpDocString' => '/**
+     * Identity fields (PRD §9, FR-REG-05): name, phone, NIN, BVN. When one of
+     * these is PRESENT but malformed the WHOLE row is rejected — an identity field
+     * is never partial-saved. (Absent optional NIN/BVN/phone is still valid.)
+     *
+     * @var list<string>
+     */',
+             'namespace' => 'App\\Domain\\Registry\\Support',
+             'uses' => 
+            array (
+              'gender' => 'App\\Domain\\Registry\\Enums\\Gender',
+              'lga' => 'App\\Domain\\Registry\\Enums\\Lga',
+              'rule' => 'Illuminate\\Validation\\Rule',
+            ),
+             'constUses' => 
+            array (
+            ),
+          )),
+        )),
+        1 => 
+        \PHPStan\Dependency\ExportedNode\ExportedClassConstantsNode::__set_state(array(
+           'constants' => 
+          array (
+            0 => 
+            \PHPStan\Dependency\ExportedNode\ExportedClassConstantNode::__set_state(array(
+               'name' => 'NON_IDENTITY_FIELDS',
+               'value' => '[\'date_of_birth\', \'gender\', \'address\', \'lga\', \'ward\']',
+               'attributes' => 
+              array (
+              ),
+            )),
+          ),
+           'public' => true,
+           'private' => false,
+           'final' => false,
+           'phpDoc' => 
+          \PHPStan\Dependency\ExportedNode\ExportedPhpDocNode::__set_state(array(
+             'phpDocString' => '/**
+     * Non-identity fields (PRD §9, FR-REG-09): a failure here drops/flags just that
+     * field and the row still saves. All of these are nullable in the schema.
+     *
+     * @var list<string>
+     */',
+             'namespace' => 'App\\Domain\\Registry\\Support',
+             'uses' => 
+            array (
+              'gender' => 'App\\Domain\\Registry\\Enums\\Gender',
+              'lga' => 'App\\Domain\\Registry\\Enums\\Lga',
+              'rule' => 'Illuminate\\Validation\\Rule',
+            ),
+             'constUses' => 
+            array (
+            ),
+          )),
+        )),
+        2 => 
+        \PHPStan\Dependency\ExportedNode\ExportedMethodNode::__set_state(array(
+           'name' => 'isIdentityField',
+           'phpDoc' => NULL,
+           'byRef' => false,
+           'public' => true,
+           'private' => false,
+           'abstract' => false,
+           'final' => false,
+           'static' => true,
+           'returnType' => 'bool',
+           'parameters' => 
+          array (
+            0 => 
+            \PHPStan\Dependency\ExportedNode\ExportedParameterNode::__set_state(array(
+               'name' => 'field',
+               'type' => 'string',
+               'byRef' => false,
+               'variadic' => false,
+               'hasDefault' => false,
+               'attributes' => 
+              array (
+              ),
+               'phpDoc' => NULL,
+               'flags' => 0,
+            )),
+          ),
+           'attributes' => 
+          array (
+          ),
+        )),
+        3 => 
         \PHPStan\Dependency\ExportedNode\ExportedMethodNode::__set_state(array(
            'name' => 'forRegistration',
            'phpDoc' => 
@@ -42695,7 +42832,7 @@ return [
           array (
           ),
         )),
-        1 => 
+        4 => 
         \PHPStan\Dependency\ExportedNode\ExportedMethodNode::__set_state(array(
            'name' => 'messages',
            'phpDoc' => 

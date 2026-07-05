@@ -33,6 +33,8 @@ use Illuminate\Support\Carbon;
  * @property int $total_rows
  * @property int $valid_rows
  * @property int $invalid_rows
+ * @property int $rejected_rows
+ * @property int $dropped_field_rows
  * @property int $committed_rows
  * @property int $served_rows
  * @property int $skipped_rows
@@ -62,6 +64,8 @@ class ImportBatch extends Model implements MdaScoped
         'total_rows',
         'valid_rows',
         'invalid_rows',
+        'rejected_rows',
+        'dropped_field_rows',
         'committed_rows',
         'served_rows',
         'skipped_rows',
@@ -79,6 +83,8 @@ class ImportBatch extends Model implements MdaScoped
             'total_rows' => 'integer',
             'valid_rows' => 'integer',
             'invalid_rows' => 'integer',
+            'rejected_rows' => 'integer',
+            'dropped_field_rows' => 'integer',
             'committed_rows' => 'integer',
             'served_rows' => 'integer',
             'skipped_rows' => 'integer',

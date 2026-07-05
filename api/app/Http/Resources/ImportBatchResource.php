@@ -32,6 +32,11 @@ class ImportBatchResource extends JsonResource
                 'total_rows' => $this->total_rows,
                 'valid_rows' => $this->valid_rows,
                 'invalid_rows' => $this->invalid_rows,
+                // Two validation groups shown distinctly (PRD §9, FR-REG-05/09):
+                // rows rejected on a malformed identity field vs rows kept with a
+                // non-identity field dropped/flagged.
+                'rejected_rows' => $this->rejected_rows,
+                'dropped_field_rows' => $this->dropped_field_rows,
                 'committed_rows' => $this->committed_rows,
                 'served_rows' => $this->served_rows,
                 'skipped_rows' => $this->skipped_rows,

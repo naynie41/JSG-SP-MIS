@@ -76,35 +76,56 @@ class ParseImportBatch implements ShouldQueue
             $seen = ['nin' => [], 'bvn' => []];
             $total = 0;
             $valid = 0;
+            $rejected = 0;      // rows rejected on a malformed identity field (FR-REG-05)
+            $droppedRows = 0;   // rows kept but with ≥1 non-identity field dropped (FR-REG-09)
 
             foreach ($parsed['rows'] as $row) {
                 $total++;
                 // Map the raw source record onto the canonical schema, then run
-                // the SAME validation as manual registration.
+                // the SAME validation as manual registration, split into groups.
                 $mapped = $adapter->map($row['values']);
                 $result = $validator->validate($mapped);
-                $errors = $result['errors'];
+                $payload = $result['payload'];
+                $identityErrors = $result['identity_errors'];
+                $droppedFields = $result['dropped_fields'];
+                $duplicateErrors = $result['duplicate_errors'];
 
                 // Reject in-file duplicate identifiers (the DB unique rule only
-                // catches collisions with already-persisted beneficiaries).
+                // catches collisions with already-persisted beneficiaries). These
+                // are duplicate signals, not malformed-field rejects.
                 foreach (['nin', 'bvn'] as $key) {
-                    $value = $result['payload'][$key] ?? null;
+                    $value = $payload[$key] ?? null;
                     if ($value === null) {
                         continue;
                     }
                     if (isset($seen[$key][$value])) {
-                        $errors[] = ['field' => $key, 'message' => "Duplicate {$key} within this file (see row {$seen[$key][$value]})."];
+                        $duplicateErrors[] = ['field' => $key, 'message' => "Duplicate {$key} within this file (see row {$seen[$key][$value]})."];
                     } else {
                         $seen[$key][$value] = $row['number'];
                     }
                 }
 
-                $isValid = $errors === [];
+                // A row is persistable as NEW only if no identity field is malformed
+                // and it is not a duplicate. Non-identity drops never block the row.
+                $isRejected = $identityErrors !== [];
+                $isDuplicate = $duplicateErrors !== [];
+                $isValid = ! $isRejected && ! $isDuplicate;
+
                 $valid += $isValid ? 1 : 0;
+                $rejected += $isRejected ? 1 : 0;
+                $droppedRows += ($droppedFields !== [] && ! $isRejected) ? 1 : 0;
+
+                // Group-tagged error report: rows rejected (identity) vs fields
+                // dropped (non-identity) vs duplicate signals — shown distinctly.
+                $errors = [
+                    ...$this->tag($identityErrors, 'identity'),
+                    ...$this->tag($duplicateErrors, 'duplicate'),
+                    ...$this->tag($droppedFields, 'dropped'),
+                ];
 
                 // Duplicate check (FR-DUP-01): registry + earlier rows in the batch.
                 $match = $matchConfig !== null
-                    ? $screener->screen($result['payload'], $row['number'], $matchConfig)
+                    ? $screener->screen($payload, $row['number'], $matchConfig)
                     : ['band' => null, 'candidates' => null];
 
                 // Deterministic-exact behaviour (FR-DUP-03/05): auto-link when so
@@ -118,9 +139,11 @@ class ParseImportBatch implements ShouldQueue
                     'household_ref' => $mapped['household_ref'] ?? null,
                     'household_role' => $mapped['household_role'] ?? null,
                     'household_head' => $this->isTruthy($mapped['household_head'] ?? null),
-                    'payload' => $result['payload'],
+                    // Staged for the preview only; a rejected row is never committed
+                    // to the live tables (the commit step skips non-persistable rows).
+                    'payload' => $payload,
                     'is_valid' => $isValid,
-                    'errors' => $isValid ? null : $errors,
+                    'errors' => $errors === [] ? null : $errors,
                     'match_band' => $match['band'],
                     'match_candidates' => $match['candidates'],
                     'resolution' => $resolution,
@@ -134,6 +157,8 @@ class ParseImportBatch implements ShouldQueue
                 'total_rows' => $total,
                 'valid_rows' => $valid,
                 'invalid_rows' => $total - $valid,
+                'rejected_rows' => $rejected,
+                'dropped_field_rows' => $droppedRows,
                 'committed_rows' => 0,
             ]);
         });
@@ -145,6 +170,18 @@ class ParseImportBatch implements ShouldQueue
             'status' => ImportStatus::Failed->value,
             'error' => Str::limit($e->getMessage(), 500),
         ]);
+    }
+
+    /**
+     * Tag each error with its report group so the preview can render the two
+     * groups distinctly (rows rejected vs fields dropped) plus duplicate signals.
+     *
+     * @param  list<array{field: string, message: string}>  $errors
+     * @return list<array{field: string, message: string, group: string}>
+     */
+    private function tag(array $errors, string $group): array
+    {
+        return array_map(static fn (array $e): array => [...$e, 'group' => $group], $errors);
     }
 
     /** Interpret a source "head of household" flag. */

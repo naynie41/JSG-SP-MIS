@@ -23,6 +23,28 @@ via `registration_source` + `import_batch_id` + `original_record_id`.
 > **membership management + history** remain available — only the create paths
 > were removed.
 
+## Identity vs non-identity validation (§9, FR-REG-05/09)
+
+A row's failures are split into two groups so a bad non-identity value never
+discards an otherwise-good person:
+
+- **Identity fields** — name, phone, NIN, BVN (`BeneficiaryRules::IDENTITY_FIELDS`).
+  A **present-but-malformed** identity field **rejects the whole row** to the error
+  report; it is never partial-saved and never reaches the live tables. An **absent
+  optional** NIN/BVN/phone is still valid.
+- **Non-identity fields** — DOB, gender, address, LGA, ward
+  (`BeneficiaryRules::NON_IDENTITY_FIELDS`, all nullable). A failure **drops/flags
+  just that field** (nulled in the staged payload) and the **row still saves**.
+- A NIN/BVN **uniqueness** hit is a *duplicate signal*, not a malformed-field
+  reject — it is routed to the match/serve flow (`match_band`), not the reject group.
+
+`ImportRowValidator` classifies each failure; `ParseImportBatch` stores the
+group-tagged errors (`{field, message, group: identity|dropped|duplicate}`) per row
+and two distinct batch counters — `rejected_rows` (identity malformed) and
+`dropped_field_rows` (rows kept with a dropped field) — surfaced in the preview
+summary. A rejected row is retained in staging (`is_valid=false`) for review but is
+skipped at commit, so **no rejected PII reaches `beneficiaries`/`households`**.
+
 ## Household formation (source-driven, §9)
 
 Households are **not** created manually either — they are formed during ingestion
@@ -44,7 +66,7 @@ intake accepts the same as `household_id` / `household_role` / `household_head`.
 | `Support/BeneficiaryRules` | The single registration ruleset — used by manual, import, and API paths |
 | `Services/BeneficiaryRegistrar` | The only place a beneficiary is persisted; stamps owner + provenance + origin, audited |
 | `Imports/SpreadsheetReader` | Reads Excel/CSV (incl. Kobo/ODK exports) into header-keyed rows |
-| `Imports/ImportRowValidator` | Normalises + validates one canonical row with `BeneficiaryRules` |
+| `Imports/ImportRowValidator` | Normalises + validates one canonical row with `BeneficiaryRules`, classifying failures into identity-reject / non-identity-drop / duplicate |
 | `Jobs/ParseImportBatch` / `Jobs/CommitImportBatch` | Queued preview then commit-valid-only, idempotent |
 
 ## The source-adapter seam
@@ -104,7 +126,7 @@ row-level error reporting, and provenance stamping — no other changes required
 | **FR-REG-02** Hybrid sources (Excel/CSV, Kobo, ODK, REST API, gov systems) | Import pipeline + source adapters; `BeneficiaryIntakeController` (`source=api`); UI `ImportListPage` |
 | **FR-REG-03** Provenance on every record | `BeneficiaryRegistrar` stamps `registration_source` + `import_batch_id` + `original_record_id`; shown on the detail "Provenance" panel |
 | **FR-REG-04** Mandatory fields + formats | `BeneficiaryRules` (shared by manual/import/API); zod `beneficiarySchema` mirrors them |
-| **FR-REG-05** Reject/flag invalid input | Standard `VALIDATION_ERROR` envelope; import row-level errors; inline UI errors |
+| **FR-REG-05 / FR-REG-09** Reject malformed identity / drop-flag non-identity | Standard `VALIDATION_ERROR` envelope; import row-level errors split into identity-reject vs non-identity-drop groups (`ImportRowValidator` + `rejected_rows`/`dropped_field_rows` counters); inline UI errors |
 | **FR-REG-06** Bulk import preview before commit | `ParseImportBatch` (preview) → confirm → `CommitImportBatch`; UI `ImportBatchPage` |
 | **FR-REG-07** Document attachment | `BeneficiaryDocumentController` (private storage, validated, audited); UI `DocumentsPanel` |
 | **FR-REG-08** Offline-capture groundwork | Idempotent intake via `idempotency_key` / `original_record_id` (see `docs/registry-intake.md`) |

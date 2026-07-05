@@ -1630,7 +1630,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
     ),
     '/var/www/html/app/Domain/Registry/Imports/ImportRowValidator.php' => 
     array (
-      0 => '4b9cd3a7db3904c03bbb28845ca5b9a22db37908f162717ace54e63d2c63f790',
+      0 => '9d396786d1ddc150f07d8a959b6e2340fe49b9dbe397f289593986f61fdf08ed',
       1 => 
       array (
         0 => 'app\\domain\\registry\\imports\\importrowvalidator',
@@ -1682,7 +1682,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
     ),
     '/var/www/html/app/Domain/Registry/Jobs/ParseImportBatch.php' => 
     array (
-      0 => '4abc15c59bca8fc32bab44ba13d4d32cdcfff0f8943b9c70d14ecb18602d181b',
+      0 => '62156c677d92f573206d8d0f30c99dc5bb2a6ee38789e4ddded27648523f35aa',
       1 => 
       array (
         0 => 'app\\domain\\registry\\jobs\\parseimportbatch',
@@ -1692,8 +1692,9 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         0 => 'app\\domain\\registry\\jobs\\__construct',
         1 => 'app\\domain\\registry\\jobs\\handle',
         2 => 'app\\domain\\registry\\jobs\\failed',
-        3 => 'app\\domain\\registry\\jobs\\istruthy',
-        4 => 'app\\domain\\registry\\jobs\\autoresolve',
+        3 => 'app\\domain\\registry\\jobs\\tag',
+        4 => 'app\\domain\\registry\\jobs\\istruthy',
+        5 => 'app\\domain\\registry\\jobs\\autoresolve',
       ),
       3 => 
       array (
@@ -1701,7 +1702,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
     ),
     '/var/www/html/app/Domain/Registry/Models/ImportBatch.php' => 
     array (
-      0 => '86c20e2dea6d76b13ec504730750f8332c50d54d9385fb3c94bce96b260d98a9',
+      0 => 'bf99d10c5913c0c49e59a59b19a4b09735e182f15f785f281560d6668397de6a',
       1 => 
       array (
         0 => 'app\\domain\\registry\\models\\importbatch',
@@ -1756,15 +1757,16 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
     ),
     '/var/www/html/app/Domain/Registry/Support/BeneficiaryRules.php' => 
     array (
-      0 => '22fa0ef7e1feaa4cf2bf9670b3c8c70e7e9515c6de1d5fb20022114aa6038701',
+      0 => 'e8b474377cefbfb1f1c2f1b854667e5cbdbf891eedf01a3498998eb8ad381254',
       1 => 
       array (
         0 => 'app\\domain\\registry\\support\\beneficiaryrules',
       ),
       2 => 
       array (
-        0 => 'app\\domain\\registry\\support\\forregistration',
-        1 => 'app\\domain\\registry\\support\\messages',
+        0 => 'app\\domain\\registry\\support\\isidentityfield',
+        1 => 'app\\domain\\registry\\support\\forregistration',
+        2 => 'app\\domain\\registry\\support\\messages',
       ),
       3 => 
       array (
@@ -1810,7 +1812,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
     ),
     '/var/www/html/app/Http/Resources/ImportBatchResource.php' => 
     array (
-      0 => '200effaf8580e10b8960eb40a508c806be80056486629efd77d104672f4485d1',
+      0 => 'ce46515a205a64a685ba33918cd8f239a71b70fdde64b8c4e86e345018f8ec2c',
       1 => 
       array (
         0 => 'app\\http\\resources\\importbatchresource',

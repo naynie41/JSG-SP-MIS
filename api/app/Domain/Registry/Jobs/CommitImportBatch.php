@@ -124,7 +124,7 @@ class CommitImportBatch implements ShouldQueue
                         // Raced/duplicate identifier — flag the row, don't crash.
                         $row->update([
                             'is_valid' => false,
-                            'errors' => [['field' => 'nin', 'message' => 'A beneficiary with this identifier already exists.']],
+                            'errors' => [['field' => 'nin', 'message' => 'A beneficiary with this identifier already exists.', 'group' => 'duplicate']],
                         ]);
                     }
                 }

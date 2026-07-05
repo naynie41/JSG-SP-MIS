@@ -50,6 +50,9 @@ protection are not optional features — see `SECURITY.md`.
    eligibility, consent) instead of hard-coding a guess.
 10. **Small, reviewable steps.** Work in logical commits, explain each briefly, and keep
     each change easy to review and run.
+11. **UI follows the design system.** Every screen derives its colors, type, spacing, and
+    components from `docs/DESIGN-SYSTEM.md`, and you load the `frontend-design` skill before
+    building UI. Never hand-roll a component that already exists there — extend the shared one.
 
 ---
 
@@ -84,6 +87,7 @@ Prefer the framework's built-in way of doing things over third-party packages.
     ├── Jigawa_SP-MIS_PRD.pdf   # the spec (authoritative)
     ├── ARCHITECTURE.md         # system design & data model
     ├── CONVENTIONS.md          # coding standards & API conventions
+    ├── DESIGN-SYSTEM.md         # UI reference: tokens & components (all UI follows this)
     └── PHASE-1-BUILD-PROMPTS.md # the Phase 1 task prompts
 ```
 
@@ -92,7 +96,9 @@ Prefer the framework's built-in way of doing things over third-party packages.
 ## 5. Build phases
 
 We build from scratch in **7 phases**. Each phase ends in something runnable and testable.
-**Current phase: Phase 1.** Do not start a later phase until I confirm the current one is done.
+**The current phase is whichever phase prompt I give you.** Never build ahead of it; do not start a
+later phase until I confirm the current one is done. (Phase 1 = Foundation; Phase 2 = Registry;
+Phase 3 = Duplicate Verification; and so on per the list below.)
 
 1. **Foundation & Access Control** — repo, Docker dev env, DB+PostGIS, auth, MFA, RBAC,
    MDA scoping, audit-log foundation, user/MDA management, frontend shell. *(current)*
@@ -108,6 +114,11 @@ We build from scratch in **7 phases**. Each phase ends in something runnable and
    graduation, security/NFR hardening, deployment prep.
 
 When a phase is done, update the checklist in the relevant phase doc and wait for the next phase.
+
+> **Active remediation (PRD v1.2):** Phase 3 (duplicate verification) and Phase 2 (registry
+> validation + ownership serve seam) must be brought up to the v1.2 rules in §9 below before Phase 6
+> work begins. See `docs/PHASE-2-BUILD-PROMPTS.md` (Remediation V1.2 — R2.x) and
+> `docs/PHASE-3-BUILD-PROMPTS.md` (Remediation V1.2 — R3.x).
 
 ---
 
@@ -156,3 +167,37 @@ A task is done only when **all** of these are true:
   — make them configurable and ask me for the values.
 - Never fabricate integration with external systems (NIN/NIMC, SOCU) — mock against a clear
   interface and tell me what real access is required.
+- Never introduce off-palette colors, ad-hoc fonts/spacing, or a duplicate of a component that
+  already exists in `docs/DESIGN-SYSTEM.md`.
+- Never add a manual single-record create path for beneficiaries or households — in the API or the
+  UI. Ingestion is **bulk/source-only** (Excel/CSV, Kobo, ODK, REST API, SOCU, existing government
+  systems), matching PRD §8.1. Editing/correcting an existing imported record (owner-only) is a
+  separate, allowed action; creating a new one by hand is not.
+
+---
+
+## 9. Locked decisions — Duplicate verification, ownership & upload (PRD v1.2)
+
+- **Matching cascade is the default *config*, not code.** The shipped default evaluates in order:
+  exact NIN → exact BVN → fuzzy name/phone, and STOPS at the first exact (deterministic) match.
+  Absent NIN/BVN → skip that stage and fall through. Fields, order, weights and thresholds stay
+  admin-configurable (FR-DUP-02/03/08). Never hard-code the cascade or its numbers.
+- **Adjudication happens only at the probable band.** The officer decides "same person / not" only
+  for fuzzy matches (FR-DUP-09). Exact NIN/BVN matches are definitive and not adjudicated. The
+  discard-or-serve choice still applies at every band. Never silently auto-merge.
+- **Identity-field validation is row-level reject.** If a row's name, phone, NIN, or BVN is PRESENT
+  but malformed, reject the whole row to the error report; do not save it (FR-REG-05). Absent
+  optional NIN/BVN is valid. Non-identity fields that fail validation are dropped/flagged for that
+  row and the row still saves (FR-REG-09). Never partial-save an identity field.
+- **Request-to-serve requires Owner-MDA approval.** A non-owner MDA that matches a duplicate must
+  raise a Service Request; the Owner MDA accepts/declines (FR-OWN-06). Interventions may be recorded
+  ONLY after acceptance. On acceptance the requester gains READ access to the full beneficiary
+  record (FR-OWN-07); ownership/edit rights never move. This is distinct from a Referral (FR-REF,
+  outbound). Log every request and decision (FR-AUD-01).
+- **Activity-first upload.** An activity must exist before beneficiaries are uploaded to it; every
+  upload is bound to a selected registered activity, and the resulting intervention is recorded
+  under it (FR-REG-10, FR-PRG-05). Beneficiaries still enter the shared registry under first-importer
+  ownership (FR-OWN-01).
+
+  l
+  

@@ -16,6 +16,28 @@ use Illuminate\Validation\Rule;
 final class BeneficiaryRules
 {
     /**
+     * Identity fields (PRD §9, FR-REG-05): name, phone, NIN, BVN. When one of
+     * these is PRESENT but malformed the WHOLE row is rejected — an identity field
+     * is never partial-saved. (Absent optional NIN/BVN/phone is still valid.)
+     *
+     * @var list<string>
+     */
+    public const IDENTITY_FIELDS = ['first_name', 'middle_name', 'last_name', 'phone', 'nin', 'bvn'];
+
+    /**
+     * Non-identity fields (PRD §9, FR-REG-09): a failure here drops/flags just that
+     * field and the row still saves. All of these are nullable in the schema.
+     *
+     * @var list<string>
+     */
+    public const NON_IDENTITY_FIELDS = ['date_of_birth', 'gender', 'address', 'lga', 'ward'];
+
+    public static function isIdentityField(string $field): bool
+    {
+        return in_array($field, self::IDENTITY_FIELDS, true);
+    }
+
+    /**
      * @return array<string, mixed>
      */
     public static function forRegistration(): array
