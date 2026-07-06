@@ -2,7 +2,7 @@
 
 // odsl-/var/www/html/app/Domain/Registry/Models/ImportBatch.php-PHPStan\BetterReflection\Reflection\ReflectionClass-App\Domain\Registry\Models\ImportBatch
 return \PHPStan\Cache\CacheItem::__set_state(array(
-   'variableKey' => 'v2-6.70.0.1-8.3.31-bf99d10c5913c0c49e59a59b19a4b09735e182f15f785f281560d6668397de6a',
+   'variableKey' => 'v2-6.70.0.1-8.3.31-7fb973843b234cc03f56e6d1d34e164d797cc58a9046e2d3b0abaa7de2cd2823',
    'data' => 
   array (
     'locatedSource' => 
@@ -33,6 +33,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
  * @property string $original_filename
  * @property string $stored_path
  * @property RegistrationSource $source
+ * @property string $activity_id
  * @property ImportStatus $status
  * @property int $total_rows
  * @property int $valid_rows
@@ -52,8 +53,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
     'attributes' => 
     array (
     ),
-    'startLine' => 48,
-    'endLine' => 127,
+    'startLine' => 50,
+    'endLine' => 141,
     'startColumn' => 1,
     'endColumn' => 1,
     'parentClassName' => 'Illuminate\\Database\\Eloquent\\Model',
@@ -84,20 +85,20 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
           'code' => '\'import_batches\'',
           'attributes' => 
           array (
-            'startLine' => 52,
-            'endLine' => 52,
-            'startTokenPos' => 113,
-            'startFilePos' => 1702,
-            'endTokenPos' => 113,
-            'endFilePos' => 1717,
+            'startLine' => 54,
+            'endLine' => 54,
+            'startTokenPos' => 118,
+            'startFilePos' => 1777,
+            'endTokenPos' => 118,
+            'endFilePos' => 1792,
           ),
         ),
         'docComment' => NULL,
         'attributes' => 
         array (
         ),
-        'startLine' => 52,
-        'endLine' => 52,
+        'startLine' => 54,
+        'endLine' => 54,
         'startColumn' => 5,
         'endColumn' => 40,
         'isPromoted' => false,
@@ -116,15 +117,15 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         'type' => NULL,
         'default' => 
         array (
-          'code' => '[\'owner_mda_id\', \'uploaded_by\', \'original_filename\', \'stored_path\', \'source\', \'status\', \'total_rows\', \'valid_rows\', \'invalid_rows\', \'rejected_rows\', \'dropped_field_rows\', \'committed_rows\', \'served_rows\', \'skipped_rows\', \'error\']',
+          'code' => '[\'owner_mda_id\', \'uploaded_by\', \'original_filename\', \'stored_path\', \'source\', \'activity_id\', \'status\', \'total_rows\', \'valid_rows\', \'invalid_rows\', \'rejected_rows\', \'dropped_field_rows\', \'committed_rows\', \'served_rows\', \'skipped_rows\', \'error\']',
           'attributes' => 
           array (
-            'startLine' => 57,
-            'endLine' => 73,
-            'startTokenPos' => 124,
-            'startFilePos' => 1788,
-            'endTokenPos' => 171,
-            'endFilePos' => 2142,
+            'startLine' => 59,
+            'endLine' => 76,
+            'startTokenPos' => 129,
+            'startFilePos' => 1863,
+            'endTokenPos' => 179,
+            'endFilePos' => 2240,
           ),
         ),
         'docComment' => '/**
@@ -133,8 +134,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         'attributes' => 
         array (
         ),
-        'startLine' => 57,
-        'endLine' => 73,
+        'startLine' => 59,
+        'endLine' => 76,
         'startColumn' => 5,
         'endColumn' => 6,
         'isPromoted' => false,
@@ -169,8 +170,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         'docComment' => '/**
  * @return array<string, string>
  */',
-        'startLine' => 78,
-        'endLine' => 92,
+        'startLine' => 81,
+        'endLine' => 95,
         'startColumn' => 5,
         'endColumn' => 5,
         'couldThrow' => false,
@@ -208,8 +209,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
  *
  * @return list<string>
  */',
-        'startLine' => 99,
-        'endLine' => 102,
+        'startLine' => 102,
+        'endLine' => 105,
         'startColumn' => 5,
         'endColumn' => 5,
         'couldThrow' => false,
@@ -245,8 +246,48 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         'docComment' => '/**
  * @return BelongsTo<Mda, $this>
  */',
-        'startLine' => 107,
-        'endLine' => 110,
+        'startLine' => 110,
+        'endLine' => 113,
+        'startColumn' => 5,
+        'endColumn' => 5,
+        'couldThrow' => false,
+        'isClosure' => false,
+        'isGenerator' => false,
+        'isVariadic' => false,
+        'modifiers' => 1,
+        'namespace' => 'App\\Domain\\Registry\\Models',
+        'declaringClassName' => 'App\\Domain\\Registry\\Models\\ImportBatch',
+        'implementingClassName' => 'App\\Domain\\Registry\\Models\\ImportBatch',
+        'currentClassName' => 'App\\Domain\\Registry\\Models\\ImportBatch',
+        'aliasName' => NULL,
+      ),
+      'activity' => 
+      array (
+        'name' => 'activity',
+        'parameters' => 
+        array (
+        ),
+        'returnsReference' => false,
+        'returnType' => 
+        array (
+          'class' => 'PHPStan\\BetterReflection\\Reflection\\ReflectionNamedType',
+          'data' => 
+          array (
+            'name' => 'Illuminate\\Database\\Eloquent\\Relations\\BelongsTo',
+            'isIdentifier' => false,
+          ),
+        ),
+        'attributes' => 
+        array (
+        ),
+        'docComment' => '/**
+ * The registered activity this upload is bound to (PRD §9, FR-REG-10). The
+ * resulting intervention (enrollment) is recorded under it.
+ *
+ * @return BelongsTo<Activity, $this>
+ */',
+        'startLine' => 121,
+        'endLine' => 124,
         'startColumn' => 5,
         'endColumn' => 5,
         'couldThrow' => false,
@@ -282,8 +323,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         'docComment' => '/**
  * @return BelongsTo<User, $this>
  */',
-        'startLine' => 115,
-        'endLine' => 118,
+        'startLine' => 129,
+        'endLine' => 132,
         'startColumn' => 5,
         'endColumn' => 5,
         'couldThrow' => false,
@@ -319,8 +360,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         'docComment' => '/**
  * @return HasMany<ImportRow, $this>
  */',
-        'startLine' => 123,
-        'endLine' => 126,
+        'startLine' => 137,
+        'endLine' => 140,
         'startColumn' => 5,
         'endColumn' => 5,
         'couldThrow' => false,

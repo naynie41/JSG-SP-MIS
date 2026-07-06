@@ -1663,7 +1663,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
     ),
     '/var/www/html/app/Domain/Registry/Jobs/CommitImportBatch.php' => 
     array (
-      0 => '3280c5a9e81eb26a312d276f5b3ebe29f0c4bbf0a571c34d2f979551e6543796',
+      0 => 'e14f1a5aa8e5cbe21e8a278a96578455d58856a0ad9e63a6b983eea16d3f3cd6',
       1 => 
       array (
         0 => 'app\\domain\\registry\\jobs\\commitimportbatch',
@@ -1673,8 +1673,9 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         0 => 'app\\domain\\registry\\jobs\\__construct',
         1 => 'app\\domain\\registry\\jobs\\handle',
         2 => 'app\\domain\\registry\\jobs\\effectiveresolution',
-        3 => 'app\\domain\\registry\\jobs\\serve',
-        4 => 'app\\domain\\registry\\jobs\\failed',
+        3 => 'app\\domain\\registry\\jobs\\recordintervention',
+        4 => 'app\\domain\\registry\\jobs\\serve',
+        5 => 'app\\domain\\registry\\jobs\\failed',
       ),
       3 => 
       array (
@@ -1702,7 +1703,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
     ),
     '/var/www/html/app/Domain/Registry/Models/ImportBatch.php' => 
     array (
-      0 => 'bf99d10c5913c0c49e59a59b19a4b09735e182f15f785f281560d6668397de6a',
+      0 => '7fb973843b234cc03f56e6d1d34e164d797cc58a9046e2d3b0abaa7de2cd2823',
       1 => 
       array (
         0 => 'app\\domain\\registry\\models\\importbatch',
@@ -1712,8 +1713,9 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         0 => 'app\\domain\\registry\\models\\casts',
         1 => 'app\\domain\\registry\\models\\auditexcluded',
         2 => 'app\\domain\\registry\\models\\ownermda',
-        3 => 'app\\domain\\registry\\models\\uploadedby',
-        4 => 'app\\domain\\registry\\models\\rows',
+        3 => 'app\\domain\\registry\\models\\activity',
+        4 => 'app\\domain\\registry\\models\\uploadedby',
+        5 => 'app\\domain\\registry\\models\\rows',
       ),
       3 => 
       array (
@@ -1774,7 +1776,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
     ),
     '/var/www/html/app/Http/Controllers/Api/V1/Registry/ImportBatchController.php' => 
     array (
-      0 => '2a4f835b4a503838d2542f6dde9c28d753e0411679d9accde5e976fb4eccfcdc',
+      0 => '77b1854b53f691e5806d748c94b2264e7a323195fbd9e409c3feccdf3c057a04',
       1 => 
       array (
         0 => 'app\\http\\controllers\\api\\v1\\registry\\importbatchcontroller',
@@ -1796,7 +1798,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
     ),
     '/var/www/html/app/Http/Requests/Registry/UploadImportRequest.php' => 
     array (
-      0 => '2a35f97799348069835241557281687614fcb92fe638bedb448c037f2309a1b9',
+      0 => 'c95e59dc9e89819ffdcee0e177d04b687a443732c8116871ddedf894055a4a81',
       1 => 
       array (
         0 => 'app\\http\\requests\\registry\\uploadimportrequest',
@@ -1805,6 +1807,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
       array (
         0 => 'app\\http\\requests\\registry\\authorize',
         1 => 'app\\http\\requests\\registry\\rules',
+        2 => 'app\\http\\requests\\registry\\usableactivityrule',
       ),
       3 => 
       array (
@@ -1812,7 +1815,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
     ),
     '/var/www/html/app/Http/Resources/ImportBatchResource.php' => 
     array (
-      0 => 'ce46515a205a64a685ba33918cd8f239a71b70fdde64b8c4e86e345018f8ec2c',
+      0 => '10a897edc02a43b9dfee75878a981a0001e762b8b3b17df438940b852801ae49',
       1 => 
       array (
         0 => 'app\\http\\resources\\importbatchresource',

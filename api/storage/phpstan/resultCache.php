@@ -7579,13 +7579,13 @@ return [
       array (
         0 => 'Illuminate\\Support\\Facades\\Auth',
         1 => 'setUser',
-        2 => 66,
+        2 => 71,
       ),
       1 => 
       array (
         0 => 'Illuminate\\Database\\Connection',
         1 => 'transaction',
-        2 => 94,
+        2 => 106,
       ),
     ),
     'PHPStan\\Rules\\Traits\\TraitUseCollector' => 
@@ -11127,13 +11127,13 @@ return [
       array (
         0 => 'App\\Domain\\Registry\\Jobs\\ParseImportBatch',
         1 => 'dispatch',
-        2 => 75,
+        2 => 78,
       ),
       1 => 
       array (
         0 => 'App\\Domain\\Registry\\Jobs\\CommitImportBatch',
         1 => 'dispatch',
-        2 => 246,
+        2 => 249,
       ),
     ),
     'PHPStan\\Rules\\Methods\\NamedArgumentParameterMethodCallsCollector' => 
@@ -11143,14 +11143,14 @@ return [
         0 => 'App\\Domain\\Audit\\Services\\AuditLogger',
         1 => 'record',
         2 => 'after',
-        3 => 219,
+        3 => 222,
       ),
       1 => 
       array (
         0 => 'App\\Domain\\Audit\\Services\\AuditLogger',
         1 => 'record',
         2 => 'actor',
-        3 => 225,
+        3 => 228,
       ),
     ),
   ),
@@ -12296,6 +12296,21 @@ return [
         3 => 
         array (
           0 => 'm' . "\0" . 'illuminate\\validation\\rule' . "\0" . 'enum',
+        ),
+      ),
+    ),
+  ),
+  '/var/www/html/app/Http/Requests/Registry/UploadImportRequest.php' => 
+  array (
+    'PHPStan\\Rules\\DeadCode\\MethodWithoutImpurePointsCollector' => 
+    array (
+      0 => 
+      array (
+        0 => 'App\\Http\\Requests\\Registry\\UploadImportRequest',
+        1 => 'usableActivityRule',
+        2 => 'App\\Http\\Requests\\Registry\\UploadImportRequest',
+        3 => 
+        array (
         ),
       ),
     ),
@@ -13463,6 +13478,7 @@ return [
       36 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/ImportBatchController.php',
       37 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/OwnershipTransferController.php',
       38 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/ServeRequestController.php',
+      39 => '/var/www/html/app/Http/Requests/Registry/UploadImportRequest.php',
     ),
   ),
   '/var/www/html/app/Domain/Access/Services/AuthTokenIssuer.php' => 
@@ -14416,13 +14432,16 @@ return [
       6 => '/var/www/html/app/Domain/Programme/Models/Programme.php',
       7 => '/var/www/html/app/Domain/Programme/Policies/ActivityPolicy.php',
       8 => '/var/www/html/app/Domain/Programme/ProgrammeServiceProvider.php',
-      9 => '/var/www/html/app/Http/Controllers/Api/V1/Benefit/BenefitController.php',
-      10 => '/var/www/html/app/Http/Controllers/Api/V1/Benefit/BenefitImportController.php',
-      11 => '/var/www/html/app/Http/Controllers/Api/V1/Programme/ActivityController.php',
-      12 => '/var/www/html/app/Http/Controllers/Api/V1/Programme/EnrollmentController.php',
-      13 => '/var/www/html/app/Http/Requests/Programme/StoreActivityRequest.php',
-      14 => '/var/www/html/app/Http/Requests/Programme/UpdateActivityRequest.php',
-      15 => '/var/www/html/app/Http/Resources/ActivityResource.php',
+      9 => '/var/www/html/app/Domain/Registry/Jobs/CommitImportBatch.php',
+      10 => '/var/www/html/app/Domain/Registry/Models/ImportBatch.php',
+      11 => '/var/www/html/app/Http/Controllers/Api/V1/Benefit/BenefitController.php',
+      12 => '/var/www/html/app/Http/Controllers/Api/V1/Benefit/BenefitImportController.php',
+      13 => '/var/www/html/app/Http/Controllers/Api/V1/Programme/ActivityController.php',
+      14 => '/var/www/html/app/Http/Controllers/Api/V1/Programme/EnrollmentController.php',
+      15 => '/var/www/html/app/Http/Requests/Programme/StoreActivityRequest.php',
+      16 => '/var/www/html/app/Http/Requests/Programme/UpdateActivityRequest.php',
+      17 => '/var/www/html/app/Http/Requests/Registry/UploadImportRequest.php',
+      18 => '/var/www/html/app/Http/Resources/ActivityResource.php',
     ),
   ),
   '/var/www/html/app/Domain/Programme/Enums/EnrollmentStatus.php' => 
@@ -14439,10 +14458,11 @@ return [
       6 => '/var/www/html/app/Domain/Programme/ProgrammeServiceProvider.php',
       7 => '/var/www/html/app/Domain/Programme/Services/EnrollmentService.php',
       8 => '/var/www/html/app/Domain/Programme/Services/ProgrammeMatcher.php',
-      9 => '/var/www/html/app/Http/Controllers/Api/V1/Programme/EnrollmentController.php',
-      10 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/BeneficiaryRoutingController.php',
-      11 => '/var/www/html/app/Http/Requests/Programme/UpdateEnrollmentRequest.php',
-      12 => '/var/www/html/app/Http/Resources/EnrollmentResource.php',
+      9 => '/var/www/html/app/Domain/Registry/Jobs/CommitImportBatch.php',
+      10 => '/var/www/html/app/Http/Controllers/Api/V1/Programme/EnrollmentController.php',
+      11 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/BeneficiaryRoutingController.php',
+      12 => '/var/www/html/app/Http/Requests/Programme/UpdateEnrollmentRequest.php',
+      13 => '/var/www/html/app/Http/Resources/EnrollmentResource.php',
     ),
   ),
   '/var/www/html/app/Domain/Programme/Enums/ProgrammeStatus.php' => 
@@ -14468,14 +14488,15 @@ return [
       15 => '/var/www/html/app/Domain/Programme/ProgrammeServiceProvider.php',
       16 => '/var/www/html/app/Domain/Programme/Services/EnrollmentService.php',
       17 => '/var/www/html/app/Domain/Programme/Services/ProgrammeMatcher.php',
-      18 => '/var/www/html/app/Http/Controllers/Api/V1/Benefit/BenefitController.php',
-      19 => '/var/www/html/app/Http/Controllers/Api/V1/Programme/ActivityController.php',
-      20 => '/var/www/html/app/Http/Controllers/Api/V1/Programme/EnrollmentController.php',
-      21 => '/var/www/html/app/Http/Controllers/Api/V1/Programme/ProgrammeController.php',
-      22 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/BeneficiaryRoutingController.php',
-      23 => '/var/www/html/app/Http/Requests/Programme/StoreProgrammeRequest.php',
-      24 => '/var/www/html/app/Http/Requests/Programme/UpdateProgrammeRequest.php',
-      25 => '/var/www/html/app/Http/Resources/ProgrammeResource.php',
+      18 => '/var/www/html/app/Domain/Registry/Jobs/CommitImportBatch.php',
+      19 => '/var/www/html/app/Http/Controllers/Api/V1/Benefit/BenefitController.php',
+      20 => '/var/www/html/app/Http/Controllers/Api/V1/Programme/ActivityController.php',
+      21 => '/var/www/html/app/Http/Controllers/Api/V1/Programme/EnrollmentController.php',
+      22 => '/var/www/html/app/Http/Controllers/Api/V1/Programme/ProgrammeController.php',
+      23 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/BeneficiaryRoutingController.php',
+      24 => '/var/www/html/app/Http/Requests/Programme/StoreProgrammeRequest.php',
+      25 => '/var/www/html/app/Http/Requests/Programme/UpdateProgrammeRequest.php',
+      26 => '/var/www/html/app/Http/Resources/ProgrammeResource.php',
     ),
   ),
   '/var/www/html/app/Domain/Programme/Enums/ProgrammeType.php' => 
@@ -14501,14 +14522,15 @@ return [
       15 => '/var/www/html/app/Domain/Programme/ProgrammeServiceProvider.php',
       16 => '/var/www/html/app/Domain/Programme/Services/EnrollmentService.php',
       17 => '/var/www/html/app/Domain/Programme/Services/ProgrammeMatcher.php',
-      18 => '/var/www/html/app/Http/Controllers/Api/V1/Benefit/BenefitController.php',
-      19 => '/var/www/html/app/Http/Controllers/Api/V1/Programme/ActivityController.php',
-      20 => '/var/www/html/app/Http/Controllers/Api/V1/Programme/EnrollmentController.php',
-      21 => '/var/www/html/app/Http/Controllers/Api/V1/Programme/ProgrammeController.php',
-      22 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/BeneficiaryRoutingController.php',
-      23 => '/var/www/html/app/Http/Requests/Programme/StoreProgrammeRequest.php',
-      24 => '/var/www/html/app/Http/Requests/Programme/UpdateProgrammeRequest.php',
-      25 => '/var/www/html/app/Http/Resources/ProgrammeResource.php',
+      18 => '/var/www/html/app/Domain/Registry/Jobs/CommitImportBatch.php',
+      19 => '/var/www/html/app/Http/Controllers/Api/V1/Benefit/BenefitController.php',
+      20 => '/var/www/html/app/Http/Controllers/Api/V1/Programme/ActivityController.php',
+      21 => '/var/www/html/app/Http/Controllers/Api/V1/Programme/EnrollmentController.php',
+      22 => '/var/www/html/app/Http/Controllers/Api/V1/Programme/ProgrammeController.php',
+      23 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/BeneficiaryRoutingController.php',
+      24 => '/var/www/html/app/Http/Requests/Programme/StoreProgrammeRequest.php',
+      25 => '/var/www/html/app/Http/Requests/Programme/UpdateProgrammeRequest.php',
+      26 => '/var/www/html/app/Http/Resources/ProgrammeResource.php',
     ),
   ),
   '/var/www/html/app/Domain/Programme/Models/Activity.php' => 
@@ -14536,15 +14558,18 @@ return [
       17 => '/var/www/html/app/Domain/Programme/ProgrammeServiceProvider.php',
       18 => '/var/www/html/app/Domain/Programme/Services/EnrollmentService.php',
       19 => '/var/www/html/app/Domain/Programme/Services/ProgrammeMatcher.php',
-      20 => '/var/www/html/app/Http/Controllers/Api/V1/Benefit/BenefitController.php',
-      21 => '/var/www/html/app/Http/Controllers/Api/V1/Benefit/BenefitImportController.php',
-      22 => '/var/www/html/app/Http/Controllers/Api/V1/Programme/ActivityController.php',
-      23 => '/var/www/html/app/Http/Controllers/Api/V1/Programme/EnrollmentController.php',
-      24 => '/var/www/html/app/Http/Controllers/Api/V1/Programme/ProgrammeController.php',
-      25 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/BeneficiaryRoutingController.php',
-      26 => '/var/www/html/app/Http/Resources/ActivityResource.php',
-      27 => '/var/www/html/app/Http/Resources/BenefitImportBatchResource.php',
-      28 => '/var/www/html/app/Http/Resources/ProgrammeResource.php',
+      20 => '/var/www/html/app/Domain/Registry/Jobs/CommitImportBatch.php',
+      21 => '/var/www/html/app/Domain/Registry/Models/ImportBatch.php',
+      22 => '/var/www/html/app/Http/Controllers/Api/V1/Benefit/BenefitController.php',
+      23 => '/var/www/html/app/Http/Controllers/Api/V1/Benefit/BenefitImportController.php',
+      24 => '/var/www/html/app/Http/Controllers/Api/V1/Programme/ActivityController.php',
+      25 => '/var/www/html/app/Http/Controllers/Api/V1/Programme/EnrollmentController.php',
+      26 => '/var/www/html/app/Http/Controllers/Api/V1/Programme/ProgrammeController.php',
+      27 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/BeneficiaryRoutingController.php',
+      28 => '/var/www/html/app/Http/Requests/Registry/UploadImportRequest.php',
+      29 => '/var/www/html/app/Http/Resources/ActivityResource.php',
+      30 => '/var/www/html/app/Http/Resources/BenefitImportBatchResource.php',
+      31 => '/var/www/html/app/Http/Resources/ProgrammeResource.php',
     ),
   ),
   '/var/www/html/app/Domain/Programme/Models/Enrollment.php' => 
@@ -14560,9 +14585,10 @@ return [
       5 => '/var/www/html/app/Domain/Programme/ProgrammeServiceProvider.php',
       6 => '/var/www/html/app/Domain/Programme/Services/EnrollmentService.php',
       7 => '/var/www/html/app/Domain/Programme/Services/ProgrammeMatcher.php',
-      8 => '/var/www/html/app/Http/Controllers/Api/V1/Programme/EnrollmentController.php',
-      9 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/BeneficiaryRoutingController.php',
-      10 => '/var/www/html/app/Http/Resources/EnrollmentResource.php',
+      8 => '/var/www/html/app/Domain/Registry/Jobs/CommitImportBatch.php',
+      9 => '/var/www/html/app/Http/Controllers/Api/V1/Programme/EnrollmentController.php',
+      10 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/BeneficiaryRoutingController.php',
+      11 => '/var/www/html/app/Http/Resources/EnrollmentResource.php',
     ),
   ),
   '/var/www/html/app/Domain/Programme/Models/Programme.php' => 
@@ -14596,17 +14622,20 @@ return [
       23 => '/var/www/html/app/Domain/Programme/ProgrammeServiceProvider.php',
       24 => '/var/www/html/app/Domain/Programme/Services/EnrollmentService.php',
       25 => '/var/www/html/app/Domain/Programme/Services/ProgrammeMatcher.php',
-      26 => '/var/www/html/app/Http/Controllers/Api/V1/Benefit/BenefitController.php',
-      27 => '/var/www/html/app/Http/Controllers/Api/V1/Benefit/BenefitImportController.php',
-      28 => '/var/www/html/app/Http/Controllers/Api/V1/Programme/ActivityController.php',
-      29 => '/var/www/html/app/Http/Controllers/Api/V1/Programme/EnrollmentController.php',
-      30 => '/var/www/html/app/Http/Controllers/Api/V1/Programme/ProgrammeController.php',
-      31 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/BeneficiaryRoutingController.php',
-      32 => '/var/www/html/app/Http/Resources/ActivityResource.php',
-      33 => '/var/www/html/app/Http/Resources/BenefitImportBatchResource.php',
-      34 => '/var/www/html/app/Http/Resources/BenefitResource.php',
-      35 => '/var/www/html/app/Http/Resources/EnrollmentResource.php',
-      36 => '/var/www/html/app/Http/Resources/ProgrammeResource.php',
+      26 => '/var/www/html/app/Domain/Registry/Jobs/CommitImportBatch.php',
+      27 => '/var/www/html/app/Domain/Registry/Models/ImportBatch.php',
+      28 => '/var/www/html/app/Http/Controllers/Api/V1/Benefit/BenefitController.php',
+      29 => '/var/www/html/app/Http/Controllers/Api/V1/Benefit/BenefitImportController.php',
+      30 => '/var/www/html/app/Http/Controllers/Api/V1/Programme/ActivityController.php',
+      31 => '/var/www/html/app/Http/Controllers/Api/V1/Programme/EnrollmentController.php',
+      32 => '/var/www/html/app/Http/Controllers/Api/V1/Programme/ProgrammeController.php',
+      33 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/BeneficiaryRoutingController.php',
+      34 => '/var/www/html/app/Http/Requests/Registry/UploadImportRequest.php',
+      35 => '/var/www/html/app/Http/Resources/ActivityResource.php',
+      36 => '/var/www/html/app/Http/Resources/BenefitImportBatchResource.php',
+      37 => '/var/www/html/app/Http/Resources/BenefitResource.php',
+      38 => '/var/www/html/app/Http/Resources/EnrollmentResource.php',
+      39 => '/var/www/html/app/Http/Resources/ProgrammeResource.php',
     ),
   ),
   '/var/www/html/app/Domain/Programme/Policies/ActivityPolicy.php' => 
@@ -14655,8 +14684,9 @@ return [
     'fileHash' => 'c6502597e8cc87ac61d71e9305e751dfc7fbd1a95c3906c9d8e5ffe813e88638',
     'dependentFiles' => 
     array (
-      0 => '/var/www/html/app/Http/Controllers/Api/V1/Programme/EnrollmentController.php',
-      1 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/BeneficiaryRoutingController.php',
+      0 => '/var/www/html/app/Domain/Registry/Jobs/CommitImportBatch.php',
+      1 => '/var/www/html/app/Http/Controllers/Api/V1/Programme/EnrollmentController.php',
+      2 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/BeneficiaryRoutingController.php',
     ),
   ),
   '/var/www/html/app/Domain/Programme/Services/ProgrammeMatcher.php' => 
@@ -15067,7 +15097,7 @@ return [
   ),
   '/var/www/html/app/Domain/Registry/Jobs/CommitImportBatch.php' => 
   array (
-    'fileHash' => '3280c5a9e81eb26a312d276f5b3ebe29f0c4bbf0a571c34d2f979551e6543796',
+    'fileHash' => 'e14f1a5aa8e5cbe21e8a278a96578455d58856a0ad9e63a6b983eea16d3f3cd6',
     'dependentFiles' => 
     array (
       0 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/ImportBatchController.php',
@@ -15268,7 +15298,7 @@ return [
   ),
   '/var/www/html/app/Domain/Registry/Models/ImportBatch.php' => 
   array (
-    'fileHash' => 'bf99d10c5913c0c49e59a59b19a4b09735e182f15f785f281560d6668397de6a',
+    'fileHash' => '7fb973843b234cc03f56e6d1d34e164d797cc58a9046e2d3b0abaa7de2cd2823',
     'dependentFiles' => 
     array (
       0 => '/var/www/html/app/Domain/Registry/Jobs/CommitImportBatch.php',
@@ -15625,7 +15655,7 @@ return [
   ),
   '/var/www/html/app/Http/Controllers/Api/V1/Registry/ImportBatchController.php' => 
   array (
-    'fileHash' => '2a4f835b4a503838d2542f6dde9c28d753e0411679d9accde5e976fb4eccfcdc',
+    'fileHash' => '77b1854b53f691e5806d748c94b2264e7a323195fbd9e409c3feccdf3c057a04',
     'dependentFiles' => 
     array (
     ),
@@ -16030,7 +16060,7 @@ return [
   ),
   '/var/www/html/app/Http/Requests/Registry/UploadImportRequest.php' => 
   array (
-    'fileHash' => '2a35f97799348069835241557281687614fcb92fe638bedb448c037f2309a1b9',
+    'fileHash' => 'c95e59dc9e89819ffdcee0e177d04b687a443732c8116871ddedf894055a4a81',
     'dependentFiles' => 
     array (
       0 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/ImportBatchController.php',
@@ -16139,7 +16169,7 @@ return [
   ),
   '/var/www/html/app/Http/Resources/ImportBatchResource.php' => 
   array (
-    'fileHash' => 'ce46515a205a64a685ba33918cd8f239a71b70fdde64b8c4e86e345018f8ec2c',
+    'fileHash' => '10a897edc02a43b9dfee75878a981a0001e762b8b3b17df438940b852801ae49',
     'dependentFiles' => 
     array (
       0 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/ImportBatchController.php',
@@ -35315,9 +35345,14 @@ return [
         array (
           'user' => 'App\\Domain\\Access\\Models\\User',
           'mdascope' => 'App\\Domain\\Access\\Scopes\\MdaScope',
+          'programmetype' => 'App\\Domain\\Programme\\Enums\\ProgrammeType',
+          'activity' => 'App\\Domain\\Programme\\Models\\Activity',
+          'programme' => 'App\\Domain\\Programme\\Models\\Programme',
+          'enrollmentservice' => 'App\\Domain\\Programme\\Services\\EnrollmentService',
           'importrowresolution' => 'App\\Domain\\Registry\\Enums\\ImportRowResolution',
           'importstatus' => 'App\\Domain\\Registry\\Enums\\ImportStatus',
           'beneficiary' => 'App\\Domain\\Registry\\Models\\Beneficiary',
+          'household' => 'App\\Domain\\Registry\\Models\\Household',
           'importbatch' => 'App\\Domain\\Registry\\Models\\ImportBatch',
           'importrow' => 'App\\Domain\\Registry\\Models\\ImportRow',
           'beneficiaryregistrar' => 'App\\Domain\\Registry\\Services\\BeneficiaryRegistrar',
@@ -35469,6 +35504,19 @@ return [
             \PHPStan\Dependency\ExportedNode\ExportedParameterNode::__set_state(array(
                'name' => 'serveRequests',
                'type' => 'App\\Domain\\Registry\\Services\\ServeRequestService',
+               'byRef' => false,
+               'variadic' => false,
+               'hasDefault' => false,
+               'attributes' => 
+              array (
+              ),
+               'phpDoc' => NULL,
+               'flags' => 0,
+            )),
+            3 => 
+            \PHPStan\Dependency\ExportedNode\ExportedParameterNode::__set_state(array(
+               'name' => 'enrollments',
+               'type' => 'App\\Domain\\Programme\\Services\\EnrollmentService',
                'byRef' => false,
                'variadic' => false,
                'hasDefault' => false,
@@ -37585,6 +37633,7 @@ return [
  * @property string $original_filename
  * @property string $stored_path
  * @property RegistrationSource $source
+ * @property string $activity_id
  * @property ImportStatus $status
  * @property int $total_rows
  * @property int $valid_rows
@@ -37609,6 +37658,7 @@ return [
           'mda' => 'App\\Domain\\Access\\Models\\Mda',
           'user' => 'App\\Domain\\Access\\Models\\User',
           'auditable' => 'App\\Domain\\Audit\\Concerns\\Auditable',
+          'activity' => 'App\\Domain\\Programme\\Models\\Activity',
           'importstatus' => 'App\\Domain\\Registry\\Enums\\ImportStatus',
           'registrationsource' => 'App\\Domain\\Registry\\Enums\\RegistrationSource',
           'collection' => 'Illuminate\\Database\\Eloquent\\Collection',
@@ -37684,6 +37734,7 @@ return [
               'mda' => 'App\\Domain\\Access\\Models\\Mda',
               'user' => 'App\\Domain\\Access\\Models\\User',
               'auditable' => 'App\\Domain\\Audit\\Concerns\\Auditable',
+              'activity' => 'App\\Domain\\Programme\\Models\\Activity',
               'importstatus' => 'App\\Domain\\Registry\\Enums\\ImportStatus',
               'registrationsource' => 'App\\Domain\\Registry\\Enums\\RegistrationSource',
               'collection' => 'Illuminate\\Database\\Eloquent\\Collection',
@@ -37731,6 +37782,7 @@ return [
               'mda' => 'App\\Domain\\Access\\Models\\Mda',
               'user' => 'App\\Domain\\Access\\Models\\User',
               'auditable' => 'App\\Domain\\Audit\\Concerns\\Auditable',
+              'activity' => 'App\\Domain\\Programme\\Models\\Activity',
               'importstatus' => 'App\\Domain\\Registry\\Enums\\ImportStatus',
               'registrationsource' => 'App\\Domain\\Registry\\Enums\\RegistrationSource',
               'collection' => 'Illuminate\\Database\\Eloquent\\Collection',
@@ -37776,6 +37828,7 @@ return [
               'mda' => 'App\\Domain\\Access\\Models\\Mda',
               'user' => 'App\\Domain\\Access\\Models\\User',
               'auditable' => 'App\\Domain\\Audit\\Concerns\\Auditable',
+              'activity' => 'App\\Domain\\Programme\\Models\\Activity',
               'importstatus' => 'App\\Domain\\Registry\\Enums\\ImportStatus',
               'registrationsource' => 'App\\Domain\\Registry\\Enums\\RegistrationSource',
               'collection' => 'Illuminate\\Database\\Eloquent\\Collection',
@@ -37819,6 +37872,7 @@ return [
               'mda' => 'App\\Domain\\Access\\Models\\Mda',
               'user' => 'App\\Domain\\Access\\Models\\User',
               'auditable' => 'App\\Domain\\Audit\\Concerns\\Auditable',
+              'activity' => 'App\\Domain\\Programme\\Models\\Activity',
               'importstatus' => 'App\\Domain\\Registry\\Enums\\ImportStatus',
               'registrationsource' => 'App\\Domain\\Registry\\Enums\\RegistrationSource',
               'collection' => 'Illuminate\\Database\\Eloquent\\Collection',
@@ -37848,11 +37902,14 @@ return [
         )),
         5 => 
         \PHPStan\Dependency\ExportedNode\ExportedMethodNode::__set_state(array(
-           'name' => 'uploadedBy',
+           'name' => 'activity',
            'phpDoc' => 
           \PHPStan\Dependency\ExportedNode\ExportedPhpDocNode::__set_state(array(
              'phpDocString' => '/**
-     * @return BelongsTo<User, $this>
+     * The registered activity this upload is bound to (PRD §9, FR-REG-10). The
+     * resulting intervention (enrollment) is recorded under it.
+     *
+     * @return BelongsTo<Activity, $this>
      */',
              'namespace' => 'App\\Domain\\Registry\\Models',
              'uses' => 
@@ -37862,6 +37919,7 @@ return [
               'mda' => 'App\\Domain\\Access\\Models\\Mda',
               'user' => 'App\\Domain\\Access\\Models\\User',
               'auditable' => 'App\\Domain\\Audit\\Concerns\\Auditable',
+              'activity' => 'App\\Domain\\Programme\\Models\\Activity',
               'importstatus' => 'App\\Domain\\Registry\\Enums\\ImportStatus',
               'registrationsource' => 'App\\Domain\\Registry\\Enums\\RegistrationSource',
               'collection' => 'Illuminate\\Database\\Eloquent\\Collection',
@@ -37891,6 +37949,50 @@ return [
         )),
         6 => 
         \PHPStan\Dependency\ExportedNode\ExportedMethodNode::__set_state(array(
+           'name' => 'uploadedBy',
+           'phpDoc' => 
+          \PHPStan\Dependency\ExportedNode\ExportedPhpDocNode::__set_state(array(
+             'phpDocString' => '/**
+     * @return BelongsTo<User, $this>
+     */',
+             'namespace' => 'App\\Domain\\Registry\\Models',
+             'uses' => 
+            array (
+              'mdascoped' => 'App\\Domain\\Access\\Concerns\\MdaScoped',
+              'scopedtomda' => 'App\\Domain\\Access\\Concerns\\ScopedToMda',
+              'mda' => 'App\\Domain\\Access\\Models\\Mda',
+              'user' => 'App\\Domain\\Access\\Models\\User',
+              'auditable' => 'App\\Domain\\Audit\\Concerns\\Auditable',
+              'activity' => 'App\\Domain\\Programme\\Models\\Activity',
+              'importstatus' => 'App\\Domain\\Registry\\Enums\\ImportStatus',
+              'registrationsource' => 'App\\Domain\\Registry\\Enums\\RegistrationSource',
+              'collection' => 'Illuminate\\Database\\Eloquent\\Collection',
+              'hasuuids' => 'Illuminate\\Database\\Eloquent\\Concerns\\HasUuids',
+              'model' => 'Illuminate\\Database\\Eloquent\\Model',
+              'belongsto' => 'Illuminate\\Database\\Eloquent\\Relations\\BelongsTo',
+              'hasmany' => 'Illuminate\\Database\\Eloquent\\Relations\\HasMany',
+              'carbon' => 'Illuminate\\Support\\Carbon',
+            ),
+             'constUses' => 
+            array (
+            ),
+          )),
+           'byRef' => false,
+           'public' => true,
+           'private' => false,
+           'abstract' => false,
+           'final' => false,
+           'static' => false,
+           'returnType' => 'Illuminate\\Database\\Eloquent\\Relations\\BelongsTo',
+           'parameters' => 
+          array (
+          ),
+           'attributes' => 
+          array (
+          ),
+        )),
+        7 => 
+        \PHPStan\Dependency\ExportedNode\ExportedMethodNode::__set_state(array(
            'name' => 'rows',
            'phpDoc' => 
           \PHPStan\Dependency\ExportedNode\ExportedPhpDocNode::__set_state(array(
@@ -37905,6 +38007,7 @@ return [
               'mda' => 'App\\Domain\\Access\\Models\\Mda',
               'user' => 'App\\Domain\\Access\\Models\\User',
               'auditable' => 'App\\Domain\\Audit\\Concerns\\Auditable',
+              'activity' => 'App\\Domain\\Programme\\Models\\Activity',
               'importstatus' => 'App\\Domain\\Registry\\Enums\\ImportStatus',
               'registrationsource' => 'App\\Domain\\Registry\\Enums\\RegistrationSource',
               'collection' => 'Illuminate\\Database\\Eloquent\\Collection',
@@ -53326,11 +53429,19 @@ return [
  * Excel/CSV as well as Kobo/ODK exports; the optional `source` selects the
  * ingestion adapter (and thus the stamped provenance). When omitted, the source
  * is inferred from the file extension (excel/csv).
+ *
+ * Activity-first (PRD §9, FR-REG-10): a required, valid `activity_id` that the
+ * caller\'s MDA owns must accompany every upload — the resulting intervention is
+ * recorded under it. An upload with no/invalid activity, or one the caller\'s MDA
+ * cannot use, is refused here.
  */',
          'namespace' => 'App\\Http\\Requests\\Registry',
          'uses' => 
         array (
+          'mdascope' => 'App\\Domain\\Access\\Scopes\\MdaScope',
+          'activity' => 'App\\Domain\\Programme\\Models\\Activity',
           'sourceadapterregistry' => 'App\\Domain\\Registry\\Imports\\Adapters\\SourceAdapterRegistry',
+          'closure' => 'Closure',
           'formrequest' => 'Illuminate\\Foundation\\Http\\FormRequest',
           'rule' => 'Illuminate\\Validation\\Rule',
         ),
@@ -53381,7 +53492,10 @@ return [
              'namespace' => 'App\\Http\\Requests\\Registry',
              'uses' => 
             array (
+              'mdascope' => 'App\\Domain\\Access\\Scopes\\MdaScope',
+              'activity' => 'App\\Domain\\Programme\\Models\\Activity',
               'sourceadapterregistry' => 'App\\Domain\\Registry\\Imports\\Adapters\\SourceAdapterRegistry',
+              'closure' => 'Closure',
               'formrequest' => 'Illuminate\\Foundation\\Http\\FormRequest',
               'rule' => 'Illuminate\\Validation\\Rule',
             ),

@@ -9,6 +9,9 @@ use App\Domain\Access\Models\Mda;
 use App\Domain\Access\Models\Role;
 use App\Domain\Access\Models\User;
 use App\Domain\Access\Scopes\MdaScope;
+use App\Domain\Programme\Models\Activity;
+use App\Domain\Programme\Models\Enrollment;
+use App\Domain\Programme\Models\Programme;
 use App\Domain\Registry\Enums\ImportStatus;
 use App\Domain\Registry\Enums\RegistrationSource;
 use App\Domain\Registry\Jobs\CommitImportBatch;
@@ -37,6 +40,11 @@ class BulkImportTest extends TestCase
 
     private Mda $mdaB;
 
+    /** MDA A's individual programme + activity that every upload is bound to (§9). */
+    private Programme $programmeA;
+
+    private Activity $activityA;
+
     /** @var array<string, User> */
     private array $users = [];
 
@@ -53,6 +61,9 @@ class BulkImportTest extends TestCase
         $this->users['officerA'] = $this->user($this->mdaA, RoleKey::MdaOfficer);
         $this->users['officerB'] = $this->user($this->mdaB, RoleKey::MdaOfficer);
         $this->users['partnerA'] = $this->user($this->mdaA, RoleKey::DevelopmentPartner);
+
+        $this->programmeA = Programme::factory()->individual()->create(['owner_mda_id' => $this->mdaA->id]);
+        $this->activityA = Activity::factory()->forProgramme($this->programmeA)->create();
     }
 
     private function user(Mda $mda, RoleKey $role): User
@@ -90,7 +101,7 @@ class BulkImportTest extends TestCase
     private function upload(string $userKey, UploadedFile $file): ImportBatch
     {
         $response = $this->withToken($this->tokenFor($userKey))
-            ->post('/api/v1/beneficiaries/imports', ['file' => $file], ['Accept' => 'application/json'])
+            ->post('/api/v1/beneficiaries/imports', ['file' => $file, 'activity_id' => $this->activityA->id], ['Accept' => 'application/json'])
             ->assertCreated();
 
         return ImportBatch::query()->withoutGlobalScope(MdaScope::class)->findOrFail($response->json('data.id'));
@@ -310,6 +321,70 @@ class BulkImportTest extends TestCase
         $this->assertSame(1, $batch->total_rows);
         $this->assertSame(1, $batch->valid_rows);
         $this->assertSame(RegistrationSource::Excel, $batch->source);
+    }
+
+    public function test_upload_without_an_activity_is_refused(): void
+    {
+        $this->withToken($this->tokenFor('officerA'))
+            ->post('/api/v1/beneficiaries/imports', ['file' => $this->mixedCsv()], ['Accept' => 'application/json'])
+            ->assertStatus(422)
+            ->assertJsonPath('error.code', 'VALIDATION_ERROR')
+            ->assertJsonFragment(['field' => 'activity_id']);
+
+        $this->assertSame(0, ImportBatch::query()->withoutGlobalScope(MdaScope::class)->count());
+    }
+
+    public function test_upload_to_an_activity_the_mda_cannot_use_is_refused(): void
+    {
+        // An activity owned by another MDA is not usable by officer A.
+        $foreignProgramme = Programme::factory()->individual()->create(['owner_mda_id' => $this->mdaB->id]);
+        $foreignActivity = Activity::factory()->forProgramme($foreignProgramme)->create();
+
+        $this->withToken($this->tokenFor('officerA'))
+            ->post('/api/v1/beneficiaries/imports', [
+                'file' => $this->mixedCsv(),
+                'activity_id' => $foreignActivity->id,
+            ], ['Accept' => 'application/json'])
+            ->assertStatus(422)
+            ->assertJsonFragment(['field' => 'activity_id']);
+
+        // A non-existent activity is refused too.
+        $this->withToken($this->tokenFor('officerA'))
+            ->post('/api/v1/beneficiaries/imports', [
+                'file' => $this->mixedCsv(),
+                'activity_id' => '00000000-0000-0000-0000-000000000000',
+            ], ['Accept' => 'application/json'])
+            ->assertStatus(422)
+            ->assertJsonFragment(['field' => 'activity_id']);
+
+        $this->assertSame(0, ImportBatch::query()->withoutGlobalScope(MdaScope::class)->count());
+    }
+
+    public function test_valid_upload_records_the_activity_on_the_batch_and_interventions(): void
+    {
+        $batch = $this->upload('officerA', $this->mixedCsv());
+
+        // The activity is recorded on the batch.
+        $this->assertSame($this->activityA->id, $batch->activity_id);
+
+        $this->app['auth']->forgetGuards();
+        $this->withToken($this->tokenFor('officerA'))
+            ->postJson("/api/v1/beneficiaries/imports/{$batch->id}/confirm")
+            ->assertOk();
+
+        // Each committed beneficiary has an enrollment (the intervention) recorded
+        // under that activity + programme, scoped to the importing MDA.
+        $committed = Beneficiary::query()->withoutGlobalScope(MdaScope::class)->pluck('id');
+        $this->assertCount(3, $committed);
+
+        $enrollments = Enrollment::query()->withoutGlobalScope(MdaScope::class)->get();
+        $this->assertCount(3, $enrollments);
+        foreach ($enrollments as $enrollment) {
+            $this->assertSame($this->activityA->id, $enrollment->activity_id);
+            $this->assertSame($this->programmeA->id, $enrollment->programme_id);
+            $this->assertSame($this->mdaA->id, $enrollment->mda_id);
+            $this->assertTrue($committed->contains($enrollment->beneficiary_id));
+        }
     }
 
     public function test_permissions_and_scoping_are_enforced(): void

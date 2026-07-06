@@ -6,9 +6,14 @@ namespace App\Domain\Registry\Jobs;
 
 use App\Domain\Access\Models\User;
 use App\Domain\Access\Scopes\MdaScope;
+use App\Domain\Programme\Enums\ProgrammeType;
+use App\Domain\Programme\Models\Activity;
+use App\Domain\Programme\Models\Programme;
+use App\Domain\Programme\Services\EnrollmentService;
 use App\Domain\Registry\Enums\ImportRowResolution;
 use App\Domain\Registry\Enums\ImportStatus;
 use App\Domain\Registry\Models\Beneficiary;
+use App\Domain\Registry\Models\Household;
 use App\Domain\Registry\Models\ImportBatch;
 use App\Domain\Registry\Models\ImportRow;
 use App\Domain\Registry\Services\BeneficiaryRegistrar;
@@ -48,7 +53,7 @@ class CommitImportBatch implements ShouldQueue
         public readonly ?string $actorId = null,
     ) {}
 
-    public function handle(BeneficiaryRegistrar $registrar, HouseholdIngestionService $households, ServeRequestService $serveRequests): void
+    public function handle(BeneficiaryRegistrar $registrar, HouseholdIngestionService $households, ServeRequestService $serveRequests, EnrollmentService $enrollments): void
     {
         $batch = ImportBatch::query()->withoutGlobalScope(MdaScope::class)->find($this->batchId);
 
@@ -66,6 +71,13 @@ class CommitImportBatch implements ShouldQueue
             Auth::setUser($actor);
         }
 
+        // The activity this upload was bound to (§9): its programme drives whether
+        // the intervention is recorded per beneficiary or per household.
+        $activity = Activity::query()->withoutGlobalScope(MdaScope::class)->find($batch->activity_id);
+        $programme = $activity !== null
+            ? Programme::query()->withoutGlobalScope(MdaScope::class)->find($activity->programme_id)
+            : null;
+
         $batch->update(['status' => ImportStatus::Committing]);
 
         // NB: we don't pre-filter on is_valid — an exact-duplicate row is "invalid"
@@ -74,7 +86,7 @@ class CommitImportBatch implements ShouldQueue
         $batch->rows()
             ->whereNull('beneficiary_id')
             ->orderBy('row_number')
-            ->chunkById(200, function ($rows) use ($batch, $registrar, $households, $serveRequests, $actor): void {
+            ->chunkById(200, function ($rows) use ($batch, $registrar, $households, $serveRequests, $enrollments, $activity, $programme, $actor): void {
                 foreach ($rows as $row) {
                     /** @var ImportRow $row */
                     $resolution = $this->effectiveResolution($row);
@@ -91,7 +103,7 @@ class CommitImportBatch implements ShouldQueue
                     }
 
                     try {
-                        DB::transaction(function () use ($row, $batch, $registrar, $households): void {
+                        DB::transaction(function () use ($row, $batch, $registrar, $households, $enrollments, $activity, $programme, $actor): void {
                             // Same provenance-stamping choke-point as every other
                             // inbound channel (Auditable → beneficiary.created).
                             // The source record id doubles as the idempotency key
@@ -108,8 +120,9 @@ class CommitImportBatch implements ShouldQueue
                             $row->update(['beneficiary_id' => $beneficiary->id]);
 
                             // Form/join the household when the source grouped rows (§9).
+                            $household = null;
                             if ($row->household_ref !== null) {
-                                $households->attach(
+                                $household = $households->attach(
                                     $batch->owner_mda_id,
                                     $batch->source,
                                     $batch->id,
@@ -119,6 +132,11 @@ class CommitImportBatch implements ShouldQueue
                                     $row->household_head,
                                 );
                             }
+
+                            // Record the intervention under the bound activity (§9,
+                            // FR-REG-10): an enrollment of the imported beneficiary
+                            // (individual programme) or household (household programme).
+                            $this->recordIntervention($enrollments, $programme, $activity, $beneficiary, $household, $actor);
                         });
                     } catch (UniqueConstraintViolationException) {
                         // Raced/duplicate identifier — flag the row, don't crash.
@@ -156,6 +174,34 @@ class CommitImportBatch implements ShouldQueue
         }
 
         return in_array($row->match_band, ['exact', 'probable'], true) ? null : ImportRowResolution::New;
+    }
+
+    /**
+     * Record the resulting intervention under the batch's activity (§9,
+     * FR-REG-10/FR-PRG-05): an enrollment of the just-imported target into the
+     * activity's programme. Individual programmes enroll the beneficiary; household
+     * programmes enroll the formed household. Best-effort and idempotent — a
+     * duplicate/ineligible/type-mismatched target simply records no enrollment and
+     * never blocks the registry commit. Needs a confirming actor for attribution.
+     */
+    private function recordIntervention(
+        EnrollmentService $enrollments,
+        ?Programme $programme,
+        ?Activity $activity,
+        Beneficiary $beneficiary,
+        ?Household $household,
+        ?User $actor,
+    ): void {
+        if ($programme === null || $activity === null || $actor === null) {
+            return;
+        }
+
+        $target = $programme->type === ProgrammeType::Household ? $household : $beneficiary;
+        if ($target === null) {
+            return; // household programme but this row formed no household
+        }
+
+        $enrollments->enroll($programme, $target, $activity->id, $actor);
     }
 
     /** Raise a request-to-serve for a LINK row — never creates a beneficiary. */

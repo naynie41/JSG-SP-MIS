@@ -9,6 +9,7 @@ use App\Domain\Access\Concerns\ScopedToMda;
 use App\Domain\Access\Models\Mda;
 use App\Domain\Access\Models\User;
 use App\Domain\Audit\Concerns\Auditable;
+use App\Domain\Programme\Models\Activity;
 use App\Domain\Registry\Enums\ImportStatus;
 use App\Domain\Registry\Enums\RegistrationSource;
 use Illuminate\Database\Eloquent\Collection;
@@ -29,6 +30,7 @@ use Illuminate\Support\Carbon;
  * @property string $original_filename
  * @property string $stored_path
  * @property RegistrationSource $source
+ * @property string $activity_id
  * @property ImportStatus $status
  * @property int $total_rows
  * @property int $valid_rows
@@ -60,6 +62,7 @@ class ImportBatch extends Model implements MdaScoped
         'original_filename',
         'stored_path',
         'source',
+        'activity_id',
         'status',
         'total_rows',
         'valid_rows',
@@ -107,6 +110,17 @@ class ImportBatch extends Model implements MdaScoped
     public function ownerMda(): BelongsTo
     {
         return $this->belongsTo(Mda::class, 'owner_mda_id');
+    }
+
+    /**
+     * The registered activity this upload is bound to (PRD §9, FR-REG-10). The
+     * resulting intervention (enrollment) is recorded under it.
+     *
+     * @return BelongsTo<Activity, $this>
+     */
+    public function activity(): BelongsTo
+    {
+        return $this->belongsTo(Activity::class, 'activity_id');
     }
 
     /**

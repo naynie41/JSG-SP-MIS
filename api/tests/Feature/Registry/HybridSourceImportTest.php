@@ -9,6 +9,8 @@ use App\Domain\Access\Models\Mda;
 use App\Domain\Access\Models\Role;
 use App\Domain\Access\Models\User;
 use App\Domain\Access\Scopes\MdaScope;
+use App\Domain\Programme\Models\Activity;
+use App\Domain\Programme\Models\Programme;
 use App\Domain\Registry\Enums\ImportStatus;
 use App\Domain\Registry\Enums\RegistrationSource;
 use App\Domain\Registry\Models\Beneficiary;
@@ -33,6 +35,8 @@ class HybridSourceImportTest extends TestCase
 
     private User $officer;
 
+    private Activity $activity;
+
     protected function setUp(): void
     {
         parent::setUp();
@@ -45,6 +49,9 @@ class HybridSourceImportTest extends TestCase
             'mda_id' => $this->mda->id,
             'role_id' => Role::where('key', RoleKey::MdaOfficer->value)->firstOrFail()->id,
         ]);
+        $this->activity = Activity::factory()->forProgramme(
+            Programme::factory()->individual()->create(['owner_mda_id' => $this->mda->id]),
+        )->create();
     }
 
     private function token(): string
@@ -55,7 +62,7 @@ class HybridSourceImportTest extends TestCase
     private function upload(UploadedFile $file, string $source): ImportBatch
     {
         $response = $this->withToken($this->token())
-            ->post('/api/v1/beneficiaries/imports', ['file' => $file, 'source' => $source], ['Accept' => 'application/json'])
+            ->post('/api/v1/beneficiaries/imports', ['file' => $file, 'source' => $source, 'activity_id' => $this->activity->id], ['Accept' => 'application/json'])
             ->assertCreated();
 
         return ImportBatch::query()->withoutGlobalScope(MdaScope::class)->findOrFail($response->json('data.id'));

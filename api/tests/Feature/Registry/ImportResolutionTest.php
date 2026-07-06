@@ -11,6 +11,8 @@ use App\Domain\Access\Models\User;
 use App\Domain\Access\Scopes\MdaScope;
 use App\Domain\Audit\Models\AuditLog;
 use App\Domain\Matching\Models\MatchingConfig;
+use App\Domain\Programme\Models\Activity;
+use App\Domain\Programme\Models\Programme;
 use App\Domain\Registry\Models\Beneficiary;
 use App\Domain\Registry\Models\ImportBatch;
 use App\Domain\Registry\Models\ServeRequest;
@@ -38,6 +40,8 @@ class ImportResolutionTest extends TestCase
     /** @var array<string, User> */
     private array $users = [];
 
+    private Activity $activity; // MDA A's activity every upload is bound to (§9)
+
     private Beneficiary $existing1; // matched exactly by NIN (row 1)
 
     private Beneficiary $existing2; // matched fuzzily (row 2)
@@ -56,6 +60,10 @@ class ImportResolutionTest extends TestCase
         $this->mdaB = Mda::factory()->create(['name' => 'MDA B']);
         $this->users['officer'] = $this->user($this->mdaA, RoleKey::MdaOfficer);   // importer
         $this->users['ownerAdmin'] = $this->user($this->mdaB, RoleKey::MdaAdmin);  // can accept serve
+
+        $this->activity = Activity::factory()->forProgramme(
+            Programme::factory()->individual()->create(['owner_mda_id' => $this->mdaA->id]),
+        )->create();
 
         $this->existing1 = Beneficiary::factory()->withoutBvn()->create(['owner_mda_id' => $this->mdaB->id, 'nin' => '22200000011']);
         $this->existing2 = Beneficiary::factory()->withoutNin()->withoutBvn()->create([
@@ -89,7 +97,7 @@ class ImportResolutionTest extends TestCase
         ]);
 
         $upload = $this->withToken($this->token('officer'))
-            ->post('/api/v1/beneficiaries/imports', ['file' => UploadedFile::fake()->createWithContent('people.csv', $csv)], ['Accept' => 'application/json'])
+            ->post('/api/v1/beneficiaries/imports', ['file' => UploadedFile::fake()->createWithContent('people.csv', $csv), 'activity_id' => $this->activity->id], ['Accept' => 'application/json'])
             ->assertCreated();
         $this->app['auth']->forgetGuards();
 

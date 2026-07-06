@@ -69,6 +69,9 @@ class ImportBatchController extends Controller
             'original_filename' => $file->getClientOriginalName(),
             'stored_path' => $storedPath,
             'source' => $source,
+            // Activity-first (§9): validated by UploadImportRequest to exist and be
+            // owned by this MDA; the commit records the intervention under it.
+            'activity_id' => $request->string('activity_id')->value(),
             'status' => ImportStatus::Pending,
         ]);
 

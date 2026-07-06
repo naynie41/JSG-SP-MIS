@@ -27,6 +27,7 @@ class ImportBatchResource extends JsonResource
             'uploaded_by' => $this->uploaded_by,
             'original_filename' => $this->original_filename,
             'source' => $this->source->value,
+            'activity_id' => $this->activity_id,
             'status' => $this->status->value,
             'summary' => [
                 'total_rows' => $this->total_rows,

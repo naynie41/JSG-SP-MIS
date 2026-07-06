@@ -45,6 +45,26 @@ and two distinct batch counters — `rejected_rows` (identity malformed) and
 summary. A rejected row is retained in staging (`is_valid=false`) for review but is
 skipped at commit, so **no rejected PII reaches `beneficiaries`/`households`**.
 
+## Activity-first upload (§9, FR-REG-10/FR-PRG-05)
+
+Every bulk upload is bound to a **registered activity that the importing MDA
+owns** — an activity must exist first. `UploadImportRequest` requires a valid
+`activity_id` and refuses an upload with **no activity, a non-existent activity, or
+one owned by another MDA** (422). The activity is recorded on the batch
+(`import_batches.activity_id`).
+
+On commit, each resulting beneficiary's participation is recorded as the
+**intervention under that activity**: `CommitImportBatch` enrolls the new
+beneficiary (individual programme) or the formed household (household programme)
+into the activity's programme via `EnrollmentService`, scoped to the importing MDA.
+It is best-effort and idempotent — an already-enrolled/ineligible/type-mismatched
+target simply records no enrollment and never blocks the registry commit.
+Beneficiaries still enter the shared registry under first-importer ownership
+(FR-OWN-01); enrollment ownership follows the enrolling MDA, unchanged.
+
+> The single-record REST intake (`/beneficiaries/intake`) is a separate
+> synchronous channel with no batch; activity binding there is a later follow-up.
+
 ## Household formation (source-driven, §9)
 
 Households are **not** created manually either — they are formed during ingestion
@@ -130,6 +150,7 @@ row-level error reporting, and provenance stamping — no other changes required
 | **FR-REG-06** Bulk import preview before commit | `ParseImportBatch` (preview) → confirm → `CommitImportBatch`; UI `ImportBatchPage` |
 | **FR-REG-07** Document attachment | `BeneficiaryDocumentController` (private storage, validated, audited); UI `DocumentsPanel` |
 | **FR-REG-08** Offline-capture groundwork | Idempotent intake via `idempotency_key` / `original_record_id` (see `docs/registry-intake.md`) |
+| **FR-REG-10 / FR-PRG-05** Activity-first upload | `UploadImportRequest` requires an MDA-owned `activity_id`; batch stores it; `CommitImportBatch` records the intervention (enrollment) under it |
 | **FR-OWN-01** First MDA owns the record | `owner_mda_id` stamped from the caller's MDA on every create |
 | **FR-OWN-02** Owner-only edit of core profile | `BeneficiaryPolicy@update`; UI shows edit only to the owner (server still enforces → 403) |
 | **FR-OWN-03** Non-owner lookup / serve path | `BeneficiaryLookupService` + `BeneficiaryRevealResource`; UI `LookupModal` (reveal fields only) |

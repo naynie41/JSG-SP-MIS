@@ -2,7 +2,7 @@
 
 // odsl-/var/www/html/app/Domain/Registry/Jobs/CommitImportBatch.php-PHPStan\BetterReflection\Reflection\ReflectionClass-App\Domain\Registry\Jobs\CommitImportBatch
 return \PHPStan\Cache\CacheItem::__set_state(array(
-   'variableKey' => 'v2-6.70.0.1-8.3.31-3280c5a9e81eb26a312d276f5b3ebe29f0c4bbf0a571c34d2f979551e6543796',
+   'variableKey' => 'v2-6.70.0.1-8.3.31-e14f1a5aa8e5cbe21e8a278a96578455d58856a0ad9e63a6b983eea16d3f3cd6',
    'data' => 
   array (
     'locatedSource' => 
@@ -37,8 +37,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
     'attributes' => 
     array (
     ),
-    'startLine' => 40,
-    'endLine' => 183,
+    'startLine' => 45,
+    'endLine' => 229,
     'startColumn' => 1,
     'endColumn' => 1,
     'parentClassName' => NULL,
@@ -78,20 +78,20 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
           'code' => '3',
           'attributes' => 
           array (
-            'startLine' => 44,
-            'endLine' => 44,
-            'startTokenPos' => 149,
-            'startFilePos' => 1775,
-            'endTokenPos' => 149,
-            'endFilePos' => 1775,
+            'startLine' => 49,
+            'endLine' => 49,
+            'startTokenPos' => 174,
+            'startFilePos' => 2001,
+            'endTokenPos' => 174,
+            'endFilePos' => 2001,
           ),
         ),
         'docComment' => NULL,
         'attributes' => 
         array (
         ),
-        'startLine' => 44,
-        'endLine' => 44,
+        'startLine' => 49,
+        'endLine' => 49,
         'startColumn' => 5,
         'endColumn' => 26,
         'isPromoted' => false,
@@ -121,8 +121,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         'attributes' => 
         array (
         ),
-        'startLine' => 47,
-        'endLine' => 47,
+        'startLine' => 52,
+        'endLine' => 52,
         'startColumn' => 9,
         'endColumn' => 39,
         'isPromoted' => true,
@@ -171,20 +171,20 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
           'code' => 'null',
           'attributes' => 
           array (
-            'startLine' => 48,
-            'endLine' => 48,
-            'startTokenPos' => 179,
-            'startFilePos' => 1896,
-            'endTokenPos' => 179,
-            'endFilePos' => 1899,
+            'startLine' => 53,
+            'endLine' => 53,
+            'startTokenPos' => 204,
+            'startFilePos' => 2122,
+            'endTokenPos' => 204,
+            'endFilePos' => 2125,
           ),
         ),
         'docComment' => NULL,
         'attributes' => 
         array (
         ),
-        'startLine' => 48,
-        'endLine' => 48,
+        'startLine' => 53,
+        'endLine' => 53,
         'startColumn' => 9,
         'endColumn' => 47,
         'isPromoted' => true,
@@ -221,8 +221,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             'attributes' => 
             array (
             ),
-            'startLine' => 47,
-            'endLine' => 47,
+            'startLine' => 52,
+            'endLine' => 52,
             'startColumn' => 9,
             'endColumn' => 39,
             'parameterIndex' => 0,
@@ -236,12 +236,12 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
               'code' => 'null',
               'attributes' => 
               array (
-                'startLine' => 48,
-                'endLine' => 48,
-                'startTokenPos' => 179,
-                'startFilePos' => 1896,
-                'endTokenPos' => 179,
-                'endFilePos' => 1899,
+                'startLine' => 53,
+                'endLine' => 53,
+                'startTokenPos' => 204,
+                'startFilePos' => 2122,
+                'endTokenPos' => 204,
+                'endFilePos' => 2125,
               ),
             ),
             'type' => 
@@ -278,8 +278,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             'attributes' => 
             array (
             ),
-            'startLine' => 48,
-            'endLine' => 48,
+            'startLine' => 53,
+            'endLine' => 53,
             'startColumn' => 9,
             'endColumn' => 47,
             'parameterIndex' => 1,
@@ -292,8 +292,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         array (
         ),
         'docComment' => NULL,
-        'startLine' => 46,
-        'endLine' => 49,
+        'startLine' => 51,
+        'endLine' => 54,
         'startColumn' => 5,
         'endColumn' => 8,
         'couldThrow' => false,
@@ -331,8 +331,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             'attributes' => 
             array (
             ),
-            'startLine' => 51,
-            'endLine' => 51,
+            'startLine' => 56,
+            'endLine' => 56,
             'startColumn' => 28,
             'endColumn' => 58,
             'parameterIndex' => 0,
@@ -357,8 +357,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             'attributes' => 
             array (
             ),
-            'startLine' => 51,
-            'endLine' => 51,
+            'startLine' => 56,
+            'endLine' => 56,
             'startColumn' => 61,
             'endColumn' => 97,
             'parameterIndex' => 1,
@@ -383,11 +383,37 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             'attributes' => 
             array (
             ),
-            'startLine' => 51,
-            'endLine' => 51,
+            'startLine' => 56,
+            'endLine' => 56,
             'startColumn' => 100,
             'endColumn' => 133,
             'parameterIndex' => 2,
+            'isOptional' => false,
+          ),
+          'enrollments' => 
+          array (
+            'name' => 'enrollments',
+            'default' => NULL,
+            'type' => 
+            array (
+              'class' => 'PHPStan\\BetterReflection\\Reflection\\ReflectionNamedType',
+              'data' => 
+              array (
+                'name' => 'App\\Domain\\Programme\\Services\\EnrollmentService',
+                'isIdentifier' => false,
+              ),
+            ),
+            'isVariadic' => false,
+            'byRef' => false,
+            'isPromoted' => false,
+            'attributes' => 
+            array (
+            ),
+            'startLine' => 56,
+            'endLine' => 56,
+            'startColumn' => 136,
+            'endColumn' => 165,
+            'parameterIndex' => 3,
             'isOptional' => false,
           ),
         ),
@@ -405,8 +431,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         array (
         ),
         'docComment' => NULL,
-        'startLine' => 51,
-        'endLine' => 146,
+        'startLine' => 56,
+        'endLine' => 164,
         'startColumn' => 5,
         'endColumn' => 5,
         'couldThrow' => false,
@@ -444,8 +470,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             'attributes' => 
             array (
             ),
-            'startLine' => 152,
-            'endLine' => 152,
+            'startLine' => 170,
+            'endLine' => 170,
             'startColumn' => 42,
             'endColumn' => 55,
             'parameterIndex' => 0,
@@ -488,8 +514,282 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
  * A row\'s effective decision: an explicit resolution, else NEW for a
  * non-flagged row, else null (flagged + unresolved → create nothing).
  */',
-        'startLine' => 152,
-        'endLine' => 159,
+        'startLine' => 170,
+        'endLine' => 177,
+        'startColumn' => 5,
+        'endColumn' => 5,
+        'couldThrow' => false,
+        'isClosure' => false,
+        'isGenerator' => false,
+        'isVariadic' => false,
+        'modifiers' => 4,
+        'namespace' => 'App\\Domain\\Registry\\Jobs',
+        'declaringClassName' => 'App\\Domain\\Registry\\Jobs\\CommitImportBatch',
+        'implementingClassName' => 'App\\Domain\\Registry\\Jobs\\CommitImportBatch',
+        'currentClassName' => 'App\\Domain\\Registry\\Jobs\\CommitImportBatch',
+        'aliasName' => NULL,
+      ),
+      'recordIntervention' => 
+      array (
+        'name' => 'recordIntervention',
+        'parameters' => 
+        array (
+          'enrollments' => 
+          array (
+            'name' => 'enrollments',
+            'default' => NULL,
+            'type' => 
+            array (
+              'class' => 'PHPStan\\BetterReflection\\Reflection\\ReflectionNamedType',
+              'data' => 
+              array (
+                'name' => 'App\\Domain\\Programme\\Services\\EnrollmentService',
+                'isIdentifier' => false,
+              ),
+            ),
+            'isVariadic' => false,
+            'byRef' => false,
+            'isPromoted' => false,
+            'attributes' => 
+            array (
+            ),
+            'startLine' => 188,
+            'endLine' => 188,
+            'startColumn' => 9,
+            'endColumn' => 38,
+            'parameterIndex' => 0,
+            'isOptional' => false,
+          ),
+          'programme' => 
+          array (
+            'name' => 'programme',
+            'default' => NULL,
+            'type' => 
+            array (
+              'class' => 'PHPStan\\BetterReflection\\Reflection\\ReflectionUnionType',
+              'data' => 
+              array (
+                'types' => 
+                array (
+                  0 => 
+                  array (
+                    'class' => 'PHPStan\\BetterReflection\\Reflection\\ReflectionNamedType',
+                    'data' => 
+                    array (
+                      'name' => 'App\\Domain\\Programme\\Models\\Programme',
+                      'isIdentifier' => false,
+                    ),
+                  ),
+                  1 => 
+                  array (
+                    'class' => 'PHPStan\\BetterReflection\\Reflection\\ReflectionNamedType',
+                    'data' => 
+                    array (
+                      'name' => 'null',
+                      'isIdentifier' => true,
+                    ),
+                  ),
+                ),
+              ),
+            ),
+            'isVariadic' => false,
+            'byRef' => false,
+            'isPromoted' => false,
+            'attributes' => 
+            array (
+            ),
+            'startLine' => 189,
+            'endLine' => 189,
+            'startColumn' => 9,
+            'endColumn' => 29,
+            'parameterIndex' => 1,
+            'isOptional' => false,
+          ),
+          'activity' => 
+          array (
+            'name' => 'activity',
+            'default' => NULL,
+            'type' => 
+            array (
+              'class' => 'PHPStan\\BetterReflection\\Reflection\\ReflectionUnionType',
+              'data' => 
+              array (
+                'types' => 
+                array (
+                  0 => 
+                  array (
+                    'class' => 'PHPStan\\BetterReflection\\Reflection\\ReflectionNamedType',
+                    'data' => 
+                    array (
+                      'name' => 'App\\Domain\\Programme\\Models\\Activity',
+                      'isIdentifier' => false,
+                    ),
+                  ),
+                  1 => 
+                  array (
+                    'class' => 'PHPStan\\BetterReflection\\Reflection\\ReflectionNamedType',
+                    'data' => 
+                    array (
+                      'name' => 'null',
+                      'isIdentifier' => true,
+                    ),
+                  ),
+                ),
+              ),
+            ),
+            'isVariadic' => false,
+            'byRef' => false,
+            'isPromoted' => false,
+            'attributes' => 
+            array (
+            ),
+            'startLine' => 190,
+            'endLine' => 190,
+            'startColumn' => 9,
+            'endColumn' => 27,
+            'parameterIndex' => 2,
+            'isOptional' => false,
+          ),
+          'beneficiary' => 
+          array (
+            'name' => 'beneficiary',
+            'default' => NULL,
+            'type' => 
+            array (
+              'class' => 'PHPStan\\BetterReflection\\Reflection\\ReflectionNamedType',
+              'data' => 
+              array (
+                'name' => 'App\\Domain\\Registry\\Models\\Beneficiary',
+                'isIdentifier' => false,
+              ),
+            ),
+            'isVariadic' => false,
+            'byRef' => false,
+            'isPromoted' => false,
+            'attributes' => 
+            array (
+            ),
+            'startLine' => 191,
+            'endLine' => 191,
+            'startColumn' => 9,
+            'endColumn' => 32,
+            'parameterIndex' => 3,
+            'isOptional' => false,
+          ),
+          'household' => 
+          array (
+            'name' => 'household',
+            'default' => NULL,
+            'type' => 
+            array (
+              'class' => 'PHPStan\\BetterReflection\\Reflection\\ReflectionUnionType',
+              'data' => 
+              array (
+                'types' => 
+                array (
+                  0 => 
+                  array (
+                    'class' => 'PHPStan\\BetterReflection\\Reflection\\ReflectionNamedType',
+                    'data' => 
+                    array (
+                      'name' => 'App\\Domain\\Registry\\Models\\Household',
+                      'isIdentifier' => false,
+                    ),
+                  ),
+                  1 => 
+                  array (
+                    'class' => 'PHPStan\\BetterReflection\\Reflection\\ReflectionNamedType',
+                    'data' => 
+                    array (
+                      'name' => 'null',
+                      'isIdentifier' => true,
+                    ),
+                  ),
+                ),
+              ),
+            ),
+            'isVariadic' => false,
+            'byRef' => false,
+            'isPromoted' => false,
+            'attributes' => 
+            array (
+            ),
+            'startLine' => 192,
+            'endLine' => 192,
+            'startColumn' => 9,
+            'endColumn' => 29,
+            'parameterIndex' => 4,
+            'isOptional' => false,
+          ),
+          'actor' => 
+          array (
+            'name' => 'actor',
+            'default' => NULL,
+            'type' => 
+            array (
+              'class' => 'PHPStan\\BetterReflection\\Reflection\\ReflectionUnionType',
+              'data' => 
+              array (
+                'types' => 
+                array (
+                  0 => 
+                  array (
+                    'class' => 'PHPStan\\BetterReflection\\Reflection\\ReflectionNamedType',
+                    'data' => 
+                    array (
+                      'name' => 'App\\Domain\\Access\\Models\\User',
+                      'isIdentifier' => false,
+                    ),
+                  ),
+                  1 => 
+                  array (
+                    'class' => 'PHPStan\\BetterReflection\\Reflection\\ReflectionNamedType',
+                    'data' => 
+                    array (
+                      'name' => 'null',
+                      'isIdentifier' => true,
+                    ),
+                  ),
+                ),
+              ),
+            ),
+            'isVariadic' => false,
+            'byRef' => false,
+            'isPromoted' => false,
+            'attributes' => 
+            array (
+            ),
+            'startLine' => 193,
+            'endLine' => 193,
+            'startColumn' => 9,
+            'endColumn' => 20,
+            'parameterIndex' => 5,
+            'isOptional' => false,
+          ),
+        ),
+        'returnsReference' => false,
+        'returnType' => 
+        array (
+          'class' => 'PHPStan\\BetterReflection\\Reflection\\ReflectionNamedType',
+          'data' => 
+          array (
+            'name' => 'void',
+            'isIdentifier' => true,
+          ),
+        ),
+        'attributes' => 
+        array (
+        ),
+        'docComment' => '/**
+ * Record the resulting intervention under the batch\'s activity (§9,
+ * FR-REG-10/FR-PRG-05): an enrollment of the just-imported target into the
+ * activity\'s programme. Individual programmes enroll the beneficiary; household
+ * programmes enroll the formed household. Best-effort and idempotent — a
+ * duplicate/ineligible/type-mismatched target simply records no enrollment and
+ * never blocks the registry commit. Needs a confirming actor for attribution.
+ */',
+        'startLine' => 187,
+        'endLine' => 205,
         'startColumn' => 5,
         'endColumn' => 5,
         'couldThrow' => false,
@@ -527,8 +827,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             'attributes' => 
             array (
             ),
-            'startLine' => 162,
-            'endLine' => 162,
+            'startLine' => 208,
+            'endLine' => 208,
             'startColumn' => 28,
             'endColumn' => 41,
             'parameterIndex' => 0,
@@ -553,8 +853,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             'attributes' => 
             array (
             ),
-            'startLine' => 162,
-            'endLine' => 162,
+            'startLine' => 208,
+            'endLine' => 208,
             'startColumn' => 44,
             'endColumn' => 61,
             'parameterIndex' => 1,
@@ -579,8 +879,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             'attributes' => 
             array (
             ),
-            'startLine' => 162,
-            'endLine' => 162,
+            'startLine' => 208,
+            'endLine' => 208,
             'startColumn' => 64,
             'endColumn' => 97,
             'parameterIndex' => 2,
@@ -624,8 +924,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             'attributes' => 
             array (
             ),
-            'startLine' => 162,
-            'endLine' => 162,
+            'startLine' => 208,
+            'endLine' => 208,
             'startColumn' => 100,
             'endColumn' => 111,
             'parameterIndex' => 3,
@@ -646,8 +946,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         array (
         ),
         'docComment' => '/** Raise a request-to-serve for a LINK row — never creates a beneficiary. */',
-        'startLine' => 162,
-        'endLine' => 174,
+        'startLine' => 208,
+        'endLine' => 220,
         'startColumn' => 5,
         'endColumn' => 5,
         'couldThrow' => false,
@@ -685,8 +985,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             'attributes' => 
             array (
             ),
-            'startLine' => 176,
-            'endLine' => 176,
+            'startLine' => 222,
+            'endLine' => 222,
             'startColumn' => 28,
             'endColumn' => 39,
             'parameterIndex' => 0,
@@ -707,8 +1007,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         array (
         ),
         'docComment' => NULL,
-        'startLine' => 176,
-        'endLine' => 182,
+        'startLine' => 222,
+        'endLine' => 228,
         'startColumn' => 5,
         'endColumn' => 5,
         'couldThrow' => false,

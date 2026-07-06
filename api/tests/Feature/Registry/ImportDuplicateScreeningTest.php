@@ -9,6 +9,8 @@ use App\Domain\Access\Models\Mda;
 use App\Domain\Access\Models\Role;
 use App\Domain\Access\Models\User;
 use App\Domain\Access\Scopes\MdaScope;
+use App\Domain\Programme\Models\Activity;
+use App\Domain\Programme\Models\Programme;
 use App\Domain\Registry\Models\Beneficiary;
 use App\Domain\Registry\Models\ImportBatch;
 use Database\Seeders\MatchingConfigSeeder;
@@ -33,6 +35,8 @@ class ImportDuplicateScreeningTest extends TestCase
 
     private User $officer;
 
+    private Activity $activity;
+
     protected function setUp(): void
     {
         parent::setUp();
@@ -47,6 +51,9 @@ class ImportDuplicateScreeningTest extends TestCase
             'mda_id' => $this->mdaA->id,
             'role_id' => Role::where('key', RoleKey::MdaOfficer->value)->firstOrFail()->id,
         ]);
+        $this->activity = Activity::factory()->forProgramme(
+            Programme::factory()->individual()->create(['owner_mda_id' => $this->mdaA->id]),
+        )->create();
     }
 
     private function token(): string
@@ -74,7 +81,7 @@ class ImportDuplicateScreeningTest extends TestCase
         ]);
 
         $upload = $this->withToken($this->token())
-            ->post('/api/v1/beneficiaries/imports', ['file' => UploadedFile::fake()->createWithContent('people.csv', $csv)], ['Accept' => 'application/json'])
+            ->post('/api/v1/beneficiaries/imports', ['file' => UploadedFile::fake()->createWithContent('people.csv', $csv), 'activity_id' => $this->activity->id], ['Accept' => 'application/json'])
             ->assertCreated();
 
         $batchId = $upload->json('data.id');

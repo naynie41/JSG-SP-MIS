@@ -84,7 +84,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
     ),
     1 => 
     array (
-      '/var/www/html/app/Http/Resources/ImportBatchResource.php' => 'ce46515a205a64a685ba33918cd8f239a71b70fdde64b8c4e86e345018f8ec2c',
+      '/var/www/html/app/Http/Resources/ImportBatchResource.php' => '10a897edc02a43b9dfee75878a981a0001e762b8b3b17df438940b852801ae49',
     ),
   ),
 ));
