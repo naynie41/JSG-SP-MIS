@@ -19,10 +19,10 @@ export const STATUS_VARIANTS: Record<string, BadgeVariant> = {
   'match.ai': 'accent',
   'match.none': 'neutral',
 
-  // Request-to-serve lifecycle (FR-DUP-05)
-  'serve.pending': 'warning',
-  'serve.accepted': 'success',
-  'serve.declined': 'danger',
+  // Service Request lifecycle (§12, FR-OWN-06 · DESIGN-SYSTEM §5.8/§5.9)
+  'service_request.pending': 'warning',
+  'service_request.accepted': 'success',
+  'service_request.declined': 'danger',
 
   // Import row resolution (FR-DUP-05)
   'resolution.new': 'success',

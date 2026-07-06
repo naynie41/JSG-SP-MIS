@@ -2,7 +2,7 @@
 
 // odsl-/var/www/html/app/Domain/Registry/Enums/ImportRowResolution.php-PHPStan\BetterReflection\Reflection\ReflectionClass-App\Domain\Registry\Enums\ImportRowResolution
 return \PHPStan\Cache\CacheItem::__set_state(array(
-   'variableKey' => 'v2-6.70.0.1-8.3.31-8fbd368d9a76ef08c568e55e72405f54cac5c5f6ed0711367da81374414adacd',
+   'variableKey' => 'v2-6.70.0.1-8.3.31-fe4032867c0c8dcbade681b08155378bd774b1fd53b7b00d46268dfdea34bbf2',
    'data' => 
   array (
     'locatedSource' => 
@@ -23,20 +23,22 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
     'isBackedEnum' => true,
     'modifiers' => 0,
     'docComment' => '/**
- * How the importing officer resolved a flagged import row (PRD FR-DUP-05).
+ * How the importing officer resolved a flagged import row (PRD FR-DUP-05, §9).
  *
- * - New  — create a new beneficiary despite the potential duplicate (requires a
- *          justification).
- * - Link — do not create; request to serve the matched existing beneficiary.
- * - Skip — do nothing with this row.
+ * - New  — adjudicate as a DISTINCT person and create a new beneficiary (requires a
+ *          justification). Valid only for a **probable** (fuzzy) match; an exact
+ *          match is definitive and is never adjudicated as new.
+ * - Link — provide-service: do not create; raise a Service Request against the
+ *          matched existing beneficiary. Available at every band.
+ * - Skip — discard this row. Available at every band.
  *
  * A null resolution means "unresolved"; a non-flagged row defaults to New at commit.
  */',
     'attributes' => 
     array (
     ),
-    'startLine' => 17,
-    'endLine' => 22,
+    'startLine' => 19,
+    'endLine' => 24,
     'startColumn' => 1,
     'endColumn' => 1,
     'parentClassName' => NULL,
@@ -361,20 +363,20 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
           'code' => '\'new\'',
           'attributes' => 
           array (
-            'startLine' => 19,
-            'endLine' => 19,
+            'startLine' => 21,
+            'endLine' => 21,
             'startTokenPos' => 32,
-            'startFilePos' => 528,
+            'startFilePos' => 742,
             'endTokenPos' => 32,
-            'endFilePos' => 532,
+            'endFilePos' => 746,
           ),
         ),
         'attributes' => 
         array (
         ),
         'docComment' => NULL,
-        'startLine' => 19,
-        'endLine' => 19,
+        'startLine' => 21,
+        'endLine' => 21,
         'startColumn' => 5,
         'endColumn' => 21,
       ),
@@ -386,20 +388,20 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
           'code' => '\'link\'',
           'attributes' => 
           array (
-            'startLine' => 20,
-            'endLine' => 20,
+            'startLine' => 22,
+            'endLine' => 22,
             'startTokenPos' => 41,
-            'startFilePos' => 551,
+            'startFilePos' => 765,
             'endTokenPos' => 41,
-            'endFilePos' => 556,
+            'endFilePos' => 770,
           ),
         ),
         'attributes' => 
         array (
         ),
         'docComment' => NULL,
-        'startLine' => 20,
-        'endLine' => 20,
+        'startLine' => 22,
+        'endLine' => 22,
         'startColumn' => 5,
         'endColumn' => 23,
       ),
@@ -411,20 +413,20 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
           'code' => '\'skip\'',
           'attributes' => 
           array (
-            'startLine' => 21,
-            'endLine' => 21,
+            'startLine' => 23,
+            'endLine' => 23,
             'startTokenPos' => 50,
-            'startFilePos' => 575,
+            'startFilePos' => 789,
             'endTokenPos' => 50,
-            'endFilePos' => 580,
+            'endFilePos' => 794,
           ),
         ),
         'attributes' => 
         array (
         ),
         'docComment' => NULL,
-        'startLine' => 21,
-        'endLine' => 21,
+        'startLine' => 23,
+        'endLine' => 23,
         'startColumn' => 5,
         'endColumn' => 23,
       ),

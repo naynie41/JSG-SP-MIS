@@ -14,6 +14,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         array (
           'user' => 'App\\Domain\\Access\\Models\\User',
           'beneficiary' => 'App\\Domain\\Registry\\Models\\Beneficiary',
+          'servicerequestservice' => 'App\\Domain\\Registry\\Services\\ServiceRequestService',
         ),
          'className' => 'App\\Domain\\Registry\\Policies\\BeneficiaryPolicy',
          'functionName' => NULL,
@@ -38,6 +39,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         array (
           'user' => 'App\\Domain\\Access\\Models\\User',
           'beneficiary' => 'App\\Domain\\Registry\\Models\\Beneficiary',
+          'servicerequestservice' => 'App\\Domain\\Registry\\Services\\ServiceRequestService',
         ),
          'className' => 'App\\Domain\\Registry\\Policies\\BeneficiaryPolicy',
          'functionName' => 'owns',
@@ -51,6 +53,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
           array (
             'user' => 'App\\Domain\\Access\\Models\\User',
             'beneficiary' => 'App\\Domain\\Registry\\Models\\Beneficiary',
+            'servicerequestservice' => 'App\\Domain\\Registry\\Services\\ServiceRequestService',
           ),
            'className' => 'App\\Domain\\Registry\\Policies\\BeneficiaryPolicy',
            'functionName' => NULL,
@@ -85,6 +88,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         array (
           'user' => 'App\\Domain\\Access\\Models\\User',
           'beneficiary' => 'App\\Domain\\Registry\\Models\\Beneficiary',
+          'servicerequestservice' => 'App\\Domain\\Registry\\Services\\ServiceRequestService',
         ),
          'className' => 'App\\Domain\\Registry\\Policies\\BeneficiaryPolicy',
          'functionName' => 'viewAny',
@@ -98,6 +102,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
           array (
             'user' => 'App\\Domain\\Access\\Models\\User',
             'beneficiary' => 'App\\Domain\\Registry\\Models\\Beneficiary',
+            'servicerequestservice' => 'App\\Domain\\Registry\\Services\\ServiceRequestService',
           ),
            'className' => 'App\\Domain\\Registry\\Policies\\BeneficiaryPolicy',
            'functionName' => NULL,
@@ -132,6 +137,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         array (
           'user' => 'App\\Domain\\Access\\Models\\User',
           'beneficiary' => 'App\\Domain\\Registry\\Models\\Beneficiary',
+          'servicerequestservice' => 'App\\Domain\\Registry\\Services\\ServiceRequestService',
         ),
          'className' => 'App\\Domain\\Registry\\Policies\\BeneficiaryPolicy',
          'functionName' => 'view',
@@ -145,6 +151,56 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
           array (
             'user' => 'App\\Domain\\Access\\Models\\User',
             'beneficiary' => 'App\\Domain\\Registry\\Models\\Beneficiary',
+            'servicerequestservice' => 'App\\Domain\\Registry\\Services\\ServiceRequestService',
+          ),
+           'className' => 'App\\Domain\\Registry\\Policies\\BeneficiaryPolicy',
+           'functionName' => NULL,
+           'templatePhpDocNodes' => 
+          array (
+          ),
+           'parent' => NULL,
+           'typeAliasesMap' => 
+          array (
+          ),
+           'bypassTypeAliases' => false,
+           'constUses' => 
+          array (
+          ),
+           'typeAliasClassName' => NULL,
+           'traitData' => NULL,
+        )),
+         'typeAliasesMap' => 
+        array (
+        ),
+         'bypassTypeAliases' => false,
+         'constUses' => 
+        array (
+        ),
+         'typeAliasClassName' => NULL,
+         'traitData' => NULL,
+      )),
+      '4f584de4302b5df16fc087cd0e5dd16d' => 
+      \PHPStan\Analyser\IntermediaryNameScope::__set_state(array(
+         'namespace' => 'App\\Domain\\Registry\\Policies',
+         'uses' => 
+        array (
+          'user' => 'App\\Domain\\Access\\Models\\User',
+          'beneficiary' => 'App\\Domain\\Registry\\Models\\Beneficiary',
+          'servicerequestservice' => 'App\\Domain\\Registry\\Services\\ServiceRequestService',
+        ),
+         'className' => 'App\\Domain\\Registry\\Policies\\BeneficiaryPolicy',
+         'functionName' => 'hasServiceGrant',
+         'templatePhpDocNodes' => 
+        array (
+        ),
+         'parent' => 
+        \PHPStan\Analyser\IntermediaryNameScope::__set_state(array(
+           'namespace' => 'App\\Domain\\Registry\\Policies',
+           'uses' => 
+          array (
+            'user' => 'App\\Domain\\Access\\Models\\User',
+            'beneficiary' => 'App\\Domain\\Registry\\Models\\Beneficiary',
+            'servicerequestservice' => 'App\\Domain\\Registry\\Services\\ServiceRequestService',
           ),
            'className' => 'App\\Domain\\Registry\\Policies\\BeneficiaryPolicy',
            'functionName' => NULL,
@@ -179,6 +235,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         array (
           'user' => 'App\\Domain\\Access\\Models\\User',
           'beneficiary' => 'App\\Domain\\Registry\\Models\\Beneficiary',
+          'servicerequestservice' => 'App\\Domain\\Registry\\Services\\ServiceRequestService',
         ),
          'className' => 'App\\Domain\\Registry\\Policies\\BeneficiaryPolicy',
          'functionName' => 'create',
@@ -192,6 +249,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
           array (
             'user' => 'App\\Domain\\Access\\Models\\User',
             'beneficiary' => 'App\\Domain\\Registry\\Models\\Beneficiary',
+            'servicerequestservice' => 'App\\Domain\\Registry\\Services\\ServiceRequestService',
           ),
            'className' => 'App\\Domain\\Registry\\Policies\\BeneficiaryPolicy',
            'functionName' => NULL,
@@ -226,6 +284,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         array (
           'user' => 'App\\Domain\\Access\\Models\\User',
           'beneficiary' => 'App\\Domain\\Registry\\Models\\Beneficiary',
+          'servicerequestservice' => 'App\\Domain\\Registry\\Services\\ServiceRequestService',
         ),
          'className' => 'App\\Domain\\Registry\\Policies\\BeneficiaryPolicy',
          'functionName' => 'update',
@@ -239,6 +298,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
           array (
             'user' => 'App\\Domain\\Access\\Models\\User',
             'beneficiary' => 'App\\Domain\\Registry\\Models\\Beneficiary',
+            'servicerequestservice' => 'App\\Domain\\Registry\\Services\\ServiceRequestService',
           ),
            'className' => 'App\\Domain\\Registry\\Policies\\BeneficiaryPolicy',
            'functionName' => NULL,
@@ -273,6 +333,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         array (
           'user' => 'App\\Domain\\Access\\Models\\User',
           'beneficiary' => 'App\\Domain\\Registry\\Models\\Beneficiary',
+          'servicerequestservice' => 'App\\Domain\\Registry\\Services\\ServiceRequestService',
         ),
          'className' => 'App\\Domain\\Registry\\Policies\\BeneficiaryPolicy',
          'functionName' => 'delete',
@@ -286,6 +347,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
           array (
             'user' => 'App\\Domain\\Access\\Models\\User',
             'beneficiary' => 'App\\Domain\\Registry\\Models\\Beneficiary',
+            'servicerequestservice' => 'App\\Domain\\Registry\\Services\\ServiceRequestService',
           ),
            'className' => 'App\\Domain\\Registry\\Policies\\BeneficiaryPolicy',
            'functionName' => NULL,
@@ -320,6 +382,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         array (
           'user' => 'App\\Domain\\Access\\Models\\User',
           'beneficiary' => 'App\\Domain\\Registry\\Models\\Beneficiary',
+          'servicerequestservice' => 'App\\Domain\\Registry\\Services\\ServiceRequestService',
         ),
          'className' => 'App\\Domain\\Registry\\Policies\\BeneficiaryPolicy',
          'functionName' => 'lookup',
@@ -333,6 +396,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
           array (
             'user' => 'App\\Domain\\Access\\Models\\User',
             'beneficiary' => 'App\\Domain\\Registry\\Models\\Beneficiary',
+            'servicerequestservice' => 'App\\Domain\\Registry\\Services\\ServiceRequestService',
           ),
            'className' => 'App\\Domain\\Registry\\Policies\\BeneficiaryPolicy',
            'functionName' => NULL,
@@ -367,6 +431,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         array (
           'user' => 'App\\Domain\\Access\\Models\\User',
           'beneficiary' => 'App\\Domain\\Registry\\Models\\Beneficiary',
+          'servicerequestservice' => 'App\\Domain\\Registry\\Services\\ServiceRequestService',
         ),
          'className' => 'App\\Domain\\Registry\\Policies\\BeneficiaryPolicy',
          'functionName' => 'requestTransfer',
@@ -380,6 +445,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
           array (
             'user' => 'App\\Domain\\Access\\Models\\User',
             'beneficiary' => 'App\\Domain\\Registry\\Models\\Beneficiary',
+            'servicerequestservice' => 'App\\Domain\\Registry\\Services\\ServiceRequestService',
           ),
            'className' => 'App\\Domain\\Registry\\Policies\\BeneficiaryPolicy',
            'functionName' => NULL,
@@ -414,6 +480,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         array (
           'user' => 'App\\Domain\\Access\\Models\\User',
           'beneficiary' => 'App\\Domain\\Registry\\Models\\Beneficiary',
+          'servicerequestservice' => 'App\\Domain\\Registry\\Services\\ServiceRequestService',
         ),
          'className' => 'App\\Domain\\Registry\\Policies\\BeneficiaryPolicy',
          'functionName' => 'decideTransfer',
@@ -427,6 +494,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
           array (
             'user' => 'App\\Domain\\Access\\Models\\User',
             'beneficiary' => 'App\\Domain\\Registry\\Models\\Beneficiary',
+            'servicerequestservice' => 'App\\Domain\\Registry\\Services\\ServiceRequestService',
           ),
            'className' => 'App\\Domain\\Registry\\Policies\\BeneficiaryPolicy',
            'functionName' => NULL,
@@ -457,7 +525,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
     ),
     1 => 
     array (
-      '/var/www/html/app/Domain/Registry/Policies/BeneficiaryPolicy.php' => '1111934cdc945cc79eaa9d89eed189b0b7a258fc6448fa88a7c19e13bfe9d5d5',
+      '/var/www/html/app/Domain/Registry/Policies/BeneficiaryPolicy.php' => '05724e706f5bbb2fb9a397cd99990f83c5cfe362b8bc4d552a051c1d5e107ab2',
     ),
   ),
 ));

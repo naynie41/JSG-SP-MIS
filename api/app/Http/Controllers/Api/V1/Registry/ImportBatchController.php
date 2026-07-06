@@ -6,6 +6,7 @@ namespace App\Http\Controllers\Api\V1\Registry;
 
 use App\Domain\Access\Scopes\MdaScope;
 use App\Domain\Audit\Services\AuditLogger;
+use App\Domain\Matching\Enums\MatchBand;
 use App\Domain\Registry\Enums\ImportRowResolution;
 use App\Domain\Registry\Enums\ImportStatus;
 use App\Domain\Registry\Enums\RegistrationSource;
@@ -201,6 +202,18 @@ class ImportBatchController extends Controller
         $resolution = $request->enum('resolution', ImportRowResolution::class);
         $note = $request->input('note');
         $beneficiaryId = null;
+
+        // Adjudication ("same person / not") applies ONLY to probable (fuzzy) matches
+        // (§9). An EXACT match is definitive and is never adjudicated as a new person —
+        // only the provide-service (link) or discard (skip) choice remains.
+        if ($resolution === ImportRowResolution::New && $row->match_band === MatchBand::Exact->value) {
+            return ApiResponse::error(
+                'ADJUDICATION_NOT_ALLOWED',
+                'An exact match is definitive and cannot be adjudicated as a new person — choose provide-service or discard.',
+                [],
+                422,
+            );
+        }
 
         if ($resolution === ImportRowResolution::Link) {
             $beneficiaryId = (string) $request->input('beneficiary_id');

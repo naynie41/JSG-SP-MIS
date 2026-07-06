@@ -2,7 +2,7 @@
 
 // odsl-/var/www/html/app/Domain/Registry/Policies/BeneficiaryPolicy.php-PHPStan\BetterReflection\Reflection\ReflectionClass-App\Domain\Registry\Policies\BeneficiaryPolicy
 return \PHPStan\Cache\CacheItem::__set_state(array(
-   'variableKey' => 'v2-6.70.0.1-8.3.31-1111934cdc945cc79eaa9d89eed189b0b7a258fc6448fa88a7c19e13bfe9d5d5',
+   'variableKey' => 'v2-6.70.0.1-8.3.31-05724e706f5bbb2fb9a397cd99990f83c5cfe362b8bc4d552a051c1d5e107ab2',
    'data' => 
   array (
     'locatedSource' => 
@@ -32,8 +32,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
     'attributes' => 
     array (
     ),
-    'startLine' => 17,
-    'endLine' => 82,
+    'startLine' => 18,
+    'endLine' => 93,
     'startColumn' => 1,
     'endColumn' => 1,
     'parentClassName' => NULL,
@@ -75,8 +75,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             'attributes' => 
             array (
             ),
-            'startLine' => 19,
-            'endLine' => 19,
+            'startLine' => 20,
+            'endLine' => 20,
             'startColumn' => 27,
             'endColumn' => 36,
             'parameterIndex' => 0,
@@ -101,8 +101,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             'attributes' => 
             array (
             ),
-            'startLine' => 19,
-            'endLine' => 19,
+            'startLine' => 20,
+            'endLine' => 20,
             'startColumn' => 39,
             'endColumn' => 62,
             'parameterIndex' => 1,
@@ -123,8 +123,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         array (
         ),
         'docComment' => NULL,
-        'startLine' => 19,
-        'endLine' => 22,
+        'startLine' => 20,
+        'endLine' => 23,
         'startColumn' => 5,
         'endColumn' => 5,
         'couldThrow' => false,
@@ -162,8 +162,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             'attributes' => 
             array (
             ),
-            'startLine' => 24,
-            'endLine' => 24,
+            'startLine' => 25,
+            'endLine' => 25,
             'startColumn' => 29,
             'endColumn' => 38,
             'parameterIndex' => 0,
@@ -184,8 +184,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         array (
         ),
         'docComment' => NULL,
-        'startLine' => 24,
-        'endLine' => 27,
+        'startLine' => 25,
+        'endLine' => 28,
         'startColumn' => 5,
         'endColumn' => 5,
         'couldThrow' => false,
@@ -223,8 +223,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             'attributes' => 
             array (
             ),
-            'startLine' => 33,
-            'endLine' => 33,
+            'startLine' => 35,
+            'endLine' => 35,
             'startColumn' => 26,
             'endColumn' => 35,
             'parameterIndex' => 0,
@@ -249,8 +249,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             'attributes' => 
             array (
             ),
-            'startLine' => 33,
-            'endLine' => 33,
+            'startLine' => 35,
+            'endLine' => 35,
             'startColumn' => 38,
             'endColumn' => 61,
             'parameterIndex' => 1,
@@ -271,11 +271,12 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         array (
         ),
         'docComment' => '/**
- * Read a specific beneficiary: the owner, an oversight role, or (later) an
- * MDA with a service grant.
+ * Read a specific beneficiary: the owner, an oversight role, or an MDA that
+ * holds an active read-access grant from an accepted Service Request
+ * (§12, FR-OWN-07). READ only — this never confers edit.
  */',
-        'startLine' => 33,
-        'endLine' => 37,
+        'startLine' => 35,
+        'endLine' => 41,
         'startColumn' => 5,
         'endColumn' => 5,
         'couldThrow' => false,
@@ -283,6 +284,93 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         'isGenerator' => false,
         'isVariadic' => false,
         'modifiers' => 1,
+        'namespace' => 'App\\Domain\\Registry\\Policies',
+        'declaringClassName' => 'App\\Domain\\Registry\\Policies\\BeneficiaryPolicy',
+        'implementingClassName' => 'App\\Domain\\Registry\\Policies\\BeneficiaryPolicy',
+        'currentClassName' => 'App\\Domain\\Registry\\Policies\\BeneficiaryPolicy',
+        'aliasName' => NULL,
+      ),
+      'hasServiceGrant' => 
+      array (
+        'name' => 'hasServiceGrant',
+        'parameters' => 
+        array (
+          'user' => 
+          array (
+            'name' => 'user',
+            'default' => NULL,
+            'type' => 
+            array (
+              'class' => 'PHPStan\\BetterReflection\\Reflection\\ReflectionNamedType',
+              'data' => 
+              array (
+                'name' => 'App\\Domain\\Access\\Models\\User',
+                'isIdentifier' => false,
+              ),
+            ),
+            'isVariadic' => false,
+            'byRef' => false,
+            'isPromoted' => false,
+            'attributes' => 
+            array (
+            ),
+            'startLine' => 44,
+            'endLine' => 44,
+            'startColumn' => 38,
+            'endColumn' => 47,
+            'parameterIndex' => 0,
+            'isOptional' => false,
+          ),
+          'beneficiary' => 
+          array (
+            'name' => 'beneficiary',
+            'default' => NULL,
+            'type' => 
+            array (
+              'class' => 'PHPStan\\BetterReflection\\Reflection\\ReflectionNamedType',
+              'data' => 
+              array (
+                'name' => 'App\\Domain\\Registry\\Models\\Beneficiary',
+                'isIdentifier' => false,
+              ),
+            ),
+            'isVariadic' => false,
+            'byRef' => false,
+            'isPromoted' => false,
+            'attributes' => 
+            array (
+            ),
+            'startLine' => 44,
+            'endLine' => 44,
+            'startColumn' => 50,
+            'endColumn' => 73,
+            'parameterIndex' => 1,
+            'isOptional' => false,
+          ),
+        ),
+        'returnsReference' => false,
+        'returnType' => 
+        array (
+          'class' => 'PHPStan\\BetterReflection\\Reflection\\ReflectionNamedType',
+          'data' => 
+          array (
+            'name' => 'bool',
+            'isIdentifier' => true,
+          ),
+        ),
+        'attributes' => 
+        array (
+        ),
+        'docComment' => '/** An active read-access grant opened by an accepted Service Request. */',
+        'startLine' => 44,
+        'endLine' => 48,
+        'startColumn' => 5,
+        'endColumn' => 5,
+        'couldThrow' => false,
+        'isClosure' => false,
+        'isGenerator' => false,
+        'isVariadic' => false,
+        'modifiers' => 4,
         'namespace' => 'App\\Domain\\Registry\\Policies',
         'declaringClassName' => 'App\\Domain\\Registry\\Policies\\BeneficiaryPolicy',
         'implementingClassName' => 'App\\Domain\\Registry\\Policies\\BeneficiaryPolicy',
@@ -313,8 +401,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             'attributes' => 
             array (
             ),
-            'startLine' => 39,
-            'endLine' => 39,
+            'startLine' => 50,
+            'endLine' => 50,
             'startColumn' => 28,
             'endColumn' => 37,
             'parameterIndex' => 0,
@@ -335,8 +423,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         array (
         ),
         'docComment' => NULL,
-        'startLine' => 39,
-        'endLine' => 42,
+        'startLine' => 50,
+        'endLine' => 53,
         'startColumn' => 5,
         'endColumn' => 5,
         'couldThrow' => false,
@@ -374,8 +462,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             'attributes' => 
             array (
             ),
-            'startLine' => 47,
-            'endLine' => 47,
+            'startLine' => 58,
+            'endLine' => 58,
             'startColumn' => 28,
             'endColumn' => 37,
             'parameterIndex' => 0,
@@ -400,8 +488,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             'attributes' => 
             array (
             ),
-            'startLine' => 47,
-            'endLine' => 47,
+            'startLine' => 58,
+            'endLine' => 58,
             'startColumn' => 40,
             'endColumn' => 63,
             'parameterIndex' => 1,
@@ -424,8 +512,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         'docComment' => '/**
  * Owner-only edit (FR-OWN-02). cross-mda.view does NOT grant edit.
  */',
-        'startLine' => 47,
-        'endLine' => 50,
+        'startLine' => 58,
+        'endLine' => 61,
         'startColumn' => 5,
         'endColumn' => 5,
         'couldThrow' => false,
@@ -463,8 +551,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             'attributes' => 
             array (
             ),
-            'startLine' => 52,
-            'endLine' => 52,
+            'startLine' => 63,
+            'endLine' => 63,
             'startColumn' => 28,
             'endColumn' => 37,
             'parameterIndex' => 0,
@@ -489,8 +577,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             'attributes' => 
             array (
             ),
-            'startLine' => 52,
-            'endLine' => 52,
+            'startLine' => 63,
+            'endLine' => 63,
             'startColumn' => 40,
             'endColumn' => 63,
             'parameterIndex' => 1,
@@ -511,8 +599,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         array (
         ),
         'docComment' => NULL,
-        'startLine' => 52,
-        'endLine' => 55,
+        'startLine' => 63,
+        'endLine' => 66,
         'startColumn' => 5,
         'endColumn' => 5,
         'couldThrow' => false,
@@ -550,8 +638,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             'attributes' => 
             array (
             ),
-            'startLine' => 60,
-            'endLine' => 60,
+            'startLine' => 71,
+            'endLine' => 71,
             'startColumn' => 28,
             'endColumn' => 37,
             'parameterIndex' => 0,
@@ -574,8 +662,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         'docComment' => '/**
  * Use the cross-MDA lookup/serve path (FR-OWN-03) — reveal fields only.
  */',
-        'startLine' => 60,
-        'endLine' => 63,
+        'startLine' => 71,
+        'endLine' => 74,
         'startColumn' => 5,
         'endColumn' => 5,
         'couldThrow' => false,
@@ -613,8 +701,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             'attributes' => 
             array (
             ),
-            'startLine' => 68,
-            'endLine' => 68,
+            'startLine' => 79,
+            'endLine' => 79,
             'startColumn' => 37,
             'endColumn' => 46,
             'parameterIndex' => 0,
@@ -639,8 +727,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             'attributes' => 
             array (
             ),
-            'startLine' => 68,
-            'endLine' => 68,
+            'startLine' => 79,
+            'endLine' => 79,
             'startColumn' => 49,
             'endColumn' => 72,
             'parameterIndex' => 1,
@@ -663,8 +751,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         'docComment' => '/**
  * Request ownership of a beneficiary owned by another MDA (FR-OWN-05).
  */',
-        'startLine' => 68,
-        'endLine' => 73,
+        'startLine' => 79,
+        'endLine' => 84,
         'startColumn' => 5,
         'endColumn' => 5,
         'couldThrow' => false,
@@ -702,8 +790,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             'attributes' => 
             array (
             ),
-            'startLine' => 78,
-            'endLine' => 78,
+            'startLine' => 89,
+            'endLine' => 89,
             'startColumn' => 36,
             'endColumn' => 45,
             'parameterIndex' => 0,
@@ -728,8 +816,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             'attributes' => 
             array (
             ),
-            'startLine' => 78,
-            'endLine' => 78,
+            'startLine' => 89,
+            'endLine' => 89,
             'startColumn' => 48,
             'endColumn' => 71,
             'parameterIndex' => 1,
@@ -752,8 +840,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         'docComment' => '/**
  * Approve/reject a transfer — only the current owner MDA (FR-OWN-05).
  */',
-        'startLine' => 78,
-        'endLine' => 81,
+        'startLine' => 89,
+        'endLine' => 92,
         'startColumn' => 5,
         'endColumn' => 5,
         'couldThrow' => false,

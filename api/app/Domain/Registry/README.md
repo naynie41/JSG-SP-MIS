@@ -23,6 +23,27 @@ via `registration_source` + `import_batch_id` + `original_record_id`.
 > **membership management + history** remain available — only the create paths
 > were removed.
 
+## Service Request seam (§12, FR-OWN-06/07)
+
+Serving a **non-owned** beneficiary requires an **accepted Service Request** — not a
+mere reveal. A non-owner MDA raises a request against the owner MDA
+(`POST /service-requests`, or automatically from an import LINK resolution); the
+owner **accepts** or **declines** (a reason is required to decline). State machine:
+**pending → accepted | declined**.
+
+- **Ownership never moves** — accept/decline only change access, never
+  `beneficiaries.owner_mda_id`.
+- **Accept opens a read-access grant** (`BeneficiaryServiceGrant`, MDA-scoped to the
+  requester): the requester then READS the full record (`GET /beneficiaries/{id}`),
+  **read-only** — edit stays owner-only. It also authorizes serving (enroll /
+  benefit delivery); without the grant an intervention is refused
+  (`409 SERVICE_REQUEST_REQUIRED`).
+- **Audited**: `service_request.created` (Auditable), `service_request.accepted` /
+  `service_request.declined`, and `beneficiary.access_granted` on the grant.
+- **Distinct from the Referral flow** (outbound) and from ownership transfer
+  (which *does* move ownership). `OwnerMdaPolicy` gates the decision to the owner
+  MDA; either party reads via inbox/outbox.
+
 ## Identity vs non-identity validation (§9, FR-REG-05/09)
 
 A row's failures are split into two groups so a bad non-identity value never
@@ -156,6 +177,8 @@ row-level error reporting, and provenance stamping — no other changes required
 | **FR-OWN-03** Non-owner lookup / serve path | `BeneficiaryLookupService` + `BeneficiaryRevealResource`; UI `LookupModal` (reveal fields only) |
 | **FR-OWN-04** Auto-route / assign hook | `BeneficiaryRouter` → `ProgrammeMatchingRouter` (Phase 4): `GET /beneficiaries/{id}/routing-suggestions?need=`, `POST /beneficiaries/{id}/routing-assignments` — suggest-then-confirm, explicit + audited, never silent |
 | **FR-OWN-05** Ownership transfer with owner approval | `OwnershipTransferController` + `OwnershipTransferService` (request → approve/reject), audited |
+| **FR-OWN-06** Service Request (owner approves serving) | `ServiceRequest` + `ServiceRequestService` + `ServiceRequestController` + `OwnerMdaPolicy`; `POST /service-requests`, `/{id}/accept|decline`, `GET .../inbox|outbox`. State machine pending → accepted \| declined; decline needs a reason. Serving a non-owned beneficiary requires an accepted request (else `409 SERVICE_REQUEST_REQUIRED`) |
+| **FR-OWN-07** Read-access grant on accept | Accept opens a `BeneficiaryServiceGrant` (MDA-scoped) → the requester READS the full record (`BeneficiaryController@show` + `BeneficiaryPolicy@view`), never edits; audited `beneficiary.access_granted`. Ownership never moves |
 
 Households (PRD §9): `HouseholdController` + `HouseholdMembershipService` keep full
 membership history — a single open membership per beneficiary is enforced; move

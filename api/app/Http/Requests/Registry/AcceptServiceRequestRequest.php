@@ -7,11 +7,10 @@ namespace App\Http\Requests\Registry;
 use Illuminate\Foundation\Http\FormRequest;
 
 /**
- * Raise a request-to-serve an existing (non-owned) beneficiary from a search
- * result (PRD FR-DUP-05, FR-OWN-03). The target is identified by id; ownership is
- * never transferred.
+ * Owner MDA accepts a Service Request (PRD §12, FR-OWN-06). A note is optional on
+ * acceptance (a reason is only mandatory when declining).
  */
-class RaiseServeRequestRequest extends FormRequest
+class AcceptServiceRequestRequest extends FormRequest
 {
     public function authorize(): bool
     {
@@ -24,7 +23,6 @@ class RaiseServeRequestRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'beneficiary_id' => ['required', 'uuid'],
             'reason' => ['nullable', 'string', 'max:1000'],
         ];
     }

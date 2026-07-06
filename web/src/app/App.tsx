@@ -16,7 +16,7 @@ import { HouseholdDetailPage } from '@/features/registry/HouseholdDetailPage'
 import { ImportListPage } from '@/features/registry/ImportListPage'
 import { ImportBatchPage } from '@/features/registry/ImportBatchPage'
 import { DuplicateSearchPage } from '@/features/registry/DuplicateSearchPage'
-import { ServeRequestsPage } from '@/features/registry/ServeRequestsPage'
+import { ServiceRequestsPage } from '@/features/registry/ServiceRequestsPage'
 import { MatchingConfigPage } from '@/features/registry/MatchingConfigPage'
 import { ProgrammeListPage } from '@/features/programmes/ProgrammeListPage'
 import { ProgrammeDetailPage } from '@/features/programmes/ProgrammeDetailPage'
@@ -69,7 +69,7 @@ export function App() {
         <Route path="/imports" element={<ImportListPage />} />
         <Route path="/imports/:id" element={<ImportBatchPage />} />
         <Route path="/duplicate-search" element={<DuplicateSearchPage />} />
-        <Route path="/serve-requests" element={<ServeRequestsPage />} />
+        <Route path="/service-requests" element={<ServiceRequestsPage />} />
         <Route path="/matching" element={<MatchingConfigPage />} />
         <Route path="/programmes" element={<ProgrammeListPage />} />
         <Route path="/programmes/:id" element={<ProgrammeDetailPage />} />

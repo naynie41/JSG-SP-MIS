@@ -2,7 +2,7 @@
 
 // odsl-/var/www/html/app/Domain/Matching/Engine/DeterministicMatcher.php-PHPStan\BetterReflection\Reflection\ReflectionClass-App\Domain\Matching\Engine\DeterministicMatcher
 return \PHPStan\Cache\CacheItem::__set_state(array(
-   'variableKey' => 'v2-6.70.0.1-8.3.31-0085d2d8c39e287423348cc5a81270149dd5946fb037a8959ac7a4f8215c60c4',
+   'variableKey' => 'v2-6.70.0.1-8.3.31-25fc4f37a1954d18b8089bb06b47f564ad2b37c1f468b7dc0b17c376efd6f035',
    'data' => 
   array (
     'locatedSource' => 
@@ -36,7 +36,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
     array (
     ),
     'startLine' => 22,
-    'endLine' => 105,
+    'endLine' => 119,
     'startColumn' => 1,
     'endColumn' => 1,
     'parentClassName' => NULL,
@@ -241,7 +241,129 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
  * @return list<MatchResult> exact matches only
  */',
         'startLine' => 31,
-        'endLine' => 53,
+        'endLine' => 34,
+        'startColumn' => 5,
+        'endColumn' => 5,
+        'couldThrow' => false,
+        'isClosure' => false,
+        'isGenerator' => false,
+        'isVariadic' => false,
+        'modifiers' => 1,
+        'namespace' => 'App\\Domain\\Matching\\Engine',
+        'declaringClassName' => 'App\\Domain\\Matching\\Engine\\DeterministicMatcher',
+        'implementingClassName' => 'App\\Domain\\Matching\\Engine\\DeterministicMatcher',
+        'currentClassName' => 'App\\Domain\\Matching\\Engine\\DeterministicMatcher',
+        'aliasName' => NULL,
+      ),
+      'matchKeySets' => 
+      array (
+        'name' => 'matchKeySets',
+        'parameters' => 
+        array (
+          'candidate' => 
+          array (
+            'name' => 'candidate',
+            'default' => NULL,
+            'type' => 
+            array (
+              'class' => 'PHPStan\\BetterReflection\\Reflection\\ReflectionNamedType',
+              'data' => 
+              array (
+                'name' => 'array',
+                'isIdentifier' => true,
+              ),
+            ),
+            'isVariadic' => false,
+            'byRef' => false,
+            'isPromoted' => false,
+            'attributes' => 
+            array (
+            ),
+            'startLine' => 46,
+            'endLine' => 46,
+            'startColumn' => 34,
+            'endColumn' => 49,
+            'parameterIndex' => 0,
+            'isOptional' => false,
+          ),
+          'existing' => 
+          array (
+            'name' => 'existing',
+            'default' => NULL,
+            'type' => 
+            array (
+              'class' => 'PHPStan\\BetterReflection\\Reflection\\ReflectionNamedType',
+              'data' => 
+              array (
+                'name' => 'iterable',
+                'isIdentifier' => true,
+              ),
+            ),
+            'isVariadic' => false,
+            'byRef' => false,
+            'isPromoted' => false,
+            'attributes' => 
+            array (
+            ),
+            'startLine' => 46,
+            'endLine' => 46,
+            'startColumn' => 52,
+            'endColumn' => 69,
+            'parameterIndex' => 1,
+            'isOptional' => false,
+          ),
+          'keySets' => 
+          array (
+            'name' => 'keySets',
+            'default' => NULL,
+            'type' => 
+            array (
+              'class' => 'PHPStan\\BetterReflection\\Reflection\\ReflectionNamedType',
+              'data' => 
+              array (
+                'name' => 'array',
+                'isIdentifier' => true,
+              ),
+            ),
+            'isVariadic' => false,
+            'byRef' => false,
+            'isPromoted' => false,
+            'attributes' => 
+            array (
+            ),
+            'startLine' => 46,
+            'endLine' => 46,
+            'startColumn' => 72,
+            'endColumn' => 85,
+            'parameterIndex' => 2,
+            'isOptional' => false,
+          ),
+        ),
+        'returnsReference' => false,
+        'returnType' => 
+        array (
+          'class' => 'PHPStan\\BetterReflection\\Reflection\\ReflectionNamedType',
+          'data' => 
+          array (
+            'name' => 'array',
+            'isIdentifier' => true,
+          ),
+        ),
+        'attributes' => 
+        array (
+        ),
+        'docComment' => '/**
+ * Match against an explicit, ordered list of key sets — used by the cascade to
+ * evaluate one stage at a time (e.g. just `[nin]`) so it can stop at the first
+ * exact stage (PRD §9). Absent candidate keys never fire.
+ *
+ * @param  array<string, mixed>  $candidate
+ * @param  iterable<array<string, mixed>>  $existing  each may carry an `id`
+ * @param  list<list<string>>  $keySets
+ * @return list<MatchResult> exact matches only
+ */',
+        'startLine' => 46,
+        'endLine' => 67,
         'startColumn' => 5,
         'endColumn' => 5,
         'couldThrow' => false,
@@ -279,8 +401,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             'attributes' => 
             array (
             ),
-            'startLine' => 61,
-            'endLine' => 61,
+            'startLine' => 75,
+            'endLine' => 75,
             'startColumn' => 35,
             'endColumn' => 48,
             'parameterIndex' => 0,
@@ -305,8 +427,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             'attributes' => 
             array (
             ),
-            'startLine' => 61,
-            'endLine' => 61,
+            'startLine' => 75,
+            'endLine' => 75,
             'startColumn' => 51,
             'endColumn' => 76,
             'parameterIndex' => 1,
@@ -331,8 +453,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             'attributes' => 
             array (
             ),
-            'startLine' => 61,
-            'endLine' => 61,
+            'startLine' => 75,
+            'endLine' => 75,
             'startColumn' => 79,
             'endColumn' => 91,
             'parameterIndex' => 2,
@@ -358,8 +480,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
  * @param  array<string, mixed>  $record
  * @return list<list<string>> the key sets that matched
  */',
-        'startLine' => 61,
-        'endLine' => 85,
+        'startLine' => 75,
+        'endLine' => 99,
         'startColumn' => 5,
         'endColumn' => 5,
         'couldThrow' => false,
@@ -397,8 +519,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             'attributes' => 
             array (
             ),
-            'startLine' => 92,
-            'endLine' => 92,
+            'startLine' => 106,
+            'endLine' => 106,
             'startColumn' => 45,
             'endColumn' => 60,
             'parameterIndex' => 0,
@@ -423,8 +545,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             'attributes' => 
             array (
             ),
-            'startLine' => 92,
-            'endLine' => 92,
+            'startLine' => 106,
+            'endLine' => 106,
             'startColumn' => 63,
             'endColumn' => 76,
             'parameterIndex' => 1,
@@ -449,8 +571,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
  * @param  list<list<string>>  $keySets
  * @return array<string, string|null>
  */',
-        'startLine' => 92,
-        'endLine' => 104,
+        'startLine' => 106,
+        'endLine' => 118,
         'startColumn' => 5,
         'endColumn' => 5,
         'couldThrow' => false,

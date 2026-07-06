@@ -2,7 +2,7 @@
 
 // odsl-/var/www/html/app/Http/Controllers/Api/V1/Registry/BeneficiaryController.php-PHPStan\BetterReflection\Reflection\ReflectionClass-App\Http\Controllers\Api\V1\Registry\BeneficiaryController
 return \PHPStan\Cache\CacheItem::__set_state(array(
-   'variableKey' => 'v2-6.70.0.1-8.3.31-1fc22dead786de1d7ae79e2423506f5e8b3ad69d64949cbff8259324dc693324',
+   'variableKey' => 'v2-6.70.0.1-8.3.31-62cd49791682ee7f6cd8a0647bdb39a80e0be2d87c1c860d61945f7e5d25dff9',
    'data' => 
   array (
     'locatedSource' => 
@@ -32,8 +32,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
     'attributes' => 
     array (
     ),
-    'startLine' => 32,
-    'endLine' => 170,
+    'startLine' => 33,
+    'endLine' => 186,
     'startColumn' => 1,
     'endColumn' => 1,
     'parentClassName' => 'App\\Http\\Controllers\\Controller',
@@ -75,8 +75,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             'attributes' => 
             array (
             ),
-            'startLine' => 39,
-            'endLine' => 39,
+            'startLine' => 40,
+            'endLine' => 40,
             'startColumn' => 27,
             'endColumn' => 42,
             'parameterIndex' => 0,
@@ -101,8 +101,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
  * search and LGA/Ward/status filters (FR-REG-04). Search matches name or the
  * exact NIN/BVN; filters use the documented `filter[...]` params.
  */',
-        'startLine' => 39,
-        'endLine' => 69,
+        'startLine' => 40,
+        'endLine' => 70,
         'startColumn' => 5,
         'endColumn' => 5,
         'couldThrow' => false,
@@ -121,6 +121,32 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         'name' => 'show',
         'parameters' => 
         array (
+          'request' => 
+          array (
+            'name' => 'request',
+            'default' => NULL,
+            'type' => 
+            array (
+              'class' => 'PHPStan\\BetterReflection\\Reflection\\ReflectionNamedType',
+              'data' => 
+              array (
+                'name' => 'Illuminate\\Http\\Request',
+                'isIdentifier' => false,
+              ),
+            ),
+            'isVariadic' => false,
+            'byRef' => false,
+            'isPromoted' => false,
+            'attributes' => 
+            array (
+            ),
+            'startLine' => 78,
+            'endLine' => 78,
+            'startColumn' => 26,
+            'endColumn' => 41,
+            'parameterIndex' => 0,
+            'isOptional' => false,
+          ),
           'beneficiary' => 
           array (
             'name' => 'beneficiary',
@@ -140,11 +166,11 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             'attributes' => 
             array (
             ),
-            'startLine' => 72,
-            'endLine' => 72,
-            'startColumn' => 26,
-            'endColumn' => 44,
-            'parameterIndex' => 0,
+            'startLine' => 78,
+            'endLine' => 78,
+            'startColumn' => 44,
+            'endColumn' => 62,
+            'parameterIndex' => 1,
             'isOptional' => false,
           ),
         ),
@@ -161,9 +187,14 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         'attributes' => 
         array (
         ),
-        'docComment' => '/** Show a single beneficiary. Out-of-scope records 404 via the global scope. */',
-        'startLine' => 72,
-        'endLine' => 81,
+        'docComment' => '/**
+ * Show a single beneficiary. Owner + oversight resolve via the global scope. A
+ * non-owner MDA holding an active read-access grant from an accepted Service
+ * Request (§12, FR-OWN-07) reads the FULL record (read-only). Any other
+ * out-of-scope record still 404s.
+ */',
+        'startLine' => 78,
+        'endLine' => 97,
         'startColumn' => 5,
         'endColumn' => 5,
         'couldThrow' => false,
@@ -201,8 +232,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             'attributes' => 
             array (
             ),
-            'startLine' => 88,
-            'endLine' => 88,
+            'startLine' => 104,
+            'endLine' => 104,
             'startColumn' => 28,
             'endColumn' => 60,
             'parameterIndex' => 0,
@@ -227,8 +258,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             'attributes' => 
             array (
             ),
-            'startLine' => 88,
-            'endLine' => 88,
+            'startLine' => 104,
+            'endLine' => 104,
             'startColumn' => 63,
             'endColumn' => 81,
             'parameterIndex' => 1,
@@ -253,8 +284,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
  * without the owner scope so a non-owner gets 403 (not 404): the policy is
  * the boundary, and non-owners can already see the record via the lookup seam.
  */',
-        'startLine' => 88,
-        'endLine' => 97,
+        'startLine' => 104,
+        'endLine' => 113,
         'startColumn' => 5,
         'endColumn' => 5,
         'couldThrow' => false,
@@ -292,8 +323,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             'attributes' => 
             array (
             ),
-            'startLine' => 100,
-            'endLine' => 100,
+            'startLine' => 116,
+            'endLine' => 116,
             'startColumn' => 29,
             'endColumn' => 47,
             'parameterIndex' => 0,
@@ -314,8 +345,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         array (
         ),
         'docComment' => '/** Soft-delete a beneficiary — owner MDA only, audited. */',
-        'startLine' => 100,
-        'endLine' => 109,
+        'startLine' => 116,
+        'endLine' => 125,
         'startColumn' => 5,
         'endColumn' => 5,
         'couldThrow' => false,
@@ -353,8 +384,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             'attributes' => 
             array (
             ),
-            'startLine' => 115,
-            'endLine' => 115,
+            'startLine' => 131,
+            'endLine' => 131,
             'startColumn' => 28,
             'endColumn' => 60,
             'parameterIndex' => 0,
@@ -379,8 +410,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             'attributes' => 
             array (
             ),
-            'startLine' => 115,
-            'endLine' => 115,
+            'startLine' => 131,
+            'endLine' => 131,
             'startColumn' => 63,
             'endColumn' => 94,
             'parameterIndex' => 1,
@@ -404,8 +435,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
  * Cross-MDA lookup/serve path (FR-OWN-03): exact-identifier search returning
  * only the reveal fields. Route middleware enforces beneficiary-lookup.view.
  */',
-        'startLine' => 115,
-        'endLine' => 124,
+        'startLine' => 131,
+        'endLine' => 140,
         'startColumn' => 5,
         'endColumn' => 5,
         'couldThrow' => false,
@@ -443,8 +474,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             'attributes' => 
             array (
             ),
-            'startLine' => 134,
-            'endLine' => 134,
+            'startLine' => 150,
+            'endLine' => 150,
             'startColumn' => 9,
             'endColumn' => 46,
             'parameterIndex' => 0,
@@ -469,8 +500,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             'attributes' => 
             array (
             ),
-            'startLine' => 135,
-            'endLine' => 135,
+            'startLine' => 151,
+            'endLine' => 151,
             'startColumn' => 9,
             'endColumn' => 36,
             'parameterIndex' => 1,
@@ -495,8 +526,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             'attributes' => 
             array (
             ),
-            'startLine' => 136,
-            'endLine' => 136,
+            'startLine' => 152,
+            'endLine' => 152,
             'startColumn' => 9,
             'endColumn' => 38,
             'parameterIndex' => 2,
@@ -521,8 +552,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             'attributes' => 
             array (
             ),
-            'startLine' => 137,
-            'endLine' => 137,
+            'startLine' => 153,
+            'endLine' => 153,
             'startColumn' => 9,
             'endColumn' => 26,
             'parameterIndex' => 3,
@@ -546,11 +577,11 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
  * Fuzzy "serve many" search (FR-DUP-04): runs the SAME engine as import
  * screening against partial identity details and returns ranked candidates
  * (exact + probable) as reveal-only projections, across all MDAs. From a
- * result the caller can raise a request-to-serve (see ServeRequestController).
+ * result the caller can raise a Service Request (see ServiceRequestController).
  * Read-only and audited (identifiers used + hit count, never their values).
  */',
-        'startLine' => 133,
-        'endLine' => 169,
+        'startLine' => 149,
+        'endLine' => 185,
         'startColumn' => 5,
         'endColumn' => 5,
         'couldThrow' => false,

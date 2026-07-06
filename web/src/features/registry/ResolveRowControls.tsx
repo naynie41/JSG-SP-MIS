@@ -19,18 +19,24 @@ interface ResolveRowControlsProps {
 }
 
 /**
- * Per-row resolution controls for a flagged import row (PRD FR-DUP-05): create as
- * NEW (justification required), LINK / request-to-serve an existing record (no
- * duplicate; raises a serve request on commit), or SKIP. The decision is saved and
- * audited immediately; the effect is applied when the batch is confirmed.
+ * Per-row resolution controls for a flagged import row (PRD FR-DUP-05/09, §9;
+ * DESIGN-SYSTEM §5.9). The same-person **adjudication** control ("create as new /
+ * distinct person") is shown ONLY for **probable** (fuzzy) matches. An **exact**
+ * match is definitive and is never adjudicated — only the discard (skip) /
+ * provide-service (link → Service Request) choice remains, which is available at
+ * every band. The decision is saved + audited immediately; applied on commit.
  */
 export function ResolveRowControls({ batchId, row, canResolve }: ResolveRowControlsProps) {
   const resolve = useResolveRow(batchId)
   const registryCandidates = row.match.candidates.filter((c) => c.type === 'registry' && c.reveal?.id)
   const canLink = registryCandidates.length > 0
 
+  // Adjudication is gated by band: an exact match cannot be resolved as "new".
+  const isExact = row.match.band === 'exact'
+  const canAdjudicate = !isExact
+
   const [resolution, setResolution] = useState<ImportRowResolution>(
-    row.resolution ?? (canLink ? 'link' : 'new'),
+    row.resolution ?? (canLink ? 'link' : canAdjudicate ? 'new' : 'skip'),
   )
   const [note, setNote] = useState(row.resolution_note ?? '')
   const [beneficiaryId, setBeneficiaryId] = useState(
@@ -42,10 +48,14 @@ export function ResolveRowControls({ batchId, row, canResolve }: ResolveRowContr
     return <p className={styles.note}>You do not have permission to resolve rows.</p>
   }
 
+  // Discard / provide-service are always available; "create as new" (adjudicate a
+  // distinct person) is offered only for probable matches (DESIGN-SYSTEM §5.9).
   const options: RadioOption[] = [
-    { value: 'new', label: 'Create as new — justification required' },
-    { value: 'link', label: 'Link / request-to-serve existing', disabled: !canLink },
-    { value: 'skip', label: 'Skip this row' },
+    ...(canAdjudicate
+      ? [{ value: 'new', label: 'Not the same person — create new (justification required)' }]
+      : []),
+    { value: 'link', label: 'Provide service — link to existing (request to serve)', disabled: !canLink },
+    { value: 'skip', label: 'Discard this row' },
   ]
 
   async function save() {
@@ -86,6 +96,13 @@ export function ResolveRowControls({ batchId, row, canResolve }: ResolveRowContr
       {error && (
         <p className={formStyles.alert} role="alert">
           {error}
+        </p>
+      )}
+
+      {isExact && (
+        <p className={styles.note}>
+          Exact match — definitively the same person. Choose whether to provide service or discard;
+          a new record cannot be created for an exact match.
         </p>
       )}
 

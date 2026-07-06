@@ -4,14 +4,14 @@ declare(strict_types=1);
 
 namespace App\Http\Resources;
 
-use App\Domain\Registry\Models\ServeRequest;
+use App\Domain\Registry\Models\ServiceRequest;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
 
 /**
- * @mixin ServeRequest
+ * @mixin ServiceRequest
  */
-class ServeRequestResource extends JsonResource
+class ServiceRequestResource extends JsonResource
 {
     /**
      * @return array<string, mixed>

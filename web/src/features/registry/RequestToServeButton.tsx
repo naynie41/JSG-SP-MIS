@@ -4,7 +4,7 @@ import { Button } from '@/components/Button/Button'
 import { Modal } from '@/components/Modal/Modal'
 import { TextareaField } from '@/components/Field/TextareaField'
 import { ApiError } from '@/types/api'
-import { useRaiseServeRequest } from './hooks'
+import { useRaiseServiceRequest } from './hooks'
 import formStyles from '@/features/shared/formLayout.module.css'
 import styles from './registry.module.css'
 
@@ -21,7 +21,7 @@ interface RequestToServeButtonProps {
  * request is routed to the owner MDA for approval and never transfers ownership.
  */
 export function RequestToServeButton({ beneficiaryId, disabledReason, size = 'sm' }: RequestToServeButtonProps) {
-  const raise = useRaiseServeRequest()
+  const raise = useRaiseServiceRequest()
   const [open, setOpen] = useState(false)
   const [reason, setReason] = useState('')
   const [error, setError] = useState<string | null>(null)

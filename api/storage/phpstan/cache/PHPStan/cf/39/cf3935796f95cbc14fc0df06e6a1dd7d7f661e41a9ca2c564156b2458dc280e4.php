@@ -12,9 +12,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
          'namespace' => 'App\\Domain\\Registry\\Services',
          'uses' => 
         array (
-          'matchingengine' => 'App\\Domain\\Matching\\Engine\\MatchingEngine',
+          'duplicatecascade' => 'App\\Domain\\Matching\\Engine\\DuplicateCascade',
           'matchresult' => 'App\\Domain\\Matching\\Engine\\MatchResult',
-          'matchband' => 'App\\Domain\\Matching\\Enums\\MatchBand',
           'matchingconfig' => 'App\\Domain\\Matching\\Models\\MatchingConfig',
           'fieldnormalizer' => 'App\\Domain\\Matching\\Scoring\\FieldNormalizer',
           'beneficiary' => 'App\\Domain\\Registry\\Models\\Beneficiary',
@@ -40,9 +39,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
          'namespace' => 'App\\Domain\\Registry\\Services',
          'uses' => 
         array (
-          'matchingengine' => 'App\\Domain\\Matching\\Engine\\MatchingEngine',
+          'duplicatecascade' => 'App\\Domain\\Matching\\Engine\\DuplicateCascade',
           'matchresult' => 'App\\Domain\\Matching\\Engine\\MatchResult',
-          'matchband' => 'App\\Domain\\Matching\\Enums\\MatchBand',
           'matchingconfig' => 'App\\Domain\\Matching\\Models\\MatchingConfig',
           'fieldnormalizer' => 'App\\Domain\\Matching\\Scoring\\FieldNormalizer',
           'beneficiary' => 'App\\Domain\\Registry\\Models\\Beneficiary',
@@ -57,9 +55,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
            'namespace' => 'App\\Domain\\Registry\\Services',
            'uses' => 
           array (
-            'matchingengine' => 'App\\Domain\\Matching\\Engine\\MatchingEngine',
+            'duplicatecascade' => 'App\\Domain\\Matching\\Engine\\DuplicateCascade',
             'matchresult' => 'App\\Domain\\Matching\\Engine\\MatchResult',
-            'matchband' => 'App\\Domain\\Matching\\Enums\\MatchBand',
             'matchingconfig' => 'App\\Domain\\Matching\\Models\\MatchingConfig',
             'fieldnormalizer' => 'App\\Domain\\Matching\\Scoring\\FieldNormalizer',
             'beneficiary' => 'App\\Domain\\Registry\\Models\\Beneficiary',
@@ -95,9 +92,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
          'namespace' => 'App\\Domain\\Registry\\Services',
          'uses' => 
         array (
-          'matchingengine' => 'App\\Domain\\Matching\\Engine\\MatchingEngine',
+          'duplicatecascade' => 'App\\Domain\\Matching\\Engine\\DuplicateCascade',
           'matchresult' => 'App\\Domain\\Matching\\Engine\\MatchResult',
-          'matchband' => 'App\\Domain\\Matching\\Enums\\MatchBand',
           'matchingconfig' => 'App\\Domain\\Matching\\Models\\MatchingConfig',
           'fieldnormalizer' => 'App\\Domain\\Matching\\Scoring\\FieldNormalizer',
           'beneficiary' => 'App\\Domain\\Registry\\Models\\Beneficiary',
@@ -112,9 +108,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
            'namespace' => 'App\\Domain\\Registry\\Services',
            'uses' => 
           array (
-            'matchingengine' => 'App\\Domain\\Matching\\Engine\\MatchingEngine',
+            'duplicatecascade' => 'App\\Domain\\Matching\\Engine\\DuplicateCascade',
             'matchresult' => 'App\\Domain\\Matching\\Engine\\MatchResult',
-            'matchband' => 'App\\Domain\\Matching\\Enums\\MatchBand',
             'matchingconfig' => 'App\\Domain\\Matching\\Models\\MatchingConfig',
             'fieldnormalizer' => 'App\\Domain\\Matching\\Scoring\\FieldNormalizer',
             'beneficiary' => 'App\\Domain\\Registry\\Models\\Beneficiary',
@@ -145,20 +140,19 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
          'typeAliasClassName' => NULL,
          'traitData' => NULL,
       )),
-      '3e060836d99d1277f16722d8f5961758' => 
+      '414060eca815031ccf0c216506b347ae' => 
       \PHPStan\Analyser\IntermediaryNameScope::__set_state(array(
          'namespace' => 'App\\Domain\\Registry\\Services',
          'uses' => 
         array (
-          'matchingengine' => 'App\\Domain\\Matching\\Engine\\MatchingEngine',
+          'duplicatecascade' => 'App\\Domain\\Matching\\Engine\\DuplicateCascade',
           'matchresult' => 'App\\Domain\\Matching\\Engine\\MatchResult',
-          'matchband' => 'App\\Domain\\Matching\\Enums\\MatchBand',
           'matchingconfig' => 'App\\Domain\\Matching\\Models\\MatchingConfig',
           'fieldnormalizer' => 'App\\Domain\\Matching\\Scoring\\FieldNormalizer',
           'beneficiary' => 'App\\Domain\\Registry\\Models\\Beneficiary',
         ),
          'className' => 'App\\Domain\\Registry\\Services\\BatchDuplicateScreener',
-         'functionName' => 'matchWithinBatch',
+         'functionName' => 'batchRecords',
          'templatePhpDocNodes' => 
         array (
         ),
@@ -167,9 +161,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
            'namespace' => 'App\\Domain\\Registry\\Services',
            'uses' => 
           array (
-            'matchingengine' => 'App\\Domain\\Matching\\Engine\\MatchingEngine',
+            'duplicatecascade' => 'App\\Domain\\Matching\\Engine\\DuplicateCascade',
             'matchresult' => 'App\\Domain\\Matching\\Engine\\MatchResult',
-            'matchband' => 'App\\Domain\\Matching\\Enums\\MatchBand',
             'matchingconfig' => 'App\\Domain\\Matching\\Models\\MatchingConfig',
             'fieldnormalizer' => 'App\\Domain\\Matching\\Scoring\\FieldNormalizer',
             'beneficiary' => 'App\\Domain\\Registry\\Models\\Beneficiary',
@@ -205,9 +198,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
          'namespace' => 'App\\Domain\\Registry\\Services',
          'uses' => 
         array (
-          'matchingengine' => 'App\\Domain\\Matching\\Engine\\MatchingEngine',
+          'duplicatecascade' => 'App\\Domain\\Matching\\Engine\\DuplicateCascade',
           'matchresult' => 'App\\Domain\\Matching\\Engine\\MatchResult',
-          'matchband' => 'App\\Domain\\Matching\\Enums\\MatchBand',
           'matchingconfig' => 'App\\Domain\\Matching\\Models\\MatchingConfig',
           'fieldnormalizer' => 'App\\Domain\\Matching\\Scoring\\FieldNormalizer',
           'beneficiary' => 'App\\Domain\\Registry\\Models\\Beneficiary',
@@ -222,9 +214,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
            'namespace' => 'App\\Domain\\Registry\\Services',
            'uses' => 
           array (
-            'matchingengine' => 'App\\Domain\\Matching\\Engine\\MatchingEngine',
+            'duplicatecascade' => 'App\\Domain\\Matching\\Engine\\DuplicateCascade',
             'matchresult' => 'App\\Domain\\Matching\\Engine\\MatchResult',
-            'matchband' => 'App\\Domain\\Matching\\Enums\\MatchBand',
             'matchingconfig' => 'App\\Domain\\Matching\\Models\\MatchingConfig',
             'fieldnormalizer' => 'App\\Domain\\Matching\\Scoring\\FieldNormalizer',
             'beneficiary' => 'App\\Domain\\Registry\\Models\\Beneficiary',
@@ -260,9 +251,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
          'namespace' => 'App\\Domain\\Registry\\Services',
          'uses' => 
         array (
-          'matchingengine' => 'App\\Domain\\Matching\\Engine\\MatchingEngine',
+          'duplicatecascade' => 'App\\Domain\\Matching\\Engine\\DuplicateCascade',
           'matchresult' => 'App\\Domain\\Matching\\Engine\\MatchResult',
-          'matchband' => 'App\\Domain\\Matching\\Enums\\MatchBand',
           'matchingconfig' => 'App\\Domain\\Matching\\Models\\MatchingConfig',
           'fieldnormalizer' => 'App\\Domain\\Matching\\Scoring\\FieldNormalizer',
           'beneficiary' => 'App\\Domain\\Registry\\Models\\Beneficiary',
@@ -277,9 +267,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
            'namespace' => 'App\\Domain\\Registry\\Services',
            'uses' => 
           array (
-            'matchingengine' => 'App\\Domain\\Matching\\Engine\\MatchingEngine',
+            'duplicatecascade' => 'App\\Domain\\Matching\\Engine\\DuplicateCascade',
             'matchresult' => 'App\\Domain\\Matching\\Engine\\MatchResult',
-            'matchband' => 'App\\Domain\\Matching\\Enums\\MatchBand',
             'matchingconfig' => 'App\\Domain\\Matching\\Models\\MatchingConfig',
             'fieldnormalizer' => 'App\\Domain\\Matching\\Scoring\\FieldNormalizer',
             'beneficiary' => 'App\\Domain\\Registry\\Models\\Beneficiary',
@@ -315,9 +304,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
          'namespace' => 'App\\Domain\\Registry\\Services',
          'uses' => 
         array (
-          'matchingengine' => 'App\\Domain\\Matching\\Engine\\MatchingEngine',
+          'duplicatecascade' => 'App\\Domain\\Matching\\Engine\\DuplicateCascade',
           'matchresult' => 'App\\Domain\\Matching\\Engine\\MatchResult',
-          'matchband' => 'App\\Domain\\Matching\\Enums\\MatchBand',
           'matchingconfig' => 'App\\Domain\\Matching\\Models\\MatchingConfig',
           'fieldnormalizer' => 'App\\Domain\\Matching\\Scoring\\FieldNormalizer',
           'beneficiary' => 'App\\Domain\\Registry\\Models\\Beneficiary',
@@ -332,64 +320,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
            'namespace' => 'App\\Domain\\Registry\\Services',
            'uses' => 
           array (
-            'matchingengine' => 'App\\Domain\\Matching\\Engine\\MatchingEngine',
+            'duplicatecascade' => 'App\\Domain\\Matching\\Engine\\DuplicateCascade',
             'matchresult' => 'App\\Domain\\Matching\\Engine\\MatchResult',
-            'matchband' => 'App\\Domain\\Matching\\Enums\\MatchBand',
-            'matchingconfig' => 'App\\Domain\\Matching\\Models\\MatchingConfig',
-            'fieldnormalizer' => 'App\\Domain\\Matching\\Scoring\\FieldNormalizer',
-            'beneficiary' => 'App\\Domain\\Registry\\Models\\Beneficiary',
-          ),
-           'className' => 'App\\Domain\\Registry\\Services\\BatchDuplicateScreener',
-           'functionName' => NULL,
-           'templatePhpDocNodes' => 
-          array (
-          ),
-           'parent' => NULL,
-           'typeAliasesMap' => 
-          array (
-          ),
-           'bypassTypeAliases' => false,
-           'constUses' => 
-          array (
-          ),
-           'typeAliasClassName' => NULL,
-           'traitData' => NULL,
-        )),
-         'typeAliasesMap' => 
-        array (
-        ),
-         'bypassTypeAliases' => false,
-         'constUses' => 
-        array (
-        ),
-         'typeAliasClassName' => NULL,
-         'traitData' => NULL,
-      )),
-      '339279cdb816016919bf4f1bf500c56b' => 
-      \PHPStan\Analyser\IntermediaryNameScope::__set_state(array(
-         'namespace' => 'App\\Domain\\Registry\\Services',
-         'uses' => 
-        array (
-          'matchingengine' => 'App\\Domain\\Matching\\Engine\\MatchingEngine',
-          'matchresult' => 'App\\Domain\\Matching\\Engine\\MatchResult',
-          'matchband' => 'App\\Domain\\Matching\\Enums\\MatchBand',
-          'matchingconfig' => 'App\\Domain\\Matching\\Models\\MatchingConfig',
-          'fieldnormalizer' => 'App\\Domain\\Matching\\Scoring\\FieldNormalizer',
-          'beneficiary' => 'App\\Domain\\Registry\\Models\\Beneficiary',
-        ),
-         'className' => 'App\\Domain\\Registry\\Services\\BatchDuplicateScreener',
-         'functionName' => 'highestBand',
-         'templatePhpDocNodes' => 
-        array (
-        ),
-         'parent' => 
-        \PHPStan\Analyser\IntermediaryNameScope::__set_state(array(
-           'namespace' => 'App\\Domain\\Registry\\Services',
-           'uses' => 
-          array (
-            'matchingengine' => 'App\\Domain\\Matching\\Engine\\MatchingEngine',
-            'matchresult' => 'App\\Domain\\Matching\\Engine\\MatchResult',
-            'matchband' => 'App\\Domain\\Matching\\Enums\\MatchBand',
             'matchingconfig' => 'App\\Domain\\Matching\\Models\\MatchingConfig',
             'fieldnormalizer' => 'App\\Domain\\Matching\\Scoring\\FieldNormalizer',
             'beneficiary' => 'App\\Domain\\Registry\\Models\\Beneficiary',
@@ -423,7 +355,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
     ),
     1 => 
     array (
-      '/var/www/html/app/Domain/Registry/Services/BatchDuplicateScreener.php' => '5b7f678638e3747c7764e4369488bdd1db43fe9e169695f6564c865cef830336',
+      '/var/www/html/app/Domain/Registry/Services/BatchDuplicateScreener.php' => 'ed23a96b20f70997f8a4541bd5ba077519843c5e745af50684c7bbd12f472e14',
     ),
   ),
 ));

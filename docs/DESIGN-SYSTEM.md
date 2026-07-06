@@ -203,9 +203,28 @@ Optional leading dot. Use for statuses, match types, tags. Keep to one badge per
 | Referral: In Progress             | accent        |
 | Referral: Completed/Closed        | success       |
 | Referral: Rejected                | danger        |
+| Service Request: pending          | warning       |
+| Service Request: accepted         | success       |
+| Service Request: declined         | muted-danger  |
 | Import row: valid / error         | success / danger |
 
 Extend this table as new statuses appear — don't invent one-off colors per screen.
+
+### 5.9 New states / components (PRD v1.2)
+
+- **Activity selector** as a required first step in the import wizard, before file/source selection.
+  The wizard cannot proceed without a selected registered activity (FR-REG-10).
+- **Match resolution controls** (the match badge exact/probable/none already exists): show
+  **adjudicate ("same person / not")** ONLY for probable (fuzzy) matches, then **discard /
+  provide-service**. Hide the adjudication control on exact matches (definitive), which still show
+  the discard/serve choice (FR-DUP-09).
+- **Request-to-serve status chip:** pending / accepted / declined → map to warning / success /
+  muted-danger (confirm the muted-danger tone with the design owner alongside the other
+  `[inferred]` semantic colors).
+- **Owner-MDA approval inbox:** a list of incoming Service Requests with accept / decline actions
+  and a reason field on decline (FR-OWN-06).
+- **Import error report:** two visually distinct groups — **"rows rejected (identity)"** vs
+  **"fields dropped (non-identity)"** (FR-REG-05/09).
 
 ---
 

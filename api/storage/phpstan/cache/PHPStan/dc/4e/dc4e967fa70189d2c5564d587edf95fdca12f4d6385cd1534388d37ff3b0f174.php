@@ -32,7 +32,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
     ),
     1 => 
     array (
-      '/var/www/html/app/Domain/Registry/Enums/ImportRowResolution.php' => '8fbd368d9a76ef08c568e55e72405f54cac5c5f6ed0711367da81374414adacd',
+      '/var/www/html/app/Domain/Registry/Enums/ImportRowResolution.php' => 'fe4032867c0c8dcbade681b08155378bd774b1fd53b7b00d46268dfdea34bbf2',
     ),
   ),
 ));

@@ -9,10 +9,9 @@ use App\Domain\Access\Scopes\MdaScope;
 use App\Domain\Programme\Enums\EnrollmentStatus;
 use App\Domain\Programme\Models\Enrollment;
 use App\Domain\Programme\Models\Programme;
-use App\Domain\Registry\Enums\ServeRequestStatus;
 use App\Domain\Registry\Models\Beneficiary;
 use App\Domain\Registry\Models\Household;
-use App\Domain\Registry\Models\ServeRequest;
+use App\Domain\Registry\Services\ServiceRequestService;
 use Illuminate\Database\UniqueConstraintViolationException;
 
 /**
@@ -29,7 +28,8 @@ class EnrollmentService
     /**
      * Whether the acting user's MDA may enroll (serve) this target: it owns the
      * target, holds a cross-MDA grant covering the owner, or — for a beneficiary —
-     * has an accepted request-to-serve (Phase 3 serve seam).
+     * holds an active read/serve grant opened by an ACCEPTED Service Request
+     * (§12, FR-OWN-06/07). Serving a non-owned beneficiary requires that grant.
      */
     public function canServe(User $actor, Beneficiary|Household $target): bool
     {
@@ -38,11 +38,7 @@ class EnrollmentService
         }
 
         if ($target instanceof Beneficiary && $actor->mda_id !== null) {
-            return ServeRequest::query()
-                ->where('from_mda_id', $actor->mda_id)
-                ->where('beneficiary_id', $target->id)
-                ->where('status', ServeRequestStatus::Accepted)
-                ->exists();
+            return ServiceRequestService::hasActiveGrant($target->id, $actor->mda_id);
         }
 
         return false;

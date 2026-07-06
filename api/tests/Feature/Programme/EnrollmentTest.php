@@ -10,10 +10,11 @@ use App\Domain\Access\Models\Role;
 use App\Domain\Access\Models\User;
 use App\Domain\Programme\Models\Enrollment;
 use App\Domain\Programme\Models\Programme;
-use App\Domain\Registry\Enums\ServeRequestStatus;
+use App\Domain\Registry\Enums\ServiceRequestStatus;
 use App\Domain\Registry\Models\Beneficiary;
+use App\Domain\Registry\Models\BeneficiaryServiceGrant;
 use App\Domain\Registry\Models\Household;
-use App\Domain\Registry\Models\ServeRequest;
+use App\Domain\Registry\Models\ServiceRequest;
 use Database\Seeders\RolesAndPermissionsSeeder;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Testing\TestResponse;
@@ -157,17 +158,23 @@ class EnrollmentTest extends TestCase
         // Beneficiary owned by MDA B; MDA A runs the programme.
         $beneficiary = Beneficiary::factory()->create(['owner_mda_id' => $this->mdaB->id]);
 
-        // Without a serve relationship → rejected.
+        // Without an accepted Service Request → refused (§12, FR-OWN-06).
         $this->send('officerA', 'POST', "/api/v1/programmes/{$this->individualA->id}/enrollments", ['beneficiary_id' => $beneficiary->id])
-            ->assertStatus(403)
-            ->assertJsonPath('error.code', 'SERVE_ACCESS_REQUIRED');
+            ->assertStatus(409)
+            ->assertJsonPath('error.code', 'SERVICE_REQUEST_REQUIRED');
 
-        // Grant serve access via an accepted request-to-serve (Phase 3 seam).
-        ServeRequest::create([
+        // Grant serve access via the read-access grant an accepted request opens.
+        $serviceRequest = ServiceRequest::create([
             'beneficiary_id' => $beneficiary->id,
             'from_mda_id' => $this->mdaA->id,
             'to_mda_id' => $this->mdaB->id,
-            'status' => ServeRequestStatus::Accepted,
+            'status' => ServiceRequestStatus::Accepted,
+        ]);
+        BeneficiaryServiceGrant::create([
+            'beneficiary_id' => $beneficiary->id,
+            'mda_id' => $this->mdaA->id,
+            'service_request_id' => $serviceRequest->id,
+            'granted_at' => now(),
         ]);
 
         $this->send('officerA', 'POST', "/api/v1/programmes/{$this->individualA->id}/enrollments", ['beneficiary_id' => $beneficiary->id])

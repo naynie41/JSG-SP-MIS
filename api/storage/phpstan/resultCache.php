@@ -5411,6 +5411,19 @@ return [
       ),
     ),
   ),
+  '/var/www/html/app/Domain/Matching/Engine/DuplicateCascade.php' => 
+  array (
+    'PHPStan\\Rules\\DeadCode\\ConstructorWithoutImpurePointsCollector' => 
+    array (
+      0 => 
+      array (
+        0 => 'App\\Domain\\Matching\\Engine\\DuplicateCascade',
+        1 => 
+        array (
+        ),
+      ),
+    ),
+  ),
   '/var/www/html/app/Domain/Matching/Engine/MatchResult.php' => 
   array (
     'PHPStan\\Rules\\DeadCode\\ConstructorWithoutImpurePointsCollector' => 
@@ -8422,6 +8435,365 @@ return [
       ),
     ),
   ),
+  '/var/www/html/app/Domain/Registry/Models/BeneficiaryServiceGrant.php' => 
+  array (
+    'PHPStan\\Rules\\Comparison\\ConstantConditionInTraitCollector' => 
+    array (
+      0 => 
+      array (
+        0 => 'PHPStan\\Rules\\Comparison\\ImpossibleCheckTypeStaticMethodCallRule',
+        1 => 'App\\Domain\\Audit\\Concerns\\Auditable',
+        2 => 'static::created(function ($model): void {
+    $model->writeAudit(\'created\', null, $model->auditSnapshot($model->getAttributes()));
+}):24',
+        3 => NULL,
+      ),
+      1 => 
+      array (
+        0 => 'PHPStan\\Rules\\Comparison\\ImpossibleCheckTypeMethodCallRule',
+        1 => 'App\\Domain\\Audit\\Concerns\\Auditable',
+        2 => '$model->writeAudit(\'created\', null, $model->auditSnapshot($model->getAttributes())):25',
+        3 => NULL,
+      ),
+      2 => 
+      array (
+        0 => 'PHPStan\\Rules\\Comparison\\ImpossibleCheckTypeMethodCallRule',
+        1 => 'App\\Domain\\Audit\\Concerns\\Auditable',
+        2 => '$model->auditSnapshot($model->getAttributes()):25',
+        3 => NULL,
+      ),
+      3 => 
+      array (
+        0 => 'PHPStan\\Rules\\Comparison\\ImpossibleCheckTypeMethodCallRule',
+        1 => 'App\\Domain\\Audit\\Concerns\\Auditable',
+        2 => '$model->getAttributes():25',
+        3 => NULL,
+      ),
+      4 => 
+      array (
+        0 => 'PHPStan\\Rules\\Comparison\\ImpossibleCheckTypeStaticMethodCallRule',
+        1 => 'App\\Domain\\Audit\\Concerns\\Auditable',
+        2 => 'static::updated(function ($model): void {
+    $changedKeys = array_diff(array_keys($model->getChanges()), $model->allAuditExcluded());
+    if ($changedKeys === []) {
+        return;
+        // only excluded/operational columns changed — no audit noise
+    }
+    $before = [];
+    $after = [];
+    foreach ($changedKeys as $key) {
+        $before[$key] = $model->getOriginal($key);
+        $after[$key] = $model->getAttribute($key);
+    }
+    $model->writeAudit(\'updated\', $model->scrubAttributes($before), $model->scrubAttributes($after));
+}):28',
+        3 => NULL,
+      ),
+      5 => 
+      array (
+        0 => 'PHPStan\\Rules\\Comparison\\ImpossibleCheckTypeFunctionCallRule',
+        1 => 'App\\Domain\\Audit\\Concerns\\Auditable',
+        2 => 'array_diff(array_keys($model->getChanges()), $model->allAuditExcluded()):29',
+        3 => NULL,
+      ),
+      6 => 
+      array (
+        0 => 'PHPStan\\Rules\\Comparison\\ImpossibleCheckTypeFunctionCallRule',
+        1 => 'App\\Domain\\Audit\\Concerns\\Auditable',
+        2 => 'array_keys($model->getChanges()):29',
+        3 => NULL,
+      ),
+      7 => 
+      array (
+        0 => 'PHPStan\\Rules\\Comparison\\ImpossibleCheckTypeMethodCallRule',
+        1 => 'App\\Domain\\Audit\\Concerns\\Auditable',
+        2 => '$model->getChanges():29',
+        3 => NULL,
+      ),
+      8 => 
+      array (
+        0 => 'PHPStan\\Rules\\Comparison\\ImpossibleCheckTypeMethodCallRule',
+        1 => 'App\\Domain\\Audit\\Concerns\\Auditable',
+        2 => '$model->allAuditExcluded():29',
+        3 => NULL,
+      ),
+      9 => 
+      array (
+        0 => 'PHPStan\\Rules\\Comparison\\IfConstantConditionRule',
+        1 => 'App\\Domain\\Audit\\Concerns\\Auditable',
+        2 => '$changedKeys === []:31',
+        3 => NULL,
+      ),
+      10 => 
+      array (
+        0 => 'PHPStan\\Rules\\Comparison\\StrictComparisonOfDifferentTypesRule',
+        1 => 'App\\Domain\\Audit\\Concerns\\Auditable',
+        2 => '$changedKeys === []:31',
+        3 => NULL,
+      ),
+      11 => 
+      array (
+        0 => 'PHPStan\\Rules\\Comparison\\ImpossibleCheckTypeMethodCallRule',
+        1 => 'App\\Domain\\Audit\\Concerns\\Auditable',
+        2 => '$model->getOriginal($key):38',
+        3 => NULL,
+      ),
+      12 => 
+      array (
+        0 => 'PHPStan\\Rules\\Comparison\\ImpossibleCheckTypeMethodCallRule',
+        1 => 'App\\Domain\\Audit\\Concerns\\Auditable',
+        2 => '$model->getAttribute($key):39',
+        3 => NULL,
+      ),
+      13 => 
+      array (
+        0 => 'PHPStan\\Rules\\Comparison\\ImpossibleCheckTypeMethodCallRule',
+        1 => 'App\\Domain\\Audit\\Concerns\\Auditable',
+        2 => '$model->writeAudit(\'updated\', $model->scrubAttributes($before), $model->scrubAttributes($after)):42',
+        3 => NULL,
+      ),
+      14 => 
+      array (
+        0 => 'PHPStan\\Rules\\Comparison\\ImpossibleCheckTypeMethodCallRule',
+        1 => 'App\\Domain\\Audit\\Concerns\\Auditable',
+        2 => '$model->scrubAttributes($before):42',
+        3 => NULL,
+      ),
+      15 => 
+      array (
+        0 => 'PHPStan\\Rules\\Comparison\\ImpossibleCheckTypeMethodCallRule',
+        1 => 'App\\Domain\\Audit\\Concerns\\Auditable',
+        2 => '$model->scrubAttributes($after):42',
+        3 => NULL,
+      ),
+      16 => 
+      array (
+        0 => 'PHPStan\\Rules\\Comparison\\ImpossibleCheckTypeStaticMethodCallRule',
+        1 => 'App\\Domain\\Audit\\Concerns\\Auditable',
+        2 => 'static::deleted(function ($model): void {
+    $model->writeAudit(\'deleted\', $model->auditSnapshot($model->getOriginal()), null);
+}):45',
+        3 => NULL,
+      ),
+      17 => 
+      array (
+        0 => 'PHPStan\\Rules\\Comparison\\ImpossibleCheckTypeMethodCallRule',
+        1 => 'App\\Domain\\Audit\\Concerns\\Auditable',
+        2 => '$model->writeAudit(\'deleted\', $model->auditSnapshot($model->getOriginal()), null):46',
+        3 => NULL,
+      ),
+      18 => 
+      array (
+        0 => 'PHPStan\\Rules\\Comparison\\ImpossibleCheckTypeMethodCallRule',
+        1 => 'App\\Domain\\Audit\\Concerns\\Auditable',
+        2 => '$model->auditSnapshot($model->getOriginal()):46',
+        3 => NULL,
+      ),
+      19 => 
+      array (
+        0 => 'PHPStan\\Rules\\Comparison\\ImpossibleCheckTypeMethodCallRule',
+        1 => 'App\\Domain\\Audit\\Concerns\\Auditable',
+        2 => '$model->getOriginal():46',
+        3 => NULL,
+      ),
+      20 => 
+      array (
+        0 => 'PHPStan\\Rules\\Comparison\\ImpossibleCheckTypeStaticMethodCallRule',
+        1 => 'App\\Domain\\Audit\\Concerns\\Auditable',
+        2 => '\\Illuminate\\Support\\Str::snake(class_basename($this)):65',
+        3 => NULL,
+      ),
+      21 => 
+      array (
+        0 => 'PHPStan\\Rules\\Comparison\\ImpossibleCheckTypeFunctionCallRule',
+        1 => 'App\\Domain\\Audit\\Concerns\\Auditable',
+        2 => 'class_basename($this):65',
+        3 => NULL,
+      ),
+      22 => 
+      array (
+        0 => 'PHPStan\\Rules\\Comparison\\ImpossibleCheckTypeMethodCallRule',
+        1 => 'App\\Domain\\Audit\\Concerns\\Auditable',
+        2 => 'app(\\App\\Domain\\Audit\\Support\\AuditScrubber::class)->scrub($attributes, $this->auditOmit(), $this->auditMask()):94',
+        3 => NULL,
+      ),
+      23 => 
+      array (
+        0 => 'PHPStan\\Rules\\Comparison\\ImpossibleCheckTypeFunctionCallRule',
+        1 => 'App\\Domain\\Audit\\Concerns\\Auditable',
+        2 => 'app(\\App\\Domain\\Audit\\Support\\AuditScrubber::class):94',
+        3 => NULL,
+      ),
+      24 => 
+      array (
+        0 => 'PHPStan\\Rules\\Comparison\\ImpossibleCheckTypeMethodCallRule',
+        1 => 'App\\Domain\\Audit\\Concerns\\Auditable',
+        2 => '$this->auditOmit():94',
+        3 => NULL,
+      ),
+      25 => 
+      array (
+        0 => 'PHPStan\\Rules\\Comparison\\ImpossibleCheckTypeMethodCallRule',
+        1 => 'App\\Domain\\Audit\\Concerns\\Auditable',
+        2 => '$this->auditMask():94',
+        3 => NULL,
+      ),
+      26 => 
+      array (
+        0 => 'PHPStan\\Rules\\Comparison\\ImpossibleCheckTypeFunctionCallRule',
+        1 => 'App\\Domain\\Audit\\Concerns\\Auditable',
+        2 => 'array_merge([\'created_at\', \'updated_at\', \'deleted_at\'], $this->auditExcluded()):102',
+        3 => NULL,
+      ),
+      27 => 
+      array (
+        0 => 'PHPStan\\Rules\\Comparison\\ImpossibleCheckTypeMethodCallRule',
+        1 => 'App\\Domain\\Audit\\Concerns\\Auditable',
+        2 => '$this->auditExcluded():102',
+        3 => NULL,
+      ),
+      28 => 
+      array (
+        0 => 'PHPStan\\Rules\\Comparison\\ImpossibleCheckTypeMethodCallRule',
+        1 => 'App\\Domain\\Audit\\Concerns\\Auditable',
+        2 => '$this->allAuditExcluded():113',
+        3 => NULL,
+      ),
+      29 => 
+      array (
+        0 => 'PHPStan\\Rules\\Comparison\\BooleanNotConstantConditionRule',
+        1 => 'App\\Domain\\Audit\\Concerns\\Auditable',
+        2 => 'in_array($key, $excluded, true):116',
+        3 => NULL,
+      ),
+      30 => 
+      array (
+        0 => 'PHPStan\\Rules\\Comparison\\ImpossibleCheckTypeFunctionCallRule',
+        1 => 'App\\Domain\\Audit\\Concerns\\Auditable',
+        2 => 'in_array($key, $excluded, true):116',
+        3 => NULL,
+      ),
+      31 => 
+      array (
+        0 => 'PHPStan\\Rules\\Comparison\\ImpossibleCheckTypeFunctionCallRule',
+        1 => 'App\\Domain\\Audit\\Concerns\\Auditable',
+        2 => 'array_filter($attributes, fn(string $key) => !in_array($key, $excluded, true), ARRAY_FILTER_USE_KEY):114',
+        3 => NULL,
+      ),
+      32 => 
+      array (
+        0 => 'PHPStan\\Rules\\Comparison\\ImpossibleCheckTypeMethodCallRule',
+        1 => 'App\\Domain\\Audit\\Concerns\\Auditable',
+        2 => '$this->scrubAttributes($filtered):120',
+        3 => NULL,
+      ),
+      33 => 
+      array (
+        0 => 'PHPStan\\Rules\\Comparison\\ImpossibleCheckTypeMethodCallRule',
+        1 => 'App\\Domain\\Audit\\Concerns\\Auditable',
+        2 => 'app(\\App\\Domain\\Audit\\Services\\AuditLogger::class)->record($this->auditEntityName() . \'.\' . $event, $this, $before, $after):129',
+        3 => NULL,
+      ),
+      34 => 
+      array (
+        0 => 'PHPStan\\Rules\\Comparison\\ImpossibleCheckTypeFunctionCallRule',
+        1 => 'App\\Domain\\Audit\\Concerns\\Auditable',
+        2 => 'app(\\App\\Domain\\Audit\\Services\\AuditLogger::class):129',
+        3 => NULL,
+      ),
+      35 => 
+      array (
+        0 => 'PHPStan\\Rules\\Comparison\\ImpossibleCheckTypeMethodCallRule',
+        1 => 'App\\Domain\\Audit\\Concerns\\Auditable',
+        2 => '$this->auditEntityName():130',
+        3 => NULL,
+      ),
+      36 => 
+      array (
+        0 => 'PHPStan\\Rules\\Comparison\\ImpossibleCheckTypeStaticMethodCallRule',
+        1 => 'App\\Domain\\Access\\Concerns\\ScopedToMda',
+        2 => 'static::addGlobalScope(new \\App\\Domain\\Access\\Scopes\\MdaScope()):21',
+        3 => NULL,
+      ),
+    ),
+    'PHPStan\\Rules\\DeadCode\\MethodWithoutImpurePointsCollector' => 
+    array (
+      0 => 
+      array (
+        0 => 'App\\Domain\\Registry\\Models\\BeneficiaryServiceGrant',
+        1 => 'auditExcluded',
+        2 => 'App\\Domain\\Registry\\Models\\BeneficiaryServiceGrant',
+        3 => 
+        array (
+        ),
+      ),
+      1 => 
+      array (
+        0 => 'App\\Domain\\Registry\\Models\\BeneficiaryServiceGrant',
+        1 => 'auditEntityName',
+        2 => 'App\\Domain\\Registry\\Models\\BeneficiaryServiceGrant',
+        3 => 
+        array (
+          0 => 'm' . "\0" . 'illuminate\\support\\str' . "\0" . 'snake',
+          1 => 'f' . "\0" . 'class_basename',
+        ),
+      ),
+      2 => 
+      array (
+        0 => 'App\\Domain\\Registry\\Models\\BeneficiaryServiceGrant',
+        1 => 'auditOmit',
+        2 => 'App\\Domain\\Registry\\Models\\BeneficiaryServiceGrant',
+        3 => 
+        array (
+        ),
+      ),
+      3 => 
+      array (
+        0 => 'App\\Domain\\Registry\\Models\\BeneficiaryServiceGrant',
+        1 => 'auditMask',
+        2 => 'App\\Domain\\Registry\\Models\\BeneficiaryServiceGrant',
+        3 => 
+        array (
+        ),
+      ),
+      4 => 
+      array (
+        0 => 'App\\Domain\\Registry\\Models\\BeneficiaryServiceGrant',
+        1 => 'casts',
+        2 => 'App\\Domain\\Registry\\Models\\BeneficiaryServiceGrant',
+        3 => 
+        array (
+        ),
+      ),
+      5 => 
+      array (
+        0 => 'App\\Domain\\Registry\\Models\\BeneficiaryServiceGrant',
+        1 => 'mdaOwnershipColumn',
+        2 => 'App\\Domain\\Registry\\Models\\BeneficiaryServiceGrant',
+        3 => 
+        array (
+        ),
+      ),
+    ),
+    'PHPStan\\Rules\\DeadCode\\PossiblyPureStaticCallCollector' => 
+    array (
+      0 => 
+      array (
+        0 => 'Illuminate\\Database\\Eloquent\\Model',
+        1 => 'addGlobalScope',
+        2 => 21,
+      ),
+    ),
+    'PHPStan\\Rules\\Traits\\TraitUseCollector' => 
+    array (
+      0 => 
+      array (
+        0 => 'App\\Domain\\Audit\\Concerns\\Auditable',
+        1 => 'Illuminate\\Database\\Eloquent\\Concerns\\HasUuids',
+        2 => 'App\\Domain\\Access\\Concerns\\ScopedToMda',
+      ),
+    ),
+  ),
   '/var/www/html/app/Domain/Registry/Models/Household.php' => 
   array (
     'PHPStan\\Rules\\Comparison\\ConstantConditionInTraitCollector' => 
@@ -9862,7 +10234,7 @@ return [
       ),
     ),
   ),
-  '/var/www/html/app/Domain/Registry/Models/ServeRequest.php' => 
+  '/var/www/html/app/Domain/Registry/Models/ServiceRequest.php' => 
   array (
     'PHPStan\\Rules\\Comparison\\ConstantConditionInTraitCollector' => 
     array (
@@ -10140,47 +10512,47 @@ return [
     array (
       0 => 
       array (
-        0 => 'App\\Domain\\Registry\\Models\\ServeRequest',
-        1 => 'auditExcluded',
-        2 => 'App\\Domain\\Registry\\Models\\ServeRequest',
-        3 => 
-        array (
-        ),
-      ),
-      1 => 
-      array (
-        0 => 'App\\Domain\\Registry\\Models\\ServeRequest',
+        0 => 'App\\Domain\\Registry\\Models\\ServiceRequest',
         1 => 'auditEntityName',
-        2 => 'App\\Domain\\Registry\\Models\\ServeRequest',
+        2 => 'App\\Domain\\Registry\\Models\\ServiceRequest',
         3 => 
         array (
           0 => 'm' . "\0" . 'illuminate\\support\\str' . "\0" . 'snake',
           1 => 'f' . "\0" . 'class_basename',
         ),
       ),
+      1 => 
+      array (
+        0 => 'App\\Domain\\Registry\\Models\\ServiceRequest',
+        1 => 'auditOmit',
+        2 => 'App\\Domain\\Registry\\Models\\ServiceRequest',
+        3 => 
+        array (
+        ),
+      ),
       2 => 
       array (
-        0 => 'App\\Domain\\Registry\\Models\\ServeRequest',
-        1 => 'auditOmit',
-        2 => 'App\\Domain\\Registry\\Models\\ServeRequest',
+        0 => 'App\\Domain\\Registry\\Models\\ServiceRequest',
+        1 => 'auditMask',
+        2 => 'App\\Domain\\Registry\\Models\\ServiceRequest',
         3 => 
         array (
         ),
       ),
       3 => 
       array (
-        0 => 'App\\Domain\\Registry\\Models\\ServeRequest',
-        1 => 'auditMask',
-        2 => 'App\\Domain\\Registry\\Models\\ServeRequest',
+        0 => 'App\\Domain\\Registry\\Models\\ServiceRequest',
+        1 => 'casts',
+        2 => 'App\\Domain\\Registry\\Models\\ServiceRequest',
         3 => 
         array (
         ),
       ),
       4 => 
       array (
-        0 => 'App\\Domain\\Registry\\Models\\ServeRequest',
-        1 => 'casts',
-        2 => 'App\\Domain\\Registry\\Models\\ServeRequest',
+        0 => 'App\\Domain\\Registry\\Models\\ServiceRequest',
+        1 => 'auditExcluded',
+        2 => 'App\\Domain\\Registry\\Models\\ServiceRequest',
         3 => 
         array (
         ),
@@ -10221,6 +10593,16 @@ return [
         2 => 'App\\Domain\\Registry\\Policies\\BeneficiaryPolicy',
         3 => 
         array (
+        ),
+      ),
+      1 => 
+      array (
+        0 => 'App\\Domain\\Registry\\Policies\\BeneficiaryPolicy',
+        1 => 'hasServiceGrant',
+        2 => 'App\\Domain\\Registry\\Policies\\BeneficiaryPolicy',
+        3 => 
+        array (
+          0 => 'm' . "\0" . 'app\\domain\\registry\\services\\servicerequestservice' . "\0" . 'hasactivegrant',
         ),
       ),
     ),
@@ -10320,20 +10702,21 @@ return [
       0 => 
       array (
         0 => 'App\\Domain\\Registry\\Services\\BatchDuplicateScreener',
-        1 => 'entry',
+        1 => 'batchRecords',
         2 => 'App\\Domain\\Registry\\Services\\BatchDuplicateScreener',
         3 => 
         array (
-          0 => 'm' . "\0" . 'app\\domain\\matching\\scoring\\matchscore' . "\0" . 'matchedfields',
+          0 => 'm' . "\0" . 'app\\domain\\registry\\services\\batchduplicatescreener' . "\0" . 'blockkeys',
         ),
       ),
       1 => 
       array (
         0 => 'App\\Domain\\Registry\\Services\\BatchDuplicateScreener',
-        1 => 'highestBand',
+        1 => 'entry',
         2 => 'App\\Domain\\Registry\\Services\\BatchDuplicateScreener',
         3 => 
         array (
+          0 => 'm' . "\0" . 'app\\domain\\matching\\scoring\\matchscore' . "\0" . 'matchedfields',
         ),
       ),
     ),
@@ -10563,13 +10946,13 @@ return [
       ),
     ),
   ),
-  '/var/www/html/app/Domain/Registry/Services/ServeRequestService.php' => 
+  '/var/www/html/app/Domain/Registry/Services/ServiceRequestService.php' => 
   array (
     'PHPStan\\Rules\\DeadCode\\ConstructorWithoutImpurePointsCollector' => 
     array (
       0 => 
       array (
-        0 => 'App\\Domain\\Registry\\Services\\ServeRequestService',
+        0 => 'App\\Domain\\Registry\\Services\\ServiceRequestService',
         1 => 
         array (
         ),
@@ -10579,23 +10962,25 @@ return [
     array (
       0 => 
       array (
-        0 => 'App\\Domain\\Registry\\Services\\ServeRequestService',
-        1 => 'accept',
-        2 => 'App\\Domain\\Registry\\Services\\ServeRequestService',
+        0 => 'App\\Domain\\Registry\\Services\\ServiceRequestService',
+        1 => 'decline',
+        2 => 'App\\Domain\\Registry\\Services\\ServiceRequestService',
         3 => 
         array (
-          0 => 'm' . "\0" . 'app\\domain\\registry\\services\\serverequestservice' . "\0" . 'decide',
+          0 => 'm' . "\0" . 'app\\domain\\registry\\services\\servicerequestservice' . "\0" . 'decide',
         ),
       ),
-      1 => 
+    ),
+    'PHPStan\\Rules\\DeadCode\\PossiblyPureMethodCallCollector' => 
+    array (
+      0 => 
       array (
-        0 => 'App\\Domain\\Registry\\Services\\ServeRequestService',
-        1 => 'decline',
-        2 => 'App\\Domain\\Registry\\Services\\ServeRequestService',
-        3 => 
+        0 => 
         array (
-          0 => 'm' . "\0" . 'app\\domain\\registry\\services\\serverequestservice' . "\0" . 'decide',
+          0 => 'App\\Domain\\Registry\\Services\\ServiceRequestService',
         ),
+        1 => 'decide',
+        2 => 74,
       ),
     ),
     'PHPStan\\Rules\\Methods\\NamedArgumentParameterMethodCallsCollector' => 
@@ -10605,14 +10990,28 @@ return [
         0 => 'App\\Domain\\Audit\\Services\\AuditLogger',
         1 => 'record',
         2 => 'after',
-        3 => 80,
+        3 => 79,
       ),
       1 => 
       array (
         0 => 'App\\Domain\\Audit\\Services\\AuditLogger',
         1 => 'record',
         2 => 'actor',
-        3 => 83,
+        3 => 84,
+      ),
+      2 => 
+      array (
+        0 => 'App\\Domain\\Audit\\Services\\AuditLogger',
+        1 => 'record',
+        2 => 'after',
+        3 => 120,
+      ),
+      3 => 
+      array (
+        0 => 'App\\Domain\\Audit\\Services\\AuditLogger',
+        1 => 'record',
+        2 => 'actor',
+        3 => 124,
       ),
     ),
   ),
@@ -11069,7 +11468,7 @@ return [
         0 => 'App\\Domain\\Audit\\Services\\AuditLogger',
         1 => 'record',
         2 => 'after',
-        3 => 163,
+        3 => 179,
       ),
     ),
   ),
@@ -11095,14 +11494,14 @@ return [
         0 => 'App\\Domain\\Audit\\Services\\AuditLogger',
         1 => 'record',
         2 => 'after',
-        3 => 68,
+        3 => 69,
       ),
       1 => 
       array (
         0 => 'App\\Domain\\Audit\\Services\\AuditLogger',
         1 => 'record',
         2 => 'actor',
-        3 => 73,
+        3 => 74,
       ),
     ),
   ),
@@ -11167,13 +11566,13 @@ return [
       ),
     ),
   ),
-  '/var/www/html/app/Http/Controllers/Api/V1/Registry/ServeRequestController.php' => 
+  '/var/www/html/app/Http/Controllers/Api/V1/Registry/ServiceRequestController.php' => 
   array (
     'PHPStan\\Rules\\DeadCode\\ConstructorWithoutImpurePointsCollector' => 
     array (
       0 => 
       array (
-        0 => 'App\\Http\\Controllers\\Api\\V1\\Registry\\ServeRequestController',
+        0 => 'App\\Http\\Controllers\\Api\\V1\\Registry\\ServiceRequestController',
         1 => 
         array (
         ),
@@ -11183,22 +11582,22 @@ return [
     array (
       0 => 
       array (
-        0 => 'App\\Http\\Controllers\\Api\\V1\\Registry\\ServeRequestController',
-        1 => 'accept',
-        2 => 'App\\Http\\Controllers\\Api\\V1\\Registry\\ServeRequestController',
+        0 => 'App\\Http\\Controllers\\Api\\V1\\Registry\\ServiceRequestController',
+        1 => 'inbox',
+        2 => 'App\\Http\\Controllers\\Api\\V1\\Registry\\ServiceRequestController',
         3 => 
         array (
-          0 => 'm' . "\0" . 'app\\http\\controllers\\api\\v1\\registry\\serverequestcontroller' . "\0" . 'decide',
+          0 => 'm' . "\0" . 'app\\http\\controllers\\api\\v1\\registry\\servicerequestcontroller' . "\0" . 'list',
         ),
       ),
       1 => 
       array (
-        0 => 'App\\Http\\Controllers\\Api\\V1\\Registry\\ServeRequestController',
-        1 => 'decline',
-        2 => 'App\\Http\\Controllers\\Api\\V1\\Registry\\ServeRequestController',
+        0 => 'App\\Http\\Controllers\\Api\\V1\\Registry\\ServiceRequestController',
+        1 => 'outbox',
+        2 => 'App\\Http\\Controllers\\Api\\V1\\Registry\\ServiceRequestController',
         3 => 
         array (
-          0 => 'm' . "\0" . 'app\\http\\controllers\\api\\v1\\registry\\serverequestcontroller' . "\0" . 'decide',
+          0 => 'm' . "\0" . 'app\\http\\controllers\\api\\v1\\registry\\servicerequestcontroller' . "\0" . 'list',
         ),
       ),
     ),
@@ -12057,6 +12456,21 @@ return [
       ),
     ),
   ),
+  '/var/www/html/app/Http/Requests/Registry/AcceptServiceRequestRequest.php' => 
+  array (
+    'PHPStan\\Rules\\DeadCode\\MethodWithoutImpurePointsCollector' => 
+    array (
+      0 => 
+      array (
+        0 => 'App\\Http\\Requests\\Registry\\AcceptServiceRequestRequest',
+        1 => 'rules',
+        2 => 'App\\Http\\Requests\\Registry\\AcceptServiceRequestRequest',
+        3 => 
+        array (
+        ),
+      ),
+    ),
+  ),
   '/var/www/html/app/Http/Requests/Registry/AddHouseholdMemberRequest.php' => 
   array (
     'PHPStan\\Rules\\DeadCode\\MethodWithoutImpurePointsCollector' => 
@@ -12145,15 +12559,15 @@ return [
       ),
     ),
   ),
-  '/var/www/html/app/Http/Requests/Registry/DecideServeRequestRequest.php' => 
+  '/var/www/html/app/Http/Requests/Registry/DeclineServiceRequestRequest.php' => 
   array (
     'PHPStan\\Rules\\DeadCode\\MethodWithoutImpurePointsCollector' => 
     array (
       0 => 
       array (
-        0 => 'App\\Http\\Requests\\Registry\\DecideServeRequestRequest',
+        0 => 'App\\Http\\Requests\\Registry\\DeclineServiceRequestRequest',
         1 => 'rules',
-        2 => 'App\\Http\\Requests\\Registry\\DecideServeRequestRequest',
+        2 => 'App\\Http\\Requests\\Registry\\DeclineServiceRequestRequest',
         3 => 
         array (
         ),
@@ -12187,21 +12601,6 @@ return [
         3 => 
         array (
           0 => 'm' . "\0" . 'illuminate\\validation\\rule' . "\0" . 'enum',
-        ),
-      ),
-    ),
-  ),
-  '/var/www/html/app/Http/Requests/Registry/RaiseServeRequestRequest.php' => 
-  array (
-    'PHPStan\\Rules\\DeadCode\\MethodWithoutImpurePointsCollector' => 
-    array (
-      0 => 
-      array (
-        0 => 'App\\Http\\Requests\\Registry\\RaiseServeRequestRequest',
-        1 => 'rules',
-        2 => 'App\\Http\\Requests\\Registry\\RaiseServeRequestRequest',
-        3 => 
-        array (
         ),
       ),
     ),
@@ -12246,6 +12645,21 @@ return [
         0 => 'App\\Http\\Requests\\Registry\\StoreOwnershipTransferRequest',
         1 => 'rules',
         2 => 'App\\Http\\Requests\\Registry\\StoreOwnershipTransferRequest',
+        3 => 
+        array (
+        ),
+      ),
+    ),
+  ),
+  '/var/www/html/app/Http/Requests/Registry/StoreServiceRequestRequest.php' => 
+  array (
+    'PHPStan\\Rules\\DeadCode\\MethodWithoutImpurePointsCollector' => 
+    array (
+      0 => 
+      array (
+        0 => 'App\\Http\\Requests\\Registry\\StoreServiceRequestRequest',
+        1 => 'rules',
+        2 => 'App\\Http\\Requests\\Registry\\StoreServiceRequestRequest',
         3 => 
         array (
         ),
@@ -12477,104 +12891,112 @@ return [
       51 => '/var/www/html/app/Domain/Registry/Jobs/ParseImportBatch.php',
       52 => '/var/www/html/app/Domain/Registry/Models/Beneficiary.php',
       53 => '/var/www/html/app/Domain/Registry/Models/BeneficiaryDocument.php',
-      54 => '/var/www/html/app/Domain/Registry/Models/Household.php',
-      55 => '/var/www/html/app/Domain/Registry/Models/HouseholdMembership.php',
-      56 => '/var/www/html/app/Domain/Registry/Models/ImportBatch.php',
-      57 => '/var/www/html/app/Domain/Registry/Models/ImportRow.php',
-      58 => '/var/www/html/app/Domain/Registry/Models/OwnershipTransferRequest.php',
-      59 => '/var/www/html/app/Domain/Registry/Models/ServeRequest.php',
-      60 => '/var/www/html/app/Domain/Registry/Policies/BeneficiaryDocumentPolicy.php',
-      61 => '/var/www/html/app/Domain/Registry/Policies/BeneficiaryPolicy.php',
-      62 => '/var/www/html/app/Domain/Registry/Policies/HouseholdPolicy.php',
-      63 => '/var/www/html/app/Domain/Registry/Policies/ImportBatchPolicy.php',
-      64 => '/var/www/html/app/Domain/Registry/Policies/ServeRequestPolicy.php',
-      65 => '/var/www/html/app/Domain/Registry/RegistryServiceProvider.php',
-      66 => '/var/www/html/app/Domain/Registry/Services/BatchDuplicateScreener.php',
-      67 => '/var/www/html/app/Domain/Registry/Services/BeneficiaryLookupService.php',
-      68 => '/var/www/html/app/Domain/Registry/Services/BeneficiaryRegistrar.php',
-      69 => '/var/www/html/app/Domain/Registry/Services/CandidateGatherer.php',
-      70 => '/var/www/html/app/Domain/Registry/Services/DeterministicDuplicateFinder.php',
-      71 => '/var/www/html/app/Domain/Registry/Services/HouseholdIngestionService.php',
-      72 => '/var/www/html/app/Domain/Registry/Services/HouseholdMembershipService.php',
-      73 => '/var/www/html/app/Domain/Registry/Services/NullBeneficiaryRouter.php',
-      74 => '/var/www/html/app/Domain/Registry/Services/OwnershipTransferService.php',
-      75 => '/var/www/html/app/Domain/Registry/Services/ServeRequestService.php',
-      76 => '/var/www/html/app/Http/Controllers/Api/V1/Access/MdaAccessGrantController.php',
-      77 => '/var/www/html/app/Http/Controllers/Api/V1/Access/MdaController.php',
-      78 => '/var/www/html/app/Http/Controllers/Api/V1/Access/UserController.php',
-      79 => '/var/www/html/app/Http/Controllers/Api/V1/AuthController.php',
-      80 => '/var/www/html/app/Http/Controllers/Api/V1/Benefit/BenefitController.php',
-      81 => '/var/www/html/app/Http/Controllers/Api/V1/Benefit/BenefitFlagController.php',
-      82 => '/var/www/html/app/Http/Controllers/Api/V1/Benefit/BenefitImportController.php',
-      83 => '/var/www/html/app/Http/Controllers/Api/V1/Benefit/DoubleDippingRuleController.php',
-      84 => '/var/www/html/app/Http/Controllers/Api/V1/Matching/MatchingConfigController.php',
-      85 => '/var/www/html/app/Http/Controllers/Api/V1/MfaController.php',
-      86 => '/var/www/html/app/Http/Controllers/Api/V1/Programme/ActivityController.php',
-      87 => '/var/www/html/app/Http/Controllers/Api/V1/Programme/EnrollmentController.php',
-      88 => '/var/www/html/app/Http/Controllers/Api/V1/Programme/ProgrammeController.php',
-      89 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/BeneficiaryController.php',
-      90 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/BeneficiaryDocumentController.php',
-      91 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/BeneficiaryIntakeController.php',
-      92 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/BeneficiaryRoutingController.php',
-      93 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/HouseholdController.php',
-      94 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/HouseholdMemberController.php',
-      95 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/ImportBatchController.php',
-      96 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/OwnershipTransferController.php',
-      97 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/ServeRequestController.php',
-      98 => '/var/www/html/app/Http/Middleware/CheckPermission.php',
-      99 => '/var/www/html/app/Http/Requests/Access/StoreMdaAccessGrantRequest.php',
-      100 => '/var/www/html/app/Http/Requests/Access/StoreMdaRequest.php',
-      101 => '/var/www/html/app/Http/Requests/Access/StoreUserRequest.php',
-      102 => '/var/www/html/app/Http/Requests/Access/UpdateMdaRequest.php',
-      103 => '/var/www/html/app/Http/Requests/Access/UpdateUserRequest.php',
-      104 => '/var/www/html/app/Http/Requests/Auth/ChangePasswordRequest.php',
-      105 => '/var/www/html/app/Http/Requests/Auth/MfaCodeRequest.php',
-      106 => '/var/www/html/app/Http/Requests/Benefit/AggregateBenefitsRequest.php',
-      107 => '/var/www/html/app/Http/Requests/Benefit/RecordBenefitRequest.php',
-      108 => '/var/www/html/app/Http/Requests/Benefit/ReviewBenefitFlagRequest.php',
-      109 => '/var/www/html/app/Http/Requests/Benefit/StoreDoubleDippingRuleRequest.php',
-      110 => '/var/www/html/app/Http/Requests/Benefit/UploadBenefitImportRequest.php',
-      111 => '/var/www/html/app/Http/Requests/Benefit/VerifyBenefitRequest.php',
-      112 => '/var/www/html/app/Http/Requests/Matching/UpdateMatchingConfigRequest.php',
-      113 => '/var/www/html/app/Http/Requests/Programme/BulkEnrollmentRequest.php',
-      114 => '/var/www/html/app/Http/Requests/Programme/StoreActivityRequest.php',
-      115 => '/var/www/html/app/Http/Requests/Programme/StoreEnrollmentRequest.php',
-      116 => '/var/www/html/app/Http/Requests/Programme/StoreProgrammeRequest.php',
-      117 => '/var/www/html/app/Http/Requests/Programme/UpdateActivityRequest.php',
-      118 => '/var/www/html/app/Http/Requests/Programme/UpdateEnrollmentRequest.php',
-      119 => '/var/www/html/app/Http/Requests/Programme/UpdateProgrammeRequest.php',
-      120 => '/var/www/html/app/Http/Requests/Registry/AddHouseholdMemberRequest.php',
-      121 => '/var/www/html/app/Http/Requests/Registry/ApiRegistrationRequest.php',
-      122 => '/var/www/html/app/Http/Requests/Registry/BeneficiaryLookupRequest.php',
-      123 => '/var/www/html/app/Http/Requests/Registry/BeneficiaryMatchSearchRequest.php',
-      124 => '/var/www/html/app/Http/Requests/Registry/DecideOwnershipTransferRequest.php',
-      125 => '/var/www/html/app/Http/Requests/Registry/DecideServeRequestRequest.php',
-      126 => '/var/www/html/app/Http/Requests/Registry/DesignateHeadRequest.php',
-      127 => '/var/www/html/app/Http/Requests/Registry/MoveHouseholdMemberRequest.php',
-      128 => '/var/www/html/app/Http/Requests/Registry/RaiseServeRequestRequest.php',
-      129 => '/var/www/html/app/Http/Requests/Registry/ResolveImportRowRequest.php',
-      130 => '/var/www/html/app/Http/Requests/Registry/RouteAssignmentRequest.php',
-      131 => '/var/www/html/app/Http/Requests/Registry/StoreBeneficiaryRequest.php',
-      132 => '/var/www/html/app/Http/Requests/Registry/StoreHouseholdRequest.php',
-      133 => '/var/www/html/app/Http/Requests/Registry/StoreOwnershipTransferRequest.php',
-      134 => '/var/www/html/app/Http/Requests/Registry/UpdateBeneficiaryRequest.php',
-      135 => '/var/www/html/app/Http/Requests/Registry/UpdateHouseholdRequest.php',
-      136 => '/var/www/html/app/Http/Requests/Registry/UploadDocumentRequest.php',
-      137 => '/var/www/html/app/Http/Requests/Registry/UploadImportRequest.php',
-      138 => '/var/www/html/app/Http/Resources/ActivityResource.php',
-      139 => '/var/www/html/app/Http/Resources/BeneficiaryDocumentResource.php',
-      140 => '/var/www/html/app/Http/Resources/BeneficiaryResource.php',
-      141 => '/var/www/html/app/Http/Resources/BeneficiaryRevealResource.php',
-      142 => '/var/www/html/app/Http/Resources/BenefitImportBatchResource.php',
-      143 => '/var/www/html/app/Http/Resources/BenefitResource.php',
-      144 => '/var/www/html/app/Http/Resources/EnrollmentResource.php',
-      145 => '/var/www/html/app/Http/Resources/HouseholdMembershipResource.php',
-      146 => '/var/www/html/app/Http/Resources/HouseholdResource.php',
-      147 => '/var/www/html/app/Http/Resources/ImportBatchResource.php',
-      148 => '/var/www/html/app/Http/Resources/MdaResource.php',
-      149 => '/var/www/html/app/Http/Resources/ProgrammeResource.php',
-      150 => '/var/www/html/app/Http/Resources/UserResource.php',
-      151 => '/var/www/html/app/Providers/AppServiceProvider.php',
+      54 => '/var/www/html/app/Domain/Registry/Models/BeneficiaryServiceGrant.php',
+      55 => '/var/www/html/app/Domain/Registry/Models/Household.php',
+      56 => '/var/www/html/app/Domain/Registry/Models/HouseholdMembership.php',
+      57 => '/var/www/html/app/Domain/Registry/Models/ImportBatch.php',
+      58 => '/var/www/html/app/Domain/Registry/Models/ImportRow.php',
+      59 => '/var/www/html/app/Domain/Registry/Models/OwnershipTransferRequest.php',
+      60 => '/var/www/html/app/Domain/Registry/Models/ServeRequest.php',
+      61 => '/var/www/html/app/Domain/Registry/Models/ServiceRequest.php',
+      62 => '/var/www/html/app/Domain/Registry/Policies/BeneficiaryDocumentPolicy.php',
+      63 => '/var/www/html/app/Domain/Registry/Policies/BeneficiaryPolicy.php',
+      64 => '/var/www/html/app/Domain/Registry/Policies/HouseholdPolicy.php',
+      65 => '/var/www/html/app/Domain/Registry/Policies/ImportBatchPolicy.php',
+      66 => '/var/www/html/app/Domain/Registry/Policies/OwnerMdaPolicy.php',
+      67 => '/var/www/html/app/Domain/Registry/Policies/ServeRequestPolicy.php',
+      68 => '/var/www/html/app/Domain/Registry/RegistryServiceProvider.php',
+      69 => '/var/www/html/app/Domain/Registry/Services/BatchDuplicateScreener.php',
+      70 => '/var/www/html/app/Domain/Registry/Services/BeneficiaryLookupService.php',
+      71 => '/var/www/html/app/Domain/Registry/Services/BeneficiaryRegistrar.php',
+      72 => '/var/www/html/app/Domain/Registry/Services/CandidateGatherer.php',
+      73 => '/var/www/html/app/Domain/Registry/Services/DeterministicDuplicateFinder.php',
+      74 => '/var/www/html/app/Domain/Registry/Services/HouseholdIngestionService.php',
+      75 => '/var/www/html/app/Domain/Registry/Services/HouseholdMembershipService.php',
+      76 => '/var/www/html/app/Domain/Registry/Services/NullBeneficiaryRouter.php',
+      77 => '/var/www/html/app/Domain/Registry/Services/OwnershipTransferService.php',
+      78 => '/var/www/html/app/Domain/Registry/Services/ServeRequestService.php',
+      79 => '/var/www/html/app/Domain/Registry/Services/ServiceRequestService.php',
+      80 => '/var/www/html/app/Http/Controllers/Api/V1/Access/MdaAccessGrantController.php',
+      81 => '/var/www/html/app/Http/Controllers/Api/V1/Access/MdaController.php',
+      82 => '/var/www/html/app/Http/Controllers/Api/V1/Access/UserController.php',
+      83 => '/var/www/html/app/Http/Controllers/Api/V1/AuthController.php',
+      84 => '/var/www/html/app/Http/Controllers/Api/V1/Benefit/BenefitController.php',
+      85 => '/var/www/html/app/Http/Controllers/Api/V1/Benefit/BenefitFlagController.php',
+      86 => '/var/www/html/app/Http/Controllers/Api/V1/Benefit/BenefitImportController.php',
+      87 => '/var/www/html/app/Http/Controllers/Api/V1/Benefit/DoubleDippingRuleController.php',
+      88 => '/var/www/html/app/Http/Controllers/Api/V1/Matching/MatchingConfigController.php',
+      89 => '/var/www/html/app/Http/Controllers/Api/V1/MfaController.php',
+      90 => '/var/www/html/app/Http/Controllers/Api/V1/Programme/ActivityController.php',
+      91 => '/var/www/html/app/Http/Controllers/Api/V1/Programme/EnrollmentController.php',
+      92 => '/var/www/html/app/Http/Controllers/Api/V1/Programme/ProgrammeController.php',
+      93 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/BeneficiaryController.php',
+      94 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/BeneficiaryDocumentController.php',
+      95 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/BeneficiaryIntakeController.php',
+      96 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/BeneficiaryRoutingController.php',
+      97 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/HouseholdController.php',
+      98 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/HouseholdMemberController.php',
+      99 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/ImportBatchController.php',
+      100 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/OwnershipTransferController.php',
+      101 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/ServeRequestController.php',
+      102 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/ServiceRequestController.php',
+      103 => '/var/www/html/app/Http/Middleware/CheckPermission.php',
+      104 => '/var/www/html/app/Http/Requests/Access/StoreMdaAccessGrantRequest.php',
+      105 => '/var/www/html/app/Http/Requests/Access/StoreMdaRequest.php',
+      106 => '/var/www/html/app/Http/Requests/Access/StoreUserRequest.php',
+      107 => '/var/www/html/app/Http/Requests/Access/UpdateMdaRequest.php',
+      108 => '/var/www/html/app/Http/Requests/Access/UpdateUserRequest.php',
+      109 => '/var/www/html/app/Http/Requests/Auth/ChangePasswordRequest.php',
+      110 => '/var/www/html/app/Http/Requests/Auth/MfaCodeRequest.php',
+      111 => '/var/www/html/app/Http/Requests/Benefit/AggregateBenefitsRequest.php',
+      112 => '/var/www/html/app/Http/Requests/Benefit/RecordBenefitRequest.php',
+      113 => '/var/www/html/app/Http/Requests/Benefit/ReviewBenefitFlagRequest.php',
+      114 => '/var/www/html/app/Http/Requests/Benefit/StoreDoubleDippingRuleRequest.php',
+      115 => '/var/www/html/app/Http/Requests/Benefit/UploadBenefitImportRequest.php',
+      116 => '/var/www/html/app/Http/Requests/Benefit/VerifyBenefitRequest.php',
+      117 => '/var/www/html/app/Http/Requests/Matching/UpdateMatchingConfigRequest.php',
+      118 => '/var/www/html/app/Http/Requests/Programme/BulkEnrollmentRequest.php',
+      119 => '/var/www/html/app/Http/Requests/Programme/StoreActivityRequest.php',
+      120 => '/var/www/html/app/Http/Requests/Programme/StoreEnrollmentRequest.php',
+      121 => '/var/www/html/app/Http/Requests/Programme/StoreProgrammeRequest.php',
+      122 => '/var/www/html/app/Http/Requests/Programme/UpdateActivityRequest.php',
+      123 => '/var/www/html/app/Http/Requests/Programme/UpdateEnrollmentRequest.php',
+      124 => '/var/www/html/app/Http/Requests/Programme/UpdateProgrammeRequest.php',
+      125 => '/var/www/html/app/Http/Requests/Registry/AcceptServiceRequestRequest.php',
+      126 => '/var/www/html/app/Http/Requests/Registry/AddHouseholdMemberRequest.php',
+      127 => '/var/www/html/app/Http/Requests/Registry/ApiRegistrationRequest.php',
+      128 => '/var/www/html/app/Http/Requests/Registry/BeneficiaryLookupRequest.php',
+      129 => '/var/www/html/app/Http/Requests/Registry/BeneficiaryMatchSearchRequest.php',
+      130 => '/var/www/html/app/Http/Requests/Registry/DecideOwnershipTransferRequest.php',
+      131 => '/var/www/html/app/Http/Requests/Registry/DecideServeRequestRequest.php',
+      132 => '/var/www/html/app/Http/Requests/Registry/DeclineServiceRequestRequest.php',
+      133 => '/var/www/html/app/Http/Requests/Registry/DesignateHeadRequest.php',
+      134 => '/var/www/html/app/Http/Requests/Registry/MoveHouseholdMemberRequest.php',
+      135 => '/var/www/html/app/Http/Requests/Registry/RaiseServeRequestRequest.php',
+      136 => '/var/www/html/app/Http/Requests/Registry/ResolveImportRowRequest.php',
+      137 => '/var/www/html/app/Http/Requests/Registry/RouteAssignmentRequest.php',
+      138 => '/var/www/html/app/Http/Requests/Registry/StoreBeneficiaryRequest.php',
+      139 => '/var/www/html/app/Http/Requests/Registry/StoreHouseholdRequest.php',
+      140 => '/var/www/html/app/Http/Requests/Registry/StoreOwnershipTransferRequest.php',
+      141 => '/var/www/html/app/Http/Requests/Registry/StoreServiceRequestRequest.php',
+      142 => '/var/www/html/app/Http/Requests/Registry/UpdateBeneficiaryRequest.php',
+      143 => '/var/www/html/app/Http/Requests/Registry/UpdateHouseholdRequest.php',
+      144 => '/var/www/html/app/Http/Requests/Registry/UploadDocumentRequest.php',
+      145 => '/var/www/html/app/Http/Requests/Registry/UploadImportRequest.php',
+      146 => '/var/www/html/app/Http/Resources/ActivityResource.php',
+      147 => '/var/www/html/app/Http/Resources/BeneficiaryDocumentResource.php',
+      148 => '/var/www/html/app/Http/Resources/BeneficiaryResource.php',
+      149 => '/var/www/html/app/Http/Resources/BeneficiaryRevealResource.php',
+      150 => '/var/www/html/app/Http/Resources/BenefitImportBatchResource.php',
+      151 => '/var/www/html/app/Http/Resources/BenefitResource.php',
+      152 => '/var/www/html/app/Http/Resources/EnrollmentResource.php',
+      153 => '/var/www/html/app/Http/Resources/HouseholdMembershipResource.php',
+      154 => '/var/www/html/app/Http/Resources/HouseholdResource.php',
+      155 => '/var/www/html/app/Http/Resources/ImportBatchResource.php',
+      156 => '/var/www/html/app/Http/Resources/MdaResource.php',
+      157 => '/var/www/html/app/Http/Resources/ProgrammeResource.php',
+      158 => '/var/www/html/app/Http/Resources/UserResource.php',
+      159 => '/var/www/html/app/Providers/AppServiceProvider.php',
     ),
   ),
   '/var/www/html/app/Domain/Access/Concerns/ScopedToMda.php' => 
@@ -12636,104 +13058,112 @@ return [
       51 => '/var/www/html/app/Domain/Registry/Jobs/ParseImportBatch.php',
       52 => '/var/www/html/app/Domain/Registry/Models/Beneficiary.php',
       53 => '/var/www/html/app/Domain/Registry/Models/BeneficiaryDocument.php',
-      54 => '/var/www/html/app/Domain/Registry/Models/Household.php',
-      55 => '/var/www/html/app/Domain/Registry/Models/HouseholdMembership.php',
-      56 => '/var/www/html/app/Domain/Registry/Models/ImportBatch.php',
-      57 => '/var/www/html/app/Domain/Registry/Models/ImportRow.php',
-      58 => '/var/www/html/app/Domain/Registry/Models/OwnershipTransferRequest.php',
-      59 => '/var/www/html/app/Domain/Registry/Models/ServeRequest.php',
-      60 => '/var/www/html/app/Domain/Registry/Policies/BeneficiaryDocumentPolicy.php',
-      61 => '/var/www/html/app/Domain/Registry/Policies/BeneficiaryPolicy.php',
-      62 => '/var/www/html/app/Domain/Registry/Policies/HouseholdPolicy.php',
-      63 => '/var/www/html/app/Domain/Registry/Policies/ImportBatchPolicy.php',
-      64 => '/var/www/html/app/Domain/Registry/Policies/ServeRequestPolicy.php',
-      65 => '/var/www/html/app/Domain/Registry/RegistryServiceProvider.php',
-      66 => '/var/www/html/app/Domain/Registry/Services/BatchDuplicateScreener.php',
-      67 => '/var/www/html/app/Domain/Registry/Services/BeneficiaryLookupService.php',
-      68 => '/var/www/html/app/Domain/Registry/Services/BeneficiaryRegistrar.php',
-      69 => '/var/www/html/app/Domain/Registry/Services/CandidateGatherer.php',
-      70 => '/var/www/html/app/Domain/Registry/Services/DeterministicDuplicateFinder.php',
-      71 => '/var/www/html/app/Domain/Registry/Services/HouseholdIngestionService.php',
-      72 => '/var/www/html/app/Domain/Registry/Services/HouseholdMembershipService.php',
-      73 => '/var/www/html/app/Domain/Registry/Services/NullBeneficiaryRouter.php',
-      74 => '/var/www/html/app/Domain/Registry/Services/OwnershipTransferService.php',
-      75 => '/var/www/html/app/Domain/Registry/Services/ServeRequestService.php',
-      76 => '/var/www/html/app/Http/Controllers/Api/V1/Access/MdaAccessGrantController.php',
-      77 => '/var/www/html/app/Http/Controllers/Api/V1/Access/MdaController.php',
-      78 => '/var/www/html/app/Http/Controllers/Api/V1/Access/UserController.php',
-      79 => '/var/www/html/app/Http/Controllers/Api/V1/AuthController.php',
-      80 => '/var/www/html/app/Http/Controllers/Api/V1/Benefit/BenefitController.php',
-      81 => '/var/www/html/app/Http/Controllers/Api/V1/Benefit/BenefitFlagController.php',
-      82 => '/var/www/html/app/Http/Controllers/Api/V1/Benefit/BenefitImportController.php',
-      83 => '/var/www/html/app/Http/Controllers/Api/V1/Benefit/DoubleDippingRuleController.php',
-      84 => '/var/www/html/app/Http/Controllers/Api/V1/Matching/MatchingConfigController.php',
-      85 => '/var/www/html/app/Http/Controllers/Api/V1/MfaController.php',
-      86 => '/var/www/html/app/Http/Controllers/Api/V1/Programme/ActivityController.php',
-      87 => '/var/www/html/app/Http/Controllers/Api/V1/Programme/EnrollmentController.php',
-      88 => '/var/www/html/app/Http/Controllers/Api/V1/Programme/ProgrammeController.php',
-      89 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/BeneficiaryController.php',
-      90 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/BeneficiaryDocumentController.php',
-      91 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/BeneficiaryIntakeController.php',
-      92 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/BeneficiaryRoutingController.php',
-      93 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/HouseholdController.php',
-      94 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/HouseholdMemberController.php',
-      95 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/ImportBatchController.php',
-      96 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/OwnershipTransferController.php',
-      97 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/ServeRequestController.php',
-      98 => '/var/www/html/app/Http/Middleware/CheckPermission.php',
-      99 => '/var/www/html/app/Http/Requests/Access/StoreMdaAccessGrantRequest.php',
-      100 => '/var/www/html/app/Http/Requests/Access/StoreMdaRequest.php',
-      101 => '/var/www/html/app/Http/Requests/Access/StoreUserRequest.php',
-      102 => '/var/www/html/app/Http/Requests/Access/UpdateMdaRequest.php',
-      103 => '/var/www/html/app/Http/Requests/Access/UpdateUserRequest.php',
-      104 => '/var/www/html/app/Http/Requests/Auth/ChangePasswordRequest.php',
-      105 => '/var/www/html/app/Http/Requests/Auth/MfaCodeRequest.php',
-      106 => '/var/www/html/app/Http/Requests/Benefit/AggregateBenefitsRequest.php',
-      107 => '/var/www/html/app/Http/Requests/Benefit/RecordBenefitRequest.php',
-      108 => '/var/www/html/app/Http/Requests/Benefit/ReviewBenefitFlagRequest.php',
-      109 => '/var/www/html/app/Http/Requests/Benefit/StoreDoubleDippingRuleRequest.php',
-      110 => '/var/www/html/app/Http/Requests/Benefit/UploadBenefitImportRequest.php',
-      111 => '/var/www/html/app/Http/Requests/Benefit/VerifyBenefitRequest.php',
-      112 => '/var/www/html/app/Http/Requests/Matching/UpdateMatchingConfigRequest.php',
-      113 => '/var/www/html/app/Http/Requests/Programme/BulkEnrollmentRequest.php',
-      114 => '/var/www/html/app/Http/Requests/Programme/StoreActivityRequest.php',
-      115 => '/var/www/html/app/Http/Requests/Programme/StoreEnrollmentRequest.php',
-      116 => '/var/www/html/app/Http/Requests/Programme/StoreProgrammeRequest.php',
-      117 => '/var/www/html/app/Http/Requests/Programme/UpdateActivityRequest.php',
-      118 => '/var/www/html/app/Http/Requests/Programme/UpdateEnrollmentRequest.php',
-      119 => '/var/www/html/app/Http/Requests/Programme/UpdateProgrammeRequest.php',
-      120 => '/var/www/html/app/Http/Requests/Registry/AddHouseholdMemberRequest.php',
-      121 => '/var/www/html/app/Http/Requests/Registry/ApiRegistrationRequest.php',
-      122 => '/var/www/html/app/Http/Requests/Registry/BeneficiaryLookupRequest.php',
-      123 => '/var/www/html/app/Http/Requests/Registry/BeneficiaryMatchSearchRequest.php',
-      124 => '/var/www/html/app/Http/Requests/Registry/DecideOwnershipTransferRequest.php',
-      125 => '/var/www/html/app/Http/Requests/Registry/DecideServeRequestRequest.php',
-      126 => '/var/www/html/app/Http/Requests/Registry/DesignateHeadRequest.php',
-      127 => '/var/www/html/app/Http/Requests/Registry/MoveHouseholdMemberRequest.php',
-      128 => '/var/www/html/app/Http/Requests/Registry/RaiseServeRequestRequest.php',
-      129 => '/var/www/html/app/Http/Requests/Registry/ResolveImportRowRequest.php',
-      130 => '/var/www/html/app/Http/Requests/Registry/RouteAssignmentRequest.php',
-      131 => '/var/www/html/app/Http/Requests/Registry/StoreBeneficiaryRequest.php',
-      132 => '/var/www/html/app/Http/Requests/Registry/StoreHouseholdRequest.php',
-      133 => '/var/www/html/app/Http/Requests/Registry/StoreOwnershipTransferRequest.php',
-      134 => '/var/www/html/app/Http/Requests/Registry/UpdateBeneficiaryRequest.php',
-      135 => '/var/www/html/app/Http/Requests/Registry/UpdateHouseholdRequest.php',
-      136 => '/var/www/html/app/Http/Requests/Registry/UploadDocumentRequest.php',
-      137 => '/var/www/html/app/Http/Requests/Registry/UploadImportRequest.php',
-      138 => '/var/www/html/app/Http/Resources/ActivityResource.php',
-      139 => '/var/www/html/app/Http/Resources/BeneficiaryDocumentResource.php',
-      140 => '/var/www/html/app/Http/Resources/BeneficiaryResource.php',
-      141 => '/var/www/html/app/Http/Resources/BeneficiaryRevealResource.php',
-      142 => '/var/www/html/app/Http/Resources/BenefitImportBatchResource.php',
-      143 => '/var/www/html/app/Http/Resources/BenefitResource.php',
-      144 => '/var/www/html/app/Http/Resources/EnrollmentResource.php',
-      145 => '/var/www/html/app/Http/Resources/HouseholdMembershipResource.php',
-      146 => '/var/www/html/app/Http/Resources/HouseholdResource.php',
-      147 => '/var/www/html/app/Http/Resources/ImportBatchResource.php',
-      148 => '/var/www/html/app/Http/Resources/MdaResource.php',
-      149 => '/var/www/html/app/Http/Resources/ProgrammeResource.php',
-      150 => '/var/www/html/app/Http/Resources/UserResource.php',
-      151 => '/var/www/html/app/Providers/AppServiceProvider.php',
+      54 => '/var/www/html/app/Domain/Registry/Models/BeneficiaryServiceGrant.php',
+      55 => '/var/www/html/app/Domain/Registry/Models/Household.php',
+      56 => '/var/www/html/app/Domain/Registry/Models/HouseholdMembership.php',
+      57 => '/var/www/html/app/Domain/Registry/Models/ImportBatch.php',
+      58 => '/var/www/html/app/Domain/Registry/Models/ImportRow.php',
+      59 => '/var/www/html/app/Domain/Registry/Models/OwnershipTransferRequest.php',
+      60 => '/var/www/html/app/Domain/Registry/Models/ServeRequest.php',
+      61 => '/var/www/html/app/Domain/Registry/Models/ServiceRequest.php',
+      62 => '/var/www/html/app/Domain/Registry/Policies/BeneficiaryDocumentPolicy.php',
+      63 => '/var/www/html/app/Domain/Registry/Policies/BeneficiaryPolicy.php',
+      64 => '/var/www/html/app/Domain/Registry/Policies/HouseholdPolicy.php',
+      65 => '/var/www/html/app/Domain/Registry/Policies/ImportBatchPolicy.php',
+      66 => '/var/www/html/app/Domain/Registry/Policies/OwnerMdaPolicy.php',
+      67 => '/var/www/html/app/Domain/Registry/Policies/ServeRequestPolicy.php',
+      68 => '/var/www/html/app/Domain/Registry/RegistryServiceProvider.php',
+      69 => '/var/www/html/app/Domain/Registry/Services/BatchDuplicateScreener.php',
+      70 => '/var/www/html/app/Domain/Registry/Services/BeneficiaryLookupService.php',
+      71 => '/var/www/html/app/Domain/Registry/Services/BeneficiaryRegistrar.php',
+      72 => '/var/www/html/app/Domain/Registry/Services/CandidateGatherer.php',
+      73 => '/var/www/html/app/Domain/Registry/Services/DeterministicDuplicateFinder.php',
+      74 => '/var/www/html/app/Domain/Registry/Services/HouseholdIngestionService.php',
+      75 => '/var/www/html/app/Domain/Registry/Services/HouseholdMembershipService.php',
+      76 => '/var/www/html/app/Domain/Registry/Services/NullBeneficiaryRouter.php',
+      77 => '/var/www/html/app/Domain/Registry/Services/OwnershipTransferService.php',
+      78 => '/var/www/html/app/Domain/Registry/Services/ServeRequestService.php',
+      79 => '/var/www/html/app/Domain/Registry/Services/ServiceRequestService.php',
+      80 => '/var/www/html/app/Http/Controllers/Api/V1/Access/MdaAccessGrantController.php',
+      81 => '/var/www/html/app/Http/Controllers/Api/V1/Access/MdaController.php',
+      82 => '/var/www/html/app/Http/Controllers/Api/V1/Access/UserController.php',
+      83 => '/var/www/html/app/Http/Controllers/Api/V1/AuthController.php',
+      84 => '/var/www/html/app/Http/Controllers/Api/V1/Benefit/BenefitController.php',
+      85 => '/var/www/html/app/Http/Controllers/Api/V1/Benefit/BenefitFlagController.php',
+      86 => '/var/www/html/app/Http/Controllers/Api/V1/Benefit/BenefitImportController.php',
+      87 => '/var/www/html/app/Http/Controllers/Api/V1/Benefit/DoubleDippingRuleController.php',
+      88 => '/var/www/html/app/Http/Controllers/Api/V1/Matching/MatchingConfigController.php',
+      89 => '/var/www/html/app/Http/Controllers/Api/V1/MfaController.php',
+      90 => '/var/www/html/app/Http/Controllers/Api/V1/Programme/ActivityController.php',
+      91 => '/var/www/html/app/Http/Controllers/Api/V1/Programme/EnrollmentController.php',
+      92 => '/var/www/html/app/Http/Controllers/Api/V1/Programme/ProgrammeController.php',
+      93 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/BeneficiaryController.php',
+      94 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/BeneficiaryDocumentController.php',
+      95 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/BeneficiaryIntakeController.php',
+      96 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/BeneficiaryRoutingController.php',
+      97 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/HouseholdController.php',
+      98 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/HouseholdMemberController.php',
+      99 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/ImportBatchController.php',
+      100 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/OwnershipTransferController.php',
+      101 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/ServeRequestController.php',
+      102 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/ServiceRequestController.php',
+      103 => '/var/www/html/app/Http/Middleware/CheckPermission.php',
+      104 => '/var/www/html/app/Http/Requests/Access/StoreMdaAccessGrantRequest.php',
+      105 => '/var/www/html/app/Http/Requests/Access/StoreMdaRequest.php',
+      106 => '/var/www/html/app/Http/Requests/Access/StoreUserRequest.php',
+      107 => '/var/www/html/app/Http/Requests/Access/UpdateMdaRequest.php',
+      108 => '/var/www/html/app/Http/Requests/Access/UpdateUserRequest.php',
+      109 => '/var/www/html/app/Http/Requests/Auth/ChangePasswordRequest.php',
+      110 => '/var/www/html/app/Http/Requests/Auth/MfaCodeRequest.php',
+      111 => '/var/www/html/app/Http/Requests/Benefit/AggregateBenefitsRequest.php',
+      112 => '/var/www/html/app/Http/Requests/Benefit/RecordBenefitRequest.php',
+      113 => '/var/www/html/app/Http/Requests/Benefit/ReviewBenefitFlagRequest.php',
+      114 => '/var/www/html/app/Http/Requests/Benefit/StoreDoubleDippingRuleRequest.php',
+      115 => '/var/www/html/app/Http/Requests/Benefit/UploadBenefitImportRequest.php',
+      116 => '/var/www/html/app/Http/Requests/Benefit/VerifyBenefitRequest.php',
+      117 => '/var/www/html/app/Http/Requests/Matching/UpdateMatchingConfigRequest.php',
+      118 => '/var/www/html/app/Http/Requests/Programme/BulkEnrollmentRequest.php',
+      119 => '/var/www/html/app/Http/Requests/Programme/StoreActivityRequest.php',
+      120 => '/var/www/html/app/Http/Requests/Programme/StoreEnrollmentRequest.php',
+      121 => '/var/www/html/app/Http/Requests/Programme/StoreProgrammeRequest.php',
+      122 => '/var/www/html/app/Http/Requests/Programme/UpdateActivityRequest.php',
+      123 => '/var/www/html/app/Http/Requests/Programme/UpdateEnrollmentRequest.php',
+      124 => '/var/www/html/app/Http/Requests/Programme/UpdateProgrammeRequest.php',
+      125 => '/var/www/html/app/Http/Requests/Registry/AcceptServiceRequestRequest.php',
+      126 => '/var/www/html/app/Http/Requests/Registry/AddHouseholdMemberRequest.php',
+      127 => '/var/www/html/app/Http/Requests/Registry/ApiRegistrationRequest.php',
+      128 => '/var/www/html/app/Http/Requests/Registry/BeneficiaryLookupRequest.php',
+      129 => '/var/www/html/app/Http/Requests/Registry/BeneficiaryMatchSearchRequest.php',
+      130 => '/var/www/html/app/Http/Requests/Registry/DecideOwnershipTransferRequest.php',
+      131 => '/var/www/html/app/Http/Requests/Registry/DecideServeRequestRequest.php',
+      132 => '/var/www/html/app/Http/Requests/Registry/DeclineServiceRequestRequest.php',
+      133 => '/var/www/html/app/Http/Requests/Registry/DesignateHeadRequest.php',
+      134 => '/var/www/html/app/Http/Requests/Registry/MoveHouseholdMemberRequest.php',
+      135 => '/var/www/html/app/Http/Requests/Registry/RaiseServeRequestRequest.php',
+      136 => '/var/www/html/app/Http/Requests/Registry/ResolveImportRowRequest.php',
+      137 => '/var/www/html/app/Http/Requests/Registry/RouteAssignmentRequest.php',
+      138 => '/var/www/html/app/Http/Requests/Registry/StoreBeneficiaryRequest.php',
+      139 => '/var/www/html/app/Http/Requests/Registry/StoreHouseholdRequest.php',
+      140 => '/var/www/html/app/Http/Requests/Registry/StoreOwnershipTransferRequest.php',
+      141 => '/var/www/html/app/Http/Requests/Registry/StoreServiceRequestRequest.php',
+      142 => '/var/www/html/app/Http/Requests/Registry/UpdateBeneficiaryRequest.php',
+      143 => '/var/www/html/app/Http/Requests/Registry/UpdateHouseholdRequest.php',
+      144 => '/var/www/html/app/Http/Requests/Registry/UploadDocumentRequest.php',
+      145 => '/var/www/html/app/Http/Requests/Registry/UploadImportRequest.php',
+      146 => '/var/www/html/app/Http/Resources/ActivityResource.php',
+      147 => '/var/www/html/app/Http/Resources/BeneficiaryDocumentResource.php',
+      148 => '/var/www/html/app/Http/Resources/BeneficiaryResource.php',
+      149 => '/var/www/html/app/Http/Resources/BeneficiaryRevealResource.php',
+      150 => '/var/www/html/app/Http/Resources/BenefitImportBatchResource.php',
+      151 => '/var/www/html/app/Http/Resources/BenefitResource.php',
+      152 => '/var/www/html/app/Http/Resources/EnrollmentResource.php',
+      153 => '/var/www/html/app/Http/Resources/HouseholdMembershipResource.php',
+      154 => '/var/www/html/app/Http/Resources/HouseholdResource.php',
+      155 => '/var/www/html/app/Http/Resources/ImportBatchResource.php',
+      156 => '/var/www/html/app/Http/Resources/MdaResource.php',
+      157 => '/var/www/html/app/Http/Resources/ProgrammeResource.php',
+      158 => '/var/www/html/app/Http/Resources/UserResource.php',
+      159 => '/var/www/html/app/Providers/AppServiceProvider.php',
     ),
     'usedTraitDependentFiles' => 
     array (
@@ -12746,8 +13176,9 @@ return [
       6 => '/var/www/html/app/Domain/Programme/Models/Programme.php',
       7 => '/var/www/html/app/Domain/Registry/Models/Beneficiary.php',
       8 => '/var/www/html/app/Domain/Registry/Models/BeneficiaryDocument.php',
-      9 => '/var/www/html/app/Domain/Registry/Models/Household.php',
-      10 => '/var/www/html/app/Domain/Registry/Models/ImportBatch.php',
+      9 => '/var/www/html/app/Domain/Registry/Models/BeneficiaryServiceGrant.php',
+      10 => '/var/www/html/app/Domain/Registry/Models/Household.php',
+      11 => '/var/www/html/app/Domain/Registry/Models/ImportBatch.php',
     ),
   ),
   '/var/www/html/app/Domain/Access/Enums/MdaStatus.php' => 
@@ -12768,16 +13199,18 @@ return [
       10 => '/var/www/html/app/Domain/Programme/Services/ProgrammeMatcher.php',
       11 => '/var/www/html/app/Domain/Registry/Models/Beneficiary.php',
       12 => '/var/www/html/app/Domain/Registry/Models/BeneficiaryDocument.php',
-      13 => '/var/www/html/app/Domain/Registry/Models/Household.php',
-      14 => '/var/www/html/app/Domain/Registry/Models/ImportBatch.php',
-      15 => '/var/www/html/app/Domain/Registry/Models/OwnershipTransferRequest.php',
-      16 => '/var/www/html/app/Domain/Registry/Models/ServeRequest.php',
-      17 => '/var/www/html/app/Http/Controllers/Api/V1/Access/MdaController.php',
-      18 => '/var/www/html/app/Http/Requests/Access/StoreMdaRequest.php',
-      19 => '/var/www/html/app/Http/Resources/BeneficiaryRevealResource.php',
-      20 => '/var/www/html/app/Http/Resources/MdaResource.php',
-      21 => '/var/www/html/app/Http/Resources/ProgrammeResource.php',
-      22 => '/var/www/html/app/Http/Resources/UserResource.php',
+      13 => '/var/www/html/app/Domain/Registry/Models/BeneficiaryServiceGrant.php',
+      14 => '/var/www/html/app/Domain/Registry/Models/Household.php',
+      15 => '/var/www/html/app/Domain/Registry/Models/ImportBatch.php',
+      16 => '/var/www/html/app/Domain/Registry/Models/OwnershipTransferRequest.php',
+      17 => '/var/www/html/app/Domain/Registry/Models/ServeRequest.php',
+      18 => '/var/www/html/app/Domain/Registry/Models/ServiceRequest.php',
+      19 => '/var/www/html/app/Http/Controllers/Api/V1/Access/MdaController.php',
+      20 => '/var/www/html/app/Http/Requests/Access/StoreMdaRequest.php',
+      21 => '/var/www/html/app/Http/Resources/BeneficiaryRevealResource.php',
+      22 => '/var/www/html/app/Http/Resources/MdaResource.php',
+      23 => '/var/www/html/app/Http/Resources/ProgrammeResource.php',
+      24 => '/var/www/html/app/Http/Resources/UserResource.php',
     ),
   ),
   '/var/www/html/app/Domain/Access/Enums/MdaType.php' => 
@@ -12798,17 +13231,19 @@ return [
       10 => '/var/www/html/app/Domain/Programme/Services/ProgrammeMatcher.php',
       11 => '/var/www/html/app/Domain/Registry/Models/Beneficiary.php',
       12 => '/var/www/html/app/Domain/Registry/Models/BeneficiaryDocument.php',
-      13 => '/var/www/html/app/Domain/Registry/Models/Household.php',
-      14 => '/var/www/html/app/Domain/Registry/Models/ImportBatch.php',
-      15 => '/var/www/html/app/Domain/Registry/Models/OwnershipTransferRequest.php',
-      16 => '/var/www/html/app/Domain/Registry/Models/ServeRequest.php',
-      17 => '/var/www/html/app/Http/Controllers/Api/V1/Access/MdaController.php',
-      18 => '/var/www/html/app/Http/Requests/Access/StoreMdaRequest.php',
-      19 => '/var/www/html/app/Http/Requests/Access/UpdateMdaRequest.php',
-      20 => '/var/www/html/app/Http/Resources/BeneficiaryRevealResource.php',
-      21 => '/var/www/html/app/Http/Resources/MdaResource.php',
-      22 => '/var/www/html/app/Http/Resources/ProgrammeResource.php',
-      23 => '/var/www/html/app/Http/Resources/UserResource.php',
+      13 => '/var/www/html/app/Domain/Registry/Models/BeneficiaryServiceGrant.php',
+      14 => '/var/www/html/app/Domain/Registry/Models/Household.php',
+      15 => '/var/www/html/app/Domain/Registry/Models/ImportBatch.php',
+      16 => '/var/www/html/app/Domain/Registry/Models/OwnershipTransferRequest.php',
+      17 => '/var/www/html/app/Domain/Registry/Models/ServeRequest.php',
+      18 => '/var/www/html/app/Domain/Registry/Models/ServiceRequest.php',
+      19 => '/var/www/html/app/Http/Controllers/Api/V1/Access/MdaController.php',
+      20 => '/var/www/html/app/Http/Requests/Access/StoreMdaRequest.php',
+      21 => '/var/www/html/app/Http/Requests/Access/UpdateMdaRequest.php',
+      22 => '/var/www/html/app/Http/Resources/BeneficiaryRevealResource.php',
+      23 => '/var/www/html/app/Http/Resources/MdaResource.php',
+      24 => '/var/www/html/app/Http/Resources/ProgrammeResource.php',
+      25 => '/var/www/html/app/Http/Resources/UserResource.php',
     ),
   ),
   '/var/www/html/app/Domain/Access/Enums/PermissionAction.php' => 
@@ -12886,70 +13321,77 @@ return [
       39 => '/var/www/html/app/Domain/Registry/Policies/BeneficiaryPolicy.php',
       40 => '/var/www/html/app/Domain/Registry/Policies/HouseholdPolicy.php',
       41 => '/var/www/html/app/Domain/Registry/Policies/ImportBatchPolicy.php',
-      42 => '/var/www/html/app/Domain/Registry/Policies/ServeRequestPolicy.php',
-      43 => '/var/www/html/app/Domain/Registry/Services/OwnershipTransferService.php',
-      44 => '/var/www/html/app/Domain/Registry/Services/ServeRequestService.php',
-      45 => '/var/www/html/app/Http/Controllers/Api/V1/Access/MdaAccessGrantController.php',
-      46 => '/var/www/html/app/Http/Controllers/Api/V1/Access/UserController.php',
-      47 => '/var/www/html/app/Http/Controllers/Api/V1/AuthController.php',
-      48 => '/var/www/html/app/Http/Controllers/Api/V1/Benefit/BenefitController.php',
-      49 => '/var/www/html/app/Http/Controllers/Api/V1/Benefit/BenefitFlagController.php',
-      50 => '/var/www/html/app/Http/Controllers/Api/V1/Benefit/BenefitImportController.php',
-      51 => '/var/www/html/app/Http/Controllers/Api/V1/Benefit/DoubleDippingRuleController.php',
-      52 => '/var/www/html/app/Http/Controllers/Api/V1/Matching/MatchingConfigController.php',
-      53 => '/var/www/html/app/Http/Controllers/Api/V1/MfaController.php',
-      54 => '/var/www/html/app/Http/Controllers/Api/V1/Programme/ActivityController.php',
-      55 => '/var/www/html/app/Http/Controllers/Api/V1/Programme/EnrollmentController.php',
-      56 => '/var/www/html/app/Http/Controllers/Api/V1/Programme/ProgrammeController.php',
-      57 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/BeneficiaryDocumentController.php',
-      58 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/BeneficiaryIntakeController.php',
-      59 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/BeneficiaryRoutingController.php',
-      60 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/ImportBatchController.php',
-      61 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/OwnershipTransferController.php',
-      62 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/ServeRequestController.php',
-      63 => '/var/www/html/app/Http/Middleware/CheckPermission.php',
-      64 => '/var/www/html/app/Http/Requests/Access/StoreMdaAccessGrantRequest.php',
-      65 => '/var/www/html/app/Http/Requests/Access/StoreMdaRequest.php',
-      66 => '/var/www/html/app/Http/Requests/Access/StoreUserRequest.php',
-      67 => '/var/www/html/app/Http/Requests/Access/UpdateMdaRequest.php',
-      68 => '/var/www/html/app/Http/Requests/Access/UpdateUserRequest.php',
-      69 => '/var/www/html/app/Http/Requests/Auth/ChangePasswordRequest.php',
-      70 => '/var/www/html/app/Http/Requests/Auth/MfaCodeRequest.php',
-      71 => '/var/www/html/app/Http/Requests/Benefit/AggregateBenefitsRequest.php',
-      72 => '/var/www/html/app/Http/Requests/Benefit/RecordBenefitRequest.php',
-      73 => '/var/www/html/app/Http/Requests/Benefit/ReviewBenefitFlagRequest.php',
-      74 => '/var/www/html/app/Http/Requests/Benefit/StoreDoubleDippingRuleRequest.php',
-      75 => '/var/www/html/app/Http/Requests/Benefit/UploadBenefitImportRequest.php',
-      76 => '/var/www/html/app/Http/Requests/Benefit/VerifyBenefitRequest.php',
-      77 => '/var/www/html/app/Http/Requests/Matching/UpdateMatchingConfigRequest.php',
-      78 => '/var/www/html/app/Http/Requests/Programme/BulkEnrollmentRequest.php',
-      79 => '/var/www/html/app/Http/Requests/Programme/StoreActivityRequest.php',
-      80 => '/var/www/html/app/Http/Requests/Programme/StoreEnrollmentRequest.php',
-      81 => '/var/www/html/app/Http/Requests/Programme/StoreProgrammeRequest.php',
-      82 => '/var/www/html/app/Http/Requests/Programme/UpdateActivityRequest.php',
-      83 => '/var/www/html/app/Http/Requests/Programme/UpdateEnrollmentRequest.php',
-      84 => '/var/www/html/app/Http/Requests/Programme/UpdateProgrammeRequest.php',
-      85 => '/var/www/html/app/Http/Requests/Registry/AddHouseholdMemberRequest.php',
-      86 => '/var/www/html/app/Http/Requests/Registry/ApiRegistrationRequest.php',
-      87 => '/var/www/html/app/Http/Requests/Registry/BeneficiaryLookupRequest.php',
-      88 => '/var/www/html/app/Http/Requests/Registry/BeneficiaryMatchSearchRequest.php',
-      89 => '/var/www/html/app/Http/Requests/Registry/DecideOwnershipTransferRequest.php',
-      90 => '/var/www/html/app/Http/Requests/Registry/DecideServeRequestRequest.php',
-      91 => '/var/www/html/app/Http/Requests/Registry/DesignateHeadRequest.php',
-      92 => '/var/www/html/app/Http/Requests/Registry/MoveHouseholdMemberRequest.php',
-      93 => '/var/www/html/app/Http/Requests/Registry/RaiseServeRequestRequest.php',
-      94 => '/var/www/html/app/Http/Requests/Registry/ResolveImportRowRequest.php',
-      95 => '/var/www/html/app/Http/Requests/Registry/RouteAssignmentRequest.php',
-      96 => '/var/www/html/app/Http/Requests/Registry/StoreBeneficiaryRequest.php',
-      97 => '/var/www/html/app/Http/Requests/Registry/StoreHouseholdRequest.php',
-      98 => '/var/www/html/app/Http/Requests/Registry/StoreOwnershipTransferRequest.php',
-      99 => '/var/www/html/app/Http/Requests/Registry/UpdateBeneficiaryRequest.php',
-      100 => '/var/www/html/app/Http/Requests/Registry/UpdateHouseholdRequest.php',
-      101 => '/var/www/html/app/Http/Requests/Registry/UploadDocumentRequest.php',
-      102 => '/var/www/html/app/Http/Requests/Registry/UploadImportRequest.php',
-      103 => '/var/www/html/app/Http/Resources/BeneficiaryRevealResource.php',
-      104 => '/var/www/html/app/Http/Resources/UserResource.php',
-      105 => '/var/www/html/app/Providers/AppServiceProvider.php',
+      42 => '/var/www/html/app/Domain/Registry/Policies/OwnerMdaPolicy.php',
+      43 => '/var/www/html/app/Domain/Registry/Policies/ServeRequestPolicy.php',
+      44 => '/var/www/html/app/Domain/Registry/Services/OwnershipTransferService.php',
+      45 => '/var/www/html/app/Domain/Registry/Services/ServeRequestService.php',
+      46 => '/var/www/html/app/Domain/Registry/Services/ServiceRequestService.php',
+      47 => '/var/www/html/app/Http/Controllers/Api/V1/Access/MdaAccessGrantController.php',
+      48 => '/var/www/html/app/Http/Controllers/Api/V1/Access/UserController.php',
+      49 => '/var/www/html/app/Http/Controllers/Api/V1/AuthController.php',
+      50 => '/var/www/html/app/Http/Controllers/Api/V1/Benefit/BenefitController.php',
+      51 => '/var/www/html/app/Http/Controllers/Api/V1/Benefit/BenefitFlagController.php',
+      52 => '/var/www/html/app/Http/Controllers/Api/V1/Benefit/BenefitImportController.php',
+      53 => '/var/www/html/app/Http/Controllers/Api/V1/Benefit/DoubleDippingRuleController.php',
+      54 => '/var/www/html/app/Http/Controllers/Api/V1/Matching/MatchingConfigController.php',
+      55 => '/var/www/html/app/Http/Controllers/Api/V1/MfaController.php',
+      56 => '/var/www/html/app/Http/Controllers/Api/V1/Programme/ActivityController.php',
+      57 => '/var/www/html/app/Http/Controllers/Api/V1/Programme/EnrollmentController.php',
+      58 => '/var/www/html/app/Http/Controllers/Api/V1/Programme/ProgrammeController.php',
+      59 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/BeneficiaryController.php',
+      60 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/BeneficiaryDocumentController.php',
+      61 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/BeneficiaryIntakeController.php',
+      62 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/BeneficiaryRoutingController.php',
+      63 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/ImportBatchController.php',
+      64 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/OwnershipTransferController.php',
+      65 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/ServeRequestController.php',
+      66 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/ServiceRequestController.php',
+      67 => '/var/www/html/app/Http/Middleware/CheckPermission.php',
+      68 => '/var/www/html/app/Http/Requests/Access/StoreMdaAccessGrantRequest.php',
+      69 => '/var/www/html/app/Http/Requests/Access/StoreMdaRequest.php',
+      70 => '/var/www/html/app/Http/Requests/Access/StoreUserRequest.php',
+      71 => '/var/www/html/app/Http/Requests/Access/UpdateMdaRequest.php',
+      72 => '/var/www/html/app/Http/Requests/Access/UpdateUserRequest.php',
+      73 => '/var/www/html/app/Http/Requests/Auth/ChangePasswordRequest.php',
+      74 => '/var/www/html/app/Http/Requests/Auth/MfaCodeRequest.php',
+      75 => '/var/www/html/app/Http/Requests/Benefit/AggregateBenefitsRequest.php',
+      76 => '/var/www/html/app/Http/Requests/Benefit/RecordBenefitRequest.php',
+      77 => '/var/www/html/app/Http/Requests/Benefit/ReviewBenefitFlagRequest.php',
+      78 => '/var/www/html/app/Http/Requests/Benefit/StoreDoubleDippingRuleRequest.php',
+      79 => '/var/www/html/app/Http/Requests/Benefit/UploadBenefitImportRequest.php',
+      80 => '/var/www/html/app/Http/Requests/Benefit/VerifyBenefitRequest.php',
+      81 => '/var/www/html/app/Http/Requests/Matching/UpdateMatchingConfigRequest.php',
+      82 => '/var/www/html/app/Http/Requests/Programme/BulkEnrollmentRequest.php',
+      83 => '/var/www/html/app/Http/Requests/Programme/StoreActivityRequest.php',
+      84 => '/var/www/html/app/Http/Requests/Programme/StoreEnrollmentRequest.php',
+      85 => '/var/www/html/app/Http/Requests/Programme/StoreProgrammeRequest.php',
+      86 => '/var/www/html/app/Http/Requests/Programme/UpdateActivityRequest.php',
+      87 => '/var/www/html/app/Http/Requests/Programme/UpdateEnrollmentRequest.php',
+      88 => '/var/www/html/app/Http/Requests/Programme/UpdateProgrammeRequest.php',
+      89 => '/var/www/html/app/Http/Requests/Registry/AcceptServiceRequestRequest.php',
+      90 => '/var/www/html/app/Http/Requests/Registry/AddHouseholdMemberRequest.php',
+      91 => '/var/www/html/app/Http/Requests/Registry/ApiRegistrationRequest.php',
+      92 => '/var/www/html/app/Http/Requests/Registry/BeneficiaryLookupRequest.php',
+      93 => '/var/www/html/app/Http/Requests/Registry/BeneficiaryMatchSearchRequest.php',
+      94 => '/var/www/html/app/Http/Requests/Registry/DecideOwnershipTransferRequest.php',
+      95 => '/var/www/html/app/Http/Requests/Registry/DecideServeRequestRequest.php',
+      96 => '/var/www/html/app/Http/Requests/Registry/DeclineServiceRequestRequest.php',
+      97 => '/var/www/html/app/Http/Requests/Registry/DesignateHeadRequest.php',
+      98 => '/var/www/html/app/Http/Requests/Registry/MoveHouseholdMemberRequest.php',
+      99 => '/var/www/html/app/Http/Requests/Registry/RaiseServeRequestRequest.php',
+      100 => '/var/www/html/app/Http/Requests/Registry/ResolveImportRowRequest.php',
+      101 => '/var/www/html/app/Http/Requests/Registry/RouteAssignmentRequest.php',
+      102 => '/var/www/html/app/Http/Requests/Registry/StoreBeneficiaryRequest.php',
+      103 => '/var/www/html/app/Http/Requests/Registry/StoreHouseholdRequest.php',
+      104 => '/var/www/html/app/Http/Requests/Registry/StoreOwnershipTransferRequest.php',
+      105 => '/var/www/html/app/Http/Requests/Registry/StoreServiceRequestRequest.php',
+      106 => '/var/www/html/app/Http/Requests/Registry/UpdateBeneficiaryRequest.php',
+      107 => '/var/www/html/app/Http/Requests/Registry/UpdateHouseholdRequest.php',
+      108 => '/var/www/html/app/Http/Requests/Registry/UploadDocumentRequest.php',
+      109 => '/var/www/html/app/Http/Requests/Registry/UploadImportRequest.php',
+      110 => '/var/www/html/app/Http/Resources/BeneficiaryRevealResource.php',
+      111 => '/var/www/html/app/Http/Resources/UserResource.php',
+      112 => '/var/www/html/app/Providers/AppServiceProvider.php',
     ),
   ),
   '/var/www/html/app/Domain/Access/Events/AccountLocked.php' => 
@@ -13065,104 +13507,113 @@ return [
       50 => '/var/www/html/app/Domain/Registry/Jobs/ParseImportBatch.php',
       51 => '/var/www/html/app/Domain/Registry/Models/Beneficiary.php',
       52 => '/var/www/html/app/Domain/Registry/Models/BeneficiaryDocument.php',
-      53 => '/var/www/html/app/Domain/Registry/Models/Household.php',
-      54 => '/var/www/html/app/Domain/Registry/Models/HouseholdMembership.php',
-      55 => '/var/www/html/app/Domain/Registry/Models/ImportBatch.php',
-      56 => '/var/www/html/app/Domain/Registry/Models/ImportRow.php',
-      57 => '/var/www/html/app/Domain/Registry/Models/OwnershipTransferRequest.php',
-      58 => '/var/www/html/app/Domain/Registry/Models/ServeRequest.php',
-      59 => '/var/www/html/app/Domain/Registry/Policies/BeneficiaryDocumentPolicy.php',
-      60 => '/var/www/html/app/Domain/Registry/Policies/BeneficiaryPolicy.php',
-      61 => '/var/www/html/app/Domain/Registry/Policies/HouseholdPolicy.php',
-      62 => '/var/www/html/app/Domain/Registry/Policies/ImportBatchPolicy.php',
-      63 => '/var/www/html/app/Domain/Registry/Policies/ServeRequestPolicy.php',
-      64 => '/var/www/html/app/Domain/Registry/RegistryServiceProvider.php',
-      65 => '/var/www/html/app/Domain/Registry/Services/BatchDuplicateScreener.php',
-      66 => '/var/www/html/app/Domain/Registry/Services/BeneficiaryLookupService.php',
-      67 => '/var/www/html/app/Domain/Registry/Services/BeneficiaryRegistrar.php',
-      68 => '/var/www/html/app/Domain/Registry/Services/CandidateGatherer.php',
-      69 => '/var/www/html/app/Domain/Registry/Services/DeterministicDuplicateFinder.php',
-      70 => '/var/www/html/app/Domain/Registry/Services/HouseholdIngestionService.php',
-      71 => '/var/www/html/app/Domain/Registry/Services/HouseholdMembershipService.php',
-      72 => '/var/www/html/app/Domain/Registry/Services/NullBeneficiaryRouter.php',
-      73 => '/var/www/html/app/Domain/Registry/Services/OwnershipTransferService.php',
-      74 => '/var/www/html/app/Domain/Registry/Services/ServeRequestService.php',
-      75 => '/var/www/html/app/Http/Controllers/Api/V1/Access/MdaAccessGrantController.php',
-      76 => '/var/www/html/app/Http/Controllers/Api/V1/Access/MdaController.php',
-      77 => '/var/www/html/app/Http/Controllers/Api/V1/Access/UserController.php',
-      78 => '/var/www/html/app/Http/Controllers/Api/V1/AuthController.php',
-      79 => '/var/www/html/app/Http/Controllers/Api/V1/Benefit/BenefitController.php',
-      80 => '/var/www/html/app/Http/Controllers/Api/V1/Benefit/BenefitFlagController.php',
-      81 => '/var/www/html/app/Http/Controllers/Api/V1/Benefit/BenefitImportController.php',
-      82 => '/var/www/html/app/Http/Controllers/Api/V1/Benefit/DoubleDippingRuleController.php',
-      83 => '/var/www/html/app/Http/Controllers/Api/V1/Matching/MatchingConfigController.php',
-      84 => '/var/www/html/app/Http/Controllers/Api/V1/MfaController.php',
-      85 => '/var/www/html/app/Http/Controllers/Api/V1/Programme/ActivityController.php',
-      86 => '/var/www/html/app/Http/Controllers/Api/V1/Programme/EnrollmentController.php',
-      87 => '/var/www/html/app/Http/Controllers/Api/V1/Programme/ProgrammeController.php',
-      88 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/BeneficiaryController.php',
-      89 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/BeneficiaryDocumentController.php',
-      90 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/BeneficiaryIntakeController.php',
-      91 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/BeneficiaryRoutingController.php',
-      92 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/HouseholdController.php',
-      93 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/HouseholdMemberController.php',
-      94 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/ImportBatchController.php',
-      95 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/OwnershipTransferController.php',
-      96 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/ServeRequestController.php',
-      97 => '/var/www/html/app/Http/Middleware/CheckPermission.php',
-      98 => '/var/www/html/app/Http/Requests/Access/StoreMdaAccessGrantRequest.php',
-      99 => '/var/www/html/app/Http/Requests/Access/StoreMdaRequest.php',
-      100 => '/var/www/html/app/Http/Requests/Access/StoreUserRequest.php',
-      101 => '/var/www/html/app/Http/Requests/Access/UpdateMdaRequest.php',
-      102 => '/var/www/html/app/Http/Requests/Access/UpdateUserRequest.php',
-      103 => '/var/www/html/app/Http/Requests/Auth/ChangePasswordRequest.php',
-      104 => '/var/www/html/app/Http/Requests/Auth/MfaCodeRequest.php',
-      105 => '/var/www/html/app/Http/Requests/Benefit/AggregateBenefitsRequest.php',
-      106 => '/var/www/html/app/Http/Requests/Benefit/RecordBenefitRequest.php',
-      107 => '/var/www/html/app/Http/Requests/Benefit/ReviewBenefitFlagRequest.php',
-      108 => '/var/www/html/app/Http/Requests/Benefit/StoreDoubleDippingRuleRequest.php',
-      109 => '/var/www/html/app/Http/Requests/Benefit/UploadBenefitImportRequest.php',
-      110 => '/var/www/html/app/Http/Requests/Benefit/VerifyBenefitRequest.php',
-      111 => '/var/www/html/app/Http/Requests/Matching/UpdateMatchingConfigRequest.php',
-      112 => '/var/www/html/app/Http/Requests/Programme/BulkEnrollmentRequest.php',
-      113 => '/var/www/html/app/Http/Requests/Programme/StoreActivityRequest.php',
-      114 => '/var/www/html/app/Http/Requests/Programme/StoreEnrollmentRequest.php',
-      115 => '/var/www/html/app/Http/Requests/Programme/StoreProgrammeRequest.php',
-      116 => '/var/www/html/app/Http/Requests/Programme/UpdateActivityRequest.php',
-      117 => '/var/www/html/app/Http/Requests/Programme/UpdateEnrollmentRequest.php',
-      118 => '/var/www/html/app/Http/Requests/Programme/UpdateProgrammeRequest.php',
-      119 => '/var/www/html/app/Http/Requests/Registry/AddHouseholdMemberRequest.php',
-      120 => '/var/www/html/app/Http/Requests/Registry/ApiRegistrationRequest.php',
-      121 => '/var/www/html/app/Http/Requests/Registry/BeneficiaryLookupRequest.php',
-      122 => '/var/www/html/app/Http/Requests/Registry/BeneficiaryMatchSearchRequest.php',
-      123 => '/var/www/html/app/Http/Requests/Registry/DecideOwnershipTransferRequest.php',
-      124 => '/var/www/html/app/Http/Requests/Registry/DecideServeRequestRequest.php',
-      125 => '/var/www/html/app/Http/Requests/Registry/DesignateHeadRequest.php',
-      126 => '/var/www/html/app/Http/Requests/Registry/MoveHouseholdMemberRequest.php',
-      127 => '/var/www/html/app/Http/Requests/Registry/RaiseServeRequestRequest.php',
-      128 => '/var/www/html/app/Http/Requests/Registry/ResolveImportRowRequest.php',
-      129 => '/var/www/html/app/Http/Requests/Registry/RouteAssignmentRequest.php',
-      130 => '/var/www/html/app/Http/Requests/Registry/StoreBeneficiaryRequest.php',
-      131 => '/var/www/html/app/Http/Requests/Registry/StoreHouseholdRequest.php',
-      132 => '/var/www/html/app/Http/Requests/Registry/StoreOwnershipTransferRequest.php',
-      133 => '/var/www/html/app/Http/Requests/Registry/UpdateBeneficiaryRequest.php',
-      134 => '/var/www/html/app/Http/Requests/Registry/UpdateHouseholdRequest.php',
-      135 => '/var/www/html/app/Http/Requests/Registry/UploadDocumentRequest.php',
-      136 => '/var/www/html/app/Http/Requests/Registry/UploadImportRequest.php',
-      137 => '/var/www/html/app/Http/Resources/ActivityResource.php',
-      138 => '/var/www/html/app/Http/Resources/BeneficiaryDocumentResource.php',
-      139 => '/var/www/html/app/Http/Resources/BeneficiaryResource.php',
-      140 => '/var/www/html/app/Http/Resources/BeneficiaryRevealResource.php',
-      141 => '/var/www/html/app/Http/Resources/BenefitImportBatchResource.php',
-      142 => '/var/www/html/app/Http/Resources/BenefitResource.php',
-      143 => '/var/www/html/app/Http/Resources/HouseholdMembershipResource.php',
-      144 => '/var/www/html/app/Http/Resources/HouseholdResource.php',
-      145 => '/var/www/html/app/Http/Resources/ImportBatchResource.php',
-      146 => '/var/www/html/app/Http/Resources/MdaResource.php',
-      147 => '/var/www/html/app/Http/Resources/ProgrammeResource.php',
-      148 => '/var/www/html/app/Http/Resources/ServeRequestResource.php',
-      149 => '/var/www/html/app/Http/Resources/UserResource.php',
-      150 => '/var/www/html/app/Providers/AppServiceProvider.php',
+      53 => '/var/www/html/app/Domain/Registry/Models/BeneficiaryServiceGrant.php',
+      54 => '/var/www/html/app/Domain/Registry/Models/Household.php',
+      55 => '/var/www/html/app/Domain/Registry/Models/HouseholdMembership.php',
+      56 => '/var/www/html/app/Domain/Registry/Models/ImportBatch.php',
+      57 => '/var/www/html/app/Domain/Registry/Models/ImportRow.php',
+      58 => '/var/www/html/app/Domain/Registry/Models/OwnershipTransferRequest.php',
+      59 => '/var/www/html/app/Domain/Registry/Models/ServeRequest.php',
+      60 => '/var/www/html/app/Domain/Registry/Models/ServiceRequest.php',
+      61 => '/var/www/html/app/Domain/Registry/Policies/BeneficiaryDocumentPolicy.php',
+      62 => '/var/www/html/app/Domain/Registry/Policies/BeneficiaryPolicy.php',
+      63 => '/var/www/html/app/Domain/Registry/Policies/HouseholdPolicy.php',
+      64 => '/var/www/html/app/Domain/Registry/Policies/ImportBatchPolicy.php',
+      65 => '/var/www/html/app/Domain/Registry/Policies/OwnerMdaPolicy.php',
+      66 => '/var/www/html/app/Domain/Registry/Policies/ServeRequestPolicy.php',
+      67 => '/var/www/html/app/Domain/Registry/RegistryServiceProvider.php',
+      68 => '/var/www/html/app/Domain/Registry/Services/BatchDuplicateScreener.php',
+      69 => '/var/www/html/app/Domain/Registry/Services/BeneficiaryLookupService.php',
+      70 => '/var/www/html/app/Domain/Registry/Services/BeneficiaryRegistrar.php',
+      71 => '/var/www/html/app/Domain/Registry/Services/CandidateGatherer.php',
+      72 => '/var/www/html/app/Domain/Registry/Services/DeterministicDuplicateFinder.php',
+      73 => '/var/www/html/app/Domain/Registry/Services/HouseholdIngestionService.php',
+      74 => '/var/www/html/app/Domain/Registry/Services/HouseholdMembershipService.php',
+      75 => '/var/www/html/app/Domain/Registry/Services/NullBeneficiaryRouter.php',
+      76 => '/var/www/html/app/Domain/Registry/Services/OwnershipTransferService.php',
+      77 => '/var/www/html/app/Domain/Registry/Services/ServeRequestService.php',
+      78 => '/var/www/html/app/Domain/Registry/Services/ServiceRequestService.php',
+      79 => '/var/www/html/app/Http/Controllers/Api/V1/Access/MdaAccessGrantController.php',
+      80 => '/var/www/html/app/Http/Controllers/Api/V1/Access/MdaController.php',
+      81 => '/var/www/html/app/Http/Controllers/Api/V1/Access/UserController.php',
+      82 => '/var/www/html/app/Http/Controllers/Api/V1/AuthController.php',
+      83 => '/var/www/html/app/Http/Controllers/Api/V1/Benefit/BenefitController.php',
+      84 => '/var/www/html/app/Http/Controllers/Api/V1/Benefit/BenefitFlagController.php',
+      85 => '/var/www/html/app/Http/Controllers/Api/V1/Benefit/BenefitImportController.php',
+      86 => '/var/www/html/app/Http/Controllers/Api/V1/Benefit/DoubleDippingRuleController.php',
+      87 => '/var/www/html/app/Http/Controllers/Api/V1/Matching/MatchingConfigController.php',
+      88 => '/var/www/html/app/Http/Controllers/Api/V1/MfaController.php',
+      89 => '/var/www/html/app/Http/Controllers/Api/V1/Programme/ActivityController.php',
+      90 => '/var/www/html/app/Http/Controllers/Api/V1/Programme/EnrollmentController.php',
+      91 => '/var/www/html/app/Http/Controllers/Api/V1/Programme/ProgrammeController.php',
+      92 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/BeneficiaryController.php',
+      93 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/BeneficiaryDocumentController.php',
+      94 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/BeneficiaryIntakeController.php',
+      95 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/BeneficiaryRoutingController.php',
+      96 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/HouseholdController.php',
+      97 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/HouseholdMemberController.php',
+      98 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/ImportBatchController.php',
+      99 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/OwnershipTransferController.php',
+      100 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/ServeRequestController.php',
+      101 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/ServiceRequestController.php',
+      102 => '/var/www/html/app/Http/Middleware/CheckPermission.php',
+      103 => '/var/www/html/app/Http/Requests/Access/StoreMdaAccessGrantRequest.php',
+      104 => '/var/www/html/app/Http/Requests/Access/StoreMdaRequest.php',
+      105 => '/var/www/html/app/Http/Requests/Access/StoreUserRequest.php',
+      106 => '/var/www/html/app/Http/Requests/Access/UpdateMdaRequest.php',
+      107 => '/var/www/html/app/Http/Requests/Access/UpdateUserRequest.php',
+      108 => '/var/www/html/app/Http/Requests/Auth/ChangePasswordRequest.php',
+      109 => '/var/www/html/app/Http/Requests/Auth/MfaCodeRequest.php',
+      110 => '/var/www/html/app/Http/Requests/Benefit/AggregateBenefitsRequest.php',
+      111 => '/var/www/html/app/Http/Requests/Benefit/RecordBenefitRequest.php',
+      112 => '/var/www/html/app/Http/Requests/Benefit/ReviewBenefitFlagRequest.php',
+      113 => '/var/www/html/app/Http/Requests/Benefit/StoreDoubleDippingRuleRequest.php',
+      114 => '/var/www/html/app/Http/Requests/Benefit/UploadBenefitImportRequest.php',
+      115 => '/var/www/html/app/Http/Requests/Benefit/VerifyBenefitRequest.php',
+      116 => '/var/www/html/app/Http/Requests/Matching/UpdateMatchingConfigRequest.php',
+      117 => '/var/www/html/app/Http/Requests/Programme/BulkEnrollmentRequest.php',
+      118 => '/var/www/html/app/Http/Requests/Programme/StoreActivityRequest.php',
+      119 => '/var/www/html/app/Http/Requests/Programme/StoreEnrollmentRequest.php',
+      120 => '/var/www/html/app/Http/Requests/Programme/StoreProgrammeRequest.php',
+      121 => '/var/www/html/app/Http/Requests/Programme/UpdateActivityRequest.php',
+      122 => '/var/www/html/app/Http/Requests/Programme/UpdateEnrollmentRequest.php',
+      123 => '/var/www/html/app/Http/Requests/Programme/UpdateProgrammeRequest.php',
+      124 => '/var/www/html/app/Http/Requests/Registry/AcceptServiceRequestRequest.php',
+      125 => '/var/www/html/app/Http/Requests/Registry/AddHouseholdMemberRequest.php',
+      126 => '/var/www/html/app/Http/Requests/Registry/ApiRegistrationRequest.php',
+      127 => '/var/www/html/app/Http/Requests/Registry/BeneficiaryLookupRequest.php',
+      128 => '/var/www/html/app/Http/Requests/Registry/BeneficiaryMatchSearchRequest.php',
+      129 => '/var/www/html/app/Http/Requests/Registry/DecideOwnershipTransferRequest.php',
+      130 => '/var/www/html/app/Http/Requests/Registry/DecideServeRequestRequest.php',
+      131 => '/var/www/html/app/Http/Requests/Registry/DeclineServiceRequestRequest.php',
+      132 => '/var/www/html/app/Http/Requests/Registry/DesignateHeadRequest.php',
+      133 => '/var/www/html/app/Http/Requests/Registry/MoveHouseholdMemberRequest.php',
+      134 => '/var/www/html/app/Http/Requests/Registry/RaiseServeRequestRequest.php',
+      135 => '/var/www/html/app/Http/Requests/Registry/ResolveImportRowRequest.php',
+      136 => '/var/www/html/app/Http/Requests/Registry/RouteAssignmentRequest.php',
+      137 => '/var/www/html/app/Http/Requests/Registry/StoreBeneficiaryRequest.php',
+      138 => '/var/www/html/app/Http/Requests/Registry/StoreHouseholdRequest.php',
+      139 => '/var/www/html/app/Http/Requests/Registry/StoreOwnershipTransferRequest.php',
+      140 => '/var/www/html/app/Http/Requests/Registry/StoreServiceRequestRequest.php',
+      141 => '/var/www/html/app/Http/Requests/Registry/UpdateBeneficiaryRequest.php',
+      142 => '/var/www/html/app/Http/Requests/Registry/UpdateHouseholdRequest.php',
+      143 => '/var/www/html/app/Http/Requests/Registry/UploadDocumentRequest.php',
+      144 => '/var/www/html/app/Http/Requests/Registry/UploadImportRequest.php',
+      145 => '/var/www/html/app/Http/Resources/ActivityResource.php',
+      146 => '/var/www/html/app/Http/Resources/BeneficiaryDocumentResource.php',
+      147 => '/var/www/html/app/Http/Resources/BeneficiaryResource.php',
+      148 => '/var/www/html/app/Http/Resources/BeneficiaryRevealResource.php',
+      149 => '/var/www/html/app/Http/Resources/BenefitImportBatchResource.php',
+      150 => '/var/www/html/app/Http/Resources/BenefitResource.php',
+      151 => '/var/www/html/app/Http/Resources/HouseholdMembershipResource.php',
+      152 => '/var/www/html/app/Http/Resources/HouseholdResource.php',
+      153 => '/var/www/html/app/Http/Resources/ImportBatchResource.php',
+      154 => '/var/www/html/app/Http/Resources/MdaResource.php',
+      155 => '/var/www/html/app/Http/Resources/ProgrammeResource.php',
+      156 => '/var/www/html/app/Http/Resources/ServeRequestResource.php',
+      157 => '/var/www/html/app/Http/Resources/ServiceRequestResource.php',
+      158 => '/var/www/html/app/Http/Resources/UserResource.php',
+      159 => '/var/www/html/app/Providers/AppServiceProvider.php',
     ),
   ),
   '/var/www/html/app/Domain/Access/Models/MdaAccessGrant.php' => 
@@ -13240,71 +13691,78 @@ return [
       40 => '/var/www/html/app/Domain/Registry/Policies/BeneficiaryPolicy.php',
       41 => '/var/www/html/app/Domain/Registry/Policies/HouseholdPolicy.php',
       42 => '/var/www/html/app/Domain/Registry/Policies/ImportBatchPolicy.php',
-      43 => '/var/www/html/app/Domain/Registry/Policies/ServeRequestPolicy.php',
-      44 => '/var/www/html/app/Domain/Registry/Services/OwnershipTransferService.php',
-      45 => '/var/www/html/app/Domain/Registry/Services/ServeRequestService.php',
-      46 => '/var/www/html/app/Http/Controllers/Api/V1/Access/AccessController.php',
-      47 => '/var/www/html/app/Http/Controllers/Api/V1/Access/MdaAccessGrantController.php',
-      48 => '/var/www/html/app/Http/Controllers/Api/V1/Access/UserController.php',
-      49 => '/var/www/html/app/Http/Controllers/Api/V1/AuthController.php',
-      50 => '/var/www/html/app/Http/Controllers/Api/V1/Benefit/BenefitController.php',
-      51 => '/var/www/html/app/Http/Controllers/Api/V1/Benefit/BenefitFlagController.php',
-      52 => '/var/www/html/app/Http/Controllers/Api/V1/Benefit/BenefitImportController.php',
-      53 => '/var/www/html/app/Http/Controllers/Api/V1/Benefit/DoubleDippingRuleController.php',
-      54 => '/var/www/html/app/Http/Controllers/Api/V1/Matching/MatchingConfigController.php',
-      55 => '/var/www/html/app/Http/Controllers/Api/V1/MfaController.php',
-      56 => '/var/www/html/app/Http/Controllers/Api/V1/Programme/ActivityController.php',
-      57 => '/var/www/html/app/Http/Controllers/Api/V1/Programme/EnrollmentController.php',
-      58 => '/var/www/html/app/Http/Controllers/Api/V1/Programme/ProgrammeController.php',
-      59 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/BeneficiaryDocumentController.php',
-      60 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/BeneficiaryIntakeController.php',
-      61 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/BeneficiaryRoutingController.php',
-      62 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/ImportBatchController.php',
-      63 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/OwnershipTransferController.php',
-      64 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/ServeRequestController.php',
-      65 => '/var/www/html/app/Http/Middleware/CheckPermission.php',
-      66 => '/var/www/html/app/Http/Requests/Access/StoreMdaAccessGrantRequest.php',
-      67 => '/var/www/html/app/Http/Requests/Access/StoreMdaRequest.php',
-      68 => '/var/www/html/app/Http/Requests/Access/StoreUserRequest.php',
-      69 => '/var/www/html/app/Http/Requests/Access/UpdateMdaRequest.php',
-      70 => '/var/www/html/app/Http/Requests/Access/UpdateUserRequest.php',
-      71 => '/var/www/html/app/Http/Requests/Auth/ChangePasswordRequest.php',
-      72 => '/var/www/html/app/Http/Requests/Auth/MfaCodeRequest.php',
-      73 => '/var/www/html/app/Http/Requests/Benefit/AggregateBenefitsRequest.php',
-      74 => '/var/www/html/app/Http/Requests/Benefit/RecordBenefitRequest.php',
-      75 => '/var/www/html/app/Http/Requests/Benefit/ReviewBenefitFlagRequest.php',
-      76 => '/var/www/html/app/Http/Requests/Benefit/StoreDoubleDippingRuleRequest.php',
-      77 => '/var/www/html/app/Http/Requests/Benefit/UploadBenefitImportRequest.php',
-      78 => '/var/www/html/app/Http/Requests/Benefit/VerifyBenefitRequest.php',
-      79 => '/var/www/html/app/Http/Requests/Matching/UpdateMatchingConfigRequest.php',
-      80 => '/var/www/html/app/Http/Requests/Programme/BulkEnrollmentRequest.php',
-      81 => '/var/www/html/app/Http/Requests/Programme/StoreActivityRequest.php',
-      82 => '/var/www/html/app/Http/Requests/Programme/StoreEnrollmentRequest.php',
-      83 => '/var/www/html/app/Http/Requests/Programme/StoreProgrammeRequest.php',
-      84 => '/var/www/html/app/Http/Requests/Programme/UpdateActivityRequest.php',
-      85 => '/var/www/html/app/Http/Requests/Programme/UpdateEnrollmentRequest.php',
-      86 => '/var/www/html/app/Http/Requests/Programme/UpdateProgrammeRequest.php',
-      87 => '/var/www/html/app/Http/Requests/Registry/AddHouseholdMemberRequest.php',
-      88 => '/var/www/html/app/Http/Requests/Registry/ApiRegistrationRequest.php',
-      89 => '/var/www/html/app/Http/Requests/Registry/BeneficiaryLookupRequest.php',
-      90 => '/var/www/html/app/Http/Requests/Registry/BeneficiaryMatchSearchRequest.php',
-      91 => '/var/www/html/app/Http/Requests/Registry/DecideOwnershipTransferRequest.php',
-      92 => '/var/www/html/app/Http/Requests/Registry/DecideServeRequestRequest.php',
-      93 => '/var/www/html/app/Http/Requests/Registry/DesignateHeadRequest.php',
-      94 => '/var/www/html/app/Http/Requests/Registry/MoveHouseholdMemberRequest.php',
-      95 => '/var/www/html/app/Http/Requests/Registry/RaiseServeRequestRequest.php',
-      96 => '/var/www/html/app/Http/Requests/Registry/ResolveImportRowRequest.php',
-      97 => '/var/www/html/app/Http/Requests/Registry/RouteAssignmentRequest.php',
-      98 => '/var/www/html/app/Http/Requests/Registry/StoreBeneficiaryRequest.php',
-      99 => '/var/www/html/app/Http/Requests/Registry/StoreHouseholdRequest.php',
-      100 => '/var/www/html/app/Http/Requests/Registry/StoreOwnershipTransferRequest.php',
-      101 => '/var/www/html/app/Http/Requests/Registry/UpdateBeneficiaryRequest.php',
-      102 => '/var/www/html/app/Http/Requests/Registry/UpdateHouseholdRequest.php',
-      103 => '/var/www/html/app/Http/Requests/Registry/UploadDocumentRequest.php',
-      104 => '/var/www/html/app/Http/Requests/Registry/UploadImportRequest.php',
-      105 => '/var/www/html/app/Http/Resources/BeneficiaryRevealResource.php',
-      106 => '/var/www/html/app/Http/Resources/UserResource.php',
-      107 => '/var/www/html/app/Providers/AppServiceProvider.php',
+      43 => '/var/www/html/app/Domain/Registry/Policies/OwnerMdaPolicy.php',
+      44 => '/var/www/html/app/Domain/Registry/Policies/ServeRequestPolicy.php',
+      45 => '/var/www/html/app/Domain/Registry/Services/OwnershipTransferService.php',
+      46 => '/var/www/html/app/Domain/Registry/Services/ServeRequestService.php',
+      47 => '/var/www/html/app/Domain/Registry/Services/ServiceRequestService.php',
+      48 => '/var/www/html/app/Http/Controllers/Api/V1/Access/AccessController.php',
+      49 => '/var/www/html/app/Http/Controllers/Api/V1/Access/MdaAccessGrantController.php',
+      50 => '/var/www/html/app/Http/Controllers/Api/V1/Access/UserController.php',
+      51 => '/var/www/html/app/Http/Controllers/Api/V1/AuthController.php',
+      52 => '/var/www/html/app/Http/Controllers/Api/V1/Benefit/BenefitController.php',
+      53 => '/var/www/html/app/Http/Controllers/Api/V1/Benefit/BenefitFlagController.php',
+      54 => '/var/www/html/app/Http/Controllers/Api/V1/Benefit/BenefitImportController.php',
+      55 => '/var/www/html/app/Http/Controllers/Api/V1/Benefit/DoubleDippingRuleController.php',
+      56 => '/var/www/html/app/Http/Controllers/Api/V1/Matching/MatchingConfigController.php',
+      57 => '/var/www/html/app/Http/Controllers/Api/V1/MfaController.php',
+      58 => '/var/www/html/app/Http/Controllers/Api/V1/Programme/ActivityController.php',
+      59 => '/var/www/html/app/Http/Controllers/Api/V1/Programme/EnrollmentController.php',
+      60 => '/var/www/html/app/Http/Controllers/Api/V1/Programme/ProgrammeController.php',
+      61 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/BeneficiaryController.php',
+      62 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/BeneficiaryDocumentController.php',
+      63 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/BeneficiaryIntakeController.php',
+      64 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/BeneficiaryRoutingController.php',
+      65 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/ImportBatchController.php',
+      66 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/OwnershipTransferController.php',
+      67 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/ServeRequestController.php',
+      68 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/ServiceRequestController.php',
+      69 => '/var/www/html/app/Http/Middleware/CheckPermission.php',
+      70 => '/var/www/html/app/Http/Requests/Access/StoreMdaAccessGrantRequest.php',
+      71 => '/var/www/html/app/Http/Requests/Access/StoreMdaRequest.php',
+      72 => '/var/www/html/app/Http/Requests/Access/StoreUserRequest.php',
+      73 => '/var/www/html/app/Http/Requests/Access/UpdateMdaRequest.php',
+      74 => '/var/www/html/app/Http/Requests/Access/UpdateUserRequest.php',
+      75 => '/var/www/html/app/Http/Requests/Auth/ChangePasswordRequest.php',
+      76 => '/var/www/html/app/Http/Requests/Auth/MfaCodeRequest.php',
+      77 => '/var/www/html/app/Http/Requests/Benefit/AggregateBenefitsRequest.php',
+      78 => '/var/www/html/app/Http/Requests/Benefit/RecordBenefitRequest.php',
+      79 => '/var/www/html/app/Http/Requests/Benefit/ReviewBenefitFlagRequest.php',
+      80 => '/var/www/html/app/Http/Requests/Benefit/StoreDoubleDippingRuleRequest.php',
+      81 => '/var/www/html/app/Http/Requests/Benefit/UploadBenefitImportRequest.php',
+      82 => '/var/www/html/app/Http/Requests/Benefit/VerifyBenefitRequest.php',
+      83 => '/var/www/html/app/Http/Requests/Matching/UpdateMatchingConfigRequest.php',
+      84 => '/var/www/html/app/Http/Requests/Programme/BulkEnrollmentRequest.php',
+      85 => '/var/www/html/app/Http/Requests/Programme/StoreActivityRequest.php',
+      86 => '/var/www/html/app/Http/Requests/Programme/StoreEnrollmentRequest.php',
+      87 => '/var/www/html/app/Http/Requests/Programme/StoreProgrammeRequest.php',
+      88 => '/var/www/html/app/Http/Requests/Programme/UpdateActivityRequest.php',
+      89 => '/var/www/html/app/Http/Requests/Programme/UpdateEnrollmentRequest.php',
+      90 => '/var/www/html/app/Http/Requests/Programme/UpdateProgrammeRequest.php',
+      91 => '/var/www/html/app/Http/Requests/Registry/AcceptServiceRequestRequest.php',
+      92 => '/var/www/html/app/Http/Requests/Registry/AddHouseholdMemberRequest.php',
+      93 => '/var/www/html/app/Http/Requests/Registry/ApiRegistrationRequest.php',
+      94 => '/var/www/html/app/Http/Requests/Registry/BeneficiaryLookupRequest.php',
+      95 => '/var/www/html/app/Http/Requests/Registry/BeneficiaryMatchSearchRequest.php',
+      96 => '/var/www/html/app/Http/Requests/Registry/DecideOwnershipTransferRequest.php',
+      97 => '/var/www/html/app/Http/Requests/Registry/DecideServeRequestRequest.php',
+      98 => '/var/www/html/app/Http/Requests/Registry/DeclineServiceRequestRequest.php',
+      99 => '/var/www/html/app/Http/Requests/Registry/DesignateHeadRequest.php',
+      100 => '/var/www/html/app/Http/Requests/Registry/MoveHouseholdMemberRequest.php',
+      101 => '/var/www/html/app/Http/Requests/Registry/RaiseServeRequestRequest.php',
+      102 => '/var/www/html/app/Http/Requests/Registry/ResolveImportRowRequest.php',
+      103 => '/var/www/html/app/Http/Requests/Registry/RouteAssignmentRequest.php',
+      104 => '/var/www/html/app/Http/Requests/Registry/StoreBeneficiaryRequest.php',
+      105 => '/var/www/html/app/Http/Requests/Registry/StoreHouseholdRequest.php',
+      106 => '/var/www/html/app/Http/Requests/Registry/StoreOwnershipTransferRequest.php',
+      107 => '/var/www/html/app/Http/Requests/Registry/StoreServiceRequestRequest.php',
+      108 => '/var/www/html/app/Http/Requests/Registry/UpdateBeneficiaryRequest.php',
+      109 => '/var/www/html/app/Http/Requests/Registry/UpdateHouseholdRequest.php',
+      110 => '/var/www/html/app/Http/Requests/Registry/UploadDocumentRequest.php',
+      111 => '/var/www/html/app/Http/Requests/Registry/UploadImportRequest.php',
+      112 => '/var/www/html/app/Http/Resources/BeneficiaryRevealResource.php',
+      113 => '/var/www/html/app/Http/Resources/UserResource.php',
+      114 => '/var/www/html/app/Providers/AppServiceProvider.php',
     ),
   ),
   '/var/www/html/app/Domain/Access/Models/User.php' => 
@@ -13339,99 +13797,106 @@ return [
       24 => '/var/www/html/app/Domain/Benefit/Services/Verifiers/SignatureVerifier.php',
       25 => '/var/www/html/app/Domain/Matching/Contracts/MatchScorer.php',
       26 => '/var/www/html/app/Domain/Matching/Engine/DeterministicMatcher.php',
-      27 => '/var/www/html/app/Domain/Matching/Engine/MatchingEngine.php',
-      28 => '/var/www/html/app/Domain/Matching/Models/MatchingConfig.php',
-      29 => '/var/www/html/app/Domain/Matching/Scoring/RuleBasedMatchScorer.php',
-      30 => '/var/www/html/app/Domain/Matching/Services/MatchingConfigService.php',
-      31 => '/var/www/html/app/Domain/Programme/Models/Activity.php',
-      32 => '/var/www/html/app/Domain/Programme/Models/Programme.php',
-      33 => '/var/www/html/app/Domain/Programme/Policies/ActivityPolicy.php',
-      34 => '/var/www/html/app/Domain/Programme/Policies/EnrollmentPolicy.php',
-      35 => '/var/www/html/app/Domain/Programme/Policies/ProgrammePolicy.php',
-      36 => '/var/www/html/app/Domain/Programme/Services/EnrollmentService.php',
-      37 => '/var/www/html/app/Domain/Registry/Jobs/CommitImportBatch.php',
-      38 => '/var/www/html/app/Domain/Registry/Jobs/ParseImportBatch.php',
-      39 => '/var/www/html/app/Domain/Registry/Models/BeneficiaryDocument.php',
-      40 => '/var/www/html/app/Domain/Registry/Models/ImportBatch.php',
-      41 => '/var/www/html/app/Domain/Registry/Models/ImportRow.php',
-      42 => '/var/www/html/app/Domain/Registry/Models/OwnershipTransferRequest.php',
-      43 => '/var/www/html/app/Domain/Registry/Policies/BeneficiaryDocumentPolicy.php',
-      44 => '/var/www/html/app/Domain/Registry/Policies/BeneficiaryPolicy.php',
-      45 => '/var/www/html/app/Domain/Registry/Policies/HouseholdPolicy.php',
-      46 => '/var/www/html/app/Domain/Registry/Policies/ImportBatchPolicy.php',
-      47 => '/var/www/html/app/Domain/Registry/Policies/ServeRequestPolicy.php',
-      48 => '/var/www/html/app/Domain/Registry/RegistryServiceProvider.php',
-      49 => '/var/www/html/app/Domain/Registry/Services/BatchDuplicateScreener.php',
-      50 => '/var/www/html/app/Domain/Registry/Services/CandidateGatherer.php',
-      51 => '/var/www/html/app/Domain/Registry/Services/DeterministicDuplicateFinder.php',
-      52 => '/var/www/html/app/Domain/Registry/Services/FuzzyDuplicateFinder.php',
-      53 => '/var/www/html/app/Domain/Registry/Services/OwnershipTransferService.php',
-      54 => '/var/www/html/app/Domain/Registry/Services/ServeRequestService.php',
-      55 => '/var/www/html/app/Http/Controllers/Api/V1/Access/MdaAccessGrantController.php',
-      56 => '/var/www/html/app/Http/Controllers/Api/V1/Access/UserController.php',
-      57 => '/var/www/html/app/Http/Controllers/Api/V1/AuthController.php',
-      58 => '/var/www/html/app/Http/Controllers/Api/V1/Benefit/BenefitController.php',
-      59 => '/var/www/html/app/Http/Controllers/Api/V1/Benefit/BenefitFlagController.php',
-      60 => '/var/www/html/app/Http/Controllers/Api/V1/Benefit/BenefitImportController.php',
-      61 => '/var/www/html/app/Http/Controllers/Api/V1/Benefit/DoubleDippingRuleController.php',
-      62 => '/var/www/html/app/Http/Controllers/Api/V1/Matching/MatchingConfigController.php',
-      63 => '/var/www/html/app/Http/Controllers/Api/V1/MfaController.php',
-      64 => '/var/www/html/app/Http/Controllers/Api/V1/Programme/ActivityController.php',
-      65 => '/var/www/html/app/Http/Controllers/Api/V1/Programme/EnrollmentController.php',
-      66 => '/var/www/html/app/Http/Controllers/Api/V1/Programme/ProgrammeController.php',
-      67 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/BeneficiaryController.php',
-      68 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/BeneficiaryDocumentController.php',
-      69 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/BeneficiaryIntakeController.php',
-      70 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/BeneficiaryRoutingController.php',
-      71 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/ImportBatchController.php',
-      72 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/OwnershipTransferController.php',
-      73 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/ServeRequestController.php',
-      74 => '/var/www/html/app/Http/Middleware/CheckPermission.php',
-      75 => '/var/www/html/app/Http/Requests/Access/StoreMdaAccessGrantRequest.php',
-      76 => '/var/www/html/app/Http/Requests/Access/StoreMdaRequest.php',
-      77 => '/var/www/html/app/Http/Requests/Access/StoreUserRequest.php',
-      78 => '/var/www/html/app/Http/Requests/Access/UpdateMdaRequest.php',
-      79 => '/var/www/html/app/Http/Requests/Access/UpdateUserRequest.php',
-      80 => '/var/www/html/app/Http/Requests/Auth/ChangePasswordRequest.php',
-      81 => '/var/www/html/app/Http/Requests/Auth/MfaCodeRequest.php',
-      82 => '/var/www/html/app/Http/Requests/Benefit/AggregateBenefitsRequest.php',
-      83 => '/var/www/html/app/Http/Requests/Benefit/RecordBenefitRequest.php',
-      84 => '/var/www/html/app/Http/Requests/Benefit/ReviewBenefitFlagRequest.php',
-      85 => '/var/www/html/app/Http/Requests/Benefit/StoreDoubleDippingRuleRequest.php',
-      86 => '/var/www/html/app/Http/Requests/Benefit/UploadBenefitImportRequest.php',
-      87 => '/var/www/html/app/Http/Requests/Benefit/VerifyBenefitRequest.php',
-      88 => '/var/www/html/app/Http/Requests/Matching/UpdateMatchingConfigRequest.php',
-      89 => '/var/www/html/app/Http/Requests/Programme/BulkEnrollmentRequest.php',
-      90 => '/var/www/html/app/Http/Requests/Programme/StoreActivityRequest.php',
-      91 => '/var/www/html/app/Http/Requests/Programme/StoreEnrollmentRequest.php',
-      92 => '/var/www/html/app/Http/Requests/Programme/StoreProgrammeRequest.php',
-      93 => '/var/www/html/app/Http/Requests/Programme/UpdateActivityRequest.php',
-      94 => '/var/www/html/app/Http/Requests/Programme/UpdateEnrollmentRequest.php',
-      95 => '/var/www/html/app/Http/Requests/Programme/UpdateProgrammeRequest.php',
-      96 => '/var/www/html/app/Http/Requests/Registry/AddHouseholdMemberRequest.php',
-      97 => '/var/www/html/app/Http/Requests/Registry/ApiRegistrationRequest.php',
-      98 => '/var/www/html/app/Http/Requests/Registry/BeneficiaryLookupRequest.php',
-      99 => '/var/www/html/app/Http/Requests/Registry/BeneficiaryMatchSearchRequest.php',
-      100 => '/var/www/html/app/Http/Requests/Registry/DecideOwnershipTransferRequest.php',
-      101 => '/var/www/html/app/Http/Requests/Registry/DecideServeRequestRequest.php',
-      102 => '/var/www/html/app/Http/Requests/Registry/DesignateHeadRequest.php',
-      103 => '/var/www/html/app/Http/Requests/Registry/MoveHouseholdMemberRequest.php',
-      104 => '/var/www/html/app/Http/Requests/Registry/RaiseServeRequestRequest.php',
-      105 => '/var/www/html/app/Http/Requests/Registry/ResolveImportRowRequest.php',
-      106 => '/var/www/html/app/Http/Requests/Registry/RouteAssignmentRequest.php',
-      107 => '/var/www/html/app/Http/Requests/Registry/StoreBeneficiaryRequest.php',
-      108 => '/var/www/html/app/Http/Requests/Registry/StoreHouseholdRequest.php',
-      109 => '/var/www/html/app/Http/Requests/Registry/StoreOwnershipTransferRequest.php',
-      110 => '/var/www/html/app/Http/Requests/Registry/UpdateBeneficiaryRequest.php',
-      111 => '/var/www/html/app/Http/Requests/Registry/UpdateHouseholdRequest.php',
-      112 => '/var/www/html/app/Http/Requests/Registry/UploadDocumentRequest.php',
-      113 => '/var/www/html/app/Http/Requests/Registry/UploadImportRequest.php',
-      114 => '/var/www/html/app/Http/Resources/BeneficiaryDocumentResource.php',
-      115 => '/var/www/html/app/Http/Resources/BeneficiaryRevealResource.php',
-      116 => '/var/www/html/app/Http/Resources/ImportBatchResource.php',
-      117 => '/var/www/html/app/Http/Resources/MatchingConfigResource.php',
-      118 => '/var/www/html/app/Http/Resources/UserResource.php',
-      119 => '/var/www/html/app/Providers/AppServiceProvider.php',
+      27 => '/var/www/html/app/Domain/Matching/Engine/DuplicateCascade.php',
+      28 => '/var/www/html/app/Domain/Matching/Engine/MatchingEngine.php',
+      29 => '/var/www/html/app/Domain/Matching/Models/MatchingConfig.php',
+      30 => '/var/www/html/app/Domain/Matching/Scoring/RuleBasedMatchScorer.php',
+      31 => '/var/www/html/app/Domain/Matching/Services/MatchingConfigService.php',
+      32 => '/var/www/html/app/Domain/Programme/Models/Activity.php',
+      33 => '/var/www/html/app/Domain/Programme/Models/Programme.php',
+      34 => '/var/www/html/app/Domain/Programme/Policies/ActivityPolicy.php',
+      35 => '/var/www/html/app/Domain/Programme/Policies/EnrollmentPolicy.php',
+      36 => '/var/www/html/app/Domain/Programme/Policies/ProgrammePolicy.php',
+      37 => '/var/www/html/app/Domain/Programme/Services/EnrollmentService.php',
+      38 => '/var/www/html/app/Domain/Registry/Jobs/CommitImportBatch.php',
+      39 => '/var/www/html/app/Domain/Registry/Jobs/ParseImportBatch.php',
+      40 => '/var/www/html/app/Domain/Registry/Models/BeneficiaryDocument.php',
+      41 => '/var/www/html/app/Domain/Registry/Models/ImportBatch.php',
+      42 => '/var/www/html/app/Domain/Registry/Models/ImportRow.php',
+      43 => '/var/www/html/app/Domain/Registry/Models/OwnershipTransferRequest.php',
+      44 => '/var/www/html/app/Domain/Registry/Policies/BeneficiaryDocumentPolicy.php',
+      45 => '/var/www/html/app/Domain/Registry/Policies/BeneficiaryPolicy.php',
+      46 => '/var/www/html/app/Domain/Registry/Policies/HouseholdPolicy.php',
+      47 => '/var/www/html/app/Domain/Registry/Policies/ImportBatchPolicy.php',
+      48 => '/var/www/html/app/Domain/Registry/Policies/OwnerMdaPolicy.php',
+      49 => '/var/www/html/app/Domain/Registry/Policies/ServeRequestPolicy.php',
+      50 => '/var/www/html/app/Domain/Registry/RegistryServiceProvider.php',
+      51 => '/var/www/html/app/Domain/Registry/Services/BatchDuplicateScreener.php',
+      52 => '/var/www/html/app/Domain/Registry/Services/CandidateGatherer.php',
+      53 => '/var/www/html/app/Domain/Registry/Services/DeterministicDuplicateFinder.php',
+      54 => '/var/www/html/app/Domain/Registry/Services/FuzzyDuplicateFinder.php',
+      55 => '/var/www/html/app/Domain/Registry/Services/OwnershipTransferService.php',
+      56 => '/var/www/html/app/Domain/Registry/Services/ServeRequestService.php',
+      57 => '/var/www/html/app/Domain/Registry/Services/ServiceRequestService.php',
+      58 => '/var/www/html/app/Http/Controllers/Api/V1/Access/MdaAccessGrantController.php',
+      59 => '/var/www/html/app/Http/Controllers/Api/V1/Access/UserController.php',
+      60 => '/var/www/html/app/Http/Controllers/Api/V1/AuthController.php',
+      61 => '/var/www/html/app/Http/Controllers/Api/V1/Benefit/BenefitController.php',
+      62 => '/var/www/html/app/Http/Controllers/Api/V1/Benefit/BenefitFlagController.php',
+      63 => '/var/www/html/app/Http/Controllers/Api/V1/Benefit/BenefitImportController.php',
+      64 => '/var/www/html/app/Http/Controllers/Api/V1/Benefit/DoubleDippingRuleController.php',
+      65 => '/var/www/html/app/Http/Controllers/Api/V1/Matching/MatchingConfigController.php',
+      66 => '/var/www/html/app/Http/Controllers/Api/V1/MfaController.php',
+      67 => '/var/www/html/app/Http/Controllers/Api/V1/Programme/ActivityController.php',
+      68 => '/var/www/html/app/Http/Controllers/Api/V1/Programme/EnrollmentController.php',
+      69 => '/var/www/html/app/Http/Controllers/Api/V1/Programme/ProgrammeController.php',
+      70 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/BeneficiaryController.php',
+      71 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/BeneficiaryDocumentController.php',
+      72 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/BeneficiaryIntakeController.php',
+      73 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/BeneficiaryRoutingController.php',
+      74 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/ImportBatchController.php',
+      75 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/OwnershipTransferController.php',
+      76 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/ServeRequestController.php',
+      77 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/ServiceRequestController.php',
+      78 => '/var/www/html/app/Http/Middleware/CheckPermission.php',
+      79 => '/var/www/html/app/Http/Requests/Access/StoreMdaAccessGrantRequest.php',
+      80 => '/var/www/html/app/Http/Requests/Access/StoreMdaRequest.php',
+      81 => '/var/www/html/app/Http/Requests/Access/StoreUserRequest.php',
+      82 => '/var/www/html/app/Http/Requests/Access/UpdateMdaRequest.php',
+      83 => '/var/www/html/app/Http/Requests/Access/UpdateUserRequest.php',
+      84 => '/var/www/html/app/Http/Requests/Auth/ChangePasswordRequest.php',
+      85 => '/var/www/html/app/Http/Requests/Auth/MfaCodeRequest.php',
+      86 => '/var/www/html/app/Http/Requests/Benefit/AggregateBenefitsRequest.php',
+      87 => '/var/www/html/app/Http/Requests/Benefit/RecordBenefitRequest.php',
+      88 => '/var/www/html/app/Http/Requests/Benefit/ReviewBenefitFlagRequest.php',
+      89 => '/var/www/html/app/Http/Requests/Benefit/StoreDoubleDippingRuleRequest.php',
+      90 => '/var/www/html/app/Http/Requests/Benefit/UploadBenefitImportRequest.php',
+      91 => '/var/www/html/app/Http/Requests/Benefit/VerifyBenefitRequest.php',
+      92 => '/var/www/html/app/Http/Requests/Matching/UpdateMatchingConfigRequest.php',
+      93 => '/var/www/html/app/Http/Requests/Programme/BulkEnrollmentRequest.php',
+      94 => '/var/www/html/app/Http/Requests/Programme/StoreActivityRequest.php',
+      95 => '/var/www/html/app/Http/Requests/Programme/StoreEnrollmentRequest.php',
+      96 => '/var/www/html/app/Http/Requests/Programme/StoreProgrammeRequest.php',
+      97 => '/var/www/html/app/Http/Requests/Programme/UpdateActivityRequest.php',
+      98 => '/var/www/html/app/Http/Requests/Programme/UpdateEnrollmentRequest.php',
+      99 => '/var/www/html/app/Http/Requests/Programme/UpdateProgrammeRequest.php',
+      100 => '/var/www/html/app/Http/Requests/Registry/AcceptServiceRequestRequest.php',
+      101 => '/var/www/html/app/Http/Requests/Registry/AddHouseholdMemberRequest.php',
+      102 => '/var/www/html/app/Http/Requests/Registry/ApiRegistrationRequest.php',
+      103 => '/var/www/html/app/Http/Requests/Registry/BeneficiaryLookupRequest.php',
+      104 => '/var/www/html/app/Http/Requests/Registry/BeneficiaryMatchSearchRequest.php',
+      105 => '/var/www/html/app/Http/Requests/Registry/DecideOwnershipTransferRequest.php',
+      106 => '/var/www/html/app/Http/Requests/Registry/DecideServeRequestRequest.php',
+      107 => '/var/www/html/app/Http/Requests/Registry/DeclineServiceRequestRequest.php',
+      108 => '/var/www/html/app/Http/Requests/Registry/DesignateHeadRequest.php',
+      109 => '/var/www/html/app/Http/Requests/Registry/MoveHouseholdMemberRequest.php',
+      110 => '/var/www/html/app/Http/Requests/Registry/RaiseServeRequestRequest.php',
+      111 => '/var/www/html/app/Http/Requests/Registry/ResolveImportRowRequest.php',
+      112 => '/var/www/html/app/Http/Requests/Registry/RouteAssignmentRequest.php',
+      113 => '/var/www/html/app/Http/Requests/Registry/StoreBeneficiaryRequest.php',
+      114 => '/var/www/html/app/Http/Requests/Registry/StoreHouseholdRequest.php',
+      115 => '/var/www/html/app/Http/Requests/Registry/StoreOwnershipTransferRequest.php',
+      116 => '/var/www/html/app/Http/Requests/Registry/StoreServiceRequestRequest.php',
+      117 => '/var/www/html/app/Http/Requests/Registry/UpdateBeneficiaryRequest.php',
+      118 => '/var/www/html/app/Http/Requests/Registry/UpdateHouseholdRequest.php',
+      119 => '/var/www/html/app/Http/Requests/Registry/UploadDocumentRequest.php',
+      120 => '/var/www/html/app/Http/Requests/Registry/UploadImportRequest.php',
+      121 => '/var/www/html/app/Http/Resources/BeneficiaryDocumentResource.php',
+      122 => '/var/www/html/app/Http/Resources/BeneficiaryRevealResource.php',
+      123 => '/var/www/html/app/Http/Resources/ImportBatchResource.php',
+      124 => '/var/www/html/app/Http/Resources/MatchingConfigResource.php',
+      125 => '/var/www/html/app/Http/Resources/UserResource.php',
+      126 => '/var/www/html/app/Providers/AppServiceProvider.php',
     ),
   ),
   '/var/www/html/app/Domain/Access/Scopes/MdaScope.php' => 
@@ -13456,29 +13921,32 @@ return [
       14 => '/var/www/html/app/Domain/Registry/Jobs/ParseImportBatch.php',
       15 => '/var/www/html/app/Domain/Registry/Models/Beneficiary.php',
       16 => '/var/www/html/app/Domain/Registry/Models/BeneficiaryDocument.php',
-      17 => '/var/www/html/app/Domain/Registry/Models/Household.php',
-      18 => '/var/www/html/app/Domain/Registry/Models/ImportBatch.php',
-      19 => '/var/www/html/app/Domain/Registry/Services/BeneficiaryLookupService.php',
-      20 => '/var/www/html/app/Domain/Registry/Services/BeneficiaryRegistrar.php',
-      21 => '/var/www/html/app/Domain/Registry/Services/CandidateGatherer.php',
-      22 => '/var/www/html/app/Domain/Registry/Services/DeterministicDuplicateFinder.php',
-      23 => '/var/www/html/app/Domain/Registry/Services/HouseholdIngestionService.php',
-      24 => '/var/www/html/app/Domain/Registry/Services/HouseholdMembershipService.php',
-      25 => '/var/www/html/app/Domain/Registry/Services/OwnershipTransferService.php',
-      26 => '/var/www/html/app/Http/Controllers/Api/V1/Benefit/BenefitController.php',
-      27 => '/var/www/html/app/Http/Controllers/Api/V1/Benefit/BenefitImportController.php',
-      28 => '/var/www/html/app/Http/Controllers/Api/V1/Programme/ActivityController.php',
-      29 => '/var/www/html/app/Http/Controllers/Api/V1/Programme/EnrollmentController.php',
-      30 => '/var/www/html/app/Http/Controllers/Api/V1/Programme/ProgrammeController.php',
-      31 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/BeneficiaryController.php',
-      32 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/BeneficiaryDocumentController.php',
-      33 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/BeneficiaryRoutingController.php',
-      34 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/HouseholdController.php',
-      35 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/HouseholdMemberController.php',
-      36 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/ImportBatchController.php',
-      37 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/OwnershipTransferController.php',
-      38 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/ServeRequestController.php',
-      39 => '/var/www/html/app/Http/Requests/Registry/UploadImportRequest.php',
+      17 => '/var/www/html/app/Domain/Registry/Models/BeneficiaryServiceGrant.php',
+      18 => '/var/www/html/app/Domain/Registry/Models/Household.php',
+      19 => '/var/www/html/app/Domain/Registry/Models/ImportBatch.php',
+      20 => '/var/www/html/app/Domain/Registry/Services/BeneficiaryLookupService.php',
+      21 => '/var/www/html/app/Domain/Registry/Services/BeneficiaryRegistrar.php',
+      22 => '/var/www/html/app/Domain/Registry/Services/CandidateGatherer.php',
+      23 => '/var/www/html/app/Domain/Registry/Services/DeterministicDuplicateFinder.php',
+      24 => '/var/www/html/app/Domain/Registry/Services/HouseholdIngestionService.php',
+      25 => '/var/www/html/app/Domain/Registry/Services/HouseholdMembershipService.php',
+      26 => '/var/www/html/app/Domain/Registry/Services/OwnershipTransferService.php',
+      27 => '/var/www/html/app/Domain/Registry/Services/ServiceRequestService.php',
+      28 => '/var/www/html/app/Http/Controllers/Api/V1/Benefit/BenefitController.php',
+      29 => '/var/www/html/app/Http/Controllers/Api/V1/Benefit/BenefitImportController.php',
+      30 => '/var/www/html/app/Http/Controllers/Api/V1/Programme/ActivityController.php',
+      31 => '/var/www/html/app/Http/Controllers/Api/V1/Programme/EnrollmentController.php',
+      32 => '/var/www/html/app/Http/Controllers/Api/V1/Programme/ProgrammeController.php',
+      33 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/BeneficiaryController.php',
+      34 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/BeneficiaryDocumentController.php',
+      35 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/BeneficiaryRoutingController.php',
+      36 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/HouseholdController.php',
+      37 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/HouseholdMemberController.php',
+      38 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/ImportBatchController.php',
+      39 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/OwnershipTransferController.php',
+      40 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/ServeRequestController.php',
+      41 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/ServiceRequestController.php',
+      42 => '/var/www/html/app/Http/Requests/Registry/UploadImportRequest.php',
     ),
   ),
   '/var/www/html/app/Domain/Access/Services/AuthTokenIssuer.php' => 
@@ -13582,132 +14050,142 @@ return [
       37 => '/var/www/html/app/Domain/Benefit/Services/Verifiers/SignatureVerifier.php',
       38 => '/var/www/html/app/Domain/Matching/Contracts/MatchScorer.php',
       39 => '/var/www/html/app/Domain/Matching/Engine/DeterministicMatcher.php',
-      40 => '/var/www/html/app/Domain/Matching/Engine/MatchingEngine.php',
-      41 => '/var/www/html/app/Domain/Matching/Models/MatchingConfig.php',
-      42 => '/var/www/html/app/Domain/Matching/Scoring/RuleBasedMatchScorer.php',
-      43 => '/var/www/html/app/Domain/Matching/Services/MatchingConfigService.php',
-      44 => '/var/www/html/app/Domain/Programme/Models/Activity.php',
-      45 => '/var/www/html/app/Domain/Programme/Models/Enrollment.php',
-      46 => '/var/www/html/app/Domain/Programme/Models/Programme.php',
-      47 => '/var/www/html/app/Domain/Programme/Policies/ActivityPolicy.php',
-      48 => '/var/www/html/app/Domain/Programme/Policies/EnrollmentPolicy.php',
-      49 => '/var/www/html/app/Domain/Programme/Policies/ProgrammePolicy.php',
-      50 => '/var/www/html/app/Domain/Programme/ProgrammeServiceProvider.php',
-      51 => '/var/www/html/app/Domain/Programme/Services/EligibilityEvaluator.php',
-      52 => '/var/www/html/app/Domain/Programme/Services/EnrollmentService.php',
-      53 => '/var/www/html/app/Domain/Programme/Services/ProgrammeMatcher.php',
-      54 => '/var/www/html/app/Domain/Programme/Services/ProgrammeMatchingRouter.php',
-      55 => '/var/www/html/app/Domain/Registry/Contracts/BeneficiaryRouter.php',
-      56 => '/var/www/html/app/Domain/Registry/Imports/ImportRowValidator.php',
-      57 => '/var/www/html/app/Domain/Registry/Jobs/CommitImportBatch.php',
-      58 => '/var/www/html/app/Domain/Registry/Jobs/ParseImportBatch.php',
-      59 => '/var/www/html/app/Domain/Registry/Models/Beneficiary.php',
-      60 => '/var/www/html/app/Domain/Registry/Models/BeneficiaryDocument.php',
-      61 => '/var/www/html/app/Domain/Registry/Models/Household.php',
-      62 => '/var/www/html/app/Domain/Registry/Models/HouseholdMembership.php',
-      63 => '/var/www/html/app/Domain/Registry/Models/ImportBatch.php',
-      64 => '/var/www/html/app/Domain/Registry/Models/ImportRow.php',
-      65 => '/var/www/html/app/Domain/Registry/Models/OwnershipTransferRequest.php',
-      66 => '/var/www/html/app/Domain/Registry/Models/ServeRequest.php',
-      67 => '/var/www/html/app/Domain/Registry/Policies/BeneficiaryDocumentPolicy.php',
-      68 => '/var/www/html/app/Domain/Registry/Policies/BeneficiaryPolicy.php',
-      69 => '/var/www/html/app/Domain/Registry/Policies/HouseholdPolicy.php',
-      70 => '/var/www/html/app/Domain/Registry/Policies/ImportBatchPolicy.php',
-      71 => '/var/www/html/app/Domain/Registry/Policies/ServeRequestPolicy.php',
-      72 => '/var/www/html/app/Domain/Registry/RegistryServiceProvider.php',
-      73 => '/var/www/html/app/Domain/Registry/Services/BatchDuplicateScreener.php',
-      74 => '/var/www/html/app/Domain/Registry/Services/BeneficiaryLookupService.php',
-      75 => '/var/www/html/app/Domain/Registry/Services/BeneficiaryRegistrar.php',
-      76 => '/var/www/html/app/Domain/Registry/Services/CandidateGatherer.php',
-      77 => '/var/www/html/app/Domain/Registry/Services/DeterministicDuplicateFinder.php',
-      78 => '/var/www/html/app/Domain/Registry/Services/FuzzyDuplicateFinder.php',
-      79 => '/var/www/html/app/Domain/Registry/Services/HouseholdIngestionService.php',
-      80 => '/var/www/html/app/Domain/Registry/Services/HouseholdMembershipService.php',
-      81 => '/var/www/html/app/Domain/Registry/Services/NullBeneficiaryRouter.php',
-      82 => '/var/www/html/app/Domain/Registry/Services/OwnershipTransferService.php',
-      83 => '/var/www/html/app/Domain/Registry/Services/ServeRequestService.php',
-      84 => '/var/www/html/app/Http/Controllers/Api/V1/Access/AccessController.php',
-      85 => '/var/www/html/app/Http/Controllers/Api/V1/Access/MdaAccessGrantController.php',
-      86 => '/var/www/html/app/Http/Controllers/Api/V1/Access/MdaController.php',
-      87 => '/var/www/html/app/Http/Controllers/Api/V1/Access/UserController.php',
-      88 => '/var/www/html/app/Http/Controllers/Api/V1/AuthController.php',
-      89 => '/var/www/html/app/Http/Controllers/Api/V1/Benefit/BenefitController.php',
-      90 => '/var/www/html/app/Http/Controllers/Api/V1/Benefit/BenefitFlagController.php',
-      91 => '/var/www/html/app/Http/Controllers/Api/V1/Benefit/BenefitImportController.php',
-      92 => '/var/www/html/app/Http/Controllers/Api/V1/Benefit/DoubleDippingRuleController.php',
-      93 => '/var/www/html/app/Http/Controllers/Api/V1/Matching/MatchingConfigController.php',
-      94 => '/var/www/html/app/Http/Controllers/Api/V1/MfaController.php',
-      95 => '/var/www/html/app/Http/Controllers/Api/V1/Programme/ActivityController.php',
-      96 => '/var/www/html/app/Http/Controllers/Api/V1/Programme/EnrollmentController.php',
-      97 => '/var/www/html/app/Http/Controllers/Api/V1/Programme/ProgrammeController.php',
-      98 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/BeneficiaryController.php',
-      99 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/BeneficiaryDocumentController.php',
-      100 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/BeneficiaryIntakeController.php',
-      101 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/BeneficiaryRoutingController.php',
-      102 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/HouseholdController.php',
-      103 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/HouseholdMemberController.php',
-      104 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/ImportBatchController.php',
-      105 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/OwnershipTransferController.php',
-      106 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/ServeRequestController.php',
-      107 => '/var/www/html/app/Http/Middleware/CheckPermission.php',
-      108 => '/var/www/html/app/Http/Requests/Access/StoreMdaAccessGrantRequest.php',
-      109 => '/var/www/html/app/Http/Requests/Access/StoreMdaRequest.php',
-      110 => '/var/www/html/app/Http/Requests/Access/StoreUserRequest.php',
-      111 => '/var/www/html/app/Http/Requests/Access/UpdateMdaRequest.php',
-      112 => '/var/www/html/app/Http/Requests/Access/UpdateUserRequest.php',
-      113 => '/var/www/html/app/Http/Requests/Auth/ChangePasswordRequest.php',
-      114 => '/var/www/html/app/Http/Requests/Auth/MfaCodeRequest.php',
-      115 => '/var/www/html/app/Http/Requests/Benefit/AggregateBenefitsRequest.php',
-      116 => '/var/www/html/app/Http/Requests/Benefit/RecordBenefitRequest.php',
-      117 => '/var/www/html/app/Http/Requests/Benefit/ReviewBenefitFlagRequest.php',
-      118 => '/var/www/html/app/Http/Requests/Benefit/StoreDoubleDippingRuleRequest.php',
-      119 => '/var/www/html/app/Http/Requests/Benefit/UploadBenefitImportRequest.php',
-      120 => '/var/www/html/app/Http/Requests/Benefit/VerifyBenefitRequest.php',
-      121 => '/var/www/html/app/Http/Requests/Matching/UpdateMatchingConfigRequest.php',
-      122 => '/var/www/html/app/Http/Requests/Programme/BulkEnrollmentRequest.php',
-      123 => '/var/www/html/app/Http/Requests/Programme/StoreActivityRequest.php',
-      124 => '/var/www/html/app/Http/Requests/Programme/StoreEnrollmentRequest.php',
-      125 => '/var/www/html/app/Http/Requests/Programme/StoreProgrammeRequest.php',
-      126 => '/var/www/html/app/Http/Requests/Programme/UpdateActivityRequest.php',
-      127 => '/var/www/html/app/Http/Requests/Programme/UpdateEnrollmentRequest.php',
-      128 => '/var/www/html/app/Http/Requests/Programme/UpdateProgrammeRequest.php',
-      129 => '/var/www/html/app/Http/Requests/Registry/AddHouseholdMemberRequest.php',
-      130 => '/var/www/html/app/Http/Requests/Registry/ApiRegistrationRequest.php',
-      131 => '/var/www/html/app/Http/Requests/Registry/BeneficiaryLookupRequest.php',
-      132 => '/var/www/html/app/Http/Requests/Registry/BeneficiaryMatchSearchRequest.php',
-      133 => '/var/www/html/app/Http/Requests/Registry/DecideOwnershipTransferRequest.php',
-      134 => '/var/www/html/app/Http/Requests/Registry/DecideServeRequestRequest.php',
-      135 => '/var/www/html/app/Http/Requests/Registry/DesignateHeadRequest.php',
-      136 => '/var/www/html/app/Http/Requests/Registry/MoveHouseholdMemberRequest.php',
-      137 => '/var/www/html/app/Http/Requests/Registry/RaiseServeRequestRequest.php',
-      138 => '/var/www/html/app/Http/Requests/Registry/ResolveImportRowRequest.php',
-      139 => '/var/www/html/app/Http/Requests/Registry/RouteAssignmentRequest.php',
-      140 => '/var/www/html/app/Http/Requests/Registry/StoreBeneficiaryRequest.php',
-      141 => '/var/www/html/app/Http/Requests/Registry/StoreHouseholdRequest.php',
-      142 => '/var/www/html/app/Http/Requests/Registry/StoreOwnershipTransferRequest.php',
-      143 => '/var/www/html/app/Http/Requests/Registry/UpdateBeneficiaryRequest.php',
-      144 => '/var/www/html/app/Http/Requests/Registry/UpdateHouseholdRequest.php',
-      145 => '/var/www/html/app/Http/Requests/Registry/UploadDocumentRequest.php',
-      146 => '/var/www/html/app/Http/Requests/Registry/UploadImportRequest.php',
-      147 => '/var/www/html/app/Http/Resources/ActivityResource.php',
-      148 => '/var/www/html/app/Http/Resources/BeneficiaryDocumentResource.php',
-      149 => '/var/www/html/app/Http/Resources/BeneficiaryResource.php',
-      150 => '/var/www/html/app/Http/Resources/BeneficiaryRevealResource.php',
-      151 => '/var/www/html/app/Http/Resources/BenefitFlagResource.php',
-      152 => '/var/www/html/app/Http/Resources/BenefitImportBatchResource.php',
-      153 => '/var/www/html/app/Http/Resources/BenefitResource.php',
-      154 => '/var/www/html/app/Http/Resources/DoubleDippingRuleResource.php',
-      155 => '/var/www/html/app/Http/Resources/EnrollmentResource.php',
-      156 => '/var/www/html/app/Http/Resources/HouseholdMembershipResource.php',
-      157 => '/var/www/html/app/Http/Resources/HouseholdResource.php',
-      158 => '/var/www/html/app/Http/Resources/ImportBatchResource.php',
-      159 => '/var/www/html/app/Http/Resources/MatchingConfigResource.php',
-      160 => '/var/www/html/app/Http/Resources/MdaResource.php',
-      161 => '/var/www/html/app/Http/Resources/OwnershipTransferResource.php',
-      162 => '/var/www/html/app/Http/Resources/ProgrammeResource.php',
-      163 => '/var/www/html/app/Http/Resources/ServeRequestResource.php',
-      164 => '/var/www/html/app/Http/Resources/UserResource.php',
-      165 => '/var/www/html/app/Providers/AppServiceProvider.php',
+      40 => '/var/www/html/app/Domain/Matching/Engine/DuplicateCascade.php',
+      41 => '/var/www/html/app/Domain/Matching/Engine/MatchingEngine.php',
+      42 => '/var/www/html/app/Domain/Matching/Models/MatchingConfig.php',
+      43 => '/var/www/html/app/Domain/Matching/Scoring/RuleBasedMatchScorer.php',
+      44 => '/var/www/html/app/Domain/Matching/Services/MatchingConfigService.php',
+      45 => '/var/www/html/app/Domain/Programme/Models/Activity.php',
+      46 => '/var/www/html/app/Domain/Programme/Models/Enrollment.php',
+      47 => '/var/www/html/app/Domain/Programme/Models/Programme.php',
+      48 => '/var/www/html/app/Domain/Programme/Policies/ActivityPolicy.php',
+      49 => '/var/www/html/app/Domain/Programme/Policies/EnrollmentPolicy.php',
+      50 => '/var/www/html/app/Domain/Programme/Policies/ProgrammePolicy.php',
+      51 => '/var/www/html/app/Domain/Programme/ProgrammeServiceProvider.php',
+      52 => '/var/www/html/app/Domain/Programme/Services/EligibilityEvaluator.php',
+      53 => '/var/www/html/app/Domain/Programme/Services/EnrollmentService.php',
+      54 => '/var/www/html/app/Domain/Programme/Services/ProgrammeMatcher.php',
+      55 => '/var/www/html/app/Domain/Programme/Services/ProgrammeMatchingRouter.php',
+      56 => '/var/www/html/app/Domain/Registry/Contracts/BeneficiaryRouter.php',
+      57 => '/var/www/html/app/Domain/Registry/Imports/ImportRowValidator.php',
+      58 => '/var/www/html/app/Domain/Registry/Jobs/CommitImportBatch.php',
+      59 => '/var/www/html/app/Domain/Registry/Jobs/ParseImportBatch.php',
+      60 => '/var/www/html/app/Domain/Registry/Models/Beneficiary.php',
+      61 => '/var/www/html/app/Domain/Registry/Models/BeneficiaryDocument.php',
+      62 => '/var/www/html/app/Domain/Registry/Models/BeneficiaryServiceGrant.php',
+      63 => '/var/www/html/app/Domain/Registry/Models/Household.php',
+      64 => '/var/www/html/app/Domain/Registry/Models/HouseholdMembership.php',
+      65 => '/var/www/html/app/Domain/Registry/Models/ImportBatch.php',
+      66 => '/var/www/html/app/Domain/Registry/Models/ImportRow.php',
+      67 => '/var/www/html/app/Domain/Registry/Models/OwnershipTransferRequest.php',
+      68 => '/var/www/html/app/Domain/Registry/Models/ServeRequest.php',
+      69 => '/var/www/html/app/Domain/Registry/Models/ServiceRequest.php',
+      70 => '/var/www/html/app/Domain/Registry/Policies/BeneficiaryDocumentPolicy.php',
+      71 => '/var/www/html/app/Domain/Registry/Policies/BeneficiaryPolicy.php',
+      72 => '/var/www/html/app/Domain/Registry/Policies/HouseholdPolicy.php',
+      73 => '/var/www/html/app/Domain/Registry/Policies/ImportBatchPolicy.php',
+      74 => '/var/www/html/app/Domain/Registry/Policies/OwnerMdaPolicy.php',
+      75 => '/var/www/html/app/Domain/Registry/Policies/ServeRequestPolicy.php',
+      76 => '/var/www/html/app/Domain/Registry/RegistryServiceProvider.php',
+      77 => '/var/www/html/app/Domain/Registry/Services/BatchDuplicateScreener.php',
+      78 => '/var/www/html/app/Domain/Registry/Services/BeneficiaryLookupService.php',
+      79 => '/var/www/html/app/Domain/Registry/Services/BeneficiaryRegistrar.php',
+      80 => '/var/www/html/app/Domain/Registry/Services/CandidateGatherer.php',
+      81 => '/var/www/html/app/Domain/Registry/Services/DeterministicDuplicateFinder.php',
+      82 => '/var/www/html/app/Domain/Registry/Services/FuzzyDuplicateFinder.php',
+      83 => '/var/www/html/app/Domain/Registry/Services/HouseholdIngestionService.php',
+      84 => '/var/www/html/app/Domain/Registry/Services/HouseholdMembershipService.php',
+      85 => '/var/www/html/app/Domain/Registry/Services/NullBeneficiaryRouter.php',
+      86 => '/var/www/html/app/Domain/Registry/Services/OwnershipTransferService.php',
+      87 => '/var/www/html/app/Domain/Registry/Services/ServeRequestService.php',
+      88 => '/var/www/html/app/Domain/Registry/Services/ServiceRequestService.php',
+      89 => '/var/www/html/app/Http/Controllers/Api/V1/Access/AccessController.php',
+      90 => '/var/www/html/app/Http/Controllers/Api/V1/Access/MdaAccessGrantController.php',
+      91 => '/var/www/html/app/Http/Controllers/Api/V1/Access/MdaController.php',
+      92 => '/var/www/html/app/Http/Controllers/Api/V1/Access/UserController.php',
+      93 => '/var/www/html/app/Http/Controllers/Api/V1/AuthController.php',
+      94 => '/var/www/html/app/Http/Controllers/Api/V1/Benefit/BenefitController.php',
+      95 => '/var/www/html/app/Http/Controllers/Api/V1/Benefit/BenefitFlagController.php',
+      96 => '/var/www/html/app/Http/Controllers/Api/V1/Benefit/BenefitImportController.php',
+      97 => '/var/www/html/app/Http/Controllers/Api/V1/Benefit/DoubleDippingRuleController.php',
+      98 => '/var/www/html/app/Http/Controllers/Api/V1/Matching/MatchingConfigController.php',
+      99 => '/var/www/html/app/Http/Controllers/Api/V1/MfaController.php',
+      100 => '/var/www/html/app/Http/Controllers/Api/V1/Programme/ActivityController.php',
+      101 => '/var/www/html/app/Http/Controllers/Api/V1/Programme/EnrollmentController.php',
+      102 => '/var/www/html/app/Http/Controllers/Api/V1/Programme/ProgrammeController.php',
+      103 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/BeneficiaryController.php',
+      104 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/BeneficiaryDocumentController.php',
+      105 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/BeneficiaryIntakeController.php',
+      106 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/BeneficiaryRoutingController.php',
+      107 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/HouseholdController.php',
+      108 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/HouseholdMemberController.php',
+      109 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/ImportBatchController.php',
+      110 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/OwnershipTransferController.php',
+      111 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/ServeRequestController.php',
+      112 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/ServiceRequestController.php',
+      113 => '/var/www/html/app/Http/Middleware/CheckPermission.php',
+      114 => '/var/www/html/app/Http/Requests/Access/StoreMdaAccessGrantRequest.php',
+      115 => '/var/www/html/app/Http/Requests/Access/StoreMdaRequest.php',
+      116 => '/var/www/html/app/Http/Requests/Access/StoreUserRequest.php',
+      117 => '/var/www/html/app/Http/Requests/Access/UpdateMdaRequest.php',
+      118 => '/var/www/html/app/Http/Requests/Access/UpdateUserRequest.php',
+      119 => '/var/www/html/app/Http/Requests/Auth/ChangePasswordRequest.php',
+      120 => '/var/www/html/app/Http/Requests/Auth/MfaCodeRequest.php',
+      121 => '/var/www/html/app/Http/Requests/Benefit/AggregateBenefitsRequest.php',
+      122 => '/var/www/html/app/Http/Requests/Benefit/RecordBenefitRequest.php',
+      123 => '/var/www/html/app/Http/Requests/Benefit/ReviewBenefitFlagRequest.php',
+      124 => '/var/www/html/app/Http/Requests/Benefit/StoreDoubleDippingRuleRequest.php',
+      125 => '/var/www/html/app/Http/Requests/Benefit/UploadBenefitImportRequest.php',
+      126 => '/var/www/html/app/Http/Requests/Benefit/VerifyBenefitRequest.php',
+      127 => '/var/www/html/app/Http/Requests/Matching/UpdateMatchingConfigRequest.php',
+      128 => '/var/www/html/app/Http/Requests/Programme/BulkEnrollmentRequest.php',
+      129 => '/var/www/html/app/Http/Requests/Programme/StoreActivityRequest.php',
+      130 => '/var/www/html/app/Http/Requests/Programme/StoreEnrollmentRequest.php',
+      131 => '/var/www/html/app/Http/Requests/Programme/StoreProgrammeRequest.php',
+      132 => '/var/www/html/app/Http/Requests/Programme/UpdateActivityRequest.php',
+      133 => '/var/www/html/app/Http/Requests/Programme/UpdateEnrollmentRequest.php',
+      134 => '/var/www/html/app/Http/Requests/Programme/UpdateProgrammeRequest.php',
+      135 => '/var/www/html/app/Http/Requests/Registry/AcceptServiceRequestRequest.php',
+      136 => '/var/www/html/app/Http/Requests/Registry/AddHouseholdMemberRequest.php',
+      137 => '/var/www/html/app/Http/Requests/Registry/ApiRegistrationRequest.php',
+      138 => '/var/www/html/app/Http/Requests/Registry/BeneficiaryLookupRequest.php',
+      139 => '/var/www/html/app/Http/Requests/Registry/BeneficiaryMatchSearchRequest.php',
+      140 => '/var/www/html/app/Http/Requests/Registry/DecideOwnershipTransferRequest.php',
+      141 => '/var/www/html/app/Http/Requests/Registry/DecideServeRequestRequest.php',
+      142 => '/var/www/html/app/Http/Requests/Registry/DeclineServiceRequestRequest.php',
+      143 => '/var/www/html/app/Http/Requests/Registry/DesignateHeadRequest.php',
+      144 => '/var/www/html/app/Http/Requests/Registry/MoveHouseholdMemberRequest.php',
+      145 => '/var/www/html/app/Http/Requests/Registry/RaiseServeRequestRequest.php',
+      146 => '/var/www/html/app/Http/Requests/Registry/ResolveImportRowRequest.php',
+      147 => '/var/www/html/app/Http/Requests/Registry/RouteAssignmentRequest.php',
+      148 => '/var/www/html/app/Http/Requests/Registry/StoreBeneficiaryRequest.php',
+      149 => '/var/www/html/app/Http/Requests/Registry/StoreHouseholdRequest.php',
+      150 => '/var/www/html/app/Http/Requests/Registry/StoreOwnershipTransferRequest.php',
+      151 => '/var/www/html/app/Http/Requests/Registry/StoreServiceRequestRequest.php',
+      152 => '/var/www/html/app/Http/Requests/Registry/UpdateBeneficiaryRequest.php',
+      153 => '/var/www/html/app/Http/Requests/Registry/UpdateHouseholdRequest.php',
+      154 => '/var/www/html/app/Http/Requests/Registry/UploadDocumentRequest.php',
+      155 => '/var/www/html/app/Http/Requests/Registry/UploadImportRequest.php',
+      156 => '/var/www/html/app/Http/Resources/ActivityResource.php',
+      157 => '/var/www/html/app/Http/Resources/BeneficiaryDocumentResource.php',
+      158 => '/var/www/html/app/Http/Resources/BeneficiaryResource.php',
+      159 => '/var/www/html/app/Http/Resources/BeneficiaryRevealResource.php',
+      160 => '/var/www/html/app/Http/Resources/BenefitFlagResource.php',
+      161 => '/var/www/html/app/Http/Resources/BenefitImportBatchResource.php',
+      162 => '/var/www/html/app/Http/Resources/BenefitResource.php',
+      163 => '/var/www/html/app/Http/Resources/DoubleDippingRuleResource.php',
+      164 => '/var/www/html/app/Http/Resources/EnrollmentResource.php',
+      165 => '/var/www/html/app/Http/Resources/HouseholdMembershipResource.php',
+      166 => '/var/www/html/app/Http/Resources/HouseholdResource.php',
+      167 => '/var/www/html/app/Http/Resources/ImportBatchResource.php',
+      168 => '/var/www/html/app/Http/Resources/MatchingConfigResource.php',
+      169 => '/var/www/html/app/Http/Resources/MdaResource.php',
+      170 => '/var/www/html/app/Http/Resources/OwnershipTransferResource.php',
+      171 => '/var/www/html/app/Http/Resources/ProgrammeResource.php',
+      172 => '/var/www/html/app/Http/Resources/ServeRequestResource.php',
+      173 => '/var/www/html/app/Http/Resources/ServiceRequestResource.php',
+      174 => '/var/www/html/app/Http/Resources/UserResource.php',
+      175 => '/var/www/html/app/Providers/AppServiceProvider.php',
     ),
     'usedTraitDependentFiles' => 
     array (
@@ -13724,11 +14202,13 @@ return [
       10 => '/var/www/html/app/Domain/Programme/Models/Programme.php',
       11 => '/var/www/html/app/Domain/Registry/Models/Beneficiary.php',
       12 => '/var/www/html/app/Domain/Registry/Models/BeneficiaryDocument.php',
-      13 => '/var/www/html/app/Domain/Registry/Models/Household.php',
-      14 => '/var/www/html/app/Domain/Registry/Models/HouseholdMembership.php',
-      15 => '/var/www/html/app/Domain/Registry/Models/ImportBatch.php',
-      16 => '/var/www/html/app/Domain/Registry/Models/OwnershipTransferRequest.php',
-      17 => '/var/www/html/app/Domain/Registry/Models/ServeRequest.php',
+      13 => '/var/www/html/app/Domain/Registry/Models/BeneficiaryServiceGrant.php',
+      14 => '/var/www/html/app/Domain/Registry/Models/Household.php',
+      15 => '/var/www/html/app/Domain/Registry/Models/HouseholdMembership.php',
+      16 => '/var/www/html/app/Domain/Registry/Models/ImportBatch.php',
+      17 => '/var/www/html/app/Domain/Registry/Models/OwnershipTransferRequest.php',
+      18 => '/var/www/html/app/Domain/Registry/Models/ServeRequest.php',
+      19 => '/var/www/html/app/Domain/Registry/Models/ServiceRequest.php',
     ),
   ),
   '/var/www/html/app/Domain/Audit/Listeners/AuditEventSubscriber.php' => 
@@ -13760,22 +14240,25 @@ return [
       13 => '/var/www/html/app/Domain/Programme/Models/Programme.php',
       14 => '/var/www/html/app/Domain/Registry/Models/Beneficiary.php',
       15 => '/var/www/html/app/Domain/Registry/Models/BeneficiaryDocument.php',
-      16 => '/var/www/html/app/Domain/Registry/Models/Household.php',
-      17 => '/var/www/html/app/Domain/Registry/Models/HouseholdMembership.php',
-      18 => '/var/www/html/app/Domain/Registry/Models/ImportBatch.php',
-      19 => '/var/www/html/app/Domain/Registry/Models/OwnershipTransferRequest.php',
-      20 => '/var/www/html/app/Domain/Registry/Models/ServeRequest.php',
-      21 => '/var/www/html/app/Domain/Registry/Services/BeneficiaryLookupService.php',
-      22 => '/var/www/html/app/Domain/Registry/Services/HouseholdIngestionService.php',
-      23 => '/var/www/html/app/Domain/Registry/Services/HouseholdMembershipService.php',
-      24 => '/var/www/html/app/Domain/Registry/Services/OwnershipTransferService.php',
-      25 => '/var/www/html/app/Domain/Registry/Services/ServeRequestService.php',
-      26 => '/var/www/html/app/Http/Controllers/Api/V1/Access/UserController.php',
-      27 => '/var/www/html/app/Http/Controllers/Api/V1/AuthController.php',
-      28 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/BeneficiaryController.php',
-      29 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/BeneficiaryDocumentController.php',
-      30 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/BeneficiaryRoutingController.php',
-      31 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/ImportBatchController.php',
+      16 => '/var/www/html/app/Domain/Registry/Models/BeneficiaryServiceGrant.php',
+      17 => '/var/www/html/app/Domain/Registry/Models/Household.php',
+      18 => '/var/www/html/app/Domain/Registry/Models/HouseholdMembership.php',
+      19 => '/var/www/html/app/Domain/Registry/Models/ImportBatch.php',
+      20 => '/var/www/html/app/Domain/Registry/Models/OwnershipTransferRequest.php',
+      21 => '/var/www/html/app/Domain/Registry/Models/ServeRequest.php',
+      22 => '/var/www/html/app/Domain/Registry/Models/ServiceRequest.php',
+      23 => '/var/www/html/app/Domain/Registry/Services/BeneficiaryLookupService.php',
+      24 => '/var/www/html/app/Domain/Registry/Services/HouseholdIngestionService.php',
+      25 => '/var/www/html/app/Domain/Registry/Services/HouseholdMembershipService.php',
+      26 => '/var/www/html/app/Domain/Registry/Services/OwnershipTransferService.php',
+      27 => '/var/www/html/app/Domain/Registry/Services/ServeRequestService.php',
+      28 => '/var/www/html/app/Domain/Registry/Services/ServiceRequestService.php',
+      29 => '/var/www/html/app/Http/Controllers/Api/V1/Access/UserController.php',
+      30 => '/var/www/html/app/Http/Controllers/Api/V1/AuthController.php',
+      31 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/BeneficiaryController.php',
+      32 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/BeneficiaryDocumentController.php',
+      33 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/BeneficiaryRoutingController.php',
+      34 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/ImportBatchController.php',
     ),
   ),
   '/var/www/html/app/Domain/Audit/Services/AuditLogger.php' => 
@@ -13798,22 +14281,25 @@ return [
       12 => '/var/www/html/app/Domain/Programme/Models/Programme.php',
       13 => '/var/www/html/app/Domain/Registry/Models/Beneficiary.php',
       14 => '/var/www/html/app/Domain/Registry/Models/BeneficiaryDocument.php',
-      15 => '/var/www/html/app/Domain/Registry/Models/Household.php',
-      16 => '/var/www/html/app/Domain/Registry/Models/HouseholdMembership.php',
-      17 => '/var/www/html/app/Domain/Registry/Models/ImportBatch.php',
-      18 => '/var/www/html/app/Domain/Registry/Models/OwnershipTransferRequest.php',
-      19 => '/var/www/html/app/Domain/Registry/Models/ServeRequest.php',
-      20 => '/var/www/html/app/Domain/Registry/Services/BeneficiaryLookupService.php',
-      21 => '/var/www/html/app/Domain/Registry/Services/HouseholdIngestionService.php',
-      22 => '/var/www/html/app/Domain/Registry/Services/HouseholdMembershipService.php',
-      23 => '/var/www/html/app/Domain/Registry/Services/OwnershipTransferService.php',
-      24 => '/var/www/html/app/Domain/Registry/Services/ServeRequestService.php',
-      25 => '/var/www/html/app/Http/Controllers/Api/V1/Access/UserController.php',
-      26 => '/var/www/html/app/Http/Controllers/Api/V1/AuthController.php',
-      27 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/BeneficiaryController.php',
-      28 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/BeneficiaryDocumentController.php',
-      29 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/BeneficiaryRoutingController.php',
-      30 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/ImportBatchController.php',
+      15 => '/var/www/html/app/Domain/Registry/Models/BeneficiaryServiceGrant.php',
+      16 => '/var/www/html/app/Domain/Registry/Models/Household.php',
+      17 => '/var/www/html/app/Domain/Registry/Models/HouseholdMembership.php',
+      18 => '/var/www/html/app/Domain/Registry/Models/ImportBatch.php',
+      19 => '/var/www/html/app/Domain/Registry/Models/OwnershipTransferRequest.php',
+      20 => '/var/www/html/app/Domain/Registry/Models/ServeRequest.php',
+      21 => '/var/www/html/app/Domain/Registry/Models/ServiceRequest.php',
+      22 => '/var/www/html/app/Domain/Registry/Services/BeneficiaryLookupService.php',
+      23 => '/var/www/html/app/Domain/Registry/Services/HouseholdIngestionService.php',
+      24 => '/var/www/html/app/Domain/Registry/Services/HouseholdMembershipService.php',
+      25 => '/var/www/html/app/Domain/Registry/Services/OwnershipTransferService.php',
+      26 => '/var/www/html/app/Domain/Registry/Services/ServeRequestService.php',
+      27 => '/var/www/html/app/Domain/Registry/Services/ServiceRequestService.php',
+      28 => '/var/www/html/app/Http/Controllers/Api/V1/Access/UserController.php',
+      29 => '/var/www/html/app/Http/Controllers/Api/V1/AuthController.php',
+      30 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/BeneficiaryController.php',
+      31 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/BeneficiaryDocumentController.php',
+      32 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/BeneficiaryRoutingController.php',
+      33 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/ImportBatchController.php',
     ),
   ),
   '/var/www/html/app/Domain/Audit/Support/AuditScrubber.php' => 
@@ -13834,11 +14320,13 @@ return [
       10 => '/var/www/html/app/Domain/Programme/Models/Programme.php',
       11 => '/var/www/html/app/Domain/Registry/Models/Beneficiary.php',
       12 => '/var/www/html/app/Domain/Registry/Models/BeneficiaryDocument.php',
-      13 => '/var/www/html/app/Domain/Registry/Models/Household.php',
-      14 => '/var/www/html/app/Domain/Registry/Models/HouseholdMembership.php',
-      15 => '/var/www/html/app/Domain/Registry/Models/ImportBatch.php',
-      16 => '/var/www/html/app/Domain/Registry/Models/OwnershipTransferRequest.php',
-      17 => '/var/www/html/app/Domain/Registry/Models/ServeRequest.php',
+      13 => '/var/www/html/app/Domain/Registry/Models/BeneficiaryServiceGrant.php',
+      14 => '/var/www/html/app/Domain/Registry/Models/Household.php',
+      15 => '/var/www/html/app/Domain/Registry/Models/HouseholdMembership.php',
+      16 => '/var/www/html/app/Domain/Registry/Models/ImportBatch.php',
+      17 => '/var/www/html/app/Domain/Registry/Models/OwnershipTransferRequest.php',
+      18 => '/var/www/html/app/Domain/Registry/Models/ServeRequest.php',
+      19 => '/var/www/html/app/Domain/Registry/Models/ServiceRequest.php',
     ),
   ),
   '/var/www/html/app/Domain/Benefit/BenefitServiceProvider.php' => 
@@ -14191,10 +14679,19 @@ return [
   ),
   '/var/www/html/app/Domain/Matching/Engine/DeterministicMatcher.php' => 
   array (
-    'fileHash' => '0085d2d8c39e287423348cc5a81270149dd5946fb037a8959ac7a4f8215c60c4',
+    'fileHash' => '25fc4f37a1954d18b8089bb06b47f564ad2b37c1f468b7dc0b17c376efd6f035',
     'dependentFiles' => 
     array (
-      0 => '/var/www/html/app/Domain/Registry/Services/DeterministicDuplicateFinder.php',
+      0 => '/var/www/html/app/Domain/Matching/Engine/DuplicateCascade.php',
+      1 => '/var/www/html/app/Domain/Registry/Services/DeterministicDuplicateFinder.php',
+    ),
+  ),
+  '/var/www/html/app/Domain/Matching/Engine/DuplicateCascade.php' => 
+  array (
+    'fileHash' => '4d230988924c4d4ec820454c3893d4cbbfceda4c7c8cb3c82585263364ee75b7',
+    'dependentFiles' => 
+    array (
+      0 => '/var/www/html/app/Domain/Registry/Services/BatchDuplicateScreener.php',
     ),
   ),
   '/var/www/html/app/Domain/Matching/Engine/MatchResult.php' => 
@@ -14203,12 +14700,13 @@ return [
     'dependentFiles' => 
     array (
       0 => '/var/www/html/app/Domain/Matching/Engine/DeterministicMatcher.php',
-      1 => '/var/www/html/app/Domain/Matching/Engine/MatchingEngine.php',
-      2 => '/var/www/html/app/Domain/Registry/Services/BatchDuplicateScreener.php',
-      3 => '/var/www/html/app/Domain/Registry/Services/DeterministicDuplicateFinder.php',
-      4 => '/var/www/html/app/Domain/Registry/Services/FuzzyDuplicateFinder.php',
-      5 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/BeneficiaryController.php',
-      6 => '/var/www/html/app/Http/Resources/MatchCandidateResource.php',
+      1 => '/var/www/html/app/Domain/Matching/Engine/DuplicateCascade.php',
+      2 => '/var/www/html/app/Domain/Matching/Engine/MatchingEngine.php',
+      3 => '/var/www/html/app/Domain/Registry/Services/BatchDuplicateScreener.php',
+      4 => '/var/www/html/app/Domain/Registry/Services/DeterministicDuplicateFinder.php',
+      5 => '/var/www/html/app/Domain/Registry/Services/FuzzyDuplicateFinder.php',
+      6 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/BeneficiaryController.php',
+      7 => '/var/www/html/app/Http/Resources/MatchCandidateResource.php',
     ),
   ),
   '/var/www/html/app/Domain/Matching/Engine/MatchingEngine.php' => 
@@ -14216,7 +14714,7 @@ return [
     'fileHash' => '50c2a21850f502653e9093a8aa73ae9be74cc2840fd577e73aba69d28d48a259',
     'dependentFiles' => 
     array (
-      0 => '/var/www/html/app/Domain/Registry/Services/BatchDuplicateScreener.php',
+      0 => '/var/www/html/app/Domain/Matching/Engine/DuplicateCascade.php',
       1 => '/var/www/html/app/Domain/Registry/Services/FuzzyDuplicateFinder.php',
     ),
   ),
@@ -14227,19 +14725,20 @@ return [
     array (
       0 => '/var/www/html/app/Domain/Matching/Contracts/MatchScorer.php',
       1 => '/var/www/html/app/Domain/Matching/Engine/DeterministicMatcher.php',
-      2 => '/var/www/html/app/Domain/Matching/Engine/MatchingEngine.php',
-      3 => '/var/www/html/app/Domain/Matching/Models/MatchingConfig.php',
-      4 => '/var/www/html/app/Domain/Matching/Scoring/RuleBasedMatchScorer.php',
-      5 => '/var/www/html/app/Domain/Matching/Services/MatchingConfigService.php',
-      6 => '/var/www/html/app/Domain/Registry/Jobs/ParseImportBatch.php',
-      7 => '/var/www/html/app/Domain/Registry/Services/BatchDuplicateScreener.php',
-      8 => '/var/www/html/app/Domain/Registry/Services/CandidateGatherer.php',
-      9 => '/var/www/html/app/Domain/Registry/Services/DeterministicDuplicateFinder.php',
-      10 => '/var/www/html/app/Domain/Registry/Services/FuzzyDuplicateFinder.php',
-      11 => '/var/www/html/app/Http/Controllers/Api/V1/Matching/MatchingConfigController.php',
-      12 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/BeneficiaryController.php',
-      13 => '/var/www/html/app/Http/Requests/Matching/UpdateMatchingConfigRequest.php',
-      14 => '/var/www/html/app/Http/Resources/MatchingConfigResource.php',
+      2 => '/var/www/html/app/Domain/Matching/Engine/DuplicateCascade.php',
+      3 => '/var/www/html/app/Domain/Matching/Engine/MatchingEngine.php',
+      4 => '/var/www/html/app/Domain/Matching/Models/MatchingConfig.php',
+      5 => '/var/www/html/app/Domain/Matching/Scoring/RuleBasedMatchScorer.php',
+      6 => '/var/www/html/app/Domain/Matching/Services/MatchingConfigService.php',
+      7 => '/var/www/html/app/Domain/Registry/Jobs/ParseImportBatch.php',
+      8 => '/var/www/html/app/Domain/Registry/Services/BatchDuplicateScreener.php',
+      9 => '/var/www/html/app/Domain/Registry/Services/CandidateGatherer.php',
+      10 => '/var/www/html/app/Domain/Registry/Services/DeterministicDuplicateFinder.php',
+      11 => '/var/www/html/app/Domain/Registry/Services/FuzzyDuplicateFinder.php',
+      12 => '/var/www/html/app/Http/Controllers/Api/V1/Matching/MatchingConfigController.php',
+      13 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/BeneficiaryController.php',
+      14 => '/var/www/html/app/Http/Requests/Matching/UpdateMatchingConfigRequest.php',
+      15 => '/var/www/html/app/Http/Resources/MatchingConfigResource.php',
     ),
   ),
   '/var/www/html/app/Domain/Matching/Enums/MatchBand.php' => 
@@ -14248,11 +14747,12 @@ return [
     'dependentFiles' => 
     array (
       0 => '/var/www/html/app/Domain/Matching/Engine/DeterministicMatcher.php',
-      1 => '/var/www/html/app/Domain/Matching/Engine/MatchResult.php',
-      2 => '/var/www/html/app/Domain/Matching/Engine/MatchingEngine.php',
-      3 => '/var/www/html/app/Domain/Registry/Services/BatchDuplicateScreener.php',
-      4 => '/var/www/html/app/Domain/Registry/Services/FuzzyDuplicateFinder.php',
-      5 => '/var/www/html/app/Http/Resources/MatchCandidateResource.php',
+      1 => '/var/www/html/app/Domain/Matching/Engine/DuplicateCascade.php',
+      2 => '/var/www/html/app/Domain/Matching/Engine/MatchResult.php',
+      3 => '/var/www/html/app/Domain/Matching/Engine/MatchingEngine.php',
+      4 => '/var/www/html/app/Domain/Registry/Services/BatchDuplicateScreener.php',
+      5 => '/var/www/html/app/Domain/Registry/Services/FuzzyDuplicateFinder.php',
+      6 => '/var/www/html/app/Http/Resources/MatchCandidateResource.php',
     ),
   ),
   '/var/www/html/app/Domain/Matching/Enums/MatchComparator.php' => 
@@ -14287,17 +14787,18 @@ return [
     array (
       0 => '/var/www/html/app/Domain/Matching/Contracts/MatchScorer.php',
       1 => '/var/www/html/app/Domain/Matching/Engine/DeterministicMatcher.php',
-      2 => '/var/www/html/app/Domain/Matching/Engine/MatchingEngine.php',
-      3 => '/var/www/html/app/Domain/Matching/Scoring/RuleBasedMatchScorer.php',
-      4 => '/var/www/html/app/Domain/Matching/Services/MatchingConfigService.php',
-      5 => '/var/www/html/app/Domain/Registry/Jobs/ParseImportBatch.php',
-      6 => '/var/www/html/app/Domain/Registry/Services/BatchDuplicateScreener.php',
-      7 => '/var/www/html/app/Domain/Registry/Services/CandidateGatherer.php',
-      8 => '/var/www/html/app/Domain/Registry/Services/DeterministicDuplicateFinder.php',
-      9 => '/var/www/html/app/Domain/Registry/Services/FuzzyDuplicateFinder.php',
-      10 => '/var/www/html/app/Http/Controllers/Api/V1/Matching/MatchingConfigController.php',
-      11 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/BeneficiaryController.php',
-      12 => '/var/www/html/app/Http/Resources/MatchingConfigResource.php',
+      2 => '/var/www/html/app/Domain/Matching/Engine/DuplicateCascade.php',
+      3 => '/var/www/html/app/Domain/Matching/Engine/MatchingEngine.php',
+      4 => '/var/www/html/app/Domain/Matching/Scoring/RuleBasedMatchScorer.php',
+      5 => '/var/www/html/app/Domain/Matching/Services/MatchingConfigService.php',
+      6 => '/var/www/html/app/Domain/Registry/Jobs/ParseImportBatch.php',
+      7 => '/var/www/html/app/Domain/Registry/Services/BatchDuplicateScreener.php',
+      8 => '/var/www/html/app/Domain/Registry/Services/CandidateGatherer.php',
+      9 => '/var/www/html/app/Domain/Registry/Services/DeterministicDuplicateFinder.php',
+      10 => '/var/www/html/app/Domain/Registry/Services/FuzzyDuplicateFinder.php',
+      11 => '/var/www/html/app/Http/Controllers/Api/V1/Matching/MatchingConfigController.php',
+      12 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/BeneficiaryController.php',
+      13 => '/var/www/html/app/Http/Resources/MatchingConfigResource.php',
     ),
   ),
   '/var/www/html/app/Domain/Matching/Scoring/Comparators/Comparator.php' => 
@@ -14369,10 +14870,11 @@ return [
     'dependentFiles' => 
     array (
       0 => '/var/www/html/app/Domain/Matching/Engine/DeterministicMatcher.php',
-      1 => '/var/www/html/app/Domain/Matching/Scoring/RuleBasedMatchScorer.php',
-      2 => '/var/www/html/app/Domain/Registry/Services/BatchDuplicateScreener.php',
-      3 => '/var/www/html/app/Domain/Registry/Services/CandidateGatherer.php',
-      4 => '/var/www/html/app/Domain/Registry/Services/DeterministicDuplicateFinder.php',
+      1 => '/var/www/html/app/Domain/Matching/Engine/DuplicateCascade.php',
+      2 => '/var/www/html/app/Domain/Matching/Scoring/RuleBasedMatchScorer.php',
+      3 => '/var/www/html/app/Domain/Registry/Services/BatchDuplicateScreener.php',
+      4 => '/var/www/html/app/Domain/Registry/Services/CandidateGatherer.php',
+      5 => '/var/www/html/app/Domain/Registry/Services/DeterministicDuplicateFinder.php',
     ),
   ),
   '/var/www/html/app/Domain/Matching/Scoring/MatchScore.php' => 
@@ -14681,7 +15183,7 @@ return [
   ),
   '/var/www/html/app/Domain/Programme/Services/EnrollmentService.php' => 
   array (
-    'fileHash' => 'c6502597e8cc87ac61d71e9305e751dfc7fbd1a95c3906c9d8e5ffe813e88638',
+    'fileHash' => 'e533ab1fdf7bd69a2f25f71292454ef26ba896398249a31a1dc73e71a958de97',
     'dependentFiles' => 
     array (
       0 => '/var/www/html/app/Domain/Registry/Jobs/CommitImportBatch.php',
@@ -14749,40 +15251,44 @@ return [
       15 => '/var/www/html/app/Domain/Registry/Jobs/CommitImportBatch.php',
       16 => '/var/www/html/app/Domain/Registry/Models/Beneficiary.php',
       17 => '/var/www/html/app/Domain/Registry/Models/BeneficiaryDocument.php',
-      18 => '/var/www/html/app/Domain/Registry/Models/Household.php',
-      19 => '/var/www/html/app/Domain/Registry/Models/HouseholdMembership.php',
-      20 => '/var/www/html/app/Domain/Registry/Models/ImportRow.php',
-      21 => '/var/www/html/app/Domain/Registry/Models/OwnershipTransferRequest.php',
-      22 => '/var/www/html/app/Domain/Registry/Models/ServeRequest.php',
-      23 => '/var/www/html/app/Domain/Registry/Policies/BeneficiaryPolicy.php',
-      24 => '/var/www/html/app/Domain/Registry/RegistryServiceProvider.php',
-      25 => '/var/www/html/app/Domain/Registry/Services/BatchDuplicateScreener.php',
-      26 => '/var/www/html/app/Domain/Registry/Services/BeneficiaryLookupService.php',
-      27 => '/var/www/html/app/Domain/Registry/Services/BeneficiaryRegistrar.php',
-      28 => '/var/www/html/app/Domain/Registry/Services/CandidateGatherer.php',
-      29 => '/var/www/html/app/Domain/Registry/Services/DeterministicDuplicateFinder.php',
-      30 => '/var/www/html/app/Domain/Registry/Services/HouseholdIngestionService.php',
-      31 => '/var/www/html/app/Domain/Registry/Services/HouseholdMembershipService.php',
-      32 => '/var/www/html/app/Domain/Registry/Services/NullBeneficiaryRouter.php',
-      33 => '/var/www/html/app/Domain/Registry/Services/OwnershipTransferService.php',
-      34 => '/var/www/html/app/Domain/Registry/Services/ServeRequestService.php',
-      35 => '/var/www/html/app/Http/Controllers/Api/V1/Benefit/BenefitController.php',
-      36 => '/var/www/html/app/Http/Controllers/Api/V1/Programme/EnrollmentController.php',
-      37 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/BeneficiaryController.php',
-      38 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/BeneficiaryDocumentController.php',
-      39 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/BeneficiaryIntakeController.php',
-      40 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/BeneficiaryRoutingController.php',
-      41 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/HouseholdController.php',
-      42 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/HouseholdMemberController.php',
-      43 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/ImportBatchController.php',
-      44 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/OwnershipTransferController.php',
-      45 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/ServeRequestController.php',
-      46 => '/var/www/html/app/Http/Requests/Registry/ApiRegistrationRequest.php',
-      47 => '/var/www/html/app/Http/Requests/Registry/StoreBeneficiaryRequest.php',
-      48 => '/var/www/html/app/Http/Requests/Registry/UpdateBeneficiaryRequest.php',
-      49 => '/var/www/html/app/Http/Resources/BeneficiaryResource.php',
-      50 => '/var/www/html/app/Http/Resources/BeneficiaryRevealResource.php',
-      51 => '/var/www/html/app/Http/Resources/HouseholdMembershipResource.php',
+      18 => '/var/www/html/app/Domain/Registry/Models/BeneficiaryServiceGrant.php',
+      19 => '/var/www/html/app/Domain/Registry/Models/Household.php',
+      20 => '/var/www/html/app/Domain/Registry/Models/HouseholdMembership.php',
+      21 => '/var/www/html/app/Domain/Registry/Models/ImportRow.php',
+      22 => '/var/www/html/app/Domain/Registry/Models/OwnershipTransferRequest.php',
+      23 => '/var/www/html/app/Domain/Registry/Models/ServeRequest.php',
+      24 => '/var/www/html/app/Domain/Registry/Models/ServiceRequest.php',
+      25 => '/var/www/html/app/Domain/Registry/Policies/BeneficiaryPolicy.php',
+      26 => '/var/www/html/app/Domain/Registry/RegistryServiceProvider.php',
+      27 => '/var/www/html/app/Domain/Registry/Services/BatchDuplicateScreener.php',
+      28 => '/var/www/html/app/Domain/Registry/Services/BeneficiaryLookupService.php',
+      29 => '/var/www/html/app/Domain/Registry/Services/BeneficiaryRegistrar.php',
+      30 => '/var/www/html/app/Domain/Registry/Services/CandidateGatherer.php',
+      31 => '/var/www/html/app/Domain/Registry/Services/DeterministicDuplicateFinder.php',
+      32 => '/var/www/html/app/Domain/Registry/Services/HouseholdIngestionService.php',
+      33 => '/var/www/html/app/Domain/Registry/Services/HouseholdMembershipService.php',
+      34 => '/var/www/html/app/Domain/Registry/Services/NullBeneficiaryRouter.php',
+      35 => '/var/www/html/app/Domain/Registry/Services/OwnershipTransferService.php',
+      36 => '/var/www/html/app/Domain/Registry/Services/ServeRequestService.php',
+      37 => '/var/www/html/app/Domain/Registry/Services/ServiceRequestService.php',
+      38 => '/var/www/html/app/Http/Controllers/Api/V1/Benefit/BenefitController.php',
+      39 => '/var/www/html/app/Http/Controllers/Api/V1/Programme/EnrollmentController.php',
+      40 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/BeneficiaryController.php',
+      41 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/BeneficiaryDocumentController.php',
+      42 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/BeneficiaryIntakeController.php',
+      43 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/BeneficiaryRoutingController.php',
+      44 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/HouseholdController.php',
+      45 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/HouseholdMemberController.php',
+      46 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/ImportBatchController.php',
+      47 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/OwnershipTransferController.php',
+      48 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/ServeRequestController.php',
+      49 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/ServiceRequestController.php',
+      50 => '/var/www/html/app/Http/Requests/Registry/ApiRegistrationRequest.php',
+      51 => '/var/www/html/app/Http/Requests/Registry/StoreBeneficiaryRequest.php',
+      52 => '/var/www/html/app/Http/Requests/Registry/UpdateBeneficiaryRequest.php',
+      53 => '/var/www/html/app/Http/Resources/BeneficiaryResource.php',
+      54 => '/var/www/html/app/Http/Resources/BeneficiaryRevealResource.php',
+      55 => '/var/www/html/app/Http/Resources/HouseholdMembershipResource.php',
     ),
   ),
   '/var/www/html/app/Domain/Registry/Enums/DocumentType.php' => 
@@ -14821,41 +15327,45 @@ return [
       15 => '/var/www/html/app/Domain/Registry/Jobs/CommitImportBatch.php',
       16 => '/var/www/html/app/Domain/Registry/Models/Beneficiary.php',
       17 => '/var/www/html/app/Domain/Registry/Models/BeneficiaryDocument.php',
-      18 => '/var/www/html/app/Domain/Registry/Models/Household.php',
-      19 => '/var/www/html/app/Domain/Registry/Models/HouseholdMembership.php',
-      20 => '/var/www/html/app/Domain/Registry/Models/ImportRow.php',
-      21 => '/var/www/html/app/Domain/Registry/Models/OwnershipTransferRequest.php',
-      22 => '/var/www/html/app/Domain/Registry/Models/ServeRequest.php',
-      23 => '/var/www/html/app/Domain/Registry/Policies/BeneficiaryPolicy.php',
-      24 => '/var/www/html/app/Domain/Registry/RegistryServiceProvider.php',
-      25 => '/var/www/html/app/Domain/Registry/Services/BatchDuplicateScreener.php',
-      26 => '/var/www/html/app/Domain/Registry/Services/BeneficiaryLookupService.php',
-      27 => '/var/www/html/app/Domain/Registry/Services/BeneficiaryRegistrar.php',
-      28 => '/var/www/html/app/Domain/Registry/Services/CandidateGatherer.php',
-      29 => '/var/www/html/app/Domain/Registry/Services/DeterministicDuplicateFinder.php',
-      30 => '/var/www/html/app/Domain/Registry/Services/HouseholdIngestionService.php',
-      31 => '/var/www/html/app/Domain/Registry/Services/HouseholdMembershipService.php',
-      32 => '/var/www/html/app/Domain/Registry/Services/NullBeneficiaryRouter.php',
-      33 => '/var/www/html/app/Domain/Registry/Services/OwnershipTransferService.php',
-      34 => '/var/www/html/app/Domain/Registry/Services/ServeRequestService.php',
-      35 => '/var/www/html/app/Domain/Registry/Support/BeneficiaryRules.php',
-      36 => '/var/www/html/app/Http/Controllers/Api/V1/Benefit/BenefitController.php',
-      37 => '/var/www/html/app/Http/Controllers/Api/V1/Programme/EnrollmentController.php',
-      38 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/BeneficiaryController.php',
-      39 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/BeneficiaryDocumentController.php',
-      40 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/BeneficiaryIntakeController.php',
-      41 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/BeneficiaryRoutingController.php',
-      42 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/HouseholdController.php',
-      43 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/HouseholdMemberController.php',
-      44 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/ImportBatchController.php',
-      45 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/OwnershipTransferController.php',
-      46 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/ServeRequestController.php',
-      47 => '/var/www/html/app/Http/Requests/Registry/ApiRegistrationRequest.php',
-      48 => '/var/www/html/app/Http/Requests/Registry/StoreBeneficiaryRequest.php',
-      49 => '/var/www/html/app/Http/Requests/Registry/UpdateBeneficiaryRequest.php',
-      50 => '/var/www/html/app/Http/Resources/BeneficiaryResource.php',
-      51 => '/var/www/html/app/Http/Resources/BeneficiaryRevealResource.php',
-      52 => '/var/www/html/app/Http/Resources/HouseholdMembershipResource.php',
+      18 => '/var/www/html/app/Domain/Registry/Models/BeneficiaryServiceGrant.php',
+      19 => '/var/www/html/app/Domain/Registry/Models/Household.php',
+      20 => '/var/www/html/app/Domain/Registry/Models/HouseholdMembership.php',
+      21 => '/var/www/html/app/Domain/Registry/Models/ImportRow.php',
+      22 => '/var/www/html/app/Domain/Registry/Models/OwnershipTransferRequest.php',
+      23 => '/var/www/html/app/Domain/Registry/Models/ServeRequest.php',
+      24 => '/var/www/html/app/Domain/Registry/Models/ServiceRequest.php',
+      25 => '/var/www/html/app/Domain/Registry/Policies/BeneficiaryPolicy.php',
+      26 => '/var/www/html/app/Domain/Registry/RegistryServiceProvider.php',
+      27 => '/var/www/html/app/Domain/Registry/Services/BatchDuplicateScreener.php',
+      28 => '/var/www/html/app/Domain/Registry/Services/BeneficiaryLookupService.php',
+      29 => '/var/www/html/app/Domain/Registry/Services/BeneficiaryRegistrar.php',
+      30 => '/var/www/html/app/Domain/Registry/Services/CandidateGatherer.php',
+      31 => '/var/www/html/app/Domain/Registry/Services/DeterministicDuplicateFinder.php',
+      32 => '/var/www/html/app/Domain/Registry/Services/HouseholdIngestionService.php',
+      33 => '/var/www/html/app/Domain/Registry/Services/HouseholdMembershipService.php',
+      34 => '/var/www/html/app/Domain/Registry/Services/NullBeneficiaryRouter.php',
+      35 => '/var/www/html/app/Domain/Registry/Services/OwnershipTransferService.php',
+      36 => '/var/www/html/app/Domain/Registry/Services/ServeRequestService.php',
+      37 => '/var/www/html/app/Domain/Registry/Services/ServiceRequestService.php',
+      38 => '/var/www/html/app/Domain/Registry/Support/BeneficiaryRules.php',
+      39 => '/var/www/html/app/Http/Controllers/Api/V1/Benefit/BenefitController.php',
+      40 => '/var/www/html/app/Http/Controllers/Api/V1/Programme/EnrollmentController.php',
+      41 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/BeneficiaryController.php',
+      42 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/BeneficiaryDocumentController.php',
+      43 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/BeneficiaryIntakeController.php',
+      44 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/BeneficiaryRoutingController.php',
+      45 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/HouseholdController.php',
+      46 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/HouseholdMemberController.php',
+      47 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/ImportBatchController.php',
+      48 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/OwnershipTransferController.php',
+      49 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/ServeRequestController.php',
+      50 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/ServiceRequestController.php',
+      51 => '/var/www/html/app/Http/Requests/Registry/ApiRegistrationRequest.php',
+      52 => '/var/www/html/app/Http/Requests/Registry/StoreBeneficiaryRequest.php',
+      53 => '/var/www/html/app/Http/Requests/Registry/UpdateBeneficiaryRequest.php',
+      54 => '/var/www/html/app/Http/Resources/BeneficiaryResource.php',
+      55 => '/var/www/html/app/Http/Resources/BeneficiaryRevealResource.php',
+      56 => '/var/www/html/app/Http/Resources/HouseholdMembershipResource.php',
     ),
   ),
   '/var/www/html/app/Domain/Registry/Enums/HouseholdRole.php' => 
@@ -14963,60 +15473,63 @@ return [
       21 => '/var/www/html/app/Domain/Registry/Jobs/ParseImportBatch.php',
       22 => '/var/www/html/app/Domain/Registry/Models/Beneficiary.php',
       23 => '/var/www/html/app/Domain/Registry/Models/BeneficiaryDocument.php',
-      24 => '/var/www/html/app/Domain/Registry/Models/Household.php',
-      25 => '/var/www/html/app/Domain/Registry/Models/HouseholdMembership.php',
-      26 => '/var/www/html/app/Domain/Registry/Models/ImportBatch.php',
-      27 => '/var/www/html/app/Domain/Registry/Models/ImportRow.php',
-      28 => '/var/www/html/app/Domain/Registry/Models/OwnershipTransferRequest.php',
-      29 => '/var/www/html/app/Domain/Registry/Models/ServeRequest.php',
-      30 => '/var/www/html/app/Domain/Registry/Policies/BeneficiaryPolicy.php',
-      31 => '/var/www/html/app/Domain/Registry/Policies/HouseholdPolicy.php',
-      32 => '/var/www/html/app/Domain/Registry/Policies/ImportBatchPolicy.php',
-      33 => '/var/www/html/app/Domain/Registry/RegistryServiceProvider.php',
-      34 => '/var/www/html/app/Domain/Registry/Services/BatchDuplicateScreener.php',
-      35 => '/var/www/html/app/Domain/Registry/Services/BeneficiaryLookupService.php',
-      36 => '/var/www/html/app/Domain/Registry/Services/BeneficiaryRegistrar.php',
-      37 => '/var/www/html/app/Domain/Registry/Services/CandidateGatherer.php',
-      38 => '/var/www/html/app/Domain/Registry/Services/DeterministicDuplicateFinder.php',
-      39 => '/var/www/html/app/Domain/Registry/Services/HouseholdIngestionService.php',
-      40 => '/var/www/html/app/Domain/Registry/Services/HouseholdMembershipService.php',
-      41 => '/var/www/html/app/Domain/Registry/Services/NullBeneficiaryRouter.php',
-      42 => '/var/www/html/app/Domain/Registry/Services/OwnershipTransferService.php',
-      43 => '/var/www/html/app/Domain/Registry/Services/ServeRequestService.php',
-      44 => '/var/www/html/app/Http/Controllers/Api/V1/Benefit/BenefitController.php',
-      45 => '/var/www/html/app/Http/Controllers/Api/V1/Programme/EnrollmentController.php',
-      46 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/BeneficiaryController.php',
-      47 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/BeneficiaryDocumentController.php',
-      48 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/BeneficiaryIntakeController.php',
-      49 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/BeneficiaryRoutingController.php',
-      50 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/HouseholdController.php',
-      51 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/HouseholdMemberController.php',
-      52 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/ImportBatchController.php',
-      53 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/OwnershipTransferController.php',
-      54 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/ServeRequestController.php',
-      55 => '/var/www/html/app/Http/Requests/Registry/ApiRegistrationRequest.php',
-      56 => '/var/www/html/app/Http/Requests/Registry/StoreBeneficiaryRequest.php',
-      57 => '/var/www/html/app/Http/Requests/Registry/UpdateBeneficiaryRequest.php',
-      58 => '/var/www/html/app/Http/Resources/BeneficiaryResource.php',
-      59 => '/var/www/html/app/Http/Resources/BeneficiaryRevealResource.php',
-      60 => '/var/www/html/app/Http/Resources/HouseholdMembershipResource.php',
-      61 => '/var/www/html/app/Http/Resources/HouseholdResource.php',
-      62 => '/var/www/html/app/Http/Resources/ImportBatchResource.php',
+      24 => '/var/www/html/app/Domain/Registry/Models/BeneficiaryServiceGrant.php',
+      25 => '/var/www/html/app/Domain/Registry/Models/Household.php',
+      26 => '/var/www/html/app/Domain/Registry/Models/HouseholdMembership.php',
+      27 => '/var/www/html/app/Domain/Registry/Models/ImportBatch.php',
+      28 => '/var/www/html/app/Domain/Registry/Models/ImportRow.php',
+      29 => '/var/www/html/app/Domain/Registry/Models/OwnershipTransferRequest.php',
+      30 => '/var/www/html/app/Domain/Registry/Models/ServeRequest.php',
+      31 => '/var/www/html/app/Domain/Registry/Models/ServiceRequest.php',
+      32 => '/var/www/html/app/Domain/Registry/Policies/BeneficiaryPolicy.php',
+      33 => '/var/www/html/app/Domain/Registry/Policies/HouseholdPolicy.php',
+      34 => '/var/www/html/app/Domain/Registry/Policies/ImportBatchPolicy.php',
+      35 => '/var/www/html/app/Domain/Registry/RegistryServiceProvider.php',
+      36 => '/var/www/html/app/Domain/Registry/Services/BatchDuplicateScreener.php',
+      37 => '/var/www/html/app/Domain/Registry/Services/BeneficiaryLookupService.php',
+      38 => '/var/www/html/app/Domain/Registry/Services/BeneficiaryRegistrar.php',
+      39 => '/var/www/html/app/Domain/Registry/Services/CandidateGatherer.php',
+      40 => '/var/www/html/app/Domain/Registry/Services/DeterministicDuplicateFinder.php',
+      41 => '/var/www/html/app/Domain/Registry/Services/HouseholdIngestionService.php',
+      42 => '/var/www/html/app/Domain/Registry/Services/HouseholdMembershipService.php',
+      43 => '/var/www/html/app/Domain/Registry/Services/NullBeneficiaryRouter.php',
+      44 => '/var/www/html/app/Domain/Registry/Services/OwnershipTransferService.php',
+      45 => '/var/www/html/app/Domain/Registry/Services/ServeRequestService.php',
+      46 => '/var/www/html/app/Domain/Registry/Services/ServiceRequestService.php',
+      47 => '/var/www/html/app/Http/Controllers/Api/V1/Benefit/BenefitController.php',
+      48 => '/var/www/html/app/Http/Controllers/Api/V1/Programme/EnrollmentController.php',
+      49 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/BeneficiaryController.php',
+      50 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/BeneficiaryDocumentController.php',
+      51 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/BeneficiaryIntakeController.php',
+      52 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/BeneficiaryRoutingController.php',
+      53 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/HouseholdController.php',
+      54 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/HouseholdMemberController.php',
+      55 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/ImportBatchController.php',
+      56 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/OwnershipTransferController.php',
+      57 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/ServeRequestController.php',
+      58 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/ServiceRequestController.php',
+      59 => '/var/www/html/app/Http/Requests/Registry/ApiRegistrationRequest.php',
+      60 => '/var/www/html/app/Http/Requests/Registry/StoreBeneficiaryRequest.php',
+      61 => '/var/www/html/app/Http/Requests/Registry/UpdateBeneficiaryRequest.php',
+      62 => '/var/www/html/app/Http/Resources/BeneficiaryResource.php',
+      63 => '/var/www/html/app/Http/Resources/BeneficiaryRevealResource.php',
+      64 => '/var/www/html/app/Http/Resources/HouseholdMembershipResource.php',
+      65 => '/var/www/html/app/Http/Resources/HouseholdResource.php',
+      66 => '/var/www/html/app/Http/Resources/ImportBatchResource.php',
     ),
   ),
-  '/var/www/html/app/Domain/Registry/Enums/ServeRequestStatus.php' => 
+  '/var/www/html/app/Domain/Registry/Enums/ServiceRequestStatus.php' => 
   array (
-    'fileHash' => '9981651df40b343c4d6a7c724f8af40b32fb31ee6116b5efc362074a9389555e',
+    'fileHash' => '052e133a68f874c1c45293f802b96434663df57c738c3eb8c1e2d7be725178bc',
     'dependentFiles' => 
     array (
-      0 => '/var/www/html/app/Domain/Programme/Services/EnrollmentService.php',
-      1 => '/var/www/html/app/Domain/Registry/Jobs/CommitImportBatch.php',
-      2 => '/var/www/html/app/Domain/Registry/Models/ServeRequest.php',
-      3 => '/var/www/html/app/Domain/Registry/Policies/ServeRequestPolicy.php',
-      4 => '/var/www/html/app/Domain/Registry/RegistryServiceProvider.php',
-      5 => '/var/www/html/app/Domain/Registry/Services/ServeRequestService.php',
-      6 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/ServeRequestController.php',
-      7 => '/var/www/html/app/Http/Resources/ServeRequestResource.php',
+      0 => '/var/www/html/app/Domain/Registry/Jobs/CommitImportBatch.php',
+      1 => '/var/www/html/app/Domain/Registry/Models/ServiceRequest.php',
+      2 => '/var/www/html/app/Domain/Registry/Policies/OwnerMdaPolicy.php',
+      3 => '/var/www/html/app/Domain/Registry/RegistryServiceProvider.php',
+      4 => '/var/www/html/app/Domain/Registry/Services/ServiceRequestService.php',
+      5 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/ServiceRequestController.php',
+      6 => '/var/www/html/app/Http/Resources/ServiceRequestResource.php',
     ),
   ),
   '/var/www/html/app/Domain/Registry/Imports/Adapters/DefaultImportAdapter.php' => 
@@ -15097,7 +15610,7 @@ return [
   ),
   '/var/www/html/app/Domain/Registry/Jobs/CommitImportBatch.php' => 
   array (
-    'fileHash' => 'e14f1a5aa8e5cbe21e8a278a96578455d58856a0ad9e63a6b983eea16d3f3cd6',
+    'fileHash' => 'cbe231895a67d34232e6047bc73e0587ee765e37d61d575e0923c917d5e07821',
     'dependentFiles' => 
     array (
       0 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/ImportBatchController.php',
@@ -15144,52 +15657,58 @@ return [
       25 => '/var/www/html/app/Domain/Registry/Jobs/CommitImportBatch.php',
       26 => '/var/www/html/app/Domain/Registry/Jobs/ParseImportBatch.php',
       27 => '/var/www/html/app/Domain/Registry/Models/BeneficiaryDocument.php',
-      28 => '/var/www/html/app/Domain/Registry/Models/Household.php',
-      29 => '/var/www/html/app/Domain/Registry/Models/HouseholdMembership.php',
-      30 => '/var/www/html/app/Domain/Registry/Models/ImportBatch.php',
-      31 => '/var/www/html/app/Domain/Registry/Models/ImportRow.php',
-      32 => '/var/www/html/app/Domain/Registry/Models/OwnershipTransferRequest.php',
-      33 => '/var/www/html/app/Domain/Registry/Models/ServeRequest.php',
-      34 => '/var/www/html/app/Domain/Registry/Policies/BeneficiaryDocumentPolicy.php',
-      35 => '/var/www/html/app/Domain/Registry/Policies/BeneficiaryPolicy.php',
-      36 => '/var/www/html/app/Domain/Registry/Policies/HouseholdPolicy.php',
-      37 => '/var/www/html/app/Domain/Registry/Policies/ServeRequestPolicy.php',
-      38 => '/var/www/html/app/Domain/Registry/RegistryServiceProvider.php',
-      39 => '/var/www/html/app/Domain/Registry/Services/BatchDuplicateScreener.php',
-      40 => '/var/www/html/app/Domain/Registry/Services/BeneficiaryLookupService.php',
-      41 => '/var/www/html/app/Domain/Registry/Services/BeneficiaryRegistrar.php',
-      42 => '/var/www/html/app/Domain/Registry/Services/CandidateGatherer.php',
-      43 => '/var/www/html/app/Domain/Registry/Services/DeterministicDuplicateFinder.php',
-      44 => '/var/www/html/app/Domain/Registry/Services/HouseholdIngestionService.php',
-      45 => '/var/www/html/app/Domain/Registry/Services/HouseholdMembershipService.php',
-      46 => '/var/www/html/app/Domain/Registry/Services/NullBeneficiaryRouter.php',
-      47 => '/var/www/html/app/Domain/Registry/Services/OwnershipTransferService.php',
-      48 => '/var/www/html/app/Domain/Registry/Services/ServeRequestService.php',
-      49 => '/var/www/html/app/Http/Controllers/Api/V1/Benefit/BenefitController.php',
-      50 => '/var/www/html/app/Http/Controllers/Api/V1/Programme/EnrollmentController.php',
-      51 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/BeneficiaryController.php',
-      52 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/BeneficiaryDocumentController.php',
-      53 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/BeneficiaryIntakeController.php',
-      54 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/BeneficiaryRoutingController.php',
-      55 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/HouseholdController.php',
-      56 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/HouseholdMemberController.php',
-      57 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/ImportBatchController.php',
-      58 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/OwnershipTransferController.php',
-      59 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/ServeRequestController.php',
-      60 => '/var/www/html/app/Http/Requests/Registry/ApiRegistrationRequest.php',
-      61 => '/var/www/html/app/Http/Requests/Registry/StoreBeneficiaryRequest.php',
-      62 => '/var/www/html/app/Http/Requests/Registry/UpdateBeneficiaryRequest.php',
-      63 => '/var/www/html/app/Http/Resources/BeneficiaryDocumentResource.php',
-      64 => '/var/www/html/app/Http/Resources/BeneficiaryResource.php',
-      65 => '/var/www/html/app/Http/Resources/BeneficiaryRevealResource.php',
-      66 => '/var/www/html/app/Http/Resources/BenefitResource.php',
-      67 => '/var/www/html/app/Http/Resources/EnrollmentResource.php',
-      68 => '/var/www/html/app/Http/Resources/HouseholdMembershipResource.php',
-      69 => '/var/www/html/app/Http/Resources/HouseholdResource.php',
-      70 => '/var/www/html/app/Http/Resources/ImportRowResource.php',
-      71 => '/var/www/html/app/Http/Resources/MatchCandidateResource.php',
-      72 => '/var/www/html/app/Http/Resources/OwnershipTransferResource.php',
-      73 => '/var/www/html/app/Http/Resources/ServeRequestResource.php',
+      28 => '/var/www/html/app/Domain/Registry/Models/BeneficiaryServiceGrant.php',
+      29 => '/var/www/html/app/Domain/Registry/Models/Household.php',
+      30 => '/var/www/html/app/Domain/Registry/Models/HouseholdMembership.php',
+      31 => '/var/www/html/app/Domain/Registry/Models/ImportBatch.php',
+      32 => '/var/www/html/app/Domain/Registry/Models/ImportRow.php',
+      33 => '/var/www/html/app/Domain/Registry/Models/OwnershipTransferRequest.php',
+      34 => '/var/www/html/app/Domain/Registry/Models/ServeRequest.php',
+      35 => '/var/www/html/app/Domain/Registry/Models/ServiceRequest.php',
+      36 => '/var/www/html/app/Domain/Registry/Policies/BeneficiaryDocumentPolicy.php',
+      37 => '/var/www/html/app/Domain/Registry/Policies/BeneficiaryPolicy.php',
+      38 => '/var/www/html/app/Domain/Registry/Policies/HouseholdPolicy.php',
+      39 => '/var/www/html/app/Domain/Registry/Policies/OwnerMdaPolicy.php',
+      40 => '/var/www/html/app/Domain/Registry/Policies/ServeRequestPolicy.php',
+      41 => '/var/www/html/app/Domain/Registry/RegistryServiceProvider.php',
+      42 => '/var/www/html/app/Domain/Registry/Services/BatchDuplicateScreener.php',
+      43 => '/var/www/html/app/Domain/Registry/Services/BeneficiaryLookupService.php',
+      44 => '/var/www/html/app/Domain/Registry/Services/BeneficiaryRegistrar.php',
+      45 => '/var/www/html/app/Domain/Registry/Services/CandidateGatherer.php',
+      46 => '/var/www/html/app/Domain/Registry/Services/DeterministicDuplicateFinder.php',
+      47 => '/var/www/html/app/Domain/Registry/Services/HouseholdIngestionService.php',
+      48 => '/var/www/html/app/Domain/Registry/Services/HouseholdMembershipService.php',
+      49 => '/var/www/html/app/Domain/Registry/Services/NullBeneficiaryRouter.php',
+      50 => '/var/www/html/app/Domain/Registry/Services/OwnershipTransferService.php',
+      51 => '/var/www/html/app/Domain/Registry/Services/ServeRequestService.php',
+      52 => '/var/www/html/app/Domain/Registry/Services/ServiceRequestService.php',
+      53 => '/var/www/html/app/Http/Controllers/Api/V1/Benefit/BenefitController.php',
+      54 => '/var/www/html/app/Http/Controllers/Api/V1/Programme/EnrollmentController.php',
+      55 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/BeneficiaryController.php',
+      56 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/BeneficiaryDocumentController.php',
+      57 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/BeneficiaryIntakeController.php',
+      58 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/BeneficiaryRoutingController.php',
+      59 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/HouseholdController.php',
+      60 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/HouseholdMemberController.php',
+      61 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/ImportBatchController.php',
+      62 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/OwnershipTransferController.php',
+      63 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/ServeRequestController.php',
+      64 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/ServiceRequestController.php',
+      65 => '/var/www/html/app/Http/Requests/Registry/ApiRegistrationRequest.php',
+      66 => '/var/www/html/app/Http/Requests/Registry/StoreBeneficiaryRequest.php',
+      67 => '/var/www/html/app/Http/Requests/Registry/UpdateBeneficiaryRequest.php',
+      68 => '/var/www/html/app/Http/Resources/BeneficiaryDocumentResource.php',
+      69 => '/var/www/html/app/Http/Resources/BeneficiaryResource.php',
+      70 => '/var/www/html/app/Http/Resources/BeneficiaryRevealResource.php',
+      71 => '/var/www/html/app/Http/Resources/BenefitResource.php',
+      72 => '/var/www/html/app/Http/Resources/EnrollmentResource.php',
+      73 => '/var/www/html/app/Http/Resources/HouseholdMembershipResource.php',
+      74 => '/var/www/html/app/Http/Resources/HouseholdResource.php',
+      75 => '/var/www/html/app/Http/Resources/ImportRowResource.php',
+      76 => '/var/www/html/app/Http/Resources/MatchCandidateResource.php',
+      77 => '/var/www/html/app/Http/Resources/OwnershipTransferResource.php',
+      78 => '/var/www/html/app/Http/Resources/ServeRequestResource.php',
+      79 => '/var/www/html/app/Http/Resources/ServiceRequestResource.php',
     ),
   ),
   '/var/www/html/app/Domain/Registry/Models/BeneficiaryDocument.php' => 
@@ -15201,6 +15720,14 @@ return [
       1 => '/var/www/html/app/Domain/Registry/RegistryServiceProvider.php',
       2 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/BeneficiaryDocumentController.php',
       3 => '/var/www/html/app/Http/Resources/BeneficiaryDocumentResource.php',
+    ),
+  ),
+  '/var/www/html/app/Domain/Registry/Models/BeneficiaryServiceGrant.php' => 
+  array (
+    'fileHash' => '608b14533256f27b69458646a4c02048c3b1ffeff446ae8ef72151671213fb20',
+    'dependentFiles' => 
+    array (
+      0 => '/var/www/html/app/Domain/Registry/Services/ServiceRequestService.php',
     ),
   ),
   '/var/www/html/app/Domain/Registry/Models/Household.php' => 
@@ -15259,41 +15786,45 @@ return [
       15 => '/var/www/html/app/Domain/Registry/Jobs/CommitImportBatch.php',
       16 => '/var/www/html/app/Domain/Registry/Models/Beneficiary.php',
       17 => '/var/www/html/app/Domain/Registry/Models/BeneficiaryDocument.php',
-      18 => '/var/www/html/app/Domain/Registry/Models/Household.php',
-      19 => '/var/www/html/app/Domain/Registry/Models/ImportRow.php',
-      20 => '/var/www/html/app/Domain/Registry/Models/OwnershipTransferRequest.php',
-      21 => '/var/www/html/app/Domain/Registry/Models/ServeRequest.php',
-      22 => '/var/www/html/app/Domain/Registry/Policies/BeneficiaryPolicy.php',
-      23 => '/var/www/html/app/Domain/Registry/Policies/HouseholdPolicy.php',
-      24 => '/var/www/html/app/Domain/Registry/RegistryServiceProvider.php',
-      25 => '/var/www/html/app/Domain/Registry/Services/BatchDuplicateScreener.php',
-      26 => '/var/www/html/app/Domain/Registry/Services/BeneficiaryLookupService.php',
-      27 => '/var/www/html/app/Domain/Registry/Services/BeneficiaryRegistrar.php',
-      28 => '/var/www/html/app/Domain/Registry/Services/CandidateGatherer.php',
-      29 => '/var/www/html/app/Domain/Registry/Services/DeterministicDuplicateFinder.php',
-      30 => '/var/www/html/app/Domain/Registry/Services/HouseholdIngestionService.php',
-      31 => '/var/www/html/app/Domain/Registry/Services/HouseholdMembershipService.php',
-      32 => '/var/www/html/app/Domain/Registry/Services/NullBeneficiaryRouter.php',
-      33 => '/var/www/html/app/Domain/Registry/Services/OwnershipTransferService.php',
-      34 => '/var/www/html/app/Domain/Registry/Services/ServeRequestService.php',
-      35 => '/var/www/html/app/Http/Controllers/Api/V1/Benefit/BenefitController.php',
-      36 => '/var/www/html/app/Http/Controllers/Api/V1/Programme/EnrollmentController.php',
-      37 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/BeneficiaryController.php',
-      38 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/BeneficiaryDocumentController.php',
-      39 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/BeneficiaryIntakeController.php',
-      40 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/BeneficiaryRoutingController.php',
-      41 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/HouseholdController.php',
-      42 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/HouseholdMemberController.php',
-      43 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/ImportBatchController.php',
-      44 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/OwnershipTransferController.php',
-      45 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/ServeRequestController.php',
-      46 => '/var/www/html/app/Http/Requests/Registry/ApiRegistrationRequest.php',
-      47 => '/var/www/html/app/Http/Requests/Registry/StoreBeneficiaryRequest.php',
-      48 => '/var/www/html/app/Http/Requests/Registry/UpdateBeneficiaryRequest.php',
-      49 => '/var/www/html/app/Http/Resources/BeneficiaryResource.php',
-      50 => '/var/www/html/app/Http/Resources/BeneficiaryRevealResource.php',
-      51 => '/var/www/html/app/Http/Resources/HouseholdMembershipResource.php',
-      52 => '/var/www/html/app/Http/Resources/HouseholdResource.php',
+      18 => '/var/www/html/app/Domain/Registry/Models/BeneficiaryServiceGrant.php',
+      19 => '/var/www/html/app/Domain/Registry/Models/Household.php',
+      20 => '/var/www/html/app/Domain/Registry/Models/ImportRow.php',
+      21 => '/var/www/html/app/Domain/Registry/Models/OwnershipTransferRequest.php',
+      22 => '/var/www/html/app/Domain/Registry/Models/ServeRequest.php',
+      23 => '/var/www/html/app/Domain/Registry/Models/ServiceRequest.php',
+      24 => '/var/www/html/app/Domain/Registry/Policies/BeneficiaryPolicy.php',
+      25 => '/var/www/html/app/Domain/Registry/Policies/HouseholdPolicy.php',
+      26 => '/var/www/html/app/Domain/Registry/RegistryServiceProvider.php',
+      27 => '/var/www/html/app/Domain/Registry/Services/BatchDuplicateScreener.php',
+      28 => '/var/www/html/app/Domain/Registry/Services/BeneficiaryLookupService.php',
+      29 => '/var/www/html/app/Domain/Registry/Services/BeneficiaryRegistrar.php',
+      30 => '/var/www/html/app/Domain/Registry/Services/CandidateGatherer.php',
+      31 => '/var/www/html/app/Domain/Registry/Services/DeterministicDuplicateFinder.php',
+      32 => '/var/www/html/app/Domain/Registry/Services/HouseholdIngestionService.php',
+      33 => '/var/www/html/app/Domain/Registry/Services/HouseholdMembershipService.php',
+      34 => '/var/www/html/app/Domain/Registry/Services/NullBeneficiaryRouter.php',
+      35 => '/var/www/html/app/Domain/Registry/Services/OwnershipTransferService.php',
+      36 => '/var/www/html/app/Domain/Registry/Services/ServeRequestService.php',
+      37 => '/var/www/html/app/Domain/Registry/Services/ServiceRequestService.php',
+      38 => '/var/www/html/app/Http/Controllers/Api/V1/Benefit/BenefitController.php',
+      39 => '/var/www/html/app/Http/Controllers/Api/V1/Programme/EnrollmentController.php',
+      40 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/BeneficiaryController.php',
+      41 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/BeneficiaryDocumentController.php',
+      42 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/BeneficiaryIntakeController.php',
+      43 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/BeneficiaryRoutingController.php',
+      44 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/HouseholdController.php',
+      45 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/HouseholdMemberController.php',
+      46 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/ImportBatchController.php',
+      47 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/OwnershipTransferController.php',
+      48 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/ServeRequestController.php',
+      49 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/ServiceRequestController.php',
+      50 => '/var/www/html/app/Http/Requests/Registry/ApiRegistrationRequest.php',
+      51 => '/var/www/html/app/Http/Requests/Registry/StoreBeneficiaryRequest.php',
+      52 => '/var/www/html/app/Http/Requests/Registry/UpdateBeneficiaryRequest.php',
+      53 => '/var/www/html/app/Http/Resources/BeneficiaryResource.php',
+      54 => '/var/www/html/app/Http/Resources/BeneficiaryRevealResource.php',
+      55 => '/var/www/html/app/Http/Resources/HouseholdMembershipResource.php',
+      56 => '/var/www/html/app/Http/Resources/HouseholdResource.php',
     ),
   ),
   '/var/www/html/app/Domain/Registry/Models/ImportBatch.php' => 
@@ -15336,18 +15867,17 @@ return [
       2 => '/var/www/html/app/Http/Resources/OwnershipTransferResource.php',
     ),
   ),
-  '/var/www/html/app/Domain/Registry/Models/ServeRequest.php' => 
+  '/var/www/html/app/Domain/Registry/Models/ServiceRequest.php' => 
   array (
-    'fileHash' => '1e0af1b50c5c97d0da73fcec466b05fc61d188609fa79bf6515116421860b4c8',
+    'fileHash' => 'd8c397c11d9b8920bf128049a3dfa7e019ffd5fc78894fbdbf5bec0076d1b224',
     'dependentFiles' => 
     array (
-      0 => '/var/www/html/app/Domain/Programme/Services/EnrollmentService.php',
-      1 => '/var/www/html/app/Domain/Registry/Jobs/CommitImportBatch.php',
-      2 => '/var/www/html/app/Domain/Registry/Policies/ServeRequestPolicy.php',
-      3 => '/var/www/html/app/Domain/Registry/RegistryServiceProvider.php',
-      4 => '/var/www/html/app/Domain/Registry/Services/ServeRequestService.php',
-      5 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/ServeRequestController.php',
-      6 => '/var/www/html/app/Http/Resources/ServeRequestResource.php',
+      0 => '/var/www/html/app/Domain/Registry/Jobs/CommitImportBatch.php',
+      1 => '/var/www/html/app/Domain/Registry/Policies/OwnerMdaPolicy.php',
+      2 => '/var/www/html/app/Domain/Registry/RegistryServiceProvider.php',
+      3 => '/var/www/html/app/Domain/Registry/Services/ServiceRequestService.php',
+      4 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/ServiceRequestController.php',
+      5 => '/var/www/html/app/Http/Resources/ServiceRequestResource.php',
     ),
   ),
   '/var/www/html/app/Domain/Registry/Policies/BeneficiaryDocumentPolicy.php' => 
@@ -15360,7 +15890,7 @@ return [
   ),
   '/var/www/html/app/Domain/Registry/Policies/BeneficiaryPolicy.php' => 
   array (
-    'fileHash' => '1111934cdc945cc79eaa9d89eed189b0b7a258fc6448fa88a7c19e13bfe9d5d5',
+    'fileHash' => '05724e706f5bbb2fb9a397cd99990f83c5cfe362b8bc4d552a051c1d5e107ab2',
     'dependentFiles' => 
     array (
       0 => '/var/www/html/app/Domain/Registry/RegistryServiceProvider.php',
@@ -15382,9 +15912,9 @@ return [
       0 => '/var/www/html/app/Domain/Registry/RegistryServiceProvider.php',
     ),
   ),
-  '/var/www/html/app/Domain/Registry/Policies/ServeRequestPolicy.php' => 
+  '/var/www/html/app/Domain/Registry/Policies/OwnerMdaPolicy.php' => 
   array (
-    'fileHash' => '07dc363a639987401937030822344dea8af2f2eef89d312ab1d74cf4f32743d7',
+    'fileHash' => 'c46f38c984345bf6207d5a9c5d742f3c7e54993f7b6128daa1a8cb05e940433a',
     'dependentFiles' => 
     array (
       0 => '/var/www/html/app/Domain/Registry/RegistryServiceProvider.php',
@@ -15392,14 +15922,14 @@ return [
   ),
   '/var/www/html/app/Domain/Registry/RegistryServiceProvider.php' => 
   array (
-    'fileHash' => '6141b63778379014d0aaa2783b142586abc9dd0a3b6b0e627d9d50a06488f90b',
+    'fileHash' => 'a6093c4b7fcf6308933ce49e15a4047636c0c5dda3a5590c2597f57657da88ea',
     'dependentFiles' => 
     array (
     ),
   ),
   '/var/www/html/app/Domain/Registry/Services/BatchDuplicateScreener.php' => 
   array (
-    'fileHash' => '5b7f678638e3747c7764e4369488bdd1db43fe9e169695f6564c865cef830336',
+    'fileHash' => 'ed23a96b20f70997f8a4541bd5ba077519843c5e745af50684c7bbd12f472e14',
     'dependentFiles' => 
     array (
       0 => '/var/www/html/app/Domain/Registry/Jobs/ParseImportBatch.php',
@@ -15427,7 +15957,8 @@ return [
     'fileHash' => '632b8b5456fc44649577973373b5e46c005220dd95c0973d0c05e39f653af96c',
     'dependentFiles' => 
     array (
-      0 => '/var/www/html/app/Domain/Registry/Services/FuzzyDuplicateFinder.php',
+      0 => '/var/www/html/app/Domain/Registry/Services/BatchDuplicateScreener.php',
+      1 => '/var/www/html/app/Domain/Registry/Services/FuzzyDuplicateFinder.php',
     ),
   ),
   '/var/www/html/app/Domain/Registry/Services/DeterministicDuplicateFinder.php' => 
@@ -15442,8 +15973,7 @@ return [
     'fileHash' => 'eda21affa7c5836adb860d4995a7a09f251d6fad3b6618578d9c086992789d77',
     'dependentFiles' => 
     array (
-      0 => '/var/www/html/app/Domain/Registry/Services/BatchDuplicateScreener.php',
-      1 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/BeneficiaryController.php',
+      0 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/BeneficiaryController.php',
     ),
   ),
   '/var/www/html/app/Domain/Registry/Services/HouseholdIngestionService.php' => 
@@ -15487,13 +16017,16 @@ return [
       0 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/OwnershipTransferController.php',
     ),
   ),
-  '/var/www/html/app/Domain/Registry/Services/ServeRequestService.php' => 
+  '/var/www/html/app/Domain/Registry/Services/ServiceRequestService.php' => 
   array (
-    'fileHash' => '912dc46136a725f89343172dce8cfd7d139fcd098acd2f67abc75f193263edf1',
+    'fileHash' => 'cda7221d570d57b92633146cbd05580c6a089e16c92bf65b7d9bed9f49ff0aca',
     'dependentFiles' => 
     array (
-      0 => '/var/www/html/app/Domain/Registry/Jobs/CommitImportBatch.php',
-      1 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/ServeRequestController.php',
+      0 => '/var/www/html/app/Domain/Programme/Services/EnrollmentService.php',
+      1 => '/var/www/html/app/Domain/Registry/Jobs/CommitImportBatch.php',
+      2 => '/var/www/html/app/Domain/Registry/Policies/BeneficiaryPolicy.php',
+      3 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/BeneficiaryController.php',
+      4 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/ServiceRequestController.php',
     ),
   ),
   '/var/www/html/app/Domain/Registry/Support/BeneficiaryRules.php' => 
@@ -15599,7 +16132,7 @@ return [
   ),
   '/var/www/html/app/Http/Controllers/Api/V1/Programme/EnrollmentController.php' => 
   array (
-    'fileHash' => 'b4c01173ad864225a60ea9ed0640513cd726e04c156f36c14cb7d5c67c45f327',
+    'fileHash' => 'c067c167ebe9136f99b7340ad67aa47768f23167536a18cf72b74842eaf31c43',
     'dependentFiles' => 
     array (
     ),
@@ -15613,7 +16146,7 @@ return [
   ),
   '/var/www/html/app/Http/Controllers/Api/V1/Registry/BeneficiaryController.php' => 
   array (
-    'fileHash' => '1fc22dead786de1d7ae79e2423506f5e8b3ad69d64949cbff8259324dc693324',
+    'fileHash' => '62cd49791682ee7f6cd8a0647bdb39a80e0be2d87c1c860d61945f7e5d25dff9',
     'dependentFiles' => 
     array (
     ),
@@ -15634,7 +16167,7 @@ return [
   ),
   '/var/www/html/app/Http/Controllers/Api/V1/Registry/BeneficiaryRoutingController.php' => 
   array (
-    'fileHash' => '40da39ba7294c045f1d0fe331406d3567943d0790c86c2589402035cdf6d60d1',
+    'fileHash' => '7c2c3460b0053a5d2857c4c54ea39b334c315ceab2792714567d0c3837edb0a1',
     'dependentFiles' => 
     array (
     ),
@@ -15667,9 +16200,9 @@ return [
     array (
     ),
   ),
-  '/var/www/html/app/Http/Controllers/Api/V1/Registry/ServeRequestController.php' => 
+  '/var/www/html/app/Http/Controllers/Api/V1/Registry/ServiceRequestController.php' => 
   array (
-    'fileHash' => '027bc013e08514d623eaea8095f6c6cf01d0922cd27a57c0928705667722ff51',
+    'fileHash' => '2f1cee5ef853e3cc4b1b5edbd7c016749feebd065656d85c3418e4f767eb4316',
     'dependentFiles' => 
     array (
     ),
@@ -15717,6 +16250,7 @@ return [
       21 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/ImportBatchController.php',
       22 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/OwnershipTransferController.php',
       23 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/ServeRequestController.php',
+      24 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/ServiceRequestController.php',
     ),
   ),
   '/var/www/html/app/Http/Middleware/AssignCorrelationId.php' => 
@@ -15938,6 +16472,14 @@ return [
       0 => '/var/www/html/app/Http/Controllers/Api/V1/Programme/ProgrammeController.php',
     ),
   ),
+  '/var/www/html/app/Http/Requests/Registry/AcceptServiceRequestRequest.php' => 
+  array (
+    'fileHash' => 'fcab5bf23a640eda5dc45dd78edff55466bcbf0478406bbb7d07f184cfb0a2bc',
+    'dependentFiles' => 
+    array (
+      0 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/ServiceRequestController.php',
+    ),
+  ),
   '/var/www/html/app/Http/Requests/Registry/AddHouseholdMemberRequest.php' => 
   array (
     'fileHash' => '07564e306c93253e300dd32ed3c41618aa01ed517d59c01eaa45206eeda1a032',
@@ -15978,12 +16520,12 @@ return [
       0 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/OwnershipTransferController.php',
     ),
   ),
-  '/var/www/html/app/Http/Requests/Registry/DecideServeRequestRequest.php' => 
+  '/var/www/html/app/Http/Requests/Registry/DeclineServiceRequestRequest.php' => 
   array (
-    'fileHash' => '076f07721e92809abf32154d23442e72c0d804108971a3765b6a9aebdd9c259d',
+    'fileHash' => 'da9f6e30e69cb7e58fd1719919f83e55fe6ae5db346ffdd23fb6928e32097205',
     'dependentFiles' => 
     array (
-      0 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/ServeRequestController.php',
+      0 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/ServiceRequestController.php',
     ),
   ),
   '/var/www/html/app/Http/Requests/Registry/DesignateHeadRequest.php' => 
@@ -16000,14 +16542,6 @@ return [
     'dependentFiles' => 
     array (
       0 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/HouseholdMemberController.php',
-    ),
-  ),
-  '/var/www/html/app/Http/Requests/Registry/RaiseServeRequestRequest.php' => 
-  array (
-    'fileHash' => '60716da152db370b580265944d0a74a0a492e521d6f4175ff045879a0eed0c43',
-    'dependentFiles' => 
-    array (
-      0 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/ServeRequestController.php',
     ),
   ),
   '/var/www/html/app/Http/Requests/Registry/ResolveImportRowRequest.php' => 
@@ -16032,6 +16566,14 @@ return [
     'dependentFiles' => 
     array (
       0 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/OwnershipTransferController.php',
+    ),
+  ),
+  '/var/www/html/app/Http/Requests/Registry/StoreServiceRequestRequest.php' => 
+  array (
+    'fileHash' => 'ec60d130199b84d5f18582024fe7cffbec5c11754606467b1900d753c62ce9d9',
+    'dependentFiles' => 
+    array (
+      0 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/ServiceRequestController.php',
     ),
   ),
   '/var/www/html/app/Http/Requests/Registry/UpdateBeneficiaryRequest.php' => 
@@ -16224,12 +16766,12 @@ return [
       0 => '/var/www/html/app/Http/Controllers/Api/V1/Programme/ProgrammeController.php',
     ),
   ),
-  '/var/www/html/app/Http/Resources/ServeRequestResource.php' => 
+  '/var/www/html/app/Http/Resources/ServiceRequestResource.php' => 
   array (
-    'fileHash' => 'e541465da58150b5dc3921407582c97bf7830785079ed0a98f6a45ba1e4a3c84',
+    'fileHash' => '9f4bad57c436c32d922362125dfc4372b37af2639e3a7494ad3e1a417f5d0662',
     'dependentFiles' => 
     array (
-      0 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/ServeRequestController.php',
+      0 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/ServiceRequestController.php',
     ),
   ),
   '/var/www/html/app/Http/Resources/UserResource.php' => 
@@ -16278,8 +16820,9 @@ return [
       21 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/ImportBatchController.php',
       22 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/OwnershipTransferController.php',
       23 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/ServeRequestController.php',
-      24 => '/var/www/html/app/Http/Middleware/CheckPermission.php',
-      25 => '/var/www/html/app/Http/Middleware/EnforceIdleTimeout.php',
+      24 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/ServiceRequestController.php',
+      25 => '/var/www/html/app/Http/Middleware/CheckPermission.php',
+      26 => '/var/www/html/app/Http/Middleware/EnforceIdleTimeout.php',
     ),
   ),
 ),
@@ -16773,6 +17316,7 @@ return [
   array (
     0 => 'laravel/framework',
     1 => 'symfony/http-foundation',
+    2 => 'laravel/sanctum',
   ),
   '/var/www/html/app/Http/Middleware/AssignCorrelationId.php' => 
   array (
@@ -17454,6 +17998,62 @@ return [
     0 => 'laravel/framework',
     1 => 'symfony/http-foundation',
     2 => 'nesbot/carbon',
+  ),
+  '/var/www/html/app/Domain/Registry/Enums/ServiceRequestStatus.php' => 
+  array (
+  ),
+  '/var/www/html/app/Domain/Registry/Models/BeneficiaryServiceGrant.php' => 
+  array (
+    0 => 'laravel/framework',
+  ),
+  '/var/www/html/app/Domain/Registry/Models/ServiceRequest.php' => 
+  array (
+    0 => 'laravel/framework',
+  ),
+  '/var/www/html/app/Domain/Registry/Policies/OwnerMdaPolicy.php' => 
+  array (
+    0 => 'laravel/framework',
+    1 => 'laravel/sanctum',
+  ),
+  '/var/www/html/app/Domain/Registry/Services/ServiceRequestService.php' => 
+  array (
+    0 => 'laravel/framework',
+    1 => 'laravel/sanctum',
+    2 => 'nesbot/carbon',
+  ),
+  '/var/www/html/app/Http/Controllers/Api/V1/Registry/ServiceRequestController.php' => 
+  array (
+    0 => 'laravel/framework',
+    1 => 'symfony/http-foundation',
+    2 => 'laravel/sanctum',
+  ),
+  '/var/www/html/app/Http/Requests/Registry/AcceptServiceRequestRequest.php' => 
+  array (
+    0 => 'laravel/framework',
+    1 => 'symfony/http-foundation',
+    2 => 'laravel/sanctum',
+  ),
+  '/var/www/html/app/Http/Requests/Registry/DeclineServiceRequestRequest.php' => 
+  array (
+    0 => 'laravel/framework',
+    1 => 'symfony/http-foundation',
+    2 => 'laravel/sanctum',
+  ),
+  '/var/www/html/app/Http/Requests/Registry/StoreServiceRequestRequest.php' => 
+  array (
+    0 => 'laravel/framework',
+    1 => 'symfony/http-foundation',
+    2 => 'laravel/sanctum',
+  ),
+  '/var/www/html/app/Http/Resources/ServiceRequestResource.php' => 
+  array (
+    0 => 'laravel/framework',
+    1 => 'symfony/http-foundation',
+    2 => 'nesbot/carbon',
+  ),
+  '/var/www/html/app/Domain/Matching/Engine/DuplicateCascade.php' => 
+  array (
+    0 => 'laravel/framework',
   ),
 ),
 	'exportedNodesCallback' => static function (): array { return array (
@@ -28201,6 +28801,272 @@ return [
           array (
           ),
         )),
+        2 => 
+        \PHPStan\Dependency\ExportedNode\ExportedMethodNode::__set_state(array(
+           'name' => 'matchKeySets',
+           'phpDoc' => 
+          \PHPStan\Dependency\ExportedNode\ExportedPhpDocNode::__set_state(array(
+             'phpDocString' => '/**
+     * Match against an explicit, ordered list of key sets — used by the cascade to
+     * evaluate one stage at a time (e.g. just `[nin]`) so it can stop at the first
+     * exact stage (PRD §9). Absent candidate keys never fire.
+     *
+     * @param  array<string, mixed>  $candidate
+     * @param  iterable<array<string, mixed>>  $existing  each may carry an `id`
+     * @param  list<list<string>>  $keySets
+     * @return list<MatchResult> exact matches only
+     */',
+             'namespace' => 'App\\Domain\\Matching\\Engine',
+             'uses' => 
+            array (
+              'matchband' => 'App\\Domain\\Matching\\Enums\\MatchBand',
+              'matchingconfig' => 'App\\Domain\\Matching\\Models\\MatchingConfig',
+              'fieldnormalizer' => 'App\\Domain\\Matching\\Scoring\\FieldNormalizer',
+              'matchscore' => 'App\\Domain\\Matching\\Scoring\\MatchScore',
+            ),
+             'constUses' => 
+            array (
+            ),
+          )),
+           'byRef' => false,
+           'public' => true,
+           'private' => false,
+           'abstract' => false,
+           'final' => false,
+           'static' => false,
+           'returnType' => 'array',
+           'parameters' => 
+          array (
+            0 => 
+            \PHPStan\Dependency\ExportedNode\ExportedParameterNode::__set_state(array(
+               'name' => 'candidate',
+               'type' => 'array',
+               'byRef' => false,
+               'variadic' => false,
+               'hasDefault' => false,
+               'attributes' => 
+              array (
+              ),
+               'phpDoc' => NULL,
+               'flags' => 0,
+            )),
+            1 => 
+            \PHPStan\Dependency\ExportedNode\ExportedParameterNode::__set_state(array(
+               'name' => 'existing',
+               'type' => 'iterable',
+               'byRef' => false,
+               'variadic' => false,
+               'hasDefault' => false,
+               'attributes' => 
+              array (
+              ),
+               'phpDoc' => NULL,
+               'flags' => 0,
+            )),
+            2 => 
+            \PHPStan\Dependency\ExportedNode\ExportedParameterNode::__set_state(array(
+               'name' => 'keySets',
+               'type' => 'array',
+               'byRef' => false,
+               'variadic' => false,
+               'hasDefault' => false,
+               'attributes' => 
+              array (
+              ),
+               'phpDoc' => NULL,
+               'flags' => 0,
+            )),
+          ),
+           'attributes' => 
+          array (
+          ),
+        )),
+      ),
+       'attributes' => 
+      array (
+      ),
+    )),
+  ),
+  '/var/www/html/app/Domain/Matching/Engine/DuplicateCascade.php' => 
+  array (
+    0 => 
+    \PHPStan\Dependency\ExportedNode\ExportedClassNode::__set_state(array(
+       'name' => 'App\\Domain\\Matching\\Engine\\DuplicateCascade',
+       'phpDoc' => 
+      \PHPStan\Dependency\ExportedNode\ExportedPhpDocNode::__set_state(array(
+         'phpDocString' => '/**
+ * The ordered duplicate-matching cascade (PRD §9 locked decision). It evaluates a
+ * candidate against a pool of existing records in the configured order —
+ * **exact NIN → exact BVN → fuzzy name/phone** by default — and STOPS at the first
+ * exact (deterministic) stage that fires. The stages, keys, weights and thresholds
+ * all come from the {@see MatchingConfig}; nothing is hard-coded here.
+ *
+ * Rules:
+ * - Deterministic stages run in config order; the first stage with ≥1 exact match
+ *   wins and short-circuits — no later stage and no fuzzy pass run.
+ * - A stage whose candidate identifier is ABSENT is skipped (fall-through), so a
+ *   record with only a BVN still reaches the BVN stage, and one with neither falls
+ *   through to fuzzy.
+ * - Only when no deterministic stage fires does the weighted fuzzy pass run and
+ *   band the result (probable / none, or exact via an optional auto-accept
+ *   threshold). Read-only — it never blocks or merges.
+ */',
+         'namespace' => 'App\\Domain\\Matching\\Engine',
+         'uses' => 
+        array (
+          'matchband' => 'App\\Domain\\Matching\\Enums\\MatchBand',
+          'matchingconfig' => 'App\\Domain\\Matching\\Models\\MatchingConfig',
+          'fieldnormalizer' => 'App\\Domain\\Matching\\Scoring\\FieldNormalizer',
+        ),
+         'constUses' => 
+        array (
+        ),
+      )),
+       'abstract' => false,
+       'final' => false,
+       'extends' => NULL,
+       'implements' => 
+      array (
+      ),
+       'usedTraits' => 
+      array (
+      ),
+       'traitUseAdaptations' => 
+      array (
+      ),
+       'statements' => 
+      array (
+        0 => 
+        \PHPStan\Dependency\ExportedNode\ExportedMethodNode::__set_state(array(
+           'name' => '__construct',
+           'phpDoc' => NULL,
+           'byRef' => false,
+           'public' => true,
+           'private' => false,
+           'abstract' => false,
+           'final' => false,
+           'static' => false,
+           'returnType' => NULL,
+           'parameters' => 
+          array (
+            0 => 
+            \PHPStan\Dependency\ExportedNode\ExportedParameterNode::__set_state(array(
+               'name' => 'deterministic',
+               'type' => 'App\\Domain\\Matching\\Engine\\DeterministicMatcher',
+               'byRef' => false,
+               'variadic' => false,
+               'hasDefault' => false,
+               'attributes' => 
+              array (
+              ),
+               'phpDoc' => NULL,
+               'flags' => 68,
+            )),
+            1 => 
+            \PHPStan\Dependency\ExportedNode\ExportedParameterNode::__set_state(array(
+               'name' => 'engine',
+               'type' => 'App\\Domain\\Matching\\Engine\\MatchingEngine',
+               'byRef' => false,
+               'variadic' => false,
+               'hasDefault' => false,
+               'attributes' => 
+              array (
+              ),
+               'phpDoc' => NULL,
+               'flags' => 68,
+            )),
+            2 => 
+            \PHPStan\Dependency\ExportedNode\ExportedParameterNode::__set_state(array(
+               'name' => 'normalizer',
+               'type' => 'App\\Domain\\Matching\\Scoring\\FieldNormalizer',
+               'byRef' => false,
+               'variadic' => false,
+               'hasDefault' => false,
+               'attributes' => 
+              array (
+              ),
+               'phpDoc' => NULL,
+               'flags' => 68,
+            )),
+          ),
+           'attributes' => 
+          array (
+          ),
+        )),
+        1 => 
+        \PHPStan\Dependency\ExportedNode\ExportedMethodNode::__set_state(array(
+           'name' => 'evaluate',
+           'phpDoc' => 
+          \PHPStan\Dependency\ExportedNode\ExportedPhpDocNode::__set_state(array(
+             'phpDocString' => '/**
+     * @param  array<string, mixed>  $candidate
+     * @param  list<array<string, mixed>>  $existing  each may carry an `id`
+     * @return array{band: MatchBand, stage: list<string>|null, results: list<MatchResult>}
+     */',
+             'namespace' => 'App\\Domain\\Matching\\Engine',
+             'uses' => 
+            array (
+              'matchband' => 'App\\Domain\\Matching\\Enums\\MatchBand',
+              'matchingconfig' => 'App\\Domain\\Matching\\Models\\MatchingConfig',
+              'fieldnormalizer' => 'App\\Domain\\Matching\\Scoring\\FieldNormalizer',
+            ),
+             'constUses' => 
+            array (
+            ),
+          )),
+           'byRef' => false,
+           'public' => true,
+           'private' => false,
+           'abstract' => false,
+           'final' => false,
+           'static' => false,
+           'returnType' => 'array',
+           'parameters' => 
+          array (
+            0 => 
+            \PHPStan\Dependency\ExportedNode\ExportedParameterNode::__set_state(array(
+               'name' => 'candidate',
+               'type' => 'array',
+               'byRef' => false,
+               'variadic' => false,
+               'hasDefault' => false,
+               'attributes' => 
+              array (
+              ),
+               'phpDoc' => NULL,
+               'flags' => 0,
+            )),
+            1 => 
+            \PHPStan\Dependency\ExportedNode\ExportedParameterNode::__set_state(array(
+               'name' => 'existing',
+               'type' => 'array',
+               'byRef' => false,
+               'variadic' => false,
+               'hasDefault' => false,
+               'attributes' => 
+              array (
+              ),
+               'phpDoc' => NULL,
+               'flags' => 0,
+            )),
+            2 => 
+            \PHPStan\Dependency\ExportedNode\ExportedParameterNode::__set_state(array(
+               'name' => 'config',
+               'type' => 'App\\Domain\\Matching\\Models\\MatchingConfig',
+               'byRef' => false,
+               'variadic' => false,
+               'hasDefault' => false,
+               'attributes' => 
+              array (
+              ),
+               'phpDoc' => NULL,
+               'flags' => 0,
+            )),
+          ),
+           'attributes' => 
+          array (
+          ),
+        )),
       ),
        'attributes' => 
       array (
@@ -32949,10 +33815,9 @@ return [
           'enrollmentstatus' => 'App\\Domain\\Programme\\Enums\\EnrollmentStatus',
           'enrollment' => 'App\\Domain\\Programme\\Models\\Enrollment',
           'programme' => 'App\\Domain\\Programme\\Models\\Programme',
-          'serverequeststatus' => 'App\\Domain\\Registry\\Enums\\ServeRequestStatus',
           'beneficiary' => 'App\\Domain\\Registry\\Models\\Beneficiary',
           'household' => 'App\\Domain\\Registry\\Models\\Household',
-          'serverequest' => 'App\\Domain\\Registry\\Models\\ServeRequest',
+          'servicerequestservice' => 'App\\Domain\\Registry\\Services\\ServiceRequestService',
           'uniqueconstraintviolationexception' => 'Illuminate\\Database\\UniqueConstraintViolationException',
         ),
          'constUses' => 
@@ -33012,7 +33877,8 @@ return [
              'phpDocString' => '/**
      * Whether the acting user\'s MDA may enroll (serve) this target: it owns the
      * target, holds a cross-MDA grant covering the owner, or — for a beneficiary —
-     * has an accepted request-to-serve (Phase 3 serve seam).
+     * holds an active read/serve grant opened by an ACCEPTED Service Request
+     * (§12, FR-OWN-06/07). Serving a non-owned beneficiary requires that grant.
      */',
              'namespace' => 'App\\Domain\\Programme\\Services',
              'uses' => 
@@ -33022,10 +33888,9 @@ return [
               'enrollmentstatus' => 'App\\Domain\\Programme\\Enums\\EnrollmentStatus',
               'enrollment' => 'App\\Domain\\Programme\\Models\\Enrollment',
               'programme' => 'App\\Domain\\Programme\\Models\\Programme',
-              'serverequeststatus' => 'App\\Domain\\Registry\\Enums\\ServeRequestStatus',
               'beneficiary' => 'App\\Domain\\Registry\\Models\\Beneficiary',
               'household' => 'App\\Domain\\Registry\\Models\\Household',
-              'serverequest' => 'App\\Domain\\Registry\\Models\\ServeRequest',
+              'servicerequestservice' => 'App\\Domain\\Registry\\Services\\ServiceRequestService',
               'uniqueconstraintviolationexception' => 'Illuminate\\Database\\UniqueConstraintViolationException',
             ),
              'constUses' => 
@@ -33091,10 +33956,9 @@ return [
               'enrollmentstatus' => 'App\\Domain\\Programme\\Enums\\EnrollmentStatus',
               'enrollment' => 'App\\Domain\\Programme\\Models\\Enrollment',
               'programme' => 'App\\Domain\\Programme\\Models\\Programme',
-              'serverequeststatus' => 'App\\Domain\\Registry\\Enums\\ServeRequestStatus',
               'beneficiary' => 'App\\Domain\\Registry\\Models\\Beneficiary',
               'household' => 'App\\Domain\\Registry\\Models\\Household',
-              'serverequest' => 'App\\Domain\\Registry\\Models\\ServeRequest',
+              'servicerequestservice' => 'App\\Domain\\Registry\\Services\\ServiceRequestService',
               'uniqueconstraintviolationexception' => 'Illuminate\\Database\\UniqueConstraintViolationException',
             ),
              'constUses' => 
@@ -34378,18 +35242,19 @@ return [
       ),
     )),
   ),
-  '/var/www/html/app/Domain/Registry/Enums/ServeRequestStatus.php' => 
+  '/var/www/html/app/Domain/Registry/Enums/ServiceRequestStatus.php' => 
   array (
     0 => 
     \PHPStan\Dependency\ExportedNode\ExportedEnumNode::__set_state(array(
-       'name' => 'App\\Domain\\Registry\\Enums\\ServeRequestStatus',
+       'name' => 'App\\Domain\\Registry\\Enums\\ServiceRequestStatus',
        'scalarType' => 'string',
        'phpDoc' => 
       \PHPStan\Dependency\ExportedNode\ExportedPhpDocNode::__set_state(array(
          'phpDocString' => '/**
- * Lifecycle of a request-to-serve (PRD FR-DUP-05). A requesting MDA asks the
+ * Lifecycle of a Service Request (PRD §12, FR-OWN-06): a requesting MDA asks the
  * owner MDA for permission to serve an existing beneficiary; ownership never
- * changes. On acceptance the requesting MDA gains the permitted serve access.
+ * changes. The only transitions are pending → accepted and pending → declined.
+ * On acceptance a read-access grant is opened (FR-OWN-07).
  */',
          'namespace' => 'App\\Domain\\Registry\\Enums',
          'uses' => 
@@ -35332,12 +36197,12 @@ return [
  * Commits the confirmed preview (PRD FR-REG-02, FR-DUP-05). Per row, honouring the
  * officer\'s resolution: NEW → create a beneficiary (owned by the importing MDA,
  * full provenance, forming/joining a household on a source reference); LINK → raise
- * a request-to-serve the matched existing beneficiary (no new record, ownership
- * unchanged); SKIP (or an unresolved flagged row) → nothing. Non-flagged rows
- * default to NEW. Invalid rows are left in place and reported.
+ * a Service Request against the matched existing beneficiary (no new record,
+ * ownership unchanged); SKIP (or an unresolved flagged row) → nothing. Non-flagged
+ * rows default to NEW. Invalid rows are left in place and reported.
  *
  * Idempotent + retry-safe: a created row is stamped with `beneficiary_id` and
- * serve requests dedupe on the pending state, so re-running never double-inserts.
+ * service requests dedupe on the pending state, so re-running never double-inserts.
  * The payload carries only IDs (batch id + confirming user id).
  */',
          'namespace' => 'App\\Domain\\Registry\\Jobs',
@@ -35357,7 +36222,7 @@ return [
           'importrow' => 'App\\Domain\\Registry\\Models\\ImportRow',
           'beneficiaryregistrar' => 'App\\Domain\\Registry\\Services\\BeneficiaryRegistrar',
           'householdingestionservice' => 'App\\Domain\\Registry\\Services\\HouseholdIngestionService',
-          'serverequestservice' => 'App\\Domain\\Registry\\Services\\ServeRequestService',
+          'servicerequestservice' => 'App\\Domain\\Registry\\Services\\ServiceRequestService',
           'queueable' => 'Illuminate\\Bus\\Queueable',
           'shouldqueue' => 'Illuminate\\Contracts\\Queue\\ShouldQueue',
           'uniqueconstraintviolationexception' => 'Illuminate\\Database\\UniqueConstraintViolationException',
@@ -35502,8 +36367,8 @@ return [
             )),
             2 => 
             \PHPStan\Dependency\ExportedNode\ExportedParameterNode::__set_state(array(
-               'name' => 'serveRequests',
-               'type' => 'App\\Domain\\Registry\\Services\\ServeRequestService',
+               'name' => 'serviceRequests',
+               'type' => 'App\\Domain\\Registry\\Services\\ServiceRequestService',
                'byRef' => false,
                'variadic' => false,
                'hasDefault' => false,
@@ -36902,6 +37767,292 @@ return [
               'model' => 'Illuminate\\Database\\Eloquent\\Model',
               'belongsto' => 'Illuminate\\Database\\Eloquent\\Relations\\BelongsTo',
               'softdeletes' => 'Illuminate\\Database\\Eloquent\\SoftDeletes',
+            ),
+             'constUses' => 
+            array (
+            ),
+          )),
+           'byRef' => false,
+           'public' => true,
+           'private' => false,
+           'abstract' => false,
+           'final' => false,
+           'static' => false,
+           'returnType' => 'Illuminate\\Database\\Eloquent\\Relations\\BelongsTo',
+           'parameters' => 
+          array (
+          ),
+           'attributes' => 
+          array (
+          ),
+        )),
+      ),
+       'attributes' => 
+      array (
+      ),
+    )),
+  ),
+  '/var/www/html/app/Domain/Registry/Models/BeneficiaryServiceGrant.php' => 
+  array (
+    0 => 
+    \PHPStan\Dependency\ExportedNode\ExportedClassNode::__set_state(array(
+       'name' => 'App\\Domain\\Registry\\Models\\BeneficiaryServiceGrant',
+       'phpDoc' => 
+      \PHPStan\Dependency\ExportedNode\ExportedPhpDocNode::__set_state(array(
+         'phpDocString' => '/**
+ * Explicit READ-access grant (PRD §12, FR-OWN-07): opened when the owner MDA
+ * accepts a {@see ServiceRequest}. It gives the requesting MDA (`mda_id`) READ
+ * access to the full beneficiary record — nothing else; ownership/edit never move.
+ *
+ * MDA-scoped on `mda_id` (the granted MDA) so an MDA sees only its own grants.
+ * Auditable, but the semantic event (`beneficiary.access_granted`) is recorded
+ * explicitly against the beneficiary when the grant opens.
+ *
+ * @property string $id
+ * @property string $beneficiary_id
+ * @property string $mda_id
+ * @property string $service_request_id
+ * @property string|null $granted_by
+ * @property Carbon $granted_at
+ * @property Carbon|null $revoked_at
+ * @property-read Beneficiary $beneficiary
+ * @property-read Mda $mda
+ */',
+         'namespace' => 'App\\Domain\\Registry\\Models',
+         'uses' => 
+        array (
+          'mdascoped' => 'App\\Domain\\Access\\Concerns\\MdaScoped',
+          'scopedtomda' => 'App\\Domain\\Access\\Concerns\\ScopedToMda',
+          'mda' => 'App\\Domain\\Access\\Models\\Mda',
+          'auditable' => 'App\\Domain\\Audit\\Concerns\\Auditable',
+          'hasuuids' => 'Illuminate\\Database\\Eloquent\\Concerns\\HasUuids',
+          'model' => 'Illuminate\\Database\\Eloquent\\Model',
+          'belongsto' => 'Illuminate\\Database\\Eloquent\\Relations\\BelongsTo',
+          'carbon' => 'Illuminate\\Support\\Carbon',
+        ),
+         'constUses' => 
+        array (
+        ),
+      )),
+       'abstract' => false,
+       'final' => false,
+       'extends' => 'Illuminate\\Database\\Eloquent\\Model',
+       'implements' => 
+      array (
+        0 => 'App\\Domain\\Access\\Concerns\\MdaScoped',
+      ),
+       'usedTraits' => 
+      array (
+        0 => 'App\\Domain\\Audit\\Concerns\\Auditable',
+        1 => 'Illuminate\\Database\\Eloquent\\Concerns\\HasUuids',
+        2 => 'App\\Domain\\Access\\Concerns\\ScopedToMda',
+      ),
+       'traitUseAdaptations' => 
+      array (
+      ),
+       'statements' => 
+      array (
+        0 => 
+        \PHPStan\Dependency\ExportedNode\ExportedPropertiesNode::__set_state(array(
+           'names' => 
+          array (
+            0 => 'table',
+          ),
+           'phpDoc' => NULL,
+           'type' => NULL,
+           'public' => false,
+           'private' => false,
+           'static' => false,
+           'readonly' => false,
+           'abstract' => false,
+           'final' => false,
+           'publicSet' => false,
+           'protectedSet' => false,
+           'privateSet' => false,
+           'virtual' => false,
+           'attributes' => 
+          array (
+          ),
+           'hooks' => 
+          array (
+          ),
+        )),
+        1 => 
+        \PHPStan\Dependency\ExportedNode\ExportedPropertiesNode::__set_state(array(
+           'names' => 
+          array (
+            0 => 'fillable',
+          ),
+           'phpDoc' => 
+          \PHPStan\Dependency\ExportedNode\ExportedPhpDocNode::__set_state(array(
+             'phpDocString' => '/**
+     * @var list<string>
+     */',
+             'namespace' => 'App\\Domain\\Registry\\Models',
+             'uses' => 
+            array (
+              'mdascoped' => 'App\\Domain\\Access\\Concerns\\MdaScoped',
+              'scopedtomda' => 'App\\Domain\\Access\\Concerns\\ScopedToMda',
+              'mda' => 'App\\Domain\\Access\\Models\\Mda',
+              'auditable' => 'App\\Domain\\Audit\\Concerns\\Auditable',
+              'hasuuids' => 'Illuminate\\Database\\Eloquent\\Concerns\\HasUuids',
+              'model' => 'Illuminate\\Database\\Eloquent\\Model',
+              'belongsto' => 'Illuminate\\Database\\Eloquent\\Relations\\BelongsTo',
+              'carbon' => 'Illuminate\\Support\\Carbon',
+            ),
+             'constUses' => 
+            array (
+            ),
+          )),
+           'type' => NULL,
+           'public' => false,
+           'private' => false,
+           'static' => false,
+           'readonly' => false,
+           'abstract' => false,
+           'final' => false,
+           'publicSet' => false,
+           'protectedSet' => false,
+           'privateSet' => false,
+           'virtual' => false,
+           'attributes' => 
+          array (
+          ),
+           'hooks' => 
+          array (
+          ),
+        )),
+        2 => 
+        \PHPStan\Dependency\ExportedNode\ExportedMethodNode::__set_state(array(
+           'name' => 'casts',
+           'phpDoc' => 
+          \PHPStan\Dependency\ExportedNode\ExportedPhpDocNode::__set_state(array(
+             'phpDocString' => '/**
+     * @return array<string, string>
+     */',
+             'namespace' => 'App\\Domain\\Registry\\Models',
+             'uses' => 
+            array (
+              'mdascoped' => 'App\\Domain\\Access\\Concerns\\MdaScoped',
+              'scopedtomda' => 'App\\Domain\\Access\\Concerns\\ScopedToMda',
+              'mda' => 'App\\Domain\\Access\\Models\\Mda',
+              'auditable' => 'App\\Domain\\Audit\\Concerns\\Auditable',
+              'hasuuids' => 'Illuminate\\Database\\Eloquent\\Concerns\\HasUuids',
+              'model' => 'Illuminate\\Database\\Eloquent\\Model',
+              'belongsto' => 'Illuminate\\Database\\Eloquent\\Relations\\BelongsTo',
+              'carbon' => 'Illuminate\\Support\\Carbon',
+            ),
+             'constUses' => 
+            array (
+            ),
+          )),
+           'byRef' => false,
+           'public' => false,
+           'private' => false,
+           'abstract' => false,
+           'final' => false,
+           'static' => false,
+           'returnType' => 'array',
+           'parameters' => 
+          array (
+          ),
+           'attributes' => 
+          array (
+          ),
+        )),
+        3 => 
+        \PHPStan\Dependency\ExportedNode\ExportedMethodNode::__set_state(array(
+           'name' => 'mdaOwnershipColumn',
+           'phpDoc' => 
+          \PHPStan\Dependency\ExportedNode\ExportedPhpDocNode::__set_state(array(
+             'phpDocString' => '/** The grant is scoped to the granted (requesting) MDA, not an owner column. */',
+             'namespace' => 'App\\Domain\\Registry\\Models',
+             'uses' => 
+            array (
+              'mdascoped' => 'App\\Domain\\Access\\Concerns\\MdaScoped',
+              'scopedtomda' => 'App\\Domain\\Access\\Concerns\\ScopedToMda',
+              'mda' => 'App\\Domain\\Access\\Models\\Mda',
+              'auditable' => 'App\\Domain\\Audit\\Concerns\\Auditable',
+              'hasuuids' => 'Illuminate\\Database\\Eloquent\\Concerns\\HasUuids',
+              'model' => 'Illuminate\\Database\\Eloquent\\Model',
+              'belongsto' => 'Illuminate\\Database\\Eloquent\\Relations\\BelongsTo',
+              'carbon' => 'Illuminate\\Support\\Carbon',
+            ),
+             'constUses' => 
+            array (
+            ),
+          )),
+           'byRef' => false,
+           'public' => true,
+           'private' => false,
+           'abstract' => false,
+           'final' => false,
+           'static' => false,
+           'returnType' => 'string',
+           'parameters' => 
+          array (
+          ),
+           'attributes' => 
+          array (
+          ),
+        )),
+        4 => 
+        \PHPStan\Dependency\ExportedNode\ExportedMethodNode::__set_state(array(
+           'name' => 'beneficiary',
+           'phpDoc' => 
+          \PHPStan\Dependency\ExportedNode\ExportedPhpDocNode::__set_state(array(
+             'phpDocString' => '/**
+     * @return BelongsTo<Beneficiary, $this>
+     */',
+             'namespace' => 'App\\Domain\\Registry\\Models',
+             'uses' => 
+            array (
+              'mdascoped' => 'App\\Domain\\Access\\Concerns\\MdaScoped',
+              'scopedtomda' => 'App\\Domain\\Access\\Concerns\\ScopedToMda',
+              'mda' => 'App\\Domain\\Access\\Models\\Mda',
+              'auditable' => 'App\\Domain\\Audit\\Concerns\\Auditable',
+              'hasuuids' => 'Illuminate\\Database\\Eloquent\\Concerns\\HasUuids',
+              'model' => 'Illuminate\\Database\\Eloquent\\Model',
+              'belongsto' => 'Illuminate\\Database\\Eloquent\\Relations\\BelongsTo',
+              'carbon' => 'Illuminate\\Support\\Carbon',
+            ),
+             'constUses' => 
+            array (
+            ),
+          )),
+           'byRef' => false,
+           'public' => true,
+           'private' => false,
+           'abstract' => false,
+           'final' => false,
+           'static' => false,
+           'returnType' => 'Illuminate\\Database\\Eloquent\\Relations\\BelongsTo',
+           'parameters' => 
+          array (
+          ),
+           'attributes' => 
+          array (
+          ),
+        )),
+        5 => 
+        \PHPStan\Dependency\ExportedNode\ExportedMethodNode::__set_state(array(
+           'name' => 'mda',
+           'phpDoc' => 
+          \PHPStan\Dependency\ExportedNode\ExportedPhpDocNode::__set_state(array(
+             'phpDocString' => '/**
+     * @return BelongsTo<Mda, $this>
+     */',
+             'namespace' => 'App\\Domain\\Registry\\Models',
+             'uses' => 
+            array (
+              'mdascoped' => 'App\\Domain\\Access\\Concerns\\MdaScoped',
+              'scopedtomda' => 'App\\Domain\\Access\\Concerns\\ScopedToMda',
+              'mda' => 'App\\Domain\\Access\\Models\\Mda',
+              'auditable' => 'App\\Domain\\Audit\\Concerns\\Auditable',
+              'hasuuids' => 'Illuminate\\Database\\Eloquent\\Concerns\\HasUuids',
+              'model' => 'Illuminate\\Database\\Eloquent\\Model',
+              'belongsto' => 'Illuminate\\Database\\Eloquent\\Relations\\BelongsTo',
+              'carbon' => 'Illuminate\\Support\\Carbon',
             ),
              'constUses' => 
             array (
@@ -38630,23 +39781,30 @@ return [
       ),
     )),
   ),
-  '/var/www/html/app/Domain/Registry/Models/ServeRequest.php' => 
+  '/var/www/html/app/Domain/Registry/Models/ServiceRequest.php' => 
   array (
     0 => 
     \PHPStan\Dependency\ExportedNode\ExportedClassNode::__set_state(array(
-       'name' => 'App\\Domain\\Registry\\Models\\ServeRequest',
+       'name' => 'App\\Domain\\Registry\\Models\\ServiceRequest',
        'phpDoc' => 
       \PHPStan\Dependency\ExportedNode\ExportedPhpDocNode::__set_state(array(
          'phpDocString' => '/**
- * A request-to-serve an existing beneficiary (PRD FR-DUP-05). The requesting MDA
- * (`from_mda_id`) asks the owner MDA (`to_mda_id`) for serve access; ownership
- * (`beneficiaries.owner_mda_id`) is never changed. Audited via Auditable.
+ * A Service Request (PRD §12, FR-OWN-06): the requesting MDA (`from_mda_id`) asks
+ * the owner MDA (`to_mda_id`) for permission to serve an existing beneficiary.
+ * State machine: pending → accepted | declined. Ownership
+ * (`beneficiaries.owner_mda_id`) is NEVER changed. Distinct from a Referral.
+ *
+ * Not globally MDA-scoped because it is a two-party record (requester + owner);
+ * visibility is enforced by {@see OwnerMdaPolicy}
+ * and the explicit inbox/outbox queries. Audited via Auditable — the decision
+ * transitions are recorded explicitly (service_request.accepted/declined) so
+ * status changes are excluded from the generic update audit.
  *
  * @property string $id
  * @property string $beneficiary_id
  * @property string $from_mda_id
  * @property string $to_mda_id
- * @property ServeRequestStatus $status
+ * @property ServiceRequestStatus $status
  * @property string|null $reason
  * @property string|null $import_row_id
  * @property string|null $requested_by
@@ -38664,7 +39822,8 @@ return [
         array (
           'mda' => 'App\\Domain\\Access\\Models\\Mda',
           'auditable' => 'App\\Domain\\Audit\\Concerns\\Auditable',
-          'serverequeststatus' => 'App\\Domain\\Registry\\Enums\\ServeRequestStatus',
+          'servicerequeststatus' => 'App\\Domain\\Registry\\Enums\\ServiceRequestStatus',
+          'ownermdapolicy' => 'App\\Domain\\Registry\\Policies\\OwnerMdaPolicy',
           'hasuuids' => 'Illuminate\\Database\\Eloquent\\Concerns\\HasUuids',
           'model' => 'Illuminate\\Database\\Eloquent\\Model',
           'belongsto' => 'Illuminate\\Database\\Eloquent\\Relations\\BelongsTo',
@@ -38731,7 +39890,8 @@ return [
             array (
               'mda' => 'App\\Domain\\Access\\Models\\Mda',
               'auditable' => 'App\\Domain\\Audit\\Concerns\\Auditable',
-              'serverequeststatus' => 'App\\Domain\\Registry\\Enums\\ServeRequestStatus',
+              'servicerequeststatus' => 'App\\Domain\\Registry\\Enums\\ServiceRequestStatus',
+              'ownermdapolicy' => 'App\\Domain\\Registry\\Policies\\OwnerMdaPolicy',
               'hasuuids' => 'Illuminate\\Database\\Eloquent\\Concerns\\HasUuids',
               'model' => 'Illuminate\\Database\\Eloquent\\Model',
               'belongsto' => 'Illuminate\\Database\\Eloquent\\Relations\\BelongsTo',
@@ -38772,7 +39932,8 @@ return [
             array (
               'mda' => 'App\\Domain\\Access\\Models\\Mda',
               'auditable' => 'App\\Domain\\Audit\\Concerns\\Auditable',
-              'serverequeststatus' => 'App\\Domain\\Registry\\Enums\\ServeRequestStatus',
+              'servicerequeststatus' => 'App\\Domain\\Registry\\Enums\\ServiceRequestStatus',
+              'ownermdapolicy' => 'App\\Domain\\Registry\\Policies\\OwnerMdaPolicy',
               'hasuuids' => 'Illuminate\\Database\\Eloquent\\Concerns\\HasUuids',
               'model' => 'Illuminate\\Database\\Eloquent\\Model',
               'belongsto' => 'Illuminate\\Database\\Eloquent\\Relations\\BelongsTo',
@@ -38798,6 +39959,47 @@ return [
         )),
         3 => 
         \PHPStan\Dependency\ExportedNode\ExportedMethodNode::__set_state(array(
+           'name' => 'auditExcluded',
+           'phpDoc' => 
+          \PHPStan\Dependency\ExportedNode\ExportedPhpDocNode::__set_state(array(
+             'phpDocString' => '/**
+     * The decision transition is audited explicitly; keep it out of the generic
+     * update audit to avoid a duplicate, less-meaningful entry.
+     *
+     * @return list<string>
+     */',
+             'namespace' => 'App\\Domain\\Registry\\Models',
+             'uses' => 
+            array (
+              'mda' => 'App\\Domain\\Access\\Models\\Mda',
+              'auditable' => 'App\\Domain\\Audit\\Concerns\\Auditable',
+              'servicerequeststatus' => 'App\\Domain\\Registry\\Enums\\ServiceRequestStatus',
+              'ownermdapolicy' => 'App\\Domain\\Registry\\Policies\\OwnerMdaPolicy',
+              'hasuuids' => 'Illuminate\\Database\\Eloquent\\Concerns\\HasUuids',
+              'model' => 'Illuminate\\Database\\Eloquent\\Model',
+              'belongsto' => 'Illuminate\\Database\\Eloquent\\Relations\\BelongsTo',
+              'carbon' => 'Illuminate\\Support\\Carbon',
+            ),
+             'constUses' => 
+            array (
+            ),
+          )),
+           'byRef' => false,
+           'public' => false,
+           'private' => false,
+           'abstract' => false,
+           'final' => false,
+           'static' => false,
+           'returnType' => 'array',
+           'parameters' => 
+          array (
+          ),
+           'attributes' => 
+          array (
+          ),
+        )),
+        4 => 
+        \PHPStan\Dependency\ExportedNode\ExportedMethodNode::__set_state(array(
            'name' => 'beneficiary',
            'phpDoc' => 
           \PHPStan\Dependency\ExportedNode\ExportedPhpDocNode::__set_state(array(
@@ -38809,44 +40011,8 @@ return [
             array (
               'mda' => 'App\\Domain\\Access\\Models\\Mda',
               'auditable' => 'App\\Domain\\Audit\\Concerns\\Auditable',
-              'serverequeststatus' => 'App\\Domain\\Registry\\Enums\\ServeRequestStatus',
-              'hasuuids' => 'Illuminate\\Database\\Eloquent\\Concerns\\HasUuids',
-              'model' => 'Illuminate\\Database\\Eloquent\\Model',
-              'belongsto' => 'Illuminate\\Database\\Eloquent\\Relations\\BelongsTo',
-              'carbon' => 'Illuminate\\Support\\Carbon',
-            ),
-             'constUses' => 
-            array (
-            ),
-          )),
-           'byRef' => false,
-           'public' => true,
-           'private' => false,
-           'abstract' => false,
-           'final' => false,
-           'static' => false,
-           'returnType' => 'Illuminate\\Database\\Eloquent\\Relations\\BelongsTo',
-           'parameters' => 
-          array (
-          ),
-           'attributes' => 
-          array (
-          ),
-        )),
-        4 => 
-        \PHPStan\Dependency\ExportedNode\ExportedMethodNode::__set_state(array(
-           'name' => 'fromMda',
-           'phpDoc' => 
-          \PHPStan\Dependency\ExportedNode\ExportedPhpDocNode::__set_state(array(
-             'phpDocString' => '/**
-     * @return BelongsTo<Mda, $this>
-     */',
-             'namespace' => 'App\\Domain\\Registry\\Models',
-             'uses' => 
-            array (
-              'mda' => 'App\\Domain\\Access\\Models\\Mda',
-              'auditable' => 'App\\Domain\\Audit\\Concerns\\Auditable',
-              'serverequeststatus' => 'App\\Domain\\Registry\\Enums\\ServeRequestStatus',
+              'servicerequeststatus' => 'App\\Domain\\Registry\\Enums\\ServiceRequestStatus',
+              'ownermdapolicy' => 'App\\Domain\\Registry\\Policies\\OwnerMdaPolicy',
               'hasuuids' => 'Illuminate\\Database\\Eloquent\\Concerns\\HasUuids',
               'model' => 'Illuminate\\Database\\Eloquent\\Model',
               'belongsto' => 'Illuminate\\Database\\Eloquent\\Relations\\BelongsTo',
@@ -38872,6 +40038,44 @@ return [
         )),
         5 => 
         \PHPStan\Dependency\ExportedNode\ExportedMethodNode::__set_state(array(
+           'name' => 'fromMda',
+           'phpDoc' => 
+          \PHPStan\Dependency\ExportedNode\ExportedPhpDocNode::__set_state(array(
+             'phpDocString' => '/**
+     * @return BelongsTo<Mda, $this>
+     */',
+             'namespace' => 'App\\Domain\\Registry\\Models',
+             'uses' => 
+            array (
+              'mda' => 'App\\Domain\\Access\\Models\\Mda',
+              'auditable' => 'App\\Domain\\Audit\\Concerns\\Auditable',
+              'servicerequeststatus' => 'App\\Domain\\Registry\\Enums\\ServiceRequestStatus',
+              'ownermdapolicy' => 'App\\Domain\\Registry\\Policies\\OwnerMdaPolicy',
+              'hasuuids' => 'Illuminate\\Database\\Eloquent\\Concerns\\HasUuids',
+              'model' => 'Illuminate\\Database\\Eloquent\\Model',
+              'belongsto' => 'Illuminate\\Database\\Eloquent\\Relations\\BelongsTo',
+              'carbon' => 'Illuminate\\Support\\Carbon',
+            ),
+             'constUses' => 
+            array (
+            ),
+          )),
+           'byRef' => false,
+           'public' => true,
+           'private' => false,
+           'abstract' => false,
+           'final' => false,
+           'static' => false,
+           'returnType' => 'Illuminate\\Database\\Eloquent\\Relations\\BelongsTo',
+           'parameters' => 
+          array (
+          ),
+           'attributes' => 
+          array (
+          ),
+        )),
+        6 => 
+        \PHPStan\Dependency\ExportedNode\ExportedMethodNode::__set_state(array(
            'name' => 'toMda',
            'phpDoc' => 
           \PHPStan\Dependency\ExportedNode\ExportedPhpDocNode::__set_state(array(
@@ -38883,7 +40087,8 @@ return [
             array (
               'mda' => 'App\\Domain\\Access\\Models\\Mda',
               'auditable' => 'App\\Domain\\Audit\\Concerns\\Auditable',
-              'serverequeststatus' => 'App\\Domain\\Registry\\Enums\\ServeRequestStatus',
+              'servicerequeststatus' => 'App\\Domain\\Registry\\Enums\\ServiceRequestStatus',
+              'ownermdapolicy' => 'App\\Domain\\Registry\\Policies\\OwnerMdaPolicy',
               'hasuuids' => 'Illuminate\\Database\\Eloquent\\Concerns\\HasUuids',
               'model' => 'Illuminate\\Database\\Eloquent\\Model',
               'belongsto' => 'Illuminate\\Database\\Eloquent\\Relations\\BelongsTo',
@@ -39088,6 +40293,7 @@ return [
         array (
           'user' => 'App\\Domain\\Access\\Models\\User',
           'beneficiary' => 'App\\Domain\\Registry\\Models\\Beneficiary',
+          'servicerequestservice' => 'App\\Domain\\Registry\\Services\\ServiceRequestService',
         ),
          'constUses' => 
         array (
@@ -39144,14 +40350,16 @@ return [
            'phpDoc' => 
           \PHPStan\Dependency\ExportedNode\ExportedPhpDocNode::__set_state(array(
              'phpDocString' => '/**
-     * Read a specific beneficiary: the owner, an oversight role, or (later) an
-     * MDA with a service grant.
+     * Read a specific beneficiary: the owner, an oversight role, or an MDA that
+     * holds an active read-access grant from an accepted Service Request
+     * (§12, FR-OWN-07). READ only — this never confers edit.
      */',
              'namespace' => 'App\\Domain\\Registry\\Policies',
              'uses' => 
             array (
               'user' => 'App\\Domain\\Access\\Models\\User',
               'beneficiary' => 'App\\Domain\\Registry\\Models\\Beneficiary',
+              'servicerequestservice' => 'App\\Domain\\Registry\\Services\\ServiceRequestService',
             ),
              'constUses' => 
             array (
@@ -39241,6 +40449,7 @@ return [
             array (
               'user' => 'App\\Domain\\Access\\Models\\User',
               'beneficiary' => 'App\\Domain\\Registry\\Models\\Beneficiary',
+              'servicerequestservice' => 'App\\Domain\\Registry\\Services\\ServiceRequestService',
             ),
              'constUses' => 
             array (
@@ -39343,6 +40552,7 @@ return [
             array (
               'user' => 'App\\Domain\\Access\\Models\\User',
               'beneficiary' => 'App\\Domain\\Registry\\Models\\Beneficiary',
+              'servicerequestservice' => 'App\\Domain\\Registry\\Services\\ServiceRequestService',
             ),
              'constUses' => 
             array (
@@ -39388,6 +40598,7 @@ return [
             array (
               'user' => 'App\\Domain\\Access\\Models\\User',
               'beneficiary' => 'App\\Domain\\Registry\\Models\\Beneficiary',
+              'servicerequestservice' => 'App\\Domain\\Registry\\Services\\ServiceRequestService',
             ),
              'constUses' => 
             array (
@@ -39446,6 +40657,7 @@ return [
             array (
               'user' => 'App\\Domain\\Access\\Models\\User',
               'beneficiary' => 'App\\Domain\\Registry\\Models\\Beneficiary',
+              'servicerequestservice' => 'App\\Domain\\Registry\\Services\\ServiceRequestService',
             ),
              'constUses' => 
             array (
@@ -39952,23 +41164,24 @@ return [
       ),
     )),
   ),
-  '/var/www/html/app/Domain/Registry/Policies/ServeRequestPolicy.php' => 
+  '/var/www/html/app/Domain/Registry/Policies/OwnerMdaPolicy.php' => 
   array (
     0 => 
     \PHPStan\Dependency\ExportedNode\ExportedClassNode::__set_state(array(
-       'name' => 'App\\Domain\\Registry\\Policies\\ServeRequestPolicy',
+       'name' => 'App\\Domain\\Registry\\Policies\\OwnerMdaPolicy',
        'phpDoc' => 
       \PHPStan\Dependency\ExportedNode\ExportedPhpDocNode::__set_state(array(
          'phpDocString' => '/**
- * Authorization for request-to-serve (PRD FR-DUP-05). Either party (requesting or
- * owner MDA) may read a request; only the OWNER MDA may accept/decline it (using
- * the same approval permission as ownership transfers).
+ * Authorization for the Service Request seam (PRD §12, FR-OWN-06). Either party
+ * (requesting or owner MDA) may READ a request; only the OWNER MDA may
+ * accept/decline it — the decision belongs to the MDA that owns the beneficiary.
+ * Ownership is never changed by any of these actions.
  */',
          'namespace' => 'App\\Domain\\Registry\\Policies',
          'uses' => 
         array (
           'user' => 'App\\Domain\\Access\\Models\\User',
-          'serverequest' => 'App\\Domain\\Registry\\Models\\ServeRequest',
+          'servicerequest' => 'App\\Domain\\Registry\\Models\\ServiceRequest',
         ),
          'constUses' => 
         array (
@@ -39991,58 +41204,14 @@ return [
         0 => 
         \PHPStan\Dependency\ExportedNode\ExportedMethodNode::__set_state(array(
            'name' => 'view',
-           'phpDoc' => NULL,
-           'byRef' => false,
-           'public' => true,
-           'private' => false,
-           'abstract' => false,
-           'final' => false,
-           'static' => false,
-           'returnType' => 'bool',
-           'parameters' => 
-          array (
-            0 => 
-            \PHPStan\Dependency\ExportedNode\ExportedParameterNode::__set_state(array(
-               'name' => 'user',
-               'type' => 'App\\Domain\\Access\\Models\\User',
-               'byRef' => false,
-               'variadic' => false,
-               'hasDefault' => false,
-               'attributes' => 
-              array (
-              ),
-               'phpDoc' => NULL,
-               'flags' => 0,
-            )),
-            1 => 
-            \PHPStan\Dependency\ExportedNode\ExportedParameterNode::__set_state(array(
-               'name' => 'request',
-               'type' => 'App\\Domain\\Registry\\Models\\ServeRequest',
-               'byRef' => false,
-               'variadic' => false,
-               'hasDefault' => false,
-               'attributes' => 
-              array (
-              ),
-               'phpDoc' => NULL,
-               'flags' => 0,
-            )),
-          ),
-           'attributes' => 
-          array (
-          ),
-        )),
-        1 => 
-        \PHPStan\Dependency\ExportedNode\ExportedMethodNode::__set_state(array(
-           'name' => 'decide',
            'phpDoc' => 
           \PHPStan\Dependency\ExportedNode\ExportedPhpDocNode::__set_state(array(
-             'phpDocString' => '/** Accept/decline — owner MDA only. */',
+             'phpDocString' => '/** Read: the requesting MDA, the owner MDA, or an oversight (all-MDA) role. */',
              'namespace' => 'App\\Domain\\Registry\\Policies',
              'uses' => 
             array (
               'user' => 'App\\Domain\\Access\\Models\\User',
-              'serverequest' => 'App\\Domain\\Registry\\Models\\ServeRequest',
+              'servicerequest' => 'App\\Domain\\Registry\\Models\\ServiceRequest',
             ),
              'constUses' => 
             array (
@@ -40073,7 +41242,63 @@ return [
             1 => 
             \PHPStan\Dependency\ExportedNode\ExportedParameterNode::__set_state(array(
                'name' => 'request',
-               'type' => 'App\\Domain\\Registry\\Models\\ServeRequest',
+               'type' => 'App\\Domain\\Registry\\Models\\ServiceRequest',
+               'byRef' => false,
+               'variadic' => false,
+               'hasDefault' => false,
+               'attributes' => 
+              array (
+              ),
+               'phpDoc' => NULL,
+               'flags' => 0,
+            )),
+          ),
+           'attributes' => 
+          array (
+          ),
+        )),
+        1 => 
+        \PHPStan\Dependency\ExportedNode\ExportedMethodNode::__set_state(array(
+           'name' => 'decide',
+           'phpDoc' => 
+          \PHPStan\Dependency\ExportedNode\ExportedPhpDocNode::__set_state(array(
+             'phpDocString' => '/** Accept/decline — the owner MDA only (with the approval permission). */',
+             'namespace' => 'App\\Domain\\Registry\\Policies',
+             'uses' => 
+            array (
+              'user' => 'App\\Domain\\Access\\Models\\User',
+              'servicerequest' => 'App\\Domain\\Registry\\Models\\ServiceRequest',
+            ),
+             'constUses' => 
+            array (
+            ),
+          )),
+           'byRef' => false,
+           'public' => true,
+           'private' => false,
+           'abstract' => false,
+           'final' => false,
+           'static' => false,
+           'returnType' => 'bool',
+           'parameters' => 
+          array (
+            0 => 
+            \PHPStan\Dependency\ExportedNode\ExportedParameterNode::__set_state(array(
+               'name' => 'user',
+               'type' => 'App\\Domain\\Access\\Models\\User',
+               'byRef' => false,
+               'variadic' => false,
+               'hasDefault' => false,
+               'attributes' => 
+              array (
+              ),
+               'phpDoc' => NULL,
+               'flags' => 0,
+            )),
+            1 => 
+            \PHPStan\Dependency\ExportedNode\ExportedParameterNode::__set_state(array(
+               'name' => 'request',
+               'type' => 'App\\Domain\\Registry\\Models\\ServiceRequest',
                'byRef' => false,
                'variadic' => false,
                'hasDefault' => false,
@@ -40123,12 +41348,12 @@ return [
           'beneficiarydocument' => 'App\\Domain\\Registry\\Models\\BeneficiaryDocument',
           'household' => 'App\\Domain\\Registry\\Models\\Household',
           'importbatch' => 'App\\Domain\\Registry\\Models\\ImportBatch',
-          'serverequest' => 'App\\Domain\\Registry\\Models\\ServeRequest',
+          'servicerequest' => 'App\\Domain\\Registry\\Models\\ServiceRequest',
           'beneficiarydocumentpolicy' => 'App\\Domain\\Registry\\Policies\\BeneficiaryDocumentPolicy',
           'beneficiarypolicy' => 'App\\Domain\\Registry\\Policies\\BeneficiaryPolicy',
           'householdpolicy' => 'App\\Domain\\Registry\\Policies\\HouseholdPolicy',
           'importbatchpolicy' => 'App\\Domain\\Registry\\Policies\\ImportBatchPolicy',
-          'serverequestpolicy' => 'App\\Domain\\Registry\\Policies\\ServeRequestPolicy',
+          'ownermdapolicy' => 'App\\Domain\\Registry\\Policies\\OwnerMdaPolicy',
           'nullduplicatechecker' => 'App\\Domain\\Registry\\Services\\NullDuplicateChecker',
           'gate' => 'Illuminate\\Support\\Facades\\Gate',
           'serviceprovider' => 'Illuminate\\Support\\ServiceProvider',
@@ -40205,15 +41430,16 @@ return [
  * is checked against BOTH the existing registry (index-backed blocking) and the
  * earlier rows in the same batch (in-memory, also blocked so it stays bounded).
  *
- * Stateful and single-use per batch: as each row is screened it is remembered so
- * later rows can match it. Read-only — it annotates, it never creates or blocks.
+ * The ordered cascade (§9) decides the outcome: exact NIN → exact BVN → fuzzy,
+ * stopping at the first exact stage — so an exact-identifier match is reported
+ * alone, never alongside fuzzy noise. Stateful and single-use per batch: as each
+ * row is screened it is remembered so later rows can match it. Read-only.
  */',
          'namespace' => 'App\\Domain\\Registry\\Services',
          'uses' => 
         array (
-          'matchingengine' => 'App\\Domain\\Matching\\Engine\\MatchingEngine',
+          'duplicatecascade' => 'App\\Domain\\Matching\\Engine\\DuplicateCascade',
           'matchresult' => 'App\\Domain\\Matching\\Engine\\MatchResult',
-          'matchband' => 'App\\Domain\\Matching\\Enums\\MatchBand',
           'matchingconfig' => 'App\\Domain\\Matching\\Models\\MatchingConfig',
           'fieldnormalizer' => 'App\\Domain\\Matching\\Scoring\\FieldNormalizer',
           'beneficiary' => 'App\\Domain\\Registry\\Models\\Beneficiary',
@@ -40251,8 +41477,8 @@ return [
           array (
             0 => 
             \PHPStan\Dependency\ExportedNode\ExportedParameterNode::__set_state(array(
-               'name' => 'registryFinder',
-               'type' => 'App\\Domain\\Registry\\Services\\FuzzyDuplicateFinder',
+               'name' => 'gatherer',
+               'type' => 'App\\Domain\\Registry\\Services\\CandidateGatherer',
                'byRef' => false,
                'variadic' => false,
                'hasDefault' => false,
@@ -40264,8 +41490,8 @@ return [
             )),
             1 => 
             \PHPStan\Dependency\ExportedNode\ExportedParameterNode::__set_state(array(
-               'name' => 'engine',
-               'type' => 'App\\Domain\\Matching\\Engine\\MatchingEngine',
+               'name' => 'cascade',
+               'type' => 'App\\Domain\\Matching\\Engine\\DuplicateCascade',
                'byRef' => false,
                'variadic' => false,
                'hasDefault' => false,
@@ -40307,9 +41533,8 @@ return [
              'namespace' => 'App\\Domain\\Registry\\Services',
              'uses' => 
             array (
-              'matchingengine' => 'App\\Domain\\Matching\\Engine\\MatchingEngine',
+              'duplicatecascade' => 'App\\Domain\\Matching\\Engine\\DuplicateCascade',
               'matchresult' => 'App\\Domain\\Matching\\Engine\\MatchResult',
-              'matchband' => 'App\\Domain\\Matching\\Enums\\MatchBand',
               'matchingconfig' => 'App\\Domain\\Matching\\Models\\MatchingConfig',
               'fieldnormalizer' => 'App\\Domain\\Matching\\Scoring\\FieldNormalizer',
               'beneficiary' => 'App\\Domain\\Registry\\Models\\Beneficiary',
@@ -42447,27 +43672,38 @@ return [
       ),
     )),
   ),
-  '/var/www/html/app/Domain/Registry/Services/ServeRequestService.php' => 
+  '/var/www/html/app/Domain/Registry/Services/ServiceRequestService.php' => 
   array (
     0 => 
     \PHPStan\Dependency\ExportedNode\ExportedClassNode::__set_state(array(
-       'name' => 'App\\Domain\\Registry\\Services\\ServeRequestService',
+       'name' => 'App\\Domain\\Registry\\Services\\ServiceRequestService',
        'phpDoc' => 
       \PHPStan\Dependency\ExportedNode\ExportedPhpDocNode::__set_state(array(
          'phpDocString' => '/**
- * Request-to-serve workflow (PRD FR-DUP-05). A requesting MDA asks the owner MDA
- * to serve an existing beneficiary; the owner accepts or declines. Ownership is
- * NEVER changed — this only grants serve access on acceptance. Every step is
- * audited (request/decision via Auditable + explicit decision entries).
+ * Service Request workflow (PRD §12, FR-OWN-06/07). A requesting MDA asks the
+ * owner MDA to serve an existing beneficiary; the owner accepts or declines.
+ * State machine: pending → accepted | declined.
+ *
+ * - Ownership (`beneficiaries.owner_mda_id`) is NEVER changed.
+ * - On ACCEPT an explicit read-access grant opens (FR-OWN-07) — READ-only access
+ *   to the full record for the requesting MDA — and `beneficiary.access_granted`
+ *   is audited. Interventions may be recorded only after acceptance.
+ * - On DECLINE a reason is required; no grant opens.
+ * - Every request/decision is audited (service_request.created via Auditable;
+ *   service_request.accepted/declined explicitly).
+ *
+ * This is distinct from the Referral flow — it does not touch or reuse it.
  */',
          'namespace' => 'App\\Domain\\Registry\\Services',
          'uses' => 
         array (
           'user' => 'App\\Domain\\Access\\Models\\User',
+          'mdascope' => 'App\\Domain\\Access\\Scopes\\MdaScope',
           'auditlogger' => 'App\\Domain\\Audit\\Services\\AuditLogger',
-          'serverequeststatus' => 'App\\Domain\\Registry\\Enums\\ServeRequestStatus',
+          'servicerequeststatus' => 'App\\Domain\\Registry\\Enums\\ServiceRequestStatus',
           'beneficiary' => 'App\\Domain\\Registry\\Models\\Beneficiary',
-          'serverequest' => 'App\\Domain\\Registry\\Models\\ServeRequest',
+          'beneficiaryservicegrant' => 'App\\Domain\\Registry\\Models\\BeneficiaryServiceGrant',
+          'servicerequest' => 'App\\Domain\\Registry\\Models\\ServiceRequest',
           'domainexception' => 'DomainException',
           'carbon' => 'Illuminate\\Support\\Carbon',
         ),
@@ -42526,18 +43762,20 @@ return [
            'phpDoc' => 
           \PHPStan\Dependency\ExportedNode\ExportedPhpDocNode::__set_state(array(
              'phpDocString' => '/**
-     * Raise a serve request against a beneficiary owned by another MDA. Idempotent
-     * on the pending state: a second request for the same (beneficiary, MDA)
-     * returns the existing pending one.
+     * Raise a request against a beneficiary owned by another MDA. Idempotent on the
+     * pending state: a second request for the same (beneficiary, MDA) returns the
+     * existing pending one.
      */',
              'namespace' => 'App\\Domain\\Registry\\Services',
              'uses' => 
             array (
               'user' => 'App\\Domain\\Access\\Models\\User',
+              'mdascope' => 'App\\Domain\\Access\\Scopes\\MdaScope',
               'auditlogger' => 'App\\Domain\\Audit\\Services\\AuditLogger',
-              'serverequeststatus' => 'App\\Domain\\Registry\\Enums\\ServeRequestStatus',
+              'servicerequeststatus' => 'App\\Domain\\Registry\\Enums\\ServiceRequestStatus',
               'beneficiary' => 'App\\Domain\\Registry\\Models\\Beneficiary',
-              'serverequest' => 'App\\Domain\\Registry\\Models\\ServeRequest',
+              'beneficiaryservicegrant' => 'App\\Domain\\Registry\\Models\\BeneficiaryServiceGrant',
+              'servicerequest' => 'App\\Domain\\Registry\\Models\\ServiceRequest',
               'domainexception' => 'DomainException',
               'carbon' => 'Illuminate\\Support\\Carbon',
             ),
@@ -42551,7 +43789,7 @@ return [
            'abstract' => false,
            'final' => false,
            'static' => false,
-           'returnType' => 'App\\Domain\\Registry\\Models\\ServeRequest',
+           'returnType' => 'App\\Domain\\Registry\\Models\\ServiceRequest',
            'parameters' => 
           array (
             0 => 
@@ -42629,15 +43867,20 @@ return [
            'name' => 'accept',
            'phpDoc' => 
           \PHPStan\Dependency\ExportedNode\ExportedPhpDocNode::__set_state(array(
-             'phpDocString' => '/** Owner accepts — the requesting MDA gains serve access. Ownership unchanged. */',
+             'phpDocString' => '/**
+     * Owner accepts — opens a read-access grant for the requester and records it.
+     * Ownership is unchanged.
+     */',
              'namespace' => 'App\\Domain\\Registry\\Services',
              'uses' => 
             array (
               'user' => 'App\\Domain\\Access\\Models\\User',
+              'mdascope' => 'App\\Domain\\Access\\Scopes\\MdaScope',
               'auditlogger' => 'App\\Domain\\Audit\\Services\\AuditLogger',
-              'serverequeststatus' => 'App\\Domain\\Registry\\Enums\\ServeRequestStatus',
+              'servicerequeststatus' => 'App\\Domain\\Registry\\Enums\\ServiceRequestStatus',
               'beneficiary' => 'App\\Domain\\Registry\\Models\\Beneficiary',
-              'serverequest' => 'App\\Domain\\Registry\\Models\\ServeRequest',
+              'beneficiaryservicegrant' => 'App\\Domain\\Registry\\Models\\BeneficiaryServiceGrant',
+              'servicerequest' => 'App\\Domain\\Registry\\Models\\ServiceRequest',
               'domainexception' => 'DomainException',
               'carbon' => 'Illuminate\\Support\\Carbon',
             ),
@@ -42651,13 +43894,13 @@ return [
            'abstract' => false,
            'final' => false,
            'static' => false,
-           'returnType' => 'App\\Domain\\Registry\\Models\\ServeRequest',
+           'returnType' => 'App\\Domain\\Registry\\Models\\ServiceRequest',
            'parameters' => 
           array (
             0 => 
             \PHPStan\Dependency\ExportedNode\ExportedParameterNode::__set_state(array(
                'name' => 'request',
-               'type' => 'App\\Domain\\Registry\\Models\\ServeRequest',
+               'type' => 'App\\Domain\\Registry\\Models\\ServiceRequest',
                'byRef' => false,
                'variadic' => false,
                'hasDefault' => false,
@@ -42701,20 +43944,39 @@ return [
         3 => 
         \PHPStan\Dependency\ExportedNode\ExportedMethodNode::__set_state(array(
            'name' => 'decline',
-           'phpDoc' => NULL,
+           'phpDoc' => 
+          \PHPStan\Dependency\ExportedNode\ExportedPhpDocNode::__set_state(array(
+             'phpDocString' => '/** Owner declines — a reason is required. No grant opens. */',
+             'namespace' => 'App\\Domain\\Registry\\Services',
+             'uses' => 
+            array (
+              'user' => 'App\\Domain\\Access\\Models\\User',
+              'mdascope' => 'App\\Domain\\Access\\Scopes\\MdaScope',
+              'auditlogger' => 'App\\Domain\\Audit\\Services\\AuditLogger',
+              'servicerequeststatus' => 'App\\Domain\\Registry\\Enums\\ServiceRequestStatus',
+              'beneficiary' => 'App\\Domain\\Registry\\Models\\Beneficiary',
+              'beneficiaryservicegrant' => 'App\\Domain\\Registry\\Models\\BeneficiaryServiceGrant',
+              'servicerequest' => 'App\\Domain\\Registry\\Models\\ServiceRequest',
+              'domainexception' => 'DomainException',
+              'carbon' => 'Illuminate\\Support\\Carbon',
+            ),
+             'constUses' => 
+            array (
+            ),
+          )),
            'byRef' => false,
            'public' => true,
            'private' => false,
            'abstract' => false,
            'final' => false,
            'static' => false,
-           'returnType' => 'App\\Domain\\Registry\\Models\\ServeRequest',
+           'returnType' => 'App\\Domain\\Registry\\Models\\ServiceRequest',
            'parameters' => 
           array (
             0 => 
             \PHPStan\Dependency\ExportedNode\ExportedParameterNode::__set_state(array(
                'name' => 'request',
-               'type' => 'App\\Domain\\Registry\\Models\\ServeRequest',
+               'type' => 'App\\Domain\\Registry\\Models\\ServiceRequest',
                'byRef' => false,
                'variadic' => false,
                'hasDefault' => false,
@@ -42740,10 +44002,73 @@ return [
             2 => 
             \PHPStan\Dependency\ExportedNode\ExportedParameterNode::__set_state(array(
                'name' => 'reason',
-               'type' => '?string',
+               'type' => 'string',
                'byRef' => false,
                'variadic' => false,
-               'hasDefault' => true,
+               'hasDefault' => false,
+               'attributes' => 
+              array (
+              ),
+               'phpDoc' => NULL,
+               'flags' => 0,
+            )),
+          ),
+           'attributes' => 
+          array (
+          ),
+        )),
+        4 => 
+        \PHPStan\Dependency\ExportedNode\ExportedMethodNode::__set_state(array(
+           'name' => 'hasActiveGrant',
+           'phpDoc' => 
+          \PHPStan\Dependency\ExportedNode\ExportedPhpDocNode::__set_state(array(
+             'phpDocString' => '/** Whether the given MDA currently holds an active read/serve grant. */',
+             'namespace' => 'App\\Domain\\Registry\\Services',
+             'uses' => 
+            array (
+              'user' => 'App\\Domain\\Access\\Models\\User',
+              'mdascope' => 'App\\Domain\\Access\\Scopes\\MdaScope',
+              'auditlogger' => 'App\\Domain\\Audit\\Services\\AuditLogger',
+              'servicerequeststatus' => 'App\\Domain\\Registry\\Enums\\ServiceRequestStatus',
+              'beneficiary' => 'App\\Domain\\Registry\\Models\\Beneficiary',
+              'beneficiaryservicegrant' => 'App\\Domain\\Registry\\Models\\BeneficiaryServiceGrant',
+              'servicerequest' => 'App\\Domain\\Registry\\Models\\ServiceRequest',
+              'domainexception' => 'DomainException',
+              'carbon' => 'Illuminate\\Support\\Carbon',
+            ),
+             'constUses' => 
+            array (
+            ),
+          )),
+           'byRef' => false,
+           'public' => true,
+           'private' => false,
+           'abstract' => false,
+           'final' => false,
+           'static' => true,
+           'returnType' => 'bool',
+           'parameters' => 
+          array (
+            0 => 
+            \PHPStan\Dependency\ExportedNode\ExportedParameterNode::__set_state(array(
+               'name' => 'beneficiaryId',
+               'type' => 'string',
+               'byRef' => false,
+               'variadic' => false,
+               'hasDefault' => false,
+               'attributes' => 
+              array (
+              ),
+               'phpDoc' => NULL,
+               'flags' => 0,
+            )),
+            1 => 
+            \PHPStan\Dependency\ExportedNode\ExportedParameterNode::__set_state(array(
+               'name' => 'mdaId',
+               'type' => 'string',
+               'byRef' => false,
+               'variadic' => false,
+               'hasDefault' => false,
                'attributes' => 
               array (
               ),
@@ -46667,6 +47992,7 @@ return [
           'beneficiary' => 'App\\Domain\\Registry\\Models\\Beneficiary',
           'beneficiarylookupservice' => 'App\\Domain\\Registry\\Services\\BeneficiaryLookupService',
           'fuzzyduplicatefinder' => 'App\\Domain\\Registry\\Services\\FuzzyDuplicateFinder',
+          'servicerequestservice' => 'App\\Domain\\Registry\\Services\\ServiceRequestService',
           'controller' => 'App\\Http\\Controllers\\Controller',
           'beneficiarylookuprequest' => 'App\\Http\\Requests\\Registry\\BeneficiaryLookupRequest',
           'beneficiarymatchsearchrequest' => 'App\\Http\\Requests\\Registry\\BeneficiaryMatchSearchRequest',
@@ -46716,6 +48042,7 @@ return [
               'beneficiary' => 'App\\Domain\\Registry\\Models\\Beneficiary',
               'beneficiarylookupservice' => 'App\\Domain\\Registry\\Services\\BeneficiaryLookupService',
               'fuzzyduplicatefinder' => 'App\\Domain\\Registry\\Services\\FuzzyDuplicateFinder',
+              'servicerequestservice' => 'App\\Domain\\Registry\\Services\\ServiceRequestService',
               'controller' => 'App\\Http\\Controllers\\Controller',
               'beneficiarylookuprequest' => 'App\\Http\\Requests\\Registry\\BeneficiaryLookupRequest',
               'beneficiarymatchsearchrequest' => 'App\\Http\\Requests\\Registry\\BeneficiaryMatchSearchRequest',
@@ -46763,7 +48090,12 @@ return [
            'name' => 'show',
            'phpDoc' => 
           \PHPStan\Dependency\ExportedNode\ExportedPhpDocNode::__set_state(array(
-             'phpDocString' => '/** Show a single beneficiary. Out-of-scope records 404 via the global scope. */',
+             'phpDocString' => '/**
+     * Show a single beneficiary. Owner + oversight resolve via the global scope. A
+     * non-owner MDA holding an active read-access grant from an accepted Service
+     * Request (§12, FR-OWN-07) reads the FULL record (read-only). Any other
+     * out-of-scope record still 404s.
+     */',
              'namespace' => 'App\\Http\\Controllers\\Api\\V1\\Registry',
              'uses' => 
             array (
@@ -46774,6 +48106,7 @@ return [
               'beneficiary' => 'App\\Domain\\Registry\\Models\\Beneficiary',
               'beneficiarylookupservice' => 'App\\Domain\\Registry\\Services\\BeneficiaryLookupService',
               'fuzzyduplicatefinder' => 'App\\Domain\\Registry\\Services\\FuzzyDuplicateFinder',
+              'servicerequestservice' => 'App\\Domain\\Registry\\Services\\ServiceRequestService',
               'controller' => 'App\\Http\\Controllers\\Controller',
               'beneficiarylookuprequest' => 'App\\Http\\Requests\\Registry\\BeneficiaryLookupRequest',
               'beneficiarymatchsearchrequest' => 'App\\Http\\Requests\\Registry\\BeneficiaryMatchSearchRequest',
@@ -46799,6 +48132,19 @@ return [
            'parameters' => 
           array (
             0 => 
+            \PHPStan\Dependency\ExportedNode\ExportedParameterNode::__set_state(array(
+               'name' => 'request',
+               'type' => 'Illuminate\\Http\\Request',
+               'byRef' => false,
+               'variadic' => false,
+               'hasDefault' => false,
+               'attributes' => 
+              array (
+              ),
+               'phpDoc' => NULL,
+               'flags' => 0,
+            )),
+            1 => 
             \PHPStan\Dependency\ExportedNode\ExportedParameterNode::__set_state(array(
                'name' => 'beneficiary',
                'type' => 'string',
@@ -46836,6 +48182,7 @@ return [
               'beneficiary' => 'App\\Domain\\Registry\\Models\\Beneficiary',
               'beneficiarylookupservice' => 'App\\Domain\\Registry\\Services\\BeneficiaryLookupService',
               'fuzzyduplicatefinder' => 'App\\Domain\\Registry\\Services\\FuzzyDuplicateFinder',
+              'servicerequestservice' => 'App\\Domain\\Registry\\Services\\ServiceRequestService',
               'controller' => 'App\\Http\\Controllers\\Controller',
               'beneficiarylookuprequest' => 'App\\Http\\Requests\\Registry\\BeneficiaryLookupRequest',
               'beneficiarymatchsearchrequest' => 'App\\Http\\Requests\\Registry\\BeneficiaryMatchSearchRequest',
@@ -46907,6 +48254,7 @@ return [
               'beneficiary' => 'App\\Domain\\Registry\\Models\\Beneficiary',
               'beneficiarylookupservice' => 'App\\Domain\\Registry\\Services\\BeneficiaryLookupService',
               'fuzzyduplicatefinder' => 'App\\Domain\\Registry\\Services\\FuzzyDuplicateFinder',
+              'servicerequestservice' => 'App\\Domain\\Registry\\Services\\ServiceRequestService',
               'controller' => 'App\\Http\\Controllers\\Controller',
               'beneficiarylookuprequest' => 'App\\Http\\Requests\\Registry\\BeneficiaryLookupRequest',
               'beneficiarymatchsearchrequest' => 'App\\Http\\Requests\\Registry\\BeneficiaryMatchSearchRequest',
@@ -46968,6 +48316,7 @@ return [
               'beneficiary' => 'App\\Domain\\Registry\\Models\\Beneficiary',
               'beneficiarylookupservice' => 'App\\Domain\\Registry\\Services\\BeneficiaryLookupService',
               'fuzzyduplicatefinder' => 'App\\Domain\\Registry\\Services\\FuzzyDuplicateFinder',
+              'servicerequestservice' => 'App\\Domain\\Registry\\Services\\ServiceRequestService',
               'controller' => 'App\\Http\\Controllers\\Controller',
               'beneficiarylookuprequest' => 'App\\Http\\Requests\\Registry\\BeneficiaryLookupRequest',
               'beneficiarymatchsearchrequest' => 'App\\Http\\Requests\\Registry\\BeneficiaryMatchSearchRequest',
@@ -47032,7 +48381,7 @@ return [
      * Fuzzy "serve many" search (FR-DUP-04): runs the SAME engine as import
      * screening against partial identity details and returns ranked candidates
      * (exact + probable) as reveal-only projections, across all MDAs. From a
-     * result the caller can raise a request-to-serve (see ServeRequestController).
+     * result the caller can raise a Service Request (see ServiceRequestController).
      * Read-only and audited (identifiers used + hit count, never their values).
      */',
              'namespace' => 'App\\Http\\Controllers\\Api\\V1\\Registry',
@@ -47045,6 +48394,7 @@ return [
               'beneficiary' => 'App\\Domain\\Registry\\Models\\Beneficiary',
               'beneficiarylookupservice' => 'App\\Domain\\Registry\\Services\\BeneficiaryLookupService',
               'fuzzyduplicatefinder' => 'App\\Domain\\Registry\\Services\\FuzzyDuplicateFinder',
+              'servicerequestservice' => 'App\\Domain\\Registry\\Services\\ServiceRequestService',
               'controller' => 'App\\Http\\Controllers\\Controller',
               'beneficiarylookuprequest' => 'App\\Http\\Requests\\Registry\\BeneficiaryLookupRequest',
               'beneficiarymatchsearchrequest' => 'App\\Http\\Requests\\Registry\\BeneficiaryMatchSearchRequest',
@@ -49054,32 +50404,38 @@ return [
       ),
     )),
   ),
-  '/var/www/html/app/Http/Controllers/Api/V1/Registry/ServeRequestController.php' => 
+  '/var/www/html/app/Http/Controllers/Api/V1/Registry/ServiceRequestController.php' => 
   array (
     0 => 
     \PHPStan\Dependency\ExportedNode\ExportedClassNode::__set_state(array(
-       'name' => 'App\\Http\\Controllers\\Api\\V1\\Registry\\ServeRequestController',
+       'name' => 'App\\Http\\Controllers\\Api\\V1\\Registry\\ServiceRequestController',
        'phpDoc' => 
       \PHPStan\Dependency\ExportedNode\ExportedPhpDocNode::__set_state(array(
          'phpDocString' => '/**
- * Request-to-serve endpoints (PRD FR-DUP-05). Requests are raised during import
- * resolution; here either party lists them and the OWNER MDA accepts/declines.
- * Accepting grants serve access — it never changes ownership.
+ * Service Request endpoints (PRD §12, FR-OWN-06/07). A non-owner MDA raises a
+ * request; the OWNER MDA accepts (opening a read-access grant) or declines (with a
+ * reason). Ownership never changes; this does not touch the Referral flow.
+ *
+ * - POST /service-requests            raise (requester)
+ * - POST /service-requests/{id}/accept   owner accepts → read-access grant opens
+ * - POST /service-requests/{id}/decline  owner declines (reason required)
+ * - GET  /service-requests/inbox      requests routed to my MDA (to decide)
+ * - GET  /service-requests/outbox     requests my MDA raised
  */',
          'namespace' => 'App\\Http\\Controllers\\Api\\V1\\Registry',
          'uses' => 
         array (
           'mdascope' => 'App\\Domain\\Access\\Scopes\\MdaScope',
           'beneficiary' => 'App\\Domain\\Registry\\Models\\Beneficiary',
-          'serverequest' => 'App\\Domain\\Registry\\Models\\ServeRequest',
-          'serverequestservice' => 'App\\Domain\\Registry\\Services\\ServeRequestService',
+          'servicerequest' => 'App\\Domain\\Registry\\Models\\ServiceRequest',
+          'servicerequestservice' => 'App\\Domain\\Registry\\Services\\ServiceRequestService',
           'controller' => 'App\\Http\\Controllers\\Controller',
-          'decideserverequestrequest' => 'App\\Http\\Requests\\Registry\\DecideServeRequestRequest',
-          'raiseserverequestrequest' => 'App\\Http\\Requests\\Registry\\RaiseServeRequestRequest',
-          'serverequestresource' => 'App\\Http\\Resources\\ServeRequestResource',
+          'acceptservicerequestrequest' => 'App\\Http\\Requests\\Registry\\AcceptServiceRequestRequest',
+          'declineservicerequestrequest' => 'App\\Http\\Requests\\Registry\\DeclineServiceRequestRequest',
+          'storeservicerequestrequest' => 'App\\Http\\Requests\\Registry\\StoreServiceRequestRequest',
+          'servicerequestresource' => 'App\\Http\\Resources\\ServiceRequestResource',
           'apiresponse' => 'App\\Support\\ApiResponse',
           'domainexception' => 'DomainException',
-          'builder' => 'Illuminate\\Database\\Eloquent\\Builder',
           'jsonresponse' => 'Illuminate\\Http\\JsonResponse',
           'request' => 'Illuminate\\Http\\Request',
         ),
@@ -49116,8 +50472,8 @@ return [
           array (
             0 => 
             \PHPStan\Dependency\ExportedNode\ExportedParameterNode::__set_state(array(
-               'name' => 'serveRequests',
-               'type' => 'App\\Domain\\Registry\\Services\\ServeRequestService',
+               'name' => 'serviceRequests',
+               'type' => 'App\\Domain\\Registry\\Services\\ServiceRequestService',
                'byRef' => false,
                'variadic' => false,
                'hasDefault' => false,
@@ -49134,24 +50490,24 @@ return [
         )),
         1 => 
         \PHPStan\Dependency\ExportedNode\ExportedMethodNode::__set_state(array(
-           'name' => 'index',
+           'name' => 'inbox',
            'phpDoc' => 
           \PHPStan\Dependency\ExportedNode\ExportedPhpDocNode::__set_state(array(
-             'phpDocString' => '/** Serve requests involving the caller\'s MDA (as requester or owner). */',
+             'phpDocString' => '/** Requests routed TO the caller\'s MDA (owner) — awaiting/decided by us. */',
              'namespace' => 'App\\Http\\Controllers\\Api\\V1\\Registry',
              'uses' => 
             array (
               'mdascope' => 'App\\Domain\\Access\\Scopes\\MdaScope',
               'beneficiary' => 'App\\Domain\\Registry\\Models\\Beneficiary',
-              'serverequest' => 'App\\Domain\\Registry\\Models\\ServeRequest',
-              'serverequestservice' => 'App\\Domain\\Registry\\Services\\ServeRequestService',
+              'servicerequest' => 'App\\Domain\\Registry\\Models\\ServiceRequest',
+              'servicerequestservice' => 'App\\Domain\\Registry\\Services\\ServiceRequestService',
               'controller' => 'App\\Http\\Controllers\\Controller',
-              'decideserverequestrequest' => 'App\\Http\\Requests\\Registry\\DecideServeRequestRequest',
-              'raiseserverequestrequest' => 'App\\Http\\Requests\\Registry\\RaiseServeRequestRequest',
-              'serverequestresource' => 'App\\Http\\Resources\\ServeRequestResource',
+              'acceptservicerequestrequest' => 'App\\Http\\Requests\\Registry\\AcceptServiceRequestRequest',
+              'declineservicerequestrequest' => 'App\\Http\\Requests\\Registry\\DeclineServiceRequestRequest',
+              'storeservicerequestrequest' => 'App\\Http\\Requests\\Registry\\StoreServiceRequestRequest',
+              'servicerequestresource' => 'App\\Http\\Resources\\ServiceRequestResource',
               'apiresponse' => 'App\\Support\\ApiResponse',
               'domainexception' => 'DomainException',
-              'builder' => 'Illuminate\\Database\\Eloquent\\Builder',
               'jsonresponse' => 'Illuminate\\Http\\JsonResponse',
               'request' => 'Illuminate\\Http\\Request',
             ),
@@ -49188,28 +50544,24 @@ return [
         )),
         2 => 
         \PHPStan\Dependency\ExportedNode\ExportedMethodNode::__set_state(array(
-           'name' => 'store',
+           'name' => 'outbox',
            'phpDoc' => 
           \PHPStan\Dependency\ExportedNode\ExportedPhpDocNode::__set_state(array(
-             'phpDocString' => '/**
-     * Raise a request-to-serve on a beneficiary owned by another MDA (FR-DUP-05,
-     * FR-OWN-03), typically from a serve search result. Reuses the exact 3.5 flow
-     * and auditing; ownership is never changed. Idempotent on the pending state.
-     */',
+             'phpDocString' => '/** Requests raised BY the caller\'s MDA (requester). */',
              'namespace' => 'App\\Http\\Controllers\\Api\\V1\\Registry',
              'uses' => 
             array (
               'mdascope' => 'App\\Domain\\Access\\Scopes\\MdaScope',
               'beneficiary' => 'App\\Domain\\Registry\\Models\\Beneficiary',
-              'serverequest' => 'App\\Domain\\Registry\\Models\\ServeRequest',
-              'serverequestservice' => 'App\\Domain\\Registry\\Services\\ServeRequestService',
+              'servicerequest' => 'App\\Domain\\Registry\\Models\\ServiceRequest',
+              'servicerequestservice' => 'App\\Domain\\Registry\\Services\\ServiceRequestService',
               'controller' => 'App\\Http\\Controllers\\Controller',
-              'decideserverequestrequest' => 'App\\Http\\Requests\\Registry\\DecideServeRequestRequest',
-              'raiseserverequestrequest' => 'App\\Http\\Requests\\Registry\\RaiseServeRequestRequest',
-              'serverequestresource' => 'App\\Http\\Resources\\ServeRequestResource',
+              'acceptservicerequestrequest' => 'App\\Http\\Requests\\Registry\\AcceptServiceRequestRequest',
+              'declineservicerequestrequest' => 'App\\Http\\Requests\\Registry\\DeclineServiceRequestRequest',
+              'storeservicerequestrequest' => 'App\\Http\\Requests\\Registry\\StoreServiceRequestRequest',
+              'servicerequestresource' => 'App\\Http\\Resources\\ServiceRequestResource',
               'apiresponse' => 'App\\Support\\ApiResponse',
               'domainexception' => 'DomainException',
-              'builder' => 'Illuminate\\Database\\Eloquent\\Builder',
               'jsonresponse' => 'Illuminate\\Http\\JsonResponse',
               'request' => 'Illuminate\\Http\\Request',
             ),
@@ -49229,7 +50581,7 @@ return [
             0 => 
             \PHPStan\Dependency\ExportedNode\ExportedParameterNode::__set_state(array(
                'name' => 'request',
-               'type' => 'App\\Http\\Requests\\Registry\\RaiseServeRequestRequest',
+               'type' => 'Illuminate\\Http\\Request',
                'byRef' => false,
                'variadic' => false,
                'hasDefault' => false,
@@ -49246,8 +50598,35 @@ return [
         )),
         3 => 
         \PHPStan\Dependency\ExportedNode\ExportedMethodNode::__set_state(array(
-           'name' => 'accept',
-           'phpDoc' => NULL,
+           'name' => 'store',
+           'phpDoc' => 
+          \PHPStan\Dependency\ExportedNode\ExportedPhpDocNode::__set_state(array(
+             'phpDocString' => '/**
+     * Raise a Service Request on a beneficiary owned by another MDA (FR-OWN-06),
+     * typically from a serve-search result. Ownership is never changed. Idempotent
+     * on the pending state.
+     */',
+             'namespace' => 'App\\Http\\Controllers\\Api\\V1\\Registry',
+             'uses' => 
+            array (
+              'mdascope' => 'App\\Domain\\Access\\Scopes\\MdaScope',
+              'beneficiary' => 'App\\Domain\\Registry\\Models\\Beneficiary',
+              'servicerequest' => 'App\\Domain\\Registry\\Models\\ServiceRequest',
+              'servicerequestservice' => 'App\\Domain\\Registry\\Services\\ServiceRequestService',
+              'controller' => 'App\\Http\\Controllers\\Controller',
+              'acceptservicerequestrequest' => 'App\\Http\\Requests\\Registry\\AcceptServiceRequestRequest',
+              'declineservicerequestrequest' => 'App\\Http\\Requests\\Registry\\DeclineServiceRequestRequest',
+              'storeservicerequestrequest' => 'App\\Http\\Requests\\Registry\\StoreServiceRequestRequest',
+              'servicerequestresource' => 'App\\Http\\Resources\\ServiceRequestResource',
+              'apiresponse' => 'App\\Support\\ApiResponse',
+              'domainexception' => 'DomainException',
+              'jsonresponse' => 'Illuminate\\Http\\JsonResponse',
+              'request' => 'Illuminate\\Http\\Request',
+            ),
+             'constUses' => 
+            array (
+            ),
+          )),
            'byRef' => false,
            'public' => true,
            'private' => false,
@@ -49260,20 +50639,7 @@ return [
             0 => 
             \PHPStan\Dependency\ExportedNode\ExportedParameterNode::__set_state(array(
                'name' => 'request',
-               'type' => 'App\\Http\\Requests\\Registry\\DecideServeRequestRequest',
-               'byRef' => false,
-               'variadic' => false,
-               'hasDefault' => false,
-               'attributes' => 
-              array (
-              ),
-               'phpDoc' => NULL,
-               'flags' => 0,
-            )),
-            1 => 
-            \PHPStan\Dependency\ExportedNode\ExportedParameterNode::__set_state(array(
-               'name' => 'serveRequest',
-               'type' => 'string',
+               'type' => 'App\\Http\\Requests\\Registry\\StoreServiceRequestRequest',
                'byRef' => false,
                'variadic' => false,
                'hasDefault' => false,
@@ -49290,6 +50656,50 @@ return [
         )),
         4 => 
         \PHPStan\Dependency\ExportedNode\ExportedMethodNode::__set_state(array(
+           'name' => 'accept',
+           'phpDoc' => NULL,
+           'byRef' => false,
+           'public' => true,
+           'private' => false,
+           'abstract' => false,
+           'final' => false,
+           'static' => false,
+           'returnType' => 'Illuminate\\Http\\JsonResponse',
+           'parameters' => 
+          array (
+            0 => 
+            \PHPStan\Dependency\ExportedNode\ExportedParameterNode::__set_state(array(
+               'name' => 'request',
+               'type' => 'App\\Http\\Requests\\Registry\\AcceptServiceRequestRequest',
+               'byRef' => false,
+               'variadic' => false,
+               'hasDefault' => false,
+               'attributes' => 
+              array (
+              ),
+               'phpDoc' => NULL,
+               'flags' => 0,
+            )),
+            1 => 
+            \PHPStan\Dependency\ExportedNode\ExportedParameterNode::__set_state(array(
+               'name' => 'serviceRequest',
+               'type' => 'string',
+               'byRef' => false,
+               'variadic' => false,
+               'hasDefault' => false,
+               'attributes' => 
+              array (
+              ),
+               'phpDoc' => NULL,
+               'flags' => 0,
+            )),
+          ),
+           'attributes' => 
+          array (
+          ),
+        )),
+        5 => 
+        \PHPStan\Dependency\ExportedNode\ExportedMethodNode::__set_state(array(
            'name' => 'decline',
            'phpDoc' => NULL,
            'byRef' => false,
@@ -49304,7 +50714,7 @@ return [
             0 => 
             \PHPStan\Dependency\ExportedNode\ExportedParameterNode::__set_state(array(
                'name' => 'request',
-               'type' => 'App\\Http\\Requests\\Registry\\DecideServeRequestRequest',
+               'type' => 'App\\Http\\Requests\\Registry\\DeclineServiceRequestRequest',
                'byRef' => false,
                'variadic' => false,
                'hasDefault' => false,
@@ -49316,7 +50726,7 @@ return [
             )),
             1 => 
             \PHPStan\Dependency\ExportedNode\ExportedParameterNode::__set_state(array(
-               'name' => 'serveRequest',
+               'name' => 'serviceRequest',
                'type' => 'string',
                'byRef' => false,
                'variadic' => false,
@@ -51963,6 +53373,95 @@ return [
       ),
     )),
   ),
+  '/var/www/html/app/Http/Requests/Registry/AcceptServiceRequestRequest.php' => 
+  array (
+    0 => 
+    \PHPStan\Dependency\ExportedNode\ExportedClassNode::__set_state(array(
+       'name' => 'App\\Http\\Requests\\Registry\\AcceptServiceRequestRequest',
+       'phpDoc' => 
+      \PHPStan\Dependency\ExportedNode\ExportedPhpDocNode::__set_state(array(
+         'phpDocString' => '/**
+ * Owner MDA accepts a Service Request (PRD §12, FR-OWN-06). A note is optional on
+ * acceptance (a reason is only mandatory when declining).
+ */',
+         'namespace' => 'App\\Http\\Requests\\Registry',
+         'uses' => 
+        array (
+          'formrequest' => 'Illuminate\\Foundation\\Http\\FormRequest',
+        ),
+         'constUses' => 
+        array (
+        ),
+      )),
+       'abstract' => false,
+       'final' => false,
+       'extends' => 'Illuminate\\Foundation\\Http\\FormRequest',
+       'implements' => 
+      array (
+      ),
+       'usedTraits' => 
+      array (
+      ),
+       'traitUseAdaptations' => 
+      array (
+      ),
+       'statements' => 
+      array (
+        0 => 
+        \PHPStan\Dependency\ExportedNode\ExportedMethodNode::__set_state(array(
+           'name' => 'authorize',
+           'phpDoc' => NULL,
+           'byRef' => false,
+           'public' => true,
+           'private' => false,
+           'abstract' => false,
+           'final' => false,
+           'static' => false,
+           'returnType' => 'bool',
+           'parameters' => 
+          array (
+          ),
+           'attributes' => 
+          array (
+          ),
+        )),
+        1 => 
+        \PHPStan\Dependency\ExportedNode\ExportedMethodNode::__set_state(array(
+           'name' => 'rules',
+           'phpDoc' => 
+          \PHPStan\Dependency\ExportedNode\ExportedPhpDocNode::__set_state(array(
+             'phpDocString' => '/**
+     * @return array<string, mixed>
+     */',
+             'namespace' => 'App\\Http\\Requests\\Registry',
+             'uses' => 
+            array (
+              'formrequest' => 'Illuminate\\Foundation\\Http\\FormRequest',
+            ),
+             'constUses' => 
+            array (
+            ),
+          )),
+           'byRef' => false,
+           'public' => true,
+           'private' => false,
+           'abstract' => false,
+           'final' => false,
+           'static' => false,
+           'returnType' => 'array',
+           'parameters' => 
+          array (
+          ),
+           'attributes' => 
+          array (
+          ),
+        )),
+      ),
+       'attributes' => 
+      array (
+      ),
+    )),
+  ),
   '/var/www/html/app/Http/Requests/Registry/AddHouseholdMemberRequest.php' => 
   array (
     0 => 
@@ -52498,15 +53997,16 @@ return [
       ),
     )),
   ),
-  '/var/www/html/app/Http/Requests/Registry/DecideServeRequestRequest.php' => 
+  '/var/www/html/app/Http/Requests/Registry/DeclineServiceRequestRequest.php' => 
   array (
     0 => 
     \PHPStan\Dependency\ExportedNode\ExportedClassNode::__set_state(array(
-       'name' => 'App\\Http\\Requests\\Registry\\DecideServeRequestRequest',
+       'name' => 'App\\Http\\Requests\\Registry\\DeclineServiceRequestRequest',
        'phpDoc' => 
       \PHPStan\Dependency\ExportedNode\ExportedPhpDocNode::__set_state(array(
          'phpDocString' => '/**
- * Owner MDA accepts/declines a request-to-serve (PRD FR-DUP-05).
+ * Owner MDA declines a Service Request (PRD §12, FR-OWN-06). A reason is REQUIRED
+ * on decline so the requesting MDA understands the refusal (audited).
  */',
          'namespace' => 'App\\Http\\Requests\\Registry',
          'uses' => 
@@ -52767,96 +54267,6 @@ return [
       ),
     )),
   ),
-  '/var/www/html/app/Http/Requests/Registry/RaiseServeRequestRequest.php' => 
-  array (
-    0 => 
-    \PHPStan\Dependency\ExportedNode\ExportedClassNode::__set_state(array(
-       'name' => 'App\\Http\\Requests\\Registry\\RaiseServeRequestRequest',
-       'phpDoc' => 
-      \PHPStan\Dependency\ExportedNode\ExportedPhpDocNode::__set_state(array(
-         'phpDocString' => '/**
- * Raise a request-to-serve an existing (non-owned) beneficiary from a search
- * result (PRD FR-DUP-05, FR-OWN-03). The target is identified by id; ownership is
- * never transferred.
- */',
-         'namespace' => 'App\\Http\\Requests\\Registry',
-         'uses' => 
-        array (
-          'formrequest' => 'Illuminate\\Foundation\\Http\\FormRequest',
-        ),
-         'constUses' => 
-        array (
-        ),
-      )),
-       'abstract' => false,
-       'final' => false,
-       'extends' => 'Illuminate\\Foundation\\Http\\FormRequest',
-       'implements' => 
-      array (
-      ),
-       'usedTraits' => 
-      array (
-      ),
-       'traitUseAdaptations' => 
-      array (
-      ),
-       'statements' => 
-      array (
-        0 => 
-        \PHPStan\Dependency\ExportedNode\ExportedMethodNode::__set_state(array(
-           'name' => 'authorize',
-           'phpDoc' => NULL,
-           'byRef' => false,
-           'public' => true,
-           'private' => false,
-           'abstract' => false,
-           'final' => false,
-           'static' => false,
-           'returnType' => 'bool',
-           'parameters' => 
-          array (
-          ),
-           'attributes' => 
-          array (
-          ),
-        )),
-        1 => 
-        \PHPStan\Dependency\ExportedNode\ExportedMethodNode::__set_state(array(
-           'name' => 'rules',
-           'phpDoc' => 
-          \PHPStan\Dependency\ExportedNode\ExportedPhpDocNode::__set_state(array(
-             'phpDocString' => '/**
-     * @return array<string, mixed>
-     */',
-             'namespace' => 'App\\Http\\Requests\\Registry',
-             'uses' => 
-            array (
-              'formrequest' => 'Illuminate\\Foundation\\Http\\FormRequest',
-            ),
-             'constUses' => 
-            array (
-            ),
-          )),
-           'byRef' => false,
-           'public' => true,
-           'private' => false,
-           'abstract' => false,
-           'final' => false,
-           'static' => false,
-           'returnType' => 'array',
-           'parameters' => 
-          array (
-          ),
-           'attributes' => 
-          array (
-          ),
-        )),
-      ),
-       'attributes' => 
-      array (
-      ),
-    )),
-  ),
   '/var/www/html/app/Http/Requests/Registry/ResolveImportRowRequest.php' => 
   array (
     0 => 
@@ -53045,6 +54455,96 @@ return [
     \PHPStan\Dependency\ExportedNode\ExportedClassNode::__set_state(array(
        'name' => 'App\\Http\\Requests\\Registry\\StoreOwnershipTransferRequest',
        'phpDoc' => NULL,
+       'abstract' => false,
+       'final' => false,
+       'extends' => 'Illuminate\\Foundation\\Http\\FormRequest',
+       'implements' => 
+      array (
+      ),
+       'usedTraits' => 
+      array (
+      ),
+       'traitUseAdaptations' => 
+      array (
+      ),
+       'statements' => 
+      array (
+        0 => 
+        \PHPStan\Dependency\ExportedNode\ExportedMethodNode::__set_state(array(
+           'name' => 'authorize',
+           'phpDoc' => NULL,
+           'byRef' => false,
+           'public' => true,
+           'private' => false,
+           'abstract' => false,
+           'final' => false,
+           'static' => false,
+           'returnType' => 'bool',
+           'parameters' => 
+          array (
+          ),
+           'attributes' => 
+          array (
+          ),
+        )),
+        1 => 
+        \PHPStan\Dependency\ExportedNode\ExportedMethodNode::__set_state(array(
+           'name' => 'rules',
+           'phpDoc' => 
+          \PHPStan\Dependency\ExportedNode\ExportedPhpDocNode::__set_state(array(
+             'phpDocString' => '/**
+     * @return array<string, mixed>
+     */',
+             'namespace' => 'App\\Http\\Requests\\Registry',
+             'uses' => 
+            array (
+              'formrequest' => 'Illuminate\\Foundation\\Http\\FormRequest',
+            ),
+             'constUses' => 
+            array (
+            ),
+          )),
+           'byRef' => false,
+           'public' => true,
+           'private' => false,
+           'abstract' => false,
+           'final' => false,
+           'static' => false,
+           'returnType' => 'array',
+           'parameters' => 
+          array (
+          ),
+           'attributes' => 
+          array (
+          ),
+        )),
+      ),
+       'attributes' => 
+      array (
+      ),
+    )),
+  ),
+  '/var/www/html/app/Http/Requests/Registry/StoreServiceRequestRequest.php' => 
+  array (
+    0 => 
+    \PHPStan\Dependency\ExportedNode\ExportedClassNode::__set_state(array(
+       'name' => 'App\\Http\\Requests\\Registry\\StoreServiceRequestRequest',
+       'phpDoc' => 
+      \PHPStan\Dependency\ExportedNode\ExportedPhpDocNode::__set_state(array(
+         'phpDocString' => '/**
+ * Raise a Service Request against an existing (non-owned) beneficiary (PRD §12,
+ * FR-OWN-06), typically from a serve-search result. The target is identified by
+ * id; ownership is never transferred.
+ */',
+         'namespace' => 'App\\Http\\Requests\\Registry',
+         'uses' => 
+        array (
+          'formrequest' => 'Illuminate\\Foundation\\Http\\FormRequest',
+        ),
+         'constUses' => 
+        array (
+        ),
+      )),
        'abstract' => false,
        'final' => false,
        'extends' => 'Illuminate\\Foundation\\Http\\FormRequest',
@@ -55210,20 +56710,20 @@ return [
       ),
     )),
   ),
-  '/var/www/html/app/Http/Resources/ServeRequestResource.php' => 
+  '/var/www/html/app/Http/Resources/ServiceRequestResource.php' => 
   array (
     0 => 
     \PHPStan\Dependency\ExportedNode\ExportedClassNode::__set_state(array(
-       'name' => 'App\\Http\\Resources\\ServeRequestResource',
+       'name' => 'App\\Http\\Resources\\ServiceRequestResource',
        'phpDoc' => 
       \PHPStan\Dependency\ExportedNode\ExportedPhpDocNode::__set_state(array(
          'phpDocString' => '/**
- * @mixin ServeRequest
+ * @mixin ServiceRequest
  */',
          'namespace' => 'App\\Http\\Resources',
          'uses' => 
         array (
-          'serverequest' => 'App\\Domain\\Registry\\Models\\ServeRequest',
+          'servicerequest' => 'App\\Domain\\Registry\\Models\\ServiceRequest',
           'request' => 'Illuminate\\Http\\Request',
           'jsonresource' => 'Illuminate\\Http\\Resources\\Json\\JsonResource',
         ),
@@ -55256,7 +56756,7 @@ return [
              'namespace' => 'App\\Http\\Resources',
              'uses' => 
             array (
-              'serverequest' => 'App\\Domain\\Registry\\Models\\ServeRequest',
+              'servicerequest' => 'App\\Domain\\Registry\\Models\\ServiceRequest',
               'request' => 'Illuminate\\Http\\Request',
               'jsonresource' => 'Illuminate\\Http\\Resources\\Json\\JsonResource',
             ),

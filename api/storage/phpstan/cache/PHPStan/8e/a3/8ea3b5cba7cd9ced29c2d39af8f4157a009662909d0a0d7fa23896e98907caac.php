@@ -188,7 +188,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
     ),
     1 => 
     array (
-      '/var/www/html/app/Http/Controllers/Api/V1/Registry/BeneficiaryRoutingController.php' => '40da39ba7294c045f1d0fe331406d3567943d0790c86c2589402035cdf6d60d1',
+      '/var/www/html/app/Http/Controllers/Api/V1/Registry/BeneficiaryRoutingController.php' => '7c2c3460b0053a5d2857c4c54ea39b334c315ceab2792714567d0c3837edb0a1',
     ),
   ),
 ));

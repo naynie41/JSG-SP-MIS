@@ -10,7 +10,7 @@ use App\Domain\Access\Models\Role;
 use App\Domain\Access\Models\User;
 use App\Domain\Audit\Models\AuditLog;
 use App\Domain\Registry\Models\Beneficiary;
-use App\Domain\Registry\Models\ServeRequest;
+use App\Domain\Registry\Models\ServiceRequest;
 use Database\Seeders\MatchingConfigSeeder;
 use Database\Seeders\RolesAndPermissionsSeeder;
 use Illuminate\Foundation\Testing\RefreshDatabase;
@@ -141,11 +141,11 @@ class ServeSearchTest extends TestCase
             ->assertStatus(403);
     }
 
-    public function test_request_to_serve_can_be_raised_from_a_result_without_changing_ownership(): void
+    public function test_service_request_can_be_raised_from_a_result_without_changing_ownership(): void
     {
         $user = $this->signIn($this->mdaA, RoleKey::MdaOfficer);
 
-        $this->postJson('/api/v1/serve-requests', [
+        $this->postJson('/api/v1/service-requests', [
             'beneficiary_id' => $this->exact->id,
             'reason' => 'Enrolling into our programme',
         ])
@@ -154,37 +154,37 @@ class ServeSearchTest extends TestCase
             ->assertJsonPath('data.from_mda_id', $this->mdaA->id)
             ->assertJsonPath('data.to_mda_id', $this->mdaB->id);
 
-        $serve = ServeRequest::query()->firstOrFail();
-        $this->assertSame($this->exact->id, $serve->beneficiary_id);
-        $this->assertSame($user->id, $serve->requested_by);
+        $serviceRequest = ServiceRequest::query()->firstOrFail();
+        $this->assertSame($this->exact->id, $serviceRequest->beneficiary_id);
+        $this->assertSame($user->id, $serviceRequest->requested_by);
 
         // Ownership is untouched, and the raise is audited (Auditable → created).
         $this->assertSame($this->mdaB->id, $this->exact->fresh()->owner_mda_id);
         $this->assertDatabaseHas('audit_log', [
-            'action' => 'serve_request.created',
-            'entity_id' => $serve->id,
+            'action' => 'service_request.created',
+            'entity_id' => $serviceRequest->id,
             'actor_id' => $user->id,
         ]);
     }
 
-    public function test_cannot_request_to_serve_a_beneficiary_you_already_own(): void
+    public function test_cannot_raise_a_service_request_for_a_beneficiary_you_already_own(): void
     {
         // An officer of the OWNING MDA tries to serve its own record.
         $this->signIn($this->mdaB, RoleKey::MdaOfficer);
 
-        $this->postJson('/api/v1/serve-requests', ['beneficiary_id' => $this->exact->id])
+        $this->postJson('/api/v1/service-requests', ['beneficiary_id' => $this->exact->id])
             ->assertStatus(422)
-            ->assertJsonPath('error.code', 'SERVE_REQUEST_INVALID');
+            ->assertJsonPath('error.code', 'SERVICE_REQUEST_INVALID');
 
-        $this->assertSame(0, ServeRequest::query()->count());
+        $this->assertSame(0, ServiceRequest::query()->count());
     }
 
-    public function test_raising_a_request_requires_the_create_permission(): void
+    public function test_raising_a_service_request_requires_the_create_permission(): void
     {
         // M&E Officer can search (lookup.view) but cannot raise (no beneficiary.create).
         $this->signIn($this->mdaA, RoleKey::MneOfficer);
 
-        $this->postJson('/api/v1/serve-requests', ['beneficiary_id' => $this->exact->id])
+        $this->postJson('/api/v1/service-requests', ['beneficiary_id' => $this->exact->id])
             ->assertStatus(403);
     }
 }

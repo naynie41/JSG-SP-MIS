@@ -60,7 +60,8 @@ class BeneficiaryRoutingController extends Controller
             return match (true) {
                 $outcome['status'] === 'skipped' => ApiResponse::error('ENROLLMENT_EXISTS', 'The beneficiary is already enrolled in this programme.', [], 409),
                 $outcome['reason'] === 'ineligible' => ApiResponse::error('INELIGIBLE', 'The beneficiary does not meet the enforced eligibility criteria.', [], 422),
-                default => ApiResponse::error('SERVE_ACCESS_REQUIRED', 'Your MDA does not own or serve this beneficiary.', [], 403),
+                // Serving a non-owned beneficiary requires an accepted Service Request (§12, FR-OWN-06).
+                default => ApiResponse::error('SERVICE_REQUEST_REQUIRED', 'Your MDA must have an accepted service request to serve this beneficiary.', [], 409),
             };
         }
 

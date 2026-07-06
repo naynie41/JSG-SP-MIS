@@ -2,28 +2,31 @@
 
 declare(strict_types=1);
 
-use App\Domain\Registry\Enums\ServeRequestStatus;
+use App\Domain\Registry\Enums\ServiceRequestStatus;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Schema;
 
 /**
- * Request-to-serve (PRD FR-DUP-05): a requesting MDA asks the owner MDA to serve
- * an existing beneficiary WITHOUT taking ownership. Distinct from
- * ownership_transfer_requests (which changes the owner). At most one pending
- * request per (beneficiary, requesting MDA).
+ * Service Request (PRD §12, FR-OWN-06): a non-owner MDA that matches a duplicate
+ * asks the OWNER MDA for permission to serve an existing beneficiary. The owner
+ * accepts or declines; ownership (`beneficiaries.owner_mda_id`) NEVER changes.
+ * On acceptance a read-access grant is opened (see beneficiary_service_grants).
+ *
+ * Distinct from ownership_transfer_requests (which changes the owner) and from the
+ * Referral flow (outbound). At most one pending request per (beneficiary, requester).
  */
 return new class extends Migration
 {
     public function up(): void
     {
-        Schema::create('serve_requests', function (Blueprint $table) {
+        Schema::create('service_requests', function (Blueprint $table) {
             $table->uuid('id')->primary();
             $table->uuid('beneficiary_id');
             $table->uuid('from_mda_id'); // requesting MDA
             $table->uuid('to_mda_id');   // owner MDA
-            $table->string('status')->default(ServeRequestStatus::Pending->value);
+            $table->string('status')->default(ServiceRequestStatus::Pending->value);
             $table->string('reason', 1000)->nullable();
             $table->uuid('import_row_id')->nullable();
             $table->uuid('requested_by')->nullable();
@@ -46,11 +49,11 @@ return new class extends Migration
         });
 
         // One pending request per beneficiary per requesting MDA (portable).
-        DB::statement("CREATE UNIQUE INDEX serve_requests_one_pending ON serve_requests (beneficiary_id, from_mda_id) WHERE status = 'pending'");
+        DB::statement("CREATE UNIQUE INDEX service_requests_one_pending ON service_requests (beneficiary_id, from_mda_id) WHERE status = 'pending'");
     }
 
     public function down(): void
     {
-        Schema::dropIfExists('serve_requests');
+        Schema::dropIfExists('service_requests');
     }
 };

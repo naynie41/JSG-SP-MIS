@@ -15,7 +15,7 @@ import type {
   MatchingConfigInput,
   RevealMatch,
   SearchCandidate,
-  ServeRequest,
+  ServiceRequest,
 } from './types'
 
 /** Partial identity details fed to the duplicate-search engine (FR-DUP-04). */
@@ -92,23 +92,34 @@ export const beneficiaryApi = {
   },
 }
 
-/** Request-to-serve workflow (FR-DUP-05, FR-OWN-03) — never transfers ownership. */
-export const serveRequestApi = {
-  async list(): Promise<ServeRequest[]> {
-    const { serve_requests } = await apiRequest<{ serve_requests: ServeRequest[] }>({
+/**
+ * Service Request workflow (§12, FR-OWN-06/07) — a non-owner MDA asks the owner to
+ * serve a beneficiary; the owner accepts (opening a read-access grant) or declines.
+ * Never transfers ownership. Inbox = routed to me (to decide); outbox = raised by me.
+ */
+export const serviceRequestApi = {
+  async inbox(): Promise<ServiceRequest[]> {
+    const { service_requests } = await apiRequest<{ service_requests: ServiceRequest[] }>({
       method: 'GET',
-      url: '/serve-requests',
+      url: '/service-requests/inbox',
     })
-    return serve_requests
+    return service_requests
   },
-  raise(input: { beneficiary_id: string; reason?: string }): Promise<ServeRequest> {
-    return apiRequest<ServeRequest>({ method: 'POST', url: '/serve-requests', data: input })
+  async outbox(): Promise<ServiceRequest[]> {
+    const { service_requests } = await apiRequest<{ service_requests: ServiceRequest[] }>({
+      method: 'GET',
+      url: '/service-requests/outbox',
+    })
+    return service_requests
   },
-  accept(id: string, reason?: string): Promise<ServeRequest> {
-    return apiRequest<ServeRequest>({ method: 'POST', url: `/serve-requests/${id}/accept`, data: { reason } })
+  raise(input: { beneficiary_id: string; reason?: string }): Promise<ServiceRequest> {
+    return apiRequest<ServiceRequest>({ method: 'POST', url: '/service-requests', data: input })
   },
-  decline(id: string, reason?: string): Promise<ServeRequest> {
-    return apiRequest<ServeRequest>({ method: 'POST', url: `/serve-requests/${id}/decline`, data: { reason } })
+  accept(id: string, reason?: string): Promise<ServiceRequest> {
+    return apiRequest<ServiceRequest>({ method: 'POST', url: `/service-requests/${id}/accept`, data: { reason } })
+  },
+  decline(id: string, reason: string): Promise<ServiceRequest> {
+    return apiRequest<ServiceRequest>({ method: 'POST', url: `/service-requests/${id}/decline`, data: { reason } })
   },
 }
 

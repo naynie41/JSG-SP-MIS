@@ -26,7 +26,7 @@ use App\Http\Controllers\Api\V1\Registry\HouseholdController;
 use App\Http\Controllers\Api\V1\Registry\HouseholdMemberController;
 use App\Http\Controllers\Api\V1\Registry\ImportBatchController;
 use App\Http\Controllers\Api\V1\Registry\OwnershipTransferController;
-use App\Http\Controllers\Api\V1\Registry\ServeRequestController;
+use App\Http\Controllers\Api\V1\Registry\ServiceRequestController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -157,16 +157,20 @@ Route::prefix('v1')->group(function (): void {
         Route::post('/beneficiaries/imports/{batch}/confirm', [ImportBatchController::class, 'confirm'])
             ->middleware('permission:beneficiary.create')->name('beneficiaries.imports.confirm');
 
-        // Request-to-serve (FR-DUP-05): raise from a search result; list; owner
-        // accepts/declines (no ownership change).
-        Route::post('/serve-requests', [ServeRequestController::class, 'store'])
-            ->middleware('permission:beneficiary.create')->name('serve-requests.store');
-        Route::get('/serve-requests', [ServeRequestController::class, 'index'])
-            ->middleware('permission:beneficiary.view')->name('serve-requests.index');
-        Route::post('/serve-requests/{serveRequest}/accept', [ServeRequestController::class, 'accept'])
-            ->middleware('permission:beneficiary.approve')->name('serve-requests.accept');
-        Route::post('/serve-requests/{serveRequest}/decline', [ServeRequestController::class, 'decline'])
-            ->middleware('permission:beneficiary.approve')->name('serve-requests.decline');
+        // Service Request (§12, FR-OWN-06/07): a non-owner MDA raises a request;
+        // the OWNER MDA accepts (opening a read-access grant) or declines (reason
+        // required). Ownership never changes. Inbox = routed to me; outbox = raised
+        // by me. Distinct from the Referral flow.
+        Route::post('/service-requests', [ServiceRequestController::class, 'store'])
+            ->middleware('permission:beneficiary.create')->name('service-requests.store');
+        Route::get('/service-requests/inbox', [ServiceRequestController::class, 'inbox'])
+            ->middleware('permission:beneficiary.view')->name('service-requests.inbox');
+        Route::get('/service-requests/outbox', [ServiceRequestController::class, 'outbox'])
+            ->middleware('permission:beneficiary.view')->name('service-requests.outbox');
+        Route::post('/service-requests/{serviceRequest}/accept', [ServiceRequestController::class, 'accept'])
+            ->middleware('permission:beneficiary.approve')->name('service-requests.accept');
+        Route::post('/service-requests/{serviceRequest}/decline', [ServiceRequestController::class, 'decline'])
+            ->middleware('permission:beneficiary.approve')->name('service-requests.decline');
 
         // Inbound REST registration intake (FR-REG-02, source=api) — rate limited.
         Route::post('/beneficiaries/intake', [BeneficiaryIntakeController::class, 'store'])

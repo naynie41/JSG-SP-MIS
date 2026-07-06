@@ -2,7 +2,7 @@
 
 // odsl-/var/www/html/app/Http/Controllers/Api/V1/Registry/BeneficiaryRoutingController.php-PHPStan\BetterReflection\Reflection\ReflectionClass-App\Http\Controllers\Api\V1\Registry\BeneficiaryRoutingController
 return \PHPStan\Cache\CacheItem::__set_state(array(
-   'variableKey' => 'v2-6.70.0.1-8.3.31-40da39ba7294c045f1d0fe331406d3567943d0790c86c2589402035cdf6d60d1',
+   'variableKey' => 'v2-6.70.0.1-8.3.31-7c2c3460b0053a5d2857c4c54ea39b334c315ceab2792714567d0c3837edb0a1',
    'data' => 
   array (
     'locatedSource' => 
@@ -32,7 +32,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
     array (
     ),
     'startLine' => 28,
-    'endLine' => 77,
+    'endLine' => 78,
     'startColumn' => 1,
     'endColumn' => 1,
     'parentClassName' => 'App\\Http\\Controllers\\Controller',
@@ -288,7 +288,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         ),
         'docComment' => '/** Confirm an assignment: enrol into the chosen programme (owner MDA), audited. */',
         'startLine' => 45,
-        'endLine' => 76,
+        'endLine' => 77,
         'startColumn' => 5,
         'endColumn' => 5,
         'couldThrow' => false,

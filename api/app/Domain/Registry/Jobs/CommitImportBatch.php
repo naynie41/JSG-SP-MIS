@@ -18,7 +18,7 @@ use App\Domain\Registry\Models\ImportBatch;
 use App\Domain\Registry\Models\ImportRow;
 use App\Domain\Registry\Services\BeneficiaryRegistrar;
 use App\Domain\Registry\Services\HouseholdIngestionService;
-use App\Domain\Registry\Services\ServeRequestService;
+use App\Domain\Registry\Services\ServiceRequestService;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Database\UniqueConstraintViolationException;
@@ -34,12 +34,12 @@ use Throwable;
  * Commits the confirmed preview (PRD FR-REG-02, FR-DUP-05). Per row, honouring the
  * officer's resolution: NEW → create a beneficiary (owned by the importing MDA,
  * full provenance, forming/joining a household on a source reference); LINK → raise
- * a request-to-serve the matched existing beneficiary (no new record, ownership
- * unchanged); SKIP (or an unresolved flagged row) → nothing. Non-flagged rows
- * default to NEW. Invalid rows are left in place and reported.
+ * a Service Request against the matched existing beneficiary (no new record,
+ * ownership unchanged); SKIP (or an unresolved flagged row) → nothing. Non-flagged
+ * rows default to NEW. Invalid rows are left in place and reported.
  *
  * Idempotent + retry-safe: a created row is stamped with `beneficiary_id` and
- * serve requests dedupe on the pending state, so re-running never double-inserts.
+ * service requests dedupe on the pending state, so re-running never double-inserts.
  * The payload carries only IDs (batch id + confirming user id).
  */
 class CommitImportBatch implements ShouldQueue
@@ -53,7 +53,7 @@ class CommitImportBatch implements ShouldQueue
         public readonly ?string $actorId = null,
     ) {}
 
-    public function handle(BeneficiaryRegistrar $registrar, HouseholdIngestionService $households, ServeRequestService $serveRequests, EnrollmentService $enrollments): void
+    public function handle(BeneficiaryRegistrar $registrar, HouseholdIngestionService $households, ServiceRequestService $serviceRequests, EnrollmentService $enrollments): void
     {
         $batch = ImportBatch::query()->withoutGlobalScope(MdaScope::class)->find($this->batchId);
 
@@ -86,7 +86,7 @@ class CommitImportBatch implements ShouldQueue
         $batch->rows()
             ->whereNull('beneficiary_id')
             ->orderBy('row_number')
-            ->chunkById(200, function ($rows) use ($batch, $registrar, $households, $serveRequests, $enrollments, $activity, $programme, $actor): void {
+            ->chunkById(200, function ($rows) use ($batch, $registrar, $households, $serviceRequests, $enrollments, $activity, $programme, $actor): void {
                 foreach ($rows as $row) {
                     /** @var ImportRow $row */
                     $resolution = $this->effectiveResolution($row);
@@ -94,7 +94,7 @@ class CommitImportBatch implements ShouldQueue
                     if ($resolution === ImportRowResolution::Link) {
                         // Serve the matched existing beneficiary — allowed even for a
                         // duplicate-flagged (is_valid=false) row; nothing is created.
-                        $this->serve($row, $batch, $serveRequests, $actor);
+                        $this->serve($row, $batch, $serviceRequests, $actor);
 
                         continue;
                     }
@@ -204,8 +204,8 @@ class CommitImportBatch implements ShouldQueue
         $enrollments->enroll($programme, $target, $activity->id, $actor);
     }
 
-    /** Raise a request-to-serve for a LINK row — never creates a beneficiary. */
-    private function serve(ImportRow $row, ImportBatch $batch, ServeRequestService $serveRequests, ?User $actor): void
+    /** Raise a Service Request for a LINK row — never creates a beneficiary. */
+    private function serve(ImportRow $row, ImportBatch $batch, ServiceRequestService $serviceRequests, ?User $actor): void
     {
         if ($row->resolved_beneficiary_id === null) {
             return;
@@ -216,7 +216,7 @@ class CommitImportBatch implements ShouldQueue
             return;
         }
 
-        $serveRequests->request($beneficiary, $batch->owner_mda_id, $actor, $row->resolution_note, $row->id);
+        $serviceRequests->request($beneficiary, $batch->owner_mda_id, $actor, $row->resolution_note, $row->id);
     }
 
     public function failed(Throwable $e): void

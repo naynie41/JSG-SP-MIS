@@ -6,6 +6,7 @@ namespace App\Domain\Registry\Policies;
 
 use App\Domain\Access\Models\User;
 use App\Domain\Registry\Models\Beneficiary;
+use App\Domain\Registry\Services\ServiceRequestService;
 
 /**
  * Authorization for beneficiaries (PRD FR-OWN-02/03/05).
@@ -27,13 +28,23 @@ class BeneficiaryPolicy
     }
 
     /**
-     * Read a specific beneficiary: the owner, an oversight role, or (later) an
-     * MDA with a service grant.
+     * Read a specific beneficiary: the owner, an oversight role, or an MDA that
+     * holds an active read-access grant from an accepted Service Request
+     * (§12, FR-OWN-07). READ only — this never confers edit.
      */
     public function view(User $user, Beneficiary $beneficiary): bool
     {
         return $user->hasPermission('beneficiary.view')
-            && ($this->owns($user, $beneficiary) || $user->canAccessAllMdas());
+            && ($this->owns($user, $beneficiary)
+                || $user->canAccessAllMdas()
+                || $this->hasServiceGrant($user, $beneficiary));
+    }
+
+    /** An active read-access grant opened by an accepted Service Request. */
+    private function hasServiceGrant(User $user, Beneficiary $beneficiary): bool
+    {
+        return $user->mda_id !== null
+            && ServiceRequestService::hasActiveGrant($beneficiary->id, $user->mda_id);
     }
 
     public function create(User $user): bool

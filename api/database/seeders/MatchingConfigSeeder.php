@@ -10,11 +10,17 @@ use App\Domain\Matching\Models\MatchingConfig;
 use Illuminate\Database\Seeder;
 
 /**
- * Seeds the DEFAULT duplicate-matching configuration (PRD FR-DUP-02/03) — real
+ * Seeds the DEFAULT duplicate-matching configuration (PRD FR-DUP-02/03, §9) — real
  * production config, not sample data. Idempotent: no-op once a config exists.
  *
+ * The default encodes the ORDERED CASCADE (§9): exact NIN → exact BVN → fuzzy
+ * name/phone. The `deterministic_rules` ORDER is significant — the cascade
+ * evaluates the key sets top-to-bottom and STOPS at the first exact match; a stage
+ * whose identifier is absent is skipped (fall-through). Everything here is
+ * admin-editable and versioned — no cascade numbers are hard-coded in code.
+ *
  * DEFAULT (documented in app/Domain/Matching/README.md):
- *  - Deterministic decisive key sets: [nin], [bvn] → exact band.
+ *  - Deterministic decisive key sets, IN ORDER: [nin] then [bvn] → exact band.
  *  - Fuzzy weights (sum 1.00): last_name .25 (phonetic), first_name .15
  *    (phonetic), date_of_birth .20 (date_proximity), phone .20 (exact),
  *    lga .05, ward .05, address .10 (jaro_winkler).

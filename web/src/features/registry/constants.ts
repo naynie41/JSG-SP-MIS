@@ -79,7 +79,7 @@ export const RESOLUTION_LABELS: Record<string, string> = {
   skip: 'Skip',
 }
 
-export const SERVE_STATUS_LABELS: Record<string, string> = {
+export const SERVICE_STATUS_LABELS: Record<string, string> = {
   pending: 'Pending',
   accepted: 'Accepted',
   declined: 'Declined',

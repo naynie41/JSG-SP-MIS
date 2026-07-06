@@ -13,8 +13,8 @@ standalone lookup, the match REVEAL, and the resolve / request-to-serve flow.
 | **FR-DUP-02** | Rules/thresholds are **configurable**, **versioned**, admin-editable | `Models/MatchingConfig`, `Services/MatchingConfigService`, `MatchingConfigController`; `web/features/registry/MatchingConfigPage`; `MatchingConfigTest` |
 | **FR-DUP-03** | Deterministic **and** fuzzy matching with banded outcomes | `Engine/MatchingEngine`, `Scoring/RuleBasedMatchScorer`, `Scoring/Comparators/*`; `tests/Unit/Matching/*`, `DuplicateAccuracyTest` |
 | **FR-DUP-04** | Match **REVEAL** — recognise an existing record without exposing the full profile | `Http/Resources/BeneficiaryRevealResource`, `ImportBatchController::attachMatchReveals`, `BeneficiaryController::search`; `web` `MatchRevealPanel` |
-| **FR-DUP-05** | Resolve a flagged row: **new (justified) / link–request-to-serve / skip**; owner accepts/declines | `ImportRowResolution`, `ImportBatchController::resolveRow`, `CommitImportBatch`, `ServeRequestService`, `ServeRequestController`; `ImportResolutionTest`, `ServeSearchTest` |
-| **FR-DUP-06** | Every decision is **audited** (actor, choice, justification, matched record) | `AuditLogger` calls in `resolveRow` (`import.row_resolved`) + `ServeRequest` (`serve_request.*`); `ImportResolutionTest` |
+| **FR-DUP-05** | Resolve a flagged row: **new (justified) / link–Service Request / skip**; owner accepts/declines | `ImportRowResolution`, `ImportBatchController::resolveRow`, `CommitImportBatch`, `ServiceRequestService`, `ServiceRequestController`; `ImportResolutionTest`, `ServeSearchTest` |
+| **FR-DUP-06** | Every decision is **audited** (actor, choice, justification, matched record) | `AuditLogger` calls in `resolveRow` (`import.row_resolved`) + `ServiceRequest` (`service_request.*`); `ImportResolutionTest` |
 | **FR-DUP-07** | Pluggable scorer seam for a future external/AI scorer | `Contracts/MatchScorer`, rebind in `MatchingServiceProvider`. **No AI scorer ships in Phase 3.** |
 
 ## Pieces
@@ -28,9 +28,22 @@ standalone lookup, the match REVEAL, and the resolve / request-to-serve flow.
 | `Scoring/Comparators/*` | `exact`, `jaro_winkler`, `levenshtein`, `phonetic`, `date_proximity` (pure PHP; pgsql + sqlite). |
 | `Scoring/FieldNormalizer` | Identifiers → digits, dates → `Y-m-d`, text → lower/whitespace-collapsed. |
 | `Engine/MatchingEngine` | Scores a candidate vs a set of existing records and applies the **bands**. |
+| `Engine/DuplicateCascade` | The **ordered cascade** (§9): deterministic stages in config order → fuzzy, **stopping at the first exact stage**; skips a stage whose identifier is absent. |
 | `Registry/Services/CandidateGatherer` | Index-backed **blocking** — gathers only records sharing a key. |
-| `Registry/Services/FuzzyDuplicateFinder` | gather → score → keep exact + probable. The registry duplicate check used by screening **and** the standalone lookup. |
-| `Registry/Services/BatchDuplicateScreener` | Per-row screening for an import: registry **and** earlier rows in the same batch (within-batch blocking). |
+| `Registry/Services/FuzzyDuplicateFinder` | gather → score → keep exact + probable. The registry duplicate check used by the standalone lookup / serve search. |
+| `Registry/Services/BatchDuplicateScreener` | Per-row import screening: pools registry candidates + earlier batch rows and runs the **cascade** over them. |
+
+## Ordered cascade (§9)
+
+The default duplicate check is an **ordered cascade**, driven entirely by the
+config: **exact NIN → exact BVN → fuzzy name/phone**. It evaluates the
+`deterministic_rules` key sets **top-to-bottom** and **STOPS at the first exact
+match** — an exact-identifier hit is reported alone, never alongside fuzzy noise. A
+stage whose identifier is **absent** on the candidate is **skipped** (fall-through),
+so a record with only a BVN still reaches the BVN stage, and one with neither falls
+through to the weighted fuzzy pass. The order, key sets, weights and thresholds are
+all admin-editable config — **no cascade numbers are hard-coded**. Proven by
+`tests/Feature/Matching/MatchingCascadeTest`.
 
 ## Outcome bands
 
@@ -121,14 +134,16 @@ worker; single lookups run inline.
 - `tests/Feature/Matching/MatchingPerformanceTest` — a ~1,200-row registry: a single
   check and a 50-row batch both stay bounded and well within target via blocking.
 
-## Standalone lookup + request-to-serve
+## Standalone lookup + Service Request
 
 - `GET /api/v1/beneficiaries/search` (`beneficiary-lookup.view`) — the same engine
   against partial identity details, returning ranked reveal-only candidates.
-- `POST /api/v1/serve-requests` (`beneficiary.create`) — raise a request-to-serve on
+- `POST /api/v1/service-requests` (`beneficiary.create`) — raise a Service Request on
   a non-owned record; it routes to the owner MDA and **never transfers ownership**.
-- `POST /api/v1/serve-requests/{id}/accept|decline` (`beneficiary.approve`) — the
-  owner decides; grants serve access on accept. Both are audited.
+- `POST /api/v1/service-requests/{id}/accept|decline` (`beneficiary.approve`) — the
+  owner decides; accept opens a READ-access grant (`beneficiary.access_granted`) and
+  authorizes serving. Decline requires a reason. `GET .../inbox|outbox` list them.
+  Both decisions are audited.
 
 ## Admin API (matching config)
 

@@ -7,12 +7,12 @@ import { MemoryRouter } from 'react-router-dom'
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 import { ToastProvider } from '@/components/Toast/ToastProvider'
 import { DuplicateSearchPage } from './DuplicateSearchPage'
-import { beneficiaryApi, serveRequestApi } from './api'
+import { beneficiaryApi, serviceRequestApi } from './api'
 import type { SearchCandidate } from './types'
 
 vi.mock('./api', () => ({
   beneficiaryApi: { search: vi.fn() },
-  serveRequestApi: { raise: vi.fn() },
+  serviceRequestApi: { raise: vi.fn() },
 }))
 
 vi.mock('@/lib/auth/AuthProvider', () => ({
@@ -25,7 +25,7 @@ vi.mock('@/lib/auth/AuthProvider', () => ({
 }))
 
 const search = beneficiaryApi.search as Mock
-const raise = serveRequestApi.raise as Mock
+const raise = serviceRequestApi.raise as Mock
 
 const candidate: SearchCandidate = {
   band: 'probable',

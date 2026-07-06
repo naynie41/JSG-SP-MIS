@@ -10,9 +10,10 @@ use App\Domain\Access\Models\Role;
 use App\Domain\Access\Models\User;
 use App\Domain\Programme\Models\Enrollment;
 use App\Domain\Programme\Models\Programme;
-use App\Domain\Registry\Enums\ServeRequestStatus;
+use App\Domain\Registry\Enums\ServiceRequestStatus;
 use App\Domain\Registry\Models\Beneficiary;
-use App\Domain\Registry\Models\ServeRequest;
+use App\Domain\Registry\Models\BeneficiaryServiceGrant;
+use App\Domain\Registry\Models\ServiceRequest;
 use Database\Seeders\RolesAndPermissionsSeeder;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Testing\TestResponse;
@@ -96,11 +97,12 @@ class AutoRouteTest extends TestCase
     {
         // Without serve access, MDA B cannot assign MDA A's beneficiary.
         $this->send('officerB', 'POST', "/api/v1/beneficiaries/{$this->beneficiary->id}/routing-assignments", ['programme_id' => $this->cashProgramme->id, 'need' => 'cash'])
-            ->assertStatus(403)
-            ->assertJsonPath('error.code', 'SERVE_ACCESS_REQUIRED');
+            ->assertStatus(409)
+            ->assertJsonPath('error.code', 'SERVICE_REQUEST_REQUIRED');
 
-        // Grant serve access (Phase 3 seam), then confirm the assignment.
-        ServeRequest::create(['beneficiary_id' => $this->beneficiary->id, 'from_mda_id' => $this->mdaB->id, 'to_mda_id' => $this->mdaA->id, 'status' => ServeRequestStatus::Accepted]);
+        // Grant serve access via an accepted Service Request's read-access grant.
+        $serviceRequest = ServiceRequest::create(['beneficiary_id' => $this->beneficiary->id, 'from_mda_id' => $this->mdaB->id, 'to_mda_id' => $this->mdaA->id, 'status' => ServiceRequestStatus::Accepted]);
+        BeneficiaryServiceGrant::create(['beneficiary_id' => $this->beneficiary->id, 'mda_id' => $this->mdaB->id, 'service_request_id' => $serviceRequest->id, 'granted_at' => now()]);
 
         $this->send('officerB', 'POST', "/api/v1/beneficiaries/{$this->beneficiary->id}/routing-assignments", ['programme_id' => $this->cashProgramme->id, 'need' => 'cash'])
             ->assertCreated()

@@ -14,6 +14,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         array (
           'mdascope' => 'App\\Domain\\Access\\Scopes\\MdaScope',
           'auditlogger' => 'App\\Domain\\Audit\\Services\\AuditLogger',
+          'matchband' => 'App\\Domain\\Matching\\Enums\\MatchBand',
           'importrowresolution' => 'App\\Domain\\Registry\\Enums\\ImportRowResolution',
           'importstatus' => 'App\\Domain\\Registry\\Enums\\ImportStatus',
           'registrationsource' => 'App\\Domain\\Registry\\Enums\\RegistrationSource',
@@ -56,6 +57,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         array (
           'mdascope' => 'App\\Domain\\Access\\Scopes\\MdaScope',
           'auditlogger' => 'App\\Domain\\Audit\\Services\\AuditLogger',
+          'matchband' => 'App\\Domain\\Matching\\Enums\\MatchBand',
           'importrowresolution' => 'App\\Domain\\Registry\\Enums\\ImportRowResolution',
           'importstatus' => 'App\\Domain\\Registry\\Enums\\ImportStatus',
           'registrationsource' => 'App\\Domain\\Registry\\Enums\\RegistrationSource',
@@ -87,6 +89,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
           array (
             'mdascope' => 'App\\Domain\\Access\\Scopes\\MdaScope',
             'auditlogger' => 'App\\Domain\\Audit\\Services\\AuditLogger',
+            'matchband' => 'App\\Domain\\Matching\\Enums\\MatchBand',
             'importrowresolution' => 'App\\Domain\\Registry\\Enums\\ImportRowResolution',
             'importstatus' => 'App\\Domain\\Registry\\Enums\\ImportStatus',
             'registrationsource' => 'App\\Domain\\Registry\\Enums\\RegistrationSource',
@@ -139,6 +142,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         array (
           'mdascope' => 'App\\Domain\\Access\\Scopes\\MdaScope',
           'auditlogger' => 'App\\Domain\\Audit\\Services\\AuditLogger',
+          'matchband' => 'App\\Domain\\Matching\\Enums\\MatchBand',
           'importrowresolution' => 'App\\Domain\\Registry\\Enums\\ImportRowResolution',
           'importstatus' => 'App\\Domain\\Registry\\Enums\\ImportStatus',
           'registrationsource' => 'App\\Domain\\Registry\\Enums\\RegistrationSource',
@@ -170,6 +174,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
           array (
             'mdascope' => 'App\\Domain\\Access\\Scopes\\MdaScope',
             'auditlogger' => 'App\\Domain\\Audit\\Services\\AuditLogger',
+            'matchband' => 'App\\Domain\\Matching\\Enums\\MatchBand',
             'importrowresolution' => 'App\\Domain\\Registry\\Enums\\ImportRowResolution',
             'importstatus' => 'App\\Domain\\Registry\\Enums\\ImportStatus',
             'registrationsource' => 'App\\Domain\\Registry\\Enums\\RegistrationSource',
@@ -222,6 +227,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         array (
           'mdascope' => 'App\\Domain\\Access\\Scopes\\MdaScope',
           'auditlogger' => 'App\\Domain\\Audit\\Services\\AuditLogger',
+          'matchband' => 'App\\Domain\\Matching\\Enums\\MatchBand',
           'importrowresolution' => 'App\\Domain\\Registry\\Enums\\ImportRowResolution',
           'importstatus' => 'App\\Domain\\Registry\\Enums\\ImportStatus',
           'registrationsource' => 'App\\Domain\\Registry\\Enums\\RegistrationSource',
@@ -253,6 +259,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
           array (
             'mdascope' => 'App\\Domain\\Access\\Scopes\\MdaScope',
             'auditlogger' => 'App\\Domain\\Audit\\Services\\AuditLogger',
+            'matchband' => 'App\\Domain\\Matching\\Enums\\MatchBand',
             'importrowresolution' => 'App\\Domain\\Registry\\Enums\\ImportRowResolution',
             'importstatus' => 'App\\Domain\\Registry\\Enums\\ImportStatus',
             'registrationsource' => 'App\\Domain\\Registry\\Enums\\RegistrationSource',
@@ -305,6 +312,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         array (
           'mdascope' => 'App\\Domain\\Access\\Scopes\\MdaScope',
           'auditlogger' => 'App\\Domain\\Audit\\Services\\AuditLogger',
+          'matchband' => 'App\\Domain\\Matching\\Enums\\MatchBand',
           'importrowresolution' => 'App\\Domain\\Registry\\Enums\\ImportRowResolution',
           'importstatus' => 'App\\Domain\\Registry\\Enums\\ImportStatus',
           'registrationsource' => 'App\\Domain\\Registry\\Enums\\RegistrationSource',
@@ -336,6 +344,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
           array (
             'mdascope' => 'App\\Domain\\Access\\Scopes\\MdaScope',
             'auditlogger' => 'App\\Domain\\Audit\\Services\\AuditLogger',
+            'matchband' => 'App\\Domain\\Matching\\Enums\\MatchBand',
             'importrowresolution' => 'App\\Domain\\Registry\\Enums\\ImportRowResolution',
             'importstatus' => 'App\\Domain\\Registry\\Enums\\ImportStatus',
             'registrationsource' => 'App\\Domain\\Registry\\Enums\\RegistrationSource',
@@ -388,6 +397,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         array (
           'mdascope' => 'App\\Domain\\Access\\Scopes\\MdaScope',
           'auditlogger' => 'App\\Domain\\Audit\\Services\\AuditLogger',
+          'matchband' => 'App\\Domain\\Matching\\Enums\\MatchBand',
           'importrowresolution' => 'App\\Domain\\Registry\\Enums\\ImportRowResolution',
           'importstatus' => 'App\\Domain\\Registry\\Enums\\ImportStatus',
           'registrationsource' => 'App\\Domain\\Registry\\Enums\\RegistrationSource',
@@ -419,6 +429,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
           array (
             'mdascope' => 'App\\Domain\\Access\\Scopes\\MdaScope',
             'auditlogger' => 'App\\Domain\\Audit\\Services\\AuditLogger',
+            'matchband' => 'App\\Domain\\Matching\\Enums\\MatchBand',
             'importrowresolution' => 'App\\Domain\\Registry\\Enums\\ImportRowResolution',
             'importstatus' => 'App\\Domain\\Registry\\Enums\\ImportStatus',
             'registrationsource' => 'App\\Domain\\Registry\\Enums\\RegistrationSource',
@@ -471,6 +482,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         array (
           'mdascope' => 'App\\Domain\\Access\\Scopes\\MdaScope',
           'auditlogger' => 'App\\Domain\\Audit\\Services\\AuditLogger',
+          'matchband' => 'App\\Domain\\Matching\\Enums\\MatchBand',
           'importrowresolution' => 'App\\Domain\\Registry\\Enums\\ImportRowResolution',
           'importstatus' => 'App\\Domain\\Registry\\Enums\\ImportStatus',
           'registrationsource' => 'App\\Domain\\Registry\\Enums\\RegistrationSource',
@@ -502,6 +514,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
           array (
             'mdascope' => 'App\\Domain\\Access\\Scopes\\MdaScope',
             'auditlogger' => 'App\\Domain\\Audit\\Services\\AuditLogger',
+            'matchband' => 'App\\Domain\\Matching\\Enums\\MatchBand',
             'importrowresolution' => 'App\\Domain\\Registry\\Enums\\ImportRowResolution',
             'importstatus' => 'App\\Domain\\Registry\\Enums\\ImportStatus',
             'registrationsource' => 'App\\Domain\\Registry\\Enums\\RegistrationSource',
@@ -554,6 +567,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         array (
           'mdascope' => 'App\\Domain\\Access\\Scopes\\MdaScope',
           'auditlogger' => 'App\\Domain\\Audit\\Services\\AuditLogger',
+          'matchband' => 'App\\Domain\\Matching\\Enums\\MatchBand',
           'importrowresolution' => 'App\\Domain\\Registry\\Enums\\ImportRowResolution',
           'importstatus' => 'App\\Domain\\Registry\\Enums\\ImportStatus',
           'registrationsource' => 'App\\Domain\\Registry\\Enums\\RegistrationSource',
@@ -585,6 +599,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
           array (
             'mdascope' => 'App\\Domain\\Access\\Scopes\\MdaScope',
             'auditlogger' => 'App\\Domain\\Audit\\Services\\AuditLogger',
+            'matchband' => 'App\\Domain\\Matching\\Enums\\MatchBand',
             'importrowresolution' => 'App\\Domain\\Registry\\Enums\\ImportRowResolution',
             'importstatus' => 'App\\Domain\\Registry\\Enums\\ImportStatus',
             'registrationsource' => 'App\\Domain\\Registry\\Enums\\RegistrationSource',
@@ -637,6 +652,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         array (
           'mdascope' => 'App\\Domain\\Access\\Scopes\\MdaScope',
           'auditlogger' => 'App\\Domain\\Audit\\Services\\AuditLogger',
+          'matchband' => 'App\\Domain\\Matching\\Enums\\MatchBand',
           'importrowresolution' => 'App\\Domain\\Registry\\Enums\\ImportRowResolution',
           'importstatus' => 'App\\Domain\\Registry\\Enums\\ImportStatus',
           'registrationsource' => 'App\\Domain\\Registry\\Enums\\RegistrationSource',
@@ -668,6 +684,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
           array (
             'mdascope' => 'App\\Domain\\Access\\Scopes\\MdaScope',
             'auditlogger' => 'App\\Domain\\Audit\\Services\\AuditLogger',
+            'matchband' => 'App\\Domain\\Matching\\Enums\\MatchBand',
             'importrowresolution' => 'App\\Domain\\Registry\\Enums\\ImportRowResolution',
             'importstatus' => 'App\\Domain\\Registry\\Enums\\ImportStatus',
             'registrationsource' => 'App\\Domain\\Registry\\Enums\\RegistrationSource',
@@ -716,7 +733,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
     ),
     1 => 
     array (
-      '/var/www/html/app/Http/Controllers/Api/V1/Registry/ImportBatchController.php' => '77b1854b53f691e5806d748c94b2264e7a323195fbd9e409c3feccdf3c057a04',
+      '/var/www/html/app/Http/Controllers/Api/V1/Registry/ImportBatchController.php' => 'ebb7358182fe121666e4733ee227d0edeea60ba99e2876cc33bf2a97fd81a0ca',
     ),
   ),
 ));

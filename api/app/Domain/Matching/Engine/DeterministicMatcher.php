@@ -30,7 +30,21 @@ class DeterministicMatcher
      */
     public function match(array $candidate, iterable $existing, MatchingConfig $config): array
     {
-        $keySets = $config->deterministicKeySets();
+        return $this->matchKeySets($candidate, $existing, $config->deterministicKeySets());
+    }
+
+    /**
+     * Match against an explicit, ordered list of key sets — used by the cascade to
+     * evaluate one stage at a time (e.g. just `[nin]`) so it can stop at the first
+     * exact stage (PRD §9). Absent candidate keys never fire.
+     *
+     * @param  array<string, mixed>  $candidate
+     * @param  iterable<array<string, mixed>>  $existing  each may carry an `id`
+     * @param  list<list<string>>  $keySets
+     * @return list<MatchResult> exact matches only
+     */
+    public function matchKeySets(array $candidate, iterable $existing, array $keySets): array
+    {
         $normalisedCandidate = $this->normaliseCandidateKeys($candidate, $keySets);
 
         $results = [];

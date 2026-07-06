@@ -2,7 +2,7 @@
 
 // odsl-/var/www/html/app/Domain/Registry/Jobs/CommitImportBatch.php-PHPStan\BetterReflection\Reflection\ReflectionClass-App\Domain\Registry\Jobs\CommitImportBatch
 return \PHPStan\Cache\CacheItem::__set_state(array(
-   'variableKey' => 'v2-6.70.0.1-8.3.31-e14f1a5aa8e5cbe21e8a278a96578455d58856a0ad9e63a6b983eea16d3f3cd6',
+   'variableKey' => 'v2-6.70.0.1-8.3.31-cbe231895a67d34232e6047bc73e0587ee765e37d61d575e0923c917d5e07821',
    'data' => 
   array (
     'locatedSource' => 
@@ -26,12 +26,12 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
  * Commits the confirmed preview (PRD FR-REG-02, FR-DUP-05). Per row, honouring the
  * officer\'s resolution: NEW → create a beneficiary (owned by the importing MDA,
  * full provenance, forming/joining a household on a source reference); LINK → raise
- * a request-to-serve the matched existing beneficiary (no new record, ownership
- * unchanged); SKIP (or an unresolved flagged row) → nothing. Non-flagged rows
- * default to NEW. Invalid rows are left in place and reported.
+ * a Service Request against the matched existing beneficiary (no new record,
+ * ownership unchanged); SKIP (or an unresolved flagged row) → nothing. Non-flagged
+ * rows default to NEW. Invalid rows are left in place and reported.
  *
  * Idempotent + retry-safe: a created row is stamped with `beneficiary_id` and
- * serve requests dedupe on the pending state, so re-running never double-inserts.
+ * service requests dedupe on the pending state, so re-running never double-inserts.
  * The payload carries only IDs (batch id + confirming user id).
  */',
     'attributes' => 
@@ -81,9 +81,9 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             'startLine' => 49,
             'endLine' => 49,
             'startTokenPos' => 174,
-            'startFilePos' => 2001,
+            'startFilePos' => 2012,
             'endTokenPos' => 174,
-            'endFilePos' => 2001,
+            'endFilePos' => 2012,
           ),
         ),
         'docComment' => NULL,
@@ -174,9 +174,9 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             'startLine' => 53,
             'endLine' => 53,
             'startTokenPos' => 204,
-            'startFilePos' => 2122,
+            'startFilePos' => 2133,
             'endTokenPos' => 204,
-            'endFilePos' => 2125,
+            'endFilePos' => 2136,
           ),
         ),
         'docComment' => NULL,
@@ -239,9 +239,9 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
                 'startLine' => 53,
                 'endLine' => 53,
                 'startTokenPos' => 204,
-                'startFilePos' => 2122,
+                'startFilePos' => 2133,
                 'endTokenPos' => 204,
-                'endFilePos' => 2125,
+                'endFilePos' => 2136,
               ),
             ),
             'type' => 
@@ -364,16 +364,16 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             'parameterIndex' => 1,
             'isOptional' => false,
           ),
-          'serveRequests' => 
+          'serviceRequests' => 
           array (
-            'name' => 'serveRequests',
+            'name' => 'serviceRequests',
             'default' => NULL,
             'type' => 
             array (
               'class' => 'PHPStan\\BetterReflection\\Reflection\\ReflectionNamedType',
               'data' => 
               array (
-                'name' => 'App\\Domain\\Registry\\Services\\ServeRequestService',
+                'name' => 'App\\Domain\\Registry\\Services\\ServiceRequestService',
                 'isIdentifier' => false,
               ),
             ),
@@ -386,7 +386,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             'startLine' => 56,
             'endLine' => 56,
             'startColumn' => 100,
-            'endColumn' => 133,
+            'endColumn' => 137,
             'parameterIndex' => 2,
             'isOptional' => false,
           ),
@@ -411,8 +411,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             ),
             'startLine' => 56,
             'endLine' => 56,
-            'startColumn' => 136,
-            'endColumn' => 165,
+            'startColumn' => 140,
+            'endColumn' => 169,
             'parameterIndex' => 3,
             'isOptional' => false,
           ),
@@ -860,16 +860,16 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             'parameterIndex' => 1,
             'isOptional' => false,
           ),
-          'serveRequests' => 
+          'serviceRequests' => 
           array (
-            'name' => 'serveRequests',
+            'name' => 'serviceRequests',
             'default' => NULL,
             'type' => 
             array (
               'class' => 'PHPStan\\BetterReflection\\Reflection\\ReflectionNamedType',
               'data' => 
               array (
-                'name' => 'App\\Domain\\Registry\\Services\\ServeRequestService',
+                'name' => 'App\\Domain\\Registry\\Services\\ServiceRequestService',
                 'isIdentifier' => false,
               ),
             ),
@@ -882,7 +882,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             'startLine' => 208,
             'endLine' => 208,
             'startColumn' => 64,
-            'endColumn' => 97,
+            'endColumn' => 101,
             'parameterIndex' => 2,
             'isOptional' => false,
           ),
@@ -926,8 +926,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             ),
             'startLine' => 208,
             'endLine' => 208,
-            'startColumn' => 100,
-            'endColumn' => 111,
+            'startColumn' => 104,
+            'endColumn' => 115,
             'parameterIndex' => 3,
             'isOptional' => false,
           ),
@@ -945,7 +945,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         'attributes' => 
         array (
         ),
-        'docComment' => '/** Raise a request-to-serve for a LINK row — never creates a beneficiary. */',
+        'docComment' => '/** Raise a Service Request for a LINK row — never creates a beneficiary. */',
         'startLine' => 208,
         'endLine' => 220,
         'startColumn' => 5,

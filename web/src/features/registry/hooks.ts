@@ -1,6 +1,6 @@
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query'
 import { useToast } from '@/components/Toast/ToastProvider'
-import { beneficiaryApi, documentApi, householdApi, importApi, matchingApi, serveRequestApi } from './api'
+import { beneficiaryApi, documentApi, householdApi, importApi, matchingApi, serviceRequestApi } from './api'
 import type { BeneficiaryListParams, ResolveRowInput, SearchQuery } from './api'
 import type { BeneficiaryInput, HouseholdRole, MatchingConfigInput } from './types'
 
@@ -174,7 +174,7 @@ export function useConfirmImport() {
       qc.invalidateQueries({ queryKey: ['import', batch.id] })
       qc.invalidateQueries({ queryKey: ['imports'] })
       qc.invalidateQueries({ queryKey: ['beneficiaries'] })
-      toast.success('Import confirmed', 'Only new rows are committed; linked rows raise a serve request.')
+      toast.success('Import confirmed', 'Only new rows are committed; linked rows raise a Service Request.')
     },
   })
 }
@@ -197,33 +197,43 @@ export function useDuplicateSearch() {
   })
 }
 
-/* ------------------------------------------------------------- serve requests */
+/* ----------------------------------------------------------- service requests */
 
-export function useServeRequests(enabled = true) {
-  return useQuery({ queryKey: ['serve-requests'], queryFn: () => serveRequestApi.list(), enabled })
+/** Requests routed TO my MDA (owner) — the approval inbox. */
+export function useServiceInbox(enabled = true) {
+  return useQuery({ queryKey: ['service-requests', 'inbox'], queryFn: () => serviceRequestApi.inbox(), enabled })
 }
 
-export function useRaiseServeRequest() {
+/** Requests raised BY my MDA — the requester's outbox (status chips). */
+export function useServiceOutbox(enabled = true) {
+  return useQuery({ queryKey: ['service-requests', 'outbox'], queryFn: () => serviceRequestApi.outbox(), enabled })
+}
+
+export function useRaiseServiceRequest() {
   const qc = useQueryClient()
   const toast = useToast()
   return useMutation({
-    mutationFn: (input: { beneficiary_id: string; reason?: string }) => serveRequestApi.raise(input),
+    mutationFn: (input: { beneficiary_id: string; reason?: string }) => serviceRequestApi.raise(input),
     onSuccess: () => {
-      qc.invalidateQueries({ queryKey: ['serve-requests'] })
-      toast.success('Request to serve sent', 'Routed to the owning MDA for approval.')
+      qc.invalidateQueries({ queryKey: ['service-requests'] })
+      toast.success('Service Request sent', 'Routed to the owning MDA for approval.')
     },
   })
 }
 
-export function useDecideServeRequest() {
+/**
+ * Owner accept/decline. Accept opens the requester's read-access grant; decline
+ * blocks and requires a reason (surfaced to the requester in their outbox).
+ */
+export function useDecideServiceRequest() {
   const qc = useQueryClient()
   const toast = useToast()
   return useMutation({
     mutationFn: ({ id, accept, reason }: { id: string; accept: boolean; reason?: string }) =>
-      accept ? serveRequestApi.accept(id, reason) : serveRequestApi.decline(id, reason),
+      accept ? serviceRequestApi.accept(id, reason) : serviceRequestApi.decline(id, reason ?? ''),
     onSuccess: (request) => {
-      qc.invalidateQueries({ queryKey: ['serve-requests'] })
-      toast.success(request.status === 'accepted' ? 'Serve request accepted' : 'Serve request declined')
+      qc.invalidateQueries({ queryKey: ['service-requests'] })
+      toast.success(request.status === 'accepted' ? 'Service Request accepted' : 'Service Request declined')
     },
   })
 }

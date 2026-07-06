@@ -40,7 +40,7 @@ const reveal: MatchReveal = {
   benefits: { summary: null, items: [] },
 }
 
-function makeBatch(): ImportBatch {
+function makeBatch(band: 'exact' | 'probable' = 'exact'): ImportBatch {
   return {
     id: 'batch-1',
     owner_mda_id: 'm-1',
@@ -61,8 +61,8 @@ function makeBatch(): ImportBatch {
         resolution_note: null,
         resolved_beneficiary_id: null,
         match: {
-          band: 'exact',
-          candidates: [{ type: 'registry', band: 'exact', score: 1, matched_fields: ['nin'], reveal }],
+          band,
+          candidates: [{ type: 'registry', band, score: band === 'exact' ? 1 : 0.82, matched_fields: band === 'exact' ? ['nin'] : ['last_name'], reveal }],
         },
         preview: { first_name: 'Zainab', last_name: 'Umaru', nin: null, bvn: null, phone: null, date_of_birth: '1990-01-01', gender: 'female', lga: 'dutse', ward: 'Ward 1' },
       },
@@ -121,17 +121,45 @@ describe('ImportBatchPage — duplicate resolution', () => {
     )
   })
 
-  it('requires a justification to create a flagged row as new', async () => {
-    get.mockResolvedValue(makeBatch())
+  it('requires a justification to adjudicate a probable row as new', async () => {
+    get.mockResolvedValue(makeBatch('probable'))
     const user = userEvent.setup()
     renderPage(<ImportBatchPage />)
 
     await user.click(await screen.findByRole('button', { name: /expand row 1/i }))
-    await user.click(screen.getByLabelText(/create as new/i))
+    await user.click(screen.getByLabelText(/create new/i))
     await user.click(screen.getByRole('button', { name: /save decision/i }))
 
     expect(await screen.findByText(/justification is required/i)).toBeInTheDocument()
     expect(resolveRow).not.toHaveBeenCalled()
+  })
+
+  it('hides the same-person adjudication on exact matches but keeps discard/serve (§5.9)', async () => {
+    get.mockResolvedValue(makeBatch('exact'))
+    const user = userEvent.setup()
+    renderPage(<ImportBatchPage />)
+
+    await user.click(await screen.findByRole('button', { name: /expand row 1/i }))
+
+    // No "create new" adjudication control on an exact (definitive) match...
+    expect(screen.queryByLabelText(/create new/i)).not.toBeInTheDocument()
+    // ...but the discard / provide-service choices remain, plus the definitive note.
+    expect(screen.getByLabelText(/provide service/i)).toBeInTheDocument()
+    expect(screen.getByLabelText(/discard this row/i)).toBeInTheDocument()
+    expect(screen.getByText(/exact match — definitively the same person/i)).toBeInTheDocument()
+  })
+
+  it('shows the same-person adjudication on probable matches (§5.9)', async () => {
+    get.mockResolvedValue(makeBatch('probable'))
+    const user = userEvent.setup()
+    renderPage(<ImportBatchPage />)
+
+    await user.click(await screen.findByRole('button', { name: /expand row 1/i }))
+
+    // Adjudication offered for a probable (fuzzy) match, alongside discard/serve.
+    expect(screen.getByLabelText(/create new/i)).toBeInTheDocument()
+    expect(screen.getByLabelText(/provide service/i)).toBeInTheDocument()
+    expect(screen.getByLabelText(/discard this row/i)).toBeInTheDocument()
   })
 
   it('confirms the batch', async () => {

@@ -14,8 +14,9 @@ use App\Domain\Matching\Models\MatchingConfig;
 use App\Domain\Programme\Models\Activity;
 use App\Domain\Programme\Models\Programme;
 use App\Domain\Registry\Models\Beneficiary;
+use App\Domain\Registry\Models\BeneficiaryServiceGrant;
 use App\Domain\Registry\Models\ImportBatch;
-use App\Domain\Registry\Models\ServeRequest;
+use App\Domain\Registry\Models\ServiceRequest;
 use Database\Seeders\MatchingConfigSeeder;
 use Database\Seeders\RolesAndPermissionsSeeder;
 use Illuminate\Foundation\Testing\RefreshDatabase;
@@ -147,13 +148,42 @@ class ImportResolutionTest extends TestCase
         $this->confirm($batchId);
 
         // A serve request routed to the owner MDA, ownership unchanged, no new record.
-        $serve = ServeRequest::query()->firstOrFail();
+        $serve = ServiceRequest::query()->firstOrFail();
         $this->assertSame($this->existing1->id, $serve->beneficiary_id);
         $this->assertSame($this->mdaA->id, $serve->from_mda_id);
         $this->assertSame($this->mdaB->id, $serve->to_mda_id);
         $this->assertSame('pending', $serve->status->value);
 
         $this->assertSame($this->mdaB->id, $this->existing1->fresh()->owner_mda_id, 'Ownership must not change');
+    }
+
+    public function test_exact_matches_are_definitive_and_cannot_be_adjudicated_as_new(): void
+    {
+        $batchId = $this->upload();
+
+        // Row 1 is an EXACT NIN match → adjudication ("create as new") is refused (§9).
+        $this->resolve($batchId, 1, ['resolution' => 'new', 'note' => 'Trying to split an exact match'])
+            ->assertStatus(422)
+            ->assertJsonPath('error.code', 'ADJUDICATION_NOT_ALLOWED');
+
+        // ...but discard (skip) and provide-service (link) remain available at every band.
+        $this->resolve($batchId, 1, ['resolution' => 'skip'])
+            ->assertOk()
+            ->assertJsonPath('data.resolution', 'skip');
+
+        $this->resolve($batchId, 1, ['resolution' => 'link', 'beneficiary_id' => $this->existing1->id])
+            ->assertOk()
+            ->assertJsonPath('data.resolution', 'link');
+    }
+
+    public function test_probable_matches_can_be_adjudicated_as_new(): void
+    {
+        $batchId = $this->upload();
+
+        // Row 2 is a PROBABLE (fuzzy) match → adjudication as a distinct person is allowed.
+        $this->resolve($batchId, 2, ['resolution' => 'new', 'note' => 'Reviewed — a distinct person'])
+            ->assertOk()
+            ->assertJsonPath('data.resolution', 'new');
     }
 
     public function test_link_rejects_a_beneficiary_that_is_not_a_match_candidate(): void
@@ -179,7 +209,7 @@ class ImportResolutionTest extends TestCase
 
         // 3 pre-existing + row2 (new) + row4 (new) = 5; linked/skipped created nothing.
         $this->assertSame(5, Beneficiary::query()->withoutGlobalScope(MdaScope::class)->count());
-        $this->assertSame(1, ServeRequest::query()->count());
+        $this->assertSame(1, ServiceRequest::query()->count());
 
         $batch = ImportBatch::query()->withoutGlobalScope(MdaScope::class)->findOrFail($batchId);
         $this->assertSame(2, $batch->committed_rows);
@@ -203,27 +233,107 @@ class ImportResolutionTest extends TestCase
         $this->assertSame('Reviewed and distinct', $entry->after['justification']);
     }
 
-    public function test_owner_accepts_a_serve_request_and_ownership_stays_put(): void
+    public function test_owner_accepts_a_service_request_opening_read_access_without_moving_ownership(): void
     {
         $batchId = $this->upload();
         $this->resolve($batchId, 1, ['resolution' => 'link', 'beneficiary_id' => $this->existing1->id])->assertOk();
         $this->confirm($batchId);
-        $serve = ServeRequest::query()->firstOrFail();
+        $serve = ServiceRequest::query()->firstOrFail();
+
+        // Before acceptance the requester cannot read the (non-owned) full record.
+        $this->withToken($this->token('officer'))
+            ->getJson("/api/v1/beneficiaries/{$this->existing1->id}")
+            ->assertStatus(404);
+        $this->app['auth']->forgetGuards();
 
         // The requester (MDA A officer) may not accept its own request.
         $this->withToken($this->token('officer'))
-            ->postJson("/api/v1/serve-requests/{$serve->id}/accept")
+            ->postJson("/api/v1/service-requests/{$serve->id}/accept")
             ->assertStatus(403);
         $this->app['auth']->forgetGuards();
 
-        // The owner MDA accepts → serve access granted, ownership unchanged, audited.
+        // The owner MDA accepts → read-access grant opens, ownership unchanged, audited.
         $this->withToken($this->token('ownerAdmin'))
-            ->postJson("/api/v1/serve-requests/{$serve->id}/accept", ['reason' => 'Approved for programme X'])
+            ->postJson("/api/v1/service-requests/{$serve->id}/accept", ['reason' => 'Approved for programme X'])
             ->assertOk()
             ->assertJsonPath('data.status', 'accepted');
+        $this->app['auth']->forgetGuards();
 
+        // Ownership never moved; both the decision and the access grant are audited.
         $this->assertSame($this->mdaB->id, $this->existing1->fresh()->owner_mda_id);
-        $this->assertDatabaseHas('audit_log', ['action' => 'serve_request.accepted', 'entity_id' => $serve->id]);
+        $this->assertDatabaseHas('audit_log', ['action' => 'service_request.accepted', 'entity_id' => $serve->id]);
+        $this->assertDatabaseHas('audit_log', ['action' => 'beneficiary.access_granted', 'entity_id' => $this->existing1->id]);
+
+        // A read-access grant now exists for the requesting MDA.
+        $this->assertTrue(
+            BeneficiaryServiceGrant::query()->withoutGlobalScope(MdaScope::class)
+                ->where('beneficiary_id', $this->existing1->id)
+                ->where('mda_id', $this->mdaA->id)
+                ->whereNull('revoked_at')
+                ->exists(),
+        );
+
+        // READ access is now open for the requester — the FULL record...
+        $this->withToken($this->token('officer'))
+            ->getJson("/api/v1/beneficiaries/{$this->existing1->id}")
+            ->assertOk()
+            ->assertJsonPath('data.id', $this->existing1->id);
+        $this->app['auth']->forgetGuards();
+
+        // ...but READ only — the requester still cannot edit (owner-only).
+        $this->withToken($this->token('officer'))
+            ->patchJson("/api/v1/beneficiaries/{$this->existing1->id}", ['ward' => 'Ward 9'])
+            ->assertStatus(403);
+    }
+
+    public function test_owner_declines_a_service_request_with_a_required_reason(): void
+    {
+        $batchId = $this->upload();
+        $this->resolve($batchId, 1, ['resolution' => 'link', 'beneficiary_id' => $this->existing1->id])->assertOk();
+        $this->confirm($batchId);
+        $serve = ServiceRequest::query()->firstOrFail();
+
+        // A reason is required on decline.
+        $this->withToken($this->token('ownerAdmin'))
+            ->postJson("/api/v1/service-requests/{$serve->id}/decline")
+            ->assertStatus(422)
+            ->assertJsonFragment(['field' => 'reason']);
+        $this->app['auth']->forgetGuards();
+
+        $this->withToken($this->token('ownerAdmin'))
+            ->postJson("/api/v1/service-requests/{$serve->id}/decline", ['reason' => 'Not eligible for cross-service'])
+            ->assertOk()
+            ->assertJsonPath('data.status', 'declined');
+        $this->app['auth']->forgetGuards();
+
+        // No grant opened; the requester still cannot read the full record.
+        $this->assertSame(0, BeneficiaryServiceGrant::query()->withoutGlobalScope(MdaScope::class)->count());
+        $this->assertDatabaseHas('audit_log', ['action' => 'service_request.declined', 'entity_id' => $serve->id]);
+
+        $this->withToken($this->token('officer'))
+            ->getJson("/api/v1/beneficiaries/{$this->existing1->id}")
+            ->assertStatus(404);
+    }
+
+    public function test_inbox_and_outbox_list_from_each_side(): void
+    {
+        $batchId = $this->upload();
+        $this->resolve($batchId, 1, ['resolution' => 'link', 'beneficiary_id' => $this->existing1->id])->assertOk();
+        $this->confirm($batchId);
+        $serve = ServiceRequest::query()->firstOrFail();
+
+        // Requester (MDA A) sees it in its OUTBOX.
+        $this->withToken($this->token('officer'))
+            ->getJson('/api/v1/service-requests/outbox')
+            ->assertOk()
+            ->assertJsonPath('data.service_requests.0.id', $serve->id);
+        $this->app['auth']->forgetGuards();
+
+        // Owner (MDA B) sees it in its INBOX (awaiting decision).
+        $this->withToken($this->token('ownerAdmin'))
+            ->getJson('/api/v1/service-requests/inbox')
+            ->assertOk()
+            ->assertJsonPath('data.service_requests.0.id', $serve->id);
     }
 
     public function test_deterministic_auto_link_config_pre_resolves_exact_rows(): void
@@ -242,6 +352,6 @@ class ImportResolutionTest extends TestCase
 
         $this->confirm($batchId);
 
-        $this->assertSame(1, ServeRequest::query()->where('beneficiary_id', $this->existing1->id)->count());
+        $this->assertSame(1, ServiceRequest::query()->where('beneficiary_id', $this->existing1->id)->count());
     }
 }

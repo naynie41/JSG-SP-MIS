@@ -11,6 +11,7 @@ use App\Domain\Matching\Services\MatchingConfigService;
 use App\Domain\Registry\Models\Beneficiary;
 use App\Domain\Registry\Services\BeneficiaryLookupService;
 use App\Domain\Registry\Services\FuzzyDuplicateFinder;
+use App\Domain\Registry\Services\ServiceRequestService;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Registry\BeneficiaryLookupRequest;
 use App\Http\Requests\Registry\BeneficiaryMatchSearchRequest;
@@ -68,10 +69,25 @@ class BeneficiaryController extends Controller
         return ApiResponse::paginated(BeneficiaryResource::collection($page->items())->resolve(), $page);
     }
 
-    /** Show a single beneficiary. Out-of-scope records 404 via the global scope. */
-    public function show(string $beneficiary): JsonResponse
+    /**
+     * Show a single beneficiary. Owner + oversight resolve via the global scope. A
+     * non-owner MDA holding an active read-access grant from an accepted Service
+     * Request (§12, FR-OWN-07) reads the FULL record (read-only). Any other
+     * out-of-scope record still 404s.
+     */
+    public function show(Request $request, string $beneficiary): JsonResponse
     {
-        $model = Beneficiary::query()->findOrFail($beneficiary);
+        $model = Beneficiary::query()->find($beneficiary);
+
+        if ($model === null) {
+            $mdaId = $request->user()->mda_id;
+            $unscoped = Beneficiary::query()->withoutGlobalScope(MdaScope::class)->find($beneficiary);
+            if ($unscoped !== null && $mdaId !== null && ServiceRequestService::hasActiveGrant($unscoped->id, $mdaId)) {
+                $model = $unscoped;
+            }
+        }
+
+        abort_if($model === null, 404);
 
         $this->authorize('view', $model);
 
@@ -127,7 +143,7 @@ class BeneficiaryController extends Controller
      * Fuzzy "serve many" search (FR-DUP-04): runs the SAME engine as import
      * screening against partial identity details and returns ranked candidates
      * (exact + probable) as reveal-only projections, across all MDAs. From a
-     * result the caller can raise a request-to-serve (see ServeRequestController).
+     * result the caller can raise a Service Request (see ServiceRequestController).
      * Read-only and audited (identifiers used + hit count, never their values).
      */
     public function search(

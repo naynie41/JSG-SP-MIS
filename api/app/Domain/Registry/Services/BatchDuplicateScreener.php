@@ -4,9 +4,8 @@ declare(strict_types=1);
 
 namespace App\Domain\Registry\Services;
 
-use App\Domain\Matching\Engine\MatchingEngine;
+use App\Domain\Matching\Engine\DuplicateCascade;
 use App\Domain\Matching\Engine\MatchResult;
-use App\Domain\Matching\Enums\MatchBand;
 use App\Domain\Matching\Models\MatchingConfig;
 use App\Domain\Matching\Scoring\FieldNormalizer;
 use App\Domain\Registry\Models\Beneficiary;
@@ -16,8 +15,10 @@ use App\Domain\Registry\Models\Beneficiary;
  * is checked against BOTH the existing registry (index-backed blocking) and the
  * earlier rows in the same batch (in-memory, also blocked so it stays bounded).
  *
- * Stateful and single-use per batch: as each row is screened it is remembered so
- * later rows can match it. Read-only — it annotates, it never creates or blocks.
+ * The ordered cascade (§9) decides the outcome: exact NIN → exact BVN → fuzzy,
+ * stopping at the first exact stage — so an exact-identifier match is reported
+ * alone, never alongside fuzzy noise. Stateful and single-use per batch: as each
+ * row is screened it is remembered so later rows can match it. Read-only.
  */
 class BatchDuplicateScreener
 {
@@ -25,8 +26,8 @@ class BatchDuplicateScreener
     private array $index = [];
 
     public function __construct(
-        private readonly FuzzyDuplicateFinder $registryFinder,
-        private readonly MatchingEngine $engine,
+        private readonly CandidateGatherer $gatherer,
+        private readonly DuplicateCascade $cascade,
         private readonly FieldNormalizer $normalizer,
     ) {}
 
@@ -38,24 +39,40 @@ class BatchDuplicateScreener
      */
     public function screen(array $candidate, int $rowNumber, MatchingConfig $config): array
     {
-        $matches = [];
-        foreach ($this->registryFinder->find($candidate, $config) as $result) {
-            $matches[] = $this->entry('registry', $result);
+        // Pool = index-backed registry candidates + earlier rows in this batch. The
+        // cascade evaluates NIN → BVN → fuzzy over the pool and stops at the first
+        // exact stage. Registry ids are UUIDs; batch refs are row numbers, so we
+        // recover each candidate's source by membership in the registry-id set.
+        $registry = $this->gatherer->gather($candidate, $config);
+        $registryIds = [];
+        foreach ($registry as $record) {
+            $registryIds[(string) $record['id']] = true;
         }
-        foreach ($this->matchWithinBatch($candidate, $config) as $result) {
-            $matches[] = $this->entry('batch', $result);
-        }
+
+        $pool = array_merge($registry, $this->batchRecords($candidate));
+        $outcome = $this->cascade->evaluate($candidate, $pool, $config);
 
         $this->remember($candidate, $rowNumber);
 
-        return ['band' => $this->highestBand($matches), 'candidates' => $matches];
+        $candidates = array_map(
+            fn (MatchResult $result): array => $this->entry(
+                isset($registryIds[(string) $result->reference]) ? 'registry' : 'batch',
+                $result,
+            ),
+            $outcome['results'],
+        );
+
+        return ['band' => $outcome['band']->value, 'candidates' => $candidates];
     }
 
     /**
+     * Earlier rows in the batch that share a blocking key with the candidate
+     * (deduped), to be pooled with the registry candidates for the cascade.
+     *
      * @param  array<string, mixed>  $candidate
-     * @return list<MatchResult>
+     * @return list<array<string, mixed>>
      */
-    private function matchWithinBatch(array $candidate, MatchingConfig $config): array
+    private function batchRecords(array $candidate): array
     {
         $records = [];
         $seen = [];
@@ -69,10 +86,7 @@ class BatchDuplicateScreener
             }
         }
 
-        return array_values(array_filter(
-            $this->engine->match($candidate, $records, $config),
-            static fn (MatchResult $r) => $r->band !== MatchBand::None,
-        ));
+        return $records;
     }
 
     /**
@@ -123,21 +137,5 @@ class BatchDuplicateScreener
             'score' => round($result->score->composite, 4),
             'matched_fields' => $result->score->matchedFields(),
         ];
-    }
-
-    /**
-     * @param  list<array<string, mixed>>  $matches
-     */
-    private function highestBand(array $matches): string
-    {
-        $bands = array_column($matches, 'band');
-        if (in_array(MatchBand::Exact->value, $bands, true)) {
-            return MatchBand::Exact->value;
-        }
-        if (in_array(MatchBand::Probable->value, $bands, true)) {
-            return MatchBand::Probable->value;
-        }
-
-        return MatchBand::None->value;
     }
 }

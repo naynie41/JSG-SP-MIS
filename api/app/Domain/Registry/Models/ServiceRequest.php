@@ -6,22 +6,30 @@ namespace App\Domain\Registry\Models;
 
 use App\Domain\Access\Models\Mda;
 use App\Domain\Audit\Concerns\Auditable;
-use App\Domain\Registry\Enums\ServeRequestStatus;
+use App\Domain\Registry\Enums\ServiceRequestStatus;
+use App\Domain\Registry\Policies\OwnerMdaPolicy;
 use Illuminate\Database\Eloquent\Concerns\HasUuids;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Support\Carbon;
 
 /**
- * A request-to-serve an existing beneficiary (PRD FR-DUP-05). The requesting MDA
- * (`from_mda_id`) asks the owner MDA (`to_mda_id`) for serve access; ownership
- * (`beneficiaries.owner_mda_id`) is never changed. Audited via Auditable.
+ * A Service Request (PRD §12, FR-OWN-06): the requesting MDA (`from_mda_id`) asks
+ * the owner MDA (`to_mda_id`) for permission to serve an existing beneficiary.
+ * State machine: pending → accepted | declined. Ownership
+ * (`beneficiaries.owner_mda_id`) is NEVER changed. Distinct from a Referral.
+ *
+ * Not globally MDA-scoped because it is a two-party record (requester + owner);
+ * visibility is enforced by {@see OwnerMdaPolicy}
+ * and the explicit inbox/outbox queries. Audited via Auditable — the decision
+ * transitions are recorded explicitly (service_request.accepted/declined) so
+ * status changes are excluded from the generic update audit.
  *
  * @property string $id
  * @property string $beneficiary_id
  * @property string $from_mda_id
  * @property string $to_mda_id
- * @property ServeRequestStatus $status
+ * @property ServiceRequestStatus $status
  * @property string|null $reason
  * @property string|null $import_row_id
  * @property string|null $requested_by
@@ -34,11 +42,11 @@ use Illuminate\Support\Carbon;
  * @property-read Mda $fromMda
  * @property-read Mda $toMda
  */
-class ServeRequest extends Model
+class ServiceRequest extends Model
 {
     use Auditable, HasUuids;
 
-    protected $table = 'serve_requests';
+    protected $table = 'service_requests';
 
     /**
      * @var list<string>
@@ -62,9 +70,20 @@ class ServeRequest extends Model
     protected function casts(): array
     {
         return [
-            'status' => ServeRequestStatus::class,
+            'status' => ServiceRequestStatus::class,
             'decided_at' => 'datetime',
         ];
+    }
+
+    /**
+     * The decision transition is audited explicitly; keep it out of the generic
+     * update audit to avoid a duplicate, less-meaningful entry.
+     *
+     * @return list<string>
+     */
+    protected function auditExcluded(): array
+    {
+        return ['status', 'decided_by', 'decided_at', 'decision_reason'];
     }
 
     /**

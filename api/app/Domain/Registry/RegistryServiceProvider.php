@@ -18,12 +18,12 @@ use App\Domain\Registry\Models\Beneficiary;
 use App\Domain\Registry\Models\BeneficiaryDocument;
 use App\Domain\Registry\Models\Household;
 use App\Domain\Registry\Models\ImportBatch;
-use App\Domain\Registry\Models\ServeRequest;
+use App\Domain\Registry\Models\ServiceRequest;
 use App\Domain\Registry\Policies\BeneficiaryDocumentPolicy;
 use App\Domain\Registry\Policies\BeneficiaryPolicy;
 use App\Domain\Registry\Policies\HouseholdPolicy;
 use App\Domain\Registry\Policies\ImportBatchPolicy;
-use App\Domain\Registry\Policies\ServeRequestPolicy;
+use App\Domain\Registry\Policies\OwnerMdaPolicy;
 use App\Domain\Registry\Services\NullDuplicateChecker;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\ServiceProvider;
@@ -63,7 +63,7 @@ class RegistryServiceProvider extends ServiceProvider
         Gate::policy(Household::class, HouseholdPolicy::class);
         Gate::policy(ImportBatch::class, ImportBatchPolicy::class);
         Gate::policy(BeneficiaryDocument::class, BeneficiaryDocumentPolicy::class);
-        Gate::policy(ServeRequest::class, ServeRequestPolicy::class);
+        Gate::policy(ServiceRequest::class, OwnerMdaPolicy::class);
     }
 
     private function registerPermissions(PermissionRegistry $registry): void

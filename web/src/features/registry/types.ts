@@ -94,15 +94,18 @@ export interface SearchCandidate {
 }
 
 export type ImportRowResolution = 'new' | 'link' | 'skip'
-export type ServeRequestStatus = 'pending' | 'accepted' | 'declined'
+export type ServiceRequestStatus = 'pending' | 'accepted' | 'declined'
 
-/** A request-to-serve an existing beneficiary owned by another MDA (FR-DUP-05). */
-export interface ServeRequest {
+/**
+ * A Service Request against an existing beneficiary owned by another MDA
+ * (§12, FR-OWN-06/07). The owner accepts (opening a read-access grant) or declines.
+ */
+export interface ServiceRequest {
   id: string
   beneficiary_id: string
   from_mda_id: string
   to_mda_id: string
-  status: ServeRequestStatus
+  status: ServiceRequestStatus
   reason: string | null
   decided_at: string | null
   decision_reason: string | null
