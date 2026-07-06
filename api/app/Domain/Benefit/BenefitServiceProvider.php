@@ -6,6 +6,7 @@ namespace App\Domain\Benefit;
 
 use App\Domain\Access\Enums\PermissionAction;
 use App\Domain\Access\Support\PermissionRegistry;
+use App\Domain\Benefit\Authorization\ServiceRequestAuthorizer;
 use App\Domain\Benefit\Models\Benefit;
 use App\Domain\Benefit\Models\BenefitFlag;
 use App\Domain\Benefit\Models\BenefitImportBatch;
@@ -14,6 +15,7 @@ use App\Domain\Benefit\Policies\BenefitFlagPolicy;
 use App\Domain\Benefit\Policies\BenefitImportPolicy;
 use App\Domain\Benefit\Policies\BenefitPolicy;
 use App\Domain\Benefit\Policies\DoubleDippingRulePolicy;
+use App\Domain\Benefit\Services\DeliveryAuthorization;
 use App\Domain\Benefit\Services\VerifierRegistry;
 use App\Domain\Benefit\Services\Verifiers\BiometricVerifier;
 use App\Domain\Benefit\Services\Verifiers\FieldConfirmationVerifier;
@@ -36,6 +38,12 @@ class BenefitServiceProvider extends ServiceProvider
             new SignatureVerifier,
             new OtpVerifier,        // stub — unavailable until an SMS/OTP gateway is provided
             new BiometricVerifier,  // stub — unavailable until biometric/NIMC access is provided
+        ]));
+
+        // Non-owner delivery authorization (FR-BEN-06): an accepted Service Request
+        // now; add a ReferralAuthorizer here in Phase 5 — the recorder is unchanged.
+        $this->app->singleton(DeliveryAuthorization::class, fn ($app): DeliveryAuthorization => new DeliveryAuthorization([
+            $app->make(ServiceRequestAuthorizer::class),
         ]));
     }
 

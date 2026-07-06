@@ -14,8 +14,10 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         array (
           'user' => 'App\\Domain\\Access\\Models\\User',
           'mdascope' => 'App\\Domain\\Access\\Scopes\\MdaScope',
+          'auditlogger' => 'App\\Domain\\Audit\\Services\\AuditLogger',
           'benefitstatus' => 'App\\Domain\\Benefit\\Enums\\BenefitStatus',
           'verificationmethod' => 'App\\Domain\\Benefit\\Enums\\VerificationMethod',
+          'deliverynotauthorizedexception' => 'App\\Domain\\Benefit\\Exceptions\\DeliveryNotAuthorizedException',
           'notenrolledexception' => 'App\\Domain\\Benefit\\Exceptions\\NotEnrolledException',
           'verificationunavailableexception' => 'App\\Domain\\Benefit\\Exceptions\\VerificationUnavailableException',
           'benefit' => 'App\\Domain\\Benefit\\Models\\Benefit',
@@ -48,8 +50,10 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         array (
           'user' => 'App\\Domain\\Access\\Models\\User',
           'mdascope' => 'App\\Domain\\Access\\Scopes\\MdaScope',
+          'auditlogger' => 'App\\Domain\\Audit\\Services\\AuditLogger',
           'benefitstatus' => 'App\\Domain\\Benefit\\Enums\\BenefitStatus',
           'verificationmethod' => 'App\\Domain\\Benefit\\Enums\\VerificationMethod',
+          'deliverynotauthorizedexception' => 'App\\Domain\\Benefit\\Exceptions\\DeliveryNotAuthorizedException',
           'notenrolledexception' => 'App\\Domain\\Benefit\\Exceptions\\NotEnrolledException',
           'verificationunavailableexception' => 'App\\Domain\\Benefit\\Exceptions\\VerificationUnavailableException',
           'benefit' => 'App\\Domain\\Benefit\\Models\\Benefit',
@@ -71,8 +75,10 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
           array (
             'user' => 'App\\Domain\\Access\\Models\\User',
             'mdascope' => 'App\\Domain\\Access\\Scopes\\MdaScope',
+            'auditlogger' => 'App\\Domain\\Audit\\Services\\AuditLogger',
             'benefitstatus' => 'App\\Domain\\Benefit\\Enums\\BenefitStatus',
             'verificationmethod' => 'App\\Domain\\Benefit\\Enums\\VerificationMethod',
+            'deliverynotauthorizedexception' => 'App\\Domain\\Benefit\\Exceptions\\DeliveryNotAuthorizedException',
             'notenrolledexception' => 'App\\Domain\\Benefit\\Exceptions\\NotEnrolledException',
             'verificationunavailableexception' => 'App\\Domain\\Benefit\\Exceptions\\VerificationUnavailableException',
             'benefit' => 'App\\Domain\\Benefit\\Models\\Benefit',
@@ -115,8 +121,10 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         array (
           'user' => 'App\\Domain\\Access\\Models\\User',
           'mdascope' => 'App\\Domain\\Access\\Scopes\\MdaScope',
+          'auditlogger' => 'App\\Domain\\Audit\\Services\\AuditLogger',
           'benefitstatus' => 'App\\Domain\\Benefit\\Enums\\BenefitStatus',
           'verificationmethod' => 'App\\Domain\\Benefit\\Enums\\VerificationMethod',
+          'deliverynotauthorizedexception' => 'App\\Domain\\Benefit\\Exceptions\\DeliveryNotAuthorizedException',
           'notenrolledexception' => 'App\\Domain\\Benefit\\Exceptions\\NotEnrolledException',
           'verificationunavailableexception' => 'App\\Domain\\Benefit\\Exceptions\\VerificationUnavailableException',
           'benefit' => 'App\\Domain\\Benefit\\Models\\Benefit',
@@ -138,8 +146,10 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
           array (
             'user' => 'App\\Domain\\Access\\Models\\User',
             'mdascope' => 'App\\Domain\\Access\\Scopes\\MdaScope',
+            'auditlogger' => 'App\\Domain\\Audit\\Services\\AuditLogger',
             'benefitstatus' => 'App\\Domain\\Benefit\\Enums\\BenefitStatus',
             'verificationmethod' => 'App\\Domain\\Benefit\\Enums\\VerificationMethod',
+            'deliverynotauthorizedexception' => 'App\\Domain\\Benefit\\Exceptions\\DeliveryNotAuthorizedException',
             'notenrolledexception' => 'App\\Domain\\Benefit\\Exceptions\\NotEnrolledException',
             'verificationunavailableexception' => 'App\\Domain\\Benefit\\Exceptions\\VerificationUnavailableException',
             'benefit' => 'App\\Domain\\Benefit\\Models\\Benefit',
@@ -182,8 +192,10 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         array (
           'user' => 'App\\Domain\\Access\\Models\\User',
           'mdascope' => 'App\\Domain\\Access\\Scopes\\MdaScope',
+          'auditlogger' => 'App\\Domain\\Audit\\Services\\AuditLogger',
           'benefitstatus' => 'App\\Domain\\Benefit\\Enums\\BenefitStatus',
           'verificationmethod' => 'App\\Domain\\Benefit\\Enums\\VerificationMethod',
+          'deliverynotauthorizedexception' => 'App\\Domain\\Benefit\\Exceptions\\DeliveryNotAuthorizedException',
           'notenrolledexception' => 'App\\Domain\\Benefit\\Exceptions\\NotEnrolledException',
           'verificationunavailableexception' => 'App\\Domain\\Benefit\\Exceptions\\VerificationUnavailableException',
           'benefit' => 'App\\Domain\\Benefit\\Models\\Benefit',
@@ -205,8 +217,10 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
           array (
             'user' => 'App\\Domain\\Access\\Models\\User',
             'mdascope' => 'App\\Domain\\Access\\Scopes\\MdaScope',
+            'auditlogger' => 'App\\Domain\\Audit\\Services\\AuditLogger',
             'benefitstatus' => 'App\\Domain\\Benefit\\Enums\\BenefitStatus',
             'verificationmethod' => 'App\\Domain\\Benefit\\Enums\\VerificationMethod',
+            'deliverynotauthorizedexception' => 'App\\Domain\\Benefit\\Exceptions\\DeliveryNotAuthorizedException',
             'notenrolledexception' => 'App\\Domain\\Benefit\\Exceptions\\NotEnrolledException',
             'verificationunavailableexception' => 'App\\Domain\\Benefit\\Exceptions\\VerificationUnavailableException',
             'benefit' => 'App\\Domain\\Benefit\\Models\\Benefit',
@@ -249,8 +263,10 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         array (
           'user' => 'App\\Domain\\Access\\Models\\User',
           'mdascope' => 'App\\Domain\\Access\\Scopes\\MdaScope',
+          'auditlogger' => 'App\\Domain\\Audit\\Services\\AuditLogger',
           'benefitstatus' => 'App\\Domain\\Benefit\\Enums\\BenefitStatus',
           'verificationmethod' => 'App\\Domain\\Benefit\\Enums\\VerificationMethod',
+          'deliverynotauthorizedexception' => 'App\\Domain\\Benefit\\Exceptions\\DeliveryNotAuthorizedException',
           'notenrolledexception' => 'App\\Domain\\Benefit\\Exceptions\\NotEnrolledException',
           'verificationunavailableexception' => 'App\\Domain\\Benefit\\Exceptions\\VerificationUnavailableException',
           'benefit' => 'App\\Domain\\Benefit\\Models\\Benefit',
@@ -272,8 +288,10 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
           array (
             'user' => 'App\\Domain\\Access\\Models\\User',
             'mdascope' => 'App\\Domain\\Access\\Scopes\\MdaScope',
+            'auditlogger' => 'App\\Domain\\Audit\\Services\\AuditLogger',
             'benefitstatus' => 'App\\Domain\\Benefit\\Enums\\BenefitStatus',
             'verificationmethod' => 'App\\Domain\\Benefit\\Enums\\VerificationMethod',
+            'deliverynotauthorizedexception' => 'App\\Domain\\Benefit\\Exceptions\\DeliveryNotAuthorizedException',
             'notenrolledexception' => 'App\\Domain\\Benefit\\Exceptions\\NotEnrolledException',
             'verificationunavailableexception' => 'App\\Domain\\Benefit\\Exceptions\\VerificationUnavailableException',
             'benefit' => 'App\\Domain\\Benefit\\Models\\Benefit',
@@ -312,7 +330,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
     ),
     1 => 
     array (
-      '/var/www/html/app/Domain/Benefit/Services/BenefitRecorder.php' => 'e9054a4288d1ce2509f798ec5a37ef3eff783d2815cad9ac78f2fc2f45fe4dfd',
+      '/var/www/html/app/Domain/Benefit/Services/BenefitRecorder.php' => '6dee42b1d711ab80a9c865206dd1039597ac3b60dd86ab846692f6bf0dcd9a28',
     ),
   ),
 ));

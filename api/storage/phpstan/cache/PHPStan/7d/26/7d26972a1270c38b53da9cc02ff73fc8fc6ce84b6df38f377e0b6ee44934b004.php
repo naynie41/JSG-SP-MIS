@@ -2,7 +2,7 @@
 
 // odsl-/var/www/html/app/Domain/Benefit/Services/BenefitRecorder.php-PHPStan\BetterReflection\Reflection\ReflectionClass-App\Domain\Benefit\Services\BenefitRecorder
 return \PHPStan\Cache\CacheItem::__set_state(array(
-   'variableKey' => 'v2-6.70.0.1-8.3.31-e9054a4288d1ce2509f798ec5a37ef3eff783d2815cad9ac78f2fc2f45fe4dfd',
+   'variableKey' => 'v2-6.70.0.1-8.3.31-6dee42b1d711ab80a9c865206dd1039597ac3b60dd86ab846692f6bf0dcd9a28',
    'data' => 
   array (
     'locatedSource' => 
@@ -25,15 +25,16 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
     'docComment' => '/**
  * Records benefit DELIVERIES to the ledger (PRD FR-BEN-01/02, §8.3) and applies
  * verification (FR-BEN-04). This never moves money — it appends descriptive
- * records. Delivery requires an open enrollment (which is what granted the serve
- * relationship for a non-owned beneficiary); the delivering MDA is the programme
- * owner.
+ * records. The delivering MDA is the programme owner; when it does NOT own the
+ * beneficiary, delivery is authorized ONLY by an explicit accepted authorization —
+ * a Service Request (R2.3) or Referral (Phase 5, FR-BEN-06), never a generic seam.
+ * Delivery also requires an open enrollment (§8.3).
  */',
     'attributes' => 
     array (
     ),
-    'startLine' => 27,
-    'endLine' => 114,
+    'startLine' => 30,
+    'endLine' => 140,
     'startColumn' => 1,
     'endColumn' => 1,
     'parentClassName' => NULL,
@@ -68,8 +69,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         'attributes' => 
         array (
         ),
-        'startLine' => 30,
-        'endLine' => 30,
+        'startLine' => 33,
+        'endLine' => 33,
         'startColumn' => 9,
         'endColumn' => 52,
         'isPromoted' => true,
@@ -99,10 +100,72 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         'attributes' => 
         array (
         ),
-        'startLine' => 31,
-        'endLine' => 31,
+        'startLine' => 34,
+        'endLine' => 34,
         'startColumn' => 9,
         'endColumn' => 61,
+        'isPromoted' => true,
+        'declaredAtCompileTime' => true,
+        'immediateVirtual' => false,
+        'immediateHooks' => 
+        array (
+        ),
+      ),
+      'authorization' => 
+      array (
+        'declaringClassName' => 'App\\Domain\\Benefit\\Services\\BenefitRecorder',
+        'implementingClassName' => 'App\\Domain\\Benefit\\Services\\BenefitRecorder',
+        'name' => 'authorization',
+        'modifiers' => 132,
+        'type' => 
+        array (
+          'class' => 'PHPStan\\BetterReflection\\Reflection\\ReflectionNamedType',
+          'data' => 
+          array (
+            'name' => 'App\\Domain\\Benefit\\Services\\DeliveryAuthorization',
+            'isIdentifier' => false,
+          ),
+        ),
+        'default' => NULL,
+        'docComment' => NULL,
+        'attributes' => 
+        array (
+        ),
+        'startLine' => 35,
+        'endLine' => 35,
+        'startColumn' => 9,
+        'endColumn' => 61,
+        'isPromoted' => true,
+        'declaredAtCompileTime' => true,
+        'immediateVirtual' => false,
+        'immediateHooks' => 
+        array (
+        ),
+      ),
+      'audit' => 
+      array (
+        'declaringClassName' => 'App\\Domain\\Benefit\\Services\\BenefitRecorder',
+        'implementingClassName' => 'App\\Domain\\Benefit\\Services\\BenefitRecorder',
+        'name' => 'audit',
+        'modifiers' => 132,
+        'type' => 
+        array (
+          'class' => 'PHPStan\\BetterReflection\\Reflection\\ReflectionNamedType',
+          'data' => 
+          array (
+            'name' => 'App\\Domain\\Audit\\Services\\AuditLogger',
+            'isIdentifier' => false,
+          ),
+        ),
+        'default' => NULL,
+        'docComment' => NULL,
+        'attributes' => 
+        array (
+        ),
+        'startLine' => 36,
+        'endLine' => 36,
+        'startColumn' => 9,
+        'endColumn' => 43,
         'isPromoted' => true,
         'declaredAtCompileTime' => true,
         'immediateVirtual' => false,
@@ -137,8 +200,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             'attributes' => 
             array (
             ),
-            'startLine' => 30,
-            'endLine' => 30,
+            'startLine' => 33,
+            'endLine' => 33,
             'startColumn' => 9,
             'endColumn' => 52,
             'parameterIndex' => 0,
@@ -163,11 +226,63 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             'attributes' => 
             array (
             ),
-            'startLine' => 31,
-            'endLine' => 31,
+            'startLine' => 34,
+            'endLine' => 34,
             'startColumn' => 9,
             'endColumn' => 61,
             'parameterIndex' => 1,
+            'isOptional' => false,
+          ),
+          'authorization' => 
+          array (
+            'name' => 'authorization',
+            'default' => NULL,
+            'type' => 
+            array (
+              'class' => 'PHPStan\\BetterReflection\\Reflection\\ReflectionNamedType',
+              'data' => 
+              array (
+                'name' => 'App\\Domain\\Benefit\\Services\\DeliveryAuthorization',
+                'isIdentifier' => false,
+              ),
+            ),
+            'isVariadic' => false,
+            'byRef' => false,
+            'isPromoted' => true,
+            'attributes' => 
+            array (
+            ),
+            'startLine' => 35,
+            'endLine' => 35,
+            'startColumn' => 9,
+            'endColumn' => 61,
+            'parameterIndex' => 2,
+            'isOptional' => false,
+          ),
+          'audit' => 
+          array (
+            'name' => 'audit',
+            'default' => NULL,
+            'type' => 
+            array (
+              'class' => 'PHPStan\\BetterReflection\\Reflection\\ReflectionNamedType',
+              'data' => 
+              array (
+                'name' => 'App\\Domain\\Audit\\Services\\AuditLogger',
+                'isIdentifier' => false,
+              ),
+            ),
+            'isVariadic' => false,
+            'byRef' => false,
+            'isPromoted' => true,
+            'attributes' => 
+            array (
+            ),
+            'startLine' => 36,
+            'endLine' => 36,
+            'startColumn' => 9,
+            'endColumn' => 43,
+            'parameterIndex' => 3,
             'isOptional' => false,
           ),
         ),
@@ -177,8 +292,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         array (
         ),
         'docComment' => NULL,
-        'startLine' => 29,
-        'endLine' => 32,
+        'startLine' => 32,
+        'endLine' => 37,
         'startColumn' => 5,
         'endColumn' => 8,
         'couldThrow' => false,
@@ -216,8 +331,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             'attributes' => 
             array (
             ),
-            'startLine' => 40,
-            'endLine' => 40,
+            'startLine' => 46,
+            'endLine' => 46,
             'startColumn' => 28,
             'endColumn' => 51,
             'parameterIndex' => 0,
@@ -242,8 +357,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             'attributes' => 
             array (
             ),
-            'startLine' => 40,
-            'endLine' => 40,
+            'startLine' => 46,
+            'endLine' => 46,
             'startColumn' => 54,
             'endColumn' => 73,
             'parameterIndex' => 1,
@@ -287,8 +402,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             'attributes' => 
             array (
             ),
-            'startLine' => 40,
-            'endLine' => 40,
+            'startLine' => 46,
+            'endLine' => 46,
             'startColumn' => 76,
             'endColumn' => 94,
             'parameterIndex' => 2,
@@ -313,8 +428,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             'attributes' => 
             array (
             ),
-            'startLine' => 40,
-            'endLine' => 40,
+            'startLine' => 46,
+            'endLine' => 46,
             'startColumn' => 97,
             'endColumn' => 107,
             'parameterIndex' => 3,
@@ -339,8 +454,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             'attributes' => 
             array (
             ),
-            'startLine' => 40,
-            'endLine' => 40,
+            'startLine' => 46,
+            'endLine' => 46,
             'startColumn' => 110,
             'endColumn' => 122,
             'parameterIndex' => 4,
@@ -363,11 +478,12 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         'docComment' => '/**
  * @param  array<string, mixed>  $fields  benefit_type, quantity, unit, monetary_value, funding_source, delivery_date, notes, verification_method, verification_reference
  *
+ * @throws DeliveryNotAuthorizedException
  * @throws NotEnrolledException
  * @throws VerificationUnavailableException
  */',
-        'startLine' => 40,
-        'endLine' => 88,
+        'startLine' => 46,
+        'endLine' => 114,
         'startColumn' => 5,
         'endColumn' => 5,
         'couldThrow' => true,
@@ -405,8 +521,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             'attributes' => 
             array (
             ),
-            'startLine' => 95,
-            'endLine' => 95,
+            'startLine' => 121,
+            'endLine' => 121,
             'startColumn' => 28,
             'endColumn' => 43,
             'parameterIndex' => 0,
@@ -431,8 +547,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             'attributes' => 
             array (
             ),
-            'startLine' => 95,
-            'endLine' => 95,
+            'startLine' => 121,
+            'endLine' => 121,
             'startColumn' => 46,
             'endColumn' => 71,
             'parameterIndex' => 1,
@@ -476,8 +592,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             'attributes' => 
             array (
             ),
-            'startLine' => 95,
-            'endLine' => 95,
+            'startLine' => 121,
+            'endLine' => 121,
             'startColumn' => 74,
             'endColumn' => 91,
             'parameterIndex' => 2,
@@ -502,8 +618,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             'attributes' => 
             array (
             ),
-            'startLine' => 95,
-            'endLine' => 95,
+            'startLine' => 121,
+            'endLine' => 121,
             'startColumn' => 94,
             'endColumn' => 104,
             'parameterIndex' => 3,
@@ -528,8 +644,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
  *
  * @throws VerificationUnavailableException
  */',
-        'startLine' => 95,
-        'endLine' => 100,
+        'startLine' => 121,
+        'endLine' => 126,
         'startColumn' => 5,
         'endColumn' => 5,
         'couldThrow' => false,
@@ -567,8 +683,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             'attributes' => 
             array (
             ),
-            'startLine' => 102,
-            'endLine' => 102,
+            'startLine' => 128,
+            'endLine' => 128,
             'startColumn' => 40,
             'endColumn' => 55,
             'parameterIndex' => 0,
@@ -593,8 +709,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             'attributes' => 
             array (
             ),
-            'startLine' => 102,
-            'endLine' => 102,
+            'startLine' => 128,
+            'endLine' => 128,
             'startColumn' => 58,
             'endColumn' => 83,
             'parameterIndex' => 1,
@@ -638,8 +754,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             'attributes' => 
             array (
             ),
-            'startLine' => 102,
-            'endLine' => 102,
+            'startLine' => 128,
+            'endLine' => 128,
             'startColumn' => 86,
             'endColumn' => 103,
             'parameterIndex' => 2,
@@ -664,8 +780,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             'attributes' => 
             array (
             ),
-            'startLine' => 102,
-            'endLine' => 102,
+            'startLine' => 128,
+            'endLine' => 128,
             'startColumn' => 106,
             'endColumn' => 116,
             'parameterIndex' => 3,
@@ -686,8 +802,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         array (
         ),
         'docComment' => NULL,
-        'startLine' => 102,
-        'endLine' => 113,
+        'startLine' => 128,
+        'endLine' => 139,
         'startColumn' => 5,
         'endColumn' => 5,
         'couldThrow' => false,

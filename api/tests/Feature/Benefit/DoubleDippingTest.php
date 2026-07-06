@@ -13,7 +13,10 @@ use App\Domain\Benefit\Models\BenefitFlag;
 use App\Domain\Benefit\Models\DoubleDippingRule;
 use App\Domain\Programme\Models\Enrollment;
 use App\Domain\Programme\Models\Programme;
+use App\Domain\Registry\Enums\ServiceRequestStatus;
 use App\Domain\Registry\Models\Beneficiary;
+use App\Domain\Registry\Models\BeneficiaryServiceGrant;
+use App\Domain\Registry\Models\ServiceRequest;
 use Database\Seeders\RolesAndPermissionsSeeder;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Testing\TestResponse;
@@ -62,6 +65,21 @@ class DoubleDippingTest extends TestCase
         $this->programmeB = Programme::factory()->individual()->create(['owner_mda_id' => $this->mdaB->id]);
         Enrollment::factory()->create(['programme_id' => $this->programmeA->id, 'mda_id' => $this->mdaA->id, 'beneficiary_id' => $this->beneficiary->id]);
         Enrollment::factory()->create(['programme_id' => $this->programmeB->id, 'mda_id' => $this->mdaB->id, 'beneficiary_id' => $this->beneficiary->id]);
+
+        // MDA B serves the MDA A-owned beneficiary via an accepted Service Request
+        // (FR-BEN-06) — required now that non-owner delivery is authorization-gated.
+        $request = ServiceRequest::create([
+            'beneficiary_id' => $this->beneficiary->id,
+            'from_mda_id' => $this->mdaB->id,
+            'to_mda_id' => $this->mdaA->id,
+            'status' => ServiceRequestStatus::Accepted,
+        ]);
+        BeneficiaryServiceGrant::create([
+            'beneficiary_id' => $this->beneficiary->id,
+            'mda_id' => $this->mdaB->id,
+            'service_request_id' => $request->id,
+            'granted_at' => now(),
+        ]);
     }
 
     private function user(Mda $mda, RoleKey $role): User

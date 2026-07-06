@@ -26,10 +26,18 @@ Select a beneficiary + programme/activity, record `benefit_type`, quantity/unit,
 
 - The **delivering MDA** is the programme owner (recording is authorized against
   programme ownership); `mda_id` is set to it.
-- The beneficiary must have an **open enrollment** in the programme — this is what
-  established the serve relationship, so a **serving MDA delivers to a beneficiary
-  it does not own without any ownership change**. Not enrolled → `422 NOT_ENROLLED`.
-- **No money is moved.** The ledger entry is the only artifact.
+- **Non-owner authorization (FR-BEN-06).** When the delivering MDA does **not** own
+  the beneficiary, recording is allowed **only** with an explicit accepted
+  authorization — an accepted **Service Request** (R2.3) or an accepted **Referral**
+  (Phase 5) — never a generic serve seam. `Services/DeliveryAuthorization` checks the
+  registered `Authorization/DeliveryAuthorizer`s (Service Request now; a
+  `ReferralAuthorizer` slots in for Phase 5 with **no recorder change**). Unauthorized
+  → `409 DELIVERY_NOT_AUTHORIZED`; the granted basis is audited
+  (`benefit.delivery_authorized`). **Ownership never changes.**
+- The beneficiary must also have an **open enrollment** in the programme (§8.3).
+  Not enrolled → `422 NOT_ENROLLED`.
+- **No money is moved.** The ledger entry is the only artifact — it accumulates in the
+  beneficiary's single cross-MDA ledger, attributed to the delivering MDA + activity.
 
 ## Verification (FR-BEN-04)
 

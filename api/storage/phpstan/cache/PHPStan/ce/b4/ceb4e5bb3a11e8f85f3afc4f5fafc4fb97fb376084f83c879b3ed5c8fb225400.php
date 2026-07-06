@@ -3097,7 +3097,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
     ),
     '/var/www/html/app/Domain/Benefit/BenefitServiceProvider.php' => 
     array (
-      0 => '1dfbe8cede683dfbcf72d61bea79c296d832894bc81dbdb89f6ccb6a69a9af1c',
+      0 => '6ab1ff4ca240241137ff5e73b3ab78ec08bdb0aa37830ee13f1fa85a693087c4',
       1 => 
       array (
         0 => 'app\\domain\\benefit\\benefitserviceprovider',
@@ -3240,7 +3240,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
     ),
     '/var/www/html/app/Domain/Benefit/Services/BenefitRecorder.php' => 
     array (
-      0 => 'e9054a4288d1ce2509f798ec5a37ef3eff783d2815cad9ac78f2fc2f45fe4dfd',
+      0 => '6dee42b1d711ab80a9c865206dd1039597ac3b60dd86ab846692f6bf0dcd9a28',
       1 => 
       array (
         0 => 'app\\domain\\benefit\\services\\benefitrecorder',
@@ -3343,7 +3343,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
     ),
     '/var/www/html/app/Http/Controllers/Api/V1/Benefit/BenefitController.php' => 
     array (
-      0 => '0b7858b554b21a7a12ebe4403770f735b1006f5df231b3f0496d9f142829acf3',
+      0 => 'c544b46befd919bb65b00612761aea798505d1a7e040e41638f8a5da3197f38d',
       1 => 
       array (
         0 => 'app\\http\\controllers\\api\\v1\\benefit\\benefitcontroller',
@@ -3432,7 +3432,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
     ),
     '/var/www/html/app/Domain/Benefit/Jobs/CommitBenefitImport.php' => 
     array (
-      0 => '1e063819f9185f617188f6d9636fdb3d87964dade52f23bfa833b261864abf82',
+      0 => 'e5aa258adc1375478ff09ba5235fa7fa5d5a4507ee9c3ec43185eee0fe88d46c',
       1 => 
       array (
         0 => 'app\\domain\\benefit\\jobs\\commitbenefitimport',
@@ -4086,6 +4086,68 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         0 => 'app\\domain\\matching\\engine\\__construct',
         1 => 'app\\domain\\matching\\engine\\evaluate',
         2 => 'app\\domain\\matching\\engine\\candidatehaskey',
+      ),
+      3 => 
+      array (
+      ),
+    ),
+    '/var/www/html/app/Domain/Benefit/Authorization/DeliveryAuthorizer.php' => 
+    array (
+      0 => '4a323f20eb1f1baa8c6d1dc1d3614f4c360a6720079da404dce67c48584ce0ae',
+      1 => 
+      array (
+        0 => 'app\\domain\\benefit\\authorization\\deliveryauthorizer',
+      ),
+      2 => 
+      array (
+        0 => 'app\\domain\\benefit\\authorization\\authorizes',
+        1 => 'app\\domain\\benefit\\authorization\\source',
+      ),
+      3 => 
+      array (
+      ),
+    ),
+    '/var/www/html/app/Domain/Benefit/Authorization/ServiceRequestAuthorizer.php' => 
+    array (
+      0 => '7ceb99540aea8ce741bd1551518e0226ee7c1829685e64e0aac1c491a86ec84a',
+      1 => 
+      array (
+        0 => 'app\\domain\\benefit\\authorization\\servicerequestauthorizer',
+      ),
+      2 => 
+      array (
+        0 => 'app\\domain\\benefit\\authorization\\authorizes',
+        1 => 'app\\domain\\benefit\\authorization\\source',
+      ),
+      3 => 
+      array (
+      ),
+    ),
+    '/var/www/html/app/Domain/Benefit/Exceptions/DeliveryNotAuthorizedException.php' => 
+    array (
+      0 => '98a16f3fda792efdc95c21401c3a66b59fede0a767bef62093c81f29b2a0fe35',
+      1 => 
+      array (
+        0 => 'app\\domain\\benefit\\exceptions\\deliverynotauthorizedexception',
+      ),
+      2 => 
+      array (
+      ),
+      3 => 
+      array (
+      ),
+    ),
+    '/var/www/html/app/Domain/Benefit/Services/DeliveryAuthorization.php' => 
+    array (
+      0 => '8eb03e33e7909bc830b007d793e9258991bb02f21fde26c42b51aeb910cab1b0',
+      1 => 
+      array (
+        0 => 'app\\domain\\benefit\\services\\deliveryauthorization',
+      ),
+      2 => 
+      array (
+        0 => 'app\\domain\\benefit\\services\\__construct',
+        1 => 'app\\domain\\benefit\\services\\basisfor',
       ),
       3 => 
       array (

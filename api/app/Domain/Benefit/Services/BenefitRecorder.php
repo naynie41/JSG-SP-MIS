@@ -6,8 +6,10 @@ namespace App\Domain\Benefit\Services;
 
 use App\Domain\Access\Models\User;
 use App\Domain\Access\Scopes\MdaScope;
+use App\Domain\Audit\Services\AuditLogger;
 use App\Domain\Benefit\Enums\BenefitStatus;
 use App\Domain\Benefit\Enums\VerificationMethod;
+use App\Domain\Benefit\Exceptions\DeliveryNotAuthorizedException;
 use App\Domain\Benefit\Exceptions\NotEnrolledException;
 use App\Domain\Benefit\Exceptions\VerificationUnavailableException;
 use App\Domain\Benefit\Models\Benefit;
@@ -20,25 +22,39 @@ use Illuminate\Support\Facades\DB;
 /**
  * Records benefit DELIVERIES to the ledger (PRD FR-BEN-01/02, §8.3) and applies
  * verification (FR-BEN-04). This never moves money — it appends descriptive
- * records. Delivery requires an open enrollment (which is what granted the serve
- * relationship for a non-owned beneficiary); the delivering MDA is the programme
- * owner.
+ * records. The delivering MDA is the programme owner; when it does NOT own the
+ * beneficiary, delivery is authorized ONLY by an explicit accepted authorization —
+ * a Service Request (R2.3) or Referral (Phase 5, FR-BEN-06), never a generic seam.
+ * Delivery also requires an open enrollment (§8.3).
  */
 class BenefitRecorder
 {
     public function __construct(
         private readonly VerifierRegistry $verifiers,
         private readonly DoubleDippingDetector $doubleDipping,
+        private readonly DeliveryAuthorization $authorization,
+        private readonly AuditLogger $audit,
     ) {}
 
     /**
      * @param  array<string, mixed>  $fields  benefit_type, quantity, unit, monetary_value, funding_source, delivery_date, notes, verification_method, verification_reference
      *
+     * @throws DeliveryNotAuthorizedException
      * @throws NotEnrolledException
      * @throws VerificationUnavailableException
      */
     public function record(Beneficiary $beneficiary, Programme $programme, ?string $activityId, User $actor, array $fields): Benefit
     {
+        // A non-owner MDA may deliver ONLY with an accepted Service Request /
+        // Referral authorization (FR-BEN-06). Checked before enrollment so an
+        // unauthorized cross-MDA attempt gets a clear refusal.
+        $basis = $this->authorization->basisFor($programme->owner_mda_id, $beneficiary);
+        if ($basis === null) {
+            throw new DeliveryNotAuthorizedException(
+                'Recording an intervention for a beneficiary this MDA does not own requires an accepted service request or referral.',
+            );
+        }
+
         $enrollment = Enrollment::query()
             ->withoutGlobalScope(MdaScope::class)
             ->where('programme_id', $programme->id)
@@ -52,7 +68,7 @@ class BenefitRecorder
 
         $method = $fields['verification_method'] ?? VerificationMethod::None;
 
-        return DB::transaction(function () use ($beneficiary, $programme, $activityId, $actor, $fields, $enrollment, $method): Benefit {
+        return DB::transaction(function () use ($beneficiary, $programme, $activityId, $actor, $fields, $enrollment, $method, $basis): Benefit {
             $benefit = Benefit::create([
                 'beneficiary_id' => $beneficiary->id,
                 'programme_id' => $programme->id,
@@ -82,6 +98,16 @@ class BenefitRecorder
 
             // Double-dipping detection (FR-BEN-05) — flags only, never blocks.
             $this->doubleDipping->check($benefit);
+
+            // Audit the cross-MDA authorization basis (FR-BEN-06) when a non-owner
+            // MDA delivered — ownership is unchanged; the grant only authorized serving.
+            if ($basis !== 'owner') {
+                $this->audit->record('benefit.delivery_authorized', $benefit, after: [
+                    'basis' => $basis,
+                    'delivering_mda_id' => $programme->owner_mda_id,
+                    'beneficiary_owner_mda_id' => $beneficiary->owner_mda_id,
+                ], actor: $actor);
+            }
 
             return $benefit->fresh();
         });

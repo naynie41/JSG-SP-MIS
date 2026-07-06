@@ -11,7 +11,10 @@ use App\Domain\Access\Models\User;
 use App\Domain\Benefit\Models\Benefit;
 use App\Domain\Programme\Models\Enrollment;
 use App\Domain\Programme\Models\Programme;
+use App\Domain\Registry\Enums\ServiceRequestStatus;
 use App\Domain\Registry\Models\Beneficiary;
+use App\Domain\Registry\Models\BeneficiaryServiceGrant;
+use App\Domain\Registry\Models\ServiceRequest;
 use Database\Seeders\RolesAndPermissionsSeeder;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Testing\TestResponse;
@@ -74,6 +77,23 @@ class BenefitLedgerTest extends TestCase
         $this->app['auth']->forgetGuards();
 
         return $response;
+    }
+
+    /** Open the read/serve grant an accepted Service Request would create (R2.3). */
+    private function grantServeAccess(Beneficiary $beneficiary, Mda $servingMda): void
+    {
+        $request = ServiceRequest::create([
+            'beneficiary_id' => $beneficiary->id,
+            'from_mda_id' => $servingMda->id,
+            'to_mda_id' => $beneficiary->owner_mda_id,
+            'status' => ServiceRequestStatus::Accepted,
+        ]);
+        BeneficiaryServiceGrant::create([
+            'beneficiary_id' => $beneficiary->id,
+            'mda_id' => $servingMda->id,
+            'service_request_id' => $request->id,
+            'granted_at' => now(),
+        ]);
     }
 
     private function payload(array $overrides = []): array
@@ -196,17 +216,38 @@ class BenefitLedgerTest extends TestCase
             ->assertJsonPath('data.verified_by', $this->users['officerA']->id);
     }
 
-    public function test_serving_mda_delivers_to_a_non_owned_beneficiary_without_taking_ownership(): void
+    public function test_serving_mda_delivers_to_a_non_owned_beneficiary_with_authorization_without_taking_ownership(): void
     {
-        // Beneficiary owned by MDA B, enrolled by MDA A in MDA A's programme.
+        // Beneficiary owned by MDA B, enrolled by MDA A in MDA A's programme, with
+        // an accepted Service Request authorizing MDA A to serve it (FR-BEN-06).
         $served = Beneficiary::factory()->create(['owner_mda_id' => $this->mdaB->id]);
         Enrollment::factory()->create(['programme_id' => $this->programmeA->id, 'mda_id' => $this->mdaA->id, 'beneficiary_id' => $served->id]);
+        $this->grantServeAccess($served, $this->mdaA);
 
         $this->send('officerA', 'POST', '/api/v1/benefits', $this->payload(['beneficiary_id' => $served->id]))
             ->assertCreated()
             ->assertJsonPath('data.mda_id', $this->mdaA->id);
 
-        // Ownership is unchanged.
+        // Ownership is unchanged; the cross-MDA authorization basis is audited.
+        $this->assertSame($this->mdaB->id, $served->fresh()->owner_mda_id);
+        $this->assertDatabaseHas('audit_log', [
+            'action' => 'benefit.delivery_authorized',
+            'actor_id' => $this->users['officerA']->id,
+        ]);
+    }
+
+    public function test_non_owner_cannot_record_without_an_accepted_authorization(): void
+    {
+        // Beneficiary owned by MDA B, enrolled by MDA A — but NO accepted Service
+        // Request / Referral → recording is refused (FR-BEN-06), nothing persisted.
+        $served = Beneficiary::factory()->create(['owner_mda_id' => $this->mdaB->id]);
+        Enrollment::factory()->create(['programme_id' => $this->programmeA->id, 'mda_id' => $this->mdaA->id, 'beneficiary_id' => $served->id]);
+
+        $this->send('officerA', 'POST', '/api/v1/benefits', $this->payload(['beneficiary_id' => $served->id]))
+            ->assertStatus(409)
+            ->assertJsonPath('error.code', 'DELIVERY_NOT_AUTHORIZED');
+
+        $this->assertSame(0, Benefit::query()->withoutGlobalScopes()->count());
         $this->assertSame($this->mdaB->id, $served->fresh()->owner_mda_id);
     }
 

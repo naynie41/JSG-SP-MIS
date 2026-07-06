@@ -2,7 +2,7 @@
 
 // odsl-/var/www/html/app/Http/Controllers/Api/V1/Benefit/BenefitController.php-PHPStan\BetterReflection\Reflection\ReflectionClass-App\Http\Controllers\Api\V1\Benefit\BenefitController
 return \PHPStan\Cache\CacheItem::__set_state(array(
-   'variableKey' => 'v2-6.70.0.1-8.3.31-0b7858b554b21a7a12ebe4403770f735b1006f5df231b3f0496d9f142829acf3',
+   'variableKey' => 'v2-6.70.0.1-8.3.31-c544b46befd919bb65b00612761aea798505d1a7e040e41638f8a5da3197f38d',
    'data' => 
   array (
     'locatedSource' => 
@@ -31,8 +31,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
     'attributes' => 
     array (
     ),
-    'startLine' => 33,
-    'endLine' => 169,
+    'startLine' => 34,
+    'endLine' => 172,
     'startColumn' => 1,
     'endColumn' => 1,
     'parentClassName' => 'App\\Http\\Controllers\\Controller',
@@ -67,8 +67,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         'attributes' => 
         array (
         ),
-        'startLine' => 35,
-        'endLine' => 35,
+        'startLine' => 36,
+        'endLine' => 36,
         'startColumn' => 33,
         'endColumn' => 74,
         'isPromoted' => true,
@@ -105,8 +105,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             'attributes' => 
             array (
             ),
-            'startLine' => 35,
-            'endLine' => 35,
+            'startLine' => 36,
+            'endLine' => 36,
             'startColumn' => 33,
             'endColumn' => 74,
             'parameterIndex' => 0,
@@ -119,8 +119,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         array (
         ),
         'docComment' => NULL,
-        'startLine' => 35,
-        'endLine' => 35,
+        'startLine' => 36,
+        'endLine' => 36,
         'startColumn' => 5,
         'endColumn' => 78,
         'couldThrow' => false,
@@ -158,8 +158,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             'attributes' => 
             array (
             ),
-            'startLine' => 37,
-            'endLine' => 37,
+            'startLine' => 38,
+            'endLine' => 38,
             'startColumn' => 27,
             'endColumn' => 42,
             'parameterIndex' => 0,
@@ -180,8 +180,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         array (
         ),
         'docComment' => NULL,
-        'startLine' => 37,
-        'endLine' => 53,
+        'startLine' => 38,
+        'endLine' => 54,
         'startColumn' => 5,
         'endColumn' => 5,
         'couldThrow' => false,
@@ -219,8 +219,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             'attributes' => 
             array (
             ),
-            'startLine' => 59,
-            'endLine' => 59,
+            'startLine' => 60,
+            'endLine' => 60,
             'startColumn' => 31,
             'endColumn' => 63,
             'parameterIndex' => 0,
@@ -245,8 +245,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             'attributes' => 
             array (
             ),
-            'startLine' => 59,
-            'endLine' => 59,
+            'startLine' => 60,
+            'endLine' => 60,
             'startColumn' => 66,
             'endColumn' => 93,
             'parameterIndex' => 1,
@@ -270,8 +270,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
  * Aggregate the ledger by programme / activity / MDA / LGA / ward / beneficiary
  * / benefit type (FR-BEN-03). MDA-scoped to the caller; oversight sees all.
  */',
-        'startLine' => 59,
-        'endLine' => 64,
+        'startLine' => 60,
+        'endLine' => 65,
         'startColumn' => 5,
         'endColumn' => 5,
         'couldThrow' => false,
@@ -309,8 +309,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             'attributes' => 
             array (
             ),
-            'startLine' => 67,
-            'endLine' => 67,
+            'startLine' => 68,
+            'endLine' => 68,
             'startColumn' => 27,
             'endColumn' => 55,
             'parameterIndex' => 0,
@@ -331,8 +331,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         array (
         ),
         'docComment' => '/** Record a benefit delivery against an enrolled beneficiary (§8.3). */',
-        'startLine' => 67,
-        'endLine' => 90,
+        'startLine' => 68,
+        'endLine' => 93,
         'startColumn' => 5,
         'endColumn' => 5,
         'couldThrow' => false,
@@ -370,8 +370,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             'attributes' => 
             array (
             ),
-            'startLine' => 92,
-            'endLine' => 92,
+            'startLine' => 95,
+            'endLine' => 95,
             'startColumn' => 26,
             'endColumn' => 40,
             'parameterIndex' => 0,
@@ -392,8 +392,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         array (
         ),
         'docComment' => NULL,
-        'startLine' => 92,
-        'endLine' => 98,
+        'startLine' => 95,
+        'endLine' => 101,
         'startColumn' => 5,
         'endColumn' => 5,
         'couldThrow' => false,
@@ -431,8 +431,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             'attributes' => 
             array (
             ),
-            'startLine' => 101,
-            'endLine' => 101,
+            'startLine' => 104,
+            'endLine' => 104,
             'startColumn' => 28,
             'endColumn' => 56,
             'parameterIndex' => 0,
@@ -457,8 +457,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             'attributes' => 
             array (
             ),
-            'startLine' => 101,
-            'endLine' => 101,
+            'startLine' => 104,
+            'endLine' => 104,
             'startColumn' => 59,
             'endColumn' => 73,
             'parameterIndex' => 1,
@@ -479,8 +479,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         array (
         ),
         'docComment' => '/** Verify a recorded delivery (FR-BEN-04). Stubbed methods report unavailable. */',
-        'startLine' => 101,
-        'endLine' => 118,
+        'startLine' => 104,
+        'endLine' => 121,
         'startColumn' => 5,
         'endColumn' => 5,
         'couldThrow' => false,
@@ -518,8 +518,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             'attributes' => 
             array (
             ),
-            'startLine' => 124,
-            'endLine' => 124,
+            'startLine' => 127,
+            'endLine' => 127,
             'startColumn' => 28,
             'endColumn' => 43,
             'parameterIndex' => 0,
@@ -544,8 +544,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             'attributes' => 
             array (
             ),
-            'startLine' => 124,
-            'endLine' => 124,
+            'startLine' => 127,
+            'endLine' => 127,
             'startColumn' => 46,
             'endColumn' => 64,
             'parameterIndex' => 1,
@@ -569,8 +569,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
  * The beneficiary\'s complete benefit history across all MDAs (FR-BEN-01/03),
  * visible to the owner MDA, a delivering MDA, or oversight.
  */',
-        'startLine' => 124,
-        'endLine' => 141,
+        'startLine' => 127,
+        'endLine' => 144,
         'startColumn' => 5,
         'endColumn' => 5,
         'couldThrow' => false,
@@ -608,8 +608,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             'attributes' => 
             array (
             ),
-            'startLine' => 143,
-            'endLine' => 143,
+            'startLine' => 146,
+            'endLine' => 146,
             'startColumn' => 36,
             'endColumn' => 45,
             'parameterIndex' => 0,
@@ -634,8 +634,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             'attributes' => 
             array (
             ),
-            'startLine' => 143,
-            'endLine' => 143,
+            'startLine' => 146,
+            'endLine' => 146,
             'startColumn' => 48,
             'endColumn' => 71,
             'parameterIndex' => 1,
@@ -656,8 +656,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         array (
         ),
         'docComment' => NULL,
-        'startLine' => 143,
-        'endLine' => 154,
+        'startLine' => 146,
+        'endLine' => 157,
         'startColumn' => 5,
         'endColumn' => 5,
         'couldThrow' => false,
@@ -695,8 +695,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             'attributes' => 
             array (
             ),
-            'startLine' => 156,
-            'endLine' => 156,
+            'startLine' => 159,
+            'endLine' => 159,
             'startColumn' => 39,
             'endColumn' => 58,
             'parameterIndex' => 0,
@@ -740,8 +740,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             'attributes' => 
             array (
             ),
-            'startLine' => 156,
-            'endLine' => 156,
+            'startLine' => 159,
+            'endLine' => 159,
             'startColumn' => 61,
             'endColumn' => 79,
             'parameterIndex' => 1,
@@ -781,8 +781,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         array (
         ),
         'docComment' => NULL,
-        'startLine' => 156,
-        'endLine' => 168,
+        'startLine' => 159,
+        'endLine' => 171,
         'startColumn' => 5,
         'endColumn' => 5,
         'couldThrow' => false,

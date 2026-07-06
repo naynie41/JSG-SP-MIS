@@ -14,6 +14,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         array (
           'permissionaction' => 'App\\Domain\\Access\\Enums\\PermissionAction',
           'permissionregistry' => 'App\\Domain\\Access\\Support\\PermissionRegistry',
+          'servicerequestauthorizer' => 'App\\Domain\\Benefit\\Authorization\\ServiceRequestAuthorizer',
           'benefit' => 'App\\Domain\\Benefit\\Models\\Benefit',
           'benefitflag' => 'App\\Domain\\Benefit\\Models\\BenefitFlag',
           'benefitimportbatch' => 'App\\Domain\\Benefit\\Models\\BenefitImportBatch',
@@ -22,6 +23,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
           'benefitimportpolicy' => 'App\\Domain\\Benefit\\Policies\\BenefitImportPolicy',
           'benefitpolicy' => 'App\\Domain\\Benefit\\Policies\\BenefitPolicy',
           'doubledippingrulepolicy' => 'App\\Domain\\Benefit\\Policies\\DoubleDippingRulePolicy',
+          'deliveryauthorization' => 'App\\Domain\\Benefit\\Services\\DeliveryAuthorization',
           'verifierregistry' => 'App\\Domain\\Benefit\\Services\\VerifierRegistry',
           'biometricverifier' => 'App\\Domain\\Benefit\\Services\\Verifiers\\BiometricVerifier',
           'fieldconfirmationverifier' => 'App\\Domain\\Benefit\\Services\\Verifiers\\FieldConfirmationVerifier',
@@ -53,6 +55,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         array (
           'permissionaction' => 'App\\Domain\\Access\\Enums\\PermissionAction',
           'permissionregistry' => 'App\\Domain\\Access\\Support\\PermissionRegistry',
+          'servicerequestauthorizer' => 'App\\Domain\\Benefit\\Authorization\\ServiceRequestAuthorizer',
           'benefit' => 'App\\Domain\\Benefit\\Models\\Benefit',
           'benefitflag' => 'App\\Domain\\Benefit\\Models\\BenefitFlag',
           'benefitimportbatch' => 'App\\Domain\\Benefit\\Models\\BenefitImportBatch',
@@ -61,6 +64,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
           'benefitimportpolicy' => 'App\\Domain\\Benefit\\Policies\\BenefitImportPolicy',
           'benefitpolicy' => 'App\\Domain\\Benefit\\Policies\\BenefitPolicy',
           'doubledippingrulepolicy' => 'App\\Domain\\Benefit\\Policies\\DoubleDippingRulePolicy',
+          'deliveryauthorization' => 'App\\Domain\\Benefit\\Services\\DeliveryAuthorization',
           'verifierregistry' => 'App\\Domain\\Benefit\\Services\\VerifierRegistry',
           'biometricverifier' => 'App\\Domain\\Benefit\\Services\\Verifiers\\BiometricVerifier',
           'fieldconfirmationverifier' => 'App\\Domain\\Benefit\\Services\\Verifiers\\FieldConfirmationVerifier',
@@ -81,6 +85,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
           array (
             'permissionaction' => 'App\\Domain\\Access\\Enums\\PermissionAction',
             'permissionregistry' => 'App\\Domain\\Access\\Support\\PermissionRegistry',
+            'servicerequestauthorizer' => 'App\\Domain\\Benefit\\Authorization\\ServiceRequestAuthorizer',
             'benefit' => 'App\\Domain\\Benefit\\Models\\Benefit',
             'benefitflag' => 'App\\Domain\\Benefit\\Models\\BenefitFlag',
             'benefitimportbatch' => 'App\\Domain\\Benefit\\Models\\BenefitImportBatch',
@@ -89,6 +94,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             'benefitimportpolicy' => 'App\\Domain\\Benefit\\Policies\\BenefitImportPolicy',
             'benefitpolicy' => 'App\\Domain\\Benefit\\Policies\\BenefitPolicy',
             'doubledippingrulepolicy' => 'App\\Domain\\Benefit\\Policies\\DoubleDippingRulePolicy',
+            'deliveryauthorization' => 'App\\Domain\\Benefit\\Services\\DeliveryAuthorization',
             'verifierregistry' => 'App\\Domain\\Benefit\\Services\\VerifierRegistry',
             'biometricverifier' => 'App\\Domain\\Benefit\\Services\\Verifiers\\BiometricVerifier',
             'fieldconfirmationverifier' => 'App\\Domain\\Benefit\\Services\\Verifiers\\FieldConfirmationVerifier',
@@ -130,6 +136,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         array (
           'permissionaction' => 'App\\Domain\\Access\\Enums\\PermissionAction',
           'permissionregistry' => 'App\\Domain\\Access\\Support\\PermissionRegistry',
+          'servicerequestauthorizer' => 'App\\Domain\\Benefit\\Authorization\\ServiceRequestAuthorizer',
           'benefit' => 'App\\Domain\\Benefit\\Models\\Benefit',
           'benefitflag' => 'App\\Domain\\Benefit\\Models\\BenefitFlag',
           'benefitimportbatch' => 'App\\Domain\\Benefit\\Models\\BenefitImportBatch',
@@ -138,6 +145,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
           'benefitimportpolicy' => 'App\\Domain\\Benefit\\Policies\\BenefitImportPolicy',
           'benefitpolicy' => 'App\\Domain\\Benefit\\Policies\\BenefitPolicy',
           'doubledippingrulepolicy' => 'App\\Domain\\Benefit\\Policies\\DoubleDippingRulePolicy',
+          'deliveryauthorization' => 'App\\Domain\\Benefit\\Services\\DeliveryAuthorization',
           'verifierregistry' => 'App\\Domain\\Benefit\\Services\\VerifierRegistry',
           'biometricverifier' => 'App\\Domain\\Benefit\\Services\\Verifiers\\BiometricVerifier',
           'fieldconfirmationverifier' => 'App\\Domain\\Benefit\\Services\\Verifiers\\FieldConfirmationVerifier',
@@ -158,6 +166,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
           array (
             'permissionaction' => 'App\\Domain\\Access\\Enums\\PermissionAction',
             'permissionregistry' => 'App\\Domain\\Access\\Support\\PermissionRegistry',
+            'servicerequestauthorizer' => 'App\\Domain\\Benefit\\Authorization\\ServiceRequestAuthorizer',
             'benefit' => 'App\\Domain\\Benefit\\Models\\Benefit',
             'benefitflag' => 'App\\Domain\\Benefit\\Models\\BenefitFlag',
             'benefitimportbatch' => 'App\\Domain\\Benefit\\Models\\BenefitImportBatch',
@@ -166,6 +175,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             'benefitimportpolicy' => 'App\\Domain\\Benefit\\Policies\\BenefitImportPolicy',
             'benefitpolicy' => 'App\\Domain\\Benefit\\Policies\\BenefitPolicy',
             'doubledippingrulepolicy' => 'App\\Domain\\Benefit\\Policies\\DoubleDippingRulePolicy',
+            'deliveryauthorization' => 'App\\Domain\\Benefit\\Services\\DeliveryAuthorization',
             'verifierregistry' => 'App\\Domain\\Benefit\\Services\\VerifierRegistry',
             'biometricverifier' => 'App\\Domain\\Benefit\\Services\\Verifiers\\BiometricVerifier',
             'fieldconfirmationverifier' => 'App\\Domain\\Benefit\\Services\\Verifiers\\FieldConfirmationVerifier',
@@ -203,7 +213,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
     ),
     1 => 
     array (
-      '/var/www/html/app/Domain/Benefit/BenefitServiceProvider.php' => '1dfbe8cede683dfbcf72d61bea79c296d832894bc81dbdb89f6ccb6a69a9af1c',
+      '/var/www/html/app/Domain/Benefit/BenefitServiceProvider.php' => '6ab1ff4ca240241137ff5e73b3ab78ec08bdb0aa37830ee13f1fa85a693087c4',
     ),
   ),
 ));

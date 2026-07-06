@@ -7,6 +7,7 @@ namespace App\Http\Controllers\Api\V1\Benefit;
 use App\Domain\Access\Models\User;
 use App\Domain\Access\Scopes\MdaScope;
 use App\Domain\Benefit\Enums\VerificationMethod;
+use App\Domain\Benefit\Exceptions\DeliveryNotAuthorizedException;
 use App\Domain\Benefit\Exceptions\NotEnrolledException;
 use App\Domain\Benefit\Exceptions\VerificationUnavailableException;
 use App\Domain\Benefit\Models\Benefit;
@@ -80,6 +81,8 @@ class BenefitController extends Controller
                 ...$request->safe()->except(['beneficiary_id', 'programme_id', 'activity_id']),
                 'verification_method' => $request->filled('verification_method') ? $request->enum('verification_method', VerificationMethod::class) : VerificationMethod::None,
             ]);
+        } catch (DeliveryNotAuthorizedException $e) {
+            return ApiResponse::error('DELIVERY_NOT_AUTHORIZED', $e->getMessage(), [], 409);
         } catch (NotEnrolledException $e) {
             return ApiResponse::error('NOT_ENROLLED', $e->getMessage(), [], 422);
         } catch (VerificationUnavailableException $e) {

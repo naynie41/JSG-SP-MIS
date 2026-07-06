@@ -7,6 +7,7 @@ namespace App\Domain\Benefit\Jobs;
 use App\Domain\Access\Models\User;
 use App\Domain\Access\Scopes\MdaScope;
 use App\Domain\Benefit\Enums\VerificationMethod;
+use App\Domain\Benefit\Exceptions\DeliveryNotAuthorizedException;
 use App\Domain\Benefit\Exceptions\NotEnrolledException;
 use App\Domain\Benefit\Exceptions\VerificationUnavailableException;
 use App\Domain\Benefit\Models\BenefitImportBatch;
@@ -104,7 +105,7 @@ class CommitBenefitImport implements ShouldQueue
         try {
             $benefit = $recorder->record($beneficiary, $programme, $batch->activity_id, $actor, $fields);
             $row->update(['benefit_id' => $benefit->id]);
-        } catch (NotEnrolledException|VerificationUnavailableException $e) {
+        } catch (DeliveryNotAuthorizedException|NotEnrolledException|VerificationUnavailableException $e) {
             // State changed since preview — report the row, don't crash the batch.
             $row->update(['is_valid' => false, 'errors' => [['field' => 'commit', 'message' => $e->getMessage()]]]);
         }
