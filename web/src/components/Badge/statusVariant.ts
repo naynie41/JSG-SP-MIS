@@ -58,9 +58,18 @@ export const STATUS_VARIANTS: Record<string, BadgeVariant> = {
   // Referral lifecycle
   'referral.created': 'neutral',
   'referral.accepted': 'info',
+  'referral.more_info_requested': 'warning',
   'referral.in_progress': 'accent',
   'referral.completed': 'success',
+  'referral.closed': 'success',
   'referral.rejected': 'danger',
+
+  // Grievance lifecycle (FR-GRM-02)
+  'grievance.open': 'neutral',
+  'grievance.assigned': 'info',
+  'grievance.in_progress': 'accent',
+  'grievance.resolved': 'success',
+  'grievance.closed': 'neutral',
 
   // Import rows
   'import.valid': 'success',

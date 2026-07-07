@@ -10,12 +10,14 @@ export interface TopBarProps {
   userName: string
   userRole: string
   hasNotifications?: boolean
+  /** Live notification control (bell + panel). Replaces the static bell when given. */
+  notifications?: ReactNode
   onOpenMenu?: () => void
   onOpenUser?: () => void
 }
 
 /** Top bar (DESIGN-SYSTEM.md §5.6): breadcrumbs, notifications, user menu. */
-export function TopBar({ left, userName, userRole, hasNotifications, onOpenMenu, onOpenUser }: TopBarProps) {
+export function TopBar({ left, userName, userRole, hasNotifications, notifications, onOpenMenu, onOpenUser }: TopBarProps) {
   return (
     <header className={styles.bar}>
       <div className={styles.left}>
@@ -26,10 +28,12 @@ export function TopBar({ left, userName, userRole, hasNotifications, onOpenMenu,
       </div>
 
       <div className={styles.right}>
-        <button type="button" className={styles.iconButton} aria-label="Notifications">
-          <Icon icon={Bell} size={20} />
-          {hasNotifications && <span className={styles.dot} aria-hidden="true" />}
-        </button>
+        {notifications ?? (
+          <button type="button" className={styles.iconButton} aria-label="Notifications">
+            <Icon icon={Bell} size={20} />
+            {hasNotifications && <span className={styles.dot} aria-hidden="true" />}
+          </button>
+        )}
         <button type="button" className={styles.user} onClick={onOpenUser}>
           <span className={styles.userMeta}>
             <span className={styles.userName}>{userName}</span>

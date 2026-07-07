@@ -67,9 +67,10 @@ the sibling [Benefit domain](../Benefit/README.md). **Status: Phase 4 complete.*
   the enrollment's `mda_id` (and scope) is that MDA, **independent of the
   beneficiary's owner MDA**.
 - **Serve seam** — a non-owner MDA may enroll a beneficiary it does not own when it
-  owns/has a cross-MDA grant for it, or holds an active read-access grant opened by
-  an **accepted Service Request** (§12, FR-OWN-06/07). Ownership never changes.
-  Otherwise → `409 SERVICE_REQUEST_REQUIRED`.
+  owns/has a cross-MDA grant for it, or holds one of two **distinct** authorizations:
+  an active read-access grant from an **accepted Service Request** (§12, FR-OWN-06/07)
+  **or** an **accepted Referral** to it (FR-REF-02, FR-BEN-06). Ownership never
+  changes. Otherwise → `409 SERVICE_REQUEST_REQUIRED`.
 - **Type match** — an individual programme enrolls beneficiaries, a household
   programme enrolls households; a mismatch is `422 TYPE_MISMATCH`.
 - **Eligibility** — the programme's `eligibility` criteria are evaluated per target.

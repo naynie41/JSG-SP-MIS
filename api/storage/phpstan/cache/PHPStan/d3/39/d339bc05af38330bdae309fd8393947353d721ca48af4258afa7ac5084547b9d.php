@@ -14,6 +14,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         array (
           'permissionaction' => 'App\\Domain\\Access\\Enums\\PermissionAction',
           'permissionregistry' => 'App\\Domain\\Access\\Support\\PermissionRegistry',
+          'deliveryauthorization' => 'App\\Domain\\Benefit\\Services\\DeliveryAuthorization',
+          'referralauthorizer' => 'App\\Domain\\Referral\\Authorization\\ReferralAuthorizer',
           'referral' => 'App\\Domain\\Referral\\Models\\Referral',
           'referralpolicy' => 'App\\Domain\\Referral\\Policies\\ReferralPolicy',
           'gate' => 'Illuminate\\Support\\Facades\\Gate',
@@ -35,6 +37,65 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
          'typeAliasClassName' => NULL,
          'traitData' => NULL,
       )),
+      '03577189952ceaa1341185977107089b' => 
+      \PHPStan\Analyser\IntermediaryNameScope::__set_state(array(
+         'namespace' => 'App\\Domain\\Referral',
+         'uses' => 
+        array (
+          'permissionaction' => 'App\\Domain\\Access\\Enums\\PermissionAction',
+          'permissionregistry' => 'App\\Domain\\Access\\Support\\PermissionRegistry',
+          'deliveryauthorization' => 'App\\Domain\\Benefit\\Services\\DeliveryAuthorization',
+          'referralauthorizer' => 'App\\Domain\\Referral\\Authorization\\ReferralAuthorizer',
+          'referral' => 'App\\Domain\\Referral\\Models\\Referral',
+          'referralpolicy' => 'App\\Domain\\Referral\\Policies\\ReferralPolicy',
+          'gate' => 'Illuminate\\Support\\Facades\\Gate',
+          'serviceprovider' => 'Illuminate\\Support\\ServiceProvider',
+        ),
+         'className' => 'App\\Domain\\Referral\\ReferralServiceProvider',
+         'functionName' => 'register',
+         'templatePhpDocNodes' => 
+        array (
+        ),
+         'parent' => 
+        \PHPStan\Analyser\IntermediaryNameScope::__set_state(array(
+           'namespace' => 'App\\Domain\\Referral',
+           'uses' => 
+          array (
+            'permissionaction' => 'App\\Domain\\Access\\Enums\\PermissionAction',
+            'permissionregistry' => 'App\\Domain\\Access\\Support\\PermissionRegistry',
+            'deliveryauthorization' => 'App\\Domain\\Benefit\\Services\\DeliveryAuthorization',
+            'referralauthorizer' => 'App\\Domain\\Referral\\Authorization\\ReferralAuthorizer',
+            'referral' => 'App\\Domain\\Referral\\Models\\Referral',
+            'referralpolicy' => 'App\\Domain\\Referral\\Policies\\ReferralPolicy',
+            'gate' => 'Illuminate\\Support\\Facades\\Gate',
+            'serviceprovider' => 'Illuminate\\Support\\ServiceProvider',
+          ),
+           'className' => 'App\\Domain\\Referral\\ReferralServiceProvider',
+           'functionName' => NULL,
+           'templatePhpDocNodes' => 
+          array (
+          ),
+           'parent' => NULL,
+           'typeAliasesMap' => 
+          array (
+          ),
+           'bypassTypeAliases' => false,
+           'constUses' => 
+          array (
+          ),
+           'typeAliasClassName' => NULL,
+           'traitData' => NULL,
+        )),
+         'typeAliasesMap' => 
+        array (
+        ),
+         'bypassTypeAliases' => false,
+         'constUses' => 
+        array (
+        ),
+         'typeAliasClassName' => NULL,
+         'traitData' => NULL,
+      )),
       '7e2c00054994dbc6fddb6dd018c7a97d' => 
       \PHPStan\Analyser\IntermediaryNameScope::__set_state(array(
          'namespace' => 'App\\Domain\\Referral',
@@ -42,6 +103,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         array (
           'permissionaction' => 'App\\Domain\\Access\\Enums\\PermissionAction',
           'permissionregistry' => 'App\\Domain\\Access\\Support\\PermissionRegistry',
+          'deliveryauthorization' => 'App\\Domain\\Benefit\\Services\\DeliveryAuthorization',
+          'referralauthorizer' => 'App\\Domain\\Referral\\Authorization\\ReferralAuthorizer',
           'referral' => 'App\\Domain\\Referral\\Models\\Referral',
           'referralpolicy' => 'App\\Domain\\Referral\\Policies\\ReferralPolicy',
           'gate' => 'Illuminate\\Support\\Facades\\Gate',
@@ -59,6 +122,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
           array (
             'permissionaction' => 'App\\Domain\\Access\\Enums\\PermissionAction',
             'permissionregistry' => 'App\\Domain\\Access\\Support\\PermissionRegistry',
+            'deliveryauthorization' => 'App\\Domain\\Benefit\\Services\\DeliveryAuthorization',
+            'referralauthorizer' => 'App\\Domain\\Referral\\Authorization\\ReferralAuthorizer',
             'referral' => 'App\\Domain\\Referral\\Models\\Referral',
             'referralpolicy' => 'App\\Domain\\Referral\\Policies\\ReferralPolicy',
             'gate' => 'Illuminate\\Support\\Facades\\Gate',
@@ -93,7 +158,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
     ),
     1 => 
     array (
-      '/var/www/html/app/Domain/Referral/ReferralServiceProvider.php' => 'fd338993aac05ef44d301f0dcb533bbb989aff919a0f841260c2818744b38154',
+      '/var/www/html/app/Domain/Referral/ReferralServiceProvider.php' => 'a3cac3ab32360bd52e1d47226b870ea02003847f7d43489f344142b22b89a2de',
     ),
   ),
 ));

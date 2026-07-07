@@ -12,6 +12,8 @@ use App\Http\Controllers\Api\V1\Benefit\BenefitController;
 use App\Http\Controllers\Api\V1\Benefit\BenefitFlagController;
 use App\Http\Controllers\Api\V1\Benefit\BenefitImportController;
 use App\Http\Controllers\Api\V1\Benefit\DoubleDippingRuleController;
+use App\Http\Controllers\Api\V1\Grievance\GrievanceController;
+use App\Http\Controllers\Api\V1\Grievance\GrievanceSlaPolicyController;
 use App\Http\Controllers\Api\V1\HealthController;
 use App\Http\Controllers\Api\V1\Matching\MatchingConfigController;
 use App\Http\Controllers\Api\V1\MfaController;
@@ -20,6 +22,7 @@ use App\Http\Controllers\Api\V1\Programme\ActivityController;
 use App\Http\Controllers\Api\V1\Programme\EnrollmentController;
 use App\Http\Controllers\Api\V1\Programme\ProgrammeController;
 use App\Http\Controllers\Api\V1\Referral\ReferralController;
+use App\Http\Controllers\Api\V1\Referral\ReferralSlaPolicyController;
 use App\Http\Controllers\Api\V1\Registry\BeneficiaryController;
 use App\Http\Controllers\Api\V1\Registry\BeneficiaryDocumentController;
 use App\Http\Controllers\Api\V1\Registry\BeneficiaryIntakeController;
@@ -352,6 +355,38 @@ Route::prefix('v1')->group(function (): void {
             ->middleware('permission:referral.edit')->name('referrals.complete');
         Route::post('/referrals/{referral}/close', [ReferralController::class, 'close'])
             ->middleware('permission:referral.edit')->name('referrals.close');
+
+        // Referral SLA windows (FR-REF-04/05) — admin config, audited.
+        Route::get('/referral-sla-policies', [ReferralSlaPolicyController::class, 'index'])
+            ->middleware('permission:referral-sla.edit')->name('referral-sla-policies.index');
+        Route::match(['put', 'patch'], '/referral-sla-policies/{status}', [ReferralSlaPolicyController::class, 'update'])
+            ->middleware('permission:referral-sla.edit')->name('referral-sla-policies.update');
+
+        /*
+        | Grievances / GRM (FR-GRM-01/02, §8.4). MDA-scoped (handling MDA sees it).
+        | Staff capture on behalf of beneficiaries; transitions gated by grievance.edit
+        | and the policy checks the handling MDA. Resolve requires resolution notes.
+        */
+        Route::get('/grievances', [GrievanceController::class, 'index'])
+            ->middleware('permission:grievance.view')->name('grievances.index');
+        Route::post('/grievances', [GrievanceController::class, 'store'])
+            ->middleware('permission:grievance.create')->name('grievances.store');
+        Route::get('/grievances/{grievance}', [GrievanceController::class, 'show'])
+            ->middleware('permission:grievance.view')->name('grievances.show');
+        Route::post('/grievances/{grievance}/assign', [GrievanceController::class, 'assign'])
+            ->middleware('permission:grievance.edit')->name('grievances.assign');
+        Route::post('/grievances/{grievance}/start', [GrievanceController::class, 'start'])
+            ->middleware('permission:grievance.edit')->name('grievances.start');
+        Route::post('/grievances/{grievance}/resolve', [GrievanceController::class, 'resolve'])
+            ->middleware('permission:grievance.edit')->name('grievances.resolve');
+        Route::post('/grievances/{grievance}/close', [GrievanceController::class, 'close'])
+            ->middleware('permission:grievance.edit')->name('grievances.close');
+
+        // Grievance SLA windows per category (FR-GRM-03) — admin config, audited.
+        Route::get('/grievance-sla-policies', [GrievanceSlaPolicyController::class, 'index'])
+            ->middleware('permission:grievance-sla.edit')->name('grievance-sla-policies.index');
+        Route::match(['put', 'patch'], '/grievance-sla-policies/{category}', [GrievanceSlaPolicyController::class, 'update'])
+            ->middleware('permission:grievance-sla.edit')->name('grievance-sla-policies.update');
 
         /*
         | Notifications (FR-NOT-01/02). Personal to the caller — no permission gate;

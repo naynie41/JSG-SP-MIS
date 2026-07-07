@@ -30,10 +30,11 @@ Select a beneficiary + programme/activity, record `benefit_type`, quantity/unit,
   the beneficiary, recording is allowed **only** with an explicit accepted
   authorization — an accepted **Service Request** (R2.3) or an accepted **Referral**
   (Phase 5) — never a generic serve seam. `Services/DeliveryAuthorization` checks the
-  registered `Authorization/DeliveryAuthorizer`s (Service Request now; a
-  `ReferralAuthorizer` slots in for Phase 5 with **no recorder change**). Unauthorized
-  → `409 DELIVERY_NOT_AUTHORIZED`; the granted basis is audited
-  (`benefit.delivery_authorized`). **Ownership never changes.**
+  `Authorization/DeliveryAuthorizer`s registered under its container tag: the
+  `ServiceRequestAuthorizer` (Benefit domain) and the `ReferralAuthorizer` (Referral
+  domain self-registers) — **no recorder change**. Unauthorized →
+  `409 DELIVERY_NOT_AUTHORIZED`; the granted basis (`service_request` | `referral`)
+  is audited (`benefit.delivery_authorized`). **Ownership never changes.**
 - The beneficiary must also have an **open enrollment** in the programme (§8.3).
   Not enrolled → `422 NOT_ENROLLED`.
 - **No money is moved.** The ledger entry is the only artifact — it accumulates in the

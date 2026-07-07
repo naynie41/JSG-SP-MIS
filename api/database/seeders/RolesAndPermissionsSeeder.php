@@ -31,12 +31,13 @@ class RolesAndPermissionsSeeder extends Seeder
             'cross-mda.view', 'mda.view', 'user.view', 'role.view', 'permission.view',
             'beneficiary.view', 'beneficiary.export', 'beneficiary-lookup.view',
             'programme.view', 'activity.view', 'enrollment.view', 'benefit.view',
-            'double-dipping.view', 'double-dipping.edit', 'referral.view',
+            'double-dipping.view', 'double-dipping.edit', 'referral.view', 'referral-sla.edit',
+            'grievance.view', 'grievance-sla.edit',
         ],
         RoleKey::MneOfficer->value => [
             'cross-mda.view', 'mda.view', 'user.view',
             'beneficiary.view', 'beneficiary.export', 'beneficiary-lookup.view',
-            'programme.view', 'activity.view', 'enrollment.view', 'benefit.view', 'referral.view',
+            'programme.view', 'activity.view', 'enrollment.view', 'benefit.view', 'referral.view', 'grievance.view',
         ],
         RoleKey::MdaAdmin->value => [
             'mda.view', 'user.view', 'user.create', 'user.edit', 'role.view',
@@ -47,6 +48,7 @@ class RolesAndPermissionsSeeder extends Seeder
             'enrollment.view', 'enrollment.create', 'enrollment.edit',
             'benefit.view', 'benefit.create', 'benefit.approve',
             'referral.view', 'referral.create', 'referral.edit',
+            'grievance.view', 'grievance.create', 'grievance.edit',
         ],
         RoleKey::MdaOfficer->value => [
             'mda.view', 'user.view',
@@ -57,6 +59,7 @@ class RolesAndPermissionsSeeder extends Seeder
             'enrollment.view', 'enrollment.create', 'enrollment.edit',
             'benefit.view', 'benefit.create', 'benefit.approve',
             'referral.view', 'referral.create', 'referral.edit',
+            'grievance.view', 'grievance.create', 'grievance.edit',
         ],
         RoleKey::DevelopmentPartner->value => [
             'mda.view',
@@ -66,7 +69,7 @@ class RolesAndPermissionsSeeder extends Seeder
         RoleKey::Executive->value => [
             'cross-mda.view', 'mda.view', 'user.view',
             'beneficiary.view', 'beneficiary.export', 'beneficiary-lookup.view',
-            'programme.view', 'activity.view', 'enrollment.view', 'benefit.view', 'referral.view',
+            'programme.view', 'activity.view', 'enrollment.view', 'benefit.view', 'referral.view', 'grievance.view',
         ],
     ];
 

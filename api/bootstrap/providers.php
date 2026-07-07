@@ -2,6 +2,7 @@
 
 use App\Domain\Access\AccessServiceProvider;
 use App\Domain\Benefit\BenefitServiceProvider;
+use App\Domain\Grievance\GrievanceServiceProvider;
 use App\Domain\Matching\MatchingServiceProvider;
 use App\Domain\Notification\NotificationServiceProvider;
 use App\Domain\Programme\ProgrammeServiceProvider;
@@ -18,4 +19,5 @@ return [
     BenefitServiceProvider::class,
     NotificationServiceProvider::class,
     ReferralServiceProvider::class,
+    GrievanceServiceProvider::class,
 ];

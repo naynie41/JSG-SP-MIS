@@ -2,7 +2,7 @@
 
 // odsl-/var/www/html/app/Domain/Referral/ReferralServiceProvider.php-PHPStan\BetterReflection\Reflection\ReflectionClass-App\Domain\Referral\ReferralServiceProvider
 return \PHPStan\Cache\CacheItem::__set_state(array(
-   'variableKey' => 'v2-6.70.0.1-8.3.31-fd338993aac05ef44d301f0dcb533bbb989aff919a0f841260c2818744b38154',
+   'variableKey' => 'v2-6.70.0.1-8.3.31-a3cac3ab32360bd52e1d47226b870ea02003847f7d43489f344142b22b89a2de',
    'data' => 
   array (
     'locatedSource' => 
@@ -23,14 +23,16 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
     'isBackedEnum' => false,
     'modifiers' => 0,
     'docComment' => '/**
- * Wires the Referral domain (PRD FR-REF): its permissions and the two-party
- * authorization policy. The referral lifecycle guards live in ReferralService.
+ * Wires the Referral domain (PRD FR-REF): its permissions, the two-party
+ * authorization policy, and — for FR-BEN-06 — the referral delivery authorizer, so
+ * an accepted referral authorizes serving via the Phase 4 gate WITHOUT reusing the
+ * Service Request. The referral lifecycle guards live in ReferralService.
  */',
     'attributes' => 
     array (
     ),
-    'startLine' => 18,
-    'endLine' => 29,
+    'startLine' => 22,
+    'endLine' => 41,
     'startColumn' => 1,
     'endColumn' => 1,
     'parentClassName' => 'Illuminate\\Support\\ServiceProvider',
@@ -48,6 +50,41 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
     ),
     'immediateMethods' => 
     array (
+      'register' => 
+      array (
+        'name' => 'register',
+        'parameters' => 
+        array (
+        ),
+        'returnsReference' => false,
+        'returnType' => 
+        array (
+          'class' => 'PHPStan\\BetterReflection\\Reflection\\ReflectionNamedType',
+          'data' => 
+          array (
+            'name' => 'void',
+            'isIdentifier' => true,
+          ),
+        ),
+        'attributes' => 
+        array (
+        ),
+        'docComment' => NULL,
+        'startLine' => 24,
+        'endLine' => 29,
+        'startColumn' => 5,
+        'endColumn' => 5,
+        'couldThrow' => false,
+        'isClosure' => false,
+        'isGenerator' => false,
+        'isVariadic' => false,
+        'modifiers' => 1,
+        'namespace' => 'App\\Domain\\Referral',
+        'declaringClassName' => 'App\\Domain\\Referral\\ReferralServiceProvider',
+        'implementingClassName' => 'App\\Domain\\Referral\\ReferralServiceProvider',
+        'currentClassName' => 'App\\Domain\\Referral\\ReferralServiceProvider',
+        'aliasName' => NULL,
+      ),
       'boot' => 
       array (
         'name' => 'boot',
@@ -68,8 +105,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         array (
         ),
         'docComment' => NULL,
-        'startLine' => 20,
-        'endLine' => 28,
+        'startLine' => 31,
+        'endLine' => 40,
         'startColumn' => 5,
         'endColumn' => 5,
         'couldThrow' => false,

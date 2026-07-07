@@ -2,7 +2,7 @@
 
 // odsl-/var/www/html/app/Domain/Benefit/BenefitServiceProvider.php-PHPStan\BetterReflection\Reflection\ReflectionClass-App\Domain\Benefit\BenefitServiceProvider
 return \PHPStan\Cache\CacheItem::__set_state(array(
-   'variableKey' => 'v2-6.70.0.1-8.3.31-6ab1ff4ca240241137ff5e73b3ab78ec08bdb0aa37830ee13f1fa85a693087c4',
+   'variableKey' => 'v2-6.70.0.1-8.3.31-54342bf4f9df217ab8d9e614dee2d2f58c0d59f7703e7888939eb225c895bb11',
    'data' => 
   array (
     'locatedSource' => 
@@ -31,7 +31,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
     array (
     ),
     'startLine' => 32,
-    'endLine' => 64,
+    'endLine' => 66,
     'startColumn' => 1,
     'endColumn' => 1,
     'parentClassName' => 'Illuminate\\Support\\ServiceProvider',
@@ -70,7 +70,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         ),
         'docComment' => NULL,
         'startLine' => 34,
-        'endLine' => 48,
+        'endLine' => 50,
         'startColumn' => 5,
         'endColumn' => 5,
         'couldThrow' => false,
@@ -104,8 +104,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         array (
         ),
         'docComment' => NULL,
-        'startLine' => 50,
-        'endLine' => 63,
+        'startLine' => 52,
+        'endLine' => 65,
         'startColumn' => 5,
         'endColumn' => 5,
         'couldThrow' => false,

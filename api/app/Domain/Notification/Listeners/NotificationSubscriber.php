@@ -6,8 +6,15 @@ namespace App\Domain\Notification\Listeners;
 
 use App\Domain\Access\Models\User;
 use App\Domain\Access\Scopes\MdaScope;
+use App\Domain\Grievance\Events\GrievanceAssigned;
+use App\Domain\Grievance\Events\GrievanceResolved;
+use App\Domain\Grievance\Events\GrievanceSlaBreached;
+use App\Domain\Grievance\Models\Grievance;
 use App\Domain\Notification\Services\Notifier;
 use App\Domain\Notification\Support\NotificationMessage;
+use App\Domain\Referral\Events\ReferralSlaBreached;
+use App\Domain\Referral\Events\ReferralStatusChanged;
+use App\Domain\Referral\Models\Referral;
 use App\Domain\Registry\Events\OwnershipTransferRequested;
 use App\Domain\Registry\Events\ServiceRequestAccepted;
 use App\Domain\Registry\Events\ServiceRequestDeclined;
@@ -113,6 +120,166 @@ class NotificationSubscriber
         return $this->approversIn($fromMdaId, 'beneficiary.create');
     }
 
+    public function handleReferralStatusChanged(ReferralStatusChanged $event): void
+    {
+        // Both MDAs are informed of every transition (FR-REF-05).
+        $this->notifier->notify(
+            new NotificationMessage(
+                type: 'referral.'.$event->action,
+                subject: 'Referral '.str_replace('_', ' ', $event->action),
+                body: 'A referral involving your MDA is now '.$event->referral->status->value.'.',
+                related: $event->referral,
+            ),
+            $this->bothParties($event->referral),
+        );
+    }
+
+    public function handleReferralSlaBreached(ReferralSlaBreached $event): void
+    {
+        // Notify both MDAs AND the escalation tier for this level (FR-REF-04/05).
+        $recipients = $this->bothParties($event->referral)
+            ->merge($this->escalationTier($event->referral, $event->level))
+            ->unique('id')
+            ->values();
+
+        $this->notifier->notify(
+            new NotificationMessage(
+                type: 'referral.sla_breached',
+                subject: 'Referral overdue — escalation level '.$event->level,
+                body: 'A referral in status '.$event->referral->status->value.' has breached its SLA and was escalated.',
+                payload: ['escalation_level' => $event->level],
+                related: $event->referral,
+            ),
+            $recipients,
+        );
+    }
+
+    /**
+     * Referral-handling users in BOTH the originating and receiving MDAs.
+     *
+     * @return Collection<int, User>
+     */
+    private function bothParties(Referral $referral): Collection
+    {
+        return $this->approversIn($referral->from_mda_id, 'referral.edit')
+            ->merge($this->approversIn($referral->to_mda_id, 'referral.edit'))
+            ->unique('id')
+            ->values();
+    }
+
+    /**
+     * The escalation-chain tier for a breach level: users holding the tier's role.
+     * Roles are organizational (e.g. coordination) so they are resolved globally.
+     *
+     * @return Collection<int, User>
+     */
+    private function escalationTier(Referral $referral, int $level): Collection
+    {
+        /** @var list<string> $chain */
+        $chain = (array) config('sla.referral.escalation_chain', []);
+        if ($chain === []) {
+            return new Collection;
+        }
+
+        $roleKey = $chain[min($level - 1, count($chain) - 1)];
+
+        return User::query()
+            ->withoutGlobalScope(MdaScope::class)
+            ->whereHas('role', fn ($query) => $query->where('key', $roleKey))
+            ->get();
+    }
+
+    public function handleGrievanceAssigned(GrievanceAssigned $event): void
+    {
+        // The assignee is notified (FR-GRM-02).
+        $this->notifier->notify(
+            new NotificationMessage(
+                type: 'grievance.assigned',
+                subject: 'A grievance was assigned to you',
+                body: 'You have been assigned a grievance ('.$event->grievance->category->value.') to handle.',
+                related: $event->grievance,
+            ),
+            new Collection([$event->assignee]),
+        );
+    }
+
+    public function handleGrievanceResolved(GrievanceResolved $event): void
+    {
+        // Relevant parties: the handling MDA's grievance team + whoever logged it.
+        $recipients = $this->approversIn($event->grievance->handling_mda_id, 'grievance.edit');
+        if ($event->grievance->submitted_by !== null) {
+            $submitter = User::query()->withoutGlobalScope(MdaScope::class)->find($event->grievance->submitted_by);
+            if ($submitter !== null) {
+                $recipients = $recipients->push($submitter);
+            }
+        }
+
+        $this->notifier->notify(
+            new NotificationMessage(
+                type: 'grievance.resolved',
+                subject: 'Grievance resolved',
+                body: 'A grievance ('.$event->grievance->category->value.') has been resolved.',
+                related: $event->grievance,
+            ),
+            $recipients->unique('id')->values(),
+        );
+    }
+
+    public function handleGrievanceSlaBreached(GrievanceSlaBreached $event): void
+    {
+        // The handling MDA's grievance team AND the escalation tier for this level
+        // are alerted (FR-GRM-03). Nothing is auto-closed.
+        $recipients = $this->approversIn($event->grievance->handling_mda_id, 'grievance.edit')
+            ->merge($this->grievanceEscalationTier($event->grievance, $event->level))
+            ->unique('id')
+            ->values();
+
+        $this->notifier->notify(
+            new NotificationMessage(
+                type: 'grievance.sla_breached',
+                subject: 'Grievance overdue — escalation level '.$event->level,
+                body: 'A grievance ('.$event->grievance->category->value.') in status '.$event->grievance->status->value.' has breached its SLA and was escalated.',
+                payload: ['escalation_level' => $event->level],
+                related: $event->grievance,
+            ),
+            $recipients,
+        );
+    }
+
+    /**
+     * The escalation-chain tier for a grievance breach level. Grievances are handled
+     * within one MDA, so the tier is resolved WITHIN the handling MDA first (e.g. its
+     * admins), falling back to an org-wide role (e.g. coordination) if that role has
+     * no member in the handling MDA.
+     *
+     * @return Collection<int, User>
+     */
+    private function grievanceEscalationTier(Grievance $grievance, int $level): Collection
+    {
+        /** @var list<string> $chain */
+        $chain = (array) config('sla.grievance.escalation_chain', []);
+        if ($chain === []) {
+            return new Collection;
+        }
+
+        $roleKey = $chain[min($level - 1, count($chain) - 1)];
+
+        $inHandlingMda = User::query()
+            ->withoutGlobalScope(MdaScope::class)
+            ->where('mda_id', $grievance->handling_mda_id)
+            ->whereHas('role', fn ($query) => $query->where('key', $roleKey))
+            ->get();
+
+        if ($inHandlingMda->isNotEmpty()) {
+            return $inHandlingMda;
+        }
+
+        return User::query()
+            ->withoutGlobalScope(MdaScope::class)
+            ->whereHas('role', fn ($query) => $query->where('key', $roleKey))
+            ->get();
+    }
+
     /**
      * @return array<class-string, string>
      */
@@ -123,6 +290,11 @@ class NotificationSubscriber
             ServiceRequestAccepted::class => 'handleServiceRequestAccepted',
             ServiceRequestDeclined::class => 'handleServiceRequestDeclined',
             OwnershipTransferRequested::class => 'handleOwnershipTransferRequested',
+            ReferralStatusChanged::class => 'handleReferralStatusChanged',
+            ReferralSlaBreached::class => 'handleReferralSlaBreached',
+            GrievanceAssigned::class => 'handleGrievanceAssigned',
+            GrievanceResolved::class => 'handleGrievanceResolved',
+            GrievanceSlaBreached::class => 'handleGrievanceSlaBreached',
         ];
     }
 }

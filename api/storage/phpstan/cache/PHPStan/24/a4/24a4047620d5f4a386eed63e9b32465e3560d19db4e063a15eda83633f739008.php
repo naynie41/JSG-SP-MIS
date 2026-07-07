@@ -2,7 +2,7 @@
 
 // odsl-/var/www/html/app/Domain/Programme/Services/EnrollmentService.php-PHPStan\BetterReflection\Reflection\ReflectionClass-App\Domain\Programme\Services\EnrollmentService
 return \PHPStan\Cache\CacheItem::__set_state(array(
-   'variableKey' => 'v2-6.70.0.1-8.3.31-e533ab1fdf7bd69a2f25f71292454ef26ba896398249a31a1dc73e71a958de97',
+   'variableKey' => 'v2-6.70.0.1-8.3.31-4874e00d806d5cf363e35b1659afdf43e0402feabf3a4c56ccebee00f4ff20cf',
    'data' => 
   array (
     'locatedSource' => 
@@ -32,8 +32,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
     'attributes' => 
     array (
     ),
-    'startLine' => 24,
-    'endLine' => 111,
+    'startLine' => 25,
+    'endLine' => 114,
     'startColumn' => 1,
     'endColumn' => 1,
     'parentClassName' => NULL,
@@ -68,8 +68,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         'attributes' => 
         array (
         ),
-        'startLine' => 26,
-        'endLine' => 26,
+        'startLine' => 27,
+        'endLine' => 27,
         'startColumn' => 33,
         'endColumn' => 82,
         'isPromoted' => true,
@@ -106,8 +106,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             'attributes' => 
             array (
             ),
-            'startLine' => 26,
-            'endLine' => 26,
+            'startLine' => 27,
+            'endLine' => 27,
             'startColumn' => 33,
             'endColumn' => 82,
             'parameterIndex' => 0,
@@ -120,8 +120,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         array (
         ),
         'docComment' => NULL,
-        'startLine' => 26,
-        'endLine' => 26,
+        'startLine' => 27,
+        'endLine' => 27,
         'startColumn' => 5,
         'endColumn' => 86,
         'couldThrow' => false,
@@ -159,8 +159,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             'attributes' => 
             array (
             ),
-            'startLine' => 34,
-            'endLine' => 34,
+            'startLine' => 36,
+            'endLine' => 36,
             'startColumn' => 30,
             'endColumn' => 40,
             'parameterIndex' => 0,
@@ -204,8 +204,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             'attributes' => 
             array (
             ),
-            'startLine' => 34,
-            'endLine' => 34,
+            'startLine' => 36,
+            'endLine' => 36,
             'startColumn' => 43,
             'endColumn' => 71,
             'parameterIndex' => 1,
@@ -228,11 +228,12 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         'docComment' => '/**
  * Whether the acting user\'s MDA may enroll (serve) this target: it owns the
  * target, holds a cross-MDA grant covering the owner, or — for a beneficiary —
- * holds an active read/serve grant opened by an ACCEPTED Service Request
- * (§12, FR-OWN-06/07). Serving a non-owned beneficiary requires that grant.
+ * holds one of two DISTINCT authorizations: an active read/serve grant from an
+ * accepted Service Request (§12, FR-OWN-06/07), OR an accepted Referral to it
+ * (FR-REF-02, FR-BEN-06). Either authorizes serving; neither moves ownership.
  */',
-        'startLine' => 34,
-        'endLine' => 45,
+        'startLine' => 36,
+        'endLine' => 48,
         'startColumn' => 5,
         'endColumn' => 5,
         'couldThrow' => false,
@@ -270,8 +271,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             'attributes' => 
             array (
             ),
-            'startLine' => 53,
-            'endLine' => 53,
+            'startLine' => 56,
+            'endLine' => 56,
             'startColumn' => 28,
             'endColumn' => 47,
             'parameterIndex' => 0,
@@ -315,8 +316,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             'attributes' => 
             array (
             ),
-            'startLine' => 53,
-            'endLine' => 53,
+            'startLine' => 56,
+            'endLine' => 56,
             'startColumn' => 50,
             'endColumn' => 78,
             'parameterIndex' => 1,
@@ -360,8 +361,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             'attributes' => 
             array (
             ),
-            'startLine' => 53,
-            'endLine' => 53,
+            'startLine' => 56,
+            'endLine' => 56,
             'startColumn' => 81,
             'endColumn' => 99,
             'parameterIndex' => 2,
@@ -386,8 +387,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             'attributes' => 
             array (
             ),
-            'startLine' => 53,
-            'endLine' => 53,
+            'startLine' => 56,
+            'endLine' => 56,
             'startColumn' => 102,
             'endColumn' => 112,
             'parameterIndex' => 3,
@@ -413,8 +414,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
  *
  * @return array{status: \'enrolled\'|\'skipped\'|\'rejected\', reason: ?string, enrollment: ?Enrollment, unmet: list<string>}
  */',
-        'startLine' => 53,
-        'endLine' => 89,
+        'startLine' => 56,
+        'endLine' => 92,
         'startColumn' => 5,
         'endColumn' => 5,
         'couldThrow' => false,
@@ -452,8 +453,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             'attributes' => 
             array (
             ),
-            'startLine' => 91,
-            'endLine' => 91,
+            'startLine' => 94,
+            'endLine' => 94,
             'startColumn' => 40,
             'endColumn' => 59,
             'parameterIndex' => 0,
@@ -497,8 +498,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             'attributes' => 
             array (
             ),
-            'startLine' => 91,
-            'endLine' => 91,
+            'startLine' => 94,
+            'endLine' => 94,
             'startColumn' => 62,
             'endColumn' => 90,
             'parameterIndex' => 1,
@@ -519,8 +520,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         array (
         ),
         'docComment' => NULL,
-        'startLine' => 91,
-        'endLine' => 101,
+        'startLine' => 94,
+        'endLine' => 104,
         'startColumn' => 5,
         'endColumn' => 5,
         'couldThrow' => false,
@@ -558,8 +559,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             'attributes' => 
             array (
             ),
-            'startLine' => 107,
-            'endLine' => 107,
+            'startLine' => 110,
+            'endLine' => 110,
             'startColumn' => 30,
             'endColumn' => 43,
             'parameterIndex' => 0,
@@ -603,8 +604,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             'attributes' => 
             array (
             ),
-            'startLine' => 107,
-            'endLine' => 107,
+            'startLine' => 110,
+            'endLine' => 110,
             'startColumn' => 46,
             'endColumn' => 60,
             'parameterIndex' => 1,
@@ -618,12 +619,12 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
               'code' => 'null',
               'attributes' => 
               array (
-                'startLine' => 107,
-                'endLine' => 107,
-                'startTokenPos' => 681,
-                'startFilePos' => 4448,
-                'endTokenPos' => 681,
-                'endFilePos' => 4451,
+                'startLine' => 110,
+                'endLine' => 110,
+                'startTokenPos' => 702,
+                'startFilePos' => 4657,
+                'endTokenPos' => 702,
+                'endFilePos' => 4660,
               ),
             ),
             'type' => 
@@ -660,8 +661,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             'attributes' => 
             array (
             ),
-            'startLine' => 107,
-            'endLine' => 107,
+            'startLine' => 110,
+            'endLine' => 110,
             'startColumn' => 63,
             'endColumn' => 92,
             'parameterIndex' => 2,
@@ -675,12 +676,12 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
               'code' => '[]',
               'attributes' => 
               array (
-                'startLine' => 107,
-                'endLine' => 107,
-                'startTokenPos' => 690,
-                'startFilePos' => 4469,
-                'endTokenPos' => 691,
-                'endFilePos' => 4470,
+                'startLine' => 110,
+                'endLine' => 110,
+                'startTokenPos' => 711,
+                'startFilePos' => 4678,
+                'endTokenPos' => 712,
+                'endFilePos' => 4679,
               ),
             ),
             'type' => 
@@ -698,8 +699,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             'attributes' => 
             array (
             ),
-            'startLine' => 107,
-            'endLine' => 107,
+            'startLine' => 110,
+            'endLine' => 110,
             'startColumn' => 95,
             'endColumn' => 111,
             'parameterIndex' => 3,
@@ -723,8 +724,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
  * @param  list<string>  $unmet
  * @return array{status: \'enrolled\'|\'skipped\'|\'rejected\', reason: ?string, enrollment: ?Enrollment, unmet: list<string>}
  */',
-        'startLine' => 107,
-        'endLine' => 110,
+        'startLine' => 110,
+        'endLine' => 113,
         'startColumn' => 5,
         'endColumn' => 5,
         'couldThrow' => false,

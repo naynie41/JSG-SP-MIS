@@ -3699,7 +3699,7 @@ return [
           0 => 'App\\Domain\\Access\\Support\\PermissionRegistry',
         ),
         1 => 'register',
-        2 => 52,
+        2 => 54,
       ),
     ),
     'PHPStan\\Rules\\DeadCode\\PossiblyPureStaticCallCollector' => 
@@ -3708,25 +3708,25 @@ return [
       array (
         0 => 'Illuminate\\Support\\Facades\\Gate',
         1 => 'policy',
-        2 => 59,
+        2 => 61,
       ),
       1 => 
       array (
         0 => 'Illuminate\\Support\\Facades\\Gate',
         1 => 'policy',
-        2 => 60,
+        2 => 62,
       ),
       2 => 
       array (
         0 => 'Illuminate\\Support\\Facades\\Gate',
         1 => 'policy',
-        2 => 61,
+        2 => 63,
       ),
       3 => 
       array (
         0 => 'Illuminate\\Support\\Facades\\Gate',
         1 => 'policy',
-        2 => 62,
+        2 => 64,
       ),
     ),
   ),
@@ -5450,6 +5450,955 @@ return [
         3 => 
         array (
         ),
+      ),
+    ),
+  ),
+  '/var/www/html/app/Domain/Grievance/Enums/GrievanceStatus.php' => 
+  array (
+    'PHPStan\\Rules\\DeadCode\\MethodWithoutImpurePointsCollector' => 
+    array (
+      0 => 
+      array (
+        0 => 'App\\Domain\\Grievance\\Enums\\GrievanceStatus',
+        1 => 'allowedNext',
+        2 => 'App\\Domain\\Grievance\\Enums\\GrievanceStatus',
+        3 => 
+        array (
+        ),
+      ),
+      1 => 
+      array (
+        0 => 'App\\Domain\\Grievance\\Enums\\GrievanceStatus',
+        1 => 'canTransitionTo',
+        2 => 'App\\Domain\\Grievance\\Enums\\GrievanceStatus',
+        3 => 
+        array (
+          0 => 'm' . "\0" . 'app\\domain\\grievance\\enums\\grievancestatus' . "\0" . 'allowednext',
+        ),
+      ),
+      2 => 
+      array (
+        0 => 'App\\Domain\\Grievance\\Enums\\GrievanceStatus',
+        1 => 'isTerminal',
+        2 => 'App\\Domain\\Grievance\\Enums\\GrievanceStatus',
+        3 => 
+        array (
+          0 => 'm' . "\0" . 'app\\domain\\grievance\\enums\\grievancestatus' . "\0" . 'allowednext',
+        ),
+      ),
+    ),
+  ),
+  '/var/www/html/app/Domain/Grievance/Events/GrievanceAssigned.php' => 
+  array (
+    'PHPStan\\Rules\\DeadCode\\ConstructorWithoutImpurePointsCollector' => 
+    array (
+      0 => 
+      array (
+        0 => 'App\\Domain\\Grievance\\Events\\GrievanceAssigned',
+        1 => 
+        array (
+        ),
+      ),
+    ),
+    'PHPStan\\Rules\\Traits\\TraitUseCollector' => 
+    array (
+      0 => 
+      array (
+        0 => 'Illuminate\\Foundation\\Events\\Dispatchable',
+      ),
+    ),
+  ),
+  '/var/www/html/app/Domain/Grievance/Events/GrievanceResolved.php' => 
+  array (
+    'PHPStan\\Rules\\DeadCode\\ConstructorWithoutImpurePointsCollector' => 
+    array (
+      0 => 
+      array (
+        0 => 'App\\Domain\\Grievance\\Events\\GrievanceResolved',
+        1 => 
+        array (
+        ),
+      ),
+    ),
+    'PHPStan\\Rules\\Traits\\TraitUseCollector' => 
+    array (
+      0 => 
+      array (
+        0 => 'Illuminate\\Foundation\\Events\\Dispatchable',
+      ),
+    ),
+  ),
+  '/var/www/html/app/Domain/Grievance/Events/GrievanceSlaBreached.php' => 
+  array (
+    'PHPStan\\Rules\\DeadCode\\ConstructorWithoutImpurePointsCollector' => 
+    array (
+      0 => 
+      array (
+        0 => 'App\\Domain\\Grievance\\Events\\GrievanceSlaBreached',
+        1 => 
+        array (
+        ),
+      ),
+    ),
+    'PHPStan\\Rules\\Traits\\TraitUseCollector' => 
+    array (
+      0 => 
+      array (
+        0 => 'Illuminate\\Foundation\\Events\\Dispatchable',
+      ),
+    ),
+  ),
+  '/var/www/html/app/Domain/Grievance/GrievanceServiceProvider.php' => 
+  array (
+    'PHPStan\\Rules\\DeadCode\\PossiblyPureMethodCallCollector' => 
+    array (
+      0 => 
+      array (
+        0 => 
+        array (
+          0 => 'App\\Domain\\Access\\Support\\PermissionRegistry',
+        ),
+        1 => 'register',
+        2 => 22,
+      ),
+    ),
+    'PHPStan\\Rules\\DeadCode\\PossiblyPureStaticCallCollector' => 
+    array (
+      0 => 
+      array (
+        0 => 'Illuminate\\Support\\Facades\\Gate',
+        1 => 'policy',
+        2 => 28,
+      ),
+    ),
+  ),
+  '/var/www/html/app/Domain/Grievance/Jobs/EscalateOverdueGrievances.php' => 
+  array (
+    'PHPStan\\Rules\\DeadCode\\PossiblyPureStaticCallCollector' => 
+    array (
+      0 => 
+      array (
+        0 => 'App\\Domain\\Grievance\\Events\\GrievanceSlaBreached',
+        1 => 'dispatch',
+        2 => 77,
+      ),
+    ),
+    'PHPStan\\Rules\\Methods\\NamedArgumentParameterMethodCallsCollector' => 
+    array (
+      0 => 
+      array (
+        0 => 'App\\Domain\\Audit\\Services\\AuditLogger',
+        1 => 'record',
+        2 => 'after',
+        3 => 72,
+      ),
+    ),
+    'PHPStan\\Rules\\Traits\\TraitUseCollector' => 
+    array (
+      0 => 
+      array (
+        0 => 'Illuminate\\Foundation\\Bus\\Dispatchable',
+        1 => 'Illuminate\\Queue\\InteractsWithQueue',
+        2 => 'Illuminate\\Bus\\Queueable',
+        3 => 'Illuminate\\Queue\\SerializesModels',
+      ),
+    ),
+  ),
+  '/var/www/html/app/Domain/Grievance/Models/Grievance.php' => 
+  array (
+    'PHPStan\\Rules\\Comparison\\ConstantConditionInTraitCollector' => 
+    array (
+      0 => 
+      array (
+        0 => 'PHPStan\\Rules\\Comparison\\ImpossibleCheckTypeStaticMethodCallRule',
+        1 => 'App\\Domain\\Audit\\Concerns\\Auditable',
+        2 => 'static::created(function ($model): void {
+    $model->writeAudit(\'created\', null, $model->auditSnapshot($model->getAttributes()));
+}):24',
+        3 => NULL,
+      ),
+      1 => 
+      array (
+        0 => 'PHPStan\\Rules\\Comparison\\ImpossibleCheckTypeMethodCallRule',
+        1 => 'App\\Domain\\Audit\\Concerns\\Auditable',
+        2 => '$model->writeAudit(\'created\', null, $model->auditSnapshot($model->getAttributes())):25',
+        3 => NULL,
+      ),
+      2 => 
+      array (
+        0 => 'PHPStan\\Rules\\Comparison\\ImpossibleCheckTypeMethodCallRule',
+        1 => 'App\\Domain\\Audit\\Concerns\\Auditable',
+        2 => '$model->auditSnapshot($model->getAttributes()):25',
+        3 => NULL,
+      ),
+      3 => 
+      array (
+        0 => 'PHPStan\\Rules\\Comparison\\ImpossibleCheckTypeMethodCallRule',
+        1 => 'App\\Domain\\Audit\\Concerns\\Auditable',
+        2 => '$model->getAttributes():25',
+        3 => NULL,
+      ),
+      4 => 
+      array (
+        0 => 'PHPStan\\Rules\\Comparison\\ImpossibleCheckTypeStaticMethodCallRule',
+        1 => 'App\\Domain\\Audit\\Concerns\\Auditable',
+        2 => 'static::updated(function ($model): void {
+    $changedKeys = array_diff(array_keys($model->getChanges()), $model->allAuditExcluded());
+    if ($changedKeys === []) {
+        return;
+        // only excluded/operational columns changed — no audit noise
+    }
+    $before = [];
+    $after = [];
+    foreach ($changedKeys as $key) {
+        $before[$key] = $model->getOriginal($key);
+        $after[$key] = $model->getAttribute($key);
+    }
+    $model->writeAudit(\'updated\', $model->scrubAttributes($before), $model->scrubAttributes($after));
+}):28',
+        3 => NULL,
+      ),
+      5 => 
+      array (
+        0 => 'PHPStan\\Rules\\Comparison\\ImpossibleCheckTypeFunctionCallRule',
+        1 => 'App\\Domain\\Audit\\Concerns\\Auditable',
+        2 => 'array_diff(array_keys($model->getChanges()), $model->allAuditExcluded()):29',
+        3 => NULL,
+      ),
+      6 => 
+      array (
+        0 => 'PHPStan\\Rules\\Comparison\\ImpossibleCheckTypeFunctionCallRule',
+        1 => 'App\\Domain\\Audit\\Concerns\\Auditable',
+        2 => 'array_keys($model->getChanges()):29',
+        3 => NULL,
+      ),
+      7 => 
+      array (
+        0 => 'PHPStan\\Rules\\Comparison\\ImpossibleCheckTypeMethodCallRule',
+        1 => 'App\\Domain\\Audit\\Concerns\\Auditable',
+        2 => '$model->getChanges():29',
+        3 => NULL,
+      ),
+      8 => 
+      array (
+        0 => 'PHPStan\\Rules\\Comparison\\ImpossibleCheckTypeMethodCallRule',
+        1 => 'App\\Domain\\Audit\\Concerns\\Auditable',
+        2 => '$model->allAuditExcluded():29',
+        3 => NULL,
+      ),
+      9 => 
+      array (
+        0 => 'PHPStan\\Rules\\Comparison\\IfConstantConditionRule',
+        1 => 'App\\Domain\\Audit\\Concerns\\Auditable',
+        2 => '$changedKeys === []:31',
+        3 => NULL,
+      ),
+      10 => 
+      array (
+        0 => 'PHPStan\\Rules\\Comparison\\StrictComparisonOfDifferentTypesRule',
+        1 => 'App\\Domain\\Audit\\Concerns\\Auditable',
+        2 => '$changedKeys === []:31',
+        3 => NULL,
+      ),
+      11 => 
+      array (
+        0 => 'PHPStan\\Rules\\Comparison\\ImpossibleCheckTypeMethodCallRule',
+        1 => 'App\\Domain\\Audit\\Concerns\\Auditable',
+        2 => '$model->getOriginal($key):38',
+        3 => NULL,
+      ),
+      12 => 
+      array (
+        0 => 'PHPStan\\Rules\\Comparison\\ImpossibleCheckTypeMethodCallRule',
+        1 => 'App\\Domain\\Audit\\Concerns\\Auditable',
+        2 => '$model->getAttribute($key):39',
+        3 => NULL,
+      ),
+      13 => 
+      array (
+        0 => 'PHPStan\\Rules\\Comparison\\ImpossibleCheckTypeMethodCallRule',
+        1 => 'App\\Domain\\Audit\\Concerns\\Auditable',
+        2 => '$model->writeAudit(\'updated\', $model->scrubAttributes($before), $model->scrubAttributes($after)):42',
+        3 => NULL,
+      ),
+      14 => 
+      array (
+        0 => 'PHPStan\\Rules\\Comparison\\ImpossibleCheckTypeMethodCallRule',
+        1 => 'App\\Domain\\Audit\\Concerns\\Auditable',
+        2 => '$model->scrubAttributes($before):42',
+        3 => NULL,
+      ),
+      15 => 
+      array (
+        0 => 'PHPStan\\Rules\\Comparison\\ImpossibleCheckTypeMethodCallRule',
+        1 => 'App\\Domain\\Audit\\Concerns\\Auditable',
+        2 => '$model->scrubAttributes($after):42',
+        3 => NULL,
+      ),
+      16 => 
+      array (
+        0 => 'PHPStan\\Rules\\Comparison\\ImpossibleCheckTypeStaticMethodCallRule',
+        1 => 'App\\Domain\\Audit\\Concerns\\Auditable',
+        2 => 'static::deleted(function ($model): void {
+    $model->writeAudit(\'deleted\', $model->auditSnapshot($model->getOriginal()), null);
+}):45',
+        3 => NULL,
+      ),
+      17 => 
+      array (
+        0 => 'PHPStan\\Rules\\Comparison\\ImpossibleCheckTypeMethodCallRule',
+        1 => 'App\\Domain\\Audit\\Concerns\\Auditable',
+        2 => '$model->writeAudit(\'deleted\', $model->auditSnapshot($model->getOriginal()), null):46',
+        3 => NULL,
+      ),
+      18 => 
+      array (
+        0 => 'PHPStan\\Rules\\Comparison\\ImpossibleCheckTypeMethodCallRule',
+        1 => 'App\\Domain\\Audit\\Concerns\\Auditable',
+        2 => '$model->auditSnapshot($model->getOriginal()):46',
+        3 => NULL,
+      ),
+      19 => 
+      array (
+        0 => 'PHPStan\\Rules\\Comparison\\ImpossibleCheckTypeMethodCallRule',
+        1 => 'App\\Domain\\Audit\\Concerns\\Auditable',
+        2 => '$model->getOriginal():46',
+        3 => NULL,
+      ),
+      20 => 
+      array (
+        0 => 'PHPStan\\Rules\\Comparison\\ImpossibleCheckTypeStaticMethodCallRule',
+        1 => 'App\\Domain\\Audit\\Concerns\\Auditable',
+        2 => '\\Illuminate\\Support\\Str::snake(class_basename($this)):65',
+        3 => NULL,
+      ),
+      21 => 
+      array (
+        0 => 'PHPStan\\Rules\\Comparison\\ImpossibleCheckTypeFunctionCallRule',
+        1 => 'App\\Domain\\Audit\\Concerns\\Auditable',
+        2 => 'class_basename($this):65',
+        3 => NULL,
+      ),
+      22 => 
+      array (
+        0 => 'PHPStan\\Rules\\Comparison\\ImpossibleCheckTypeMethodCallRule',
+        1 => 'App\\Domain\\Audit\\Concerns\\Auditable',
+        2 => 'app(\\App\\Domain\\Audit\\Support\\AuditScrubber::class)->scrub($attributes, $this->auditOmit(), $this->auditMask()):94',
+        3 => NULL,
+      ),
+      23 => 
+      array (
+        0 => 'PHPStan\\Rules\\Comparison\\ImpossibleCheckTypeFunctionCallRule',
+        1 => 'App\\Domain\\Audit\\Concerns\\Auditable',
+        2 => 'app(\\App\\Domain\\Audit\\Support\\AuditScrubber::class):94',
+        3 => NULL,
+      ),
+      24 => 
+      array (
+        0 => 'PHPStan\\Rules\\Comparison\\ImpossibleCheckTypeMethodCallRule',
+        1 => 'App\\Domain\\Audit\\Concerns\\Auditable',
+        2 => '$this->auditOmit():94',
+        3 => NULL,
+      ),
+      25 => 
+      array (
+        0 => 'PHPStan\\Rules\\Comparison\\ImpossibleCheckTypeMethodCallRule',
+        1 => 'App\\Domain\\Audit\\Concerns\\Auditable',
+        2 => '$this->auditMask():94',
+        3 => NULL,
+      ),
+      26 => 
+      array (
+        0 => 'PHPStan\\Rules\\Comparison\\ImpossibleCheckTypeFunctionCallRule',
+        1 => 'App\\Domain\\Audit\\Concerns\\Auditable',
+        2 => 'array_merge([\'created_at\', \'updated_at\', \'deleted_at\'], $this->auditExcluded()):102',
+        3 => NULL,
+      ),
+      27 => 
+      array (
+        0 => 'PHPStan\\Rules\\Comparison\\ImpossibleCheckTypeMethodCallRule',
+        1 => 'App\\Domain\\Audit\\Concerns\\Auditable',
+        2 => '$this->auditExcluded():102',
+        3 => NULL,
+      ),
+      28 => 
+      array (
+        0 => 'PHPStan\\Rules\\Comparison\\ImpossibleCheckTypeMethodCallRule',
+        1 => 'App\\Domain\\Audit\\Concerns\\Auditable',
+        2 => '$this->allAuditExcluded():113',
+        3 => NULL,
+      ),
+      29 => 
+      array (
+        0 => 'PHPStan\\Rules\\Comparison\\BooleanNotConstantConditionRule',
+        1 => 'App\\Domain\\Audit\\Concerns\\Auditable',
+        2 => 'in_array($key, $excluded, true):116',
+        3 => NULL,
+      ),
+      30 => 
+      array (
+        0 => 'PHPStan\\Rules\\Comparison\\ImpossibleCheckTypeFunctionCallRule',
+        1 => 'App\\Domain\\Audit\\Concerns\\Auditable',
+        2 => 'in_array($key, $excluded, true):116',
+        3 => NULL,
+      ),
+      31 => 
+      array (
+        0 => 'PHPStan\\Rules\\Comparison\\ImpossibleCheckTypeFunctionCallRule',
+        1 => 'App\\Domain\\Audit\\Concerns\\Auditable',
+        2 => 'array_filter($attributes, fn(string $key) => !in_array($key, $excluded, true), ARRAY_FILTER_USE_KEY):114',
+        3 => NULL,
+      ),
+      32 => 
+      array (
+        0 => 'PHPStan\\Rules\\Comparison\\ImpossibleCheckTypeMethodCallRule',
+        1 => 'App\\Domain\\Audit\\Concerns\\Auditable',
+        2 => '$this->scrubAttributes($filtered):120',
+        3 => NULL,
+      ),
+      33 => 
+      array (
+        0 => 'PHPStan\\Rules\\Comparison\\ImpossibleCheckTypeMethodCallRule',
+        1 => 'App\\Domain\\Audit\\Concerns\\Auditable',
+        2 => 'app(\\App\\Domain\\Audit\\Services\\AuditLogger::class)->record($this->auditEntityName() . \'.\' . $event, $this, $before, $after):129',
+        3 => NULL,
+      ),
+      34 => 
+      array (
+        0 => 'PHPStan\\Rules\\Comparison\\ImpossibleCheckTypeFunctionCallRule',
+        1 => 'App\\Domain\\Audit\\Concerns\\Auditable',
+        2 => 'app(\\App\\Domain\\Audit\\Services\\AuditLogger::class):129',
+        3 => NULL,
+      ),
+      35 => 
+      array (
+        0 => 'PHPStan\\Rules\\Comparison\\ImpossibleCheckTypeMethodCallRule',
+        1 => 'App\\Domain\\Audit\\Concerns\\Auditable',
+        2 => '$this->auditEntityName():130',
+        3 => NULL,
+      ),
+      36 => 
+      array (
+        0 => 'PHPStan\\Rules\\Comparison\\ImpossibleCheckTypeStaticMethodCallRule',
+        1 => 'App\\Domain\\Access\\Concerns\\ScopedToMda',
+        2 => 'static::addGlobalScope(new \\App\\Domain\\Access\\Scopes\\MdaScope()):21',
+        3 => NULL,
+      ),
+    ),
+    'PHPStan\\Rules\\DeadCode\\MethodWithoutImpurePointsCollector' => 
+    array (
+      0 => 
+      array (
+        0 => 'App\\Domain\\Grievance\\Models\\Grievance',
+        1 => 'auditEntityName',
+        2 => 'App\\Domain\\Grievance\\Models\\Grievance',
+        3 => 
+        array (
+          0 => 'm' . "\0" . 'illuminate\\support\\str' . "\0" . 'snake',
+          1 => 'f' . "\0" . 'class_basename',
+        ),
+      ),
+      1 => 
+      array (
+        0 => 'App\\Domain\\Grievance\\Models\\Grievance',
+        1 => 'auditOmit',
+        2 => 'App\\Domain\\Grievance\\Models\\Grievance',
+        3 => 
+        array (
+        ),
+      ),
+      2 => 
+      array (
+        0 => 'App\\Domain\\Grievance\\Models\\Grievance',
+        1 => 'auditMask',
+        2 => 'App\\Domain\\Grievance\\Models\\Grievance',
+        3 => 
+        array (
+        ),
+      ),
+      3 => 
+      array (
+        0 => 'App\\Domain\\Grievance\\Models\\Grievance',
+        1 => 'casts',
+        2 => 'App\\Domain\\Grievance\\Models\\Grievance',
+        3 => 
+        array (
+        ),
+      ),
+      4 => 
+      array (
+        0 => 'App\\Domain\\Grievance\\Models\\Grievance',
+        1 => 'mdaOwnershipColumn',
+        2 => 'App\\Domain\\Grievance\\Models\\Grievance',
+        3 => 
+        array (
+        ),
+      ),
+      5 => 
+      array (
+        0 => 'App\\Domain\\Grievance\\Models\\Grievance',
+        1 => 'auditExcluded',
+        2 => 'App\\Domain\\Grievance\\Models\\Grievance',
+        3 => 
+        array (
+        ),
+      ),
+    ),
+    'PHPStan\\Rules\\DeadCode\\PossiblyPureStaticCallCollector' => 
+    array (
+      0 => 
+      array (
+        0 => 'Illuminate\\Database\\Eloquent\\Model',
+        1 => 'addGlobalScope',
+        2 => 21,
+      ),
+    ),
+    'PHPStan\\Rules\\Traits\\TraitUseCollector' => 
+    array (
+      0 => 
+      array (
+        0 => 'App\\Domain\\Audit\\Concerns\\Auditable',
+        1 => 'Illuminate\\Database\\Eloquent\\Concerns\\HasUuids',
+        2 => 'App\\Domain\\Access\\Concerns\\ScopedToMda',
+      ),
+    ),
+  ),
+  '/var/www/html/app/Domain/Grievance/Models/GrievanceSlaPolicy.php' => 
+  array (
+    'PHPStan\\Rules\\Comparison\\ConstantConditionInTraitCollector' => 
+    array (
+      0 => 
+      array (
+        0 => 'PHPStan\\Rules\\Comparison\\ImpossibleCheckTypeStaticMethodCallRule',
+        1 => 'App\\Domain\\Audit\\Concerns\\Auditable',
+        2 => 'static::created(function ($model): void {
+    $model->writeAudit(\'created\', null, $model->auditSnapshot($model->getAttributes()));
+}):24',
+        3 => NULL,
+      ),
+      1 => 
+      array (
+        0 => 'PHPStan\\Rules\\Comparison\\ImpossibleCheckTypeMethodCallRule',
+        1 => 'App\\Domain\\Audit\\Concerns\\Auditable',
+        2 => '$model->writeAudit(\'created\', null, $model->auditSnapshot($model->getAttributes())):25',
+        3 => NULL,
+      ),
+      2 => 
+      array (
+        0 => 'PHPStan\\Rules\\Comparison\\ImpossibleCheckTypeMethodCallRule',
+        1 => 'App\\Domain\\Audit\\Concerns\\Auditable',
+        2 => '$model->auditSnapshot($model->getAttributes()):25',
+        3 => NULL,
+      ),
+      3 => 
+      array (
+        0 => 'PHPStan\\Rules\\Comparison\\ImpossibleCheckTypeMethodCallRule',
+        1 => 'App\\Domain\\Audit\\Concerns\\Auditable',
+        2 => '$model->getAttributes():25',
+        3 => NULL,
+      ),
+      4 => 
+      array (
+        0 => 'PHPStan\\Rules\\Comparison\\ImpossibleCheckTypeStaticMethodCallRule',
+        1 => 'App\\Domain\\Audit\\Concerns\\Auditable',
+        2 => 'static::updated(function ($model): void {
+    $changedKeys = array_diff(array_keys($model->getChanges()), $model->allAuditExcluded());
+    if ($changedKeys === []) {
+        return;
+        // only excluded/operational columns changed — no audit noise
+    }
+    $before = [];
+    $after = [];
+    foreach ($changedKeys as $key) {
+        $before[$key] = $model->getOriginal($key);
+        $after[$key] = $model->getAttribute($key);
+    }
+    $model->writeAudit(\'updated\', $model->scrubAttributes($before), $model->scrubAttributes($after));
+}):28',
+        3 => NULL,
+      ),
+      5 => 
+      array (
+        0 => 'PHPStan\\Rules\\Comparison\\ImpossibleCheckTypeFunctionCallRule',
+        1 => 'App\\Domain\\Audit\\Concerns\\Auditable',
+        2 => 'array_diff(array_keys($model->getChanges()), $model->allAuditExcluded()):29',
+        3 => NULL,
+      ),
+      6 => 
+      array (
+        0 => 'PHPStan\\Rules\\Comparison\\ImpossibleCheckTypeFunctionCallRule',
+        1 => 'App\\Domain\\Audit\\Concerns\\Auditable',
+        2 => 'array_keys($model->getChanges()):29',
+        3 => NULL,
+      ),
+      7 => 
+      array (
+        0 => 'PHPStan\\Rules\\Comparison\\ImpossibleCheckTypeMethodCallRule',
+        1 => 'App\\Domain\\Audit\\Concerns\\Auditable',
+        2 => '$model->getChanges():29',
+        3 => NULL,
+      ),
+      8 => 
+      array (
+        0 => 'PHPStan\\Rules\\Comparison\\ImpossibleCheckTypeMethodCallRule',
+        1 => 'App\\Domain\\Audit\\Concerns\\Auditable',
+        2 => '$model->allAuditExcluded():29',
+        3 => NULL,
+      ),
+      9 => 
+      array (
+        0 => 'PHPStan\\Rules\\Comparison\\IfConstantConditionRule',
+        1 => 'App\\Domain\\Audit\\Concerns\\Auditable',
+        2 => '$changedKeys === []:31',
+        3 => NULL,
+      ),
+      10 => 
+      array (
+        0 => 'PHPStan\\Rules\\Comparison\\StrictComparisonOfDifferentTypesRule',
+        1 => 'App\\Domain\\Audit\\Concerns\\Auditable',
+        2 => '$changedKeys === []:31',
+        3 => NULL,
+      ),
+      11 => 
+      array (
+        0 => 'PHPStan\\Rules\\Comparison\\ImpossibleCheckTypeMethodCallRule',
+        1 => 'App\\Domain\\Audit\\Concerns\\Auditable',
+        2 => '$model->getOriginal($key):38',
+        3 => NULL,
+      ),
+      12 => 
+      array (
+        0 => 'PHPStan\\Rules\\Comparison\\ImpossibleCheckTypeMethodCallRule',
+        1 => 'App\\Domain\\Audit\\Concerns\\Auditable',
+        2 => '$model->getAttribute($key):39',
+        3 => NULL,
+      ),
+      13 => 
+      array (
+        0 => 'PHPStan\\Rules\\Comparison\\ImpossibleCheckTypeMethodCallRule',
+        1 => 'App\\Domain\\Audit\\Concerns\\Auditable',
+        2 => '$model->writeAudit(\'updated\', $model->scrubAttributes($before), $model->scrubAttributes($after)):42',
+        3 => NULL,
+      ),
+      14 => 
+      array (
+        0 => 'PHPStan\\Rules\\Comparison\\ImpossibleCheckTypeMethodCallRule',
+        1 => 'App\\Domain\\Audit\\Concerns\\Auditable',
+        2 => '$model->scrubAttributes($before):42',
+        3 => NULL,
+      ),
+      15 => 
+      array (
+        0 => 'PHPStan\\Rules\\Comparison\\ImpossibleCheckTypeMethodCallRule',
+        1 => 'App\\Domain\\Audit\\Concerns\\Auditable',
+        2 => '$model->scrubAttributes($after):42',
+        3 => NULL,
+      ),
+      16 => 
+      array (
+        0 => 'PHPStan\\Rules\\Comparison\\ImpossibleCheckTypeStaticMethodCallRule',
+        1 => 'App\\Domain\\Audit\\Concerns\\Auditable',
+        2 => 'static::deleted(function ($model): void {
+    $model->writeAudit(\'deleted\', $model->auditSnapshot($model->getOriginal()), null);
+}):45',
+        3 => NULL,
+      ),
+      17 => 
+      array (
+        0 => 'PHPStan\\Rules\\Comparison\\ImpossibleCheckTypeMethodCallRule',
+        1 => 'App\\Domain\\Audit\\Concerns\\Auditable',
+        2 => '$model->writeAudit(\'deleted\', $model->auditSnapshot($model->getOriginal()), null):46',
+        3 => NULL,
+      ),
+      18 => 
+      array (
+        0 => 'PHPStan\\Rules\\Comparison\\ImpossibleCheckTypeMethodCallRule',
+        1 => 'App\\Domain\\Audit\\Concerns\\Auditable',
+        2 => '$model->auditSnapshot($model->getOriginal()):46',
+        3 => NULL,
+      ),
+      19 => 
+      array (
+        0 => 'PHPStan\\Rules\\Comparison\\ImpossibleCheckTypeMethodCallRule',
+        1 => 'App\\Domain\\Audit\\Concerns\\Auditable',
+        2 => '$model->getOriginal():46',
+        3 => NULL,
+      ),
+      20 => 
+      array (
+        0 => 'PHPStan\\Rules\\Comparison\\ImpossibleCheckTypeStaticMethodCallRule',
+        1 => 'App\\Domain\\Audit\\Concerns\\Auditable',
+        2 => '\\Illuminate\\Support\\Str::snake(class_basename($this)):65',
+        3 => NULL,
+      ),
+      21 => 
+      array (
+        0 => 'PHPStan\\Rules\\Comparison\\ImpossibleCheckTypeFunctionCallRule',
+        1 => 'App\\Domain\\Audit\\Concerns\\Auditable',
+        2 => 'class_basename($this):65',
+        3 => NULL,
+      ),
+      22 => 
+      array (
+        0 => 'PHPStan\\Rules\\Comparison\\ImpossibleCheckTypeMethodCallRule',
+        1 => 'App\\Domain\\Audit\\Concerns\\Auditable',
+        2 => 'app(\\App\\Domain\\Audit\\Support\\AuditScrubber::class)->scrub($attributes, $this->auditOmit(), $this->auditMask()):94',
+        3 => NULL,
+      ),
+      23 => 
+      array (
+        0 => 'PHPStan\\Rules\\Comparison\\ImpossibleCheckTypeFunctionCallRule',
+        1 => 'App\\Domain\\Audit\\Concerns\\Auditable',
+        2 => 'app(\\App\\Domain\\Audit\\Support\\AuditScrubber::class):94',
+        3 => NULL,
+      ),
+      24 => 
+      array (
+        0 => 'PHPStan\\Rules\\Comparison\\ImpossibleCheckTypeMethodCallRule',
+        1 => 'App\\Domain\\Audit\\Concerns\\Auditable',
+        2 => '$this->auditOmit():94',
+        3 => NULL,
+      ),
+      25 => 
+      array (
+        0 => 'PHPStan\\Rules\\Comparison\\ImpossibleCheckTypeMethodCallRule',
+        1 => 'App\\Domain\\Audit\\Concerns\\Auditable',
+        2 => '$this->auditMask():94',
+        3 => NULL,
+      ),
+      26 => 
+      array (
+        0 => 'PHPStan\\Rules\\Comparison\\ImpossibleCheckTypeFunctionCallRule',
+        1 => 'App\\Domain\\Audit\\Concerns\\Auditable',
+        2 => 'array_merge([\'created_at\', \'updated_at\', \'deleted_at\'], $this->auditExcluded()):102',
+        3 => NULL,
+      ),
+      27 => 
+      array (
+        0 => 'PHPStan\\Rules\\Comparison\\ImpossibleCheckTypeMethodCallRule',
+        1 => 'App\\Domain\\Audit\\Concerns\\Auditable',
+        2 => '$this->auditExcluded():102',
+        3 => NULL,
+      ),
+      28 => 
+      array (
+        0 => 'PHPStan\\Rules\\Comparison\\ImpossibleCheckTypeMethodCallRule',
+        1 => 'App\\Domain\\Audit\\Concerns\\Auditable',
+        2 => '$this->allAuditExcluded():113',
+        3 => NULL,
+      ),
+      29 => 
+      array (
+        0 => 'PHPStan\\Rules\\Comparison\\BooleanNotConstantConditionRule',
+        1 => 'App\\Domain\\Audit\\Concerns\\Auditable',
+        2 => 'in_array($key, $excluded, true):116',
+        3 => NULL,
+      ),
+      30 => 
+      array (
+        0 => 'PHPStan\\Rules\\Comparison\\ImpossibleCheckTypeFunctionCallRule',
+        1 => 'App\\Domain\\Audit\\Concerns\\Auditable',
+        2 => 'in_array($key, $excluded, true):116',
+        3 => NULL,
+      ),
+      31 => 
+      array (
+        0 => 'PHPStan\\Rules\\Comparison\\ImpossibleCheckTypeFunctionCallRule',
+        1 => 'App\\Domain\\Audit\\Concerns\\Auditable',
+        2 => 'array_filter($attributes, fn(string $key) => !in_array($key, $excluded, true), ARRAY_FILTER_USE_KEY):114',
+        3 => NULL,
+      ),
+      32 => 
+      array (
+        0 => 'PHPStan\\Rules\\Comparison\\ImpossibleCheckTypeMethodCallRule',
+        1 => 'App\\Domain\\Audit\\Concerns\\Auditable',
+        2 => '$this->scrubAttributes($filtered):120',
+        3 => NULL,
+      ),
+      33 => 
+      array (
+        0 => 'PHPStan\\Rules\\Comparison\\ImpossibleCheckTypeMethodCallRule',
+        1 => 'App\\Domain\\Audit\\Concerns\\Auditable',
+        2 => 'app(\\App\\Domain\\Audit\\Services\\AuditLogger::class)->record($this->auditEntityName() . \'.\' . $event, $this, $before, $after):129',
+        3 => NULL,
+      ),
+      34 => 
+      array (
+        0 => 'PHPStan\\Rules\\Comparison\\ImpossibleCheckTypeFunctionCallRule',
+        1 => 'App\\Domain\\Audit\\Concerns\\Auditable',
+        2 => 'app(\\App\\Domain\\Audit\\Services\\AuditLogger::class):129',
+        3 => NULL,
+      ),
+      35 => 
+      array (
+        0 => 'PHPStan\\Rules\\Comparison\\ImpossibleCheckTypeMethodCallRule',
+        1 => 'App\\Domain\\Audit\\Concerns\\Auditable',
+        2 => '$this->auditEntityName():130',
+        3 => NULL,
+      ),
+    ),
+    'PHPStan\\Rules\\DeadCode\\MethodWithoutImpurePointsCollector' => 
+    array (
+      0 => 
+      array (
+        0 => 'App\\Domain\\Grievance\\Models\\GrievanceSlaPolicy',
+        1 => 'auditExcluded',
+        2 => 'App\\Domain\\Grievance\\Models\\GrievanceSlaPolicy',
+        3 => 
+        array (
+        ),
+      ),
+      1 => 
+      array (
+        0 => 'App\\Domain\\Grievance\\Models\\GrievanceSlaPolicy',
+        1 => 'auditEntityName',
+        2 => 'App\\Domain\\Grievance\\Models\\GrievanceSlaPolicy',
+        3 => 
+        array (
+          0 => 'm' . "\0" . 'illuminate\\support\\str' . "\0" . 'snake',
+          1 => 'f' . "\0" . 'class_basename',
+        ),
+      ),
+      2 => 
+      array (
+        0 => 'App\\Domain\\Grievance\\Models\\GrievanceSlaPolicy',
+        1 => 'auditOmit',
+        2 => 'App\\Domain\\Grievance\\Models\\GrievanceSlaPolicy',
+        3 => 
+        array (
+        ),
+      ),
+      3 => 
+      array (
+        0 => 'App\\Domain\\Grievance\\Models\\GrievanceSlaPolicy',
+        1 => 'auditMask',
+        2 => 'App\\Domain\\Grievance\\Models\\GrievanceSlaPolicy',
+        3 => 
+        array (
+        ),
+      ),
+      4 => 
+      array (
+        0 => 'App\\Domain\\Grievance\\Models\\GrievanceSlaPolicy',
+        1 => 'casts',
+        2 => 'App\\Domain\\Grievance\\Models\\GrievanceSlaPolicy',
+        3 => 
+        array (
+        ),
+      ),
+    ),
+    'PHPStan\\Rules\\Traits\\TraitUseCollector' => 
+    array (
+      0 => 
+      array (
+        0 => 'App\\Domain\\Audit\\Concerns\\Auditable',
+        1 => 'Illuminate\\Database\\Eloquent\\Concerns\\HasUuids',
+      ),
+    ),
+  ),
+  '/var/www/html/app/Domain/Grievance/Services/GrievanceService.php' => 
+  array (
+    'PHPStan\\Rules\\DeadCode\\ConstructorWithoutImpurePointsCollector' => 
+    array (
+      0 => 
+      array (
+        0 => 'App\\Domain\\Grievance\\Services\\GrievanceService',
+        1 => 
+        array (
+        ),
+      ),
+    ),
+    'PHPStan\\Rules\\DeadCode\\MethodWithoutImpurePointsCollector' => 
+    array (
+      0 => 
+      array (
+        0 => 'App\\Domain\\Grievance\\Services\\GrievanceService',
+        1 => 'create',
+        2 => 'App\\Domain\\Grievance\\Services\\GrievanceService',
+        3 => 
+        array (
+          0 => 'm' . "\0" . 'illuminate\\database\\eloquent\\builder' . "\0" . 'create',
+        ),
+      ),
+      1 => 
+      array (
+        0 => 'App\\Domain\\Grievance\\Services\\GrievanceService',
+        1 => 'start',
+        2 => 'App\\Domain\\Grievance\\Services\\GrievanceService',
+        3 => 
+        array (
+          0 => 'm' . "\0" . 'app\\domain\\grievance\\services\\grievanceservice' . "\0" . 'transition',
+          1 => 'm' . "\0" . 'carbon\\carbon' . "\0" . 'now',
+        ),
+      ),
+      2 => 
+      array (
+        0 => 'App\\Domain\\Grievance\\Services\\GrievanceService',
+        1 => 'resolve',
+        2 => 'App\\Domain\\Grievance\\Services\\GrievanceService',
+        3 => 
+        array (
+          0 => 'm' . "\0" . 'app\\domain\\grievance\\services\\grievanceservice' . "\0" . 'transition',
+          1 => 'm' . "\0" . 'carbon\\carbon' . "\0" . 'now',
+        ),
+      ),
+      3 => 
+      array (
+        0 => 'App\\Domain\\Grievance\\Services\\GrievanceService',
+        1 => 'close',
+        2 => 'App\\Domain\\Grievance\\Services\\GrievanceService',
+        3 => 
+        array (
+          0 => 'm' . "\0" . 'carbon\\carbon' . "\0" . 'now',
+          1 => 'm' . "\0" . 'app\\domain\\grievance\\services\\grievanceservice' . "\0" . 'transition',
+        ),
+      ),
+    ),
+    'PHPStan\\Rules\\DeadCode\\PossiblyPureStaticCallCollector' => 
+    array (
+      0 => 
+      array (
+        0 => 'App\\Domain\\Grievance\\Events\\GrievanceAssigned',
+        1 => 'dispatch',
+        2 => 64,
+      ),
+    ),
+    'PHPStan\\Rules\\Methods\\NamedArgumentParameterMethodCallsCollector' => 
+    array (
+      0 => 
+      array (
+        0 => 'App\\Domain\\Audit\\Services\\AuditLogger',
+        1 => 'record',
+        2 => 'after',
+        3 => 59,
+      ),
+      1 => 
+      array (
+        0 => 'App\\Domain\\Audit\\Services\\AuditLogger',
+        1 => 'record',
+        2 => 'actor',
+        3 => 62,
+      ),
+      2 => 
+      array (
+        0 => 'App\\Domain\\Audit\\Services\\AuditLogger',
+        1 => 'record',
+        2 => 'before',
+        3 => 106,
+      ),
+      3 => 
+      array (
+        0 => 'App\\Domain\\Audit\\Services\\AuditLogger',
+        1 => 'record',
+        2 => 'after',
+        3 => 106,
+      ),
+      4 => 
+      array (
+        0 => 'App\\Domain\\Audit\\Services\\AuditLogger',
+        1 => 'record',
+        2 => 'actor',
+        3 => 109,
       ),
     ),
   ),
@@ -7624,6 +8573,31 @@ return [
       ),
     ),
   ),
+  '/var/www/html/app/Domain/Referral/Authorization/ReferralAuthorizer.php' => 
+  array (
+    'PHPStan\\Rules\\DeadCode\\MethodWithoutImpurePointsCollector' => 
+    array (
+      0 => 
+      array (
+        0 => 'App\\Domain\\Referral\\Authorization\\ReferralAuthorizer',
+        1 => 'authorizes',
+        2 => 'App\\Domain\\Referral\\Authorization\\ReferralAuthorizer',
+        3 => 
+        array (
+          0 => 'm' . "\0" . 'app\\domain\\referral\\models\\referral' . "\0" . 'authorizesdelivery',
+        ),
+      ),
+      1 => 
+      array (
+        0 => 'App\\Domain\\Referral\\Authorization\\ReferralAuthorizer',
+        1 => 'source',
+        2 => 'App\\Domain\\Referral\\Authorization\\ReferralAuthorizer',
+        3 => 
+        array (
+        ),
+      ),
+    ),
+  ),
   '/var/www/html/app/Domain/Referral/Enums/ReferralStatus.php' => 
   array (
     'PHPStan\\Rules\\DeadCode\\MethodWithoutImpurePointsCollector' => 
@@ -7656,6 +8630,90 @@ return [
         array (
           0 => 'm' . "\0" . 'app\\domain\\referral\\enums\\referralstatus' . "\0" . 'allowednext',
         ),
+      ),
+    ),
+  ),
+  '/var/www/html/app/Domain/Referral/Events/ReferralSlaBreached.php' => 
+  array (
+    'PHPStan\\Rules\\DeadCode\\ConstructorWithoutImpurePointsCollector' => 
+    array (
+      0 => 
+      array (
+        0 => 'App\\Domain\\Referral\\Events\\ReferralSlaBreached',
+        1 => 
+        array (
+        ),
+      ),
+    ),
+    'PHPStan\\Rules\\Traits\\TraitUseCollector' => 
+    array (
+      0 => 
+      array (
+        0 => 'Illuminate\\Foundation\\Events\\Dispatchable',
+      ),
+    ),
+  ),
+  '/var/www/html/app/Domain/Referral/Events/ReferralStatusChanged.php' => 
+  array (
+    'PHPStan\\Rules\\DeadCode\\ConstructorWithoutImpurePointsCollector' => 
+    array (
+      0 => 
+      array (
+        0 => 'App\\Domain\\Referral\\Events\\ReferralStatusChanged',
+        1 => 
+        array (
+        ),
+      ),
+    ),
+    'PHPStan\\Rules\\Traits\\TraitUseCollector' => 
+    array (
+      0 => 
+      array (
+        0 => 'Illuminate\\Foundation\\Events\\Dispatchable',
+      ),
+    ),
+  ),
+  '/var/www/html/app/Domain/Referral/Jobs/EscalateOverdueReferrals.php' => 
+  array (
+    'PHPStan\\Rules\\DeadCode\\MethodWithoutImpurePointsCollector' => 
+    array (
+      0 => 
+      array (
+        0 => 'App\\Domain\\Referral\\Jobs\\EscalateOverdueReferrals',
+        1 => 'enteredAt',
+        2 => 'App\\Domain\\Referral\\Jobs\\EscalateOverdueReferrals',
+        3 => 
+        array (
+        ),
+      ),
+    ),
+    'PHPStan\\Rules\\DeadCode\\PossiblyPureStaticCallCollector' => 
+    array (
+      0 => 
+      array (
+        0 => 'App\\Domain\\Referral\\Events\\ReferralSlaBreached',
+        1 => 'dispatch',
+        2 => 77,
+      ),
+    ),
+    'PHPStan\\Rules\\Methods\\NamedArgumentParameterMethodCallsCollector' => 
+    array (
+      0 => 
+      array (
+        0 => 'App\\Domain\\Audit\\Services\\AuditLogger',
+        1 => 'record',
+        2 => 'after',
+        3 => 72,
+      ),
+    ),
+    'PHPStan\\Rules\\Traits\\TraitUseCollector' => 
+    array (
+      0 => 
+      array (
+        0 => 'Illuminate\\Foundation\\Bus\\Dispatchable',
+        1 => 'Illuminate\\Queue\\InteractsWithQueue',
+        2 => 'Illuminate\\Bus\\Queueable',
+        3 => 'Illuminate\\Queue\\SerializesModels',
       ),
     ),
   ),
@@ -7989,7 +9047,340 @@ return [
       array (
         0 => 'Illuminate\\Database\\Eloquent\\Model',
         1 => 'addGlobalScope',
-        2 => 80,
+        2 => 82,
+      ),
+    ),
+    'PHPStan\\Rules\\Traits\\TraitUseCollector' => 
+    array (
+      0 => 
+      array (
+        0 => 'App\\Domain\\Audit\\Concerns\\Auditable',
+        1 => 'Illuminate\\Database\\Eloquent\\Concerns\\HasUuids',
+      ),
+    ),
+  ),
+  '/var/www/html/app/Domain/Referral/Models/ReferralSlaPolicy.php' => 
+  array (
+    'PHPStan\\Rules\\Comparison\\ConstantConditionInTraitCollector' => 
+    array (
+      0 => 
+      array (
+        0 => 'PHPStan\\Rules\\Comparison\\ImpossibleCheckTypeStaticMethodCallRule',
+        1 => 'App\\Domain\\Audit\\Concerns\\Auditable',
+        2 => 'static::created(function ($model): void {
+    $model->writeAudit(\'created\', null, $model->auditSnapshot($model->getAttributes()));
+}):24',
+        3 => NULL,
+      ),
+      1 => 
+      array (
+        0 => 'PHPStan\\Rules\\Comparison\\ImpossibleCheckTypeMethodCallRule',
+        1 => 'App\\Domain\\Audit\\Concerns\\Auditable',
+        2 => '$model->writeAudit(\'created\', null, $model->auditSnapshot($model->getAttributes())):25',
+        3 => NULL,
+      ),
+      2 => 
+      array (
+        0 => 'PHPStan\\Rules\\Comparison\\ImpossibleCheckTypeMethodCallRule',
+        1 => 'App\\Domain\\Audit\\Concerns\\Auditable',
+        2 => '$model->auditSnapshot($model->getAttributes()):25',
+        3 => NULL,
+      ),
+      3 => 
+      array (
+        0 => 'PHPStan\\Rules\\Comparison\\ImpossibleCheckTypeMethodCallRule',
+        1 => 'App\\Domain\\Audit\\Concerns\\Auditable',
+        2 => '$model->getAttributes():25',
+        3 => NULL,
+      ),
+      4 => 
+      array (
+        0 => 'PHPStan\\Rules\\Comparison\\ImpossibleCheckTypeStaticMethodCallRule',
+        1 => 'App\\Domain\\Audit\\Concerns\\Auditable',
+        2 => 'static::updated(function ($model): void {
+    $changedKeys = array_diff(array_keys($model->getChanges()), $model->allAuditExcluded());
+    if ($changedKeys === []) {
+        return;
+        // only excluded/operational columns changed — no audit noise
+    }
+    $before = [];
+    $after = [];
+    foreach ($changedKeys as $key) {
+        $before[$key] = $model->getOriginal($key);
+        $after[$key] = $model->getAttribute($key);
+    }
+    $model->writeAudit(\'updated\', $model->scrubAttributes($before), $model->scrubAttributes($after));
+}):28',
+        3 => NULL,
+      ),
+      5 => 
+      array (
+        0 => 'PHPStan\\Rules\\Comparison\\ImpossibleCheckTypeFunctionCallRule',
+        1 => 'App\\Domain\\Audit\\Concerns\\Auditable',
+        2 => 'array_diff(array_keys($model->getChanges()), $model->allAuditExcluded()):29',
+        3 => NULL,
+      ),
+      6 => 
+      array (
+        0 => 'PHPStan\\Rules\\Comparison\\ImpossibleCheckTypeFunctionCallRule',
+        1 => 'App\\Domain\\Audit\\Concerns\\Auditable',
+        2 => 'array_keys($model->getChanges()):29',
+        3 => NULL,
+      ),
+      7 => 
+      array (
+        0 => 'PHPStan\\Rules\\Comparison\\ImpossibleCheckTypeMethodCallRule',
+        1 => 'App\\Domain\\Audit\\Concerns\\Auditable',
+        2 => '$model->getChanges():29',
+        3 => NULL,
+      ),
+      8 => 
+      array (
+        0 => 'PHPStan\\Rules\\Comparison\\ImpossibleCheckTypeMethodCallRule',
+        1 => 'App\\Domain\\Audit\\Concerns\\Auditable',
+        2 => '$model->allAuditExcluded():29',
+        3 => NULL,
+      ),
+      9 => 
+      array (
+        0 => 'PHPStan\\Rules\\Comparison\\IfConstantConditionRule',
+        1 => 'App\\Domain\\Audit\\Concerns\\Auditable',
+        2 => '$changedKeys === []:31',
+        3 => NULL,
+      ),
+      10 => 
+      array (
+        0 => 'PHPStan\\Rules\\Comparison\\StrictComparisonOfDifferentTypesRule',
+        1 => 'App\\Domain\\Audit\\Concerns\\Auditable',
+        2 => '$changedKeys === []:31',
+        3 => NULL,
+      ),
+      11 => 
+      array (
+        0 => 'PHPStan\\Rules\\Comparison\\ImpossibleCheckTypeMethodCallRule',
+        1 => 'App\\Domain\\Audit\\Concerns\\Auditable',
+        2 => '$model->getOriginal($key):38',
+        3 => NULL,
+      ),
+      12 => 
+      array (
+        0 => 'PHPStan\\Rules\\Comparison\\ImpossibleCheckTypeMethodCallRule',
+        1 => 'App\\Domain\\Audit\\Concerns\\Auditable',
+        2 => '$model->getAttribute($key):39',
+        3 => NULL,
+      ),
+      13 => 
+      array (
+        0 => 'PHPStan\\Rules\\Comparison\\ImpossibleCheckTypeMethodCallRule',
+        1 => 'App\\Domain\\Audit\\Concerns\\Auditable',
+        2 => '$model->writeAudit(\'updated\', $model->scrubAttributes($before), $model->scrubAttributes($after)):42',
+        3 => NULL,
+      ),
+      14 => 
+      array (
+        0 => 'PHPStan\\Rules\\Comparison\\ImpossibleCheckTypeMethodCallRule',
+        1 => 'App\\Domain\\Audit\\Concerns\\Auditable',
+        2 => '$model->scrubAttributes($before):42',
+        3 => NULL,
+      ),
+      15 => 
+      array (
+        0 => 'PHPStan\\Rules\\Comparison\\ImpossibleCheckTypeMethodCallRule',
+        1 => 'App\\Domain\\Audit\\Concerns\\Auditable',
+        2 => '$model->scrubAttributes($after):42',
+        3 => NULL,
+      ),
+      16 => 
+      array (
+        0 => 'PHPStan\\Rules\\Comparison\\ImpossibleCheckTypeStaticMethodCallRule',
+        1 => 'App\\Domain\\Audit\\Concerns\\Auditable',
+        2 => 'static::deleted(function ($model): void {
+    $model->writeAudit(\'deleted\', $model->auditSnapshot($model->getOriginal()), null);
+}):45',
+        3 => NULL,
+      ),
+      17 => 
+      array (
+        0 => 'PHPStan\\Rules\\Comparison\\ImpossibleCheckTypeMethodCallRule',
+        1 => 'App\\Domain\\Audit\\Concerns\\Auditable',
+        2 => '$model->writeAudit(\'deleted\', $model->auditSnapshot($model->getOriginal()), null):46',
+        3 => NULL,
+      ),
+      18 => 
+      array (
+        0 => 'PHPStan\\Rules\\Comparison\\ImpossibleCheckTypeMethodCallRule',
+        1 => 'App\\Domain\\Audit\\Concerns\\Auditable',
+        2 => '$model->auditSnapshot($model->getOriginal()):46',
+        3 => NULL,
+      ),
+      19 => 
+      array (
+        0 => 'PHPStan\\Rules\\Comparison\\ImpossibleCheckTypeMethodCallRule',
+        1 => 'App\\Domain\\Audit\\Concerns\\Auditable',
+        2 => '$model->getOriginal():46',
+        3 => NULL,
+      ),
+      20 => 
+      array (
+        0 => 'PHPStan\\Rules\\Comparison\\ImpossibleCheckTypeStaticMethodCallRule',
+        1 => 'App\\Domain\\Audit\\Concerns\\Auditable',
+        2 => '\\Illuminate\\Support\\Str::snake(class_basename($this)):65',
+        3 => NULL,
+      ),
+      21 => 
+      array (
+        0 => 'PHPStan\\Rules\\Comparison\\ImpossibleCheckTypeFunctionCallRule',
+        1 => 'App\\Domain\\Audit\\Concerns\\Auditable',
+        2 => 'class_basename($this):65',
+        3 => NULL,
+      ),
+      22 => 
+      array (
+        0 => 'PHPStan\\Rules\\Comparison\\ImpossibleCheckTypeMethodCallRule',
+        1 => 'App\\Domain\\Audit\\Concerns\\Auditable',
+        2 => 'app(\\App\\Domain\\Audit\\Support\\AuditScrubber::class)->scrub($attributes, $this->auditOmit(), $this->auditMask()):94',
+        3 => NULL,
+      ),
+      23 => 
+      array (
+        0 => 'PHPStan\\Rules\\Comparison\\ImpossibleCheckTypeFunctionCallRule',
+        1 => 'App\\Domain\\Audit\\Concerns\\Auditable',
+        2 => 'app(\\App\\Domain\\Audit\\Support\\AuditScrubber::class):94',
+        3 => NULL,
+      ),
+      24 => 
+      array (
+        0 => 'PHPStan\\Rules\\Comparison\\ImpossibleCheckTypeMethodCallRule',
+        1 => 'App\\Domain\\Audit\\Concerns\\Auditable',
+        2 => '$this->auditOmit():94',
+        3 => NULL,
+      ),
+      25 => 
+      array (
+        0 => 'PHPStan\\Rules\\Comparison\\ImpossibleCheckTypeMethodCallRule',
+        1 => 'App\\Domain\\Audit\\Concerns\\Auditable',
+        2 => '$this->auditMask():94',
+        3 => NULL,
+      ),
+      26 => 
+      array (
+        0 => 'PHPStan\\Rules\\Comparison\\ImpossibleCheckTypeFunctionCallRule',
+        1 => 'App\\Domain\\Audit\\Concerns\\Auditable',
+        2 => 'array_merge([\'created_at\', \'updated_at\', \'deleted_at\'], $this->auditExcluded()):102',
+        3 => NULL,
+      ),
+      27 => 
+      array (
+        0 => 'PHPStan\\Rules\\Comparison\\ImpossibleCheckTypeMethodCallRule',
+        1 => 'App\\Domain\\Audit\\Concerns\\Auditable',
+        2 => '$this->auditExcluded():102',
+        3 => NULL,
+      ),
+      28 => 
+      array (
+        0 => 'PHPStan\\Rules\\Comparison\\ImpossibleCheckTypeMethodCallRule',
+        1 => 'App\\Domain\\Audit\\Concerns\\Auditable',
+        2 => '$this->allAuditExcluded():113',
+        3 => NULL,
+      ),
+      29 => 
+      array (
+        0 => 'PHPStan\\Rules\\Comparison\\BooleanNotConstantConditionRule',
+        1 => 'App\\Domain\\Audit\\Concerns\\Auditable',
+        2 => 'in_array($key, $excluded, true):116',
+        3 => NULL,
+      ),
+      30 => 
+      array (
+        0 => 'PHPStan\\Rules\\Comparison\\ImpossibleCheckTypeFunctionCallRule',
+        1 => 'App\\Domain\\Audit\\Concerns\\Auditable',
+        2 => 'in_array($key, $excluded, true):116',
+        3 => NULL,
+      ),
+      31 => 
+      array (
+        0 => 'PHPStan\\Rules\\Comparison\\ImpossibleCheckTypeFunctionCallRule',
+        1 => 'App\\Domain\\Audit\\Concerns\\Auditable',
+        2 => 'array_filter($attributes, fn(string $key) => !in_array($key, $excluded, true), ARRAY_FILTER_USE_KEY):114',
+        3 => NULL,
+      ),
+      32 => 
+      array (
+        0 => 'PHPStan\\Rules\\Comparison\\ImpossibleCheckTypeMethodCallRule',
+        1 => 'App\\Domain\\Audit\\Concerns\\Auditable',
+        2 => '$this->scrubAttributes($filtered):120',
+        3 => NULL,
+      ),
+      33 => 
+      array (
+        0 => 'PHPStan\\Rules\\Comparison\\ImpossibleCheckTypeMethodCallRule',
+        1 => 'App\\Domain\\Audit\\Concerns\\Auditable',
+        2 => 'app(\\App\\Domain\\Audit\\Services\\AuditLogger::class)->record($this->auditEntityName() . \'.\' . $event, $this, $before, $after):129',
+        3 => NULL,
+      ),
+      34 => 
+      array (
+        0 => 'PHPStan\\Rules\\Comparison\\ImpossibleCheckTypeFunctionCallRule',
+        1 => 'App\\Domain\\Audit\\Concerns\\Auditable',
+        2 => 'app(\\App\\Domain\\Audit\\Services\\AuditLogger::class):129',
+        3 => NULL,
+      ),
+      35 => 
+      array (
+        0 => 'PHPStan\\Rules\\Comparison\\ImpossibleCheckTypeMethodCallRule',
+        1 => 'App\\Domain\\Audit\\Concerns\\Auditable',
+        2 => '$this->auditEntityName():130',
+        3 => NULL,
+      ),
+    ),
+    'PHPStan\\Rules\\DeadCode\\MethodWithoutImpurePointsCollector' => 
+    array (
+      0 => 
+      array (
+        0 => 'App\\Domain\\Referral\\Models\\ReferralSlaPolicy',
+        1 => 'auditExcluded',
+        2 => 'App\\Domain\\Referral\\Models\\ReferralSlaPolicy',
+        3 => 
+        array (
+        ),
+      ),
+      1 => 
+      array (
+        0 => 'App\\Domain\\Referral\\Models\\ReferralSlaPolicy',
+        1 => 'auditEntityName',
+        2 => 'App\\Domain\\Referral\\Models\\ReferralSlaPolicy',
+        3 => 
+        array (
+          0 => 'm' . "\0" . 'illuminate\\support\\str' . "\0" . 'snake',
+          1 => 'f' . "\0" . 'class_basename',
+        ),
+      ),
+      2 => 
+      array (
+        0 => 'App\\Domain\\Referral\\Models\\ReferralSlaPolicy',
+        1 => 'auditOmit',
+        2 => 'App\\Domain\\Referral\\Models\\ReferralSlaPolicy',
+        3 => 
+        array (
+        ),
+      ),
+      3 => 
+      array (
+        0 => 'App\\Domain\\Referral\\Models\\ReferralSlaPolicy',
+        1 => 'auditMask',
+        2 => 'App\\Domain\\Referral\\Models\\ReferralSlaPolicy',
+        3 => 
+        array (
+        ),
+      ),
+      4 => 
+      array (
+        0 => 'App\\Domain\\Referral\\Models\\ReferralSlaPolicy',
+        1 => 'casts',
+        2 => 'App\\Domain\\Referral\\Models\\ReferralSlaPolicy',
+        3 => 
+        array (
+        ),
       ),
     ),
     'PHPStan\\Rules\\Traits\\TraitUseCollector' => 
@@ -8027,7 +9418,7 @@ return [
           0 => 'App\\Domain\\Access\\Support\\PermissionRegistry',
         ),
         1 => 'register',
-        2 => 22,
+        2 => 33,
       ),
     ),
     'PHPStan\\Rules\\DeadCode\\PossiblyPureStaticCallCollector' => 
@@ -8036,7 +9427,7 @@ return [
       array (
         0 => 'Illuminate\\Support\\Facades\\Gate',
         1 => 'policy',
-        2 => 27,
+        2 => 39,
       ),
     ),
   ),
@@ -8132,6 +9523,21 @@ return [
         ),
       ),
     ),
+    'PHPStan\\Rules\\DeadCode\\PossiblyPureStaticCallCollector' => 
+    array (
+      0 => 
+      array (
+        0 => 'App\\Domain\\Referral\\Events\\ReferralStatusChanged',
+        1 => 'dispatch',
+        2 => 48,
+      ),
+      1 => 
+      array (
+        0 => 'App\\Domain\\Referral\\Events\\ReferralStatusChanged',
+        1 => 'dispatch',
+        2 => 139,
+      ),
+    ),
     'PHPStan\\Rules\\Methods\\NamedArgumentParameterMethodCallsCollector' => 
     array (
       0 => 
@@ -8139,21 +9545,21 @@ return [
         0 => 'App\\Domain\\Audit\\Services\\AuditLogger',
         1 => 'record',
         2 => 'before',
-        3 => 100,
+        3 => 132,
       ),
       1 => 
       array (
         0 => 'App\\Domain\\Audit\\Services\\AuditLogger',
         1 => 'record',
         2 => 'after',
-        3 => 100,
+        3 => 132,
       ),
       2 => 
       array (
         0 => 'App\\Domain\\Audit\\Services\\AuditLogger',
         1 => 'record',
         2 => 'actor',
-        3 => 104,
+        3 => 136,
       ),
     ),
   ),
@@ -12240,6 +13646,52 @@ return [
       ),
     ),
   ),
+  '/var/www/html/app/Http/Controllers/Api/V1/Grievance/GrievanceController.php' => 
+  array (
+    'PHPStan\\Rules\\DeadCode\\ConstructorWithoutImpurePointsCollector' => 
+    array (
+      0 => 
+      array (
+        0 => 'App\\Http\\Controllers\\Api\\V1\\Grievance\\GrievanceController',
+        1 => 
+        array (
+        ),
+      ),
+    ),
+    'PHPStan\\Rules\\DeadCode\\MethodWithoutImpurePointsCollector' => 
+    array (
+      0 => 
+      array (
+        0 => 'App\\Http\\Controllers\\Api\\V1\\Grievance\\GrievanceController',
+        1 => 'start',
+        2 => 'App\\Http\\Controllers\\Api\\V1\\Grievance\\GrievanceController',
+        3 => 
+        array (
+          0 => 'm' . "\0" . 'app\\http\\controllers\\api\\v1\\grievance\\grievancecontroller' . "\0" . 'act',
+        ),
+      ),
+      1 => 
+      array (
+        0 => 'App\\Http\\Controllers\\Api\\V1\\Grievance\\GrievanceController',
+        1 => 'resolve',
+        2 => 'App\\Http\\Controllers\\Api\\V1\\Grievance\\GrievanceController',
+        3 => 
+        array (
+          0 => 'm' . "\0" . 'app\\http\\controllers\\api\\v1\\grievance\\grievancecontroller' . "\0" . 'act',
+        ),
+      ),
+      2 => 
+      array (
+        0 => 'App\\Http\\Controllers\\Api\\V1\\Grievance\\GrievanceController',
+        1 => 'close',
+        2 => 'App\\Http\\Controllers\\Api\\V1\\Grievance\\GrievanceController',
+        3 => 
+        array (
+          0 => 'm' . "\0" . 'app\\http\\controllers\\api\\v1\\grievance\\grievancecontroller' . "\0" . 'act',
+        ),
+      ),
+    ),
+  ),
   '/var/www/html/app/Http/Controllers/Api/V1/Matching/MatchingConfigController.php' => 
   array (
     'PHPStan\\Rules\\DeadCode\\ConstructorWithoutImpurePointsCollector' => 
@@ -12460,16 +13912,6 @@ return [
         ),
       ),
       4 => 
-      array (
-        0 => 'App\\Http\\Controllers\\Api\\V1\\Referral\\ReferralController',
-        1 => 'complete',
-        2 => 'App\\Http\\Controllers\\Api\\V1\\Referral\\ReferralController',
-        3 => 
-        array (
-          0 => 'm' . "\0" . 'app\\http\\controllers\\api\\v1\\referral\\referralcontroller' . "\0" . 'receiving',
-        ),
-      ),
-      5 => 
       array (
         0 => 'App\\Http\\Controllers\\Api\\V1\\Referral\\ReferralController',
         1 => 'close',
@@ -13349,6 +14791,52 @@ return [
       ),
     ),
   ),
+  '/var/www/html/app/Http/Requests/Grievance/AssignGrievanceRequest.php' => 
+  array (
+    'PHPStan\\Rules\\DeadCode\\MethodWithoutImpurePointsCollector' => 
+    array (
+      0 => 
+      array (
+        0 => 'App\\Http\\Requests\\Grievance\\AssignGrievanceRequest',
+        1 => 'rules',
+        2 => 'App\\Http\\Requests\\Grievance\\AssignGrievanceRequest',
+        3 => 
+        array (
+        ),
+      ),
+    ),
+  ),
+  '/var/www/html/app/Http/Requests/Grievance/StoreGrievanceRequest.php' => 
+  array (
+    'PHPStan\\Rules\\DeadCode\\MethodWithoutImpurePointsCollector' => 
+    array (
+      0 => 
+      array (
+        0 => 'App\\Http\\Requests\\Grievance\\StoreGrievanceRequest',
+        1 => 'rules',
+        2 => 'App\\Http\\Requests\\Grievance\\StoreGrievanceRequest',
+        3 => 
+        array (
+          0 => 'm' . "\0" . 'illuminate\\validation\\rule' . "\0" . 'enum',
+        ),
+      ),
+    ),
+  ),
+  '/var/www/html/app/Http/Requests/Grievance/UpdateGrievanceSlaRequest.php' => 
+  array (
+    'PHPStan\\Rules\\DeadCode\\MethodWithoutImpurePointsCollector' => 
+    array (
+      0 => 
+      array (
+        0 => 'App\\Http\\Requests\\Grievance\\UpdateGrievanceSlaRequest',
+        1 => 'rules',
+        2 => 'App\\Http\\Requests\\Grievance\\UpdateGrievanceSlaRequest',
+        3 => 
+        array (
+        ),
+      ),
+    ),
+  ),
   '/var/www/html/app/Http/Requests/Matching/UpdateMatchingConfigRequest.php' => 
   array (
     'PHPStan\\Rules\\DeadCode\\MethodWithoutImpurePointsCollector' => 
@@ -13502,6 +14990,21 @@ return [
         0 => 'App\\Http\\Requests\\Referral\\StoreReferralRequest',
         1 => 'rules',
         2 => 'App\\Http\\Requests\\Referral\\StoreReferralRequest',
+        3 => 
+        array (
+        ),
+      ),
+    ),
+  ),
+  '/var/www/html/app/Http/Requests/Referral/UpdateReferralSlaRequest.php' => 
+  array (
+    'PHPStan\\Rules\\DeadCode\\MethodWithoutImpurePointsCollector' => 
+    array (
+      0 => 
+      array (
+        0 => 'App\\Http\\Requests\\Referral\\UpdateReferralSlaRequest',
+        1 => 'rules',
+        2 => 'App\\Http\\Requests\\Referral\\UpdateReferralSlaRequest',
         3 => 
         array (
         ),
@@ -13927,154 +15430,171 @@ return [
       35 => '/var/www/html/app/Domain/Benefit/Services/Verifiers/FieldConfirmationVerifier.php',
       36 => '/var/www/html/app/Domain/Benefit/Services/Verifiers/OtpVerifier.php',
       37 => '/var/www/html/app/Domain/Benefit/Services/Verifiers/SignatureVerifier.php',
-      38 => '/var/www/html/app/Domain/Matching/Models/MatchingConfig.php',
-      39 => '/var/www/html/app/Domain/Matching/Services/MatchingConfigService.php',
-      40 => '/var/www/html/app/Domain/Notification/Channels/EmailChannel.php',
-      41 => '/var/www/html/app/Domain/Notification/Channels/InAppChannel.php',
-      42 => '/var/www/html/app/Domain/Notification/Channels/SmsChannel.php',
-      43 => '/var/www/html/app/Domain/Notification/Channels/WhatsAppChannel.php',
-      44 => '/var/www/html/app/Domain/Notification/Contracts/NotificationChannel.php',
-      45 => '/var/www/html/app/Domain/Notification/Listeners/NotificationSubscriber.php',
-      46 => '/var/www/html/app/Domain/Notification/Models/Notification.php',
-      47 => '/var/www/html/app/Domain/Notification/Models/NotificationPreference.php',
-      48 => '/var/www/html/app/Domain/Notification/Services/Notifier.php',
-      49 => '/var/www/html/app/Domain/Programme/Models/Activity.php',
-      50 => '/var/www/html/app/Domain/Programme/Models/Enrollment.php',
-      51 => '/var/www/html/app/Domain/Programme/Models/Programme.php',
-      52 => '/var/www/html/app/Domain/Programme/Policies/ActivityPolicy.php',
-      53 => '/var/www/html/app/Domain/Programme/Policies/EnrollmentPolicy.php',
-      54 => '/var/www/html/app/Domain/Programme/Policies/ProgrammePolicy.php',
-      55 => '/var/www/html/app/Domain/Programme/ProgrammeServiceProvider.php',
-      56 => '/var/www/html/app/Domain/Programme/Services/EligibilityEvaluator.php',
-      57 => '/var/www/html/app/Domain/Programme/Services/EnrollmentService.php',
-      58 => '/var/www/html/app/Domain/Programme/Services/ProgrammeMatcher.php',
-      59 => '/var/www/html/app/Domain/Programme/Services/ProgrammeMatchingRouter.php',
-      60 => '/var/www/html/app/Domain/Referral/Models/Referral.php',
-      61 => '/var/www/html/app/Domain/Referral/Policies/ReferralPolicy.php',
-      62 => '/var/www/html/app/Domain/Referral/Scopes/ReferralScope.php',
-      63 => '/var/www/html/app/Domain/Referral/Services/ReferralService.php',
-      64 => '/var/www/html/app/Domain/Registry/Contracts/BeneficiaryRouter.php',
-      65 => '/var/www/html/app/Domain/Registry/Events/OwnershipTransferRequested.php',
-      66 => '/var/www/html/app/Domain/Registry/Events/ServiceRequestAccepted.php',
-      67 => '/var/www/html/app/Domain/Registry/Events/ServiceRequestDeclined.php',
-      68 => '/var/www/html/app/Domain/Registry/Events/ServiceRequestRaised.php',
-      69 => '/var/www/html/app/Domain/Registry/Imports/ImportRowValidator.php',
-      70 => '/var/www/html/app/Domain/Registry/Jobs/CommitImportBatch.php',
-      71 => '/var/www/html/app/Domain/Registry/Jobs/ParseImportBatch.php',
-      72 => '/var/www/html/app/Domain/Registry/Models/Beneficiary.php',
-      73 => '/var/www/html/app/Domain/Registry/Models/BeneficiaryDocument.php',
-      74 => '/var/www/html/app/Domain/Registry/Models/BeneficiaryServiceGrant.php',
-      75 => '/var/www/html/app/Domain/Registry/Models/Household.php',
-      76 => '/var/www/html/app/Domain/Registry/Models/HouseholdMembership.php',
-      77 => '/var/www/html/app/Domain/Registry/Models/ImportBatch.php',
-      78 => '/var/www/html/app/Domain/Registry/Models/ImportRow.php',
-      79 => '/var/www/html/app/Domain/Registry/Models/OwnershipTransferRequest.php',
-      80 => '/var/www/html/app/Domain/Registry/Models/ServeRequest.php',
-      81 => '/var/www/html/app/Domain/Registry/Models/ServiceRequest.php',
-      82 => '/var/www/html/app/Domain/Registry/Policies/BeneficiaryDocumentPolicy.php',
-      83 => '/var/www/html/app/Domain/Registry/Policies/BeneficiaryPolicy.php',
-      84 => '/var/www/html/app/Domain/Registry/Policies/HouseholdPolicy.php',
-      85 => '/var/www/html/app/Domain/Registry/Policies/ImportBatchPolicy.php',
-      86 => '/var/www/html/app/Domain/Registry/Policies/OwnerMdaPolicy.php',
-      87 => '/var/www/html/app/Domain/Registry/Policies/ServeRequestPolicy.php',
-      88 => '/var/www/html/app/Domain/Registry/RegistryServiceProvider.php',
-      89 => '/var/www/html/app/Domain/Registry/Services/BatchDuplicateScreener.php',
-      90 => '/var/www/html/app/Domain/Registry/Services/BeneficiaryLookupService.php',
-      91 => '/var/www/html/app/Domain/Registry/Services/BeneficiaryRegistrar.php',
-      92 => '/var/www/html/app/Domain/Registry/Services/CandidateGatherer.php',
-      93 => '/var/www/html/app/Domain/Registry/Services/DeterministicDuplicateFinder.php',
-      94 => '/var/www/html/app/Domain/Registry/Services/HouseholdIngestionService.php',
-      95 => '/var/www/html/app/Domain/Registry/Services/HouseholdMembershipService.php',
-      96 => '/var/www/html/app/Domain/Registry/Services/NullBeneficiaryRouter.php',
-      97 => '/var/www/html/app/Domain/Registry/Services/OwnershipTransferService.php',
-      98 => '/var/www/html/app/Domain/Registry/Services/ServeRequestService.php',
-      99 => '/var/www/html/app/Domain/Registry/Services/ServiceRequestService.php',
-      100 => '/var/www/html/app/Http/Controllers/Api/V1/Access/MdaAccessGrantController.php',
-      101 => '/var/www/html/app/Http/Controllers/Api/V1/Access/MdaController.php',
-      102 => '/var/www/html/app/Http/Controllers/Api/V1/Access/UserController.php',
-      103 => '/var/www/html/app/Http/Controllers/Api/V1/AuthController.php',
-      104 => '/var/www/html/app/Http/Controllers/Api/V1/Benefit/BenefitController.php',
-      105 => '/var/www/html/app/Http/Controllers/Api/V1/Benefit/BenefitFlagController.php',
-      106 => '/var/www/html/app/Http/Controllers/Api/V1/Benefit/BenefitImportController.php',
-      107 => '/var/www/html/app/Http/Controllers/Api/V1/Benefit/DoubleDippingRuleController.php',
-      108 => '/var/www/html/app/Http/Controllers/Api/V1/Matching/MatchingConfigController.php',
-      109 => '/var/www/html/app/Http/Controllers/Api/V1/MfaController.php',
-      110 => '/var/www/html/app/Http/Controllers/Api/V1/Notification/NotificationController.php',
-      111 => '/var/www/html/app/Http/Controllers/Api/V1/Programme/ActivityController.php',
-      112 => '/var/www/html/app/Http/Controllers/Api/V1/Programme/EnrollmentController.php',
-      113 => '/var/www/html/app/Http/Controllers/Api/V1/Programme/ProgrammeController.php',
-      114 => '/var/www/html/app/Http/Controllers/Api/V1/Referral/ReferralController.php',
-      115 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/BeneficiaryController.php',
-      116 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/BeneficiaryDocumentController.php',
-      117 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/BeneficiaryIntakeController.php',
-      118 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/BeneficiaryRoutingController.php',
-      119 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/HouseholdController.php',
-      120 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/HouseholdMemberController.php',
-      121 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/ImportBatchController.php',
-      122 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/OwnershipTransferController.php',
-      123 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/ServeRequestController.php',
-      124 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/ServiceRequestController.php',
-      125 => '/var/www/html/app/Http/Middleware/CheckPermission.php',
-      126 => '/var/www/html/app/Http/Requests/Access/StoreMdaAccessGrantRequest.php',
-      127 => '/var/www/html/app/Http/Requests/Access/StoreMdaRequest.php',
-      128 => '/var/www/html/app/Http/Requests/Access/StoreUserRequest.php',
-      129 => '/var/www/html/app/Http/Requests/Access/UpdateMdaRequest.php',
-      130 => '/var/www/html/app/Http/Requests/Access/UpdateUserRequest.php',
-      131 => '/var/www/html/app/Http/Requests/Auth/ChangePasswordRequest.php',
-      132 => '/var/www/html/app/Http/Requests/Auth/MfaCodeRequest.php',
-      133 => '/var/www/html/app/Http/Requests/Benefit/AggregateBenefitsRequest.php',
-      134 => '/var/www/html/app/Http/Requests/Benefit/RecordBenefitRequest.php',
-      135 => '/var/www/html/app/Http/Requests/Benefit/ReviewBenefitFlagRequest.php',
-      136 => '/var/www/html/app/Http/Requests/Benefit/StoreDoubleDippingRuleRequest.php',
-      137 => '/var/www/html/app/Http/Requests/Benefit/UploadBenefitImportRequest.php',
-      138 => '/var/www/html/app/Http/Requests/Benefit/VerifyBenefitRequest.php',
-      139 => '/var/www/html/app/Http/Requests/Matching/UpdateMatchingConfigRequest.php',
-      140 => '/var/www/html/app/Http/Requests/Notification/UpdateNotificationPreferencesRequest.php',
-      141 => '/var/www/html/app/Http/Requests/Programme/BulkEnrollmentRequest.php',
-      142 => '/var/www/html/app/Http/Requests/Programme/StoreActivityRequest.php',
-      143 => '/var/www/html/app/Http/Requests/Programme/StoreEnrollmentRequest.php',
-      144 => '/var/www/html/app/Http/Requests/Programme/StoreProgrammeRequest.php',
-      145 => '/var/www/html/app/Http/Requests/Programme/UpdateActivityRequest.php',
-      146 => '/var/www/html/app/Http/Requests/Programme/UpdateEnrollmentRequest.php',
-      147 => '/var/www/html/app/Http/Requests/Programme/UpdateProgrammeRequest.php',
-      148 => '/var/www/html/app/Http/Requests/Referral/StoreReferralRequest.php',
-      149 => '/var/www/html/app/Http/Requests/Referral/TransitionReferralRequest.php',
-      150 => '/var/www/html/app/Http/Requests/Registry/AcceptServiceRequestRequest.php',
-      151 => '/var/www/html/app/Http/Requests/Registry/AddHouseholdMemberRequest.php',
-      152 => '/var/www/html/app/Http/Requests/Registry/ApiRegistrationRequest.php',
-      153 => '/var/www/html/app/Http/Requests/Registry/BeneficiaryLookupRequest.php',
-      154 => '/var/www/html/app/Http/Requests/Registry/BeneficiaryMatchSearchRequest.php',
-      155 => '/var/www/html/app/Http/Requests/Registry/DecideOwnershipTransferRequest.php',
-      156 => '/var/www/html/app/Http/Requests/Registry/DecideServeRequestRequest.php',
-      157 => '/var/www/html/app/Http/Requests/Registry/DeclineServiceRequestRequest.php',
-      158 => '/var/www/html/app/Http/Requests/Registry/DesignateHeadRequest.php',
-      159 => '/var/www/html/app/Http/Requests/Registry/MoveHouseholdMemberRequest.php',
-      160 => '/var/www/html/app/Http/Requests/Registry/RaiseServeRequestRequest.php',
-      161 => '/var/www/html/app/Http/Requests/Registry/ResolveImportRowRequest.php',
-      162 => '/var/www/html/app/Http/Requests/Registry/RouteAssignmentRequest.php',
-      163 => '/var/www/html/app/Http/Requests/Registry/StoreBeneficiaryRequest.php',
-      164 => '/var/www/html/app/Http/Requests/Registry/StoreHouseholdRequest.php',
-      165 => '/var/www/html/app/Http/Requests/Registry/StoreOwnershipTransferRequest.php',
-      166 => '/var/www/html/app/Http/Requests/Registry/StoreServiceRequestRequest.php',
-      167 => '/var/www/html/app/Http/Requests/Registry/UpdateBeneficiaryRequest.php',
-      168 => '/var/www/html/app/Http/Requests/Registry/UpdateHouseholdRequest.php',
-      169 => '/var/www/html/app/Http/Requests/Registry/UploadDocumentRequest.php',
-      170 => '/var/www/html/app/Http/Requests/Registry/UploadImportRequest.php',
-      171 => '/var/www/html/app/Http/Resources/ActivityResource.php',
-      172 => '/var/www/html/app/Http/Resources/BeneficiaryDocumentResource.php',
-      173 => '/var/www/html/app/Http/Resources/BeneficiaryResource.php',
-      174 => '/var/www/html/app/Http/Resources/BeneficiaryRevealResource.php',
-      175 => '/var/www/html/app/Http/Resources/BenefitImportBatchResource.php',
-      176 => '/var/www/html/app/Http/Resources/BenefitResource.php',
-      177 => '/var/www/html/app/Http/Resources/EnrollmentResource.php',
-      178 => '/var/www/html/app/Http/Resources/HouseholdMembershipResource.php',
-      179 => '/var/www/html/app/Http/Resources/HouseholdResource.php',
-      180 => '/var/www/html/app/Http/Resources/ImportBatchResource.php',
-      181 => '/var/www/html/app/Http/Resources/MdaResource.php',
-      182 => '/var/www/html/app/Http/Resources/NotificationResource.php',
-      183 => '/var/www/html/app/Http/Resources/ProgrammeResource.php',
-      184 => '/var/www/html/app/Http/Resources/UserResource.php',
-      185 => '/var/www/html/app/Providers/AppServiceProvider.php',
+      38 => '/var/www/html/app/Domain/Grievance/Events/GrievanceAssigned.php',
+      39 => '/var/www/html/app/Domain/Grievance/Events/GrievanceResolved.php',
+      40 => '/var/www/html/app/Domain/Grievance/Events/GrievanceSlaBreached.php',
+      41 => '/var/www/html/app/Domain/Grievance/GrievanceServiceProvider.php',
+      42 => '/var/www/html/app/Domain/Grievance/Jobs/EscalateOverdueGrievances.php',
+      43 => '/var/www/html/app/Domain/Grievance/Models/Grievance.php',
+      44 => '/var/www/html/app/Domain/Grievance/Policies/GrievancePolicy.php',
+      45 => '/var/www/html/app/Domain/Grievance/Services/GrievanceService.php',
+      46 => '/var/www/html/app/Domain/Matching/Models/MatchingConfig.php',
+      47 => '/var/www/html/app/Domain/Matching/Services/MatchingConfigService.php',
+      48 => '/var/www/html/app/Domain/Notification/Channels/EmailChannel.php',
+      49 => '/var/www/html/app/Domain/Notification/Channels/InAppChannel.php',
+      50 => '/var/www/html/app/Domain/Notification/Channels/SmsChannel.php',
+      51 => '/var/www/html/app/Domain/Notification/Channels/WhatsAppChannel.php',
+      52 => '/var/www/html/app/Domain/Notification/Contracts/NotificationChannel.php',
+      53 => '/var/www/html/app/Domain/Notification/Listeners/NotificationSubscriber.php',
+      54 => '/var/www/html/app/Domain/Notification/Models/Notification.php',
+      55 => '/var/www/html/app/Domain/Notification/Models/NotificationPreference.php',
+      56 => '/var/www/html/app/Domain/Notification/Services/Notifier.php',
+      57 => '/var/www/html/app/Domain/Programme/Models/Activity.php',
+      58 => '/var/www/html/app/Domain/Programme/Models/Enrollment.php',
+      59 => '/var/www/html/app/Domain/Programme/Models/Programme.php',
+      60 => '/var/www/html/app/Domain/Programme/Policies/ActivityPolicy.php',
+      61 => '/var/www/html/app/Domain/Programme/Policies/EnrollmentPolicy.php',
+      62 => '/var/www/html/app/Domain/Programme/Policies/ProgrammePolicy.php',
+      63 => '/var/www/html/app/Domain/Programme/ProgrammeServiceProvider.php',
+      64 => '/var/www/html/app/Domain/Programme/Services/EligibilityEvaluator.php',
+      65 => '/var/www/html/app/Domain/Programme/Services/EnrollmentService.php',
+      66 => '/var/www/html/app/Domain/Programme/Services/ProgrammeMatcher.php',
+      67 => '/var/www/html/app/Domain/Programme/Services/ProgrammeMatchingRouter.php',
+      68 => '/var/www/html/app/Domain/Referral/Authorization/ReferralAuthorizer.php',
+      69 => '/var/www/html/app/Domain/Referral/Events/ReferralStatusChanged.php',
+      70 => '/var/www/html/app/Domain/Referral/Models/Referral.php',
+      71 => '/var/www/html/app/Domain/Referral/Policies/ReferralPolicy.php',
+      72 => '/var/www/html/app/Domain/Referral/Scopes/ReferralScope.php',
+      73 => '/var/www/html/app/Domain/Referral/Services/ReferralService.php',
+      74 => '/var/www/html/app/Domain/Registry/Contracts/BeneficiaryRouter.php',
+      75 => '/var/www/html/app/Domain/Registry/Events/OwnershipTransferRequested.php',
+      76 => '/var/www/html/app/Domain/Registry/Events/ServiceRequestAccepted.php',
+      77 => '/var/www/html/app/Domain/Registry/Events/ServiceRequestDeclined.php',
+      78 => '/var/www/html/app/Domain/Registry/Events/ServiceRequestRaised.php',
+      79 => '/var/www/html/app/Domain/Registry/Imports/ImportRowValidator.php',
+      80 => '/var/www/html/app/Domain/Registry/Jobs/CommitImportBatch.php',
+      81 => '/var/www/html/app/Domain/Registry/Jobs/ParseImportBatch.php',
+      82 => '/var/www/html/app/Domain/Registry/Models/Beneficiary.php',
+      83 => '/var/www/html/app/Domain/Registry/Models/BeneficiaryDocument.php',
+      84 => '/var/www/html/app/Domain/Registry/Models/BeneficiaryServiceGrant.php',
+      85 => '/var/www/html/app/Domain/Registry/Models/Household.php',
+      86 => '/var/www/html/app/Domain/Registry/Models/HouseholdMembership.php',
+      87 => '/var/www/html/app/Domain/Registry/Models/ImportBatch.php',
+      88 => '/var/www/html/app/Domain/Registry/Models/ImportRow.php',
+      89 => '/var/www/html/app/Domain/Registry/Models/OwnershipTransferRequest.php',
+      90 => '/var/www/html/app/Domain/Registry/Models/ServeRequest.php',
+      91 => '/var/www/html/app/Domain/Registry/Models/ServiceRequest.php',
+      92 => '/var/www/html/app/Domain/Registry/Policies/BeneficiaryDocumentPolicy.php',
+      93 => '/var/www/html/app/Domain/Registry/Policies/BeneficiaryPolicy.php',
+      94 => '/var/www/html/app/Domain/Registry/Policies/HouseholdPolicy.php',
+      95 => '/var/www/html/app/Domain/Registry/Policies/ImportBatchPolicy.php',
+      96 => '/var/www/html/app/Domain/Registry/Policies/OwnerMdaPolicy.php',
+      97 => '/var/www/html/app/Domain/Registry/Policies/ServeRequestPolicy.php',
+      98 => '/var/www/html/app/Domain/Registry/RegistryServiceProvider.php',
+      99 => '/var/www/html/app/Domain/Registry/Services/BatchDuplicateScreener.php',
+      100 => '/var/www/html/app/Domain/Registry/Services/BeneficiaryLookupService.php',
+      101 => '/var/www/html/app/Domain/Registry/Services/BeneficiaryRegistrar.php',
+      102 => '/var/www/html/app/Domain/Registry/Services/CandidateGatherer.php',
+      103 => '/var/www/html/app/Domain/Registry/Services/DeterministicDuplicateFinder.php',
+      104 => '/var/www/html/app/Domain/Registry/Services/HouseholdIngestionService.php',
+      105 => '/var/www/html/app/Domain/Registry/Services/HouseholdMembershipService.php',
+      106 => '/var/www/html/app/Domain/Registry/Services/NullBeneficiaryRouter.php',
+      107 => '/var/www/html/app/Domain/Registry/Services/OwnershipTransferService.php',
+      108 => '/var/www/html/app/Domain/Registry/Services/ServeRequestService.php',
+      109 => '/var/www/html/app/Domain/Registry/Services/ServiceRequestService.php',
+      110 => '/var/www/html/app/Http/Controllers/Api/V1/Access/MdaAccessGrantController.php',
+      111 => '/var/www/html/app/Http/Controllers/Api/V1/Access/MdaController.php',
+      112 => '/var/www/html/app/Http/Controllers/Api/V1/Access/UserController.php',
+      113 => '/var/www/html/app/Http/Controllers/Api/V1/AuthController.php',
+      114 => '/var/www/html/app/Http/Controllers/Api/V1/Benefit/BenefitController.php',
+      115 => '/var/www/html/app/Http/Controllers/Api/V1/Benefit/BenefitFlagController.php',
+      116 => '/var/www/html/app/Http/Controllers/Api/V1/Benefit/BenefitImportController.php',
+      117 => '/var/www/html/app/Http/Controllers/Api/V1/Benefit/DoubleDippingRuleController.php',
+      118 => '/var/www/html/app/Http/Controllers/Api/V1/Grievance/GrievanceController.php',
+      119 => '/var/www/html/app/Http/Controllers/Api/V1/Matching/MatchingConfigController.php',
+      120 => '/var/www/html/app/Http/Controllers/Api/V1/MfaController.php',
+      121 => '/var/www/html/app/Http/Controllers/Api/V1/Notification/NotificationController.php',
+      122 => '/var/www/html/app/Http/Controllers/Api/V1/Programme/ActivityController.php',
+      123 => '/var/www/html/app/Http/Controllers/Api/V1/Programme/EnrollmentController.php',
+      124 => '/var/www/html/app/Http/Controllers/Api/V1/Programme/ProgrammeController.php',
+      125 => '/var/www/html/app/Http/Controllers/Api/V1/Referral/ReferralController.php',
+      126 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/BeneficiaryController.php',
+      127 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/BeneficiaryDocumentController.php',
+      128 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/BeneficiaryIntakeController.php',
+      129 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/BeneficiaryRoutingController.php',
+      130 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/HouseholdController.php',
+      131 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/HouseholdMemberController.php',
+      132 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/ImportBatchController.php',
+      133 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/OwnershipTransferController.php',
+      134 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/ServeRequestController.php',
+      135 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/ServiceRequestController.php',
+      136 => '/var/www/html/app/Http/Middleware/CheckPermission.php',
+      137 => '/var/www/html/app/Http/Requests/Access/StoreMdaAccessGrantRequest.php',
+      138 => '/var/www/html/app/Http/Requests/Access/StoreMdaRequest.php',
+      139 => '/var/www/html/app/Http/Requests/Access/StoreUserRequest.php',
+      140 => '/var/www/html/app/Http/Requests/Access/UpdateMdaRequest.php',
+      141 => '/var/www/html/app/Http/Requests/Access/UpdateUserRequest.php',
+      142 => '/var/www/html/app/Http/Requests/Auth/ChangePasswordRequest.php',
+      143 => '/var/www/html/app/Http/Requests/Auth/MfaCodeRequest.php',
+      144 => '/var/www/html/app/Http/Requests/Benefit/AggregateBenefitsRequest.php',
+      145 => '/var/www/html/app/Http/Requests/Benefit/RecordBenefitRequest.php',
+      146 => '/var/www/html/app/Http/Requests/Benefit/ReviewBenefitFlagRequest.php',
+      147 => '/var/www/html/app/Http/Requests/Benefit/StoreDoubleDippingRuleRequest.php',
+      148 => '/var/www/html/app/Http/Requests/Benefit/UploadBenefitImportRequest.php',
+      149 => '/var/www/html/app/Http/Requests/Benefit/VerifyBenefitRequest.php',
+      150 => '/var/www/html/app/Http/Requests/Grievance/AssignGrievanceRequest.php',
+      151 => '/var/www/html/app/Http/Requests/Grievance/StoreGrievanceRequest.php',
+      152 => '/var/www/html/app/Http/Requests/Grievance/TransitionGrievanceRequest.php',
+      153 => '/var/www/html/app/Http/Requests/Grievance/UpdateGrievanceSlaRequest.php',
+      154 => '/var/www/html/app/Http/Requests/Matching/UpdateMatchingConfigRequest.php',
+      155 => '/var/www/html/app/Http/Requests/Notification/UpdateNotificationPreferencesRequest.php',
+      156 => '/var/www/html/app/Http/Requests/Programme/BulkEnrollmentRequest.php',
+      157 => '/var/www/html/app/Http/Requests/Programme/StoreActivityRequest.php',
+      158 => '/var/www/html/app/Http/Requests/Programme/StoreEnrollmentRequest.php',
+      159 => '/var/www/html/app/Http/Requests/Programme/StoreProgrammeRequest.php',
+      160 => '/var/www/html/app/Http/Requests/Programme/UpdateActivityRequest.php',
+      161 => '/var/www/html/app/Http/Requests/Programme/UpdateEnrollmentRequest.php',
+      162 => '/var/www/html/app/Http/Requests/Programme/UpdateProgrammeRequest.php',
+      163 => '/var/www/html/app/Http/Requests/Referral/StoreReferralRequest.php',
+      164 => '/var/www/html/app/Http/Requests/Referral/TransitionReferralRequest.php',
+      165 => '/var/www/html/app/Http/Requests/Referral/UpdateReferralSlaRequest.php',
+      166 => '/var/www/html/app/Http/Requests/Registry/AcceptServiceRequestRequest.php',
+      167 => '/var/www/html/app/Http/Requests/Registry/AddHouseholdMemberRequest.php',
+      168 => '/var/www/html/app/Http/Requests/Registry/ApiRegistrationRequest.php',
+      169 => '/var/www/html/app/Http/Requests/Registry/BeneficiaryLookupRequest.php',
+      170 => '/var/www/html/app/Http/Requests/Registry/BeneficiaryMatchSearchRequest.php',
+      171 => '/var/www/html/app/Http/Requests/Registry/DecideOwnershipTransferRequest.php',
+      172 => '/var/www/html/app/Http/Requests/Registry/DecideServeRequestRequest.php',
+      173 => '/var/www/html/app/Http/Requests/Registry/DeclineServiceRequestRequest.php',
+      174 => '/var/www/html/app/Http/Requests/Registry/DesignateHeadRequest.php',
+      175 => '/var/www/html/app/Http/Requests/Registry/MoveHouseholdMemberRequest.php',
+      176 => '/var/www/html/app/Http/Requests/Registry/RaiseServeRequestRequest.php',
+      177 => '/var/www/html/app/Http/Requests/Registry/ResolveImportRowRequest.php',
+      178 => '/var/www/html/app/Http/Requests/Registry/RouteAssignmentRequest.php',
+      179 => '/var/www/html/app/Http/Requests/Registry/StoreBeneficiaryRequest.php',
+      180 => '/var/www/html/app/Http/Requests/Registry/StoreHouseholdRequest.php',
+      181 => '/var/www/html/app/Http/Requests/Registry/StoreOwnershipTransferRequest.php',
+      182 => '/var/www/html/app/Http/Requests/Registry/StoreServiceRequestRequest.php',
+      183 => '/var/www/html/app/Http/Requests/Registry/UpdateBeneficiaryRequest.php',
+      184 => '/var/www/html/app/Http/Requests/Registry/UpdateHouseholdRequest.php',
+      185 => '/var/www/html/app/Http/Requests/Registry/UploadDocumentRequest.php',
+      186 => '/var/www/html/app/Http/Requests/Registry/UploadImportRequest.php',
+      187 => '/var/www/html/app/Http/Resources/ActivityResource.php',
+      188 => '/var/www/html/app/Http/Resources/BeneficiaryDocumentResource.php',
+      189 => '/var/www/html/app/Http/Resources/BeneficiaryResource.php',
+      190 => '/var/www/html/app/Http/Resources/BeneficiaryRevealResource.php',
+      191 => '/var/www/html/app/Http/Resources/BenefitImportBatchResource.php',
+      192 => '/var/www/html/app/Http/Resources/BenefitResource.php',
+      193 => '/var/www/html/app/Http/Resources/EnrollmentResource.php',
+      194 => '/var/www/html/app/Http/Resources/GrievanceResource.php',
+      195 => '/var/www/html/app/Http/Resources/HouseholdMembershipResource.php',
+      196 => '/var/www/html/app/Http/Resources/HouseholdResource.php',
+      197 => '/var/www/html/app/Http/Resources/ImportBatchResource.php',
+      198 => '/var/www/html/app/Http/Resources/MdaResource.php',
+      199 => '/var/www/html/app/Http/Resources/NotificationResource.php',
+      200 => '/var/www/html/app/Http/Resources/ProgrammeResource.php',
+      201 => '/var/www/html/app/Http/Resources/UserResource.php',
+      202 => '/var/www/html/app/Providers/AppServiceProvider.php',
     ),
   ),
   '/var/www/html/app/Domain/Access/Concerns/ScopedToMda.php' => 
@@ -14120,154 +15640,171 @@ return [
       35 => '/var/www/html/app/Domain/Benefit/Services/Verifiers/FieldConfirmationVerifier.php',
       36 => '/var/www/html/app/Domain/Benefit/Services/Verifiers/OtpVerifier.php',
       37 => '/var/www/html/app/Domain/Benefit/Services/Verifiers/SignatureVerifier.php',
-      38 => '/var/www/html/app/Domain/Matching/Models/MatchingConfig.php',
-      39 => '/var/www/html/app/Domain/Matching/Services/MatchingConfigService.php',
-      40 => '/var/www/html/app/Domain/Notification/Channels/EmailChannel.php',
-      41 => '/var/www/html/app/Domain/Notification/Channels/InAppChannel.php',
-      42 => '/var/www/html/app/Domain/Notification/Channels/SmsChannel.php',
-      43 => '/var/www/html/app/Domain/Notification/Channels/WhatsAppChannel.php',
-      44 => '/var/www/html/app/Domain/Notification/Contracts/NotificationChannel.php',
-      45 => '/var/www/html/app/Domain/Notification/Listeners/NotificationSubscriber.php',
-      46 => '/var/www/html/app/Domain/Notification/Models/Notification.php',
-      47 => '/var/www/html/app/Domain/Notification/Models/NotificationPreference.php',
-      48 => '/var/www/html/app/Domain/Notification/Services/Notifier.php',
-      49 => '/var/www/html/app/Domain/Programme/Models/Activity.php',
-      50 => '/var/www/html/app/Domain/Programme/Models/Enrollment.php',
-      51 => '/var/www/html/app/Domain/Programme/Models/Programme.php',
-      52 => '/var/www/html/app/Domain/Programme/Policies/ActivityPolicy.php',
-      53 => '/var/www/html/app/Domain/Programme/Policies/EnrollmentPolicy.php',
-      54 => '/var/www/html/app/Domain/Programme/Policies/ProgrammePolicy.php',
-      55 => '/var/www/html/app/Domain/Programme/ProgrammeServiceProvider.php',
-      56 => '/var/www/html/app/Domain/Programme/Services/EligibilityEvaluator.php',
-      57 => '/var/www/html/app/Domain/Programme/Services/EnrollmentService.php',
-      58 => '/var/www/html/app/Domain/Programme/Services/ProgrammeMatcher.php',
-      59 => '/var/www/html/app/Domain/Programme/Services/ProgrammeMatchingRouter.php',
-      60 => '/var/www/html/app/Domain/Referral/Models/Referral.php',
-      61 => '/var/www/html/app/Domain/Referral/Policies/ReferralPolicy.php',
-      62 => '/var/www/html/app/Domain/Referral/Scopes/ReferralScope.php',
-      63 => '/var/www/html/app/Domain/Referral/Services/ReferralService.php',
-      64 => '/var/www/html/app/Domain/Registry/Contracts/BeneficiaryRouter.php',
-      65 => '/var/www/html/app/Domain/Registry/Events/OwnershipTransferRequested.php',
-      66 => '/var/www/html/app/Domain/Registry/Events/ServiceRequestAccepted.php',
-      67 => '/var/www/html/app/Domain/Registry/Events/ServiceRequestDeclined.php',
-      68 => '/var/www/html/app/Domain/Registry/Events/ServiceRequestRaised.php',
-      69 => '/var/www/html/app/Domain/Registry/Imports/ImportRowValidator.php',
-      70 => '/var/www/html/app/Domain/Registry/Jobs/CommitImportBatch.php',
-      71 => '/var/www/html/app/Domain/Registry/Jobs/ParseImportBatch.php',
-      72 => '/var/www/html/app/Domain/Registry/Models/Beneficiary.php',
-      73 => '/var/www/html/app/Domain/Registry/Models/BeneficiaryDocument.php',
-      74 => '/var/www/html/app/Domain/Registry/Models/BeneficiaryServiceGrant.php',
-      75 => '/var/www/html/app/Domain/Registry/Models/Household.php',
-      76 => '/var/www/html/app/Domain/Registry/Models/HouseholdMembership.php',
-      77 => '/var/www/html/app/Domain/Registry/Models/ImportBatch.php',
-      78 => '/var/www/html/app/Domain/Registry/Models/ImportRow.php',
-      79 => '/var/www/html/app/Domain/Registry/Models/OwnershipTransferRequest.php',
-      80 => '/var/www/html/app/Domain/Registry/Models/ServeRequest.php',
-      81 => '/var/www/html/app/Domain/Registry/Models/ServiceRequest.php',
-      82 => '/var/www/html/app/Domain/Registry/Policies/BeneficiaryDocumentPolicy.php',
-      83 => '/var/www/html/app/Domain/Registry/Policies/BeneficiaryPolicy.php',
-      84 => '/var/www/html/app/Domain/Registry/Policies/HouseholdPolicy.php',
-      85 => '/var/www/html/app/Domain/Registry/Policies/ImportBatchPolicy.php',
-      86 => '/var/www/html/app/Domain/Registry/Policies/OwnerMdaPolicy.php',
-      87 => '/var/www/html/app/Domain/Registry/Policies/ServeRequestPolicy.php',
-      88 => '/var/www/html/app/Domain/Registry/RegistryServiceProvider.php',
-      89 => '/var/www/html/app/Domain/Registry/Services/BatchDuplicateScreener.php',
-      90 => '/var/www/html/app/Domain/Registry/Services/BeneficiaryLookupService.php',
-      91 => '/var/www/html/app/Domain/Registry/Services/BeneficiaryRegistrar.php',
-      92 => '/var/www/html/app/Domain/Registry/Services/CandidateGatherer.php',
-      93 => '/var/www/html/app/Domain/Registry/Services/DeterministicDuplicateFinder.php',
-      94 => '/var/www/html/app/Domain/Registry/Services/HouseholdIngestionService.php',
-      95 => '/var/www/html/app/Domain/Registry/Services/HouseholdMembershipService.php',
-      96 => '/var/www/html/app/Domain/Registry/Services/NullBeneficiaryRouter.php',
-      97 => '/var/www/html/app/Domain/Registry/Services/OwnershipTransferService.php',
-      98 => '/var/www/html/app/Domain/Registry/Services/ServeRequestService.php',
-      99 => '/var/www/html/app/Domain/Registry/Services/ServiceRequestService.php',
-      100 => '/var/www/html/app/Http/Controllers/Api/V1/Access/MdaAccessGrantController.php',
-      101 => '/var/www/html/app/Http/Controllers/Api/V1/Access/MdaController.php',
-      102 => '/var/www/html/app/Http/Controllers/Api/V1/Access/UserController.php',
-      103 => '/var/www/html/app/Http/Controllers/Api/V1/AuthController.php',
-      104 => '/var/www/html/app/Http/Controllers/Api/V1/Benefit/BenefitController.php',
-      105 => '/var/www/html/app/Http/Controllers/Api/V1/Benefit/BenefitFlagController.php',
-      106 => '/var/www/html/app/Http/Controllers/Api/V1/Benefit/BenefitImportController.php',
-      107 => '/var/www/html/app/Http/Controllers/Api/V1/Benefit/DoubleDippingRuleController.php',
-      108 => '/var/www/html/app/Http/Controllers/Api/V1/Matching/MatchingConfigController.php',
-      109 => '/var/www/html/app/Http/Controllers/Api/V1/MfaController.php',
-      110 => '/var/www/html/app/Http/Controllers/Api/V1/Notification/NotificationController.php',
-      111 => '/var/www/html/app/Http/Controllers/Api/V1/Programme/ActivityController.php',
-      112 => '/var/www/html/app/Http/Controllers/Api/V1/Programme/EnrollmentController.php',
-      113 => '/var/www/html/app/Http/Controllers/Api/V1/Programme/ProgrammeController.php',
-      114 => '/var/www/html/app/Http/Controllers/Api/V1/Referral/ReferralController.php',
-      115 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/BeneficiaryController.php',
-      116 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/BeneficiaryDocumentController.php',
-      117 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/BeneficiaryIntakeController.php',
-      118 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/BeneficiaryRoutingController.php',
-      119 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/HouseholdController.php',
-      120 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/HouseholdMemberController.php',
-      121 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/ImportBatchController.php',
-      122 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/OwnershipTransferController.php',
-      123 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/ServeRequestController.php',
-      124 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/ServiceRequestController.php',
-      125 => '/var/www/html/app/Http/Middleware/CheckPermission.php',
-      126 => '/var/www/html/app/Http/Requests/Access/StoreMdaAccessGrantRequest.php',
-      127 => '/var/www/html/app/Http/Requests/Access/StoreMdaRequest.php',
-      128 => '/var/www/html/app/Http/Requests/Access/StoreUserRequest.php',
-      129 => '/var/www/html/app/Http/Requests/Access/UpdateMdaRequest.php',
-      130 => '/var/www/html/app/Http/Requests/Access/UpdateUserRequest.php',
-      131 => '/var/www/html/app/Http/Requests/Auth/ChangePasswordRequest.php',
-      132 => '/var/www/html/app/Http/Requests/Auth/MfaCodeRequest.php',
-      133 => '/var/www/html/app/Http/Requests/Benefit/AggregateBenefitsRequest.php',
-      134 => '/var/www/html/app/Http/Requests/Benefit/RecordBenefitRequest.php',
-      135 => '/var/www/html/app/Http/Requests/Benefit/ReviewBenefitFlagRequest.php',
-      136 => '/var/www/html/app/Http/Requests/Benefit/StoreDoubleDippingRuleRequest.php',
-      137 => '/var/www/html/app/Http/Requests/Benefit/UploadBenefitImportRequest.php',
-      138 => '/var/www/html/app/Http/Requests/Benefit/VerifyBenefitRequest.php',
-      139 => '/var/www/html/app/Http/Requests/Matching/UpdateMatchingConfigRequest.php',
-      140 => '/var/www/html/app/Http/Requests/Notification/UpdateNotificationPreferencesRequest.php',
-      141 => '/var/www/html/app/Http/Requests/Programme/BulkEnrollmentRequest.php',
-      142 => '/var/www/html/app/Http/Requests/Programme/StoreActivityRequest.php',
-      143 => '/var/www/html/app/Http/Requests/Programme/StoreEnrollmentRequest.php',
-      144 => '/var/www/html/app/Http/Requests/Programme/StoreProgrammeRequest.php',
-      145 => '/var/www/html/app/Http/Requests/Programme/UpdateActivityRequest.php',
-      146 => '/var/www/html/app/Http/Requests/Programme/UpdateEnrollmentRequest.php',
-      147 => '/var/www/html/app/Http/Requests/Programme/UpdateProgrammeRequest.php',
-      148 => '/var/www/html/app/Http/Requests/Referral/StoreReferralRequest.php',
-      149 => '/var/www/html/app/Http/Requests/Referral/TransitionReferralRequest.php',
-      150 => '/var/www/html/app/Http/Requests/Registry/AcceptServiceRequestRequest.php',
-      151 => '/var/www/html/app/Http/Requests/Registry/AddHouseholdMemberRequest.php',
-      152 => '/var/www/html/app/Http/Requests/Registry/ApiRegistrationRequest.php',
-      153 => '/var/www/html/app/Http/Requests/Registry/BeneficiaryLookupRequest.php',
-      154 => '/var/www/html/app/Http/Requests/Registry/BeneficiaryMatchSearchRequest.php',
-      155 => '/var/www/html/app/Http/Requests/Registry/DecideOwnershipTransferRequest.php',
-      156 => '/var/www/html/app/Http/Requests/Registry/DecideServeRequestRequest.php',
-      157 => '/var/www/html/app/Http/Requests/Registry/DeclineServiceRequestRequest.php',
-      158 => '/var/www/html/app/Http/Requests/Registry/DesignateHeadRequest.php',
-      159 => '/var/www/html/app/Http/Requests/Registry/MoveHouseholdMemberRequest.php',
-      160 => '/var/www/html/app/Http/Requests/Registry/RaiseServeRequestRequest.php',
-      161 => '/var/www/html/app/Http/Requests/Registry/ResolveImportRowRequest.php',
-      162 => '/var/www/html/app/Http/Requests/Registry/RouteAssignmentRequest.php',
-      163 => '/var/www/html/app/Http/Requests/Registry/StoreBeneficiaryRequest.php',
-      164 => '/var/www/html/app/Http/Requests/Registry/StoreHouseholdRequest.php',
-      165 => '/var/www/html/app/Http/Requests/Registry/StoreOwnershipTransferRequest.php',
-      166 => '/var/www/html/app/Http/Requests/Registry/StoreServiceRequestRequest.php',
-      167 => '/var/www/html/app/Http/Requests/Registry/UpdateBeneficiaryRequest.php',
-      168 => '/var/www/html/app/Http/Requests/Registry/UpdateHouseholdRequest.php',
-      169 => '/var/www/html/app/Http/Requests/Registry/UploadDocumentRequest.php',
-      170 => '/var/www/html/app/Http/Requests/Registry/UploadImportRequest.php',
-      171 => '/var/www/html/app/Http/Resources/ActivityResource.php',
-      172 => '/var/www/html/app/Http/Resources/BeneficiaryDocumentResource.php',
-      173 => '/var/www/html/app/Http/Resources/BeneficiaryResource.php',
-      174 => '/var/www/html/app/Http/Resources/BeneficiaryRevealResource.php',
-      175 => '/var/www/html/app/Http/Resources/BenefitImportBatchResource.php',
-      176 => '/var/www/html/app/Http/Resources/BenefitResource.php',
-      177 => '/var/www/html/app/Http/Resources/EnrollmentResource.php',
-      178 => '/var/www/html/app/Http/Resources/HouseholdMembershipResource.php',
-      179 => '/var/www/html/app/Http/Resources/HouseholdResource.php',
-      180 => '/var/www/html/app/Http/Resources/ImportBatchResource.php',
-      181 => '/var/www/html/app/Http/Resources/MdaResource.php',
-      182 => '/var/www/html/app/Http/Resources/NotificationResource.php',
-      183 => '/var/www/html/app/Http/Resources/ProgrammeResource.php',
-      184 => '/var/www/html/app/Http/Resources/UserResource.php',
-      185 => '/var/www/html/app/Providers/AppServiceProvider.php',
+      38 => '/var/www/html/app/Domain/Grievance/Events/GrievanceAssigned.php',
+      39 => '/var/www/html/app/Domain/Grievance/Events/GrievanceResolved.php',
+      40 => '/var/www/html/app/Domain/Grievance/Events/GrievanceSlaBreached.php',
+      41 => '/var/www/html/app/Domain/Grievance/GrievanceServiceProvider.php',
+      42 => '/var/www/html/app/Domain/Grievance/Jobs/EscalateOverdueGrievances.php',
+      43 => '/var/www/html/app/Domain/Grievance/Models/Grievance.php',
+      44 => '/var/www/html/app/Domain/Grievance/Policies/GrievancePolicy.php',
+      45 => '/var/www/html/app/Domain/Grievance/Services/GrievanceService.php',
+      46 => '/var/www/html/app/Domain/Matching/Models/MatchingConfig.php',
+      47 => '/var/www/html/app/Domain/Matching/Services/MatchingConfigService.php',
+      48 => '/var/www/html/app/Domain/Notification/Channels/EmailChannel.php',
+      49 => '/var/www/html/app/Domain/Notification/Channels/InAppChannel.php',
+      50 => '/var/www/html/app/Domain/Notification/Channels/SmsChannel.php',
+      51 => '/var/www/html/app/Domain/Notification/Channels/WhatsAppChannel.php',
+      52 => '/var/www/html/app/Domain/Notification/Contracts/NotificationChannel.php',
+      53 => '/var/www/html/app/Domain/Notification/Listeners/NotificationSubscriber.php',
+      54 => '/var/www/html/app/Domain/Notification/Models/Notification.php',
+      55 => '/var/www/html/app/Domain/Notification/Models/NotificationPreference.php',
+      56 => '/var/www/html/app/Domain/Notification/Services/Notifier.php',
+      57 => '/var/www/html/app/Domain/Programme/Models/Activity.php',
+      58 => '/var/www/html/app/Domain/Programme/Models/Enrollment.php',
+      59 => '/var/www/html/app/Domain/Programme/Models/Programme.php',
+      60 => '/var/www/html/app/Domain/Programme/Policies/ActivityPolicy.php',
+      61 => '/var/www/html/app/Domain/Programme/Policies/EnrollmentPolicy.php',
+      62 => '/var/www/html/app/Domain/Programme/Policies/ProgrammePolicy.php',
+      63 => '/var/www/html/app/Domain/Programme/ProgrammeServiceProvider.php',
+      64 => '/var/www/html/app/Domain/Programme/Services/EligibilityEvaluator.php',
+      65 => '/var/www/html/app/Domain/Programme/Services/EnrollmentService.php',
+      66 => '/var/www/html/app/Domain/Programme/Services/ProgrammeMatcher.php',
+      67 => '/var/www/html/app/Domain/Programme/Services/ProgrammeMatchingRouter.php',
+      68 => '/var/www/html/app/Domain/Referral/Authorization/ReferralAuthorizer.php',
+      69 => '/var/www/html/app/Domain/Referral/Events/ReferralStatusChanged.php',
+      70 => '/var/www/html/app/Domain/Referral/Models/Referral.php',
+      71 => '/var/www/html/app/Domain/Referral/Policies/ReferralPolicy.php',
+      72 => '/var/www/html/app/Domain/Referral/Scopes/ReferralScope.php',
+      73 => '/var/www/html/app/Domain/Referral/Services/ReferralService.php',
+      74 => '/var/www/html/app/Domain/Registry/Contracts/BeneficiaryRouter.php',
+      75 => '/var/www/html/app/Domain/Registry/Events/OwnershipTransferRequested.php',
+      76 => '/var/www/html/app/Domain/Registry/Events/ServiceRequestAccepted.php',
+      77 => '/var/www/html/app/Domain/Registry/Events/ServiceRequestDeclined.php',
+      78 => '/var/www/html/app/Domain/Registry/Events/ServiceRequestRaised.php',
+      79 => '/var/www/html/app/Domain/Registry/Imports/ImportRowValidator.php',
+      80 => '/var/www/html/app/Domain/Registry/Jobs/CommitImportBatch.php',
+      81 => '/var/www/html/app/Domain/Registry/Jobs/ParseImportBatch.php',
+      82 => '/var/www/html/app/Domain/Registry/Models/Beneficiary.php',
+      83 => '/var/www/html/app/Domain/Registry/Models/BeneficiaryDocument.php',
+      84 => '/var/www/html/app/Domain/Registry/Models/BeneficiaryServiceGrant.php',
+      85 => '/var/www/html/app/Domain/Registry/Models/Household.php',
+      86 => '/var/www/html/app/Domain/Registry/Models/HouseholdMembership.php',
+      87 => '/var/www/html/app/Domain/Registry/Models/ImportBatch.php',
+      88 => '/var/www/html/app/Domain/Registry/Models/ImportRow.php',
+      89 => '/var/www/html/app/Domain/Registry/Models/OwnershipTransferRequest.php',
+      90 => '/var/www/html/app/Domain/Registry/Models/ServeRequest.php',
+      91 => '/var/www/html/app/Domain/Registry/Models/ServiceRequest.php',
+      92 => '/var/www/html/app/Domain/Registry/Policies/BeneficiaryDocumentPolicy.php',
+      93 => '/var/www/html/app/Domain/Registry/Policies/BeneficiaryPolicy.php',
+      94 => '/var/www/html/app/Domain/Registry/Policies/HouseholdPolicy.php',
+      95 => '/var/www/html/app/Domain/Registry/Policies/ImportBatchPolicy.php',
+      96 => '/var/www/html/app/Domain/Registry/Policies/OwnerMdaPolicy.php',
+      97 => '/var/www/html/app/Domain/Registry/Policies/ServeRequestPolicy.php',
+      98 => '/var/www/html/app/Domain/Registry/RegistryServiceProvider.php',
+      99 => '/var/www/html/app/Domain/Registry/Services/BatchDuplicateScreener.php',
+      100 => '/var/www/html/app/Domain/Registry/Services/BeneficiaryLookupService.php',
+      101 => '/var/www/html/app/Domain/Registry/Services/BeneficiaryRegistrar.php',
+      102 => '/var/www/html/app/Domain/Registry/Services/CandidateGatherer.php',
+      103 => '/var/www/html/app/Domain/Registry/Services/DeterministicDuplicateFinder.php',
+      104 => '/var/www/html/app/Domain/Registry/Services/HouseholdIngestionService.php',
+      105 => '/var/www/html/app/Domain/Registry/Services/HouseholdMembershipService.php',
+      106 => '/var/www/html/app/Domain/Registry/Services/NullBeneficiaryRouter.php',
+      107 => '/var/www/html/app/Domain/Registry/Services/OwnershipTransferService.php',
+      108 => '/var/www/html/app/Domain/Registry/Services/ServeRequestService.php',
+      109 => '/var/www/html/app/Domain/Registry/Services/ServiceRequestService.php',
+      110 => '/var/www/html/app/Http/Controllers/Api/V1/Access/MdaAccessGrantController.php',
+      111 => '/var/www/html/app/Http/Controllers/Api/V1/Access/MdaController.php',
+      112 => '/var/www/html/app/Http/Controllers/Api/V1/Access/UserController.php',
+      113 => '/var/www/html/app/Http/Controllers/Api/V1/AuthController.php',
+      114 => '/var/www/html/app/Http/Controllers/Api/V1/Benefit/BenefitController.php',
+      115 => '/var/www/html/app/Http/Controllers/Api/V1/Benefit/BenefitFlagController.php',
+      116 => '/var/www/html/app/Http/Controllers/Api/V1/Benefit/BenefitImportController.php',
+      117 => '/var/www/html/app/Http/Controllers/Api/V1/Benefit/DoubleDippingRuleController.php',
+      118 => '/var/www/html/app/Http/Controllers/Api/V1/Grievance/GrievanceController.php',
+      119 => '/var/www/html/app/Http/Controllers/Api/V1/Matching/MatchingConfigController.php',
+      120 => '/var/www/html/app/Http/Controllers/Api/V1/MfaController.php',
+      121 => '/var/www/html/app/Http/Controllers/Api/V1/Notification/NotificationController.php',
+      122 => '/var/www/html/app/Http/Controllers/Api/V1/Programme/ActivityController.php',
+      123 => '/var/www/html/app/Http/Controllers/Api/V1/Programme/EnrollmentController.php',
+      124 => '/var/www/html/app/Http/Controllers/Api/V1/Programme/ProgrammeController.php',
+      125 => '/var/www/html/app/Http/Controllers/Api/V1/Referral/ReferralController.php',
+      126 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/BeneficiaryController.php',
+      127 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/BeneficiaryDocumentController.php',
+      128 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/BeneficiaryIntakeController.php',
+      129 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/BeneficiaryRoutingController.php',
+      130 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/HouseholdController.php',
+      131 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/HouseholdMemberController.php',
+      132 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/ImportBatchController.php',
+      133 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/OwnershipTransferController.php',
+      134 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/ServeRequestController.php',
+      135 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/ServiceRequestController.php',
+      136 => '/var/www/html/app/Http/Middleware/CheckPermission.php',
+      137 => '/var/www/html/app/Http/Requests/Access/StoreMdaAccessGrantRequest.php',
+      138 => '/var/www/html/app/Http/Requests/Access/StoreMdaRequest.php',
+      139 => '/var/www/html/app/Http/Requests/Access/StoreUserRequest.php',
+      140 => '/var/www/html/app/Http/Requests/Access/UpdateMdaRequest.php',
+      141 => '/var/www/html/app/Http/Requests/Access/UpdateUserRequest.php',
+      142 => '/var/www/html/app/Http/Requests/Auth/ChangePasswordRequest.php',
+      143 => '/var/www/html/app/Http/Requests/Auth/MfaCodeRequest.php',
+      144 => '/var/www/html/app/Http/Requests/Benefit/AggregateBenefitsRequest.php',
+      145 => '/var/www/html/app/Http/Requests/Benefit/RecordBenefitRequest.php',
+      146 => '/var/www/html/app/Http/Requests/Benefit/ReviewBenefitFlagRequest.php',
+      147 => '/var/www/html/app/Http/Requests/Benefit/StoreDoubleDippingRuleRequest.php',
+      148 => '/var/www/html/app/Http/Requests/Benefit/UploadBenefitImportRequest.php',
+      149 => '/var/www/html/app/Http/Requests/Benefit/VerifyBenefitRequest.php',
+      150 => '/var/www/html/app/Http/Requests/Grievance/AssignGrievanceRequest.php',
+      151 => '/var/www/html/app/Http/Requests/Grievance/StoreGrievanceRequest.php',
+      152 => '/var/www/html/app/Http/Requests/Grievance/TransitionGrievanceRequest.php',
+      153 => '/var/www/html/app/Http/Requests/Grievance/UpdateGrievanceSlaRequest.php',
+      154 => '/var/www/html/app/Http/Requests/Matching/UpdateMatchingConfigRequest.php',
+      155 => '/var/www/html/app/Http/Requests/Notification/UpdateNotificationPreferencesRequest.php',
+      156 => '/var/www/html/app/Http/Requests/Programme/BulkEnrollmentRequest.php',
+      157 => '/var/www/html/app/Http/Requests/Programme/StoreActivityRequest.php',
+      158 => '/var/www/html/app/Http/Requests/Programme/StoreEnrollmentRequest.php',
+      159 => '/var/www/html/app/Http/Requests/Programme/StoreProgrammeRequest.php',
+      160 => '/var/www/html/app/Http/Requests/Programme/UpdateActivityRequest.php',
+      161 => '/var/www/html/app/Http/Requests/Programme/UpdateEnrollmentRequest.php',
+      162 => '/var/www/html/app/Http/Requests/Programme/UpdateProgrammeRequest.php',
+      163 => '/var/www/html/app/Http/Requests/Referral/StoreReferralRequest.php',
+      164 => '/var/www/html/app/Http/Requests/Referral/TransitionReferralRequest.php',
+      165 => '/var/www/html/app/Http/Requests/Referral/UpdateReferralSlaRequest.php',
+      166 => '/var/www/html/app/Http/Requests/Registry/AcceptServiceRequestRequest.php',
+      167 => '/var/www/html/app/Http/Requests/Registry/AddHouseholdMemberRequest.php',
+      168 => '/var/www/html/app/Http/Requests/Registry/ApiRegistrationRequest.php',
+      169 => '/var/www/html/app/Http/Requests/Registry/BeneficiaryLookupRequest.php',
+      170 => '/var/www/html/app/Http/Requests/Registry/BeneficiaryMatchSearchRequest.php',
+      171 => '/var/www/html/app/Http/Requests/Registry/DecideOwnershipTransferRequest.php',
+      172 => '/var/www/html/app/Http/Requests/Registry/DecideServeRequestRequest.php',
+      173 => '/var/www/html/app/Http/Requests/Registry/DeclineServiceRequestRequest.php',
+      174 => '/var/www/html/app/Http/Requests/Registry/DesignateHeadRequest.php',
+      175 => '/var/www/html/app/Http/Requests/Registry/MoveHouseholdMemberRequest.php',
+      176 => '/var/www/html/app/Http/Requests/Registry/RaiseServeRequestRequest.php',
+      177 => '/var/www/html/app/Http/Requests/Registry/ResolveImportRowRequest.php',
+      178 => '/var/www/html/app/Http/Requests/Registry/RouteAssignmentRequest.php',
+      179 => '/var/www/html/app/Http/Requests/Registry/StoreBeneficiaryRequest.php',
+      180 => '/var/www/html/app/Http/Requests/Registry/StoreHouseholdRequest.php',
+      181 => '/var/www/html/app/Http/Requests/Registry/StoreOwnershipTransferRequest.php',
+      182 => '/var/www/html/app/Http/Requests/Registry/StoreServiceRequestRequest.php',
+      183 => '/var/www/html/app/Http/Requests/Registry/UpdateBeneficiaryRequest.php',
+      184 => '/var/www/html/app/Http/Requests/Registry/UpdateHouseholdRequest.php',
+      185 => '/var/www/html/app/Http/Requests/Registry/UploadDocumentRequest.php',
+      186 => '/var/www/html/app/Http/Requests/Registry/UploadImportRequest.php',
+      187 => '/var/www/html/app/Http/Resources/ActivityResource.php',
+      188 => '/var/www/html/app/Http/Resources/BeneficiaryDocumentResource.php',
+      189 => '/var/www/html/app/Http/Resources/BeneficiaryResource.php',
+      190 => '/var/www/html/app/Http/Resources/BeneficiaryRevealResource.php',
+      191 => '/var/www/html/app/Http/Resources/BenefitImportBatchResource.php',
+      192 => '/var/www/html/app/Http/Resources/BenefitResource.php',
+      193 => '/var/www/html/app/Http/Resources/EnrollmentResource.php',
+      194 => '/var/www/html/app/Http/Resources/GrievanceResource.php',
+      195 => '/var/www/html/app/Http/Resources/HouseholdMembershipResource.php',
+      196 => '/var/www/html/app/Http/Resources/HouseholdResource.php',
+      197 => '/var/www/html/app/Http/Resources/ImportBatchResource.php',
+      198 => '/var/www/html/app/Http/Resources/MdaResource.php',
+      199 => '/var/www/html/app/Http/Resources/NotificationResource.php',
+      200 => '/var/www/html/app/Http/Resources/ProgrammeResource.php',
+      201 => '/var/www/html/app/Http/Resources/UserResource.php',
+      202 => '/var/www/html/app/Providers/AppServiceProvider.php',
     ),
     'usedTraitDependentFiles' => 
     array (
@@ -14275,15 +15812,16 @@ return [
       1 => '/var/www/html/app/Domain/Access/Models/User.php',
       2 => '/var/www/html/app/Domain/Benefit/Models/Benefit.php',
       3 => '/var/www/html/app/Domain/Benefit/Models/BenefitImportBatch.php',
-      4 => '/var/www/html/app/Domain/Notification/Models/Notification.php',
-      5 => '/var/www/html/app/Domain/Programme/Models/Activity.php',
-      6 => '/var/www/html/app/Domain/Programme/Models/Enrollment.php',
-      7 => '/var/www/html/app/Domain/Programme/Models/Programme.php',
-      8 => '/var/www/html/app/Domain/Registry/Models/Beneficiary.php',
-      9 => '/var/www/html/app/Domain/Registry/Models/BeneficiaryDocument.php',
-      10 => '/var/www/html/app/Domain/Registry/Models/BeneficiaryServiceGrant.php',
-      11 => '/var/www/html/app/Domain/Registry/Models/Household.php',
-      12 => '/var/www/html/app/Domain/Registry/Models/ImportBatch.php',
+      4 => '/var/www/html/app/Domain/Grievance/Models/Grievance.php',
+      5 => '/var/www/html/app/Domain/Notification/Models/Notification.php',
+      6 => '/var/www/html/app/Domain/Programme/Models/Activity.php',
+      7 => '/var/www/html/app/Domain/Programme/Models/Enrollment.php',
+      8 => '/var/www/html/app/Domain/Programme/Models/Programme.php',
+      9 => '/var/www/html/app/Domain/Registry/Models/Beneficiary.php',
+      10 => '/var/www/html/app/Domain/Registry/Models/BeneficiaryDocument.php',
+      11 => '/var/www/html/app/Domain/Registry/Models/BeneficiaryServiceGrant.php',
+      12 => '/var/www/html/app/Domain/Registry/Models/Household.php',
+      13 => '/var/www/html/app/Domain/Registry/Models/ImportBatch.php',
     ),
   ),
   '/var/www/html/app/Domain/Access/Enums/MdaStatus.php' => 
@@ -14298,25 +15836,26 @@ return [
       4 => '/var/www/html/app/Domain/Benefit/Models/BenefitFlag.php',
       5 => '/var/www/html/app/Domain/Benefit/Models/BenefitImportBatch.php',
       6 => '/var/www/html/app/Domain/Benefit/Services/BeneficiaryRevealPresenter.php',
-      7 => '/var/www/html/app/Domain/Programme/Models/Activity.php',
-      8 => '/var/www/html/app/Domain/Programme/Models/Enrollment.php',
-      9 => '/var/www/html/app/Domain/Programme/Models/Programme.php',
-      10 => '/var/www/html/app/Domain/Programme/Services/ProgrammeMatcher.php',
-      11 => '/var/www/html/app/Domain/Referral/Models/Referral.php',
-      12 => '/var/www/html/app/Domain/Registry/Models/Beneficiary.php',
-      13 => '/var/www/html/app/Domain/Registry/Models/BeneficiaryDocument.php',
-      14 => '/var/www/html/app/Domain/Registry/Models/BeneficiaryServiceGrant.php',
-      15 => '/var/www/html/app/Domain/Registry/Models/Household.php',
-      16 => '/var/www/html/app/Domain/Registry/Models/ImportBatch.php',
-      17 => '/var/www/html/app/Domain/Registry/Models/OwnershipTransferRequest.php',
-      18 => '/var/www/html/app/Domain/Registry/Models/ServeRequest.php',
-      19 => '/var/www/html/app/Domain/Registry/Models/ServiceRequest.php',
-      20 => '/var/www/html/app/Http/Controllers/Api/V1/Access/MdaController.php',
-      21 => '/var/www/html/app/Http/Requests/Access/StoreMdaRequest.php',
-      22 => '/var/www/html/app/Http/Resources/BeneficiaryRevealResource.php',
-      23 => '/var/www/html/app/Http/Resources/MdaResource.php',
-      24 => '/var/www/html/app/Http/Resources/ProgrammeResource.php',
-      25 => '/var/www/html/app/Http/Resources/UserResource.php',
+      7 => '/var/www/html/app/Domain/Grievance/Models/Grievance.php',
+      8 => '/var/www/html/app/Domain/Programme/Models/Activity.php',
+      9 => '/var/www/html/app/Domain/Programme/Models/Enrollment.php',
+      10 => '/var/www/html/app/Domain/Programme/Models/Programme.php',
+      11 => '/var/www/html/app/Domain/Programme/Services/ProgrammeMatcher.php',
+      12 => '/var/www/html/app/Domain/Referral/Models/Referral.php',
+      13 => '/var/www/html/app/Domain/Registry/Models/Beneficiary.php',
+      14 => '/var/www/html/app/Domain/Registry/Models/BeneficiaryDocument.php',
+      15 => '/var/www/html/app/Domain/Registry/Models/BeneficiaryServiceGrant.php',
+      16 => '/var/www/html/app/Domain/Registry/Models/Household.php',
+      17 => '/var/www/html/app/Domain/Registry/Models/ImportBatch.php',
+      18 => '/var/www/html/app/Domain/Registry/Models/OwnershipTransferRequest.php',
+      19 => '/var/www/html/app/Domain/Registry/Models/ServeRequest.php',
+      20 => '/var/www/html/app/Domain/Registry/Models/ServiceRequest.php',
+      21 => '/var/www/html/app/Http/Controllers/Api/V1/Access/MdaController.php',
+      22 => '/var/www/html/app/Http/Requests/Access/StoreMdaRequest.php',
+      23 => '/var/www/html/app/Http/Resources/BeneficiaryRevealResource.php',
+      24 => '/var/www/html/app/Http/Resources/MdaResource.php',
+      25 => '/var/www/html/app/Http/Resources/ProgrammeResource.php',
+      26 => '/var/www/html/app/Http/Resources/UserResource.php',
     ),
   ),
   '/var/www/html/app/Domain/Access/Enums/MdaType.php' => 
@@ -14331,26 +15870,27 @@ return [
       4 => '/var/www/html/app/Domain/Benefit/Models/BenefitFlag.php',
       5 => '/var/www/html/app/Domain/Benefit/Models/BenefitImportBatch.php',
       6 => '/var/www/html/app/Domain/Benefit/Services/BeneficiaryRevealPresenter.php',
-      7 => '/var/www/html/app/Domain/Programme/Models/Activity.php',
-      8 => '/var/www/html/app/Domain/Programme/Models/Enrollment.php',
-      9 => '/var/www/html/app/Domain/Programme/Models/Programme.php',
-      10 => '/var/www/html/app/Domain/Programme/Services/ProgrammeMatcher.php',
-      11 => '/var/www/html/app/Domain/Referral/Models/Referral.php',
-      12 => '/var/www/html/app/Domain/Registry/Models/Beneficiary.php',
-      13 => '/var/www/html/app/Domain/Registry/Models/BeneficiaryDocument.php',
-      14 => '/var/www/html/app/Domain/Registry/Models/BeneficiaryServiceGrant.php',
-      15 => '/var/www/html/app/Domain/Registry/Models/Household.php',
-      16 => '/var/www/html/app/Domain/Registry/Models/ImportBatch.php',
-      17 => '/var/www/html/app/Domain/Registry/Models/OwnershipTransferRequest.php',
-      18 => '/var/www/html/app/Domain/Registry/Models/ServeRequest.php',
-      19 => '/var/www/html/app/Domain/Registry/Models/ServiceRequest.php',
-      20 => '/var/www/html/app/Http/Controllers/Api/V1/Access/MdaController.php',
-      21 => '/var/www/html/app/Http/Requests/Access/StoreMdaRequest.php',
-      22 => '/var/www/html/app/Http/Requests/Access/UpdateMdaRequest.php',
-      23 => '/var/www/html/app/Http/Resources/BeneficiaryRevealResource.php',
-      24 => '/var/www/html/app/Http/Resources/MdaResource.php',
-      25 => '/var/www/html/app/Http/Resources/ProgrammeResource.php',
-      26 => '/var/www/html/app/Http/Resources/UserResource.php',
+      7 => '/var/www/html/app/Domain/Grievance/Models/Grievance.php',
+      8 => '/var/www/html/app/Domain/Programme/Models/Activity.php',
+      9 => '/var/www/html/app/Domain/Programme/Models/Enrollment.php',
+      10 => '/var/www/html/app/Domain/Programme/Models/Programme.php',
+      11 => '/var/www/html/app/Domain/Programme/Services/ProgrammeMatcher.php',
+      12 => '/var/www/html/app/Domain/Referral/Models/Referral.php',
+      13 => '/var/www/html/app/Domain/Registry/Models/Beneficiary.php',
+      14 => '/var/www/html/app/Domain/Registry/Models/BeneficiaryDocument.php',
+      15 => '/var/www/html/app/Domain/Registry/Models/BeneficiaryServiceGrant.php',
+      16 => '/var/www/html/app/Domain/Registry/Models/Household.php',
+      17 => '/var/www/html/app/Domain/Registry/Models/ImportBatch.php',
+      18 => '/var/www/html/app/Domain/Registry/Models/OwnershipTransferRequest.php',
+      19 => '/var/www/html/app/Domain/Registry/Models/ServeRequest.php',
+      20 => '/var/www/html/app/Domain/Registry/Models/ServiceRequest.php',
+      21 => '/var/www/html/app/Http/Controllers/Api/V1/Access/MdaController.php',
+      22 => '/var/www/html/app/Http/Requests/Access/StoreMdaRequest.php',
+      23 => '/var/www/html/app/Http/Requests/Access/UpdateMdaRequest.php',
+      24 => '/var/www/html/app/Http/Resources/BeneficiaryRevealResource.php',
+      25 => '/var/www/html/app/Http/Resources/MdaResource.php',
+      26 => '/var/www/html/app/Http/Resources/ProgrammeResource.php',
+      27 => '/var/www/html/app/Http/Resources/UserResource.php',
     ),
   ),
   '/var/www/html/app/Domain/Access/Enums/PermissionAction.php' => 
@@ -14365,14 +15905,15 @@ return [
       4 => '/var/www/html/app/Domain/Access/Services/PermissionSynchronizer.php',
       5 => '/var/www/html/app/Domain/Access/Support/PermissionRegistry.php',
       6 => '/var/www/html/app/Domain/Benefit/BenefitServiceProvider.php',
-      7 => '/var/www/html/app/Domain/Matching/MatchingServiceProvider.php',
-      8 => '/var/www/html/app/Domain/Programme/ProgrammeServiceProvider.php',
-      9 => '/var/www/html/app/Domain/Referral/ReferralServiceProvider.php',
-      10 => '/var/www/html/app/Domain/Registry/RegistryServiceProvider.php',
-      11 => '/var/www/html/app/Http/Controllers/Api/V1/Access/AccessController.php',
-      12 => '/var/www/html/app/Http/Requests/Access/StoreUserRequest.php',
-      13 => '/var/www/html/app/Http/Requests/Access/UpdateUserRequest.php',
-      14 => '/var/www/html/app/Http/Resources/UserResource.php',
+      7 => '/var/www/html/app/Domain/Grievance/GrievanceServiceProvider.php',
+      8 => '/var/www/html/app/Domain/Matching/MatchingServiceProvider.php',
+      9 => '/var/www/html/app/Domain/Programme/ProgrammeServiceProvider.php',
+      10 => '/var/www/html/app/Domain/Referral/ReferralServiceProvider.php',
+      11 => '/var/www/html/app/Domain/Registry/RegistryServiceProvider.php',
+      12 => '/var/www/html/app/Http/Controllers/Api/V1/Access/AccessController.php',
+      13 => '/var/www/html/app/Http/Requests/Access/StoreUserRequest.php',
+      14 => '/var/www/html/app/Http/Requests/Access/UpdateUserRequest.php',
+      15 => '/var/www/html/app/Http/Resources/UserResource.php',
     ),
   ),
   '/var/www/html/app/Domain/Access/Enums/RoleKey.php' => 
@@ -14413,114 +15954,126 @@ return [
       23 => '/var/www/html/app/Domain/Benefit/Services/Verifiers/FieldConfirmationVerifier.php',
       24 => '/var/www/html/app/Domain/Benefit/Services/Verifiers/OtpVerifier.php',
       25 => '/var/www/html/app/Domain/Benefit/Services/Verifiers/SignatureVerifier.php',
-      26 => '/var/www/html/app/Domain/Matching/Models/MatchingConfig.php',
-      27 => '/var/www/html/app/Domain/Matching/Services/MatchingConfigService.php',
-      28 => '/var/www/html/app/Domain/Notification/Channels/EmailChannel.php',
-      29 => '/var/www/html/app/Domain/Notification/Channels/InAppChannel.php',
-      30 => '/var/www/html/app/Domain/Notification/Channels/SmsChannel.php',
-      31 => '/var/www/html/app/Domain/Notification/Channels/WhatsAppChannel.php',
-      32 => '/var/www/html/app/Domain/Notification/Contracts/NotificationChannel.php',
-      33 => '/var/www/html/app/Domain/Notification/Listeners/NotificationSubscriber.php',
-      34 => '/var/www/html/app/Domain/Notification/Models/Notification.php',
-      35 => '/var/www/html/app/Domain/Notification/Models/NotificationPreference.php',
-      36 => '/var/www/html/app/Domain/Notification/Services/Notifier.php',
-      37 => '/var/www/html/app/Domain/Programme/Models/Activity.php',
-      38 => '/var/www/html/app/Domain/Programme/Models/Programme.php',
-      39 => '/var/www/html/app/Domain/Programme/Policies/ActivityPolicy.php',
-      40 => '/var/www/html/app/Domain/Programme/Policies/EnrollmentPolicy.php',
-      41 => '/var/www/html/app/Domain/Programme/Policies/ProgrammePolicy.php',
-      42 => '/var/www/html/app/Domain/Programme/Services/EnrollmentService.php',
-      43 => '/var/www/html/app/Domain/Referral/Policies/ReferralPolicy.php',
-      44 => '/var/www/html/app/Domain/Referral/Scopes/ReferralScope.php',
-      45 => '/var/www/html/app/Domain/Referral/Services/ReferralService.php',
-      46 => '/var/www/html/app/Domain/Registry/Events/OwnershipTransferRequested.php',
-      47 => '/var/www/html/app/Domain/Registry/Events/ServiceRequestAccepted.php',
-      48 => '/var/www/html/app/Domain/Registry/Events/ServiceRequestDeclined.php',
-      49 => '/var/www/html/app/Domain/Registry/Events/ServiceRequestRaised.php',
-      50 => '/var/www/html/app/Domain/Registry/Jobs/CommitImportBatch.php',
-      51 => '/var/www/html/app/Domain/Registry/Models/BeneficiaryDocument.php',
-      52 => '/var/www/html/app/Domain/Registry/Models/ImportBatch.php',
-      53 => '/var/www/html/app/Domain/Registry/Models/OwnershipTransferRequest.php',
-      54 => '/var/www/html/app/Domain/Registry/Policies/BeneficiaryDocumentPolicy.php',
-      55 => '/var/www/html/app/Domain/Registry/Policies/BeneficiaryPolicy.php',
-      56 => '/var/www/html/app/Domain/Registry/Policies/HouseholdPolicy.php',
-      57 => '/var/www/html/app/Domain/Registry/Policies/ImportBatchPolicy.php',
-      58 => '/var/www/html/app/Domain/Registry/Policies/OwnerMdaPolicy.php',
-      59 => '/var/www/html/app/Domain/Registry/Policies/ServeRequestPolicy.php',
-      60 => '/var/www/html/app/Domain/Registry/Services/OwnershipTransferService.php',
-      61 => '/var/www/html/app/Domain/Registry/Services/ServeRequestService.php',
-      62 => '/var/www/html/app/Domain/Registry/Services/ServiceRequestService.php',
-      63 => '/var/www/html/app/Http/Controllers/Api/V1/Access/MdaAccessGrantController.php',
-      64 => '/var/www/html/app/Http/Controllers/Api/V1/Access/UserController.php',
-      65 => '/var/www/html/app/Http/Controllers/Api/V1/AuthController.php',
-      66 => '/var/www/html/app/Http/Controllers/Api/V1/Benefit/BenefitController.php',
-      67 => '/var/www/html/app/Http/Controllers/Api/V1/Benefit/BenefitFlagController.php',
-      68 => '/var/www/html/app/Http/Controllers/Api/V1/Benefit/BenefitImportController.php',
-      69 => '/var/www/html/app/Http/Controllers/Api/V1/Benefit/DoubleDippingRuleController.php',
-      70 => '/var/www/html/app/Http/Controllers/Api/V1/Matching/MatchingConfigController.php',
-      71 => '/var/www/html/app/Http/Controllers/Api/V1/MfaController.php',
-      72 => '/var/www/html/app/Http/Controllers/Api/V1/Notification/NotificationController.php',
-      73 => '/var/www/html/app/Http/Controllers/Api/V1/Programme/ActivityController.php',
-      74 => '/var/www/html/app/Http/Controllers/Api/V1/Programme/EnrollmentController.php',
-      75 => '/var/www/html/app/Http/Controllers/Api/V1/Programme/ProgrammeController.php',
-      76 => '/var/www/html/app/Http/Controllers/Api/V1/Referral/ReferralController.php',
-      77 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/BeneficiaryController.php',
-      78 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/BeneficiaryDocumentController.php',
-      79 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/BeneficiaryIntakeController.php',
-      80 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/BeneficiaryRoutingController.php',
-      81 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/ImportBatchController.php',
-      82 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/OwnershipTransferController.php',
-      83 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/ServeRequestController.php',
-      84 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/ServiceRequestController.php',
-      85 => '/var/www/html/app/Http/Middleware/CheckPermission.php',
-      86 => '/var/www/html/app/Http/Requests/Access/StoreMdaAccessGrantRequest.php',
-      87 => '/var/www/html/app/Http/Requests/Access/StoreMdaRequest.php',
-      88 => '/var/www/html/app/Http/Requests/Access/StoreUserRequest.php',
-      89 => '/var/www/html/app/Http/Requests/Access/UpdateMdaRequest.php',
-      90 => '/var/www/html/app/Http/Requests/Access/UpdateUserRequest.php',
-      91 => '/var/www/html/app/Http/Requests/Auth/ChangePasswordRequest.php',
-      92 => '/var/www/html/app/Http/Requests/Auth/MfaCodeRequest.php',
-      93 => '/var/www/html/app/Http/Requests/Benefit/AggregateBenefitsRequest.php',
-      94 => '/var/www/html/app/Http/Requests/Benefit/RecordBenefitRequest.php',
-      95 => '/var/www/html/app/Http/Requests/Benefit/ReviewBenefitFlagRequest.php',
-      96 => '/var/www/html/app/Http/Requests/Benefit/StoreDoubleDippingRuleRequest.php',
-      97 => '/var/www/html/app/Http/Requests/Benefit/UploadBenefitImportRequest.php',
-      98 => '/var/www/html/app/Http/Requests/Benefit/VerifyBenefitRequest.php',
-      99 => '/var/www/html/app/Http/Requests/Matching/UpdateMatchingConfigRequest.php',
-      100 => '/var/www/html/app/Http/Requests/Notification/UpdateNotificationPreferencesRequest.php',
-      101 => '/var/www/html/app/Http/Requests/Programme/BulkEnrollmentRequest.php',
-      102 => '/var/www/html/app/Http/Requests/Programme/StoreActivityRequest.php',
-      103 => '/var/www/html/app/Http/Requests/Programme/StoreEnrollmentRequest.php',
-      104 => '/var/www/html/app/Http/Requests/Programme/StoreProgrammeRequest.php',
-      105 => '/var/www/html/app/Http/Requests/Programme/UpdateActivityRequest.php',
-      106 => '/var/www/html/app/Http/Requests/Programme/UpdateEnrollmentRequest.php',
-      107 => '/var/www/html/app/Http/Requests/Programme/UpdateProgrammeRequest.php',
-      108 => '/var/www/html/app/Http/Requests/Referral/StoreReferralRequest.php',
-      109 => '/var/www/html/app/Http/Requests/Referral/TransitionReferralRequest.php',
-      110 => '/var/www/html/app/Http/Requests/Registry/AcceptServiceRequestRequest.php',
-      111 => '/var/www/html/app/Http/Requests/Registry/AddHouseholdMemberRequest.php',
-      112 => '/var/www/html/app/Http/Requests/Registry/ApiRegistrationRequest.php',
-      113 => '/var/www/html/app/Http/Requests/Registry/BeneficiaryLookupRequest.php',
-      114 => '/var/www/html/app/Http/Requests/Registry/BeneficiaryMatchSearchRequest.php',
-      115 => '/var/www/html/app/Http/Requests/Registry/DecideOwnershipTransferRequest.php',
-      116 => '/var/www/html/app/Http/Requests/Registry/DecideServeRequestRequest.php',
-      117 => '/var/www/html/app/Http/Requests/Registry/DeclineServiceRequestRequest.php',
-      118 => '/var/www/html/app/Http/Requests/Registry/DesignateHeadRequest.php',
-      119 => '/var/www/html/app/Http/Requests/Registry/MoveHouseholdMemberRequest.php',
-      120 => '/var/www/html/app/Http/Requests/Registry/RaiseServeRequestRequest.php',
-      121 => '/var/www/html/app/Http/Requests/Registry/ResolveImportRowRequest.php',
-      122 => '/var/www/html/app/Http/Requests/Registry/RouteAssignmentRequest.php',
-      123 => '/var/www/html/app/Http/Requests/Registry/StoreBeneficiaryRequest.php',
-      124 => '/var/www/html/app/Http/Requests/Registry/StoreHouseholdRequest.php',
-      125 => '/var/www/html/app/Http/Requests/Registry/StoreOwnershipTransferRequest.php',
-      126 => '/var/www/html/app/Http/Requests/Registry/StoreServiceRequestRequest.php',
-      127 => '/var/www/html/app/Http/Requests/Registry/UpdateBeneficiaryRequest.php',
-      128 => '/var/www/html/app/Http/Requests/Registry/UpdateHouseholdRequest.php',
-      129 => '/var/www/html/app/Http/Requests/Registry/UploadDocumentRequest.php',
-      130 => '/var/www/html/app/Http/Requests/Registry/UploadImportRequest.php',
-      131 => '/var/www/html/app/Http/Resources/BeneficiaryRevealResource.php',
-      132 => '/var/www/html/app/Http/Resources/UserResource.php',
-      133 => '/var/www/html/app/Providers/AppServiceProvider.php',
+      26 => '/var/www/html/app/Domain/Grievance/Events/GrievanceAssigned.php',
+      27 => '/var/www/html/app/Domain/Grievance/Events/GrievanceResolved.php',
+      28 => '/var/www/html/app/Domain/Grievance/Models/Grievance.php',
+      29 => '/var/www/html/app/Domain/Grievance/Policies/GrievancePolicy.php',
+      30 => '/var/www/html/app/Domain/Grievance/Services/GrievanceService.php',
+      31 => '/var/www/html/app/Domain/Matching/Models/MatchingConfig.php',
+      32 => '/var/www/html/app/Domain/Matching/Services/MatchingConfigService.php',
+      33 => '/var/www/html/app/Domain/Notification/Channels/EmailChannel.php',
+      34 => '/var/www/html/app/Domain/Notification/Channels/InAppChannel.php',
+      35 => '/var/www/html/app/Domain/Notification/Channels/SmsChannel.php',
+      36 => '/var/www/html/app/Domain/Notification/Channels/WhatsAppChannel.php',
+      37 => '/var/www/html/app/Domain/Notification/Contracts/NotificationChannel.php',
+      38 => '/var/www/html/app/Domain/Notification/Listeners/NotificationSubscriber.php',
+      39 => '/var/www/html/app/Domain/Notification/Models/Notification.php',
+      40 => '/var/www/html/app/Domain/Notification/Models/NotificationPreference.php',
+      41 => '/var/www/html/app/Domain/Notification/Services/Notifier.php',
+      42 => '/var/www/html/app/Domain/Programme/Models/Activity.php',
+      43 => '/var/www/html/app/Domain/Programme/Models/Programme.php',
+      44 => '/var/www/html/app/Domain/Programme/Policies/ActivityPolicy.php',
+      45 => '/var/www/html/app/Domain/Programme/Policies/EnrollmentPolicy.php',
+      46 => '/var/www/html/app/Domain/Programme/Policies/ProgrammePolicy.php',
+      47 => '/var/www/html/app/Domain/Programme/Services/EnrollmentService.php',
+      48 => '/var/www/html/app/Domain/Referral/Events/ReferralStatusChanged.php',
+      49 => '/var/www/html/app/Domain/Referral/Policies/ReferralPolicy.php',
+      50 => '/var/www/html/app/Domain/Referral/Scopes/ReferralScope.php',
+      51 => '/var/www/html/app/Domain/Referral/Services/ReferralService.php',
+      52 => '/var/www/html/app/Domain/Registry/Events/OwnershipTransferRequested.php',
+      53 => '/var/www/html/app/Domain/Registry/Events/ServiceRequestAccepted.php',
+      54 => '/var/www/html/app/Domain/Registry/Events/ServiceRequestDeclined.php',
+      55 => '/var/www/html/app/Domain/Registry/Events/ServiceRequestRaised.php',
+      56 => '/var/www/html/app/Domain/Registry/Jobs/CommitImportBatch.php',
+      57 => '/var/www/html/app/Domain/Registry/Models/BeneficiaryDocument.php',
+      58 => '/var/www/html/app/Domain/Registry/Models/ImportBatch.php',
+      59 => '/var/www/html/app/Domain/Registry/Models/OwnershipTransferRequest.php',
+      60 => '/var/www/html/app/Domain/Registry/Policies/BeneficiaryDocumentPolicy.php',
+      61 => '/var/www/html/app/Domain/Registry/Policies/BeneficiaryPolicy.php',
+      62 => '/var/www/html/app/Domain/Registry/Policies/HouseholdPolicy.php',
+      63 => '/var/www/html/app/Domain/Registry/Policies/ImportBatchPolicy.php',
+      64 => '/var/www/html/app/Domain/Registry/Policies/OwnerMdaPolicy.php',
+      65 => '/var/www/html/app/Domain/Registry/Policies/ServeRequestPolicy.php',
+      66 => '/var/www/html/app/Domain/Registry/Services/OwnershipTransferService.php',
+      67 => '/var/www/html/app/Domain/Registry/Services/ServeRequestService.php',
+      68 => '/var/www/html/app/Domain/Registry/Services/ServiceRequestService.php',
+      69 => '/var/www/html/app/Http/Controllers/Api/V1/Access/MdaAccessGrantController.php',
+      70 => '/var/www/html/app/Http/Controllers/Api/V1/Access/UserController.php',
+      71 => '/var/www/html/app/Http/Controllers/Api/V1/AuthController.php',
+      72 => '/var/www/html/app/Http/Controllers/Api/V1/Benefit/BenefitController.php',
+      73 => '/var/www/html/app/Http/Controllers/Api/V1/Benefit/BenefitFlagController.php',
+      74 => '/var/www/html/app/Http/Controllers/Api/V1/Benefit/BenefitImportController.php',
+      75 => '/var/www/html/app/Http/Controllers/Api/V1/Benefit/DoubleDippingRuleController.php',
+      76 => '/var/www/html/app/Http/Controllers/Api/V1/Grievance/GrievanceController.php',
+      77 => '/var/www/html/app/Http/Controllers/Api/V1/Matching/MatchingConfigController.php',
+      78 => '/var/www/html/app/Http/Controllers/Api/V1/MfaController.php',
+      79 => '/var/www/html/app/Http/Controllers/Api/V1/Notification/NotificationController.php',
+      80 => '/var/www/html/app/Http/Controllers/Api/V1/Programme/ActivityController.php',
+      81 => '/var/www/html/app/Http/Controllers/Api/V1/Programme/EnrollmentController.php',
+      82 => '/var/www/html/app/Http/Controllers/Api/V1/Programme/ProgrammeController.php',
+      83 => '/var/www/html/app/Http/Controllers/Api/V1/Referral/ReferralController.php',
+      84 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/BeneficiaryController.php',
+      85 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/BeneficiaryDocumentController.php',
+      86 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/BeneficiaryIntakeController.php',
+      87 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/BeneficiaryRoutingController.php',
+      88 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/ImportBatchController.php',
+      89 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/OwnershipTransferController.php',
+      90 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/ServeRequestController.php',
+      91 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/ServiceRequestController.php',
+      92 => '/var/www/html/app/Http/Middleware/CheckPermission.php',
+      93 => '/var/www/html/app/Http/Requests/Access/StoreMdaAccessGrantRequest.php',
+      94 => '/var/www/html/app/Http/Requests/Access/StoreMdaRequest.php',
+      95 => '/var/www/html/app/Http/Requests/Access/StoreUserRequest.php',
+      96 => '/var/www/html/app/Http/Requests/Access/UpdateMdaRequest.php',
+      97 => '/var/www/html/app/Http/Requests/Access/UpdateUserRequest.php',
+      98 => '/var/www/html/app/Http/Requests/Auth/ChangePasswordRequest.php',
+      99 => '/var/www/html/app/Http/Requests/Auth/MfaCodeRequest.php',
+      100 => '/var/www/html/app/Http/Requests/Benefit/AggregateBenefitsRequest.php',
+      101 => '/var/www/html/app/Http/Requests/Benefit/RecordBenefitRequest.php',
+      102 => '/var/www/html/app/Http/Requests/Benefit/ReviewBenefitFlagRequest.php',
+      103 => '/var/www/html/app/Http/Requests/Benefit/StoreDoubleDippingRuleRequest.php',
+      104 => '/var/www/html/app/Http/Requests/Benefit/UploadBenefitImportRequest.php',
+      105 => '/var/www/html/app/Http/Requests/Benefit/VerifyBenefitRequest.php',
+      106 => '/var/www/html/app/Http/Requests/Grievance/AssignGrievanceRequest.php',
+      107 => '/var/www/html/app/Http/Requests/Grievance/StoreGrievanceRequest.php',
+      108 => '/var/www/html/app/Http/Requests/Grievance/TransitionGrievanceRequest.php',
+      109 => '/var/www/html/app/Http/Requests/Grievance/UpdateGrievanceSlaRequest.php',
+      110 => '/var/www/html/app/Http/Requests/Matching/UpdateMatchingConfigRequest.php',
+      111 => '/var/www/html/app/Http/Requests/Notification/UpdateNotificationPreferencesRequest.php',
+      112 => '/var/www/html/app/Http/Requests/Programme/BulkEnrollmentRequest.php',
+      113 => '/var/www/html/app/Http/Requests/Programme/StoreActivityRequest.php',
+      114 => '/var/www/html/app/Http/Requests/Programme/StoreEnrollmentRequest.php',
+      115 => '/var/www/html/app/Http/Requests/Programme/StoreProgrammeRequest.php',
+      116 => '/var/www/html/app/Http/Requests/Programme/UpdateActivityRequest.php',
+      117 => '/var/www/html/app/Http/Requests/Programme/UpdateEnrollmentRequest.php',
+      118 => '/var/www/html/app/Http/Requests/Programme/UpdateProgrammeRequest.php',
+      119 => '/var/www/html/app/Http/Requests/Referral/StoreReferralRequest.php',
+      120 => '/var/www/html/app/Http/Requests/Referral/TransitionReferralRequest.php',
+      121 => '/var/www/html/app/Http/Requests/Referral/UpdateReferralSlaRequest.php',
+      122 => '/var/www/html/app/Http/Requests/Registry/AcceptServiceRequestRequest.php',
+      123 => '/var/www/html/app/Http/Requests/Registry/AddHouseholdMemberRequest.php',
+      124 => '/var/www/html/app/Http/Requests/Registry/ApiRegistrationRequest.php',
+      125 => '/var/www/html/app/Http/Requests/Registry/BeneficiaryLookupRequest.php',
+      126 => '/var/www/html/app/Http/Requests/Registry/BeneficiaryMatchSearchRequest.php',
+      127 => '/var/www/html/app/Http/Requests/Registry/DecideOwnershipTransferRequest.php',
+      128 => '/var/www/html/app/Http/Requests/Registry/DecideServeRequestRequest.php',
+      129 => '/var/www/html/app/Http/Requests/Registry/DeclineServiceRequestRequest.php',
+      130 => '/var/www/html/app/Http/Requests/Registry/DesignateHeadRequest.php',
+      131 => '/var/www/html/app/Http/Requests/Registry/MoveHouseholdMemberRequest.php',
+      132 => '/var/www/html/app/Http/Requests/Registry/RaiseServeRequestRequest.php',
+      133 => '/var/www/html/app/Http/Requests/Registry/ResolveImportRowRequest.php',
+      134 => '/var/www/html/app/Http/Requests/Registry/RouteAssignmentRequest.php',
+      135 => '/var/www/html/app/Http/Requests/Registry/StoreBeneficiaryRequest.php',
+      136 => '/var/www/html/app/Http/Requests/Registry/StoreHouseholdRequest.php',
+      137 => '/var/www/html/app/Http/Requests/Registry/StoreOwnershipTransferRequest.php',
+      138 => '/var/www/html/app/Http/Requests/Registry/StoreServiceRequestRequest.php',
+      139 => '/var/www/html/app/Http/Requests/Registry/UpdateBeneficiaryRequest.php',
+      140 => '/var/www/html/app/Http/Requests/Registry/UpdateHouseholdRequest.php',
+      141 => '/var/www/html/app/Http/Requests/Registry/UploadDocumentRequest.php',
+      142 => '/var/www/html/app/Http/Requests/Registry/UploadImportRequest.php',
+      143 => '/var/www/html/app/Http/Resources/BeneficiaryRevealResource.php',
+      144 => '/var/www/html/app/Http/Resources/UserResource.php',
+      145 => '/var/www/html/app/Providers/AppServiceProvider.php',
     ),
   ),
   '/var/www/html/app/Domain/Access/Events/AccountLocked.php' => 
@@ -14620,156 +16173,175 @@ return [
       34 => '/var/www/html/app/Domain/Benefit/Services/Verifiers/FieldConfirmationVerifier.php',
       35 => '/var/www/html/app/Domain/Benefit/Services/Verifiers/OtpVerifier.php',
       36 => '/var/www/html/app/Domain/Benefit/Services/Verifiers/SignatureVerifier.php',
-      37 => '/var/www/html/app/Domain/Matching/Models/MatchingConfig.php',
-      38 => '/var/www/html/app/Domain/Matching/Services/MatchingConfigService.php',
-      39 => '/var/www/html/app/Domain/Notification/Channels/EmailChannel.php',
-      40 => '/var/www/html/app/Domain/Notification/Channels/InAppChannel.php',
-      41 => '/var/www/html/app/Domain/Notification/Channels/SmsChannel.php',
-      42 => '/var/www/html/app/Domain/Notification/Channels/WhatsAppChannel.php',
-      43 => '/var/www/html/app/Domain/Notification/Contracts/NotificationChannel.php',
-      44 => '/var/www/html/app/Domain/Notification/Listeners/NotificationSubscriber.php',
-      45 => '/var/www/html/app/Domain/Notification/Models/Notification.php',
-      46 => '/var/www/html/app/Domain/Notification/Models/NotificationPreference.php',
-      47 => '/var/www/html/app/Domain/Notification/Services/Notifier.php',
-      48 => '/var/www/html/app/Domain/Programme/Models/Activity.php',
-      49 => '/var/www/html/app/Domain/Programme/Models/Enrollment.php',
-      50 => '/var/www/html/app/Domain/Programme/Models/Programme.php',
-      51 => '/var/www/html/app/Domain/Programme/Policies/ActivityPolicy.php',
-      52 => '/var/www/html/app/Domain/Programme/Policies/EnrollmentPolicy.php',
-      53 => '/var/www/html/app/Domain/Programme/Policies/ProgrammePolicy.php',
-      54 => '/var/www/html/app/Domain/Programme/ProgrammeServiceProvider.php',
-      55 => '/var/www/html/app/Domain/Programme/Services/EligibilityEvaluator.php',
-      56 => '/var/www/html/app/Domain/Programme/Services/EnrollmentService.php',
-      57 => '/var/www/html/app/Domain/Programme/Services/ProgrammeMatcher.php',
-      58 => '/var/www/html/app/Domain/Programme/Services/ProgrammeMatchingRouter.php',
-      59 => '/var/www/html/app/Domain/Referral/Models/Referral.php',
-      60 => '/var/www/html/app/Domain/Referral/Policies/ReferralPolicy.php',
-      61 => '/var/www/html/app/Domain/Referral/ReferralServiceProvider.php',
-      62 => '/var/www/html/app/Domain/Referral/Scopes/ReferralScope.php',
-      63 => '/var/www/html/app/Domain/Referral/Services/ReferralService.php',
-      64 => '/var/www/html/app/Domain/Registry/Contracts/BeneficiaryRouter.php',
-      65 => '/var/www/html/app/Domain/Registry/Events/OwnershipTransferRequested.php',
-      66 => '/var/www/html/app/Domain/Registry/Events/ServiceRequestAccepted.php',
-      67 => '/var/www/html/app/Domain/Registry/Events/ServiceRequestDeclined.php',
-      68 => '/var/www/html/app/Domain/Registry/Events/ServiceRequestRaised.php',
-      69 => '/var/www/html/app/Domain/Registry/Imports/ImportRowValidator.php',
-      70 => '/var/www/html/app/Domain/Registry/Jobs/CommitImportBatch.php',
-      71 => '/var/www/html/app/Domain/Registry/Jobs/ParseImportBatch.php',
-      72 => '/var/www/html/app/Domain/Registry/Models/Beneficiary.php',
-      73 => '/var/www/html/app/Domain/Registry/Models/BeneficiaryDocument.php',
-      74 => '/var/www/html/app/Domain/Registry/Models/BeneficiaryServiceGrant.php',
-      75 => '/var/www/html/app/Domain/Registry/Models/Household.php',
-      76 => '/var/www/html/app/Domain/Registry/Models/HouseholdMembership.php',
-      77 => '/var/www/html/app/Domain/Registry/Models/ImportBatch.php',
-      78 => '/var/www/html/app/Domain/Registry/Models/ImportRow.php',
-      79 => '/var/www/html/app/Domain/Registry/Models/OwnershipTransferRequest.php',
-      80 => '/var/www/html/app/Domain/Registry/Models/ServeRequest.php',
-      81 => '/var/www/html/app/Domain/Registry/Models/ServiceRequest.php',
-      82 => '/var/www/html/app/Domain/Registry/Policies/BeneficiaryDocumentPolicy.php',
-      83 => '/var/www/html/app/Domain/Registry/Policies/BeneficiaryPolicy.php',
-      84 => '/var/www/html/app/Domain/Registry/Policies/HouseholdPolicy.php',
-      85 => '/var/www/html/app/Domain/Registry/Policies/ImportBatchPolicy.php',
-      86 => '/var/www/html/app/Domain/Registry/Policies/OwnerMdaPolicy.php',
-      87 => '/var/www/html/app/Domain/Registry/Policies/ServeRequestPolicy.php',
-      88 => '/var/www/html/app/Domain/Registry/RegistryServiceProvider.php',
-      89 => '/var/www/html/app/Domain/Registry/Services/BatchDuplicateScreener.php',
-      90 => '/var/www/html/app/Domain/Registry/Services/BeneficiaryLookupService.php',
-      91 => '/var/www/html/app/Domain/Registry/Services/BeneficiaryRegistrar.php',
-      92 => '/var/www/html/app/Domain/Registry/Services/CandidateGatherer.php',
-      93 => '/var/www/html/app/Domain/Registry/Services/DeterministicDuplicateFinder.php',
-      94 => '/var/www/html/app/Domain/Registry/Services/HouseholdIngestionService.php',
-      95 => '/var/www/html/app/Domain/Registry/Services/HouseholdMembershipService.php',
-      96 => '/var/www/html/app/Domain/Registry/Services/NullBeneficiaryRouter.php',
-      97 => '/var/www/html/app/Domain/Registry/Services/OwnershipTransferService.php',
-      98 => '/var/www/html/app/Domain/Registry/Services/ServeRequestService.php',
-      99 => '/var/www/html/app/Domain/Registry/Services/ServiceRequestService.php',
-      100 => '/var/www/html/app/Http/Controllers/Api/V1/Access/MdaAccessGrantController.php',
-      101 => '/var/www/html/app/Http/Controllers/Api/V1/Access/MdaController.php',
-      102 => '/var/www/html/app/Http/Controllers/Api/V1/Access/UserController.php',
-      103 => '/var/www/html/app/Http/Controllers/Api/V1/AuthController.php',
-      104 => '/var/www/html/app/Http/Controllers/Api/V1/Benefit/BenefitController.php',
-      105 => '/var/www/html/app/Http/Controllers/Api/V1/Benefit/BenefitFlagController.php',
-      106 => '/var/www/html/app/Http/Controllers/Api/V1/Benefit/BenefitImportController.php',
-      107 => '/var/www/html/app/Http/Controllers/Api/V1/Benefit/DoubleDippingRuleController.php',
-      108 => '/var/www/html/app/Http/Controllers/Api/V1/Matching/MatchingConfigController.php',
-      109 => '/var/www/html/app/Http/Controllers/Api/V1/MfaController.php',
-      110 => '/var/www/html/app/Http/Controllers/Api/V1/Notification/NotificationController.php',
-      111 => '/var/www/html/app/Http/Controllers/Api/V1/Programme/ActivityController.php',
-      112 => '/var/www/html/app/Http/Controllers/Api/V1/Programme/EnrollmentController.php',
-      113 => '/var/www/html/app/Http/Controllers/Api/V1/Programme/ProgrammeController.php',
-      114 => '/var/www/html/app/Http/Controllers/Api/V1/Referral/ReferralController.php',
-      115 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/BeneficiaryController.php',
-      116 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/BeneficiaryDocumentController.php',
-      117 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/BeneficiaryIntakeController.php',
-      118 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/BeneficiaryRoutingController.php',
-      119 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/HouseholdController.php',
-      120 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/HouseholdMemberController.php',
-      121 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/ImportBatchController.php',
-      122 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/OwnershipTransferController.php',
-      123 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/ServeRequestController.php',
-      124 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/ServiceRequestController.php',
-      125 => '/var/www/html/app/Http/Middleware/CheckPermission.php',
-      126 => '/var/www/html/app/Http/Requests/Access/StoreMdaAccessGrantRequest.php',
-      127 => '/var/www/html/app/Http/Requests/Access/StoreMdaRequest.php',
-      128 => '/var/www/html/app/Http/Requests/Access/StoreUserRequest.php',
-      129 => '/var/www/html/app/Http/Requests/Access/UpdateMdaRequest.php',
-      130 => '/var/www/html/app/Http/Requests/Access/UpdateUserRequest.php',
-      131 => '/var/www/html/app/Http/Requests/Auth/ChangePasswordRequest.php',
-      132 => '/var/www/html/app/Http/Requests/Auth/MfaCodeRequest.php',
-      133 => '/var/www/html/app/Http/Requests/Benefit/AggregateBenefitsRequest.php',
-      134 => '/var/www/html/app/Http/Requests/Benefit/RecordBenefitRequest.php',
-      135 => '/var/www/html/app/Http/Requests/Benefit/ReviewBenefitFlagRequest.php',
-      136 => '/var/www/html/app/Http/Requests/Benefit/StoreDoubleDippingRuleRequest.php',
-      137 => '/var/www/html/app/Http/Requests/Benefit/UploadBenefitImportRequest.php',
-      138 => '/var/www/html/app/Http/Requests/Benefit/VerifyBenefitRequest.php',
-      139 => '/var/www/html/app/Http/Requests/Matching/UpdateMatchingConfigRequest.php',
-      140 => '/var/www/html/app/Http/Requests/Notification/UpdateNotificationPreferencesRequest.php',
-      141 => '/var/www/html/app/Http/Requests/Programme/BulkEnrollmentRequest.php',
-      142 => '/var/www/html/app/Http/Requests/Programme/StoreActivityRequest.php',
-      143 => '/var/www/html/app/Http/Requests/Programme/StoreEnrollmentRequest.php',
-      144 => '/var/www/html/app/Http/Requests/Programme/StoreProgrammeRequest.php',
-      145 => '/var/www/html/app/Http/Requests/Programme/UpdateActivityRequest.php',
-      146 => '/var/www/html/app/Http/Requests/Programme/UpdateEnrollmentRequest.php',
-      147 => '/var/www/html/app/Http/Requests/Programme/UpdateProgrammeRequest.php',
-      148 => '/var/www/html/app/Http/Requests/Referral/StoreReferralRequest.php',
-      149 => '/var/www/html/app/Http/Requests/Referral/TransitionReferralRequest.php',
-      150 => '/var/www/html/app/Http/Requests/Registry/AcceptServiceRequestRequest.php',
-      151 => '/var/www/html/app/Http/Requests/Registry/AddHouseholdMemberRequest.php',
-      152 => '/var/www/html/app/Http/Requests/Registry/ApiRegistrationRequest.php',
-      153 => '/var/www/html/app/Http/Requests/Registry/BeneficiaryLookupRequest.php',
-      154 => '/var/www/html/app/Http/Requests/Registry/BeneficiaryMatchSearchRequest.php',
-      155 => '/var/www/html/app/Http/Requests/Registry/DecideOwnershipTransferRequest.php',
-      156 => '/var/www/html/app/Http/Requests/Registry/DecideServeRequestRequest.php',
-      157 => '/var/www/html/app/Http/Requests/Registry/DeclineServiceRequestRequest.php',
-      158 => '/var/www/html/app/Http/Requests/Registry/DesignateHeadRequest.php',
-      159 => '/var/www/html/app/Http/Requests/Registry/MoveHouseholdMemberRequest.php',
-      160 => '/var/www/html/app/Http/Requests/Registry/RaiseServeRequestRequest.php',
-      161 => '/var/www/html/app/Http/Requests/Registry/ResolveImportRowRequest.php',
-      162 => '/var/www/html/app/Http/Requests/Registry/RouteAssignmentRequest.php',
-      163 => '/var/www/html/app/Http/Requests/Registry/StoreBeneficiaryRequest.php',
-      164 => '/var/www/html/app/Http/Requests/Registry/StoreHouseholdRequest.php',
-      165 => '/var/www/html/app/Http/Requests/Registry/StoreOwnershipTransferRequest.php',
-      166 => '/var/www/html/app/Http/Requests/Registry/StoreServiceRequestRequest.php',
-      167 => '/var/www/html/app/Http/Requests/Registry/UpdateBeneficiaryRequest.php',
-      168 => '/var/www/html/app/Http/Requests/Registry/UpdateHouseholdRequest.php',
-      169 => '/var/www/html/app/Http/Requests/Registry/UploadDocumentRequest.php',
-      170 => '/var/www/html/app/Http/Requests/Registry/UploadImportRequest.php',
-      171 => '/var/www/html/app/Http/Resources/ActivityResource.php',
-      172 => '/var/www/html/app/Http/Resources/BeneficiaryDocumentResource.php',
-      173 => '/var/www/html/app/Http/Resources/BeneficiaryResource.php',
-      174 => '/var/www/html/app/Http/Resources/BeneficiaryRevealResource.php',
-      175 => '/var/www/html/app/Http/Resources/BenefitImportBatchResource.php',
-      176 => '/var/www/html/app/Http/Resources/BenefitResource.php',
-      177 => '/var/www/html/app/Http/Resources/HouseholdMembershipResource.php',
-      178 => '/var/www/html/app/Http/Resources/HouseholdResource.php',
-      179 => '/var/www/html/app/Http/Resources/ImportBatchResource.php',
-      180 => '/var/www/html/app/Http/Resources/MdaResource.php',
-      181 => '/var/www/html/app/Http/Resources/ProgrammeResource.php',
-      182 => '/var/www/html/app/Http/Resources/ReferralResource.php',
-      183 => '/var/www/html/app/Http/Resources/ServeRequestResource.php',
-      184 => '/var/www/html/app/Http/Resources/ServiceRequestResource.php',
-      185 => '/var/www/html/app/Http/Resources/UserResource.php',
-      186 => '/var/www/html/app/Providers/AppServiceProvider.php',
+      37 => '/var/www/html/app/Domain/Grievance/Events/GrievanceAssigned.php',
+      38 => '/var/www/html/app/Domain/Grievance/Events/GrievanceResolved.php',
+      39 => '/var/www/html/app/Domain/Grievance/Events/GrievanceSlaBreached.php',
+      40 => '/var/www/html/app/Domain/Grievance/GrievanceServiceProvider.php',
+      41 => '/var/www/html/app/Domain/Grievance/Jobs/EscalateOverdueGrievances.php',
+      42 => '/var/www/html/app/Domain/Grievance/Models/Grievance.php',
+      43 => '/var/www/html/app/Domain/Grievance/Policies/GrievancePolicy.php',
+      44 => '/var/www/html/app/Domain/Grievance/Services/GrievanceService.php',
+      45 => '/var/www/html/app/Domain/Matching/Models/MatchingConfig.php',
+      46 => '/var/www/html/app/Domain/Matching/Services/MatchingConfigService.php',
+      47 => '/var/www/html/app/Domain/Notification/Channels/EmailChannel.php',
+      48 => '/var/www/html/app/Domain/Notification/Channels/InAppChannel.php',
+      49 => '/var/www/html/app/Domain/Notification/Channels/SmsChannel.php',
+      50 => '/var/www/html/app/Domain/Notification/Channels/WhatsAppChannel.php',
+      51 => '/var/www/html/app/Domain/Notification/Contracts/NotificationChannel.php',
+      52 => '/var/www/html/app/Domain/Notification/Listeners/NotificationSubscriber.php',
+      53 => '/var/www/html/app/Domain/Notification/Models/Notification.php',
+      54 => '/var/www/html/app/Domain/Notification/Models/NotificationPreference.php',
+      55 => '/var/www/html/app/Domain/Notification/Services/Notifier.php',
+      56 => '/var/www/html/app/Domain/Programme/Models/Activity.php',
+      57 => '/var/www/html/app/Domain/Programme/Models/Enrollment.php',
+      58 => '/var/www/html/app/Domain/Programme/Models/Programme.php',
+      59 => '/var/www/html/app/Domain/Programme/Policies/ActivityPolicy.php',
+      60 => '/var/www/html/app/Domain/Programme/Policies/EnrollmentPolicy.php',
+      61 => '/var/www/html/app/Domain/Programme/Policies/ProgrammePolicy.php',
+      62 => '/var/www/html/app/Domain/Programme/ProgrammeServiceProvider.php',
+      63 => '/var/www/html/app/Domain/Programme/Services/EligibilityEvaluator.php',
+      64 => '/var/www/html/app/Domain/Programme/Services/EnrollmentService.php',
+      65 => '/var/www/html/app/Domain/Programme/Services/ProgrammeMatcher.php',
+      66 => '/var/www/html/app/Domain/Programme/Services/ProgrammeMatchingRouter.php',
+      67 => '/var/www/html/app/Domain/Referral/Authorization/ReferralAuthorizer.php',
+      68 => '/var/www/html/app/Domain/Referral/Events/ReferralSlaBreached.php',
+      69 => '/var/www/html/app/Domain/Referral/Events/ReferralStatusChanged.php',
+      70 => '/var/www/html/app/Domain/Referral/Jobs/EscalateOverdueReferrals.php',
+      71 => '/var/www/html/app/Domain/Referral/Models/Referral.php',
+      72 => '/var/www/html/app/Domain/Referral/Policies/ReferralPolicy.php',
+      73 => '/var/www/html/app/Domain/Referral/ReferralServiceProvider.php',
+      74 => '/var/www/html/app/Domain/Referral/Scopes/ReferralScope.php',
+      75 => '/var/www/html/app/Domain/Referral/Services/ReferralService.php',
+      76 => '/var/www/html/app/Domain/Registry/Contracts/BeneficiaryRouter.php',
+      77 => '/var/www/html/app/Domain/Registry/Events/OwnershipTransferRequested.php',
+      78 => '/var/www/html/app/Domain/Registry/Events/ServiceRequestAccepted.php',
+      79 => '/var/www/html/app/Domain/Registry/Events/ServiceRequestDeclined.php',
+      80 => '/var/www/html/app/Domain/Registry/Events/ServiceRequestRaised.php',
+      81 => '/var/www/html/app/Domain/Registry/Imports/ImportRowValidator.php',
+      82 => '/var/www/html/app/Domain/Registry/Jobs/CommitImportBatch.php',
+      83 => '/var/www/html/app/Domain/Registry/Jobs/ParseImportBatch.php',
+      84 => '/var/www/html/app/Domain/Registry/Models/Beneficiary.php',
+      85 => '/var/www/html/app/Domain/Registry/Models/BeneficiaryDocument.php',
+      86 => '/var/www/html/app/Domain/Registry/Models/BeneficiaryServiceGrant.php',
+      87 => '/var/www/html/app/Domain/Registry/Models/Household.php',
+      88 => '/var/www/html/app/Domain/Registry/Models/HouseholdMembership.php',
+      89 => '/var/www/html/app/Domain/Registry/Models/ImportBatch.php',
+      90 => '/var/www/html/app/Domain/Registry/Models/ImportRow.php',
+      91 => '/var/www/html/app/Domain/Registry/Models/OwnershipTransferRequest.php',
+      92 => '/var/www/html/app/Domain/Registry/Models/ServeRequest.php',
+      93 => '/var/www/html/app/Domain/Registry/Models/ServiceRequest.php',
+      94 => '/var/www/html/app/Domain/Registry/Policies/BeneficiaryDocumentPolicy.php',
+      95 => '/var/www/html/app/Domain/Registry/Policies/BeneficiaryPolicy.php',
+      96 => '/var/www/html/app/Domain/Registry/Policies/HouseholdPolicy.php',
+      97 => '/var/www/html/app/Domain/Registry/Policies/ImportBatchPolicy.php',
+      98 => '/var/www/html/app/Domain/Registry/Policies/OwnerMdaPolicy.php',
+      99 => '/var/www/html/app/Domain/Registry/Policies/ServeRequestPolicy.php',
+      100 => '/var/www/html/app/Domain/Registry/RegistryServiceProvider.php',
+      101 => '/var/www/html/app/Domain/Registry/Services/BatchDuplicateScreener.php',
+      102 => '/var/www/html/app/Domain/Registry/Services/BeneficiaryLookupService.php',
+      103 => '/var/www/html/app/Domain/Registry/Services/BeneficiaryRegistrar.php',
+      104 => '/var/www/html/app/Domain/Registry/Services/CandidateGatherer.php',
+      105 => '/var/www/html/app/Domain/Registry/Services/DeterministicDuplicateFinder.php',
+      106 => '/var/www/html/app/Domain/Registry/Services/HouseholdIngestionService.php',
+      107 => '/var/www/html/app/Domain/Registry/Services/HouseholdMembershipService.php',
+      108 => '/var/www/html/app/Domain/Registry/Services/NullBeneficiaryRouter.php',
+      109 => '/var/www/html/app/Domain/Registry/Services/OwnershipTransferService.php',
+      110 => '/var/www/html/app/Domain/Registry/Services/ServeRequestService.php',
+      111 => '/var/www/html/app/Domain/Registry/Services/ServiceRequestService.php',
+      112 => '/var/www/html/app/Http/Controllers/Api/V1/Access/MdaAccessGrantController.php',
+      113 => '/var/www/html/app/Http/Controllers/Api/V1/Access/MdaController.php',
+      114 => '/var/www/html/app/Http/Controllers/Api/V1/Access/UserController.php',
+      115 => '/var/www/html/app/Http/Controllers/Api/V1/AuthController.php',
+      116 => '/var/www/html/app/Http/Controllers/Api/V1/Benefit/BenefitController.php',
+      117 => '/var/www/html/app/Http/Controllers/Api/V1/Benefit/BenefitFlagController.php',
+      118 => '/var/www/html/app/Http/Controllers/Api/V1/Benefit/BenefitImportController.php',
+      119 => '/var/www/html/app/Http/Controllers/Api/V1/Benefit/DoubleDippingRuleController.php',
+      120 => '/var/www/html/app/Http/Controllers/Api/V1/Grievance/GrievanceController.php',
+      121 => '/var/www/html/app/Http/Controllers/Api/V1/Matching/MatchingConfigController.php',
+      122 => '/var/www/html/app/Http/Controllers/Api/V1/MfaController.php',
+      123 => '/var/www/html/app/Http/Controllers/Api/V1/Notification/NotificationController.php',
+      124 => '/var/www/html/app/Http/Controllers/Api/V1/Programme/ActivityController.php',
+      125 => '/var/www/html/app/Http/Controllers/Api/V1/Programme/EnrollmentController.php',
+      126 => '/var/www/html/app/Http/Controllers/Api/V1/Programme/ProgrammeController.php',
+      127 => '/var/www/html/app/Http/Controllers/Api/V1/Referral/ReferralController.php',
+      128 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/BeneficiaryController.php',
+      129 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/BeneficiaryDocumentController.php',
+      130 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/BeneficiaryIntakeController.php',
+      131 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/BeneficiaryRoutingController.php',
+      132 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/HouseholdController.php',
+      133 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/HouseholdMemberController.php',
+      134 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/ImportBatchController.php',
+      135 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/OwnershipTransferController.php',
+      136 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/ServeRequestController.php',
+      137 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/ServiceRequestController.php',
+      138 => '/var/www/html/app/Http/Middleware/CheckPermission.php',
+      139 => '/var/www/html/app/Http/Requests/Access/StoreMdaAccessGrantRequest.php',
+      140 => '/var/www/html/app/Http/Requests/Access/StoreMdaRequest.php',
+      141 => '/var/www/html/app/Http/Requests/Access/StoreUserRequest.php',
+      142 => '/var/www/html/app/Http/Requests/Access/UpdateMdaRequest.php',
+      143 => '/var/www/html/app/Http/Requests/Access/UpdateUserRequest.php',
+      144 => '/var/www/html/app/Http/Requests/Auth/ChangePasswordRequest.php',
+      145 => '/var/www/html/app/Http/Requests/Auth/MfaCodeRequest.php',
+      146 => '/var/www/html/app/Http/Requests/Benefit/AggregateBenefitsRequest.php',
+      147 => '/var/www/html/app/Http/Requests/Benefit/RecordBenefitRequest.php',
+      148 => '/var/www/html/app/Http/Requests/Benefit/ReviewBenefitFlagRequest.php',
+      149 => '/var/www/html/app/Http/Requests/Benefit/StoreDoubleDippingRuleRequest.php',
+      150 => '/var/www/html/app/Http/Requests/Benefit/UploadBenefitImportRequest.php',
+      151 => '/var/www/html/app/Http/Requests/Benefit/VerifyBenefitRequest.php',
+      152 => '/var/www/html/app/Http/Requests/Grievance/AssignGrievanceRequest.php',
+      153 => '/var/www/html/app/Http/Requests/Grievance/StoreGrievanceRequest.php',
+      154 => '/var/www/html/app/Http/Requests/Grievance/TransitionGrievanceRequest.php',
+      155 => '/var/www/html/app/Http/Requests/Grievance/UpdateGrievanceSlaRequest.php',
+      156 => '/var/www/html/app/Http/Requests/Matching/UpdateMatchingConfigRequest.php',
+      157 => '/var/www/html/app/Http/Requests/Notification/UpdateNotificationPreferencesRequest.php',
+      158 => '/var/www/html/app/Http/Requests/Programme/BulkEnrollmentRequest.php',
+      159 => '/var/www/html/app/Http/Requests/Programme/StoreActivityRequest.php',
+      160 => '/var/www/html/app/Http/Requests/Programme/StoreEnrollmentRequest.php',
+      161 => '/var/www/html/app/Http/Requests/Programme/StoreProgrammeRequest.php',
+      162 => '/var/www/html/app/Http/Requests/Programme/UpdateActivityRequest.php',
+      163 => '/var/www/html/app/Http/Requests/Programme/UpdateEnrollmentRequest.php',
+      164 => '/var/www/html/app/Http/Requests/Programme/UpdateProgrammeRequest.php',
+      165 => '/var/www/html/app/Http/Requests/Referral/StoreReferralRequest.php',
+      166 => '/var/www/html/app/Http/Requests/Referral/TransitionReferralRequest.php',
+      167 => '/var/www/html/app/Http/Requests/Referral/UpdateReferralSlaRequest.php',
+      168 => '/var/www/html/app/Http/Requests/Registry/AcceptServiceRequestRequest.php',
+      169 => '/var/www/html/app/Http/Requests/Registry/AddHouseholdMemberRequest.php',
+      170 => '/var/www/html/app/Http/Requests/Registry/ApiRegistrationRequest.php',
+      171 => '/var/www/html/app/Http/Requests/Registry/BeneficiaryLookupRequest.php',
+      172 => '/var/www/html/app/Http/Requests/Registry/BeneficiaryMatchSearchRequest.php',
+      173 => '/var/www/html/app/Http/Requests/Registry/DecideOwnershipTransferRequest.php',
+      174 => '/var/www/html/app/Http/Requests/Registry/DecideServeRequestRequest.php',
+      175 => '/var/www/html/app/Http/Requests/Registry/DeclineServiceRequestRequest.php',
+      176 => '/var/www/html/app/Http/Requests/Registry/DesignateHeadRequest.php',
+      177 => '/var/www/html/app/Http/Requests/Registry/MoveHouseholdMemberRequest.php',
+      178 => '/var/www/html/app/Http/Requests/Registry/RaiseServeRequestRequest.php',
+      179 => '/var/www/html/app/Http/Requests/Registry/ResolveImportRowRequest.php',
+      180 => '/var/www/html/app/Http/Requests/Registry/RouteAssignmentRequest.php',
+      181 => '/var/www/html/app/Http/Requests/Registry/StoreBeneficiaryRequest.php',
+      182 => '/var/www/html/app/Http/Requests/Registry/StoreHouseholdRequest.php',
+      183 => '/var/www/html/app/Http/Requests/Registry/StoreOwnershipTransferRequest.php',
+      184 => '/var/www/html/app/Http/Requests/Registry/StoreServiceRequestRequest.php',
+      185 => '/var/www/html/app/Http/Requests/Registry/UpdateBeneficiaryRequest.php',
+      186 => '/var/www/html/app/Http/Requests/Registry/UpdateHouseholdRequest.php',
+      187 => '/var/www/html/app/Http/Requests/Registry/UploadDocumentRequest.php',
+      188 => '/var/www/html/app/Http/Requests/Registry/UploadImportRequest.php',
+      189 => '/var/www/html/app/Http/Resources/ActivityResource.php',
+      190 => '/var/www/html/app/Http/Resources/BeneficiaryDocumentResource.php',
+      191 => '/var/www/html/app/Http/Resources/BeneficiaryResource.php',
+      192 => '/var/www/html/app/Http/Resources/BeneficiaryRevealResource.php',
+      193 => '/var/www/html/app/Http/Resources/BenefitImportBatchResource.php',
+      194 => '/var/www/html/app/Http/Resources/BenefitResource.php',
+      195 => '/var/www/html/app/Http/Resources/GrievanceResource.php',
+      196 => '/var/www/html/app/Http/Resources/HouseholdMembershipResource.php',
+      197 => '/var/www/html/app/Http/Resources/HouseholdResource.php',
+      198 => '/var/www/html/app/Http/Resources/ImportBatchResource.php',
+      199 => '/var/www/html/app/Http/Resources/MdaResource.php',
+      200 => '/var/www/html/app/Http/Resources/ProgrammeResource.php',
+      201 => '/var/www/html/app/Http/Resources/ReferralResource.php',
+      202 => '/var/www/html/app/Http/Resources/ServeRequestResource.php',
+      203 => '/var/www/html/app/Http/Resources/ServiceRequestResource.php',
+      204 => '/var/www/html/app/Http/Resources/UserResource.php',
+      205 => '/var/www/html/app/Providers/AppServiceProvider.php',
     ),
   ),
   '/var/www/html/app/Domain/Access/Models/MdaAccessGrant.php' => 
@@ -14831,115 +16403,127 @@ return [
       24 => '/var/www/html/app/Domain/Benefit/Services/Verifiers/FieldConfirmationVerifier.php',
       25 => '/var/www/html/app/Domain/Benefit/Services/Verifiers/OtpVerifier.php',
       26 => '/var/www/html/app/Domain/Benefit/Services/Verifiers/SignatureVerifier.php',
-      27 => '/var/www/html/app/Domain/Matching/Models/MatchingConfig.php',
-      28 => '/var/www/html/app/Domain/Matching/Services/MatchingConfigService.php',
-      29 => '/var/www/html/app/Domain/Notification/Channels/EmailChannel.php',
-      30 => '/var/www/html/app/Domain/Notification/Channels/InAppChannel.php',
-      31 => '/var/www/html/app/Domain/Notification/Channels/SmsChannel.php',
-      32 => '/var/www/html/app/Domain/Notification/Channels/WhatsAppChannel.php',
-      33 => '/var/www/html/app/Domain/Notification/Contracts/NotificationChannel.php',
-      34 => '/var/www/html/app/Domain/Notification/Listeners/NotificationSubscriber.php',
-      35 => '/var/www/html/app/Domain/Notification/Models/Notification.php',
-      36 => '/var/www/html/app/Domain/Notification/Models/NotificationPreference.php',
-      37 => '/var/www/html/app/Domain/Notification/Services/Notifier.php',
-      38 => '/var/www/html/app/Domain/Programme/Models/Activity.php',
-      39 => '/var/www/html/app/Domain/Programme/Models/Programme.php',
-      40 => '/var/www/html/app/Domain/Programme/Policies/ActivityPolicy.php',
-      41 => '/var/www/html/app/Domain/Programme/Policies/EnrollmentPolicy.php',
-      42 => '/var/www/html/app/Domain/Programme/Policies/ProgrammePolicy.php',
-      43 => '/var/www/html/app/Domain/Programme/Services/EnrollmentService.php',
-      44 => '/var/www/html/app/Domain/Referral/Policies/ReferralPolicy.php',
-      45 => '/var/www/html/app/Domain/Referral/Scopes/ReferralScope.php',
-      46 => '/var/www/html/app/Domain/Referral/Services/ReferralService.php',
-      47 => '/var/www/html/app/Domain/Registry/Events/OwnershipTransferRequested.php',
-      48 => '/var/www/html/app/Domain/Registry/Events/ServiceRequestAccepted.php',
-      49 => '/var/www/html/app/Domain/Registry/Events/ServiceRequestDeclined.php',
-      50 => '/var/www/html/app/Domain/Registry/Events/ServiceRequestRaised.php',
-      51 => '/var/www/html/app/Domain/Registry/Jobs/CommitImportBatch.php',
-      52 => '/var/www/html/app/Domain/Registry/Models/BeneficiaryDocument.php',
-      53 => '/var/www/html/app/Domain/Registry/Models/ImportBatch.php',
-      54 => '/var/www/html/app/Domain/Registry/Models/OwnershipTransferRequest.php',
-      55 => '/var/www/html/app/Domain/Registry/Policies/BeneficiaryDocumentPolicy.php',
-      56 => '/var/www/html/app/Domain/Registry/Policies/BeneficiaryPolicy.php',
-      57 => '/var/www/html/app/Domain/Registry/Policies/HouseholdPolicy.php',
-      58 => '/var/www/html/app/Domain/Registry/Policies/ImportBatchPolicy.php',
-      59 => '/var/www/html/app/Domain/Registry/Policies/OwnerMdaPolicy.php',
-      60 => '/var/www/html/app/Domain/Registry/Policies/ServeRequestPolicy.php',
-      61 => '/var/www/html/app/Domain/Registry/Services/OwnershipTransferService.php',
-      62 => '/var/www/html/app/Domain/Registry/Services/ServeRequestService.php',
-      63 => '/var/www/html/app/Domain/Registry/Services/ServiceRequestService.php',
-      64 => '/var/www/html/app/Http/Controllers/Api/V1/Access/AccessController.php',
-      65 => '/var/www/html/app/Http/Controllers/Api/V1/Access/MdaAccessGrantController.php',
-      66 => '/var/www/html/app/Http/Controllers/Api/V1/Access/UserController.php',
-      67 => '/var/www/html/app/Http/Controllers/Api/V1/AuthController.php',
-      68 => '/var/www/html/app/Http/Controllers/Api/V1/Benefit/BenefitController.php',
-      69 => '/var/www/html/app/Http/Controllers/Api/V1/Benefit/BenefitFlagController.php',
-      70 => '/var/www/html/app/Http/Controllers/Api/V1/Benefit/BenefitImportController.php',
-      71 => '/var/www/html/app/Http/Controllers/Api/V1/Benefit/DoubleDippingRuleController.php',
-      72 => '/var/www/html/app/Http/Controllers/Api/V1/Matching/MatchingConfigController.php',
-      73 => '/var/www/html/app/Http/Controllers/Api/V1/MfaController.php',
-      74 => '/var/www/html/app/Http/Controllers/Api/V1/Notification/NotificationController.php',
-      75 => '/var/www/html/app/Http/Controllers/Api/V1/Programme/ActivityController.php',
-      76 => '/var/www/html/app/Http/Controllers/Api/V1/Programme/EnrollmentController.php',
-      77 => '/var/www/html/app/Http/Controllers/Api/V1/Programme/ProgrammeController.php',
-      78 => '/var/www/html/app/Http/Controllers/Api/V1/Referral/ReferralController.php',
-      79 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/BeneficiaryController.php',
-      80 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/BeneficiaryDocumentController.php',
-      81 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/BeneficiaryIntakeController.php',
-      82 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/BeneficiaryRoutingController.php',
-      83 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/ImportBatchController.php',
-      84 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/OwnershipTransferController.php',
-      85 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/ServeRequestController.php',
-      86 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/ServiceRequestController.php',
-      87 => '/var/www/html/app/Http/Middleware/CheckPermission.php',
-      88 => '/var/www/html/app/Http/Requests/Access/StoreMdaAccessGrantRequest.php',
-      89 => '/var/www/html/app/Http/Requests/Access/StoreMdaRequest.php',
-      90 => '/var/www/html/app/Http/Requests/Access/StoreUserRequest.php',
-      91 => '/var/www/html/app/Http/Requests/Access/UpdateMdaRequest.php',
-      92 => '/var/www/html/app/Http/Requests/Access/UpdateUserRequest.php',
-      93 => '/var/www/html/app/Http/Requests/Auth/ChangePasswordRequest.php',
-      94 => '/var/www/html/app/Http/Requests/Auth/MfaCodeRequest.php',
-      95 => '/var/www/html/app/Http/Requests/Benefit/AggregateBenefitsRequest.php',
-      96 => '/var/www/html/app/Http/Requests/Benefit/RecordBenefitRequest.php',
-      97 => '/var/www/html/app/Http/Requests/Benefit/ReviewBenefitFlagRequest.php',
-      98 => '/var/www/html/app/Http/Requests/Benefit/StoreDoubleDippingRuleRequest.php',
-      99 => '/var/www/html/app/Http/Requests/Benefit/UploadBenefitImportRequest.php',
-      100 => '/var/www/html/app/Http/Requests/Benefit/VerifyBenefitRequest.php',
-      101 => '/var/www/html/app/Http/Requests/Matching/UpdateMatchingConfigRequest.php',
-      102 => '/var/www/html/app/Http/Requests/Notification/UpdateNotificationPreferencesRequest.php',
-      103 => '/var/www/html/app/Http/Requests/Programme/BulkEnrollmentRequest.php',
-      104 => '/var/www/html/app/Http/Requests/Programme/StoreActivityRequest.php',
-      105 => '/var/www/html/app/Http/Requests/Programme/StoreEnrollmentRequest.php',
-      106 => '/var/www/html/app/Http/Requests/Programme/StoreProgrammeRequest.php',
-      107 => '/var/www/html/app/Http/Requests/Programme/UpdateActivityRequest.php',
-      108 => '/var/www/html/app/Http/Requests/Programme/UpdateEnrollmentRequest.php',
-      109 => '/var/www/html/app/Http/Requests/Programme/UpdateProgrammeRequest.php',
-      110 => '/var/www/html/app/Http/Requests/Referral/StoreReferralRequest.php',
-      111 => '/var/www/html/app/Http/Requests/Referral/TransitionReferralRequest.php',
-      112 => '/var/www/html/app/Http/Requests/Registry/AcceptServiceRequestRequest.php',
-      113 => '/var/www/html/app/Http/Requests/Registry/AddHouseholdMemberRequest.php',
-      114 => '/var/www/html/app/Http/Requests/Registry/ApiRegistrationRequest.php',
-      115 => '/var/www/html/app/Http/Requests/Registry/BeneficiaryLookupRequest.php',
-      116 => '/var/www/html/app/Http/Requests/Registry/BeneficiaryMatchSearchRequest.php',
-      117 => '/var/www/html/app/Http/Requests/Registry/DecideOwnershipTransferRequest.php',
-      118 => '/var/www/html/app/Http/Requests/Registry/DecideServeRequestRequest.php',
-      119 => '/var/www/html/app/Http/Requests/Registry/DeclineServiceRequestRequest.php',
-      120 => '/var/www/html/app/Http/Requests/Registry/DesignateHeadRequest.php',
-      121 => '/var/www/html/app/Http/Requests/Registry/MoveHouseholdMemberRequest.php',
-      122 => '/var/www/html/app/Http/Requests/Registry/RaiseServeRequestRequest.php',
-      123 => '/var/www/html/app/Http/Requests/Registry/ResolveImportRowRequest.php',
-      124 => '/var/www/html/app/Http/Requests/Registry/RouteAssignmentRequest.php',
-      125 => '/var/www/html/app/Http/Requests/Registry/StoreBeneficiaryRequest.php',
-      126 => '/var/www/html/app/Http/Requests/Registry/StoreHouseholdRequest.php',
-      127 => '/var/www/html/app/Http/Requests/Registry/StoreOwnershipTransferRequest.php',
-      128 => '/var/www/html/app/Http/Requests/Registry/StoreServiceRequestRequest.php',
-      129 => '/var/www/html/app/Http/Requests/Registry/UpdateBeneficiaryRequest.php',
-      130 => '/var/www/html/app/Http/Requests/Registry/UpdateHouseholdRequest.php',
-      131 => '/var/www/html/app/Http/Requests/Registry/UploadDocumentRequest.php',
-      132 => '/var/www/html/app/Http/Requests/Registry/UploadImportRequest.php',
-      133 => '/var/www/html/app/Http/Resources/BeneficiaryRevealResource.php',
-      134 => '/var/www/html/app/Http/Resources/UserResource.php',
-      135 => '/var/www/html/app/Providers/AppServiceProvider.php',
+      27 => '/var/www/html/app/Domain/Grievance/Events/GrievanceAssigned.php',
+      28 => '/var/www/html/app/Domain/Grievance/Events/GrievanceResolved.php',
+      29 => '/var/www/html/app/Domain/Grievance/Models/Grievance.php',
+      30 => '/var/www/html/app/Domain/Grievance/Policies/GrievancePolicy.php',
+      31 => '/var/www/html/app/Domain/Grievance/Services/GrievanceService.php',
+      32 => '/var/www/html/app/Domain/Matching/Models/MatchingConfig.php',
+      33 => '/var/www/html/app/Domain/Matching/Services/MatchingConfigService.php',
+      34 => '/var/www/html/app/Domain/Notification/Channels/EmailChannel.php',
+      35 => '/var/www/html/app/Domain/Notification/Channels/InAppChannel.php',
+      36 => '/var/www/html/app/Domain/Notification/Channels/SmsChannel.php',
+      37 => '/var/www/html/app/Domain/Notification/Channels/WhatsAppChannel.php',
+      38 => '/var/www/html/app/Domain/Notification/Contracts/NotificationChannel.php',
+      39 => '/var/www/html/app/Domain/Notification/Listeners/NotificationSubscriber.php',
+      40 => '/var/www/html/app/Domain/Notification/Models/Notification.php',
+      41 => '/var/www/html/app/Domain/Notification/Models/NotificationPreference.php',
+      42 => '/var/www/html/app/Domain/Notification/Services/Notifier.php',
+      43 => '/var/www/html/app/Domain/Programme/Models/Activity.php',
+      44 => '/var/www/html/app/Domain/Programme/Models/Programme.php',
+      45 => '/var/www/html/app/Domain/Programme/Policies/ActivityPolicy.php',
+      46 => '/var/www/html/app/Domain/Programme/Policies/EnrollmentPolicy.php',
+      47 => '/var/www/html/app/Domain/Programme/Policies/ProgrammePolicy.php',
+      48 => '/var/www/html/app/Domain/Programme/Services/EnrollmentService.php',
+      49 => '/var/www/html/app/Domain/Referral/Events/ReferralStatusChanged.php',
+      50 => '/var/www/html/app/Domain/Referral/Policies/ReferralPolicy.php',
+      51 => '/var/www/html/app/Domain/Referral/Scopes/ReferralScope.php',
+      52 => '/var/www/html/app/Domain/Referral/Services/ReferralService.php',
+      53 => '/var/www/html/app/Domain/Registry/Events/OwnershipTransferRequested.php',
+      54 => '/var/www/html/app/Domain/Registry/Events/ServiceRequestAccepted.php',
+      55 => '/var/www/html/app/Domain/Registry/Events/ServiceRequestDeclined.php',
+      56 => '/var/www/html/app/Domain/Registry/Events/ServiceRequestRaised.php',
+      57 => '/var/www/html/app/Domain/Registry/Jobs/CommitImportBatch.php',
+      58 => '/var/www/html/app/Domain/Registry/Models/BeneficiaryDocument.php',
+      59 => '/var/www/html/app/Domain/Registry/Models/ImportBatch.php',
+      60 => '/var/www/html/app/Domain/Registry/Models/OwnershipTransferRequest.php',
+      61 => '/var/www/html/app/Domain/Registry/Policies/BeneficiaryDocumentPolicy.php',
+      62 => '/var/www/html/app/Domain/Registry/Policies/BeneficiaryPolicy.php',
+      63 => '/var/www/html/app/Domain/Registry/Policies/HouseholdPolicy.php',
+      64 => '/var/www/html/app/Domain/Registry/Policies/ImportBatchPolicy.php',
+      65 => '/var/www/html/app/Domain/Registry/Policies/OwnerMdaPolicy.php',
+      66 => '/var/www/html/app/Domain/Registry/Policies/ServeRequestPolicy.php',
+      67 => '/var/www/html/app/Domain/Registry/Services/OwnershipTransferService.php',
+      68 => '/var/www/html/app/Domain/Registry/Services/ServeRequestService.php',
+      69 => '/var/www/html/app/Domain/Registry/Services/ServiceRequestService.php',
+      70 => '/var/www/html/app/Http/Controllers/Api/V1/Access/AccessController.php',
+      71 => '/var/www/html/app/Http/Controllers/Api/V1/Access/MdaAccessGrantController.php',
+      72 => '/var/www/html/app/Http/Controllers/Api/V1/Access/UserController.php',
+      73 => '/var/www/html/app/Http/Controllers/Api/V1/AuthController.php',
+      74 => '/var/www/html/app/Http/Controllers/Api/V1/Benefit/BenefitController.php',
+      75 => '/var/www/html/app/Http/Controllers/Api/V1/Benefit/BenefitFlagController.php',
+      76 => '/var/www/html/app/Http/Controllers/Api/V1/Benefit/BenefitImportController.php',
+      77 => '/var/www/html/app/Http/Controllers/Api/V1/Benefit/DoubleDippingRuleController.php',
+      78 => '/var/www/html/app/Http/Controllers/Api/V1/Grievance/GrievanceController.php',
+      79 => '/var/www/html/app/Http/Controllers/Api/V1/Matching/MatchingConfigController.php',
+      80 => '/var/www/html/app/Http/Controllers/Api/V1/MfaController.php',
+      81 => '/var/www/html/app/Http/Controllers/Api/V1/Notification/NotificationController.php',
+      82 => '/var/www/html/app/Http/Controllers/Api/V1/Programme/ActivityController.php',
+      83 => '/var/www/html/app/Http/Controllers/Api/V1/Programme/EnrollmentController.php',
+      84 => '/var/www/html/app/Http/Controllers/Api/V1/Programme/ProgrammeController.php',
+      85 => '/var/www/html/app/Http/Controllers/Api/V1/Referral/ReferralController.php',
+      86 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/BeneficiaryController.php',
+      87 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/BeneficiaryDocumentController.php',
+      88 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/BeneficiaryIntakeController.php',
+      89 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/BeneficiaryRoutingController.php',
+      90 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/ImportBatchController.php',
+      91 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/OwnershipTransferController.php',
+      92 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/ServeRequestController.php',
+      93 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/ServiceRequestController.php',
+      94 => '/var/www/html/app/Http/Middleware/CheckPermission.php',
+      95 => '/var/www/html/app/Http/Requests/Access/StoreMdaAccessGrantRequest.php',
+      96 => '/var/www/html/app/Http/Requests/Access/StoreMdaRequest.php',
+      97 => '/var/www/html/app/Http/Requests/Access/StoreUserRequest.php',
+      98 => '/var/www/html/app/Http/Requests/Access/UpdateMdaRequest.php',
+      99 => '/var/www/html/app/Http/Requests/Access/UpdateUserRequest.php',
+      100 => '/var/www/html/app/Http/Requests/Auth/ChangePasswordRequest.php',
+      101 => '/var/www/html/app/Http/Requests/Auth/MfaCodeRequest.php',
+      102 => '/var/www/html/app/Http/Requests/Benefit/AggregateBenefitsRequest.php',
+      103 => '/var/www/html/app/Http/Requests/Benefit/RecordBenefitRequest.php',
+      104 => '/var/www/html/app/Http/Requests/Benefit/ReviewBenefitFlagRequest.php',
+      105 => '/var/www/html/app/Http/Requests/Benefit/StoreDoubleDippingRuleRequest.php',
+      106 => '/var/www/html/app/Http/Requests/Benefit/UploadBenefitImportRequest.php',
+      107 => '/var/www/html/app/Http/Requests/Benefit/VerifyBenefitRequest.php',
+      108 => '/var/www/html/app/Http/Requests/Grievance/AssignGrievanceRequest.php',
+      109 => '/var/www/html/app/Http/Requests/Grievance/StoreGrievanceRequest.php',
+      110 => '/var/www/html/app/Http/Requests/Grievance/TransitionGrievanceRequest.php',
+      111 => '/var/www/html/app/Http/Requests/Grievance/UpdateGrievanceSlaRequest.php',
+      112 => '/var/www/html/app/Http/Requests/Matching/UpdateMatchingConfigRequest.php',
+      113 => '/var/www/html/app/Http/Requests/Notification/UpdateNotificationPreferencesRequest.php',
+      114 => '/var/www/html/app/Http/Requests/Programme/BulkEnrollmentRequest.php',
+      115 => '/var/www/html/app/Http/Requests/Programme/StoreActivityRequest.php',
+      116 => '/var/www/html/app/Http/Requests/Programme/StoreEnrollmentRequest.php',
+      117 => '/var/www/html/app/Http/Requests/Programme/StoreProgrammeRequest.php',
+      118 => '/var/www/html/app/Http/Requests/Programme/UpdateActivityRequest.php',
+      119 => '/var/www/html/app/Http/Requests/Programme/UpdateEnrollmentRequest.php',
+      120 => '/var/www/html/app/Http/Requests/Programme/UpdateProgrammeRequest.php',
+      121 => '/var/www/html/app/Http/Requests/Referral/StoreReferralRequest.php',
+      122 => '/var/www/html/app/Http/Requests/Referral/TransitionReferralRequest.php',
+      123 => '/var/www/html/app/Http/Requests/Referral/UpdateReferralSlaRequest.php',
+      124 => '/var/www/html/app/Http/Requests/Registry/AcceptServiceRequestRequest.php',
+      125 => '/var/www/html/app/Http/Requests/Registry/AddHouseholdMemberRequest.php',
+      126 => '/var/www/html/app/Http/Requests/Registry/ApiRegistrationRequest.php',
+      127 => '/var/www/html/app/Http/Requests/Registry/BeneficiaryLookupRequest.php',
+      128 => '/var/www/html/app/Http/Requests/Registry/BeneficiaryMatchSearchRequest.php',
+      129 => '/var/www/html/app/Http/Requests/Registry/DecideOwnershipTransferRequest.php',
+      130 => '/var/www/html/app/Http/Requests/Registry/DecideServeRequestRequest.php',
+      131 => '/var/www/html/app/Http/Requests/Registry/DeclineServiceRequestRequest.php',
+      132 => '/var/www/html/app/Http/Requests/Registry/DesignateHeadRequest.php',
+      133 => '/var/www/html/app/Http/Requests/Registry/MoveHouseholdMemberRequest.php',
+      134 => '/var/www/html/app/Http/Requests/Registry/RaiseServeRequestRequest.php',
+      135 => '/var/www/html/app/Http/Requests/Registry/ResolveImportRowRequest.php',
+      136 => '/var/www/html/app/Http/Requests/Registry/RouteAssignmentRequest.php',
+      137 => '/var/www/html/app/Http/Requests/Registry/StoreBeneficiaryRequest.php',
+      138 => '/var/www/html/app/Http/Requests/Registry/StoreHouseholdRequest.php',
+      139 => '/var/www/html/app/Http/Requests/Registry/StoreOwnershipTransferRequest.php',
+      140 => '/var/www/html/app/Http/Requests/Registry/StoreServiceRequestRequest.php',
+      141 => '/var/www/html/app/Http/Requests/Registry/UpdateBeneficiaryRequest.php',
+      142 => '/var/www/html/app/Http/Requests/Registry/UpdateHouseholdRequest.php',
+      143 => '/var/www/html/app/Http/Requests/Registry/UploadDocumentRequest.php',
+      144 => '/var/www/html/app/Http/Requests/Registry/UploadImportRequest.php',
+      145 => '/var/www/html/app/Http/Resources/BeneficiaryRevealResource.php',
+      146 => '/var/www/html/app/Http/Resources/UserResource.php',
+      147 => '/var/www/html/app/Providers/AppServiceProvider.php',
     ),
   ),
   '/var/www/html/app/Domain/Access/Models/User.php' => 
@@ -14972,130 +16556,146 @@ return [
       22 => '/var/www/html/app/Domain/Benefit/Services/Verifiers/FieldConfirmationVerifier.php',
       23 => '/var/www/html/app/Domain/Benefit/Services/Verifiers/OtpVerifier.php',
       24 => '/var/www/html/app/Domain/Benefit/Services/Verifiers/SignatureVerifier.php',
-      25 => '/var/www/html/app/Domain/Matching/Contracts/MatchScorer.php',
-      26 => '/var/www/html/app/Domain/Matching/Engine/DeterministicMatcher.php',
-      27 => '/var/www/html/app/Domain/Matching/Engine/DuplicateCascade.php',
-      28 => '/var/www/html/app/Domain/Matching/Engine/MatchingEngine.php',
-      29 => '/var/www/html/app/Domain/Matching/Models/MatchingConfig.php',
-      30 => '/var/www/html/app/Domain/Matching/Scoring/RuleBasedMatchScorer.php',
-      31 => '/var/www/html/app/Domain/Matching/Services/MatchingConfigService.php',
-      32 => '/var/www/html/app/Domain/Notification/Channels/EmailChannel.php',
-      33 => '/var/www/html/app/Domain/Notification/Channels/InAppChannel.php',
-      34 => '/var/www/html/app/Domain/Notification/Channels/SmsChannel.php',
-      35 => '/var/www/html/app/Domain/Notification/Channels/WhatsAppChannel.php',
-      36 => '/var/www/html/app/Domain/Notification/Contracts/NotificationChannel.php',
-      37 => '/var/www/html/app/Domain/Notification/Listeners/NotificationSubscriber.php',
-      38 => '/var/www/html/app/Domain/Notification/Models/Notification.php',
-      39 => '/var/www/html/app/Domain/Notification/Models/NotificationPreference.php',
-      40 => '/var/www/html/app/Domain/Notification/Services/Notifier.php',
-      41 => '/var/www/html/app/Domain/Programme/Models/Activity.php',
-      42 => '/var/www/html/app/Domain/Programme/Models/Programme.php',
-      43 => '/var/www/html/app/Domain/Programme/Policies/ActivityPolicy.php',
-      44 => '/var/www/html/app/Domain/Programme/Policies/EnrollmentPolicy.php',
-      45 => '/var/www/html/app/Domain/Programme/Policies/ProgrammePolicy.php',
-      46 => '/var/www/html/app/Domain/Programme/Services/EnrollmentService.php',
-      47 => '/var/www/html/app/Domain/Referral/Policies/ReferralPolicy.php',
-      48 => '/var/www/html/app/Domain/Referral/Scopes/ReferralScope.php',
-      49 => '/var/www/html/app/Domain/Referral/Services/ReferralService.php',
-      50 => '/var/www/html/app/Domain/Registry/Events/OwnershipTransferRequested.php',
-      51 => '/var/www/html/app/Domain/Registry/Events/ServiceRequestAccepted.php',
-      52 => '/var/www/html/app/Domain/Registry/Events/ServiceRequestDeclined.php',
-      53 => '/var/www/html/app/Domain/Registry/Events/ServiceRequestRaised.php',
-      54 => '/var/www/html/app/Domain/Registry/Jobs/CommitImportBatch.php',
-      55 => '/var/www/html/app/Domain/Registry/Jobs/ParseImportBatch.php',
-      56 => '/var/www/html/app/Domain/Registry/Models/BeneficiaryDocument.php',
-      57 => '/var/www/html/app/Domain/Registry/Models/ImportBatch.php',
-      58 => '/var/www/html/app/Domain/Registry/Models/ImportRow.php',
-      59 => '/var/www/html/app/Domain/Registry/Models/OwnershipTransferRequest.php',
-      60 => '/var/www/html/app/Domain/Registry/Policies/BeneficiaryDocumentPolicy.php',
-      61 => '/var/www/html/app/Domain/Registry/Policies/BeneficiaryPolicy.php',
-      62 => '/var/www/html/app/Domain/Registry/Policies/HouseholdPolicy.php',
-      63 => '/var/www/html/app/Domain/Registry/Policies/ImportBatchPolicy.php',
-      64 => '/var/www/html/app/Domain/Registry/Policies/OwnerMdaPolicy.php',
-      65 => '/var/www/html/app/Domain/Registry/Policies/ServeRequestPolicy.php',
-      66 => '/var/www/html/app/Domain/Registry/RegistryServiceProvider.php',
-      67 => '/var/www/html/app/Domain/Registry/Services/BatchDuplicateScreener.php',
-      68 => '/var/www/html/app/Domain/Registry/Services/CandidateGatherer.php',
-      69 => '/var/www/html/app/Domain/Registry/Services/DeterministicDuplicateFinder.php',
-      70 => '/var/www/html/app/Domain/Registry/Services/FuzzyDuplicateFinder.php',
-      71 => '/var/www/html/app/Domain/Registry/Services/OwnershipTransferService.php',
-      72 => '/var/www/html/app/Domain/Registry/Services/ServeRequestService.php',
-      73 => '/var/www/html/app/Domain/Registry/Services/ServiceRequestService.php',
-      74 => '/var/www/html/app/Http/Controllers/Api/V1/Access/MdaAccessGrantController.php',
-      75 => '/var/www/html/app/Http/Controllers/Api/V1/Access/UserController.php',
-      76 => '/var/www/html/app/Http/Controllers/Api/V1/AuthController.php',
-      77 => '/var/www/html/app/Http/Controllers/Api/V1/Benefit/BenefitController.php',
-      78 => '/var/www/html/app/Http/Controllers/Api/V1/Benefit/BenefitFlagController.php',
-      79 => '/var/www/html/app/Http/Controllers/Api/V1/Benefit/BenefitImportController.php',
-      80 => '/var/www/html/app/Http/Controllers/Api/V1/Benefit/DoubleDippingRuleController.php',
-      81 => '/var/www/html/app/Http/Controllers/Api/V1/Matching/MatchingConfigController.php',
-      82 => '/var/www/html/app/Http/Controllers/Api/V1/MfaController.php',
-      83 => '/var/www/html/app/Http/Controllers/Api/V1/Notification/NotificationController.php',
-      84 => '/var/www/html/app/Http/Controllers/Api/V1/Programme/ActivityController.php',
-      85 => '/var/www/html/app/Http/Controllers/Api/V1/Programme/EnrollmentController.php',
-      86 => '/var/www/html/app/Http/Controllers/Api/V1/Programme/ProgrammeController.php',
-      87 => '/var/www/html/app/Http/Controllers/Api/V1/Referral/ReferralController.php',
-      88 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/BeneficiaryController.php',
-      89 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/BeneficiaryDocumentController.php',
-      90 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/BeneficiaryIntakeController.php',
-      91 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/BeneficiaryRoutingController.php',
-      92 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/ImportBatchController.php',
-      93 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/OwnershipTransferController.php',
-      94 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/ServeRequestController.php',
-      95 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/ServiceRequestController.php',
-      96 => '/var/www/html/app/Http/Middleware/CheckPermission.php',
-      97 => '/var/www/html/app/Http/Requests/Access/StoreMdaAccessGrantRequest.php',
-      98 => '/var/www/html/app/Http/Requests/Access/StoreMdaRequest.php',
-      99 => '/var/www/html/app/Http/Requests/Access/StoreUserRequest.php',
-      100 => '/var/www/html/app/Http/Requests/Access/UpdateMdaRequest.php',
-      101 => '/var/www/html/app/Http/Requests/Access/UpdateUserRequest.php',
-      102 => '/var/www/html/app/Http/Requests/Auth/ChangePasswordRequest.php',
-      103 => '/var/www/html/app/Http/Requests/Auth/MfaCodeRequest.php',
-      104 => '/var/www/html/app/Http/Requests/Benefit/AggregateBenefitsRequest.php',
-      105 => '/var/www/html/app/Http/Requests/Benefit/RecordBenefitRequest.php',
-      106 => '/var/www/html/app/Http/Requests/Benefit/ReviewBenefitFlagRequest.php',
-      107 => '/var/www/html/app/Http/Requests/Benefit/StoreDoubleDippingRuleRequest.php',
-      108 => '/var/www/html/app/Http/Requests/Benefit/UploadBenefitImportRequest.php',
-      109 => '/var/www/html/app/Http/Requests/Benefit/VerifyBenefitRequest.php',
-      110 => '/var/www/html/app/Http/Requests/Matching/UpdateMatchingConfigRequest.php',
-      111 => '/var/www/html/app/Http/Requests/Notification/UpdateNotificationPreferencesRequest.php',
-      112 => '/var/www/html/app/Http/Requests/Programme/BulkEnrollmentRequest.php',
-      113 => '/var/www/html/app/Http/Requests/Programme/StoreActivityRequest.php',
-      114 => '/var/www/html/app/Http/Requests/Programme/StoreEnrollmentRequest.php',
-      115 => '/var/www/html/app/Http/Requests/Programme/StoreProgrammeRequest.php',
-      116 => '/var/www/html/app/Http/Requests/Programme/UpdateActivityRequest.php',
-      117 => '/var/www/html/app/Http/Requests/Programme/UpdateEnrollmentRequest.php',
-      118 => '/var/www/html/app/Http/Requests/Programme/UpdateProgrammeRequest.php',
-      119 => '/var/www/html/app/Http/Requests/Referral/StoreReferralRequest.php',
-      120 => '/var/www/html/app/Http/Requests/Referral/TransitionReferralRequest.php',
-      121 => '/var/www/html/app/Http/Requests/Registry/AcceptServiceRequestRequest.php',
-      122 => '/var/www/html/app/Http/Requests/Registry/AddHouseholdMemberRequest.php',
-      123 => '/var/www/html/app/Http/Requests/Registry/ApiRegistrationRequest.php',
-      124 => '/var/www/html/app/Http/Requests/Registry/BeneficiaryLookupRequest.php',
-      125 => '/var/www/html/app/Http/Requests/Registry/BeneficiaryMatchSearchRequest.php',
-      126 => '/var/www/html/app/Http/Requests/Registry/DecideOwnershipTransferRequest.php',
-      127 => '/var/www/html/app/Http/Requests/Registry/DecideServeRequestRequest.php',
-      128 => '/var/www/html/app/Http/Requests/Registry/DeclineServiceRequestRequest.php',
-      129 => '/var/www/html/app/Http/Requests/Registry/DesignateHeadRequest.php',
-      130 => '/var/www/html/app/Http/Requests/Registry/MoveHouseholdMemberRequest.php',
-      131 => '/var/www/html/app/Http/Requests/Registry/RaiseServeRequestRequest.php',
-      132 => '/var/www/html/app/Http/Requests/Registry/ResolveImportRowRequest.php',
-      133 => '/var/www/html/app/Http/Requests/Registry/RouteAssignmentRequest.php',
-      134 => '/var/www/html/app/Http/Requests/Registry/StoreBeneficiaryRequest.php',
-      135 => '/var/www/html/app/Http/Requests/Registry/StoreHouseholdRequest.php',
-      136 => '/var/www/html/app/Http/Requests/Registry/StoreOwnershipTransferRequest.php',
-      137 => '/var/www/html/app/Http/Requests/Registry/StoreServiceRequestRequest.php',
-      138 => '/var/www/html/app/Http/Requests/Registry/UpdateBeneficiaryRequest.php',
-      139 => '/var/www/html/app/Http/Requests/Registry/UpdateHouseholdRequest.php',
-      140 => '/var/www/html/app/Http/Requests/Registry/UploadDocumentRequest.php',
-      141 => '/var/www/html/app/Http/Requests/Registry/UploadImportRequest.php',
-      142 => '/var/www/html/app/Http/Resources/BeneficiaryDocumentResource.php',
-      143 => '/var/www/html/app/Http/Resources/BeneficiaryRevealResource.php',
-      144 => '/var/www/html/app/Http/Resources/ImportBatchResource.php',
-      145 => '/var/www/html/app/Http/Resources/MatchingConfigResource.php',
-      146 => '/var/www/html/app/Http/Resources/NotificationResource.php',
-      147 => '/var/www/html/app/Http/Resources/UserResource.php',
-      148 => '/var/www/html/app/Providers/AppServiceProvider.php',
+      25 => '/var/www/html/app/Domain/Grievance/Events/GrievanceAssigned.php',
+      26 => '/var/www/html/app/Domain/Grievance/Events/GrievanceResolved.php',
+      27 => '/var/www/html/app/Domain/Grievance/Events/GrievanceSlaBreached.php',
+      28 => '/var/www/html/app/Domain/Grievance/GrievanceServiceProvider.php',
+      29 => '/var/www/html/app/Domain/Grievance/Jobs/EscalateOverdueGrievances.php',
+      30 => '/var/www/html/app/Domain/Grievance/Models/Grievance.php',
+      31 => '/var/www/html/app/Domain/Grievance/Policies/GrievancePolicy.php',
+      32 => '/var/www/html/app/Domain/Grievance/Services/GrievanceService.php',
+      33 => '/var/www/html/app/Domain/Matching/Contracts/MatchScorer.php',
+      34 => '/var/www/html/app/Domain/Matching/Engine/DeterministicMatcher.php',
+      35 => '/var/www/html/app/Domain/Matching/Engine/DuplicateCascade.php',
+      36 => '/var/www/html/app/Domain/Matching/Engine/MatchingEngine.php',
+      37 => '/var/www/html/app/Domain/Matching/Models/MatchingConfig.php',
+      38 => '/var/www/html/app/Domain/Matching/Scoring/RuleBasedMatchScorer.php',
+      39 => '/var/www/html/app/Domain/Matching/Services/MatchingConfigService.php',
+      40 => '/var/www/html/app/Domain/Notification/Channels/EmailChannel.php',
+      41 => '/var/www/html/app/Domain/Notification/Channels/InAppChannel.php',
+      42 => '/var/www/html/app/Domain/Notification/Channels/SmsChannel.php',
+      43 => '/var/www/html/app/Domain/Notification/Channels/WhatsAppChannel.php',
+      44 => '/var/www/html/app/Domain/Notification/Contracts/NotificationChannel.php',
+      45 => '/var/www/html/app/Domain/Notification/Listeners/NotificationSubscriber.php',
+      46 => '/var/www/html/app/Domain/Notification/Models/Notification.php',
+      47 => '/var/www/html/app/Domain/Notification/Models/NotificationPreference.php',
+      48 => '/var/www/html/app/Domain/Notification/Services/Notifier.php',
+      49 => '/var/www/html/app/Domain/Programme/Models/Activity.php',
+      50 => '/var/www/html/app/Domain/Programme/Models/Programme.php',
+      51 => '/var/www/html/app/Domain/Programme/Policies/ActivityPolicy.php',
+      52 => '/var/www/html/app/Domain/Programme/Policies/EnrollmentPolicy.php',
+      53 => '/var/www/html/app/Domain/Programme/Policies/ProgrammePolicy.php',
+      54 => '/var/www/html/app/Domain/Programme/Services/EnrollmentService.php',
+      55 => '/var/www/html/app/Domain/Referral/Events/ReferralStatusChanged.php',
+      56 => '/var/www/html/app/Domain/Referral/Policies/ReferralPolicy.php',
+      57 => '/var/www/html/app/Domain/Referral/Scopes/ReferralScope.php',
+      58 => '/var/www/html/app/Domain/Referral/Services/ReferralService.php',
+      59 => '/var/www/html/app/Domain/Registry/Events/OwnershipTransferRequested.php',
+      60 => '/var/www/html/app/Domain/Registry/Events/ServiceRequestAccepted.php',
+      61 => '/var/www/html/app/Domain/Registry/Events/ServiceRequestDeclined.php',
+      62 => '/var/www/html/app/Domain/Registry/Events/ServiceRequestRaised.php',
+      63 => '/var/www/html/app/Domain/Registry/Jobs/CommitImportBatch.php',
+      64 => '/var/www/html/app/Domain/Registry/Jobs/ParseImportBatch.php',
+      65 => '/var/www/html/app/Domain/Registry/Models/BeneficiaryDocument.php',
+      66 => '/var/www/html/app/Domain/Registry/Models/ImportBatch.php',
+      67 => '/var/www/html/app/Domain/Registry/Models/ImportRow.php',
+      68 => '/var/www/html/app/Domain/Registry/Models/OwnershipTransferRequest.php',
+      69 => '/var/www/html/app/Domain/Registry/Policies/BeneficiaryDocumentPolicy.php',
+      70 => '/var/www/html/app/Domain/Registry/Policies/BeneficiaryPolicy.php',
+      71 => '/var/www/html/app/Domain/Registry/Policies/HouseholdPolicy.php',
+      72 => '/var/www/html/app/Domain/Registry/Policies/ImportBatchPolicy.php',
+      73 => '/var/www/html/app/Domain/Registry/Policies/OwnerMdaPolicy.php',
+      74 => '/var/www/html/app/Domain/Registry/Policies/ServeRequestPolicy.php',
+      75 => '/var/www/html/app/Domain/Registry/RegistryServiceProvider.php',
+      76 => '/var/www/html/app/Domain/Registry/Services/BatchDuplicateScreener.php',
+      77 => '/var/www/html/app/Domain/Registry/Services/CandidateGatherer.php',
+      78 => '/var/www/html/app/Domain/Registry/Services/DeterministicDuplicateFinder.php',
+      79 => '/var/www/html/app/Domain/Registry/Services/FuzzyDuplicateFinder.php',
+      80 => '/var/www/html/app/Domain/Registry/Services/OwnershipTransferService.php',
+      81 => '/var/www/html/app/Domain/Registry/Services/ServeRequestService.php',
+      82 => '/var/www/html/app/Domain/Registry/Services/ServiceRequestService.php',
+      83 => '/var/www/html/app/Http/Controllers/Api/V1/Access/MdaAccessGrantController.php',
+      84 => '/var/www/html/app/Http/Controllers/Api/V1/Access/UserController.php',
+      85 => '/var/www/html/app/Http/Controllers/Api/V1/AuthController.php',
+      86 => '/var/www/html/app/Http/Controllers/Api/V1/Benefit/BenefitController.php',
+      87 => '/var/www/html/app/Http/Controllers/Api/V1/Benefit/BenefitFlagController.php',
+      88 => '/var/www/html/app/Http/Controllers/Api/V1/Benefit/BenefitImportController.php',
+      89 => '/var/www/html/app/Http/Controllers/Api/V1/Benefit/DoubleDippingRuleController.php',
+      90 => '/var/www/html/app/Http/Controllers/Api/V1/Grievance/GrievanceController.php',
+      91 => '/var/www/html/app/Http/Controllers/Api/V1/Matching/MatchingConfigController.php',
+      92 => '/var/www/html/app/Http/Controllers/Api/V1/MfaController.php',
+      93 => '/var/www/html/app/Http/Controllers/Api/V1/Notification/NotificationController.php',
+      94 => '/var/www/html/app/Http/Controllers/Api/V1/Programme/ActivityController.php',
+      95 => '/var/www/html/app/Http/Controllers/Api/V1/Programme/EnrollmentController.php',
+      96 => '/var/www/html/app/Http/Controllers/Api/V1/Programme/ProgrammeController.php',
+      97 => '/var/www/html/app/Http/Controllers/Api/V1/Referral/ReferralController.php',
+      98 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/BeneficiaryController.php',
+      99 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/BeneficiaryDocumentController.php',
+      100 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/BeneficiaryIntakeController.php',
+      101 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/BeneficiaryRoutingController.php',
+      102 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/ImportBatchController.php',
+      103 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/OwnershipTransferController.php',
+      104 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/ServeRequestController.php',
+      105 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/ServiceRequestController.php',
+      106 => '/var/www/html/app/Http/Middleware/CheckPermission.php',
+      107 => '/var/www/html/app/Http/Requests/Access/StoreMdaAccessGrantRequest.php',
+      108 => '/var/www/html/app/Http/Requests/Access/StoreMdaRequest.php',
+      109 => '/var/www/html/app/Http/Requests/Access/StoreUserRequest.php',
+      110 => '/var/www/html/app/Http/Requests/Access/UpdateMdaRequest.php',
+      111 => '/var/www/html/app/Http/Requests/Access/UpdateUserRequest.php',
+      112 => '/var/www/html/app/Http/Requests/Auth/ChangePasswordRequest.php',
+      113 => '/var/www/html/app/Http/Requests/Auth/MfaCodeRequest.php',
+      114 => '/var/www/html/app/Http/Requests/Benefit/AggregateBenefitsRequest.php',
+      115 => '/var/www/html/app/Http/Requests/Benefit/RecordBenefitRequest.php',
+      116 => '/var/www/html/app/Http/Requests/Benefit/ReviewBenefitFlagRequest.php',
+      117 => '/var/www/html/app/Http/Requests/Benefit/StoreDoubleDippingRuleRequest.php',
+      118 => '/var/www/html/app/Http/Requests/Benefit/UploadBenefitImportRequest.php',
+      119 => '/var/www/html/app/Http/Requests/Benefit/VerifyBenefitRequest.php',
+      120 => '/var/www/html/app/Http/Requests/Grievance/AssignGrievanceRequest.php',
+      121 => '/var/www/html/app/Http/Requests/Grievance/StoreGrievanceRequest.php',
+      122 => '/var/www/html/app/Http/Requests/Grievance/TransitionGrievanceRequest.php',
+      123 => '/var/www/html/app/Http/Requests/Grievance/UpdateGrievanceSlaRequest.php',
+      124 => '/var/www/html/app/Http/Requests/Matching/UpdateMatchingConfigRequest.php',
+      125 => '/var/www/html/app/Http/Requests/Notification/UpdateNotificationPreferencesRequest.php',
+      126 => '/var/www/html/app/Http/Requests/Programme/BulkEnrollmentRequest.php',
+      127 => '/var/www/html/app/Http/Requests/Programme/StoreActivityRequest.php',
+      128 => '/var/www/html/app/Http/Requests/Programme/StoreEnrollmentRequest.php',
+      129 => '/var/www/html/app/Http/Requests/Programme/StoreProgrammeRequest.php',
+      130 => '/var/www/html/app/Http/Requests/Programme/UpdateActivityRequest.php',
+      131 => '/var/www/html/app/Http/Requests/Programme/UpdateEnrollmentRequest.php',
+      132 => '/var/www/html/app/Http/Requests/Programme/UpdateProgrammeRequest.php',
+      133 => '/var/www/html/app/Http/Requests/Referral/StoreReferralRequest.php',
+      134 => '/var/www/html/app/Http/Requests/Referral/TransitionReferralRequest.php',
+      135 => '/var/www/html/app/Http/Requests/Referral/UpdateReferralSlaRequest.php',
+      136 => '/var/www/html/app/Http/Requests/Registry/AcceptServiceRequestRequest.php',
+      137 => '/var/www/html/app/Http/Requests/Registry/AddHouseholdMemberRequest.php',
+      138 => '/var/www/html/app/Http/Requests/Registry/ApiRegistrationRequest.php',
+      139 => '/var/www/html/app/Http/Requests/Registry/BeneficiaryLookupRequest.php',
+      140 => '/var/www/html/app/Http/Requests/Registry/BeneficiaryMatchSearchRequest.php',
+      141 => '/var/www/html/app/Http/Requests/Registry/DecideOwnershipTransferRequest.php',
+      142 => '/var/www/html/app/Http/Requests/Registry/DecideServeRequestRequest.php',
+      143 => '/var/www/html/app/Http/Requests/Registry/DeclineServiceRequestRequest.php',
+      144 => '/var/www/html/app/Http/Requests/Registry/DesignateHeadRequest.php',
+      145 => '/var/www/html/app/Http/Requests/Registry/MoveHouseholdMemberRequest.php',
+      146 => '/var/www/html/app/Http/Requests/Registry/RaiseServeRequestRequest.php',
+      147 => '/var/www/html/app/Http/Requests/Registry/ResolveImportRowRequest.php',
+      148 => '/var/www/html/app/Http/Requests/Registry/RouteAssignmentRequest.php',
+      149 => '/var/www/html/app/Http/Requests/Registry/StoreBeneficiaryRequest.php',
+      150 => '/var/www/html/app/Http/Requests/Registry/StoreHouseholdRequest.php',
+      151 => '/var/www/html/app/Http/Requests/Registry/StoreOwnershipTransferRequest.php',
+      152 => '/var/www/html/app/Http/Requests/Registry/StoreServiceRequestRequest.php',
+      153 => '/var/www/html/app/Http/Requests/Registry/UpdateBeneficiaryRequest.php',
+      154 => '/var/www/html/app/Http/Requests/Registry/UpdateHouseholdRequest.php',
+      155 => '/var/www/html/app/Http/Requests/Registry/UploadDocumentRequest.php',
+      156 => '/var/www/html/app/Http/Requests/Registry/UploadImportRequest.php',
+      157 => '/var/www/html/app/Http/Resources/BeneficiaryDocumentResource.php',
+      158 => '/var/www/html/app/Http/Resources/BeneficiaryRevealResource.php',
+      159 => '/var/www/html/app/Http/Resources/GrievanceResource.php',
+      160 => '/var/www/html/app/Http/Resources/ImportBatchResource.php',
+      161 => '/var/www/html/app/Http/Resources/MatchingConfigResource.php',
+      162 => '/var/www/html/app/Http/Resources/NotificationResource.php',
+      163 => '/var/www/html/app/Http/Resources/UserResource.php',
+      164 => '/var/www/html/app/Providers/AppServiceProvider.php',
     ),
   ),
   '/var/www/html/app/Domain/Access/Scopes/MdaScope.php' => 
@@ -15112,42 +16712,44 @@ return [
       6 => '/var/www/html/app/Domain/Benefit/Models/BenefitImportBatch.php',
       7 => '/var/www/html/app/Domain/Benefit/Policies/BenefitPolicy.php',
       8 => '/var/www/html/app/Domain/Benefit/Services/BenefitRecorder.php',
-      9 => '/var/www/html/app/Domain/Notification/Listeners/NotificationSubscriber.php',
-      10 => '/var/www/html/app/Domain/Notification/Models/Notification.php',
-      11 => '/var/www/html/app/Domain/Programme/Models/Activity.php',
-      12 => '/var/www/html/app/Domain/Programme/Models/Enrollment.php',
-      13 => '/var/www/html/app/Domain/Programme/Models/Programme.php',
-      14 => '/var/www/html/app/Domain/Programme/Services/EnrollmentService.php',
-      15 => '/var/www/html/app/Domain/Registry/Jobs/CommitImportBatch.php',
-      16 => '/var/www/html/app/Domain/Registry/Jobs/ParseImportBatch.php',
-      17 => '/var/www/html/app/Domain/Registry/Models/Beneficiary.php',
-      18 => '/var/www/html/app/Domain/Registry/Models/BeneficiaryDocument.php',
-      19 => '/var/www/html/app/Domain/Registry/Models/BeneficiaryServiceGrant.php',
-      20 => '/var/www/html/app/Domain/Registry/Models/Household.php',
-      21 => '/var/www/html/app/Domain/Registry/Models/ImportBatch.php',
-      22 => '/var/www/html/app/Domain/Registry/Services/BeneficiaryLookupService.php',
-      23 => '/var/www/html/app/Domain/Registry/Services/BeneficiaryRegistrar.php',
-      24 => '/var/www/html/app/Domain/Registry/Services/CandidateGatherer.php',
-      25 => '/var/www/html/app/Domain/Registry/Services/DeterministicDuplicateFinder.php',
-      26 => '/var/www/html/app/Domain/Registry/Services/HouseholdIngestionService.php',
-      27 => '/var/www/html/app/Domain/Registry/Services/HouseholdMembershipService.php',
-      28 => '/var/www/html/app/Domain/Registry/Services/OwnershipTransferService.php',
-      29 => '/var/www/html/app/Domain/Registry/Services/ServiceRequestService.php',
-      30 => '/var/www/html/app/Http/Controllers/Api/V1/Benefit/BenefitController.php',
-      31 => '/var/www/html/app/Http/Controllers/Api/V1/Benefit/BenefitImportController.php',
-      32 => '/var/www/html/app/Http/Controllers/Api/V1/Programme/ActivityController.php',
-      33 => '/var/www/html/app/Http/Controllers/Api/V1/Programme/EnrollmentController.php',
-      34 => '/var/www/html/app/Http/Controllers/Api/V1/Programme/ProgrammeController.php',
-      35 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/BeneficiaryController.php',
-      36 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/BeneficiaryDocumentController.php',
-      37 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/BeneficiaryRoutingController.php',
-      38 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/HouseholdController.php',
-      39 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/HouseholdMemberController.php',
-      40 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/ImportBatchController.php',
-      41 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/OwnershipTransferController.php',
-      42 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/ServeRequestController.php',
-      43 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/ServiceRequestController.php',
-      44 => '/var/www/html/app/Http/Requests/Registry/UploadImportRequest.php',
+      9 => '/var/www/html/app/Domain/Grievance/Jobs/EscalateOverdueGrievances.php',
+      10 => '/var/www/html/app/Domain/Grievance/Models/Grievance.php',
+      11 => '/var/www/html/app/Domain/Notification/Listeners/NotificationSubscriber.php',
+      12 => '/var/www/html/app/Domain/Notification/Models/Notification.php',
+      13 => '/var/www/html/app/Domain/Programme/Models/Activity.php',
+      14 => '/var/www/html/app/Domain/Programme/Models/Enrollment.php',
+      15 => '/var/www/html/app/Domain/Programme/Models/Programme.php',
+      16 => '/var/www/html/app/Domain/Programme/Services/EnrollmentService.php',
+      17 => '/var/www/html/app/Domain/Registry/Jobs/CommitImportBatch.php',
+      18 => '/var/www/html/app/Domain/Registry/Jobs/ParseImportBatch.php',
+      19 => '/var/www/html/app/Domain/Registry/Models/Beneficiary.php',
+      20 => '/var/www/html/app/Domain/Registry/Models/BeneficiaryDocument.php',
+      21 => '/var/www/html/app/Domain/Registry/Models/BeneficiaryServiceGrant.php',
+      22 => '/var/www/html/app/Domain/Registry/Models/Household.php',
+      23 => '/var/www/html/app/Domain/Registry/Models/ImportBatch.php',
+      24 => '/var/www/html/app/Domain/Registry/Services/BeneficiaryLookupService.php',
+      25 => '/var/www/html/app/Domain/Registry/Services/BeneficiaryRegistrar.php',
+      26 => '/var/www/html/app/Domain/Registry/Services/CandidateGatherer.php',
+      27 => '/var/www/html/app/Domain/Registry/Services/DeterministicDuplicateFinder.php',
+      28 => '/var/www/html/app/Domain/Registry/Services/HouseholdIngestionService.php',
+      29 => '/var/www/html/app/Domain/Registry/Services/HouseholdMembershipService.php',
+      30 => '/var/www/html/app/Domain/Registry/Services/OwnershipTransferService.php',
+      31 => '/var/www/html/app/Domain/Registry/Services/ServiceRequestService.php',
+      32 => '/var/www/html/app/Http/Controllers/Api/V1/Benefit/BenefitController.php',
+      33 => '/var/www/html/app/Http/Controllers/Api/V1/Benefit/BenefitImportController.php',
+      34 => '/var/www/html/app/Http/Controllers/Api/V1/Programme/ActivityController.php',
+      35 => '/var/www/html/app/Http/Controllers/Api/V1/Programme/EnrollmentController.php',
+      36 => '/var/www/html/app/Http/Controllers/Api/V1/Programme/ProgrammeController.php',
+      37 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/BeneficiaryController.php',
+      38 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/BeneficiaryDocumentController.php',
+      39 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/BeneficiaryRoutingController.php',
+      40 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/HouseholdController.php',
+      41 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/HouseholdMemberController.php',
+      42 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/ImportBatchController.php',
+      43 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/OwnershipTransferController.php',
+      44 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/ServeRequestController.php',
+      45 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/ServiceRequestController.php',
+      46 => '/var/www/html/app/Http/Requests/Registry/UploadImportRequest.php',
     ),
   ),
   '/var/www/html/app/Domain/Access/Services/AuthTokenIssuer.php' => 
@@ -15192,10 +16794,11 @@ return [
       0 => '/var/www/html/app/Domain/Access/AccessServiceProvider.php',
       1 => '/var/www/html/app/Domain/Access/Services/PermissionSynchronizer.php',
       2 => '/var/www/html/app/Domain/Benefit/BenefitServiceProvider.php',
-      3 => '/var/www/html/app/Domain/Matching/MatchingServiceProvider.php',
-      4 => '/var/www/html/app/Domain/Programme/ProgrammeServiceProvider.php',
-      5 => '/var/www/html/app/Domain/Referral/ReferralServiceProvider.php',
-      6 => '/var/www/html/app/Domain/Registry/RegistryServiceProvider.php',
+      3 => '/var/www/html/app/Domain/Grievance/GrievanceServiceProvider.php',
+      4 => '/var/www/html/app/Domain/Matching/MatchingServiceProvider.php',
+      5 => '/var/www/html/app/Domain/Programme/ProgrammeServiceProvider.php',
+      6 => '/var/www/html/app/Domain/Referral/ReferralServiceProvider.php',
+      7 => '/var/www/html/app/Domain/Registry/RegistryServiceProvider.php',
     ),
   ),
   '/var/www/html/app/Domain/Access/Support/TokenAbility.php' => 
@@ -15253,168 +16856,191 @@ return [
       38 => '/var/www/html/app/Domain/Benefit/Services/Verifiers/FieldConfirmationVerifier.php',
       39 => '/var/www/html/app/Domain/Benefit/Services/Verifiers/OtpVerifier.php',
       40 => '/var/www/html/app/Domain/Benefit/Services/Verifiers/SignatureVerifier.php',
-      41 => '/var/www/html/app/Domain/Matching/Contracts/MatchScorer.php',
-      42 => '/var/www/html/app/Domain/Matching/Engine/DeterministicMatcher.php',
-      43 => '/var/www/html/app/Domain/Matching/Engine/DuplicateCascade.php',
-      44 => '/var/www/html/app/Domain/Matching/Engine/MatchingEngine.php',
-      45 => '/var/www/html/app/Domain/Matching/Models/MatchingConfig.php',
-      46 => '/var/www/html/app/Domain/Matching/Scoring/RuleBasedMatchScorer.php',
-      47 => '/var/www/html/app/Domain/Matching/Services/MatchingConfigService.php',
-      48 => '/var/www/html/app/Domain/Notification/Channels/EmailChannel.php',
-      49 => '/var/www/html/app/Domain/Notification/Channels/InAppChannel.php',
-      50 => '/var/www/html/app/Domain/Notification/Channels/SmsChannel.php',
-      51 => '/var/www/html/app/Domain/Notification/Channels/WhatsAppChannel.php',
-      52 => '/var/www/html/app/Domain/Notification/Contracts/NotificationChannel.php',
-      53 => '/var/www/html/app/Domain/Notification/Listeners/NotificationSubscriber.php',
-      54 => '/var/www/html/app/Domain/Notification/Models/Notification.php',
-      55 => '/var/www/html/app/Domain/Notification/Models/NotificationPreference.php',
-      56 => '/var/www/html/app/Domain/Notification/Services/Notifier.php',
-      57 => '/var/www/html/app/Domain/Programme/Models/Activity.php',
-      58 => '/var/www/html/app/Domain/Programme/Models/Enrollment.php',
-      59 => '/var/www/html/app/Domain/Programme/Models/Programme.php',
-      60 => '/var/www/html/app/Domain/Programme/Policies/ActivityPolicy.php',
-      61 => '/var/www/html/app/Domain/Programme/Policies/EnrollmentPolicy.php',
-      62 => '/var/www/html/app/Domain/Programme/Policies/ProgrammePolicy.php',
-      63 => '/var/www/html/app/Domain/Programme/ProgrammeServiceProvider.php',
-      64 => '/var/www/html/app/Domain/Programme/Services/EligibilityEvaluator.php',
-      65 => '/var/www/html/app/Domain/Programme/Services/EnrollmentService.php',
-      66 => '/var/www/html/app/Domain/Programme/Services/ProgrammeMatcher.php',
-      67 => '/var/www/html/app/Domain/Programme/Services/ProgrammeMatchingRouter.php',
-      68 => '/var/www/html/app/Domain/Referral/Models/Referral.php',
-      69 => '/var/www/html/app/Domain/Referral/Policies/ReferralPolicy.php',
-      70 => '/var/www/html/app/Domain/Referral/ReferralServiceProvider.php',
-      71 => '/var/www/html/app/Domain/Referral/Scopes/ReferralScope.php',
-      72 => '/var/www/html/app/Domain/Referral/Services/ReferralService.php',
-      73 => '/var/www/html/app/Domain/Registry/Contracts/BeneficiaryRouter.php',
-      74 => '/var/www/html/app/Domain/Registry/Events/OwnershipTransferRequested.php',
-      75 => '/var/www/html/app/Domain/Registry/Events/ServiceRequestAccepted.php',
-      76 => '/var/www/html/app/Domain/Registry/Events/ServiceRequestDeclined.php',
-      77 => '/var/www/html/app/Domain/Registry/Events/ServiceRequestRaised.php',
-      78 => '/var/www/html/app/Domain/Registry/Imports/ImportRowValidator.php',
-      79 => '/var/www/html/app/Domain/Registry/Jobs/CommitImportBatch.php',
-      80 => '/var/www/html/app/Domain/Registry/Jobs/ParseImportBatch.php',
-      81 => '/var/www/html/app/Domain/Registry/Models/Beneficiary.php',
-      82 => '/var/www/html/app/Domain/Registry/Models/BeneficiaryDocument.php',
-      83 => '/var/www/html/app/Domain/Registry/Models/BeneficiaryServiceGrant.php',
-      84 => '/var/www/html/app/Domain/Registry/Models/Household.php',
-      85 => '/var/www/html/app/Domain/Registry/Models/HouseholdMembership.php',
-      86 => '/var/www/html/app/Domain/Registry/Models/ImportBatch.php',
-      87 => '/var/www/html/app/Domain/Registry/Models/ImportRow.php',
-      88 => '/var/www/html/app/Domain/Registry/Models/OwnershipTransferRequest.php',
-      89 => '/var/www/html/app/Domain/Registry/Models/ServeRequest.php',
-      90 => '/var/www/html/app/Domain/Registry/Models/ServiceRequest.php',
-      91 => '/var/www/html/app/Domain/Registry/Policies/BeneficiaryDocumentPolicy.php',
-      92 => '/var/www/html/app/Domain/Registry/Policies/BeneficiaryPolicy.php',
-      93 => '/var/www/html/app/Domain/Registry/Policies/HouseholdPolicy.php',
-      94 => '/var/www/html/app/Domain/Registry/Policies/ImportBatchPolicy.php',
-      95 => '/var/www/html/app/Domain/Registry/Policies/OwnerMdaPolicy.php',
-      96 => '/var/www/html/app/Domain/Registry/Policies/ServeRequestPolicy.php',
-      97 => '/var/www/html/app/Domain/Registry/RegistryServiceProvider.php',
-      98 => '/var/www/html/app/Domain/Registry/Services/BatchDuplicateScreener.php',
-      99 => '/var/www/html/app/Domain/Registry/Services/BeneficiaryLookupService.php',
-      100 => '/var/www/html/app/Domain/Registry/Services/BeneficiaryRegistrar.php',
-      101 => '/var/www/html/app/Domain/Registry/Services/CandidateGatherer.php',
-      102 => '/var/www/html/app/Domain/Registry/Services/DeterministicDuplicateFinder.php',
-      103 => '/var/www/html/app/Domain/Registry/Services/FuzzyDuplicateFinder.php',
-      104 => '/var/www/html/app/Domain/Registry/Services/HouseholdIngestionService.php',
-      105 => '/var/www/html/app/Domain/Registry/Services/HouseholdMembershipService.php',
-      106 => '/var/www/html/app/Domain/Registry/Services/NullBeneficiaryRouter.php',
-      107 => '/var/www/html/app/Domain/Registry/Services/OwnershipTransferService.php',
-      108 => '/var/www/html/app/Domain/Registry/Services/ServeRequestService.php',
-      109 => '/var/www/html/app/Domain/Registry/Services/ServiceRequestService.php',
-      110 => '/var/www/html/app/Http/Controllers/Api/V1/Access/AccessController.php',
-      111 => '/var/www/html/app/Http/Controllers/Api/V1/Access/MdaAccessGrantController.php',
-      112 => '/var/www/html/app/Http/Controllers/Api/V1/Access/MdaController.php',
-      113 => '/var/www/html/app/Http/Controllers/Api/V1/Access/UserController.php',
-      114 => '/var/www/html/app/Http/Controllers/Api/V1/AuthController.php',
-      115 => '/var/www/html/app/Http/Controllers/Api/V1/Benefit/BenefitController.php',
-      116 => '/var/www/html/app/Http/Controllers/Api/V1/Benefit/BenefitFlagController.php',
-      117 => '/var/www/html/app/Http/Controllers/Api/V1/Benefit/BenefitImportController.php',
-      118 => '/var/www/html/app/Http/Controllers/Api/V1/Benefit/DoubleDippingRuleController.php',
-      119 => '/var/www/html/app/Http/Controllers/Api/V1/Matching/MatchingConfigController.php',
-      120 => '/var/www/html/app/Http/Controllers/Api/V1/MfaController.php',
-      121 => '/var/www/html/app/Http/Controllers/Api/V1/Notification/NotificationController.php',
-      122 => '/var/www/html/app/Http/Controllers/Api/V1/Programme/ActivityController.php',
-      123 => '/var/www/html/app/Http/Controllers/Api/V1/Programme/EnrollmentController.php',
-      124 => '/var/www/html/app/Http/Controllers/Api/V1/Programme/ProgrammeController.php',
-      125 => '/var/www/html/app/Http/Controllers/Api/V1/Referral/ReferralController.php',
-      126 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/BeneficiaryController.php',
-      127 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/BeneficiaryDocumentController.php',
-      128 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/BeneficiaryIntakeController.php',
-      129 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/BeneficiaryRoutingController.php',
-      130 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/HouseholdController.php',
-      131 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/HouseholdMemberController.php',
-      132 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/ImportBatchController.php',
-      133 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/OwnershipTransferController.php',
-      134 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/ServeRequestController.php',
-      135 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/ServiceRequestController.php',
-      136 => '/var/www/html/app/Http/Middleware/CheckPermission.php',
-      137 => '/var/www/html/app/Http/Requests/Access/StoreMdaAccessGrantRequest.php',
-      138 => '/var/www/html/app/Http/Requests/Access/StoreMdaRequest.php',
-      139 => '/var/www/html/app/Http/Requests/Access/StoreUserRequest.php',
-      140 => '/var/www/html/app/Http/Requests/Access/UpdateMdaRequest.php',
-      141 => '/var/www/html/app/Http/Requests/Access/UpdateUserRequest.php',
-      142 => '/var/www/html/app/Http/Requests/Auth/ChangePasswordRequest.php',
-      143 => '/var/www/html/app/Http/Requests/Auth/MfaCodeRequest.php',
-      144 => '/var/www/html/app/Http/Requests/Benefit/AggregateBenefitsRequest.php',
-      145 => '/var/www/html/app/Http/Requests/Benefit/RecordBenefitRequest.php',
-      146 => '/var/www/html/app/Http/Requests/Benefit/ReviewBenefitFlagRequest.php',
-      147 => '/var/www/html/app/Http/Requests/Benefit/StoreDoubleDippingRuleRequest.php',
-      148 => '/var/www/html/app/Http/Requests/Benefit/UploadBenefitImportRequest.php',
-      149 => '/var/www/html/app/Http/Requests/Benefit/VerifyBenefitRequest.php',
-      150 => '/var/www/html/app/Http/Requests/Matching/UpdateMatchingConfigRequest.php',
-      151 => '/var/www/html/app/Http/Requests/Notification/UpdateNotificationPreferencesRequest.php',
-      152 => '/var/www/html/app/Http/Requests/Programme/BulkEnrollmentRequest.php',
-      153 => '/var/www/html/app/Http/Requests/Programme/StoreActivityRequest.php',
-      154 => '/var/www/html/app/Http/Requests/Programme/StoreEnrollmentRequest.php',
-      155 => '/var/www/html/app/Http/Requests/Programme/StoreProgrammeRequest.php',
-      156 => '/var/www/html/app/Http/Requests/Programme/UpdateActivityRequest.php',
-      157 => '/var/www/html/app/Http/Requests/Programme/UpdateEnrollmentRequest.php',
-      158 => '/var/www/html/app/Http/Requests/Programme/UpdateProgrammeRequest.php',
-      159 => '/var/www/html/app/Http/Requests/Referral/StoreReferralRequest.php',
-      160 => '/var/www/html/app/Http/Requests/Referral/TransitionReferralRequest.php',
-      161 => '/var/www/html/app/Http/Requests/Registry/AcceptServiceRequestRequest.php',
-      162 => '/var/www/html/app/Http/Requests/Registry/AddHouseholdMemberRequest.php',
-      163 => '/var/www/html/app/Http/Requests/Registry/ApiRegistrationRequest.php',
-      164 => '/var/www/html/app/Http/Requests/Registry/BeneficiaryLookupRequest.php',
-      165 => '/var/www/html/app/Http/Requests/Registry/BeneficiaryMatchSearchRequest.php',
-      166 => '/var/www/html/app/Http/Requests/Registry/DecideOwnershipTransferRequest.php',
-      167 => '/var/www/html/app/Http/Requests/Registry/DecideServeRequestRequest.php',
-      168 => '/var/www/html/app/Http/Requests/Registry/DeclineServiceRequestRequest.php',
-      169 => '/var/www/html/app/Http/Requests/Registry/DesignateHeadRequest.php',
-      170 => '/var/www/html/app/Http/Requests/Registry/MoveHouseholdMemberRequest.php',
-      171 => '/var/www/html/app/Http/Requests/Registry/RaiseServeRequestRequest.php',
-      172 => '/var/www/html/app/Http/Requests/Registry/ResolveImportRowRequest.php',
-      173 => '/var/www/html/app/Http/Requests/Registry/RouteAssignmentRequest.php',
-      174 => '/var/www/html/app/Http/Requests/Registry/StoreBeneficiaryRequest.php',
-      175 => '/var/www/html/app/Http/Requests/Registry/StoreHouseholdRequest.php',
-      176 => '/var/www/html/app/Http/Requests/Registry/StoreOwnershipTransferRequest.php',
-      177 => '/var/www/html/app/Http/Requests/Registry/StoreServiceRequestRequest.php',
-      178 => '/var/www/html/app/Http/Requests/Registry/UpdateBeneficiaryRequest.php',
-      179 => '/var/www/html/app/Http/Requests/Registry/UpdateHouseholdRequest.php',
-      180 => '/var/www/html/app/Http/Requests/Registry/UploadDocumentRequest.php',
-      181 => '/var/www/html/app/Http/Requests/Registry/UploadImportRequest.php',
-      182 => '/var/www/html/app/Http/Resources/ActivityResource.php',
-      183 => '/var/www/html/app/Http/Resources/BeneficiaryDocumentResource.php',
-      184 => '/var/www/html/app/Http/Resources/BeneficiaryResource.php',
-      185 => '/var/www/html/app/Http/Resources/BeneficiaryRevealResource.php',
-      186 => '/var/www/html/app/Http/Resources/BenefitFlagResource.php',
-      187 => '/var/www/html/app/Http/Resources/BenefitImportBatchResource.php',
-      188 => '/var/www/html/app/Http/Resources/BenefitResource.php',
-      189 => '/var/www/html/app/Http/Resources/DoubleDippingRuleResource.php',
-      190 => '/var/www/html/app/Http/Resources/EnrollmentResource.php',
-      191 => '/var/www/html/app/Http/Resources/HouseholdMembershipResource.php',
-      192 => '/var/www/html/app/Http/Resources/HouseholdResource.php',
-      193 => '/var/www/html/app/Http/Resources/ImportBatchResource.php',
-      194 => '/var/www/html/app/Http/Resources/MatchingConfigResource.php',
-      195 => '/var/www/html/app/Http/Resources/MdaResource.php',
-      196 => '/var/www/html/app/Http/Resources/OwnershipTransferResource.php',
-      197 => '/var/www/html/app/Http/Resources/ProgrammeResource.php',
-      198 => '/var/www/html/app/Http/Resources/ReferralResource.php',
-      199 => '/var/www/html/app/Http/Resources/ServeRequestResource.php',
-      200 => '/var/www/html/app/Http/Resources/ServiceRequestResource.php',
-      201 => '/var/www/html/app/Http/Resources/UserResource.php',
-      202 => '/var/www/html/app/Providers/AppServiceProvider.php',
+      41 => '/var/www/html/app/Domain/Grievance/Events/GrievanceAssigned.php',
+      42 => '/var/www/html/app/Domain/Grievance/Events/GrievanceResolved.php',
+      43 => '/var/www/html/app/Domain/Grievance/Events/GrievanceSlaBreached.php',
+      44 => '/var/www/html/app/Domain/Grievance/GrievanceServiceProvider.php',
+      45 => '/var/www/html/app/Domain/Grievance/Jobs/EscalateOverdueGrievances.php',
+      46 => '/var/www/html/app/Domain/Grievance/Models/Grievance.php',
+      47 => '/var/www/html/app/Domain/Grievance/Models/GrievanceSlaPolicy.php',
+      48 => '/var/www/html/app/Domain/Grievance/Policies/GrievancePolicy.php',
+      49 => '/var/www/html/app/Domain/Grievance/Services/GrievanceService.php',
+      50 => '/var/www/html/app/Domain/Matching/Contracts/MatchScorer.php',
+      51 => '/var/www/html/app/Domain/Matching/Engine/DeterministicMatcher.php',
+      52 => '/var/www/html/app/Domain/Matching/Engine/DuplicateCascade.php',
+      53 => '/var/www/html/app/Domain/Matching/Engine/MatchingEngine.php',
+      54 => '/var/www/html/app/Domain/Matching/Models/MatchingConfig.php',
+      55 => '/var/www/html/app/Domain/Matching/Scoring/RuleBasedMatchScorer.php',
+      56 => '/var/www/html/app/Domain/Matching/Services/MatchingConfigService.php',
+      57 => '/var/www/html/app/Domain/Notification/Channels/EmailChannel.php',
+      58 => '/var/www/html/app/Domain/Notification/Channels/InAppChannel.php',
+      59 => '/var/www/html/app/Domain/Notification/Channels/SmsChannel.php',
+      60 => '/var/www/html/app/Domain/Notification/Channels/WhatsAppChannel.php',
+      61 => '/var/www/html/app/Domain/Notification/Contracts/NotificationChannel.php',
+      62 => '/var/www/html/app/Domain/Notification/Listeners/NotificationSubscriber.php',
+      63 => '/var/www/html/app/Domain/Notification/Models/Notification.php',
+      64 => '/var/www/html/app/Domain/Notification/Models/NotificationPreference.php',
+      65 => '/var/www/html/app/Domain/Notification/Services/Notifier.php',
+      66 => '/var/www/html/app/Domain/Programme/Models/Activity.php',
+      67 => '/var/www/html/app/Domain/Programme/Models/Enrollment.php',
+      68 => '/var/www/html/app/Domain/Programme/Models/Programme.php',
+      69 => '/var/www/html/app/Domain/Programme/Policies/ActivityPolicy.php',
+      70 => '/var/www/html/app/Domain/Programme/Policies/EnrollmentPolicy.php',
+      71 => '/var/www/html/app/Domain/Programme/Policies/ProgrammePolicy.php',
+      72 => '/var/www/html/app/Domain/Programme/ProgrammeServiceProvider.php',
+      73 => '/var/www/html/app/Domain/Programme/Services/EligibilityEvaluator.php',
+      74 => '/var/www/html/app/Domain/Programme/Services/EnrollmentService.php',
+      75 => '/var/www/html/app/Domain/Programme/Services/ProgrammeMatcher.php',
+      76 => '/var/www/html/app/Domain/Programme/Services/ProgrammeMatchingRouter.php',
+      77 => '/var/www/html/app/Domain/Referral/Authorization/ReferralAuthorizer.php',
+      78 => '/var/www/html/app/Domain/Referral/Events/ReferralSlaBreached.php',
+      79 => '/var/www/html/app/Domain/Referral/Events/ReferralStatusChanged.php',
+      80 => '/var/www/html/app/Domain/Referral/Jobs/EscalateOverdueReferrals.php',
+      81 => '/var/www/html/app/Domain/Referral/Models/Referral.php',
+      82 => '/var/www/html/app/Domain/Referral/Models/ReferralSlaPolicy.php',
+      83 => '/var/www/html/app/Domain/Referral/Policies/ReferralPolicy.php',
+      84 => '/var/www/html/app/Domain/Referral/ReferralServiceProvider.php',
+      85 => '/var/www/html/app/Domain/Referral/Scopes/ReferralScope.php',
+      86 => '/var/www/html/app/Domain/Referral/Services/ReferralService.php',
+      87 => '/var/www/html/app/Domain/Registry/Contracts/BeneficiaryRouter.php',
+      88 => '/var/www/html/app/Domain/Registry/Events/OwnershipTransferRequested.php',
+      89 => '/var/www/html/app/Domain/Registry/Events/ServiceRequestAccepted.php',
+      90 => '/var/www/html/app/Domain/Registry/Events/ServiceRequestDeclined.php',
+      91 => '/var/www/html/app/Domain/Registry/Events/ServiceRequestRaised.php',
+      92 => '/var/www/html/app/Domain/Registry/Imports/ImportRowValidator.php',
+      93 => '/var/www/html/app/Domain/Registry/Jobs/CommitImportBatch.php',
+      94 => '/var/www/html/app/Domain/Registry/Jobs/ParseImportBatch.php',
+      95 => '/var/www/html/app/Domain/Registry/Models/Beneficiary.php',
+      96 => '/var/www/html/app/Domain/Registry/Models/BeneficiaryDocument.php',
+      97 => '/var/www/html/app/Domain/Registry/Models/BeneficiaryServiceGrant.php',
+      98 => '/var/www/html/app/Domain/Registry/Models/Household.php',
+      99 => '/var/www/html/app/Domain/Registry/Models/HouseholdMembership.php',
+      100 => '/var/www/html/app/Domain/Registry/Models/ImportBatch.php',
+      101 => '/var/www/html/app/Domain/Registry/Models/ImportRow.php',
+      102 => '/var/www/html/app/Domain/Registry/Models/OwnershipTransferRequest.php',
+      103 => '/var/www/html/app/Domain/Registry/Models/ServeRequest.php',
+      104 => '/var/www/html/app/Domain/Registry/Models/ServiceRequest.php',
+      105 => '/var/www/html/app/Domain/Registry/Policies/BeneficiaryDocumentPolicy.php',
+      106 => '/var/www/html/app/Domain/Registry/Policies/BeneficiaryPolicy.php',
+      107 => '/var/www/html/app/Domain/Registry/Policies/HouseholdPolicy.php',
+      108 => '/var/www/html/app/Domain/Registry/Policies/ImportBatchPolicy.php',
+      109 => '/var/www/html/app/Domain/Registry/Policies/OwnerMdaPolicy.php',
+      110 => '/var/www/html/app/Domain/Registry/Policies/ServeRequestPolicy.php',
+      111 => '/var/www/html/app/Domain/Registry/RegistryServiceProvider.php',
+      112 => '/var/www/html/app/Domain/Registry/Services/BatchDuplicateScreener.php',
+      113 => '/var/www/html/app/Domain/Registry/Services/BeneficiaryLookupService.php',
+      114 => '/var/www/html/app/Domain/Registry/Services/BeneficiaryRegistrar.php',
+      115 => '/var/www/html/app/Domain/Registry/Services/CandidateGatherer.php',
+      116 => '/var/www/html/app/Domain/Registry/Services/DeterministicDuplicateFinder.php',
+      117 => '/var/www/html/app/Domain/Registry/Services/FuzzyDuplicateFinder.php',
+      118 => '/var/www/html/app/Domain/Registry/Services/HouseholdIngestionService.php',
+      119 => '/var/www/html/app/Domain/Registry/Services/HouseholdMembershipService.php',
+      120 => '/var/www/html/app/Domain/Registry/Services/NullBeneficiaryRouter.php',
+      121 => '/var/www/html/app/Domain/Registry/Services/OwnershipTransferService.php',
+      122 => '/var/www/html/app/Domain/Registry/Services/ServeRequestService.php',
+      123 => '/var/www/html/app/Domain/Registry/Services/ServiceRequestService.php',
+      124 => '/var/www/html/app/Http/Controllers/Api/V1/Access/AccessController.php',
+      125 => '/var/www/html/app/Http/Controllers/Api/V1/Access/MdaAccessGrantController.php',
+      126 => '/var/www/html/app/Http/Controllers/Api/V1/Access/MdaController.php',
+      127 => '/var/www/html/app/Http/Controllers/Api/V1/Access/UserController.php',
+      128 => '/var/www/html/app/Http/Controllers/Api/V1/AuthController.php',
+      129 => '/var/www/html/app/Http/Controllers/Api/V1/Benefit/BenefitController.php',
+      130 => '/var/www/html/app/Http/Controllers/Api/V1/Benefit/BenefitFlagController.php',
+      131 => '/var/www/html/app/Http/Controllers/Api/V1/Benefit/BenefitImportController.php',
+      132 => '/var/www/html/app/Http/Controllers/Api/V1/Benefit/DoubleDippingRuleController.php',
+      133 => '/var/www/html/app/Http/Controllers/Api/V1/Grievance/GrievanceController.php',
+      134 => '/var/www/html/app/Http/Controllers/Api/V1/Grievance/GrievanceSlaPolicyController.php',
+      135 => '/var/www/html/app/Http/Controllers/Api/V1/Matching/MatchingConfigController.php',
+      136 => '/var/www/html/app/Http/Controllers/Api/V1/MfaController.php',
+      137 => '/var/www/html/app/Http/Controllers/Api/V1/Notification/NotificationController.php',
+      138 => '/var/www/html/app/Http/Controllers/Api/V1/Programme/ActivityController.php',
+      139 => '/var/www/html/app/Http/Controllers/Api/V1/Programme/EnrollmentController.php',
+      140 => '/var/www/html/app/Http/Controllers/Api/V1/Programme/ProgrammeController.php',
+      141 => '/var/www/html/app/Http/Controllers/Api/V1/Referral/ReferralController.php',
+      142 => '/var/www/html/app/Http/Controllers/Api/V1/Referral/ReferralSlaPolicyController.php',
+      143 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/BeneficiaryController.php',
+      144 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/BeneficiaryDocumentController.php',
+      145 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/BeneficiaryIntakeController.php',
+      146 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/BeneficiaryRoutingController.php',
+      147 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/HouseholdController.php',
+      148 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/HouseholdMemberController.php',
+      149 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/ImportBatchController.php',
+      150 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/OwnershipTransferController.php',
+      151 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/ServeRequestController.php',
+      152 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/ServiceRequestController.php',
+      153 => '/var/www/html/app/Http/Middleware/CheckPermission.php',
+      154 => '/var/www/html/app/Http/Requests/Access/StoreMdaAccessGrantRequest.php',
+      155 => '/var/www/html/app/Http/Requests/Access/StoreMdaRequest.php',
+      156 => '/var/www/html/app/Http/Requests/Access/StoreUserRequest.php',
+      157 => '/var/www/html/app/Http/Requests/Access/UpdateMdaRequest.php',
+      158 => '/var/www/html/app/Http/Requests/Access/UpdateUserRequest.php',
+      159 => '/var/www/html/app/Http/Requests/Auth/ChangePasswordRequest.php',
+      160 => '/var/www/html/app/Http/Requests/Auth/MfaCodeRequest.php',
+      161 => '/var/www/html/app/Http/Requests/Benefit/AggregateBenefitsRequest.php',
+      162 => '/var/www/html/app/Http/Requests/Benefit/RecordBenefitRequest.php',
+      163 => '/var/www/html/app/Http/Requests/Benefit/ReviewBenefitFlagRequest.php',
+      164 => '/var/www/html/app/Http/Requests/Benefit/StoreDoubleDippingRuleRequest.php',
+      165 => '/var/www/html/app/Http/Requests/Benefit/UploadBenefitImportRequest.php',
+      166 => '/var/www/html/app/Http/Requests/Benefit/VerifyBenefitRequest.php',
+      167 => '/var/www/html/app/Http/Requests/Grievance/AssignGrievanceRequest.php',
+      168 => '/var/www/html/app/Http/Requests/Grievance/StoreGrievanceRequest.php',
+      169 => '/var/www/html/app/Http/Requests/Grievance/TransitionGrievanceRequest.php',
+      170 => '/var/www/html/app/Http/Requests/Grievance/UpdateGrievanceSlaRequest.php',
+      171 => '/var/www/html/app/Http/Requests/Matching/UpdateMatchingConfigRequest.php',
+      172 => '/var/www/html/app/Http/Requests/Notification/UpdateNotificationPreferencesRequest.php',
+      173 => '/var/www/html/app/Http/Requests/Programme/BulkEnrollmentRequest.php',
+      174 => '/var/www/html/app/Http/Requests/Programme/StoreActivityRequest.php',
+      175 => '/var/www/html/app/Http/Requests/Programme/StoreEnrollmentRequest.php',
+      176 => '/var/www/html/app/Http/Requests/Programme/StoreProgrammeRequest.php',
+      177 => '/var/www/html/app/Http/Requests/Programme/UpdateActivityRequest.php',
+      178 => '/var/www/html/app/Http/Requests/Programme/UpdateEnrollmentRequest.php',
+      179 => '/var/www/html/app/Http/Requests/Programme/UpdateProgrammeRequest.php',
+      180 => '/var/www/html/app/Http/Requests/Referral/StoreReferralRequest.php',
+      181 => '/var/www/html/app/Http/Requests/Referral/TransitionReferralRequest.php',
+      182 => '/var/www/html/app/Http/Requests/Referral/UpdateReferralSlaRequest.php',
+      183 => '/var/www/html/app/Http/Requests/Registry/AcceptServiceRequestRequest.php',
+      184 => '/var/www/html/app/Http/Requests/Registry/AddHouseholdMemberRequest.php',
+      185 => '/var/www/html/app/Http/Requests/Registry/ApiRegistrationRequest.php',
+      186 => '/var/www/html/app/Http/Requests/Registry/BeneficiaryLookupRequest.php',
+      187 => '/var/www/html/app/Http/Requests/Registry/BeneficiaryMatchSearchRequest.php',
+      188 => '/var/www/html/app/Http/Requests/Registry/DecideOwnershipTransferRequest.php',
+      189 => '/var/www/html/app/Http/Requests/Registry/DecideServeRequestRequest.php',
+      190 => '/var/www/html/app/Http/Requests/Registry/DeclineServiceRequestRequest.php',
+      191 => '/var/www/html/app/Http/Requests/Registry/DesignateHeadRequest.php',
+      192 => '/var/www/html/app/Http/Requests/Registry/MoveHouseholdMemberRequest.php',
+      193 => '/var/www/html/app/Http/Requests/Registry/RaiseServeRequestRequest.php',
+      194 => '/var/www/html/app/Http/Requests/Registry/ResolveImportRowRequest.php',
+      195 => '/var/www/html/app/Http/Requests/Registry/RouteAssignmentRequest.php',
+      196 => '/var/www/html/app/Http/Requests/Registry/StoreBeneficiaryRequest.php',
+      197 => '/var/www/html/app/Http/Requests/Registry/StoreHouseholdRequest.php',
+      198 => '/var/www/html/app/Http/Requests/Registry/StoreOwnershipTransferRequest.php',
+      199 => '/var/www/html/app/Http/Requests/Registry/StoreServiceRequestRequest.php',
+      200 => '/var/www/html/app/Http/Requests/Registry/UpdateBeneficiaryRequest.php',
+      201 => '/var/www/html/app/Http/Requests/Registry/UpdateHouseholdRequest.php',
+      202 => '/var/www/html/app/Http/Requests/Registry/UploadDocumentRequest.php',
+      203 => '/var/www/html/app/Http/Requests/Registry/UploadImportRequest.php',
+      204 => '/var/www/html/app/Http/Resources/ActivityResource.php',
+      205 => '/var/www/html/app/Http/Resources/BeneficiaryDocumentResource.php',
+      206 => '/var/www/html/app/Http/Resources/BeneficiaryResource.php',
+      207 => '/var/www/html/app/Http/Resources/BeneficiaryRevealResource.php',
+      208 => '/var/www/html/app/Http/Resources/BenefitFlagResource.php',
+      209 => '/var/www/html/app/Http/Resources/BenefitImportBatchResource.php',
+      210 => '/var/www/html/app/Http/Resources/BenefitResource.php',
+      211 => '/var/www/html/app/Http/Resources/DoubleDippingRuleResource.php',
+      212 => '/var/www/html/app/Http/Resources/EnrollmentResource.php',
+      213 => '/var/www/html/app/Http/Resources/GrievanceResource.php',
+      214 => '/var/www/html/app/Http/Resources/HouseholdMembershipResource.php',
+      215 => '/var/www/html/app/Http/Resources/HouseholdResource.php',
+      216 => '/var/www/html/app/Http/Resources/ImportBatchResource.php',
+      217 => '/var/www/html/app/Http/Resources/MatchingConfigResource.php',
+      218 => '/var/www/html/app/Http/Resources/MdaResource.php',
+      219 => '/var/www/html/app/Http/Resources/OwnershipTransferResource.php',
+      220 => '/var/www/html/app/Http/Resources/ProgrammeResource.php',
+      221 => '/var/www/html/app/Http/Resources/ReferralResource.php',
+      222 => '/var/www/html/app/Http/Resources/ServeRequestResource.php',
+      223 => '/var/www/html/app/Http/Resources/ServiceRequestResource.php',
+      224 => '/var/www/html/app/Http/Resources/UserResource.php',
+      225 => '/var/www/html/app/Providers/AppServiceProvider.php',
     ),
     'usedTraitDependentFiles' => 
     array (
@@ -15425,20 +17051,23 @@ return [
       4 => '/var/www/html/app/Domain/Benefit/Models/BenefitFlag.php',
       5 => '/var/www/html/app/Domain/Benefit/Models/BenefitImportBatch.php',
       6 => '/var/www/html/app/Domain/Benefit/Models/DoubleDippingRule.php',
-      7 => '/var/www/html/app/Domain/Matching/Models/MatchingConfig.php',
-      8 => '/var/www/html/app/Domain/Programme/Models/Activity.php',
-      9 => '/var/www/html/app/Domain/Programme/Models/Enrollment.php',
-      10 => '/var/www/html/app/Domain/Programme/Models/Programme.php',
-      11 => '/var/www/html/app/Domain/Referral/Models/Referral.php',
-      12 => '/var/www/html/app/Domain/Registry/Models/Beneficiary.php',
-      13 => '/var/www/html/app/Domain/Registry/Models/BeneficiaryDocument.php',
-      14 => '/var/www/html/app/Domain/Registry/Models/BeneficiaryServiceGrant.php',
-      15 => '/var/www/html/app/Domain/Registry/Models/Household.php',
-      16 => '/var/www/html/app/Domain/Registry/Models/HouseholdMembership.php',
-      17 => '/var/www/html/app/Domain/Registry/Models/ImportBatch.php',
-      18 => '/var/www/html/app/Domain/Registry/Models/OwnershipTransferRequest.php',
-      19 => '/var/www/html/app/Domain/Registry/Models/ServeRequest.php',
-      20 => '/var/www/html/app/Domain/Registry/Models/ServiceRequest.php',
+      7 => '/var/www/html/app/Domain/Grievance/Models/Grievance.php',
+      8 => '/var/www/html/app/Domain/Grievance/Models/GrievanceSlaPolicy.php',
+      9 => '/var/www/html/app/Domain/Matching/Models/MatchingConfig.php',
+      10 => '/var/www/html/app/Domain/Programme/Models/Activity.php',
+      11 => '/var/www/html/app/Domain/Programme/Models/Enrollment.php',
+      12 => '/var/www/html/app/Domain/Programme/Models/Programme.php',
+      13 => '/var/www/html/app/Domain/Referral/Models/Referral.php',
+      14 => '/var/www/html/app/Domain/Referral/Models/ReferralSlaPolicy.php',
+      15 => '/var/www/html/app/Domain/Registry/Models/Beneficiary.php',
+      16 => '/var/www/html/app/Domain/Registry/Models/BeneficiaryDocument.php',
+      17 => '/var/www/html/app/Domain/Registry/Models/BeneficiaryServiceGrant.php',
+      18 => '/var/www/html/app/Domain/Registry/Models/Household.php',
+      19 => '/var/www/html/app/Domain/Registry/Models/HouseholdMembership.php',
+      20 => '/var/www/html/app/Domain/Registry/Models/ImportBatch.php',
+      21 => '/var/www/html/app/Domain/Registry/Models/OwnershipTransferRequest.php',
+      22 => '/var/www/html/app/Domain/Registry/Models/ServeRequest.php',
+      23 => '/var/www/html/app/Domain/Registry/Models/ServiceRequest.php',
     ),
   ),
   '/var/www/html/app/Domain/Audit/Listeners/AuditEventSubscriber.php' => 
@@ -15465,33 +17094,39 @@ return [
       8 => '/var/www/html/app/Domain/Benefit/Models/BenefitImportBatch.php',
       9 => '/var/www/html/app/Domain/Benefit/Models/DoubleDippingRule.php',
       10 => '/var/www/html/app/Domain/Benefit/Services/BenefitRecorder.php',
-      11 => '/var/www/html/app/Domain/Matching/Models/MatchingConfig.php',
-      12 => '/var/www/html/app/Domain/Programme/Models/Activity.php',
-      13 => '/var/www/html/app/Domain/Programme/Models/Enrollment.php',
-      14 => '/var/www/html/app/Domain/Programme/Models/Programme.php',
-      15 => '/var/www/html/app/Domain/Referral/Models/Referral.php',
-      16 => '/var/www/html/app/Domain/Referral/Services/ReferralService.php',
-      17 => '/var/www/html/app/Domain/Registry/Models/Beneficiary.php',
-      18 => '/var/www/html/app/Domain/Registry/Models/BeneficiaryDocument.php',
-      19 => '/var/www/html/app/Domain/Registry/Models/BeneficiaryServiceGrant.php',
-      20 => '/var/www/html/app/Domain/Registry/Models/Household.php',
-      21 => '/var/www/html/app/Domain/Registry/Models/HouseholdMembership.php',
-      22 => '/var/www/html/app/Domain/Registry/Models/ImportBatch.php',
-      23 => '/var/www/html/app/Domain/Registry/Models/OwnershipTransferRequest.php',
-      24 => '/var/www/html/app/Domain/Registry/Models/ServeRequest.php',
-      25 => '/var/www/html/app/Domain/Registry/Models/ServiceRequest.php',
-      26 => '/var/www/html/app/Domain/Registry/Services/BeneficiaryLookupService.php',
-      27 => '/var/www/html/app/Domain/Registry/Services/HouseholdIngestionService.php',
-      28 => '/var/www/html/app/Domain/Registry/Services/HouseholdMembershipService.php',
-      29 => '/var/www/html/app/Domain/Registry/Services/OwnershipTransferService.php',
-      30 => '/var/www/html/app/Domain/Registry/Services/ServeRequestService.php',
-      31 => '/var/www/html/app/Domain/Registry/Services/ServiceRequestService.php',
-      32 => '/var/www/html/app/Http/Controllers/Api/V1/Access/UserController.php',
-      33 => '/var/www/html/app/Http/Controllers/Api/V1/AuthController.php',
-      34 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/BeneficiaryController.php',
-      35 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/BeneficiaryDocumentController.php',
-      36 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/BeneficiaryRoutingController.php',
-      37 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/ImportBatchController.php',
+      11 => '/var/www/html/app/Domain/Grievance/Jobs/EscalateOverdueGrievances.php',
+      12 => '/var/www/html/app/Domain/Grievance/Models/Grievance.php',
+      13 => '/var/www/html/app/Domain/Grievance/Models/GrievanceSlaPolicy.php',
+      14 => '/var/www/html/app/Domain/Grievance/Services/GrievanceService.php',
+      15 => '/var/www/html/app/Domain/Matching/Models/MatchingConfig.php',
+      16 => '/var/www/html/app/Domain/Programme/Models/Activity.php',
+      17 => '/var/www/html/app/Domain/Programme/Models/Enrollment.php',
+      18 => '/var/www/html/app/Domain/Programme/Models/Programme.php',
+      19 => '/var/www/html/app/Domain/Referral/Jobs/EscalateOverdueReferrals.php',
+      20 => '/var/www/html/app/Domain/Referral/Models/Referral.php',
+      21 => '/var/www/html/app/Domain/Referral/Models/ReferralSlaPolicy.php',
+      22 => '/var/www/html/app/Domain/Referral/Services/ReferralService.php',
+      23 => '/var/www/html/app/Domain/Registry/Models/Beneficiary.php',
+      24 => '/var/www/html/app/Domain/Registry/Models/BeneficiaryDocument.php',
+      25 => '/var/www/html/app/Domain/Registry/Models/BeneficiaryServiceGrant.php',
+      26 => '/var/www/html/app/Domain/Registry/Models/Household.php',
+      27 => '/var/www/html/app/Domain/Registry/Models/HouseholdMembership.php',
+      28 => '/var/www/html/app/Domain/Registry/Models/ImportBatch.php',
+      29 => '/var/www/html/app/Domain/Registry/Models/OwnershipTransferRequest.php',
+      30 => '/var/www/html/app/Domain/Registry/Models/ServeRequest.php',
+      31 => '/var/www/html/app/Domain/Registry/Models/ServiceRequest.php',
+      32 => '/var/www/html/app/Domain/Registry/Services/BeneficiaryLookupService.php',
+      33 => '/var/www/html/app/Domain/Registry/Services/HouseholdIngestionService.php',
+      34 => '/var/www/html/app/Domain/Registry/Services/HouseholdMembershipService.php',
+      35 => '/var/www/html/app/Domain/Registry/Services/OwnershipTransferService.php',
+      36 => '/var/www/html/app/Domain/Registry/Services/ServeRequestService.php',
+      37 => '/var/www/html/app/Domain/Registry/Services/ServiceRequestService.php',
+      38 => '/var/www/html/app/Http/Controllers/Api/V1/Access/UserController.php',
+      39 => '/var/www/html/app/Http/Controllers/Api/V1/AuthController.php',
+      40 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/BeneficiaryController.php',
+      41 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/BeneficiaryDocumentController.php',
+      42 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/BeneficiaryRoutingController.php',
+      43 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/ImportBatchController.php',
     ),
   ),
   '/var/www/html/app/Domain/Audit/Services/AuditLogger.php' => 
@@ -15509,33 +17144,39 @@ return [
       7 => '/var/www/html/app/Domain/Benefit/Models/BenefitImportBatch.php',
       8 => '/var/www/html/app/Domain/Benefit/Models/DoubleDippingRule.php',
       9 => '/var/www/html/app/Domain/Benefit/Services/BenefitRecorder.php',
-      10 => '/var/www/html/app/Domain/Matching/Models/MatchingConfig.php',
-      11 => '/var/www/html/app/Domain/Programme/Models/Activity.php',
-      12 => '/var/www/html/app/Domain/Programme/Models/Enrollment.php',
-      13 => '/var/www/html/app/Domain/Programme/Models/Programme.php',
-      14 => '/var/www/html/app/Domain/Referral/Models/Referral.php',
-      15 => '/var/www/html/app/Domain/Referral/Services/ReferralService.php',
-      16 => '/var/www/html/app/Domain/Registry/Models/Beneficiary.php',
-      17 => '/var/www/html/app/Domain/Registry/Models/BeneficiaryDocument.php',
-      18 => '/var/www/html/app/Domain/Registry/Models/BeneficiaryServiceGrant.php',
-      19 => '/var/www/html/app/Domain/Registry/Models/Household.php',
-      20 => '/var/www/html/app/Domain/Registry/Models/HouseholdMembership.php',
-      21 => '/var/www/html/app/Domain/Registry/Models/ImportBatch.php',
-      22 => '/var/www/html/app/Domain/Registry/Models/OwnershipTransferRequest.php',
-      23 => '/var/www/html/app/Domain/Registry/Models/ServeRequest.php',
-      24 => '/var/www/html/app/Domain/Registry/Models/ServiceRequest.php',
-      25 => '/var/www/html/app/Domain/Registry/Services/BeneficiaryLookupService.php',
-      26 => '/var/www/html/app/Domain/Registry/Services/HouseholdIngestionService.php',
-      27 => '/var/www/html/app/Domain/Registry/Services/HouseholdMembershipService.php',
-      28 => '/var/www/html/app/Domain/Registry/Services/OwnershipTransferService.php',
-      29 => '/var/www/html/app/Domain/Registry/Services/ServeRequestService.php',
-      30 => '/var/www/html/app/Domain/Registry/Services/ServiceRequestService.php',
-      31 => '/var/www/html/app/Http/Controllers/Api/V1/Access/UserController.php',
-      32 => '/var/www/html/app/Http/Controllers/Api/V1/AuthController.php',
-      33 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/BeneficiaryController.php',
-      34 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/BeneficiaryDocumentController.php',
-      35 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/BeneficiaryRoutingController.php',
-      36 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/ImportBatchController.php',
+      10 => '/var/www/html/app/Domain/Grievance/Jobs/EscalateOverdueGrievances.php',
+      11 => '/var/www/html/app/Domain/Grievance/Models/Grievance.php',
+      12 => '/var/www/html/app/Domain/Grievance/Models/GrievanceSlaPolicy.php',
+      13 => '/var/www/html/app/Domain/Grievance/Services/GrievanceService.php',
+      14 => '/var/www/html/app/Domain/Matching/Models/MatchingConfig.php',
+      15 => '/var/www/html/app/Domain/Programme/Models/Activity.php',
+      16 => '/var/www/html/app/Domain/Programme/Models/Enrollment.php',
+      17 => '/var/www/html/app/Domain/Programme/Models/Programme.php',
+      18 => '/var/www/html/app/Domain/Referral/Jobs/EscalateOverdueReferrals.php',
+      19 => '/var/www/html/app/Domain/Referral/Models/Referral.php',
+      20 => '/var/www/html/app/Domain/Referral/Models/ReferralSlaPolicy.php',
+      21 => '/var/www/html/app/Domain/Referral/Services/ReferralService.php',
+      22 => '/var/www/html/app/Domain/Registry/Models/Beneficiary.php',
+      23 => '/var/www/html/app/Domain/Registry/Models/BeneficiaryDocument.php',
+      24 => '/var/www/html/app/Domain/Registry/Models/BeneficiaryServiceGrant.php',
+      25 => '/var/www/html/app/Domain/Registry/Models/Household.php',
+      26 => '/var/www/html/app/Domain/Registry/Models/HouseholdMembership.php',
+      27 => '/var/www/html/app/Domain/Registry/Models/ImportBatch.php',
+      28 => '/var/www/html/app/Domain/Registry/Models/OwnershipTransferRequest.php',
+      29 => '/var/www/html/app/Domain/Registry/Models/ServeRequest.php',
+      30 => '/var/www/html/app/Domain/Registry/Models/ServiceRequest.php',
+      31 => '/var/www/html/app/Domain/Registry/Services/BeneficiaryLookupService.php',
+      32 => '/var/www/html/app/Domain/Registry/Services/HouseholdIngestionService.php',
+      33 => '/var/www/html/app/Domain/Registry/Services/HouseholdMembershipService.php',
+      34 => '/var/www/html/app/Domain/Registry/Services/OwnershipTransferService.php',
+      35 => '/var/www/html/app/Domain/Registry/Services/ServeRequestService.php',
+      36 => '/var/www/html/app/Domain/Registry/Services/ServiceRequestService.php',
+      37 => '/var/www/html/app/Http/Controllers/Api/V1/Access/UserController.php',
+      38 => '/var/www/html/app/Http/Controllers/Api/V1/AuthController.php',
+      39 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/BeneficiaryController.php',
+      40 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/BeneficiaryDocumentController.php',
+      41 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/BeneficiaryRoutingController.php',
+      42 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/ImportBatchController.php',
     ),
   ),
   '/var/www/html/app/Domain/Audit/Support/AuditScrubber.php' => 
@@ -15550,20 +17191,23 @@ return [
       4 => '/var/www/html/app/Domain/Benefit/Models/BenefitFlag.php',
       5 => '/var/www/html/app/Domain/Benefit/Models/BenefitImportBatch.php',
       6 => '/var/www/html/app/Domain/Benefit/Models/DoubleDippingRule.php',
-      7 => '/var/www/html/app/Domain/Matching/Models/MatchingConfig.php',
-      8 => '/var/www/html/app/Domain/Programme/Models/Activity.php',
-      9 => '/var/www/html/app/Domain/Programme/Models/Enrollment.php',
-      10 => '/var/www/html/app/Domain/Programme/Models/Programme.php',
-      11 => '/var/www/html/app/Domain/Referral/Models/Referral.php',
-      12 => '/var/www/html/app/Domain/Registry/Models/Beneficiary.php',
-      13 => '/var/www/html/app/Domain/Registry/Models/BeneficiaryDocument.php',
-      14 => '/var/www/html/app/Domain/Registry/Models/BeneficiaryServiceGrant.php',
-      15 => '/var/www/html/app/Domain/Registry/Models/Household.php',
-      16 => '/var/www/html/app/Domain/Registry/Models/HouseholdMembership.php',
-      17 => '/var/www/html/app/Domain/Registry/Models/ImportBatch.php',
-      18 => '/var/www/html/app/Domain/Registry/Models/OwnershipTransferRequest.php',
-      19 => '/var/www/html/app/Domain/Registry/Models/ServeRequest.php',
-      20 => '/var/www/html/app/Domain/Registry/Models/ServiceRequest.php',
+      7 => '/var/www/html/app/Domain/Grievance/Models/Grievance.php',
+      8 => '/var/www/html/app/Domain/Grievance/Models/GrievanceSlaPolicy.php',
+      9 => '/var/www/html/app/Domain/Matching/Models/MatchingConfig.php',
+      10 => '/var/www/html/app/Domain/Programme/Models/Activity.php',
+      11 => '/var/www/html/app/Domain/Programme/Models/Enrollment.php',
+      12 => '/var/www/html/app/Domain/Programme/Models/Programme.php',
+      13 => '/var/www/html/app/Domain/Referral/Models/Referral.php',
+      14 => '/var/www/html/app/Domain/Referral/Models/ReferralSlaPolicy.php',
+      15 => '/var/www/html/app/Domain/Registry/Models/Beneficiary.php',
+      16 => '/var/www/html/app/Domain/Registry/Models/BeneficiaryDocument.php',
+      17 => '/var/www/html/app/Domain/Registry/Models/BeneficiaryServiceGrant.php',
+      18 => '/var/www/html/app/Domain/Registry/Models/Household.php',
+      19 => '/var/www/html/app/Domain/Registry/Models/HouseholdMembership.php',
+      20 => '/var/www/html/app/Domain/Registry/Models/ImportBatch.php',
+      21 => '/var/www/html/app/Domain/Registry/Models/OwnershipTransferRequest.php',
+      22 => '/var/www/html/app/Domain/Registry/Models/ServeRequest.php',
+      23 => '/var/www/html/app/Domain/Registry/Models/ServiceRequest.php',
     ),
   ),
   '/var/www/html/app/Domain/Benefit/Authorization/DeliveryAuthorizer.php' => 
@@ -15574,6 +17218,8 @@ return [
       0 => '/var/www/html/app/Domain/Benefit/Authorization/ServiceRequestAuthorizer.php',
       1 => '/var/www/html/app/Domain/Benefit/BenefitServiceProvider.php',
       2 => '/var/www/html/app/Domain/Benefit/Services/DeliveryAuthorization.php',
+      3 => '/var/www/html/app/Domain/Referral/Authorization/ReferralAuthorizer.php',
+      4 => '/var/www/html/app/Domain/Referral/ReferralServiceProvider.php',
     ),
   ),
   '/var/www/html/app/Domain/Benefit/Authorization/ServiceRequestAuthorizer.php' => 
@@ -15586,7 +17232,7 @@ return [
   ),
   '/var/www/html/app/Domain/Benefit/BenefitServiceProvider.php' => 
   array (
-    'fileHash' => '6ab1ff4ca240241137ff5e73b3ab78ec08bdb0aa37830ee13f1fa85a693087c4',
+    'fileHash' => '54342bf4f9df217ab8d9e614dee2d2f58c0d59f7703e7888939eb225c895bb11',
     'dependentFiles' => 
     array (
     ),
@@ -15636,9 +17282,10 @@ return [
       10 => '/var/www/html/app/Domain/Benefit/Services/Verifiers/FieldConfirmationVerifier.php',
       11 => '/var/www/html/app/Domain/Benefit/Services/Verifiers/OtpVerifier.php',
       12 => '/var/www/html/app/Domain/Benefit/Services/Verifiers/SignatureVerifier.php',
-      13 => '/var/www/html/app/Http/Controllers/Api/V1/Benefit/BenefitController.php',
-      14 => '/var/www/html/app/Http/Requests/Benefit/AggregateBenefitsRequest.php',
-      15 => '/var/www/html/app/Http/Resources/BenefitResource.php',
+      13 => '/var/www/html/app/Domain/Referral/Services/ReferralService.php',
+      14 => '/var/www/html/app/Http/Controllers/Api/V1/Benefit/BenefitController.php',
+      15 => '/var/www/html/app/Http/Requests/Benefit/AggregateBenefitsRequest.php',
+      16 => '/var/www/html/app/Http/Resources/BenefitResource.php',
     ),
   ),
   '/var/www/html/app/Domain/Benefit/Enums/BenefitType.php' => 
@@ -15660,11 +17307,12 @@ return [
       11 => '/var/www/html/app/Domain/Benefit/Services/Verifiers/FieldConfirmationVerifier.php',
       12 => '/var/www/html/app/Domain/Benefit/Services/Verifiers/OtpVerifier.php',
       13 => '/var/www/html/app/Domain/Benefit/Services/Verifiers/SignatureVerifier.php',
-      14 => '/var/www/html/app/Http/Controllers/Api/V1/Benefit/BenefitController.php',
-      15 => '/var/www/html/app/Http/Requests/Benefit/AggregateBenefitsRequest.php',
-      16 => '/var/www/html/app/Http/Requests/Benefit/RecordBenefitRequest.php',
-      17 => '/var/www/html/app/Http/Requests/Benefit/StoreDoubleDippingRuleRequest.php',
-      18 => '/var/www/html/app/Http/Resources/BenefitResource.php',
+      14 => '/var/www/html/app/Domain/Referral/Services/ReferralService.php',
+      15 => '/var/www/html/app/Http/Controllers/Api/V1/Benefit/BenefitController.php',
+      16 => '/var/www/html/app/Http/Requests/Benefit/AggregateBenefitsRequest.php',
+      17 => '/var/www/html/app/Http/Requests/Benefit/RecordBenefitRequest.php',
+      18 => '/var/www/html/app/Http/Requests/Benefit/StoreDoubleDippingRuleRequest.php',
+      19 => '/var/www/html/app/Http/Resources/BenefitResource.php',
     ),
   ),
   '/var/www/html/app/Domain/Benefit/Enums/VerificationMethod.php' => 
@@ -15687,9 +17335,10 @@ return [
       12 => '/var/www/html/app/Domain/Benefit/Services/Verifiers/FieldConfirmationVerifier.php',
       13 => '/var/www/html/app/Domain/Benefit/Services/Verifiers/OtpVerifier.php',
       14 => '/var/www/html/app/Domain/Benefit/Services/Verifiers/SignatureVerifier.php',
-      15 => '/var/www/html/app/Http/Controllers/Api/V1/Benefit/BenefitController.php',
-      16 => '/var/www/html/app/Http/Requests/Benefit/RecordBenefitRequest.php',
-      17 => '/var/www/html/app/Http/Resources/BenefitResource.php',
+      15 => '/var/www/html/app/Domain/Referral/Services/ReferralService.php',
+      16 => '/var/www/html/app/Http/Controllers/Api/V1/Benefit/BenefitController.php',
+      17 => '/var/www/html/app/Http/Requests/Benefit/RecordBenefitRequest.php',
+      18 => '/var/www/html/app/Http/Resources/BenefitResource.php',
     ),
   ),
   '/var/www/html/app/Domain/Benefit/Exceptions/DeliveryNotAuthorizedException.php' => 
@@ -15768,8 +17417,9 @@ return [
       9 => '/var/www/html/app/Domain/Benefit/Services/Verifiers/FieldConfirmationVerifier.php',
       10 => '/var/www/html/app/Domain/Benefit/Services/Verifiers/OtpVerifier.php',
       11 => '/var/www/html/app/Domain/Benefit/Services/Verifiers/SignatureVerifier.php',
-      12 => '/var/www/html/app/Http/Controllers/Api/V1/Benefit/BenefitController.php',
-      13 => '/var/www/html/app/Http/Resources/BenefitResource.php',
+      12 => '/var/www/html/app/Domain/Referral/Services/ReferralService.php',
+      13 => '/var/www/html/app/Http/Controllers/Api/V1/Benefit/BenefitController.php',
+      14 => '/var/www/html/app/Http/Resources/BenefitResource.php',
     ),
   ),
   '/var/www/html/app/Domain/Benefit/Models/BenefitFlag.php' => 
@@ -15875,11 +17525,12 @@ return [
   ),
   '/var/www/html/app/Domain/Benefit/Services/DeliveryAuthorization.php' => 
   array (
-    'fileHash' => '8eb03e33e7909bc830b007d793e9258991bb02f21fde26c42b51aeb910cab1b0',
+    'fileHash' => 'e1d6a3eb3bb6e40998dd97e6d38a771e94074bdff414c38a8331ebd6f21ad4e2',
     'dependentFiles' => 
     array (
       0 => '/var/www/html/app/Domain/Benefit/BenefitServiceProvider.php',
       1 => '/var/www/html/app/Domain/Benefit/Services/BenefitRecorder.php',
+      2 => '/var/www/html/app/Domain/Referral/ReferralServiceProvider.php',
     ),
   ),
   '/var/www/html/app/Domain/Benefit/Services/DoubleDippingDetector.php' => 
@@ -15939,6 +17590,155 @@ return [
     'dependentFiles' => 
     array (
       0 => '/var/www/html/app/Domain/Benefit/BenefitServiceProvider.php',
+    ),
+  ),
+  '/var/www/html/app/Domain/Grievance/Enums/GrievanceCategory.php' => 
+  array (
+    'fileHash' => '7b561af6b2522c67b443b8aa2e67d3647b09864d3bbdb43eae23c320768c199a',
+    'dependentFiles' => 
+    array (
+      0 => '/var/www/html/app/Domain/Grievance/Events/GrievanceAssigned.php',
+      1 => '/var/www/html/app/Domain/Grievance/Events/GrievanceResolved.php',
+      2 => '/var/www/html/app/Domain/Grievance/Events/GrievanceSlaBreached.php',
+      3 => '/var/www/html/app/Domain/Grievance/GrievanceServiceProvider.php',
+      4 => '/var/www/html/app/Domain/Grievance/Jobs/EscalateOverdueGrievances.php',
+      5 => '/var/www/html/app/Domain/Grievance/Models/Grievance.php',
+      6 => '/var/www/html/app/Domain/Grievance/Policies/GrievancePolicy.php',
+      7 => '/var/www/html/app/Domain/Grievance/Services/GrievanceService.php',
+      8 => '/var/www/html/app/Domain/Notification/Listeners/NotificationSubscriber.php',
+      9 => '/var/www/html/app/Http/Controllers/Api/V1/Grievance/GrievanceController.php',
+      10 => '/var/www/html/app/Http/Controllers/Api/V1/Grievance/GrievanceSlaPolicyController.php',
+      11 => '/var/www/html/app/Http/Requests/Grievance/StoreGrievanceRequest.php',
+      12 => '/var/www/html/app/Http/Resources/GrievanceResource.php',
+    ),
+  ),
+  '/var/www/html/app/Domain/Grievance/Enums/GrievanceChannel.php' => 
+  array (
+    'fileHash' => 'a36c2fbc1ae70fae976a63cdd187b2c94405facdf1480071769df02d9313c840',
+    'dependentFiles' => 
+    array (
+      0 => '/var/www/html/app/Domain/Grievance/Events/GrievanceAssigned.php',
+      1 => '/var/www/html/app/Domain/Grievance/Events/GrievanceResolved.php',
+      2 => '/var/www/html/app/Domain/Grievance/Events/GrievanceSlaBreached.php',
+      3 => '/var/www/html/app/Domain/Grievance/GrievanceServiceProvider.php',
+      4 => '/var/www/html/app/Domain/Grievance/Jobs/EscalateOverdueGrievances.php',
+      5 => '/var/www/html/app/Domain/Grievance/Models/Grievance.php',
+      6 => '/var/www/html/app/Domain/Grievance/Policies/GrievancePolicy.php',
+      7 => '/var/www/html/app/Domain/Grievance/Services/GrievanceService.php',
+      8 => '/var/www/html/app/Domain/Notification/Listeners/NotificationSubscriber.php',
+      9 => '/var/www/html/app/Http/Controllers/Api/V1/Grievance/GrievanceController.php',
+      10 => '/var/www/html/app/Http/Requests/Grievance/StoreGrievanceRequest.php',
+      11 => '/var/www/html/app/Http/Resources/GrievanceResource.php',
+    ),
+  ),
+  '/var/www/html/app/Domain/Grievance/Enums/GrievanceStatus.php' => 
+  array (
+    'fileHash' => '8e998b38803b5187bb481a1c73665295dc12e307863355a295f429b819d04c66',
+    'dependentFiles' => 
+    array (
+      0 => '/var/www/html/app/Domain/Grievance/Events/GrievanceAssigned.php',
+      1 => '/var/www/html/app/Domain/Grievance/Events/GrievanceResolved.php',
+      2 => '/var/www/html/app/Domain/Grievance/Events/GrievanceSlaBreached.php',
+      3 => '/var/www/html/app/Domain/Grievance/GrievanceServiceProvider.php',
+      4 => '/var/www/html/app/Domain/Grievance/Jobs/EscalateOverdueGrievances.php',
+      5 => '/var/www/html/app/Domain/Grievance/Models/Grievance.php',
+      6 => '/var/www/html/app/Domain/Grievance/Policies/GrievancePolicy.php',
+      7 => '/var/www/html/app/Domain/Grievance/Services/GrievanceService.php',
+      8 => '/var/www/html/app/Domain/Notification/Listeners/NotificationSubscriber.php',
+      9 => '/var/www/html/app/Http/Controllers/Api/V1/Grievance/GrievanceController.php',
+      10 => '/var/www/html/app/Http/Resources/GrievanceResource.php',
+    ),
+  ),
+  '/var/www/html/app/Domain/Grievance/Events/GrievanceAssigned.php' => 
+  array (
+    'fileHash' => '918cda6950250411958218a6132c5e7e6dd361f46f40e60f5043e22e12f4b2a0',
+    'dependentFiles' => 
+    array (
+      0 => '/var/www/html/app/Domain/Grievance/Services/GrievanceService.php',
+      1 => '/var/www/html/app/Domain/Notification/Listeners/NotificationSubscriber.php',
+    ),
+  ),
+  '/var/www/html/app/Domain/Grievance/Events/GrievanceResolved.php' => 
+  array (
+    'fileHash' => 'd201afd898da5cb66182a1c06859c8cf524f07477b5167604cce1e33c28938d2',
+    'dependentFiles' => 
+    array (
+      0 => '/var/www/html/app/Domain/Grievance/Services/GrievanceService.php',
+      1 => '/var/www/html/app/Domain/Notification/Listeners/NotificationSubscriber.php',
+    ),
+  ),
+  '/var/www/html/app/Domain/Grievance/Events/GrievanceSlaBreached.php' => 
+  array (
+    'fileHash' => 'b9ed5e62bb9f41e2a61bb402eeefc7d0007c0d7dafeea05b870b16260ff32a76',
+    'dependentFiles' => 
+    array (
+      0 => '/var/www/html/app/Domain/Grievance/Jobs/EscalateOverdueGrievances.php',
+      1 => '/var/www/html/app/Domain/Notification/Listeners/NotificationSubscriber.php',
+    ),
+  ),
+  '/var/www/html/app/Domain/Grievance/Exceptions/InvalidGrievanceTransitionException.php' => 
+  array (
+    'fileHash' => '53469c75787a06413efc003efb18498de3dc47259cd9b9225334c29a29aefdb6',
+    'dependentFiles' => 
+    array (
+      0 => '/var/www/html/app/Domain/Grievance/Services/GrievanceService.php',
+      1 => '/var/www/html/app/Http/Controllers/Api/V1/Grievance/GrievanceController.php',
+    ),
+  ),
+  '/var/www/html/app/Domain/Grievance/GrievanceServiceProvider.php' => 
+  array (
+    'fileHash' => '029bad74913957a2ecbaf02b23df8277df65595bcc02a08ad938af61fc63e609',
+    'dependentFiles' => 
+    array (
+    ),
+  ),
+  '/var/www/html/app/Domain/Grievance/Jobs/EscalateOverdueGrievances.php' => 
+  array (
+    'fileHash' => '33ac339573028f109ccd54f33c04529cff633c870eeb8ab401742458c61ea106',
+    'dependentFiles' => 
+    array (
+    ),
+  ),
+  '/var/www/html/app/Domain/Grievance/Models/Grievance.php' => 
+  array (
+    'fileHash' => '736416937988ff2b10560021b26ef9ce8a53e40e9d1570ced11cece9fa85caef',
+    'dependentFiles' => 
+    array (
+      0 => '/var/www/html/app/Domain/Grievance/Events/GrievanceAssigned.php',
+      1 => '/var/www/html/app/Domain/Grievance/Events/GrievanceResolved.php',
+      2 => '/var/www/html/app/Domain/Grievance/Events/GrievanceSlaBreached.php',
+      3 => '/var/www/html/app/Domain/Grievance/GrievanceServiceProvider.php',
+      4 => '/var/www/html/app/Domain/Grievance/Jobs/EscalateOverdueGrievances.php',
+      5 => '/var/www/html/app/Domain/Grievance/Policies/GrievancePolicy.php',
+      6 => '/var/www/html/app/Domain/Grievance/Services/GrievanceService.php',
+      7 => '/var/www/html/app/Domain/Notification/Listeners/NotificationSubscriber.php',
+      8 => '/var/www/html/app/Http/Controllers/Api/V1/Grievance/GrievanceController.php',
+      9 => '/var/www/html/app/Http/Resources/GrievanceResource.php',
+    ),
+  ),
+  '/var/www/html/app/Domain/Grievance/Models/GrievanceSlaPolicy.php' => 
+  array (
+    'fileHash' => '2910253196a52181630c5e82e196a910561b82529bf1e773670309e3843e7faa',
+    'dependentFiles' => 
+    array (
+      0 => '/var/www/html/app/Domain/Grievance/Jobs/EscalateOverdueGrievances.php',
+      1 => '/var/www/html/app/Http/Controllers/Api/V1/Grievance/GrievanceSlaPolicyController.php',
+    ),
+  ),
+  '/var/www/html/app/Domain/Grievance/Policies/GrievancePolicy.php' => 
+  array (
+    'fileHash' => 'c7d9880f0af3bd08734036a6ce440076c3015e9836df2a308a577efe5c50f295',
+    'dependentFiles' => 
+    array (
+      0 => '/var/www/html/app/Domain/Grievance/GrievanceServiceProvider.php',
+    ),
+  ),
+  '/var/www/html/app/Domain/Grievance/Services/GrievanceService.php' => 
+  array (
+    'fileHash' => 'b463f8bade9327acac7967efaf0bbcba5d1ffb9bcd52c6861d6956155037bfd4',
+    'dependentFiles' => 
+    array (
+      0 => '/var/www/html/app/Http/Controllers/Api/V1/Grievance/GrievanceController.php',
     ),
   ),
   '/var/www/html/app/Domain/Matching/Contracts/MatchScorer.php' => 
@@ -16251,7 +18051,7 @@ return [
   ),
   '/var/www/html/app/Domain/Notification/Listeners/NotificationSubscriber.php' => 
   array (
-    'fileHash' => '2178313e62650f59d9193e3cbef25552a294274c4cfdbe28a2bfd77c4fb6afac',
+    'fileHash' => '53a59b3054579939b68526f696306312a4ba93b77ec838ccc78fd9eba2c18105',
     'dependentFiles' => 
     array (
       0 => '/var/www/html/app/Domain/Notification/NotificationServiceProvider.php',
@@ -16519,20 +18319,21 @@ return [
       23 => '/var/www/html/app/Domain/Programme/ProgrammeServiceProvider.php',
       24 => '/var/www/html/app/Domain/Programme/Services/EnrollmentService.php',
       25 => '/var/www/html/app/Domain/Programme/Services/ProgrammeMatcher.php',
-      26 => '/var/www/html/app/Domain/Registry/Jobs/CommitImportBatch.php',
-      27 => '/var/www/html/app/Domain/Registry/Models/ImportBatch.php',
-      28 => '/var/www/html/app/Http/Controllers/Api/V1/Benefit/BenefitController.php',
-      29 => '/var/www/html/app/Http/Controllers/Api/V1/Benefit/BenefitImportController.php',
-      30 => '/var/www/html/app/Http/Controllers/Api/V1/Programme/ActivityController.php',
-      31 => '/var/www/html/app/Http/Controllers/Api/V1/Programme/EnrollmentController.php',
-      32 => '/var/www/html/app/Http/Controllers/Api/V1/Programme/ProgrammeController.php',
-      33 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/BeneficiaryRoutingController.php',
-      34 => '/var/www/html/app/Http/Requests/Registry/UploadImportRequest.php',
-      35 => '/var/www/html/app/Http/Resources/ActivityResource.php',
-      36 => '/var/www/html/app/Http/Resources/BenefitImportBatchResource.php',
-      37 => '/var/www/html/app/Http/Resources/BenefitResource.php',
-      38 => '/var/www/html/app/Http/Resources/EnrollmentResource.php',
-      39 => '/var/www/html/app/Http/Resources/ProgrammeResource.php',
+      26 => '/var/www/html/app/Domain/Referral/Services/ReferralService.php',
+      27 => '/var/www/html/app/Domain/Registry/Jobs/CommitImportBatch.php',
+      28 => '/var/www/html/app/Domain/Registry/Models/ImportBatch.php',
+      29 => '/var/www/html/app/Http/Controllers/Api/V1/Benefit/BenefitController.php',
+      30 => '/var/www/html/app/Http/Controllers/Api/V1/Benefit/BenefitImportController.php',
+      31 => '/var/www/html/app/Http/Controllers/Api/V1/Programme/ActivityController.php',
+      32 => '/var/www/html/app/Http/Controllers/Api/V1/Programme/EnrollmentController.php',
+      33 => '/var/www/html/app/Http/Controllers/Api/V1/Programme/ProgrammeController.php',
+      34 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/BeneficiaryRoutingController.php',
+      35 => '/var/www/html/app/Http/Requests/Registry/UploadImportRequest.php',
+      36 => '/var/www/html/app/Http/Resources/ActivityResource.php',
+      37 => '/var/www/html/app/Http/Resources/BenefitImportBatchResource.php',
+      38 => '/var/www/html/app/Http/Resources/BenefitResource.php',
+      39 => '/var/www/html/app/Http/Resources/EnrollmentResource.php',
+      40 => '/var/www/html/app/Http/Resources/ProgrammeResource.php',
     ),
   ),
   '/var/www/html/app/Domain/Programme/Policies/ActivityPolicy.php' => 
@@ -16578,7 +18379,7 @@ return [
   ),
   '/var/www/html/app/Domain/Programme/Services/EnrollmentService.php' => 
   array (
-    'fileHash' => 'e533ab1fdf7bd69a2f25f71292454ef26ba896398249a31a1dc73e71a958de97',
+    'fileHash' => '4874e00d806d5cf363e35b1659afdf43e0402feabf3a4c56ccebee00f4ff20cf',
     'dependentFiles' => 
     array (
       0 => '/var/www/html/app/Domain/Registry/Jobs/CommitImportBatch.php',
@@ -16603,17 +18404,50 @@ return [
       0 => '/var/www/html/app/Domain/Registry/RegistryServiceProvider.php',
     ),
   ),
+  '/var/www/html/app/Domain/Referral/Authorization/ReferralAuthorizer.php' => 
+  array (
+    'fileHash' => 'b02050e5b9bd3ffd30b9117d2a0d4b242f5ccfee4fdbf6f6ebd490ef690a8472',
+    'dependentFiles' => 
+    array (
+      0 => '/var/www/html/app/Domain/Referral/ReferralServiceProvider.php',
+    ),
+  ),
   '/var/www/html/app/Domain/Referral/Enums/ReferralStatus.php' => 
   array (
     'fileHash' => '2627c0c52327fba85b43395182a215d912ab542f420b65fc26df96c876e4dc06',
     'dependentFiles' => 
     array (
-      0 => '/var/www/html/app/Domain/Referral/Models/Referral.php',
-      1 => '/var/www/html/app/Domain/Referral/Policies/ReferralPolicy.php',
-      2 => '/var/www/html/app/Domain/Referral/ReferralServiceProvider.php',
-      3 => '/var/www/html/app/Domain/Referral/Services/ReferralService.php',
-      4 => '/var/www/html/app/Http/Controllers/Api/V1/Referral/ReferralController.php',
-      5 => '/var/www/html/app/Http/Resources/ReferralResource.php',
+      0 => '/var/www/html/app/Domain/Notification/Listeners/NotificationSubscriber.php',
+      1 => '/var/www/html/app/Domain/Programme/Services/EnrollmentService.php',
+      2 => '/var/www/html/app/Domain/Referral/Authorization/ReferralAuthorizer.php',
+      3 => '/var/www/html/app/Domain/Referral/Events/ReferralSlaBreached.php',
+      4 => '/var/www/html/app/Domain/Referral/Events/ReferralStatusChanged.php',
+      5 => '/var/www/html/app/Domain/Referral/Jobs/EscalateOverdueReferrals.php',
+      6 => '/var/www/html/app/Domain/Referral/Models/Referral.php',
+      7 => '/var/www/html/app/Domain/Referral/Policies/ReferralPolicy.php',
+      8 => '/var/www/html/app/Domain/Referral/ReferralServiceProvider.php',
+      9 => '/var/www/html/app/Domain/Referral/Services/ReferralService.php',
+      10 => '/var/www/html/app/Http/Controllers/Api/V1/Referral/ReferralController.php',
+      11 => '/var/www/html/app/Http/Controllers/Api/V1/Referral/ReferralSlaPolicyController.php',
+      12 => '/var/www/html/app/Http/Resources/ReferralResource.php',
+    ),
+  ),
+  '/var/www/html/app/Domain/Referral/Events/ReferralSlaBreached.php' => 
+  array (
+    'fileHash' => '518592a26bf11981637361d65fe98f69bf2906105dc1d205e1111f65edad920a',
+    'dependentFiles' => 
+    array (
+      0 => '/var/www/html/app/Domain/Notification/Listeners/NotificationSubscriber.php',
+      1 => '/var/www/html/app/Domain/Referral/Jobs/EscalateOverdueReferrals.php',
+    ),
+  ),
+  '/var/www/html/app/Domain/Referral/Events/ReferralStatusChanged.php' => 
+  array (
+    'fileHash' => '723c1005c8edf93979dd43fb71f68793bd73074c49ac6b5a480152b9b29ded65',
+    'dependentFiles' => 
+    array (
+      0 => '/var/www/html/app/Domain/Notification/Listeners/NotificationSubscriber.php',
+      1 => '/var/www/html/app/Domain/Referral/Services/ReferralService.php',
     ),
   ),
   '/var/www/html/app/Domain/Referral/Exceptions/InvalidReferralTransitionException.php' => 
@@ -16625,16 +18459,38 @@ return [
       1 => '/var/www/html/app/Http/Controllers/Api/V1/Referral/ReferralController.php',
     ),
   ),
-  '/var/www/html/app/Domain/Referral/Models/Referral.php' => 
+  '/var/www/html/app/Domain/Referral/Jobs/EscalateOverdueReferrals.php' => 
   array (
-    'fileHash' => 'c75c3d6a23222975227fc88bf5a976082750a044708e5129b6268380babfb429',
+    'fileHash' => '742c9d159f976fc035d78627c6db98bf7d09d6e9d4f2d7ba29fbcc6b3ff2f94e',
     'dependentFiles' => 
     array (
-      0 => '/var/www/html/app/Domain/Referral/Policies/ReferralPolicy.php',
-      1 => '/var/www/html/app/Domain/Referral/ReferralServiceProvider.php',
-      2 => '/var/www/html/app/Domain/Referral/Services/ReferralService.php',
-      3 => '/var/www/html/app/Http/Controllers/Api/V1/Referral/ReferralController.php',
-      4 => '/var/www/html/app/Http/Resources/ReferralResource.php',
+    ),
+  ),
+  '/var/www/html/app/Domain/Referral/Models/Referral.php' => 
+  array (
+    'fileHash' => '9b9b8c6fd1f81f3ac5ddddb119ecf2982b1703dbfc3bf8242ba5cbc1ecb4ec00',
+    'dependentFiles' => 
+    array (
+      0 => '/var/www/html/app/Domain/Notification/Listeners/NotificationSubscriber.php',
+      1 => '/var/www/html/app/Domain/Programme/Services/EnrollmentService.php',
+      2 => '/var/www/html/app/Domain/Referral/Authorization/ReferralAuthorizer.php',
+      3 => '/var/www/html/app/Domain/Referral/Events/ReferralSlaBreached.php',
+      4 => '/var/www/html/app/Domain/Referral/Events/ReferralStatusChanged.php',
+      5 => '/var/www/html/app/Domain/Referral/Jobs/EscalateOverdueReferrals.php',
+      6 => '/var/www/html/app/Domain/Referral/Policies/ReferralPolicy.php',
+      7 => '/var/www/html/app/Domain/Referral/ReferralServiceProvider.php',
+      8 => '/var/www/html/app/Domain/Referral/Services/ReferralService.php',
+      9 => '/var/www/html/app/Http/Controllers/Api/V1/Referral/ReferralController.php',
+      10 => '/var/www/html/app/Http/Resources/ReferralResource.php',
+    ),
+  ),
+  '/var/www/html/app/Domain/Referral/Models/ReferralSlaPolicy.php' => 
+  array (
+    'fileHash' => '89b50fd438ca63152c6c1931228fcf9ddc721d897999a0e2957b50c0ffdb23d4',
+    'dependentFiles' => 
+    array (
+      0 => '/var/www/html/app/Domain/Referral/Jobs/EscalateOverdueReferrals.php',
+      1 => '/var/www/html/app/Http/Controllers/Api/V1/Referral/ReferralSlaPolicyController.php',
     ),
   ),
   '/var/www/html/app/Domain/Referral/Policies/ReferralPolicy.php' => 
@@ -16647,7 +18503,7 @@ return [
   ),
   '/var/www/html/app/Domain/Referral/ReferralServiceProvider.php' => 
   array (
-    'fileHash' => 'fd338993aac05ef44d301f0dcb533bbb989aff919a0f841260c2818744b38154',
+    'fileHash' => 'a3cac3ab32360bd52e1d47226b870ea02003847f7d43489f344142b22b89a2de',
     'dependentFiles' => 
     array (
     ),
@@ -16657,12 +18513,13 @@ return [
     'fileHash' => 'be7944937d272bfb96a3c8e3578b88ed50ec8f487ba3d55af0e4149432a017ee',
     'dependentFiles' => 
     array (
-      0 => '/var/www/html/app/Domain/Referral/Models/Referral.php',
+      0 => '/var/www/html/app/Domain/Referral/Jobs/EscalateOverdueReferrals.php',
+      1 => '/var/www/html/app/Domain/Referral/Models/Referral.php',
     ),
   ),
   '/var/www/html/app/Domain/Referral/Services/ReferralService.php' => 
   array (
-    'fileHash' => '1996cd90f9c2605ad45205c0f4f5209cddace86010102bcb2c51739b065a55cf',
+    'fileHash' => '62d52278002e3862a2be4061a677f2dd754da0440ea001cfb520b90d5909d0b4',
     'dependentFiles' => 
     array (
       0 => '/var/www/html/app/Http/Controllers/Api/V1/Referral/ReferralController.php',
@@ -16704,57 +18561,59 @@ return [
       8 => '/var/www/html/app/Domain/Benefit/Services/BeneficiaryRevealPresenter.php',
       9 => '/var/www/html/app/Domain/Benefit/Services/BenefitRecorder.php',
       10 => '/var/www/html/app/Domain/Benefit/Services/DeliveryAuthorization.php',
-      11 => '/var/www/html/app/Domain/Programme/Models/Enrollment.php',
-      12 => '/var/www/html/app/Domain/Programme/Services/EligibilityEvaluator.php',
-      13 => '/var/www/html/app/Domain/Programme/Services/EnrollmentService.php',
-      14 => '/var/www/html/app/Domain/Programme/Services/ProgrammeMatcher.php',
-      15 => '/var/www/html/app/Domain/Programme/Services/ProgrammeMatchingRouter.php',
-      16 => '/var/www/html/app/Domain/Referral/Models/Referral.php',
-      17 => '/var/www/html/app/Domain/Referral/Services/ReferralService.php',
-      18 => '/var/www/html/app/Domain/Registry/Contracts/BeneficiaryRouter.php',
-      19 => '/var/www/html/app/Domain/Registry/Imports/ImportRowValidator.php',
-      20 => '/var/www/html/app/Domain/Registry/Jobs/CommitImportBatch.php',
-      21 => '/var/www/html/app/Domain/Registry/Models/Beneficiary.php',
-      22 => '/var/www/html/app/Domain/Registry/Models/BeneficiaryDocument.php',
-      23 => '/var/www/html/app/Domain/Registry/Models/BeneficiaryServiceGrant.php',
-      24 => '/var/www/html/app/Domain/Registry/Models/Household.php',
-      25 => '/var/www/html/app/Domain/Registry/Models/HouseholdMembership.php',
-      26 => '/var/www/html/app/Domain/Registry/Models/ImportRow.php',
-      27 => '/var/www/html/app/Domain/Registry/Models/OwnershipTransferRequest.php',
-      28 => '/var/www/html/app/Domain/Registry/Models/ServeRequest.php',
-      29 => '/var/www/html/app/Domain/Registry/Models/ServiceRequest.php',
-      30 => '/var/www/html/app/Domain/Registry/Policies/BeneficiaryPolicy.php',
-      31 => '/var/www/html/app/Domain/Registry/RegistryServiceProvider.php',
-      32 => '/var/www/html/app/Domain/Registry/Services/BatchDuplicateScreener.php',
-      33 => '/var/www/html/app/Domain/Registry/Services/BeneficiaryLookupService.php',
-      34 => '/var/www/html/app/Domain/Registry/Services/BeneficiaryRegistrar.php',
-      35 => '/var/www/html/app/Domain/Registry/Services/CandidateGatherer.php',
-      36 => '/var/www/html/app/Domain/Registry/Services/DeterministicDuplicateFinder.php',
-      37 => '/var/www/html/app/Domain/Registry/Services/HouseholdIngestionService.php',
-      38 => '/var/www/html/app/Domain/Registry/Services/HouseholdMembershipService.php',
-      39 => '/var/www/html/app/Domain/Registry/Services/NullBeneficiaryRouter.php',
-      40 => '/var/www/html/app/Domain/Registry/Services/OwnershipTransferService.php',
-      41 => '/var/www/html/app/Domain/Registry/Services/ServeRequestService.php',
-      42 => '/var/www/html/app/Domain/Registry/Services/ServiceRequestService.php',
-      43 => '/var/www/html/app/Http/Controllers/Api/V1/Benefit/BenefitController.php',
-      44 => '/var/www/html/app/Http/Controllers/Api/V1/Programme/EnrollmentController.php',
-      45 => '/var/www/html/app/Http/Controllers/Api/V1/Referral/ReferralController.php',
-      46 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/BeneficiaryController.php',
-      47 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/BeneficiaryDocumentController.php',
-      48 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/BeneficiaryIntakeController.php',
-      49 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/BeneficiaryRoutingController.php',
-      50 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/HouseholdController.php',
-      51 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/HouseholdMemberController.php',
-      52 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/ImportBatchController.php',
-      53 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/OwnershipTransferController.php',
-      54 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/ServeRequestController.php',
-      55 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/ServiceRequestController.php',
-      56 => '/var/www/html/app/Http/Requests/Registry/ApiRegistrationRequest.php',
-      57 => '/var/www/html/app/Http/Requests/Registry/StoreBeneficiaryRequest.php',
-      58 => '/var/www/html/app/Http/Requests/Registry/UpdateBeneficiaryRequest.php',
-      59 => '/var/www/html/app/Http/Resources/BeneficiaryResource.php',
-      60 => '/var/www/html/app/Http/Resources/BeneficiaryRevealResource.php',
-      61 => '/var/www/html/app/Http/Resources/HouseholdMembershipResource.php',
+      11 => '/var/www/html/app/Domain/Grievance/Models/Grievance.php',
+      12 => '/var/www/html/app/Domain/Programme/Models/Enrollment.php',
+      13 => '/var/www/html/app/Domain/Programme/Services/EligibilityEvaluator.php',
+      14 => '/var/www/html/app/Domain/Programme/Services/EnrollmentService.php',
+      15 => '/var/www/html/app/Domain/Programme/Services/ProgrammeMatcher.php',
+      16 => '/var/www/html/app/Domain/Programme/Services/ProgrammeMatchingRouter.php',
+      17 => '/var/www/html/app/Domain/Referral/Authorization/ReferralAuthorizer.php',
+      18 => '/var/www/html/app/Domain/Referral/Models/Referral.php',
+      19 => '/var/www/html/app/Domain/Referral/Services/ReferralService.php',
+      20 => '/var/www/html/app/Domain/Registry/Contracts/BeneficiaryRouter.php',
+      21 => '/var/www/html/app/Domain/Registry/Imports/ImportRowValidator.php',
+      22 => '/var/www/html/app/Domain/Registry/Jobs/CommitImportBatch.php',
+      23 => '/var/www/html/app/Domain/Registry/Models/Beneficiary.php',
+      24 => '/var/www/html/app/Domain/Registry/Models/BeneficiaryDocument.php',
+      25 => '/var/www/html/app/Domain/Registry/Models/BeneficiaryServiceGrant.php',
+      26 => '/var/www/html/app/Domain/Registry/Models/Household.php',
+      27 => '/var/www/html/app/Domain/Registry/Models/HouseholdMembership.php',
+      28 => '/var/www/html/app/Domain/Registry/Models/ImportRow.php',
+      29 => '/var/www/html/app/Domain/Registry/Models/OwnershipTransferRequest.php',
+      30 => '/var/www/html/app/Domain/Registry/Models/ServeRequest.php',
+      31 => '/var/www/html/app/Domain/Registry/Models/ServiceRequest.php',
+      32 => '/var/www/html/app/Domain/Registry/Policies/BeneficiaryPolicy.php',
+      33 => '/var/www/html/app/Domain/Registry/RegistryServiceProvider.php',
+      34 => '/var/www/html/app/Domain/Registry/Services/BatchDuplicateScreener.php',
+      35 => '/var/www/html/app/Domain/Registry/Services/BeneficiaryLookupService.php',
+      36 => '/var/www/html/app/Domain/Registry/Services/BeneficiaryRegistrar.php',
+      37 => '/var/www/html/app/Domain/Registry/Services/CandidateGatherer.php',
+      38 => '/var/www/html/app/Domain/Registry/Services/DeterministicDuplicateFinder.php',
+      39 => '/var/www/html/app/Domain/Registry/Services/HouseholdIngestionService.php',
+      40 => '/var/www/html/app/Domain/Registry/Services/HouseholdMembershipService.php',
+      41 => '/var/www/html/app/Domain/Registry/Services/NullBeneficiaryRouter.php',
+      42 => '/var/www/html/app/Domain/Registry/Services/OwnershipTransferService.php',
+      43 => '/var/www/html/app/Domain/Registry/Services/ServeRequestService.php',
+      44 => '/var/www/html/app/Domain/Registry/Services/ServiceRequestService.php',
+      45 => '/var/www/html/app/Http/Controllers/Api/V1/Benefit/BenefitController.php',
+      46 => '/var/www/html/app/Http/Controllers/Api/V1/Programme/EnrollmentController.php',
+      47 => '/var/www/html/app/Http/Controllers/Api/V1/Referral/ReferralController.php',
+      48 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/BeneficiaryController.php',
+      49 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/BeneficiaryDocumentController.php',
+      50 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/BeneficiaryIntakeController.php',
+      51 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/BeneficiaryRoutingController.php',
+      52 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/HouseholdController.php',
+      53 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/HouseholdMemberController.php',
+      54 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/ImportBatchController.php',
+      55 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/OwnershipTransferController.php',
+      56 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/ServeRequestController.php',
+      57 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/ServiceRequestController.php',
+      58 => '/var/www/html/app/Http/Requests/Registry/ApiRegistrationRequest.php',
+      59 => '/var/www/html/app/Http/Requests/Registry/StoreBeneficiaryRequest.php',
+      60 => '/var/www/html/app/Http/Requests/Registry/UpdateBeneficiaryRequest.php',
+      61 => '/var/www/html/app/Http/Resources/BeneficiaryResource.php',
+      62 => '/var/www/html/app/Http/Resources/BeneficiaryRevealResource.php',
+      63 => '/var/www/html/app/Http/Resources/HouseholdMembershipResource.php',
     ),
   ),
   '/var/www/html/app/Domain/Registry/Enums/DocumentType.php' => 
@@ -16786,58 +18645,60 @@ return [
       8 => '/var/www/html/app/Domain/Benefit/Services/BeneficiaryRevealPresenter.php',
       9 => '/var/www/html/app/Domain/Benefit/Services/BenefitRecorder.php',
       10 => '/var/www/html/app/Domain/Benefit/Services/DeliveryAuthorization.php',
-      11 => '/var/www/html/app/Domain/Programme/Models/Enrollment.php',
-      12 => '/var/www/html/app/Domain/Programme/Services/EligibilityEvaluator.php',
-      13 => '/var/www/html/app/Domain/Programme/Services/EnrollmentService.php',
-      14 => '/var/www/html/app/Domain/Programme/Services/ProgrammeMatcher.php',
-      15 => '/var/www/html/app/Domain/Programme/Services/ProgrammeMatchingRouter.php',
-      16 => '/var/www/html/app/Domain/Referral/Models/Referral.php',
-      17 => '/var/www/html/app/Domain/Referral/Services/ReferralService.php',
-      18 => '/var/www/html/app/Domain/Registry/Contracts/BeneficiaryRouter.php',
-      19 => '/var/www/html/app/Domain/Registry/Imports/ImportRowValidator.php',
-      20 => '/var/www/html/app/Domain/Registry/Jobs/CommitImportBatch.php',
-      21 => '/var/www/html/app/Domain/Registry/Models/Beneficiary.php',
-      22 => '/var/www/html/app/Domain/Registry/Models/BeneficiaryDocument.php',
-      23 => '/var/www/html/app/Domain/Registry/Models/BeneficiaryServiceGrant.php',
-      24 => '/var/www/html/app/Domain/Registry/Models/Household.php',
-      25 => '/var/www/html/app/Domain/Registry/Models/HouseholdMembership.php',
-      26 => '/var/www/html/app/Domain/Registry/Models/ImportRow.php',
-      27 => '/var/www/html/app/Domain/Registry/Models/OwnershipTransferRequest.php',
-      28 => '/var/www/html/app/Domain/Registry/Models/ServeRequest.php',
-      29 => '/var/www/html/app/Domain/Registry/Models/ServiceRequest.php',
-      30 => '/var/www/html/app/Domain/Registry/Policies/BeneficiaryPolicy.php',
-      31 => '/var/www/html/app/Domain/Registry/RegistryServiceProvider.php',
-      32 => '/var/www/html/app/Domain/Registry/Services/BatchDuplicateScreener.php',
-      33 => '/var/www/html/app/Domain/Registry/Services/BeneficiaryLookupService.php',
-      34 => '/var/www/html/app/Domain/Registry/Services/BeneficiaryRegistrar.php',
-      35 => '/var/www/html/app/Domain/Registry/Services/CandidateGatherer.php',
-      36 => '/var/www/html/app/Domain/Registry/Services/DeterministicDuplicateFinder.php',
-      37 => '/var/www/html/app/Domain/Registry/Services/HouseholdIngestionService.php',
-      38 => '/var/www/html/app/Domain/Registry/Services/HouseholdMembershipService.php',
-      39 => '/var/www/html/app/Domain/Registry/Services/NullBeneficiaryRouter.php',
-      40 => '/var/www/html/app/Domain/Registry/Services/OwnershipTransferService.php',
-      41 => '/var/www/html/app/Domain/Registry/Services/ServeRequestService.php',
-      42 => '/var/www/html/app/Domain/Registry/Services/ServiceRequestService.php',
-      43 => '/var/www/html/app/Domain/Registry/Support/BeneficiaryRules.php',
-      44 => '/var/www/html/app/Http/Controllers/Api/V1/Benefit/BenefitController.php',
-      45 => '/var/www/html/app/Http/Controllers/Api/V1/Programme/EnrollmentController.php',
-      46 => '/var/www/html/app/Http/Controllers/Api/V1/Referral/ReferralController.php',
-      47 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/BeneficiaryController.php',
-      48 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/BeneficiaryDocumentController.php',
-      49 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/BeneficiaryIntakeController.php',
-      50 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/BeneficiaryRoutingController.php',
-      51 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/HouseholdController.php',
-      52 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/HouseholdMemberController.php',
-      53 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/ImportBatchController.php',
-      54 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/OwnershipTransferController.php',
-      55 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/ServeRequestController.php',
-      56 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/ServiceRequestController.php',
-      57 => '/var/www/html/app/Http/Requests/Registry/ApiRegistrationRequest.php',
-      58 => '/var/www/html/app/Http/Requests/Registry/StoreBeneficiaryRequest.php',
-      59 => '/var/www/html/app/Http/Requests/Registry/UpdateBeneficiaryRequest.php',
-      60 => '/var/www/html/app/Http/Resources/BeneficiaryResource.php',
-      61 => '/var/www/html/app/Http/Resources/BeneficiaryRevealResource.php',
-      62 => '/var/www/html/app/Http/Resources/HouseholdMembershipResource.php',
+      11 => '/var/www/html/app/Domain/Grievance/Models/Grievance.php',
+      12 => '/var/www/html/app/Domain/Programme/Models/Enrollment.php',
+      13 => '/var/www/html/app/Domain/Programme/Services/EligibilityEvaluator.php',
+      14 => '/var/www/html/app/Domain/Programme/Services/EnrollmentService.php',
+      15 => '/var/www/html/app/Domain/Programme/Services/ProgrammeMatcher.php',
+      16 => '/var/www/html/app/Domain/Programme/Services/ProgrammeMatchingRouter.php',
+      17 => '/var/www/html/app/Domain/Referral/Authorization/ReferralAuthorizer.php',
+      18 => '/var/www/html/app/Domain/Referral/Models/Referral.php',
+      19 => '/var/www/html/app/Domain/Referral/Services/ReferralService.php',
+      20 => '/var/www/html/app/Domain/Registry/Contracts/BeneficiaryRouter.php',
+      21 => '/var/www/html/app/Domain/Registry/Imports/ImportRowValidator.php',
+      22 => '/var/www/html/app/Domain/Registry/Jobs/CommitImportBatch.php',
+      23 => '/var/www/html/app/Domain/Registry/Models/Beneficiary.php',
+      24 => '/var/www/html/app/Domain/Registry/Models/BeneficiaryDocument.php',
+      25 => '/var/www/html/app/Domain/Registry/Models/BeneficiaryServiceGrant.php',
+      26 => '/var/www/html/app/Domain/Registry/Models/Household.php',
+      27 => '/var/www/html/app/Domain/Registry/Models/HouseholdMembership.php',
+      28 => '/var/www/html/app/Domain/Registry/Models/ImportRow.php',
+      29 => '/var/www/html/app/Domain/Registry/Models/OwnershipTransferRequest.php',
+      30 => '/var/www/html/app/Domain/Registry/Models/ServeRequest.php',
+      31 => '/var/www/html/app/Domain/Registry/Models/ServiceRequest.php',
+      32 => '/var/www/html/app/Domain/Registry/Policies/BeneficiaryPolicy.php',
+      33 => '/var/www/html/app/Domain/Registry/RegistryServiceProvider.php',
+      34 => '/var/www/html/app/Domain/Registry/Services/BatchDuplicateScreener.php',
+      35 => '/var/www/html/app/Domain/Registry/Services/BeneficiaryLookupService.php',
+      36 => '/var/www/html/app/Domain/Registry/Services/BeneficiaryRegistrar.php',
+      37 => '/var/www/html/app/Domain/Registry/Services/CandidateGatherer.php',
+      38 => '/var/www/html/app/Domain/Registry/Services/DeterministicDuplicateFinder.php',
+      39 => '/var/www/html/app/Domain/Registry/Services/HouseholdIngestionService.php',
+      40 => '/var/www/html/app/Domain/Registry/Services/HouseholdMembershipService.php',
+      41 => '/var/www/html/app/Domain/Registry/Services/NullBeneficiaryRouter.php',
+      42 => '/var/www/html/app/Domain/Registry/Services/OwnershipTransferService.php',
+      43 => '/var/www/html/app/Domain/Registry/Services/ServeRequestService.php',
+      44 => '/var/www/html/app/Domain/Registry/Services/ServiceRequestService.php',
+      45 => '/var/www/html/app/Domain/Registry/Support/BeneficiaryRules.php',
+      46 => '/var/www/html/app/Http/Controllers/Api/V1/Benefit/BenefitController.php',
+      47 => '/var/www/html/app/Http/Controllers/Api/V1/Programme/EnrollmentController.php',
+      48 => '/var/www/html/app/Http/Controllers/Api/V1/Referral/ReferralController.php',
+      49 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/BeneficiaryController.php',
+      50 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/BeneficiaryDocumentController.php',
+      51 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/BeneficiaryIntakeController.php',
+      52 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/BeneficiaryRoutingController.php',
+      53 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/HouseholdController.php',
+      54 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/HouseholdMemberController.php',
+      55 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/ImportBatchController.php',
+      56 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/OwnershipTransferController.php',
+      57 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/ServeRequestController.php',
+      58 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/ServiceRequestController.php',
+      59 => '/var/www/html/app/Http/Requests/Registry/ApiRegistrationRequest.php',
+      60 => '/var/www/html/app/Http/Requests/Registry/StoreBeneficiaryRequest.php',
+      61 => '/var/www/html/app/Http/Requests/Registry/UpdateBeneficiaryRequest.php',
+      62 => '/var/www/html/app/Http/Resources/BeneficiaryResource.php',
+      63 => '/var/www/html/app/Http/Resources/BeneficiaryRevealResource.php',
+      64 => '/var/www/html/app/Http/Resources/HouseholdMembershipResource.php',
     ),
   ),
   '/var/www/html/app/Domain/Registry/Enums/HouseholdRole.php' => 
@@ -16934,68 +18795,70 @@ return [
       8 => '/var/www/html/app/Domain/Benefit/Services/BeneficiaryRevealPresenter.php',
       9 => '/var/www/html/app/Domain/Benefit/Services/BenefitRecorder.php',
       10 => '/var/www/html/app/Domain/Benefit/Services/DeliveryAuthorization.php',
-      11 => '/var/www/html/app/Domain/Programme/Models/Enrollment.php',
-      12 => '/var/www/html/app/Domain/Programme/Services/EligibilityEvaluator.php',
-      13 => '/var/www/html/app/Domain/Programme/Services/EnrollmentService.php',
-      14 => '/var/www/html/app/Domain/Programme/Services/ProgrammeMatcher.php',
-      15 => '/var/www/html/app/Domain/Programme/Services/ProgrammeMatchingRouter.php',
-      16 => '/var/www/html/app/Domain/Referral/Models/Referral.php',
-      17 => '/var/www/html/app/Domain/Referral/Services/ReferralService.php',
-      18 => '/var/www/html/app/Domain/Registry/Contracts/BeneficiaryRouter.php',
-      19 => '/var/www/html/app/Domain/Registry/Imports/Adapters/DefaultImportAdapter.php',
-      20 => '/var/www/html/app/Domain/Registry/Imports/Adapters/KoboAdapter.php',
-      21 => '/var/www/html/app/Domain/Registry/Imports/Adapters/OdkAdapter.php',
-      22 => '/var/www/html/app/Domain/Registry/Imports/Adapters/RegistrationSourceAdapter.php',
-      23 => '/var/www/html/app/Domain/Registry/Imports/Adapters/SourceAdapterRegistry.php',
-      24 => '/var/www/html/app/Domain/Registry/Imports/ImportRowValidator.php',
-      25 => '/var/www/html/app/Domain/Registry/Jobs/CommitImportBatch.php',
-      26 => '/var/www/html/app/Domain/Registry/Jobs/ParseImportBatch.php',
-      27 => '/var/www/html/app/Domain/Registry/Models/Beneficiary.php',
-      28 => '/var/www/html/app/Domain/Registry/Models/BeneficiaryDocument.php',
-      29 => '/var/www/html/app/Domain/Registry/Models/BeneficiaryServiceGrant.php',
-      30 => '/var/www/html/app/Domain/Registry/Models/Household.php',
-      31 => '/var/www/html/app/Domain/Registry/Models/HouseholdMembership.php',
-      32 => '/var/www/html/app/Domain/Registry/Models/ImportBatch.php',
-      33 => '/var/www/html/app/Domain/Registry/Models/ImportRow.php',
-      34 => '/var/www/html/app/Domain/Registry/Models/OwnershipTransferRequest.php',
-      35 => '/var/www/html/app/Domain/Registry/Models/ServeRequest.php',
-      36 => '/var/www/html/app/Domain/Registry/Models/ServiceRequest.php',
-      37 => '/var/www/html/app/Domain/Registry/Policies/BeneficiaryPolicy.php',
-      38 => '/var/www/html/app/Domain/Registry/Policies/HouseholdPolicy.php',
-      39 => '/var/www/html/app/Domain/Registry/Policies/ImportBatchPolicy.php',
-      40 => '/var/www/html/app/Domain/Registry/RegistryServiceProvider.php',
-      41 => '/var/www/html/app/Domain/Registry/Services/BatchDuplicateScreener.php',
-      42 => '/var/www/html/app/Domain/Registry/Services/BeneficiaryLookupService.php',
-      43 => '/var/www/html/app/Domain/Registry/Services/BeneficiaryRegistrar.php',
-      44 => '/var/www/html/app/Domain/Registry/Services/CandidateGatherer.php',
-      45 => '/var/www/html/app/Domain/Registry/Services/DeterministicDuplicateFinder.php',
-      46 => '/var/www/html/app/Domain/Registry/Services/HouseholdIngestionService.php',
-      47 => '/var/www/html/app/Domain/Registry/Services/HouseholdMembershipService.php',
-      48 => '/var/www/html/app/Domain/Registry/Services/NullBeneficiaryRouter.php',
-      49 => '/var/www/html/app/Domain/Registry/Services/OwnershipTransferService.php',
-      50 => '/var/www/html/app/Domain/Registry/Services/ServeRequestService.php',
-      51 => '/var/www/html/app/Domain/Registry/Services/ServiceRequestService.php',
-      52 => '/var/www/html/app/Http/Controllers/Api/V1/Benefit/BenefitController.php',
-      53 => '/var/www/html/app/Http/Controllers/Api/V1/Programme/EnrollmentController.php',
-      54 => '/var/www/html/app/Http/Controllers/Api/V1/Referral/ReferralController.php',
-      55 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/BeneficiaryController.php',
-      56 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/BeneficiaryDocumentController.php',
-      57 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/BeneficiaryIntakeController.php',
-      58 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/BeneficiaryRoutingController.php',
-      59 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/HouseholdController.php',
-      60 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/HouseholdMemberController.php',
-      61 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/ImportBatchController.php',
-      62 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/OwnershipTransferController.php',
-      63 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/ServeRequestController.php',
-      64 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/ServiceRequestController.php',
-      65 => '/var/www/html/app/Http/Requests/Registry/ApiRegistrationRequest.php',
-      66 => '/var/www/html/app/Http/Requests/Registry/StoreBeneficiaryRequest.php',
-      67 => '/var/www/html/app/Http/Requests/Registry/UpdateBeneficiaryRequest.php',
-      68 => '/var/www/html/app/Http/Resources/BeneficiaryResource.php',
-      69 => '/var/www/html/app/Http/Resources/BeneficiaryRevealResource.php',
-      70 => '/var/www/html/app/Http/Resources/HouseholdMembershipResource.php',
-      71 => '/var/www/html/app/Http/Resources/HouseholdResource.php',
-      72 => '/var/www/html/app/Http/Resources/ImportBatchResource.php',
+      11 => '/var/www/html/app/Domain/Grievance/Models/Grievance.php',
+      12 => '/var/www/html/app/Domain/Programme/Models/Enrollment.php',
+      13 => '/var/www/html/app/Domain/Programme/Services/EligibilityEvaluator.php',
+      14 => '/var/www/html/app/Domain/Programme/Services/EnrollmentService.php',
+      15 => '/var/www/html/app/Domain/Programme/Services/ProgrammeMatcher.php',
+      16 => '/var/www/html/app/Domain/Programme/Services/ProgrammeMatchingRouter.php',
+      17 => '/var/www/html/app/Domain/Referral/Authorization/ReferralAuthorizer.php',
+      18 => '/var/www/html/app/Domain/Referral/Models/Referral.php',
+      19 => '/var/www/html/app/Domain/Referral/Services/ReferralService.php',
+      20 => '/var/www/html/app/Domain/Registry/Contracts/BeneficiaryRouter.php',
+      21 => '/var/www/html/app/Domain/Registry/Imports/Adapters/DefaultImportAdapter.php',
+      22 => '/var/www/html/app/Domain/Registry/Imports/Adapters/KoboAdapter.php',
+      23 => '/var/www/html/app/Domain/Registry/Imports/Adapters/OdkAdapter.php',
+      24 => '/var/www/html/app/Domain/Registry/Imports/Adapters/RegistrationSourceAdapter.php',
+      25 => '/var/www/html/app/Domain/Registry/Imports/Adapters/SourceAdapterRegistry.php',
+      26 => '/var/www/html/app/Domain/Registry/Imports/ImportRowValidator.php',
+      27 => '/var/www/html/app/Domain/Registry/Jobs/CommitImportBatch.php',
+      28 => '/var/www/html/app/Domain/Registry/Jobs/ParseImportBatch.php',
+      29 => '/var/www/html/app/Domain/Registry/Models/Beneficiary.php',
+      30 => '/var/www/html/app/Domain/Registry/Models/BeneficiaryDocument.php',
+      31 => '/var/www/html/app/Domain/Registry/Models/BeneficiaryServiceGrant.php',
+      32 => '/var/www/html/app/Domain/Registry/Models/Household.php',
+      33 => '/var/www/html/app/Domain/Registry/Models/HouseholdMembership.php',
+      34 => '/var/www/html/app/Domain/Registry/Models/ImportBatch.php',
+      35 => '/var/www/html/app/Domain/Registry/Models/ImportRow.php',
+      36 => '/var/www/html/app/Domain/Registry/Models/OwnershipTransferRequest.php',
+      37 => '/var/www/html/app/Domain/Registry/Models/ServeRequest.php',
+      38 => '/var/www/html/app/Domain/Registry/Models/ServiceRequest.php',
+      39 => '/var/www/html/app/Domain/Registry/Policies/BeneficiaryPolicy.php',
+      40 => '/var/www/html/app/Domain/Registry/Policies/HouseholdPolicy.php',
+      41 => '/var/www/html/app/Domain/Registry/Policies/ImportBatchPolicy.php',
+      42 => '/var/www/html/app/Domain/Registry/RegistryServiceProvider.php',
+      43 => '/var/www/html/app/Domain/Registry/Services/BatchDuplicateScreener.php',
+      44 => '/var/www/html/app/Domain/Registry/Services/BeneficiaryLookupService.php',
+      45 => '/var/www/html/app/Domain/Registry/Services/BeneficiaryRegistrar.php',
+      46 => '/var/www/html/app/Domain/Registry/Services/CandidateGatherer.php',
+      47 => '/var/www/html/app/Domain/Registry/Services/DeterministicDuplicateFinder.php',
+      48 => '/var/www/html/app/Domain/Registry/Services/HouseholdIngestionService.php',
+      49 => '/var/www/html/app/Domain/Registry/Services/HouseholdMembershipService.php',
+      50 => '/var/www/html/app/Domain/Registry/Services/NullBeneficiaryRouter.php',
+      51 => '/var/www/html/app/Domain/Registry/Services/OwnershipTransferService.php',
+      52 => '/var/www/html/app/Domain/Registry/Services/ServeRequestService.php',
+      53 => '/var/www/html/app/Domain/Registry/Services/ServiceRequestService.php',
+      54 => '/var/www/html/app/Http/Controllers/Api/V1/Benefit/BenefitController.php',
+      55 => '/var/www/html/app/Http/Controllers/Api/V1/Programme/EnrollmentController.php',
+      56 => '/var/www/html/app/Http/Controllers/Api/V1/Referral/ReferralController.php',
+      57 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/BeneficiaryController.php',
+      58 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/BeneficiaryDocumentController.php',
+      59 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/BeneficiaryIntakeController.php',
+      60 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/BeneficiaryRoutingController.php',
+      61 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/HouseholdController.php',
+      62 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/HouseholdMemberController.php',
+      63 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/ImportBatchController.php',
+      64 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/OwnershipTransferController.php',
+      65 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/ServeRequestController.php',
+      66 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/ServiceRequestController.php',
+      67 => '/var/www/html/app/Http/Requests/Registry/ApiRegistrationRequest.php',
+      68 => '/var/www/html/app/Http/Requests/Registry/StoreBeneficiaryRequest.php',
+      69 => '/var/www/html/app/Http/Requests/Registry/UpdateBeneficiaryRequest.php',
+      70 => '/var/www/html/app/Http/Resources/BeneficiaryResource.php',
+      71 => '/var/www/html/app/Http/Resources/BeneficiaryRevealResource.php',
+      72 => '/var/www/html/app/Http/Resources/HouseholdMembershipResource.php',
+      73 => '/var/www/html/app/Http/Resources/HouseholdResource.php',
+      74 => '/var/www/html/app/Http/Resources/ImportBatchResource.php',
     ),
   ),
   '/var/www/html/app/Domain/Registry/Enums/ServiceRequestStatus.php' => 
@@ -17168,81 +19031,95 @@ return [
       16 => '/var/www/html/app/Domain/Benefit/Services/Verifiers/FieldConfirmationVerifier.php',
       17 => '/var/www/html/app/Domain/Benefit/Services/Verifiers/OtpVerifier.php',
       18 => '/var/www/html/app/Domain/Benefit/Services/Verifiers/SignatureVerifier.php',
-      19 => '/var/www/html/app/Domain/Notification/Listeners/NotificationSubscriber.php',
-      20 => '/var/www/html/app/Domain/Programme/Models/Enrollment.php',
-      21 => '/var/www/html/app/Domain/Programme/Policies/EnrollmentPolicy.php',
-      22 => '/var/www/html/app/Domain/Programme/ProgrammeServiceProvider.php',
-      23 => '/var/www/html/app/Domain/Programme/Services/EligibilityEvaluator.php',
-      24 => '/var/www/html/app/Domain/Programme/Services/EnrollmentService.php',
-      25 => '/var/www/html/app/Domain/Programme/Services/ProgrammeMatcher.php',
-      26 => '/var/www/html/app/Domain/Programme/Services/ProgrammeMatchingRouter.php',
-      27 => '/var/www/html/app/Domain/Referral/Models/Referral.php',
-      28 => '/var/www/html/app/Domain/Referral/Policies/ReferralPolicy.php',
-      29 => '/var/www/html/app/Domain/Referral/ReferralServiceProvider.php',
-      30 => '/var/www/html/app/Domain/Referral/Services/ReferralService.php',
-      31 => '/var/www/html/app/Domain/Registry/Contracts/BeneficiaryRouter.php',
-      32 => '/var/www/html/app/Domain/Registry/Events/OwnershipTransferRequested.php',
-      33 => '/var/www/html/app/Domain/Registry/Events/ServiceRequestAccepted.php',
-      34 => '/var/www/html/app/Domain/Registry/Events/ServiceRequestDeclined.php',
-      35 => '/var/www/html/app/Domain/Registry/Events/ServiceRequestRaised.php',
-      36 => '/var/www/html/app/Domain/Registry/Imports/ImportRowValidator.php',
-      37 => '/var/www/html/app/Domain/Registry/Jobs/CommitImportBatch.php',
-      38 => '/var/www/html/app/Domain/Registry/Jobs/ParseImportBatch.php',
-      39 => '/var/www/html/app/Domain/Registry/Models/BeneficiaryDocument.php',
-      40 => '/var/www/html/app/Domain/Registry/Models/BeneficiaryServiceGrant.php',
-      41 => '/var/www/html/app/Domain/Registry/Models/Household.php',
-      42 => '/var/www/html/app/Domain/Registry/Models/HouseholdMembership.php',
-      43 => '/var/www/html/app/Domain/Registry/Models/ImportBatch.php',
-      44 => '/var/www/html/app/Domain/Registry/Models/ImportRow.php',
-      45 => '/var/www/html/app/Domain/Registry/Models/OwnershipTransferRequest.php',
-      46 => '/var/www/html/app/Domain/Registry/Models/ServeRequest.php',
-      47 => '/var/www/html/app/Domain/Registry/Models/ServiceRequest.php',
-      48 => '/var/www/html/app/Domain/Registry/Policies/BeneficiaryDocumentPolicy.php',
-      49 => '/var/www/html/app/Domain/Registry/Policies/BeneficiaryPolicy.php',
-      50 => '/var/www/html/app/Domain/Registry/Policies/HouseholdPolicy.php',
-      51 => '/var/www/html/app/Domain/Registry/Policies/OwnerMdaPolicy.php',
-      52 => '/var/www/html/app/Domain/Registry/Policies/ServeRequestPolicy.php',
-      53 => '/var/www/html/app/Domain/Registry/RegistryServiceProvider.php',
-      54 => '/var/www/html/app/Domain/Registry/Services/BatchDuplicateScreener.php',
-      55 => '/var/www/html/app/Domain/Registry/Services/BeneficiaryLookupService.php',
-      56 => '/var/www/html/app/Domain/Registry/Services/BeneficiaryRegistrar.php',
-      57 => '/var/www/html/app/Domain/Registry/Services/CandidateGatherer.php',
-      58 => '/var/www/html/app/Domain/Registry/Services/DeterministicDuplicateFinder.php',
-      59 => '/var/www/html/app/Domain/Registry/Services/HouseholdIngestionService.php',
-      60 => '/var/www/html/app/Domain/Registry/Services/HouseholdMembershipService.php',
-      61 => '/var/www/html/app/Domain/Registry/Services/NullBeneficiaryRouter.php',
-      62 => '/var/www/html/app/Domain/Registry/Services/OwnershipTransferService.php',
-      63 => '/var/www/html/app/Domain/Registry/Services/ServeRequestService.php',
-      64 => '/var/www/html/app/Domain/Registry/Services/ServiceRequestService.php',
-      65 => '/var/www/html/app/Http/Controllers/Api/V1/Benefit/BenefitController.php',
-      66 => '/var/www/html/app/Http/Controllers/Api/V1/Programme/EnrollmentController.php',
-      67 => '/var/www/html/app/Http/Controllers/Api/V1/Referral/ReferralController.php',
-      68 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/BeneficiaryController.php',
-      69 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/BeneficiaryDocumentController.php',
-      70 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/BeneficiaryIntakeController.php',
-      71 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/BeneficiaryRoutingController.php',
-      72 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/HouseholdController.php',
-      73 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/HouseholdMemberController.php',
-      74 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/ImportBatchController.php',
-      75 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/OwnershipTransferController.php',
-      76 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/ServeRequestController.php',
-      77 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/ServiceRequestController.php',
-      78 => '/var/www/html/app/Http/Requests/Registry/ApiRegistrationRequest.php',
-      79 => '/var/www/html/app/Http/Requests/Registry/StoreBeneficiaryRequest.php',
-      80 => '/var/www/html/app/Http/Requests/Registry/UpdateBeneficiaryRequest.php',
-      81 => '/var/www/html/app/Http/Resources/BeneficiaryDocumentResource.php',
-      82 => '/var/www/html/app/Http/Resources/BeneficiaryResource.php',
-      83 => '/var/www/html/app/Http/Resources/BeneficiaryRevealResource.php',
-      84 => '/var/www/html/app/Http/Resources/BenefitResource.php',
-      85 => '/var/www/html/app/Http/Resources/EnrollmentResource.php',
-      86 => '/var/www/html/app/Http/Resources/HouseholdMembershipResource.php',
-      87 => '/var/www/html/app/Http/Resources/HouseholdResource.php',
-      88 => '/var/www/html/app/Http/Resources/ImportRowResource.php',
-      89 => '/var/www/html/app/Http/Resources/MatchCandidateResource.php',
-      90 => '/var/www/html/app/Http/Resources/OwnershipTransferResource.php',
-      91 => '/var/www/html/app/Http/Resources/ReferralResource.php',
-      92 => '/var/www/html/app/Http/Resources/ServeRequestResource.php',
-      93 => '/var/www/html/app/Http/Resources/ServiceRequestResource.php',
+      19 => '/var/www/html/app/Domain/Grievance/Events/GrievanceAssigned.php',
+      20 => '/var/www/html/app/Domain/Grievance/Events/GrievanceResolved.php',
+      21 => '/var/www/html/app/Domain/Grievance/Events/GrievanceSlaBreached.php',
+      22 => '/var/www/html/app/Domain/Grievance/GrievanceServiceProvider.php',
+      23 => '/var/www/html/app/Domain/Grievance/Jobs/EscalateOverdueGrievances.php',
+      24 => '/var/www/html/app/Domain/Grievance/Models/Grievance.php',
+      25 => '/var/www/html/app/Domain/Grievance/Policies/GrievancePolicy.php',
+      26 => '/var/www/html/app/Domain/Grievance/Services/GrievanceService.php',
+      27 => '/var/www/html/app/Domain/Notification/Listeners/NotificationSubscriber.php',
+      28 => '/var/www/html/app/Domain/Programme/Models/Enrollment.php',
+      29 => '/var/www/html/app/Domain/Programme/Policies/EnrollmentPolicy.php',
+      30 => '/var/www/html/app/Domain/Programme/ProgrammeServiceProvider.php',
+      31 => '/var/www/html/app/Domain/Programme/Services/EligibilityEvaluator.php',
+      32 => '/var/www/html/app/Domain/Programme/Services/EnrollmentService.php',
+      33 => '/var/www/html/app/Domain/Programme/Services/ProgrammeMatcher.php',
+      34 => '/var/www/html/app/Domain/Programme/Services/ProgrammeMatchingRouter.php',
+      35 => '/var/www/html/app/Domain/Referral/Authorization/ReferralAuthorizer.php',
+      36 => '/var/www/html/app/Domain/Referral/Events/ReferralSlaBreached.php',
+      37 => '/var/www/html/app/Domain/Referral/Events/ReferralStatusChanged.php',
+      38 => '/var/www/html/app/Domain/Referral/Jobs/EscalateOverdueReferrals.php',
+      39 => '/var/www/html/app/Domain/Referral/Models/Referral.php',
+      40 => '/var/www/html/app/Domain/Referral/Policies/ReferralPolicy.php',
+      41 => '/var/www/html/app/Domain/Referral/ReferralServiceProvider.php',
+      42 => '/var/www/html/app/Domain/Referral/Services/ReferralService.php',
+      43 => '/var/www/html/app/Domain/Registry/Contracts/BeneficiaryRouter.php',
+      44 => '/var/www/html/app/Domain/Registry/Events/OwnershipTransferRequested.php',
+      45 => '/var/www/html/app/Domain/Registry/Events/ServiceRequestAccepted.php',
+      46 => '/var/www/html/app/Domain/Registry/Events/ServiceRequestDeclined.php',
+      47 => '/var/www/html/app/Domain/Registry/Events/ServiceRequestRaised.php',
+      48 => '/var/www/html/app/Domain/Registry/Imports/ImportRowValidator.php',
+      49 => '/var/www/html/app/Domain/Registry/Jobs/CommitImportBatch.php',
+      50 => '/var/www/html/app/Domain/Registry/Jobs/ParseImportBatch.php',
+      51 => '/var/www/html/app/Domain/Registry/Models/BeneficiaryDocument.php',
+      52 => '/var/www/html/app/Domain/Registry/Models/BeneficiaryServiceGrant.php',
+      53 => '/var/www/html/app/Domain/Registry/Models/Household.php',
+      54 => '/var/www/html/app/Domain/Registry/Models/HouseholdMembership.php',
+      55 => '/var/www/html/app/Domain/Registry/Models/ImportBatch.php',
+      56 => '/var/www/html/app/Domain/Registry/Models/ImportRow.php',
+      57 => '/var/www/html/app/Domain/Registry/Models/OwnershipTransferRequest.php',
+      58 => '/var/www/html/app/Domain/Registry/Models/ServeRequest.php',
+      59 => '/var/www/html/app/Domain/Registry/Models/ServiceRequest.php',
+      60 => '/var/www/html/app/Domain/Registry/Policies/BeneficiaryDocumentPolicy.php',
+      61 => '/var/www/html/app/Domain/Registry/Policies/BeneficiaryPolicy.php',
+      62 => '/var/www/html/app/Domain/Registry/Policies/HouseholdPolicy.php',
+      63 => '/var/www/html/app/Domain/Registry/Policies/OwnerMdaPolicy.php',
+      64 => '/var/www/html/app/Domain/Registry/Policies/ServeRequestPolicy.php',
+      65 => '/var/www/html/app/Domain/Registry/RegistryServiceProvider.php',
+      66 => '/var/www/html/app/Domain/Registry/Services/BatchDuplicateScreener.php',
+      67 => '/var/www/html/app/Domain/Registry/Services/BeneficiaryLookupService.php',
+      68 => '/var/www/html/app/Domain/Registry/Services/BeneficiaryRegistrar.php',
+      69 => '/var/www/html/app/Domain/Registry/Services/CandidateGatherer.php',
+      70 => '/var/www/html/app/Domain/Registry/Services/DeterministicDuplicateFinder.php',
+      71 => '/var/www/html/app/Domain/Registry/Services/HouseholdIngestionService.php',
+      72 => '/var/www/html/app/Domain/Registry/Services/HouseholdMembershipService.php',
+      73 => '/var/www/html/app/Domain/Registry/Services/NullBeneficiaryRouter.php',
+      74 => '/var/www/html/app/Domain/Registry/Services/OwnershipTransferService.php',
+      75 => '/var/www/html/app/Domain/Registry/Services/ServeRequestService.php',
+      76 => '/var/www/html/app/Domain/Registry/Services/ServiceRequestService.php',
+      77 => '/var/www/html/app/Http/Controllers/Api/V1/Benefit/BenefitController.php',
+      78 => '/var/www/html/app/Http/Controllers/Api/V1/Grievance/GrievanceController.php',
+      79 => '/var/www/html/app/Http/Controllers/Api/V1/Programme/EnrollmentController.php',
+      80 => '/var/www/html/app/Http/Controllers/Api/V1/Referral/ReferralController.php',
+      81 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/BeneficiaryController.php',
+      82 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/BeneficiaryDocumentController.php',
+      83 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/BeneficiaryIntakeController.php',
+      84 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/BeneficiaryRoutingController.php',
+      85 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/HouseholdController.php',
+      86 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/HouseholdMemberController.php',
+      87 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/ImportBatchController.php',
+      88 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/OwnershipTransferController.php',
+      89 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/ServeRequestController.php',
+      90 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/ServiceRequestController.php',
+      91 => '/var/www/html/app/Http/Requests/Registry/ApiRegistrationRequest.php',
+      92 => '/var/www/html/app/Http/Requests/Registry/StoreBeneficiaryRequest.php',
+      93 => '/var/www/html/app/Http/Requests/Registry/UpdateBeneficiaryRequest.php',
+      94 => '/var/www/html/app/Http/Resources/BeneficiaryDocumentResource.php',
+      95 => '/var/www/html/app/Http/Resources/BeneficiaryResource.php',
+      96 => '/var/www/html/app/Http/Resources/BeneficiaryRevealResource.php',
+      97 => '/var/www/html/app/Http/Resources/BenefitResource.php',
+      98 => '/var/www/html/app/Http/Resources/EnrollmentResource.php',
+      99 => '/var/www/html/app/Http/Resources/GrievanceResource.php',
+      100 => '/var/www/html/app/Http/Resources/HouseholdMembershipResource.php',
+      101 => '/var/www/html/app/Http/Resources/HouseholdResource.php',
+      102 => '/var/www/html/app/Http/Resources/ImportRowResource.php',
+      103 => '/var/www/html/app/Http/Resources/MatchCandidateResource.php',
+      104 => '/var/www/html/app/Http/Resources/OwnershipTransferResource.php',
+      105 => '/var/www/html/app/Http/Resources/ReferralResource.php',
+      106 => '/var/www/html/app/Http/Resources/ServeRequestResource.php',
+      107 => '/var/www/html/app/Http/Resources/ServiceRequestResource.php',
     ),
   ),
   '/var/www/html/app/Domain/Registry/Models/BeneficiaryDocument.php' => 
@@ -17313,58 +19190,60 @@ return [
       8 => '/var/www/html/app/Domain/Benefit/Services/BeneficiaryRevealPresenter.php',
       9 => '/var/www/html/app/Domain/Benefit/Services/BenefitRecorder.php',
       10 => '/var/www/html/app/Domain/Benefit/Services/DeliveryAuthorization.php',
-      11 => '/var/www/html/app/Domain/Programme/Models/Enrollment.php',
-      12 => '/var/www/html/app/Domain/Programme/Services/EligibilityEvaluator.php',
-      13 => '/var/www/html/app/Domain/Programme/Services/EnrollmentService.php',
-      14 => '/var/www/html/app/Domain/Programme/Services/ProgrammeMatcher.php',
-      15 => '/var/www/html/app/Domain/Programme/Services/ProgrammeMatchingRouter.php',
-      16 => '/var/www/html/app/Domain/Referral/Models/Referral.php',
-      17 => '/var/www/html/app/Domain/Referral/Services/ReferralService.php',
-      18 => '/var/www/html/app/Domain/Registry/Contracts/BeneficiaryRouter.php',
-      19 => '/var/www/html/app/Domain/Registry/Imports/ImportRowValidator.php',
-      20 => '/var/www/html/app/Domain/Registry/Jobs/CommitImportBatch.php',
-      21 => '/var/www/html/app/Domain/Registry/Models/Beneficiary.php',
-      22 => '/var/www/html/app/Domain/Registry/Models/BeneficiaryDocument.php',
-      23 => '/var/www/html/app/Domain/Registry/Models/BeneficiaryServiceGrant.php',
-      24 => '/var/www/html/app/Domain/Registry/Models/Household.php',
-      25 => '/var/www/html/app/Domain/Registry/Models/ImportRow.php',
-      26 => '/var/www/html/app/Domain/Registry/Models/OwnershipTransferRequest.php',
-      27 => '/var/www/html/app/Domain/Registry/Models/ServeRequest.php',
-      28 => '/var/www/html/app/Domain/Registry/Models/ServiceRequest.php',
-      29 => '/var/www/html/app/Domain/Registry/Policies/BeneficiaryPolicy.php',
-      30 => '/var/www/html/app/Domain/Registry/Policies/HouseholdPolicy.php',
-      31 => '/var/www/html/app/Domain/Registry/RegistryServiceProvider.php',
-      32 => '/var/www/html/app/Domain/Registry/Services/BatchDuplicateScreener.php',
-      33 => '/var/www/html/app/Domain/Registry/Services/BeneficiaryLookupService.php',
-      34 => '/var/www/html/app/Domain/Registry/Services/BeneficiaryRegistrar.php',
-      35 => '/var/www/html/app/Domain/Registry/Services/CandidateGatherer.php',
-      36 => '/var/www/html/app/Domain/Registry/Services/DeterministicDuplicateFinder.php',
-      37 => '/var/www/html/app/Domain/Registry/Services/HouseholdIngestionService.php',
-      38 => '/var/www/html/app/Domain/Registry/Services/HouseholdMembershipService.php',
-      39 => '/var/www/html/app/Domain/Registry/Services/NullBeneficiaryRouter.php',
-      40 => '/var/www/html/app/Domain/Registry/Services/OwnershipTransferService.php',
-      41 => '/var/www/html/app/Domain/Registry/Services/ServeRequestService.php',
-      42 => '/var/www/html/app/Domain/Registry/Services/ServiceRequestService.php',
-      43 => '/var/www/html/app/Http/Controllers/Api/V1/Benefit/BenefitController.php',
-      44 => '/var/www/html/app/Http/Controllers/Api/V1/Programme/EnrollmentController.php',
-      45 => '/var/www/html/app/Http/Controllers/Api/V1/Referral/ReferralController.php',
-      46 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/BeneficiaryController.php',
-      47 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/BeneficiaryDocumentController.php',
-      48 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/BeneficiaryIntakeController.php',
-      49 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/BeneficiaryRoutingController.php',
-      50 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/HouseholdController.php',
-      51 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/HouseholdMemberController.php',
-      52 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/ImportBatchController.php',
-      53 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/OwnershipTransferController.php',
-      54 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/ServeRequestController.php',
-      55 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/ServiceRequestController.php',
-      56 => '/var/www/html/app/Http/Requests/Registry/ApiRegistrationRequest.php',
-      57 => '/var/www/html/app/Http/Requests/Registry/StoreBeneficiaryRequest.php',
-      58 => '/var/www/html/app/Http/Requests/Registry/UpdateBeneficiaryRequest.php',
-      59 => '/var/www/html/app/Http/Resources/BeneficiaryResource.php',
-      60 => '/var/www/html/app/Http/Resources/BeneficiaryRevealResource.php',
-      61 => '/var/www/html/app/Http/Resources/HouseholdMembershipResource.php',
-      62 => '/var/www/html/app/Http/Resources/HouseholdResource.php',
+      11 => '/var/www/html/app/Domain/Grievance/Models/Grievance.php',
+      12 => '/var/www/html/app/Domain/Programme/Models/Enrollment.php',
+      13 => '/var/www/html/app/Domain/Programme/Services/EligibilityEvaluator.php',
+      14 => '/var/www/html/app/Domain/Programme/Services/EnrollmentService.php',
+      15 => '/var/www/html/app/Domain/Programme/Services/ProgrammeMatcher.php',
+      16 => '/var/www/html/app/Domain/Programme/Services/ProgrammeMatchingRouter.php',
+      17 => '/var/www/html/app/Domain/Referral/Authorization/ReferralAuthorizer.php',
+      18 => '/var/www/html/app/Domain/Referral/Models/Referral.php',
+      19 => '/var/www/html/app/Domain/Referral/Services/ReferralService.php',
+      20 => '/var/www/html/app/Domain/Registry/Contracts/BeneficiaryRouter.php',
+      21 => '/var/www/html/app/Domain/Registry/Imports/ImportRowValidator.php',
+      22 => '/var/www/html/app/Domain/Registry/Jobs/CommitImportBatch.php',
+      23 => '/var/www/html/app/Domain/Registry/Models/Beneficiary.php',
+      24 => '/var/www/html/app/Domain/Registry/Models/BeneficiaryDocument.php',
+      25 => '/var/www/html/app/Domain/Registry/Models/BeneficiaryServiceGrant.php',
+      26 => '/var/www/html/app/Domain/Registry/Models/Household.php',
+      27 => '/var/www/html/app/Domain/Registry/Models/ImportRow.php',
+      28 => '/var/www/html/app/Domain/Registry/Models/OwnershipTransferRequest.php',
+      29 => '/var/www/html/app/Domain/Registry/Models/ServeRequest.php',
+      30 => '/var/www/html/app/Domain/Registry/Models/ServiceRequest.php',
+      31 => '/var/www/html/app/Domain/Registry/Policies/BeneficiaryPolicy.php',
+      32 => '/var/www/html/app/Domain/Registry/Policies/HouseholdPolicy.php',
+      33 => '/var/www/html/app/Domain/Registry/RegistryServiceProvider.php',
+      34 => '/var/www/html/app/Domain/Registry/Services/BatchDuplicateScreener.php',
+      35 => '/var/www/html/app/Domain/Registry/Services/BeneficiaryLookupService.php',
+      36 => '/var/www/html/app/Domain/Registry/Services/BeneficiaryRegistrar.php',
+      37 => '/var/www/html/app/Domain/Registry/Services/CandidateGatherer.php',
+      38 => '/var/www/html/app/Domain/Registry/Services/DeterministicDuplicateFinder.php',
+      39 => '/var/www/html/app/Domain/Registry/Services/HouseholdIngestionService.php',
+      40 => '/var/www/html/app/Domain/Registry/Services/HouseholdMembershipService.php',
+      41 => '/var/www/html/app/Domain/Registry/Services/NullBeneficiaryRouter.php',
+      42 => '/var/www/html/app/Domain/Registry/Services/OwnershipTransferService.php',
+      43 => '/var/www/html/app/Domain/Registry/Services/ServeRequestService.php',
+      44 => '/var/www/html/app/Domain/Registry/Services/ServiceRequestService.php',
+      45 => '/var/www/html/app/Http/Controllers/Api/V1/Benefit/BenefitController.php',
+      46 => '/var/www/html/app/Http/Controllers/Api/V1/Programme/EnrollmentController.php',
+      47 => '/var/www/html/app/Http/Controllers/Api/V1/Referral/ReferralController.php',
+      48 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/BeneficiaryController.php',
+      49 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/BeneficiaryDocumentController.php',
+      50 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/BeneficiaryIntakeController.php',
+      51 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/BeneficiaryRoutingController.php',
+      52 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/HouseholdController.php',
+      53 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/HouseholdMemberController.php',
+      54 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/ImportBatchController.php',
+      55 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/OwnershipTransferController.php',
+      56 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/ServeRequestController.php',
+      57 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/ServiceRequestController.php',
+      58 => '/var/www/html/app/Http/Requests/Registry/ApiRegistrationRequest.php',
+      59 => '/var/www/html/app/Http/Requests/Registry/StoreBeneficiaryRequest.php',
+      60 => '/var/www/html/app/Http/Requests/Registry/UpdateBeneficiaryRequest.php',
+      61 => '/var/www/html/app/Http/Resources/BeneficiaryResource.php',
+      62 => '/var/www/html/app/Http/Resources/BeneficiaryRevealResource.php',
+      63 => '/var/www/html/app/Http/Resources/HouseholdMembershipResource.php',
+      64 => '/var/www/html/app/Http/Resources/HouseholdResource.php',
     ),
   ),
   '/var/www/html/app/Domain/Registry/Models/ImportBatch.php' => 
@@ -17649,6 +19528,20 @@ return [
     array (
     ),
   ),
+  '/var/www/html/app/Http/Controllers/Api/V1/Grievance/GrievanceController.php' => 
+  array (
+    'fileHash' => '81801990c4372d2f62a1f3fd0384091a232dfaa6059aa2dff5662a4dbc6cd808',
+    'dependentFiles' => 
+    array (
+    ),
+  ),
+  '/var/www/html/app/Http/Controllers/Api/V1/Grievance/GrievanceSlaPolicyController.php' => 
+  array (
+    'fileHash' => '9f75197d10383305661ad2b2313cbf4cbe3d5ae78f281e5f8dd9fee38c2aaa5f',
+    'dependentFiles' => 
+    array (
+    ),
+  ),
   '/var/www/html/app/Http/Controllers/Api/V1/HealthController.php' => 
   array (
     'fileHash' => '26d690b2b0b2ae7d192487f87e9c6bda8ffe434a6aac9ada2ebf73cfa171000b',
@@ -17700,7 +19593,14 @@ return [
   ),
   '/var/www/html/app/Http/Controllers/Api/V1/Referral/ReferralController.php' => 
   array (
-    'fileHash' => '4916dd9f9c3fd3d5d88014f3d086c16160022f814d511943656377f84c255003',
+    'fileHash' => 'fb08eae59c33341b099563c6e4c1fd14be5a12e4e5ed8580f855b299ec7df255',
+    'dependentFiles' => 
+    array (
+    ),
+  ),
+  '/var/www/html/app/Http/Controllers/Api/V1/Referral/ReferralSlaPolicyController.php' => 
+  array (
+    'fileHash' => '4396a0787d6e22fbbcc432af9114f919de2165c9eeca0fa503808a7055129294',
     'dependentFiles' => 
     array (
     ),
@@ -17796,24 +19696,27 @@ return [
       6 => '/var/www/html/app/Http/Controllers/Api/V1/Benefit/BenefitFlagController.php',
       7 => '/var/www/html/app/Http/Controllers/Api/V1/Benefit/BenefitImportController.php',
       8 => '/var/www/html/app/Http/Controllers/Api/V1/Benefit/DoubleDippingRuleController.php',
-      9 => '/var/www/html/app/Http/Controllers/Api/V1/HealthController.php',
-      10 => '/var/www/html/app/Http/Controllers/Api/V1/Matching/MatchingConfigController.php',
-      11 => '/var/www/html/app/Http/Controllers/Api/V1/MfaController.php',
-      12 => '/var/www/html/app/Http/Controllers/Api/V1/Notification/NotificationController.php',
-      13 => '/var/www/html/app/Http/Controllers/Api/V1/Programme/ActivityController.php',
-      14 => '/var/www/html/app/Http/Controllers/Api/V1/Programme/EnrollmentController.php',
-      15 => '/var/www/html/app/Http/Controllers/Api/V1/Programme/ProgrammeController.php',
-      16 => '/var/www/html/app/Http/Controllers/Api/V1/Referral/ReferralController.php',
-      17 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/BeneficiaryController.php',
-      18 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/BeneficiaryDocumentController.php',
-      19 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/BeneficiaryIntakeController.php',
-      20 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/BeneficiaryRoutingController.php',
-      21 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/HouseholdController.php',
-      22 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/HouseholdMemberController.php',
-      23 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/ImportBatchController.php',
-      24 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/OwnershipTransferController.php',
-      25 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/ServeRequestController.php',
-      26 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/ServiceRequestController.php',
+      9 => '/var/www/html/app/Http/Controllers/Api/V1/Grievance/GrievanceController.php',
+      10 => '/var/www/html/app/Http/Controllers/Api/V1/Grievance/GrievanceSlaPolicyController.php',
+      11 => '/var/www/html/app/Http/Controllers/Api/V1/HealthController.php',
+      12 => '/var/www/html/app/Http/Controllers/Api/V1/Matching/MatchingConfigController.php',
+      13 => '/var/www/html/app/Http/Controllers/Api/V1/MfaController.php',
+      14 => '/var/www/html/app/Http/Controllers/Api/V1/Notification/NotificationController.php',
+      15 => '/var/www/html/app/Http/Controllers/Api/V1/Programme/ActivityController.php',
+      16 => '/var/www/html/app/Http/Controllers/Api/V1/Programme/EnrollmentController.php',
+      17 => '/var/www/html/app/Http/Controllers/Api/V1/Programme/ProgrammeController.php',
+      18 => '/var/www/html/app/Http/Controllers/Api/V1/Referral/ReferralController.php',
+      19 => '/var/www/html/app/Http/Controllers/Api/V1/Referral/ReferralSlaPolicyController.php',
+      20 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/BeneficiaryController.php',
+      21 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/BeneficiaryDocumentController.php',
+      22 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/BeneficiaryIntakeController.php',
+      23 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/BeneficiaryRoutingController.php',
+      24 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/HouseholdController.php',
+      25 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/HouseholdMemberController.php',
+      26 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/ImportBatchController.php',
+      27 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/OwnershipTransferController.php',
+      28 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/ServeRequestController.php',
+      29 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/ServiceRequestController.php',
     ),
   ),
   '/var/www/html/app/Http/Middleware/AssignCorrelationId.php' => 
@@ -17971,6 +19874,38 @@ return [
       0 => '/var/www/html/app/Http/Controllers/Api/V1/Benefit/BenefitController.php',
     ),
   ),
+  '/var/www/html/app/Http/Requests/Grievance/AssignGrievanceRequest.php' => 
+  array (
+    'fileHash' => 'ea5e1f320e6fba87f2742a041d2ded68dca8d0df8219245ffa276e8b0a33ba86',
+    'dependentFiles' => 
+    array (
+      0 => '/var/www/html/app/Http/Controllers/Api/V1/Grievance/GrievanceController.php',
+    ),
+  ),
+  '/var/www/html/app/Http/Requests/Grievance/StoreGrievanceRequest.php' => 
+  array (
+    'fileHash' => '7e245db06c6c20c0aebf8296c320900b4cec4b60ed1c68965d430acfc1149501',
+    'dependentFiles' => 
+    array (
+      0 => '/var/www/html/app/Http/Controllers/Api/V1/Grievance/GrievanceController.php',
+    ),
+  ),
+  '/var/www/html/app/Http/Requests/Grievance/TransitionGrievanceRequest.php' => 
+  array (
+    'fileHash' => 'eb00e1d5ea9ad69d4035e2bf27e4f370cc628ea891367c0970fb156318b4a3a4',
+    'dependentFiles' => 
+    array (
+      0 => '/var/www/html/app/Http/Controllers/Api/V1/Grievance/GrievanceController.php',
+    ),
+  ),
+  '/var/www/html/app/Http/Requests/Grievance/UpdateGrievanceSlaRequest.php' => 
+  array (
+    'fileHash' => '26094338756bc71d5a6af2f920ffe35ad93b2b6f4ddec55ed842f4800bc94726',
+    'dependentFiles' => 
+    array (
+      0 => '/var/www/html/app/Http/Controllers/Api/V1/Grievance/GrievanceSlaPolicyController.php',
+    ),
+  ),
   '/var/www/html/app/Http/Requests/Matching/UpdateMatchingConfigRequest.php' => 
   array (
     'fileHash' => '9076295f5525ad7ea848a81fc75818efae74efae26389f559af0a36564bb8c65',
@@ -18057,6 +19992,14 @@ return [
     'dependentFiles' => 
     array (
       0 => '/var/www/html/app/Http/Controllers/Api/V1/Referral/ReferralController.php',
+    ),
+  ),
+  '/var/www/html/app/Http/Requests/Referral/UpdateReferralSlaRequest.php' => 
+  array (
+    'fileHash' => '6d47696087e180bf287bc7291a5c5760fd047703a3df1d7c005ae49813c62ec3',
+    'dependentFiles' => 
+    array (
+      0 => '/var/www/html/app/Http/Controllers/Api/V1/Referral/ReferralSlaPolicyController.php',
     ),
   ),
   '/var/www/html/app/Http/Requests/Registry/AcceptServiceRequestRequest.php' => 
@@ -18279,6 +20222,14 @@ return [
       1 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/BeneficiaryRoutingController.php',
     ),
   ),
+  '/var/www/html/app/Http/Resources/GrievanceResource.php' => 
+  array (
+    'fileHash' => '7f4bc75cf43df99b86031e625046a1f5d3604846443c5bb55cf4283c71ed5e60',
+    'dependentFiles' => 
+    array (
+      0 => '/var/www/html/app/Http/Controllers/Api/V1/Grievance/GrievanceController.php',
+    ),
+  ),
   '/var/www/html/app/Http/Resources/HouseholdMembershipResource.php' => 
   array (
     'fileHash' => '695d973fa43eb9c0171b1685c2f6e50d1ae10c84cabd8b44c2523ab15ea1de8b',
@@ -18408,26 +20359,29 @@ return [
       6 => '/var/www/html/app/Http/Controllers/Api/V1/Benefit/BenefitFlagController.php',
       7 => '/var/www/html/app/Http/Controllers/Api/V1/Benefit/BenefitImportController.php',
       8 => '/var/www/html/app/Http/Controllers/Api/V1/Benefit/DoubleDippingRuleController.php',
-      9 => '/var/www/html/app/Http/Controllers/Api/V1/HealthController.php',
-      10 => '/var/www/html/app/Http/Controllers/Api/V1/Matching/MatchingConfigController.php',
-      11 => '/var/www/html/app/Http/Controllers/Api/V1/MfaController.php',
-      12 => '/var/www/html/app/Http/Controllers/Api/V1/Notification/NotificationController.php',
-      13 => '/var/www/html/app/Http/Controllers/Api/V1/Programme/ActivityController.php',
-      14 => '/var/www/html/app/Http/Controllers/Api/V1/Programme/EnrollmentController.php',
-      15 => '/var/www/html/app/Http/Controllers/Api/V1/Programme/ProgrammeController.php',
-      16 => '/var/www/html/app/Http/Controllers/Api/V1/Referral/ReferralController.php',
-      17 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/BeneficiaryController.php',
-      18 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/BeneficiaryDocumentController.php',
-      19 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/BeneficiaryIntakeController.php',
-      20 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/BeneficiaryRoutingController.php',
-      21 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/HouseholdController.php',
-      22 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/HouseholdMemberController.php',
-      23 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/ImportBatchController.php',
-      24 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/OwnershipTransferController.php',
-      25 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/ServeRequestController.php',
-      26 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/ServiceRequestController.php',
-      27 => '/var/www/html/app/Http/Middleware/CheckPermission.php',
-      28 => '/var/www/html/app/Http/Middleware/EnforceIdleTimeout.php',
+      9 => '/var/www/html/app/Http/Controllers/Api/V1/Grievance/GrievanceController.php',
+      10 => '/var/www/html/app/Http/Controllers/Api/V1/Grievance/GrievanceSlaPolicyController.php',
+      11 => '/var/www/html/app/Http/Controllers/Api/V1/HealthController.php',
+      12 => '/var/www/html/app/Http/Controllers/Api/V1/Matching/MatchingConfigController.php',
+      13 => '/var/www/html/app/Http/Controllers/Api/V1/MfaController.php',
+      14 => '/var/www/html/app/Http/Controllers/Api/V1/Notification/NotificationController.php',
+      15 => '/var/www/html/app/Http/Controllers/Api/V1/Programme/ActivityController.php',
+      16 => '/var/www/html/app/Http/Controllers/Api/V1/Programme/EnrollmentController.php',
+      17 => '/var/www/html/app/Http/Controllers/Api/V1/Programme/ProgrammeController.php',
+      18 => '/var/www/html/app/Http/Controllers/Api/V1/Referral/ReferralController.php',
+      19 => '/var/www/html/app/Http/Controllers/Api/V1/Referral/ReferralSlaPolicyController.php',
+      20 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/BeneficiaryController.php',
+      21 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/BeneficiaryDocumentController.php',
+      22 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/BeneficiaryIntakeController.php',
+      23 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/BeneficiaryRoutingController.php',
+      24 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/HouseholdController.php',
+      25 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/HouseholdMemberController.php',
+      26 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/ImportBatchController.php',
+      27 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/OwnershipTransferController.php',
+      28 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/ServeRequestController.php',
+      29 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/ServiceRequestController.php',
+      30 => '/var/www/html/app/Http/Middleware/CheckPermission.php',
+      31 => '/var/www/html/app/Http/Middleware/EnforceIdleTimeout.php',
     ),
   ),
 ),
@@ -19831,6 +21785,136 @@ return [
     0 => 'laravel/framework',
     1 => 'symfony/http-foundation',
     2 => 'nesbot/carbon',
+  ),
+  '/var/www/html/app/Domain/Referral/Authorization/ReferralAuthorizer.php' => 
+  array (
+    0 => 'laravel/framework',
+  ),
+  '/var/www/html/app/Domain/Referral/Events/ReferralSlaBreached.php' => 
+  array (
+    0 => 'laravel/framework',
+  ),
+  '/var/www/html/app/Domain/Referral/Events/ReferralStatusChanged.php' => 
+  array (
+    0 => 'laravel/framework',
+    1 => 'laravel/sanctum',
+  ),
+  '/var/www/html/app/Domain/Referral/Jobs/EscalateOverdueReferrals.php' => 
+  array (
+    0 => 'laravel/framework',
+    1 => 'nesbot/carbon',
+  ),
+  '/var/www/html/app/Domain/Referral/Models/ReferralSlaPolicy.php' => 
+  array (
+    0 => 'laravel/framework',
+  ),
+  '/var/www/html/app/Http/Controllers/Api/V1/Referral/ReferralSlaPolicyController.php' => 
+  array (
+    0 => 'laravel/framework',
+    1 => 'symfony/http-foundation',
+  ),
+  '/var/www/html/app/Http/Requests/Referral/UpdateReferralSlaRequest.php' => 
+  array (
+    0 => 'laravel/framework',
+    1 => 'symfony/http-foundation',
+    2 => 'laravel/sanctum',
+  ),
+  '/var/www/html/app/Domain/Grievance/Enums/GrievanceCategory.php' => 
+  array (
+  ),
+  '/var/www/html/app/Domain/Grievance/Enums/GrievanceChannel.php' => 
+  array (
+  ),
+  '/var/www/html/app/Domain/Grievance/Enums/GrievanceStatus.php' => 
+  array (
+  ),
+  '/var/www/html/app/Domain/Grievance/Events/GrievanceAssigned.php' => 
+  array (
+    0 => 'laravel/framework',
+    1 => 'laravel/sanctum',
+  ),
+  '/var/www/html/app/Domain/Grievance/Events/GrievanceResolved.php' => 
+  array (
+    0 => 'laravel/framework',
+    1 => 'laravel/sanctum',
+  ),
+  '/var/www/html/app/Domain/Grievance/Exceptions/InvalidGrievanceTransitionException.php' => 
+  array (
+  ),
+  '/var/www/html/app/Domain/Grievance/GrievanceServiceProvider.php' => 
+  array (
+    0 => 'laravel/framework',
+    1 => 'psr/container',
+  ),
+  '/var/www/html/app/Domain/Grievance/Models/Grievance.php' => 
+  array (
+    0 => 'laravel/framework',
+    1 => 'laravel/sanctum',
+  ),
+  '/var/www/html/app/Domain/Grievance/Policies/GrievancePolicy.php' => 
+  array (
+    0 => 'laravel/framework',
+    1 => 'laravel/sanctum',
+  ),
+  '/var/www/html/app/Domain/Grievance/Services/GrievanceService.php' => 
+  array (
+    0 => 'laravel/framework',
+    1 => 'laravel/sanctum',
+    2 => 'nesbot/carbon',
+  ),
+  '/var/www/html/app/Http/Controllers/Api/V1/Grievance/GrievanceController.php' => 
+  array (
+    0 => 'laravel/framework',
+    1 => 'symfony/http-foundation',
+    2 => 'laravel/sanctum',
+  ),
+  '/var/www/html/app/Http/Requests/Grievance/AssignGrievanceRequest.php' => 
+  array (
+    0 => 'laravel/framework',
+    1 => 'symfony/http-foundation',
+    2 => 'laravel/sanctum',
+  ),
+  '/var/www/html/app/Http/Requests/Grievance/StoreGrievanceRequest.php' => 
+  array (
+    0 => 'laravel/framework',
+    1 => 'symfony/http-foundation',
+    2 => 'laravel/sanctum',
+  ),
+  '/var/www/html/app/Http/Requests/Grievance/TransitionGrievanceRequest.php' => 
+  array (
+    0 => 'laravel/framework',
+    1 => 'symfony/http-foundation',
+    2 => 'laravel/sanctum',
+  ),
+  '/var/www/html/app/Http/Resources/GrievanceResource.php' => 
+  array (
+    0 => 'laravel/framework',
+    1 => 'symfony/http-foundation',
+    2 => 'nesbot/carbon',
+  ),
+  '/var/www/html/app/Domain/Grievance/Events/GrievanceSlaBreached.php' => 
+  array (
+    0 => 'laravel/framework',
+  ),
+  '/var/www/html/app/Domain/Grievance/Jobs/EscalateOverdueGrievances.php' => 
+  array (
+    0 => 'laravel/framework',
+    1 => 'nesbot/carbon',
+  ),
+  '/var/www/html/app/Domain/Grievance/Models/GrievanceSlaPolicy.php' => 
+  array (
+    0 => 'laravel/framework',
+  ),
+  '/var/www/html/app/Http/Controllers/Api/V1/Grievance/GrievanceSlaPolicyController.php' => 
+  array (
+    0 => 'laravel/framework',
+    1 => 'symfony/http-foundation',
+  ),
+  '/var/www/html/app/Http/Requests/Grievance/UpdateGrievanceSlaRequest.php' => 
+  array (
+    0 => 'laravel/framework',
+    1 => 'symfony/http-foundation',
+    2 => 'laravel/sanctum',
   ),
 ),
 	'exportedNodesCallback' => static function (): array { return array (
@@ -29642,6 +31726,36 @@ return [
        'statements' => 
       array (
         0 => 
+        \PHPStan\Dependency\ExportedNode\ExportedClassConstantsNode::__set_state(array(
+           'constants' => 
+          array (
+            0 => 
+            \PHPStan\Dependency\ExportedNode\ExportedClassConstantNode::__set_state(array(
+               'name' => 'TAG',
+               'value' => '\'benefit.delivery_authorizers\'',
+               'attributes' => 
+              array (
+              ),
+            )),
+          ),
+           'public' => true,
+           'private' => false,
+           'final' => false,
+           'phpDoc' => 
+          \PHPStan\Dependency\ExportedNode\ExportedPhpDocNode::__set_state(array(
+             'phpDocString' => '/** Container tag each domain registers its authorizer under. */',
+             'namespace' => 'App\\Domain\\Benefit\\Services',
+             'uses' => 
+            array (
+              'deliveryauthorizer' => 'App\\Domain\\Benefit\\Authorization\\DeliveryAuthorizer',
+              'beneficiary' => 'App\\Domain\\Registry\\Models\\Beneficiary',
+            ),
+             'constUses' => 
+            array (
+            ),
+          )),
+        )),
+        1 => 
         \PHPStan\Dependency\ExportedNode\ExportedMethodNode::__set_state(array(
            'name' => '__construct',
            'phpDoc' => 
@@ -29686,7 +31800,7 @@ return [
           array (
           ),
         )),
-        1 => 
+        2 => 
         \PHPStan\Dependency\ExportedNode\ExportedMethodNode::__set_state(array(
            'name' => 'basisFor',
            'phpDoc' => 
@@ -30735,6 +32849,1945 @@ return [
             \PHPStan\Dependency\ExportedNode\ExportedParameterNode::__set_state(array(
                'name' => 'actor',
                'type' => 'App\\Domain\\Access\\Models\\User',
+               'byRef' => false,
+               'variadic' => false,
+               'hasDefault' => false,
+               'attributes' => 
+              array (
+              ),
+               'phpDoc' => NULL,
+               'flags' => 0,
+            )),
+          ),
+           'attributes' => 
+          array (
+          ),
+        )),
+      ),
+       'attributes' => 
+      array (
+      ),
+    )),
+  ),
+  '/var/www/html/app/Domain/Grievance/Enums/GrievanceCategory.php' => 
+  array (
+    0 => 
+    \PHPStan\Dependency\ExportedNode\ExportedEnumNode::__set_state(array(
+       'name' => 'App\\Domain\\Grievance\\Enums\\GrievanceCategory',
+       'scalarType' => 'string',
+       'phpDoc' => 
+      \PHPStan\Dependency\ExportedNode\ExportedPhpDocNode::__set_state(array(
+         'phpDocString' => '/**
+ * Grievance categories (PRD FR-GRM-01). A fixed starter taxonomy; extend as the
+ * GRM matures (the stakeholder-confirmed list is a documented open question).
+ */',
+         'namespace' => 'App\\Domain\\Grievance\\Enums',
+         'uses' => 
+        array (
+        ),
+         'constUses' => 
+        array (
+        ),
+      )),
+       'implements' => 
+      array (
+      ),
+       'statements' => 
+      array (
+        0 => 
+        \PHPStan\Dependency\ExportedNode\ExportedEnumCaseNode::__set_state(array(
+           'name' => 'Payment',
+           'value' => '\'payment\'',
+           'phpDoc' => NULL,
+        )),
+        1 => 
+        \PHPStan\Dependency\ExportedNode\ExportedEnumCaseNode::__set_state(array(
+           'name' => 'Eligibility',
+           'value' => '\'eligibility\'',
+           'phpDoc' => NULL,
+        )),
+        2 => 
+        \PHPStan\Dependency\ExportedNode\ExportedEnumCaseNode::__set_state(array(
+           'name' => 'DataCorrection',
+           'value' => '\'data_correction\'',
+           'phpDoc' => NULL,
+        )),
+        3 => 
+        \PHPStan\Dependency\ExportedNode\ExportedEnumCaseNode::__set_state(array(
+           'name' => 'ServiceQuality',
+           'value' => '\'service_quality\'',
+           'phpDoc' => NULL,
+        )),
+        4 => 
+        \PHPStan\Dependency\ExportedNode\ExportedEnumCaseNode::__set_state(array(
+           'name' => 'Complaint',
+           'value' => '\'complaint\'',
+           'phpDoc' => NULL,
+        )),
+        5 => 
+        \PHPStan\Dependency\ExportedNode\ExportedEnumCaseNode::__set_state(array(
+           'name' => 'Other',
+           'value' => '\'other\'',
+           'phpDoc' => NULL,
+        )),
+      ),
+       'attributes' => 
+      array (
+      ),
+    )),
+  ),
+  '/var/www/html/app/Domain/Grievance/Enums/GrievanceChannel.php' => 
+  array (
+    0 => 
+    \PHPStan\Dependency\ExportedNode\ExportedEnumNode::__set_state(array(
+       'name' => 'App\\Domain\\Grievance\\Enums\\GrievanceChannel',
+       'scalarType' => 'string',
+       'phpDoc' => 
+      \PHPStan\Dependency\ExportedNode\ExportedPhpDocNode::__set_state(array(
+         'phpDocString' => '/**
+ * How the grievance reached the staff member who logged it (PRD FR-GRM-01). Staff
+ * capture only — there is no citizen self-service channel.
+ */',
+         'namespace' => 'App\\Domain\\Grievance\\Enums',
+         'uses' => 
+        array (
+        ),
+         'constUses' => 
+        array (
+        ),
+      )),
+       'implements' => 
+      array (
+      ),
+       'statements' => 
+      array (
+        0 => 
+        \PHPStan\Dependency\ExportedNode\ExportedEnumCaseNode::__set_state(array(
+           'name' => 'WalkIn',
+           'value' => '\'walk_in\'',
+           'phpDoc' => NULL,
+        )),
+        1 => 
+        \PHPStan\Dependency\ExportedNode\ExportedEnumCaseNode::__set_state(array(
+           'name' => 'Phone',
+           'value' => '\'phone\'',
+           'phpDoc' => NULL,
+        )),
+        2 => 
+        \PHPStan\Dependency\ExportedNode\ExportedEnumCaseNode::__set_state(array(
+           'name' => 'Email',
+           'value' => '\'email\'',
+           'phpDoc' => NULL,
+        )),
+        3 => 
+        \PHPStan\Dependency\ExportedNode\ExportedEnumCaseNode::__set_state(array(
+           'name' => 'Sms',
+           'value' => '\'sms\'',
+           'phpDoc' => NULL,
+        )),
+        4 => 
+        \PHPStan\Dependency\ExportedNode\ExportedEnumCaseNode::__set_state(array(
+           'name' => 'Online',
+           'value' => '\'online\'',
+           'phpDoc' => NULL,
+        )),
+        5 => 
+        \PHPStan\Dependency\ExportedNode\ExportedEnumCaseNode::__set_state(array(
+           'name' => 'Other',
+           'value' => '\'other\'',
+           'phpDoc' => NULL,
+        )),
+      ),
+       'attributes' => 
+      array (
+      ),
+    )),
+  ),
+  '/var/www/html/app/Domain/Grievance/Enums/GrievanceStatus.php' => 
+  array (
+    0 => 
+    \PHPStan\Dependency\ExportedNode\ExportedEnumNode::__set_state(array(
+       'name' => 'App\\Domain\\Grievance\\Enums\\GrievanceStatus',
+       'scalarType' => 'string',
+       'phpDoc' => 
+      \PHPStan\Dependency\ExportedNode\ExportedPhpDocNode::__set_state(array(
+         'phpDocString' => '/**
+ * Grievance lifecycle (PRD FR-GRM-02, §8.4):
+ *
+ *   Open ──► Assigned ──► InProgress ──► Resolved ──► Closed
+ *    │          └──────────────┴───────────► Closed
+ *    └──► Closed
+ *
+ * `canTransitionTo()` is the single source of truth for the guarded transitions;
+ * assignment is handled separately (it sets the assignee and moves Open → Assigned).
+ */',
+         'namespace' => 'App\\Domain\\Grievance\\Enums',
+         'uses' => 
+        array (
+        ),
+         'constUses' => 
+        array (
+        ),
+      )),
+       'implements' => 
+      array (
+      ),
+       'statements' => 
+      array (
+        0 => 
+        \PHPStan\Dependency\ExportedNode\ExportedEnumCaseNode::__set_state(array(
+           'name' => 'Open',
+           'value' => '\'open\'',
+           'phpDoc' => NULL,
+        )),
+        1 => 
+        \PHPStan\Dependency\ExportedNode\ExportedEnumCaseNode::__set_state(array(
+           'name' => 'Assigned',
+           'value' => '\'assigned\'',
+           'phpDoc' => NULL,
+        )),
+        2 => 
+        \PHPStan\Dependency\ExportedNode\ExportedEnumCaseNode::__set_state(array(
+           'name' => 'InProgress',
+           'value' => '\'in_progress\'',
+           'phpDoc' => NULL,
+        )),
+        3 => 
+        \PHPStan\Dependency\ExportedNode\ExportedEnumCaseNode::__set_state(array(
+           'name' => 'Resolved',
+           'value' => '\'resolved\'',
+           'phpDoc' => NULL,
+        )),
+        4 => 
+        \PHPStan\Dependency\ExportedNode\ExportedEnumCaseNode::__set_state(array(
+           'name' => 'Closed',
+           'value' => '\'closed\'',
+           'phpDoc' => NULL,
+        )),
+        5 => 
+        \PHPStan\Dependency\ExportedNode\ExportedMethodNode::__set_state(array(
+           'name' => 'allowedNext',
+           'phpDoc' => 
+          \PHPStan\Dependency\ExportedNode\ExportedPhpDocNode::__set_state(array(
+             'phpDocString' => '/**
+     * @return list<self>
+     */',
+             'namespace' => 'App\\Domain\\Grievance\\Enums',
+             'uses' => 
+            array (
+            ),
+             'constUses' => 
+            array (
+            ),
+          )),
+           'byRef' => false,
+           'public' => true,
+           'private' => false,
+           'abstract' => false,
+           'final' => false,
+           'static' => false,
+           'returnType' => 'array',
+           'parameters' => 
+          array (
+          ),
+           'attributes' => 
+          array (
+          ),
+        )),
+        6 => 
+        \PHPStan\Dependency\ExportedNode\ExportedMethodNode::__set_state(array(
+           'name' => 'canTransitionTo',
+           'phpDoc' => NULL,
+           'byRef' => false,
+           'public' => true,
+           'private' => false,
+           'abstract' => false,
+           'final' => false,
+           'static' => false,
+           'returnType' => 'bool',
+           'parameters' => 
+          array (
+            0 => 
+            \PHPStan\Dependency\ExportedNode\ExportedParameterNode::__set_state(array(
+               'name' => 'target',
+               'type' => 'self',
+               'byRef' => false,
+               'variadic' => false,
+               'hasDefault' => false,
+               'attributes' => 
+              array (
+              ),
+               'phpDoc' => NULL,
+               'flags' => 0,
+            )),
+          ),
+           'attributes' => 
+          array (
+          ),
+        )),
+        7 => 
+        \PHPStan\Dependency\ExportedNode\ExportedMethodNode::__set_state(array(
+           'name' => 'isTerminal',
+           'phpDoc' => NULL,
+           'byRef' => false,
+           'public' => true,
+           'private' => false,
+           'abstract' => false,
+           'final' => false,
+           'static' => false,
+           'returnType' => 'bool',
+           'parameters' => 
+          array (
+          ),
+           'attributes' => 
+          array (
+          ),
+        )),
+      ),
+       'attributes' => 
+      array (
+      ),
+    )),
+  ),
+  '/var/www/html/app/Domain/Grievance/Events/GrievanceAssigned.php' => 
+  array (
+    0 => 
+    \PHPStan\Dependency\ExportedNode\ExportedClassNode::__set_state(array(
+       'name' => 'App\\Domain\\Grievance\\Events\\GrievanceAssigned',
+       'phpDoc' => 
+      \PHPStan\Dependency\ExportedNode\ExportedPhpDocNode::__set_state(array(
+         'phpDocString' => '/**
+ * Fired when a grievance is assigned (PRD FR-GRM-02). The assignee is notified.
+ */',
+         'namespace' => 'App\\Domain\\Grievance\\Events',
+         'uses' => 
+        array (
+          'user' => 'App\\Domain\\Access\\Models\\User',
+          'grievance' => 'App\\Domain\\Grievance\\Models\\Grievance',
+          'dispatchable' => 'Illuminate\\Foundation\\Events\\Dispatchable',
+        ),
+         'constUses' => 
+        array (
+        ),
+      )),
+       'abstract' => false,
+       'final' => false,
+       'extends' => NULL,
+       'implements' => 
+      array (
+      ),
+       'usedTraits' => 
+      array (
+        0 => 'Illuminate\\Foundation\\Events\\Dispatchable',
+      ),
+       'traitUseAdaptations' => 
+      array (
+      ),
+       'statements' => 
+      array (
+        0 => 
+        \PHPStan\Dependency\ExportedNode\ExportedMethodNode::__set_state(array(
+           'name' => '__construct',
+           'phpDoc' => NULL,
+           'byRef' => false,
+           'public' => true,
+           'private' => false,
+           'abstract' => false,
+           'final' => false,
+           'static' => false,
+           'returnType' => NULL,
+           'parameters' => 
+          array (
+            0 => 
+            \PHPStan\Dependency\ExportedNode\ExportedParameterNode::__set_state(array(
+               'name' => 'grievance',
+               'type' => 'App\\Domain\\Grievance\\Models\\Grievance',
+               'byRef' => false,
+               'variadic' => false,
+               'hasDefault' => false,
+               'attributes' => 
+              array (
+              ),
+               'phpDoc' => NULL,
+               'flags' => 65,
+            )),
+            1 => 
+            \PHPStan\Dependency\ExportedNode\ExportedParameterNode::__set_state(array(
+               'name' => 'assignee',
+               'type' => 'App\\Domain\\Access\\Models\\User',
+               'byRef' => false,
+               'variadic' => false,
+               'hasDefault' => false,
+               'attributes' => 
+              array (
+              ),
+               'phpDoc' => NULL,
+               'flags' => 65,
+            )),
+            2 => 
+            \PHPStan\Dependency\ExportedNode\ExportedParameterNode::__set_state(array(
+               'name' => 'actor',
+               'type' => '?App\\Domain\\Access\\Models\\User',
+               'byRef' => false,
+               'variadic' => false,
+               'hasDefault' => true,
+               'attributes' => 
+              array (
+              ),
+               'phpDoc' => NULL,
+               'flags' => 65,
+            )),
+          ),
+           'attributes' => 
+          array (
+          ),
+        )),
+      ),
+       'attributes' => 
+      array (
+      ),
+    )),
+  ),
+  '/var/www/html/app/Domain/Grievance/Events/GrievanceResolved.php' => 
+  array (
+    0 => 
+    \PHPStan\Dependency\ExportedNode\ExportedClassNode::__set_state(array(
+       'name' => 'App\\Domain\\Grievance\\Events\\GrievanceResolved',
+       'phpDoc' => 
+      \PHPStan\Dependency\ExportedNode\ExportedPhpDocNode::__set_state(array(
+         'phpDocString' => '/**
+ * Fired when a grievance is resolved (PRD FR-GRM-02). Relevant parties — the staff
+ * who logged it and the handling MDA\'s grievance team — are notified.
+ */',
+         'namespace' => 'App\\Domain\\Grievance\\Events',
+         'uses' => 
+        array (
+          'user' => 'App\\Domain\\Access\\Models\\User',
+          'grievance' => 'App\\Domain\\Grievance\\Models\\Grievance',
+          'dispatchable' => 'Illuminate\\Foundation\\Events\\Dispatchable',
+        ),
+         'constUses' => 
+        array (
+        ),
+      )),
+       'abstract' => false,
+       'final' => false,
+       'extends' => NULL,
+       'implements' => 
+      array (
+      ),
+       'usedTraits' => 
+      array (
+        0 => 'Illuminate\\Foundation\\Events\\Dispatchable',
+      ),
+       'traitUseAdaptations' => 
+      array (
+      ),
+       'statements' => 
+      array (
+        0 => 
+        \PHPStan\Dependency\ExportedNode\ExportedMethodNode::__set_state(array(
+           'name' => '__construct',
+           'phpDoc' => NULL,
+           'byRef' => false,
+           'public' => true,
+           'private' => false,
+           'abstract' => false,
+           'final' => false,
+           'static' => false,
+           'returnType' => NULL,
+           'parameters' => 
+          array (
+            0 => 
+            \PHPStan\Dependency\ExportedNode\ExportedParameterNode::__set_state(array(
+               'name' => 'grievance',
+               'type' => 'App\\Domain\\Grievance\\Models\\Grievance',
+               'byRef' => false,
+               'variadic' => false,
+               'hasDefault' => false,
+               'attributes' => 
+              array (
+              ),
+               'phpDoc' => NULL,
+               'flags' => 65,
+            )),
+            1 => 
+            \PHPStan\Dependency\ExportedNode\ExportedParameterNode::__set_state(array(
+               'name' => 'actor',
+               'type' => 'App\\Domain\\Access\\Models\\User',
+               'byRef' => false,
+               'variadic' => false,
+               'hasDefault' => false,
+               'attributes' => 
+              array (
+              ),
+               'phpDoc' => NULL,
+               'flags' => 65,
+            )),
+          ),
+           'attributes' => 
+          array (
+          ),
+        )),
+      ),
+       'attributes' => 
+      array (
+      ),
+    )),
+  ),
+  '/var/www/html/app/Domain/Grievance/Events/GrievanceSlaBreached.php' => 
+  array (
+    0 => 
+    \PHPStan\Dependency\ExportedNode\ExportedClassNode::__set_state(array(
+       'name' => 'App\\Domain\\Grievance\\Events\\GrievanceSlaBreached',
+       'phpDoc' => 
+      \PHPStan\Dependency\ExportedNode\ExportedPhpDocNode::__set_state(array(
+         'phpDocString' => '/**
+ * Fired when a grievance is overdue against its category SLA (PRD FR-GRM-03). The
+ * scheduled sweep escalates (bumping `escalation_level`) and dispatches this at each
+ * new level; the notification subscriber alerts the handling MDA\'s grievance team +
+ * the escalation tier. Nothing is auto-closed.
+ */',
+         'namespace' => 'App\\Domain\\Grievance\\Events',
+         'uses' => 
+        array (
+          'grievance' => 'App\\Domain\\Grievance\\Models\\Grievance',
+          'dispatchable' => 'Illuminate\\Foundation\\Events\\Dispatchable',
+        ),
+         'constUses' => 
+        array (
+        ),
+      )),
+       'abstract' => false,
+       'final' => false,
+       'extends' => NULL,
+       'implements' => 
+      array (
+      ),
+       'usedTraits' => 
+      array (
+        0 => 'Illuminate\\Foundation\\Events\\Dispatchable',
+      ),
+       'traitUseAdaptations' => 
+      array (
+      ),
+       'statements' => 
+      array (
+        0 => 
+        \PHPStan\Dependency\ExportedNode\ExportedMethodNode::__set_state(array(
+           'name' => '__construct',
+           'phpDoc' => NULL,
+           'byRef' => false,
+           'public' => true,
+           'private' => false,
+           'abstract' => false,
+           'final' => false,
+           'static' => false,
+           'returnType' => NULL,
+           'parameters' => 
+          array (
+            0 => 
+            \PHPStan\Dependency\ExportedNode\ExportedParameterNode::__set_state(array(
+               'name' => 'grievance',
+               'type' => 'App\\Domain\\Grievance\\Models\\Grievance',
+               'byRef' => false,
+               'variadic' => false,
+               'hasDefault' => false,
+               'attributes' => 
+              array (
+              ),
+               'phpDoc' => NULL,
+               'flags' => 65,
+            )),
+            1 => 
+            \PHPStan\Dependency\ExportedNode\ExportedParameterNode::__set_state(array(
+               'name' => 'level',
+               'type' => 'int',
+               'byRef' => false,
+               'variadic' => false,
+               'hasDefault' => false,
+               'attributes' => 
+              array (
+              ),
+               'phpDoc' => NULL,
+               'flags' => 65,
+            )),
+          ),
+           'attributes' => 
+          array (
+          ),
+        )),
+      ),
+       'attributes' => 
+      array (
+      ),
+    )),
+  ),
+  '/var/www/html/app/Domain/Grievance/Exceptions/InvalidGrievanceTransitionException.php' => 
+  array (
+    0 => 
+    \PHPStan\Dependency\ExportedNode\ExportedClassNode::__set_state(array(
+       'name' => 'App\\Domain\\Grievance\\Exceptions\\InvalidGrievanceTransitionException',
+       'phpDoc' => 
+      \PHPStan\Dependency\ExportedNode\ExportedPhpDocNode::__set_state(array(
+         'phpDocString' => '/**
+ * Thrown when a grievance transition/assignment is not valid from its current
+ * status (PRD FR-GRM-02 guards) — e.g. starting an unassigned grievance, or
+ * assigning to a user outside the handling MDA. Mapped to 422 by the controller.
+ */',
+         'namespace' => 'App\\Domain\\Grievance\\Exceptions',
+         'uses' => 
+        array (
+          'domainexception' => 'DomainException',
+        ),
+         'constUses' => 
+        array (
+        ),
+      )),
+       'abstract' => false,
+       'final' => false,
+       'extends' => 'DomainException',
+       'implements' => 
+      array (
+      ),
+       'usedTraits' => 
+      array (
+      ),
+       'traitUseAdaptations' => 
+      array (
+      ),
+       'statements' => 
+      array (
+      ),
+       'attributes' => 
+      array (
+      ),
+    )),
+  ),
+  '/var/www/html/app/Domain/Grievance/GrievanceServiceProvider.php' => 
+  array (
+    0 => 
+    \PHPStan\Dependency\ExportedNode\ExportedClassNode::__set_state(array(
+       'name' => 'App\\Domain\\Grievance\\GrievanceServiceProvider',
+       'phpDoc' => 
+      \PHPStan\Dependency\ExportedNode\ExportedPhpDocNode::__set_state(array(
+         'phpDocString' => '/**
+ * Wires the Grievance domain (PRD FR-GRM): its permissions and the MDA-scoped
+ * authorization policy. The lifecycle guards live in GrievanceService.
+ */',
+         'namespace' => 'App\\Domain\\Grievance',
+         'uses' => 
+        array (
+          'permissionaction' => 'App\\Domain\\Access\\Enums\\PermissionAction',
+          'permissionregistry' => 'App\\Domain\\Access\\Support\\PermissionRegistry',
+          'grievance' => 'App\\Domain\\Grievance\\Models\\Grievance',
+          'grievancepolicy' => 'App\\Domain\\Grievance\\Policies\\GrievancePolicy',
+          'gate' => 'Illuminate\\Support\\Facades\\Gate',
+          'serviceprovider' => 'Illuminate\\Support\\ServiceProvider',
+        ),
+         'constUses' => 
+        array (
+        ),
+      )),
+       'abstract' => false,
+       'final' => false,
+       'extends' => 'Illuminate\\Support\\ServiceProvider',
+       'implements' => 
+      array (
+      ),
+       'usedTraits' => 
+      array (
+      ),
+       'traitUseAdaptations' => 
+      array (
+      ),
+       'statements' => 
+      array (
+        0 => 
+        \PHPStan\Dependency\ExportedNode\ExportedMethodNode::__set_state(array(
+           'name' => 'boot',
+           'phpDoc' => NULL,
+           'byRef' => false,
+           'public' => true,
+           'private' => false,
+           'abstract' => false,
+           'final' => false,
+           'static' => false,
+           'returnType' => 'void',
+           'parameters' => 
+          array (
+          ),
+           'attributes' => 
+          array (
+          ),
+        )),
+      ),
+       'attributes' => 
+      array (
+      ),
+    )),
+  ),
+  '/var/www/html/app/Domain/Grievance/Jobs/EscalateOverdueGrievances.php' => 
+  array (
+    0 => 
+    \PHPStan\Dependency\ExportedNode\ExportedClassNode::__set_state(array(
+       'name' => 'App\\Domain\\Grievance\\Jobs\\EscalateOverdueGrievances',
+       'phpDoc' => 
+      \PHPStan\Dependency\ExportedNode\ExportedPhpDocNode::__set_state(array(
+         'phpDocString' => '/**
+ * Scheduled SLA sweep (PRD FR-GRM-03), mirroring {@see EscalateOverdueReferrals}.
+ * Flags unresolved grievances that have breached their CATEGORY window (measured from
+ * when they were logged) and escalates one tier per elapsed window, capped at the
+ * configured chain length, dispatching {@see GrievanceSlaBreached} whenever the level
+ * increases. It NEVER changes a grievance\'s status — no auto-close; only escalate + notify.
+ */',
+         'namespace' => 'App\\Domain\\Grievance\\Jobs',
+         'uses' => 
+        array (
+          'mdascope' => 'App\\Domain\\Access\\Scopes\\MdaScope',
+          'auditlogger' => 'App\\Domain\\Audit\\Services\\AuditLogger',
+          'grievancestatus' => 'App\\Domain\\Grievance\\Enums\\GrievanceStatus',
+          'grievanceslabreached' => 'App\\Domain\\Grievance\\Events\\GrievanceSlaBreached',
+          'grievance' => 'App\\Domain\\Grievance\\Models\\Grievance',
+          'grievanceslapolicy' => 'App\\Domain\\Grievance\\Models\\GrievanceSlaPolicy',
+          'escalateoverduereferrals' => 'App\\Domain\\Referral\\Jobs\\EscalateOverdueReferrals',
+          'queueable' => 'Illuminate\\Bus\\Queueable',
+          'shouldqueue' => 'Illuminate\\Contracts\\Queue\\ShouldQueue',
+          'dispatchable' => 'Illuminate\\Foundation\\Bus\\Dispatchable',
+          'interactswithqueue' => 'Illuminate\\Queue\\InteractsWithQueue',
+          'serializesmodels' => 'Illuminate\\Queue\\SerializesModels',
+          'carbon' => 'Illuminate\\Support\\Carbon',
+        ),
+         'constUses' => 
+        array (
+        ),
+      )),
+       'abstract' => false,
+       'final' => false,
+       'extends' => NULL,
+       'implements' => 
+      array (
+        0 => 'Illuminate\\Contracts\\Queue\\ShouldQueue',
+      ),
+       'usedTraits' => 
+      array (
+        0 => 'Illuminate\\Foundation\\Bus\\Dispatchable',
+        1 => 'Illuminate\\Queue\\InteractsWithQueue',
+        2 => 'Illuminate\\Bus\\Queueable',
+        3 => 'Illuminate\\Queue\\SerializesModels',
+      ),
+       'traitUseAdaptations' => 
+      array (
+      ),
+       'statements' => 
+      array (
+        0 => 
+        \PHPStan\Dependency\ExportedNode\ExportedMethodNode::__set_state(array(
+           'name' => 'handle',
+           'phpDoc' => NULL,
+           'byRef' => false,
+           'public' => true,
+           'private' => false,
+           'abstract' => false,
+           'final' => false,
+           'static' => false,
+           'returnType' => 'void',
+           'parameters' => 
+          array (
+            0 => 
+            \PHPStan\Dependency\ExportedNode\ExportedParameterNode::__set_state(array(
+               'name' => 'audit',
+               'type' => 'App\\Domain\\Audit\\Services\\AuditLogger',
+               'byRef' => false,
+               'variadic' => false,
+               'hasDefault' => false,
+               'attributes' => 
+              array (
+              ),
+               'phpDoc' => NULL,
+               'flags' => 0,
+            )),
+          ),
+           'attributes' => 
+          array (
+          ),
+        )),
+      ),
+       'attributes' => 
+      array (
+      ),
+    )),
+  ),
+  '/var/www/html/app/Domain/Grievance/Models/Grievance.php' => 
+  array (
+    0 => 
+    \PHPStan\Dependency\ExportedNode\ExportedClassNode::__set_state(array(
+       'name' => 'App\\Domain\\Grievance\\Models\\Grievance',
+       'phpDoc' => 
+      \PHPStan\Dependency\ExportedNode\ExportedPhpDocNode::__set_state(array(
+         'phpDocString' => '/**
+ * A grievance handled within one MDA (PRD FR-GRM-01/02). MDA-scoped on
+ * `handling_mda_id` (only that MDA + oversight see it) and Auditable; transitions
+ * are audited explicitly so the volatile columns are excluded from the generic
+ * update audit.
+ *
+ * @property string $id
+ * @property string $handling_mda_id
+ * @property string|null $beneficiary_id
+ * @property GrievanceCategory $category
+ * @property GrievanceChannel $channel
+ * @property string $description
+ * @property GrievanceStatus $status
+ * @property string|null $assignee_user_id
+ * @property string|null $resolution_notes
+ * @property string|null $submitted_by
+ * @property int $escalation_level
+ * @property Carbon|null $assigned_at
+ * @property Carbon|null $started_at
+ * @property Carbon|null $resolved_at
+ * @property Carbon|null $closed_at
+ * @property Carbon|null $sla_breached_at
+ * @property Carbon|null $created_at
+ * @property Carbon|null $updated_at
+ * @property-read Mda $handlingMda
+ * @property-read Beneficiary|null $beneficiary
+ * @property-read User|null $assignee
+ */',
+         'namespace' => 'App\\Domain\\Grievance\\Models',
+         'uses' => 
+        array (
+          'mdascoped' => 'App\\Domain\\Access\\Concerns\\MdaScoped',
+          'scopedtomda' => 'App\\Domain\\Access\\Concerns\\ScopedToMda',
+          'mda' => 'App\\Domain\\Access\\Models\\Mda',
+          'user' => 'App\\Domain\\Access\\Models\\User',
+          'auditable' => 'App\\Domain\\Audit\\Concerns\\Auditable',
+          'grievancecategory' => 'App\\Domain\\Grievance\\Enums\\GrievanceCategory',
+          'grievancechannel' => 'App\\Domain\\Grievance\\Enums\\GrievanceChannel',
+          'grievancestatus' => 'App\\Domain\\Grievance\\Enums\\GrievanceStatus',
+          'beneficiary' => 'App\\Domain\\Registry\\Models\\Beneficiary',
+          'hasuuids' => 'Illuminate\\Database\\Eloquent\\Concerns\\HasUuids',
+          'model' => 'Illuminate\\Database\\Eloquent\\Model',
+          'belongsto' => 'Illuminate\\Database\\Eloquent\\Relations\\BelongsTo',
+          'carbon' => 'Illuminate\\Support\\Carbon',
+        ),
+         'constUses' => 
+        array (
+        ),
+      )),
+       'abstract' => false,
+       'final' => false,
+       'extends' => 'Illuminate\\Database\\Eloquent\\Model',
+       'implements' => 
+      array (
+        0 => 'App\\Domain\\Access\\Concerns\\MdaScoped',
+      ),
+       'usedTraits' => 
+      array (
+        0 => 'App\\Domain\\Audit\\Concerns\\Auditable',
+        1 => 'Illuminate\\Database\\Eloquent\\Concerns\\HasUuids',
+        2 => 'App\\Domain\\Access\\Concerns\\ScopedToMda',
+      ),
+       'traitUseAdaptations' => 
+      array (
+      ),
+       'statements' => 
+      array (
+        0 => 
+        \PHPStan\Dependency\ExportedNode\ExportedPropertiesNode::__set_state(array(
+           'names' => 
+          array (
+            0 => 'table',
+          ),
+           'phpDoc' => NULL,
+           'type' => NULL,
+           'public' => false,
+           'private' => false,
+           'static' => false,
+           'readonly' => false,
+           'abstract' => false,
+           'final' => false,
+           'publicSet' => false,
+           'protectedSet' => false,
+           'privateSet' => false,
+           'virtual' => false,
+           'attributes' => 
+          array (
+          ),
+           'hooks' => 
+          array (
+          ),
+        )),
+        1 => 
+        \PHPStan\Dependency\ExportedNode\ExportedPropertiesNode::__set_state(array(
+           'names' => 
+          array (
+            0 => 'fillable',
+          ),
+           'phpDoc' => 
+          \PHPStan\Dependency\ExportedNode\ExportedPhpDocNode::__set_state(array(
+             'phpDocString' => '/**
+     * @var list<string>
+     */',
+             'namespace' => 'App\\Domain\\Grievance\\Models',
+             'uses' => 
+            array (
+              'mdascoped' => 'App\\Domain\\Access\\Concerns\\MdaScoped',
+              'scopedtomda' => 'App\\Domain\\Access\\Concerns\\ScopedToMda',
+              'mda' => 'App\\Domain\\Access\\Models\\Mda',
+              'user' => 'App\\Domain\\Access\\Models\\User',
+              'auditable' => 'App\\Domain\\Audit\\Concerns\\Auditable',
+              'grievancecategory' => 'App\\Domain\\Grievance\\Enums\\GrievanceCategory',
+              'grievancechannel' => 'App\\Domain\\Grievance\\Enums\\GrievanceChannel',
+              'grievancestatus' => 'App\\Domain\\Grievance\\Enums\\GrievanceStatus',
+              'beneficiary' => 'App\\Domain\\Registry\\Models\\Beneficiary',
+              'hasuuids' => 'Illuminate\\Database\\Eloquent\\Concerns\\HasUuids',
+              'model' => 'Illuminate\\Database\\Eloquent\\Model',
+              'belongsto' => 'Illuminate\\Database\\Eloquent\\Relations\\BelongsTo',
+              'carbon' => 'Illuminate\\Support\\Carbon',
+            ),
+             'constUses' => 
+            array (
+            ),
+          )),
+           'type' => NULL,
+           'public' => false,
+           'private' => false,
+           'static' => false,
+           'readonly' => false,
+           'abstract' => false,
+           'final' => false,
+           'publicSet' => false,
+           'protectedSet' => false,
+           'privateSet' => false,
+           'virtual' => false,
+           'attributes' => 
+          array (
+          ),
+           'hooks' => 
+          array (
+          ),
+        )),
+        2 => 
+        \PHPStan\Dependency\ExportedNode\ExportedMethodNode::__set_state(array(
+           'name' => 'casts',
+           'phpDoc' => 
+          \PHPStan\Dependency\ExportedNode\ExportedPhpDocNode::__set_state(array(
+             'phpDocString' => '/**
+     * @return array<string, string>
+     */',
+             'namespace' => 'App\\Domain\\Grievance\\Models',
+             'uses' => 
+            array (
+              'mdascoped' => 'App\\Domain\\Access\\Concerns\\MdaScoped',
+              'scopedtomda' => 'App\\Domain\\Access\\Concerns\\ScopedToMda',
+              'mda' => 'App\\Domain\\Access\\Models\\Mda',
+              'user' => 'App\\Domain\\Access\\Models\\User',
+              'auditable' => 'App\\Domain\\Audit\\Concerns\\Auditable',
+              'grievancecategory' => 'App\\Domain\\Grievance\\Enums\\GrievanceCategory',
+              'grievancechannel' => 'App\\Domain\\Grievance\\Enums\\GrievanceChannel',
+              'grievancestatus' => 'App\\Domain\\Grievance\\Enums\\GrievanceStatus',
+              'beneficiary' => 'App\\Domain\\Registry\\Models\\Beneficiary',
+              'hasuuids' => 'Illuminate\\Database\\Eloquent\\Concerns\\HasUuids',
+              'model' => 'Illuminate\\Database\\Eloquent\\Model',
+              'belongsto' => 'Illuminate\\Database\\Eloquent\\Relations\\BelongsTo',
+              'carbon' => 'Illuminate\\Support\\Carbon',
+            ),
+             'constUses' => 
+            array (
+            ),
+          )),
+           'byRef' => false,
+           'public' => false,
+           'private' => false,
+           'abstract' => false,
+           'final' => false,
+           'static' => false,
+           'returnType' => 'array',
+           'parameters' => 
+          array (
+          ),
+           'attributes' => 
+          array (
+          ),
+        )),
+        3 => 
+        \PHPStan\Dependency\ExportedNode\ExportedMethodNode::__set_state(array(
+           'name' => 'mdaOwnershipColumn',
+           'phpDoc' => 
+          \PHPStan\Dependency\ExportedNode\ExportedPhpDocNode::__set_state(array(
+             'phpDocString' => '/** Scoped to the handling MDA, not the Phase 2 owner column. */',
+             'namespace' => 'App\\Domain\\Grievance\\Models',
+             'uses' => 
+            array (
+              'mdascoped' => 'App\\Domain\\Access\\Concerns\\MdaScoped',
+              'scopedtomda' => 'App\\Domain\\Access\\Concerns\\ScopedToMda',
+              'mda' => 'App\\Domain\\Access\\Models\\Mda',
+              'user' => 'App\\Domain\\Access\\Models\\User',
+              'auditable' => 'App\\Domain\\Audit\\Concerns\\Auditable',
+              'grievancecategory' => 'App\\Domain\\Grievance\\Enums\\GrievanceCategory',
+              'grievancechannel' => 'App\\Domain\\Grievance\\Enums\\GrievanceChannel',
+              'grievancestatus' => 'App\\Domain\\Grievance\\Enums\\GrievanceStatus',
+              'beneficiary' => 'App\\Domain\\Registry\\Models\\Beneficiary',
+              'hasuuids' => 'Illuminate\\Database\\Eloquent\\Concerns\\HasUuids',
+              'model' => 'Illuminate\\Database\\Eloquent\\Model',
+              'belongsto' => 'Illuminate\\Database\\Eloquent\\Relations\\BelongsTo',
+              'carbon' => 'Illuminate\\Support\\Carbon',
+            ),
+             'constUses' => 
+            array (
+            ),
+          )),
+           'byRef' => false,
+           'public' => true,
+           'private' => false,
+           'abstract' => false,
+           'final' => false,
+           'static' => false,
+           'returnType' => 'string',
+           'parameters' => 
+          array (
+          ),
+           'attributes' => 
+          array (
+          ),
+        )),
+        4 => 
+        \PHPStan\Dependency\ExportedNode\ExportedMethodNode::__set_state(array(
+           'name' => 'auditExcluded',
+           'phpDoc' => 
+          \PHPStan\Dependency\ExportedNode\ExportedPhpDocNode::__set_state(array(
+             'phpDocString' => '/**
+     * Transitions/assignment are audited explicitly; keep them out of the generic
+     * update audit.
+     *
+     * @return list<string>
+     */',
+             'namespace' => 'App\\Domain\\Grievance\\Models',
+             'uses' => 
+            array (
+              'mdascoped' => 'App\\Domain\\Access\\Concerns\\MdaScoped',
+              'scopedtomda' => 'App\\Domain\\Access\\Concerns\\ScopedToMda',
+              'mda' => 'App\\Domain\\Access\\Models\\Mda',
+              'user' => 'App\\Domain\\Access\\Models\\User',
+              'auditable' => 'App\\Domain\\Audit\\Concerns\\Auditable',
+              'grievancecategory' => 'App\\Domain\\Grievance\\Enums\\GrievanceCategory',
+              'grievancechannel' => 'App\\Domain\\Grievance\\Enums\\GrievanceChannel',
+              'grievancestatus' => 'App\\Domain\\Grievance\\Enums\\GrievanceStatus',
+              'beneficiary' => 'App\\Domain\\Registry\\Models\\Beneficiary',
+              'hasuuids' => 'Illuminate\\Database\\Eloquent\\Concerns\\HasUuids',
+              'model' => 'Illuminate\\Database\\Eloquent\\Model',
+              'belongsto' => 'Illuminate\\Database\\Eloquent\\Relations\\BelongsTo',
+              'carbon' => 'Illuminate\\Support\\Carbon',
+            ),
+             'constUses' => 
+            array (
+            ),
+          )),
+           'byRef' => false,
+           'public' => false,
+           'private' => false,
+           'abstract' => false,
+           'final' => false,
+           'static' => false,
+           'returnType' => 'array',
+           'parameters' => 
+          array (
+          ),
+           'attributes' => 
+          array (
+          ),
+        )),
+        5 => 
+        \PHPStan\Dependency\ExportedNode\ExportedMethodNode::__set_state(array(
+           'name' => 'handlingMda',
+           'phpDoc' => 
+          \PHPStan\Dependency\ExportedNode\ExportedPhpDocNode::__set_state(array(
+             'phpDocString' => '/**
+     * @return BelongsTo<Mda, $this>
+     */',
+             'namespace' => 'App\\Domain\\Grievance\\Models',
+             'uses' => 
+            array (
+              'mdascoped' => 'App\\Domain\\Access\\Concerns\\MdaScoped',
+              'scopedtomda' => 'App\\Domain\\Access\\Concerns\\ScopedToMda',
+              'mda' => 'App\\Domain\\Access\\Models\\Mda',
+              'user' => 'App\\Domain\\Access\\Models\\User',
+              'auditable' => 'App\\Domain\\Audit\\Concerns\\Auditable',
+              'grievancecategory' => 'App\\Domain\\Grievance\\Enums\\GrievanceCategory',
+              'grievancechannel' => 'App\\Domain\\Grievance\\Enums\\GrievanceChannel',
+              'grievancestatus' => 'App\\Domain\\Grievance\\Enums\\GrievanceStatus',
+              'beneficiary' => 'App\\Domain\\Registry\\Models\\Beneficiary',
+              'hasuuids' => 'Illuminate\\Database\\Eloquent\\Concerns\\HasUuids',
+              'model' => 'Illuminate\\Database\\Eloquent\\Model',
+              'belongsto' => 'Illuminate\\Database\\Eloquent\\Relations\\BelongsTo',
+              'carbon' => 'Illuminate\\Support\\Carbon',
+            ),
+             'constUses' => 
+            array (
+            ),
+          )),
+           'byRef' => false,
+           'public' => true,
+           'private' => false,
+           'abstract' => false,
+           'final' => false,
+           'static' => false,
+           'returnType' => 'Illuminate\\Database\\Eloquent\\Relations\\BelongsTo',
+           'parameters' => 
+          array (
+          ),
+           'attributes' => 
+          array (
+          ),
+        )),
+        6 => 
+        \PHPStan\Dependency\ExportedNode\ExportedMethodNode::__set_state(array(
+           'name' => 'beneficiary',
+           'phpDoc' => 
+          \PHPStan\Dependency\ExportedNode\ExportedPhpDocNode::__set_state(array(
+             'phpDocString' => '/**
+     * @return BelongsTo<Beneficiary, $this>
+     */',
+             'namespace' => 'App\\Domain\\Grievance\\Models',
+             'uses' => 
+            array (
+              'mdascoped' => 'App\\Domain\\Access\\Concerns\\MdaScoped',
+              'scopedtomda' => 'App\\Domain\\Access\\Concerns\\ScopedToMda',
+              'mda' => 'App\\Domain\\Access\\Models\\Mda',
+              'user' => 'App\\Domain\\Access\\Models\\User',
+              'auditable' => 'App\\Domain\\Audit\\Concerns\\Auditable',
+              'grievancecategory' => 'App\\Domain\\Grievance\\Enums\\GrievanceCategory',
+              'grievancechannel' => 'App\\Domain\\Grievance\\Enums\\GrievanceChannel',
+              'grievancestatus' => 'App\\Domain\\Grievance\\Enums\\GrievanceStatus',
+              'beneficiary' => 'App\\Domain\\Registry\\Models\\Beneficiary',
+              'hasuuids' => 'Illuminate\\Database\\Eloquent\\Concerns\\HasUuids',
+              'model' => 'Illuminate\\Database\\Eloquent\\Model',
+              'belongsto' => 'Illuminate\\Database\\Eloquent\\Relations\\BelongsTo',
+              'carbon' => 'Illuminate\\Support\\Carbon',
+            ),
+             'constUses' => 
+            array (
+            ),
+          )),
+           'byRef' => false,
+           'public' => true,
+           'private' => false,
+           'abstract' => false,
+           'final' => false,
+           'static' => false,
+           'returnType' => 'Illuminate\\Database\\Eloquent\\Relations\\BelongsTo',
+           'parameters' => 
+          array (
+          ),
+           'attributes' => 
+          array (
+          ),
+        )),
+        7 => 
+        \PHPStan\Dependency\ExportedNode\ExportedMethodNode::__set_state(array(
+           'name' => 'assignee',
+           'phpDoc' => 
+          \PHPStan\Dependency\ExportedNode\ExportedPhpDocNode::__set_state(array(
+             'phpDocString' => '/**
+     * @return BelongsTo<User, $this>
+     */',
+             'namespace' => 'App\\Domain\\Grievance\\Models',
+             'uses' => 
+            array (
+              'mdascoped' => 'App\\Domain\\Access\\Concerns\\MdaScoped',
+              'scopedtomda' => 'App\\Domain\\Access\\Concerns\\ScopedToMda',
+              'mda' => 'App\\Domain\\Access\\Models\\Mda',
+              'user' => 'App\\Domain\\Access\\Models\\User',
+              'auditable' => 'App\\Domain\\Audit\\Concerns\\Auditable',
+              'grievancecategory' => 'App\\Domain\\Grievance\\Enums\\GrievanceCategory',
+              'grievancechannel' => 'App\\Domain\\Grievance\\Enums\\GrievanceChannel',
+              'grievancestatus' => 'App\\Domain\\Grievance\\Enums\\GrievanceStatus',
+              'beneficiary' => 'App\\Domain\\Registry\\Models\\Beneficiary',
+              'hasuuids' => 'Illuminate\\Database\\Eloquent\\Concerns\\HasUuids',
+              'model' => 'Illuminate\\Database\\Eloquent\\Model',
+              'belongsto' => 'Illuminate\\Database\\Eloquent\\Relations\\BelongsTo',
+              'carbon' => 'Illuminate\\Support\\Carbon',
+            ),
+             'constUses' => 
+            array (
+            ),
+          )),
+           'byRef' => false,
+           'public' => true,
+           'private' => false,
+           'abstract' => false,
+           'final' => false,
+           'static' => false,
+           'returnType' => 'Illuminate\\Database\\Eloquent\\Relations\\BelongsTo',
+           'parameters' => 
+          array (
+          ),
+           'attributes' => 
+          array (
+          ),
+        )),
+      ),
+       'attributes' => 
+      array (
+      ),
+    )),
+  ),
+  '/var/www/html/app/Domain/Grievance/Models/GrievanceSlaPolicy.php' => 
+  array (
+    0 => 
+    \PHPStan\Dependency\ExportedNode\ExportedClassNode::__set_state(array(
+       'name' => 'App\\Domain\\Grievance\\Models\\GrievanceSlaPolicy',
+       'phpDoc' => 
+      \PHPStan\Dependency\ExportedNode\ExportedPhpDocNode::__set_state(array(
+         'phpDocString' => '/**
+ * An admin-editable SLA window for a grievance category (PRD FR-GRM-03): how many
+ * hours a grievance of `category` may remain unresolved before it is overdue. Global
+ * config (not MDA-scoped); changes are audited.
+ *
+ * @property string $id
+ * @property string $category
+ * @property int $hours
+ * @property Carbon|null $created_at
+ * @property Carbon|null $updated_at
+ */',
+         'namespace' => 'App\\Domain\\Grievance\\Models',
+         'uses' => 
+        array (
+          'auditable' => 'App\\Domain\\Audit\\Concerns\\Auditable',
+          'hasuuids' => 'Illuminate\\Database\\Eloquent\\Concerns\\HasUuids',
+          'model' => 'Illuminate\\Database\\Eloquent\\Model',
+          'carbon' => 'Illuminate\\Support\\Carbon',
+        ),
+         'constUses' => 
+        array (
+        ),
+      )),
+       'abstract' => false,
+       'final' => false,
+       'extends' => 'Illuminate\\Database\\Eloquent\\Model',
+       'implements' => 
+      array (
+      ),
+       'usedTraits' => 
+      array (
+        0 => 'App\\Domain\\Audit\\Concerns\\Auditable',
+        1 => 'Illuminate\\Database\\Eloquent\\Concerns\\HasUuids',
+      ),
+       'traitUseAdaptations' => 
+      array (
+      ),
+       'statements' => 
+      array (
+        0 => 
+        \PHPStan\Dependency\ExportedNode\ExportedPropertiesNode::__set_state(array(
+           'names' => 
+          array (
+            0 => 'table',
+          ),
+           'phpDoc' => NULL,
+           'type' => NULL,
+           'public' => false,
+           'private' => false,
+           'static' => false,
+           'readonly' => false,
+           'abstract' => false,
+           'final' => false,
+           'publicSet' => false,
+           'protectedSet' => false,
+           'privateSet' => false,
+           'virtual' => false,
+           'attributes' => 
+          array (
+          ),
+           'hooks' => 
+          array (
+          ),
+        )),
+        1 => 
+        \PHPStan\Dependency\ExportedNode\ExportedPropertiesNode::__set_state(array(
+           'names' => 
+          array (
+            0 => 'fillable',
+          ),
+           'phpDoc' => 
+          \PHPStan\Dependency\ExportedNode\ExportedPhpDocNode::__set_state(array(
+             'phpDocString' => '/**
+     * @var list<string>
+     */',
+             'namespace' => 'App\\Domain\\Grievance\\Models',
+             'uses' => 
+            array (
+              'auditable' => 'App\\Domain\\Audit\\Concerns\\Auditable',
+              'hasuuids' => 'Illuminate\\Database\\Eloquent\\Concerns\\HasUuids',
+              'model' => 'Illuminate\\Database\\Eloquent\\Model',
+              'carbon' => 'Illuminate\\Support\\Carbon',
+            ),
+             'constUses' => 
+            array (
+            ),
+          )),
+           'type' => NULL,
+           'public' => false,
+           'private' => false,
+           'static' => false,
+           'readonly' => false,
+           'abstract' => false,
+           'final' => false,
+           'publicSet' => false,
+           'protectedSet' => false,
+           'privateSet' => false,
+           'virtual' => false,
+           'attributes' => 
+          array (
+          ),
+           'hooks' => 
+          array (
+          ),
+        )),
+        2 => 
+        \PHPStan\Dependency\ExportedNode\ExportedMethodNode::__set_state(array(
+           'name' => 'casts',
+           'phpDoc' => 
+          \PHPStan\Dependency\ExportedNode\ExportedPhpDocNode::__set_state(array(
+             'phpDocString' => '/**
+     * @return array<string, string>
+     */',
+             'namespace' => 'App\\Domain\\Grievance\\Models',
+             'uses' => 
+            array (
+              'auditable' => 'App\\Domain\\Audit\\Concerns\\Auditable',
+              'hasuuids' => 'Illuminate\\Database\\Eloquent\\Concerns\\HasUuids',
+              'model' => 'Illuminate\\Database\\Eloquent\\Model',
+              'carbon' => 'Illuminate\\Support\\Carbon',
+            ),
+             'constUses' => 
+            array (
+            ),
+          )),
+           'byRef' => false,
+           'public' => false,
+           'private' => false,
+           'abstract' => false,
+           'final' => false,
+           'static' => false,
+           'returnType' => 'array',
+           'parameters' => 
+          array (
+          ),
+           'attributes' => 
+          array (
+          ),
+        )),
+      ),
+       'attributes' => 
+      array (
+      ),
+    )),
+  ),
+  '/var/www/html/app/Domain/Grievance/Policies/GrievancePolicy.php' => 
+  array (
+    0 => 
+    \PHPStan\Dependency\ExportedNode\ExportedClassNode::__set_state(array(
+       'name' => 'App\\Domain\\Grievance\\Policies\\GrievancePolicy',
+       'phpDoc' => 
+      \PHPStan\Dependency\ExportedNode\ExportedPhpDocNode::__set_state(array(
+         'phpDocString' => '/**
+ * Authorization for grievances (PRD FR-GRM-01/02). Visibility is the MDA scope
+ * (only the handling MDA + oversight); acting (assign / transition) is restricted
+ * to the handling MDA\'s staff. Oversight (`cross-mda.view`) reads only.
+ */',
+         'namespace' => 'App\\Domain\\Grievance\\Policies',
+         'uses' => 
+        array (
+          'user' => 'App\\Domain\\Access\\Models\\User',
+          'grievance' => 'App\\Domain\\Grievance\\Models\\Grievance',
+        ),
+         'constUses' => 
+        array (
+        ),
+      )),
+       'abstract' => false,
+       'final' => false,
+       'extends' => NULL,
+       'implements' => 
+      array (
+      ),
+       'usedTraits' => 
+      array (
+      ),
+       'traitUseAdaptations' => 
+      array (
+      ),
+       'statements' => 
+      array (
+        0 => 
+        \PHPStan\Dependency\ExportedNode\ExportedMethodNode::__set_state(array(
+           'name' => 'viewAny',
+           'phpDoc' => NULL,
+           'byRef' => false,
+           'public' => true,
+           'private' => false,
+           'abstract' => false,
+           'final' => false,
+           'static' => false,
+           'returnType' => 'bool',
+           'parameters' => 
+          array (
+            0 => 
+            \PHPStan\Dependency\ExportedNode\ExportedParameterNode::__set_state(array(
+               'name' => 'user',
+               'type' => 'App\\Domain\\Access\\Models\\User',
+               'byRef' => false,
+               'variadic' => false,
+               'hasDefault' => false,
+               'attributes' => 
+              array (
+              ),
+               'phpDoc' => NULL,
+               'flags' => 0,
+            )),
+          ),
+           'attributes' => 
+          array (
+          ),
+        )),
+        1 => 
+        \PHPStan\Dependency\ExportedNode\ExportedMethodNode::__set_state(array(
+           'name' => 'view',
+           'phpDoc' => NULL,
+           'byRef' => false,
+           'public' => true,
+           'private' => false,
+           'abstract' => false,
+           'final' => false,
+           'static' => false,
+           'returnType' => 'bool',
+           'parameters' => 
+          array (
+            0 => 
+            \PHPStan\Dependency\ExportedNode\ExportedParameterNode::__set_state(array(
+               'name' => 'user',
+               'type' => 'App\\Domain\\Access\\Models\\User',
+               'byRef' => false,
+               'variadic' => false,
+               'hasDefault' => false,
+               'attributes' => 
+              array (
+              ),
+               'phpDoc' => NULL,
+               'flags' => 0,
+            )),
+            1 => 
+            \PHPStan\Dependency\ExportedNode\ExportedParameterNode::__set_state(array(
+               'name' => 'grievance',
+               'type' => 'App\\Domain\\Grievance\\Models\\Grievance',
+               'byRef' => false,
+               'variadic' => false,
+               'hasDefault' => false,
+               'attributes' => 
+              array (
+              ),
+               'phpDoc' => NULL,
+               'flags' => 0,
+            )),
+          ),
+           'attributes' => 
+          array (
+          ),
+        )),
+        2 => 
+        \PHPStan\Dependency\ExportedNode\ExportedMethodNode::__set_state(array(
+           'name' => 'create',
+           'phpDoc' => NULL,
+           'byRef' => false,
+           'public' => true,
+           'private' => false,
+           'abstract' => false,
+           'final' => false,
+           'static' => false,
+           'returnType' => 'bool',
+           'parameters' => 
+          array (
+            0 => 
+            \PHPStan\Dependency\ExportedNode\ExportedParameterNode::__set_state(array(
+               'name' => 'user',
+               'type' => 'App\\Domain\\Access\\Models\\User',
+               'byRef' => false,
+               'variadic' => false,
+               'hasDefault' => false,
+               'attributes' => 
+              array (
+              ),
+               'phpDoc' => NULL,
+               'flags' => 0,
+            )),
+          ),
+           'attributes' => 
+          array (
+          ),
+        )),
+        3 => 
+        \PHPStan\Dependency\ExportedNode\ExportedMethodNode::__set_state(array(
+           'name' => 'manage',
+           'phpDoc' => 
+          \PHPStan\Dependency\ExportedNode\ExportedPhpDocNode::__set_state(array(
+             'phpDocString' => '/** Assign / start / resolve / close — the handling MDA\'s staff only. */',
+             'namespace' => 'App\\Domain\\Grievance\\Policies',
+             'uses' => 
+            array (
+              'user' => 'App\\Domain\\Access\\Models\\User',
+              'grievance' => 'App\\Domain\\Grievance\\Models\\Grievance',
+            ),
+             'constUses' => 
+            array (
+            ),
+          )),
+           'byRef' => false,
+           'public' => true,
+           'private' => false,
+           'abstract' => false,
+           'final' => false,
+           'static' => false,
+           'returnType' => 'bool',
+           'parameters' => 
+          array (
+            0 => 
+            \PHPStan\Dependency\ExportedNode\ExportedParameterNode::__set_state(array(
+               'name' => 'user',
+               'type' => 'App\\Domain\\Access\\Models\\User',
+               'byRef' => false,
+               'variadic' => false,
+               'hasDefault' => false,
+               'attributes' => 
+              array (
+              ),
+               'phpDoc' => NULL,
+               'flags' => 0,
+            )),
+            1 => 
+            \PHPStan\Dependency\ExportedNode\ExportedParameterNode::__set_state(array(
+               'name' => 'grievance',
+               'type' => 'App\\Domain\\Grievance\\Models\\Grievance',
+               'byRef' => false,
+               'variadic' => false,
+               'hasDefault' => false,
+               'attributes' => 
+              array (
+              ),
+               'phpDoc' => NULL,
+               'flags' => 0,
+            )),
+          ),
+           'attributes' => 
+          array (
+          ),
+        )),
+      ),
+       'attributes' => 
+      array (
+      ),
+    )),
+  ),
+  '/var/www/html/app/Domain/Grievance/Services/GrievanceService.php' => 
+  array (
+    0 => 
+    \PHPStan\Dependency\ExportedNode\ExportedClassNode::__set_state(array(
+       'name' => 'App\\Domain\\Grievance\\Services\\GrievanceService',
+       'phpDoc' => 
+      \PHPStan\Dependency\ExportedNode\ExportedPhpDocNode::__set_state(array(
+         'phpDocString' => '/**
+ * Grievance capture + lifecycle (PRD FR-GRM-01/02, §8.4). Staff log grievances on
+ * behalf of beneficiaries; assignment + each transition are guarded by
+ * {@see GrievanceStatus::canTransitionTo()}, timestamped, and audited explicitly.
+ * The WHO (handling-MDA staff) is enforced by the policy; this owns the WHAT.
+ */',
+         'namespace' => 'App\\Domain\\Grievance\\Services',
+         'uses' => 
+        array (
+          'user' => 'App\\Domain\\Access\\Models\\User',
+          'auditlogger' => 'App\\Domain\\Audit\\Services\\AuditLogger',
+          'grievancecategory' => 'App\\Domain\\Grievance\\Enums\\GrievanceCategory',
+          'grievancechannel' => 'App\\Domain\\Grievance\\Enums\\GrievanceChannel',
+          'grievancestatus' => 'App\\Domain\\Grievance\\Enums\\GrievanceStatus',
+          'grievanceassigned' => 'App\\Domain\\Grievance\\Events\\GrievanceAssigned',
+          'grievanceresolved' => 'App\\Domain\\Grievance\\Events\\GrievanceResolved',
+          'invalidgrievancetransitionexception' => 'App\\Domain\\Grievance\\Exceptions\\InvalidGrievanceTransitionException',
+          'grievance' => 'App\\Domain\\Grievance\\Models\\Grievance',
+          'carbon' => 'Illuminate\\Support\\Carbon',
+        ),
+         'constUses' => 
+        array (
+        ),
+      )),
+       'abstract' => false,
+       'final' => false,
+       'extends' => NULL,
+       'implements' => 
+      array (
+      ),
+       'usedTraits' => 
+      array (
+      ),
+       'traitUseAdaptations' => 
+      array (
+      ),
+       'statements' => 
+      array (
+        0 => 
+        \PHPStan\Dependency\ExportedNode\ExportedMethodNode::__set_state(array(
+           'name' => '__construct',
+           'phpDoc' => NULL,
+           'byRef' => false,
+           'public' => true,
+           'private' => false,
+           'abstract' => false,
+           'final' => false,
+           'static' => false,
+           'returnType' => NULL,
+           'parameters' => 
+          array (
+            0 => 
+            \PHPStan\Dependency\ExportedNode\ExportedParameterNode::__set_state(array(
+               'name' => 'audit',
+               'type' => 'App\\Domain\\Audit\\Services\\AuditLogger',
+               'byRef' => false,
+               'variadic' => false,
+               'hasDefault' => false,
+               'attributes' => 
+              array (
+              ),
+               'phpDoc' => NULL,
+               'flags' => 68,
+            )),
+          ),
+           'attributes' => 
+          array (
+          ),
+        )),
+        1 => 
+        \PHPStan\Dependency\ExportedNode\ExportedMethodNode::__set_state(array(
+           'name' => 'create',
+           'phpDoc' => 
+          \PHPStan\Dependency\ExportedNode\ExportedPhpDocNode::__set_state(array(
+             'phpDocString' => '/** Staff logs a grievance on behalf of a beneficiary (optional link). */',
+             'namespace' => 'App\\Domain\\Grievance\\Services',
+             'uses' => 
+            array (
+              'user' => 'App\\Domain\\Access\\Models\\User',
+              'auditlogger' => 'App\\Domain\\Audit\\Services\\AuditLogger',
+              'grievancecategory' => 'App\\Domain\\Grievance\\Enums\\GrievanceCategory',
+              'grievancechannel' => 'App\\Domain\\Grievance\\Enums\\GrievanceChannel',
+              'grievancestatus' => 'App\\Domain\\Grievance\\Enums\\GrievanceStatus',
+              'grievanceassigned' => 'App\\Domain\\Grievance\\Events\\GrievanceAssigned',
+              'grievanceresolved' => 'App\\Domain\\Grievance\\Events\\GrievanceResolved',
+              'invalidgrievancetransitionexception' => 'App\\Domain\\Grievance\\Exceptions\\InvalidGrievanceTransitionException',
+              'grievance' => 'App\\Domain\\Grievance\\Models\\Grievance',
+              'carbon' => 'Illuminate\\Support\\Carbon',
+            ),
+             'constUses' => 
+            array (
+            ),
+          )),
+           'byRef' => false,
+           'public' => true,
+           'private' => false,
+           'abstract' => false,
+           'final' => false,
+           'static' => false,
+           'returnType' => 'App\\Domain\\Grievance\\Models\\Grievance',
+           'parameters' => 
+          array (
+            0 => 
+            \PHPStan\Dependency\ExportedNode\ExportedParameterNode::__set_state(array(
+               'name' => 'staff',
+               'type' => 'App\\Domain\\Access\\Models\\User',
+               'byRef' => false,
+               'variadic' => false,
+               'hasDefault' => false,
+               'attributes' => 
+              array (
+              ),
+               'phpDoc' => NULL,
+               'flags' => 0,
+            )),
+            1 => 
+            \PHPStan\Dependency\ExportedNode\ExportedParameterNode::__set_state(array(
+               'name' => 'category',
+               'type' => 'App\\Domain\\Grievance\\Enums\\GrievanceCategory',
+               'byRef' => false,
+               'variadic' => false,
+               'hasDefault' => false,
+               'attributes' => 
+              array (
+              ),
+               'phpDoc' => NULL,
+               'flags' => 0,
+            )),
+            2 => 
+            \PHPStan\Dependency\ExportedNode\ExportedParameterNode::__set_state(array(
+               'name' => 'channel',
+               'type' => 'App\\Domain\\Grievance\\Enums\\GrievanceChannel',
+               'byRef' => false,
+               'variadic' => false,
+               'hasDefault' => false,
+               'attributes' => 
+              array (
+              ),
+               'phpDoc' => NULL,
+               'flags' => 0,
+            )),
+            3 => 
+            \PHPStan\Dependency\ExportedNode\ExportedParameterNode::__set_state(array(
+               'name' => 'description',
+               'type' => 'string',
+               'byRef' => false,
+               'variadic' => false,
+               'hasDefault' => false,
+               'attributes' => 
+              array (
+              ),
+               'phpDoc' => NULL,
+               'flags' => 0,
+            )),
+            4 => 
+            \PHPStan\Dependency\ExportedNode\ExportedParameterNode::__set_state(array(
+               'name' => 'beneficiaryId',
+               'type' => '?string',
+               'byRef' => false,
+               'variadic' => false,
+               'hasDefault' => false,
+               'attributes' => 
+              array (
+              ),
+               'phpDoc' => NULL,
+               'flags' => 0,
+            )),
+          ),
+           'attributes' => 
+          array (
+          ),
+        )),
+        2 => 
+        \PHPStan\Dependency\ExportedNode\ExportedMethodNode::__set_state(array(
+           'name' => 'assign',
+           'phpDoc' => 
+          \PHPStan\Dependency\ExportedNode\ExportedPhpDocNode::__set_state(array(
+             'phpDocString' => '/** Assign (or reassign) to a user in the handling MDA; Open → Assigned. */',
+             'namespace' => 'App\\Domain\\Grievance\\Services',
+             'uses' => 
+            array (
+              'user' => 'App\\Domain\\Access\\Models\\User',
+              'auditlogger' => 'App\\Domain\\Audit\\Services\\AuditLogger',
+              'grievancecategory' => 'App\\Domain\\Grievance\\Enums\\GrievanceCategory',
+              'grievancechannel' => 'App\\Domain\\Grievance\\Enums\\GrievanceChannel',
+              'grievancestatus' => 'App\\Domain\\Grievance\\Enums\\GrievanceStatus',
+              'grievanceassigned' => 'App\\Domain\\Grievance\\Events\\GrievanceAssigned',
+              'grievanceresolved' => 'App\\Domain\\Grievance\\Events\\GrievanceResolved',
+              'invalidgrievancetransitionexception' => 'App\\Domain\\Grievance\\Exceptions\\InvalidGrievanceTransitionException',
+              'grievance' => 'App\\Domain\\Grievance\\Models\\Grievance',
+              'carbon' => 'Illuminate\\Support\\Carbon',
+            ),
+             'constUses' => 
+            array (
+            ),
+          )),
+           'byRef' => false,
+           'public' => true,
+           'private' => false,
+           'abstract' => false,
+           'final' => false,
+           'static' => false,
+           'returnType' => 'App\\Domain\\Grievance\\Models\\Grievance',
+           'parameters' => 
+          array (
+            0 => 
+            \PHPStan\Dependency\ExportedNode\ExportedParameterNode::__set_state(array(
+               'name' => 'grievance',
+               'type' => 'App\\Domain\\Grievance\\Models\\Grievance',
+               'byRef' => false,
+               'variadic' => false,
+               'hasDefault' => false,
+               'attributes' => 
+              array (
+              ),
+               'phpDoc' => NULL,
+               'flags' => 0,
+            )),
+            1 => 
+            \PHPStan\Dependency\ExportedNode\ExportedParameterNode::__set_state(array(
+               'name' => 'assignee',
+               'type' => 'App\\Domain\\Access\\Models\\User',
+               'byRef' => false,
+               'variadic' => false,
+               'hasDefault' => false,
+               'attributes' => 
+              array (
+              ),
+               'phpDoc' => NULL,
+               'flags' => 0,
+            )),
+            2 => 
+            \PHPStan\Dependency\ExportedNode\ExportedParameterNode::__set_state(array(
+               'name' => 'actor',
+               'type' => 'App\\Domain\\Access\\Models\\User',
+               'byRef' => false,
+               'variadic' => false,
+               'hasDefault' => false,
+               'attributes' => 
+              array (
+              ),
+               'phpDoc' => NULL,
+               'flags' => 0,
+            )),
+          ),
+           'attributes' => 
+          array (
+          ),
+        )),
+        3 => 
+        \PHPStan\Dependency\ExportedNode\ExportedMethodNode::__set_state(array(
+           'name' => 'start',
+           'phpDoc' => NULL,
+           'byRef' => false,
+           'public' => true,
+           'private' => false,
+           'abstract' => false,
+           'final' => false,
+           'static' => false,
+           'returnType' => 'App\\Domain\\Grievance\\Models\\Grievance',
+           'parameters' => 
+          array (
+            0 => 
+            \PHPStan\Dependency\ExportedNode\ExportedParameterNode::__set_state(array(
+               'name' => 'grievance',
+               'type' => 'App\\Domain\\Grievance\\Models\\Grievance',
+               'byRef' => false,
+               'variadic' => false,
+               'hasDefault' => false,
+               'attributes' => 
+              array (
+              ),
+               'phpDoc' => NULL,
+               'flags' => 0,
+            )),
+            1 => 
+            \PHPStan\Dependency\ExportedNode\ExportedParameterNode::__set_state(array(
+               'name' => 'actor',
+               'type' => 'App\\Domain\\Access\\Models\\User',
+               'byRef' => false,
+               'variadic' => false,
+               'hasDefault' => false,
+               'attributes' => 
+              array (
+              ),
+               'phpDoc' => NULL,
+               'flags' => 0,
+            )),
+          ),
+           'attributes' => 
+          array (
+          ),
+        )),
+        4 => 
+        \PHPStan\Dependency\ExportedNode\ExportedMethodNode::__set_state(array(
+           'name' => 'resolve',
+           'phpDoc' => NULL,
+           'byRef' => false,
+           'public' => true,
+           'private' => false,
+           'abstract' => false,
+           'final' => false,
+           'static' => false,
+           'returnType' => 'App\\Domain\\Grievance\\Models\\Grievance',
+           'parameters' => 
+          array (
+            0 => 
+            \PHPStan\Dependency\ExportedNode\ExportedParameterNode::__set_state(array(
+               'name' => 'grievance',
+               'type' => 'App\\Domain\\Grievance\\Models\\Grievance',
+               'byRef' => false,
+               'variadic' => false,
+               'hasDefault' => false,
+               'attributes' => 
+              array (
+              ),
+               'phpDoc' => NULL,
+               'flags' => 0,
+            )),
+            1 => 
+            \PHPStan\Dependency\ExportedNode\ExportedParameterNode::__set_state(array(
+               'name' => 'actor',
+               'type' => 'App\\Domain\\Access\\Models\\User',
+               'byRef' => false,
+               'variadic' => false,
+               'hasDefault' => false,
+               'attributes' => 
+              array (
+              ),
+               'phpDoc' => NULL,
+               'flags' => 0,
+            )),
+            2 => 
+            \PHPStan\Dependency\ExportedNode\ExportedParameterNode::__set_state(array(
+               'name' => 'notes',
+               'type' => 'string',
+               'byRef' => false,
+               'variadic' => false,
+               'hasDefault' => false,
+               'attributes' => 
+              array (
+              ),
+               'phpDoc' => NULL,
+               'flags' => 0,
+            )),
+          ),
+           'attributes' => 
+          array (
+          ),
+        )),
+        5 => 
+        \PHPStan\Dependency\ExportedNode\ExportedMethodNode::__set_state(array(
+           'name' => 'close',
+           'phpDoc' => NULL,
+           'byRef' => false,
+           'public' => true,
+           'private' => false,
+           'abstract' => false,
+           'final' => false,
+           'static' => false,
+           'returnType' => 'App\\Domain\\Grievance\\Models\\Grievance',
+           'parameters' => 
+          array (
+            0 => 
+            \PHPStan\Dependency\ExportedNode\ExportedParameterNode::__set_state(array(
+               'name' => 'grievance',
+               'type' => 'App\\Domain\\Grievance\\Models\\Grievance',
+               'byRef' => false,
+               'variadic' => false,
+               'hasDefault' => false,
+               'attributes' => 
+              array (
+              ),
+               'phpDoc' => NULL,
+               'flags' => 0,
+            )),
+            1 => 
+            \PHPStan\Dependency\ExportedNode\ExportedParameterNode::__set_state(array(
+               'name' => 'actor',
+               'type' => 'App\\Domain\\Access\\Models\\User',
+               'byRef' => false,
+               'variadic' => false,
+               'hasDefault' => false,
+               'attributes' => 
+              array (
+              ),
+               'phpDoc' => NULL,
+               'flags' => 0,
+            )),
+            2 => 
+            \PHPStan\Dependency\ExportedNode\ExportedParameterNode::__set_state(array(
+               'name' => 'notes',
+               'type' => '?string',
                'byRef' => false,
                'variadic' => false,
                'hasDefault' => false,
@@ -34330,8 +38383,15 @@ return [
         array (
           'user' => 'App\\Domain\\Access\\Models\\User',
           'mdascope' => 'App\\Domain\\Access\\Scopes\\MdaScope',
+          'grievanceassigned' => 'App\\Domain\\Grievance\\Events\\GrievanceAssigned',
+          'grievanceresolved' => 'App\\Domain\\Grievance\\Events\\GrievanceResolved',
+          'grievanceslabreached' => 'App\\Domain\\Grievance\\Events\\GrievanceSlaBreached',
+          'grievance' => 'App\\Domain\\Grievance\\Models\\Grievance',
           'notifier' => 'App\\Domain\\Notification\\Services\\Notifier',
           'notificationmessage' => 'App\\Domain\\Notification\\Support\\NotificationMessage',
+          'referralslabreached' => 'App\\Domain\\Referral\\Events\\ReferralSlaBreached',
+          'referralstatuschanged' => 'App\\Domain\\Referral\\Events\\ReferralStatusChanged',
+          'referral' => 'App\\Domain\\Referral\\Models\\Referral',
           'ownershiptransferrequested' => 'App\\Domain\\Registry\\Events\\OwnershipTransferRequested',
           'servicerequestaccepted' => 'App\\Domain\\Registry\\Events\\ServiceRequestAccepted',
           'servicerequestdeclined' => 'App\\Domain\\Registry\\Events\\ServiceRequestDeclined',
@@ -34514,6 +38574,161 @@ return [
         )),
         5 => 
         \PHPStan\Dependency\ExportedNode\ExportedMethodNode::__set_state(array(
+           'name' => 'handleReferralStatusChanged',
+           'phpDoc' => NULL,
+           'byRef' => false,
+           'public' => true,
+           'private' => false,
+           'abstract' => false,
+           'final' => false,
+           'static' => false,
+           'returnType' => 'void',
+           'parameters' => 
+          array (
+            0 => 
+            \PHPStan\Dependency\ExportedNode\ExportedParameterNode::__set_state(array(
+               'name' => 'event',
+               'type' => 'App\\Domain\\Referral\\Events\\ReferralStatusChanged',
+               'byRef' => false,
+               'variadic' => false,
+               'hasDefault' => false,
+               'attributes' => 
+              array (
+              ),
+               'phpDoc' => NULL,
+               'flags' => 0,
+            )),
+          ),
+           'attributes' => 
+          array (
+          ),
+        )),
+        6 => 
+        \PHPStan\Dependency\ExportedNode\ExportedMethodNode::__set_state(array(
+           'name' => 'handleReferralSlaBreached',
+           'phpDoc' => NULL,
+           'byRef' => false,
+           'public' => true,
+           'private' => false,
+           'abstract' => false,
+           'final' => false,
+           'static' => false,
+           'returnType' => 'void',
+           'parameters' => 
+          array (
+            0 => 
+            \PHPStan\Dependency\ExportedNode\ExportedParameterNode::__set_state(array(
+               'name' => 'event',
+               'type' => 'App\\Domain\\Referral\\Events\\ReferralSlaBreached',
+               'byRef' => false,
+               'variadic' => false,
+               'hasDefault' => false,
+               'attributes' => 
+              array (
+              ),
+               'phpDoc' => NULL,
+               'flags' => 0,
+            )),
+          ),
+           'attributes' => 
+          array (
+          ),
+        )),
+        7 => 
+        \PHPStan\Dependency\ExportedNode\ExportedMethodNode::__set_state(array(
+           'name' => 'handleGrievanceAssigned',
+           'phpDoc' => NULL,
+           'byRef' => false,
+           'public' => true,
+           'private' => false,
+           'abstract' => false,
+           'final' => false,
+           'static' => false,
+           'returnType' => 'void',
+           'parameters' => 
+          array (
+            0 => 
+            \PHPStan\Dependency\ExportedNode\ExportedParameterNode::__set_state(array(
+               'name' => 'event',
+               'type' => 'App\\Domain\\Grievance\\Events\\GrievanceAssigned',
+               'byRef' => false,
+               'variadic' => false,
+               'hasDefault' => false,
+               'attributes' => 
+              array (
+              ),
+               'phpDoc' => NULL,
+               'flags' => 0,
+            )),
+          ),
+           'attributes' => 
+          array (
+          ),
+        )),
+        8 => 
+        \PHPStan\Dependency\ExportedNode\ExportedMethodNode::__set_state(array(
+           'name' => 'handleGrievanceResolved',
+           'phpDoc' => NULL,
+           'byRef' => false,
+           'public' => true,
+           'private' => false,
+           'abstract' => false,
+           'final' => false,
+           'static' => false,
+           'returnType' => 'void',
+           'parameters' => 
+          array (
+            0 => 
+            \PHPStan\Dependency\ExportedNode\ExportedParameterNode::__set_state(array(
+               'name' => 'event',
+               'type' => 'App\\Domain\\Grievance\\Events\\GrievanceResolved',
+               'byRef' => false,
+               'variadic' => false,
+               'hasDefault' => false,
+               'attributes' => 
+              array (
+              ),
+               'phpDoc' => NULL,
+               'flags' => 0,
+            )),
+          ),
+           'attributes' => 
+          array (
+          ),
+        )),
+        9 => 
+        \PHPStan\Dependency\ExportedNode\ExportedMethodNode::__set_state(array(
+           'name' => 'handleGrievanceSlaBreached',
+           'phpDoc' => NULL,
+           'byRef' => false,
+           'public' => true,
+           'private' => false,
+           'abstract' => false,
+           'final' => false,
+           'static' => false,
+           'returnType' => 'void',
+           'parameters' => 
+          array (
+            0 => 
+            \PHPStan\Dependency\ExportedNode\ExportedParameterNode::__set_state(array(
+               'name' => 'event',
+               'type' => 'App\\Domain\\Grievance\\Events\\GrievanceSlaBreached',
+               'byRef' => false,
+               'variadic' => false,
+               'hasDefault' => false,
+               'attributes' => 
+              array (
+              ),
+               'phpDoc' => NULL,
+               'flags' => 0,
+            )),
+          ),
+           'attributes' => 
+          array (
+          ),
+        )),
+        10 => 
+        \PHPStan\Dependency\ExportedNode\ExportedMethodNode::__set_state(array(
            'name' => 'subscribe',
            'phpDoc' => 
           \PHPStan\Dependency\ExportedNode\ExportedPhpDocNode::__set_state(array(
@@ -34525,8 +38740,15 @@ return [
             array (
               'user' => 'App\\Domain\\Access\\Models\\User',
               'mdascope' => 'App\\Domain\\Access\\Scopes\\MdaScope',
+              'grievanceassigned' => 'App\\Domain\\Grievance\\Events\\GrievanceAssigned',
+              'grievanceresolved' => 'App\\Domain\\Grievance\\Events\\GrievanceResolved',
+              'grievanceslabreached' => 'App\\Domain\\Grievance\\Events\\GrievanceSlaBreached',
+              'grievance' => 'App\\Domain\\Grievance\\Models\\Grievance',
               'notifier' => 'App\\Domain\\Notification\\Services\\Notifier',
               'notificationmessage' => 'App\\Domain\\Notification\\Support\\NotificationMessage',
+              'referralslabreached' => 'App\\Domain\\Referral\\Events\\ReferralSlaBreached',
+              'referralstatuschanged' => 'App\\Domain\\Referral\\Events\\ReferralStatusChanged',
+              'referral' => 'App\\Domain\\Referral\\Models\\Referral',
               'ownershiptransferrequested' => 'App\\Domain\\Registry\\Events\\OwnershipTransferRequested',
               'servicerequestaccepted' => 'App\\Domain\\Registry\\Events\\ServiceRequestAccepted',
               'servicerequestdeclined' => 'App\\Domain\\Registry\\Events\\ServiceRequestDeclined',
@@ -37951,6 +42173,7 @@ return [
           'enrollmentstatus' => 'App\\Domain\\Programme\\Enums\\EnrollmentStatus',
           'enrollment' => 'App\\Domain\\Programme\\Models\\Enrollment',
           'programme' => 'App\\Domain\\Programme\\Models\\Programme',
+          'referral' => 'App\\Domain\\Referral\\Models\\Referral',
           'beneficiary' => 'App\\Domain\\Registry\\Models\\Beneficiary',
           'household' => 'App\\Domain\\Registry\\Models\\Household',
           'servicerequestservice' => 'App\\Domain\\Registry\\Services\\ServiceRequestService',
@@ -38013,8 +42236,9 @@ return [
              'phpDocString' => '/**
      * Whether the acting user\'s MDA may enroll (serve) this target: it owns the
      * target, holds a cross-MDA grant covering the owner, or — for a beneficiary —
-     * holds an active read/serve grant opened by an ACCEPTED Service Request
-     * (§12, FR-OWN-06/07). Serving a non-owned beneficiary requires that grant.
+     * holds one of two DISTINCT authorizations: an active read/serve grant from an
+     * accepted Service Request (§12, FR-OWN-06/07), OR an accepted Referral to it
+     * (FR-REF-02, FR-BEN-06). Either authorizes serving; neither moves ownership.
      */',
              'namespace' => 'App\\Domain\\Programme\\Services',
              'uses' => 
@@ -38024,6 +42248,7 @@ return [
               'enrollmentstatus' => 'App\\Domain\\Programme\\Enums\\EnrollmentStatus',
               'enrollment' => 'App\\Domain\\Programme\\Models\\Enrollment',
               'programme' => 'App\\Domain\\Programme\\Models\\Programme',
+              'referral' => 'App\\Domain\\Referral\\Models\\Referral',
               'beneficiary' => 'App\\Domain\\Registry\\Models\\Beneficiary',
               'household' => 'App\\Domain\\Registry\\Models\\Household',
               'servicerequestservice' => 'App\\Domain\\Registry\\Services\\ServiceRequestService',
@@ -38092,6 +42317,7 @@ return [
               'enrollmentstatus' => 'App\\Domain\\Programme\\Enums\\EnrollmentStatus',
               'enrollment' => 'App\\Domain\\Programme\\Models\\Enrollment',
               'programme' => 'App\\Domain\\Programme\\Models\\Programme',
+              'referral' => 'App\\Domain\\Referral\\Models\\Referral',
               'beneficiary' => 'App\\Domain\\Registry\\Models\\Beneficiary',
               'household' => 'App\\Domain\\Registry\\Models\\Household',
               'servicerequestservice' => 'App\\Domain\\Registry\\Services\\ServiceRequestService',
@@ -38430,6 +42656,114 @@ return [
       ),
     )),
   ),
+  '/var/www/html/app/Domain/Referral/Authorization/ReferralAuthorizer.php' => 
+  array (
+    0 => 
+    \PHPStan\Dependency\ExportedNode\ExportedClassNode::__set_state(array(
+       'name' => 'App\\Domain\\Referral\\Authorization\\ReferralAuthorizer',
+       'phpDoc' => 
+      \PHPStan\Dependency\ExportedNode\ExportedPhpDocNode::__set_state(array(
+         'phpDocString' => '/**
+ * Authorizes delivery when the MDA holds an accepted Referral for the beneficiary
+ * (PRD FR-REF-02, FR-BEN-06). This is DISTINCT from the request-to-serve Service
+ * Request — it consults the `referrals` table only, never a BeneficiaryServiceGrant,
+ * so the two authorization paths stay separate. Ownership is never involved (the
+ * owner MDA consented by referring).
+ */',
+         'namespace' => 'App\\Domain\\Referral\\Authorization',
+         'uses' => 
+        array (
+          'deliveryauthorizer' => 'App\\Domain\\Benefit\\Authorization\\DeliveryAuthorizer',
+          'referral' => 'App\\Domain\\Referral\\Models\\Referral',
+          'beneficiary' => 'App\\Domain\\Registry\\Models\\Beneficiary',
+        ),
+         'constUses' => 
+        array (
+        ),
+      )),
+       'abstract' => false,
+       'final' => false,
+       'extends' => NULL,
+       'implements' => 
+      array (
+        0 => 'App\\Domain\\Benefit\\Authorization\\DeliveryAuthorizer',
+      ),
+       'usedTraits' => 
+      array (
+      ),
+       'traitUseAdaptations' => 
+      array (
+      ),
+       'statements' => 
+      array (
+        0 => 
+        \PHPStan\Dependency\ExportedNode\ExportedMethodNode::__set_state(array(
+           'name' => 'authorizes',
+           'phpDoc' => NULL,
+           'byRef' => false,
+           'public' => true,
+           'private' => false,
+           'abstract' => false,
+           'final' => false,
+           'static' => false,
+           'returnType' => 'bool',
+           'parameters' => 
+          array (
+            0 => 
+            \PHPStan\Dependency\ExportedNode\ExportedParameterNode::__set_state(array(
+               'name' => 'mdaId',
+               'type' => 'string',
+               'byRef' => false,
+               'variadic' => false,
+               'hasDefault' => false,
+               'attributes' => 
+              array (
+              ),
+               'phpDoc' => NULL,
+               'flags' => 0,
+            )),
+            1 => 
+            \PHPStan\Dependency\ExportedNode\ExportedParameterNode::__set_state(array(
+               'name' => 'beneficiary',
+               'type' => 'App\\Domain\\Registry\\Models\\Beneficiary',
+               'byRef' => false,
+               'variadic' => false,
+               'hasDefault' => false,
+               'attributes' => 
+              array (
+              ),
+               'phpDoc' => NULL,
+               'flags' => 0,
+            )),
+          ),
+           'attributes' => 
+          array (
+          ),
+        )),
+        1 => 
+        \PHPStan\Dependency\ExportedNode\ExportedMethodNode::__set_state(array(
+           'name' => 'source',
+           'phpDoc' => NULL,
+           'byRef' => false,
+           'public' => true,
+           'private' => false,
+           'abstract' => false,
+           'final' => false,
+           'static' => false,
+           'returnType' => 'string',
+           'parameters' => 
+          array (
+          ),
+           'attributes' => 
+          array (
+          ),
+        )),
+      ),
+       'attributes' => 
+      array (
+      ),
+    )),
+  ),
   '/var/www/html/app/Domain/Referral/Enums/ReferralStatus.php' => 
   array (
     0 => 
@@ -38590,6 +42924,194 @@ return [
       ),
     )),
   ),
+  '/var/www/html/app/Domain/Referral/Events/ReferralSlaBreached.php' => 
+  array (
+    0 => 
+    \PHPStan\Dependency\ExportedNode\ExportedClassNode::__set_state(array(
+       'name' => 'App\\Domain\\Referral\\Events\\ReferralSlaBreached',
+       'phpDoc' => 
+      \PHPStan\Dependency\ExportedNode\ExportedPhpDocNode::__set_state(array(
+         'phpDocString' => '/**
+ * Fired when a referral is overdue against its status SLA (PRD FR-REF-04/05). The
+ * scheduled job escalates (bumping `escalation_level`) and dispatches this at each
+ * new level; the notification subscriber alerts both MDAs + the escalation tier.
+ * Nothing is auto-closed.
+ */',
+         'namespace' => 'App\\Domain\\Referral\\Events',
+         'uses' => 
+        array (
+          'referral' => 'App\\Domain\\Referral\\Models\\Referral',
+          'dispatchable' => 'Illuminate\\Foundation\\Events\\Dispatchable',
+        ),
+         'constUses' => 
+        array (
+        ),
+      )),
+       'abstract' => false,
+       'final' => false,
+       'extends' => NULL,
+       'implements' => 
+      array (
+      ),
+       'usedTraits' => 
+      array (
+        0 => 'Illuminate\\Foundation\\Events\\Dispatchable',
+      ),
+       'traitUseAdaptations' => 
+      array (
+      ),
+       'statements' => 
+      array (
+        0 => 
+        \PHPStan\Dependency\ExportedNode\ExportedMethodNode::__set_state(array(
+           'name' => '__construct',
+           'phpDoc' => NULL,
+           'byRef' => false,
+           'public' => true,
+           'private' => false,
+           'abstract' => false,
+           'final' => false,
+           'static' => false,
+           'returnType' => NULL,
+           'parameters' => 
+          array (
+            0 => 
+            \PHPStan\Dependency\ExportedNode\ExportedParameterNode::__set_state(array(
+               'name' => 'referral',
+               'type' => 'App\\Domain\\Referral\\Models\\Referral',
+               'byRef' => false,
+               'variadic' => false,
+               'hasDefault' => false,
+               'attributes' => 
+              array (
+              ),
+               'phpDoc' => NULL,
+               'flags' => 65,
+            )),
+            1 => 
+            \PHPStan\Dependency\ExportedNode\ExportedParameterNode::__set_state(array(
+               'name' => 'level',
+               'type' => 'int',
+               'byRef' => false,
+               'variadic' => false,
+               'hasDefault' => false,
+               'attributes' => 
+              array (
+              ),
+               'phpDoc' => NULL,
+               'flags' => 65,
+            )),
+          ),
+           'attributes' => 
+          array (
+          ),
+        )),
+      ),
+       'attributes' => 
+      array (
+      ),
+    )),
+  ),
+  '/var/www/html/app/Domain/Referral/Events/ReferralStatusChanged.php' => 
+  array (
+    0 => 
+    \PHPStan\Dependency\ExportedNode\ExportedClassNode::__set_state(array(
+       'name' => 'App\\Domain\\Referral\\Events\\ReferralStatusChanged',
+       'phpDoc' => 
+      \PHPStan\Dependency\ExportedNode\ExportedPhpDocNode::__set_state(array(
+         'phpDocString' => '/**
+ * Fired on every referral status change, including creation (PRD FR-REF-05). BOTH
+ * MDAs are notified. `action` is the transition name (created, accepted, …).
+ */',
+         'namespace' => 'App\\Domain\\Referral\\Events',
+         'uses' => 
+        array (
+          'user' => 'App\\Domain\\Access\\Models\\User',
+          'referral' => 'App\\Domain\\Referral\\Models\\Referral',
+          'dispatchable' => 'Illuminate\\Foundation\\Events\\Dispatchable',
+        ),
+         'constUses' => 
+        array (
+        ),
+      )),
+       'abstract' => false,
+       'final' => false,
+       'extends' => NULL,
+       'implements' => 
+      array (
+      ),
+       'usedTraits' => 
+      array (
+        0 => 'Illuminate\\Foundation\\Events\\Dispatchable',
+      ),
+       'traitUseAdaptations' => 
+      array (
+      ),
+       'statements' => 
+      array (
+        0 => 
+        \PHPStan\Dependency\ExportedNode\ExportedMethodNode::__set_state(array(
+           'name' => '__construct',
+           'phpDoc' => NULL,
+           'byRef' => false,
+           'public' => true,
+           'private' => false,
+           'abstract' => false,
+           'final' => false,
+           'static' => false,
+           'returnType' => NULL,
+           'parameters' => 
+          array (
+            0 => 
+            \PHPStan\Dependency\ExportedNode\ExportedParameterNode::__set_state(array(
+               'name' => 'referral',
+               'type' => 'App\\Domain\\Referral\\Models\\Referral',
+               'byRef' => false,
+               'variadic' => false,
+               'hasDefault' => false,
+               'attributes' => 
+              array (
+              ),
+               'phpDoc' => NULL,
+               'flags' => 65,
+            )),
+            1 => 
+            \PHPStan\Dependency\ExportedNode\ExportedParameterNode::__set_state(array(
+               'name' => 'action',
+               'type' => 'string',
+               'byRef' => false,
+               'variadic' => false,
+               'hasDefault' => false,
+               'attributes' => 
+              array (
+              ),
+               'phpDoc' => NULL,
+               'flags' => 65,
+            )),
+            2 => 
+            \PHPStan\Dependency\ExportedNode\ExportedParameterNode::__set_state(array(
+               'name' => 'actor',
+               'type' => '?App\\Domain\\Access\\Models\\User',
+               'byRef' => false,
+               'variadic' => false,
+               'hasDefault' => true,
+               'attributes' => 
+              array (
+              ),
+               'phpDoc' => NULL,
+               'flags' => 65,
+            )),
+          ),
+           'attributes' => 
+          array (
+          ),
+        )),
+      ),
+       'attributes' => 
+      array (
+      ),
+    )),
+  ),
   '/var/www/html/app/Domain/Referral/Exceptions/InvalidReferralTransitionException.php' => 
   array (
     0 => 
@@ -38625,6 +43147,95 @@ return [
       ),
        'statements' => 
       array (
+      ),
+       'attributes' => 
+      array (
+      ),
+    )),
+  ),
+  '/var/www/html/app/Domain/Referral/Jobs/EscalateOverdueReferrals.php' => 
+  array (
+    0 => 
+    \PHPStan\Dependency\ExportedNode\ExportedClassNode::__set_state(array(
+       'name' => 'App\\Domain\\Referral\\Jobs\\EscalateOverdueReferrals',
+       'phpDoc' => 
+      \PHPStan\Dependency\ExportedNode\ExportedPhpDocNode::__set_state(array(
+         'phpDocString' => '/**
+ * Scheduled SLA sweep (PRD FR-REF-04/05). Flags overdue referrals and escalates
+ * them one tier per elapsed window (capped at the configured chain length),
+ * dispatching {@see ReferralSlaBreached} whenever the level increases. It NEVER
+ * changes a referral\'s status — no auto-close; it only escalates + notifies.
+ */',
+         'namespace' => 'App\\Domain\\Referral\\Jobs',
+         'uses' => 
+        array (
+          'auditlogger' => 'App\\Domain\\Audit\\Services\\AuditLogger',
+          'referralstatus' => 'App\\Domain\\Referral\\Enums\\ReferralStatus',
+          'referralslabreached' => 'App\\Domain\\Referral\\Events\\ReferralSlaBreached',
+          'referral' => 'App\\Domain\\Referral\\Models\\Referral',
+          'referralslapolicy' => 'App\\Domain\\Referral\\Models\\ReferralSlaPolicy',
+          'referralscope' => 'App\\Domain\\Referral\\Scopes\\ReferralScope',
+          'queueable' => 'Illuminate\\Bus\\Queueable',
+          'shouldqueue' => 'Illuminate\\Contracts\\Queue\\ShouldQueue',
+          'dispatchable' => 'Illuminate\\Foundation\\Bus\\Dispatchable',
+          'interactswithqueue' => 'Illuminate\\Queue\\InteractsWithQueue',
+          'serializesmodels' => 'Illuminate\\Queue\\SerializesModels',
+          'carbon' => 'Illuminate\\Support\\Carbon',
+        ),
+         'constUses' => 
+        array (
+        ),
+      )),
+       'abstract' => false,
+       'final' => false,
+       'extends' => NULL,
+       'implements' => 
+      array (
+        0 => 'Illuminate\\Contracts\\Queue\\ShouldQueue',
+      ),
+       'usedTraits' => 
+      array (
+        0 => 'Illuminate\\Foundation\\Bus\\Dispatchable',
+        1 => 'Illuminate\\Queue\\InteractsWithQueue',
+        2 => 'Illuminate\\Bus\\Queueable',
+        3 => 'Illuminate\\Queue\\SerializesModels',
+      ),
+       'traitUseAdaptations' => 
+      array (
+      ),
+       'statements' => 
+      array (
+        0 => 
+        \PHPStan\Dependency\ExportedNode\ExportedMethodNode::__set_state(array(
+           'name' => 'handle',
+           'phpDoc' => NULL,
+           'byRef' => false,
+           'public' => true,
+           'private' => false,
+           'abstract' => false,
+           'final' => false,
+           'static' => false,
+           'returnType' => 'void',
+           'parameters' => 
+          array (
+            0 => 
+            \PHPStan\Dependency\ExportedNode\ExportedParameterNode::__set_state(array(
+               'name' => 'audit',
+               'type' => 'App\\Domain\\Audit\\Services\\AuditLogger',
+               'byRef' => false,
+               'variadic' => false,
+               'hasDefault' => false,
+               'attributes' => 
+              array (
+              ),
+               'phpDoc' => NULL,
+               'flags' => 0,
+            )),
+          ),
+           'attributes' => 
+          array (
+          ),
+        )),
       ),
        'attributes' => 
       array (
@@ -38793,6 +43404,74 @@ return [
         )),
         3 => 
         \PHPStan\Dependency\ExportedNode\ExportedMethodNode::__set_state(array(
+           'name' => 'authorizesDelivery',
+           'phpDoc' => 
+          \PHPStan\Dependency\ExportedNode\ExportedPhpDocNode::__set_state(array(
+             'phpDocString' => '/**
+     * Whether an accepted (or in-progress) referral currently authorizes the given
+     * MDA to serve/deliver to the beneficiary (PRD FR-REF-02, FR-BEN-06). This is
+     * the referral\'s own authorization — SEPARATE from a Service Request grant; the
+     * owner MDA already consented by referring, so ownership is never involved.
+     */',
+             'namespace' => 'App\\Domain\\Referral\\Models',
+             'uses' => 
+            array (
+              'mda' => 'App\\Domain\\Access\\Models\\Mda',
+              'auditable' => 'App\\Domain\\Audit\\Concerns\\Auditable',
+              'referralstatus' => 'App\\Domain\\Referral\\Enums\\ReferralStatus',
+              'referralscope' => 'App\\Domain\\Referral\\Scopes\\ReferralScope',
+              'beneficiary' => 'App\\Domain\\Registry\\Models\\Beneficiary',
+              'hasuuids' => 'Illuminate\\Database\\Eloquent\\Concerns\\HasUuids',
+              'model' => 'Illuminate\\Database\\Eloquent\\Model',
+              'belongsto' => 'Illuminate\\Database\\Eloquent\\Relations\\BelongsTo',
+              'carbon' => 'Illuminate\\Support\\Carbon',
+            ),
+             'constUses' => 
+            array (
+            ),
+          )),
+           'byRef' => false,
+           'public' => true,
+           'private' => false,
+           'abstract' => false,
+           'final' => false,
+           'static' => true,
+           'returnType' => 'bool',
+           'parameters' => 
+          array (
+            0 => 
+            \PHPStan\Dependency\ExportedNode\ExportedParameterNode::__set_state(array(
+               'name' => 'beneficiaryId',
+               'type' => 'string',
+               'byRef' => false,
+               'variadic' => false,
+               'hasDefault' => false,
+               'attributes' => 
+              array (
+              ),
+               'phpDoc' => NULL,
+               'flags' => 0,
+            )),
+            1 => 
+            \PHPStan\Dependency\ExportedNode\ExportedParameterNode::__set_state(array(
+               'name' => 'mdaId',
+               'type' => 'string',
+               'byRef' => false,
+               'variadic' => false,
+               'hasDefault' => false,
+               'attributes' => 
+              array (
+              ),
+               'phpDoc' => NULL,
+               'flags' => 0,
+            )),
+          ),
+           'attributes' => 
+          array (
+          ),
+        )),
+        4 => 
+        \PHPStan\Dependency\ExportedNode\ExportedMethodNode::__set_state(array(
            'name' => 'casts',
            'phpDoc' => 
           \PHPStan\Dependency\ExportedNode\ExportedPhpDocNode::__set_state(array(
@@ -38830,7 +43509,7 @@ return [
           array (
           ),
         )),
-        4 => 
+        5 => 
         \PHPStan\Dependency\ExportedNode\ExportedMethodNode::__set_state(array(
            'name' => 'auditExcluded',
            'phpDoc' => 
@@ -38871,7 +43550,7 @@ return [
           array (
           ),
         )),
-        5 => 
+        6 => 
         \PHPStan\Dependency\ExportedNode\ExportedMethodNode::__set_state(array(
            'name' => 'beneficiary',
            'phpDoc' => 
@@ -38910,7 +43589,7 @@ return [
           array (
           ),
         )),
-        6 => 
+        7 => 
         \PHPStan\Dependency\ExportedNode\ExportedMethodNode::__set_state(array(
            'name' => 'fromMda',
            'phpDoc' => 
@@ -38949,7 +43628,7 @@ return [
           array (
           ),
         )),
-        7 => 
+        8 => 
         \PHPStan\Dependency\ExportedNode\ExportedMethodNode::__set_state(array(
            'name' => 'toMda',
            'phpDoc' => 
@@ -38981,6 +43660,158 @@ return [
            'final' => false,
            'static' => false,
            'returnType' => 'Illuminate\\Database\\Eloquent\\Relations\\BelongsTo',
+           'parameters' => 
+          array (
+          ),
+           'attributes' => 
+          array (
+          ),
+        )),
+      ),
+       'attributes' => 
+      array (
+      ),
+    )),
+  ),
+  '/var/www/html/app/Domain/Referral/Models/ReferralSlaPolicy.php' => 
+  array (
+    0 => 
+    \PHPStan\Dependency\ExportedNode\ExportedClassNode::__set_state(array(
+       'name' => 'App\\Domain\\Referral\\Models\\ReferralSlaPolicy',
+       'phpDoc' => 
+      \PHPStan\Dependency\ExportedNode\ExportedPhpDocNode::__set_state(array(
+         'phpDocString' => '/**
+ * An admin-editable SLA window for a referral status (PRD FR-REF-04/05): how many
+ * hours a referral may sit in `status` before it is overdue. Global config (not
+ * MDA-scoped); changes are audited.
+ *
+ * @property string $id
+ * @property string $status
+ * @property int $hours
+ * @property Carbon|null $created_at
+ * @property Carbon|null $updated_at
+ */',
+         'namespace' => 'App\\Domain\\Referral\\Models',
+         'uses' => 
+        array (
+          'auditable' => 'App\\Domain\\Audit\\Concerns\\Auditable',
+          'hasuuids' => 'Illuminate\\Database\\Eloquent\\Concerns\\HasUuids',
+          'model' => 'Illuminate\\Database\\Eloquent\\Model',
+          'carbon' => 'Illuminate\\Support\\Carbon',
+        ),
+         'constUses' => 
+        array (
+        ),
+      )),
+       'abstract' => false,
+       'final' => false,
+       'extends' => 'Illuminate\\Database\\Eloquent\\Model',
+       'implements' => 
+      array (
+      ),
+       'usedTraits' => 
+      array (
+        0 => 'App\\Domain\\Audit\\Concerns\\Auditable',
+        1 => 'Illuminate\\Database\\Eloquent\\Concerns\\HasUuids',
+      ),
+       'traitUseAdaptations' => 
+      array (
+      ),
+       'statements' => 
+      array (
+        0 => 
+        \PHPStan\Dependency\ExportedNode\ExportedPropertiesNode::__set_state(array(
+           'names' => 
+          array (
+            0 => 'table',
+          ),
+           'phpDoc' => NULL,
+           'type' => NULL,
+           'public' => false,
+           'private' => false,
+           'static' => false,
+           'readonly' => false,
+           'abstract' => false,
+           'final' => false,
+           'publicSet' => false,
+           'protectedSet' => false,
+           'privateSet' => false,
+           'virtual' => false,
+           'attributes' => 
+          array (
+          ),
+           'hooks' => 
+          array (
+          ),
+        )),
+        1 => 
+        \PHPStan\Dependency\ExportedNode\ExportedPropertiesNode::__set_state(array(
+           'names' => 
+          array (
+            0 => 'fillable',
+          ),
+           'phpDoc' => 
+          \PHPStan\Dependency\ExportedNode\ExportedPhpDocNode::__set_state(array(
+             'phpDocString' => '/**
+     * @var list<string>
+     */',
+             'namespace' => 'App\\Domain\\Referral\\Models',
+             'uses' => 
+            array (
+              'auditable' => 'App\\Domain\\Audit\\Concerns\\Auditable',
+              'hasuuids' => 'Illuminate\\Database\\Eloquent\\Concerns\\HasUuids',
+              'model' => 'Illuminate\\Database\\Eloquent\\Model',
+              'carbon' => 'Illuminate\\Support\\Carbon',
+            ),
+             'constUses' => 
+            array (
+            ),
+          )),
+           'type' => NULL,
+           'public' => false,
+           'private' => false,
+           'static' => false,
+           'readonly' => false,
+           'abstract' => false,
+           'final' => false,
+           'publicSet' => false,
+           'protectedSet' => false,
+           'privateSet' => false,
+           'virtual' => false,
+           'attributes' => 
+          array (
+          ),
+           'hooks' => 
+          array (
+          ),
+        )),
+        2 => 
+        \PHPStan\Dependency\ExportedNode\ExportedMethodNode::__set_state(array(
+           'name' => 'casts',
+           'phpDoc' => 
+          \PHPStan\Dependency\ExportedNode\ExportedPhpDocNode::__set_state(array(
+             'phpDocString' => '/**
+     * @return array<string, string>
+     */',
+             'namespace' => 'App\\Domain\\Referral\\Models',
+             'uses' => 
+            array (
+              'auditable' => 'App\\Domain\\Audit\\Concerns\\Auditable',
+              'hasuuids' => 'Illuminate\\Database\\Eloquent\\Concerns\\HasUuids',
+              'model' => 'Illuminate\\Database\\Eloquent\\Model',
+              'carbon' => 'Illuminate\\Support\\Carbon',
+            ),
+             'constUses' => 
+            array (
+            ),
+          )),
+           'byRef' => false,
+           'public' => false,
+           'private' => false,
+           'abstract' => false,
+           'final' => false,
+           'static' => false,
+           'returnType' => 'array',
            'parameters' => 
           array (
           ),
@@ -39263,14 +44094,18 @@ return [
        'phpDoc' => 
       \PHPStan\Dependency\ExportedNode\ExportedPhpDocNode::__set_state(array(
          'phpDocString' => '/**
- * Wires the Referral domain (PRD FR-REF): its permissions and the two-party
- * authorization policy. The referral lifecycle guards live in ReferralService.
+ * Wires the Referral domain (PRD FR-REF): its permissions, the two-party
+ * authorization policy, and — for FR-BEN-06 — the referral delivery authorizer, so
+ * an accepted referral authorizes serving via the Phase 4 gate WITHOUT reusing the
+ * Service Request. The referral lifecycle guards live in ReferralService.
  */',
          'namespace' => 'App\\Domain\\Referral',
          'uses' => 
         array (
           'permissionaction' => 'App\\Domain\\Access\\Enums\\PermissionAction',
           'permissionregistry' => 'App\\Domain\\Access\\Support\\PermissionRegistry',
+          'deliveryauthorization' => 'App\\Domain\\Benefit\\Services\\DeliveryAuthorization',
+          'referralauthorizer' => 'App\\Domain\\Referral\\Authorization\\ReferralAuthorizer',
           'referral' => 'App\\Domain\\Referral\\Models\\Referral',
           'referralpolicy' => 'App\\Domain\\Referral\\Policies\\ReferralPolicy',
           'gate' => 'Illuminate\\Support\\Facades\\Gate',
@@ -39295,6 +44130,24 @@ return [
        'statements' => 
       array (
         0 => 
+        \PHPStan\Dependency\ExportedNode\ExportedMethodNode::__set_state(array(
+           'name' => 'register',
+           'phpDoc' => NULL,
+           'byRef' => false,
+           'public' => true,
+           'private' => false,
+           'abstract' => false,
+           'final' => false,
+           'static' => false,
+           'returnType' => 'void',
+           'parameters' => 
+          array (
+          ),
+           'attributes' => 
+          array (
+          ),
+        )),
+        1 => 
         \PHPStan\Dependency\ExportedNode\ExportedMethodNode::__set_state(array(
            'name' => 'boot',
            'phpDoc' => NULL,
@@ -39429,7 +44282,10 @@ return [
         array (
           'user' => 'App\\Domain\\Access\\Models\\User',
           'auditlogger' => 'App\\Domain\\Audit\\Services\\AuditLogger',
+          'benefitstatus' => 'App\\Domain\\Benefit\\Enums\\BenefitStatus',
+          'benefit' => 'App\\Domain\\Benefit\\Models\\Benefit',
           'referralstatus' => 'App\\Domain\\Referral\\Enums\\ReferralStatus',
+          'referralstatuschanged' => 'App\\Domain\\Referral\\Events\\ReferralStatusChanged',
           'invalidreferraltransitionexception' => 'App\\Domain\\Referral\\Exceptions\\InvalidReferralTransitionException',
           'referral' => 'App\\Domain\\Referral\\Models\\Referral',
           'beneficiary' => 'App\\Domain\\Registry\\Models\\Beneficiary',
@@ -39495,7 +44351,10 @@ return [
             array (
               'user' => 'App\\Domain\\Access\\Models\\User',
               'auditlogger' => 'App\\Domain\\Audit\\Services\\AuditLogger',
+              'benefitstatus' => 'App\\Domain\\Benefit\\Enums\\BenefitStatus',
+              'benefit' => 'App\\Domain\\Benefit\\Models\\Benefit',
               'referralstatus' => 'App\\Domain\\Referral\\Enums\\ReferralStatus',
+              'referralstatuschanged' => 'App\\Domain\\Referral\\Events\\ReferralStatusChanged',
               'invalidreferraltransitionexception' => 'App\\Domain\\Referral\\Exceptions\\InvalidReferralTransitionException',
               'referral' => 'App\\Domain\\Referral\\Models\\Referral',
               'beneficiary' => 'App\\Domain\\Registry\\Models\\Beneficiary',
@@ -39943,6 +44802,63 @@ return [
             \PHPStan\Dependency\ExportedNode\ExportedParameterNode::__set_state(array(
                'name' => 'outcome',
                'type' => '?string',
+               'byRef' => false,
+               'variadic' => false,
+               'hasDefault' => false,
+               'attributes' => 
+              array (
+              ),
+               'phpDoc' => NULL,
+               'flags' => 0,
+            )),
+          ),
+           'attributes' => 
+          array (
+          ),
+        )),
+        9 => 
+        \PHPStan\Dependency\ExportedNode\ExportedMethodNode::__set_state(array(
+           'name' => 'reconciliation',
+           'phpDoc' => 
+          \PHPStan\Dependency\ExportedNode\ExportedPhpDocNode::__set_state(array(
+             'phpDocString' => '/**
+     * Reconcile the referral outcome with the ledger (PRD FR-REF-03): the benefits
+     * the receiving MDA delivered to the referred beneficiary since acceptance —
+     * the concrete link between the referral and the intervention(s) it enabled.
+     *
+     * @return array{benefit_count: int, benefit_value_total: int, benefit_ids: list<string>}
+     */',
+             'namespace' => 'App\\Domain\\Referral\\Services',
+             'uses' => 
+            array (
+              'user' => 'App\\Domain\\Access\\Models\\User',
+              'auditlogger' => 'App\\Domain\\Audit\\Services\\AuditLogger',
+              'benefitstatus' => 'App\\Domain\\Benefit\\Enums\\BenefitStatus',
+              'benefit' => 'App\\Domain\\Benefit\\Models\\Benefit',
+              'referralstatus' => 'App\\Domain\\Referral\\Enums\\ReferralStatus',
+              'referralstatuschanged' => 'App\\Domain\\Referral\\Events\\ReferralStatusChanged',
+              'invalidreferraltransitionexception' => 'App\\Domain\\Referral\\Exceptions\\InvalidReferralTransitionException',
+              'referral' => 'App\\Domain\\Referral\\Models\\Referral',
+              'beneficiary' => 'App\\Domain\\Registry\\Models\\Beneficiary',
+              'carbon' => 'Illuminate\\Support\\Carbon',
+            ),
+             'constUses' => 
+            array (
+            ),
+          )),
+           'byRef' => false,
+           'public' => true,
+           'private' => false,
+           'abstract' => false,
+           'final' => false,
+           'static' => false,
+           'returnType' => 'array',
+           'parameters' => 
+          array (
+            0 => 
+            \PHPStan\Dependency\ExportedNode\ExportedParameterNode::__set_state(array(
+               'name' => 'referral',
+               'type' => 'App\\Domain\\Referral\\Models\\Referral',
                'byRef' => false,
                'variadic' => false,
                'hasDefault' => false,
@@ -52548,6 +57464,532 @@ return [
       ),
     )),
   ),
+  '/var/www/html/app/Http/Controllers/Api/V1/Grievance/GrievanceController.php' => 
+  array (
+    0 => 
+    \PHPStan\Dependency\ExportedNode\ExportedClassNode::__set_state(array(
+       'name' => 'App\\Http\\Controllers\\Api\\V1\\Grievance\\GrievanceController',
+       'phpDoc' => 
+      \PHPStan\Dependency\ExportedNode\ExportedPhpDocNode::__set_state(array(
+         'phpDocString' => '/**
+ * Grievance endpoints (PRD FR-GRM-01/02, §8.4). MDA-scoped: only the handling MDA
+ * (+ oversight) sees a grievance. Staff capture on behalf of beneficiaries; the
+ * handling MDA\'s staff assign + move it to resolution. Invalid transitions → 422.
+ */',
+         'namespace' => 'App\\Http\\Controllers\\Api\\V1\\Grievance',
+         'uses' => 
+        array (
+          'user' => 'App\\Domain\\Access\\Models\\User',
+          'grievancecategory' => 'App\\Domain\\Grievance\\Enums\\GrievanceCategory',
+          'grievancechannel' => 'App\\Domain\\Grievance\\Enums\\GrievanceChannel',
+          'invalidgrievancetransitionexception' => 'App\\Domain\\Grievance\\Exceptions\\InvalidGrievanceTransitionException',
+          'grievance' => 'App\\Domain\\Grievance\\Models\\Grievance',
+          'grievanceservice' => 'App\\Domain\\Grievance\\Services\\GrievanceService',
+          'controller' => 'App\\Http\\Controllers\\Controller',
+          'assigngrievancerequest' => 'App\\Http\\Requests\\Grievance\\AssignGrievanceRequest',
+          'storegrievancerequest' => 'App\\Http\\Requests\\Grievance\\StoreGrievanceRequest',
+          'transitiongrievancerequest' => 'App\\Http\\Requests\\Grievance\\TransitionGrievanceRequest',
+          'grievanceresource' => 'App\\Http\\Resources\\GrievanceResource',
+          'apiresponse' => 'App\\Support\\ApiResponse',
+          'jsonresponse' => 'Illuminate\\Http\\JsonResponse',
+          'request' => 'Illuminate\\Http\\Request',
+        ),
+         'constUses' => 
+        array (
+        ),
+      )),
+       'abstract' => false,
+       'final' => false,
+       'extends' => 'App\\Http\\Controllers\\Controller',
+       'implements' => 
+      array (
+      ),
+       'usedTraits' => 
+      array (
+      ),
+       'traitUseAdaptations' => 
+      array (
+      ),
+       'statements' => 
+      array (
+        0 => 
+        \PHPStan\Dependency\ExportedNode\ExportedMethodNode::__set_state(array(
+           'name' => '__construct',
+           'phpDoc' => NULL,
+           'byRef' => false,
+           'public' => true,
+           'private' => false,
+           'abstract' => false,
+           'final' => false,
+           'static' => false,
+           'returnType' => NULL,
+           'parameters' => 
+          array (
+            0 => 
+            \PHPStan\Dependency\ExportedNode\ExportedParameterNode::__set_state(array(
+               'name' => 'grievances',
+               'type' => 'App\\Domain\\Grievance\\Services\\GrievanceService',
+               'byRef' => false,
+               'variadic' => false,
+               'hasDefault' => false,
+               'attributes' => 
+              array (
+              ),
+               'phpDoc' => NULL,
+               'flags' => 68,
+            )),
+          ),
+           'attributes' => 
+          array (
+          ),
+        )),
+        1 => 
+        \PHPStan\Dependency\ExportedNode\ExportedMethodNode::__set_state(array(
+           'name' => 'index',
+           'phpDoc' => 
+          \PHPStan\Dependency\ExportedNode\ExportedPhpDocNode::__set_state(array(
+             'phpDocString' => '/** Grievances handled by the caller\'s MDA (`filter[status]`, `filter[category]`, `filter[assignee]`). */',
+             'namespace' => 'App\\Http\\Controllers\\Api\\V1\\Grievance',
+             'uses' => 
+            array (
+              'user' => 'App\\Domain\\Access\\Models\\User',
+              'grievancecategory' => 'App\\Domain\\Grievance\\Enums\\GrievanceCategory',
+              'grievancechannel' => 'App\\Domain\\Grievance\\Enums\\GrievanceChannel',
+              'invalidgrievancetransitionexception' => 'App\\Domain\\Grievance\\Exceptions\\InvalidGrievanceTransitionException',
+              'grievance' => 'App\\Domain\\Grievance\\Models\\Grievance',
+              'grievanceservice' => 'App\\Domain\\Grievance\\Services\\GrievanceService',
+              'controller' => 'App\\Http\\Controllers\\Controller',
+              'assigngrievancerequest' => 'App\\Http\\Requests\\Grievance\\AssignGrievanceRequest',
+              'storegrievancerequest' => 'App\\Http\\Requests\\Grievance\\StoreGrievanceRequest',
+              'transitiongrievancerequest' => 'App\\Http\\Requests\\Grievance\\TransitionGrievanceRequest',
+              'grievanceresource' => 'App\\Http\\Resources\\GrievanceResource',
+              'apiresponse' => 'App\\Support\\ApiResponse',
+              'jsonresponse' => 'Illuminate\\Http\\JsonResponse',
+              'request' => 'Illuminate\\Http\\Request',
+            ),
+             'constUses' => 
+            array (
+            ),
+          )),
+           'byRef' => false,
+           'public' => true,
+           'private' => false,
+           'abstract' => false,
+           'final' => false,
+           'static' => false,
+           'returnType' => 'Illuminate\\Http\\JsonResponse',
+           'parameters' => 
+          array (
+            0 => 
+            \PHPStan\Dependency\ExportedNode\ExportedParameterNode::__set_state(array(
+               'name' => 'request',
+               'type' => 'Illuminate\\Http\\Request',
+               'byRef' => false,
+               'variadic' => false,
+               'hasDefault' => false,
+               'attributes' => 
+              array (
+              ),
+               'phpDoc' => NULL,
+               'flags' => 0,
+            )),
+          ),
+           'attributes' => 
+          array (
+          ),
+        )),
+        2 => 
+        \PHPStan\Dependency\ExportedNode\ExportedMethodNode::__set_state(array(
+           'name' => 'show',
+           'phpDoc' => NULL,
+           'byRef' => false,
+           'public' => true,
+           'private' => false,
+           'abstract' => false,
+           'final' => false,
+           'static' => false,
+           'returnType' => 'Illuminate\\Http\\JsonResponse',
+           'parameters' => 
+          array (
+            0 => 
+            \PHPStan\Dependency\ExportedNode\ExportedParameterNode::__set_state(array(
+               'name' => 'grievance',
+               'type' => 'string',
+               'byRef' => false,
+               'variadic' => false,
+               'hasDefault' => false,
+               'attributes' => 
+              array (
+              ),
+               'phpDoc' => NULL,
+               'flags' => 0,
+            )),
+          ),
+           'attributes' => 
+          array (
+          ),
+        )),
+        3 => 
+        \PHPStan\Dependency\ExportedNode\ExportedMethodNode::__set_state(array(
+           'name' => 'store',
+           'phpDoc' => 
+          \PHPStan\Dependency\ExportedNode\ExportedPhpDocNode::__set_state(array(
+             'phpDocString' => '/** Capture a grievance (staff) — handling MDA is the caller\'s MDA. */',
+             'namespace' => 'App\\Http\\Controllers\\Api\\V1\\Grievance',
+             'uses' => 
+            array (
+              'user' => 'App\\Domain\\Access\\Models\\User',
+              'grievancecategory' => 'App\\Domain\\Grievance\\Enums\\GrievanceCategory',
+              'grievancechannel' => 'App\\Domain\\Grievance\\Enums\\GrievanceChannel',
+              'invalidgrievancetransitionexception' => 'App\\Domain\\Grievance\\Exceptions\\InvalidGrievanceTransitionException',
+              'grievance' => 'App\\Domain\\Grievance\\Models\\Grievance',
+              'grievanceservice' => 'App\\Domain\\Grievance\\Services\\GrievanceService',
+              'controller' => 'App\\Http\\Controllers\\Controller',
+              'assigngrievancerequest' => 'App\\Http\\Requests\\Grievance\\AssignGrievanceRequest',
+              'storegrievancerequest' => 'App\\Http\\Requests\\Grievance\\StoreGrievanceRequest',
+              'transitiongrievancerequest' => 'App\\Http\\Requests\\Grievance\\TransitionGrievanceRequest',
+              'grievanceresource' => 'App\\Http\\Resources\\GrievanceResource',
+              'apiresponse' => 'App\\Support\\ApiResponse',
+              'jsonresponse' => 'Illuminate\\Http\\JsonResponse',
+              'request' => 'Illuminate\\Http\\Request',
+            ),
+             'constUses' => 
+            array (
+            ),
+          )),
+           'byRef' => false,
+           'public' => true,
+           'private' => false,
+           'abstract' => false,
+           'final' => false,
+           'static' => false,
+           'returnType' => 'Illuminate\\Http\\JsonResponse',
+           'parameters' => 
+          array (
+            0 => 
+            \PHPStan\Dependency\ExportedNode\ExportedParameterNode::__set_state(array(
+               'name' => 'request',
+               'type' => 'App\\Http\\Requests\\Grievance\\StoreGrievanceRequest',
+               'byRef' => false,
+               'variadic' => false,
+               'hasDefault' => false,
+               'attributes' => 
+              array (
+              ),
+               'phpDoc' => NULL,
+               'flags' => 0,
+            )),
+          ),
+           'attributes' => 
+          array (
+          ),
+        )),
+        4 => 
+        \PHPStan\Dependency\ExportedNode\ExportedMethodNode::__set_state(array(
+           'name' => 'assign',
+           'phpDoc' => NULL,
+           'byRef' => false,
+           'public' => true,
+           'private' => false,
+           'abstract' => false,
+           'final' => false,
+           'static' => false,
+           'returnType' => 'Illuminate\\Http\\JsonResponse',
+           'parameters' => 
+          array (
+            0 => 
+            \PHPStan\Dependency\ExportedNode\ExportedParameterNode::__set_state(array(
+               'name' => 'request',
+               'type' => 'App\\Http\\Requests\\Grievance\\AssignGrievanceRequest',
+               'byRef' => false,
+               'variadic' => false,
+               'hasDefault' => false,
+               'attributes' => 
+              array (
+              ),
+               'phpDoc' => NULL,
+               'flags' => 0,
+            )),
+            1 => 
+            \PHPStan\Dependency\ExportedNode\ExportedParameterNode::__set_state(array(
+               'name' => 'grievance',
+               'type' => 'string',
+               'byRef' => false,
+               'variadic' => false,
+               'hasDefault' => false,
+               'attributes' => 
+              array (
+              ),
+               'phpDoc' => NULL,
+               'flags' => 0,
+            )),
+          ),
+           'attributes' => 
+          array (
+          ),
+        )),
+        5 => 
+        \PHPStan\Dependency\ExportedNode\ExportedMethodNode::__set_state(array(
+           'name' => 'start',
+           'phpDoc' => NULL,
+           'byRef' => false,
+           'public' => true,
+           'private' => false,
+           'abstract' => false,
+           'final' => false,
+           'static' => false,
+           'returnType' => 'Illuminate\\Http\\JsonResponse',
+           'parameters' => 
+          array (
+            0 => 
+            \PHPStan\Dependency\ExportedNode\ExportedParameterNode::__set_state(array(
+               'name' => 'request',
+               'type' => 'App\\Http\\Requests\\Grievance\\TransitionGrievanceRequest',
+               'byRef' => false,
+               'variadic' => false,
+               'hasDefault' => false,
+               'attributes' => 
+              array (
+              ),
+               'phpDoc' => NULL,
+               'flags' => 0,
+            )),
+            1 => 
+            \PHPStan\Dependency\ExportedNode\ExportedParameterNode::__set_state(array(
+               'name' => 'grievance',
+               'type' => 'string',
+               'byRef' => false,
+               'variadic' => false,
+               'hasDefault' => false,
+               'attributes' => 
+              array (
+              ),
+               'phpDoc' => NULL,
+               'flags' => 0,
+            )),
+          ),
+           'attributes' => 
+          array (
+          ),
+        )),
+        6 => 
+        \PHPStan\Dependency\ExportedNode\ExportedMethodNode::__set_state(array(
+           'name' => 'resolve',
+           'phpDoc' => NULL,
+           'byRef' => false,
+           'public' => true,
+           'private' => false,
+           'abstract' => false,
+           'final' => false,
+           'static' => false,
+           'returnType' => 'Illuminate\\Http\\JsonResponse',
+           'parameters' => 
+          array (
+            0 => 
+            \PHPStan\Dependency\ExportedNode\ExportedParameterNode::__set_state(array(
+               'name' => 'request',
+               'type' => 'App\\Http\\Requests\\Grievance\\TransitionGrievanceRequest',
+               'byRef' => false,
+               'variadic' => false,
+               'hasDefault' => false,
+               'attributes' => 
+              array (
+              ),
+               'phpDoc' => NULL,
+               'flags' => 0,
+            )),
+            1 => 
+            \PHPStan\Dependency\ExportedNode\ExportedParameterNode::__set_state(array(
+               'name' => 'grievance',
+               'type' => 'string',
+               'byRef' => false,
+               'variadic' => false,
+               'hasDefault' => false,
+               'attributes' => 
+              array (
+              ),
+               'phpDoc' => NULL,
+               'flags' => 0,
+            )),
+          ),
+           'attributes' => 
+          array (
+          ),
+        )),
+        7 => 
+        \PHPStan\Dependency\ExportedNode\ExportedMethodNode::__set_state(array(
+           'name' => 'close',
+           'phpDoc' => NULL,
+           'byRef' => false,
+           'public' => true,
+           'private' => false,
+           'abstract' => false,
+           'final' => false,
+           'static' => false,
+           'returnType' => 'Illuminate\\Http\\JsonResponse',
+           'parameters' => 
+          array (
+            0 => 
+            \PHPStan\Dependency\ExportedNode\ExportedParameterNode::__set_state(array(
+               'name' => 'request',
+               'type' => 'App\\Http\\Requests\\Grievance\\TransitionGrievanceRequest',
+               'byRef' => false,
+               'variadic' => false,
+               'hasDefault' => false,
+               'attributes' => 
+              array (
+              ),
+               'phpDoc' => NULL,
+               'flags' => 0,
+            )),
+            1 => 
+            \PHPStan\Dependency\ExportedNode\ExportedParameterNode::__set_state(array(
+               'name' => 'grievance',
+               'type' => 'string',
+               'byRef' => false,
+               'variadic' => false,
+               'hasDefault' => false,
+               'attributes' => 
+              array (
+              ),
+               'phpDoc' => NULL,
+               'flags' => 0,
+            )),
+          ),
+           'attributes' => 
+          array (
+          ),
+        )),
+      ),
+       'attributes' => 
+      array (
+      ),
+    )),
+  ),
+  '/var/www/html/app/Http/Controllers/Api/V1/Grievance/GrievanceSlaPolicyController.php' => 
+  array (
+    0 => 
+    \PHPStan\Dependency\ExportedNode\ExportedClassNode::__set_state(array(
+       'name' => 'App\\Http\\Controllers\\Api\\V1\\Grievance\\GrievanceSlaPolicyController',
+       'phpDoc' => 
+      \PHPStan\Dependency\ExportedNode\ExportedPhpDocNode::__set_state(array(
+         'phpDocString' => '/**
+ * Admin management of grievance SLA windows (PRD FR-GRM-03). Global config — gated by
+ * `grievance-sla.edit`. One window (hours) per grievance category; edits are audited
+ * via the model\'s Auditable trait.
+ */',
+         'namespace' => 'App\\Http\\Controllers\\Api\\V1\\Grievance',
+         'uses' => 
+        array (
+          'grievancecategory' => 'App\\Domain\\Grievance\\Enums\\GrievanceCategory',
+          'grievanceslapolicy' => 'App\\Domain\\Grievance\\Models\\GrievanceSlaPolicy',
+          'controller' => 'App\\Http\\Controllers\\Controller',
+          'updategrievanceslarequest' => 'App\\Http\\Requests\\Grievance\\UpdateGrievanceSlaRequest',
+          'apiresponse' => 'App\\Support\\ApiResponse',
+          'jsonresponse' => 'Illuminate\\Http\\JsonResponse',
+        ),
+         'constUses' => 
+        array (
+        ),
+      )),
+       'abstract' => false,
+       'final' => false,
+       'extends' => 'App\\Http\\Controllers\\Controller',
+       'implements' => 
+      array (
+      ),
+       'usedTraits' => 
+      array (
+      ),
+       'traitUseAdaptations' => 
+      array (
+      ),
+       'statements' => 
+      array (
+        0 => 
+        \PHPStan\Dependency\ExportedNode\ExportedMethodNode::__set_state(array(
+           'name' => 'index',
+           'phpDoc' => NULL,
+           'byRef' => false,
+           'public' => true,
+           'private' => false,
+           'abstract' => false,
+           'final' => false,
+           'static' => false,
+           'returnType' => 'Illuminate\\Http\\JsonResponse',
+           'parameters' => 
+          array (
+          ),
+           'attributes' => 
+          array (
+          ),
+        )),
+        1 => 
+        \PHPStan\Dependency\ExportedNode\ExportedMethodNode::__set_state(array(
+           'name' => 'update',
+           'phpDoc' => 
+          \PHPStan\Dependency\ExportedNode\ExportedPhpDocNode::__set_state(array(
+             'phpDocString' => '/** Upsert the SLA window (hours) for a category. */',
+             'namespace' => 'App\\Http\\Controllers\\Api\\V1\\Grievance',
+             'uses' => 
+            array (
+              'grievancecategory' => 'App\\Domain\\Grievance\\Enums\\GrievanceCategory',
+              'grievanceslapolicy' => 'App\\Domain\\Grievance\\Models\\GrievanceSlaPolicy',
+              'controller' => 'App\\Http\\Controllers\\Controller',
+              'updategrievanceslarequest' => 'App\\Http\\Requests\\Grievance\\UpdateGrievanceSlaRequest',
+              'apiresponse' => 'App\\Support\\ApiResponse',
+              'jsonresponse' => 'Illuminate\\Http\\JsonResponse',
+            ),
+             'constUses' => 
+            array (
+            ),
+          )),
+           'byRef' => false,
+           'public' => true,
+           'private' => false,
+           'abstract' => false,
+           'final' => false,
+           'static' => false,
+           'returnType' => 'Illuminate\\Http\\JsonResponse',
+           'parameters' => 
+          array (
+            0 => 
+            \PHPStan\Dependency\ExportedNode\ExportedParameterNode::__set_state(array(
+               'name' => 'request',
+               'type' => 'App\\Http\\Requests\\Grievance\\UpdateGrievanceSlaRequest',
+               'byRef' => false,
+               'variadic' => false,
+               'hasDefault' => false,
+               'attributes' => 
+              array (
+              ),
+               'phpDoc' => NULL,
+               'flags' => 0,
+            )),
+            1 => 
+            \PHPStan\Dependency\ExportedNode\ExportedParameterNode::__set_state(array(
+               'name' => 'category',
+               'type' => 'string',
+               'byRef' => false,
+               'variadic' => false,
+               'hasDefault' => false,
+               'attributes' => 
+              array (
+              ),
+               'phpDoc' => NULL,
+               'flags' => 0,
+            )),
+          ),
+           'attributes' => 
+          array (
+          ),
+        )),
+      ),
+       'attributes' => 
+      array (
+      ),
+    )),
+  ),
   '/var/www/html/app/Http/Controllers/Api/V1/HealthController.php' => 
   array (
     0 => 
@@ -54837,6 +60279,130 @@ return [
             1 => 
             \PHPStan\Dependency\ExportedNode\ExportedParameterNode::__set_state(array(
                'name' => 'referral',
+               'type' => 'string',
+               'byRef' => false,
+               'variadic' => false,
+               'hasDefault' => false,
+               'attributes' => 
+              array (
+              ),
+               'phpDoc' => NULL,
+               'flags' => 0,
+            )),
+          ),
+           'attributes' => 
+          array (
+          ),
+        )),
+      ),
+       'attributes' => 
+      array (
+      ),
+    )),
+  ),
+  '/var/www/html/app/Http/Controllers/Api/V1/Referral/ReferralSlaPolicyController.php' => 
+  array (
+    0 => 
+    \PHPStan\Dependency\ExportedNode\ExportedClassNode::__set_state(array(
+       'name' => 'App\\Http\\Controllers\\Api\\V1\\Referral\\ReferralSlaPolicyController',
+       'phpDoc' => 
+      \PHPStan\Dependency\ExportedNode\ExportedPhpDocNode::__set_state(array(
+         'phpDocString' => '/**
+ * Admin management of referral SLA windows (PRD FR-REF-04/05). Global config —
+ * gated by `referral-sla.edit`. One window (hours) per referral status; edits are
+ * audited via the model\'s Auditable trait.
+ */',
+         'namespace' => 'App\\Http\\Controllers\\Api\\V1\\Referral',
+         'uses' => 
+        array (
+          'referralstatus' => 'App\\Domain\\Referral\\Enums\\ReferralStatus',
+          'referralslapolicy' => 'App\\Domain\\Referral\\Models\\ReferralSlaPolicy',
+          'controller' => 'App\\Http\\Controllers\\Controller',
+          'updatereferralslarequest' => 'App\\Http\\Requests\\Referral\\UpdateReferralSlaRequest',
+          'apiresponse' => 'App\\Support\\ApiResponse',
+          'jsonresponse' => 'Illuminate\\Http\\JsonResponse',
+        ),
+         'constUses' => 
+        array (
+        ),
+      )),
+       'abstract' => false,
+       'final' => false,
+       'extends' => 'App\\Http\\Controllers\\Controller',
+       'implements' => 
+      array (
+      ),
+       'usedTraits' => 
+      array (
+      ),
+       'traitUseAdaptations' => 
+      array (
+      ),
+       'statements' => 
+      array (
+        0 => 
+        \PHPStan\Dependency\ExportedNode\ExportedMethodNode::__set_state(array(
+           'name' => 'index',
+           'phpDoc' => NULL,
+           'byRef' => false,
+           'public' => true,
+           'private' => false,
+           'abstract' => false,
+           'final' => false,
+           'static' => false,
+           'returnType' => 'Illuminate\\Http\\JsonResponse',
+           'parameters' => 
+          array (
+          ),
+           'attributes' => 
+          array (
+          ),
+        )),
+        1 => 
+        \PHPStan\Dependency\ExportedNode\ExportedMethodNode::__set_state(array(
+           'name' => 'update',
+           'phpDoc' => 
+          \PHPStan\Dependency\ExportedNode\ExportedPhpDocNode::__set_state(array(
+             'phpDocString' => '/** Upsert the SLA window (hours) for a status. */',
+             'namespace' => 'App\\Http\\Controllers\\Api\\V1\\Referral',
+             'uses' => 
+            array (
+              'referralstatus' => 'App\\Domain\\Referral\\Enums\\ReferralStatus',
+              'referralslapolicy' => 'App\\Domain\\Referral\\Models\\ReferralSlaPolicy',
+              'controller' => 'App\\Http\\Controllers\\Controller',
+              'updatereferralslarequest' => 'App\\Http\\Requests\\Referral\\UpdateReferralSlaRequest',
+              'apiresponse' => 'App\\Support\\ApiResponse',
+              'jsonresponse' => 'Illuminate\\Http\\JsonResponse',
+            ),
+             'constUses' => 
+            array (
+            ),
+          )),
+           'byRef' => false,
+           'public' => true,
+           'private' => false,
+           'abstract' => false,
+           'final' => false,
+           'static' => false,
+           'returnType' => 'Illuminate\\Http\\JsonResponse',
+           'parameters' => 
+          array (
+            0 => 
+            \PHPStan\Dependency\ExportedNode\ExportedParameterNode::__set_state(array(
+               'name' => 'request',
+               'type' => 'App\\Http\\Requests\\Referral\\UpdateReferralSlaRequest',
+               'byRef' => false,
+               'variadic' => false,
+               'hasDefault' => false,
+               'attributes' => 
+              array (
+              ),
+               'phpDoc' => NULL,
+               'flags' => 0,
+            )),
+            1 => 
+            \PHPStan\Dependency\ExportedNode\ExportedParameterNode::__set_state(array(
+               'name' => 'status',
                'type' => 'string',
                'byRef' => false,
                'variadic' => false,
@@ -59449,6 +65015,366 @@ return [
       ),
     )),
   ),
+  '/var/www/html/app/Http/Requests/Grievance/AssignGrievanceRequest.php' => 
+  array (
+    0 => 
+    \PHPStan\Dependency\ExportedNode\ExportedClassNode::__set_state(array(
+       'name' => 'App\\Http\\Requests\\Grievance\\AssignGrievanceRequest',
+       'phpDoc' => 
+      \PHPStan\Dependency\ExportedNode\ExportedPhpDocNode::__set_state(array(
+         'phpDocString' => '/**
+ * Assign a grievance to a handling-MDA user (PRD FR-GRM-02).
+ */',
+         'namespace' => 'App\\Http\\Requests\\Grievance',
+         'uses' => 
+        array (
+          'formrequest' => 'Illuminate\\Foundation\\Http\\FormRequest',
+        ),
+         'constUses' => 
+        array (
+        ),
+      )),
+       'abstract' => false,
+       'final' => false,
+       'extends' => 'Illuminate\\Foundation\\Http\\FormRequest',
+       'implements' => 
+      array (
+      ),
+       'usedTraits' => 
+      array (
+      ),
+       'traitUseAdaptations' => 
+      array (
+      ),
+       'statements' => 
+      array (
+        0 => 
+        \PHPStan\Dependency\ExportedNode\ExportedMethodNode::__set_state(array(
+           'name' => 'authorize',
+           'phpDoc' => NULL,
+           'byRef' => false,
+           'public' => true,
+           'private' => false,
+           'abstract' => false,
+           'final' => false,
+           'static' => false,
+           'returnType' => 'bool',
+           'parameters' => 
+          array (
+          ),
+           'attributes' => 
+          array (
+          ),
+        )),
+        1 => 
+        \PHPStan\Dependency\ExportedNode\ExportedMethodNode::__set_state(array(
+           'name' => 'rules',
+           'phpDoc' => 
+          \PHPStan\Dependency\ExportedNode\ExportedPhpDocNode::__set_state(array(
+             'phpDocString' => '/**
+     * @return array<string, mixed>
+     */',
+             'namespace' => 'App\\Http\\Requests\\Grievance',
+             'uses' => 
+            array (
+              'formrequest' => 'Illuminate\\Foundation\\Http\\FormRequest',
+            ),
+             'constUses' => 
+            array (
+            ),
+          )),
+           'byRef' => false,
+           'public' => true,
+           'private' => false,
+           'abstract' => false,
+           'final' => false,
+           'static' => false,
+           'returnType' => 'array',
+           'parameters' => 
+          array (
+          ),
+           'attributes' => 
+          array (
+          ),
+        )),
+      ),
+       'attributes' => 
+      array (
+      ),
+    )),
+  ),
+  '/var/www/html/app/Http/Requests/Grievance/StoreGrievanceRequest.php' => 
+  array (
+    0 => 
+    \PHPStan\Dependency\ExportedNode\ExportedClassNode::__set_state(array(
+       'name' => 'App\\Http\\Requests\\Grievance\\StoreGrievanceRequest',
+       'phpDoc' => 
+      \PHPStan\Dependency\ExportedNode\ExportedPhpDocNode::__set_state(array(
+         'phpDocString' => '/**
+ * Staff logs a grievance on behalf of a beneficiary (PRD FR-GRM-01). The
+ * beneficiary link is optional; category + channel come from fixed taxonomies.
+ */',
+         'namespace' => 'App\\Http\\Requests\\Grievance',
+         'uses' => 
+        array (
+          'grievancecategory' => 'App\\Domain\\Grievance\\Enums\\GrievanceCategory',
+          'grievancechannel' => 'App\\Domain\\Grievance\\Enums\\GrievanceChannel',
+          'formrequest' => 'Illuminate\\Foundation\\Http\\FormRequest',
+          'rule' => 'Illuminate\\Validation\\Rule',
+        ),
+         'constUses' => 
+        array (
+        ),
+      )),
+       'abstract' => false,
+       'final' => false,
+       'extends' => 'Illuminate\\Foundation\\Http\\FormRequest',
+       'implements' => 
+      array (
+      ),
+       'usedTraits' => 
+      array (
+      ),
+       'traitUseAdaptations' => 
+      array (
+      ),
+       'statements' => 
+      array (
+        0 => 
+        \PHPStan\Dependency\ExportedNode\ExportedMethodNode::__set_state(array(
+           'name' => 'authorize',
+           'phpDoc' => NULL,
+           'byRef' => false,
+           'public' => true,
+           'private' => false,
+           'abstract' => false,
+           'final' => false,
+           'static' => false,
+           'returnType' => 'bool',
+           'parameters' => 
+          array (
+          ),
+           'attributes' => 
+          array (
+          ),
+        )),
+        1 => 
+        \PHPStan\Dependency\ExportedNode\ExportedMethodNode::__set_state(array(
+           'name' => 'rules',
+           'phpDoc' => 
+          \PHPStan\Dependency\ExportedNode\ExportedPhpDocNode::__set_state(array(
+             'phpDocString' => '/**
+     * @return array<string, mixed>
+     */',
+             'namespace' => 'App\\Http\\Requests\\Grievance',
+             'uses' => 
+            array (
+              'grievancecategory' => 'App\\Domain\\Grievance\\Enums\\GrievanceCategory',
+              'grievancechannel' => 'App\\Domain\\Grievance\\Enums\\GrievanceChannel',
+              'formrequest' => 'Illuminate\\Foundation\\Http\\FormRequest',
+              'rule' => 'Illuminate\\Validation\\Rule',
+            ),
+             'constUses' => 
+            array (
+            ),
+          )),
+           'byRef' => false,
+           'public' => true,
+           'private' => false,
+           'abstract' => false,
+           'final' => false,
+           'static' => false,
+           'returnType' => 'array',
+           'parameters' => 
+          array (
+          ),
+           'attributes' => 
+          array (
+          ),
+        )),
+      ),
+       'attributes' => 
+      array (
+      ),
+    )),
+  ),
+  '/var/www/html/app/Http/Requests/Grievance/TransitionGrievanceRequest.php' => 
+  array (
+    0 => 
+    \PHPStan\Dependency\ExportedNode\ExportedClassNode::__set_state(array(
+       'name' => 'App\\Http\\Requests\\Grievance\\TransitionGrievanceRequest',
+       'phpDoc' => 
+      \PHPStan\Dependency\ExportedNode\ExportedPhpDocNode::__set_state(array(
+         'phpDocString' => '/**
+ * Body for a grievance transition (PRD FR-GRM-02). Resolution notes are required
+ * when resolving; optional when closing.
+ */',
+         'namespace' => 'App\\Http\\Requests\\Grievance',
+         'uses' => 
+        array (
+          'formrequest' => 'Illuminate\\Foundation\\Http\\FormRequest',
+        ),
+         'constUses' => 
+        array (
+        ),
+      )),
+       'abstract' => false,
+       'final' => false,
+       'extends' => 'Illuminate\\Foundation\\Http\\FormRequest',
+       'implements' => 
+      array (
+      ),
+       'usedTraits' => 
+      array (
+      ),
+       'traitUseAdaptations' => 
+      array (
+      ),
+       'statements' => 
+      array (
+        0 => 
+        \PHPStan\Dependency\ExportedNode\ExportedMethodNode::__set_state(array(
+           'name' => 'authorize',
+           'phpDoc' => NULL,
+           'byRef' => false,
+           'public' => true,
+           'private' => false,
+           'abstract' => false,
+           'final' => false,
+           'static' => false,
+           'returnType' => 'bool',
+           'parameters' => 
+          array (
+          ),
+           'attributes' => 
+          array (
+          ),
+        )),
+        1 => 
+        \PHPStan\Dependency\ExportedNode\ExportedMethodNode::__set_state(array(
+           'name' => 'rules',
+           'phpDoc' => 
+          \PHPStan\Dependency\ExportedNode\ExportedPhpDocNode::__set_state(array(
+             'phpDocString' => '/**
+     * @return array<string, mixed>
+     */',
+             'namespace' => 'App\\Http\\Requests\\Grievance',
+             'uses' => 
+            array (
+              'formrequest' => 'Illuminate\\Foundation\\Http\\FormRequest',
+            ),
+             'constUses' => 
+            array (
+            ),
+          )),
+           'byRef' => false,
+           'public' => true,
+           'private' => false,
+           'abstract' => false,
+           'final' => false,
+           'static' => false,
+           'returnType' => 'array',
+           'parameters' => 
+          array (
+          ),
+           'attributes' => 
+          array (
+          ),
+        )),
+      ),
+       'attributes' => 
+      array (
+      ),
+    )),
+  ),
+  '/var/www/html/app/Http/Requests/Grievance/UpdateGrievanceSlaRequest.php' => 
+  array (
+    0 => 
+    \PHPStan\Dependency\ExportedNode\ExportedClassNode::__set_state(array(
+       'name' => 'App\\Http\\Requests\\Grievance\\UpdateGrievanceSlaRequest',
+       'phpDoc' => 
+      \PHPStan\Dependency\ExportedNode\ExportedPhpDocNode::__set_state(array(
+         'phpDocString' => '/**
+ * Set the SLA window (hours) for a grievance category (PRD FR-GRM-03).
+ */',
+         'namespace' => 'App\\Http\\Requests\\Grievance',
+         'uses' => 
+        array (
+          'formrequest' => 'Illuminate\\Foundation\\Http\\FormRequest',
+        ),
+         'constUses' => 
+        array (
+        ),
+      )),
+       'abstract' => false,
+       'final' => false,
+       'extends' => 'Illuminate\\Foundation\\Http\\FormRequest',
+       'implements' => 
+      array (
+      ),
+       'usedTraits' => 
+      array (
+      ),
+       'traitUseAdaptations' => 
+      array (
+      ),
+       'statements' => 
+      array (
+        0 => 
+        \PHPStan\Dependency\ExportedNode\ExportedMethodNode::__set_state(array(
+           'name' => 'authorize',
+           'phpDoc' => NULL,
+           'byRef' => false,
+           'public' => true,
+           'private' => false,
+           'abstract' => false,
+           'final' => false,
+           'static' => false,
+           'returnType' => 'bool',
+           'parameters' => 
+          array (
+          ),
+           'attributes' => 
+          array (
+          ),
+        )),
+        1 => 
+        \PHPStan\Dependency\ExportedNode\ExportedMethodNode::__set_state(array(
+           'name' => 'rules',
+           'phpDoc' => 
+          \PHPStan\Dependency\ExportedNode\ExportedPhpDocNode::__set_state(array(
+             'phpDocString' => '/**
+     * @return array<string, mixed>
+     */',
+             'namespace' => 'App\\Http\\Requests\\Grievance',
+             'uses' => 
+            array (
+              'formrequest' => 'Illuminate\\Foundation\\Http\\FormRequest',
+            ),
+             'constUses' => 
+            array (
+            ),
+          )),
+           'byRef' => false,
+           'public' => true,
+           'private' => false,
+           'abstract' => false,
+           'final' => false,
+           'static' => false,
+           'returnType' => 'array',
+           'parameters' => 
+          array (
+          ),
+           'attributes' => 
+          array (
+          ),
+        )),
+      ),
+       'attributes' => 
+      array (
+      ),
+    )),
+  ),
   '/var/www/html/app/Http/Requests/Matching/UpdateMatchingConfigRequest.php' => 
   array (
     0 => 
@@ -60456,6 +66382,94 @@ return [
          'phpDocString' => '/**
  * Body for a referral transition (PRD FR-REF-02). `reason` is required only when
  * rejecting; other transitions carry an optional note/outcome.
+ */',
+         'namespace' => 'App\\Http\\Requests\\Referral',
+         'uses' => 
+        array (
+          'formrequest' => 'Illuminate\\Foundation\\Http\\FormRequest',
+        ),
+         'constUses' => 
+        array (
+        ),
+      )),
+       'abstract' => false,
+       'final' => false,
+       'extends' => 'Illuminate\\Foundation\\Http\\FormRequest',
+       'implements' => 
+      array (
+      ),
+       'usedTraits' => 
+      array (
+      ),
+       'traitUseAdaptations' => 
+      array (
+      ),
+       'statements' => 
+      array (
+        0 => 
+        \PHPStan\Dependency\ExportedNode\ExportedMethodNode::__set_state(array(
+           'name' => 'authorize',
+           'phpDoc' => NULL,
+           'byRef' => false,
+           'public' => true,
+           'private' => false,
+           'abstract' => false,
+           'final' => false,
+           'static' => false,
+           'returnType' => 'bool',
+           'parameters' => 
+          array (
+          ),
+           'attributes' => 
+          array (
+          ),
+        )),
+        1 => 
+        \PHPStan\Dependency\ExportedNode\ExportedMethodNode::__set_state(array(
+           'name' => 'rules',
+           'phpDoc' => 
+          \PHPStan\Dependency\ExportedNode\ExportedPhpDocNode::__set_state(array(
+             'phpDocString' => '/**
+     * @return array<string, mixed>
+     */',
+             'namespace' => 'App\\Http\\Requests\\Referral',
+             'uses' => 
+            array (
+              'formrequest' => 'Illuminate\\Foundation\\Http\\FormRequest',
+            ),
+             'constUses' => 
+            array (
+            ),
+          )),
+           'byRef' => false,
+           'public' => true,
+           'private' => false,
+           'abstract' => false,
+           'final' => false,
+           'static' => false,
+           'returnType' => 'array',
+           'parameters' => 
+          array (
+          ),
+           'attributes' => 
+          array (
+          ),
+        )),
+      ),
+       'attributes' => 
+      array (
+      ),
+    )),
+  ),
+  '/var/www/html/app/Http/Requests/Referral/UpdateReferralSlaRequest.php' => 
+  array (
+    0 => 
+    \PHPStan\Dependency\ExportedNode\ExportedClassNode::__set_state(array(
+       'name' => 'App\\Http\\Requests\\Referral\\UpdateReferralSlaRequest',
+       'phpDoc' => 
+      \PHPStan\Dependency\ExportedNode\ExportedPhpDocNode::__set_state(array(
+         'phpDocString' => '/**
+ * Set the SLA window (hours) for a referral status (PRD FR-REF-04/05).
  */',
          'namespace' => 'App\\Http\\Requests\\Referral',
          'uses' => 
@@ -63033,6 +69047,93 @@ return [
              'uses' => 
             array (
               'enrollment' => 'App\\Domain\\Programme\\Models\\Enrollment',
+              'request' => 'Illuminate\\Http\\Request',
+              'jsonresource' => 'Illuminate\\Http\\Resources\\Json\\JsonResource',
+            ),
+             'constUses' => 
+            array (
+            ),
+          )),
+           'byRef' => false,
+           'public' => true,
+           'private' => false,
+           'abstract' => false,
+           'final' => false,
+           'static' => false,
+           'returnType' => 'array',
+           'parameters' => 
+          array (
+            0 => 
+            \PHPStan\Dependency\ExportedNode\ExportedParameterNode::__set_state(array(
+               'name' => 'request',
+               'type' => 'Illuminate\\Http\\Request',
+               'byRef' => false,
+               'variadic' => false,
+               'hasDefault' => false,
+               'attributes' => 
+              array (
+              ),
+               'phpDoc' => NULL,
+               'flags' => 0,
+            )),
+          ),
+           'attributes' => 
+          array (
+          ),
+        )),
+      ),
+       'attributes' => 
+      array (
+      ),
+    )),
+  ),
+  '/var/www/html/app/Http/Resources/GrievanceResource.php' => 
+  array (
+    0 => 
+    \PHPStan\Dependency\ExportedNode\ExportedClassNode::__set_state(array(
+       'name' => 'App\\Http\\Resources\\GrievanceResource',
+       'phpDoc' => 
+      \PHPStan\Dependency\ExportedNode\ExportedPhpDocNode::__set_state(array(
+         'phpDocString' => '/**
+ * @mixin Grievance
+ */',
+         'namespace' => 'App\\Http\\Resources',
+         'uses' => 
+        array (
+          'grievance' => 'App\\Domain\\Grievance\\Models\\Grievance',
+          'request' => 'Illuminate\\Http\\Request',
+          'jsonresource' => 'Illuminate\\Http\\Resources\\Json\\JsonResource',
+        ),
+         'constUses' => 
+        array (
+        ),
+      )),
+       'abstract' => false,
+       'final' => false,
+       'extends' => 'Illuminate\\Http\\Resources\\Json\\JsonResource',
+       'implements' => 
+      array (
+      ),
+       'usedTraits' => 
+      array (
+      ),
+       'traitUseAdaptations' => 
+      array (
+      ),
+       'statements' => 
+      array (
+        0 => 
+        \PHPStan\Dependency\ExportedNode\ExportedMethodNode::__set_state(array(
+           'name' => 'toArray',
+           'phpDoc' => 
+          \PHPStan\Dependency\ExportedNode\ExportedPhpDocNode::__set_state(array(
+             'phpDocString' => '/**
+     * @return array<string, mixed>
+     */',
+             'namespace' => 'App\\Http\\Resources',
+             'uses' => 
+            array (
+              'grievance' => 'App\\Domain\\Grievance\\Models\\Grievance',
               'request' => 'Illuminate\\Http\\Request',
               'jsonresource' => 'Illuminate\\Http\\Resources\\Json\\JsonResource',
             ),

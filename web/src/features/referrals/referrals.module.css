@@ -1,0 +1,140 @@
+.stack {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-5);
+}
+
+.note {
+  color: var(--text-muted-strong);
+  font-size: var(--fs-label);
+  line-height: 1.5;
+  max-width: 68ch;
+}
+
+.mono {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  color: var(--text-muted-strong);
+}
+
+.rowActions {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  flex-wrap: wrap;
+}
+
+.tableTools {
+  display: flex;
+  align-items: flex-end;
+  gap: var(--space-3);
+  margin-bottom: var(--space-4);
+  flex-wrap: wrap;
+}
+
+.filter {
+  min-width: 200px;
+}
+
+/* Detail layout */
+.detailGrid {
+  display: grid;
+  grid-template-columns: minmax(0, 2fr) minmax(0, 1fr);
+  gap: var(--space-5);
+  align-items: start;
+}
+@media (max-width: 1024px) {
+  .detailGrid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.dl {
+  display: grid;
+  grid-template-columns: max-content 1fr;
+  gap: var(--space-2) var(--space-5);
+  margin: 0;
+  font-size: var(--fs-ui, 14px);
+}
+.dl dt {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--text-muted-strong);
+  align-self: center;
+}
+.dl dd {
+  margin: 0;
+  color: var(--ink);
+}
+
+/* Vertical timeline of lifecycle stamps */
+.timeline {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+.timelineItem {
+  display: grid;
+  grid-template-columns: 14px 1fr;
+  gap: var(--space-3);
+  align-items: start;
+}
+.timelineDot {
+  width: 10px;
+  height: 10px;
+  margin-top: 4px;
+  border-radius: var(--radius-full);
+  background: var(--accent);
+  border: 1px solid var(--forest-2);
+}
+.timelineDotMuted {
+  background: var(--border-strong);
+  border-color: var(--border-strong);
+}
+.timelineLabel {
+  font-weight: 500;
+  color: var(--ink);
+}
+.timelineTime {
+  display: block;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: var(--text-muted-strong);
+}
+
+.sla {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+}
+
+.outcome {
+  padding: var(--space-3) var(--space-4);
+  border-radius: var(--radius-md);
+  background: var(--surface-mint);
+  color: var(--ink);
+  font-size: var(--fs-label);
+}
+
+.actionBar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+}
+
+.backLink {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-1);
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--forest);
+  margin-bottom: var(--space-3);
+}

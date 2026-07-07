@@ -820,6 +820,71 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
          'typeAliasClassName' => NULL,
          'traitData' => NULL,
       )),
+      'dfa3100f93aa99fd918546fed9178252' => 
+      \PHPStan\Analyser\IntermediaryNameScope::__set_state(array(
+         'namespace' => 'App\\Http\\Controllers\\Api\\V1\\Referral',
+         'uses' => 
+        array (
+          'invalidreferraltransitionexception' => 'App\\Domain\\Referral\\Exceptions\\InvalidReferralTransitionException',
+          'referral' => 'App\\Domain\\Referral\\Models\\Referral',
+          'referralservice' => 'App\\Domain\\Referral\\Services\\ReferralService',
+          'beneficiary' => 'App\\Domain\\Registry\\Models\\Beneficiary',
+          'controller' => 'App\\Http\\Controllers\\Controller',
+          'storereferralrequest' => 'App\\Http\\Requests\\Referral\\StoreReferralRequest',
+          'transitionreferralrequest' => 'App\\Http\\Requests\\Referral\\TransitionReferralRequest',
+          'referralresource' => 'App\\Http\\Resources\\ReferralResource',
+          'apiresponse' => 'App\\Support\\ApiResponse',
+          'jsonresponse' => 'Illuminate\\Http\\JsonResponse',
+          'request' => 'Illuminate\\Http\\Request',
+        ),
+         'className' => 'App\\Http\\Controllers\\Api\\V1\\Referral\\ReferralController',
+         'functionName' => 'withLedger',
+         'templatePhpDocNodes' => 
+        array (
+        ),
+         'parent' => 
+        \PHPStan\Analyser\IntermediaryNameScope::__set_state(array(
+           'namespace' => 'App\\Http\\Controllers\\Api\\V1\\Referral',
+           'uses' => 
+          array (
+            'invalidreferraltransitionexception' => 'App\\Domain\\Referral\\Exceptions\\InvalidReferralTransitionException',
+            'referral' => 'App\\Domain\\Referral\\Models\\Referral',
+            'referralservice' => 'App\\Domain\\Referral\\Services\\ReferralService',
+            'beneficiary' => 'App\\Domain\\Registry\\Models\\Beneficiary',
+            'controller' => 'App\\Http\\Controllers\\Controller',
+            'storereferralrequest' => 'App\\Http\\Requests\\Referral\\StoreReferralRequest',
+            'transitionreferralrequest' => 'App\\Http\\Requests\\Referral\\TransitionReferralRequest',
+            'referralresource' => 'App\\Http\\Resources\\ReferralResource',
+            'apiresponse' => 'App\\Support\\ApiResponse',
+            'jsonresponse' => 'Illuminate\\Http\\JsonResponse',
+            'request' => 'Illuminate\\Http\\Request',
+          ),
+           'className' => 'App\\Http\\Controllers\\Api\\V1\\Referral\\ReferralController',
+           'functionName' => NULL,
+           'templatePhpDocNodes' => 
+          array (
+          ),
+           'parent' => NULL,
+           'typeAliasesMap' => 
+          array (
+          ),
+           'bypassTypeAliases' => false,
+           'constUses' => 
+          array (
+          ),
+           'typeAliasClassName' => NULL,
+           'traitData' => NULL,
+        )),
+         'typeAliasesMap' => 
+        array (
+        ),
+         'bypassTypeAliases' => false,
+         'constUses' => 
+        array (
+        ),
+         'typeAliasClassName' => NULL,
+         'traitData' => NULL,
+      )),
       'a0a49def5f4b8b4200f0a5a14f7f9693' => 
       \PHPStan\Analyser\IntermediaryNameScope::__set_state(array(
          'namespace' => 'App\\Http\\Controllers\\Api\\V1\\Referral',
@@ -888,7 +953,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
     ),
     1 => 
     array (
-      '/var/www/html/app/Http/Controllers/Api/V1/Referral/ReferralController.php' => '4916dd9f9c3fd3d5d88014f3d086c16160022f814d511943656377f84c255003',
+      '/var/www/html/app/Http/Controllers/Api/V1/Referral/ReferralController.php' => 'fb08eae59c33341b099563c6e4c1fd14be5a12e4e5ed8580f855b299ec7df255',
     ),
   ),
 ));

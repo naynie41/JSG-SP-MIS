@@ -2,7 +2,7 @@
 
 // odsl-/var/www/html/app/Domain/Referral/Models/Referral.php-PHPStan\BetterReflection\Reflection\ReflectionClass-App\Domain\Referral\Models\Referral
 return \PHPStan\Cache\CacheItem::__set_state(array(
-   'variableKey' => 'v2-6.70.0.1-8.3.31-c75c3d6a23222975227fc88bf5a976082750a044708e5129b6268380babfb429',
+   'variableKey' => 'v2-6.70.0.1-8.3.31-9b9b8c6fd1f81f3ac5ddddb119ecf2982b1703dbfc3bf8242ba5cbc1ecb4ec00',
    'data' => 
   array (
     'locatedSource' => 
@@ -57,7 +57,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
     array (
     ),
     'startLine' => 48,
-    'endLine' => 137,
+    'endLine' => 158,
     'startColumn' => 1,
     'endColumn' => 1,
     'parentClassName' => 'Illuminate\\Database\\Eloquent\\Model',
@@ -118,15 +118,15 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         'type' => NULL,
         'default' => 
         array (
-          'code' => '[\'beneficiary_id\', \'from_mda_id\', \'to_mda_id\', \'need\', \'notes\', \'status\', \'outcome\', \'reason\', \'info_request\', \'info_response\', \'created_by\', \'accepted_at\', \'rejected_at\', \'info_requested_at\', \'info_responded_at\', \'started_at\', \'completed_at\', \'closed_at\']',
+          'code' => '[\'beneficiary_id\', \'from_mda_id\', \'to_mda_id\', \'need\', \'notes\', \'status\', \'escalation_level\', \'sla_breached_at\', \'outcome\', \'reason\', \'info_request\', \'info_response\', \'created_by\', \'accepted_at\', \'rejected_at\', \'info_requested_at\', \'info_responded_at\', \'started_at\', \'completed_at\', \'closed_at\']',
           'attributes' => 
           array (
             'startLine' => 57,
-            'endLine' => 76,
+            'endLine' => 78,
             'startTokenPos' => 97,
             'startFilePos' => 1807,
-            'endTokenPos' => 153,
-            'endFilePos' => 2213,
+            'endTokenPos' => 159,
+            'endFilePos' => 2268,
           ),
         ),
         'docComment' => '/**
@@ -136,7 +136,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         array (
         ),
         'startLine' => 57,
-        'endLine' => 76,
+        'endLine' => 78,
         'startColumn' => 5,
         'endColumn' => 6,
         'isPromoted' => false,
@@ -169,8 +169,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         array (
         ),
         'docComment' => NULL,
-        'startLine' => 78,
-        'endLine' => 81,
+        'startLine' => 80,
+        'endLine' => 83,
         'startColumn' => 5,
         'endColumn' => 5,
         'couldThrow' => false,
@@ -178,6 +178,98 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         'isGenerator' => false,
         'isVariadic' => false,
         'modifiers' => 18,
+        'namespace' => 'App\\Domain\\Referral\\Models',
+        'declaringClassName' => 'App\\Domain\\Referral\\Models\\Referral',
+        'implementingClassName' => 'App\\Domain\\Referral\\Models\\Referral',
+        'currentClassName' => 'App\\Domain\\Referral\\Models\\Referral',
+        'aliasName' => NULL,
+      ),
+      'authorizesDelivery' => 
+      array (
+        'name' => 'authorizesDelivery',
+        'parameters' => 
+        array (
+          'beneficiaryId' => 
+          array (
+            'name' => 'beneficiaryId',
+            'default' => NULL,
+            'type' => 
+            array (
+              'class' => 'PHPStan\\BetterReflection\\Reflection\\ReflectionNamedType',
+              'data' => 
+              array (
+                'name' => 'string',
+                'isIdentifier' => true,
+              ),
+            ),
+            'isVariadic' => false,
+            'byRef' => false,
+            'isPromoted' => false,
+            'attributes' => 
+            array (
+            ),
+            'startLine' => 91,
+            'endLine' => 91,
+            'startColumn' => 47,
+            'endColumn' => 67,
+            'parameterIndex' => 0,
+            'isOptional' => false,
+          ),
+          'mdaId' => 
+          array (
+            'name' => 'mdaId',
+            'default' => NULL,
+            'type' => 
+            array (
+              'class' => 'PHPStan\\BetterReflection\\Reflection\\ReflectionNamedType',
+              'data' => 
+              array (
+                'name' => 'string',
+                'isIdentifier' => true,
+              ),
+            ),
+            'isVariadic' => false,
+            'byRef' => false,
+            'isPromoted' => false,
+            'attributes' => 
+            array (
+            ),
+            'startLine' => 91,
+            'endLine' => 91,
+            'startColumn' => 70,
+            'endColumn' => 82,
+            'parameterIndex' => 1,
+            'isOptional' => false,
+          ),
+        ),
+        'returnsReference' => false,
+        'returnType' => 
+        array (
+          'class' => 'PHPStan\\BetterReflection\\Reflection\\ReflectionNamedType',
+          'data' => 
+          array (
+            'name' => 'bool',
+            'isIdentifier' => true,
+          ),
+        ),
+        'attributes' => 
+        array (
+        ),
+        'docComment' => '/**
+ * Whether an accepted (or in-progress) referral currently authorizes the given
+ * MDA to serve/deliver to the beneficiary (PRD FR-REF-02, FR-BEN-06). This is
+ * the referral\'s own authorization — SEPARATE from a Service Request grant; the
+ * owner MDA already consented by referring, so ownership is never involved.
+ */',
+        'startLine' => 91,
+        'endLine' => 99,
+        'startColumn' => 5,
+        'endColumn' => 5,
+        'couldThrow' => false,
+        'isClosure' => false,
+        'isGenerator' => false,
+        'isVariadic' => false,
+        'modifiers' => 17,
         'namespace' => 'App\\Domain\\Referral\\Models',
         'declaringClassName' => 'App\\Domain\\Referral\\Models\\Referral',
         'implementingClassName' => 'App\\Domain\\Referral\\Models\\Referral',
@@ -206,8 +298,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         'docComment' => '/**
  * @return array<string, string>
  */',
-        'startLine' => 86,
-        'endLine' => 98,
+        'startLine' => 104,
+        'endLine' => 118,
         'startColumn' => 5,
         'endColumn' => 5,
         'couldThrow' => false,
@@ -245,8 +337,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
  *
  * @return list<string>
  */',
-        'startLine' => 105,
-        'endLine' => 112,
+        'startLine' => 125,
+        'endLine' => 133,
         'startColumn' => 5,
         'endColumn' => 5,
         'couldThrow' => false,
@@ -282,8 +374,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         'docComment' => '/**
  * @return BelongsTo<Beneficiary, $this>
  */',
-        'startLine' => 117,
-        'endLine' => 120,
+        'startLine' => 138,
+        'endLine' => 141,
         'startColumn' => 5,
         'endColumn' => 5,
         'couldThrow' => false,
@@ -319,8 +411,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         'docComment' => '/**
  * @return BelongsTo<Mda, $this>
  */',
-        'startLine' => 125,
-        'endLine' => 128,
+        'startLine' => 146,
+        'endLine' => 149,
         'startColumn' => 5,
         'endColumn' => 5,
         'couldThrow' => false,
@@ -356,8 +448,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         'docComment' => '/**
  * @return BelongsTo<Mda, $this>
  */',
-        'startLine' => 133,
-        'endLine' => 136,
+        'startLine' => 154,
+        'endLine' => 157,
         'startColumn' => 5,
         'endColumn' => 5,
         'couldThrow' => false,

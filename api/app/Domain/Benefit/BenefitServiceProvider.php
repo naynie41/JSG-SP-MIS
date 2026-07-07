@@ -40,11 +40,13 @@ class BenefitServiceProvider extends ServiceProvider
             new BiometricVerifier,  // stub — unavailable until biometric/NIMC access is provided
         ]));
 
-        // Non-owner delivery authorization (FR-BEN-06): an accepted Service Request
-        // now; add a ReferralAuthorizer here in Phase 5 — the recorder is unchanged.
-        $this->app->singleton(DeliveryAuthorization::class, fn ($app): DeliveryAuthorization => new DeliveryAuthorization([
-            $app->make(ServiceRequestAuthorizer::class),
-        ]));
+        // Non-owner delivery authorization (FR-BEN-06). Each domain registers its
+        // own authorizer under the shared tag — a Service Request here, a Referral
+        // from the Referral domain — so the recorder never changes.
+        $this->app->tag([ServiceRequestAuthorizer::class], DeliveryAuthorization::TAG);
+        $this->app->singleton(DeliveryAuthorization::class, fn ($app): DeliveryAuthorization => new DeliveryAuthorization(
+            $app->tagged(DeliveryAuthorization::TAG),
+        ));
     }
 
     public function boot(): void

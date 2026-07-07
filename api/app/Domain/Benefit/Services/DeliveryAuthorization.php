@@ -16,6 +16,9 @@ use App\Domain\Registry\Models\Beneficiary;
  */
 class DeliveryAuthorization
 {
+    /** Container tag each domain registers its authorizer under. */
+    public const TAG = 'benefit.delivery_authorizers';
+
     /**
      * @param  iterable<DeliveryAuthorizer>  $authorizers
      */

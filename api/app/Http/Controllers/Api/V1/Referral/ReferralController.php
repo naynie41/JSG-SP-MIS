@@ -51,7 +51,7 @@ class ReferralController extends Controller
         $model = Referral::query()->findOrFail($referral);
         $this->authorize('view', $model);
 
-        return ApiResponse::success((new ReferralResource($model))->resolve());
+        return ApiResponse::success($this->withLedger($model));
     }
 
     /** Create a referral to another MDA (originating MDA). */
@@ -99,7 +99,17 @@ class ReferralController extends Controller
 
     public function complete(TransitionReferralRequest $request, string $referral): JsonResponse
     {
-        return $this->receiving($request, $referral, fn (Referral $r) => $this->referrals->complete($r, $request->user(), $request->input('outcome')));
+        $model = Referral::query()->findOrFail($referral);
+        $this->authorize('receive', $model);
+
+        try {
+            $this->referrals->complete($model, $request->user(), $request->input('outcome'));
+        } catch (InvalidReferralTransitionException $e) {
+            return ApiResponse::error('INVALID_TRANSITION', $e->getMessage(), [], 422);
+        }
+
+        // The completed referral reconciles with the ledger (FR-REF-03).
+        return ApiResponse::success($this->withLedger($model->fresh()));
     }
 
     public function close(TransitionReferralRequest $request, string $referral): JsonResponse
@@ -126,6 +136,19 @@ class ReferralController extends Controller
         $this->authorize('receive', $model);
 
         return $this->run(fn () => $action($model));
+    }
+
+    /**
+     * The referral plus its ledger reconciliation (FR-REF-03).
+     *
+     * @return array<string, mixed>
+     */
+    private function withLedger(Referral $referral): array
+    {
+        return [
+            ...(new ReferralResource($referral))->resolve(),
+            'ledger' => $this->referrals->reconciliation($referral),
+        ];
     }
 
     /**

@@ -30,6 +30,8 @@ class ReferralResource extends JsonResource
             'reason' => $this->reason,
             'info_request' => $this->info_request,
             'info_response' => $this->info_response,
+            'escalation_level' => $this->escalation_level,
+            'sla_breached_at' => $this->sla_breached_at?->toIso8601String(),
             'timeline' => [
                 'created_at' => $this->created_at?->toIso8601String(),
                 'accepted_at' => $this->accepted_at?->toIso8601String(),

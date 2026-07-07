@@ -20,6 +20,8 @@ class DatabaseSeeder extends Seeder
             RolesAndPermissionsSeeder::class,
             MatchingConfigSeeder::class,
             DoubleDippingRuleSeeder::class,
+            ReferralSlaSeeder::class,
+            GrievanceSlaSeeder::class,
             SampleMdaSeeder::class,
             DevUserSeeder::class,
             RegistrySampleSeeder::class,

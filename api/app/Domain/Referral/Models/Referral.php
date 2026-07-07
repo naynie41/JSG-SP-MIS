@@ -61,6 +61,8 @@ class Referral extends Model
         'need',
         'notes',
         'status',
+        'escalation_level',
+        'sla_breached_at',
         'outcome',
         'reason',
         'info_request',
@@ -81,12 +83,30 @@ class Referral extends Model
     }
 
     /**
+     * Whether an accepted (or in-progress) referral currently authorizes the given
+     * MDA to serve/deliver to the beneficiary (PRD FR-REF-02, FR-BEN-06). This is
+     * the referral's own authorization — SEPARATE from a Service Request grant; the
+     * owner MDA already consented by referring, so ownership is never involved.
+     */
+    public static function authorizesDelivery(string $beneficiaryId, string $mdaId): bool
+    {
+        return static::query()
+            ->withoutGlobalScope(ReferralScope::class)
+            ->where('to_mda_id', $mdaId)
+            ->where('beneficiary_id', $beneficiaryId)
+            ->whereIn('status', [ReferralStatus::Accepted->value, ReferralStatus::InProgress->value])
+            ->exists();
+    }
+
+    /**
      * @return array<string, string>
      */
     protected function casts(): array
     {
         return [
             'status' => ReferralStatus::class,
+            'escalation_level' => 'integer',
+            'sla_breached_at' => 'datetime',
             'accepted_at' => 'datetime',
             'rejected_at' => 'datetime',
             'info_requested_at' => 'datetime',
@@ -105,7 +125,8 @@ class Referral extends Model
     protected function auditExcluded(): array
     {
         return [
-            'status', 'outcome', 'reason', 'info_request', 'info_response',
+            'status', 'escalation_level', 'sla_breached_at',
+            'outcome', 'reason', 'info_request', 'info_response',
             'accepted_at', 'rejected_at', 'info_requested_at', 'info_responded_at',
             'started_at', 'completed_at', 'closed_at',
         ];

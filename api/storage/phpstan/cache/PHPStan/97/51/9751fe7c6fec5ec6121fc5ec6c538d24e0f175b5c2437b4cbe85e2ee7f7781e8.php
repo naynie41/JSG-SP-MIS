@@ -2,7 +2,7 @@
 
 // odsl-/var/www/html/app/Domain/Benefit/Services/DeliveryAuthorization.php-PHPStan\BetterReflection\Reflection\ReflectionClass-App\Domain\Benefit\Services\DeliveryAuthorization
 return \PHPStan\Cache\CacheItem::__set_state(array(
-   'variableKey' => 'v2-6.70.0.1-8.3.31-8eb03e33e7909bc830b007d793e9258991bb02f21fde26c42b51aeb910cab1b0',
+   'variableKey' => 'v2-6.70.0.1-8.3.31-e1d6a3eb3bb6e40998dd97e6d38a771e94074bdff414c38a8331ebd6f21ad4e2',
    'data' => 
   array (
     'locatedSource' => 
@@ -33,7 +33,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
     array (
     ),
     'startLine' => 17,
-    'endLine' => 43,
+    'endLine' => 46,
     'startColumn' => 1,
     'endColumn' => 1,
     'parentClassName' => NULL,
@@ -45,6 +45,35 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
     ),
     'immediateConstants' => 
     array (
+      'TAG' => 
+      array (
+        'declaringClassName' => 'App\\Domain\\Benefit\\Services\\DeliveryAuthorization',
+        'implementingClassName' => 'App\\Domain\\Benefit\\Services\\DeliveryAuthorization',
+        'name' => 'TAG',
+        'modifiers' => 1,
+        'type' => NULL,
+        'value' => 
+        array (
+          'code' => '\'benefit.delivery_authorizers\'',
+          'attributes' => 
+          array (
+            'startLine' => 20,
+            'endLine' => 20,
+            'startTokenPos' => 43,
+            'startFilePos' => 699,
+            'endTokenPos' => 43,
+            'endFilePos' => 728,
+          ),
+        ),
+        'docComment' => '/** Container tag each domain registers its authorizer under. */',
+        'attributes' => 
+        array (
+        ),
+        'startLine' => 20,
+        'endLine' => 20,
+        'startColumn' => 5,
+        'endColumn' => 54,
+      ),
     ),
     'immediateProperties' => 
     array (
@@ -68,8 +97,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         'attributes' => 
         array (
         ),
-        'startLine' => 22,
-        'endLine' => 22,
+        'startLine' => 25,
+        'endLine' => 25,
         'startColumn' => 33,
         'endColumn' => 70,
         'isPromoted' => true,
@@ -106,8 +135,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             'attributes' => 
             array (
             ),
-            'startLine' => 22,
-            'endLine' => 22,
+            'startLine' => 25,
+            'endLine' => 25,
             'startColumn' => 33,
             'endColumn' => 70,
             'parameterIndex' => 0,
@@ -122,8 +151,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         'docComment' => '/**
  * @param  iterable<DeliveryAuthorizer>  $authorizers
  */',
-        'startLine' => 22,
-        'endLine' => 22,
+        'startLine' => 25,
+        'endLine' => 25,
         'startColumn' => 5,
         'endColumn' => 74,
         'couldThrow' => false,
@@ -161,8 +190,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             'attributes' => 
             array (
             ),
-            'startLine' => 29,
-            'endLine' => 29,
+            'startLine' => 32,
+            'endLine' => 32,
             'startColumn' => 30,
             'endColumn' => 52,
             'parameterIndex' => 0,
@@ -187,8 +216,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             'attributes' => 
             array (
             ),
-            'startLine' => 29,
-            'endLine' => 29,
+            'startLine' => 32,
+            'endLine' => 32,
             'startColumn' => 55,
             'endColumn' => 78,
             'parameterIndex' => 1,
@@ -232,8 +261,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
  * unauthorized. Returns \'owner\' for the owning MDA, otherwise the authorizing
  * type\'s `source()` (e.g. \'service_request\', \'referral\').
  */',
-        'startLine' => 29,
-        'endLine' => 42,
+        'startLine' => 32,
+        'endLine' => 45,
         'startColumn' => 5,
         'endColumn' => 5,
         'couldThrow' => false,

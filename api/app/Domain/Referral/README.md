@@ -31,6 +31,26 @@ entry (`referral.accepted`, `referral.rejected`, …). Invalid transitions →
 `originate` (from_mda) for responding; wrong party → **403**. `reject` requires a
 `reason`.
 
+## Acceptance authorizes delivery (FR-REF-02/03, FR-BEN-06)
+
+An **accepted** (or in-progress) referral *is* the authorization for the receiving
+MDA to serve the beneficiary — the owner already consented by referring, so **no
+Service Request is created or needed**, and this stays **distinct** from the
+request-to-serve path:
+
+- `Referral::authorizesDelivery(beneficiaryId, mdaId)` is the single check. It feeds
+  **both** Phase 4 gates: the enrollment gate (`EnrollmentService::canServe` — a
+  separate OR-branch from the Service Request grant) and the benefit-record gate
+  (`Authorization/ReferralAuthorizer`, a `DeliveryAuthorizer` registered under the
+  shared `DeliveryAuthorization` tag). The recorder is unchanged; delivery is
+  authorized with basis `referral` (audited `benefit.delivery_authorized`).
+- **Ownership never moves** — the referral authorizes serving only.
+- **Ledger reconciliation** (`ReferralService::reconciliation`): the benefits the
+  receiving MDA delivered to the referred beneficiary since acceptance — surfaced on
+  `GET /referrals/{id}` and the `complete` response as a `ledger` block
+  (`benefit_count`, `benefit_value_total`, `benefit_ids`). Recording an `outcome`
+  moves the referral to Completed; the ledger link is the concrete FR-REF-03 outcome.
+
 ## Scoping & audit
 
 - **Two-party MDA scope** (`ReferralScope`): a referral is visible when the user's
@@ -38,6 +58,22 @@ entry (`referral.accepted`, `referral.rejected`, …). Invalid transitions →
   parties see it; oversight (`cross-mda.view`) sees all; unrelated MDAs get 404.
 - **Auditable**: `referral.created` on create; each transition audited explicitly
   with before/after status, actor, and timestamp.
+
+## SLAs + notifications (FR-REF-04/05)
+
+- **Admin-editable SLA windows** — `referral_sla_policies` (one `hours` window per
+  status), seeded from `config/sla.php` and editable via `GET/PUT
+  /referral-sla-policies/{status}` (gated by `referral-sla.edit`, audited). Absent
+  row = no SLA for that status.
+- **Scheduled sweep** — `Jobs/EscalateOverdueReferrals` runs **hourly** (wired in
+  `bootstrap/app.php` `withSchedule`). For each active referral it measures time in
+  the current status against its window; when overdue it bumps `escalation_level`
+  (one tier per elapsed window, capped at the `config('sla.referral.escalation_chain')`
+  length), stamps `sla_breached_at`, audits `referral.sla_breached`, and dispatches
+  `ReferralSlaBreached`. It **never changes status — no auto-close**.
+- **Notifications** (Phase 5.1) — `ReferralStatusChanged` (on create + every
+  transition) notifies **both** MDAs' referral staff; `ReferralSlaBreached` notifies
+  both MDAs **plus** the escalation-tier role for that level. In-app + queued email.
 
 ## Permissions (RBAC)
 

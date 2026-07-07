@@ -9,6 +9,7 @@ use App\Domain\Access\Scopes\MdaScope;
 use App\Domain\Programme\Enums\EnrollmentStatus;
 use App\Domain\Programme\Models\Enrollment;
 use App\Domain\Programme\Models\Programme;
+use App\Domain\Referral\Models\Referral;
 use App\Domain\Registry\Models\Beneficiary;
 use App\Domain\Registry\Models\Household;
 use App\Domain\Registry\Services\ServiceRequestService;
@@ -28,8 +29,9 @@ class EnrollmentService
     /**
      * Whether the acting user's MDA may enroll (serve) this target: it owns the
      * target, holds a cross-MDA grant covering the owner, or — for a beneficiary —
-     * holds an active read/serve grant opened by an ACCEPTED Service Request
-     * (§12, FR-OWN-06/07). Serving a non-owned beneficiary requires that grant.
+     * holds one of two DISTINCT authorizations: an active read/serve grant from an
+     * accepted Service Request (§12, FR-OWN-06/07), OR an accepted Referral to it
+     * (FR-REF-02, FR-BEN-06). Either authorizes serving; neither moves ownership.
      */
     public function canServe(User $actor, Beneficiary|Household $target): bool
     {
@@ -38,7 +40,8 @@ class EnrollmentService
         }
 
         if ($target instanceof Beneficiary && $actor->mda_id !== null) {
-            return ServiceRequestService::hasActiveGrant($target->id, $actor->mda_id);
+            return ServiceRequestService::hasActiveGrant($target->id, $actor->mda_id)
+                || Referral::authorizesDelivery($target->id, $actor->mda_id);
         }
 
         return false;

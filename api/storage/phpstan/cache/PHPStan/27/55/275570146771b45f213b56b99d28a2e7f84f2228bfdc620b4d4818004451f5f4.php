@@ -14,7 +14,10 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         array (
           'user' => 'App\\Domain\\Access\\Models\\User',
           'auditlogger' => 'App\\Domain\\Audit\\Services\\AuditLogger',
+          'benefitstatus' => 'App\\Domain\\Benefit\\Enums\\BenefitStatus',
+          'benefit' => 'App\\Domain\\Benefit\\Models\\Benefit',
           'referralstatus' => 'App\\Domain\\Referral\\Enums\\ReferralStatus',
+          'referralstatuschanged' => 'App\\Domain\\Referral\\Events\\ReferralStatusChanged',
           'invalidreferraltransitionexception' => 'App\\Domain\\Referral\\Exceptions\\InvalidReferralTransitionException',
           'referral' => 'App\\Domain\\Referral\\Models\\Referral',
           'beneficiary' => 'App\\Domain\\Registry\\Models\\Beneficiary',
@@ -43,7 +46,10 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         array (
           'user' => 'App\\Domain\\Access\\Models\\User',
           'auditlogger' => 'App\\Domain\\Audit\\Services\\AuditLogger',
+          'benefitstatus' => 'App\\Domain\\Benefit\\Enums\\BenefitStatus',
+          'benefit' => 'App\\Domain\\Benefit\\Models\\Benefit',
           'referralstatus' => 'App\\Domain\\Referral\\Enums\\ReferralStatus',
+          'referralstatuschanged' => 'App\\Domain\\Referral\\Events\\ReferralStatusChanged',
           'invalidreferraltransitionexception' => 'App\\Domain\\Referral\\Exceptions\\InvalidReferralTransitionException',
           'referral' => 'App\\Domain\\Referral\\Models\\Referral',
           'beneficiary' => 'App\\Domain\\Registry\\Models\\Beneficiary',
@@ -61,7 +67,10 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
           array (
             'user' => 'App\\Domain\\Access\\Models\\User',
             'auditlogger' => 'App\\Domain\\Audit\\Services\\AuditLogger',
+            'benefitstatus' => 'App\\Domain\\Benefit\\Enums\\BenefitStatus',
+            'benefit' => 'App\\Domain\\Benefit\\Models\\Benefit',
             'referralstatus' => 'App\\Domain\\Referral\\Enums\\ReferralStatus',
+            'referralstatuschanged' => 'App\\Domain\\Referral\\Events\\ReferralStatusChanged',
             'invalidreferraltransitionexception' => 'App\\Domain\\Referral\\Exceptions\\InvalidReferralTransitionException',
             'referral' => 'App\\Domain\\Referral\\Models\\Referral',
             'beneficiary' => 'App\\Domain\\Registry\\Models\\Beneficiary',
@@ -100,7 +109,10 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         array (
           'user' => 'App\\Domain\\Access\\Models\\User',
           'auditlogger' => 'App\\Domain\\Audit\\Services\\AuditLogger',
+          'benefitstatus' => 'App\\Domain\\Benefit\\Enums\\BenefitStatus',
+          'benefit' => 'App\\Domain\\Benefit\\Models\\Benefit',
           'referralstatus' => 'App\\Domain\\Referral\\Enums\\ReferralStatus',
+          'referralstatuschanged' => 'App\\Domain\\Referral\\Events\\ReferralStatusChanged',
           'invalidreferraltransitionexception' => 'App\\Domain\\Referral\\Exceptions\\InvalidReferralTransitionException',
           'referral' => 'App\\Domain\\Referral\\Models\\Referral',
           'beneficiary' => 'App\\Domain\\Registry\\Models\\Beneficiary',
@@ -118,7 +130,10 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
           array (
             'user' => 'App\\Domain\\Access\\Models\\User',
             'auditlogger' => 'App\\Domain\\Audit\\Services\\AuditLogger',
+            'benefitstatus' => 'App\\Domain\\Benefit\\Enums\\BenefitStatus',
+            'benefit' => 'App\\Domain\\Benefit\\Models\\Benefit',
             'referralstatus' => 'App\\Domain\\Referral\\Enums\\ReferralStatus',
+            'referralstatuschanged' => 'App\\Domain\\Referral\\Events\\ReferralStatusChanged',
             'invalidreferraltransitionexception' => 'App\\Domain\\Referral\\Exceptions\\InvalidReferralTransitionException',
             'referral' => 'App\\Domain\\Referral\\Models\\Referral',
             'beneficiary' => 'App\\Domain\\Registry\\Models\\Beneficiary',
@@ -157,7 +172,10 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         array (
           'user' => 'App\\Domain\\Access\\Models\\User',
           'auditlogger' => 'App\\Domain\\Audit\\Services\\AuditLogger',
+          'benefitstatus' => 'App\\Domain\\Benefit\\Enums\\BenefitStatus',
+          'benefit' => 'App\\Domain\\Benefit\\Models\\Benefit',
           'referralstatus' => 'App\\Domain\\Referral\\Enums\\ReferralStatus',
+          'referralstatuschanged' => 'App\\Domain\\Referral\\Events\\ReferralStatusChanged',
           'invalidreferraltransitionexception' => 'App\\Domain\\Referral\\Exceptions\\InvalidReferralTransitionException',
           'referral' => 'App\\Domain\\Referral\\Models\\Referral',
           'beneficiary' => 'App\\Domain\\Registry\\Models\\Beneficiary',
@@ -175,7 +193,10 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
           array (
             'user' => 'App\\Domain\\Access\\Models\\User',
             'auditlogger' => 'App\\Domain\\Audit\\Services\\AuditLogger',
+            'benefitstatus' => 'App\\Domain\\Benefit\\Enums\\BenefitStatus',
+            'benefit' => 'App\\Domain\\Benefit\\Models\\Benefit',
             'referralstatus' => 'App\\Domain\\Referral\\Enums\\ReferralStatus',
+            'referralstatuschanged' => 'App\\Domain\\Referral\\Events\\ReferralStatusChanged',
             'invalidreferraltransitionexception' => 'App\\Domain\\Referral\\Exceptions\\InvalidReferralTransitionException',
             'referral' => 'App\\Domain\\Referral\\Models\\Referral',
             'beneficiary' => 'App\\Domain\\Registry\\Models\\Beneficiary',
@@ -214,7 +235,10 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         array (
           'user' => 'App\\Domain\\Access\\Models\\User',
           'auditlogger' => 'App\\Domain\\Audit\\Services\\AuditLogger',
+          'benefitstatus' => 'App\\Domain\\Benefit\\Enums\\BenefitStatus',
+          'benefit' => 'App\\Domain\\Benefit\\Models\\Benefit',
           'referralstatus' => 'App\\Domain\\Referral\\Enums\\ReferralStatus',
+          'referralstatuschanged' => 'App\\Domain\\Referral\\Events\\ReferralStatusChanged',
           'invalidreferraltransitionexception' => 'App\\Domain\\Referral\\Exceptions\\InvalidReferralTransitionException',
           'referral' => 'App\\Domain\\Referral\\Models\\Referral',
           'beneficiary' => 'App\\Domain\\Registry\\Models\\Beneficiary',
@@ -232,7 +256,10 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
           array (
             'user' => 'App\\Domain\\Access\\Models\\User',
             'auditlogger' => 'App\\Domain\\Audit\\Services\\AuditLogger',
+            'benefitstatus' => 'App\\Domain\\Benefit\\Enums\\BenefitStatus',
+            'benefit' => 'App\\Domain\\Benefit\\Models\\Benefit',
             'referralstatus' => 'App\\Domain\\Referral\\Enums\\ReferralStatus',
+            'referralstatuschanged' => 'App\\Domain\\Referral\\Events\\ReferralStatusChanged',
             'invalidreferraltransitionexception' => 'App\\Domain\\Referral\\Exceptions\\InvalidReferralTransitionException',
             'referral' => 'App\\Domain\\Referral\\Models\\Referral',
             'beneficiary' => 'App\\Domain\\Registry\\Models\\Beneficiary',
@@ -271,7 +298,10 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         array (
           'user' => 'App\\Domain\\Access\\Models\\User',
           'auditlogger' => 'App\\Domain\\Audit\\Services\\AuditLogger',
+          'benefitstatus' => 'App\\Domain\\Benefit\\Enums\\BenefitStatus',
+          'benefit' => 'App\\Domain\\Benefit\\Models\\Benefit',
           'referralstatus' => 'App\\Domain\\Referral\\Enums\\ReferralStatus',
+          'referralstatuschanged' => 'App\\Domain\\Referral\\Events\\ReferralStatusChanged',
           'invalidreferraltransitionexception' => 'App\\Domain\\Referral\\Exceptions\\InvalidReferralTransitionException',
           'referral' => 'App\\Domain\\Referral\\Models\\Referral',
           'beneficiary' => 'App\\Domain\\Registry\\Models\\Beneficiary',
@@ -289,7 +319,10 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
           array (
             'user' => 'App\\Domain\\Access\\Models\\User',
             'auditlogger' => 'App\\Domain\\Audit\\Services\\AuditLogger',
+            'benefitstatus' => 'App\\Domain\\Benefit\\Enums\\BenefitStatus',
+            'benefit' => 'App\\Domain\\Benefit\\Models\\Benefit',
             'referralstatus' => 'App\\Domain\\Referral\\Enums\\ReferralStatus',
+            'referralstatuschanged' => 'App\\Domain\\Referral\\Events\\ReferralStatusChanged',
             'invalidreferraltransitionexception' => 'App\\Domain\\Referral\\Exceptions\\InvalidReferralTransitionException',
             'referral' => 'App\\Domain\\Referral\\Models\\Referral',
             'beneficiary' => 'App\\Domain\\Registry\\Models\\Beneficiary',
@@ -328,7 +361,10 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         array (
           'user' => 'App\\Domain\\Access\\Models\\User',
           'auditlogger' => 'App\\Domain\\Audit\\Services\\AuditLogger',
+          'benefitstatus' => 'App\\Domain\\Benefit\\Enums\\BenefitStatus',
+          'benefit' => 'App\\Domain\\Benefit\\Models\\Benefit',
           'referralstatus' => 'App\\Domain\\Referral\\Enums\\ReferralStatus',
+          'referralstatuschanged' => 'App\\Domain\\Referral\\Events\\ReferralStatusChanged',
           'invalidreferraltransitionexception' => 'App\\Domain\\Referral\\Exceptions\\InvalidReferralTransitionException',
           'referral' => 'App\\Domain\\Referral\\Models\\Referral',
           'beneficiary' => 'App\\Domain\\Registry\\Models\\Beneficiary',
@@ -346,7 +382,10 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
           array (
             'user' => 'App\\Domain\\Access\\Models\\User',
             'auditlogger' => 'App\\Domain\\Audit\\Services\\AuditLogger',
+            'benefitstatus' => 'App\\Domain\\Benefit\\Enums\\BenefitStatus',
+            'benefit' => 'App\\Domain\\Benefit\\Models\\Benefit',
             'referralstatus' => 'App\\Domain\\Referral\\Enums\\ReferralStatus',
+            'referralstatuschanged' => 'App\\Domain\\Referral\\Events\\ReferralStatusChanged',
             'invalidreferraltransitionexception' => 'App\\Domain\\Referral\\Exceptions\\InvalidReferralTransitionException',
             'referral' => 'App\\Domain\\Referral\\Models\\Referral',
             'beneficiary' => 'App\\Domain\\Registry\\Models\\Beneficiary',
@@ -385,7 +424,10 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         array (
           'user' => 'App\\Domain\\Access\\Models\\User',
           'auditlogger' => 'App\\Domain\\Audit\\Services\\AuditLogger',
+          'benefitstatus' => 'App\\Domain\\Benefit\\Enums\\BenefitStatus',
+          'benefit' => 'App\\Domain\\Benefit\\Models\\Benefit',
           'referralstatus' => 'App\\Domain\\Referral\\Enums\\ReferralStatus',
+          'referralstatuschanged' => 'App\\Domain\\Referral\\Events\\ReferralStatusChanged',
           'invalidreferraltransitionexception' => 'App\\Domain\\Referral\\Exceptions\\InvalidReferralTransitionException',
           'referral' => 'App\\Domain\\Referral\\Models\\Referral',
           'beneficiary' => 'App\\Domain\\Registry\\Models\\Beneficiary',
@@ -403,7 +445,10 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
           array (
             'user' => 'App\\Domain\\Access\\Models\\User',
             'auditlogger' => 'App\\Domain\\Audit\\Services\\AuditLogger',
+            'benefitstatus' => 'App\\Domain\\Benefit\\Enums\\BenefitStatus',
+            'benefit' => 'App\\Domain\\Benefit\\Models\\Benefit',
             'referralstatus' => 'App\\Domain\\Referral\\Enums\\ReferralStatus',
+            'referralstatuschanged' => 'App\\Domain\\Referral\\Events\\ReferralStatusChanged',
             'invalidreferraltransitionexception' => 'App\\Domain\\Referral\\Exceptions\\InvalidReferralTransitionException',
             'referral' => 'App\\Domain\\Referral\\Models\\Referral',
             'beneficiary' => 'App\\Domain\\Registry\\Models\\Beneficiary',
@@ -442,7 +487,10 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         array (
           'user' => 'App\\Domain\\Access\\Models\\User',
           'auditlogger' => 'App\\Domain\\Audit\\Services\\AuditLogger',
+          'benefitstatus' => 'App\\Domain\\Benefit\\Enums\\BenefitStatus',
+          'benefit' => 'App\\Domain\\Benefit\\Models\\Benefit',
           'referralstatus' => 'App\\Domain\\Referral\\Enums\\ReferralStatus',
+          'referralstatuschanged' => 'App\\Domain\\Referral\\Events\\ReferralStatusChanged',
           'invalidreferraltransitionexception' => 'App\\Domain\\Referral\\Exceptions\\InvalidReferralTransitionException',
           'referral' => 'App\\Domain\\Referral\\Models\\Referral',
           'beneficiary' => 'App\\Domain\\Registry\\Models\\Beneficiary',
@@ -460,7 +508,10 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
           array (
             'user' => 'App\\Domain\\Access\\Models\\User',
             'auditlogger' => 'App\\Domain\\Audit\\Services\\AuditLogger',
+            'benefitstatus' => 'App\\Domain\\Benefit\\Enums\\BenefitStatus',
+            'benefit' => 'App\\Domain\\Benefit\\Models\\Benefit',
             'referralstatus' => 'App\\Domain\\Referral\\Enums\\ReferralStatus',
+            'referralstatuschanged' => 'App\\Domain\\Referral\\Events\\ReferralStatusChanged',
             'invalidreferraltransitionexception' => 'App\\Domain\\Referral\\Exceptions\\InvalidReferralTransitionException',
             'referral' => 'App\\Domain\\Referral\\Models\\Referral',
             'beneficiary' => 'App\\Domain\\Registry\\Models\\Beneficiary',
@@ -499,7 +550,10 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         array (
           'user' => 'App\\Domain\\Access\\Models\\User',
           'auditlogger' => 'App\\Domain\\Audit\\Services\\AuditLogger',
+          'benefitstatus' => 'App\\Domain\\Benefit\\Enums\\BenefitStatus',
+          'benefit' => 'App\\Domain\\Benefit\\Models\\Benefit',
           'referralstatus' => 'App\\Domain\\Referral\\Enums\\ReferralStatus',
+          'referralstatuschanged' => 'App\\Domain\\Referral\\Events\\ReferralStatusChanged',
           'invalidreferraltransitionexception' => 'App\\Domain\\Referral\\Exceptions\\InvalidReferralTransitionException',
           'referral' => 'App\\Domain\\Referral\\Models\\Referral',
           'beneficiary' => 'App\\Domain\\Registry\\Models\\Beneficiary',
@@ -517,7 +571,73 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
           array (
             'user' => 'App\\Domain\\Access\\Models\\User',
             'auditlogger' => 'App\\Domain\\Audit\\Services\\AuditLogger',
+            'benefitstatus' => 'App\\Domain\\Benefit\\Enums\\BenefitStatus',
+            'benefit' => 'App\\Domain\\Benefit\\Models\\Benefit',
             'referralstatus' => 'App\\Domain\\Referral\\Enums\\ReferralStatus',
+            'referralstatuschanged' => 'App\\Domain\\Referral\\Events\\ReferralStatusChanged',
+            'invalidreferraltransitionexception' => 'App\\Domain\\Referral\\Exceptions\\InvalidReferralTransitionException',
+            'referral' => 'App\\Domain\\Referral\\Models\\Referral',
+            'beneficiary' => 'App\\Domain\\Registry\\Models\\Beneficiary',
+            'carbon' => 'Illuminate\\Support\\Carbon',
+          ),
+           'className' => 'App\\Domain\\Referral\\Services\\ReferralService',
+           'functionName' => NULL,
+           'templatePhpDocNodes' => 
+          array (
+          ),
+           'parent' => NULL,
+           'typeAliasesMap' => 
+          array (
+          ),
+           'bypassTypeAliases' => false,
+           'constUses' => 
+          array (
+          ),
+           'typeAliasClassName' => NULL,
+           'traitData' => NULL,
+        )),
+         'typeAliasesMap' => 
+        array (
+        ),
+         'bypassTypeAliases' => false,
+         'constUses' => 
+        array (
+        ),
+         'typeAliasClassName' => NULL,
+         'traitData' => NULL,
+      )),
+      'bf72e4f2d01d1ee6f49d0c7dfa130b9e' => 
+      \PHPStan\Analyser\IntermediaryNameScope::__set_state(array(
+         'namespace' => 'App\\Domain\\Referral\\Services',
+         'uses' => 
+        array (
+          'user' => 'App\\Domain\\Access\\Models\\User',
+          'auditlogger' => 'App\\Domain\\Audit\\Services\\AuditLogger',
+          'benefitstatus' => 'App\\Domain\\Benefit\\Enums\\BenefitStatus',
+          'benefit' => 'App\\Domain\\Benefit\\Models\\Benefit',
+          'referralstatus' => 'App\\Domain\\Referral\\Enums\\ReferralStatus',
+          'referralstatuschanged' => 'App\\Domain\\Referral\\Events\\ReferralStatusChanged',
+          'invalidreferraltransitionexception' => 'App\\Domain\\Referral\\Exceptions\\InvalidReferralTransitionException',
+          'referral' => 'App\\Domain\\Referral\\Models\\Referral',
+          'beneficiary' => 'App\\Domain\\Registry\\Models\\Beneficiary',
+          'carbon' => 'Illuminate\\Support\\Carbon',
+        ),
+         'className' => 'App\\Domain\\Referral\\Services\\ReferralService',
+         'functionName' => 'reconciliation',
+         'templatePhpDocNodes' => 
+        array (
+        ),
+         'parent' => 
+        \PHPStan\Analyser\IntermediaryNameScope::__set_state(array(
+           'namespace' => 'App\\Domain\\Referral\\Services',
+           'uses' => 
+          array (
+            'user' => 'App\\Domain\\Access\\Models\\User',
+            'auditlogger' => 'App\\Domain\\Audit\\Services\\AuditLogger',
+            'benefitstatus' => 'App\\Domain\\Benefit\\Enums\\BenefitStatus',
+            'benefit' => 'App\\Domain\\Benefit\\Models\\Benefit',
+            'referralstatus' => 'App\\Domain\\Referral\\Enums\\ReferralStatus',
+            'referralstatuschanged' => 'App\\Domain\\Referral\\Events\\ReferralStatusChanged',
             'invalidreferraltransitionexception' => 'App\\Domain\\Referral\\Exceptions\\InvalidReferralTransitionException',
             'referral' => 'App\\Domain\\Referral\\Models\\Referral',
             'beneficiary' => 'App\\Domain\\Registry\\Models\\Beneficiary',
@@ -556,7 +676,10 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         array (
           'user' => 'App\\Domain\\Access\\Models\\User',
           'auditlogger' => 'App\\Domain\\Audit\\Services\\AuditLogger',
+          'benefitstatus' => 'App\\Domain\\Benefit\\Enums\\BenefitStatus',
+          'benefit' => 'App\\Domain\\Benefit\\Models\\Benefit',
           'referralstatus' => 'App\\Domain\\Referral\\Enums\\ReferralStatus',
+          'referralstatuschanged' => 'App\\Domain\\Referral\\Events\\ReferralStatusChanged',
           'invalidreferraltransitionexception' => 'App\\Domain\\Referral\\Exceptions\\InvalidReferralTransitionException',
           'referral' => 'App\\Domain\\Referral\\Models\\Referral',
           'beneficiary' => 'App\\Domain\\Registry\\Models\\Beneficiary',
@@ -574,7 +697,10 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
           array (
             'user' => 'App\\Domain\\Access\\Models\\User',
             'auditlogger' => 'App\\Domain\\Audit\\Services\\AuditLogger',
+            'benefitstatus' => 'App\\Domain\\Benefit\\Enums\\BenefitStatus',
+            'benefit' => 'App\\Domain\\Benefit\\Models\\Benefit',
             'referralstatus' => 'App\\Domain\\Referral\\Enums\\ReferralStatus',
+            'referralstatuschanged' => 'App\\Domain\\Referral\\Events\\ReferralStatusChanged',
             'invalidreferraltransitionexception' => 'App\\Domain\\Referral\\Exceptions\\InvalidReferralTransitionException',
             'referral' => 'App\\Domain\\Referral\\Models\\Referral',
             'beneficiary' => 'App\\Domain\\Registry\\Models\\Beneficiary',
@@ -609,7 +735,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
     ),
     1 => 
     array (
-      '/var/www/html/app/Domain/Referral/Services/ReferralService.php' => '1996cd90f9c2605ad45205c0f4f5209cddace86010102bcb2c51739b065a55cf',
+      '/var/www/html/app/Domain/Referral/Services/ReferralService.php' => '62d52278002e3862a2be4061a677f2dd754da0440ea001cfb520b90d5909d0b4',
     ),
   ),
 ));

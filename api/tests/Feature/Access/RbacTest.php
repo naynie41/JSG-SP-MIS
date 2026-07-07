@@ -27,12 +27,13 @@ class RbacTest extends TestCase
             'cross-mda.view', 'mda.view', 'user.view', 'role.view', 'permission.view',
             'beneficiary.view', 'beneficiary.export', 'beneficiary-lookup.view',
             'programme.view', 'activity.view', 'enrollment.view', 'benefit.view',
-            'double-dipping.view', 'double-dipping.edit', 'referral.view',
+            'double-dipping.view', 'double-dipping.edit', 'referral.view', 'referral-sla.edit',
+            'grievance.view', 'grievance-sla.edit',
         ],
         'mne_officer' => [
             'cross-mda.view', 'mda.view', 'user.view',
             'beneficiary.view', 'beneficiary.export', 'beneficiary-lookup.view',
-            'programme.view', 'activity.view', 'enrollment.view', 'benefit.view', 'referral.view',
+            'programme.view', 'activity.view', 'enrollment.view', 'benefit.view', 'referral.view', 'grievance.view',
         ],
         'mda_admin' => [
             'mda.view', 'user.view', 'user.create', 'user.edit', 'role.view',
@@ -43,6 +44,7 @@ class RbacTest extends TestCase
             'enrollment.view', 'enrollment.create', 'enrollment.edit',
             'benefit.view', 'benefit.create', 'benefit.approve',
             'referral.view', 'referral.create', 'referral.edit',
+            'grievance.view', 'grievance.create', 'grievance.edit',
         ],
         'mda_officer' => [
             'mda.view', 'user.view',
@@ -53,12 +55,13 @@ class RbacTest extends TestCase
             'enrollment.view', 'enrollment.create', 'enrollment.edit',
             'benefit.view', 'benefit.create', 'benefit.approve',
             'referral.view', 'referral.create', 'referral.edit',
+            'grievance.view', 'grievance.create', 'grievance.edit',
         ],
         'development_partner' => ['mda.view', 'beneficiary.view', 'programme.view', 'activity.view', 'enrollment.view', 'benefit.view'],
         'executive' => [
             'cross-mda.view', 'mda.view', 'user.view',
             'beneficiary.view', 'beneficiary.export', 'beneficiary-lookup.view',
-            'programme.view', 'activity.view', 'enrollment.view', 'benefit.view', 'referral.view',
+            'programme.view', 'activity.view', 'enrollment.view', 'benefit.view', 'referral.view', 'grievance.view',
         ],
     ];
 
