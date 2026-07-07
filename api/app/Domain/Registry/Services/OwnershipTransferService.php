@@ -8,6 +8,7 @@ use App\Domain\Access\Models\User;
 use App\Domain\Access\Scopes\MdaScope;
 use App\Domain\Audit\Services\AuditLogger;
 use App\Domain\Registry\Enums\OwnershipTransferStatus;
+use App\Domain\Registry\Events\OwnershipTransferRequested;
 use App\Domain\Registry\Models\Beneficiary;
 use App\Domain\Registry\Models\OwnershipTransferRequest;
 use DomainException;
@@ -29,7 +30,7 @@ class OwnershipTransferService
             throw new DomainException('The beneficiary is already owned by that MDA.');
         }
 
-        return OwnershipTransferRequest::create([
+        $transfer = OwnershipTransferRequest::create([
             'beneficiary_id' => $beneficiary->id,
             'from_mda_id' => $beneficiary->owner_mda_id,
             'to_mda_id' => $toMdaId,
@@ -37,6 +38,11 @@ class OwnershipTransferService
             'reason' => $reason,
             'requested_by' => $requestedBy->id,
         ]);
+
+        // Notify the current owner MDA's approvers (FR-NOT-01).
+        OwnershipTransferRequested::dispatch($transfer, $requestedBy);
+
+        return $transfer;
     }
 
     public function approve(OwnershipTransferRequest $transfer, User $decidedBy): OwnershipTransferRequest

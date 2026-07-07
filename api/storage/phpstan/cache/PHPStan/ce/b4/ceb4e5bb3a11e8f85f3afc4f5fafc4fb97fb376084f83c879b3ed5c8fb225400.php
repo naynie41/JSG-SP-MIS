@@ -1229,7 +1229,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
     ),
     '/var/www/html/app/Domain/Registry/Services/OwnershipTransferService.php' => 
     array (
-      0 => '1266cddac828f34462f7333ab1156d0bbb0d4dc8227692c6927b7bac507bc860',
+      0 => '47722a58463a441d01c3af242357529a7f2ead2b0ec769f265daaf027807314d',
       1 => 
       array (
         0 => 'app\\domain\\registry\\services\\ownershiptransferservice',
@@ -3971,7 +3971,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
     ),
     '/var/www/html/app/Domain/Registry/Services/ServiceRequestService.php' => 
     array (
-      0 => 'cda7221d570d57b92633146cbd05580c6a089e16c92bf65b7d9bed9f49ff0aca',
+      0 => 'ba821c3a0ccae645b246d1bce80c7ee5e0df3c3275513cdc68ac3718e9298902',
       1 => 
       array (
         0 => 'app\\domain\\registry\\services\\servicerequestservice',
@@ -4148,6 +4148,535 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
       array (
         0 => 'app\\domain\\benefit\\services\\__construct',
         1 => 'app\\domain\\benefit\\services\\basisfor',
+      ),
+      3 => 
+      array (
+      ),
+    ),
+    '/var/www/html/app/Domain/Notification/Channels/EmailChannel.php' => 
+    array (
+      0 => 'c3adfe2d2fe6ca8dd22dc1e021da4c0237090a357dbdef44ba6a712f4fceae3a',
+      1 => 
+      array (
+        0 => 'app\\domain\\notification\\channels\\emailchannel',
+      ),
+      2 => 
+      array (
+        0 => 'app\\domain\\notification\\channels\\key',
+        1 => 'app\\domain\\notification\\channels\\isavailable',
+        2 => 'app\\domain\\notification\\channels\\send',
+      ),
+      3 => 
+      array (
+      ),
+    ),
+    '/var/www/html/app/Domain/Notification/Channels/InAppChannel.php' => 
+    array (
+      0 => 'ad427d0ac3927c1cefcede52fd115f12e4fd633bd0c03730da86cd53cb960229',
+      1 => 
+      array (
+        0 => 'app\\domain\\notification\\channels\\inappchannel',
+      ),
+      2 => 
+      array (
+        0 => 'app\\domain\\notification\\channels\\key',
+        1 => 'app\\domain\\notification\\channels\\isavailable',
+        2 => 'app\\domain\\notification\\channels\\send',
+      ),
+      3 => 
+      array (
+      ),
+    ),
+    '/var/www/html/app/Domain/Notification/Channels/SmsChannel.php' => 
+    array (
+      0 => '0051a1f1cb5898eafa482d37e138c506334eb260fe4ec09f3a835a2646abdee7',
+      1 => 
+      array (
+        0 => 'app\\domain\\notification\\channels\\smschannel',
+      ),
+      2 => 
+      array (
+        0 => 'app\\domain\\notification\\channels\\key',
+        1 => 'app\\domain\\notification\\channels\\isavailable',
+        2 => 'app\\domain\\notification\\channels\\send',
+      ),
+      3 => 
+      array (
+      ),
+    ),
+    '/var/www/html/app/Domain/Notification/Channels/WhatsAppChannel.php' => 
+    array (
+      0 => 'd11a016804bf334d15841aa0e83cbf01b24dbfaa7678de0159ecebf8bd3fceab',
+      1 => 
+      array (
+        0 => 'app\\domain\\notification\\channels\\whatsappchannel',
+      ),
+      2 => 
+      array (
+        0 => 'app\\domain\\notification\\channels\\key',
+        1 => 'app\\domain\\notification\\channels\\isavailable',
+        2 => 'app\\domain\\notification\\channels\\send',
+      ),
+      3 => 
+      array (
+      ),
+    ),
+    '/var/www/html/app/Domain/Notification/Contracts/NotificationChannel.php' => 
+    array (
+      0 => '024de6263ac28837e31314ae4245d5c891989c33dda0e64fc0153f653ffe87db',
+      1 => 
+      array (
+        0 => 'app\\domain\\notification\\contracts\\notificationchannel',
+      ),
+      2 => 
+      array (
+        0 => 'app\\domain\\notification\\contracts\\key',
+        1 => 'app\\domain\\notification\\contracts\\isavailable',
+        2 => 'app\\domain\\notification\\contracts\\send',
+      ),
+      3 => 
+      array (
+      ),
+    ),
+    '/var/www/html/app/Domain/Notification/Exceptions/ChannelUnavailableException.php' => 
+    array (
+      0 => '0934b96fd5707456bbaddc64a4e3cafc98ce87af0f84f0cbae1408ea767f5deb',
+      1 => 
+      array (
+        0 => 'app\\domain\\notification\\exceptions\\channelunavailableexception',
+      ),
+      2 => 
+      array (
+      ),
+      3 => 
+      array (
+      ),
+    ),
+    '/var/www/html/app/Domain/Notification/Listeners/NotificationSubscriber.php' => 
+    array (
+      0 => '2178313e62650f59d9193e3cbef25552a294274c4cfdbe28a2bfd77c4fb6afac',
+      1 => 
+      array (
+        0 => 'app\\domain\\notification\\listeners\\notificationsubscriber',
+      ),
+      2 => 
+      array (
+        0 => 'app\\domain\\notification\\listeners\\__construct',
+        1 => 'app\\domain\\notification\\listeners\\handleservicerequestraised',
+        2 => 'app\\domain\\notification\\listeners\\handleservicerequestaccepted',
+        3 => 'app\\domain\\notification\\listeners\\handleservicerequestdeclined',
+        4 => 'app\\domain\\notification\\listeners\\handleownershiptransferrequested',
+        5 => 'app\\domain\\notification\\listeners\\approversin',
+        6 => 'app\\domain\\notification\\listeners\\requester',
+        7 => 'app\\domain\\notification\\listeners\\subscribe',
+      ),
+      3 => 
+      array (
+      ),
+    ),
+    '/var/www/html/app/Domain/Notification/Mail/NotificationMail.php' => 
+    array (
+      0 => '38e56bec06fccdad2e17e88696d69734407cd98d3cc1f87b74f4c5f32e3484a1',
+      1 => 
+      array (
+        0 => 'app\\domain\\notification\\mail\\notificationmail',
+      ),
+      2 => 
+      array (
+        0 => 'app\\domain\\notification\\mail\\__construct',
+        1 => 'app\\domain\\notification\\mail\\build',
+      ),
+      3 => 
+      array (
+      ),
+    ),
+    '/var/www/html/app/Domain/Notification/Models/Notification.php' => 
+    array (
+      0 => '9fb0da8933a12a90a31c67434338e8e6f0e9548fd098afda44e9a35ccd5aa98b',
+      1 => 
+      array (
+        0 => 'app\\domain\\notification\\models\\notification',
+      ),
+      2 => 
+      array (
+        0 => 'app\\domain\\notification\\models\\casts',
+        1 => 'app\\domain\\notification\\models\\mdaownershipcolumn',
+        2 => 'app\\domain\\notification\\models\\recipient',
+      ),
+      3 => 
+      array (
+      ),
+    ),
+    '/var/www/html/app/Domain/Notification/Models/NotificationPreference.php' => 
+    array (
+      0 => '8e3f417b034240f0226a1dbd9d1a58bc06cc5000412c55df91fa951873333bc7',
+      1 => 
+      array (
+        0 => 'app\\domain\\notification\\models\\notificationpreference',
+      ),
+      2 => 
+      array (
+        0 => 'app\\domain\\notification\\models\\casts',
+        1 => 'app\\domain\\notification\\models\\user',
+      ),
+      3 => 
+      array (
+      ),
+    ),
+    '/var/www/html/app/Domain/Notification/NotificationServiceProvider.php' => 
+    array (
+      0 => '1d6f1323ac9eeebf0162d6ec3a050737cece4fd3b9b2192da08d45880ec789ef',
+      1 => 
+      array (
+        0 => 'app\\domain\\notification\\notificationserviceprovider',
+      ),
+      2 => 
+      array (
+        0 => 'app\\domain\\notification\\register',
+        1 => 'app\\domain\\notification\\boot',
+      ),
+      3 => 
+      array (
+      ),
+    ),
+    '/var/www/html/app/Domain/Notification/Services/Notifier.php' => 
+    array (
+      0 => '19e985dce1330094cdf277be2579b042960cf1a64e1d0d1f94f1c7d3b0e966ab',
+      1 => 
+      array (
+        0 => 'app\\domain\\notification\\services\\notifier',
+      ),
+      2 => 
+      array (
+        0 => 'app\\domain\\notification\\services\\__construct',
+        1 => 'app\\domain\\notification\\services\\notify',
+        2 => 'app\\domain\\notification\\services\\allows',
+      ),
+      3 => 
+      array (
+      ),
+    ),
+    '/var/www/html/app/Domain/Notification/Support/NotificationMessage.php' => 
+    array (
+      0 => 'a136eb37ba2520d08b847859cfb44c85da68e4edaaeb5d17d7a98e7c09f2042e',
+      1 => 
+      array (
+        0 => 'app\\domain\\notification\\support\\notificationmessage',
+      ),
+      2 => 
+      array (
+        0 => 'app\\domain\\notification\\support\\__construct',
+      ),
+      3 => 
+      array (
+      ),
+    ),
+    '/var/www/html/app/Domain/Registry/Events/OwnershipTransferRequested.php' => 
+    array (
+      0 => '9b83576610d447c14c1a2069e041e37a55f334e9cbe2224710d26efa11c68957',
+      1 => 
+      array (
+        0 => 'app\\domain\\registry\\events\\ownershiptransferrequested',
+      ),
+      2 => 
+      array (
+        0 => 'app\\domain\\registry\\events\\__construct',
+      ),
+      3 => 
+      array (
+      ),
+    ),
+    '/var/www/html/app/Domain/Registry/Events/ServiceRequestAccepted.php' => 
+    array (
+      0 => 'aef5857106080d6c5558bdb1fa343cb3f2ec7757c9012ad52ee1ccaca0ea92f4',
+      1 => 
+      array (
+        0 => 'app\\domain\\registry\\events\\servicerequestaccepted',
+      ),
+      2 => 
+      array (
+        0 => 'app\\domain\\registry\\events\\__construct',
+      ),
+      3 => 
+      array (
+      ),
+    ),
+    '/var/www/html/app/Domain/Registry/Events/ServiceRequestDeclined.php' => 
+    array (
+      0 => 'a4d326d469c8b456043577aa7aec19c2ddf99ca3ce5855e7719475365a82ec9f',
+      1 => 
+      array (
+        0 => 'app\\domain\\registry\\events\\servicerequestdeclined',
+      ),
+      2 => 
+      array (
+        0 => 'app\\domain\\registry\\events\\__construct',
+      ),
+      3 => 
+      array (
+      ),
+    ),
+    '/var/www/html/app/Domain/Registry/Events/ServiceRequestRaised.php' => 
+    array (
+      0 => '56da30156582ae9023a3191ae88dea280eaf1bd1a4f418d9f1cb7e7adb7b7537',
+      1 => 
+      array (
+        0 => 'app\\domain\\registry\\events\\servicerequestraised',
+      ),
+      2 => 
+      array (
+        0 => 'app\\domain\\registry\\events\\__construct',
+      ),
+      3 => 
+      array (
+      ),
+    ),
+    '/var/www/html/app/Http/Controllers/Api/V1/Notification/NotificationController.php' => 
+    array (
+      0 => '4ec57035c07af373547ff8cfca3c6371762a9fd5949de27e08d5228fd9c09e87',
+      1 => 
+      array (
+        0 => 'app\\http\\controllers\\api\\v1\\notification\\notificationcontroller',
+      ),
+      2 => 
+      array (
+        0 => 'app\\http\\controllers\\api\\v1\\notification\\index',
+        1 => 'app\\http\\controllers\\api\\v1\\notification\\unreadcount',
+        2 => 'app\\http\\controllers\\api\\v1\\notification\\markread',
+        3 => 'app\\http\\controllers\\api\\v1\\notification\\markallread',
+        4 => 'app\\http\\controllers\\api\\v1\\notification\\preferences',
+        5 => 'app\\http\\controllers\\api\\v1\\notification\\updatepreferences',
+        6 => 'app\\http\\controllers\\api\\v1\\notification\\mine',
+      ),
+      3 => 
+      array (
+      ),
+    ),
+    '/var/www/html/app/Http/Requests/Notification/UpdateNotificationPreferencesRequest.php' => 
+    array (
+      0 => '461ec64be696bf74b83f66accf0fda554705e5fc45b4b7f7343e2c559cbff259',
+      1 => 
+      array (
+        0 => 'app\\http\\requests\\notification\\updatenotificationpreferencesrequest',
+      ),
+      2 => 
+      array (
+        0 => 'app\\http\\requests\\notification\\authorize',
+        1 => 'app\\http\\requests\\notification\\rules',
+      ),
+      3 => 
+      array (
+      ),
+    ),
+    '/var/www/html/app/Http/Resources/NotificationResource.php' => 
+    array (
+      0 => '28149a6033202ddf5149685081afd1f671c0e89482c06640276b6c3243950658',
+      1 => 
+      array (
+        0 => 'app\\http\\resources\\notificationresource',
+      ),
+      2 => 
+      array (
+        0 => 'app\\http\\resources\\toarray',
+      ),
+      3 => 
+      array (
+      ),
+    ),
+    '/var/www/html/app/Domain/Referral/Enums/ReferralStatus.php' => 
+    array (
+      0 => '2627c0c52327fba85b43395182a215d912ab542f420b65fc26df96c876e4dc06',
+      1 => 
+      array (
+        0 => 'app\\domain\\referral\\enums\\referralstatus',
+      ),
+      2 => 
+      array (
+        0 => 'app\\domain\\referral\\enums\\allowednext',
+        1 => 'app\\domain\\referral\\enums\\cantransitionto',
+        2 => 'app\\domain\\referral\\enums\\isterminal',
+      ),
+      3 => 
+      array (
+      ),
+    ),
+    '/var/www/html/app/Domain/Referral/Exceptions/InvalidReferralTransitionException.php' => 
+    array (
+      0 => 'a1cc81cea2301c44313aa7c8ecf8d89fccd7be0fc98d063273678aaa6528498b',
+      1 => 
+      array (
+        0 => 'app\\domain\\referral\\exceptions\\invalidreferraltransitionexception',
+      ),
+      2 => 
+      array (
+      ),
+      3 => 
+      array (
+      ),
+    ),
+    '/var/www/html/app/Domain/Referral/Models/Referral.php' => 
+    array (
+      0 => 'c75c3d6a23222975227fc88bf5a976082750a044708e5129b6268380babfb429',
+      1 => 
+      array (
+        0 => 'app\\domain\\referral\\models\\referral',
+      ),
+      2 => 
+      array (
+        0 => 'app\\domain\\referral\\models\\booted',
+        1 => 'app\\domain\\referral\\models\\casts',
+        2 => 'app\\domain\\referral\\models\\auditexcluded',
+        3 => 'app\\domain\\referral\\models\\beneficiary',
+        4 => 'app\\domain\\referral\\models\\frommda',
+        5 => 'app\\domain\\referral\\models\\tomda',
+      ),
+      3 => 
+      array (
+      ),
+    ),
+    '/var/www/html/app/Domain/Referral/Policies/ReferralPolicy.php' => 
+    array (
+      0 => '2d26d6f9202a66132332bc8aef7febbd7b9e7c33e842eba2f4d8d2c3a336b001',
+      1 => 
+      array (
+        0 => 'app\\domain\\referral\\policies\\referralpolicy',
+      ),
+      2 => 
+      array (
+        0 => 'app\\domain\\referral\\policies\\viewany',
+        1 => 'app\\domain\\referral\\policies\\view',
+        2 => 'app\\domain\\referral\\policies\\create',
+        3 => 'app\\domain\\referral\\policies\\receive',
+        4 => 'app\\domain\\referral\\policies\\originate',
+        5 => 'app\\domain\\referral\\policies\\isparty',
+      ),
+      3 => 
+      array (
+      ),
+    ),
+    '/var/www/html/app/Domain/Referral/ReferralServiceProvider.php' => 
+    array (
+      0 => 'fd338993aac05ef44d301f0dcb533bbb989aff919a0f841260c2818744b38154',
+      1 => 
+      array (
+        0 => 'app\\domain\\referral\\referralserviceprovider',
+      ),
+      2 => 
+      array (
+        0 => 'app\\domain\\referral\\boot',
+      ),
+      3 => 
+      array (
+      ),
+    ),
+    '/var/www/html/app/Domain/Referral/Scopes/ReferralScope.php' => 
+    array (
+      0 => 'be7944937d272bfb96a3c8e3578b88ed50ec8f487ba3d55af0e4149432a017ee',
+      1 => 
+      array (
+        0 => 'app\\domain\\referral\\scopes\\referralscope',
+      ),
+      2 => 
+      array (
+        0 => 'app\\domain\\referral\\scopes\\apply',
+      ),
+      3 => 
+      array (
+      ),
+    ),
+    '/var/www/html/app/Domain/Referral/Services/ReferralService.php' => 
+    array (
+      0 => '1996cd90f9c2605ad45205c0f4f5209cddace86010102bcb2c51739b065a55cf',
+      1 => 
+      array (
+        0 => 'app\\domain\\referral\\services\\referralservice',
+      ),
+      2 => 
+      array (
+        0 => 'app\\domain\\referral\\services\\__construct',
+        1 => 'app\\domain\\referral\\services\\create',
+        2 => 'app\\domain\\referral\\services\\accept',
+        3 => 'app\\domain\\referral\\services\\reject',
+        4 => 'app\\domain\\referral\\services\\requestinfo',
+        5 => 'app\\domain\\referral\\services\\respondinfo',
+        6 => 'app\\domain\\referral\\services\\start',
+        7 => 'app\\domain\\referral\\services\\complete',
+        8 => 'app\\domain\\referral\\services\\close',
+        9 => 'app\\domain\\referral\\services\\transition',
+      ),
+      3 => 
+      array (
+      ),
+    ),
+    '/var/www/html/app/Http/Controllers/Api/V1/Referral/ReferralController.php' => 
+    array (
+      0 => '4916dd9f9c3fd3d5d88014f3d086c16160022f814d511943656377f84c255003',
+      1 => 
+      array (
+        0 => 'app\\http\\controllers\\api\\v1\\referral\\referralcontroller',
+      ),
+      2 => 
+      array (
+        0 => 'app\\http\\controllers\\api\\v1\\referral\\__construct',
+        1 => 'app\\http\\controllers\\api\\v1\\referral\\index',
+        2 => 'app\\http\\controllers\\api\\v1\\referral\\show',
+        3 => 'app\\http\\controllers\\api\\v1\\referral\\store',
+        4 => 'app\\http\\controllers\\api\\v1\\referral\\accept',
+        5 => 'app\\http\\controllers\\api\\v1\\referral\\reject',
+        6 => 'app\\http\\controllers\\api\\v1\\referral\\requestinfo',
+        7 => 'app\\http\\controllers\\api\\v1\\referral\\start',
+        8 => 'app\\http\\controllers\\api\\v1\\referral\\complete',
+        9 => 'app\\http\\controllers\\api\\v1\\referral\\close',
+        10 => 'app\\http\\controllers\\api\\v1\\referral\\respondinfo',
+        11 => 'app\\http\\controllers\\api\\v1\\referral\\receiving',
+        12 => 'app\\http\\controllers\\api\\v1\\referral\\run',
+      ),
+      3 => 
+      array (
+      ),
+    ),
+    '/var/www/html/app/Http/Requests/Referral/StoreReferralRequest.php' => 
+    array (
+      0 => '861f12969a4ec2b60b34fae4e405e0da58e24bdcac1c214c54337f112a46b9e4',
+      1 => 
+      array (
+        0 => 'app\\http\\requests\\referral\\storereferralrequest',
+      ),
+      2 => 
+      array (
+        0 => 'app\\http\\requests\\referral\\authorize',
+        1 => 'app\\http\\requests\\referral\\rules',
+      ),
+      3 => 
+      array (
+      ),
+    ),
+    '/var/www/html/app/Http/Requests/Referral/TransitionReferralRequest.php' => 
+    array (
+      0 => 'f81a55c62b852b8d049b388dedb437c524731b3617a61c330f014d2096612628',
+      1 => 
+      array (
+        0 => 'app\\http\\requests\\referral\\transitionreferralrequest',
+      ),
+      2 => 
+      array (
+        0 => 'app\\http\\requests\\referral\\authorize',
+        1 => 'app\\http\\requests\\referral\\rules',
+      ),
+      3 => 
+      array (
+      ),
+    ),
+    '/var/www/html/app/Http/Resources/ReferralResource.php' => 
+    array (
+      0 => 'c7dcf8fe4e98bf3ddec71a197a6e51a9893374c4e753637f637fd55bed6f8116',
+      1 => 
+      array (
+        0 => 'app\\http\\resources\\referralresource',
+      ),
+      2 => 
+      array (
+        0 => 'app\\http\\resources\\toarray',
       ),
       3 => 
       array (

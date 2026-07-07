@@ -27,12 +27,12 @@ class RbacTest extends TestCase
             'cross-mda.view', 'mda.view', 'user.view', 'role.view', 'permission.view',
             'beneficiary.view', 'beneficiary.export', 'beneficiary-lookup.view',
             'programme.view', 'activity.view', 'enrollment.view', 'benefit.view',
-            'double-dipping.view', 'double-dipping.edit',
+            'double-dipping.view', 'double-dipping.edit', 'referral.view',
         ],
         'mne_officer' => [
             'cross-mda.view', 'mda.view', 'user.view',
             'beneficiary.view', 'beneficiary.export', 'beneficiary-lookup.view',
-            'programme.view', 'activity.view', 'enrollment.view', 'benefit.view',
+            'programme.view', 'activity.view', 'enrollment.view', 'benefit.view', 'referral.view',
         ],
         'mda_admin' => [
             'mda.view', 'user.view', 'user.create', 'user.edit', 'role.view',
@@ -42,6 +42,7 @@ class RbacTest extends TestCase
             'activity.view', 'activity.create', 'activity.edit',
             'enrollment.view', 'enrollment.create', 'enrollment.edit',
             'benefit.view', 'benefit.create', 'benefit.approve',
+            'referral.view', 'referral.create', 'referral.edit',
         ],
         'mda_officer' => [
             'mda.view', 'user.view',
@@ -51,12 +52,13 @@ class RbacTest extends TestCase
             'activity.view', 'activity.create', 'activity.edit',
             'enrollment.view', 'enrollment.create', 'enrollment.edit',
             'benefit.view', 'benefit.create', 'benefit.approve',
+            'referral.view', 'referral.create', 'referral.edit',
         ],
         'development_partner' => ['mda.view', 'beneficiary.view', 'programme.view', 'activity.view', 'enrollment.view', 'benefit.view'],
         'executive' => [
             'cross-mda.view', 'mda.view', 'user.view',
             'beneficiary.view', 'beneficiary.export', 'beneficiary-lookup.view',
-            'programme.view', 'activity.view', 'enrollment.view', 'benefit.view',
+            'programme.view', 'activity.view', 'enrollment.view', 'benefit.view', 'referral.view',
         ],
     ];
 

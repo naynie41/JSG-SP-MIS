@@ -15,9 +15,11 @@ use App\Http\Controllers\Api\V1\Benefit\DoubleDippingRuleController;
 use App\Http\Controllers\Api\V1\HealthController;
 use App\Http\Controllers\Api\V1\Matching\MatchingConfigController;
 use App\Http\Controllers\Api\V1\MfaController;
+use App\Http\Controllers\Api\V1\Notification\NotificationController;
 use App\Http\Controllers\Api\V1\Programme\ActivityController;
 use App\Http\Controllers\Api\V1\Programme\EnrollmentController;
 use App\Http\Controllers\Api\V1\Programme\ProgrammeController;
+use App\Http\Controllers\Api\V1\Referral\ReferralController;
 use App\Http\Controllers\Api\V1\Registry\BeneficiaryController;
 use App\Http\Controllers\Api\V1\Registry\BeneficiaryDocumentController;
 use App\Http\Controllers\Api\V1\Registry\BeneficiaryIntakeController;
@@ -324,5 +326,43 @@ Route::prefix('v1')->group(function (): void {
             ->middleware('permission:benefit.view')->name('benefit-flags.index');
         Route::post('/benefit-flags/{flag}/review', [BenefitFlagController::class, 'review'])
             ->middleware('permission:benefit.approve')->name('benefit-flags.review');
+
+        /*
+        | Referrals (FR-REF-01/02/04, §8.2). Two-party scoped (both MDAs see it).
+        | Create = originating MDA; the {referral} transition routes are gated by
+        | referral.edit and the policy checks the acting party. Reject needs a reason.
+        */
+        Route::get('/referrals', [ReferralController::class, 'index'])
+            ->middleware('permission:referral.view')->name('referrals.index');
+        Route::post('/referrals', [ReferralController::class, 'store'])
+            ->middleware('permission:referral.create')->name('referrals.store');
+        Route::get('/referrals/{referral}', [ReferralController::class, 'show'])
+            ->middleware('permission:referral.view')->name('referrals.show');
+        Route::post('/referrals/{referral}/accept', [ReferralController::class, 'accept'])
+            ->middleware('permission:referral.edit')->name('referrals.accept');
+        Route::post('/referrals/{referral}/reject', [ReferralController::class, 'reject'])
+            ->middleware('permission:referral.edit')->name('referrals.reject');
+        Route::post('/referrals/{referral}/request-info', [ReferralController::class, 'requestInfo'])
+            ->middleware('permission:referral.edit')->name('referrals.request-info');
+        Route::post('/referrals/{referral}/respond-info', [ReferralController::class, 'respondInfo'])
+            ->middleware('permission:referral.edit')->name('referrals.respond-info');
+        Route::post('/referrals/{referral}/start', [ReferralController::class, 'start'])
+            ->middleware('permission:referral.edit')->name('referrals.start');
+        Route::post('/referrals/{referral}/complete', [ReferralController::class, 'complete'])
+            ->middleware('permission:referral.edit')->name('referrals.complete');
+        Route::post('/referrals/{referral}/close', [ReferralController::class, 'close'])
+            ->middleware('permission:referral.edit')->name('referrals.close');
+
+        /*
+        | Notifications (FR-NOT-01/02). Personal to the caller — no permission gate;
+        | every query is scoped to the authenticated recipient. Static paths precede
+        | the {notification} route.
+        */
+        Route::get('/notifications', [NotificationController::class, 'index'])->name('notifications.index');
+        Route::get('/notifications/unread-count', [NotificationController::class, 'unreadCount'])->name('notifications.unread-count');
+        Route::get('/notifications/preferences', [NotificationController::class, 'preferences'])->name('notifications.preferences.show');
+        Route::match(['put', 'patch'], '/notifications/preferences', [NotificationController::class, 'updatePreferences'])->name('notifications.preferences.update');
+        Route::post('/notifications/read-all', [NotificationController::class, 'markAllRead'])->name('notifications.read-all');
+        Route::post('/notifications/{notification}/read', [NotificationController::class, 'markRead'])->name('notifications.read');
     });
 });

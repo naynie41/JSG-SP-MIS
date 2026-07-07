@@ -8,6 +8,9 @@ use App\Domain\Access\Models\User;
 use App\Domain\Access\Scopes\MdaScope;
 use App\Domain\Audit\Services\AuditLogger;
 use App\Domain\Registry\Enums\ServiceRequestStatus;
+use App\Domain\Registry\Events\ServiceRequestAccepted;
+use App\Domain\Registry\Events\ServiceRequestDeclined;
+use App\Domain\Registry\Events\ServiceRequestRaised;
 use App\Domain\Registry\Models\Beneficiary;
 use App\Domain\Registry\Models\BeneficiaryServiceGrant;
 use App\Domain\Registry\Models\ServiceRequest;
@@ -54,7 +57,7 @@ class ServiceRequestService
         }
 
         // Auditable records service_request.created.
-        return ServiceRequest::create([
+        $request = ServiceRequest::create([
             'beneficiary_id' => $beneficiary->id,
             'from_mda_id' => $fromMdaId,
             'to_mda_id' => $beneficiary->owner_mda_id, // routed to the owner MDA
@@ -63,6 +66,11 @@ class ServiceRequestService
             'import_row_id' => $importRowId,
             'requested_by' => $requestedBy?->id,
         ]);
+
+        // Notify the owner MDA's approvers (FR-NOT-01).
+        ServiceRequestRaised::dispatch($request, $requestedBy);
+
+        return $request;
     }
 
     /**
@@ -84,13 +92,19 @@ class ServiceRequestService
             ], actor: $decidedBy);
         }
 
+        ServiceRequestAccepted::dispatch($request, $decidedBy);
+
         return $request;
     }
 
     /** Owner declines — a reason is required. No grant opens. */
     public function decline(ServiceRequest $request, User $decidedBy, string $reason): ServiceRequest
     {
-        return $this->decide($request, ServiceRequestStatus::Declined, $decidedBy, $reason);
+        $this->decide($request, ServiceRequestStatus::Declined, $decidedBy, $reason);
+
+        ServiceRequestDeclined::dispatch($request, $decidedBy);
+
+        return $request;
     }
 
     /** Whether the given MDA currently holds an active read/serve grant. */

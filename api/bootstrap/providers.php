@@ -3,7 +3,9 @@
 use App\Domain\Access\AccessServiceProvider;
 use App\Domain\Benefit\BenefitServiceProvider;
 use App\Domain\Matching\MatchingServiceProvider;
+use App\Domain\Notification\NotificationServiceProvider;
 use App\Domain\Programme\ProgrammeServiceProvider;
+use App\Domain\Referral\ReferralServiceProvider;
 use App\Domain\Registry\RegistryServiceProvider;
 use App\Providers\AppServiceProvider;
 
@@ -14,4 +16,6 @@ return [
     MatchingServiceProvider::class,
     ProgrammeServiceProvider::class,
     BenefitServiceProvider::class,
+    NotificationServiceProvider::class,
+    ReferralServiceProvider::class,
 ];

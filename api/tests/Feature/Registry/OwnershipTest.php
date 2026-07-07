@@ -41,12 +41,16 @@ class OwnershipTest extends TestCase
         $this->mdaA = Mda::factory()->create(['name' => 'MDA A']);
         $this->mdaB = Mda::factory()->create(['name' => 'MDA B']);
 
-        // Beneficiary owned by MDA A, with a known NIN for the lookup test.
+        // Beneficiary owned by MDA A, with a known NIN for the lookup test and
+        // distinguishing full-record fields (absent from the reveal projection).
         $this->benA = Beneficiary::factory()->create([
             'owner_mda_id' => $this->mdaA->id,
             'nin' => '12345678901',
             'first_name' => 'Amina',
             'last_name' => 'Yusuf',
+            'date_of_birth' => '1990-05-05',
+            'gender' => 'female',
+            'phone' => '08030000001',
         ]);
 
         // All users are created up front (before any request) so an Auditable
@@ -113,6 +117,60 @@ class OwnershipTest extends TestCase
         foreach (['nin', 'bvn', 'phone', 'address', 'date_of_birth'] as $forbidden) {
             $this->assertArrayNotHasKey($forbidden, $match, "Lookup leaked {$forbidden}");
         }
+    }
+
+    public function test_full_record_read_opens_only_after_service_request_acceptance(): void
+    {
+        // --- BEFORE acceptance: reveal-only, no full-record read. ---
+        // The cross-MDA reveal shows only the permitted fields (name+id, owner MDA,
+        // source, registration date, LGA/Ward, status) + programme/benefit summary.
+        $reveal = $this->withToken($this->tokenFor('nonowner_officer'))
+            ->getJson('/api/v1/beneficiaries/lookup?nin=12345678901')
+            ->assertOk()
+            ->assertJsonPath('data.matches.0.full_name', 'Amina Yusuf')
+            ->assertJsonPath('data.matches.0.owner_mda.id', $this->mdaA->id)
+            ->json('data.matches.0');
+        $this->assertArrayHasKey('programmes', $reveal);
+        $this->assertArrayHasKey('benefits', $reveal);
+        foreach (['date_of_birth', 'gender', 'phone', 'nin', 'bvn', 'address', 'first_name'] as $forbidden) {
+            $this->assertArrayNotHasKey($forbidden, $reveal, "Reveal leaked full-record field {$forbidden}");
+        }
+        $this->app['auth']->forgetGuards();
+
+        // Full-record read is refused (404) — no accepted Service Request yet.
+        $this->withToken($this->tokenFor('nonowner_officer'))
+            ->getJson("/api/v1/beneficiaries/{$this->benA->id}")
+            ->assertStatus(404);
+        $this->app['auth']->forgetGuards();
+
+        // --- Raise a Service Request and have the owner accept it. ---
+        $requestId = $this->withToken($this->tokenFor('nonowner_officer'))
+            ->postJson('/api/v1/service-requests', ['beneficiary_id' => $this->benA->id])
+            ->assertCreated()
+            ->json('data.id');
+        $this->app['auth']->forgetGuards();
+
+        $this->withToken($this->tokenFor('owner_admin'))
+            ->postJson("/api/v1/service-requests/{$requestId}/accept")
+            ->assertOk()
+            ->assertJsonPath('data.status', 'accepted');
+        $this->app['auth']->forgetGuards();
+
+        // --- AFTER acceptance: the serving MDA reads the FULL record (read-only). ---
+        $this->withToken($this->tokenFor('nonowner_officer'))
+            ->getJson("/api/v1/beneficiaries/{$this->benA->id}")
+            ->assertOk()
+            ->assertJsonPath('data.id', $this->benA->id)
+            ->assertJsonPath('data.date_of_birth', '1990-05-05')
+            ->assertJsonPath('data.gender', 'female')
+            ->assertJsonPath('data.phone', '08030000001');
+        $this->app['auth']->forgetGuards();
+
+        // Ownership never moved, and read access is not edit access.
+        $this->assertSame($this->mdaA->id, $this->benA->fresh()->owner_mda_id);
+        $this->withToken($this->tokenFor('nonowner_officer'))
+            ->patchJson("/api/v1/beneficiaries/{$this->benA->id}", ['last_name' => 'Nope'])
+            ->assertStatus(403);
     }
 
     public function test_ownership_transfer_requires_owner_approval_and_is_audited(): void

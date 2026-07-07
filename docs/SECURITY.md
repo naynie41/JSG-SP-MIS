@@ -47,6 +47,13 @@
   global query scopes / middleware), never by ad-hoc `if` checks in controllers.
 - **Ownership rules:** only the Owner MDA may edit a beneficiary's core profile; ownership
   transfer requires Owner-MDA approval and is logged.
+- **Cross-MDA access via request-to-serve (PRD v1.2):** a non-owner MDA gains READ access to a
+  beneficiary's full record ONLY after the Owner MDA accepts its Service Request (FR-OWN-06/07).
+  This grant is enforced by authorization policy, not UI-only. It is READ-only — it never confers
+  edit rights on the core profile (Owner-MDA-only, FR-OWN-02) and never transfers ownership. Least
+  privilege (NFR-SEC-02) still applies: the grant is scoped to the specific beneficiary served, not
+  to the Owner MDA's registry at large. An intervention on a non-owned beneficiary must not be
+  recordable until an accepted Service Request exists.
 - Authorization is enforced **server-side**. The frontend hides/show UI for UX only; it is never
   the security boundary.
 
@@ -69,6 +76,10 @@
 
 - Validate **every** inbound payload with Laravel Form Requests / validation rules — types,
   formats, ranges, allowed values. Reject or flag invalid data with the standard error format.
+- **Identity-field rejection on import (PRD v1.2, FR-REG-05/09):** if a row's PRESENT name, phone,
+  NIN, or BVN is malformed, reject the whole row to the batch error report and do NOT persist it to
+  the live data pool. Absent optional NIN/BVN is valid. Non-identity fields that fail validation are
+  dropped/flagged for that row while the row still saves. No rejected PII reaches the live tables.
 - Use **parameterised queries / Eloquent** only. Never build SQL by string concatenation.
 - Validate and sanitise file uploads (type, size, content) for supporting documents; store
   outside the web root; scan where possible.
@@ -89,6 +100,13 @@
   app role; consider hash-chaining entries in a later hardening pass).
 - **Never** put raw PII or secrets in audit `before/after` for the most sensitive fields — store
   masked/hashed representations where the value itself is not needed for the audit purpose.
+- **Auditable events — additions (PRD v1.2):**
+  - `service_request.created`, `service_request.accepted`, `service_request.declined` (with actor,
+    MDA, beneficiary, activity, timestamp, and decline reason where present).
+  - `beneficiary.access_granted` when read access is opened to a serving MDA.
+  - Import validation rejections at identity-field level are recorded in the batch's error report and
+    the import audit trail (who, when, batch, row count rejected) — no rejected PII is persisted to
+    the live data pool (FR-REG-05).
 
 ---
 
