@@ -8,7 +8,7 @@
 
 declare(strict_types=1);
 
-class Container_9203b3ee39 extends _PHPStan_48ec32058\Nette\DI\Container
+class Container_03538daf17 extends _PHPStan_48ec32058\Nette\DI\Container
 {
 	protected $tags = [
 		'phpstan.broker.allowedSubTypesClassReflectionExtension' => ['017' => true, '018' => true],
@@ -5902,7 +5902,7 @@ class Container_9203b3ee39 extends _PHPStan_48ec32058\Nette\DI\Container
 			private $container;
 
 
-			public function __construct(Container_9203b3ee39 $container)
+			public function __construct(Container_03538daf17 $container)
 			{
 				$this->container = $container;
 			}
@@ -5950,7 +5950,7 @@ class Container_9203b3ee39 extends _PHPStan_48ec32058\Nette\DI\Container
 			private $container;
 
 
-			public function __construct(Container_9203b3ee39 $container)
+			public function __construct(Container_03538daf17 $container)
 			{
 				$this->container = $container;
 			}
@@ -6008,7 +6008,7 @@ class Container_9203b3ee39 extends _PHPStan_48ec32058\Nette\DI\Container
 			private $container;
 
 
-			public function __construct(Container_9203b3ee39 $container)
+			public function __construct(Container_03538daf17 $container)
 			{
 				$this->container = $container;
 			}
@@ -6075,7 +6075,7 @@ class Container_9203b3ee39 extends _PHPStan_48ec32058\Nette\DI\Container
 			private $container;
 
 
-			public function __construct(Container_9203b3ee39 $container)
+			public function __construct(Container_03538daf17 $container)
 			{
 				$this->container = $container;
 			}
@@ -6095,7 +6095,7 @@ class Container_9203b3ee39 extends _PHPStan_48ec32058\Nette\DI\Container
 			private $container;
 
 
-			public function __construct(Container_9203b3ee39 $container)
+			public function __construct(Container_03538daf17 $container)
 			{
 				$this->container = $container;
 			}
@@ -6120,7 +6120,7 @@ class Container_9203b3ee39 extends _PHPStan_48ec32058\Nette\DI\Container
 			private $container;
 
 
-			public function __construct(Container_9203b3ee39 $container)
+			public function __construct(Container_03538daf17 $container)
 			{
 				$this->container = $container;
 			}
@@ -6140,7 +6140,7 @@ class Container_9203b3ee39 extends _PHPStan_48ec32058\Nette\DI\Container
 			private $container;
 
 
-			public function __construct(Container_9203b3ee39 $container)
+			public function __construct(Container_03538daf17 $container)
 			{
 				$this->container = $container;
 			}
@@ -6160,7 +6160,7 @@ class Container_9203b3ee39 extends _PHPStan_48ec32058\Nette\DI\Container
 			private $container;
 
 
-			public function __construct(Container_9203b3ee39 $container)
+			public function __construct(Container_03538daf17 $container)
 			{
 				$this->container = $container;
 			}
@@ -9628,7 +9628,7 @@ class Container_9203b3ee39 extends _PHPStan_48ec32058\Nette\DI\Container
 	}
 
 
-	public function createServiceContainer(): Container_9203b3ee39
+	public function createServiceContainer(): Container_03538daf17
 	{
 		return $this;
 	}
@@ -10287,7 +10287,7 @@ class Container_9203b3ee39 extends _PHPStan_48ec32058\Nette\DI\Container
 				'DB_CONNECTION' => 'pgsql',
 				'APP_DEBUG' => 'false',
 				'MAIL_USERNAME' => 'null',
-				'HOSTNAME' => '24972eab8f32',
+				'HOSTNAME' => '547be96f0add',
 				'PHP_INI_DIR' => '/usr/local/etc/php',
 				'APP_URL' => 'http://localhost:8080',
 				'DB_PORT' => '5432',

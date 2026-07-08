@@ -2,7 +2,7 @@
 
 // odsl-/var/www/html/app/Domain/Matching/Models/MatchingConfig.php-PHPStan\BetterReflection\Reflection\ReflectionClass-App\Domain\Matching\Models\MatchingConfig
 return \PHPStan\Cache\CacheItem::__set_state(array(
-   'variableKey' => 'v2-6.70.0.1-8.3.31-dc0c36d986c66ca433e75af16590da719c443a2bdf3da9808546b480a8ece22b',
+   'variableKey' => 'v2-6.70.0.1-8.3.31-45ac8dcc882927dba2ca43f8a8db8ac53d0be89ef2273ca3c05d1abd7786a93c',
    'data' => 
   array (
     'locatedSource' => 
@@ -37,15 +37,15 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
  * @property ExactMatchBehaviour $exact_match_behaviour
  * @property string|null $description
  * @property string|null $created_by
- * @property \\Illuminate\\Support\\Carbon|null $created_at
- * @property \\Illuminate\\Support\\Carbon|null $updated_at
+ * @property Carbon|null $created_at
+ * @property Carbon|null $updated_at
  * @property-read User|null $author
  */',
     'attributes' => 
     array (
     ),
-    'startLine' => 33,
-    'endLine' => 102,
+    'startLine' => 34,
+    'endLine' => 103,
     'startColumn' => 1,
     'endColumn' => 1,
     'parentClassName' => 'Illuminate\\Database\\Eloquent\\Model',
@@ -74,20 +74,20 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
           'code' => '\'matching_configs\'',
           'attributes' => 
           array (
-            'startLine' => 37,
-            'endLine' => 37,
-            'startTokenPos' => 71,
-            'startFilePos' => 1225,
-            'endTokenPos' => 71,
-            'endFilePos' => 1242,
+            'startLine' => 38,
+            'endLine' => 38,
+            'startTokenPos' => 76,
+            'startFilePos' => 1216,
+            'endTokenPos' => 76,
+            'endFilePos' => 1233,
           ),
         ),
         'docComment' => NULL,
         'attributes' => 
         array (
         ),
-        'startLine' => 37,
-        'endLine' => 37,
+        'startLine' => 38,
+        'endLine' => 38,
         'startColumn' => 5,
         'endColumn' => 42,
         'isPromoted' => false,
@@ -109,12 +109,12 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
           'code' => '[\'version\', \'is_active\', \'deterministic_rules\', \'fuzzy_fields\', \'review_threshold\', \'auto_accept_threshold\', \'exact_match_behaviour\', \'description\', \'created_by\']',
           'attributes' => 
           array (
-            'startLine' => 42,
-            'endLine' => 52,
-            'startTokenPos' => 82,
-            'startFilePos' => 1313,
-            'endTokenPos' => 111,
-            'endFilePos' => 1553,
+            'startLine' => 43,
+            'endLine' => 53,
+            'startTokenPos' => 87,
+            'startFilePos' => 1304,
+            'endTokenPos' => 116,
+            'endFilePos' => 1544,
           ),
         ),
         'docComment' => '/**
@@ -123,8 +123,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         'attributes' => 
         array (
         ),
-        'startLine' => 42,
-        'endLine' => 52,
+        'startLine' => 43,
+        'endLine' => 53,
         'startColumn' => 5,
         'endColumn' => 6,
         'isPromoted' => false,
@@ -159,8 +159,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         'docComment' => '/**
  * @return array<string, string>
  */',
-        'startLine' => 57,
-        'endLine' => 68,
+        'startLine' => 58,
+        'endLine' => 69,
         'startColumn' => 5,
         'endColumn' => 5,
         'couldThrow' => false,
@@ -199,8 +199,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
  *
  * @return list<list<string>>
  */',
-        'startLine' => 76,
-        'endLine' => 79,
+        'startLine' => 77,
+        'endLine' => 80,
         'startColumn' => 5,
         'endColumn' => 5,
         'couldThrow' => false,
@@ -236,8 +236,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         'docComment' => '/**
  * @return list<array{field: string, comparator: string, weight: float}>
  */',
-        'startLine' => 84,
-        'endLine' => 87,
+        'startLine' => 85,
+        'endLine' => 88,
         'startColumn' => 5,
         'endColumn' => 5,
         'couldThrow' => false,
@@ -271,8 +271,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         array (
         ),
         'docComment' => '/** Sum of the configured fuzzy weights (the score denominator). */',
-        'startLine' => 90,
-        'endLine' => 93,
+        'startLine' => 91,
+        'endLine' => 94,
         'startColumn' => 5,
         'endColumn' => 5,
         'couldThrow' => false,
@@ -308,8 +308,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         'docComment' => '/**
  * @return BelongsTo<User, $this>
  */',
-        'startLine' => 98,
-        'endLine' => 101,
+        'startLine' => 99,
+        'endLine' => 102,
         'startColumn' => 5,
         'endColumn' => 5,
         'couldThrow' => false,

@@ -2,7 +2,7 @@
 
 // odsl-/var/www/html/app/Domain/Registry/Models/Household.php-PHPStan\BetterReflection\Reflection\ReflectionClass-App\Domain\Registry\Models\Household
 return \PHPStan\Cache\CacheItem::__set_state(array(
-   'variableKey' => 'v2-6.70.0.1-8.3.31-2658825c8c8aacf586c328b3b9c7a24209f4d7a3e3f4a417e88e86cdd3c6ee58',
+   'variableKey' => 'v2-6.70.0.1-8.3.31-c0206c14eedb9c7e08b70f8d0a52ddc9cfd94cfd0d9990031e1c402a6920aeb0',
    'data' => 
   array (
     'locatedSource' => 
@@ -36,8 +36,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
  * @property string|null $address
  * @property string|null $lga
  * @property string|null $ward
- * @property \\Illuminate\\Support\\Carbon|null $created_at
- * @property \\Illuminate\\Support\\Carbon|null $updated_at
+ * @property Carbon|null $created_at
+ * @property Carbon|null $updated_at
  * @property-read Mda|null $ownerMda
  * @property-read Beneficiary|null $head
  * @property-read Collection<int, HouseholdMembership> $memberships
@@ -83,9 +83,9 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             'startLine' => 48,
             'endLine' => 48,
             'startTokenPos' => 126,
-            'startFilePos' => 1766,
+            'startFilePos' => 1726,
             'endTokenPos' => 126,
-            'endFilePos' => 1777,
+            'endFilePos' => 1737,
           ),
         ),
         'docComment' => NULL,
@@ -118,9 +118,9 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             'startLine' => 53,
             'endLine' => 63,
             'startTokenPos' => 137,
-            'startFilePos' => 1848,
+            'startFilePos' => 1808,
             'endTokenPos' => 166,
-            'endFilePos' => 2076,
+            'endFilePos' => 2036,
           ),
         ),
         'docComment' => '/**

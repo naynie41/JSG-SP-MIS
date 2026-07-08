@@ -2,7 +2,7 @@
 
 // odsl-/var/www/html/app/Domain/Registry/Models/Beneficiary.php-PHPStan\BetterReflection\Reflection\ReflectionClass-App\Domain\Registry\Models\Beneficiary
 return \PHPStan\Cache\CacheItem::__set_state(array(
-   'variableKey' => 'v2-6.70.0.1-8.3.31-253011473e087aa7d6846265f300d9f96ac45ef35820474caa7426831d173a7e',
+   'variableKey' => 'v2-6.70.0.1-8.3.31-9ced46225f6fd13a36e79d5d039efb55a6bb7cfcaffa41aab28e212aa66fe8e5',
    'data' => 
   array (
     'locatedSource' => 
@@ -46,8 +46,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
  * @property string|null $ward
  * @property string|null $block_name_dob
  * @property BeneficiaryStatus $status
- * @property \\Illuminate\\Support\\Carbon|null $created_at
- * @property \\Illuminate\\Support\\Carbon|null $updated_at
+ * @property Carbon|null $created_at
+ * @property Carbon|null $updated_at
  * @property-read Mda|null $ownerMda
  * @property-read HouseholdMembership|null $currentMembership
  */',
@@ -91,9 +91,9 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             'startLine' => 60,
             'endLine' => 60,
             'startTokenPos' => 146,
-            'startFilePos' => 2170,
+            'startFilePos' => 2130,
             'endTokenPos' => 146,
-            'endFilePos' => 2184,
+            'endFilePos' => 2144,
           ),
         ),
         'docComment' => NULL,
@@ -126,9 +126,9 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             'startLine' => 65,
             'endLine' => 85,
             'startTokenPos' => 157,
-            'startFilePos' => 2255,
+            'startFilePos' => 2215,
             'endTokenPos' => 216,
-            'endFilePos' => 2679,
+            'endFilePos' => 2639,
           ),
         ),
         'docComment' => '/**
@@ -163,9 +163,9 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             'startLine' => 93,
             'endLine' => 96,
             'startTokenPos' => 227,
-            'startFilePos' => 2912,
+            'startFilePos' => 2872,
             'endTokenPos' => 235,
-            'endFilePos' => 2948,
+            'endFilePos' => 2908,
           ),
         ),
         'docComment' => '/**
@@ -203,9 +203,9 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             'startLine' => 101,
             'endLine' => 103,
             'startTokenPos' => 246,
-            'startFilePos' => 3029,
+            'startFilePos' => 2989,
             'endTokenPos' => 259,
-            'endFilePos' => 3089,
+            'endFilePos' => 3049,
           ),
         ),
         'docComment' => '/**

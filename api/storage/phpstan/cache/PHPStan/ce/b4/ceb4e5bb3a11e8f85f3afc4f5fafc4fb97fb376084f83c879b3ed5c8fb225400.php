@@ -1474,7 +1474,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
     ),
     '/var/www/html/app/Domain/Matching/Models/MatchingConfig.php' => 
     array (
-      0 => 'dc0c36d986c66ca433e75af16590da719c443a2bdf3da9808546b480a8ece22b',
+      0 => '45ac8dcc882927dba2ca43f8a8db8ac53d0be89ef2273ca3c05d1abd7786a93c',
       1 => 
       array (
         0 => 'app\\domain\\matching\\models\\matchingconfig',
@@ -2800,7 +2800,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
     ),
     '/var/www/html/app/Domain/Registry/Models/Beneficiary.php' => 
     array (
-      0 => '253011473e087aa7d6846265f300d9f96ac45ef35820474caa7426831d173a7e',
+      0 => '9ced46225f6fd13a36e79d5d039efb55a6bb7cfcaffa41aab28e212aa66fe8e5',
       1 => 
       array (
         0 => 'app\\domain\\registry\\models\\beneficiary',
@@ -2825,7 +2825,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
     ),
     '/var/www/html/app/Domain/Registry/Models/BeneficiaryDocument.php' => 
     array (
-      0 => '53b425fdc45402b14b9a07678b670dea492e2bc47fea064826e2987594a2b750',
+      0 => '57cc8abd59e4c5e20c688438068fdfad9102d6372de979bf6f124c437eb5fa14',
       1 => 
       array (
         0 => 'app\\domain\\registry\\models\\beneficiarydocument',
@@ -2861,7 +2861,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
     ),
     '/var/www/html/app/Domain/Registry/Models/Household.php' => 
     array (
-      0 => '2658825c8c8aacf586c328b3b9c7a24209f4d7a3e3f4a417e88e86cdd3c6ee58',
+      0 => 'c0206c14eedb9c7e08b70f8d0a52ddc9cfd94cfd0d9990031e1c402a6920aeb0',
       1 => 
       array (
         0 => 'app\\domain\\registry\\models\\household',
@@ -3479,7 +3479,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
     ),
     '/var/www/html/app/Domain/Reporting/Jobs/GenerateReport.php' => 
     array (
-      0 => '4e81eeb2fd172d80bd8a1fd0351fad42a45006b8b60477feeb2de5b634c15666',
+      0 => 'fb96aed2b9204e84145cc68b574e231cbc500974290ead5739621efc39684957',
       1 => 
       array (
         0 => 'app\\domain\\reporting\\jobs\\generatereport',
@@ -3526,7 +3526,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
     ),
     '/var/www/html/app/Domain/Reporting/Models/ReportRun.php' => 
     array (
-      0 => 'a24579ba1ce46603f8ad4c3cccc9c096f5d49ea74a7044e247ae2bf48fc78167',
+      0 => 'eabc33e93cdd94b10d51928f9ff45ab225f1fcefd732e284d037ba14d24130f1',
       1 => 
       array (
         0 => 'app\\domain\\reporting\\models\\reportrun',
@@ -3534,8 +3534,9 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
       2 => 
       array (
         0 => 'app\\domain\\reporting\\models\\casts',
-        1 => 'app\\domain\\reporting\\models\\toscope',
-        2 => 'app\\domain\\reporting\\models\\isready',
+        1 => 'app\\domain\\reporting\\models\\adhocdefinition',
+        2 => 'app\\domain\\reporting\\models\\toscope',
+        3 => 'app\\domain\\reporting\\models\\isready',
       ),
       3 => 
       array (
@@ -3681,7 +3682,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
     ),
     '/var/www/html/app/Domain/Reporting/Services/ReportService.php' => 
     array (
-      0 => '442160a71c09b6277121f46c1b515d3fa4dbc56613dee005b19af7125ebe05e0',
+      0 => 'ac48ed7de465054850722f05b5e649ac31321be1a4e2cf4480a94cc4a114f8dc',
       1 => 
       array (
         0 => 'app\\domain\\reporting\\services\\reportservice',
@@ -3690,6 +3691,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
       array (
         0 => 'app\\domain\\reporting\\services\\__construct',
         1 => 'app\\domain\\reporting\\services\\request',
+        2 => 'app\\domain\\reporting\\services\\requestadhoc',
+        3 => 'app\\domain\\reporting\\services\\queue',
       ),
       3 => 
       array (
@@ -5613,6 +5616,212 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         0 => 'app\\support\\success',
         1 => 'app\\support\\paginated',
         2 => 'app\\support\\error',
+      ),
+      3 => 
+      array (
+      ),
+    ),
+    '/var/www/html/app/Domain/Reporting/Exceptions/InvalidReportDefinitionException.php' => 
+    array (
+      0 => '0ccea7bfbece246cc3a96e9c77dedae8800b1a43d0f2c1c2414fce12e5460e11',
+      1 => 
+      array (
+        0 => 'app\\domain\\reporting\\exceptions\\invalidreportdefinitionexception',
+      ),
+      2 => 
+      array (
+      ),
+      3 => 
+      array (
+      ),
+    ),
+    '/var/www/html/app/Domain/Reporting/Models/ReportDefinition.php' => 
+    array (
+      0 => '892a6ff86fa1b2af407f2ecaee50845fcc352aa2ab2af6da0ce4f6893835fb3a',
+      1 => 
+      array (
+        0 => 'app\\domain\\reporting\\models\\reportdefinition',
+      ),
+      2 => 
+      array (
+        0 => 'app\\domain\\reporting\\models\\casts',
+        1 => 'app\\domain\\reporting\\models\\toadhoc',
+      ),
+      3 => 
+      array (
+      ),
+    ),
+    '/var/www/html/app/Domain/Reporting/Reports/AdHoc/AdHocDatasetRegistry.php' => 
+    array (
+      0 => 'da058c66e37aa027f0aa82588ee7bc10c9ae511ecb7a1db2172035949642e1e2',
+      1 => 
+      array (
+        0 => 'app\\domain\\reporting\\reports\\adhoc\\adhocdatasetregistry',
+      ),
+      2 => 
+      array (
+        0 => 'app\\domain\\reporting\\reports\\adhoc\\get',
+        1 => 'app\\domain\\reporting\\reports\\adhoc\\iscoordination',
+        2 => 'app\\domain\\reporting\\reports\\adhoc\\availableto',
+        3 => 'app\\domain\\reporting\\reports\\adhoc\\cataloguefor',
+        4 => 'app\\domain\\reporting\\reports\\adhoc\\optionlist',
+      ),
+      3 => 
+      array (
+      ),
+    ),
+    '/var/www/html/app/Domain/Reporting/Reports/AdHoc/AdHocDefinition.php' => 
+    array (
+      0 => 'a8afc8480f75a29d29f46ce98f7f17a2d5de7b13f9b27829b0a8e081097a6f72',
+      1 => 
+      array (
+        0 => 'app\\domain\\reporting\\reports\\adhoc\\adhocdefinition',
+      ),
+      2 => 
+      array (
+        0 => 'app\\domain\\reporting\\reports\\adhoc\\__construct',
+        1 => 'app\\domain\\reporting\\reports\\adhoc\\fromarray',
+        2 => 'app\\domain\\reporting\\reports\\adhoc\\toarray',
+        3 => 'app\\domain\\reporting\\reports\\adhoc\\label',
+      ),
+      3 => 
+      array (
+      ),
+    ),
+    '/var/www/html/app/Domain/Reporting/Reports/AdHoc/AdHocReportBuilder.php' => 
+    array (
+      0 => '07c16c51476e04e2ffa13aa7d912409b335cebbd5e6a617d31132f3ec0889417',
+      1 => 
+      array (
+        0 => 'app\\domain\\reporting\\reports\\adhoc\\adhocreportbuilder',
+      ),
+      2 => 
+      array (
+        0 => 'app\\domain\\reporting\\reports\\adhoc\\validate',
+        1 => 'app\\domain\\reporting\\reports\\adhoc\\build',
+        2 => 'app\\domain\\reporting\\reports\\adhoc\\basequery',
+        3 => 'app\\domain\\reporting\\reports\\adhoc\\applyscope',
+        4 => 'app\\domain\\reporting\\reports\\adhoc\\applyfilters',
+        5 => 'app\\domain\\reporting\\reports\\adhoc\\namemaps',
+        6 => 'app\\domain\\reporting\\reports\\adhoc\\renderdimension',
+        7 => 'app\\domain\\reporting\\reports\\adhoc\\rendermeasure',
+      ),
+      3 => 
+      array (
+      ),
+    ),
+    '/var/www/html/app/Http/Controllers/Api/V1/Reporting/AdHocReportController.php' => 
+    array (
+      0 => 'f93a25f698ed95c2b626c4c34e94add4d3ed8f7ee1dfafaab4f02bb6aababdd1',
+      1 => 
+      array (
+        0 => 'app\\http\\controllers\\api\\v1\\reporting\\adhocreportcontroller',
+      ),
+      2 => 
+      array (
+        0 => 'app\\http\\controllers\\api\\v1\\reporting\\__construct',
+        1 => 'app\\http\\controllers\\api\\v1\\reporting\\datasets',
+        2 => 'app\\http\\controllers\\api\\v1\\reporting\\preview',
+        3 => 'app\\http\\controllers\\api\\v1\\reporting\\export',
+        4 => 'app\\http\\controllers\\api\\v1\\reporting\\previewrows',
+      ),
+      3 => 
+      array (
+      ),
+    ),
+    '/var/www/html/app/Http/Controllers/Api/V1/Reporting/ReportDefinitionController.php' => 
+    array (
+      0 => 'c1c5abdbe650d45685e2d1d8564694fba3e55aa4c8077c4a6a5c5967700e8bd4',
+      1 => 
+      array (
+        0 => 'app\\http\\controllers\\api\\v1\\reporting\\reportdefinitioncontroller',
+      ),
+      2 => 
+      array (
+        0 => 'app\\http\\controllers\\api\\v1\\reporting\\__construct',
+        1 => 'app\\http\\controllers\\api\\v1\\reporting\\index',
+        2 => 'app\\http\\controllers\\api\\v1\\reporting\\store',
+        3 => 'app\\http\\controllers\\api\\v1\\reporting\\show',
+        4 => 'app\\http\\controllers\\api\\v1\\reporting\\destroy',
+        5 => 'app\\http\\controllers\\api\\v1\\reporting\\run',
+        6 => 'app\\http\\controllers\\api\\v1\\reporting\\mine',
+      ),
+      3 => 
+      array (
+      ),
+    ),
+    '/var/www/html/app/Http/Requests/Reporting/AdHocReportRequest.php' => 
+    array (
+      0 => 'b1986f9cff82410ceab76031bd4b0abb2588f3201e5e9b9e7d156d0d6635c216',
+      1 => 
+      array (
+        0 => 'app\\http\\requests\\reporting\\adhocreportrequest',
+      ),
+      2 => 
+      array (
+        0 => 'app\\http\\requests\\reporting\\authorize',
+        1 => 'app\\http\\requests\\reporting\\rules',
+      ),
+      3 => 
+      array (
+      ),
+    ),
+    '/var/www/html/app/Http/Requests/Reporting/ExportAdHocRequest.php' => 
+    array (
+      0 => 'de6bb6ae6b0340eef743a72b5c2c2d00080a46beb74ed110c554c219e07e3aff',
+      1 => 
+      array (
+        0 => 'app\\http\\requests\\reporting\\exportadhocrequest',
+      ),
+      2 => 
+      array (
+        0 => 'app\\http\\requests\\reporting\\rules',
+      ),
+      3 => 
+      array (
+      ),
+    ),
+    '/var/www/html/app/Http/Requests/Reporting/RunReportDefinitionRequest.php' => 
+    array (
+      0 => 'f827ea8c96fa5cc78d96c067011ef78527f9da5bc0dd07a1ac40cf8a7e2ec470',
+      1 => 
+      array (
+        0 => 'app\\http\\requests\\reporting\\runreportdefinitionrequest',
+      ),
+      2 => 
+      array (
+        0 => 'app\\http\\requests\\reporting\\authorize',
+        1 => 'app\\http\\requests\\reporting\\rules',
+      ),
+      3 => 
+      array (
+      ),
+    ),
+    '/var/www/html/app/Http/Requests/Reporting/SaveReportDefinitionRequest.php' => 
+    array (
+      0 => 'de44092302448ef2fccf91a6e2d25a3cacc339619684da46b1b63930d146ef90',
+      1 => 
+      array (
+        0 => 'app\\http\\requests\\reporting\\savereportdefinitionrequest',
+      ),
+      2 => 
+      array (
+        0 => 'app\\http\\requests\\reporting\\rules',
+      ),
+      3 => 
+      array (
+      ),
+    ),
+    '/var/www/html/app/Http/Resources/ReportDefinitionResource.php' => 
+    array (
+      0 => '7f193b34adc6ccb36b90cfd57fc488b77fc60f86b0452383b79c15cca5cf7cdb',
+      1 => 
+      array (
+        0 => 'app\\http\\resources\\reportdefinitionresource',
+      ),
+      2 => 
+      array (
+        0 => 'app\\http\\resources\\toarray',
       ),
       3 => 
       array (

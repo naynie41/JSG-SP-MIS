@@ -11,6 +11,7 @@ use App\Domain\Reporting\Events\ReportReady;
 use App\Domain\Reporting\Export\ReportExporterRegistry;
 use App\Domain\Reporting\Export\ReportFormat;
 use App\Domain\Reporting\Models\ReportRun;
+use App\Domain\Reporting\Reports\AdHoc\AdHocReportBuilder;
 use App\Domain\Reporting\Reports\ReportBuilder;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
@@ -35,7 +36,7 @@ class GenerateReport implements ShouldQueue
 
     public function __construct(public readonly string $runId) {}
 
-    public function handle(ReportBuilder $builder, ReportExporterRegistry $exporters, AuditLogger $audit): void
+    public function handle(ReportBuilder $builder, AdHocReportBuilder $adHoc, ReportExporterRegistry $exporters, AuditLogger $audit): void
     {
         $run = ReportRun::query()->find($this->runId);
         if ($run === null) {
@@ -46,7 +47,11 @@ class GenerateReport implements ShouldQueue
 
         try {
             $format = ReportFormat::from($run->format);
-            $data = $builder->build($run->report_key, $run->toScope());
+            $scope = $run->toScope();
+            $definition = $run->adHocDefinition();
+            $data = $definition !== null
+                ? $adHoc->build($definition, $scope)
+                : $builder->build($run->report_key, $scope);
             $bytes = $exporters->for($format)->render($data);
 
             $path = "reports/{$run->id}.{$format->extension()}";

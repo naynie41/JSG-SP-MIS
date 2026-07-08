@@ -32,8 +32,10 @@ use App\Http\Controllers\Api\V1\Registry\HouseholdMemberController;
 use App\Http\Controllers\Api\V1\Registry\ImportBatchController;
 use App\Http\Controllers\Api\V1\Registry\OwnershipTransferController;
 use App\Http\Controllers\Api\V1\Registry\ServiceRequestController;
+use App\Http\Controllers\Api\V1\Reporting\AdHocReportController;
 use App\Http\Controllers\Api\V1\Reporting\DashboardController;
 use App\Http\Controllers\Api\V1\Reporting\ReportController;
+use App\Http\Controllers\Api\V1\Reporting\ReportDefinitionController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -416,6 +418,30 @@ Route::prefix('v1')->group(function (): void {
         */
         Route::get('/reports/catalogue', [ReportController::class, 'catalogue'])
             ->middleware('permission:reporting.view')->name('reports.catalogue');
+
+        /*
+        | Ad-hoc report builder (FR-RPT-03). Compose from a whitelisted dataset →
+        | preview → export. Registered before the /reports/{report} wildcard.
+        */
+        Route::get('/reports/adhoc/datasets', [AdHocReportController::class, 'datasets'])
+            ->middleware('permission:reporting.view')->name('reports.adhoc.datasets');
+        Route::post('/reports/adhoc/preview', [AdHocReportController::class, 'preview'])
+            ->middleware('permission:reporting.view')->name('reports.adhoc.preview');
+        Route::post('/reports/adhoc', [AdHocReportController::class, 'export'])
+            ->middleware('permission:reporting.export')->name('reports.adhoc.export');
+
+        // Saved ad-hoc definitions (reusable; basis for scheduling in 6.6).
+        Route::get('/report-definitions', [ReportDefinitionController::class, 'index'])
+            ->middleware('permission:reporting.view')->name('report-definitions.index');
+        Route::post('/report-definitions', [ReportDefinitionController::class, 'store'])
+            ->middleware('permission:reporting.view')->name('report-definitions.store');
+        Route::get('/report-definitions/{definition}', [ReportDefinitionController::class, 'show'])
+            ->middleware('permission:reporting.view')->name('report-definitions.show');
+        Route::delete('/report-definitions/{definition}', [ReportDefinitionController::class, 'destroy'])
+            ->middleware('permission:reporting.view')->name('report-definitions.destroy');
+        Route::post('/report-definitions/{definition}/run', [ReportDefinitionController::class, 'run'])
+            ->middleware('permission:reporting.export')->name('report-definitions.run');
+
         Route::get('/reports', [ReportController::class, 'index'])
             ->middleware('permission:reporting.view')->name('reports.index');
         Route::post('/reports', [ReportController::class, 'store'])

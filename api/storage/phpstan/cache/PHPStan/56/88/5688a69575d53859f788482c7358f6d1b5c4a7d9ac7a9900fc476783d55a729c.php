@@ -2,7 +2,7 @@
 
 // odsl-/var/www/html/app/Domain/Reporting/Jobs/GenerateReport.php-PHPStan\BetterReflection\Reflection\ReflectionClass-App\Domain\Reporting\Jobs\GenerateReport
 return \PHPStan\Cache\CacheItem::__set_state(array(
-   'variableKey' => 'v2-6.70.0.1-8.3.31-4e81eeb2fd172d80bd8a1fd0351fad42a45006b8b60477feeb2de5b634c15666',
+   'variableKey' => 'v2-6.70.0.1-8.3.31-fb96aed2b9204e84145cc68b574e231cbc500974290ead5739621efc39684957',
    'data' => 
   array (
     'locatedSource' => 
@@ -32,8 +32,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
     'attributes' => 
     array (
     ),
-    'startLine' => 32,
-    'endLine' => 87,
+    'startLine' => 33,
+    'endLine' => 92,
     'startColumn' => 1,
     'endColumn' => 1,
     'parentClassName' => NULL,
@@ -73,8 +73,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         'attributes' => 
         array (
         ),
-        'startLine' => 36,
-        'endLine' => 36,
+        'startLine' => 37,
+        'endLine' => 37,
         'startColumn' => 33,
         'endColumn' => 61,
         'isPromoted' => true,
@@ -111,8 +111,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             'attributes' => 
             array (
             ),
-            'startLine' => 36,
-            'endLine' => 36,
+            'startLine' => 37,
+            'endLine' => 37,
             'startColumn' => 33,
             'endColumn' => 61,
             'parameterIndex' => 0,
@@ -125,8 +125,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         array (
         ),
         'docComment' => NULL,
-        'startLine' => 36,
-        'endLine' => 36,
+        'startLine' => 37,
+        'endLine' => 37,
         'startColumn' => 5,
         'endColumn' => 65,
         'couldThrow' => false,
@@ -164,11 +164,37 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             'attributes' => 
             array (
             ),
-            'startLine' => 38,
-            'endLine' => 38,
+            'startLine' => 39,
+            'endLine' => 39,
             'startColumn' => 28,
             'endColumn' => 49,
             'parameterIndex' => 0,
+            'isOptional' => false,
+          ),
+          'adHoc' => 
+          array (
+            'name' => 'adHoc',
+            'default' => NULL,
+            'type' => 
+            array (
+              'class' => 'PHPStan\\BetterReflection\\Reflection\\ReflectionNamedType',
+              'data' => 
+              array (
+                'name' => 'App\\Domain\\Reporting\\Reports\\AdHoc\\AdHocReportBuilder',
+                'isIdentifier' => false,
+              ),
+            ),
+            'isVariadic' => false,
+            'byRef' => false,
+            'isPromoted' => false,
+            'attributes' => 
+            array (
+            ),
+            'startLine' => 39,
+            'endLine' => 39,
+            'startColumn' => 52,
+            'endColumn' => 76,
+            'parameterIndex' => 1,
             'isOptional' => false,
           ),
           'exporters' => 
@@ -190,11 +216,11 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             'attributes' => 
             array (
             ),
-            'startLine' => 38,
-            'endLine' => 38,
-            'startColumn' => 52,
-            'endColumn' => 84,
-            'parameterIndex' => 1,
+            'startLine' => 39,
+            'endLine' => 39,
+            'startColumn' => 79,
+            'endColumn' => 111,
+            'parameterIndex' => 2,
             'isOptional' => false,
           ),
           'audit' => 
@@ -216,11 +242,11 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             'attributes' => 
             array (
             ),
-            'startLine' => 38,
-            'endLine' => 38,
-            'startColumn' => 87,
-            'endColumn' => 104,
-            'parameterIndex' => 2,
+            'startLine' => 39,
+            'endLine' => 39,
+            'startColumn' => 114,
+            'endColumn' => 131,
+            'parameterIndex' => 3,
             'isOptional' => false,
           ),
         ),
@@ -238,8 +264,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         array (
         ),
         'docComment' => NULL,
-        'startLine' => 38,
-        'endLine' => 77,
+        'startLine' => 39,
+        'endLine' => 82,
         'startColumn' => 5,
         'endColumn' => 5,
         'couldThrow' => true,
@@ -277,8 +303,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             'attributes' => 
             array (
             ),
-            'startLine' => 79,
-            'endLine' => 79,
+            'startLine' => 84,
+            'endLine' => 84,
             'startColumn' => 32,
             'endColumn' => 45,
             'parameterIndex' => 0,
@@ -318,8 +344,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         array (
         ),
         'docComment' => NULL,
-        'startLine' => 79,
-        'endLine' => 86,
+        'startLine' => 84,
+        'endLine' => 91,
         'startColumn' => 5,
         'endColumn' => 5,
         'couldThrow' => false,

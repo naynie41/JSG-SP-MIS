@@ -2,7 +2,7 @@
 
 // odsl-/var/www/html/app/Domain/Reporting/Models/ReportRun.php-PHPStan\BetterReflection\Reflection\ReflectionClass-App\Domain\Reporting\Models\ReportRun
 return \PHPStan\Cache\CacheItem::__set_state(array(
-   'variableKey' => 'v2-6.70.0.1-8.3.31-a24579ba1ce46603f8ad4c3cccc9c096f5d49ea74a7044e247ae2bf48fc78167',
+   'variableKey' => 'v2-6.70.0.1-8.3.31-eabc33e93cdd94b10d51928f9ff45ab225f1fcefd732e284d037ba14d24130f1',
    'data' => 
   array (
     'locatedSource' => 
@@ -38,6 +38,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
  * @property list<string>|null $scope_mda_ids
  * @property list<string>|null $scope_programme_ids
  * @property array<string, mixed>|null $params
+ * @property array<string, mixed>|null $definition
  * @property int|null $row_count
  * @property string|null $file_path
  * @property string|null $file_name
@@ -50,8 +51,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
     'attributes' => 
     array (
     ),
-    'startLine' => 37,
-    'endLine' => 85,
+    'startLine' => 39,
+    'endLine' => 94,
     'startColumn' => 1,
     'endColumn' => 1,
     'parentClassName' => 'Illuminate\\Database\\Eloquent\\Model',
@@ -76,20 +77,20 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
           'code' => '\'pending\'',
           'attributes' => 
           array (
-            'startLine' => 41,
-            'endLine' => 41,
-            'startTokenPos' => 60,
-            'startFilePos' => 1313,
-            'endTokenPos' => 60,
-            'endFilePos' => 1321,
+            'startLine' => 43,
+            'endLine' => 43,
+            'startTokenPos' => 65,
+            'startFilePos' => 1420,
+            'endTokenPos' => 65,
+            'endFilePos' => 1428,
           ),
         ),
         'docComment' => NULL,
         'attributes' => 
         array (
         ),
-        'startLine' => 41,
-        'endLine' => 41,
+        'startLine' => 43,
+        'endLine' => 43,
         'startColumn' => 5,
         'endColumn' => 44,
       ),
@@ -105,20 +106,20 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
           'code' => '\'processing\'',
           'attributes' => 
           array (
-            'startLine' => 43,
-            'endLine' => 43,
-            'startTokenPos' => 71,
-            'startFilePos' => 1362,
-            'endTokenPos' => 71,
-            'endFilePos' => 1373,
+            'startLine' => 45,
+            'endLine' => 45,
+            'startTokenPos' => 76,
+            'startFilePos' => 1469,
+            'endTokenPos' => 76,
+            'endFilePos' => 1480,
           ),
         ),
         'docComment' => NULL,
         'attributes' => 
         array (
         ),
-        'startLine' => 43,
-        'endLine' => 43,
+        'startLine' => 45,
+        'endLine' => 45,
         'startColumn' => 5,
         'endColumn' => 50,
       ),
@@ -134,20 +135,20 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
           'code' => '\'ready\'',
           'attributes' => 
           array (
-            'startLine' => 45,
-            'endLine' => 45,
-            'startTokenPos' => 82,
-            'startFilePos' => 1409,
-            'endTokenPos' => 82,
-            'endFilePos' => 1415,
+            'startLine' => 47,
+            'endLine' => 47,
+            'startTokenPos' => 87,
+            'startFilePos' => 1516,
+            'endTokenPos' => 87,
+            'endFilePos' => 1522,
           ),
         ),
         'docComment' => NULL,
         'attributes' => 
         array (
         ),
-        'startLine' => 45,
-        'endLine' => 45,
+        'startLine' => 47,
+        'endLine' => 47,
         'startColumn' => 5,
         'endColumn' => 40,
       ),
@@ -163,20 +164,20 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
           'code' => '\'failed\'',
           'attributes' => 
           array (
-            'startLine' => 47,
-            'endLine' => 47,
-            'startTokenPos' => 93,
-            'startFilePos' => 1452,
-            'endTokenPos' => 93,
-            'endFilePos' => 1459,
+            'startLine' => 49,
+            'endLine' => 49,
+            'startTokenPos' => 98,
+            'startFilePos' => 1559,
+            'endTokenPos' => 98,
+            'endFilePos' => 1566,
           ),
         ),
         'docComment' => NULL,
         'attributes' => 
         array (
         ),
-        'startLine' => 47,
-        'endLine' => 47,
+        'startLine' => 49,
+        'endLine' => 49,
         'startColumn' => 5,
         'endColumn' => 42,
       ),
@@ -195,20 +196,20 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
           'code' => '\'report_runs\'',
           'attributes' => 
           array (
-            'startLine' => 49,
-            'endLine' => 49,
-            'startTokenPos' => 102,
-            'startFilePos' => 1486,
-            'endTokenPos' => 102,
-            'endFilePos' => 1498,
+            'startLine' => 51,
+            'endLine' => 51,
+            'startTokenPos' => 107,
+            'startFilePos' => 1593,
+            'endTokenPos' => 107,
+            'endFilePos' => 1605,
           ),
         ),
         'docComment' => NULL,
         'attributes' => 
         array (
         ),
-        'startLine' => 49,
-        'endLine' => 49,
+        'startLine' => 51,
+        'endLine' => 51,
         'startColumn' => 5,
         'endColumn' => 37,
         'isPromoted' => false,
@@ -227,15 +228,15 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         'type' => NULL,
         'default' => 
         array (
-          'code' => '[\'report_key\', \'report_label\', \'format\', \'status\', \'scope_kind\', \'scope_label\', \'scope_mda_ids\', \'scope_programme_ids\', \'params\', \'row_count\', \'file_path\', \'file_name\', \'error\', \'requested_by\', \'requested_mda_id\', \'completed_at\']',
+          'code' => '[\'report_key\', \'report_label\', \'format\', \'status\', \'scope_kind\', \'scope_label\', \'scope_mda_ids\', \'scope_programme_ids\', \'params\', \'definition\', \'row_count\', \'file_path\', \'file_name\', \'error\', \'requested_by\', \'requested_mda_id\', \'completed_at\']',
           'attributes' => 
           array (
-            'startLine' => 54,
-            'endLine' => 59,
-            'startTokenPos' => 113,
-            'startFilePos' => 1569,
-            'endTokenPos' => 163,
-            'endFilePos' => 1836,
+            'startLine' => 56,
+            'endLine' => 61,
+            'startTokenPos' => 118,
+            'startFilePos' => 1676,
+            'endTokenPos' => 171,
+            'endFilePos' => 1957,
           ),
         ),
         'docComment' => '/**
@@ -244,8 +245,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         'attributes' => 
         array (
         ),
-        'startLine' => 54,
-        'endLine' => 59,
+        'startLine' => 56,
+        'endLine' => 61,
         'startColumn' => 5,
         'endColumn' => 6,
         'isPromoted' => false,
@@ -280,8 +281,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         'docComment' => '/**
  * @return array<string, string>
  */',
-        'startLine' => 64,
-        'endLine' => 73,
+        'startLine' => 66,
+        'endLine' => 76,
         'startColumn' => 5,
         'endColumn' => 5,
         'couldThrow' => false,
@@ -289,6 +290,60 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         'isGenerator' => false,
         'isVariadic' => false,
         'modifiers' => 2,
+        'namespace' => 'App\\Domain\\Reporting\\Models',
+        'declaringClassName' => 'App\\Domain\\Reporting\\Models\\ReportRun',
+        'implementingClassName' => 'App\\Domain\\Reporting\\Models\\ReportRun',
+        'currentClassName' => 'App\\Domain\\Reporting\\Models\\ReportRun',
+        'aliasName' => NULL,
+      ),
+      'adHocDefinition' => 
+      array (
+        'name' => 'adHocDefinition',
+        'parameters' => 
+        array (
+        ),
+        'returnsReference' => false,
+        'returnType' => 
+        array (
+          'class' => 'PHPStan\\BetterReflection\\Reflection\\ReflectionUnionType',
+          'data' => 
+          array (
+            'types' => 
+            array (
+              0 => 
+              array (
+                'class' => 'PHPStan\\BetterReflection\\Reflection\\ReflectionNamedType',
+                'data' => 
+                array (
+                  'name' => 'App\\Domain\\Reporting\\Reports\\AdHoc\\AdHocDefinition',
+                  'isIdentifier' => false,
+                ),
+              ),
+              1 => 
+              array (
+                'class' => 'PHPStan\\BetterReflection\\Reflection\\ReflectionNamedType',
+                'data' => 
+                array (
+                  'name' => 'null',
+                  'isIdentifier' => true,
+                ),
+              ),
+            ),
+          ),
+        ),
+        'attributes' => 
+        array (
+        ),
+        'docComment' => '/** The ad-hoc definition this run was built from, if it is an ad-hoc report. */',
+        'startLine' => 79,
+        'endLine' => 82,
+        'startColumn' => 5,
+        'endColumn' => 5,
+        'couldThrow' => false,
+        'isClosure' => false,
+        'isGenerator' => false,
+        'isVariadic' => false,
+        'modifiers' => 1,
         'namespace' => 'App\\Domain\\Reporting\\Models',
         'declaringClassName' => 'App\\Domain\\Reporting\\Models\\ReportRun',
         'implementingClassName' => 'App\\Domain\\Reporting\\Models\\ReportRun',
@@ -315,8 +370,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         array (
         ),
         'docComment' => '/** Rebuild the scope this run was requested under. */',
-        'startLine' => 76,
-        'endLine' => 79,
+        'startLine' => 85,
+        'endLine' => 88,
         'startColumn' => 5,
         'endColumn' => 5,
         'couldThrow' => false,
@@ -350,8 +405,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         array (
         ),
         'docComment' => NULL,
-        'startLine' => 81,
-        'endLine' => 84,
+        'startLine' => 90,
+        'endLine' => 93,
         'startColumn' => 5,
         'endColumn' => 5,
         'couldThrow' => false,

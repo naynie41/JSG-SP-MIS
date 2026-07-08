@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Domain\Reporting\Models;
 
+use App\Domain\Reporting\Reports\AdHoc\AdHocDefinition;
 use App\Domain\Reporting\Support\DashboardScope;
 use Illuminate\Database\Eloquent\Concerns\HasUuids;
 use Illuminate\Database\Eloquent\Model;
@@ -25,6 +26,7 @@ use Illuminate\Support\Carbon;
  * @property list<string>|null $scope_mda_ids
  * @property list<string>|null $scope_programme_ids
  * @property array<string, mixed>|null $params
+ * @property array<string, mixed>|null $definition
  * @property int|null $row_count
  * @property string|null $file_path
  * @property string|null $file_name
@@ -53,7 +55,7 @@ class ReportRun extends Model
      */
     protected $fillable = [
         'report_key', 'report_label', 'format', 'status',
-        'scope_kind', 'scope_label', 'scope_mda_ids', 'scope_programme_ids', 'params',
+        'scope_kind', 'scope_label', 'scope_mda_ids', 'scope_programme_ids', 'params', 'definition',
         'row_count', 'file_path', 'file_name', 'error',
         'requested_by', 'requested_mda_id', 'completed_at',
     ];
@@ -67,9 +69,16 @@ class ReportRun extends Model
             'scope_mda_ids' => 'array',
             'scope_programme_ids' => 'array',
             'params' => 'array',
+            'definition' => 'array',
             'row_count' => 'integer',
             'completed_at' => 'datetime',
         ];
+    }
+
+    /** The ad-hoc definition this run was built from, if it is an ad-hoc report. */
+    public function adHocDefinition(): ?AdHocDefinition
+    {
+        return $this->definition === null ? null : AdHocDefinition::fromArray($this->definition);
     }
 
     /** Rebuild the scope this run was requested under. */

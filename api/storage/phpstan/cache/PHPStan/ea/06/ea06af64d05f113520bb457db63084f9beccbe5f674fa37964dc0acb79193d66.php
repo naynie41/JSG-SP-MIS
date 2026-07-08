@@ -12,6 +12,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
          'namespace' => 'App\\Domain\\Reporting\\Models',
          'uses' => 
         array (
+          'adhocdefinition' => 'App\\Domain\\Reporting\\Reports\\AdHoc\\AdHocDefinition',
           'dashboardscope' => 'App\\Domain\\Reporting\\Support\\DashboardScope',
           'hasuuids' => 'Illuminate\\Database\\Eloquent\\Concerns\\HasUuids',
           'model' => 'Illuminate\\Database\\Eloquent\\Model',
@@ -398,6 +399,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
          'namespace' => 'App\\Domain\\Reporting\\Models',
          'uses' => 
         array (
+          'adhocdefinition' => 'App\\Domain\\Reporting\\Reports\\AdHoc\\AdHocDefinition',
           'dashboardscope' => 'App\\Domain\\Reporting\\Support\\DashboardScope',
           'hasuuids' => 'Illuminate\\Database\\Eloquent\\Concerns\\HasUuids',
           'model' => 'Illuminate\\Database\\Eloquent\\Model',
@@ -413,6 +415,60 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
            'namespace' => 'App\\Domain\\Reporting\\Models',
            'uses' => 
           array (
+            'adhocdefinition' => 'App\\Domain\\Reporting\\Reports\\AdHoc\\AdHocDefinition',
+            'dashboardscope' => 'App\\Domain\\Reporting\\Support\\DashboardScope',
+            'hasuuids' => 'Illuminate\\Database\\Eloquent\\Concerns\\HasUuids',
+            'model' => 'Illuminate\\Database\\Eloquent\\Model',
+            'carbon' => 'Illuminate\\Support\\Carbon',
+          ),
+           'className' => 'App\\Domain\\Reporting\\Models\\ReportRun',
+           'functionName' => NULL,
+           'templatePhpDocNodes' => 
+          array (
+          ),
+           'parent' => NULL,
+           'typeAliasesMap' => 
+          array (
+          ),
+           'bypassTypeAliases' => false,
+           'constUses' => 
+          array (
+          ),
+           'typeAliasClassName' => NULL,
+           'traitData' => NULL,
+        )),
+         'typeAliasesMap' => 
+        array (
+        ),
+         'bypassTypeAliases' => false,
+         'constUses' => 
+        array (
+        ),
+         'typeAliasClassName' => NULL,
+         'traitData' => NULL,
+      )),
+      '1b0f5feed3d254311c7e62ac74fa7fad' => 
+      \PHPStan\Analyser\IntermediaryNameScope::__set_state(array(
+         'namespace' => 'App\\Domain\\Reporting\\Models',
+         'uses' => 
+        array (
+          'adhocdefinition' => 'App\\Domain\\Reporting\\Reports\\AdHoc\\AdHocDefinition',
+          'dashboardscope' => 'App\\Domain\\Reporting\\Support\\DashboardScope',
+          'hasuuids' => 'Illuminate\\Database\\Eloquent\\Concerns\\HasUuids',
+          'model' => 'Illuminate\\Database\\Eloquent\\Model',
+          'carbon' => 'Illuminate\\Support\\Carbon',
+        ),
+         'className' => 'App\\Domain\\Reporting\\Models\\ReportRun',
+         'functionName' => 'adHocDefinition',
+         'templatePhpDocNodes' => 
+        array (
+        ),
+         'parent' => 
+        \PHPStan\Analyser\IntermediaryNameScope::__set_state(array(
+           'namespace' => 'App\\Domain\\Reporting\\Models',
+           'uses' => 
+          array (
+            'adhocdefinition' => 'App\\Domain\\Reporting\\Reports\\AdHoc\\AdHocDefinition',
             'dashboardscope' => 'App\\Domain\\Reporting\\Support\\DashboardScope',
             'hasuuids' => 'Illuminate\\Database\\Eloquent\\Concerns\\HasUuids',
             'model' => 'Illuminate\\Database\\Eloquent\\Model',
@@ -449,6 +505,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
          'namespace' => 'App\\Domain\\Reporting\\Models',
          'uses' => 
         array (
+          'adhocdefinition' => 'App\\Domain\\Reporting\\Reports\\AdHoc\\AdHocDefinition',
           'dashboardscope' => 'App\\Domain\\Reporting\\Support\\DashboardScope',
           'hasuuids' => 'Illuminate\\Database\\Eloquent\\Concerns\\HasUuids',
           'model' => 'Illuminate\\Database\\Eloquent\\Model',
@@ -464,6 +521,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
            'namespace' => 'App\\Domain\\Reporting\\Models',
            'uses' => 
           array (
+            'adhocdefinition' => 'App\\Domain\\Reporting\\Reports\\AdHoc\\AdHocDefinition',
             'dashboardscope' => 'App\\Domain\\Reporting\\Support\\DashboardScope',
             'hasuuids' => 'Illuminate\\Database\\Eloquent\\Concerns\\HasUuids',
             'model' => 'Illuminate\\Database\\Eloquent\\Model',
@@ -500,6 +558,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
          'namespace' => 'App\\Domain\\Reporting\\Models',
          'uses' => 
         array (
+          'adhocdefinition' => 'App\\Domain\\Reporting\\Reports\\AdHoc\\AdHocDefinition',
           'dashboardscope' => 'App\\Domain\\Reporting\\Support\\DashboardScope',
           'hasuuids' => 'Illuminate\\Database\\Eloquent\\Concerns\\HasUuids',
           'model' => 'Illuminate\\Database\\Eloquent\\Model',
@@ -515,6 +574,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
            'namespace' => 'App\\Domain\\Reporting\\Models',
            'uses' => 
           array (
+            'adhocdefinition' => 'App\\Domain\\Reporting\\Reports\\AdHoc\\AdHocDefinition',
             'dashboardscope' => 'App\\Domain\\Reporting\\Support\\DashboardScope',
             'hasuuids' => 'Illuminate\\Database\\Eloquent\\Concerns\\HasUuids',
             'model' => 'Illuminate\\Database\\Eloquent\\Model',
@@ -549,7 +609,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
     ),
     1 => 
     array (
-      '/var/www/html/app/Domain/Reporting/Models/ReportRun.php' => 'a24579ba1ce46603f8ad4c3cccc9c096f5d49ea74a7044e247ae2bf48fc78167',
+      '/var/www/html/app/Domain/Reporting/Models/ReportRun.php' => 'eabc33e93cdd94b10d51928f9ff45ab225f1fcefd732e284d037ba14d24130f1',
       '/var/www/html/vendor/composer/../laravel/framework/src/Illuminate/Database/Eloquent/Concerns/HasUuids.php' => 'f75b8db33aafd61f17652a5e4bb5b8989e62197b306e9f7ae60bb3ac2c34d534',
       '/var/www/html/vendor/composer/../laravel/framework/src/Illuminate/Database/Eloquent/Concerns/HasUniqueStringIds.php' => '3d5612d3c0a56c6c9f19e628b02085d4d68a64d9d07656742725cec78d4a79c5',
     ),
