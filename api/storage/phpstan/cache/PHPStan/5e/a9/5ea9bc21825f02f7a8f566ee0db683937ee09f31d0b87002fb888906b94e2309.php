@@ -15,6 +15,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
           'apiresponse' => 'App\\Support\\ApiResponse',
           'closure' => 'Closure',
           'request' => 'Illuminate\\Http\\Request',
+          'carbon' => 'Illuminate\\Support\\Carbon',
           'personalaccesstoken' => 'Laravel\\Sanctum\\PersonalAccessToken',
           'response' => 'Symfony\\Component\\HttpFoundation\\Response',
         ),
@@ -42,6 +43,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
           'apiresponse' => 'App\\Support\\ApiResponse',
           'closure' => 'Closure',
           'request' => 'Illuminate\\Http\\Request',
+          'carbon' => 'Illuminate\\Support\\Carbon',
           'personalaccesstoken' => 'Laravel\\Sanctum\\PersonalAccessToken',
           'response' => 'Symfony\\Component\\HttpFoundation\\Response',
         ),
@@ -58,6 +60,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             'apiresponse' => 'App\\Support\\ApiResponse',
             'closure' => 'Closure',
             'request' => 'Illuminate\\Http\\Request',
+            'carbon' => 'Illuminate\\Support\\Carbon',
             'personalaccesstoken' => 'Laravel\\Sanctum\\PersonalAccessToken',
             'response' => 'Symfony\\Component\\HttpFoundation\\Response',
           ),
@@ -95,6 +98,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
           'apiresponse' => 'App\\Support\\ApiResponse',
           'closure' => 'Closure',
           'request' => 'Illuminate\\Http\\Request',
+          'carbon' => 'Illuminate\\Support\\Carbon',
           'personalaccesstoken' => 'Laravel\\Sanctum\\PersonalAccessToken',
           'response' => 'Symfony\\Component\\HttpFoundation\\Response',
         ),
@@ -111,6 +115,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             'apiresponse' => 'App\\Support\\ApiResponse',
             'closure' => 'Closure',
             'request' => 'Illuminate\\Http\\Request',
+            'carbon' => 'Illuminate\\Support\\Carbon',
             'personalaccesstoken' => 'Laravel\\Sanctum\\PersonalAccessToken',
             'response' => 'Symfony\\Component\\HttpFoundation\\Response',
           ),
@@ -143,7 +148,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
     ),
     1 => 
     array (
-      '/var/www/html/app/Http/Middleware/EnforceIdleTimeout.php' => '863b0f571f67a8de04573d540f43ea200a948453bee71f1c6d74268f20e95474',
+      '/var/www/html/app/Http/Middleware/EnforceIdleTimeout.php' => 'a3686556c842fd1c0ff83d7d2ad5c257d8acfb764938ef98a3e62b7d028ed5c7',
     ),
   ),
 ));

@@ -8,6 +8,7 @@ use App\Domain\Notification\NotificationServiceProvider;
 use App\Domain\Programme\ProgrammeServiceProvider;
 use App\Domain\Referral\ReferralServiceProvider;
 use App\Domain\Registry\RegistryServiceProvider;
+use App\Domain\Reporting\ReportingServiceProvider;
 use App\Providers\AppServiceProvider;
 
 return [
@@ -20,4 +21,5 @@ return [
     NotificationServiceProvider::class,
     ReferralServiceProvider::class,
     GrievanceServiceProvider::class,
+    ReportingServiceProvider::class,
 ];

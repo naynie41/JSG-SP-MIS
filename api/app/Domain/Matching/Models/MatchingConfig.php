@@ -10,6 +10,7 @@ use App\Domain\Matching\Enums\ExactMatchBehaviour;
 use Illuminate\Database\Eloquent\Concerns\HasUuids;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Support\Carbon;
 
 /**
  * A versioned duplicate-matching configuration (PRD FR-DUP-02/03). Each row is an
@@ -26,6 +27,8 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
  * @property ExactMatchBehaviour $exact_match_behaviour
  * @property string|null $description
  * @property string|null $created_by
+ * @property Carbon|null $created_at
+ * @property Carbon|null $updated_at
  * @property-read User|null $author
  */
 class MatchingConfig extends Model

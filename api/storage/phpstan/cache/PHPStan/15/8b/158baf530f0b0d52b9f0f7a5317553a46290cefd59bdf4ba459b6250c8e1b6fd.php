@@ -2,7 +2,7 @@
 
 // odsl-/var/www/html/app/Domain/Referral/Models/Referral.php-PHPStan\BetterReflection\Reflection\ReflectionClass-App\Domain\Referral\Models\Referral
 return \PHPStan\Cache\CacheItem::__set_state(array(
-   'variableKey' => 'v2-6.70.0.1-8.3.31-9b9b8c6fd1f81f3ac5ddddb119ecf2982b1703dbfc3bf8242ba5cbc1ecb4ec00',
+   'variableKey' => 'v2-6.70.0.1-8.3.31-63ff59e3e8b49fccb8e7e5b93f66b2ce3d261c54c0821697560001d497129088',
    'data' => 
   array (
     'locatedSource' => 
@@ -35,6 +35,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
  * @property string $need
  * @property string|null $notes
  * @property ReferralStatus $status
+ * @property int $escalation_level
+ * @property Carbon|null $sla_breached_at
  * @property string|null $outcome
  * @property string|null $reason
  * @property string|null $info_request
@@ -56,8 +58,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
     'attributes' => 
     array (
     ),
-    'startLine' => 48,
-    'endLine' => 158,
+    'startLine' => 50,
+    'endLine' => 160,
     'startColumn' => 1,
     'endColumn' => 1,
     'parentClassName' => 'Illuminate\\Database\\Eloquent\\Model',
@@ -86,20 +88,20 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
           'code' => '\'referrals\'',
           'attributes' => 
           array (
-            'startLine' => 52,
-            'endLine' => 52,
+            'startLine' => 54,
+            'endLine' => 54,
             'startTokenPos' => 86,
-            'startFilePos' => 1726,
+            'startFilePos' => 1803,
             'endTokenPos' => 86,
-            'endFilePos' => 1736,
+            'endFilePos' => 1813,
           ),
         ),
         'docComment' => NULL,
         'attributes' => 
         array (
         ),
-        'startLine' => 52,
-        'endLine' => 52,
+        'startLine' => 54,
+        'endLine' => 54,
         'startColumn' => 5,
         'endColumn' => 35,
         'isPromoted' => false,
@@ -121,12 +123,12 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
           'code' => '[\'beneficiary_id\', \'from_mda_id\', \'to_mda_id\', \'need\', \'notes\', \'status\', \'escalation_level\', \'sla_breached_at\', \'outcome\', \'reason\', \'info_request\', \'info_response\', \'created_by\', \'accepted_at\', \'rejected_at\', \'info_requested_at\', \'info_responded_at\', \'started_at\', \'completed_at\', \'closed_at\']',
           'attributes' => 
           array (
-            'startLine' => 57,
-            'endLine' => 78,
+            'startLine' => 59,
+            'endLine' => 80,
             'startTokenPos' => 97,
-            'startFilePos' => 1807,
+            'startFilePos' => 1884,
             'endTokenPos' => 159,
-            'endFilePos' => 2268,
+            'endFilePos' => 2345,
           ),
         ),
         'docComment' => '/**
@@ -135,8 +137,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         'attributes' => 
         array (
         ),
-        'startLine' => 57,
-        'endLine' => 78,
+        'startLine' => 59,
+        'endLine' => 80,
         'startColumn' => 5,
         'endColumn' => 6,
         'isPromoted' => false,
@@ -169,8 +171,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         array (
         ),
         'docComment' => NULL,
-        'startLine' => 80,
-        'endLine' => 83,
+        'startLine' => 82,
+        'endLine' => 85,
         'startColumn' => 5,
         'endColumn' => 5,
         'couldThrow' => false,
@@ -208,8 +210,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             'attributes' => 
             array (
             ),
-            'startLine' => 91,
-            'endLine' => 91,
+            'startLine' => 93,
+            'endLine' => 93,
             'startColumn' => 47,
             'endColumn' => 67,
             'parameterIndex' => 0,
@@ -234,8 +236,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             'attributes' => 
             array (
             ),
-            'startLine' => 91,
-            'endLine' => 91,
+            'startLine' => 93,
+            'endLine' => 93,
             'startColumn' => 70,
             'endColumn' => 82,
             'parameterIndex' => 1,
@@ -261,8 +263,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
  * the referral\'s own authorization — SEPARATE from a Service Request grant; the
  * owner MDA already consented by referring, so ownership is never involved.
  */',
-        'startLine' => 91,
-        'endLine' => 99,
+        'startLine' => 93,
+        'endLine' => 101,
         'startColumn' => 5,
         'endColumn' => 5,
         'couldThrow' => false,
@@ -298,8 +300,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         'docComment' => '/**
  * @return array<string, string>
  */',
-        'startLine' => 104,
-        'endLine' => 118,
+        'startLine' => 106,
+        'endLine' => 120,
         'startColumn' => 5,
         'endColumn' => 5,
         'couldThrow' => false,
@@ -337,8 +339,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
  *
  * @return list<string>
  */',
-        'startLine' => 125,
-        'endLine' => 133,
+        'startLine' => 127,
+        'endLine' => 135,
         'startColumn' => 5,
         'endColumn' => 5,
         'couldThrow' => false,
@@ -374,8 +376,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         'docComment' => '/**
  * @return BelongsTo<Beneficiary, $this>
  */',
-        'startLine' => 138,
-        'endLine' => 141,
+        'startLine' => 140,
+        'endLine' => 143,
         'startColumn' => 5,
         'endColumn' => 5,
         'couldThrow' => false,
@@ -411,8 +413,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         'docComment' => '/**
  * @return BelongsTo<Mda, $this>
  */',
-        'startLine' => 146,
-        'endLine' => 149,
+        'startLine' => 148,
+        'endLine' => 151,
         'startColumn' => 5,
         'endColumn' => 5,
         'couldThrow' => false,
@@ -448,8 +450,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         'docComment' => '/**
  * @return BelongsTo<Mda, $this>
  */',
-        'startLine' => 154,
-        'endLine' => 157,
+        'startLine' => 156,
+        'endLine' => 159,
         'startColumn' => 5,
         'endColumn' => 5,
         'couldThrow' => false,

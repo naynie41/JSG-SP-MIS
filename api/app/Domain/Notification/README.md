@@ -1,7 +1,8 @@
 # Notification domain — in-app + email (FR-NOT-01/02)
 
 Event-driven notifications so any module can alert the right users without knowing
-how delivery works. **Status: Phase 5 — notification core.**
+how delivery works. **Status: Phase 5 — complete (Service Request, Referral & Grievance
+events wired).**
 
 ## Flow
 
@@ -27,7 +28,7 @@ domain event ──► NotificationSubscriber ──► Notifier ──► chann
   recipient's **preferences** allow (in-app always; email per `email_enabled`).
   Recipients are de-duplicated.
 
-## First consumers (wired now)
+## Consumers (all wired)
 
 | Event | Recipients | Type |
 | --- | --- | --- |
@@ -35,9 +36,21 @@ domain event ──► NotificationSubscriber ──► Notifier ──► chann
 | `ServiceRequestAccepted` | the requester | `service_request.accepted` |
 | `ServiceRequestDeclined` | the requester | `service_request.declined` |
 | `OwnershipTransferRequested` | current owner approvers (`from_mda_id`) | `ownership_transfer.requested` |
+| `ReferralStatusChanged` | **both** MDAs' referral staff (`referral.edit`) | `referral.<action>` |
+| `ReferralSlaBreached` | both MDAs + the escalation-tier role for the level | `referral.sla_breached` |
+| `GrievanceAssigned` | the assignee | `grievance.assigned` |
+| `GrievanceResolved` | handling-MDA grievance team + whoever logged it | `grievance.resolved` |
+| `GrievanceSlaBreached` | handling-MDA team + the escalation tier | `grievance.sla_breached` |
 
-Referral and grievance events are added in their own Phase 5 steps — they only need
-to dispatch an event and add a subscriber handler.
+Adding a new consumer only needs a domain event + a subscriber handler.
+
+## Deep links (`related`)
+
+`related_type` is the model's **morph alias** — `Str::snake(class_basename($model))`,
+e.g. `referral`, `grievance`, `service_request`, `ownership_transfer_request` — and
+`related_id` its UUID. The web notification bell maps these to routes (`referral` →
+`/referrals/{id}`, `grievance` → `/grievances/{id}`, service-request/transfer →
+`/service-requests`).
 
 ## Data
 

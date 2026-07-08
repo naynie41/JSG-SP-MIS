@@ -2,7 +2,7 @@
 
 // odsl-/var/www/html/app/Domain/Registry/Models/OwnershipTransferRequest.php-PHPStan\BetterReflection\Reflection\ReflectionClass-App\Domain\Registry\Models\OwnershipTransferRequest
 return \PHPStan\Cache\CacheItem::__set_state(array(
-   'variableKey' => 'v2-6.70.0.1-8.3.31-244f7f3ca07c9e25ed4b1542a1de21e1af7b26a1fac3024110914370c9f40c6c',
+   'variableKey' => 'v2-6.70.0.1-8.3.31-c75b4e5cd68c75b2e66c249f615968d32c2062b75b3696076e9b55f0540da63b',
    'data' => 
   array (
     'locatedSource' => 
@@ -36,13 +36,15 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
  * @property string|null $decided_by
  * @property Carbon|null $decided_at
  * @property string|null $decision_reason
+ * @property Carbon|null $created_at
+ * @property Carbon|null $updated_at
  * @property-read Beneficiary $beneficiary
  */',
     'attributes' => 
     array (
     ),
-    'startLine' => 34,
-    'endLine' => 103,
+    'startLine' => 36,
+    'endLine' => 105,
     'startColumn' => 1,
     'endColumn' => 1,
     'parentClassName' => 'Illuminate\\Database\\Eloquent\\Model',
@@ -72,20 +74,20 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
           'code' => '\'ownership_transfer_requests\'',
           'attributes' => 
           array (
-            'startLine' => 39,
-            'endLine' => 39,
+            'startLine' => 41,
+            'endLine' => 41,
             'startTokenPos' => 96,
-            'startFilePos' => 1252,
+            'startFilePos' => 1326,
             'endTokenPos' => 96,
-            'endFilePos' => 1280,
+            'endFilePos' => 1354,
           ),
         ),
         'docComment' => NULL,
         'attributes' => 
         array (
         ),
-        'startLine' => 39,
-        'endLine' => 39,
+        'startLine' => 41,
+        'endLine' => 41,
         'startColumn' => 5,
         'endColumn' => 53,
         'isPromoted' => false,
@@ -107,12 +109,12 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
           'code' => '[\'beneficiary_id\', \'from_mda_id\', \'to_mda_id\', \'status\', \'reason\', \'requested_by\', \'decided_by\', \'decided_at\', \'decision_reason\']',
           'attributes' => 
           array (
-            'startLine' => 44,
-            'endLine' => 54,
+            'startLine' => 46,
+            'endLine' => 56,
             'startTokenPos' => 107,
-            'startFilePos' => 1351,
+            'startFilePos' => 1425,
             'endTokenPos' => 136,
-            'endFilePos' => 1558,
+            'endFilePos' => 1632,
           ),
         ),
         'docComment' => '/**
@@ -121,8 +123,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         'attributes' => 
         array (
         ),
-        'startLine' => 44,
-        'endLine' => 54,
+        'startLine' => 46,
+        'endLine' => 56,
         'startColumn' => 5,
         'endColumn' => 6,
         'isPromoted' => false,
@@ -157,8 +159,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         'docComment' => '/**
  * @return array<string, string>
  */',
-        'startLine' => 59,
-        'endLine' => 65,
+        'startLine' => 61,
+        'endLine' => 67,
         'startColumn' => 5,
         'endColumn' => 5,
         'couldThrow' => false,
@@ -194,8 +196,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         'docComment' => '/**
  * @return BelongsTo<Beneficiary, $this>
  */',
-        'startLine' => 70,
-        'endLine' => 73,
+        'startLine' => 72,
+        'endLine' => 75,
         'startColumn' => 5,
         'endColumn' => 5,
         'couldThrow' => false,
@@ -231,8 +233,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         'docComment' => '/**
  * @return BelongsTo<Mda, $this>
  */',
-        'startLine' => 78,
-        'endLine' => 81,
+        'startLine' => 80,
+        'endLine' => 83,
         'startColumn' => 5,
         'endColumn' => 5,
         'couldThrow' => false,
@@ -268,8 +270,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         'docComment' => '/**
  * @return BelongsTo<Mda, $this>
  */',
-        'startLine' => 86,
-        'endLine' => 89,
+        'startLine' => 88,
+        'endLine' => 91,
         'startColumn' => 5,
         'endColumn' => 5,
         'couldThrow' => false,
@@ -305,8 +307,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         'docComment' => '/**
  * @return BelongsTo<User, $this>
  */',
-        'startLine' => 94,
-        'endLine' => 97,
+        'startLine' => 96,
+        'endLine' => 99,
         'startColumn' => 5,
         'endColumn' => 5,
         'couldThrow' => false,
@@ -340,8 +342,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         array (
         ),
         'docComment' => NULL,
-        'startLine' => 99,
-        'endLine' => 102,
+        'startLine' => 101,
+        'endLine' => 104,
         'startColumn' => 5,
         'endColumn' => 5,
         'couldThrow' => false,

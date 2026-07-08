@@ -127,7 +127,8 @@ Core entities and key relationships (detailed schema is designed per phase):
 | Programme   | id, name, type (HH/individual), eligibility, funding_source, budget, period    | belongs to MDA; has many Activities |
 | Activity    | id, programme_id, target, location, schedule, budget                           | belongs to Programme; has many Benefits |
 | Benefit     | id, beneficiary_id, programme_id, activity_id, mda_id, type, quantity, value, funding_source, delivery_date, status, verification | the benefit ledger |
-| Referral    | id, beneficiary_id, from_mda, to_mda, need, status, outcome, timestamps        | across MDAs |
+| Referral    | id, beneficiary_id, from_mda, to_mda, need, status, outcome, timestamps        | across MDAs (outbound) |
+| Service Request | id, beneficiary_id, requesting_mda_id, owner_mda_id, activity_id, status (pending/accepted/declined), decided_by, decision_reason, timestamps | request-to-serve (inbound); state machine |
 | Grievance   | id, beneficiary_id, category, channel, status, resolution, timestamps          | |
 | User        | id, name, mda_id, role, permissions, status                                    | belongs to MDA |
 | Audit Log   | id, user_id, action, entity, before/after, timestamp                           | immutable |
@@ -176,3 +177,32 @@ Encryption in transit + at rest · MFA for privileged roles · NDPA/NDPR complia
 < 3s and duplicate check < 5s under normal load (proposed) · millions of records / ≥500 concurrent
 users via horizontal scaling (proposed) · 99.5% availability with backups + RPO/RTO (proposed) ·
 responsive & accessible UI · tamper-evident audit · API-first · containerised.
+
+---
+
+## 12. PRD v1.2 additions
+
+### 12.1 Service Request (Request-to-Serve) — new domain concept
+
+- New entity `service_requests`: beneficiary_id, requesting_mda_id, owner_mda_id, activity_id,
+  status (pending/accepted/declined), decided_by, decision_reason, timestamps. Models an auditable
+  state machine (pending → accepted | declined).
+- The read-access grant on acceptance is represented explicitly (e.g. a `beneficiary_service_grants`
+  row or equivalent policy record) so authorization is queryable and revocable, not implicit.
+- Runs within the existing topology: approvals are synchronous state transitions on the `api`
+  service; notifications on accept/decline go through the existing queue/worker path.
+- Distinct from Referral (outbound, FR-REF). Do not overload the referral flow.
+
+### 12.2 Duplicate-matching cascade
+
+- The default matching config encodes the ordered cascade (exact NIN → exact BVN → fuzzy
+  name/phone) with stop-on-first-exact and skip/fall-through when an identifier is absent. It stays
+  config/DB-driven and admin-editable; the engine and worker execution from Phase 3 are unchanged —
+  only the seeded default and the stop/fall-through semantics.
+
+### 12.3 Activity-first coupling
+
+- The import pipeline now takes an `activity_id` as required context. An import batch references the
+  activity; resolved rows produce interventions (benefit ledger) attributed to that activity and the
+  delivering MDA. Beneficiary ownership is still set by first import (owner_mda_id).
+  

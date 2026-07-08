@@ -47,6 +47,8 @@ use InvalidArgumentException;
  * @property string|null $ward
  * @property string|null $block_name_dob
  * @property BeneficiaryStatus $status
+ * @property Carbon|null $created_at
+ * @property Carbon|null $updated_at
  * @property-read Mda|null $ownerMda
  * @property-read HouseholdMembership|null $currentMembership
  */

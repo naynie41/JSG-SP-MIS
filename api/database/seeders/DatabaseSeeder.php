@@ -24,8 +24,12 @@ class DatabaseSeeder extends Seeder
             GrievanceSlaSeeder::class,
             SampleMdaSeeder::class,
             DevUserSeeder::class,
+            SampleMdaUserSeeder::class,
             RegistrySampleSeeder::class,
             ProgrammeSampleSeeder::class,
+            ReferralSampleSeeder::class,
+            GrievanceSampleSeeder::class,
+            NotificationSampleSeeder::class,
         ]);
     }
 }

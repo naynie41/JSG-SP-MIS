@@ -11,8 +11,11 @@ use App\Domain\Access\Models\Role;
 use App\Domain\Access\Models\User;
 use App\Domain\Benefit\Models\Benefit;
 use App\Domain\Benefit\Models\BenefitFlag;
+use App\Domain\Grievance\Models\Grievance;
+use App\Domain\Notification\Models\Notification;
 use App\Domain\Programme\Models\Enrollment;
 use App\Domain\Programme\Models\Programme;
+use App\Domain\Referral\Models\Referral;
 use App\Domain\Registry\Models\Beneficiary;
 use Database\Seeders\DatabaseSeeder;
 use Illuminate\Foundation\Testing\RefreshDatabase;
@@ -64,5 +67,32 @@ class SeederTest extends TestCase
         $this->assertTrue(Enrollment::query()->whereNotNull('household_id')->exists());
         $this->assertSame(2, Benefit::query()->distinct()->count('mda_id')); // cross-MDA deliveries
         $this->assertGreaterThanOrEqual(1, BenefitFlag::count()); // double-dipping flagged, not blocked
+    }
+
+    public function test_seeder_produces_phase_5_coordination_sample_data(): void
+    {
+        $this->seed(DatabaseSeeder::class);
+
+        // Referrals across both MDAs and both directions, including a rejected one
+        // (reason required) and an overdue/escalated one (FR-REF-01/02/04/05).
+        $referrals = Referral::query()->withoutGlobalScopes();
+        $this->assertGreaterThanOrEqual(6, (clone $referrals)->count());
+        $this->assertSame(2, (clone $referrals)->distinct()->count('from_mda_id')); // both MDAs originate
+        $this->assertTrue((clone $referrals)->where('status', 'rejected')->whereNotNull('reason')->exists());
+        $this->assertTrue((clone $referrals)->whereNotNull('sla_breached_at')->where('escalation_level', '>', 0)->exists());
+
+        // Grievances across categories/channels, including an escalated one and a
+        // general grievance with no beneficiary link (FR-GRM-01/02/03).
+        $grievances = Grievance::query()->withoutGlobalScopes();
+        $this->assertGreaterThanOrEqual(5, (clone $grievances)->count());
+        $this->assertGreaterThanOrEqual(4, (clone $grievances)->distinct()->count('category'));
+        $this->assertTrue((clone $grievances)->whereNull('beneficiary_id')->exists());
+        $this->assertTrue((clone $grievances)->whereNotNull('sla_breached_at')->where('escalation_level', '>', 0)->exists());
+
+        // Synthetic notifications, including an unread one and a referral deep-link.
+        $notifications = Notification::query()->withoutGlobalScopes();
+        $this->assertGreaterThanOrEqual(4, (clone $notifications)->count());
+        $this->assertTrue((clone $notifications)->whereNull('read_at')->exists());
+        $this->assertTrue((clone $notifications)->where('related_type', 'referral')->exists());
     }
 }

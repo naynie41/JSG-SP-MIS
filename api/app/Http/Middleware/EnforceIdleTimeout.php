@@ -7,6 +7,7 @@ namespace App\Http\Middleware;
 use App\Support\ApiResponse;
 use Closure;
 use Illuminate\Http\Request;
+use Illuminate\Support\Carbon;
 use Laravel\Sanctum\PersonalAccessToken;
 use Symfony\Component\HttpFoundation\Response;
 
@@ -40,11 +41,12 @@ class EnforceIdleTimeout
     private function isIdle(PersonalAccessToken $token): bool
     {
         $idleMinutes = (int) config('security.session.idle_timeout_minutes');
+        $lastUsedAt = $token->getAttribute('last_used_at');
 
-        if ($idleMinutes <= 0 || $token->last_used_at === null) {
+        if ($idleMinutes <= 0 || ! $lastUsedAt instanceof Carbon) {
             return false;
         }
 
-        return $token->last_used_at->lt(now()->subMinutes($idleMinutes));
+        return $lastUsedAt->lt(now()->subMinutes($idleMinutes));
     }
 }

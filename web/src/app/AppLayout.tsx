@@ -6,6 +6,7 @@ import type { NavSection } from '@/components/SideNav/SideNav'
 import { TopBar } from '@/components/TopBar/TopBar'
 import { Breadcrumbs } from '@/components/Breadcrumbs/Breadcrumbs'
 import { Icon } from '@/components/Icon/Icon'
+import { NotificationBell } from '@/features/notifications/NotificationBell'
 import { useAuth } from '@/lib/auth/AuthProvider'
 import { NAV_CONFIG } from './nav'
 import styles from './AppLayout.module.css'
@@ -61,6 +62,7 @@ export function AppLayout() {
           left={<Breadcrumbs items={[{ label: 'SP-MIS', to: '/' }, { label: currentLabel }]} />}
           userName={user?.name ?? 'User'}
           userRole={user?.role?.name ?? '—'}
+          notifications={<NotificationBell />}
           onOpenMenu={() => setDrawerOpen(true)}
         />
         <main className={styles.content}>

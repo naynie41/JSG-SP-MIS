@@ -4,6 +4,9 @@ import { Spinner } from '@/components/Spinner/Spinner'
 import { useAuth } from '@/lib/auth/AuthProvider'
 import { LoginPage } from '@/features/auth/LoginPage'
 import { DashboardPage } from '@/features/dashboard/DashboardPage'
+import { ExecutiveDashboardPage } from '@/features/dashboard/ExecutiveDashboardPage'
+import { MdaDashboardPage } from '@/features/dashboard/MdaDashboardPage'
+import { PartnerDashboardPage } from '@/features/dashboard/PartnerDashboardPage'
 import { PlaceholderPage } from '@/features/misc/PlaceholderPage'
 import { NotFoundPage } from '@/features/misc/NotFoundPage'
 import { StyleguidePage } from '@/features/styleguide/StyleguidePage'
@@ -23,8 +26,27 @@ import { ProgrammeDetailPage } from '@/features/programmes/ProgrammeDetailPage'
 import { RecordBenefitPage } from '@/features/benefits/RecordBenefitPage'
 import { BulkDeliveryPage } from '@/features/benefits/BulkDeliveryPage'
 import { BenefitLedgerPage } from '@/features/benefits/BenefitLedgerPage'
+import { ReferralsPage } from '@/features/referrals/ReferralsPage'
+import { ReferralDetailPage } from '@/features/referrals/ReferralDetailPage'
+import { GrievanceDeskPage } from '@/features/grievances/GrievanceDeskPage'
+import { GrievanceDetailPage } from '@/features/grievances/GrievanceDetailPage'
 import { AppLayout } from './AppLayout'
 import { ProtectedRoute } from './ProtectedRoute'
+
+/**
+ * Home landing, by role/scope: Executives get the state-wide dashboard, Development
+ * Partners the funded-programmes dashboard, other dashboard-permitted users the
+ * MDA-scoped dashboard, and everyone else the account view. The server resolves and
+ * enforces the actual data scope regardless of which page renders.
+ */
+function HomeDashboard() {
+  const { user, hasPermission } = useAuth()
+  const roleKey = user?.role?.key
+  if (roleKey === 'executive') return <ExecutiveDashboardPage />
+  if (roleKey === 'development_partner') return <PartnerDashboardPage />
+  if (hasPermission('dashboard.view')) return <MdaDashboardPage />
+  return <DashboardPage />
+}
 
 /** Keeps authenticated users away from /login. */
 function PublicOnlyRoute({ children }: { children: ReactNode }) {
@@ -61,7 +83,7 @@ export function App() {
           </ProtectedRoute>
         }
       >
-        <Route index element={<DashboardPage />} />
+        <Route index element={<HomeDashboard />} />
         <Route path="/beneficiaries" element={<BeneficiaryListPage />} />
         <Route path="/beneficiaries/:id" element={<BeneficiaryDetailPage />} />
         <Route path="/households" element={<HouseholdListPage />} />
@@ -76,6 +98,10 @@ export function App() {
         <Route path="/benefits/record" element={<RecordBenefitPage />} />
         <Route path="/benefits/bulk" element={<BulkDeliveryPage />} />
         <Route path="/benefits/ledger" element={<BenefitLedgerPage />} />
+        <Route path="/referrals" element={<ReferralsPage />} />
+        <Route path="/referrals/:id" element={<ReferralDetailPage />} />
+        <Route path="/grievances" element={<GrievanceDeskPage />} />
+        <Route path="/grievances/:id" element={<GrievanceDetailPage />} />
         <Route path="/users" element={<UserListPage />} />
         <Route path="/mdas" element={<MdaListPage />} />
         <Route path="/roles" element={<PlaceholderPage eyebrow="02 · Administration" title="Roles" />} />

@@ -14,6 +14,7 @@ use Illuminate\Database\Eloquent\Concerns\HasUuids;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Support\Carbon;
 
 /**
  * A supporting document attached to a beneficiary (PRD FR-REG-07). MDA-scoped via
@@ -31,6 +32,8 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @property string $mime_type
  * @property int $size_bytes
  * @property string $checksum_sha256
+ * @property Carbon|null $created_at
+ * @property Carbon|null $updated_at
  * @property-read Beneficiary $beneficiary
  * @property-read Mda|null $ownerMda
  * @property-read User|null $uploadedBy

@@ -128,7 +128,10 @@ can use geometry/geography columns.
 
 - the **seven roles** and their permissions (FR-UAM-01/05),
 - **two sample MDAs** (Ministry of Health; Ministry of Women Affairs & Social Development),
-- **one System Administrator** account for first login (below).
+- **one System Administrator** account for first login (below),
+- **sample MDA staff** (an admin + officer per sample MDA — local only), and synthetic
+  **registry, programme/benefit, referral, grievance and notification** data so every
+  screen has content on first run (all local/staging only; the seeders skip production).
 
 ---
 
@@ -234,6 +237,33 @@ suggests-then-confirms a matching programme.
 > + verification config) and [docs/PHASE-4-CHECKLIST.md](docs/PHASE-4-CHECKLIST.md).
 > **Sample data (local only):** `db:seed --class="Database\Seeders\ProgrammeSampleSeeder"`
 > plants programmes/activities/enrolments + cross-MDA benefits incl. a double-dipping case.
+
+### Phase 5 — Referrals, Grievances & Notifications
+
+Under **05 · Coordination**, an MDA **refers** a beneficiary's need to another MDA;
+the receiving MDA works it through a guarded lifecycle (**accept / reject-with-reason
+/ request-info / respond-info / in-progress / complete / close**) from an **inbox +
+outbox** with status badges and SLA/overdue flags. An **accepted referral is itself
+the authorization** for the receiving MDA to deliver and record the outcome — **no
+ownership transfer and without creating a Service Request** (the referral and the
+request-to-serve stay distinct and separately tracked). The **grievance desk** lets
+staff log grievances on behalf of beneficiaries (categories/channels, optional link),
+then **assign** and **resolve** them with notes; per-category **SLAs** flag/escalate
+overdue items. Every step raises **in-app + email notifications** via the event-driven
+system (shown in the top-bar **notification bell** with unread count + deep links);
+**SMS/WhatsApp are stubbed and inert**. Configurable SLA windows are admin-editable
+(`referral-sla.edit`, `grievance-sla.edit`) and an hourly scheduled sweep escalates
+overdue items without ever auto-closing.
+
+> See [api/app/Domain/Referral/README.md](api/app/Domain/Referral/README.md),
+> [api/app/Domain/Grievance/README.md](api/app/Domain/Grievance/README.md),
+> [api/app/Domain/Notification/README.md](api/app/Domain/Notification/README.md) and
+> the completion checklist in [docs/PHASE-5-CHECKLIST.md](docs/PHASE-5-CHECKLIST.md).
+> **Sample data (local only, in `DatabaseSeeder`):** `SampleMdaUserSeeder` adds an
+> admin + officer per sample MDA; `ReferralSampleSeeder`, `GrievanceSampleSeeder` and
+> `NotificationSampleSeeder` plant referrals (incl. rejected + overdue), grievances
+> (incl. an escalated one) and synthetic notifications so the coordination screens
+> have data on first run.
 
 ---
 

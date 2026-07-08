@@ -2,7 +2,7 @@
 
 // odsl-/var/www/html/app/Domain/Registry/Models/BeneficiaryDocument.php-PHPStan\BetterReflection\Reflection\ReflectionClass-App\Domain\Registry\Models\BeneficiaryDocument
 return \PHPStan\Cache\CacheItem::__set_state(array(
-   'variableKey' => 'v2-6.70.0.1-8.3.31-d170b6181fe2aab6cae7df0836504401d1695927cddce77b5af670c8f617336f',
+   'variableKey' => 'v2-6.70.0.1-8.3.31-53b425fdc45402b14b9a07678b670dea492e2bc47fea064826e2987594a2b750',
    'data' => 
   array (
     'locatedSource' => 
@@ -38,6 +38,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
  * @property string $mime_type
  * @property int $size_bytes
  * @property string $checksum_sha256
+ * @property \\Illuminate\\Support\\Carbon|null $created_at
+ * @property \\Illuminate\\Support\\Carbon|null $updated_at
  * @property-read Beneficiary $beneficiary
  * @property-read Mda|null $ownerMda
  * @property-read User|null $uploadedBy
@@ -45,8 +47,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
     'attributes' => 
     array (
     ),
-    'startLine' => 38,
-    'endLine' => 102,
+    'startLine' => 40,
+    'endLine' => 104,
     'startColumn' => 1,
     'endColumn' => 1,
     'parentClassName' => 'Illuminate\\Database\\Eloquent\\Model',
@@ -78,20 +80,20 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
           'code' => '\'beneficiary_documents\'',
           'attributes' => 
           array (
-            'startLine' => 42,
-            'endLine' => 42,
+            'startLine' => 44,
+            'endLine' => 44,
             'startTokenPos' => 101,
-            'startFilePos' => 1446,
+            'startFilePos' => 1560,
             'endTokenPos' => 101,
-            'endFilePos' => 1468,
+            'endFilePos' => 1582,
           ),
         ),
         'docComment' => NULL,
         'attributes' => 
         array (
         ),
-        'startLine' => 42,
-        'endLine' => 42,
+        'startLine' => 44,
+        'endLine' => 44,
         'startColumn' => 5,
         'endColumn' => 47,
         'isPromoted' => false,
@@ -113,12 +115,12 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
           'code' => '[\'beneficiary_id\', \'owner_mda_id\', \'uploaded_by\', \'document_type\', \'original_filename\', \'stored_path\', \'mime_type\', \'size_bytes\', \'checksum_sha256\']',
           'attributes' => 
           array (
-            'startLine' => 47,
-            'endLine' => 57,
+            'startLine' => 49,
+            'endLine' => 59,
             'startTokenPos' => 112,
-            'startFilePos' => 1539,
+            'startFilePos' => 1653,
             'endTokenPos' => 141,
-            'endFilePos' => 1765,
+            'endFilePos' => 1879,
           ),
         ),
         'docComment' => '/**
@@ -127,8 +129,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         'attributes' => 
         array (
         ),
-        'startLine' => 47,
-        'endLine' => 57,
+        'startLine' => 49,
+        'endLine' => 59,
         'startColumn' => 5,
         'endColumn' => 6,
         'isPromoted' => false,
@@ -150,12 +152,12 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
           'code' => '[\'stored_path\']',
           'attributes' => 
           array (
-            'startLine' => 64,
-            'endLine' => 66,
+            'startLine' => 66,
+            'endLine' => 68,
             'startTokenPos' => 152,
-            'startFilePos' => 1920,
+            'startFilePos' => 2034,
             'endTokenPos' => 157,
-            'endFilePos' => 1949,
+            'endFilePos' => 2063,
           ),
         ),
         'docComment' => '/**
@@ -166,8 +168,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         'attributes' => 
         array (
         ),
-        'startLine' => 64,
-        'endLine' => 66,
+        'startLine' => 66,
+        'endLine' => 68,
         'startColumn' => 5,
         'endColumn' => 6,
         'isPromoted' => false,
@@ -202,8 +204,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         'docComment' => '/**
  * @return array<string, string>
  */',
-        'startLine' => 71,
-        'endLine' => 77,
+        'startLine' => 73,
+        'endLine' => 79,
         'startColumn' => 5,
         'endColumn' => 5,
         'couldThrow' => false,
@@ -239,8 +241,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         'docComment' => '/**
  * @return BelongsTo<Beneficiary, $this>
  */',
-        'startLine' => 82,
-        'endLine' => 85,
+        'startLine' => 84,
+        'endLine' => 87,
         'startColumn' => 5,
         'endColumn' => 5,
         'couldThrow' => false,
@@ -276,8 +278,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         'docComment' => '/**
  * @return BelongsTo<Mda, $this>
  */',
-        'startLine' => 90,
-        'endLine' => 93,
+        'startLine' => 92,
+        'endLine' => 95,
         'startColumn' => 5,
         'endColumn' => 5,
         'couldThrow' => false,
@@ -313,8 +315,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         'docComment' => '/**
  * @return BelongsTo<User, $this>
  */',
-        'startLine' => 98,
-        'endLine' => 101,
+        'startLine' => 100,
+        'endLine' => 103,
         'startColumn' => 5,
         'endColumn' => 5,
         'couldThrow' => false,

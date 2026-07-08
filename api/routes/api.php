@@ -32,6 +32,8 @@ use App\Http\Controllers\Api\V1\Registry\HouseholdMemberController;
 use App\Http\Controllers\Api\V1\Registry\ImportBatchController;
 use App\Http\Controllers\Api\V1\Registry\OwnershipTransferController;
 use App\Http\Controllers\Api\V1\Registry\ServiceRequestController;
+use App\Http\Controllers\Api\V1\Reporting\DashboardController;
+use App\Http\Controllers\Api\V1\Reporting\ReportController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -399,5 +401,28 @@ Route::prefix('v1')->group(function (): void {
         Route::match(['put', 'patch'], '/notifications/preferences', [NotificationController::class, 'updatePreferences'])->name('notifications.preferences.update');
         Route::post('/notifications/read-all', [NotificationController::class, 'markAllRead'])->name('notifications.read-all');
         Route::post('/notifications/{notification}/read', [NotificationController::class, 'markRead'])->name('notifications.read');
+
+        /*
+        | Dashboards (FR-RPT-01/02, FR-DSH-01). Consolidated, de-identified metrics
+        | for the caller's resolved scope, served from the summary snapshot.
+        */
+        Route::get('/dashboard', [DashboardController::class, 'index'])
+            ->middleware('permission:dashboard.view')->name('dashboard.index');
+
+        /*
+        | Standard reports (FR-RPT-03). Catalogue + runs are scoped to the caller;
+        | generation is queued and downloads are audited. Static paths precede the
+        | {report} routes.
+        */
+        Route::get('/reports/catalogue', [ReportController::class, 'catalogue'])
+            ->middleware('permission:reporting.view')->name('reports.catalogue');
+        Route::get('/reports', [ReportController::class, 'index'])
+            ->middleware('permission:reporting.view')->name('reports.index');
+        Route::post('/reports', [ReportController::class, 'store'])
+            ->middleware('permission:reporting.export')->name('reports.store');
+        Route::get('/reports/{report}', [ReportController::class, 'show'])
+            ->middleware('permission:reporting.view')->name('reports.show');
+        Route::get('/reports/{report}/download', [ReportController::class, 'download'])
+            ->middleware('permission:reporting.export')->name('reports.download');
     });
 });

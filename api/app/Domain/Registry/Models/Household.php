@@ -33,6 +33,8 @@ use Illuminate\Support\Carbon;
  * @property string|null $address
  * @property string|null $lga
  * @property string|null $ward
+ * @property Carbon|null $created_at
+ * @property Carbon|null $updated_at
  * @property-read Mda|null $ownerMda
  * @property-read Beneficiary|null $head
  * @property-read Collection<int, HouseholdMembership> $memberships

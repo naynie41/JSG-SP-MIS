@@ -2,7 +2,8 @@
 
 Staff log grievances **on behalf of** beneficiaries (no citizen self-service) and
 handle them within one MDA through a guarded lifecycle, with per-category SLAs and
-scheduled escalation. **Status: Phase 5 — grievance capture + lifecycle + SLAs.**
+scheduled escalation. **Status: Phase 5 — complete (capture + lifecycle + SLAs/
+escalation + notifications).** Sample data: `Database\Seeders\GrievanceSampleSeeder`.
 
 ## Lifecycle
 

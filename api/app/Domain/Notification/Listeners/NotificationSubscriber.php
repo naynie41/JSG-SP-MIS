@@ -19,6 +19,7 @@ use App\Domain\Registry\Events\OwnershipTransferRequested;
 use App\Domain\Registry\Events\ServiceRequestAccepted;
 use App\Domain\Registry\Events\ServiceRequestDeclined;
 use App\Domain\Registry\Events\ServiceRequestRaised;
+use App\Domain\Reporting\Events\ReportReady;
 use Illuminate\Events\Dispatcher;
 use Illuminate\Support\Collection;
 
@@ -280,6 +281,31 @@ class NotificationSubscriber
             ->get();
     }
 
+    public function handleReportReady(ReportReady $event): void
+    {
+        // The user who generated the report is notified it can be downloaded (FR-RPT-03).
+        $run = $event->run;
+        if ($run->requested_by === null) {
+            return;
+        }
+
+        $user = User::query()->withoutGlobalScope(MdaScope::class)->find($run->requested_by);
+        if ($user === null) {
+            return;
+        }
+
+        $this->notifier->notify(
+            new NotificationMessage(
+                type: 'report.ready',
+                subject: 'Your report is ready',
+                body: 'The "'.$run->report_label.'" report you generated ('.strtoupper($run->format).') is ready to download.',
+                payload: ['format' => $run->format, 'report_key' => $run->report_key],
+                related: $run,
+            ),
+            new Collection([$user]),
+        );
+    }
+
     /**
      * @return array<class-string, string>
      */
@@ -295,6 +321,7 @@ class NotificationSubscriber
             GrievanceAssigned::class => 'handleGrievanceAssigned',
             GrievanceResolved::class => 'handleGrievanceResolved',
             GrievanceSlaBreached::class => 'handleGrievanceSlaBreached',
+            ReportReady::class => 'handleReportReady',
         ];
     }
 }

@@ -32,12 +32,13 @@ class RolesAndPermissionsSeeder extends Seeder
             'beneficiary.view', 'beneficiary.export', 'beneficiary-lookup.view',
             'programme.view', 'activity.view', 'enrollment.view', 'benefit.view',
             'double-dipping.view', 'double-dipping.edit', 'referral.view', 'referral-sla.edit',
-            'grievance.view', 'grievance-sla.edit',
+            'grievance.view', 'grievance-sla.edit', 'dashboard.view', 'reporting.view', 'reporting.export',
         ],
         RoleKey::MneOfficer->value => [
             'cross-mda.view', 'mda.view', 'user.view',
             'beneficiary.view', 'beneficiary.export', 'beneficiary-lookup.view',
             'programme.view', 'activity.view', 'enrollment.view', 'benefit.view', 'referral.view', 'grievance.view',
+            'dashboard.view', 'reporting.view', 'reporting.export',
         ],
         RoleKey::MdaAdmin->value => [
             'mda.view', 'user.view', 'user.create', 'user.edit', 'role.view',
@@ -48,7 +49,7 @@ class RolesAndPermissionsSeeder extends Seeder
             'enrollment.view', 'enrollment.create', 'enrollment.edit',
             'benefit.view', 'benefit.create', 'benefit.approve',
             'referral.view', 'referral.create', 'referral.edit',
-            'grievance.view', 'grievance.create', 'grievance.edit',
+            'grievance.view', 'grievance.create', 'grievance.edit', 'dashboard.view', 'reporting.view', 'reporting.export',
         ],
         RoleKey::MdaOfficer->value => [
             'mda.view', 'user.view',
@@ -59,17 +60,18 @@ class RolesAndPermissionsSeeder extends Seeder
             'enrollment.view', 'enrollment.create', 'enrollment.edit',
             'benefit.view', 'benefit.create', 'benefit.approve',
             'referral.view', 'referral.create', 'referral.edit',
-            'grievance.view', 'grievance.create', 'grievance.edit',
+            'grievance.view', 'grievance.create', 'grievance.edit', 'dashboard.view', 'reporting.view', 'reporting.export',
         ],
         RoleKey::DevelopmentPartner->value => [
             'mda.view',
             'beneficiary.view',
-            'programme.view', 'activity.view', 'enrollment.view', 'benefit.view',
+            'programme.view', 'activity.view', 'enrollment.view', 'benefit.view', 'dashboard.view', 'reporting.view', 'reporting.export',
         ],
         RoleKey::Executive->value => [
             'cross-mda.view', 'mda.view', 'user.view',
             'beneficiary.view', 'beneficiary.export', 'beneficiary-lookup.view',
             'programme.view', 'activity.view', 'enrollment.view', 'benefit.view', 'referral.view', 'grievance.view',
+            'dashboard.view', 'reporting.view', 'reporting.export',
         ],
     ];
 

@@ -1,8 +1,8 @@
 # Referral domain — cross-MDA referrals (FR-REF-01/02/04, §8.2)
 
 An originating MDA refers a beneficiary to another MDA for an **identified need**;
-the receiving MDA works it through a guarded lifecycle. **Status: Phase 5 —
-referral creation + lifecycle.**
+the receiving MDA works it through a guarded lifecycle. **Status: Phase 5 — complete
+(lifecycle + serve authorization + ledger + SLAs + notifications).**
 
 ## Lifecycle
 
@@ -87,5 +87,7 @@ Coordination, M&E and Executive get **view**.
 `POST /referrals` · `GET /referrals/{id}` ·
 `POST /referrals/{id}/{accept|reject|request-info|respond-info|start|complete|close}`.
 
-Tests: `tests/Feature/Referral/ReferralTest`. Notifications on referral events and
-the FR-BEN-06 serving authorization from an accepted referral are separate steps.
+Tests: `tests/Feature/Referral/ReferralTest` (lifecycle + party guards),
+`ReferralAuthorizationTest` (FR-BEN-06 serve authorization + ownership invariance +
+ledger), `ReferralSlaTest` (SLA config, escalation, both-party notifications). Sample
+data: `Database\Seeders\ReferralSampleSeeder`.

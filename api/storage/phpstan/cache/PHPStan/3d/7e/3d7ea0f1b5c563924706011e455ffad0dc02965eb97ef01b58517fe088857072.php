@@ -12,6 +12,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
          'namespace' => 'App\\Domain\\Benefit\\Services',
          'uses' => 
         array (
+          'mdascope' => 'App\\Domain\\Access\\Scopes\\MdaScope',
           'benefitstatus' => 'App\\Domain\\Benefit\\Enums\\BenefitStatus',
           'benefit' => 'App\\Domain\\Benefit\\Models\\Benefit',
           'activity' => 'App\\Domain\\Programme\\Models\\Activity',
@@ -39,6 +40,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
          'namespace' => 'App\\Domain\\Benefit\\Services',
          'uses' => 
         array (
+          'mdascope' => 'App\\Domain\\Access\\Scopes\\MdaScope',
           'benefitstatus' => 'App\\Domain\\Benefit\\Enums\\BenefitStatus',
           'benefit' => 'App\\Domain\\Benefit\\Models\\Benefit',
           'activity' => 'App\\Domain\\Programme\\Models\\Activity',
@@ -55,6 +57,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
            'namespace' => 'App\\Domain\\Benefit\\Services',
            'uses' => 
           array (
+            'mdascope' => 'App\\Domain\\Access\\Scopes\\MdaScope',
             'benefitstatus' => 'App\\Domain\\Benefit\\Enums\\BenefitStatus',
             'benefit' => 'App\\Domain\\Benefit\\Models\\Benefit',
             'activity' => 'App\\Domain\\Programme\\Models\\Activity',
@@ -92,6 +95,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
          'namespace' => 'App\\Domain\\Benefit\\Services',
          'uses' => 
         array (
+          'mdascope' => 'App\\Domain\\Access\\Scopes\\MdaScope',
           'benefitstatus' => 'App\\Domain\\Benefit\\Enums\\BenefitStatus',
           'benefit' => 'App\\Domain\\Benefit\\Models\\Benefit',
           'activity' => 'App\\Domain\\Programme\\Models\\Activity',
@@ -108,6 +112,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
            'namespace' => 'App\\Domain\\Benefit\\Services',
            'uses' => 
           array (
+            'mdascope' => 'App\\Domain\\Access\\Scopes\\MdaScope',
             'benefitstatus' => 'App\\Domain\\Benefit\\Enums\\BenefitStatus',
             'benefit' => 'App\\Domain\\Benefit\\Models\\Benefit',
             'activity' => 'App\\Domain\\Programme\\Models\\Activity',
@@ -145,6 +150,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
          'namespace' => 'App\\Domain\\Benefit\\Services',
          'uses' => 
         array (
+          'mdascope' => 'App\\Domain\\Access\\Scopes\\MdaScope',
           'benefitstatus' => 'App\\Domain\\Benefit\\Enums\\BenefitStatus',
           'benefit' => 'App\\Domain\\Benefit\\Models\\Benefit',
           'activity' => 'App\\Domain\\Programme\\Models\\Activity',
@@ -161,6 +167,227 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
            'namespace' => 'App\\Domain\\Benefit\\Services',
            'uses' => 
           array (
+            'mdascope' => 'App\\Domain\\Access\\Scopes\\MdaScope',
+            'benefitstatus' => 'App\\Domain\\Benefit\\Enums\\BenefitStatus',
+            'benefit' => 'App\\Domain\\Benefit\\Models\\Benefit',
+            'activity' => 'App\\Domain\\Programme\\Models\\Activity',
+            'programme' => 'App\\Domain\\Programme\\Models\\Programme',
+            'builder' => 'Illuminate\\Database\\Eloquent\\Builder',
+          ),
+           'className' => 'App\\Domain\\Benefit\\Services\\LedgerAggregator',
+           'functionName' => NULL,
+           'templatePhpDocNodes' => 
+          array (
+          ),
+           'parent' => NULL,
+           'typeAliasesMap' => 
+          array (
+          ),
+           'bypassTypeAliases' => false,
+           'constUses' => 
+          array (
+          ),
+           'typeAliasClassName' => NULL,
+           'traitData' => NULL,
+        )),
+         'typeAliasesMap' => 
+        array (
+        ),
+         'bypassTypeAliases' => false,
+         'constUses' => 
+        array (
+        ),
+         'typeAliasClassName' => NULL,
+         'traitData' => NULL,
+      )),
+      '36a3c99b391ccc0905dd5d007807212d' => 
+      \PHPStan\Analyser\IntermediaryNameScope::__set_state(array(
+         'namespace' => 'App\\Domain\\Benefit\\Services',
+         'uses' => 
+        array (
+          'mdascope' => 'App\\Domain\\Access\\Scopes\\MdaScope',
+          'benefitstatus' => 'App\\Domain\\Benefit\\Enums\\BenefitStatus',
+          'benefit' => 'App\\Domain\\Benefit\\Models\\Benefit',
+          'activity' => 'App\\Domain\\Programme\\Models\\Activity',
+          'programme' => 'App\\Domain\\Programme\\Models\\Programme',
+          'builder' => 'Illuminate\\Database\\Eloquent\\Builder',
+        ),
+         'className' => 'App\\Domain\\Benefit\\Services\\LedgerAggregator',
+         'functionName' => 'scopedTotals',
+         'templatePhpDocNodes' => 
+        array (
+        ),
+         'parent' => 
+        \PHPStan\Analyser\IntermediaryNameScope::__set_state(array(
+           'namespace' => 'App\\Domain\\Benefit\\Services',
+           'uses' => 
+          array (
+            'mdascope' => 'App\\Domain\\Access\\Scopes\\MdaScope',
+            'benefitstatus' => 'App\\Domain\\Benefit\\Enums\\BenefitStatus',
+            'benefit' => 'App\\Domain\\Benefit\\Models\\Benefit',
+            'activity' => 'App\\Domain\\Programme\\Models\\Activity',
+            'programme' => 'App\\Domain\\Programme\\Models\\Programme',
+            'builder' => 'Illuminate\\Database\\Eloquent\\Builder',
+          ),
+           'className' => 'App\\Domain\\Benefit\\Services\\LedgerAggregator',
+           'functionName' => NULL,
+           'templatePhpDocNodes' => 
+          array (
+          ),
+           'parent' => NULL,
+           'typeAliasesMap' => 
+          array (
+          ),
+           'bypassTypeAliases' => false,
+           'constUses' => 
+          array (
+          ),
+           'typeAliasClassName' => NULL,
+           'traitData' => NULL,
+        )),
+         'typeAliasesMap' => 
+        array (
+        ),
+         'bypassTypeAliases' => false,
+         'constUses' => 
+        array (
+        ),
+         'typeAliasClassName' => NULL,
+         'traitData' => NULL,
+      )),
+      'c79334b9d4c5463d3928ebf0b24bcc51' => 
+      \PHPStan\Analyser\IntermediaryNameScope::__set_state(array(
+         'namespace' => 'App\\Domain\\Benefit\\Services',
+         'uses' => 
+        array (
+          'mdascope' => 'App\\Domain\\Access\\Scopes\\MdaScope',
+          'benefitstatus' => 'App\\Domain\\Benefit\\Enums\\BenefitStatus',
+          'benefit' => 'App\\Domain\\Benefit\\Models\\Benefit',
+          'activity' => 'App\\Domain\\Programme\\Models\\Activity',
+          'programme' => 'App\\Domain\\Programme\\Models\\Programme',
+          'builder' => 'Illuminate\\Database\\Eloquent\\Builder',
+        ),
+         'className' => 'App\\Domain\\Benefit\\Services\\LedgerAggregator',
+         'functionName' => 'scopedBudget',
+         'templatePhpDocNodes' => 
+        array (
+        ),
+         'parent' => 
+        \PHPStan\Analyser\IntermediaryNameScope::__set_state(array(
+           'namespace' => 'App\\Domain\\Benefit\\Services',
+           'uses' => 
+          array (
+            'mdascope' => 'App\\Domain\\Access\\Scopes\\MdaScope',
+            'benefitstatus' => 'App\\Domain\\Benefit\\Enums\\BenefitStatus',
+            'benefit' => 'App\\Domain\\Benefit\\Models\\Benefit',
+            'activity' => 'App\\Domain\\Programme\\Models\\Activity',
+            'programme' => 'App\\Domain\\Programme\\Models\\Programme',
+            'builder' => 'Illuminate\\Database\\Eloquent\\Builder',
+          ),
+           'className' => 'App\\Domain\\Benefit\\Services\\LedgerAggregator',
+           'functionName' => NULL,
+           'templatePhpDocNodes' => 
+          array (
+          ),
+           'parent' => NULL,
+           'typeAliasesMap' => 
+          array (
+          ),
+           'bypassTypeAliases' => false,
+           'constUses' => 
+          array (
+          ),
+           'typeAliasClassName' => NULL,
+           'traitData' => NULL,
+        )),
+         'typeAliasesMap' => 
+        array (
+        ),
+         'bypassTypeAliases' => false,
+         'constUses' => 
+        array (
+        ),
+         'typeAliasClassName' => NULL,
+         'traitData' => NULL,
+      )),
+      '70a8bc6c22b23f34d8125c1ab29051df' => 
+      \PHPStan\Analyser\IntermediaryNameScope::__set_state(array(
+         'namespace' => 'App\\Domain\\Benefit\\Services',
+         'uses' => 
+        array (
+          'mdascope' => 'App\\Domain\\Access\\Scopes\\MdaScope',
+          'benefitstatus' => 'App\\Domain\\Benefit\\Enums\\BenefitStatus',
+          'benefit' => 'App\\Domain\\Benefit\\Models\\Benefit',
+          'activity' => 'App\\Domain\\Programme\\Models\\Activity',
+          'programme' => 'App\\Domain\\Programme\\Models\\Programme',
+          'builder' => 'Illuminate\\Database\\Eloquent\\Builder',
+        ),
+         'className' => 'App\\Domain\\Benefit\\Services\\LedgerAggregator',
+         'functionName' => 'scopedGroup',
+         'templatePhpDocNodes' => 
+        array (
+        ),
+         'parent' => 
+        \PHPStan\Analyser\IntermediaryNameScope::__set_state(array(
+           'namespace' => 'App\\Domain\\Benefit\\Services',
+           'uses' => 
+          array (
+            'mdascope' => 'App\\Domain\\Access\\Scopes\\MdaScope',
+            'benefitstatus' => 'App\\Domain\\Benefit\\Enums\\BenefitStatus',
+            'benefit' => 'App\\Domain\\Benefit\\Models\\Benefit',
+            'activity' => 'App\\Domain\\Programme\\Models\\Activity',
+            'programme' => 'App\\Domain\\Programme\\Models\\Programme',
+            'builder' => 'Illuminate\\Database\\Eloquent\\Builder',
+          ),
+           'className' => 'App\\Domain\\Benefit\\Services\\LedgerAggregator',
+           'functionName' => NULL,
+           'templatePhpDocNodes' => 
+          array (
+          ),
+           'parent' => NULL,
+           'typeAliasesMap' => 
+          array (
+          ),
+           'bypassTypeAliases' => false,
+           'constUses' => 
+          array (
+          ),
+           'typeAliasClassName' => NULL,
+           'traitData' => NULL,
+        )),
+         'typeAliasesMap' => 
+        array (
+        ),
+         'bypassTypeAliases' => false,
+         'constUses' => 
+        array (
+        ),
+         'typeAliasClassName' => NULL,
+         'traitData' => NULL,
+      )),
+      'd9fcfbfccd31f325177a823256bbd054' => 
+      \PHPStan\Analyser\IntermediaryNameScope::__set_state(array(
+         'namespace' => 'App\\Domain\\Benefit\\Services',
+         'uses' => 
+        array (
+          'mdascope' => 'App\\Domain\\Access\\Scopes\\MdaScope',
+          'benefitstatus' => 'App\\Domain\\Benefit\\Enums\\BenefitStatus',
+          'benefit' => 'App\\Domain\\Benefit\\Models\\Benefit',
+          'activity' => 'App\\Domain\\Programme\\Models\\Activity',
+          'programme' => 'App\\Domain\\Programme\\Models\\Programme',
+          'builder' => 'Illuminate\\Database\\Eloquent\\Builder',
+        ),
+         'className' => 'App\\Domain\\Benefit\\Services\\LedgerAggregator',
+         'functionName' => 'scopedLedger',
+         'templatePhpDocNodes' => 
+        array (
+        ),
+         'parent' => 
+        \PHPStan\Analyser\IntermediaryNameScope::__set_state(array(
+           'namespace' => 'App\\Domain\\Benefit\\Services',
+           'uses' => 
+          array (
+            'mdascope' => 'App\\Domain\\Access\\Scopes\\MdaScope',
             'benefitstatus' => 'App\\Domain\\Benefit\\Enums\\BenefitStatus',
             'benefit' => 'App\\Domain\\Benefit\\Models\\Benefit',
             'activity' => 'App\\Domain\\Programme\\Models\\Activity',
@@ -198,6 +425,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
          'namespace' => 'App\\Domain\\Benefit\\Services',
          'uses' => 
         array (
+          'mdascope' => 'App\\Domain\\Access\\Scopes\\MdaScope',
           'benefitstatus' => 'App\\Domain\\Benefit\\Enums\\BenefitStatus',
           'benefit' => 'App\\Domain\\Benefit\\Models\\Benefit',
           'activity' => 'App\\Domain\\Programme\\Models\\Activity',
@@ -214,6 +442,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
            'namespace' => 'App\\Domain\\Benefit\\Services',
            'uses' => 
           array (
+            'mdascope' => 'App\\Domain\\Access\\Scopes\\MdaScope',
             'benefitstatus' => 'App\\Domain\\Benefit\\Enums\\BenefitStatus',
             'benefit' => 'App\\Domain\\Benefit\\Models\\Benefit',
             'activity' => 'App\\Domain\\Programme\\Models\\Activity',
@@ -251,6 +480,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
          'namespace' => 'App\\Domain\\Benefit\\Services',
          'uses' => 
         array (
+          'mdascope' => 'App\\Domain\\Access\\Scopes\\MdaScope',
           'benefitstatus' => 'App\\Domain\\Benefit\\Enums\\BenefitStatus',
           'benefit' => 'App\\Domain\\Benefit\\Models\\Benefit',
           'activity' => 'App\\Domain\\Programme\\Models\\Activity',
@@ -267,6 +497,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
            'namespace' => 'App\\Domain\\Benefit\\Services',
            'uses' => 
           array (
+            'mdascope' => 'App\\Domain\\Access\\Scopes\\MdaScope',
             'benefitstatus' => 'App\\Domain\\Benefit\\Enums\\BenefitStatus',
             'benefit' => 'App\\Domain\\Benefit\\Models\\Benefit',
             'activity' => 'App\\Domain\\Programme\\Models\\Activity',
@@ -304,6 +535,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
          'namespace' => 'App\\Domain\\Benefit\\Services',
          'uses' => 
         array (
+          'mdascope' => 'App\\Domain\\Access\\Scopes\\MdaScope',
           'benefitstatus' => 'App\\Domain\\Benefit\\Enums\\BenefitStatus',
           'benefit' => 'App\\Domain\\Benefit\\Models\\Benefit',
           'activity' => 'App\\Domain\\Programme\\Models\\Activity',
@@ -320,6 +552,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
            'namespace' => 'App\\Domain\\Benefit\\Services',
            'uses' => 
           array (
+            'mdascope' => 'App\\Domain\\Access\\Scopes\\MdaScope',
             'benefitstatus' => 'App\\Domain\\Benefit\\Enums\\BenefitStatus',
             'benefit' => 'App\\Domain\\Benefit\\Models\\Benefit',
             'activity' => 'App\\Domain\\Programme\\Models\\Activity',
@@ -355,7 +588,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
     ),
     1 => 
     array (
-      '/var/www/html/app/Domain/Benefit/Services/LedgerAggregator.php' => '85827d48734c69866401b86c71256edfbb2ad036dffbf98d926633d52994568c',
+      '/var/www/html/app/Domain/Benefit/Services/LedgerAggregator.php' => 'a8abca167eb346c56e7e19595f7eae00d99174f51e154057074605ff86d3bf54',
     ),
   ),
 ));

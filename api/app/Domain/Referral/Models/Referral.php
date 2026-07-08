@@ -27,6 +27,8 @@ use Illuminate\Support\Carbon;
  * @property string $need
  * @property string|null $notes
  * @property ReferralStatus $status
+ * @property int $escalation_level
+ * @property Carbon|null $sla_breached_at
  * @property string|null $outcome
  * @property string|null $reason
  * @property string|null $info_request

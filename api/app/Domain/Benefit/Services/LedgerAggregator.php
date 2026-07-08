@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Domain\Benefit\Services;
 
+use App\Domain\Access\Scopes\MdaScope;
 use App\Domain\Benefit\Enums\BenefitStatus;
 use App\Domain\Benefit\Models\Benefit;
 use App\Domain\Programme\Models\Activity;
@@ -82,6 +83,100 @@ class LedgerAggregator
             'groups' => $groups,
             'totals' => $this->totals(clone $base),
         ];
+    }
+
+    /**
+     * Ledger totals for an explicit dashboard scope (PRD FR-RPT-01/02), bypassing the
+     * request-time MdaScope so it also runs on the scheduler/queue. Reversed entries
+     * are excluded (voided deliveries). `$programmeIds` (partner scope) takes
+     * precedence; otherwise `$mdaIds` constrains by delivering MDA; both null =
+     * state-wide. An empty array constrains to nothing (deny by default).
+     *
+     * @param  list<string>|null  $mdaIds
+     * @param  list<string>|null  $programmeIds
+     * @return array{benefit_count: int, total_value: int, total_quantity: string}
+     */
+    public function scopedTotals(?array $mdaIds, ?array $programmeIds): array
+    {
+        return $this->totals($this->scopedLedger($mdaIds, $programmeIds));
+    }
+
+    /**
+     * Allocated-vs-utilised for a dashboard scope (FR-PRG-04): allocated = the sum of
+     * the scoped programmes' budgets; utilised = delivered value in scope.
+     *
+     * @param  list<string>|null  $mdaIds
+     * @param  list<string>|null  $programmeIds
+     * @return array<string, mixed>
+     */
+    public function scopedBudget(?array $mdaIds, ?array $programmeIds): array
+    {
+        $programmes = Programme::query()->withoutGlobalScope(MdaScope::class);
+        if ($programmeIds !== null) {
+            $programmes->whereIn('id', $programmeIds);
+        } elseif ($mdaIds !== null) {
+            $programmes->whereIn('owner_mda_id', $mdaIds);
+        }
+
+        $allocated = (int) $programmes->sum('budget_amount');
+        $totals = $this->scopedTotals($mdaIds, $programmeIds);
+        $utilised = $totals['total_value'];
+
+        return [
+            'allocated' => $allocated,
+            'utilized_value' => $utilised,
+            'utilized_quantity' => $totals['total_quantity'],
+            'benefit_count' => $totals['benefit_count'],
+            'remaining' => $allocated - $utilised,
+            'utilization_rate' => $allocated > 0 ? round($utilised / $allocated, 4) : null,
+        ];
+    }
+
+    /**
+     * Group the scoped ledger by a whitelisted dimension (FR-BEN-03), for a dashboard
+     * scope. Returns `[key => ['benefit_count','total_value','total_quantity']]`.
+     *
+     * @param  list<string>|null  $mdaIds
+     * @param  list<string>|null  $programmeIds
+     * @return array<int, array<string, mixed>>
+     */
+    public function scopedGroup(string $dimension, ?array $mdaIds, ?array $programmeIds): array
+    {
+        $column = self::DIMENSIONS[$dimension] ?? throw new \InvalidArgumentException("Unknown dimension: {$dimension}");
+
+        return $this->scopedLedger($mdaIds, $programmeIds)
+            ->selectRaw("{$column} as group_key, count(*) as cnt, coalesce(sum(monetary_value), 0) as val, coalesce(sum(quantity), 0) as qty")
+            ->groupBy($column)
+            ->get()
+            ->map(fn (Benefit $row) => [
+                'key' => $row->getAttribute('group_key'),
+                'benefit_count' => (int) $row->getAttribute('cnt'),
+                'total_value' => (int) $row->getAttribute('val'),
+                'total_quantity' => (string) $row->getAttribute('qty'),
+            ])
+            ->all();
+    }
+
+    /**
+     * A ledger query constrained to a dashboard scope, reversed entries excluded.
+     *
+     * @param  list<string>|null  $mdaIds
+     * @param  list<string>|null  $programmeIds
+     * @return Builder<Benefit>
+     */
+    private function scopedLedger(?array $mdaIds, ?array $programmeIds): Builder
+    {
+        $query = Benefit::query()
+            ->withoutGlobalScope(MdaScope::class)
+            ->where('status', '!=', BenefitStatus::Reversed->value);
+
+        if ($programmeIds !== null) {
+            $query->whereIn('programme_id', $programmeIds);
+        } elseif ($mdaIds !== null) {
+            $query->whereIn('mda_id', $mdaIds);
+        }
+
+        return $query;
     }
 
     /**

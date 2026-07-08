@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 use App\Domain\Grievance\Jobs\EscalateOverdueGrievances;
 use App\Domain\Referral\Jobs\EscalateOverdueReferrals;
+use App\Domain\Reporting\Jobs\RefreshDashboardSnapshots;
 use App\Http\Middleware\AssignCorrelationId;
 use App\Http\Middleware\CheckPermission;
 use App\Http\Middleware\EnforceIdleTimeout;
@@ -38,6 +39,10 @@ return Application::configure(basePath: dirname(__DIR__))
         // Grievance SLA sweep (FR-GRM-03): flag/escalate overdue grievances hourly.
         // Never auto-closes — it only escalates + notifies.
         $schedule->job(EscalateOverdueGrievances::class)->hourly()->withoutOverlapping();
+
+        // Dashboard summary refresh (FR-RPT-01/02): recompute scope snapshots so the
+        // request path always reads a summary, never the raw ledger/registry.
+        $schedule->job(RefreshDashboardSnapshots::class)->everyFifteenMinutes()->withoutOverlapping();
     })
     ->withMiddleware(function (Middleware $middleware): void {
         // Correlation id first (so it is available to everything), security

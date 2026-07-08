@@ -29,6 +29,8 @@ use Illuminate\Support\Carbon;
  * @property string|null $decided_by
  * @property Carbon|null $decided_at
  * @property string|null $decision_reason
+ * @property Carbon|null $created_at
+ * @property Carbon|null $updated_at
  * @property-read Beneficiary $beneficiary
  */
 class OwnershipTransferRequest extends Model

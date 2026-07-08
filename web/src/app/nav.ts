@@ -8,11 +8,13 @@ import {
   Home,
   KeyRound,
   LayoutGrid,
+  LifeBuoy,
   ScanSearch,
   Send,
   Share2,
   ShieldCheck,
   SlidersHorizontal,
+  Split,
   Upload,
   UserSquare2,
   Users,
@@ -72,7 +74,14 @@ export const NAV_CONFIG: NavConfigSection[] = [
     ],
   },
   {
-    label: '05 · System',
+    label: '05 · Coordination',
+    items: [
+      { label: 'Referrals', to: '/referrals', icon: Split, permission: 'referral.view' },
+      { label: 'Grievance desk', to: '/grievances', icon: LifeBuoy, permission: 'grievance.view' },
+    ],
+  },
+  {
+    label: '06 · System',
     items: [{ label: 'Style guide', to: '/styleguide', icon: LayoutGrid }],
   },
 ]

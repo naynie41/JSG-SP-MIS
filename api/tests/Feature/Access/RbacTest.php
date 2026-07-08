@@ -28,12 +28,13 @@ class RbacTest extends TestCase
             'beneficiary.view', 'beneficiary.export', 'beneficiary-lookup.view',
             'programme.view', 'activity.view', 'enrollment.view', 'benefit.view',
             'double-dipping.view', 'double-dipping.edit', 'referral.view', 'referral-sla.edit',
-            'grievance.view', 'grievance-sla.edit',
+            'grievance.view', 'grievance-sla.edit', 'dashboard.view', 'reporting.view', 'reporting.export',
         ],
         'mne_officer' => [
             'cross-mda.view', 'mda.view', 'user.view',
             'beneficiary.view', 'beneficiary.export', 'beneficiary-lookup.view',
             'programme.view', 'activity.view', 'enrollment.view', 'benefit.view', 'referral.view', 'grievance.view',
+            'dashboard.view', 'reporting.view', 'reporting.export',
         ],
         'mda_admin' => [
             'mda.view', 'user.view', 'user.create', 'user.edit', 'role.view',
@@ -44,7 +45,7 @@ class RbacTest extends TestCase
             'enrollment.view', 'enrollment.create', 'enrollment.edit',
             'benefit.view', 'benefit.create', 'benefit.approve',
             'referral.view', 'referral.create', 'referral.edit',
-            'grievance.view', 'grievance.create', 'grievance.edit',
+            'grievance.view', 'grievance.create', 'grievance.edit', 'dashboard.view', 'reporting.view', 'reporting.export',
         ],
         'mda_officer' => [
             'mda.view', 'user.view',
@@ -55,13 +56,14 @@ class RbacTest extends TestCase
             'enrollment.view', 'enrollment.create', 'enrollment.edit',
             'benefit.view', 'benefit.create', 'benefit.approve',
             'referral.view', 'referral.create', 'referral.edit',
-            'grievance.view', 'grievance.create', 'grievance.edit',
+            'grievance.view', 'grievance.create', 'grievance.edit', 'dashboard.view', 'reporting.view', 'reporting.export',
         ],
-        'development_partner' => ['mda.view', 'beneficiary.view', 'programme.view', 'activity.view', 'enrollment.view', 'benefit.view'],
+        'development_partner' => ['mda.view', 'beneficiary.view', 'programme.view', 'activity.view', 'enrollment.view', 'benefit.view', 'dashboard.view', 'reporting.view', 'reporting.export'],
         'executive' => [
             'cross-mda.view', 'mda.view', 'user.view',
             'beneficiary.view', 'beneficiary.export', 'beneficiary-lookup.view',
             'programme.view', 'activity.view', 'enrollment.view', 'benefit.view', 'referral.view', 'grievance.view',
+            'dashboard.view', 'reporting.view', 'reporting.export',
         ],
     ];
 
