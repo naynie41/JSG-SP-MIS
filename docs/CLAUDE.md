@@ -199,5 +199,28 @@ A task is done only when **all** of these are true:
   under it (FR-REG-10, FR-PRG-05). Beneficiaries still enter the shared registry under first-importer
   ownership (FR-OWN-01).
 
-  l
-  
+---
+
+## 10. Locked decisions — Programme catalog & activity ownership (revises FR-PRG-01/02)
+
+- **A Programme is a GLOBAL catalog entry, created only by the System Administrator** (optionally SP
+  Coordination per PRD §4). It is a shared service *type* (e.g. Cash Transfer, Skills Training),
+  **not owned by any MDA**, and is readable by all MDAs so they can select it. It holds type-level
+  attributes only: name, objective, type (HH/individual), benefit category, standard eligibility.
+  **MDAs cannot create, edit, or delete programmes** — remove programme create/edit from the MDA
+  officer AND MDA admin views.
+- **An Activity is MDA-owned** (`owner_mda_id`, `ScopedToMda`) and is created by MDA officers/admins.
+  Activity creation begins by **selecting a programme from a dropdown of available catalog
+  programmes**, then captures the MDA-specific execution details: location (LGA/Ward), schedule,
+  budget, funding source, period, targets, and any activity-level eligibility.
+- **One programme, many MDAs, separate activities.** The same catalog programme (e.g. Cash Transfer)
+  may be run by multiple MDAs, each through its own activity. Budget/funding live on the Activity, not
+  the Programme.
+- **Interventions are programme-typed, delivered via an activity.** A benefit/intervention references
+  the beneficiary, the (catalog) programme, the (MDA-owned) activity, and the delivering MDA. When a
+  duplicate is found and a serving MDA offers an intervention via request-to-serve, the "service
+  offered" is a programme, delivered under that MDA's own activity.
+- **Beneficiary data ownership is UNCHANGED** (first-importer owns the beneficiary; MDA isolation
+  intact). Only *programme* ownership changed.
+- **Never** expose programme creation/editing to an MDA role, and never make a programme MDA-scoped —
+  it is a shared catalog.

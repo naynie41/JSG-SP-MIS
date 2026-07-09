@@ -10,7 +10,6 @@ import { Card } from '@/components/Card/Card'
 import { SelectField } from '@/components/Field/SelectField'
 import { TextField } from '@/components/Field/TextField'
 import { useAuth } from '@/lib/auth/AuthProvider'
-import { formatNaira } from '@/lib/utils/money'
 import { ProgrammeFormModal } from './ProgrammeFormModal'
 import { PROGRAMME_STATUS_OPTIONS, PROGRAMME_TYPE_OPTIONS } from './constants'
 import { useProgrammes } from './hooks'
@@ -53,7 +52,7 @@ export function ProgrammeListPage() {
     { key: 'name', header: 'Programme', render: (p) => <Link to={`/programmes/${p.id}`}>{p.name}</Link> },
     { key: 'type', header: 'Type', render: (p) => <Badge variant={statusVariant(`type.${p.type}`)}>{p.type}</Badge> },
     { key: 'status', header: 'Status', render: (p) => <Badge variant={statusVariant(`programme.${p.status}`)} dot>{p.status}</Badge> },
-    { key: 'budget', header: 'Budget', align: 'right', render: (p) => <span className={styles.mono}>{formatNaira(p.budget_amount)}</span> },
+    { key: 'category', header: 'Category', render: (p) => p.benefit_category ?? '—' },
     { key: 'activities', header: 'Activities', align: 'right', render: (p) => p.activities_count ?? 0 },
   ]
 

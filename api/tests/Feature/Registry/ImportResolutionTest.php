@@ -63,7 +63,8 @@ class ImportResolutionTest extends TestCase
         $this->users['ownerAdmin'] = $this->user($this->mdaB, RoleKey::MdaAdmin);  // can accept serve
 
         $this->activity = Activity::factory()->forProgramme(
-            Programme::factory()->individual()->create(['owner_mda_id' => $this->mdaA->id]),
+            Programme::factory()->individual()->create(),
+            $this->mdaA,
         )->create();
 
         $this->existing1 = Beneficiary::factory()->withoutBvn()->create(['owner_mda_id' => $this->mdaB->id, 'nin' => '22200000011']);

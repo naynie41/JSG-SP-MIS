@@ -34,13 +34,11 @@ class ProgrammeMatcher
             ->pluck('programme_id')
             ->all();
 
-        // Cross-MDA: routing can suggest any MDA's matching programme.
+        // The global catalog: suggest any active individual programme.
         $programmes = Programme::query()
-            ->withoutGlobalScopes()
             ->where('type', ProgrammeType::Individual) // routing an individual beneficiary
             ->where('status', ProgrammeStatus::Active)
             ->whereNotIn('id', $alreadyEnrolled)
-            ->with(['ownerMda' => fn ($q) => $q->withoutGlobalScopes()->select('id', 'name')])
             ->get();
 
         $needTerm = $need !== null ? mb_strtolower(trim($need)) : null;
@@ -53,7 +51,7 @@ class ProgrammeMatcher
                     'programme_id' => $programme->id,
                     'name' => $programme->name,
                     'type' => $programme->type->value,
-                    'owner_mda' => ['id' => $programme->ownerMda->id, 'name' => $programme->ownerMda->name],
+                    'benefit_category' => $programme->benefit_category,
                     'eligible' => $eligibility['eligible'],
                     'unmet' => $eligibility['unmet'],
                     'matches_need' => $this->matchesNeed($programme, $needTerm),

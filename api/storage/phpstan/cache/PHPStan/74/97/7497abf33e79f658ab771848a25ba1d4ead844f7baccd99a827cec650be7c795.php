@@ -2,7 +2,7 @@
 
 // odsl-/var/www/html/app/Http/Controllers/Api/V1/Registry/BeneficiaryRoutingController.php-PHPStan\BetterReflection\Reflection\ReflectionClass-App\Http\Controllers\Api\V1\Registry\BeneficiaryRoutingController
 return \PHPStan\Cache\CacheItem::__set_state(array(
-   'variableKey' => 'v2-6.70.0.1-8.3.31-7c2c3460b0053a5d2857c4c54ea39b334c315ceab2792714567d0c3837edb0a1',
+   'variableKey' => 'v2-6.70.0.1-8.3.31-4793751e2ca0383966a40c582bfaffed8df3862c21e24346cbccc3ed072391b3',
    'data' => 
   array (
     'locatedSource' => 

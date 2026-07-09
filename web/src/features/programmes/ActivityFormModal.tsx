@@ -23,7 +23,7 @@ interface ActivityFormModalProps {
   activity?: Activity | null
 }
 
-const KNOWN = ['name', 'description', 'target_count', 'lga', 'ward', 'location_description', 'starts_on', 'ends_on', 'status'] as const
+const KNOWN = ['name', 'description', 'target_count', 'lga', 'ward', 'location_description', 'budget_naira', 'funding_source', 'starts_on', 'ends_on', 'status'] as const
 
 /** Create or edit an activity under a programme (PRD FR-PRG-02). */
 export function ActivityFormModal({ open, onClose, programmeId, activity }: ActivityFormModalProps) {
@@ -45,6 +45,7 @@ export function ActivityFormModal({ open, onClose, programmeId, activity }: Acti
       ward: activity?.ward ?? '',
       location_description: activity?.location_description ?? '',
       budget_naira: koboToNaira(activity?.budget_amount),
+      funding_source: activity?.funding_source ?? '',
       starts_on: activity?.starts_on ?? '',
       ends_on: activity?.ends_on ?? '',
       status: (activity?.status as ActivityFormValues['status']) ?? 'draft',
@@ -64,6 +65,7 @@ export function ActivityFormModal({ open, onClose, programmeId, activity }: Acti
           ward: values.ward || null,
           location_description: values.location_description || null,
           budget_amount: nairaToKobo(values.budget_naira) ?? null,
+          funding_source: values.funding_source || null,
           starts_on: values.starts_on || null,
           ends_on: values.ends_on || null,
           status: values.status,
@@ -108,6 +110,7 @@ export function ActivityFormModal({ open, onClose, programmeId, activity }: Acti
           <TextField label="Ward" error={errors.ward?.message} {...register('ward')} />
         </div>
         <TextField label="Location" error={errors.location_description?.message} {...register('location_description')} />
+        <TextField label="Funding source" error={errors.funding_source?.message} {...register('funding_source')} />
         <div className={formStyles.grid2}>
           <TextField label="Start date" type="date" error={errors.starts_on?.message} {...register('starts_on')} />
           <TextField label="End date" type="date" error={errors.ends_on?.message} {...register('ends_on')} />

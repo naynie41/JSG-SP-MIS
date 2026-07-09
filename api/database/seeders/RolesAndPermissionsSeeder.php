@@ -30,7 +30,10 @@ class RolesAndPermissionsSeeder extends Seeder
         RoleKey::SpCoordination->value => [
             'cross-mda.view', 'mda.view', 'user.view', 'role.view', 'permission.view',
             'beneficiary.view', 'beneficiary.export', 'beneficiary-lookup.view',
-            'programme.view', 'activity.view', 'enrollment.view', 'benefit.view',
+            // Programme catalog is administered centrally (§10) — SP Coordination
+            // co-administers it alongside the System Administrator.
+            'programme.view', 'programme.create', 'programme.edit',
+            'activity.view', 'enrollment.view', 'benefit.view',
             'double-dipping.view', 'double-dipping.edit', 'referral.view', 'referral-sla.edit',
             'grievance.view', 'grievance-sla.edit', 'dashboard.view', 'reporting.view', 'reporting.export',
         ],
@@ -44,7 +47,9 @@ class RolesAndPermissionsSeeder extends Seeder
             'mda.view', 'user.view', 'user.create', 'user.edit', 'role.view',
             'beneficiary.view', 'beneficiary.create', 'beneficiary.edit', 'beneficiary.approve',
             'beneficiary-lookup.view', 'household.view', 'household.create', 'household.edit',
-            'programme.view', 'programme.create', 'programme.edit',
+            // Programmes are a global catalog (§10) — MDAs read but never create/edit them;
+            // they run programmes through their own MDA-owned activities.
+            'programme.view',
             'activity.view', 'activity.create', 'activity.edit',
             'enrollment.view', 'enrollment.create', 'enrollment.edit',
             'benefit.view', 'benefit.create', 'benefit.approve',
@@ -55,7 +60,7 @@ class RolesAndPermissionsSeeder extends Seeder
             'mda.view', 'user.view',
             'beneficiary.view', 'beneficiary.create', 'beneficiary.edit',
             'beneficiary-lookup.view', 'household.view', 'household.create', 'household.edit',
-            'programme.view', 'programme.create', 'programme.edit',
+            'programme.view',
             'activity.view', 'activity.create', 'activity.edit',
             'enrollment.view', 'enrollment.create', 'enrollment.edit',
             'benefit.view', 'benefit.create', 'benefit.approve',

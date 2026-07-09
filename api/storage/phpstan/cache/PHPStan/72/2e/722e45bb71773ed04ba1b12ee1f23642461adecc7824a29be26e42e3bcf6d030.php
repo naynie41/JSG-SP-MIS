@@ -2,7 +2,7 @@
 
 // odsl-/var/www/html/app/Domain/Programme/Services/ProgrammeMatcher.php-PHPStan\BetterReflection\Reflection\ReflectionClass-App\Domain\Programme\Services\ProgrammeMatcher
 return \PHPStan\Cache\CacheItem::__set_state(array(
-   'variableKey' => 'v2-6.70.0.1-8.3.31-9121e730f812033429c89d29df90b96248bc7ad435819e2a2627ac9fe41369f4',
+   'variableKey' => 'v2-6.70.0.1-8.3.31-0be25975e5825c187bf3fde23452e8a38840f4c377a1da0ea25e1f6f886bc711',
    'data' => 
   array (
     'locatedSource' => 
@@ -32,7 +32,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
     array (
     ),
     'startLine' => 19,
-    'endLine' => 89,
+    'endLine' => 87,
     'startColumn' => 1,
     'endColumn' => 1,
     'parentClassName' => NULL,
@@ -269,7 +269,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
  * @return list<array<string, mixed>>
  */',
         'startLine' => 28,
-        'endLine' => 67,
+        'endLine' => 65,
         'startColumn' => 5,
         'endColumn' => 5,
         'couldThrow' => false,
@@ -307,8 +307,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             'attributes' => 
             array (
             ),
-            'startLine' => 69,
-            'endLine' => 69,
+            'startLine' => 67,
+            'endLine' => 67,
             'startColumn' => 34,
             'endColumn' => 53,
             'parameterIndex' => 0,
@@ -352,8 +352,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             'attributes' => 
             array (
             ),
-            'startLine' => 69,
-            'endLine' => 69,
+            'startLine' => 67,
+            'endLine' => 67,
             'startColumn' => 56,
             'endColumn' => 72,
             'parameterIndex' => 1,
@@ -374,8 +374,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         array (
         ),
         'docComment' => NULL,
-        'startLine' => 69,
-        'endLine' => 88,
+        'startLine' => 67,
+        'endLine' => 86,
         'startColumn' => 5,
         'endColumn' => 5,
         'couldThrow' => false,

@@ -45,10 +45,16 @@ class BenefitRecorder
      */
     public function record(Beneficiary $beneficiary, Programme $programme, ?string $activityId, User $actor, array $fields): Benefit
     {
+        // The delivering MDA is the acting user's MDA (§10 — programmes are a global
+        // catalog with no owner; the activity/actor carries the MDA).
+        $deliveringMdaId = $actor->mda_id;
+
         // A non-owner MDA may deliver ONLY with an accepted Service Request /
         // Referral authorization (FR-BEN-06). Checked before enrollment so an
         // unauthorized cross-MDA attempt gets a clear refusal.
-        $basis = $this->authorization->basisFor($programme->owner_mda_id, $beneficiary);
+        $basis = $deliveringMdaId !== null
+            ? $this->authorization->basisFor($deliveringMdaId, $beneficiary)
+            : null;
         if ($basis === null) {
             throw new DeliveryNotAuthorizedException(
                 'Recording an intervention for a beneficiary this MDA does not own requires an accepted service request or referral.',
@@ -68,13 +74,13 @@ class BenefitRecorder
 
         $method = $fields['verification_method'] ?? VerificationMethod::None;
 
-        return DB::transaction(function () use ($beneficiary, $programme, $activityId, $actor, $fields, $enrollment, $method, $basis): Benefit {
+        return DB::transaction(function () use ($beneficiary, $programme, $activityId, $actor, $fields, $enrollment, $method, $basis, $deliveringMdaId): Benefit {
             $benefit = Benefit::create([
                 'beneficiary_id' => $beneficiary->id,
                 'programme_id' => $programme->id,
                 'activity_id' => $activityId,
                 'enrollment_id' => $enrollment->id,
-                'mda_id' => $programme->owner_mda_id, // the delivering MDA
+                'mda_id' => $deliveringMdaId, // the delivering MDA (the actor's MDA)
                 'benefit_type' => $fields['benefit_type'],
                 'quantity' => $fields['quantity'] ?? null,
                 'unit' => $fields['unit'] ?? null,
@@ -104,7 +110,7 @@ class BenefitRecorder
             if ($basis !== 'owner') {
                 $this->audit->record('benefit.delivery_authorized', $benefit, after: [
                     'basis' => $basis,
-                    'delivering_mda_id' => $programme->owner_mda_id,
+                    'delivering_mda_id' => $deliveringMdaId,
                     'beneficiary_owner_mda_id' => $beneficiary->owner_mda_id,
                 ], actor: $actor);
             }

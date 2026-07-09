@@ -4,19 +4,26 @@ declare(strict_types=1);
 
 namespace App\Domain\Programme\Policies;
 
+use App\Domain\Access\Enums\RoleKey;
 use App\Domain\Access\Models\User;
 use App\Domain\Programme\Models\Programme;
 
 /**
- * Authorization for programmes (PRD FR-PRG-01). The core rule: **only the owner
- * MDA may mutate** (create/update/archive). Oversight roles (`cross-mda.view`)
- * read across all MDAs but never mutate another MDA's programme.
+ * Authorization for the GLOBAL programme catalog (PRD §10, ARCH §12.4). Programmes
+ * are a shared, unowned catalog: **any authenticated role may list/show** them,
+ * but **only catalog administrators may create/edit/archive** — the System
+ * Administrator, optionally SP Coordination (the "AdminOnly" rule). MDAs run
+ * programmes through their own activities and can never mutate the catalog.
  */
 class ProgrammePolicy
 {
-    private function owns(User $user, Programme $programme): bool
+    /** Catalog administrators: System Administrator + (optionally) SP Coordination. */
+    private function isCatalogAdmin(User $user): bool
     {
-        return $user->mda_id !== null && $user->mda_id === $programme->owner_mda_id;
+        return in_array($user->role?->key, [
+            RoleKey::SystemAdministrator->value,
+            RoleKey::SpCoordination->value,
+        ], true);
     }
 
     public function viewAny(User $user): bool
@@ -26,18 +33,17 @@ class ProgrammePolicy
 
     public function view(User $user, Programme $programme): bool
     {
-        return $user->hasPermission('programme.view')
-            && ($this->owns($user, $programme) || $user->canAccessAllMdas());
+        return $user->hasPermission('programme.view');
     }
 
     public function create(User $user): bool
     {
-        return $user->hasPermission('programme.create');
+        return $this->isCatalogAdmin($user) && $user->hasPermission('programme.create');
     }
 
-    /** Owner-only edit/archive. cross-mda.view does NOT grant mutation. */
+    /** Edit/archive the catalog entry — catalog administrators only. */
     public function update(User $user, Programme $programme): bool
     {
-        return $user->hasPermission('programme.edit') && $this->owns($user, $programme);
+        return $this->isCatalogAdmin($user) && $user->hasPermission('programme.edit');
     }
 }

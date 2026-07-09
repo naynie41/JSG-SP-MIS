@@ -62,8 +62,8 @@ class BulkImportTest extends TestCase
         $this->users['officerB'] = $this->user($this->mdaB, RoleKey::MdaOfficer);
         $this->users['partnerA'] = $this->user($this->mdaA, RoleKey::DevelopmentPartner);
 
-        $this->programmeA = Programme::factory()->individual()->create(['owner_mda_id' => $this->mdaA->id]);
-        $this->activityA = Activity::factory()->forProgramme($this->programmeA)->create();
+        $this->programmeA = Programme::factory()->individual()->create();
+        $this->activityA = Activity::factory()->forProgramme($this->programmeA, $this->mdaA)->create();
     }
 
     private function user(Mda $mda, RoleKey $role): User
@@ -337,8 +337,8 @@ class BulkImportTest extends TestCase
     public function test_upload_to_an_activity_the_mda_cannot_use_is_refused(): void
     {
         // An activity owned by another MDA is not usable by officer A.
-        $foreignProgramme = Programme::factory()->individual()->create(['owner_mda_id' => $this->mdaB->id]);
-        $foreignActivity = Activity::factory()->forProgramme($foreignProgramme)->create();
+        $foreignProgramme = Programme::factory()->individual()->create();
+        $foreignActivity = Activity::factory()->forProgramme($foreignProgramme, $this->mdaB)->create();
 
         $this->withToken($this->tokenFor('officerA'))
             ->post('/api/v1/beneficiaries/imports', [

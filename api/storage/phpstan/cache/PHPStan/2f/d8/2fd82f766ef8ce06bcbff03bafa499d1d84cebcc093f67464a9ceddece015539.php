@@ -12,6 +12,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
          'namespace' => 'Database\\Factories',
          'uses' => 
         array (
+          'mda' => 'App\\Domain\\Access\\Models\\Mda',
           'activitystatus' => 'App\\Domain\\Programme\\Enums\\ActivityStatus',
           'activity' => 'App\\Domain\\Programme\\Models\\Activity',
           'programme' => 'App\\Domain\\Programme\\Models\\Programme',
@@ -38,6 +39,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
          'namespace' => 'Database\\Factories',
          'uses' => 
         array (
+          'mda' => 'App\\Domain\\Access\\Models\\Mda',
           'activitystatus' => 'App\\Domain\\Programme\\Enums\\ActivityStatus',
           'activity' => 'App\\Domain\\Programme\\Models\\Activity',
           'programme' => 'App\\Domain\\Programme\\Models\\Programme',
@@ -53,57 +55,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
            'namespace' => 'Database\\Factories',
            'uses' => 
           array (
-            'activitystatus' => 'App\\Domain\\Programme\\Enums\\ActivityStatus',
-            'activity' => 'App\\Domain\\Programme\\Models\\Activity',
-            'programme' => 'App\\Domain\\Programme\\Models\\Programme',
-            'factory' => 'Illuminate\\Database\\Eloquent\\Factories\\Factory',
-          ),
-           'className' => 'Database\\Factories\\ActivityFactory',
-           'functionName' => NULL,
-           'templatePhpDocNodes' => 
-          array (
-          ),
-           'parent' => NULL,
-           'typeAliasesMap' => 
-          array (
-          ),
-           'bypassTypeAliases' => false,
-           'constUses' => 
-          array (
-          ),
-           'typeAliasClassName' => NULL,
-           'traitData' => NULL,
-        )),
-         'typeAliasesMap' => 
-        array (
-        ),
-         'bypassTypeAliases' => false,
-         'constUses' => 
-        array (
-        ),
-         'typeAliasClassName' => NULL,
-         'traitData' => NULL,
-      )),
-      '4298d86d35970ebf93f72fc669c855bb' => 
-      \PHPStan\Analyser\IntermediaryNameScope::__set_state(array(
-         'namespace' => 'Database\\Factories',
-         'uses' => 
-        array (
-          'activitystatus' => 'App\\Domain\\Programme\\Enums\\ActivityStatus',
-          'activity' => 'App\\Domain\\Programme\\Models\\Activity',
-          'programme' => 'App\\Domain\\Programme\\Models\\Programme',
-          'factory' => 'Illuminate\\Database\\Eloquent\\Factories\\Factory',
-        ),
-         'className' => 'Database\\Factories\\ActivityFactory',
-         'functionName' => 'configure',
-         'templatePhpDocNodes' => 
-        array (
-        ),
-         'parent' => 
-        \PHPStan\Analyser\IntermediaryNameScope::__set_state(array(
-           'namespace' => 'Database\\Factories',
-           'uses' => 
-          array (
+            'mda' => 'App\\Domain\\Access\\Models\\Mda',
             'activitystatus' => 'App\\Domain\\Programme\\Enums\\ActivityStatus',
             'activity' => 'App\\Domain\\Programme\\Models\\Activity',
             'programme' => 'App\\Domain\\Programme\\Models\\Programme',
@@ -140,6 +92,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
          'namespace' => 'Database\\Factories',
          'uses' => 
         array (
+          'mda' => 'App\\Domain\\Access\\Models\\Mda',
           'activitystatus' => 'App\\Domain\\Programme\\Enums\\ActivityStatus',
           'activity' => 'App\\Domain\\Programme\\Models\\Activity',
           'programme' => 'App\\Domain\\Programme\\Models\\Programme',
@@ -155,6 +108,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
            'namespace' => 'Database\\Factories',
            'uses' => 
           array (
+            'mda' => 'App\\Domain\\Access\\Models\\Mda',
             'activitystatus' => 'App\\Domain\\Programme\\Enums\\ActivityStatus',
             'activity' => 'App\\Domain\\Programme\\Models\\Activity',
             'programme' => 'App\\Domain\\Programme\\Models\\Programme',
@@ -189,7 +143,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
     ),
     1 => 
     array (
-      '/var/www/html/database/factories/ActivityFactory.php' => '4a43d95ad8a0cc757dca9a76d3bbc12d516e5815ccc9f08af88dbea6973bde08',
+      '/var/www/html/database/factories/ActivityFactory.php' => '16cc580976548d12ba35503e1dbe4e267dfe2033f60a39387369717cc016a33e',
     ),
   ),
 ));

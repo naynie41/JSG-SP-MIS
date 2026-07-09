@@ -12,7 +12,6 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
          'namespace' => 'App\\Http\\Controllers\\Api\\V1\\Programme',
          'uses' => 
         array (
-          'mdascope' => 'App\\Domain\\Access\\Scopes\\MdaScope',
           'ledgeraggregator' => 'App\\Domain\\Benefit\\Services\\LedgerAggregator',
           'programmestatus' => 'App\\Domain\\Programme\\Enums\\ProgrammeStatus',
           'programme' => 'App\\Domain\\Programme\\Models\\Programme',
@@ -45,7 +44,6 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
          'namespace' => 'App\\Http\\Controllers\\Api\\V1\\Programme',
          'uses' => 
         array (
-          'mdascope' => 'App\\Domain\\Access\\Scopes\\MdaScope',
           'ledgeraggregator' => 'App\\Domain\\Benefit\\Services\\LedgerAggregator',
           'programmestatus' => 'App\\Domain\\Programme\\Enums\\ProgrammeStatus',
           'programme' => 'App\\Domain\\Programme\\Models\\Programme',
@@ -67,7 +65,6 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
            'namespace' => 'App\\Http\\Controllers\\Api\\V1\\Programme',
            'uses' => 
           array (
-            'mdascope' => 'App\\Domain\\Access\\Scopes\\MdaScope',
             'ledgeraggregator' => 'App\\Domain\\Benefit\\Services\\LedgerAggregator',
             'programmestatus' => 'App\\Domain\\Programme\\Enums\\ProgrammeStatus',
             'programme' => 'App\\Domain\\Programme\\Models\\Programme',
@@ -110,7 +107,6 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
          'namespace' => 'App\\Http\\Controllers\\Api\\V1\\Programme',
          'uses' => 
         array (
-          'mdascope' => 'App\\Domain\\Access\\Scopes\\MdaScope',
           'ledgeraggregator' => 'App\\Domain\\Benefit\\Services\\LedgerAggregator',
           'programmestatus' => 'App\\Domain\\Programme\\Enums\\ProgrammeStatus',
           'programme' => 'App\\Domain\\Programme\\Models\\Programme',
@@ -132,7 +128,6 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
            'namespace' => 'App\\Http\\Controllers\\Api\\V1\\Programme',
            'uses' => 
           array (
-            'mdascope' => 'App\\Domain\\Access\\Scopes\\MdaScope',
             'ledgeraggregator' => 'App\\Domain\\Benefit\\Services\\LedgerAggregator',
             'programmestatus' => 'App\\Domain\\Programme\\Enums\\ProgrammeStatus',
             'programme' => 'App\\Domain\\Programme\\Models\\Programme',
@@ -175,7 +170,6 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
          'namespace' => 'App\\Http\\Controllers\\Api\\V1\\Programme',
          'uses' => 
         array (
-          'mdascope' => 'App\\Domain\\Access\\Scopes\\MdaScope',
           'ledgeraggregator' => 'App\\Domain\\Benefit\\Services\\LedgerAggregator',
           'programmestatus' => 'App\\Domain\\Programme\\Enums\\ProgrammeStatus',
           'programme' => 'App\\Domain\\Programme\\Models\\Programme',
@@ -197,7 +191,6 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
            'namespace' => 'App\\Http\\Controllers\\Api\\V1\\Programme',
            'uses' => 
           array (
-            'mdascope' => 'App\\Domain\\Access\\Scopes\\MdaScope',
             'ledgeraggregator' => 'App\\Domain\\Benefit\\Services\\LedgerAggregator',
             'programmestatus' => 'App\\Domain\\Programme\\Enums\\ProgrammeStatus',
             'programme' => 'App\\Domain\\Programme\\Models\\Programme',
@@ -240,7 +233,6 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
          'namespace' => 'App\\Http\\Controllers\\Api\\V1\\Programme',
          'uses' => 
         array (
-          'mdascope' => 'App\\Domain\\Access\\Scopes\\MdaScope',
           'ledgeraggregator' => 'App\\Domain\\Benefit\\Services\\LedgerAggregator',
           'programmestatus' => 'App\\Domain\\Programme\\Enums\\ProgrammeStatus',
           'programme' => 'App\\Domain\\Programme\\Models\\Programme',
@@ -262,7 +254,6 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
            'namespace' => 'App\\Http\\Controllers\\Api\\V1\\Programme',
            'uses' => 
           array (
-            'mdascope' => 'App\\Domain\\Access\\Scopes\\MdaScope',
             'ledgeraggregator' => 'App\\Domain\\Benefit\\Services\\LedgerAggregator',
             'programmestatus' => 'App\\Domain\\Programme\\Enums\\ProgrammeStatus',
             'programme' => 'App\\Domain\\Programme\\Models\\Programme',
@@ -305,7 +296,6 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
          'namespace' => 'App\\Http\\Controllers\\Api\\V1\\Programme',
          'uses' => 
         array (
-          'mdascope' => 'App\\Domain\\Access\\Scopes\\MdaScope',
           'ledgeraggregator' => 'App\\Domain\\Benefit\\Services\\LedgerAggregator',
           'programmestatus' => 'App\\Domain\\Programme\\Enums\\ProgrammeStatus',
           'programme' => 'App\\Domain\\Programme\\Models\\Programme',
@@ -327,7 +317,6 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
            'namespace' => 'App\\Http\\Controllers\\Api\\V1\\Programme',
            'uses' => 
           array (
-            'mdascope' => 'App\\Domain\\Access\\Scopes\\MdaScope',
             'ledgeraggregator' => 'App\\Domain\\Benefit\\Services\\LedgerAggregator',
             'programmestatus' => 'App\\Domain\\Programme\\Enums\\ProgrammeStatus',
             'programme' => 'App\\Domain\\Programme\\Models\\Programme',
@@ -370,7 +359,6 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
          'namespace' => 'App\\Http\\Controllers\\Api\\V1\\Programme',
          'uses' => 
         array (
-          'mdascope' => 'App\\Domain\\Access\\Scopes\\MdaScope',
           'ledgeraggregator' => 'App\\Domain\\Benefit\\Services\\LedgerAggregator',
           'programmestatus' => 'App\\Domain\\Programme\\Enums\\ProgrammeStatus',
           'programme' => 'App\\Domain\\Programme\\Models\\Programme',
@@ -392,7 +380,6 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
            'namespace' => 'App\\Http\\Controllers\\Api\\V1\\Programme',
            'uses' => 
           array (
-            'mdascope' => 'App\\Domain\\Access\\Scopes\\MdaScope',
             'ledgeraggregator' => 'App\\Domain\\Benefit\\Services\\LedgerAggregator',
             'programmestatus' => 'App\\Domain\\Programme\\Enums\\ProgrammeStatus',
             'programme' => 'App\\Domain\\Programme\\Models\\Programme',
@@ -433,7 +420,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
     ),
     1 => 
     array (
-      '/var/www/html/app/Http/Controllers/Api/V1/Programme/ProgrammeController.php' => '069f3b51632d40462cad70a03276d790d4b2d45508d0b9aab8314f970ed3dc5d',
+      '/var/www/html/app/Http/Controllers/Api/V1/Programme/ProgrammeController.php' => '7b25702b7c1c4ef724b7635e912114d299dd40337a9de520d3e8fb40688c0098',
     ),
   ),
 ));

@@ -138,7 +138,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
     ),
     1 => 
     array (
-      '/var/www/html/app/Http/Requests/Programme/UpdateActivityRequest.php' => 'fcbb3a0b85e1824de2b965a1efff76e669757c7218894433c436dab32d512a77',
+      '/var/www/html/app/Http/Requests/Programme/UpdateActivityRequest.php' => 'a682d1ccff8a56dc049fed691e580ea7cd46ebf1db7ecddf8d92d3d69b2c83b5',
     ),
   ),
 ));

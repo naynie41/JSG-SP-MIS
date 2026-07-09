@@ -25,6 +25,10 @@ export const programmeApi = {
   get(id: string): Promise<Programme> {
     return apiRequest<Programme>({ method: 'GET', url: `/programmes/${id}` })
   },
+  /** The active catalog — for the activity programme dropdown + read-only labels. */
+  catalog(): Promise<Paginated<Programme>> {
+    return apiRequestList<Programme>({ method: 'GET', url: '/programmes', params: { 'filter[status]': 'active', per_page: 100 } })
+  },
   create(input: ProgrammeInput): Promise<Programme> {
     return apiRequest<Programme>({ method: 'POST', url: '/programmes', data: input })
   },
@@ -42,6 +46,10 @@ export const programmeApi = {
 export const activityApi = {
   listForProgramme(programmeId: string): Promise<Paginated<Activity>> {
     return apiRequestList<Activity>({ method: 'GET', url: '/activities', params: { 'filter[programme_id]': programmeId, per_page: 100 } })
+  },
+  /** All activities the caller's MDA owns (across catalog programmes). */
+  list(): Promise<Paginated<Activity>> {
+    return apiRequestList<Activity>({ method: 'GET', url: '/activities', params: { per_page: 100 } })
   },
   create(input: ActivityInput): Promise<Activity> {
     return apiRequest<Activity>({ method: 'POST', url: '/activities', data: input })

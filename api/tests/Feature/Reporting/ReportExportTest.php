@@ -64,8 +64,8 @@ class ReportExportTest extends TestCase
         $aBen = Beneficiary::factory()->create(['owner_mda_id' => $this->mdaA->id, 'lga' => 'dutse']);
         $bBen = Beneficiary::factory()->create(['owner_mda_id' => $this->mdaB->id, 'lga' => 'hadejia']);
 
-        $this->progA = Programme::factory()->individual()->create(['owner_mda_id' => $this->mdaA->id, 'name' => 'Cash Transfer A', 'status' => 'active', 'budget_amount' => 1_000_000]);
-        $progB = Programme::factory()->individual()->create(['owner_mda_id' => $this->mdaB->id, 'name' => 'Grant B', 'status' => 'active', 'budget_amount' => 500_000]);
+        $this->progA = Programme::factory()->individual()->create(['name' => 'Cash Transfer A', 'status' => 'active']);
+        $progB = Programme::factory()->individual()->create(['name' => 'Grant B', 'status' => 'active']);
         ProgrammeFunder::create(['programme_id' => $this->progA->id, 'user_id' => $this->users['partner']->id]);
 
         Benefit::factory()->create(['beneficiary_id' => $aBen->id, 'programme_id' => $this->progA->id, 'mda_id' => $this->mdaA->id, 'monetary_value' => 300_000, 'lga' => 'dutse', 'status' => 'verified']);

@@ -895,7 +895,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
     ),
     '/var/www/html/app/Domain/Benefit/Policies/BenefitPolicy.php' => 
     array (
-      0 => '6d5966f5e858885c0933026bf20ebc2f6e0e26ad929661cc5efb55771e9353eb',
+      0 => 'cc6fa6efa76f80374bb2df8e4e99d313efd1985f3df5acc12143fc1035146958',
       1 => 
       array (
         0 => 'app\\domain\\benefit\\policies\\benefitpolicy',
@@ -931,7 +931,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
     ),
     '/var/www/html/app/Domain/Benefit/Services/BeneficiaryRevealPresenter.php' => 
     array (
-      0 => 'cc21e6d221438957fb4d3016378ded86ce0e1400401dfcd7472849636d00d694',
+      0 => '606e5f7450c76e5b2398af381b8308136037fee4ce11da84929cac0740e81594',
       1 => 
       array (
         0 => 'app\\domain\\benefit\\services\\beneficiaryrevealpresenter',
@@ -948,7 +948,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
     ),
     '/var/www/html/app/Domain/Benefit/Services/BenefitRecorder.php' => 
     array (
-      0 => '6dee42b1d711ab80a9c865206dd1039597ac3b60dd86ab846692f6bf0dcd9a28',
+      0 => 'e52587f2ab3e1325e4fb6d3094a3cb5a547dba2e4f834e53fa4f642840b282de',
       1 => 
       array (
         0 => 'app\\domain\\benefit\\services\\benefitrecorder',
@@ -998,7 +998,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
     ),
     '/var/www/html/app/Domain/Benefit/Services/LedgerAggregator.php' => 
     array (
-      0 => 'a8abca167eb346c56e7e19595f7eae00d99174f51e154057074605ff86d3bf54',
+      0 => '34ac8a4569f1c973ad723a19fa9ce2c6e12b9c324b9bb5354a816caca9a89731',
       1 => 
       array (
         0 => 'app\\domain\\benefit\\services\\ledgeraggregator',
@@ -1967,7 +1967,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
     ),
     '/var/www/html/app/Domain/Programme/Models/Activity.php' => 
     array (
-      0 => 'df2f9e14ac484b9e848f863c52ff06f50e5a57f9227d3d7ca592ee4f07697104',
+      0 => '03f0b4950c66e6cfcc0f65692ea000ebfa47b76648d1e6a551653c1c50153b92',
       1 => 
       array (
         0 => 'app\\domain\\programme\\models\\activity',
@@ -2008,7 +2008,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
     ),
     '/var/www/html/app/Domain/Programme/Models/Programme.php' => 
     array (
-      0 => '29927c4b3c1683a50fdac2e434aedbe22dd9e228125bc7e8132914af39506157',
+      0 => 'fff0c83972f6c9a80cfba2df8a15f711fb7a6229f8b886273dfe93504bf936ad',
       1 => 
       array (
         0 => 'app\\domain\\programme\\models\\programme',
@@ -2017,9 +2017,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
       array (
         0 => 'app\\domain\\programme\\models\\casts',
         1 => 'app\\domain\\programme\\models\\newfactory',
-        2 => 'app\\domain\\programme\\models\\ownermda',
-        3 => 'app\\domain\\programme\\models\\creator',
-        4 => 'app\\domain\\programme\\models\\activities',
+        2 => 'app\\domain\\programme\\models\\creator',
+        3 => 'app\\domain\\programme\\models\\activities',
       ),
       3 => 
       array (
@@ -2042,7 +2041,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
     ),
     '/var/www/html/app/Domain/Programme/Policies/ActivityPolicy.php' => 
     array (
-      0 => '399b0858e44b3bd7306e68de71ce3aa2a68edff5ed5ff7341c986e97ef0c2606',
+      0 => '9dcb8187883abdaf0b8c0c697de490794cf22c2fe497ed2a8e45483e157ad618',
       1 => 
       array (
         0 => 'app\\domain\\programme\\policies\\activitypolicy',
@@ -2061,7 +2060,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
     ),
     '/var/www/html/app/Domain/Programme/Policies/EnrollmentPolicy.php' => 
     array (
-      0 => '02e9c82781b36e0d3aa2cbb66df2570d9d17855306fc0a15d89b252a6962aa04',
+      0 => '969cae631ff37ce5a126a88619c00a0e460240bce7a2a66f3617a9eee8486dd6',
       1 => 
       array (
         0 => 'app\\domain\\programme\\policies\\enrollmentpolicy',
@@ -2079,14 +2078,14 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
     ),
     '/var/www/html/app/Domain/Programme/Policies/ProgrammePolicy.php' => 
     array (
-      0 => '23504f3795b12918b54c958f467a1e53323e38d3b4e72c629d7f6af8ae0192db',
+      0 => 'c98cbe08a0c8a7428013137c97dc5966dd2b069a8a79e0b6dc007bcc79bf914a',
       1 => 
       array (
         0 => 'app\\domain\\programme\\policies\\programmepolicy',
       ),
       2 => 
       array (
-        0 => 'app\\domain\\programme\\policies\\owns',
+        0 => 'app\\domain\\programme\\policies\\iscatalogadmin',
         1 => 'app\\domain\\programme\\policies\\viewany',
         2 => 'app\\domain\\programme\\policies\\view',
         3 => 'app\\domain\\programme\\policies\\create',
@@ -2098,7 +2097,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
     ),
     '/var/www/html/app/Domain/Programme/ProgrammeServiceProvider.php' => 
     array (
-      0 => 'b7e9225ce63bfbc50ca533031f419a8c5fdf23ca573e3b16c54a93aac25f614c',
+      0 => 'f1c9dcc2c540d23b4c8c81fdead36f64ae2e8202b08ba837c72d08d0f00ab864',
       1 => 
       array (
         0 => 'app\\domain\\programme\\programmeserviceprovider',
@@ -2131,7 +2130,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
     ),
     '/var/www/html/app/Domain/Programme/Services/EnrollmentService.php' => 
     array (
-      0 => '4874e00d806d5cf363e35b1659afdf43e0402feabf3a4c56ccebee00f4ff20cf',
+      0 => 'a76def3ec97d20bfb8562e0f9ef0b467ec38585795851d0385c219dc71ef44c1',
       1 => 
       array (
         0 => 'app\\domain\\programme\\services\\enrollmentservice',
@@ -2150,7 +2149,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
     ),
     '/var/www/html/app/Domain/Programme/Services/ProgrammeMatcher.php' => 
     array (
-      0 => '9121e730f812033429c89d29df90b96248bc7ad435819e2a2627ac9fe41369f4',
+      0 => '0be25975e5825c187bf3fde23452e8a38840f4c377a1da0ea25e1f6f886bc711',
       1 => 
       array (
         0 => 'app\\domain\\programme\\services\\programmematcher',
@@ -3607,7 +3606,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
     ),
     '/var/www/html/app/Domain/Reporting/Services/DashboardMetricsService.php' => 
     array (
-      0 => '20aac1712f62679198fc499f2c5d64ca48f57dabad0a921b1aaf055cb3ec8dec',
+      0 => 'f503d4ee20dc6f968f9d2f0871e8a52d8d01560b93111fd17a537d06372edc54',
       1 => 
       array (
         0 => 'app\\domain\\reporting\\services\\dashboardmetricsservice',
@@ -4019,7 +4018,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
     ),
     '/var/www/html/app/Http/Controllers/Api/V1/Programme/ActivityController.php' => 
     array (
-      0 => 'a9206de927be0c78a4351fbe749852856d0c5d6270a60e8047f1e35d2fa93da5',
+      0 => 'ce6dca3cb0429fbab50ff51707a055b7a4befa396c3ff0263e1e417759e332dc',
       1 => 
       array (
         0 => 'app\\http\\controllers\\api\\v1\\programme\\activitycontroller',
@@ -4061,7 +4060,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
     ),
     '/var/www/html/app/Http/Controllers/Api/V1/Programme/ProgrammeController.php' => 
     array (
-      0 => '069f3b51632d40462cad70a03276d790d4b2d45508d0b9aab8314f970ed3dc5d',
+      0 => '7b25702b7c1c4ef724b7635e912114d299dd40337a9de520d3e8fb40688c0098',
       1 => 
       array (
         0 => 'app\\http\\controllers\\api\\v1\\programme\\programmecontroller',
@@ -4179,7 +4178,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
     ),
     '/var/www/html/app/Http/Controllers/Api/V1/Registry/BeneficiaryRoutingController.php' => 
     array (
-      0 => '7c2c3460b0053a5d2857c4c54ea39b334c315ceab2792714567d0c3837edb0a1',
+      0 => '4793751e2ca0383966a40c582bfaffed8df3862c21e24346cbccc3ed072391b3',
       1 => 
       array (
         0 => 'app\\http\\controllers\\api\\v1\\registry\\beneficiaryroutingcontroller',
@@ -4779,7 +4778,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
     ),
     '/var/www/html/app/Http/Requests/Programme/StoreActivityRequest.php' => 
     array (
-      0 => 'bc474a884a4451911febab989b7ac401ac0b44c83853198d698ed257d289a42b',
+      0 => 'ed673fe6d47aa5a4bc6bf159816c3adb839021b567f5fcc8ba34de071980a33d',
       1 => 
       array (
         0 => 'app\\http\\requests\\programme\\storeactivityrequest',
@@ -4812,7 +4811,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
     ),
     '/var/www/html/app/Http/Requests/Programme/StoreProgrammeRequest.php' => 
     array (
-      0 => 'cb043d522e83f67310320621168b0c9b9fde7761bfe0241fe2fe7ca4d171ce0a',
+      0 => '4c3ae8e29b9f260ad79ef38f5734cf23010f1b358dbe5261955f9eb386cda53e',
       1 => 
       array (
         0 => 'app\\http\\requests\\programme\\storeprogrammerequest',
@@ -4828,7 +4827,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
     ),
     '/var/www/html/app/Http/Requests/Programme/UpdateActivityRequest.php' => 
     array (
-      0 => 'fcbb3a0b85e1824de2b965a1efff76e669757c7218894433c436dab32d512a77',
+      0 => 'a682d1ccff8a56dc049fed691e580ea7cd46ebf1db7ecddf8d92d3d69b2c83b5',
       1 => 
       array (
         0 => 'app\\http\\requests\\programme\\updateactivityrequest',
@@ -4860,7 +4859,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
     ),
     '/var/www/html/app/Http/Requests/Programme/UpdateProgrammeRequest.php' => 
     array (
-      0 => '29d5b04f1e2a118fff2691e740421f615174f81760cf305e4a99fb6d107b233d',
+      0 => 'b622bceb7667afac58ab7ba057557927cc19111e9fddd0f9d90770d3f3566711',
       1 => 
       array (
         0 => 'app\\http\\requests\\programme\\updateprogrammerequest',
@@ -5217,7 +5216,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
     ),
     '/var/www/html/app/Http/Resources/ActivityResource.php' => 
     array (
-      0 => '8896e22747987380f61937ab094e1962fa48974c3e67c8214f6e107b755a125d',
+      0 => '63791b5a6f39ba9ca28ea0258d29a4b6232e3226111bff25f730cd033d733d72',
       1 => 
       array (
         0 => 'app\\http\\resources\\activityresource',
@@ -5519,7 +5518,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
     ),
     '/var/www/html/app/Http/Resources/ProgrammeResource.php' => 
     array (
-      0 => 'c06d406aa18e268910b7e00974fb2fa2d18417303c043a697f0db285f10894a8',
+      0 => 'ae627dc82abf3182493704e29888f956676ee8236d93b206157a3e3f15d5f9ae',
       1 => 
       array (
         0 => 'app\\http\\resources\\programmeresource',

@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace App\Http\Controllers\Api\V1\Programme;
 
-use App\Domain\Access\Scopes\MdaScope;
 use App\Domain\Benefit\Services\LedgerAggregator;
 use App\Domain\Programme\Enums\ProgrammeStatus;
 use App\Domain\Programme\Models\Programme;
@@ -17,9 +16,10 @@ use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 
 /**
- * Programme management (PRD FR-PRG-01). List/show are MDA-scoped by the model's
- * global MdaScope (oversight roles see all); create/update/archive are owner-MDA
- * only via ProgrammePolicy. Programmes are archived (status), never deleted.
+ * Programme catalog management (PRD §10, ARCH §12.4). Programmes are a GLOBAL,
+ * unowned catalog: list/show are visible to every authenticated role;
+ * create/update/archive are catalog-admin only (System Administrator / SP
+ * Coordination) via ProgrammePolicy. Programmes are archived (status), never deleted.
  */
 class ProgrammeController extends Controller
 {
@@ -48,14 +48,10 @@ class ProgrammeController extends Controller
     {
         $this->authorize('create', Programme::class);
 
-        $mdaId = $request->user()->mda_id;
-        if ($mdaId === null) {
-            return ApiResponse::error('MDA_REQUIRED', 'Only users assigned to an MDA can create programmes.', [], 422);
-        }
-
+        // A catalog entry has no owning MDA (§10) — it is created by a catalog admin
+        // and readable by all. `created_by` records the authoring user only.
         $programme = Programme::create([
             ...$request->validated(),
-            'owner_mda_id' => $mdaId,
             'created_by' => $request->user()->id,
         ]);
 
@@ -68,16 +64,13 @@ class ProgrammeController extends Controller
 
         $this->authorize('view', $model);
 
-        return ApiResponse::success((new ProgrammeResource($model->load('ownerMda')))->resolve());
+        return ApiResponse::success((new ProgrammeResource($model))->resolve());
     }
 
-    /**
-     * Edit the programme — owner MDA only (FR-PRG-01). Resolved without the owner
-     * scope so a non-owner gets 403 (the policy is the boundary), not 404.
-     */
+    /** Edit the catalog entry — catalog admin only (§10), enforced by the policy. */
     public function update(UpdateProgrammeRequest $request, string $programme): JsonResponse
     {
-        $model = Programme::query()->withoutGlobalScope(MdaScope::class)->findOrFail($programme);
+        $model = Programme::query()->findOrFail($programme);
 
         $this->authorize('update', $model);
 
@@ -95,10 +88,10 @@ class ProgrammeController extends Controller
         return ApiResponse::success($aggregator->programmeBudget($model));
     }
 
-    /** Archive the programme (owner MDA only) — reversible status change, not a delete. */
+    /** Archive the catalog entry (catalog admin only) — reversible status change, not a delete. */
     public function archive(string $programme): JsonResponse
     {
-        $model = Programme::query()->withoutGlobalScope(MdaScope::class)->findOrFail($programme);
+        $model = Programme::query()->findOrFail($programme);
 
         $this->authorize('update', $model);
 

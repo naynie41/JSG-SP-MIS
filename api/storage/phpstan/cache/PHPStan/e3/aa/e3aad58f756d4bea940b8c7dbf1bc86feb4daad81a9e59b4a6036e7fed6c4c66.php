@@ -2,7 +2,7 @@
 
 // odsl-/var/www/html/app/Domain/Benefit/Services/BeneficiaryRevealPresenter.php-PHPStan\BetterReflection\Reflection\ReflectionClass-App\Domain\Benefit\Services\BeneficiaryRevealPresenter
 return \PHPStan\Cache\CacheItem::__set_state(array(
-   'variableKey' => 'v2-6.70.0.1-8.3.31-cc21e6d221438957fb4d3016378ded86ce0e1400401dfcd7472849636d00d694',
+   'variableKey' => 'v2-6.70.0.1-8.3.31-606e5f7450c76e5b2398af381b8308136037fee4ce11da84929cac0740e81594',
    'data' => 
   array (
     'locatedSource' => 
@@ -34,7 +34,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
     array (
     ),
     'startLine' => 21,
-    'endLine' => 91,
+    'endLine' => 95,
     'startColumn' => 1,
     'endColumn' => 1,
     'parentClassName' => NULL,
@@ -238,7 +238,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
  * @return list<array<string, mixed>>
  */',
         'startLine' => 42,
-        'endLine' => 57,
+        'endLine' => 61,
         'startColumn' => 5,
         'endColumn' => 5,
         'couldThrow' => false,
@@ -276,8 +276,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             'attributes' => 
             array (
             ),
-            'startLine' => 62,
-            'endLine' => 62,
+            'startLine' => 66,
+            'endLine' => 66,
             'startColumn' => 31,
             'endColumn' => 54,
             'parameterIndex' => 0,
@@ -302,8 +302,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             'attributes' => 
             array (
             ),
-            'startLine' => 62,
-            'endLine' => 62,
+            'startLine' => 66,
+            'endLine' => 66,
             'startColumn' => 57,
             'endColumn' => 73,
             'parameterIndex' => 1,
@@ -326,8 +326,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         'docComment' => '/**
  * @return array<string, mixed>
  */',
-        'startLine' => 62,
-        'endLine' => 90,
+        'startLine' => 66,
+        'endLine' => 94,
         'startColumn' => 5,
         'endColumn' => 5,
         'couldThrow' => false,

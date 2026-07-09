@@ -8,6 +8,7 @@ use App\Domain\Access\Scopes\MdaScope;
 use App\Domain\Benefit\Models\Benefit;
 use App\Domain\Benefit\Services\LedgerAggregator;
 use App\Domain\Grievance\Models\Grievance;
+use App\Domain\Programme\Models\Activity;
 use App\Domain\Programme\Models\Programme;
 use App\Domain\Referral\Models\Referral;
 use App\Domain\Registry\Models\Beneficiary;
@@ -77,18 +78,28 @@ class DashboardMetricsService
     /* ------------------------------------------------------------ programmes (FR-PRG) */
 
     /**
-     * Programme counts in scope (headline "active programmes", FR-RPT-01). Owner-based
-     * for MDA/state; funded set for a partner.
+     * Programme counts in scope (headline "active programmes", FR-RPT-01). Programmes
+     * are a GLOBAL catalog (§10), so an MDA "runs" the distinct catalog programmes it
+     * has activities for; a partner sees its funded set; state-wide is the whole catalog.
      *
      * @return array<string, int>
      */
     private function programmes(DashboardScope $scope): array
     {
-        $query = Programme::query()->withoutGlobalScope(MdaScope::class);
+        $ids = null; // state-wide: the whole catalog
         if ($scope->isPartner()) {
-            $query->whereIn('id', $scope->programmeIds ?? []);
+            $ids = $scope->programmeIds ?? [];
         } elseif ($scope->mdaIds !== null) {
-            $query->whereIn('owner_mda_id', $scope->mdaIds);
+            $ids = Activity::query()->withoutGlobalScope(MdaScope::class)
+                ->whereIn('owner_mda_id', $scope->mdaIds)
+                ->distinct()
+                ->pluck('programme_id')
+                ->all();
+        }
+
+        $query = Programme::query();
+        if ($ids !== null) {
+            $query->whereIn('id', $ids);
         }
 
         return [

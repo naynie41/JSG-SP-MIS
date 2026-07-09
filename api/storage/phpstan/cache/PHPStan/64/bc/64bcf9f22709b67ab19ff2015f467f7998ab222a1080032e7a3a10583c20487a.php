@@ -2,7 +2,7 @@
 
 // odsl-/var/www/html/app/Http/Requests/Programme/StoreActivityRequest.php-PHPStan\BetterReflection\Reflection\ReflectionClass-App\Http\Requests\Programme\StoreActivityRequest
 return \PHPStan\Cache\CacheItem::__set_state(array(
-   'variableKey' => 'v2-6.70.0.1-8.3.31-bc474a884a4451911febab989b7ac401ac0b44c83853198d698ed257d289a42b',
+   'variableKey' => 'v2-6.70.0.1-8.3.31-ed673fe6d47aa5a4bc6bf159816c3adb839021b567f5fcc8ba34de071980a33d',
    'data' => 
   array (
     'locatedSource' => 
@@ -31,7 +31,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
     array (
     ),
     'startLine' => 17,
-    'endLine' => 44,
+    'endLine' => 45,
     'startColumn' => 1,
     'endColumn' => 1,
     'parentClassName' => 'Illuminate\\Foundation\\Http\\FormRequest',
@@ -107,7 +107,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
  * @return array<string, mixed>
  */',
         'startLine' => 27,
-        'endLine' => 43,
+        'endLine' => 44,
         'startColumn' => 5,
         'endColumn' => 5,
         'couldThrow' => false,

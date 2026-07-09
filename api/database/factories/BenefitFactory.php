@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Database\Factories;
 
+use App\Domain\Access\Models\Mda;
 use App\Domain\Benefit\Enums\BenefitStatus;
 use App\Domain\Benefit\Enums\BenefitType;
 use App\Domain\Benefit\Enums\VerificationMethod;
@@ -13,8 +14,9 @@ use App\Domain\Registry\Models\Beneficiary;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
- * Synthetic benefit-ledger entries. `mda_id` (the delivering MDA) inherits the
- * programme owner by default.
+ * Synthetic benefit-ledger entries. `mda_id` is the delivering MDA — its own value
+ * (§10: programmes are a global catalog with no owner), defaulting to a fresh MDA
+ * when a caller doesn't pin it.
  *
  * @extends Factory<Benefit>
  */
@@ -30,6 +32,7 @@ class BenefitFactory extends Factory
         return [
             'beneficiary_id' => Beneficiary::factory(),
             'programme_id' => Programme::factory()->individual(),
+            'mda_id' => Mda::factory(),
             'benefit_type' => fake()->randomElement(BenefitType::cases()),
             'quantity' => fake()->randomFloat(2, 1, 50),
             'unit' => 'units',
@@ -41,16 +44,5 @@ class BenefitFactory extends Factory
             'status' => BenefitStatus::Recorded,
             'verification_method' => VerificationMethod::None,
         ];
-    }
-
-    public function configure(): static
-    {
-        return $this->afterMaking(function (Benefit $benefit): void {
-            if ($benefit->mda_id === null && $benefit->programme_id !== null) {
-                $benefit->mda_id = Programme::withoutGlobalScopes()
-                    ->whereKey($benefit->programme_id)
-                    ->value('owner_mda_id');
-            }
-        });
     }
 }

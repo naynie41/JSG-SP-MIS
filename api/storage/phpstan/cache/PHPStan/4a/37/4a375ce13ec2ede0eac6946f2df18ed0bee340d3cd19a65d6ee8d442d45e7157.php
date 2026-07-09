@@ -2,7 +2,7 @@
 
 // odsl-/var/www/html/app/Http/Requests/Programme/StoreProgrammeRequest.php-PHPStan\BetterReflection\Reflection\ReflectionClass-App\Http\Requests\Programme\StoreProgrammeRequest
 return \PHPStan\Cache\CacheItem::__set_state(array(
-   'variableKey' => 'v2-6.70.0.1-8.3.31-cb043d522e83f67310320621168b0c9b9fde7761bfe0241fe2fe7ca4d171ce0a',
+   'variableKey' => 'v2-6.70.0.1-8.3.31-4c3ae8e29b9f260ad79ef38f5734cf23010f1b358dbe5261955f9eb386cda53e',
    'data' => 
   array (
     'locatedSource' => 
@@ -23,15 +23,16 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
     'isBackedEnum' => false,
     'modifiers' => 0,
     'docComment' => '/**
- * Create a programme (PRD FR-PRG-01). Ownership + authorization are handled in the
- * controller/policy; this validates the configuration payload. Monetary amounts
- * are integer minor units (kobo, NGN).
+ * Create a GLOBAL catalog programme (PRD §10). Only type-level attributes live
+ * here — name, objective, type, benefit category and standard eligibility. Budget,
+ * funding and period belong to the Activity, not the programme. Authorization
+ * (catalog admin only) is handled in the controller/policy.
  */',
     'attributes' => 
     array (
     ),
-    'startLine' => 17,
-    'endLine' => 43,
+    'startLine' => 18,
+    'endLine' => 41,
     'startColumn' => 1,
     'endColumn' => 1,
     'parentClassName' => 'Illuminate\\Foundation\\Http\\FormRequest',
@@ -69,8 +70,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         array (
         ),
         'docComment' => NULL,
-        'startLine' => 19,
-        'endLine' => 22,
+        'startLine' => 20,
+        'endLine' => 23,
         'startColumn' => 5,
         'endColumn' => 5,
         'couldThrow' => false,
@@ -106,8 +107,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         'docComment' => '/**
  * @return array<string, mixed>
  */',
-        'startLine' => 27,
-        'endLine' => 42,
+        'startLine' => 28,
+        'endLine' => 40,
         'startColumn' => 5,
         'endColumn' => 5,
         'couldThrow' => false,

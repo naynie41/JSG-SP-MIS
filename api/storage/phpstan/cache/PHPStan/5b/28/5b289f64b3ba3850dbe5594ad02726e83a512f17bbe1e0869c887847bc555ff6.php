@@ -12,6 +12,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
          'namespace' => 'Database\\Factories',
          'uses' => 
         array (
+          'mda' => 'App\\Domain\\Access\\Models\\Mda',
           'benefitstatus' => 'App\\Domain\\Benefit\\Enums\\BenefitStatus',
           'benefittype' => 'App\\Domain\\Benefit\\Enums\\BenefitType',
           'verificationmethod' => 'App\\Domain\\Benefit\\Enums\\VerificationMethod',
@@ -41,6 +42,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
          'namespace' => 'Database\\Factories',
          'uses' => 
         array (
+          'mda' => 'App\\Domain\\Access\\Models\\Mda',
           'benefitstatus' => 'App\\Domain\\Benefit\\Enums\\BenefitStatus',
           'benefittype' => 'App\\Domain\\Benefit\\Enums\\BenefitType',
           'verificationmethod' => 'App\\Domain\\Benefit\\Enums\\VerificationMethod',
@@ -59,63 +61,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
            'namespace' => 'Database\\Factories',
            'uses' => 
           array (
-            'benefitstatus' => 'App\\Domain\\Benefit\\Enums\\BenefitStatus',
-            'benefittype' => 'App\\Domain\\Benefit\\Enums\\BenefitType',
-            'verificationmethod' => 'App\\Domain\\Benefit\\Enums\\VerificationMethod',
-            'benefit' => 'App\\Domain\\Benefit\\Models\\Benefit',
-            'programme' => 'App\\Domain\\Programme\\Models\\Programme',
-            'beneficiary' => 'App\\Domain\\Registry\\Models\\Beneficiary',
-            'factory' => 'Illuminate\\Database\\Eloquent\\Factories\\Factory',
-          ),
-           'className' => 'Database\\Factories\\BenefitFactory',
-           'functionName' => NULL,
-           'templatePhpDocNodes' => 
-          array (
-          ),
-           'parent' => NULL,
-           'typeAliasesMap' => 
-          array (
-          ),
-           'bypassTypeAliases' => false,
-           'constUses' => 
-          array (
-          ),
-           'typeAliasClassName' => NULL,
-           'traitData' => NULL,
-        )),
-         'typeAliasesMap' => 
-        array (
-        ),
-         'bypassTypeAliases' => false,
-         'constUses' => 
-        array (
-        ),
-         'typeAliasClassName' => NULL,
-         'traitData' => NULL,
-      )),
-      'f82136575bdc55f56daa435746fc7a15' => 
-      \PHPStan\Analyser\IntermediaryNameScope::__set_state(array(
-         'namespace' => 'Database\\Factories',
-         'uses' => 
-        array (
-          'benefitstatus' => 'App\\Domain\\Benefit\\Enums\\BenefitStatus',
-          'benefittype' => 'App\\Domain\\Benefit\\Enums\\BenefitType',
-          'verificationmethod' => 'App\\Domain\\Benefit\\Enums\\VerificationMethod',
-          'benefit' => 'App\\Domain\\Benefit\\Models\\Benefit',
-          'programme' => 'App\\Domain\\Programme\\Models\\Programme',
-          'beneficiary' => 'App\\Domain\\Registry\\Models\\Beneficiary',
-          'factory' => 'Illuminate\\Database\\Eloquent\\Factories\\Factory',
-        ),
-         'className' => 'Database\\Factories\\BenefitFactory',
-         'functionName' => 'configure',
-         'templatePhpDocNodes' => 
-        array (
-        ),
-         'parent' => 
-        \PHPStan\Analyser\IntermediaryNameScope::__set_state(array(
-           'namespace' => 'Database\\Factories',
-           'uses' => 
-          array (
+            'mda' => 'App\\Domain\\Access\\Models\\Mda',
             'benefitstatus' => 'App\\Domain\\Benefit\\Enums\\BenefitStatus',
             'benefittype' => 'App\\Domain\\Benefit\\Enums\\BenefitType',
             'verificationmethod' => 'App\\Domain\\Benefit\\Enums\\VerificationMethod',
@@ -153,7 +99,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
     ),
     1 => 
     array (
-      '/var/www/html/database/factories/BenefitFactory.php' => '33d8daccecf1e2cc560404376c72f03e72e295d725d08e480b76a5b279573346',
+      '/var/www/html/database/factories/BenefitFactory.php' => 'e28bc56e962fdde196d19fbef5cb057987e75954e51a878b4efb4f58fba15e60',
     ),
   ),
 ));

@@ -40,12 +40,15 @@ class BenefitPolicy
             ->exists();
     }
 
-    /** Record a delivery under a programme — the programme's owner MDA only. */
+    /**
+     * Record a delivery under a catalog programme (PRD §10). Any MDA user may; the
+     * delivering MDA is their own. Cross-MDA delivery to a non-owned beneficiary is
+     * gated separately by the accepted Service Request / Referral authorization in
+     * the BenefitRecorder — not by programme ownership.
+     */
     public function record(User $user, Programme $programme): bool
     {
-        return $user->hasPermission('benefit.create')
-            && $user->mda_id !== null
-            && $user->mda_id === $programme->owner_mda_id;
+        return $user->hasPermission('benefit.create') && $user->mda_id !== null;
     }
 
     /** Verify a delivery — the delivering MDA only. */

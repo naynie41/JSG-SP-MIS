@@ -45,52 +45,53 @@ class ProgrammeSampleSeeder extends Seeder
             return;
         }
 
-        // --- MDA A (Health): an individual cash programme + a household food programme.
-        $cash = $this->programme($health, 'Conditional Cash Transfer', 'individual', 50_000_000);
-        $cashActivity = Activity::factory()->forProgramme($cash)->create(['name' => 'Q1 Cash Round', 'budget_amount' => 20_000_000]);
+        // Programmes are a GLOBAL catalog (§10) — created once, not owned by any MDA.
+        // Each MDA runs one through its own activity, which carries budget + funding.
+        // --- MDA A (Health): runs a cash programme + a household food programme.
+        $cash = $this->programme('Conditional Cash Transfer', 'individual', 'cash');
+        $cashActivity = Activity::factory()->forProgramme($cash, $health)->create(['name' => 'Q1 Cash Round', 'budget_amount' => 20_000_000, 'funding_source' => 'State budget']);
         foreach ($healthBeneficiaries->take(2) as $beneficiary) {
-            $this->enrol($cash, beneficiary: $beneficiary);
+            $this->enrol($cash, $health, beneficiary: $beneficiary);
             $this->deliver($beneficiary, $cash, $cashActivity, $health, BenefitType::Cash, 3_000_000, verified: true);
         }
 
-        $food = $this->programme($health, 'Household Food Support', 'household', 30_000_000);
-        $foodActivity = Activity::factory()->forProgramme($food)->create(['name' => 'Dry-season Distribution', 'budget_amount' => 15_000_000]);
+        $food = $this->programme('Household Food Support', 'household', 'in_kind');
+        $foodActivity = Activity::factory()->forProgramme($food, $health)->create(['name' => 'Dry-season Distribution', 'budget_amount' => 15_000_000, 'funding_source' => 'World Bank']);
         $household = Household::query()->where('owner_mda_id', $health->id)->first();
         if ($household !== null) {
-            $this->enrol($food, household: $household);
+            $this->enrol($food, $health, household: $household);
             $this->deliver($healthBeneficiaries->first(), $food, $foodActivity, $health, BenefitType::Food, 1_200_000, verified: false);
         }
 
-        // --- MDA B (Women Affairs): an individual livelihood programme.
-        $grant = $this->programme($women, 'Women Livelihood Grant', 'individual', 40_000_000);
-        $grantActivity = Activity::factory()->forProgramme($grant)->create(['name' => 'Grant Disbursement', 'budget_amount' => 25_000_000]);
+        // --- MDA B (Women Affairs): runs an individual livelihood programme.
+        $grant = $this->programme('Women Livelihood Grant', 'individual', 'cash');
+        $grantActivity = Activity::factory()->forProgramme($grant, $women)->create(['name' => 'Grant Disbursement', 'budget_amount' => 25_000_000, 'funding_source' => 'UNICEF']);
         foreach ($womenBeneficiaries->take(2) as $beneficiary) {
-            $this->enrol($grant, beneficiary: $beneficiary);
+            $this->enrol($grant, $women, beneficiary: $beneficiary);
             $this->deliver($beneficiary, $grant, $grantActivity, $women, BenefitType::Cash, 4_000_000, verified: true);
         }
 
         // --- Double-dipping case: a Health-owned beneficiary also served by Women
         // Affairs; both deliver CASH within the window → a flag is raised (never blocks).
         $shared = $healthBeneficiaries->first();
-        $this->enrol($grant, beneficiary: $shared); // Women Affairs serves a non-owned beneficiary
+        $this->enrol($grant, $women, beneficiary: $shared); // Women Affairs serves a non-owned beneficiary
         $benefitA = $this->deliver($shared, $cash, $cashActivity, $health, BenefitType::Cash, 3_000_000, verified: true);
         $benefitB = $this->deliver($shared, $grant, $grantActivity, $women, BenefitType::Cash, 3_500_000, verified: false);
         app(DoubleDippingDetector::class)->check($benefitB);
         app(DoubleDippingDetector::class)->check($benefitA);
     }
 
-    private function programme(Mda $mda, string $name, string $type, int $budgetKobo): Programme
+    private function programme(string $name, string $type, string $benefitCategory): Programme
     {
         return Programme::factory()->{$type}()->create([
-            'owner_mda_id' => $mda->id,
             'name' => $name,
             'status' => 'active',
-            'budget_amount' => $budgetKobo,
+            'benefit_category' => $benefitCategory,
             'eligibility' => null,
         ]);
     }
 
-    private function enrol(Programme $programme, ?Beneficiary $beneficiary = null, ?Household $household = null): void
+    private function enrol(Programme $programme, Mda $mda, ?Beneficiary $beneficiary = null, ?Household $household = null): void
     {
         Enrollment::query()->firstOrCreate(
             [
@@ -100,7 +101,7 @@ class ProgrammeSampleSeeder extends Seeder
                 'status' => EnrollmentStatus::Enrolled->value,
             ],
             [
-                'mda_id' => $programme->owner_mda_id,
+                'mda_id' => $mda->id, // the enrolling MDA (runs the activity)
                 'enrolled_on' => now()->toDateString(),
             ],
         );

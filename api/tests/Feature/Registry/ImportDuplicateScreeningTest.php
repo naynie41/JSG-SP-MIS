@@ -52,7 +52,8 @@ class ImportDuplicateScreeningTest extends TestCase
             'role_id' => Role::where('key', RoleKey::MdaOfficer->value)->firstOrFail()->id,
         ]);
         $this->activity = Activity::factory()->forProgramme(
-            Programme::factory()->individual()->create(['owner_mda_id' => $this->mdaA->id]),
+            Programme::factory()->individual()->create(),
+            $this->mdaA,
         )->create();
     }
 

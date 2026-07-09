@@ -53,7 +53,7 @@ class ReferralAuthorizationTest extends TestCase
         $this->users['to'] = $this->user($this->toMda, RoleKey::MdaOfficer);
 
         $this->beneficiary = Beneficiary::factory()->create(['owner_mda_id' => $this->fromMda->id]);
-        $this->toProgramme = Programme::factory()->individual()->create(['owner_mda_id' => $this->toMda->id, 'eligibility' => null]);
+        $this->toProgramme = Programme::factory()->individual()->create(['eligibility' => null]);
     }
 
     private function user(Mda $mda, RoleKey $role): User

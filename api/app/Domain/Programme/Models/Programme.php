@@ -4,9 +4,6 @@ declare(strict_types=1);
 
 namespace App\Domain\Programme\Models;
 
-use App\Domain\Access\Concerns\MdaScoped;
-use App\Domain\Access\Concerns\ScopedToMda;
-use App\Domain\Access\Models\Mda;
 use App\Domain\Access\Models\User;
 use App\Domain\Audit\Concerns\Auditable;
 use App\Domain\Programme\Enums\ProgrammeStatus;
@@ -22,33 +19,29 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Support\Carbon;
 
 /**
- * A social-protection programme run by an MDA (PRD FR-PRG-01). The `owner_mda_id`
- * is the ownership + scoping column — only the owner MDA may mutate it (enforced
- * by ProgrammePolicy + MdaScope). Auditable; monetary budget is integer minor
- * units (kobo, NGN).
+ * A GLOBAL catalog entry for a social-protection programme *type* (PRD §10, ARCH
+ * §12.4). It is NOT owned or scoped by any MDA — created only by the System
+ * Administrator (optionally SP Coordination) and readable by all MDAs, who run it
+ * through their own {@see Activity}. It carries type-level attributes only; budget,
+ * funding and period live on the Activity. Auditable.
  *
  * @property string $id
- * @property string $owner_mda_id
  * @property string $name
  * @property string|null $objective
  * @property ProgrammeType $type
+ * @property string|null $benefit_category
  * @property array<int, array<string, mixed>>|null $eligibility
  * @property bool $enforce_eligibility
- * @property string|null $funding_source
- * @property int|null $budget_amount
- * @property Carbon|null $starts_on
- * @property Carbon|null $ends_on
  * @property ProgrammeStatus $status
  * @property string|null $created_by
  * @property Carbon|null $created_at
  * @property Carbon|null $updated_at
- * @property-read Mda $ownerMda
  * @property-read Collection<int, Activity> $activities
  */
-class Programme extends Model implements MdaScoped
+class Programme extends Model
 {
     /** @use HasFactory<ProgrammeFactory> */
-    use Auditable, HasFactory, HasUuids, ScopedToMda, SoftDeletes;
+    use Auditable, HasFactory, HasUuids, SoftDeletes;
 
     protected $table = 'programmes';
 
@@ -56,16 +49,12 @@ class Programme extends Model implements MdaScoped
      * @var list<string>
      */
     protected $fillable = [
-        'owner_mda_id',
         'name',
         'objective',
         'type',
+        'benefit_category',
         'eligibility',
         'enforce_eligibility',
-        'funding_source',
-        'budget_amount',
-        'starts_on',
-        'ends_on',
         'status',
         'created_by',
     ];
@@ -88,23 +77,12 @@ class Programme extends Model implements MdaScoped
             'status' => ProgrammeStatus::class,
             'eligibility' => 'array',
             'enforce_eligibility' => 'boolean',
-            'starts_on' => 'date',
-            'ends_on' => 'date',
-            'budget_amount' => 'integer',
         ];
     }
 
     protected static function newFactory(): ProgrammeFactory
     {
         return ProgrammeFactory::new();
-    }
-
-    /**
-     * @return BelongsTo<Mda, $this>
-     */
-    public function ownerMda(): BelongsTo
-    {
-        return $this->belongsTo(Mda::class, 'owner_mda_id');
     }
 
     /**

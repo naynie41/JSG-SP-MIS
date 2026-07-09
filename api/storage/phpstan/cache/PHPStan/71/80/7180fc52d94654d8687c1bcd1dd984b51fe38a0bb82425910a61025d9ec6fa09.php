@@ -2,7 +2,7 @@
 
 // odsl-/var/www/html/app/Http/Controllers/Api/V1/Programme/ProgrammeController.php-PHPStan\BetterReflection\Reflection\ReflectionClass-App\Http\Controllers\Api\V1\Programme\ProgrammeController
 return \PHPStan\Cache\CacheItem::__set_state(array(
-   'variableKey' => 'v2-6.70.0.1-8.3.31-069f3b51632d40462cad70a03276d790d4b2d45508d0b9aab8314f970ed3dc5d',
+   'variableKey' => 'v2-6.70.0.1-8.3.31-7b25702b7c1c4ef724b7635e912114d299dd40337a9de520d3e8fb40688c0098',
    'data' => 
   array (
     'locatedSource' => 
@@ -23,15 +23,16 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
     'isBackedEnum' => false,
     'modifiers' => 0,
     'docComment' => '/**
- * Programme management (PRD FR-PRG-01). List/show are MDA-scoped by the model\'s
- * global MdaScope (oversight roles see all); create/update/archive are owner-MDA
- * only via ProgrammePolicy. Programmes are archived (status), never deleted.
+ * Programme catalog management (PRD §10, ARCH §12.4). Programmes are a GLOBAL,
+ * unowned catalog: list/show are visible to every authenticated role;
+ * create/update/archive are catalog-admin only (System Administrator / SP
+ * Coordination) via ProgrammePolicy. Programmes are archived (status), never deleted.
  */',
     'attributes' => 
     array (
     ),
     'startLine' => 24,
-    'endLine' => 109,
+    'endLine' => 102,
     'startColumn' => 1,
     'endColumn' => 1,
     'parentClassName' => 'App\\Http\\Controllers\\Controller',
@@ -157,7 +158,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         ),
         'docComment' => NULL,
         'startLine' => 47,
-        'endLine' => 63,
+        'endLine' => 59,
         'startColumn' => 5,
         'endColumn' => 5,
         'couldThrow' => false,
@@ -195,8 +196,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             'attributes' => 
             array (
             ),
-            'startLine' => 65,
-            'endLine' => 65,
+            'startLine' => 61,
+            'endLine' => 61,
             'startColumn' => 26,
             'endColumn' => 42,
             'parameterIndex' => 0,
@@ -217,8 +218,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         array (
         ),
         'docComment' => NULL,
-        'startLine' => 65,
-        'endLine' => 72,
+        'startLine' => 61,
+        'endLine' => 68,
         'startColumn' => 5,
         'endColumn' => 5,
         'couldThrow' => false,
@@ -256,8 +257,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             'attributes' => 
             array (
             ),
-            'startLine' => 78,
-            'endLine' => 78,
+            'startLine' => 71,
+            'endLine' => 71,
             'startColumn' => 28,
             'endColumn' => 58,
             'parameterIndex' => 0,
@@ -282,8 +283,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             'attributes' => 
             array (
             ),
-            'startLine' => 78,
-            'endLine' => 78,
+            'startLine' => 71,
+            'endLine' => 71,
             'startColumn' => 61,
             'endColumn' => 77,
             'parameterIndex' => 1,
@@ -303,12 +304,9 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         'attributes' => 
         array (
         ),
-        'docComment' => '/**
- * Edit the programme — owner MDA only (FR-PRG-01). Resolved without the owner
- * scope so a non-owner gets 403 (the policy is the boundary), not 404.
- */',
-        'startLine' => 78,
-        'endLine' => 87,
+        'docComment' => '/** Edit the catalog entry — catalog admin only (§10), enforced by the policy. */',
+        'startLine' => 71,
+        'endLine' => 80,
         'startColumn' => 5,
         'endColumn' => 5,
         'couldThrow' => false,
@@ -346,8 +344,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             'attributes' => 
             array (
             ),
-            'startLine' => 90,
-            'endLine' => 90,
+            'startLine' => 83,
+            'endLine' => 83,
             'startColumn' => 28,
             'endColumn' => 44,
             'parameterIndex' => 0,
@@ -372,8 +370,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             'attributes' => 
             array (
             ),
-            'startLine' => 90,
-            'endLine' => 90,
+            'startLine' => 83,
+            'endLine' => 83,
             'startColumn' => 47,
             'endColumn' => 74,
             'parameterIndex' => 1,
@@ -394,8 +392,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         array (
         ),
         'docComment' => '/** Budget: allocated vs utilised, derived from the benefit ledger (FR-PRG-04). */',
-        'startLine' => 90,
-        'endLine' => 96,
+        'startLine' => 83,
+        'endLine' => 89,
         'startColumn' => 5,
         'endColumn' => 5,
         'couldThrow' => false,
@@ -433,8 +431,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             'attributes' => 
             array (
             ),
-            'startLine' => 99,
-            'endLine' => 99,
+            'startLine' => 92,
+            'endLine' => 92,
             'startColumn' => 29,
             'endColumn' => 45,
             'parameterIndex' => 0,
@@ -454,9 +452,9 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         'attributes' => 
         array (
         ),
-        'docComment' => '/** Archive the programme (owner MDA only) — reversible status change, not a delete. */',
-        'startLine' => 99,
-        'endLine' => 108,
+        'docComment' => '/** Archive the catalog entry (catalog admin only) — reversible status change, not a delete. */',
+        'startLine' => 92,
+        'endLine' => 101,
         'startColumn' => 5,
         'endColumn' => 5,
         'couldThrow' => false,

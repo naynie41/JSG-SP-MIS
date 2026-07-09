@@ -51,14 +51,14 @@ class AutoRouteTest extends TestCase
 
         $this->beneficiary = Beneficiary::factory()->create(['owner_mda_id' => $this->mdaA->id, 'lga' => 'dutse']);
 
-        // A matching, eligible programme owned by MDA B…
+        // A matching, eligible catalog programme…
         $this->cashProgramme = Programme::factory()->individual()->create([
-            'owner_mda_id' => $this->mdaB->id, 'name' => 'Cash Transfer', 'status' => 'active',
+            'name' => 'Cash Transfer', 'status' => 'active',
             'eligibility' => [['attribute' => 'lga', 'value' => 'dutse']],
         ]);
         // …and a non-matching one (wrong LGA + unrelated need).
         Programme::factory()->individual()->create([
-            'owner_mda_id' => $this->mdaB->id, 'name' => 'Housing Support', 'status' => 'active',
+            'name' => 'Housing Support', 'status' => 'active',
             'eligibility' => [['attribute' => 'lga', 'value' => 'gumel']],
         ]);
     }
@@ -84,7 +84,9 @@ class AutoRouteTest extends TestCase
         $cash = $suggestions->firstWhere('programme_id', $this->cashProgramme->id);
         $this->assertNotNull($cash);
         $this->assertTrue($cash['eligible']);
-        $this->assertSame($this->mdaB->id, $cash['owner_mda']['id']);
+        // Programmes are a global catalog (§10) — suggestions carry the catalog entry,
+        // not an owning MDA.
+        $this->assertSame('Cash Transfer', $cash['name']);
 
         // The unrelated-need / wrong-LGA programme is not suggested for "cash".
         $this->assertNull($suggestions->firstWhere('name', 'Housing Support'));

@@ -249,7 +249,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
     ),
     1 => 
     array (
-      '/var/www/html/app/Domain/Benefit/Policies/BenefitPolicy.php' => '6d5966f5e858885c0933026bf20ebc2f6e0e26ad929661cc5efb55771e9353eb',
+      '/var/www/html/app/Domain/Benefit/Policies/BenefitPolicy.php' => 'cc6fa6efa76f80374bb2df8e4e99d313efd1985f3df5acc12143fc1035146958',
     ),
   ),
 ));

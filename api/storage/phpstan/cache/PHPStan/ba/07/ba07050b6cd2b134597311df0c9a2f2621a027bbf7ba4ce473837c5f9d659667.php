@@ -196,7 +196,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
     ),
     1 => 
     array (
-      '/var/www/html/app/Domain/Benefit/Services/BeneficiaryRevealPresenter.php' => 'cc21e6d221438957fb4d3016378ded86ce0e1400401dfcd7472849636d00d694',
+      '/var/www/html/app/Domain/Benefit/Services/BeneficiaryRevealPresenter.php' => '606e5f7450c76e5b2398af381b8308136037fee4ce11da84929cac0740e81594',
     ),
   ),
 ));

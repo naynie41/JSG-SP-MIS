@@ -14,6 +14,11 @@ export function useProgramme(id: string | undefined, enabled = true) {
   return useQuery({ queryKey: ['programme', id], queryFn: () => programmeApi.get(id!), enabled: enabled && Boolean(id) })
 }
 
+/** The active catalog (for the activity programme dropdown + read-only labels). */
+export function useProgrammeCatalog(enabled = true) {
+  return useQuery({ queryKey: ['programme-catalog'], queryFn: () => programmeApi.catalog(), enabled })
+}
+
 export function useProgrammeBudget(id: string | undefined, enabled = true) {
   return useQuery({ queryKey: ['programme-budget', id], queryFn: () => programmeApi.budget(id!), enabled: enabled && Boolean(id) })
 }
@@ -55,26 +60,35 @@ export function useActivities(programmeId: string | undefined, enabled = true) {
   })
 }
 
-export function useSaveActivity(programmeId: string) {
+/** All activities the caller's MDA owns, across catalog programmes. */
+export function useAllActivities(enabled = true) {
+  return useQuery({ queryKey: ['activities', 'all'], queryFn: () => activityApi.list(), enabled })
+}
+
+/**
+ * Save an activity. Pass a fixed `programmeId` (from a programme detail page) or
+ * omit it and let the form's programme dropdown supply `input.programme_id`.
+ */
+export function useSaveActivity(programmeId?: string) {
   const qc = useQueryClient()
   const toast = useToast()
   return useMutation({
     mutationFn: ({ id, input }: { id?: string; input: ActivityInput }) =>
-      id ? activityApi.update(id, input) : activityApi.create({ ...input, programme_id: programmeId }),
+      id ? activityApi.update(id, input) : activityApi.create({ ...input, programme_id: input.programme_id ?? programmeId }),
     onSuccess: () => {
-      qc.invalidateQueries({ queryKey: ['activities', programmeId] })
+      qc.invalidateQueries({ queryKey: ['activities'] }) // covers per-programme + all-activities lists
       toast.success('Activity saved')
     },
   })
 }
 
-export function useArchiveActivity(programmeId: string) {
+export function useArchiveActivity(programmeId?: string) {
   const qc = useQueryClient()
   const toast = useToast()
   return useMutation({
     mutationFn: (id: string) => activityApi.archive(id),
     onSuccess: () => {
-      qc.invalidateQueries({ queryKey: ['activities', programmeId] })
+      qc.invalidateQueries({ queryKey: ['activities'] })
       toast.success('Activity archived')
     },
   })

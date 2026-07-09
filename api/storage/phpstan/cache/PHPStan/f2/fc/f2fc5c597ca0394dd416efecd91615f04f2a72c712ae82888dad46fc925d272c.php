@@ -2,7 +2,7 @@
 
 // odsl-/var/www/html/app/Http/Controllers/Api/V1/Programme/ActivityController.php-PHPStan\BetterReflection\Reflection\ReflectionClass-App\Http\Controllers\Api\V1\Programme\ActivityController
 return \PHPStan\Cache\CacheItem::__set_state(array(
-   'variableKey' => 'v2-6.70.0.1-8.3.31-a9206de927be0c78a4351fbe749852856d0c5d6270a60e8047f1e35d2fa93da5',
+   'variableKey' => 'v2-6.70.0.1-8.3.31-ce6dca3cb0429fbab50ff51707a055b7a4befa396c3ff0263e1e417759e332dc',
    'data' => 
   array (
     'locatedSource' => 
@@ -23,15 +23,15 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
     'isBackedEnum' => false,
     'modifiers' => 0,
     'docComment' => '/**
- * Activity management under a programme (PRD FR-PRG-02). Scoped to the programme
- * owner\'s MDA (via the activity\'s denormalised owner_mda_id); create/update/archive
- * are owner-MDA only via ActivityPolicy. Activities are archived, never deleted.
+ * Activity management (PRD §10, ARCH §12.4, FR-PRG-02). An activity runs a global
+ * catalog programme and is owned by the CREATING MDA (its own owner_mda_id + scope);
+ * create/update/archive are owner-MDA only via ActivityPolicy. Archived, never deleted.
  */',
     'attributes' => 
     array (
     ),
     'startLine' => 25,
-    'endLine' => 105,
+    'endLine' => 107,
     'startColumn' => 1,
     'endColumn' => 1,
     'parentClassName' => 'App\\Http\\Controllers\\Controller',
@@ -157,7 +157,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         ),
         'docComment' => NULL,
         'startLine' => 45,
-        'endLine' => 63,
+        'endLine' => 65,
         'startColumn' => 5,
         'endColumn' => 5,
         'couldThrow' => false,
@@ -195,8 +195,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             'attributes' => 
             array (
             ),
-            'startLine' => 65,
-            'endLine' => 65,
+            'startLine' => 67,
+            'endLine' => 67,
             'startColumn' => 26,
             'endColumn' => 41,
             'parameterIndex' => 0,
@@ -217,8 +217,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         array (
         ),
         'docComment' => NULL,
-        'startLine' => 65,
-        'endLine' => 72,
+        'startLine' => 67,
+        'endLine' => 74,
         'startColumn' => 5,
         'endColumn' => 5,
         'couldThrow' => false,
@@ -256,8 +256,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             'attributes' => 
             array (
             ),
-            'startLine' => 74,
-            'endLine' => 74,
+            'startLine' => 76,
+            'endLine' => 76,
             'startColumn' => 28,
             'endColumn' => 57,
             'parameterIndex' => 0,
@@ -282,8 +282,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             'attributes' => 
             array (
             ),
-            'startLine' => 74,
-            'endLine' => 74,
+            'startLine' => 76,
+            'endLine' => 76,
             'startColumn' => 60,
             'endColumn' => 75,
             'parameterIndex' => 1,
@@ -304,8 +304,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         array (
         ),
         'docComment' => NULL,
-        'startLine' => 74,
-        'endLine' => 83,
+        'startLine' => 76,
+        'endLine' => 85,
         'startColumn' => 5,
         'endColumn' => 5,
         'couldThrow' => false,
@@ -343,8 +343,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             'attributes' => 
             array (
             ),
-            'startLine' => 86,
-            'endLine' => 86,
+            'startLine' => 88,
+            'endLine' => 88,
             'startColumn' => 28,
             'endColumn' => 43,
             'parameterIndex' => 0,
@@ -369,8 +369,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             'attributes' => 
             array (
             ),
-            'startLine' => 86,
-            'endLine' => 86,
+            'startLine' => 88,
+            'endLine' => 88,
             'startColumn' => 46,
             'endColumn' => 73,
             'parameterIndex' => 1,
@@ -391,8 +391,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         array (
         ),
         'docComment' => '/** Budget: allocated vs utilised, derived from the benefit ledger (FR-PRG-04). */',
-        'startLine' => 86,
-        'endLine' => 92,
+        'startLine' => 88,
+        'endLine' => 94,
         'startColumn' => 5,
         'endColumn' => 5,
         'couldThrow' => false,
@@ -430,8 +430,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             'attributes' => 
             array (
             ),
-            'startLine' => 95,
-            'endLine' => 95,
+            'startLine' => 97,
+            'endLine' => 97,
             'startColumn' => 29,
             'endColumn' => 44,
             'parameterIndex' => 0,
@@ -452,8 +452,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         array (
         ),
         'docComment' => '/** Archive the activity (owner MDA only) — reversible status change, not a delete. */',
-        'startLine' => 95,
-        'endLine' => 104,
+        'startLine' => 97,
+        'endLine' => 106,
         'startColumn' => 5,
         'endColumn' => 5,
         'couldThrow' => false,

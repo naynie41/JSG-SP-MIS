@@ -10,9 +10,10 @@ use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Rule;
 
 /**
- * Create a programme (PRD FR-PRG-01). Ownership + authorization are handled in the
- * controller/policy; this validates the configuration payload. Monetary amounts
- * are integer minor units (kobo, NGN).
+ * Create a GLOBAL catalog programme (PRD §10). Only type-level attributes live
+ * here — name, objective, type, benefit category and standard eligibility. Budget,
+ * funding and period belong to the Activity, not the programme. Authorization
+ * (catalog admin only) is handled in the controller/policy.
  */
 class StoreProgrammeRequest extends FormRequest
 {
@@ -30,13 +31,10 @@ class StoreProgrammeRequest extends FormRequest
             'name' => ['required', 'string', 'max:255'],
             'objective' => ['nullable', 'string', 'max:2000'],
             'type' => ['required', Rule::enum(ProgrammeType::class)],
+            'benefit_category' => ['nullable', 'string', 'max:255'],
             'eligibility' => ['nullable', 'array'],
             'eligibility.*' => ['array'],
             'enforce_eligibility' => ['nullable', 'boolean'],
-            'funding_source' => ['nullable', 'string', 'max:255'],
-            'budget_amount' => ['nullable', 'integer', 'min:0'],
-            'starts_on' => ['nullable', 'date'],
-            'ends_on' => ['nullable', 'date', 'after_or_equal:starts_on'],
             'status' => ['nullable', Rule::enum(ProgrammeStatus::class)],
         ];
     }

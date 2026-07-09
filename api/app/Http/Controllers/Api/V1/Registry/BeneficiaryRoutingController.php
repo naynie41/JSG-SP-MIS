@@ -69,7 +69,7 @@ class BeneficiaryRoutingController extends Controller
         $audit->record('beneficiary.routed', $model, after: [
             'need' => $request->input('need'),
             'programme_id' => $programme->id,
-            'mda_id' => $programme->owner_mda_id,
+            'mda_id' => $request->user()->mda_id, // the routing (enrolling) MDA
             'enrollment_id' => $outcome['enrollment']?->id,
         ], actor: $request->user());
 

@@ -5380,14 +5380,14 @@ return [
         0 => 'App\\Domain\\Audit\\Services\\AuditLogger',
         1 => 'record',
         2 => 'after',
-        3 => 105,
+        3 => 111,
       ),
       1 => 
       array (
         0 => 'App\\Domain\\Audit\\Services\\AuditLogger',
         1 => 'record',
         2 => 'actor',
-        3 => 109,
+        3 => 115,
       ),
     ),
   ),
@@ -8408,13 +8408,6 @@ return [
         2 => '$this->auditEntityName():130',
         3 => NULL,
       ),
-      36 => 
-      array (
-        0 => 'PHPStan\\Rules\\Comparison\\ImpossibleCheckTypeStaticMethodCallRule',
-        1 => 'App\\Domain\\Access\\Concerns\\ScopedToMda',
-        2 => 'static::addGlobalScope(new \\App\\Domain\\Access\\Scopes\\MdaScope()):21',
-        3 => NULL,
-      ),
     ),
     'PHPStan\\Rules\\DeadCode\\MethodWithoutImpurePointsCollector' => 
     array (
@@ -8459,15 +8452,6 @@ return [
       4 => 
       array (
         0 => 'App\\Domain\\Programme\\Models\\Programme',
-        1 => 'mdaOwnershipColumn',
-        2 => 'App\\Domain\\Programme\\Models\\Programme',
-        3 => 
-        array (
-        ),
-      ),
-      5 => 
-      array (
-        0 => 'App\\Domain\\Programme\\Models\\Programme',
         1 => 'newFactory',
         2 => 'App\\Domain\\Programme\\Models\\Programme',
         3 => 
@@ -8475,7 +8459,7 @@ return [
           0 => 'm' . "\0" . 'illuminate\\database\\eloquent\\factories\\factory' . "\0" . 'new',
         ),
       ),
-      6 => 
+      5 => 
       array (
         0 => 'App\\Domain\\Programme\\Models\\Programme',
         1 => 'casts',
@@ -8485,15 +8469,6 @@ return [
         ),
       ),
     ),
-    'PHPStan\\Rules\\DeadCode\\PossiblyPureStaticCallCollector' => 
-    array (
-      0 => 
-      array (
-        0 => 'Illuminate\\Database\\Eloquent\\Model',
-        1 => 'addGlobalScope',
-        2 => 21,
-      ),
-    ),
     'PHPStan\\Rules\\Traits\\TraitUseCollector' => 
     array (
       0 => 
@@ -8501,8 +8476,7 @@ return [
         0 => 'App\\Domain\\Audit\\Concerns\\Auditable',
         1 => 'Illuminate\\Database\\Eloquent\\Factories\\HasFactory',
         2 => 'Illuminate\\Database\\Eloquent\\Concerns\\HasUuids',
-        3 => 'App\\Domain\\Access\\Concerns\\ScopedToMda',
-        4 => 'Illuminate\\Database\\Eloquent\\SoftDeletes',
+        3 => 'Illuminate\\Database\\Eloquent\\SoftDeletes',
       ),
     ),
   ),
@@ -8538,7 +8512,7 @@ return [
       0 => 
       array (
         0 => 'App\\Domain\\Programme\\Policies\\ProgrammePolicy',
-        1 => 'owns',
+        1 => 'isCatalogAdmin',
         2 => 'App\\Domain\\Programme\\Policies\\ProgrammePolicy',
         3 => 
         array (
@@ -16993,9 +16967,8 @@ return [
       212 => '/var/www/html/app/Http/Resources/ImportBatchResource.php',
       213 => '/var/www/html/app/Http/Resources/MdaResource.php',
       214 => '/var/www/html/app/Http/Resources/NotificationResource.php',
-      215 => '/var/www/html/app/Http/Resources/ProgrammeResource.php',
-      216 => '/var/www/html/app/Http/Resources/UserResource.php',
-      217 => '/var/www/html/app/Providers/AppServiceProvider.php',
+      215 => '/var/www/html/app/Http/Resources/UserResource.php',
+      216 => '/var/www/html/app/Providers/AppServiceProvider.php',
     ),
   ),
   '/var/www/html/app/Domain/Access/Concerns/ScopedToMda.php' => 
@@ -17218,9 +17191,8 @@ return [
       212 => '/var/www/html/app/Http/Resources/ImportBatchResource.php',
       213 => '/var/www/html/app/Http/Resources/MdaResource.php',
       214 => '/var/www/html/app/Http/Resources/NotificationResource.php',
-      215 => '/var/www/html/app/Http/Resources/ProgrammeResource.php',
-      216 => '/var/www/html/app/Http/Resources/UserResource.php',
-      217 => '/var/www/html/app/Providers/AppServiceProvider.php',
+      215 => '/var/www/html/app/Http/Resources/UserResource.php',
+      216 => '/var/www/html/app/Providers/AppServiceProvider.php',
     ),
     'usedTraitDependentFiles' => 
     array (
@@ -17232,12 +17204,11 @@ return [
       5 => '/var/www/html/app/Domain/Notification/Models/Notification.php',
       6 => '/var/www/html/app/Domain/Programme/Models/Activity.php',
       7 => '/var/www/html/app/Domain/Programme/Models/Enrollment.php',
-      8 => '/var/www/html/app/Domain/Programme/Models/Programme.php',
-      9 => '/var/www/html/app/Domain/Registry/Models/Beneficiary.php',
-      10 => '/var/www/html/app/Domain/Registry/Models/BeneficiaryDocument.php',
-      11 => '/var/www/html/app/Domain/Registry/Models/BeneficiaryServiceGrant.php',
-      12 => '/var/www/html/app/Domain/Registry/Models/Household.php',
-      13 => '/var/www/html/app/Domain/Registry/Models/ImportBatch.php',
+      8 => '/var/www/html/app/Domain/Registry/Models/Beneficiary.php',
+      9 => '/var/www/html/app/Domain/Registry/Models/BeneficiaryDocument.php',
+      10 => '/var/www/html/app/Domain/Registry/Models/BeneficiaryServiceGrant.php',
+      11 => '/var/www/html/app/Domain/Registry/Models/Household.php',
+      12 => '/var/www/html/app/Domain/Registry/Models/ImportBatch.php',
     ),
   ),
   '/var/www/html/app/Domain/Access/Enums/MdaStatus.php' => 
@@ -17255,25 +17226,22 @@ return [
       7 => '/var/www/html/app/Domain/Grievance/Models/Grievance.php',
       8 => '/var/www/html/app/Domain/Programme/Models/Activity.php',
       9 => '/var/www/html/app/Domain/Programme/Models/Enrollment.php',
-      10 => '/var/www/html/app/Domain/Programme/Models/Programme.php',
-      11 => '/var/www/html/app/Domain/Programme/Services/ProgrammeMatcher.php',
-      12 => '/var/www/html/app/Domain/Referral/Models/Referral.php',
-      13 => '/var/www/html/app/Domain/Registry/Models/Beneficiary.php',
-      14 => '/var/www/html/app/Domain/Registry/Models/BeneficiaryDocument.php',
-      15 => '/var/www/html/app/Domain/Registry/Models/BeneficiaryServiceGrant.php',
-      16 => '/var/www/html/app/Domain/Registry/Models/Household.php',
-      17 => '/var/www/html/app/Domain/Registry/Models/ImportBatch.php',
-      18 => '/var/www/html/app/Domain/Registry/Models/OwnershipTransferRequest.php',
-      19 => '/var/www/html/app/Domain/Registry/Models/ServiceRequest.php',
-      20 => '/var/www/html/app/Domain/Reporting/Reports/AdHoc/AdHocReportBuilder.php',
-      21 => '/var/www/html/app/Domain/Reporting/Reports/ReportBuilder.php',
-      22 => '/var/www/html/app/Domain/Reporting/Services/DashboardSnapshotService.php',
-      23 => '/var/www/html/app/Http/Controllers/Api/V1/Access/MdaController.php',
-      24 => '/var/www/html/app/Http/Requests/Access/StoreMdaRequest.php',
-      25 => '/var/www/html/app/Http/Resources/BeneficiaryRevealResource.php',
-      26 => '/var/www/html/app/Http/Resources/MdaResource.php',
-      27 => '/var/www/html/app/Http/Resources/ProgrammeResource.php',
-      28 => '/var/www/html/app/Http/Resources/UserResource.php',
+      10 => '/var/www/html/app/Domain/Referral/Models/Referral.php',
+      11 => '/var/www/html/app/Domain/Registry/Models/Beneficiary.php',
+      12 => '/var/www/html/app/Domain/Registry/Models/BeneficiaryDocument.php',
+      13 => '/var/www/html/app/Domain/Registry/Models/BeneficiaryServiceGrant.php',
+      14 => '/var/www/html/app/Domain/Registry/Models/Household.php',
+      15 => '/var/www/html/app/Domain/Registry/Models/ImportBatch.php',
+      16 => '/var/www/html/app/Domain/Registry/Models/OwnershipTransferRequest.php',
+      17 => '/var/www/html/app/Domain/Registry/Models/ServiceRequest.php',
+      18 => '/var/www/html/app/Domain/Reporting/Reports/AdHoc/AdHocReportBuilder.php',
+      19 => '/var/www/html/app/Domain/Reporting/Reports/ReportBuilder.php',
+      20 => '/var/www/html/app/Domain/Reporting/Services/DashboardSnapshotService.php',
+      21 => '/var/www/html/app/Http/Controllers/Api/V1/Access/MdaController.php',
+      22 => '/var/www/html/app/Http/Requests/Access/StoreMdaRequest.php',
+      23 => '/var/www/html/app/Http/Resources/BeneficiaryRevealResource.php',
+      24 => '/var/www/html/app/Http/Resources/MdaResource.php',
+      25 => '/var/www/html/app/Http/Resources/UserResource.php',
     ),
   ),
   '/var/www/html/app/Domain/Access/Enums/MdaType.php' => 
@@ -17291,26 +17259,23 @@ return [
       7 => '/var/www/html/app/Domain/Grievance/Models/Grievance.php',
       8 => '/var/www/html/app/Domain/Programme/Models/Activity.php',
       9 => '/var/www/html/app/Domain/Programme/Models/Enrollment.php',
-      10 => '/var/www/html/app/Domain/Programme/Models/Programme.php',
-      11 => '/var/www/html/app/Domain/Programme/Services/ProgrammeMatcher.php',
-      12 => '/var/www/html/app/Domain/Referral/Models/Referral.php',
-      13 => '/var/www/html/app/Domain/Registry/Models/Beneficiary.php',
-      14 => '/var/www/html/app/Domain/Registry/Models/BeneficiaryDocument.php',
-      15 => '/var/www/html/app/Domain/Registry/Models/BeneficiaryServiceGrant.php',
-      16 => '/var/www/html/app/Domain/Registry/Models/Household.php',
-      17 => '/var/www/html/app/Domain/Registry/Models/ImportBatch.php',
-      18 => '/var/www/html/app/Domain/Registry/Models/OwnershipTransferRequest.php',
-      19 => '/var/www/html/app/Domain/Registry/Models/ServiceRequest.php',
-      20 => '/var/www/html/app/Domain/Reporting/Reports/AdHoc/AdHocReportBuilder.php',
-      21 => '/var/www/html/app/Domain/Reporting/Reports/ReportBuilder.php',
-      22 => '/var/www/html/app/Domain/Reporting/Services/DashboardSnapshotService.php',
-      23 => '/var/www/html/app/Http/Controllers/Api/V1/Access/MdaController.php',
-      24 => '/var/www/html/app/Http/Requests/Access/StoreMdaRequest.php',
-      25 => '/var/www/html/app/Http/Requests/Access/UpdateMdaRequest.php',
-      26 => '/var/www/html/app/Http/Resources/BeneficiaryRevealResource.php',
-      27 => '/var/www/html/app/Http/Resources/MdaResource.php',
-      28 => '/var/www/html/app/Http/Resources/ProgrammeResource.php',
-      29 => '/var/www/html/app/Http/Resources/UserResource.php',
+      10 => '/var/www/html/app/Domain/Referral/Models/Referral.php',
+      11 => '/var/www/html/app/Domain/Registry/Models/Beneficiary.php',
+      12 => '/var/www/html/app/Domain/Registry/Models/BeneficiaryDocument.php',
+      13 => '/var/www/html/app/Domain/Registry/Models/BeneficiaryServiceGrant.php',
+      14 => '/var/www/html/app/Domain/Registry/Models/Household.php',
+      15 => '/var/www/html/app/Domain/Registry/Models/ImportBatch.php',
+      16 => '/var/www/html/app/Domain/Registry/Models/OwnershipTransferRequest.php',
+      17 => '/var/www/html/app/Domain/Registry/Models/ServiceRequest.php',
+      18 => '/var/www/html/app/Domain/Reporting/Reports/AdHoc/AdHocReportBuilder.php',
+      19 => '/var/www/html/app/Domain/Reporting/Reports/ReportBuilder.php',
+      20 => '/var/www/html/app/Domain/Reporting/Services/DashboardSnapshotService.php',
+      21 => '/var/www/html/app/Http/Controllers/Api/V1/Access/MdaController.php',
+      22 => '/var/www/html/app/Http/Requests/Access/StoreMdaRequest.php',
+      23 => '/var/www/html/app/Http/Requests/Access/UpdateMdaRequest.php',
+      24 => '/var/www/html/app/Http/Resources/BeneficiaryRevealResource.php',
+      25 => '/var/www/html/app/Http/Resources/MdaResource.php',
+      26 => '/var/www/html/app/Http/Resources/UserResource.php',
     ),
   ),
   '/var/www/html/app/Domain/Access/Enums/PermissionAction.php' => 
@@ -17342,8 +17307,9 @@ return [
     'fileHash' => 'aa800acebadff237b3c94d7c656afe6bb41249a9394e49867aae94dd38406890',
     'dependentFiles' => 
     array (
-      0 => '/var/www/html/app/Domain/Reporting/Services/DashboardScopeResolver.php',
-      1 => '/var/www/html/app/Domain/Reporting/Services/DashboardSnapshotService.php',
+      0 => '/var/www/html/app/Domain/Programme/Policies/ProgrammePolicy.php',
+      1 => '/var/www/html/app/Domain/Reporting/Services/DashboardScopeResolver.php',
+      2 => '/var/www/html/app/Domain/Reporting/Services/DashboardSnapshotService.php',
     ),
   ),
   '/var/www/html/app/Domain/Access/Enums/UserStatus.php' => 
@@ -17785,11 +17751,10 @@ return [
       212 => '/var/www/html/app/Http/Resources/HouseholdResource.php',
       213 => '/var/www/html/app/Http/Resources/ImportBatchResource.php',
       214 => '/var/www/html/app/Http/Resources/MdaResource.php',
-      215 => '/var/www/html/app/Http/Resources/ProgrammeResource.php',
-      216 => '/var/www/html/app/Http/Resources/ReferralResource.php',
-      217 => '/var/www/html/app/Http/Resources/ServiceRequestResource.php',
-      218 => '/var/www/html/app/Http/Resources/UserResource.php',
-      219 => '/var/www/html/app/Providers/AppServiceProvider.php',
+      215 => '/var/www/html/app/Http/Resources/ReferralResource.php',
+      216 => '/var/www/html/app/Http/Resources/ServiceRequestResource.php',
+      217 => '/var/www/html/app/Http/Resources/UserResource.php',
+      218 => '/var/www/html/app/Providers/AppServiceProvider.php',
     ),
   ),
   '/var/www/html/app/Domain/Access/Models/MdaAccessGrant.php' => 
@@ -17813,11 +17778,12 @@ return [
       0 => '/var/www/html/app/Domain/Access/Models/Role.php',
       1 => '/var/www/html/app/Domain/Access/Models/User.php',
       2 => '/var/www/html/app/Domain/Access/Services/PermissionSynchronizer.php',
-      3 => '/var/www/html/app/Domain/Reporting/Services/DashboardScopeResolver.php',
-      4 => '/var/www/html/app/Http/Controllers/Api/V1/Access/AccessController.php',
-      5 => '/var/www/html/app/Http/Requests/Access/StoreUserRequest.php',
-      6 => '/var/www/html/app/Http/Requests/Access/UpdateUserRequest.php',
-      7 => '/var/www/html/app/Http/Resources/UserResource.php',
+      3 => '/var/www/html/app/Domain/Programme/Policies/ProgrammePolicy.php',
+      4 => '/var/www/html/app/Domain/Reporting/Services/DashboardScopeResolver.php',
+      5 => '/var/www/html/app/Http/Controllers/Api/V1/Access/AccessController.php',
+      6 => '/var/www/html/app/Http/Requests/Access/StoreUserRequest.php',
+      7 => '/var/www/html/app/Http/Requests/Access/UpdateUserRequest.php',
+      8 => '/var/www/html/app/Http/Resources/UserResource.php',
     ),
   ),
   '/var/www/html/app/Domain/Access/Models/Role.php' => 
@@ -18192,45 +18158,43 @@ return [
       13 => '/var/www/html/app/Domain/Notification/Models/Notification.php',
       14 => '/var/www/html/app/Domain/Programme/Models/Activity.php',
       15 => '/var/www/html/app/Domain/Programme/Models/Enrollment.php',
-      16 => '/var/www/html/app/Domain/Programme/Models/Programme.php',
-      17 => '/var/www/html/app/Domain/Programme/Services/EnrollmentService.php',
-      18 => '/var/www/html/app/Domain/Registry/Jobs/CommitImportBatch.php',
-      19 => '/var/www/html/app/Domain/Registry/Jobs/ParseImportBatch.php',
-      20 => '/var/www/html/app/Domain/Registry/Models/Beneficiary.php',
-      21 => '/var/www/html/app/Domain/Registry/Models/BeneficiaryDocument.php',
-      22 => '/var/www/html/app/Domain/Registry/Models/BeneficiaryServiceGrant.php',
-      23 => '/var/www/html/app/Domain/Registry/Models/Household.php',
-      24 => '/var/www/html/app/Domain/Registry/Models/ImportBatch.php',
-      25 => '/var/www/html/app/Domain/Registry/Services/BeneficiaryLookupService.php',
-      26 => '/var/www/html/app/Domain/Registry/Services/BeneficiaryRegistrar.php',
-      27 => '/var/www/html/app/Domain/Registry/Services/CandidateGatherer.php',
-      28 => '/var/www/html/app/Domain/Registry/Services/DeterministicDuplicateFinder.php',
-      29 => '/var/www/html/app/Domain/Registry/Services/HouseholdIngestionService.php',
-      30 => '/var/www/html/app/Domain/Registry/Services/HouseholdMembershipService.php',
-      31 => '/var/www/html/app/Domain/Registry/Services/OwnershipTransferService.php',
-      32 => '/var/www/html/app/Domain/Registry/Services/ServiceRequestService.php',
-      33 => '/var/www/html/app/Domain/Reporting/Gis/GisCoverageService.php',
-      34 => '/var/www/html/app/Domain/Reporting/Jobs/GenerateReport.php',
-      35 => '/var/www/html/app/Domain/Reporting/Listeners/DeliverScheduledReport.php',
-      36 => '/var/www/html/app/Domain/Reporting/Reports/AdHoc/AdHocReportBuilder.php',
-      37 => '/var/www/html/app/Domain/Reporting/Reports/ReportBuilder.php',
-      38 => '/var/www/html/app/Domain/Reporting/Services/DashboardMetricsService.php',
-      39 => '/var/www/html/app/Domain/Reporting/Services/DashboardSnapshotService.php',
-      40 => '/var/www/html/app/Domain/Reporting/Services/ReportScheduleService.php',
-      41 => '/var/www/html/app/Http/Controllers/Api/V1/Benefit/BenefitController.php',
-      42 => '/var/www/html/app/Http/Controllers/Api/V1/Benefit/BenefitImportController.php',
-      43 => '/var/www/html/app/Http/Controllers/Api/V1/Programme/ActivityController.php',
-      44 => '/var/www/html/app/Http/Controllers/Api/V1/Programme/EnrollmentController.php',
-      45 => '/var/www/html/app/Http/Controllers/Api/V1/Programme/ProgrammeController.php',
-      46 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/BeneficiaryController.php',
-      47 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/BeneficiaryDocumentController.php',
-      48 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/BeneficiaryRoutingController.php',
-      49 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/HouseholdController.php',
-      50 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/HouseholdMemberController.php',
-      51 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/ImportBatchController.php',
-      52 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/OwnershipTransferController.php',
-      53 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/ServiceRequestController.php',
-      54 => '/var/www/html/app/Http/Requests/Registry/UploadImportRequest.php',
+      16 => '/var/www/html/app/Domain/Programme/Services/EnrollmentService.php',
+      17 => '/var/www/html/app/Domain/Registry/Jobs/CommitImportBatch.php',
+      18 => '/var/www/html/app/Domain/Registry/Jobs/ParseImportBatch.php',
+      19 => '/var/www/html/app/Domain/Registry/Models/Beneficiary.php',
+      20 => '/var/www/html/app/Domain/Registry/Models/BeneficiaryDocument.php',
+      21 => '/var/www/html/app/Domain/Registry/Models/BeneficiaryServiceGrant.php',
+      22 => '/var/www/html/app/Domain/Registry/Models/Household.php',
+      23 => '/var/www/html/app/Domain/Registry/Models/ImportBatch.php',
+      24 => '/var/www/html/app/Domain/Registry/Services/BeneficiaryLookupService.php',
+      25 => '/var/www/html/app/Domain/Registry/Services/BeneficiaryRegistrar.php',
+      26 => '/var/www/html/app/Domain/Registry/Services/CandidateGatherer.php',
+      27 => '/var/www/html/app/Domain/Registry/Services/DeterministicDuplicateFinder.php',
+      28 => '/var/www/html/app/Domain/Registry/Services/HouseholdIngestionService.php',
+      29 => '/var/www/html/app/Domain/Registry/Services/HouseholdMembershipService.php',
+      30 => '/var/www/html/app/Domain/Registry/Services/OwnershipTransferService.php',
+      31 => '/var/www/html/app/Domain/Registry/Services/ServiceRequestService.php',
+      32 => '/var/www/html/app/Domain/Reporting/Gis/GisCoverageService.php',
+      33 => '/var/www/html/app/Domain/Reporting/Jobs/GenerateReport.php',
+      34 => '/var/www/html/app/Domain/Reporting/Listeners/DeliverScheduledReport.php',
+      35 => '/var/www/html/app/Domain/Reporting/Reports/AdHoc/AdHocReportBuilder.php',
+      36 => '/var/www/html/app/Domain/Reporting/Reports/ReportBuilder.php',
+      37 => '/var/www/html/app/Domain/Reporting/Services/DashboardMetricsService.php',
+      38 => '/var/www/html/app/Domain/Reporting/Services/DashboardSnapshotService.php',
+      39 => '/var/www/html/app/Domain/Reporting/Services/ReportScheduleService.php',
+      40 => '/var/www/html/app/Http/Controllers/Api/V1/Benefit/BenefitController.php',
+      41 => '/var/www/html/app/Http/Controllers/Api/V1/Benefit/BenefitImportController.php',
+      42 => '/var/www/html/app/Http/Controllers/Api/V1/Programme/ActivityController.php',
+      43 => '/var/www/html/app/Http/Controllers/Api/V1/Programme/EnrollmentController.php',
+      44 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/BeneficiaryController.php',
+      45 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/BeneficiaryDocumentController.php',
+      46 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/BeneficiaryRoutingController.php',
+      47 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/HouseholdController.php',
+      48 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/HouseholdMemberController.php',
+      49 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/ImportBatchController.php',
+      50 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/OwnershipTransferController.php',
+      51 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/ServiceRequestController.php',
+      52 => '/var/www/html/app/Http/Requests/Registry/UploadImportRequest.php',
     ),
   ),
   '/var/www/html/app/Domain/Access/Services/AuthTokenIssuer.php' => 
@@ -19004,7 +18968,7 @@ return [
   ),
   '/var/www/html/app/Domain/Benefit/Policies/BenefitPolicy.php' => 
   array (
-    'fileHash' => '6d5966f5e858885c0933026bf20ebc2f6e0e26ad929661cc5efb55771e9353eb',
+    'fileHash' => 'cc6fa6efa76f80374bb2df8e4e99d313efd1985f3df5acc12143fc1035146958',
     'dependentFiles' => 
     array (
       0 => '/var/www/html/app/Domain/Benefit/BenefitServiceProvider.php',
@@ -19020,7 +18984,7 @@ return [
   ),
   '/var/www/html/app/Domain/Benefit/Services/BeneficiaryRevealPresenter.php' => 
   array (
-    'fileHash' => 'cc21e6d221438957fb4d3016378ded86ce0e1400401dfcd7472849636d00d694',
+    'fileHash' => '606e5f7450c76e5b2398af381b8308136037fee4ce11da84929cac0740e81594',
     'dependentFiles' => 
     array (
       0 => '/var/www/html/app/Http/Resources/BeneficiaryRevealResource.php',
@@ -19028,7 +18992,7 @@ return [
   ),
   '/var/www/html/app/Domain/Benefit/Services/BenefitRecorder.php' => 
   array (
-    'fileHash' => '6dee42b1d711ab80a9c865206dd1039597ac3b60dd86ab846692f6bf0dcd9a28',
+    'fileHash' => 'e52587f2ab3e1325e4fb6d3094a3cb5a547dba2e4f834e53fa4f642840b282de',
     'dependentFiles' => 
     array (
       0 => '/var/www/html/app/Domain/Benefit/Jobs/CommitBenefitImport.php',
@@ -19055,7 +19019,7 @@ return [
   ),
   '/var/www/html/app/Domain/Benefit/Services/LedgerAggregator.php' => 
   array (
-    'fileHash' => 'a8abca167eb346c56e7e19595f7eae00d99174f51e154057074605ff86d3bf54',
+    'fileHash' => '34ac8a4569f1c973ad723a19fa9ce2c6e12b9c324b9bb5354a816caca9a89731',
     'dependentFiles' => 
     array (
       0 => '/var/www/html/app/Domain/Reporting/Gis/GisCoverageService.php',
@@ -19658,14 +19622,15 @@ return [
       8 => '/var/www/html/app/Domain/Programme/ProgrammeServiceProvider.php',
       9 => '/var/www/html/app/Domain/Registry/Jobs/CommitImportBatch.php',
       10 => '/var/www/html/app/Domain/Registry/Models/ImportBatch.php',
-      11 => '/var/www/html/app/Http/Controllers/Api/V1/Benefit/BenefitController.php',
-      12 => '/var/www/html/app/Http/Controllers/Api/V1/Benefit/BenefitImportController.php',
-      13 => '/var/www/html/app/Http/Controllers/Api/V1/Programme/ActivityController.php',
-      14 => '/var/www/html/app/Http/Controllers/Api/V1/Programme/EnrollmentController.php',
-      15 => '/var/www/html/app/Http/Requests/Programme/StoreActivityRequest.php',
-      16 => '/var/www/html/app/Http/Requests/Programme/UpdateActivityRequest.php',
-      17 => '/var/www/html/app/Http/Requests/Registry/UploadImportRequest.php',
-      18 => '/var/www/html/app/Http/Resources/ActivityResource.php',
+      11 => '/var/www/html/app/Domain/Reporting/Services/DashboardMetricsService.php',
+      12 => '/var/www/html/app/Http/Controllers/Api/V1/Benefit/BenefitController.php',
+      13 => '/var/www/html/app/Http/Controllers/Api/V1/Benefit/BenefitImportController.php',
+      14 => '/var/www/html/app/Http/Controllers/Api/V1/Programme/ActivityController.php',
+      15 => '/var/www/html/app/Http/Controllers/Api/V1/Programme/EnrollmentController.php',
+      16 => '/var/www/html/app/Http/Requests/Programme/StoreActivityRequest.php',
+      17 => '/var/www/html/app/Http/Requests/Programme/UpdateActivityRequest.php',
+      18 => '/var/www/html/app/Http/Requests/Registry/UploadImportRequest.php',
+      19 => '/var/www/html/app/Http/Resources/ActivityResource.php',
     ),
   ),
   '/var/www/html/app/Domain/Programme/Enums/EnrollmentStatus.php' => 
@@ -19765,7 +19730,7 @@ return [
   ),
   '/var/www/html/app/Domain/Programme/Models/Activity.php' => 
   array (
-    'fileHash' => 'df2f9e14ac484b9e848f863c52ff06f50e5a57f9227d3d7ca592ee4f07697104',
+    'fileHash' => '03f0b4950c66e6cfcc0f65692ea000ebfa47b76648d1e6a551653c1c50153b92',
     'dependentFiles' => 
     array (
       0 => '/var/www/html/app/Domain/Benefit/BenefitServiceProvider.php',
@@ -19826,7 +19791,7 @@ return [
   ),
   '/var/www/html/app/Domain/Programme/Models/Programme.php' => 
   array (
-    'fileHash' => '29927c4b3c1683a50fdac2e434aedbe22dd9e228125bc7e8132914af39506157',
+    'fileHash' => 'fff0c83972f6c9a80cfba2df8a15f711fb7a6229f8b886273dfe93504bf936ad',
     'dependentFiles' => 
     array (
       0 => '/var/www/html/app/Domain/Benefit/BenefitServiceProvider.php',
@@ -19888,7 +19853,7 @@ return [
   ),
   '/var/www/html/app/Domain/Programme/Policies/ActivityPolicy.php' => 
   array (
-    'fileHash' => '399b0858e44b3bd7306e68de71ce3aa2a68edff5ed5ff7341c986e97ef0c2606',
+    'fileHash' => '9dcb8187883abdaf0b8c0c697de490794cf22c2fe497ed2a8e45483e157ad618',
     'dependentFiles' => 
     array (
       0 => '/var/www/html/app/Domain/Programme/ProgrammeServiceProvider.php',
@@ -19896,7 +19861,7 @@ return [
   ),
   '/var/www/html/app/Domain/Programme/Policies/EnrollmentPolicy.php' => 
   array (
-    'fileHash' => '02e9c82781b36e0d3aa2cbb66df2570d9d17855306fc0a15d89b252a6962aa04',
+    'fileHash' => '969cae631ff37ce5a126a88619c00a0e460240bce7a2a66f3617a9eee8486dd6',
     'dependentFiles' => 
     array (
       0 => '/var/www/html/app/Domain/Programme/ProgrammeServiceProvider.php',
@@ -19904,7 +19869,7 @@ return [
   ),
   '/var/www/html/app/Domain/Programme/Policies/ProgrammePolicy.php' => 
   array (
-    'fileHash' => '23504f3795b12918b54c958f467a1e53323e38d3b4e72c629d7f6af8ae0192db',
+    'fileHash' => 'c98cbe08a0c8a7428013137c97dc5966dd2b069a8a79e0b6dc007bcc79bf914a',
     'dependentFiles' => 
     array (
       0 => '/var/www/html/app/Domain/Programme/ProgrammeServiceProvider.php',
@@ -19912,7 +19877,7 @@ return [
   ),
   '/var/www/html/app/Domain/Programme/ProgrammeServiceProvider.php' => 
   array (
-    'fileHash' => 'b7e9225ce63bfbc50ca533031f419a8c5fdf23ca573e3b16c54a93aac25f614c',
+    'fileHash' => 'f1c9dcc2c540d23b4c8c81fdead36f64ae2e8202b08ba837c72d08d0f00ab864',
     'dependentFiles' => 
     array (
     ),
@@ -19929,7 +19894,7 @@ return [
   ),
   '/var/www/html/app/Domain/Programme/Services/EnrollmentService.php' => 
   array (
-    'fileHash' => '4874e00d806d5cf363e35b1659afdf43e0402feabf3a4c56ccebee00f4ff20cf',
+    'fileHash' => 'a76def3ec97d20bfb8562e0f9ef0b467ec38585795851d0385c219dc71ef44c1',
     'dependentFiles' => 
     array (
       0 => '/var/www/html/app/Domain/Registry/Jobs/CommitImportBatch.php',
@@ -19939,7 +19904,7 @@ return [
   ),
   '/var/www/html/app/Domain/Programme/Services/ProgrammeMatcher.php' => 
   array (
-    'fileHash' => '9121e730f812033429c89d29df90b96248bc7ad435819e2a2627ac9fe41369f4',
+    'fileHash' => '0be25975e5825c187bf3fde23452e8a38840f4c377a1da0ea25e1f6f886bc711',
     'dependentFiles' => 
     array (
       0 => '/var/www/html/app/Domain/Programme/Services/ProgrammeMatchingRouter.php',
@@ -21338,7 +21303,7 @@ return [
   ),
   '/var/www/html/app/Domain/Reporting/Services/DashboardMetricsService.php' => 
   array (
-    'fileHash' => '20aac1712f62679198fc499f2c5d64ca48f57dabad0a921b1aaf055cb3ec8dec',
+    'fileHash' => 'f503d4ee20dc6f968f9d2f0871e8a52d8d01560b93111fd17a537d06372edc54',
     'dependentFiles' => 
     array (
       0 => '/var/www/html/app/Domain/Reporting/Reports/ReportBuilder.php',
@@ -21530,7 +21495,7 @@ return [
   ),
   '/var/www/html/app/Http/Controllers/Api/V1/Programme/ActivityController.php' => 
   array (
-    'fileHash' => 'a9206de927be0c78a4351fbe749852856d0c5d6270a60e8047f1e35d2fa93da5',
+    'fileHash' => 'ce6dca3cb0429fbab50ff51707a055b7a4befa396c3ff0263e1e417759e332dc',
     'dependentFiles' => 
     array (
     ),
@@ -21544,7 +21509,7 @@ return [
   ),
   '/var/www/html/app/Http/Controllers/Api/V1/Programme/ProgrammeController.php' => 
   array (
-    'fileHash' => '069f3b51632d40462cad70a03276d790d4b2d45508d0b9aab8314f970ed3dc5d',
+    'fileHash' => '7b25702b7c1c4ef724b7635e912114d299dd40337a9de520d3e8fb40688c0098',
     'dependentFiles' => 
     array (
     ),
@@ -21586,7 +21551,7 @@ return [
   ),
   '/var/www/html/app/Http/Controllers/Api/V1/Registry/BeneficiaryRoutingController.php' => 
   array (
-    'fileHash' => '7c2c3460b0053a5d2857c4c54ea39b334c315ceab2792714567d0c3837edb0a1',
+    'fileHash' => '4793751e2ca0383966a40c582bfaffed8df3862c21e24346cbccc3ed072391b3',
     'dependentFiles' => 
     array (
     ),
@@ -21937,7 +21902,7 @@ return [
   ),
   '/var/www/html/app/Http/Requests/Programme/StoreActivityRequest.php' => 
   array (
-    'fileHash' => 'bc474a884a4451911febab989b7ac401ac0b44c83853198d698ed257d289a42b',
+    'fileHash' => 'ed673fe6d47aa5a4bc6bf159816c3adb839021b567f5fcc8ba34de071980a33d',
     'dependentFiles' => 
     array (
       0 => '/var/www/html/app/Http/Controllers/Api/V1/Programme/ActivityController.php',
@@ -21953,7 +21918,7 @@ return [
   ),
   '/var/www/html/app/Http/Requests/Programme/StoreProgrammeRequest.php' => 
   array (
-    'fileHash' => 'cb043d522e83f67310320621168b0c9b9fde7761bfe0241fe2fe7ca4d171ce0a',
+    'fileHash' => '4c3ae8e29b9f260ad79ef38f5734cf23010f1b358dbe5261955f9eb386cda53e',
     'dependentFiles' => 
     array (
       0 => '/var/www/html/app/Http/Controllers/Api/V1/Programme/ProgrammeController.php',
@@ -21961,7 +21926,7 @@ return [
   ),
   '/var/www/html/app/Http/Requests/Programme/UpdateActivityRequest.php' => 
   array (
-    'fileHash' => 'fcbb3a0b85e1824de2b965a1efff76e669757c7218894433c436dab32d512a77',
+    'fileHash' => 'a682d1ccff8a56dc049fed691e580ea7cd46ebf1db7ecddf8d92d3d69b2c83b5',
     'dependentFiles' => 
     array (
       0 => '/var/www/html/app/Http/Controllers/Api/V1/Programme/ActivityController.php',
@@ -21977,7 +21942,7 @@ return [
   ),
   '/var/www/html/app/Http/Requests/Programme/UpdateProgrammeRequest.php' => 
   array (
-    'fileHash' => '29d5b04f1e2a118fff2691e740421f615174f81760cf305e4a99fb6d107b233d',
+    'fileHash' => 'b622bceb7667afac58ab7ba057557927cc19111e9fddd0f9d90770d3f3566711',
     'dependentFiles' => 
     array (
       0 => '/var/www/html/app/Http/Controllers/Api/V1/Programme/ProgrammeController.php',
@@ -22204,7 +22169,7 @@ return [
   ),
   '/var/www/html/app/Http/Resources/ActivityResource.php' => 
   array (
-    'fileHash' => '8896e22747987380f61937ab094e1962fa48974c3e67c8214f6e107b755a125d',
+    'fileHash' => '63791b5a6f39ba9ca28ea0258d29a4b6232e3226111bff25f730cd033d733d72',
     'dependentFiles' => 
     array (
       0 => '/var/www/html/app/Http/Controllers/Api/V1/Programme/ActivityController.php',
@@ -22370,7 +22335,7 @@ return [
   ),
   '/var/www/html/app/Http/Resources/ProgrammeResource.php' => 
   array (
-    'fileHash' => 'c06d406aa18e268910b7e00974fb2fa2d18417303c043a697f0db285f10894a8',
+    'fileHash' => 'ae627dc82abf3182493704e29888f956676ee8236d93b206157a3e3f15d5f9ae',
     'dependentFiles' => 
     array (
       0 => '/var/www/html/app/Http/Controllers/Api/V1/Programme/ProgrammeController.php',
@@ -33266,7 +33231,12 @@ return [
            'name' => 'record',
            'phpDoc' => 
           \PHPStan\Dependency\ExportedNode\ExportedPhpDocNode::__set_state(array(
-             'phpDocString' => '/** Record a delivery under a programme — the programme\'s owner MDA only. */',
+             'phpDocString' => '/**
+     * Record a delivery under a catalog programme (PRD §10). Any MDA user may; the
+     * delivering MDA is their own. Cross-MDA delivery to a non-owned beneficiary is
+     * gated separately by the accepted Service Request / Referral authorization in
+     * the BenefitRecorder — not by programme ownership.
+     */',
              'namespace' => 'App\\Domain\\Benefit\\Policies',
              'uses' => 
             array (
@@ -34305,7 +34275,9 @@ return [
            'phpDoc' => 
           \PHPStan\Dependency\ExportedNode\ExportedPhpDocNode::__set_state(array(
              'phpDocString' => '/**
-     * Allocated vs utilised for a programme (FR-PRG-04).
+     * Allocated vs utilised for a programme (FR-PRG-04). Budget lives on the
+     * activities that run the (global) programme (§10), so allocated = the sum of
+     * those activities\' budgets across every MDA running it.
      *
      * @return array<string, mixed>
      */',
@@ -34543,7 +34515,9 @@ return [
           \PHPStan\Dependency\ExportedNode\ExportedPhpDocNode::__set_state(array(
              'phpDocString' => '/**
      * Allocated-vs-utilised for a dashboard scope (FR-PRG-04): allocated = the sum of
-     * the scoped programmes\' budgets; utilised = delivered value in scope.
+     * the scoped activities\' budgets (budget lives on activities, §10); utilised =
+     * delivered value in scope. Partner scope constrains by funded programme;
+     * otherwise by the delivering/owning MDA.
      *
      * @param  list<string>|null  $mdaIds
      * @param  list<string>|null  $programmeIds
@@ -42544,11 +42518,12 @@ return [
        'phpDoc' => 
       \PHPStan\Dependency\ExportedNode\ExportedPhpDocNode::__set_state(array(
          'phpDocString' => '/**
- * A unit of work under a programme (PRD FR-PRG-02). `owner_mda_id` is denormalised
- * from the parent programme so the shared MdaScope applies directly — an activity
- * is scoped to (and mutable only by) the programme\'s owner MDA. Auditable; budget
- * is integer minor units (kobo, NGN). A PostGIS `geom` column exists on PostgreSQL
- * for later GIS work (not surfaced yet).
+ * An MDA-owned unit of work that runs a global catalog {@see Programme} (PRD §10,
+ * ARCH §12.4, FR-PRG-02). `owner_mda_id` is the CREATING MDA — its own MdaScope
+ * column — so one programme can be run by many MDAs, each through its own activity.
+ * The MDA-specific execution details (budget, funding source, schedule, period)
+ * live here, not on the programme. Auditable; money is integer minor units (kobo,
+ * NGN). A PostGIS `geom` column exists on PostgreSQL for later GIS work.
  *
  * @property string $id
  * @property string $programme_id
@@ -42563,6 +42538,7 @@ return [
  * @property Carbon|null $starts_on
  * @property Carbon|null $ends_on
  * @property int|null $budget_amount
+ * @property string|null $funding_source
  * @property ActivityStatus $status
  * @property string|null $created_by
  * @property Carbon|null $created_at
@@ -43473,35 +43449,28 @@ return [
        'phpDoc' => 
       \PHPStan\Dependency\ExportedNode\ExportedPhpDocNode::__set_state(array(
          'phpDocString' => '/**
- * A social-protection programme run by an MDA (PRD FR-PRG-01). The `owner_mda_id`
- * is the ownership + scoping column — only the owner MDA may mutate it (enforced
- * by ProgrammePolicy + MdaScope). Auditable; monetary budget is integer minor
- * units (kobo, NGN).
+ * A GLOBAL catalog entry for a social-protection programme *type* (PRD §10, ARCH
+ * §12.4). It is NOT owned or scoped by any MDA — created only by the System
+ * Administrator (optionally SP Coordination) and readable by all MDAs, who run it
+ * through their own {@see Activity}. It carries type-level attributes only; budget,
+ * funding and period live on the Activity. Auditable.
  *
  * @property string $id
- * @property string $owner_mda_id
  * @property string $name
  * @property string|null $objective
  * @property ProgrammeType $type
+ * @property string|null $benefit_category
  * @property array<int, array<string, mixed>>|null $eligibility
  * @property bool $enforce_eligibility
- * @property string|null $funding_source
- * @property int|null $budget_amount
- * @property Carbon|null $starts_on
- * @property Carbon|null $ends_on
  * @property ProgrammeStatus $status
  * @property string|null $created_by
  * @property Carbon|null $created_at
  * @property Carbon|null $updated_at
- * @property-read Mda $ownerMda
  * @property-read Collection<int, Activity> $activities
  */',
          'namespace' => 'App\\Domain\\Programme\\Models',
          'uses' => 
         array (
-          'mdascoped' => 'App\\Domain\\Access\\Concerns\\MdaScoped',
-          'scopedtomda' => 'App\\Domain\\Access\\Concerns\\ScopedToMda',
-          'mda' => 'App\\Domain\\Access\\Models\\Mda',
           'user' => 'App\\Domain\\Access\\Models\\User',
           'auditable' => 'App\\Domain\\Audit\\Concerns\\Auditable',
           'programmestatus' => 'App\\Domain\\Programme\\Enums\\ProgrammeStatus',
@@ -43525,15 +43494,13 @@ return [
        'extends' => 'Illuminate\\Database\\Eloquent\\Model',
        'implements' => 
       array (
-        0 => 'App\\Domain\\Access\\Concerns\\MdaScoped',
       ),
        'usedTraits' => 
       array (
         0 => 'App\\Domain\\Audit\\Concerns\\Auditable',
         1 => 'Illuminate\\Database\\Eloquent\\Factories\\HasFactory',
         2 => 'Illuminate\\Database\\Eloquent\\Concerns\\HasUuids',
-        3 => 'App\\Domain\\Access\\Concerns\\ScopedToMda',
-        4 => 'Illuminate\\Database\\Eloquent\\SoftDeletes',
+        3 => 'Illuminate\\Database\\Eloquent\\SoftDeletes',
       ),
        'traitUseAdaptations' => 
       array (
@@ -43579,9 +43546,6 @@ return [
              'namespace' => 'App\\Domain\\Programme\\Models',
              'uses' => 
             array (
-              'mdascoped' => 'App\\Domain\\Access\\Concerns\\MdaScoped',
-              'scopedtomda' => 'App\\Domain\\Access\\Concerns\\ScopedToMda',
-              'mda' => 'App\\Domain\\Access\\Models\\Mda',
               'user' => 'App\\Domain\\Access\\Models\\User',
               'auditable' => 'App\\Domain\\Audit\\Concerns\\Auditable',
               'programmestatus' => 'App\\Domain\\Programme\\Enums\\ProgrammeStatus',
@@ -43632,9 +43596,6 @@ return [
              'namespace' => 'App\\Domain\\Programme\\Models',
              'uses' => 
             array (
-              'mdascoped' => 'App\\Domain\\Access\\Concerns\\MdaScoped',
-              'scopedtomda' => 'App\\Domain\\Access\\Concerns\\ScopedToMda',
-              'mda' => 'App\\Domain\\Access\\Models\\Mda',
               'user' => 'App\\Domain\\Access\\Models\\User',
               'auditable' => 'App\\Domain\\Audit\\Concerns\\Auditable',
               'programmestatus' => 'App\\Domain\\Programme\\Enums\\ProgrammeStatus',
@@ -43682,9 +43643,6 @@ return [
              'namespace' => 'App\\Domain\\Programme\\Models',
              'uses' => 
             array (
-              'mdascoped' => 'App\\Domain\\Access\\Concerns\\MdaScoped',
-              'scopedtomda' => 'App\\Domain\\Access\\Concerns\\ScopedToMda',
-              'mda' => 'App\\Domain\\Access\\Models\\Mda',
               'user' => 'App\\Domain\\Access\\Models\\User',
               'auditable' => 'App\\Domain\\Audit\\Concerns\\Auditable',
               'programmestatus' => 'App\\Domain\\Programme\\Enums\\ProgrammeStatus',
@@ -43737,18 +43695,15 @@ return [
         )),
         5 => 
         \PHPStan\Dependency\ExportedNode\ExportedMethodNode::__set_state(array(
-           'name' => 'ownerMda',
+           'name' => 'creator',
            'phpDoc' => 
           \PHPStan\Dependency\ExportedNode\ExportedPhpDocNode::__set_state(array(
              'phpDocString' => '/**
-     * @return BelongsTo<Mda, $this>
+     * @return BelongsTo<User, $this>
      */',
              'namespace' => 'App\\Domain\\Programme\\Models',
              'uses' => 
             array (
-              'mdascoped' => 'App\\Domain\\Access\\Concerns\\MdaScoped',
-              'scopedtomda' => 'App\\Domain\\Access\\Concerns\\ScopedToMda',
-              'mda' => 'App\\Domain\\Access\\Models\\Mda',
               'user' => 'App\\Domain\\Access\\Models\\User',
               'auditable' => 'App\\Domain\\Audit\\Concerns\\Auditable',
               'programmestatus' => 'App\\Domain\\Programme\\Enums\\ProgrammeStatus',
@@ -43783,52 +43738,6 @@ return [
         )),
         6 => 
         \PHPStan\Dependency\ExportedNode\ExportedMethodNode::__set_state(array(
-           'name' => 'creator',
-           'phpDoc' => 
-          \PHPStan\Dependency\ExportedNode\ExportedPhpDocNode::__set_state(array(
-             'phpDocString' => '/**
-     * @return BelongsTo<User, $this>
-     */',
-             'namespace' => 'App\\Domain\\Programme\\Models',
-             'uses' => 
-            array (
-              'mdascoped' => 'App\\Domain\\Access\\Concerns\\MdaScoped',
-              'scopedtomda' => 'App\\Domain\\Access\\Concerns\\ScopedToMda',
-              'mda' => 'App\\Domain\\Access\\Models\\Mda',
-              'user' => 'App\\Domain\\Access\\Models\\User',
-              'auditable' => 'App\\Domain\\Audit\\Concerns\\Auditable',
-              'programmestatus' => 'App\\Domain\\Programme\\Enums\\ProgrammeStatus',
-              'programmetype' => 'App\\Domain\\Programme\\Enums\\ProgrammeType',
-              'programmefactory' => 'Database\\Factories\\ProgrammeFactory',
-              'collection' => 'Illuminate\\Database\\Eloquent\\Collection',
-              'hasuuids' => 'Illuminate\\Database\\Eloquent\\Concerns\\HasUuids',
-              'hasfactory' => 'Illuminate\\Database\\Eloquent\\Factories\\HasFactory',
-              'model' => 'Illuminate\\Database\\Eloquent\\Model',
-              'belongsto' => 'Illuminate\\Database\\Eloquent\\Relations\\BelongsTo',
-              'hasmany' => 'Illuminate\\Database\\Eloquent\\Relations\\HasMany',
-              'softdeletes' => 'Illuminate\\Database\\Eloquent\\SoftDeletes',
-              'carbon' => 'Illuminate\\Support\\Carbon',
-            ),
-             'constUses' => 
-            array (
-            ),
-          )),
-           'byRef' => false,
-           'public' => true,
-           'private' => false,
-           'abstract' => false,
-           'final' => false,
-           'static' => false,
-           'returnType' => 'Illuminate\\Database\\Eloquent\\Relations\\BelongsTo',
-           'parameters' => 
-          array (
-          ),
-           'attributes' => 
-          array (
-          ),
-        )),
-        7 => 
-        \PHPStan\Dependency\ExportedNode\ExportedMethodNode::__set_state(array(
            'name' => 'activities',
            'phpDoc' => 
           \PHPStan\Dependency\ExportedNode\ExportedPhpDocNode::__set_state(array(
@@ -43838,9 +43747,6 @@ return [
              'namespace' => 'App\\Domain\\Programme\\Models',
              'uses' => 
             array (
-              'mdascoped' => 'App\\Domain\\Access\\Concerns\\MdaScoped',
-              'scopedtomda' => 'App\\Domain\\Access\\Concerns\\ScopedToMda',
-              'mda' => 'App\\Domain\\Access\\Models\\Mda',
               'user' => 'App\\Domain\\Access\\Models\\User',
               'auditable' => 'App\\Domain\\Audit\\Concerns\\Auditable',
               'programmestatus' => 'App\\Domain\\Programme\\Enums\\ProgrammeStatus',
@@ -44045,10 +43951,10 @@ return [
        'phpDoc' => 
       \PHPStan\Dependency\ExportedNode\ExportedPhpDocNode::__set_state(array(
          'phpDocString' => '/**
- * Authorization for activities (PRD FR-PRG-02). An activity belongs to the
- * programme owner\'s MDA (via the denormalised `owner_mda_id`); only that MDA may
- * mutate. Creating an activity is a mutation of an owned programme, so `create`
- * takes the parent programme and checks ownership.
+ * Authorization for activities (PRD §10, ARCH §12.4, FR-PRG-02). An activity is
+ * owned by the MDA that created it (`owner_mda_id`); only that MDA may mutate it.
+ * Any MDA user may create an activity against a GLOBAL catalog programme — the new
+ * activity is owned by their own MDA, so there is no programme-ownership check.
  */',
          'namespace' => 'App\\Domain\\Programme\\Policies',
          'uses' => 
@@ -44155,7 +44061,11 @@ return [
            'name' => 'create',
            'phpDoc' => 
           \PHPStan\Dependency\ExportedNode\ExportedPhpDocNode::__set_state(array(
-             'phpDocString' => '/** Create an activity under a programme — owner MDA of the programme only. */',
+             'phpDocString' => '/**
+     * Create an activity that runs a catalog programme — any MDA user may, and it
+     * becomes owned by their MDA. The parent programme is passed to confirm it
+     * exists (a valid catalog reference); its (absent) ownership is irrelevant.
+     */',
              'namespace' => 'App\\Domain\\Programme\\Policies',
              'uses' => 
             array (
@@ -44278,10 +44188,10 @@ return [
        'phpDoc' => 
       \PHPStan\Dependency\ExportedNode\ExportedPhpDocNode::__set_state(array(
          'phpDocString' => '/**
- * Authorization for enrollments (PRD FR-PRG-03). Enrolling into a programme is done
- * by the programme\'s **owner MDA** (the enrolling MDA); whether that MDA may enroll
- * a specific non-owned beneficiary is the serve-seam check in EnrollmentService.
- * Oversight (`cross-mda.view`) reads across MDAs but never enrolls.
+ * Authorization for enrollments (PRD FR-PRG-03, §10). Any MDA user may enroll into
+ * a GLOBAL catalog programme — the enrolling MDA is their own MDA. Whether they may
+ * enroll a specific non-owned beneficiary is the serve-seam check in
+ * EnrollmentService. Oversight (`cross-mda.view`) reads across MDAs but never enrolls.
  */',
          'namespace' => 'App\\Domain\\Programme\\Policies',
          'uses' => 
@@ -44388,7 +44298,7 @@ return [
            'name' => 'create',
            'phpDoc' => 
           \PHPStan\Dependency\ExportedNode\ExportedPhpDocNode::__set_state(array(
-             'phpDocString' => '/** Enroll into a programme — the programme\'s owner MDA only. */',
+             'phpDocString' => '/** Enroll into a catalog programme — any MDA user; the enrolling MDA is their own. */',
              'namespace' => 'App\\Domain\\Programme\\Policies',
              'uses' => 
             array (
@@ -44511,13 +44421,16 @@ return [
        'phpDoc' => 
       \PHPStan\Dependency\ExportedNode\ExportedPhpDocNode::__set_state(array(
          'phpDocString' => '/**
- * Authorization for programmes (PRD FR-PRG-01). The core rule: **only the owner
- * MDA may mutate** (create/update/archive). Oversight roles (`cross-mda.view`)
- * read across all MDAs but never mutate another MDA\'s programme.
+ * Authorization for the GLOBAL programme catalog (PRD §10, ARCH §12.4). Programmes
+ * are a shared, unowned catalog: **any authenticated role may list/show** them,
+ * but **only catalog administrators may create/edit/archive** — the System
+ * Administrator, optionally SP Coordination (the "AdminOnly" rule). MDAs run
+ * programmes through their own activities and can never mutate the catalog.
  */',
          'namespace' => 'App\\Domain\\Programme\\Policies',
          'uses' => 
         array (
+          'rolekey' => 'App\\Domain\\Access\\Enums\\RoleKey',
           'user' => 'App\\Domain\\Access\\Models\\User',
           'programme' => 'App\\Domain\\Programme\\Models\\Programme',
         ),
@@ -44650,10 +44563,11 @@ return [
            'name' => 'update',
            'phpDoc' => 
           \PHPStan\Dependency\ExportedNode\ExportedPhpDocNode::__set_state(array(
-             'phpDocString' => '/** Owner-only edit/archive. cross-mda.view does NOT grant mutation. */',
+             'phpDocString' => '/** Edit/archive the catalog entry — catalog administrators only. */',
              'namespace' => 'App\\Domain\\Programme\\Policies',
              'uses' => 
             array (
+              'rolekey' => 'App\\Domain\\Access\\Enums\\RoleKey',
               'user' => 'App\\Domain\\Access\\Models\\User',
               'programme' => 'App\\Domain\\Programme\\Models\\Programme',
             ),
@@ -62575,6 +62489,7 @@ return [
           'benefit' => 'App\\Domain\\Benefit\\Models\\Benefit',
           'ledgeraggregator' => 'App\\Domain\\Benefit\\Services\\LedgerAggregator',
           'grievance' => 'App\\Domain\\Grievance\\Models\\Grievance',
+          'activity' => 'App\\Domain\\Programme\\Models\\Activity',
           'programme' => 'App\\Domain\\Programme\\Models\\Programme',
           'referral' => 'App\\Domain\\Referral\\Models\\Referral',
           'beneficiary' => 'App\\Domain\\Registry\\Models\\Beneficiary',
@@ -62647,6 +62562,7 @@ return [
               'benefit' => 'App\\Domain\\Benefit\\Models\\Benefit',
               'ledgeraggregator' => 'App\\Domain\\Benefit\\Services\\LedgerAggregator',
               'grievance' => 'App\\Domain\\Grievance\\Models\\Grievance',
+              'activity' => 'App\\Domain\\Programme\\Models\\Activity',
               'programme' => 'App\\Domain\\Programme\\Models\\Programme',
               'referral' => 'App\\Domain\\Referral\\Models\\Referral',
               'beneficiary' => 'App\\Domain\\Registry\\Models\\Beneficiary',
@@ -67891,9 +67807,9 @@ return [
        'phpDoc' => 
       \PHPStan\Dependency\ExportedNode\ExportedPhpDocNode::__set_state(array(
          'phpDocString' => '/**
- * Activity management under a programme (PRD FR-PRG-02). Scoped to the programme
- * owner\'s MDA (via the activity\'s denormalised owner_mda_id); create/update/archive
- * are owner-MDA only via ActivityPolicy. Activities are archived, never deleted.
+ * Activity management (PRD §10, ARCH §12.4, FR-PRG-02). An activity runs a global
+ * catalog programme and is owned by the CREATING MDA (its own owner_mda_id + scope);
+ * create/update/archive are owner-MDA only via ActivityPolicy. Archived, never deleted.
  */',
          'namespace' => 'App\\Http\\Controllers\\Api\\V1\\Programme',
          'uses' => 
@@ -68451,14 +68367,14 @@ return [
        'phpDoc' => 
       \PHPStan\Dependency\ExportedNode\ExportedPhpDocNode::__set_state(array(
          'phpDocString' => '/**
- * Programme management (PRD FR-PRG-01). List/show are MDA-scoped by the model\'s
- * global MdaScope (oversight roles see all); create/update/archive are owner-MDA
- * only via ProgrammePolicy. Programmes are archived (status), never deleted.
+ * Programme catalog management (PRD §10, ARCH §12.4). Programmes are a GLOBAL,
+ * unowned catalog: list/show are visible to every authenticated role;
+ * create/update/archive are catalog-admin only (System Administrator / SP
+ * Coordination) via ProgrammePolicy. Programmes are archived (status), never deleted.
  */',
          'namespace' => 'App\\Http\\Controllers\\Api\\V1\\Programme',
          'uses' => 
         array (
-          'mdascope' => 'App\\Domain\\Access\\Scopes\\MdaScope',
           'ledgeraggregator' => 'App\\Domain\\Benefit\\Services\\LedgerAggregator',
           'programmestatus' => 'App\\Domain\\Programme\\Enums\\ProgrammeStatus',
           'programme' => 'App\\Domain\\Programme\\Models\\Programme',
@@ -68586,14 +68502,10 @@ return [
            'name' => 'update',
            'phpDoc' => 
           \PHPStan\Dependency\ExportedNode\ExportedPhpDocNode::__set_state(array(
-             'phpDocString' => '/**
-     * Edit the programme — owner MDA only (FR-PRG-01). Resolved without the owner
-     * scope so a non-owner gets 403 (the policy is the boundary), not 404.
-     */',
+             'phpDocString' => '/** Edit the catalog entry — catalog admin only (§10), enforced by the policy. */',
              'namespace' => 'App\\Http\\Controllers\\Api\\V1\\Programme',
              'uses' => 
             array (
-              'mdascope' => 'App\\Domain\\Access\\Scopes\\MdaScope',
               'ledgeraggregator' => 'App\\Domain\\Benefit\\Services\\LedgerAggregator',
               'programmestatus' => 'App\\Domain\\Programme\\Enums\\ProgrammeStatus',
               'programme' => 'App\\Domain\\Programme\\Models\\Programme',
@@ -68658,7 +68570,6 @@ return [
              'namespace' => 'App\\Http\\Controllers\\Api\\V1\\Programme',
              'uses' => 
             array (
-              'mdascope' => 'App\\Domain\\Access\\Scopes\\MdaScope',
               'ledgeraggregator' => 'App\\Domain\\Benefit\\Services\\LedgerAggregator',
               'programmestatus' => 'App\\Domain\\Programme\\Enums\\ProgrammeStatus',
               'programme' => 'App\\Domain\\Programme\\Models\\Programme',
@@ -68719,11 +68630,10 @@ return [
            'name' => 'archive',
            'phpDoc' => 
           \PHPStan\Dependency\ExportedNode\ExportedPhpDocNode::__set_state(array(
-             'phpDocString' => '/** Archive the programme (owner MDA only) — reversible status change, not a delete. */',
+             'phpDocString' => '/** Archive the catalog entry (catalog admin only) — reversible status change, not a delete. */',
              'namespace' => 'App\\Http\\Controllers\\Api\\V1\\Programme',
              'uses' => 
             array (
-              'mdascope' => 'App\\Domain\\Access\\Scopes\\MdaScope',
               'ledgeraggregator' => 'App\\Domain\\Benefit\\Services\\LedgerAggregator',
               'programmestatus' => 'App\\Domain\\Programme\\Enums\\ProgrammeStatus',
               'programme' => 'App\\Domain\\Programme\\Models\\Programme',
@@ -76463,9 +76373,10 @@ return [
        'phpDoc' => 
       \PHPStan\Dependency\ExportedNode\ExportedPhpDocNode::__set_state(array(
          'phpDocString' => '/**
- * Create a programme (PRD FR-PRG-01). Ownership + authorization are handled in the
- * controller/policy; this validates the configuration payload. Monetary amounts
- * are integer minor units (kobo, NGN).
+ * Create a GLOBAL catalog programme (PRD §10). Only type-level attributes live
+ * here — name, objective, type, benefit category and standard eligibility. Budget,
+ * funding and period belong to the Activity, not the programme. Authorization
+ * (catalog admin only) is handled in the controller/policy.
  */',
          'namespace' => 'App\\Http\\Requests\\Programme',
          'uses' => 
@@ -76747,8 +76658,8 @@ return [
        'phpDoc' => 
       \PHPStan\Dependency\ExportedNode\ExportedPhpDocNode::__set_state(array(
          'phpDocString' => '/**
- * Update a programme (PRD FR-PRG-01) — partial; owner MDA only (policy). Fields
- * are `sometimes` so a partial patch validates only what is present.
+ * Update a catalog programme (PRD §10) — partial; catalog admin only (policy).
+ * Only type-level attributes are editable; budget/funding/period live on activities.
  */',
          'namespace' => 'App\\Http\\Requests\\Programme',
          'uses' => 

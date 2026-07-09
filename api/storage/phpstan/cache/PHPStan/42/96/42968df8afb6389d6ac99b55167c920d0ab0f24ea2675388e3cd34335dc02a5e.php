@@ -2,7 +2,7 @@
 
 // osfsl-/var/www/html/database/factories/ActivityFactory.php-PHPStan\BetterReflection\Reflection\ReflectionClass-Database\Factories\ActivityFactory
 return \PHPStan\Cache\CacheItem::__set_state(array(
-   'variableKey' => 'v2-4a43d95ad8a0cc757dca9a76d3bbc12d516e5815ccc9f08af88dbea6973bde08-8.3.31-6.70.0.1',
+   'variableKey' => 'v2-16cc580976548d12ba35503e1dbe4e267dfe2033f60a39387369717cc016a33e-8.3.31-6.70.0.1',
    'data' => 
   array (
     'locatedSource' => 
@@ -23,16 +23,16 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
     'isBackedEnum' => false,
     'modifiers' => 0,
     'docComment' => '/**
- * Synthetic activities. `owner_mda_id` is inherited from the parent programme so
- * the activity is scoped to the same MDA (matching the write path).
+ * Synthetic activities (§10). `owner_mda_id` is the activity\'s OWN creating MDA —
+ * independent of the (unowned, global) programme. Budget + funding live here.
  *
  * @extends Factory<Activity>
  */',
     'attributes' => 
     array (
     ),
-    'startLine' => 18,
-    'endLine' => 65,
+    'startLine' => 19,
+    'endLine' => 61,
     'startColumn' => 1,
     'endColumn' => 1,
     'parentClassName' => 'Illuminate\\Database\\Eloquent\\Factories\\Factory',
@@ -59,20 +59,20 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
           'code' => '\\App\\Domain\\Programme\\Models\\Activity::class',
           'attributes' => 
           array (
-            'startLine' => 20,
-            'endLine' => 20,
-            'startTokenPos' => 53,
-            'startFilePos' => 504,
-            'endTokenPos' => 55,
-            'endFilePos' => 518,
+            'startLine' => 21,
+            'endLine' => 21,
+            'startTokenPos' => 58,
+            'startFilePos' => 552,
+            'endTokenPos' => 60,
+            'endFilePos' => 566,
           ),
         ),
         'docComment' => NULL,
         'attributes' => 
         array (
         ),
-        'startLine' => 20,
-        'endLine' => 20,
+        'startLine' => 21,
+        'endLine' => 21,
         'startColumn' => 5,
         'endColumn' => 39,
         'isPromoted' => false,
@@ -107,43 +107,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         'docComment' => '/**
  * @return array<string, mixed>
  */',
-        'startLine' => 25,
-        'endLine' => 42,
-        'startColumn' => 5,
-        'endColumn' => 5,
-        'couldThrow' => false,
-        'isClosure' => false,
-        'isGenerator' => false,
-        'isVariadic' => false,
-        'modifiers' => 1,
-        'namespace' => 'Database\\Factories',
-        'declaringClassName' => 'Database\\Factories\\ActivityFactory',
-        'implementingClassName' => 'Database\\Factories\\ActivityFactory',
-        'currentClassName' => 'Database\\Factories\\ActivityFactory',
-        'aliasName' => NULL,
-      ),
-      'configure' => 
-      array (
-        'name' => 'configure',
-        'parameters' => 
-        array (
-        ),
-        'returnsReference' => false,
-        'returnType' => 
-        array (
-          'class' => 'PHPStan\\BetterReflection\\Reflection\\ReflectionNamedType',
-          'data' => 
-          array (
-            'name' => 'static',
-            'isIdentifier' => false,
-          ),
-        ),
-        'attributes' => 
-        array (
-        ),
-        'docComment' => NULL,
-        'startLine' => 44,
-        'endLine' => 53,
+        'startLine' => 26,
+        'endLine' => 44,
         'startColumn' => 5,
         'endColumn' => 5,
         'couldThrow' => false,
@@ -181,12 +146,78 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             'attributes' => 
             array (
             ),
-            'startLine' => 58,
-            'endLine' => 58,
+            'startLine' => 50,
+            'endLine' => 50,
             'startColumn' => 34,
             'endColumn' => 53,
             'parameterIndex' => 0,
             'isOptional' => false,
+          ),
+          'owner' => 
+          array (
+            'name' => 'owner',
+            'default' => 
+            array (
+              'code' => 'null',
+              'attributes' => 
+              array (
+                'startLine' => 50,
+                'endLine' => 50,
+                'startTokenPos' => 317,
+                'startFilePos' => 1761,
+                'endTokenPos' => 317,
+                'endFilePos' => 1764,
+              ),
+            ),
+            'type' => 
+            array (
+              'class' => 'PHPStan\\BetterReflection\\Reflection\\ReflectionUnionType',
+              'data' => 
+              array (
+                'types' => 
+                array (
+                  0 => 
+                  array (
+                    'class' => 'PHPStan\\BetterReflection\\Reflection\\ReflectionNamedType',
+                    'data' => 
+                    array (
+                      'name' => 'App\\Domain\\Access\\Models\\Mda',
+                      'isIdentifier' => false,
+                    ),
+                  ),
+                  1 => 
+                  array (
+                    'class' => 'PHPStan\\BetterReflection\\Reflection\\ReflectionNamedType',
+                    'data' => 
+                    array (
+                      'name' => 'string',
+                      'isIdentifier' => true,
+                    ),
+                  ),
+                  2 => 
+                  array (
+                    'class' => 'PHPStan\\BetterReflection\\Reflection\\ReflectionNamedType',
+                    'data' => 
+                    array (
+                      'name' => 'null',
+                      'isIdentifier' => true,
+                    ),
+                  ),
+                ),
+              ),
+            ),
+            'isVariadic' => false,
+            'byRef' => false,
+            'isPromoted' => false,
+            'attributes' => 
+            array (
+            ),
+            'startLine' => 50,
+            'endLine' => 50,
+            'startColumn' => 56,
+            'endColumn' => 84,
+            'parameterIndex' => 1,
+            'isOptional' => true,
           ),
         ),
         'returnsReference' => false,
@@ -203,10 +234,11 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         array (
         ),
         'docComment' => '/**
- * Attach to an existing programme, inheriting its owner MDA.
+ * Run an existing catalog programme. Pass the owning MDA (the MDA creating the
+ * activity); omit it to let the factory mint a fresh MDA.
  */',
-        'startLine' => 58,
-        'endLine' => 64,
+        'startLine' => 50,
+        'endLine' => 60,
         'startColumn' => 5,
         'endColumn' => 5,
         'couldThrow' => false,

@@ -2,7 +2,7 @@
 
 // odsl-/var/www/html/app/Domain/Benefit/Services/LedgerAggregator.php-PHPStan\BetterReflection\Reflection\ReflectionClass-App\Domain\Benefit\Services\LedgerAggregator
 return \PHPStan\Cache\CacheItem::__set_state(array(
-   'variableKey' => 'v2-6.70.0.1-8.3.31-a8abca167eb346c56e7e19595f7eae00d99174f51e154057074605ff86d3bf54',
+   'variableKey' => 'v2-6.70.0.1-8.3.31-34ac8a4569f1c973ad723a19fa9ce2c6e12b9c324b9bb5354a816caca9a89731',
    'data' => 
   array (
     'locatedSource' => 
@@ -36,7 +36,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
     array (
     ),
     'startLine' => 24,
-    'endLine' => 243,
+    'endLine' => 252,
     'startColumn' => 1,
     'endColumn' => 1,
     'parentClassName' => NULL,
@@ -107,8 +107,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             'attributes' => 
             array (
             ),
-            'startLine' => 42,
-            'endLine' => 42,
+            'startLine' => 44,
+            'endLine' => 44,
             'startColumn' => 37,
             'endColumn' => 56,
             'parameterIndex' => 0,
@@ -129,12 +129,14 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         array (
         ),
         'docComment' => '/**
- * Allocated vs utilised for a programme (FR-PRG-04).
+ * Allocated vs utilised for a programme (FR-PRG-04). Budget lives on the
+ * activities that run the (global) programme (§10), so allocated = the sum of
+ * those activities\' budgets across every MDA running it.
  *
  * @return array<string, mixed>
  */',
-        'startLine' => 42,
-        'endLine' => 45,
+        'startLine' => 44,
+        'endLine' => 52,
         'startColumn' => 5,
         'endColumn' => 5,
         'couldThrow' => false,
@@ -172,8 +174,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             'attributes' => 
             array (
             ),
-            'startLine' => 52,
-            'endLine' => 52,
+            'startLine' => 59,
+            'endLine' => 59,
             'startColumn' => 36,
             'endColumn' => 53,
             'parameterIndex' => 0,
@@ -198,8 +200,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
  *
  * @return array<string, mixed>
  */',
-        'startLine' => 52,
-        'endLine' => 55,
+        'startLine' => 59,
+        'endLine' => 62,
         'startColumn' => 5,
         'endColumn' => 5,
         'couldThrow' => false,
@@ -237,8 +239,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             'attributes' => 
             array (
             ),
-            'startLine' => 63,
-            'endLine' => 63,
+            'startLine' => 70,
+            'endLine' => 70,
             'startColumn' => 31,
             'endColumn' => 47,
             'parameterIndex' => 0,
@@ -263,8 +265,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             'attributes' => 
             array (
             ),
-            'startLine' => 63,
-            'endLine' => 63,
+            'startLine' => 70,
+            'endLine' => 70,
             'startColumn' => 50,
             'endColumn' => 63,
             'parameterIndex' => 1,
@@ -290,8 +292,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
  * @param  array<string, mixed>  $filters
  * @return array<string, mixed>
  */',
-        'startLine' => 63,
-        'endLine' => 86,
+        'startLine' => 70,
+        'endLine' => 93,
         'startColumn' => 5,
         'endColumn' => 5,
         'couldThrow' => true,
@@ -348,8 +350,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             'attributes' => 
             array (
             ),
-            'startLine' => 99,
-            'endLine' => 99,
+            'startLine' => 106,
+            'endLine' => 106,
             'startColumn' => 34,
             'endColumn' => 47,
             'parameterIndex' => 0,
@@ -393,8 +395,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             'attributes' => 
             array (
             ),
-            'startLine' => 99,
-            'endLine' => 99,
+            'startLine' => 106,
+            'endLine' => 106,
             'startColumn' => 50,
             'endColumn' => 69,
             'parameterIndex' => 1,
@@ -425,8 +427,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
  * @param  list<string>|null  $programmeIds
  * @return array{benefit_count: int, total_value: int, total_quantity: string}
  */',
-        'startLine' => 99,
-        'endLine' => 102,
+        'startLine' => 106,
+        'endLine' => 109,
         'startColumn' => 5,
         'endColumn' => 5,
         'couldThrow' => false,
@@ -483,8 +485,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             'attributes' => 
             array (
             ),
-            'startLine' => 112,
-            'endLine' => 112,
+            'startLine' => 121,
+            'endLine' => 121,
             'startColumn' => 34,
             'endColumn' => 47,
             'parameterIndex' => 0,
@@ -528,8 +530,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             'attributes' => 
             array (
             ),
-            'startLine' => 112,
-            'endLine' => 112,
+            'startLine' => 121,
+            'endLine' => 121,
             'startColumn' => 50,
             'endColumn' => 69,
             'parameterIndex' => 1,
@@ -551,14 +553,16 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         ),
         'docComment' => '/**
  * Allocated-vs-utilised for a dashboard scope (FR-PRG-04): allocated = the sum of
- * the scoped programmes\' budgets; utilised = delivered value in scope.
+ * the scoped activities\' budgets (budget lives on activities, §10); utilised =
+ * delivered value in scope. Partner scope constrains by funded programme;
+ * otherwise by the delivering/owning MDA.
  *
  * @param  list<string>|null  $mdaIds
  * @param  list<string>|null  $programmeIds
  * @return array<string, mixed>
  */',
-        'startLine' => 112,
-        'endLine' => 133,
+        'startLine' => 121,
+        'endLine' => 142,
         'startColumn' => 5,
         'endColumn' => 5,
         'couldThrow' => false,
@@ -596,8 +600,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             'attributes' => 
             array (
             ),
-            'startLine' => 143,
-            'endLine' => 143,
+            'startLine' => 152,
+            'endLine' => 152,
             'startColumn' => 33,
             'endColumn' => 49,
             'parameterIndex' => 0,
@@ -641,8 +645,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             'attributes' => 
             array (
             ),
-            'startLine' => 143,
-            'endLine' => 143,
+            'startLine' => 152,
+            'endLine' => 152,
             'startColumn' => 52,
             'endColumn' => 65,
             'parameterIndex' => 1,
@@ -686,8 +690,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             'attributes' => 
             array (
             ),
-            'startLine' => 143,
-            'endLine' => 143,
+            'startLine' => 152,
+            'endLine' => 152,
             'startColumn' => 68,
             'endColumn' => 87,
             'parameterIndex' => 2,
@@ -715,8 +719,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
  * @param  list<string>|null  $programmeIds
  * @return array<int, array<string, mixed>>
  */',
-        'startLine' => 143,
-        'endLine' => 158,
+        'startLine' => 152,
+        'endLine' => 167,
         'startColumn' => 5,
         'endColumn' => 5,
         'couldThrow' => true,
@@ -773,8 +777,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             'attributes' => 
             array (
             ),
-            'startLine' => 167,
-            'endLine' => 167,
+            'startLine' => 176,
+            'endLine' => 176,
             'startColumn' => 35,
             'endColumn' => 48,
             'parameterIndex' => 0,
@@ -818,8 +822,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             'attributes' => 
             array (
             ),
-            'startLine' => 167,
-            'endLine' => 167,
+            'startLine' => 176,
+            'endLine' => 176,
             'startColumn' => 51,
             'endColumn' => 70,
             'parameterIndex' => 1,
@@ -846,8 +850,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
  * @param  list<string>|null  $programmeIds
  * @return Builder<Benefit>
  */',
-        'startLine' => 167,
-        'endLine' => 180,
+        'startLine' => 176,
+        'endLine' => 189,
         'startColumn' => 5,
         'endColumn' => 5,
         'couldThrow' => false,
@@ -904,8 +908,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             'attributes' => 
             array (
             ),
-            'startLine' => 186,
-            'endLine' => 186,
+            'startLine' => 195,
+            'endLine' => 195,
             'startColumn' => 29,
             'endColumn' => 43,
             'parameterIndex' => 0,
@@ -930,8 +934,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             'attributes' => 
             array (
             ),
-            'startLine' => 186,
-            'endLine' => 186,
+            'startLine' => 195,
+            'endLine' => 195,
             'startColumn' => 46,
             'endColumn' => 67,
             'parameterIndex' => 1,
@@ -955,8 +959,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
  * @param  Builder<Benefit>  $utilisedQuery
  * @return array<string, mixed>
  */',
-        'startLine' => 186,
-        'endLine' => 199,
+        'startLine' => 195,
+        'endLine' => 208,
         'startColumn' => 5,
         'endColumn' => 5,
         'couldThrow' => false,
@@ -994,8 +998,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             'attributes' => 
             array (
             ),
-            'startLine' => 205,
-            'endLine' => 205,
+            'startLine' => 214,
+            'endLine' => 214,
             'startColumn' => 29,
             'endColumn' => 42,
             'parameterIndex' => 0,
@@ -1019,8 +1023,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
  * @param  Builder<Benefit>  $query
  * @return array{benefit_count: int, total_value: int, total_quantity: string}
  */',
-        'startLine' => 205,
-        'endLine' => 214,
+        'startLine' => 214,
+        'endLine' => 223,
         'startColumn' => 5,
         'endColumn' => 5,
         'couldThrow' => false,
@@ -1058,8 +1062,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             'attributes' => 
             array (
             ),
-            'startLine' => 221,
-            'endLine' => 221,
+            'startLine' => 230,
+            'endLine' => 230,
             'startColumn' => 35,
             'endColumn' => 48,
             'parameterIndex' => 0,
@@ -1084,8 +1088,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             'attributes' => 
             array (
             ),
-            'startLine' => 221,
-            'endLine' => 221,
+            'startLine' => 230,
+            'endLine' => 230,
             'startColumn' => 51,
             'endColumn' => 64,
             'parameterIndex' => 1,
@@ -1110,8 +1114,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
  * @param  array<string, mixed>  $filters
  * @return Builder<Benefit>
  */',
-        'startLine' => 221,
-        'endLine' => 242,
+        'startLine' => 230,
+        'endLine' => 251,
         'startColumn' => 5,
         'endColumn' => 5,
         'couldThrow' => false,

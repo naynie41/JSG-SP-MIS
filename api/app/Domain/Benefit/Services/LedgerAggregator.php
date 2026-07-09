@@ -35,13 +35,20 @@ class LedgerAggregator
     ];
 
     /**
-     * Allocated vs utilised for a programme (FR-PRG-04).
+     * Allocated vs utilised for a programme (FR-PRG-04). Budget lives on the
+     * activities that run the (global) programme (§10), so allocated = the sum of
+     * those activities' budgets across every MDA running it.
      *
      * @return array<string, mixed>
      */
     public function programmeBudget(Programme $programme): array
     {
-        return $this->budget($programme->budget_amount, Benefit::query()->where('programme_id', $programme->id));
+        $allocated = (int) Activity::query()
+            ->withoutGlobalScope(MdaScope::class)
+            ->where('programme_id', $programme->id)
+            ->sum('budget_amount');
+
+        return $this->budget($allocated, Benefit::query()->where('programme_id', $programme->id));
     }
 
     /**
@@ -103,7 +110,9 @@ class LedgerAggregator
 
     /**
      * Allocated-vs-utilised for a dashboard scope (FR-PRG-04): allocated = the sum of
-     * the scoped programmes' budgets; utilised = delivered value in scope.
+     * the scoped activities' budgets (budget lives on activities, §10); utilised =
+     * delivered value in scope. Partner scope constrains by funded programme;
+     * otherwise by the delivering/owning MDA.
      *
      * @param  list<string>|null  $mdaIds
      * @param  list<string>|null  $programmeIds
@@ -111,14 +120,14 @@ class LedgerAggregator
      */
     public function scopedBudget(?array $mdaIds, ?array $programmeIds): array
     {
-        $programmes = Programme::query()->withoutGlobalScope(MdaScope::class);
+        $activities = Activity::query()->withoutGlobalScope(MdaScope::class);
         if ($programmeIds !== null) {
-            $programmes->whereIn('id', $programmeIds);
+            $activities->whereIn('programme_id', $programmeIds);
         } elseif ($mdaIds !== null) {
-            $programmes->whereIn('owner_mda_id', $mdaIds);
+            $activities->whereIn('owner_mda_id', $mdaIds);
         }
 
-        $allocated = (int) $programmes->sum('budget_amount');
+        $allocated = (int) $activities->sum('budget_amount');
         $totals = $this->scopedTotals($mdaIds, $programmeIds);
         $utilised = $totals['total_value'];
 

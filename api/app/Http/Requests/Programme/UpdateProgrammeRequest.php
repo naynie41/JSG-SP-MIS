@@ -10,8 +10,8 @@ use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Rule;
 
 /**
- * Update a programme (PRD FR-PRG-01) — partial; owner MDA only (policy). Fields
- * are `sometimes` so a partial patch validates only what is present.
+ * Update a catalog programme (PRD §10) — partial; catalog admin only (policy).
+ * Only type-level attributes are editable; budget/funding/period live on activities.
  */
 class UpdateProgrammeRequest extends FormRequest
 {
@@ -29,13 +29,10 @@ class UpdateProgrammeRequest extends FormRequest
             'name' => ['sometimes', 'required', 'string', 'max:255'],
             'objective' => ['nullable', 'string', 'max:2000'],
             'type' => ['sometimes', 'required', Rule::enum(ProgrammeType::class)],
+            'benefit_category' => ['nullable', 'string', 'max:255'],
             'eligibility' => ['nullable', 'array'],
             'eligibility.*' => ['array'],
             'enforce_eligibility' => ['nullable', 'boolean'],
-            'funding_source' => ['nullable', 'string', 'max:255'],
-            'budget_amount' => ['nullable', 'integer', 'min:0'],
-            'starts_on' => ['nullable', 'date'],
-            'ends_on' => ['nullable', 'date', 'after_or_equal:starts_on'],
             'status' => ['sometimes', 'required', Rule::enum(ProgrammeStatus::class)],
         ];
     }

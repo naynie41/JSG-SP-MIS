@@ -41,16 +41,20 @@ class BeneficiaryRevealPresenter
      */
     private function programmes(Beneficiary $beneficiary): array
     {
+        // Programmes are a global catalog (§10); the MDA shown is the one running it
+        // for this beneficiary — the enrolling MDA on the enrollment, not a programme owner.
         return Enrollment::query()
             ->withoutGlobalScopes()
             ->where('beneficiary_id', $beneficiary->id)
-            ->with(['programme' => fn ($q) => $q->withoutGlobalScopes()
-                ->with(['ownerMda' => fn ($m) => $m->withoutGlobalScopes()->select('id', 'name')])])
+            ->with([
+                'programme' => fn ($q) => $q->withoutGlobalScopes(),
+                'mda' => fn ($m) => $m->withoutGlobalScopes()->select('id', 'name'),
+            ])
             ->get()
             ->map(fn (Enrollment $e) => [
                 'programme_id' => $e->programme_id,
                 'name' => $e->programme->name,
-                'owner_mda' => ['id' => $e->programme->ownerMda->id, 'name' => $e->programme->ownerMda->name],
+                'owner_mda' => $e->mda ? ['id' => $e->mda->id, 'name' => $e->mda->name] : null,
                 'status' => $e->status->value,
             ])
             ->all();

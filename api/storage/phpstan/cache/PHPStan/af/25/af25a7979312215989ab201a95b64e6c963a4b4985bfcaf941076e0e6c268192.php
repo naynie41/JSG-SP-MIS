@@ -12,6 +12,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
          'namespace' => 'App\\Domain\\Programme\\Policies',
          'uses' => 
         array (
+          'rolekey' => 'App\\Domain\\Access\\Enums\\RoleKey',
           'user' => 'App\\Domain\\Access\\Models\\User',
           'programme' => 'App\\Domain\\Programme\\Models\\Programme',
         ),
@@ -31,16 +32,17 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
          'typeAliasClassName' => NULL,
          'traitData' => NULL,
       )),
-      '768583089c6780c276937b1207d0e0be' => 
+      '26c2958dd4d6bd501afce094c0784885' => 
       \PHPStan\Analyser\IntermediaryNameScope::__set_state(array(
          'namespace' => 'App\\Domain\\Programme\\Policies',
          'uses' => 
         array (
+          'rolekey' => 'App\\Domain\\Access\\Enums\\RoleKey',
           'user' => 'App\\Domain\\Access\\Models\\User',
           'programme' => 'App\\Domain\\Programme\\Models\\Programme',
         ),
          'className' => 'App\\Domain\\Programme\\Policies\\ProgrammePolicy',
-         'functionName' => 'owns',
+         'functionName' => 'isCatalogAdmin',
          'templatePhpDocNodes' => 
         array (
         ),
@@ -49,6 +51,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
            'namespace' => 'App\\Domain\\Programme\\Policies',
            'uses' => 
           array (
+            'rolekey' => 'App\\Domain\\Access\\Enums\\RoleKey',
             'user' => 'App\\Domain\\Access\\Models\\User',
             'programme' => 'App\\Domain\\Programme\\Models\\Programme',
           ),
@@ -83,6 +86,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
          'namespace' => 'App\\Domain\\Programme\\Policies',
          'uses' => 
         array (
+          'rolekey' => 'App\\Domain\\Access\\Enums\\RoleKey',
           'user' => 'App\\Domain\\Access\\Models\\User',
           'programme' => 'App\\Domain\\Programme\\Models\\Programme',
         ),
@@ -96,6 +100,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
            'namespace' => 'App\\Domain\\Programme\\Policies',
            'uses' => 
           array (
+            'rolekey' => 'App\\Domain\\Access\\Enums\\RoleKey',
             'user' => 'App\\Domain\\Access\\Models\\User',
             'programme' => 'App\\Domain\\Programme\\Models\\Programme',
           ),
@@ -130,6 +135,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
          'namespace' => 'App\\Domain\\Programme\\Policies',
          'uses' => 
         array (
+          'rolekey' => 'App\\Domain\\Access\\Enums\\RoleKey',
           'user' => 'App\\Domain\\Access\\Models\\User',
           'programme' => 'App\\Domain\\Programme\\Models\\Programme',
         ),
@@ -143,6 +149,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
            'namespace' => 'App\\Domain\\Programme\\Policies',
            'uses' => 
           array (
+            'rolekey' => 'App\\Domain\\Access\\Enums\\RoleKey',
             'user' => 'App\\Domain\\Access\\Models\\User',
             'programme' => 'App\\Domain\\Programme\\Models\\Programme',
           ),
@@ -177,6 +184,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
          'namespace' => 'App\\Domain\\Programme\\Policies',
          'uses' => 
         array (
+          'rolekey' => 'App\\Domain\\Access\\Enums\\RoleKey',
           'user' => 'App\\Domain\\Access\\Models\\User',
           'programme' => 'App\\Domain\\Programme\\Models\\Programme',
         ),
@@ -190,6 +198,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
            'namespace' => 'App\\Domain\\Programme\\Policies',
            'uses' => 
           array (
+            'rolekey' => 'App\\Domain\\Access\\Enums\\RoleKey',
             'user' => 'App\\Domain\\Access\\Models\\User',
             'programme' => 'App\\Domain\\Programme\\Models\\Programme',
           ),
@@ -224,6 +233,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
          'namespace' => 'App\\Domain\\Programme\\Policies',
          'uses' => 
         array (
+          'rolekey' => 'App\\Domain\\Access\\Enums\\RoleKey',
           'user' => 'App\\Domain\\Access\\Models\\User',
           'programme' => 'App\\Domain\\Programme\\Models\\Programme',
         ),
@@ -237,6 +247,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
            'namespace' => 'App\\Domain\\Programme\\Policies',
            'uses' => 
           array (
+            'rolekey' => 'App\\Domain\\Access\\Enums\\RoleKey',
             'user' => 'App\\Domain\\Access\\Models\\User',
             'programme' => 'App\\Domain\\Programme\\Models\\Programme',
           ),
@@ -269,7 +280,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
     ),
     1 => 
     array (
-      '/var/www/html/app/Domain/Programme/Policies/ProgrammePolicy.php' => '23504f3795b12918b54c958f467a1e53323e38d3b4e72c629d7f6af8ae0192db',
+      '/var/www/html/app/Domain/Programme/Policies/ProgrammePolicy.php' => 'c98cbe08a0c8a7428013137c97dc5966dd2b069a8a79e0b6dc007bcc79bf914a',
     ),
   ),
 ));

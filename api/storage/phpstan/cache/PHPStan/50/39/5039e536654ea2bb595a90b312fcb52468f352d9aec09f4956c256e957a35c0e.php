@@ -2,7 +2,7 @@
 
 // osfsl-/var/www/html/database/factories/ActivityFactory.php-presentSymbols
 return \PHPStan\Cache\CacheItem::__set_state(array(
-   'variableKey' => 'v2-4a43d95ad8a0cc757dca9a76d3bbc12d516e5815ccc9f08af88dbea6973bde08-8.3.31',
+   'variableKey' => 'v2-16cc580976548d12ba35503e1dbe4e267dfe2033f60a39387369717cc016a33e-8.3.31',
    'data' => 
   array (
     'classes' => 

@@ -50,7 +50,8 @@ class HybridSourceImportTest extends TestCase
             'role_id' => Role::where('key', RoleKey::MdaOfficer->value)->firstOrFail()->id,
         ]);
         $this->activity = Activity::factory()->forProgramme(
-            Programme::factory()->individual()->create(['owner_mda_id' => $this->mda->id]),
+            Programme::factory()->individual()->create(),
+            $this->mda,
         )->create();
     }
 

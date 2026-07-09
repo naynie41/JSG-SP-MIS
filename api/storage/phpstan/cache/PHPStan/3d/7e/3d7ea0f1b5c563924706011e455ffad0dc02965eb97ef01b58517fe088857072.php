@@ -588,7 +588,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
     ),
     1 => 
     array (
-      '/var/www/html/app/Domain/Benefit/Services/LedgerAggregator.php' => 'a8abca167eb346c56e7e19595f7eae00d99174f51e154057074605ff86d3bf54',
+      '/var/www/html/app/Domain/Benefit/Services/LedgerAggregator.php' => '34ac8a4569f1c973ad723a19fa9ce2c6e12b9c324b9bb5354a816caca9a89731',
     ),
   ),
 ));

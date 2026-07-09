@@ -61,8 +61,8 @@ class DoubleDippingTest extends TestCase
         $this->rule = DoubleDippingRule::factory()->create(['period_days' => 30, 'benefit_types' => null]);
 
         $this->beneficiary = Beneficiary::factory()->create(['owner_mda_id' => $this->mdaA->id]);
-        $this->programmeA = Programme::factory()->individual()->create(['owner_mda_id' => $this->mdaA->id]);
-        $this->programmeB = Programme::factory()->individual()->create(['owner_mda_id' => $this->mdaB->id]);
+        $this->programmeA = Programme::factory()->individual()->create();
+        $this->programmeB = Programme::factory()->individual()->create();
         Enrollment::factory()->create(['programme_id' => $this->programmeA->id, 'mda_id' => $this->mdaA->id, 'beneficiary_id' => $this->beneficiary->id]);
         Enrollment::factory()->create(['programme_id' => $this->programmeB->id, 'mda_id' => $this->mdaB->id, 'beneficiary_id' => $this->beneficiary->id]);
 

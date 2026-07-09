@@ -280,7 +280,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
     ),
     1 => 
     array (
-      '/var/www/html/app/Domain/Programme/Policies/ActivityPolicy.php' => '399b0858e44b3bd7306e68de71ce3aa2a68edff5ed5ff7341c986e97ef0c2606',
+      '/var/www/html/app/Domain/Programme/Policies/ActivityPolicy.php' => '9dcb8187883abdaf0b8c0c697de490794cf22c2fe497ed2a8e45483e157ad618',
     ),
   ),
 ));

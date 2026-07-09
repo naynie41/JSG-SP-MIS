@@ -51,12 +51,8 @@ function DetailsTab({ programme }: { programme: Programme }) {
           <dd>{programme.objective ?? '—'}</dd>
           <dt>Type</dt>
           <dd style={{ textTransform: 'capitalize' }}>{programme.type}</dd>
-          <dt>Funding source</dt>
-          <dd>{programme.funding_source ?? '—'}</dd>
-          <dt>Period</dt>
-          <dd>{programme.starts_on ?? '—'} → {programme.ends_on ?? '—'}</dd>
-          <dt>Owner MDA</dt>
-          <dd>{programme.owner_mda?.name ?? '—'}</dd>
+          <dt>Benefit category</dt>
+          <dd>{programme.benefit_category ?? '—'}</dd>
         </dl>
       </Card>
       <Card title="Eligibility" eyebrow="Criteria" variant="mint">
@@ -81,7 +77,7 @@ function DetailsTab({ programme }: { programme: Programme }) {
 
 export function ProgrammeDetailPage() {
   const { id } = useParams<{ id: string }>()
-  const { hasPermission, user } = useAuth()
+  const { hasPermission } = useAuth()
   const canView = hasPermission('programme.view')
 
   const { data: programme, isLoading } = useProgramme(id, canView)
@@ -104,10 +100,11 @@ export function ProgrammeDetailPage() {
     return <div style={{ display: 'grid', placeItems: 'center', padding: 'var(--space-8)' }}><Spinner size={24} label="Loading programme" /></div>
   }
 
-  const isOwner = user?.mda?.id != null && user.mda.id === programme.owner_mda_id
-  const canEdit = hasPermission('programme.edit') && isOwner
-  const canManageActivities = hasPermission('activity.create') && isOwner
-  const canEnroll = hasPermission('enrollment.create') && isOwner
+  // Programmes are a global catalog (§10): editing the catalog entry is catalog-admin
+  // only, while any MDA may run it — add its own activities and enroll into it.
+  const canEdit = hasPermission('programme.edit')
+  const canManageActivities = hasPermission('activity.create')
+  const canEnroll = hasPermission('enrollment.create')
 
   const activityColumns: Column<Activity>[] = [
     { key: 'name', header: 'Activity', render: (a) => a.name },

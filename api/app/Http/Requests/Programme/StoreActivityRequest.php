@@ -38,6 +38,7 @@ class StoreActivityRequest extends FormRequest
             'starts_on' => ['nullable', 'date'],
             'ends_on' => ['nullable', 'date', 'after_or_equal:starts_on'],
             'budget_amount' => ['nullable', 'integer', 'min:0'],
+            'funding_source' => ['nullable', 'string', 'max:255'],
             'status' => ['nullable', Rule::enum(ActivityStatus::class)],
         ];
     }

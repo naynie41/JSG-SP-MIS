@@ -24,11 +24,11 @@ class ProgrammeServiceProvider extends ServiceProvider
     public function boot(): void
     {
         $this->app->make(PermissionRegistry::class)
-            ->register('programme', PermissionAction::View, 'View programmes')
-            ->register('programme', PermissionAction::Create, 'Create programmes')
-            ->register('programme', PermissionAction::Edit, 'Edit/archive programmes (owner MDA only)')
+            ->register('programme', PermissionAction::View, 'View the programme catalog')
+            ->register('programme', PermissionAction::Create, 'Create catalog programmes (catalog admin)')
+            ->register('programme', PermissionAction::Edit, 'Edit/archive catalog programmes (catalog admin)')
             ->register('activity', PermissionAction::View, 'View activities')
-            ->register('activity', PermissionAction::Create, 'Create activities')
+            ->register('activity', PermissionAction::Create, 'Create MDA-owned activities')
             ->register('activity', PermissionAction::Edit, 'Edit/archive activities (owner MDA only)')
             ->register('enrollment', PermissionAction::View, 'View programme enrollments')
             ->register('enrollment', PermissionAction::Create, 'Enroll beneficiaries/households into programmes')

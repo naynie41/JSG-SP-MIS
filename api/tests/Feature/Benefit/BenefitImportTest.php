@@ -63,8 +63,8 @@ class BenefitImportTest extends TestCase
         $this->users['viewer'] = $this->user($this->mdaA, RoleKey::MneOfficer); // benefit.view only
         $this->users['oversight'] = $this->user($this->mdaB, RoleKey::Executive);
 
-        $this->programmeA = Programme::factory()->individual()->create(['owner_mda_id' => $this->mdaA->id, 'eligibility' => null]);
-        $this->activityA = Activity::factory()->forProgramme($this->programmeA)->create();
+        $this->programmeA = Programme::factory()->individual()->create(['eligibility' => null]);
+        $this->activityA = Activity::factory()->forProgramme($this->programmeA, $this->mdaA)->create();
 
         $this->benef1 = Beneficiary::factory()->create(['owner_mda_id' => $this->mdaA->id]);
         $this->benef2 = Beneficiary::factory()->create(['owner_mda_id' => $this->mdaA->id, 'nin' => '55500011122']);
@@ -83,7 +83,7 @@ class BenefitImportTest extends TestCase
         $programme ??= $this->programmeA;
         Enrollment::factory()->create([
             'programme_id' => $programme->id,
-            'mda_id' => $programme->owner_mda_id,
+            'mda_id' => $this->mdaA->id, // the enrolling/delivering MDA
             'beneficiary_id' => $beneficiary->id,
             'status' => EnrollmentStatus::Enrolled,
         ]);
@@ -161,6 +161,40 @@ class BenefitImportTest extends TestCase
 
         // The invalid row is reported, not dropped, and created no benefit.
         $this->assertSame(0, Benefit::query()->withoutGlobalScopes()->where('beneficiary_id', $this->benef3->id)->count());
+
+        // Every ledger entry rolls up to the bound activity + its programme
+        // (activity-first, PRD §9/ARCH §12.3) — the intervention is attributed to
+        // the activity the delivery list was keyed to, not left free-floating.
+        foreach (Benefit::query()->withoutGlobalScopes()->get() as $benefit) {
+            $this->assertSame($this->activityA->id, $benefit->activity_id);
+            $this->assertSame($this->programmeA->id, $benefit->programme_id);
+        }
+    }
+
+    public function test_upload_without_a_valid_activity_is_refused(): void
+    {
+        $token = $this->users['officerA']->createToken('t')->plainTextToken;
+        $csv = self::HEADER."{$this->benef1->id},,,cash,1,,100000,,2026-07-03,,,\n";
+
+        // No activity at all — an import cannot bind to a missing activity.
+        $this->withToken($token)
+            ->post('/api/v1/benefit-imports', ['file' => UploadedFile::fake()->createWithContent('d.csv', $csv)], ['Accept' => 'application/json'])
+            ->assertStatus(422)
+            ->assertJsonFragment(['field' => 'activity_id']);
+        $this->app['auth']->forgetGuards();
+
+        // A non-existent activity is refused too — the reference must resolve to a
+        // real Activity, never a bare/unknown id.
+        $this->withToken($token)
+            ->post('/api/v1/benefit-imports', [
+                'file' => UploadedFile::fake()->createWithContent('d.csv', $csv),
+                'activity_id' => '00000000-0000-0000-0000-000000000000',
+            ], ['Accept' => 'application/json'])
+            ->assertStatus(422)
+            ->assertJsonFragment(['field' => 'activity_id']);
+        $this->app['auth']->forgetGuards();
+
+        $this->assertSame(0, BenefitImportBatch::query()->withoutGlobalScopes()->count());
     }
 
     public function test_rerunning_the_commit_does_not_double_record(): void
@@ -183,11 +217,10 @@ class BenefitImportTest extends TestCase
     public function test_eligibility_is_flagged_advisory_or_blocks_when_enforced(): void
     {
         $programme = Programme::factory()->individual()->create([
-            'owner_mda_id' => $this->mdaA->id,
             'eligibility' => [['attribute' => 'lga', 'value' => 'dutse']],
             'enforce_eligibility' => false,
         ]);
-        $activity = Activity::factory()->forProgramme($programme)->create();
+        $activity = Activity::factory()->forProgramme($programme, $this->mdaA)->create();
         $ineligible = Beneficiary::factory()->create(['owner_mda_id' => $this->mdaA->id, 'lga' => 'gumel']);
         $this->enroll($ineligible, $programme);
 

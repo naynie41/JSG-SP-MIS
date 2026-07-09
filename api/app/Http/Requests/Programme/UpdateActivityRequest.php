@@ -36,6 +36,7 @@ class UpdateActivityRequest extends FormRequest
             'starts_on' => ['nullable', 'date'],
             'ends_on' => ['nullable', 'date', 'after_or_equal:starts_on'],
             'budget_amount' => ['nullable', 'integer', 'min:0'],
+            'funding_source' => ['nullable', 'string', 'max:255'],
             'status' => ['sometimes', 'required', Rule::enum(ActivityStatus::class)],
         ];
     }

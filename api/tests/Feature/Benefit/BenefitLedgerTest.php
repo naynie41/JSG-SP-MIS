@@ -54,7 +54,7 @@ class BenefitLedgerTest extends TestCase
         $this->users['viewer'] = $this->user($this->mdaA, RoleKey::MneOfficer); // benefit.view only
         $this->users['oversight'] = $this->user($this->mdaB, RoleKey::Executive);
 
-        $this->programmeA = Programme::factory()->individual()->create(['owner_mda_id' => $this->mdaA->id]);
+        $this->programmeA = Programme::factory()->individual()->create();
         $this->enrolledA = Beneficiary::factory()->create(['owner_mda_id' => $this->mdaA->id]);
         Enrollment::factory()->create([
             'programme_id' => $this->programmeA->id,

@@ -2,7 +2,7 @@
 
 // odsl-/var/www/html/app/Domain/Programme/Models/Activity.php-PHPStan\BetterReflection\Reflection\ReflectionClass-App\Domain\Programme\Models\Activity
 return \PHPStan\Cache\CacheItem::__set_state(array(
-   'variableKey' => 'v2-6.70.0.1-8.3.31-df2f9e14ac484b9e848f863c52ff06f50e5a57f9227d3d7ca592ee4f07697104',
+   'variableKey' => 'v2-6.70.0.1-8.3.31-03f0b4950c66e6cfcc0f65692ea000ebfa47b76648d1e6a551653c1c50153b92',
    'data' => 
   array (
     'locatedSource' => 
@@ -23,11 +23,12 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
     'isBackedEnum' => false,
     'modifiers' => 0,
     'docComment' => '/**
- * A unit of work under a programme (PRD FR-PRG-02). `owner_mda_id` is denormalised
- * from the parent programme so the shared MdaScope applies directly — an activity
- * is scoped to (and mutable only by) the programme\'s owner MDA. Auditable; budget
- * is integer minor units (kobo, NGN). A PostGIS `geom` column exists on PostgreSQL
- * for later GIS work (not surfaced yet).
+ * An MDA-owned unit of work that runs a global catalog {@see Programme} (PRD §10,
+ * ARCH §12.4, FR-PRG-02). `owner_mda_id` is the CREATING MDA — its own MdaScope
+ * column — so one programme can be run by many MDAs, each through its own activity.
+ * The MDA-specific execution details (budget, funding source, schedule, period)
+ * live here, not on the programme. Auditable; money is integer minor units (kobo,
+ * NGN). A PostGIS `geom` column exists on PostgreSQL for later GIS work.
  *
  * @property string $id
  * @property string $programme_id
@@ -42,6 +43,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
  * @property Carbon|null $starts_on
  * @property Carbon|null $ends_on
  * @property int|null $budget_amount
+ * @property string|null $funding_source
  * @property ActivityStatus $status
  * @property string|null $created_by
  * @property Carbon|null $created_at
@@ -52,8 +54,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
     'attributes' => 
     array (
     ),
-    'startLine' => 48,
-    'endLine' => 125,
+    'startLine' => 50,
+    'endLine' => 128,
     'startColumn' => 1,
     'endColumn' => 1,
     'parentClassName' => 'Illuminate\\Database\\Eloquent\\Model',
@@ -86,20 +88,20 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
           'code' => '\'activities\'',
           'attributes' => 
           array (
-            'startLine' => 53,
-            'endLine' => 53,
+            'startLine' => 55,
+            'endLine' => 55,
             'startTokenPos' => 121,
-            'startFilePos' => 1885,
+            'startFilePos' => 2041,
             'endTokenPos' => 121,
-            'endFilePos' => 1896,
+            'endFilePos' => 2052,
           ),
         ),
         'docComment' => NULL,
         'attributes' => 
         array (
         ),
-        'startLine' => 53,
-        'endLine' => 53,
+        'startLine' => 55,
+        'endLine' => 55,
         'startColumn' => 5,
         'endColumn' => 36,
         'isPromoted' => false,
@@ -118,15 +120,15 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         'type' => NULL,
         'default' => 
         array (
-          'code' => '[\'programme_id\', \'owner_mda_id\', \'name\', \'description\', \'target_count\', \'lga\', \'ward\', \'location_description\', \'schedule\', \'starts_on\', \'ends_on\', \'budget_amount\', \'status\', \'created_by\']',
+          'code' => '[\'programme_id\', \'owner_mda_id\', \'name\', \'description\', \'target_count\', \'lga\', \'ward\', \'location_description\', \'schedule\', \'starts_on\', \'ends_on\', \'budget_amount\', \'funding_source\', \'status\', \'created_by\']',
           'attributes' => 
           array (
-            'startLine' => 58,
-            'endLine' => 73,
+            'startLine' => 60,
+            'endLine' => 76,
             'startTokenPos' => 132,
-            'startFilePos' => 1967,
-            'endTokenPos' => 176,
-            'endFilePos' => 2272,
+            'startFilePos' => 2123,
+            'endTokenPos' => 179,
+            'endFilePos' => 2454,
           ),
         ),
         'docComment' => '/**
@@ -135,8 +137,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         'attributes' => 
         array (
         ),
-        'startLine' => 58,
-        'endLine' => 73,
+        'startLine' => 60,
+        'endLine' => 76,
         'startColumn' => 5,
         'endColumn' => 6,
         'isPromoted' => false,
@@ -158,12 +160,12 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
           'code' => '[\'status\' => \\App\\Domain\\Programme\\Enums\\ActivityStatus::Draft->value]',
           'attributes' => 
           array (
-            'startLine' => 78,
-            'endLine' => 80,
-            'startTokenPos' => 187,
-            'startFilePos' => 2353,
-            'endTokenPos' => 200,
-            'endFilePos' => 2409,
+            'startLine' => 81,
+            'endLine' => 83,
+            'startTokenPos' => 190,
+            'startFilePos' => 2535,
+            'endTokenPos' => 203,
+            'endFilePos' => 2591,
           ),
         ),
         'docComment' => '/**
@@ -172,8 +174,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         'attributes' => 
         array (
         ),
-        'startLine' => 78,
-        'endLine' => 80,
+        'startLine' => 81,
+        'endLine' => 83,
         'startColumn' => 5,
         'endColumn' => 6,
         'isPromoted' => false,
@@ -208,8 +210,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         'docComment' => '/**
  * @return array<string, string>
  */',
-        'startLine' => 85,
-        'endLine' => 95,
+        'startLine' => 88,
+        'endLine' => 98,
         'startColumn' => 5,
         'endColumn' => 5,
         'couldThrow' => false,
@@ -243,8 +245,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         array (
         ),
         'docComment' => NULL,
-        'startLine' => 97,
-        'endLine' => 100,
+        'startLine' => 100,
+        'endLine' => 103,
         'startColumn' => 5,
         'endColumn' => 5,
         'couldThrow' => false,
@@ -280,8 +282,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         'docComment' => '/**
  * @return BelongsTo<Programme, $this>
  */',
-        'startLine' => 105,
-        'endLine' => 108,
+        'startLine' => 108,
+        'endLine' => 111,
         'startColumn' => 5,
         'endColumn' => 5,
         'couldThrow' => false,
@@ -317,8 +319,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         'docComment' => '/**
  * @return BelongsTo<Mda, $this>
  */',
-        'startLine' => 113,
-        'endLine' => 116,
+        'startLine' => 116,
+        'endLine' => 119,
         'startColumn' => 5,
         'endColumn' => 5,
         'couldThrow' => false,
@@ -354,8 +356,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         'docComment' => '/**
  * @return BelongsTo<User, $this>
  */',
-        'startLine' => 121,
-        'endLine' => 124,
+        'startLine' => 124,
+        'endLine' => 127,
         'startColumn' => 5,
         'endColumn' => 5,
         'couldThrow' => false,

@@ -74,7 +74,7 @@ class EnrollmentService
             $enrollment = Enrollment::create([
                 'programme_id' => $programme->id,
                 'activity_id' => $activityId,
-                'mda_id' => $programme->owner_mda_id, // the enrolling MDA (programme owner)
+                'mda_id' => $actor->mda_id, // the enrolling MDA is the acting user's MDA (§10)
                 'beneficiary_id' => $isBeneficiary ? $target->id : null,
                 'household_id' => $isBeneficiary ? null : $target->id,
                 'status' => EnrollmentStatus::Enrolled,

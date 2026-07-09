@@ -54,7 +54,7 @@ class ReportScheduleTest extends TestCase
         $this->users['noRole'] = User::factory()->create(['mda_id' => $this->mdaA->id, 'role_id' => null]);
 
         $ben = Beneficiary::factory()->create(['owner_mda_id' => $this->mdaA->id, 'lga' => 'dutse']);
-        $prog = Programme::factory()->individual()->create(['owner_mda_id' => $this->mdaA->id, 'status' => 'active']);
+        $prog = Programme::factory()->individual()->create(['status' => 'active']);
         Benefit::factory()->create(['beneficiary_id' => $ben->id, 'programme_id' => $prog->id, 'mda_id' => $this->mdaA->id, 'monetary_value' => 100_000, 'lga' => 'dutse', 'status' => 'verified']);
     }
 

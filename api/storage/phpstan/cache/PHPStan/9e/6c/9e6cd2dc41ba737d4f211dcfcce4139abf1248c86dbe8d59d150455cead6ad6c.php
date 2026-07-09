@@ -2,7 +2,7 @@
 
 // odsl-/var/www/html/app/Http/Resources/ActivityResource.php-PHPStan\BetterReflection\Reflection\ReflectionClass-App\Http\Resources\ActivityResource
 return \PHPStan\Cache\CacheItem::__set_state(array(
-   'variableKey' => 'v2-6.70.0.1-8.3.31-8896e22747987380f61937ab094e1962fa48974c3e67c8214f6e107b755a125d',
+   'variableKey' => 'v2-6.70.0.1-8.3.31-63791b5a6f39ba9ca28ea0258d29a4b6232e3226111bff25f730cd033d733d72',
    'data' => 
   array (
     'locatedSource' => 
@@ -29,7 +29,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
     array (
     ),
     'startLine' => 14,
-    'endLine' => 41,
+    'endLine' => 42,
     'startColumn' => 1,
     'endColumn' => 1,
     'parentClassName' => 'Illuminate\\Http\\Resources\\Json\\JsonResource',
@@ -96,7 +96,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
  * @return array<string, mixed>
  */',
         'startLine' => 19,
-        'endLine' => 40,
+        'endLine' => 41,
         'startColumn' => 5,
         'endColumn' => 5,
         'couldThrow' => false,

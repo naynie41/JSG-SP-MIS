@@ -2,7 +2,7 @@
 
 // odsl-/var/www/html/app/Domain/Programme/Policies/ProgrammePolicy.php-PHPStan\BetterReflection\Reflection\ReflectionClass-App\Domain\Programme\Policies\ProgrammePolicy
 return \PHPStan\Cache\CacheItem::__set_state(array(
-   'variableKey' => 'v2-6.70.0.1-8.3.31-23504f3795b12918b54c958f467a1e53323e38d3b4e72c629d7f6af8ae0192db',
+   'variableKey' => 'v2-6.70.0.1-8.3.31-c98cbe08a0c8a7428013137c97dc5966dd2b069a8a79e0b6dc007bcc79bf914a',
    'data' => 
   array (
     'locatedSource' => 
@@ -23,15 +23,17 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
     'isBackedEnum' => false,
     'modifiers' => 0,
     'docComment' => '/**
- * Authorization for programmes (PRD FR-PRG-01). The core rule: **only the owner
- * MDA may mutate** (create/update/archive). Oversight roles (`cross-mda.view`)
- * read across all MDAs but never mutate another MDA\'s programme.
+ * Authorization for the GLOBAL programme catalog (PRD §10, ARCH §12.4). Programmes
+ * are a shared, unowned catalog: **any authenticated role may list/show** them,
+ * but **only catalog administrators may create/edit/archive** — the System
+ * Administrator, optionally SP Coordination (the "AdminOnly" rule). MDAs run
+ * programmes through their own activities and can never mutate the catalog.
  */',
     'attributes' => 
     array (
     ),
-    'startLine' => 15,
-    'endLine' => 43,
+    'startLine' => 18,
+    'endLine' => 49,
     'startColumn' => 1,
     'endColumn' => 1,
     'parentClassName' => NULL,
@@ -49,9 +51,9 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
     ),
     'immediateMethods' => 
     array (
-      'owns' => 
+      'isCatalogAdmin' => 
       array (
-        'name' => 'owns',
+        'name' => 'isCatalogAdmin',
         'parameters' => 
         array (
           'user' => 
@@ -73,37 +75,11 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             'attributes' => 
             array (
             ),
-            'startLine' => 17,
-            'endLine' => 17,
-            'startColumn' => 27,
-            'endColumn' => 36,
+            'startLine' => 21,
+            'endLine' => 21,
+            'startColumn' => 37,
+            'endColumn' => 46,
             'parameterIndex' => 0,
-            'isOptional' => false,
-          ),
-          'programme' => 
-          array (
-            'name' => 'programme',
-            'default' => NULL,
-            'type' => 
-            array (
-              'class' => 'PHPStan\\BetterReflection\\Reflection\\ReflectionNamedType',
-              'data' => 
-              array (
-                'name' => 'App\\Domain\\Programme\\Models\\Programme',
-                'isIdentifier' => false,
-              ),
-            ),
-            'isVariadic' => false,
-            'byRef' => false,
-            'isPromoted' => false,
-            'attributes' => 
-            array (
-            ),
-            'startLine' => 17,
-            'endLine' => 17,
-            'startColumn' => 39,
-            'endColumn' => 58,
-            'parameterIndex' => 1,
             'isOptional' => false,
           ),
         ),
@@ -120,9 +96,9 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         'attributes' => 
         array (
         ),
-        'docComment' => NULL,
-        'startLine' => 17,
-        'endLine' => 20,
+        'docComment' => '/** Catalog administrators: System Administrator + (optionally) SP Coordination. */',
+        'startLine' => 21,
+        'endLine' => 27,
         'startColumn' => 5,
         'endColumn' => 5,
         'couldThrow' => false,
@@ -160,8 +136,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             'attributes' => 
             array (
             ),
-            'startLine' => 22,
-            'endLine' => 22,
+            'startLine' => 29,
+            'endLine' => 29,
             'startColumn' => 29,
             'endColumn' => 38,
             'parameterIndex' => 0,
@@ -182,8 +158,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         array (
         ),
         'docComment' => NULL,
-        'startLine' => 22,
-        'endLine' => 25,
+        'startLine' => 29,
+        'endLine' => 32,
         'startColumn' => 5,
         'endColumn' => 5,
         'couldThrow' => false,
@@ -221,8 +197,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             'attributes' => 
             array (
             ),
-            'startLine' => 27,
-            'endLine' => 27,
+            'startLine' => 34,
+            'endLine' => 34,
             'startColumn' => 26,
             'endColumn' => 35,
             'parameterIndex' => 0,
@@ -247,8 +223,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             'attributes' => 
             array (
             ),
-            'startLine' => 27,
-            'endLine' => 27,
+            'startLine' => 34,
+            'endLine' => 34,
             'startColumn' => 38,
             'endColumn' => 57,
             'parameterIndex' => 1,
@@ -269,8 +245,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         array (
         ),
         'docComment' => NULL,
-        'startLine' => 27,
-        'endLine' => 31,
+        'startLine' => 34,
+        'endLine' => 37,
         'startColumn' => 5,
         'endColumn' => 5,
         'couldThrow' => false,
@@ -308,8 +284,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             'attributes' => 
             array (
             ),
-            'startLine' => 33,
-            'endLine' => 33,
+            'startLine' => 39,
+            'endLine' => 39,
             'startColumn' => 28,
             'endColumn' => 37,
             'parameterIndex' => 0,
@@ -330,8 +306,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         array (
         ),
         'docComment' => NULL,
-        'startLine' => 33,
-        'endLine' => 36,
+        'startLine' => 39,
+        'endLine' => 42,
         'startColumn' => 5,
         'endColumn' => 5,
         'couldThrow' => false,
@@ -369,8 +345,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             'attributes' => 
             array (
             ),
-            'startLine' => 39,
-            'endLine' => 39,
+            'startLine' => 45,
+            'endLine' => 45,
             'startColumn' => 28,
             'endColumn' => 37,
             'parameterIndex' => 0,
@@ -395,8 +371,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             'attributes' => 
             array (
             ),
-            'startLine' => 39,
-            'endLine' => 39,
+            'startLine' => 45,
+            'endLine' => 45,
             'startColumn' => 40,
             'endColumn' => 59,
             'parameterIndex' => 1,
@@ -416,9 +392,9 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         'attributes' => 
         array (
         ),
-        'docComment' => '/** Owner-only edit/archive. cross-mda.view does NOT grant mutation. */',
-        'startLine' => 39,
-        'endLine' => 42,
+        'docComment' => '/** Edit/archive the catalog entry — catalog administrators only. */',
+        'startLine' => 45,
+        'endLine' => 48,
         'startColumn' => 5,
         'endColumn' => 5,
         'couldThrow' => false,

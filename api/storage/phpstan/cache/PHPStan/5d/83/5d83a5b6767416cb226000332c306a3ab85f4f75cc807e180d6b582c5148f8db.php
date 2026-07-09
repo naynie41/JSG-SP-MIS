@@ -231,7 +231,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
     ),
     1 => 
     array (
-      '/var/www/html/app/Domain/Programme/Policies/EnrollmentPolicy.php' => '02e9c82781b36e0d3aa2cbb66df2570d9d17855306fc0a15d89b252a6962aa04',
+      '/var/www/html/app/Domain/Programme/Policies/EnrollmentPolicy.php' => '969cae631ff37ce5a126a88619c00a0e460240bce7a2a66f3617a9eee8486dd6',
     ),
   ),
 ));

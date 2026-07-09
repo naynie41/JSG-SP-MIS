@@ -10,19 +10,18 @@ export interface EligibilityCriterion {
   label?: string
 }
 
+/**
+ * A GLOBAL catalog programme (§10) — type-level attributes only; not owned by any
+ * MDA. Budget, funding and period live on the Activity.
+ */
 export interface Programme {
   id: string
-  owner_mda_id: string
-  owner_mda?: { id: string; name: string }
   name: string
   objective: string | null
   type: ProgrammeType
+  benefit_category: string | null
   eligibility: EligibilityCriterion[]
   enforce_eligibility: boolean
-  funding_source: string | null
-  budget_amount: number | null // minor units (kobo)
-  starts_on: string | null
-  ends_on: string | null
   status: ProgrammeStatus
   activities_count?: number
   created_by: string | null
@@ -34,15 +33,13 @@ export interface ProgrammeInput {
   name: string
   objective?: string | null
   type: ProgrammeType
+  benefit_category?: string | null
   eligibility?: EligibilityCriterion[]
   enforce_eligibility?: boolean
-  funding_source?: string | null
-  budget_amount?: number | null
-  starts_on?: string | null
-  ends_on?: string | null
   status?: ProgrammeStatus
 }
 
+/** An MDA-owned activity that runs a catalog programme (§10); carries budget + funding. */
 export interface Activity {
   id: string
   programme_id: string
@@ -57,6 +54,7 @@ export interface Activity {
   starts_on: string | null
   ends_on: string | null
   budget_amount: number | null
+  funding_source: string | null
   status: ActivityStatus
   created_by: string | null
   created_at: string | null
@@ -74,6 +72,7 @@ export interface ActivityInput {
   starts_on?: string | null
   ends_on?: string | null
   budget_amount?: number | null
+  funding_source?: string | null
   status?: ActivityStatus
 }
 

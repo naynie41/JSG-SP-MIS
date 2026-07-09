@@ -19,11 +19,12 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Support\Carbon;
 
 /**
- * A unit of work under a programme (PRD FR-PRG-02). `owner_mda_id` is denormalised
- * from the parent programme so the shared MdaScope applies directly — an activity
- * is scoped to (and mutable only by) the programme's owner MDA. Auditable; budget
- * is integer minor units (kobo, NGN). A PostGIS `geom` column exists on PostgreSQL
- * for later GIS work (not surfaced yet).
+ * An MDA-owned unit of work that runs a global catalog {@see Programme} (PRD §10,
+ * ARCH §12.4, FR-PRG-02). `owner_mda_id` is the CREATING MDA — its own MdaScope
+ * column — so one programme can be run by many MDAs, each through its own activity.
+ * The MDA-specific execution details (budget, funding source, schedule, period)
+ * live here, not on the programme. Auditable; money is integer minor units (kobo,
+ * NGN). A PostGIS `geom` column exists on PostgreSQL for later GIS work.
  *
  * @property string $id
  * @property string $programme_id
@@ -38,6 +39,7 @@ use Illuminate\Support\Carbon;
  * @property Carbon|null $starts_on
  * @property Carbon|null $ends_on
  * @property int|null $budget_amount
+ * @property string|null $funding_source
  * @property ActivityStatus $status
  * @property string|null $created_by
  * @property Carbon|null $created_at
@@ -68,6 +70,7 @@ class Activity extends Model implements MdaScoped
         'starts_on',
         'ends_on',
         'budget_amount',
+        'funding_source',
         'status',
         'created_by',
     ];

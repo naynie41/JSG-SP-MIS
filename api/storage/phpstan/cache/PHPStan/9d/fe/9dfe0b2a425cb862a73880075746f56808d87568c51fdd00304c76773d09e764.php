@@ -84,7 +84,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
     ),
     1 => 
     array (
-      '/var/www/html/app/Http/Resources/ActivityResource.php' => '8896e22747987380f61937ab094e1962fa48974c3e67c8214f6e107b755a125d',
+      '/var/www/html/app/Http/Resources/ActivityResource.php' => '63791b5a6f39ba9ca28ea0258d29a4b6232e3226111bff25f730cd033d733d72',
     ),
   ),
 ));

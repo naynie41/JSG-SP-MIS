@@ -2,7 +2,7 @@
 
 // odsl-/var/www/html/app/Domain/Programme/Policies/ActivityPolicy.php-PHPStan\BetterReflection\Reflection\ReflectionClass-App\Domain\Programme\Policies\ActivityPolicy
 return \PHPStan\Cache\CacheItem::__set_state(array(
-   'variableKey' => 'v2-6.70.0.1-8.3.31-399b0858e44b3bd7306e68de71ce3aa2a68edff5ed5ff7341c986e97ef0c2606',
+   'variableKey' => 'v2-6.70.0.1-8.3.31-9dcb8187883abdaf0b8c0c697de490794cf22c2fe497ed2a8e45483e157ad618',
    'data' => 
   array (
     'locatedSource' => 
@@ -23,16 +23,16 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
     'isBackedEnum' => false,
     'modifiers' => 0,
     'docComment' => '/**
- * Authorization for activities (PRD FR-PRG-02). An activity belongs to the
- * programme owner\'s MDA (via the denormalised `owner_mda_id`); only that MDA may
- * mutate. Creating an activity is a mutation of an owned programme, so `create`
- * takes the parent programme and checks ownership.
+ * Authorization for activities (PRD §10, ARCH §12.4, FR-PRG-02). An activity is
+ * owned by the MDA that created it (`owner_mda_id`); only that MDA may mutate it.
+ * Any MDA user may create an activity against a GLOBAL catalog programme — the new
+ * activity is owned by their own MDA, so there is no programme-ownership check.
  */',
     'attributes' => 
     array (
     ),
     'startLine' => 17,
-    'endLine' => 48,
+    'endLine' => 50,
     'startColumn' => 1,
     'endColumn' => 1,
     'parentClassName' => NULL,
@@ -309,8 +309,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             'attributes' => 
             array (
             ),
-            'startLine' => 36,
-            'endLine' => 36,
+            'startLine' => 40,
+            'endLine' => 40,
             'startColumn' => 28,
             'endColumn' => 37,
             'parameterIndex' => 0,
@@ -335,8 +335,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             'attributes' => 
             array (
             ),
-            'startLine' => 36,
-            'endLine' => 36,
+            'startLine' => 40,
+            'endLine' => 40,
             'startColumn' => 40,
             'endColumn' => 59,
             'parameterIndex' => 1,
@@ -356,9 +356,13 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         'attributes' => 
         array (
         ),
-        'docComment' => '/** Create an activity under a programme — owner MDA of the programme only. */',
-        'startLine' => 36,
-        'endLine' => 41,
+        'docComment' => '/**
+ * Create an activity that runs a catalog programme — any MDA user may, and it
+ * becomes owned by their MDA. The parent programme is passed to confirm it
+ * exists (a valid catalog reference); its (absent) ownership is irrelevant.
+ */',
+        'startLine' => 40,
+        'endLine' => 43,
         'startColumn' => 5,
         'endColumn' => 5,
         'couldThrow' => false,
@@ -396,8 +400,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             'attributes' => 
             array (
             ),
-            'startLine' => 44,
-            'endLine' => 44,
+            'startLine' => 46,
+            'endLine' => 46,
             'startColumn' => 28,
             'endColumn' => 37,
             'parameterIndex' => 0,
@@ -422,8 +426,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             'attributes' => 
             array (
             ),
-            'startLine' => 44,
-            'endLine' => 44,
+            'startLine' => 46,
+            'endLine' => 46,
             'startColumn' => 40,
             'endColumn' => 57,
             'parameterIndex' => 1,
@@ -444,8 +448,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         array (
         ),
         'docComment' => '/** Owner-only edit/archive. */',
-        'startLine' => 44,
-        'endLine' => 47,
+        'startLine' => 46,
+        'endLine' => 49,
         'startColumn' => 5,
         'endColumn' => 5,
         'couldThrow' => false,

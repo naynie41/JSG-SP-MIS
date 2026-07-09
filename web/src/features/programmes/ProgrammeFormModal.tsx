@@ -10,7 +10,6 @@ import { SelectField } from '@/components/Field/SelectField'
 import { Toggle } from '@/components/Field/Toggle'
 import { Icon } from '@/components/Icon/Icon'
 import { applyApiErrors } from '@/lib/forms/applyApiErrors'
-import { koboToNaira, nairaToKobo } from '@/lib/utils/money'
 import { ELIGIBILITY_ATTRIBUTE_OPTIONS, PROGRAMME_STATUS_OPTIONS, PROGRAMME_TYPE_OPTIONS } from './constants'
 import { programmeSchema } from './schema'
 import type { ProgrammeFormValues } from './schema'
@@ -25,9 +24,12 @@ interface ProgrammeFormModalProps {
   programme?: Programme | null
 }
 
-const KNOWN = ['name', 'objective', 'type', 'funding_source', 'starts_on', 'ends_on', 'status'] as const
+const KNOWN = ['name', 'objective', 'type', 'benefit_category', 'status'] as const
 
-/** Create or configure a programme (PRD FR-PRG-01). Owner-MDA only (server-enforced). */
+/**
+ * Create or configure a GLOBAL catalog programme (§10) — type-level attributes only.
+ * Catalog-admin only (server-enforced); budget/funding/period live on activities.
+ */
 export function ProgrammeFormModal({ open, onClose, programme }: ProgrammeFormModalProps) {
   const save = useSaveProgramme()
   const [formError, setFormError] = useState<string | null>(null)
@@ -44,10 +46,7 @@ export function ProgrammeFormModal({ open, onClose, programme }: ProgrammeFormMo
       name: programme?.name ?? '',
       objective: programme?.objective ?? '',
       type: programme?.type ?? 'individual',
-      funding_source: programme?.funding_source ?? '',
-      budget_naira: koboToNaira(programme?.budget_amount),
-      starts_on: programme?.starts_on ?? '',
-      ends_on: programme?.ends_on ?? '',
+      benefit_category: programme?.benefit_category ?? '',
       status: (programme?.status as ProgrammeFormValues['status']) ?? 'draft',
       enforce_eligibility: programme?.enforce_eligibility ?? false,
     },
@@ -63,10 +62,7 @@ export function ProgrammeFormModal({ open, onClose, programme }: ProgrammeFormMo
           name: values.name,
           objective: values.objective || null,
           type: values.type,
-          funding_source: values.funding_source || null,
-          budget_amount: nairaToKobo(values.budget_naira) ?? null,
-          starts_on: values.starts_on || null,
-          ends_on: values.ends_on || null,
+          benefit_category: values.benefit_category || null,
           status: values.status,
           enforce_eligibility: values.enforce_eligibility ?? false,
           eligibility: cleanCriteria,
@@ -109,15 +105,7 @@ export function ProgrammeFormModal({ open, onClose, programme }: ProgrammeFormMo
           <SelectField label="Status" required options={PROGRAMME_STATUS_OPTIONS} error={errors.status?.message} {...register('status')} />
         </div>
 
-        <div className={formStyles.grid2}>
-          <TextField label="Funding source" error={errors.funding_source?.message} {...register('funding_source')} />
-          <TextField label="Budget (₦)" type="number" min={0} step="0.01" helper="Total allocated; recorded as data, not disbursed." error={errors.budget_naira?.message} {...register('budget_naira')} />
-        </div>
-
-        <div className={formStyles.grid2}>
-          <TextField label="Start date" type="date" error={errors.starts_on?.message} {...register('starts_on')} />
-          <TextField label="End date" type="date" error={errors.ends_on?.message} {...register('ends_on')} />
-        </div>
+        <TextField label="Benefit category" helper="Type-level (e.g. cash, in-kind, service). Budget & funding live on activities." error={errors.benefit_category?.message} {...register('benefit_category')} />
 
         <fieldset style={{ border: 'none', padding: 0, margin: 0 }}>
           <div className={styles.chipRow} style={{ justifyContent: 'space-between' }}>

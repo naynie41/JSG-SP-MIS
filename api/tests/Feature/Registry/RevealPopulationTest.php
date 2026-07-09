@@ -46,7 +46,7 @@ class RevealPopulationTest extends TestCase
         $this->users['oversight'] = $this->user($otherMda, RoleKey::Executive);
 
         $this->beneficiary = Beneficiary::factory()->create(['owner_mda_id' => $this->ownerMda->id, 'nin' => '22200033344']);
-        $programme = Programme::factory()->individual()->create(['owner_mda_id' => $this->ownerMda->id, 'name' => 'Cash Transfer']);
+        $programme = Programme::factory()->individual()->create(['name' => 'Cash Transfer']);
         Enrollment::factory()->create(['programme_id' => $programme->id, 'mda_id' => $this->ownerMda->id, 'beneficiary_id' => $this->beneficiary->id]);
         Benefit::factory()->create(['programme_id' => $programme->id, 'mda_id' => $this->ownerMda->id, 'beneficiary_id' => $this->beneficiary->id, 'benefit_type' => 'cash', 'monetary_value' => 500_000]);
     }

@@ -2,7 +2,7 @@
 
 // odsl-/var/www/html/app/Domain/Benefit/Policies/BenefitPolicy.php-PHPStan\BetterReflection\Reflection\ReflectionClass-App\Domain\Benefit\Policies\BenefitPolicy
 return \PHPStan\Cache\CacheItem::__set_state(array(
-   'variableKey' => 'v2-6.70.0.1-8.3.31-6d5966f5e858885c0933026bf20ebc2f6e0e26ad929661cc5efb55771e9353eb',
+   'variableKey' => 'v2-6.70.0.1-8.3.31-cc6fa6efa76f80374bb2df8e4e99d313efd1985f3df5acc12143fc1035146958',
    'data' => 
   array (
     'locatedSource' => 
@@ -32,7 +32,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
     array (
     ),
     'startLine' => 19,
-    'endLine' => 56,
+    'endLine' => 59,
     'startColumn' => 1,
     'endColumn' => 1,
     'parentClassName' => NULL,
@@ -222,8 +222,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             'attributes' => 
             array (
             ),
-            'startLine' => 44,
-            'endLine' => 44,
+            'startLine' => 49,
+            'endLine' => 49,
             'startColumn' => 28,
             'endColumn' => 37,
             'parameterIndex' => 0,
@@ -248,8 +248,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             'attributes' => 
             array (
             ),
-            'startLine' => 44,
-            'endLine' => 44,
+            'startLine' => 49,
+            'endLine' => 49,
             'startColumn' => 40,
             'endColumn' => 59,
             'parameterIndex' => 1,
@@ -269,9 +269,14 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         'attributes' => 
         array (
         ),
-        'docComment' => '/** Record a delivery under a programme — the programme\'s owner MDA only. */',
-        'startLine' => 44,
-        'endLine' => 49,
+        'docComment' => '/**
+ * Record a delivery under a catalog programme (PRD §10). Any MDA user may; the
+ * delivering MDA is their own. Cross-MDA delivery to a non-owned beneficiary is
+ * gated separately by the accepted Service Request / Referral authorization in
+ * the BenefitRecorder — not by programme ownership.
+ */',
+        'startLine' => 49,
+        'endLine' => 52,
         'startColumn' => 5,
         'endColumn' => 5,
         'couldThrow' => false,
@@ -309,8 +314,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             'attributes' => 
             array (
             ),
-            'startLine' => 52,
-            'endLine' => 52,
+            'startLine' => 55,
+            'endLine' => 55,
             'startColumn' => 28,
             'endColumn' => 37,
             'parameterIndex' => 0,
@@ -335,8 +340,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             'attributes' => 
             array (
             ),
-            'startLine' => 52,
-            'endLine' => 52,
+            'startLine' => 55,
+            'endLine' => 55,
             'startColumn' => 40,
             'endColumn' => 55,
             'parameterIndex' => 1,
@@ -357,8 +362,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         array (
         ),
         'docComment' => '/** Verify a delivery — the delivering MDA only. */',
-        'startLine' => 52,
-        'endLine' => 55,
+        'startLine' => 55,
+        'endLine' => 58,
         'startColumn' => 5,
         'endColumn' => 5,
         'couldThrow' => false,

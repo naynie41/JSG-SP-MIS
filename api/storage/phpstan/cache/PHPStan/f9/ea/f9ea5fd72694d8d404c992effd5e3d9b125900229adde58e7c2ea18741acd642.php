@@ -330,7 +330,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
     ),
     1 => 
     array (
-      '/var/www/html/app/Domain/Benefit/Services/BenefitRecorder.php' => '6dee42b1d711ab80a9c865206dd1039597ac3b60dd86ab846692f6bf0dcd9a28',
+      '/var/www/html/app/Domain/Benefit/Services/BenefitRecorder.php' => 'e52587f2ab3e1325e4fb6d3094a3cb5a547dba2e4f834e53fa4f642840b282de',
     ),
   ),
 ));

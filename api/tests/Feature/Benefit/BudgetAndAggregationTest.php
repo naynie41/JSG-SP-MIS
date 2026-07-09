@@ -51,9 +51,12 @@ class BudgetAndAggregationTest extends TestCase
         $this->users['officerB'] = $this->user($this->mdaB, RoleKey::MdaOfficer);
         $this->users['oversight'] = $this->user($this->mdaB, RoleKey::Executive); // cross-mda.view
 
-        $this->programmeA = Programme::factory()->individual()->create(['owner_mda_id' => $this->mdaA->id, 'budget_amount' => 10_000_000]);
-        $this->activityA = Activity::factory()->forProgramme($this->programmeA)->create(['budget_amount' => 4_000_000]);
-        $this->programmeB = Programme::factory()->individual()->create(['owner_mda_id' => $this->mdaB->id, 'budget_amount' => 5_000_000]);
+        // Programmes are a global catalog (§10); budget lives on the MDA's activities.
+        // Programme A is run by MDA A through two activities totalling 10,000,000 kobo.
+        $this->programmeA = Programme::factory()->individual()->create();
+        $this->activityA = Activity::factory()->forProgramme($this->programmeA, $this->mdaA)->create(['budget_amount' => 4_000_000]);
+        Activity::factory()->forProgramme($this->programmeA, $this->mdaA)->create(['budget_amount' => 6_000_000]);
+        $this->programmeB = Programme::factory()->individual()->create();
     }
 
     private function user(Mda $mda, RoleKey $role): User
@@ -156,8 +159,11 @@ class BudgetAndAggregationTest extends TestCase
         $this->read('oversight', '/api/v1/benefits/aggregate?group_by=mda')
             ->assertOk()->assertJsonPath('data.totals.total_value', 8_000_000);
 
-        // A different MDA cannot read MDA A's programme budget (scoped out → 404).
-        $this->read('officerB', "/api/v1/programmes/{$this->programmeA->id}/budget")->assertStatus(404);
+        // Programmes are a global catalog (§10): any MDA may read a programme's budget,
+        // but utilised reflects the viewer's own deliveries (B delivered none of A's).
+        $this->read('officerB', "/api/v1/programmes/{$this->programmeA->id}/budget")
+            ->assertOk()->assertJsonPath('data.utilized_value', 0);
+        // Oversight sees all deliveries for the programme.
         $this->read('oversight', "/api/v1/programmes/{$this->programmeA->id}/budget")
             ->assertOk()->assertJsonPath('data.utilized_value', 5_000_000);
     }

@@ -52,8 +52,8 @@ class EnrollmentTest extends TestCase
         $this->users['viewer'] = $this->user($this->mdaA, RoleKey::MneOfficer); // enrollment.view only
         $this->users['oversight'] = $this->user($this->mdaB, RoleKey::Executive);
 
-        $this->individualA = Programme::factory()->individual()->create(['owner_mda_id' => $this->mdaA->id, 'eligibility' => null]);
-        $this->householdA = Programme::factory()->household()->create(['owner_mda_id' => $this->mdaA->id, 'eligibility' => null]);
+        $this->individualA = Programme::factory()->individual()->create(['eligibility' => null]);
+        $this->householdA = Programme::factory()->household()->create(['eligibility' => null]);
     }
 
     private function user(Mda $mda, RoleKey $role): User
@@ -188,7 +188,6 @@ class EnrollmentTest extends TestCase
     public function test_eligibility_is_advisory_by_default_and_enforced_when_configured(): void
     {
         $programme = Programme::factory()->individual()->create([
-            'owner_mda_id' => $this->mdaA->id,
             'eligibility' => [['attribute' => 'lga', 'value' => 'dutse']],
             'enforce_eligibility' => false,
         ]);
@@ -220,14 +219,16 @@ class EnrollmentTest extends TestCase
         $this->send('viewer', 'POST', "/api/v1/programmes/{$this->individualA->id}/enrollments", ['beneficiary_id' => $ownB->id])
             ->assertStatus(403);
 
-        // Another MDA cannot enroll into a programme it does not own.
+        // Programmes are a global catalog (§10): another MDA may enroll ITS OWN
+        // beneficiary into the same programme — the enrolling MDA is its own.
         $this->send('officerB', 'POST', "/api/v1/programmes/{$this->individualA->id}/enrollments", ['beneficiary_id' => $ownB->id])
-            ->assertStatus(403);
+            ->assertCreated()
+            ->assertJsonPath('data.mda_id', $this->mdaB->id);
 
-        // List is scoped to the enrolling MDA; oversight sees all.
+        // List is scoped to the enrolling MDA; oversight sees all (both enrollments).
         $this->send('officerA', 'GET', '/api/v1/enrollments')->assertOk()->assertJsonCount(1, 'data');
-        $this->send('officerB', 'GET', '/api/v1/enrollments')->assertOk()->assertJsonCount(0, 'data');
-        $this->send('oversight', 'GET', '/api/v1/enrollments')->assertOk()->assertJsonCount(1, 'data');
+        $this->send('officerB', 'GET', '/api/v1/enrollments')->assertOk()->assertJsonCount(1, 'data');
+        $this->send('oversight', 'GET', '/api/v1/enrollments')->assertOk()->assertJsonCount(2, 'data');
     }
 
     public function test_owner_can_exit_an_enrollment_but_another_mda_cannot(): void

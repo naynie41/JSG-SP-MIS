@@ -2,7 +2,7 @@
 
 // osfsl-/var/www/html/database/factories/BenefitFactory.php-PHPStan\BetterReflection\Reflection\ReflectionClass-Database\Factories\BenefitFactory
 return \PHPStan\Cache\CacheItem::__set_state(array(
-   'variableKey' => 'v2-33d8daccecf1e2cc560404376c72f03e72e295d725d08e480b76a5b279573346-8.3.31-6.70.0.1',
+   'variableKey' => 'v2-e28bc56e962fdde196d19fbef5cb057987e75954e51a878b4efb4f58fba15e60-8.3.31-6.70.0.1',
    'data' => 
   array (
     'locatedSource' => 
@@ -23,16 +23,17 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
     'isBackedEnum' => false,
     'modifiers' => 0,
     'docComment' => '/**
- * Synthetic benefit-ledger entries. `mda_id` (the delivering MDA) inherits the
- * programme owner by default.
+ * Synthetic benefit-ledger entries. `mda_id` is the delivering MDA — its own value
+ * (§10: programmes are a global catalog with no owner), defaulting to a fresh MDA
+ * when a caller doesn\'t pin it.
  *
  * @extends Factory<Benefit>
  */',
     'attributes' => 
     array (
     ),
-    'startLine' => 21,
-    'endLine' => 56,
+    'startLine' => 23,
+    'endLine' => 48,
     'startColumn' => 1,
     'endColumn' => 1,
     'parentClassName' => 'Illuminate\\Database\\Eloquent\\Factories\\Factory',
@@ -59,20 +60,20 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
           'code' => '\\App\\Domain\\Benefit\\Models\\Benefit::class',
           'attributes' => 
           array (
-            'startLine' => 23,
-            'endLine' => 23,
-            'startTokenPos' => 68,
-            'startFilePos' => 591,
-            'endTokenPos' => 70,
-            'endFilePos' => 604,
+            'startLine' => 25,
+            'endLine' => 25,
+            'startTokenPos' => 73,
+            'startFilePos' => 717,
+            'endTokenPos' => 75,
+            'endFilePos' => 730,
           ),
         ),
         'docComment' => NULL,
         'attributes' => 
         array (
         ),
-        'startLine' => 23,
-        'endLine' => 23,
+        'startLine' => 25,
+        'endLine' => 25,
         'startColumn' => 5,
         'endColumn' => 38,
         'isPromoted' => false,
@@ -107,43 +108,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         'docComment' => '/**
  * @return array<string, mixed>
  */',
-        'startLine' => 28,
-        'endLine' => 44,
-        'startColumn' => 5,
-        'endColumn' => 5,
-        'couldThrow' => false,
-        'isClosure' => false,
-        'isGenerator' => false,
-        'isVariadic' => false,
-        'modifiers' => 1,
-        'namespace' => 'Database\\Factories',
-        'declaringClassName' => 'Database\\Factories\\BenefitFactory',
-        'implementingClassName' => 'Database\\Factories\\BenefitFactory',
-        'currentClassName' => 'Database\\Factories\\BenefitFactory',
-        'aliasName' => NULL,
-      ),
-      'configure' => 
-      array (
-        'name' => 'configure',
-        'parameters' => 
-        array (
-        ),
-        'returnsReference' => false,
-        'returnType' => 
-        array (
-          'class' => 'PHPStan\\BetterReflection\\Reflection\\ReflectionNamedType',
-          'data' => 
-          array (
-            'name' => 'static',
-            'isIdentifier' => false,
-          ),
-        ),
-        'attributes' => 
-        array (
-        ),
-        'docComment' => NULL,
-        'startLine' => 46,
-        'endLine' => 55,
+        'startLine' => 30,
+        'endLine' => 47,
         'startColumn' => 5,
         'endColumn' => 5,
         'couldThrow' => false,

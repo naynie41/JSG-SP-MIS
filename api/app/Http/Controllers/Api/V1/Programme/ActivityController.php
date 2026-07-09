@@ -18,9 +18,9 @@ use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 
 /**
- * Activity management under a programme (PRD FR-PRG-02). Scoped to the programme
- * owner's MDA (via the activity's denormalised owner_mda_id); create/update/archive
- * are owner-MDA only via ActivityPolicy. Activities are archived, never deleted.
+ * Activity management (PRD §10, ARCH §12.4, FR-PRG-02). An activity runs a global
+ * catalog programme and is owned by the CREATING MDA (its own owner_mda_id + scope);
+ * create/update/archive are owner-MDA only via ActivityPolicy. Archived, never deleted.
  */
 class ActivityController extends Controller
 {
@@ -44,18 +44,20 @@ class ActivityController extends Controller
 
     public function store(StoreActivityRequest $request): JsonResponse
     {
-        // The parent programme is resolved without the owner scope so a non-owner
-        // gets a clean 403 from the policy rather than a 404.
-        $programme = Programme::query()
-            ->withoutGlobalScope(MdaScope::class)
-            ->findOrFail($request->input('programme_id'));
+        // Confirm the catalog programme exists (a valid, global reference).
+        $programme = Programme::query()->findOrFail($request->input('programme_id'));
 
         $this->authorize('create', [Activity::class, $programme]);
+
+        $mdaId = $request->user()->mda_id;
+        if ($mdaId === null) {
+            return ApiResponse::error('MDA_REQUIRED', 'Only users assigned to an MDA can create activities.', [], 422);
+        }
 
         $activity = Activity::create([
             ...$request->safe()->except('programme_id'),
             'programme_id' => $programme->id,
-            'owner_mda_id' => $programme->owner_mda_id, // inherit ownership from the programme
+            'owner_mda_id' => $mdaId, // the CREATING MDA owns the activity (§10)
             'created_by' => $request->user()->id,
         ]);
 

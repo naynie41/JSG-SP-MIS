@@ -2,7 +2,7 @@
 
 // odsl-/var/www/html/app/Http/Requests/Programme/UpdateProgrammeRequest.php-PHPStan\BetterReflection\Reflection\ReflectionClass-App\Http\Requests\Programme\UpdateProgrammeRequest
 return \PHPStan\Cache\CacheItem::__set_state(array(
-   'variableKey' => 'v2-6.70.0.1-8.3.31-29d5b04f1e2a118fff2691e740421f615174f81760cf305e4a99fb6d107b233d',
+   'variableKey' => 'v2-6.70.0.1-8.3.31-b622bceb7667afac58ab7ba057557927cc19111e9fddd0f9d90770d3f3566711',
    'data' => 
   array (
     'locatedSource' => 
@@ -23,14 +23,14 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
     'isBackedEnum' => false,
     'modifiers' => 0,
     'docComment' => '/**
- * Update a programme (PRD FR-PRG-01) — partial; owner MDA only (policy). Fields
- * are `sometimes` so a partial patch validates only what is present.
+ * Update a catalog programme (PRD §10) — partial; catalog admin only (policy).
+ * Only type-level attributes are editable; budget/funding/period live on activities.
  */',
     'attributes' => 
     array (
     ),
     'startLine' => 16,
-    'endLine' => 42,
+    'endLine' => 39,
     'startColumn' => 1,
     'endColumn' => 1,
     'parentClassName' => 'Illuminate\\Foundation\\Http\\FormRequest',
@@ -106,7 +106,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
  * @return array<string, mixed>
  */',
         'startLine' => 26,
-        'endLine' => 41,
+        'endLine' => 38,
         'startColumn' => 5,
         'endColumn' => 5,
         'couldThrow' => false,

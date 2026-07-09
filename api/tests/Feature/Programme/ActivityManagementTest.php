@@ -16,8 +16,9 @@ use Illuminate\Testing\TestResponse;
 use Tests\TestCase;
 
 /**
- * Activity management under a programme (PRD FR-PRG-02): CRUD, scoping to the
- * programme owner (owner-only mutation), RBAC, validation, and audit.
+ * Activity management (PRD §10, ARCH §12.4, FR-PRG-02): any MDA may create an
+ * activity that runs a GLOBAL catalog programme; it is owned by the creating MDA
+ * and scoped to it (owner-only mutation). Covers CRUD, RBAC, validation and audit.
  */
 class ActivityManagementTest extends TestCase
 {
@@ -44,7 +45,7 @@ class ActivityManagementTest extends TestCase
         $this->users['viewer'] = $this->user($this->mdaA, RoleKey::MneOfficer); // activity.view only
         $this->users['oversight'] = $this->user($this->mdaB, RoleKey::Executive);
 
-        $this->programmeA = Programme::factory()->create(['owner_mda_id' => $this->mdaA->id]);
+        $this->programmeA = Programme::factory()->create(); // a global catalog programme
     }
 
     private function user(Mda $mda, RoleKey $role): User
@@ -77,17 +78,20 @@ class ActivityManagementTest extends TestCase
             'starts_on' => '2026-01-01',
             'ends_on' => '2026-03-31',
             'budget_amount' => 10_000_000,
+            'funding_source' => 'State budget',
             'status' => 'active',
         ], $overrides);
     }
 
-    public function test_owner_can_create_an_activity_under_their_programme(): void
+    public function test_mda_creates_an_activity_owned_by_its_own_mda(): void
     {
         $this->send('officerA', 'POST', '/api/v1/activities', $this->payload())
             ->assertCreated()
             ->assertJsonPath('data.name', 'Q1 Cash Disbursement')
             ->assertJsonPath('data.programme_id', $this->programmeA->id)
-            ->assertJsonPath('data.owner_mda_id', $this->mdaA->id) // inherited from the programme
+            ->assertJsonPath('data.owner_mda_id', $this->mdaA->id) // the CREATING MDA
+            ->assertJsonPath('data.budget_amount', 10_000_000)
+            ->assertJsonPath('data.funding_source', 'State budget')
             ->assertJsonPath('data.lga', 'dutse');
 
         $activity = Activity::query()->firstOrFail();
@@ -99,12 +103,14 @@ class ActivityManagementTest extends TestCase
         ]);
     }
 
-    public function test_cannot_create_an_activity_under_another_mdas_programme(): void
+    public function test_any_mda_can_run_the_global_catalog_programme(): void
     {
+        // A different MDA runs the same catalog programme through its OWN activity.
         $this->send('officerB', 'POST', '/api/v1/activities', $this->payload())
-            ->assertStatus(403);
+            ->assertCreated()
+            ->assertJsonPath('data.owner_mda_id', $this->mdaB->id);
 
-        $this->assertSame(0, Activity::query()->withoutGlobalScopes()->count());
+        $this->assertSame(1, Activity::query()->withoutGlobalScopes()->where('owner_mda_id', $this->mdaB->id)->count());
     }
 
     public function test_create_requires_permission(): void
@@ -132,9 +138,9 @@ class ActivityManagementTest extends TestCase
 
     public function test_list_is_scoped_and_filterable_by_programme(): void
     {
-        Activity::factory()->forProgramme($this->programmeA)->count(2)->create();
-        $programmeB = Programme::factory()->create(['owner_mda_id' => $this->mdaB->id]);
-        Activity::factory()->forProgramme($programmeB)->create();
+        Activity::factory()->forProgramme($this->programmeA, $this->mdaA)->count(2)->create();
+        $programmeB = Programme::factory()->create();
+        Activity::factory()->forProgramme($programmeB, $this->mdaB)->create();
 
         // Owner A sees only its two activities.
         $this->send('officerA', 'GET', '/api/v1/activities')
@@ -150,7 +156,7 @@ class ActivityManagementTest extends TestCase
 
     public function test_owner_can_update_and_archive_but_another_mda_cannot(): void
     {
-        $activity = Activity::factory()->forProgramme($this->programmeA)->create(['status' => 'draft']);
+        $activity = Activity::factory()->forProgramme($this->programmeA, $this->mdaA)->create(['status' => 'draft']);
 
         $this->send('officerA', 'PATCH', "/api/v1/activities/{$activity->id}", ['status' => 'active', 'target_count' => 999])
             ->assertOk()

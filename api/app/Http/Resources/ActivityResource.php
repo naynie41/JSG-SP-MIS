@@ -32,6 +32,7 @@ class ActivityResource extends JsonResource
             'starts_on' => $this->starts_on?->toDateString(),
             'ends_on' => $this->ends_on?->toDateString(),
             'budget_amount' => $this->budget_amount, // minor units (kobo, NGN)
+            'funding_source' => $this->funding_source,
             'status' => $this->status->value,
             'created_by' => $this->created_by,
             'created_at' => $this->created_at?->toIso8601String(),

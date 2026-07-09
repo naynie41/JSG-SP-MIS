@@ -61,10 +61,13 @@ class DashboardMetricsTest extends TestCase
         $aBens[2]->update(['status' => 'suspended']);
         $bBens = Beneficiary::factory()->count(2)->create(['owner_mda_id' => $this->mdaB->id, 'lga' => 'hadejia', 'registration_source' => 'kobo']);
 
-        // Programmes: A (budget 1,000,000 kobo) and B (500,000). Partner funds A only.
-        $this->progA = Programme::factory()->individual()->create(['owner_mda_id' => $this->mdaA->id, 'status' => 'active', 'budget_amount' => 1_000_000]);
-        $this->progB = Programme::factory()->individual()->create(['owner_mda_id' => $this->mdaB->id, 'status' => 'active', 'budget_amount' => 500_000]);
+        // Programmes are a global catalog (§10); budget lives on each MDA's activity.
+        // A runs programme A (budget 1,000,000 kobo); B runs programme B (500,000).
+        $this->progA = Programme::factory()->individual()->create(['status' => 'active']);
+        $this->progB = Programme::factory()->individual()->create(['status' => 'active']);
         ProgrammeFunder::create(['programme_id' => $this->progA->id, 'user_id' => $this->users['partner']->id]);
+        Activity::factory()->forProgramme($this->progA, $this->mdaA)->create(['budget_amount' => 1_000_000]);
+        Activity::factory()->forProgramme($this->progB, $this->mdaB)->create(['budget_amount' => 500_000]);
 
         // Benefits: A delivers 100k + 200k to two distinct A beneficiaries; B delivers 150k.
         $this->benefit($aBens[0], $this->progA, $this->mdaA, 100_000, 'dutse');
@@ -110,7 +113,9 @@ class DashboardMetricsTest extends TestCase
      */
     private function importRows(Mda $mda, Programme $programme, array $rows): void
     {
-        $activity = Activity::factory()->forProgramme($programme)->create();
+        // Budget-neutral activity for the import batch (budgets are asserted via the
+        // dedicated per-MDA activities created in setUp).
+        $activity = Activity::factory()->forProgramme($programme, $mda)->create(['budget_amount' => 0]);
         $batchId = (string) Str::uuid();
         DB::table('import_batches')->insert([
             'id' => $batchId, 'owner_mda_id' => $mda->id, 'original_filename' => 'sample.csv',
