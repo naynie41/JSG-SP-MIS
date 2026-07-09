@@ -2,7 +2,7 @@
 
 // odsl-/var/www/html/app/Http/Controllers/Api/V1/Reporting/ReportController.php-PHPStan\BetterReflection\Reflection\ReflectionClass-App\Http\Controllers\Api\V1\Reporting\ReportController
 return \PHPStan\Cache\CacheItem::__set_state(array(
-   'variableKey' => 'v2-6.70.0.1-8.3.31-4e77a3ca23f9434b7f6631e6667e25ffef41ae6d0aa60ee29ddca80bc01e5e3f',
+   'variableKey' => 'v2-6.70.0.1-8.3.31-ea2be210623b1dcafdf5cecf99e2df4c8c5dad523eef9b4f108a1574555845c2',
    'data' => 
   array (
     'locatedSource' => 
@@ -32,7 +32,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
     array (
     ),
     'startLine' => 30,
-    'endLine' => 110,
+    'endLine' => 120,
     'startColumn' => 1,
     'endColumn' => 1,
     'parentClassName' => 'App\\Http\\Controllers\\Controller',
@@ -504,7 +504,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         ),
         'docComment' => NULL,
         'startLine' => 75,
-        'endLine' => 80,
+        'endLine' => 78,
         'startColumn' => 5,
         'endColumn' => 5,
         'couldThrow' => false,
@@ -542,8 +542,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             'attributes' => 
             array (
             ),
-            'startLine' => 83,
-            'endLine' => 83,
+            'startLine' => 81,
+            'endLine' => 81,
             'startColumn' => 30,
             'endColumn' => 45,
             'parameterIndex' => 0,
@@ -568,8 +568,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             'attributes' => 
             array (
             ),
-            'startLine' => 83,
-            'endLine' => 83,
+            'startLine' => 81,
+            'endLine' => 81,
             'startColumn' => 48,
             'endColumn' => 61,
             'parameterIndex' => 1,
@@ -608,9 +608,9 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         'attributes' => 
         array (
         ),
-        'docComment' => '/** Download a ready report file — re-checks ownership, then audits the access. */',
-        'startLine' => 83,
-        'endLine' => 101,
+        'docComment' => '/** Download a ready report file — re-checks access (owner or recipient), then audits it. */',
+        'startLine' => 81,
+        'endLine' => 99,
         'startColumn' => 5,
         'endColumn' => 5,
         'couldThrow' => false,
@@ -648,8 +648,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             'attributes' => 
             array (
             ),
-            'startLine' => 106,
-            'endLine' => 106,
+            'startLine' => 104,
+            'endLine' => 104,
             'startColumn' => 27,
             'endColumn' => 42,
             'parameterIndex' => 0,
@@ -672,8 +672,98 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         'docComment' => '/**
  * @return Builder<ReportRun>
  */',
-        'startLine' => 106,
-        'endLine' => 109,
+        'startLine' => 104,
+        'endLine' => 107,
+        'startColumn' => 5,
+        'endColumn' => 5,
+        'couldThrow' => false,
+        'isClosure' => false,
+        'isGenerator' => false,
+        'isVariadic' => false,
+        'modifiers' => 4,
+        'namespace' => 'App\\Http\\Controllers\\Api\\V1\\Reporting',
+        'declaringClassName' => 'App\\Http\\Controllers\\Api\\V1\\Reporting\\ReportController',
+        'implementingClassName' => 'App\\Http\\Controllers\\Api\\V1\\Reporting\\ReportController',
+        'currentClassName' => 'App\\Http\\Controllers\\Api\\V1\\Reporting\\ReportController',
+        'aliasName' => NULL,
+      ),
+      'accessible' => 
+      array (
+        'name' => 'accessible',
+        'parameters' => 
+        array (
+          'request' => 
+          array (
+            'name' => 'request',
+            'default' => NULL,
+            'type' => 
+            array (
+              'class' => 'PHPStan\\BetterReflection\\Reflection\\ReflectionNamedType',
+              'data' => 
+              array (
+                'name' => 'Illuminate\\Http\\Request',
+                'isIdentifier' => false,
+              ),
+            ),
+            'isVariadic' => false,
+            'byRef' => false,
+            'isPromoted' => false,
+            'attributes' => 
+            array (
+            ),
+            'startLine' => 113,
+            'endLine' => 113,
+            'startColumn' => 33,
+            'endColumn' => 48,
+            'parameterIndex' => 0,
+            'isOptional' => false,
+          ),
+          'report' => 
+          array (
+            'name' => 'report',
+            'default' => NULL,
+            'type' => 
+            array (
+              'class' => 'PHPStan\\BetterReflection\\Reflection\\ReflectionNamedType',
+              'data' => 
+              array (
+                'name' => 'string',
+                'isIdentifier' => true,
+              ),
+            ),
+            'isVariadic' => false,
+            'byRef' => false,
+            'isPromoted' => false,
+            'attributes' => 
+            array (
+            ),
+            'startLine' => 113,
+            'endLine' => 113,
+            'startColumn' => 51,
+            'endColumn' => 64,
+            'parameterIndex' => 1,
+            'isOptional' => false,
+          ),
+        ),
+        'returnsReference' => false,
+        'returnType' => 
+        array (
+          'class' => 'PHPStan\\BetterReflection\\Reflection\\ReflectionNamedType',
+          'data' => 
+          array (
+            'name' => 'App\\Domain\\Reporting\\Models\\ReportRun',
+            'isIdentifier' => false,
+          ),
+        ),
+        'attributes' => 
+        array (
+        ),
+        'docComment' => '/**
+ * A run the caller may access — the requester OR a scheduled recipient. 404 if the
+ * run doesn\'t exist or the caller is neither.
+ */',
+        'startLine' => 113,
+        'endLine' => 119,
         'startColumn' => 5,
         'endColumn' => 5,
         'couldThrow' => false,

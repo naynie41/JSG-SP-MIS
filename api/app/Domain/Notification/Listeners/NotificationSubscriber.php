@@ -284,8 +284,9 @@ class NotificationSubscriber
     public function handleReportReady(ReportReady $event): void
     {
         // The user who generated the report is notified it can be downloaded (FR-RPT-03).
+        // Scheduled runs (with a recipient list) are delivered by DeliverScheduledReport.
         $run = $event->run;
-        if ($run->requested_by === null) {
+        if ($run->recipient_user_ids !== null || $run->requested_by === null) {
             return;
         }
 

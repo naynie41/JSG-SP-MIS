@@ -2,7 +2,7 @@
 
 // odsl-/var/www/html/app/Domain/Reporting/ReportingServiceProvider.php-PHPStan\BetterReflection\Reflection\ReflectionClass-App\Domain\Reporting\ReportingServiceProvider
 return \PHPStan\Cache\CacheItem::__set_state(array(
-   'variableKey' => 'v2-6.70.0.1-8.3.31-1a948e38051a3bad3afbad90cd3ed69827b2aef38fcf460bcdc33b285403e385',
+   'variableKey' => 'v2-6.70.0.1-8.3.31-4984868596907509f65a7229d4b7abe7d46bff595cf0e48f93f59b93b5b9e7f3',
    'data' => 
   array (
     'locatedSource' => 
@@ -23,15 +23,16 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
     'isBackedEnum' => false,
     'modifiers' => 0,
     'docComment' => '/**
- * Wires the Reporting domain (PRD FR-RPT/FR-GIS): its permissions. Dashboards read
- * de-identified aggregate snapshots scoped to the caller (Executive state-wide, MDA
- * own, Partner funded, SP Coordination cross-MDA) — enforced in the reporting layer.
+ * Wires the Reporting domain (PRD FR-RPT/FR-GIS): its permissions and the scheduled-
+ * report delivery listener. Dashboards read de-identified aggregate snapshots scoped
+ * to the caller (Executive state-wide, MDA own, Partner funded, SP Coordination
+ * cross-MDA) — enforced in the reporting layer.
  */',
     'attributes' => 
     array (
     ),
-    'startLine' => 16,
-    'endLine' => 25,
+    'startLine' => 21,
+    'endLine' => 38,
     'startColumn' => 1,
     'endColumn' => 1,
     'parentClassName' => 'Illuminate\\Support\\ServiceProvider',
@@ -69,8 +70,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         array (
         ),
         'docComment' => NULL,
-        'startLine' => 18,
-        'endLine' => 24,
+        'startLine' => 23,
+        'endLine' => 37,
         'startColumn' => 5,
         'endColumn' => 5,
         'couldThrow' => false,

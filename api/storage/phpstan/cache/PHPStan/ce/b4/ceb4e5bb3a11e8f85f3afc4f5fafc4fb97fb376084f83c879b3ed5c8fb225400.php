@@ -1783,7 +1783,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
     ),
     '/var/www/html/app/Domain/Notification/Listeners/NotificationSubscriber.php' => 
     array (
-      0 => '57b6b0963e270febb2605c5585700b004f46f4fb62f034ae85d2a899eee0ddb3',
+      0 => '86b29f126f6da5c75b69629b217f4a45178b2622b1a2e6e861f1a6653580c236',
       1 => 
       array (
         0 => 'app\\domain\\notification\\listeners\\notificationsubscriber',
@@ -3526,7 +3526,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
     ),
     '/var/www/html/app/Domain/Reporting/Models/ReportRun.php' => 
     array (
-      0 => 'eabc33e93cdd94b10d51928f9ff45ab225f1fcefd732e284d037ba14d24130f1',
+      0 => '2793228d889e663871b3371890daa77fd4a781d5da63c9bd78a4d0573243aeae',
       1 => 
       array (
         0 => 'app\\domain\\reporting\\models\\reportrun',
@@ -3534,9 +3534,10 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
       2 => 
       array (
         0 => 'app\\domain\\reporting\\models\\casts',
-        1 => 'app\\domain\\reporting\\models\\adhocdefinition',
-        2 => 'app\\domain\\reporting\\models\\toscope',
-        3 => 'app\\domain\\reporting\\models\\isready',
+        1 => 'app\\domain\\reporting\\models\\isaccessibleby',
+        2 => 'app\\domain\\reporting\\models\\adhocdefinition',
+        3 => 'app\\domain\\reporting\\models\\toscope',
+        4 => 'app\\domain\\reporting\\models\\isready',
       ),
       3 => 
       array (
@@ -3544,7 +3545,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
     ),
     '/var/www/html/app/Domain/Reporting/ReportingServiceProvider.php' => 
     array (
-      0 => '1a948e38051a3bad3afbad90cd3ed69827b2aef38fcf460bcdc33b285403e385',
+      0 => '4984868596907509f65a7229d4b7abe7d46bff595cf0e48f93f59b93b5b9e7f3',
       1 => 
       array (
         0 => 'app\\domain\\reporting\\reportingserviceprovider',
@@ -3682,7 +3683,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
     ),
     '/var/www/html/app/Domain/Reporting/Services/ReportService.php' => 
     array (
-      0 => 'ac48ed7de465054850722f05b5e649ac31321be1a4e2cf4480a94cc4a114f8dc',
+      0 => 'bbe6f948c465a4ca4bb66fe7fe99050b6d7033caee9c32466ff5c90892e78a14',
       1 => 
       array (
         0 => 'app\\domain\\reporting\\services\\reportservice',
@@ -3692,7 +3693,9 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         0 => 'app\\domain\\reporting\\services\\__construct',
         1 => 'app\\domain\\reporting\\services\\request',
         2 => 'app\\domain\\reporting\\services\\requestadhoc',
-        3 => 'app\\domain\\reporting\\services\\queue',
+        3 => 'app\\domain\\reporting\\services\\runfromschedule',
+        4 => 'app\\domain\\reporting\\services\\schedulereportattributes',
+        5 => 'app\\domain\\reporting\\services\\createrun',
       ),
       3 => 
       array (
@@ -3700,7 +3703,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
     ),
     '/var/www/html/app/Domain/Reporting/Support/DashboardScope.php' => 
     array (
-      0 => '05aa378058f3621c6a8928e1cc13fa165dd8aa83ed48a99ad08be7337cfdf6cc',
+      0 => '28013976808af5b5a4905b12cb7e57030a19ab3c2e341fdbef2b92e0c111904d',
       1 => 
       array (
         0 => 'app\\domain\\reporting\\support\\dashboardscope',
@@ -3715,7 +3718,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         5 => 'app\\domain\\reporting\\support\\isstatewide',
         6 => 'app\\domain\\reporting\\support\\ispartner',
         7 => 'app\\domain\\reporting\\support\\includescoordinationmetrics',
-        8 => 'app\\domain\\reporting\\support\\key',
+        8 => 'app\\domain\\reporting\\support\\covers',
+        9 => 'app\\domain\\reporting\\support\\key',
       ),
       3 => 
       array (
@@ -4307,7 +4311,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
     ),
     '/var/www/html/app/Http/Controllers/Api/V1/Reporting/ReportController.php' => 
     array (
-      0 => '4e77a3ca23f9434b7f6631e6667e25ffef41ae6d0aa60ee29ddca80bc01e5e3f',
+      0 => 'ea2be210623b1dcafdf5cecf99e2df4c8c5dad523eef9b4f108a1574555845c2',
       1 => 
       array (
         0 => 'app\\http\\controllers\\api\\v1\\reporting\\reportcontroller',
@@ -4321,6 +4325,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         4 => 'app\\http\\controllers\\api\\v1\\reporting\\show',
         5 => 'app\\http\\controllers\\api\\v1\\reporting\\download',
         6 => 'app\\http\\controllers\\api\\v1\\reporting\\mine',
+        7 => 'app\\http\\controllers\\api\\v1\\reporting\\accessible',
       ),
       3 => 
       array (
@@ -5822,6 +5827,260 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
       2 => 
       array (
         0 => 'app\\http\\resources\\toarray',
+      ),
+      3 => 
+      array (
+      ),
+    ),
+    '/var/www/html/app/Domain/Reporting/Exceptions/InvalidReportScheduleException.php' => 
+    array (
+      0 => '59791f4ac3c06475c2fc59aa480a2d9f5a7342b16df5244ada10e10b5d1a10db',
+      1 => 
+      array (
+        0 => 'app\\domain\\reporting\\exceptions\\invalidreportscheduleexception',
+      ),
+      2 => 
+      array (
+      ),
+      3 => 
+      array (
+      ),
+    ),
+    '/var/www/html/app/Domain/Reporting/Jobs/RunDueReportSchedules.php' => 
+    array (
+      0 => '1207a2577d08685952dd409fcc8c374d94bc1b4ad6b07a04a46a1d7e2515cff0',
+      1 => 
+      array (
+        0 => 'app\\domain\\reporting\\jobs\\runduereportschedules',
+      ),
+      2 => 
+      array (
+        0 => 'app\\domain\\reporting\\jobs\\handle',
+      ),
+      3 => 
+      array (
+      ),
+    ),
+    '/var/www/html/app/Domain/Reporting/Listeners/DeliverScheduledReport.php' => 
+    array (
+      0 => '1d8f48c8f8e261f5464753c2695ceabbb3bee3a443fd10a1ee5afdc0fb266272',
+      1 => 
+      array (
+        0 => 'app\\domain\\reporting\\listeners\\deliverscheduledreport',
+      ),
+      2 => 
+      array (
+        0 => 'app\\domain\\reporting\\listeners\\__construct',
+        1 => 'app\\domain\\reporting\\listeners\\handle',
+      ),
+      3 => 
+      array (
+      ),
+    ),
+    '/var/www/html/app/Domain/Reporting/Mail/ScheduledReportMail.php' => 
+    array (
+      0 => '2b7284fc44f96c18cd6883ccbc5307c2a70ad530b454b468860e98a1c9b56db7',
+      1 => 
+      array (
+        0 => 'app\\domain\\reporting\\mail\\scheduledreportmail',
+      ),
+      2 => 
+      array (
+        0 => 'app\\domain\\reporting\\mail\\__construct',
+        1 => 'app\\domain\\reporting\\mail\\build',
+      ),
+      3 => 
+      array (
+      ),
+    ),
+    '/var/www/html/app/Domain/Reporting/Models/ReportSchedule.php' => 
+    array (
+      0 => '8a140ce5887a4b1bbb5a7ccddda9cc95d82a40551c908ad03dd26b30f86ce9a9',
+      1 => 
+      array (
+        0 => 'app\\domain\\reporting\\models\\reportschedule',
+      ),
+      2 => 
+      array (
+        0 => 'app\\domain\\reporting\\models\\casts',
+        1 => 'app\\domain\\reporting\\models\\definition',
+        2 => 'app\\domain\\reporting\\models\\toscope',
+        3 => 'app\\domain\\reporting\\models\\isactive',
+        4 => 'app\\domain\\reporting\\models\\dueon',
+      ),
+      3 => 
+      array (
+      ),
+    ),
+    '/var/www/html/app/Domain/Reporting/Services/ReportScheduleService.php' => 
+    array (
+      0 => '17ec135fab548b24b6fb6f35406291da7fce3a25c2f1ee872304aefcc38a2f99',
+      1 => 
+      array (
+        0 => 'app\\domain\\reporting\\services\\reportscheduleservice',
+      ),
+      2 => 
+      array (
+        0 => 'app\\domain\\reporting\\services\\__construct',
+        1 => 'app\\domain\\reporting\\services\\create',
+        2 => 'app\\domain\\reporting\\services\\update',
+        3 => 'app\\domain\\reporting\\services\\delete',
+        4 => 'app\\domain\\reporting\\services\\rundue',
+        5 => 'app\\domain\\reporting\\services\\resolvereport',
+        6 => 'app\\domain\\reporting\\services\\assertreportavailable',
+        7 => 'app\\domain\\reporting\\services\\normalizerecipients',
+        8 => 'app\\domain\\reporting\\services\\assertrecipientscoverscope',
+        9 => 'app\\domain\\reporting\\services\\auditdata',
+      ),
+      3 => 
+      array (
+      ),
+    ),
+    '/var/www/html/app/Http/Controllers/Api/V1/Reporting/ReportScheduleController.php' => 
+    array (
+      0 => '3c36a16b67c54863a0df1e30f38c862392e2e7f90b22b41fbe484c6865eddf7f',
+      1 => 
+      array (
+        0 => 'app\\http\\controllers\\api\\v1\\reporting\\reportschedulecontroller',
+      ),
+      2 => 
+      array (
+        0 => 'app\\http\\controllers\\api\\v1\\reporting\\__construct',
+        1 => 'app\\http\\controllers\\api\\v1\\reporting\\index',
+        2 => 'app\\http\\controllers\\api\\v1\\reporting\\store',
+        3 => 'app\\http\\controllers\\api\\v1\\reporting\\show',
+        4 => 'app\\http\\controllers\\api\\v1\\reporting\\update',
+        5 => 'app\\http\\controllers\\api\\v1\\reporting\\destroy',
+        6 => 'app\\http\\controllers\\api\\v1\\reporting\\mine',
+      ),
+      3 => 
+      array (
+      ),
+    ),
+    '/var/www/html/app/Http/Requests/Reporting/StoreReportScheduleRequest.php' => 
+    array (
+      0 => '85b4b4d7c02ade6dee1953bd2033c1cc9c1521106f07f36b3c4a3cd22e005d98',
+      1 => 
+      array (
+        0 => 'app\\http\\requests\\reporting\\storereportschedulerequest',
+      ),
+      2 => 
+      array (
+        0 => 'app\\http\\requests\\reporting\\authorize',
+        1 => 'app\\http\\requests\\reporting\\rules',
+      ),
+      3 => 
+      array (
+      ),
+    ),
+    '/var/www/html/app/Http/Requests/Reporting/UpdateReportScheduleRequest.php' => 
+    array (
+      0 => 'ecd17b5ce6f3fc584c14fa55f07fecdf00d374c91670b2eecd61c9a04affe0d2',
+      1 => 
+      array (
+        0 => 'app\\http\\requests\\reporting\\updatereportschedulerequest',
+      ),
+      2 => 
+      array (
+        0 => 'app\\http\\requests\\reporting\\authorize',
+        1 => 'app\\http\\requests\\reporting\\rules',
+      ),
+      3 => 
+      array (
+      ),
+    ),
+    '/var/www/html/app/Http/Resources/ReportScheduleResource.php' => 
+    array (
+      0 => 'ffaf5da7a18af438132cefbeee3415399d81cf434ed93f5d078beea79a52cc06',
+      1 => 
+      array (
+        0 => 'app\\http\\resources\\reportscheduleresource',
+      ),
+      2 => 
+      array (
+        0 => 'app\\http\\resources\\toarray',
+      ),
+      3 => 
+      array (
+      ),
+    ),
+    '/var/www/html/app/Domain/Reporting/Gis/BoundaryLoader.php' => 
+    array (
+      0 => '10054d0fd82098484831fcb3806a64ab23f547324a7e08dbfbe4faf8909d9b45',
+      1 => 
+      array (
+        0 => 'app\\domain\\reporting\\gis\\boundaryloader',
+      ),
+      2 => 
+      array (
+        0 => 'app\\domain\\reporting\\gis\\load',
+        1 => 'app\\domain\\reporting\\gis\\slug',
+      ),
+      3 => 
+      array (
+      ),
+    ),
+    '/var/www/html/app/Domain/Reporting/Gis/GeoBoundary.php' => 
+    array (
+      0 => 'b6efd1960ce962dcacecdc2e500223aa7c0cc0a54c17feeb3eac1665baffefca',
+      1 => 
+      array (
+        0 => 'app\\domain\\reporting\\gis\\geoboundary',
+      ),
+      2 => 
+      array (
+        0 => 'app\\domain\\reporting\\gis\\casts',
+      ),
+      3 => 
+      array (
+      ),
+    ),
+    '/var/www/html/app/Domain/Reporting/Gis/GisCoverageService.php' => 
+    array (
+      0 => '118c26a15f3dec075ff7eaaad799d9db83f33edb111a34a9ee9dc4b1af515633',
+      1 => 
+      array (
+        0 => 'app\\domain\\reporting\\gis\\giscoverageservice',
+      ),
+      2 => 
+      array (
+        0 => 'app\\domain\\reporting\\gis\\__construct',
+        1 => 'app\\domain\\reporting\\gis\\coverage',
+        2 => 'app\\domain\\reporting\\gis\\beneficiarycounts',
+        3 => 'app\\domain\\reporting\\gis\\slug',
+        4 => 'app\\domain\\reporting\\gis\\title',
+      ),
+      3 => 
+      array (
+      ),
+    ),
+    '/var/www/html/app/Domain/Reporting/Gis/LoadGeoBoundaries.php' => 
+    array (
+      0 => '66b41c1dc83fbbf0107817c81a1f6a1015fcf40dbb64c49e09f734cae67a100a',
+      1 => 
+      array (
+        0 => 'app\\domain\\reporting\\gis\\loadgeoboundaries',
+      ),
+      2 => 
+      array (
+        0 => 'app\\domain\\reporting\\gis\\handle',
+      ),
+      3 => 
+      array (
+      ),
+    ),
+    '/var/www/html/app/Http/Controllers/Api/V1/Reporting/GisController.php' => 
+    array (
+      0 => 'bca3af064ef26c991cd54602756546185687ccc539720c71db81b77be60fdf4f',
+      1 => 
+      array (
+        0 => 'app\\http\\controllers\\api\\v1\\reporting\\giscontroller',
+      ),
+      2 => 
+      array (
+        0 => 'app\\http\\controllers\\api\\v1\\reporting\\__construct',
+        1 => 'app\\http\\controllers\\api\\v1\\reporting\\coverage',
+        2 => 'app\\http\\controllers\\api\\v1\\reporting\\featurecollection',
       ),
       3 => 
       array (

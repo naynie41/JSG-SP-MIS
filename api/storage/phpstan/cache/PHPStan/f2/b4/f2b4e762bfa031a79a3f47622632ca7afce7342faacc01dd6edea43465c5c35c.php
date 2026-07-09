@@ -570,10 +570,85 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
          'typeAliasClassName' => NULL,
          'traitData' => NULL,
       )),
+      '3a95534d01ddd05d2406409b5ad69e9d' => 
+      \PHPStan\Analyser\IntermediaryNameScope::__set_state(array(
+         'namespace' => 'App\\Http\\Controllers\\Api\\V1\\Reporting',
+         'uses' => 
+        array (
+          'auditlogger' => 'App\\Domain\\Audit\\Services\\AuditLogger',
+          'reportformat' => 'App\\Domain\\Reporting\\Export\\ReportFormat',
+          'reportrun' => 'App\\Domain\\Reporting\\Models\\ReportRun',
+          'reportcatalogue' => 'App\\Domain\\Reporting\\Reports\\ReportCatalogue',
+          'dashboardscoperesolver' => 'App\\Domain\\Reporting\\Services\\DashboardScopeResolver',
+          'reportservice' => 'App\\Domain\\Reporting\\Services\\ReportService',
+          'controller' => 'App\\Http\\Controllers\\Controller',
+          'generatereportrequest' => 'App\\Http\\Requests\\Reporting\\GenerateReportRequest',
+          'reportrunresource' => 'App\\Http\\Resources\\ReportRunResource',
+          'apiresponse' => 'App\\Support\\ApiResponse',
+          'builder' => 'Illuminate\\Database\\Eloquent\\Builder',
+          'jsonresponse' => 'Illuminate\\Http\\JsonResponse',
+          'request' => 'Illuminate\\Http\\Request',
+          'storage' => 'Illuminate\\Support\\Facades\\Storage',
+          'runtimeexception' => 'RuntimeException',
+          'streamedresponse' => 'Symfony\\Component\\HttpFoundation\\StreamedResponse',
+        ),
+         'className' => 'App\\Http\\Controllers\\Api\\V1\\Reporting\\ReportController',
+         'functionName' => 'accessible',
+         'templatePhpDocNodes' => 
+        array (
+        ),
+         'parent' => 
+        \PHPStan\Analyser\IntermediaryNameScope::__set_state(array(
+           'namespace' => 'App\\Http\\Controllers\\Api\\V1\\Reporting',
+           'uses' => 
+          array (
+            'auditlogger' => 'App\\Domain\\Audit\\Services\\AuditLogger',
+            'reportformat' => 'App\\Domain\\Reporting\\Export\\ReportFormat',
+            'reportrun' => 'App\\Domain\\Reporting\\Models\\ReportRun',
+            'reportcatalogue' => 'App\\Domain\\Reporting\\Reports\\ReportCatalogue',
+            'dashboardscoperesolver' => 'App\\Domain\\Reporting\\Services\\DashboardScopeResolver',
+            'reportservice' => 'App\\Domain\\Reporting\\Services\\ReportService',
+            'controller' => 'App\\Http\\Controllers\\Controller',
+            'generatereportrequest' => 'App\\Http\\Requests\\Reporting\\GenerateReportRequest',
+            'reportrunresource' => 'App\\Http\\Resources\\ReportRunResource',
+            'apiresponse' => 'App\\Support\\ApiResponse',
+            'builder' => 'Illuminate\\Database\\Eloquent\\Builder',
+            'jsonresponse' => 'Illuminate\\Http\\JsonResponse',
+            'request' => 'Illuminate\\Http\\Request',
+            'storage' => 'Illuminate\\Support\\Facades\\Storage',
+            'runtimeexception' => 'RuntimeException',
+            'streamedresponse' => 'Symfony\\Component\\HttpFoundation\\StreamedResponse',
+          ),
+           'className' => 'App\\Http\\Controllers\\Api\\V1\\Reporting\\ReportController',
+           'functionName' => NULL,
+           'templatePhpDocNodes' => 
+          array (
+          ),
+           'parent' => NULL,
+           'typeAliasesMap' => 
+          array (
+          ),
+           'bypassTypeAliases' => false,
+           'constUses' => 
+          array (
+          ),
+           'typeAliasClassName' => NULL,
+           'traitData' => NULL,
+        )),
+         'typeAliasesMap' => 
+        array (
+        ),
+         'bypassTypeAliases' => false,
+         'constUses' => 
+        array (
+        ),
+         'typeAliasClassName' => NULL,
+         'traitData' => NULL,
+      )),
     ),
     1 => 
     array (
-      '/var/www/html/app/Http/Controllers/Api/V1/Reporting/ReportController.php' => '4e77a3ca23f9434b7f6631e6667e25ffef41ae6d0aa60ee29ddca80bc01e5e3f',
+      '/var/www/html/app/Http/Controllers/Api/V1/Reporting/ReportController.php' => 'ea2be210623b1dcafdf5cecf99e2df4c8c5dad523eef9b4f108a1574555845c2',
     ),
   ),
 ));

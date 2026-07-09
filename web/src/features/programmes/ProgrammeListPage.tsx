@@ -1,5 +1,5 @@
-import { useState } from 'react'
-import { Link } from 'react-router-dom'
+import { useEffect, useState } from 'react'
+import { Link, useSearchParams } from 'react-router-dom'
 import { Plus } from 'lucide-react'
 import { Button } from '@/components/Button/Button'
 import { Badge } from '@/components/Badge/Badge'
@@ -29,6 +29,16 @@ export function ProgrammeListPage() {
   const [type, setType] = useState('')
   const [createOpen, setCreateOpen] = useState(false)
 
+  // Deep-link from the dashboard / hub "New programme" shortcut opens the create modal.
+  const [searchParams, setSearchParams] = useSearchParams()
+  useEffect(() => {
+    if (searchParams.get('new') === '1' && canCreate) {
+      setCreateOpen(true)
+      searchParams.delete('new')
+      setSearchParams(searchParams, { replace: true })
+    }
+  }, [searchParams, setSearchParams, canCreate])
+
   const { data, isLoading } = useProgrammes({ page, search, status, type }, canView)
 
   if (!canView) {
@@ -51,7 +61,7 @@ export function ProgrammeListPage() {
     <div>
       <div className={layout.pageHead}>
         <div className={layout.pageTitle}>
-          <span className="eyebrow">04 · Programmes</span>
+          <span className="eyebrow">Programmes</span>
           <h1 className="t-h1">Programmes</h1>
         </div>
         {canCreate && (

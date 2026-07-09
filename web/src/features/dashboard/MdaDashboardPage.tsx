@@ -34,9 +34,10 @@ export function MdaDashboardPage() {
 
   return (
     <DashboardView
-      eyebrow="06 · Reporting"
+      eyebrow="Dashboard"
       title={user?.mda?.name ? `${user.mda.name} dashboard` : 'MDA dashboard'}
       lead="Your MDA's programmes, beneficiaries, benefits delivered, budget utilisation, referrals and grievances. Scoped to your MDA."
+      showQuickActions
       data={data}
       isFetching={isFetching}
       onRefresh={() => refetch()}

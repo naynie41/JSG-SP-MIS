@@ -21,6 +21,9 @@ import { ImportBatchPage } from '@/features/registry/ImportBatchPage'
 import { DuplicateSearchPage } from '@/features/registry/DuplicateSearchPage'
 import { ServiceRequestsPage } from '@/features/registry/ServiceRequestsPage'
 import { MatchingConfigPage } from '@/features/registry/MatchingConfigPage'
+import { RegistryHubPage } from '@/features/registry/RegistryHubPage'
+import { CoordinationHubPage } from '@/features/coordination/CoordinationHubPage'
+import { ProgrammesHubPage } from '@/features/programmes/ProgrammesHubPage'
 import { ProgrammeListPage } from '@/features/programmes/ProgrammeListPage'
 import { ProgrammeDetailPage } from '@/features/programmes/ProgrammeDetailPage'
 import { RecordBenefitPage } from '@/features/benefits/RecordBenefitPage'
@@ -30,6 +33,7 @@ import { ReferralsPage } from '@/features/referrals/ReferralsPage'
 import { ReferralDetailPage } from '@/features/referrals/ReferralDetailPage'
 import { GrievanceDeskPage } from '@/features/grievances/GrievanceDeskPage'
 import { GrievanceDetailPage } from '@/features/grievances/GrievanceDetailPage'
+import { GisDashboardPage } from '@/features/gis/GisDashboardPage'
 import { AppLayout } from './AppLayout'
 import { ProtectedRoute } from './ProtectedRoute'
 
@@ -93,7 +97,10 @@ export function App() {
         <Route path="/duplicate-search" element={<DuplicateSearchPage />} />
         <Route path="/service-requests" element={<ServiceRequestsPage />} />
         <Route path="/matching" element={<MatchingConfigPage />} />
-        <Route path="/programmes" element={<ProgrammeListPage />} />
+        <Route path="/registry" element={<RegistryHubPage />} />
+        <Route path="/coordination" element={<CoordinationHubPage />} />
+        <Route path="/programmes" element={<ProgrammesHubPage />} />
+        <Route path="/programmes/list" element={<ProgrammeListPage />} />
         <Route path="/programmes/:id" element={<ProgrammeDetailPage />} />
         <Route path="/benefits/record" element={<RecordBenefitPage />} />
         <Route path="/benefits/bulk" element={<BulkDeliveryPage />} />
@@ -102,6 +109,7 @@ export function App() {
         <Route path="/referrals/:id" element={<ReferralDetailPage />} />
         <Route path="/grievances" element={<GrievanceDeskPage />} />
         <Route path="/grievances/:id" element={<GrievanceDetailPage />} />
+        <Route path="/gis" element={<GisDashboardPage />} />
         <Route path="/users" element={<UserListPage />} />
         <Route path="/mdas" element={<MdaListPage />} />
         <Route path="/roles" element={<PlaceholderPage eyebrow="02 · Administration" title="Roles" />} />

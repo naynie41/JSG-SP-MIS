@@ -265,6 +265,30 @@ overdue items without ever auto-closing.
 > (incl. an escalated one) and synthetic notifications so the coordination screens
 > have data on first run.
 
+### Phase 6 — Dashboards, Reporting & GIS
+
+Role-scoped **dashboards** (Executive state-wide, MDA own, Development Partner funded
+programmes) read from a cached **aggregation layer** — registry counts, benefits +
+budget utilisation, referral/grievance headlines and coverage by LGA. The **report
+service** produces **CSV, Excel and branded PDF** from a **standard catalogue** and an
+**ad-hoc builder** (choose dataset → columns → filters → grouping, all whitelisted and
+scope-bound); reports generate on the **queue**, are **audited**, mask sensitive
+fields, and can be **scheduled** for automatic delivery to scope-validated recipients
+(in-app + email, secure link or attachment). The **GIS coverage map** (`06 · Reporting
+→ Coverage map`) renders an LGA/Ward **choropleth** when boundaries are loaded and
+**degrades to a ranked table** otherwise. Everything is **de-identified aggregate data
+only** — no PII leaves via a dashboard, report or export.
+
+> See [api/app/Domain/Reporting/README.md](api/app/Domain/Reporting/README.md) (scope
+> rule, export service, catalogue, ad-hoc builder, scheduling, partner funding scope),
+> [api/app/Domain/Reporting/Gis/README.md](api/app/Domain/Reporting/Gis/README.md)
+> (GeoJSON boundary format + how to source Jigawa boundaries) and the completion
+> checklist in [docs/PHASE-6-CHECKLIST.md](docs/PHASE-6-CHECKLIST.md).
+> **Sample data (local only):** `ReportingSampleSeeder` adds a funded Development
+> Partner, synthetic LGA boundaries (so the map renders), and warms dashboard
+> snapshots. Load real boundaries with
+> `php artisan gis:load-boundaries lga <file.geojson>`.
+
 ---
 
 ## Running tests, lint & static analysis

@@ -14,6 +14,10 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         array (
           'permissionaction' => 'App\\Domain\\Access\\Enums\\PermissionAction',
           'permissionregistry' => 'App\\Domain\\Access\\Support\\PermissionRegistry',
+          'reportready' => 'App\\Domain\\Reporting\\Events\\ReportReady',
+          'loadgeoboundaries' => 'App\\Domain\\Reporting\\Gis\\LoadGeoBoundaries',
+          'deliverscheduledreport' => 'App\\Domain\\Reporting\\Listeners\\DeliverScheduledReport',
+          'event' => 'Illuminate\\Support\\Facades\\Event',
           'serviceprovider' => 'Illuminate\\Support\\ServiceProvider',
         ),
          'className' => 'App\\Domain\\Reporting\\ReportingServiceProvider',
@@ -39,6 +43,10 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         array (
           'permissionaction' => 'App\\Domain\\Access\\Enums\\PermissionAction',
           'permissionregistry' => 'App\\Domain\\Access\\Support\\PermissionRegistry',
+          'reportready' => 'App\\Domain\\Reporting\\Events\\ReportReady',
+          'loadgeoboundaries' => 'App\\Domain\\Reporting\\Gis\\LoadGeoBoundaries',
+          'deliverscheduledreport' => 'App\\Domain\\Reporting\\Listeners\\DeliverScheduledReport',
+          'event' => 'Illuminate\\Support\\Facades\\Event',
           'serviceprovider' => 'Illuminate\\Support\\ServiceProvider',
         ),
          'className' => 'App\\Domain\\Reporting\\ReportingServiceProvider',
@@ -53,6 +61,10 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
           array (
             'permissionaction' => 'App\\Domain\\Access\\Enums\\PermissionAction',
             'permissionregistry' => 'App\\Domain\\Access\\Support\\PermissionRegistry',
+            'reportready' => 'App\\Domain\\Reporting\\Events\\ReportReady',
+            'loadgeoboundaries' => 'App\\Domain\\Reporting\\Gis\\LoadGeoBoundaries',
+            'deliverscheduledreport' => 'App\\Domain\\Reporting\\Listeners\\DeliverScheduledReport',
+            'event' => 'Illuminate\\Support\\Facades\\Event',
             'serviceprovider' => 'Illuminate\\Support\\ServiceProvider',
           ),
            'className' => 'App\\Domain\\Reporting\\ReportingServiceProvider',
@@ -84,7 +96,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
     ),
     1 => 
     array (
-      '/var/www/html/app/Domain/Reporting/ReportingServiceProvider.php' => '1a948e38051a3bad3afbad90cd3ed69827b2aef38fcf460bcdc33b285403e385',
+      '/var/www/html/app/Domain/Reporting/ReportingServiceProvider.php' => '4984868596907509f65a7229d4b7abe7d46bff595cf0e48f93f59b93b5b9e7f3',
     ),
   ),
 ));

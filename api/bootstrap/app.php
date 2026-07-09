@@ -5,6 +5,7 @@ declare(strict_types=1);
 use App\Domain\Grievance\Jobs\EscalateOverdueGrievances;
 use App\Domain\Referral\Jobs\EscalateOverdueReferrals;
 use App\Domain\Reporting\Jobs\RefreshDashboardSnapshots;
+use App\Domain\Reporting\Jobs\RunDueReportSchedules;
 use App\Http\Middleware\AssignCorrelationId;
 use App\Http\Middleware\CheckPermission;
 use App\Http\Middleware\EnforceIdleTimeout;
@@ -43,6 +44,9 @@ return Application::configure(basePath: dirname(__DIR__))
         // Dashboard summary refresh (FR-RPT-01/02): recompute scope snapshots so the
         // request path always reads a summary, never the raw ledger/registry.
         $schedule->job(RefreshDashboardSnapshots::class)->everyFifteenMinutes()->withoutOverlapping();
+
+        // Scheduled reports (FR-RPT-04): generate + deliver every due schedule daily.
+        $schedule->job(RunDueReportSchedules::class)->dailyAt('06:00')->withoutOverlapping();
     })
     ->withMiddleware(function (Middleware $middleware): void {
         // Correlation id first (so it is available to everything), security

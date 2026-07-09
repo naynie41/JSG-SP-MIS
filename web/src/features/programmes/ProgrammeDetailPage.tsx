@@ -165,9 +165,9 @@ export function ProgrammeDetailPage() {
     <div>
       <div className={layout.pageHead}>
         <div className={layout.pageTitle}>
-          <span className="eyebrow">04 · Programmes</span>
+          <span className="eyebrow">Programmes</span>
           <h1 className="t-h1">{programme.name}</h1>
-          <Link to="/programmes" className={styles.note}>← All programmes</Link>
+          <Link to="/programmes/list" className={styles.note}>← All programmes</Link>
         </div>
         <div className={styles.rowActions}>
           <Badge variant={statusVariant(`type.${programme.type}`)}>{programme.type}</Badge>

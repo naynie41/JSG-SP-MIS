@@ -18,24 +18,33 @@ export function AppLayout() {
   const location = useLocation()
   const [drawerOpen, setDrawerOpen] = useState(false)
 
-  // Filter nav by permission (UX only); drop sections left empty.
+  const roleKey = user?.role?.key ?? ''
+
+  // Filter nav by role (whole section) then permission (item); drop empty sections.
+  // Visibility is UX-only — the server is the security boundary.
   const sections: NavSection[] = useMemo(() => {
-    return NAV_CONFIG.map((section) => ({
-      label: section.label,
-      items: section.items
-        .filter((item) => !item.permission || hasPermission(item.permission))
-        .map(({ label, to, icon }) => ({ label, to, icon })),
-    })).filter((section) => section.items.length > 0)
-  }, [hasPermission])
+    return NAV_CONFIG.filter((section) => !section.roles || section.roles.includes(roleKey))
+      .map((section) => ({
+        label: section.label,
+        items: section.items
+          .filter((item) => !item.permission || hasPermission(item.permission))
+          .map(({ label, to, icon }) => ({ label, to, icon })),
+      }))
+      .filter((section) => section.items.length > 0)
+  }, [hasPermission, roleKey])
 
   const currentLabel = useMemo(() => {
+    if (location.pathname === '/') return 'Dashboard'
     for (const section of NAV_CONFIG) {
-      const match = section.items.find((item) =>
-        item.to === '/' ? location.pathname === '/' : location.pathname.startsWith(item.to),
+      const match = section.items.find(
+        (item) => item.to !== '/' && location.pathname.startsWith(item.to),
       )
       if (match) return match.label
     }
-    return 'SP-MIS'
+    // Functional pages reached from a hub aren't in the rail — title-case the first segment.
+    const segment = location.pathname.split('/').filter(Boolean)[0]
+    if (!segment) return 'SP-MIS'
+    return segment.replace(/-/g, ' ').replace(/\b\w/g, (c) => c.toUpperCase())
   }, [location.pathname])
 
   async function handleLogout() {

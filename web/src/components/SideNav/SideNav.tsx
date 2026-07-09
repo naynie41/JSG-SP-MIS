@@ -47,9 +47,9 @@ export function SideNav({ sections, footer, open = false, onClose }: SideNavProp
         </div>
 
         <nav className={styles.nav}>
-          {sections.map((section) => (
-            <div key={section.label} className={styles.group}>
-              <div className={styles.groupLabel}>{section.label}</div>
+          {sections.map((section, i) => (
+            <div key={section.label || `group-${i}`} className={styles.group}>
+              {section.label && <div className={styles.groupLabel}>{section.label}</div>}
               {section.items.map((item) => (
                 <NavLink
                   key={item.to}

@@ -2,7 +2,7 @@
 
 // odsl-/var/www/html/app/Domain/Notification/Listeners/NotificationSubscriber.php-PHPStan\BetterReflection\Reflection\ReflectionClass-App\Domain\Notification\Listeners\NotificationSubscriber
 return \PHPStan\Cache\CacheItem::__set_state(array(
-   'variableKey' => 'v2-6.70.0.1-8.3.31-57b6b0963e270febb2605c5585700b004f46f4fb62f034ae85d2a899eee0ddb3',
+   'variableKey' => 'v2-6.70.0.1-8.3.31-86b29f126f6da5c75b69629b217f4a45178b2622b1a2e6e861f1a6653580c236',
    'data' => 
   array (
     'locatedSource' => 
@@ -32,7 +32,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
     array (
     ),
     'startLine' => 32,
-    'endLine' => 327,
+    'endLine' => 328,
     'startColumn' => 1,
     'endColumn' => 1,
     'parentClassName' => NULL,
@@ -1184,7 +1184,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         ),
         'docComment' => NULL,
         'startLine' => 284,
-        'endLine' => 307,
+        'endLine' => 308,
         'startColumn' => 5,
         'endColumn' => 5,
         'couldThrow' => false,
@@ -1222,8 +1222,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             'attributes' => 
             array (
             ),
-            'startLine' => 312,
-            'endLine' => 312,
+            'startLine' => 313,
+            'endLine' => 313,
             'startColumn' => 31,
             'endColumn' => 48,
             'parameterIndex' => 0,
@@ -1246,8 +1246,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         'docComment' => '/**
  * @return array<class-string, string>
  */',
-        'startLine' => 312,
-        'endLine' => 326,
+        'startLine' => 313,
+        'endLine' => 327,
         'startColumn' => 5,
         'endColumn' => 5,
         'couldThrow' => false,

@@ -93,6 +93,31 @@ final class DashboardScope
     }
 
     /**
+     * Whether this scope is entitled to at least everything `$other` shows (PRD
+     * FR-RPT-04). Used to check a recipient (this = recipient's scope) may receive a
+     * report scoped to `$other` — so a schedule can never deliver out-of-scope data:
+     *
+     *  - state-wide covers everything;
+     *  - an MDA scope covers another MDA scope only if its MDAs are a superset;
+     *  - a partner scope covers another partner scope only if its programmes are a superset;
+     *  - the axes never cross (an MDA scope cannot cover a partner/state-wide report).
+     */
+    public function covers(self $other): bool
+    {
+        if ($this->isStateWide()) {
+            return true;
+        }
+
+        if ($this->isPartner()) {
+            return $other->kind === self::KIND_PARTNER
+                && array_diff($other->programmeIds ?? [], $this->programmeIds ?? []) === [];
+        }
+
+        return $other->kind === self::KIND_MDA
+            && array_diff($other->mdaIds ?? [], $this->mdaIds ?? []) === [];
+    }
+
+    /**
      * A stable key identifying this scope — the primary key of its snapshot row and
      * the cache key. Two callers with the same effective scope share one snapshot.
      */

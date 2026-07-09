@@ -5,6 +5,7 @@ import { cn } from '@/lib/utils/cn'
 import { formatNaira } from '@/lib/utils/money'
 import { titleCase } from '@/features/registry/constants'
 import { BENEFIT_TYPE_LABELS } from '@/features/benefits/constants'
+import { DashboardQuickActions } from './DashboardQuickActions'
 import type { BenefitTypeGroup, CoverageRow, DashboardResponse } from './types'
 import styles from './dashboard.module.css'
 
@@ -41,6 +42,8 @@ export interface DashboardViewProps {
   lead: string
   /** Label for the beneficiaries KPI (e.g. "Beneficiaries served" for partners). */
   beneficiariesLabel?: string
+  /** Show the permission-aware quick-action bar (MDA scope only; not exec/partner). */
+  showQuickActions?: boolean
   data: DashboardResponse
   isFetching: boolean
   onRefresh: () => void
@@ -52,7 +55,7 @@ export interface DashboardViewProps {
  * forest KPIs, a budget-utilisation bar, benefit + coverage breakdowns, and (when the
  * scope includes them) referral/grievance headlines. There are no edit controls.
  */
-export function DashboardView({ eyebrow, title, lead, beneficiariesLabel = 'Beneficiaries', data, isFetching, onRefresh }: DashboardViewProps) {
+export function DashboardView({ eyebrow, title, lead, beneficiariesLabel = 'Beneficiaries', showQuickActions = false, data, isFetching, onRefresh }: DashboardViewProps) {
   const m = data.metrics
   const budget = m.benefits.budget
   const overBudget = budget.remaining < 0
@@ -81,6 +84,8 @@ export function DashboardView({ eyebrow, title, lead, beneficiariesLabel = 'Bene
           </button>
         </div>
       </div>
+
+      {showQuickActions && <DashboardQuickActions />}
 
       {/* Headline forest KPI panels */}
       <div className={styles.kpiGrid}>

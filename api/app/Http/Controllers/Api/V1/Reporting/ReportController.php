@@ -74,15 +74,13 @@ class ReportController extends Controller
 
     public function show(Request $request, string $report): JsonResponse
     {
-        $run = $this->mine($request)->findOrFail($report);
-
-        return ApiResponse::success((new ReportRunResource($run))->resolve());
+        return ApiResponse::success((new ReportRunResource($this->accessible($request, $report)))->resolve());
     }
 
-    /** Download a ready report file — re-checks ownership, then audits the access. */
+    /** Download a ready report file — re-checks access (owner or recipient), then audits it. */
     public function download(Request $request, string $report): StreamedResponse|JsonResponse
     {
-        $run = $this->mine($request)->findOrFail($report);
+        $run = $this->accessible($request, $report);
 
         if (! $run->isReady() || $run->file_path === null || ! Storage::disk('local')->exists($run->file_path)) {
             return ApiResponse::error('REPORT_NOT_READY', 'This report is not ready to download.', [], 409);
@@ -106,5 +104,17 @@ class ReportController extends Controller
     private function mine(Request $request): Builder
     {
         return ReportRun::query()->where('requested_by', $request->user()->id);
+    }
+
+    /**
+     * A run the caller may access — the requester OR a scheduled recipient. 404 if the
+     * run doesn't exist or the caller is neither.
+     */
+    private function accessible(Request $request, string $report): ReportRun
+    {
+        $run = ReportRun::query()->findOrFail($report);
+        abort_unless($run->isAccessibleBy($request->user()->id), 404);
+
+        return $run;
     }
 }

@@ -15,8 +15,11 @@ use App\Domain\Grievance\Models\Grievance;
 use App\Domain\Notification\Models\Notification;
 use App\Domain\Programme\Models\Enrollment;
 use App\Domain\Programme\Models\Programme;
+use App\Domain\Programme\Models\ProgrammeFunder;
 use App\Domain\Referral\Models\Referral;
 use App\Domain\Registry\Models\Beneficiary;
+use App\Domain\Reporting\Gis\GeoBoundary;
+use App\Domain\Reporting\Models\DashboardSnapshot;
 use Database\Seeders\DatabaseSeeder;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
@@ -94,5 +97,21 @@ class SeederTest extends TestCase
         $this->assertGreaterThanOrEqual(4, (clone $notifications)->count());
         $this->assertTrue((clone $notifications)->whereNull('read_at')->exists());
         $this->assertTrue((clone $notifications)->where('related_type', 'referral')->exists());
+    }
+
+    public function test_seeder_produces_phase_6_reporting_sample_data(): void
+    {
+        $this->seed(DatabaseSeeder::class);
+
+        // A Development Partner funding programmes → the partner dashboard renders (FR-RPT-02).
+        $partner = User::where('email', 'partner@spmis.local')->firstOrFail();
+        $this->assertSame(RoleKey::DevelopmentPartner->value, $partner->role?->key);
+        $this->assertGreaterThanOrEqual(1, ProgrammeFunder::query()->where('user_id', $partner->id)->count());
+
+        // LGA boundaries loaded → the GIS choropleth renders (FR-GIS-01).
+        $this->assertGreaterThanOrEqual(2, GeoBoundary::query()->where('level', 'lga')->count());
+
+        // Dashboard snapshots warmed → dashboards serve from the summary layer (FR-RPT-01).
+        $this->assertTrue(DashboardSnapshot::query()->where('scope_key', 'state_wide')->exists());
     }
 }

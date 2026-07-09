@@ -2,7 +2,7 @@
 
 // odsl-/var/www/html/app/Domain/Reporting/Support/DashboardScope.php-PHPStan\BetterReflection\Reflection\ReflectionClass-App\Domain\Reporting\Support\DashboardScope
 return \PHPStan\Cache\CacheItem::__set_state(array(
-   'variableKey' => 'v2-6.70.0.1-8.3.31-05aa378058f3621c6a8928e1cc13fa165dd8aa83ed48a99ad08be7337cfdf6cc',
+   'variableKey' => 'v2-6.70.0.1-8.3.31-28013976808af5b5a4905b12cb7e57030a19ab3c2e341fdbef2b92e0c111904d',
    'data' => 
   array (
     'locatedSource' => 
@@ -38,7 +38,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
     array (
     ),
     'startLine' => 19,
-    'endLine' => 107,
+    'endLine' => 132,
     'startColumn' => 1,
     'endColumn' => 1,
     'parentClassName' => NULL,
@@ -1002,6 +1002,76 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         'currentClassName' => 'App\\Domain\\Reporting\\Support\\DashboardScope',
         'aliasName' => NULL,
       ),
+      'covers' => 
+      array (
+        'name' => 'covers',
+        'parameters' => 
+        array (
+          'other' => 
+          array (
+            'name' => 'other',
+            'default' => NULL,
+            'type' => 
+            array (
+              'class' => 'PHPStan\\BetterReflection\\Reflection\\ReflectionNamedType',
+              'data' => 
+              array (
+                'name' => 'self',
+                'isIdentifier' => false,
+              ),
+            ),
+            'isVariadic' => false,
+            'byRef' => false,
+            'isPromoted' => false,
+            'attributes' => 
+            array (
+            ),
+            'startLine' => 105,
+            'endLine' => 105,
+            'startColumn' => 28,
+            'endColumn' => 38,
+            'parameterIndex' => 0,
+            'isOptional' => false,
+          ),
+        ),
+        'returnsReference' => false,
+        'returnType' => 
+        array (
+          'class' => 'PHPStan\\BetterReflection\\Reflection\\ReflectionNamedType',
+          'data' => 
+          array (
+            'name' => 'bool',
+            'isIdentifier' => true,
+          ),
+        ),
+        'attributes' => 
+        array (
+        ),
+        'docComment' => '/**
+ * Whether this scope is entitled to at least everything `$other` shows (PRD
+ * FR-RPT-04). Used to check a recipient (this = recipient\'s scope) may receive a
+ * report scoped to `$other` — so a schedule can never deliver out-of-scope data:
+ *
+ *  - state-wide covers everything;
+ *  - an MDA scope covers another MDA scope only if its MDAs are a superset;
+ *  - a partner scope covers another partner scope only if its programmes are a superset;
+ *  - the axes never cross (an MDA scope cannot cover a partner/state-wide report).
+ */',
+        'startLine' => 105,
+        'endLine' => 118,
+        'startColumn' => 5,
+        'endColumn' => 5,
+        'couldThrow' => false,
+        'isClosure' => false,
+        'isGenerator' => false,
+        'isVariadic' => false,
+        'modifiers' => 1,
+        'namespace' => 'App\\Domain\\Reporting\\Support',
+        'declaringClassName' => 'App\\Domain\\Reporting\\Support\\DashboardScope',
+        'implementingClassName' => 'App\\Domain\\Reporting\\Support\\DashboardScope',
+        'currentClassName' => 'App\\Domain\\Reporting\\Support\\DashboardScope',
+        'aliasName' => NULL,
+      ),
       'key' => 
       array (
         'name' => 'key',
@@ -1025,8 +1095,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
  * A stable key identifying this scope — the primary key of its snapshot row and
  * the cache key. Two callers with the same effective scope share one snapshot.
  */',
-        'startLine' => 99,
-        'endLine' => 106,
+        'startLine' => 124,
+        'endLine' => 131,
         'startColumn' => 5,
         'endColumn' => 5,
         'couldThrow' => false,

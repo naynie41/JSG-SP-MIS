@@ -30,6 +30,7 @@ class DatabaseSeeder extends Seeder
             ReferralSampleSeeder::class,
             GrievanceSampleSeeder::class,
             NotificationSampleSeeder::class,
+            ReportingSampleSeeder::class,
         ]);
     }
 }

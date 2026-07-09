@@ -33,6 +33,9 @@ use Illuminate\Support\Carbon;
  * @property string|null $error
  * @property string|null $requested_by
  * @property string|null $requested_mda_id
+ * @property string|null $schedule_id
+ * @property list<string>|null $recipient_user_ids
+ * @property string|null $delivery
  * @property Carbon|null $completed_at
  * @property Carbon|null $created_at
  */
@@ -57,7 +60,7 @@ class ReportRun extends Model
         'report_key', 'report_label', 'format', 'status',
         'scope_kind', 'scope_label', 'scope_mda_ids', 'scope_programme_ids', 'params', 'definition',
         'row_count', 'file_path', 'file_name', 'error',
-        'requested_by', 'requested_mda_id', 'completed_at',
+        'requested_by', 'requested_mda_id', 'schedule_id', 'recipient_user_ids', 'delivery', 'completed_at',
     ];
 
     /**
@@ -70,9 +73,16 @@ class ReportRun extends Model
             'scope_programme_ids' => 'array',
             'params' => 'array',
             'definition' => 'array',
+            'recipient_user_ids' => 'array',
             'row_count' => 'integer',
             'completed_at' => 'datetime',
         ];
+    }
+
+    /** Users allowed to access this run: the requester plus any scheduled recipients. */
+    public function isAccessibleBy(string $userId): bool
+    {
+        return $this->requested_by === $userId || in_array($userId, $this->recipient_user_ids ?? [], true);
     }
 
     /** The ad-hoc definition this run was built from, if it is an ad-hoc report. */

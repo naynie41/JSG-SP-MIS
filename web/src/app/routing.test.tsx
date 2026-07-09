@@ -45,15 +45,30 @@ describe('protected routing', () => {
 
   it('hides nav items the user lacks permission for', async () => {
     tokenStore.set('tok-abc')
-    // Officer has user.view but not mda.view/role.view/permission.view.
-    me.mockResolvedValue(makeUser({ permissions: ['user.view'] }))
+    // A user who can manage users sees the Users admin page…
+    me.mockResolvedValue(makeUser({ permissions: ['user.create'] }))
 
     renderWithProviders(<App />, '/')
 
     await screen.findByText('Your access')
-    // Permission-gated nav item is present…
     expect(screen.getByRole('link', { name: 'Users' })).toBeInTheDocument()
-    // …while one requiring a missing permission is not.
+    // …while pages requiring other permissions are not.
     expect(screen.queryByRole('link', { name: 'Roles' })).not.toBeInTheDocument()
+    expect(screen.queryByRole('link', { name: 'MDAs' })).not.toBeInTheDocument()
+  })
+
+  it('hides the Administration section from a view-only MDA officer', async () => {
+    tokenStore.set('tok-abc')
+    // An MDA Officer holds view permissions (for dropdowns) but no manage rights.
+    me.mockResolvedValue(makeUser({ permissions: ['user.view', 'mda.view', 'beneficiary.view'] }))
+
+    renderWithProviders(<App />, '/')
+
+    await screen.findByText('Your access')
+    // The admin pages are gated on manage permissions, so they're hidden…
+    expect(screen.queryByRole('link', { name: 'Users' })).not.toBeInTheDocument()
+    expect(screen.queryByRole('link', { name: 'MDAs' })).not.toBeInTheDocument()
+    // …but their registry work is still available.
+    expect(screen.getByRole('link', { name: 'Beneficiaries' })).toBeInTheDocument()
   })
 })

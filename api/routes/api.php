@@ -34,8 +34,10 @@ use App\Http\Controllers\Api\V1\Registry\OwnershipTransferController;
 use App\Http\Controllers\Api\V1\Registry\ServiceRequestController;
 use App\Http\Controllers\Api\V1\Reporting\AdHocReportController;
 use App\Http\Controllers\Api\V1\Reporting\DashboardController;
+use App\Http\Controllers\Api\V1\Reporting\GisController;
 use App\Http\Controllers\Api\V1\Reporting\ReportController;
 use App\Http\Controllers\Api\V1\Reporting\ReportDefinitionController;
+use App\Http\Controllers\Api\V1\Reporting\ReportScheduleController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -411,6 +413,11 @@ Route::prefix('v1')->group(function (): void {
         Route::get('/dashboard', [DashboardController::class, 'index'])
             ->middleware('permission:dashboard.view')->name('dashboard.index');
 
+        // GIS coverage map (FR-GIS-01): choropleth when boundaries are loaded, else a
+        // ranked-table fallback. Scoped to the caller.
+        Route::get('/gis/coverage', [GisController::class, 'coverage'])
+            ->middleware('permission:dashboard.view')->name('gis.coverage');
+
         /*
         | Standard reports (FR-RPT-03). Catalogue + runs are scoped to the caller;
         | generation is queued and downloads are audited. Static paths precede the
@@ -441,6 +448,18 @@ Route::prefix('v1')->group(function (): void {
             ->middleware('permission:reporting.view')->name('report-definitions.destroy');
         Route::post('/report-definitions/{definition}/run', [ReportDefinitionController::class, 'run'])
             ->middleware('permission:reporting.export')->name('report-definitions.run');
+
+        // Scheduled reports (FR-RPT-04) — generate on schedule + deliver to validated recipients.
+        Route::get('/report-schedules', [ReportScheduleController::class, 'index'])
+            ->middleware('permission:reporting.view')->name('report-schedules.index');
+        Route::post('/report-schedules', [ReportScheduleController::class, 'store'])
+            ->middleware('permission:reporting.export')->name('report-schedules.store');
+        Route::get('/report-schedules/{schedule}', [ReportScheduleController::class, 'show'])
+            ->middleware('permission:reporting.view')->name('report-schedules.show');
+        Route::match(['put', 'patch'], '/report-schedules/{schedule}', [ReportScheduleController::class, 'update'])
+            ->middleware('permission:reporting.export')->name('report-schedules.update');
+        Route::delete('/report-schedules/{schedule}', [ReportScheduleController::class, 'destroy'])
+            ->middleware('permission:reporting.export')->name('report-schedules.destroy');
 
         Route::get('/reports', [ReportController::class, 'index'])
             ->middleware('permission:reporting.view')->name('reports.index');

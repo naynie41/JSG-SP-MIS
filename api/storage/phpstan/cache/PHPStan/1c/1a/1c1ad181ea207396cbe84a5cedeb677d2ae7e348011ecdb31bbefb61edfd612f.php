@@ -16,6 +16,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
           'reportformat' => 'App\\Domain\\Reporting\\Export\\ReportFormat',
           'generatereport' => 'App\\Domain\\Reporting\\Jobs\\GenerateReport',
           'reportrun' => 'App\\Domain\\Reporting\\Models\\ReportRun',
+          'reportschedule' => 'App\\Domain\\Reporting\\Models\\ReportSchedule',
           'adhocdefinition' => 'App\\Domain\\Reporting\\Reports\\AdHoc\\AdHocDefinition',
           'adhocreportbuilder' => 'App\\Domain\\Reporting\\Reports\\AdHoc\\AdHocReportBuilder',
           'reportcatalogue' => 'App\\Domain\\Reporting\\Reports\\ReportCatalogue',
@@ -47,6 +48,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
           'reportformat' => 'App\\Domain\\Reporting\\Export\\ReportFormat',
           'generatereport' => 'App\\Domain\\Reporting\\Jobs\\GenerateReport',
           'reportrun' => 'App\\Domain\\Reporting\\Models\\ReportRun',
+          'reportschedule' => 'App\\Domain\\Reporting\\Models\\ReportSchedule',
           'adhocdefinition' => 'App\\Domain\\Reporting\\Reports\\AdHoc\\AdHocDefinition',
           'adhocreportbuilder' => 'App\\Domain\\Reporting\\Reports\\AdHoc\\AdHocReportBuilder',
           'reportcatalogue' => 'App\\Domain\\Reporting\\Reports\\ReportCatalogue',
@@ -67,6 +69,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             'reportformat' => 'App\\Domain\\Reporting\\Export\\ReportFormat',
             'generatereport' => 'App\\Domain\\Reporting\\Jobs\\GenerateReport',
             'reportrun' => 'App\\Domain\\Reporting\\Models\\ReportRun',
+            'reportschedule' => 'App\\Domain\\Reporting\\Models\\ReportSchedule',
             'adhocdefinition' => 'App\\Domain\\Reporting\\Reports\\AdHoc\\AdHocDefinition',
             'adhocreportbuilder' => 'App\\Domain\\Reporting\\Reports\\AdHoc\\AdHocReportBuilder',
             'reportcatalogue' => 'App\\Domain\\Reporting\\Reports\\ReportCatalogue',
@@ -108,6 +111,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
           'reportformat' => 'App\\Domain\\Reporting\\Export\\ReportFormat',
           'generatereport' => 'App\\Domain\\Reporting\\Jobs\\GenerateReport',
           'reportrun' => 'App\\Domain\\Reporting\\Models\\ReportRun',
+          'reportschedule' => 'App\\Domain\\Reporting\\Models\\ReportSchedule',
           'adhocdefinition' => 'App\\Domain\\Reporting\\Reports\\AdHoc\\AdHocDefinition',
           'adhocreportbuilder' => 'App\\Domain\\Reporting\\Reports\\AdHoc\\AdHocReportBuilder',
           'reportcatalogue' => 'App\\Domain\\Reporting\\Reports\\ReportCatalogue',
@@ -128,6 +132,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             'reportformat' => 'App\\Domain\\Reporting\\Export\\ReportFormat',
             'generatereport' => 'App\\Domain\\Reporting\\Jobs\\GenerateReport',
             'reportrun' => 'App\\Domain\\Reporting\\Models\\ReportRun',
+            'reportschedule' => 'App\\Domain\\Reporting\\Models\\ReportSchedule',
             'adhocdefinition' => 'App\\Domain\\Reporting\\Reports\\AdHoc\\AdHocDefinition',
             'adhocreportbuilder' => 'App\\Domain\\Reporting\\Reports\\AdHoc\\AdHocReportBuilder',
             'reportcatalogue' => 'App\\Domain\\Reporting\\Reports\\ReportCatalogue',
@@ -169,6 +174,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
           'reportformat' => 'App\\Domain\\Reporting\\Export\\ReportFormat',
           'generatereport' => 'App\\Domain\\Reporting\\Jobs\\GenerateReport',
           'reportrun' => 'App\\Domain\\Reporting\\Models\\ReportRun',
+          'reportschedule' => 'App\\Domain\\Reporting\\Models\\ReportSchedule',
           'adhocdefinition' => 'App\\Domain\\Reporting\\Reports\\AdHoc\\AdHocDefinition',
           'adhocreportbuilder' => 'App\\Domain\\Reporting\\Reports\\AdHoc\\AdHocReportBuilder',
           'reportcatalogue' => 'App\\Domain\\Reporting\\Reports\\ReportCatalogue',
@@ -189,6 +195,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             'reportformat' => 'App\\Domain\\Reporting\\Export\\ReportFormat',
             'generatereport' => 'App\\Domain\\Reporting\\Jobs\\GenerateReport',
             'reportrun' => 'App\\Domain\\Reporting\\Models\\ReportRun',
+            'reportschedule' => 'App\\Domain\\Reporting\\Models\\ReportSchedule',
             'adhocdefinition' => 'App\\Domain\\Reporting\\Reports\\AdHoc\\AdHocDefinition',
             'adhocreportbuilder' => 'App\\Domain\\Reporting\\Reports\\AdHoc\\AdHocReportBuilder',
             'reportcatalogue' => 'App\\Domain\\Reporting\\Reports\\ReportCatalogue',
@@ -221,7 +228,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
          'typeAliasClassName' => NULL,
          'traitData' => NULL,
       )),
-      'a4b8cb4142526af504ae67a307b1e58f' => 
+      '2b7b544148255e70c1892d633936b5df' => 
       \PHPStan\Analyser\IntermediaryNameScope::__set_state(array(
          'namespace' => 'App\\Domain\\Reporting\\Services',
          'uses' => 
@@ -230,6 +237,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
           'reportformat' => 'App\\Domain\\Reporting\\Export\\ReportFormat',
           'generatereport' => 'App\\Domain\\Reporting\\Jobs\\GenerateReport',
           'reportrun' => 'App\\Domain\\Reporting\\Models\\ReportRun',
+          'reportschedule' => 'App\\Domain\\Reporting\\Models\\ReportSchedule',
           'adhocdefinition' => 'App\\Domain\\Reporting\\Reports\\AdHoc\\AdHocDefinition',
           'adhocreportbuilder' => 'App\\Domain\\Reporting\\Reports\\AdHoc\\AdHocReportBuilder',
           'reportcatalogue' => 'App\\Domain\\Reporting\\Reports\\ReportCatalogue',
@@ -237,7 +245,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
           'runtimeexception' => 'RuntimeException',
         ),
          'className' => 'App\\Domain\\Reporting\\Services\\ReportService',
-         'functionName' => 'queue',
+         'functionName' => 'runFromSchedule',
          'templatePhpDocNodes' => 
         array (
         ),
@@ -250,6 +258,133 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             'reportformat' => 'App\\Domain\\Reporting\\Export\\ReportFormat',
             'generatereport' => 'App\\Domain\\Reporting\\Jobs\\GenerateReport',
             'reportrun' => 'App\\Domain\\Reporting\\Models\\ReportRun',
+            'reportschedule' => 'App\\Domain\\Reporting\\Models\\ReportSchedule',
+            'adhocdefinition' => 'App\\Domain\\Reporting\\Reports\\AdHoc\\AdHocDefinition',
+            'adhocreportbuilder' => 'App\\Domain\\Reporting\\Reports\\AdHoc\\AdHocReportBuilder',
+            'reportcatalogue' => 'App\\Domain\\Reporting\\Reports\\ReportCatalogue',
+            'dashboardscope' => 'App\\Domain\\Reporting\\Support\\DashboardScope',
+            'runtimeexception' => 'RuntimeException',
+          ),
+           'className' => 'App\\Domain\\Reporting\\Services\\ReportService',
+           'functionName' => NULL,
+           'templatePhpDocNodes' => 
+          array (
+          ),
+           'parent' => NULL,
+           'typeAliasesMap' => 
+          array (
+          ),
+           'bypassTypeAliases' => false,
+           'constUses' => 
+          array (
+          ),
+           'typeAliasClassName' => NULL,
+           'traitData' => NULL,
+        )),
+         'typeAliasesMap' => 
+        array (
+        ),
+         'bypassTypeAliases' => false,
+         'constUses' => 
+        array (
+        ),
+         'typeAliasClassName' => NULL,
+         'traitData' => NULL,
+      )),
+      '701dd850477c57d24c4456b12e2c0237' => 
+      \PHPStan\Analyser\IntermediaryNameScope::__set_state(array(
+         'namespace' => 'App\\Domain\\Reporting\\Services',
+         'uses' => 
+        array (
+          'user' => 'App\\Domain\\Access\\Models\\User',
+          'reportformat' => 'App\\Domain\\Reporting\\Export\\ReportFormat',
+          'generatereport' => 'App\\Domain\\Reporting\\Jobs\\GenerateReport',
+          'reportrun' => 'App\\Domain\\Reporting\\Models\\ReportRun',
+          'reportschedule' => 'App\\Domain\\Reporting\\Models\\ReportSchedule',
+          'adhocdefinition' => 'App\\Domain\\Reporting\\Reports\\AdHoc\\AdHocDefinition',
+          'adhocreportbuilder' => 'App\\Domain\\Reporting\\Reports\\AdHoc\\AdHocReportBuilder',
+          'reportcatalogue' => 'App\\Domain\\Reporting\\Reports\\ReportCatalogue',
+          'dashboardscope' => 'App\\Domain\\Reporting\\Support\\DashboardScope',
+          'runtimeexception' => 'RuntimeException',
+        ),
+         'className' => 'App\\Domain\\Reporting\\Services\\ReportService',
+         'functionName' => 'scheduleReportAttributes',
+         'templatePhpDocNodes' => 
+        array (
+        ),
+         'parent' => 
+        \PHPStan\Analyser\IntermediaryNameScope::__set_state(array(
+           'namespace' => 'App\\Domain\\Reporting\\Services',
+           'uses' => 
+          array (
+            'user' => 'App\\Domain\\Access\\Models\\User',
+            'reportformat' => 'App\\Domain\\Reporting\\Export\\ReportFormat',
+            'generatereport' => 'App\\Domain\\Reporting\\Jobs\\GenerateReport',
+            'reportrun' => 'App\\Domain\\Reporting\\Models\\ReportRun',
+            'reportschedule' => 'App\\Domain\\Reporting\\Models\\ReportSchedule',
+            'adhocdefinition' => 'App\\Domain\\Reporting\\Reports\\AdHoc\\AdHocDefinition',
+            'adhocreportbuilder' => 'App\\Domain\\Reporting\\Reports\\AdHoc\\AdHocReportBuilder',
+            'reportcatalogue' => 'App\\Domain\\Reporting\\Reports\\ReportCatalogue',
+            'dashboardscope' => 'App\\Domain\\Reporting\\Support\\DashboardScope',
+            'runtimeexception' => 'RuntimeException',
+          ),
+           'className' => 'App\\Domain\\Reporting\\Services\\ReportService',
+           'functionName' => NULL,
+           'templatePhpDocNodes' => 
+          array (
+          ),
+           'parent' => NULL,
+           'typeAliasesMap' => 
+          array (
+          ),
+           'bypassTypeAliases' => false,
+           'constUses' => 
+          array (
+          ),
+           'typeAliasClassName' => NULL,
+           'traitData' => NULL,
+        )),
+         'typeAliasesMap' => 
+        array (
+        ),
+         'bypassTypeAliases' => false,
+         'constUses' => 
+        array (
+        ),
+         'typeAliasClassName' => NULL,
+         'traitData' => NULL,
+      )),
+      '043346840c17143e73cfac7256f3914f' => 
+      \PHPStan\Analyser\IntermediaryNameScope::__set_state(array(
+         'namespace' => 'App\\Domain\\Reporting\\Services',
+         'uses' => 
+        array (
+          'user' => 'App\\Domain\\Access\\Models\\User',
+          'reportformat' => 'App\\Domain\\Reporting\\Export\\ReportFormat',
+          'generatereport' => 'App\\Domain\\Reporting\\Jobs\\GenerateReport',
+          'reportrun' => 'App\\Domain\\Reporting\\Models\\ReportRun',
+          'reportschedule' => 'App\\Domain\\Reporting\\Models\\ReportSchedule',
+          'adhocdefinition' => 'App\\Domain\\Reporting\\Reports\\AdHoc\\AdHocDefinition',
+          'adhocreportbuilder' => 'App\\Domain\\Reporting\\Reports\\AdHoc\\AdHocReportBuilder',
+          'reportcatalogue' => 'App\\Domain\\Reporting\\Reports\\ReportCatalogue',
+          'dashboardscope' => 'App\\Domain\\Reporting\\Support\\DashboardScope',
+          'runtimeexception' => 'RuntimeException',
+        ),
+         'className' => 'App\\Domain\\Reporting\\Services\\ReportService',
+         'functionName' => 'createRun',
+         'templatePhpDocNodes' => 
+        array (
+        ),
+         'parent' => 
+        \PHPStan\Analyser\IntermediaryNameScope::__set_state(array(
+           'namespace' => 'App\\Domain\\Reporting\\Services',
+           'uses' => 
+          array (
+            'user' => 'App\\Domain\\Access\\Models\\User',
+            'reportformat' => 'App\\Domain\\Reporting\\Export\\ReportFormat',
+            'generatereport' => 'App\\Domain\\Reporting\\Jobs\\GenerateReport',
+            'reportrun' => 'App\\Domain\\Reporting\\Models\\ReportRun',
+            'reportschedule' => 'App\\Domain\\Reporting\\Models\\ReportSchedule',
             'adhocdefinition' => 'App\\Domain\\Reporting\\Reports\\AdHoc\\AdHocDefinition',
             'adhocreportbuilder' => 'App\\Domain\\Reporting\\Reports\\AdHoc\\AdHocReportBuilder',
             'reportcatalogue' => 'App\\Domain\\Reporting\\Reports\\ReportCatalogue',
@@ -285,7 +420,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
     ),
     1 => 
     array (
-      '/var/www/html/app/Domain/Reporting/Services/ReportService.php' => 'ac48ed7de465054850722f05b5e649ac31321be1a4e2cf4480a94cc4a114f8dc',
+      '/var/www/html/app/Domain/Reporting/Services/ReportService.php' => 'bbe6f948c465a4ca4bb66fe7fe99050b6d7033caee9c32466ff5c90892e78a14',
     ),
   ),
 ));

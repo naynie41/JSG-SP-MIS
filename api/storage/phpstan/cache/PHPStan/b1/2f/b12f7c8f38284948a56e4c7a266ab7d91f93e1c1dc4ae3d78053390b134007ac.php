@@ -373,6 +373,49 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
          'typeAliasClassName' => NULL,
          'traitData' => NULL,
       )),
+      '72a8029dbeb64acb6dbe9e51e521da39' => 
+      \PHPStan\Analyser\IntermediaryNameScope::__set_state(array(
+         'namespace' => 'App\\Domain\\Reporting\\Support',
+         'uses' => 
+        array (
+        ),
+         'className' => 'App\\Domain\\Reporting\\Support\\DashboardScope',
+         'functionName' => 'covers',
+         'templatePhpDocNodes' => 
+        array (
+        ),
+         'parent' => 
+        \PHPStan\Analyser\IntermediaryNameScope::__set_state(array(
+           'namespace' => 'App\\Domain\\Reporting\\Support',
+           'uses' => 
+          array (
+          ),
+           'className' => 'App\\Domain\\Reporting\\Support\\DashboardScope',
+           'functionName' => NULL,
+           'templatePhpDocNodes' => 
+          array (
+          ),
+           'parent' => NULL,
+           'typeAliasesMap' => 
+          array (
+          ),
+           'bypassTypeAliases' => false,
+           'constUses' => 
+          array (
+          ),
+           'typeAliasClassName' => NULL,
+           'traitData' => NULL,
+        )),
+         'typeAliasesMap' => 
+        array (
+        ),
+         'bypassTypeAliases' => false,
+         'constUses' => 
+        array (
+        ),
+         'typeAliasClassName' => NULL,
+         'traitData' => NULL,
+      )),
       '978d8899aaec47fe16a3a8017ac9cba8' => 
       \PHPStan\Analyser\IntermediaryNameScope::__set_state(array(
          'namespace' => 'App\\Domain\\Reporting\\Support',
@@ -419,7 +462,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
     ),
     1 => 
     array (
-      '/var/www/html/app/Domain/Reporting/Support/DashboardScope.php' => '05aa378058f3621c6a8928e1cc13fa165dd8aa83ed48a99ad08be7337cfdf6cc',
+      '/var/www/html/app/Domain/Reporting/Support/DashboardScope.php' => '28013976808af5b5a4905b12cb7e57030a19ab3c2e341fdbef2b92e0c111904d',
     ),
   ),
 ));
