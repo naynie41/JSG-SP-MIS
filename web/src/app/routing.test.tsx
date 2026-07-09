@@ -43,32 +43,40 @@ describe('protected routing', () => {
     expect(me).toHaveBeenCalled()
   })
 
-  it('hides nav items the user lacks permission for', async () => {
+  it('shows one clean link per functional area, gated by permission', async () => {
     tokenStore.set('tok-abc')
-    // A user who can manage users sees the Users admin page…
-    me.mockResolvedValue(makeUser({ permissions: ['user.create'] }))
+    // An MDA Officer works across registry, programmes and coordination.
+    me.mockResolvedValue(
+      makeUser({ permissions: ['beneficiary.view', 'programme.view', 'referral.view'] }),
+    )
+
+    renderWithProviders(<App />, '/')
+
+    await screen.findByText('Your access')
+    // Each area collapses to a single top-level link (children live on the hub page).
+    expect(screen.getByRole('link', { name: 'Programmes' })).toBeInTheDocument()
+    expect(screen.getByRole('link', { name: 'Registry' })).toBeInTheDocument()
+    expect(screen.getByRole('link', { name: 'Coordination' })).toBeInTheDocument()
+    // The former child links are no longer in the rail.
+    expect(screen.queryByRole('link', { name: 'Beneficiaries' })).not.toBeInTheDocument()
+    expect(screen.queryByRole('link', { name: 'Record benefit' })).not.toBeInTheDocument()
+    // Administration is not relevant to MDA staff — it's absent.
+    expect(screen.queryByRole('link', { name: 'Users' })).not.toBeInTheDocument()
+  })
+
+  it('shows Administration only to the System Administrator', async () => {
+    tokenStore.set('tok-abc')
+    me.mockResolvedValue(
+      makeUser({
+        role: { key: 'system_administrator', name: 'System Administrator' },
+        permissions: ['user.view', 'mda.view', 'role.view'],
+      }),
+    )
 
     renderWithProviders(<App />, '/')
 
     await screen.findByText('Your access')
     expect(screen.getByRole('link', { name: 'Users' })).toBeInTheDocument()
-    // …while pages requiring other permissions are not.
-    expect(screen.queryByRole('link', { name: 'Roles' })).not.toBeInTheDocument()
-    expect(screen.queryByRole('link', { name: 'MDAs' })).not.toBeInTheDocument()
-  })
-
-  it('hides the Administration section from a view-only MDA officer', async () => {
-    tokenStore.set('tok-abc')
-    // An MDA Officer holds view permissions (for dropdowns) but no manage rights.
-    me.mockResolvedValue(makeUser({ permissions: ['user.view', 'mda.view', 'beneficiary.view'] }))
-
-    renderWithProviders(<App />, '/')
-
-    await screen.findByText('Your access')
-    // The admin pages are gated on manage permissions, so they're hidden…
-    expect(screen.queryByRole('link', { name: 'Users' })).not.toBeInTheDocument()
-    expect(screen.queryByRole('link', { name: 'MDAs' })).not.toBeInTheDocument()
-    // …but their registry work is still available.
-    expect(screen.getByRole('link', { name: 'Beneficiaries' })).toBeInTheDocument()
+    expect(screen.getByRole('link', { name: 'MDAs' })).toBeInTheDocument()
   })
 })

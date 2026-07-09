@@ -18,6 +18,13 @@
   gap: var(--space-1);
 }
 
+/* Quick-action bar (MDA dashboard) — permission-aware launch buttons. */
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-3);
+}
+
 .lead {
   color: var(--text-muted-strong);
   font-size: var(--fs-label);

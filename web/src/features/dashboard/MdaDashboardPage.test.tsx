@@ -10,9 +10,17 @@ import type { DashboardResponse } from './types'
 
 vi.mock('./api', () => ({ dashboardApi: { get: vi.fn() } }))
 
-const authState = { roleKey: 'mda_officer', mdaName: 'MDA A', canView: true }
+const authState = {
+  roleKey: 'mda_officer',
+  mdaName: 'MDA A',
+  canView: true,
+  can: (_p: string) => true as boolean,
+}
 vi.mock('@/lib/auth/AuthProvider', () => ({
-  useAuth: () => ({ user: { role: { key: authState.roleKey }, mda: { name: authState.mdaName } }, hasPermission: () => authState.canView }),
+  useAuth: () => ({
+    user: { role: { key: authState.roleKey }, mda: { name: authState.mdaName } },
+    hasPermission: (p: string) => (p === 'dashboard.view' ? authState.canView : authState.can(p)),
+  }),
 }))
 
 const get = dashboardApi.get as Mock
@@ -50,6 +58,7 @@ describe('MdaDashboardPage', () => {
     vi.clearAllMocks()
     authState.roleKey = 'mda_officer'
     authState.canView = true
+    authState.can = () => true
   })
 
   it('renders the MDA-scoped metrics with the MDA name in the title', async () => {
@@ -63,8 +72,22 @@ describe('MdaDashboardPage', () => {
     // Coordination families apply to an MDA scope.
     expect(screen.getByText('Referrals')).toBeInTheDocument()
     expect(screen.getByText('Grievances')).toBeInTheDocument()
-    // Read-only.
-    expect(screen.queryByRole('button', { name: /edit|create|save|delete/i })).toBeNull()
+    // Permission-aware quick actions turn the dashboard into a launchpad — the
+    // create-programme/activity actions are clearly surfaced.
+    expect(screen.getByRole('button', { name: 'New programme' })).toBeInTheDocument()
+    expect(screen.getByRole('button', { name: 'New activity' })).toBeInTheDocument()
+    expect(screen.getByRole('button', { name: 'Record benefit' })).toBeInTheDocument()
+  })
+
+  it('hides the quick actions a user has no permission for', async () => {
+    get.mockResolvedValue(mdaPayload)
+    // Can view the dashboard, but holds no create permissions.
+    authState.can = () => false
+
+    renderPage(<MdaDashboardPage />)
+
+    await screen.findByRole('heading', { name: 'MDA A dashboard' })
+    expect(screen.queryByRole('button', { name: 'New programme' })).toBeNull()
   })
 
   it('blocks users without dashboard permission', () => {
