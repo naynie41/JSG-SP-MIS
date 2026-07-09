@@ -26,6 +26,7 @@ import { CoordinationHubPage } from '@/features/coordination/CoordinationHubPage
 import { ProgrammesHubPage } from '@/features/programmes/ProgrammesHubPage'
 import { ProgrammeListPage } from '@/features/programmes/ProgrammeListPage'
 import { ProgrammeDetailPage } from '@/features/programmes/ProgrammeDetailPage'
+import { ActivitiesPage } from '@/features/programmes/ActivitiesPage'
 import { RecordBenefitPage } from '@/features/benefits/RecordBenefitPage'
 import { BulkDeliveryPage } from '@/features/benefits/BulkDeliveryPage'
 import { BenefitLedgerPage } from '@/features/benefits/BenefitLedgerPage'
@@ -102,6 +103,7 @@ export function App() {
         <Route path="/programmes" element={<ProgrammesHubPage />} />
         <Route path="/programmes/list" element={<ProgrammeListPage />} />
         <Route path="/programmes/:id" element={<ProgrammeDetailPage />} />
+        <Route path="/activities" element={<ActivitiesPage />} />
         <Route path="/benefits/record" element={<RecordBenefitPage />} />
         <Route path="/benefits/bulk" element={<BulkDeliveryPage />} />
         <Route path="/benefits/ledger" element={<BenefitLedgerPage />} />

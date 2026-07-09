@@ -82,7 +82,7 @@ export function useSaveActivity(programmeId?: string) {
   })
 }
 
-export function useArchiveActivity(programmeId?: string) {
+export function useArchiveActivity() {
   const qc = useQueryClient()
   const toast = useToast()
   return useMutation({

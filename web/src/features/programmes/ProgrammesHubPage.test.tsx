@@ -16,26 +16,30 @@ const renderHub = () =>
   )
 
 describe('ProgrammesHubPage', () => {
-  it('offers a create action and cards to a programme manager', () => {
+  it('offers operational cards but no programme create/edit control to an MDA', () => {
     perms.clear()
     perms.add('programme.view')
-    perms.add('programme.create')
+    perms.add('activity.view')
     perms.add('benefit.view')
 
     renderHub()
 
-    expect(screen.getByRole('button', { name: 'New programme' })).toBeInTheDocument()
-    expect(screen.getByRole('link', { name: /Programmes/ })).toHaveAttribute('href', '/programmes/list')
+    // Browse the catalog (read-only) + run it through activities.
+    expect(screen.getByRole('link', { name: /Programme catalog/ })).toHaveAttribute('href', '/programmes/list')
+    expect(screen.getByRole('link', { name: /Activities/ })).toHaveAttribute('href', '/activities')
     expect(screen.getByRole('link', { name: /Benefit ledger/ })).toBeInTheDocument()
+    // Catalog creation lives in Administration — never on the MDA hub.
+    expect(screen.queryByRole('button', { name: /new programme/i })).toBeNull()
+    expect(screen.queryByRole('link', { name: /new programme/i })).toBeNull()
   })
 
-  it('hides the create action from a view-only user', () => {
+  it('shows only the areas the user can access', () => {
     perms.clear()
     perms.add('benefit.view')
 
     renderHub()
 
-    expect(screen.queryByRole('button', { name: 'New programme' })).toBeNull()
     expect(screen.getByRole('link', { name: /Benefit ledger/ })).toBeInTheDocument()
+    expect(screen.queryByRole('link', { name: /Activities/ })).toBeNull()
   })
 })

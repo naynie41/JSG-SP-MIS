@@ -3,6 +3,7 @@ import {
   ClipboardList,
   GaugeCircle,
   KeyRound,
+  LibraryBig,
   MapPinned,
   Share2,
   ShieldCheck,
@@ -53,6 +54,7 @@ export const NAV_CONFIG: NavConfigSection[] = [
     label: 'Administration',
     roles: ['system_administrator'],
     items: [
+      { label: 'Programme catalog', to: '/programmes/list', icon: LibraryBig, permission: 'programme.create' },
       { label: 'Users', to: '/users', icon: Users, permission: 'user.view' },
       { label: 'MDAs', to: '/mdas', icon: Building2, permission: 'mda.view' },
       { label: 'Roles', to: '/roles', icon: ShieldCheck, permission: 'role.view' },

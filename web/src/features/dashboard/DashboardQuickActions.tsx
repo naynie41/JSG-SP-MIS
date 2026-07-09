@@ -17,7 +17,7 @@ interface QuickAction {
 // Ordered by prominence — creating a programme/activity leads, per the MDA workflow.
 const ACTIONS: QuickAction[] = [
   { label: 'New programme', to: '/programmes/list?new=1', icon: Plus, permission: 'programme.create', primary: true },
-  { label: 'New activity', to: '/programmes/list', icon: CalendarPlus, permission: 'activity.create' },
+  { label: 'New activity', to: '/activities', icon: CalendarPlus, permission: 'activity.create' },
   { label: 'Record benefit', to: '/benefits/record', icon: Coins, permission: 'benefit.create' },
   { label: 'Import beneficiaries', to: '/imports', icon: FileUp, permission: 'beneficiary.create' },
   { label: 'Raise referral', to: '/referrals', icon: Split, permission: 'referral.create' },

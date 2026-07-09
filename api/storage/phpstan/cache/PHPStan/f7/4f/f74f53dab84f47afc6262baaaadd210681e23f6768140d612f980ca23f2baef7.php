@@ -12,6 +12,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
          'namespace' => 'App\\Domain\\Programme\\Services',
          'uses' => 
         array (
+          'mdascope' => 'App\\Domain\\Access\\Scopes\\MdaScope',
+          'activity' => 'App\\Domain\\Programme\\Models\\Activity',
           'beneficiaryrouter' => 'App\\Domain\\Registry\\Contracts\\BeneficiaryRouter',
           'beneficiary' => 'App\\Domain\\Registry\\Models\\Beneficiary',
         ),
@@ -36,6 +38,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
          'namespace' => 'App\\Domain\\Programme\\Services',
          'uses' => 
         array (
+          'mdascope' => 'App\\Domain\\Access\\Scopes\\MdaScope',
+          'activity' => 'App\\Domain\\Programme\\Models\\Activity',
           'beneficiaryrouter' => 'App\\Domain\\Registry\\Contracts\\BeneficiaryRouter',
           'beneficiary' => 'App\\Domain\\Registry\\Models\\Beneficiary',
         ),
@@ -49,6 +53,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
            'namespace' => 'App\\Domain\\Programme\\Services',
            'uses' => 
           array (
+            'mdascope' => 'App\\Domain\\Access\\Scopes\\MdaScope',
+            'activity' => 'App\\Domain\\Programme\\Models\\Activity',
             'beneficiaryrouter' => 'App\\Domain\\Registry\\Contracts\\BeneficiaryRouter',
             'beneficiary' => 'App\\Domain\\Registry\\Models\\Beneficiary',
           ),
@@ -83,6 +89,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
          'namespace' => 'App\\Domain\\Programme\\Services',
          'uses' => 
         array (
+          'mdascope' => 'App\\Domain\\Access\\Scopes\\MdaScope',
+          'activity' => 'App\\Domain\\Programme\\Models\\Activity',
           'beneficiaryrouter' => 'App\\Domain\\Registry\\Contracts\\BeneficiaryRouter',
           'beneficiary' => 'App\\Domain\\Registry\\Models\\Beneficiary',
         ),
@@ -96,6 +104,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
            'namespace' => 'App\\Domain\\Programme\\Services',
            'uses' => 
           array (
+            'mdascope' => 'App\\Domain\\Access\\Scopes\\MdaScope',
+            'activity' => 'App\\Domain\\Programme\\Models\\Activity',
             'beneficiaryrouter' => 'App\\Domain\\Registry\\Contracts\\BeneficiaryRouter',
             'beneficiary' => 'App\\Domain\\Registry\\Models\\Beneficiary',
           ),
@@ -128,7 +138,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
     ),
     1 => 
     array (
-      '/var/www/html/app/Domain/Programme/Services/ProgrammeMatchingRouter.php' => '3d3cf7ca199d082af146a0b41b345f3316a32ab597b68b28d4692bd671934e32',
+      '/var/www/html/app/Domain/Programme/Services/ProgrammeMatchingRouter.php' => '6fcc22820358782bd6d5490617eb741cb3f486b99559198cd659d34ff7bfc07e',
     ),
   ),
 ));

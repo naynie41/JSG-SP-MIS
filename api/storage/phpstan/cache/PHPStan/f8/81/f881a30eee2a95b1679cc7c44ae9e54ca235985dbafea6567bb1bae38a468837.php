@@ -2,7 +2,7 @@
 
 // odsl-/var/www/html/app/Domain/Programme/Services/ProgrammeMatchingRouter.php-PHPStan\BetterReflection\Reflection\ReflectionClass-App\Domain\Programme\Services\ProgrammeMatchingRouter
 return \PHPStan\Cache\CacheItem::__set_state(array(
-   'variableKey' => 'v2-6.70.0.1-8.3.31-3d3cf7ca199d082af146a0b41b345f3316a32ab597b68b28d4692bd671934e32',
+   'variableKey' => 'v2-6.70.0.1-8.3.31-6fcc22820358782bd6d5490617eb741cb3f486b99559198cd659d34ff7bfc07e',
    'data' => 
   array (
     'locatedSource' => 
@@ -23,16 +23,18 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
     'isBackedEnum' => false,
     'modifiers' => 0,
     'docComment' => '/**
- * The Phase 4 implementation of the FR-OWN-04 auto-route hook: it suggests the MDA
- * whose programme best matches an identified need (top eligible suggestion from
- * {@see ProgrammeMatcher}). It only SUGGESTS — it never assigns or changes
- * ownership; a human confirms the assignment via the routing endpoint.
+ * The Phase 4 implementation of the FR-OWN-04 auto-route hook: it suggests an MDA a
+ * beneficiary could be routed to for an identified need (top eligible suggestion
+ * from {@see ProgrammeMatcher}). Programmes are a GLOBAL catalog (§10) with no owner,
+ * so the suggested MDA is one that RUNS the matching programme through one of its
+ * activities. It only SUGGESTS — it never assigns or changes ownership; a human
+ * confirms the assignment via the routing endpoint.
  */',
     'attributes' => 
     array (
     ),
-    'startLine' => 16,
-    'endLine' => 30,
+    'startLine' => 20,
+    'endLine' => 44,
     'startColumn' => 1,
     'endColumn' => 1,
     'parentClassName' => NULL,
@@ -68,8 +70,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         'attributes' => 
         array (
         ),
-        'startLine' => 18,
-        'endLine' => 18,
+        'startLine' => 22,
+        'endLine' => 22,
         'startColumn' => 33,
         'endColumn' => 74,
         'isPromoted' => true,
@@ -106,8 +108,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             'attributes' => 
             array (
             ),
-            'startLine' => 18,
-            'endLine' => 18,
+            'startLine' => 22,
+            'endLine' => 22,
             'startColumn' => 33,
             'endColumn' => 74,
             'parameterIndex' => 0,
@@ -120,8 +122,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         array (
         ),
         'docComment' => NULL,
-        'startLine' => 18,
-        'endLine' => 18,
+        'startLine' => 22,
+        'endLine' => 22,
         'startColumn' => 5,
         'endColumn' => 78,
         'couldThrow' => false,
@@ -159,8 +161,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             'attributes' => 
             array (
             ),
-            'startLine' => 20,
-            'endLine' => 20,
+            'startLine' => 24,
+            'endLine' => 24,
             'startColumn' => 35,
             'endColumn' => 58,
             'parameterIndex' => 0,
@@ -174,12 +176,12 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
               'code' => 'null',
               'attributes' => 
               array (
-                'startLine' => 20,
-                'endLine' => 20,
-                'startTokenPos' => 73,
-                'startFilePos' => 713,
-                'endTokenPos' => 73,
-                'endFilePos' => 716,
+                'startLine' => 24,
+                'endLine' => 24,
+                'startTokenPos' => 83,
+                'startFilePos' => 953,
+                'endTokenPos' => 83,
+                'endFilePos' => 956,
               ),
             ),
             'type' => 
@@ -216,8 +218,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             'attributes' => 
             array (
             ),
-            'startLine' => 20,
-            'endLine' => 20,
+            'startLine' => 24,
+            'endLine' => 24,
             'startColumn' => 61,
             'endColumn' => 80,
             'parameterIndex' => 1,
@@ -257,8 +259,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         array (
         ),
         'docComment' => NULL,
-        'startLine' => 20,
-        'endLine' => 29,
+        'startLine' => 24,
+        'endLine' => 43,
         'startColumn' => 5,
         'endColumn' => 5,
         'couldThrow' => false,

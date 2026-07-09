@@ -12,22 +12,32 @@ import { LGA_OPTIONS } from '@/features/registry/constants'
 import { ACTIVITY_STATUS_OPTIONS } from './constants'
 import { activitySchema } from './schema'
 import type { ActivityFormValues } from './schema'
-import { useSaveActivity } from './hooks'
+import { useProgrammeCatalog, useSaveActivity } from './hooks'
 import type { Activity } from './types'
 import formStyles from '@/features/shared/formLayout.module.css'
 
 interface ActivityFormModalProps {
   open: boolean
   onClose: () => void
-  programmeId: string
+  /** Fix the activity to one programme (from a programme page); omit for the
+   *  standalone flow where the user picks the catalog programme first. */
+  programmeId?: string
   activity?: Activity | null
 }
 
-const KNOWN = ['name', 'description', 'target_count', 'lga', 'ward', 'location_description', 'budget_naira', 'funding_source', 'starts_on', 'ends_on', 'status'] as const
+const KNOWN = ['programme_id', 'name', 'description', 'target_count', 'lga', 'ward', 'location_description', 'budget_naira', 'funding_source', 'starts_on', 'ends_on', 'status'] as const
 
-/** Create or edit an activity under a programme (PRD FR-PRG-02). */
+/**
+ * Create or edit an MDA-owned activity that runs a GLOBAL catalog programme (§10).
+ * The FIRST field is a programme dropdown sourced from the catalog; the parent
+ * programme is fixed once chosen (an activity never moves between programmes).
+ */
 export function ActivityFormModal({ open, onClose, programmeId, activity }: ActivityFormModalProps) {
   const save = useSaveActivity(programmeId)
+  const catalog = useProgrammeCatalog(open)
+  // The programme is locked when editing, or when a page fixes it.
+  const lockProgramme = Boolean(activity) || Boolean(programmeId)
+  const programmeOptions = (catalog.data?.items ?? []).map((p) => ({ value: p.id, label: p.name }))
   const [formError, setFormError] = useState<string | null>(null)
 
   const {
@@ -38,6 +48,7 @@ export function ActivityFormModal({ open, onClose, programmeId, activity }: Acti
   } = useForm<ActivityFormValues>({
     resolver: zodResolver(activitySchema),
     defaultValues: {
+      programme_id: activity?.programme_id ?? programmeId ?? '',
       name: activity?.name ?? '',
       description: activity?.description ?? '',
       target_count: activity?.target_count != null ? String(activity.target_count) : '',
@@ -58,6 +69,7 @@ export function ActivityFormModal({ open, onClose, programmeId, activity }: Acti
       await save.mutateAsync({
         id: activity?.id,
         input: {
+          programme_id: values.programme_id,
           name: values.name,
           description: values.description || null,
           target_count: values.target_count ? Number(values.target_count) : null,
@@ -99,6 +111,16 @@ export function ActivityFormModal({ open, onClose, programmeId, activity }: Acti
             {formError}
           </p>
         )}
+        <SelectField
+          label="Programme"
+          required
+          placeholder="Select a catalog programme"
+          options={programmeOptions}
+          disabled={lockProgramme}
+          helper="The catalog programme this activity delivers."
+          error={errors.programme_id?.message}
+          {...register('programme_id')}
+        />
         <TextField label="Name" required error={errors.name?.message} {...register('name')} />
         <TextareaField label="Description" rows={2} error={errors.description?.message} {...register('description')} />
         <div className={formStyles.grid2}>

@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useMemo, useState } from 'react'
 import { Badge } from '@/components/Badge/Badge'
 import { statusVariant } from '@/components/Badge/statusVariant'
 import { Card, KpiPanel } from '@/components/Card/Card'
@@ -10,6 +10,7 @@ import { TextField } from '@/components/Field/TextField'
 import { Button } from '@/components/Button/Button'
 import { useAuth } from '@/lib/auth/AuthProvider'
 import { formatNaira } from '@/lib/utils/money'
+import { useProgrammeCatalog } from '@/features/programmes/hooks'
 import { AGGREGATE_DIMENSION_OPTIONS, BENEFIT_STATUS_LABELS, BENEFIT_TYPE_LABELS } from './constants'
 import { useBenefitAggregate, useBenefitFlags, useBenefits, useReviewFlag } from './hooks'
 import type { AggregateGroup, Benefit, BenefitFlag } from './types'
@@ -52,9 +53,17 @@ function DeliveriesTab() {
   const [status, setStatus] = useState('')
   const [page, setPage] = useState(1)
   const { data, isLoading } = useBenefits({ page, status: status || undefined })
+  const catalog = useProgrammeCatalog()
+
+  // The programme is a read-only catalog label on each intervention (§10).
+  const programmeName = useMemo(() => {
+    const map = new Map((catalog.data?.items ?? []).map((p) => [p.id, p.name]))
+    return (id: string) => map.get(id) ?? '—'
+  }, [catalog.data])
 
   const columns: Column<Benefit>[] = [
     { key: 'type', header: 'Type', render: (b) => BENEFIT_TYPE_LABELS[b.benefit_type] ?? b.benefit_type },
+    { key: 'programme', header: 'Programme', render: (b) => <Badge variant="neutral">{programmeName(b.programme_id)}</Badge> },
     { key: 'date', header: 'Delivered', render: (b) => <span className={styles.mono}>{b.delivery_date}</span> },
     { key: 'ben', header: 'Beneficiary', render: (b) => <span className={styles.mono}>#{b.beneficiary_id.slice(0, 8)}</span> },
     { key: 'value', header: 'Value', align: 'right', render: (b) => <span className={styles.mono}>{formatNaira(b.monetary_value)}</span> },

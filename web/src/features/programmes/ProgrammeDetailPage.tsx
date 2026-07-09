@@ -85,7 +85,7 @@ export function ProgrammeDetailPage() {
   const activities = useActivities(id, canView)
   const enrollments = useEnrollments(id, canView)
   const archiveProgramme = useArchiveProgramme()
-  const archiveActivity = useArchiveActivity(id ?? '')
+  const archiveActivity = useArchiveActivity()
   const updateEnrollment = useUpdateEnrollment(id ?? '')
 
   const [editOpen, setEditOpen] = useState(false)
