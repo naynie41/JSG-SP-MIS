@@ -1,4 +1,5 @@
 import { useMemo, useState } from 'react'
+import { Link } from 'react-router-dom'
 import { Archive, Pencil, Plus } from 'lucide-react'
 import { Button } from '@/components/Button/Button'
 import { Badge } from '@/components/Badge/Badge'
@@ -42,7 +43,7 @@ export function ActivitiesPage() {
   }
 
   const columns: Column<Activity>[] = [
-    { key: 'name', header: 'Activity', render: (a) => a.name },
+    { key: 'name', header: 'Activity', render: (a) => <Link to={`/activities/${a.id}`}>{a.name}</Link> },
     // The catalog programme is a read-only label — MDAs run it, they don't edit it.
     { key: 'programme', header: 'Programme', render: (a) => <Badge variant="neutral">{programmeName(a.programme_id)}</Badge> },
     { key: 'lga', header: 'LGA', render: (a) => (a.lga ? titleCase(a.lga) : '—') },

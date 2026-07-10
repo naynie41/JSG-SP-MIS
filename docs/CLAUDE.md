@@ -222,5 +222,12 @@ A task is done only when **all** of these are true:
   offered" is a programme, delivered under that MDA's own activity.
 - **Beneficiary data ownership is UNCHANGED** (first-importer owns the beneficiary; MDA isolation
   intact). Only *programme* ownership changed.
+- **Optional inline upload in activity creation.** The activity creation wizard may end with an
+  OPTIONAL "upload beneficiary data" step. If a file is attached, the system runs validation + the
+  duplicate cascade in preview BEFORE saving; on confirm it saves the activity, saves new beneficiaries
+  with interventions under the activity, and attaches a PENDING Service Request under the activity for
+  each duplicate chosen to serve (intervention deferred until Owner-MDA approval). If no file is
+  attached, the activity saves alone. This reuses the existing import pipeline + dedup engine + Service
+  Request — no parallel logic — and the standalone Import Center (bound to an activity) still exists.
 - **Never** expose programme creation/editing to an MDA role, and never make a programme MDA-scoped —
   it is a shared catalog.

@@ -23,6 +23,7 @@ use App\Http\Controllers\Api\V1\Programme\EnrollmentController;
 use App\Http\Controllers\Api\V1\Programme\ProgrammeController;
 use App\Http\Controllers\Api\V1\Referral\ReferralController;
 use App\Http\Controllers\Api\V1\Referral\ReferralSlaPolicyController;
+use App\Http\Controllers\Api\V1\Registry\ActivityImportController;
 use App\Http\Controllers\Api\V1\Registry\BeneficiaryController;
 use App\Http\Controllers\Api\V1\Registry\BeneficiaryDocumentController;
 use App\Http\Controllers\Api\V1\Registry\BeneficiaryIntakeController;
@@ -272,6 +273,15 @@ Route::prefix('v1')->group(function (): void {
             ->middleware('permission:activity.edit')->name('activities.update');
         Route::post('/activities/{activity}/archive', [ActivityController::class, 'archive'])
             ->middleware('permission:activity.edit')->name('activities.archive');
+
+        // Activity-creation wizard — OPTIONAL inline upload (§10). Preview stages an
+        // UNBOUND import batch (dedup runs before saving) reusing the /beneficiaries/
+        // imports preview + row-resolve endpoints; confirm atomically creates the
+        // activity and commits the file under it (served duplicates → pending SRs).
+        Route::post('/activity-imports', [ActivityImportController::class, 'store'])
+            ->middleware('permission:activity.create')->name('activity-imports.store');
+        Route::post('/activity-imports/{batch}/confirm', [ActivityImportController::class, 'confirm'])
+            ->middleware('permission:activity.create')->name('activity-imports.confirm');
 
         // Enrollment / assignment (FR-PRG-03): single + bulk into a programme, by the
         // owner MDA; a served (non-owned) beneficiary is allowed via the serve seam.

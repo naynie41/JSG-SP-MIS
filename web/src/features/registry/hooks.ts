@@ -179,6 +179,37 @@ export function useConfirmImport() {
   })
 }
 
+/**
+ * Stage an activity-wizard preview (§10): upload an OPTIONAL beneficiary file for a
+ * draft activity; dedup runs in preview before anything is saved.
+ */
+export function usePreviewActivityImport() {
+  const qc = useQueryClient()
+  return useMutation({
+    mutationFn: ({ draft, file, source }: { draft: Record<string, string | number | null | undefined>; file: File; source?: string }) =>
+      importApi.previewActivityImport(draft, file, source),
+    onSuccess: () => qc.invalidateQueries({ queryKey: ['imports'] }),
+  })
+}
+
+/**
+ * Confirm an activity-wizard preview (§10): atomically create the activity and commit
+ * the file under it. Distinct endpoint from the standalone confirm.
+ */
+export function useConfirmActivityImport() {
+  const qc = useQueryClient()
+  const toast = useToast()
+  return useMutation({
+    mutationFn: (id: string) => importApi.confirmActivityImport(id),
+    onSuccess: (result) => {
+      qc.invalidateQueries({ queryKey: ['imports'] })
+      qc.invalidateQueries({ queryKey: ['activities'] })
+      qc.invalidateQueries({ queryKey: ['beneficiaries'] })
+      toast.success('Activity created', `New beneficiaries recorded under "${result.activity.name}"; served duplicates raised Service Requests.`)
+    },
+  })
+}
+
 /** Resolve a flagged preview row (FR-DUP-05). Refreshes the batch preview. */
 export function useResolveRow(batchId: string) {
   const qc = useQueryClient()
@@ -218,6 +249,15 @@ export function useRaiseServiceRequest() {
       qc.invalidateQueries({ queryKey: ['service-requests'] })
       toast.success('Service Request sent', 'Routed to the owning MDA for approval.')
     },
+  })
+}
+
+/** Request-to-serve items this MDA raised under an activity (§10 — activity detail). */
+export function useActivityServiceRequests(activityId: string | undefined, status?: string, enabled = true) {
+  return useQuery({
+    queryKey: ['service-requests', 'activity', activityId, status],
+    queryFn: () => serviceRequestApi.forActivity(activityId!, status),
+    enabled: enabled && Boolean(activityId),
   })
 }
 

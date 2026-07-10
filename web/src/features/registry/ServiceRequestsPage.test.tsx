@@ -33,6 +33,7 @@ const incoming: ServiceRequest = {
   beneficiary_id: 'ben-1234abcd',
   from_mda_id: 'm-2',
   to_mda_id: 'm-1', // routed to the current user's MDA → decidable
+  activity_id: null,
   status: 'pending',
   reason: 'Enrolling into cash transfer',
   decided_at: null,
@@ -45,6 +46,7 @@ const mine: ServiceRequest = {
   beneficiary_id: 'ben-99887766',
   from_mda_id: 'm-1', // raised by me
   to_mda_id: 'm-3',
+  activity_id: null,
   status: 'declined',
   reason: 'Need to serve',
   decided_at: '2026-07-01',

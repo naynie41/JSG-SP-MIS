@@ -21,8 +21,12 @@ class ServiceRequestResource extends JsonResource
         return [
             'id' => $this->id,
             'beneficiary_id' => $this->beneficiary_id,
+            // Reveal-safe name for display (never NIN/BVN/contact); loaded on the list.
+            'beneficiary_name' => $this->whenLoaded('beneficiary', fn () => $this->beneficiary->fullName()),
             'from_mda_id' => $this->from_mda_id,
             'to_mda_id' => $this->to_mda_id,
+            'owner_mda' => $this->whenLoaded('toMda', fn () => ['id' => $this->toMda->id, 'name' => $this->toMda->name]),
+            'activity_id' => $this->activity_id,
             'status' => $this->status->value,
             'reason' => $this->reason,
             'decided_at' => $this->decided_at?->toIso8601String(),

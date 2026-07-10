@@ -29,6 +29,7 @@ use Illuminate\Support\Carbon;
  * @property string $beneficiary_id
  * @property string $from_mda_id
  * @property string $to_mda_id
+ * @property string|null $activity_id
  * @property ServiceRequestStatus $status
  * @property string|null $reason
  * @property string|null $import_row_id
@@ -55,6 +56,7 @@ class ServiceRequest extends Model
         'beneficiary_id',
         'from_mda_id',
         'to_mda_id',
+        'activity_id',
         'status',
         'reason',
         'import_row_id',

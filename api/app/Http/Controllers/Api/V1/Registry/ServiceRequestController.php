@@ -51,6 +51,16 @@ class ServiceRequestController extends Controller
 
         $requests = ServiceRequest::query()
             ->where($column, $mdaId)
+            // Optional filters: pending-only, and scoped to one activity (§10 — the
+            // activity detail view lists request-to-serve items raised under it).
+            ->when($request->filled('status'), fn ($q) => $q->where('status', $request->string('status')->value()))
+            ->when($request->filled('activity_id'), fn ($q) => $q->where('activity_id', $request->string('activity_id')->value()))
+            ->with([
+                // Reveal-safe display data (name + owner MDA); bypass the owner scope
+                // since a request-to-serve is intentionally cross-MDA.
+                'beneficiary' => fn ($q) => $q->withoutGlobalScope(MdaScope::class),
+                'toMda' => fn ($q) => $q->withoutGlobalScope(MdaScope::class),
+            ])
             ->latest()
             ->get();
 

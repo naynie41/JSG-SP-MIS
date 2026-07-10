@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { Link, useParams } from 'react-router-dom'
+import { Link, useNavigate, useParams } from 'react-router-dom'
 import { CheckCircle2, SkipForward, UserPlus } from 'lucide-react'
 import { Button } from '@/components/Button/Button'
 import { Badge } from '@/components/Badge/Badge'
@@ -12,7 +12,7 @@ import { TextareaField } from '@/components/Field/TextareaField'
 import { Spinner } from '@/components/Spinner/Spinner'
 import { useAuth } from '@/lib/auth/AuthProvider'
 import { IMPORT_STATUS_LABELS, MATCH_BAND_LABELS, RESOLUTION_LABELS } from './constants'
-import { useConfirmImport, useImportBatch, useResolveRow } from './hooks'
+import { useConfirmActivityImport, useConfirmImport, useImportBatch, useResolveRow } from './hooks'
 import { MatchRevealPanel } from './MatchRevealPanel'
 import { ResolveRowControls } from './ResolveRowControls'
 import type { ImportRow } from './types'
@@ -27,8 +27,10 @@ export function ImportBatchPage() {
   const canView = hasPermission('beneficiary.view')
   const canResolve = hasPermission('beneficiary.create')
 
+  const navigate = useNavigate()
   const { data: batch, isLoading } = useImportBatch(id, canView)
   const confirmImport = useConfirmImport()
+  const confirmActivityImport = useConfirmActivityImport()
   const bulkResolve = useResolveRow(id ?? '')
 
   const [expanded, setExpanded] = useState<Set<string>>(new Set())
@@ -55,6 +57,18 @@ export function ImportBatchPage() {
   const batchId = batch.id
   const rows = batch.rows ?? []
   const isPreviewReady = batch.status === 'preview_ready'
+  // Activity-wizard preview (§10): unbound batch → confirm creates the activity first.
+  const isWizard = batch.activity_id === null && batch.draft_activity_name !== null
+  const confirmingActivity = confirmImport.isPending || confirmActivityImport.isPending
+
+  function onConfirm() {
+    if (!id) return
+    if (isWizard) {
+      confirmActivityImport.mutate(id, { onSuccess: () => navigate('/activities') })
+    } else {
+      confirmImport.mutate(id)
+    }
+  }
   const isProcessing = batch.status === 'pending' || batch.status === 'processing' || batch.status === 'committing'
   const unresolvedFlagged = rows.filter((r) => isFlagged(r) && !r.resolution).length
 
@@ -177,21 +191,24 @@ export function ImportBatchPage() {
     <div>
       <div className={layout.pageHead}>
         <div className={layout.pageTitle}>
-          <span className="eyebrow">03 · Registry</span>
+          <span className="eyebrow">{isWizard ? 'New activity · Upload' : '03 · Registry'}</span>
           <h1 className="t-h1">{batch.original_filename}</h1>
-          <Link to="/imports" className={styles.note}>
-            ← All imports
-          </Link>
+          {isWizard ? (
+            <p className={styles.note}>
+              Preview for new activity <strong>{batch.draft_activity_name}</strong>. On confirm, the activity is
+              created and these beneficiaries are saved under it; served duplicates raise pending Service Requests.
+            </p>
+          ) : (
+            <Link to="/imports" className={styles.note}>
+              ← All imports
+            </Link>
+          )}
         </div>
         <div className={styles.rowActions}>
           <Badge variant={statusVariant(`batch.${batch.status}`)}>{IMPORT_STATUS_LABELS[batch.status] ?? batch.status}</Badge>
           {canResolve && isPreviewReady && (
-            <Button
-              leftIcon={CheckCircle2}
-              loading={confirmImport.isPending}
-              onClick={() => id && confirmImport.mutate(id)}
-            >
-              Confirm &amp; commit
+            <Button leftIcon={CheckCircle2} loading={confirmingActivity} onClick={onConfirm}>
+              {isWizard ? 'Create activity & commit' : 'Confirm & commit'}
             </Button>
           )}
         </div>

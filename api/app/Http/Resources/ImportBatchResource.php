@@ -28,6 +28,9 @@ class ImportBatchResource extends JsonResource
             'original_filename' => $this->original_filename,
             'source' => $this->source->value,
             'activity_id' => $this->activity_id,
+            // Activity-wizard preview (§10): unbound batch whose activity is created on
+            // confirm. Non-null name + null activity_id ⇒ confirm via the wizard endpoint.
+            'draft_activity_name' => is_array($this->draft_activity) ? ($this->draft_activity['name'] ?? null) : null,
             'status' => $this->status->value,
             'summary' => [
                 'total_rows' => $this->total_rows,

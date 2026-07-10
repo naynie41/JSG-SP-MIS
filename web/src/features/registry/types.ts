@@ -103,8 +103,11 @@ export type ServiceRequestStatus = 'pending' | 'accepted' | 'declined'
 export interface ServiceRequest {
   id: string
   beneficiary_id: string
+  beneficiary_name?: string | null
   from_mda_id: string
   to_mda_id: string
+  owner_mda?: { id: string; name: string } | null
+  activity_id: string | null
   status: ServiceRequestStatus
   reason: string | null
   decided_at: string | null
@@ -209,6 +212,9 @@ export interface ImportBatch {
   uploaded_by: string | null
   original_filename: string
   source: string
+  activity_id: string | null
+  /** Activity-wizard preview (§10): name of the activity created on confirm; null for a standalone batch. */
+  draft_activity_name: string | null
   status: ImportStatus
   summary: {
     total_rows: number

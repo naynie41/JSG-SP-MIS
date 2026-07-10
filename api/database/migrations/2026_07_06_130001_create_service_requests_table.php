@@ -26,6 +26,11 @@ return new class extends Migration
             $table->uuid('beneficiary_id');
             $table->uuid('from_mda_id'); // requesting MDA
             $table->uuid('to_mda_id');   // owner MDA
+            // The requester's activity the service is offered under (§10): a
+            // request-to-serve raised from an import/wizard is attached to it, so an
+            // approved intervention is delivered under that activity. Nullable — an
+            // ad-hoc request (no import context) has no activity.
+            $table->uuid('activity_id')->nullable();
             $table->string('status')->default(ServiceRequestStatus::Pending->value);
             $table->string('reason', 1000)->nullable();
             $table->uuid('import_row_id')->nullable();
@@ -38,6 +43,7 @@ return new class extends Migration
             $table->foreign('beneficiary_id')->references('id')->on('beneficiaries')->cascadeOnDelete();
             $table->foreign('from_mda_id')->references('id')->on('mdas');
             $table->foreign('to_mda_id')->references('id')->on('mdas');
+            $table->foreign('activity_id')->references('id')->on('activities')->nullOnDelete();
             $table->foreign('import_row_id')->references('id')->on('import_rows')->nullOnDelete();
             $table->foreign('requested_by')->references('id')->on('users')->nullOnDelete();
             $table->foreign('decided_by')->references('id')->on('users')->nullOnDelete();

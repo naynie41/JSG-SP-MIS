@@ -41,7 +41,7 @@ class ServiceRequestService
      * pending state: a second request for the same (beneficiary, MDA) returns the
      * existing pending one.
      */
-    public function request(Beneficiary $beneficiary, string $fromMdaId, ?User $requestedBy, ?string $reason = null, ?string $importRowId = null): ServiceRequest
+    public function request(Beneficiary $beneficiary, string $fromMdaId, ?User $requestedBy, ?string $reason = null, ?string $importRowId = null, ?string $activityId = null): ServiceRequest
     {
         if ($fromMdaId === $beneficiary->owner_mda_id) {
             throw new DomainException('An MDA cannot request to serve a beneficiary it already owns.');
@@ -53,14 +53,17 @@ class ServiceRequestService
             ->where('status', ServiceRequestStatus::Pending)
             ->first();
         if ($existing !== null) {
-            return $existing;
+            return $existing; // one pending request per (beneficiary, requester) — reuse it
         }
 
-        // Auditable records service_request.created.
+        // Auditable records service_request.created. `activity_id` (§10) attaches the
+        // request to the requester's activity so an approved intervention is delivered
+        // under it.
         $request = ServiceRequest::create([
             'beneficiary_id' => $beneficiary->id,
             'from_mda_id' => $fromMdaId,
             'to_mda_id' => $beneficiary->owner_mda_id, // routed to the owner MDA
+            'activity_id' => $activityId,
             'status' => ServiceRequestStatus::Pending,
             'reason' => $reason,
             'import_row_id' => $importRowId,

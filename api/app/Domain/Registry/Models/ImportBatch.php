@@ -30,7 +30,8 @@ use Illuminate\Support\Carbon;
  * @property string $original_filename
  * @property string $stored_path
  * @property RegistrationSource $source
- * @property string $activity_id
+ * @property string|null $activity_id
+ * @property array<string, mixed>|null $draft_activity
  * @property ImportStatus $status
  * @property int $total_rows
  * @property int $valid_rows
@@ -63,6 +64,7 @@ class ImportBatch extends Model implements MdaScoped
         'stored_path',
         'source',
         'activity_id',
+        'draft_activity',
         'status',
         'total_rows',
         'valid_rows',
@@ -83,6 +85,7 @@ class ImportBatch extends Model implements MdaScoped
         return [
             'source' => RegistrationSource::class,
             'status' => ImportStatus::class,
+            'draft_activity' => 'array',
             'total_rows' => 'integer',
             'valid_rows' => 'integer',
             'invalid_rows' => 'integer',

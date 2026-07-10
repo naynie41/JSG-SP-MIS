@@ -65,6 +65,10 @@ export function useAllActivities(enabled = true) {
   return useQuery({ queryKey: ['activities', 'all'], queryFn: () => activityApi.list(), enabled })
 }
 
+export function useActivity(id: string | undefined, enabled = true) {
+  return useQuery({ queryKey: ['activity', id], queryFn: () => activityApi.get(id!), enabled: enabled && Boolean(id) })
+}
+
 /**
  * Save an activity. Pass a fixed `programmeId` (from a programme detail page) or
  * omit it and let the form's programme dropdown supply `input.programme_id`.

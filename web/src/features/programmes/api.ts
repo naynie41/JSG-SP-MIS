@@ -51,6 +51,9 @@ export const activityApi = {
   list(): Promise<Paginated<Activity>> {
     return apiRequestList<Activity>({ method: 'GET', url: '/activities', params: { per_page: 100 } })
   },
+  get(id: string): Promise<Activity> {
+    return apiRequest<Activity>({ method: 'GET', url: `/activities/${id}` })
+  },
   create(input: ActivityInput): Promise<Activity> {
     return apiRequest<Activity>({ method: 'POST', url: '/activities', data: input })
   },

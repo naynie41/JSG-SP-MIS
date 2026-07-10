@@ -117,3 +117,132 @@
   gap: var(--space-4);
   flex-wrap: wrap;
 }
+
+/* --- Activity creation wizard (DESIGN-SYSTEM §5.9) --- */
+.wizardSteps {
+  display: flex;
+  gap: var(--space-2);
+  list-style: none;
+  margin: 0 0 var(--space-2);
+  padding: 0;
+  flex-wrap: wrap;
+}
+
+.wizardStep,
+.wizardStepActive {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  padding: var(--space-2) var(--space-3);
+  border-radius: var(--radius-full);
+  font-size: var(--fs-label);
+  font-weight: 600;
+  border: 1px solid var(--border);
+  color: var(--text-muted-strong);
+  background-color: var(--surface);
+}
+
+.wizardStepActive {
+  border-color: var(--forest);
+  color: var(--forest);
+  background-color: var(--surface-mint);
+}
+
+.wizardStepNo {
+  display: grid;
+  place-items: center;
+  width: 20px;
+  height: 20px;
+  border-radius: var(--radius-full);
+  background-color: var(--border);
+  color: var(--ink);
+  font-size: 12px;
+}
+
+.wizardStepActive .wizardStepNo {
+  background-color: var(--forest);
+  color: #fff;
+}
+
+.wizardOptional {
+  color: var(--text-muted);
+  font-weight: 400;
+}
+
+/* File dropzone */
+.dropzone {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-1);
+  padding: var(--space-6);
+  border: 1.5px dashed var(--border-strong);
+  border-radius: var(--radius-lg);
+  background-color: var(--surface-mint);
+  cursor: pointer;
+  text-align: center;
+  transition: border-color 150ms ease, background-color 150ms ease;
+}
+
+.dropzone:hover,
+.dropzone:focus-within {
+  border-color: var(--forest);
+}
+
+.dropzoneIcon {
+  color: var(--forest);
+}
+
+.dropzoneTitle {
+  font-family: var(--font-display);
+  font-weight: 600;
+  color: var(--ink);
+}
+
+.dropzoneHint {
+  font-size: var(--fs-label);
+  color: var(--text-muted-strong);
+}
+
+.dropzoneFilled {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  padding: var(--space-3) var(--space-4);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  background-color: var(--surface);
+}
+
+.dropzoneChip {
+  display: grid;
+  place-items: center;
+  width: 36px;
+  height: 36px;
+  border-radius: var(--radius-md);
+  background-color: var(--forest);
+  color: #fff;
+  flex-shrink: 0;
+}
+
+.dropzoneName {
+  font-family: var(--font-mono);
+  font-size: 13px;
+  flex: 1 1 auto;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.visuallyHidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}

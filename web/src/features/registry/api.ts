@@ -112,6 +112,15 @@ export const serviceRequestApi = {
     })
     return service_requests
   },
+  /** Requests-to-serve this MDA raised under a given activity (§10 — activity detail). */
+  async forActivity(activityId: string, status?: string): Promise<ServiceRequest[]> {
+    const { service_requests } = await apiRequest<{ service_requests: ServiceRequest[] }>({
+      method: 'GET',
+      url: '/service-requests/outbox',
+      params: { activity_id: activityId, status },
+    })
+    return service_requests
+  },
   raise(input: { beneficiary_id: string; reason?: string }): Promise<ServiceRequest> {
     return apiRequest<ServiceRequest>({ method: 'POST', url: '/service-requests', data: input })
   },
@@ -183,6 +192,24 @@ export const importApi = {
   },
   confirm(id: string): Promise<ImportBatch> {
     return apiRequest<ImportBatch>({ method: 'POST', url: `/beneficiaries/imports/${id}/confirm` })
+  },
+  /**
+   * Activity-wizard OPTIONAL inline upload (§10): stage an UNBOUND preview batch for a
+   * draft activity + file. Reuses the standard preview + row-resolve endpoints; confirm
+   * via {@link confirmActivityImport}.
+   */
+  previewActivityImport(draft: Record<string, string | number | null | undefined>, file: File, source?: string): Promise<ImportBatch> {
+    const form = new FormData()
+    form.append('file', file)
+    if (source) form.append('source', source)
+    for (const [key, value] of Object.entries(draft)) {
+      if (value !== null && value !== undefined && value !== '') form.append(key, String(value))
+    }
+    return apiRequest<ImportBatch>({ method: 'POST', url: '/activity-imports', data: form })
+  },
+  /** Atomically create the activity and commit the previewed file under it. */
+  confirmActivityImport(id: string): Promise<{ activity: { id: string; name: string }; import: { batch: ImportBatch } }> {
+    return apiRequest({ method: 'POST', url: `/activity-imports/${id}/confirm` })
   },
   /** Resolve a flagged preview row: new (with justification) / link-serve / skip (FR-DUP-05). */
   resolveRow(batchId: string, rowNumber: number, input: ResolveRowInput): Promise<ImportRow> {
