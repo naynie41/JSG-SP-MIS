@@ -1,6 +1,9 @@
-import { RefreshCw } from 'lucide-react'
-import { Card, KpiPanel } from '@/components/Card/Card'
+import { ClipboardList, Coins, PackageCheck, RefreshCw, Users } from 'lucide-react'
+import { Card } from '@/components/Card/Card'
 import { Icon } from '@/components/Icon/Icon'
+import { StatCard } from '@/components/StatCard/StatCard'
+import { Gauge } from '@/components/Gauge/Gauge'
+import { AccentPanel } from '@/components/AccentPanel/AccentPanel'
 import { cn } from '@/lib/utils/cn'
 import { formatNaira } from '@/lib/utils/money'
 import { titleCase } from '@/features/registry/constants'
@@ -20,19 +23,64 @@ function updatedLabel(iso: string): string {
   return `Updated ${new Date(iso).toLocaleDateString(undefined, { month: 'short', day: 'numeric' })}`
 }
 
-/** A horizontal bar row scaled to `max` (read-only chart primitive). */
-function Bar({ label, value, ratio, sub }: { label: string; value: string; ratio: number; sub?: string }) {
+/** Catmull-Rom → Bézier smoothing for a soft area/line. */
+function smoothPath(points: [number, number][]): string {
+  if (points.length === 0) return ''
+  if (points.length === 1) return `M ${points[0][0]} ${points[0][1]}`
+  let d = `M ${points[0][0]} ${points[0][1]}`
+  for (let i = 0; i < points.length - 1; i++) {
+    const p0 = points[i - 1] ?? points[i]
+    const p1 = points[i]
+    const p2 = points[i + 1]
+    const p3 = points[i + 2] ?? p2
+    const c1x = p1[0] + (p2[0] - p0[0]) / 6
+    const c1y = p1[1] + (p2[1] - p0[1]) / 6
+    const c2x = p2[0] - (p3[0] - p1[0]) / 6
+    const c2y = p2[1] - (p3[1] - p1[1]) / 6
+    d += ` C ${c1x} ${c1y} ${c2x} ${c2y} ${p2[0]} ${p2[1]}`
+  }
+  return d
+}
+
+/** Smooth area chart of beneficiaries across LGAs (real distribution, not a trend). */
+function CoverageArea({ rows }: { rows: CoverageRow[] }) {
+  const W = 640
+  const H = 210
+  const pad = { t: 14, r: 14, b: 30, l: 40 }
+  const n = rows.length
+  const maxY = Math.max(1, ...rows.map((r) => r.beneficiary_count))
+  const xAt = (i: number) => pad.l + (n <= 1 ? (W - pad.l - pad.r) / 2 : (i * (W - pad.l - pad.r)) / (n - 1))
+  const yAt = (v: number) => pad.t + (1 - v / maxY) * (H - pad.t - pad.b)
+  const pts = rows.map((r, i) => [xAt(i), yAt(r.beneficiary_count)] as [number, number])
+  const line = smoothPath(pts)
+  const area = pts.length > 0 ? `${line} L ${xAt(n - 1)} ${H - pad.b} L ${xAt(0)} ${H - pad.b} Z` : ''
+  const gridVals = [0, Math.round(maxY / 2), maxY]
+
+  const total = rows.reduce((s, r) => s + r.beneficiary_count, 0)
+
   return (
-    <div className={styles.barRow}>
-      <span className={styles.barLabel} title={label}>{label}</span>
-      <span className={styles.barTrack} aria-hidden="true">
-        <span className={styles.barFill} style={{ width: `${Math.max(2, Math.round(ratio * 100))}%` }} />
-      </span>
-      <span className={styles.barValue}>
-        {value}
-        {sub && <><br /><span className={styles.barSub}>{sub}</span></>}
-      </span>
-    </div>
+    <svg className={styles.area} viewBox={`0 0 ${W} ${H}`} role="img" aria-label={`Beneficiaries across ${n} local government areas, ${total.toLocaleString()} total`}>
+      <defs>
+        <linearGradient id="coverageFill" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0%" stopColor="var(--forest-2)" stopOpacity="0.28" />
+          <stop offset="100%" stopColor="var(--forest-2)" stopOpacity="0" />
+        </linearGradient>
+      </defs>
+      {gridVals.map((v) => (
+        <g key={v}>
+          <line x1={pad.l} x2={W - pad.r} y1={yAt(v)} y2={yAt(v)} className={styles.areaGrid} />
+          <text x={pad.l - 8} y={yAt(v) + 4} className={styles.areaAxis} textAnchor="end">{v.toLocaleString()}</text>
+        </g>
+      ))}
+      {area && <path d={area} fill="url(#coverageFill)" />}
+      {line && <path d={line} fill="none" className={styles.areaLine} />}
+      {pts.map(([x, y], i) => (
+        <circle key={rows[i].lga} cx={x} cy={y} r="3.5" className={styles.areaDot} />
+      ))}
+      {rows.map((r, i) => (
+        <text key={r.lga} x={xAt(i)} y={H - 10} className={styles.areaAxis} textAnchor="middle">{titleCase(r.lga)}</text>
+      ))}
+    </svg>
   )
 }
 
@@ -50,21 +98,21 @@ export interface DashboardViewProps {
 }
 
 /**
- * Shared, read-only presentation for every scoped dashboard (PRD FR-RPT-01/02). It
- * renders whatever the aggregation layer returned for the caller's scope — headline
- * forest KPIs, a budget-utilisation bar, benefit + coverage breakdowns, and (when the
- * scope includes them) referral/grievance headlines. There are no edit controls.
+ * Shared, read-only presentation for every scoped dashboard (PRD FR-RPT-01/02):
+ * headline KPI cards, a coverage-distribution hero, a forest accent summary, budget +
+ * referral gauges, and benefit/coordination breakdowns. All figures come from the
+ * scope's aggregation payload — no invented trends. There are no edit controls.
  */
 export function DashboardView({ eyebrow, title, lead, beneficiariesLabel = 'Beneficiaries', showQuickActions = false, data, isFetching, onRefresh }: DashboardViewProps) {
   const m = data.metrics
   const budget = m.benefits.budget
   const overBudget = budget.remaining < 0
+  const budgetPct = pct(budget.utilization_rate)
 
   const byType = [...m.benefits.by_type].sort((a, b) => b.total_value - a.total_value).slice(0, 6)
   const maxType = Math.max(1, ...byType.map((t) => t.total_value))
 
-  const coverage = [...m.coverage].sort((a, b) => b.beneficiary_count - a.beneficiary_count).slice(0, 8)
-  const maxCoverage = Math.max(1, ...coverage.map((c) => c.beneficiary_count))
+  const coverage = [...m.coverage].sort((a, b) => a.lga.localeCompare(b.lga)).slice(0, 8)
 
   const typeLabel = (t: BenefitTypeGroup) => (t.key ? (BENEFIT_TYPE_LABELS[t.key] ?? titleCase(t.key)) : 'Unspecified')
 
@@ -87,60 +135,72 @@ export function DashboardView({ eyebrow, title, lead, beneficiariesLabel = 'Bene
 
       {showQuickActions && <DashboardQuickActions />}
 
-      {/* Headline forest KPI panels */}
-      <div className={styles.kpiGrid}>
-        <KpiPanel label={beneficiariesLabel} value={m.registry.beneficiaries.total.toLocaleString()} hint={data.scope.label} />
-        <KpiPanel label="Active programmes" value={m.programmes.active.toLocaleString()} hint={`${m.programmes.total} total`} />
-        <KpiPanel label="Benefits disbursed" value={formatNaira(m.benefits.disbursed.total_value)} hint={`${m.benefits.disbursed.benefit_count.toLocaleString()} deliveries`} />
-        <KpiPanel label="Budget utilisation" value={`${pct(budget.utilization_rate)}%`} hint={`${formatNaira(budget.utilized_value)} of ${formatNaira(budget.allocated)}`} />
+      {/* Headline KPI stat cards */}
+      <div className={styles.kpiRow}>
+        <StatCard icon={Users} label={beneficiariesLabel} value={m.registry.beneficiaries.total.toLocaleString()} hint={data.scope.label} tone="forest" />
+        <StatCard icon={ClipboardList} label="Active programmes" value={m.programmes.active.toLocaleString()} hint={`${m.programmes.total} in catalogue`} tone="info" />
+        <StatCard icon={Coins} label="Benefits disbursed" value={formatNaira(m.benefits.disbursed.total_value)} hint={`${m.benefits.disbursed.benefit_count.toLocaleString()} deliveries`} tone="mint" />
+        <StatCard icon={PackageCheck} label="Deliveries" value={m.benefits.disbursed.benefit_count.toLocaleString()} hint="records in ledger" tone="success" />
       </div>
 
-      {/* Budget utilisation bar */}
-      <Card eyebrow="Benefits" title="Budget utilisation">
-        <div className={styles.track} aria-hidden="true">
-          <span className={cn(styles.fill, overBudget && styles.fillOver)} style={{ width: `${Math.min(100, pct(budget.utilization_rate))}%` }} />
-        </div>
-        <div className={styles.budgetMeta}>
-          <span>Allocated {formatNaira(budget.allocated)}</span>
-          <span>Utilised {formatNaira(budget.utilized_value)}</span>
-          <span>{overBudget ? 'Over by ' : 'Remaining '}{formatNaira(Math.abs(budget.remaining))}</span>
-        </div>
-      </Card>
+      {/* Hero: coverage distribution + accent summary */}
+      <div className={styles.hero}>
+        <Card eyebrow="Coverage" title="Coverage by LGA">
+          {coverage.length === 0 ? (
+            <p className={styles.empty}>No coverage data yet.</p>
+          ) : (
+            <>
+              <p className={styles.heroSub}>Beneficiaries reached across local government areas in this scope.</p>
+              <CoverageArea rows={coverage} />
+            </>
+          )}
+        </Card>
 
-      <div className={styles.sections}>
-        {/* Benefits by type */}
+        <AccentPanel
+          label="Benefits disbursed"
+          value={formatNaira(m.benefits.disbursed.total_value)}
+          sub={`${m.benefits.disbursed.benefit_count.toLocaleString()} deliveries · ${data.scope.label}`}
+        />
+      </div>
+
+      {/* Gauges: budget utilisation + referral completion (coordination scope only) */}
+      <div className={styles.gauges}>
+        <Gauge
+          label="Budget utilisation"
+          value={budgetPct}
+          caption={`${formatNaira(budget.utilized_value)} of ${formatNaira(budget.allocated)}${overBudget ? ' · over budget' : ''}`}
+          tone={overBudget ? 'danger' : 'forest'}
+        />
+        {m.referrals !== null && (
+          <Gauge
+            label="Referral completion"
+            value={pct(m.referrals.completion_rate)}
+            caption={`${m.referrals.total.toLocaleString()} referrals · ${m.referrals.overdue.toLocaleString()} overdue`}
+            tone="info"
+          />
+        )}
+      </div>
+
+      {/* Breakdowns + coordination */}
+      <div className={styles.lower}>
         <Card eyebrow="Breakdown" title="Benefits by type">
           {byType.length === 0 ? (
             <p className={styles.empty}>No benefits delivered yet.</p>
           ) : (
             <div className={styles.bars}>
               {byType.map((t) => (
-                <Bar key={t.key ?? 'unspecified'} label={typeLabel(t)} value={formatNaira(t.total_value)} ratio={t.total_value / maxType} />
+                <div key={t.key ?? 'unspecified'} className={styles.barRow}>
+                  <span className={styles.barLabel} title={typeLabel(t)}>{typeLabel(t)}</span>
+                  <span className={styles.barTrack} aria-hidden="true">
+                    <span className={styles.barFill} style={{ width: `${Math.max(2, Math.round((t.total_value / maxType) * 100))}%` }} />
+                  </span>
+                  <span className={styles.barValue}>{formatNaira(t.total_value)}</span>
+                </div>
               ))}
             </div>
           )}
         </Card>
 
-        {/* Coverage by LGA (map arrives in a later step) */}
-        <Card eyebrow="Coverage" title="Beneficiaries by LGA">
-          {coverage.length === 0 ? (
-            <p className={styles.empty}>No coverage data yet.</p>
-          ) : (
-            <div className={styles.bars}>
-              {coverage.map((c: CoverageRow) => (
-                <Bar
-                  key={c.lga}
-                  label={titleCase(c.lga)}
-                  value={c.beneficiary_count.toLocaleString()}
-                  ratio={c.beneficiary_count / maxCoverage}
-                  sub={formatNaira(c.benefit_value)}
-                />
-              ))}
-            </div>
-          )}
-        </Card>
-
-        {/* Referral headline — only when the scope includes coordination. */}
         {m.referrals !== null && (
           <Card eyebrow="Coordination" title="Referrals">
             <div className={styles.statRow}>
@@ -149,7 +209,7 @@ export function DashboardView({ eyebrow, title, lead, beneficiariesLabel = 'Bene
                 <span className={styles.statLabel}>Total</span>
               </div>
               <div className={styles.stat}>
-                <span className={styles.statValue}>{pct(m.referrals.completion_rate)}%</span>
+                <span className={styles.statValue}>{m.referrals.completed.toLocaleString()}</span>
                 <span className={styles.statLabel}>Completed</span>
               </div>
               <div className={styles.stat}>
@@ -160,7 +220,6 @@ export function DashboardView({ eyebrow, title, lead, beneficiariesLabel = 'Bene
           </Card>
         )}
 
-        {/* Grievance headline — only when the scope includes coordination. */}
         {m.grievances !== null && (
           <Card eyebrow="Coordination" title="Grievances">
             <div className={styles.statRow}>

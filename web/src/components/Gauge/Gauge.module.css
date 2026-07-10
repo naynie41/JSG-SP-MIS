@@ -1,0 +1,42 @@
+.card {
+  display: flex;
+  align-items: center;
+  gap: var(--space-4);
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--elev-sm);
+  padding: var(--space-4) var(--space-5);
+}
+
+.gauge {
+  position: relative;
+  display: grid;
+  place-items: center;
+  flex-shrink: 0;
+  width: 72px;
+  height: 72px;
+}
+.pct {
+  position: absolute;
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 16px;
+  color: var(--ink);
+  font-variant-numeric: tabular-nums;
+}
+
+.meta {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 0;
+}
+.label {
+  font-weight: 600;
+  color: var(--ink);
+}
+.caption {
+  font-size: var(--fs-label);
+  color: var(--text-muted-strong);
+}
