@@ -46,6 +46,25 @@ class ReportService
         ], $scope, $user->id, $user->mda_id);
     }
 
+    /**
+     * Queue a beneficiary registry list export (FR-REG-04). Captures the caller's
+     * scope + the list filters + the reveal decision, so the queued job renders
+     * exactly the view the requester was entitled to — masking NIN/BVN unless
+     * `$reveal`. Reuses the standard run → generate → notify → download pipeline.
+     *
+     * @param  array<string, mixed>  $filters
+     */
+    public function queueBeneficiaryExport(User $user, array $filters, ReportFormat $format, bool $reveal): ReportRun
+    {
+        $scope = $this->resolver->forUser($user);
+
+        return $this->createRun($format, [
+            'report_key' => 'beneficiary_list',
+            'report_label' => 'Beneficiary registry export',
+            'params' => ['filters' => $filters, 'reveal' => $reveal],
+        ], $scope, $user->id, $user->mda_id);
+    }
+
     /** Queue an ad-hoc report. Validates the definition against the caller's scope first. */
     public function requestAdHoc(User $user, AdHocDefinition $definition, ReportFormat $format): ReportRun
     {

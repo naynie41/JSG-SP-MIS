@@ -57,8 +57,9 @@ describe('GisDashboardPage', () => {
     renderPage(<GisDashboardPage />)
 
     expect(await screen.findByTestId('coverage-map')).toBeInTheDocument()
-    expect(screen.getByText('Dutse')).toBeInTheDocument()
-    expect(screen.getByText('5')).toBeInTheDocument()
+    // Dutse + its count appear in both the KPI strip and the ranked list.
+    expect(screen.getAllByText('Dutse').length).toBeGreaterThan(0)
+    expect(screen.getAllByText('5').length).toBeGreaterThan(0)
     expect(screen.queryByText(/isn.t loaded yet/i)).toBeNull()
   })
 
@@ -68,7 +69,7 @@ describe('GisDashboardPage', () => {
     renderPage(<GisDashboardPage />)
 
     expect(await screen.findByText(/isn.t loaded yet/i)).toBeInTheDocument() // fallback note
-    expect(screen.getByText('Dutse')).toBeInTheDocument()
+    expect(screen.getAllByText('Dutse').length).toBeGreaterThan(0)
     expect(screen.queryByTestId('coverage-map')).toBeNull()
   })
 
@@ -80,9 +81,9 @@ describe('GisDashboardPage', () => {
     await screen.findByTestId('coverage-map')
     expect(coverage).toHaveBeenCalledWith('lga')
 
-    // Metric → Benefit value shows Naira.
+    // Metric → Benefit value shows Naira (in the KPI strip + ranked list).
     await user.click(screen.getByRole('button', { name: 'Benefit value' }))
-    expect(await screen.findByText('₦1,000.00')).toBeInTheDocument()
+    expect((await screen.findAllByText('₦1,000.00')).length).toBeGreaterThan(0)
 
     // Level → Ward refetches for the ward level.
     await user.click(screen.getByRole('button', { name: 'Ward' }))

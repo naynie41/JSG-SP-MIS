@@ -103,56 +103,6 @@
   grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
   gap: var(--space-4);
 }
-.statCard {
-  background: var(--surface);
-  border: 1px solid var(--border);
-  border-radius: var(--radius-lg);
-  box-shadow: var(--elev-sm);
-  padding: var(--space-5);
-  display: flex;
-  flex-direction: column;
-  gap: var(--space-2);
-  transition:
-    transform 160ms ease,
-    box-shadow 160ms ease;
-}
-.statCard:hover {
-  transform: translateY(-2px);
-  box-shadow: var(--elev-md);
-}
-.statTop {
-  display: flex;
-  align-items: center;
-  gap: var(--space-3);
-}
-.statChip {
-  display: grid;
-  place-items: center;
-  width: 38px;
-  height: 38px;
-  border-radius: var(--radius-md);
-  flex-shrink: 0;
-}
-.kpiLabel {
-  font-family: var(--font-mono);
-  font-size: 11px;
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
-  color: var(--text-muted-strong);
-}
-.kpiValue {
-  font-family: var(--font-display);
-  font-weight: 600;
-  font-size: 30px;
-  line-height: 1.1;
-  color: var(--ink);
-  font-variant-numeric: tabular-nums;
-}
-.kpiHint {
-  font-size: var(--fs-label);
-  color: var(--text-muted);
-}
-
 /* --- Hero: coverage distribution + accent summary --- */
 .hero {
   display: grid;
@@ -199,98 +149,11 @@
   stroke-width: 2;
 }
 
-.accentCard {
-  position: relative;
-  overflow: hidden;
-  border-radius: var(--radius-lg);
-  padding: var(--space-6);
-  color: #fff;
-  background: linear-gradient(150deg, var(--forest) 0%, var(--forest-2) 100%);
-  box-shadow: var(--elev-md);
-  display: flex;
-  flex-direction: column;
-  gap: var(--space-2);
-  min-height: 200px;
-}
-.accentLabel {
-  font-family: var(--font-mono);
-  font-size: 11px;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  color: rgba(255, 255, 255, 0.72);
-}
-.accentValue {
-  font-family: var(--font-display);
-  font-weight: 700;
-  font-size: 34px;
-  line-height: 1.05;
-  font-variant-numeric: tabular-nums;
-}
-.accentSub {
-  font-size: var(--fs-label);
-  color: rgba(255, 255, 255, 0.78);
-}
-.accentSpark {
-  position: absolute;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  width: 100%;
-  height: 88px;
-}
-.accentSparkLine {
-  fill: none;
-  stroke: var(--accent);
-  stroke-width: 2.5;
-  stroke-linecap: round;
-  opacity: 0.9;
-}
-
 /* --- Gauges --- */
 .gauges {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
   gap: var(--space-4);
-}
-.gaugeCard {
-  display: flex;
-  align-items: center;
-  gap: var(--space-4);
-  background: var(--surface);
-  border: 1px solid var(--border);
-  border-radius: var(--radius-lg);
-  box-shadow: var(--elev-sm);
-  padding: var(--space-4) var(--space-5);
-}
-.gauge {
-  position: relative;
-  display: grid;
-  place-items: center;
-  flex-shrink: 0;
-  width: 72px;
-  height: 72px;
-}
-.gaugePct {
-  position: absolute;
-  font-family: var(--font-display);
-  font-weight: 600;
-  font-size: 16px;
-  color: var(--ink);
-  font-variant-numeric: tabular-nums;
-}
-.gaugeMeta {
-  display: flex;
-  flex-direction: column;
-  gap: 2px;
-  min-width: 0;
-}
-.gaugeLabel {
-  font-weight: 600;
-  color: var(--ink);
-}
-.gaugeCaption {
-  font-size: var(--fs-label);
-  color: var(--text-muted-strong);
 }
 
 /* --- Lower breakdowns + coordination --- */

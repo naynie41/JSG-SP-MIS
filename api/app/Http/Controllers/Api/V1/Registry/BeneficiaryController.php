@@ -8,20 +8,28 @@ use App\Domain\Access\Scopes\MdaScope;
 use App\Domain\Audit\Services\AuditLogger;
 use App\Domain\Matching\Engine\MatchResult;
 use App\Domain\Matching\Services\MatchingConfigService;
+use App\Domain\Registry\Export\BeneficiaryListExport;
 use App\Domain\Registry\Models\Beneficiary;
 use App\Domain\Registry\Services\BeneficiaryLookupService;
 use App\Domain\Registry\Services\FuzzyDuplicateFinder;
 use App\Domain\Registry\Services\ServiceRequestService;
+use App\Domain\Reporting\Export\ReportExporterRegistry;
+use App\Domain\Reporting\Export\ReportFormat;
+use App\Domain\Reporting\Services\DashboardScopeResolver;
+use App\Domain\Reporting\Services\ReportService;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Registry\BeneficiaryLookupRequest;
 use App\Http\Requests\Registry\BeneficiaryMatchSearchRequest;
+use App\Http\Requests\Registry\ExportBeneficiariesRequest;
 use App\Http\Requests\Registry\UpdateBeneficiaryRequest;
 use App\Http\Resources\BeneficiaryResource;
 use App\Http\Resources\BeneficiaryRevealResource;
 use App\Http\Resources\MatchCandidateResource;
+use App\Http\Resources\ReportRunResource;
 use App\Support\ApiResponse;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
+use Symfony\Component\HttpFoundation\StreamedResponse;
 
 /**
  * Owner-scoped beneficiary browse + owner-only correction (PRD FR-REG-04,
@@ -34,39 +42,92 @@ class BeneficiaryController extends Controller
 {
     /**
      * List beneficiaries owned by (or visible to) the caller's MDA, with optional
-     * search and LGA/Ward/status filters (FR-REG-04). Search matches name or the
-     * exact NIN/BVN; filters use the documented `filter[...]` params.
+     * search and LGA/Ward/status/source/batch filters (FR-REG-04). Search matches
+     * name or the exact NIN/BVN; filters use the documented `filter[...]` params.
+     * The filter/order logic is shared with {@see self::export()} so the export
+     * always reflects exactly the same view.
      */
-    public function index(Request $request): JsonResponse
+    public function index(Request $request, BeneficiaryListExport $export): JsonResponse
     {
         $this->authorize('viewAny', Beneficiary::class);
 
         $perPage = min(max($request->integer('per_page', 25), 1), 100);
 
-        $search = trim((string) $request->input('search', ''));
-        $lga = $request->input('filter.lga');
-        $ward = $request->input('filter.ward');
-        $status = $request->input('filter.status');
-
-        $page = Beneficiary::query()
-            ->when($search !== '', function ($query) use ($search): void {
-                $digits = Beneficiary::normalizeDigits($search);
-                $query->where(function ($q) use ($search, $digits): void {
-                    $q->where('first_name', 'like', "%{$search}%")
-                        ->orWhere('last_name', 'like', "%{$search}%");
-                    if ($digits !== null) {
-                        $q->orWhere('nin', $digits)->orWhere('bvn', $digits);
-                    }
-                });
-            })
-            ->when(is_string($lga) && $lga !== '', fn ($query) => $query->where('lga', $lga))
-            ->when(is_string($ward) && $ward !== '', fn ($query) => $query->where('ward', $ward))
-            ->when(is_string($status) && $status !== '', fn ($query) => $query->where('status', $status))
-            ->latest('registration_date')
-            ->latest('id')
-            ->paginate($perPage);
+        $query = $export->applyFilters(Beneficiary::query(), $export->filtersFromRequest($request));
+        $page = $export->ordered($query)->paginate($perPage);
 
         return ApiResponse::paginated(BeneficiaryResource::collection($page->items())->resolve(), $page);
+    }
+
+    /**
+     * Export the current filtered list to CSV/Excel (FR-REG-04 + FR-RPT-03). Reuses
+     * the shared Phase 6 exporters — no bespoke CSV/Excel logic. The rows are exactly
+     * what {@see self::index()} returns: same MDA scope (global MdaScope), same
+     * filters/search. NIN/BVN are masked unless the caller holds the reveal
+     * permission. Small exports stream immediately; large ones are queued and the
+     * requester is notified when the file is ready. Every export is audited.
+     */
+    public function export(
+        ExportBeneficiariesRequest $request,
+        BeneficiaryListExport $export,
+        ReportService $reports,
+        DashboardScopeResolver $scopeResolver,
+        ReportExporterRegistry $exporters,
+        AuditLogger $audit,
+    ): JsonResponse|StreamedResponse {
+        $this->authorize('viewAny', Beneficiary::class);
+
+        $format = $request->input('format') === 'excel' ? ReportFormat::Excel : ReportFormat::Csv;
+        $reveal = $request->user()->hasPermission(BeneficiaryListExport::REVEAL_PERMISSION);
+        $filters = $export->filtersFromRequest($request);
+
+        $scoped = $export->applyFilters(Beneficiary::query(), $filters);
+        $count = (clone $scoped)->count();
+
+        // Large exports run on the queue and notify when ready (reuses the report
+        // run pipeline: generation → ReportReady → download, all audited).
+        if ($count > $export->syncMax()) {
+            $run = $reports->queueBeneficiaryExport($request->user(), $filters, $format, $reveal);
+            $audit->record('beneficiary.export_queued', $run, after: $this->exportAuditMeta($format, $filters, $reveal, $count));
+
+            return ApiResponse::success((new ReportRunResource($run))->resolve(), status: 202);
+        }
+
+        $scopeLabel = $scopeResolver->forUser($request->user())->label;
+        $data = $export->toReportData($scoped, $reveal, $scopeLabel);
+        $bytes = $exporters->for($format)->render($data);
+
+        $audit->record('beneficiary.exported', after: $this->exportAuditMeta($format, $filters, $reveal, $data->rowCount()));
+
+        $filename = 'beneficiaries-'.now()->format('Ymd-His').'.'.$format->extension();
+
+        return response()->streamDownload(static function () use ($bytes): void {
+            echo $bytes;
+        }, $filename, ['Content-Type' => $format->mimeType()]);
+    }
+
+    /**
+     * Audit metadata for an export — never the raw search term (it can be an
+     * identifier) and never any beneficiary value; just what was requested.
+     *
+     * @param  array<string, mixed>  $filters
+     * @return array<string, mixed>
+     */
+    private function exportAuditMeta(ReportFormat $format, array $filters, bool $reveal, int $rowCount): array
+    {
+        return [
+            'format' => $format->value,
+            'revealed' => $reveal,
+            'row_count' => $rowCount,
+            'has_search' => trim((string) ($filters['search'] ?? '')) !== '',
+            'filters' => array_filter([
+                'lga' => $filters['lga'] ?? null,
+                'ward' => $filters['ward'] ?? null,
+                'status' => $filters['status'] ?? null,
+                'source' => $filters['source'] ?? null,
+                'batch' => $filters['batch'] ?? null,
+            ], static fn ($v): bool => $v !== null && $v !== ''),
+        ];
     }
 
     /**

@@ -191,6 +191,11 @@ Route::prefix('v1')->group(function (): void {
 
         Route::get('/beneficiaries', [BeneficiaryController::class, 'index'])
             ->middleware('permission:beneficiary.view')->name('beneficiaries.index');
+        // Export the current filtered list (CSV/Excel) via the shared Phase 6
+        // exporters. Declared before the /{beneficiary} wildcard so `export` is a
+        // literal segment, not a record id.
+        Route::get('/beneficiaries/export', [BeneficiaryController::class, 'export'])
+            ->middleware('permission:beneficiary.export')->name('beneficiaries.export');
         // NOTE: no manual create endpoint — beneficiaries enter only via source
         // ingestion (bulk import + REST intake). See docs/registry-intake.md.
         Route::get('/beneficiaries/{beneficiary}', [BeneficiaryController::class, 'show'])

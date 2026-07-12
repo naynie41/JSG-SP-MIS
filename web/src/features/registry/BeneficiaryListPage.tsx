@@ -11,8 +11,13 @@ import { TextField } from '@/components/Field/TextField'
 import { SelectField } from '@/components/Field/SelectField'
 import { Menu } from '@/components/Menu/Menu'
 import type { MenuAction } from '@/components/Menu/Menu'
+import { ExportMenu } from '@/components/ExportMenu/ExportMenu'
+import type { ExportFormat } from '@/components/ExportMenu/ExportMenu'
 import { ConfirmDialog } from '@/components/Modal/ConfirmDialog'
+import { useToast } from '@/components/Toast/ToastProvider'
 import { useAuth } from '@/lib/auth/AuthProvider'
+import { beneficiaryApi } from './api'
+import { ApiError } from '@/types/api'
 import { EditBeneficiaryModal } from './EditBeneficiaryModal'
 import { LookupModal } from './LookupModal'
 import { LGA_OPTIONS, REGISTRATION_SOURCE_LABELS, STATUS_OPTIONS, titleCase } from './constants'
@@ -24,10 +29,12 @@ import styles from './registry.module.css'
 export function BeneficiaryListPage() {
   const { hasPermission, user } = useAuth()
   const navigate = useNavigate()
+  const toast = useToast()
   const canView = hasPermission('beneficiary.view')
   const canImport = hasPermission('beneficiary.create')
   const canEdit = hasPermission('beneficiary.edit')
   const canLookup = hasPermission('beneficiary-lookup.view')
+  const canExport = hasPermission('beneficiary.export')
 
   const [page, setPage] = useState(1)
   const [search, setSearch] = useState('')
@@ -99,6 +106,20 @@ export function BeneficiaryListPage() {
 
   const pageCount = data?.pagination?.total_pages ?? 1
 
+  async function handleExport(format: ExportFormat) {
+    try {
+      const { queued } = await beneficiaryApi.export({ search, lga, status }, format)
+      if (queued) {
+        toast.info('Export queued', "It's a large export — we'll notify you when the file is ready to download.")
+      } else {
+        toast.success('Export started', 'Your download should begin shortly.')
+      }
+    } catch (error) {
+      const message = error instanceof ApiError ? error.message : 'Could not export the list. Please try again.'
+      toast.error('Export failed', message)
+    }
+  }
+
   return (
     <div>
       <div className={layout.pageHead}>
@@ -107,6 +128,7 @@ export function BeneficiaryListPage() {
           <h1 className="t-h1">Beneficiaries</h1>
         </div>
         <div className={styles.rowActions}>
+          {canExport && <ExportMenu onExport={handleExport} />}
           {canLookup && (
             <Button variant="tertiary" leftIcon={Search} onClick={() => setLookupOpen(true)}>
               Cross-MDA lookup

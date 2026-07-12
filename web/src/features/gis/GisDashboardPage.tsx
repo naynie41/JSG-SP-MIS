@@ -1,8 +1,9 @@
 import { useState } from 'react'
-import { MapPinned } from 'lucide-react'
+import { Coins, MapPinned, Trophy, Users } from 'lucide-react'
 import { Card } from '@/components/Card/Card'
 import { Icon } from '@/components/Icon/Icon'
 import { Spinner } from '@/components/Spinner/Spinner'
+import { MetricBand } from '@/components/MetricBand/MetricBand'
 import { cn } from '@/lib/utils/cn'
 import { useAuth } from '@/lib/auth/AuthProvider'
 import { formatNaira } from '@/lib/utils/money'
@@ -55,9 +56,9 @@ function RankedCoverage({ rows, metric }: { rows: CoverageRow[]; metric: Coverag
 }
 
 /**
- * GIS coverage dashboard (PRD FR-GIS-01). Scope-aware coverage by LGA/Ward: a
- * choropleth when boundaries are loaded, and a ranked-table fallback when they aren't
- * (the page never breaks). Read-only.
+ * GIS coverage screen (PRD FR-GIS-01). Scope-aware coverage by LGA/Ward: a light
+ * summary band, a choropleth centrepiece (with a graceful ranked-table fallback when
+ * boundaries aren't loaded), and a ranked list. Read-only; never breaks.
  */
 export function GisDashboardPage() {
   const { hasPermission } = useAuth()
@@ -75,11 +76,18 @@ export function GisDashboardPage() {
     )
   }
 
+  const areaWord = level === 'lga' ? 'LGA' : 'Ward'
+  const rows = data?.rows ?? []
+  const areasCovered = rows.filter((r) => metricValue(r, metric) > 0).length
+  const totalBeneficiaries = rows.reduce((s, r) => s + r.beneficiary_count, 0)
+  const totalBenefit = rows.reduce((s, r) => s + r.benefit_value, 0)
+  const leading = [...rows].sort((a, b) => metricValue(b, metric) - metricValue(a, metric))[0]
+
   return (
     <div className={styles.page}>
       <div className={styles.head}>
         <div className={styles.title}>
-          <span className="eyebrow">06 · Reporting</span>
+          <span className="eyebrow">Reporting</span>
           <h1 className="t-h1">Coverage map</h1>
           <p className={styles.lead}>
             Where social protection reaches across Jigawa — beneficiaries and benefits by
@@ -95,9 +103,9 @@ export function GisDashboardPage() {
             ))}
           </div>
           <div className={styles.toggle} role="group" aria-label="Metric">
-            {METRICS.map((m) => (
-              <button key={m.value} type="button" className={cn(styles.toggleBtn, metric === m.value && styles.toggleActive)} onClick={() => setMetric(m.value)}>
-                {m.label}
+            {METRICS.map((mo) => (
+              <button key={mo.value} type="button" className={cn(styles.toggleBtn, metric === mo.value && styles.toggleActive)} onClick={() => setMetric(mo.value)}>
+                {mo.label}
               </button>
             ))}
           </div>
@@ -110,6 +118,15 @@ export function GisDashboardPage() {
         </div>
       ) : (
         <>
+          <MetricBand
+            items={[
+              { icon: MapPinned, label: `${areaWord}s covered`, value: `${areasCovered.toLocaleString()} of ${rows.length.toLocaleString()}`, tone: 'forest' },
+              { icon: Users, label: 'Beneficiaries reached', value: totalBeneficiaries.toLocaleString(), tone: 'info' },
+              { icon: Coins, label: 'Benefit value', value: formatNaira(totalBenefit), tone: 'mint' },
+              { icon: Trophy, label: 'Leading area', value: leading?.name ?? '—', tone: 'success' },
+            ]}
+          />
+
           {data.mode === 'choropleth' && data.feature_collection ? (
             <Card eyebrow={level === 'lga' ? 'By LGA' : 'By ward'} title="Coverage choropleth">
               <CoverageMap data={data.feature_collection} metric={metric} />

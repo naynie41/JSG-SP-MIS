@@ -17,6 +17,7 @@ vi.mock('./api', () => ({
     update: vi.fn(),
     remove: vi.fn(),
     lookup: vi.fn(),
+    export: vi.fn(),
   },
 }))
 
@@ -32,6 +33,7 @@ vi.mock('@/lib/auth/AuthProvider', () => ({
 
 const list = beneficiaryApi.list as Mock
 const update = beneficiaryApi.update as Mock
+const exportList = beneficiaryApi.export as Mock
 
 function makeBeneficiary(overrides: Partial<Beneficiary> = {}): Beneficiary {
   return {
@@ -108,6 +110,31 @@ describe('BeneficiaryListPage', () => {
 
     expect(await screen.findByText('Other Mda')).toBeInTheDocument()
     expect(screen.queryByRole('button', { name: /actions for other mda/i })).not.toBeInTheDocument()
+  })
+
+  it('offers an export only to users who may export, carrying the current filters', async () => {
+    list.mockResolvedValue({ items: [makeBeneficiary()], pagination: { page: 1, per_page: 25, total: 1, total_pages: 1 } })
+    exportList.mockResolvedValue({ queued: false })
+    permissions = ['beneficiary.view', 'beneficiary.export']
+
+    const user = userEvent.setup()
+    renderPage(<BeneficiaryListPage />)
+
+    await screen.findByText('Amina Sadiq')
+    await user.click(screen.getByRole('button', { name: /export/i }))
+    await user.click(await screen.findByRole('menuitem', { name: /csv/i }))
+
+    await waitFor(() => expect(exportList).toHaveBeenCalledWith({ search: '', lga: '', status: '' }, 'csv'))
+  })
+
+  it('hides the export control from users without the export permission', async () => {
+    list.mockResolvedValue({ items: [makeBeneficiary()], pagination: { page: 1, per_page: 25, total: 1, total_pages: 1 } })
+    permissions = ['beneficiary.view'] // no beneficiary.export
+
+    renderPage(<BeneficiaryListPage />)
+
+    await screen.findByText('Amina Sadiq')
+    expect(screen.queryByRole('button', { name: /export/i })).not.toBeInTheDocument()
   })
 
   it('corrects an existing beneficiary through the edit modal (owner-only)', async () => {

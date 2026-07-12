@@ -27,7 +27,7 @@
 
 .grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
   gap: var(--space-4);
 }
 
@@ -35,7 +35,8 @@
   position: relative;
   display: flex;
   align-items: flex-start;
-  gap: var(--space-3);
+  gap: var(--space-4);
+  min-height: 116px;
   padding: var(--space-5);
   background-color: var(--surface);
   border: 1px solid var(--border);
@@ -79,11 +80,34 @@
   flex-shrink: 0;
   display: grid;
   place-items: center;
-  width: 42px;
-  height: 42px;
+  width: 44px;
+  height: 44px;
   border-radius: var(--radius-md);
+}
+/* Calm, varied chip tones (drawn from the token palette). */
+.forest {
   background-color: var(--forest);
   color: #fff;
+}
+.info {
+  background-color: var(--info-soft);
+  color: var(--info-ink);
+}
+.mint {
+  background-color: var(--surface-mint-2);
+  color: var(--forest);
+}
+.success {
+  background-color: var(--success-soft);
+  color: var(--success-ink);
+}
+.warning {
+  background-color: var(--warning-soft);
+  color: var(--warning-ink);
+}
+.danger {
+  background-color: var(--danger-soft);
+  color: var(--danger-ink);
 }
 
 .body {
@@ -109,15 +133,26 @@
 .arrow {
   flex-shrink: 0;
   margin-left: auto;
-  color: var(--text-muted);
+  align-self: center;
+  display: grid;
+  place-items: center;
+  width: 30px;
+  height: 30px;
+  border-radius: var(--radius-full);
+  border: 1px solid var(--border);
+  color: var(--text-muted-strong);
   transition:
     color 140ms ease,
+    background-color 140ms ease,
+    border-color 140ms ease,
     transform 140ms ease;
 }
 
 .card:hover .arrow,
 .card:focus-visible .arrow {
-  color: var(--forest);
+  background-color: var(--forest);
+  border-color: var(--forest);
+  color: #fff;
   transform: translate(2px, -2px);
 }
 

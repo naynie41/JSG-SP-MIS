@@ -7,6 +7,7 @@ namespace App\Domain\Reporting\Jobs;
 use App\Domain\Access\Models\User;
 use App\Domain\Access\Scopes\MdaScope;
 use App\Domain\Audit\Services\AuditLogger;
+use App\Domain\Registry\Export\BeneficiaryListExport;
 use App\Domain\Reporting\Events\ReportReady;
 use App\Domain\Reporting\Export\ReportExporterRegistry;
 use App\Domain\Reporting\Export\ReportFormat;
@@ -36,7 +37,7 @@ class GenerateReport implements ShouldQueue
 
     public function __construct(public readonly string $runId) {}
 
-    public function handle(ReportBuilder $builder, AdHocReportBuilder $adHoc, ReportExporterRegistry $exporters, AuditLogger $audit): void
+    public function handle(ReportBuilder $builder, AdHocReportBuilder $adHoc, ReportExporterRegistry $exporters, AuditLogger $audit, BeneficiaryListExport $beneficiaryExport): void
     {
         $run = ReportRun::query()->find($this->runId);
         if ($run === null) {
@@ -49,9 +50,11 @@ class GenerateReport implements ShouldQueue
             $format = ReportFormat::from($run->format);
             $scope = $run->toScope();
             $definition = $run->adHocDefinition();
-            $data = $definition !== null
-                ? $adHoc->build($definition, $scope)
-                : $builder->build($run->report_key, $scope);
+            $data = match (true) {
+                $definition !== null => $adHoc->build($definition, $scope),
+                $run->report_key === 'beneficiary_list' => $beneficiaryExport->fromRun($scope, $run->params),
+                default => $builder->build($run->report_key, $scope),
+            };
             $bytes = $exporters->for($format)->render($data);
 
             $path = "reports/{$run->id}.{$format->extension()}";

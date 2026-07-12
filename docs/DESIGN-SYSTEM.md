@@ -166,6 +166,11 @@ Optional leading dot. Use for statuses, match types, tags. Keep to one badge per
   `--accent-soft`. Optional leading checkbox column.
 - Right-aligned numeric columns; masked sensitive values (e.g. NIN) with a reveal control gated by
   permission. Row actions in an overflow menu.
+- **Export action (optional, per grid):** a toolbar "Export" control (CSV / Excel) that exports the
+  **current filtered/searched view** within the user's scope, with sensitive fields masked unless the
+  user has reveal permission. Large exports run on the queue with a ready notification. Reuses the
+  shared export service; permission-gated and audited. Build it as a reusable action so any grid can
+  opt in.
 - **Pagination** below (page or cursor, per CONVENTIONS.md). **Empty state** = one line of
   direction + a primary action, never a blank box. **Loading** = skeleton rows.
 
@@ -225,6 +230,24 @@ Extend this table as new statuses appear — don't invent one-off colors per scr
   and a reason field on decline (FR-OWN-06).
 - **Import error report:** two visually distinct groups — **"rows rejected (identity)"** vs
   **"fields dropped (non-identity)"** (FR-REG-05/09).
+
+### 5.10 Programme catalog & activity creation (revises FR-PRG-01/02)
+
+- **No programme create/edit control in any MDA view** (officer or MDA admin). Programme management
+  lives in a **System-Admin "Programme Catalog"** screen only.
+- **Activity creation modal/flow** (MDA): first field is a **programme dropdown** sourced from the
+  global catalog; then the MDA-specific fields (location, schedule, budget, funding source, period,
+  targets). The programme is required before the rest of the form proceeds.
+- **Optional final step — "Upload beneficiary data (optional)":** the wizard's last step lets the
+  officer attach a beneficiary file (or skip it). If attached, on submit the system runs validation +
+  the duplicate cascade in a **preview panel BEFORE saving**: it shows valid new rows, rejected
+  (identity) rows, and duplicates (exact badge = definitive; probable badge = adjudicate inline). On
+  confirm: the activity saves, new beneficiaries save with interventions under the activity, and each
+  duplicate chosen to serve becomes a **pending Service Request attached to the activity** (intervention
+  deferred until Owner-MDA approval). If skipped, the activity saves alone.
+- **Activity detail** shows its beneficiaries/interventions and a **"Pending service requests"** section
+  listing request-to-serve items awaiting approval under that activity.
+- Programme appears as a read-only **catalog chip/label** on activity and intervention views for MDAs.
 
 ---
 

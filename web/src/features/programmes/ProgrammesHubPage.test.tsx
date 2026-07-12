@@ -8,6 +8,12 @@ vi.mock('@/lib/auth/AuthProvider', () => ({
   useAuth: () => ({ hasPermission: (p: string) => perms.has(p) }),
 }))
 
+// The gated metric band reads the scoped dashboard metrics.
+const dashboardData: { data: unknown } = { data: undefined }
+vi.mock('@/features/dashboard/hooks', () => ({
+  useDashboard: () => dashboardData,
+}))
+
 const renderHub = () =>
   render(
     <MemoryRouter>
@@ -41,5 +47,21 @@ describe('ProgrammesHubPage', () => {
 
     expect(screen.getByRole('link', { name: /Benefit ledger/ })).toBeInTheDocument()
     expect(screen.queryByRole('link', { name: /Activities/ })).toBeNull()
+  })
+
+  it('attaches a scoped metric band only for users with dashboard access', () => {
+    dashboardData.data = { scope: { label: 'MDA A' }, metrics: { programmes: { active: 4, total: 9 }, benefits: { disbursed: { benefit_count: 12, total_value: 500 }, budget: { utilization_rate: 0.4 } } } }
+
+    // Without dashboard.view: launcher only, no metrics.
+    perms.clear()
+    perms.add('programme.view')
+    renderHub()
+    expect(screen.queryByText('Active programmes')).toBeNull()
+
+    // With dashboard.view: the metric band shows scoped figures.
+    perms.add('dashboard.view')
+    renderHub()
+    expect(screen.getByText('Active programmes')).toBeInTheDocument()
+    expect(screen.getByText('4')).toBeInTheDocument()
   })
 })
