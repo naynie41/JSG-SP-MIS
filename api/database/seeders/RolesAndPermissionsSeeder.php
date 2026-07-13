@@ -45,7 +45,9 @@ class RolesAndPermissionsSeeder extends Seeder
         ],
         RoleKey::MdaAdmin->value => [
             'mda.view', 'user.view', 'user.create', 'user.edit', 'role.view',
-            'beneficiary.view', 'beneficiary.create', 'beneficiary.edit', 'beneficiary.approve',
+            // MDA Admin may export beneficiary data — scoped to their own MDA
+            // (no cross-mda.view). SECURITY.md — Export of beneficiary data.
+            'beneficiary.view', 'beneficiary.create', 'beneficiary.edit', 'beneficiary.approve', 'beneficiary.export',
             'beneficiary-lookup.view', 'household.view', 'household.create', 'household.edit',
             // Programmes are a global catalog (§10) — MDAs read but never create/edit them;
             // they run programmes through their own MDA-owned activities.
@@ -73,8 +75,10 @@ class RolesAndPermissionsSeeder extends Seeder
             'programme.view', 'activity.view', 'enrollment.view', 'benefit.view', 'dashboard.view', 'reporting.view', 'reporting.export',
         ],
         RoleKey::Executive->value => [
+            // Executive sees state-wide AGGREGATES only — no beneficiary-data export.
+            // (Aggregate reporting export lives under reporting.export.) SECURITY.md.
             'cross-mda.view', 'mda.view', 'user.view',
-            'beneficiary.view', 'beneficiary.export', 'beneficiary-lookup.view',
+            'beneficiary.view', 'beneficiary-lookup.view',
             'programme.view', 'activity.view', 'enrollment.view', 'benefit.view', 'referral.view', 'grievance.view',
             'dashboard.view', 'reporting.view', 'reporting.export',
         ],

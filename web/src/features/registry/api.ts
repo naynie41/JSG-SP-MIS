@@ -47,18 +47,6 @@ export interface BeneficiaryListParams {
   status?: string
 }
 
-/** Save a fetched Blob to the user's device (authenticated download). */
-function triggerBlobDownload(blob: Blob, filename: string): void {
-  const url = URL.createObjectURL(blob)
-  const anchor = window.document.createElement('a')
-  anchor.href = url
-  anchor.download = filename
-  window.document.body.appendChild(anchor)
-  anchor.click()
-  anchor.remove()
-  URL.revokeObjectURL(url)
-}
-
 export const beneficiaryApi = {
   list(params: BeneficiaryListParams = {}): Promise<Paginated<Beneficiary>> {
     return apiRequestList<Beneficiary>({
@@ -77,33 +65,8 @@ export const beneficiaryApi = {
   get(id: string): Promise<Beneficiary> {
     return apiRequest<Beneficiary>({ method: 'GET', url: `/beneficiaries/${id}` })
   },
-  /**
-   * Export the current filtered list (FR-REG-04). Sends the SAME filter/search params
-   * as {@link list}. Small exports stream back and download immediately; large ones
-   * are queued server-side (HTTP 202) and the user is notified when ready.
-   */
-  async export(params: BeneficiaryListParams, format: 'csv' | 'excel'): Promise<{ queued: boolean }> {
-    const response = await http.get('/beneficiaries/export', {
-      params: {
-        format,
-        search: params.search || undefined,
-        'filter[lga]': params.lga || undefined,
-        'filter[ward]': params.ward || undefined,
-        'filter[status]': params.status || undefined,
-      },
-      responseType: 'blob',
-    })
-
-    // Over the size threshold → queued; the JSON envelope arrives as a blob.
-    if (response.status === 202) {
-      return { queued: true }
-    }
-
-    const disposition = String(response.headers['content-disposition'] ?? '')
-    const named = /filename="?([^";]+)"?/.exec(disposition)?.[1]
-    triggerBlobDownload(response.data as Blob, named ?? `beneficiaries.${format === 'excel' ? 'xlsx' : 'csv'}`)
-    return { queued: false }
-  },
+  // Export lives in the reusable DataTableExport action (see /beneficiaries/export),
+  // which reuses the shared exportListFile transport — no per-grid export code here.
   // No create(): ingestion is source-only (bulk import + REST intake). Only
   // owner-only correction of existing records is exposed here.
   update(id: string, input: Partial<BeneficiaryInput>): Promise<Beneficiary> {

@@ -39,7 +39,7 @@ class RbacTest extends TestCase
         ],
         'mda_admin' => [
             'mda.view', 'user.view', 'user.create', 'user.edit', 'role.view',
-            'beneficiary.view', 'beneficiary.create', 'beneficiary.edit', 'beneficiary.approve',
+            'beneficiary.view', 'beneficiary.create', 'beneficiary.edit', 'beneficiary.approve', 'beneficiary.export',
             'beneficiary-lookup.view', 'household.view', 'household.create', 'household.edit',
             'programme.view',
             'activity.view', 'activity.create', 'activity.edit',
@@ -62,7 +62,7 @@ class RbacTest extends TestCase
         'development_partner' => ['mda.view', 'beneficiary.view', 'programme.view', 'activity.view', 'enrollment.view', 'benefit.view', 'dashboard.view', 'reporting.view', 'reporting.export'],
         'executive' => [
             'cross-mda.view', 'mda.view', 'user.view',
-            'beneficiary.view', 'beneficiary.export', 'beneficiary-lookup.view',
+            'beneficiary.view', 'beneficiary-lookup.view',
             'programme.view', 'activity.view', 'enrollment.view', 'benefit.view', 'referral.view', 'grievance.view',
             'dashboard.view', 'reporting.view', 'reporting.export',
         ],

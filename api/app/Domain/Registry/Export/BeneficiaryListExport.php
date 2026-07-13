@@ -34,7 +34,7 @@ class BeneficiaryListExport
     /** Hard ceiling to keep any single export bounded. */
     private const MAX_ROWS = 100_000;
 
-    public const REVEAL_PERMISSION = 'beneficiary-reveal.view';
+    public const REVEAL_PERMISSION = 'export.reveal_pii';
 
     public function syncMax(): int
     {

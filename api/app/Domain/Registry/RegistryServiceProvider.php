@@ -75,10 +75,11 @@ class RegistryServiceProvider extends ServiceProvider
             ->register('beneficiary', PermissionAction::Export, 'Export beneficiaries')
             ->register('beneficiary', PermissionAction::Approve, 'Request/approve ownership transfer')
             ->register('beneficiary-lookup', PermissionAction::View, 'Look up beneficiaries across MDAs (reveal fields only)')
-            // Unmask NIN/BVN in exports. Not granted to any role by default — an
-            // administrator assigns it deliberately; without it, exports mask
-            // identifiers exactly as the on-screen list does (SECURITY.md §1/§8).
-            ->register('beneficiary-reveal', PermissionAction::View, 'Reveal beneficiary NIN/BVN in exports (unmasked)')
+            // Unmask NIN/BVN in exports (SECURITY.md — Export of beneficiary data).
+            // System Administrator only by default (via implicit all-permissions);
+            // NEVER bundled into any role. Without it, every export masks identifiers
+            // exactly as the on-screen list does.
+            ->register('export', PermissionAction::RevealPii, 'Reveal beneficiary NIN/BVN in exports (unmasked)')
             ->register('household', PermissionAction::View, 'View households')
             ->register('household', PermissionAction::Create, 'Create households')
             ->register('household', PermissionAction::Edit, 'Edit households');

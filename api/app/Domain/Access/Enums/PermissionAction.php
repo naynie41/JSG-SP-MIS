@@ -16,9 +16,13 @@ enum PermissionAction: string
     case Edit = 'edit';
     case Approve = 'approve';
     case Export = 'export';
+    case RevealPii = 'reveal_pii';
 
     public function label(): string
     {
-        return ucfirst($this->value);
+        return match ($this) {
+            self::RevealPii => 'Reveal PII',
+            default => ucfirst($this->value),
+        };
     }
 }

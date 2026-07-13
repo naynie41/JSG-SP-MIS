@@ -57,6 +57,34 @@
 - Authorization is enforced **server-side**. The frontend hides/show UI for UX only; it is never
   the security boundary.
 
+### Export of beneficiary data — permission matrix
+
+Bulk export of citizen PII is the highest-risk egress path in the system. It is governed by a distinct
+**`export`** permission (module + action level, FR-UAM-05), separate from `view`. Two invariants hold
+regardless of role:
+
+1. **You can only export what you can already see** — every export inherits the caller's MDA scoping
+   (`ScopedToMda`), role scope, and the filters of the list/report it came from.
+2. **NIN/BVN are masked in every export** unless the caller additionally holds the **`export.reveal_pii`**
+   permission (below). Every export is audited (actor, scope, filters, format, row count, timestamp).
+
+| Role | Export beneficiary data? | Scope |
+|------|--------------------------|-------|
+| System Administrator | Yes | All MDAs. Audited. |
+| SP Coordination / M&E Officer | Yes | Cross-MDA (their M&E mandate). |
+| MDA Admin | Yes | Own MDA only. |
+| **MDA Officer** | **No by default** | May be granted per user by an admin, scoped to own MDA. (Largest, most junior group — bulk PII export is the classic leak vector.) |
+| Development Partner | **No** | Aggregate reports/dashboards for funded programmes only — never the beneficiary registry. |
+| Executive | **No** | Read-only dashboards and aggregate reports only. |
+
+**`export.reveal_pii` (unmasked NIN/BVN) — System Administrator only by default.** It is a separate,
+rarer permission from `export`. It must never be bundled into a role by default, requires a documented
+purpose, and is audited distinctly. Granting it to any other role is a Data Protection Officer decision.
+
+**Governance:** the export matrix (and any grant of `export` to an MDA Officer, or of
+`export.reveal_pii` to anyone) is subject to **DPO sign-off under NDPA/NDPR** (NFR-PRV-01), alongside
+the consent and retention decisions. Review granted export permissions periodically.
+
 ---
 
 ## 4. Data protection (NFR-SEC-01, NFR-PRV-01)
