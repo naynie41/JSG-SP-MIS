@@ -29,9 +29,10 @@ use Illuminate\Support\Carbon;
  * @property string $id
  * @property string $programme_id
  * @property string $owner_mda_id
+ * @property bool $involves_beneficiaries
  * @property string $name
  * @property string|null $description
- * @property int|null $target_count
+ * @property int|null $target_beneficiaries
  * @property string|null $lga
  * @property string|null $ward
  * @property string|null $location_description
@@ -60,9 +61,10 @@ class Activity extends Model implements MdaScoped
     protected $fillable = [
         'programme_id',
         'owner_mda_id',
+        'involves_beneficiaries',
         'name',
         'description',
-        'target_count',
+        'target_beneficiaries',
         'lga',
         'ward',
         'location_description',
@@ -89,10 +91,11 @@ class Activity extends Model implements MdaScoped
     {
         return [
             'status' => ActivityStatus::class,
+            'involves_beneficiaries' => 'boolean',
             'schedule' => 'array',
             'starts_on' => 'date',
             'ends_on' => 'date',
-            'target_count' => 'integer',
+            'target_beneficiaries' => 'integer',
             'budget_amount' => 'integer',
         ];
     }

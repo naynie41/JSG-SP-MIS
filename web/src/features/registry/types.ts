@@ -215,6 +215,10 @@ export interface ImportBatch {
   activity_id: string | null
   /** Activity-wizard preview (§10): name of the activity created on confirm; null for a standalone batch. */
   draft_activity_name: string | null
+  /** Activity-wizard target beneficiaries; null for a standalone batch. */
+  draft_target_beneficiaries: number | null
+  /** True when the uploaded row count differs from the target — a non-blocking warning. */
+  target_mismatch: boolean
   status: ImportStatus
   summary: {
     total_rows: number

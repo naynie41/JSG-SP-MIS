@@ -222,12 +222,21 @@ A task is done only when **all** of these are true:
   offered" is a programme, delivered under that MDA's own activity.
 - **Beneficiary data ownership is UNCHANGED** (first-importer owns the beneficiary; MDA isolation
   intact). Only *programme* ownership changed.
-- **Optional inline upload in activity creation.** The activity creation wizard may end with an
-  OPTIONAL "upload beneficiary data" step. If a file is attached, the system runs validation + the
-  duplicate cascade in preview BEFORE saving; on confirm it saves the activity, saves new beneficiaries
-  with interventions under the activity, and attaches a PENDING Service Request under the activity for
-  each duplicate chosen to serve (intervention deferred until Owner-MDA approval). If no file is
-  attached, the activity saves alone. This reuses the existing import pipeline + dedup engine + Service
+- **Conditional beneficiary involvement in activity creation.** The activity wizard asks **"Does this
+  activity involve beneficiaries?"**. If **No** → no target field, **no upload step at all**; the
+  activity saves alone. If **Yes** → a **required target-beneficiaries count** is captured and the
+  upload step is **MANDATORY** (not optional): the officer must provide the beneficiary data. In that
+  branch the system runs validation + the duplicate cascade in preview BEFORE saving; on confirm it
+  saves the activity, saves new beneficiaries with interventions under it, and attaches a PENDING
+  Service Request under the activity for each duplicate chosen to serve (intervention deferred until
+  Owner-MDA approval). A mismatch between target count and uploaded/actual count is a **non-blocking
+  warning**, never a hard block. This reuses the existing import pipeline + dedup engine + Service
   Request — no parallel logic — and the standalone Import Center (bound to an activity) still exists.
+- **Every activity has a "View Activity" action** opening a full detail view: programme, activity
+  fields, target vs actual counts, beneficiaries/interventions under it, import summary, and pending
+  service requests.
 - **Never** expose programme creation/editing to an MDA role, and never make a programme MDA-scoped —
   it is a shared catalog.
+- **Never** grant beneficiary-data export beyond the export permission matrix in `SECURITY.md`, and
+  never bundle `export.reveal_pii` (unmasked NIN/BVN) into a role by default. Exports always inherit the
+  caller's scope, mask PII unless explicitly permitted, and are audited.

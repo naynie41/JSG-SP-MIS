@@ -110,7 +110,7 @@ export function ProgrammeDetailPage() {
     { key: 'name', header: 'Activity', render: (a) => a.name },
     { key: 'status', header: 'Status', render: (a) => <Badge variant={statusVariant(`programme.${a.status === 'completed' ? 'closed' : a.status}`)} dot>{a.status}</Badge> },
     { key: 'lga', header: 'LGA', render: (a) => (a.lga ? titleCase(a.lga) : '—') },
-    { key: 'target', header: 'Target', align: 'right', render: (a) => a.target_count ?? '—' },
+    { key: 'target', header: 'Target', align: 'right', render: (a) => (a.involves_beneficiaries ? a.target_beneficiaries ?? '—' : '—') },
     { key: 'budget', header: 'Budget', align: 'right', render: (a) => <span className={styles.mono}>{formatNaira(a.budget_amount)}</span> },
     {
       key: 'actions',

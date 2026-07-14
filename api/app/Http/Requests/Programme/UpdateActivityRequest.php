@@ -11,7 +11,9 @@ use Illuminate\Validation\Rule;
 
 /**
  * Update an activity (PRD FR-PRG-02) — partial; owner MDA only (policy). The
- * parent programme is fixed (an activity does not move between programmes).
+ * parent programme is fixed (an activity does not move between programmes), and
+ * `involves_beneficiaries` is immutable after creation (changing it would orphan
+ * interventions or bypass the mandatory upload), so it is intentionally absent here.
  */
 class UpdateActivityRequest extends FormRequest
 {
@@ -28,7 +30,7 @@ class UpdateActivityRequest extends FormRequest
         return [
             'name' => ['sometimes', 'required', 'string', 'max:255'],
             'description' => ['nullable', 'string', 'max:2000'],
-            'target_count' => ['nullable', 'integer', 'min:0'],
+            'target_beneficiaries' => ['nullable', 'integer', 'min:1'],
             'lga' => ['nullable', Rule::enum(Lga::class)],
             'ward' => ['nullable', 'string', 'max:100'],
             'location_description' => ['nullable', 'string', 'max:255'],

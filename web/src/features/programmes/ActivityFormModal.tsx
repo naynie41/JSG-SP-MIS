@@ -30,14 +30,15 @@ interface ActivityFormModalProps {
   activity?: Activity | null
 }
 
-const KNOWN = ['programme_id', 'name', 'description', 'target_count', 'lga', 'ward', 'location_description', 'budget_naira', 'funding_source', 'starts_on', 'ends_on', 'status'] as const
+const KNOWN = ['programme_id', 'involves_beneficiaries', 'name', 'description', 'target_beneficiaries', 'lga', 'ward', 'location_description', 'budget_naira', 'funding_source', 'starts_on', 'ends_on', 'status'] as const
 
 /**
- * Create/edit an MDA-owned activity that runs a GLOBAL catalog programme (§10). When
- * creating, it's a 2-step wizard (DESIGN-SYSTEM §5.9): step 1 captures the activity
- * (programme dropdown first); step 2 is an OPTIONAL "Upload beneficiary data" step
- * with a Skip option. Attaching a file stages a preview (dedup before saving) and
- * continues on the import preview page; skipping creates the activity alone.
+ * Create/edit an MDA-owned activity that runs a GLOBAL catalog programme (§10). Creation
+ * branches on "does this activity involve beneficiaries?" (DESIGN-SYSTEM §5.10):
+ *  - No  → a single step; the activity is saved alone (no target, no upload).
+ *  - Yes → a target is required, then a MANDATORY step 2 "Upload beneficiary data".
+ *          Attaching a file stages a preview (dedup before saving) and continues on the
+ *          import preview page to resolve duplicates and confirm.
  */
 export function ActivityFormModal({ open, onClose, programmeId, activity }: ActivityFormModalProps) {
   const isCreate = !activity
@@ -64,15 +65,17 @@ export function ActivityFormModal({ open, onClose, programmeId, activity }: Acti
     register,
     handleSubmit,
     trigger,
+    watch,
     setError,
     formState: { errors, isSubmitting },
   } = useForm<ActivityFormValues>({
     resolver: zodResolver(activitySchema),
     defaultValues: {
       programme_id: activity?.programme_id ?? programmeId ?? '',
+      involves_beneficiaries: activity ? (activity.involves_beneficiaries ? 'yes' : 'no') : 'no',
       name: activity?.name ?? '',
       description: activity?.description ?? '',
-      target_count: activity?.target_count != null ? String(activity.target_count) : '',
+      target_beneficiaries: activity?.target_beneficiaries != null ? String(activity.target_beneficiaries) : '',
       lga: activity?.lga ?? '',
       ward: activity?.ward ?? '',
       location_description: activity?.location_description ?? '',
@@ -84,12 +87,17 @@ export function ActivityFormModal({ open, onClose, programmeId, activity }: Acti
     },
   })
 
+  const involves = watch('involves_beneficiaries') === 'yes'
+
   function buildInput(values: ActivityFormValues): ActivityInput {
+    const involvesBeneficiaries = values.involves_beneficiaries === 'yes'
     return {
       programme_id: values.programme_id,
+      involves_beneficiaries: involvesBeneficiaries,
       name: values.name,
       description: values.description || null,
-      target_count: values.target_count ? Number(values.target_count) : null,
+      // No beneficiaries → no target (the API prohibits it on the no-file path).
+      target_beneficiaries: involvesBeneficiaries && values.target_beneficiaries ? Number(values.target_beneficiaries) : null,
       lga: values.lga || null,
       ward: values.ward || null,
       location_description: values.location_description || null,
@@ -106,7 +114,7 @@ export function ActivityFormModal({ open, onClose, programmeId, activity }: Acti
     if (await trigger()) setStep(2)
   }
 
-  // Skip / edit: create or save the activity alone.
+  // No-beneficiary create / edit: save the activity alone.
   const saveActivity = handleSubmit(async (values) => {
     setFormError(null)
     try {
@@ -122,7 +130,7 @@ export function ActivityFormModal({ open, onClose, programmeId, activity }: Acti
   const uploadAndPreview = handleSubmit(async (values) => {
     setFormError(null)
     if (!file) {
-      setFormError('Attach a file to preview, or choose “Skip & create activity”.')
+      setFormError('Attach a beneficiary file to continue — the upload is required for this activity.')
       return
     }
     try {
@@ -141,15 +149,21 @@ export function ActivityFormModal({ open, onClose, programmeId, activity }: Acti
       <Button variant="tertiary" onClick={onClose} disabled={busy}>Cancel</Button>
       <Button onClick={saveActivity} loading={busy}>Save changes</Button>
     </>
+  ) : !involves ? (
+    // No beneficiaries → single step; create the activity on its own.
+    <>
+      <Button variant="tertiary" onClick={onClose} disabled={busy}>Cancel</Button>
+      <Button onClick={saveActivity} loading={busy}>Create activity</Button>
+    </>
   ) : step === 1 ? (
     <>
       <Button variant="tertiary" onClick={onClose} disabled={busy}>Cancel</Button>
-      <Button rightIcon={FileUp} onClick={goToUploadStep}>Next: upload (optional)</Button>
+      <Button rightIcon={FileUp} onClick={goToUploadStep}>Next: upload</Button>
     </>
   ) : (
+    // Yes → the upload is mandatory (no skip).
     <>
       <Button variant="tertiary" onClick={() => setStep(1)} disabled={busy}>Back</Button>
-      <Button variant="secondary" onClick={saveActivity} loading={save.isPending}>Skip &amp; create activity</Button>
       <Button leftIcon={UploadCloud} onClick={uploadAndPreview} loading={previewImport.isPending} disabled={!file}>Upload &amp; preview</Button>
     </>
   )
@@ -157,13 +171,13 @@ export function ActivityFormModal({ open, onClose, programmeId, activity }: Acti
   return (
     <Modal open={open} onClose={onClose} title={isCreate ? 'New activity' : 'Edit activity'} footer={footer}>
       <div className={formStyles.form}>
-        {isCreate && (
+        {isCreate && involves && (
           <ol className={styles.wizardSteps} aria-label="Steps">
             <li className={step === 1 ? styles.wizardStepActive : styles.wizardStep} aria-current={step === 1 ? 'step' : undefined}>
               <span className={styles.wizardStepNo}>1</span> Activity details
             </li>
             <li className={step === 2 ? styles.wizardStepActive : styles.wizardStep} aria-current={step === 2 ? 'step' : undefined}>
-              <span className={styles.wizardStepNo}>2</span> Upload beneficiary data <span className={styles.wizardOptional}>(optional)</span>
+              <span className={styles.wizardStepNo}>2</span> Upload beneficiary data
             </li>
           </ol>
         )}
@@ -185,12 +199,28 @@ export function ActivityFormModal({ open, onClose, programmeId, activity }: Acti
               error={errors.programme_id?.message}
               {...register('programme_id')}
             />
+            <SelectField
+              label="Does this activity involve beneficiaries?"
+              required
+              options={[
+                { value: 'no', label: 'No — no beneficiaries (save the activity alone)' },
+                { value: 'yes', label: 'Yes — onboard or serve beneficiaries' },
+              ]}
+              disabled={!isCreate}
+              helper="Yes requires a target and a beneficiary upload; No saves the activity on its own."
+              error={errors.involves_beneficiaries?.message}
+              {...register('involves_beneficiaries')}
+            />
             <TextField label="Name" required error={errors.name?.message} {...register('name')} />
             <TextareaField label="Description" rows={2} error={errors.description?.message} {...register('description')} />
-            <div className={formStyles.grid2}>
-              <TextField label="Target beneficiaries" type="number" min={0} error={errors.target_count?.message} {...register('target_count')} />
+            {involves ? (
+              <div className={formStyles.grid2}>
+                <TextField label="Target beneficiaries" required type="number" min={1} error={errors.target_beneficiaries?.message} {...register('target_beneficiaries')} />
+                <TextField label="Budget (₦)" type="number" min={0} step="0.01" error={errors.budget_naira?.message} {...register('budget_naira')} />
+              </div>
+            ) : (
               <TextField label="Budget (₦)" type="number" min={0} step="0.01" error={errors.budget_naira?.message} {...register('budget_naira')} />
-            </div>
+            )}
             <div className={formStyles.grid2}>
               <SelectField label="LGA" placeholder="Select LGA" options={LGA_OPTIONS} error={errors.lga?.message} {...register('lga')} />
               <TextField label="Ward" error={errors.ward?.message} {...register('ward')} />
@@ -205,13 +235,12 @@ export function ActivityFormModal({ open, onClose, programmeId, activity }: Acti
           </div>
         </div>
 
-        {/* Step 2 — optional beneficiary upload. */}
-        {isCreate && step === 2 && (
+        {/* Step 2 — mandatory beneficiary upload (Yes flow). */}
+        {isCreate && involves && step === 2 && (
           <div>
             <p className={styles.note} style={{ marginBottom: 'var(--space-3)' }}>
-              Optionally onboard beneficiaries now. The file is validated and screened for duplicates in a
+              Attach the beneficiary file for this activity. It’s validated and screened for duplicates in a
               preview before anything is saved — you’ll resolve any matches and confirm on the next screen.
-              Or skip to create the activity on its own.
             </p>
 
             {file ? (

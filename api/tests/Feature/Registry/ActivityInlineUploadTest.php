@@ -84,16 +84,17 @@ class ActivityInlineUploadTest extends TestCase
         ]);
     }
 
-    private function preview(): TestResponse
+    private function preview(array $overrides = []): TestResponse
     {
-        return $this->withToken($this->token())->post('/api/v1/activity-imports', [
+        return $this->withToken($this->token())->post('/api/v1/activity-imports', array_merge([
             'programme_id' => $this->programme->id,
             'name' => 'Q1 Cash Round',
+            'target_beneficiaries' => 3, // matches the 3-row sample file
             'lga' => 'dutse',
             'budget_amount' => 5_000_000,
             'funding_source' => 'State budget',
             'file' => UploadedFile::fake()->createWithContent('people.csv', $this->csv()),
-        ], ['Accept' => 'application/json']);
+        ], $overrides), ['Accept' => 'application/json']);
     }
 
     public function test_preview_runs_dedup_without_persisting_the_activity_or_beneficiaries(): void
@@ -135,10 +136,13 @@ class ActivityInlineUploadTest extends TestCase
 
         $response = $this->withToken($this->token())->postJson("/api/v1/activity-imports/{$batchId}/confirm")->assertCreated();
 
-        // 1. The activity is created, MDA-owned, under its catalog programme.
+        // 1. The activity is created, MDA-owned, under its catalog programme, flagged
+        //    as beneficiary-involving with its target captured.
         $activity = Activity::query()->withoutGlobalScope(MdaScope::class)->firstOrFail();
         $this->assertSame($this->mdaA->id, $activity->owner_mda_id);
         $this->assertSame($this->programme->id, $activity->programme_id);
+        $this->assertTrue($activity->involves_beneficiaries);
+        $this->assertSame(3, $activity->target_beneficiaries);
         $response->assertJsonPath('data.activity.id', $activity->id);
 
         // 2. New (non-duplicate) beneficiary saved owned by MDA A, enrolled under the activity.
@@ -166,6 +170,76 @@ class ActivityInlineUploadTest extends TestCase
         $this->assertDatabaseHas('audit_log', ['action' => 'activity.created', 'entity_id' => $activity->id]);
         $this->assertDatabaseHas('audit_log', ['action' => 'service_request.created', 'entity_id' => $sr->id]);
         $this->assertDatabaseHas('audit_log', ['action' => 'beneficiary.created', 'entity_id' => $new->first()->id]);
+    }
+
+    public function test_upload_requires_a_target_beneficiaries_count(): void
+    {
+        $this->preview(['target_beneficiaries' => null])
+            ->assertStatus(422)
+            ->assertJsonFragment(['field' => 'target_beneficiaries']);
+    }
+
+    public function test_upload_requires_a_file(): void
+    {
+        // A beneficiary-involving activity's upload is mandatory — no file → 422.
+        $this->withToken($this->token())->postJson('/api/v1/activity-imports', [
+            'programme_id' => $this->programme->id,
+            'name' => 'No file round',
+            'target_beneficiaries' => 3,
+        ])->assertStatus(422)->assertJsonFragment(['field' => 'file']);
+    }
+
+    public function test_count_mismatch_warns_but_does_not_block_commit(): void
+    {
+        $this->existingDuplicate();
+
+        // Target (10) differs from the file's 3 rows → a non-blocking warning.
+        $batchId = $this->preview(['target_beneficiaries' => 10])->assertCreated()->json('data.id');
+        $this->app['auth']->forgetGuards();
+
+        $this->withToken($this->token())->getJson("/api/v1/beneficiaries/imports/{$batchId}")
+            ->assertOk()
+            ->assertJsonPath('data.target_mismatch', true)
+            ->assertJsonPath('data.draft_target_beneficiaries', 10);
+        $this->app['auth']->forgetGuards();
+
+        // The mismatch does NOT block: confirm still succeeds and creates the activity.
+        $this->withToken($this->token())->postJson("/api/v1/activity-imports/{$batchId}/confirm")
+            ->assertCreated();
+        $this->assertSame(1, Activity::query()->withoutGlobalScope(MdaScope::class)->count());
+    }
+
+    public function test_commit_is_valid_with_zero_new_beneficiaries(): void
+    {
+        $existing = $this->existingDuplicate();
+
+        // A file whose only valid row is the served duplicate (no new people).
+        $csv = implode("\n", [
+            'first_name,last_name,nin,bvn,phone,date_of_birth,gender,lga,ward',
+            'Different,Person,22200000011,,08000000000,1999-09-09,male,dutse,Ward 3', // exact NIN dup → serve
+            'Bad,Nin,123,,08099999999,2000-03-03,male,dutse,Ward 1',                  // malformed → rejected
+        ]);
+
+        $batchId = $this->preview([
+            'target_beneficiaries' => 1,
+            'file' => UploadedFile::fake()->createWithContent('dupes.csv', $csv),
+        ])->assertCreated()->json('data.id');
+        $this->app['auth']->forgetGuards();
+
+        $this->withToken($this->token())->postJson("/api/v1/beneficiaries/imports/{$batchId}/rows/1/resolve", [
+            'resolution' => 'link',
+            'beneficiary_id' => $existing->id,
+        ])->assertOk();
+        $this->app['auth']->forgetGuards();
+
+        $this->withToken($this->token())->postJson("/api/v1/activity-imports/{$batchId}/confirm")->assertCreated();
+
+        // The activity exists; zero NEW beneficiaries were created, but a pending SR was.
+        $activity = Activity::query()->withoutGlobalScope(MdaScope::class)->firstOrFail();
+        $this->assertSame(0, Beneficiary::query()->withoutGlobalScope(MdaScope::class)->where('owner_mda_id', $this->mdaA->id)->count());
+        $sr = ServiceRequest::query()->firstOrFail();
+        $this->assertSame('pending', $sr->status->value);
+        $this->assertSame($activity->id, $sr->activity_id);
     }
 
     public function test_confirm_is_refused_for_a_standalone_bound_batch(): void

@@ -236,6 +236,13 @@ export function ImportBatchPage() {
             flagged rows create nothing on confirm.
           </p>
         )}
+        {isWizard && batch.target_mismatch && (
+          <p className={layout.alert} role="alert" data-variant="warning">
+            Heads up: this file has {batch.summary.total_rows}{' '}
+            {batch.summary.total_rows === 1 ? 'row' : 'rows'}, but the activity target is{' '}
+            {batch.draft_target_beneficiaries}. You can still continue — this is only a warning.
+          </p>
+        )}
         {isProcessing && <p className={styles.note}>Processing… this view refreshes automatically.</p>}
         {batch.error && (
           <p className={layout.alert} role="alert">

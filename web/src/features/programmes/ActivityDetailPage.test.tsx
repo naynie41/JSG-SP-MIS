@@ -13,7 +13,8 @@ const activity = {
   owner_mda_id: 'm-1',
   name: 'Q1 Cash Round',
   description: null,
-  target_count: 1200,
+  involves_beneficiaries: true,
+  target_beneficiaries: 1200,
   lga: 'dutse',
   ward: 'Ward 3',
   location_description: null,
@@ -57,6 +58,8 @@ describe('ActivityDetailPage', () => {
     renderPage()
 
     expect(screen.getByRole('heading', { name: 'Q1 Cash Round' })).toBeInTheDocument()
+    // Beneficiary involvement + target.
+    expect(screen.getByText('Yes · target 1200')).toBeInTheDocument()
 
     // The pending service requests section, scoped to this activity.
     const section = screen.getByText('Pending service requests').closest('section') as HTMLElement

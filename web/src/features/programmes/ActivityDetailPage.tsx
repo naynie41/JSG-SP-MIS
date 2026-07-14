@@ -76,8 +76,8 @@ export function ActivityDetailPage() {
           <dd>{activity.funding_source ?? '—'}</dd>
           <dt>Period</dt>
           <dd>{activity.starts_on ?? '—'} → {activity.ends_on ?? '—'}</dd>
-          <dt>Target</dt>
-          <dd>{activity.target_count ?? '—'}</dd>
+          <dt>Beneficiaries</dt>
+          <dd>{activity.involves_beneficiaries ? `Yes · target ${activity.target_beneficiaries ?? '—'}` : 'No'}</dd>
         </dl>
       </Card>
 

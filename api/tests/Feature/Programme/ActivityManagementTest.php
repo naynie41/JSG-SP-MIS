@@ -68,9 +68,9 @@ class ActivityManagementTest extends TestCase
     {
         return array_merge([
             'programme_id' => $this->programmeA->id,
+            'involves_beneficiaries' => false, // no-beneficiary activity (POST /activities path)
             'name' => 'Q1 Cash Disbursement',
             'description' => 'First quarter payout',
-            'target_count' => 1200,
             'lga' => 'dutse',
             'ward' => 'Ward 3',
             'location_description' => 'Dutse central',
@@ -81,6 +81,30 @@ class ActivityManagementTest extends TestCase
             'funding_source' => 'State budget',
             'status' => 'active',
         ], $overrides);
+    }
+
+    public function test_activity_without_beneficiaries_saves_alone(): void
+    {
+        $this->send('officerA', 'POST', '/api/v1/activities', $this->payload())
+            ->assertCreated()
+            ->assertJsonPath('data.involves_beneficiaries', false)
+            ->assertJsonPath('data.target_beneficiaries', null);
+    }
+
+    public function test_no_beneficiary_activity_rejects_a_target_or_file(): void
+    {
+        // A target on the no-beneficiary path is prohibited.
+        $this->send('officerA', 'POST', '/api/v1/activities', $this->payload(['target_beneficiaries' => 500]))
+            ->assertStatus(422)
+            ->assertJsonFragment(['field' => 'target_beneficiaries']);
+    }
+
+    public function test_beneficiary_involving_activity_cannot_be_created_without_the_upload(): void
+    {
+        // involves_beneficiaries=true requires the mandatory upload wizard, not this endpoint.
+        $this->send('officerA', 'POST', '/api/v1/activities', $this->payload(['involves_beneficiaries' => true]))
+            ->assertStatus(422)
+            ->assertJsonFragment(['field' => 'involves_beneficiaries']);
     }
 
     public function test_mda_creates_an_activity_owned_by_its_own_mda(): void
@@ -158,10 +182,10 @@ class ActivityManagementTest extends TestCase
     {
         $activity = Activity::factory()->forProgramme($this->programmeA, $this->mdaA)->create(['status' => 'draft']);
 
-        $this->send('officerA', 'PATCH', "/api/v1/activities/{$activity->id}", ['status' => 'active', 'target_count' => 999])
+        $this->send('officerA', 'PATCH', "/api/v1/activities/{$activity->id}", ['status' => 'active', 'target_beneficiaries' => 999])
             ->assertOk()
             ->assertJsonPath('data.status', 'active')
-            ->assertJsonPath('data.target_count', 999);
+            ->assertJsonPath('data.target_beneficiaries', 999);
 
         // Another MDA cannot see or mutate it.
         $this->send('officerB', 'GET', "/api/v1/activities/{$activity->id}")->assertStatus(404);

@@ -28,9 +28,10 @@ class ActivityFactory extends Factory
         return [
             'programme_id' => Programme::factory(),
             'owner_mda_id' => Mda::factory(),
+            'involves_beneficiaries' => true,
             'name' => fake()->unique()->words(3, true),
             'description' => fake()->sentence(),
-            'target_count' => fake()->numberBetween(50, 5000),
+            'target_beneficiaries' => fake()->numberBetween(50, 5000),
             'lga' => 'dutse',
             'ward' => 'Ward '.fake()->numberBetween(1, 12),
             'location_description' => fake()->streetAddress(),

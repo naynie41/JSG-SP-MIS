@@ -54,60 +54,86 @@ describe('ActivityFormModal', () => {
     catalog.mockResolvedValue(CATALOG)
   })
 
-  // Fill step 1 (programme + name) and advance to the optional upload step.
-  async function toUploadStep(user: ReturnType<typeof userEvent.setup>, programme = 'p-1', name = 'Q1 Round') {
+  async function selectProgramme(user: ReturnType<typeof userEvent.setup>, programme = 'p-1') {
     await screen.findByLabelText('Programme')
     await waitFor(() => expect(screen.getByRole('option', { name: 'Cash Transfer' })).toBeInTheDocument())
     await user.selectOptions(screen.getByLabelText('Programme'), programme)
-    await user.type(screen.getByLabelText('Name'), name)
-    await user.click(screen.getByRole('button', { name: /next: upload/i }))
   }
 
-  it('makes the catalog programme dropdown the first field and requires it before advancing', async () => {
+  it('makes the catalog programme dropdown the first field and requires it', async () => {
     const user = userEvent.setup()
     renderModal(<ActivityFormModal open onClose={() => {}} />)
 
     const programme = await screen.findByLabelText('Programme')
     expect(programme.tagName).toBe('SELECT')
     await waitFor(() => expect(within(programme).getByRole('option', { name: 'Cash Transfer' })).toBeInTheDocument())
-    // It is the first field: it appears before the activity Name field.
+    // It is the first field.
     const fields = screen.getAllByRole('combobox').concat(screen.getAllByRole('textbox'))
     expect(fields[0]).toBe(programme)
 
-    // Advancing without a programme is blocked (stays on step 1).
+    // Default is "No" → the action creates the activity alone, but still needs a programme.
     await user.type(screen.getByLabelText('Name'), 'Q1 Round')
-    await user.click(screen.getByRole('button', { name: /next: upload/i }))
+    await user.click(screen.getByRole('button', { name: /create activity/i }))
     expect(await screen.findByText(/select a programme/i)).toBeInTheDocument()
-    expect(screen.queryByRole('button', { name: /skip & create activity/i })).toBeNull()
   })
 
-  it('skips the upload and creates the activity alone', async () => {
+  it('saves a no-beneficiary activity alone — no target field, no upload step', async () => {
     createActivity.mockResolvedValue({ id: 'a-1' })
     const user = userEvent.setup()
     renderModal(<ActivityFormModal open onClose={() => {}} />)
 
-    await toUploadStep(user, 'p-2', 'Dry-season Round')
-    // Step 2 — skip.
-    await user.click(await screen.findByRole('button', { name: /skip & create activity/i }))
+    await selectProgramme(user, 'p-2')
+    await user.type(screen.getByLabelText('Name'), 'Dry-season Round')
+
+    // "No" (default): no target, no upload affordance.
+    expect(screen.queryByLabelText('Target beneficiaries')).toBeNull()
+    expect(screen.queryByRole('button', { name: /next: upload/i })).toBeNull()
+
+    await user.click(screen.getByRole('button', { name: /create activity/i }))
 
     await waitFor(() =>
-      expect(createActivity).toHaveBeenCalledWith(expect.objectContaining({ programme_id: 'p-2', name: 'Dry-season Round' })),
+      expect(createActivity).toHaveBeenCalledWith(
+        expect.objectContaining({ programme_id: 'p-2', name: 'Dry-season Round', involves_beneficiaries: false, target_beneficiaries: null }),
+      ),
     )
     expect(previewImport).not.toHaveBeenCalled()
     expect(navigate).not.toHaveBeenCalled()
   })
 
-  it('with an attached file, stages a preview and navigates to the import page (dedup before saving)', async () => {
+  it('requires a target before advancing when it involves beneficiaries', async () => {
+    const user = userEvent.setup()
+    renderModal(<ActivityFormModal open onClose={() => {}} />)
+
+    await selectProgramme(user, 'p-1')
+    await user.selectOptions(screen.getByLabelText(/involve beneficiaries/i), 'yes')
+    await user.type(screen.getByLabelText('Name'), 'Q1 Round')
+    await user.click(screen.getByRole('button', { name: /next: upload/i }))
+
+    expect(await screen.findByText(/a target is required/i)).toBeInTheDocument()
+  })
+
+  it('requires a target and a mandatory upload when it involves beneficiaries', async () => {
     previewImport.mockResolvedValue({ id: 'batch-9' })
     const user = userEvent.setup()
     renderModal(<ActivityFormModal open onClose={() => {}} />)
 
-    await toUploadStep(user, 'p-1', 'Q1 Round')
-    await user.upload(await screen.findByLabelText(/choose a beneficiary file/i), new File(['a,b'], 'people.csv', { type: 'text/csv' }))
+    await selectProgramme(user, 'p-1')
+    await user.selectOptions(screen.getByLabelText(/involve beneficiaries/i), 'yes')
+    await user.type(screen.getByLabelText('Name'), 'Q1 Round')
+    await user.type(screen.getByLabelText('Target beneficiaries'), '250')
+    await user.click(screen.getByRole('button', { name: /next: upload/i }))
+
+    // Step 2 is mandatory — there is no "skip & create" escape hatch.
+    expect(await screen.findByLabelText(/choose a beneficiary file/i)).toBeInTheDocument()
+    expect(screen.queryByRole('button', { name: /skip/i })).toBeNull()
+
+    await user.upload(screen.getByLabelText(/choose a beneficiary file/i), new File(['a,b'], 'people.csv', { type: 'text/csv' }))
     await user.click(screen.getByRole('button', { name: /upload & preview/i }))
 
     await waitFor(() =>
-      expect(previewImport).toHaveBeenCalledWith(expect.objectContaining({ draft: expect.objectContaining({ programme_id: 'p-1', name: 'Q1 Round' }) })),
+      expect(previewImport).toHaveBeenCalledWith(
+        expect.objectContaining({ draft: expect.objectContaining({ programme_id: 'p-1', name: 'Q1 Round', involves_beneficiaries: true, target_beneficiaries: 250 }) }),
+      ),
     )
     // The activity is NOT created directly — dedup runs in preview first.
     expect(createActivity).not.toHaveBeenCalled()

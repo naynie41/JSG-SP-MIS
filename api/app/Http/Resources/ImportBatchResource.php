@@ -21,6 +21,9 @@ class ImportBatchResource extends JsonResource
      */
     public function toArray(Request $request): array
     {
+        $draft = is_array($this->draft_activity) ? $this->draft_activity : null;
+        $target = $draft['target_beneficiaries'] ?? null;
+
         return [
             'id' => $this->id,
             'owner_mda_id' => $this->owner_mda_id,
@@ -30,7 +33,12 @@ class ImportBatchResource extends JsonResource
             'activity_id' => $this->activity_id,
             // Activity-wizard preview (§10): unbound batch whose activity is created on
             // confirm. Non-null name + null activity_id ⇒ confirm via the wizard endpoint.
-            'draft_activity_name' => is_array($this->draft_activity) ? ($this->draft_activity['name'] ?? null) : null,
+            'draft_activity_name' => $draft['name'] ?? null,
+            // The wizard's target beneficiaries + a NON-BLOCKING mismatch flag: a warning
+            // is shown when the uploaded row count differs from the target, but it never
+            // blocks the commit (§10).
+            'draft_target_beneficiaries' => $target === null ? null : (int) $target,
+            'target_mismatch' => $target !== null && $this->total_rows !== null && (int) $this->total_rows !== (int) $target,
             'status' => $this->status->value,
             'summary' => [
                 'total_rows' => $this->total_rows,

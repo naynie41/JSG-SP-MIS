@@ -44,9 +44,10 @@ export interface Activity {
   id: string
   programme_id: string
   owner_mda_id: string
+  involves_beneficiaries: boolean
   name: string
   description: string | null
-  target_count: number | null
+  target_beneficiaries: number | null
   lga: string | null
   ward: string | null
   location_description: string | null
@@ -63,9 +64,10 @@ export interface Activity {
 
 export interface ActivityInput {
   programme_id?: string
+  involves_beneficiaries?: boolean
   name: string
   description?: string | null
-  target_count?: number | null
+  target_beneficiaries?: number | null
   lga?: string | null
   ward?: string | null
   location_description?: string | null

@@ -11,10 +11,13 @@ use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Rule;
 
 /**
- * Preview step of the activity-creation wizard's OPTIONAL inline upload (§10). Carries
- * the draft ACTIVITY fields (validated but NOT persisted) plus a REQUIRED beneficiary
- * file; validation + the duplicate cascade run in preview before anything is saved. On
- * confirm, the activity is created and the file committed under it, atomically.
+ * Preview step of the activity-creation wizard's MANDATORY upload for a beneficiary-
+ * involving activity (§10). Reaching this endpoint means the activity involves
+ * beneficiaries, so a `target_beneficiaries` count and a beneficiary file are BOTH
+ * required, and the draft is stamped `involves_beneficiaries = true`. It carries the
+ * draft ACTIVITY fields (validated but NOT persisted); validation + the duplicate
+ * cascade run in preview before anything is saved. On confirm, the activity is created
+ * and the file committed under it, atomically.
  */
 class UploadActivityImportRequest extends FormRequest
 {
@@ -35,7 +38,8 @@ class UploadActivityImportRequest extends FormRequest
             'programme_id' => ['required', 'uuid', 'exists:programmes,id'],
             'name' => ['required', 'string', 'max:255'],
             'description' => ['nullable', 'string', 'max:2000'],
-            'target_count' => ['nullable', 'integer', 'min:0'],
+            // Involvement is implied by this endpoint; a target is mandatory here.
+            'target_beneficiaries' => ['required', 'integer', 'min:1'],
             'lga' => ['nullable', Rule::enum(Lga::class)],
             'ward' => ['nullable', 'string', 'max:100'],
             'location_description' => ['nullable', 'string', 'max:255'],
@@ -53,12 +57,16 @@ class UploadActivityImportRequest extends FormRequest
     }
 
     /**
-     * The validated activity fields to stash until confirm.
+     * The validated activity fields to stash until confirm. Reaching this endpoint
+     * means the activity involves beneficiaries, so the flag is stamped on here.
      *
      * @return array<string, mixed>
      */
     public function activityDraft(): array
     {
-        return $this->safe()->except(['file', 'source']);
+        return [
+            ...$this->safe()->except(['file', 'source']),
+            'involves_beneficiaries' => true,
+        ];
     }
 }

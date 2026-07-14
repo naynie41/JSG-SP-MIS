@@ -236,17 +236,25 @@ Extend this table as new statuses appear — don't invent one-off colors per scr
 - **No programme create/edit control in any MDA view** (officer or MDA admin). Programme management
   lives in a **System-Admin "Programme Catalog"** screen only.
 - **Activity creation modal/flow** (MDA): first field is a **programme dropdown** sourced from the
-  global catalog; then the MDA-specific fields (location, schedule, budget, funding source, period,
-  targets). The programme is required before the rest of the form proceeds.
-- **Optional final step — "Upload beneficiary data (optional)":** the wizard's last step lets the
-  officer attach a beneficiary file (or skip it). If attached, on submit the system runs validation +
-  the duplicate cascade in a **preview panel BEFORE saving**: it shows valid new rows, rejected
-  (identity) rows, and duplicates (exact badge = definitive; probable badge = adjudicate inline). On
-  confirm: the activity saves, new beneficiaries save with interventions under the activity, and each
-  duplicate chosen to serve becomes a **pending Service Request attached to the activity** (intervention
-  deferred until Owner-MDA approval). If skipped, the activity saves alone.
-- **Activity detail** shows its beneficiaries/interventions and a **"Pending service requests"** section
-  listing request-to-serve items awaiting approval under that activity.
+  global catalog; then the MDA-specific fields (location, schedule, budget, funding source, period).
+  The programme is required before the rest of the form proceeds.
+- **Conditional beneficiary step — "Does this activity involve beneficiaries?" (Yes/No):**
+  - **No** → the wizard skips straight to review/confirm. **No target field and NO upload step is
+    shown at all.** The activity saves alone.
+  - **Yes** → a **required "target beneficiaries" number field** appears; the wizard then **must**
+    proceed to the upload step (upload is **mandatory** in this branch, not optional).
+- **Upload step (shown only when the activity involves beneficiaries):** the officer provides the
+  beneficiary file. On submit the system runs validation + the duplicate cascade in a **preview panel
+  BEFORE saving**: valid new rows, rejected (identity) rows, and duplicates (exact badge = definitive;
+  probable badge = adjudicate inline). If the uploaded count differs from the target, show a
+  **non-blocking warning** (target is a plan; actual may differ). On confirm: the activity saves, new
+  beneficiaries save with interventions under the activity, and each duplicate chosen to serve becomes
+  a **pending Service Request attached to the activity** (intervention deferred until Owner-MDA approval).
+- **"View Activity" action:** after confirm/save, and on every activity row/card in the list, a **View
+  Activity** button opens the full activity detail view: programme (catalog label), all activity fields,
+  target vs actual beneficiary counts, the beneficiaries/interventions recorded under it, the import/
+  validation summary, and a **"Pending service requests"** section listing request-to-serve items
+  awaiting approval under that activity.
 - Programme appears as a read-only **catalog chip/label** on activity and intervention views for MDAs.
 
 ---
