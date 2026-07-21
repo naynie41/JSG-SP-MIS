@@ -100,6 +100,20 @@ describe('ActivityFormModal', () => {
     expect(navigate).not.toHaveBeenCalled()
   })
 
+  it('shows a post-save confirmation with a View activity action (no-beneficiary path)', async () => {
+    createActivity.mockResolvedValue({ id: 'a-9', name: 'Dry-season Round', involves_beneficiaries: false })
+    const user = userEvent.setup()
+    renderModal(<ActivityFormModal open onClose={() => {}} />)
+
+    await selectProgramme(user, 'p-2')
+    await user.type(screen.getByLabelText('Name'), 'Dry-season Round')
+    await user.click(screen.getByRole('button', { name: /create activity/i }))
+
+    // Post-save confirmation → View activity opens the detail page.
+    await user.click(await screen.findByRole('button', { name: /view activity/i }))
+    expect(navigate).toHaveBeenCalledWith('/activities/a-9')
+  })
+
   it('requires a target before advancing when it involves beneficiaries', async () => {
     const user = userEvent.setup()
     renderModal(<ActivityFormModal open onClose={() => {}} />)

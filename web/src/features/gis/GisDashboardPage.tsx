@@ -43,7 +43,7 @@ function RankedCoverage({ rows, metric }: { rows: CoverageRow[]; metric: Coverag
   return (
     <div className={styles.bars}>
       {sorted.map((row) => (
-        <div key={row.key} className={styles.barRow}>
+        <div key={row.key} className={styles.barRow} title={`${row.name}: ${metricDisplay(row, metric)}`}>
           <span className={styles.barLabel} title={row.name}>{row.name}</span>
           <span className={styles.barTrack} aria-hidden="true">
             <span className={styles.barFill} style={{ width: `${Math.max(2, Math.round((metricValue(row, metric) / max) * 100))}%` }} />

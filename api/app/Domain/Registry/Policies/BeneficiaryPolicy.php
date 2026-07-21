@@ -6,17 +6,20 @@ namespace App\Domain\Registry\Policies;
 
 use App\Domain\Access\Models\User;
 use App\Domain\Registry\Models\Beneficiary;
-use App\Domain\Registry\Services\ServiceRequestService;
+use App\Domain\Sharing\DataSharingGuard;
 
 /**
  * Authorization for beneficiaries (PRD FR-OWN-02/03/05).
  *
- * The core rule: **only the owner MDA may edit the core profile**. Oversight
- * (`cross-mda.view`) grants read, never edit. The cross-MDA lookup/serve path is
+ * The core rule: **only the owner MDA may edit the core profile**. Cross-MDA READ is
+ * decided by the single {@see DataSharingGuard} (owner / oversight / consent-gated
+ * Service-Request grant) — never re-implemented here. The reveal-only lookup seam is
  * gated separately by `beneficiary-lookup.view` (a distinct, minimal reveal).
  */
 class BeneficiaryPolicy
 {
+    public function __construct(private readonly DataSharingGuard $sharing) {}
+
     private function owns(User $user, Beneficiary $beneficiary): bool
     {
         return $user->mda_id !== null && $user->mda_id === $beneficiary->owner_mda_id;
@@ -28,23 +31,13 @@ class BeneficiaryPolicy
     }
 
     /**
-     * Read a specific beneficiary: the owner, an oversight role, or an MDA that
-     * holds an active read-access grant from an accepted Service Request
-     * (§12, FR-OWN-07). READ only — this never confers edit.
+     * Read a specific beneficiary — resolved through the one governed data-sharing
+     * surface (owner, oversight, or a consent-satisfied Service-Request grant). READ
+     * only; never confers edit.
      */
     public function view(User $user, Beneficiary $beneficiary): bool
     {
-        return $user->hasPermission('beneficiary.view')
-            && ($this->owns($user, $beneficiary)
-                || $user->canAccessAllMdas()
-                || $this->hasServiceGrant($user, $beneficiary));
-    }
-
-    /** An active read-access grant opened by an accepted Service Request. */
-    private function hasServiceGrant(User $user, Beneficiary $beneficiary): bool
-    {
-        return $user->mda_id !== null
-            && ServiceRequestService::hasActiveGrant($beneficiary->id, $user->mda_id);
+        return $this->sharing->canRead($user, $beneficiary);
     }
 
     public function create(User $user): bool

@@ -42,6 +42,9 @@ class BeneficiaryResource extends JsonResource
             'import_batch_id' => $this->import_batch_id,
             'original_record_id' => $this->original_record_id,
             'status' => $this->status->value,
+            // Cross-MDA data-sharing consent (NFR-PRV-01, FR-DSH-01).
+            'sharing_consent' => $this->sharing_consent->value,
+            'sharing_consent_at' => $this->sharing_consent_at?->toIso8601String(),
             'current_household' => $this->whenLoaded('currentMembership', function () {
                 $membership = $this->currentMembership;
 

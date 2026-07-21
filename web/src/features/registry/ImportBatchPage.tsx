@@ -64,7 +64,8 @@ export function ImportBatchPage() {
   function onConfirm() {
     if (!id) return
     if (isWizard) {
-      confirmActivityImport.mutate(id, { onSuccess: () => navigate('/activities') })
+      // Land on the new activity's detail page (the "View Activity" post-commit view).
+      confirmActivityImport.mutate(id, { onSuccess: (result) => navigate(`/activities/${result.activity.id}`) })
     } else {
       confirmImport.mutate(id)
     }

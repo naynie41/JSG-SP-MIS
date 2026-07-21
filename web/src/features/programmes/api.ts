@@ -1,6 +1,6 @@
 import { apiRequest, apiRequestList } from '@/lib/api/client'
 import type { Paginated } from '@/lib/api/client'
-import type { Activity, ActivityInput, Budget, BulkEnrollResult, Enrollment, Programme, ProgrammeInput } from './types'
+import type { Activity, ActivityDetail, ActivityInput, Budget, BulkEnrollResult, Enrollment, Programme, ProgrammeInput } from './types'
 
 export interface ProgrammeListParams {
   page?: number
@@ -51,8 +51,9 @@ export const activityApi = {
   list(): Promise<Paginated<Activity>> {
     return apiRequestList<Activity>({ method: 'GET', url: '/activities', params: { per_page: 100 } })
   },
-  get(id: string): Promise<Activity> {
-    return apiRequest<Activity>({ method: 'GET', url: `/activities/${id}` })
+  /** Full "View Activity" detail: programme, counts, beneficiaries, import summary, service requests. */
+  get(id: string): Promise<ActivityDetail> {
+    return apiRequest<ActivityDetail>({ method: 'GET', url: `/activities/${id}` })
   },
   create(input: ActivityInput): Promise<Activity> {
     return apiRequest<Activity>({ method: 'POST', url: '/activities', data: input })

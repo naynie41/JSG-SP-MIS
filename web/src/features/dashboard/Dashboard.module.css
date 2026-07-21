@@ -230,6 +230,121 @@
   color: var(--danger);
 }
 
+/* --- Partner dashboard: funder-oriented layout (distinct from the MDA view) --- */
+
+/* Funding hero: a forest panel that LEADS the page (money-first for a funder),
+   with an embedded linear budget meter. */
+.fundHero {
+  display: grid;
+  grid-template-columns: 1.25fr 1fr;
+  gap: var(--space-6);
+  align-items: center;
+  position: relative;
+  overflow: hidden;
+  border-radius: var(--radius-lg);
+  padding: var(--space-6) var(--space-7);
+  color: #fff;
+  background: linear-gradient(150deg, var(--forest) 0%, var(--forest-2) 100%);
+  box-shadow: var(--elev-md);
+  animation: rise 320ms ease both;
+}
+@media (max-width: 760px) {
+  .fundHero {
+    grid-template-columns: 1fr;
+    padding: var(--space-5);
+  }
+}
+.fundHeadline {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+.fundEyebrow {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.72);
+}
+.fundValue {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 40px;
+  line-height: 1.02;
+  font-variant-numeric: tabular-nums;
+}
+.fundSub {
+  font-size: var(--fs-label);
+  color: rgba(255, 255, 255, 0.8);
+  max-width: 46ch;
+}
+
+/* Linear budget meter (on the forest hero) */
+.meter {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  padding: var(--space-4);
+  border-radius: var(--radius-md);
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.16);
+}
+.meterTop {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: var(--space-3);
+}
+.meterLabel {
+  font-family: var(--font-mono);
+  font-size: 10.5px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.72);
+}
+.meterPct {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 26px;
+  line-height: 1;
+  font-variant-numeric: tabular-nums;
+}
+.meterTrack {
+  height: 10px;
+  border-radius: var(--radius-full);
+  background: rgba(255, 255, 255, 0.18);
+  overflow: hidden;
+}
+.meterFill {
+  display: block;
+  height: 100%;
+  border-radius: var(--radius-full);
+  background: var(--accent); /* lime — the one scarce accent, reserved for this highlight */
+}
+.meterFillOver {
+  background: var(--danger);
+}
+.meterCaption {
+  font-size: 12px;
+  color: rgba(255, 255, 255, 0.78);
+  font-variant-numeric: tabular-nums;
+}
+
+/* Partner lower: reach (wide) + delivery mix (narrow) */
+.partnerLower {
+  display: grid;
+  grid-template-columns: 1.6fr 1fr;
+  gap: var(--space-5);
+  align-items: start;
+  animation: rise 320ms ease both;
+  animation-delay: 120ms;
+}
+@media (max-width: 900px) {
+  .partnerLower {
+    grid-template-columns: 1fr;
+  }
+}
+
 .empty {
   color: var(--text-muted-strong);
   font-size: var(--fs-label);
@@ -247,6 +362,8 @@
   .hero,
   .gauges,
   .lower,
+  .fundHero,
+  .partnerLower,
   .spin {
     animation: none;
   }

@@ -8,20 +8,23 @@ use App\Domain\Access\Scopes\MdaScope;
 use App\Domain\Audit\Services\AuditLogger;
 use App\Domain\Matching\Engine\MatchResult;
 use App\Domain\Matching\Services\MatchingConfigService;
+use App\Domain\Registry\Enums\ConsentStatus;
 use App\Domain\Registry\Export\BeneficiaryListExport;
 use App\Domain\Registry\Models\Beneficiary;
 use App\Domain\Registry\Services\BeneficiaryLookupService;
+use App\Domain\Registry\Services\ConsentService;
 use App\Domain\Registry\Services\FuzzyDuplicateFinder;
-use App\Domain\Registry\Services\ServiceRequestService;
 use App\Domain\Reporting\Export\ReportExporterRegistry;
 use App\Domain\Reporting\Export\ReportFormat;
 use App\Domain\Reporting\Services\DashboardScopeResolver;
 use App\Domain\Reporting\Services\ReportService;
 use App\Domain\Reporting\Support\DashboardScope;
+use App\Domain\Sharing\DataSharingGuard;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Registry\BeneficiaryLookupRequest;
 use App\Http\Requests\Registry\BeneficiaryMatchSearchRequest;
 use App\Http\Requests\Registry\ExportBeneficiariesRequest;
+use App\Http\Requests\Registry\RecordConsentRequest;
 use App\Http\Requests\Registry\UpdateBeneficiaryRequest;
 use App\Http\Resources\BeneficiaryResource;
 use App\Http\Resources\BeneficiaryRevealResource;
@@ -139,30 +142,53 @@ class BeneficiaryController extends Controller
     }
 
     /**
-     * Show a single beneficiary. Owner + oversight resolve via the global scope. A
-     * non-owner MDA holding an active read-access grant from an accepted Service
-     * Request (§12, FR-OWN-07) reads the FULL record (read-only). Any other
-     * out-of-scope record still 404s.
+     * Show a single beneficiary through the ONE governed data-sharing surface
+     * (FR-DSH-01): owner, oversight, or a consent-satisfied Service-Request grant
+     * (§12, FR-OWN-07). Any other cross-MDA read is denied — and, because it is a
+     * deliberate out-of-scope attempt, logged — while still returning 404 so record
+     * existence is never leaked.
      */
-    public function show(Request $request, string $beneficiary): JsonResponse
+    public function show(Request $request, string $beneficiary, DataSharingGuard $sharing, AuditLogger $audit): JsonResponse
     {
-        $model = Beneficiary::query()->find($beneficiary);
-
-        if ($model === null) {
-            $mdaId = $request->user()->mda_id;
-            $unscoped = Beneficiary::query()->withoutGlobalScope(MdaScope::class)->find($beneficiary);
-            if ($unscoped !== null && $mdaId !== null && ServiceRequestService::hasActiveGrant($unscoped->id, $mdaId)) {
-                $model = $unscoped;
-            }
-        }
+        $model = Beneficiary::query()->withoutGlobalScope(MdaScope::class)->find($beneficiary);
 
         abort_if($model === null, 404);
 
-        $this->authorize('view', $model);
+        if (! $sharing->canRead($request->user(), $model)) {
+            $audit->record('beneficiary.access_denied', $model, after: [
+                'requested_by_mda' => $request->user()->mda_id,
+                'basis' => $sharing->basisFor($request->user(), $model)->value,
+            ]);
+            abort(404);
+        }
 
         return ApiResponse::success(
             (new BeneficiaryResource($model->load('ownerMda', 'currentMembership')))->resolve(),
         );
+    }
+
+    /**
+     * Record (grant/withdraw) the beneficiary's cross-MDA data-sharing consent
+     * (NFR-PRV-01, FR-DSH-01) — owner MDA only. Updates the current status, appends
+     * an immutable history entry, and audits the change. The consent gate then makes
+     * any Service-Request grant effective or ineffective accordingly.
+     */
+    public function consent(RecordConsentRequest $request, string $beneficiary, ConsentService $consents): JsonResponse
+    {
+        $model = Beneficiary::query()->withoutGlobalScope(MdaScope::class)->findOrFail($beneficiary);
+
+        $this->authorize('update', $model); // owner MDA only (FR-OWN-02 semantics)
+
+        $consents->record(
+            $model,
+            ConsentStatus::from((string) $request->input('status')),
+            $request->user(),
+            basis: $request->input('basis'),
+            source: $request->input('source', 'owner_mda'),
+            note: $request->input('note'),
+        );
+
+        return ApiResponse::success((new BeneficiaryResource($model->fresh()->load('ownerMda')))->resolve());
     }
 
     /**

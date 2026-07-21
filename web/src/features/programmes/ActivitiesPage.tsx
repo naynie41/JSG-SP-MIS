@@ -1,6 +1,6 @@
 import { useMemo, useState } from 'react'
-import { Link } from 'react-router-dom'
-import { Archive, Pencil, Plus } from 'lucide-react'
+import { Link, useNavigate } from 'react-router-dom'
+import { Archive, Eye, Pencil, Plus } from 'lucide-react'
 import { Button } from '@/components/Button/Button'
 import { Badge } from '@/components/Badge/Badge'
 import { statusVariant } from '@/components/Badge/statusVariant'
@@ -27,6 +27,7 @@ export function ActivitiesPage() {
   const canView = hasPermission('activity.view')
   const canManage = hasPermission('activity.create')
 
+  const navigate = useNavigate()
   const activities = useAllActivities(canView)
   const catalog = useProgrammeCatalog(canView)
   const archive = useArchiveActivity()
@@ -52,16 +53,23 @@ export function ActivitiesPage() {
     {
       key: 'actions',
       header: '',
-      render: (a) =>
-        canManage ? (
-          <Menu
-            label={`Actions for ${a.name}`}
-            actions={[
-              { label: 'Edit', icon: Pencil, onSelect: () => setForm({ open: true, activity: a }) },
-              { label: 'Archive', icon: Archive, danger: true, onSelect: () => archive.mutate(a.id) },
-            ]}
-          />
-        ) : null,
+      align: 'right',
+      render: (a) => (
+        <div style={{ display: 'inline-flex', gap: 'var(--space-2)', alignItems: 'center' }}>
+          <Button size="sm" variant="tertiary" leftIcon={Eye} onClick={() => navigate(`/activities/${a.id}`)}>
+            View
+          </Button>
+          {canManage && (
+            <Menu
+              label={`Actions for ${a.name}`}
+              actions={[
+                { label: 'Edit', icon: Pencil, onSelect: () => setForm({ open: true, activity: a }) },
+                { label: 'Archive', icon: Archive, danger: true, onSelect: () => archive.mutate(a.id) },
+              ]}
+            />
+          )}
+        </div>
+      ),
     },
   ]
 

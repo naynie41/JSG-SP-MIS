@@ -39,6 +39,7 @@ use App\Http\Controllers\Api\V1\Reporting\GisController;
 use App\Http\Controllers\Api\V1\Reporting\ReportController;
 use App\Http\Controllers\Api\V1\Reporting\ReportDefinitionController;
 use App\Http\Controllers\Api\V1\Reporting\ReportScheduleController;
+use App\Http\Controllers\Api\V1\Sharing\DataSharingController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -200,10 +201,17 @@ Route::prefix('v1')->group(function (): void {
         // ingestion (bulk import + REST intake). See docs/registry-intake.md.
         Route::get('/beneficiaries/{beneficiary}', [BeneficiaryController::class, 'show'])
             ->middleware('permission:beneficiary.view')->name('beneficiaries.show');
+        // Cross-MDA data-sharing consent (NFR-PRV-01) — owner MDA records grant/withdraw.
+        Route::put('/beneficiaries/{beneficiary}/consent', [BeneficiaryController::class, 'consent'])
+            ->middleware('permission:beneficiary.edit')->name('beneficiaries.consent');
         Route::match(['put', 'patch'], '/beneficiaries/{beneficiary}', [BeneficiaryController::class, 'update'])
             ->middleware('permission:beneficiary.edit')->name('beneficiaries.update');
         Route::delete('/beneficiaries/{beneficiary}', [BeneficiaryController::class, 'destroy'])
             ->middleware('permission:beneficiary.edit')->name('beneficiaries.destroy');
+
+        // Data-sharing oversight (FR-DSH-01): who can access what across MDAs, and why.
+        Route::get('/data-sharing/grants', [DataSharingController::class, 'grants'])
+            ->middleware('permission:cross-mda.view')->name('data-sharing.grants');
 
         // Supporting documents (FR-REG-07): owner-only upload/delete, in-scope
         // list/download. Files are streamed via the download action, never static.

@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
-import { FileUp, UploadCloud, X } from 'lucide-react'
+import { CheckCircle2, Eye, FileUp, UploadCloud, X } from 'lucide-react'
 import { Modal } from '@/components/Modal/Modal'
 import { Button } from '@/components/Button/Button'
 import { TextField } from '@/components/Field/TextField'
@@ -52,12 +52,14 @@ export function ActivityFormModal({ open, onClose, programmeId, activity }: Acti
   const [step, setStep] = useState<1 | 2>(1)
   const [file, setFile] = useState<File | null>(null)
   const [formError, setFormError] = useState<string | null>(null)
+  const [created, setCreated] = useState<Activity | null>(null)
 
   useEffect(() => {
     if (open) {
       setStep(1)
       setFile(null)
       setFormError(null)
+      setCreated(null)
     }
   }, [open])
 
@@ -114,12 +116,14 @@ export function ActivityFormModal({ open, onClose, programmeId, activity }: Acti
     if (await trigger()) setStep(2)
   }
 
-  // No-beneficiary create / edit: save the activity alone.
+  // No-beneficiary create / edit: save the activity alone. On create, show a
+  // post-save confirmation with a "View activity" action; on edit, just close.
   const saveActivity = handleSubmit(async (values) => {
     setFormError(null)
     try {
-      await save.mutateAsync({ id: activity?.id, input: buildInput(values) })
-      onClose()
+      const saved = await save.mutateAsync({ id: activity?.id, input: buildInput(values) })
+      if (isCreate) setCreated(saved)
+      else onClose()
     } catch (error) {
       setFormError(applyApiErrors(error, setError, KNOWN))
     }
@@ -144,7 +148,13 @@ export function ActivityFormModal({ open, onClose, programmeId, activity }: Acti
 
   const busy = isSubmitting || save.isPending || previewImport.isPending
 
-  const footer = !isCreate ? (
+  const footer = created ? (
+    // Post-save confirmation → the "View activity" affordance opens the detail page.
+    <>
+      <Button variant="tertiary" onClick={onClose}>Done</Button>
+      <Button leftIcon={Eye} onClick={() => { onClose(); navigate(`/activities/${created.id}`) }}>View activity</Button>
+    </>
+  ) : !isCreate ? (
     <>
       <Button variant="tertiary" onClick={onClose} disabled={busy}>Cancel</Button>
       <Button onClick={saveActivity} loading={busy}>Save changes</Button>
@@ -167,6 +177,21 @@ export function ActivityFormModal({ open, onClose, programmeId, activity }: Acti
       <Button leftIcon={UploadCloud} onClick={uploadAndPreview} loading={previewImport.isPending} disabled={!file}>Upload &amp; preview</Button>
     </>
   )
+
+  if (created) {
+    return (
+      <Modal open={open} onClose={onClose} title="Activity created" footer={footer}>
+        <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 'var(--space-3)', textAlign: 'center', padding: 'var(--space-4) 0' }}>
+          <span className={styles.dropzoneChip} aria-hidden="true"><Icon icon={CheckCircle2} size={26} /></span>
+          <strong style={{ fontFamily: 'var(--font-display)', fontSize: '20px' }}>“{created.name}” is ready</strong>
+          <p className={styles.note}>
+            Open it to see its details{created.involves_beneficiaries ? ', the beneficiaries recorded under it,' : ''} and any pending
+            service requests.
+          </p>
+        </div>
+      </Modal>
+    )
+  }
 
   return (
     <Modal open={open} onClose={onClose} title={isCreate ? 'New activity' : 'Edit activity'} footer={footer}>

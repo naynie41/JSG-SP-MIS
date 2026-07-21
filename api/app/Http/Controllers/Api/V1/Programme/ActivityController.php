@@ -12,6 +12,7 @@ use App\Domain\Programme\Models\Programme;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Programme\StoreActivityRequest;
 use App\Http\Requests\Programme\UpdateActivityRequest;
+use App\Http\Resources\ActivityDetailResource;
 use App\Http\Resources\ActivityResource;
 use App\Support\ApiResponse;
 use Illuminate\Http\JsonResponse;
@@ -64,13 +65,20 @@ class ActivityController extends Controller
         return ApiResponse::success((new ActivityResource($activity))->resolve(), status: 201);
     }
 
+    /**
+     * The full "View Activity" detail (PRD §10): catalog programme, all activity fields,
+     * target vs actual beneficiary counts, the beneficiaries/interventions under it, the
+     * import/validation summary of its batch(es), and the attached request-to-serve items.
+     * Owner-MDA scoped (MdaScope) + view policy; NIN/BVN masked, foreign beneficiaries
+     * shown reveal-only.
+     */
     public function show(string $activity): JsonResponse
     {
-        $model = Activity::query()->findOrFail($activity);
+        $model = Activity::query()->with('programme')->findOrFail($activity);
 
         $this->authorize('view', $model);
 
-        return ApiResponse::success((new ActivityResource($model))->resolve());
+        return ApiResponse::success((new ActivityDetailResource($model))->resolve());
     }
 
     public function update(UpdateActivityRequest $request, string $activity): JsonResponse

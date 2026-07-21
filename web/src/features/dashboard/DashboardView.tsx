@@ -75,7 +75,12 @@ function CoverageArea({ rows }: { rows: CoverageRow[] }) {
       {area && <path d={area} fill="url(#coverageFill)" />}
       {line && <path d={line} fill="none" className={styles.areaLine} />}
       {pts.map(([x, y], i) => (
-        <circle key={rows[i].lga} cx={x} cy={y} r="3.5" className={styles.areaDot} />
+        <g key={rows[i].lga}>
+          {/* Native hover tooltip + a larger transparent hit area for the point. */}
+          <title>{`${titleCase(rows[i].lga)}: ${rows[i].beneficiary_count.toLocaleString()} beneficiaries`}</title>
+          <circle cx={x} cy={y} r="12" fill="transparent" />
+          <circle cx={x} cy={y} r="3.5" className={styles.areaDot} />
+        </g>
       ))}
       {rows.map((r, i) => (
         <text key={r.lga} x={xAt(i)} y={H - 10} className={styles.areaAxis} textAnchor="middle">{titleCase(r.lga)}</text>
@@ -189,7 +194,7 @@ export function DashboardView({ eyebrow, title, lead, beneficiariesLabel = 'Bene
           ) : (
             <div className={styles.bars}>
               {byType.map((t) => (
-                <div key={t.key ?? 'unspecified'} className={styles.barRow}>
+                <div key={t.key ?? 'unspecified'} className={styles.barRow} title={`${typeLabel(t)}: ${formatNaira(t.total_value)}`}>
                   <span className={styles.barLabel} title={typeLabel(t)}>{typeLabel(t)}</span>
                   <span className={styles.barTrack} aria-hidden="true">
                     <span className={styles.barFill} style={{ width: `${Math.max(2, Math.round((t.total_value / maxType) * 100))}%` }} />

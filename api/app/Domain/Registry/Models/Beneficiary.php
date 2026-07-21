@@ -10,6 +10,7 @@ use App\Domain\Access\Models\Mda;
 use App\Domain\Audit\Concerns\Auditable;
 use App\Domain\Matching\Support\PhoneticEncoder;
 use App\Domain\Registry\Enums\BeneficiaryStatus;
+use App\Domain\Registry\Enums\ConsentStatus;
 use App\Domain\Registry\Enums\Gender;
 use App\Domain\Registry\Enums\RegistrationSource;
 use Database\Factories\BeneficiaryFactory;
@@ -82,6 +83,8 @@ class Beneficiary extends Model implements MdaScoped
         'ward',
         'block_name_dob',
         'status',
+        'sharing_consent',
+        'sharing_consent_at',
     ];
 
     /**
@@ -100,6 +103,7 @@ class Beneficiary extends Model implements MdaScoped
      */
     protected $attributes = [
         'status' => BeneficiaryStatus::Active->value,
+        'sharing_consent' => ConsentStatus::Unknown->value,
     ];
 
     /**
@@ -113,6 +117,8 @@ class Beneficiary extends Model implements MdaScoped
             'date_of_birth' => 'date',
             'gender' => Gender::class,
             'status' => BeneficiaryStatus::class,
+            'sharing_consent' => ConsentStatus::class,
+            'sharing_consent_at' => 'datetime',
         ];
     }
 
@@ -199,6 +205,22 @@ class Beneficiary extends Model implements MdaScoped
     public function fullName(): string
     {
         return trim(implode(' ', array_filter([$this->first_name, $this->middle_name, $this->last_name])));
+    }
+
+    /** Whether cross-MDA data-sharing consent is currently granted (NFR-PRV-01). */
+    public function hasSharingConsent(): bool
+    {
+        return $this->sharing_consent === ConsentStatus::Granted;
+    }
+
+    /**
+     * Append-only consent history (most recent first).
+     *
+     * @return HasMany<BeneficiaryConsent, $this>
+     */
+    public function consents(): HasMany
+    {
+        return $this->hasMany(BeneficiaryConsent::class)->latest('created_at');
     }
 
     /**

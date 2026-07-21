@@ -62,6 +62,42 @@ export interface Activity {
   updated_at: string | null
 }
 
+/** A beneficiary/intervention recorded under an activity (identifiers masked). */
+export interface ActivityBeneficiary {
+  enrollment_id: string
+  beneficiary_id: string
+  full_name: string | null
+  nin: string | null
+  bvn: string | null
+  lga: string | null
+  ward: string | null
+  beneficiary_status: string | null
+  enrollment_status: EnrollmentStatus
+  enrolled_on: string
+}
+
+/** The import/validation summary aggregated across an activity's bound batch(es). */
+export interface ActivityImportSummary {
+  batches: number
+  total_rows: number
+  valid_rows: number
+  invalid_rows: number
+  rejected_rows: number
+  dropped_field_rows: number
+  committed_rows: number
+  served_rows: number
+  skipped_rows: number
+}
+
+/** The full "View Activity" payload (GET /activities/{id}). */
+export interface ActivityDetail extends Activity {
+  programme: Programme | null
+  counts: { target: number | null; actual: number; pending_service_requests: number }
+  beneficiaries: ActivityBeneficiary[]
+  import_summary: ActivityImportSummary | null
+  service_requests: import('@/features/registry/types').ServiceRequest[]
+}
+
 export interface ActivityInput {
   programme_id?: string
   involves_beneficiaries?: boolean

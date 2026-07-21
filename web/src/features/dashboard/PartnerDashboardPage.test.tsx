@@ -63,6 +63,19 @@ describe('PartnerDashboardPage', () => {
     expect(screen.getByText('Cash')).toBeInTheDocument()
     expect(screen.getByText('Dutse')).toBeInTheDocument()
 
+    // The distinct funder-oriented layout: a money-first hero with a budget meter,
+    // and the reach/mix evidence panels.
+    expect(screen.getByText('Funding at work')).toBeInTheDocument()
+    expect(screen.getByText('Budget utilised')).toBeInTheDocument()
+    expect(screen.getByText('30%')).toBeInTheDocument() // utilization_rate 0.3
+    expect(screen.getByText('Where your funding reached')).toBeInTheDocument()
+    expect(screen.getByText('Delivery by type')).toBeInTheDocument()
+
+    // NOT the MDA/executive shared view's signature (coverage-area hero + gauges).
+    expect(screen.queryByText('Coverage by LGA')).toBeNull()
+    expect(screen.queryByText('Budget utilisation')).toBeNull() // the MDA gauge label
+    expect(screen.queryByText('Referral completion')).toBeNull()
+
     // Coordination (referrals/grievances) does not apply to a partner scope.
     expect(screen.queryByText('Referrals')).toBeNull()
     expect(screen.queryByText('Grievances')).toBeNull()

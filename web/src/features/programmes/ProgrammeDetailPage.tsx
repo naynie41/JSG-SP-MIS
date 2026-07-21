@@ -1,6 +1,6 @@
 import { useState } from 'react'
-import { Link, useParams } from 'react-router-dom'
-import { Archive, Pencil, Plus, UserPlus } from 'lucide-react'
+import { Link, useNavigate, useParams } from 'react-router-dom'
+import { Archive, Eye, Pencil, Plus, UserPlus } from 'lucide-react'
 import { Button } from '@/components/Button/Button'
 import { Badge } from '@/components/Badge/Badge'
 import { statusVariant } from '@/components/Badge/statusVariant'
@@ -77,6 +77,7 @@ function DetailsTab({ programme }: { programme: Programme }) {
 
 export function ProgrammeDetailPage() {
   const { id } = useParams<{ id: string }>()
+  const navigate = useNavigate()
   const { hasPermission } = useAuth()
   const canView = hasPermission('programme.view')
 
@@ -107,7 +108,7 @@ export function ProgrammeDetailPage() {
   const canEnroll = hasPermission('enrollment.create')
 
   const activityColumns: Column<Activity>[] = [
-    { key: 'name', header: 'Activity', render: (a) => a.name },
+    { key: 'name', header: 'Activity', render: (a) => <Link to={`/activities/${a.id}`}>{a.name}</Link> },
     { key: 'status', header: 'Status', render: (a) => <Badge variant={statusVariant(`programme.${a.status === 'completed' ? 'closed' : a.status}`)} dot>{a.status}</Badge> },
     { key: 'lga', header: 'LGA', render: (a) => (a.lga ? titleCase(a.lga) : '—') },
     { key: 'target', header: 'Target', align: 'right', render: (a) => (a.involves_beneficiaries ? a.target_beneficiaries ?? '—' : '—') },
@@ -115,16 +116,23 @@ export function ProgrammeDetailPage() {
     {
       key: 'actions',
       header: '',
-      render: (a) =>
-        canManageActivities ? (
-          <Menu
-            label={`Actions for ${a.name}`}
-            actions={[
-              { label: 'Edit', icon: Pencil, onSelect: () => setActivityForm({ open: true, activity: a }) },
-              { label: 'Archive', icon: Archive, danger: true, onSelect: () => archiveActivity.mutate(a.id) },
-            ]}
-          />
-        ) : null,
+      align: 'right',
+      render: (a) => (
+        <div style={{ display: 'inline-flex', gap: 'var(--space-2)', alignItems: 'center' }}>
+          <Button size="sm" variant="tertiary" leftIcon={Eye} onClick={() => navigate(`/activities/${a.id}`)}>
+            View
+          </Button>
+          {canManageActivities && (
+            <Menu
+              label={`Actions for ${a.name}`}
+              actions={[
+                { label: 'Edit', icon: Pencil, onSelect: () => setActivityForm({ open: true, activity: a }) },
+                { label: 'Archive', icon: Archive, danger: true, onSelect: () => archiveActivity.mutate(a.id) },
+              ]}
+            />
+          )}
+        </div>
+      ),
     },
   ]
 

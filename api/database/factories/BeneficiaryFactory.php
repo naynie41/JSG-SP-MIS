@@ -6,6 +6,7 @@ namespace Database\Factories;
 
 use App\Domain\Access\Models\Mda;
 use App\Domain\Registry\Enums\BeneficiaryStatus;
+use App\Domain\Registry\Enums\ConsentStatus;
 use App\Domain\Registry\Enums\Gender;
 use App\Domain\Registry\Enums\Lga;
 use App\Domain\Registry\Enums\RegistrationSource;
@@ -46,6 +47,9 @@ class BeneficiaryFactory extends Factory
             'lga' => fake()->randomElement(Lga::cases())->value,
             'ward' => 'Ward '.fake()->numberBetween(1, 12),
             'status' => BeneficiaryStatus::Active,
+            // Test default: consent captured at registration. Cross-MDA sharing tests
+            // that exercise the consent gate set this to unknown/withdrawn explicitly.
+            'sharing_consent' => ConsentStatus::Granted,
             // Populated here too so the blocking key exists even when a seeder
             // mutes model events (WithoutModelEvents); the model hook keeps it
             // fresh on later saves.

@@ -1,7 +1,7 @@
 import { Card } from '@/components/Card/Card'
 import { Spinner } from '@/components/Spinner/Spinner'
 import { useAuth } from '@/lib/auth/AuthProvider'
-import { DashboardView } from './DashboardView'
+import { PartnerDashboardView } from './PartnerDashboardView'
 import { useDashboard } from './hooks'
 import styles from './dashboard.module.css'
 
@@ -33,15 +33,5 @@ export function PartnerDashboardPage() {
     )
   }
 
-  return (
-    <DashboardView
-      eyebrow="06 · Reporting"
-      title="Partner dashboard"
-      lead="Coverage, budget utilisation and delivery performance for the programmes you fund. Scoped to your funded programmes only."
-      beneficiariesLabel="Beneficiaries served"
-      data={data}
-      isFetching={isFetching}
-      onRefresh={() => refetch()}
-    />
-  )
+  return <PartnerDashboardView data={data} isFetching={isFetching} onRefresh={() => refetch()} />
 }
