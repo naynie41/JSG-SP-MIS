@@ -6,6 +6,7 @@ use App\Domain\Graduation\GraduationServiceProvider;
 use App\Domain\Grievance\GrievanceServiceProvider;
 use App\Domain\Matching\MatchingServiceProvider;
 use App\Domain\Notification\NotificationServiceProvider;
+use App\Domain\Ops\OpsServiceProvider;
 use App\Domain\Programme\ProgrammeServiceProvider;
 use App\Domain\Referral\ReferralServiceProvider;
 use App\Domain\Registry\RegistryServiceProvider;
@@ -26,4 +27,5 @@ return [
     ReportingServiceProvider::class,
     SyncServiceProvider::class,
     GraduationServiceProvider::class,
+    OpsServiceProvider::class,
 ];

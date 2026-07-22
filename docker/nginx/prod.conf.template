@@ -1,0 +1,104 @@
+# =============================================================================
+# SP-MIS edge reverse proxy — TLS termination + security headers (SECURITY.md §5).
+# Rendered by the nginx image's envsubst: only ${NGINX_*} / ${API_UPSTREAM} /
+# ${WEB_UPSTREAM} are substituted (they are set as env vars); nginx runtime
+# variables ($host, $uri, $request_uri, …) are NOT env vars and are left intact.
+#
+#   /api, /up            → php-fpm (front controller; no app files needed here)
+#   everything else      → the SPA container
+# Only this service publishes 80/443; api/web/data services are internal-only.
+# =============================================================================
+
+gzip on;
+gzip_comp_level 5;
+gzip_min_length 1024;
+gzip_proxied any;
+gzip_types text/plain text/css application/json application/javascript image/svg+xml application/xml;
+
+# ---- HTTP :80 — ACME challenge + health, otherwise redirect to HTTPS ----
+server {
+    listen 80;
+    listen [::]:80;
+    server_name ${NGINX_SERVER_NAME};
+    server_tokens off;
+
+    # Unredirected health path for load balancers / container healthcheck.
+    location = /healthz {
+        return 200 "ok\n";
+        add_header Content-Type text/plain;
+    }
+
+    # Let's Encrypt webroot renewals.
+    location ^~ /.well-known/acme-challenge/ {
+        root /var/www/acme;
+        default_type "text/plain";
+    }
+
+    location / {
+        return 301 https://$host$request_uri;
+    }
+}
+
+# ---- HTTPS :443 ----
+server {
+    listen 443 ssl;
+    listen [::]:443 ssl;
+    http2 on;
+    server_name ${NGINX_SERVER_NAME};
+    server_tokens off;
+
+    ssl_certificate     ${NGINX_SSL_CERTIFICATE};
+    ssl_certificate_key ${NGINX_SSL_CERTIFICATE_KEY};
+    ssl_protocols TLSv1.2 TLSv1.3;
+    ssl_ciphers HIGH:!aNULL:!MD5;
+    ssl_prefer_server_ciphers on;
+    ssl_session_cache shared:SSL:10m;
+    ssl_session_timeout 1d;
+
+    # Sized for document/import uploads (must be >= PHP upload_max_filesize).
+    client_max_body_size ${NGINX_CLIENT_MAX_BODY_SIZE};
+
+    location = /healthz {
+        return 200 "ok\n";
+        add_header Content-Type text/plain;
+    }
+
+    # --- API + framework health → php-fpm --------------------------------------
+    # The API is a front-controller app, so every request maps to public/index.php
+    # on the php-fpm container's OWN filesystem (this proxy holds no PHP files).
+    # The app's SecurityHeaders middleware sets the response headers for these
+    # routes; HTTPS=on tells Laravel the request is secure (so it emits HSTS too).
+    location ~ ^/(api/|up$) {
+        include /etc/nginx/fastcgi_params;
+        fastcgi_pass ${API_UPSTREAM};
+        fastcgi_param SCRIPT_FILENAME /var/www/html/public/index.php;
+        fastcgi_param SCRIPT_NAME /index.php;
+        fastcgi_param DOCUMENT_ROOT /var/www/html/public;
+        fastcgi_param HTTPS on;
+        fastcgi_param HTTP_X_FORWARDED_PROTO https;
+        fastcgi_hide_header X-Powered-By;
+        fastcgi_read_timeout 120s;
+    }
+
+    # --- SPA → web container ---------------------------------------------------
+    # Security headers are applied HERE (a location with its own add_header does
+    # not inherit server-level ones), covering all SPA responses. HSTS is set at
+    # this TLS terminator; the SPA CSP allows self scripts/styles + same-origin API.
+    location / {
+        proxy_pass http://${WEB_UPSTREAM};
+        proxy_http_version 1.1;
+        proxy_set_header Host $host;
+        proxy_set_header X-Real-IP $remote_addr;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+        proxy_set_header X-Forwarded-Proto https;
+
+        add_header Strict-Transport-Security "max-age=31536000; includeSubDomains" always;
+        add_header X-Content-Type-Options "nosniff" always;
+        add_header X-Frame-Options "DENY" always;
+        add_header Referrer-Policy "no-referrer" always;
+        add_header X-Permitted-Cross-Domain-Policies "none" always;
+        add_header Cross-Origin-Resource-Policy "same-site" always;
+        add_header Permissions-Policy "geolocation=(), microphone=(), camera=()" always;
+        add_header Content-Security-Policy "default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; connect-src 'self'; font-src 'self' data:; frame-ancestors 'none'; base-uri 'self'; form-action 'self'" always;
+    }
+}

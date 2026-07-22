@@ -55,7 +55,10 @@
 }
 
 .control:focus {
-  outline: none;
+  /* Transparent (not removed) so Windows High-Contrast / forced-colors still
+     renders a focus ring; the box-shadow carries the visual in normal mode. */
+  outline: 2px solid transparent;
+  outline-offset: 2px;
   border-color: var(--forest);
   box-shadow: 0 0 0 3px rgba(44, 53, 18, 0.12);
 }

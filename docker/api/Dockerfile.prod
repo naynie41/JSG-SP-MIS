@@ -1,0 +1,58 @@
+# syntax=docker/dockerfile:1
+# =============================================================================
+# SP-MIS API — PRODUCTION image (php-fpm). Used by both the `api` and `worker`
+# services (worker = same image, different CMD). Multi-stage: composer installs
+# prod-only deps in a build stage; the final image is slim, self-contained
+# (vendor + code baked in — no runtime `composer install`), runs as the
+# non-root www-data user, and carries NO secrets or .env.
+# =============================================================================
+
+# --- Stage 1: composer (no dev) ---------------------------------------------
+FROM composer:2 AS vendor
+WORKDIR /app
+# Install deps first (cached) using only the manifest + lock…
+COPY api/composer.json api/composer.lock ./
+RUN composer install --no-dev --prefer-dist --no-scripts --optimize-autoloader \
+    --no-interaction --no-progress
+# …then bring in the source and finalise the optimised autoloader.
+COPY api/ ./
+RUN composer dump-autoload --optimize --no-scripts --no-interaction
+
+# --- Stage 2: runtime (slim, non-root) --------------------------------------
+FROM php:8.3-fpm-alpine AS runtime
+
+# PHP extensions (same set as dev) + minimal runtime tools:
+#   postgresql-client → pg_isready wait + backups; fcgi → fpm healthcheck ping;
+#   procps → worker healthcheck (pgrep).
+ADD https://github.com/mlocati/docker-php-extension-installer/releases/latest/download/install-php-extensions /usr/local/bin/
+RUN chmod +x /usr/local/bin/install-php-extensions && \
+    install-php-extensions \
+        pdo_pgsql pgsql sockets intl zip gd bcmath pcntl opcache && \
+    apk add --no-cache postgresql-client fcgi procps && \
+    rm -rf /var/cache/apk/*
+
+# Production PHP + fpm pool (pool runs as www-data, exposes /ping for healthcheck,
+# clear_env=no so the container environment reaches PHP).
+COPY docker/api/php.prod.ini /usr/local/etc/php/conf.d/zz-spmis.ini
+COPY docker/api/www.conf /usr/local/etc/php-fpm.d/www.conf
+
+WORKDIR /var/www/html
+
+# App + vendor from the build stage, owned by the runtime user.
+COPY --from=vendor --chown=www-data:www-data /app /var/www/html
+COPY --chown=www-data:www-data docker/api/entrypoint.prod.sh /usr/local/bin/entrypoint
+
+# Writable runtime dirs (a fresh documents volume mounted on storage/app/private
+# inherits www-data ownership from here) + package manifest, then fix ownership.
+RUN chmod +x /usr/local/bin/entrypoint && \
+    mkdir -p storage/app/private storage/framework/cache storage/framework/sessions \
+             storage/framework/views storage/logs bootstrap/cache && \
+    php artisan package:discover --ansi && \
+    chown -R www-data:www-data storage bootstrap/cache
+
+# Everything below runs unprivileged.
+USER www-data
+
+EXPOSE 9000
+ENTRYPOINT ["entrypoint"]
+CMD ["php-fpm"]

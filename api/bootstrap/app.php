@@ -59,6 +59,14 @@ return Application::configure(basePath: dirname(__DIR__))
         // daily. A no-op unless retention is enabled + policies are configured; the
         // job is unique so overlapping ticks never double-process a cohort.
         $schedule->job(EnforceDataRetention::class)->dailyAt('02:00')->withoutOverlapping();
+
+        // Encrypted offsite backup (NFR-AVAIL-01) — daily, defining the ~24h RPO.
+        // Runs as a command (uses pg_dump / the DB file) rather than a queued job.
+        $schedule->command('backup:run')->dailyAt('01:00')->withoutOverlapping()->runInBackground();
+
+        // Weekly restore drill (NFR-AVAIL-01): prove the backups are recoverable
+        // within the RTO. A failing drill exits non-zero for the monitor to catch.
+        $schedule->command('backup:drill')->weekly()->sundays()->at('03:00')->withoutOverlapping();
     })
     ->withMiddleware(function (Middleware $middleware): void {
         // Correlation id first (so it is available to everything), security

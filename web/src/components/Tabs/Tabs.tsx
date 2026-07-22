@@ -24,8 +24,18 @@ export function Tabs({ items, defaultTabId }: TabsProps) {
     if (event.key !== 'ArrowRight' && event.key !== 'ArrowLeft') return
     event.preventDefault()
     const dir = event.key === 'ArrowRight' ? 1 : -1
-    const next = items[(index + dir + items.length) % items.length]
-    if (next) setActive(next.id)
+    // Move to the next ENABLED tab, wrapping around.
+    let i = index
+    for (let step = 0; step < items.length; step++) {
+      i = (i + dir + items.length) % items.length
+      if (!items[i]?.disabled) break
+    }
+    const next = items[i]
+    if (next && next.id !== active) {
+      setActive(next.id)
+      // Focus follows activation (roving tabindex): keep the keyboard on the tab.
+      requestAnimationFrame(() => document.getElementById(`${baseId}-tab-${next.id}`)?.focus())
+    }
   }
 
   const activeItem = items.find((item) => item.id === active)

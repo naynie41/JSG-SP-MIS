@@ -54,6 +54,9 @@ export function AppLayout() {
 
   return (
     <div className={styles.shell}>
+      <a href="#main-content" className={styles.skipLink}>
+        Skip to content
+      </a>
       <SideNav
         sections={sections}
         open={drawerOpen}
@@ -74,7 +77,7 @@ export function AppLayout() {
           notifications={<NotificationBell />}
           onOpenMenu={() => setDrawerOpen(true)}
         />
-        <main className={styles.content}>
+        <main id="main-content" tabIndex={-1} className={styles.content}>
           <Outlet />
         </main>
       </div>

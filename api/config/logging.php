@@ -1,5 +1,7 @@
 <?php
 
+use App\Logging\CorrelationIdProcessor;
+use Monolog\Formatter\JsonFormatter;
 use Monolog\Handler\NullHandler;
 use Monolog\Handler\StreamHandler;
 use Monolog\Handler\SyslogUdpHandler;
@@ -102,7 +104,23 @@ return [
                 'stream' => 'php://stderr',
             ],
             'formatter' => env('LOG_STDERR_FORMATTER'),
-            'processors' => [PsrLogMessageProcessor::class],
+            'processors' => [CorrelationIdProcessor::class, PsrLogMessageProcessor::class],
+        ],
+
+        // Structured JSON logs for a log aggregator (NFR-AVAIL-01): one JSON object
+        // per line, enriched with the correlation id + actor. Add "json" (or
+        // "structured") to LOG_STACK in non-local environments. Ships to stderr by
+        // default so a container platform collects it; point it at a file/socket as
+        // needed. Critical-level records here are the ops alerting hook.
+        'json' => [
+            'driver' => 'monolog',
+            'level' => env('LOG_LEVEL', 'info'),
+            'handler' => StreamHandler::class,
+            'handler_with' => [
+                'stream' => env('LOG_JSON_STREAM', 'php://stderr'),
+            ],
+            'formatter' => JsonFormatter::class,
+            'processors' => [CorrelationIdProcessor::class, PsrLogMessageProcessor::class],
         ],
 
         'syslog' => [

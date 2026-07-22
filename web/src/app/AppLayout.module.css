@@ -4,6 +4,25 @@
   background-color: var(--bg);
 }
 
+/* Skip-to-content link (WCAG 2.4.1) — off-screen until focused, then the first
+   Tab target so keyboard users bypass the nav rail. */
+.skipLink {
+  position: absolute;
+  left: var(--space-3);
+  top: -60px;
+  z-index: 1000;
+  background-color: var(--forest);
+  color: var(--bg);
+  padding: var(--space-2) var(--space-4);
+  border-radius: var(--radius-md);
+  font-size: var(--fs-ui);
+  font-weight: 600;
+  transition: top var(--transition);
+}
+.skipLink:focus {
+  top: var(--space-3);
+}
+
 .main {
   flex: 1 1 auto;
   min-width: 0;

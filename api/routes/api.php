@@ -481,6 +481,11 @@ Route::prefix('v1')->group(function (): void {
         Route::get('/dashboard', [DashboardController::class, 'index'])
             ->middleware('permission:dashboard.view')->name('dashboard.index');
 
+        // Operational metrics for monitoring (NFR-AVAIL-01) — non-PII; gated so it is
+        // not a public information leak. Liveness/readiness stay public at /up + /health.
+        Route::get('/health/metrics', [HealthController::class, 'metrics'])
+            ->middleware('permission:dashboard.view')->name('health.metrics');
+
         // GIS coverage map (FR-GIS-01): choropleth when boundaries are loaded, else a
         // ranked-table fallback. Scoped to the caller.
         Route::get('/gis/coverage', [GisController::class, 'coverage'])
