@@ -1,0 +1,152 @@
+.stack {
+  display: grid;
+  gap: var(--space-4);
+}
+
+.note {
+  color: var(--text-muted-strong);
+  font-size: var(--fs-label);
+}
+
+/* ---- criteria summary ---- */
+
+.summaryHead {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  flex-wrap: wrap;
+}
+
+.chipRow {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+  margin-top: var(--space-2);
+}
+
+/* ---- criteria editor rows ---- */
+
+.rules {
+  display: grid;
+  gap: var(--space-2);
+}
+
+.ruleRow {
+  display: grid;
+  grid-template-columns: 1fr 8rem auto;
+  gap: var(--space-2);
+  align-items: end;
+}
+
+.ruleRow[data-manual='true'] {
+  grid-template-columns: 1fr auto;
+}
+
+.removeBtn {
+  display: inline-grid;
+  place-items: center;
+  width: 2.25rem;
+  height: 2.25rem;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  background: var(--surface);
+  color: var(--text-muted-strong);
+  cursor: pointer;
+}
+
+.removeBtn:hover {
+  border-color: var(--danger);
+  color: var(--danger);
+}
+
+/* ---- live progress ---- */
+
+.overall {
+  display: flex;
+  align-items: center;
+  gap: var(--space-4);
+  flex-wrap: wrap;
+}
+
+.overallMeta {
+  display: grid;
+  gap: var(--space-1);
+}
+
+.progressRule {
+  display: grid;
+  gap: var(--space-2);
+  padding: var(--space-3) 0;
+  border-top: 1px solid var(--border);
+}
+
+.progressRule:first-child {
+  border-top: none;
+}
+
+.progressTop {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-2);
+}
+
+.ruleLabel {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  font-weight: 600;
+}
+
+.ruleValue {
+  font-variant-numeric: tabular-nums;
+  color: var(--text-muted-strong);
+  font-size: 0.9rem;
+}
+
+.bar {
+  height: 8px;
+  border-radius: var(--radius-full);
+  background: var(--surface-mint);
+  overflow: hidden;
+}
+
+.barFill {
+  height: 100%;
+  border-radius: var(--radius-full);
+  background: var(--forest-2);
+  transition: width 0.3s ease;
+}
+
+.barFill[data-met='true'] {
+  background: var(--success);
+}
+
+.metIcon {
+  color: var(--success);
+}
+
+.unmetIcon {
+  color: var(--text-muted);
+}
+
+/* ---- history ---- */
+
+.history {
+  display: grid;
+  gap: var(--space-2);
+}
+
+.historyItem {
+  display: grid;
+  gap: 2px;
+  padding: var(--space-2) var(--space-3);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  background: var(--surface);
+}
+
+.historyDate {
+  font-variant-numeric: tabular-nums;
+  font-weight: 600;
+}

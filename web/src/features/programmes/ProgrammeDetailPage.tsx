@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { Link, useNavigate, useParams } from 'react-router-dom'
-import { Archive, Eye, Pencil, Plus, UserPlus } from 'lucide-react'
+import { Archive, Eye, GraduationCap, Pencil, Plus, UserPlus } from 'lucide-react'
 import { Button } from '@/components/Button/Button'
 import { Badge } from '@/components/Badge/Badge'
 import { statusVariant } from '@/components/Badge/statusVariant'
@@ -9,12 +9,15 @@ import { Tabs } from '@/components/Tabs/Tabs'
 import { DataTable } from '@/components/DataTable/DataTable'
 import type { Column } from '@/components/DataTable/DataTable'
 import { Menu } from '@/components/Menu/Menu'
+import type { MenuAction } from '@/components/Menu/Menu'
 import { ConfirmDialog } from '@/components/Modal/ConfirmDialog'
 import { Spinner } from '@/components/Spinner/Spinner'
 import { useAuth } from '@/lib/auth/AuthProvider'
 import { formatNaira } from '@/lib/utils/money'
 import { titleCase } from '@/features/registry/constants'
 import { cn } from '@/lib/utils/cn'
+import { GraduationCriteriaCard } from '@/features/graduation/GraduationCriteriaCard'
+import { GraduationModal } from '@/features/graduation/GraduationModal'
 import { ProgrammeFormModal } from './ProgrammeFormModal'
 import { ActivityFormModal } from './ActivityFormModal'
 import { EnrollModal } from './EnrollModal'
@@ -93,6 +96,7 @@ export function ProgrammeDetailPage() {
   const [activityForm, setActivityForm] = useState<{ open: boolean; activity: Activity | null }>({ open: false, activity: null })
   const [enrollOpen, setEnrollOpen] = useState(false)
   const [confirmArchive, setConfirmArchive] = useState(false)
+  const [graduationFor, setGraduationFor] = useState<Enrollment | null>(null)
 
   if (!canView) {
     return <Card><p className={layout.forbidden}>You do not have permission to view programmes.</p></Card>
@@ -106,6 +110,7 @@ export function ProgrammeDetailPage() {
   const canEdit = hasPermission('programme.edit')
   const canManageActivities = hasPermission('activity.create')
   const canEnroll = hasPermission('enrollment.create')
+  const canViewGraduation = hasPermission('graduation.view')
 
   const activityColumns: Column<Activity>[] = [
     { key: 'name', header: 'Activity', render: (a) => <Link to={`/activities/${a.id}`}>{a.name}</Link> },
@@ -153,16 +158,20 @@ export function ProgrammeDetailPage() {
     {
       key: 'actions',
       header: '',
-      render: (e) =>
-        canEnroll && e.status === 'enrolled' ? (
-          <Menu
-            label="Enrollment actions"
-            actions={[
-              { label: 'Mark exited', onSelect: () => updateEnrollment.mutate({ id: e.id, status: 'exited' }) },
-              { label: 'Graduate', onSelect: () => updateEnrollment.mutate({ id: e.id, status: 'graduated' }) },
-            ]}
-          />
-        ) : null,
+      render: (e) => {
+        const actions: MenuAction[] = []
+        if (canViewGraduation) {
+          actions.push({
+            label: e.status === 'graduated' ? 'View graduation' : 'Graduation',
+            icon: GraduationCap,
+            onSelect: () => setGraduationFor(e),
+          })
+        }
+        if (canEnroll && e.status === 'enrolled') {
+          actions.push({ label: 'Mark exited', onSelect: () => updateEnrollment.mutate({ id: e.id, status: 'exited' }) })
+        }
+        return actions.length > 0 ? <Menu label="Enrollment actions" actions={actions} /> : null
+      },
     },
   ]
 
@@ -213,6 +222,9 @@ export function ProgrammeDetailPage() {
               </div>
             ),
           },
+          ...(canViewGraduation && id
+            ? [{ id: 'graduation', label: 'Graduation', content: <GraduationCriteriaCard programmeId={id} /> }]
+            : []),
         ]}
       />
 
@@ -221,6 +233,14 @@ export function ProgrammeDetailPage() {
         <ActivityFormModal open={activityForm.open} onClose={() => setActivityForm({ open: false, activity: null })} programmeId={id} activity={activityForm.activity} />
       )}
       {canEnroll && <EnrollModal open={enrollOpen} onClose={() => setEnrollOpen(false)} programme={programme} />}
+      {canViewGraduation && graduationFor && (
+        <GraduationModal
+          open={Boolean(graduationFor)}
+          onClose={() => setGraduationFor(null)}
+          enrollmentId={graduationFor.id}
+          label={graduationFor.beneficiary_id ? `#${graduationFor.beneficiary_id.slice(0, 8)}` : `HH #${graduationFor.household_id?.slice(0, 8)}`}
+        />
+      )}
 
       <ConfirmDialog
         open={confirmArchive}

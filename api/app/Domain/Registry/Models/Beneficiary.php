@@ -7,12 +7,16 @@ namespace App\Domain\Registry\Models;
 use App\Domain\Access\Concerns\MdaScoped;
 use App\Domain\Access\Concerns\ScopedToMda;
 use App\Domain\Access\Models\Mda;
+use App\Domain\Access\Scopes\MdaScope;
 use App\Domain\Audit\Concerns\Auditable;
+use App\Domain\Benefit\Models\Benefit;
 use App\Domain\Matching\Support\PhoneticEncoder;
+use App\Domain\Programme\Models\Enrollment;
 use App\Domain\Registry\Enums\BeneficiaryStatus;
 use App\Domain\Registry\Enums\ConsentStatus;
 use App\Domain\Registry\Enums\Gender;
 use App\Domain\Registry\Enums\RegistrationSource;
+use App\Domain\Registry\Support\IdentifierHasher;
 use Database\Factories\BeneficiaryFactory;
 use Illuminate\Database\Eloquent\Concerns\HasUuids;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -35,8 +39,10 @@ use InvalidArgumentException;
  * @property string|null $import_batch_id
  * @property string|null $original_record_id
  * @property string|null $idempotency_key
- * @property string|null $nin
- * @property string|null $bvn
+ * @property string|null $nin encrypted at rest; exact-match via $nin_hash
+ * @property string|null $bvn encrypted at rest; exact-match via $bvn_hash
+ * @property string|null $nin_hash
+ * @property string|null $bvn_hash
  * @property string|null $phone
  * @property string $first_name
  * @property string|null $middle_name
@@ -48,6 +54,9 @@ use InvalidArgumentException;
  * @property string|null $ward
  * @property string|null $block_name_dob
  * @property BeneficiaryStatus $status
+ * @property Carbon|null $retention_flagged_at
+ * @property Carbon|null $anonymized_at
+ * @property string|null $retention_policy
  * @property Carbon|null $created_at
  * @property Carbon|null $updated_at
  * @property-read Mda|null $ownerMda
@@ -85,17 +94,23 @@ class Beneficiary extends Model implements MdaScoped
         'status',
         'sharing_consent',
         'sharing_consent_at',
+        'retention_flagged_at',
+        'anonymized_at',
+        'retention_policy',
     ];
 
     /**
      * NIN/BVN are national identifiers — never exposed by default serialization;
-     * screens reveal them (masked) through a permission-gated resource.
+     * screens reveal them (masked) through a permission-gated resource. The
+     * `*_hash` columns are the operational lookup keys (never useful to clients).
      *
      * @var list<string>
      */
     protected $hidden = [
         'nin',
         'bvn',
+        'nin_hash',
+        'bvn_hash',
     ];
 
     /**
@@ -112,6 +127,10 @@ class Beneficiary extends Model implements MdaScoped
     protected function casts(): array
     {
         return [
+            // National identifiers are encrypted at rest (SECURITY.md §4); exact
+            // matching runs on the keyed nin_hash/bvn_hash columns instead.
+            'nin' => 'encrypted',
+            'bvn' => 'encrypted',
             'registration_source' => RegistrationSource::class,
             'registration_date' => 'date',
             'date_of_birth' => 'date',
@@ -119,7 +138,15 @@ class Beneficiary extends Model implements MdaScoped
             'status' => BeneficiaryStatus::class,
             'sharing_consent' => ConsentStatus::class,
             'sharing_consent_at' => 'datetime',
+            'retention_flagged_at' => 'datetime',
+            'anonymized_at' => 'datetime',
         ];
+    }
+
+    /** Whether the record has been de-identified by a retention policy (NFR-PRV-01). */
+    public function isAnonymized(): bool
+    {
+        return $this->anonymized_at !== null;
     }
 
     /**
@@ -134,14 +161,14 @@ class Beneficiary extends Model implements MdaScoped
     }
 
     /**
-     * The derived matching blocking key is operational (and name-derived) — keep
-     * it out of the audit trail.
+     * Derived operational columns (blocking key, identifier hashes) — keep them
+     * out of the audit trail; they add nothing to "who changed what".
      *
      * @return list<string>
      */
     protected function auditExcluded(): array
     {
-        return ['block_name_dob'];
+        return ['block_name_dob', 'nin_hash', 'bvn_hash'];
     }
 
     protected static function booted(): void
@@ -157,7 +184,9 @@ class Beneficiary extends Model implements MdaScoped
         });
 
         // Normalise identifiers on every save, enforce the 11-digit rule
-        // (CONVENTIONS.md §6), and maintain the fuzzy-matching blocking key.
+        // (CONVENTIONS.md §6), maintain the fuzzy-matching blocking key, and keep
+        // the deterministic identifier hashes (exact matching + uniqueness run on
+        // the hashes because the values themselves are encrypted at rest).
         static::saving(function (Beneficiary $beneficiary): void {
             $beneficiary->nin = self::normalizeDigits($beneficiary->nin);
             $beneficiary->bvn = self::normalizeDigits($beneficiary->bvn);
@@ -168,6 +197,9 @@ class Beneficiary extends Model implements MdaScoped
                     throw new InvalidArgumentException("The {$field} must be exactly 11 digits.");
                 }
             }
+
+            $beneficiary->nin_hash = IdentifierHasher::hash($beneficiary->nin);
+            $beneficiary->bvn_hash = IdentifierHasher::hash($beneficiary->bvn);
 
             $beneficiary->block_name_dob = self::blockNameDobFor(
                 $beneficiary->last_name,
@@ -237,6 +269,34 @@ class Beneficiary extends Model implements MdaScoped
     public function householdMemberships(): HasMany
     {
         return $this->hasMany(HouseholdMembership::class);
+    }
+
+    /**
+     * The benefit-ledger history (cross-MDA — the ledger belongs to the subject, not
+     * one MDA). Bypasses the delivering-MDA scope so the FULL history is available for
+     * right-of-access and the retention "has history" check.
+     *
+     * @return HasMany<Benefit, $this>
+     */
+    public function benefits(): HasMany
+    {
+        return $this->hasMany(Benefit::class)->withoutGlobalScope(MdaScope::class);
+    }
+
+    /**
+     * @return HasMany<Enrollment, $this>
+     */
+    public function enrollments(): HasMany
+    {
+        return $this->hasMany(Enrollment::class)->withoutGlobalScope(MdaScope::class);
+    }
+
+    /**
+     * @return HasMany<BeneficiaryDocument, $this>
+     */
+    public function documents(): HasMany
+    {
+        return $this->hasMany(BeneficiaryDocument::class)->withoutGlobalScope(MdaScope::class);
     }
 
     /**

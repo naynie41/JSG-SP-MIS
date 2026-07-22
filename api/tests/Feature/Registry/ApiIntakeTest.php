@@ -9,6 +9,8 @@ use App\Domain\Access\Models\Mda;
 use App\Domain\Access\Models\Role;
 use App\Domain\Access\Models\User;
 use App\Domain\Registry\Enums\RegistrationSource;
+use App\Domain\Registry\Models\Beneficiary;
+use App\Domain\Registry\Support\IdentifierHasher;
 use Database\Seeders\RolesAndPermissionsSeeder;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
@@ -79,12 +81,16 @@ class ApiIntakeTest extends TestCase
             ->assertJsonPath('data.registration_source', RegistrationSource::Api->value)
             ->assertJsonPath('data.first_name', 'Amina');
 
+        // NIN is encrypted at rest — the row is located by its deterministic hash
+        // and the stored ciphertext must decrypt back to the submitted value.
         $this->assertDatabaseHas('beneficiaries', [
             'owner_mda_id' => $this->mda->id,
             'registration_source' => RegistrationSource::Api->value,
             'original_record_id' => 'PARTNER-SYS-4821',
-            'nin' => '22200000011',
+            'nin_hash' => IdentifierHasher::hash('22200000011'),
         ]);
+        $stored = Beneficiary::query()->where('original_record_id', 'PARTNER-SYS-4821')->firstOrFail();
+        $this->assertSame('22200000011', $stored->nin);
         $this->assertDatabaseHas('audit_log', ['action' => 'beneficiary.created']);
     }
 

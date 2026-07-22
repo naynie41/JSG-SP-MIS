@@ -7,6 +7,7 @@ namespace App\Domain\Registry\Services;
 use App\Domain\Access\Scopes\MdaScope;
 use App\Domain\Audit\Services\AuditLogger;
 use App\Domain\Registry\Models\Beneficiary;
+use App\Domain\Registry\Support\IdentifierHasher;
 use Illuminate\Support\Collection;
 
 /**
@@ -41,11 +42,12 @@ class BeneficiaryLookupService
             // a non-owner caller would see a null owner on the very record they revealed.
             ->with(['ownerMda' => fn ($query) => $query->withoutGlobalScope(MdaScope::class)->select('id', 'name')])
             ->where(function ($query) use ($nin, $bvn, $phone): void {
+                // NIN/BVN are encrypted at rest — exact lookup runs on the hashes.
                 if ($nin !== null) {
-                    $query->orWhere('nin', $nin);
+                    $query->orWhere('nin_hash', IdentifierHasher::hash($nin));
                 }
                 if ($bvn !== null) {
-                    $query->orWhere('bvn', $bvn);
+                    $query->orWhere('bvn_hash', IdentifierHasher::hash($bvn));
                 }
                 if ($phone !== null) {
                     $query->orWhere('phone', $phone);

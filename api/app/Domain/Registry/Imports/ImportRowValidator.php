@@ -6,6 +6,7 @@ namespace App\Domain\Registry\Imports;
 
 use App\Domain\Registry\Models\Beneficiary;
 use App\Domain\Registry\Support\BeneficiaryRules;
+use App\Domain\Registry\Support\UniqueIdentifier;
 use Illuminate\Support\Facades\Validator;
 
 /**
@@ -66,8 +67,10 @@ class ImportRowValidator
             }
 
             // Identity field. A pure uniqueness hit is a duplicate, not malformed.
+            // (NIN/BVN uniqueness is the UniqueIdentifier rule — keyed on the
+            // encrypted identifiers' hash columns; failed() keys it by FQCN.)
             $ruleNames = array_keys($rules);
-            $isUniqueOnly = $ruleNames === ['Unique'];
+            $isUniqueOnly = $ruleNames === ['Unique'] || $ruleNames === [UniqueIdentifier::class];
             $bucket = $isUniqueOnly ? 'duplicate' : 'identity';
 
             foreach ($fieldMessages as $message) {

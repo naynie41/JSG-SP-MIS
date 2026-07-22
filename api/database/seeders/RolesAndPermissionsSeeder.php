@@ -35,19 +35,21 @@ class RolesAndPermissionsSeeder extends Seeder
             'programme.view', 'programme.create', 'programme.edit',
             'activity.view', 'enrollment.view', 'benefit.view',
             'double-dipping.view', 'double-dipping.edit', 'referral.view', 'referral-sla.edit',
-            'grievance.view', 'grievance-sla.edit', 'dashboard.view', 'reporting.view', 'reporting.export',
+            'grievance.view', 'grievance-sla.edit', 'graduation.view', 'dashboard.view', 'reporting.view', 'reporting.export',
         ],
         RoleKey::MneOfficer->value => [
             'cross-mda.view', 'mda.view', 'user.view',
             'beneficiary.view', 'beneficiary.export', 'beneficiary-lookup.view',
             'programme.view', 'activity.view', 'enrollment.view', 'benefit.view', 'referral.view', 'grievance.view',
-            'dashboard.view', 'reporting.view', 'reporting.export',
+            'graduation.view', 'dashboard.view', 'reporting.view', 'reporting.export',
         ],
         RoleKey::MdaAdmin->value => [
             'mda.view', 'user.view', 'user.create', 'user.edit', 'role.view',
             // MDA Admin may export beneficiary data — scoped to their own MDA
             // (no cross-mda.view). SECURITY.md — Export of beneficiary data.
             'beneficiary.view', 'beneficiary.create', 'beneficiary.edit', 'beneficiary.approve', 'beneficiary.export',
+            // Right-of-access (DSAR): the owner MDA is the data controller (NFR-PRV-01).
+            'beneficiary.access_request',
             'beneficiary-lookup.view', 'household.view', 'household.create', 'household.edit',
             // Programmes are a global catalog (§10) — MDAs read but never create/edit them;
             // they run programmes through their own MDA-owned activities.
@@ -56,7 +58,8 @@ class RolesAndPermissionsSeeder extends Seeder
             'enrollment.view', 'enrollment.create', 'enrollment.edit',
             'benefit.view', 'benefit.create', 'benefit.approve',
             'referral.view', 'referral.create', 'referral.edit',
-            'grievance.view', 'grievance.create', 'grievance.edit', 'dashboard.view', 'reporting.view', 'reporting.export',
+            'grievance.view', 'grievance.create', 'grievance.edit',
+            'graduation.view', 'graduation.edit', 'dashboard.view', 'reporting.view', 'reporting.export',
         ],
         RoleKey::MdaOfficer->value => [
             'mda.view', 'user.view',
@@ -67,7 +70,8 @@ class RolesAndPermissionsSeeder extends Seeder
             'enrollment.view', 'enrollment.create', 'enrollment.edit',
             'benefit.view', 'benefit.create', 'benefit.approve',
             'referral.view', 'referral.create', 'referral.edit',
-            'grievance.view', 'grievance.create', 'grievance.edit', 'dashboard.view', 'reporting.view', 'reporting.export',
+            'grievance.view', 'grievance.create', 'grievance.edit',
+            'graduation.view', 'graduation.edit', 'dashboard.view', 'reporting.view', 'reporting.export',
         ],
         RoleKey::DevelopmentPartner->value => [
             'mda.view',
@@ -80,7 +84,7 @@ class RolesAndPermissionsSeeder extends Seeder
             'cross-mda.view', 'mda.view', 'user.view',
             'beneficiary.view', 'beneficiary-lookup.view',
             'programme.view', 'activity.view', 'enrollment.view', 'benefit.view', 'referral.view', 'grievance.view',
-            'dashboard.view', 'reporting.view', 'reporting.export',
+            'graduation.view', 'dashboard.view', 'reporting.view', 'reporting.export',
         ],
     ];
 

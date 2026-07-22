@@ -6,6 +6,7 @@ namespace App\Domain\Notification\Listeners;
 
 use App\Domain\Access\Models\User;
 use App\Domain\Access\Scopes\MdaScope;
+use App\Domain\Graduation\Events\BeneficiaryGraduated;
 use App\Domain\Grievance\Events\GrievanceAssigned;
 use App\Domain\Grievance\Events\GrievanceResolved;
 use App\Domain\Grievance\Events\GrievanceSlaBreached;
@@ -19,6 +20,7 @@ use App\Domain\Registry\Events\OwnershipTransferRequested;
 use App\Domain\Registry\Events\ServiceRequestAccepted;
 use App\Domain\Registry\Events\ServiceRequestDeclined;
 use App\Domain\Registry\Events\ServiceRequestRaised;
+use App\Domain\Registry\Models\Beneficiary;
 use App\Domain\Reporting\Events\ReportReady;
 use Illuminate\Events\Dispatcher;
 use Illuminate\Support\Collection;
@@ -307,6 +309,36 @@ class NotificationSubscriber
         );
     }
 
+    public function handleBeneficiaryGraduated(BeneficiaryGraduated $event): void
+    {
+        // Relevant parties (FR-GRD-02): the enrolling MDA's graduation team, plus the
+        // beneficiary's OWNER MDA when a serving MDA graduated a beneficiary it doesn't
+        // own — both need to know. No PII in the body, only a reference to the event.
+        $graduation = $event->event;
+        $recipients = $this->approversIn($graduation->mda_id, 'graduation.view');
+
+        // The beneficiary may be owned by a DIFFERENT MDA (a serving MDA graduated a
+        // beneficiary it doesn't own). Resolve the owner without the MDA scope so the
+        // owner is notified even when the acting user's own scope would hide them.
+        $ownerMdaId = $graduation->beneficiary_id === null ? null : Beneficiary::query()
+            ->withoutGlobalScope(MdaScope::class)
+            ->whereKey($graduation->beneficiary_id)
+            ->value('owner_mda_id');
+        if ($ownerMdaId !== null && $ownerMdaId !== $graduation->mda_id) {
+            $recipients = $recipients->merge($this->approversIn($ownerMdaId, 'graduation.view'));
+        }
+
+        $this->notifier->notify(
+            new NotificationMessage(
+                type: 'graduation.recorded',
+                subject: 'Beneficiary graduated from a programme',
+                body: 'A beneficiary has graduated from a programme. Their registry record and benefit history are preserved.',
+                related: $graduation,
+            ),
+            $recipients->unique('id')->values(),
+        );
+    }
+
     /**
      * @return array<class-string, string>
      */
@@ -323,6 +355,7 @@ class NotificationSubscriber
             GrievanceResolved::class => 'handleGrievanceResolved',
             GrievanceSlaBreached::class => 'handleGrievanceSlaBreached',
             ReportReady::class => 'handleReportReady',
+            BeneficiaryGraduated::class => 'handleBeneficiaryGraduated',
         ];
     }
 }

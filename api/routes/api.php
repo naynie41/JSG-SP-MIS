@@ -12,6 +12,7 @@ use App\Http\Controllers\Api\V1\Benefit\BenefitController;
 use App\Http\Controllers\Api\V1\Benefit\BenefitFlagController;
 use App\Http\Controllers\Api\V1\Benefit\BenefitImportController;
 use App\Http\Controllers\Api\V1\Benefit\DoubleDippingRuleController;
+use App\Http\Controllers\Api\V1\Graduation\GraduationController;
 use App\Http\Controllers\Api\V1\Grievance\GrievanceController;
 use App\Http\Controllers\Api\V1\Grievance\GrievanceSlaPolicyController;
 use App\Http\Controllers\Api\V1\HealthController;
@@ -40,6 +41,7 @@ use App\Http\Controllers\Api\V1\Reporting\ReportController;
 use App\Http\Controllers\Api\V1\Reporting\ReportDefinitionController;
 use App\Http\Controllers\Api\V1\Reporting\ReportScheduleController;
 use App\Http\Controllers\Api\V1\Sharing\DataSharingController;
+use App\Http\Controllers\Api\V1\Sync\SyncController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -161,7 +163,7 @@ Route::prefix('v1')->group(function (): void {
         Route::get('/beneficiaries/imports', [ImportBatchController::class, 'index'])
             ->middleware('permission:beneficiary.view')->name('beneficiaries.imports.index');
         Route::post('/beneficiaries/imports', [ImportBatchController::class, 'store'])
-            ->middleware('permission:beneficiary.create')->name('beneficiaries.imports.store');
+            ->middleware(['permission:beneficiary.create', 'throttle:imports'])->name('beneficiaries.imports.store');
         Route::get('/beneficiaries/imports/{batch}', [ImportBatchController::class, 'show'])
             ->middleware('permission:beneficiary.view')->name('beneficiaries.imports.show');
         // Resolve a flagged row: new (with justification) / link-serve / skip (FR-DUP-05).
@@ -196,7 +198,7 @@ Route::prefix('v1')->group(function (): void {
         // exporters. Declared before the /{beneficiary} wildcard so `export` is a
         // literal segment, not a record id.
         Route::get('/beneficiaries/export', [BeneficiaryController::class, 'export'])
-            ->middleware('permission:beneficiary.export')->name('beneficiaries.export');
+            ->middleware(['permission:beneficiary.export', 'throttle:exports'])->name('beneficiaries.export');
         // NOTE: no manual create endpoint — beneficiaries enter only via source
         // ingestion (bulk import + REST intake). See docs/registry-intake.md.
         Route::get('/beneficiaries/{beneficiary}', [BeneficiaryController::class, 'show'])
@@ -204,6 +206,10 @@ Route::prefix('v1')->group(function (): void {
         // Cross-MDA data-sharing consent (NFR-PRV-01) — owner MDA records grant/withdraw.
         Route::put('/beneficiaries/{beneficiary}/consent', [BeneficiaryController::class, 'consent'])
             ->middleware('permission:beneficiary.edit')->name('beneficiaries.consent');
+        // Right-of-access (DSAR, NFR-PRV-01): export the subject's full record + history.
+        // Distinct permission (data-controller obligation), rate-limited like exports.
+        Route::get('/beneficiaries/{beneficiary}/access-request', [BeneficiaryController::class, 'accessRequest'])
+            ->middleware(['permission:beneficiary.access_request', 'throttle:exports'])->name('beneficiaries.access-request');
         Route::match(['put', 'patch'], '/beneficiaries/{beneficiary}', [BeneficiaryController::class, 'update'])
             ->middleware('permission:beneficiary.edit')->name('beneficiaries.update');
         Route::delete('/beneficiaries/{beneficiary}', [BeneficiaryController::class, 'destroy'])
@@ -213,12 +219,51 @@ Route::prefix('v1')->group(function (): void {
         Route::get('/data-sharing/grants', [DataSharingController::class, 'grants'])
             ->middleware('permission:cross-mda.view')->name('data-sharing.grants');
 
+        /*
+        | Data synchronization (FR-DSH-02, FR-REG-08). Connector sync + logs are
+        | System-Admin territory (sync.view/run); offline-batch flush is done by the
+        | capturing MDA officer (beneficiary.create). Every record runs the SAME
+        | validation + dedup + ownership pipeline as import.
+        */
+        Route::get('/sync/connectors', [SyncController::class, 'connectors'])
+            ->middleware('permission:sync.view')->name('sync.connectors');
+        Route::get('/sync/runs', [SyncController::class, 'runs'])
+            ->middleware('permission:sync.view')->name('sync.runs');
+        Route::get('/sync/runs/{run}', [SyncController::class, 'run'])
+            ->middleware('permission:sync.view')->name('sync.runs.show');
+        Route::post('/sync/connectors/{connector}/run', [SyncController::class, 'trigger'])
+            ->middleware('permission:sync.run')->name('sync.connectors.run');
+        Route::post('/sync/offline-batches', [SyncController::class, 'offlineBatch'])
+            ->middleware(['permission:beneficiary.create', 'throttle:imports'])->name('sync.offline-batches');
+
+        /*
+        | Graduation management (FR-GRD-01, FR-GRD-02). Per-programme criteria are
+        | admin-editable config (graduation.edit); progress is tracked against real
+        | ledger/enrolment data; recording a graduation flips the ENROLMENT status but
+        | NEVER deletes the beneficiary or their ledger — the history is preserved.
+        */
+        Route::get('/programmes/{programme}/graduation-criteria', [GraduationController::class, 'criteriaIndex'])
+            ->middleware('permission:graduation.view')->name('graduation.criteria.index');
+        Route::post('/programmes/{programme}/graduation-criteria', [GraduationController::class, 'criteriaStore'])
+            ->middleware('permission:graduation.edit')->name('graduation.criteria.store');
+        Route::match(['put', 'patch'], '/graduation-criteria/{criterion}', [GraduationController::class, 'criteriaUpdate'])
+            ->middleware('permission:graduation.edit')->name('graduation.criteria.update');
+        Route::delete('/graduation-criteria/{criterion}', [GraduationController::class, 'criteriaDestroy'])
+            ->middleware('permission:graduation.edit')->name('graduation.criteria.destroy');
+
+        Route::get('/enrollments/{enrollment}/graduation', [GraduationController::class, 'progress'])
+            ->middleware('permission:graduation.view')->name('graduation.progress');
+        Route::post('/enrollments/{enrollment}/graduate', [GraduationController::class, 'graduate'])
+            ->middleware('permission:graduation.edit')->name('graduation.graduate');
+        Route::get('/graduation-events', [GraduationController::class, 'history'])
+            ->middleware('permission:graduation.view')->name('graduation.events');
+
         // Supporting documents (FR-REG-07): owner-only upload/delete, in-scope
         // list/download. Files are streamed via the download action, never static.
         Route::get('/beneficiaries/{beneficiary}/documents', [BeneficiaryDocumentController::class, 'index'])
             ->middleware('permission:beneficiary.view')->name('beneficiaries.documents.index');
         Route::post('/beneficiaries/{beneficiary}/documents', [BeneficiaryDocumentController::class, 'store'])
-            ->middleware('permission:beneficiary.edit')->name('beneficiaries.documents.store');
+            ->middleware(['permission:beneficiary.edit', 'throttle:imports'])->name('beneficiaries.documents.store');
         Route::get('/beneficiaries/{beneficiary}/documents/{document}/download', [BeneficiaryDocumentController::class, 'download'])
             ->middleware('permission:beneficiary.view')->name('beneficiaries.documents.download');
         Route::delete('/beneficiaries/{beneficiary}/documents/{document}', [BeneficiaryDocumentController::class, 'destroy'])
@@ -292,7 +337,7 @@ Route::prefix('v1')->group(function (): void {
         // imports preview + row-resolve endpoints; confirm atomically creates the
         // activity and commits the file under it (served duplicates → pending SRs).
         Route::post('/activity-imports', [ActivityImportController::class, 'store'])
-            ->middleware('permission:activity.create')->name('activity-imports.store');
+            ->middleware(['permission:activity.create', 'throttle:imports'])->name('activity-imports.store');
         Route::post('/activity-imports/{batch}/confirm', [ActivityImportController::class, 'confirm'])
             ->middleware('permission:activity.create')->name('activity-imports.confirm');
 
@@ -338,7 +383,7 @@ Route::prefix('v1')->group(function (): void {
         Route::get('/benefit-imports', [BenefitImportController::class, 'index'])
             ->middleware('permission:benefit.view')->name('benefit-imports.index');
         Route::post('/benefit-imports', [BenefitImportController::class, 'store'])
-            ->middleware('permission:benefit.create')->name('benefit-imports.store');
+            ->middleware(['permission:benefit.create', 'throttle:imports'])->name('benefit-imports.store');
         Route::get('/benefit-imports/{batch}', [BenefitImportController::class, 'show'])
             ->middleware('permission:benefit.view')->name('benefit-imports.show');
         Route::post('/benefit-imports/{batch}/confirm', [BenefitImportController::class, 'confirm'])
@@ -458,7 +503,7 @@ Route::prefix('v1')->group(function (): void {
         Route::post('/reports/adhoc/preview', [AdHocReportController::class, 'preview'])
             ->middleware('permission:reporting.view')->name('reports.adhoc.preview');
         Route::post('/reports/adhoc', [AdHocReportController::class, 'export'])
-            ->middleware('permission:reporting.export')->name('reports.adhoc.export');
+            ->middleware(['permission:reporting.export', 'throttle:exports'])->name('reports.adhoc.export');
 
         // Saved ad-hoc definitions (reusable; basis for scheduling in 6.6).
         Route::get('/report-definitions', [ReportDefinitionController::class, 'index'])
@@ -470,7 +515,7 @@ Route::prefix('v1')->group(function (): void {
         Route::delete('/report-definitions/{definition}', [ReportDefinitionController::class, 'destroy'])
             ->middleware('permission:reporting.view')->name('report-definitions.destroy');
         Route::post('/report-definitions/{definition}/run', [ReportDefinitionController::class, 'run'])
-            ->middleware('permission:reporting.export')->name('report-definitions.run');
+            ->middleware(['permission:reporting.export', 'throttle:exports'])->name('report-definitions.run');
 
         // Scheduled reports (FR-RPT-04) — generate on schedule + deliver to validated recipients.
         Route::get('/report-schedules', [ReportScheduleController::class, 'index'])
@@ -487,10 +532,10 @@ Route::prefix('v1')->group(function (): void {
         Route::get('/reports', [ReportController::class, 'index'])
             ->middleware('permission:reporting.view')->name('reports.index');
         Route::post('/reports', [ReportController::class, 'store'])
-            ->middleware('permission:reporting.export')->name('reports.store');
+            ->middleware(['permission:reporting.export', 'throttle:exports'])->name('reports.store');
         Route::get('/reports/{report}', [ReportController::class, 'show'])
             ->middleware('permission:reporting.view')->name('reports.show');
         Route::get('/reports/{report}/download', [ReportController::class, 'download'])
-            ->middleware('permission:reporting.export')->name('reports.download');
+            ->middleware(['permission:reporting.export', 'throttle:exports'])->name('reports.download');
     });
 });

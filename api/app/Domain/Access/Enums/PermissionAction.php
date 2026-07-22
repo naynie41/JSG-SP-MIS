@@ -17,11 +17,14 @@ enum PermissionAction: string
     case Approve = 'approve';
     case Export = 'export';
     case RevealPii = 'reveal_pii';
+    case Run = 'run';
+    case AccessRequest = 'access_request';
 
     public function label(): string
     {
         return match ($this) {
             self::RevealPii => 'Reveal PII',
+            self::AccessRequest => 'Access request',
             default => ucfirst($this->value),
         };
     }

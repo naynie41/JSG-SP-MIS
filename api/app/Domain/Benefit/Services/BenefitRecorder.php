@@ -11,12 +11,14 @@ use App\Domain\Benefit\Enums\BenefitStatus;
 use App\Domain\Benefit\Enums\VerificationMethod;
 use App\Domain\Benefit\Exceptions\DeliveryNotAuthorizedException;
 use App\Domain\Benefit\Exceptions\NotEnrolledException;
+use App\Domain\Benefit\Exceptions\ProcessingConsentRequiredException;
 use App\Domain\Benefit\Exceptions\VerificationUnavailableException;
 use App\Domain\Benefit\Models\Benefit;
 use App\Domain\Programme\Enums\EnrollmentStatus;
 use App\Domain\Programme\Models\Enrollment;
 use App\Domain\Programme\Models\Programme;
 use App\Domain\Registry\Models\Beneficiary;
+use App\Domain\Registry\Services\ConsentGate;
 use Illuminate\Support\Facades\DB;
 
 /**
@@ -33,6 +35,7 @@ class BenefitRecorder
         private readonly VerifierRegistry $verifiers,
         private readonly DoubleDippingDetector $doubleDipping,
         private readonly DeliveryAuthorization $authorization,
+        private readonly ConsentGate $consentGate,
         private readonly AuditLogger $audit,
     ) {}
 
@@ -58,6 +61,15 @@ class BenefitRecorder
         if ($basis === null) {
             throw new DeliveryNotAuthorizedException(
                 'Recording an intervention for a beneficiary this MDA does not own requires an accepted service request or referral.',
+            );
+        }
+
+        // Processing-consent gate (NFR-PRV-01): when the DPO has switched it on, a
+        // new intervention may not be recorded without the subject's processing
+        // consent. Off by default, so ordinary operations are unaffected.
+        if (! $this->consentGate->mayProcess($beneficiary)) {
+            throw new ProcessingConsentRequiredException(
+                'Recording an intervention requires the beneficiary to have granted data-processing consent.',
             );
         }
 

@@ -8,6 +8,7 @@ use App\Domain\Access\Scopes\MdaScope;
 use App\Domain\Audit\Services\AuditLogger;
 use App\Domain\Matching\Engine\MatchResult;
 use App\Domain\Matching\Services\MatchingConfigService;
+use App\Domain\Privacy\Services\SubjectAccessAssembler;
 use App\Domain\Registry\Enums\ConsentStatus;
 use App\Domain\Registry\Export\BeneficiaryListExport;
 use App\Domain\Registry\Models\Beneficiary;
@@ -20,6 +21,7 @@ use App\Domain\Reporting\Services\DashboardScopeResolver;
 use App\Domain\Reporting\Services\ReportService;
 use App\Domain\Reporting\Support\DashboardScope;
 use App\Domain\Sharing\DataSharingGuard;
+use App\Domain\Sharing\SharingBasis;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Registry\BeneficiaryLookupRequest;
 use App\Http\Requests\Registry\BeneficiaryMatchSearchRequest;
@@ -186,9 +188,54 @@ class BeneficiaryController extends Controller
             basis: $request->input('basis'),
             source: $request->input('source', 'owner_mda'),
             note: $request->input('note'),
+            purpose: (string) $request->input('purpose', ConsentService::PURPOSE_CROSS_MDA),
         );
 
         return ApiResponse::success((new BeneficiaryResource($model->fresh()->load('ownerMda')))->resolve());
+    }
+
+    /**
+     * Right-of-access export — a Data Subject Access Request (NFR-PRV-01). Assembles
+     * the subject's FULL record + benefit history and streams it as a JSON package.
+     * Route middleware enforces the `beneficiary.access_request` permission; here we
+     * additionally require the caller to be the controller (owner MDA) or oversight —
+     * a mere cross-MDA serve grant is NOT enough to pull an unmasked full package.
+     * Every fulfilment is audited (never the identifiers themselves).
+     */
+    public function accessRequest(
+        Request $request,
+        string $beneficiary,
+        DataSharingGuard $sharing,
+        SubjectAccessAssembler $assembler,
+        AuditLogger $audit,
+    ): JsonResponse|StreamedResponse {
+        $model = Beneficiary::query()->withoutGlobalScope(MdaScope::class)->find($beneficiary);
+        abort_if($model === null, 404);
+
+        $basis = $sharing->basisFor($request->user(), $model);
+        if (! in_array($basis, [SharingBasis::Owner, SharingBasis::Oversight], true)) {
+            $audit->record('beneficiary.access_denied', $model, after: [
+                'requested_by_mda' => $request->user()->mda_id,
+                'context' => 'access_request',
+                'basis' => $basis->value,
+            ]);
+            abort(404);
+        }
+
+        $package = $assembler->assemble($model);
+
+        $audit->record('beneficiary.access_request', $model, after: [
+            'basis' => $basis->value,
+            'sections' => ['subject', 'consents', 'enrollments', 'benefits', 'documents', 'access_grants'],
+            'benefit_count' => count($package['benefits']),
+        ]);
+
+        $filename = 'subject-access-'.$model->id.'-'.now()->format('Ymd-His').'.json';
+        $json = (string) json_encode($package, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES);
+
+        return response()->streamDownload(static function () use ($json): void {
+            echo $json;
+        }, $filename, ['Content-Type' => 'application/json']);
     }
 
     /**

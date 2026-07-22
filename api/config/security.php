@@ -53,4 +53,20 @@ return [
         'absolute_lifetime_minutes' => (int) env('SESSION_ABSOLUTE_LIFETIME_MINUTES', 480),
     ],
 
+    /*
+    |--------------------------------------------------------------------------
+    | Rate limits (SECURITY.md §§3–5 — OWASP A04/A07)
+    |--------------------------------------------------------------------------
+    |
+    | Per-user per-minute ceilings for the riskiest endpoint classes beyond auth:
+    | exports (bulk PII egress) and write-heavy ingestion (imports, offline
+    | batches, uploads). Login/MFA/intake limits are defined with the limiters.
+    |
+    */
+
+    'rate_limits' => [
+        'exports_per_minute' => (int) env('RATE_LIMIT_EXPORTS_PER_MINUTE', 10),
+        'imports_per_minute' => (int) env('RATE_LIMIT_IMPORTS_PER_MINUTE', 12),
+    ],
+
 ];

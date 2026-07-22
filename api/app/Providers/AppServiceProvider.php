@@ -60,5 +60,22 @@ class AppServiceProvider extends ServiceProvider
 
             return Limit::perMinute(60)->by('intake|'.$key);
         });
+
+        // Bulk PII egress — beneficiary/report exports (SECURITY.md export matrix).
+        // A tight per-user ceiling turns a scripted mass-export into noise + audit.
+        RateLimiter::for('exports', function (Request $request): Limit {
+            $key = $request->user()?->getAuthIdentifier() ?? $request->ip();
+
+            return Limit::perMinute((int) config('security.rate_limits.exports_per_minute', 10))
+                ->by('exports|'.$key);
+        });
+
+        // Write-heavy ingestion — bulk imports, offline batches, document uploads.
+        RateLimiter::for('imports', function (Request $request): Limit {
+            $key = $request->user()?->getAuthIdentifier() ?? $request->ip();
+
+            return Limit::perMinute((int) config('security.rate_limits.imports_per_minute', 12))
+                ->by('imports|'.$key);
+        });
     }
 }

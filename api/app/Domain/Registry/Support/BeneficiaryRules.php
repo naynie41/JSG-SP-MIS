@@ -46,9 +46,10 @@ final class BeneficiaryRules
             'first_name' => ['required', 'string', 'max:255'],
             'middle_name' => ['nullable', 'string', 'max:255'],
             'last_name' => ['required', 'string', 'max:255'],
-            // Unique matches the partial DB indexes (WHERE <col> IS NOT NULL).
-            'nin' => ['nullable', 'digits:11', Rule::unique('beneficiaries', 'nin')],
-            'bvn' => ['nullable', 'digits:11', Rule::unique('beneficiaries', 'bvn')],
+            // NIN/BVN are encrypted at rest; uniqueness runs on the keyed hash
+            // columns (matching the partial DB indexes, WHERE <hash> IS NOT NULL).
+            'nin' => ['nullable', 'digits:11', new UniqueIdentifier('nin', self::messages()['nin.unique'])],
+            'bvn' => ['nullable', 'digits:11', new UniqueIdentifier('bvn', self::messages()['bvn.unique'])],
             'phone' => ['nullable', 'string', 'max:20'],
             'date_of_birth' => ['required', 'date', 'before:today', 'after:1900-01-01'],
             'gender' => ['required', Rule::enum(Gender::class)],

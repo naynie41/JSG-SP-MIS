@@ -8,6 +8,7 @@ use App\Domain\Access\Scopes\MdaScope;
 use App\Domain\Matching\Models\MatchingConfig;
 use App\Domain\Matching\Scoring\FieldNormalizer;
 use App\Domain\Registry\Models\Beneficiary;
+use App\Domain\Registry\Support\IdentifierHasher;
 use Illuminate\Database\Eloquent\Builder;
 
 /**
@@ -74,9 +75,10 @@ class CandidateGatherer
             isset($candidate['date_of_birth']) ? (string) $candidate['date_of_birth'] : null,
         );
 
+        // NIN/BVN are encrypted at rest — block on their keyed hash columns.
         $blocks = array_filter([
-            'nin' => $nin,
-            'bvn' => $bvn,
+            'nin_hash' => IdentifierHasher::hash($nin),
+            'bvn_hash' => IdentifierHasher::hash($bvn),
             'phone' => $phone,
             'block_name_dob' => $nameDob,
         ], static fn (?string $value) => $value !== null && $value !== '');

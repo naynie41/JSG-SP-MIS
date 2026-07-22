@@ -93,10 +93,18 @@ the consent and retention decisions. Review granted export permissions periodica
 - **At rest:** encrypt the database volume/disk; encrypt sensitive columns (NIN, BVN, TOTP secret)
   at the application layer where feasible.
 - **PII minimisation:** collect only what the PRD requires; do not add fields "just in case".
-- **Consent:** capture and store consent where required; expose consent status on the record.
+- **Consent:** capture and store consent per purpose (sharing, processing); expose consent status
+  on the record; enforce it at the sharing and processing gates. Purposes + whether each gate is
+  required are configuration (`config/privacy.php` — DPO-owned), never hard-coded.
 - **Retention:** enforce a defined data-retention policy; support deletion/anonymisation flows
-  in line with **NDPA/NDPR**.
-- **Right of access:** design so a beneficiary's data and benefit history can be exported on request.
+  in line with **NDPA/NDPR**. Implemented as the retention engine (`config/privacy.php` policies →
+  flag / aggregate / anonymize / delete; scheduled + audited; `php artisan privacy:enforce-retention
+  --dry-run`). Legal periods/cohorts/actions are configuration; nothing runs until the DPO enables it.
+  Anonymisation preserves the audit trail and operational aggregates (history is de-identified, not
+  destroyed); a `delete` never removes a record that still has history.
+- **Right of access:** a beneficiary's full record + benefit history can be exported on an authorized
+  request (DSAR) — permission-gated (`beneficiary.access_request`, a data-controller obligation) and
+  audited.
 
 ---
 
@@ -124,8 +132,11 @@ the consent and retention decisions. Review granted export permissions periodica
   sensitive data, and approval action.
 - Each entry records: actor (user + MDA), action, entity + id, **before/after values**,
   timestamp, IP/user-agent, and correlation/request id.
-- Audit writes must be **tamper-evident** (e.g. no UPDATE/DELETE permission on the table for the
-  app role; consider hash-chaining entries in a later hardening pass).
+- Audit writes must be **tamper-evident**: no UPDATE/DELETE/TRUNCATE on the table (application
+  guard + database triggers) **and** hash-chained entries — each entry stores its chain position,
+  the previous entry's hash, and a SHA-256 over its own canonical payload. Verify with
+  `php artisan audit:verify-chain` (implemented in the Phase 7 hardening pass; see
+  `docs/SECURITY-FINDINGS.md`).
 - **Never** put raw PII or secrets in audit `before/after` for the most sensitive fields — store
   masked/hashed representations where the value itself is not needed for the audit purpose.
 - **Auditable events — additions (PRD v1.2):**

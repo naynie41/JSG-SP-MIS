@@ -6,6 +6,7 @@ namespace App\Domain\Registry\Export;
 
 use App\Domain\Access\Scopes\MdaScope;
 use App\Domain\Registry\Models\Beneficiary;
+use App\Domain\Registry\Support\IdentifierHasher;
 use App\Domain\Reporting\Export\ReportColumn;
 use App\Domain\Reporting\Export\ReportData;
 use App\Domain\Reporting\Support\DashboardScope;
@@ -83,7 +84,9 @@ class BeneficiaryListExport
                     $inner->where('first_name', 'like', "%{$search}%")
                         ->orWhere('last_name', 'like', "%{$search}%");
                     if ($digits !== null) {
-                        $inner->orWhere('nin', $digits)->orWhere('bvn', $digits);
+                        // NIN/BVN are encrypted at rest — exact search on the hashes.
+                        $inner->orWhere('nin_hash', IdentifierHasher::hash($digits))
+                            ->orWhere('bvn_hash', IdentifierHasher::hash($digits));
                     }
                 });
             })

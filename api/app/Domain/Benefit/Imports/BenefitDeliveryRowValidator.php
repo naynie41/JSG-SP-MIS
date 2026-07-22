@@ -12,6 +12,7 @@ use App\Domain\Programme\Models\Enrollment;
 use App\Domain\Programme\Models\Programme;
 use App\Domain\Programme\Services\EligibilityEvaluator;
 use App\Domain\Registry\Models\Beneficiary;
+use App\Domain\Registry\Support\IdentifierHasher;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Str;
 
@@ -92,11 +93,12 @@ class BenefitDeliveryRowValidator
         if ($id !== '' && Str::isUuid($id)) {
             $beneficiary = (clone $base)->find($id);
         }
+        // NIN/BVN are encrypted at rest — exact resolution runs on the hashes.
         if ($beneficiary === null && $nin !== null) {
-            $beneficiary = (clone $base)->where('nin', $nin)->first();
+            $beneficiary = (clone $base)->where('nin_hash', IdentifierHasher::hash($nin))->first();
         }
         if ($beneficiary === null && $bvn !== null) {
-            $beneficiary = (clone $base)->where('bvn', $bvn)->first();
+            $beneficiary = (clone $base)->where('bvn_hash', IdentifierHasher::hash($bvn))->first();
         }
 
         if ($beneficiary === null) {

@@ -9,6 +9,7 @@ use App\Domain\Access\Scopes\MdaScope;
 use App\Domain\Benefit\Enums\VerificationMethod;
 use App\Domain\Benefit\Exceptions\DeliveryNotAuthorizedException;
 use App\Domain\Benefit\Exceptions\NotEnrolledException;
+use App\Domain\Benefit\Exceptions\ProcessingConsentRequiredException;
 use App\Domain\Benefit\Exceptions\VerificationUnavailableException;
 use App\Domain\Benefit\Models\Benefit;
 use App\Domain\Benefit\Services\BenefitRecorder;
@@ -85,6 +86,8 @@ class BenefitController extends Controller
             return ApiResponse::error('DELIVERY_NOT_AUTHORIZED', $e->getMessage(), [], 409);
         } catch (NotEnrolledException $e) {
             return ApiResponse::error('NOT_ENROLLED', $e->getMessage(), [], 422);
+        } catch (ProcessingConsentRequiredException $e) {
+            return ApiResponse::error('CONSENT_REQUIRED', $e->getMessage(), [], 422);
         } catch (VerificationUnavailableException $e) {
             return ApiResponse::error('VERIFICATION_UNAVAILABLE', $e->getMessage(), [], 422);
         }

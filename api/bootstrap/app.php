@@ -3,9 +3,11 @@
 declare(strict_types=1);
 
 use App\Domain\Grievance\Jobs\EscalateOverdueGrievances;
+use App\Domain\Privacy\Jobs\EnforceDataRetention;
 use App\Domain\Referral\Jobs\EscalateOverdueReferrals;
 use App\Domain\Reporting\Jobs\RefreshDashboardSnapshots;
 use App\Domain\Reporting\Jobs\RunDueReportSchedules;
+use App\Domain\Sync\Jobs\RunDueSyncConnectors;
 use App\Http\Middleware\AssignCorrelationId;
 use App\Http\Middleware\CheckPermission;
 use App\Http\Middleware\EnforceIdleTimeout;
@@ -47,6 +49,16 @@ return Application::configure(basePath: dirname(__DIR__))
 
         // Scheduled reports (FR-RPT-04): generate + deliver every due schedule daily.
         $schedule->job(RunDueReportSchedules::class)->dailyAt('06:00')->withoutOverlapping();
+
+        // External/source synchronization (FR-DSH-02): fan out an idempotent sync for
+        // every enabled connector each hour. Per-connector jobs are unique so ticks
+        // never overlap a running sync.
+        $schedule->job(RunDueSyncConnectors::class)->hourly()->withoutOverlapping();
+
+        // Data-retention enforcement (NFR-PRV-01): apply the DPO's retention policies
+        // daily. A no-op unless retention is enabled + policies are configured; the
+        // job is unique so overlapping ticks never double-process a cohort.
+        $schedule->job(EnforceDataRetention::class)->dailyAt('02:00')->withoutOverlapping();
     })
     ->withMiddleware(function (Middleware $middleware): void {
         // Correlation id first (so it is available to everything), security

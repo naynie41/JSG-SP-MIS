@@ -51,6 +51,11 @@ class RegistryServiceProvider extends ServiceProvider
             $registry->register(new DefaultImportAdapter(RegistrationSource::Csv));
             $registry->register(new KoboAdapter);
             $registry->register(new OdkAdapter);
+            // External/source-system synchronization (FR-DSH-02) reuses the same
+            // field-mapping adapter; a bespoke adapter can replace these when a real
+            // SOCU/government-system schema is known.
+            $registry->register(new DefaultImportAdapter(RegistrationSource::Socu));
+            $registry->register(new DefaultImportAdapter(RegistrationSource::GovernmentSystem));
 
             return $registry;
         });
@@ -74,6 +79,10 @@ class RegistryServiceProvider extends ServiceProvider
             ->register('beneficiary', PermissionAction::Edit, 'Edit beneficiary core profile (owner MDA only)')
             ->register('beneficiary', PermissionAction::Export, 'Export beneficiaries')
             ->register('beneficiary', PermissionAction::Approve, 'Request/approve ownership transfer')
+            // Right-of-access (DSAR, NFR-PRV-01): export a subject's full record +
+            // benefit history, UNMASKED. A data-controller (owner-MDA) obligation;
+            // granting it to any non-owner role is a DPO decision.
+            ->register('beneficiary', PermissionAction::AccessRequest, 'Fulfil a data-subject access request (full record export)')
             ->register('beneficiary-lookup', PermissionAction::View, 'Look up beneficiaries across MDAs (reveal fields only)')
             // Unmask NIN/BVN in exports (SECURITY.md — Export of beneficiary data).
             // System Administrator only by default (via implicit all-permissions);

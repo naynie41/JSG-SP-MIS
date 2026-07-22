@@ -11,6 +11,7 @@ use App\Domain\Matching\Models\MatchingConfig;
 use App\Domain\Matching\Scoring\FieldNormalizer;
 use App\Domain\Matching\Services\MatchingConfigService;
 use App\Domain\Registry\Models\Beneficiary;
+use App\Domain\Registry\Support\IdentifierHasher;
 use Illuminate\Database\Eloquent\Builder;
 
 /**
@@ -93,12 +94,17 @@ class DeterministicDuplicateFinder
         }
 
         // Each key set is an ANDed equality group; the sets are ORed together.
-        // Equality on nin/bvn uses the partial-unique indexes (no full scan).
+        // NIN/BVN are encrypted at rest, so their equality runs on the keyed
+        // hash columns (partial-unique indexed — no full scan).
         $query->where(function (Builder $outer) use ($keySets): void {
             foreach ($keySets as $set) {
                 $outer->orWhere(function (Builder $inner) use ($set): void {
                     foreach ($set as $field => $value) {
-                        $inner->where($field, $value);
+                        if (in_array($field, ['nin', 'bvn'], true)) {
+                            $inner->where($field.'_hash', IdentifierHasher::hash($value));
+                        } else {
+                            $inner->where($field, $value);
+                        }
                     }
                 });
             }
