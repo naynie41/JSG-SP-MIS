@@ -8,6 +8,8 @@ import { useDashboard } from '@/features/dashboard/hooks'
 
 interface GatedItem extends SectionHubItem {
   permission?: string
+  /** Needs an acting MDA (mirrors the server); hidden from MDA-less accounts. */
+  requiresMda?: boolean
 }
 
 // Programmes are a global catalog (§10) — this area is operational: browse the
@@ -16,8 +18,8 @@ interface GatedItem extends SectionHubItem {
 const ITEMS: GatedItem[] = [
   { label: 'Programme catalog', description: 'Browse the shared catalog of programme types.', to: '/programmes/list', icon: ClipboardList, tone: 'forest', permission: 'programme.view' },
   { label: 'Activities', description: "Create and manage your MDA's activities against the catalog.", to: '/activities', icon: CalendarPlus, tone: 'info', permission: 'activity.view' },
-  { label: 'Record benefit', description: 'Log a single benefit delivery to a beneficiary.', to: '/benefits/record', icon: Coins, tone: 'mint', permission: 'benefit.create' },
-  { label: 'Bulk delivery', description: 'Disburse benefits to many beneficiaries at once.', to: '/benefits/bulk', icon: Upload, tone: 'mint', permission: 'benefit.create' },
+  { label: 'Record benefit', description: 'Log a single benefit delivery to a beneficiary.', to: '/benefits/record', icon: Coins, tone: 'mint', permission: 'benefit.create', requiresMda: true },
+  { label: 'Bulk delivery', description: 'Disburse benefits to many beneficiaries at once.', to: '/benefits/bulk', icon: Upload, tone: 'mint', permission: 'benefit.create', requiresMda: true },
   { label: 'Benefit ledger', description: 'Review the full history of benefit payments.', to: '/benefits/ledger', icon: BarChart3, tone: 'success', permission: 'benefit.view' },
 ]
 
@@ -39,8 +41,11 @@ function ProgrammesMetrics() {
 }
 
 export function ProgrammesHubPage() {
-  const { hasPermission } = useAuth()
-  const items = ITEMS.filter((item) => !item.permission || hasPermission(item.permission))
+  const { user, hasPermission } = useAuth()
+  const hasMda = Boolean(user?.mda)
+  const items = ITEMS.filter(
+    (item) => (!item.permission || hasPermission(item.permission)) && (!item.requiresMda || hasMda),
+  )
 
   return (
     <SectionHub

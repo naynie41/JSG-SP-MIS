@@ -75,8 +75,9 @@ describe('protected routing', () => {
 
     renderWithProviders(<App />, '/')
 
-    await screen.findByText('Your access')
-    expect(screen.getByRole('link', { name: 'Users' })).toBeInTheDocument()
+    // The System Administrator lands on the administration dashboard (not the MDA
+    // operator view); the Administration rail section is present.
+    expect(await screen.findByRole('link', { name: 'Users' })).toBeInTheDocument()
     expect(screen.getByRole('link', { name: 'MDAs' })).toBeInTheDocument()
   })
 })

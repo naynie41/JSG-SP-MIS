@@ -78,3 +78,22 @@ export interface DashboardResponse {
   computed_at: string
   metrics: DashboardMetrics
 }
+
+/** Operational health snapshot for the admin dashboard (GET /health/metrics). */
+export interface OpsMetricsResponse {
+  time: string
+  backups: {
+    last_success_at: string | null
+    age_hours: number | null
+    rpo_hours: number
+  }
+  dashboard_snapshots: {
+    last_computed_at: string | null
+    stale_minutes: number | null
+  }
+  volumes: {
+    beneficiaries: number
+    benefits: number
+    audit_entries: number
+  }
+}

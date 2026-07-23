@@ -14,3 +14,13 @@ export function useDashboard(enabled = true) {
     refetchOnWindowFocus: true,
   })
 }
+
+/** Operational health (backup age, snapshot freshness) — admin dashboard only. */
+export function useOpsMetrics(enabled = true) {
+  return useQuery({
+    queryKey: ['ops-metrics'],
+    queryFn: () => dashboardApi.opsMetrics(),
+    enabled,
+    refetchInterval: 120_000,
+  })
+}

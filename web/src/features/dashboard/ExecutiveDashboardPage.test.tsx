@@ -59,32 +59,38 @@ describe('ExecutiveDashboardPage', () => {
     mockRole.key = 'executive'
   })
 
-  it('renders state-wide KPIs and coverage from the aggregation layer', async () => {
+  it('renders the state-wide briefing from the aggregation layer', async () => {
     get.mockResolvedValue(payload)
 
     renderPage(<ExecutiveDashboardPage />)
 
-    // Headline KPIs.
-    expect(await screen.findByText('1,234')).toBeInTheDocument()   // beneficiaries
-    expect(screen.getByText('12')).toBeInTheDocument()             // active programmes
-    expect(screen.getByText('45%')).toBeInTheDocument()            // budget utilisation
-    expect(screen.getAllByText('₦450,000.00').length).toBeGreaterThan(0) // benefits disbursed
+    // Editorial hero + marquee headline figure (beneficiaries appears in the hero
+    // AND the key-figures band).
+    expect(await screen.findByRole('heading', { name: /state of social protection in Jigawa/i })).toBeInTheDocument()
+    expect(screen.getByText('State-wide briefing')).toBeInTheDocument()
+    expect(screen.getAllByText('1,234').length).toBeGreaterThan(0)          // beneficiaries reached
+    expect(screen.getAllByText('₦450,000.00').length).toBeGreaterThan(0)    // benefits disbursed
 
-    // Breakdown + coverage (map arrives later).
-    expect(screen.getByText('Cash')).toBeInTheDocument()
+    // Key figures + budget.
+    expect(screen.getByText('12')).toBeInTheDocument()                      // active programmes
+    expect(screen.getByText('45%')).toBeInTheDocument()                     // budget utilisation
+
+    // Ranked coverage + benefit-type bars.
     expect(screen.getByText('Dutse')).toBeInTheDocument()
+    expect(screen.getByText('Hadejia')).toBeInTheDocument()
+    expect(screen.getByText('Cash')).toBeInTheDocument()
 
-    // Coordination headlines.
+    // Coordination.
     expect(screen.getByText('Referrals')).toBeInTheDocument()
     expect(screen.getByText('Grievances')).toBeInTheDocument()
-    expect(screen.getByText('50%')).toBeInTheDocument() // referral completion
+    expect(screen.getByText('50%')).toBeInTheDocument()                     // referral completion donut
   })
 
   it('is strictly read-only — no edit controls', async () => {
     get.mockResolvedValue(payload)
 
     renderPage(<ExecutiveDashboardPage />)
-    await screen.findByText('1,234')
+    await screen.findAllByText('1,234')
 
     // The only control is Refresh (a read); nothing mutating.
     expect(screen.getByRole('button', { name: /refresh/i })).toBeInTheDocument()

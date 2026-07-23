@@ -1,3 +1,4 @@
+import type { ReactNode } from 'react'
 import { ClipboardList, Coins, PackageCheck, RefreshCw, Users } from 'lucide-react'
 import { Card } from '@/components/Card/Card'
 import { Icon } from '@/components/Icon/Icon'
@@ -97,6 +98,8 @@ export interface DashboardViewProps {
   beneficiariesLabel?: string
   /** Show the permission-aware quick-action bar (MDA scope only; not exec/partner). */
   showQuickActions?: boolean
+  /** Extra content rendered in the quick-actions slot (e.g. the admin ops strip). */
+  extras?: ReactNode
   data: DashboardResponse
   isFetching: boolean
   onRefresh: () => void
@@ -108,7 +111,7 @@ export interface DashboardViewProps {
  * referral gauges, and benefit/coordination breakdowns. All figures come from the
  * scope's aggregation payload — no invented trends. There are no edit controls.
  */
-export function DashboardView({ eyebrow, title, lead, beneficiariesLabel = 'Beneficiaries', showQuickActions = false, data, isFetching, onRefresh }: DashboardViewProps) {
+export function DashboardView({ eyebrow, title, lead, beneficiariesLabel = 'Beneficiaries', showQuickActions = false, extras, data, isFetching, onRefresh }: DashboardViewProps) {
   const m = data.metrics
   const budget = m.benefits.budget
   const overBudget = budget.remaining < 0
@@ -139,6 +142,7 @@ export function DashboardView({ eyebrow, title, lead, beneficiariesLabel = 'Bene
       </div>
 
       {showQuickActions && <DashboardQuickActions />}
+      {extras}
 
       {/* Headline KPI stat cards */}
       <div className={styles.kpiRow}>

@@ -12,13 +12,13 @@ vi.mock('./api', () => ({ dashboardApi: { get: vi.fn() } }))
 
 const authState = {
   roleKey: 'mda_officer',
-  mdaName: 'MDA A',
+  mda: { name: 'MDA A' } as { name: string } | null,
   canView: true,
   can: (_p: string) => true as boolean,
 }
 vi.mock('@/lib/auth/AuthProvider', () => ({
   useAuth: () => ({
-    user: { role: { key: authState.roleKey }, mda: { name: authState.mdaName } },
+    user: { role: { key: authState.roleKey }, mda: authState.mda },
     hasPermission: (p: string) => (p === 'dashboard.view' ? authState.canView : authState.can(p)),
   }),
 }))
@@ -57,6 +57,7 @@ describe('MdaDashboardPage', () => {
   beforeEach(() => {
     vi.clearAllMocks()
     authState.roleKey = 'mda_officer'
+    authState.mda = { name: 'MDA A' }
     authState.canView = true
     authState.can = () => true
   })
@@ -97,5 +98,20 @@ describe('MdaDashboardPage', () => {
 
     expect(screen.getByText(/do not have permission to view a dashboard/i)).toBeInTheDocument()
     expect(get).not.toHaveBeenCalled()
+  })
+
+  it('hides MDA-operator actions for an MDA-less oversight user (keeps central catalog action)', async () => {
+    get.mockResolvedValue(mdaPayload)
+    authState.mda = null // e.g. SP Coordination — holds permissions but no acting MDA
+
+    renderPage(<MdaDashboardPage />)
+
+    await screen.findByRole('heading', { name: 'MDA dashboard' })
+    // Central catalog action stays (creating a programme needs no MDA)…
+    expect(screen.getByRole('button', { name: 'New programme' })).toBeInTheDocument()
+    // …but actions that require an acting MDA are hidden (mirrors the server).
+    expect(screen.queryByRole('button', { name: 'New activity' })).toBeNull()
+    expect(screen.queryByRole('button', { name: 'Record benefit' })).toBeNull()
+    expect(screen.queryByRole('button', { name: 'Import beneficiaries' })).toBeNull()
   })
 })

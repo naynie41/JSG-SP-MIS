@@ -71,6 +71,16 @@ class LocalDevSeeder extends Seeder
             RoleKey::MdaAdmin,
             $health,
         );
+
+        // Oversight side: an Executive for the state-wide, read-only dashboard.
+        // Not MDA-bound (state-wide scope); MFA already relaxed on the role above.
+        $this->seedUser(
+            (string) env('SEED_EXECUTIVE_EMAIL', 'executive@spmis.local'),
+            'SP-MIS Executive',
+            (string) env('SEED_EXECUTIVE_PASSWORD', 'ChangeMe!Exec12345'),
+            RoleKey::Executive,
+            null,
+        );
     }
 
     private function seedUser(string $email, string $name, string $password, RoleKey $roleKey, ?Mda $mda): void

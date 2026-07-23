@@ -140,9 +140,18 @@ class User extends Authenticatable implements MdaScoped
 
     /**
      * Whether MFA is mandatory for this user (driven by the role, FR-UAM-04).
+     *
+     * A local/dev testing escape hatch (config `security.mfa.enforce`, env
+     * `MFA_ENFORCE`) can disable this — but ONLY outside production. In production
+     * the control is always on regardless of the flag, so it can never be weakened
+     * (SECURITY.md §2/§12).
      */
     public function mfaRequired(): bool
     {
+        if (! config('security.mfa.enforce', true) && ! app()->environment('production')) {
+            return false;
+        }
+
         return (bool) $this->role?->requires_mfa;
     }
 

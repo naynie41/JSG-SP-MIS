@@ -1,0 +1,104 @@
+.stack {
+  display: grid;
+  gap: var(--space-4);
+}
+
+.note {
+  color: var(--text-muted-strong);
+  font-size: var(--fs-label);
+}
+
+.mono {
+  font-family: var(--font-mono);
+  font-size: 12px;
+}
+
+/* Permission bundle groups (role detail modal + permission catalogue). */
+.group {
+  display: grid;
+  gap: var(--space-2);
+  padding: var(--space-3) 0;
+  border-top: 1px solid var(--border);
+}
+.group:first-child {
+  border-top: none;
+}
+
+.groupHead {
+  display: flex;
+  align-items: baseline;
+  gap: var(--space-2);
+}
+
+.groupName {
+  font-weight: 600;
+  text-transform: capitalize;
+}
+
+.chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+}
+
+/* Catalogue rows. */
+.permRow {
+  display: grid;
+  grid-template-columns: 12rem 1fr;
+  gap: var(--space-3);
+  padding: var(--space-2) 0;
+  border-top: 1px solid var(--border);
+  align-items: baseline;
+}
+.permRow:first-child {
+  border-top: none;
+}
+
+@media (max-width: 640px) {
+  .permRow {
+    grid-template-columns: 1fr;
+    gap: 2px;
+  }
+}
+
+/* Role × permission matrix. */
+.matrixWrap {
+  overflow-x: auto;
+}
+.matrix {
+  border-collapse: collapse;
+  width: 100%;
+  font-size: var(--fs-label);
+}
+.matrix th,
+.matrix td {
+  padding: var(--space-2) var(--space-3);
+  text-align: center;
+  border-bottom: 1px solid var(--border);
+  white-space: nowrap;
+}
+.matrix thead th {
+  position: sticky;
+  top: 0;
+  background: var(--surface);
+  font-weight: 600;
+}
+.matrixKey {
+  text-align: left;
+  font-family: var(--font-mono);
+  font-size: 12px;
+  position: sticky;
+  left: 0;
+  background: var(--surface);
+}
+.has {
+  color: var(--success);
+}
+.hasnt {
+  color: var(--border-strong);
+}
+
+.subEmail {
+  color: var(--text-muted-strong);
+  font-size: var(--fs-label);
+}

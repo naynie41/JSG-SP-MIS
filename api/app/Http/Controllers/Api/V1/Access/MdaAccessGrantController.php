@@ -62,13 +62,16 @@ class MdaAccessGrantController extends Controller
      */
     private function present(MdaAccessGrant $grant): array
     {
+        $grant->loadMissing(['user:id,name,email', 'mda:id,name', 'grantedBy:id,name']);
+
         return [
             'id' => $grant->id,
-            'user_id' => $grant->user_id,
-            'mda_id' => $grant->mda_id,
-            'granted_by' => $grant->granted_by,
+            'user' => $grant->user ? ['id' => $grant->user->id, 'name' => $grant->user->name, 'email' => $grant->user->email] : null,
+            'mda' => $grant->mda ? ['id' => $grant->mda->id, 'name' => $grant->mda->name] : null,
+            'granted_by' => $grant->grantedBy?->name,
             'reason' => $grant->reason,
             'expires_at' => $grant->expires_at?->toIso8601String(),
+            'active' => $grant->expires_at === null || $grant->expires_at->isFuture(),
             'created_at' => $grant->created_at?->toIso8601String(),
         ];
     }

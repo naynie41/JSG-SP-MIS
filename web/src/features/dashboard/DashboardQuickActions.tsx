@@ -11,17 +11,21 @@ interface QuickAction {
   to: string
   icon: LucideIcon
   permission: string
+  /** Needs an acting MDA (mirrors the server's MDA_REQUIRED / delivery rules). */
+  requiresMda?: boolean
   primary?: boolean
 }
 
 // Ordered by prominence — creating a programme/activity leads, per the MDA workflow.
+// Creating a programme is a central catalog action (no MDA); the rest operate
+// within an MDA and are hidden from MDA-less accounts (e.g. oversight roles).
 const ACTIONS: QuickAction[] = [
   { label: 'New programme', to: '/programmes/list?new=1', icon: Plus, permission: 'programme.create', primary: true },
-  { label: 'New activity', to: '/activities', icon: CalendarPlus, permission: 'activity.create' },
-  { label: 'Record benefit', to: '/benefits/record', icon: Coins, permission: 'benefit.create' },
-  { label: 'Import beneficiaries', to: '/imports', icon: FileUp, permission: 'beneficiary.create' },
-  { label: 'Raise referral', to: '/referrals', icon: Split, permission: 'referral.create' },
-  { label: 'Log grievance', to: '/grievances', icon: LifeBuoy, permission: 'grievance.create' },
+  { label: 'New activity', to: '/activities', icon: CalendarPlus, permission: 'activity.create', requiresMda: true },
+  { label: 'Record benefit', to: '/benefits/record', icon: Coins, permission: 'benefit.create', requiresMda: true },
+  { label: 'Import beneficiaries', to: '/imports', icon: FileUp, permission: 'beneficiary.create', requiresMda: true },
+  { label: 'Raise referral', to: '/referrals', icon: Split, permission: 'referral.create', requiresMda: true },
+  { label: 'Log grievance', to: '/grievances', icon: LifeBuoy, permission: 'grievance.create', requiresMda: true },
 ]
 
 /**
@@ -31,9 +35,10 @@ const ACTIONS: QuickAction[] = [
  * scopes (executive/partner), keeping those dashboards read-only.
  */
 export function DashboardQuickActions() {
-  const { hasPermission } = useAuth()
+  const { user, hasPermission } = useAuth()
   const navigate = useNavigate()
-  const actions = ACTIONS.filter((a) => hasPermission(a.permission))
+  const hasMda = Boolean(user?.mda)
+  const actions = ACTIONS.filter((a) => hasPermission(a.permission) && (!a.requiresMda || hasMda))
 
   if (actions.length === 0) return null
 

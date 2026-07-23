@@ -7,12 +7,14 @@ import { useDashboard } from '@/features/dashboard/hooks'
 
 interface GatedItem extends SectionHubItem {
   permission?: string
+  /** Needs an acting MDA (mirrors the server); hidden from MDA-less accounts. */
+  requiresMda?: boolean
 }
 
 const ITEMS: GatedItem[] = [
   { label: 'Beneficiaries', description: 'Search and manage the single registry of people.', to: '/beneficiaries', icon: UserSquare2, tone: 'forest', permission: 'beneficiary.view' },
   { label: 'Households', description: 'Household records and their members.', to: '/households', icon: Home, tone: 'info', permission: 'household.view' },
-  { label: 'Bulk import', description: 'Onboard beneficiaries from a spreadsheet.', to: '/imports', icon: FileUp, tone: 'mint', permission: 'beneficiary.create' },
+  { label: 'Bulk import', description: 'Onboard beneficiaries from a spreadsheet.', to: '/imports', icon: FileUp, tone: 'mint', permission: 'beneficiary.create', requiresMda: true },
   { label: 'Duplicate search', description: 'Check for existing records before enrolling.', to: '/duplicate-search', icon: ScanSearch, tone: 'warning', permission: 'beneficiary-lookup.view' },
   { label: 'Service requests', description: 'Requests raised on behalf of beneficiaries.', to: '/service-requests', icon: Send, tone: 'info', permission: 'beneficiary.view' },
   { label: 'Matching rules', description: 'Tune the deduplication matching thresholds.', to: '/matching', icon: SlidersHorizontal, tone: 'success', permission: 'matching.view' },
@@ -36,8 +38,11 @@ function RegistryMetrics() {
 }
 
 export function RegistryHubPage() {
-  const { hasPermission } = useAuth()
-  const items = ITEMS.filter((item) => !item.permission || hasPermission(item.permission))
+  const { user, hasPermission } = useAuth()
+  const hasMda = Boolean(user?.mda)
+  const items = ITEMS.filter(
+    (item) => (!item.permission || hasPermission(item.permission)) && (!item.requiresMda || hasMda),
+  )
 
   return (
     <SectionHub

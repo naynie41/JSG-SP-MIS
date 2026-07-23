@@ -1,13 +1,15 @@
 import { Card } from '@/components/Card/Card'
 import { Spinner } from '@/components/Spinner/Spinner'
 import { useAuth } from '@/lib/auth/AuthProvider'
-import { DashboardView } from './DashboardView'
+import { ExecutiveDashboardView } from './ExecutiveDashboardView'
 import { useDashboard } from './hooks'
-import styles from './dashboard.module.css'
+import styles from './executive.module.css'
 
 /**
- * Executive dashboard (PRD FR-RPT-01). Read-only, state-wide KPIs from the reporting
- * aggregation layer. Executive role only; there are no edit controls.
+ * Executive dashboard (PRD FR-RPT-01). Read-only, state-wide briefing from the
+ * reporting aggregation layer, presented as an editorial "state-of-the-state" report
+ * for the governor and commissioners ({@see ExecutiveDashboardView}) — visually
+ * distinct from the Admin/MDA dashboards. Executive role only; no edit controls.
  */
 export function ExecutiveDashboardPage() {
   const { user, hasPermission } = useAuth()
@@ -25,19 +27,10 @@ export function ExecutiveDashboardPage() {
   if (isLoading || !data) {
     return (
       <div style={{ display: 'grid', placeItems: 'center', padding: 'var(--space-8)' }}>
-        <Spinner size={28} label="Loading dashboard" />
+        <Spinner size={28} label="Loading briefing" />
       </div>
     )
   }
 
-  return (
-    <DashboardView
-      eyebrow="06 · Reporting"
-      title="Executive dashboard"
-      lead="State-wide social protection at a glance — beneficiaries, programmes, benefits delivered, budget utilisation and coverage across all MDAs. Read-only."
-      data={data}
-      isFetching={isFetching}
-      onRefresh={() => refetch()}
-    />
-  )
+  return <ExecutiveDashboardView data={data} isFetching={isFetching} onRefresh={() => refetch()} />
 }

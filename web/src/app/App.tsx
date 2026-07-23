@@ -4,14 +4,17 @@ import { Spinner } from '@/components/Spinner/Spinner'
 import { useAuth } from '@/lib/auth/AuthProvider'
 import { LoginPage } from '@/features/auth/LoginPage'
 import { DashboardPage } from '@/features/dashboard/DashboardPage'
+import { AdminDashboardPage } from '@/features/dashboard/AdminDashboardPage'
 import { ExecutiveDashboardPage } from '@/features/dashboard/ExecutiveDashboardPage'
 import { MdaDashboardPage } from '@/features/dashboard/MdaDashboardPage'
 import { PartnerDashboardPage } from '@/features/dashboard/PartnerDashboardPage'
-import { PlaceholderPage } from '@/features/misc/PlaceholderPage'
 import { NotFoundPage } from '@/features/misc/NotFoundPage'
 import { StyleguidePage } from '@/features/styleguide/StyleguidePage'
 import { MdaListPage } from '@/features/mdas/MdaListPage'
 import { UserListPage } from '@/features/users/UserListPage'
+import { RolesPage } from '@/features/access/RolesPage'
+import { PermissionsPage } from '@/features/access/PermissionsPage'
+import { GrantsPage } from '@/features/access/GrantsPage'
 import { BeneficiaryListPage } from '@/features/registry/BeneficiaryListPage'
 import { BeneficiaryDetailPage } from '@/features/registry/BeneficiaryDetailPage'
 import { HouseholdListPage } from '@/features/registry/HouseholdListPage'
@@ -40,14 +43,17 @@ import { AppLayout } from './AppLayout'
 import { ProtectedRoute } from './ProtectedRoute'
 
 /**
- * Home landing, by role/scope: Executives get the state-wide dashboard, Development
- * Partners the funded-programmes dashboard, other dashboard-permitted users the
- * MDA-scoped dashboard, and everyone else the account view. The server resolves and
- * enforces the actual data scope regardless of which page renders.
+ * Home landing, by role/scope: System Administrators get the administration
+ * dashboard (state-wide + platform health, no MDA-operator actions), Executives the
+ * state-wide dashboard, Development Partners the funded-programmes dashboard, other
+ * dashboard-permitted users the MDA-scoped dashboard, and everyone else the account
+ * view. The server resolves and enforces the actual data scope regardless of which
+ * page renders.
  */
 function HomeDashboard() {
   const { user, hasPermission } = useAuth()
   const roleKey = user?.role?.key
+  if (roleKey === 'system_administrator') return <AdminDashboardPage />
   if (roleKey === 'executive') return <ExecutiveDashboardPage />
   if (roleKey === 'development_partner') return <PartnerDashboardPage />
   if (hasPermission('dashboard.view')) return <MdaDashboardPage />
@@ -116,9 +122,9 @@ export function App() {
         <Route path="/gis" element={<GisDashboardPage />} />
         <Route path="/users" element={<UserListPage />} />
         <Route path="/mdas" element={<MdaListPage />} />
-        <Route path="/roles" element={<PlaceholderPage eyebrow="02 · Administration" title="Roles" />} />
-        <Route path="/permissions" element={<PlaceholderPage eyebrow="02 · Administration" title="Permissions" />} />
-        <Route path="/grants" element={<PlaceholderPage eyebrow="02 · Administration" title="Cross-MDA access" />} />
+        <Route path="/roles" element={<RolesPage />} />
+        <Route path="/permissions" element={<PermissionsPage />} />
+        <Route path="/grants" element={<GrantsPage />} />
         <Route path="/styleguide" element={<StyleguidePage />} />
       </Route>
 
