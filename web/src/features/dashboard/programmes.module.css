@@ -1,0 +1,452 @@
+/* =============================================================================
+   Programmes tab (Phase 6E, tab 2) — programme performance cards with an
+   activity-level drill-down, a cross-programme comparison table, and a financial
+   dashboard. Forest/lime/mint tokens; status colors (success/warning/danger) carry
+   the traffic-light score and are kept separate from the lime accent.
+   ============================================================================= */
+
+.page {
+  display: grid;
+  gap: var(--space-6);
+}
+.empty {
+  color: var(--text-muted-strong);
+  font-size: var(--fs-ui);
+  padding: var(--space-4) 0;
+  text-align: center;
+}
+
+/* ------------------------------------------------------- scoring legend ---- */
+
+.legend {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: var(--space-2) var(--space-4);
+  padding: var(--space-3) var(--space-4);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  background: var(--surface);
+  font-size: var(--fs-label);
+  color: var(--text-muted-strong);
+}
+.legendTitle {
+  font-family: var(--font-mono);
+  font-size: var(--fs-caption);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--ink);
+  margin-right: var(--space-2);
+}
+.legendItem {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+}
+
+/* --------------------------------------------------- traffic-light dot ----- */
+
+.score {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+}
+.dot {
+  width: 10px;
+  height: 10px;
+  border-radius: var(--radius-full);
+  flex: 0 0 auto;
+  background: var(--border-strong);
+}
+.dot[data-score='green'] {
+  background: var(--success);
+}
+.dot[data-score='yellow'] {
+  background: var(--warning);
+}
+.dot[data-score='red'] {
+  background: var(--danger);
+}
+.dot[data-score='unrated'] {
+  background: var(--border-strong);
+}
+.scoreLabel {
+  font-size: var(--fs-label);
+  color: var(--text-muted-strong);
+  white-space: nowrap;
+}
+
+/* --------------------------------------------------------------- sections -- */
+
+.section {
+  display: grid;
+  gap: var(--space-4);
+}
+.sectionHead {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  color: var(--forest);
+}
+.sectionTitle {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: var(--fs-h2);
+  letter-spacing: -0.01em;
+}
+.panel {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  padding: clamp(var(--space-4), 3vw, var(--space-5));
+  overflow-x: auto;
+}
+
+/* --------------------------------------------------- financial figures ----- */
+
+.figureGrid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  background: var(--surface);
+  overflow: hidden;
+}
+.figure {
+  padding: clamp(var(--space-3), 2.4vw, var(--space-5));
+  border-left: 1px solid var(--border);
+  display: grid;
+  gap: var(--space-2);
+}
+.figure:first-child {
+  border-left: none;
+}
+.figureLabel {
+  font-family: var(--font-mono);
+  font-size: var(--fs-caption);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--text-muted-strong);
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+}
+.figureValue {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: clamp(1.1rem, 2.2vw, 1.5rem);
+  line-height: 1.05;
+  color: var(--ink);
+  font-variant-numeric: tabular-nums;
+}
+@media (max-width: 720px) {
+  .figureGrid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .figure:nth-child(odd) {
+    border-left: none;
+  }
+  .figure:nth-child(n + 3) {
+    border-top: 1px solid var(--border);
+  }
+}
+
+/* Overall disbursement ribbon. */
+.disbTop {
+  display: flex;
+  align-items: baseline;
+  gap: var(--space-3);
+  margin-bottom: var(--space-3);
+}
+.disbPct {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: clamp(1.8rem, 4vw, 2.6rem);
+  line-height: 0.9;
+  letter-spacing: -0.02em;
+  color: var(--forest);
+  font-variant-numeric: tabular-nums;
+}
+.disbPct[data-over='true'] {
+  color: var(--danger);
+}
+.disbCaption {
+  font-size: var(--fs-label);
+  color: var(--text-muted-strong);
+}
+.ribbon {
+  display: block;
+  height: 18px;
+  border-radius: var(--radius-full);
+  background: var(--surface-mint);
+  overflow: hidden;
+  margin-bottom: var(--space-5);
+}
+.ribbonFill {
+  display: block;
+  height: 100%;
+  border-radius: var(--radius-full);
+  background: linear-gradient(90deg, var(--forest), var(--forest-2));
+}
+.ribbonFill[data-over='true'] {
+  background: linear-gradient(90deg, var(--danger), #d6564c);
+}
+
+/* --------------------------------------------------------------- tables ---- */
+
+.budgetTable,
+.compareTable,
+.activityTable {
+  width: 100%;
+  min-width: 34rem;
+  border-collapse: collapse;
+  font-size: var(--fs-ui);
+}
+.activityTable {
+  min-width: 40rem;
+}
+.budgetTable th,
+.compareTable th,
+.activityTable th {
+  text-align: left;
+  font-weight: 600;
+}
+.budgetTable thead th,
+.compareTable thead th,
+.activityTable thead th {
+  font-family: var(--font-mono);
+  font-size: var(--fs-caption);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--text-muted-strong);
+  font-weight: 400;
+  padding: 0 var(--space-3) var(--space-2);
+  border-bottom: 1px solid var(--border);
+}
+.budgetTable tbody td,
+.budgetTable tbody th,
+.compareTable tbody td,
+.compareTable tbody th,
+.activityTable tbody td,
+.activityTable tbody th {
+  padding: var(--space-3);
+  border-bottom: 1px solid var(--border);
+  font-variant-numeric: tabular-nums;
+  vertical-align: middle;
+}
+.budgetTable tbody tr:last-child td,
+.budgetTable tbody tr:last-child th,
+.compareTable tbody tr:last-child td,
+.compareTable tbody tr:last-child th,
+.activityTable tbody tr:last-child td,
+.activityTable tbody tr:last-child th {
+  border-bottom: none;
+}
+.progCell {
+  color: var(--ink);
+  font-weight: 600;
+}
+.barCol {
+  width: 34%;
+  min-width: 9rem;
+}
+.barCellInner {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+}
+.barPct {
+  font-family: var(--font-mono);
+  font-size: var(--fs-label);
+  color: var(--text-muted-strong);
+  min-width: 3ch;
+  text-align: right;
+}
+
+/* Progress / budget bars (also used on cards). */
+.progressTrack,
+.budgetTrack {
+  display: block;
+  flex: 1;
+  height: 10px;
+  border-radius: var(--radius-full);
+  background: var(--surface-mint);
+  overflow: hidden;
+}
+.progressFill,
+.budgetFill {
+  display: block;
+  height: 100%;
+  border-radius: var(--radius-full);
+  background: var(--forest-2);
+}
+.progressFill[data-score='green'] {
+  background: var(--success);
+}
+.progressFill[data-score='yellow'] {
+  background: var(--warning);
+}
+.progressFill[data-score='red'] {
+  background: var(--danger);
+}
+.progressFill[data-score='unrated'] {
+  background: var(--border-strong);
+}
+.budgetFill {
+  background: var(--forest-2);
+}
+.budgetFill[data-over='true'] {
+  background: var(--danger);
+}
+
+/* ----------------------------------------------------------- cards --------- */
+
+.cardGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: var(--space-4);
+}
+.card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  padding: var(--space-5);
+  display: grid;
+  gap: var(--space-4);
+  align-content: start;
+}
+.cardHead {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+}
+.cardTitle {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: var(--fs-h3);
+  letter-spacing: -0.01em;
+  margin-right: auto;
+}
+.status {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  padding: 2px var(--space-2);
+  border-radius: var(--radius-full);
+  background: var(--surface-mint);
+  color: var(--forest);
+  white-space: nowrap;
+}
+.status[data-status='active'] {
+  background: var(--success-soft);
+  color: var(--success-ink);
+}
+.status[data-status='draft'] {
+  background: var(--surface-mint);
+  color: var(--text-muted-strong);
+}
+.status[data-status='closed'],
+.status[data-status='archived'] {
+  background: var(--border);
+  color: var(--text-muted-strong);
+}
+.implementer {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  font-size: var(--fs-label);
+  color: var(--text-muted-strong);
+  margin-top: calc(var(--space-3) * -1);
+}
+
+.cardMetric {
+  display: grid;
+  gap: var(--space-2);
+}
+.cardMetricTop {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: var(--space-2);
+}
+.metricLabel {
+  font-family: var(--font-mono);
+  font-size: var(--fs-caption);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--text-muted-strong);
+}
+.metricValue {
+  font-size: var(--fs-ui);
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+  text-align: right;
+}
+.metricPct {
+  color: var(--text-muted-strong);
+  font-weight: 400;
+}
+
+.cardStats {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--space-3);
+  padding-top: var(--space-3);
+  border-top: 1px solid var(--border);
+  margin: 0;
+}
+.cardStats div {
+  display: grid;
+  gap: 2px;
+}
+.cardStats dt {
+  font-family: var(--font-mono);
+  font-size: var(--fs-caption);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--text-muted-strong);
+}
+.cardStats dd {
+  margin: 0;
+  font-size: var(--fs-ui);
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+}
+.dates {
+  font-family: var(--font-mono);
+  font-size: var(--fs-label);
+  font-weight: 400;
+}
+
+.drillToggle {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  background: transparent;
+  border: 1px solid var(--border-strong);
+  border-radius: var(--radius-full);
+  padding: var(--space-2) var(--space-3);
+  font-size: var(--fs-label);
+  font-weight: 500;
+  color: var(--forest);
+  cursor: pointer;
+  justify-self: start;
+  transition: background var(--transition), border-color var(--transition);
+}
+.drillToggle:hover {
+  background: var(--surface-mint);
+  border-color: var(--forest-2);
+}
+.chevronOpen {
+  transform: rotate(180deg);
+}
+.drilldown {
+  overflow-x: auto;
+  border-top: 1px solid var(--border);
+  padding-top: var(--space-3);
+  margin-top: calc(var(--space-2) * -1);
+}
+.activityTable thead th {
+  padding-top: 0;
+}

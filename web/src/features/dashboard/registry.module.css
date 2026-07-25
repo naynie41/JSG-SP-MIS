@@ -1,0 +1,336 @@
+/* =============================================================================
+   Registry tab (Phase 6E, tab 3) — registry KPIs, a data-quality panel, and
+   household breakdowns by the fields we HAVE (gender, age band, household size).
+   Forest/lime/mint tokens; status colors carry the quality tone. No panels are
+   rendered for poverty/disability/PWD/IDP/occupation — those fields aren't captured.
+   ============================================================================= */
+
+.page {
+  display: grid;
+  gap: var(--space-6);
+}
+.reveal {
+  opacity: 0;
+  transform: translateY(14px);
+  animation: regRise 560ms cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+@keyframes regRise {
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+.empty {
+  color: var(--text-muted-strong);
+  font-size: var(--fs-ui);
+  padding: var(--space-3) 0;
+}
+
+.section {
+  display: grid;
+  gap: var(--space-4);
+}
+.sectionHead {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  color: var(--forest);
+}
+.sectionTitle {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: var(--fs-h2);
+  letter-spacing: -0.01em;
+}
+
+/* ---------------------------------------------------------- KPI band ------ */
+
+.groupLabel {
+  display: block;
+  font-family: var(--font-mono);
+  font-size: var(--fs-caption);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--text-muted-strong);
+  margin-bottom: var(--space-2);
+}
+.kpiBand {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: var(--space-3);
+  margin-bottom: var(--space-3);
+}
+.kpi {
+  border-radius: var(--radius-md);
+  padding: clamp(var(--space-4), 3vw, var(--space-5));
+  background: linear-gradient(160deg, var(--forest-2), var(--forest));
+  color: var(--bg);
+  display: grid;
+  gap: var(--space-2);
+  box-shadow: var(--elev-sm);
+}
+.kpiHeadline {
+  background:
+    radial-gradient(120% 140% at 90% -20%, rgba(198, 241, 53, 0.22), transparent 55%),
+    linear-gradient(160deg, #384318, var(--forest));
+  outline: 1px solid rgba(198, 241, 53, 0.35);
+  outline-offset: -1px;
+}
+.kpiLabel {
+  font-family: var(--font-mono);
+  font-size: var(--fs-caption);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: rgba(245, 245, 241, 0.78);
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+}
+.kpiValue {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: clamp(1.7rem, 3.6vw, 2.5rem);
+  line-height: 1;
+  letter-spacing: -0.02em;
+  font-variant-numeric: tabular-nums;
+}
+.kpiHeadline .kpiValue {
+  color: var(--accent);
+}
+.kpiHint {
+  font-size: var(--fs-label);
+  color: rgba(245, 245, 241, 0.62);
+}
+
+.figureGrid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  background: var(--surface);
+  overflow: hidden;
+}
+.figure {
+  padding: clamp(var(--space-3), 2.4vw, var(--space-5));
+  border-left: 1px solid var(--border);
+  display: grid;
+  gap: var(--space-2);
+}
+.figure:first-child {
+  border-left: none;
+}
+.figureLabel {
+  font-family: var(--font-mono);
+  font-size: var(--fs-caption);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--text-muted-strong);
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+}
+.figureValue {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: clamp(1.2rem, 2.4vw, 1.7rem);
+  line-height: 1.05;
+  color: var(--ink);
+  font-variant-numeric: tabular-nums;
+}
+.figureHint {
+  font-size: var(--fs-caption);
+  color: var(--text-muted-strong);
+}
+
+@media (max-width: 860px) {
+  .kpiBand {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .figureGrid {
+    grid-template-columns: 1fr;
+  }
+  .figure {
+    border-left: none;
+  }
+  .figure:nth-child(n + 2) {
+    border-top: 1px solid var(--border);
+  }
+}
+
+/* -------------------------------------------------------- quality meters -- */
+
+.qualityGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: var(--space-4);
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  padding: clamp(var(--space-4), 3vw, var(--space-5));
+}
+.meter {
+  display: grid;
+  gap: var(--space-2);
+}
+.meterTop {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: var(--space-2);
+}
+.meterLabel {
+  font-family: var(--font-mono);
+  font-size: var(--fs-caption);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--text-muted-strong);
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+}
+.meterValue {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: var(--fs-h3);
+  color: var(--ink);
+  font-variant-numeric: tabular-nums;
+}
+.meterTrack {
+  display: block;
+  height: 10px;
+  border-radius: var(--radius-full);
+  background: var(--surface-mint);
+  overflow: hidden;
+}
+.meterFill {
+  display: block;
+  height: 100%;
+  border-radius: var(--radius-full);
+  background: var(--forest-2);
+}
+.meterFill[data-tone='good'] {
+  background: var(--success);
+}
+.meterFill[data-tone='risk'] {
+  background: var(--warning);
+}
+.meterHint {
+  font-size: var(--fs-caption);
+  color: var(--text-muted-strong);
+}
+
+/* ------------------------------------------------------------ breakdowns -- */
+
+.breakGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: var(--space-4);
+}
+.panel {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  padding: clamp(var(--space-4), 3vw, var(--space-5));
+  display: grid;
+  gap: var(--space-4);
+  align-content: start;
+}
+.panelLabel {
+  font-family: var(--font-mono);
+  font-size: var(--fs-caption);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--text-muted-strong);
+}
+.panelLabelRow {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: var(--space-2);
+}
+.avgSize {
+  font-family: var(--font-mono);
+  font-size: var(--fs-label);
+  color: var(--forest);
+  font-variant-numeric: tabular-nums;
+}
+
+.bars {
+  display: grid;
+  gap: var(--space-3);
+}
+.barRow {
+  display: grid;
+  grid-template-columns: 5rem 1fr auto;
+  align-items: center;
+  gap: var(--space-3);
+}
+.barName {
+  font-size: var(--fs-ui);
+  font-weight: 500;
+  white-space: nowrap;
+}
+.barTrack {
+  height: 12px;
+  background: var(--surface-mint);
+  border-radius: var(--radius-full);
+  overflow: hidden;
+}
+.barFill {
+  display: block;
+  height: 100%;
+  border-radius: var(--radius-full);
+  background: var(--forest-2);
+  min-width: 2px;
+}
+.barValue {
+  font-family: var(--font-mono);
+  font-size: var(--fs-label);
+  color: var(--ink);
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+
+/* Gender split (100% stacked). */
+.split {
+  display: grid;
+  gap: var(--space-3);
+}
+.splitTrack {
+  display: flex;
+  height: 20px;
+  border-radius: var(--radius-full);
+  overflow: hidden;
+  background: var(--surface-mint);
+  gap: 2px;
+}
+.splitFill {
+  height: 100%;
+  min-width: 2px;
+}
+.splitLegend {
+  display: grid;
+  gap: var(--space-2);
+}
+.legendRow {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  align-items: center;
+  gap: var(--space-2);
+  font-size: var(--fs-label);
+}
+.legendSwatch {
+  width: 12px;
+  height: 12px;
+  border-radius: 3px;
+  flex: 0 0 auto;
+}
+.legendName {
+  color: var(--ink);
+}
+.legendValue {
+  font-family: var(--font-mono);
+  color: var(--text-muted-strong);
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}

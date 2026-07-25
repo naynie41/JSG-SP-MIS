@@ -10,6 +10,8 @@ use App\Domain\Benefit\Models\Benefit;
 use App\Domain\Programme\Models\Activity;
 use App\Domain\Programme\Models\Programme;
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Support\Carbon;
+use Illuminate\Support\Facades\DB;
 
 /**
  * The single aggregation seam over the benefit ledger (PRD FR-BEN-03, FR-PRG-04).
@@ -164,6 +166,86 @@ class LedgerAggregator
                 'total_quantity' => (string) $row->getAttribute('qty'),
             ])
             ->all();
+    }
+
+    /**
+     * NET-UNIQUE beneficiaries SERVED in scope — distinct beneficiaries with at least
+     * one (non-reversed) delivery. This is deliberately distinct from the GROSS
+     * delivery count ({@see scopedTotals}['benefit_count']): a person served three
+     * times counts once here, three times there.
+     *
+     * @param  list<string>|null  $mdaIds
+     * @param  list<string>|null  $programmeIds
+     */
+    public function scopedDistinctBeneficiaries(?array $mdaIds, ?array $programmeIds): int
+    {
+        return (int) $this->scopedLedger($mdaIds, $programmeIds)->distinct()->count('beneficiary_id');
+    }
+
+    /**
+     * Net-unique beneficiaries reached per programme (distinct served), for the
+     * programme-performance metric.
+     *
+     * @param  list<string>|null  $mdaIds
+     * @param  list<string>|null  $programmeIds
+     * @return array<string, int>
+     */
+    public function scopedReachByProgramme(?array $mdaIds, ?array $programmeIds): array
+    {
+        return $this->scopedLedger($mdaIds, $programmeIds)
+            ->selectRaw('programme_id, count(distinct beneficiary_id) as reached')
+            ->groupBy('programme_id')
+            ->get()
+            ->mapWithKeys(fn (Benefit $r) => [(string) $r->getAttribute('programme_id') => (int) $r->getAttribute('reached')])
+            ->all();
+    }
+
+    /**
+     * Net-unique beneficiaries reached per ACTIVITY (distinct served), for the
+     * activity-level drill-down under programme performance.
+     *
+     * @param  list<string>|null  $mdaIds
+     * @param  list<string>|null  $programmeIds
+     * @return array<string, int>
+     */
+    public function scopedReachByActivity(?array $mdaIds, ?array $programmeIds): array
+    {
+        return $this->scopedLedger($mdaIds, $programmeIds)
+            ->selectRaw('activity_id, count(distinct beneficiary_id) as reached')
+            ->groupBy('activity_id')
+            ->get()
+            ->mapWithKeys(fn (Benefit $r) => [(string) $r->getAttribute('activity_id') => (int) $r->getAttribute('reached')])
+            ->all();
+    }
+
+    /**
+     * Monthly disbursed value for the last `$months` months (periodised trend). Keys
+     * are 'YYYY-MM'; only months with deliveries appear (callers zero-fill the gaps).
+     *
+     * @param  list<string>|null  $mdaIds
+     * @param  list<string>|null  $programmeIds
+     * @return array<string, int>
+     */
+    public function scopedDisbursementSeries(?array $mdaIds, ?array $programmeIds, int $months): array
+    {
+        $expr = self::monthKeyExpr('delivery_date');
+        $since = Carbon::now()->startOfMonth()->subMonths(max(0, $months - 1))->toDateString();
+
+        return $this->scopedLedger($mdaIds, $programmeIds)
+            ->whereDate('delivery_date', '>=', $since)
+            ->selectRaw("{$expr} as m, coalesce(sum(monetary_value), 0) as v")
+            ->groupByRaw($expr)
+            ->get()
+            ->mapWithKeys(fn (Benefit $r) => [(string) $r->getAttribute('m') => (int) $r->getAttribute('v')])
+            ->all();
+    }
+
+    /** Driver-aware 'YYYY-MM' month bucket for a date column (sqlite + pgsql). */
+    public static function monthKeyExpr(string $column): string
+    {
+        return DB::connection()->getDriverName() === 'pgsql'
+            ? "to_char({$column}, 'YYYY-MM')"
+            : "strftime('%Y-%m', {$column})";
     }
 
     /**

@@ -2,11 +2,12 @@ import { beforeEach, describe, expect, it, vi } from 'vitest'
 import type { Mock } from 'vitest'
 import type { ReactNode } from 'react'
 import { render, screen } from '@testing-library/react'
+import userEvent from '@testing-library/user-event'
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 import { MemoryRouter } from 'react-router-dom'
 import { ExecutiveDashboardPage } from './ExecutiveDashboardPage'
 import { dashboardApi } from './api'
-import type { DashboardResponse } from './types'
+import { makeExecutivePayload } from './executiveTestData'
 
 vi.mock('./api', () => ({ dashboardApi: { get: vi.fn() } }))
 
@@ -16,33 +17,6 @@ vi.mock('@/lib/auth/AuthProvider', () => ({
 }))
 
 const get = dashboardApi.get as Mock
-
-const payload: DashboardResponse = {
-  scope: { kind: 'state_wide', label: 'State-wide' },
-  computed_at: new Date().toISOString(),
-  metrics: {
-    registry: {
-      beneficiaries: { total: 1234, by_status: { active: 1200, suspended: 34 }, by_source: {}, by_lga: { dutse: 800, hadejia: 434 } },
-      households: { total: 300, by_lga: {} },
-    },
-    programmes: { total: 15, active: 12 },
-    duplicates: { matches_surfaced: 50, resolved_new: 30, resolved_served: 15, resolved_skipped: 5 },
-    benefits: {
-      disbursed: { benefit_count: 320, total_value: 45_000_000, total_quantity: '0' },
-      budget: { allocated: 100_000_000, utilized_value: 45_000_000, utilized_quantity: '0', benefit_count: 320, remaining: 55_000_000, utilization_rate: 0.45 },
-      by_type: [
-        { key: 'cash', benefit_count: 200, total_value: 30_000_000, total_quantity: '0' },
-        { key: 'food', benefit_count: 120, total_value: 15_000_000, total_quantity: '0' },
-      ],
-    },
-    referrals: { total: 40, by_status: { created: 10, completed: 20 }, completed: 20, completion_rate: 0.5, overdue: 3, avg_completion_days: 6 },
-    grievances: { total: 10, by_status: { open: 4 }, sla_breaches: 2, avg_resolution_days: 4 },
-    coverage: [
-      { lga: 'dutse', beneficiary_count: 800, benefit_count: 200, benefit_value: 20_000_000 },
-      { lga: 'hadejia', beneficiary_count: 434, benefit_count: 120, benefit_value: 15_000_000 },
-    ],
-  },
-}
 
 function renderPage(ui: ReactNode) {
   const qc = new QueryClient({ defaultOptions: { queries: { retry: false } } })
@@ -59,40 +33,52 @@ describe('ExecutiveDashboardPage', () => {
     mockRole.key = 'executive'
   })
 
-  it('renders the state-wide briefing from the aggregation layer', async () => {
-    get.mockResolvedValue(payload)
+  it('renders the shared hero, headline and the tabbed suite', async () => {
+    get.mockResolvedValue(makeExecutivePayload())
 
     renderPage(<ExecutiveDashboardPage />)
 
-    // Editorial hero + marquee headline figure (beneficiaries appears in the hero
-    // AND the key-figures band).
     expect(await screen.findByRole('heading', { name: /state of social protection in Jigawa/i })).toBeInTheDocument()
-    expect(screen.getByText('State-wide briefing')).toBeInTheDocument()
-    expect(screen.getAllByText('1,234').length).toBeGreaterThan(0)          // beneficiaries reached
-    expect(screen.getAllByText('₦450,000.00').length).toBeGreaterThan(0)    // benefits disbursed
+    expect(screen.getByText('Executive briefing')).toBeInTheDocument()
+    expect(screen.getAllByText('8,420').length).toBeGreaterThan(0) // net-unique headline
 
-    // Key figures + budget.
-    expect(screen.getByText('12')).toBeInTheDocument()                      // active programmes
-    expect(screen.getByText('45%')).toBeInTheDocument()                     // budget utilisation
-
-    // Ranked coverage + benefit-type bars.
-    expect(screen.getByText('Dutse')).toBeInTheDocument()
-    expect(screen.getByText('Hadejia')).toBeInTheDocument()
-    expect(screen.getByText('Cash')).toBeInTheDocument()
-
-    // Coordination.
-    expect(screen.getByText('Referrals')).toBeInTheDocument()
-    expect(screen.getByText('Grievances')).toBeInTheDocument()
-    expect(screen.getByText('50%')).toBeInTheDocument()                     // referral completion donut
+    // Tabs; Overview is the default panel.
+    expect(screen.getByRole('tab', { name: 'Overview' })).toBeInTheDocument()
+    expect(screen.getByRole('tab', { name: 'Programmes' })).toBeInTheDocument()
+    expect(screen.getByRole('tab', { name: 'Registry' })).toBeInTheDocument()
+    expect(screen.getByText(/net-unique beneficiaries have been reached/i)).toBeInTheDocument()
   })
 
-  it('is strictly read-only — no edit controls', async () => {
-    get.mockResolvedValue(payload)
+  it('switches to the Registry tab', async () => {
+    get.mockResolvedValue(makeExecutivePayload())
 
     renderPage(<ExecutiveDashboardPage />)
-    await screen.findAllByText('1,234')
+    await screen.findByRole('tab', { name: 'Registry' })
 
-    // The only control is Refresh (a read); nothing mutating.
+    await userEvent.click(screen.getByRole('tab', { name: 'Registry' }))
+
+    expect(screen.getByRole('heading', { name: 'Data quality' })).toBeInTheDocument()
+    expect(screen.getByText('Verification rate')).toBeInTheDocument()
+  })
+
+  it('switches to the Programmes tab', async () => {
+    get.mockResolvedValue(makeExecutivePayload())
+
+    renderPage(<ExecutiveDashboardPage />)
+    await screen.findByRole('tab', { name: 'Programmes' })
+
+    await userEvent.click(screen.getByRole('tab', { name: 'Programmes' }))
+
+    expect(screen.getByRole('heading', { name: 'Financials' })).toBeInTheDocument()
+    expect(screen.getByRole('heading', { name: 'Comparison' })).toBeInTheDocument()
+  })
+
+  it('is strictly read-only — Refresh is the only mutfree control, no edit controls', async () => {
+    get.mockResolvedValue(makeExecutivePayload())
+
+    renderPage(<ExecutiveDashboardPage />)
+    await screen.findAllByText('8,420')
+
     expect(screen.getByRole('button', { name: /refresh/i })).toBeInTheDocument()
     expect(screen.queryByRole('button', { name: /edit|create|save|delete|add|new|remove|update/i })).toBeNull()
     expect(screen.queryByRole('textbox')).toBeNull()
@@ -104,7 +90,7 @@ describe('ExecutiveDashboardPage', () => {
     renderPage(<ExecutiveDashboardPage />)
 
     expect(screen.getByText(/available to Executive users only/i)).toBeInTheDocument()
-    expect(screen.queryByText('1,234')).toBeNull()
-    expect(get).not.toHaveBeenCalled() // data is never fetched for a non-executive
+    expect(screen.queryByText('8,420')).toBeNull()
+    expect(get).not.toHaveBeenCalled()
   })
 })
