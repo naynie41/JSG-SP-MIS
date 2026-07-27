@@ -27,6 +27,17 @@ describe('ExecutiveOverviewTab', () => {
     expect(screen.getByText(/records pending verification/i)).toBeInTheDocument()
   })
 
+  it('renders labelled trend projections with stated assumptions', () => {
+    render(<ExecutiveOverviewTab data={makeExecutivePayload()} />)
+
+    expect(screen.getByRole('heading', { name: 'Projections' })).toBeInTheDocument()
+    // Every projection is explicitly labelled (not presented as certainty)…
+    expect(screen.getAllByText(/Projection · based on current trend/i).length).toBeGreaterThan(0)
+    expect(screen.getByText('Budget runway')).toBeInTheDocument()
+    // …and states its assumption.
+    expect(screen.getAllByText(/Assumes/i).length).toBeGreaterThan(0)
+  })
+
   it('renders the programme share donut and demographics', () => {
     render(<ExecutiveOverviewTab data={makeExecutivePayload()} />)
 

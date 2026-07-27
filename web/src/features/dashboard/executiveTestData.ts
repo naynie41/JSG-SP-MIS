@@ -1,3 +1,4 @@
+import { EMPTY_FILTER } from './types'
 import type { DashboardResponse, TrendPoint } from './types'
 
 /**
@@ -12,7 +13,22 @@ const series = (values: number[]): TrendPoint[] => months.map((m, i) => ({ month
 
 export function makeExecutivePayload(): DashboardResponse {
   return {
-    scope: { kind: 'state_wide', label: 'State-wide' },
+    scope: { kind: 'state_wide', label: 'State-wide', tier: 'statewide' },
+    live: false,
+    filters: { ...EMPTY_FILTER },
+    filter_options: {
+      programmes: [
+        { id: 'p-a', name: 'cash_transfer' },
+        { id: 'p-b', name: 'school_feeding' },
+      ],
+      mdas: [
+        { id: 'mda-1', name: 'Ministry of Humanitarian Affairs' },
+        { id: 'mda-2', name: 'Ministry of Education' },
+      ],
+      lgas: ['dutse', 'hadejia', 'gumel'],
+      wards: ['zango'],
+      years: [2026, 2025],
+    },
     computed_at: new Date().toISOString(),
     metrics: {
       registry: {
@@ -202,11 +218,30 @@ export function makeExecutivePayload(): DashboardResponse {
       },
       coordination: {
         active_mdas: 6,
+        joint_programmes: 2,
         cross_mda_beneficiaries: 900,
         referral_throughput: { total: 200, completed: 150, completion_rate: 0.75 },
-        request_to_serve: { raised: 80, accepted: 50, declined: 10, pending: 20 },
-        partners: { count: 3, funded_programmes: 2, beneficiaries_served: 2100, funding_allocated: 60_000_000 },
-        sync_health: { total_runs: 40, succeeded: 37, failed: 3, last_run_at: new Date().toISOString(), api_registrations: 512 },
+        request_to_serve: { raised: 80, accepted: 50, declined: 10, pending: 20, approval_rate: 0.833, avg_turnaround_hours: 18.5 },
+        partners: {
+          count: 3,
+          funded_programmes: 2,
+          beneficiaries_served: 2100,
+          funding_allocated: 60_000_000,
+          list: [
+            { partner_id: 'u-1', name: 'World Bank', funded_programmes: 2, beneficiaries_served: 1600, funding_allocated: 40_000_000 },
+            { partner_id: 'u-2', name: 'UNICEF', funded_programmes: 1, beneficiaries_served: 700, funding_allocated: 15_000_000 },
+            { partner_id: 'u-3', name: 'Dangote Foundation', funded_programmes: 1, beneficiaries_served: 300, funding_allocated: 5_000_000 },
+          ],
+        },
+        sync_health: {
+          total_runs: 40,
+          succeeded: 37,
+          failed: 3,
+          last_run_at: new Date().toISOString(),
+          api_registrations: 512,
+          connectors: 4,
+          sources: ['socu', 'government_system', 'kobo', 'api'],
+        },
       },
       coverage_bands: {
         basis: 'absolute',

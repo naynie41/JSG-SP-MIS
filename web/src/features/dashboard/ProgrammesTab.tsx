@@ -4,7 +4,7 @@ import { Icon } from '@/components/Icon/Icon'
 import { useAuth } from '@/lib/auth/AuthProvider'
 import { formatNaira } from '@/lib/utils/money'
 import { titleCase } from '@/features/registry/constants'
-import type { ActivityPerformance, DashboardResponse, ProgrammePerformance, ProgrammeScoring, TrafficLight } from './types'
+import type { ActivityPerformance, DashboardResponse, DrillFn, ProgrammePerformance, ProgrammeScoring, TrafficLight } from './types'
 import styles from './programmes.module.css'
 
 /* ------------------------------------------------------------------ helpers */
@@ -155,7 +155,7 @@ function FinancialDashboard({ data, programmes }: { data: DashboardResponse; pro
 
 /* ------------------------------------------------------- comparison table --- */
 
-function ComparisonTable({ programmes }: { programmes: ProgrammePerformance[] }) {
+function ComparisonTable({ programmes, onDrill }: { programmes: ProgrammePerformance[]; onDrill?: DrillFn }) {
   // Rated programmes first (by completion desc), unrated last.
   const rows = programmes.slice().sort((a, b) => (b.completion_rate ?? -1) - (a.completion_rate ?? -1))
 
@@ -183,7 +183,13 @@ function ComparisonTable({ programmes }: { programmes: ProgrammePerformance[] })
             {rows.map((p) => (
               <tr key={p.programme_id}>
                 <th scope="row" className={styles.progCell}>
-                  {name(p.name)}
+                  {onDrill ? (
+                    <button type="button" className={styles.progDrill} onClick={() => onDrill('programmes', { programme_id: p.programme_id })}>
+                      {name(p.name)}
+                    </button>
+                  ) : (
+                    name(p.name)
+                  )}
                 </th>
                 <td>{num(p.target)}</td>
                 <td>{num(p.reached)}</td>
@@ -340,6 +346,8 @@ const SCORING_LEGEND: { light: TrafficLight; note: (s?: ProgrammeScoring) => str
 
 export interface ProgrammesTabProps {
   data: DashboardResponse
+  /** Drill-down: filter the whole view to a programme (e.g. click a comparison row). */
+  onDrill?: DrillFn
 }
 
 /**
@@ -349,7 +357,7 @@ export interface ProgrammesTabProps {
  * disbursement), and a configurable traffic-light score. All figures come scoped +
  * de-identified from the reporting aggregation layer.
  */
-export function ProgrammesTab({ data }: ProgrammesTabProps) {
+export function ProgrammesTab({ data, onDrill }: ProgrammesTabProps) {
   const { hasPermission } = useAuth()
   const canDrillDown = hasPermission('activity.view')
   const programmes = data.metrics.programme_performance ?? []
@@ -377,7 +385,7 @@ export function ProgrammesTab({ data }: ProgrammesTabProps) {
 
       <FinancialDashboard data={data} programmes={programmes} />
 
-      <ComparisonTable programmes={programmes} />
+      <ComparisonTable programmes={programmes} onDrill={onDrill} />
 
       <section className={styles.section} aria-label="Programme performance">
         <div className={styles.sectionHead}>

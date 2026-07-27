@@ -19,6 +19,7 @@ use App\Domain\Registry\Models\Beneficiary;
 use App\Domain\Registry\Models\Household;
 use App\Domain\Registry\Models\HouseholdMembership;
 use App\Domain\Registry\Models\ServiceRequest;
+use App\Domain\Reporting\Support\DashboardFilter;
 use App\Domain\Reporting\Support\DashboardScope;
 use App\Domain\Sync\Models\SyncConnector;
 use App\Domain\Sync\Models\SyncRun;
@@ -40,13 +41,28 @@ use Illuminate\Support\Facades\DB;
  */
 class DashboardMetricsService
 {
-    public function __construct(private readonly LedgerAggregator $ledger) {}
+    /**
+     * The active cross-cutting filter for this compute pass. Set at the top of
+     * {@see compute()} and read by the base query builders + ledger calls; it only ever
+     * NARROWS the scope (applied on top of it), so it can never widen visibility.
+     */
+    private DashboardFilter $filter;
+
+    public function __construct(private readonly LedgerAggregator $ledger)
+    {
+        $this->filter = DashboardFilter::none();
+    }
 
     /**
+     * Compute the metric bundle for a scope. When `$filter` is set (a filtered request),
+     * every metric is recomputed live with the filter pushed into its queries; the
+     * unfiltered snapshot path passes no filter.
+     *
      * @return array<string, mixed>
      */
-    public function compute(DashboardScope $scope): array
+    public function compute(DashboardScope $scope, ?DashboardFilter $filter = null): array
     {
+        $this->filter = $filter ?? DashboardFilter::none();
         $coordination = $scope->includesCoordinationMetrics();
         $coverage = $this->coverage($scope);
 
@@ -74,6 +90,51 @@ class DashboardMetricsService
             'trends' => $this->trends($scope),
             // Deferred slots exist (stable shape) but return nothing until switched on.
             'deferred' => $this->deferredSlots(),
+        ];
+    }
+
+    /**
+     * The universe of filter options WITHIN a scope (unfiltered) — so the UI only ever
+     * offers programmes/MDAs/areas the caller may actually see. Computed live (small
+     * distinct lists); never widens the scope.
+     *
+     * @return array<string, mixed>
+     */
+    public function filterOptions(DashboardScope $scope): array
+    {
+        $this->filter = DashboardFilter::none();
+        $base = $this->beneficiaryBase($scope);
+
+        $programmeIds = $this->programmeIdsInScope($scope);
+        $programmes = Programme::query()->whereIn('id', $programmeIds)
+            ->orderBy('name')->get(['id', 'name'])
+            ->map(fn (Programme $p) => ['id' => $p->id, 'name' => $p->name])->all();
+
+        $mdaQuery = Mda::query();
+        if ($scope->isPartner()) {
+            $mdaIds = Activity::query()->withoutGlobalScope(MdaScope::class)
+                ->whereIn('programme_id', $programmeIds)->distinct()->pluck('owner_mda_id')->all();
+            $mdaQuery->whereIn('id', $mdaIds);
+        } elseif ($scope->mdaIds !== null) {
+            $mdaQuery->whereIn('id', $scope->mdaIds);
+        }
+        $mdas = $mdaQuery->orderBy('name')->get(['id', 'name'])
+            ->map(fn (Mda $m) => ['id' => $m->id, 'name' => $m->name])->all();
+
+        $lgas = (clone $base)->whereNotNull('lga')->distinct()->orderBy('lga')->pluck('lga')->values()->all();
+        $wards = (clone $base)->whereNotNull('ward')->distinct()->orderBy('ward')->pluck('ward')->values()->all();
+
+        $expr = LedgerAggregator::monthKeyExpr('registration_date');
+        $years = (clone $base)->whereNotNull('registration_date')
+            ->selectRaw("substr({$expr}, 1, 4) as y")->distinct()->orderByDesc('y')->pluck('y')
+            ->map(fn ($y) => (int) $y)->values()->all();
+
+        return [
+            'programmes' => $programmes,
+            'mdas' => $mdas,
+            'lgas' => $lgas,
+            'wards' => $wards,
+            'years' => $years,
         ];
     }
 
@@ -112,28 +173,31 @@ class DashboardMetricsService
      */
     private function programmes(DashboardScope $scope): array
     {
-        $ids = null; // state-wide: the whole catalog
-        if ($scope->isPartner()) {
-            $ids = $scope->programmeIds ?? [];
-        } elseif ($scope->mdaIds !== null) {
-            $ids = Activity::query()->withoutGlobalScope(MdaScope::class)
-                ->whereIn('owner_mda_id', $scope->mdaIds)
-                ->distinct()
-                ->pluck('programme_id')
-                ->all();
-        }
-
-        $query = Programme::query();
-        if ($ids !== null) {
-            $query->whereIn('id', $ids);
-        }
-
-        // Activities scoped the same way (partner → funded programmes; MDA → owned; else state-wide).
+        // Activities scoped the same way (partner → funded; MDA → owned; else state-wide),
+        // then narrowed by the cross-cutting filter (programme/MDA/area).
         $activities = Activity::query()->withoutGlobalScope(MdaScope::class);
         if ($scope->isPartner()) {
             $activities->whereIn('programme_id', $scope->programmeIds ?? []);
         } elseif ($scope->mdaIds !== null) {
             $activities->whereIn('owner_mda_id', $scope->mdaIds);
+        }
+        $this->applyActivityFilter($activities);
+
+        // Catalog membership: whole catalog only for an unfiltered state-wide view; a
+        // partner sees its funded set; otherwise the programmes with a matching activity.
+        $ids = null;
+        if ($scope->isPartner()) {
+            $ids = $scope->programmeIds ?? [];
+            if ($this->filter->programmeId !== null) {
+                $ids = array_values(array_intersect($ids, [$this->filter->programmeId]));
+            }
+        } elseif ($scope->mdaIds !== null || ! $this->filter->isEmpty()) {
+            $ids = (clone $activities)->distinct()->pluck('programme_id')->all();
+        }
+
+        $query = Programme::query();
+        if ($ids !== null) {
+            $query->whereIn('id', $ids);
         }
 
         return [
@@ -173,10 +237,12 @@ class DashboardMetricsService
      */
     private function benefits(DashboardScope $scope): array
     {
+        $lf = $this->filter->ledgerFilters();
+
         return [
-            'disbursed' => $this->ledger->scopedTotals($scope->mdaIds, $scope->programmeIds),
-            'budget' => $this->ledger->scopedBudget($scope->mdaIds, $scope->programmeIds),
-            'by_type' => $this->ledger->scopedGroup('benefit_type', $scope->mdaIds, $scope->programmeIds),
+            'disbursed' => $this->ledger->scopedTotals($scope->mdaIds, $scope->programmeIds, $lf),
+            'budget' => $this->ledger->scopedBudget($scope->mdaIds, $scope->programmeIds, $lf),
+            'by_type' => $this->ledger->scopedGroup('benefit_type', $scope->mdaIds, $scope->programmeIds, $lf),
         ];
     }
 
@@ -244,7 +310,7 @@ class DashboardMetricsService
     private function coverage(DashboardScope $scope): array
     {
         $beneficiaryByLga = $this->countBy($this->beneficiaryBase($scope), 'lga');
-        $benefitByLga = $this->ledger->scopedGroup('lga', $scope->mdaIds, $scope->programmeIds);
+        $benefitByLga = $this->ledger->scopedGroup('lga', $scope->mdaIds, $scope->programmeIds, $this->filter->ledgerFilters());
 
         $out = [];
         foreach ($beneficiaryByLga as $lga => $count) {
@@ -279,7 +345,7 @@ class DashboardMetricsService
         return [
             'total_households' => $households === null ? 0 : (clone $households)->count(),
             'total_individuals' => (clone $base)->count(),
-            'net_unique_served' => $this->ledger->scopedDistinctBeneficiaries($scope->mdaIds, $scope->programmeIds),
+            'net_unique_served' => $this->ledger->scopedDistinctBeneficiaries($scope->mdaIds, $scope->programmeIds, $this->filter->ledgerFilters()),
             'new_registrations_period' => (clone $base)->whereDate('registration_date', '>=', $since)->count(),
             'lgas_covered' => (clone $base)->whereNotNull('lga')->distinct()->count('lga'),
             'wards_covered' => (clone $base)->whereNotNull('ward')->distinct()->count('ward'),
@@ -409,6 +475,8 @@ class DashboardMetricsService
         if ($scope->mdaIds !== null && ! $scope->isPartner()) {
             $activityQuery->whereIn('owner_mda_id', $scope->mdaIds);
         }
+        $this->applyActivityFilter($activityQuery);
+        $lf = $this->filter->ledgerFilters();
         $activityAgg = (clone $activityQuery)
             ->selectRaw('programme_id, coalesce(sum(target_beneficiaries), 0) as target, coalesce(sum(budget_amount), 0) as allocated')
             ->groupBy('programme_id')
@@ -423,12 +491,12 @@ class DashboardMetricsService
             ->whereIn('id', $activityRows->flatten(1)->pluck('owner_mda_id')->filter()->unique()->all())
             ->pluck('name', 'id');
 
-        $reach = $this->ledger->scopedReachByProgramme($scope->mdaIds, $programmeIds);
-        $activityReach = $this->ledger->scopedReachByActivity($scope->mdaIds, $programmeIds);
-        $spent = collect($this->ledger->scopedGroup('programme', $scope->mdaIds, $programmeIds))
+        $reach = $this->ledger->scopedReachByProgramme($scope->mdaIds, $programmeIds, $lf);
+        $activityReach = $this->ledger->scopedReachByActivity($scope->mdaIds, $programmeIds, $lf);
+        $spent = collect($this->ledger->scopedGroup('programme', $scope->mdaIds, $programmeIds, $lf))
             ->keyBy('key')
             ->map(fn (array $g) => (int) $g['total_value']);
-        $activitySpent = collect($this->ledger->scopedGroup('activity', $scope->mdaIds, $programmeIds))
+        $activitySpent = collect($this->ledger->scopedGroup('activity', $scope->mdaIds, $programmeIds, $lf))
             ->keyBy('key')
             ->map(fn (array $g) => (int) $g['total_value']);
         $programmes = Programme::query()->whereIn('id', $programmeIds)->get(['id', 'name', 'status'])->keyBy('id');
@@ -463,8 +531,8 @@ class DashboardMetricsService
                 return [
                     'activity_id' => $a->id,
                     'name' => $a->name,
-                    'mda' => $a->owner_mda_id !== null ? ($mdaNames[$a->owner_mda_id] ?? null) : null,
-                    'status' => $a->status instanceof \BackedEnum ? $a->status->value : $a->status,
+                    'mda' => $mdaNames[$a->owner_mda_id] ?? null,
+                    'status' => $a->status->value,
                     'target' => $aTarget,
                     'reached' => $aReached,
                     'completion_rate' => $aCompletion,
@@ -557,14 +625,14 @@ class DashboardMetricsService
      */
     private function coordination(DashboardScope $scope): array
     {
-        $activeMdas = (int) Benefit::query()->withoutGlobalScope(MdaScope::class)
-            ->when($scope->mdaIds !== null, fn ($q) => $q->whereIn('mda_id', $scope->mdaIds))
+        $activeMdas = (int) $this->applyBenefitFilter(Benefit::query()->withoutGlobalScope(MdaScope::class)
+            ->when($scope->mdaIds !== null, fn ($q) => $q->whereIn('mda_id', $scope->mdaIds)))
             ->distinct()->count('mda_id');
 
-        $joint = (int) Benefit::query()->withoutGlobalScope(MdaScope::class)
+        $joint = (int) $this->applyBenefitFilter(Benefit::query()->withoutGlobalScope(MdaScope::class)
             ->join('beneficiaries', 'benefits.beneficiary_id', '=', 'beneficiaries.id')
             ->whereColumn('benefits.mda_id', '!=', 'beneficiaries.owner_mda_id')
-            ->when($scope->mdaIds !== null, fn ($q) => $q->whereIn('benefits.mda_id', $scope->mdaIds))
+            ->when($scope->mdaIds !== null, fn ($q) => $q->whereIn('benefits.mda_id', $scope->mdaIds)), 'benefits.')
             ->distinct()->count('benefits.beneficiary_id');
 
         $refBase = Referral::query()->withoutGlobalScopes();
@@ -572,6 +640,7 @@ class DashboardMetricsService
             $ids = $scope->mdaIds;
             $refBase->where(fn (Builder $w) => $w->whereIn('from_mda_id', $ids)->orWhereIn('to_mda_id', $ids));
         }
+        $this->applyCoordinationFilter($refBase, 'from_mda_id', 'to_mda_id');
         $refTotal = (clone $refBase)->count();
         $refCompleted = (clone $refBase)->whereNotNull('completed_at')->count();
 
@@ -580,6 +649,7 @@ class DashboardMetricsService
             $ids = $scope->mdaIds;
             $srBase->where(fn (Builder $w) => $w->whereIn('from_mda_id', $ids)->orWhereIn('to_mda_id', $ids));
         }
+        $this->applyCoordinationFilter($srBase, 'from_mda_id', 'to_mda_id');
         $srByStatus = $this->countBy($srBase, 'status');
         $accepted = $srByStatus['accepted'] ?? 0;
         $declined = $srByStatus['declined'] ?? 0;
@@ -596,6 +666,17 @@ class DashboardMetricsService
         if ($scope->mdaIds !== null) {
             $syncBase->whereIn('owner_mda_id', $scope->mdaIds);
             $connectorBase->whereIn('owner_mda_id', $scope->mdaIds);
+        }
+        if ($this->filter->mdaId !== null) {
+            $syncBase->where('owner_mda_id', $this->filter->mdaId);
+            $connectorBase->where('owner_mda_id', $this->filter->mdaId);
+        }
+        [$syncFrom, $syncTo] = $this->filter->dateRange();
+        if ($syncFrom !== null) {
+            $syncBase->whereDate('created_at', '>=', $syncFrom);
+        }
+        if ($syncTo !== null) {
+            $syncBase->whereDate('created_at', '<=', $syncTo);
         }
         $lastRun = (clone $syncBase)->latest('created_at')->first();
 
@@ -645,12 +726,23 @@ class DashboardMetricsService
         if ($scopeProgrammeIds !== null) {
             $query->whereIn('programme_id', $scopeProgrammeIds);
         }
+        // Area/programme filter narrows which programmes qualify; an MDA filter is NOT
+        // applied here — "joint" is inherently multi-MDA, so pinning one MDA is moot.
+        if ($this->filter->programmeId !== null) {
+            $query->where('programme_id', $this->filter->programmeId);
+        }
+        if ($this->filter->lga !== null) {
+            $query->where('lga', $this->filter->lga);
+        }
+        if ($this->filter->ward !== null) {
+            $query->where('ward', $this->filter->ward);
+        }
 
-        return $query->select('programme_id')
+        $joint = $query->select('programme_id')
             ->groupBy('programme_id')
-            ->havingRaw('count(distinct owner_mda_id) > 1')
-            ->get()
-            ->count();
+            ->havingRaw('count(distinct owner_mda_id) > 1');
+
+        return (int) DB::query()->fromSub($joint, 'joint')->count();
     }
 
     /**
@@ -681,17 +773,19 @@ class DashboardMetricsService
         }
 
         $names = User::query()->whereIn('id', $rows->pluck('user_id')->unique()->all())->pluck('name', 'id');
-        $fundingFor = fn (array $ids): int => (int) Activity::query()->withoutGlobalScope(MdaScope::class)
-            ->whereIn('programme_id', $ids)->sum('budget_amount');
+        $lf = $this->filter->ledgerFilters();
+        $fundingFor = fn (array $ids): int => (int) $this->applyActivityFilter(
+            Activity::query()->withoutGlobalScope(MdaScope::class)->whereIn('programme_id', $ids)
+        )->sum('budget_amount');
 
-        $list = $rows->groupBy('user_id')->map(function ($partnerRows, $userId) use ($names, $fundingFor) {
+        $list = $rows->groupBy('user_id')->map(function ($partnerRows, $userId) use ($names, $fundingFor, $lf) {
             $pids = $partnerRows->pluck('programme_id')->unique()->values()->all();
 
             return [
                 'partner_id' => (string) $userId,
                 'name' => $names[$userId] ?? 'Partner',
                 'funded_programmes' => count($pids),
-                'beneficiaries_served' => $this->ledger->scopedDistinctBeneficiaries(null, $pids),
+                'beneficiaries_served' => $this->ledger->scopedDistinctBeneficiaries(null, $pids, $lf),
                 'funding_allocated' => $fundingFor($pids),
             ];
         })->sortByDesc('funding_allocated')->values()->all();
@@ -699,7 +793,7 @@ class DashboardMetricsService
         return [
             'count' => $rows->pluck('user_id')->unique()->count(),
             'funded_programmes' => count($programmeIds),
-            'beneficiaries_served' => $this->ledger->scopedDistinctBeneficiaries(null, $programmeIds),
+            'beneficiaries_served' => $this->ledger->scopedDistinctBeneficiaries(null, $programmeIds, $lf),
             'funding_allocated' => $fundingFor($programmeIds),
             'list' => $list,
         ];
@@ -747,7 +841,7 @@ class DashboardMetricsService
         $labels = $this->monthLabels($months);
 
         $registrations = $this->monthCountSeries($this->beneficiaryBase($scope), 'registration_date', $months);
-        $disbursement = $this->ledger->scopedDisbursementSeries($scope->mdaIds, $scope->programmeIds, $months);
+        $disbursement = $this->ledger->scopedDisbursementSeries($scope->mdaIds, $scope->programmeIds, $months, $this->filter->ledgerFilters());
         $programmes = $this->programmeGrowthSeries($scope, $months);
 
         $firstStart = Carbon::createFromFormat('Y-m', $labels[0])->startOfMonth()->toDateString();
@@ -851,22 +945,31 @@ class DashboardMetricsService
 
     /**
      * The catalog programme ids in scope: partner = funded set; MDA = programmes it
-     * runs (has activities for); state-wide = the whole catalog.
+     * runs (has activities for); state-wide = the whole catalog. A programme filter
+     * intersects the result (never widens it); an MDA/area filter narrows the MDA set.
      *
      * @return list<string>
      */
     private function programmeIdsInScope(DashboardScope $scope): array
     {
         if ($scope->isPartner()) {
-            return $scope->programmeIds ?? [];
-        }
-        if ($scope->mdaIds !== null) {
-            return Activity::query()->withoutGlobalScope(MdaScope::class)
-                ->whereIn('owner_mda_id', $scope->mdaIds)
+            $ids = $scope->programmeIds ?? [];
+        } elseif ($scope->mdaIds !== null) {
+            $ids = $this->applyActivityFilter(
+                Activity::query()->withoutGlobalScope(MdaScope::class)->whereIn('owner_mda_id', $scope->mdaIds)
+            )->distinct()->pluck('programme_id')->all();
+        } elseif (! $this->filter->isEmpty()) {
+            $ids = $this->applyActivityFilter(Activity::query()->withoutGlobalScope(MdaScope::class))
                 ->distinct()->pluck('programme_id')->all();
+        } else {
+            $ids = Programme::query()->pluck('id')->all();
         }
 
-        return Programme::query()->pluck('id')->all();
+        if ($this->filter->programmeId !== null) {
+            $ids = array_values(array_intersect($ids, [$this->filter->programmeId]));
+        }
+
+        return $ids;
     }
 
     /* -------------------------------------------------------------------- scope bases */
@@ -889,11 +992,124 @@ class DashboardMetricsService
                 ->pluck('beneficiary_id')
                 ->all();
 
-            return $query->whereIn('id', $servedIds);
+            $query->whereIn('id', $servedIds);
+        } elseif ($scope->mdaIds !== null) {
+            $query->whereIn('owner_mda_id', $scope->mdaIds);
         }
 
-        if ($scope->mdaIds !== null) {
-            $query->whereIn('owner_mda_id', $scope->mdaIds);
+        return $this->applyBeneficiaryFilter($query);
+    }
+
+    /**
+     * Apply the cross-cutting filter to a beneficiary query (registration date range,
+     * area, owning MDA, and — for a programme filter — restrict to those served by it).
+     *
+     * @param  Builder<Beneficiary>  $query
+     * @return Builder<Beneficiary>
+     */
+    private function applyBeneficiaryFilter(Builder $query): Builder
+    {
+        $f = $this->filter;
+        if ($f->mdaId !== null) {
+            $query->where('owner_mda_id', $f->mdaId);
+        }
+        if ($f->lga !== null) {
+            $query->where('lga', $f->lga);
+        }
+        if ($f->ward !== null) {
+            $query->where('ward', $f->ward);
+        }
+        [$from, $to] = $f->dateRange();
+        if ($from !== null) {
+            $query->whereDate('registration_date', '>=', $from);
+        }
+        if ($to !== null) {
+            $query->whereDate('registration_date', '<=', $to);
+        }
+        if ($f->programmeId !== null) {
+            $query->whereIn('id', Benefit::query()->withoutGlobalScope(MdaScope::class)
+                ->where('programme_id', $f->programmeId)->select('beneficiary_id'));
+        }
+
+        return $query;
+    }
+
+    /**
+     * Apply the cross-cutting filter to an activity query (programme, owning MDA, area).
+     *
+     * @param  Builder<Activity>  $query
+     * @return Builder<Activity>
+     */
+    private function applyActivityFilter(Builder $query): Builder
+    {
+        $f = $this->filter;
+        if ($f->programmeId !== null) {
+            $query->where('programme_id', $f->programmeId);
+        }
+        if ($f->mdaId !== null) {
+            $query->where('owner_mda_id', $f->mdaId);
+        }
+        if ($f->lga !== null) {
+            $query->where('lga', $f->lga);
+        }
+        if ($f->ward !== null) {
+            $query->where('ward', $f->ward);
+        }
+
+        return $query;
+    }
+
+    /**
+     * Apply the cross-cutting filter to a benefit-ledger query (programme, delivering
+     * MDA, area, delivery-date range). `$prefix` qualifies the columns for joined queries.
+     *
+     * @param  Builder<Benefit>  $query
+     * @return Builder<Benefit>
+     */
+    private function applyBenefitFilter(Builder $query, string $prefix = ''): Builder
+    {
+        $f = $this->filter;
+        if ($f->programmeId !== null) {
+            $query->where("{$prefix}programme_id", $f->programmeId);
+        }
+        if ($f->mdaId !== null) {
+            $query->where("{$prefix}mda_id", $f->mdaId);
+        }
+        if ($f->lga !== null) {
+            $query->where("{$prefix}lga", $f->lga);
+        }
+        if ($f->ward !== null) {
+            $query->where("{$prefix}ward", $f->ward);
+        }
+        [$from, $to] = $f->dateRange();
+        if ($from !== null) {
+            $query->whereDate("{$prefix}delivery_date", '>=', $from);
+        }
+        if ($to !== null) {
+            $query->whereDate("{$prefix}delivery_date", '<=', $to);
+        }
+
+        return $query;
+    }
+
+    /**
+     * Apply the MDA + date parts of the filter to a coordination record query
+     * (referrals / service requests) that has from/to MDA columns and a `created_at`.
+     *
+     * @param  Builder<covariant \Illuminate\Database\Eloquent\Model>  $query
+     */
+    private function applyCoordinationFilter(Builder $query, string $fromCol, string $toCol): Builder
+    {
+        $f = $this->filter;
+        if ($f->mdaId !== null) {
+            $query->where(fn (Builder $w) => $w->where($fromCol, $f->mdaId)->orWhere($toCol, $f->mdaId));
+        }
+        [$from, $to] = $f->dateRange();
+        if ($from !== null) {
+            $query->whereDate('created_at', '>=', $from);
+        }
+        if ($to !== null) {
+            $query->whereDate('created_at', '<=', $to);
         }
 
         return $query;
@@ -913,6 +1129,24 @@ class DashboardMetricsService
         $query = Household::query()->withoutGlobalScope(MdaScope::class);
         if ($scope->mdaIds !== null) {
             $query->whereIn('owner_mda_id', $scope->mdaIds);
+        }
+
+        $f = $this->filter;
+        if ($f->mdaId !== null) {
+            $query->where('owner_mda_id', $f->mdaId);
+        }
+        if ($f->lga !== null) {
+            $query->where('lga', $f->lga);
+        }
+        if ($f->ward !== null) {
+            $query->where('ward', $f->ward);
+        }
+        [$from, $to] = $f->dateRange();
+        if ($from !== null) {
+            $query->whereDate('created_at', '>=', $from);
+        }
+        if ($to !== null) {
+            $query->whereDate('created_at', '<=', $to);
         }
 
         return $query;

@@ -13,12 +13,21 @@ export interface TabItem {
 export interface TabsProps {
   items: TabItem[]
   defaultTabId?: string
+  /** Controlled active tab id (e.g. driven by a drill-down). Omit for uncontrolled. */
+  activeId?: string
+  onChange?: (id: string) => void
 }
 
-/** Tabs (DESIGN-SYSTEM.md §5.7) with roving keyboard nav and lime active bar. */
-export function Tabs({ items, defaultTabId }: TabsProps) {
+/** Tabs (DESIGN-SYSTEM.md §5.7) with roving keyboard nav and lime active bar. Works
+ * uncontrolled, or controlled via `activeId`/`onChange` (e.g. for drill-down). */
+export function Tabs({ items, defaultTabId, activeId, onChange }: TabsProps) {
   const baseId = useId()
-  const [active, setActive] = useState(defaultTabId ?? items[0]?.id)
+  const [internal, setInternal] = useState(defaultTabId ?? items[0]?.id)
+  const active = activeId ?? internal
+  const setActive = (id: string) => {
+    if (activeId === undefined) setInternal(id)
+    onChange?.(id)
+  }
 
   function onKeyDown(event: React.KeyboardEvent, index: number) {
     if (event.key !== 'ArrowRight' && event.key !== 'ArrowLeft') return

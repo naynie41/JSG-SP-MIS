@@ -19,6 +19,7 @@ use App\Domain\Registry\Models\HouseholdMembership;
 use App\Domain\Registry\Models\ServiceRequest;
 use App\Domain\Reporting\Services\DashboardService;
 use App\Domain\Reporting\Services\DashboardSnapshotService;
+use App\Domain\Sync\Models\SyncConnector;
 use Database\Seeders\RolesAndPermissionsSeeder;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Support\Carbon;
@@ -96,9 +97,12 @@ class ExecutiveMetricsTest extends TestCase
         // Coordination fixtures.
         Referral::create(['beneficiary_id' => $benA1->id, 'from_mda_id' => $this->mdaA->id, 'to_mda_id' => $this->mdaB->id, 'need' => 'Health', 'status' => 'created']);
         ServiceRequest::create(['beneficiary_id' => $benA3->id, 'from_mda_id' => $this->mdaB->id, 'to_mda_id' => $this->mdaA->id, 'status' => 'pending']);
-        ServiceRequest::create(['beneficiary_id' => $benA1->id, 'from_mda_id' => $this->mdaB->id, 'to_mda_id' => $this->mdaA->id, 'status' => 'accepted']);
+        $accepted = ServiceRequest::create(['beneficiary_id' => $benA1->id, 'from_mda_id' => $this->mdaB->id, 'to_mda_id' => $this->mdaA->id, 'status' => 'accepted']);
+        $accepted->forceFill(['created_at' => now()->subHours(5), 'decided_at' => now()])->save(); // 5h turnaround
         $this->syncRun($this->mdaA, 'completed');
         $this->syncRun($this->mdaA, 'failed');
+        SyncConnector::factory()->create(['owner_mda_id' => $this->mdaA->id, 'source' => 'socu']);
+        SyncConnector::factory()->create(['owner_mda_id' => $this->mdaA->id, 'source' => 'government_system']);
         $this->importRows($this->mdaA, $this->progA); // 2 matched rows
 
         app(DashboardSnapshotService::class)->refreshAll();
@@ -309,15 +313,42 @@ class ExecutiveMetricsTest extends TestCase
         $this->assertSame(1, $c['request_to_serve']['pending']);
         $this->assertSame(1, $c['request_to_serve']['accepted']);
 
+        $this->assertSame(0, $c['joint_programmes']); // no programme is run by ≥2 MDAs here
+
+        // Request-to-serve approval rate + turnaround.
+        $this->assertEquals(1.0, $c['request_to_serve']['approval_rate']); // 1 accepted, 0 declined
+        $this->assertEqualsWithDelta(5.0, $c['request_to_serve']['avg_turnaround_hours'], 0.05);
+
+        // Partner contributions — aggregate AND per-partner list, scoped to funded programmes.
         $this->assertSame(1, $c['partners']['count']);
         $this->assertSame(1, $c['partners']['funded_programmes']);
         $this->assertSame(2, $c['partners']['beneficiaries_served']);   // net-unique in progA
         $this->assertSame(1_000_000, $c['partners']['funding_allocated']);
+        $this->assertCount(1, $c['partners']['list']);
+        $this->assertSame(1, $c['partners']['list'][0]['funded_programmes']);
+        $this->assertSame(2, $c['partners']['list'][0]['beneficiaries_served']);
+        $this->assertSame(1_000_000, $c['partners']['list'][0]['funding_allocated']);
 
         $this->assertSame(2, $c['sync_health']['total_runs']);
         $this->assertSame(1, $c['sync_health']['succeeded']);
         $this->assertSame(1, $c['sync_health']['failed']);
         $this->assertSame(1, $c['sync_health']['api_registrations']); // benA2 source=api
+        $this->assertSame(2, $c['sync_health']['connectors']);
+        $this->assertEqualsCanonicalizing(['socu', 'government_system'], $c['sync_health']['sources']);
+    }
+
+    public function test_joint_programmes_counts_multi_mda_programmes(): void
+    {
+        // Give progA a second implementing MDA → it becomes a joint (cross-MDA) programme.
+        Activity::factory()->forProgramme($this->progA, $this->mdaB)->create(['budget_amount' => 0, 'target_beneficiaries' => 1]);
+        app(DashboardSnapshotService::class)->refreshAll();
+
+        $this->assertSame(1, $this->metricsFor('exec')['coordination']['joint_programmes']);
+    }
+
+    public function test_coordination_is_hidden_from_partners(): void
+    {
+        $this->assertNull($this->metricsFor('partner')['coordination']);
     }
 
     /* ------------------------------------------------------------- coverage banding */

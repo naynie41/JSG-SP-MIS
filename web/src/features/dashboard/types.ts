@@ -160,18 +160,43 @@ export interface TrendMetrics {
   programme_growth: TrendPoint[]
 }
 
+/** One development partner's contribution, scoped to the funded programmes in view. */
+export interface PartnerContribution {
+  partner_id: string
+  name: string
+  funded_programmes: number
+  beneficiaries_served: number // net-unique through funded programmes
+  funding_allocated: number // kobo
+}
+
 export interface CoordinationMetrics {
   active_mdas: number
+  joint_programmes: number // run by ≥2 MDAs
   cross_mda_beneficiaries: number
   referral_throughput: { total: number; completed: number; completion_rate: number | null }
-  request_to_serve: { raised: number; accepted: number; declined: number; pending: number }
-  partners: { count: number; funded_programmes: number; beneficiaries_served: number; funding_allocated: number }
+  request_to_serve: {
+    raised: number
+    accepted: number
+    declined: number
+    pending: number
+    approval_rate: number | null // accepted ÷ decided
+    avg_turnaround_hours: number | null
+  }
+  partners: {
+    count: number
+    funded_programmes: number
+    beneficiaries_served: number
+    funding_allocated: number
+    list: PartnerContribution[]
+  }
   sync_health: {
     total_runs: number
     succeeded: number
     failed: number
     last_run_at: string | null
     api_registrations: number
+    connectors: number
+    sources: string[]
   }
 }
 
@@ -226,8 +251,50 @@ export interface DashboardMetrics {
   deferred?: Record<string, null>
 }
 
+/** The cross-cutting filter — sent as query params and echoed back. All fields
+ * optional/nullable; an empty filter serves the fast (unfiltered) snapshot. */
+export interface DashboardFilterValue {
+  year: number | null
+  quarter: number | null
+  month: number | null
+  programme_id: string | null
+  lga: string | null
+  ward: string | null
+  mda_id: string | null
+}
+
+export const EMPTY_FILTER: DashboardFilterValue = {
+  year: null,
+  quarter: null,
+  month: null,
+  programme_id: null,
+  lga: null,
+  ward: null,
+  mda_id: null,
+}
+
+/** The in-scope universe of filter options (so the UI only offers what the caller sees). */
+export interface FilterOptions {
+  programmes: { id: string; name: string }[]
+  mdas: { id: string; name: string }[]
+  lgas: string[]
+  wards: string[]
+  years: number[]
+}
+
+/** Oversight tier — statewide (Governor/Executive), operational (MDA), or partner. */
+export type ScopeTier = 'statewide' | 'operational' | 'partner'
+
+/** Drill-down: jump to a tab, optionally applying a scoped filter patch. The patch
+ * flows through the same filter machinery, so a drill can only ever narrow in scope. */
+export type DrillFn = (tab: string, patch?: Partial<DashboardFilterValue>) => void
+
 export interface DashboardResponse {
-  scope: { kind: string; label: string }
+  scope: { kind: string; label: string; tier?: ScopeTier }
+  /** True when the metrics were recomputed live for an active filter. */
+  live?: boolean
+  filters?: DashboardFilterValue
+  filter_options?: FilterOptions
   computed_at: string
   metrics: DashboardMetrics
 }

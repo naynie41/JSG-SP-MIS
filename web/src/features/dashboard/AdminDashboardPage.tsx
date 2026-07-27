@@ -93,7 +93,7 @@ export function AdminDashboardPage() {
   const { user, hasPermission } = useAuth()
   const isAdmin = user?.role?.key === 'system_administrator'
   const canView = hasPermission('dashboard.view')
-  const { data, isLoading, isFetching, refetch } = useDashboard(isAdmin && canView)
+  const { data, isLoading, isFetching, refetch } = useDashboard(undefined, isAdmin && canView)
 
   if (!isAdmin) {
     return (

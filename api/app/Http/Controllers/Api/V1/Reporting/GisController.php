@@ -7,6 +7,7 @@ namespace App\Http\Controllers\Api\V1\Reporting;
 use App\Domain\Reporting\Gis\GeoBoundary;
 use App\Domain\Reporting\Gis\GisCoverageService;
 use App\Domain\Reporting\Services\DashboardScopeResolver;
+use App\Domain\Reporting\Support\DashboardFilter;
 use App\Http\Controllers\Controller;
 use App\Support\ApiResponse;
 use Illuminate\Http\JsonResponse;
@@ -30,26 +31,34 @@ class GisController extends Controller
     {
         $level = $request->query('level') === GeoBoundary::LEVEL_WARD ? GeoBoundary::LEVEL_WARD : GeoBoundary::LEVEL_LGA;
         $scope = $this->resolver->forUser($request->user());
+        $filter = DashboardFilter::fromRequest($request);
 
-        $rows = $this->coverage->coverage($scope, $level);
+        $rows = $this->coverage->coverage($scope, $level, $filter);
         usort($rows, fn (array $a, array $b): int => $b['beneficiary_count'] <=> $a['beneficiary_count']);
 
         $boundaries = GeoBoundary::query()->where('level', $level)->get();
 
         return ApiResponse::success([
             'level' => $level,
-            'scope' => ['kind' => $scope->kind, 'label' => $scope->label],
+            'scope' => ['kind' => $scope->kind, 'label' => $scope->label, 'tier' => $scope->tier()],
+            'filters' => $filter->toArray(),
             'mode' => $boundaries->isEmpty() ? 'table' : 'choropleth',
+            // Absolute banding thresholds (never a population %) — for the legend.
+            'bands' => [
+                'green_min' => (int) config('reporting.coverage_bands.green_min', 1000),
+                'yellow_min' => (int) config('reporting.coverage_bands.yellow_min', 250),
+            ],
             'rows' => $rows,
             'feature_collection' => $boundaries->isEmpty() ? null : $this->featureCollection($boundaries, $rows),
         ]);
     }
 
     /**
-     * A GeoJSON FeatureCollection joining each boundary shape to its coverage metrics.
+     * A GeoJSON FeatureCollection joining each boundary shape to its coverage row
+     * (metrics + click-through detail + band).
      *
      * @param  Collection<int, GeoBoundary>  $boundaries
-     * @param  list<array{key: string, name: string, beneficiary_count: int, benefit_count: int, benefit_value: int}>  $rows
+     * @param  list<array<string, mixed>>  $rows
      * @return array<string, mixed>
      */
     private function featureCollection($boundaries, array $rows): array
@@ -59,8 +68,14 @@ class GisController extends Controller
             $byKey[$row['key']] = $row;
         }
 
-        $features = $boundaries->map(function (GeoBoundary $boundary) use ($byKey): array {
-            $metric = $byKey[$boundary->code] ?? ['beneficiary_count' => 0, 'benefit_count' => 0, 'benefit_value' => 0];
+        $empty = [
+            'beneficiary_count' => 0, 'benefit_count' => 0, 'benefit_value' => 0,
+            'households' => 0, 'served' => 0, 'active_programmes' => 0, 'active_activities' => 0,
+            'mdas' => [], 'band' => 'grey',
+        ];
+
+        $features = $boundaries->map(function (GeoBoundary $boundary) use ($byKey, $empty): array {
+            $m = $byKey[$boundary->code] ?? $empty;
 
             return [
                 'type' => 'Feature',
@@ -69,9 +84,15 @@ class GisController extends Controller
                     'code' => $boundary->code,
                     'name' => $boundary->name,
                     'level' => $boundary->level,
-                    'beneficiary_count' => (int) $metric['beneficiary_count'],
-                    'benefit_count' => (int) $metric['benefit_count'],
-                    'benefit_value' => (int) $metric['benefit_value'],
+                    'beneficiary_count' => (int) $m['beneficiary_count'],
+                    'benefit_count' => (int) $m['benefit_count'],
+                    'benefit_value' => (int) $m['benefit_value'],
+                    'households' => (int) $m['households'],
+                    'served' => (int) $m['served'],
+                    'active_programmes' => (int) $m['active_programmes'],
+                    'active_activities' => (int) $m['active_activities'],
+                    'mdas' => $m['mdas'],
+                    'band' => $m['band'],
                 ],
             ];
         })->all();

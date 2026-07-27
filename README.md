@@ -289,6 +289,26 @@ only** — no PII leaves via a dashboard, report or export.
 > snapshots. Load real boundaries with
 > `php artisan gis:load-boundaries lga <file.geojson>`.
 
+#### Phase 6E — Executive Reporting Suite
+
+A 5-tab **Executive** view (Overview · Programmes · Registry · Coordination · Coverage
+Map) on the Phase 6 aggregation layer + map. **Net-unique** beneficiaries is the
+headline (distinct from gross deliveries); everything is **read-only, aggregate-only,
+no PII**. **Cross-cutting filters** (year/quarter/month · programme · LGA · ward · MDA)
+narrow every metric/chart/map within scope (live recompute when filtered);
+**drill-down** jumps to the detailed scoped view; **labelled linear projections**
+(budget runway, beneficiary/registration growth — *not* ML) state their assumptions;
+**PDF/Excel/CSV export** of the current view is aggregate-only and gated by
+`reporting.export`; and **role tiering** (statewide / operational / partner) is enforced
+server-side. Coverage is **absolute-count banded** (no %/index); only **captured**
+demographics are shown; omitted panels are absent with inert `deferred` slots for later.
+
+> `Database\Seeders\ExecutiveDemoSeeder` (chained from `LocalDevSeeder`) adds a rising
+> 10-month history + sync health + a duplicate case so every panel/chart/projection
+> renders. Details + deferred-item switch-on conditions:
+> [api/app/Domain/Reporting/README.md](api/app/Domain/Reporting/README.md) §Phase 6E and
+> the completion checklist in [docs/PHASE-6E-CHECKLIST.md](docs/PHASE-6E-CHECKLIST.md).
+
 ---
 
 ## Running tests, lint & static analysis

@@ -22,7 +22,7 @@ const ITEMS: GatedItem[] = [
 
 /** Scoped registry metrics — only mounted when the user has dashboard.view. */
 function RegistryMetrics() {
-  const { data } = useDashboard(true)
+  const { data } = useDashboard(undefined, true)
   if (!data) return null
   const m = data.metrics
   return (

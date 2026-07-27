@@ -101,3 +101,69 @@ command (ops), not a runtime permission.
 Tests: `tests/Feature/Reporting/*` (dashboard metrics + scope, exports + masking +
 audit, ad-hoc constraints, schedule delivery + scope validation, GIS loader + fallback);
 `web/src/features/{dashboard,gis}/*`.
+
+---
+
+## Phase 6E — Executive Reporting Suite (FR-RPT-01/02/03)
+
+A 5-tab Governor's/Executive view (`web/src/features/dashboard/*`) built **on** the
+Phase 6 aggregation layer + GIS map. Read-only, de-identified **aggregates only**;
+**net-unique** (distinct persons served) is the headline everywhere — deliberately
+distinct from the **gross** delivery count.
+
+**Aggregation extensions** (`Services/DashboardMetricsService`, additive to the
+snapshot): `population` (households, individuals, **net-unique served**, new
+registrations, LGAs/wards covered), `demographics` (gender / age bands / household vs
+individual — **captured fields only**), `household_size`, `programme_performance`
+(target vs net-unique reached, budget, cost/beneficiary, configurable **traffic-light**,
+activity-level drill-down), `registry_quality`, `coordination` (agencies, joint
+programmes, cross-MDA, referral/request throughput, **per-partner** contributions, sync
+health), `coverage_bands` (**absolute** green/yellow/red/grey — never a population %),
+`trends` (12-month periodised), `programme_scoring`, and inert `deferred` slots.
+
+**The 5 tabs** — Overview (KPIs, insights, alerts, trends, **projections**, programme
+share, demographics), Programmes (cards + comparison + financials + traffic-light +
+activity drill-down), Registry (KPIs + data quality + gender/age/household-size
+breakdowns), Coordination (agencies, per-partner funding, cross-agency, data sharing;
+the **meetings module is out of scope** — future/external slot only), Coverage Map
+(absolute-count band choropleth with click-through detail + a pluggable overlay-layer
+framework).
+
+**Cross-cutting (FR-RPT-01/02):**
+- **Filters** — `Support/DashboardFilter` (year/quarter/month, programme, LGA, ward,
+  MDA). Applied **on top of** the scope in every query, so a filter can only ever
+  narrow (out-of-scope MDA/programme → empty intersection). Unfiltered → snapshot;
+  filtered → live recompute (`DashboardService`).
+- **Drill-down** — clicking a KPI/chart/segment sets a scoped filter + switches tab
+  (same filter machinery = same enforcement).
+- **Forecasting** — `web/.../forecast.ts`: **simple linear** projections (budget
+  runway from burn rate; beneficiary + registration growth by least-squares), each
+  **clearly labelled "projection · based on current trend"** with its assumption.
+  **Not ML.**
+- **Export (FR-RPT-03)** — `GET /dashboard/export?format=csv|xlsx|pdf` →
+  `Export/ExecutiveExportBuilder` renders the **aggregate** current view via the shared
+  exporters. Gated by `reporting.export` (**not** `beneficiary.export`/`reveal_pii`),
+  audited (`dashboard.exported`); no PII column exists to begin with.
+- **Role tiering** — `DashboardScope::tier()` (statewide / operational / partner),
+  enforced by the existing scope resolver + RBAC; the filter can never escape it.
+
+**Demo data** — `Database\Seeders\ExecutiveDemoSeeder` (chained from `LocalDevSeeder`)
+gives a rising 10-month history (trends + projections), sync health, and an
+import-matched duplicate so every panel renders.
+
+### Deferred / omitted — and the switch-on condition
+
+| Item | Why omitted | Switch-on condition |
+| --- | --- | --- |
+| Population penetration, coverage % | No population denominator held | Load an LGA/ward **population baseline**; fill `deferred.population_penetration`, then the coverage map/KPIs can show % (today: **absolute bands only**) |
+| Targeting accuracy | No poverty register / PMT denominator | Integrate a **poverty register / PMT**; fill `deferred.targeting_accuracy` |
+| Vulnerability / disability / PWD / IDP / poverty / occupation breakdowns | **No such field is captured** | Add the registry **field(s)**; extend `demographics` (panels are **absent**, not empty) |
+| Outcome / M&E indicators | Needs survey/outcome integration | Wire **M&E outcomes**; fill `deferred.outcome_indicators` |
+| Identity verification rate | No explicit identity-verification field (today: review-status proxy) | Add an **identity-verification field**; fill `deferred.identity_verification` |
+| Map overlay layers (schools, health, IDP camps, flood) | Data supplied later | `registerMapLayer()` an **external GeoJSON** source (framework + example: `web/.../gis/mapLayers.ts`) |
+| Meetings / attendance / action items | **Not part of SP-MIS** | Track in an **external coordination tool** (noted as a slot; not built here) |
+| Heat maps (FR-GIS-02) | Extension point | Query the PostGIS `geom` column |
+
+Phase 6E tests: `tests/Feature/Reporting/{ExecutiveMetrics,ExecutiveFilter,Dashboard-
+Export,ExecutiveDemoSeeder,GisCoverage}Test.php`; `web/src/features/dashboard/*` +
+`web/src/features/gis/*`. Completion checklist: [`docs/PHASE-6E-CHECKLIST.md`](../../../../docs/PHASE-6E-CHECKLIST.md).

@@ -1,0 +1,58 @@
+/* Executive dashboard export menu — a small format picker on the forest hero. */
+
+.wrap {
+  position: relative;
+  display: inline-block;
+}
+.trigger {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  background: transparent;
+  border: 1px solid rgba(245, 245, 241, 0.28);
+  color: var(--bg);
+  border-radius: var(--radius-full);
+  padding: var(--space-2) var(--space-4);
+  font-size: var(--fs-label);
+  font-weight: 500;
+  cursor: pointer;
+  transition: border-color var(--transition), background var(--transition);
+}
+.trigger:hover {
+  border-color: var(--accent);
+  background: rgba(198, 241, 53, 0.1);
+}
+.trigger:focus-visible {
+  outline: var(--focus-ring-dark);
+  outline-offset: var(--focus-offset);
+}
+.menu {
+  position: absolute;
+  right: 0;
+  top: calc(100% + var(--space-2));
+  z-index: 20;
+  display: grid;
+  min-width: 8rem;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  box-shadow: var(--elev-md);
+  padding: var(--space-1);
+}
+.item {
+  border: none;
+  background: transparent;
+  text-align: left;
+  padding: var(--space-2) var(--space-3);
+  border-radius: var(--radius-sm);
+  font-size: var(--fs-ui);
+  color: var(--ink);
+  cursor: pointer;
+}
+.item:hover:not(:disabled) {
+  background: var(--surface-mint);
+}
+.item:disabled {
+  opacity: 0.6;
+  cursor: default;
+}

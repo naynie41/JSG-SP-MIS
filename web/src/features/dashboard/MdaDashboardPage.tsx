@@ -14,7 +14,7 @@ import styles from './dashboard.module.css'
 export function MdaDashboardPage() {
   const { user, hasPermission } = useAuth()
   const canView = hasPermission('dashboard.view')
-  const { data, isLoading, isFetching, refetch } = useDashboard(canView)
+  const { data, isLoading, isFetching, refetch } = useDashboard(undefined, canView)
 
   if (!canView) {
     return (

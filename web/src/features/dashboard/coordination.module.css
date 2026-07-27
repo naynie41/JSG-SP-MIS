@@ -1,0 +1,364 @@
+/* =============================================================================
+   Coordination tab (Phase 6E, tab 4) — agencies, per-partner contributions,
+   cross-agency collaboration, and data sharing. Forest/lime/mint tokens; status
+   colors carry sync/approval tone. The meetings/attendance/action-items module is
+   NOT built (not part of SP-MIS) — only a future/external slot note is shown.
+   ============================================================================= */
+
+.page {
+  display: grid;
+  gap: var(--space-6);
+}
+.empty {
+  color: var(--text-muted-strong);
+  font-size: var(--fs-ui);
+  padding: var(--space-4) 0;
+}
+
+.section {
+  display: grid;
+  gap: var(--space-4);
+}
+.sectionHead {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  color: var(--forest);
+}
+.sectionTitle {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: var(--fs-h2);
+  letter-spacing: -0.01em;
+}
+.panel {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  padding: clamp(var(--space-4), 3vw, var(--space-5));
+}
+
+/* ------------------------------------------------------------- agencies KPIs */
+
+.kpiBand {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--space-3);
+}
+.kpi {
+  border-radius: var(--radius-md);
+  padding: clamp(var(--space-4), 3vw, var(--space-5));
+  background: linear-gradient(160deg, var(--forest-2), var(--forest));
+  color: var(--bg);
+  display: grid;
+  gap: var(--space-2);
+  box-shadow: var(--elev-sm);
+}
+.kpiLabel {
+  font-family: var(--font-mono);
+  font-size: var(--fs-caption);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: rgba(245, 245, 241, 0.78);
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+}
+.kpiValue {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: clamp(1.7rem, 3.6vw, 2.5rem);
+  line-height: 1;
+  letter-spacing: -0.02em;
+  color: var(--accent);
+  font-variant-numeric: tabular-nums;
+}
+.kpiHint {
+  font-size: var(--fs-label);
+  color: rgba(245, 245, 241, 0.62);
+}
+@media (max-width: 720px) {
+  .kpiBand {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ----------------------------------------------------- collaboration grid -- */
+
+.collabGrid {
+  display: grid;
+  grid-template-columns: 0.9fr 1fr 1.2fr;
+  gap: var(--space-4);
+}
+@media (max-width: 900px) {
+  .collabGrid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.bigStat {
+  display: grid;
+  gap: var(--space-2);
+  color: var(--forest);
+  align-content: center;
+  height: 100%;
+}
+.bigValue {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: clamp(2.2rem, 5vw, 3rem);
+  line-height: 0.95;
+  letter-spacing: -0.02em;
+  color: var(--ink);
+  font-variant-numeric: tabular-nums;
+}
+.bigLabel {
+  font-family: var(--font-mono);
+  font-size: var(--fs-caption);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--text-muted-strong);
+}
+.bigNote {
+  font-size: var(--fs-label);
+  color: var(--text-muted-strong);
+}
+
+.ringBlock {
+  display: flex;
+  align-items: center;
+  gap: var(--space-4);
+}
+.ringMeta {
+  display: grid;
+  gap: var(--space-1);
+}
+.ringTitle {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: var(--fs-h3);
+}
+.ringNote {
+  font-size: var(--fs-label);
+  color: var(--text-muted-strong);
+}
+.ring {
+  flex: 0 0 auto;
+}
+.ringTrack {
+  stroke: var(--surface-mint);
+}
+.ringValue {
+  stroke-linecap: round;
+  transition: stroke-dasharray var(--transition);
+}
+.ringValue[data-tone='info'] {
+  stroke: var(--info);
+}
+.ringValue[data-tone='good'] {
+  stroke: var(--forest-2);
+}
+.ringText {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 1.1rem;
+  fill: var(--ink);
+  font-variant-numeric: tabular-nums;
+}
+
+.pills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+  margin-top: var(--space-2);
+}
+.pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-size: var(--fs-caption);
+  padding: 2px var(--space-2);
+  border-radius: var(--radius-full);
+  background: var(--surface-mint);
+  color: var(--text-muted-strong);
+}
+.pill[data-tone='good'] {
+  background: var(--success-soft);
+  color: var(--success-ink);
+}
+.pill[data-tone='bad'] {
+  background: var(--danger-soft);
+  color: var(--danger-ink);
+}
+
+/* ---------------------------------------------------- partner contributions */
+
+.partnerSummary {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-3) var(--space-5);
+  padding-bottom: var(--space-4);
+  margin-bottom: var(--space-4);
+  border-bottom: 1px solid var(--border);
+  font-size: var(--fs-ui);
+  color: var(--text-muted-strong);
+}
+.partnerSummary span {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+}
+.partnerSummary strong {
+  color: var(--ink);
+  font-variant-numeric: tabular-nums;
+}
+
+.table {
+  width: 100%;
+  min-width: 34rem;
+  border-collapse: collapse;
+  font-size: var(--fs-ui);
+}
+.table thead th {
+  text-align: left;
+  font-family: var(--font-mono);
+  font-size: var(--fs-caption);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--text-muted-strong);
+  font-weight: 400;
+  padding: 0 var(--space-3) var(--space-2);
+  border-bottom: 1px solid var(--border);
+}
+.table tbody td,
+.table tbody th {
+  text-align: left;
+  padding: var(--space-3);
+  border-bottom: 1px solid var(--border);
+  font-variant-numeric: tabular-nums;
+}
+.table tbody tr:last-child td,
+.table tbody tr:last-child th {
+  border-bottom: none;
+}
+.partnerName {
+  color: var(--ink);
+  font-weight: 600;
+}
+
+/* -------------------------------------------------------------- data sharing */
+
+.syncTop {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-3);
+  flex-wrap: wrap;
+  margin-bottom: var(--space-4);
+}
+.syncStatus {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  font-weight: 600;
+  font-size: var(--fs-ui);
+}
+.statusDot {
+  width: 10px;
+  height: 10px;
+  border-radius: var(--radius-full);
+  background: var(--border-strong);
+}
+.statusDot[data-tone='good'] {
+  background: var(--success);
+}
+.statusDot[data-tone='warn'] {
+  background: var(--warning);
+}
+.statusDot[data-tone='bad'] {
+  background: var(--danger);
+}
+.syncLast {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  font-size: var(--fs-label);
+  color: var(--text-muted-strong);
+}
+
+.syncGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  gap: var(--space-4);
+}
+.syncStat {
+  display: grid;
+  gap: var(--space-1);
+}
+.syncStatLabel {
+  font-family: var(--font-mono);
+  font-size: var(--fs-caption);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--text-muted-strong);
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+}
+.syncStatValue {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: var(--fs-h3);
+  color: var(--ink);
+  font-variant-numeric: tabular-nums;
+}
+.syncStatValue[data-tone='good'] {
+  color: var(--success-ink);
+}
+.syncStatValue[data-tone='bad'] {
+  color: var(--danger-ink);
+}
+
+.sources {
+  display: flex;
+  align-items: baseline;
+  gap: var(--space-3);
+  flex-wrap: wrap;
+  margin-top: var(--space-4);
+  padding-top: var(--space-4);
+  border-top: 1px solid var(--border);
+}
+.sourcesLabel {
+  font-family: var(--font-mono);
+  font-size: var(--fs-caption);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--text-muted-strong);
+}
+.sourceChips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+}
+.sourceChip {
+  font-family: var(--font-mono);
+  font-size: var(--fs-label);
+  padding: 2px var(--space-3);
+  border-radius: var(--radius-full);
+  background: var(--surface-mint);
+  color: var(--forest);
+}
+
+/* ------------------------------------------------------- omitted-module note */
+
+.slotNote {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  font-size: var(--fs-label);
+  color: var(--text-muted-strong);
+  background: var(--bg);
+  border: 1px dashed var(--border-strong);
+  border-radius: var(--radius-md);
+  padding: var(--space-3) var(--space-4);
+}

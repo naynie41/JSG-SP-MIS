@@ -15,7 +15,7 @@ import styles from './dashboard.module.css'
 export function PartnerDashboardPage() {
   const { user, hasPermission } = useAuth()
   const isPartner = user?.role?.key === 'development_partner'
-  const { data, isLoading, isFetching, refetch } = useDashboard(isPartner && hasPermission('dashboard.view'))
+  const { data, isLoading, isFetching, refetch } = useDashboard(undefined, isPartner && hasPermission('dashboard.view'))
 
   if (!isPartner) {
     return (

@@ -26,7 +26,9 @@ import { formatNaira } from '@/lib/utils/money'
 import { titleCase } from '@/features/registry/constants'
 import { buildAlerts, buildInsights } from './executiveInsights'
 import type { InsightTone } from './executiveInsights'
-import type { DashboardResponse, ProgrammePerformance, TrendPoint } from './types'
+import { PROJECTION_LABEL, buildForecast, monthLong } from './forecast'
+import type { ExecutiveForecast } from './forecast'
+import type { DashboardResponse, DrillFn, ProgrammePerformance, TrendPoint } from './types'
 import styles from './executiveOverview.module.css'
 
 /* ------------------------------------------------------------------ helpers */
@@ -167,13 +169,14 @@ interface Slice {
   label: string
   value: number
   color: string
+  programmeId?: string
 }
 
-function ProgrammeDonut({ programmes }: { programmes: ProgrammePerformance[] }) {
+function ProgrammeDonut({ programmes, onSelect }: { programmes: ProgrammePerformance[]; onSelect?: (programmeId: string) => void }) {
   const ranked = programmes
     .filter((p) => p.reached > 0)
     .sort((a, b) => b.reached - a.reached)
-    .map((p) => ({ label: p.name ? titleCase(p.name) : 'Unnamed', value: p.reached }))
+    .map((p) => ({ programmeId: p.programme_id, label: p.name ? titleCase(p.name) : 'Unnamed', value: p.reached }))
 
   if (ranked.length === 0) return <p className={styles.empty}>No beneficiaries reached yet.</p>
 
@@ -205,7 +208,13 @@ function ProgrammeDonut({ programmes }: { programmes: ProgrammePerformance[] }) 
           const [lx, ly] = polar(cx, cy, (ro + ri) / 2, mid)
           return (
             <g key={s.label}>
-              <path d={arc(cx, cy, ro, ri, start, Math.max(start, end))} fill={s.color} className={styles.slice}>
+              <path
+                d={arc(cx, cy, ro, ri, start, Math.max(start, end))}
+                fill={s.color}
+                className={styles.slice}
+                data-drill={onSelect && s.programmeId ? true : undefined}
+                onClick={onSelect && s.programmeId ? () => onSelect(s.programmeId!) : undefined}
+              >
                 <title>{`${s.label}: ${num(s.value)} (${share}%)`}</title>
               </path>
               {share >= 8 && (
@@ -227,9 +236,15 @@ function ProgrammeDonut({ programmes }: { programmes: ProgrammePerformance[] }) 
         {slices.map((s) => (
           <li key={s.label} className={styles.legendRow}>
             <span className={styles.legendSwatch} style={{ background: s.color }} aria-hidden="true" />
-            <span className={styles.legendName} title={s.label}>
-              {s.label}
-            </span>
+            {onSelect && s.programmeId ? (
+              <button type="button" className={styles.legendDrill} onClick={() => onSelect(s.programmeId!)} title={`View ${s.label} programme`}>
+                {s.label}
+              </button>
+            ) : (
+              <span className={styles.legendName} title={s.label}>
+                {s.label}
+              </span>
+            )}
             <span className={styles.legendValue}>{num(s.value)}</span>
           </li>
         ))}
@@ -296,6 +311,74 @@ function SplitBar({ segments }: { segments: Slice[] }) {
   )
 }
 
+/* --------------------------------------------------------------- forecasting */
+
+function ForecastCard({ icon, title, value, note, assumption, tone }: { icon: LucideIcon; title: string; value: string; note?: string; assumption: string; tone?: 'warn' | 'bad' }) {
+  return (
+    <div className={styles.forecastCard} data-tone={tone}>
+      <span className={styles.forecastTag}>{PROJECTION_LABEL}</span>
+      <span className={styles.forecastTitle}>
+        <Icon icon={icon} size={14} />
+        {title}
+      </span>
+      <span className={styles.forecastValue}>{value}</span>
+      {note && <span className={styles.forecastNote}>{note}</span>}
+      <span className={styles.forecastAssume}>{assumption}</span>
+    </div>
+  )
+}
+
+/** Labelled straight-line projections (NOT ML) — budget runway + reach/registration trend. */
+function ForecastCards({ forecast }: { forecast: ExecutiveForecast }) {
+  const { budget, beneficiaries, registrations } = forecast
+  if (!budget && !beneficiaries && !registrations) return null
+
+  return (
+    <section className={styles.reveal} style={{ animationDelay: '280ms' }} aria-label="Projections">
+      <div className={styles.sectionHead}>
+        <Icon icon={TrendingUp} size={16} />
+        <h2 className={styles.sectionTitle}>Projections</h2>
+      </div>
+      <div className={styles.forecastGrid}>
+        {budget && (
+          <ForecastCard
+            icon={Wallet}
+            title="Budget runway"
+            tone={budget.status === 'over' ? 'bad' : budget.status === 'exhausting' ? 'warn' : undefined}
+            value={
+              budget.status === 'over'
+                ? 'Fully committed'
+                : budget.status === 'idle'
+                  ? 'No active burn'
+                  : `Runs out ~${budget.exhaustionMonth ? monthLong(budget.exhaustionMonth) : '—'}`
+            }
+            note={budget.monthsRemaining !== null && budget.status !== 'over' ? `${budget.monthsRemaining} months at current burn` : undefined}
+            assumption={budget.assumption}
+          />
+        )}
+        {beneficiaries && (
+          <ForecastCard
+            icon={UsersRound}
+            title="Beneficiaries reached"
+            value={`~${num(beneficiaries.endValue)} by ${beneficiaries.projected.length ? monthLong(beneficiaries.projected[beneficiaries.projected.length - 1].month) : '—'}`}
+            note={`${beneficiaries.monthlyRate >= 0 ? '+' : ''}${num(beneficiaries.monthlyRate)}/month`}
+            assumption={beneficiaries.assumption}
+          />
+        )}
+        {registrations && (
+          <ForecastCard
+            icon={CalendarPlus}
+            title="New registrations"
+            value={`~${num(registrations.endValue)}/month projected`}
+            note={`${registrations.monthlyRate >= 0 ? '+' : ''}${num(registrations.monthlyRate)}/month trend`}
+            assumption={registrations.assumption}
+          />
+        )}
+      </div>
+    </section>
+  )
+}
+
 /* ------------------------------------------------------------------ view */
 
 const INSIGHT_ICON: Record<InsightTone, LucideIcon> = {
@@ -306,6 +389,8 @@ const INSIGHT_ICON: Record<InsightTone, LucideIcon> = {
 
 export interface ExecutiveOverviewTabProps {
   data: DashboardResponse
+  /** Drill-down: jump to a detailed tab with a scoped filter (e.g. click a programme slice). */
+  onDrill?: DrillFn
 }
 
 /**
@@ -315,7 +400,7 @@ export interface ExecutiveOverviewTabProps {
  * alerts, periodised trends, programme share, and demographics. No raw PII —
  * de-identified aggregates only. The forest hero + refresh live in the shared shell.
  */
-export function ExecutiveOverviewTab({ data }: ExecutiveOverviewTabProps) {
+export function ExecutiveOverviewTab({ data, onDrill }: ExecutiveOverviewTabProps) {
   const m = data.metrics
   const pop = m.population
   const demo = m.demographics
@@ -324,6 +409,7 @@ export function ExecutiveOverviewTab({ data }: ExecutiveOverviewTabProps) {
 
   const insights = buildInsights(m)
   const alerts = buildAlerts(m)
+  const forecast = buildForecast(m)
 
   const costPerBeneficiary =
     pop && pop.net_unique_served > 0 ? Math.round(budget.utilized_value / pop.net_unique_served) : null
@@ -430,6 +516,9 @@ export function ExecutiveOverviewTab({ data }: ExecutiveOverviewTabProps) {
         </section>
       )}
 
+      {/* ---------- PROJECTIONS (labelled, linear — not ML) ---------- */}
+      <ForecastCards forecast={forecast} />
+
       {/* ---------- PROGRAMME DISTRIBUTION + DEMOGRAPHICS ---------- */}
       <section className={`${styles.splitCols} ${styles.reveal}`} style={{ animationDelay: '320ms' }}>
         <div className={styles.panel}>
@@ -437,7 +526,10 @@ export function ExecutiveOverviewTab({ data }: ExecutiveOverviewTabProps) {
             <Icon icon={ActivityIcon} size={16} />
             <h2 className={styles.panelTitle}>Beneficiary share by programme</h2>
           </div>
-          <ProgrammeDonut programmes={m.programme_performance ?? []} />
+          <ProgrammeDonut
+            programmes={m.programme_performance ?? []}
+            onSelect={onDrill ? (id) => onDrill('programmes', { programme_id: id }) : undefined}
+          />
         </div>
 
         <div className={styles.panel}>

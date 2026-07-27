@@ -66,7 +66,7 @@ export function GisDashboardPage() {
   const [level, setLevel] = useState<GisLevel>('lga')
   const [metric, setMetric] = useState<CoverageMetric>('beneficiary_count')
 
-  const { data, isLoading } = useGisCoverage(level, canView)
+  const { data, isLoading } = useGisCoverage(level, {}, canView)
 
   if (!canView) {
     return (

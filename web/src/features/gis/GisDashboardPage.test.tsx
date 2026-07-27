@@ -23,17 +23,18 @@ vi.mock('@/lib/auth/AuthProvider', () => ({
 const coverage = gisApi.coverage as Mock
 
 const rows = [
-  { key: 'dutse', name: 'Dutse', beneficiary_count: 5, benefit_count: 2, benefit_value: 100_000 },
-  { key: 'hadejia', name: 'Hadejia', beneficiary_count: 1, benefit_count: 0, benefit_value: 0 },
+  { key: 'dutse', name: 'Dutse', beneficiary_count: 5, benefit_count: 2, benefit_value: 100_000, households: 3, served: 2, active_programmes: 1, active_activities: 1, mdas: ['MDA A'], band: 'green' as const },
+  { key: 'hadejia', name: 'Hadejia', beneficiary_count: 1, benefit_count: 0, benefit_value: 0, households: 0, served: 0, active_programmes: 0, active_activities: 0, mdas: [], band: 'red' as const },
 ]
+const bands = { green_min: 1000, yellow_min: 250 }
 
 const choropleth: GisCoverageResponse = {
-  level: 'lga', scope: { kind: 'mda', label: 'MDA A' }, mode: 'choropleth', rows,
+  level: 'lga', scope: { kind: 'mda', label: 'MDA A' }, mode: 'choropleth', bands, rows,
   feature_collection: { type: 'FeatureCollection', features: [] },
 }
 
 const tableOnly: GisCoverageResponse = {
-  level: 'lga', scope: { kind: 'mda', label: 'MDA A' }, mode: 'table', rows, feature_collection: null,
+  level: 'lga', scope: { kind: 'mda', label: 'MDA A' }, mode: 'table', bands, rows, feature_collection: null,
 }
 
 function renderPage(ui: ReactNode) {
@@ -79,7 +80,7 @@ describe('GisDashboardPage', () => {
 
     renderPage(<GisDashboardPage />)
     await screen.findByTestId('coverage-map')
-    expect(coverage).toHaveBeenCalledWith('lga')
+    expect(coverage).toHaveBeenCalledWith('lga', {})
 
     // Metric → Benefit value shows Naira (in the KPI strip + ranked list).
     await user.click(screen.getByRole('button', { name: 'Benefit value' }))
@@ -87,7 +88,7 @@ describe('GisDashboardPage', () => {
 
     // Level → Ward refetches for the ward level.
     await user.click(screen.getByRole('button', { name: 'Ward' }))
-    await waitFor(() => expect(coverage).toHaveBeenCalledWith('ward'))
+    await waitFor(() => expect(coverage).toHaveBeenCalledWith('ward', {}))
   })
 
   it('blocks users without dashboard permission', () => {

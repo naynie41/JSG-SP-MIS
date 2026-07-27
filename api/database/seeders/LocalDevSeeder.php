@@ -81,6 +81,10 @@ class LocalDevSeeder extends Seeder
             RoleKey::Executive,
             null,
         );
+
+        // Rich cross-module demo data (Phase 6E) so every executive tab/chart/map/
+        // insight/alert/projection renders meaningfully for the Executive login.
+        $this->call([ExecutiveDemoSeeder::class]);
     }
 
     private function seedUser(string $email, string $name, string $password, RoleKey $roleKey, ?Mda $mda): void

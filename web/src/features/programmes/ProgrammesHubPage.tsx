@@ -25,7 +25,7 @@ const ITEMS: GatedItem[] = [
 
 /** Scoped programme metrics — only mounted when the user has dashboard.view. */
 function ProgrammesMetrics() {
-  const { data } = useDashboard(true)
+  const { data } = useDashboard(undefined, true)
   if (!data) return null
   const m = data.metrics
   return (

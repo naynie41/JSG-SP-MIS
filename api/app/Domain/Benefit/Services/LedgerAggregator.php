@@ -105,9 +105,9 @@ class LedgerAggregator
      * @param  list<string>|null  $programmeIds
      * @return array{benefit_count: int, total_value: int, total_quantity: string}
      */
-    public function scopedTotals(?array $mdaIds, ?array $programmeIds): array
+    public function scopedTotals(?array $mdaIds, ?array $programmeIds, array $filters = []): array
     {
-        return $this->totals($this->scopedLedger($mdaIds, $programmeIds));
+        return $this->totals($this->scopedLedger($mdaIds, $programmeIds, $filters));
     }
 
     /**
@@ -120,17 +120,33 @@ class LedgerAggregator
      * @param  list<string>|null  $programmeIds
      * @return array<string, mixed>
      */
-    public function scopedBudget(?array $mdaIds, ?array $programmeIds): array
+    public function scopedBudget(?array $mdaIds, ?array $programmeIds, array $filters = []): array
     {
         $activities = Activity::query()->withoutGlobalScope(MdaScope::class);
         if ($programmeIds !== null) {
             $activities->whereIn('programme_id', $programmeIds);
-        } elseif ($mdaIds !== null) {
+        }
+        if ($mdaIds !== null) {
             $activities->whereIn('owner_mda_id', $mdaIds);
+        }
+        // Filter the allocation the same way (owner MDA + programme + area), so budget
+        // vs actual stays coherent under a filter. Date bounds apply to deliveries, not
+        // to a programme's allocation, so they are not applied here.
+        if (! empty($filters['programme_id'])) {
+            $activities->where('programme_id', $filters['programme_id']);
+        }
+        if (! empty($filters['mda_id'])) {
+            $activities->where('owner_mda_id', $filters['mda_id']);
+        }
+        if (! empty($filters['lga'])) {
+            $activities->where('lga', $filters['lga']);
+        }
+        if (! empty($filters['ward'])) {
+            $activities->where('ward', $filters['ward']);
         }
 
         $allocated = (int) $activities->sum('budget_amount');
-        $totals = $this->scopedTotals($mdaIds, $programmeIds);
+        $totals = $this->scopedTotals($mdaIds, $programmeIds, $filters);
         $utilised = $totals['total_value'];
 
         return [
@@ -151,11 +167,11 @@ class LedgerAggregator
      * @param  list<string>|null  $programmeIds
      * @return array<int, array<string, mixed>>
      */
-    public function scopedGroup(string $dimension, ?array $mdaIds, ?array $programmeIds): array
+    public function scopedGroup(string $dimension, ?array $mdaIds, ?array $programmeIds, array $filters = []): array
     {
         $column = self::DIMENSIONS[$dimension] ?? throw new \InvalidArgumentException("Unknown dimension: {$dimension}");
 
-        return $this->scopedLedger($mdaIds, $programmeIds)
+        return $this->scopedLedger($mdaIds, $programmeIds, $filters)
             ->selectRaw("{$column} as group_key, count(*) as cnt, coalesce(sum(monetary_value), 0) as val, coalesce(sum(quantity), 0) as qty")
             ->groupBy($column)
             ->get()
@@ -177,9 +193,9 @@ class LedgerAggregator
      * @param  list<string>|null  $mdaIds
      * @param  list<string>|null  $programmeIds
      */
-    public function scopedDistinctBeneficiaries(?array $mdaIds, ?array $programmeIds): int
+    public function scopedDistinctBeneficiaries(?array $mdaIds, ?array $programmeIds, array $filters = []): int
     {
-        return (int) $this->scopedLedger($mdaIds, $programmeIds)->distinct()->count('beneficiary_id');
+        return (int) $this->scopedLedger($mdaIds, $programmeIds, $filters)->distinct()->count('beneficiary_id');
     }
 
     /**
@@ -190,9 +206,9 @@ class LedgerAggregator
      * @param  list<string>|null  $programmeIds
      * @return array<string, int>
      */
-    public function scopedReachByProgramme(?array $mdaIds, ?array $programmeIds): array
+    public function scopedReachByProgramme(?array $mdaIds, ?array $programmeIds, array $filters = []): array
     {
-        return $this->scopedLedger($mdaIds, $programmeIds)
+        return $this->scopedLedger($mdaIds, $programmeIds, $filters)
             ->selectRaw('programme_id, count(distinct beneficiary_id) as reached')
             ->groupBy('programme_id')
             ->get()
@@ -208,9 +224,9 @@ class LedgerAggregator
      * @param  list<string>|null  $programmeIds
      * @return array<string, int>
      */
-    public function scopedReachByActivity(?array $mdaIds, ?array $programmeIds): array
+    public function scopedReachByActivity(?array $mdaIds, ?array $programmeIds, array $filters = []): array
     {
-        return $this->scopedLedger($mdaIds, $programmeIds)
+        return $this->scopedLedger($mdaIds, $programmeIds, $filters)
             ->selectRaw('activity_id, count(distinct beneficiary_id) as reached')
             ->groupBy('activity_id')
             ->get()
@@ -226,17 +242,40 @@ class LedgerAggregator
      * @param  list<string>|null  $programmeIds
      * @return array<string, int>
      */
-    public function scopedDisbursementSeries(?array $mdaIds, ?array $programmeIds, int $months): array
+    public function scopedDisbursementSeries(?array $mdaIds, ?array $programmeIds, int $months, array $filters = []): array
     {
         $expr = self::monthKeyExpr('delivery_date');
         $since = Carbon::now()->startOfMonth()->subMonths(max(0, $months - 1))->toDateString();
 
-        return $this->scopedLedger($mdaIds, $programmeIds)
+        return $this->scopedLedger($mdaIds, $programmeIds, $filters)
             ->whereDate('delivery_date', '>=', $since)
             ->selectRaw("{$expr} as m, coalesce(sum(monetary_value), 0) as v")
             ->groupByRaw($expr)
             ->get()
             ->mapWithKeys(fn (Benefit $r) => [(string) $r->getAttribute('m') => (int) $r->getAttribute('v')])
+            ->all();
+    }
+
+    /**
+     * Net-unique beneficiaries SERVED per admin area (LGA/Ward), for the GIS map's
+     * click-through detail. Keyed by the raw area value ('' when unset). Whitelisted
+     * column guards the raw SQL.
+     *
+     * @param  list<string>|null  $mdaIds
+     * @param  list<string>|null  $programmeIds
+     * @return array<string, int>
+     */
+    public function scopedDistinctByArea(string $areaColumn, ?array $mdaIds, ?array $programmeIds, array $filters = []): array
+    {
+        $col = in_array($areaColumn, ['lga', 'ward'], true)
+            ? $areaColumn
+            : throw new \InvalidArgumentException("Unknown area column: {$areaColumn}");
+
+        return $this->scopedLedger($mdaIds, $programmeIds, $filters)
+            ->selectRaw("{$col} as k, count(distinct beneficiary_id) as c")
+            ->groupBy($col)
+            ->get()
+            ->mapWithKeys(fn (Benefit $r) => [(string) ($r->getAttribute('k') ?? '') => (int) $r->getAttribute('c')])
             ->all();
     }
 
@@ -249,13 +288,18 @@ class LedgerAggregator
     }
 
     /**
-     * A ledger query constrained to a dashboard scope, reversed entries excluded.
+     * A ledger query constrained to a dashboard scope, reversed entries excluded. The
+     * scope axes are applied INDEPENDENTLY (both when both are set), so a programme
+     * filter on an MDA scope still stays inside that MDA. `$filters` (programme_id,
+     * mda_id, lga, ward, date_from/date_to on delivery_date) narrow further — they can
+     * only ever intersect the scope, never widen it.
      *
      * @param  list<string>|null  $mdaIds
      * @param  list<string>|null  $programmeIds
+     * @param  array<string, string>  $filters
      * @return Builder<Benefit>
      */
-    private function scopedLedger(?array $mdaIds, ?array $programmeIds): Builder
+    private function scopedLedger(?array $mdaIds, ?array $programmeIds, array $filters = []): Builder
     {
         $query = Benefit::query()
             ->withoutGlobalScope(MdaScope::class)
@@ -263,8 +307,21 @@ class LedgerAggregator
 
         if ($programmeIds !== null) {
             $query->whereIn('programme_id', $programmeIds);
-        } elseif ($mdaIds !== null) {
+        }
+        if ($mdaIds !== null) {
             $query->whereIn('mda_id', $mdaIds);
+        }
+
+        foreach (['programme_id', 'mda_id', 'lga', 'ward'] as $field) {
+            if (! empty($filters[$field])) {
+                $query->where($field, $filters[$field]);
+            }
+        }
+        if (! empty($filters['date_from'])) {
+            $query->whereDate('delivery_date', '>=', $filters['date_from']);
+        }
+        if (! empty($filters['date_to'])) {
+            $query->whereDate('delivery_date', '<=', $filters['date_to']);
         }
 
         return $query;

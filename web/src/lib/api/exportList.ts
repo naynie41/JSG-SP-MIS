@@ -15,6 +15,21 @@ function triggerBlobDownload(blob: Blob, filename: string): void {
 }
 
 /**
+ * Authenticated file download for any endpoint that streams a file (params as-is).
+ * Used for exports that aren't list grids — e.g. the executive dashboard export.
+ */
+export async function downloadFile(
+  endpoint: string,
+  params: Record<string, string | number | undefined>,
+  fallbackName: string,
+): Promise<void> {
+  const response = await http.get(endpoint, { params, responseType: 'blob' })
+  const disposition = String(response.headers['content-disposition'] ?? '')
+  const named = /filename="?([^";]+)"?/.exec(disposition)?.[1]
+  triggerBlobDownload(response.data as Blob, named ?? fallbackName)
+}
+
+/**
  * Export a list endpoint's CURRENT filtered/searched view (DESIGN-SYSTEM.md §5.4).
  * Sends `params` (the grid's live filters/search) plus the chosen `format`. A small
  * export streams back and downloads immediately; a large one is queued server-side

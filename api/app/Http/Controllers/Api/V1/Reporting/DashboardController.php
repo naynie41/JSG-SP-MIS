@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Http\Controllers\Api\V1\Reporting;
 
 use App\Domain\Reporting\Services\DashboardService;
+use App\Domain\Reporting\Support\DashboardFilter;
 use App\Http\Controllers\Controller;
 use App\Support\ApiResponse;
 use Illuminate\Http\JsonResponse;
@@ -22,6 +23,8 @@ class DashboardController extends Controller
 
     public function index(Request $request): JsonResponse
     {
-        return ApiResponse::success($this->dashboard->forUser($request->user()));
+        return ApiResponse::success(
+            $this->dashboard->forUser($request->user(), DashboardFilter::fromRequest($request)),
+        );
     }
 }

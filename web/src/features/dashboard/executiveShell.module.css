@@ -136,11 +136,16 @@
   text-transform: uppercase;
   color: rgba(245, 245, 241, 0.72);
 }
+.heroActions {
+  margin-left: auto;
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-3);
+}
 .refresh {
   display: inline-flex;
   align-items: center;
   gap: var(--space-2);
-  margin-left: auto;
   background: transparent;
   border: 1px solid rgba(245, 245, 241, 0.28);
   color: var(--bg);

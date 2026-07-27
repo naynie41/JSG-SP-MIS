@@ -81,6 +81,21 @@ final class DashboardScope
         return $this->kind === self::KIND_STATE_WIDE;
     }
 
+    /**
+     * The oversight TIER this scope represents (PRD role tiering). Governor/Executive
+     * (and SP Coordination) resolve to state-wide; a Development Partner to their funded
+     * programmes; every other MDA user to an operational/own-MDA tier. Purely a label —
+     * the actual enforcement is the scope's `mdaIds`/`programmeIds` applied in every query.
+     */
+    public function tier(): string
+    {
+        return match ($this->kind) {
+            self::KIND_STATE_WIDE => 'statewide',
+            self::KIND_PARTNER => 'partner',
+            default => 'operational',
+        };
+    }
+
     public function isPartner(): bool
     {
         return $this->kind === self::KIND_PARTNER;

@@ -246,6 +246,22 @@
   color: var(--ink);
   font-weight: 600;
 }
+.progDrill {
+  border: none;
+  background: transparent;
+  padding: 0;
+  font: inherit;
+  font-weight: 600;
+  color: var(--forest);
+  cursor: pointer;
+  text-align: left;
+  text-decoration: underline;
+  text-decoration-color: var(--border-strong);
+  text-underline-offset: 2px;
+}
+.progDrill:hover {
+  text-decoration-color: var(--forest);
+}
 .barCol {
   width: 34%;
   min-width: 9rem;

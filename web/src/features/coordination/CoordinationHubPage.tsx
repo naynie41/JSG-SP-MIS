@@ -16,7 +16,7 @@ const ITEMS: GatedItem[] = [
 
 /** Scoped coordination metrics — only mounted when the user has dashboard.view. */
 function CoordinationMetrics() {
-  const { data } = useDashboard(true)
+  const { data } = useDashboard(undefined, true)
   if (!data) return null
   const { referrals, grievances } = data.metrics
   if (referrals === null && grievances === null) return null

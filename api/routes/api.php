@@ -36,6 +36,7 @@ use App\Http\Controllers\Api\V1\Registry\OwnershipTransferController;
 use App\Http\Controllers\Api\V1\Registry\ServiceRequestController;
 use App\Http\Controllers\Api\V1\Reporting\AdHocReportController;
 use App\Http\Controllers\Api\V1\Reporting\DashboardController;
+use App\Http\Controllers\Api\V1\Reporting\DashboardExportController;
 use App\Http\Controllers\Api\V1\Reporting\GisController;
 use App\Http\Controllers\Api\V1\Reporting\ReportController;
 use App\Http\Controllers\Api\V1\Reporting\ReportDefinitionController;
@@ -480,6 +481,11 @@ Route::prefix('v1')->group(function (): void {
         */
         Route::get('/dashboard', [DashboardController::class, 'index'])
             ->middleware('permission:dashboard.view')->name('dashboard.index');
+
+        // Export the current (scoped + filtered) dashboard as CSV/Excel/PDF (FR-RPT-03).
+        // Aggregate-only — gated by reporting.export, never beneficiary.export.
+        Route::get('/dashboard/export', [DashboardExportController::class, 'export'])
+            ->middleware(['permission:reporting.export', 'throttle:exports'])->name('dashboard.export');
 
         // Operational metrics for monitoring (NFR-AVAIL-01) — non-PII; gated so it is
         // not a public information leak. Liveness/readiness stay public at /up + /health.

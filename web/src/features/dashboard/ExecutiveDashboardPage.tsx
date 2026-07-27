@@ -1,3 +1,4 @@
+import { useState } from 'react'
 import { RefreshCw } from 'lucide-react'
 import { Card } from '@/components/Card/Card'
 import { Icon } from '@/components/Icon/Icon'
@@ -5,13 +6,25 @@ import { Spinner } from '@/components/Spinner/Spinner'
 import { Tabs } from '@/components/Tabs/Tabs'
 import { useAuth } from '@/lib/auth/AuthProvider'
 import { formatNaira } from '@/lib/utils/money'
+import { CoordinationTab } from './CoordinationTab'
+import { CoverageMapTab } from './CoverageMapTab'
 import { ExecutiveOverviewTab } from './ExecutiveOverviewTab'
+import { ExportMenu } from './ExportMenu'
+import { FilterBar } from './FilterBar'
 import { ProgrammesTab } from './ProgrammesTab'
 import { RegistryTab } from './RegistryTab'
 import { useDashboard } from './hooks'
+import { EMPTY_FILTER } from './types'
+import type { DashboardFilterValue, DrillFn, ScopeTier } from './types'
 import styles from './executiveShell.module.css'
 
 const num = (n: number | null | undefined): string => (n ?? 0).toLocaleString()
+
+const TIER_LABEL: Record<ScopeTier, string> = {
+  statewide: 'State-wide oversight',
+  operational: 'Operational scope',
+  partner: 'Partner scope',
+}
 
 function asOf(iso: string): string {
   const mins = Math.round((Date.now() - new Date(iso).getTime()) / 60000)
@@ -31,7 +44,15 @@ function asOf(iso: string): string {
 export function ExecutiveDashboardPage() {
   const { user, hasPermission } = useAuth()
   const isExecutive = user?.role?.key === 'executive'
-  const { data, isLoading, isFetching, refetch } = useDashboard(isExecutive && hasPermission('dashboard.view'))
+  const [filter, setFilter] = useState<DashboardFilterValue>(EMPTY_FILTER)
+  const [tab, setTab] = useState('overview')
+  const { data, isLoading, isFetching, refetch } = useDashboard(filter, isExecutive && hasPermission('dashboard.view'))
+
+  // Drill-down: apply a (scoped) filter patch and jump to the detailed tab.
+  const drill: DrillFn = (nextTab, patch) => {
+    if (patch) setFilter((f) => ({ ...f, ...patch }))
+    setTab(nextTab)
+  }
 
   if (!isExecutive) {
     return (
@@ -58,7 +79,8 @@ export function ExecutiveDashboardPage() {
         <div className={styles.heroTop}>
           <span className={styles.heroEyebrow}>Executive briefing</span>
           <span className={styles.dateline}>
-            {data.scope.label} · updated {asOf(data.computed_at)}
+            {data.scope.tier ? `${TIER_LABEL[data.scope.tier]} · ` : ''}
+            {data.scope.label} · {data.live ? 'filtered · ' : ''}updated {asOf(data.computed_at)}
           </span>
         </div>
 
@@ -75,18 +97,29 @@ export function ExecutiveDashboardPage() {
             <span className={styles.marqueeValue}>{formatNaira(budget.utilized_value)}</span>
             <span className={styles.marqueeLabel}>Benefits disbursed</span>
           </div>
-          <button type="button" className={styles.refresh} onClick={() => refetch()} disabled={isFetching}>
-            <Icon icon={RefreshCw} size={14} className={isFetching ? styles.spin : undefined} />
-            Refresh
-          </button>
+          <div className={styles.heroActions}>
+            {hasPermission('reporting.export') && <ExportMenu filter={filter} />}
+            <button type="button" className={styles.refresh} onClick={() => refetch()} disabled={isFetching}>
+              <Icon icon={RefreshCw} size={14} className={isFetching ? styles.spin : undefined} />
+              Refresh
+            </button>
+          </div>
         </div>
       </header>
 
+      {data.filter_options && (
+        <FilterBar value={filter} options={data.filter_options} onChange={setFilter} live={data.live} />
+      )}
+
       <Tabs
+        activeId={tab}
+        onChange={setTab}
         items={[
-          { id: 'overview', label: 'Overview', content: <ExecutiveOverviewTab data={data} /> },
-          { id: 'programmes', label: 'Programmes', content: <ProgrammesTab data={data} /> },
+          { id: 'overview', label: 'Overview', content: <ExecutiveOverviewTab data={data} onDrill={drill} /> },
+          { id: 'programmes', label: 'Programmes', content: <ProgrammesTab data={data} onDrill={drill} /> },
           { id: 'registry', label: 'Registry', content: <RegistryTab data={data} /> },
+          { id: 'coordination', label: 'Coordination', content: <CoordinationTab data={data} /> },
+          { id: 'coverage', label: 'Coverage Map', content: <CoverageMapTab filter={filter} /> },
         ]}
       />
 

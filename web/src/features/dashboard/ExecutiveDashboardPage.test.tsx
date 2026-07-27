@@ -1,7 +1,7 @@
 import { beforeEach, describe, expect, it, vi } from 'vitest'
 import type { Mock } from 'vitest'
 import type { ReactNode } from 'react'
-import { render, screen } from '@testing-library/react'
+import { render, screen, waitFor } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 import { MemoryRouter } from 'react-router-dom'
@@ -46,7 +46,53 @@ describe('ExecutiveDashboardPage', () => {
     expect(screen.getByRole('tab', { name: 'Overview' })).toBeInTheDocument()
     expect(screen.getByRole('tab', { name: 'Programmes' })).toBeInTheDocument()
     expect(screen.getByRole('tab', { name: 'Registry' })).toBeInTheDocument()
+    expect(screen.getByRole('tab', { name: 'Coordination' })).toBeInTheDocument()
+    expect(screen.getByRole('tab', { name: 'Coverage Map' })).toBeInTheDocument()
     expect(screen.getByText(/net-unique beneficiaries have been reached/i)).toBeInTheDocument()
+
+    // Cross-cutting filter bar + the caller's oversight tier.
+    expect(screen.getByRole('group', { name: 'Dashboard filters' })).toBeInTheDocument()
+    expect(screen.getByRole('combobox', { name: 'Programme' })).toBeInTheDocument()
+    expect(screen.getByText(/State-wide oversight/i)).toBeInTheDocument()
+
+    // Aggregate export is available (reporting.export granted in the mocked auth).
+    expect(screen.getByRole('button', { name: /export/i })).toBeInTheDocument()
+  })
+
+  it('applies a filter across the dashboard (refetches with the filter params)', async () => {
+    get.mockResolvedValue(makeExecutivePayload())
+
+    renderPage(<ExecutiveDashboardPage />)
+    await screen.findByRole('combobox', { name: 'Programme' })
+    expect(get).toHaveBeenLastCalledWith(expect.objectContaining({ programme_id: null }))
+
+    await userEvent.selectOptions(screen.getByRole('combobox', { name: 'Programme' }), 'p-a')
+
+    await waitFor(() => expect(get).toHaveBeenLastCalledWith(expect.objectContaining({ programme_id: 'p-a' })))
+  })
+
+  it('drills from an Overview programme slice into the filtered Programmes tab', async () => {
+    get.mockResolvedValue(makeExecutivePayload())
+
+    renderPage(<ExecutiveDashboardPage />)
+    // The donut legend exposes each programme as a drill affordance.
+    await userEvent.click(await screen.findByRole('button', { name: 'Cash Transfer' }))
+
+    // Switched to the Programmes tab AND refetched scoped to that programme.
+    expect(screen.getByRole('heading', { name: 'Comparison' })).toBeInTheDocument()
+    await waitFor(() => expect(get).toHaveBeenLastCalledWith(expect.objectContaining({ programme_id: 'p-a' })))
+  })
+
+  it('switches to the Coordination tab', async () => {
+    get.mockResolvedValue(makeExecutivePayload())
+
+    renderPage(<ExecutiveDashboardPage />)
+    await screen.findByRole('tab', { name: 'Coordination' })
+
+    await userEvent.click(screen.getByRole('tab', { name: 'Coordination' }))
+
+    expect(screen.getByRole('heading', { name: 'Agencies' })).toBeInTheDocument()
+    expect(screen.getByRole('heading', { name: 'Partner contributions' })).toBeInTheDocument()
   })
 
   it('switches to the Registry tab', async () => {
