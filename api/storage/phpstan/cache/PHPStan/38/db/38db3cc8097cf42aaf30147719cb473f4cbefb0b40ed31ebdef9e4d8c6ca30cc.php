@@ -13,6 +13,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
          'uses' => 
         array (
           'activitystatus' => 'App\\Domain\\Programme\\Enums\\ActivityStatus',
+          'isfundingpartner' => 'App\\Domain\\Programme\\Rules\\IsFundingPartner',
           'lga' => 'App\\Domain\\Registry\\Enums\\Lga',
           'sourceadapterregistry' => 'App\\Domain\\Registry\\Imports\\Adapters\\SourceAdapterRegistry',
           'formrequest' => 'Illuminate\\Foundation\\Http\\FormRequest',
@@ -40,6 +41,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
          'uses' => 
         array (
           'activitystatus' => 'App\\Domain\\Programme\\Enums\\ActivityStatus',
+          'isfundingpartner' => 'App\\Domain\\Programme\\Rules\\IsFundingPartner',
           'lga' => 'App\\Domain\\Registry\\Enums\\Lga',
           'sourceadapterregistry' => 'App\\Domain\\Registry\\Imports\\Adapters\\SourceAdapterRegistry',
           'formrequest' => 'Illuminate\\Foundation\\Http\\FormRequest',
@@ -56,6 +58,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
            'uses' => 
           array (
             'activitystatus' => 'App\\Domain\\Programme\\Enums\\ActivityStatus',
+            'isfundingpartner' => 'App\\Domain\\Programme\\Rules\\IsFundingPartner',
             'lga' => 'App\\Domain\\Registry\\Enums\\Lga',
             'sourceadapterregistry' => 'App\\Domain\\Registry\\Imports\\Adapters\\SourceAdapterRegistry',
             'formrequest' => 'Illuminate\\Foundation\\Http\\FormRequest',
@@ -93,6 +96,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
          'uses' => 
         array (
           'activitystatus' => 'App\\Domain\\Programme\\Enums\\ActivityStatus',
+          'isfundingpartner' => 'App\\Domain\\Programme\\Rules\\IsFundingPartner',
           'lga' => 'App\\Domain\\Registry\\Enums\\Lga',
           'sourceadapterregistry' => 'App\\Domain\\Registry\\Imports\\Adapters\\SourceAdapterRegistry',
           'formrequest' => 'Illuminate\\Foundation\\Http\\FormRequest',
@@ -109,6 +113,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
            'uses' => 
           array (
             'activitystatus' => 'App\\Domain\\Programme\\Enums\\ActivityStatus',
+            'isfundingpartner' => 'App\\Domain\\Programme\\Rules\\IsFundingPartner',
             'lga' => 'App\\Domain\\Registry\\Enums\\Lga',
             'sourceadapterregistry' => 'App\\Domain\\Registry\\Imports\\Adapters\\SourceAdapterRegistry',
             'formrequest' => 'Illuminate\\Foundation\\Http\\FormRequest',
@@ -146,6 +151,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
          'uses' => 
         array (
           'activitystatus' => 'App\\Domain\\Programme\\Enums\\ActivityStatus',
+          'isfundingpartner' => 'App\\Domain\\Programme\\Rules\\IsFundingPartner',
           'lga' => 'App\\Domain\\Registry\\Enums\\Lga',
           'sourceadapterregistry' => 'App\\Domain\\Registry\\Imports\\Adapters\\SourceAdapterRegistry',
           'formrequest' => 'Illuminate\\Foundation\\Http\\FormRequest',
@@ -162,6 +168,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
            'uses' => 
           array (
             'activitystatus' => 'App\\Domain\\Programme\\Enums\\ActivityStatus',
+            'isfundingpartner' => 'App\\Domain\\Programme\\Rules\\IsFundingPartner',
             'lga' => 'App\\Domain\\Registry\\Enums\\Lga',
             'sourceadapterregistry' => 'App\\Domain\\Registry\\Imports\\Adapters\\SourceAdapterRegistry',
             'formrequest' => 'Illuminate\\Foundation\\Http\\FormRequest',
@@ -196,7 +203,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
     ),
     1 => 
     array (
-      'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Registry\\UploadActivityImportRequest.php' => '5cc5d39a76317beda2e0d33fb922795ba3e89f541b3ee5241e5b5ad4b24d17bc',
+      'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Registry\\UploadActivityImportRequest.php' => '02f7b4d875c854d9e5ef936d6aa934368a90fba5199ccd719aa150e758974349',
     ),
   ),
 ));

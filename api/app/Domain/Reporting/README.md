@@ -18,10 +18,13 @@ Every dashboard/report/map query applies the scope **explicitly** (bypassing the
 request-time `MdaScope`) so it is identical in a request or on the scheduler/queue.
 `DashboardScope::covers()` decides whether a recipient may receive a scoped report.
 
-**Partner funding scope (6.0):** a partner's scope is the set of programmes linked to
-them via `programme_funders` (`Programme\Models\ProgrammeFunder`). A partner sees
-coverage/budget/benefits for those programmes and beneficiaries served by them —
-nothing else; coordination datasets (referrals/grievances) don't apply.
+**Partner funding scope (6.0 → 6P):** a partner's scope is the set of programmes they
+fund. **Phase 6P made the queryable source of truth `activities.funding_partner_id`**
+(a Development-Partner user), so every partner figure is **activity-precise** — the
+budget/delivery/reach of the activities the partner actually funds, never a co-funder's.
+`programme_funders` (`Programme\Models\ProgrammeFunder`) is retained for the executive
+coordination "partners" list. A partner sees only their funded data; coordination
+datasets (referrals/grievances) don't apply.
 
 ## 1. Aggregation layer + dashboards (FR-RPT-01/02)
 
@@ -167,3 +170,71 @@ import-matched duplicate so every panel renders.
 Phase 6E tests: `tests/Feature/Reporting/{ExecutiveMetrics,ExecutiveFilter,Dashboard-
 Export,ExecutiveDemoSeeder,GisCoverage}Test.php`; `web/src/features/dashboard/*` +
 `web/src/features/gis/*`. Completion checklist: [`docs/PHASE-6E-CHECKLIST.md`](../../../../docs/PHASE-6E-CHECKLIST.md).
+
+---
+
+## Phase 6P — Funding Partner Reporting Suite (FR-RPT-02/03)
+
+A 5-tab **Development-Partner** view (`web/src/features/dashboard/FundingPartner*`),
+the partner-facing analog of 6E, built on the same aggregation layer + GIS map.
+Read-only, de-identified **aggregates only**, and **ACTIVITY-PRECISE**: every figure is
+scoped to the activities the partner funds (`activities.funding_partner_id`) — a partner
+sees **only their own funded data**, enforced server-side by `DashboardScopeResolver`.
+
+**Labelling (non-negotiable):** money is **DELIVERY VALUE** — the recorded value of
+benefits delivered under funded activities — on an **Allocated → Delivered → Remaining**
+lifecycle. It is **never** treasury expenditure; the words *spent / disbursed /
+expenditure / committed-vs-disbursed / grant / audit* are never shown or faked. *SP-MIS
+records value as data; it never moves money.*
+
+**Aggregation** (`DashboardMetricsService::partnerFunding()`, computed only for a partner
+scope, nested under `metrics.partner_funding`):
+
+| Block | Feeds tab | Notes |
+| --- | --- | --- |
+| allocated / delivered_value / remaining / utilization_rate, funded programmes/activities, implementing MDAs, net-unique reached, target, cost/beneficiary, `reach` (households/women/children), `coverage_bands` | **Overview** | delivery value; captured demographics only; coverage **absolute** |
+| `programmes[]` (activity-precise per funded programme: budget→delivered→remaining, target/reached, **absolute** coverage, completion, interventions, avg benefit value, delivery-rate series, 4-state `status_light`, `output_indicators`, activity drill-down) + rolled-up `output_indicators` | **Programmes & Results** | absorbs M&E; **OUTPUTS ONLY** (interventions × benefit type × captured demographic) |
+| `registry` (funded-cohort KPIs, reduced funnel **Registered→Enrolled→Receiving**, captured demographics, data quality) | **Registry** | cohort = enrolled ∪ served via funded activities |
+| `coordination` (landscape, funding-by-partner **amounts for self only**, MDA landscape, data sharing/sync) + `programme_overlap` | **Coordination** | overlap = same programme × LGA, different funder/MDA; a co-funder's money never leaks |
+| `GisCoverageService` `funding_allocated` per area (activity-precise) + coverage | **Investment Map** | funding-density choropleth + quadrant analysis + LGA drill-down; table fallback |
+
+**Status model** (`programme_status` config): On Track / At Risk / Delayed / Completed
+from completion (reached ÷ target) + timeline (delivery end date) — configurable, never a
+fabricated %.
+
+**Cross-cutting (FR-RPT-02/03):**
+- **Filters** — the shared `DashboardFilter` (year/quarter/month, programme, LGA, ward,
+  MDA), applied across all five tabs; scoped options come from `filterOptions()`, and a
+  filter can only ever **narrow within funded scope** (a non-funded programme → empty).
+- **Drill-down** — KPI → Programmes/Registry; programme-overlap LGA → Investment Map;
+  map area → Registry/Programmes — all via the same scoped filter machinery.
+- **Export (FR-RPT-03)** — `GET /dashboard/export` renders the **aggregate** current
+  view; gated by `reporting.export` (the partner has it) — **never**
+  `beneficiary.export` / `export.reveal_pii`, so no raw registry PII can be exported.
+- **Role tiering** — `DashboardScope::tier() === 'partner'`; the resolver + RBAC keep a
+  partner to their funded programmes; the filter can never escape it.
+
+**Demo data** — `Database\Seeders\PartnerDemoSeeder`: two partners (World Bank + UNICEF)
+funding **overlapping** programmes in a **shared LGA** through **different MDAs**, with
+committed budgets, delivered benefits across historical periods, varied demographics, and
+enrolled-but-not-served beneficiaries — so every tab, the overlap detector and the map
+render meaningfully (never real PII). Run: `php artisan db:seed --class=PartnerDemoSeeder`.
+
+### Deferred / omitted — and the switch-on condition
+
+| Item | Why omitted | Switch-on condition |
+| --- | --- | --- |
+| Committed vs **disbursed**, **grant** lifecycle | SP-MIS is not a grants ledger; it holds committed budget + delivery value only | Add a **grant module** (award → disbursement schedule); then a Committed→Disbursed lifecycle can sit beside Allocated→Delivered |
+| Treasury **expenditure** + audit | No expenditure/audit data is held (delivery value ≠ money moved) | Integrate **treasury expenditure + audit** feeds; only then show spend (still labelled distinctly from delivery value) |
+| Eligible → Selected funnel steps | No eligible-population **denominator** / selection model | Load an **eligible-population denominator** + a selection/PMT model; the reduced funnel then extends upstream (today: inert slot) |
+| Outcome indicators (poverty ↓, income, attendance, food security, employment) & Outcomes→Impact | Need external evaluation data | Wire **outcome M&E** / evaluation data; fill the greyed external slot (today: **outputs only**) |
+| PWD / vulnerability / poverty demographics | **No such field captured** | Add registry field(s); extend `registry.demographics` (panels **absent**, not empty) |
+| Coordination meetings / action items, reporting-compliance | **Not part of SP-MIS** (no meetings/reporting-workflow module) | Track in an **external coordination tool** (inert slots only) |
+| Map overlay layers (schools, health, IDP camps, flood) | External data supplied later | `registerMapLayer()` an **external GeoJSON** (framework: `web/.../gis/mapLayers.ts`) |
+
+Phase 6P tests: `tests/Feature/Reporting/{PartnerFunding,PartnerDemoSeeder,GisCoverage}Test.php`
+(attribution + funded-scope enforcement, allocated/delivered/remaining + labelling,
+programme overlap, reduced funnel, output indicators, status model, filters, export
+permission, no-raw-PII, investment-map funding density); `web/src/features/dashboard/FundingPartner*`
++ `web/src/features/gis/investment.test.ts`. Completion checklist:
+[`docs/PHASE-6P-CHECKLIST.md`](../../../../docs/PHASE-6P-CHECKLIST.md).

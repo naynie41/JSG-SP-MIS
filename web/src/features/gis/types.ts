@@ -12,7 +12,8 @@ export interface CoverageRow {
   name: string
   beneficiary_count: number // registered individuals in the area
   benefit_count: number
-  benefit_value: number // kobo — budget spent (delivered value)
+  benefit_value: number // kobo — funds delivered (delivery value), NOT expenditure
+  funding_allocated: number // kobo — attributed activity budget (investment-map density)
   households: number
   served: number // net-unique beneficiaries served
   active_programmes: number

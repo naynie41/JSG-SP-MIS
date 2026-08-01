@@ -8,7 +8,6 @@ use App\Domain\Access\Enums\RoleKey;
 use App\Domain\Access\Models\Mda;
 use App\Domain\Access\Models\User;
 use App\Domain\Access\Scopes\MdaScope;
-use App\Domain\Programme\Models\ProgrammeFunder;
 use App\Domain\Reporting\Models\DashboardSnapshot;
 use App\Domain\Reporting\Support\DashboardScope;
 use Illuminate\Support\Carbon;
@@ -22,7 +21,10 @@ use Illuminate\Support\Collection;
  */
 class DashboardSnapshotService
 {
-    public function __construct(private readonly DashboardMetricsService $metrics) {}
+    public function __construct(
+        private readonly DashboardMetricsService $metrics,
+        private readonly DashboardScopeResolver $resolver,
+    ) {}
 
     /**
      * Refresh every well-known scope: state-wide, one per MDA, one per partner's
@@ -36,8 +38,10 @@ class DashboardSnapshotService
             $scopes[] = DashboardScope::mda([$mda->id], $mda->name);
         }
 
+        // A partner's funded scope is derived from activity funding attribution — reuse
+        // the resolver so the snapshot key + scope match a live request exactly.
         foreach ($this->partnerUsers() as $partner) {
-            $scopes[] = DashboardScope::partner(ProgrammeFunder::programmeIdsForUser($partner->id), 'Funded programmes');
+            $scopes[] = $this->resolver->forUser($partner);
         }
 
         $seen = [];

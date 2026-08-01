@@ -309,6 +309,26 @@ demographics are shown; omitted panels are absent with inert `deferred` slots fo
 > [api/app/Domain/Reporting/README.md](api/app/Domain/Reporting/README.md) §Phase 6E and
 > the completion checklist in [docs/PHASE-6E-CHECKLIST.md](docs/PHASE-6E-CHECKLIST.md).
 
+#### Phase 6P — Funding Partner Reporting Suite
+
+A 5-tab **Development-Partner** view (Overview · Programmes & Results · Registry ·
+Coordination · Investment Map), the funder-facing analog of 6E. Everything is
+**read-only, aggregate-only, no PII**, and **activity-precise** — scoped to the
+activities the partner funds (`activities.funding_partner_id`), so a partner sees **only
+their own funded data**. Money is **DELIVERY VALUE** on an **Allocated → Delivered →
+Remaining** lifecycle — never treasury expenditure, and no committed/disbursed/grant/audit
+data is shown or faked. Coverage is **absolute**; only **captured** demographics show;
+M&E is **outputs-only** (Outcomes→Impact is a greyed external slot). The headline
+**programme-overlap** detector surfaces the same catalog programme funded/run in the same
+LGA by different funders/MDAs. **Filters, drill-down, PDF/Excel/CSV export** (aggregate,
+gated by `reporting.export` — never PII) and **role tiering** all work within funded scope.
+
+> `Database\Seeders\PartnerDemoSeeder` seeds two partners funding overlapping programmes
+> in a shared LGA via different MDAs so every tab, the overlap detector and the map render
+> (`php artisan db:seed --class=PartnerDemoSeeder`). Details + deferred-item switch-on
+> conditions: [api/app/Domain/Reporting/README.md](api/app/Domain/Reporting/README.md)
+> §Phase 6P and the checklist in [docs/PHASE-6P-CHECKLIST.md](docs/PHASE-6P-CHECKLIST.md).
+
 ---
 
 ## Running tests, lint & static analysis

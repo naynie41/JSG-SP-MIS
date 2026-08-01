@@ -44,4 +44,16 @@ return [
         'green_min' => (int) env('REPORTING_COVERAGE_GREEN', 1000),
         'yellow_min' => (int) env('REPORTING_COVERAGE_YELLOW', 250),
     ],
+
+    // Funded-programme delivery STATUS (Phase 6P) — a four-state traffic light derived
+    // from completion (reached ÷ target) AND the timeline (delivery end date):
+    //   past end date → completion ≥ completed_min ? Completed : Delayed
+    //   still in timeline → completion ≥ on_track_min ? On Track
+    //                       : completion ≥ at_risk_min ? At Risk : Delayed
+    // A programme with no target is "unrated" (cannot be scored without a denominator).
+    'programme_status' => [
+        'completed_min' => (float) env('REPORTING_STATUS_COMPLETED', 0.9),
+        'on_track_min' => (float) env('REPORTING_STATUS_ON_TRACK', 0.8),
+        'at_risk_min' => (float) env('REPORTING_STATUS_AT_RISK', 0.5),
+    ],
 ];

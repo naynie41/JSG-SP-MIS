@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Http\Requests\Programme;
 
 use App\Domain\Programme\Enums\ActivityStatus;
+use App\Domain\Programme\Rules\IsFundingPartner;
 use App\Domain\Registry\Enums\Lga;
 use Illuminate\Contracts\Validation\Validator;
 use Illuminate\Foundation\Http\FormRequest;
@@ -47,6 +48,7 @@ class StoreActivityRequest extends FormRequest
             'ends_on' => ['nullable', 'date', 'after_or_equal:starts_on'],
             'budget_amount' => ['nullable', 'integer', 'min:0'],
             'funding_source' => ['nullable', 'string', 'max:255'],
+            'funding_partner_id' => ['nullable', 'uuid', new IsFundingPartner],
             'status' => ['nullable', Rule::enum(ActivityStatus::class)],
         ];
     }

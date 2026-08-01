@@ -8,6 +8,8 @@ use App\Domain\Access\Enums\RoleKey;
 use App\Domain\Access\Enums\UserStatus;
 use App\Domain\Access\Models\Role;
 use App\Domain\Access\Models\User;
+use App\Domain\Access\Scopes\MdaScope;
+use App\Domain\Programme\Models\Activity;
 use App\Domain\Programme\Models\Programme;
 use App\Domain\Programme\Models\ProgrammeFunder;
 use App\Domain\Registry\Enums\Lga;
@@ -59,6 +61,13 @@ class ReportingSampleSeeder extends Seeder
 
         foreach (Programme::query()->where('status', 'active')->take(2)->get() as $programme) {
             ProgrammeFunder::query()->firstOrCreate(['programme_id' => $programme->id, 'user_id' => $partner->id]);
+
+            // Phase 6P: attribute the programme's activities to the funding partner, so the
+            // partner's funded scope (activities.funding_partner_id) is queryable + non-empty.
+            Activity::query()->withoutGlobalScope(MdaScope::class)
+                ->where('programme_id', $programme->id)
+                ->whereNull('funding_partner_id')
+                ->update(['funding_partner_id' => $partner->id]);
         }
     }
 

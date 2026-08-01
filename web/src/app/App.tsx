@@ -7,7 +7,14 @@ import { DashboardPage } from '@/features/dashboard/DashboardPage'
 import { AdminDashboardPage } from '@/features/dashboard/AdminDashboardPage'
 import { ExecutiveDashboardPage } from '@/features/dashboard/ExecutiveDashboardPage'
 import { MdaDashboardPage } from '@/features/dashboard/MdaDashboardPage'
-import { PartnerDashboardPage } from '@/features/dashboard/PartnerDashboardPage'
+import { PartnerLayout } from '@/features/dashboard/PartnerLayout'
+import {
+  PartnerCoordinationPage,
+  PartnerInvestmentPage,
+  PartnerOverviewPage,
+  PartnerProgrammesPage,
+  PartnerRegistryPage,
+} from '@/features/dashboard/partnerPages'
 import { NotFoundPage } from '@/features/misc/NotFoundPage'
 import { StyleguidePage } from '@/features/styleguide/StyleguidePage'
 import { MdaListPage } from '@/features/mdas/MdaListPage'
@@ -55,7 +62,7 @@ function HomeDashboard() {
   const roleKey = user?.role?.key
   if (roleKey === 'system_administrator') return <AdminDashboardPage />
   if (roleKey === 'executive') return <ExecutiveDashboardPage />
-  if (roleKey === 'development_partner') return <PartnerDashboardPage />
+  if (roleKey === 'development_partner') return <Navigate to="/partner" replace />
   if (hasPermission('dashboard.view')) return <MdaDashboardPage />
   return <DashboardPage />
 }
@@ -96,6 +103,13 @@ export function App() {
         }
       >
         <Route index element={<HomeDashboard />} />
+        <Route path="/partner" element={<PartnerLayout />}>
+          <Route index element={<PartnerOverviewPage />} />
+          <Route path="programmes" element={<PartnerProgrammesPage />} />
+          <Route path="registry" element={<PartnerRegistryPage />} />
+          <Route path="coordination" element={<PartnerCoordinationPage />} />
+          <Route path="investment" element={<PartnerInvestmentPage />} />
+        </Route>
         <Route path="/beneficiaries" element={<BeneficiaryListPage />} />
         <Route path="/beneficiaries/:id" element={<BeneficiaryDetailPage />} />
         <Route path="/households" element={<HouseholdListPage />} />

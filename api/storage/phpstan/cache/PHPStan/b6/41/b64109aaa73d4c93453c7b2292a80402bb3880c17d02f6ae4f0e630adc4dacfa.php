@@ -2,7 +2,7 @@
 
 // odsl-C:\Users\ACER\Desktop\JSG-SP-MIS\JSG-SP-MIS\api\app\Domain\Benefit\Services\LedgerAggregator.php-PHPStan\BetterReflection\Reflection\ReflectionClass-App\Domain\Benefit\Services\LedgerAggregator
 return \PHPStan\Cache\CacheItem::__set_state(array(
-   'variableKey' => 'v2-6.70.0.1-8.3.31-2451b7e2dc07c28434a97559bb005de07eba55d719ee756505b4a17d7f91e12b',
+   'variableKey' => 'v2-6.70.0.1-8.3.31-f133afb81afd8b5e7bf8dbbb3eafc7845755c2de9abc72db06e2c66a69ba345c',
    'data' => 
   array (
     'locatedSource' => 
@@ -36,7 +36,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
     array (
     ),
     'startLine' => 26,
-    'endLine' => 391,
+    'endLine' => 396,
     'startColumn' => 1,
     'endColumn' => 1,
     'parentClassName' => NULL,
@@ -1919,9 +1919,9 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
                 'startLine' => 302,
                 'endLine' => 302,
                 'startTokenPos' => 1801,
-                'startFilePos' => 12683,
+                'startFilePos' => 12682,
                 'endTokenPos' => 1802,
-                'endFilePos' => 12684,
+                'endFilePos' => 12683,
               ),
             ),
             'type' => 
@@ -1969,11 +1969,11 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
  *
  * @param  list<string>|null  $mdaIds
  * @param  list<string>|null  $programmeIds
- * @param  array<string, string>  $filters
+ * @param  array<string, mixed>  $filters
  * @return Builder<Benefit>
  */',
         'startLine' => 302,
-        'endLine' => 328,
+        'endLine' => 333,
         'startColumn' => 5,
         'endColumn' => 5,
         'couldThrow' => false,
@@ -2030,8 +2030,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             'attributes' => 
             array (
             ),
-            'startLine' => 334,
-            'endLine' => 334,
+            'startLine' => 339,
+            'endLine' => 339,
             'startColumn' => 29,
             'endColumn' => 43,
             'parameterIndex' => 0,
@@ -2056,8 +2056,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             'attributes' => 
             array (
             ),
-            'startLine' => 334,
-            'endLine' => 334,
+            'startLine' => 339,
+            'endLine' => 339,
             'startColumn' => 46,
             'endColumn' => 67,
             'parameterIndex' => 1,
@@ -2081,8 +2081,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
  * @param  Builder<Benefit>  $utilisedQuery
  * @return array<string, mixed>
  */',
-        'startLine' => 334,
-        'endLine' => 347,
+        'startLine' => 339,
+        'endLine' => 352,
         'startColumn' => 5,
         'endColumn' => 5,
         'couldThrow' => false,
@@ -2120,8 +2120,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             'attributes' => 
             array (
             ),
-            'startLine' => 353,
-            'endLine' => 353,
+            'startLine' => 358,
+            'endLine' => 358,
             'startColumn' => 29,
             'endColumn' => 42,
             'parameterIndex' => 0,
@@ -2145,8 +2145,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
  * @param  Builder<Benefit>  $query
  * @return array{benefit_count: int, total_value: int, total_quantity: string}
  */',
-        'startLine' => 353,
-        'endLine' => 362,
+        'startLine' => 358,
+        'endLine' => 367,
         'startColumn' => 5,
         'endColumn' => 5,
         'couldThrow' => false,
@@ -2184,8 +2184,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             'attributes' => 
             array (
             ),
-            'startLine' => 369,
-            'endLine' => 369,
+            'startLine' => 374,
+            'endLine' => 374,
             'startColumn' => 35,
             'endColumn' => 48,
             'parameterIndex' => 0,
@@ -2210,8 +2210,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             'attributes' => 
             array (
             ),
-            'startLine' => 369,
-            'endLine' => 369,
+            'startLine' => 374,
+            'endLine' => 374,
             'startColumn' => 51,
             'endColumn' => 64,
             'parameterIndex' => 1,
@@ -2236,8 +2236,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
  * @param  array<string, mixed>  $filters
  * @return Builder<Benefit>
  */',
-        'startLine' => 369,
-        'endLine' => 390,
+        'startLine' => 374,
+        'endLine' => 395,
         'startColumn' => 5,
         'endColumn' => 5,
         'couldThrow' => false,

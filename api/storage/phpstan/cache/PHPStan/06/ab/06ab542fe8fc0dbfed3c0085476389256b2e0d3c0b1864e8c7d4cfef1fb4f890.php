@@ -2,7 +2,7 @@
 
 // odsl-C:\Users\ACER\Desktop\JSG-SP-MIS\JSG-SP-MIS\api\app\Domain\Reporting\Gis\GisCoverageService.php-PHPStan\BetterReflection\Reflection\ReflectionClass-App\Domain\Reporting\Gis\GisCoverageService
 return \PHPStan\Cache\CacheItem::__set_state(array(
-   'variableKey' => 'v2-6.70.0.1-8.3.31-2571753b02696ff63cc74b204a1ee63f056ecfacfdd575055e865080b246c494',
+   'variableKey' => 'v2-6.70.0.1-8.3.31-3a3818110022d7eab82d8c543097d3c7e837d81747090d72e892acee72401638',
    'data' => 
   array (
     'locatedSource' => 
@@ -32,8 +32,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
     'attributes' => 
     array (
     ),
-    'startLine' => 26,
-    'endLine' => 243,
+    'startLine' => 28,
+    'endLine' => 365,
     'startColumn' => 1,
     'endColumn' => 1,
     'parentClassName' => NULL,
@@ -68,8 +68,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         'attributes' => 
         array (
         ),
-        'startLine' => 28,
-        'endLine' => 28,
+        'startLine' => 30,
+        'endLine' => 30,
         'startColumn' => 33,
         'endColumn' => 73,
         'isPromoted' => true,
@@ -106,8 +106,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             'attributes' => 
             array (
             ),
-            'startLine' => 28,
-            'endLine' => 28,
+            'startLine' => 30,
+            'endLine' => 30,
             'startColumn' => 33,
             'endColumn' => 73,
             'parameterIndex' => 0,
@@ -120,8 +120,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         array (
         ),
         'docComment' => NULL,
-        'startLine' => 28,
-        'endLine' => 28,
+        'startLine' => 30,
+        'endLine' => 30,
         'startColumn' => 5,
         'endColumn' => 77,
         'couldThrow' => false,
@@ -159,8 +159,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             'attributes' => 
             array (
             ),
-            'startLine' => 39,
-            'endLine' => 39,
+            'startLine' => 41,
+            'endLine' => 41,
             'startColumn' => 30,
             'endColumn' => 50,
             'parameterIndex' => 0,
@@ -185,8 +185,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             'attributes' => 
             array (
             ),
-            'startLine' => 39,
-            'endLine' => 39,
+            'startLine' => 41,
+            'endLine' => 41,
             'startColumn' => 53,
             'endColumn' => 65,
             'parameterIndex' => 1,
@@ -200,12 +200,12 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
               'code' => 'null',
               'attributes' => 
               array (
-                'startLine' => 39,
-                'endLine' => 39,
-                'startTokenPos' => 121,
-                'startFilePos' => 1653,
-                'endTokenPos' => 121,
-                'endFilePos' => 1656,
+                'startLine' => 41,
+                'endLine' => 41,
+                'startTokenPos' => 131,
+                'startFilePos' => 1749,
+                'endTokenPos' => 131,
+                'endFilePos' => 1752,
               ),
             ),
             'type' => 
@@ -242,8 +242,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             'attributes' => 
             array (
             ),
-            'startLine' => 39,
-            'endLine' => 39,
+            'startLine' => 41,
+            'endLine' => 41,
             'startColumn' => 68,
             'endColumn' => 98,
             'parameterIndex' => 2,
@@ -272,8 +272,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
  *
  * @return list<array<string, mixed>>
  */',
-        'startLine' => 39,
-        'endLine' => 94,
+        'startLine' => 41,
+        'endLine' => 114,
         'startColumn' => 5,
         'endColumn' => 5,
         'couldThrow' => false,
@@ -281,6 +281,283 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         'isGenerator' => false,
         'isVariadic' => false,
         'modifiers' => 1,
+        'namespace' => 'App\\Domain\\Reporting\\Gis',
+        'declaringClassName' => 'App\\Domain\\Reporting\\Gis\\GisCoverageService',
+        'implementingClassName' => 'App\\Domain\\Reporting\\Gis\\GisCoverageService',
+        'currentClassName' => 'App\\Domain\\Reporting\\Gis\\GisCoverageService',
+        'aliasName' => NULL,
+      ),
+      'partnerActivityIds' => 
+      array (
+        'name' => 'partnerActivityIds',
+        'parameters' => 
+        array (
+          'scope' => 
+          array (
+            'name' => 'scope',
+            'default' => NULL,
+            'type' => 
+            array (
+              'class' => 'PHPStan\\BetterReflection\\Reflection\\ReflectionNamedType',
+              'data' => 
+              array (
+                'name' => 'App\\Domain\\Reporting\\Support\\DashboardScope',
+                'isIdentifier' => false,
+              ),
+            ),
+            'isVariadic' => false,
+            'byRef' => false,
+            'isPromoted' => false,
+            'attributes' => 
+            array (
+            ),
+            'startLine' => 122,
+            'endLine' => 122,
+            'startColumn' => 41,
+            'endColumn' => 61,
+            'parameterIndex' => 0,
+            'isOptional' => false,
+          ),
+          'filter' => 
+          array (
+            'name' => 'filter',
+            'default' => NULL,
+            'type' => 
+            array (
+              'class' => 'PHPStan\\BetterReflection\\Reflection\\ReflectionNamedType',
+              'data' => 
+              array (
+                'name' => 'App\\Domain\\Reporting\\Support\\DashboardFilter',
+                'isIdentifier' => false,
+              ),
+            ),
+            'isVariadic' => false,
+            'byRef' => false,
+            'isPromoted' => false,
+            'attributes' => 
+            array (
+            ),
+            'startLine' => 122,
+            'endLine' => 122,
+            'startColumn' => 64,
+            'endColumn' => 86,
+            'parameterIndex' => 1,
+            'isOptional' => false,
+          ),
+        ),
+        'returnsReference' => false,
+        'returnType' => 
+        array (
+          'class' => 'PHPStan\\BetterReflection\\Reflection\\ReflectionNamedType',
+          'data' => 
+          array (
+            'name' => 'array',
+            'isIdentifier' => true,
+          ),
+        ),
+        'attributes' => 
+        array (
+        ),
+        'docComment' => '/**
+ * The activities a partner FUNDS (funding_partner_id), narrowed by the filter — the
+ * activity-precise scope for every partner figure on the investment/coverage map.
+ *
+ * @return list<string>
+ */',
+        'startLine' => 122,
+        'endLine' => 143,
+        'startColumn' => 5,
+        'endColumn' => 5,
+        'couldThrow' => false,
+        'isClosure' => false,
+        'isGenerator' => false,
+        'isVariadic' => false,
+        'modifiers' => 4,
+        'namespace' => 'App\\Domain\\Reporting\\Gis',
+        'declaringClassName' => 'App\\Domain\\Reporting\\Gis\\GisCoverageService',
+        'implementingClassName' => 'App\\Domain\\Reporting\\Gis\\GisCoverageService',
+        'currentClassName' => 'App\\Domain\\Reporting\\Gis\\GisCoverageService',
+        'aliasName' => NULL,
+      ),
+      'servedBeneficiaryIds' => 
+      array (
+        'name' => 'servedBeneficiaryIds',
+        'parameters' => 
+        array (
+          'activityIds' => 
+          array (
+            'name' => 'activityIds',
+            'default' => NULL,
+            'type' => 
+            array (
+              'class' => 'PHPStan\\BetterReflection\\Reflection\\ReflectionNamedType',
+              'data' => 
+              array (
+                'name' => 'array',
+                'isIdentifier' => true,
+              ),
+            ),
+            'isVariadic' => false,
+            'byRef' => false,
+            'isPromoted' => false,
+            'attributes' => 
+            array (
+            ),
+            'startLine' => 151,
+            'endLine' => 151,
+            'startColumn' => 43,
+            'endColumn' => 60,
+            'parameterIndex' => 0,
+            'isOptional' => false,
+          ),
+        ),
+        'returnsReference' => false,
+        'returnType' => 
+        array (
+          'class' => 'PHPStan\\BetterReflection\\Reflection\\ReflectionNamedType',
+          'data' => 
+          array (
+            'name' => 'array',
+            'isIdentifier' => true,
+          ),
+        ),
+        'attributes' => 
+        array (
+        ),
+        'docComment' => '/**
+ * Distinct beneficiaries served (non-reversed) through a set of activities.
+ *
+ * @param  list<string>  $activityIds
+ * @return list<string>
+ */',
+        'startLine' => 151,
+        'endLine' => 161,
+        'startColumn' => 5,
+        'endColumn' => 5,
+        'couldThrow' => false,
+        'isClosure' => false,
+        'isGenerator' => false,
+        'isVariadic' => false,
+        'modifiers' => 4,
+        'namespace' => 'App\\Domain\\Reporting\\Gis',
+        'declaringClassName' => 'App\\Domain\\Reporting\\Gis\\GisCoverageService',
+        'implementingClassName' => 'App\\Domain\\Reporting\\Gis\\GisCoverageService',
+        'currentClassName' => 'App\\Domain\\Reporting\\Gis\\GisCoverageService',
+        'aliasName' => NULL,
+      ),
+      'fundingByArea' => 
+      array (
+        'name' => 'fundingByArea',
+        'parameters' => 
+        array (
+          'scope' => 
+          array (
+            'name' => 'scope',
+            'default' => NULL,
+            'type' => 
+            array (
+              'class' => 'PHPStan\\BetterReflection\\Reflection\\ReflectionNamedType',
+              'data' => 
+              array (
+                'name' => 'App\\Domain\\Reporting\\Support\\DashboardScope',
+                'isIdentifier' => false,
+              ),
+            ),
+            'isVariadic' => false,
+            'byRef' => false,
+            'isPromoted' => false,
+            'attributes' => 
+            array (
+            ),
+            'startLine' => 170,
+            'endLine' => 170,
+            'startColumn' => 36,
+            'endColumn' => 56,
+            'parameterIndex' => 0,
+            'isOptional' => false,
+          ),
+          'column' => 
+          array (
+            'name' => 'column',
+            'default' => NULL,
+            'type' => 
+            array (
+              'class' => 'PHPStan\\BetterReflection\\Reflection\\ReflectionNamedType',
+              'data' => 
+              array (
+                'name' => 'string',
+                'isIdentifier' => true,
+              ),
+            ),
+            'isVariadic' => false,
+            'byRef' => false,
+            'isPromoted' => false,
+            'attributes' => 
+            array (
+            ),
+            'startLine' => 170,
+            'endLine' => 170,
+            'startColumn' => 59,
+            'endColumn' => 72,
+            'parameterIndex' => 1,
+            'isOptional' => false,
+          ),
+          'filter' => 
+          array (
+            'name' => 'filter',
+            'default' => NULL,
+            'type' => 
+            array (
+              'class' => 'PHPStan\\BetterReflection\\Reflection\\ReflectionNamedType',
+              'data' => 
+              array (
+                'name' => 'App\\Domain\\Reporting\\Support\\DashboardFilter',
+                'isIdentifier' => false,
+              ),
+            ),
+            'isVariadic' => false,
+            'byRef' => false,
+            'isPromoted' => false,
+            'attributes' => 
+            array (
+            ),
+            'startLine' => 170,
+            'endLine' => 170,
+            'startColumn' => 75,
+            'endColumn' => 97,
+            'parameterIndex' => 2,
+            'isOptional' => false,
+          ),
+        ),
+        'returnsReference' => false,
+        'returnType' => 
+        array (
+          'class' => 'PHPStan\\BetterReflection\\Reflection\\ReflectionNamedType',
+          'data' => 
+          array (
+            'name' => 'array',
+            'isIdentifier' => true,
+          ),
+        ),
+        'attributes' => 
+        array (
+        ),
+        'docComment' => '/**
+ * Attributed funding (committed activity budget) by admin area. Partner → activities
+ * it FUNDS; MDA → activities it owns; state-wide → all. Filter-narrowed. This is
+ * committed budget (never treasury expenditure); delivered value is a separate column.
+ *
+ * @return array<string, int>
+ */',
+        'startLine' => 170,
+        'endLine' => 197,
+        'startColumn' => 5,
+        'endColumn' => 5,
+        'couldThrow' => false,
+        'isClosure' => false,
+        'isGenerator' => false,
+        'isVariadic' => false,
+        'modifiers' => 4,
         'namespace' => 'App\\Domain\\Reporting\\Gis',
         'declaringClassName' => 'App\\Domain\\Reporting\\Gis\\GisCoverageService',
         'implementingClassName' => 'App\\Domain\\Reporting\\Gis\\GisCoverageService',
@@ -311,8 +588,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             'attributes' => 
             array (
             ),
-            'startLine' => 102,
-            'endLine' => 102,
+            'startLine' => 207,
+            'endLine' => 207,
             'startColumn' => 38,
             'endColumn' => 58,
             'parameterIndex' => 0,
@@ -337,8 +614,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             'attributes' => 
             array (
             ),
-            'startLine' => 102,
-            'endLine' => 102,
+            'startLine' => 207,
+            'endLine' => 207,
             'startColumn' => 61,
             'endColumn' => 74,
             'parameterIndex' => 1,
@@ -363,12 +640,69 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             'attributes' => 
             array (
             ),
-            'startLine' => 102,
-            'endLine' => 102,
+            'startLine' => 207,
+            'endLine' => 207,
             'startColumn' => 77,
             'endColumn' => 99,
             'parameterIndex' => 2,
             'isOptional' => false,
+          ),
+          'partnerServedIds' => 
+          array (
+            'name' => 'partnerServedIds',
+            'default' => 
+            array (
+              'code' => 'null',
+              'attributes' => 
+              array (
+                'startLine' => 207,
+                'endLine' => 207,
+                'startTokenPos' => 1607,
+                'startFilePos' => 9080,
+                'endTokenPos' => 1607,
+                'endFilePos' => 9083,
+              ),
+            ),
+            'type' => 
+            array (
+              'class' => 'PHPStan\\BetterReflection\\Reflection\\ReflectionUnionType',
+              'data' => 
+              array (
+                'types' => 
+                array (
+                  0 => 
+                  array (
+                    'class' => 'PHPStan\\BetterReflection\\Reflection\\ReflectionNamedType',
+                    'data' => 
+                    array (
+                      'name' => 'array',
+                      'isIdentifier' => true,
+                    ),
+                  ),
+                  1 => 
+                  array (
+                    'class' => 'PHPStan\\BetterReflection\\Reflection\\ReflectionNamedType',
+                    'data' => 
+                    array (
+                      'name' => 'null',
+                      'isIdentifier' => true,
+                    ),
+                  ),
+                ),
+              ),
+            ),
+            'isVariadic' => false,
+            'byRef' => false,
+            'isPromoted' => false,
+            'attributes' => 
+            array (
+            ),
+            'startLine' => 207,
+            'endLine' => 207,
+            'startColumn' => 102,
+            'endColumn' => 132,
+            'parameterIndex' => 3,
+            'isOptional' => true,
           ),
         ),
         'returnsReference' => false,
@@ -385,13 +719,15 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         array (
         ),
         'docComment' => '/**
- * Registered households by admin area, scoped to the owning MDA. Partners hold no
- * households, so this is empty for them.
+ * Registered households by admin area. For an MDA/state-wide scope these are the
+ * owner-scoped households; for a partner they are the households of the FUNDED cohort
+ * (households with a served beneficiary), grouped by the household\'s area.
  *
+ * @param  list<string>|null  $partnerServedIds
  * @return array<string, int>
  */',
-        'startLine' => 102,
-        'endLine' => 135,
+        'startLine' => 207,
+        'endLine' => 256,
         'startColumn' => 5,
         'endColumn' => 5,
         'couldThrow' => false,
@@ -429,8 +765,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             'attributes' => 
             array (
             ),
-            'startLine' => 143,
-            'endLine' => 143,
+            'startLine' => 264,
+            'endLine' => 264,
             'startColumn' => 40,
             'endColumn' => 60,
             'parameterIndex' => 0,
@@ -455,8 +791,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             'attributes' => 
             array (
             ),
-            'startLine' => 143,
-            'endLine' => 143,
+            'startLine' => 264,
+            'endLine' => 264,
             'startColumn' => 63,
             'endColumn' => 76,
             'parameterIndex' => 1,
@@ -481,8 +817,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             'attributes' => 
             array (
             ),
-            'startLine' => 143,
-            'endLine' => 143,
+            'startLine' => 264,
+            'endLine' => 264,
             'startColumn' => 79,
             'endColumn' => 101,
             'parameterIndex' => 2,
@@ -508,8 +844,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
  *
  * @return array<string, array{activities: int, programmes: int, mdas: list<string>}>
  */',
-        'startLine' => 143,
-        'endLine' => 178,
+        'startLine' => 264,
+        'endLine' => 302,
         'startColumn' => 5,
         'endColumn' => 5,
         'couldThrow' => false,
@@ -547,8 +883,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             'attributes' => 
             array (
             ),
-            'startLine' => 186,
-            'endLine' => 186,
+            'startLine' => 311,
+            'endLine' => 311,
             'startColumn' => 40,
             'endColumn' => 60,
             'parameterIndex' => 0,
@@ -573,8 +909,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             'attributes' => 
             array (
             ),
-            'startLine' => 186,
-            'endLine' => 186,
+            'startLine' => 311,
+            'endLine' => 311,
             'startColumn' => 63,
             'endColumn' => 76,
             'parameterIndex' => 1,
@@ -599,12 +935,69 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             'attributes' => 
             array (
             ),
-            'startLine' => 186,
-            'endLine' => 186,
+            'startLine' => 311,
+            'endLine' => 311,
             'startColumn' => 79,
             'endColumn' => 101,
             'parameterIndex' => 2,
             'isOptional' => false,
+          ),
+          'partnerServedIds' => 
+          array (
+            'name' => 'partnerServedIds',
+            'default' => 
+            array (
+              'code' => 'null',
+              'attributes' => 
+              array (
+                'startLine' => 311,
+                'endLine' => 311,
+                'startTokenPos' => 2596,
+                'startFilePos' => 13436,
+                'endTokenPos' => 2596,
+                'endFilePos' => 13439,
+              ),
+            ),
+            'type' => 
+            array (
+              'class' => 'PHPStan\\BetterReflection\\Reflection\\ReflectionUnionType',
+              'data' => 
+              array (
+                'types' => 
+                array (
+                  0 => 
+                  array (
+                    'class' => 'PHPStan\\BetterReflection\\Reflection\\ReflectionNamedType',
+                    'data' => 
+                    array (
+                      'name' => 'array',
+                      'isIdentifier' => true,
+                    ),
+                  ),
+                  1 => 
+                  array (
+                    'class' => 'PHPStan\\BetterReflection\\Reflection\\ReflectionNamedType',
+                    'data' => 
+                    array (
+                      'name' => 'null',
+                      'isIdentifier' => true,
+                    ),
+                  ),
+                ),
+              ),
+            ),
+            'isVariadic' => false,
+            'byRef' => false,
+            'isPromoted' => false,
+            'attributes' => 
+            array (
+            ),
+            'startLine' => 311,
+            'endLine' => 311,
+            'startColumn' => 104,
+            'endColumn' => 134,
+            'parameterIndex' => 3,
+            'isOptional' => true,
           ),
         ),
         'returnsReference' => false,
@@ -621,13 +1014,14 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         array (
         ),
         'docComment' => '/**
- * Beneficiary counts by the admin column, scoped like the dashboard registry
- * metric (owner MDA; or, for a partner, the beneficiaries served by funded programmes).
+ * Beneficiary counts by the admin column, scoped like the dashboard registry metric
+ * (owner MDA; or, for a partner, the beneficiaries served by its FUNDED activities).
  *
+ * @param  list<string>|null  $partnerServedIds
  * @return array<string, int>
  */',
-        'startLine' => 186,
-        'endLine' => 226,
+        'startLine' => 311,
+        'endLine' => 348,
         'startColumn' => 5,
         'endColumn' => 5,
         'couldThrow' => false,
@@ -665,8 +1059,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             'attributes' => 
             array (
             ),
-            'startLine' => 228,
-            'endLine' => 228,
+            'startLine' => 350,
+            'endLine' => 350,
             'startColumn' => 27,
             'endColumn' => 39,
             'parameterIndex' => 0,
@@ -687,8 +1081,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         array (
         ),
         'docComment' => NULL,
-        'startLine' => 228,
-        'endLine' => 233,
+        'startLine' => 350,
+        'endLine' => 355,
         'startColumn' => 5,
         'endColumn' => 5,
         'couldThrow' => false,
@@ -726,8 +1120,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             'attributes' => 
             array (
             ),
-            'startLine' => 235,
-            'endLine' => 235,
+            'startLine' => 357,
+            'endLine' => 357,
             'startColumn' => 28,
             'endColumn' => 40,
             'parameterIndex' => 0,
@@ -748,8 +1142,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         array (
         ),
         'docComment' => NULL,
-        'startLine' => 235,
-        'endLine' => 242,
+        'startLine' => 357,
+        'endLine' => 364,
         'startColumn' => 5,
         'endColumn' => 5,
         'couldThrow' => false,

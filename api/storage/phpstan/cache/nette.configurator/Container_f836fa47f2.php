@@ -8,7 +8,7 @@
 
 declare(strict_types=1);
 
-class Container_4499d92ae7 extends _PHPStan_48ec32058\Nette\DI\Container
+class Container_f836fa47f2 extends _PHPStan_48ec32058\Nette\DI\Container
 {
 	protected $tags = [
 		'phpstan.broker.allowedSubTypesClassReflectionExtension' => ['017' => true, '018' => true],
@@ -5905,7 +5905,7 @@ class Container_4499d92ae7 extends _PHPStan_48ec32058\Nette\DI\Container
 			private $container;
 
 
-			public function __construct(Container_4499d92ae7 $container)
+			public function __construct(Container_f836fa47f2 $container)
 			{
 				$this->container = $container;
 			}
@@ -5953,7 +5953,7 @@ class Container_4499d92ae7 extends _PHPStan_48ec32058\Nette\DI\Container
 			private $container;
 
 
-			public function __construct(Container_4499d92ae7 $container)
+			public function __construct(Container_f836fa47f2 $container)
 			{
 				$this->container = $container;
 			}
@@ -6011,7 +6011,7 @@ class Container_4499d92ae7 extends _PHPStan_48ec32058\Nette\DI\Container
 			private $container;
 
 
-			public function __construct(Container_4499d92ae7 $container)
+			public function __construct(Container_f836fa47f2 $container)
 			{
 				$this->container = $container;
 			}
@@ -6078,7 +6078,7 @@ class Container_4499d92ae7 extends _PHPStan_48ec32058\Nette\DI\Container
 			private $container;
 
 
-			public function __construct(Container_4499d92ae7 $container)
+			public function __construct(Container_f836fa47f2 $container)
 			{
 				$this->container = $container;
 			}
@@ -6098,7 +6098,7 @@ class Container_4499d92ae7 extends _PHPStan_48ec32058\Nette\DI\Container
 			private $container;
 
 
-			public function __construct(Container_4499d92ae7 $container)
+			public function __construct(Container_f836fa47f2 $container)
 			{
 				$this->container = $container;
 			}
@@ -6123,7 +6123,7 @@ class Container_4499d92ae7 extends _PHPStan_48ec32058\Nette\DI\Container
 			private $container;
 
 
-			public function __construct(Container_4499d92ae7 $container)
+			public function __construct(Container_f836fa47f2 $container)
 			{
 				$this->container = $container;
 			}
@@ -6143,7 +6143,7 @@ class Container_4499d92ae7 extends _PHPStan_48ec32058\Nette\DI\Container
 			private $container;
 
 
-			public function __construct(Container_4499d92ae7 $container)
+			public function __construct(Container_f836fa47f2 $container)
 			{
 				$this->container = $container;
 			}
@@ -6163,7 +6163,7 @@ class Container_4499d92ae7 extends _PHPStan_48ec32058\Nette\DI\Container
 			private $container;
 
 
-			public function __construct(Container_4499d92ae7 $container)
+			public function __construct(Container_f836fa47f2 $container)
 			{
 				$this->container = $container;
 			}
@@ -9638,7 +9638,7 @@ class Container_4499d92ae7 extends _PHPStan_48ec32058\Nette\DI\Container
 	}
 
 
-	public function createServiceContainer(): Container_4499d92ae7
+	public function createServiceContainer(): Container_f836fa47f2
 	{
 		return $this;
 	}
@@ -10312,17 +10312,15 @@ class Container_4499d92ae7 extends _PHPStan_48ec32058\Nette\DI\Container
 				'CLAUDE_CODE_ENABLE_SDK_FILE_CHECKPOINTING' => 'true',
 				'CLAUDE_CODE_ENABLE_TASKS' => '0',
 				'CLAUDE_CODE_ENTRYPOINT' => 'claude-vscode',
-				'CLAUDE_CODE_EXECPATH' => 'C:\Users\ACER\.vscode\extensions\anthropic.claude-code-2.1.220-win32-x64\resources\native-binary\claude.exe',
 				'CLAUDE_CODE_SESSION_ID' => '71bdfd08-53a2-4d53-94aa-60c9dfb41448',
-				'CLAUDE_EFFORT' => 'xhigh',
 				'CLAUDE_PID' => '10440',
 				'COLUMNS' => '120',
-				'COMMONPROGRAMFILES' => 'C:\Program Files\Common Files',
-				'COMPUTERNAME' => 'NITRO-5',
-				'COMSPEC' => 'C:\Windows\system32\cmd.exe',
-				'COREPACK_ENABLE_AUTO_PIN' => '0',
+				'CommonProgramFiles' => 'C:\Program Files\Common Files',
 				'CommonProgramFiles(x86)' => 'C:\Program Files (x86)\Common Files',
 				'CommonProgramW6432' => 'C:\Program Files\Common Files',
+				'COMPUTERNAME' => 'NITRO-5',
+				'ComSpec' => 'C:\Windows\system32\cmd.exe',
+				'COREPACK_ENABLE_AUTO_PIN' => '0',
 				'CORS_ALLOWED_ORIGINS' => 'http://localhost:5173,http://localhost:3000',
 				'CORS_MAX_AGE' => '0',
 				'CORS_SUPPORTS_CREDENTIALS' => 'true',
@@ -10334,12 +10332,13 @@ class Container_4499d92ae7 extends _PHPStan_48ec32058\Nette\DI\Container
 				'DB_USERNAME' => 'spmis',
 				'DriverData' => 'C:\Windows\System32\Drivers\DriverData',
 				'ELECTRON_RUN_AS_NODE' => '1',
-				'EXEPATH' => 'C:\Program Files\Git\bin',
 				'FILESYSTEM_DISK' => 'local',
 				'FPS_BROWSER_APP_PROFILE_STRING' => 'Internet Explorer',
 				'FPS_BROWSER_USER_PROFILE_STRING' => 'Default',
+				'GCM_INTERACTIVE' => 'never',
+				'GIT_ASKPASS' => '',
 				'GIT_EDITOR' => 'true',
-				'HOME' => 'C:\Users\ACER',
+				'GIT_TERMINAL_PROMPT' => '0',
 				'HOMEDRIVE' => 'C:',
 				'HOMEPATH' => '\Users\ACER',
 				'LINES' => '9001',
@@ -10357,26 +10356,25 @@ class Container_4499d92ae7 extends _PHPStan_48ec32058\Nette\DI\Container
 				'MAIL_PORT' => '2525',
 				'MAIL_USERNAME' => 'null',
 				'MCP_CONNECTION_NONBLOCKING' => 'true',
-				'MSYSTEM' => 'MINGW64',
-				'NUMBER_OF_PROCESSORS' => '8',
 				'NoDefaultCurrentDirectoryInExePath' => '1',
-				'OLDPWD' => 'C:/Users/ACER/Desktop/JSG-SP-MIS/JSG-SP-MIS/api',
-				'OS' => 'Windows_NT',
+				'NO_COLOR' => '1',
+				'NUMBER_OF_PROCESSORS' => '8',
 				'OneDrive' => 'C:\Users\ACER\OneDrive',
-				'PATH' => 'C:\Users\ACER\bin;C:\Program Files\Git\mingw64\bin;C:\Program Files\Git\usr\local\bin;C:\Program Files\Git\usr\bin;C:\Program Files\Git\usr\bin;C:\Program Files\Git\mingw64\bin;C:\Program Files\Git\usr\bin;C:\Users\ACER\bin;C:\Program Files\Microsoft SDKs\Azure\CLI2\wbin;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0;C:\Windows\System32\OpenSSH;C:\Program Files (x86)\NVIDIA Corporation\PhysX\Common;C:\Program Files\Git\cmd;C:\Program Files\cursor\resources\app\bin;C:\ProgramData\ComposerSetup\bin;C:\Program Files\nodejs;C:\Program Files\PuTTY;C:\Program Files\gs\gs10.04.0\bin;C:\Program Files\dotnet;C:\Program Files\Docker\Docker\resources\bin;C:\Users\ACER\AppData\Local\Microsoft\WindowsApps;C:\Users\ACER\AppData\Local\Programs\Microsoft VS Code\bin;C:\Users\ACER\.azure-kubectl;C:\Users\ACER\.azure-kubelogin;C:\Users\ACER\Downloads\php-8.5.1-nts-Win32-vs17-x64;C:\Users\ACER\AppData\Roaming\Composer\vendor\bin;C:\Users\ACER\AppData\Roaming\npm;C:\Users\ACER\AppData\Local\Programs\Ollama;C:\Users\ACER\.local\bin;C:\Program Files\gs\gs10.04.0\bin;C:\Program Files\Git\usr\bin\vendor_perl;C:\Program Files\Git\usr\bin\core_perl',
-				'PATHEXT' => '.COM;.EXE;.BAT;.CMD;.VBS;.VBE;.JS;.JSE;.WSF;.WSH;.MSC',
-				'PLINK_PROTOCOL' => 'ssh',
+				'OS' => 'Windows_NT',
+				'Path' => 'C:\Program Files\Microsoft SDKs\Azure\CLI2\wbin;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;C:\Windows\System32\OpenSSH\;C:\Program Files (x86)\NVIDIA Corporation\PhysX\Common;C:\Program Files\Git\cmd;C:\Program Files\cursor\resources\app\bin;C:\ProgramData\ComposerSetup\bin;C:\Program Files\nodejs\;C:\Program Files\PuTTY\;C:\Program Files\gs\gs10.04.0\bin;C:\Program Files\dotnet\;C:\Program Files\Docker\Docker\resources\bin;C:\Users\ACER\AppData\Local\Microsoft\WindowsApps;C:\Users\ACER\AppData\Local\Programs\Microsoft VS Code\bin;C:\Users\ACER\.azure-kubectl;C:\Users\ACER\.azure-kubelogin;C:\Users\ACER\Downloads\php-8.5.1-nts-Win32-vs17-x64;C:\Users\ACER\AppData\Roaming\Composer\vendor\bin;C:\Users\ACER\AppData\Roaming\npm;C:\Users\ACER\AppData\Local\Programs\Ollama;C:\Users\ACER\.local\bin;;C:\Program Files\gs\gs10.04.0\bin',
+				'PATHEXT' => '.COM;.EXE;.BAT;.CMD;.VBS;.VBE;.JS;.JSE;.WSF;.WSH;.MSC;.CPL',
 				'PROCESSOR_ARCHITECTURE' => 'AMD64',
 				'PROCESSOR_IDENTIFIER' => 'Intel64 Family 6 Model 158 Stepping 10, GenuineIntel',
 				'PROCESSOR_LEVEL' => '6',
 				'PROCESSOR_REVISION' => '9e0a',
-				'PROGRAMFILES' => 'C:\Program Files',
-				'PSModulePath' => 'C:\Program Files\WindowsPowerShell\Modules;C:\Windows\system32\WindowsPowerShell\v1.0\Modules',
-				'PUBLIC' => 'C:\Users\Public',
-				'PWD' => 'C:/Users/ACER/Desktop/JSG-SP-MIS/JSG-SP-MIS/api',
 				'ProgramData' => 'C:\ProgramData',
+				'ProgramFiles' => 'C:\Program Files',
 				'ProgramFiles(x86)' => 'C:\Program Files (x86)',
 				'ProgramW6432' => 'C:\Program Files',
+				'PSExecutionPolicyPreference' => 'Bypass',
+				'PSModulePath' => 'C:\Users\ACER\Documents\WindowsPowerShell\Modules;C:\Program Files\WindowsPowerShell\Modules;C:\Windows\system32\WindowsPowerShell\v1.0\Modules',
+				'PUBLIC' => 'C:\Users\Public',
+				'PYTHONIOENCODING' => 'utf-8:surrogateescape',
 				'QUEUE_CONNECTION' => 'rabbitmq',
 				'RABBITMQ_HOST' => 'rabbitmq',
 				'RABBITMQ_PASSWORD' => 'change-me-rabbitmq',
@@ -10395,13 +10393,10 @@ class Container_4499d92ae7 extends _PHPStan_48ec32058\Nette\DI\Container
 				'SESSION_ENCRYPT' => 'false',
 				'SESSION_LIFETIME' => '120',
 				'SESSION_PATH' => '/',
-				'SHELL' => 'C:\Program Files\Git\bin\bash.exe',
 				'SHELL_VERBOSITY' => '0',
-				'SHLVL' => '1',
-				'SYSTEMDRIVE' => 'C:',
-				'SYSTEMROOT' => 'C:\Windows',
+				'SystemDrive' => 'C:',
+				'SystemRoot' => 'C:\Windows',
 				'TEMP' => 'C:\Users\ACER\AppData\Local\Temp',
-				'TERM' => 'xterm-256color',
 				'TMP' => 'C:\Users\ACER\AppData\Local\Temp',
 				'USERDOMAIN' => 'NITRO-5',
 				'USERDOMAIN_ROAMINGPROFILE' => 'NITRO-5',
@@ -10417,9 +10412,8 @@ class Container_4499d92ae7 extends _PHPStan_48ec32058\Nette\DI\Container
 				'VSCODE_L10N_BUNDLE_LOCATION' => '',
 				'VSCODE_NLS_CONFIG' => '{"userLocale":"en-us","osLocale":"en-us","resolvedLanguage":"en","defaultMessagesFile":"C:\\\Users\\\ACER\\\AppData\\\Local\\\Programs\\\Microsoft VS Code\\\4fe60c8b1c\\\resources\\\app\\\out\\\nls.messages.json","locale":"en-us","availableLanguages":{}}',
 				'VSCODE_PID' => '1476',
-				'WINDIR' => 'C:\Windows',
+				'windir' => 'C:\Windows',
 				'ZES_ENABLE_SYSMAN' => '1',
-				'_' => 'C:/Users/ACER/Downloads/php-8.5.1-nts-Win32-vs17-x64/php',
 			],
 		];
 	}

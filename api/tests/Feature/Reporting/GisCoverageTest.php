@@ -13,6 +13,7 @@ use App\Domain\Programme\Models\Activity;
 use App\Domain\Programme\Models\Programme;
 use App\Domain\Registry\Models\Beneficiary;
 use App\Domain\Registry\Models\Household;
+use App\Domain\Registry\Models\HouseholdMembership;
 use App\Domain\Reporting\Gis\BoundaryLoader;
 use App\Domain\Reporting\Gis\GeoBoundary;
 use Database\Seeders\RolesAndPermissionsSeeder;
@@ -204,5 +205,40 @@ class GisCoverageTest extends TestCase
     public function test_coverage_requires_dashboard_permission(): void
     {
         $this->send('noRole', 'GET', '/api/v1/gis/coverage')->assertStatus(403);
+    }
+
+    public function test_partner_investment_coverage_is_activity_precise_with_funding(): void
+    {
+        $this->users['partner'] = $this->user(null, RoleKey::DevelopmentPartner);
+
+        $programme = Programme::factory()->individual()->create(['status' => 'active']);
+        // The partner FUNDS an activity in Dutse (MDA A). A co-funded activity in the SAME
+        // programme (Hadejia, MDA B) is NOT funded by this partner — it must stay out of scope.
+        $funded = Activity::factory()->forProgramme($programme, $this->mdaA)->create(['status' => 'active', 'lga' => 'dutse', 'budget_amount' => 2_000_000, 'funding_partner_id' => $this->users['partner']->id]);
+        Activity::factory()->forProgramme($programme, $this->mdaB)->create(['status' => 'active', 'lga' => 'hadejia', 'budget_amount' => 9_000_000]);
+
+        $ben = Beneficiary::factory()->create(['owner_mda_id' => $this->mdaA->id, 'lga' => 'dutse']);
+        Benefit::factory()->create([
+            'beneficiary_id' => $ben->id, 'programme_id' => $programme->id, 'mda_id' => $this->mdaA->id,
+            'activity_id' => $funded->id, 'lga' => 'dutse', 'monetary_value' => 400_000, 'status' => 'verified',
+        ]);
+        $hh = Household::factory()->create(['owner_mda_id' => $this->mdaA->id, 'lga' => 'dutse']);
+        HouseholdMembership::factory()->create(['beneficiary_id' => $ben->id, 'household_id' => $hh->id]);
+
+        $body = $this->send('partner', 'GET', '/api/v1/gis/coverage?level=lga')->assertOk()->json('data');
+        $dutse = collect($body['rows'])->firstWhere('key', 'dutse');
+
+        // Funding DENSITY = attributed budget of the partner's OWN funded activities only.
+        $this->assertSame(2_000_000, $dutse['funding_allocated']);
+        $this->assertSame(400_000, $dutse['benefit_value']);   // funds delivered (value)
+        $this->assertSame(1, $dutse['served']);                // coverage (absolute)
+        $this->assertSame(1, $dutse['beneficiary_count']);     // the funded cohort in Dutse
+        $this->assertSame(1, $dutse['households']);            // cohort household
+        $this->assertSame(1, $dutse['active_programmes']);
+        $this->assertSame(['MDA A'], $dutse['mdas']);          // implementing MDA
+
+        // The co-funder's activity (Hadejia, another funder) never leaks into the partner's map.
+        $hadejia = collect($body['rows'])->firstWhere('key', 'hadejia');
+        $this->assertTrue($hadejia === null || $hadejia['funding_allocated'] === 0);
     }
 }

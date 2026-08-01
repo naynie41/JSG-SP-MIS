@@ -2,7 +2,7 @@
 
 // odsl-C:\Users\ACER\Desktop\JSG-SP-MIS\JSG-SP-MIS\api\app\Domain\Reporting\Services\DashboardSnapshotService.php-PHPStan\BetterReflection\Reflection\ReflectionClass-App\Domain\Reporting\Services\DashboardSnapshotService
 return \PHPStan\Cache\CacheItem::__set_state(array(
-   'variableKey' => 'v2-6.70.0.1-8.3.31-716b2e27bdec0a372b59820091162ef722bf4d94e548b5597a9687340825cbb1',
+   'variableKey' => 'v2-6.70.0.1-8.3.31-b0a6e05182a9f8b6716f2f9e9d0df4a3e64498a12ea1afbe1af67e40a2ea89c6',
    'data' => 
   array (
     'locatedSource' => 
@@ -31,8 +31,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
     'attributes' => 
     array (
     ),
-    'startLine' => 23,
-    'endLine' => 84,
+    'startLine' => 22,
+    'endLine' => 88,
     'startColumn' => 1,
     'endColumn' => 1,
     'parentClassName' => NULL,
@@ -69,8 +69,39 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         ),
         'startLine' => 25,
         'endLine' => 25,
-        'startColumn' => 33,
-        'endColumn' => 81,
+        'startColumn' => 9,
+        'endColumn' => 57,
+        'isPromoted' => true,
+        'declaredAtCompileTime' => true,
+        'immediateVirtual' => false,
+        'immediateHooks' => 
+        array (
+        ),
+      ),
+      'resolver' => 
+      array (
+        'declaringClassName' => 'App\\Domain\\Reporting\\Services\\DashboardSnapshotService',
+        'implementingClassName' => 'App\\Domain\\Reporting\\Services\\DashboardSnapshotService',
+        'name' => 'resolver',
+        'modifiers' => 132,
+        'type' => 
+        array (
+          'class' => 'PHPStan\\BetterReflection\\Reflection\\ReflectionNamedType',
+          'data' => 
+          array (
+            'name' => 'App\\Domain\\Reporting\\Services\\DashboardScopeResolver',
+            'isIdentifier' => false,
+          ),
+        ),
+        'default' => NULL,
+        'docComment' => NULL,
+        'attributes' => 
+        array (
+        ),
+        'startLine' => 26,
+        'endLine' => 26,
+        'startColumn' => 9,
+        'endColumn' => 57,
         'isPromoted' => true,
         'declaredAtCompileTime' => true,
         'immediateVirtual' => false,
@@ -107,9 +138,35 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             ),
             'startLine' => 25,
             'endLine' => 25,
-            'startColumn' => 33,
-            'endColumn' => 81,
+            'startColumn' => 9,
+            'endColumn' => 57,
             'parameterIndex' => 0,
+            'isOptional' => false,
+          ),
+          'resolver' => 
+          array (
+            'name' => 'resolver',
+            'default' => NULL,
+            'type' => 
+            array (
+              'class' => 'PHPStan\\BetterReflection\\Reflection\\ReflectionNamedType',
+              'data' => 
+              array (
+                'name' => 'App\\Domain\\Reporting\\Services\\DashboardScopeResolver',
+                'isIdentifier' => false,
+              ),
+            ),
+            'isVariadic' => false,
+            'byRef' => false,
+            'isPromoted' => true,
+            'attributes' => 
+            array (
+            ),
+            'startLine' => 26,
+            'endLine' => 26,
+            'startColumn' => 9,
+            'endColumn' => 57,
+            'parameterIndex' => 1,
             'isOptional' => false,
           ),
         ),
@@ -119,10 +176,10 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         array (
         ),
         'docComment' => NULL,
-        'startLine' => 25,
-        'endLine' => 25,
+        'startLine' => 24,
+        'endLine' => 27,
         'startColumn' => 5,
-        'endColumn' => 85,
+        'endColumn' => 8,
         'couldThrow' => false,
         'isClosure' => false,
         'isGenerator' => false,
@@ -157,8 +214,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
  * Refresh every well-known scope: state-wide, one per MDA, one per partner\'s
  * funded-programme set. De-duplicated by scope key. Returns the number written.
  */',
-        'startLine' => 31,
-        'endLine' => 53,
+        'startLine' => 33,
+        'endLine' => 57,
         'startColumn' => 5,
         'endColumn' => 5,
         'couldThrow' => false,
@@ -196,8 +253,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             'attributes' => 
             array (
             ),
-            'startLine' => 56,
-            'endLine' => 56,
+            'startLine' => 60,
+            'endLine' => 60,
             'startColumn' => 32,
             'endColumn' => 52,
             'parameterIndex' => 0,
@@ -218,8 +275,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         array (
         ),
         'docComment' => '/** Compute + upsert the snapshot for a single scope. */',
-        'startLine' => 56,
-        'endLine' => 67,
+        'startLine' => 60,
+        'endLine' => 71,
         'startColumn' => 5,
         'endColumn' => 5,
         'couldThrow' => false,
@@ -257,8 +314,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             'attributes' => 
             array (
             ),
-            'startLine' => 69,
-            'endLine' => 69,
+            'startLine' => 73,
+            'endLine' => 73,
             'startColumn' => 26,
             'endColumn' => 46,
             'parameterIndex' => 0,
@@ -298,8 +355,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         array (
         ),
         'docComment' => NULL,
-        'startLine' => 69,
-        'endLine' => 72,
+        'startLine' => 73,
+        'endLine' => 76,
         'startColumn' => 5,
         'endColumn' => 5,
         'couldThrow' => false,
@@ -335,8 +392,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         'docComment' => '/**
  * @return Collection<int, User>
  */',
-        'startLine' => 77,
-        'endLine' => 83,
+        'startLine' => 81,
+        'endLine' => 87,
         'startColumn' => 5,
         'endColumn' => 5,
         'couldThrow' => false,

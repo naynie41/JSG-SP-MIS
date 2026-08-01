@@ -69,7 +69,7 @@ class GisController extends Controller
         }
 
         $empty = [
-            'beneficiary_count' => 0, 'benefit_count' => 0, 'benefit_value' => 0,
+            'beneficiary_count' => 0, 'benefit_count' => 0, 'benefit_value' => 0, 'funding_allocated' => 0,
             'households' => 0, 'served' => 0, 'active_programmes' => 0, 'active_activities' => 0,
             'mdas' => [], 'band' => 'grey',
         ];
@@ -87,6 +87,7 @@ class GisController extends Controller
                     'beneficiary_count' => (int) $m['beneficiary_count'],
                     'benefit_count' => (int) $m['benefit_count'],
                     'benefit_value' => (int) $m['benefit_value'],
+                    'funding_allocated' => (int) $m['funding_allocated'],
                     'households' => (int) $m['households'],
                     'served' => (int) $m['served'],
                     'active_programmes' => (int) $m['active_programmes'],

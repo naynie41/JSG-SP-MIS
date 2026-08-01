@@ -1138,7 +1138,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
     ),
     'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Benefit\\Services\\LedgerAggregator.php' => 
     array (
-      0 => '2451b7e2dc07c28434a97559bb005de07eba55d719ee756505b4a17d7f91e12b',
+      0 => 'f133afb81afd8b5e7bf8dbbb3eafc7845755c2de9abc72db06e2c66a69ba345c',
       1 => 
       array (
         0 => 'app\\domain\\benefit\\services\\ledgeraggregator',
@@ -2473,7 +2473,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
     ),
     'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Programme\\Models\\Activity.php' => 
     array (
-      0 => '512177374fd639201724f3c6bb3e40d99079906a101f67a403ad28d90c39bdda',
+      0 => 'dc7089eed1d6bf4cf81ea4882b5862986ab26acdfae0a426bcc2bb47372c81e5',
       1 => 
       array (
         0 => 'app\\domain\\programme\\models\\activity',
@@ -2485,6 +2485,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         2 => 'app\\domain\\programme\\models\\programme',
         3 => 'app\\domain\\programme\\models\\ownermda',
         4 => 'app\\domain\\programme\\models\\creator',
+        5 => 'app\\domain\\programme\\models\\fundingpartner',
       ),
       3 => 
       array (
@@ -4202,7 +4203,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
     ),
     'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Reporting\\Gis\\GisCoverageService.php' => 
     array (
-      0 => '2571753b02696ff63cc74b204a1ee63f056ecfacfdd575055e865080b246c494',
+      0 => '3a3818110022d7eab82d8c543097d3c7e837d81747090d72e892acee72401638',
       1 => 
       array (
         0 => 'app\\domain\\reporting\\gis\\giscoverageservice',
@@ -4211,11 +4212,14 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
       array (
         0 => 'app\\domain\\reporting\\gis\\__construct',
         1 => 'app\\domain\\reporting\\gis\\coverage',
-        2 => 'app\\domain\\reporting\\gis\\householdcounts',
-        3 => 'app\\domain\\reporting\\gis\\activitybreakdown',
-        4 => 'app\\domain\\reporting\\gis\\beneficiarycounts',
-        5 => 'app\\domain\\reporting\\gis\\slug',
-        6 => 'app\\domain\\reporting\\gis\\title',
+        2 => 'app\\domain\\reporting\\gis\\partneractivityids',
+        3 => 'app\\domain\\reporting\\gis\\servedbeneficiaryids',
+        4 => 'app\\domain\\reporting\\gis\\fundingbyarea',
+        5 => 'app\\domain\\reporting\\gis\\householdcounts',
+        6 => 'app\\domain\\reporting\\gis\\activitybreakdown',
+        7 => 'app\\domain\\reporting\\gis\\beneficiarycounts',
+        8 => 'app\\domain\\reporting\\gis\\slug',
+        9 => 'app\\domain\\reporting\\gis\\title',
       ),
       3 => 
       array (
@@ -4507,7 +4511,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
     ),
     'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Reporting\\Services\\DashboardMetricsService.php' => 
     array (
-      0 => '59d255986bac0946b0a37ff8ff44bcb3045737f5f4c5361711a4e3be64bf631d',
+      0 => 'c61dc49f28816204a309df10739414870f816702a5c2f3b49cdee765e9578d9a',
       1 => 
       array (
         0 => 'app\\domain\\reporting\\services\\dashboardmetricsservice',
@@ -4533,21 +4537,31 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         16 => 'app\\domain\\reporting\\services\\matchessurfaced',
         17 => 'app\\domain\\reporting\\services\\coordination',
         18 => 'app\\domain\\reporting\\services\\jointprogrammes',
-        19 => 'app\\domain\\reporting\\services\\partnercontributions',
-        20 => 'app\\domain\\reporting\\services\\coveragebands',
-        21 => 'app\\domain\\reporting\\services\\trends',
-        22 => 'app\\domain\\reporting\\services\\deferredslots',
-        23 => 'app\\domain\\reporting\\services\\monthlabels',
-        24 => 'app\\domain\\reporting\\services\\monthcountseries',
-        25 => 'app\\domain\\reporting\\services\\programmegrowthseries',
-        26 => 'app\\domain\\reporting\\services\\programmeidsinscope',
-        27 => 'app\\domain\\reporting\\services\\beneficiarybase',
-        28 => 'app\\domain\\reporting\\services\\applybeneficiaryfilter',
-        29 => 'app\\domain\\reporting\\services\\applyactivityfilter',
-        30 => 'app\\domain\\reporting\\services\\applybenefitfilter',
-        31 => 'app\\domain\\reporting\\services\\applycoordinationfilter',
-        32 => 'app\\domain\\reporting\\services\\householdbase',
-        33 => 'app\\domain\\reporting\\services\\countby',
+        19 => 'app\\domain\\reporting\\services\\partnerfunding',
+        20 => 'app\\domain\\reporting\\services\\partnerreach',
+        21 => 'app\\domain\\reporting\\services\\partnerregistry',
+        22 => 'app\\domain\\reporting\\services\\cohorthouseholdsize',
+        23 => 'app\\domain\\reporting\\services\\partnerprogrammes',
+        24 => 'app\\domain\\reporting\\services\\programmestatuslight',
+        25 => 'app\\domain\\reporting\\services\\partneroutputindicators',
+        26 => 'app\\domain\\reporting\\services\\zerofilledseries',
+        27 => 'app\\domain\\reporting\\services\\partnercoordination',
+        28 => 'app\\domain\\reporting\\services\\programmeoverlap',
+        29 => 'app\\domain\\reporting\\services\\partnercontributions',
+        30 => 'app\\domain\\reporting\\services\\coveragebands',
+        31 => 'app\\domain\\reporting\\services\\trends',
+        32 => 'app\\domain\\reporting\\services\\deferredslots',
+        33 => 'app\\domain\\reporting\\services\\monthlabels',
+        34 => 'app\\domain\\reporting\\services\\monthcountseries',
+        35 => 'app\\domain\\reporting\\services\\programmegrowthseries',
+        36 => 'app\\domain\\reporting\\services\\programmeidsinscope',
+        37 => 'app\\domain\\reporting\\services\\beneficiarybase',
+        38 => 'app\\domain\\reporting\\services\\applybeneficiaryfilter',
+        39 => 'app\\domain\\reporting\\services\\applyactivityfilter',
+        40 => 'app\\domain\\reporting\\services\\applybenefitfilter',
+        41 => 'app\\domain\\reporting\\services\\applycoordinationfilter',
+        42 => 'app\\domain\\reporting\\services\\householdbase',
+        43 => 'app\\domain\\reporting\\services\\countby',
       ),
       3 => 
       array (
@@ -4555,7 +4569,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
     ),
     'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Reporting\\Services\\DashboardScopeResolver.php' => 
     array (
-      0 => '99a54a3ab2d3153997e51052a21bdb40dc69d8ddb55c1d55932c71388f674407',
+      0 => '19436c5e51cf40179abc91cd8e6dbb6bdaf9b36e8132bcaceec67c080f539bd0',
       1 => 
       array (
         0 => 'app\\domain\\reporting\\services\\dashboardscoperesolver',
@@ -4586,7 +4600,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
     ),
     'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Reporting\\Services\\DashboardSnapshotService.php' => 
     array (
-      0 => '716b2e27bdec0a372b59820091162ef722bf4d94e548b5597a9687340825cbb1',
+      0 => 'b0a6e05182a9f8b6716f2f9e9d0df4a3e64498a12ea1afbe1af67e40a2ea89c6',
       1 => 
       array (
         0 => 'app\\domain\\reporting\\services\\dashboardsnapshotservice',
@@ -4671,7 +4685,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
     ),
     'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Reporting\\Support\\DashboardScope.php' => 
     array (
-      0 => 'b45fb0d17fcb66b64ff53aeb35eb57e5121ec1f39fb102dde515a8923a372230',
+      0 => 'd197dcff00b3803080df1ad9e12731eb940ed090444cc7b400794cae68ca38d6',
       1 => 
       array (
         0 => 'app\\domain\\reporting\\support\\dashboardscope',
@@ -5620,7 +5634,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
     ),
     'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Reporting\\GisController.php' => 
     array (
-      0 => '307592a1eb838d63d71ab293b978470d3e9733391eb2f617afa2ee9b250bec82',
+      0 => 'd53528e42c7475e9d7ff9e97a47769a711a499ffc50a8c67b0c91eba9f8022f9',
       1 => 
       array (
         0 => 'app\\http\\controllers\\api\\v1\\reporting\\giscontroller',
@@ -6214,7 +6228,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
     ),
     'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Programme\\StoreActivityRequest.php' => 
     array (
-      0 => '939b81cbecd9cf9ea4f9e51ec68b355bf065e02dbc16aec61d4ba392bdb46684',
+      0 => '908d1c28ac8aca40eac1bcaa16eca3ec5d3354dc052ac115709500de2bb2e682',
       1 => 
       array (
         0 => 'app\\http\\requests\\programme\\storeactivityrequest',
@@ -6264,7 +6278,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
     ),
     'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Programme\\UpdateActivityRequest.php' => 
     array (
-      0 => '6b54d2635fe6f2aba57ab37a069f42095dd7f6155becaeea0b35799b8f5a7120',
+      0 => '3a54190b6b1f606662433297f6d496389ad7cfee25570065626e3d9676d20f73',
       1 => 
       array (
         0 => 'app\\http\\requests\\programme\\updateactivityrequest',
@@ -6636,7 +6650,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
     ),
     'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Registry\\UploadActivityImportRequest.php' => 
     array (
-      0 => '5cc5d39a76317beda2e0d33fb922795ba3e89f541b3ee5241e5b5ad4b24d17bc',
+      0 => '02f7b4d875c854d9e5ef936d6aa934368a90fba5199ccd719aa150e758974349',
       1 => 
       array (
         0 => 'app\\http\\requests\\registry\\uploadactivityimportrequest',
@@ -6830,7 +6844,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
     ),
     'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Resources\\ActivityResource.php' => 
     array (
-      0 => '1c5f1ec1f246e0516995f4202c7bcf376dd52e6c9482d451e916e348d22564d2',
+      0 => 'cda18115ba36e038d0434673d3338bccd34d8a2bd36ff904b3f78fe590700340',
       1 => 
       array (
         0 => 'app\\http\\resources\\activityresource',
@@ -7339,6 +7353,21 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         0 => 'app\\support\\success',
         1 => 'app\\support\\paginated',
         2 => 'app\\support\\error',
+      ),
+      3 => 
+      array (
+      ),
+    ),
+    'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Programme\\Rules\\IsFundingPartner.php' => 
+    array (
+      0 => 'a3280b94189f0c65b20529a593612958693a5773714d63ed3cf4fc29f56f690c',
+      1 => 
+      array (
+        0 => 'app\\domain\\programme\\rules\\isfundingpartner',
+      ),
+      2 => 
+      array (
+        0 => 'app\\domain\\programme\\rules\\validate',
       ),
       3 => 
       array (

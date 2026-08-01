@@ -18,10 +18,10 @@ vi.mock('@/lib/auth/AuthProvider', () => ({ useAuth: () => ({ hasPermission: () 
 const coverage = gisApi.coverage as Mock
 
 const rows = [
-  { key: 'dutse', name: 'Dutse', beneficiary_count: 1500, benefit_count: 40, benefit_value: 3_000_000, households: 400, served: 1200, active_programmes: 3, active_activities: 5, mdas: ['Ministry of Humanitarian Affairs', 'Ministry of Health'], band: 'green' as const },
-  { key: 'hadejia', name: 'Hadejia', beneficiary_count: 300, benefit_count: 10, benefit_value: 500_000, households: 90, served: 250, active_programmes: 2, active_activities: 2, mdas: ['Ministry of Education'], band: 'yellow' as const },
-  { key: 'gumel', name: 'Gumel', beneficiary_count: 50, benefit_count: 2, benefit_value: 60_000, households: 12, served: 40, active_programmes: 1, active_activities: 1, mdas: ['Ministry of Youth'], band: 'red' as const },
-  { key: 'kano', name: 'Kano', beneficiary_count: 0, benefit_count: 0, benefit_value: 0, households: 0, served: 0, active_programmes: 0, active_activities: 0, mdas: [], band: 'grey' as const },
+  { key: 'dutse', name: 'Dutse', beneficiary_count: 1500, benefit_count: 40, benefit_value: 3_000_000, funding_allocated: 5_000_000, households: 400, served: 1200, active_programmes: 3, active_activities: 5, mdas: ['Ministry of Humanitarian Affairs', 'Ministry of Health'], band: 'green' as const },
+  { key: 'hadejia', name: 'Hadejia', beneficiary_count: 300, benefit_count: 10, benefit_value: 500_000, funding_allocated: 1_000_000, households: 90, served: 250, active_programmes: 2, active_activities: 2, mdas: ['Ministry of Education'], band: 'yellow' as const },
+  { key: 'gumel', name: 'Gumel', beneficiary_count: 50, benefit_count: 2, benefit_value: 60_000, funding_allocated: 150_000, households: 12, served: 40, active_programmes: 1, active_activities: 1, mdas: ['Ministry of Youth'], band: 'red' as const },
+  { key: 'kano', name: 'Kano', beneficiary_count: 0, benefit_count: 0, benefit_value: 0, funding_allocated: 0, households: 0, served: 0, active_programmes: 0, active_activities: 0, mdas: [], band: 'grey' as const },
 ]
 const bands = { green_min: 1000, yellow_min: 250 }
 

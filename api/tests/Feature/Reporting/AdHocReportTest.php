@@ -9,6 +9,7 @@ use App\Domain\Access\Models\Mda;
 use App\Domain\Access\Models\Role;
 use App\Domain\Access\Models\User;
 use App\Domain\Benefit\Models\Benefit;
+use App\Domain\Programme\Models\Activity;
 use App\Domain\Programme\Models\Programme;
 use App\Domain\Programme\Models\ProgrammeFunder;
 use App\Domain\Registry\Models\Beneficiary;
@@ -55,6 +56,8 @@ class AdHocReportTest extends TestCase
         $this->progA = Programme::factory()->individual()->create(['name' => 'Cash A', 'status' => 'active']);
         $progB = Programme::factory()->individual()->create(['name' => 'Grant B', 'status' => 'active']);
         ProgrammeFunder::create(['programme_id' => $this->progA->id, 'user_id' => $this->users['partner']->id]);
+        // Phase 6P: the partner's funded scope is derived from activity attribution.
+        Activity::factory()->forProgramme($this->progA, $this->mdaA)->create(['funding_partner_id' => $this->users['partner']->id]);
 
         Benefit::factory()->create(['beneficiary_id' => $aBen->id, 'programme_id' => $this->progA->id, 'mda_id' => $this->mdaA->id, 'monetary_value' => 100_000, 'lga' => 'dutse', 'status' => 'verified']);
         Benefit::factory()->create(['beneficiary_id' => $aBen->id, 'programme_id' => $this->progA->id, 'mda_id' => $this->mdaA->id, 'monetary_value' => 200_000, 'lga' => 'dutse', 'status' => 'verified']);

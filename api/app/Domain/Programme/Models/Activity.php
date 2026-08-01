@@ -41,12 +41,14 @@ use Illuminate\Support\Carbon;
  * @property Carbon|null $ends_on
  * @property int|null $budget_amount
  * @property string|null $funding_source
+ * @property string|null $funding_partner_id
  * @property ActivityStatus $status
  * @property string|null $created_by
  * @property Carbon|null $created_at
  * @property Carbon|null $updated_at
  * @property-read Programme $programme
  * @property-read Mda $ownerMda
+ * @property-read User|null $fundingPartner
  */
 class Activity extends Model implements MdaScoped
 {
@@ -73,6 +75,7 @@ class Activity extends Model implements MdaScoped
         'ends_on',
         'budget_amount',
         'funding_source',
+        'funding_partner_id',
         'status',
         'created_by',
     ];
@@ -127,5 +130,16 @@ class Activity extends Model implements MdaScoped
     public function creator(): BelongsTo
     {
         return $this->belongsTo(User::class, 'created_by');
+    }
+
+    /**
+     * The Development Partner funding this activity (Phase 6P), or null when it is
+     * state-funded / not partner-attributed. Drives the partner-funding scope + metrics.
+     *
+     * @return BelongsTo<User, $this>
+     */
+    public function fundingPartner(): BelongsTo
+    {
+        return $this->belongsTo(User::class, 'funding_partner_id');
     }
 }

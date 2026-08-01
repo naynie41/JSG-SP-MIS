@@ -8,7 +8,7 @@ import { Breadcrumbs } from '@/components/Breadcrumbs/Breadcrumbs'
 import { Icon } from '@/components/Icon/Icon'
 import { NotificationBell } from '@/features/notifications/NotificationBell'
 import { useAuth } from '@/lib/auth/AuthProvider'
-import { NAV_CONFIG } from './nav'
+import { NAV_CONFIG, navSectionsFor } from './nav'
 import styles from './AppLayout.module.css'
 
 /** Authenticated shell: forest rail (permission-filtered) + top bar + content. */
@@ -20,27 +20,23 @@ export function AppLayout() {
 
   const roleKey = user?.role?.key ?? ''
 
-  // Filter nav by role (whole section) then permission (item); drop empty sections.
-  // Visibility is UX-only — the server is the security boundary.
-  const sections: NavSection[] = useMemo(() => {
-    return NAV_CONFIG.filter((section) => !section.roles || section.roles.includes(roleKey))
-      .map((section) => ({
-        label: section.label,
-        items: section.items
-          .filter((item) => !item.permission || hasPermission(item.permission))
-          .map(({ label, to, icon }) => ({ label, to, icon })),
-      }))
-      .filter((section) => section.items.length > 0)
-  }, [hasPermission, roleKey])
+  // Nav rail: role- + permission-filtered (see navSectionsFor). UX-only — the server
+  // is the security boundary.
+  const sections: NavSection[] = useMemo(() => navSectionsFor(roleKey, hasPermission), [hasPermission, roleKey])
 
   const currentLabel = useMemo(() => {
     if (location.pathname === '/') return 'Dashboard'
+    // Pick the MOST specific matching rail item (longest `to`) so e.g.
+    // `/partner/programmes` resolves to "Programmes & Results", not "Overview".
+    let best: { label: string; to: string } | null = null
     for (const section of NAV_CONFIG) {
-      const match = section.items.find(
-        (item) => item.to !== '/' && location.pathname.startsWith(item.to),
-      )
-      if (match) return match.label
+      for (const item of section.items) {
+        if (item.to !== '/' && location.pathname.startsWith(item.to)) {
+          if (!best || item.to.length > best.to.length) best = item
+        }
+      }
     }
+    if (best) return best.label
     // Functional pages reached from a hub aren't in the rail — title-case the first segment.
     const segment = location.pathname.split('/').filter(Boolean)[0]
     if (!segment) return 'SP-MIS'

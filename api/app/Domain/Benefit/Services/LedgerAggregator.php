@@ -296,7 +296,7 @@ class LedgerAggregator
      *
      * @param  list<string>|null  $mdaIds
      * @param  list<string>|null  $programmeIds
-     * @param  array<string, string>  $filters
+     * @param  array<string, mixed>  $filters
      * @return Builder<Benefit>
      */
     private function scopedLedger(?array $mdaIds, ?array $programmeIds, array $filters = []): Builder
@@ -310,6 +310,11 @@ class LedgerAggregator
         }
         if ($mdaIds !== null) {
             $query->whereIn('mda_id', $mdaIds);
+        }
+
+        // Funded-activity scoping (Phase 6P): constrain to a specific set of activities.
+        if (! empty($filters['activity_ids']) && is_array($filters['activity_ids'])) {
+            $query->whereIn('activity_id', $filters['activity_ids']);
         }
 
         foreach (['programme_id', 'mda_id', 'lga', 'ward'] as $field) {

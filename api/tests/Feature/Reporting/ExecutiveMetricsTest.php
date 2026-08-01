@@ -81,7 +81,7 @@ class ExecutiveMetricsTest extends TestCase
         // Programmes (global catalog); budget + target live on each MDA's activity.
         $this->progA = Programme::factory()->individual()->create(['status' => 'active']);
         $this->progB = Programme::factory()->individual()->create(['status' => 'active']);
-        $actA = Activity::factory()->forProgramme($this->progA, $this->mdaA)->create(['name' => 'Cash round 1', 'budget_amount' => 1_000_000, 'involves_beneficiaries' => true, 'target_beneficiaries' => 4, 'starts_on' => '2026-01-01', 'ends_on' => '2026-12-31']);
+        $actA = Activity::factory()->forProgramme($this->progA, $this->mdaA)->create(['name' => 'Cash round 1', 'budget_amount' => 1_000_000, 'involves_beneficiaries' => true, 'target_beneficiaries' => 4, 'starts_on' => '2026-01-01', 'ends_on' => '2026-12-31', 'funding_partner_id' => $this->users['partner']->id]);
         $actB = Activity::factory()->forProgramme($this->progB, $this->mdaB)->create(['name' => 'Feeding term 1', 'budget_amount' => 500_000, 'involves_beneficiaries' => true, 'target_beneficiaries' => 2, 'starts_on' => '2026-02-01', 'ends_on' => '2026-06-30']);
         ProgrammeFunder::create(['programme_id' => $this->progA->id, 'user_id' => $this->users['partner']->id]);
 
