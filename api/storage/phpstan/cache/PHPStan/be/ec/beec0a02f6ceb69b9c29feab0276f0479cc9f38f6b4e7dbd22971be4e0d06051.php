@@ -13,6 +13,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
          'uses' => 
         array (
           'activitystatus' => 'App\\Domain\\Programme\\Enums\\ActivityStatus',
+          'isfundingpartner' => 'App\\Domain\\Programme\\Rules\\IsFundingPartner',
           'lga' => 'App\\Domain\\Registry\\Enums\\Lga',
           'formrequest' => 'Illuminate\\Foundation\\Http\\FormRequest',
           'rule' => 'Illuminate\\Validation\\Rule',
@@ -39,6 +40,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
          'uses' => 
         array (
           'activitystatus' => 'App\\Domain\\Programme\\Enums\\ActivityStatus',
+          'isfundingpartner' => 'App\\Domain\\Programme\\Rules\\IsFundingPartner',
           'lga' => 'App\\Domain\\Registry\\Enums\\Lga',
           'formrequest' => 'Illuminate\\Foundation\\Http\\FormRequest',
           'rule' => 'Illuminate\\Validation\\Rule',
@@ -54,6 +56,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
            'uses' => 
           array (
             'activitystatus' => 'App\\Domain\\Programme\\Enums\\ActivityStatus',
+            'isfundingpartner' => 'App\\Domain\\Programme\\Rules\\IsFundingPartner',
             'lga' => 'App\\Domain\\Registry\\Enums\\Lga',
             'formrequest' => 'Illuminate\\Foundation\\Http\\FormRequest',
             'rule' => 'Illuminate\\Validation\\Rule',
@@ -90,6 +93,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
          'uses' => 
         array (
           'activitystatus' => 'App\\Domain\\Programme\\Enums\\ActivityStatus',
+          'isfundingpartner' => 'App\\Domain\\Programme\\Rules\\IsFundingPartner',
           'lga' => 'App\\Domain\\Registry\\Enums\\Lga',
           'formrequest' => 'Illuminate\\Foundation\\Http\\FormRequest',
           'rule' => 'Illuminate\\Validation\\Rule',
@@ -105,6 +109,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
            'uses' => 
           array (
             'activitystatus' => 'App\\Domain\\Programme\\Enums\\ActivityStatus',
+            'isfundingpartner' => 'App\\Domain\\Programme\\Rules\\IsFundingPartner',
             'lga' => 'App\\Domain\\Registry\\Enums\\Lga',
             'formrequest' => 'Illuminate\\Foundation\\Http\\FormRequest',
             'rule' => 'Illuminate\\Validation\\Rule',
@@ -138,7 +143,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
     ),
     1 => 
     array (
-      'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Programme\\UpdateActivityRequest.php' => '6b54d2635fe6f2aba57ab37a069f42095dd7f6155becaeea0b35799b8f5a7120',
+      'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Programme\\UpdateActivityRequest.php' => '3a54190b6b1f606662433297f6d496389ad7cfee25570065626e3d9676d20f73',
     ),
   ),
 ));

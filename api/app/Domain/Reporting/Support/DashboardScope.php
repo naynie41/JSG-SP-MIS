@@ -27,17 +27,19 @@ final class DashboardScope
     /**
      * @param  list<string>|null  $mdaIds  null = all MDAs
      * @param  list<string>|null  $programmeIds  null = all programmes; set for partner
+     * @param  string|null  $partnerId  the funding partner's user id (partner scope only)
      */
     private function __construct(
         public readonly string $kind,
         public readonly ?array $mdaIds,
         public readonly ?array $programmeIds,
+        public readonly ?string $partnerId,
         public readonly string $label,
     ) {}
 
     public static function stateWide(): self
     {
-        return new self(self::KIND_STATE_WIDE, null, null, 'State-wide');
+        return new self(self::KIND_STATE_WIDE, null, null, null, 'State-wide');
     }
 
     /**
@@ -47,17 +49,21 @@ final class DashboardScope
     {
         sort($mdaIds);
 
-        return new self(self::KIND_MDA, $mdaIds, null, $label);
+        return new self(self::KIND_MDA, $mdaIds, null, null, $label);
     }
 
     /**
+     * A Development Partner scope. `$programmeIds` are the partner's FUNDED programmes
+     * (the distinct programmes of the activities they fund, `activities.funding_partner_id`);
+     * `$partnerId` identifies the partner so activity-precise funding metrics resolve.
+     *
      * @param  list<string>  $programmeIds
      */
-    public static function partner(array $programmeIds, string $label = 'Funded programmes'): self
+    public static function partner(array $programmeIds, ?string $partnerId = null, string $label = 'Funded programmes'): self
     {
         sort($programmeIds);
 
-        return new self(self::KIND_PARTNER, null, $programmeIds, $label);
+        return new self(self::KIND_PARTNER, null, $programmeIds, $partnerId, $label);
     }
 
     /**
@@ -71,7 +77,7 @@ final class DashboardScope
     {
         return match ($kind) {
             self::KIND_STATE_WIDE => self::stateWide(),
-            self::KIND_PARTNER => self::partner($programmeIds ?? [], $label),
+            self::KIND_PARTNER => self::partner($programmeIds ?? [], null, $label),
             default => self::mda($mdaIds ?? [], $label),
         };
     }
@@ -140,7 +146,7 @@ final class DashboardScope
     {
         return match ($this->kind) {
             self::KIND_STATE_WIDE => 'state_wide',
-            self::KIND_PARTNER => 'partner:'.($this->programmeIds === [] ? 'none' : implode(',', $this->programmeIds)),
+            self::KIND_PARTNER => 'partner:'.($this->partnerId ?? ($this->programmeIds === [] ? 'none' : implode(',', $this->programmeIds))),
             default => 'mda:'.($this->mdaIds === [] ? 'none' : implode(',', $this->mdaIds)),
         };
     }

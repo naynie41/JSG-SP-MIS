@@ -7,11 +7,13 @@ namespace App\Domain\Reporting\Services;
 use App\Domain\Access\Models\Mda;
 use App\Domain\Access\Models\User;
 use App\Domain\Access\Scopes\MdaScope;
+use App\Domain\Benefit\Enums\BenefitStatus;
 use App\Domain\Benefit\Models\Benefit;
 use App\Domain\Benefit\Services\LedgerAggregator;
 use App\Domain\Grievance\Models\Grievance;
 use App\Domain\Programme\Enums\ActivityStatus;
 use App\Domain\Programme\Models\Activity;
+use App\Domain\Programme\Models\Enrollment;
 use App\Domain\Programme\Models\Programme;
 use App\Domain\Programme\Models\ProgrammeFunder;
 use App\Domain\Referral\Models\Referral;
@@ -25,6 +27,7 @@ use App\Domain\Sync\Models\SyncConnector;
 use App\Domain\Sync\Models\SyncRun;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Support\Carbon;
+use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\DB;
 
 /**
@@ -86,6 +89,8 @@ class DashboardMetricsService
             ],
             'registry_quality' => $this->registryQuality($scope),
             'coordination' => $coordination ? $this->coordination($scope) : null,
+            // Phase 6P — activity-precise partner-funding aggregates (partner scope only).
+            'partner_funding' => $scope->isPartner() ? $this->partnerFunding($scope) : null,
             'coverage_bands' => $this->coverageBands($coverage),
             'trends' => $this->trends($scope),
             // Deferred slots exist (stable shape) but return nothing until switched on.
@@ -743,6 +748,694 @@ class DashboardMetricsService
             ->havingRaw('count(distinct owner_mda_id) > 1');
 
         return (int) DB::query()->fromSub($joint, 'joint')->count();
+    }
+
+    /**
+     * PARTNER-FUNDING aggregates (Phase 6P) — activity-precise, over the activities a
+     * partner actually funds (`activities.funding_partner_id`). Allocated = committed
+     * funding on those activities; `delivered_value` = the recorded VALUE OF BENEFITS
+     * DELIVERED under them (programme data) — **not treasury expenditure**; labelled so
+     * downstream. Scoped to the partner, de-identified (counts + values only).
+     *
+     * @return array<string, mixed>|null
+     */
+    private function partnerFunding(DashboardScope $scope): ?array
+    {
+        $partnerId = $scope->partnerId;
+        if ($partnerId === null) {
+            return null;
+        }
+
+        $activities = $this->applyActivityFilter(
+            Activity::query()->withoutGlobalScope(MdaScope::class)->where('funding_partner_id', $partnerId)
+        )->get(['id', 'programme_id', 'owner_mda_id', 'lga', 'name', 'budget_amount', 'target_beneficiaries', 'status', 'starts_on', 'ends_on']);
+
+        $activityIds = $activities->pluck('id')->all();
+        $allocated = (int) $activities->sum('budget_amount');
+        $target = (int) $activities->sum('target_beneficiaries');
+        $fundedProgrammeIds = $activities->pluck('programme_id')->unique()->values()->all();
+        $activeActivities = $activities->where('status', ActivityStatus::Active)->count();
+
+        // Ledger constrained to the FUNDED activities only (never wider).
+        $lf = array_merge($this->filter->ledgerFilters(), ['activity_ids' => $activityIds]);
+        $delivered = $activityIds === [] ? 0 : (int) $this->ledger->scopedTotals(null, null, $lf)['total_value'];
+        $netUnique = $activityIds === [] ? 0 : $this->ledger->scopedDistinctBeneficiaries(null, null, $lf);
+
+        // Per-funded-programme breakdown + output indicators (Phase 6P "Programmes & Results").
+        $outputs = $this->partnerOutputIndicators($activityIds);
+        $programmes = $this->partnerProgrammes($activities, $activityIds, $outputs['by_programme']);
+
+        // Absolute coverage (net-unique served per LGA/Ward) through funded activities.
+        $coverageRows = [];
+        $wardsCovered = 0;
+        if ($activityIds !== []) {
+            foreach ($this->ledger->scopedDistinctByArea('lga', null, null, $lf) as $raw => $count) {
+                if ((string) $raw !== '') {
+                    $coverageRows[] = ['lga' => (string) $raw, 'beneficiary_count' => $count];
+                }
+            }
+            $wardsCovered = collect($this->ledger->scopedDistinctByArea('ward', null, null, $lf))
+                ->filter(fn ($count, $raw) => (string) $raw !== '')->count();
+        }
+
+        return [
+            'allocated' => $allocated,                 // committed funding (kobo)
+            'delivered_value' => $delivered,           // value delivered to beneficiaries — NOT expenditure
+            'remaining' => $allocated - $delivered,
+            'utilization_rate' => $allocated > 0 ? round($delivered / $allocated, 4) : null,
+            'funded_programmes' => count($fundedProgrammeIds),
+            'funded_activities' => count($activityIds),
+            'active_activities' => $activeActivities,
+            'implementing_mdas' => $activities->pluck('owner_mda_id')->filter()->unique()->count(),
+            'lgas_covered' => count($coverageRows),
+            'wards_covered' => $wardsCovered,
+            'net_unique_reached' => $netUnique,
+            'target' => $target,
+            'reach_vs_target' => $target > 0 ? round($netUnique / $target, 4) : null,
+            'cost_per_beneficiary' => $netUnique > 0 ? (int) round($delivered / $netUnique) : null,
+            'reach' => $this->partnerReach($activityIds),
+            'coverage_bands' => $this->coverageBands($coverageRows),
+            'funding_by_partner' => [[
+                'partner_id' => $partnerId,
+                'name' => User::query()->whereKey($partnerId)->value('name') ?? 'Partner',
+                'allocated' => $allocated,
+                'delivered_value' => $delivered,
+                'net_unique_reached' => $netUnique,
+                'funded_programmes' => count($fundedProgrammeIds),
+            ]],
+            'programme_overlap' => $this->programmeOverlap($partnerId, $fundedProgrammeIds, $activities),
+            'programmes' => $programmes,                      // per funded programme (activity-precise)
+            'output_indicators' => $outputs['rolled_up'],     // OUTPUTS ONLY, rolled up across programmes
+            'registry' => $this->partnerRegistry($activityIds), // funded-programme beneficiaries (aggregate)
+            'coordination' => $this->partnerCoordination($partnerId, $fundedProgrammeIds, [
+                'allocated' => $allocated,
+                'delivered_value' => $delivered,
+                'net_unique_reached' => $netUnique,
+                'funded_programmes' => count($fundedProgrammeIds),
+            ], $activityIds),
+        ];
+    }
+
+    /**
+     * Reach demographics of the cohort SERVED through a partner's funded activities —
+     * households, women (recorded female) and children (age band). CAPTURED fields only
+     * (PWD/vulnerable are not held). Counts only, no PII.
+     *
+     * @param  list<string>  $activityIds
+     * @return array<string, int>
+     */
+    private function partnerReach(array $activityIds): array
+    {
+        $empty = ['households_reached' => 0, 'women_reached' => 0, 'children_reached' => 0];
+        if ($activityIds === []) {
+            return $empty;
+        }
+
+        $servedIds = Benefit::query()->withoutGlobalScope(MdaScope::class)
+            ->where('status', '!=', BenefitStatus::Reversed->value)
+            ->whereIn('activity_id', $activityIds)
+            ->distinct()->pluck('beneficiary_id')->all();
+        if ($servedIds === []) {
+            return $empty;
+        }
+
+        $childBoundary = Carbon::today()->subYears(18)->toDateString();
+
+        return [
+            'households_reached' => (int) HouseholdMembership::query()->whereNull('left_at')
+                ->whereIn('beneficiary_id', $servedIds)->distinct()->count('household_id'),
+            'women_reached' => Beneficiary::query()->withoutGlobalScope(MdaScope::class)
+                ->whereIn('id', $servedIds)->where('gender', 'female')->count(),
+            'children_reached' => Beneficiary::query()->withoutGlobalScope(MdaScope::class)
+                ->whereIn('id', $servedIds)->whereNotNull('date_of_birth')
+                ->whereDate('date_of_birth', '>', $childBoundary)->count(),
+        ];
+    }
+
+    /**
+     * FUNDED-PROGRAMME BENEFICIARIES (Phase 6P "Registry" tab) — the aggregate registry
+     * for a partner's funded cohort: beneficiaries ENROLLED IN or SERVED BY the funded
+     * activities (activity-precise, union). De-identified counts only — never the raw
+     * registry, never a beneficiary field. KPIs, captured-field demographics, a REDUCED
+     * targeting funnel (Registered → Enrolled → Receiving; the eligible→selected steps
+     * are omitted — no eligibility denominator / selection model), and data quality.
+     *
+     * @param  list<string>  $activityIds
+     * @return array<string, mixed>
+     */
+    private function partnerRegistry(array $activityIds): array
+    {
+        $days = (int) config('reporting.current_period_days', 30);
+        $emptyBands = ['1' => 0, '2-3' => 0, '4-6' => 0, '7+' => 0];
+        $empty = [
+            'total_individuals' => 0, 'total_households' => 0,
+            'verified' => 0, 'pending' => 0, 'suspended' => 0,
+            'duplicate_records' => 0, 'new_registrations' => 0, 'updated_records' => 0, 'period_days' => $days,
+            'demographics' => [
+                'by_gender' => [], 'gender_known' => 0, 'female_pct' => null, 'age_bands' => [], 'by_lga' => [],
+                'household_size' => ['total_households' => 0, 'households_with_members' => 0, 'average_size' => null, 'bands' => $emptyBands],
+            ],
+            'funnel' => ['registered' => 0, 'enrolled' => 0, 'receiving' => 0],
+            'quality' => [
+                'verification_rate' => null, 'duplicate_rate' => null, 'data_completeness' => null, 'nin_linkage' => null,
+                'missing' => ['nin' => 0, 'phone' => 0, 'date_of_birth' => 0, 'gender' => 0, 'lga' => 0],
+            ],
+        ];
+        if ($activityIds === []) {
+            return $empty;
+        }
+
+        // Funded cohort = beneficiaries enrolled in ∪ served by the funded activities.
+        $enrolledIds = Enrollment::query()->withoutGlobalScope(MdaScope::class)
+            ->whereIn('activity_id', $activityIds)->whereNotNull('beneficiary_id')
+            ->distinct()->pluck('beneficiary_id')->all();
+        $servedIds = Benefit::query()->withoutGlobalScope(MdaScope::class)
+            ->where('status', '!=', BenefitStatus::Reversed->value)
+            ->whereIn('activity_id', $activityIds)->distinct()->pluck('beneficiary_id')->all();
+        $cohortIds = array_values(array_unique(array_merge($enrolledIds, $servedIds)));
+        if ($cohortIds === []) {
+            return $empty;
+        }
+
+        $base = Beneficiary::query()->withoutGlobalScope(MdaScope::class)->whereIn('id', $cohortIds);
+        $total = (clone $base)->count();
+        $byStatus = $this->countBy($base, 'status');
+        $verified = $byStatus['active'] ?? 0;
+        $byGender = $this->countBy($base, 'gender');
+        $knownGender = $total - ($byGender['unspecified'] ?? 0);
+        $female = $byGender['female'] ?? 0;
+
+        $householdIds = HouseholdMembership::query()->whereNull('left_at')
+            ->whereIn('beneficiary_id', $cohortIds)->distinct()->pluck('household_id')->all();
+
+        $since = Carbon::now()->subDays($days);
+        $newReg = (clone $base)->whereDate('registration_date', '>=', $since->toDateString())->count();
+        $updated = (clone $base)->where('updated_at', '>=', $since)
+            ->whereColumn('updated_at', '>', 'created_at')->count();
+
+        $withNin = (clone $base)->whereNotNull('nin_hash')->count();
+        $withPhone = (clone $base)->whereNotNull('phone')->count();
+        $withDob = (clone $base)->whereNotNull('date_of_birth')->count();
+        $withGender = (clone $base)->whereNotNull('gender')->count();
+        $withLga = (clone $base)->whereNotNull('lga')->count();
+        $withId = (clone $base)->where(fn (Builder $w) => $w->whereNotNull('nin_hash')->orWhereNotNull('bvn_hash'))->count();
+        $ratio = fn (int $n): ?float => $total > 0 ? round($n / $total, 4) : null;
+
+        // Duplicate records SURFACED for the cohort (import match bands) — an aggregate
+        // data-quality signal about the funded beneficiaries only; no PII, no other MDA's data.
+        $dupRecords = (int) DB::table('import_rows')
+            ->whereIn('match_band', ['exact', 'probable'])
+            ->where(fn ($q) => $q->whereIn('beneficiary_id', $cohortIds)->orWhereIn('resolved_beneficiary_id', $cohortIds))
+            ->count();
+
+        return [
+            'total_individuals' => $total,
+            'total_households' => count($householdIds),
+            'verified' => $verified,
+            'pending' => $byStatus['flagged'] ?? 0,
+            'suspended' => $byStatus['suspended'] ?? 0,
+            'duplicate_records' => $dupRecords,
+            'new_registrations' => $newReg,
+            'updated_records' => $updated,
+            'period_days' => $days,
+            'demographics' => [
+                'by_gender' => $byGender,
+                'gender_known' => $knownGender,
+                'female_pct' => $knownGender > 0 ? round($female / $knownGender, 4) : null,
+                'age_bands' => $this->ageBands($base),
+                'by_lga' => $this->countBy($base, 'lga'),
+                'household_size' => $this->cohortHouseholdSize($householdIds),
+            ],
+            'funnel' => [
+                'registered' => $total,          // beneficiaries on record for the funded activities
+                'enrolled' => count($enrolledIds), // distinct beneficiaries enrolled
+                'receiving' => count($servedIds),  // distinct beneficiaries served (net-unique)
+            ],
+            'quality' => [
+                'verification_rate' => $ratio($verified),
+                'duplicate_rate' => $total > 0 ? round($dupRecords / $total, 4) : null,
+                'data_completeness' => $total > 0
+                    ? round(($withId + $withPhone + $withDob + $withGender + $withLga) / (5 * $total), 4)
+                    : null,
+                'nin_linkage' => $ratio($withNin),
+                'missing' => [
+                    'nin' => $total - $withNin,
+                    'phone' => $total - $withPhone,
+                    'date_of_birth' => $total - $withDob,
+                    'gender' => $total - $withGender,
+                    'lga' => $total - $withLga,
+                ],
+            ],
+        ];
+    }
+
+    /**
+     * Household-size distribution (banded 1 / 2–3 / 4–6 / 7+) over a set of household ids
+     * — a field we HAVE (active memberships per household). Used for the partner cohort,
+     * whose households come from its served/enrolled members (a partner owns no households).
+     *
+     * @param  list<string>  $householdIds
+     * @return array<string, mixed>
+     */
+    private function cohortHouseholdSize(array $householdIds): array
+    {
+        $bands = ['1' => 0, '2-3' => 0, '4-6' => 0, '7+' => 0];
+        if ($householdIds === []) {
+            return ['total_households' => 0, 'households_with_members' => 0, 'average_size' => null, 'bands' => $bands];
+        }
+
+        $sizes = HouseholdMembership::query()->whereNull('left_at')
+            ->whereIn('household_id', $householdIds)
+            ->selectRaw('household_id, count(*) as member_count')
+            ->groupBy('household_id')
+            ->pluck('member_count');
+
+        $members = 0;
+        foreach ($sizes as $size) {
+            $s = (int) $size;
+            $members += $s;
+            $key = $s <= 1 ? '1' : ($s <= 3 ? '2-3' : ($s <= 6 ? '4-6' : '7+'));
+            $bands[$key]++;
+        }
+        $withMembers = $sizes->count();
+
+        return [
+            'total_households' => count($householdIds),
+            'households_with_members' => $withMembers,
+            'average_size' => $withMembers > 0 ? round($members / $withMembers, 2) : null,
+            'bands' => $bands,
+        ];
+    }
+
+    /**
+     * Per-FUNDED-programme results (Phase 6P "Programmes & Results"), ACTIVITY-PRECISE:
+     * only the partner's funded activities count toward each programme's budget allocated,
+     * value DELIVERED (recorded delivery value, NOT treasury expenditure), reach, coverage
+     * (absolute), completion, interventions (benefit-record count), average benefit value,
+     * cost per beneficiary, a monthly delivery-rate series and a four-state delivery status.
+     * De-identified aggregates only; the ledger is constrained to the funded activities.
+     *
+     * @param  Collection<int, Activity>  $activities  the partner's funded activities
+     * @param  list<string>  $activityIds
+     * @param  array<string, array<int, array<string, int|string|null>>>  $outputByProgramme
+     * @return array<int, array<string, mixed>>
+     */
+    private function partnerProgrammes(Collection $activities, array $activityIds, array $outputByProgramme): array
+    {
+        if ($activityIds === []) {
+            return [];
+        }
+
+        $base = $this->filter->ledgerFilters();
+        $lf = array_merge($base, ['activity_ids' => $activityIds]);
+        $reachByProg = $this->ledger->scopedReachByProgramme(null, null, $lf);
+        $reachByAct = $this->ledger->scopedReachByActivity(null, null, $lf);
+        $valueByProg = collect($this->ledger->scopedGroup('programme', null, null, $lf))->keyBy('key');
+        $valueByAct = collect($this->ledger->scopedGroup('activity', null, null, $lf))->keyBy('key');
+
+        $programmeIds = $activities->pluck('programme_id')->unique()->values()->all();
+        $programmes = Programme::query()->whereIn('id', $programmeIds)->get(['id', 'name', 'type', 'status'])->keyBy('id');
+        $mdaNames = Mda::query()
+            ->whereIn('id', $activities->pluck('owner_mda_id')->filter()->unique()->all())
+            ->pluck('name', 'id');
+
+        $months = (int) config('reporting.trend_months', 12);
+        $today = Carbon::today()->toDateString();
+        $green = (float) config('reporting.programme_traffic_light.green_min', 0.8);
+        $yellow = (float) config('reporting.programme_traffic_light.yellow_min', 0.5);
+        $light = fn (?float $c): string => $c === null
+            ? 'unrated'
+            : ($c >= $green ? 'green' : ($c >= $yellow ? 'yellow' : 'red'));
+        $day = fn ($d): ?string => $d instanceof \DateTimeInterface ? $d->format('Y-m-d') : ($d === null ? null : (string) $d);
+
+        $out = [];
+        foreach ($activities->groupBy('programme_id') as $rawPid => $progActivities) {
+            $pid = (string) $rawPid;
+            $ids = $progActivities->pluck('id')->all();
+            $allocated = (int) $progActivities->sum('budget_amount');
+            $target = (int) $progActivities->sum('target_beneficiaries');
+            $progValue = $valueByProg->get($pid) ?? [];
+            $delivered = (int) ($progValue['total_value'] ?? 0);
+            $interventions = (int) ($progValue['benefit_count'] ?? 0);
+            $reached = (int) ($reachByProg[$pid] ?? 0);
+            $completion = $target > 0 ? round($reached / $target, 4) : null;
+
+            $starts = $progActivities->pluck('starts_on')->filter()->map($day)->all();
+            $ends = $progActivities->pluck('ends_on')->filter()->map($day)->all();
+            $endDate = $ends === [] ? null : max($ends);
+            $programme = $programmes[$pid] ?? null;
+
+            $activityRows = $progActivities->map(function (Activity $a) use ($reachByAct, $valueByAct, $mdaNames, $light) {
+                $aReached = (int) ($reachByAct[$a->id] ?? 0);
+                $aTarget = (int) ($a->target_beneficiaries ?? 0);
+                $aAllocated = (int) ($a->budget_amount ?? 0);
+                $aDelivered = (int) (($valueByAct->get($a->id) ?? [])['total_value'] ?? 0);
+                $aCompletion = $aTarget > 0 ? round($aReached / $aTarget, 4) : null;
+
+                return [
+                    'activity_id' => $a->id,
+                    'name' => $a->name,
+                    'mda' => $mdaNames[$a->owner_mda_id] ?? null,
+                    'status' => $a->status->value,
+                    'target' => $aTarget,
+                    'reached' => $aReached,
+                    'completion_rate' => $aCompletion,
+                    'coverage_absolute' => $aReached,
+                    'allocated' => $aAllocated,
+                    'delivered_value' => $aDelivered,
+                    'remaining' => $aAllocated - $aDelivered,
+                    'cost_per_beneficiary' => $aReached > 0 ? (int) round($aDelivered / $aReached) : null,
+                    'traffic_light' => $light($aCompletion),
+                ];
+            })->values()->all();
+
+            $out[] = [
+                'programme_id' => $pid,
+                'name' => $programme?->name,
+                'type' => $programme?->type instanceof \BackedEnum ? $programme->type->value : $programme?->type,
+                'status' => $programme?->status instanceof \BackedEnum ? $programme->status->value : $programme?->status,
+                'mdas' => $progActivities->pluck('owner_mda_id')->filter()->unique()->values()
+                    ->map(fn ($mid) => ['id' => $mid, 'name' => $mdaNames[$mid] ?? null])->all(),
+                'start_date' => $starts === [] ? null : min($starts),
+                'end_date' => $endDate,
+                'allocated' => $allocated,
+                'delivered_value' => $delivered,
+                'remaining' => $allocated - $delivered,
+                'utilization_rate' => $allocated > 0 ? round($delivered / $allocated, 4) : null,
+                'target' => $target,
+                'reached' => $reached,
+                'coverage_absolute' => $reached,
+                'completion_rate' => $completion,
+                'interventions' => $interventions,
+                'avg_benefit_value' => $interventions > 0 ? (int) round($delivered / $interventions) : null,
+                'cost_per_beneficiary' => $reached > 0 ? (int) round($delivered / $reached) : null,
+                'delivery_series' => $this->zeroFilledSeries(
+                    $this->ledger->scopedDisbursementSeries(null, null, $months, array_merge($base, ['activity_ids' => $ids])),
+                    $months
+                ),
+                'status_light' => $this->programmeStatusLight($completion, $endDate, $today),
+                'output_indicators' => $outputByProgramme[$pid] ?? [],
+                'activities' => $activityRows,
+            ];
+        }
+
+        usort($out, fn (array $a, array $b): int => $b['delivered_value'] <=> $a['delivered_value']);
+
+        return $out;
+    }
+
+    /**
+     * Four-state funded-programme delivery status (Phase 6P) from completion + timeline:
+     * past the delivery end date → Completed (if completion ≥ completed_min) else Delayed;
+     * still in timeline → On Track / At Risk / Delayed by completion band. Thresholds are
+     * configurable (config/reporting.php programme_status). No target → "unrated".
+     */
+    private function programmeStatusLight(?float $completion, ?string $endDate, string $today): string
+    {
+        if ($completion === null) {
+            return 'unrated';
+        }
+
+        $completed = (float) config('reporting.programme_status.completed_min', 0.9);
+        $onTrack = (float) config('reporting.programme_status.on_track_min', 0.8);
+        $atRisk = (float) config('reporting.programme_status.at_risk_min', 0.5);
+
+        if ($endDate !== null && $endDate < $today) {
+            return $completion >= $completed ? 'completed' : 'delayed';
+        }
+
+        return match (true) {
+            $completion >= $onTrack => 'on_track',
+            $completion >= $atRisk => 'at_risk',
+            default => 'delayed',
+        };
+    }
+
+    /**
+     * OUTPUT INDICATORS (Phase 6P) — counts of INTERVENTIONS (benefit records) delivered
+     * under a partner's funded activities, by benefit TYPE and captured demographic
+     * (gender, age). OUTPUTS ONLY — interventions delivered — never outcomes (poverty,
+     * income, attendance), which require external evaluation data. Counts only, no PII.
+     * Returns a per-programme map and a rolled-up total across all funded programmes.
+     *
+     * @param  list<string>  $activityIds
+     * @return array{by_programme: array<string, array<int, array<string, int|string|null>>>, rolled_up: array<int, array<string, int|string|null>>}
+     */
+    private function partnerOutputIndicators(array $activityIds): array
+    {
+        if ($activityIds === []) {
+            return ['by_programme' => [], 'rolled_up' => []];
+        }
+
+        $rows = Benefit::query()->withoutGlobalScope(MdaScope::class)
+            ->where('status', '!=', BenefitStatus::Reversed->value)
+            ->whereIn('activity_id', $activityIds)
+            ->get(['programme_id', 'benefit_type', 'beneficiary_id']);
+        if ($rows->isEmpty()) {
+            return ['by_programme' => [], 'rolled_up' => []];
+        }
+
+        $childBoundary = Carbon::today()->subYears(18)->toDateString();
+        $demographics = Beneficiary::query()->withoutGlobalScope(MdaScope::class)
+            ->whereIn('id', $rows->pluck('beneficiary_id')->unique()->all())
+            ->get(['id', 'gender', 'date_of_birth'])
+            ->keyBy('id');
+
+        $typeValue = fn (Benefit $b): string => (string) $b->benefit_type->value;
+
+        /**
+         * @param  Collection<int, Benefit>  $group
+         * @return array<int, array<string, int|string|null>>
+         */
+        $summarise = function (Collection $group) use ($typeValue, $demographics, $childBoundary): array {
+            $byType = [];
+            foreach ($group->groupBy($typeValue) as $type => $typeRows) {
+                $beneficiaryIds = $typeRows->pluck('beneficiary_id')->unique();
+                $women = $beneficiaryIds->filter(
+                    fn ($id) => $demographics->get($id)?->gender?->value === 'female'
+                )->count();
+                $children = $beneficiaryIds->filter(function ($id) use ($demographics, $childBoundary) {
+                    $dob = $demographics->get($id)?->date_of_birth;
+
+                    return $dob !== null && $dob->toDateString() > $childBoundary;
+                })->count();
+
+                $byType[] = [
+                    'benefit_type' => (string) $type,
+                    'interventions' => $typeRows->count(),
+                    'beneficiaries' => $beneficiaryIds->count(),
+                    'women' => $women,
+                    'children' => $children,
+                ];
+            }
+            usort($byType, fn (array $a, array $b): int => (int) $b['interventions'] <=> (int) $a['interventions']);
+
+            return $byType;
+        };
+
+        $byProgramme = [];
+        foreach ($rows->groupBy('programme_id') as $rawPid => $progRows) {
+            $byProgramme[(string) $rawPid] = $summarise($progRows);
+        }
+
+        return ['by_programme' => $byProgramme, 'rolled_up' => $summarise($rows)];
+    }
+
+    /**
+     * Zero-fill a {'YYYY-MM' => value} map to the full last-N-months label list, so a
+     * delivery series always has one point per month (gaps rendered as zero).
+     *
+     * @param  array<string, int>  $map
+     * @return array<int, array{month: string, value: int}>
+     */
+    private function zeroFilledSeries(array $map, int $months): array
+    {
+        return array_map(
+            fn (string $m): array => ['month' => $m, 'value' => (int) ($map[$m] ?? 0)],
+            $this->monthLabels($months)
+        );
+    }
+
+    /**
+     * PARTNER COORDINATION (Phase 6P "Coordination" tab) — the actor landscape AROUND a
+     * partner's funded programmes: the funding organisations, government agencies (MDAs)
+     * and implementing agencies active in them; a funding-by-partner table (amounts for
+     * the CALLER only — a partner never sees another funder's money); the MDA landscape;
+     * and data-sharing / sync health for the implementing agencies. Programme overlap
+     * (the tab's headline) is served by {@see programmeOverlap()} on the same block.
+     *
+     * @param  list<string>  $fundedProgrammeIds
+     * @param  array{allocated:int,delivered_value:int,net_unique_reached:int,funded_programmes:int}  $selfTotals
+     * @param  list<string>  $callerActivityIds
+     * @return array<string, mixed>
+     */
+    private function partnerCoordination(string $partnerId, array $fundedProgrammeIds, array $selfTotals, array $callerActivityIds): array
+    {
+        $empty = [
+            'landscape' => ['funders' => 0, 'government_agencies' => 0, 'implementing_agencies' => 0],
+            'funding_by_partner' => [],
+            'agencies' => [],
+            'data_sharing' => ['agencies_integrated' => 0, 'connectors' => 0, 'sources' => [], 'total_runs' => 0, 'succeeded' => 0, 'failed' => 0, 'last_run_at' => null, 'api_registrations' => 0],
+        ];
+        if ($fundedProgrammeIds === []) {
+            return $empty;
+        }
+
+        // Every activity in the caller's funded programmes (ALL funders/MDAs) — the landscape base.
+        $acts = Activity::query()->withoutGlobalScope(MdaScope::class)
+            ->whereIn('programme_id', $fundedProgrammeIds)
+            ->get(['id', 'programme_id', 'owner_mda_id', 'funding_partner_id']);
+
+        // Funders (funding organisations): programme sets per funder, from activity attribution
+        // + ProgrammeFunder, restricted to the caller's funded programmes.
+        $funderProgrammes = [];
+        foreach ($acts as $a) {
+            if ($a->funding_partner_id !== null) {
+                $funderProgrammes[$a->funding_partner_id][$a->programme_id] = true;
+            }
+        }
+        foreach (ProgrammeFunder::query()->whereIn('programme_id', $fundedProgrammeIds)->get(['user_id', 'programme_id']) as $funder) {
+            $funderProgrammes[$funder->user_id][$funder->programme_id] = true;
+        }
+        $funderProgrammes[$partnerId] ??= array_fill_keys($fundedProgrammeIds, true);
+        $funderNames = User::query()->whereIn('id', array_keys($funderProgrammes))->pluck('name', 'id');
+
+        // Funding-by-partner: the caller with real figures; every co-funder WITHOUT amounts
+        // (a partner sees only its own money) — name + count of shared programmes only.
+        $fundingByPartner = [[
+            'partner_id' => $partnerId,
+            'name' => $funderNames[$partnerId] ?? 'You',
+            'is_self' => true,
+            'allocated' => $selfTotals['allocated'],
+            'delivered_value' => $selfTotals['delivered_value'],
+            'net_unique_reached' => $selfTotals['net_unique_reached'],
+            'funded_programmes' => $selfTotals['funded_programmes'],
+            'shared_programmes' => $selfTotals['funded_programmes'],
+        ]];
+        foreach ($funderProgrammes as $funderId => $programmeSet) {
+            if ((string) $funderId === $partnerId) {
+                continue;
+            }
+            $fundingByPartner[] = [
+                'partner_id' => (string) $funderId,
+                'name' => $funderNames[$funderId] ?? 'Partner',
+                'is_self' => false,
+                'allocated' => null,
+                'delivered_value' => null,
+                'net_unique_reached' => null,
+                'funded_programmes' => null,
+                'shared_programmes' => count($programmeSet),
+            ];
+        }
+
+        // Government agencies (MDAs) implementing activities in the funded programmes.
+        $mdaIds = $acts->pluck('owner_mda_id')->filter()->unique()->values()->all();
+        $mdaNames = Mda::query()->whereIn('id', $mdaIds)->pluck('name', 'id');
+        $agencies = [];
+        foreach ($acts->groupBy('owner_mda_id') as $rawMid => $mdaActs) {
+            $mid = (string) $rawMid;
+            if ($mid === '') {
+                continue;
+            }
+            $agencies[] = [
+                'id' => $mid,
+                'name' => $mdaNames[$mid] ?? null,
+                'activities' => $mdaActs->count(),
+                'programmes' => $mdaActs->pluck('programme_id')->unique()->count(),
+            ];
+        }
+        usort($agencies, fn (array $a, array $b): int => $b['activities'] <=> $a['activities']);
+
+        // Implementing agencies = distinct MDAs DELIVERING benefits under the caller's funded activities.
+        $implementing = $callerActivityIds === [] ? 0 : (int) Benefit::query()->withoutGlobalScope(MdaScope::class)
+            ->where('status', '!=', BenefitStatus::Reversed->value)
+            ->whereIn('activity_id', $callerActivityIds)
+            ->distinct()->count('mda_id');
+
+        // Data sharing / sync health for the implementing MDAs (Phase 7 sync status, reused).
+        $apiRegistrations = 0;
+        if ($callerActivityIds !== []) {
+            $servedIds = Benefit::query()->withoutGlobalScope(MdaScope::class)
+                ->where('status', '!=', BenefitStatus::Reversed->value)
+                ->whereIn('activity_id', $callerActivityIds)->distinct()->pluck('beneficiary_id')->all();
+            $apiRegistrations = $servedIds === [] ? 0 : Beneficiary::query()->withoutGlobalScope(MdaScope::class)
+                ->whereIn('id', $servedIds)->where('registration_source', 'api')->count();
+        }
+        $connectorBase = SyncConnector::query()->withoutGlobalScopes()->whereIn('owner_mda_id', $mdaIds);
+        $runBase = SyncRun::query()->withoutGlobalScopes()->whereIn('owner_mda_id', $mdaIds);
+        $lastRun = $mdaIds === [] ? null : (clone $runBase)->latest('created_at')->first();
+
+        return [
+            'landscape' => [
+                'funders' => count($funderProgrammes),
+                'government_agencies' => count($mdaIds),
+                'implementing_agencies' => $implementing,
+            ],
+            'funding_by_partner' => $fundingByPartner,
+            'agencies' => $agencies,
+            'data_sharing' => [
+                'agencies_integrated' => $mdaIds === [] ? 0 : (int) (clone $connectorBase)->distinct()->count('owner_mda_id'),
+                'connectors' => $mdaIds === [] ? 0 : (clone $connectorBase)->count(),
+                'sources' => $mdaIds === [] ? [] : (clone $connectorBase)->distinct()->pluck('source')->filter()->values()->all(),
+                'total_runs' => $mdaIds === [] ? 0 : (clone $runBase)->count(),
+                'succeeded' => $mdaIds === [] ? 0 : (clone $runBase)->where('status', 'completed')->count(),
+                'failed' => $mdaIds === [] ? 0 : (clone $runBase)->where('status', 'failed')->count(),
+                'last_run_at' => $lastRun?->created_at?->toIso8601String(),
+                'api_registrations' => $apiRegistrations,
+            ],
+        ];
+    }
+
+    /**
+     * PROGRAMME OVERLAP (Phase 6P) — where a partner's funded (catalog programme × LGA)
+     * cell is ALSO served, in the same LGA, by a DIFFERENT funder or a DIFFERENT MDA.
+     * A coordination signal only: it exposes the existence + count of other funders/MDAs,
+     * never their amounts (a partner sees only their own money).
+     *
+     * @param  list<string>  $fundedProgrammeIds
+     * @param  Collection<int, Activity>  $partnerActivities
+     * @return array<string, mixed>
+     */
+    private function programmeOverlap(string $partnerId, array $fundedProgrammeIds, $partnerActivities): array
+    {
+        if ($fundedProgrammeIds === []) {
+            return ['count' => 0, 'cells' => []];
+        }
+
+        $partnerCells = $partnerActivities
+            ->filter(fn (Activity $a) => $a->lga !== null && $a->lga !== '')
+            ->map(fn (Activity $a) => $a->programme_id.'|'.$a->lga)->unique()->values()->all();
+        if ($partnerCells === []) {
+            return ['count' => 0, 'cells' => []];
+        }
+
+        $byCell = Activity::query()->withoutGlobalScope(MdaScope::class)
+            ->whereIn('programme_id', $fundedProgrammeIds)->whereNotNull('lga')
+            ->get(['programme_id', 'lga', 'owner_mda_id', 'funding_partner_id'])
+            ->groupBy(fn (Activity $a) => $a->programme_id.'|'.$a->lga);
+        $names = Programme::query()->whereIn('id', $fundedProgrammeIds)->pluck('name', 'id');
+
+        $cells = [];
+        foreach ($partnerCells as $cellKey) {
+            $rows = $byCell[$cellKey] ?? collect();
+            $otherFunders = $rows->pluck('funding_partner_id')->filter()
+                ->reject(fn ($id) => (string) $id === $partnerId)->unique()->count();
+            $otherMdas = $rows->reject(fn (Activity $a) => (string) $a->funding_partner_id === $partnerId)
+                ->pluck('owner_mda_id')->filter()->unique()->count();
+
+            if ($otherFunders > 0 || $otherMdas > 0) {
+                [$pid, $lga] = explode('|', (string) $cellKey, 2);
+                $cells[] = [
+                    'programme_id' => $pid,
+                    'programme' => $names[$pid] ?? null,
+                    'lga' => $lga,
+                    'other_funders' => $otherFunders,
+                    'other_mdas' => $otherMdas,
+                ];
+            }
+        }
+
+        return ['count' => count($cells), 'cells' => $cells];
     }
 
     /**

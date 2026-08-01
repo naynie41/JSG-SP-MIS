@@ -1,0 +1,319 @@
+/* =============================================================================
+   Funding Partner — Coordination (Phase 6P, tab 4). Partner landscape cards, the
+   headline PROGRAMME OVERLAP (table + LGA map indicator), funding-by-partner (amounts
+   for self only), the government-agency landscape, data-sharing/sync health, and inert
+   slots for the omitted meetings / reporting-compliance modules. Structural pieces
+   (section/panel/groupLabel/reveal) come from the shared fundingPartner.module.css.
+   ============================================================================= */
+
+/* --------------------------------------------------------------- landscape */
+
+.landscape {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--space-3);
+}
+@media (max-width: 720px) {
+  .landscape {
+    grid-template-columns: 1fr;
+  }
+}
+.landCard {
+  display: grid;
+  gap: var(--space-1);
+  padding: clamp(var(--space-4), 3vw, var(--space-5));
+  border-radius: var(--radius-md);
+  background: linear-gradient(160deg, var(--forest-2), var(--forest));
+  color: var(--bg);
+  box-shadow: var(--elev-sm);
+}
+.landIcon {
+  color: var(--accent);
+  margin-bottom: var(--space-2);
+}
+.landValue {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: clamp(1.8rem, 4vw, 2.6rem);
+  line-height: 1;
+  color: var(--accent);
+  font-variant-numeric: tabular-nums;
+  letter-spacing: -0.02em;
+}
+.landLabel {
+  font-family: var(--font-mono);
+  font-size: var(--fs-caption);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: rgba(245, 245, 241, 0.82);
+}
+.landHint {
+  font-size: var(--fs-label);
+  color: rgba(245, 245, 241, 0.6);
+}
+
+/* --------------------------------------------------------------- overlap */
+
+.overlapLede {
+  font-size: var(--fs-ui);
+  color: var(--ink);
+  line-height: 1.5;
+  margin-bottom: var(--space-4);
+}
+.allClear {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  color: var(--success-ink);
+  font-size: var(--fs-ui);
+}
+.mapIndicator {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+  margin-bottom: var(--space-4);
+}
+.lgaChip {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  padding: var(--space-2) var(--space-3);
+  border-radius: var(--radius-full);
+  border: 1px solid var(--warning-soft);
+  background: var(--warning-soft);
+  color: var(--warning-ink);
+  font-size: var(--fs-label);
+  font-family: inherit;
+}
+button.lgaChip {
+  cursor: pointer;
+  transition: border-color var(--transition);
+}
+button.lgaChip:hover {
+  border-color: var(--warning-ink);
+}
+button.lgaChip:focus-visible {
+  outline: var(--focus-ring);
+  outline-offset: var(--focus-offset);
+}
+.lgaChip strong {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+}
+
+/* --------------------------------------------------------------- tables */
+
+.tableWrap {
+  overflow-x: auto;
+}
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: var(--fs-label);
+}
+.table th,
+.table td {
+  text-align: left;
+  padding: var(--space-2) var(--space-3);
+  border-bottom: 1px solid var(--border);
+  white-space: nowrap;
+}
+.table th {
+  font-family: var(--font-mono);
+  font-size: var(--fs-caption);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--text-muted-strong);
+  font-weight: 500;
+}
+.table tbody tr:last-child td {
+  border-bottom: none;
+}
+.table tbody tr[data-self='true'] {
+  background: var(--surface-mint);
+}
+.numHead {
+  text-align: right;
+}
+.numCell {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+  color: var(--ink);
+}
+.youBadge {
+  margin-left: var(--space-2);
+  padding: 1px var(--space-2);
+  border-radius: var(--radius-full);
+  background: var(--forest);
+  color: var(--bg);
+  font-family: var(--font-mono);
+  font-size: var(--fs-caption);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+.sharedNote {
+  color: var(--text-muted-strong);
+  font-size: var(--fs-caption);
+}
+.hidden {
+  color: var(--text-muted-strong);
+}
+.tableFoot {
+  margin-top: var(--space-3);
+  padding-top: var(--space-3);
+  border-top: 1px dashed var(--border);
+  font-size: var(--fs-label);
+  color: var(--text-muted-strong);
+  line-height: 1.55;
+}
+.tableFoot strong {
+  color: var(--forest);
+}
+
+/* --------------------------------------------------------------- agencies */
+
+.agencyGrid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--space-3);
+}
+@media (max-width: 780px) {
+  .agencyGrid {
+    grid-template-columns: 1fr;
+  }
+}
+.agency {
+  display: grid;
+  gap: var(--space-1);
+  padding: var(--space-4);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  background: var(--surface);
+}
+.agencyName {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: var(--fs-ui);
+  color: var(--ink);
+}
+.agencyMeta {
+  font-size: var(--fs-label);
+  color: var(--text-muted-strong);
+  font-variant-numeric: tabular-nums;
+}
+
+/* --------------------------------------------------------------- data sharing */
+
+.dsGrid {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  overflow: hidden;
+}
+@media (max-width: 860px) {
+  .dsGrid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+@media (max-width: 520px) {
+  .dsGrid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+.dsFig {
+  padding: var(--space-4) var(--space-3);
+  display: grid;
+  gap: 2px;
+  border-left: 1px solid var(--border);
+  border-top: 1px solid var(--border);
+}
+.dsFig:nth-child(-n + 6) {
+  border-top: none;
+}
+.dsVal {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: var(--fs-h3);
+  color: var(--ink);
+  font-variant-numeric: tabular-nums;
+}
+.dsValSm {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-1);
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: var(--fs-ui);
+  color: var(--ink);
+}
+.dsFig[data-tone='warn'] .dsVal {
+  color: var(--warning-ink);
+}
+.dsLabel {
+  font-size: var(--fs-caption);
+  color: var(--text-muted-strong);
+}
+.sources {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-2);
+  margin-top: var(--space-4);
+}
+.sourcesLabel {
+  font-family: var(--font-mono);
+  font-size: var(--fs-caption);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--text-muted-strong);
+}
+.sourceChip {
+  padding: 2px var(--space-3);
+  border-radius: var(--radius-full);
+  background: var(--surface-mint);
+  color: var(--forest);
+  font-size: var(--fs-label);
+}
+.muted {
+  margin-top: var(--space-3);
+  color: var(--text-muted-strong);
+  font-size: var(--fs-label);
+}
+
+/* --------------------------------------------------------------- inert slots */
+
+.inertGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-3);
+}
+@media (max-width: 620px) {
+  .inertGrid {
+    grid-template-columns: 1fr;
+  }
+}
+.inert {
+  display: grid;
+  gap: var(--space-1);
+  padding: var(--space-4);
+  border: 1px dashed var(--border-strong);
+  border-radius: var(--radius-md);
+  background: repeating-linear-gradient(45deg, var(--bg), var(--bg) 8px, var(--surface-mint) 8px, var(--surface-mint) 16px);
+}
+.inertLabel {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  font-family: var(--font-mono);
+  font-size: var(--fs-caption);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--text-muted-strong);
+}
+.inertNote {
+  font-size: var(--fs-label);
+  color: var(--text-muted-strong);
+  font-style: italic;
+}

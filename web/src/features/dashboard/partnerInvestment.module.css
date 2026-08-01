@@ -1,0 +1,449 @@
+/* =============================================================================
+   Funding Partner — Investment / Coverage Map (Phase 6P, tab 5). A funding-density
+   choropleth (attributed budget) with toggleable data layers, a coverage-vs-funding
+   quadrant analysis, per-LGA drill-down, and a graceful ranked-table fallback.
+   ============================================================================= */
+
+.page {
+  display: grid;
+  gap: var(--space-5);
+  padding-top: var(--space-5);
+}
+
+/* ---------------------------------------------------------------- toolbar */
+
+.toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-4);
+}
+.toggle {
+  display: inline-flex;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-full);
+  padding: 3px;
+  background: var(--surface);
+}
+.toggleBtn {
+  border: none;
+  background: transparent;
+  color: var(--text-muted-strong);
+  font-size: var(--fs-label);
+  font-weight: 500;
+  padding: var(--space-2) var(--space-4);
+  border-radius: var(--radius-full);
+  cursor: pointer;
+  transition: background var(--transition), color var(--transition);
+}
+.toggleActive {
+  background: var(--forest);
+  color: var(--bg);
+}
+.legend {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-3);
+  font-size: var(--fs-label);
+  color: var(--text-muted-strong);
+}
+.legendTitle {
+  font-family: var(--font-mono);
+  font-size: var(--fs-caption);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--forest);
+}
+.legendItem {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+}
+.legendSwatch {
+  width: 12px;
+  height: 12px;
+  border-radius: 3px;
+}
+
+/* ---------------------------------------------------------------- layers */
+
+.layers {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-2);
+}
+.layersLabel {
+  font-family: var(--font-mono);
+  font-size: var(--fs-caption);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--text-muted-strong);
+  margin-right: var(--space-1);
+}
+.layerBtn {
+  border: 1px solid var(--border);
+  background: var(--surface);
+  color: var(--text-muted-strong);
+  font-size: var(--fs-label);
+  padding: var(--space-2) var(--space-3);
+  border-radius: var(--radius-full);
+  cursor: pointer;
+  transition: border-color var(--transition), background var(--transition), color var(--transition);
+}
+.layerBtn:hover {
+  border-color: var(--forest-2);
+}
+.layerActive {
+  background: var(--surface-mint);
+  border-color: var(--forest-2);
+  color: var(--forest);
+  font-weight: 600;
+}
+.layerSlot {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-1);
+  padding: var(--space-2) var(--space-3);
+  border: 1px dashed var(--border-strong);
+  border-radius: var(--radius-full);
+  font-size: var(--fs-label);
+  color: var(--text-muted-strong);
+  background: repeating-linear-gradient(45deg, var(--bg), var(--bg) 6px, var(--surface-mint) 6px, var(--surface-mint) 12px);
+  cursor: not-allowed;
+}
+
+/* ---------------------------------------------------------------- map / fallback */
+
+.mapCard {
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  background: var(--surface);
+}
+.map {
+  height: 460px;
+  width: 100%;
+}
+.overlays {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-3);
+  padding: var(--space-3) var(--space-4);
+  border-top: 1px solid var(--border);
+}
+.overlayToggle {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  font-size: var(--fs-label);
+  color: var(--ink);
+}
+.fallbackNote {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  padding: var(--space-4);
+  border: 1px dashed var(--border-strong);
+  border-radius: var(--radius-md);
+  background: var(--surface-mint);
+  color: var(--text-muted-strong);
+  font-size: var(--fs-label);
+  line-height: 1.5;
+}
+.fallbackNote code {
+  font-family: var(--font-mono);
+  font-size: var(--fs-caption);
+  background: var(--bg);
+  padding: 1px 6px;
+  border-radius: var(--radius-sm);
+}
+
+/* ---------------------------------------------------------------- quadrants */
+
+.quadWrap {
+  display: grid;
+  gap: var(--space-4);
+}
+.quadHead {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  color: var(--forest);
+}
+.quadTitle {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: var(--fs-h2);
+  letter-spacing: -0.01em;
+}
+.quadSub {
+  margin-left: auto;
+  font-size: var(--fs-label);
+  color: var(--text-muted-strong);
+}
+.quadGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-3);
+}
+@media (max-width: 720px) {
+  .quadGrid {
+    grid-template-columns: 1fr;
+  }
+}
+.quad {
+  display: grid;
+  gap: var(--space-2);
+  padding: var(--space-4);
+  border: 1px solid var(--border);
+  border-left-width: 4px;
+  border-radius: var(--radius-md);
+  background: var(--surface);
+}
+.quad[data-tone='good'] {
+  border-left-color: var(--success);
+}
+.quad[data-tone='warn'] {
+  border-left-color: var(--warning);
+}
+.quad[data-tone='info'] {
+  border-left-color: var(--info);
+}
+.quad[data-tone='muted'] {
+  border-left-color: var(--border-strong);
+}
+.quadTop {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: var(--space-3);
+}
+.quadLabel {
+  font-family: var(--font-mono);
+  font-size: var(--fs-caption);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--ink);
+}
+.quadCount {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: var(--fs-h3);
+  color: var(--forest);
+  font-variant-numeric: tabular-nums;
+}
+.quadDetail {
+  font-size: var(--fs-label);
+  color: var(--text-muted-strong);
+  line-height: 1.45;
+}
+.quadAreas {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+}
+.quadChip {
+  border: 1px solid var(--border);
+  background: var(--bg);
+  color: var(--forest);
+  font-size: var(--fs-caption);
+  padding: 2px var(--space-2);
+  border-radius: var(--radius-full);
+  cursor: pointer;
+  transition: border-color var(--transition), background var(--transition);
+}
+.quadChip:hover {
+  border-color: var(--forest-2);
+  background: var(--surface-mint);
+}
+
+/* ---------------------------------------------------------------- list + detail */
+
+.grid {
+  display: grid;
+  grid-template-columns: 1fr 1.1fr;
+  gap: var(--space-4);
+}
+@media (max-width: 860px) {
+  .grid {
+    grid-template-columns: 1fr;
+  }
+}
+.panel {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  padding: clamp(var(--space-4), 3vw, var(--space-5));
+}
+.panelHead {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  color: var(--forest);
+  margin-bottom: var(--space-3);
+}
+.panelTitle {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: var(--fs-h3);
+}
+.empty {
+  color: var(--text-muted-strong);
+  font-size: var(--fs-label);
+}
+.areaList {
+  display: grid;
+  gap: 2px;
+  max-height: 460px;
+  overflow-y: auto;
+}
+.areaRow {
+  width: 100%;
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  align-items: center;
+  gap: var(--space-3);
+  padding: var(--space-3);
+  border: none;
+  border-radius: var(--radius-sm);
+  background: transparent;
+  cursor: pointer;
+  text-align: left;
+  transition: background var(--transition);
+}
+.areaRow:hover {
+  background: var(--surface-mint);
+}
+.areaActive {
+  background: var(--surface-mint);
+  outline: 1px solid var(--forest-2);
+  outline-offset: -1px;
+}
+.areaDot {
+  width: 10px;
+  height: 10px;
+  border-radius: var(--radius-full);
+}
+.areaName {
+  font-size: var(--fs-ui);
+  color: var(--ink);
+}
+.areaValue {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: var(--fs-label);
+  color: var(--forest);
+  font-variant-numeric: tabular-nums;
+}
+
+.detail {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  padding: clamp(var(--space-4), 3vw, var(--space-5));
+}
+.detailEmpty {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  color: var(--text-muted-strong);
+  font-size: var(--fs-ui);
+}
+.detailHead {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  color: var(--forest);
+  margin-bottom: var(--space-4);
+}
+.detailTitle {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: var(--fs-h3);
+  color: var(--ink);
+}
+.detailStats {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-3);
+  margin: 0 0 var(--space-4);
+}
+.detailStats div {
+  display: grid;
+  gap: 2px;
+}
+.detailStats dt {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-1);
+  font-size: var(--fs-caption);
+  color: var(--text-muted-strong);
+}
+.detailStats dd {
+  margin: 0;
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: var(--fs-ui);
+  color: var(--ink);
+  font-variant-numeric: tabular-nums;
+}
+.detailMdas {
+  display: grid;
+  gap: var(--space-1);
+  padding-top: var(--space-3);
+  border-top: 1px solid var(--border);
+  font-size: var(--fs-label);
+  color: var(--ink);
+}
+.detailMdaLabel {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-1);
+  font-family: var(--font-mono);
+  font-size: var(--fs-caption);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--text-muted-strong);
+}
+.detailMuted {
+  color: var(--text-muted-strong);
+}
+.detailNote {
+  margin-top: var(--space-3);
+  padding-top: var(--space-3);
+  border-top: 1px dashed var(--border);
+  font-size: var(--fs-caption);
+  color: var(--text-muted-strong);
+  line-height: 1.5;
+}
+.detailNote strong {
+  color: var(--forest);
+}
+.detailDrill {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+  margin-top: var(--space-3);
+}
+.drillBtn {
+  border: 1px solid var(--border);
+  background: var(--surface-mint);
+  color: var(--forest);
+  font-size: var(--fs-label);
+  font-weight: 500;
+  padding: var(--space-2) var(--space-3);
+  border-radius: var(--radius-full);
+  cursor: pointer;
+  transition: border-color var(--transition);
+}
+.drillBtn:hover {
+  border-color: var(--forest-2);
+}
+.drillBtn:focus-visible {
+  outline: var(--focus-ring);
+  outline-offset: var(--focus-offset);
+}

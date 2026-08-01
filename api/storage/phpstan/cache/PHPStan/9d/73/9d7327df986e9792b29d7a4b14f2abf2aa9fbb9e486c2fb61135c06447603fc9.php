@@ -2,7 +2,7 @@
 
 // odsl-C:\Users\ACER\Desktop\JSG-SP-MIS\JSG-SP-MIS\api\app\Domain\Reporting\Services\DashboardScopeResolver.php-PHPStan\BetterReflection\Reflection\ReflectionClass-App\Domain\Reporting\Services\DashboardScopeResolver
 return \PHPStan\Cache\CacheItem::__set_state(array(
-   'variableKey' => 'v2-6.70.0.1-8.3.31-99a54a3ab2d3153997e51052a21bdb40dc69d8ddb55c1d55932c71388f674407',
+   'variableKey' => 'v2-6.70.0.1-8.3.31-19436c5e51cf40179abc91cd8e6dbb6bdaf9b36e8132bcaceec67c080f539bd0',
    'data' => 
   array (
     'locatedSource' => 
@@ -26,17 +26,22 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
  * Resolves the {@see DashboardScope} for a user (PRD FR-DSH-01):
  *
  *  - oversight (`cross-mda.view`) → state-wide;
- *  - Development Partner → their funded programmes only;
+ *  - Development Partner → their FUNDED programmes only (Phase 6P);
  *  - any other MDA user → their accessible MDAs (own + active cross-MDA grants).
  *
  * The partner branch is checked before the MDA fallback; partners never hold
  * `cross-mda.view`, so oversight and partner are mutually exclusive.
+ *
+ * A partner\'s funded scope is derived from `activities.funding_partner_id` (the
+ * queryable attribution, Phase 6P) — the distinct programmes of the activities they
+ * fund — so scope, budget and delivery always agree, and a partner sees ONLY their
+ * funded data (SECURITY.md — Development Partner: funded programmes only).
  */',
     'attributes' => 
     array (
     ),
-    'startLine' => 22,
-    'endLine' => 39,
+    'startLine' => 28,
+    'endLine' => 46,
     'startColumn' => 1,
     'endColumn' => 1,
     'parentClassName' => NULL,
@@ -78,8 +83,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             'attributes' => 
             array (
             ),
-            'startLine' => 24,
-            'endLine' => 24,
+            'startLine' => 30,
+            'endLine' => 30,
             'startColumn' => 29,
             'endColumn' => 38,
             'parameterIndex' => 0,
@@ -100,8 +105,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         array (
         ),
         'docComment' => NULL,
-        'startLine' => 24,
-        'endLine' => 38,
+        'startLine' => 30,
+        'endLine' => 45,
         'startColumn' => 5,
         'endColumn' => 5,
         'couldThrow' => false,

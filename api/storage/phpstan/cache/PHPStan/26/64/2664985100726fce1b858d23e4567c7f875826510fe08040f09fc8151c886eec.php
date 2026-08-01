@@ -14,7 +14,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         array (
           'rolekey' => 'App\\Domain\\Access\\Enums\\RoleKey',
           'user' => 'App\\Domain\\Access\\Models\\User',
-          'programmefunder' => 'App\\Domain\\Programme\\Models\\ProgrammeFunder',
+          'mdascope' => 'App\\Domain\\Access\\Scopes\\MdaScope',
+          'activity' => 'App\\Domain\\Programme\\Models\\Activity',
           'dashboardscope' => 'App\\Domain\\Reporting\\Support\\DashboardScope',
         ),
          'className' => 'App\\Domain\\Reporting\\Services\\DashboardScopeResolver',
@@ -40,7 +41,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         array (
           'rolekey' => 'App\\Domain\\Access\\Enums\\RoleKey',
           'user' => 'App\\Domain\\Access\\Models\\User',
-          'programmefunder' => 'App\\Domain\\Programme\\Models\\ProgrammeFunder',
+          'mdascope' => 'App\\Domain\\Access\\Scopes\\MdaScope',
+          'activity' => 'App\\Domain\\Programme\\Models\\Activity',
           'dashboardscope' => 'App\\Domain\\Reporting\\Support\\DashboardScope',
         ),
          'className' => 'App\\Domain\\Reporting\\Services\\DashboardScopeResolver',
@@ -55,7 +57,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
           array (
             'rolekey' => 'App\\Domain\\Access\\Enums\\RoleKey',
             'user' => 'App\\Domain\\Access\\Models\\User',
-            'programmefunder' => 'App\\Domain\\Programme\\Models\\ProgrammeFunder',
+            'mdascope' => 'App\\Domain\\Access\\Scopes\\MdaScope',
+            'activity' => 'App\\Domain\\Programme\\Models\\Activity',
             'dashboardscope' => 'App\\Domain\\Reporting\\Support\\DashboardScope',
           ),
            'className' => 'App\\Domain\\Reporting\\Services\\DashboardScopeResolver',
@@ -87,7 +90,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
     ),
     1 => 
     array (
-      'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Reporting\\Services\\DashboardScopeResolver.php' => '99a54a3ab2d3153997e51052a21bdb40dc69d8ddb55c1d55932c71388f674407',
+      'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Reporting\\Services\\DashboardScopeResolver.php' => '19436c5e51cf40179abc91cd8e6dbb6bdaf9b36e8132bcaceec67c080f539bd0',
     ),
   ),
 ));

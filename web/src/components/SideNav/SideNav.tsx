@@ -9,6 +9,8 @@ export interface NavItem {
   label: string
   to: string
   icon: LucideIcon
+  /** Match the route exactly (NavLink `end`) — for index links like `/partner`. */
+  end?: boolean
 }
 
 export interface NavSection {
@@ -54,6 +56,7 @@ export function SideNav({ sections, footer, open = false, onClose }: SideNavProp
                 <NavLink
                   key={item.to}
                   to={item.to}
+                  end={item.end}
                   onClick={onClose}
                   className={({ isActive }) => cn(styles.item, isActive && styles.active)}
                 >

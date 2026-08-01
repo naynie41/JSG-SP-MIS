@@ -66,7 +66,7 @@ class DashboardMetricsTest extends TestCase
         $this->progA = Programme::factory()->individual()->create(['status' => 'active']);
         $this->progB = Programme::factory()->individual()->create(['status' => 'active']);
         ProgrammeFunder::create(['programme_id' => $this->progA->id, 'user_id' => $this->users['partner']->id]);
-        Activity::factory()->forProgramme($this->progA, $this->mdaA)->create(['budget_amount' => 1_000_000]);
+        Activity::factory()->forProgramme($this->progA, $this->mdaA)->create(['budget_amount' => 1_000_000, 'funding_partner_id' => $this->users['partner']->id]);
         Activity::factory()->forProgramme($this->progB, $this->mdaB)->create(['budget_amount' => 500_000]);
 
         // Benefits: A delivers 100k + 200k to two distinct A beneficiaries; B delivers 150k.

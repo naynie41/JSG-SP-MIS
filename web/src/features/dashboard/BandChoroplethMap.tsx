@@ -51,6 +51,8 @@ export interface BandChoroplethMapProps {
   selectedCode: string | null
   onSelect: (code: string) => void
   overlays: MapOverlayLayer[]
+  /** Tooltip text per feature (defaults to the beneficiary count). */
+  tooltipOf?: (properties: CoverageFeatureProperties) => string
 }
 
 /**
@@ -58,7 +60,7 @@ export interface BandChoroplethMapProps {
  * Clicking a boundary selects it (detail is shown by the parent). Registered contextual
  * overlays (schools, health facilities, …) render on top — see {@link MapOverlayLayer}.
  */
-export function BandChoroplethMap({ data, selectedCode, onSelect, overlays }: BandChoroplethMapProps) {
+export function BandChoroplethMap({ data, selectedCode, onSelect, overlays, tooltipOf }: BandChoroplethMapProps) {
   return (
     <MapContainer center={[12.2, 9.55]} zoom={8} scrollWheelZoom={false} className={styles.map}>
       <TileLayer url={TILE_URL} attribution="&copy; OpenStreetMap contributors" />
@@ -77,7 +79,7 @@ export function BandChoroplethMap({ data, selectedCode, onSelect, overlays }: Ba
         }}
         onEachFeature={(feature, layer) => {
           const p = feature.properties as CoverageFeatureProperties
-          layer.bindTooltip(`${p.name}: ${p.beneficiary_count.toLocaleString()} beneficiaries`)
+          layer.bindTooltip(tooltipOf ? tooltipOf(p) : `${p.name}: ${p.beneficiary_count.toLocaleString()} beneficiaries`)
           layer.on('click', () => onSelect(p.code))
         }}
       />

@@ -1,0 +1,255 @@
+/* =============================================================================
+   Funding Partner — Registry (Phase 6P, tab 3). Aggregate registry for the funded
+   cohort: KPIs (shared kpiBand/figureGrid), a reduced targeting funnel with an inert
+   Eligible→Selected slot, captured-field demographics (magnitude bars), and data-quality
+   meters. Structural pieces (section/panel/kpiBand/figureGrid) come from the shared
+   fundingPartner.module.css.
+   ============================================================================= */
+
+.blockLabel {
+  display: block;
+  font-family: var(--font-mono);
+  font-size: var(--fs-caption);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--text-muted-strong);
+  margin-bottom: var(--space-3);
+}
+.blockHint {
+  text-transform: none;
+  letter-spacing: 0;
+  font-family: var(--font-body);
+  color: var(--text-muted-strong);
+}
+.muted {
+  color: var(--text-muted-strong);
+  font-size: var(--fs-label);
+}
+
+/* --------------------------------------------------------------- funnel */
+
+.funnel {
+  display: grid;
+  gap: var(--space-3);
+}
+.funnelStage {
+  display: grid;
+  grid-template-columns: 160px 1fr;
+  align-items: center;
+  gap: var(--space-2) var(--space-4);
+}
+.funnelLabel {
+  font-family: var(--font-mono);
+  font-size: var(--fs-caption);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--forest);
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+}
+.funnelTrack {
+  position: relative;
+  height: 30px;
+  border-radius: var(--radius-sm);
+  background: var(--surface-mint);
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+}
+.funnelFill {
+  position: absolute;
+  inset: 0 auto 0 0;
+  border-radius: var(--radius-sm);
+  background: linear-gradient(90deg, var(--forest), var(--forest-2));
+}
+.funnelValue {
+  position: relative;
+  padding: 0 var(--space-3);
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: var(--fs-ui);
+  color: var(--bg);
+  font-variant-numeric: tabular-nums;
+  mix-blend-mode: difference;
+}
+.funnelHint {
+  grid-column: 2;
+  font-size: var(--fs-caption);
+  color: var(--text-muted-strong);
+}
+
+/* Inert (omitted) upstream stages — dashed + striped, never a fabricated number. */
+.funnelExternal {
+  grid-template-columns: 160px 1fr;
+  padding: var(--space-3);
+  border: 1px dashed var(--border-strong);
+  border-radius: var(--radius-sm);
+  background: repeating-linear-gradient(45deg, var(--bg), var(--bg) 8px, var(--surface-mint) 8px, var(--surface-mint) 16px);
+}
+.funnelExternal .funnelLabel {
+  color: var(--text-muted-strong);
+}
+.funnelExternalNote {
+  font-size: var(--fs-caption);
+  color: var(--text-muted-strong);
+  font-style: italic;
+}
+@media (max-width: 620px) {
+  .funnelStage,
+  .funnelExternal {
+    grid-template-columns: 1fr;
+  }
+  .funnelHint {
+    grid-column: 1;
+  }
+}
+
+/* --------------------------------------------------------------- demographics */
+
+.demoGrid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--space-4);
+}
+@media (max-width: 780px) {
+  .demoGrid {
+    grid-template-columns: 1fr;
+  }
+}
+.bars {
+  display: grid;
+  gap: var(--space-2);
+}
+.barRow {
+  display: grid;
+  grid-template-columns: 92px 1fr auto;
+  align-items: center;
+  gap: var(--space-3);
+}
+.barLabel {
+  font-size: var(--fs-label);
+  color: var(--ink);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.barTrack {
+  height: 12px;
+  border-radius: var(--radius-full);
+  background: var(--surface-mint);
+  overflow: hidden;
+}
+.barFill {
+  display: block;
+  height: 100%;
+  border-radius: var(--radius-full);
+  background: linear-gradient(90deg, var(--forest-2), var(--forest));
+}
+.barVal {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: var(--fs-label);
+  color: var(--ink);
+  font-variant-numeric: tabular-nums;
+  min-width: 3ch;
+  text-align: right;
+}
+
+/* --------------------------------------------------------------- data quality */
+
+.meters {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--space-4);
+  margin-bottom: var(--space-5);
+}
+@media (max-width: 620px) {
+  .meters {
+    grid-template-columns: 1fr;
+  }
+}
+.meter {
+  display: grid;
+  gap: var(--space-2);
+}
+.meterTop {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: var(--space-2);
+}
+.meterLabel {
+  font-size: var(--fs-label);
+  color: var(--text-muted-strong);
+}
+.meterVal {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: var(--fs-ui);
+  color: var(--forest);
+  font-variant-numeric: tabular-nums;
+}
+.meterTrack {
+  height: 10px;
+  border-radius: var(--radius-full);
+  background: var(--surface-mint);
+  overflow: hidden;
+}
+.meterFill {
+  display: block;
+  height: 100%;
+  border-radius: var(--radius-full);
+  background: linear-gradient(90deg, var(--forest-2), var(--accent));
+}
+.meterHint {
+  font-size: var(--fs-caption);
+  color: var(--text-muted-strong);
+}
+
+.missingGrid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: var(--space-3);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  overflow: hidden;
+}
+.missing {
+  padding: var(--space-3);
+  display: grid;
+  gap: 2px;
+  border-left: 1px solid var(--border);
+  text-align: center;
+}
+.missing:first-child {
+  border-left: none;
+}
+.missingVal {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: var(--fs-h3);
+  color: var(--ink);
+  font-variant-numeric: tabular-nums;
+}
+.missingLabel {
+  font-size: var(--fs-caption);
+  color: var(--text-muted-strong);
+}
+@media (max-width: 620px) {
+  .missingGrid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .missing:nth-child(odd) {
+    border-left: none;
+  }
+}
+
+.qualityFoot {
+  margin-top: var(--space-4);
+  padding-top: var(--space-3);
+  border-top: 1px dashed var(--border);
+  font-size: var(--fs-label);
+  color: var(--text-muted-strong);
+  line-height: 1.55;
+}

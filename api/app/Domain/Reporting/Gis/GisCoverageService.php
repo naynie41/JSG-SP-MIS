@@ -6,12 +6,14 @@ namespace App\Domain\Reporting\Gis;
 
 use App\Domain\Access\Models\Mda;
 use App\Domain\Access\Scopes\MdaScope;
+use App\Domain\Benefit\Enums\BenefitStatus;
 use App\Domain\Benefit\Models\Benefit;
 use App\Domain\Benefit\Services\LedgerAggregator;
 use App\Domain\Programme\Enums\ActivityStatus;
 use App\Domain\Programme\Models\Activity;
 use App\Domain\Registry\Models\Beneficiary;
 use App\Domain\Registry\Models\Household;
+use App\Domain\Registry\Models\HouseholdMembership;
 use App\Domain\Reporting\Support\DashboardFilter;
 use App\Domain\Reporting\Support\DashboardScope;
 use Illuminate\Support\Str;
@@ -42,12 +44,26 @@ class GisCoverageService
         $lf = $filter->ledgerFilters();
         $column = $level === GeoBoundary::LEVEL_WARD ? 'ward' : 'lga';
 
+        // Partner scope is ACTIVITY-PRECISE (Phase 6P): every figure is constrained to the
+        // activities the partner actually FUNDS (funding_partner_id), never the wider
+        // programme. Other scopes keep their MDA/state-wide behaviour.
+        $isPartner = $scope->isPartner();
+        $partnerActivityIds = $isPartner ? $this->partnerActivityIds($scope, $filter) : null;
+        $partnerServedIds = null;
+        $ledgerProgrammeIds = $scope->programmeIds;
+        $ledgerFilter = $lf;
+        if ($isPartner) {
+            $partnerServedIds = $this->servedBeneficiaryIds($partnerActivityIds ?? []);
+            $ledgerProgrammeIds = null;
+            $ledgerFilter = array_merge($lf, ['activity_ids' => $partnerActivityIds ?? []]);
+        }
+
         $rows = [];
         $ensure = function (string $raw) use (&$rows): string {
             $key = $this->slug($raw);
             $rows[$key] ??= [
                 'key' => $key, 'name' => $this->title($raw),
-                'beneficiary_count' => 0, 'benefit_count' => 0, 'benefit_value' => 0,
+                'beneficiary_count' => 0, 'benefit_count' => 0, 'benefit_value' => 0, 'funding_allocated' => 0,
                 'households' => 0, 'served' => 0, 'active_programmes' => 0, 'active_activities' => 0,
                 'mdas' => [], 'band' => 'grey',
             ];
@@ -56,21 +72,25 @@ class GisCoverageService
         };
 
         // Registered individuals by area.
-        foreach ($this->beneficiaryCounts($scope, $column, $filter) as $raw => $count) {
+        foreach ($this->beneficiaryCounts($scope, $column, $filter, $partnerServedIds) as $raw => $count) {
             $rows[$ensure((string) $raw)]['beneficiary_count'] = $count;
         }
-        // Budget spent (delivered value) + delivery count by area.
-        foreach ($this->ledger->scopedGroup($column, $scope->mdaIds, $scope->programmeIds, $lf) as $group) {
+        // Attributed FUNDING (activity budget) by area — the investment-map density metric.
+        foreach ($this->fundingByArea($scope, $column, $filter) as $raw => $sum) {
+            $rows[$ensure((string) $raw)]['funding_allocated'] = $sum;
+        }
+        // Funds DELIVERED (value) + delivery count by area (never treasury expenditure).
+        foreach ($this->ledger->scopedGroup($column, $scope->mdaIds, $ledgerProgrammeIds, $ledgerFilter) as $group) {
             $key = $ensure($group['key'] === null ? '' : (string) $group['key']);
             $rows[$key]['benefit_count'] = (int) $group['benefit_count'];
             $rows[$key]['benefit_value'] = (int) $group['total_value'];
         }
-        // Registered households by area (owner-scoped; partners own none).
-        foreach ($this->householdCounts($scope, $column, $filter) as $raw => $count) {
+        // Registered households by area (owner-scoped; a partner's cohort households).
+        foreach ($this->householdCounts($scope, $column, $filter, $partnerServedIds) as $raw => $count) {
             $rows[$ensure((string) $raw)]['households'] = $count;
         }
         // Net-unique beneficiaries served by area.
-        foreach ($this->ledger->scopedDistinctByArea($column, $scope->mdaIds, $scope->programmeIds, $lf) as $raw => $count) {
+        foreach ($this->ledger->scopedDistinctByArea($column, $scope->mdaIds, $ledgerProgrammeIds, $ledgerFilter) as $raw => $count) {
             $rows[$ensure((string) $raw)]['served'] = $count;
         }
         // Active programmes/activities + implementing MDAs by area.
@@ -94,15 +114,116 @@ class GisCoverageService
     }
 
     /**
-     * Registered households by admin area, scoped to the owning MDA. Partners hold no
-     * households, so this is empty for them.
+     * The activities a partner FUNDS (funding_partner_id), narrowed by the filter — the
+     * activity-precise scope for every partner figure on the investment/coverage map.
+     *
+     * @return list<string>
+     */
+    private function partnerActivityIds(DashboardScope $scope, DashboardFilter $filter): array
+    {
+        if ($scope->partnerId === null) {
+            return [];
+        }
+
+        $query = Activity::query()->withoutGlobalScope(MdaScope::class)->where('funding_partner_id', $scope->partnerId);
+        if ($filter->programmeId !== null) {
+            $query->where('programme_id', $filter->programmeId);
+        }
+        if ($filter->mdaId !== null) {
+            $query->where('owner_mda_id', $filter->mdaId);
+        }
+        if ($filter->lga !== null) {
+            $query->where('lga', $filter->lga);
+        }
+        if ($filter->ward !== null) {
+            $query->where('ward', $filter->ward);
+        }
+
+        return $query->pluck('id')->all();
+    }
+
+    /**
+     * Distinct beneficiaries served (non-reversed) through a set of activities.
+     *
+     * @param  list<string>  $activityIds
+     * @return list<string>
+     */
+    private function servedBeneficiaryIds(array $activityIds): array
+    {
+        if ($activityIds === []) {
+            return [];
+        }
+
+        return Benefit::query()->withoutGlobalScope(MdaScope::class)
+            ->where('status', '!=', BenefitStatus::Reversed->value)
+            ->whereIn('activity_id', $activityIds)
+            ->distinct()->pluck('beneficiary_id')->all();
+    }
+
+    /**
+     * Attributed funding (committed activity budget) by admin area. Partner → activities
+     * it FUNDS; MDA → activities it owns; state-wide → all. Filter-narrowed. This is
+     * committed budget (never treasury expenditure); delivered value is a separate column.
      *
      * @return array<string, int>
      */
-    private function householdCounts(DashboardScope $scope, string $column, DashboardFilter $filter): array
+    private function fundingByArea(DashboardScope $scope, string $column, DashboardFilter $filter): array
+    {
+        $query = Activity::query()->withoutGlobalScope(MdaScope::class);
+        if ($scope->isPartner()) {
+            $query->where('funding_partner_id', $scope->partnerId);
+        } elseif ($scope->mdaIds !== null) {
+            $query->whereIn('owner_mda_id', $scope->mdaIds);
+        }
+        if ($filter->programmeId !== null) {
+            $query->where('programme_id', $filter->programmeId);
+        }
+        if ($filter->mdaId !== null) {
+            $query->where('owner_mda_id', $filter->mdaId);
+        }
+        if ($filter->lga !== null) {
+            $query->where('lga', $filter->lga);
+        }
+        if ($filter->ward !== null) {
+            $query->where('ward', $filter->ward);
+        }
+
+        $out = [];
+        foreach ($query->selectRaw("{$column} as k, coalesce(sum(budget_amount), 0) as s")->groupBy($column)->get() as $row) {
+            $out[(string) ($row->getAttribute('k') ?? '')] = (int) $row->getAttribute('s');
+        }
+
+        return $out;
+    }
+
+    /**
+     * Registered households by admin area. For an MDA/state-wide scope these are the
+     * owner-scoped households; for a partner they are the households of the FUNDED cohort
+     * (households with a served beneficiary), grouped by the household's area.
+     *
+     * @param  list<string>|null  $partnerServedIds
+     * @return array<string, int>
+     */
+    private function householdCounts(DashboardScope $scope, string $column, DashboardFilter $filter, ?array $partnerServedIds = null): array
     {
         if ($scope->isPartner()) {
-            return [];
+            if ($partnerServedIds === null || $partnerServedIds === []) {
+                return [];
+            }
+            $householdIds = HouseholdMembership::query()->whereNull('left_at')
+                ->whereIn('beneficiary_id', $partnerServedIds)->distinct()->pluck('household_id')->all();
+            if ($householdIds === []) {
+                return [];
+            }
+
+            $out = [];
+            $rows = Household::query()->withoutGlobalScope(MdaScope::class)->whereIn('id', $householdIds)
+                ->selectRaw("{$column} as k, count(*) as c")->groupBy($column)->get();
+            foreach ($rows as $row) {
+                $out[(string) ($row->getAttribute('k') ?? '')] = (int) $row->getAttribute('c');
+            }
+
+            return $out;
         }
 
         $query = Household::query()->withoutGlobalScope(MdaScope::class);
@@ -144,7 +265,7 @@ class GisCoverageService
     {
         $query = Activity::query()->withoutGlobalScope(MdaScope::class)->where('status', ActivityStatus::Active->value);
         if ($scope->isPartner()) {
-            $query->whereIn('programme_id', $scope->programmeIds ?? []);
+            $query->where('funding_partner_id', $scope->partnerId);
         } elseif ($scope->mdaIds !== null) {
             $query->whereIn('owner_mda_id', $scope->mdaIds);
         }
@@ -162,7 +283,10 @@ class GisCoverageService
         }
 
         $activities = $query->get(['owner_mda_id', 'programme_id', $column]);
-        $names = Mda::query()->whereIn('id', $activities->pluck('owner_mda_id')->filter()->unique()->all())->pluck('name', 'id');
+        // Resolve MDA names without the request-time scope — the caller (e.g. a partner with
+        // no home MDA) may not otherwise "see" the implementing agencies' names.
+        $names = Mda::query()->withoutGlobalScopes()
+            ->whereIn('id', $activities->pluck('owner_mda_id')->filter()->unique()->all())->pluck('name', 'id');
 
         $out = [];
         foreach ($activities->groupBy(fn (Activity $a) => (string) ($a->getAttribute($column) ?? '')) as $raw => $items) {
@@ -178,20 +302,18 @@ class GisCoverageService
     }
 
     /**
-     * Beneficiary counts by the admin column, scoped like the dashboard registry
-     * metric (owner MDA; or, for a partner, the beneficiaries served by funded programmes).
+     * Beneficiary counts by the admin column, scoped like the dashboard registry metric
+     * (owner MDA; or, for a partner, the beneficiaries served by its FUNDED activities).
      *
+     * @param  list<string>|null  $partnerServedIds
      * @return array<string, int>
      */
-    private function beneficiaryCounts(DashboardScope $scope, string $column, DashboardFilter $filter): array
+    private function beneficiaryCounts(DashboardScope $scope, string $column, DashboardFilter $filter, ?array $partnerServedIds = null): array
     {
         $query = Beneficiary::query()->withoutGlobalScope(MdaScope::class);
 
         if ($scope->isPartner()) {
-            $served = Benefit::query()->withoutGlobalScope(MdaScope::class)
-                ->whereIn('programme_id', $scope->programmeIds ?? [])
-                ->distinct()->pluck('beneficiary_id')->all();
-            $query->whereIn('id', $served);
+            $query->whereIn('id', $partnerServedIds ?? []);
         } elseif ($scope->mdaIds !== null) {
             $query->whereIn('owner_mda_id', $scope->mdaIds);
         }

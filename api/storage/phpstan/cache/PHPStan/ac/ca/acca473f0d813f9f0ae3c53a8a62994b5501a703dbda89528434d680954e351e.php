@@ -2,7 +2,7 @@
 
 // odsl-C:\Users\ACER\Desktop\JSG-SP-MIS\JSG-SP-MIS\api\app\Domain\Programme\Models\Activity.php-PHPStan\BetterReflection\Reflection\ReflectionClass-App\Domain\Programme\Models\Activity
 return \PHPStan\Cache\CacheItem::__set_state(array(
-   'variableKey' => 'v2-6.70.0.1-8.3.31-512177374fd639201724f3c6bb3e40d99079906a101f67a403ad28d90c39bdda',
+   'variableKey' => 'v2-6.70.0.1-8.3.31-dc7089eed1d6bf4cf81ea4882b5862986ab26acdfae0a426bcc2bb47372c81e5',
    'data' => 
   array (
     'locatedSource' => 
@@ -45,18 +45,20 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
  * @property Carbon|null $ends_on
  * @property int|null $budget_amount
  * @property string|null $funding_source
+ * @property string|null $funding_partner_id
  * @property ActivityStatus $status
  * @property string|null $created_by
  * @property Carbon|null $created_at
  * @property Carbon|null $updated_at
  * @property-read Programme $programme
  * @property-read Mda $ownerMda
+ * @property-read User|null $fundingPartner
  */',
     'attributes' => 
     array (
     ),
-    'startLine' => 51,
-    'endLine' => 131,
+    'startLine' => 53,
+    'endLine' => 145,
     'startColumn' => 1,
     'endColumn' => 1,
     'parentClassName' => 'Illuminate\\Database\\Eloquent\\Model',
@@ -89,20 +91,20 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
           'code' => '\'activities\'',
           'attributes' => 
           array (
-            'startLine' => 56,
-            'endLine' => 56,
+            'startLine' => 58,
+            'endLine' => 58,
             'startTokenPos' => 121,
-            'startFilePos' => 2091,
+            'startFilePos' => 2180,
             'endTokenPos' => 121,
-            'endFilePos' => 2102,
+            'endFilePos' => 2191,
           ),
         ),
         'docComment' => NULL,
         'attributes' => 
         array (
         ),
-        'startLine' => 56,
-        'endLine' => 56,
+        'startLine' => 58,
+        'endLine' => 58,
         'startColumn' => 5,
         'endColumn' => 36,
         'isPromoted' => false,
@@ -121,15 +123,15 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         'type' => NULL,
         'default' => 
         array (
-          'code' => '[\'programme_id\', \'owner_mda_id\', \'involves_beneficiaries\', \'name\', \'description\', \'target_beneficiaries\', \'lga\', \'ward\', \'location_description\', \'schedule\', \'starts_on\', \'ends_on\', \'budget_amount\', \'funding_source\', \'status\', \'created_by\']',
+          'code' => '[\'programme_id\', \'owner_mda_id\', \'involves_beneficiaries\', \'name\', \'description\', \'target_beneficiaries\', \'lga\', \'ward\', \'location_description\', \'schedule\', \'starts_on\', \'ends_on\', \'budget_amount\', \'funding_source\', \'funding_partner_id\', \'status\', \'created_by\']',
           'attributes' => 
           array (
-            'startLine' => 61,
-            'endLine' => 78,
+            'startLine' => 63,
+            'endLine' => 81,
             'startTokenPos' => 132,
-            'startFilePos' => 2173,
-            'endTokenPos' => 182,
-            'endFilePos' => 2546,
+            'startFilePos' => 2262,
+            'endTokenPos' => 185,
+            'endFilePos' => 2665,
           ),
         ),
         'docComment' => '/**
@@ -138,8 +140,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         'attributes' => 
         array (
         ),
-        'startLine' => 61,
-        'endLine' => 78,
+        'startLine' => 63,
+        'endLine' => 81,
         'startColumn' => 5,
         'endColumn' => 6,
         'isPromoted' => false,
@@ -161,12 +163,12 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
           'code' => '[\'status\' => \\App\\Domain\\Programme\\Enums\\ActivityStatus::Draft->value]',
           'attributes' => 
           array (
-            'startLine' => 83,
-            'endLine' => 85,
-            'startTokenPos' => 193,
-            'startFilePos' => 2627,
-            'endTokenPos' => 206,
-            'endFilePos' => 2683,
+            'startLine' => 86,
+            'endLine' => 88,
+            'startTokenPos' => 196,
+            'startFilePos' => 2746,
+            'endTokenPos' => 209,
+            'endFilePos' => 2802,
           ),
         ),
         'docComment' => '/**
@@ -175,8 +177,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         'attributes' => 
         array (
         ),
-        'startLine' => 83,
-        'endLine' => 85,
+        'startLine' => 86,
+        'endLine' => 88,
         'startColumn' => 5,
         'endColumn' => 6,
         'isPromoted' => false,
@@ -211,8 +213,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         'docComment' => '/**
  * @return array<string, string>
  */',
-        'startLine' => 90,
-        'endLine' => 101,
+        'startLine' => 93,
+        'endLine' => 104,
         'startColumn' => 5,
         'endColumn' => 5,
         'couldThrow' => false,
@@ -246,8 +248,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         array (
         ),
         'docComment' => NULL,
-        'startLine' => 103,
-        'endLine' => 106,
+        'startLine' => 106,
+        'endLine' => 109,
         'startColumn' => 5,
         'endColumn' => 5,
         'couldThrow' => false,
@@ -283,8 +285,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         'docComment' => '/**
  * @return BelongsTo<Programme, $this>
  */',
-        'startLine' => 111,
-        'endLine' => 114,
+        'startLine' => 114,
+        'endLine' => 117,
         'startColumn' => 5,
         'endColumn' => 5,
         'couldThrow' => false,
@@ -320,8 +322,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         'docComment' => '/**
  * @return BelongsTo<Mda, $this>
  */',
-        'startLine' => 119,
-        'endLine' => 122,
+        'startLine' => 122,
+        'endLine' => 125,
         'startColumn' => 5,
         'endColumn' => 5,
         'couldThrow' => false,
@@ -357,8 +359,48 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         'docComment' => '/**
  * @return BelongsTo<User, $this>
  */',
-        'startLine' => 127,
-        'endLine' => 130,
+        'startLine' => 130,
+        'endLine' => 133,
+        'startColumn' => 5,
+        'endColumn' => 5,
+        'couldThrow' => false,
+        'isClosure' => false,
+        'isGenerator' => false,
+        'isVariadic' => false,
+        'modifiers' => 1,
+        'namespace' => 'App\\Domain\\Programme\\Models',
+        'declaringClassName' => 'App\\Domain\\Programme\\Models\\Activity',
+        'implementingClassName' => 'App\\Domain\\Programme\\Models\\Activity',
+        'currentClassName' => 'App\\Domain\\Programme\\Models\\Activity',
+        'aliasName' => NULL,
+      ),
+      'fundingPartner' => 
+      array (
+        'name' => 'fundingPartner',
+        'parameters' => 
+        array (
+        ),
+        'returnsReference' => false,
+        'returnType' => 
+        array (
+          'class' => 'PHPStan\\BetterReflection\\Reflection\\ReflectionNamedType',
+          'data' => 
+          array (
+            'name' => 'Illuminate\\Database\\Eloquent\\Relations\\BelongsTo',
+            'isIdentifier' => false,
+          ),
+        ),
+        'attributes' => 
+        array (
+        ),
+        'docComment' => '/**
+ * The Development Partner funding this activity (Phase 6P), or null when it is
+ * state-funded / not partner-attributed. Drives the partner-funding scope + metrics.
+ *
+ * @return BelongsTo<User, $this>
+ */',
+        'startLine' => 141,
+        'endLine' => 144,
         'startColumn' => 5,
         'endColumn' => 5,
         'couldThrow' => false,
