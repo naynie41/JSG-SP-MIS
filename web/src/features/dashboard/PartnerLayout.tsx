@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { Outlet, useNavigate } from 'react-router-dom'
+import { Outlet, useLocation, useNavigate } from 'react-router-dom'
 import { RefreshCw } from 'lucide-react'
 import { Card } from '@/components/Card/Card'
 import { Icon } from '@/components/Icon/Icon'
@@ -40,6 +40,10 @@ export function PartnerLayout() {
   const isPartner = user?.role?.key === 'development_partner'
   const [filter, setFilter] = useState<DashboardFilterValue>(EMPTY_FILTER)
   const navigate = useNavigate()
+  const location = useLocation()
+  // The money-first hero belongs to the Overview page only; inner pages get the filter
+  // bar + their own body (no repeated hero).
+  const isOverview = location.pathname === '/partner' || location.pathname === '/partner/'
   const { data, isLoading, isFetching, refetch } = useDashboard(filter, isPartner && hasPermission('dashboard.view'))
 
   const drill: DrillFn = (tab, patch) => {
@@ -69,7 +73,8 @@ export function PartnerLayout() {
 
   return (
     <div className={styles.page}>
-      {/* ---------- SHARED HERO ---------- */}
+      {/* ---------- HERO (Overview page only) ---------- */}
+      {isOverview && (
       <header className={`${styles.hero} ${styles.reveal}`}>
         <div className={styles.heroTop}>
           <span className={styles.heroEyebrow}>Funding partner · funded scope</span>
@@ -107,6 +112,7 @@ export function PartnerLayout() {
           </div>
         )}
       </header>
+      )}
 
       {data.filter_options && <FilterBar value={filter} options={data.filter_options} onChange={setFilter} live={data.live} />}
 

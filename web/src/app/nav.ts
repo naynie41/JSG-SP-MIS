@@ -42,21 +42,35 @@ export interface NavConfigSection {
  * (a launcher of permission-aware cards) rather than exploding its sub-tasks into
  * the rail — this keeps the navbar clean. The sub-tasks live on the hub page.
  *
- * A Development Partner is the exception: its rail IS the five pages of the funding-
- * partner suite (Overview → Investment Map), so the generic operator section is
- * hidden for that role and replaced by the partner section below.
+ * The reporting-suite roles are the exception: an Executive's rail IS the five pages
+ * of the executive briefing, and a Development Partner's IS the five pages of the
+ * funding-partner suite, so the generic operator section is hidden for those roles and
+ * replaced by the role-specific sections below.
  */
 export const NAV_CONFIG: NavConfigSection[] = [
   {
     label: '',
-    // Partners get their own rail (below) — hide the generic operator links from them.
-    excludeRoles: ['development_partner'],
+    // Executives + partners get their own suite rails (below) — hide the generic
+    // operator links from them.
+    excludeRoles: ['development_partner', 'executive'],
     items: [
       { label: 'Dashboard', to: '/', icon: GaugeCircle, end: true },
       { label: 'Programmes', to: '/programmes', icon: ClipboardList, permission: 'programme.view' },
       { label: 'Registry', to: '/registry', icon: UserSquare2, permission: 'beneficiary.view' },
       { label: 'Coordination', to: '/coordination', icon: Split, permission: 'referral.view' },
       { label: 'Coverage map', to: '/gis', icon: MapPinned, permission: 'dashboard.view' },
+    ],
+  },
+  {
+    // Executive briefing suite — one routed page per section (Phase 6E).
+    label: '',
+    roles: ['executive'],
+    items: [
+      { label: 'Overview', to: '/executive', icon: GaugeCircle, permission: 'dashboard.view', end: true },
+      { label: 'Programmes', to: '/executive/programmes', icon: ClipboardList, permission: 'dashboard.view' },
+      { label: 'Registry', to: '/executive/registry', icon: UserSquare2, permission: 'dashboard.view' },
+      { label: 'Coordination', to: '/executive/coordination', icon: Split, permission: 'dashboard.view' },
+      { label: 'Coverage Map', to: '/executive/coverage', icon: MapPinned, permission: 'dashboard.view' },
     ],
   },
   {
