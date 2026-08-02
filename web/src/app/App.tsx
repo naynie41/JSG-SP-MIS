@@ -5,7 +5,14 @@ import { useAuth } from '@/lib/auth/AuthProvider'
 import { LoginPage } from '@/features/auth/LoginPage'
 import { DashboardPage } from '@/features/dashboard/DashboardPage'
 import { AdminDashboardPage } from '@/features/dashboard/AdminDashboardPage'
-import { ExecutiveDashboardPage } from '@/features/dashboard/ExecutiveDashboardPage'
+import { ExecutiveLayout } from '@/features/dashboard/ExecutiveLayout'
+import {
+  ExecutiveCoordinationPage,
+  ExecutiveCoveragePage,
+  ExecutiveOverviewPage,
+  ExecutiveProgrammesPage,
+  ExecutiveRegistryPage,
+} from '@/features/dashboard/executivePages'
 import { MdaDashboardPage } from '@/features/dashboard/MdaDashboardPage'
 import { PartnerLayout } from '@/features/dashboard/PartnerLayout'
 import {
@@ -61,7 +68,7 @@ function HomeDashboard() {
   const { user, hasPermission } = useAuth()
   const roleKey = user?.role?.key
   if (roleKey === 'system_administrator') return <AdminDashboardPage />
-  if (roleKey === 'executive') return <ExecutiveDashboardPage />
+  if (roleKey === 'executive') return <Navigate to="/executive" replace />
   if (roleKey === 'development_partner') return <Navigate to="/partner" replace />
   if (hasPermission('dashboard.view')) return <MdaDashboardPage />
   return <DashboardPage />
@@ -103,6 +110,13 @@ export function App() {
         }
       >
         <Route index element={<HomeDashboard />} />
+        <Route path="/executive" element={<ExecutiveLayout />}>
+          <Route index element={<ExecutiveOverviewPage />} />
+          <Route path="programmes" element={<ExecutiveProgrammesPage />} />
+          <Route path="registry" element={<ExecutiveRegistryPage />} />
+          <Route path="coordination" element={<ExecutiveCoordinationPage />} />
+          <Route path="coverage" element={<ExecutiveCoveragePage />} />
+        </Route>
         <Route path="/partner" element={<PartnerLayout />}>
           <Route index element={<PartnerOverviewPage />} />
           <Route path="programmes" element={<PartnerProgrammesPage />} />
