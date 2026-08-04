@@ -2,7 +2,7 @@
 
 // odsl-C:\Users\ACER\Desktop\JSG-SP-MIS\JSG-SP-MIS\api\app\Domain\Reporting\Models\ReportSchedule.php-PHPStan\BetterReflection\Reflection\ReflectionClass-App\Domain\Reporting\Models\ReportSchedule
 return \PHPStan\Cache\CacheItem::__set_state(array(
-   'variableKey' => 'v2-6.70.0.1-8.3.31-8a140ce5887a4b1bbb5a7ccddda9cc95d82a40551c908ad03dd26b30f86ce9a9',
+   'variableKey' => 'v2-6.70.0.1-8.3.31-1abf281c0f66d62a6730b556678742baaeae66027f14c30f829783d64c6cb581',
    'data' => 
   array (
     'locatedSource' => 
@@ -52,7 +52,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
     array (
     ),
     'startLine' => 39,
-    'endLine' => 113,
+    'endLine' => 120,
     'startColumn' => 1,
     'endColumn' => 1,
     'parentClassName' => 'Illuminate\\Database\\Eloquent\\Model',
@@ -257,15 +257,15 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         'type' => NULL,
         'default' => 
         array (
-          'code' => '[\'name\', \'report_key\', \'report_definition_id\', \'format\', \'frequency\', \'delivery\', \'status\', \'scope_kind\', \'scope_label\', \'scope_mda_ids\', \'scope_programme_ids\', \'recipient_user_ids\', \'owner_user_id\', \'owner_mda_id\', \'last_run_on\']',
+          'code' => '[\'name\', \'report_key\', \'report_definition_id\', \'format\', \'frequency\', \'delivery\', \'status\', \'scope_kind\', \'scope_label\', \'scope_governance\', \'scope_mda_ids\', \'scope_programme_ids\', \'recipient_user_ids\', \'owner_user_id\', \'owner_mda_id\', \'last_run_on\']',
           'attributes' => 
           array (
             'startLine' => 59,
             'endLine' => 63,
             'startTokenPos' => 139,
             'startFilePos' => 1799,
-            'endTokenPos' => 186,
-            'endFilePos' => 2059,
+            'endTokenPos' => 189,
+            'endFilePos' => 2079,
           ),
         ),
         'docComment' => '/**
@@ -311,7 +311,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
  * @return array<string, string>
  */',
         'startLine' => 68,
-        'endLine' => 76,
+        'endLine' => 77,
         'startColumn' => 5,
         'endColumn' => 5,
         'couldThrow' => false,
@@ -347,8 +347,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         'docComment' => '/**
  * @return BelongsTo<ReportDefinition, $this>
  */',
-        'startLine' => 81,
-        'endLine' => 84,
+        'startLine' => 82,
+        'endLine' => 85,
         'startColumn' => 5,
         'endColumn' => 5,
         'couldThrow' => false,
@@ -382,8 +382,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         array (
         ),
         'docComment' => NULL,
-        'startLine' => 86,
-        'endLine' => 89,
+        'startLine' => 87,
+        'endLine' => 96,
         'startColumn' => 5,
         'endColumn' => 5,
         'couldThrow' => false,
@@ -417,8 +417,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         array (
         ),
         'docComment' => NULL,
-        'startLine' => 91,
-        'endLine' => 94,
+        'startLine' => 98,
+        'endLine' => 101,
         'startColumn' => 5,
         'endColumn' => 5,
         'couldThrow' => false,
@@ -456,8 +456,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             'attributes' => 
             array (
             ),
-            'startLine' => 97,
-            'endLine' => 97,
+            'startLine' => 104,
+            'endLine' => 104,
             'startColumn' => 27,
             'endColumn' => 39,
             'parameterIndex' => 0,
@@ -478,8 +478,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         array (
         ),
         'docComment' => '/** Whether the schedule is due to run on a given day (active + frequency elapsed). */',
-        'startLine' => 97,
-        'endLine' => 112,
+        'startLine' => 104,
+        'endLine' => 119,
         'startColumn' => 5,
         'endColumn' => 5,
         'couldThrow' => false,

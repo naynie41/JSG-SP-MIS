@@ -14,6 +14,7 @@ use App\Http\Resources\ProgrammeResource;
 use App\Support\ApiResponse;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 /**
  * Programme catalog management (PRD §10, ARCH §12.4). Programmes are a GLOBAL,
@@ -33,7 +34,7 @@ class ProgrammeController extends Controller
         $search = trim((string) $request->input('search', ''));
 
         $page = Programme::query()
-            ->withCount('activities')
+            ->withCount($this->usageCounts())
             ->when($search !== '', fn ($q) => $q->where('name', 'like', "%{$search}%"))
             ->when(is_string($status) && $status !== '', fn ($q) => $q->where('status', $status))
             ->when(is_string($type) && $type !== '', fn ($q) => $q->where('type', $type))
@@ -58,9 +59,28 @@ class ProgrammeController extends Controller
         return ApiResponse::success((new ProgrammeResource($programme))->resolve(), status: 201);
     }
 
+    /**
+     * CATALOG USAGE: how widely a global programme is taken up — the activities that
+     * reference it and the distinct MDAs running those activities. Both counts run
+     * through the `activities` relation, so they inherit the SAME MDA scoping the
+     * caller already gets (oversight roles see across all MDAs; an MDA user sees its
+     * own take-up). Programmes themselves stay global and unowned (§10).
+     *
+     * @return array<array-key, \Closure|string>
+     */
+    private function usageCounts(): array
+    {
+        return [
+            'activities',
+            'activities as mdas_count' => fn ($query) => $query->select(
+                DB::raw('count(distinct owner_mda_id)')
+            ),
+        ];
+    }
+
     public function show(string $programme): JsonResponse
     {
-        $model = Programme::query()->withCount('activities')->findOrFail($programme);
+        $model = Programme::query()->withCount($this->usageCounts())->findOrFail($programme);
 
         $this->authorize('view', $model);
 

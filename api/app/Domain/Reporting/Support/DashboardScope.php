@@ -28,6 +28,13 @@ final class DashboardScope
      * @param  list<string>|null  $mdaIds  null = all MDAs
      * @param  list<string>|null  $programmeIds  null = all programmes; set for partner
      * @param  string|null  $partnerId  the funding partner's user id (partner scope only)
+     * @param  bool  $governance  whether GOVERNANCE data (users, audit, imports, the
+     *                            administrative datasets) is in scope. This is a second,
+     *                            independent axis: state-wide answers "how much of the
+     *                            PROGRAMME data may you see", governance answers "may you
+     *                            see who did what". Executive/SP Coordination are
+     *                            state-wide but NOT governance; only a System
+     *                            Administrator is both.
      */
     private function __construct(
         public readonly string $kind,
@@ -35,11 +42,12 @@ final class DashboardScope
         public readonly ?array $programmeIds,
         public readonly ?string $partnerId,
         public readonly string $label,
+        public readonly bool $governance = false,
     ) {}
 
-    public static function stateWide(): self
+    public static function stateWide(bool $governance = false): self
     {
-        return new self(self::KIND_STATE_WIDE, null, null, null, 'State-wide');
+        return new self(self::KIND_STATE_WIDE, null, null, null, 'State-wide', $governance);
     }
 
     /**
@@ -73,10 +81,10 @@ final class DashboardScope
      * @param  list<string>|null  $mdaIds
      * @param  list<string>|null  $programmeIds
      */
-    public static function rehydrate(string $kind, ?array $mdaIds, ?array $programmeIds, string $label): self
+    public static function rehydrate(string $kind, ?array $mdaIds, ?array $programmeIds, string $label, bool $governance = false): self
     {
         return match ($kind) {
-            self::KIND_STATE_WIDE => self::stateWide(),
+            self::KIND_STATE_WIDE => self::stateWide($governance),
             self::KIND_PARTNER => self::partner($programmeIds ?? [], null, $label),
             default => self::mda($mdaIds ?? [], $label),
         };
@@ -114,17 +122,34 @@ final class DashboardScope
     }
 
     /**
+     * Whether the administrative/governance datasets (users, MDAs, programmes,
+     * duplicates, audit, imports) are in scope. State-wide oversight is NOT enough —
+     * an Executive sees all programme data but not who did what.
+     */
+    public function includesGovernanceData(): bool
+    {
+        return $this->governance;
+    }
+
+    /**
      * Whether this scope is entitled to at least everything `$other` shows (PRD
      * FR-RPT-04). Used to check a recipient (this = recipient's scope) may receive a
      * report scoped to `$other` — so a schedule can never deliver out-of-scope data:
      *
-     *  - state-wide covers everything;
+     *  - a GOVERNANCE report is covered only by a governance scope — state-wide is not
+     *    enough, so an Executive can never be sent an admin (user/audit/import) report
+     *    even though they out-rank the MDA axis;
+     *  - state-wide covers everything else;
      *  - an MDA scope covers another MDA scope only if its MDAs are a superset;
      *  - a partner scope covers another partner scope only if its programmes are a superset;
      *  - the axes never cross (an MDA scope cannot cover a partner/state-wide report).
      */
     public function covers(self $other): bool
     {
+        if ($other->governance && ! $this->governance) {
+            return false;
+        }
+
         if ($this->isStateWide()) {
             return true;
         }
@@ -144,6 +169,8 @@ final class DashboardScope
      */
     public function key(): string
     {
+        // Governance is deliberately NOT part of the key: it gates administrative
+        // DATASETS, not dashboard metrics, so an admin shares the state-wide snapshot.
         return match ($this->kind) {
             self::KIND_STATE_WIDE => 'state_wide',
             self::KIND_PARTNER => 'partner:'.($this->partnerId ?? ($this->programmeIds === [] ? 'none' : implode(',', $this->programmeIds))),

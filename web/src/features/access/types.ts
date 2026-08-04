@@ -19,9 +19,31 @@ export interface PermissionEntry {
 export type PermissionModules = Record<string, PermissionEntry[]>
 
 /** Role × permission matrix (from GET /access/matrix). */
-export interface PermissionMatrix {
+/** One cell-column of the matrix, carrying the server's policy for that permission. */
+export interface MatrixPermission {
+  key: string
+  module: string
+  action: string
+  action_label: string
+  description: string | null
+  /** False for permissions that may never be bundled into a role (export.reveal_pii). */
+  role_grantable: boolean
+  /** Grants carrying a DPO/sign-off obligation — flagged, not blocked. */
+  sensitive: boolean
+}
+
+export interface MatrixRole {
+  id: string
+  key: string
+  name: string
+  /** False for the System Administrator role, which holds everything implicitly. */
+  editable: boolean
   permissions: string[]
-  roles: { key: string; name: string; permissions: string[] }[]
+}
+
+export interface PermissionMatrix {
+  permissions: MatrixPermission[]
+  roles: MatrixRole[]
 }
 
 export interface AccessGrant {

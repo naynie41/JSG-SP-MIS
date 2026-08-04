@@ -154,17 +154,39 @@ export function UserListPage() {
     {
       key: 'status',
       header: 'Status',
+      // Lockout is a runtime state on top of the stored status (FR-UAM-06): an account
+      // can be `active` yet temporarily locked after failed sign-in attempts.
       render: (u) => (
-        <Badge variant={statusVariant(u.status)} dot>
-          {u.status}
-        </Badge>
+        <>
+          <Badge variant={statusVariant(u.status)} dot>
+            {u.status}
+          </Badge>
+          {u.is_locked && (
+            <>
+              {' '}
+              <Badge variant="danger" dot>
+                locked
+              </Badge>
+            </>
+          )}
+        </>
       ),
     },
     {
       key: 'mfa',
       header: 'MFA',
+      // Enrolment vs the role-driven requirement: "Required" with MFA off is a
+      // compliance gap the administrator needs to see.
       render: (u) =>
-        u.mfa_enabled ? <Badge variant="success">On</Badge> : <Badge variant="neutral">Off</Badge>,
+        u.mfa_enabled ? (
+          <Badge variant="success">On</Badge>
+        ) : u.mfa_required ? (
+          <Badge variant="warning" dot>
+            Required
+          </Badge>
+        ) : (
+          <Badge variant="neutral">Off</Badge>
+        ),
     },
     {
       key: 'actions',

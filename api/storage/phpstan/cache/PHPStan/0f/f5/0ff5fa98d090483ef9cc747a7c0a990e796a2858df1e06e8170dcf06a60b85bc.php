@@ -2,7 +2,7 @@
 
 // odsl-C:\Users\ACER\Desktop\JSG-SP-MIS\JSG-SP-MIS\api\app\Domain\Audit\Models\AuditLog.php-PHPStan\BetterReflection\Reflection\ReflectionClass-App\Domain\Audit\Models\AuditLog
 return \PHPStan\Cache\CacheItem::__set_state(array(
-   'variableKey' => 'v2-6.70.0.1-8.3.31-46ad471ba15f1bccb0a238a4b271c084a80a45010b6a6cccea779ceb55f1b858',
+   'variableKey' => 'v2-6.70.0.1-8.3.31-339ea8c889c477ab1dd847693c63cb9ec521c6a6e83f65bd02f8aba7d25d2589',
    'data' => 
   array (
     'locatedSource' => 
@@ -34,12 +34,28 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
  *     any edit/removal/reorder breaks every later hash. Verified offline with
  *     `php artisan audit:verify-chain`. Rows older than the chain migration have
  *     a NULL position (pre-chain era; the log itself was never mutable).
+ *
+ * @property string $id
+ * @property string|null $actor_id
+ * @property string|null $actor_mda_id
+ * @property string $action
+ * @property string|null $entity_type
+ * @property string|null $entity_id
+ * @property array<array-key, mixed>|null $before
+ * @property array<array-key, mixed>|null $after
+ * @property string|null $ip_address
+ * @property string|null $user_agent
+ * @property string|null $correlation_id
+ * @property int|null $chain_position
+ * @property string|null $prev_hash
+ * @property string|null $entry_hash
+ * @property Carbon|null $created_at
  */',
     'attributes' => 
     array (
     ),
-    'startLine' => 26,
-    'endLine' => 167,
+    'startLine' => 43,
+    'endLine' => 186,
     'startColumn' => 1,
     'endColumn' => 1,
     'parentClassName' => 'Illuminate\\Database\\Eloquent\\Model',
@@ -64,20 +80,20 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
           'code' => '\'0000000000000000000000000000000000000000000000000000000000000000\'',
           'attributes' => 
           array (
-            'startLine' => 30,
-            'endLine' => 30,
-            'startTokenPos' => 65,
-            'startFilePos' => 1109,
-            'endTokenPos' => 65,
-            'endFilePos' => 1174,
+            'startLine' => 47,
+            'endLine' => 47,
+            'startTokenPos' => 70,
+            'startFilePos' => 1705,
+            'endTokenPos' => 70,
+            'endFilePos' => 1770,
           ),
         ),
         'docComment' => NULL,
         'attributes' => 
         array (
         ),
-        'startLine' => 30,
-        'endLine' => 30,
+        'startLine' => 47,
+        'endLine' => 47,
         'startColumn' => 5,
         'endColumn' => 99,
       ),
@@ -96,20 +112,20 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
           'code' => 'false',
           'attributes' => 
           array (
-            'startLine' => 32,
-            'endLine' => 32,
-            'startTokenPos' => 74,
-            'startFilePos' => 1203,
-            'endTokenPos' => 74,
-            'endFilePos' => 1207,
+            'startLine' => 49,
+            'endLine' => 49,
+            'startTokenPos' => 79,
+            'startFilePos' => 1799,
+            'endTokenPos' => 79,
+            'endFilePos' => 1803,
           ),
         ),
         'docComment' => NULL,
         'attributes' => 
         array (
         ),
-        'startLine' => 32,
-        'endLine' => 32,
+        'startLine' => 49,
+        'endLine' => 49,
         'startColumn' => 5,
         'endColumn' => 31,
         'isPromoted' => false,
@@ -131,20 +147,20 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
           'code' => '\'audit_log\'',
           'attributes' => 
           array (
-            'startLine' => 34,
-            'endLine' => 34,
-            'startTokenPos' => 83,
-            'startFilePos' => 1234,
-            'endTokenPos' => 83,
-            'endFilePos' => 1244,
+            'startLine' => 51,
+            'endLine' => 51,
+            'startTokenPos' => 88,
+            'startFilePos' => 1830,
+            'endTokenPos' => 88,
+            'endFilePos' => 1840,
           ),
         ),
         'docComment' => NULL,
         'attributes' => 
         array (
         ),
-        'startLine' => 34,
-        'endLine' => 34,
+        'startLine' => 51,
+        'endLine' => 51,
         'startColumn' => 5,
         'endColumn' => 35,
         'isPromoted' => false,
@@ -166,20 +182,20 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
           'code' => '[\'actor_id\', \'actor_mda_id\', \'action\', \'entity_type\', \'entity_id\', \'before\', \'after\', \'ip_address\', \'user_agent\', \'correlation_id\', \'created_at\']',
           'attributes' => 
           array (
-            'startLine' => 36,
-            'endLine' => 48,
-            'startTokenPos' => 92,
-            'startFilePos' => 1274,
-            'endTokenPos' => 127,
-            'endFilePos' => 1513,
+            'startLine' => 53,
+            'endLine' => 65,
+            'startTokenPos' => 97,
+            'startFilePos' => 1870,
+            'endTokenPos' => 132,
+            'endFilePos' => 2109,
           ),
         ),
         'docComment' => NULL,
         'attributes' => 
         array (
         ),
-        'startLine' => 36,
-        'endLine' => 48,
+        'startLine' => 53,
+        'endLine' => 65,
         'startColumn' => 5,
         'endColumn' => 6,
         'isPromoted' => false,
@@ -214,8 +230,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         'docComment' => '/**
  * @return array<string, string>
  */',
-        'startLine' => 53,
-        'endLine' => 60,
+        'startLine' => 70,
+        'endLine' => 77,
         'startColumn' => 5,
         'endColumn' => 5,
         'couldThrow' => false,
@@ -253,11 +269,11 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
  * triggers; also enforced on sqlite used in tests). The creating hook links
  * each new entry into the hash chain.
  */',
-        'startLine' => 67,
-        'endLine' => 91,
+        'startLine' => 84,
+        'endLine' => 110,
         'startColumn' => 5,
         'endColumn' => 5,
-        'couldThrow' => true,
+        'couldThrow' => false,
         'isClosure' => false,
         'isGenerator' => false,
         'isVariadic' => false,
@@ -281,12 +297,12 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
               'code' => '[]',
               'attributes' => 
               array (
-                'startLine' => 100,
-                'endLine' => 100,
-                'startTokenPos' => 381,
-                'startFilePos' => 3313,
-                'endTokenPos' => 382,
-                'endFilePos' => 3314,
+                'startLine' => 119,
+                'endLine' => 119,
+                'startTokenPos' => 390,
+                'startFilePos' => 4081,
+                'endTokenPos' => 391,
+                'endFilePos' => 4082,
               ),
             ),
             'type' => 
@@ -304,8 +320,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             'attributes' => 
             array (
             ),
-            'startLine' => 100,
-            'endLine' => 100,
+            'startLine' => 119,
+            'endLine' => 119,
             'startColumn' => 26,
             'endColumn' => 44,
             'parameterIndex' => 0,
@@ -332,11 +348,11 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
  *
  * @param  array<string, mixed>  $options
  */',
-        'startLine' => 100,
-        'endLine' => 117,
+        'startLine' => 119,
+        'endLine' => 136,
         'startColumn' => 5,
         'endColumn' => 5,
-        'couldThrow' => true,
+        'couldThrow' => false,
         'isClosure' => false,
         'isGenerator' => false,
         'isVariadic' => false,
@@ -372,8 +388,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
  * drivers (sorted keys, fixed timestamp format), so a verifier can recompute
  * it from the stored row alone.
  */',
-        'startLine' => 125,
-        'endLine' => 144,
+        'startLine' => 144,
+        'endLine' => 163,
         'startColumn' => 5,
         'endColumn' => 5,
         'couldThrow' => false,
@@ -430,8 +446,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             'attributes' => 
             array (
             ),
-            'startLine' => 152,
-            'endLine' => 152,
+            'startLine' => 171,
+            'endLine' => 171,
             'startColumn' => 42,
             'endColumn' => 54,
             'parameterIndex' => 0,
@@ -476,8 +492,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
  * @param  array<array-key, mixed>|null  $value
  * @return array<array-key, mixed>|null
  */',
-        'startLine' => 152,
-        'endLine' => 166,
+        'startLine' => 171,
+        'endLine' => 185,
         'startColumn' => 5,
         'endColumn' => 5,
         'couldThrow' => false,

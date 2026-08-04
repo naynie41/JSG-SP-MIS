@@ -28,6 +28,9 @@ class ProgrammeResource extends JsonResource
             'enforce_eligibility' => $this->enforce_eligibility,
             'status' => $this->status->value,
             'activities_count' => $this->whenCounted('activities'),
+            // Catalog USAGE: distinct MDAs running an activity for this programme (§10 —
+            // one global programme, many MDAs, each through its own activity).
+            'mdas_count' => $this->whenCounted('mdas'),
             'created_by' => $this->created_by,
             'created_at' => $this->created_at?->toIso8601String(),
             'updated_at' => $this->updated_at?->toIso8601String(),

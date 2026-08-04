@@ -23,10 +23,18 @@ const SOURCE_OPTIONS = [
   { value: 'odk', label: 'ODK export' },
 ]
 
-export function ImportListPage() {
+export interface ImportListPageProps {
+  /** Render as embedded read-only history: no page header (the host page owns the
+   *  heading) and no upload panel. Used by the administration console's oversight
+   *  sections — an administrator reviews imports but does not perform them; bulk
+   *  ingestion belongs to an acting MDA (CLAUDE.md §10). */
+  readOnly?: boolean
+}
+
+export function ImportListPage({ readOnly = false }: ImportListPageProps = {}) {
   const { hasPermission } = useAuth()
   const canView = hasPermission('beneficiary.view')
-  const canImport = hasPermission('beneficiary.create')
+  const canImport = !readOnly && hasPermission('beneficiary.create')
   const navigate = useNavigate()
 
   const [page, setPage] = useState(1)
@@ -84,12 +92,14 @@ export function ImportListPage() {
 
   return (
     <div>
-      <div className={layout.pageHead}>
-        <div className={layout.pageTitle}>
-          <span className="eyebrow">03 · Registry</span>
-          <h1 className="t-h1">Bulk import</h1>
+      {!readOnly && (
+        <div className={layout.pageHead}>
+          <div className={layout.pageTitle}>
+            <span className="eyebrow">03 · Registry</span>
+            <h1 className="t-h1">Bulk import</h1>
+          </div>
         </div>
-      </div>
+      )}
 
       {canImport && (
         <Card title="Upload a file" eyebrow="Excel · CSV · Kobo · ODK" className={styles.stack}>

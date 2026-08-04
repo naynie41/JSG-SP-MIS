@@ -2,7 +2,7 @@
 
 // odsl-C:\Users\ACER\Desktop\JSG-SP-MIS\JSG-SP-MIS\api\app\Domain\Notification\NotificationServiceProvider.php-PHPStan\BetterReflection\Reflection\ReflectionClass-App\Domain\Notification\NotificationServiceProvider
 return \PHPStan\Cache\CacheItem::__set_state(array(
-   'variableKey' => 'v2-6.70.0.1-8.3.31-1d6f1323ac9eeebf0162d6ec3a050737cece4fd3b9b2192da08d45880ec789ef',
+   'variableKey' => 'v2-6.70.0.1-8.3.31-d7cfaa488250bba1c88becd457e64c258c95a0b4af08698396cad02044b74006',
    'data' => 
   array (
     'locatedSource' => 
@@ -31,8 +31,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
     'attributes' => 
     array (
     ),
-    'startLine' => 22,
-    'endLine' => 38,
+    'startLine' => 23,
+    'endLine' => 54,
     'startColumn' => 1,
     'endColumn' => 1,
     'parentClassName' => 'Illuminate\\Support\\ServiceProvider',
@@ -44,6 +44,35 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
     ),
     'immediateConstants' => 
     array (
+      'CHANNELS' => 
+      array (
+        'declaringClassName' => 'App\\Domain\\Notification\\NotificationServiceProvider',
+        'implementingClassName' => 'App\\Domain\\Notification\\NotificationServiceProvider',
+        'name' => 'CHANNELS',
+        'modifiers' => 1,
+        'type' => NULL,
+        'value' => 
+        array (
+          'code' => '\'notification.channels\'',
+          'attributes' => 
+          array (
+            'startLine' => 26,
+            'endLine' => 26,
+            'startTokenPos' => 82,
+            'startFilePos' => 982,
+            'endTokenPos' => 82,
+            'endFilePos' => 1004,
+          ),
+        ),
+        'docComment' => '/** The container key for the registered channel set. */',
+        'attributes' => 
+        array (
+        ),
+        'startLine' => 26,
+        'endLine' => 26,
+        'startColumn' => 5,
+        'endColumn' => 52,
+      ),
     ),
     'immediateProperties' => 
     array (
@@ -70,8 +99,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         array (
         ),
         'docComment' => NULL,
-        'startLine' => 24,
-        'endLine' => 32,
+        'startLine' => 28,
+        'endLine' => 48,
         'startColumn' => 5,
         'endColumn' => 5,
         'couldThrow' => false,
@@ -105,8 +134,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         array (
         ),
         'docComment' => NULL,
-        'startLine' => 34,
-        'endLine' => 37,
+        'startLine' => 50,
+        'endLine' => 53,
         'startColumn' => 5,
         'endColumn' => 5,
         'couldThrow' => false,

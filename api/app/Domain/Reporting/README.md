@@ -18,6 +18,16 @@ Every dashboard/report/map query applies the scope **explicitly** (bypassing the
 request-time `MdaScope`) so it is identical in a request or on the scheduler/queue.
 `DashboardScope::covers()` decides whether a recipient may receive a scoped report.
 
+**Governance is a second, independent axis** (`DashboardScope::$governance`). The three
+kinds above answer *how much PROGRAMME data may you see*; governance answers *may you
+see who did what*. Only a **System Administrator** carries it, so an Executive is
+state-wide yet can never reach — or be sent — a user/audit/import report. It is
+captured on the run and the schedule (`scope_governance`), so a queued or unattended
+generation rehydrates it, and `covers()` rejects a governance report for any
+non-governance recipient. It is deliberately **not** part of `key()`: it gates
+administrative datasets, not dashboard metrics, so an admin shares the state-wide
+snapshot.
+
 **Partner funding scope (6.0 → 6P):** a partner's scope is the set of programmes they
 fund. **Phase 6P made the queryable source of truth `activities.funding_partner_id`**
 (a Development-Partner user), so every partner figure is **activity-precise** — the
@@ -68,6 +78,15 @@ dataset/column/filter against the whitelist and applies scope **before** the use
 filters, so a filter can only narrow within scope and a PII/unlisted column can never
 be selected. Preview, export, and **saved definitions** (`report_definitions`, reusable
 + the basis for scheduling).
+
+**Administrative datasets** (`admin => true`) back the System Administrator console's
+Reports section: `users`, `organizations`, `programme_catalogue`, `duplicates`, `audit`
+and `imports` (registry reporting reuses the existing `beneficiaries` dataset). They
+are released only to a **governance** scope — never to state-wide oversight — and, like
+every other dataset, expose group-by dimensions and count/sum measures only: a user
+report groups by role or status but never by name or email, and an audit report tallies
+actions without touching the before/after payload. The console adds datasets to this
+registry; it does not add a second reporting engine.
 
 ### Scheduled reports (FR-RPT-04)
 

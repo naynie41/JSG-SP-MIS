@@ -16,7 +16,13 @@ export interface AuthUser {
   name: string
   email: string
   status: string
+  /** Runtime lockout (FR-UAM-06) — distinct from `status`: an account can be
+   *  `active` yet temporarily locked after failed attempts. */
+  is_locked?: boolean
+  locked_until?: string | null
   mfa_enabled: boolean
+  /** Whether the user's ROLE mandates MFA (the enforcement policy, FR-UAM-04). */
+  mfa_required?: boolean
   last_login_at: string | null
   mda: AuthUserMda | null
   role: AuthUserRole | null

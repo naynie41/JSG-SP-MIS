@@ -4,7 +4,17 @@ import { Spinner } from '@/components/Spinner/Spinner'
 import { useAuth } from '@/lib/auth/AuthProvider'
 import { LoginPage } from '@/features/auth/LoginPage'
 import { DashboardPage } from '@/features/dashboard/DashboardPage'
-import { AdminDashboardPage } from '@/features/dashboard/AdminDashboardPage'
+import { AdminLayout } from '@/features/admin/AdminLayout'
+import { AdminOverviewPage } from '@/features/admin/AdminOverviewPage'
+import { AdminAccessPage } from '@/features/admin/AdminAccessPage'
+import { AdminOrganizationPage } from '@/features/admin/AdminOrganizationPage'
+import { AdminCatalogPage } from '@/features/admin/AdminCatalogPage'
+import { AdminRegistryPage } from '@/features/admin/AdminRegistryPage'
+import { AdminMatchingPage } from '@/features/admin/AdminMatchingPage'
+import { AdminAuditPage } from '@/features/admin/AdminAuditPage'
+import { AdminIntegrationsPage } from '@/features/admin/AdminIntegrationsPage'
+import { AdminReportsPage } from '@/features/admin/AdminReportsPage'
+import { AdminSettingsPage } from '@/features/admin/AdminSettingsPage'
 import { ExecutiveLayout } from '@/features/dashboard/ExecutiveLayout'
 import {
   ExecutiveCoordinationPage,
@@ -67,7 +77,7 @@ import { ProtectedRoute } from './ProtectedRoute'
 function HomeDashboard() {
   const { user, hasPermission } = useAuth()
   const roleKey = user?.role?.key
-  if (roleKey === 'system_administrator') return <AdminDashboardPage />
+  if (roleKey === 'system_administrator') return <Navigate to="/admin" replace />
   if (roleKey === 'executive') return <Navigate to="/executive" replace />
   if (roleKey === 'development_partner') return <Navigate to="/partner" replace />
   if (hasPermission('dashboard.view')) return <MdaDashboardPage />
@@ -110,6 +120,18 @@ export function App() {
         }
       >
         <Route index element={<HomeDashboard />} />
+        <Route path="/admin" element={<AdminLayout />}>
+          <Route index element={<AdminOverviewPage />} />
+          <Route path="access" element={<AdminAccessPage />} />
+          <Route path="organization" element={<AdminOrganizationPage />} />
+          <Route path="catalog" element={<AdminCatalogPage />} />
+          <Route path="registry" element={<AdminRegistryPage />} />
+          <Route path="integrations" element={<AdminIntegrationsPage />} />
+          <Route path="matching" element={<AdminMatchingPage />} />
+          <Route path="audit" element={<AdminAuditPage />} />
+          <Route path="reports" element={<AdminReportsPage />} />
+          <Route path="settings" element={<AdminSettingsPage />} />
+        </Route>
         <Route path="/executive" element={<ExecutiveLayout />}>
           <Route index element={<ExecutiveOverviewPage />} />
           <Route path="programmes" element={<ExecutiveProgrammesPage />} />

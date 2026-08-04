@@ -21,14 +21,23 @@ use Illuminate\Support\ServiceProvider;
  */
 class NotificationServiceProvider extends ServiceProvider
 {
+    /** The container key for the registered channel set. */
+    public const CHANNELS = 'notification.channels';
+
     public function register(): void
     {
-        $this->app->singleton(Notifier::class, fn (): Notifier => new Notifier([
+        // One channel set, resolved by everything that needs it — the Notifier that
+        // sends, and the console's Settings projection that reports availability. A
+        // second hard-coded list would let Settings claim a delivery path that does
+        // not exist.
+        $this->app->singleton(self::CHANNELS, fn (): array => [
             new InAppChannel,
             new EmailChannel,
             new SmsChannel,       // stub — unavailable until an SMS gateway is provided
             new WhatsAppChannel,  // stub — unavailable until a WhatsApp provider is provided
-        ]));
+        ]);
+
+        $this->app->singleton(Notifier::class, fn ($app): Notifier => new Notifier($app->make(self::CHANNELS)));
     }
 
     public function boot(): void

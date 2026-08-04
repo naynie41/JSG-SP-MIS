@@ -1,5 +1,5 @@
 import type { ReactNode } from 'react'
-import { Bell, Menu } from 'lucide-react'
+import { Bell, Menu, Settings } from 'lucide-react'
 import { Icon } from '@/components/Icon/Icon'
 import { Avatar } from '@/components/Avatar/Avatar'
 import styles from './TopBar.module.css'
@@ -14,10 +14,23 @@ export interface TopBarProps {
   notifications?: ReactNode
   onOpenMenu?: () => void
   onOpenUser?: () => void
+  /** Settings (gear) affordance — an account/preferences page, never a nav section. */
+  onOpenSettings?: () => void
+  settingsLabel?: string
 }
 
 /** Top bar (DESIGN-SYSTEM.md §5.6): breadcrumbs, notifications, user menu. */
-export function TopBar({ left, userName, userRole, hasNotifications, notifications, onOpenMenu, onOpenUser }: TopBarProps) {
+export function TopBar({
+  left,
+  userName,
+  userRole,
+  hasNotifications,
+  notifications,
+  onOpenMenu,
+  onOpenUser,
+  onOpenSettings,
+  settingsLabel = 'Settings',
+}: TopBarProps) {
   return (
     <header className={styles.bar}>
       <div className={styles.left}>
@@ -32,6 +45,11 @@ export function TopBar({ left, userName, userRole, hasNotifications, notificatio
           <button type="button" className={styles.iconButton} aria-label="Notifications">
             <Icon icon={Bell} size={20} />
             {hasNotifications && <span className={styles.dot} aria-hidden="true" />}
+          </button>
+        )}
+        {onOpenSettings && (
+          <button type="button" className={styles.iconButton} onClick={onOpenSettings} aria-label={settingsLabel}>
+            <Icon icon={Settings} size={20} />
           </button>
         )}
         <button type="button" className={styles.user} onClick={onOpenUser}>

@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Domain\Reporting\Reports\AdHoc;
 
 use App\Domain\Access\Models\Mda;
+use App\Domain\Access\Models\Role;
 use App\Domain\Access\Scopes\MdaScope;
 use App\Domain\Benefit\Models\Benefit;
 use App\Domain\Programme\Models\Programme;
@@ -183,6 +184,14 @@ class AdHocReportBuilder
                     $query->whereIn('handling_mda_id', $scope->mdaIds);
                 }
                 break;
+
+            default:
+                // Administrative datasets (users, organizations, programme catalogue,
+                // duplicates, audit, imports) are platform-wide by definition: they are
+                // reachable only from a governance scope, which is always state-wide, so
+                // there is no narrower MDA/programme constraint to apply. Entitlement is
+                // enforced in validate() via AdHocDatasetRegistry::availableTo().
+                break;
         }
     }
 
@@ -216,54 +225,62 @@ class AdHocReportBuilder
     }
 
     /**
-     * Resolve id→name maps for programme/MDA dimensions in one query each.
+     * Resolve id→name maps for programme/MDA/role dimensions in one query each.
      *
      * @param  array<string, array<string, mixed>>  $dimensions
      * @param  Collection<int, Model>  $records
-     * @return array{programme: array<string, string>, mda: array<string, string>}
+     * @return array{programme: array<string, string>, mda: array<string, string>, role: array<string, string>}
      */
     private function nameMaps(AdHocDefinition $definition, array $dimensions, $records): array
     {
-        $programmeIds = [];
-        $mdaIds = [];
+        $ids = ['programme' => [], 'mda' => [], 'role' => []];
+
         foreach ($definition->groupBy as $i => $dimKey) {
             $render = (string) $dimensions[$dimKey]['render'];
-            if ($render !== 'programme' && $render !== 'mda') {
+            if (! isset($ids[$render])) {
                 continue;
             }
             foreach ($records as $record) {
                 $value = $record->getAttribute("d{$i}");
-                if ($value === null) {
-                    continue;
-                }
-                if ($render === 'programme') {
-                    $programmeIds[] = (string) $value;
-                } else {
-                    $mdaIds[] = (string) $value;
+                if ($value !== null) {
+                    $ids[$render][] = (string) $value;
                 }
             }
         }
 
         return [
-            'programme' => $programmeIds === [] ? [] : Programme::query()->withoutGlobalScope(MdaScope::class)
-                ->whereIn('id', array_unique($programmeIds))->pluck('name', 'id')->all(),
-            'mda' => $mdaIds === [] ? [] : Mda::query()
-                ->whereIn('id', array_unique($mdaIds))->pluck('name', 'id')->all(),
+            'programme' => $ids['programme'] === [] ? [] : Programme::query()->withoutGlobalScope(MdaScope::class)
+                ->whereIn('id', array_unique($ids['programme']))->pluck('name', 'id')->all(),
+            'mda' => $ids['mda'] === [] ? [] : Mda::query()->withoutGlobalScopes()
+                ->whereIn('id', array_unique($ids['mda']))->pluck('name', 'id')->all(),
+            'role' => $ids['role'] === [] ? [] : Role::query()
+                ->whereIn('id', array_unique($ids['role']))->pluck('name', 'id')->all(),
         ];
     }
 
     /**
-     * @param  array{programme: array<string, string>, mda: array<string, string>}  $names
+     * @param  array{programme: array<string, string>, mda: array<string, string>, role: array<string, string>}  $names
      */
     private function renderDimension(string $render, mixed $raw, array $names): string
     {
+        if ($render === 'bool') {
+            // A false is a real answer here, not a blank. Postgres hands back 'f'/'t'
+            // through a raw select, and 'f' is truthy in PHP — so test explicitly.
+            return in_array($raw, [false, 0, '0', 'f', 'false', null], true) ? 'No' : 'Yes';
+        }
+
         if ($raw === null || $raw === '') {
-            return $render === 'programme' || $render === 'mda' ? 'Unknown' : 'Unspecified';
+            return in_array($render, ['programme', 'mda', 'role'], true) ? 'Unknown' : 'Unspecified';
         }
 
         return match ($render) {
             'programme' => $names['programme'][(string) $raw] ?? 'Unknown',
             'mda' => $names['mda'][(string) $raw] ?? 'Unknown',
+            'role' => $names['role'][(string) $raw] ?? 'Unknown',
+            // `App\Domain\Registry\Models\Beneficiary` → `Beneficiary`
+            'class' => (string) Str::of((string) $raw)->afterLast('\\')->headline(),
+            // `matching_config.created` → `Matching config · created`
+            'action' => (string) Str::of((string) $raw)->replace('_', ' ')->replace('.', ' · ')->ucfirst(),
             default => (string) Str::of((string) $raw)->replace('_', ' ')->title(),
         };
     }

@@ -30,7 +30,12 @@ class DashboardScopeResolver
     public function forUser(User $user): DashboardScope
     {
         if ($user->canAccessAllMdas()) {
-            return DashboardScope::stateWide();
+            // Governance (the administrative datasets) is a System Administrator's alone.
+            // Executive/SP Coordination are state-wide over programme data but never see
+            // the user, audit or import datasets — see DashboardScope::$governance.
+            return DashboardScope::stateWide(
+                governance: $user->role?->key === RoleKey::SystemAdministrator->value,
+            );
         }
 
         if ($user->role?->key === RoleKey::DevelopmentPartner->value) {

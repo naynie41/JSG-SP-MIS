@@ -329,6 +329,39 @@ gated by `reporting.export` — never PII) and **role tiering** all work within 
 > conditions: [api/app/Domain/Reporting/README.md](api/app/Domain/Reporting/README.md)
 > §Phase 6P and the checklist in [docs/PHASE-6P-CHECKLIST.md](docs/PHASE-6P-CHECKLIST.md).
 
+### Phase Admin — System Administrator Console
+
+A governance console at **`/admin`**, gated to the **System Administrator** role
+server-side. Nine sections — Overview · User & Access · Organization · Programme Catalog
+· Registry & Data Quality · Integrations · Matching Rules & Registry Config · Audit &
+Security · Reports — plus a **Settings** page reached from the gear affordance (not a
+nav link).
+
+It is a **composition layer**: every section renders an existing feature module and
+drives an existing endpoint, so there is one source of truth and no duplicated logic.
+Reports add administrative datasets to the **Phase 6** ad-hoc engine rather than running
+a second one; Integrations composes the **Phase 7** sync engine when it answers and
+shows a clean pending state when it does not; broadcasts go out through the **Phase 5**
+notifier. Settings is a **read-only projection of the effective configuration** — each
+row names the env var or config key that sets it — so the console keeps no settings
+store of its own and can never drift from the running deployment.
+
+The two controls the console owns are the **permission matrix editor** (role × module ×
+action, writing the existing `role_permission` pivot, audited) and **system
+broadcasts**. Per `docs/SECURITY.md`, `export.reveal_pii` can never be granted to a role
+and the System Administrator role is not editable; sensitive grants such as
+`beneficiary.export` are allowed but flagged for DPO sign-off and recorded separately in
+the audit entry.
+
+It is **governance, not operations** — no uptime/CPU/memory/queue widgets — and it does
+not run programme delivery.
+
+> `Database\Seeders\AdminConsoleDemoSeeder` seeds an admin plus representative MDAs,
+> staff, partners, programmes and import history (with duplicate-review rows) so every
+> section renders (`php artisan db:seed --class=AdminConsoleDemoSeeder`). Details:
+> [web/src/features/admin/README.md](web/src/features/admin/README.md) and the checklist
+> in [docs/PHASE-ADMIN-CHECKLIST.md](docs/PHASE-ADMIN-CHECKLIST.md).
+
 ---
 
 ## Running tests, lint & static analysis

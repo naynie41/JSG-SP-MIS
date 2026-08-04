@@ -58,7 +58,7 @@ class ReportRun extends Model
      */
     protected $fillable = [
         'report_key', 'report_label', 'format', 'status',
-        'scope_kind', 'scope_label', 'scope_mda_ids', 'scope_programme_ids', 'params', 'definition',
+        'scope_kind', 'scope_label', 'scope_governance', 'scope_mda_ids', 'scope_programme_ids', 'params', 'definition',
         'row_count', 'file_path', 'file_name', 'error',
         'requested_by', 'requested_mda_id', 'schedule_id', 'recipient_user_ids', 'delivery', 'completed_at',
     ];
@@ -69,6 +69,7 @@ class ReportRun extends Model
     protected function casts(): array
     {
         return [
+            'scope_governance' => 'boolean',
             'scope_mda_ids' => 'array',
             'scope_programme_ids' => 'array',
             'params' => 'array',
@@ -94,7 +95,13 @@ class ReportRun extends Model
     /** Rebuild the scope this run was requested under. */
     public function toScope(): DashboardScope
     {
-        return DashboardScope::rehydrate($this->scope_kind, $this->scope_mda_ids, $this->scope_programme_ids, $this->scope_label);
+        return DashboardScope::rehydrate(
+            $this->scope_kind,
+            $this->scope_mda_ids,
+            $this->scope_programme_ids,
+            $this->scope_label,
+            (bool) $this->scope_governance,
+        );
     }
 
     public function isReady(): bool

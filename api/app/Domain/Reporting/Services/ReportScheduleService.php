@@ -52,6 +52,7 @@ class ReportScheduleService
             'status' => ReportSchedule::STATUS_ACTIVE,
             'scope_kind' => $scope->kind,
             'scope_label' => $scope->label,
+            'scope_governance' => $scope->governance,
             'scope_mda_ids' => $scope->mdaIds,
             'scope_programme_ids' => $scope->programmeIds,
             'recipient_user_ids' => $recipients,

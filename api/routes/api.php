@@ -4,9 +4,11 @@ declare(strict_types=1);
 
 use App\Domain\Access\Support\TokenAbility;
 use App\Http\Controllers\Api\V1\Access\AccessController;
+use App\Http\Controllers\Api\V1\Access\LoginActivityController;
 use App\Http\Controllers\Api\V1\Access\MdaAccessGrantController;
 use App\Http\Controllers\Api\V1\Access\MdaController;
 use App\Http\Controllers\Api\V1\Access\UserController;
+use App\Http\Controllers\Api\V1\Audit\AuditLogController;
 use App\Http\Controllers\Api\V1\AuthController;
 use App\Http\Controllers\Api\V1\Benefit\BenefitController;
 use App\Http\Controllers\Api\V1\Benefit\BenefitFlagController;
@@ -18,6 +20,7 @@ use App\Http\Controllers\Api\V1\Grievance\GrievanceSlaPolicyController;
 use App\Http\Controllers\Api\V1\HealthController;
 use App\Http\Controllers\Api\V1\Matching\MatchingConfigController;
 use App\Http\Controllers\Api\V1\MfaController;
+use App\Http\Controllers\Api\V1\Notification\BroadcastController;
 use App\Http\Controllers\Api\V1\Notification\NotificationController;
 use App\Http\Controllers\Api\V1\Programme\ActivityController;
 use App\Http\Controllers\Api\V1\Programme\EnrollmentController;
@@ -33,8 +36,12 @@ use App\Http\Controllers\Api\V1\Registry\HouseholdController;
 use App\Http\Controllers\Api\V1\Registry\HouseholdMemberController;
 use App\Http\Controllers\Api\V1\Registry\ImportBatchController;
 use App\Http\Controllers\Api\V1\Registry\OwnershipTransferController;
+use App\Http\Controllers\Api\V1\Registry\RegistryRulesController;
 use App\Http\Controllers\Api\V1\Registry\ServiceRequestController;
 use App\Http\Controllers\Api\V1\Reporting\AdHocReportController;
+use App\Http\Controllers\Api\V1\Reporting\AdminOrganizationController;
+use App\Http\Controllers\Api\V1\Reporting\AdminSettingsController;
+use App\Http\Controllers\Api\V1\Reporting\AdminSummaryController;
 use App\Http\Controllers\Api\V1\Reporting\DashboardController;
 use App\Http\Controllers\Api\V1\Reporting\DashboardExportController;
 use App\Http\Controllers\Api\V1\Reporting\GisController;
@@ -491,6 +498,75 @@ Route::prefix('v1')->group(function (): void {
         // not a public information leak. Liveness/readiness stay public at /up + /health.
         Route::get('/health/metrics', [HealthController::class, 'metrics'])
             ->middleware('permission:dashboard.view')->name('health.metrics');
+
+        /*
+        | System Administrator console — GOVERNANCE summary (FR-UAM-01, FR-AUD-01):
+        | provisioning/catalog KPIs, user adoption, registry data quality, administrative
+        | alerts and recent audit activity. Gated to the ROLE, not a permission: a System
+        | Administrator implicitly holds every permission, so no permission is exclusive
+        | to them. Deliberately NOT system health (that is /health/metrics, ops territory).
+        */
+        Route::get('/admin/summary', [AdminSummaryController::class, 'show'])
+            ->middleware('role:system_administrator')->name('admin.summary');
+
+        // Login activity — a read-only projection of the EXISTING audit trail (auth.*,
+        // mfa.*), not a second login log. Console territory, so gated to the role.
+        Route::get('/admin/login-activity', [LoginActivityController::class, 'index'])
+            ->middleware('role:system_administrator')->name('admin.login-activity');
+
+        // Organization roll-up: user allocation, MDA administrators and owned activities
+        // per organization, plus funded delivery per Development Partner. READ ONLY —
+        // organizations are still managed through /mdas and /users.
+        Route::get('/admin/organizations', [AdminOrganizationController::class, 'index'])
+            ->middleware('role:system_administrator')->name('admin.organizations');
+
+        // The canonical registry validation rules, READ ONLY (FR-REG-04/05). Derived
+        // from BeneficiaryRules so the console cannot drift from what ingestion
+        // enforces; identity-field handling is a locked decision, never admin-editable.
+        Route::get('/admin/registry-rules', [RegistryRulesController::class, 'index'])
+            ->middleware('role:system_administrator')->name('admin.registry-rules');
+
+        /*
+        | Audit & Security (FR-AUD-01, FR-RPT-03) — READ + EXPORT over the immutable,
+        | tamper-evident log. Select-only: writing stays with the Auditable trait and
+        | AuditLogger, so there is no second logging path. The projection carries the
+        | envelope + changed FIELD NAMES only; recorded values never leave the server.
+        | Export additionally needs `reporting.export` and is itself audited.
+        */
+        Route::get('/admin/audit-logs', [AuditLogController::class, 'index'])
+            ->middleware('role:system_administrator')->name('admin.audit-logs');
+        Route::get('/admin/audit-logs/export', [AuditLogController::class, 'export'])
+            ->middleware(['role:system_administrator', 'permission:reporting.export', 'throttle:exports'])
+            ->name('admin.audit-logs.export');
+
+        /*
+        | Settings (console). READ-ONLY projection of the EFFECTIVE configuration —
+        | there is no console settings store. The only writes reachable from Settings
+        | are the permission matrix (role_permission, below) and the caller's own
+        | notification preferences (/notifications/preferences).
+        */
+        Route::get('/admin/settings', [AdminSettingsController::class, 'index'])
+            ->middleware('role:system_administrator')->name('admin.settings');
+
+        /*
+        | Permission-matrix editor (FR-UAM-05). Writes the EXISTING role_permission
+        | pivot that User::permissionKeys() reads, so a change takes effect on the next
+        | request. RolePermissionService enforces the SECURITY.md invariants (the
+        | System Administrator role is not editable; export.reveal_pii is never granted
+        | to a role) and audits every change.
+        */
+        Route::put('/roles/{role}/permissions', [AccessController::class, 'updatePermissions'])
+            ->middleware(['role:system_administrator', 'permission:role.edit'])
+            ->name('roles.permissions.update');
+
+        /*
+        | System broadcast (FR-NOT-01) — fans out through the Phase 5 Notifier, so
+        | channel availability and recipient preferences apply unchanged.
+        */
+        Route::get('/notifications/broadcast/audience', [BroadcastController::class, 'audience'])
+            ->middleware('role:system_administrator')->name('notifications.broadcast.audience');
+        Route::post('/notifications/broadcast', [BroadcastController::class, 'store'])
+            ->middleware('role:system_administrator')->name('notifications.broadcast');
 
         // GIS coverage map (FR-GIS-01): choropleth when boundaries are loaded, else a
         // ranked-table fallback. Scoped to the caller.

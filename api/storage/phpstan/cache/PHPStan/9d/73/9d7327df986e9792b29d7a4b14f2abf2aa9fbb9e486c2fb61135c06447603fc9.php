@@ -2,7 +2,7 @@
 
 // odsl-C:\Users\ACER\Desktop\JSG-SP-MIS\JSG-SP-MIS\api\app\Domain\Reporting\Services\DashboardScopeResolver.php-PHPStan\BetterReflection\Reflection\ReflectionClass-App\Domain\Reporting\Services\DashboardScopeResolver
 return \PHPStan\Cache\CacheItem::__set_state(array(
-   'variableKey' => 'v2-6.70.0.1-8.3.31-19436c5e51cf40179abc91cd8e6dbb6bdaf9b36e8132bcaceec67c080f539bd0',
+   'variableKey' => 'v2-6.70.0.1-8.3.31-c4cbb84397a27f4e03d30da91c3375d1acc98302e92bf4b18d9dd09821e2e9bc',
    'data' => 
   array (
     'locatedSource' => 
@@ -41,7 +41,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
     array (
     ),
     'startLine' => 28,
-    'endLine' => 46,
+    'endLine' => 51,
     'startColumn' => 1,
     'endColumn' => 1,
     'parentClassName' => NULL,
@@ -106,7 +106,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         ),
         'docComment' => NULL,
         'startLine' => 30,
-        'endLine' => 45,
+        'endLine' => 50,
         'startColumn' => 5,
         'endColumn' => 5,
         'couldThrow' => false,

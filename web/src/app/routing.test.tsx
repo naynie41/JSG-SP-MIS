@@ -64,7 +64,7 @@ describe('protected routing', () => {
     expect(screen.queryByRole('link', { name: 'Users' })).not.toBeInTheDocument()
   })
 
-  it('shows Administration only to the System Administrator', async () => {
+  it('shows the administration console only to the System Administrator', async () => {
     tokenStore.set('tok-abc')
     me.mockResolvedValue(
       makeUser({
@@ -75,9 +75,14 @@ describe('protected routing', () => {
 
     renderWithProviders(<App />, '/')
 
-    // The System Administrator lands on the administration dashboard (not the MDA
-    // operator view); the Administration rail section is present.
-    expect(await screen.findByRole('link', { name: 'Users' })).toBeInTheDocument()
-    expect(screen.getByRole('link', { name: 'MDAs' })).toBeInTheDocument()
+    // The System Administrator lands on the console (not the MDA operator view), and
+    // the rail IS the console's nine sections.
+    expect(await screen.findByRole('link', { name: 'User & Access' })).toBeInTheDocument()
+    expect(screen.getByRole('link', { name: 'Organization' })).toBeInTheDocument()
+    expect(screen.getByRole('link', { name: 'Audit & Security' })).toBeInTheDocument()
+
+    // The generic operator rail is replaced, not merged.
+    expect(screen.queryByRole('link', { name: 'Dashboard' })).not.toBeInTheDocument()
+    expect(screen.queryByRole('link', { name: 'Coverage map' })).not.toBeInTheDocument()
   })
 })

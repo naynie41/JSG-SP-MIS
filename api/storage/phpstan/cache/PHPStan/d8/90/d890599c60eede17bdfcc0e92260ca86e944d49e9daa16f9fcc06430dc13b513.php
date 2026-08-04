@@ -2,7 +2,7 @@
 
 // odsl-C:\Users\ACER\Desktop\JSG-SP-MIS\JSG-SP-MIS\api\app\Domain\Reporting\Support\DashboardScope.php-PHPStan\BetterReflection\Reflection\ReflectionClass-App\Domain\Reporting\Support\DashboardScope
 return \PHPStan\Cache\CacheItem::__set_state(array(
-   'variableKey' => 'v2-6.70.0.1-8.3.31-d197dcff00b3803080df1ad9e12731eb940ed090444cc7b400794cae68ca38d6',
+   'variableKey' => 'v2-6.70.0.1-8.3.31-b52c0b828d2c06e49788a53c42a88c93b03787ff3b7ab3e810ece8ff0d01d914',
    'data' => 
   array (
     'locatedSource' => 
@@ -38,7 +38,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
     array (
     ),
     'startLine' => 19,
-    'endLine' => 153,
+    'endLine' => 180,
     'startColumn' => 1,
     'endColumn' => 1,
     'parentClassName' => NULL,
@@ -160,8 +160,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         'attributes' => 
         array (
         ),
-        'startLine' => 33,
-        'endLine' => 33,
+        'startLine' => 40,
+        'endLine' => 40,
         'startColumn' => 9,
         'endColumn' => 36,
         'isPromoted' => true,
@@ -210,8 +210,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         'attributes' => 
         array (
         ),
-        'startLine' => 34,
-        'endLine' => 34,
+        'startLine' => 41,
+        'endLine' => 41,
         'startColumn' => 9,
         'endColumn' => 38,
         'isPromoted' => true,
@@ -260,8 +260,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         'attributes' => 
         array (
         ),
-        'startLine' => 35,
-        'endLine' => 35,
+        'startLine' => 42,
+        'endLine' => 42,
         'startColumn' => 9,
         'endColumn' => 44,
         'isPromoted' => true,
@@ -310,8 +310,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         'attributes' => 
         array (
         ),
-        'startLine' => 36,
-        'endLine' => 36,
+        'startLine' => 43,
+        'endLine' => 43,
         'startColumn' => 9,
         'endColumn' => 42,
         'isPromoted' => true,
@@ -341,10 +341,53 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         'attributes' => 
         array (
         ),
-        'startLine' => 37,
-        'endLine' => 37,
+        'startLine' => 44,
+        'endLine' => 44,
         'startColumn' => 9,
         'endColumn' => 37,
+        'isPromoted' => true,
+        'declaredAtCompileTime' => true,
+        'immediateVirtual' => false,
+        'immediateHooks' => 
+        array (
+        ),
+      ),
+      'governance' => 
+      array (
+        'declaringClassName' => 'App\\Domain\\Reporting\\Support\\DashboardScope',
+        'implementingClassName' => 'App\\Domain\\Reporting\\Support\\DashboardScope',
+        'name' => 'governance',
+        'modifiers' => 2177,
+        'type' => 
+        array (
+          'class' => 'PHPStan\\BetterReflection\\Reflection\\ReflectionNamedType',
+          'data' => 
+          array (
+            'name' => 'bool',
+            'isIdentifier' => true,
+          ),
+        ),
+        'default' => 
+        array (
+          'code' => 'false',
+          'attributes' => 
+          array (
+            'startLine' => 45,
+            'endLine' => 45,
+            'startTokenPos' => 125,
+            'startFilePos' => 1979,
+            'endTokenPos' => 125,
+            'endFilePos' => 1983,
+          ),
+        ),
+        'docComment' => NULL,
+        'attributes' => 
+        array (
+        ),
+        'startLine' => 45,
+        'endLine' => 45,
+        'startColumn' => 9,
+        'endColumn' => 48,
         'isPromoted' => true,
         'declaredAtCompileTime' => true,
         'immediateVirtual' => false,
@@ -379,8 +422,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             'attributes' => 
             array (
             ),
-            'startLine' => 33,
-            'endLine' => 33,
+            'startLine' => 40,
+            'endLine' => 40,
             'startColumn' => 9,
             'endColumn' => 36,
             'parameterIndex' => 0,
@@ -424,8 +467,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             'attributes' => 
             array (
             ),
-            'startLine' => 34,
-            'endLine' => 34,
+            'startLine' => 41,
+            'endLine' => 41,
             'startColumn' => 9,
             'endColumn' => 38,
             'parameterIndex' => 1,
@@ -469,8 +512,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             'attributes' => 
             array (
             ),
-            'startLine' => 35,
-            'endLine' => 35,
+            'startLine' => 42,
+            'endLine' => 42,
             'startColumn' => 9,
             'endColumn' => 44,
             'parameterIndex' => 2,
@@ -514,8 +557,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             'attributes' => 
             array (
             ),
-            'startLine' => 36,
-            'endLine' => 36,
+            'startLine' => 43,
+            'endLine' => 43,
             'startColumn' => 9,
             'endColumn' => 42,
             'parameterIndex' => 3,
@@ -540,12 +583,50 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             'attributes' => 
             array (
             ),
-            'startLine' => 37,
-            'endLine' => 37,
+            'startLine' => 44,
+            'endLine' => 44,
             'startColumn' => 9,
             'endColumn' => 37,
             'parameterIndex' => 4,
             'isOptional' => false,
+          ),
+          'governance' => 
+          array (
+            'name' => 'governance',
+            'default' => 
+            array (
+              'code' => 'false',
+              'attributes' => 
+              array (
+                'startLine' => 45,
+                'endLine' => 45,
+                'startTokenPos' => 125,
+                'startFilePos' => 1979,
+                'endTokenPos' => 125,
+                'endFilePos' => 1983,
+              ),
+            ),
+            'type' => 
+            array (
+              'class' => 'PHPStan\\BetterReflection\\Reflection\\ReflectionNamedType',
+              'data' => 
+              array (
+                'name' => 'bool',
+                'isIdentifier' => true,
+              ),
+            ),
+            'isVariadic' => false,
+            'byRef' => false,
+            'isPromoted' => true,
+            'attributes' => 
+            array (
+            ),
+            'startLine' => 45,
+            'endLine' => 45,
+            'startColumn' => 9,
+            'endColumn' => 48,
+            'parameterIndex' => 5,
+            'isOptional' => true,
           ),
         ),
         'returnsReference' => false,
@@ -557,9 +638,16 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
  * @param  list<string>|null  $mdaIds  null = all MDAs
  * @param  list<string>|null  $programmeIds  null = all programmes; set for partner
  * @param  string|null  $partnerId  the funding partner\'s user id (partner scope only)
+ * @param  bool  $governance  whether GOVERNANCE data (users, audit, imports, the
+ *                            administrative datasets) is in scope. This is a second,
+ *                            independent axis: state-wide answers "how much of the
+ *                            PROGRAMME data may you see", governance answers "may you
+ *                            see who did what". Executive/SP Coordination are
+ *                            state-wide but NOT governance; only a System
+ *                            Administrator is both.
  */',
-        'startLine' => 32,
-        'endLine' => 38,
+        'startLine' => 39,
+        'endLine' => 46,
         'startColumn' => 5,
         'endColumn' => 8,
         'couldThrow' => false,
@@ -578,6 +666,44 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         'name' => 'stateWide',
         'parameters' => 
         array (
+          'governance' => 
+          array (
+            'name' => 'governance',
+            'default' => 
+            array (
+              'code' => 'false',
+              'attributes' => 
+              array (
+                'startLine' => 48,
+                'endLine' => 48,
+                'startTokenPos' => 147,
+                'startFilePos' => 2052,
+                'endTokenPos' => 147,
+                'endFilePos' => 2056,
+              ),
+            ),
+            'type' => 
+            array (
+              'class' => 'PHPStan\\BetterReflection\\Reflection\\ReflectionNamedType',
+              'data' => 
+              array (
+                'name' => 'bool',
+                'isIdentifier' => true,
+              ),
+            ),
+            'isVariadic' => false,
+            'byRef' => false,
+            'isPromoted' => false,
+            'attributes' => 
+            array (
+            ),
+            'startLine' => 48,
+            'endLine' => 48,
+            'startColumn' => 38,
+            'endColumn' => 61,
+            'parameterIndex' => 0,
+            'isOptional' => true,
+          ),
         ),
         'returnsReference' => false,
         'returnType' => 
@@ -593,8 +719,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         array (
         ),
         'docComment' => NULL,
-        'startLine' => 40,
-        'endLine' => 43,
+        'startLine' => 48,
+        'endLine' => 51,
         'startColumn' => 5,
         'endColumn' => 5,
         'couldThrow' => false,
@@ -632,8 +758,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             'attributes' => 
             array (
             ),
-            'startLine' => 48,
-            'endLine' => 48,
+            'startLine' => 56,
+            'endLine' => 56,
             'startColumn' => 32,
             'endColumn' => 44,
             'parameterIndex' => 0,
@@ -647,12 +773,12 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
               'code' => '\'My MDA\'',
               'attributes' => 
               array (
-                'startLine' => 48,
-                'endLine' => 48,
-                'startTokenPos' => 182,
-                'startFilePos' => 1625,
-                'endTokenPos' => 182,
-                'endFilePos' => 1632,
+                'startLine' => 56,
+                'endLine' => 56,
+                'startTokenPos' => 205,
+                'startFilePos' => 2286,
+                'endTokenPos' => 205,
+                'endFilePos' => 2293,
               ),
             ),
             'type' => 
@@ -670,8 +796,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             'attributes' => 
             array (
             ),
-            'startLine' => 48,
-            'endLine' => 48,
+            'startLine' => 56,
+            'endLine' => 56,
             'startColumn' => 47,
             'endColumn' => 70,
             'parameterIndex' => 1,
@@ -694,8 +820,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         'docComment' => '/**
  * @param  list<string>  $mdaIds
  */',
-        'startLine' => 48,
-        'endLine' => 53,
+        'startLine' => 56,
+        'endLine' => 61,
         'startColumn' => 5,
         'endColumn' => 5,
         'couldThrow' => false,
@@ -733,8 +859,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             'attributes' => 
             array (
             ),
-            'startLine' => 62,
-            'endLine' => 62,
+            'startLine' => 70,
+            'endLine' => 70,
             'startColumn' => 36,
             'endColumn' => 54,
             'parameterIndex' => 0,
@@ -748,12 +874,12 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
               'code' => 'null',
               'attributes' => 
               array (
-                'startLine' => 62,
-                'endLine' => 62,
-                'startTokenPos' => 244,
-                'startFilePos' => 2162,
-                'endTokenPos' => 244,
-                'endFilePos' => 2165,
+                'startLine' => 70,
+                'endLine' => 70,
+                'startTokenPos' => 267,
+                'startFilePos' => 2823,
+                'endTokenPos' => 267,
+                'endFilePos' => 2826,
               ),
             ),
             'type' => 
@@ -790,8 +916,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             'attributes' => 
             array (
             ),
-            'startLine' => 62,
-            'endLine' => 62,
+            'startLine' => 70,
+            'endLine' => 70,
             'startColumn' => 57,
             'endColumn' => 81,
             'parameterIndex' => 1,
@@ -805,12 +931,12 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
               'code' => '\'Funded programmes\'',
               'attributes' => 
               array (
-                'startLine' => 62,
-                'endLine' => 62,
-                'startTokenPos' => 253,
-                'startFilePos' => 2184,
-                'endTokenPos' => 253,
-                'endFilePos' => 2202,
+                'startLine' => 70,
+                'endLine' => 70,
+                'startTokenPos' => 276,
+                'startFilePos' => 2845,
+                'endTokenPos' => 276,
+                'endFilePos' => 2863,
               ),
             ),
             'type' => 
@@ -828,8 +954,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             'attributes' => 
             array (
             ),
-            'startLine' => 62,
-            'endLine' => 62,
+            'startLine' => 70,
+            'endLine' => 70,
             'startColumn' => 84,
             'endColumn' => 118,
             'parameterIndex' => 2,
@@ -856,8 +982,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
  *
  * @param  list<string>  $programmeIds
  */',
-        'startLine' => 62,
-        'endLine' => 67,
+        'startLine' => 70,
+        'endLine' => 75,
         'startColumn' => 5,
         'endColumn' => 5,
         'couldThrow' => false,
@@ -895,8 +1021,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             'attributes' => 
             array (
             ),
-            'startLine' => 76,
-            'endLine' => 76,
+            'startLine' => 84,
+            'endLine' => 84,
             'startColumn' => 38,
             'endColumn' => 49,
             'parameterIndex' => 0,
@@ -940,8 +1066,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             'attributes' => 
             array (
             ),
-            'startLine' => 76,
-            'endLine' => 76,
+            'startLine' => 84,
+            'endLine' => 84,
             'startColumn' => 52,
             'endColumn' => 65,
             'parameterIndex' => 1,
@@ -985,8 +1111,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             'attributes' => 
             array (
             ),
-            'startLine' => 76,
-            'endLine' => 76,
+            'startLine' => 84,
+            'endLine' => 84,
             'startColumn' => 68,
             'endColumn' => 87,
             'parameterIndex' => 2,
@@ -1011,12 +1137,50 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             'attributes' => 
             array (
             ),
-            'startLine' => 76,
-            'endLine' => 76,
+            'startLine' => 84,
+            'endLine' => 84,
             'startColumn' => 90,
             'endColumn' => 102,
             'parameterIndex' => 3,
             'isOptional' => false,
+          ),
+          'governance' => 
+          array (
+            'name' => 'governance',
+            'default' => 
+            array (
+              'code' => 'false',
+              'attributes' => 
+              array (
+                'startLine' => 84,
+                'endLine' => 84,
+                'startTokenPos' => 354,
+                'startFilePos' => 3392,
+                'endTokenPos' => 354,
+                'endFilePos' => 3396,
+              ),
+            ),
+            'type' => 
+            array (
+              'class' => 'PHPStan\\BetterReflection\\Reflection\\ReflectionNamedType',
+              'data' => 
+              array (
+                'name' => 'bool',
+                'isIdentifier' => true,
+              ),
+            ),
+            'isVariadic' => false,
+            'byRef' => false,
+            'isPromoted' => false,
+            'attributes' => 
+            array (
+            ),
+            'startLine' => 84,
+            'endLine' => 84,
+            'startColumn' => 105,
+            'endColumn' => 128,
+            'parameterIndex' => 4,
+            'isOptional' => true,
           ),
         ),
         'returnsReference' => false,
@@ -1039,8 +1203,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
  * @param  list<string>|null  $mdaIds
  * @param  list<string>|null  $programmeIds
  */',
-        'startLine' => 76,
-        'endLine' => 83,
+        'startLine' => 84,
+        'endLine' => 91,
         'startColumn' => 5,
         'endColumn' => 5,
         'couldThrow' => false,
@@ -1074,8 +1238,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         array (
         ),
         'docComment' => NULL,
-        'startLine' => 85,
-        'endLine' => 88,
+        'startLine' => 93,
+        'endLine' => 96,
         'startColumn' => 5,
         'endColumn' => 5,
         'couldThrow' => false,
@@ -1114,8 +1278,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
  * programmes; every other MDA user to an operational/own-MDA tier. Purely a label —
  * the actual enforcement is the scope\'s `mdaIds`/`programmeIds` applied in every query.
  */',
-        'startLine' => 96,
-        'endLine' => 103,
+        'startLine' => 104,
+        'endLine' => 111,
         'startColumn' => 5,
         'endColumn' => 5,
         'couldThrow' => false,
@@ -1149,8 +1313,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         array (
         ),
         'docComment' => NULL,
-        'startLine' => 105,
-        'endLine' => 108,
+        'startLine' => 113,
+        'endLine' => 116,
         'startColumn' => 5,
         'endColumn' => 5,
         'couldThrow' => false,
@@ -1184,8 +1348,47 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         array (
         ),
         'docComment' => '/** Coordination metrics (referrals/grievances/duplicates) apply to MDA/state scopes, not partners. */',
-        'startLine' => 111,
-        'endLine' => 114,
+        'startLine' => 119,
+        'endLine' => 122,
+        'startColumn' => 5,
+        'endColumn' => 5,
+        'couldThrow' => false,
+        'isClosure' => false,
+        'isGenerator' => false,
+        'isVariadic' => false,
+        'modifiers' => 1,
+        'namespace' => 'App\\Domain\\Reporting\\Support',
+        'declaringClassName' => 'App\\Domain\\Reporting\\Support\\DashboardScope',
+        'implementingClassName' => 'App\\Domain\\Reporting\\Support\\DashboardScope',
+        'currentClassName' => 'App\\Domain\\Reporting\\Support\\DashboardScope',
+        'aliasName' => NULL,
+      ),
+      'includesGovernanceData' => 
+      array (
+        'name' => 'includesGovernanceData',
+        'parameters' => 
+        array (
+        ),
+        'returnsReference' => false,
+        'returnType' => 
+        array (
+          'class' => 'PHPStan\\BetterReflection\\Reflection\\ReflectionNamedType',
+          'data' => 
+          array (
+            'name' => 'bool',
+            'isIdentifier' => true,
+          ),
+        ),
+        'attributes' => 
+        array (
+        ),
+        'docComment' => '/**
+ * Whether the administrative/governance datasets (users, MDAs, programmes,
+ * duplicates, audit, imports) are in scope. State-wide oversight is NOT enough —
+ * an Executive sees all programme data but not who did what.
+ */',
+        'startLine' => 129,
+        'endLine' => 132,
         'startColumn' => 5,
         'endColumn' => 5,
         'couldThrow' => false,
@@ -1223,8 +1426,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             'attributes' => 
             array (
             ),
-            'startLine' => 126,
-            'endLine' => 126,
+            'startLine' => 147,
+            'endLine' => 147,
             'startColumn' => 28,
             'endColumn' => 38,
             'parameterIndex' => 0,
@@ -1249,13 +1452,16 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
  * FR-RPT-04). Used to check a recipient (this = recipient\'s scope) may receive a
  * report scoped to `$other` — so a schedule can never deliver out-of-scope data:
  *
- *  - state-wide covers everything;
+ *  - a GOVERNANCE report is covered only by a governance scope — state-wide is not
+ *    enough, so an Executive can never be sent an admin (user/audit/import) report
+ *    even though they out-rank the MDA axis;
+ *  - state-wide covers everything else;
  *  - an MDA scope covers another MDA scope only if its MDAs are a superset;
  *  - a partner scope covers another partner scope only if its programmes are a superset;
  *  - the axes never cross (an MDA scope cannot cover a partner/state-wide report).
  */',
-        'startLine' => 126,
-        'endLine' => 139,
+        'startLine' => 147,
+        'endLine' => 164,
         'startColumn' => 5,
         'endColumn' => 5,
         'couldThrow' => false,
@@ -1292,8 +1498,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
  * A stable key identifying this scope — the primary key of its snapshot row and
  * the cache key. Two callers with the same effective scope share one snapshot.
  */',
-        'startLine' => 145,
-        'endLine' => 152,
+        'startLine' => 170,
+        'endLine' => 179,
         'startColumn' => 5,
         'endColumn' => 5,
         'couldThrow' => false,

@@ -4,6 +4,8 @@ import type { Activity, ActivityDetail, ActivityInput, Budget, BulkEnrollResult,
 
 export interface ProgrammeListParams {
   page?: number
+  /** Page size (API caps at 100). Used by the catalog-usage overview. */
+  per_page?: number
   search?: string
   status?: string
   type?: string
@@ -16,6 +18,7 @@ export const programmeApi = {
       url: '/programmes',
       params: {
         page: params.page,
+        per_page: params.per_page,
         search: params.search || undefined,
         'filter[status]': params.status || undefined,
         'filter[type]': params.type || undefined,

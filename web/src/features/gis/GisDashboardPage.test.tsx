@@ -23,8 +23,8 @@ vi.mock('@/lib/auth/AuthProvider', () => ({
 const coverage = gisApi.coverage as Mock
 
 const rows = [
-  { key: 'dutse', name: 'Dutse', beneficiary_count: 5, benefit_count: 2, benefit_value: 100_000, households: 3, served: 2, active_programmes: 1, active_activities: 1, mdas: ['MDA A'], band: 'green' as const },
-  { key: 'hadejia', name: 'Hadejia', beneficiary_count: 1, benefit_count: 0, benefit_value: 0, households: 0, served: 0, active_programmes: 0, active_activities: 0, mdas: [], band: 'red' as const },
+  { key: 'dutse', name: 'Dutse', beneficiary_count: 5, benefit_count: 2, benefit_value: 100_000, funding_allocated: 500_000, households: 3, served: 2, active_programmes: 1, active_activities: 1, mdas: ['MDA A'], band: 'green' as const },
+  { key: 'hadejia', name: 'Hadejia', beneficiary_count: 1, benefit_count: 0, benefit_value: 0, funding_allocated: 0, households: 0, served: 0, active_programmes: 0, active_activities: 0, mdas: [], band: 'red' as const },
 ]
 const bands = { green_min: 1000, yellow_min: 250 }
 
