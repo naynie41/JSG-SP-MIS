@@ -40,9 +40,35 @@ describe('navSectionsFor', () => {
     expect(tos).not.toContain('/executive/coverage')
   })
 
-  it('adds the Administration section only for the System Administrator', () => {
-    expect(navSectionsFor('system_administrator', all).flatMap((s) => s.items.map((i) => i.label))).toContain('Users')
-    expect(navSectionsFor('mda_officer', all).flatMap((s) => s.items.map((i) => i.label))).not.toContain('Users')
+  it('gives a System Administrator the nine console pages, not the generic rail', () => {
+    const items = navSectionsFor('system_administrator', all).flatMap((s) => s.items)
+
+    expect(items.map((i) => i.label)).toEqual([
+      'Overview',
+      'User & Access',
+      'Organization',
+      'Programme Catalog',
+      'Registry & Data Quality',
+      'Integrations',
+      'Matching Rules & Registry Config',
+      'Audit & Security',
+      'Reports',
+    ])
+    expect(items).toHaveLength(9)
+    expect(items.every((i) => i.to.startsWith('/admin'))).toBe(true)
+
+    // Settings is NOT a nav link — it opens from the gear/account affordance.
+    expect(items.map((i) => i.label)).not.toContain('Settings')
+    expect(items.map((i) => i.to)).not.toContain('/admin/settings')
+
+    // Overview is an exact-match (index) link, and the generic operator rail is hidden.
+    expect(items.find((i) => i.label === 'Overview')?.end).toBe(true)
+    expect(items.map((i) => i.to)).not.toContain('/')
+  })
+
+  it('never offers the console rails to an operator role', () => {
+    const tos = navSectionsFor('mda_officer', all).flatMap((s) => s.items.map((i) => i.to))
+    expect(tos.some((to) => to.startsWith('/admin'))).toBe(false)
   })
 
   it('drops items the caller lacks permission for, and empty sections', () => {

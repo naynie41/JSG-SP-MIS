@@ -10,6 +10,7 @@ use App\Domain\Reporting\Jobs\RunDueReportSchedules;
 use App\Domain\Sync\Jobs\RunDueSyncConnectors;
 use App\Http\Middleware\AssignCorrelationId;
 use App\Http\Middleware\CheckPermission;
+use App\Http\Middleware\CheckRole;
 use App\Http\Middleware\EnforceIdleTimeout;
 use App\Http\Middleware\SecurityHeaders;
 use App\Support\ApiResponse;
@@ -83,6 +84,7 @@ return Application::configure(basePath: dirname(__DIR__))
             'ability' => CheckForAnyAbility::class,
             'idle.timeout' => EnforceIdleTimeout::class,
             'permission' => CheckPermission::class,
+            'role' => CheckRole::class,
         ]);
     })
     ->withExceptions(function (Exceptions $exceptions): void {

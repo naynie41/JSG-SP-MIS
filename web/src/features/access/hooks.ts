@@ -1,5 +1,6 @@
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query'
 import { useToast } from '@/components/Toast/ToastProvider'
+import { ApiError } from '@/types/api'
 import { accessApi } from './api'
 import type { CreateGrantInput } from './types'
 
@@ -15,6 +16,30 @@ export function usePermissionModules(enabled = true) {
 
 export function usePermissionMatrix(enabled = true) {
   return useQuery({ queryKey: ['permission-matrix'], queryFn: accessApi.matrix, enabled, staleTime: 5 * 60_000 })
+}
+
+/**
+ * Save a role's permission set. On success the matrix is refetched rather than patched
+ * locally, so what the editor shows is always what the server actually stored.
+ */
+export function useUpdateRolePermissions() {
+  const qc = useQueryClient()
+  const toast = useToast()
+
+  return useMutation({
+    mutationFn: ({ roleId, permissions }: { roleId: string; permissions: string[] }) =>
+      accessApi.updateRolePermissions(roleId, permissions),
+    onSuccess: ({ role }) => {
+      qc.invalidateQueries({ queryKey: ['permission-matrix'] })
+      qc.invalidateQueries({ queryKey: ['access-roles'] })
+      toast.success('Permissions updated', `${role.name} now holds ${role.permissions.length} permissions.`)
+    },
+    onError: (error) =>
+      toast.error(
+        'Could not update permissions',
+        error instanceof ApiError ? error.message : 'Please try again.',
+      ),
+  })
 }
 
 export function useGrants(enabled = true) {

@@ -26,7 +26,14 @@ class UserResource extends JsonResource
             'name' => $this->name,
             'email' => $this->email,
             'status' => $this->status->value,
+            // Lockout is a runtime state (FR-UAM-06), distinct from the stored status:
+            // an account can be `active` yet temporarily locked after failed attempts.
+            'is_locked' => $this->isLocked(),
+            'locked_until' => $this->locked_until?->toIso8601String(),
             'mfa_enabled' => (bool) $this->mfa_enabled,
+            // Whether the ROLE mandates MFA (FR-UAM-04) — the enforcement policy, so an
+            // administrator can see compliance (required vs actually enrolled).
+            'mfa_required' => $this->mfaRequired(),
             'last_login_at' => $this->last_login_at?->toIso8601String(),
             'mda' => $this->mda ? [
                 'id' => $this->mda->id,

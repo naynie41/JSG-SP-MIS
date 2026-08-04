@@ -24,6 +24,9 @@ class AdHocReportRequest extends FormRequest
     public function rules(): array
     {
         return [
+            // Optional display label for the run (AdHocDefinition::label()); without it
+            // every ad-hoc export lands in the run list as a generic "Ad-hoc report".
+            'name' => ['nullable', 'string', 'max:120'],
             'dataset' => ['required', 'string', 'max:64'],
             'group_by' => ['nullable', 'array'],
             'group_by.*' => ['string', 'max:64'],

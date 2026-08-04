@@ -24,6 +24,8 @@ export interface Programme {
   enforce_eligibility: boolean
   status: ProgrammeStatus
   activities_count?: number
+  /** Catalog USAGE: distinct MDAs running an activity for this programme (§10). */
+  mdas_count?: number
   created_by: string | null
   created_at: string | null
   updated_at: string | null

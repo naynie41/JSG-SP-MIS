@@ -4,10 +4,16 @@ declare(strict_types=1);
 
 namespace App\Domain\Reporting\Reports\AdHoc;
 
+use App\Domain\Access\Models\Mda;
+use App\Domain\Access\Models\User;
+use App\Domain\Audit\Models\AuditLog;
 use App\Domain\Benefit\Models\Benefit;
 use App\Domain\Grievance\Models\Grievance;
+use App\Domain\Programme\Models\Programme;
 use App\Domain\Referral\Models\Referral;
 use App\Domain\Registry\Models\Beneficiary;
+use App\Domain\Registry\Models\ImportBatch;
+use App\Domain\Registry\Models\ImportRow;
 use App\Domain\Reporting\Support\DashboardScope;
 
 /**
@@ -16,6 +22,15 @@ use App\Domain\Reporting\Support\DashboardScope;
  * row-level or identifier column anywhere, so an ad-hoc report is always
  * de-identified and PII can never be selected. Coordination datasets
  * (referrals/grievances) are hidden from a partner's funded-programme scope.
+ *
+ * Datasets flagged `admin` are the ADMINISTRATIVE/governance datasets behind the
+ * System Administrator console's Reports section — users, organizations, the
+ * programme catalogue, duplicate review, the audit log and import batches. They are
+ * available only to a scope carrying `governance` (a System Administrator), never to
+ * state-wide oversight: an Executive sees all programme data but not who did what.
+ * Their dimensions are counts over administrative attributes only — a user report can
+ * group by role or status but never by name or email, and an audit report never
+ * exposes the before/after payload.
  *
  * This registry is the single source of truth: the builder validates every
  * definition against it, and the API catalogue is derived from it.
@@ -123,6 +138,144 @@ final class AdHocDatasetRegistry
                 'date_to' => ['column' => 'created_at', 'kind' => 'date_to'],
             ],
         ],
+
+        /* ------------------------------------------------------------------------
+         | Administrative (governance) datasets — System Administrator console only.
+         | Counts over administrative attributes; never a name, email, NIN or an
+         | audit before/after payload.
+         */
+
+        'users' => [
+            'label' => 'Users & access',
+            'coordination' => false,
+            'admin' => true,
+            'model' => User::class,
+            'exclude_reversed' => false,
+            'dimensions' => [
+                'role' => ['label' => 'Role', 'column' => 'role_id', 'render' => 'role'],
+                'mda' => ['label' => 'MDA', 'column' => 'mda_id', 'render' => 'mda'],
+                'status' => ['label' => 'Account status', 'column' => 'status', 'render' => 'title'],
+                'mfa_enabled' => ['label' => 'MFA enrolled', 'column' => 'mfa_enabled', 'render' => 'bool'],
+            ],
+            'measures' => [
+                'count' => ['label' => 'Users', 'sql' => 'count(*)', 'render' => 'int'],
+            ],
+            'filters' => [
+                'mda_id' => ['column' => 'mda_id', 'kind' => 'equals'],
+                'status' => ['column' => 'status', 'kind' => 'equals'],
+                'role_id' => ['column' => 'role_id', 'kind' => 'equals'],
+                'date_from' => ['column' => 'created_at', 'kind' => 'date_from'],
+                'date_to' => ['column' => 'created_at', 'kind' => 'date_to'],
+            ],
+        ],
+        'organizations' => [
+            'label' => 'Organizations (MDAs & partners)',
+            'coordination' => false,
+            'admin' => true,
+            'model' => Mda::class,
+            'exclude_reversed' => false,
+            'dimensions' => [
+                'type' => ['label' => 'Type', 'column' => 'type', 'render' => 'title'],
+                'status' => ['label' => 'Status', 'column' => 'status', 'render' => 'title'],
+            ],
+            'measures' => [
+                'count' => ['label' => 'Organizations', 'sql' => 'count(*)', 'render' => 'int'],
+            ],
+            'filters' => [
+                'type' => ['column' => 'type', 'kind' => 'equals'],
+                'status' => ['column' => 'status', 'kind' => 'equals'],
+            ],
+        ],
+        'programme_catalogue' => [
+            'label' => 'Programme catalogue',
+            'coordination' => false,
+            'admin' => true,
+            'model' => Programme::class,
+            'exclude_reversed' => false,
+            'dimensions' => [
+                'type' => ['label' => 'Type', 'column' => 'type', 'render' => 'title'],
+                'benefit_category' => ['label' => 'Benefit category', 'column' => 'benefit_category', 'render' => 'title'],
+                'status' => ['label' => 'Status', 'column' => 'status', 'render' => 'title'],
+            ],
+            'measures' => [
+                'count' => ['label' => 'Programmes', 'sql' => 'count(*)', 'render' => 'int'],
+            ],
+            'filters' => [
+                'type' => ['column' => 'type', 'kind' => 'equals'],
+                'benefit_category' => ['column' => 'benefit_category', 'kind' => 'equals'],
+                'status' => ['column' => 'status', 'kind' => 'equals'],
+                'date_from' => ['column' => 'created_at', 'kind' => 'date_from'],
+                'date_to' => ['column' => 'created_at', 'kind' => 'date_to'],
+            ],
+        ],
+        'duplicates' => [
+            'label' => 'Duplicate review',
+            'coordination' => false,
+            'admin' => true,
+            'model' => ImportRow::class,
+            'exclude_reversed' => false,
+            'dimensions' => [
+                'match_band' => ['label' => 'Match band', 'column' => 'match_band', 'render' => 'title'],
+                'resolution' => ['label' => 'Resolution', 'column' => 'resolution', 'render' => 'title'],
+            ],
+            'measures' => [
+                'count' => ['label' => 'Rows', 'sql' => 'count(*)', 'render' => 'int'],
+            ],
+            'filters' => [
+                'match_band' => ['column' => 'match_band', 'kind' => 'equals'],
+                'resolution' => ['column' => 'resolution', 'kind' => 'equals'],
+                'date_from' => ['column' => 'created_at', 'kind' => 'date_from'],
+                'date_to' => ['column' => 'created_at', 'kind' => 'date_to'],
+            ],
+        ],
+        'audit' => [
+            'label' => 'Audit events',
+            'coordination' => false,
+            'admin' => true,
+            'model' => AuditLog::class,
+            'exclude_reversed' => false,
+            'dimensions' => [
+                'action' => ['label' => 'Action', 'column' => 'action', 'render' => 'action'],
+                'entity_type' => ['label' => 'Entity', 'column' => 'entity_type', 'render' => 'class'],
+                'actor_mda' => ['label' => 'Actor MDA', 'column' => 'actor_mda_id', 'render' => 'mda'],
+            ],
+            'measures' => [
+                'count' => ['label' => 'Events', 'sql' => 'count(*)', 'render' => 'int'],
+            ],
+            'filters' => [
+                'action' => ['column' => 'action', 'kind' => 'equals'],
+                'entity_type' => ['column' => 'entity_type', 'kind' => 'equals'],
+                'mda_id' => ['column' => 'actor_mda_id', 'kind' => 'equals'],
+                'date_from' => ['column' => 'created_at', 'kind' => 'date_from'],
+                'date_to' => ['column' => 'created_at', 'kind' => 'date_to'],
+            ],
+        ],
+        'imports' => [
+            'label' => 'Import batches',
+            'coordination' => false,
+            'admin' => true,
+            'model' => ImportBatch::class,
+            'exclude_reversed' => false,
+            'dimensions' => [
+                'source' => ['label' => 'Source', 'column' => 'source', 'render' => 'title'],
+                'status' => ['label' => 'Status', 'column' => 'status', 'render' => 'title'],
+                'owner_mda' => ['label' => 'Owner MDA', 'column' => 'owner_mda_id', 'render' => 'mda'],
+            ],
+            'measures' => [
+                'count' => ['label' => 'Batches', 'sql' => 'count(*)', 'render' => 'int'],
+                'total_rows' => ['label' => 'Rows', 'sql' => 'coalesce(sum(total_rows), 0)', 'render' => 'int'],
+                'valid_rows' => ['label' => 'Valid rows', 'sql' => 'coalesce(sum(valid_rows), 0)', 'render' => 'int'],
+                'invalid_rows' => ['label' => 'Invalid rows', 'sql' => 'coalesce(sum(invalid_rows), 0)', 'render' => 'int'],
+                'committed_rows' => ['label' => 'Committed rows', 'sql' => 'coalesce(sum(committed_rows), 0)', 'render' => 'int'],
+            ],
+            'filters' => [
+                'mda_id' => ['column' => 'owner_mda_id', 'kind' => 'equals'],
+                'source' => ['column' => 'source', 'kind' => 'equals'],
+                'status' => ['column' => 'status', 'kind' => 'equals'],
+                'date_from' => ['column' => 'created_at', 'kind' => 'date_from'],
+                'date_to' => ['column' => 'created_at', 'kind' => 'date_to'],
+            ],
+        ],
     ];
 
     /**
@@ -138,10 +291,17 @@ final class AdHocDatasetRegistry
         return (bool) (self::DATASETS[$dataset]['coordination'] ?? false);
     }
 
+    /** Whether a dataset is administrative/governance data (System Administrator only). */
+    public static function isAdmin(string $dataset): bool
+    {
+        return (bool) (self::DATASETS[$dataset]['admin'] ?? false);
+    }
+
     public static function availableTo(string $dataset, DashboardScope $scope): bool
     {
         return isset(self::DATASETS[$dataset])
-            && ! (self::isCoordination($dataset) && ! $scope->includesCoordinationMetrics());
+            && ! (self::isCoordination($dataset) && ! $scope->includesCoordinationMetrics())
+            && ! (self::isAdmin($dataset) && ! $scope->includesGovernanceData());
     }
 
     /**
@@ -154,12 +314,13 @@ final class AdHocDatasetRegistry
     {
         $out = [];
         foreach (self::DATASETS as $key => $dataset) {
-            if ($dataset['coordination'] && ! $scope->includesCoordinationMetrics()) {
+            if (! self::availableTo($key, $scope)) {
                 continue;
             }
             $out[] = [
                 'key' => $key,
                 'label' => $dataset['label'],
+                'admin' => self::isAdmin($key),
                 'dimensions' => self::optionList($dataset['dimensions']),
                 'measures' => self::optionList($dataset['measures']),
                 'filters' => array_keys($dataset['filters']),

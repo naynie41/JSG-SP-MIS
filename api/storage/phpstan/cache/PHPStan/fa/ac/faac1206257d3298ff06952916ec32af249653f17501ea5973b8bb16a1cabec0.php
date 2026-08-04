@@ -619,7 +619,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
     ),
     'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Audit\\Models\\AuditLog.php' => 
     array (
-      0 => '46ad471ba15f1bccb0a238a4b271c084a80a45010b6a6cccea779ceb55f1b858',
+      0 => '339ea8c889c477ab1dd847693c63cb9ec521c6a6e83f65bd02f8aba7d25d2589',
       1 => 
       array (
         0 => 'app\\domain\\audit\\models\\auditlog',
@@ -2140,7 +2140,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
     ),
     'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Notification\\NotificationServiceProvider.php' => 
     array (
-      0 => '1d6f1323ac9eeebf0162d6ec3a050737cece4fd3b9b2192da08d45880ec789ef',
+      0 => 'd7cfaa488250bba1c88becd457e64c258c95a0b4af08698396cad02044b74006',
       1 => 
       array (
         0 => 'app\\domain\\notification\\notificationserviceprovider',
@@ -4352,7 +4352,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
     ),
     'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Reporting\\Models\\ReportRun.php' => 
     array (
-      0 => '2793228d889e663871b3371890daa77fd4a781d5da63c9bd78a4d0573243aeae',
+      0 => 'e843f9debeb21f19966d25ed0f47f7cc5866f1ad2e9248d3084b03d8e5cdf5fd',
       1 => 
       array (
         0 => 'app\\domain\\reporting\\models\\reportrun',
@@ -4371,7 +4371,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
     ),
     'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Reporting\\Models\\ReportSchedule.php' => 
     array (
-      0 => '8a140ce5887a4b1bbb5a7ccddda9cc95d82a40551c908ad03dd26b30f86ce9a9',
+      0 => '1abf281c0f66d62a6730b556678742baaeae66027f14c30f829783d64c6cb581',
       1 => 
       array (
         0 => 'app\\domain\\reporting\\models\\reportschedule',
@@ -4405,7 +4405,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
     ),
     'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Reporting\\Reports\\AdHoc\\AdHocDatasetRegistry.php' => 
     array (
-      0 => 'da058c66e37aa027f0aa82588ee7bc10c9ae511ecb7a1db2172035949642e1e2',
+      0 => 'd403e378c69938b645ef96ae172850e89eb204bbae07d27fedfc8f4b1bc04856',
       1 => 
       array (
         0 => 'app\\domain\\reporting\\reports\\adhoc\\adhocdatasetregistry',
@@ -4414,9 +4414,10 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
       array (
         0 => 'app\\domain\\reporting\\reports\\adhoc\\get',
         1 => 'app\\domain\\reporting\\reports\\adhoc\\iscoordination',
-        2 => 'app\\domain\\reporting\\reports\\adhoc\\availableto',
-        3 => 'app\\domain\\reporting\\reports\\adhoc\\cataloguefor',
-        4 => 'app\\domain\\reporting\\reports\\adhoc\\optionlist',
+        2 => 'app\\domain\\reporting\\reports\\adhoc\\isadmin',
+        3 => 'app\\domain\\reporting\\reports\\adhoc\\availableto',
+        4 => 'app\\domain\\reporting\\reports\\adhoc\\cataloguefor',
+        5 => 'app\\domain\\reporting\\reports\\adhoc\\optionlist',
       ),
       3 => 
       array (
@@ -4442,7 +4443,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
     ),
     'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Reporting\\Reports\\AdHoc\\AdHocReportBuilder.php' => 
     array (
-      0 => '07c16c51476e04e2ffa13aa7d912409b335cebbd5e6a617d31132f3ec0889417',
+      0 => '94e2b582061c5329432c4f3ee3d366515e223da59f3ab2d2f10a4554d175315b',
       1 => 
       array (
         0 => 'app\\domain\\reporting\\reports\\adhoc\\adhocreportbuilder',
@@ -4569,7 +4570,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
     ),
     'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Reporting\\Services\\DashboardScopeResolver.php' => 
     array (
-      0 => '19436c5e51cf40179abc91cd8e6dbb6bdaf9b36e8132bcaceec67c080f539bd0',
+      0 => 'c4cbb84397a27f4e03d30da91c3375d1acc98302e92bf4b18d9dd09821e2e9bc',
       1 => 
       array (
         0 => 'app\\domain\\reporting\\services\\dashboardscoperesolver',
@@ -4619,7 +4620,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
     ),
     'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Reporting\\Services\\ReportScheduleService.php' => 
     array (
-      0 => '17ec135fab548b24b6fb6f35406291da7fce3a25c2f1ee872304aefcc38a2f99',
+      0 => 'd44d0c2c19d4f4760079d72dcb491a2237fa8832a92b9af7360df9ca205edc33',
       1 => 
       array (
         0 => 'app\\domain\\reporting\\services\\reportscheduleservice',
@@ -4643,7 +4644,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
     ),
     'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Reporting\\Services\\ReportService.php' => 
     array (
-      0 => '99c8419d30c017175ffce956b0b97041af9ede573f870fe8a43de67d909be209',
+      0 => 'd02b38c86f42cc649095d3e61bb679a68b9fd4c53400d43250eb1442b64f1a95',
       1 => 
       array (
         0 => 'app\\domain\\reporting\\services\\reportservice',
@@ -4685,7 +4686,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
     ),
     'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Reporting\\Support\\DashboardScope.php' => 
     array (
-      0 => 'd197dcff00b3803080df1ad9e12731eb940ed090444cc7b400794cae68ca38d6',
+      0 => 'b52c0b828d2c06e49788a53c42a88c93b03787ff3b7ab3e810ece8ff0d01d914',
       1 => 
       array (
         0 => 'app\\domain\\reporting\\support\\dashboardscope',
@@ -4701,8 +4702,9 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         6 => 'app\\domain\\reporting\\support\\tier',
         7 => 'app\\domain\\reporting\\support\\ispartner',
         8 => 'app\\domain\\reporting\\support\\includescoordinationmetrics',
-        9 => 'app\\domain\\reporting\\support\\covers',
-        10 => 'app\\domain\\reporting\\support\\key',
+        9 => 'app\\domain\\reporting\\support\\includesgovernancedata',
+        10 => 'app\\domain\\reporting\\support\\covers',
+        11 => 'app\\domain\\reporting\\support\\key',
       ),
       3 => 
       array (
@@ -4969,7 +4971,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
     ),
     'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Access\\AccessController.php' => 
     array (
-      0 => '50e08fd003e95002e51e920225053678139ff7ff176e81700ecf1cc5d9165613',
+      0 => '8f493204741d0ef812168b4091fc2f40107f47bdf8512312f97a2f0418c750e5',
       1 => 
       array (
         0 => 'app\\http\\controllers\\api\\v1\\access\\accesscontroller',
@@ -4979,6 +4981,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         0 => 'app\\http\\controllers\\api\\v1\\access\\permissions',
         1 => 'app\\http\\controllers\\api\\v1\\access\\roles',
         2 => 'app\\http\\controllers\\api\\v1\\access\\matrix',
+        3 => 'app\\http\\controllers\\api\\v1\\access\\updatepermissions',
       ),
       3 => 
       array (
@@ -5329,7 +5332,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
     ),
     'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Programme\\ProgrammeController.php' => 
     array (
-      0 => '7b25702b7c1c4ef724b7635e912114d299dd40337a9de520d3e8fb40688c0098',
+      0 => 'b333da288b22f7df679ca61cee44fc56e15079d0c98dedd1d36837d3ecae56a2',
       1 => 
       array (
         0 => 'app\\http\\controllers\\api\\v1\\programme\\programmecontroller',
@@ -5338,10 +5341,11 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
       array (
         0 => 'app\\http\\controllers\\api\\v1\\programme\\index',
         1 => 'app\\http\\controllers\\api\\v1\\programme\\store',
-        2 => 'app\\http\\controllers\\api\\v1\\programme\\show',
-        3 => 'app\\http\\controllers\\api\\v1\\programme\\update',
-        4 => 'app\\http\\controllers\\api\\v1\\programme\\budget',
-        5 => 'app\\http\\controllers\\api\\v1\\programme\\archive',
+        2 => 'app\\http\\controllers\\api\\v1\\programme\\usagecounts',
+        3 => 'app\\http\\controllers\\api\\v1\\programme\\show',
+        4 => 'app\\http\\controllers\\api\\v1\\programme\\update',
+        5 => 'app\\http\\controllers\\api\\v1\\programme\\budget',
+        6 => 'app\\http\\controllers\\api\\v1\\programme\\archive',
       ),
       3 => 
       array (
@@ -6700,7 +6704,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
     ),
     'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Reporting\\AdHocReportRequest.php' => 
     array (
-      0 => 'b1986f9cff82410ceab76031bd4b0abb2588f3201e5e9b9e7d156d0d6635c216',
+      0 => '2942692e5b840df9b484cde020971af9aa50db9b887087dc002b037a9e8c84b6',
       1 => 
       array (
         0 => 'app\\http\\requests\\reporting\\adhocreportrequest',
@@ -7176,7 +7180,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
     ),
     'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Resources\\ProgrammeResource.php' => 
     array (
-      0 => 'ae627dc82abf3182493704e29888f956676ee8236d93b206157a3e3f15d5f9ae',
+      0 => 'c1e3b85563641994c9660a8e41f285137fbd422c72a65cf82d7b6f1bf592afb4',
       1 => 
       array (
         0 => 'app\\http\\resources\\programmeresource',
@@ -7296,7 +7300,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
     ),
     'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Resources\\UserResource.php' => 
     array (
-      0 => '5da0c98084da01f9c663dd20d1aacfa3f724546d6904d627e50ac354b387a8ad',
+      0 => '5b388404228015cf8c0bbf4f1de22679319b6bd04796a4ac7318279a2c0dafed',
       1 => 
       array (
         0 => 'app\\http\\resources\\userresource',
@@ -7368,6 +7372,299 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
       2 => 
       array (
         0 => 'app\\domain\\programme\\rules\\validate',
+      ),
+      3 => 
+      array (
+      ),
+    ),
+    'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Reporting\\Services\\AdminSummaryService.php' => 
+    array (
+      0 => '1e8a1f648370d8c57357805e89a12fbb67e5a4e7668492183670d3b99fa14621',
+      1 => 
+      array (
+        0 => 'app\\domain\\reporting\\services\\adminsummaryservice',
+      ),
+      2 => 
+      array (
+        0 => 'app\\domain\\reporting\\services\\build',
+        1 => 'app\\domain\\reporting\\services\\kpis',
+        2 => 'app\\domain\\reporting\\services\\adoptiontrend',
+        3 => 'app\\domain\\reporting\\services\\registrysnapshot',
+        4 => 'app\\domain\\reporting\\services\\alerts',
+        5 => 'app\\domain\\reporting\\services\\recentactivity',
+        6 => 'app\\domain\\reporting\\services\\monthlabels',
+      ),
+      3 => 
+      array (
+      ),
+    ),
+    'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Reporting\\AdminSummaryController.php' => 
+    array (
+      0 => 'd908dd84e7b617126db9a5b65be0eaeab1673f479558d5bdbd75ead9bc5546cd',
+      1 => 
+      array (
+        0 => 'app\\http\\controllers\\api\\v1\\reporting\\adminsummarycontroller',
+      ),
+      2 => 
+      array (
+        0 => 'app\\http\\controllers\\api\\v1\\reporting\\__construct',
+        1 => 'app\\http\\controllers\\api\\v1\\reporting\\show',
+      ),
+      3 => 
+      array (
+      ),
+    ),
+    'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Middleware\\CheckRole.php' => 
+    array (
+      0 => '33268dbbb66e26eebe33a4ec63ac41760fcf312919c9c4a23beeea93f2740356',
+      1 => 
+      array (
+        0 => 'app\\http\\middleware\\checkrole',
+      ),
+      2 => 
+      array (
+        0 => 'app\\http\\middleware\\handle',
+      ),
+      3 => 
+      array (
+      ),
+    ),
+    'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Access\\Services\\LoginActivityService.php' => 
+    array (
+      0 => 'a2c6efe0ddbe86f108e79bc549a5702b284c73502bba70b1a9a98537284536a5',
+      1 => 
+      array (
+        0 => 'app\\domain\\access\\services\\loginactivityservice',
+      ),
+      2 => 
+      array (
+        0 => 'app\\domain\\access\\services\\recent',
+        1 => 'app\\domain\\access\\services\\outcome',
+      ),
+      3 => 
+      array (
+      ),
+    ),
+    'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Access\\LoginActivityController.php' => 
+    array (
+      0 => '8cdb2c9f70d16c081434a4f2618e3ef03b35b93c4dd241038558bd2954599883',
+      1 => 
+      array (
+        0 => 'app\\http\\controllers\\api\\v1\\access\\loginactivitycontroller',
+      ),
+      2 => 
+      array (
+        0 => 'app\\http\\controllers\\api\\v1\\access\\__construct',
+        1 => 'app\\http\\controllers\\api\\v1\\access\\index',
+      ),
+      3 => 
+      array (
+      ),
+    ),
+    'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Reporting\\Services\\AdminOrganizationService.php' => 
+    array (
+      0 => 'fbbc683ac0238fc6a9469de724693eac55ded042b0716c6619933678de9e1c40',
+      1 => 
+      array (
+        0 => 'app\\domain\\reporting\\services\\adminorganizationservice',
+      ),
+      2 => 
+      array (
+        0 => 'app\\domain\\reporting\\services\\build',
+        1 => 'app\\domain\\reporting\\services\\partners',
+      ),
+      3 => 
+      array (
+      ),
+    ),
+    'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Reporting\\AdminOrganizationController.php' => 
+    array (
+      0 => '1f95596ead1e62f1a3c54bf488261511be4debaf842c6346391e9cb22543e7e2',
+      1 => 
+      array (
+        0 => 'app\\http\\controllers\\api\\v1\\reporting\\adminorganizationcontroller',
+      ),
+      2 => 
+      array (
+        0 => 'app\\http\\controllers\\api\\v1\\reporting\\__construct',
+        1 => 'app\\http\\controllers\\api\\v1\\reporting\\index',
+      ),
+      3 => 
+      array (
+      ),
+    ),
+    'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Registry\\RegistryRulesController.php' => 
+    array (
+      0 => '3a92ebbf3bbcd00c2cb571ab84ba9757d3fc8f24672d8e624cdcc071c818bfe6',
+      1 => 
+      array (
+        0 => 'app\\http\\controllers\\api\\v1\\registry\\registryrulescontroller',
+      ),
+      2 => 
+      array (
+        0 => 'app\\http\\controllers\\api\\v1\\registry\\index',
+        1 => 'app\\http\\controllers\\api\\v1\\registry\\describe',
+      ),
+      3 => 
+      array (
+      ),
+    ),
+    'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Audit\\Services\\AuditQueryService.php' => 
+    array (
+      0 => 'ebd583a630e2596f779d14c1fa1d915fe9bd57a3860590dc18a7216f353751a8',
+      1 => 
+      array (
+        0 => 'app\\domain\\audit\\services\\auditqueryservice',
+      ),
+      2 => 
+      array (
+        0 => 'app\\domain\\audit\\services\\paginate',
+        1 => 'app\\domain\\audit\\services\\forexport',
+        2 => 'app\\domain\\audit\\services\\query',
+        3 => 'app\\domain\\audit\\services\\present',
+        4 => 'app\\domain\\audit\\services\\categoryfor',
+        5 => 'app\\domain\\audit\\services\\knownactions',
+        6 => 'app\\domain\\audit\\services\\changedfields',
+        7 => 'app\\domain\\audit\\services\\allcategorisedactions',
+      ),
+      3 => 
+      array (
+      ),
+    ),
+    'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Audit\\AuditLogController.php' => 
+    array (
+      0 => '2c6a6d00cadf8f80be8064f1e0a89adc99f00a1ca24af5bad2815f3e701399a4',
+      1 => 
+      array (
+        0 => 'app\\http\\controllers\\api\\v1\\audit\\auditlogcontroller',
+      ),
+      2 => 
+      array (
+        0 => 'app\\http\\controllers\\api\\v1\\audit\\__construct',
+        1 => 'app\\http\\controllers\\api\\v1\\audit\\index',
+        2 => 'app\\http\\controllers\\api\\v1\\audit\\export',
+        3 => 'app\\http\\controllers\\api\\v1\\audit\\filters',
+      ),
+      3 => 
+      array (
+      ),
+    ),
+    'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Access\\Services\\RolePermissionService.php' => 
+    array (
+      0 => 'cbcaa351d397a644c052d6c50a92d45fdaf664b255a2aec88d6af64a7283e8d7',
+      1 => 
+      array (
+        0 => 'app\\domain\\access\\services\\rolepermissionservice',
+      ),
+      2 => 
+      array (
+        0 => 'app\\domain\\access\\services\\__construct',
+        1 => 'app\\domain\\access\\services\\iseditable',
+        2 => 'app\\domain\\access\\services\\sync',
+      ),
+      3 => 
+      array (
+      ),
+    ),
+    'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Notification\\Services\\BroadcastService.php' => 
+    array (
+      0 => '26546422e5ce668fe7fb2d4db686bcd635ba2e83affeea12119a905b4f5eda96',
+      1 => 
+      array (
+        0 => 'app\\domain\\notification\\services\\broadcastservice',
+      ),
+      2 => 
+      array (
+        0 => 'app\\domain\\notification\\services\\__construct',
+        1 => 'app\\domain\\notification\\services\\send',
+        2 => 'app\\domain\\notification\\services\\audiencecount',
+      ),
+      3 => 
+      array (
+      ),
+    ),
+    'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Reporting\\Services\\AdminSettingsService.php' => 
+    array (
+      0 => 'a53f0ed5beb353e40a7d68403cb02d45bdfa12b12694b7c880dc4e6aa312fd3f',
+      1 => 
+      array (
+        0 => 'app\\domain\\reporting\\services\\adminsettingsservice',
+      ),
+      2 => 
+      array (
+        0 => 'app\\domain\\reporting\\services\\__construct',
+        1 => 'app\\domain\\reporting\\services\\all',
+        2 => 'app\\domain\\reporting\\services\\general',
+        3 => 'app\\domain\\reporting\\services\\security',
+        4 => 'app\\domain\\reporting\\services\\registry',
+        5 => 'app\\domain\\reporting\\services\\notifications',
+        6 => 'app\\domain\\reporting\\services\\row',
+        7 => 'app\\domain\\reporting\\services\\bool',
+      ),
+      3 => 
+      array (
+      ),
+    ),
+    'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Notification\\BroadcastController.php' => 
+    array (
+      0 => '84fe2ef5e051d1ef045353cc84e96706cccd9f2e8fa8ed57be90a18414299e9e',
+      1 => 
+      array (
+        0 => 'app\\http\\controllers\\api\\v1\\notification\\broadcastcontroller',
+      ),
+      2 => 
+      array (
+        0 => 'app\\http\\controllers\\api\\v1\\notification\\__construct',
+        1 => 'app\\http\\controllers\\api\\v1\\notification\\audience',
+        2 => 'app\\http\\controllers\\api\\v1\\notification\\store',
+      ),
+      3 => 
+      array (
+      ),
+    ),
+    'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Reporting\\AdminSettingsController.php' => 
+    array (
+      0 => '1134f7ba4e0dcddfd8e93ad2d26bf9a5324fb53b58ed48cb42f9666735e7b5c4',
+      1 => 
+      array (
+        0 => 'app\\http\\controllers\\api\\v1\\reporting\\adminsettingscontroller',
+      ),
+      2 => 
+      array (
+        0 => 'app\\http\\controllers\\api\\v1\\reporting\\__construct',
+        1 => 'app\\http\\controllers\\api\\v1\\reporting\\index',
+      ),
+      3 => 
+      array (
+      ),
+    ),
+    'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Access\\UpdateRolePermissionsRequest.php' => 
+    array (
+      0 => '579579a0311cada7c64c826ae11aa252b6ae18a3b5cd91cde52016ce73cf017e',
+      1 => 
+      array (
+        0 => 'app\\http\\requests\\access\\updaterolepermissionsrequest',
+      ),
+      2 => 
+      array (
+        0 => 'app\\http\\requests\\access\\authorize',
+        1 => 'app\\http\\requests\\access\\rules',
+      ),
+      3 => 
+      array (
+      ),
+    ),
+    'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Notification\\BroadcastRequest.php' => 
+    array (
+      0 => 'ab65228d8c5f97a39dd8360a0755a6becbb4e04d60ce264d923eaf1585de533a',
+      1 => 
+      array (
+        0 => 'app\\http\\requests\\notification\\broadcastrequest',
+      ),
+      2 => 
+      array (
+        0 => 'app\\http\\requests\\notification\\authorize',
+        1 => 'app\\http\\requests\\notification\\rules',
       ),
       3 => 
       array (

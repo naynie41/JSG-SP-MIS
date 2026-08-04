@@ -58,7 +58,7 @@ class ReportSchedule extends Model
      */
     protected $fillable = [
         'name', 'report_key', 'report_definition_id', 'format', 'frequency', 'delivery', 'status',
-        'scope_kind', 'scope_label', 'scope_mda_ids', 'scope_programme_ids', 'recipient_user_ids',
+        'scope_kind', 'scope_label', 'scope_governance', 'scope_mda_ids', 'scope_programme_ids', 'recipient_user_ids',
         'owner_user_id', 'owner_mda_id', 'last_run_on',
     ];
 
@@ -68,6 +68,7 @@ class ReportSchedule extends Model
     protected function casts(): array
     {
         return [
+            'scope_governance' => 'boolean',
             'scope_mda_ids' => 'array',
             'scope_programme_ids' => 'array',
             'recipient_user_ids' => 'array',
@@ -85,7 +86,13 @@ class ReportSchedule extends Model
 
     public function toScope(): DashboardScope
     {
-        return DashboardScope::rehydrate($this->scope_kind, $this->scope_mda_ids, $this->scope_programme_ids, $this->scope_label);
+        return DashboardScope::rehydrate(
+            $this->scope_kind,
+            $this->scope_mda_ids,
+            $this->scope_programme_ids,
+            $this->scope_label,
+            (bool) $this->scope_governance,
+        );
     }
 
     public function isActive(): bool

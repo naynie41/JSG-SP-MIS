@@ -11,6 +11,11 @@ import { useAuth } from '@/lib/auth/AuthProvider'
 import { NAV_CONFIG, navSectionsFor } from './nav'
 import styles from './AppLayout.module.css'
 
+/** Breadcrumb labels for pages opened from an affordance rather than the nav rail. */
+const OFF_RAIL_LABELS: Record<string, string> = {
+  '/admin/settings': 'Settings',
+}
+
 /** Authenticated shell: forest rail (permission-filtered) + top bar + content. */
 export function AppLayout() {
   const { user, logout, hasPermission } = useAuth()
@@ -26,6 +31,11 @@ export function AppLayout() {
 
   const currentLabel = useMemo(() => {
     if (location.pathname === '/') return 'Dashboard'
+    // Pages reached from an affordance rather than the rail. Without this, the
+    // longest-prefix scan below would resolve /admin/settings to its parent rail
+    // item ("Overview") because Settings is deliberately not a rail link.
+    const offRail = OFF_RAIL_LABELS[location.pathname]
+    if (offRail) return offRail
     // Pick the MOST specific matching rail item (longest `to`) so e.g.
     // `/partner/programmes` resolves to "Programmes & Results", not "Overview".
     let best: { label: string; to: string } | null = null
@@ -72,6 +82,8 @@ export function AppLayout() {
           userRole={user?.role?.name ?? '—'}
           notifications={<NotificationBell />}
           onOpenMenu={() => setDrawerOpen(true)}
+          // The administration console reaches Settings from the gear, never the rail.
+          onOpenSettings={roleKey === 'system_administrator' ? () => navigate('/admin/settings') : undefined}
         />
         <main id="main-content" tabIndex={-1} className={styles.content}>
           <Outlet />

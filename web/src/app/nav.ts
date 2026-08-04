@@ -1,12 +1,14 @@
 import {
   Building2,
   ClipboardList,
+  DatabaseZap,
+  FileBarChart,
   GaugeCircle,
-  KeyRound,
   LibraryBig,
   MapPinned,
-  Share2,
+  Plug,
   ShieldCheck,
+  SlidersHorizontal,
   Split,
   UserSquare2,
   Users,
@@ -42,17 +44,17 @@ export interface NavConfigSection {
  * (a launcher of permission-aware cards) rather than exploding its sub-tasks into
  * the rail — this keeps the navbar clean. The sub-tasks live on the hub page.
  *
- * The reporting-suite roles are the exception: an Executive's rail IS the five pages
- * of the executive briefing, and a Development Partner's IS the five pages of the
- * funding-partner suite, so the generic operator section is hidden for those roles and
- * replaced by the role-specific sections below.
+ * The console roles are the exception: an Executive's rail IS the five pages of the
+ * executive briefing, a Development Partner's IS the five pages of the funding-partner
+ * suite, and a System Administrator's IS the nine pages of the administration console —
+ * so the generic operator section is hidden for those roles and replaced by the
+ * role-specific sections below.
  */
 export const NAV_CONFIG: NavConfigSection[] = [
   {
     label: '',
-    // Executives + partners get their own suite rails (below) — hide the generic
-    // operator links from them.
-    excludeRoles: ['development_partner', 'executive'],
+    // Console roles get their own rails (below) — hide the generic operator links.
+    excludeRoles: ['development_partner', 'executive', 'system_administrator'],
     items: [
       { label: 'Dashboard', to: '/', icon: GaugeCircle, end: true },
       { label: 'Programmes', to: '/programmes', icon: ClipboardList, permission: 'programme.view' },
@@ -86,17 +88,23 @@ export const NAV_CONFIG: NavConfigSection[] = [
     ],
   },
   {
-    // System administration is not relevant to MDA staff — it's scoped to the
-    // System Administrator role, who provisions users, MDAs and access.
-    label: 'Administration',
+    // System Administrator console — governance/administration, one routed page per
+    // section (peer links, no sub-grouping). Item permissions are omitted on purpose:
+    // the section is ROLE-scoped and a System Administrator implicitly holds every
+    // permission — the server gates the console (role:system_administrator).
+    // Settings is NOT a nav link; it opens from the gear/account affordance.
+    label: '',
     roles: ['system_administrator'],
     items: [
-      { label: 'Programme catalog', to: '/programmes/list', icon: LibraryBig, permission: 'programme.create' },
-      { label: 'Users', to: '/users', icon: Users, permission: 'user.view' },
-      { label: 'MDAs', to: '/mdas', icon: Building2, permission: 'mda.view' },
-      { label: 'Roles', to: '/roles', icon: ShieldCheck, permission: 'role.view' },
-      { label: 'Permissions', to: '/permissions', icon: KeyRound, permission: 'permission.view' },
-      { label: 'Cross-MDA access', to: '/grants', icon: Share2, permission: 'mda-access.view' },
+      { label: 'Overview', to: '/admin', icon: GaugeCircle, end: true },
+      { label: 'User & Access', to: '/admin/access', icon: Users },
+      { label: 'Organization', to: '/admin/organization', icon: Building2 },
+      { label: 'Programme Catalog', to: '/admin/catalog', icon: LibraryBig },
+      { label: 'Registry & Data Quality', to: '/admin/registry', icon: DatabaseZap },
+      { label: 'Integrations', to: '/admin/integrations', icon: Plug },
+      { label: 'Matching Rules & Registry Config', to: '/admin/matching', icon: SlidersHorizontal },
+      { label: 'Audit & Security', to: '/admin/audit', icon: ShieldCheck },
+      { label: 'Reports', to: '/admin/reports', icon: FileBarChart },
     ],
   },
 ]

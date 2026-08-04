@@ -6,7 +6,6 @@ import type { DashboardResponse, OutputIndicator, PartnerFunding, PartnerProgram
 
 function makeProgramme(over: Partial<PartnerProgramme> & { programme_id: string }): PartnerProgramme {
   return {
-    programme_id: over.programme_id,
     name: 'Programme',
     type: 'cash_transfer',
     status: 'active',

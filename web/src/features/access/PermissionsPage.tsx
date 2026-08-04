@@ -54,12 +54,14 @@ function Matrix() {
           </thead>
           <tbody>
             {data.permissions.map((permission) => (
-              <tr key={permission}>
-                <td className={styles.matrixKey}>{permission}</td>
+              <tr key={permission.key}>
+                <td className={styles.matrixKey} title={permission.description ?? undefined}>
+                  {permission.key}
+                </td>
                 {data.roles.map((r, i) => (
                   <td key={r.key}>
-                    {held[i].has(permission) ? (
-                      <Icon icon={Check} size={15} className={styles.has} label={`${r.name} has ${permission}`} />
+                    {held[i]?.has(permission.key) ? (
+                      <Icon icon={Check} size={15} className={styles.has} label={`${r.name} has ${permission.key}`} />
                     ) : (
                       <Icon icon={Minus} size={13} className={styles.hasnt} />
                     )}
@@ -76,8 +78,9 @@ function Matrix() {
 
 /**
  * Permissions administration (FR-UAM-05): the module + action catalogue and the
- * role × permission matrix. Read-only — permissions are declared by the modules and
- * bundled onto the predefined roles; there is nothing to create/edit here.
+ * role × permission matrix. Read-only here — permissions are declared by the modules,
+ * and EDITING the matrix lives in the administration console's Settings page, which
+ * writes the same `role_permission` pivot this view reads.
  */
 export function PermissionsPage() {
   const { hasPermission } = useAuth()

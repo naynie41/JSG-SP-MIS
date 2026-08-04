@@ -13,6 +13,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
          'uses' => 
         array (
           'mda' => 'App\\Domain\\Access\\Models\\Mda',
+          'role' => 'App\\Domain\\Access\\Models\\Role',
           'mdascope' => 'App\\Domain\\Access\\Scopes\\MdaScope',
           'benefit' => 'App\\Domain\\Benefit\\Models\\Benefit',
           'programme' => 'App\\Domain\\Programme\\Models\\Programme',
@@ -49,6 +50,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
          'uses' => 
         array (
           'mda' => 'App\\Domain\\Access\\Models\\Mda',
+          'role' => 'App\\Domain\\Access\\Models\\Role',
           'mdascope' => 'App\\Domain\\Access\\Scopes\\MdaScope',
           'benefit' => 'App\\Domain\\Benefit\\Models\\Benefit',
           'programme' => 'App\\Domain\\Programme\\Models\\Programme',
@@ -74,6 +76,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
            'uses' => 
           array (
             'mda' => 'App\\Domain\\Access\\Models\\Mda',
+            'role' => 'App\\Domain\\Access\\Models\\Role',
             'mdascope' => 'App\\Domain\\Access\\Scopes\\MdaScope',
             'benefit' => 'App\\Domain\\Benefit\\Models\\Benefit',
             'programme' => 'App\\Domain\\Programme\\Models\\Programme',
@@ -120,6 +123,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
          'uses' => 
         array (
           'mda' => 'App\\Domain\\Access\\Models\\Mda',
+          'role' => 'App\\Domain\\Access\\Models\\Role',
           'mdascope' => 'App\\Domain\\Access\\Scopes\\MdaScope',
           'benefit' => 'App\\Domain\\Benefit\\Models\\Benefit',
           'programme' => 'App\\Domain\\Programme\\Models\\Programme',
@@ -145,6 +149,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
            'uses' => 
           array (
             'mda' => 'App\\Domain\\Access\\Models\\Mda',
+            'role' => 'App\\Domain\\Access\\Models\\Role',
             'mdascope' => 'App\\Domain\\Access\\Scopes\\MdaScope',
             'benefit' => 'App\\Domain\\Benefit\\Models\\Benefit',
             'programme' => 'App\\Domain\\Programme\\Models\\Programme',
@@ -191,6 +196,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
          'uses' => 
         array (
           'mda' => 'App\\Domain\\Access\\Models\\Mda',
+          'role' => 'App\\Domain\\Access\\Models\\Role',
           'mdascope' => 'App\\Domain\\Access\\Scopes\\MdaScope',
           'benefit' => 'App\\Domain\\Benefit\\Models\\Benefit',
           'programme' => 'App\\Domain\\Programme\\Models\\Programme',
@@ -216,6 +222,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
            'uses' => 
           array (
             'mda' => 'App\\Domain\\Access\\Models\\Mda',
+            'role' => 'App\\Domain\\Access\\Models\\Role',
             'mdascope' => 'App\\Domain\\Access\\Scopes\\MdaScope',
             'benefit' => 'App\\Domain\\Benefit\\Models\\Benefit',
             'programme' => 'App\\Domain\\Programme\\Models\\Programme',
@@ -262,6 +269,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
          'uses' => 
         array (
           'mda' => 'App\\Domain\\Access\\Models\\Mda',
+          'role' => 'App\\Domain\\Access\\Models\\Role',
           'mdascope' => 'App\\Domain\\Access\\Scopes\\MdaScope',
           'benefit' => 'App\\Domain\\Benefit\\Models\\Benefit',
           'programme' => 'App\\Domain\\Programme\\Models\\Programme',
@@ -287,6 +295,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
            'uses' => 
           array (
             'mda' => 'App\\Domain\\Access\\Models\\Mda',
+            'role' => 'App\\Domain\\Access\\Models\\Role',
             'mdascope' => 'App\\Domain\\Access\\Scopes\\MdaScope',
             'benefit' => 'App\\Domain\\Benefit\\Models\\Benefit',
             'programme' => 'App\\Domain\\Programme\\Models\\Programme',
@@ -333,6 +342,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
          'uses' => 
         array (
           'mda' => 'App\\Domain\\Access\\Models\\Mda',
+          'role' => 'App\\Domain\\Access\\Models\\Role',
           'mdascope' => 'App\\Domain\\Access\\Scopes\\MdaScope',
           'benefit' => 'App\\Domain\\Benefit\\Models\\Benefit',
           'programme' => 'App\\Domain\\Programme\\Models\\Programme',
@@ -358,6 +368,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
            'uses' => 
           array (
             'mda' => 'App\\Domain\\Access\\Models\\Mda',
+            'role' => 'App\\Domain\\Access\\Models\\Role',
             'mdascope' => 'App\\Domain\\Access\\Scopes\\MdaScope',
             'benefit' => 'App\\Domain\\Benefit\\Models\\Benefit',
             'programme' => 'App\\Domain\\Programme\\Models\\Programme',
@@ -404,6 +415,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
          'uses' => 
         array (
           'mda' => 'App\\Domain\\Access\\Models\\Mda',
+          'role' => 'App\\Domain\\Access\\Models\\Role',
           'mdascope' => 'App\\Domain\\Access\\Scopes\\MdaScope',
           'benefit' => 'App\\Domain\\Benefit\\Models\\Benefit',
           'programme' => 'App\\Domain\\Programme\\Models\\Programme',
@@ -429,6 +441,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
            'uses' => 
           array (
             'mda' => 'App\\Domain\\Access\\Models\\Mda',
+            'role' => 'App\\Domain\\Access\\Models\\Role',
             'mdascope' => 'App\\Domain\\Access\\Scopes\\MdaScope',
             'benefit' => 'App\\Domain\\Benefit\\Models\\Benefit',
             'programme' => 'App\\Domain\\Programme\\Models\\Programme',
@@ -475,6 +488,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
          'uses' => 
         array (
           'mda' => 'App\\Domain\\Access\\Models\\Mda',
+          'role' => 'App\\Domain\\Access\\Models\\Role',
           'mdascope' => 'App\\Domain\\Access\\Scopes\\MdaScope',
           'benefit' => 'App\\Domain\\Benefit\\Models\\Benefit',
           'programme' => 'App\\Domain\\Programme\\Models\\Programme',
@@ -500,6 +514,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
            'uses' => 
           array (
             'mda' => 'App\\Domain\\Access\\Models\\Mda',
+            'role' => 'App\\Domain\\Access\\Models\\Role',
             'mdascope' => 'App\\Domain\\Access\\Scopes\\MdaScope',
             'benefit' => 'App\\Domain\\Benefit\\Models\\Benefit',
             'programme' => 'App\\Domain\\Programme\\Models\\Programme',
@@ -546,6 +561,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
          'uses' => 
         array (
           'mda' => 'App\\Domain\\Access\\Models\\Mda',
+          'role' => 'App\\Domain\\Access\\Models\\Role',
           'mdascope' => 'App\\Domain\\Access\\Scopes\\MdaScope',
           'benefit' => 'App\\Domain\\Benefit\\Models\\Benefit',
           'programme' => 'App\\Domain\\Programme\\Models\\Programme',
@@ -571,6 +587,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
            'uses' => 
           array (
             'mda' => 'App\\Domain\\Access\\Models\\Mda',
+            'role' => 'App\\Domain\\Access\\Models\\Role',
             'mdascope' => 'App\\Domain\\Access\\Scopes\\MdaScope',
             'benefit' => 'App\\Domain\\Benefit\\Models\\Benefit',
             'programme' => 'App\\Domain\\Programme\\Models\\Programme',
@@ -614,7 +631,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
     ),
     1 => 
     array (
-      'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Reporting\\Reports\\AdHoc\\AdHocReportBuilder.php' => '07c16c51476e04e2ffa13aa7d912409b335cebbd5e6a617d31132f3ec0889417',
+      'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Reporting\\Reports\\AdHoc\\AdHocReportBuilder.php' => '94e2b582061c5329432c4f3ee3d366515e223da59f3ab2d2f10a4554d175315b',
     ),
   ),
 ));

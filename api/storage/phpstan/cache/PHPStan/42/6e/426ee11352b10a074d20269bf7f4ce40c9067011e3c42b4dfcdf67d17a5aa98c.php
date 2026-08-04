@@ -2,7 +2,7 @@
 
 // odsl-C:\Users\ACER\Desktop\JSG-SP-MIS\JSG-SP-MIS\api\app\Domain\Reporting\Models\ReportRun.php-PHPStan\BetterReflection\Reflection\ReflectionClass-App\Domain\Reporting\Models\ReportRun
 return \PHPStan\Cache\CacheItem::__set_state(array(
-   'variableKey' => 'v2-6.70.0.1-8.3.31-2793228d889e663871b3371890daa77fd4a781d5da63c9bd78a4d0573243aeae',
+   'variableKey' => 'v2-6.70.0.1-8.3.31-e843f9debeb21f19966d25ed0f47f7cc5866f1ad2e9248d3084b03d8e5cdf5fd',
    'data' => 
   array (
     'locatedSource' => 
@@ -55,7 +55,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
     array (
     ),
     'startLine' => 42,
-    'endLine' => 104,
+    'endLine' => 111,
     'startColumn' => 1,
     'endColumn' => 1,
     'parentClassName' => 'Illuminate\\Database\\Eloquent\\Model',
@@ -231,15 +231,15 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         'type' => NULL,
         'default' => 
         array (
-          'code' => '[\'report_key\', \'report_label\', \'format\', \'status\', \'scope_kind\', \'scope_label\', \'scope_mda_ids\', \'scope_programme_ids\', \'params\', \'definition\', \'row_count\', \'file_path\', \'file_name\', \'error\', \'requested_by\', \'requested_mda_id\', \'schedule_id\', \'recipient_user_ids\', \'delivery\', \'completed_at\']',
+          'code' => '[\'report_key\', \'report_label\', \'format\', \'status\', \'scope_kind\', \'scope_label\', \'scope_governance\', \'scope_mda_ids\', \'scope_programme_ids\', \'params\', \'definition\', \'row_count\', \'file_path\', \'file_name\', \'error\', \'requested_by\', \'requested_mda_id\', \'schedule_id\', \'recipient_user_ids\', \'delivery\', \'completed_at\']',
           'attributes' => 
           array (
             'startLine' => 59,
             'endLine' => 64,
             'startTokenPos' => 118,
             'startFilePos' => 1800,
-            'endTokenPos' => 180,
-            'endFilePos' => 2130,
+            'endTokenPos' => 183,
+            'endFilePos' => 2150,
           ),
         ),
         'docComment' => '/**
@@ -285,7 +285,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
  * @return array<string, string>
  */',
         'startLine' => 69,
-        'endLine' => 80,
+        'endLine' => 81,
         'startColumn' => 5,
         'endColumn' => 5,
         'couldThrow' => false,
@@ -323,8 +323,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             'attributes' => 
             array (
             ),
-            'startLine' => 83,
-            'endLine' => 83,
+            'startLine' => 84,
+            'endLine' => 84,
             'startColumn' => 36,
             'endColumn' => 49,
             'parameterIndex' => 0,
@@ -345,8 +345,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         array (
         ),
         'docComment' => '/** Users allowed to access this run: the requester plus any scheduled recipients. */',
-        'startLine' => 83,
-        'endLine' => 86,
+        'startLine' => 84,
+        'endLine' => 87,
         'startColumn' => 5,
         'endColumn' => 5,
         'couldThrow' => false,
@@ -399,8 +399,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         array (
         ),
         'docComment' => '/** The ad-hoc definition this run was built from, if it is an ad-hoc report. */',
-        'startLine' => 89,
-        'endLine' => 92,
+        'startLine' => 90,
+        'endLine' => 93,
         'startColumn' => 5,
         'endColumn' => 5,
         'couldThrow' => false,
@@ -434,8 +434,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         array (
         ),
         'docComment' => '/** Rebuild the scope this run was requested under. */',
-        'startLine' => 95,
-        'endLine' => 98,
+        'startLine' => 96,
+        'endLine' => 105,
         'startColumn' => 5,
         'endColumn' => 5,
         'couldThrow' => false,
@@ -469,8 +469,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         array (
         ),
         'docComment' => NULL,
-        'startLine' => 100,
-        'endLine' => 103,
+        'startLine' => 107,
+        'endLine' => 110,
         'startColumn' => 5,
         'endColumn' => 5,
         'couldThrow' => false,

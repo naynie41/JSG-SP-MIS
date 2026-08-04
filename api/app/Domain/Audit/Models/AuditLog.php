@@ -7,6 +7,7 @@ namespace App\Domain\Audit\Models;
 use Illuminate\Database\Eloquent\Concerns\HasUuids;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\QueryException;
+use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\DB;
 use RuntimeException;
 
@@ -22,6 +23,22 @@ use RuntimeException;
  *     any edit/removal/reorder breaks every later hash. Verified offline with
  *     `php artisan audit:verify-chain`. Rows older than the chain migration have
  *     a NULL position (pre-chain era; the log itself was never mutable).
+ *
+ * @property string $id
+ * @property string|null $actor_id
+ * @property string|null $actor_mda_id
+ * @property string $action
+ * @property string|null $entity_type
+ * @property string|null $entity_id
+ * @property array<array-key, mixed>|null $before
+ * @property array<array-key, mixed>|null $after
+ * @property string|null $ip_address
+ * @property string|null $user_agent
+ * @property string|null $correlation_id
+ * @property int|null $chain_position
+ * @property string|null $prev_hash
+ * @property string|null $entry_hash
+ * @property Carbon|null $created_at
  */
 class AuditLog extends Model
 {
@@ -76,8 +93,10 @@ class AuditLog extends Model
                 ->orderByDesc('chain_position')
                 ->first();
 
-            $entry->chain_position = (int) ($head?->chain_position ?? 0) + 1;
-            $entry->prev_hash = $head?->entry_hash ?? self::GENESIS_HASH;
+            // `??` already suppresses property access on a null $head, so the nullsafe
+            // operator would be redundant here (identical behaviour, both branches).
+            $entry->chain_position = (int) ($head->chain_position ?? 0) + 1;
+            $entry->prev_hash = $head->entry_hash ?? self::GENESIS_HASH;
             $entry->entry_hash = $entry->computeEntryHash();
         });
 

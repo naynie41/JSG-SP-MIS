@@ -49,6 +49,8 @@ function makeBatch(band: 'exact' | 'probable' = 'exact'): ImportBatch {
     source: 'csv',
     activity_id: 'a-1',
     draft_activity_name: null,
+    draft_target_beneficiaries: null,
+    target_mismatch: false,
     status: 'preview_ready',
     summary: { total_rows: 1, valid_rows: 1, invalid_rows: 0, committed_rows: 0, served_rows: 0, skipped_rows: 0 },
     error: null,

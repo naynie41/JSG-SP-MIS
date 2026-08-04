@@ -6,9 +6,11 @@ namespace App\Domain\Reporting;
 
 use App\Domain\Access\Enums\PermissionAction;
 use App\Domain\Access\Support\PermissionRegistry;
+use App\Domain\Notification\NotificationServiceProvider;
 use App\Domain\Reporting\Events\ReportReady;
 use App\Domain\Reporting\Gis\LoadGeoBoundaries;
 use App\Domain\Reporting\Listeners\DeliverScheduledReport;
+use App\Domain\Reporting\Services\AdminSettingsService;
 use Illuminate\Support\Facades\Event;
 use Illuminate\Support\ServiceProvider;
 
@@ -20,6 +22,19 @@ use Illuminate\Support\ServiceProvider;
  */
 class ReportingServiceProvider extends ServiceProvider
 {
+    public function register(): void
+    {
+        // The console's Settings projection reports the SAME channel set the Notifier
+        // sends through, so a stubbed provider can never be advertised as available.
+        // Reporting depends on Notification, not the other way round.
+        $this->app->singleton(
+            AdminSettingsService::class,
+            fn ($app): AdminSettingsService => new AdminSettingsService(
+                $app->make(NotificationServiceProvider::CHANNELS),
+            ),
+        );
+    }
+
     public function boot(): void
     {
         $this->app->make(PermissionRegistry::class)
