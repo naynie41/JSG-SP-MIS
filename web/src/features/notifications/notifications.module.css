@@ -29,7 +29,7 @@
   background: var(--danger);
   color: #fff;
   font-family: var(--font-mono);
-  font-size: 10px;
+  font-size: var(--fs-caption);
   line-height: 16px;
   text-align: center;
   border: 1.5px solid var(--bg);
@@ -135,7 +135,7 @@
   display: block;
   margin-top: 2px;
   font-family: var(--font-mono);
-  font-size: 10px;
+  font-size: var(--fs-caption);
   letter-spacing: 0.04em;
   color: var(--text-muted-strong);
 }

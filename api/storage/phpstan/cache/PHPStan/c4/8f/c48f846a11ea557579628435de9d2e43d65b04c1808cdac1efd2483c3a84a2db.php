@@ -2,7 +2,7 @@
 
 // odsl-C:\Users\ACER\Desktop\JSG-SP-MIS\JSG-SP-MIS\api\app\Http\Resources\ImportBatchResource.php-PHPStan\BetterReflection\Reflection\ReflectionClass-App\Http\Resources\ImportBatchResource
 return \PHPStan\Cache\CacheItem::__set_state(array(
-   'variableKey' => 'v2-6.70.0.1-8.3.31-7ac0e3a5b4a7690970e2db7528a868fd82f2c17c687fa202ba03e02bc04e8779',
+   'variableKey' => 'v2-6.70.0.1-8.3.31-1b9e9bf5e1ee645ddfffa0397543013e6fa16502b5a7bf506e1961eae626325c',
    'data' => 
   array (
     'locatedSource' => 
@@ -31,8 +31,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
     'attributes' => 
     array (
     ),
-    'startLine' => 17,
-    'endLine' => 62,
+    'startLine' => 18,
+    'endLine' => 90,
     'startColumn' => 1,
     'endColumn' => 1,
     'parentClassName' => 'Illuminate\\Http\\Resources\\Json\\JsonResource',
@@ -74,8 +74,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             'attributes' => 
             array (
             ),
-            'startLine' => 22,
-            'endLine' => 22,
+            'startLine' => 23,
+            'endLine' => 23,
             'startColumn' => 29,
             'endColumn' => 44,
             'parameterIndex' => 0,
@@ -98,8 +98,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         'docComment' => '/**
  * @return array<string, mixed>
  */',
-        'startLine' => 22,
-        'endLine' => 61,
+        'startLine' => 23,
+        'endLine' => 68,
         'startColumn' => 5,
         'endColumn' => 5,
         'couldThrow' => false,
@@ -107,6 +107,66 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         'isGenerator' => false,
         'isVariadic' => false,
         'modifiers' => 1,
+        'namespace' => 'App\\Http\\Resources',
+        'declaringClassName' => 'App\\Http\\Resources\\ImportBatchResource',
+        'implementingClassName' => 'App\\Http\\Resources\\ImportBatchResource',
+        'currentClassName' => 'App\\Http\\Resources\\ImportBatchResource',
+        'aliasName' => NULL,
+      ),
+      'matchingThresholds' => 
+      array (
+        'name' => 'matchingThresholds',
+        'parameters' => 
+        array (
+        ),
+        'returnsReference' => false,
+        'returnType' => 
+        array (
+          'class' => 'PHPStan\\BetterReflection\\Reflection\\ReflectionUnionType',
+          'data' => 
+          array (
+            'types' => 
+            array (
+              0 => 
+              array (
+                'class' => 'PHPStan\\BetterReflection\\Reflection\\ReflectionNamedType',
+                'data' => 
+                array (
+                  'name' => 'array',
+                  'isIdentifier' => true,
+                ),
+              ),
+              1 => 
+              array (
+                'class' => 'PHPStan\\BetterReflection\\Reflection\\ReflectionNamedType',
+                'data' => 
+                array (
+                  'name' => 'null',
+                  'isIdentifier' => true,
+                ),
+              ),
+            ),
+          ),
+        ),
+        'attributes' => 
+        array (
+        ),
+        'docComment' => '/**
+ * Thresholds from the active matching configuration. Only meaningful once a
+ * preview exists, so it is resolved lazily and returns null when no config
+ * is active — the client falls back to showing the band alone.
+ *
+ * @return array{review: float, auto_accept: float|null}|null
+ */',
+        'startLine' => 77,
+        'endLine' => 89,
+        'startColumn' => 5,
+        'endColumn' => 5,
+        'couldThrow' => false,
+        'isClosure' => false,
+        'isGenerator' => false,
+        'isVariadic' => false,
+        'modifiers' => 4,
         'namespace' => 'App\\Http\\Resources',
         'declaringClassName' => 'App\\Http\\Resources\\ImportBatchResource',
         'implementingClassName' => 'App\\Http\\Resources\\ImportBatchResource',

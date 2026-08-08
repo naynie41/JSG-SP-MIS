@@ -2,7 +2,7 @@
 
 // odsl-C:\Users\ACER\Desktop\JSG-SP-MIS\JSG-SP-MIS\api\app\Domain\Matching\Scoring\MatchScore.php-PHPStan\BetterReflection\Reflection\ReflectionClass-App\Domain\Matching\Scoring\MatchScore
 return \PHPStan\Cache\CacheItem::__set_state(array(
-   'variableKey' => 'v2-6.70.0.1-8.3.31-d10013b3839213a53ec095f90028cd01c498c90eb70d443d1be58b800cfc2f30',
+   'variableKey' => 'v2-6.70.0.1-8.3.31-9f53b04c942773c62cb180cda85c7ac227d34020adf77508118420a200d51e03',
    'data' => 
   array (
     'locatedSource' => 
@@ -32,7 +32,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
     array (
     ),
     'startLine' => 13,
-    'endLine' => 58,
+    'endLine' => 161,
     'startColumn' => 1,
     'endColumn' => 1,
     'parentClassName' => NULL,
@@ -44,6 +44,64 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
     ),
     'immediateConstants' => 
     array (
+      'EXACT_AT' => 
+      array (
+        'declaringClassName' => 'App\\Domain\\Matching\\Scoring\\MatchScore',
+        'implementingClassName' => 'App\\Domain\\Matching\\Scoring\\MatchScore',
+        'name' => 'EXACT_AT',
+        'modifiers' => 4,
+        'type' => NULL,
+        'value' => 
+        array (
+          'code' => '0.999',
+          'attributes' => 
+          array (
+            'startLine' => 37,
+            'endLine' => 37,
+            'startTokenPos' => 129,
+            'startFilePos' => 1127,
+            'endTokenPos' => 129,
+            'endFilePos' => 1131,
+          ),
+        ),
+        'docComment' => '/** Similarity at or above which a fuzzy field reads as the same value. */',
+        'attributes' => 
+        array (
+        ),
+        'startLine' => 37,
+        'endLine' => 37,
+        'startColumn' => 5,
+        'endColumn' => 35,
+      ),
+      'NEAR_AT' => 
+      array (
+        'declaringClassName' => 'App\\Domain\\Matching\\Scoring\\MatchScore',
+        'implementingClassName' => 'App\\Domain\\Matching\\Scoring\\MatchScore',
+        'name' => 'NEAR_AT',
+        'modifiers' => 4,
+        'type' => NULL,
+        'value' => 
+        array (
+          'code' => '0.85',
+          'attributes' => 
+          array (
+            'startLine' => 40,
+            'endLine' => 40,
+            'startTokenPos' => 142,
+            'startFilePos' => 1239,
+            'endTokenPos' => 142,
+            'endFilePos' => 1242,
+          ),
+        ),
+        'docComment' => '/** Similarity at or above which a fuzzy field reads as a near miss. */',
+        'attributes' => 
+        array (
+        ),
+        'startLine' => 40,
+        'endLine' => 40,
+        'startColumn' => 5,
+        'endColumn' => 33,
+      ),
     ),
     'immediateProperties' => 
     array (
@@ -287,6 +345,119 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         'currentClassName' => 'App\\Domain\\Matching\\Scoring\\MatchScore',
         'aliasName' => NULL,
       ),
+      'fieldComparisons' => 
+      array (
+        'name' => 'fieldComparisons',
+        'parameters' => 
+        array (
+        ),
+        'returnsReference' => false,
+        'returnType' => 
+        array (
+          'class' => 'PHPStan\\BetterReflection\\Reflection\\ReflectionNamedType',
+          'data' => 
+          array (
+            'name' => 'array',
+            'isIdentifier' => true,
+          ),
+        ),
+        'attributes' => 
+        array (
+        ),
+        'docComment' => '/**
+ * Per-field verdicts for the human adjudication screen (FR-DUP-09).
+ *
+ * The officer answering "is this the same person?" needs to see WHICH fields
+ * agreed and which did not. They cannot be shown the existing record\'s
+ * values — MatchReveal withholds NIN/BVN/phone/DOB precisely because the
+ * record belongs to another MDA (FR-DUP-04) — so the comparison is expressed
+ * as verdicts computed here, server-side. Nothing in the returned structure
+ * carries a field value; it is field names, booleans and similarities only.
+ *
+ * A field that matched a deterministic key set is reported `exact`
+ * regardless of its fuzzy similarity: that is what made it a definitive
+ * duplicate.
+ *
+ * @return list<array{field: string, verdict: string, similarity: float|null, weight: float|null, participated: bool, deterministic: bool}>
+ */',
+        'startLine' => 58,
+        'endLine' => 110,
+        'startColumn' => 5,
+        'endColumn' => 5,
+        'couldThrow' => false,
+        'isClosure' => false,
+        'isGenerator' => false,
+        'isVariadic' => false,
+        'modifiers' => 1,
+        'namespace' => 'App\\Domain\\Matching\\Scoring',
+        'declaringClassName' => 'App\\Domain\\Matching\\Scoring\\MatchScore',
+        'implementingClassName' => 'App\\Domain\\Matching\\Scoring\\MatchScore',
+        'currentClassName' => 'App\\Domain\\Matching\\Scoring\\MatchScore',
+        'aliasName' => NULL,
+      ),
+      'verdictFor' => 
+      array (
+        'name' => 'verdictFor',
+        'parameters' => 
+        array (
+          'entry' => 
+          array (
+            'name' => 'entry',
+            'default' => NULL,
+            'type' => 
+            array (
+              'class' => 'PHPStan\\BetterReflection\\Reflection\\ReflectionNamedType',
+              'data' => 
+              array (
+                'name' => 'array',
+                'isIdentifier' => true,
+              ),
+            ),
+            'isVariadic' => false,
+            'byRef' => false,
+            'isPromoted' => false,
+            'attributes' => 
+            array (
+            ),
+            'startLine' => 115,
+            'endLine' => 115,
+            'startColumn' => 40,
+            'endColumn' => 51,
+            'parameterIndex' => 0,
+            'isOptional' => false,
+          ),
+        ),
+        'returnsReference' => false,
+        'returnType' => 
+        array (
+          'class' => 'PHPStan\\BetterReflection\\Reflection\\ReflectionNamedType',
+          'data' => 
+          array (
+            'name' => 'string',
+            'isIdentifier' => true,
+          ),
+        ),
+        'attributes' => 
+        array (
+        ),
+        'docComment' => '/**
+ * @param  array<string, mixed>  $entry
+ */',
+        'startLine' => 115,
+        'endLine' => 137,
+        'startColumn' => 5,
+        'endColumn' => 5,
+        'couldThrow' => false,
+        'isClosure' => false,
+        'isGenerator' => false,
+        'isVariadic' => false,
+        'modifiers' => 20,
+        'namespace' => 'App\\Domain\\Matching\\Scoring',
+        'declaringClassName' => 'App\\Domain\\Matching\\Scoring\\MatchScore',
+        'implementingClassName' => 'App\\Domain\\Matching\\Scoring\\MatchScore',
+        'currentClassName' => 'App\\Domain\\Matching\\Scoring\\MatchScore',
+        'aliasName' => NULL,
+      ),
       'matchedFields' => 
       array (
         'name' => 'matchedFields',
@@ -313,8 +484,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
  *
  * @return list<string>
  */',
-        'startLine' => 43,
-        'endLine' => 57,
+        'startLine' => 146,
+        'endLine' => 160,
         'startColumn' => 5,
         'endColumn' => 5,
         'couldThrow' => false,

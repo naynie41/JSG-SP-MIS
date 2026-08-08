@@ -18,7 +18,6 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
           'whatsappchannel' => 'App\\Domain\\Notification\\Channels\\WhatsAppChannel',
           'notificationsubscriber' => 'App\\Domain\\Notification\\Listeners\\NotificationSubscriber',
           'notifier' => 'App\\Domain\\Notification\\Services\\Notifier',
-          'adminsettingsservice' => 'App\\Domain\\Reporting\\Services\\AdminSettingsService',
           'event' => 'Illuminate\\Support\\Facades\\Event',
           'serviceprovider' => 'Illuminate\\Support\\ServiceProvider',
         ),
@@ -49,7 +48,6 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
           'whatsappchannel' => 'App\\Domain\\Notification\\Channels\\WhatsAppChannel',
           'notificationsubscriber' => 'App\\Domain\\Notification\\Listeners\\NotificationSubscriber',
           'notifier' => 'App\\Domain\\Notification\\Services\\Notifier',
-          'adminsettingsservice' => 'App\\Domain\\Reporting\\Services\\AdminSettingsService',
           'event' => 'Illuminate\\Support\\Facades\\Event',
           'serviceprovider' => 'Illuminate\\Support\\ServiceProvider',
         ),
@@ -69,7 +67,6 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             'whatsappchannel' => 'App\\Domain\\Notification\\Channels\\WhatsAppChannel',
             'notificationsubscriber' => 'App\\Domain\\Notification\\Listeners\\NotificationSubscriber',
             'notifier' => 'App\\Domain\\Notification\\Services\\Notifier',
-            'adminsettingsservice' => 'App\\Domain\\Reporting\\Services\\AdminSettingsService',
             'event' => 'Illuminate\\Support\\Facades\\Event',
             'serviceprovider' => 'Illuminate\\Support\\ServiceProvider',
           ),
@@ -110,7 +107,6 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
           'whatsappchannel' => 'App\\Domain\\Notification\\Channels\\WhatsAppChannel',
           'notificationsubscriber' => 'App\\Domain\\Notification\\Listeners\\NotificationSubscriber',
           'notifier' => 'App\\Domain\\Notification\\Services\\Notifier',
-          'adminsettingsservice' => 'App\\Domain\\Reporting\\Services\\AdminSettingsService',
           'event' => 'Illuminate\\Support\\Facades\\Event',
           'serviceprovider' => 'Illuminate\\Support\\ServiceProvider',
         ),
@@ -130,7 +126,6 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             'whatsappchannel' => 'App\\Domain\\Notification\\Channels\\WhatsAppChannel',
             'notificationsubscriber' => 'App\\Domain\\Notification\\Listeners\\NotificationSubscriber',
             'notifier' => 'App\\Domain\\Notification\\Services\\Notifier',
-            'adminsettingsservice' => 'App\\Domain\\Reporting\\Services\\AdminSettingsService',
             'event' => 'Illuminate\\Support\\Facades\\Event',
             'serviceprovider' => 'Illuminate\\Support\\ServiceProvider',
           ),
@@ -163,7 +158,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
     ),
     1 => 
     array (
-      'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Notification\\NotificationServiceProvider.php' => 'd7cfaa488250bba1c88becd457e64c258c95a0b4af08698396cad02044b74006',
+      'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Notification\\NotificationServiceProvider.php' => 'e89fc1e84994370afca71208f0470ae66401c5a1a79425739521f5473c3e69d2',
     ),
   ),
 ));

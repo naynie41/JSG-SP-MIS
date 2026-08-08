@@ -1,7 +1,7 @@
 import type { BadgeVariant } from './Badge'
 
 /**
- * Domain status → badge variant map (DESIGN-SYSTEM.md §5.8). Use this everywhere
+ * Domain status → badge variant map (DESIGN.md §5.8). Use this everywhere
  * a status is shown so colors stay consistent; extend it as new statuses appear
  * rather than inventing per-screen colors.
  */
@@ -13,13 +13,20 @@ export const STATUS_VARIANTS: Record<string, BadgeVariant> = {
   flagged: 'danger',
   duplicate: 'danger',
 
+  // Namespaced aliases for the same three beneficiary states. Callers that build
+  // a key as `beneficiary.${status}` were silently falling through to neutral,
+  // dropping the §5.8 colour signal exactly where a flagged record matters most.
+  'beneficiary.active': 'success',
+  'beneficiary.suspended': 'warning',
+  'beneficiary.flagged': 'danger',
+
   // Match types
   'match.exact': 'dark',
   'match.probable': 'warning',
   'match.ai': 'accent',
   'match.none': 'neutral',
 
-  // Service Request lifecycle (§12, FR-OWN-06 · DESIGN-SYSTEM §5.8/§5.9)
+  // Service Request lifecycle (§12, FR-OWN-06 · DESIGN.md §5.8/§5.9)
   'service_request.pending': 'warning',
   'service_request.accepted': 'success',
   'service_request.declined': 'danger',

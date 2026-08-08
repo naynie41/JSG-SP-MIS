@@ -6,7 +6,7 @@ namespace App\Domain\Registry\Enums;
 
 /**
  * Beneficiary lifecycle status. Maps to the shared status → badge variants
- * (DESIGN-SYSTEM.md §5.8): active→success, suspended→warning, flagged→danger.
+ * (DESIGN.md §5.8): active→success, suspended→warning, flagged→danger.
  */
 enum BeneficiaryStatus: string
 {

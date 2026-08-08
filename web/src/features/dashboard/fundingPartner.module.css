@@ -10,6 +10,9 @@
   --gilt: #cbb26a;
   --gilt-soft: rgba(203, 178, 106, 0.4);
   display: grid;
+  /* Cap the track: a grid item defaults to min-width:auto, so wide content
+     stretches the page instead of scrolling inside its own container. */
+  grid-template-columns: minmax(0, 1fr);
   gap: var(--space-6);
   padding-bottom: var(--space-6);
 }
@@ -69,7 +72,7 @@
   background:
     radial-gradient(120% 140% at 88% -10%, rgba(198, 241, 53, 0.16), transparent 45%),
     radial-gradient(90% 120% at 0% 120%, rgba(70, 85, 31, 0.9), transparent 55%),
-    linear-gradient(160deg, #333d16 0%, var(--forest) 60%, #232b0e 100%);
+    linear-gradient(160deg, var(--forest-mid) 0%, var(--forest) 60%, var(--forest-deep) 100%);
   box-shadow: var(--elev-lg);
   isolation: isolate;
 }
@@ -275,7 +278,7 @@
 .kpiHeadline {
   background:
     radial-gradient(120% 140% at 90% -20%, rgba(198, 241, 53, 0.22), transparent 55%),
-    linear-gradient(160deg, #384318, var(--forest));
+    linear-gradient(160deg, var(--forest-tint), var(--forest));
   outline: 1px solid rgba(198, 241, 53, 0.35);
   outline-offset: -1px;
 }

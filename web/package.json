@@ -10,7 +10,9 @@
     "preview": "vite preview",
     "test": "vitest run",
     "test:watch": "vitest",
-    "typecheck": "tsc -b --noEmit"
+    "typecheck": "tsc -b --noEmit",
+    "sync:design": "node ../scripts/sync-design-tokens.mjs",
+    "check:design": "node ../scripts/sync-design-tokens.mjs --check"
   },
   "dependencies": {
     "@hookform/resolvers": "^5.4.0",

@@ -16,7 +16,7 @@ export interface StatCardProps {
 }
 
 /**
- * A headline stat card (DESIGN-SYSTEM §5.5): a soft, tone-varied icon chip, a mono
+ * A headline stat card (DESIGN.md §5.5): a soft, tone-varied icon chip, a mono
  * uppercase label, a large display value, and a muted hint. The shared building block
  * behind the dashboard, section hubs and the coverage screen.
  */

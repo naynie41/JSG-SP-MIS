@@ -2,6 +2,7 @@ import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query'
 import { useToast } from '@/components/Toast/ToastProvider'
 import { beneficiaryApi, documentApi, householdApi, importApi, matchingApi, serviceRequestApi } from './api'
 import type { BeneficiaryListParams, ResolveRowInput, SearchQuery } from './api'
+import { RESOLUTION_LABELS } from './constants'
 import type { BeneficiaryInput, HouseholdRole, MatchingConfigInput } from './types'
 
 /* ----------------------------------------------------------------- beneficiaries */
@@ -157,7 +158,8 @@ export function useUploadImport() {
   const qc = useQueryClient()
   const toast = useToast()
   return useMutation({
-    mutationFn: ({ file, source }: { file: File; source?: string }) => importApi.upload(file, source),
+    mutationFn: ({ file, activityId, source }: { file: File; activityId: string; source?: string }) =>
+      importApi.upload(file, activityId, source),
     onSuccess: () => {
       qc.invalidateQueries({ queryKey: ['imports'] })
       toast.success('File uploaded', 'Parsing and validating…')
@@ -210,13 +212,28 @@ export function useConfirmActivityImport() {
   })
 }
 
-/** Resolve a flagged preview row (FR-DUP-05). Refreshes the batch preview. */
-export function useResolveRow(batchId: string) {
+/**
+ * Resolve a flagged preview row (FR-DUP-05). Refreshes the batch preview.
+ *
+ * `silent` suppresses the per-row toast for bulk runs, which report once at the
+ * end instead of firing a toast per row. A single resolution is the product's
+ * core audited decision, so on its own it always confirms.
+ */
+export function useResolveRow(batchId: string, options?: { silent?: boolean }) {
   const qc = useQueryClient()
+  const toast = useToast()
+  const silent = options?.silent ?? false
   return useMutation({
     mutationFn: ({ rowNumber, input }: { rowNumber: number; input: ResolveRowInput }) =>
       importApi.resolveRow(batchId, rowNumber, input),
-    onSuccess: () => qc.invalidateQueries({ queryKey: ['import', batchId] }),
+    onSuccess: (_data, variables) => {
+      qc.invalidateQueries({ queryKey: ['import', batchId] })
+      if (silent) return
+      toast.success(
+        `Row ${variables.rowNumber} decided`,
+        `${RESOLUTION_LABELS[variables.input.resolution]} — recorded in the audit log.`,
+      )
+    },
   })
 }
 

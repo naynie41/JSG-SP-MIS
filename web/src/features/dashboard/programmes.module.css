@@ -7,6 +7,9 @@
 
 .page {
   display: grid;
+  /* Cap the track: a grid item defaults to min-width:auto, so wide content
+     stretches the page instead of scrolling inside its own container. */
+  grid-template-columns: minmax(0, 1fr);
   gap: var(--space-6);
 }
 .empty {
@@ -139,6 +142,20 @@
   color: var(--ink);
   font-variant-numeric: tabular-nums;
 }
+.figureHint {
+  display: block;
+  margin-top: var(--space-1);
+  font-size: var(--fs-caption);
+  color: var(--text-muted-strong);
+}
+
+/* Trend cards relocated from the Overview: delivery series belong here. */
+.trendGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: var(--space-4);
+}
+
 @media (max-width: 720px) {
   .figureGrid {
     grid-template-columns: repeat(2, 1fr);
@@ -189,7 +206,7 @@
   background: linear-gradient(90deg, var(--forest), var(--forest-2));
 }
 .ribbonFill[data-over='true'] {
-  background: linear-gradient(90deg, var(--danger), #d6564c);
+  background: linear-gradient(90deg, var(--danger), var(--danger-hover));
 }
 
 /* --------------------------------------------------------------- tables ---- */
@@ -345,7 +362,7 @@
 }
 .status {
   font-family: var(--font-mono);
-  font-size: 10px;
+  font-size: var(--fs-caption);
   letter-spacing: 0.1em;
   text-transform: uppercase;
   padding: 2px var(--space-2);

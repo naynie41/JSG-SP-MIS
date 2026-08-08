@@ -172,7 +172,7 @@ export function AdminOrganizationPage() {
 
       <Tabs
         items={[
-          { id: 'mdas', label: 'Organizations', content: <MdaListPage /> },
+          { id: 'mdas', label: 'Organizations', content: <MdaListPage embedded /> },
           { id: 'allocation', label: 'Allocation & activity', content: <AllocationPanel /> },
           { id: 'partners', label: 'Development partners', content: <PartnersPanel /> },
         ]}

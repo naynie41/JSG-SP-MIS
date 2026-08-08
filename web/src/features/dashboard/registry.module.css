@@ -7,6 +7,9 @@
 
 .page {
   display: grid;
+  /* Cap the track: a grid item defaults to min-width:auto, so wide content
+     stretches the page instead of scrolling inside its own container. */
+  grid-template-columns: minmax(0, 1fr);
   gap: var(--space-6);
 }
 .reveal {
@@ -72,7 +75,7 @@
 .kpiHeadline {
   background:
     radial-gradient(120% 140% at 90% -20%, rgba(198, 241, 53, 0.22), transparent 55%),
-    linear-gradient(160deg, #384318, var(--forest));
+    linear-gradient(160deg, var(--forest-tint), var(--forest));
   outline: 1px solid rgba(198, 241, 53, 0.35);
   outline-offset: -1px;
 }
@@ -322,7 +325,7 @@
 .legendSwatch {
   width: 12px;
   height: 12px;
-  border-radius: 3px;
+  border-radius: var(--radius-swatch);
   flex: 0 0 auto;
 }
 .legendName {

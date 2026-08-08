@@ -2,7 +2,7 @@
 
 // odsl-C:\Users\ACER\Desktop\JSG-SP-MIS\JSG-SP-MIS\api\app\Http\Resources\ActivityDetailResource.php-PHPStan\BetterReflection\Reflection\ReflectionClass-App\Http\Resources\ActivityDetailResource
 return \PHPStan\Cache\CacheItem::__set_state(array(
-   'variableKey' => 'v2-6.70.0.1-8.3.31-2c1220788c981051101d857edb9fe17a12354a30e5cf7332f1b4995ceb8fe60c',
+   'variableKey' => 'v2-6.70.0.1-8.3.31-1c47e27702b86c0205211479bc097166b873da30eff3bf1738bfeeee45fdb003',
    'data' => 
   array (
     'locatedSource' => 
@@ -23,7 +23,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
     'isBackedEnum' => false,
     'modifiers' => 0,
     'docComment' => '/**
- * The full "View Activity" picture (PRD §10, DESIGN-SYSTEM §5.10): the activity + its
+ * The full "View Activity" picture (PRD §10, DESIGN.md §5.10): the activity + its
  * catalog programme, target vs ACTUAL beneficiary counts, the beneficiaries/interventions
  * recorded under it, the import/validation summary of its bound batch(es), and the
  * request-to-serve items attached to the activity with their status.

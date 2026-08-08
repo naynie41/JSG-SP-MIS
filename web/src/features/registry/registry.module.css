@@ -119,10 +119,235 @@
 
 .summaryLabel {
   font-family: var(--font-mono);
-  font-size: 11px;
+  font-size: var(--fs-caption);
   text-transform: uppercase;
   letter-spacing: 0.08em;
   color: var(--text-muted-strong);
+}
+
+/* --- Adjudication comparison (FR-DUP-09) ---
+   The officer's own row in full, beside a per-field verdict. The existing
+   record's values are never rendered because they are never sent. */
+.comparison {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: var(--fs-ui);
+}
+
+.comparison th,
+.comparison td {
+  text-align: left;
+  padding: var(--space-2) var(--space-3);
+  border-bottom: 1px solid var(--border);
+  vertical-align: top;
+}
+
+.comparison thead th {
+  font-family: var(--font-mono);
+  font-size: var(--fs-caption);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--text-muted-strong);
+  font-weight: 400;
+}
+
+.comparison tbody tr:last-child th,
+.comparison tbody tr:last-child td {
+  border-bottom: none;
+}
+
+/* A disagreement on a scored field is the thing worth noticing. */
+.comparison tbody tr[data-verdict='differs'] {
+  background-color: var(--danger-soft);
+}
+
+.comparisonField {
+  font-weight: 500;
+  white-space: nowrap;
+}
+
+.comparisonKey {
+  font-family: var(--font-mono);
+  font-size: var(--fs-caption);
+  color: var(--text-muted-strong);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+.verdict {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-1);
+  font-size: var(--fs-label);
+  font-weight: 500;
+  white-space: nowrap;
+}
+
+.verdict_exact {
+  color: var(--success-ink);
+}
+.verdict_near {
+  color: var(--warning-ink);
+}
+.verdict_differs {
+  color: var(--danger-ink);
+}
+.verdict_absent_incoming,
+.verdict_absent_existing,
+.verdict_absent_both {
+  color: var(--text-muted-strong);
+}
+
+/* Entry point to the queue, beside the count of what is waiting. */
+.adjudicateCta {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-4);
+  flex-wrap: wrap;
+}
+
+/* --- Adjudication queue --- */
+.queueProgress {
+  font-family: var(--font-mono);
+  font-size: var(--fs-label);
+  font-variant-numeric: tabular-nums;
+  color: var(--text-muted-strong);
+}
+
+.queueNav {
+  display: flex;
+  justify-content: space-between;
+  gap: var(--space-3);
+}
+
+/* Shared centred loading state — seven pages had this inline. */
+.pageLoading {
+  display: grid;
+  place-items: center;
+  padding: var(--space-8);
+}
+
+/* --- Match strength band --- */
+.band {
+  display: grid;
+  gap: var(--space-2);
+}
+
+.bandTrack {
+  position: relative;
+  height: 8px;
+  border-radius: var(--radius-full);
+  background-color: var(--surface-mint);
+}
+
+.bandMark {
+  position: absolute;
+  top: -3px;
+  bottom: -3px;
+  width: 2px;
+  background-color: var(--forest-2);
+  transform: translateX(-1px);
+}
+
+.bandPin {
+  position: absolute;
+  top: 50%;
+  width: 14px;
+  height: 14px;
+  border-radius: var(--radius-full);
+  background-color: var(--forest);
+  border: 2px solid var(--bg);
+  transform: translate(-50%, -50%);
+}
+
+.bandLegend {
+  display: flex;
+  justify-content: space-between;
+  font-family: var(--font-mono);
+  font-size: var(--fs-caption);
+  color: var(--text-muted-strong);
+  font-variant-numeric: tabular-nums;
+}
+
+.bandVerdict {
+  margin: 0;
+  font-size: var(--fs-label);
+  font-weight: 500;
+  color: var(--ink);
+}
+
+.bandDefinitive {
+  margin: 0;
+  font-size: var(--fs-label);
+  font-weight: 500;
+  color: var(--success-ink);
+}
+
+/* Ownership statement shown where a non-owner would otherwise find an
+   unexplained gap where the Edit button sits. */
+.ownershipNote {
+  display: inline-flex;
+  align-items: center;
+  padding: var(--space-2) var(--space-4);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-full);
+  background-color: var(--surface-mint);
+  color: var(--ink);
+  font-size: var(--fs-label);
+}
+
+/* --- Row filters (import preview) ---
+   Segmented control over the batch. The flagged subset is the work, so this
+   sits directly above the table and carries live counts. */
+.rowFilters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+  margin-bottom: var(--space-3);
+}
+
+.rowFilter {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  padding: var(--space-2) var(--space-4);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-full);
+  background-color: var(--surface);
+  color: var(--text-muted-strong);
+  font-family: var(--font-body);
+  font-size: var(--fs-label);
+  font-weight: 500;
+  cursor: pointer;
+  transition:
+    background-color var(--transition),
+    border-color var(--transition),
+    color var(--transition);
+}
+
+.rowFilter:hover {
+  background-color: var(--surface-mint);
+  color: var(--ink);
+}
+
+.rowFilter:focus-visible {
+  outline: var(--focus-ring);
+  outline-offset: var(--focus-offset);
+}
+
+.rowFilter[aria-pressed='true'] {
+  background-color: var(--forest);
+  border-color: var(--forest);
+  color: var(--bg);
+}
+
+.rowFilterCount {
+  font-family: var(--font-mono);
+  font-size: var(--fs-caption);
+  font-variant-numeric: tabular-nums;
+  color: inherit;
+  opacity: 0.75;
 }
 
 .errorList {
@@ -169,24 +394,14 @@
   font-weight: 600;
 }
 
-.phase4 {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: var(--space-4);
-  padding-top: var(--space-3);
-  border-top: 1px dashed var(--border-strong);
-}
-
-@media (max-width: 640px) {
-  .phase4 {
-    grid-template-columns: 1fr;
-  }
-}
-
-.phase4Section {
+/* Disclosure sections inside the reveal panel; rendered only when the record
+   actually has programme or benefit data to disclose. */
+.revealSection {
   display: flex;
   flex-direction: column;
   gap: var(--space-1);
+  padding-top: var(--space-3);
+  border-top: 1px dashed var(--border-strong);
 }
 
 /* --- Import row review (FR-DUP-05) --- */
@@ -295,16 +510,34 @@
   align-items: center;
 }
 
+/* Remove-field control inside a rule chip. The visible mark stays chip-sized, but the
+   POINTER target is expanded to 24x24 by the pseudo-element below — WCAG 2.2 SC 2.5.8
+   without inflating the badge. It was previously a 13x14 hit area drawn with a `×`
+   character, which is both too small to hit reliably and a glyph standing in for the
+   icon set the rest of the app uses. */
 .chipRemove {
+  position: relative;
+  display: inline-grid;
+  place-items: center;
+  inline-size: 16px;
+  block-size: 16px;
   margin-left: var(--space-1);
-  padding: 0 2px;
+  padding: 0;
   border: none;
   background: none;
   color: inherit;
-  font-size: 14px;
   line-height: 1;
   cursor: pointer;
   border-radius: var(--radius-sm);
+}
+.chipRemove::after {
+  content: '';
+  position: absolute;
+  inset: -4px; /* 16px mark + 8px = a 24x24 target */
+  border-radius: var(--radius-sm);
+  /* Lift the expanded target above the chip's own label, which is a preceding sibling
+     and would otherwise intercept the pointer along one edge. */
+  z-index: 1;
 }
 .chipRemove:hover {
   color: var(--danger-ink);

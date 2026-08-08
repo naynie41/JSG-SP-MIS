@@ -22,7 +22,13 @@ import type { Beneficiary } from './types'
 import layout from '@/features/shared/formLayout.module.css'
 import styles from './registry.module.css'
 
-export function BeneficiaryListPage() {
+export interface BeneficiaryListPageProps {
+  /** Rendered inside a host page that owns the heading (the MDA console).
+   *  Suppresses this page's own title block so the document keeps a single h1. */
+  embedded?: boolean
+}
+
+export function BeneficiaryListPage({ embedded = false }: BeneficiaryListPageProps = {}) {
   const { hasPermission, user } = useAuth()
   const navigate = useNavigate()
   const canView = hasPermission('beneficiary.view')
@@ -102,11 +108,13 @@ export function BeneficiaryListPage() {
 
   return (
     <div>
-      <div className={layout.pageHead}>
-        <div className={layout.pageTitle}>
-          <span className="eyebrow">03 · Registry</span>
-          <h1 className="t-h1">Beneficiaries</h1>
-        </div>
+      <div className={embedded ? `${layout.pageHead} ${layout.pageHeadEmbedded}` : layout.pageHead}>
+        {!embedded && (
+          <div className={layout.pageTitle}>
+            <span className="eyebrow">03 · Registry</span>
+            <h1 className="t-h1">Beneficiaries</h1>
+          </div>
+        )}
         <div className={styles.rowActions}>
           <DataTableExport
             endpoint="/beneficiaries/export"

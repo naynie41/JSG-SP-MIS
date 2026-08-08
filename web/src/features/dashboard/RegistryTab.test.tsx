@@ -14,7 +14,18 @@ describe('RegistryTab', () => {
     expect(screen.getByText('8,600')).toBeInTheDocument() // verified
     expect(screen.getByText('480')).toBeInTheDocument() // pending
     expect(screen.getByText('37')).toBeInTheDocument() // duplicates detected
-    expect(screen.getByText('640')).toBeInTheDocument() // new this period
+    // "New this period" also appears as the latest point of the registrations
+    // trend, which moved here from the Overview.
+    expect(screen.getAllByText('640').length).toBeGreaterThan(0)
+  })
+
+  it('carries the registry composition and trend relocated from the Overview', () => {
+    render(<RegistryTab data={makeExecutivePayload()} />)
+
+    expect(screen.getByText('Female share')).toBeInTheDocument()
+    expect(screen.getByText('New registrations')).toBeInTheDocument()
+    // Page identity for screen-reader heading navigation.
+    expect(screen.getByRole('heading', { level: 1, name: /registry & data quality/i })).toBeInTheDocument()
   })
 
   it('renders the data-quality panel with derived rates', () => {

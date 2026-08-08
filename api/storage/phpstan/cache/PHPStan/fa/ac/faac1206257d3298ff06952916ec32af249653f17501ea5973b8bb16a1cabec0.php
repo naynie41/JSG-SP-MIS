@@ -1893,7 +1893,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
     ),
     'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Matching\\Scoring\\MatchScore.php' => 
     array (
-      0 => 'd10013b3839213a53ec095f90028cd01c498c90eb70d443d1be58b800cfc2f30',
+      0 => '9f53b04c942773c62cb180cda85c7ac227d34020adf77508118420a200d51e03',
       1 => 
       array (
         0 => 'app\\domain\\matching\\scoring\\matchscore',
@@ -1902,7 +1902,9 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
       array (
         0 => 'app\\domain\\matching\\scoring\\__construct',
         1 => 'app\\domain\\matching\\scoring\\toarray',
-        2 => 'app\\domain\\matching\\scoring\\matchedfields',
+        2 => 'app\\domain\\matching\\scoring\\fieldcomparisons',
+        3 => 'app\\domain\\matching\\scoring\\verdictfor',
+        4 => 'app\\domain\\matching\\scoring\\matchedfields',
       ),
       3 => 
       array (
@@ -1910,7 +1912,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
     ),
     'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Matching\\Scoring\\RuleBasedMatchScorer.php' => 
     array (
-      0 => '840d9653435479683a1072b915545761cb3e6ff7c032e2d855572eb0a343400b',
+      0 => 'c071cf9ef1af51cf3a9a6860627fafe514de7745cabfdf953a28d04d19a5886c',
       1 => 
       array (
         0 => 'app\\domain\\matching\\scoring\\rulebasedmatchscorer',
@@ -2140,7 +2142,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
     ),
     'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Notification\\NotificationServiceProvider.php' => 
     array (
-      0 => 'd7cfaa488250bba1c88becd457e64c258c95a0b4af08698396cad02044b74006',
+      0 => 'e89fc1e84994370afca71208f0470ae66401c5a1a79425739521f5473c3e69d2',
       1 => 
       array (
         0 => 'app\\domain\\notification\\notificationserviceprovider',
@@ -2924,7 +2926,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
     ),
     'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Registry\\Enums\\BeneficiaryStatus.php' => 
     array (
-      0 => '7e1b800d5f869d042d11ac0ca74c755e2d1a4637c064faaee90822c18b9bef55',
+      0 => '827510558bf4c38cc90e338513495ec2bb48d9387111c250ac0d344b142ab30e',
       1 => 
       array (
         0 => 'app\\domain\\registry\\enums\\beneficiarystatus',
@@ -3654,7 +3656,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
     ),
     'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Registry\\Services\\BatchDuplicateScreener.php' => 
     array (
-      0 => 'ed23a96b20f70997f8a4541bd5ba077519843c5e745af50684c7bbd12f472e14',
+      0 => '1c22444020033f46adc2a1a3a3f473aea6a851c1df730e2fd0f30f2bf283cd4d',
       1 => 
       array (
         0 => 'app\\domain\\registry\\services\\batchduplicatescreener',
@@ -4390,14 +4392,15 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
     ),
     'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Reporting\\ReportingServiceProvider.php' => 
     array (
-      0 => '4984868596907509f65a7229d4b7abe7d46bff595cf0e48f93f59b93b5b9e7f3',
+      0 => '61d293a69a6bad39b60f0ef98abad91d4d05d47e81ebe5d2cacf9ca0db91bb0d',
       1 => 
       array (
         0 => 'app\\domain\\reporting\\reportingserviceprovider',
       ),
       2 => 
       array (
-        0 => 'app\\domain\\reporting\\boot',
+        0 => 'app\\domain\\reporting\\register',
+        1 => 'app\\domain\\reporting\\boot',
       ),
       3 => 
       array (
@@ -5332,7 +5335,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
     ),
     'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Programme\\ProgrammeController.php' => 
     array (
-      0 => 'b333da288b22f7df679ca61cee44fc56e15079d0c98dedd1d36837d3ecae56a2',
+      0 => '695ee813ebca19d0f8e6afe71e8948388ffe557959bec774df9fdd0b374eaddc',
       1 => 
       array (
         0 => 'app\\http\\controllers\\api\\v1\\programme\\programmecontroller',
@@ -5525,7 +5528,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
     ),
     'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Registry\\ImportBatchController.php' => 
     array (
-      0 => 'ebb7358182fe121666e4733ee227d0edeea60ba99e2876cc33bf2a97fd81a0ca',
+      0 => '4eb4ab6745da6d0fb1debaf1f74458541666405931c9d2fde03a32079a1553ec',
       1 => 
       array (
         0 => 'app\\http\\controllers\\api\\v1\\registry\\importbatchcontroller',
@@ -5566,7 +5569,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
     ),
     'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Registry\\ServiceRequestController.php' => 
     array (
-      0 => 'cb07ef0733d8820ef5275db933f218429b95b360dbd177597a158d5164b325bc',
+      0 => '5054838643c7f18409e2d7fefb808c28c15cd77d5c1e87bccf9987459c661e4b',
       1 => 
       array (
         0 => 'app\\http\\controllers\\api\\v1\\registry\\servicerequestcontroller',
@@ -6830,7 +6833,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
     ),
     'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Resources\\ActivityDetailResource.php' => 
     array (
-      0 => '2c1220788c981051101d857edb9fe17a12354a30e5cf7332f1b4995ceb8fe60c',
+      0 => '1c47e27702b86c0205211479bc097166b873da30eff3bf1738bfeeee45fdb003',
       1 => 
       array (
         0 => 'app\\http\\resources\\activitydetailresource',
@@ -6878,7 +6881,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
     ),
     'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Resources\\BeneficiaryResource.php' => 
     array (
-      0 => 'c6146ad256cf5eeeefa81499667d8d3b8497df1e899f48c3b55362a8579d737c',
+      0 => '179492f1da995ecc6c5eb9709e947c7af58d8e0577a56696dd4ebc560053e91b',
       1 => 
       array (
         0 => 'app\\http\\resources\\beneficiaryresource',
@@ -7074,7 +7077,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
     ),
     'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Resources\\ImportBatchResource.php' => 
     array (
-      0 => '7ac0e3a5b4a7690970e2db7528a868fd82f2c17c687fa202ba03e02bc04e8779',
+      0 => '1b9e9bf5e1ee645ddfffa0397543013e6fa16502b5a7bf506e1961eae626325c',
       1 => 
       array (
         0 => 'app\\http\\resources\\importbatchresource',
@@ -7082,6 +7085,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
       2 => 
       array (
         0 => 'app\\http\\resources\\toarray',
+        1 => 'app\\http\\resources\\matchingthresholds',
       ),
       3 => 
       array (
@@ -7255,7 +7259,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
     ),
     'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Resources\\ServiceRequestResource.php' => 
     array (
-      0 => '9daef78aeced493221ae5482f8760aef95a9f6b79b76827c0383e6207318a36a',
+      0 => '1695938513bbbdc598ab98ff0a08b6c2ff7770a1757c0fc38de97893b0c919ba',
       1 => 
       array (
         0 => 'app\\http\\resources\\servicerequestresource',
@@ -7665,6 +7669,37 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
       array (
         0 => 'app\\http\\requests\\notification\\authorize',
         1 => 'app\\http\\requests\\notification\\rules',
+      ),
+      3 => 
+      array (
+      ),
+    ),
+    'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Reporting\\Services\\MdaActionRequiredService.php' => 
+    array (
+      0 => 'ae6b94f921c6b1b1a36eec147c9e7fbd42093b64915a3c56d8d1ac65e183e98c',
+      1 => 
+      array (
+        0 => 'app\\domain\\reporting\\services\\mdaactionrequiredservice',
+      ),
+      2 => 
+      array (
+        0 => 'app\\domain\\reporting\\services\\foruser',
+      ),
+      3 => 
+      array (
+      ),
+    ),
+    'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Reporting\\MdaActionRequiredController.php' => 
+    array (
+      0 => '245bbdf022acdc48f9fdf07cc60cc4a6f3742d9c7aff3f0314eeaed4fe807492',
+      1 => 
+      array (
+        0 => 'app\\http\\controllers\\api\\v1\\reporting\\mdaactionrequiredcontroller',
+      ),
+      2 => 
+      array (
+        0 => 'app\\http\\controllers\\api\\v1\\reporting\\__construct',
+        1 => 'app\\http\\controllers\\api\\v1\\reporting\\index',
       ),
       3 => 
       array (

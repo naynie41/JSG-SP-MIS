@@ -40,7 +40,7 @@
 
 .brandSub {
   font-family: var(--font-mono);
-  font-size: 10px;
+  font-size: var(--fs-caption);
   letter-spacing: 0.12em;
   text-transform: uppercase;
   color: var(--surface-mint-2);
@@ -58,7 +58,7 @@
 
 .groupLabel {
   font-family: var(--font-mono);
-  font-size: 10px;
+  font-size: var(--fs-caption);
   letter-spacing: 0.14em;
   text-transform: uppercase;
   color: var(--surface-mint-2);
@@ -120,11 +120,21 @@
     top: 0;
     z-index: 1050;
     transform: translateX(-100%);
-    transition: transform var(--transition);
+    /* `visibility` is what takes the closed drawer out of the tab order; a
+       transform alone leaves every link focusable off-screen. It is stepped
+       (0s) rather than eased, delayed on close so the slide-out stays visible. */
+    visibility: hidden;
+    transition:
+      transform var(--transition),
+      visibility 0s linear var(--transition);
     box-shadow: var(--elev-lg);
   }
   .railOpen {
     transform: translateX(0);
+    visibility: visible;
+    transition:
+      transform var(--transition),
+      visibility 0s;
   }
   .backdrop {
     display: block;

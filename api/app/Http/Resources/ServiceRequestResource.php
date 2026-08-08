@@ -26,6 +26,10 @@ class ServiceRequestResource extends JsonResource
             'from_mda_id' => $this->from_mda_id,
             'to_mda_id' => $this->to_mda_id,
             'owner_mda' => $this->whenLoaded('toMda', fn () => ['id' => $this->toMda->id, 'name' => $this->toMda->name]),
+            // The requesting agency, by name. An owner deciding whether to grant
+            // read access to a citizen's record cannot do so responsibly against
+            // a UUID (FR-OWN-06/07).
+            'from_mda' => $this->whenLoaded('fromMda', fn () => ['id' => $this->fromMda->id, 'name' => $this->fromMda->name]),
             'activity_id' => $this->activity_id,
             'status' => $this->status->value,
             'reason' => $this->reason,

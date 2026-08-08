@@ -9,6 +9,12 @@ export interface TopBarProps {
   left?: ReactNode
   userName: string
   userRole: string
+  /**
+   * The MDA the user is acting for. It governs every record they can see and
+   * edit, so it belongs in the shell rather than being inferred from what is
+   * missing on a page.
+   */
+  userMda?: string | null
   hasNotifications?: boolean
   /** Live notification control (bell + panel). Replaces the static bell when given. */
   notifications?: ReactNode
@@ -19,11 +25,22 @@ export interface TopBarProps {
   settingsLabel?: string
 }
 
-/** Top bar (DESIGN-SYSTEM.md §5.6): breadcrumbs, notifications, user menu. */
+function UserMeta({ userName, userRole, userMda }: Pick<TopBarProps, 'userName' | 'userRole' | 'userMda'>) {
+  return (
+    <span className={styles.userMeta}>
+      <span className={styles.userName}>{userName}</span>
+      <br />
+      <span className={styles.userRole}>{userMda ? `${userRole} · ${userMda}` : userRole}</span>
+    </span>
+  )
+}
+
+/** Top bar (DESIGN.md §5.6): breadcrumbs, notifications, user menu. */
 export function TopBar({
   left,
   userName,
   userRole,
+  userMda,
   hasNotifications,
   notifications,
   onOpenMenu,
@@ -52,14 +69,20 @@ export function TopBar({
             <Icon icon={Settings} size={20} />
           </button>
         )}
-        <button type="button" className={styles.user} onClick={onOpenUser}>
-          <span className={styles.userMeta}>
-            <span className={styles.userName}>{userName}</span>
-            <br />
-            <span className={styles.userRole}>{userRole}</span>
-          </span>
-          <Avatar name={userName} size="sm" />
-        </button>
+        {/* Only interactive when there is something to open. Rendering a button
+            unconditionally left a focus stop that announced the user's name and
+            did nothing when activated. */}
+        {onOpenUser ? (
+          <button type="button" className={styles.user} onClick={onOpenUser}>
+            <UserMeta userName={userName} userRole={userRole} userMda={userMda} />
+            <Avatar name={userName} size="sm" />
+          </button>
+        ) : (
+          <div className={styles.user}>
+            <UserMeta userName={userName} userRole={userRole} userMda={userMda} />
+            <Avatar name={userName} size="sm" />
+          </div>
+        )}
       </div>
     </header>
   )

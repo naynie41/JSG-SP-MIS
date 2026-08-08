@@ -27,7 +27,7 @@ function timeAgo(iso: string | null): string {
 }
 
 /**
- * Notification bell (DESIGN-SYSTEM.md §5.6): unread count + a panel listing the
+ * Notification bell (DESIGN.md §5.6): unread count + a panel listing the
  * caller's notifications, with mark-read / mark-all-read, deep links to the related
  * referral / grievance / approval, and an email-preference toggle (FR-NOT-01/02).
  */

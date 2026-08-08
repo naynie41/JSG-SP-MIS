@@ -64,3 +64,12 @@
   background-color: var(--forest-2);
   color: var(--bg);
 }
+
+/* Route-chunk loading. Reserves vertical space so the shell does not jump when the
+   page arrives — a spinner that collapses to zero height causes a layout shift on
+   every navigation. */
+.routeLoading {
+  display: grid;
+  place-items: center;
+  min-height: 60vh;
+}

@@ -186,9 +186,15 @@ export const importApi = {
   get(id: string): Promise<ImportBatch> {
     return apiRequest<ImportBatch>({ method: 'GET', url: `/beneficiaries/imports/${id}` })
   },
-  upload(file: File, source?: string): Promise<ImportBatch> {
+  /**
+   * Standalone (Import Center) upload. `activity_id` is REQUIRED by the server —
+   * activity-first ingestion (CLAUDE.md §9, FR-REG-10): every uploaded row becomes an
+   * intervention under a registered activity the caller's MDA owns.
+   */
+  upload(file: File, activityId: string, source?: string): Promise<ImportBatch> {
     const form = new FormData()
     form.append('file', file)
+    form.append('activity_id', activityId)
     if (source) form.append('source', source)
     return apiRequest<ImportBatch>({ method: 'POST', url: '/beneficiaries/imports', data: form })
   },

@@ -17,7 +17,7 @@ const FOCUSABLE =
   'a[href],button:not([disabled]),textarea,input,select,[tabindex]:not([tabindex="-1"])'
 
 /**
- * Modal/dialog (DESIGN-SYSTEM.md §5.7): centered surface, forest scrim, focus
+ * Modal/dialog (DESIGN.md §5.7): centered surface, forest scrim, focus
  * trap, Esc + overlay-click to close, focus restored on close.
  */
 export function Modal({ open, onClose, title, children, footer }: ModalProps) {

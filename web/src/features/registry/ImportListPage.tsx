@@ -13,6 +13,7 @@ import { ApiError } from '@/types/api'
 import { useAuth } from '@/lib/auth/AuthProvider'
 import { IMPORT_STATUS_LABELS } from './constants'
 import { useImports, useUploadImport } from './hooks'
+import { useAllActivities } from '@/features/programmes/hooks'
 import type { ImportBatch } from './types'
 import layout from '@/features/shared/formLayout.module.css'
 import styles from './registry.module.css'
@@ -39,11 +40,21 @@ export function ImportListPage({ readOnly = false }: ImportListPageProps = {}) {
 
   const [page, setPage] = useState(1)
   const [source, setSource] = useState('')
+  const [activityId, setActivityId] = useState('')
   const [file, setFile] = useState<File | null>(null)
   const [uploadError, setUploadError] = useState<string | null>(null)
 
   const { data, isLoading } = useImports(page, canView)
   const uploadImport = useUploadImport()
+
+  // Activity-first (§9): the upload must name the activity the rows are delivered
+  // under. Only this MDA's own activities are offered, and only those that declared
+  // they involve beneficiaries — uploading into an activity that declared it has none
+  // would contradict what was recorded when it was created (§10).
+  const { data: activityPage } = useAllActivities(canImport)
+  const activityOptions = (activityPage?.items ?? [])
+    .filter((a) => a.involves_beneficiaries && a.status !== 'archived')
+    .map((a) => ({ value: a.id, label: a.name }))
 
   if (!canView) {
     return (
@@ -54,13 +65,17 @@ export function ImportListPage({ readOnly = false }: ImportListPageProps = {}) {
   }
 
   async function submitUpload() {
+    if (!activityId) {
+      setUploadError('Choose the activity these beneficiaries are being delivered under.')
+      return
+    }
     if (!file) {
       setUploadError('Choose a file to upload.')
       return
     }
     setUploadError(null)
     try {
-      const batch = await uploadImport.mutateAsync({ file, source: source || undefined })
+      const batch = await uploadImport.mutateAsync({ file, activityId, source: source || undefined })
       navigate(`/imports/${batch.id}`)
     } catch (error) {
       setUploadError(error instanceof ApiError ? error.message : 'Upload failed. Please try again.')
@@ -109,8 +124,23 @@ export function ImportListPage({ readOnly = false }: ImportListPageProps = {}) {
             </p>
           )}
           <div className={layout.grid2}>
+            <SelectField
+              label="Activity"
+              required
+              placeholder="Select the activity"
+              options={activityOptions}
+              value={activityId}
+              onChange={(e) => setActivityId(e.target.value)}
+              helper="Every uploaded row is recorded as an intervention under this activity."
+            />
             <SelectField label="Source" options={SOURCE_OPTIONS} value={source} onChange={(e) => setSource(e.target.value)} />
           </div>
+          {activityOptions.length === 0 && (
+            <p className={layout.alert} role="status">
+              Your MDA has no activity that accepts beneficiaries yet. Create one first — an upload is always
+              recorded under an activity.
+            </p>
+          )}
           <FileField
             label="File"
             accept=".csv,.xlsx,.xls"
@@ -118,7 +148,12 @@ export function ImportListPage({ readOnly = false }: ImportListPageProps = {}) {
             onFilesSelected={(files) => setFile(files[0] ?? null)}
           />
           <div>
-            <Button leftIcon={Upload} onClick={submitUpload} loading={uploadImport.isPending}>
+            <Button
+              leftIcon={Upload}
+              onClick={submitUpload}
+              loading={uploadImport.isPending}
+              disabled={activityOptions.length === 0}
+            >
               Upload &amp; preview
             </Button>
           </div>

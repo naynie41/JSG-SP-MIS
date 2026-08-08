@@ -32,9 +32,16 @@ class ProgrammeController extends Controller
         $status = $request->input('filter.status');
         $type = $request->input('filter.type');
         $search = trim((string) $request->input('search', ''));
+        // "Participating" = the catalog programmes the CALLER has activities under.
+        // Activity is MdaScoped, so whereHas resolves to the caller's own MDA without
+        // this endpoint knowing anything about MDAs (an oversight role that sees all
+        // activities therefore sees every programme in use). Filtering client-side
+        // instead would silently drop matches beyond the first page.
+        $participating = $request->boolean('filter.participating');
 
         $page = Programme::query()
             ->withCount($this->usageCounts())
+            ->when($participating, fn ($q) => $q->whereHas('activities'))
             ->when($search !== '', fn ($q) => $q->where('name', 'like', "%{$search}%"))
             ->when(is_string($status) && $status !== '', fn ($q) => $q->where('status', $status))
             ->when(is_string($type) && $type !== '', fn ($q) => $q->where('type', $type))

@@ -14,7 +14,13 @@ import type { Household } from './types'
 import layout from '@/features/shared/formLayout.module.css'
 import styles from './registry.module.css'
 
-export function HouseholdListPage() {
+export interface HouseholdListPageProps {
+  /** Rendered inside a host page that owns the heading (the MDA console).
+   *  Suppresses this page's own title block so the document keeps a single h1. */
+  embedded?: boolean
+}
+
+export function HouseholdListPage({ embedded = false }: HouseholdListPageProps = {}) {
   const { hasPermission, user } = useAuth()
   const canView = hasPermission('household.view')
   const canEdit = hasPermission('household.edit')
@@ -70,11 +76,13 @@ export function HouseholdListPage() {
 
   return (
     <div>
-      <div className={layout.pageHead}>
-        <div className={layout.pageTitle}>
-          <span className="eyebrow">03 · Registry</span>
-          <h1 className="t-h1">Households</h1>
-        </div>
+      <div className={embedded ? `${layout.pageHead} ${layout.pageHeadEmbedded}` : layout.pageHead}>
+        {!embedded && (
+          <div className={layout.pageTitle}>
+            <span className="eyebrow">03 · Registry</span>
+            <h1 className="t-h1">Households</h1>
+          </div>
+        )}
       </div>
 
       <DataTable

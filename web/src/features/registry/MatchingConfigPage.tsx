@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { Plus, Trash2 } from 'lucide-react'
+import { Plus, Trash2, X } from 'lucide-react'
 import { Button } from '@/components/Button/Button'
 import { Badge } from '@/components/Badge/Badge'
 import { Card } from '@/components/Card/Card'
@@ -19,7 +19,13 @@ import styles from './registry.module.css'
 
 const fieldLabel = (value: string) => MATCH_FIELD_OPTIONS.find((o) => o.value === value)?.label ?? value
 
-export function MatchingConfigPage() {
+export interface MatchingConfigPageProps {
+  /** Rendered inside a host page that owns the heading (the administration console).
+   *  Suppresses this page's own title block so the document keeps a single h1. */
+  embedded?: boolean
+}
+
+export function MatchingConfigPage({ embedded = false }: MatchingConfigPageProps = {}) {
   const { hasPermission } = useAuth()
   const canView = hasPermission('matching.view')
   const canEdit = hasPermission('matching.edit')
@@ -42,10 +48,18 @@ export function MatchingConfigPage() {
   }
 
   // Re-seed the editor whenever a new version becomes active.
-  return <ConfigEditor key={config.id} config={config} canEdit={canEdit} />
+  return <ConfigEditor key={config.id} config={config} canEdit={canEdit} embedded={embedded} />
 }
 
-function ConfigEditor({ config, canEdit }: { config: MatchingConfig; canEdit: boolean }) {
+function ConfigEditor({
+  config,
+  canEdit,
+  embedded,
+}: {
+  config: MatchingConfig
+  canEdit: boolean
+  embedded: boolean
+}) {
   const publish = usePublishMatchingConfig()
   const [rules, setRules] = useState<string[][]>(config.deterministic_rules)
   const [fuzzy, setFuzzy] = useState<FuzzyFieldRule[]>(config.fuzzy_fields)
@@ -95,14 +109,16 @@ function ConfigEditor({ config, canEdit }: { config: MatchingConfig; canEdit: bo
 
   return (
     <div>
-      <div className={layout.pageHead}>
-        <div className={layout.pageTitle}>
-          <span className="eyebrow">03 · Registry</span>
-          <h1 className="t-h1">Matching rules</h1>
-          <p className={styles.note}>
-            Duplicate-verification configuration. Publishing creates a new immutable version and is audited.
-          </p>
-        </div>
+      <div className={embedded ? `${layout.pageHead} ${layout.pageHeadEmbedded}` : layout.pageHead}>
+        {!embedded && (
+          <div className={layout.pageTitle}>
+            <span className="eyebrow">03 · Registry</span>
+            <h1 className="t-h1">Matching rules</h1>
+            <p className={styles.note}>
+              Duplicate-verification configuration. Publishing creates a new immutable version and is audited.
+            </p>
+          </div>
+        )}
         <div className={styles.rowActions}>
           <Badge variant="dark" mono>
             v{config.version}
@@ -120,7 +136,7 @@ function ConfigEditor({ config, canEdit }: { config: MatchingConfig; canEdit: bo
       )}
 
       <div className={styles.stack}>
-        <Card title="Deterministic rules" eyebrow="Decisive key sets → exact match">
+        <Card titleAs="h2" title="Deterministic rules" eyebrow="Decisive key sets → exact match">
           <div className={styles.stack}>
             {rules.length === 0 && <p className={styles.note}>No deterministic rules. Matches rely on fuzzy scoring only.</p>}
             {rules.map((rule, ruleIndex) => {
@@ -139,7 +155,7 @@ function ConfigEditor({ config, canEdit }: { config: MatchingConfig; canEdit: bo
                             className={styles.chipRemove}
                             onClick={() => setRules(rules.map((r, i) => (i === ruleIndex ? r.filter((x) => x !== f) : r)))}
                           >
-                            ×
+                            <Icon icon={X} size={12} />
                           </button>
                         )}
                       </Badge>
@@ -182,7 +198,7 @@ function ConfigEditor({ config, canEdit }: { config: MatchingConfig; canEdit: bo
           </div>
         </Card>
 
-        <Card title="Fuzzy fields" eyebrow="Weighted comparators">
+        <Card titleAs="h2" title="Fuzzy fields" eyebrow="Weighted comparators">
           <div className={styles.stack}>
             {fuzzy.map((rule, i) => (
               <div key={i} className={styles.ruleRow}>
@@ -239,7 +255,7 @@ function ConfigEditor({ config, canEdit }: { config: MatchingConfig; canEdit: bo
           </div>
         </Card>
 
-        <Card title="Thresholds & behaviour" eyebrow="Bands and exact-match handling">
+        <Card titleAs="h2" title="Thresholds & behaviour" eyebrow="Bands and exact-match handling">
           <div className={layout.form}>
             <div className={layout.grid2}>
               <TextField
@@ -272,6 +288,7 @@ function ConfigEditor({ config, canEdit }: { config: MatchingConfig; canEdit: bo
               options={EXACT_BEHAVIOUR_OPTIONS}
               value={behaviour}
               onChange={(value) => setBehaviour(value as ExactMatchBehaviour)}
+              disabled={!canEdit}
             />
             <TextField
               label="Description"

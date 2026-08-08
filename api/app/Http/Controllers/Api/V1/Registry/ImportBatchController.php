@@ -131,6 +131,11 @@ class ImportBatchController extends Controller
                     'band' => $candidate['band'],
                     'score' => $candidate['score'],
                     'matched_fields' => $candidate['matched_fields'],
+                    // Per-field verdicts + cascade stage drive the adjudication
+                    // screen. Absent on batches screened before this shipped, so
+                    // the client must treat them as optional.
+                    'comparison' => $candidate['comparison'] ?? [],
+                    'stage' => $candidate['stage'] ?? null,
                     'reveal' => $reveal,
                 ];
             }

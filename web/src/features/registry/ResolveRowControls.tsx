@@ -16,17 +16,19 @@ interface ResolveRowControlsProps {
   batchId: string
   row: ImportRow
   canResolve: boolean
+  /** Called after a decision saves — the queue advances to the next undecided row. */
+  onResolved?: () => void
 }
 
 /**
  * Per-row resolution controls for a flagged import row (PRD FR-DUP-05/09, §9;
- * DESIGN-SYSTEM §5.9). The same-person **adjudication** control ("create as new /
+ * DESIGN.md §5.9). The same-person **adjudication** control ("create as new /
  * distinct person") is shown ONLY for **probable** (fuzzy) matches. An **exact**
  * match is definitive and is never adjudicated — only the discard (skip) /
  * provide-service (link → Service Request) choice remains, which is available at
  * every band. The decision is saved + audited immediately; applied on commit.
  */
-export function ResolveRowControls({ batchId, row, canResolve }: ResolveRowControlsProps) {
+export function ResolveRowControls({ batchId, row, canResolve, onResolved }: ResolveRowControlsProps) {
   const resolve = useResolveRow(batchId)
   const registryCandidates = row.match.candidates.filter((c) => c.type === 'registry' && c.reveal?.id)
   const canLink = registryCandidates.length > 0
@@ -49,7 +51,7 @@ export function ResolveRowControls({ batchId, row, canResolve }: ResolveRowContr
   }
 
   // Discard / provide-service are always available; "create as new" (adjudicate a
-  // distinct person) is offered only for probable matches (DESIGN-SYSTEM §5.9).
+  // distinct person) is offered only for probable matches (DESIGN.md §5.9).
   const options: RadioOption[] = [
     ...(canAdjudicate
       ? [{ value: 'new', label: 'Not the same person — create new (justification required)' }]
@@ -77,6 +79,7 @@ export function ResolveRowControls({ batchId, row, canResolve }: ResolveRowContr
           beneficiary_id: resolution === 'link' ? beneficiaryId : undefined,
         },
       })
+      onResolved?.()
     } catch (err) {
       setError(err instanceof ApiError ? err.message : 'Could not save the decision.')
     }
@@ -100,9 +103,12 @@ export function ResolveRowControls({ batchId, row, canResolve }: ResolveRowContr
       )}
 
       {isExact && (
+        // Explains why the "not the same person" option is absent rather than
+        // silently hiding it. The match strength component already states that
+        // an identifier hit is definitive, so this says only what it adds.
         <p className={styles.note}>
-          Exact match — definitively the same person. Choose whether to provide service or discard;
-          a new record cannot be created for an exact match.
+          A new record cannot be created for an exact identifier match. Choose whether to provide
+          service or discard this row.
         </p>
       )}
 

@@ -37,7 +37,7 @@ describe('LoginPage', () => {
   }
 
   it('logs in with valid credentials (no MFA) and lands on the dashboard', async () => {
-    login.mockResolvedValue({ token: 'tok-123', token_type: 'Bearer', user: makeUser() })
+    login.mockResolvedValue({ token: 'tok-123', token_type: 'Bearer', user: makeUser({ role: { key: 'sp_coordination', name: 'SP Coordination' } }) })
 
     renderWithProviders(<App />, '/login')
     await fillCredentials()
@@ -59,7 +59,7 @@ describe('LoginPage', () => {
 
   it('completes the MFA challenge step to sign in', async () => {
     login.mockResolvedValue({ mfa_required: true, token_type: 'Bearer', mfa_token: 'chal-1' })
-    mfaChallenge.mockResolvedValue({ token: 'tok-final', token_type: 'Bearer', user: makeUser() })
+    mfaChallenge.mockResolvedValue({ token: 'tok-final', token_type: 'Bearer', user: makeUser({ role: { key: 'sp_coordination', name: 'SP Coordination' } }) })
 
     renderWithProviders(<App />, '/login')
     const user = await fillCredentials()

@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { Link } from 'react-router-dom'
 import { Check, X } from 'lucide-react'
 import { Button } from '@/components/Button/Button'
 import { Badge } from '@/components/Badge/Badge'
@@ -9,6 +10,7 @@ import type { Column } from '@/components/DataTable/DataTable'
 import { Modal } from '@/components/Modal/Modal'
 import { TextareaField } from '@/components/Field/TextareaField'
 import { ApiError } from '@/types/api'
+import { cn } from '@/lib/utils/cn'
 import { useAuth } from '@/lib/auth/AuthProvider'
 import { SERVICE_STATUS_LABELS } from './constants'
 import { useDecideServiceRequest, useServiceInbox, useServiceOutbox } from './hooks'
@@ -17,6 +19,29 @@ import layout from '@/features/shared/formLayout.module.css'
 import styles from './registry.module.css'
 
 const shortId = (id: string) => id.slice(0, 8)
+
+/**
+ * The beneficiary a request concerns. `beneficiary_name` is reveal-safe (never
+ * NIN/BVN/contact) and is what makes the decision answerable; the short id stays
+ * as a secondary line so a record can still be cited precisely in correspondence.
+ */
+function BeneficiaryCell({ request }: { request: ServiceRequest }) {
+  if (!request.beneficiary_name) {
+    return <span className={styles.mono}>#{shortId(request.beneficiary_id)}</span>
+  }
+  return (
+    <div className={styles.cellStack}>
+      <span>{request.beneficiary_name}</span>
+      <span className={cn(styles.cellSub, styles.mono)}>#{shortId(request.beneficiary_id)}</span>
+    </div>
+  )
+}
+
+/** An agency, by name. Falls back to the short id only if the relation is absent. */
+function MdaCell({ mda, id }: { mda?: { id: string; name: string } | null; id: string }) {
+  if (!mda?.name) return <span className={styles.mono}>#{shortId(id)}</span>
+  return <span>{mda.name}</span>
+}
 
 function StatusChip({ status }: { status: ServiceRequest['status'] }) {
   return (
@@ -27,7 +52,7 @@ function StatusChip({ status }: { status: ServiceRequest['status'] }) {
 }
 
 /**
- * Service Requests (§12, FR-OWN-06/07; DESIGN-SYSTEM §5.9). Two views:
+ * Service Requests (§12, FR-OWN-06/07; DESIGN.md §5.9). Two views:
  *  - **Approval inbox** — requests routed to my MDA (owner). Accept opens a
  *    read-access grant for the requester and authorises serving; decline blocks
  *    (a reason is required and surfaced to the requester).
@@ -80,8 +105,8 @@ export function ServiceRequestsPage() {
   }
 
   const inboxColumns: Column<ServiceRequest>[] = [
-    { key: 'ben', header: 'Beneficiary', render: (r) => <span className={styles.mono}>#{shortId(r.beneficiary_id)}</span> },
-    { key: 'from', header: 'Requesting MDA', render: (r) => <span className={styles.mono}>#{shortId(r.from_mda_id)}</span> },
+    { key: 'ben', header: 'Beneficiary', render: (r) => <BeneficiaryCell request={r} /> },
+    { key: 'from', header: 'Requesting MDA', render: (r) => <MdaCell mda={r.from_mda} id={r.from_mda_id} /> },
     { key: 'reason', header: 'Reason', render: (r) => r.reason ?? <span className={styles.cellSub}>—</span> },
     { key: 'status', header: 'Status', render: (r) => <StatusChip status={r.status} /> },
     {
@@ -106,19 +131,30 @@ export function ServiceRequestsPage() {
   ]
 
   const outboxColumns: Column<ServiceRequest>[] = [
-    { key: 'ben', header: 'Beneficiary', render: (r) => <span className={styles.mono}>#{shortId(r.beneficiary_id)}</span> },
-    { key: 'to', header: 'Owner MDA', render: (r) => <span className={styles.mono}>#{shortId(r.to_mda_id)}</span> },
+    { key: 'ben', header: 'Beneficiary', render: (r) => <BeneficiaryCell request={r} /> },
+    { key: 'to', header: 'Owner MDA', render: (r) => <MdaCell mda={r.owner_mda} id={r.to_mda_id} /> },
     { key: 'reason', header: 'Reason', render: (r) => r.reason ?? <span className={styles.cellSub}>—</span> },
     { key: 'status', header: 'Status', render: (r) => <StatusChip status={r.status} /> },
     {
       key: 'decision',
       header: 'Decision',
-      render: (r) =>
-        r.status === 'declined' && r.decision_reason ? (
-          r.decision_reason
-        ) : (
-          <span className={styles.cellSub}>{r.status === 'accepted' ? 'Read access granted' : '—'}</span>
-        ),
+      render: (r) => {
+        if (r.status === 'accepted') {
+          return <span className={styles.cellSub}>Read access granted</span>
+        }
+        if (r.status !== 'declined') return <span className={styles.cellSub}>—</span>
+        // A decline used to be a dead end: a red chip and a reason, with no way
+        // forward. A referral is the sanctioned next step when the owner will
+        // not grant access, so offer it here (§FR-REF).
+        return (
+          <div className={styles.cellStack}>
+            <span>{r.decision_reason ?? 'Declined'}</span>
+            <Link to="/referrals" className={styles.cellSub}>
+              Raise a referral instead →
+            </Link>
+          </div>
+        )
+      },
     },
   ]
 
@@ -173,6 +209,26 @@ export function ServiceRequestsPage() {
         }
       >
         <div className={styles.stack}>
+          {/* What is actually being decided. Without this the officer is
+              accepting or refusing on behalf of a hash. */}
+          {target && (
+            <dl className={styles.dl}>
+              <dt>Beneficiary</dt>
+              <dd>
+                {target.request.beneficiary_name ?? (
+                  <span className={styles.mono}>#{shortId(target.request.beneficiary_id)}</span>
+                )}
+              </dd>
+              <dt>Requesting MDA</dt>
+              <dd>
+                {target.request.from_mda?.name ?? (
+                  <span className={styles.mono}>#{shortId(target.request.from_mda_id)}</span>
+                )}
+              </dd>
+              <dt>Their reason</dt>
+              <dd>{target.request.reason ?? '—'}</dd>
+            </dl>
+          )}
           <p className={styles.note}>
             {target?.accept
               ? 'The requesting MDA will gain READ access to the full record and may serve this beneficiary. Ownership is unchanged.'

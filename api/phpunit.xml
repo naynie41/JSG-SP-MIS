@@ -27,6 +27,11 @@
         <env name="DB_DATABASE" value=":memory:"/>
         <env name="DB_URL" value=""/>
         <env name="MAIL_MAILER" value="array"/>
+        <!-- Pinned so the suite tests the SHIPPED policy, not a developer's local
+             override. MFA_ENFORCE=false in a personal .env (a documented local
+             convenience) would otherwise silently turn the "privileged roles require
+             MFA" assertions green-by-absence. -->
+        <env name="MFA_ENFORCE" value="true"/>
         <env name="QUEUE_CONNECTION" value="sync"/>
         <env name="SESSION_DRIVER" value="array"/>
         <env name="PULSE_ENABLED" value="false"/>

@@ -6,6 +6,8 @@ export type ImportStatus = 'pending' | 'processing' | 'preview_ready' | 'committ
 export interface Beneficiary {
   id: string
   owner_mda_id: string
+  /** Owning agency by name (eager-loaded on show/list). */
+  owner_mda?: { id: string; name: string } | null
   first_name: string
   middle_name: string | null
   last_name: string
@@ -76,12 +78,41 @@ export interface MatchReveal {
   benefits: { summary: string | null; items: unknown[] }
 }
 
+/**
+ * A per-field verdict for the adjudication screen (FR-DUP-09).
+ *
+ * The existing record's values are deliberately absent: MatchReveal withholds
+ * NIN/BVN/phone/DOB because the record belongs to another MDA (FR-DUP-04). The
+ * server compares and returns only the outcome, so the officer can see WHICH
+ * fields agreed without any value crossing the boundary.
+ */
+export type ComparisonVerdict =
+  | 'exact'
+  | 'near'
+  | 'differs'
+  | 'absent_incoming'
+  | 'absent_existing'
+  | 'absent_both'
+
+export interface FieldComparison {
+  field: string
+  verdict: ComparisonVerdict
+  similarity: number | null
+  weight: number | null
+  participated: boolean
+  /** Matched a deterministic key set — definitive, not a fuzzy score. */
+  deterministic: boolean
+}
+
 /** One candidate attached to a flagged import row (registry or within-batch peer). */
 export interface MatchCandidate {
   type: MatchCandidateType
   band: Exclude<MatchBand, 'none'>
   score: number
   matched_fields: string[]
+  /** Empty on batches screened before per-field verdicts shipped. */
+  comparison?: FieldComparison[]
+  stage?: 'deterministic' | 'fuzzy' | null
   reveal: MatchReveal | null
 }
 
@@ -107,6 +138,8 @@ export interface ServiceRequest {
   from_mda_id: string
   to_mda_id: string
   owner_mda?: { id: string; name: string } | null
+  /** The requesting agency, by name — the owner decides against this, not a UUID. */
+  from_mda?: { id: string; name: string } | null
   activity_id: string | null
   status: ServiceRequestStatus
   reason: string | null
@@ -229,6 +262,8 @@ export interface ImportBatch {
     skipped_rows: number
   }
   error: string | null
+  /** Thresholds the engine used, for the band shown in place of a raw score. */
+  matching_thresholds?: { review: number; auto_accept: number | null } | null
   rows?: ImportRow[]
   created_at: string | null
   updated_at: string | null

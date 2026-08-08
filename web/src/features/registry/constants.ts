@@ -106,6 +106,15 @@ export const MATCH_FIELD_OPTIONS: SelectOption[] = [
   { value: 'ward', label: 'Ward' },
 ]
 
+/**
+ * Field name → label, derived from the matcher's own field list so the
+ * adjudication comparison and the matching-rules editor never drift apart.
+ */
+export const MATCH_FIELD_LABELS: Record<string, string> = {
+  ...Object.fromEntries(MATCH_FIELD_OPTIONS.map((o) => [o.value, o.label])),
+  full_name: 'Full name',
+}
+
 export const EXACT_BEHAVIOUR_OPTIONS: SelectOption[] = [
   { value: 'confirm', label: 'Confirm — a human confirms each exact match' },
   { value: 'auto_link', label: 'Auto-link — treat exact matches as the same person' },

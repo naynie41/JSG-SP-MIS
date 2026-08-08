@@ -130,7 +130,7 @@ export function AdminCatalogPage() {
 
       <Tabs
         items={[
-          { id: 'catalog', label: 'Catalog', content: <ProgrammeListPage /> },
+          { id: 'catalog', label: 'Catalog', content: <ProgrammeListPage embedded /> },
           { id: 'usage', label: 'Usage across MDAs', content: <UsagePanel /> },
         ]}
       />

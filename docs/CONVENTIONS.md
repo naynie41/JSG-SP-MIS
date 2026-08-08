@@ -78,7 +78,7 @@
 
 ## 5. Frontend — React / TypeScript
 
-- **Design system is mandatory.** All UI derives tokens and components from `docs/DESIGN-SYSTEM.md`;
+- **Design system is mandatory.** All UI derives tokens and components from `DESIGN.md`;
   load the `frontend-design` skill before building UI. Tokens live once as CSS variables (or mapped
   into the utility-framework theme) — never hard-code hex/spacing in components. Never duplicate a
   component that already exists in the design system; extend the shared one. Every interactive

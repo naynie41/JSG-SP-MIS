@@ -51,7 +51,7 @@ protection are not optional features — see `SECURITY.md`.
 10. **Small, reviewable steps.** Work in logical commits, explain each briefly, and keep
     each change easy to review and run.
 11. **UI follows the design system.** Every screen derives its colors, type, spacing, and
-    components from `docs/DESIGN-SYSTEM.md`, and you load the `frontend-design` skill before
+    components from `DESIGN.md`, and you load the `frontend-design` skill before
     building UI. Never hand-roll a component that already exists there — extend the shared one.
 
 ---
@@ -79,6 +79,8 @@ Prefer the framework's built-in way of doing things over third-party packages.
 ├── CLAUDE.md                  # this file
 ├── SECURITY.md                # security & data-protection requirements
 ├── README.md                  # how to set up and run (you generate this)
+├── DESIGN.md                  # UI reference: tokens & components (all UI follows this)
+├── PRODUCT.md                 # durable product truth (users, purpose, constraints)
 ├── docker-compose.yml         # full local dev stack
 ├── .env.example               # documented, no real secrets
 ├── api/                       # Laravel 12 backend
@@ -87,7 +89,6 @@ Prefer the framework's built-in way of doing things over third-party packages.
     ├── Jigawa_SP-MIS_PRD.pdf   # the spec (authoritative)
     ├── ARCHITECTURE.md         # system design & data model
     ├── CONVENTIONS.md          # coding standards & API conventions
-    ├── DESIGN-SYSTEM.md         # UI reference: tokens & components (all UI follows this)
     └── PHASE-1-BUILD-PROMPTS.md # the Phase 1 task prompts
 ```
 
@@ -101,17 +102,26 @@ later phase until I confirm the current one is done. (Phase 1 = Foundation; Phas
 Phase 3 = Duplicate Verification; and so on per the list below.)
 
 1. **Foundation & Access Control** — repo, Docker dev env, DB+PostGIS, auth, MFA, RBAC,
-   MDA scoping, audit-log foundation, user/MDA management, frontend shell. *(current)*
-2. **Beneficiary Registry & Ownership** — beneficiary/household model, manual + Excel/CSV
-   import, provenance, ownership rules.
+   MDA scoping, audit-log foundation, user/MDA management, frontend shell.
+2. **Beneficiary Registry & Ownership** — beneficiary/household model (bulk/source import only, no
+   manual entry), provenance, ownership rules.
 3. **Duplicate Verification** — deterministic + fuzzy matching engine, pre-save check,
    match UI, request-to-serve flow.
-4. **Programmes, Activities & Benefit Ledger** — programme/activity config, enrollment,
-   benefit ledger, double-dipping flags.
+4. **Programmes, Activities & Benefit Ledger** — global programme catalog (System-Admin-owned) +
+   MDA-owned activities, enrollment, benefit ledger, double-dipping flags. (See §10.)
 5. **Referrals, Grievances & Notifications** — referral lifecycle, GRM, in-app + email.
 6. **Dashboards, Reporting & GIS** — executive/MDA/partner dashboards, exports, PostGIS maps.
 7. **Sync, Data Sharing, Graduation & Hardening** — sync jobs, data-sharing governance,
    graduation, security/NFR hardening, deployment prep.
+
+*Enhancement tracks (built on top of the phases they compose):*
+- **Phase 6E — Executive Reporting Suite** (5-tab Governor's view) — `docs/PHASE-6E-BUILD-PROMPTS.md`.
+- **Phase 6P — Funding Partner Reporting Suite** (5-tab partner view, funded-scope) —
+  `docs/PHASE-6P-BUILD-PROMPTS.md`.
+- **Phase Admin — System Administrator Console** (governance/config/oversight; composes existing
+  modules) — `docs/PHASE-ADMIN-BUILD-PROMPTS.md`.
+Dashboard UI for all three follows the design system + the §5.12 dashboard-craft rules; load the
+`frontend-design` skill for composition, but the design-system tokens always win.
 
 When a phase is done, update the checklist in the relevant phase doc and wait for the next phase.
 
@@ -168,7 +178,7 @@ A task is done only when **all** of these are true:
 - Never fabricate integration with external systems (NIN/NIMC, SOCU) — mock against a clear
   interface and tell me what real access is required.
 - Never introduce off-palette colors, ad-hoc fonts/spacing, or a duplicate of a component that
-  already exists in `docs/DESIGN-SYSTEM.md`.
+  already exists in `DESIGN.md`.
 - Never add a manual single-record create path for beneficiaries or households — in the API or the
   UI. Ingestion is **bulk/source-only** (Excel/CSV, Kobo, ODK, REST API, SOCU, existing government
   systems), matching PRD §8.1. Editing/correcting an existing imported record (owner-only) is a
@@ -237,6 +247,26 @@ A task is done only when **all** of these are true:
   service requests.
 - **Never** expose programme creation/editing to an MDA role, and never make a programme MDA-scoped —
   it is a shared catalog.
+
+---
+
+## 11. Locked decisions — funding attribution & admin console
+
+- **Funding-partner attaches to the ACTIVITY, never the Programme.** Partner funding (for the Phase 6P
+  partner reporting view) is a property of the MDA-owned activity's funding, resolvable to a specific
+  Development Partner. Attaching it to the global programme would re-introduce the ownership removed in
+  §10. UX may let an officer set one partner across several activities, but it is stored per-activity.
+- **Funding attribution confers REPORTING VISIBILITY ONLY — never beneficiary-data access.** A partner
+  funding an activity gains aggregate reporting on their funded programmes; it grants no read access to
+  beneficiary records. Development Partners never see registry PII.
+- **"Super Admin" = the existing System Administrator role, not a new tier.** The System Administrator
+  Console (`docs/PHASE-ADMIN-BUILD-PROMPTS.md`) is a governance/config/oversight surface that **composes
+  existing modules** (users/audit Ph1, registry Ph2, matching Ph3, catalog Ph4, reports Ph6, sync Ph7) —
+  it never reimplements them, and it never includes infrastructure/system-health monitoring (DevOps) or
+  programme-delivery operations (MDAs / SP Coordination).
 - **Never** grant beneficiary-data export beyond the export permission matrix in `SECURITY.md`, and
   never bundle `export.reveal_pii` (unmasked NIN/BVN) into a role by default. Exports always inherit the
   caller's scope, mask PII unless explicitly permitted, and are audited.
+- **Never** headline executive/reporting outputs with *gross registrations*, and never show a coverage
+  **percentage** or index without a real denominator loaded. The headline is **net unique beneficiaries**;
+  coverage is absolute counts until a population/eligibility denominator exists. (See Phase 6E.)

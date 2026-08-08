@@ -19,7 +19,7 @@ export interface GaugeProps {
 }
 
 /**
- * A donut gauge for a real ratio (DESIGN-SYSTEM §5.9). Accessible: the ring carries an
+ * A donut gauge for a real ratio (DESIGN.md §5.9). Accessible: the ring carries an
  * `aria-label` and the percentage is shown as visible text.
  */
 export function Gauge({ label, value, caption, tone = 'forest' }: GaugeProps) {

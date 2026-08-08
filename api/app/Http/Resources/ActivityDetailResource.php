@@ -15,7 +15,7 @@ use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
 
 /**
- * The full "View Activity" picture (PRD §10, DESIGN-SYSTEM §5.10): the activity + its
+ * The full "View Activity" picture (PRD §10, DESIGN.md §5.10): the activity + its
  * catalog programme, target vs ACTUAL beneficiary counts, the beneficiaries/interventions
  * recorded under it, the import/validation summary of its bound batch(es), and the
  * request-to-serve items attached to the activity with their status.

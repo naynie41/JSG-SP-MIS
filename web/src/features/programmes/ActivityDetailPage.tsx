@@ -17,7 +17,7 @@ import layout from '@/features/shared/formLayout.module.css'
 import styles from './programmes.module.css'
 
 /**
- * Activity detail (§10 / DESIGN-SYSTEM §5.10) — powered by GET /activities/{id}: the
+ * Activity detail (§10 / DESIGN.md §5.10) — powered by GET /activities/{id}: the
  * catalog programme, target vs actual beneficiary counts, the beneficiaries/interventions
  * recorded under the activity, its import/validation summary, and the request-to-serve
  * items attached to it. Owner-MDA scoped; NIN/BVN masked.

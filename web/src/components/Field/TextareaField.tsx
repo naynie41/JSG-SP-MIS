@@ -12,7 +12,7 @@ export interface TextareaFieldProps extends Omit<TextareaHTMLAttributes<HTMLText
   id?: string
 }
 
-/** Multi-line text field (DESIGN-SYSTEM.md §5.2). */
+/** Multi-line text field (DESIGN.md §5.2). */
 export const TextareaField = forwardRef<HTMLTextAreaElement, TextareaFieldProps>(
   function TextareaField({ label, helper, error, hideLabel, required, id, className, ...rest }, ref) {
     const generatedId = useId()

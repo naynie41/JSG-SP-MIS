@@ -21,8 +21,18 @@ export function fieldMessageId(id: string): string {
 }
 
 /**
+ * Label element id for a field. Grouping controls (radiogroup, checkbox group)
+ * are not labelable elements, so `<label htmlFor>` does not associate with them —
+ * they must point at this id with `aria-labelledby` instead.
+ */
+// eslint-disable-next-line react-refresh/only-export-components
+export function fieldLabelId(id: string): string {
+  return `${id}-label`
+}
+
+/**
  * Label + control + helper/error layout shared by all text-like fields
- * (DESIGN-SYSTEM.md §5.2). Error text takes precedence over helper and is
+ * (DESIGN.md §5.2). Error text takes precedence over helper and is
  * announced (role="alert"); it renders the message from the API error envelope.
  */
 export function FieldShell({
@@ -42,7 +52,7 @@ export function FieldShell({
       {/* The required "*" sits outside the <label> so it is not part of the
           field's accessible name (screen readers rely on aria-required instead). */}
       <span className={cn(styles.labelRow, hideLabel && 'sr-only')}>
-        <label htmlFor={id} className={styles.label}>
+        <label id={fieldLabelId(id)} htmlFor={id} className={styles.label}>
           {label}
         </label>
         {required && (

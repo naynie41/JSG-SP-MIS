@@ -101,7 +101,7 @@ function BuilderPanel({ datasets, initialDataset }: { datasets: AdHocDataset[]; 
 
   return (
     <div className={styles.page}>
-      <Card title="Build a report" eyebrow="Aggregate only — no personal records">
+      <Card titleAs="h2" title="Build a report" eyebrow="Aggregate only — no personal records">
         <div className={styles.filterBar}>
           <SelectField
             label="Dataset"
@@ -169,6 +169,7 @@ function BuilderPanel({ datasets, initialDataset }: { datasets: AdHocDataset[]; 
 
       {result && (
         <Card
+          titleAs="h2"
           title={result.title}
           eyebrow={`${result.row_count.toLocaleString()} row${result.row_count === 1 ? '' : 's'} · ${result.scope.label}`}
           flush
@@ -191,7 +192,7 @@ function BuilderPanel({ datasets, initialDataset }: { datasets: AdHocDataset[]; 
       )}
 
       {result && (
-        <Card title="Save for scheduling" eyebrow="Saved reports can be scheduled and delivered">
+        <Card titleAs="h2" title="Save for scheduling" eyebrow="Saved reports can be scheduled and delivered">
           <div className={styles.filterBar}>
             <TextField
               label="Report name"
@@ -225,7 +226,7 @@ function CataloguePanel({ datasets, onBuild }: { datasets: AdHocDataset[]; onBui
     <div className={styles.page}>
       <div className={styles.demoGrid}>
         {datasets.map((d) => (
-          <Card key={d.key} title={d.label} eyebrow={d.admin ? 'Administrative' : 'Delivery'}>
+          <Card key={d.key} titleAs="h2" title={d.label} eyebrow={d.admin ? 'Administrative' : 'Delivery'}>
             <p className={styles.muted}>Group by {d.dimensions.map((dim) => dim.label).join(' · ')}</p>
             <div className={styles.filterActions}>
               <Button size="sm" variant="secondary" leftIcon={FileBarChart} onClick={() => onBuild(d.key)}>

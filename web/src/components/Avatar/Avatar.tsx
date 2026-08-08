@@ -15,7 +15,7 @@ function initials(name: string): string {
   return (parts[0]!.charAt(0) + parts[parts.length - 1]!.charAt(0)).toUpperCase()
 }
 
-/** User avatar — image when available, otherwise initials (DESIGN-SYSTEM.md §5.7). */
+/** User avatar — image when available, otherwise initials (DESIGN.md §5.7). */
 export function Avatar({ name, src, size = 'md', className }: AvatarProps) {
   return (
     <span className={cn(styles.avatar, styles[size], className)} title={name}>

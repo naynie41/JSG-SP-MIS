@@ -19,7 +19,7 @@ export interface MenuProps {
   actions: MenuAction[]
 }
 
-/** Overflow action menu (DESIGN-SYSTEM.md §5.4) — closes on select, Esc, outside click. */
+/** Overflow action menu (DESIGN.md §5.4) — closes on select, Esc, outside click. */
 export function Menu({ label, actions }: MenuProps) {
   const [open, setOpen] = useState(false)
   const wrapRef = useRef<HTMLDivElement>(null)

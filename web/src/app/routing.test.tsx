@@ -35,7 +35,9 @@ describe('protected routing', () => {
 
   it('restores a session from a stored token and shows the protected page', async () => {
     tokenStore.set('tok-abc')
-    me.mockResolvedValue(makeUser())
+    // SP Coordination lands on the generic account/dashboard view. (MDA roles now
+    // redirect to their own workspace — covered separately below.)
+    me.mockResolvedValue(makeUser({ role: { key: 'sp_coordination', name: 'SP Coordination' } }))
 
     renderWithProviders(<App />, '/')
 
@@ -43,11 +45,34 @@ describe('protected routing', () => {
     expect(me).toHaveBeenCalled()
   })
 
+  it('sends an MDA role to its own six-module workspace, not the generic rail', async () => {
+    tokenStore.set('tok-abc')
+    me.mockResolvedValue(
+      makeUser({
+        role: { key: 'mda_officer', name: 'MDA Officer' },
+        permissions: ['dashboard.view', 'programme.view', 'beneficiary.view'],
+      }),
+    )
+
+    renderWithProviders(<App />, '/')
+
+    // The rail is the MDA workspace…
+    expect(await screen.findByRole('link', { name: 'Beneficiaries' }, { timeout: 5000 })).toBeInTheDocument()
+    expect(screen.getByRole('link', { name: 'Overview' })).toBeInTheDocument()
+    // …and the generic hub links are gone.
+    expect(screen.queryByRole('link', { name: 'Registry' })).not.toBeInTheDocument()
+    expect(screen.queryByRole('link', { name: 'Coordination' })).not.toBeInTheDocument()
+  })
+
   it('shows one clean link per functional area, gated by permission', async () => {
     tokenStore.set('tok-abc')
-    // An MDA Officer works across registry, programmes and coordination.
+    // SP Coordination works across registry, programmes and coordination via the
+    // generic hub rail.
     me.mockResolvedValue(
-      makeUser({ permissions: ['beneficiary.view', 'programme.view', 'referral.view'] }),
+      makeUser({
+        role: { key: 'sp_coordination', name: 'SP Coordination' },
+        permissions: ['beneficiary.view', 'programme.view', 'referral.view'],
+      }),
     )
 
     renderWithProviders(<App />, '/')
@@ -77,7 +102,7 @@ describe('protected routing', () => {
 
     // The System Administrator lands on the console (not the MDA operator view), and
     // the rail IS the console's nine sections.
-    expect(await screen.findByRole('link', { name: 'User & Access' })).toBeInTheDocument()
+    expect(await screen.findByRole('link', { name: 'User & Access' }, { timeout: 5000 })).toBeInTheDocument()
     expect(screen.getByRole('link', { name: 'Organization' })).toBeInTheDocument()
     expect(screen.getByRole('link', { name: 'Audit & Security' })).toBeInTheDocument()
 

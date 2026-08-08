@@ -25,6 +25,10 @@ class BeneficiaryResource extends JsonResource
         return [
             'id' => $this->id,
             'owner_mda_id' => $this->owner_mda_id,
+            // The owning agency by name. Ownership decides who may edit and who
+            // must request to serve, so it has to be legible on the record
+            // itself rather than inferred from a missing Edit button.
+            'owner_mda' => $this->whenLoaded('ownerMda', fn () => ['id' => $this->ownerMda->id, 'name' => $this->ownerMda->name]),
             'first_name' => $this->first_name,
             'middle_name' => $this->middle_name,
             'last_name' => $this->last_name,

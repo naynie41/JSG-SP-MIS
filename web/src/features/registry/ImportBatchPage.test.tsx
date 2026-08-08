@@ -1,7 +1,7 @@
 import { beforeEach, describe, expect, it, vi } from 'vitest'
 import type { Mock } from 'vitest'
 import type { ReactNode } from 'react'
-import { render, screen, waitFor } from '@testing-library/react'
+import { render, screen, waitFor, within } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
 import { MemoryRouter, Route, Routes } from 'react-router-dom'
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
@@ -103,11 +103,13 @@ describe('ImportBatchPage — duplicate resolution', () => {
     expect((await screen.findAllByText('Exact')).length).toBeGreaterThan(0)
 
     // Expand the flagged row → the reveal panel discloses the existing record.
-    await user.click(screen.getByRole('button', { name: /expand row 1/i }))
+    await user.click(screen.getByRole('button', { name: /expand zainab umaru/i }))
     expect(await screen.findByText('Zainab Umar')).toBeInTheDocument()
     expect(screen.getByText('Health')).toBeInTheDocument()
-    // Phase-4 sections present but empty (programmes + benefits).
-    expect(screen.getAllByText(/populates in Phase 4/i)).toHaveLength(2)
+    // Programme/benefit sections render only when there is something to
+    // disclose — empty "populates in Phase 4" placeholders used to occupy half
+    // the panel at the decision moment and leaked roadmap vocabulary.
+    expect(screen.queryByText(/phase 4/i)).not.toBeInTheDocument()
   })
 
   it('resolves a flagged row as link / request-to-serve without creating a duplicate', async () => {
@@ -116,7 +118,7 @@ describe('ImportBatchPage — duplicate resolution', () => {
     const user = userEvent.setup()
     renderPage(<ImportBatchPage />)
 
-    await user.click(await screen.findByRole('button', { name: /expand row 1/i }))
+    await user.click(await screen.findByRole('button', { name: /expand zainab umaru/i }))
     // Link is the default decision when a registry candidate exists.
     await user.click(screen.getByRole('button', { name: /save decision/i }))
 
@@ -130,7 +132,7 @@ describe('ImportBatchPage — duplicate resolution', () => {
     const user = userEvent.setup()
     renderPage(<ImportBatchPage />)
 
-    await user.click(await screen.findByRole('button', { name: /expand row 1/i }))
+    await user.click(await screen.findByRole('button', { name: /expand zainab umaru/i }))
     await user.click(screen.getByLabelText(/create new/i))
     await user.click(screen.getByRole('button', { name: /save decision/i }))
 
@@ -143,14 +145,16 @@ describe('ImportBatchPage — duplicate resolution', () => {
     const user = userEvent.setup()
     renderPage(<ImportBatchPage />)
 
-    await user.click(await screen.findByRole('button', { name: /expand row 1/i }))
+    await user.click(await screen.findByRole('button', { name: /expand zainab umaru/i }))
 
     // No "create new" adjudication control on an exact (definitive) match...
     expect(screen.queryByLabelText(/create new/i)).not.toBeInTheDocument()
     // ...but the discard / provide-service choices remain, plus the definitive note.
     expect(screen.getByLabelText(/provide service/i)).toBeInTheDocument()
     expect(screen.getByLabelText(/discard this row/i)).toBeInTheDocument()
-    expect(screen.getByText(/exact match — definitively the same person/i)).toBeInTheDocument()
+    expect(
+      screen.getByText(/a new record cannot be created for an exact identifier match/i),
+    ).toBeInTheDocument()
   })
 
   it('shows the same-person adjudication on probable matches (§5.9)', async () => {
@@ -158,7 +162,7 @@ describe('ImportBatchPage — duplicate resolution', () => {
     const user = userEvent.setup()
     renderPage(<ImportBatchPage />)
 
-    await user.click(await screen.findByRole('button', { name: /expand row 1/i }))
+    await user.click(await screen.findByRole('button', { name: /expand zainab umaru/i }))
 
     // Adjudication offered for a probable (fuzzy) match, alongside discard/serve.
     expect(screen.getByLabelText(/create new/i)).toBeInTheDocument()
@@ -166,13 +170,34 @@ describe('ImportBatchPage — duplicate resolution', () => {
     expect(screen.getByLabelText(/discard this row/i)).toBeInTheDocument()
   })
 
-  it('confirms the batch', async () => {
+  it('confirms the batch only after the commit is confirmed in a dialog', async () => {
     get.mockResolvedValue(makeBatch())
     confirm.mockResolvedValue({ ...makeBatch(), status: 'completed' })
     const user = userEvent.setup()
     renderPage(<ImportBatchPage />)
 
+    // Commit is irreversible and silently discards undecided flagged rows, so
+    // the page-head button opens a dialog rather than writing immediately.
     await user.click(await screen.findByRole('button', { name: /confirm & commit/i }))
+    expect(confirm).not.toHaveBeenCalled()
+
+    const dialog = await screen.findByRole('dialog')
+    expect(within(dialog).getByText(/cannot be undone/i)).toBeInTheDocument()
+
+    await user.click(within(dialog).getByRole('button', { name: /confirm & commit/i }))
     await waitFor(() => expect(confirm).toHaveBeenCalledWith('batch-1'))
+  })
+
+  it('defaults to the rows that need review and can show all rows', async () => {
+    get.mockResolvedValue(makeBatch())
+    const user = userEvent.setup()
+    renderPage(<ImportBatchPage />)
+
+    // The flagged subset is the work; the officer should not have to find it.
+    const reviewTab = await screen.findByRole('button', { name: /needs review/i })
+    expect(reviewTab).toHaveAttribute('aria-pressed', 'true')
+
+    await user.click(screen.getByRole('button', { name: /all rows/i }))
+    expect(screen.getByRole('button', { name: /all rows/i })).toHaveAttribute('aria-pressed', 'true')
   })
 })

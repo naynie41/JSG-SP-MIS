@@ -1,5 +1,5 @@
-import { useState } from 'react'
-import { Outlet, useLocation, useNavigate } from 'react-router-dom'
+import { useCallback, useMemo } from 'react'
+import { Outlet, useLocation, useNavigate, useSearchParams } from 'react-router-dom'
 import { RefreshCw } from 'lucide-react'
 import { Card } from '@/components/Card/Card'
 import { Icon } from '@/components/Icon/Icon'
@@ -23,6 +23,42 @@ const TIER_LABEL: Record<ScopeTier, string> = {
   partner: 'Partner scope',
 }
 
+/** Numeric filter keys, so a query string round-trips to the right type. */
+const NUMERIC_KEYS = ['year', 'quarter', 'month'] as const
+
+/**
+ * Read the filter out of the query string.
+ *
+ * The filter lived in component state, so browser Back did not undo a filter
+ * change and a filtered view could not be bookmarked or sent to a colleague —
+ * which for a Commissioner sharing a finding is the whole point.
+ */
+function filterFromParams(params: URLSearchParams): DashboardFilterValue {
+  const next = { ...EMPTY_FILTER }
+  const bag = next as unknown as Record<string, string | number | null>
+  for (const key of Object.keys(EMPTY_FILTER)) {
+    const raw = params.get(key)
+    if (raw === null || raw === '') continue
+    if ((NUMERIC_KEYS as readonly string[]).includes(key)) {
+      const parsed = Number(raw)
+      if (Number.isNaN(parsed)) continue
+      bag[key] = parsed
+    } else {
+      bag[key] = raw
+    }
+  }
+  return next
+}
+
+function paramsFromFilter(value: DashboardFilterValue): URLSearchParams {
+  const params = new URLSearchParams()
+  for (const [key, v] of Object.entries(value)) {
+    if (v === null || v === undefined || v === '') continue
+    params.set(key, String(v))
+  }
+  return params
+}
+
 function asOf(iso: string): string {
   const mins = Math.round((Date.now() - new Date(iso).getTime()) / 60000)
   if (mins < 1) return 'moments ago'
@@ -44,18 +80,39 @@ function asOf(iso: string): string {
 export function ExecutiveLayout() {
   const { user, hasPermission } = useAuth()
   const isExecutive = user?.role?.key === 'executive'
-  const [filter, setFilter] = useState<DashboardFilterValue>(EMPTY_FILTER)
   const navigate = useNavigate()
   const location = useLocation()
+  const [searchParams, setSearchParams] = useSearchParams()
+
+  // The filter IS the query string: Back undoes a filter change, and a filtered
+  // view can be bookmarked or shared.
+  const filter = useMemo(() => filterFromParams(searchParams), [searchParams])
+  const setFilter = useCallback(
+    (next: DashboardFilterValue | ((prev: DashboardFilterValue) => DashboardFilterValue)) => {
+      setSearchParams(
+        (prev) => {
+          const current = filterFromParams(prev)
+          const resolved = typeof next === 'function' ? next(current) : next
+          return paramsFromFilter(resolved)
+        },
+        { replace: false },
+      )
+    },
+    [setSearchParams],
+  )
   // The headline hero belongs to the Overview page only; inner pages get the filter bar
   // + their own body (no repeated hero).
   const isOverview = location.pathname === '/executive' || location.pathname === '/executive/'
   const { data, isLoading, isFetching, refetch } = useDashboard(filter, isExecutive && hasPermission('dashboard.view'))
 
   // Drill-down: apply a (scoped) filter patch and navigate to the detail page.
+  // Path and query must move together — navigating separately would replace the
+  // location and discard the filter patch that was just written to it.
   const drill: DrillFn = (tab, patch) => {
-    if (patch) setFilter((f) => ({ ...f, ...patch }))
-    navigate(EXECUTIVE_TAB_ROUTES[tab] ?? '/executive')
+    const next = paramsFromFilter({ ...filter, ...(patch ?? {}) })
+    const path = EXECUTIVE_TAB_ROUTES[tab] ?? '/executive'
+    const query = next.toString()
+    navigate(query ? `${path}?${query}` : path)
   }
 
   if (!isExecutive) {

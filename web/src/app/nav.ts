@@ -4,6 +4,7 @@ import {
   DatabaseZap,
   FileBarChart,
   GaugeCircle,
+  HandHeart,
   LibraryBig,
   MapPinned,
   Plug,
@@ -52,9 +53,26 @@ export interface NavConfigSection {
  */
 export const NAV_CONFIG: NavConfigSection[] = [
   {
+    // MDA delivery workspace — six task-based modules (Phase MDA). ONE nav for both
+    // MDA Officer and MDA Admin: the Officer's permission set is a strict subset of
+    // the Admin's, so items gate on permission rather than the rail branching by role.
+    // Settings is NOT a nav link; it opens from the gear affordance in the top bar.
     label: '',
-    // Console roles get their own rails (below) — hide the generic operator links.
-    excludeRoles: ['development_partner', 'executive', 'system_administrator'],
+    roles: ['mda_officer', 'mda_admin'],
+    items: [
+      { label: 'Overview', to: '/mda', icon: GaugeCircle, permission: 'dashboard.view', end: true },
+      { label: 'Programmes', to: '/mda/programmes', icon: ClipboardList, permission: 'programme.view' },
+      { label: 'Beneficiaries', to: '/mda/beneficiaries', icon: UserSquare2, permission: 'beneficiary.view' },
+      { label: 'Service Delivery', to: '/mda/service-delivery', icon: HandHeart, permission: 'benefit.view' },
+      { label: 'Duplicate Resolution', to: '/mda/duplicate-resolution', icon: Split, permission: 'beneficiary-lookup.view' },
+      { label: 'Reports', to: '/mda/reports', icon: FileBarChart, permission: 'reporting.view' },
+    ],
+  },
+  {
+    label: '',
+    // Every other operator role (SP Coordination, M&E) keeps the generic hub rail.
+    // Console roles have their own rails below.
+    excludeRoles: ['development_partner', 'executive', 'system_administrator', 'mda_officer', 'mda_admin'],
     items: [
       { label: 'Dashboard', to: '/', icon: GaugeCircle, end: true },
       { label: 'Programmes', to: '/programmes', icon: ClipboardList, permission: 'programme.view' },
