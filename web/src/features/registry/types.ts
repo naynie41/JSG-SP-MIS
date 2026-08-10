@@ -202,7 +202,10 @@ export interface Household {
   address: string | null
   lga: string | null
   ward: string | null
-  members: HouseholdMembership[]
+  // Both are `whenLoaded` on HouseholdResource: present only when the endpoint
+  // eager-loaded the relation. Reading `.length` off either unguarded crashes the
+  // render, so they are optional here and every call site must cope.
+  members?: HouseholdMembership[]
   history?: HouseholdMembership[]
   created_at: string | null
   updated_at: string | null
@@ -225,6 +228,8 @@ export interface ImportRow {
   resolution: ImportRowResolution | null
   resolution_note: string | null
   resolved_beneficiary_id: string | null
+  /** When the decision was taken; null while the row is still awaiting one. */
+  resolved_at: string | null
   match: { band: MatchBand; candidates: MatchCandidate[] }
   preview: {
     first_name: string | null

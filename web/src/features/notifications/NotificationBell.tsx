@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom'
 import { Bell, CheckCheck } from 'lucide-react'
 import { Icon } from '@/components/Icon/Icon'
 import { Toggle } from '@/components/Field/Toggle'
+import { useAuth } from '@/lib/auth/AuthProvider'
 import {
   useMarkAllRead,
   useMarkNotificationRead,
@@ -35,6 +36,7 @@ export function NotificationBell() {
   const [open, setOpen] = useState(false)
   const wrapRef = useRef<HTMLDivElement>(null)
   const navigate = useNavigate()
+  const { user } = useAuth()
 
   const unread = useUnreadCount()
   const list = useNotifications(open)
@@ -66,7 +68,9 @@ export function NotificationBell() {
     if (notification.read_at === null) {
       markRead.mutate(notification.id)
     }
-    const link = linkFor(notification)
+    // The reader's role decides which console the deep-link lands in — an MDA user
+    // belongs in their six-module workspace, not the generic operator routes.
+    const link = linkFor(notification, user?.role?.key)
     setOpen(false)
     if (link) navigate(link)
   }

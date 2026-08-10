@@ -185,12 +185,39 @@ class AdHocReportBuilder
                 }
                 break;
 
+            case 'activities':
+                // The creating MDA owns the activity (§10 — the programme is a shared
+                // catalogue with no owner, so the activity carries the MDA).
+                if ($scope->programmeIds !== null) {
+                    $query->whereIn('programme_id', $scope->programmeIds);
+                } elseif ($scope->mdaIds !== null) {
+                    $query->whereIn('owner_mda_id', $scope->mdaIds);
+                }
+                break;
+
+            case 'duplicates':
+                // An administrative dataset that an MDA may report on for its OWN rows
+                // (AdHocDatasetRegistry::isMdaScopable). ImportRow carries no MDA column
+                // of its own, so the constraint goes through the owning batch. A
+                // governance scope has mdaIds === null and stays platform-wide, exactly
+                // as before this exception existed.
+                if ($scope->mdaIds !== null) {
+                    $ids = $scope->mdaIds;
+                    $query->whereHas('batch', function (Builder $q) use ($ids): void {
+                        $q->withoutGlobalScope(MdaScope::class)->whereIn('owner_mda_id', $ids);
+                    });
+                }
+                break;
+
             default:
-                // Administrative datasets (users, organizations, programme catalogue,
-                // duplicates, audit, imports) are platform-wide by definition: they are
+                // The remaining administrative datasets (users, organizations, programme
+                // catalogue, audit, imports) are platform-wide by definition: they are
                 // reachable only from a governance scope, which is always state-wide, so
                 // there is no narrower MDA/programme constraint to apply. Entitlement is
                 // enforced in validate() via AdHocDatasetRegistry::availableTo().
+                //
+                // Any dataset flagged `mda_scopable` MUST have its own case above — this
+                // branch would silently serve it platform-wide.
                 break;
         }
     }

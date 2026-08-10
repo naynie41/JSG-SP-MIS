@@ -16,11 +16,14 @@ use App\Domain\Notification\Support\NotificationMessage;
 use App\Domain\Referral\Events\ReferralSlaBreached;
 use App\Domain\Referral\Events\ReferralStatusChanged;
 use App\Domain\Referral\Models\Referral;
+use App\Domain\Registry\Events\ImportBatchCompleted;
+use App\Domain\Registry\Events\ImportDuplicatesSurfaced;
 use App\Domain\Registry\Events\OwnershipTransferRequested;
 use App\Domain\Registry\Events\ServiceRequestAccepted;
 use App\Domain\Registry\Events\ServiceRequestDeclined;
 use App\Domain\Registry\Events\ServiceRequestRaised;
 use App\Domain\Registry\Models\Beneficiary;
+use App\Domain\Registry\Models\ImportBatch;
 use App\Domain\Reporting\Events\ReportReady;
 use Illuminate\Events\Dispatcher;
 use Illuminate\Support\Collection;
@@ -87,6 +90,71 @@ class NotificationSubscriber
             ),
             $this->approversIn($event->transfer->from_mda_id, 'beneficiary.approve'),
         );
+    }
+
+    /**
+     * Duplicate review is waiting. Goes to the uploader — they chose the file and they
+     * are the one who can answer "is this the same person?" — and to nobody else, so a
+     * routine import does not fan out across the MDA.
+     */
+    public function handleImportDuplicatesSurfaced(ImportDuplicatesSurfaced $event): void
+    {
+        $parts = [];
+        if ($event->exactCount > 0) {
+            $parts[] = $event->exactCount.' matched an existing record on an identifier';
+        }
+        if ($event->probableCount > 0) {
+            $parts[] = $event->probableCount.' need a same-person decision';
+        }
+
+        $this->notifier->notify(
+            new NotificationMessage(
+                type: 'import.duplicates_surfaced',
+                subject: $event->total().' possible '.($event->total() === 1 ? 'duplicate' : 'duplicates').' in your import',
+                body: 'In '.$event->batch->original_filename.': '.implode('; ', $parts).'.',
+                payload: ['exact' => $event->exactCount, 'probable' => $event->probableCount],
+                related: $event->batch,
+            ),
+            $this->uploader($event->batch),
+        );
+    }
+
+    /**
+     * The import finished. An import is asynchronous, so the officer who confirmed it has
+     * usually moved on — this is how they learn the outcome.
+     */
+    public function handleImportBatchCompleted(ImportBatchCompleted $event): void
+    {
+        $this->notifier->notify(
+            new NotificationMessage(
+                type: 'import.completed',
+                subject: 'Import finished: '.$event->batch->original_filename,
+                body: $event->committed.' registered, '.$event->served.' linked to an existing record, '
+                    .$event->skipped.' not created.',
+                payload: ['committed' => $event->committed, 'served' => $event->served, 'skipped' => $event->skipped],
+                related: $event->batch,
+            ),
+            $this->uploader($event->batch),
+        );
+    }
+
+    /**
+     * The user who uploaded a batch. Falls back to the owning MDA's importers when the
+     * uploader is unknown (an API-intake batch has no interactive uploader), so the
+     * result is never lost — and always stays inside the owning MDA.
+     *
+     * @return Collection<int, User>
+     */
+    private function uploader(ImportBatch $batch): Collection
+    {
+        if ($batch->uploaded_by !== null) {
+            $user = User::query()->withoutGlobalScope(MdaScope::class)->find($batch->uploaded_by);
+            if ($user !== null) {
+                return new Collection([$user]);
+            }
+        }
+
+        return $this->approversIn((string) $batch->owner_mda_id, 'beneficiary.create');
     }
 
     /**
@@ -356,6 +424,8 @@ class NotificationSubscriber
             GrievanceSlaBreached::class => 'handleGrievanceSlaBreached',
             ReportReady::class => 'handleReportReady',
             BeneficiaryGraduated::class => 'handleBeneficiaryGraduated',
+            ImportDuplicatesSurfaced::class => 'handleImportDuplicatesSurfaced',
+            ImportBatchCompleted::class => 'handleImportBatchCompleted',
         ];
     }
 }

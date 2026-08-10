@@ -22,7 +22,13 @@ import type { Benefit } from './types'
 import layout from '@/features/shared/formLayout.module.css'
 import styles from '@/features/programmes/programmes.module.css'
 
-export function RecordBenefitPage() {
+export interface RecordBenefitPageProps {
+  /** Rendered inside a host page that owns the heading (the MDA console).
+   *  Suppresses this page's own title block so the document keeps a single h1. */
+  embedded?: boolean
+}
+
+export function RecordBenefitPage({ embedded = false }: RecordBenefitPageProps = {}) {
   const { hasPermission } = useAuth()
   const canRecord = hasPermission('benefit.create')
 
@@ -90,12 +96,14 @@ export function RecordBenefitPage() {
 
   return (
     <div>
-      <div className={layout.pageHead}>
-        <div className={layout.pageTitle}>
-          <span className="eyebrow">04 · Benefits</span>
-          <h1 className="t-h1">Record a benefit delivery</h1>
+      {!embedded && (
+        <div className={layout.pageHead}>
+          <div className={layout.pageTitle}>
+            <span className="eyebrow">04 · Benefits</span>
+            <h1 className="t-h1">Record a benefit delivery</h1>
+          </div>
         </div>
-      </div>
+      )}
 
       <div className={styles.notice} style={{ marginBottom: 'var(--space-5)' }}>
         <Icon icon={BadgeInfo} size={18} />

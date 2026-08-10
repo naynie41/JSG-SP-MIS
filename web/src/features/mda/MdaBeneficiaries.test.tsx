@@ -45,6 +45,17 @@ const BENEFICIARY = {
   created_at: null, updated_at: null,
 }
 
+// Shaped exactly like HouseholdResource, whose index eager-loads `currentMemberships`
+// into `members`. The earlier fixture invented `member_count`, so the list's
+// `h.members.length` threw during render — an uncaught error vitest warns can produce
+// false positives in unrelated files.
+const HOUSEHOLD = {
+  id: 'h1dd4c02-0000', owner_mda_id: 'm1', head_beneficiary_id: null,
+  registration_source: 'excel', registration_date: '2026-01-05',
+  address: null, lga: 'dutse', ward: null,
+  members: [], created_at: null, updated_at: null,
+}
+
 const ACTIVITIES = [
   { id: 'a1', programme_id: 'p1', owner_mda_id: 'm1', involves_beneficiaries: true, name: 'CCT Dutse Q1', status: 'active', description: null, target_beneficiaries: 500, lga: 'dutse', ward: null, location_description: null, schedule: null, starts_on: null, ends_on: null, budget_amount: null, funding_source: null, created_by: null, created_at: null, updated_at: null },
   { id: 'a2', programme_id: 'p1', owner_mda_id: 'm1', involves_beneficiaries: false, name: 'Staff training', status: 'active', description: null, target_beneficiaries: null, lga: null, ward: null, location_description: null, schedule: null, starts_on: null, ends_on: null, budget_amount: null, funding_source: null, created_by: null, created_at: null, updated_at: null },
@@ -72,7 +83,7 @@ describe('MDA console — Beneficiaries', () => {
     vi.clearAllMocks()
     perms.value = ['beneficiary.view', 'beneficiary.create', 'beneficiary.edit', 'household.view']
     listBeneficiaries.mockResolvedValue(page([BENEFICIARY]))
-    listHouseholds.mockResolvedValue(page([{ id: 'h1', source_ref: 'HH-1', lga: 'dutse', ward: null, member_count: 4, head: null, owner_mda: { id: 'm1', name: 'Ministry of Health' }, created_at: null }]))
+    listHouseholds.mockResolvedValue(page([HOUSEHOLD]))
     listImports.mockResolvedValue(page([]))
     listActivities.mockResolvedValue(page(ACTIVITIES))
   })

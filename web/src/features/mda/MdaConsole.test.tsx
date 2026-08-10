@@ -3,15 +3,14 @@ import type { Mock } from 'vitest'
 import { render, screen } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
+import { ToastProvider } from '@/components/Toast/ToastProvider'
 import { MemoryRouter, Route, Routes } from 'react-router-dom'
 import { MdaLayout } from './MdaLayout'
 import { MdaOverviewPage } from './MdaOverviewPage'
 import { MdaProgrammesPage } from './MdaProgrammesPage'
 import { MdaBeneficiariesPage } from './MdaBeneficiariesPage'
-import {
-  MdaReportsPage,
-  MdaServiceDeliveryPage,
-} from './mdaScaffolds'
+import { MdaReportsPage } from './MdaReportsPage'
+import { MdaServiceDeliveryPage } from './MdaServiceDeliveryPage'
 import { mdaApi } from './api'
 import { dashboardApi } from '@/features/dashboard/api'
 import { notificationApi } from '@/features/notifications/api'
@@ -20,6 +19,40 @@ import { navSectionsFor } from '@/app/nav'
 vi.mock('./api', () => ({ mdaApi: { actionRequired: vi.fn() } }))
 vi.mock('@/features/dashboard/api', () => ({
   dashboardApi: { get: vi.fn(), opsMetrics: vi.fn(), export: vi.fn() },
+}))
+/**
+ * Service Delivery is a real composed module now, not a scaffold, so landing on it
+ * mounts the benefit/referral/service-request screens and their queries. Mocked here
+ * so this file stays a test of the shell and the Overview rather than making network
+ * calls into jsdom.
+ */
+vi.mock('@/features/benefits/api', () => ({
+  benefitApi: {
+    record: vi.fn(), verify: vi.fn(),
+    list: vi.fn().mockResolvedValue({ items: [], pagination: { page: 1, per_page: 25, total: 0, total_pages: 1 } }),
+    ledger: vi.fn(), aggregate: vi.fn().mockResolvedValue({ group_by: 'programme', groups: [], totals: { benefit_count: 0, total_value: 0, total_quantity: '0' } }),
+  },
+  benefitImportApi: { upload: vi.fn(), get: vi.fn(), confirm: vi.fn() },
+  flagApi: { list: vi.fn().mockResolvedValue([]), review: vi.fn() },
+}))
+vi.mock('@/features/referrals/api', () => ({
+  referralApi: {
+    list: vi.fn().mockResolvedValue({ items: [], pagination: { page: 1, per_page: 25, total: 0, total_pages: 1 } }),
+    get: vi.fn(), create: vi.fn(), act: vi.fn(),
+  },
+}))
+vi.mock('@/features/registry/api', () => ({
+  beneficiaryApi: { list: vi.fn().mockResolvedValue({ items: [], pagination: { page: 1, per_page: 25, total: 0, total_pages: 1 } }), get: vi.fn(), update: vi.fn(), remove: vi.fn(), lookup: vi.fn(), export: vi.fn() },
+  serviceRequestApi: { create: vi.fn(), inbox: vi.fn().mockResolvedValue([]), outbox: vi.fn().mockResolvedValue([]), forActivity: vi.fn(), accept: vi.fn(), decline: vi.fn() },
+  matchingApi: { config: vi.fn(), versions: vi.fn(), publish: vi.fn() },
+  householdApi: { list: vi.fn(), get: vi.fn() },
+  importApi: { list: vi.fn(), get: vi.fn(), upload: vi.fn(), confirm: vi.fn(), resolveRow: vi.fn() },
+  documentApi: { list: vi.fn(), upload: vi.fn(), remove: vi.fn() },
+}))
+vi.mock('@/features/programmes/api', () => ({
+  programmeApi: { list: vi.fn().mockResolvedValue({ items: [], pagination: { page: 1, per_page: 25, total: 0, total_pages: 1 } }), get: vi.fn(), catalog: vi.fn().mockResolvedValue({ items: [], pagination: { page: 1, per_page: 25, total: 0, total_pages: 1 } }) },
+  activityApi: { list: vi.fn().mockResolvedValue({ items: [], pagination: { page: 1, per_page: 25, total: 0, total_pages: 1 } }), listForProgramme: vi.fn(), get: vi.fn() },
+  enrollmentApi: { list: vi.fn(), create: vi.fn(), update: vi.fn() },
 }))
 vi.mock('@/features/notifications/api', () => ({
   notificationApi: {
@@ -76,8 +109,11 @@ function renderAt(path = '/mda') {
   const qc = new QueryClient({ defaultOptions: { queries: { retry: false } } })
   return render(
     <QueryClientProvider client={qc}>
-      <MemoryRouter initialEntries={[path]}>
-        <Routes>
+      {/* Service Delivery composes screens whose mutations raise toasts, so the
+          provider the real app mounts at the root has to be here too. */}
+      <ToastProvider>
+        <MemoryRouter initialEntries={[path]}>
+          <Routes>
           <Route path="/mda" element={<MdaLayout />}>
             <Route index element={<MdaOverviewPage />} />
             <Route path="programmes" element={<MdaProgrammesPage />} />
@@ -91,8 +127,9 @@ function renderAt(path = '/mda') {
           <Route path="/benefits/record" element={<div>Record benefit</div>} />
           <Route path="/referrals" element={<div>Referrals module</div>} />
           <Route path="/duplicate-search" element={<div>Duplicate search</div>} />
-        </Routes>
-      </MemoryRouter>
+          </Routes>
+        </MemoryRouter>
+      </ToastProvider>
     </QueryClientProvider>,
   )
 }

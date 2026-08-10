@@ -29,6 +29,7 @@ function row(overrides: Record<string, unknown> = {}) {
     resolution: null,
     resolution_note: null,
     resolved_beneficiary_id: null,
+    resolved_at: null,
     match: {
       band: 'probable',
       candidates: [

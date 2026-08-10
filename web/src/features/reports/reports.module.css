@@ -1,0 +1,90 @@
+/*
+ * Styles for the shared reporting panels (ReportPanels.tsx).
+ *
+ * These were extracted from admin.module.css when the panels moved out of
+ * AdminReportsPage so the MDA console could compose the SAME builder, schedule and
+ * run views rather than grow a second copy. Values are unchanged from that origin.
+ */
+
+.page {
+  display: grid;
+  /* A grid track defaults to `min-width: auto`, so a wide table stretches the track
+     instead of letting its own `overflow-x: auto` contain it — which made the whole
+     page scroll sideways at mobile widths. Capping the track restores inner scroll. */
+  grid-template-columns: minmax(0, 1fr);
+  gap: var(--space-6);
+  padding-bottom: var(--space-6);
+}
+
+.filterBar {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr)) auto;
+  gap: var(--space-3);
+  align-items: end;
+}
+@media (max-width: 900px) {
+  .filterBar {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+.filterActions {
+  display: flex;
+  gap: var(--space-2);
+  flex-wrap: wrap;
+}
+
+.groupLabel {
+  display: block;
+  font-family: var(--font-mono);
+  font-size: var(--fs-caption);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--text-muted-strong);
+  margin-bottom: var(--space-2);
+}
+
+.choiceRow {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2) var(--space-4);
+  margin-bottom: var(--space-4);
+  align-items: center;
+}
+
+.muted {
+  color: var(--text-muted-strong);
+  font-size: var(--fs-label);
+}
+
+.footnote {
+  font-size: var(--fs-caption);
+  color: var(--text-muted-strong);
+  max-width: 74ch;
+  padding-top: var(--space-3);
+  border-top: 1px solid var(--border);
+  line-height: 1.6;
+}
+
+.cardGrid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--space-4);
+}
+@media (max-width: 720px) {
+  .cardGrid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.stack2 {
+  display: grid;
+  gap: var(--space-1);
+  justify-items: start;
+}
+
+.loading {
+  display: grid;
+  place-items: center;
+  padding: var(--space-8);
+}

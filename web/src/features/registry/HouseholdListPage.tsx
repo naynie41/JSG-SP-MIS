@@ -60,7 +60,7 @@ export function HouseholdListPage({ embedded = false }: HouseholdListPageProps =
       header: 'LGA / Ward',
       render: (h) => `${h.lga ? titleCase(h.lga) : '—'} · ${h.ward ?? '—'}`,
     },
-    { key: 'members', header: 'Members', align: 'right', render: (h) => h.members.length },
+    { key: 'members', header: 'Members', align: 'right', render: (h) => h.members?.length ?? 0 },
     { key: 'registered', header: 'Registered', render: (h) => <span className={styles.mono}>{h.registration_date}</span> },
     {
       key: 'actions',

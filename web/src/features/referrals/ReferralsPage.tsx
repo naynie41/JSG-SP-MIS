@@ -43,7 +43,7 @@ export function SlaIndicator({ referral }: { referral: Pick<Referral, 'sla_breac
   )
 }
 
-function ReferralTable({ direction }: { direction: ReferralDirection }) {
+export function ReferralTable({ direction }: { direction: ReferralDirection }) {
   const navigate = useNavigate()
   const [status, setStatus] = useState('')
   const { data, isLoading } = useReferrals({ direction, status: status || undefined })

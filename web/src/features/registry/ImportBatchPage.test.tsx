@@ -64,6 +64,7 @@ function makeBatch(band: 'exact' | 'probable' = 'exact'): ImportBatch {
         resolution: null,
         resolution_note: null,
         resolved_beneficiary_id: null,
+        resolved_at: null,
         match: {
           band,
           candidates: [{ type: 'registry', band, score: band === 'exact' ? 1 : 0.82, matched_fields: band === 'exact' ? ['nin'] : ['last_name'], reveal }],

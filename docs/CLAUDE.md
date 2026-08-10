@@ -51,7 +51,7 @@ protection are not optional features — see `SECURITY.md`.
 10. **Small, reviewable steps.** Work in logical commits, explain each briefly, and keep
     each change easy to review and run.
 11. **UI follows the design system.** Every screen derives its colors, type, spacing, and
-    components from `DESIGN.md`, and you load the `frontend-design` skill before
+    components from `docs/DESIGN-SYSTEM.md`, and you load the `frontend-design` skill before
     building UI. Never hand-roll a component that already exists there — extend the shared one.
 
 ---
@@ -79,8 +79,6 @@ Prefer the framework's built-in way of doing things over third-party packages.
 ├── CLAUDE.md                  # this file
 ├── SECURITY.md                # security & data-protection requirements
 ├── README.md                  # how to set up and run (you generate this)
-├── DESIGN.md                  # UI reference: tokens & components (all UI follows this)
-├── PRODUCT.md                 # durable product truth (users, purpose, constraints)
 ├── docker-compose.yml         # full local dev stack
 ├── .env.example               # documented, no real secrets
 ├── api/                       # Laravel 12 backend
@@ -89,6 +87,7 @@ Prefer the framework's built-in way of doing things over third-party packages.
     ├── Jigawa_SP-MIS_PRD.pdf   # the spec (authoritative)
     ├── ARCHITECTURE.md         # system design & data model
     ├── CONVENTIONS.md          # coding standards & API conventions
+    ├── DESIGN-SYSTEM.md         # UI reference: tokens & components (all UI follows this)
     └── PHASE-1-BUILD-PROMPTS.md # the Phase 1 task prompts
 ```
 
@@ -120,6 +119,8 @@ Phase 3 = Duplicate Verification; and so on per the list below.)
   `docs/PHASE-6P-BUILD-PROMPTS.md`.
 - **Phase Admin — System Administrator Console** (governance/config/oversight; composes existing
   modules) — `docs/PHASE-ADMIN-BUILD-PROMPTS.md`.
+- **Phase MDA — MDA Console Restructure** (task-based 6-module nav for MDA Officer + Admin, one nav
+  permission-gated; composes existing modules) — `docs/PHASE-MDA-BUILD-PROMPTS.md`.
 Dashboard UI for all three follows the design system + the §5.12 dashboard-craft rules; load the
 `frontend-design` skill for composition, but the design-system tokens always win.
 
@@ -178,7 +179,7 @@ A task is done only when **all** of these are true:
 - Never fabricate integration with external systems (NIN/NIMC, SOCU) — mock against a clear
   interface and tell me what real access is required.
 - Never introduce off-palette colors, ad-hoc fonts/spacing, or a duplicate of a component that
-  already exists in `DESIGN.md`.
+  already exists in `docs/DESIGN-SYSTEM.md`.
 - Never add a manual single-record create path for beneficiaries or households — in the API or the
   UI. Ingestion is **bulk/source-only** (Excel/CSV, Kobo, ODK, REST API, SOCU, existing government
   systems), matching PRD §8.1. Editing/correcting an existing imported record (owner-only) is a

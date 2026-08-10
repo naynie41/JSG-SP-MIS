@@ -2061,7 +2061,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
     ),
     'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Notification\\Listeners\\NotificationSubscriber.php' => 
     array (
-      0 => '56b9d7583b2581da026b81472b9b6ec7d8cdb3e6e7974372ba13d8fa2a96108b',
+      0 => 'a7d7b57a779599683d41901ddcc66475dff1f4c916522e98cd7b1eb482d55d46',
       1 => 
       array (
         0 => 'app\\domain\\notification\\listeners\\notificationsubscriber',
@@ -2073,19 +2073,22 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         2 => 'app\\domain\\notification\\listeners\\handleservicerequestaccepted',
         3 => 'app\\domain\\notification\\listeners\\handleservicerequestdeclined',
         4 => 'app\\domain\\notification\\listeners\\handleownershiptransferrequested',
-        5 => 'app\\domain\\notification\\listeners\\approversin',
-        6 => 'app\\domain\\notification\\listeners\\requester',
-        7 => 'app\\domain\\notification\\listeners\\handlereferralstatuschanged',
-        8 => 'app\\domain\\notification\\listeners\\handlereferralslabreached',
-        9 => 'app\\domain\\notification\\listeners\\bothparties',
-        10 => 'app\\domain\\notification\\listeners\\escalationtier',
-        11 => 'app\\domain\\notification\\listeners\\handlegrievanceassigned',
-        12 => 'app\\domain\\notification\\listeners\\handlegrievanceresolved',
-        13 => 'app\\domain\\notification\\listeners\\handlegrievanceslabreached',
-        14 => 'app\\domain\\notification\\listeners\\grievanceescalationtier',
-        15 => 'app\\domain\\notification\\listeners\\handlereportready',
-        16 => 'app\\domain\\notification\\listeners\\handlebeneficiarygraduated',
-        17 => 'app\\domain\\notification\\listeners\\subscribe',
+        5 => 'app\\domain\\notification\\listeners\\handleimportduplicatessurfaced',
+        6 => 'app\\domain\\notification\\listeners\\handleimportbatchcompleted',
+        7 => 'app\\domain\\notification\\listeners\\uploader',
+        8 => 'app\\domain\\notification\\listeners\\approversin',
+        9 => 'app\\domain\\notification\\listeners\\requester',
+        10 => 'app\\domain\\notification\\listeners\\handlereferralstatuschanged',
+        11 => 'app\\domain\\notification\\listeners\\handlereferralslabreached',
+        12 => 'app\\domain\\notification\\listeners\\bothparties',
+        13 => 'app\\domain\\notification\\listeners\\escalationtier',
+        14 => 'app\\domain\\notification\\listeners\\handlegrievanceassigned',
+        15 => 'app\\domain\\notification\\listeners\\handlegrievanceresolved',
+        16 => 'app\\domain\\notification\\listeners\\handlegrievanceslabreached',
+        17 => 'app\\domain\\notification\\listeners\\grievanceescalationtier',
+        18 => 'app\\domain\\notification\\listeners\\handlereportready',
+        19 => 'app\\domain\\notification\\listeners\\handlebeneficiarygraduated',
+        20 => 'app\\domain\\notification\\listeners\\subscribe',
       ),
       3 => 
       array (
@@ -3324,7 +3327,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
     ),
     'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Registry\\Jobs\\ParseImportBatch.php' => 
     array (
-      0 => '62156c677d92f573206d8d0f30c99dc5bb2a6ee38789e4ddded27648523f35aa',
+      0 => '1a90da81dcd271a0ac41b0ce8446343c8328615408cdae9cafc8d47c36d1f80a',
       1 => 
       array (
         0 => 'app\\domain\\registry\\jobs\\parseimportbatch',
@@ -3833,7 +3836,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
     ),
     'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Registry\\Services\\ImportCommitter.php' => 
     array (
-      0 => '5551956ea22676d4488efe4a3a083ecf5c686900fbe6f11a06b6d2bf53ffbcbe',
+      0 => 'b464479767a7bbf2aae5e9e9e9aa5d9c21d682492f33a9eb8f585d32833efbc1',
       1 => 
       array (
         0 => 'app\\domain\\registry\\services\\importcommitter',
@@ -4408,7 +4411,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
     ),
     'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Reporting\\Reports\\AdHoc\\AdHocDatasetRegistry.php' => 
     array (
-      0 => 'd403e378c69938b645ef96ae172850e89eb204bbae07d27fedfc8f4b1bc04856',
+      0 => '8451f6b67936554e92032fd4a3bd9f5b43846705260de1b184d1ba408ebd1368',
       1 => 
       array (
         0 => 'app\\domain\\reporting\\reports\\adhoc\\adhocdatasetregistry',
@@ -4418,9 +4421,10 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         0 => 'app\\domain\\reporting\\reports\\adhoc\\get',
         1 => 'app\\domain\\reporting\\reports\\adhoc\\iscoordination',
         2 => 'app\\domain\\reporting\\reports\\adhoc\\isadmin',
-        3 => 'app\\domain\\reporting\\reports\\adhoc\\availableto',
-        4 => 'app\\domain\\reporting\\reports\\adhoc\\cataloguefor',
-        5 => 'app\\domain\\reporting\\reports\\adhoc\\optionlist',
+        3 => 'app\\domain\\reporting\\reports\\adhoc\\ismdascopable',
+        4 => 'app\\domain\\reporting\\reports\\adhoc\\availableto',
+        5 => 'app\\domain\\reporting\\reports\\adhoc\\cataloguefor',
+        6 => 'app\\domain\\reporting\\reports\\adhoc\\optionlist',
       ),
       3 => 
       array (
@@ -4446,7 +4450,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
     ),
     'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Reporting\\Reports\\AdHoc\\AdHocReportBuilder.php' => 
     array (
-      0 => '94e2b582061c5329432c4f3ee3d366515e223da59f3ab2d2f10a4554d175315b',
+      0 => '280639f453264ed3456a841b0ed7de1223bc2bc922f3cf60ee9f00f1bf99f040',
       1 => 
       array (
         0 => 'app\\domain\\reporting\\reports\\adhoc\\adhocreportbuilder',
@@ -7093,7 +7097,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
     ),
     'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Resources\\ImportRowResource.php' => 
     array (
-      0 => '80a859a3e582d1662d3400383ba8ccc6a8e1d9ed18bb4e631da561903b5f3301',
+      0 => '83854137d7db58ea59c815e0f2de358f7cd1b69e1eaa81719ed46577f813ff0c',
       1 => 
       array (
         0 => 'app\\http\\resources\\importrowresource',
@@ -7700,6 +7704,37 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
       array (
         0 => 'app\\http\\controllers\\api\\v1\\reporting\\__construct',
         1 => 'app\\http\\controllers\\api\\v1\\reporting\\index',
+      ),
+      3 => 
+      array (
+      ),
+    ),
+    'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Registry\\Events\\ImportBatchCompleted.php' => 
+    array (
+      0 => '260506bc32c983bf1876fe8a1d06afe6925a93629ec071373821822742e86c38',
+      1 => 
+      array (
+        0 => 'app\\domain\\registry\\events\\importbatchcompleted',
+      ),
+      2 => 
+      array (
+        0 => 'app\\domain\\registry\\events\\__construct',
+      ),
+      3 => 
+      array (
+      ),
+    ),
+    'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Registry\\Events\\ImportDuplicatesSurfaced.php' => 
+    array (
+      0 => '362df1fccbda2789511c2d4313e14cdc7c13af6da0e34ac0c2e518d45fab30d4',
+      1 => 
+      array (
+        0 => 'app\\domain\\registry\\events\\importduplicatessurfaced',
+      ),
+      2 => 
+      array (
+        0 => 'app\\domain\\registry\\events\\__construct',
+        1 => 'app\\domain\\registry\\events\\total',
       ),
       3 => 
       array (

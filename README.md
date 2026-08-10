@@ -364,6 +364,44 @@ not run programme delivery.
 
 ---
 
+## MDA console
+
+The delivery workspace for an MDA — **six task-based modules** (Overview, Programmes,
+Beneficiaries, Service Delivery, Duplicate Resolution, Reports) plus a header carrying
+notifications and Settings.
+
+**One navigation serves both MDA roles**, gated per item by permission rather than
+branched by role. That works because MDA Officer's permissions are a strict subset of MDA
+Admin's; the difference is exactly six, of which two matter inside this console —
+`beneficiary.approve` (decide an incoming request-to-serve) and `beneficiary.export`
+(bulk beneficiary export). Both roles *see* the approval queue and the Overview counter;
+only an Admin can action it. Everything is MDA-scoped on the server.
+
+Like the administration console it is a **composition layer**: each module arranges
+screens that already exist — Phase 2 registry, Phase 3 matching, Phase 4 programmes and
+benefits, Phase 5 referrals and notifications, Phase 6 reporting — and adds no second
+data path. Three rules it holds to: there is **no manual beneficiary create** anywhere
+(records enter only through an activity-bound upload, so every one carries provenance);
+**Create Activity and Upload are single flows with several entry points** (the same
+wizard, and the same parse → screen → commit pipeline whether a file arrives inline in
+the wizard or through the Import Center); and **duplicate adjudication is offered only
+on probable matches** — an exact identifier hit is a settled duplicate, refused
+server-side with `ADJUDICATION_NOT_ALLOWED`.
+
+The one endpoint the console adds is `GET /mda/action-required`: live, directional
+"awaiting me" counts, which the 15-minute dashboard snapshot cannot express. It returns
+counts only.
+
+> `Database\Seeders\MdaConsoleDemoSeeder` seeds an MDA with participated programmes,
+> activities that do and do not register beneficiaries, imported beneficiaries and
+> households, delivered benefits, referrals both ways, request-to-serve both ways and a
+> duplicate case — plus the Officer and Admin accounts — so every module renders for both
+> roles (`php artisan db:seed --class=MdaConsoleDemoSeeder`). Synthetic only. Details:
+> [web/src/features/mda/README.md](web/src/features/mda/README.md) and the checklist in
+> [docs/PHASE-MDA-CHECKLIST.md](docs/PHASE-MDA-CHECKLIST.md).
+
+---
+
 ## Running tests, lint & static analysis
 
 ```bash

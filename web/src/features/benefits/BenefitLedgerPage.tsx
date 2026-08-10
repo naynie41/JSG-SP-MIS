@@ -17,7 +17,13 @@ import type { AggregateGroup, Benefit, BenefitFlag } from './types'
 import layout from '@/features/shared/formLayout.module.css'
 import styles from '@/features/programmes/programmes.module.css'
 
-function AggregateTab() {
+/**
+ * The three ledger views are exported individually so a host page can arrange them
+ * under its own headings — the MDA console splits them across "Benefits delivered",
+ * "Benefit ledger" and "Delivery verification". Each owns its own filters and query,
+ * so composing them elsewhere adds no logic.
+ */
+export function AggregateTab() {
   const [groupBy, setGroupBy] = useState('programme')
   const [from, setFrom] = useState('')
   const [to, setTo] = useState('')
@@ -49,7 +55,7 @@ function AggregateTab() {
   )
 }
 
-function DeliveriesTab() {
+export function DeliveriesTab() {
   const [status, setStatus] = useState('')
   const [page, setPage] = useState(1)
   const { data, isLoading } = useBenefits({ page, status: status || undefined })
@@ -88,7 +94,7 @@ function DeliveriesTab() {
   )
 }
 
-function FlagsTab() {
+export function FlagsTab() {
   const { hasPermission } = useAuth()
   const canReview = hasPermission('benefit.approve')
   const [status, setStatus] = useState('open')

@@ -106,8 +106,19 @@ class AdminReportTest extends TestCase
         }
         $this->assertContains('benefits', $forExec);
 
+        // An MDA sees no governance dataset either — with ONE deliberate exception.
+        // `duplicates` is flagged `mda_scopable`: it is simultaneously platform data
+        // quality and the MDA's own operational record (the same rows its Duplicate
+        // Resolution module shows), so an MDA may report on its own slice, constrained
+        // through the owning import batch. The exception is MDA-only, which is why the
+        // Executive assertion above still holds for every key.
         $forOfficer = array_column($this->send('officerA', 'GET', '/api/v1/reports/adhoc/datasets')->assertOk()->json('data.datasets'), 'key');
         foreach ($adminKeys as $key) {
+            if ($key === 'duplicates') {
+                $this->assertContains($key, $forOfficer, 'an MDA may report on its OWN duplicate review rows');
+
+                continue;
+            }
             $this->assertNotContains($key, $forOfficer);
         }
     }

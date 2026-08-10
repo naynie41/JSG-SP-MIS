@@ -290,6 +290,11 @@ export function useDecideServiceRequest() {
       accept ? serviceRequestApi.accept(id, reason) : serviceRequestApi.decline(id, reason ?? ''),
     onSuccess: (request) => {
       qc.invalidateQueries({ queryKey: ['service-requests'] })
+      // The MDA Overview's "pending request-to-serve approvals" counter counts exactly
+      // the rows this decision just removed from the queue. Without this it keeps
+      // showing the old number until its own interval elapses, and the console reports
+      // work that is already done.
+      qc.invalidateQueries({ queryKey: ['mda-action-required'] })
       toast.success(request.status === 'accepted' ? 'Service Request accepted' : 'Service Request declined')
     },
   })

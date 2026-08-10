@@ -352,6 +352,128 @@
   white-space: nowrap;
 }
 
+/* ------------------------------------------------- action-required queues */
+
+/*
+ * A queue that is waiting on this MDA, wrapped so it reads differently from a table
+ * of record. It reuses the SAME warning accent as the Overview's action cards
+ * (.actionCardActive) so "this needs you" looks identical in both places rather than
+ * inventing a second vocabulary for the same idea.
+ */
+.queue {
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  background: var(--surface);
+  padding: clamp(var(--space-4), 3vw, var(--space-5));
+  display: grid;
+  gap: var(--space-3);
+}
+.queueActive {
+  border-color: var(--warning);
+  background: var(--warning-soft);
+}
+.queueHead {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  flex-wrap: wrap;
+}
+.queueTitle {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: var(--fs-h3);
+  color: var(--ink);
+}
+/* Ink on white, not --warning on --warning-ink: those two tokens are both mid-to-dark
+   ambers and pair at about 2.1:1, which is unreadable. This is ~7.9:1 and still sits
+   clearly on the panel's warning tint. */
+.queueCount {
+  font-family: var(--font-mono);
+  font-size: var(--fs-label);
+  padding: 2px var(--space-2);
+  border-radius: var(--radius-full);
+  background: var(--warning-ink);
+  color: var(--surface);
+}
+.queueNote {
+  font-size: var(--fs-label);
+  color: var(--text-muted-strong);
+  max-width: 78ch;
+  line-height: 1.55;
+}
+/* The composed table sits on the panel's own ground, not a nested card. */
+.queueBody {
+  background: var(--surface);
+  border-radius: var(--radius-sm);
+}
+
+/* --------------------------------------------------------------- settings */
+
+/* A read-only fact list: label above value on narrow screens, two columns above. */
+.defList {
+  display: grid;
+  grid-template-columns: minmax(9rem, auto) 1fr;
+  gap: var(--space-2) var(--space-4);
+  margin: 0 0 var(--space-4);
+}
+.defList dt {
+  font-family: var(--font-mono);
+  font-size: var(--fs-caption);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--text-muted-strong);
+}
+.defList dd {
+  margin: 0;
+  color: var(--ink);
+}
+@media (max-width: 560px) {
+  .defList {
+    grid-template-columns: 1fr;
+    gap: var(--space-1) 0;
+  }
+  .defList dd {
+    margin-bottom: var(--space-3);
+  }
+}
+
+.choiceRow {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-2) var(--space-4);
+  margin-bottom: var(--space-3);
+}
+
+/* --------------------------------------------------------------- card grids */
+
+.cardGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 280px), 1fr));
+  gap: var(--space-4);
+}
+
+/* ------------------------------------------------------------ table support */
+
+.rowActions {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  justify-content: flex-end;
+  flex-wrap: wrap;
+}
+.mono {
+  font-family: var(--font-mono);
+  font-size: var(--fs-caption);
+  color: var(--text-muted-strong);
+  white-space: nowrap;
+}
+.pageLoading {
+  display: grid;
+  place-items: center;
+  padding: var(--space-8);
+}
+
 /* -------------------------------------------------------------- scaffolds */
 
 .scaffold {

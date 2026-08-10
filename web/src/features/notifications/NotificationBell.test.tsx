@@ -21,6 +21,18 @@ vi.mock('./api', () => ({
   },
 }))
 
+/**
+ * The bell reads the signed-in role, because a deep-link resolves into the MDA console
+ * for an MDA user and the generic routes for everyone else. This fixture is an SP
+ * Coordination user, so the destinations below are the generic ones.
+ */
+vi.mock('@/lib/auth/AuthProvider', () => ({
+  useAuth: () => ({
+    user: { name: 'Zainab', role: { key: 'sp_coordination', name: 'SP Coordination' }, mda: null },
+    hasPermission: () => true,
+  }),
+}))
+
 const unreadCount = notificationApi.unreadCount as Mock
 const list = notificationApi.list as Mock
 const markRead = notificationApi.markRead as Mock

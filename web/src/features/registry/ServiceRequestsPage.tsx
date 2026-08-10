@@ -8,6 +8,8 @@ import { Card } from '@/components/Card/Card'
 import { DataTable } from '@/components/DataTable/DataTable'
 import type { Column } from '@/components/DataTable/DataTable'
 import { Modal } from '@/components/Modal/Modal'
+import { SelectField } from '@/components/Field/SelectField'
+import type { SelectOption } from '@/components/Field/SelectField'
 import { TextareaField } from '@/components/Field/TextareaField'
 import { ApiError } from '@/types/api'
 import { cn } from '@/lib/utils/cn'
@@ -60,7 +62,26 @@ function StatusChip({ status }: { status: ServiceRequest['status'] }) {
  *    requester sees pending / accepted / declined (and the decline reason).
  * Ownership never changes; every decision is audited.
  */
-export function ServiceRequestsPage() {
+export interface ServiceRequestsPageProps {
+  /** Rendered inside a host page that owns the heading (the MDA console).
+   *  Suppresses this page's own title block so the document keeps a single h1. */
+  embedded?: boolean
+}
+
+/**
+ * Pending / Approved / Declined / History, applied to both directions.
+ *
+ * "History" is every state rather than a fourth status — a decided request is not
+ * archived anywhere, so the full list IS the history.
+ */
+const STATUS_VIEWS: SelectOption[] = [
+  { value: 'pending', label: 'Pending' },
+  { value: 'accepted', label: 'Approved' },
+  { value: 'declined', label: 'Declined' },
+  { value: '', label: 'History — all' },
+]
+
+export function ServiceRequestsPage({ embedded = false }: ServiceRequestsPageProps = {}) {
   const { hasPermission } = useAuth()
   const canView = hasPermission('beneficiary.view')
   const canDecide = hasPermission('beneficiary.approve')
@@ -69,6 +90,10 @@ export function ServiceRequestsPage() {
   const { data: outbox, isLoading: outboxLoading } = useServiceOutbox(canView)
   const decide = useDecideServiceRequest()
 
+  // Filtered client-side: both endpoints return the MDA's own requests unpaginated,
+  // so this is a view over data already fetched rather than a new query per tab.
+  const [inboxView, setInboxView] = useState('pending')
+  const [outboxView, setOutboxView] = useState('')
   const [target, setTarget] = useState<{ request: ServiceRequest; accept: boolean } | null>(null)
   const [reason, setReason] = useState('')
   const [error, setError] = useState<string | null>(null)
@@ -158,35 +183,81 @@ export function ServiceRequestsPage() {
     },
   ]
 
+  const inboxRows = (inbox ?? []).filter((r) => inboxView === '' || r.status === inboxView)
+  const outboxRows = (outbox ?? []).filter((r) => outboxView === '' || r.status === outboxView)
+  // Incoming AND pending is the only combination that is work waiting on this MDA —
+  // the same definition the Overview counter uses (MdaActionRequiredService).
+  const awaitingUs = (inbox ?? []).filter((r) => r.status === 'pending').length
+
   return (
     <div>
-      <div className={layout.pageHead}>
-        <div className={layout.pageTitle}>
-          <span className="eyebrow">03 · Registry</span>
-          <h1 className="t-h1">Service requests</h1>
-          <p className={styles.note}>
-            A non-owner MDA asks to serve a beneficiary. Accepting grants the requester READ access to the full record
-            and authorises serving — it never changes ownership. Declining blocks access.
-          </p>
+      {!embedded && (
+        <div className={layout.pageHead}>
+          <div className={layout.pageTitle}>
+            <span className="eyebrow">03 · Registry</span>
+            <h1 className="t-h1">Service requests</h1>
+            <p className={styles.note}>
+              A non-owner MDA asks to serve a beneficiary. Accepting grants the requester READ access to the full
+              record and authorises serving — it never changes ownership. Declining blocks access.
+            </p>
+          </div>
         </div>
-      </div>
+      )}
 
-      <Card eyebrow="Owner MDA" title="Approval inbox">
+      {/*
+        The inbox is action-required: standalone it carries its own count and tint so it
+        reads as a queue rather than a second table of record.
+
+        Embedded, it does NOT. The host (the MDA console) wraps this in a queue panel
+        showing the LIVE `/mda/action-required` count — the same number the Overview
+        shows. Deriving a second count from the rows fetched here would put two figures
+        for one thing on one screen, free to disagree whenever the two requests are
+        even slightly out of step. One headline, owned by whoever is authoritative.
+      */}
+      <Card
+        eyebrow="Owner MDA · action required"
+        title={!embedded && awaitingUs > 0 ? `Approval inbox — ${awaitingUs} awaiting you` : 'Approval inbox'}
+        variant={!embedded && awaitingUs > 0 ? 'mint' : undefined}
+      >
+        <div className={styles.filters}>
+          <SelectField
+            className={styles.filterField}
+            label="View"
+            options={STATUS_VIEWS}
+            value={inboxView}
+            onChange={(event) => setInboxView(event.target.value)}
+          />
+        </div>
+        {!canDecide && (
+          <p className={styles.note}>
+            Deciding a request-to-serve is an MDA Administrator permission. You can see what is waiting; an
+            administrator accepts or declines it.
+          </p>
+        )}
         <DataTable
           caption="Incoming service requests"
           columns={inboxColumns}
-          rows={inbox ?? []}
+          rows={inboxRows}
           getRowId={(r) => r.id}
           loading={inboxLoading}
-          emptyTitle="No incoming requests"
+          emptyTitle={inboxView === 'pending' ? 'Nothing awaiting your decision' : 'No incoming requests'}
         />
       </Card>
 
       <Card eyebrow="Requester" title="My requests">
+        <div className={styles.filters}>
+          <SelectField
+            className={styles.filterField}
+            label="View"
+            options={STATUS_VIEWS}
+            value={outboxView}
+            onChange={(event) => setOutboxView(event.target.value)}
+          />
+        </div>
         <DataTable
           caption="Service requests my MDA raised"
           columns={outboxColumns}
-          rows={outbox ?? []}
+          rows={outboxRows}
           getRowId={(r) => r.id}
           loading={outboxLoading}
           emptyTitle="You have not raised any requests"
