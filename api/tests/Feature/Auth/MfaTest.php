@@ -23,7 +23,7 @@ class MfaTest extends TestCase
 
     private const PASSWORD = 'Sup3rStr0ng!Pass';
 
-    private function makeUser(RoleKey $roleKey = RoleKey::MdaOfficer): User
+    private function makeUser(RoleKey $roleKey = RoleKey::MdaAdmin): User
     {
         $this->seed(RolesAndPermissionsSeeder::class);
         $role = Role::where('key', $roleKey->value)->firstOrFail();

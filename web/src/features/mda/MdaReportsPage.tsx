@@ -74,8 +74,7 @@ function ReportTypes({ available, onBuild }: { available: Set<string>; onBuild: 
  * The one PII-bearing export, and therefore the one governed by the export permission
  * matrix (docs/SECURITY.md §3) rather than by `reporting.export`:
  *
- *  - **MDA Admin** may export, own MDA only.
- *  - **MDA Officer** may not, unless an administrator grants `beneficiary.export`.
+ *  - **MDA Admin** — the one MDA role since FR-UAM-01 — may export, own MDA only.
  *  - **NIN/BVN are masked** unless the caller also holds `export.reveal_pii`, which is a
  *    System Administrator permission and is never bundled into an MDA role.
  *  - Every export is audited with actor, scope, filters, format and row count.

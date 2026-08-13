@@ -2,7 +2,7 @@
 
 // osfsl-C:/Users/ACER/Desktop/JSG-SP-MIS/JSG-SP-MIS/api/vendor/composer/../dompdf/dompdf/src/Options.php-presentSymbols
 return \PHPStan\Cache\CacheItem::__set_state(array(
-   'variableKey' => 'v2-df2c160cd437634360551348a6bf91cdffb28451b3294b6232eeda04f45fd146-8.3.31',
+   'variableKey' => 'v2-0d75f8af136c80ba949355fba06109688f1ad46fbc932fb2a8d2bb22f41a020e-8.3.31',
    'data' => 
   array (
     'classes' => 

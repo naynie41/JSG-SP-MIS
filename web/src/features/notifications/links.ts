@@ -1,4 +1,4 @@
-import { MDA_ROLES } from '@/features/mda/roles'
+import { isMdaRole } from '@/features/mda/roles'
 import type { AppNotification } from './types'
 
 /**
@@ -11,14 +11,14 @@ import type { AppNotification } from './types'
  * A duplicate alert and an import result both relate to an `import_batch` but belong in
  * different modules.
  *
- * **Role-aware by necessity.** MDA Officers and Admins work in the six-module MDA
+ * **Role-aware by necessity.** MDA Administrators work in the six-module MDA
  * workspace and no longer have the generic operator rail, so sending them to
  * `/referrals` would drop them outside their console. Everyone else keeps the generic
  * routes. This is presentation only — every destination re-checks permissions and scope
  * on arrival, and the server scopes the notification list to the recipient regardless.
  */
 export function linkFor(notification: AppNotification, roleKey?: string | null): string | null {
-  const isMda = (MDA_ROLES as readonly string[]).includes(roleKey ?? '')
+  const isMda = isMdaRole(roleKey)
   const relatedType = notification.related?.type ?? ''
   const id = notification.related?.id
   const eventType = notification.type ?? ''

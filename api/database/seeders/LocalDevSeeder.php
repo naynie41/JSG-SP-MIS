@@ -54,12 +54,14 @@ class LocalDevSeeder extends Seeder
         $women = Mda::query()->where('name', 'Ministry of Women Affairs & Social Development')->first();
         $health = Mda::query()->where('name', 'Ministry of Health')->first();
 
-        // Requesting side: an officer who can search + resolve imports + raise serve requests.
+        // Requesting side: searches, resolves imports and raises serve requests. Now an
+        // MDA Admin like every MDA user (FR-UAM-01) — what makes it the "requesting"
+        // side is its MDA, not its role.
         $this->seedUser(
             (string) env('SEED_MDA_OFFICER_EMAIL', 'officer@spmis.local'),
-            'SP-MIS MDA Officer',
+            'SP-MIS MDA Admin (requesting side)',
             (string) env('SEED_MDA_OFFICER_PASSWORD', 'ChangeMe!Officer12345'),
-            RoleKey::MdaOfficer,
+            RoleKey::MdaAdmin,
             $women,
         );
 

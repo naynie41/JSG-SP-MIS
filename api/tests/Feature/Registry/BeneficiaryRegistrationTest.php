@@ -42,8 +42,8 @@ class BeneficiaryRegistrationTest extends TestCase
 
         // Created up front so an Auditable model is never created between
         // sub-requests with a stale Auth::user (see RbacTest note).
-        $this->users['officerA'] = $this->user($this->mdaA, RoleKey::MdaOfficer);
-        $this->users['officerB'] = $this->user($this->mdaB, RoleKey::MdaOfficer);
+        $this->users['officerA'] = $this->user($this->mdaA, RoleKey::MdaAdmin);
+        $this->users['officerB'] = $this->user($this->mdaB, RoleKey::MdaAdmin);
         $this->users['partnerA'] = $this->user($this->mdaA, RoleKey::DevelopmentPartner);
     }
 

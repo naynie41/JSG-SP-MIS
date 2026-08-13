@@ -44,7 +44,7 @@ class GrievanceSlaTest extends TestCase
         $this->mdaA = Mda::factory()->create(['name' => 'MDA A']);
         $this->mdaB = Mda::factory()->create(['name' => 'MDA B']);
 
-        $this->users['staffA'] = $this->user($this->mdaA, RoleKey::MdaOfficer);   // logs + handles
+        $this->users['staffA'] = $this->user($this->mdaA, RoleKey::MdaAdmin);   // logs + handles
         $this->users['adminA'] = $this->user($this->mdaA, RoleKey::MdaAdmin);     // escalation tier (level 1)
         $this->users['spCoord'] = $this->user($this->mdaB, RoleKey::SpCoordination); // grievance-sla.edit
 

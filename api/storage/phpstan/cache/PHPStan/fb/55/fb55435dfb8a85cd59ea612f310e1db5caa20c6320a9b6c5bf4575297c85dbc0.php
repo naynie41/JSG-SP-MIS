@@ -2,7 +2,7 @@
 
 // odsl-C:\Users\ACER\Desktop\JSG-SP-MIS\JSG-SP-MIS\api\app\Domain\Sharing\SharingBasis.php-PHPStan\BetterReflection\Reflection\ReflectionClass-App\Domain\Sharing\SharingBasis
 return \PHPStan\Cache\CacheItem::__set_state(array(
-   'variableKey' => 'v2-6.70.0.1-8.3.31-90f91da4888ca1e17d5ca5ab2af34d37563254bec5117e2c7703c2e3d505c7f5',
+   'variableKey' => 'v2-6.70.0.1-8.3.31-dead268236e5edec4b3c419a87c99802fc3ec2b210b82599298d807ef49d3a65',
    'data' => 
   array (
     'locatedSource' => 
@@ -31,7 +31,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
     array (
     ),
     'startLine' => 12,
-    'endLine' => 28,
+    'endLine' => 52,
     'startColumn' => 1,
     'endColumn' => 1,
     'parentClassName' => NULL,
@@ -131,8 +131,83 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         array (
         ),
         'docComment' => NULL,
-        'startLine' => 19,
-        'endLine' => 27,
+        'startLine' => 20,
+        'endLine' => 29,
+        'startColumn' => 5,
+        'endColumn' => 5,
+        'couldThrow' => false,
+        'isClosure' => false,
+        'isGenerator' => false,
+        'isVariadic' => false,
+        'modifiers' => 1,
+        'namespace' => 'App\\Domain\\Sharing',
+        'declaringClassName' => 'App\\Domain\\Sharing\\SharingBasis',
+        'implementingClassName' => 'App\\Domain\\Sharing\\SharingBasis',
+        'currentClassName' => 'App\\Domain\\Sharing\\SharingBasis',
+        'aliasName' => NULL,
+      ),
+      'scope' => 
+      array (
+        'name' => 'scope',
+        'parameters' => 
+        array (
+        ),
+        'returnsReference' => false,
+        'returnType' => 
+        array (
+          'class' => 'PHPStan\\BetterReflection\\Reflection\\ReflectionNamedType',
+          'data' => 
+          array (
+            'name' => 'string',
+            'isIdentifier' => true,
+          ),
+        ),
+        'attributes' => 
+        array (
+        ),
+        'docComment' => '/**
+ * What the basis opens. A service grant is per-BENEFICIARY (the one record the owner
+ * approved); an administrative grant is per-MDA (the grantee sees that MDA\'s scoped
+ * data at large). Oversight is platform-wide. The distinction matters to whoever
+ * reviews the data-sharing report — blurring it would hide the widest grant type.
+ */',
+        'startLine' => 37,
+        'endLine' => 45,
+        'startColumn' => 5,
+        'endColumn' => 5,
+        'couldThrow' => false,
+        'isClosure' => false,
+        'isGenerator' => false,
+        'isVariadic' => false,
+        'modifiers' => 1,
+        'namespace' => 'App\\Domain\\Sharing',
+        'declaringClassName' => 'App\\Domain\\Sharing\\SharingBasis',
+        'implementingClassName' => 'App\\Domain\\Sharing\\SharingBasis',
+        'currentClassName' => 'App\\Domain\\Sharing\\SharingBasis',
+        'aliasName' => NULL,
+      ),
+      'isCrossMda' => 
+      array (
+        'name' => 'isCrossMda',
+        'parameters' => 
+        array (
+        ),
+        'returnsReference' => false,
+        'returnType' => 
+        array (
+          'class' => 'PHPStan\\BetterReflection\\Reflection\\ReflectionNamedType',
+          'data' => 
+          array (
+            'name' => 'bool',
+            'isIdentifier' => true,
+          ),
+        ),
+        'attributes' => 
+        array (
+        ),
+        'docComment' => '/** Whether this basis crosses an MDA boundary (and so is a sharing event to log). */',
+        'startLine' => 48,
+        'endLine' => 51,
         'startColumn' => 5,
         'endColumn' => 5,
         'couldThrow' => false,
@@ -458,20 +533,20 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         'startColumn' => 5,
         'endColumn' => 40,
       ),
-      'None' => 
+      'AdminGrant' => 
       array (
-        'name' => 'None',
+        'name' => 'AdminGrant',
         'value' => 
         array (
-          'code' => '\'none\'',
+          'code' => '\'admin_grant\'',
           'attributes' => 
           array (
             'startLine' => 17,
             'endLine' => 17,
             'startTokenPos' => 65,
-            'startFilePos' => 569,
+            'startFilePos' => 575,
             'endTokenPos' => 65,
-            'endFilePos' => 574,
+            'endFilePos' => 587,
           ),
         ),
         'attributes' => 
@@ -480,6 +555,31 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         'docComment' => NULL,
         'startLine' => 17,
         'endLine' => 17,
+        'startColumn' => 5,
+        'endColumn' => 36,
+      ),
+      'None' => 
+      array (
+        'name' => 'None',
+        'value' => 
+        array (
+          'code' => '\'none\'',
+          'attributes' => 
+          array (
+            'startLine' => 18,
+            'endLine' => 18,
+            'startTokenPos' => 76,
+            'startFilePos' => 658,
+            'endTokenPos' => 76,
+            'endFilePos' => 663,
+          ),
+        ),
+        'attributes' => 
+        array (
+        ),
+        'docComment' => NULL,
+        'startLine' => 18,
+        'endLine' => 18,
         'startColumn' => 5,
         'endColumn' => 23,
       ),

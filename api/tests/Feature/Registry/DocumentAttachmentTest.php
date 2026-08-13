@@ -45,8 +45,8 @@ class DocumentAttachmentTest extends TestCase
         $this->mdaB = Mda::factory()->create(['name' => 'MDA B']);
         $this->benA = Beneficiary::factory()->create(['owner_mda_id' => $this->mdaA->id]);
 
-        $this->users['officerA'] = $this->user($this->mdaA, RoleKey::MdaOfficer);
-        $this->users['officerB'] = $this->user($this->mdaB, RoleKey::MdaOfficer);
+        $this->users['officerA'] = $this->user($this->mdaA, RoleKey::MdaAdmin);
+        $this->users['officerB'] = $this->user($this->mdaB, RoleKey::MdaAdmin);
     }
 
     private function user(Mda $mda, RoleKey $role): User

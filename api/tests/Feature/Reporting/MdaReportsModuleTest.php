@@ -58,7 +58,7 @@ class MdaReportsModuleTest extends TestCase
         $this->mdaA = Mda::factory()->create(['name' => 'Ministry of Health']);
         $this->mdaB = Mda::factory()->create(['name' => 'Ministry of Education']);
 
-        $this->users['officerA'] = $this->user($this->mdaA, RoleKey::MdaOfficer);
+        $this->users['officerA'] = $this->user($this->mdaA, RoleKey::MdaAdmin);
         $this->users['adminA'] = $this->user($this->mdaA, RoleKey::MdaAdmin);
         $this->users['adminB'] = $this->user($this->mdaB, RoleKey::MdaAdmin);
         $this->users['exec'] = $this->user(null, RoleKey::Executive);
@@ -257,7 +257,7 @@ class MdaReportsModuleTest extends TestCase
 
     public function test_aggregate_export_is_refused_without_reporting_export(): void
     {
-        $role = Role::where('key', RoleKey::MdaOfficer->value)->firstOrFail();
+        $role = Role::where('key', RoleKey::MdaAdmin->value)->firstOrFail();
         $role->permissions()->detach(Permission::where('key', 'reporting.export')->firstOrFail()->id);
 
         $this->send('officerA', 'POST', '/api/v1/reports/adhoc', [
@@ -276,21 +276,20 @@ class MdaReportsModuleTest extends TestCase
         $this->assertStringNotContainsString('hadejia', $body, "an MDA Admin must not export another MDA's records");
     }
 
-    public function test_mda_officer_is_denied_beneficiary_export_by_default(): void
+    /**
+     * The Officer/Admin merge (FR-UAM-01) removed the role that was denied bulk PII
+     * export by default, so there is no longer a per-role gradation inside an MDA:
+     * every MDA user can export, bounded by MDA scope and masking rather than by role.
+     *
+     * SECURITY.md §3's "MDA Officer — No by default" row no longer has a subject and
+     * needs amending to match.
+     */
+    public function test_every_mda_user_may_export_but_only_within_its_own_mda(): void
     {
-        // SECURITY.md §3: the largest, most junior group — no bulk PII export by default.
-        $this->send('officerA', 'GET', '/api/v1/beneficiaries/export?format=csv')->assertStatus(403);
-    }
-
-    public function test_mda_officer_may_export_once_granted(): void
-    {
-        $this->grant(RoleKey::MdaOfficer, 'beneficiary.export');
-
         $response = $this->send('officerA', 'GET', '/api/v1/beneficiaries/export?format=csv');
         $response->assertSuccessful();
 
-        // Granting export does not widen scope — still own-MDA only.
-        $this->assertStringNotContainsString('hadejia', $response->streamedContent());
+        $this->assertStringNotContainsString('hadejia', $response->streamedContent(), 'export never widens scope');
     }
 
     public function test_an_executive_can_never_export_the_beneficiary_registry(): void

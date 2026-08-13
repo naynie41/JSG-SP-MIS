@@ -65,15 +65,16 @@ class AdminConsoleDemoSeeder extends Seeder
             return;
         }
 
-        $officer = Role::query()->where('key', RoleKey::MdaOfficer->value)->value('id');
+        // The single MDA role since the Officer merge (FR-UAM-01).
+        $mdaRole = Role::query()->where('key', RoleKey::MdaAdmin->value)->value('id');
 
-        User::withoutEvents(function () use ($mda, $officer): void {
+        User::withoutEvents(function () use ($mda, $mdaRole): void {
             User::updateOrCreate(
                 ['email' => 'suspended.officer@spmis.local'],
                 [
-                    'name' => 'Suspended Officer',
+                    'name' => 'Suspended MDA User',
                     'password' => 'ChangeMe!Demo12345',
-                    'role_id' => $officer,
+                    'role_id' => $mdaRole,
                     'mda_id' => $mda->id,
                     'status' => UserStatus::Suspended,
                     'email_verified_at' => now(),
@@ -83,9 +84,9 @@ class AdminConsoleDemoSeeder extends Seeder
             User::updateOrCreate(
                 ['email' => 'no.mfa.officer@spmis.local'],
                 [
-                    'name' => 'Officer Without MFA',
+                    'name' => 'MDA User Without MFA',
                     'password' => 'ChangeMe!Demo12345',
-                    'role_id' => $officer,
+                    'role_id' => $mdaRole,
                     'mda_id' => $mda->id,
                     'status' => UserStatus::Active,
                     'mfa_enabled' => false,

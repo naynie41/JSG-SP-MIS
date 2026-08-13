@@ -19,6 +19,12 @@ use App\Domain\Registry\Services\ServiceRequestService;
  * lookup seam (name/id only, no full PII) sit outside this and are unchanged; anything
  * else is denied. The scattered `hasActiveGrant` checks (BeneficiaryPolicy,
  * BeneficiaryController::show, ServiceRequestAuthorizer) all delegate here.
+ *
+ * Four bases, two of them grants with deliberately different WIDTH: a Service-Request
+ * grant opens ONE beneficiary the owner approved; an administrative grant (FR-UAM-03)
+ * opens an MDA. The administrative one is also what `MdaScope` widens list queries
+ * with, so it must be recognised here too — otherwise the layers disagree and a record
+ * the list showed 404s when opened.
  */
 class DataSharingGuard
 {
@@ -47,8 +53,38 @@ class DataSharingGuard
         if ($user->mda_id !== null && $this->grantedAndConsented($beneficiary, $user->mda_id)) {
             return SharingBasis::ServiceGrant;
         }
+        if ($this->hasAdminGrant($user, $beneficiary) && $this->adminGrantConsentSatisfied($beneficiary)) {
+            return SharingBasis::AdminGrant;
+        }
 
         return SharingBasis::None;
+    }
+
+    /**
+     * An administrative whole-MDA grant covering the beneficiary's OWNER MDA
+     * (FR-UAM-03) — the same set `MdaScope` widens list queries with, so the two
+     * enforcement layers agree. Without this the guard denied a record the list had
+     * already shown: a 404 on a row the user could see, and summary PII released under
+     * no basis the guard could name.
+     */
+    private function hasAdminGrant(User $user, Beneficiary $beneficiary): bool
+    {
+        // `accessibleMdaIds()` is the user's own MDA PLUS their granted MDAs, so the
+        // second clause is what makes this specifically a GRANT — the owner case is
+        // already handled above and must not be reported as an administrative grant.
+        return in_array($beneficiary->owner_mda_id, $user->accessibleMdaIds(), true)
+            && $user->mda_id !== $beneficiary->owner_mda_id;
+    }
+
+    /** An administrative grant carries its own consent switch (DPO decision — config). */
+    public function adminGrantConsentSatisfied(Beneficiary $beneficiary): bool
+    {
+        return ! $this->adminGrantConsentRequired() || $beneficiary->hasSharingConsent();
+    }
+
+    public function adminGrantConsentRequired(): bool
+    {
+        return (bool) config('sharing.admin_grant_requires_consent', true);
     }
 
     /**

@@ -58,8 +58,8 @@ class BulkImportTest extends TestCase
         $this->mdaA = Mda::factory()->create(['name' => 'MDA A']);
         $this->mdaB = Mda::factory()->create(['name' => 'MDA B']);
 
-        $this->users['officerA'] = $this->user($this->mdaA, RoleKey::MdaOfficer);
-        $this->users['officerB'] = $this->user($this->mdaB, RoleKey::MdaOfficer);
+        $this->users['officerA'] = $this->user($this->mdaA, RoleKey::MdaAdmin);
+        $this->users['officerB'] = $this->user($this->mdaB, RoleKey::MdaAdmin);
         $this->users['partnerA'] = $this->user($this->mdaA, RoleKey::DevelopmentPartner);
 
         $this->programmeA = Programme::factory()->individual()->create();

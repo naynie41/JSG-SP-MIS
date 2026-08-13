@@ -55,11 +55,11 @@ class AccessModelTest extends TestCase
         $this->assertArrayNotHasKey('mfa_secret', $user->toArray());
     }
 
-    public function test_seeder_creates_seven_roles_with_permissions(): void
+    public function test_seeder_creates_six_roles_with_permissions(): void
     {
         $this->seed(RolesAndPermissionsSeeder::class);
 
-        $this->assertCount(7, Role::all());
+        $this->assertCount(6, Role::all());
         foreach (RoleKey::cases() as $roleKey) {
             $this->assertDatabaseHas('roles', ['key' => $roleKey->value, 'is_system' => true]);
         }

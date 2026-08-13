@@ -42,7 +42,7 @@ const managedUsers = [
     id: 'u1', name: 'Ada Officer', email: 'ada@example.test', status: 'active',
     is_locked: true, locked_until: new Date(Date.now() + 6e5).toISOString(),
     mfa_enabled: false, mfa_required: true, last_login_at: null,
-    mda: { id: 'm1', name: 'MDA A', type: 'ministry' }, role: { key: 'mda_officer', name: 'MDA Officer' }, permissions: [],
+    mda: { id: 'm1', name: 'MDA A', type: 'ministry' }, role: { key: 'mda_admin', name: 'MDA Admin' }, permissions: [],
   },
   {
     id: 'u2', name: 'Bola Admin', email: 'bola@example.test', status: 'suspended',
@@ -79,8 +79,8 @@ describe('Admin console — User & Access (composes Phase 1)', () => {
     vi.clearAllMocks()
     perms.value = ['user.view', 'user.create', 'user.edit', 'role.view', 'permission.view']
     listUsers.mockResolvedValue(managedUsers)
-    listRoles.mockResolvedValue([{ id: 'r1', key: 'mda_officer', name: 'MDA Officer', requires_mfa: true }])
-    accessRoles.mockResolvedValue([{ id: 'r1', key: 'mda_officer', name: 'MDA Officer', description: null, requires_mfa: true, permissions: ['user.view'] }])
+    listRoles.mockResolvedValue([{ id: 'r1', key: 'mda_admin', name: 'MDA Admin', requires_mfa: true }])
+    accessRoles.mockResolvedValue([{ id: 'r1', key: 'mda_admin', name: 'MDA Admin', description: null, requires_mfa: true, permissions: ['user.view'] }])
     accessPermissions.mockResolvedValue({ user: [{ key: 'user.view', action: 'view', description: null }] })
     accessMatrix.mockResolvedValue({ roles: [], permissions: [] })
     loginActivity.mockResolvedValue(activity)

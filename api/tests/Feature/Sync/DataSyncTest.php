@@ -47,7 +47,7 @@ class DataSyncTest extends TestCase
         $this->mdaB = Mda::factory()->create(['name' => 'MDA B']);
 
         $this->users['sysAdmin'] = $this->user(null, RoleKey::SystemAdministrator);
-        $this->users['officerA'] = $this->user($this->mdaA, RoleKey::MdaOfficer);
+        $this->users['officerA'] = $this->user($this->mdaA, RoleKey::MdaAdmin);
     }
 
     private function user(?Mda $mda, RoleKey $role): User

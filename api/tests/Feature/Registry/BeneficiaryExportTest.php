@@ -51,7 +51,7 @@ class BeneficiaryExportTest extends TestCase
         $this->users['spCoord'] = $this->seededUser(RoleKey::SpCoordination, $this->mdaA);
         $this->users['mne'] = $this->seededUser(RoleKey::MneOfficer, $this->mdaA);
         $this->users['mdaAdminA'] = $this->seededUser(RoleKey::MdaAdmin, $this->mdaA);
-        $this->users['mdaOfficerA'] = $this->seededUser(RoleKey::MdaOfficer, $this->mdaA);
+        $this->users['mdaOfficerA'] = $this->seededUser(RoleKey::MdaAdmin, $this->mdaA);
         $this->users['executive'] = $this->seededUser(RoleKey::Executive, $this->mdaA);
         $this->users['partner'] = $this->seededUser(RoleKey::DevelopmentPartner, null);
 
@@ -94,30 +94,35 @@ class BeneficiaryExportTest extends TestCase
     {
         Beneficiary::factory()->create(['owner_mda_id' => $this->mdaA->id]);
 
-        // Allowed: System Administrator, SP Coordination, M&E, MDA Admin, granted officer.
-        foreach (['sysAdmin', 'spCoord', 'mne', 'mdaAdminA', 'grantedOfficerA'] as $key) {
+        // Allowed: System Administrator, SP Coordination, M&E, and every MDA user.
+        foreach (['sysAdmin', 'spCoord', 'mne', 'mdaAdminA', 'mdaOfficerA', 'grantedOfficerA'] as $key) {
             $this->send($key, 'GET', '/api/v1/beneficiaries/export?format=csv')
                 ->assertOk();
         }
 
-        // Denied (403): MDA Officer (not granted), Development Partner, Executive.
-        foreach (['mdaOfficerA', 'partner', 'executive'] as $key) {
+        // Denied (403): Development Partner and Executive — aggregate reporting only,
+        // never the beneficiary registry. These two are the matrix rows that survive
+        // the Officer/Admin merge unchanged.
+        foreach (['partner', 'executive'] as $key) {
             $this->send($key, 'GET', '/api/v1/beneficiaries/export?format=csv')
                 ->assertStatus(403);
         }
     }
 
-    public function test_mda_officer_is_denied_by_default_but_allowed_once_granted(): void
+    /**
+     * After the Officer/Admin merge (FR-UAM-01) there is no MDA role that lacks export,
+     * so the "denied by default, grantable per user" row of the matrix no longer has a
+     * subject. What remains — and is what actually protects the data — is that export
+     * never crosses the caller's own MDA.
+     */
+    public function test_an_mda_export_is_bounded_by_its_own_mda(): void
     {
         Beneficiary::factory()->create(['owner_mda_id' => $this->mdaA->id, 'first_name' => 'Own', 'last_name' => 'Record']);
         Beneficiary::factory()->create(['owner_mda_id' => $this->mdaB->id, 'first_name' => 'Foreign', 'last_name' => 'Record']);
 
-        // Default MDA Officer role has no beneficiary.export.
-        $this->send('mdaOfficerA', 'GET', '/api/v1/beneficiaries/export?format=csv')->assertStatus(403);
-
-        // Granted (own-MDA) → allowed, and limited to their own MDA.
-        $content = $this->send('grantedOfficerA', 'GET', '/api/v1/beneficiaries/export?format=csv')
+        $content = $this->send('mdaOfficerA', 'GET', '/api/v1/beneficiaries/export?format=csv')
             ->assertOk()->streamedContent();
+
         $this->assertStringContainsString('Own Record', $content);
         $this->assertStringNotContainsString('Foreign Record', $content);
     }
@@ -233,7 +238,7 @@ class BeneficiaryExportTest extends TestCase
     public function test_reveal_pii_is_bundled_into_no_role_except_system_administrator(): void
     {
         // Only the System Administrator holds it (via the implicit all-permissions grant).
-        foreach ([RoleKey::SpCoordination, RoleKey::MneOfficer, RoleKey::MdaAdmin, RoleKey::MdaOfficer, RoleKey::Executive, RoleKey::DevelopmentPartner] as $role) {
+        foreach ([RoleKey::SpCoordination, RoleKey::MneOfficer, RoleKey::MdaAdmin, RoleKey::MdaAdmin, RoleKey::Executive, RoleKey::DevelopmentPartner] as $role) {
             $keys = Role::where('key', $role->value)->firstOrFail()->permissions->pluck('key');
             $this->assertFalse($keys->contains('export.reveal_pii'), "{$role->value} must not hold export.reveal_pii");
         }

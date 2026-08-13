@@ -35,10 +35,11 @@ const titleCase = (s: string | null | undefined): string =>
  * Profile is READ-ONLY, deliberately.
  *
  * There is no self-service profile endpoint: `/auth/me` is a GET, and the only write
- * path for a user record is `PATCH /users/{user}` behind `user.edit` — an administrator
- * capability, which an MDA Officer does not hold. Rendering an editable form here would
- * either fabricate an endpoint or quietly fail for most of this console's users, so it
- * shows what the account is and says who can change it.
+ * path for a user record is `PATCH /users/{user}` behind `user.edit` — a System
+ * Administrator capability that no MDA role holds, since FR-UAM-01 centralised account
+ * administration. Rendering an editable form here would either fabricate an endpoint or
+ * quietly fail for every user of this console, so it shows what the account is and says
+ * who can change it.
  */
 function ProfilePanel() {
   const { user } = useAuth()

@@ -47,7 +47,7 @@ class AdminReportTest extends TestCase
 
         $this->users['admin'] = $this->user(null, RoleKey::SystemAdministrator);
         $this->users['exec'] = $this->user(null, RoleKey::Executive);
-        $this->users['officerA'] = $this->user($this->mdaA, RoleKey::MdaOfficer);
+        $this->users['officerA'] = $this->user($this->mdaA, RoleKey::MdaAdmin);
         $this->users['partner'] = $this->user(null, RoleKey::DevelopmentPartner);
 
         // Administrative data to aggregate over.

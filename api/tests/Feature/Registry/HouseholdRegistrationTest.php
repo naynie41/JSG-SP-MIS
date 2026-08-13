@@ -45,8 +45,8 @@ class HouseholdRegistrationTest extends TestCase
         $this->mdaA = Mda::factory()->create(['name' => 'MDA A']);
         $this->mdaB = Mda::factory()->create(['name' => 'MDA B']);
 
-        $this->users['officerA'] = $this->user($this->mdaA, RoleKey::MdaOfficer);
-        $this->users['officerB'] = $this->user($this->mdaB, RoleKey::MdaOfficer);
+        $this->users['officerA'] = $this->user($this->mdaA, RoleKey::MdaAdmin);
+        $this->users['officerB'] = $this->user($this->mdaB, RoleKey::MdaAdmin);
 
         $this->benA1 = Beneficiary::factory()->create(['owner_mda_id' => $this->mdaA->id]);
         $this->benA2 = Beneficiary::factory()->create(['owner_mda_id' => $this->mdaA->id]);

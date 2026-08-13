@@ -41,8 +41,8 @@ class RevealPopulationTest extends TestCase
 
         $this->ownerMda = Mda::factory()->create(['name' => 'Owner MDA']);
         $otherMda = Mda::factory()->create(['name' => 'Other MDA']);
-        $this->users['owner'] = $this->user($this->ownerMda, RoleKey::MdaOfficer);
-        $this->users['other'] = $this->user($otherMda, RoleKey::MdaOfficer);
+        $this->users['owner'] = $this->user($this->ownerMda, RoleKey::MdaAdmin);
+        $this->users['other'] = $this->user($otherMda, RoleKey::MdaAdmin);
         $this->users['oversight'] = $this->user($otherMda, RoleKey::Executive);
 
         $this->beneficiary = Beneficiary::factory()->create(['owner_mda_id' => $this->ownerMda->id, 'nin' => '22200033344']);

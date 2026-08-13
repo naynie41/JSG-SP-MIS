@@ -21,7 +21,7 @@ class AuthTest extends TestCase
     private function makeUser(array $attributes = []): User
     {
         $this->seed(RolesAndPermissionsSeeder::class);
-        $role = Role::where('key', RoleKey::MdaOfficer->value)->firstOrFail();
+        $role = Role::where('key', RoleKey::MdaAdmin->value)->firstOrFail();
         $mda = Mda::factory()->create();
 
         return User::factory()->create(array_merge([
@@ -44,7 +44,7 @@ class AuthTest extends TestCase
         $login->assertOk()
             ->assertJsonPath('data.token_type', 'Bearer')
             ->assertJsonPath('data.user.email', 'officer@example.test')
-            ->assertJsonPath('data.user.role.key', RoleKey::MdaOfficer->value)
+            ->assertJsonPath('data.user.role.key', RoleKey::MdaAdmin->value)
             ->assertJsonStructure(['data' => ['token', 'user' => ['id', 'mda', 'role', 'permissions']]]);
 
         $token = $login->json('data.token');

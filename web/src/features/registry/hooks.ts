@@ -3,7 +3,7 @@ import { useToast } from '@/components/Toast/ToastProvider'
 import { beneficiaryApi, documentApi, householdApi, importApi, matchingApi, serviceRequestApi } from './api'
 import type { BeneficiaryListParams, ResolveRowInput, SearchQuery } from './api'
 import { RESOLUTION_LABELS } from './constants'
-import type { BeneficiaryInput, HouseholdRole, MatchingConfigInput } from './types'
+import type { BeneficiaryInput, ConsentInput, HouseholdRole, MatchingConfigInput } from './types'
 
 /* ----------------------------------------------------------------- beneficiaries */
 
@@ -32,6 +32,31 @@ export function useUpdateBeneficiary() {
       qc.invalidateQueries({ queryKey: ['beneficiaries'] })
       qc.invalidateQueries({ queryKey: ['beneficiary', beneficiary.id] })
       toast.success('Beneficiary updated', beneficiary.full_name)
+    },
+  })
+}
+
+/**
+ * Record or withdraw consent (NFR-PRV-01). Invalidates the beneficiary AND the
+ * data-sharing oversight view, because withdrawing consent immediately suspends every
+ * cross-MDA grant that depended on it — the oversight report would otherwise keep
+ * showing those grants as effective.
+ */
+export function useRecordConsent() {
+  const qc = useQueryClient()
+  const toast = useToast()
+  return useMutation({
+    mutationFn: ({ id, input }: { id: string; input: ConsentInput }) => beneficiaryApi.recordConsent(id, input),
+    onSuccess: (beneficiary, { input }) => {
+      qc.invalidateQueries({ queryKey: ['beneficiary', beneficiary.id] })
+      qc.invalidateQueries({ queryKey: ['beneficiaries'] })
+      qc.invalidateQueries({ queryKey: ['data-sharing'] })
+      toast.success(
+        input.status === 'granted' ? 'Consent recorded' : 'Consent withdrawn',
+        input.status === 'granted'
+          ? 'Cross-MDA sharing may now proceed where a grant exists.'
+          : 'Any cross-MDA grant on this record is now suspended.',
+      )
     },
   })
 }

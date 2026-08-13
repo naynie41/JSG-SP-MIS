@@ -29,7 +29,7 @@ export function makeUser(overrides: Partial<AuthUser> = {}): AuthUser {
     mfa_enabled: false,
     last_login_at: null,
     mda: { id: 'm-1', name: 'Women Affairs', type: 'ministry' },
-    role: { key: 'mda_officer', name: 'MDA Officer' },
+    role: { key: 'mda_admin', name: 'MDA Admin' },
     permissions: ['mda.view', 'user.view'],
     ...overrides,
   }

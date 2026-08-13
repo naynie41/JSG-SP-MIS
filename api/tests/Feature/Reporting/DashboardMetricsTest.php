@@ -52,8 +52,8 @@ class DashboardMetricsTest extends TestCase
         $this->mdaB = Mda::factory()->create(['name' => 'MDA B']);
 
         $this->users['exec'] = $this->user(null, RoleKey::Executive);          // state-wide
-        $this->users['officerA'] = $this->user($this->mdaA, RoleKey::MdaOfficer);
-        $this->users['officerB'] = $this->user($this->mdaB, RoleKey::MdaOfficer);
+        $this->users['officerA'] = $this->user($this->mdaA, RoleKey::MdaAdmin);
+        $this->users['officerB'] = $this->user($this->mdaB, RoleKey::MdaAdmin);
         $this->users['partner'] = $this->user(null, RoleKey::DevelopmentPartner);
 
         // Registry: 3 beneficiaries in A (one suspended), 2 in B.

@@ -94,9 +94,20 @@ export function GraduationCriteriaCard({ programmeId }: { programmeId: string })
         )}
       </Card>
 
-      {canEdit && (
+      {/*
+        Mounted only WHILE open, and keyed on what is being edited.
+
+        The editor seeds its fields from `criteria` in `useState` initialisers, which run
+        once per mount. Keeping it permanently mounted and swapping the prop meant
+        "Configure" on a defined set showed the blank "new set" defaults instead — and
+        saving that would have replaced the MDA's real criteria with them. Mounting per
+        target makes every open a fresh seed, and also discards abandoned edits rather
+        than showing them again next time.
+      */}
+      {canEdit && editing.open && (
         <GraduationCriteriaModal
-          open={editing.open}
+          key={editing.criteria?.id ?? 'new'}
+          open
           onClose={() => setEditing({ open: false, criteria: null })}
           programmeId={programmeId}
           criteria={editing.criteria}

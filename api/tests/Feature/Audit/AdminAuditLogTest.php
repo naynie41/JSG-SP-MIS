@@ -38,7 +38,7 @@ class AdminAuditLogTest extends TestCase
 
         $this->mda = Mda::factory()->create(['name' => 'MDA A']);
         $this->users['admin'] = $this->user(null, RoleKey::SystemAdministrator);
-        $this->users['officer'] = $this->user($this->mda, RoleKey::MdaOfficer);
+        $this->users['officer'] = $this->user($this->mda, RoleKey::MdaAdmin);
         $this->users['coordination'] = $this->user(null, RoleKey::SpCoordination);
 
         // Clear the entries the fixtures themselves produced so counts are exact.

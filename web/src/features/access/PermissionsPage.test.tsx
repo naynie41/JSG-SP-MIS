@@ -34,7 +34,7 @@ describe('PermissionsPage', () => {
       permissions: ['beneficiary.view', 'mda.view'],
       roles: [
         { key: 'system_administrator', name: 'System Administrator', permissions: ['beneficiary.view', 'mda.view'] },
-        { key: 'mda_officer', name: 'MDA Officer', permissions: ['beneficiary.view'] },
+        { key: 'mda_admin', name: 'MDA Admin', permissions: ['beneficiary.view'] },
       ],
     })
   })
@@ -50,7 +50,7 @@ describe('PermissionsPage', () => {
     // Switch to the matrix tab → role columns + permission rows.
     await user.click(screen.getByRole('tab', { name: 'Role matrix' }))
     expect(await screen.findByRole('columnheader', { name: 'System Administrator' })).toBeInTheDocument()
-    expect(screen.getByRole('columnheader', { name: 'MDA Officer' })).toBeInTheDocument()
+    expect(screen.getByRole('columnheader', { name: 'MDA Admin' })).toBeInTheDocument()
   })
 
   it('blocks users without permission.view', () => {

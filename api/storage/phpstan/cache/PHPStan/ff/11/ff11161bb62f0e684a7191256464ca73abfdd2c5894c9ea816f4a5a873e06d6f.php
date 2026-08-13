@@ -135,7 +135,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
     ),
     'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\vendor\\nette\\utils\\src\\Utils\\ArrayList.php' => 
     array (
-      0 => 'cf6b035182d7ecde55fbc6f644caa198b40fdd0464c880aca59909f92d589366',
+      0 => 'c84242d61bdce01be99ea4f1fe11070fdf3db2cfe9f399373c1330c812374b21',
       1 => 
       array (
         0 => 'nette\\utils\\arraylist',
@@ -157,7 +157,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
     ),
     'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\vendor\\nette\\utils\\src\\Utils\\Arrays.php' => 
     array (
-      0 => '7737f1556fb2ba5342d013fcb400ebbada74c4fec4a8756671cbb64b0cf08ba3',
+      0 => 'e24fe462fdf59c206a18b93a33fc84200450bdd730c5dc9de4b324c323748742',
       1 => 
       array (
         0 => 'nette\\utils\\',
@@ -268,7 +268,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
     ),
     'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\vendor\\nette\\utils\\src\\Utils\\FileSystem.php' => 
     array (
-      0 => 'd71f111c9966aa7933c5afa275125a6dd08a6b084514e0669f13505e32e0e3a4',
+      0 => '56ad2f57cbe2bf3a99cd47fe0855f3459b6e18175903f72c38b1428d649f4883',
       1 => 
       array (
         0 => 'nette\\utils\\filesystem',
@@ -283,14 +283,15 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         5 => 'nette\\utils\\read',
         6 => 'nette\\utils\\readlines',
         7 => 'nette\\utils\\write',
-        8 => 'nette\\utils\\makewritable',
-        9 => 'nette\\utils\\isabsolute',
-        10 => 'nette\\utils\\isvalidfilename',
-        11 => 'nette\\utils\\normalizepath',
-        12 => 'nette\\utils\\joinpaths',
-        13 => 'nette\\utils\\resolvepath',
-        14 => 'nette\\utils\\unixslashes',
-        15 => 'nette\\utils\\platformslashes',
+        8 => 'nette\\utils\\writeatomic',
+        9 => 'nette\\utils\\makewritable',
+        10 => 'nette\\utils\\isabsolute',
+        11 => 'nette\\utils\\isvalidfilename',
+        12 => 'nette\\utils\\normalizepath',
+        13 => 'nette\\utils\\joinpaths',
+        14 => 'nette\\utils\\resolvepath',
+        15 => 'nette\\utils\\unixslashes',
+        16 => 'nette\\utils\\platformslashes',
       ),
       3 => 
       array (
@@ -298,7 +299,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
     ),
     'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\vendor\\nette\\utils\\src\\Utils\\Finder.php' => 
     array (
-      0 => 'cbdb6e73802ba372cb9b293e8633994c4fde32262de8ab0944254589d853e307',
+      0 => '06fd53e667fe1fd6236bee1991c2aaabea41cb8279a101505689378c08f5057a',
       1 => 
       array (
         0 => 'nette\\utils\\',
@@ -312,32 +313,34 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         3 => 'nette\\utils\\files',
         4 => 'nette\\utils\\directories',
         5 => 'nette\\utils\\addmask',
-        6 => 'nette\\utils\\in',
-        7 => 'nette\\utils\\from',
-        8 => 'nette\\utils\\addlocation',
-        9 => 'nette\\utils\\childfirst',
-        10 => 'nette\\utils\\ignoreunreadabledirs',
-        11 => 'nette\\utils\\sortby',
-        12 => 'nette\\utils\\sortbyname',
-        13 => 'nette\\utils\\append',
-        14 => 'nette\\utils\\exclude',
-        15 => 'nette\\utils\\filter',
-        16 => 'nette\\utils\\descentfilter',
-        17 => 'nette\\utils\\limitdepth',
-        18 => 'nette\\utils\\size',
-        19 => 'nette\\utils\\date',
-        20 => 'nette\\utils\\collect',
-        21 => 'nette\\utils\\getiterator',
-        22 => 'nette\\utils\\traversedir',
-        23 => 'nette\\utils\\converttofiles',
-        24 => 'nette\\utils\\provefilters',
-        25 => 'nette\\utils\\buildplan',
-        26 => 'nette\\utils\\splitrecursivepart',
-        27 => 'nette\\utils\\buildpattern',
+        6 => 'nette\\utils\\hastrailingseparator',
+        7 => 'nette\\utils\\expandglobstar',
+        8 => 'nette\\utils\\in',
+        9 => 'nette\\utils\\from',
+        10 => 'nette\\utils\\addlocation',
+        11 => 'nette\\utils\\childfirst',
+        12 => 'nette\\utils\\ignoreunreadabledirs',
+        13 => 'nette\\utils\\sortby',
+        14 => 'nette\\utils\\sortbyname',
+        15 => 'nette\\utils\\append',
+        16 => 'nette\\utils\\exclude',
+        17 => 'nette\\utils\\filter',
+        18 => 'nette\\utils\\descentfilter',
+        19 => 'nette\\utils\\limitdepth',
+        20 => 'nette\\utils\\size',
+        21 => 'nette\\utils\\date',
+        22 => 'nette\\utils\\collect',
+        23 => 'nette\\utils\\getiterator',
+        24 => 'nette\\utils\\traversedir',
+        25 => 'nette\\utils\\converttofiles',
+        26 => 'nette\\utils\\provefilters',
+        27 => 'nette\\utils\\buildplan',
+        28 => 'nette\\utils\\splitrecursivepart',
+        29 => 'nette\\utils\\buildpattern',
       ),
       3 => 
       array (
-        0 => 'nette\\utils\\GLOB_NOESCAPE',
+        0 => 'nette\\utils\\DIRECTORY_SEPARATOR',
       ),
     ),
     'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\vendor\\nette\\utils\\src\\Utils\\Floats.php' => 
@@ -385,7 +388,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
     ),
     'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\vendor\\nette\\utils\\src\\Utils\\Html.php' => 
     array (
-      0 => '53e383e575403ea25eb224d626f89a3611d09148a22a6946d5bd54920dd416b5',
+      0 => '19102c0665ac1e39d5150205d990bb532d8b056b9497217acf283bff72b3d7f2',
       1 => 
       array (
         0 => 'nette\\utils\\',
@@ -394,58 +397,61 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
       2 => 
       array (
         0 => 'nette\\utils\\el',
-        1 => 'nette\\utils\\fromhtml',
-        2 => 'nette\\utils\\fromtext',
-        3 => 'nette\\utils\\tohtml',
-        4 => 'nette\\utils\\totext',
-        5 => 'nette\\utils\\htmltotext',
-        6 => 'nette\\utils\\setname',
-        7 => 'nette\\utils\\getname',
-        8 => 'nette\\utils\\isempty',
-        9 => 'nette\\utils\\addattributes',
-        10 => 'nette\\utils\\appendattribute',
-        11 => 'nette\\utils\\setattribute',
-        12 => 'nette\\utils\\getattribute',
-        13 => 'nette\\utils\\removeattribute',
-        14 => 'nette\\utils\\removeattributes',
-        15 => 'nette\\utils\\__set',
-        16 => 'nette\\utils\\__get',
-        17 => 'nette\\utils\\__isset',
-        18 => 'nette\\utils\\__unset',
-        19 => 'nette\\utils\\__call',
-        20 => 'nette\\utils\\href',
-        21 => 'nette\\utils\\data',
-        22 => 'nette\\utils\\sethtml',
-        23 => 'nette\\utils\\gethtml',
-        24 => 'nette\\utils\\settext',
-        25 => 'nette\\utils\\gettext',
-        26 => 'nette\\utils\\addhtml',
-        27 => 'nette\\utils\\addtext',
-        28 => 'nette\\utils\\create',
-        29 => 'nette\\utils\\insert',
-        30 => 'nette\\utils\\offsetset',
-        31 => 'nette\\utils\\offsetget',
-        32 => 'nette\\utils\\offsetexists',
-        33 => 'nette\\utils\\offsetunset',
-        34 => 'nette\\utils\\count',
-        35 => 'nette\\utils\\removechildren',
-        36 => 'nette\\utils\\getiterator',
-        37 => 'nette\\utils\\getchildren',
-        38 => 'nette\\utils\\render',
-        39 => 'nette\\utils\\__tostring',
-        40 => 'nette\\utils\\starttag',
-        41 => 'nette\\utils\\endtag',
-        42 => 'nette\\utils\\attributes',
-        43 => 'nette\\utils\\__clone',
+        1 => 'nette\\utils\\fragment',
+        2 => 'nette\\utils\\fromhtml',
+        3 => 'nette\\utils\\fromtext',
+        4 => 'nette\\utils\\tohtml',
+        5 => 'nette\\utils\\totext',
+        6 => 'nette\\utils\\htmltotext',
+        7 => 'nette\\utils\\setname',
+        8 => 'nette\\utils\\getname',
+        9 => 'nette\\utils\\isempty',
+        10 => 'nette\\utils\\addattributes',
+        11 => 'nette\\utils\\appendattribute',
+        12 => 'nette\\utils\\setattribute',
+        13 => 'nette\\utils\\getattribute',
+        14 => 'nette\\utils\\removeattribute',
+        15 => 'nette\\utils\\removeattributes',
+        16 => 'nette\\utils\\__set',
+        17 => 'nette\\utils\\__get',
+        18 => 'nette\\utils\\__isset',
+        19 => 'nette\\utils\\__unset',
+        20 => 'nette\\utils\\__call',
+        21 => 'nette\\utils\\__callstatic',
+        22 => 'nette\\utils\\href',
+        23 => 'nette\\utils\\data',
+        24 => 'nette\\utils\\sethtml',
+        25 => 'nette\\utils\\gethtml',
+        26 => 'nette\\utils\\settext',
+        27 => 'nette\\utils\\gettext',
+        28 => 'nette\\utils\\add',
+        29 => 'nette\\utils\\addhtml',
+        30 => 'nette\\utils\\addtext',
+        31 => 'nette\\utils\\create',
+        32 => 'nette\\utils\\insert',
+        33 => 'nette\\utils\\offsetset',
+        34 => 'nette\\utils\\offsetget',
+        35 => 'nette\\utils\\offsetexists',
+        36 => 'nette\\utils\\offsetunset',
+        37 => 'nette\\utils\\count',
+        38 => 'nette\\utils\\removechildren',
+        39 => 'nette\\utils\\getiterator',
+        40 => 'nette\\utils\\getchildren',
+        41 => 'nette\\utils\\render',
+        42 => 'nette\\utils\\__tostring',
+        43 => 'nette\\utils\\starttag',
+        44 => 'nette\\utils\\endtag',
+        45 => 'nette\\utils\\attributes',
+        46 => 'nette\\utils\\__clone',
       ),
       3 => 
       array (
-        0 => 'nette\\utils\\ENT_HTML5',
+        0 => 'nette\\utils\\E_USER_DEPRECATED',
       ),
     ),
     'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\vendor\\nette\\utils\\src\\Utils\\Image.php' => 
     array (
-      0 => '633045351f0f15606a1ab96c88e7df18f05b7fd165991cf8e7608885da05468c',
+      0 => '0e0008dc204a4d5a7ef85fb0e7592adcba1b1538d3907ba68f72aaad94a378a2',
       1 => 
       array (
         0 => 'nette\\utils\\',
@@ -533,7 +539,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
     ),
     'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\vendor\\nette\\utils\\src\\Utils\\Iterables.php' => 
     array (
-      0 => '2e554632bc79c3a5fd3b3448c2328064ef3b35243537fa87f1cf327e4562324f',
+      0 => 'b666de798202b5634d2cf9dc5a63a889eb1c6bfbdc840c6d375d32a73126ac50',
       1 => 
       array (
         0 => 'nette\\utils\\iterables',
@@ -563,7 +569,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
     ),
     'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\vendor\\nette\\utils\\src\\Utils\\Json.php' => 
     array (
-      0 => 'efed986c11bf0cfca0da2fa55bd57007013016c3ee0c74c127f58a76435c88f5',
+      0 => '565257b57f8754d32cc992081754fd9eac7a347d619f5680d7cb09d0c5877b7b',
       1 => 
       array (
         0 => 'nette\\utils\\',
@@ -581,7 +587,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
     ),
     'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\vendor\\nette\\utils\\src\\Utils\\ObjectHelpers.php' => 
     array (
-      0 => '50bcbec9a7f93f5a4c47b4bcac3dae3d61a8135e5f1ef8e94ed431b650bd9e87',
+      0 => 'd6fc4ea39a3a7dfad40b963a4d0f6b47cf5c62d77109c264830ed253b8b4bbbd',
       1 => 
       array (
         0 => 'nette\\utils\\objecthelpers',
@@ -636,7 +642,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
     ),
     'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\vendor\\nette\\utils\\src\\Utils\\Process.php' => 
     array (
-      0 => '7f98f509a9f596d1f780a0232b7f3bcdc9711886bbf2014d8e1d27b4d9475d8b',
+      0 => '44e11cda631fe1e8870728db83ef03547177a1fc8d56deb56a306c014be47c33',
       1 => 
       array (
         0 => 'nette\\utils\\process',
@@ -647,31 +653,32 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         1 => 'nette\\utils\\runcommand',
         2 => 'nette\\utils\\__construct',
         3 => 'nette\\utils\\__destruct',
-        4 => 'nette\\utils\\isrunning',
-        5 => 'nette\\utils\\wait',
-        6 => 'nette\\utils\\drainpipes',
-        7 => 'nette\\utils\\terminate',
-        8 => 'nette\\utils\\getexitcode',
-        9 => 'nette\\utils\\issuccess',
-        10 => 'nette\\utils\\ensuresuccess',
-        11 => 'nette\\utils\\getpid',
-        12 => 'nette\\utils\\getstdoutput',
-        13 => 'nette\\utils\\getstderror',
-        14 => 'nette\\utils\\consumestdoutput',
-        15 => 'nette\\utils\\consumestderror',
-        16 => 'nette\\utils\\consumebuffer',
-        17 => 'nette\\utils\\extractnewdata',
-        18 => 'nette\\utils\\writestdinput',
-        19 => 'nette\\utils\\writetopipe',
-        20 => 'nette\\utils\\closestdinput',
-        21 => 'nette\\utils\\dispatchcallback',
-        22 => 'nette\\utils\\enforcetimeout',
-        23 => 'nette\\utils\\readfrompipe',
-        24 => 'nette\\utils\\writeinitialinput',
-        25 => 'nette\\utils\\createinputdescriptor',
-        26 => 'nette\\utils\\createoutputdescriptor',
-        27 => 'nette\\utils\\close',
-        28 => 'nette\\utils\\closeoutputpipes',
+        4 => 'nette\\utils\\detach',
+        5 => 'nette\\utils\\isrunning',
+        6 => 'nette\\utils\\wait',
+        7 => 'nette\\utils\\drainpipes',
+        8 => 'nette\\utils\\terminate',
+        9 => 'nette\\utils\\getexitcode',
+        10 => 'nette\\utils\\issuccess',
+        11 => 'nette\\utils\\ensuresuccess',
+        12 => 'nette\\utils\\getpid',
+        13 => 'nette\\utils\\getstdoutput',
+        14 => 'nette\\utils\\getstderror',
+        15 => 'nette\\utils\\consumestdoutput',
+        16 => 'nette\\utils\\consumestderror',
+        17 => 'nette\\utils\\consumebuffer',
+        18 => 'nette\\utils\\extractnewdata',
+        19 => 'nette\\utils\\writestdinput',
+        20 => 'nette\\utils\\writetopipe',
+        21 => 'nette\\utils\\closestdinput',
+        22 => 'nette\\utils\\dispatchcallback',
+        23 => 'nette\\utils\\enforcetimeout',
+        24 => 'nette\\utils\\readfrompipe',
+        25 => 'nette\\utils\\writeinitialinput',
+        26 => 'nette\\utils\\createinputdescriptor',
+        27 => 'nette\\utils\\createoutputdescriptor',
+        28 => 'nette\\utils\\close',
+        29 => 'nette\\utils\\closeoutputpipes',
       ),
       3 => 
       array (
@@ -694,7 +701,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
     ),
     'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\vendor\\nette\\utils\\src\\Utils\\Reflection.php' => 
     array (
-      0 => '2b6b9ce4d6675854723a960643eb57964dd21aeb4a14caa8de538ba36ef0099c',
+      0 => 'c67adc0a9b5a6df4c792a10859bed734f11b71146e708362dddeeab87cb0941d',
       1 => 
       array (
         0 => 'nette\\utils\\',
@@ -737,7 +744,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
     ),
     'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\vendor\\nette\\utils\\src\\Utils\\Strings.php' => 
     array (
-      0 => '14ec0872f34601c0cc18435fdcfebcece5861d1a190401106541acd6f754eac7',
+      0 => '2c089c9ceb9b0b8f4f6d769086b78688da448efab34cf56cdba0adbe511922b6',
       1 => 
       array (
         0 => 'nette\\utils\\strings',
@@ -824,7 +831,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
     ),
     'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\vendor\\nette\\utils\\src\\Utils\\Validators.php' => 
     array (
-      0 => '35ec4205e43dfa532606dc1137fb4d003b089c35a6d878f34b4095082d8137df',
+      0 => 'c2db5cbed0d9d8add1bd1f65c40abba807221e0ad928a775e21421e2a4694620',
       1 => 
       array (
         0 => 'nette\\utils\\validators',
@@ -913,6 +920,31 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
       ),
       2 => 
       array (
+      ),
+      3 => 
+      array (
+      ),
+    ),
+    'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\vendor\\nette\\utils\\src\\Utils\\DateTimeImmutable.php' => 
+    array (
+      0 => '20626e8071bea48eaa64053389c403b93e399c7a4e2446a969d019e579803b82',
+      1 => 
+      array (
+        0 => 'nette\\utils\\datetimeimmutable',
+      ),
+      2 => 
+      array (
+        0 => 'nette\\utils\\from',
+        1 => 'nette\\utils\\fromparts',
+        2 => 'nette\\utils\\createfromformat',
+        3 => 'nette\\utils\\__construct',
+        4 => 'nette\\utils\\modify',
+        5 => 'nette\\utils\\setdate',
+        6 => 'nette\\utils\\settime',
+        7 => 'nette\\utils\\resolve',
+        8 => 'nette\\utils\\jsonserialize',
+        9 => 'nette\\utils\\__tostring',
+        10 => 'nette\\utils\\handleerrors',
       ),
       3 => 
       array (

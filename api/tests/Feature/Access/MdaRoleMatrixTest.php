@@ -6,7 +6,6 @@ namespace Tests\Feature\Access;
 
 use App\Domain\Access\Enums\RoleKey;
 use App\Domain\Access\Models\Mda;
-use App\Domain\Access\Models\Permission;
 use App\Domain\Access\Models\Role;
 use App\Domain\Access\Models\User;
 use App\Domain\Registry\Models\Beneficiary;
@@ -17,32 +16,46 @@ use Illuminate\Testing\TestResponse;
 use Tests\TestCase;
 
 /**
- * The MDA Officer / MDA Admin permission split, asserted as a matrix.
+ * The single MDA role (FR-UAM-01).
  *
- * The MDA console ships ONE navigation for both roles, gated per item, which only works
- * if the split is exactly what the console assumes: Officer's permissions are a strict
- * SUBSET of Admin's, and the difference is a known, small set. This test pins that shape
- * so a future permission change cannot silently widen an Officer's reach — and pins the
- * server-side refusal on every route the difference guards, because the UI gate is a
- * courtesy and the route is the boundary (SECURITY.md §3).
+ * MDA Officer was merged into MDA Admin, which already held a superset of its
+ * permissions. This file previously pinned the boundary BETWEEN the two roles; it now
+ * pins the shape of the one that remains, because collapsing two roles into the wider
+ * of them moves capability toward every MDA user and that has to be deliberate and
+ * visible rather than incidental.
+ *
+ * Two things it asserts above all:
+ *  - the MDA role can decide a request-to-serve and export its own beneficiaries —
+ *    the capabilities that used to be Admin-only now reach every MDA user;
+ *  - it can NOT manage users, because account administration is centralised with the
+ *    System Administrator.
  */
 class MdaRoleMatrixTest extends TestCase
 {
     use RefreshDatabase;
 
     /**
-     * What MDA Admin holds and MDA Officer does not. Anything added here must be a
-     * deliberate decision, not a seeder accident.
+     * User administration, deliberately withheld from the MDA role. An MDA cannot
+     * enrol its own staff or change anyone's role — that is System-Administrator work.
      *
      * @var list<string>
      */
-    private const ADMIN_ONLY = [
-        'beneficiary.approve',        // decide a request-to-serve / ownership transfer
-        'beneficiary.export',         // bulk export of citizen PII (SECURITY.md matrix)
-        'beneficiary.access_request', // DSAR — the owner MDA is the data controller
+    private const WITHHELD_FROM_MDA = [
         'user.create',
         'user.edit',
         'role.view',
+    ];
+
+    /**
+     * Capabilities the merge moved to every MDA user. Listed explicitly so a future
+     * reader sees this was a decision, not a drift.
+     *
+     * @var list<string>
+     */
+    private const MERGED_IN = [
+        'beneficiary.approve',        // decide a request-to-serve / ownership transfer
+        'beneficiary.export',         // bulk export of citizen PII (SECURITY.md matrix)
+        'beneficiary.access_request', // DSAR — the owner MDA is the data controller
     ];
 
     private Mda $mda;
@@ -60,8 +73,8 @@ class MdaRoleMatrixTest extends TestCase
         $this->mda = Mda::factory()->create(['name' => 'Ministry of Health']);
         $this->otherMda = Mda::factory()->create(['name' => 'Ministry of Education']);
 
-        $this->users['officer'] = $this->user($this->mda, RoleKey::MdaOfficer);
-        $this->users['admin'] = $this->user($this->mda, RoleKey::MdaAdmin);
+        $this->users['mda'] = $this->user($this->mda, RoleKey::MdaAdmin);
+        $this->users['otherMda'] = $this->user($this->otherMda, RoleKey::MdaAdmin);
     }
 
     private function user(?Mda $mda, RoleKey $role): User
@@ -75,8 +88,7 @@ class MdaRoleMatrixTest extends TestCase
     /** @return list<string> */
     private function permissionsOf(RoleKey $role): array
     {
-        $keys = Role::where('key', $role->value)->firstOrFail()
-            ->permissions->pluck('key')->all();
+        $keys = Role::where('key', $role->value)->firstOrFail()->permissions->pluck('key')->all();
         sort($keys);
 
         return $keys;
@@ -91,46 +103,58 @@ class MdaRoleMatrixTest extends TestCase
         return $response;
     }
 
-    /* --------------------------------------------------------------- the shape */
+    /* ------------------------------------------------------- there is ONE MDA role */
 
-    public function test_officer_permissions_are_a_strict_subset_of_admin(): void
+    public function test_mda_officer_no_longer_exists(): void
     {
-        $officer = $this->permissionsOf(RoleKey::MdaOfficer);
-        $admin = $this->permissionsOf(RoleKey::MdaAdmin);
-
-        // One nav for both roles is only sound if the Officer can never do something the
-        // Admin cannot — otherwise the rail would need to branch by role.
-        $this->assertSame([], array_values(array_diff($officer, $admin)), 'an Officer must never hold a permission the Admin lacks');
-        $this->assertNotSame($officer, $admin, 'the two roles must not be identical');
-    }
-
-    public function test_the_admin_only_difference_is_exactly_the_documented_set(): void
-    {
-        $difference = array_values(array_diff(
-            $this->permissionsOf(RoleKey::MdaAdmin),
-            $this->permissionsOf(RoleKey::MdaOfficer),
+        $this->assertNull(Role::where('key', 'mda_officer')->first(), 'the MDA Officer role must be gone');
+        $this->assertSame([], array_filter(
+            RoleKey::cases(),
+            static fn (RoleKey $case): bool => $case->value === 'mda_officer',
         ));
-        sort($difference);
-
-        $expected = self::ADMIN_ONLY;
-        sort($expected);
-
-        $this->assertSame($expected, $difference);
     }
 
-    public function test_neither_mda_role_holds_a_cross_mda_or_reveal_permission(): void
+    public function test_mda_admin_is_the_only_mda_role(): void
     {
-        foreach ([RoleKey::MdaOfficer, RoleKey::MdaAdmin] as $role) {
-            $keys = $this->permissionsOf($role);
-            // An MDA never sees outside itself, and never exports unmasked identifiers.
-            $this->assertNotContains('cross-mda.view', $keys, $role->value.' must not see across MDAs');
-            $this->assertNotContains('export.reveal_pii', $keys, $role->value.' must never reveal raw identifiers');
+        $mdaRoles = Role::query()->where('key', 'like', 'mda%')->pluck('key')->all();
+
+        $this->assertSame([RoleKey::MdaAdmin->value], $mdaRoles);
+    }
+
+    public function test_the_merged_capabilities_now_reach_every_mda_user(): void
+    {
+        $keys = $this->permissionsOf(RoleKey::MdaAdmin);
+
+        // These were Admin-only before the merge. Every MDA user holds them now — which
+        // is the substantive consequence of collapsing the roles.
+        foreach (self::MERGED_IN as $permission) {
+            $this->assertContains($permission, $keys);
         }
     }
 
-    /* ------------------------------------------------- Service Delivery module */
+    public function test_user_administration_is_withheld_from_the_mda_role(): void
+    {
+        $keys = $this->permissionsOf(RoleKey::MdaAdmin);
 
-    public function test_only_an_admin_may_decide_a_request_to_serve(): void
+        foreach (self::WITHHELD_FROM_MDA as $permission) {
+            $this->assertNotContains($permission, $keys, "user administration is System-Administrator-only: {$permission}");
+        }
+
+        // `user.view` stays: an MDA still needs to see who belongs to it.
+        $this->assertContains('user.view', $keys);
+    }
+
+    public function test_the_mda_role_holds_no_cross_mda_or_reveal_permission(): void
+    {
+        $keys = $this->permissionsOf(RoleKey::MdaAdmin);
+
+        $this->assertNotContains('cross-mda.view', $keys, 'an MDA never sees outside itself');
+        $this->assertNotContains('export.reveal_pii', $keys, 'unmasked identifiers are never an MDA capability');
+    }
+
+    /* ------------------------------------------------ what the MDA role can now do */
+
+    public function test_the_mda_role_decides_a_request_to_serve(): void
     {
         $beneficiary = Beneficiary::factory()->create(['owner_mda_id' => $this->mda->id]);
         $request = ServiceRequest::create([
@@ -141,18 +165,14 @@ class MdaRoleMatrixTest extends TestCase
             'reason' => 'Serving under a feeding programme',
         ]);
 
-        $this->send('officer', 'POST', "/api/v1/service-requests/{$request->id}/accept")->assertStatus(403);
-        $this->send('officer', 'POST', "/api/v1/service-requests/{$request->id}/decline", ['reason' => 'No'])->assertStatus(403);
-        $this->assertSame('pending', $request->fresh()->status->value);
-
-        $this->send('admin', 'POST', "/api/v1/service-requests/{$request->id}/accept")->assertOk();
+        $this->send('mda', 'POST', "/api/v1/service-requests/{$request->id}/accept")->assertOk();
         $this->assertSame('accepted', $request->fresh()->status->value);
     }
 
-    public function test_both_roles_may_see_the_queue_they_cannot_both_action(): void
+    public function test_the_decision_still_belongs_to_the_owner_mda_only(): void
     {
         $beneficiary = Beneficiary::factory()->create(['owner_mda_id' => $this->mda->id]);
-        ServiceRequest::create([
+        $request = ServiceRequest::create([
             'beneficiary_id' => $beneficiary->id,
             'from_mda_id' => $this->otherMda->id,
             'to_mda_id' => $this->mda->id,
@@ -160,90 +180,66 @@ class MdaRoleMatrixTest extends TestCase
             'reason' => 'x',
         ]);
 
-        // Visibility is shared so the MDA can see its own workload; only the decision is
-        // restricted. This is what lets the Overview counter be role-independent.
-        foreach (['officer', 'admin'] as $who) {
-            $rows = $this->send($who, 'GET', '/api/v1/service-requests/inbox')->assertOk()->json('data.service_requests');
-            $this->assertCount(1, $rows);
-        }
+        // Holding the permission is not enough — merging the roles did not merge MDAs.
+        $this->send('otherMda', 'POST', "/api/v1/service-requests/{$request->id}/accept")->assertStatus(403);
+        $this->assertSame('pending', $request->fresh()->status->value);
     }
 
-    /* ------------------------------------------- Beneficiaries / Reports modules */
-
-    public function test_only_an_admin_may_bulk_export_beneficiaries(): void
-    {
-        Beneficiary::factory()->create(['owner_mda_id' => $this->mda->id]);
-
-        $this->send('officer', 'GET', '/api/v1/beneficiaries/export?format=csv')->assertStatus(403);
-        $this->send('admin', 'GET', '/api/v1/beneficiaries/export?format=csv')->assertSuccessful();
-    }
-
-    public function test_both_roles_may_run_an_aggregate_report(): void
-    {
-        // Aggregate reporting carries no personal record, so it is NOT part of the
-        // Admin-only difference — an Officer must be able to do their own analysis.
-        foreach (['officer', 'admin'] as $who) {
-            $this->send($who, 'POST', '/api/v1/reports/adhoc/preview', [
-                'dataset' => 'benefits', 'group_by' => ['lga'], 'measures' => ['count'],
-            ])->assertOk();
-        }
-    }
-
-    public function test_only_an_admin_may_raise_a_data_access_request(): void
-    {
-        $beneficiary = Beneficiary::factory()->create(['owner_mda_id' => $this->mda->id]);
-
-        $this->send('officer', 'GET', "/api/v1/beneficiaries/{$beneficiary->id}/access-request")->assertStatus(403);
-        $this->send('admin', 'GET', "/api/v1/beneficiaries/{$beneficiary->id}/access-request")->assertSuccessful();
-    }
-
-    /* ----------------------------------------------- outside the six modules */
-
-    public function test_neither_role_can_administer_the_platform(): void
-    {
-        // User and role administration is the System Administrator console, not an MDA
-        // module — an MDA Admin manages users only through that console's own routes.
-        foreach (['officer', 'admin'] as $who) {
-            $this->send($who, 'GET', '/api/v1/admin/settings')->assertStatus(403);
-            $this->send($who, 'POST', '/api/v1/notifications/broadcast', ['subject' => 'x', 'body' => 'y'])->assertStatus(403);
-        }
-    }
-
-    public function test_an_officer_cannot_reach_user_management_at_all(): void
-    {
-        $this->send('officer', 'POST', '/api/v1/users', [
-            'name' => 'New', 'email' => 'new@example.test', 'role_id' => Role::where('key', RoleKey::MdaOfficer->value)->firstOrFail()->id,
-        ])->assertStatus(403);
-    }
-
-    /* ------------------------------------------------------- granting the delta */
-
-    public function test_granting_export_to_the_officer_role_takes_effect_immediately(): void
-    {
-        Beneficiary::factory()->create(['owner_mda_id' => $this->mda->id]);
-        $this->send('officer', 'GET', '/api/v1/beneficiaries/export?format=csv')->assertStatus(403);
-
-        // The only grant mechanism that exists is role-level (there is no per-user
-        // permission table); SECURITY.md's "granted per user" is served by granting the
-        // Officer role the permission through the admin console's matrix editor.
-        Role::where('key', RoleKey::MdaOfficer->value)->firstOrFail()
-            ->permissions()->syncWithoutDetaching([Permission::where('key', 'beneficiary.export')->firstOrFail()->id]);
-
-        $this->send('officer', 'GET', '/api/v1/beneficiaries/export?format=csv')->assertSuccessful();
-    }
-
-    public function test_a_grant_never_widens_scope_beyond_the_officers_own_mda(): void
+    public function test_the_mda_role_exports_its_own_beneficiaries_only(): void
     {
         Beneficiary::factory()->create(['owner_mda_id' => $this->mda->id, 'lga' => 'dutse']);
         Beneficiary::factory()->create(['owner_mda_id' => $this->otherMda->id, 'lga' => 'hadejia']);
 
-        Role::where('key', RoleKey::MdaOfficer->value)->firstOrFail()
-            ->permissions()->syncWithoutDetaching([Permission::where('key', 'beneficiary.export')->firstOrFail()->id]);
-
-        $body = $this->send('officer', 'GET', '/api/v1/beneficiaries/export?format=csv')
-            ->assertSuccessful()->streamedContent();
+        $body = $this->send('mda', 'GET', '/api/v1/beneficiaries/export?format=csv')
+            ->assertSuccessful()
+            ->streamedContent();
 
         $this->assertStringContainsString('dutse', $body);
-        $this->assertStringNotContainsString('hadejia', $body, 'granting export must not grant reach');
+        $this->assertStringNotContainsString('hadejia', $body, 'export inherits MDA scope');
+    }
+
+    public function test_the_mda_role_raises_a_data_access_request(): void
+    {
+        $beneficiary = Beneficiary::factory()->create(['owner_mda_id' => $this->mda->id]);
+
+        $this->send('mda', 'GET', "/api/v1/beneficiaries/{$beneficiary->id}/access-request")->assertSuccessful();
+    }
+
+    public function test_the_mda_role_runs_an_aggregate_report(): void
+    {
+        $this->send('mda', 'POST', '/api/v1/reports/adhoc/preview', [
+            'dataset' => 'benefits', 'group_by' => ['lga'], 'measures' => ['count'],
+        ])->assertOk();
+    }
+
+    /* ------------------------------------------------ what it still cannot do */
+
+    public function test_the_mda_role_cannot_create_or_edit_users(): void
+    {
+        $roleId = Role::where('key', RoleKey::MdaAdmin->value)->firstOrFail()->id;
+
+        // The centralisation this change exists for: an MDA cannot enrol its own staff.
+        $this->send('mda', 'POST', '/api/v1/users', [
+            'name' => 'New Staffer',
+            'email' => 'new.staffer@example.test',
+            'password' => 'ChangeMe!Strong12345',
+            'role_id' => $roleId,
+            'mda_id' => $this->mda->id,
+        ])->assertStatus(403);
+
+        $this->send('mda', 'PATCH', "/api/v1/users/{$this->users['mda']->id}", ['name' => 'Renamed'])
+            ->assertStatus(403);
+    }
+
+    public function test_the_mda_role_cannot_list_roles(): void
+    {
+        $this->send('mda', 'GET', '/api/v1/roles')->assertStatus(403);
+    }
+
+    public function test_the_mda_role_cannot_administer_the_platform(): void
+    {
+        $this->send('mda', 'GET', '/api/v1/admin/settings')->assertStatus(403);
+        $this->send('mda', 'POST', '/api/v1/notifications/broadcast', ['subject' => 'x', 'body' => 'y'])
+            ->assertStatus(403);
     }
 }

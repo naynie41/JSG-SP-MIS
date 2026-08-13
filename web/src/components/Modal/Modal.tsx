@@ -24,6 +24,20 @@ export function Modal({ open, onClose, title, children, footer }: ModalProps) {
   const dialogRef = useRef<HTMLDivElement>(null)
   const titleId = useId()
 
+  /*
+   * `onClose` is read through a ref so the effect below depends on `open` ALONE.
+   *
+   * Callers pass an inline arrow (`onClose={() => setTarget(null)}`), so its identity
+   * changes on every parent render. With it in the dependency array, typing one
+   * character into a controlled field inside the modal re-rendered the parent, tore the
+   * effect down — running `previouslyFocused?.focus()`, which pulls focus OUT of the
+   * field being typed into — and set it up again. The result was that only the first
+   * keystroke landed. Depending on `open` alone keeps the focus trap installed for the
+   * lifetime of the open dialog, which is what it is for.
+   */
+  const onCloseRef = useRef(onClose)
+  onCloseRef.current = onClose
+
   useEffect(() => {
     if (!open) return
 
@@ -36,7 +50,7 @@ export function Modal({ open, onClose, title, children, footer }: ModalProps) {
     function onKeyDown(event: KeyboardEvent) {
       if (event.key === 'Escape') {
         event.preventDefault()
-        onClose()
+        onCloseRef.current()
         return
       }
       if (event.key !== 'Tab' || !dialog) return
@@ -65,7 +79,7 @@ export function Modal({ open, onClose, title, children, footer }: ModalProps) {
       document.body.style.overflow = previousOverflow
       previouslyFocused?.focus()
     }
-  }, [open, onClose])
+  }, [open])
 
   if (!open) return null
 

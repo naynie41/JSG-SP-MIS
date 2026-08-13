@@ -53,10 +53,10 @@ class DoubleDippingTest extends TestCase
 
         $this->mdaA = Mda::factory()->create(['name' => 'MDA A']);
         $this->mdaB = Mda::factory()->create(['name' => 'MDA B']);
-        $this->users['officerA'] = $this->user($this->mdaA, RoleKey::MdaOfficer);
-        $this->users['officerB'] = $this->user($this->mdaB, RoleKey::MdaOfficer);
+        $this->users['officerA'] = $this->user($this->mdaA, RoleKey::MdaAdmin);
+        $this->users['officerB'] = $this->user($this->mdaB, RoleKey::MdaAdmin);
         $this->users['spcoord'] = $this->user($this->mdaA, RoleKey::SpCoordination);
-        $this->users['outsider'] = $this->user(Mda::factory()->create(), RoleKey::MdaOfficer);
+        $this->users['outsider'] = $this->user(Mda::factory()->create(), RoleKey::MdaAdmin);
 
         $this->rule = DoubleDippingRule::factory()->create(['period_days' => 30, 'benefit_types' => null]);
 

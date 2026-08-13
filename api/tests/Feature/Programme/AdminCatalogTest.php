@@ -44,7 +44,7 @@ class AdminCatalogTest extends TestCase
 
         $this->users['admin'] = $this->user(null, RoleKey::SystemAdministrator);
         $this->users['coordination'] = $this->user(null, RoleKey::SpCoordination);
-        $this->users['officer'] = $this->user($this->health, RoleKey::MdaOfficer);
+        $this->users['officer'] = $this->user($this->health, RoleKey::MdaAdmin);
         $this->users['mdaAdmin'] = $this->user($this->health, RoleKey::MdaAdmin);
     }
 

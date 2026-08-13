@@ -49,8 +49,8 @@ class DataSharingGovernanceTest extends TestCase
         $this->mdaC = Mda::factory()->create(['name' => 'MDA C']);
 
         $this->users['ownerA'] = $this->user($this->mdaA, RoleKey::MdaAdmin);   // can edit + record consent
-        $this->users['requesterB'] = $this->user($this->mdaB, RoleKey::MdaOfficer);
-        $this->users['outsiderC'] = $this->user($this->mdaC, RoleKey::MdaOfficer);
+        $this->users['requesterB'] = $this->user($this->mdaB, RoleKey::MdaAdmin);
+        $this->users['outsiderC'] = $this->user($this->mdaC, RoleKey::MdaAdmin);
         $this->users['oversight'] = $this->user($this->mdaA, RoleKey::SpCoordination); // cross-mda.view
 
         $this->beneficiary = Beneficiary::factory()->create([
@@ -173,11 +173,14 @@ class DataSharingGovernanceTest extends TestCase
 
         $this->send('oversight', 'GET', '/api/v1/data-sharing/grants')
             ->assertOk()
-            ->assertJsonPath('data.0.basis', 'service_request')
-            ->assertJsonPath('data.0.granted_mda.name', 'MDA B')
-            ->assertJsonPath('data.0.owner_mda.name', 'MDA A')
-            ->assertJsonPath('data.0.consent.status', 'granted')
-            ->assertJsonPath('data.0.consent.effective', true);
+            // The wire value is the SharingBasis enum's, not a string the controller
+            // invents. It previously hard-coded 'service_request', which no enum case
+            // matched — the point of one governed framework is one vocabulary.
+            ->assertJsonPath('data.grants.0.basis', 'service_grant')
+            ->assertJsonPath('data.grants.0.granted_mda.name', 'MDA B')
+            ->assertJsonPath('data.grants.0.owner_mda.name', 'MDA A')
+            ->assertJsonPath('data.grants.0.consent.status', 'granted')
+            ->assertJsonPath('data.grants.0.consent.effective', true);
 
         // Not an oversight surface for an ordinary MDA officer.
         $this->send('requesterB', 'GET', '/api/v1/data-sharing/grants')->assertStatus(403);

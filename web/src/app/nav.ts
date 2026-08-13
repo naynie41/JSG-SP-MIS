@@ -1,3 +1,4 @@
+import { MDA_ROLES } from '@/features/mda/roles'
 import {
   Building2,
   ClipboardList,
@@ -53,12 +54,12 @@ export interface NavConfigSection {
  */
 export const NAV_CONFIG: NavConfigSection[] = [
   {
-    // MDA delivery workspace — six task-based modules (Phase MDA). ONE nav for both
-    // MDA Officer and MDA Admin: the Officer's permission set is a strict subset of
-    // the Admin's, so items gate on permission rather than the rail branching by role.
+    // MDA delivery workspace — six task-based modules (Phase MDA). There is ONE MDA
+    // role (FR-UAM-01), and items still gate on PERMISSION rather than on the role, so
+    // re-granting a permission changes the rail without touching it.
     // Settings is NOT a nav link; it opens from the gear affordance in the top bar.
     label: '',
-    roles: ['mda_officer', 'mda_admin'],
+    roles: [...MDA_ROLES],
     items: [
       { label: 'Overview', to: '/mda', icon: GaugeCircle, permission: 'dashboard.view', end: true },
       { label: 'Programmes', to: '/mda/programmes', icon: ClipboardList, permission: 'programme.view' },
@@ -72,7 +73,7 @@ export const NAV_CONFIG: NavConfigSection[] = [
     label: '',
     // Every other operator role (SP Coordination, M&E) keeps the generic hub rail.
     // Console roles have their own rails below.
-    excludeRoles: ['development_partner', 'executive', 'system_administrator', 'mda_officer', 'mda_admin'],
+    excludeRoles: ['development_partner', 'executive', 'system_administrator', ...MDA_ROLES],
     items: [
       { label: 'Dashboard', to: '/', icon: GaugeCircle, end: true },
       { label: 'Programmes', to: '/programmes', icon: ClipboardList, permission: 'programme.view' },

@@ -48,7 +48,7 @@ class NotificationTest extends TestCase
         $this->servingMda = Mda::factory()->create(['name' => 'Serving MDA']);
 
         $this->users['ownerAdmin'] = $this->user($this->ownerMda, RoleKey::MdaAdmin);   // beneficiary.approve
-        $this->users['servingOfficer'] = $this->user($this->servingMda, RoleKey::MdaOfficer); // beneficiary.create
+        $this->users['servingOfficer'] = $this->user($this->servingMda, RoleKey::MdaAdmin); // beneficiary.create
         $this->users['servingAdmin'] = $this->user($this->servingMda, RoleKey::MdaAdmin);     // can request a transfer
 
         $this->beneficiary = Beneficiary::factory()->create(['owner_mda_id' => $this->ownerMda->id]);

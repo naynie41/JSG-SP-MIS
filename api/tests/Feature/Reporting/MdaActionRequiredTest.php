@@ -41,9 +41,9 @@ class MdaActionRequiredTest extends TestCase
         $this->mdaA = Mda::factory()->create(['name' => 'MDA A']);
         $this->mdaB = Mda::factory()->create(['name' => 'MDA B']);
 
-        $this->users['officerA'] = $this->user($this->mdaA, RoleKey::MdaOfficer);
+        $this->users['officerA'] = $this->user($this->mdaA, RoleKey::MdaAdmin);
         $this->users['adminA'] = $this->user($this->mdaA, RoleKey::MdaAdmin);
-        $this->users['officerB'] = $this->user($this->mdaB, RoleKey::MdaOfficer);
+        $this->users['officerB'] = $this->user($this->mdaB, RoleKey::MdaAdmin);
         $this->users['exec'] = $this->user(null, RoleKey::Executive);
     }
 
@@ -127,12 +127,13 @@ class MdaActionRequiredTest extends TestCase
         $ben = $this->beneficiaryOwnedBy($this->mdaA);
         ServiceRequest::create(['beneficiary_id' => $ben->id, 'from_mda_id' => $this->mdaB->id, 'to_mda_id' => $this->mdaA->id, 'status' => 'pending', 'reason' => 'x']);
 
-        // The COUNT is a shared view of the MDA's workload; only acting on it needs
-        // beneficiary.approve, which the officer does not hold.
+        // The COUNT is a shared view of the MDA's workload — every user of the MDA sees
+        // the same queue. Since the Officer/Admin merge (FR-UAM-01) they can all act on
+        // it too; what still bounds the decision is ownership, not role.
         $this->send('officerA')->assertOk()->assertJsonPath('data.pending_service_requests', 1);
         $this->send('adminA')->assertOk()->assertJsonPath('data.pending_service_requests', 1);
 
-        $this->assertFalse($this->users['officerA']->fresh()->hasPermission('beneficiary.approve'));
+        $this->assertTrue($this->users['officerA']->fresh()->hasPermission('beneficiary.approve'));
         $this->assertTrue($this->users['adminA']->fresh()->hasPermission('beneficiary.approve'));
     }
 

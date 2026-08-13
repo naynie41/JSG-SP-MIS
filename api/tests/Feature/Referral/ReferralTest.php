@@ -44,9 +44,9 @@ class ReferralTest extends TestCase
         $this->toMda = Mda::factory()->create(['name' => 'To MDA']);
         $this->otherMda = Mda::factory()->create(['name' => 'Other MDA']);
 
-        $this->users['from'] = $this->user($this->fromMda, RoleKey::MdaOfficer);
-        $this->users['to'] = $this->user($this->toMda, RoleKey::MdaOfficer);
-        $this->users['other'] = $this->user($this->otherMda, RoleKey::MdaOfficer);
+        $this->users['from'] = $this->user($this->fromMda, RoleKey::MdaAdmin);
+        $this->users['to'] = $this->user($this->toMda, RoleKey::MdaAdmin);
+        $this->users['other'] = $this->user($this->otherMda, RoleKey::MdaAdmin);
         $this->users['oversight'] = $this->user($this->otherMda, RoleKey::Executive); // cross-mda.view
 
         $this->beneficiary = Beneficiary::factory()->create(['owner_mda_id' => $this->fromMda->id]);

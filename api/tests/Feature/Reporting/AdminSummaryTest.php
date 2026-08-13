@@ -45,7 +45,7 @@ class AdminSummaryTest extends TestCase
 
         $this->users['admin'] = $this->user(null, RoleKey::SystemAdministrator);
         $this->users['coordination'] = $this->user(null, RoleKey::SpCoordination);
-        $this->users['officer'] = $this->user($this->mdaA, RoleKey::MdaOfficer);
+        $this->users['officer'] = $this->user($this->mdaA, RoleKey::MdaAdmin);
         $this->users['partner'] = $this->user(null, RoleKey::DevelopmentPartner);
         $this->users['partner2'] = $this->user(null, RoleKey::DevelopmentPartner);
 

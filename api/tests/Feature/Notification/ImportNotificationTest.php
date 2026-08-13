@@ -47,8 +47,8 @@ class ImportNotificationTest extends TestCase
         $this->mda = Mda::factory()->create(['name' => 'Ministry of Health']);
         $this->otherMda = Mda::factory()->create(['name' => 'Ministry of Education']);
 
-        $this->uploader = $this->user($this->mda, RoleKey::MdaOfficer);
-        $this->colleague = $this->user($this->mda, RoleKey::MdaOfficer);
+        $this->uploader = $this->user($this->mda, RoleKey::MdaAdmin);
+        $this->colleague = $this->user($this->mda, RoleKey::MdaAdmin);
         $this->outsider = $this->user($this->otherMda, RoleKey::MdaAdmin);
     }
 

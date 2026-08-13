@@ -41,9 +41,9 @@ class GrievanceTest extends TestCase
         $this->mdaA = Mda::factory()->create(['name' => 'MDA A']);
         $this->mdaB = Mda::factory()->create(['name' => 'MDA B']);
 
-        $this->users['staffA'] = $this->user($this->mdaA, RoleKey::MdaOfficer);   // logs + handles
-        $this->users['agentA'] = $this->user($this->mdaA, RoleKey::MdaOfficer);   // assignee
-        $this->users['staffB'] = $this->user($this->mdaB, RoleKey::MdaOfficer);   // other MDA
+        $this->users['staffA'] = $this->user($this->mdaA, RoleKey::MdaAdmin);   // logs + handles
+        $this->users['agentA'] = $this->user($this->mdaA, RoleKey::MdaAdmin);   // assignee
+        $this->users['staffB'] = $this->user($this->mdaB, RoleKey::MdaAdmin);   // other MDA
         $this->users['oversight'] = $this->user($this->mdaB, RoleKey::Executive); // cross-mda.view
 
         $this->beneficiary = Beneficiary::factory()->create(['owner_mda_id' => $this->mdaA->id]);

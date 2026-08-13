@@ -67,7 +67,7 @@ class OnePipelineTest extends TestCase
         $this->mda = Mda::factory()->create(['name' => 'Ministry of Health']);
         $this->officer = User::factory()->create([
             'mda_id' => $this->mda->id,
-            'role_id' => Role::where('key', RoleKey::MdaOfficer->value)->firstOrFail()->id,
+            'role_id' => Role::where('key', RoleKey::MdaAdmin->value)->firstOrFail()->id,
         ]);
 
         $this->programme = Programme::factory()->individual()->create(['status' => 'active']);

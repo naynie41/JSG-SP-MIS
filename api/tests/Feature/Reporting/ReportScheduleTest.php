@@ -47,9 +47,9 @@ class ReportScheduleTest extends TestCase
         $this->mdaA = Mda::factory()->create(['name' => 'MDA A']);
         $this->mdaB = Mda::factory()->create(['name' => 'MDA B']);
 
-        $this->users['officerA'] = $this->user($this->mdaA, RoleKey::MdaOfficer);   // owner
-        $this->users['officerA2'] = $this->user($this->mdaA, RoleKey::MdaOfficer);   // same-scope recipient
-        $this->users['officerB'] = $this->user($this->mdaB, RoleKey::MdaOfficer);    // out-of-scope recipient
+        $this->users['officerA'] = $this->user($this->mdaA, RoleKey::MdaAdmin);   // owner
+        $this->users['officerA2'] = $this->user($this->mdaA, RoleKey::MdaAdmin);   // same-scope recipient
+        $this->users['officerB'] = $this->user($this->mdaB, RoleKey::MdaAdmin);    // out-of-scope recipient
         $this->users['exec'] = $this->user(null, RoleKey::Executive);                // covers everything
         $this->users['noRole'] = User::factory()->create(['mda_id' => $this->mdaA->id, 'role_id' => null]);
 

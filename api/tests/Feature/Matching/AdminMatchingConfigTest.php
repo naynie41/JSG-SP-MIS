@@ -42,7 +42,7 @@ class AdminMatchingConfigTest extends TestCase
 
         $mda = Mda::factory()->create();
         $this->users['admin'] = $this->user(null, RoleKey::SystemAdministrator);
-        $this->users['officer'] = $this->user($mda, RoleKey::MdaOfficer);
+        $this->users['officer'] = $this->user($mda, RoleKey::MdaAdmin);
         $this->users['coordination'] = $this->user(null, RoleKey::SpCoordination);
     }
 

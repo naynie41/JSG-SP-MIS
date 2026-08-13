@@ -1,10 +1,80 @@
 # Security Hardening Pass — Findings & Remediation (Phase 7)
 
-> Executed against `SECURITY.md`, **NFR-SEC-01/02**, **NFR-AUD-01** on 2026-07-21.
+> Executed against `SECURITY.md`, **NFR-SEC-01/02**, **NFR-AUD-01** on 2026-07-21;
+> **re-verified 2026-08-10** (pass 2 — §0 below).
 > This pass **verifies and strengthens** — no control was weakened. Each finding lists
 > its status: **FIXED** (this pass), **VERIFIED** (already in place, now covered by
 > tests), **TRACKED EXCEPTION** (accepted with rationale + owner), or **PEN-TEST /
 > OPS** (needs human/external sign-off before go-live).
+
+---
+
+## 0. Re-verification pass — 2026-08-10
+
+Pass 1's controls were re-checked against the current codebase (materially changed
+since: the data-sharing framework gained an administrative-grant basis, cross-MDA reads
+are now audited, a consent UI was added). **Every pass-1 control still holds**; the
+findings below are NEW since 2026-07-21.
+
+### F-06 — 17 dependency advisories, 8 of them HIGH — **FIXED** (HIGH)
+
+`composer audit` reported 17 advisories across 4 packages, most published *after*
+pass 1 (2026-07-23), so pass 1's "clean of high/critical" was accurate when written and
+had since decayed. This is the argument for running the audit rather than trusting the
+report.
+
+| Package | Was | Now | Advisories |
+|---|---|---|---|
+| `phpoffice/phpspreadsheet` | 5.8.0 | 5.9.0 | 3 high — incl. **SSRF bypass via HTTP redirect** in the `WEBSERVICE()` domain allow-list, and unbounded gzip expansion (DoS) |
+| `league/commonmark` | 2.8.2 | 2.9.1 | 4 high + 2 medium — quadratic-time and nested-output DoS |
+| `guzzlehttp/guzzle` | 7.15.1 | 7.15.2 | 1 high + 1 medium — noncanonical host bypasses host-based checks; cookie domain keeps subdomain scope |
+| `dompdf/dompdf` | 3.1.5 | 3.1.6 | 4 medium + 2 low — chroot bypass, local file read via data-URI SVG, file-existence oracles |
+
+`npm audit` reported **5 high** (`react-router-dom` direct; `nanoid`, `postcss`,
+`react-router`, `undici` transitive), all resolved by a semver-compatible
+`npm audit fix` — no `--force`, no breaking upgrades.
+
+**Both ecosystems now report zero advisories at any severity.** Full backend (674) and
+frontend (480) suites pass on the updated dependencies.
+
+The guzzle and phpspreadsheet items matter beyond the version bump: the SSRF-bypass and
+host-canonicalisation advisories are the exact class **TE-04/OPS-03** (worker egress
+allow-list) exists to contain. They strengthen, not replace, that requirement.
+
+### F-07 — Production CSP blocks the GIS map tiles — **FIXED (documented)** (MEDIUM)
+
+`docker/nginx/prod.conf.template` sets `img-src 'self' data:` — correct and strict. But
+both map components fall back to `https://{s}.tile.openstreetmap.org/...` when
+`VITE_MAP_TILE_URL` is unset, and that variable appeared in **no** template:
+`web/.env.example` did not mention it, nor did `.env.prod.example`, and
+`docker-compose.prod.yml` ships no tile service.
+
+So in production the coverage maps (FR-GIS-01) render blank, with the reason invisible
+to whoever deploys it.
+
+**Deliberately NOT fixed by loosening the CSP.** Allowing a third-party tile host by
+default would weaken a control and add an outbound dependency that tells that host which
+LGAs/wards a government officer is examining, and when. Instead `web/.env.example` now
+documents the variable, states that it is required in production, and records that using
+a third-party tile host is a DPO decision requiring a deliberate `img-src` extension.
+**Ops action: OPS-06 below.**
+
+### Re-verified with no change
+
+| Control | Evidence today |
+|---|---|
+| Dependency locks committed | `composer.lock`, `package-lock.json` updated in place |
+| Secrets absent from the browser bundle | only `VITE_API_BASE_URL`, `VITE_APP_NAME`, `VITE_MAP_TILE_URL` — none secret |
+| `.env` never committed; templates documented | `.gitignore` `.env` + `*/.env`, `!*/.env.example`; per-service templates + `.env.prod.example` |
+| Rate limiters | `login`, `mfa`, `registration-intake`, `exports`, `imports` all still registered and env-tunable |
+| Security headers | nosniff, DENY, no-referrer, `default-src 'none'` API CSP, Permissions-Policy, HSTS-on-HTTPS |
+| Audit tamper-evidence | 8 `SecurityHardeningTest` assertions green: chain linkage, forged-row detection, app-level append-only refusal |
+| Central MDA scoping | direct-id bypass still 404 + audited; the new administrative-grant basis is bounded by expiry, single-MDA scope and the consent gate (`AdminGrantGovernanceTest`) |
+
+**Not exercised this pass:** `php artisan audit:verify-chain` against a live chain —
+Postgres was not running locally. Its logic is covered by the two chain tests, but the
+command itself should be run once against staging data before go-live (folded into
+**OPS-04**).
 
 ---
 
@@ -142,6 +212,14 @@ from audit diffs entirely.
   alert on failure; alert on lockout spikes and 429 storms.
 - **OPS-05 — Key management**: per-environment `APP_KEY`; rotation runbook must
   include NIN/BVN re-encrypt + re-hash (F-01) — never rotate without it.
+- **OPS-06 — Map tiles (F-07)**: set `VITE_MAP_TILE_URL` to a tile source on your own
+  origin before go-live, or obtain DPO sign-off for a named third-party host and extend
+  `img-src` in `docker/nginx/prod.conf.template` to exactly that host. Leaving it unset
+  ships working maps in dev and blank maps in production.
+- **OPS-07 — Recurring dependency audit**: F-06 was entirely new advisories published
+  three weeks after a pass that reported clean. A point-in-time audit has a shelf life;
+  run `composer audit` + `npm audit` on a schedule (CI weekly and pre-release) and treat
+  high/critical as release-blocking.
 
 ---
 

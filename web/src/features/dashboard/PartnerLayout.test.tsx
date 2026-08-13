@@ -179,7 +179,7 @@ describe('PartnerLayout (funding-partner suite shell + routed pages)', () => {
   })
 
   it('blocks non-partner roles and never fetches', () => {
-    authState.roleKey = 'mda_officer'
+    authState.roleKey = 'mda_admin'
     renderAt('/partner')
 
     expect(screen.getByText(/available to Development Partner users only/i)).toBeInTheDocument()

@@ -12,13 +12,16 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
          'namespace' => 'App\\Http\\Controllers\\Api\\V1\\Sharing',
          'uses' => 
         array (
+          'mdaaccessgrant' => 'App\\Domain\\Access\\Models\\MdaAccessGrant',
           'mdascope' => 'App\\Domain\\Access\\Scopes\\MdaScope',
           'beneficiaryservicegrant' => 'App\\Domain\\Registry\\Models\\BeneficiaryServiceGrant',
           'datasharingguard' => 'App\\Domain\\Sharing\\DataSharingGuard',
+          'sharingbasis' => 'App\\Domain\\Sharing\\SharingBasis',
           'controller' => 'App\\Http\\Controllers\\Controller',
           'apiresponse' => 'App\\Support\\ApiResponse',
           'jsonresponse' => 'Illuminate\\Http\\JsonResponse',
           'request' => 'Illuminate\\Http\\Request',
+          'collection' => 'Illuminate\\Support\\Collection',
         ),
          'className' => 'App\\Http\\Controllers\\Api\\V1\\Sharing\\DataSharingController',
          'functionName' => NULL,
@@ -41,13 +44,16 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
          'namespace' => 'App\\Http\\Controllers\\Api\\V1\\Sharing',
          'uses' => 
         array (
+          'mdaaccessgrant' => 'App\\Domain\\Access\\Models\\MdaAccessGrant',
           'mdascope' => 'App\\Domain\\Access\\Scopes\\MdaScope',
           'beneficiaryservicegrant' => 'App\\Domain\\Registry\\Models\\BeneficiaryServiceGrant',
           'datasharingguard' => 'App\\Domain\\Sharing\\DataSharingGuard',
+          'sharingbasis' => 'App\\Domain\\Sharing\\SharingBasis',
           'controller' => 'App\\Http\\Controllers\\Controller',
           'apiresponse' => 'App\\Support\\ApiResponse',
           'jsonresponse' => 'Illuminate\\Http\\JsonResponse',
           'request' => 'Illuminate\\Http\\Request',
+          'collection' => 'Illuminate\\Support\\Collection',
         ),
          'className' => 'App\\Http\\Controllers\\Api\\V1\\Sharing\\DataSharingController',
          'functionName' => 'grants',
@@ -59,13 +65,268 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
            'namespace' => 'App\\Http\\Controllers\\Api\\V1\\Sharing',
            'uses' => 
           array (
+            'mdaaccessgrant' => 'App\\Domain\\Access\\Models\\MdaAccessGrant',
             'mdascope' => 'App\\Domain\\Access\\Scopes\\MdaScope',
             'beneficiaryservicegrant' => 'App\\Domain\\Registry\\Models\\BeneficiaryServiceGrant',
             'datasharingguard' => 'App\\Domain\\Sharing\\DataSharingGuard',
+            'sharingbasis' => 'App\\Domain\\Sharing\\SharingBasis',
             'controller' => 'App\\Http\\Controllers\\Controller',
             'apiresponse' => 'App\\Support\\ApiResponse',
             'jsonresponse' => 'Illuminate\\Http\\JsonResponse',
             'request' => 'Illuminate\\Http\\Request',
+            'collection' => 'Illuminate\\Support\\Collection',
+          ),
+           'className' => 'App\\Http\\Controllers\\Api\\V1\\Sharing\\DataSharingController',
+           'functionName' => NULL,
+           'templatePhpDocNodes' => 
+          array (
+          ),
+           'parent' => NULL,
+           'typeAliasesMap' => 
+          array (
+          ),
+           'bypassTypeAliases' => false,
+           'constUses' => 
+          array (
+          ),
+           'typeAliasClassName' => NULL,
+           'traitData' => NULL,
+        )),
+         'typeAliasesMap' => 
+        array (
+        ),
+         'bypassTypeAliases' => false,
+         'constUses' => 
+        array (
+        ),
+         'typeAliasClassName' => NULL,
+         'traitData' => NULL,
+      )),
+      '56df8e453f0f44e5627b4143e6dc14c4' => 
+      \PHPStan\Analyser\IntermediaryNameScope::__set_state(array(
+         'namespace' => 'App\\Http\\Controllers\\Api\\V1\\Sharing',
+         'uses' => 
+        array (
+          'mdaaccessgrant' => 'App\\Domain\\Access\\Models\\MdaAccessGrant',
+          'mdascope' => 'App\\Domain\\Access\\Scopes\\MdaScope',
+          'beneficiaryservicegrant' => 'App\\Domain\\Registry\\Models\\BeneficiaryServiceGrant',
+          'datasharingguard' => 'App\\Domain\\Sharing\\DataSharingGuard',
+          'sharingbasis' => 'App\\Domain\\Sharing\\SharingBasis',
+          'controller' => 'App\\Http\\Controllers\\Controller',
+          'apiresponse' => 'App\\Support\\ApiResponse',
+          'jsonresponse' => 'Illuminate\\Http\\JsonResponse',
+          'request' => 'Illuminate\\Http\\Request',
+          'collection' => 'Illuminate\\Support\\Collection',
+        ),
+         'className' => 'App\\Http\\Controllers\\Api\\V1\\Sharing\\DataSharingController',
+         'functionName' => 'serviceGrants',
+         'templatePhpDocNodes' => 
+        array (
+        ),
+         'parent' => 
+        \PHPStan\Analyser\IntermediaryNameScope::__set_state(array(
+           'namespace' => 'App\\Http\\Controllers\\Api\\V1\\Sharing',
+           'uses' => 
+          array (
+            'mdaaccessgrant' => 'App\\Domain\\Access\\Models\\MdaAccessGrant',
+            'mdascope' => 'App\\Domain\\Access\\Scopes\\MdaScope',
+            'beneficiaryservicegrant' => 'App\\Domain\\Registry\\Models\\BeneficiaryServiceGrant',
+            'datasharingguard' => 'App\\Domain\\Sharing\\DataSharingGuard',
+            'sharingbasis' => 'App\\Domain\\Sharing\\SharingBasis',
+            'controller' => 'App\\Http\\Controllers\\Controller',
+            'apiresponse' => 'App\\Support\\ApiResponse',
+            'jsonresponse' => 'Illuminate\\Http\\JsonResponse',
+            'request' => 'Illuminate\\Http\\Request',
+            'collection' => 'Illuminate\\Support\\Collection',
+          ),
+           'className' => 'App\\Http\\Controllers\\Api\\V1\\Sharing\\DataSharingController',
+           'functionName' => NULL,
+           'templatePhpDocNodes' => 
+          array (
+          ),
+           'parent' => NULL,
+           'typeAliasesMap' => 
+          array (
+          ),
+           'bypassTypeAliases' => false,
+           'constUses' => 
+          array (
+          ),
+           'typeAliasClassName' => NULL,
+           'traitData' => NULL,
+        )),
+         'typeAliasesMap' => 
+        array (
+        ),
+         'bypassTypeAliases' => false,
+         'constUses' => 
+        array (
+        ),
+         'typeAliasClassName' => NULL,
+         'traitData' => NULL,
+      )),
+      '61f4f3e578b78737d9cf64568bd8aecd' => 
+      \PHPStan\Analyser\IntermediaryNameScope::__set_state(array(
+         'namespace' => 'App\\Http\\Controllers\\Api\\V1\\Sharing',
+         'uses' => 
+        array (
+          'mdaaccessgrant' => 'App\\Domain\\Access\\Models\\MdaAccessGrant',
+          'mdascope' => 'App\\Domain\\Access\\Scopes\\MdaScope',
+          'beneficiaryservicegrant' => 'App\\Domain\\Registry\\Models\\BeneficiaryServiceGrant',
+          'datasharingguard' => 'App\\Domain\\Sharing\\DataSharingGuard',
+          'sharingbasis' => 'App\\Domain\\Sharing\\SharingBasis',
+          'controller' => 'App\\Http\\Controllers\\Controller',
+          'apiresponse' => 'App\\Support\\ApiResponse',
+          'jsonresponse' => 'Illuminate\\Http\\JsonResponse',
+          'request' => 'Illuminate\\Http\\Request',
+          'collection' => 'Illuminate\\Support\\Collection',
+        ),
+         'className' => 'App\\Http\\Controllers\\Api\\V1\\Sharing\\DataSharingController',
+         'functionName' => 'serviceGrantRow',
+         'templatePhpDocNodes' => 
+        array (
+        ),
+         'parent' => 
+        \PHPStan\Analyser\IntermediaryNameScope::__set_state(array(
+           'namespace' => 'App\\Http\\Controllers\\Api\\V1\\Sharing',
+           'uses' => 
+          array (
+            'mdaaccessgrant' => 'App\\Domain\\Access\\Models\\MdaAccessGrant',
+            'mdascope' => 'App\\Domain\\Access\\Scopes\\MdaScope',
+            'beneficiaryservicegrant' => 'App\\Domain\\Registry\\Models\\BeneficiaryServiceGrant',
+            'datasharingguard' => 'App\\Domain\\Sharing\\DataSharingGuard',
+            'sharingbasis' => 'App\\Domain\\Sharing\\SharingBasis',
+            'controller' => 'App\\Http\\Controllers\\Controller',
+            'apiresponse' => 'App\\Support\\ApiResponse',
+            'jsonresponse' => 'Illuminate\\Http\\JsonResponse',
+            'request' => 'Illuminate\\Http\\Request',
+            'collection' => 'Illuminate\\Support\\Collection',
+          ),
+           'className' => 'App\\Http\\Controllers\\Api\\V1\\Sharing\\DataSharingController',
+           'functionName' => NULL,
+           'templatePhpDocNodes' => 
+          array (
+          ),
+           'parent' => NULL,
+           'typeAliasesMap' => 
+          array (
+          ),
+           'bypassTypeAliases' => false,
+           'constUses' => 
+          array (
+          ),
+           'typeAliasClassName' => NULL,
+           'traitData' => NULL,
+        )),
+         'typeAliasesMap' => 
+        array (
+        ),
+         'bypassTypeAliases' => false,
+         'constUses' => 
+        array (
+        ),
+         'typeAliasClassName' => NULL,
+         'traitData' => NULL,
+      )),
+      'f1c7dc001d95c2d10e1d875fe484013d' => 
+      \PHPStan\Analyser\IntermediaryNameScope::__set_state(array(
+         'namespace' => 'App\\Http\\Controllers\\Api\\V1\\Sharing',
+         'uses' => 
+        array (
+          'mdaaccessgrant' => 'App\\Domain\\Access\\Models\\MdaAccessGrant',
+          'mdascope' => 'App\\Domain\\Access\\Scopes\\MdaScope',
+          'beneficiaryservicegrant' => 'App\\Domain\\Registry\\Models\\BeneficiaryServiceGrant',
+          'datasharingguard' => 'App\\Domain\\Sharing\\DataSharingGuard',
+          'sharingbasis' => 'App\\Domain\\Sharing\\SharingBasis',
+          'controller' => 'App\\Http\\Controllers\\Controller',
+          'apiresponse' => 'App\\Support\\ApiResponse',
+          'jsonresponse' => 'Illuminate\\Http\\JsonResponse',
+          'request' => 'Illuminate\\Http\\Request',
+          'collection' => 'Illuminate\\Support\\Collection',
+        ),
+         'className' => 'App\\Http\\Controllers\\Api\\V1\\Sharing\\DataSharingController',
+         'functionName' => 'adminGrants',
+         'templatePhpDocNodes' => 
+        array (
+        ),
+         'parent' => 
+        \PHPStan\Analyser\IntermediaryNameScope::__set_state(array(
+           'namespace' => 'App\\Http\\Controllers\\Api\\V1\\Sharing',
+           'uses' => 
+          array (
+            'mdaaccessgrant' => 'App\\Domain\\Access\\Models\\MdaAccessGrant',
+            'mdascope' => 'App\\Domain\\Access\\Scopes\\MdaScope',
+            'beneficiaryservicegrant' => 'App\\Domain\\Registry\\Models\\BeneficiaryServiceGrant',
+            'datasharingguard' => 'App\\Domain\\Sharing\\DataSharingGuard',
+            'sharingbasis' => 'App\\Domain\\Sharing\\SharingBasis',
+            'controller' => 'App\\Http\\Controllers\\Controller',
+            'apiresponse' => 'App\\Support\\ApiResponse',
+            'jsonresponse' => 'Illuminate\\Http\\JsonResponse',
+            'request' => 'Illuminate\\Http\\Request',
+            'collection' => 'Illuminate\\Support\\Collection',
+          ),
+           'className' => 'App\\Http\\Controllers\\Api\\V1\\Sharing\\DataSharingController',
+           'functionName' => NULL,
+           'templatePhpDocNodes' => 
+          array (
+          ),
+           'parent' => NULL,
+           'typeAliasesMap' => 
+          array (
+          ),
+           'bypassTypeAliases' => false,
+           'constUses' => 
+          array (
+          ),
+           'typeAliasClassName' => NULL,
+           'traitData' => NULL,
+        )),
+         'typeAliasesMap' => 
+        array (
+        ),
+         'bypassTypeAliases' => false,
+         'constUses' => 
+        array (
+        ),
+         'typeAliasClassName' => NULL,
+         'traitData' => NULL,
+      )),
+      '10c8168e18ac095a77c20f46c5052820' => 
+      \PHPStan\Analyser\IntermediaryNameScope::__set_state(array(
+         'namespace' => 'App\\Http\\Controllers\\Api\\V1\\Sharing',
+         'uses' => 
+        array (
+          'mdaaccessgrant' => 'App\\Domain\\Access\\Models\\MdaAccessGrant',
+          'mdascope' => 'App\\Domain\\Access\\Scopes\\MdaScope',
+          'beneficiaryservicegrant' => 'App\\Domain\\Registry\\Models\\BeneficiaryServiceGrant',
+          'datasharingguard' => 'App\\Domain\\Sharing\\DataSharingGuard',
+          'sharingbasis' => 'App\\Domain\\Sharing\\SharingBasis',
+          'controller' => 'App\\Http\\Controllers\\Controller',
+          'apiresponse' => 'App\\Support\\ApiResponse',
+          'jsonresponse' => 'Illuminate\\Http\\JsonResponse',
+          'request' => 'Illuminate\\Http\\Request',
+          'collection' => 'Illuminate\\Support\\Collection',
+        ),
+         'className' => 'App\\Http\\Controllers\\Api\\V1\\Sharing\\DataSharingController',
+         'functionName' => 'mdaRef',
+         'templatePhpDocNodes' => 
+        array (
+        ),
+         'parent' => 
+        \PHPStan\Analyser\IntermediaryNameScope::__set_state(array(
+           'namespace' => 'App\\Http\\Controllers\\Api\\V1\\Sharing',
+           'uses' => 
+          array (
+            'mdaaccessgrant' => 'App\\Domain\\Access\\Models\\MdaAccessGrant',
+            'mdascope' => 'App\\Domain\\Access\\Scopes\\MdaScope',
+            'beneficiaryservicegrant' => 'App\\Domain\\Registry\\Models\\BeneficiaryServiceGrant',
+            'datasharingguard' => 'App\\Domain\\Sharing\\DataSharingGuard',
+            'sharingbasis' => 'App\\Domain\\Sharing\\SharingBasis',
+            'controller' => 'App\\Http\\Controllers\\Controller',
+            'apiresponse' => 'App\\Support\\ApiResponse',
+            'jsonresponse' => 'Illuminate\\Http\\JsonResponse',
+            'request' => 'Illuminate\\Http\\Request',
+            'collection' => 'Illuminate\\Support\\Collection',
           ),
            'className' => 'App\\Http\\Controllers\\Api\\V1\\Sharing\\DataSharingController',
            'functionName' => NULL,
@@ -96,7 +357,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
     ),
     1 => 
     array (
-      'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Sharing\\DataSharingController.php' => '3de521b5b3681dfe9f243dbe8a6c5c6a96704224127ed3158338aef96ac6b176',
+      'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Sharing\\DataSharingController.php' => '204adf07584c3463fd4c04482eb252e1cae525d8437dd0cbe6daefbf522d9c60',
     ),
   ),
 ));

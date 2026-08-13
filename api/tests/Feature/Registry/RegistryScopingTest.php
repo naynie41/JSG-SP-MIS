@@ -55,7 +55,7 @@ class RegistryScopingTest extends TestCase
 
     public function test_beneficiary_default_queries_are_owner_scoped(): void
     {
-        Sanctum::actingAs($this->userInMdaA(RoleKey::MdaOfficer));
+        Sanctum::actingAs($this->userInMdaA(RoleKey::MdaAdmin));
 
         $this->assertSame([$this->mdaA->id], Beneficiary::query()->pluck('owner_mda_id')->unique()->values()->all());
         $this->assertNotNull(Beneficiary::find($this->benA->id));
@@ -64,7 +64,7 @@ class RegistryScopingTest extends TestCase
 
     public function test_beneficiary_route_model_binding_404s_out_of_scope(): void
     {
-        Sanctum::actingAs($this->userInMdaA(RoleKey::MdaOfficer));
+        Sanctum::actingAs($this->userInMdaA(RoleKey::MdaAdmin));
 
         $model = new Beneficiary;
         // Implicit route-model binding resolves through the scoped query.
@@ -74,7 +74,7 @@ class RegistryScopingTest extends TestCase
 
     public function test_household_default_queries_and_binding_are_owner_scoped(): void
     {
-        Sanctum::actingAs($this->userInMdaA(RoleKey::MdaOfficer));
+        Sanctum::actingAs($this->userInMdaA(RoleKey::MdaAdmin));
 
         $this->assertSame([$this->mdaA->id], Household::query()->pluck('owner_mda_id')->unique()->values()->all());
         $this->assertNull(Household::find($this->householdB->id));
@@ -94,7 +94,7 @@ class RegistryScopingTest extends TestCase
 
     public function test_write_path_is_audited(): void
     {
-        Sanctum::actingAs($this->userInMdaA(RoleKey::MdaOfficer));
+        Sanctum::actingAs($this->userInMdaA(RoleKey::MdaAdmin));
 
         $this->benA->update(['last_name' => 'Updated']);
 

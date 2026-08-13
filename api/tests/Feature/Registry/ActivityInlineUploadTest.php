@@ -52,7 +52,7 @@ class ActivityInlineUploadTest extends TestCase
         $this->mdaB = Mda::factory()->create(['name' => 'MDA B']);
         $this->officer = User::factory()->create([
             'mda_id' => $this->mdaA->id,
-            'role_id' => Role::where('key', RoleKey::MdaOfficer->value)->firstOrFail()->id,
+            'role_id' => Role::where('key', RoleKey::MdaAdmin->value)->firstOrFail()->id,
         ]);
         $this->programme = Programme::factory()->individual()->create(['eligibility' => null]);
     }

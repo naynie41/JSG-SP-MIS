@@ -20,7 +20,7 @@ use Tests\TestCase;
 
 /**
  * The MDA-console demo seeder: every one of the six modules must render something real
- * for BOTH an Officer and an Admin, and none of it may be invalid domain data.
+ * for BOTH of the MDA's users, and none of it may be invalid domain data.
  *
  * This is the check that the console is demonstrable end to end. A module that renders
  * empty in a fresh stack looks broken, and a seeder that writes a band or resolution the
@@ -46,12 +46,20 @@ class MdaConsoleDemoSeederTest extends TestCase
 
         $this->home = Mda::query()->withoutGlobalScopes()->where('name', 'Ministry of Health')->firstOrFail();
 
-        foreach (['officer' => RoleKey::MdaOfficer, 'admin' => RoleKey::MdaAdmin] as $key => $role) {
-            $this->users[$key] = User::query()->withoutGlobalScope(MdaScope::class)
-                ->where('mda_id', $this->home->id)
-                ->whereHas('role', fn ($q) => $q->where('key', $role->value))
-                ->firstOrFail();
-        }
+        // TWO DISTINCT users on the single MDA role (FR-UAM-01). Coordination flows need
+        // two actors inside one MDA — a requester and a decider — and the console must
+        // render for any of them, so the demo is checked against both.
+        $mdaUsers = User::query()->withoutGlobalScope(MdaScope::class)
+            ->where('mda_id', $this->home->id)
+            ->whereHas('role', fn ($q) => $q->where('key', RoleKey::MdaAdmin->value))
+            ->orderBy('email')
+            ->take(2)
+            ->get();
+
+        $this->assertCount(2, $mdaUsers, 'the demo seeder must create two MDA users in the home MDA');
+
+        $this->users['first'] = $mdaUsers[0];
+        $this->users['second'] = $mdaUsers[1];
     }
 
     private function send(string $key, string $method, string $url): TestResponse
@@ -62,25 +70,29 @@ class MdaConsoleDemoSeederTest extends TestCase
         return $response;
     }
 
-    /** Both MDA roles, so no module is demonstrable for only one of them. */
+    /** Both MDA users, so no module is demonstrable for only one of them. */
     /** @return list<string> */
     private function roles(): array
     {
-        return ['officer', 'admin'];
+        return ['first', 'second'];
     }
 
     /* --------------------------------------------------------------- the actors */
 
-    public function test_it_seeds_both_mda_roles_in_the_same_mda(): void
+    public function test_it_seeds_two_distinct_mda_users_on_the_single_mda_role(): void
     {
-        $this->assertSame($this->home->id, $this->users['officer']->mda_id);
-        $this->assertSame($this->home->id, $this->users['admin']->mda_id);
+        $this->assertSame($this->home->id, $this->users['first']->mda_id);
+        $this->assertSame($this->home->id, $this->users['second']->mda_id);
+        $this->assertNotSame($this->users['first']->id, $this->users['second']->id);
 
-        // The split the one-nav design depends on.
-        $this->assertFalse($this->users['officer']->hasPermission('beneficiary.approve'));
-        $this->assertTrue($this->users['admin']->hasPermission('beneficiary.approve'));
-        $this->assertFalse($this->users['officer']->hasPermission('beneficiary.export'));
-        $this->assertTrue($this->users['admin']->hasPermission('beneficiary.export'));
+        // One MDA role, and it can do the whole job — approvals and export included.
+        foreach (['first', 'second'] as $who) {
+            $this->assertSame(RoleKey::MdaAdmin->value, $this->users[$who]->role->key);
+            $this->assertTrue($this->users[$who]->hasPermission('beneficiary.approve'));
+            $this->assertTrue($this->users[$who]->hasPermission('beneficiary.export'));
+            // …but never user administration, which is System-Administrator-only.
+            $this->assertFalse($this->users[$who]->hasPermission('user.create'));
+        }
     }
 
     /* ------------------------------------------------- module 1: Overview */
@@ -144,11 +156,23 @@ class MdaConsoleDemoSeederTest extends TestCase
     {
         // Synthetic only. The staged payloads carry names and an LGA — never an
         // identifier — so a demo stack can never leak a plausible NIN/BVN.
-        $payloads = (string) json_encode(ImportRow::query()->pluck('payload')->all());
+        //
+        // Asserted on the payload KEYS, not on the serialised blob: a substring search
+        // for "nin" also matches the LGA "birnin_kudu", which made this pass or fail
+        // depending on which LGA the factory happened to pick.
+        $payloads = ImportRow::query()->pluck('payload')->all();
 
-        $this->assertStringNotContainsString('nin', $payloads);
-        $this->assertStringNotContainsString('bvn', $payloads);
-        $this->assertDoesNotMatchRegularExpression('/\b\d{11}\b/', $payloads, 'no 11-digit identifier may appear');
+        foreach ($payloads as $payload) {
+            foreach (['nin', 'bvn'] as $identifier) {
+                $this->assertArrayNotHasKey($identifier, (array) $payload, "a staged row must not carry {$identifier}");
+            }
+        }
+
+        $this->assertDoesNotMatchRegularExpression(
+            '/\b\d{11}\b/',
+            (string) json_encode($payloads),
+            'no 11-digit identifier may appear',
+        );
     }
 
     /* -------------------------------------------- module 4: Service Delivery */
@@ -175,10 +199,10 @@ class MdaConsoleDemoSeederTest extends TestCase
 
     public function test_the_approval_queue_reconciles_with_the_overview_counter(): void
     {
-        $counter = $this->send('officer', 'GET', '/api/v1/mda/action-required')->assertOk()
+        $counter = $this->send('first', 'GET', '/api/v1/mda/action-required')->assertOk()
             ->json('data.pending_service_requests');
 
-        $pending = collect($this->send('officer', 'GET', '/api/v1/service-requests/inbox')->assertOk()->json('data.service_requests'))
+        $pending = collect($this->send('first', 'GET', '/api/v1/service-requests/inbox')->assertOk()->json('data.service_requests'))
             ->where('status', 'pending')
             ->count();
 
@@ -250,9 +274,11 @@ class MdaConsoleDemoSeederTest extends TestCase
             }
         }
 
-        // The matrix: the Officer is refused the PII export, the Admin is not.
-        $this->send('officer', 'GET', '/api/v1/beneficiaries/export?format=csv')->assertStatus(403);
-        $this->send('admin', 'GET', '/api/v1/beneficiaries/export?format=csv')->assertSuccessful();
+        // The matrix after the merge (FR-UAM-01): every MDA user may export, and the
+        // export is bounded by MDA scope rather than by role.
+        foreach ($this->roles() as $who) {
+            $this->send($who, 'GET', '/api/v1/beneficiaries/export?format=csv')->assertSuccessful();
+        }
     }
 
     /* --------------------------------------------------------------- hygiene */

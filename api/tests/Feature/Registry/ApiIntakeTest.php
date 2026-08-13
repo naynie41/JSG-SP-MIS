@@ -36,7 +36,7 @@ class ApiIntakeTest extends TestCase
         $this->seed(RolesAndPermissionsSeeder::class);
 
         $this->mda = Mda::factory()->create(['name' => 'MDA A']);
-        $this->users['officer'] = $this->user(RoleKey::MdaOfficer);
+        $this->users['officer'] = $this->user(RoleKey::MdaAdmin);
         $this->users['partner'] = $this->user(RoleKey::DevelopmentPartner);
     }
 

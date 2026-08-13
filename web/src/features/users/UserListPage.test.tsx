@@ -54,7 +54,7 @@ describe('UserListPage — create flow', () => {
 
   it('creates a user with an assigned role via the modal', async () => {
     listUsers.mockResolvedValue([])
-    listRoles.mockResolvedValue([{ id: '11111111-1111-4111-8111-111111111111', key: 'mda_officer', name: 'MDA Officer', requires_mfa: false }])
+    listRoles.mockResolvedValue([{ id: '11111111-1111-4111-8111-111111111111', key: 'mda_admin', name: 'MDA Admin', requires_mfa: false }])
     listMdas.mockResolvedValue([{ id: 'm-1', name: 'Women Affairs' }])
     createUser.mockResolvedValue({ id: 'u-1', name: 'Amina Bello' })
 
@@ -90,7 +90,7 @@ describe('UserListPage — create flow', () => {
   it('surfaces a server field error (e.g. breached password) inline', async () => {
     const { ApiError } = await import('@/types/api')
     listUsers.mockResolvedValue([])
-    listRoles.mockResolvedValue([{ id: '11111111-1111-4111-8111-111111111111', key: 'mda_officer', name: 'MDA Officer', requires_mfa: false }])
+    listRoles.mockResolvedValue([{ id: '11111111-1111-4111-8111-111111111111', key: 'mda_admin', name: 'MDA Admin', requires_mfa: false }])
     listMdas.mockResolvedValue([])
     createUser.mockRejectedValue(
       new ApiError(422, 'VALIDATION_ERROR', 'The request is invalid.', [

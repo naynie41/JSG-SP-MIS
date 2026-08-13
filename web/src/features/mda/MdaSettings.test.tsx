@@ -32,7 +32,7 @@ const account = {
   mfa_enabled: false,
   mfa_required: false,
   last_login_at: '2026-08-07T08:15:00+01:00',
-  role: { key: 'mda_officer', name: 'MDA Officer' },
+  role: { key: 'mda_admin', name: 'MDA Admin' },
   mda: { id: 'm1', name: 'Ministry of Health' },
 }
 const logout = vi.fn()
@@ -91,7 +91,7 @@ describe('MDA console — Settings', () => {
 
     expect(within(panel).getByText('Amina Bello')).toBeInTheDocument()
     expect(within(panel).getByText('amina@health.jg.gov.ng')).toBeInTheDocument()
-    expect(within(panel).getByText('MDA Officer')).toBeInTheDocument()
+    expect(within(panel).getByText('MDA Admin')).toBeInTheDocument()
     expect(within(panel).getByText('Ministry of Health')).toBeInTheDocument()
   })
 

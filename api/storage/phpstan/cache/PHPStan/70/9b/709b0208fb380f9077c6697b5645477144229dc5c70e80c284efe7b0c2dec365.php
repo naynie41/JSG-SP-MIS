@@ -2,7 +2,7 @@
 
 // odsl-C:\Users\ACER\Desktop\JSG-SP-MIS\JSG-SP-MIS\api\app\Http\Controllers\Api\V1\Registry\BeneficiaryController.php-PHPStan\BetterReflection\Reflection\ReflectionClass-App\Http\Controllers\Api\V1\Registry\BeneficiaryController
 return \PHPStan\Cache\CacheItem::__set_state(array(
-   'variableKey' => 'v2-6.70.0.1-8.3.31-54b90a19a6aadb6e83caaba6c560663ce32305f63f3d7b9ae3a19a5e6c7731b3',
+   'variableKey' => 'v2-6.70.0.1-8.3.31-ea9ac188761cffb2b92d3c456037c1011ecd19064ea9f45d8d201471c82f371f',
    'data' => 
   array (
     'locatedSource' => 
@@ -33,7 +33,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
     array (
     ),
     'startLine' => 47,
-    'endLine' => 328,
+    'endLine' => 343,
     'startColumn' => 1,
     'endColumn' => 1,
     'parentClassName' => 'App\\Http\\Controllers\\Controller',
@@ -665,7 +665,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
  * existence is never leaked.
  */',
         'startLine' => 153,
-        'endLine' => 170,
+        'endLine' => 185,
         'startColumn' => 5,
         'endColumn' => 5,
         'couldThrow' => false,
@@ -703,8 +703,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             'attributes' => 
             array (
             ),
-            'startLine' => 178,
-            'endLine' => 178,
+            'startLine' => 193,
+            'endLine' => 193,
             'startColumn' => 29,
             'endColumn' => 57,
             'parameterIndex' => 0,
@@ -729,8 +729,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             'attributes' => 
             array (
             ),
-            'startLine' => 178,
-            'endLine' => 178,
+            'startLine' => 193,
+            'endLine' => 193,
             'startColumn' => 60,
             'endColumn' => 78,
             'parameterIndex' => 1,
@@ -755,8 +755,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             'attributes' => 
             array (
             ),
-            'startLine' => 178,
-            'endLine' => 178,
+            'startLine' => 193,
+            'endLine' => 193,
             'startColumn' => 81,
             'endColumn' => 104,
             'parameterIndex' => 2,
@@ -782,8 +782,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
  * an immutable history entry, and audits the change. The consent gate then makes
  * any Service-Request grant effective or ineffective accordingly.
  */',
-        'startLine' => 178,
-        'endLine' => 195,
+        'startLine' => 193,
+        'endLine' => 210,
         'startColumn' => 5,
         'endColumn' => 5,
         'couldThrow' => false,
@@ -821,8 +821,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             'attributes' => 
             array (
             ),
-            'startLine' => 206,
-            'endLine' => 206,
+            'startLine' => 221,
+            'endLine' => 221,
             'startColumn' => 9,
             'endColumn' => 24,
             'parameterIndex' => 0,
@@ -847,8 +847,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             'attributes' => 
             array (
             ),
-            'startLine' => 207,
-            'endLine' => 207,
+            'startLine' => 222,
+            'endLine' => 222,
             'startColumn' => 9,
             'endColumn' => 27,
             'parameterIndex' => 1,
@@ -873,8 +873,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             'attributes' => 
             array (
             ),
-            'startLine' => 208,
-            'endLine' => 208,
+            'startLine' => 223,
+            'endLine' => 223,
             'startColumn' => 9,
             'endColumn' => 33,
             'parameterIndex' => 2,
@@ -899,8 +899,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             'attributes' => 
             array (
             ),
-            'startLine' => 209,
-            'endLine' => 209,
+            'startLine' => 224,
+            'endLine' => 224,
             'startColumn' => 9,
             'endColumn' => 41,
             'parameterIndex' => 3,
@@ -925,8 +925,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             'attributes' => 
             array (
             ),
-            'startLine' => 210,
-            'endLine' => 210,
+            'startLine' => 225,
+            'endLine' => 225,
             'startColumn' => 9,
             'endColumn' => 26,
             'parameterIndex' => 4,
@@ -973,8 +973,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
  * a mere cross-MDA serve grant is NOT enough to pull an unmasked full package.
  * Every fulfilment is audited (never the identifiers themselves).
  */',
-        'startLine' => 205,
-        'endLine' => 239,
+        'startLine' => 220,
+        'endLine' => 254,
         'startColumn' => 5,
         'endColumn' => 5,
         'couldThrow' => false,
@@ -1012,8 +1012,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             'attributes' => 
             array (
             ),
-            'startLine' => 246,
-            'endLine' => 246,
+            'startLine' => 261,
+            'endLine' => 261,
             'startColumn' => 28,
             'endColumn' => 60,
             'parameterIndex' => 0,
@@ -1038,8 +1038,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             'attributes' => 
             array (
             ),
-            'startLine' => 246,
-            'endLine' => 246,
+            'startLine' => 261,
+            'endLine' => 261,
             'startColumn' => 63,
             'endColumn' => 81,
             'parameterIndex' => 1,
@@ -1064,8 +1064,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
  * without the owner scope so a non-owner gets 403 (not 404): the policy is
  * the boundary, and non-owners can already see the record via the lookup seam.
  */',
-        'startLine' => 246,
-        'endLine' => 255,
+        'startLine' => 261,
+        'endLine' => 270,
         'startColumn' => 5,
         'endColumn' => 5,
         'couldThrow' => false,
@@ -1103,8 +1103,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             'attributes' => 
             array (
             ),
-            'startLine' => 258,
-            'endLine' => 258,
+            'startLine' => 273,
+            'endLine' => 273,
             'startColumn' => 29,
             'endColumn' => 47,
             'parameterIndex' => 0,
@@ -1125,8 +1125,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         array (
         ),
         'docComment' => '/** Soft-delete a beneficiary — owner MDA only, audited. */',
-        'startLine' => 258,
-        'endLine' => 267,
+        'startLine' => 273,
+        'endLine' => 282,
         'startColumn' => 5,
         'endColumn' => 5,
         'couldThrow' => false,
@@ -1164,8 +1164,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             'attributes' => 
             array (
             ),
-            'startLine' => 273,
-            'endLine' => 273,
+            'startLine' => 288,
+            'endLine' => 288,
             'startColumn' => 28,
             'endColumn' => 60,
             'parameterIndex' => 0,
@@ -1190,8 +1190,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             'attributes' => 
             array (
             ),
-            'startLine' => 273,
-            'endLine' => 273,
+            'startLine' => 288,
+            'endLine' => 288,
             'startColumn' => 63,
             'endColumn' => 94,
             'parameterIndex' => 1,
@@ -1215,8 +1215,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
  * Cross-MDA lookup/serve path (FR-OWN-03): exact-identifier search returning
  * only the reveal fields. Route middleware enforces beneficiary-lookup.view.
  */',
-        'startLine' => 273,
-        'endLine' => 282,
+        'startLine' => 288,
+        'endLine' => 297,
         'startColumn' => 5,
         'endColumn' => 5,
         'couldThrow' => false,
@@ -1254,8 +1254,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             'attributes' => 
             array (
             ),
-            'startLine' => 292,
-            'endLine' => 292,
+            'startLine' => 307,
+            'endLine' => 307,
             'startColumn' => 9,
             'endColumn' => 46,
             'parameterIndex' => 0,
@@ -1280,8 +1280,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             'attributes' => 
             array (
             ),
-            'startLine' => 293,
-            'endLine' => 293,
+            'startLine' => 308,
+            'endLine' => 308,
             'startColumn' => 9,
             'endColumn' => 36,
             'parameterIndex' => 1,
@@ -1306,8 +1306,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             'attributes' => 
             array (
             ),
-            'startLine' => 294,
-            'endLine' => 294,
+            'startLine' => 309,
+            'endLine' => 309,
             'startColumn' => 9,
             'endColumn' => 38,
             'parameterIndex' => 2,
@@ -1332,8 +1332,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             'attributes' => 
             array (
             ),
-            'startLine' => 295,
-            'endLine' => 295,
+            'startLine' => 310,
+            'endLine' => 310,
             'startColumn' => 9,
             'endColumn' => 26,
             'parameterIndex' => 3,
@@ -1360,8 +1360,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
  * result the caller can raise a Service Request (see ServiceRequestController).
  * Read-only and audited (identifiers used + hit count, never their values).
  */',
-        'startLine' => 291,
-        'endLine' => 327,
+        'startLine' => 306,
+        'endLine' => 342,
         'startColumn' => 5,
         'endColumn' => 5,
         'couldThrow' => false,
