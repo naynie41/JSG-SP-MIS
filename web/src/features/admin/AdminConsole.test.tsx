@@ -129,7 +129,7 @@ describe('System Administrator console', () => {
   /* ------------------------------------------------------------------ gating */
 
   it('blocks every non-administrator role and never fetches', () => {
-    for (const role of ['executive', 'sp_coordination', 'mda_officer', 'development_partner']) {
+    for (const role of ['executive', 'sp_coordination', 'mda_admin', 'development_partner']) {
       authState.roleKey = role
       const { unmount } = renderAt()
       expect(screen.getByText(/available to System Administrators only/i)).toBeInTheDocument()

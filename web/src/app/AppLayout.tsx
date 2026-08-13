@@ -21,7 +21,6 @@ const OFF_RAIL_LABELS: Record<string, string> = {
 /** Consoles whose Settings page opens from the gear, keyed by role. */
 const SETTINGS_ROUTE_BY_ROLE: Record<string, string> = {
   system_administrator: '/admin/settings',
-  mda_officer: '/mda/settings',
   mda_admin: '/mda/settings',
 }
 

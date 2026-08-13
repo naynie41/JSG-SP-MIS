@@ -24,7 +24,7 @@ class LockoutTest extends TestCase
     private function makeUser(): User
     {
         $this->seed(RolesAndPermissionsSeeder::class);
-        $role = Role::where('key', RoleKey::MdaOfficer->value)->firstOrFail();
+        $role = Role::where('key', RoleKey::MdaAdmin->value)->firstOrFail();
 
         return User::factory()->create([
             'email' => 'user@example.test',

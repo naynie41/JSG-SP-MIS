@@ -3,6 +3,7 @@ import type { ReactNode } from 'react'
 import { Navigate, Route, Routes } from 'react-router-dom'
 import { Spinner } from '@/components/Spinner/Spinner'
 import { useAuth } from '@/lib/auth/AuthProvider'
+import { isMdaRole } from '@/features/mda/roles'
 import { LoginPage } from '@/features/auth/LoginPage'
 import { NotFoundPage } from '@/features/misc/NotFoundPage'
 import { AppLayout } from './AppLayout'
@@ -108,7 +109,7 @@ function HomeDashboard() {
   if (roleKey === 'system_administrator') return <Navigate to="/admin" replace />
   if (roleKey === 'executive') return <Navigate to="/executive" replace />
   if (roleKey === 'development_partner') return <Navigate to="/partner" replace />
-  if (roleKey === 'mda_officer' || roleKey === 'mda_admin') return <Navigate to="/mda" replace />
+  if (isMdaRole(roleKey)) return <Navigate to="/mda" replace />
   if (hasPermission('dashboard.view')) return <MdaDashboardPage />
   return <DashboardPage />
 }

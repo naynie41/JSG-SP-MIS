@@ -37,7 +37,7 @@ vi.mock('@/lib/api/exportList', () => ({ exportListFile: vi.fn() }))
 const perms = { value: [] as string[] }
 vi.mock('@/lib/auth/AuthProvider', () => ({
   useAuth: () => ({
-    user: { name: 'Amina', role: { key: 'mda_officer', name: 'MDA Officer' }, mda: { id: 'm1', name: 'Ministry of Health' } },
+    user: { name: 'Amina', role: { key: 'mda_admin', name: 'MDA Admin' }, mda: { id: 'm1', name: 'Ministry of Health' } },
     hasPermission: (p: string) => perms.value.includes(p),
   }),
 }))
@@ -73,10 +73,15 @@ const MDA_DATASETS: AdHocDataset[] = [
   dataset('duplicates', 'Duplicate review', true),
 ]
 
-/** MDA Officer: may view and run aggregate reports, but no bulk PII export. */
-const OFFICER = ['reporting.view', 'reporting.export']
-/** MDA Admin adds the matrix-governed beneficiary export. */
-const ADMIN = [...OFFICER, 'beneficiary.export']
+/**
+ * The gate here is a PERMISSION, not a role. Since the Officer/Admin merge (FR-UAM-01)
+ * the seeded MDA role holds `beneficiary.export`, but a System Administrator can withhold
+ * it through the role-permission editor — so both states below are reachable for the one
+ * MDA role, and the page must render each correctly.
+ */
+const AGGREGATE_ONLY = ['reporting.view', 'reporting.export']
+/** The seeded default: aggregate reporting plus the matrix-governed beneficiary export. */
+const WITH_PII_EXPORT = [...AGGREGATE_ONLY, 'beneficiary.export']
 
 function renderPage() {
   const qc = new QueryClient({ defaultOptions: { queries: { retry: false } } })
@@ -102,7 +107,7 @@ async function openTab(user: ReturnType<typeof userEvent.setup>, name: string) {
 describe('MDA console — Reports', () => {
   beforeEach(() => {
     vi.clearAllMocks()
-    perms.value = OFFICER
+    perms.value = AGGREGATE_ONLY
     datasets.mockResolvedValue(MDA_DATASETS)
     runs.mockResolvedValue({ items: [], pagination: { page: 1, per_page: 20, total: 0, total_pages: 1 } })
     schedules.mockResolvedValue([])
@@ -224,7 +229,7 @@ describe('MDA console — Reports', () => {
 
   /* ------------------------------------------------------ the export matrix */
 
-  it('denies the beneficiary export to an Officer and says how it is granted', async () => {
+  it('denies the beneficiary export without the permission and says how it is granted', async () => {
     const user = userEvent.setup()
     renderPage()
     await ready()
@@ -237,7 +242,7 @@ describe('MDA console — Reports', () => {
   })
 
   it('allows the beneficiary export for an Admin, through the existing endpoint', async () => {
-    perms.value = ADMIN
+    perms.value = WITH_PII_EXPORT
     const user = userEvent.setup()
     renderPage()
     await ready()
@@ -252,7 +257,7 @@ describe('MDA console — Reports', () => {
   })
 
   it('states that identifiers are masked without the reveal permission', async () => {
-    perms.value = ADMIN
+    perms.value = WITH_PII_EXPORT
     const user = userEvent.setup()
     renderPage()
     await ready()
@@ -264,7 +269,7 @@ describe('MDA console — Reports', () => {
   })
 
   it('says so when the caller does hold the reveal permission', async () => {
-    perms.value = [...ADMIN, 'export.reveal_pii']
+    perms.value = [...WITH_PII_EXPORT, 'export.reveal_pii']
     const user = userEvent.setup()
     renderPage()
     await ready()
@@ -275,7 +280,7 @@ describe('MDA console — Reports', () => {
   })
 
   it('keeps aggregate export separate from the PII export gate', async () => {
-    // An Officer holds reporting.export but not beneficiary.export: they may build and
+    // Holding reporting.export but not beneficiary.export: the user may build and
     // export an aggregate report while the registry export stays closed. Conflating the
     // two would either block legitimate reporting or open a PII path.
     const user = userEvent.setup()

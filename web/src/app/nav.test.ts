@@ -1,5 +1,6 @@
 import { describe, expect, it } from 'vitest'
 import { navSectionsFor } from './nav'
+import { MDA_ROLES } from '@/features/mda/roles'
 
 const all = () => true
 
@@ -43,8 +44,12 @@ describe('navSectionsFor', () => {
     expect(tos).not.toContain('/executive/coverage')
   })
 
-  it('gives an MDA role the six-module workspace, not the generic rail', () => {
-    for (const role of ['mda_officer', 'mda_admin']) {
+  it('gives every MDA role the six-module workspace, not the generic rail', () => {
+    // MDA_ROLES is the single source of truth and now holds exactly one entry
+    // (FR-UAM-01). Iterating it rather than a literal keeps this honest if it ever grows.
+    expect(MDA_ROLES).toEqual(['mda_admin'])
+
+    for (const role of MDA_ROLES) {
       const tos = navSectionsFor(role, all).flatMap((s) => s.items.map((i) => i.to))
       expect(tos).toEqual([
         '/mda',
@@ -89,7 +94,7 @@ describe('navSectionsFor', () => {
   })
 
   it('never offers the console rails to an operator role', () => {
-    const tos = navSectionsFor('mda_officer', all).flatMap((s) => s.items.map((i) => i.to))
+    const tos = navSectionsFor('mda_admin', all).flatMap((s) => s.items.map((i) => i.to))
     expect(tos.some((to) => to.startsWith('/admin'))).toBe(false)
   })
 

@@ -41,7 +41,7 @@ class ConsoleSettingsTest extends TestCase
 
         $this->users['admin'] = $this->user(null, RoleKey::SystemAdministrator);
         $this->users['exec'] = $this->user(null, RoleKey::Executive);
-        $this->users['officer'] = $this->user($this->mda, RoleKey::MdaOfficer);
+        $this->users['officer'] = $this->user($this->mda, RoleKey::MdaAdmin);
         $this->users['mdaAdmin'] = $this->user($this->mda, RoleKey::MdaAdmin);
     }
 
@@ -136,23 +136,25 @@ class ConsoleSettingsTest extends TestCase
 
         $roles = collect($body['roles'])->keyBy('key');
         $this->assertFalse((bool) $roles['system_administrator']['editable']);
-        $this->assertTrue((bool) $roles['mda_officer']['editable']);
+        $this->assertTrue((bool) $roles['mda_admin']['editable']);
     }
 
     public function test_granting_a_permission_takes_effect_immediately(): void
     {
-        // An MDA Officer cannot export beneficiaries by default (SECURITY.md §3).
-        $this->assertFalse($this->users['officer']->fresh()->hasPermission('beneficiary.export'));
+        // A permission the MDA role does NOT hold, so the grant is observable.
+        // `beneficiary.export` can no longer serve here: the Officer/Admin merge
+        // (FR-UAM-01) gave it to every MDA user.
+        $this->assertFalse($this->users['officer']->fresh()->hasPermission('double-dipping.view'));
 
-        $current = Role::where('key', RoleKey::MdaOfficer->value)->firstOrFail()
+        $current = Role::where('key', RoleKey::MdaAdmin->value)->firstOrFail()
             ->permissions()->pluck('key')->all();
 
-        $this->send('admin', 'PUT', '/api/v1/roles/'.$this->roleId(RoleKey::MdaOfficer).'/permissions', [
-            'permissions' => [...$current, 'beneficiary.export'],
+        $this->send('admin', 'PUT', '/api/v1/roles/'.$this->roleId(RoleKey::MdaAdmin).'/permissions', [
+            'permissions' => [...$current, 'double-dipping.view'],
         ])->assertOk();
 
         // The SAME RBAC the authorization layer reads — no second store to sync.
-        $this->assertTrue($this->users['officer']->fresh()->hasPermission('beneficiary.export'));
+        $this->assertTrue($this->users['officer']->fresh()->hasPermission('double-dipping.view'));
     }
 
     public function test_revoking_a_permission_takes_effect_immediately(): void
@@ -198,18 +200,22 @@ class ConsoleSettingsTest extends TestCase
 
     public function test_an_unknown_permission_is_rejected(): void
     {
-        $this->send('admin', 'PUT', '/api/v1/roles/'.$this->roleId(RoleKey::MdaOfficer).'/permissions', [
+        $this->send('admin', 'PUT', '/api/v1/roles/'.$this->roleId(RoleKey::MdaAdmin).'/permissions', [
             'permissions' => ['beneficiary.view', 'made.up'],
         ])->assertStatus(422)->assertJsonPath('error.code', 'PERMISSION_NOT_GRANTABLE');
     }
 
     public function test_matrix_edits_are_audited_with_what_changed(): void
     {
-        $current = Role::where('key', RoleKey::MdaOfficer->value)->firstOrFail()
+        $current = Role::where('key', RoleKey::MdaAdmin->value)->firstOrFail()
             ->permissions()->pluck('key')->all();
 
-        $this->send('admin', 'PUT', '/api/v1/roles/'.$this->roleId(RoleKey::MdaOfficer).'/permissions', [
-            'permissions' => [...$current, 'beneficiary.export'],
+        // `cross-mda.view` is both ABSENT from the MDA role and on the sensitive list,
+        // so one grant exercises the diff and the DPO call-out together.
+        // `beneficiary.export` can no longer serve: the Officer/Admin merge (FR-UAM-01)
+        // put it on the MDA role, so granting it there is a no-op with an empty diff.
+        $this->send('admin', 'PUT', '/api/v1/roles/'.$this->roleId(RoleKey::MdaAdmin).'/permissions', [
+            'permissions' => [...$current, 'cross-mda.view'],
         ])->assertOk();
 
         $this->assertDatabaseHas('audit_log', ['action' => 'role.permissions_updated']);
@@ -217,15 +223,15 @@ class ConsoleSettingsTest extends TestCase
         $entry = AuditLog::query()
             ->where('action', 'role.permissions_updated')->latest('created_at')->firstOrFail();
 
-        $this->assertContains('beneficiary.export', $entry->after['granted']);
-        // Export grants carry a DPO obligation, so they are called out for review.
-        $this->assertContains('beneficiary.export', $entry->after['sensitive_granted']);
+        $this->assertContains('cross-mda.view', $entry->after['granted']);
+        // Sensitive grants carry a DPO obligation, so they are called out for review.
+        $this->assertContains('cross-mda.view', $entry->after['sensitive_granted']);
         $this->assertSame($this->users['admin']->id, $entry->actor_id);
     }
 
     public function test_only_a_system_administrator_may_edit_the_matrix(): void
     {
-        $url = '/api/v1/roles/'.$this->roleId(RoleKey::MdaOfficer).'/permissions';
+        $url = '/api/v1/roles/'.$this->roleId(RoleKey::MdaAdmin).'/permissions';
 
         foreach (['exec', 'officer', 'mdaAdmin'] as $who) {
             $this->send($who, 'PUT', $url, ['permissions' => ['beneficiary.view']])->assertStatus(403);
@@ -252,11 +258,12 @@ class ConsoleSettingsTest extends TestCase
     public function test_broadcast_can_be_narrowed_to_a_role(): void
     {
         $this->send('admin', 'POST', '/api/v1/notifications/broadcast', [
-            'subject' => 'Officers only',
-            'role_key' => RoleKey::MdaOfficer->value,
-        ])->assertCreated()->assertJsonPath('data.recipient_count', 1);
+            'subject' => 'MDA staff only',
+            'role_key' => RoleKey::MdaAdmin->value,
+        ])->assertCreated()->assertJsonPath('data.recipient_count', 2);
 
-        $this->assertSame(1, Notification::query()->where('subject', 'Officers only')->count());
+        // Both MDA users share the single MDA role since the merge (FR-UAM-01).
+        $this->assertSame(2, Notification::query()->where('subject', 'MDA staff only')->count());
     }
 
     public function test_broadcast_skips_inactive_accounts(): void
@@ -296,8 +303,13 @@ class ConsoleSettingsTest extends TestCase
         $this->send('admin', 'GET', '/api/v1/notifications/broadcast/audience')
             ->assertOk()->assertJsonPath('data.recipient_count', 4);
 
+        // Two of the four are MDA users, both on the single MDA role (FR-UAM-01).
+        $this->send('admin', 'GET', '/api/v1/notifications/broadcast/audience?role_key=mda_admin')
+            ->assertOk()->assertJsonPath('data.recipient_count', 2);
+
+        // A role key that no longer exists reaches nobody rather than everybody.
         $this->send('admin', 'GET', '/api/v1/notifications/broadcast/audience?role_key=mda_officer')
-            ->assertOk()->assertJsonPath('data.recipient_count', 1);
+            ->assertOk()->assertJsonPath('data.recipient_count', 0);
 
         // Previewing sends nothing.
         $this->assertSame(0, Notification::query()->where('type', 'system.broadcast')->count());

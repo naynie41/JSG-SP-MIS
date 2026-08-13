@@ -152,7 +152,7 @@ describe('Admin console — Reports', () => {
       title: 'Users & access by Role',
       scope: { kind: 'state_wide', label: 'State-wide' },
       columns: [{ label: 'Role', numeric: false }, { label: 'Users', numeric: true }],
-      rows: [['System Administrator', '2'], ['MDA Officer', '5']],
+      rows: [['System Administrator', '2'], ['MDA Admin', '5']],
       row_count: 2,
       truncated: false,
     })
@@ -172,7 +172,7 @@ describe('Admin console — Reports', () => {
       }),
     )
     expect(await screen.findByText('System Administrator')).toBeInTheDocument()
-    expect(screen.getByText('MDA Officer')).toBeInTheDocument()
+    expect(screen.getByText('MDA Admin')).toBeInTheDocument()
   })
 
   it('offers only the dimensions and measures the server returned', async () => {

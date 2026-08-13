@@ -83,7 +83,7 @@ class ServeSearchTest extends TestCase
 
     public function test_search_returns_ranked_reveal_only_candidates_across_mdas(): void
     {
-        $this->signIn($this->mdaA, RoleKey::MdaOfficer);
+        $this->signIn($this->mdaA, RoleKey::MdaAdmin);
 
         $response = $this->getJson('/api/v1/beneficiaries/search?'.http_build_query($this->crossQuery()))
             ->assertOk();
@@ -111,7 +111,7 @@ class ServeSearchTest extends TestCase
 
     public function test_search_requires_a_blocking_field(): void
     {
-        $this->signIn($this->mdaA, RoleKey::MdaOfficer);
+        $this->signIn($this->mdaA, RoleKey::MdaAdmin);
 
         // first_name alone yields no blocking key — rejected before any scan.
         $this->getJson('/api/v1/beneficiaries/search?'.http_build_query(['first_name' => 'Sadiq']))
@@ -121,7 +121,7 @@ class ServeSearchTest extends TestCase
 
     public function test_search_is_audited_without_leaking_values(): void
     {
-        $this->signIn($this->mdaA, RoleKey::MdaOfficer);
+        $this->signIn($this->mdaA, RoleKey::MdaAdmin);
 
         $this->getJson('/api/v1/beneficiaries/search?'.http_build_query($this->crossQuery()))->assertOk();
 
@@ -143,7 +143,7 @@ class ServeSearchTest extends TestCase
 
     public function test_service_request_can_be_raised_from_a_result_without_changing_ownership(): void
     {
-        $user = $this->signIn($this->mdaA, RoleKey::MdaOfficer);
+        $user = $this->signIn($this->mdaA, RoleKey::MdaAdmin);
 
         $this->postJson('/api/v1/service-requests', [
             'beneficiary_id' => $this->exact->id,
@@ -170,7 +170,7 @@ class ServeSearchTest extends TestCase
     public function test_cannot_raise_a_service_request_for_a_beneficiary_you_already_own(): void
     {
         // An officer of the OWNING MDA tries to serve its own record.
-        $this->signIn($this->mdaB, RoleKey::MdaOfficer);
+        $this->signIn($this->mdaB, RoleKey::MdaAdmin);
 
         $this->postJson('/api/v1/service-requests', ['beneficiary_id' => $this->exact->id])
             ->assertStatus(422)

@@ -13,7 +13,6 @@ enum RoleKey: string
     case Executive = 'executive';
     case SpCoordination = 'sp_coordination';
     case MneOfficer = 'mne_officer';
-    case MdaOfficer = 'mda_officer';
     case MdaAdmin = 'mda_admin';
     case DevelopmentPartner = 'development_partner';
     case SystemAdministrator = 'system_administrator';
@@ -24,7 +23,6 @@ enum RoleKey: string
             self::Executive => 'Executive',
             self::SpCoordination => 'SP Coordination',
             self::MneOfficer => 'M&E Officer',
-            self::MdaOfficer => 'MDA Officer',
             self::MdaAdmin => 'MDA Admin',
             self::DevelopmentPartner => 'Development Partner',
             self::SystemAdministrator => 'System Administrator',

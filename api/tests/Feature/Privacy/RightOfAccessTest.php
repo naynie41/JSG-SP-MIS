@@ -46,7 +46,10 @@ class RightOfAccessTest extends TestCase
 
         $this->users['ownerAdmin'] = $this->user($this->mdaA, RoleKey::MdaAdmin);   // controller + access_request
         $this->users['otherAdmin'] = $this->user($this->mdaB, RoleKey::MdaAdmin);   // has perm, but not owner
-        $this->users['officer'] = $this->user($this->mdaA, RoleKey::MdaOfficer);    // no access_request perm
+        // A role that genuinely lacks beneficiary.access_request: the MDA role holds it
+        // (the owner MDA is the data controller), so the negative case needs a role that
+        // never did — an Executive is read-only dashboards and aggregate reports.
+        $this->users['noPermission'] = $this->user($this->mdaA, RoleKey::Executive);
         $this->users['sysadmin'] = $this->user($this->mdaA, RoleKey::SystemAdministrator);
 
         $this->beneficiary = Beneficiary::factory()->create([
@@ -107,6 +110,6 @@ class RightOfAccessTest extends TestCase
 
     public function test_a_user_without_the_access_request_permission_is_denied(): void
     {
-        $this->download('officer')->assertStatus(403);
+        $this->download('noPermission')->assertStatus(403);
     }
 }

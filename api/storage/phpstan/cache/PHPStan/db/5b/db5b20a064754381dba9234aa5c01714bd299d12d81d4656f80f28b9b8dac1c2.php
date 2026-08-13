@@ -2,7 +2,7 @@
 
 // osfsl-C:/Users/ACER/Desktop/JSG-SP-MIS/JSG-SP-MIS/api/vendor/composer/../phpoffice/phpspreadsheet/src/PhpSpreadsheet/Style/Style.php-PHPStan\BetterReflection\Reflection\ReflectionClass-PhpOffice\PhpSpreadsheet\Style\Style
 return \PHPStan\Cache\CacheItem::__set_state(array(
-   'variableKey' => 'v2-b8dea0401e11209be91e943662931a687c1409fd08dde58d5b881a82d3a5216d-8.3.31-6.70.0.1',
+   'variableKey' => 'v2-f8678fe01a9ade920623cc908446c3724e2240d217aea9e41d853c82670f8ade-8.3.31-6.70.0.1',
    'data' => 
   array (
     'locatedSource' => 
@@ -27,7 +27,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
     array (
     ),
     'startLine' => 14,
-    'endLine' => 790,
+    'endLine' => 802,
     'startColumn' => 1,
     'endColumn' => 1,
     'parentClassName' => 'PhpOffice\\PhpSpreadsheet\\Style\\Supervisor',
@@ -883,7 +883,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
  * @return $this
  */',
         'startLine' => 200,
-        'endLine' => 533,
+        'endLine' => 545,
         'startColumn' => 5,
         'endColumn' => 5,
         'couldThrow' => false,
@@ -921,8 +921,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             'attributes' => 
             array (
             ),
-            'startLine' => 542,
-            'endLine' => 542,
+            'startLine' => 554,
+            'endLine' => 554,
             'startColumn' => 38,
             'endColumn' => 58,
             'parameterIndex' => 0,
@@ -947,8 +947,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             'attributes' => 
             array (
             ),
-            'startLine' => 542,
-            'endLine' => 542,
+            'startLine' => 554,
+            'endLine' => 554,
             'startColumn' => 61,
             'endColumn' => 77,
             'parameterIndex' => 1,
@@ -973,8 +973,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             'attributes' => 
             array (
             ),
-            'startLine' => 542,
-            'endLine' => 542,
+            'startLine' => 554,
+            'endLine' => 554,
             'startColumn' => 80,
             'endColumn' => 94,
             'parameterIndex' => 2,
@@ -999,8 +999,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             'attributes' => 
             array (
             ),
-            'startLine' => 542,
-            'endLine' => 542,
+            'startLine' => 554,
+            'endLine' => 554,
             'startColumn' => 97,
             'endColumn' => 115,
             'parameterIndex' => 3,
@@ -1025,8 +1025,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             'attributes' => 
             array (
             ),
-            'startLine' => 542,
-            'endLine' => 542,
+            'startLine' => 554,
+            'endLine' => 554,
             'startColumn' => 118,
             'endColumn' => 134,
             'parameterIndex' => 4,
@@ -1051,8 +1051,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             'attributes' => 
             array (
             ),
-            'startLine' => 542,
-            'endLine' => 542,
+            'startLine' => 554,
+            'endLine' => 554,
             'startColumn' => 137,
             'endColumn' => 153,
             'parameterIndex' => 5,
@@ -1079,8 +1079,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
  *
  * @return mixed[]
  */',
-        'startLine' => 542,
-        'endLine' => 597,
+        'startLine' => 554,
+        'endLine' => 609,
         'startColumn' => 5,
         'endColumn' => 5,
         'couldThrow' => false,
@@ -1116,8 +1116,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         'docComment' => '/**
  * Get Fill.
  */',
-        'startLine' => 602,
-        'endLine' => 605,
+        'startLine' => 614,
+        'endLine' => 617,
         'startColumn' => 5,
         'endColumn' => 5,
         'couldThrow' => false,
@@ -1153,8 +1153,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         'docComment' => '/**
  * Get Font.
  */',
-        'startLine' => 610,
-        'endLine' => 613,
+        'startLine' => 622,
+        'endLine' => 625,
         'startColumn' => 5,
         'endColumn' => 5,
         'couldThrow' => false,
@@ -1192,8 +1192,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             'attributes' => 
             array (
             ),
-            'startLine' => 620,
-            'endLine' => 620,
+            'startLine' => 632,
+            'endLine' => 632,
             'startColumn' => 29,
             'endColumn' => 38,
             'parameterIndex' => 0,
@@ -1218,8 +1218,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
  *
  * @return $this
  */',
-        'startLine' => 620,
-        'endLine' => 625,
+        'startLine' => 632,
+        'endLine' => 637,
         'startColumn' => 5,
         'endColumn' => 5,
         'couldThrow' => false,
@@ -1255,8 +1255,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         'docComment' => '/**
  * Get Borders.
  */',
-        'startLine' => 630,
-        'endLine' => 633,
+        'startLine' => 642,
+        'endLine' => 645,
         'startColumn' => 5,
         'endColumn' => 5,
         'couldThrow' => false,
@@ -1292,8 +1292,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         'docComment' => '/**
  * Get Alignment.
  */',
-        'startLine' => 638,
-        'endLine' => 641,
+        'startLine' => 650,
+        'endLine' => 653,
         'startColumn' => 5,
         'endColumn' => 5,
         'couldThrow' => false,
@@ -1329,8 +1329,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         'docComment' => '/**
  * Get Number Format.
  */',
-        'startLine' => 646,
-        'endLine' => 649,
+        'startLine' => 658,
+        'endLine' => 661,
         'startColumn' => 5,
         'endColumn' => 5,
         'couldThrow' => false,
@@ -1368,8 +1368,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
  *
  * @return Conditional[]
  */',
-        'startLine' => 656,
-        'endLine' => 659,
+        'startLine' => 668,
+        'endLine' => 671,
         'startColumn' => 5,
         'endColumn' => 5,
         'couldThrow' => false,
@@ -1407,8 +1407,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             'attributes' => 
             array (
             ),
-            'startLine' => 668,
-            'endLine' => 668,
+            'startLine' => 680,
+            'endLine' => 680,
             'startColumn' => 42,
             'endColumn' => 69,
             'parameterIndex' => 0,
@@ -1435,8 +1435,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
  *
  * @return $this
  */',
-        'startLine' => 668,
-        'endLine' => 673,
+        'startLine' => 680,
+        'endLine' => 685,
         'startColumn' => 5,
         'endColumn' => 5,
         'couldThrow' => false,
@@ -1472,8 +1472,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         'docComment' => '/**
  * Get Protection.
  */',
-        'startLine' => 678,
-        'endLine' => 681,
+        'startLine' => 690,
+        'endLine' => 693,
         'startColumn' => 5,
         'endColumn' => 5,
         'couldThrow' => false,
@@ -1509,8 +1509,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         'docComment' => '/**
  * Get quote prefix.
  */',
-        'startLine' => 686,
-        'endLine' => 693,
+        'startLine' => 698,
+        'endLine' => 705,
         'startColumn' => 5,
         'endColumn' => 5,
         'couldThrow' => false,
@@ -1548,8 +1548,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             'attributes' => 
             array (
             ),
-            'startLine' => 700,
-            'endLine' => 700,
+            'startLine' => 712,
+            'endLine' => 712,
             'startColumn' => 36,
             'endColumn' => 52,
             'parameterIndex' => 0,
@@ -1574,8 +1574,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
  *
  * @return $this
  */',
-        'startLine' => 700,
-        'endLine' => 715,
+        'startLine' => 712,
+        'endLine' => 727,
         'startColumn' => 5,
         'endColumn' => 5,
         'couldThrow' => false,
@@ -1609,8 +1609,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         array (
         ),
         'docComment' => NULL,
-        'startLine' => 717,
-        'endLine' => 724,
+        'startLine' => 729,
+        'endLine' => 736,
         'startColumn' => 5,
         'endColumn' => 5,
         'couldThrow' => false,
@@ -1648,8 +1648,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             'attributes' => 
             array (
             ),
-            'startLine' => 726,
-            'endLine' => 726,
+            'startLine' => 738,
+            'endLine' => 738,
             'startColumn' => 33,
             'endColumn' => 46,
             'parameterIndex' => 0,
@@ -1670,8 +1670,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         array (
         ),
         'docComment' => NULL,
-        'startLine' => 726,
-        'endLine' => 738,
+        'startLine' => 738,
+        'endLine' => 750,
         'startColumn' => 5,
         'endColumn' => 5,
         'couldThrow' => false,
@@ -1709,8 +1709,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
  *
  * @return string Hash code
  */',
-        'startLine' => 745,
-        'endLine' => 758,
+        'startLine' => 757,
+        'endLine' => 770,
         'startColumn' => 5,
         'endColumn' => 5,
         'couldThrow' => false,
@@ -1746,8 +1746,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         'docComment' => '/**
  * Get own index in style collection.
  */',
-        'startLine' => 763,
-        'endLine' => 766,
+        'startLine' => 775,
+        'endLine' => 778,
         'startColumn' => 5,
         'endColumn' => 5,
         'couldThrow' => false,
@@ -1785,8 +1785,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             'attributes' => 
             array (
             ),
-            'startLine' => 771,
-            'endLine' => 771,
+            'startLine' => 783,
+            'endLine' => 783,
             'startColumn' => 30,
             'endColumn' => 39,
             'parameterIndex' => 0,
@@ -1809,8 +1809,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         'docComment' => '/**
  * Set own index in style collection.
  */',
-        'startLine' => 771,
-        'endLine' => 774,
+        'startLine' => 783,
+        'endLine' => 786,
         'startColumn' => 5,
         'endColumn' => 5,
         'couldThrow' => false,
@@ -1844,8 +1844,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         array (
         ),
         'docComment' => '/** @return mixed[] */',
-        'startLine' => 777,
-        'endLine' => 789,
+        'startLine' => 789,
+        'endLine' => 801,
         'startColumn' => 5,
         'endColumn' => 5,
         'couldThrow' => false,

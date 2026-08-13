@@ -10,6 +10,7 @@ import { Spinner } from '@/components/Spinner/Spinner'
 import { useAuth } from '@/lib/auth/AuthProvider'
 import { BenefitsPanel } from '@/features/benefits/BenefitsPanel'
 import { EditBeneficiaryModal } from './EditBeneficiaryModal'
+import { ConsentPanel } from './ConsentPanel'
 import { DocumentsPanel } from './DocumentsPanel'
 import { REGISTRATION_SOURCE_LABELS, titleCase } from './constants'
 import { useBeneficiary } from './hooks'
@@ -40,6 +41,11 @@ function ProfileTab({ beneficiary }: { beneficiary: Beneficiary }) {
           <dd>{beneficiary.address ?? '—'}</dd>
         </dl>
       </Card>
+
+      {/* Consent sits beside provenance: both answer "on what authority is this record
+          here, and who may see it" — and the sharing gate reads this one on every
+          cross-MDA access. */}
+      <ConsentPanel beneficiary={beneficiary} />
 
       <Card title="Provenance" eyebrow="Origin" variant="mint">
         <dl className={styles.dl}>

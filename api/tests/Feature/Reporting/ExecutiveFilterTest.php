@@ -49,7 +49,7 @@ class ExecutiveFilterTest extends TestCase
         $this->mdaB = Mda::factory()->create(['name' => 'MDA B']);
 
         $this->users['exec'] = $this->user(null, RoleKey::Executive);
-        $this->users['officerA'] = $this->user($this->mdaA, RoleKey::MdaOfficer);
+        $this->users['officerA'] = $this->user($this->mdaA, RoleKey::MdaAdmin);
         $this->users['partner'] = $this->user(null, RoleKey::DevelopmentPartner);
 
         // Registry: benA1 (MDA A, dutse, 2026), benA2 (MDA A, kano, 2025), benB1 (MDA B, hadejia, 2026).

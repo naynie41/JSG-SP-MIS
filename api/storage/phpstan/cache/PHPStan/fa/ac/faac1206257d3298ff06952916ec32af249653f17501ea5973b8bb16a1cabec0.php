@@ -238,7 +238,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
     ),
     'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Access\\Enums\\RoleKey.php' => 
     array (
-      0 => 'aa800acebadff237b3c94d7c656afe6bb41249a9394e49867aae94dd38406890',
+      0 => '76874685d19773e560f052060b973a58faa395f635d30da3703e4e290be494aa',
       1 => 
       array (
         0 => 'app\\domain\\access\\enums\\rolekey',
@@ -3347,7 +3347,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
     ),
     'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Registry\\Models\\Beneficiary.php' => 
     array (
-      0 => 'b7d9b1765de983ce16d6811bc1fad8a077e0300e64873b0e4e67b3d203e05205',
+      0 => '241606ac4ec854f695d356d42515a7ad6ebf23fd5b607e60d3263f3e115ec6c8',
       1 => 
       array (
         0 => 'app\\domain\\registry\\models\\beneficiary',
@@ -4719,7 +4719,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
     ),
     'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Sharing\\DataSharingGuard.php' => 
     array (
-      0 => 'c134ae1d81454a5ed0f24cc3af99b2cdf201dd01701f11c4ffe76e86ed03b04f',
+      0 => '436d70a9d4f7683b8bd2d613735accb459133a4ea66bb64892575bd68be1833d',
       1 => 
       array (
         0 => 'app\\domain\\sharing\\datasharingguard',
@@ -4728,10 +4728,13 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
       array (
         0 => 'app\\domain\\sharing\\canread',
         1 => 'app\\domain\\sharing\\basisfor',
-        2 => 'app\\domain\\sharing\\mdamayserveviagrant',
-        3 => 'app\\domain\\sharing\\grantedandconsented',
-        4 => 'app\\domain\\sharing\\consentsatisfied',
-        5 => 'app\\domain\\sharing\\consentrequired',
+        2 => 'app\\domain\\sharing\\hasadmingrant',
+        3 => 'app\\domain\\sharing\\admingrantconsentsatisfied',
+        4 => 'app\\domain\\sharing\\admingrantconsentrequired',
+        5 => 'app\\domain\\sharing\\mdamayserveviagrant',
+        6 => 'app\\domain\\sharing\\grantedandconsented',
+        7 => 'app\\domain\\sharing\\consentsatisfied',
+        8 => 'app\\domain\\sharing\\consentrequired',
       ),
       3 => 
       array (
@@ -4739,7 +4742,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
     ),
     'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Sharing\\SharingBasis.php' => 
     array (
-      0 => '90f91da4888ca1e17d5ca5ab2af34d37563254bec5117e2c7703c2e3d505c7f5',
+      0 => 'dead268236e5edec4b3c419a87c99802fc3ec2b210b82599298d807ef49d3a65',
       1 => 
       array (
         0 => 'app\\domain\\sharing\\sharingbasis',
@@ -4747,6 +4750,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
       2 => 
       array (
         0 => 'app\\domain\\sharing\\label',
+        1 => 'app\\domain\\sharing\\scope',
+        2 => 'app\\domain\\sharing\\iscrossmda',
       ),
       3 => 
       array (
@@ -5420,7 +5425,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
     ),
     'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Registry\\BeneficiaryController.php' => 
     array (
-      0 => '54b90a19a6aadb6e83caaba6c560663ce32305f63f3d7b9ae3a19a5e6c7731b3',
+      0 => 'ea9ac188761cffb2b92d3c456037c1011ecd19064ea9f45d8d201471c82f371f',
       1 => 
       array (
         0 => 'app\\http\\controllers\\api\\v1\\registry\\beneficiarycontroller',
@@ -5726,7 +5731,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
     ),
     'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Sharing\\DataSharingController.php' => 
     array (
-      0 => '3de521b5b3681dfe9f243dbe8a6c5c6a96704224127ed3158338aef96ac6b176',
+      0 => '204adf07584c3463fd4c04482eb252e1cae525d8437dd0cbe6daefbf522d9c60',
       1 => 
       array (
         0 => 'app\\http\\controllers\\api\\v1\\sharing\\datasharingcontroller',
@@ -5734,6 +5739,10 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
       2 => 
       array (
         0 => 'app\\http\\controllers\\api\\v1\\sharing\\grants',
+        1 => 'app\\http\\controllers\\api\\v1\\sharing\\servicegrants',
+        2 => 'app\\http\\controllers\\api\\v1\\sharing\\servicegrantrow',
+        3 => 'app\\http\\controllers\\api\\v1\\sharing\\admingrants',
+        4 => 'app\\http\\controllers\\api\\v1\\sharing\\mdaref',
       ),
       3 => 
       array (

@@ -50,6 +50,8 @@ function makeBeneficiary(overrides: Partial<Beneficiary> = {}): Beneficiary {
     lga: 'dutse',
     ward: 'Ward 1',
     registration_source: 'csv',
+    sharing_consent: 'unknown',
+    sharing_consent_at: null,
     registration_date: '2026-07-01',
     import_batch_id: null,
     original_record_id: null,

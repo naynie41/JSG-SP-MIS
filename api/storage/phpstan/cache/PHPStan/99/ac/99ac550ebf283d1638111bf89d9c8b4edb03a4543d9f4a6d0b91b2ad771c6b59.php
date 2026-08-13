@@ -1134,7 +1134,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
     ),
     1 => 
     array (
-      'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Registry\\BeneficiaryController.php' => '54b90a19a6aadb6e83caaba6c560663ce32305f63f3d7b9ae3a19a5e6c7731b3',
+      'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Registry\\BeneficiaryController.php' => 'ea9ac188761cffb2b92d3c456037c1011ecd19064ea9f45d8d201471c82f371f',
     ),
   ),
 ));

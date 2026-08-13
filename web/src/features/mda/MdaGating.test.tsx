@@ -13,13 +13,17 @@ import { beneficiaryApi, serviceRequestApi } from '@/features/registry/api'
 import { reportsApi } from '@/features/reports/api'
 
 /*
- * The Officer/Admin gating matrix for the one shared navigation.
+ * The gating matrix for the ONE MDA role (FR-UAM-01 — MDA Officer was merged into MDA
+ * Admin).
  *
- * The console ships ONE rail for both roles, so correctness rests on two claims: the
- * rail is identical (Officer's permissions are a subset), and every Admin-only ACTION is
- * absent for an Officer. The permission sets below are the seeder's, mirrored by
- * MdaRoleMatrixTest which pins the same split server-side — the UI gate is a courtesy,
- * the route is the boundary.
+ * With the split gone, "which role are you" is no longer a question the console asks.
+ * What it still asks is "which PERMISSIONS do you hold", because a System Administrator
+ * can withhold any of them through the role-permission editor. So each capability below
+ * is asserted twice: present with its permission, absent without it. Absent means the
+ * affordance is not rendered, not merely disabled.
+ *
+ * The set is the seeder's, mirrored server-side by MdaRoleMatrixTest — the UI gate is a
+ * courtesy, the route is the boundary.
  */
 
 vi.mock('./api', () => ({ mdaApi: { actionRequired: vi.fn() } }))
@@ -53,18 +57,19 @@ vi.mock('@/features/reports/api', () => ({
 }))
 vi.mock('@/lib/api/exportList', () => ({ exportListFile: vi.fn() }))
 
-const auth = { roleKey: 'mda_officer', perms: [] as string[] }
+const auth = { roleKey: 'mda_admin', perms: [] as string[] }
 vi.mock('@/lib/auth/AuthProvider', () => ({
   useAuth: () => ({
-    user: { name: 'Amina', role: { key: auth.roleKey, name: 'MDA' }, mda: { id: 'm1', name: 'Ministry of Health' } },
+    user: { name: 'Amina', role: { key: auth.roleKey, name: 'MDA Admin' }, mda: { id: 'm1', name: 'Ministry of Health' } },
     hasPermission: (p: string) => auth.perms.includes(p),
   }),
 }))
 
-/** MDA Officer, exactly as RolesAndPermissionsSeeder grants it. */
-const OFFICER = [
+/** The MDA role, exactly as RolesAndPermissionsSeeder grants it after the merge. */
+const MDA = [
   'mda.view', 'user.view',
   'beneficiary.view', 'beneficiary.create', 'beneficiary.edit',
+  'beneficiary.approve', 'beneficiary.export', 'beneficiary.access_request',
   'beneficiary-lookup.view', 'household.view', 'household.create', 'household.edit',
   'programme.view', 'activity.view', 'activity.create', 'activity.edit',
   'enrollment.view', 'enrollment.create', 'enrollment.edit',
@@ -73,12 +78,12 @@ const OFFICER = [
   'grievance.view', 'grievance.create', 'grievance.edit',
   'graduation.view', 'graduation.edit', 'dashboard.view', 'reporting.view', 'reporting.export',
 ]
-/** MDA Admin = Officer + exactly six. */
-const ADMIN_ONLY = [
-  'beneficiary.approve', 'beneficiary.export', 'beneficiary.access_request',
-  'user.create', 'user.edit', 'role.view',
-]
-const ADMIN = [...OFFICER, ...ADMIN_ONLY]
+
+/** The three the merge deliberately did NOT carry over — account administration is central. */
+const WITHHELD = ['user.create', 'user.edit', 'role.view']
+
+/** The set minus one permission, for asserting a gate is on the permission and not the role. */
+const without = (permission: string) => MDA.filter((p) => p !== permission)
 
 const PENDING_REQUEST = {
   id: 'sr-1', beneficiary_id: 'b1', beneficiary_name: 'Aisha Bello',
@@ -104,11 +109,11 @@ function renderAt(element: React.ReactElement, path = '/mda/x') {
   )
 }
 
-describe('MDA console — Officer vs Admin gating', () => {
+describe('MDA console — permission gating for the single MDA role', () => {
   beforeEach(() => {
     vi.clearAllMocks()
-    auth.roleKey = 'mda_officer'
-    auth.perms = OFFICER
+    auth.roleKey = 'mda_admin'
+    auth.perms = MDA
     ;(mdaApi.actionRequired as Mock).mockResolvedValue({ pending_referrals: 1, pending_service_requests: 1, mda_id: 'm1' })
     ;(serviceRequestApi.inbox as Mock).mockResolvedValue([PENDING_REQUEST])
     ;(serviceRequestApi.outbox as Mock).mockResolvedValue([])
@@ -120,48 +125,33 @@ describe('MDA console — Officer vs Admin gating', () => {
 
   /* --------------------------------------------------------------- one nav */
 
-  it('gives both roles the identical six-module rail', () => {
-    const officer = navSectionsFor('mda_officer', (p) => OFFICER.includes(p))
-    const admin = navSectionsFor('mda_admin', (p) => ADMIN.includes(p))
-    const labels = (s: ReturnType<typeof navSectionsFor>) => s.flatMap((x) => x.items.map((i) => i.label))
+  it('gives the MDA role the six-module rail', () => {
+    const labels = navSectionsFor('mda_admin', (p) => MDA.includes(p)).flatMap((s) => s.items.map((i) => i.label))
 
-    const expected = ['Overview', 'Programmes', 'Beneficiaries', 'Service Delivery', 'Duplicate Resolution', 'Reports']
-    expect(labels(officer)).toEqual(expected)
-    expect(labels(admin)).toEqual(expected)
+    expect(labels).toEqual(['Overview', 'Programmes', 'Beneficiaries', 'Service Delivery', 'Duplicate Resolution', 'Reports'])
   })
 
-  it('keeps Settings off the rail for both — it is a header affordance', () => {
-    for (const [role, perms] of [['mda_officer', OFFICER], ['mda_admin', ADMIN]] as const) {
-      const labels = navSectionsFor(role, (p) => (perms as string[]).includes(p)).flatMap((s) => s.items.map((i) => i.label))
-      expect(labels).not.toContain('Settings')
+  it('keeps Settings off the rail — it is a header affordance', () => {
+    const labels = navSectionsFor('mda_admin', (p) => MDA.includes(p)).flatMap((s) => s.items.map((i) => i.label))
+
+    expect(labels).not.toContain('Settings')
+  })
+
+  it('carries the merged capabilities and none of the withheld ones', () => {
+    // What the merge moved to every MDA user…
+    for (const permission of ['beneficiary.approve', 'beneficiary.export', 'beneficiary.access_request']) {
+      expect(MDA).toContain(permission)
     }
-  })
-
-  it('never grants an Officer something the Admin lacks', () => {
-    // The premise of one shared rail: the Officer set is a strict subset.
-    expect(OFFICER.filter((p) => !ADMIN.includes(p))).toEqual([])
-    expect(ADMIN.filter((p) => !OFFICER.includes(p)).sort()).toEqual([...ADMIN_ONLY].sort())
+    // …and what it pointedly did not. Account administration is System-Administrator work.
+    for (const permission of WITHHELD) {
+      expect(MDA).not.toContain(permission)
+    }
   })
 
   /* ------------------------------------------ Service Delivery: the approval */
 
-  it('hides the request-to-serve decision from an Officer', async () => {
-    renderAt(<MdaServiceDeliveryPage />, '/mda/x?tab=service-requests')
-    await screen.findByText('Aisha Bello')
-
-    // beneficiary.approve is Admin-only. Absent, not disabled — and the server refuses
-    // the route regardless (MdaRoleMatrixTest).
-    expect(screen.queryByRole('button', { name: 'Accept' })).not.toBeInTheDocument()
-    expect(screen.queryByRole('button', { name: 'Decline' })).not.toBeInTheDocument()
-    expect(screen.getByText(/MDA Administrator permission/i)).toBeInTheDocument()
-
-    // …but the Officer still SEES the queue, so the MDA's workload is visible to all.
-    await waitFor(() => expect(serviceRequestApi.inbox).toHaveBeenCalled())
-  })
-
-  it('gives an Admin the decision on the same screen', async () => {
-    auth.roleKey = 'mda_admin'
-    auth.perms = ADMIN
+  it('gives the MDA role the request-to-serve decision', async () => {
+    // Before the merge this was Admin-only; the seeded MDA role now holds it.
     renderAt(<MdaServiceDeliveryPage />, '/mda/x?tab=service-requests')
     await screen.findByText('Aisha Bello')
 
@@ -169,9 +159,23 @@ describe('MDA console — Officer vs Admin gating', () => {
     expect(screen.getByRole('button', { name: 'Decline' })).toBeInTheDocument()
   })
 
-  it('gives BOTH roles the shared Service Delivery actions', async () => {
-    // benefit.create / benefit.approve / referral.create are Officer permissions too, so
-    // an Officer is not a read-only user — only the Admin-only six are withheld.
+  it('withdraws the decision when beneficiary.approve is withheld, not when the role changes', async () => {
+    auth.perms = without('beneficiary.approve')
+    renderAt(<MdaServiceDeliveryPage />, '/mda/x?tab=service-requests')
+    await screen.findByText('Aisha Bello')
+
+    // Absent, not disabled — and the server refuses the route regardless.
+    expect(screen.queryByRole('button', { name: 'Accept' })).not.toBeInTheDocument()
+    expect(screen.queryByRole('button', { name: 'Decline' })).not.toBeInTheDocument()
+    expect(screen.getByText(/MDA Administrator permission/i)).toBeInTheDocument()
+
+    // …but the queue is still VISIBLE, so the MDA's workload never disappears.
+    await waitFor(() => expect(serviceRequestApi.inbox).toHaveBeenCalled())
+  })
+
+  it('gives the MDA role the shared Service Delivery actions', async () => {
+    // benefit.create / benefit.approve / referral.create are seeded too, so this is a
+    // working delivery account and not a read-only one.
     renderAt(<MdaServiceDeliveryPage />, '/mda/x?tab=referrals')
     expect(await screen.findByRole('button', { name: /raise referral/i })).toBeInTheDocument()
 
@@ -182,22 +186,7 @@ describe('MDA console — Officer vs Admin gating', () => {
 
   /* ----------------------------------------------- Reports: the export gate */
 
-  it('withholds the beneficiary export from an Officer but not aggregate export', async () => {
-    const user = userEvent.setup()
-    renderAt(<MdaReportsPage />)
-    await screen.findByRole('tab', { name: 'Report types' })
-
-    await user.click(screen.getByRole('tab', { name: 'Beneficiary export' }))
-    expect(screen.getByText('Not permitted')).toBeInTheDocument()
-
-    // Aggregate reporting rides reporting.export, which an Officer holds.
-    await user.click(screen.getByRole('tab', { name: 'Build & export' }))
-    expect(screen.queryByText(/needs the reporting export permission/i)).not.toBeInTheDocument()
-  })
-
-  it('gives an Admin the beneficiary export', async () => {
-    auth.roleKey = 'mda_admin'
-    auth.perms = ADMIN
+  it('gives the MDA role the beneficiary export', async () => {
     const user = userEvent.setup()
     renderAt(<MdaReportsPage />)
     await screen.findByRole('tab', { name: 'Report types' })
@@ -206,12 +195,25 @@ describe('MDA console — Officer vs Admin gating', () => {
     expect(screen.getByText('You may export')).toBeInTheDocument()
   })
 
-  it('masks identifiers even for an Admin — reveal is never an MDA permission', async () => {
+  it('withholds the PII export without its permission but keeps aggregate export', async () => {
+    auth.perms = without('beneficiary.export')
+    const user = userEvent.setup()
+    renderAt(<MdaReportsPage />)
+    await screen.findByRole('tab', { name: 'Report types' })
+
+    await user.click(screen.getByRole('tab', { name: 'Beneficiary export' }))
+    expect(screen.getByText('Not permitted')).toBeInTheDocument()
+
+    // The two gates are separate: aggregate reporting rides `reporting.export`, which is
+    // untouched. Conflating them would either block reporting or open a PII path.
+    await user.click(screen.getByRole('tab', { name: 'Build & export' }))
+    expect(screen.queryByText(/needs the reporting export permission/i)).not.toBeInTheDocument()
+  })
+
+  it('masks identifiers for the MDA role — reveal is never an MDA permission', async () => {
     // export.reveal_pii is in RolePermissionService::NEVER_ROLE_GRANTABLE, so no MDA role
-    // can hold it. Asserted on the Admin because they are the only MDA role that can
-    // export at all: if anyone were going to see unmasked identifiers, it would be them.
-    auth.roleKey = 'mda_admin'
-    auth.perms = ADMIN
+    // can hold it. Asserted with the full seeded set: if unmasked identifiers were ever
+    // going to leak, it would be to an account holding everything an MDA can hold.
     const user = userEvent.setup()
     renderAt(<MdaReportsPage />)
     await screen.findByRole('tab', { name: 'Report types' })
@@ -225,10 +227,8 @@ describe('MDA console — Officer vs Admin gating', () => {
   /* ------------------------------------------------ withheld permissions are real */
 
   it('surfaces no user- or role-administration anywhere in the MDA console', async () => {
-    // user.create/user.edit/role.view are Admin-only, but they belong to the System
-    // Administrator console — an MDA Admin must not find them in this workspace either.
-    auth.roleKey = 'mda_admin'
-    auth.perms = ADMIN
+    // The point of the centralisation: account administration lives in the System
+    // Administrator console, and the widest MDA account there is must not find it here.
     renderAt(<MdaReportsPage />)
     await screen.findByRole('tab', { name: 'Report types' })
 
@@ -239,7 +239,7 @@ describe('MDA console — Officer vs Admin gating', () => {
   })
 
   it('drops a module the user cannot reach rather than showing a dead link', () => {
-    const limited = navSectionsFor('mda_officer', (p) => OFFICER.filter((x) => x !== 'reporting.view').includes(p))
+    const limited = navSectionsFor('mda_admin', (p) => without('reporting.view').includes(p))
     const labels = limited.flatMap((s) => s.items.map((i) => i.label))
 
     expect(labels).not.toContain('Reports')

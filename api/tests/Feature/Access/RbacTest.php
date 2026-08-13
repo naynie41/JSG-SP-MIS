@@ -37,22 +37,13 @@ class RbacTest extends TestCase
             'programme.view', 'activity.view', 'enrollment.view', 'benefit.view', 'referral.view', 'grievance.view',
             'graduation.view', 'dashboard.view', 'reporting.view', 'reporting.export',
         ],
+        // The single MDA role (FR-UAM-01): the former Officer set PLUS the three
+        // capabilities the merge brought in, and WITHOUT user administration, which is
+        // now System-Administrator-only.
         'mda_admin' => [
-            'mda.view', 'user.view', 'user.create', 'user.edit', 'role.view',
+            'mda.view', 'user.view',
             'beneficiary.view', 'beneficiary.create', 'beneficiary.edit', 'beneficiary.approve', 'beneficiary.export',
             'beneficiary.access_request',
-            'beneficiary-lookup.view', 'household.view', 'household.create', 'household.edit',
-            'programme.view',
-            'activity.view', 'activity.create', 'activity.edit',
-            'enrollment.view', 'enrollment.create', 'enrollment.edit',
-            'benefit.view', 'benefit.create', 'benefit.approve',
-            'referral.view', 'referral.create', 'referral.edit',
-            'grievance.view', 'grievance.create', 'grievance.edit',
-            'graduation.view', 'graduation.edit', 'dashboard.view', 'reporting.view', 'reporting.export',
-        ],
-        'mda_officer' => [
-            'mda.view', 'user.view',
-            'beneficiary.view', 'beneficiary.create', 'beneficiary.edit',
             'beneficiary-lookup.view', 'household.view', 'household.create', 'household.edit',
             'programme.view',
             'activity.view', 'activity.create', 'activity.edit',
@@ -122,7 +113,7 @@ class RbacTest extends TestCase
 
     public function test_user_without_permission_is_denied_with_403_envelope(): void
     {
-        $token = $this->tokenFor(RoleKey::MdaOfficer); // lacks permission.view
+        $token = $this->tokenFor(RoleKey::MdaAdmin); // lacks permission.view
 
         $this->withToken($token)->getJson('/api/v1/permissions')
             ->assertStatus(403)
@@ -132,9 +123,14 @@ class RbacTest extends TestCase
 
     public function test_roles_endpoint_enforces_role_view_permission(): void
     {
-        // mda_admin has role.view → allowed.
-        $token = $this->tokenFor(RoleKey::MdaAdmin);
+        // sp_coordination has role.view → allowed.
+        $token = $this->tokenFor(RoleKey::SpCoordination);
         $this->withToken($token)->getJson('/api/v1/roles')->assertOk();
+
+        // The MDA role no longer holds role.view (FR-UAM-01 — user administration is
+        // System-Administrator-only), and a partner never did.
+        $this->app['auth']->forgetGuards();
+        $this->withToken($this->tokenFor(RoleKey::MdaAdmin))->getJson('/api/v1/roles')->assertStatus(403);
 
         // development_partner lacks role.view → denied.
         $this->app['auth']->forgetGuards();
@@ -160,11 +156,11 @@ class RbacTest extends TestCase
             ->assertJsonStructure(['data' => ['permissions', 'roles' => [['key', 'name', 'permissions']]]]);
     }
 
-    public function test_seven_roles_resolve_to_correct_permission_sets(): void
+    public function test_six_roles_resolve_to_correct_permission_sets(): void
     {
         $this->seed(RolesAndPermissionsSeeder::class);
 
-        $this->assertCount(7, Role::all());
+        $this->assertCount(6, Role::all());
 
         $allKeys = Permission::pluck('key')->sort()->values()->all();
 
@@ -184,7 +180,7 @@ class RbacTest extends TestCase
 
     public function test_gate_resolves_module_action_abilities(): void
     {
-        $officer = $this->userWithRole(RoleKey::MdaOfficer);
+        $officer = $this->userWithRole(RoleKey::MdaAdmin);
 
         $this->assertTrue($officer->can('mda.view'));
         $this->assertTrue($officer->can('user.view'));

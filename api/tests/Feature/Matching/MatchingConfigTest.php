@@ -32,7 +32,7 @@ class MatchingConfigTest extends TestCase
         $this->seed(MatchingConfigSeeder::class);
 
         $this->users['admin'] = $this->user(RoleKey::SystemAdministrator);
-        $this->users['officer'] = $this->user(RoleKey::MdaOfficer);
+        $this->users['officer'] = $this->user(RoleKey::MdaAdmin);
     }
 
     private function user(RoleKey $role): User

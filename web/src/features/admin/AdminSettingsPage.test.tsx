@@ -43,7 +43,7 @@ const SETTINGS: AdminSettings = {
     ],
     mfa_roles: [
       { key: 'system_administrator', name: 'System Administrator', requires_mfa: true },
-      { key: 'mda_officer', name: 'MDA Officer', requires_mfa: false },
+      { key: 'mda_admin', name: 'MDA Admin', requires_mfa: false },
     ],
   },
   registry: {
@@ -67,7 +67,7 @@ const MATRIX: PermissionMatrix = {
     { key: 'export.reveal_pii', module: 'export', action: 'reveal_pii', action_label: 'Reveal PII', description: 'Unmask NIN/BVN', role_grantable: false, sensitive: true },
   ],
   roles: [
-    { id: 'r-officer', key: 'mda_officer', name: 'MDA Officer', editable: true, permissions: ['beneficiary.view'] },
+    { id: 'r-mda', key: 'mda_admin', name: 'MDA Admin', editable: true, permissions: ['beneficiary.view'] },
     { id: 'r-admin', key: 'system_administrator', name: 'System Administrator', editable: false, permissions: ['beneficiary.view', 'beneficiary.export', 'export.reveal_pii'] },
   ],
 }
@@ -197,7 +197,7 @@ describe('Admin console — Settings', () => {
     await user.click(screen.getByRole('button', { name: /save permissions/i }))
 
     await waitFor(() =>
-      expect(updateRolePermissions).toHaveBeenCalledWith('r-officer', ['beneficiary.view', 'beneficiary.export']),
+      expect(updateRolePermissions).toHaveBeenCalledWith('r-mda', ['beneficiary.view', 'beneficiary.export']),
     )
   })
 

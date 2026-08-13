@@ -48,7 +48,7 @@ class GraduationTest extends TestCase
         $this->mdaB = Mda::factory()->create(['name' => 'MDA B']);
 
         $this->users['adminA'] = $this->user($this->mdaA, RoleKey::MdaAdmin);     // view + edit
-        $this->users['officerA'] = $this->user($this->mdaA, RoleKey::MdaOfficer); // view + edit
+        $this->users['officerA'] = $this->user($this->mdaA, RoleKey::MdaAdmin); // view + edit
         $this->users['adminB'] = $this->user($this->mdaB, RoleKey::MdaAdmin);
         $this->users['oversight'] = $this->user($this->mdaA, RoleKey::SpCoordination); // view only, cross-mda
         $this->users['partner'] = $this->user($this->mdaA, RoleKey::DevelopmentPartner); // no graduation perms

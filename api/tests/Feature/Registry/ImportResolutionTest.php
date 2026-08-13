@@ -59,7 +59,7 @@ class ImportResolutionTest extends TestCase
 
         $this->mdaA = Mda::factory()->create(['name' => 'MDA A']);
         $this->mdaB = Mda::factory()->create(['name' => 'MDA B']);
-        $this->users['officer'] = $this->user($this->mdaA, RoleKey::MdaOfficer);   // importer
+        $this->users['officer'] = $this->user($this->mdaA, RoleKey::MdaAdmin);   // importer
         $this->users['ownerAdmin'] = $this->user($this->mdaB, RoleKey::MdaAdmin);  // can accept serve
 
         $this->activity = Activity::factory()->forProgramme(

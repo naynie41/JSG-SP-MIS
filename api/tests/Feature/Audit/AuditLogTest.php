@@ -90,7 +90,7 @@ class AuditLogTest extends TestCase
             'name' => 'Aisha Mohammed',
             'email' => 'leak@example.test',
             'password' => 'Sup3rSecret12345',
-            'role_id' => Role::where('key', RoleKey::MdaOfficer->value)->firstOrFail()->id,
+            'role_id' => Role::where('key', RoleKey::MdaAdmin->value)->firstOrFail()->id,
         ]);
 
         $entry = AuditLog::where('action', 'user.created')->where('entity_id', $user->id)->first();
@@ -128,7 +128,7 @@ class AuditLogTest extends TestCase
         $user = User::factory()->create([
             'email' => 'officer@example.test',
             'password' => 'Sup3rStr0ng!Pass',
-            'role_id' => Role::where('key', RoleKey::MdaOfficer->value)->firstOrFail()->id,
+            'role_id' => Role::where('key', RoleKey::MdaAdmin->value)->firstOrFail()->id,
         ]);
 
         $response = $this->postJson('/api/v1/auth/login', [
@@ -151,7 +151,7 @@ class AuditLogTest extends TestCase
         User::factory()->create([
             'email' => 'officer@example.test',
             'password' => 'Sup3rStr0ng!Pass',
-            'role_id' => Role::where('key', RoleKey::MdaOfficer->value)->firstOrFail()->id,
+            'role_id' => Role::where('key', RoleKey::MdaAdmin->value)->firstOrFail()->id,
         ]);
 
         $this->postJson('/api/v1/auth/login', [
@@ -169,7 +169,7 @@ class AuditLogTest extends TestCase
         User::factory()->create([
             'email' => 'officer@example.test',
             'password' => 'Sup3rStr0ng!Pass',
-            'role_id' => Role::where('key', RoleKey::MdaOfficer->value)->firstOrFail()->id,
+            'role_id' => Role::where('key', RoleKey::MdaAdmin->value)->firstOrFail()->id,
         ]);
 
         // Rotate IPs to isolate account lockout from the per-IP login throttle.
@@ -189,7 +189,7 @@ class AuditLogTest extends TestCase
         $admin = $this->admin();
         $mda = Mda::factory()->create();
         $officer = User::factory()->create([
-            'role_id' => Role::where('key', RoleKey::MdaOfficer->value)->firstOrFail()->id,
+            'role_id' => Role::where('key', RoleKey::MdaAdmin->value)->firstOrFail()->id,
         ]);
 
         $this->withToken($admin->createToken('test')->plainTextToken)

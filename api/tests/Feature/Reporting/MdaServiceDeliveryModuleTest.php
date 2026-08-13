@@ -14,6 +14,7 @@ use App\Domain\Registry\Models\ServiceRequest;
 use Database\Seeders\RolesAndPermissionsSeeder;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Testing\TestResponse;
+use Tests\Feature\Access\MdaRoleMatrixTest;
 use Tests\Feature\Benefit\BenefitLedgerTest;
 use Tests\Feature\Referral\ReferralTest;
 use Tests\Feature\Registry\OwnershipTest;
@@ -27,8 +28,8 @@ use Tests\TestCase;
  * request-to-serve read access in {@see OwnershipTest}. What is asserted here is only
  * what the module newly depends on:
  *
- *  1. The request-to-serve DECISION is an MDA Admin permission — an Officer who can see
- *     the queue cannot action it.
+ *  1. The request-to-serve DECISION belongs to the OWNER MDA. Since the Officer/Admin
+ *     merge (FR-UAM-01) any of its users may take it; another MDA's never can.
  *  2. The Overview's action-required counters reconcile with the module through the real
  *     API route, not just a direct status write.
  *  3. Sent and received referrals are directional and two-party, so the module's two
@@ -56,10 +57,10 @@ class MdaServiceDeliveryModuleTest extends TestCase
         $this->requester = Mda::factory()->create(['name' => 'Ministry of Education']);
         $this->stranger = Mda::factory()->create(['name' => 'Ministry of Works']);
 
-        $this->users['ownerOfficer'] = $this->user($this->owner, RoleKey::MdaOfficer);
+        $this->users['ownerOfficer'] = $this->user($this->owner, RoleKey::MdaAdmin);
         $this->users['ownerAdmin'] = $this->user($this->owner, RoleKey::MdaAdmin);
-        $this->users['requesterOfficer'] = $this->user($this->requester, RoleKey::MdaOfficer);
-        $this->users['strangerOfficer'] = $this->user($this->stranger, RoleKey::MdaOfficer);
+        $this->users['requesterOfficer'] = $this->user($this->requester, RoleKey::MdaAdmin);
+        $this->users['strangerOfficer'] = $this->user($this->stranger, RoleKey::MdaAdmin);
     }
 
     private function user(?Mda $mda, RoleKey $role): User
@@ -94,26 +95,21 @@ class MdaServiceDeliveryModuleTest extends TestCase
 
     /* -------------------------------------------- the approval is Admin-only */
 
-    public function test_an_mda_officer_cannot_approve_a_request_to_serve(): void
+    /**
+     * Since the Officer/Admin merge (FR-UAM-01) the decision is no longer split between
+     * two MDA roles — ANY user of the owner MDA may take it. What still bounds it is
+     * OWNERSHIP, asserted below and in {@see MdaRoleMatrixTest}.
+     */
+    public function test_any_user_of_the_owner_mda_may_decide_a_request_to_serve(): void
     {
-        $request = $this->pendingRequest();
+        $accept = $this->pendingRequest();
+        $this->send('ownerOfficer', 'POST', "/api/v1/service-requests/{$accept->id}/accept")->assertOk();
+        $this->assertSame('accepted', $accept->fresh()->status->value);
 
-        // The Officer holds beneficiary.view (they see the queue and the count) but not
-        // beneficiary.approve, so the decision itself is refused.
-        $this->send('ownerOfficer', 'POST', "/api/v1/service-requests/{$request->id}/accept")
-            ->assertStatus(403);
-
-        $this->assertSame('pending', $request->fresh()->status->value, 'a refused decision must not change the request');
-    }
-
-    public function test_an_mda_officer_cannot_decline_a_request_to_serve_either(): void
-    {
-        $request = $this->pendingRequest();
-
-        $this->send('ownerOfficer', 'POST', "/api/v1/service-requests/{$request->id}/decline", ['reason' => 'No'])
-            ->assertStatus(403);
-
-        $this->assertSame('pending', $request->fresh()->status->value);
+        $decline = $this->pendingRequest();
+        $this->send('ownerAdmin', 'POST', "/api/v1/service-requests/{$decline->id}/decline", ['reason' => 'Already served'])
+            ->assertOk();
+        $this->assertSame('declined', $decline->fresh()->status->value);
     }
 
     public function test_the_owner_mda_admin_can_approve_and_ownership_does_not_move(): void

@@ -65,10 +65,10 @@ vi.mock('@/features/notifications/api', () => ({
   },
 }))
 
-const auth = { roleKey: 'mda_officer', perms: [] as string[], mda: 'Ministry of Health' }
+const auth = { roleKey: 'mda_admin', perms: [] as string[], mda: 'Ministry of Health' }
 vi.mock('@/lib/auth/AuthProvider', () => ({
   useAuth: () => ({
-    user: { name: 'Amina', role: { key: auth.roleKey, name: 'MDA Officer' }, mda: { id: 'm1', name: auth.mda } },
+    user: { name: 'Amina', role: { key: auth.roleKey, name: 'MDA Admin' }, mda: { id: 'm1', name: auth.mda } },
     hasPermission: (p: string) => auth.perms.includes(p),
   }),
 }))
@@ -77,9 +77,10 @@ const actionRequired = mdaApi.actionRequired as Mock
 const getDashboard = dashboardApi.get as Mock
 const listNotifications = notificationApi.list as Mock
 
-/** The permissions an MDA Officer actually holds (RolesAndPermissionsSeeder). */
-const OFFICER = [
+/** The permissions the single MDA role actually holds (RolesAndPermissionsSeeder). */
+const MDA = [
   'mda.view', 'user.view', 'beneficiary.view', 'beneficiary.create', 'beneficiary.edit',
+  'beneficiary.approve', 'beneficiary.export', 'beneficiary.access_request',
   'beneficiary-lookup.view', 'household.view', 'household.create', 'household.edit',
   'programme.view', 'activity.view', 'activity.create', 'activity.edit',
   'enrollment.view', 'enrollment.create', 'enrollment.edit',
@@ -88,8 +89,6 @@ const OFFICER = [
   'grievance.view', 'grievance.create', 'grievance.edit',
   'graduation.view', 'graduation.edit', 'dashboard.view', 'reporting.view', 'reporting.export',
 ]
-/** Admin = Officer + six. */
-const ADMIN = [...OFFICER, 'user.create', 'user.edit', 'role.view', 'beneficiary.approve', 'beneficiary.export', 'beneficiary.access_request']
 
 const METRICS = {
   registry: { beneficiaries: { total: 1840, by_status: {}, by_source: {}, by_lga: {} }, households: null },
@@ -137,8 +136,8 @@ function renderAt(path = '/mda') {
 describe('MDA console — shell + Overview', () => {
   beforeEach(() => {
     vi.clearAllMocks()
-    auth.roleKey = 'mda_officer'
-    auth.perms = OFFICER
+    auth.roleKey = 'mda_admin'
+    auth.perms = MDA
     getDashboard.mockResolvedValue({ metrics: METRICS, scope: { kind: 'mda', label: 'Ministry of Health' }, tier: 'operational', live: false, filters: {}, filter_options: {} })
     actionRequired.mockResolvedValue({ pending_referrals: 3, pending_service_requests: 2, mda_id: 'm1' })
     listNotifications.mockResolvedValue({ items: [], pagination: { page: 1, per_page: 20, total: 0, total_pages: 1 } })
@@ -146,37 +145,38 @@ describe('MDA console — shell + Overview', () => {
 
   /* --------------------------------------------------------------- access */
 
-  it('is available to both MDA roles and closed to everyone else', async () => {
-    renderAt()
+  it('is available to the MDA role and closed to everyone else', async () => {
+    const mda = renderAt()
     expect(await screen.findByRole('heading', { name: 'Overview' })).toBeInTheDocument()
+    // Unmounted between roles: leaving a previous render mounted would let one role's
+    // refusal notice satisfy the next role's assertion, and the test would pass vacuously.
+    mda.unmount()
 
-    auth.roleKey = 'mda_admin'
-    renderAt()
-    expect(await screen.findAllByRole('heading', { name: 'Overview' })).not.toHaveLength(0)
+    // `mda_officer` is included deliberately — it is not a role any more, so it must get
+    // the same refusal as any outsider rather than the workspace it used to open.
+    for (const outsider of ['executive', 'mda_officer']) {
+      auth.roleKey = outsider
+      const view = renderAt()
 
-    auth.roleKey = 'executive'
-    renderAt()
-    expect(await screen.findByText(/available to MDA Officers and MDA Administrators/i)).toBeInTheDocument()
+      expect(await screen.findByText(/available to MDA Administrators/i)).toBeInTheDocument()
+      expect(screen.queryByRole('heading', { name: 'Overview' })).not.toBeInTheDocument()
+      view.unmount()
+    }
   })
 
   /* ------------------------------------------------------------------ nav */
 
-  it('gives Officer and Admin the SAME six-module rail', () => {
-    const officer = navSectionsFor('mda_officer', (p) => OFFICER.includes(p))
-    const admin = navSectionsFor('mda_admin', (p) => ADMIN.includes(p))
+  it('gives the MDA role the six-module rail', () => {
+    const labels = navSectionsFor('mda_admin', (p) => MDA.includes(p)).flatMap((s) => s.items.map((i) => i.label))
 
-    const labels = (s: ReturnType<typeof navSectionsFor>) => s.flatMap((x) => x.items.map((i) => i.label))
-    const expected = ['Overview', 'Programmes', 'Beneficiaries', 'Service Delivery', 'Duplicate Resolution', 'Reports']
-
-    expect(labels(officer)).toEqual(expected)
-    expect(labels(admin)).toEqual(expected)
+    expect(labels).toEqual(['Overview', 'Programmes', 'Beneficiaries', 'Service Delivery', 'Duplicate Resolution', 'Reports'])
     // Settings is reached from the gear, never the rail.
-    expect(labels(officer)).not.toContain('Settings')
+    expect(labels).not.toContain('Settings')
   })
 
   it('drops a module the user cannot reach, without branching by role', () => {
     // Strip reporting.view — the Reports module must disappear for that user only.
-    const limited = navSectionsFor('mda_officer', (p) => OFFICER.filter((x) => x !== 'reporting.view').includes(p))
+    const limited = navSectionsFor('mda_admin', (p) => MDA.filter((x) => x !== 'reporting.view').includes(p))
     const labels = limited.flatMap((s) => s.items.map((i) => i.label))
 
     expect(labels).not.toContain('Reports')
@@ -188,8 +188,8 @@ describe('MDA console — shell + Overview', () => {
     expect(exec.flatMap((s) => s.items.map((i) => i.label))).not.toContain('Duplicate Resolution')
 
     // ...and the generic operator rail is no longer served to MDA roles.
-    const officer = navSectionsFor('mda_officer', (p) => OFFICER.includes(p))
-    expect(officer.flatMap((s) => s.items.map((i) => i.to))).not.toContain('/registry')
+    const mda = navSectionsFor('mda_admin', (p) => MDA.includes(p))
+    expect(mda.flatMap((s) => s.items.map((i) => i.to))).not.toContain('/registry')
   })
 
   /* ------------------------------------------------------------------ KPIs */
@@ -272,7 +272,7 @@ describe('MDA console — shell + Overview', () => {
   })
 
   it('filters quick actions by permission', async () => {
-    auth.perms = OFFICER.filter((p) => p !== 'benefit.create' && p !== 'activity.create')
+    auth.perms = MDA.filter((p) => p !== 'benefit.create' && p !== 'activity.create')
     renderAt()
     await screen.findByRole('heading', { name: 'Action required' })
 
@@ -308,7 +308,7 @@ describe('MDA console — shell + Overview', () => {
   /* ------------------------------------------------------------- permission */
 
   it('refuses the Overview without dashboard.view', async () => {
-    auth.perms = OFFICER.filter((p) => p !== 'dashboard.view')
+    auth.perms = MDA.filter((p) => p !== 'dashboard.view')
     renderAt()
 
     expect(await screen.findByText(/do not have permission to view the MDA dashboard/i)).toBeInTheDocument()

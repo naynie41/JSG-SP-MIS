@@ -55,8 +55,8 @@ class OwnershipTest extends TestCase
 
         // All users are created up front (before any request) so an Auditable
         // model is never created between sub-requests with a stale Auth::user.
-        $this->users['owner_officer'] = $this->user($this->mdaA, RoleKey::MdaOfficer);
-        $this->users['nonowner_officer'] = $this->user($this->mdaB, RoleKey::MdaOfficer);
+        $this->users['owner_officer'] = $this->user($this->mdaA, RoleKey::MdaAdmin);
+        $this->users['nonowner_officer'] = $this->user($this->mdaB, RoleKey::MdaAdmin);
         $this->users['owner_admin'] = $this->user($this->mdaA, RoleKey::MdaAdmin);
         $this->users['nonowner_admin'] = $this->user($this->mdaB, RoleKey::MdaAdmin);
     }

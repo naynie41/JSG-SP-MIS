@@ -49,8 +49,8 @@ class ReferralAuthorizationTest extends TestCase
         $this->fromMda = Mda::factory()->create(['name' => 'From MDA']);
         $this->toMda = Mda::factory()->create(['name' => 'To MDA']);
 
-        $this->users['from'] = $this->user($this->fromMda, RoleKey::MdaOfficer);
-        $this->users['to'] = $this->user($this->toMda, RoleKey::MdaOfficer);
+        $this->users['from'] = $this->user($this->fromMda, RoleKey::MdaAdmin);
+        $this->users['to'] = $this->user($this->toMda, RoleKey::MdaAdmin);
 
         $this->beneficiary = Beneficiary::factory()->create(['owner_mda_id' => $this->fromMda->id]);
         $this->toProgramme = Programme::factory()->individual()->create(['eligibility' => null]);

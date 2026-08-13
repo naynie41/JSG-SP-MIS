@@ -47,7 +47,7 @@ class HybridSourceImportTest extends TestCase
         $this->mda = Mda::factory()->create(['name' => 'MDA A']);
         $this->officer = User::factory()->create([
             'mda_id' => $this->mda->id,
-            'role_id' => Role::where('key', RoleKey::MdaOfficer->value)->firstOrFail()->id,
+            'role_id' => Role::where('key', RoleKey::MdaAdmin->value)->firstOrFail()->id,
         ]);
         $this->activity = Activity::factory()->forProgramme(
             Programme::factory()->individual()->create(),

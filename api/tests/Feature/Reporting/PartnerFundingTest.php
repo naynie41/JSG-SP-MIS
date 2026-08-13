@@ -61,7 +61,7 @@ class PartnerFundingTest extends TestCase
 
         $this->users['partnerA'] = $this->user(null, RoleKey::DevelopmentPartner);
         $this->users['partnerB'] = $this->user(null, RoleKey::DevelopmentPartner);
-        $this->users['officerA'] = $this->user($this->mdaA, RoleKey::MdaOfficer);
+        $this->users['officerA'] = $this->user($this->mdaA, RoleKey::MdaAdmin);
 
         $this->shared = Programme::factory()->individual()->create(['status' => 'active']);
         $this->progA = Programme::factory()->individual()->create(['status' => 'active']);

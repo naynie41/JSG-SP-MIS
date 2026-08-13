@@ -3,6 +3,19 @@ export type BeneficiaryStatus = 'active' | 'suspended' | 'flagged'
 export type HouseholdRole = 'head' | 'spouse' | 'child' | 'dependent' | 'other'
 export type ImportStatus = 'pending' | 'processing' | 'preview_ready' | 'committing' | 'completed' | 'failed'
 
+/** Mirrors the server's `ConsentStatus` — no status is ever inferred from absence. */
+export type ConsentStatus = 'unknown' | 'granted' | 'withdrawn'
+
+/** A consent decision the owner MDA records against a registered purpose. */
+export interface ConsentInput {
+  status: Extract<ConsentStatus, 'granted' | 'withdrawn'>
+  /** A key from `privacy.consent.purposes`; omitted means cross-MDA sharing. */
+  purpose?: string
+  /** The lawful basis / how consent was obtained — recorded in the audit trail. */
+  basis?: string
+  note?: string
+}
+
 export interface Beneficiary {
   id: string
   owner_mda_id: string
@@ -22,6 +35,12 @@ export interface Beneficiary {
   ward: string | null
   registration_source: string
   registration_date: string
+  /**
+   * Cross-MDA data-sharing consent (NFR-PRV-01, FR-DSH-01). Nothing is ever assumed:
+   * `unknown` means no decision has been recorded, and is NOT consent.
+   */
+  sharing_consent: ConsentStatus
+  sharing_consent_at: string | null
   import_batch_id: string | null
   original_record_id: string | null
   status: BeneficiaryStatus

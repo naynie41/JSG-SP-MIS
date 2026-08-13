@@ -43,8 +43,17 @@ class RolesAndPermissionsSeeder extends Seeder
             'programme.view', 'activity.view', 'enrollment.view', 'benefit.view', 'referral.view', 'grievance.view',
             'graduation.view', 'dashboard.view', 'reporting.view', 'reporting.export',
         ],
+        // The single MDA role (FR-UAM-01). It absorbed MDA Officer, whose permission set
+        // it already contained; the request-to-serve decision (`beneficiary.approve`)
+        // and beneficiary export therefore now sit with every MDA user.
+        //
+        // User management is deliberately ABSENT: no `user.create`, `user.edit` or
+        // `role.view`. Creating and managing accounts is System-Administrator-only, so
+        // an MDA cannot enrol its own staff or change their roles. `user.view` remains —
+        // an MDA still needs to see who is in it (the console's Overview names them,
+        // and referrals/approvals attribute to people).
         RoleKey::MdaAdmin->value => [
-            'mda.view', 'user.view', 'user.create', 'user.edit', 'role.view',
+            'mda.view', 'user.view',
             // MDA Admin may export beneficiary data — scoped to their own MDA
             // (no cross-mda.view). SECURITY.md — Export of beneficiary data.
             'beneficiary.view', 'beneficiary.create', 'beneficiary.edit', 'beneficiary.approve', 'beneficiary.export',
@@ -53,18 +62,6 @@ class RolesAndPermissionsSeeder extends Seeder
             'beneficiary-lookup.view', 'household.view', 'household.create', 'household.edit',
             // Programmes are a global catalog (§10) — MDAs read but never create/edit them;
             // they run programmes through their own MDA-owned activities.
-            'programme.view',
-            'activity.view', 'activity.create', 'activity.edit',
-            'enrollment.view', 'enrollment.create', 'enrollment.edit',
-            'benefit.view', 'benefit.create', 'benefit.approve',
-            'referral.view', 'referral.create', 'referral.edit',
-            'grievance.view', 'grievance.create', 'grievance.edit',
-            'graduation.view', 'graduation.edit', 'dashboard.view', 'reporting.view', 'reporting.export',
-        ],
-        RoleKey::MdaOfficer->value => [
-            'mda.view', 'user.view',
-            'beneficiary.view', 'beneficiary.create', 'beneficiary.edit',
-            'beneficiary-lookup.view', 'household.view', 'household.create', 'household.edit',
             'programme.view',
             'activity.view', 'activity.create', 'activity.edit',
             'enrollment.view', 'enrollment.create', 'enrollment.edit',

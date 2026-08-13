@@ -44,8 +44,8 @@ class ReferralSlaTest extends TestCase
         $this->fromMda = Mda::factory()->create(['name' => 'From MDA']);
         $this->toMda = Mda::factory()->create(['name' => 'To MDA']);
 
-        $this->users['fromOfficer'] = $this->user($this->fromMda, RoleKey::MdaOfficer);
-        $this->users['toOfficer'] = $this->user($this->toMda, RoleKey::MdaOfficer);
+        $this->users['fromOfficer'] = $this->user($this->fromMda, RoleKey::MdaAdmin);
+        $this->users['toOfficer'] = $this->user($this->toMda, RoleKey::MdaAdmin);
         $this->users['toAdmin'] = $this->user($this->toMda, RoleKey::MdaAdmin); // escalation tier (mda_admin)
         $this->users['spCoord'] = $this->user($this->fromMda, RoleKey::SpCoordination); // referral-sla.edit
 

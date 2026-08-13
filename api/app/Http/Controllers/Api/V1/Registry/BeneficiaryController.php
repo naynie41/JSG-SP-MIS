@@ -156,12 +156,27 @@ class BeneficiaryController extends Controller
 
         abort_if($model === null, 404);
 
-        if (! $sharing->canRead($request->user(), $model)) {
+        $basis = $sharing->basisFor($request->user(), $model);
+
+        if ($basis === SharingBasis::None) {
             $audit->record('beneficiary.access_denied', $model, after: [
                 'requested_by_mda' => $request->user()->mda_id,
-                'basis' => $sharing->basisFor($request->user(), $model)->value,
+                'basis' => $basis->value,
             ]);
             abort(404);
+        }
+
+        // FR-DSH-01 / FR-AUD-01: a read that CROSSES an MDA boundary is a sharing event
+        // and is logged with the basis that permitted it, so the data-sharing trail
+        // answers "who saw what, and under what authority". An owner reading their own
+        // record is not a sharing event — logging it would bury the ones that are.
+        if ($basis->isCrossMda()) {
+            $audit->record('beneficiary.cross_mda_read', $model, after: [
+                'basis' => $basis->value,
+                'scope' => $basis->scope(),
+                'requested_by_mda' => $request->user()->mda_id,
+                'owner_mda_id' => $model->owner_mda_id,
+            ]);
         }
 
         return ApiResponse::success(

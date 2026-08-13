@@ -36,7 +36,7 @@ class MdaScopingTest extends TestCase
         $this->mdaA = Mda::factory()->create(['name' => 'MDA A']);
         $this->mdaB = Mda::factory()->create(['name' => 'MDA B']);
 
-        $officer = Role::where('key', RoleKey::MdaOfficer->value)->firstOrFail()->id;
+        $officer = Role::where('key', RoleKey::MdaAdmin->value)->firstOrFail()->id;
         $this->userA = User::factory()->create(['email' => 'a@example.test', 'mda_id' => $this->mdaA->id, 'role_id' => $officer]);
         $this->userB = User::factory()->create(['email' => 'b@example.test', 'mda_id' => $this->mdaB->id, 'role_id' => $officer]);
     }

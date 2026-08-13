@@ -4,6 +4,7 @@ import type {
   Beneficiary,
   BeneficiaryDocument,
   BeneficiaryInput,
+  ConsentInput,
   Household,
   HouseholdInput,
   HouseholdMembership,
@@ -74,6 +75,15 @@ export const beneficiaryApi = {
   },
   remove(id: string): Promise<{ message: string }> {
     return apiRequest<{ message: string }>({ method: 'DELETE', url: `/beneficiaries/${id}` })
+  },
+  /**
+   * Record or withdraw the beneficiary's consent for a purpose (NFR-PRV-01).
+   * Owner MDA only — the server enforces it. The change appends to an immutable
+   * consent history and is audited; withdrawing immediately closes any cross-MDA
+   * grant that depended on it.
+   */
+  recordConsent(id: string, input: ConsentInput): Promise<Beneficiary> {
+    return apiRequest<Beneficiary>({ method: 'PUT', url: `/beneficiaries/${id}/consent`, data: input })
   },
   async lookup(params: { nin?: string; bvn?: string; phone?: string }): Promise<RevealMatch[]> {
     const { matches } = await apiRequest<{ matches: RevealMatch[] }>({

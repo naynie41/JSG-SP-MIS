@@ -2,7 +2,7 @@
 
 // odsl-C:\Users\ACER\Desktop\JSG-SP-MIS\JSG-SP-MIS\api\app\Domain\Sharing\DataSharingGuard.php-PHPStan\BetterReflection\Reflection\ReflectionClass-App\Domain\Sharing\DataSharingGuard
 return \PHPStan\Cache\CacheItem::__set_state(array(
-   'variableKey' => 'v2-6.70.0.1-8.3.31-c134ae1d81454a5ed0f24cc3af99b2cdf201dd01701f11c4ffe76e86ed03b04f',
+   'variableKey' => 'v2-6.70.0.1-8.3.31-436d70a9d4f7683b8bd2d613735accb459133a4ea66bb64892575bd68be1833d',
    'data' => 
   array (
     'locatedSource' => 
@@ -33,12 +33,18 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
  * lookup seam (name/id only, no full PII) sit outside this and are unchanged; anything
  * else is denied. The scattered `hasActiveGrant` checks (BeneficiaryPolicy,
  * BeneficiaryController::show, ServiceRequestAuthorizer) all delegate here.
+ *
+ * Four bases, two of them grants with deliberately different WIDTH: a Service-Request
+ * grant opens ONE beneficiary the owner approved; an administrative grant (FR-UAM-03)
+ * opens an MDA. The administrative one is also what `MdaScope` widens list queries
+ * with, so it must be recognised here too — otherwise the layers disagree and a record
+ * the list showed 404s when opened.
  */',
     'attributes' => 
     array (
     ),
-    'startLine' => 23,
-    'endLine' => 82,
+    'startLine' => 29,
+    'endLine' => 118,
     'startColumn' => 1,
     'endColumn' => 1,
     'parentClassName' => NULL,
@@ -80,8 +86,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             'attributes' => 
             array (
             ),
-            'startLine' => 26,
-            'endLine' => 26,
+            'startLine' => 32,
+            'endLine' => 32,
             'startColumn' => 29,
             'endColumn' => 38,
             'parameterIndex' => 0,
@@ -106,8 +112,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             'attributes' => 
             array (
             ),
-            'startLine' => 26,
-            'endLine' => 26,
+            'startLine' => 32,
+            'endLine' => 32,
             'startColumn' => 41,
             'endColumn' => 64,
             'parameterIndex' => 1,
@@ -128,8 +134,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         array (
         ),
         'docComment' => '/** May this user READ the full beneficiary record (cross-MDA aware)? */',
-        'startLine' => 26,
-        'endLine' => 29,
+        'startLine' => 32,
+        'endLine' => 35,
         'startColumn' => 5,
         'endColumn' => 5,
         'couldThrow' => false,
@@ -167,8 +173,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             'attributes' => 
             array (
             ),
-            'startLine' => 36,
-            'endLine' => 36,
+            'startLine' => 42,
+            'endLine' => 42,
             'startColumn' => 30,
             'endColumn' => 39,
             'parameterIndex' => 0,
@@ -193,8 +199,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             'attributes' => 
             array (
             ),
-            'startLine' => 36,
-            'endLine' => 36,
+            'startLine' => 42,
+            'endLine' => 42,
             'startColumn' => 42,
             'endColumn' => 65,
             'parameterIndex' => 1,
@@ -219,8 +225,197 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
  * Owner and oversight reads are role/ownership-based; the grant read is
  * consent-gated.
  */',
-        'startLine' => 36,
-        'endLine' => 52,
+        'startLine' => 42,
+        'endLine' => 61,
+        'startColumn' => 5,
+        'endColumn' => 5,
+        'couldThrow' => false,
+        'isClosure' => false,
+        'isGenerator' => false,
+        'isVariadic' => false,
+        'modifiers' => 1,
+        'namespace' => 'App\\Domain\\Sharing',
+        'declaringClassName' => 'App\\Domain\\Sharing\\DataSharingGuard',
+        'implementingClassName' => 'App\\Domain\\Sharing\\DataSharingGuard',
+        'currentClassName' => 'App\\Domain\\Sharing\\DataSharingGuard',
+        'aliasName' => NULL,
+      ),
+      'hasAdminGrant' => 
+      array (
+        'name' => 'hasAdminGrant',
+        'parameters' => 
+        array (
+          'user' => 
+          array (
+            'name' => 'user',
+            'default' => NULL,
+            'type' => 
+            array (
+              'class' => 'PHPStan\\BetterReflection\\Reflection\\ReflectionNamedType',
+              'data' => 
+              array (
+                'name' => 'App\\Domain\\Access\\Models\\User',
+                'isIdentifier' => false,
+              ),
+            ),
+            'isVariadic' => false,
+            'byRef' => false,
+            'isPromoted' => false,
+            'attributes' => 
+            array (
+            ),
+            'startLine' => 70,
+            'endLine' => 70,
+            'startColumn' => 36,
+            'endColumn' => 45,
+            'parameterIndex' => 0,
+            'isOptional' => false,
+          ),
+          'beneficiary' => 
+          array (
+            'name' => 'beneficiary',
+            'default' => NULL,
+            'type' => 
+            array (
+              'class' => 'PHPStan\\BetterReflection\\Reflection\\ReflectionNamedType',
+              'data' => 
+              array (
+                'name' => 'App\\Domain\\Registry\\Models\\Beneficiary',
+                'isIdentifier' => false,
+              ),
+            ),
+            'isVariadic' => false,
+            'byRef' => false,
+            'isPromoted' => false,
+            'attributes' => 
+            array (
+            ),
+            'startLine' => 70,
+            'endLine' => 70,
+            'startColumn' => 48,
+            'endColumn' => 71,
+            'parameterIndex' => 1,
+            'isOptional' => false,
+          ),
+        ),
+        'returnsReference' => false,
+        'returnType' => 
+        array (
+          'class' => 'PHPStan\\BetterReflection\\Reflection\\ReflectionNamedType',
+          'data' => 
+          array (
+            'name' => 'bool',
+            'isIdentifier' => true,
+          ),
+        ),
+        'attributes' => 
+        array (
+        ),
+        'docComment' => '/**
+ * An administrative whole-MDA grant covering the beneficiary\'s OWNER MDA
+ * (FR-UAM-03) — the same set `MdaScope` widens list queries with, so the two
+ * enforcement layers agree. Without this the guard denied a record the list had
+ * already shown: a 404 on a row the user could see, and summary PII released under
+ * no basis the guard could name.
+ */',
+        'startLine' => 70,
+        'endLine' => 77,
+        'startColumn' => 5,
+        'endColumn' => 5,
+        'couldThrow' => false,
+        'isClosure' => false,
+        'isGenerator' => false,
+        'isVariadic' => false,
+        'modifiers' => 4,
+        'namespace' => 'App\\Domain\\Sharing',
+        'declaringClassName' => 'App\\Domain\\Sharing\\DataSharingGuard',
+        'implementingClassName' => 'App\\Domain\\Sharing\\DataSharingGuard',
+        'currentClassName' => 'App\\Domain\\Sharing\\DataSharingGuard',
+        'aliasName' => NULL,
+      ),
+      'adminGrantConsentSatisfied' => 
+      array (
+        'name' => 'adminGrantConsentSatisfied',
+        'parameters' => 
+        array (
+          'beneficiary' => 
+          array (
+            'name' => 'beneficiary',
+            'default' => NULL,
+            'type' => 
+            array (
+              'class' => 'PHPStan\\BetterReflection\\Reflection\\ReflectionNamedType',
+              'data' => 
+              array (
+                'name' => 'App\\Domain\\Registry\\Models\\Beneficiary',
+                'isIdentifier' => false,
+              ),
+            ),
+            'isVariadic' => false,
+            'byRef' => false,
+            'isPromoted' => false,
+            'attributes' => 
+            array (
+            ),
+            'startLine' => 80,
+            'endLine' => 80,
+            'startColumn' => 48,
+            'endColumn' => 71,
+            'parameterIndex' => 0,
+            'isOptional' => false,
+          ),
+        ),
+        'returnsReference' => false,
+        'returnType' => 
+        array (
+          'class' => 'PHPStan\\BetterReflection\\Reflection\\ReflectionNamedType',
+          'data' => 
+          array (
+            'name' => 'bool',
+            'isIdentifier' => true,
+          ),
+        ),
+        'attributes' => 
+        array (
+        ),
+        'docComment' => '/** An administrative grant carries its own consent switch (DPO decision — config). */',
+        'startLine' => 80,
+        'endLine' => 83,
+        'startColumn' => 5,
+        'endColumn' => 5,
+        'couldThrow' => false,
+        'isClosure' => false,
+        'isGenerator' => false,
+        'isVariadic' => false,
+        'modifiers' => 1,
+        'namespace' => 'App\\Domain\\Sharing',
+        'declaringClassName' => 'App\\Domain\\Sharing\\DataSharingGuard',
+        'implementingClassName' => 'App\\Domain\\Sharing\\DataSharingGuard',
+        'currentClassName' => 'App\\Domain\\Sharing\\DataSharingGuard',
+        'aliasName' => NULL,
+      ),
+      'adminGrantConsentRequired' => 
+      array (
+        'name' => 'adminGrantConsentRequired',
+        'parameters' => 
+        array (
+        ),
+        'returnsReference' => false,
+        'returnType' => 
+        array (
+          'class' => 'PHPStan\\BetterReflection\\Reflection\\ReflectionNamedType',
+          'data' => 
+          array (
+            'name' => 'bool',
+            'isIdentifier' => true,
+          ),
+        ),
+        'attributes' => 
+        array (
+        ),
+        'docComment' => NULL,
+        'startLine' => 85,
+        'endLine' => 88,
         'startColumn' => 5,
         'endColumn' => 5,
         'couldThrow' => false,
@@ -258,8 +453,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             'attributes' => 
             array (
             ),
-            'startLine' => 59,
-            'endLine' => 59,
+            'startLine' => 95,
+            'endLine' => 95,
             'startColumn' => 41,
             'endColumn' => 53,
             'parameterIndex' => 0,
@@ -284,8 +479,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             'attributes' => 
             array (
             ),
-            'startLine' => 59,
-            'endLine' => 59,
+            'startLine' => 95,
+            'endLine' => 95,
             'startColumn' => 56,
             'endColumn' => 79,
             'parameterIndex' => 1,
@@ -310,8 +505,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
  * accepted Service Request grant (FR-BEN-06)? Consent-gated. (Ownership is handled
  * by the delivery authorizer separately — the owner never needs a grant.)
  */',
-        'startLine' => 59,
-        'endLine' => 62,
+        'startLine' => 95,
+        'endLine' => 98,
         'startColumn' => 5,
         'endColumn' => 5,
         'couldThrow' => false,
@@ -349,8 +544,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             'attributes' => 
             array (
             ),
-            'startLine' => 65,
-            'endLine' => 65,
+            'startLine' => 101,
+            'endLine' => 101,
             'startColumn' => 42,
             'endColumn' => 65,
             'parameterIndex' => 0,
@@ -375,8 +570,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             'attributes' => 
             array (
             ),
-            'startLine' => 65,
-            'endLine' => 65,
+            'startLine' => 101,
+            'endLine' => 101,
             'startColumn' => 68,
             'endColumn' => 80,
             'parameterIndex' => 1,
@@ -397,8 +592,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         array (
         ),
         'docComment' => '/** Whether a grant is both present AND currently effective under the consent rule. */',
-        'startLine' => 65,
-        'endLine' => 69,
+        'startLine' => 101,
+        'endLine' => 105,
         'startColumn' => 5,
         'endColumn' => 5,
         'couldThrow' => false,
@@ -436,8 +631,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             'attributes' => 
             array (
             ),
-            'startLine' => 72,
-            'endLine' => 72,
+            'startLine' => 108,
+            'endLine' => 108,
             'startColumn' => 38,
             'endColumn' => 61,
             'parameterIndex' => 0,
@@ -458,8 +653,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         array (
         ),
         'docComment' => '/** A cross-MDA grant is effective only while consent is satisfied (where required). */',
-        'startLine' => 72,
-        'endLine' => 75,
+        'startLine' => 108,
+        'endLine' => 111,
         'startColumn' => 5,
         'endColumn' => 5,
         'couldThrow' => false,
@@ -493,8 +688,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         array (
         ),
         'docComment' => '/** Whether the cross-MDA consent gate is switched on (NDPA/DPO policy — config). */',
-        'startLine' => 78,
-        'endLine' => 81,
+        'startLine' => 114,
+        'endLine' => 117,
         'startColumn' => 5,
         'endColumn' => 5,
         'couldThrow' => false,

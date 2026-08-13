@@ -148,7 +148,7 @@ describe('ExecutiveLayout (briefing suite shell + routed pages)', () => {
   })
 
   it('blocks non-executive roles and never fetches', () => {
-    authState.roleKey = 'mda_officer'
+    authState.roleKey = 'mda_admin'
     renderAt('/executive')
 
     expect(screen.getByText(/available to Executive users only/i)).toBeInTheDocument()

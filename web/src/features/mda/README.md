@@ -16,9 +16,14 @@ decides scope. A filter can narrow within that scope, never widen it.
 ## Access
 
 Gated by **permission**, not by role — one rail, each item conditional. `MdaLayout`
-additionally checks the role is `mda_officer` or `mda_admin`, which is a UX guard only:
-every endpoint behind these pages carries its own `permission:` middleware and the
-`MdaScope` global scope (SECURITY.md §3 — the server is the security boundary).
+additionally checks the role is `mda_admin` (the single MDA role since FR-UAM-01, which
+absorbed MDA Officer), which is a UX guard only: every endpoint behind these pages
+carries its own `permission:` middleware and the `MdaScope` global scope
+(SECURITY.md §3 — the server is the security boundary).
+
+User administration is **not** part of this console — creating, editing or suspending
+accounts is centralised with the System Administrator. The MDA role keeps `user.view`
+so it can see who belongs to it, and nothing more.
 
 ## Modules → source phases
 

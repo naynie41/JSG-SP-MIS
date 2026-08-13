@@ -33,8 +33,7 @@ class SampleMdaUserSeeder extends Seeder
 
         $password = (string) env('SEED_SAMPLE_PASSWORD', 'ChangeMe!Sample12345');
         $adminRole = Role::where('key', RoleKey::MdaAdmin->value)->first();
-        $officerRole = Role::where('key', RoleKey::MdaOfficer->value)->first();
-        if ($adminRole === null || $officerRole === null) {
+        if ($adminRole === null) {
             return;
         }
 
@@ -44,8 +43,16 @@ class SampleMdaUserSeeder extends Seeder
                 continue;
             }
 
+            // TWO MDA Admins per MDA, not an admin and an officer: the Officer role was
+            // merged into Admin (FR-UAM-01). Coordination flows need two distinct actors
+            // inside one MDA — a requester and a decider — which one account cannot
+            // provide.
+            //
+            // The `*.officer@` address is KEPT deliberately. ReferralSampleSeeder,
+            // GrievanceSampleSeeder and NotificationSampleSeeder resolve this user by
+            // that literal email; renaming it would make them silently seed nothing.
             $this->user("{$entry['slug']}.admin@spmis.local", ucfirst($entry['slug']).' MDA Admin', $mda, $adminRole, $password);
-            $this->user("{$entry['slug']}.officer@spmis.local", ucfirst($entry['slug']).' MDA Officer', $mda, $officerRole, $password);
+            $this->user("{$entry['slug']}.officer@spmis.local", ucfirst($entry['slug']).' MDA Admin (2)', $mda, $adminRole, $password);
         }
     }
 

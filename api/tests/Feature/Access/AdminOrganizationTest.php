@@ -41,13 +41,14 @@ class AdminOrganizationTest extends TestCase
         $this->women = Mda::factory()->create(['name' => 'Women Affairs', 'status' => 'inactive']);
 
         $this->users['admin'] = $this->user(null, RoleKey::SystemAdministrator);
-        $this->users['officer'] = $this->user($this->health, RoleKey::MdaOfficer);
+        $this->users['officer'] = $this->user($this->health, RoleKey::MdaAdmin);
         $this->users['coordination'] = $this->user(null, RoleKey::SpCoordination);
 
-        // Health: 1 officer + 2 MDA admins = 3 users; Women: 1 officer.
+        // All MDA users are MDA Admins since the Officer merge (FR-UAM-01):
+        // Health has 3, Women has 1.
         $this->user($this->health, RoleKey::MdaAdmin);
         $this->user($this->health, RoleKey::MdaAdmin);
-        $this->user($this->women, RoleKey::MdaOfficer);
+        $this->user($this->women, RoleKey::MdaAdmin);
 
         // Activities: Health owns 2 (1 active, 1 archived); Women owns 1 active.
         $programme = Programme::factory()->individual()->create(['status' => 'active']);
@@ -130,15 +131,15 @@ class AdminOrganizationTest extends TestCase
 
         $health = $byName['Ministry of Health'];
         $this->assertSame('active', $health['status']);
-        $this->assertSame(3, $health['users_total']);        // officer + 2 MDA admins
-        $this->assertSame(2, $health['mda_admins']);
+        $this->assertSame(3, $health['users_total']);        // three MDA Admins
+        $this->assertSame(3, $health['mda_admins']); // all three MDA users are MDA Admins now (FR-UAM-01)
         $this->assertSame(2, $health['activities_total']);   // active + archived
         $this->assertSame(1, $health['activities_active']);
 
         $women = $byName['Women Affairs'];
         $this->assertSame('inactive', $women['status']);
         $this->assertSame(1, $women['users_total']);
-        $this->assertSame(0, $women['mda_admins']);
+        $this->assertSame(1, $women['mda_admins']);
         $this->assertSame(1, $women['activities_total']);
 
         // Totals reconcile: allocated + unallocated == every user on the platform.

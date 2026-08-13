@@ -46,7 +46,7 @@ class SecurityHardeningTest extends TestCase
         $this->mdaB = Mda::factory()->create(['name' => 'MDA B']);
 
         $this->users['adminA'] = $this->user($this->mdaA, RoleKey::MdaAdmin);
-        $this->users['officerB'] = $this->user($this->mdaB, RoleKey::MdaOfficer);
+        $this->users['officerB'] = $this->user($this->mdaB, RoleKey::MdaAdmin);
         $this->users['roleless'] = User::factory()->create(['mda_id' => $this->mdaA->id, 'role_id' => null]);
     }
 

@@ -33,7 +33,7 @@ class SeederTest extends TestCase
         $this->seed(DatabaseSeeder::class);
 
         // Seven predefined roles, each present.
-        $this->assertCount(7, Role::all());
+        $this->assertCount(6, Role::all());
         foreach (RoleKey::cases() as $roleKey) {
             $this->assertDatabaseHas('roles', ['key' => $roleKey->value, 'is_system' => true]);
         }

@@ -57,7 +57,7 @@ class ReportExportTest extends TestCase
         $this->mdaA = Mda::factory()->create(['name' => 'MDA A']);
         $this->mdaB = Mda::factory()->create(['name' => 'MDA B']);
 
-        $this->users['officerA'] = $this->user($this->mdaA, RoleKey::MdaOfficer);
+        $this->users['officerA'] = $this->user($this->mdaA, RoleKey::MdaAdmin);
         $this->users['partner'] = $this->user(null, RoleKey::DevelopmentPartner);
         $this->users['noRole'] = User::factory()->create(['mda_id' => $this->mdaA->id, 'role_id' => null]);
 

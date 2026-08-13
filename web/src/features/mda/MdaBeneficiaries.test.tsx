@@ -23,7 +23,7 @@ vi.mock('@/features/programmes/api', () => ({
 const perms = { value: [] as string[] }
 vi.mock('@/lib/auth/AuthProvider', () => ({
   useAuth: () => ({
-    user: { name: 'Amina', role: { key: 'mda_officer', name: 'MDA Officer' }, mda: { id: 'm1', name: 'Ministry of Health' } },
+    user: { name: 'Amina', role: { key: 'mda_admin', name: 'MDA Admin' }, mda: { id: 'm1', name: 'Ministry of Health' } },
     hasPermission: (p: string) => perms.value.includes(p),
   }),
 }))

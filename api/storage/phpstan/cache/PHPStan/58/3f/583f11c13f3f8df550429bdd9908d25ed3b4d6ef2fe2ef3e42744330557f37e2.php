@@ -130,6 +130,153 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
          'typeAliasClassName' => NULL,
          'traitData' => NULL,
       )),
+      'd223e95b5cbe87839e555cdeee88b479' => 
+      \PHPStan\Analyser\IntermediaryNameScope::__set_state(array(
+         'namespace' => 'App\\Domain\\Sharing',
+         'uses' => 
+        array (
+          'user' => 'App\\Domain\\Access\\Models\\User',
+          'beneficiary' => 'App\\Domain\\Registry\\Models\\Beneficiary',
+          'servicerequestservice' => 'App\\Domain\\Registry\\Services\\ServiceRequestService',
+        ),
+         'className' => 'App\\Domain\\Sharing\\DataSharingGuard',
+         'functionName' => 'hasAdminGrant',
+         'templatePhpDocNodes' => 
+        array (
+        ),
+         'parent' => 
+        \PHPStan\Analyser\IntermediaryNameScope::__set_state(array(
+           'namespace' => 'App\\Domain\\Sharing',
+           'uses' => 
+          array (
+            'user' => 'App\\Domain\\Access\\Models\\User',
+            'beneficiary' => 'App\\Domain\\Registry\\Models\\Beneficiary',
+            'servicerequestservice' => 'App\\Domain\\Registry\\Services\\ServiceRequestService',
+          ),
+           'className' => 'App\\Domain\\Sharing\\DataSharingGuard',
+           'functionName' => NULL,
+           'templatePhpDocNodes' => 
+          array (
+          ),
+           'parent' => NULL,
+           'typeAliasesMap' => 
+          array (
+          ),
+           'bypassTypeAliases' => false,
+           'constUses' => 
+          array (
+          ),
+           'typeAliasClassName' => NULL,
+           'traitData' => NULL,
+        )),
+         'typeAliasesMap' => 
+        array (
+        ),
+         'bypassTypeAliases' => false,
+         'constUses' => 
+        array (
+        ),
+         'typeAliasClassName' => NULL,
+         'traitData' => NULL,
+      )),
+      '4c09c9b090e1a50e1dd5213c636dddb3' => 
+      \PHPStan\Analyser\IntermediaryNameScope::__set_state(array(
+         'namespace' => 'App\\Domain\\Sharing',
+         'uses' => 
+        array (
+          'user' => 'App\\Domain\\Access\\Models\\User',
+          'beneficiary' => 'App\\Domain\\Registry\\Models\\Beneficiary',
+          'servicerequestservice' => 'App\\Domain\\Registry\\Services\\ServiceRequestService',
+        ),
+         'className' => 'App\\Domain\\Sharing\\DataSharingGuard',
+         'functionName' => 'adminGrantConsentSatisfied',
+         'templatePhpDocNodes' => 
+        array (
+        ),
+         'parent' => 
+        \PHPStan\Analyser\IntermediaryNameScope::__set_state(array(
+           'namespace' => 'App\\Domain\\Sharing',
+           'uses' => 
+          array (
+            'user' => 'App\\Domain\\Access\\Models\\User',
+            'beneficiary' => 'App\\Domain\\Registry\\Models\\Beneficiary',
+            'servicerequestservice' => 'App\\Domain\\Registry\\Services\\ServiceRequestService',
+          ),
+           'className' => 'App\\Domain\\Sharing\\DataSharingGuard',
+           'functionName' => NULL,
+           'templatePhpDocNodes' => 
+          array (
+          ),
+           'parent' => NULL,
+           'typeAliasesMap' => 
+          array (
+          ),
+           'bypassTypeAliases' => false,
+           'constUses' => 
+          array (
+          ),
+           'typeAliasClassName' => NULL,
+           'traitData' => NULL,
+        )),
+         'typeAliasesMap' => 
+        array (
+        ),
+         'bypassTypeAliases' => false,
+         'constUses' => 
+        array (
+        ),
+         'typeAliasClassName' => NULL,
+         'traitData' => NULL,
+      )),
+      '009c751b9a5743db7d9e88d989c34178' => 
+      \PHPStan\Analyser\IntermediaryNameScope::__set_state(array(
+         'namespace' => 'App\\Domain\\Sharing',
+         'uses' => 
+        array (
+          'user' => 'App\\Domain\\Access\\Models\\User',
+          'beneficiary' => 'App\\Domain\\Registry\\Models\\Beneficiary',
+          'servicerequestservice' => 'App\\Domain\\Registry\\Services\\ServiceRequestService',
+        ),
+         'className' => 'App\\Domain\\Sharing\\DataSharingGuard',
+         'functionName' => 'adminGrantConsentRequired',
+         'templatePhpDocNodes' => 
+        array (
+        ),
+         'parent' => 
+        \PHPStan\Analyser\IntermediaryNameScope::__set_state(array(
+           'namespace' => 'App\\Domain\\Sharing',
+           'uses' => 
+          array (
+            'user' => 'App\\Domain\\Access\\Models\\User',
+            'beneficiary' => 'App\\Domain\\Registry\\Models\\Beneficiary',
+            'servicerequestservice' => 'App\\Domain\\Registry\\Services\\ServiceRequestService',
+          ),
+           'className' => 'App\\Domain\\Sharing\\DataSharingGuard',
+           'functionName' => NULL,
+           'templatePhpDocNodes' => 
+          array (
+          ),
+           'parent' => NULL,
+           'typeAliasesMap' => 
+          array (
+          ),
+           'bypassTypeAliases' => false,
+           'constUses' => 
+          array (
+          ),
+           'typeAliasClassName' => NULL,
+           'traitData' => NULL,
+        )),
+         'typeAliasesMap' => 
+        array (
+        ),
+         'bypassTypeAliases' => false,
+         'constUses' => 
+        array (
+        ),
+         'typeAliasClassName' => NULL,
+         'traitData' => NULL,
+      )),
       'e8f40bc3ce80507a5acbd0de34da5346' => 
       \PHPStan\Analyser\IntermediaryNameScope::__set_state(array(
          'namespace' => 'App\\Domain\\Sharing',
@@ -329,7 +476,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
     ),
     1 => 
     array (
-      'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Sharing\\DataSharingGuard.php' => 'c134ae1d81454a5ed0f24cc3af99b2cdf201dd01701f11c4ffe76e86ed03b04f',
+      'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Sharing\\DataSharingGuard.php' => '436d70a9d4f7683b8bd2d613735accb459133a4ea66bb64892575bd68be1833d',
     ),
   ),
 ));

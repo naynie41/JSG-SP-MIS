@@ -11,7 +11,7 @@ import type { DashboardResponse } from './types'
 vi.mock('./api', () => ({ dashboardApi: { get: vi.fn() } }))
 
 const authState = {
-  roleKey: 'mda_officer',
+  roleKey: 'mda_admin',
   mda: { name: 'MDA A' } as { name: string } | null,
   canView: true,
   can: (_p: string) => true as boolean,
@@ -56,7 +56,7 @@ function renderPage(ui: ReactNode) {
 describe('MdaDashboardPage', () => {
   beforeEach(() => {
     vi.clearAllMocks()
-    authState.roleKey = 'mda_officer'
+    authState.roleKey = 'mda_admin'
     authState.mda = { name: 'MDA A' }
     authState.canView = true
     authState.can = () => true

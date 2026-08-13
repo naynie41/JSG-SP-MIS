@@ -19,7 +19,7 @@ const rolesFn = accessApi.roles as Mock
 
 const roles: AccessRole[] = [
   { id: 'r-1', key: 'system_administrator', name: 'System Administrator', description: 'All access', requires_mfa: true, permissions: ['user.view', 'user.create', 'mda.view'] },
-  { id: 'r-2', key: 'mda_officer', name: 'MDA Officer', description: null, requires_mfa: false, permissions: ['beneficiary.view'] },
+  { id: 'r-2', key: 'mda_admin', name: 'MDA Admin', description: null, requires_mfa: false, permissions: ['beneficiary.view'] },
 ]
 
 function renderPage(ui: ReactNode) {
@@ -40,7 +40,7 @@ describe('RolesPage', () => {
     renderPage(<RolesPage />)
 
     expect(await screen.findByText('System Administrator')).toBeInTheDocument()
-    expect(screen.getByText('MDA Officer')).toBeInTheDocument()
+    expect(screen.getByText('MDA Admin')).toBeInTheDocument()
     expect(screen.getByText('Required')).toBeInTheDocument() // sysadmin MFA
 
     // Open the sysadmin permission bundle — grouped by module.

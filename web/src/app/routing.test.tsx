@@ -93,7 +93,7 @@ describe('protected routing', () => {
     tokenStore.set('tok-abc')
     me.mockResolvedValue(
       makeUser({
-        role: { key: 'mda_officer', name: 'MDA Officer' },
+        role: { key: 'mda_admin', name: 'MDA Admin' },
         permissions: ['dashboard.view', 'programme.view', 'beneficiary.view'],
       }),
     )

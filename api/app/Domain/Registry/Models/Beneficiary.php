@@ -54,6 +54,8 @@ use InvalidArgumentException;
  * @property string|null $ward
  * @property string|null $block_name_dob
  * @property BeneficiaryStatus $status
+ * @property ConsentStatus $sharing_consent
+ * @property Carbon|null $sharing_consent_at
  * @property Carbon|null $retention_flagged_at
  * @property Carbon|null $anonymized_at
  * @property string|null $retention_policy
