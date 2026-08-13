@@ -45,7 +45,7 @@ Module docs: [api/app/Domain/Referral/README.md](../api/app/Domain/Referral/READ
 - **Notifications** — in-app + email via the event system incl. Service Request events; SMS/WhatsApp
   stubbed + inert. (`NotificationTest`, `NotificationBell.test`)
 - **Quality gates** — backend `php artisan test` green; Pint + Larastan (lvl 5) clean; frontend
-  `typecheck` + `oxlint` + Vitest green; UI derives from `docs/DESIGN-SYSTEM.md`.
+  `typecheck` + `oxlint` + Vitest green; UI derives from `DESIGN.md`.
 
 ## SLA / escalation configuration
 

@@ -20,7 +20,7 @@ const FORMATS: { value: ExportFormat; label: string; icon: typeof FileText }[] =
 ]
 
 /**
- * A reusable "Export" affordance any list can drop into its toolbar (DESIGN-SYSTEM.md
+ * A reusable "Export" affordance any list can drop into its toolbar (DESIGN.md
  * §5.1/§5.4): a pill button that opens a small format menu (CSV / Excel). Busy while an
  * export runs; closes on select, Esc, or outside click.
  */

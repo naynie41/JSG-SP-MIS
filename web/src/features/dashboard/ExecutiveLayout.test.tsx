@@ -1,6 +1,6 @@
 import { beforeEach, describe, expect, it, vi } from 'vitest'
 import type { Mock } from 'vitest'
-import { render, screen, waitFor } from '@testing-library/react'
+import { render, screen, waitFor, within } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 import { MemoryRouter, Route, Routes } from 'react-router-dom'
@@ -78,7 +78,7 @@ describe('ExecutiveLayout (briefing suite shell + routed pages)', () => {
     expect(screen.getAllByText('8,420').length).toBeGreaterThan(0)
     expect(screen.getByRole('button', { name: /export/i })).toBeInTheDocument()
     expect(screen.getByRole('button', { name: /refresh/i })).toBeInTheDocument()
-    expect(screen.getByLabelText('LGA')).toBeInTheDocument() // shared filter bar
+    expect(screen.getByLabelText('Year')).toBeInTheDocument() // shared filter bar
   })
 
   it('renders each inner page from its own route WITHOUT the hero, keeping the shared filter', async () => {
@@ -88,7 +88,7 @@ describe('ExecutiveLayout (briefing suite shell + routed pages)', () => {
     expect(await screen.findByRole('heading', { name: 'Data quality' })).toBeInTheDocument()
     expect(screen.getByText('Verification rate')).toBeInTheDocument()
     expect(screen.queryByRole('heading', { name: /state of social protection/i })).toBeNull()
-    expect(screen.getByLabelText('LGA')).toBeInTheDocument()
+    expect(screen.getByLabelText('Year')).toBeInTheDocument()
     unmount()
 
     const { unmount: unmount2 } = renderAt('/executive/coordination')
@@ -117,21 +117,24 @@ describe('ExecutiveLayout (briefing suite shell + routed pages)', () => {
     renderAt('/executive')
     await screen.findByRole('heading', { name: /state of social protection/i })
 
+    await user.click(screen.getByRole('button', { name: /more filters/i }))
     await user.selectOptions(screen.getByLabelText('LGA'), 'dutse')
     expect(get).toHaveBeenLastCalledWith(expect.objectContaining({ lga: 'dutse' }))
   })
 
-  it('drills from an Overview programme slice into the Programmes page (route navigation)', async () => {
+  it('drills into a single programme from the share donut on the Programmes page', async () => {
     get.mockResolvedValue(makeExecutivePayload())
     const user = userEvent.setup()
-    renderAt('/executive')
-    await screen.findByRole('heading', { name: /state of social protection/i })
+    // The donut moved off the Overview with the rest of the delivery detail; it
+    // now sits on the page that owns programmes, where the drill scopes the view.
+    renderAt('/executive/programmes')
+    const donut = await screen.findByRole('region', { name: 'Beneficiary share by programme' })
 
-    // The donut legend exposes each programme as a drill affordance.
-    await user.click(screen.getByRole('button', { name: 'Cash Transfer' }))
+    // The donut legend exposes each programme as a drill affordance. Scoped to
+    // the donut: the comparison table below offers the same programme names.
+    await user.click(within(donut).getByRole('button', { name: 'Cash Transfer' }))
 
-    // Navigated to /executive/programmes AND refetched scoped to that programme.
-    expect(await screen.findByRole('heading', { name: 'Comparison' })).toBeInTheDocument()
+    // Refetched scoped to that programme — and the filter is now in the URL.
     await waitFor(() => expect(get).toHaveBeenLastCalledWith(expect.objectContaining({ programme_id: 'p-a' })))
   })
 

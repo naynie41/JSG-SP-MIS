@@ -4,16 +4,27 @@ import { ExecutiveOverviewTab } from './ExecutiveOverviewTab'
 import { makeExecutivePayload } from './executiveTestData'
 
 describe('ExecutiveOverviewTab', () => {
-  it('renders the KPI band led by the NET-UNIQUE figure', () => {
+  it('carries only the three figures that qualify the headline', () => {
     render(<ExecutiveOverviewTab data={makeExecutivePayload()} />)
 
-    expect(screen.getByText('Net-unique reached')).toBeInTheDocument()
-    expect(screen.getAllByText('8,420').length).toBeGreaterThan(0) // net-unique headline KPI
-
-    expect(screen.getByText('Active programmes')).toBeInTheDocument()
+    // Is the money moving, does it reach the state, is it still growing.
+    expect(screen.getByText('Disbursed')).toBeInTheDocument()
     expect(screen.getByText('LGAs covered')).toBeInTheDocument()
-    expect(screen.getByText('96')).toBeInTheDocument() // wards covered
-    expect(screen.getByText('51%')).toBeInTheDocument() // female share
+    expect(screen.getByText('New this period')).toBeInTheDocument()
+  })
+
+  it('does not repeat the figures that belong to another section', () => {
+    render(<ExecutiveOverviewTab data={makeExecutivePayload()} />)
+
+    // Delivery detail lives on Programmes, composition on Registry. Fifty
+    // co-equal figures made this page something to study rather than read.
+    expect(screen.queryByText('Active programmes')).toBeNull()
+    expect(screen.queryByText('Budget allocated')).toBeNull()
+    expect(screen.queryByText('Cost / beneficiary')).toBeNull()
+    expect(screen.queryByText('Beneficiary share by programme')).toBeNull()
+    expect(screen.queryByText('Gender split')).toBeNull()
+    expect(screen.queryByText('Age groups')).toBeNull()
+    expect(screen.queryByRole('heading', { name: 'Projections' })).toBeNull()
   })
 
   it('renders rule-based insights and severity-ordered alerts', () => {
@@ -27,25 +38,12 @@ describe('ExecutiveOverviewTab', () => {
     expect(screen.getByText(/records pending verification/i)).toBeInTheDocument()
   })
 
-  it('renders labelled trend projections with stated assumptions', () => {
+  it('shows one trend — the headline trajectory, not four competing series', () => {
     render(<ExecutiveOverviewTab data={makeExecutivePayload()} />)
 
-    expect(screen.getByRole('heading', { name: 'Projections' })).toBeInTheDocument()
-    // Every projection is explicitly labelled (not presented as certainty)…
-    expect(screen.getAllByText(/Projection · based on current trend/i).length).toBeGreaterThan(0)
-    expect(screen.getByText('Budget runway')).toBeInTheDocument()
-    // …and states its assumption.
-    expect(screen.getAllByText(/Assumes/i).length).toBeGreaterThan(0)
-  })
-
-  it('renders the programme share donut and demographics', () => {
-    render(<ExecutiveOverviewTab data={makeExecutivePayload()} />)
-
-    expect(screen.getByText('Beneficiary share by programme')).toBeInTheDocument()
-    expect(screen.getAllByText('Cash Transfer').length).toBeGreaterThan(0)
-    expect(screen.getByText('Female')).toBeInTheDocument()
-    expect(screen.getByText('Gender split')).toBeInTheDocument()
-    expect(screen.getByText('Age groups')).toBeInTheDocument()
+    expect(screen.getByText('Beneficiaries reached (cumulative)')).toBeInTheDocument()
+    expect(screen.queryByText('Monthly disbursement')).toBeNull()
+    expect(screen.queryByText('Programme growth')).toBeNull()
   })
 
   it('is a pure read-only display — no interactive controls', () => {
@@ -66,6 +64,6 @@ describe('ExecutiveOverviewTab', () => {
     m.registry_quality = undefined
 
     expect(() => render(<ExecutiveOverviewTab data={payload} />)).not.toThrow()
-    expect(screen.getAllByText('0').length).toBeGreaterThan(0) // headline falls back to zero
+    expect(screen.getAllByText('0').length).toBeGreaterThan(0)
   })
 })

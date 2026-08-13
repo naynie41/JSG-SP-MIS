@@ -20,7 +20,7 @@ export interface SelectFieldProps extends Omit<SelectHTMLAttributes<HTMLSelectEl
   placeholder?: string
 }
 
-/** Native select styled per DESIGN-SYSTEM.md §5.2 (custom chevron, tokens). */
+/** Native select styled per DESIGN.md §5.2 (custom chevron, tokens). */
 export const SelectField = forwardRef<HTMLSelectElement, SelectFieldProps>(function SelectField(
   { label, helper, error, hideLabel, required, id, options, placeholder, className, ...rest },
   ref,

@@ -45,7 +45,7 @@ export function EnrollModal({ open, onClose, programme }: EnrollModalProps) {
 
   const targets: Target[] = isIndividual
     ? (beneficiaries.data?.items ?? []).map((b: Beneficiary) => ({ id: b.id, label: b.full_name, sub: `${b.lga ? titleCase(b.lga) : '—'} · ${b.status}` }))
-    : (households.data?.items ?? []).map((h: Household) => ({ id: h.id, label: `Household ${h.id.slice(0, 8)}`, sub: `${h.lga ? titleCase(h.lga) : '—'} · ${h.members.length} members` }))
+    : (households.data?.items ?? []).map((h: Household) => ({ id: h.id, label: `Household ${h.id.slice(0, 8)}`, sub: `${h.lga ? titleCase(h.lga) : '—'} · ${h.members?.length ?? 0} members` }))
 
   function toggle(id: string) {
     setSelected((s) => {

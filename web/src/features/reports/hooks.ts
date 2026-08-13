@@ -12,8 +12,8 @@ const SCHEDULES_KEY = ['report-schedules']
 const message = (error: unknown, fallback: string): string =>
   error instanceof ApiError ? error.message : fallback
 
-export function useReportDatasets() {
-  return useQuery({ queryKey: DATASETS_KEY, queryFn: () => reportsApi.datasets() })
+export function useReportDatasets(enabled = true) {
+  return useQuery({ queryKey: DATASETS_KEY, queryFn: () => reportsApi.datasets(), enabled })
 }
 
 export function useReportCatalogue() {

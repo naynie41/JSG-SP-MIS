@@ -121,7 +121,7 @@ function DuplicateStatsPanel() {
         <Figure label="Validation rate" value={pct(reg.validation_rate)} hint="valid rows" />
       </div>
 
-      <Card eyebrow="Adjudication" title="How matches were resolved">
+      <Card titleAs="h2" eyebrow="Adjudication" title="How matches were resolved">
         {dup === null || dup === undefined ? (
           <p className={styles.muted}>No matching activity recorded yet.</p>
         ) : (
@@ -234,7 +234,7 @@ export function AdminMatchingPage() {
 
       <Tabs
         items={[
-          { id: 'rules', label: 'Matching rules', content: <MatchingConfigPage /> },
+          { id: 'rules', label: 'Matching rules', content: <MatchingConfigPage embedded /> },
           { id: 'versions', label: 'Version history', content: <VersionsPanel /> },
           { id: 'stats', label: 'Duplicate statistics', content: <DuplicateStatsPanel /> },
           { id: 'validation', label: 'Validation rules', content: <ValidationRulesPanel /> },

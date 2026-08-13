@@ -75,7 +75,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
     ),
     1 => 
     array (
-      'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Registry\\Enums\\BeneficiaryStatus.php' => '7e1b800d5f869d042d11ac0ca74c755e2d1a4637c064faaee90822c18b9bef55',
+      'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Registry\\Enums\\BeneficiaryStatus.php' => '827510558bf4c38cc90e338513495ec2bb48d9387111c250ac0d344b142ab30e',
     ),
   ),
 ));

@@ -17,7 +17,13 @@ import type { Programme } from './types'
 import layout from '@/features/shared/formLayout.module.css'
 import styles from './programmes.module.css'
 
-export function ProgrammeListPage() {
+export interface ProgrammeListPageProps {
+  /** Rendered inside a host page that owns the heading (the administration console).
+   *  Suppresses this page's own title block so the document keeps a single h1. */
+  embedded?: boolean
+}
+
+export function ProgrammeListPage({ embedded = false }: ProgrammeListPageProps = {}) {
   const { hasPermission } = useAuth()
   const canView = hasPermission('programme.view')
   const canCreate = hasPermission('programme.create')
@@ -58,11 +64,13 @@ export function ProgrammeListPage() {
 
   return (
     <div>
-      <div className={layout.pageHead}>
-        <div className={layout.pageTitle}>
-          <span className="eyebrow">Programmes</span>
-          <h1 className="t-h1">Programmes</h1>
-        </div>
+      <div className={embedded ? `${layout.pageHead} ${layout.pageHeadEmbedded}` : layout.pageHead}>
+        {!embedded && (
+          <div className={layout.pageTitle}>
+            <span className="eyebrow">Programmes</span>
+            <h1 className="t-h1">Programmes</h1>
+          </div>
+        )}
         {canCreate && (
           <Button leftIcon={Plus} onClick={() => setCreateOpen(true)}>
             Create programme

@@ -71,9 +71,12 @@ export function ToastProvider({ children }: { children: ReactNode }) {
   return (
     <ToastContext.Provider value={value}>
       {children}
+      {/* The region is the live region; each toast is content inside it. A
+          `role="status"` on the item nests a second live region within the
+          first, which some screen readers announce twice. */}
       <div className={styles.region} aria-live="polite" aria-atomic="false">
         {toasts.map((item) => (
-          <div key={item.id} className={cn(styles.toast, styles[item.variant])} role="status">
+          <div key={item.id} className={cn(styles.toast, styles[item.variant])}>
             <span className={styles.icon}>
               <Icon icon={ICONS[item.variant]} size={18} />
             </span>

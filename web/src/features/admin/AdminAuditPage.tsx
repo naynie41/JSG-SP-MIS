@@ -168,8 +168,18 @@ export function AdminAuditPage() {
           rows={data?.items ?? []}
           columns={columns}
           getRowId={(e) => e.id}
+          getRowLabel={(e) => `${humanize(e.action)} at ${when(e.at)}`}
           loading={isLoading}
           caption="Audit and security events"
+          pagination={
+            data?.pagination
+              ? {
+                  page: data.pagination.page,
+                  pageCount: data.pagination.total_pages,
+                  onPageChange: (page) => setFilters((f) => ({ ...f, page })),
+                }
+              : undefined
+          }
         />
       </Card>
 

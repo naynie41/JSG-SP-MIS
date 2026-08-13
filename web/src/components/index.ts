@@ -1,4 +1,4 @@
-// Shared design-system component library (DESIGN-SYSTEM.md §5).
+// Shared design-system component library (DESIGN.md §5).
 export { Icon } from './Icon/Icon'
 export { Spinner } from './Spinner/Spinner'
 export { Button } from './Button/Button'

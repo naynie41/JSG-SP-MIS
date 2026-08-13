@@ -9,6 +9,7 @@ use App\Domain\Access\Models\User;
 use App\Domain\Audit\Models\AuditLog;
 use App\Domain\Benefit\Models\Benefit;
 use App\Domain\Grievance\Models\Grievance;
+use App\Domain\Programme\Models\Activity;
 use App\Domain\Programme\Models\Programme;
 use App\Domain\Referral\Models\Referral;
 use App\Domain\Registry\Models\Beneficiary;
@@ -93,6 +94,44 @@ final class AdHocDatasetRegistry
                 'registration_source' => ['column' => 'registration_source', 'kind' => 'equals'],
                 'date_from' => ['column' => 'registration_date', 'kind' => 'date_from'],
                 'date_to' => ['column' => 'registration_date', 'kind' => 'date_to'],
+            ],
+        ],
+        /*
+         * Activities — an MDA's own delivery vehicles under the shared programme
+         * catalogue (§10). Scoped on `owner_mda_id`, the CREATING MDA, so an MDA's
+         * activity report is about its own delivery and a programme dimension answers
+         * "what are we running, and under which programme" without the catalogue itself
+         * ever being reportable to a non-governance scope.
+         *
+         * `budget_amount` is an activity BUDGET figure, not expenditure — SP-MIS records
+         * delivery, it does not move money.
+         */
+        'activities' => [
+            'label' => 'Activities (delivery)',
+            'coordination' => false,
+            'model' => Activity::class,
+            'exclude_reversed' => false,
+            'dimensions' => [
+                'programme' => ['label' => 'Programme', 'column' => 'programme_id', 'render' => 'programme'],
+                'mda' => ['label' => 'Owner MDA', 'column' => 'owner_mda_id', 'render' => 'mda'],
+                'status' => ['label' => 'Status', 'column' => 'status', 'render' => 'title'],
+                'lga' => ['label' => 'LGA', 'column' => 'lga', 'render' => 'title'],
+                'ward' => ['label' => 'Ward', 'column' => 'ward', 'render' => 'title'],
+                'involves_beneficiaries' => ['label' => 'Registers beneficiaries', 'column' => 'involves_beneficiaries', 'render' => 'bool'],
+            ],
+            'measures' => [
+                'count' => ['label' => 'Activities', 'sql' => 'count(*)', 'render' => 'int'],
+                'target_beneficiaries' => ['label' => 'Target beneficiaries', 'sql' => 'coalesce(sum(target_beneficiaries), 0)', 'render' => 'int'],
+                'budget_amount' => ['label' => 'Budget (₦)', 'sql' => 'coalesce(sum(budget_amount), 0)', 'render' => 'naira'],
+            ],
+            'filters' => [
+                'programme_id' => ['column' => 'programme_id', 'kind' => 'equals'],
+                'mda_id' => ['column' => 'owner_mda_id', 'kind' => 'equals'],
+                'status' => ['column' => 'status', 'kind' => 'equals'],
+                'lga' => ['column' => 'lga', 'kind' => 'equals'],
+                'ward' => ['column' => 'ward', 'kind' => 'equals'],
+                'date_from' => ['column' => 'starts_on', 'kind' => 'date_from'],
+                'date_to' => ['column' => 'ends_on', 'kind' => 'date_to'],
             ],
         ],
         'referrals' => [
@@ -208,10 +247,23 @@ final class AdHocDatasetRegistry
                 'date_to' => ['column' => 'created_at', 'kind' => 'date_to'],
             ],
         ],
+        /*
+         * Duplicate review is BOTH governance data (platform-wide data quality) and each
+         * MDA's own operational record — the same rows the MDA console's Duplicate
+         * Resolution module already shows them. So it stays `admin` (it belongs to the
+         * administration console's catalogue and to a governance scope unrestricted) and
+         * additionally declares `mda_scopable`: an MDA scope may report on its OWN rows,
+         * constrained through the owning import batch in AdHocReportBuilder::applyScope.
+         *
+         * State-wide-but-not-governance (Executive, SP Coordination) is deliberately NOT
+         * admitted by that exception — the invariant that oversight sees programme data
+         * but not the platform's own administrative records is unchanged.
+         */
         'duplicates' => [
             'label' => 'Duplicate review',
             'coordination' => false,
             'admin' => true,
+            'mda_scopable' => true,
             'model' => ImportRow::class,
             'exclude_reversed' => false,
             'dimensions' => [
@@ -297,11 +349,35 @@ final class AdHocDatasetRegistry
         return (bool) (self::DATASETS[$dataset]['admin'] ?? false);
     }
 
+    /**
+     * Whether an administrative dataset also admits an MDA scope, restricted to that
+     * MDA's own rows. Only `duplicates` does: it is simultaneously platform governance
+     * data and the MDA's own operational record. Every such dataset MUST have a
+     * corresponding scope clause in AdHocReportBuilder::applyScope — without one the
+     * query would be platform-wide.
+     */
+    public static function isMdaScopable(string $dataset): bool
+    {
+        return (bool) (self::DATASETS[$dataset]['mda_scopable'] ?? false);
+    }
+
     public static function availableTo(string $dataset, DashboardScope $scope): bool
     {
-        return isset(self::DATASETS[$dataset])
-            && ! (self::isCoordination($dataset) && ! $scope->includesCoordinationMetrics())
-            && ! (self::isAdmin($dataset) && ! $scope->includesGovernanceData());
+        if (! isset(self::DATASETS[$dataset])) {
+            return false;
+        }
+
+        if (self::isCoordination($dataset) && ! $scope->includesCoordinationMetrics()) {
+            return false;
+        }
+
+        if (self::isAdmin($dataset) && ! $scope->includesGovernanceData()) {
+            // The narrow exception: an MDA may report on its own slice. State-wide
+            // oversight without governance is still refused.
+            return self::isMdaScopable($dataset) && $scope->kind === DashboardScope::KIND_MDA;
+        }
+
+        return true;
     }
 
     /**

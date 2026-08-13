@@ -24,7 +24,13 @@ interface ConfirmState {
   run: () => Promise<unknown>
 }
 
-export function UserListPage() {
+export interface UserListPageProps {
+  /** Rendered inside a host page that owns the heading (the administration console).
+   *  Suppresses this page's own title block so the document keeps a single h1. */
+  embedded?: boolean
+}
+
+export function UserListPage({ embedded = false }: UserListPageProps = {}) {
   const { hasPermission } = useAuth()
   const canView = hasPermission('user.view')
   const canCreate = hasPermission('user.create')
@@ -198,11 +204,13 @@ export function UserListPage() {
 
   return (
     <div>
-      <div className={layout.pageHead}>
-        <div className={layout.pageTitle}>
-          <span className="eyebrow">02 · Administration</span>
-          <h1 className="t-h1">Users</h1>
-        </div>
+      <div className={embedded ? `${layout.pageHead} ${layout.pageHeadEmbedded}` : layout.pageHead}>
+        {!embedded && (
+          <div className={layout.pageTitle}>
+            <span className="eyebrow">02 · Administration</span>
+            <h1 className="t-h1">Users</h1>
+          </div>
+        )}
         {canCreate && (
           <Button leftIcon={Plus} onClick={() => setFormState({ open: true, user: null })}>
             Create user

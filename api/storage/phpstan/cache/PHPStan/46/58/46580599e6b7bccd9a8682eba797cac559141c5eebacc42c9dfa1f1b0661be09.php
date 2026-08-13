@@ -2,7 +2,7 @@
 
 // odsl-C:\Users\ACER\Desktop\JSG-SP-MIS\JSG-SP-MIS\api\app\Http\Resources\ImportRowResource.php-PHPStan\BetterReflection\Reflection\ReflectionClass-App\Http\Resources\ImportRowResource
 return \PHPStan\Cache\CacheItem::__set_state(array(
-   'variableKey' => 'v2-6.70.0.1-8.3.31-80a859a3e582d1662d3400383ba8ccc6a8e1d9ed18bb4e631da561903b5f3301',
+   'variableKey' => 'v2-6.70.0.1-8.3.31-83854137d7db58ea59c815e0f2de358f7cd1b69e1eaa81719ed46577f813ff0c',
    'data' => 
   array (
     'locatedSource' => 
@@ -32,7 +32,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
     array (
     ),
     'startLine' => 17,
-    'endLine' => 63,
+    'endLine' => 68,
     'startColumn' => 1,
     'endColumn' => 1,
     'parentClassName' => 'Illuminate\\Http\\Resources\\Json\\JsonResource',
@@ -99,7 +99,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
  * @return array<string, mixed>
  */',
         'startLine' => 22,
-        'endLine' => 53,
+        'endLine' => 58,
         'startColumn' => 5,
         'endColumn' => 5,
         'couldThrow' => false,
@@ -156,8 +156,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             'attributes' => 
             array (
             ),
-            'startLine' => 55,
-            'endLine' => 55,
+            'startLine' => 60,
+            'endLine' => 60,
             'startColumn' => 38,
             'endColumn' => 51,
             'parameterIndex' => 0,
@@ -197,8 +197,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         array (
         ),
         'docComment' => NULL,
-        'startLine' => 55,
-        'endLine' => 62,
+        'startLine' => 60,
+        'endLine' => 67,
         'startColumn' => 5,
         'endColumn' => 5,
         'couldThrow' => false,

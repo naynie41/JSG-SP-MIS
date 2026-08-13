@@ -1,0 +1,514 @@
+/* =============================================================================
+   MDA console — the delivery workspace for MDA Officers and Admins.
+   Built on the shared forest/lime tokens and the existing component specs
+   (DESIGN.md §5.5 cards/KPI, §5.6 navigation, §5.8 status→variant).
+
+   NOTE: the page/section/KPI chrome here is close to `features/admin/admin.module.css`.
+   Both are console shells over the same tokens. Extracting the common chrome into a
+   shared stylesheet is worth doing once a third console appears — flagged rather than
+   pre-emptively abstracted for two.
+   ============================================================================= */
+
+.console {
+  display: block;
+}
+.forbidden {
+  color: var(--danger-ink);
+  font-weight: 500;
+}
+.page {
+  display: grid;
+  /* Cap the track: a grid column defaults to min-width:auto, which lets a wide table
+     stretch the page instead of scrolling inside its own container. */
+  grid-template-columns: minmax(0, 1fr);
+  gap: var(--space-6);
+  padding-bottom: var(--space-6);
+}
+
+/* ------------------------------------------------------------------ page head */
+
+.pageHead {
+  display: grid;
+  gap: var(--space-2);
+}
+.eyebrow {
+  font-family: var(--font-mono);
+  font-size: var(--fs-caption);
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--forest-2);
+}
+.pageTitle {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: var(--fs-h1);
+  letter-spacing: -0.02em;
+  color: var(--ink);
+  line-height: 1.1;
+}
+.lead {
+  font-size: var(--fs-ui);
+  color: var(--text-muted-strong);
+  max-width: 68ch;
+  line-height: 1.55;
+}
+.muted {
+  color: var(--text-muted-strong);
+  font-size: var(--fs-label);
+}
+.footnote {
+  font-size: var(--fs-caption);
+  color: var(--text-muted-strong);
+  max-width: 74ch;
+  padding-top: var(--space-3);
+  border-top: 1px solid var(--border);
+  line-height: 1.6;
+}
+
+/* ------------------------------------------------------------------- sections */
+
+.section {
+  display: grid;
+  gap: var(--space-4);
+}
+.sectionHead {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  color: var(--forest);
+}
+.sectionTitle {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: var(--fs-h2);
+  letter-spacing: -0.01em;
+}
+.sectionSub {
+  margin-left: auto;
+  font-size: var(--fs-label);
+  color: var(--text-muted-strong);
+}
+
+/* --------------------------------------------------------------- quick actions */
+
+.actionBar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+}
+.action {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  padding: var(--space-3) var(--space-4);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-full);
+  background: var(--surface);
+  color: var(--ink);
+  font-family: inherit;
+  font-size: var(--fs-label);
+  font-weight: 500;
+  cursor: pointer;
+  transition: border-color var(--transition), background var(--transition), transform var(--transition);
+}
+.action:hover {
+  border-color: var(--forest-2);
+  background: var(--surface-mint);
+  transform: translateY(-1px);
+}
+.action:focus-visible {
+  outline: var(--focus-ring);
+  outline-offset: var(--focus-offset);
+}
+@media (prefers-reduced-motion: reduce) {
+  .action {
+    transition: border-color var(--transition), background var(--transition);
+  }
+  .action:hover {
+    transform: none;
+  }
+}
+
+/* ----------------------------------------------------------------- KPI band */
+
+.kpiBand {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: var(--space-3);
+}
+@media (max-width: 900px) {
+  .kpiBand {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+@media (max-width: 520px) {
+  .kpiBand {
+    grid-template-columns: 1fr;
+  }
+}
+/* Passive metric (§5.5): forest panel, big Space Grotesk number, mono label. */
+.kpi {
+  border-radius: var(--radius-md);
+  padding: clamp(var(--space-4), 3vw, var(--space-5));
+  background: linear-gradient(160deg, var(--forest-2), var(--forest));
+  color: var(--bg);
+  display: grid;
+  gap: var(--space-2);
+  box-shadow: var(--elev-sm);
+}
+.kpiLabel {
+  font-family: var(--font-mono);
+  font-size: var(--fs-caption);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: color-mix(in srgb, var(--bg) 78%, transparent);
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+}
+.kpiValue {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: clamp(1.5rem, 3.2vw, 2.1rem);
+  line-height: 1.05;
+  letter-spacing: -0.02em;
+  font-variant-numeric: tabular-nums;
+}
+.kpiHint {
+  font-size: var(--fs-label);
+  color: color-mix(in srgb, var(--bg) 62%, transparent);
+}
+
+/* ------------------------------------------------------------ action required */
+
+/* Distinct from the KPI band on purpose: a KPI is something you READ, an
+   action-required tile is something you DO. These are links, so they carry
+   affordance — and they go quiet at zero rather than shouting a cleared queue. */
+.actionGrid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--space-3);
+}
+@media (max-width: 640px) {
+  .actionGrid {
+    grid-template-columns: 1fr;
+  }
+}
+.actionCard {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  align-items: center;
+  gap: var(--space-3);
+  padding: clamp(var(--space-4), 3vw, var(--space-5));
+  border-radius: var(--radius-md);
+  border: 1px solid var(--border);
+  background: var(--surface);
+  color: var(--ink);
+  text-decoration: none;
+  transition: border-color var(--transition), background var(--transition);
+}
+.actionCard:hover {
+  border-color: var(--forest-2);
+  background: var(--surface-mint);
+}
+.actionCard:focus-visible {
+  outline: var(--focus-ring);
+  outline-offset: var(--focus-offset);
+}
+/* Outstanding work earns emphasis; a cleared queue does not. */
+.actionCardActive {
+  border-color: var(--warning);
+  background: var(--warning-soft);
+}
+.actionCardActive:hover {
+  border-color: var(--warning-ink);
+  background: var(--warning-soft);
+}
+.actionIcon {
+  display: grid;
+  place-items: center;
+  inline-size: 36px;
+  block-size: 36px;
+  border-radius: var(--radius-full);
+  background: var(--surface-mint);
+  color: var(--forest);
+}
+.actionCardActive .actionIcon {
+  background: var(--surface);
+  color: var(--warning-ink);
+}
+.actionBody {
+  display: grid;
+  gap: 2px;
+  min-width: 0;
+}
+/* The documented `fluidStat` step (DESIGN.md typography). One notch below the KPI
+   band's `fluidStatLg`, so an action count reads as urgent without out-shouting the
+   metrics it sits beside. */
+.actionCount {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: clamp(1.4rem, 3vw, 2rem);
+  line-height: 1.05;
+  font-variant-numeric: tabular-nums;
+}
+.actionLabel {
+  font-size: var(--fs-ui);
+  font-weight: 500;
+}
+.actionHint {
+  font-size: var(--fs-label);
+  color: var(--text-muted-strong);
+}
+.actionChevron {
+  color: var(--text-muted-strong);
+}
+
+/* ------------------------------------------------------------------- alerts */
+
+.alerts {
+  display: grid;
+  gap: var(--space-2);
+}
+.alert {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: var(--space-3);
+  align-items: center;
+  padding: var(--space-3);
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--border);
+}
+.alert[data-severity='warning'] {
+  border-color: var(--warning-soft);
+  background: var(--warning-soft);
+}
+.alert[data-severity='info'] {
+  border-color: var(--info-soft);
+  background: var(--info-soft);
+}
+.alertIcon {
+  color: var(--text-muted-strong);
+}
+.alert[data-severity='warning'] .alertIcon {
+  color: var(--warning-ink);
+}
+.alert[data-severity='info'] .alertIcon {
+  color: var(--info-ink);
+}
+.alertBody {
+  display: grid;
+  gap: 1px;
+  min-width: 0;
+  max-width: 78ch;
+}
+.alertTitle {
+  font-size: var(--fs-ui);
+  font-weight: 600;
+  color: var(--ink);
+}
+.alertDetail {
+  font-size: var(--fs-label);
+  color: var(--text-muted-strong);
+}
+.allClear {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  padding: var(--space-3);
+  border-radius: var(--radius-sm);
+  background: var(--success-soft);
+  color: var(--success-ink);
+  font-size: var(--fs-label);
+}
+
+/* ------------------------------------------------------------ recent activity */
+
+.activity {
+  display: grid;
+}
+.activityRow {
+  display: flex;
+  align-items: baseline;
+  gap: var(--space-3);
+  padding: var(--space-3) 0;
+  border-bottom: 1px solid var(--border);
+}
+.activityRow:last-child {
+  border-bottom: none;
+}
+.activityAction {
+  font-weight: 500;
+}
+.activityMeta {
+  color: var(--text-muted-strong);
+  font-size: var(--fs-label);
+}
+.activityAt {
+  margin-left: auto;
+  font-family: var(--font-mono);
+  font-size: var(--fs-caption);
+  color: var(--text-muted-strong);
+  white-space: nowrap;
+}
+
+/* ------------------------------------------------- action-required queues */
+
+/*
+ * A queue that is waiting on this MDA, wrapped so it reads differently from a table
+ * of record. It reuses the SAME warning accent as the Overview's action cards
+ * (.actionCardActive) so "this needs you" looks identical in both places rather than
+ * inventing a second vocabulary for the same idea.
+ */
+.queue {
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  background: var(--surface);
+  padding: clamp(var(--space-4), 3vw, var(--space-5));
+  display: grid;
+  gap: var(--space-3);
+}
+.queueActive {
+  border-color: var(--warning);
+  background: var(--warning-soft);
+}
+.queueHead {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  flex-wrap: wrap;
+}
+.queueTitle {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: var(--fs-h3);
+  color: var(--ink);
+}
+/* Ink on white, not --warning on --warning-ink: those two tokens are both mid-to-dark
+   ambers and pair at about 2.1:1, which is unreadable. This is ~7.9:1 and still sits
+   clearly on the panel's warning tint. */
+.queueCount {
+  font-family: var(--font-mono);
+  font-size: var(--fs-label);
+  padding: 2px var(--space-2);
+  border-radius: var(--radius-full);
+  background: var(--warning-ink);
+  color: var(--surface);
+}
+.queueNote {
+  font-size: var(--fs-label);
+  color: var(--text-muted-strong);
+  max-width: 78ch;
+  line-height: 1.55;
+}
+/* The composed table sits on the panel's own ground, not a nested card. */
+.queueBody {
+  background: var(--surface);
+  border-radius: var(--radius-sm);
+}
+
+/* --------------------------------------------------------------- settings */
+
+/* A read-only fact list: label above value on narrow screens, two columns above. */
+.defList {
+  display: grid;
+  grid-template-columns: minmax(9rem, auto) 1fr;
+  gap: var(--space-2) var(--space-4);
+  margin: 0 0 var(--space-4);
+}
+.defList dt {
+  font-family: var(--font-mono);
+  font-size: var(--fs-caption);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--text-muted-strong);
+}
+.defList dd {
+  margin: 0;
+  color: var(--ink);
+}
+@media (max-width: 560px) {
+  .defList {
+    grid-template-columns: 1fr;
+    gap: var(--space-1) 0;
+  }
+  .defList dd {
+    margin-bottom: var(--space-3);
+  }
+}
+
+.choiceRow {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-2) var(--space-4);
+  margin-bottom: var(--space-3);
+}
+
+/* --------------------------------------------------------------- card grids */
+
+.cardGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 280px), 1fr));
+  gap: var(--space-4);
+}
+
+/* ------------------------------------------------------------ table support */
+
+.rowActions {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  justify-content: flex-end;
+  flex-wrap: wrap;
+}
+.mono {
+  font-family: var(--font-mono);
+  font-size: var(--fs-caption);
+  color: var(--text-muted-strong);
+  white-space: nowrap;
+}
+.pageLoading {
+  display: grid;
+  place-items: center;
+  padding: var(--space-8);
+}
+
+/* -------------------------------------------------------------- scaffolds */
+
+.scaffold {
+  display: grid;
+  gap: var(--space-3);
+  padding: clamp(var(--space-5), 4vw, var(--space-7));
+  border: 1px dashed var(--border-strong);
+  border-radius: var(--radius-md);
+  background: var(--surface);
+  text-align: center;
+  justify-items: center;
+}
+.scaffoldTitle {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: var(--fs-h2);
+  color: var(--ink);
+}
+.scaffoldNote {
+  font-size: var(--fs-ui);
+  color: var(--text-muted-strong);
+  max-width: 60ch;
+  line-height: 1.55;
+}
+.scaffoldList {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+  justify-content: center;
+}
+.scaffoldChip {
+  padding: var(--space-2) var(--space-3);
+  border-radius: var(--radius-full);
+  background: var(--surface-mint);
+  border: 1px solid var(--border);
+  font-size: var(--fs-label);
+  color: var(--forest);
+}

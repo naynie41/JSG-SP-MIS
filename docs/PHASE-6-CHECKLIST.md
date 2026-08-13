@@ -42,7 +42,7 @@ Module docs: [api/app/Domain/Reporting/README.md](../api/app/Domain/Reporting/RE
 - **Reports export CSV/Excel/branded-PDF within scope, PII masked + audited; scheduled delivery to right recipients** — `ReportExportTest`, `AdHocReportTest`, `ReportScheduleTest`.
 - **GIS renders choropleth when boundaries loaded, degrades gracefully otherwise** — `GisCoverageTest`, `GisDashboardPage.test`.
 - **No PII in any aggregate/dashboard/export** — datasets are aggregate-only (no identifier columns); sensitive columns masked; enforced by whitelist + `SensitiveMasker`, covered by tests.
-- **Quality gates** — backend `php artisan test` green; Pint + Larastan (lvl 5) clean; frontend `typecheck` + `oxlint` + Vitest green; UI derives from `docs/DESIGN-SYSTEM.md`.
+- **Quality gates** — backend `php artisan test` green; Pint + Larastan (lvl 5) clean; frontend `typecheck` + `oxlint` + Vitest green; UI derives from `DESIGN.md`.
 
 ## SLA / snapshot / schedule cadence
 

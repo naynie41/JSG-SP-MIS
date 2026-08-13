@@ -9,6 +9,12 @@ export interface ProgrammeListParams {
   search?: string
   status?: string
   type?: string
+  /**
+   * Limit to catalog programmes the caller runs activities under. Server-side because
+   * `activities_count > 0` filtered in the client would silently drop matches that
+   * fall beyond the first page.
+   */
+  participating?: boolean
 }
 
 export const programmeApi = {
@@ -22,6 +28,7 @@ export const programmeApi = {
         search: params.search || undefined,
         'filter[status]': params.status || undefined,
         'filter[type]': params.type || undefined,
+        'filter[participating]': params.participating ? 1 : undefined,
       },
     })
   },

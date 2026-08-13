@@ -11,7 +11,7 @@ export interface IconProps {
 
 /**
  * Consistent icon wrapper around Lucide (one icon set, 1.5px stroke, 20px
- * default — DESIGN-SYSTEM.md §6). Decorative by default; pass `label` when the
+ * default — DESIGN.md §6). Decorative by default; pass `label` when the
  * icon conveys meaning on its own.
  */
 export function Icon({ icon: LucideComponent, size = 20, label, className }: IconProps) {

@@ -9,11 +9,13 @@ import {
   Phone,
   ShieldCheck,
   UserCheck,
+  UserRound,
   Users,
   UsersRound,
 } from 'lucide-react'
 import type { LucideIcon } from 'lucide-react'
 import { Icon } from '@/components/Icon/Icon'
+import { TrendCard } from './executiveWidgets'
 import type { DashboardResponse } from './types'
 import styles from './registry.module.css'
 
@@ -160,6 +162,10 @@ export function RegistryTab({ data }: RegistryTabProps) {
 
   return (
     <div className={styles.page}>
+      {/* Page identity — the executive inner pages previously started at <h2>,
+          leaving screen-reader heading navigation with no page name. */}
+      <h1 className="t-h1">Registry &amp; data quality</h1>
+
       {/* ---------- KPIs ---------- */}
       <section className={styles.reveal} aria-label="Registry indicators">
         <span className={styles.groupLabel}>Registry</span>
@@ -173,8 +179,27 @@ export function RegistryTab({ data }: RegistryTabProps) {
           <Figure icon={CopyCheck} label="Duplicates detected" value={num(rq?.duplicates_detected)} hint="surfaced at import" />
           <Figure icon={CalendarPlus} label="New this period" value={num(pop?.new_registrations_period)} hint={`last ${num(pop?.period_days)} days`} />
           <Figure icon={UsersRound} label="Suspended" value={num(rq?.suspended)} />
+          {/* Relocated from the Overview: a composition question about the
+              registry, answered where the registry is being examined. */}
+          <Figure
+            icon={UserRound}
+            label="Female share"
+            value={demo?.female_pct == null ? '—' : `${Math.round(demo.female_pct * 100)}%`}
+            hint="of recorded gender"
+          />
         </div>
       </section>
+
+      {/* Registrations trend, relocated from the Overview's four-card trend grid. */}
+      {m.trends && (
+        <section className={`${styles.reveal} ${styles.section}`} aria-label="Registration trend">
+          <div className={styles.sectionHead}>
+            <Icon icon={CalendarPlus} size={16} />
+            <h2 className={styles.sectionTitle}>New registrations over the last {m.trends.months.length} months</h2>
+          </div>
+          <TrendCard title="New registrations" points={m.trends.registrations} format={num} />
+        </section>
+      )}
 
       {/* ---------- DATA QUALITY ---------- */}
       <section className={`${styles.reveal} ${styles.section}`} aria-label="Data quality">
@@ -202,9 +227,9 @@ export function RegistryTab({ data }: RegistryTabProps) {
             <span className={styles.panelLabel}>Gender</span>
             <SplitBar
               segments={[
-                { label: 'Female', value: gender.female ?? 0, color: '#2a78d6' },
-                { label: 'Male', value: gender.male ?? 0, color: '#eda100' },
-                { label: 'Unspecified', value: gender.unspecified ?? 0, color: '#9a9c93' },
+                { label: 'Female', value: gender.female ?? 0, color: 'var(--chart-2)' },
+                { label: 'Male', value: gender.male ?? 0, color: 'var(--chart-3)' },
+                { label: 'Unspecified', value: gender.unspecified ?? 0, color: 'var(--chart-other)' },
               ]}
             />
           </div>

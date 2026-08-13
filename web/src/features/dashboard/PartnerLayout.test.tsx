@@ -137,7 +137,7 @@ describe('PartnerLayout (funding-partner suite shell + routed pages)', () => {
     expect(await screen.findByRole('heading', { name: /at work.*in Jigawa/i })).toBeInTheDocument()
     expect(screen.getByRole('button', { name: /export/i })).toBeInTheDocument()
     expect(screen.getByRole('button', { name: /refresh/i })).toBeInTheDocument()
-    expect(screen.getByLabelText('LGA')).toBeInTheDocument() // the shared filter bar
+    expect(screen.getByLabelText('Year')).toBeInTheDocument() // the shared filter bar
     // Overview page body (from the outlet).
     expect(screen.getByText('Value delivered')).toBeInTheDocument()
     expect(screen.getByText('Net-unique reached')).toBeInTheDocument()
@@ -153,7 +153,7 @@ describe('PartnerLayout (funding-partner suite shell + routed pages)', () => {
     // ...but the money-first hero card is Overview-only.
     expect(screen.queryByRole('heading', { name: /at work.*in Jigawa/i })).toBeNull()
     // The cross-cutting filter bar is still shared across inner pages.
-    expect(screen.getByLabelText('LGA')).toBeInTheDocument()
+    expect(screen.getByLabelText('Year')).toBeInTheDocument()
   })
 
   it('applies the cross-cutting filter (refetches with params) — shared across pages', async () => {
@@ -162,6 +162,7 @@ describe('PartnerLayout (funding-partner suite shell + routed pages)', () => {
     renderAt('/partner')
     await screen.findByRole('heading', { name: /at work.*in Jigawa/i })
 
+    await user.click(screen.getByRole('button', { name: /more filters/i }))
     await user.selectOptions(screen.getByLabelText('LGA'), 'dutse')
     expect(get).toHaveBeenLastCalledWith(expect.objectContaining({ lga: 'dutse' }))
   })

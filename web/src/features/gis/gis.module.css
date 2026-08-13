@@ -85,7 +85,7 @@
 .legendSwatch {
   width: 22px;
   height: 12px;
-  border-radius: 2px;
+  border-radius: var(--radius-swatch);
   border: 1px solid rgba(24, 24, 24, 0.08);
 }
 

@@ -22,7 +22,7 @@ export interface BadgeProps {
   className?: string
 }
 
-/** Pill badge/chip (DESIGN-SYSTEM.md §5.3). One badge per status cell. */
+/** Pill badge/chip (DESIGN.md §5.3). One badge per status cell. */
 export function Badge({ variant = 'neutral', dot = false, mono = false, children, className }: BadgeProps) {
   return (
     <span className={cn(styles.badge, styles[variant], mono && styles.mono, className)}>

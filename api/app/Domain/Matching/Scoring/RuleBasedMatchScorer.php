@@ -55,6 +55,11 @@ class RuleBasedMatchScorer implements MatchScorer
                 'similarity' => round($similarity, 4),
                 'contribution' => round($contribution, 4),
                 'present' => $a !== null && $b !== null,
+                // Which SIDE is missing, so an officer can tell "they have no
+                // phone on file" from "this row has no phone". Booleans only —
+                // no value crosses the MDA boundary (FR-DUP-04).
+                'incoming_present' => $a !== null,
+                'existing_present' => $b !== null,
             ];
         }
 

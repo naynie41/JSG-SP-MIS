@@ -47,7 +47,7 @@ export function useMarkAllRead() {
   })
 }
 
-export function useNotificationPreferences(enabled: boolean) {
+export function useNotificationPreferences(enabled = true) {
   return useQuery({ queryKey: ['notifications', 'preferences'], queryFn: () => notificationApi.preferences(), enabled })
 }
 

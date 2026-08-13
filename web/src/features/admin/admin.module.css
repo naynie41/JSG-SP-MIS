@@ -1,7 +1,7 @@
 /* =============================================================================
    System Administrator console. Governance, not operations: provisioning, catalog,
    registry integrity, audit. Built on the shared forest/lime tokens and the existing
-   component specs (DESIGN-SYSTEM.md §5.4 table, §5.5 cards/KPI, §5.6 navigation).
+   component specs (DESIGN.md §5.4 table, §5.5 cards/KPI, §5.6 navigation).
    ============================================================================= */
 
 .console {
@@ -13,6 +13,11 @@
 }
 .page {
   display: grid;
+  /* A grid track defaults to `min-width: auto`, so a wide table stretches the
+     track instead of letting its own `overflow-x: auto` contain it — which made
+     the whole page scroll sideways at mobile widths (1040px at a 390px
+     viewport). Capping the track restores the intended inner scroll. */
+  grid-template-columns: minmax(0, 1fr);
   gap: var(--space-6);
   padding-bottom: var(--space-6);
 }
@@ -114,10 +119,15 @@
   gap: var(--space-2);
 }
 
-/* Effective-configuration list: label, value, and the key that sets it. */
+/* Effective-configuration list: label, value, and the key that sets it.
+   Capped rather than stretched: at full console width the label and its value sat
+   ~800px apart with only a hairline binding them, so scanning "which value is this?"
+   meant a long eye journey. Bounding the measure keeps the pair associated while
+   preserving the label-left / value-right reading. */
 .configList {
   display: grid;
   gap: var(--space-1);
+  max-width: 78ch;
 }
 .configRow {
   display: flex;
@@ -147,13 +157,15 @@
   color: var(--text-muted-strong);
 }
 
-/* A simple label → status list (MFA by role, channel availability, purposes). */
+/* A simple label → status list (MFA by role, channel availability, purposes).
+   Same measure cap as .configList, for the same reason. */
 .plainList {
   display: grid;
   gap: var(--space-1);
   list-style: none;
   padding: 0;
   margin: 0;
+  max-width: 78ch;
 }
 .plainRow {
   display: flex;
@@ -213,6 +225,18 @@
   color: var(--text-muted-strong);
 }
 
+/* The console's only motion is a 1px lift on a quick action. Drop the movement for
+   readers who ask for reduced motion, but KEEP the colour change — the hover state
+   still has to be legible, so this removes the travel, not the feedback. */
+@media (prefers-reduced-motion: reduce) {
+  .action {
+    transition: border-color var(--transition), background var(--transition);
+  }
+  .action:hover:not(:disabled) {
+    transform: none;
+  }
+}
+
 /* ----------------------------------------------------------------- KPI band */
 
 .kpiBand {
@@ -239,11 +263,13 @@
   gap: var(--space-2);
   box-shadow: var(--elev-sm);
 }
+/* Derived from the tokens with color-mix rather than re-typed as literals, so a change
+   to --accent or --bg reaches these too (CONVENTIONS.md §5: never hard-code hex). */
 .kpiHeadline {
   background:
-    radial-gradient(120% 140% at 90% -20%, rgba(198, 241, 53, 0.22), transparent 55%),
-    linear-gradient(160deg, #384318, var(--forest));
-  outline: 1px solid rgba(198, 241, 53, 0.35);
+    radial-gradient(120% 140% at 90% -20%, color-mix(in srgb, var(--accent) 22%, transparent), transparent 55%),
+    linear-gradient(160deg, var(--forest-tint), var(--forest));
+  outline: 1px solid color-mix(in srgb, var(--accent) 35%, transparent);
   outline-offset: -1px;
 }
 .kpiLabel {
@@ -251,7 +277,7 @@
   font-size: var(--fs-caption);
   letter-spacing: 0.12em;
   text-transform: uppercase;
-  color: rgba(245, 245, 241, 0.78);
+  color: color-mix(in srgb, var(--bg) 78%, transparent);
   display: inline-flex;
   align-items: center;
   gap: var(--space-2);
@@ -269,7 +295,7 @@
 }
 .kpiHint {
   font-size: var(--fs-label);
-  color: rgba(245, 245, 241, 0.62);
+  color: color-mix(in srgb, var(--bg) 62%, transparent);
 }
 
 /* --------------------------------------------------------------- figure grid */
@@ -424,10 +450,14 @@
 .alert[data-severity='info'] .alertIcon {
   color: var(--info-ink);
 }
+/* The banner spans the panel, but its message reads at a measure — an alert detail
+   was running the full console width, which is the slowest possible line to read at
+   the exact moment the reader needs to act on it. */
 .alertBody {
   display: grid;
   gap: 1px;
   min-width: 0;
+  max-width: 78ch;
 }
 .alertTitle {
   font-size: var(--fs-ui);
@@ -619,14 +649,17 @@
     grid-template-columns: 1fr;
   }
 }
+/* An inline policy aside (a locked role, a rule the console will not let you break).
+   The mono uppercase label carries the signal; a thick coloured left border was doing
+   the same job louder and is the most recognisable generic-UI tell. */
 .policyNote {
   display: grid;
   gap: var(--space-2);
   padding: var(--space-4);
-  border: 1px solid var(--border);
-  border-left: 3px solid var(--forest-2);
+  border: 1px solid var(--border-strong);
   border-radius: var(--radius-md);
-  background: var(--surface);
+  background: var(--surface-mint);
+  max-width: 78ch;
 }
 .policyLabel {
   font-family: var(--font-mono);
@@ -682,12 +715,15 @@
 
 /* ------------------------------------------------------------------ footer */
 
+/* A subordinate aside under a panel — it explains the data above it and must never
+   compete with it. Body face, not mono: these are sentences, and mono + tracking at
+   caption size reads as a costume and slows non-technical staff down. Capped to a
+   reading measure because an uncapped caption ran to ~159 characters on a wide
+   console panel; left-aligned so the eye returns to one edge. */
 .footnote {
-  font-family: var(--font-mono);
   font-size: var(--fs-caption);
-  letter-spacing: 0.06em;
   color: var(--text-muted-strong);
-  text-align: center;
+  max-width: 74ch;
   padding-top: var(--space-3);
   border-top: 1px solid var(--border);
   line-height: 1.6;

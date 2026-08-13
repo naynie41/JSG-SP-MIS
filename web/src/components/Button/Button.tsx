@@ -19,7 +19,7 @@ export interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
 }
 
 /**
- * Pill button (DESIGN-SYSTEM.md §5.1). All variants/sizes + hover/active/
+ * Pill button (DESIGN.md §5.1). All variants/sizes + hover/active/
  * focus-visible/disabled/loading. Loading keeps width and blocks pointer.
  */
 export const Button = forwardRef<HTMLButtonElement, ButtonProps>(function Button(

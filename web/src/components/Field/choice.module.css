@@ -59,6 +59,16 @@
   opacity: 1;
 }
 
+/* Mixed state (select-all with a partial selection): same lime fill as checked,
+   with the dash glyph the component swaps in. */
+.input:indeterminate + .box {
+  background-color: var(--accent);
+  border-color: var(--accent);
+}
+.input:indeterminate + .box .glyph {
+  opacity: 1;
+}
+
 .radio .dot {
   width: 8px;
   height: 8px;

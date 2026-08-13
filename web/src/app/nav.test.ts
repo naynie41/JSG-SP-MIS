@@ -31,13 +31,35 @@ describe('navSectionsFor', () => {
   })
 
   it('gives an operator role the generic rail, never a suite rail', () => {
-    const tos = navSectionsFor('mda_officer', all).flatMap((s) => s.items.map((i) => i.to))
+    // SP Coordination / M&E keep the generic hub rail. The MDA roles moved to their
+    // own six-module workspace (below), so they are no longer the example here.
+    const tos = navSectionsFor('sp_coordination', all).flatMap((s) => s.items.map((i) => i.to))
     expect(tos).toContain('/') // Dashboard
     expect(tos).toContain('/programmes')
+    expect(tos).not.toContain('/mda')
     expect(tos).not.toContain('/partner')
     expect(tos).not.toContain('/partner/investment')
     expect(tos).not.toContain('/executive')
     expect(tos).not.toContain('/executive/coverage')
+  })
+
+  it('gives an MDA role the six-module workspace, not the generic rail', () => {
+    for (const role of ['mda_officer', 'mda_admin']) {
+      const tos = navSectionsFor(role, all).flatMap((s) => s.items.map((i) => i.to))
+      expect(tos).toEqual([
+        '/mda',
+        '/mda/programmes',
+        '/mda/beneficiaries',
+        '/mda/service-delivery',
+        '/mda/duplicate-resolution',
+        '/mda/reports',
+      ])
+      // The generic hubs are replaced, not duplicated alongside.
+      expect(tos).not.toContain('/')
+      expect(tos).not.toContain('/registry')
+      // Settings opens from the gear, never the rail.
+      expect(tos).not.toContain('/mda/settings')
+    }
   })
 
   it('gives a System Administrator the nine console pages, not the generic rail', () => {

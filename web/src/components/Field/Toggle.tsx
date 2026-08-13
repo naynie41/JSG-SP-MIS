@@ -9,7 +9,7 @@ export interface ToggleProps extends Omit<InputHTMLAttributes<HTMLInputElement>,
   hideLabel?: boolean
 }
 
-/** Switch (DESIGN-SYSTEM.md §5.2): off = grey track; on = lime track, dark knob. */
+/** Switch (DESIGN.md §5.2): off = grey track; on = lime track, dark knob. */
 export const Toggle = forwardRef<HTMLInputElement, ToggleProps>(function Toggle(
   { label, hideLabel, disabled, className, ...rest },
   ref,

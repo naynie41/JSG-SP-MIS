@@ -2,7 +2,7 @@
 
 // odsl-C:\Users\ACER\Desktop\JSG-SP-MIS\JSG-SP-MIS\api\app\Domain\Registry\Services\ImportCommitter.php-PHPStan\BetterReflection\Reflection\ReflectionClass-App\Domain\Registry\Services\ImportCommitter
 return \PHPStan\Cache\CacheItem::__set_state(array(
-   'variableKey' => 'v2-6.70.0.1-8.3.31-5551956ea22676d4488efe4a3a083ecf5c686900fbe6f11a06b6d2bf53ffbcbe',
+   'variableKey' => 'v2-6.70.0.1-8.3.31-b464479767a7bbf2aae5e9e9e9aa5d9c21d682492f33a9eb8f585d32833efbc1',
    'data' => 
   array (
     'locatedSource' => 
@@ -39,8 +39,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
     'attributes' => 
     array (
     ),
-    'startLine' => 37,
-    'endLine' => 196,
+    'startLine' => 38,
+    'endLine' => 204,
     'startColumn' => 1,
     'endColumn' => 1,
     'parentClassName' => NULL,
@@ -75,8 +75,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         'attributes' => 
         array (
         ),
-        'startLine' => 40,
-        'endLine' => 40,
+        'startLine' => 41,
+        'endLine' => 41,
         'startColumn' => 9,
         'endColumn' => 56,
         'isPromoted' => true,
@@ -106,8 +106,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         'attributes' => 
         array (
         ),
-        'startLine' => 41,
-        'endLine' => 41,
+        'startLine' => 42,
+        'endLine' => 42,
         'startColumn' => 9,
         'endColumn' => 62,
         'isPromoted' => true,
@@ -137,8 +137,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         'attributes' => 
         array (
         ),
-        'startLine' => 42,
-        'endLine' => 42,
+        'startLine' => 43,
+        'endLine' => 43,
         'startColumn' => 9,
         'endColumn' => 63,
         'isPromoted' => true,
@@ -168,8 +168,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         'attributes' => 
         array (
         ),
-        'startLine' => 43,
-        'endLine' => 43,
+        'startLine' => 44,
+        'endLine' => 44,
         'startColumn' => 9,
         'endColumn' => 55,
         'isPromoted' => true,
@@ -206,8 +206,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             'attributes' => 
             array (
             ),
-            'startLine' => 40,
-            'endLine' => 40,
+            'startLine' => 41,
+            'endLine' => 41,
             'startColumn' => 9,
             'endColumn' => 56,
             'parameterIndex' => 0,
@@ -232,8 +232,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             'attributes' => 
             array (
             ),
-            'startLine' => 41,
-            'endLine' => 41,
+            'startLine' => 42,
+            'endLine' => 42,
             'startColumn' => 9,
             'endColumn' => 62,
             'parameterIndex' => 1,
@@ -258,8 +258,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             'attributes' => 
             array (
             ),
-            'startLine' => 42,
-            'endLine' => 42,
+            'startLine' => 43,
+            'endLine' => 43,
             'startColumn' => 9,
             'endColumn' => 63,
             'parameterIndex' => 2,
@@ -284,8 +284,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             'attributes' => 
             array (
             ),
-            'startLine' => 43,
-            'endLine' => 43,
+            'startLine' => 44,
+            'endLine' => 44,
             'startColumn' => 9,
             'endColumn' => 55,
             'parameterIndex' => 3,
@@ -298,8 +298,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         array (
         ),
         'docComment' => NULL,
-        'startLine' => 39,
-        'endLine' => 44,
+        'startLine' => 40,
+        'endLine' => 45,
         'startColumn' => 5,
         'endColumn' => 8,
         'couldThrow' => false,
@@ -337,8 +337,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             'attributes' => 
             array (
             ),
-            'startLine' => 46,
-            'endLine' => 46,
+            'startLine' => 47,
+            'endLine' => 47,
             'startColumn' => 28,
             'endColumn' => 45,
             'parameterIndex' => 0,
@@ -382,8 +382,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             'attributes' => 
             array (
             ),
-            'startLine' => 46,
-            'endLine' => 46,
+            'startLine' => 47,
+            'endLine' => 47,
             'startColumn' => 48,
             'endColumn' => 59,
             'parameterIndex' => 1,
@@ -404,8 +404,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         array (
         ),
         'docComment' => NULL,
-        'startLine' => 46,
-        'endLine' => 142,
+        'startLine' => 47,
+        'endLine' => 150,
         'startColumn' => 5,
         'endColumn' => 5,
         'couldThrow' => true,
@@ -443,8 +443,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             'attributes' => 
             array (
             ),
-            'startLine' => 148,
-            'endLine' => 148,
+            'startLine' => 156,
+            'endLine' => 156,
             'startColumn' => 42,
             'endColumn' => 55,
             'parameterIndex' => 0,
@@ -487,8 +487,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
  * A row\'s effective decision: an explicit resolution, else NEW for a non-flagged
  * row, else null (flagged + unresolved → create nothing).
  */',
-        'startLine' => 148,
-        'endLine' => 155,
+        'startLine' => 156,
+        'endLine' => 163,
         'startColumn' => 5,
         'endColumn' => 5,
         'couldThrow' => false,
@@ -545,8 +545,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             'attributes' => 
             array (
             ),
-            'startLine' => 164,
-            'endLine' => 164,
+            'startLine' => 172,
+            'endLine' => 172,
             'startColumn' => 41,
             'endColumn' => 61,
             'parameterIndex' => 0,
@@ -590,8 +590,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             'attributes' => 
             array (
             ),
-            'startLine' => 164,
-            'endLine' => 164,
+            'startLine' => 172,
+            'endLine' => 172,
             'startColumn' => 64,
             'endColumn' => 82,
             'parameterIndex' => 1,
@@ -616,8 +616,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             'attributes' => 
             array (
             ),
-            'startLine' => 164,
-            'endLine' => 164,
+            'startLine' => 172,
+            'endLine' => 172,
             'startColumn' => 85,
             'endColumn' => 108,
             'parameterIndex' => 2,
@@ -661,8 +661,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             'attributes' => 
             array (
             ),
-            'startLine' => 164,
-            'endLine' => 164,
+            'startLine' => 172,
+            'endLine' => 172,
             'startColumn' => 111,
             'endColumn' => 131,
             'parameterIndex' => 3,
@@ -706,8 +706,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             'attributes' => 
             array (
             ),
-            'startLine' => 164,
-            'endLine' => 164,
+            'startLine' => 172,
+            'endLine' => 172,
             'startColumn' => 134,
             'endColumn' => 145,
             'parameterIndex' => 4,
@@ -734,8 +734,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
  * household. Best-effort — a duplicate/ineligible/type-mismatched target records no
  * enrollment and never blocks the commit. Needs a confirming actor for attribution.
  */',
-        'startLine' => 164,
-        'endLine' => 176,
+        'startLine' => 172,
+        'endLine' => 184,
         'startColumn' => 5,
         'endColumn' => 5,
         'couldThrow' => false,
@@ -773,8 +773,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             'attributes' => 
             array (
             ),
-            'startLine' => 183,
-            'endLine' => 183,
+            'startLine' => 191,
+            'endLine' => 191,
             'startColumn' => 28,
             'endColumn' => 41,
             'parameterIndex' => 0,
@@ -799,8 +799,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             'attributes' => 
             array (
             ),
-            'startLine' => 183,
-            'endLine' => 183,
+            'startLine' => 191,
+            'endLine' => 191,
             'startColumn' => 44,
             'endColumn' => 61,
             'parameterIndex' => 1,
@@ -844,8 +844,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             'attributes' => 
             array (
             ),
-            'startLine' => 183,
-            'endLine' => 183,
+            'startLine' => 191,
+            'endLine' => 191,
             'startColumn' => 64,
             'endColumn' => 75,
             'parameterIndex' => 2,
@@ -870,8 +870,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
  * (§10). Never creates a beneficiary; the intervention is deferred until the owner
  * MDA approves.
  */',
-        'startLine' => 183,
-        'endLine' => 195,
+        'startLine' => 191,
+        'endLine' => 203,
         'startColumn' => 5,
         'endColumn' => 5,
         'couldThrow' => false,

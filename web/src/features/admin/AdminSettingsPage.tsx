@@ -49,7 +49,7 @@ const READ_ONLY_NOTE =
 function GeneralPanel({ rows }: { rows: SettingRow[] }) {
   return (
     <div className={styles.page}>
-      <Card title="Deployment" eyebrow="Effective configuration">
+      <Card titleAs="h2" title="Deployment" eyebrow="Effective configuration">
         <ConfigList rows={rows} />
         <p className={styles.footnote}>{READ_ONLY_NOTE}</p>
       </Card>
@@ -68,12 +68,12 @@ function SecurityPanel({
 }) {
   return (
     <div className={styles.page}>
-      <Card title="Authentication & session policy" eyebrow="Effective configuration">
+      <Card titleAs="h2" title="Authentication & session policy" eyebrow="Effective configuration">
         <ConfigList rows={policy} />
         <p className={styles.footnote}>{READ_ONLY_NOTE}</p>
       </Card>
 
-      <Card title="Multi-factor authentication by role" eyebrow="Phase 1 role property">
+      <Card titleAs="h2" title="Multi-factor authentication by role" eyebrow="Phase 1 role property">
         <ul className={styles.plainList}>
           {mfaRoles.map((role) => (
             <li key={role.key} className={styles.plainRow}>
@@ -107,7 +107,7 @@ function RegistryPanel({
 }) {
   return (
     <div className={styles.page}>
-      <Card title="Identity validation" eyebrow="Locked — not administrator-editable">
+      <Card titleAs="h2" title="Identity validation" eyebrow="Locked — not administrator-editable">
         <p className={styles.groupLabel}>Identity fields</p>
         <div className={styles.choiceRow}>
           {identityFields.map((field) => (
@@ -130,7 +130,7 @@ function RegistryPanel({
         </p>
       </Card>
 
-      <Card title="Privacy & retention" eyebrow="Effective configuration">
+      <Card titleAs="h2" title="Privacy & retention" eyebrow="Effective configuration">
         <ConfigList rows={privacy} />
         <p className={styles.groupLabel}>Consent purposes</p>
         <ul className={styles.plainList}>
@@ -173,7 +173,7 @@ function NotificationsPanel({
 
   return (
     <div className={styles.page}>
-      <Card title="Delivery channels" eyebrow="Registered with the notifier">
+      <Card titleAs="h2" title="Delivery channels" eyebrow="Registered with the notifier">
         <ul className={styles.plainList}>
           {channels.map((channel) => (
             <li key={channel.key} className={styles.plainRow}>
@@ -191,7 +191,7 @@ function NotificationsPanel({
       </Card>
 
       {canBroadcast && (
-        <Card title="Broadcast a system notification" eyebrow="Reaches every active user">
+        <Card titleAs="h2" title="Broadcast a system notification" eyebrow="Reaches every active user">
           <TextField
             label="Subject"
             value={subject}
@@ -280,7 +280,7 @@ function MatrixEditor() {
 
   return (
     <div className={styles.page}>
-      <Card title="Permission matrix" eyebrow="Role × module × action">
+      <Card titleAs="h2" title="Permission matrix" eyebrow="Role × module × action">
         <div className={styles.filterBar}>
           <SelectField
             label="Role"

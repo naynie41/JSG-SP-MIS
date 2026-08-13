@@ -11,7 +11,7 @@ export interface BreadcrumbsProps {
   items: Crumb[]
 }
 
-/** Breadcrumbs with mono separators (DESIGN-SYSTEM.md §5.6). */
+/** Breadcrumbs with mono separators (DESIGN.md §5.6). */
 export function Breadcrumbs({ items }: BreadcrumbsProps) {
   return (
     <nav aria-label="Breadcrumb">

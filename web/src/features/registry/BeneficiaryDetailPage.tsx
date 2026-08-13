@@ -43,6 +43,10 @@ function ProfileTab({ beneficiary }: { beneficiary: Beneficiary }) {
 
       <Card title="Provenance" eyebrow="Origin" variant="mint">
         <dl className={styles.dl}>
+          {/* Owner MDA leads: it is the field that decides who may edit this
+              record and who must request to serve (Principle 1). */}
+          <dt>Owner MDA</dt>
+          <dd>{beneficiary.owner_mda?.name ?? '—'}</dd>
           <dt>Source</dt>
           <dd>{REGISTRATION_SOURCE_LABELS[beneficiary.registration_source] ?? beneficiary.registration_source}</dd>
           <dt>Registered</dt>
@@ -58,7 +62,10 @@ function ProfileTab({ beneficiary }: { beneficiary: Beneficiary }) {
           {beneficiary.import_batch_id && (
             <>
               <dt>Import batch</dt>
-              <dd className={styles.mono}>{beneficiary.import_batch_id}</dd>
+              {/* Provenance the officer can actually follow, not just read. */}
+              <dd className={styles.mono}>
+                <Link to={`/imports/${beneficiary.import_batch_id}`}>{beneficiary.import_batch_id}</Link>
+              </dd>
             </>
           )}
         </dl>
@@ -140,10 +147,19 @@ export function BeneficiaryDetailPage() {
           <Badge variant={statusVariant(beneficiary.status)} dot>
             {beneficiary.status}
           </Badge>
-          {canEdit && (
+          {canEdit ? (
             <Button leftIcon={Pencil} onClick={() => setEditOpen(true)}>
               Edit
             </Button>
+          ) : (
+            // A non-owner previously got no Owner MDA, no Edit and no request
+            // affordance — three absences to interpret. Principle 1: ownership
+            // is stated, never discovered by hitting a permission error.
+            !isOwner && (
+              <span className={styles.ownershipNote}>
+                Owned by {beneficiary.owner_mda?.name ?? 'another MDA'} · you have read access
+              </span>
+            )
           )}
         </div>
       </div>

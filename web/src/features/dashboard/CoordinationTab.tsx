@@ -158,6 +158,9 @@ export function CoordinationTab({ data }: CoordinationTabProps) {
 
   return (
     <div className={styles.page}>
+      {/* Page identity — inner executive pages previously had no <h1>. */}
+      <h1 className="t-h1">Coordination</h1>
+
       {/* ---------- AGENCIES ---------- */}
       <section className={styles.section}>
         <SectionHead icon={Building2} title="Agencies" />

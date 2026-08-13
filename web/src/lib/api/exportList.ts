@@ -30,7 +30,7 @@ export async function downloadFile(
 }
 
 /**
- * Export a list endpoint's CURRENT filtered/searched view (DESIGN-SYSTEM.md §5.4).
+ * Export a list endpoint's CURRENT filtered/searched view (DESIGN.md §5.4).
  * Sends `params` (the grid's live filters/search) plus the chosen `format`. A small
  * export streams back and downloads immediately; a large one is queued server-side
  * (HTTP 202) and resolves `{ queued: true }` so the caller can tell the user a ready

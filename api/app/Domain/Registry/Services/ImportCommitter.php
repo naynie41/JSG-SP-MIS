@@ -12,6 +12,7 @@ use App\Domain\Programme\Models\Programme;
 use App\Domain\Programme\Services\EnrollmentService;
 use App\Domain\Registry\Enums\ImportRowResolution;
 use App\Domain\Registry\Enums\ImportStatus;
+use App\Domain\Registry\Events\ImportBatchCompleted;
 use App\Domain\Registry\Models\Beneficiary;
 use App\Domain\Registry\Models\Household;
 use App\Domain\Registry\Models\ImportBatch;
@@ -133,12 +134,19 @@ class ImportCommitter
         $committed = (int) $batch->rows()->whereNotNull('beneficiary_id')->count();
         $served = (int) $batch->rows()->where('resolution', ImportRowResolution::Link->value)->count();
 
+        $skipped = max(0, $total - $committed - $served);
+
         $batch->update([
             'status' => ImportStatus::Completed,
             'committed_rows' => $committed,
             'served_rows' => $served,
-            'skipped_rows' => max(0, $total - $committed - $served),
+            'skipped_rows' => $skipped,
         ]);
+
+        // Tell the uploader how it went. Fired here rather than in CommitImportBatch so
+        // it covers BOTH entry points — the Import Center's queued commit and the
+        // activity wizard's atomic confirm both land in this method.
+        ImportBatchCompleted::dispatch($batch, $committed, $served, $skipped);
     }
 
     /**

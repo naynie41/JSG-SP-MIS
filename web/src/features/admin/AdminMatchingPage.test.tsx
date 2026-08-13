@@ -123,8 +123,10 @@ describe('Admin console — Matching Rules & Registry Config (composes Phase 3)'
   it('edits the cascade through the EXISTING matching engine config — no second store', async () => {
     renderPage()
 
-    // The section drove the Phase 3 api layer for the active config.
-    expect(await screen.findByText(/duplicate-verification configuration/i)).toBeInTheDocument()
+    // The section drove the Phase 3 api layer for the active config. Anchored on the
+    // engine's own version badge rather than page chrome — the composed module's
+    // heading block is suppressed when embedded so the console keeps one h1.
+    expect(await screen.findByText('v2')).toBeInTheDocument()
     expect(getConfig).toHaveBeenCalled()
     expect(screen.getByText('v2')).toBeInTheDocument()
   })
@@ -132,7 +134,7 @@ describe('Admin console — Matching Rules & Registry Config (composes Phase 3)'
   it('publishes through the existing endpoint, creating a new audited version', async () => {
     const user = userEvent.setup()
     renderPage()
-    await screen.findByText(/duplicate-verification configuration/i)
+    await screen.findByText('v2')
 
     await user.click(screen.getByRole('button', { name: /publish new version/i }))
     // Confirmation dialog explains the versioning + audit contract.
@@ -144,7 +146,7 @@ describe('Admin console — Matching Rules & Registry Config (composes Phase 3)'
   it('shows the immutable version history from the existing endpoint', async () => {
     const user = userEvent.setup()
     renderPage()
-    await screen.findByText(/duplicate-verification configuration/i)
+    await screen.findByText('v2')
 
     await user.click(screen.getByRole('tab', { name: /version history/i }))
 
@@ -163,7 +165,7 @@ describe('Admin console — Matching Rules & Registry Config (composes Phase 3)'
   it('reports duplicate statistics produced by the configured engine', async () => {
     const user = userEvent.setup()
     renderPage()
-    await screen.findByText(/duplicate-verification configuration/i)
+    await screen.findByText('v2')
 
     await user.click(screen.getByRole('tab', { name: /duplicate statistics/i }))
 
@@ -180,7 +182,7 @@ describe('Admin console — Matching Rules & Registry Config (composes Phase 3)'
   it('shows registry validation rules as READ-ONLY policy, never an editor', async () => {
     const user = userEvent.setup()
     renderPage()
-    await screen.findByText(/duplicate-verification configuration/i)
+    await screen.findByText('v2')
 
     await user.click(screen.getByRole('tab', { name: /validation rules/i }))
 
@@ -204,7 +206,7 @@ describe('Admin console — Matching Rules & Registry Config (composes Phase 3)'
   it('inherits Phase 3 gating — a viewer cannot publish', async () => {
     perms.value = ['matching.view', 'dashboard.view'] // no matching.edit
     renderPage()
-    await screen.findByText(/duplicate-verification configuration/i)
+    await screen.findByText('v2')
 
     expect(screen.queryByRole('button', { name: /publish new version/i })).not.toBeInTheDocument()
   })

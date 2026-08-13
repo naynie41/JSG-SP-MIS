@@ -177,6 +177,23 @@ class ImportResolutionTest extends TestCase
             ->assertJsonPath('data.resolution', 'link');
     }
 
+    public function test_a_resolved_row_reports_when_it_was_decided(): void
+    {
+        $batchId = $this->upload();
+
+        // Undecided rows carry no timestamp…
+        $this->resolve($batchId, 2, ['resolution' => 'new', 'note' => 'A distinct person'])
+            ->assertOk()
+            ->assertJsonPath('data.resolution', 'new');
+
+        // …and a decided one reports when, which is what lets the console order a
+        // decision history chronologically. The ACTOR stays in the audit log.
+        $row = $this->resolve($batchId, 2, ['resolution' => 'skip'])->assertOk()->json('data');
+
+        $this->assertNotNull($row['resolved_at'], 'a decided row must report when it was decided');
+        $this->assertArrayNotHasKey('resolved_by', $row, 'the actor belongs to the audit log, not the row payload');
+    }
+
     public function test_probable_matches_can_be_adjudicated_as_new(): void
     {
         $batchId = $this->upload();

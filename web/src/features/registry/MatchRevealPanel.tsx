@@ -45,16 +45,23 @@ export function MatchRevealPanel({ reveal, eyebrow = 'Existing record' }: MatchR
         </dd>
       </dl>
 
-      <div className={styles.phase4}>
-        <section className={styles.phase4Section}>
+      {/* Programme + benefit disclosure renders only once there is something to
+          disclose. Empty "populates in Phase 4" placeholders occupied half this
+          panel at the moment of maximum concentration and leaked internal
+          roadmap vocabulary to officers; an absent section says more than an
+          empty promise. */}
+      {reveal.programmes.length > 0 && (
+        <section className={styles.revealSection}>
           <span className="eyebrow">Programmes</span>
-          <p className={styles.note}>No programme data yet — populates in Phase 4.</p>
+          <p>{reveal.programmes.length} recorded</p>
         </section>
-        <section className={styles.phase4Section}>
+      )}
+      {reveal.benefits.summary && (
+        <section className={styles.revealSection}>
           <span className="eyebrow">Benefits received</span>
-          <p className={styles.note}>No benefit data yet — populates in Phase 4.</p>
+          <p>{reveal.benefits.summary}</p>
         </section>
-      </div>
+      )}
     </div>
   )
 }

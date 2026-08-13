@@ -118,7 +118,7 @@
   flex-wrap: wrap;
 }
 
-/* --- Activity creation wizard (DESIGN-SYSTEM §5.9) --- */
+/* --- Activity creation wizard (DESIGN.md §5.9) --- */
 .wizardSteps {
   display: flex;
   gap: var(--space-2);

@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Http\Resources;
 
+use App\Domain\Matching\Models\MatchingConfig;
 use App\Domain\Registry\Models\ImportBatch;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
@@ -54,9 +55,36 @@ class ImportBatchResource extends JsonResource
                 'skipped_rows' => $this->skipped_rows,
             ],
             'error' => $this->error,
+            // The thresholds the engine actually used. The adjudication screen
+            // renders a match's position against these instead of a bare
+            // decimal, so "0.87" reads as "above review, below auto-accept" —
+            // the configuration in MatchingConfigPage governs what is surfaced,
+            // and the officer governs what it means (FR-DUP-02/03/09).
+            'matching_thresholds' => $this->matchingThresholds(),
             'rows' => ImportRowResource::collection($this->whenLoaded('rows')),
             'created_at' => $this->created_at?->toIso8601String(),
             'updated_at' => $this->updated_at?->toIso8601String(),
+        ];
+    }
+
+    /**
+     * Thresholds from the active matching configuration. Only meaningful once a
+     * preview exists, so it is resolved lazily and returns null when no config
+     * is active — the client falls back to showing the band alone.
+     *
+     * @return array{review: float, auto_accept: float|null}|null
+     */
+    private function matchingThresholds(): ?array
+    {
+        /** @var MatchingConfig|null $config */
+        $config = MatchingConfig::query()->where('is_active', true)->first();
+        if ($config === null) {
+            return null;
+        }
+
+        return [
+            'review' => (float) $config->review_threshold,
+            'auto_accept' => $config->auto_accept_threshold === null ? null : (float) $config->auto_accept_threshold,
         ];
     }
 }

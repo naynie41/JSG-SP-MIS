@@ -136,7 +136,7 @@ export function AdminAccessPage() {
 
       <Tabs
         items={[
-          { id: 'users', label: 'Users', content: <UserListPage /> },
+          { id: 'users', label: 'Users', content: <UserListPage embedded /> },
           { id: 'roles', label: 'Roles', content: <RolesPage /> },
           {
             id: 'permissions',

@@ -5,7 +5,7 @@ import { Modal } from './Modal'
 export interface ConfirmDialogProps {
   open: boolean
   title: string
-  /** Describe the exact consequence (DESIGN-SYSTEM.md §5.7). */
+  /** Describe the exact consequence (DESIGN.md §5.7). */
   children: ReactNode
   confirmLabel?: string
   cancelLabel?: string

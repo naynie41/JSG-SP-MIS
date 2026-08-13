@@ -2,7 +2,7 @@
 
 // odsl-C:\Users\ACER\Desktop\JSG-SP-MIS\JSG-SP-MIS\api\app\Domain\Registry\Enums\BeneficiaryStatus.php-PHPStan\BetterReflection\Reflection\ReflectionClass-App\Domain\Registry\Enums\BeneficiaryStatus
 return \PHPStan\Cache\CacheItem::__set_state(array(
-   'variableKey' => 'v2-6.70.0.1-8.3.31-7e1b800d5f869d042d11ac0ca74c755e2d1a4637c064faaee90822c18b9bef55',
+   'variableKey' => 'v2-6.70.0.1-8.3.31-827510558bf4c38cc90e338513495ec2bb48d9387111c250ac0d344b142ab30e',
    'data' => 
   array (
     'locatedSource' => 
@@ -24,7 +24,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
     'modifiers' => 0,
     'docComment' => '/**
  * Beneficiary lifecycle status. Maps to the shared status → badge variants
- * (DESIGN-SYSTEM.md §5.8): active→success, suspended→warning, flagged→danger.
+ * (DESIGN.md §5.8): active→success, suspended→warning, flagged→danger.
  */',
     'attributes' => 
     array (
@@ -393,9 +393,9 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             'startLine' => 13,
             'endLine' => 13,
             'startTokenPos' => 32,
-            'startFilePos' => 294,
+            'startFilePos' => 287,
             'endTokenPos' => 32,
-            'endFilePos' => 301,
+            'endFilePos' => 294,
           ),
         ),
         'attributes' => 
@@ -418,9 +418,9 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             'startLine' => 14,
             'endLine' => 14,
             'startTokenPos' => 41,
-            'startFilePos' => 325,
+            'startFilePos' => 318,
             'endTokenPos' => 41,
-            'endFilePos' => 335,
+            'endFilePos' => 328,
           ),
         ),
         'attributes' => 
@@ -443,9 +443,9 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             'startLine' => 15,
             'endLine' => 15,
             'startTokenPos' => 50,
-            'startFilePos' => 357,
+            'startFilePos' => 350,
             'endTokenPos' => 50,
-            'endFilePos' => 365,
+            'endFilePos' => 358,
           ),
         ),
         'attributes' => 

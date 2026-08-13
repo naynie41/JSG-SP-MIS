@@ -57,4 +57,30 @@ export const authApi = {
       headers: bearer(setupToken),
     })
   },
+
+  /**
+   * Change your own password. The server verifies `current_password` against the
+   * authenticated session and applies the password policy, then invalidates the
+   * session — the caller must sign in again.
+   */
+  changePassword(currentPassword: string, password: string) {
+    return apiRequest<{ message: string }>({
+      method: 'POST',
+      url: '/auth/password',
+      data: { current_password: currentPassword, password },
+    })
+  },
+
+  /**
+   * Turn off MFA for your own account, confirmed with a current code. Refused with
+   * `MFA_REQUIRED` for a role whose MFA is mandatory — the server decides that, not the
+   * client.
+   */
+  mfaDisable(code: string) {
+    return apiRequest<{ message: string }>({
+      method: 'POST',
+      url: '/auth/mfa/disable',
+      data: { code },
+    })
+  },
 }

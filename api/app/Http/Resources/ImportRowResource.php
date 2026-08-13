@@ -32,6 +32,11 @@ class ImportRowResource extends JsonResource
             'resolution' => $this->resolution,
             'resolution_note' => $this->resolution_note,
             'resolved_beneficiary_id' => $this->resolved_beneficiary_id,
+            // WHEN the decision was taken. Already persisted by resolveRow alongside
+            // the audit entry; exposed so the console can order a decision history
+            // chronologically. The ACTOR is deliberately not exposed here — that lives
+            // in the audit log, behind audit.view, which MDA roles do not hold.
+            'resolved_at' => $this->resolved_at?->toIso8601String(),
             // Duplicate outcome (FR-DUP-01/04). The controller attaches the resolved
             // reveal payloads as `match_view`; fall back to the stored band.
             'match' => $this->resource->getAttribute('match_view') ?? [

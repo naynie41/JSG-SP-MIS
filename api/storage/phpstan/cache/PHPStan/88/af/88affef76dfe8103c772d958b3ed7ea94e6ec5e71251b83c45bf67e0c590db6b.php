@@ -285,7 +285,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
     ),
     1 => 
     array (
-      'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Resources\\ActivityDetailResource.php' => '2c1220788c981051101d857edb9fe17a12354a30e5cf7332f1b4995ceb8fe60c',
+      'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Resources\\ActivityDetailResource.php' => '1c47e27702b86c0205211479bc097166b873da30eff3bf1738bfeeee45fdb003',
     ),
   ),
 ));

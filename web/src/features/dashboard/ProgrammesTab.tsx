@@ -1,9 +1,11 @@
 import { useState } from 'react'
-import { Banknote, Building2, ChevronDown, Coins, HandCoins, Percent, Wallet } from 'lucide-react'
+import { Banknote, Building2, ChevronDown, ClipboardList, Coins, HandCoins, Layers, Percent, Wallet } from 'lucide-react'
 import { Icon } from '@/components/Icon/Icon'
 import { useAuth } from '@/lib/auth/AuthProvider'
 import { formatNaira } from '@/lib/utils/money'
 import { titleCase } from '@/features/registry/constants'
+import { buildForecast } from './forecast'
+import { ForecastCards, ProgrammeDonut, TrendCard } from './executiveWidgets'
 import type { ActivityPerformance, DashboardResponse, DrillFn, ProgrammePerformance, ProgrammeScoring, TrafficLight } from './types'
 import styles from './programmes.module.css'
 
@@ -62,7 +64,18 @@ function BudgetBar({ allocated, spent }: { allocated: number; spent: number }) {
 
 /* --------------------------------------------------- financial dashboard --- */
 
-function Figure({ icon, label, value }: { icon: typeof Wallet; label: string; value: string }) {
+function Figure({
+  icon,
+  label,
+  value,
+  hint,
+}: {
+  icon: typeof Wallet
+  label: string
+  value: string
+  /** Qualifier that keeps a bare number honest, e.g. "of 12" or "68% utilised". */
+  hint?: string
+}) {
   return (
     <div className={styles.figure}>
       <span className={styles.figureLabel}>
@@ -70,6 +83,7 @@ function Figure({ icon, label, value }: { icon: typeof Wallet; label: string; va
         {label}
       </span>
       <span className={styles.figureValue}>{value}</span>
+      {hint && <span className={styles.figureHint}>{hint}</span>}
     </div>
   )
 }
@@ -371,8 +385,19 @@ export function ProgrammesTab({ data, onDrill }: ProgrammesTabProps) {
     )
   }
 
+  const m = data.metrics
+  const budget = m.benefits.budget
+  const pop = m.population
+  const costPerBeneficiary =
+    pop && pop.net_unique_served > 0 ? Math.round(budget.utilized_value / pop.net_unique_served) : null
+
   return (
     <div className={styles.page}>
+      {/* Page identity. Previously the executive inner pages started at <h2>,
+          so heading navigation gave a screen-reader user section names with no
+          page name at all. */}
+      <h1 className="t-h1">Programmes &amp; delivery</h1>
+
       <div className={styles.legend} role="note" aria-label="Traffic-light scoring">
         <span className={styles.legendTitle}>Performance score</span>
         {SCORING_LEGEND.map((item) => (
@@ -382,6 +407,43 @@ export function ProgrammesTab({ data, onDrill }: ProgrammesTabProps) {
           </span>
         ))}
       </div>
+
+      {/* Delivery figures, relocated from the Overview. "How many programmes are
+          running and what has it cost" is a question about programmes, and it
+          was competing with the headline on the Governor's first screen. */}
+      <section className={styles.section} aria-label="Delivery">
+        <h2 className={styles.sectionTitle}>Delivery</h2>
+        <div className={styles.figureGrid}>
+          <Figure icon={ClipboardList} label="Active programmes" value={num(m.programmes.active)} hint={`of ${num(m.programmes.total)}`} />
+          <Figure icon={Layers} label="Active activities" value={num(m.programmes.activities_active)} hint={`of ${num(m.programmes.activities_total)}`} />
+          <Figure icon={Wallet} label="Budget allocated" value={formatNaira(budget.allocated)} />
+          <Figure icon={Coins} label="Disbursed" value={formatNaira(budget.utilized_value)} hint={`${pct(budget.utilization_rate)}% utilised`} />
+          <Figure icon={HandCoins} label="Remaining" value={formatNaira(budget.remaining)} />
+          <Figure icon={Percent} label="Cost / beneficiary" value={costPerBeneficiary === null ? '—' : formatNaira(costPerBeneficiary)} />
+        </div>
+      </section>
+
+      {/* Programme share + projections, also relocated. Both are about
+          programmes; neither is the first thing a Governor needs. */}
+      <section className={styles.section} aria-label="Beneficiary share by programme">
+        <h2 className={styles.sectionTitle}>Beneficiary share by programme</h2>
+        <ProgrammeDonut
+          programmes={programmes}
+          onSelect={onDrill ? (id) => onDrill('programmes', { programme_id: id }) : undefined}
+        />
+      </section>
+
+      <ForecastCards forecast={buildForecast(m)} />
+
+      {m.trends && (
+        <section className={styles.section} aria-label="Delivery trends">
+          <h2 className={styles.sectionTitle}>Delivery trends</h2>
+          <div className={styles.trendGrid}>
+            <TrendCard title="Monthly disbursement" points={m.trends.disbursement} format={formatNaira} />
+            <TrendCard title="Programme growth" points={m.trends.programme_growth} format={num} />
+          </div>
+        </section>
+      )}
 
       <FinancialDashboard data={data} programmes={programmes} />
 

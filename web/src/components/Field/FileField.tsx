@@ -17,7 +17,7 @@ export interface FileFieldProps {
 }
 
 /**
- * File upload dropzone (DESIGN-SYSTEM.md §5.2). Copy states the SECURITY.md file
+ * File upload dropzone (DESIGN.md §5.2). Copy states the SECURITY.md file
  * rules (allowed types/size). Inline errors render from the API envelope.
  */
 export function FileField({

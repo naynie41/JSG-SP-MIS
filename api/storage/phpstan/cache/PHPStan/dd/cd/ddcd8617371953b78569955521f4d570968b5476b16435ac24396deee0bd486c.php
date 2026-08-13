@@ -12,6 +12,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
          'namespace' => 'App\\Http\\Resources',
          'uses' => 
         array (
+          'matchingconfig' => 'App\\Domain\\Matching\\Models\\MatchingConfig',
           'importbatch' => 'App\\Domain\\Registry\\Models\\ImportBatch',
           'request' => 'Illuminate\\Http\\Request',
           'jsonresource' => 'Illuminate\\Http\\Resources\\Json\\JsonResource',
@@ -37,6 +38,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
          'namespace' => 'App\\Http\\Resources',
          'uses' => 
         array (
+          'matchingconfig' => 'App\\Domain\\Matching\\Models\\MatchingConfig',
           'importbatch' => 'App\\Domain\\Registry\\Models\\ImportBatch',
           'request' => 'Illuminate\\Http\\Request',
           'jsonresource' => 'Illuminate\\Http\\Resources\\Json\\JsonResource',
@@ -51,6 +53,58 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
            'namespace' => 'App\\Http\\Resources',
            'uses' => 
           array (
+            'matchingconfig' => 'App\\Domain\\Matching\\Models\\MatchingConfig',
+            'importbatch' => 'App\\Domain\\Registry\\Models\\ImportBatch',
+            'request' => 'Illuminate\\Http\\Request',
+            'jsonresource' => 'Illuminate\\Http\\Resources\\Json\\JsonResource',
+          ),
+           'className' => 'App\\Http\\Resources\\ImportBatchResource',
+           'functionName' => NULL,
+           'templatePhpDocNodes' => 
+          array (
+          ),
+           'parent' => NULL,
+           'typeAliasesMap' => 
+          array (
+          ),
+           'bypassTypeAliases' => false,
+           'constUses' => 
+          array (
+          ),
+           'typeAliasClassName' => NULL,
+           'traitData' => NULL,
+        )),
+         'typeAliasesMap' => 
+        array (
+        ),
+         'bypassTypeAliases' => false,
+         'constUses' => 
+        array (
+        ),
+         'typeAliasClassName' => NULL,
+         'traitData' => NULL,
+      )),
+      '38e9f91315dd18d90d27b9a88ff34924' => 
+      \PHPStan\Analyser\IntermediaryNameScope::__set_state(array(
+         'namespace' => 'App\\Http\\Resources',
+         'uses' => 
+        array (
+          'matchingconfig' => 'App\\Domain\\Matching\\Models\\MatchingConfig',
+          'importbatch' => 'App\\Domain\\Registry\\Models\\ImportBatch',
+          'request' => 'Illuminate\\Http\\Request',
+          'jsonresource' => 'Illuminate\\Http\\Resources\\Json\\JsonResource',
+        ),
+         'className' => 'App\\Http\\Resources\\ImportBatchResource',
+         'functionName' => 'matchingThresholds',
+         'templatePhpDocNodes' => 
+        array (
+        ),
+         'parent' => 
+        \PHPStan\Analyser\IntermediaryNameScope::__set_state(array(
+           'namespace' => 'App\\Http\\Resources',
+           'uses' => 
+          array (
+            'matchingconfig' => 'App\\Domain\\Matching\\Models\\MatchingConfig',
             'importbatch' => 'App\\Domain\\Registry\\Models\\ImportBatch',
             'request' => 'Illuminate\\Http\\Request',
             'jsonresource' => 'Illuminate\\Http\\Resources\\Json\\JsonResource',
@@ -84,7 +138,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
     ),
     1 => 
     array (
-      'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Resources\\ImportBatchResource.php' => '7ac0e3a5b4a7690970e2db7528a868fd82f2c17c687fa202ba03e02bc04e8779',
+      'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Resources\\ImportBatchResource.php' => '1b9e9bf5e1ee645ddfffa0397543013e6fa16502b5a7bf506e1961eae626325c',
     ),
   ),
 ));

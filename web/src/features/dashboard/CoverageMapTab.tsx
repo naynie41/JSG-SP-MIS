@@ -132,6 +132,9 @@ export function CoverageMapTab({ filter }: CoverageMapTabProps) {
 
   return (
     <div className={styles.page}>
+      {/* Page identity — inner executive pages previously had no <h1>. */}
+      <h1 className="t-h1">Coverage map</h1>
+
       <div className={styles.toolbar}>
         <div className={styles.toggle} role="group" aria-label="Area level">
           {LEVELS.map((l) => (

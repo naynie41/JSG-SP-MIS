@@ -2,7 +2,7 @@
 
 // odsl-C:\Users\ACER\Desktop\JSG-SP-MIS\JSG-SP-MIS\api\app\Domain\Notification\NotificationServiceProvider.php-PHPStan\BetterReflection\Reflection\ReflectionClass-App\Domain\Notification\NotificationServiceProvider
 return \PHPStan\Cache\CacheItem::__set_state(array(
-   'variableKey' => 'v2-6.70.0.1-8.3.31-d7cfaa488250bba1c88becd457e64c258c95a0b4af08698396cad02044b74006',
+   'variableKey' => 'v2-6.70.0.1-8.3.31-e89fc1e84994370afca71208f0470ae66401c5a1a79425739521f5473c3e69d2',
    'data' => 
   array (
     'locatedSource' => 
@@ -31,8 +31,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
     'attributes' => 
     array (
     ),
-    'startLine' => 23,
-    'endLine' => 54,
+    'startLine' => 22,
+    'endLine' => 47,
     'startColumn' => 1,
     'endColumn' => 1,
     'parentClassName' => 'Illuminate\\Support\\ServiceProvider',
@@ -56,20 +56,20 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
           'code' => '\'notification.channels\'',
           'attributes' => 
           array (
-            'startLine' => 26,
-            'endLine' => 26,
-            'startTokenPos' => 82,
-            'startFilePos' => 982,
-            'endTokenPos' => 82,
-            'endFilePos' => 1004,
+            'startLine' => 25,
+            'endLine' => 25,
+            'startTokenPos' => 77,
+            'startFilePos' => 926,
+            'endTokenPos' => 77,
+            'endFilePos' => 948,
           ),
         ),
         'docComment' => '/** The container key for the registered channel set. */',
         'attributes' => 
         array (
         ),
-        'startLine' => 26,
-        'endLine' => 26,
+        'startLine' => 25,
+        'endLine' => 25,
         'startColumn' => 5,
         'endColumn' => 52,
       ),
@@ -99,8 +99,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         array (
         ),
         'docComment' => NULL,
-        'startLine' => 28,
-        'endLine' => 48,
+        'startLine' => 27,
+        'endLine' => 41,
         'startColumn' => 5,
         'endColumn' => 5,
         'couldThrow' => false,
@@ -134,8 +134,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         array (
         ),
         'docComment' => NULL,
-        'startLine' => 50,
-        'endLine' => 53,
+        'startLine' => 43,
+        'endLine' => 46,
         'startColumn' => 5,
         'endColumn' => 5,
         'couldThrow' => false,

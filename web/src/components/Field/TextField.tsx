@@ -13,7 +13,7 @@ export interface TextFieldProps extends Omit<InputHTMLAttributes<HTMLInputElemen
 }
 
 /**
- * Text-like input (DESIGN-SYSTEM.md §5.2): covers text, email, password, date,
+ * Text-like input (DESIGN.md §5.2): covers text, email, password, date,
  * number, tel, etc. via the native `type`. Focus/error/disabled states + full
  * aria wiring. `error` renders the API validation message and sets aria-invalid.
  */

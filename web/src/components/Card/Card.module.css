@@ -58,7 +58,7 @@
 .kpiValue {
   font-family: var(--font-display);
   font-weight: 700;
-  font-size: 44px;
+  font-size: var(--fs-kpi);
   line-height: 1.05;
   color: var(--bg);
 }

@@ -119,7 +119,11 @@ describe('ServiceRequestsPage', () => {
     renderPage(<ServiceRequestsPage />)
 
     expect(await screen.findByText('My requests')).toBeInTheDocument()
-    expect(await screen.findByText('Declined')).toBeInTheDocument()
-    expect(screen.getByText('Not eligible')).toBeInTheDocument()
+
+    // Scoped to the outbox table: "Declined" is also a status-view option in the
+    // filter now, so a bare text query would match the <option> as readily as the chip.
+    const table = await screen.findByRole('table', { name: 'Service requests my MDA raised' })
+    expect(within(table).getByText('Declined')).toBeInTheDocument()
+    expect(within(table).getByText('Not eligible')).toBeInTheDocument()
   })
 })

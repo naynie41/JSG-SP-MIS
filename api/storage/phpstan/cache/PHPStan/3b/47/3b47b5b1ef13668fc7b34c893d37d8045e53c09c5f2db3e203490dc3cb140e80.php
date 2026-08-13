@@ -2,7 +2,7 @@
 
 // odsl-C:\Users\ACER\Desktop\JSG-SP-MIS\JSG-SP-MIS\api\app\Domain\Matching\Scoring\RuleBasedMatchScorer.php-PHPStan\BetterReflection\Reflection\ReflectionClass-App\Domain\Matching\Scoring\RuleBasedMatchScorer
 return \PHPStan\Cache\CacheItem::__set_state(array(
-   'variableKey' => 'v2-6.70.0.1-8.3.31-840d9653435479683a1072b915545761cb3e6ff7c032e2d855572eb0a343400b',
+   'variableKey' => 'v2-6.70.0.1-8.3.31-c071cf9ef1af51cf3a9a6860627fafe514de7745cabfdf953a28d04d19a5886c',
    'data' => 
   array (
     'locatedSource' => 
@@ -35,7 +35,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
     array (
     ),
     'startLine' => 20,
-    'endLine' => 88,
+    'endLine' => 93,
     'startColumn' => 1,
     'endColumn' => 1,
     'parentClassName' => NULL,
@@ -294,7 +294,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         ),
         'docComment' => NULL,
         'startLine' => 27,
-        'endLine' => 65,
+        'endLine' => 70,
         'startColumn' => 5,
         'endColumn' => 5,
         'couldThrow' => false,
@@ -332,8 +332,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             'attributes' => 
             array (
             ),
-            'startLine' => 72,
-            'endLine' => 72,
+            'startLine' => 77,
+            'endLine' => 77,
             'startColumn' => 36,
             'endColumn' => 48,
             'parameterIndex' => 0,
@@ -358,8 +358,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             'attributes' => 
             array (
             ),
-            'startLine' => 72,
-            'endLine' => 72,
+            'startLine' => 77,
+            'endLine' => 77,
             'startColumn' => 51,
             'endColumn' => 66,
             'parameterIndex' => 1,
@@ -384,8 +384,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             'attributes' => 
             array (
             ),
-            'startLine' => 72,
-            'endLine' => 72,
+            'startLine' => 77,
+            'endLine' => 77,
             'startColumn' => 69,
             'endColumn' => 83,
             'parameterIndex' => 2,
@@ -410,8 +410,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
  * @param  array<string, mixed>  $candidate
  * @param  array<string, mixed>  $existing
  */',
-        'startLine' => 72,
-        'endLine' => 87,
+        'startLine' => 77,
+        'endLine' => 92,
         'startColumn' => 5,
         'endColumn' => 5,
         'couldThrow' => false,

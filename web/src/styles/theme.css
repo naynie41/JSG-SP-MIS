@@ -1,5 +1,5 @@
 /* =============================================================================
-   SP-MIS theme — single source of design tokens (DESIGN-SYSTEM.md).
+   SP-MIS theme — single source of design tokens (DESIGN.md).
    Every color/type/spacing/radius/elevation value lives here as a CSS variable.
    Components reference var(--token) only; no hard-coded hex/spacing elsewhere.
    ============================================================================= */
@@ -59,6 +59,7 @@
   --fs-label: 13px;
   --lh-label: 1.4;
   --fs-caption: 12px;
+  --fs-kpi: 44px; /* large KPI display figure (DESIGN.md §3 scale) */
   --tracking-caption: 0.14em;
 
   /* --- Spacing --- */
@@ -72,10 +73,29 @@
   --space-8: 64px;
 
   /* --- Radius --- */
+  --radius-swatch: 3px; /* 12px chart legend swatches (DESIGN.md §4) */
   --radius-sm: 4px;
   --radius-md: 12px;
   --radius-lg: 20px;
   --radius-full: 999px;
+
+  /* --- Chart categorical palette [inferred] ---
+     Series colour for data visualisation. The brand's four hues cannot carry a
+     six-slice donut, so this is the documented categorical set; charts use these
+     tokens and never hard-code a hex. Ordered for maximum adjacent separation. */
+  --chart-1: #008300;
+  --chart-2: #2a78d6;
+  --chart-3: #eda100;
+  --chart-4: #e87ba4;
+  --chart-5: #1baf7a;
+  --chart-6: #eb6834;
+  --chart-other: #9a9c93;
+
+  /* Forest gradient stops [inferred] — dark-panel gradients interpolate through
+     these rather than through literal hexes scattered across feature CSS. */
+  --forest-tint: #384318;
+  --forest-mid: #333d16;
+  --forest-deep: #232b0e;
 
   /* --- Elevation [inferred] --- */
   --elev-sm: 0 1px 2px rgba(24, 24, 24, 0.06);
@@ -146,7 +166,7 @@ ol {
   padding: 0;
 }
 
-/* --- Global focus (always visible; DESIGN-SYSTEM §5) --- */
+/* --- Global focus (always visible; DESIGN.md §5) --- */
 :focus-visible {
   outline: var(--focus-ring);
   outline-offset: var(--focus-offset);

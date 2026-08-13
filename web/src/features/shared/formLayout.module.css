@@ -24,6 +24,25 @@
   font-size: var(--fs-label);
 }
 
+/* Non-blocking variants. Without these, a `data-variant="warning"` alert still
+   rendered danger-red — copy saying "this is only a warning" on a red panel
+   teaches officers to discount red. Each pairs its -soft background with its
+   -ink text, per DESIGN.md §2. */
+.alert[data-variant='warning'] {
+  background-color: var(--warning-soft);
+  color: var(--warning-ink);
+}
+
+.alert[data-variant='info'] {
+  background-color: var(--info-soft);
+  color: var(--info-ink);
+}
+
+.alert[data-variant='success'] {
+  background-color: var(--success-soft);
+  color: var(--success-ink);
+}
+
 /* --- List page header --- */
 .pageHead {
   display: flex;
@@ -32,6 +51,18 @@
   gap: var(--space-4);
   margin-bottom: var(--space-5);
   flex-wrap: wrap;
+}
+
+/* The page is embedded in a host that owns the heading (the administration console
+   composes these modules). The title block is suppressed so the document has ONE h1
+   — two page titles leave a screen-reader user with no reliable "where am I" — while
+   the page's own actions remain, aligned to the end now that nothing balances them. */
+.pageHeadEmbedded {
+  justify-content: flex-end;
+  margin-bottom: var(--space-4);
+}
+.pageHeadEmbedded:empty {
+  display: none;
 }
 
 .pageTitle {

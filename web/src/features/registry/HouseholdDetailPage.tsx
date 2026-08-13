@@ -73,7 +73,7 @@ export function HouseholdDetailPage() {
 
   const isOwner = user?.mda?.id != null && user.mda.id === household.owner_mda_id
   const canEdit = hasPermission('household.edit') && isOwner
-  const members = household.members
+  const members = household.members ?? []
   const history = household.history ?? []
   const beneficiaries = beneficiaryPage?.items ?? []
   const available = beneficiaries.filter((b) => !members.some((m) => m.beneficiary_id === b.id))

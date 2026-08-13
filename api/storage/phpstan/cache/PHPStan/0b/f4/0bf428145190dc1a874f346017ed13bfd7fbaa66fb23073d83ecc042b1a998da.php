@@ -17,6 +17,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
           'auditlog' => 'App\\Domain\\Audit\\Models\\AuditLog',
           'benefit' => 'App\\Domain\\Benefit\\Models\\Benefit',
           'grievance' => 'App\\Domain\\Grievance\\Models\\Grievance',
+          'activity' => 'App\\Domain\\Programme\\Models\\Activity',
           'programme' => 'App\\Domain\\Programme\\Models\\Programme',
           'referral' => 'App\\Domain\\Referral\\Models\\Referral',
           'beneficiary' => 'App\\Domain\\Registry\\Models\\Beneficiary',
@@ -50,6 +51,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
           'auditlog' => 'App\\Domain\\Audit\\Models\\AuditLog',
           'benefit' => 'App\\Domain\\Benefit\\Models\\Benefit',
           'grievance' => 'App\\Domain\\Grievance\\Models\\Grievance',
+          'activity' => 'App\\Domain\\Programme\\Models\\Activity',
           'programme' => 'App\\Domain\\Programme\\Models\\Programme',
           'referral' => 'App\\Domain\\Referral\\Models\\Referral',
           'beneficiary' => 'App\\Domain\\Registry\\Models\\Beneficiary',
@@ -72,6 +74,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             'auditlog' => 'App\\Domain\\Audit\\Models\\AuditLog',
             'benefit' => 'App\\Domain\\Benefit\\Models\\Benefit',
             'grievance' => 'App\\Domain\\Grievance\\Models\\Grievance',
+            'activity' => 'App\\Domain\\Programme\\Models\\Activity',
             'programme' => 'App\\Domain\\Programme\\Models\\Programme',
             'referral' => 'App\\Domain\\Referral\\Models\\Referral',
             'beneficiary' => 'App\\Domain\\Registry\\Models\\Beneficiary',
@@ -115,6 +118,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
           'auditlog' => 'App\\Domain\\Audit\\Models\\AuditLog',
           'benefit' => 'App\\Domain\\Benefit\\Models\\Benefit',
           'grievance' => 'App\\Domain\\Grievance\\Models\\Grievance',
+          'activity' => 'App\\Domain\\Programme\\Models\\Activity',
           'programme' => 'App\\Domain\\Programme\\Models\\Programme',
           'referral' => 'App\\Domain\\Referral\\Models\\Referral',
           'beneficiary' => 'App\\Domain\\Registry\\Models\\Beneficiary',
@@ -137,6 +141,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             'auditlog' => 'App\\Domain\\Audit\\Models\\AuditLog',
             'benefit' => 'App\\Domain\\Benefit\\Models\\Benefit',
             'grievance' => 'App\\Domain\\Grievance\\Models\\Grievance',
+            'activity' => 'App\\Domain\\Programme\\Models\\Activity',
             'programme' => 'App\\Domain\\Programme\\Models\\Programme',
             'referral' => 'App\\Domain\\Referral\\Models\\Referral',
             'beneficiary' => 'App\\Domain\\Registry\\Models\\Beneficiary',
@@ -180,6 +185,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
           'auditlog' => 'App\\Domain\\Audit\\Models\\AuditLog',
           'benefit' => 'App\\Domain\\Benefit\\Models\\Benefit',
           'grievance' => 'App\\Domain\\Grievance\\Models\\Grievance',
+          'activity' => 'App\\Domain\\Programme\\Models\\Activity',
           'programme' => 'App\\Domain\\Programme\\Models\\Programme',
           'referral' => 'App\\Domain\\Referral\\Models\\Referral',
           'beneficiary' => 'App\\Domain\\Registry\\Models\\Beneficiary',
@@ -202,6 +208,74 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             'auditlog' => 'App\\Domain\\Audit\\Models\\AuditLog',
             'benefit' => 'App\\Domain\\Benefit\\Models\\Benefit',
             'grievance' => 'App\\Domain\\Grievance\\Models\\Grievance',
+            'activity' => 'App\\Domain\\Programme\\Models\\Activity',
+            'programme' => 'App\\Domain\\Programme\\Models\\Programme',
+            'referral' => 'App\\Domain\\Referral\\Models\\Referral',
+            'beneficiary' => 'App\\Domain\\Registry\\Models\\Beneficiary',
+            'importbatch' => 'App\\Domain\\Registry\\Models\\ImportBatch',
+            'importrow' => 'App\\Domain\\Registry\\Models\\ImportRow',
+            'dashboardscope' => 'App\\Domain\\Reporting\\Support\\DashboardScope',
+          ),
+           'className' => 'App\\Domain\\Reporting\\Reports\\AdHoc\\AdHocDatasetRegistry',
+           'functionName' => NULL,
+           'templatePhpDocNodes' => 
+          array (
+          ),
+           'parent' => NULL,
+           'typeAliasesMap' => 
+          array (
+          ),
+           'bypassTypeAliases' => false,
+           'constUses' => 
+          array (
+          ),
+           'typeAliasClassName' => NULL,
+           'traitData' => NULL,
+        )),
+         'typeAliasesMap' => 
+        array (
+        ),
+         'bypassTypeAliases' => false,
+         'constUses' => 
+        array (
+        ),
+         'typeAliasClassName' => NULL,
+         'traitData' => NULL,
+      )),
+      '6076721b8e9120b1f851eb1e00c6d2dc' => 
+      \PHPStan\Analyser\IntermediaryNameScope::__set_state(array(
+         'namespace' => 'App\\Domain\\Reporting\\Reports\\AdHoc',
+         'uses' => 
+        array (
+          'mda' => 'App\\Domain\\Access\\Models\\Mda',
+          'user' => 'App\\Domain\\Access\\Models\\User',
+          'auditlog' => 'App\\Domain\\Audit\\Models\\AuditLog',
+          'benefit' => 'App\\Domain\\Benefit\\Models\\Benefit',
+          'grievance' => 'App\\Domain\\Grievance\\Models\\Grievance',
+          'activity' => 'App\\Domain\\Programme\\Models\\Activity',
+          'programme' => 'App\\Domain\\Programme\\Models\\Programme',
+          'referral' => 'App\\Domain\\Referral\\Models\\Referral',
+          'beneficiary' => 'App\\Domain\\Registry\\Models\\Beneficiary',
+          'importbatch' => 'App\\Domain\\Registry\\Models\\ImportBatch',
+          'importrow' => 'App\\Domain\\Registry\\Models\\ImportRow',
+          'dashboardscope' => 'App\\Domain\\Reporting\\Support\\DashboardScope',
+        ),
+         'className' => 'App\\Domain\\Reporting\\Reports\\AdHoc\\AdHocDatasetRegistry',
+         'functionName' => 'isMdaScopable',
+         'templatePhpDocNodes' => 
+        array (
+        ),
+         'parent' => 
+        \PHPStan\Analyser\IntermediaryNameScope::__set_state(array(
+           'namespace' => 'App\\Domain\\Reporting\\Reports\\AdHoc',
+           'uses' => 
+          array (
+            'mda' => 'App\\Domain\\Access\\Models\\Mda',
+            'user' => 'App\\Domain\\Access\\Models\\User',
+            'auditlog' => 'App\\Domain\\Audit\\Models\\AuditLog',
+            'benefit' => 'App\\Domain\\Benefit\\Models\\Benefit',
+            'grievance' => 'App\\Domain\\Grievance\\Models\\Grievance',
+            'activity' => 'App\\Domain\\Programme\\Models\\Activity',
             'programme' => 'App\\Domain\\Programme\\Models\\Programme',
             'referral' => 'App\\Domain\\Referral\\Models\\Referral',
             'beneficiary' => 'App\\Domain\\Registry\\Models\\Beneficiary',
@@ -245,6 +319,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
           'auditlog' => 'App\\Domain\\Audit\\Models\\AuditLog',
           'benefit' => 'App\\Domain\\Benefit\\Models\\Benefit',
           'grievance' => 'App\\Domain\\Grievance\\Models\\Grievance',
+          'activity' => 'App\\Domain\\Programme\\Models\\Activity',
           'programme' => 'App\\Domain\\Programme\\Models\\Programme',
           'referral' => 'App\\Domain\\Referral\\Models\\Referral',
           'beneficiary' => 'App\\Domain\\Registry\\Models\\Beneficiary',
@@ -267,6 +342,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             'auditlog' => 'App\\Domain\\Audit\\Models\\AuditLog',
             'benefit' => 'App\\Domain\\Benefit\\Models\\Benefit',
             'grievance' => 'App\\Domain\\Grievance\\Models\\Grievance',
+            'activity' => 'App\\Domain\\Programme\\Models\\Activity',
             'programme' => 'App\\Domain\\Programme\\Models\\Programme',
             'referral' => 'App\\Domain\\Referral\\Models\\Referral',
             'beneficiary' => 'App\\Domain\\Registry\\Models\\Beneficiary',
@@ -310,6 +386,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
           'auditlog' => 'App\\Domain\\Audit\\Models\\AuditLog',
           'benefit' => 'App\\Domain\\Benefit\\Models\\Benefit',
           'grievance' => 'App\\Domain\\Grievance\\Models\\Grievance',
+          'activity' => 'App\\Domain\\Programme\\Models\\Activity',
           'programme' => 'App\\Domain\\Programme\\Models\\Programme',
           'referral' => 'App\\Domain\\Referral\\Models\\Referral',
           'beneficiary' => 'App\\Domain\\Registry\\Models\\Beneficiary',
@@ -332,6 +409,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             'auditlog' => 'App\\Domain\\Audit\\Models\\AuditLog',
             'benefit' => 'App\\Domain\\Benefit\\Models\\Benefit',
             'grievance' => 'App\\Domain\\Grievance\\Models\\Grievance',
+            'activity' => 'App\\Domain\\Programme\\Models\\Activity',
             'programme' => 'App\\Domain\\Programme\\Models\\Programme',
             'referral' => 'App\\Domain\\Referral\\Models\\Referral',
             'beneficiary' => 'App\\Domain\\Registry\\Models\\Beneficiary',
@@ -375,6 +453,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
           'auditlog' => 'App\\Domain\\Audit\\Models\\AuditLog',
           'benefit' => 'App\\Domain\\Benefit\\Models\\Benefit',
           'grievance' => 'App\\Domain\\Grievance\\Models\\Grievance',
+          'activity' => 'App\\Domain\\Programme\\Models\\Activity',
           'programme' => 'App\\Domain\\Programme\\Models\\Programme',
           'referral' => 'App\\Domain\\Referral\\Models\\Referral',
           'beneficiary' => 'App\\Domain\\Registry\\Models\\Beneficiary',
@@ -397,6 +476,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             'auditlog' => 'App\\Domain\\Audit\\Models\\AuditLog',
             'benefit' => 'App\\Domain\\Benefit\\Models\\Benefit',
             'grievance' => 'App\\Domain\\Grievance\\Models\\Grievance',
+            'activity' => 'App\\Domain\\Programme\\Models\\Activity',
             'programme' => 'App\\Domain\\Programme\\Models\\Programme',
             'referral' => 'App\\Domain\\Referral\\Models\\Referral',
             'beneficiary' => 'App\\Domain\\Registry\\Models\\Beneficiary',
@@ -433,7 +513,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
     ),
     1 => 
     array (
-      'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Reporting\\Reports\\AdHoc\\AdHocDatasetRegistry.php' => 'd403e378c69938b645ef96ae172850e89eb204bbae07d27fedfc8f4b1bc04856',
+      'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Reporting\\Reports\\AdHoc\\AdHocDatasetRegistry.php' => '8451f6b67936554e92032fd4a3bd9f5b43846705260de1b184d1ba408ebd1368',
     ),
   ),
 ));

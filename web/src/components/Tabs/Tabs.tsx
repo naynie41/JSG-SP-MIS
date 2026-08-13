@@ -18,7 +18,7 @@ export interface TabsProps {
   onChange?: (id: string) => void
 }
 
-/** Tabs (DESIGN-SYSTEM.md §5.7) with roving keyboard nav and lime active bar. Works
+/** Tabs (DESIGN.md §5.7) with roving keyboard nav and lime active bar. Works
  * uncontrolled, or controlled via `activeId`/`onChange` (e.g. for drill-down). */
 export function Tabs({ items, defaultTabId, activeId, onChange }: TabsProps) {
   const baseId = useId()

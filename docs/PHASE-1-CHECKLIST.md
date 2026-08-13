@@ -38,7 +38,7 @@ Source of truth: `docs/jigawa-SP-MIS.md` (PRD), `docs/CLAUDE.md §5` (phases).
 
 | Requirement | Delivered | Where |
 | --- | --- | --- |
-| NFR-USE-01 — responsive, accessible UI | Design-system component library + app shell on `docs/DESIGN-SYSTEM.md`; WCAG-AA floor, keyboard focus, reduced-motion | `web/src/components`, `web/src/styles/theme.css` |
+| NFR-USE-01 — responsive, accessible UI | Design-system component library + app shell on `DESIGN.md`; WCAG-AA floor, keyboard focus, reduced-motion | `web/src/components`, `web/src/styles/theme.css` |
 | Auth UI (FR-UAM-04) | Login + MFA challenge + recovery-code + first-time enrolment; token/expiry handling; protected routing with permission-based nav | `web/src/features/auth`, `web/src/lib`, `web/src/app` |
 | Admin UI (FR-UAM-02/03) | MDA + user management screens (scoped list, create/edit, status, reset) | `web/src/features/{mdas,users}` |
 

@@ -10,6 +10,8 @@ use App\Domain\Access\Models\Mda;
 use App\Domain\Access\Models\Role;
 use App\Domain\Access\Models\User;
 use App\Domain\Access\Scopes\MdaScope;
+use App\Domain\Matching\Enums\MatchBand;
+use App\Domain\Registry\Enums\ImportRowResolution;
 use App\Domain\Registry\Models\ImportBatch;
 use App\Domain\Registry\Models\ImportRow;
 use Illuminate\Database\Seeder;
@@ -152,13 +154,18 @@ class AdminConsoleDemoSeeder extends Seeder
             return; // idempotent
         }
 
+        // Real domain values only. `match_band` and `resolution` are plain string
+        // columns, so an invented value ('possible', 'merged', 'kept_separate') persists
+        // silently and then renders as an unknown label — or worse, is counted as a band
+        // that does not exist. MatchBand is exact|probable|none; ImportRowResolution is
+        // new|link|skip.
         $plan = [
-            ['band' => 'exact', 'resolution' => 'merged', 'count' => 4],
-            ['band' => 'exact', 'resolution' => null, 'count' => 2],
-            ['band' => 'probable', 'resolution' => 'kept_separate', 'count' => 3],
-            ['band' => 'probable', 'resolution' => null, 'count' => 3],
-            ['band' => 'possible', 'resolution' => null, 'count' => 2],
-            ['band' => null, 'resolution' => null, 'count' => 6],
+            ['band' => MatchBand::Exact->value, 'resolution' => ImportRowResolution::Link->value, 'count' => 4],
+            ['band' => MatchBand::Exact->value, 'resolution' => null, 'count' => 2],
+            ['band' => MatchBand::Probable->value, 'resolution' => ImportRowResolution::New->value, 'count' => 3],
+            ['band' => MatchBand::Probable->value, 'resolution' => null, 'count' => 3],
+            ['band' => MatchBand::Probable->value, 'resolution' => ImportRowResolution::Skip->value, 'count' => 2],
+            ['band' => MatchBand::None->value, 'resolution' => null, 'count' => 6],
         ];
 
         $rowNumber = 1;

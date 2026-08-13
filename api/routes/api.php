@@ -45,6 +45,7 @@ use App\Http\Controllers\Api\V1\Reporting\AdminSummaryController;
 use App\Http\Controllers\Api\V1\Reporting\DashboardController;
 use App\Http\Controllers\Api\V1\Reporting\DashboardExportController;
 use App\Http\Controllers\Api\V1\Reporting\GisController;
+use App\Http\Controllers\Api\V1\Reporting\MdaActionRequiredController;
 use App\Http\Controllers\Api\V1\Reporting\ReportController;
 use App\Http\Controllers\Api\V1\Reporting\ReportDefinitionController;
 use App\Http\Controllers\Api\V1\Reporting\ReportScheduleController;
@@ -538,6 +539,16 @@ Route::prefix('v1')->group(function (): void {
         Route::get('/admin/audit-logs/export', [AuditLogController::class, 'export'])
             ->middleware(['role:system_administrator', 'permission:reporting.export', 'throttle:exports'])
             ->name('admin.audit-logs.export');
+
+        /*
+        | MDA console — action-required counters (live, directional, counts only).
+        | Deliberately outside the Phase 6 snapshot: a work queue must not be 15
+        | minutes stale, and "awaiting ME" is the inbound side, which the dashboard's
+        | two-party referral block cannot express. Any MDA user may see the counts;
+        | acting on a request-to-serve still needs `beneficiary.approve`.
+        */
+        Route::get('/mda/action-required', [MdaActionRequiredController::class, 'index'])
+            ->middleware('permission:dashboard.view')->name('mda.action-required');
 
         /*
         | Settings (console). READ-ONLY projection of the EFFECTIVE configuration —

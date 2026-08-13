@@ -90,15 +90,15 @@ function RegistryPanel({ metrics }: { metrics: DashboardMetrics }) {
       </div>
 
       <div className={styles.demoGrid}>
-        <Card eyebrow="Registry" title="By status">
+        <Card titleAs="h2" eyebrow="Registry" title="By status">
           <BarList map={b.by_status} empty="No records yet." />
         </Card>
-        <Card eyebrow="Data sources" title="By provenance">
+        <Card titleAs="h2" eyebrow="Data sources" title="By provenance">
           <BarList map={b.by_source} empty="No provenance recorded." />
         </Card>
       </div>
 
-      <Card eyebrow="Coverage" title="By LGA">
+      <Card titleAs="h2" eyebrow="Coverage" title="By LGA">
         <BarList map={b.by_lga} empty="No areas recorded." />
       </Card>
 
@@ -120,7 +120,7 @@ function QualityPanel({ metrics, snapshot }: { metrics: DashboardMetrics; snapsh
 
   return (
     <div className={styles.page}>
-      <Card eyebrow="Data quality" title="Completeness &amp; coverage">
+      <Card titleAs="h2" eyebrow="Data quality" title="Completeness &amp; coverage">
         <div className={styles.meters}>
           <Meter label="Data completeness" rate={q?.data_completeness} hint="across captured fields" />
           <Meter label="NIN coverage" rate={q?.nin_completeness} hint="identity linkage (hash presence)" />
@@ -138,7 +138,7 @@ function QualityPanel({ metrics, snapshot }: { metrics: DashboardMetrics; snapsh
         <Figure label="Duplicates pending" value={num(snapshot.duplicates_pending)} hint="awaiting adjudication" />
       </div>
 
-      <Card eyebrow="Duplicate detection" title="Matching outcomes">
+      <Card titleAs="h2" eyebrow="Duplicate detection" title="Matching outcomes">
         {dup === null || dup === undefined ? (
           <p className={styles.muted}>No matching activity recorded.</p>
         ) : (

@@ -20,7 +20,7 @@ export interface DataTableExportProps {
 }
 
 /**
- * The reusable Data Table "Export" action (DESIGN-SYSTEM.md §5.4). Drop it into any
+ * The reusable Data Table "Export" action (DESIGN.md §5.4). Drop it into any
  * grid's toolbar: it renders the CSV/Excel menu, sends the current filtered view to the
  * grid's export endpoint, downloads the file (or reports a queued export via toast), and
  * hides itself for users without the export permission. Grids opt in without

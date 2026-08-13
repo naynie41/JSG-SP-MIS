@@ -34,7 +34,7 @@ const KNOWN = ['programme_id', 'involves_beneficiaries', 'name', 'description', 
 
 /**
  * Create/edit an MDA-owned activity that runs a GLOBAL catalog programme (§10). Creation
- * branches on "does this activity involve beneficiaries?" (DESIGN-SYSTEM §5.10):
+ * branches on "does this activity involve beneficiaries?" (DESIGN.md §5.10):
  *  - No  → a single step; the activity is saved alone (no target, no upload).
  *  - Yes → a target is required, then a MANDATORY step 2 "Upload beneficiary data".
  *          Attaching a file stages a preview (dedup before saving) and continues on the
@@ -183,7 +183,7 @@ export function ActivityFormModal({ open, onClose, programmeId, activity }: Acti
       <Modal open={open} onClose={onClose} title="Activity created" footer={footer}>
         <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 'var(--space-3)', textAlign: 'center', padding: 'var(--space-4) 0' }}>
           <span className={styles.dropzoneChip} aria-hidden="true"><Icon icon={CheckCircle2} size={26} /></span>
-          <strong style={{ fontFamily: 'var(--font-display)', fontSize: '20px' }}>“{created.name}” is ready</strong>
+          <strong style={{ fontFamily: 'var(--font-display)', fontSize: 'var(--fs-h2)' }}>“{created.name}” is ready</strong>
           <p className={styles.note}>
             Open it to see its details{created.involves_beneficiaries ? ', the beneficiaries recorded under it,' : ''} and any pending
             service requests.

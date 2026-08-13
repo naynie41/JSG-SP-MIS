@@ -58,7 +58,7 @@
 }
 .label {
   font-family: var(--font-mono);
-  font-size: 10.5px;
+  font-size: var(--fs-caption);
   letter-spacing: 0.05em;
   text-transform: uppercase;
   color: var(--text-muted-strong);
@@ -69,7 +69,7 @@
 .value {
   font-family: var(--font-display);
   font-weight: 600;
-  font-size: 21px;
+  font-size: var(--fs-h2);
   line-height: 1.15;
   color: var(--ink);
   font-variant-numeric: tabular-nums;

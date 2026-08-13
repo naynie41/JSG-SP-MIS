@@ -10,6 +10,7 @@ use App\Domain\Matching\Models\MatchingConfig;
 use App\Domain\Matching\Services\MatchingConfigService;
 use App\Domain\Registry\Enums\ImportRowResolution;
 use App\Domain\Registry\Enums\ImportStatus;
+use App\Domain\Registry\Events\ImportDuplicatesSurfaced;
 use App\Domain\Registry\Imports\Adapters\SourceAdapterRegistry;
 use App\Domain\Registry\Imports\ImportRowValidator;
 use App\Domain\Registry\Imports\SpreadsheetReader;
@@ -161,6 +162,15 @@ class ParseImportBatch implements ShouldQueue
                 'dropped_field_rows' => $droppedRows,
                 'committed_rows' => 0,
             ]);
+
+            // Screening is done and the preview is ready. If anything matched, the
+            // uploader needs to know there is a decision waiting — one notification for
+            // the batch, carrying counts only.
+            $exact = (int) $batch->rows()->where('match_band', 'exact')->whereNull('resolution')->count();
+            $probable = (int) $batch->rows()->where('match_band', 'probable')->whereNull('resolution')->count();
+            if ($exact + $probable > 0) {
+                ImportDuplicatesSurfaced::dispatch($batch, $exact, $probable);
+            }
         });
     }
 

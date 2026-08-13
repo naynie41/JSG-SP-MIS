@@ -2,7 +2,7 @@
 
 // odsl-C:\Users\ACER\Desktop\JSG-SP-MIS\JSG-SP-MIS\api\app\Http\Controllers\Api\V1\Programme\ProgrammeController.php-PHPStan\BetterReflection\Reflection\ReflectionClass-App\Http\Controllers\Api\V1\Programme\ProgrammeController
 return \PHPStan\Cache\CacheItem::__set_state(array(
-   'variableKey' => 'v2-6.70.0.1-8.3.31-b333da288b22f7df679ca61cee44fc56e15079d0c98dedd1d36837d3ecae56a2',
+   'variableKey' => 'v2-6.70.0.1-8.3.31-695ee813ebca19d0f8e6afe71e8948388ffe557959bec774df9fdd0b374eaddc',
    'data' => 
   array (
     'locatedSource' => 
@@ -32,7 +32,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
     array (
     ),
     'startLine' => 25,
-    'endLine' => 122,
+    'endLine' => 129,
     'startColumn' => 1,
     'endColumn' => 1,
     'parentClassName' => 'App\\Http\\Controllers\\Controller',
@@ -97,7 +97,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         ),
         'docComment' => NULL,
         'startLine' => 27,
-        'endLine' => 46,
+        'endLine' => 53,
         'startColumn' => 5,
         'endColumn' => 5,
         'couldThrow' => false,
@@ -135,8 +135,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             'attributes' => 
             array (
             ),
-            'startLine' => 48,
-            'endLine' => 48,
+            'startLine' => 55,
+            'endLine' => 55,
             'startColumn' => 27,
             'endColumn' => 56,
             'parameterIndex' => 0,
@@ -157,8 +157,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         array (
         ),
         'docComment' => NULL,
-        'startLine' => 48,
-        'endLine' => 60,
+        'startLine' => 55,
+        'endLine' => 67,
         'startColumn' => 5,
         'endColumn' => 5,
         'couldThrow' => false,
@@ -200,8 +200,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
  *
  * @return array<array-key, \\Closure|string>
  */',
-        'startLine' => 71,
-        'endLine' => 79,
+        'startLine' => 78,
+        'endLine' => 86,
         'startColumn' => 5,
         'endColumn' => 5,
         'couldThrow' => false,
@@ -239,8 +239,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             'attributes' => 
             array (
             ),
-            'startLine' => 81,
-            'endLine' => 81,
+            'startLine' => 88,
+            'endLine' => 88,
             'startColumn' => 26,
             'endColumn' => 42,
             'parameterIndex' => 0,
@@ -261,8 +261,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         array (
         ),
         'docComment' => NULL,
-        'startLine' => 81,
-        'endLine' => 88,
+        'startLine' => 88,
+        'endLine' => 95,
         'startColumn' => 5,
         'endColumn' => 5,
         'couldThrow' => false,
@@ -300,8 +300,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             'attributes' => 
             array (
             ),
-            'startLine' => 91,
-            'endLine' => 91,
+            'startLine' => 98,
+            'endLine' => 98,
             'startColumn' => 28,
             'endColumn' => 58,
             'parameterIndex' => 0,
@@ -326,8 +326,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             'attributes' => 
             array (
             ),
-            'startLine' => 91,
-            'endLine' => 91,
+            'startLine' => 98,
+            'endLine' => 98,
             'startColumn' => 61,
             'endColumn' => 77,
             'parameterIndex' => 1,
@@ -348,8 +348,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         array (
         ),
         'docComment' => '/** Edit the catalog entry — catalog admin only (§10), enforced by the policy. */',
-        'startLine' => 91,
-        'endLine' => 100,
+        'startLine' => 98,
+        'endLine' => 107,
         'startColumn' => 5,
         'endColumn' => 5,
         'couldThrow' => false,
@@ -387,8 +387,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             'attributes' => 
             array (
             ),
-            'startLine' => 103,
-            'endLine' => 103,
+            'startLine' => 110,
+            'endLine' => 110,
             'startColumn' => 28,
             'endColumn' => 44,
             'parameterIndex' => 0,
@@ -413,8 +413,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             'attributes' => 
             array (
             ),
-            'startLine' => 103,
-            'endLine' => 103,
+            'startLine' => 110,
+            'endLine' => 110,
             'startColumn' => 47,
             'endColumn' => 74,
             'parameterIndex' => 1,
@@ -435,8 +435,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         array (
         ),
         'docComment' => '/** Budget: allocated vs utilised, derived from the benefit ledger (FR-PRG-04). */',
-        'startLine' => 103,
-        'endLine' => 109,
+        'startLine' => 110,
+        'endLine' => 116,
         'startColumn' => 5,
         'endColumn' => 5,
         'couldThrow' => false,
@@ -474,8 +474,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             'attributes' => 
             array (
             ),
-            'startLine' => 112,
-            'endLine' => 112,
+            'startLine' => 119,
+            'endLine' => 119,
             'startColumn' => 29,
             'endColumn' => 45,
             'parameterIndex' => 0,
@@ -496,8 +496,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         array (
         ),
         'docComment' => '/** Archive the catalog entry (catalog admin only) — reversible status change, not a delete. */',
-        'startLine' => 112,
-        'endLine' => 121,
+        'startLine' => 119,
+        'endLine' => 128,
         'startColumn' => 5,
         'endColumn' => 5,
         'couldThrow' => false,

@@ -48,6 +48,10 @@ export function useReferralAction(id: string) {
     onSuccess: (_data, { action }) => {
       qc.invalidateQueries({ queryKey: ['referral', id] })
       qc.invalidateQueries({ queryKey: ['referrals'] })
+      // Accepting or rejecting an inbound referral moves it out of the "awaiting your
+      // response" set the MDA Overview counts, so that counter is stale the moment a
+      // lifecycle action lands.
+      qc.invalidateQueries({ queryKey: ['mda-action-required'] })
       toast.success(ACTION_TOAST[action])
     },
   })

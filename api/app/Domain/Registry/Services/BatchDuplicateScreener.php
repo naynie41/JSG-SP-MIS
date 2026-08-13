@@ -136,6 +136,12 @@ class BatchDuplicateScreener
             'band' => $result->band->value,
             'score' => round($result->score->composite, 4),
             'matched_fields' => $result->score->matchedFields(),
+            // Per-field verdicts for the adjudication screen. Field names,
+            // booleans and similarities only — never a value from either side.
+            'comparison' => $result->score->fieldComparisons(),
+            // Which cascade stage produced this match, so the officer knows a
+            // definitive identifier hit from a fuzzy name/phone score.
+            'stage' => $result->score->deterministic ? 'deterministic' : 'fuzzy',
         ];
     }
 }

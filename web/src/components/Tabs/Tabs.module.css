@@ -2,6 +2,19 @@
   display: flex;
   gap: var(--space-1);
   border-bottom: 1px solid var(--border);
+  /* More tabs than fit should scroll the strip, not widen the page. Without
+     this the tab row pushed the whole document sideways at mobile widths. */
+  overflow-x: auto;
+  scrollbar-width: thin;
+}
+
+.tablist::-webkit-scrollbar {
+  height: 3px;
+}
+
+.tablist::-webkit-scrollbar-thumb {
+  background-color: var(--border-strong);
+  border-radius: var(--radius-full);
 }
 
 .tab {
@@ -16,6 +29,9 @@
   font-weight: 500;
   color: var(--text-muted-strong);
   cursor: pointer;
+  /* Tabs keep their label on one line; the strip scrolls instead. */
+  white-space: nowrap;
+  flex: 0 0 auto;
   transition:
     color var(--transition),
     border-color var(--transition);

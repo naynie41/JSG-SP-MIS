@@ -56,10 +56,13 @@ class ServiceRequestController extends Controller
             ->when($request->filled('status'), fn ($q) => $q->where('status', $request->string('status')->value()))
             ->when($request->filled('activity_id'), fn ($q) => $q->where('activity_id', $request->string('activity_id')->value()))
             ->with([
-                // Reveal-safe display data (name + owner MDA); bypass the owner scope
-                // since a request-to-serve is intentionally cross-MDA.
+                // Reveal-safe display data (name + both MDAs); bypass the owner scope
+                // since a request-to-serve is intentionally cross-MDA. The owner
+                // cannot judge a request identified only by UUID, so the requesting
+                // MDA is loaded alongside the owning one.
                 'beneficiary' => fn ($q) => $q->withoutGlobalScope(MdaScope::class),
                 'toMda' => fn ($q) => $q->withoutGlobalScope(MdaScope::class),
+                'fromMda' => fn ($q) => $q->withoutGlobalScope(MdaScope::class),
             ])
             ->latest()
             ->get();
