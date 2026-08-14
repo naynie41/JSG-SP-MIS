@@ -2,7 +2,7 @@
 
 // odsl-C:\Users\ACER\Desktop\JSG-SP-MIS\JSG-SP-MIS\api\app\Domain\Sync\Models\SyncConnector.php-PHPStan\BetterReflection\Reflection\ReflectionClass-App\Domain\Sync\Models\SyncConnector
 return \PHPStan\Cache\CacheItem::__set_state(array(
-   'variableKey' => 'v2-6.70.0.1-8.3.31-80400a44ad20f0223ce9afb87a9f93410e77238538022f3cafc8655c1cda3e0a',
+   'variableKey' => 'v2-6.70.0.1-8.3.31-f9e490a293e041a3f856e561fe4a89d848fc8ca02d6ff8ad54eac56edef1357a',
    'data' => 
   array (
     'locatedSource' => 
@@ -36,12 +36,19 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
  * @property bool $enabled
  * @property string|null $schedule
  * @property Carbon|null $last_run_at
+ * @property array<string, string|null>|null $column_map
+ * @property string|null $source_signature
+ * @property Carbon|null $mapping_confirmed_at
+ * @property string|null $mapping_confirmed_by
+ * @property Carbon|null $mapping_stale_at
+ * @property string|null $mapping_stale_reason
+ * @property-read User|null $mappingConfirmedBy
  */',
     'attributes' => 
     array (
     ),
-    'startLine' => 32,
-    'endLine' => 78,
+    'startLine' => 40,
+    'endLine' => 140,
     'startColumn' => 1,
     'endColumn' => 1,
     'parentClassName' => 'Illuminate\\Database\\Eloquent\\Model',
@@ -70,20 +77,20 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
           'code' => '\'sync_connectors\'',
           'attributes' => 
           array (
-            'startLine' => 37,
-            'endLine' => 37,
-            'startTokenPos' => 88,
-            'startFilePos' => 1177,
-            'endTokenPos' => 88,
-            'endFilePos' => 1193,
+            'startLine' => 45,
+            'endLine' => 45,
+            'startTokenPos' => 93,
+            'startFilePos' => 1544,
+            'endTokenPos' => 93,
+            'endFilePos' => 1560,
           ),
         ),
         'docComment' => NULL,
         'attributes' => 
         array (
         ),
-        'startLine' => 37,
-        'endLine' => 37,
+        'startLine' => 45,
+        'endLine' => 45,
         'startColumn' => 5,
         'endColumn' => 41,
         'isPromoted' => false,
@@ -102,15 +109,15 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         'type' => NULL,
         'default' => 
         array (
-          'code' => '[\'name\', \'source\', \'owner_mda_id\', \'conflict_policy\', \'credentials_ref\', \'enabled\', \'schedule\', \'last_run_at\']',
+          'code' => '[\'name\', \'source\', \'owner_mda_id\', \'conflict_policy\', \'credentials_ref\', \'enabled\', \'schedule\', \'last_run_at\', \'column_map\', \'source_signature\', \'mapping_confirmed_at\', \'mapping_confirmed_by\', \'mapping_stale_at\', \'mapping_stale_reason\']',
           'attributes' => 
           array (
-            'startLine' => 42,
-            'endLine' => 51,
-            'startTokenPos' => 99,
-            'startFilePos' => 1264,
-            'endTokenPos' => 125,
-            'endFilePos' => 1444,
+            'startLine' => 50,
+            'endLine' => 65,
+            'startTokenPos' => 104,
+            'startFilePos' => 1631,
+            'endTokenPos' => 148,
+            'endFilePos' => 1985,
           ),
         ),
         'docComment' => '/**
@@ -119,8 +126,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         'attributes' => 
         array (
         ),
-        'startLine' => 42,
-        'endLine' => 51,
+        'startLine' => 50,
+        'endLine' => 65,
         'startColumn' => 5,
         'endColumn' => 6,
         'isPromoted' => false,
@@ -155,8 +162,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         'docComment' => '/**
  * @return array<string, string>
  */',
-        'startLine' => 56,
-        'endLine' => 64,
+        'startLine' => 70,
+        'endLine' => 81,
         'startColumn' => 5,
         'endColumn' => 5,
         'couldThrow' => false,
@@ -164,6 +171,123 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         'isGenerator' => false,
         'isVariadic' => false,
         'modifiers' => 2,
+        'namespace' => 'App\\Domain\\Sync\\Models',
+        'declaringClassName' => 'App\\Domain\\Sync\\Models\\SyncConnector',
+        'implementingClassName' => 'App\\Domain\\Sync\\Models\\SyncConnector',
+        'currentClassName' => 'App\\Domain\\Sync\\Models\\SyncConnector',
+        'aliasName' => NULL,
+      ),
+      'mappingStatus' => 
+      array (
+        'name' => 'mappingStatus',
+        'parameters' => 
+        array (
+        ),
+        'returnsReference' => false,
+        'returnType' => 
+        array (
+          'class' => 'PHPStan\\BetterReflection\\Reflection\\ReflectionNamedType',
+          'data' => 
+          array (
+            'name' => 'string',
+            'isIdentifier' => true,
+          ),
+        ),
+        'attributes' => 
+        array (
+        ),
+        'docComment' => '/**
+ * The connector\'s mapping state, as an administrator needs to see it.
+ *
+ * `stale` is the one that matters: a standing approval that no longer describes what
+ * the source is sending. It is a distinct state from "never configured" because the
+ * remedy differs — one needs a first mapping, the other needs a REVIEW of a mapping
+ * that used to be right.
+ */',
+        'startLine' => 91,
+        'endLine' => 98,
+        'startColumn' => 5,
+        'endColumn' => 5,
+        'couldThrow' => false,
+        'isClosure' => false,
+        'isGenerator' => false,
+        'isVariadic' => false,
+        'modifiers' => 1,
+        'namespace' => 'App\\Domain\\Sync\\Models',
+        'declaringClassName' => 'App\\Domain\\Sync\\Models\\SyncConnector',
+        'implementingClassName' => 'App\\Domain\\Sync\\Models\\SyncConnector',
+        'currentClassName' => 'App\\Domain\\Sync\\Models\\SyncConnector',
+        'aliasName' => NULL,
+      ),
+      'mappingIsStale' => 
+      array (
+        'name' => 'mappingIsStale',
+        'parameters' => 
+        array (
+        ),
+        'returnsReference' => false,
+        'returnType' => 
+        array (
+          'class' => 'PHPStan\\BetterReflection\\Reflection\\ReflectionNamedType',
+          'data' => 
+          array (
+            'name' => 'bool',
+            'isIdentifier' => true,
+          ),
+        ),
+        'attributes' => 
+        array (
+        ),
+        'docComment' => '/** Whether the source\'s shape has moved since the mapping was approved. */',
+        'startLine' => 101,
+        'endLine' => 104,
+        'startColumn' => 5,
+        'endColumn' => 5,
+        'couldThrow' => false,
+        'isClosure' => false,
+        'isGenerator' => false,
+        'isVariadic' => false,
+        'modifiers' => 1,
+        'namespace' => 'App\\Domain\\Sync\\Models',
+        'declaringClassName' => 'App\\Domain\\Sync\\Models\\SyncConnector',
+        'implementingClassName' => 'App\\Domain\\Sync\\Models\\SyncConnector',
+        'currentClassName' => 'App\\Domain\\Sync\\Models\\SyncConnector',
+        'aliasName' => NULL,
+      ),
+      'mappingIsConfirmed' => 
+      array (
+        'name' => 'mappingIsConfirmed',
+        'parameters' => 
+        array (
+        ),
+        'returnsReference' => false,
+        'returnType' => 
+        array (
+          'class' => 'PHPStan\\BetterReflection\\Reflection\\ReflectionNamedType',
+          'data' => 
+          array (
+            'name' => 'bool',
+            'isIdentifier' => true,
+          ),
+        ),
+        'attributes' => 
+        array (
+        ),
+        'docComment' => '/**
+ * Whether a person has approved which source field holds each identity value
+ * (CLAUDE.md §11). A connector runs unattended, so this confirmation is given once at
+ * configuration time and STANDS for later runs — but a run whose records no longer
+ * match {@see $source_signature} must stop and ask again.
+ */',
+        'startLine' => 112,
+        'endLine' => 115,
+        'startColumn' => 5,
+        'endColumn' => 5,
+        'couldThrow' => false,
+        'isClosure' => false,
+        'isGenerator' => false,
+        'isVariadic' => false,
+        'modifiers' => 1,
         'namespace' => 'App\\Domain\\Sync\\Models',
         'declaringClassName' => 'App\\Domain\\Sync\\Models\\SyncConnector',
         'implementingClassName' => 'App\\Domain\\Sync\\Models\\SyncConnector',
@@ -192,8 +316,48 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         'docComment' => '/**
  * @return BelongsTo<Mda, $this>
  */',
-        'startLine' => 69,
-        'endLine' => 72,
+        'startLine' => 120,
+        'endLine' => 123,
+        'startColumn' => 5,
+        'endColumn' => 5,
+        'couldThrow' => false,
+        'isClosure' => false,
+        'isGenerator' => false,
+        'isVariadic' => false,
+        'modifiers' => 1,
+        'namespace' => 'App\\Domain\\Sync\\Models',
+        'declaringClassName' => 'App\\Domain\\Sync\\Models\\SyncConnector',
+        'implementingClassName' => 'App\\Domain\\Sync\\Models\\SyncConnector',
+        'currentClassName' => 'App\\Domain\\Sync\\Models\\SyncConnector',
+        'aliasName' => NULL,
+      ),
+      'mappingConfirmedBy' => 
+      array (
+        'name' => 'mappingConfirmedBy',
+        'parameters' => 
+        array (
+        ),
+        'returnsReference' => false,
+        'returnType' => 
+        array (
+          'class' => 'PHPStan\\BetterReflection\\Reflection\\ReflectionNamedType',
+          'data' => 
+          array (
+            'name' => 'Illuminate\\Database\\Eloquent\\Relations\\BelongsTo',
+            'isIdentifier' => false,
+          ),
+        ),
+        'attributes' => 
+        array (
+        ),
+        'docComment' => '/**
+ * Who gave the standing mapping approval. Shown in the UI because a standing
+ * approval is accountable to a person, not just a timestamp.
+ *
+ * @return BelongsTo<User, $this>
+ */',
+        'startLine' => 131,
+        'endLine' => 134,
         'startColumn' => 5,
         'endColumn' => 5,
         'couldThrow' => false,
@@ -227,8 +391,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         array (
         ),
         'docComment' => NULL,
-        'startLine' => 74,
-        'endLine' => 77,
+        'startLine' => 136,
+        'endLine' => 139,
         'startColumn' => 5,
         'endColumn' => 5,
         'couldThrow' => false,

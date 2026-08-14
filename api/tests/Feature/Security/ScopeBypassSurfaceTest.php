@@ -49,6 +49,11 @@ class ScopeBypassSurfaceTest extends TestCase
             'Domain/Notification/Services/BroadcastService.php',
             'Domain/Privacy/Services/RetentionService.php',
             'Http/Controllers/Api/V1/HealthController.php',
+            // Connector administration is System-Admin territory (`sync.view`/`sync.run`)
+            // and connectors span MDAs by design. The only unscoped reads are the
+            // confirming USER's name — the person accountable for a standing mapping
+            // approval, who need not belong to the connector's MDA.
+            'Http/Controllers/Api/V1/Sync/SyncController.php',
         ],
         // The duplicate/serve seam: matching MUST see across MDAs or the registry would
         // duplicate people. These return reveal-only data, never a full profile.

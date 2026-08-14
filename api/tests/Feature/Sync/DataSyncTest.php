@@ -18,6 +18,7 @@ use Database\Seeders\MatchingConfigSeeder;
 use Database\Seeders\RolesAndPermissionsSeeder;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Testing\TestResponse;
+use Tests\Concerns\ConfirmsImportMapping;
 use Tests\TestCase;
 
 /**
@@ -28,7 +29,7 @@ use Tests\TestCase;
  */
 class DataSyncTest extends TestCase
 {
-    use RefreshDatabase;
+    use ConfirmsImportMapping, RefreshDatabase;
 
     private Mda $mdaA;
 
@@ -55,7 +56,17 @@ class DataSyncTest extends TestCase
         return User::factory()->create(['mda_id' => $mda?->id, 'role_id' => Role::where('key', $role->value)->firstOrFail()->id]);
     }
 
+    /**
+     * A connector with its standing column mapping confirmed (CLAUDE.md §11) — a
+     * connector without one refuses to run, which {@see test_a_connector_without_a_confirmed_mapping_refuses_to_run}
+     * covers directly.
+     */
     private function connector(ConflictPolicy $policy = ConflictPolicy::FlagForReview): SyncConnector
+    {
+        return $this->confirmConnectorMapping($this->unmappedConnector($policy), $this->users['sysAdmin']);
+    }
+
+    private function unmappedConnector(ConflictPolicy $policy = ConflictPolicy::FlagForReview): SyncConnector
     {
         return SyncConnector::factory()->create([
             'owner_mda_id' => $this->mdaA->id,

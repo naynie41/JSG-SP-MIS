@@ -1,0 +1,86 @@
+/*
+ * Connector column mapping (CLAUDE.md §11). Mirrors the registry import mapping layout
+ * on purpose — it is the same Data Import & Mapping stage applied at configuration time,
+ * and an administrator who has mapped a file should recognise this screen immediately.
+ */
+
+.mapGroup {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+  margin-top: var(--space-5);
+}
+
+.mapRow {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: var(--space-3);
+  align-items: start;
+  padding-bottom: var(--space-3);
+  border-bottom: 1px solid var(--border);
+}
+
+.mapRow:last-child {
+  border-bottom: none;
+}
+
+/* Suggestion, confidence and real sampled values — what makes the confirmation a
+   decision rather than a click-through. */
+.mapMeta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-2);
+  padding-top: var(--space-6);
+}
+
+@media (max-width: 720px) {
+  .mapRow {
+    grid-template-columns: 1fr;
+  }
+
+  .mapMeta {
+    padding-top: 0;
+  }
+}
+
+.note {
+  color: var(--ink-muted);
+  font-size: var(--text-sm);
+  margin: var(--space-2) 0 0;
+}
+
+.sub {
+  color: var(--ink-muted);
+  font-size: var(--text-sm);
+}
+
+.mono {
+  font-family: var(--font-mono);
+}
+
+.previewTable {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: var(--space-3);
+}
+
+.previewTable th,
+.previewTable td {
+  text-align: left;
+  padding: var(--space-2) var(--space-3);
+  border-bottom: 1px solid var(--border);
+}
+
+.previewTable th {
+  font-size: var(--text-sm);
+  color: var(--ink-muted);
+  font-weight: 600;
+}
+
+/* Mapping status shown per connector in the Integrations table. */
+.statusCell {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}

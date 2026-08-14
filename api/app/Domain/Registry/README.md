@@ -53,6 +53,31 @@ activity wizard (`POST /activity-imports`) both profile on upload and both stop 
 `mapping_required`; they differ only in *when* the activity binds. `OnePipelineTest`
 pins this, including that the job refuses even when dispatched directly.
 
+**Sync connectors confirm once, at configuration time** (`ConnectorMappingService`). A
+scheduled connector has no officer to ask per run, so the approval STANDS — bounded by
+`sync_connectors.source_signature`. Three states, deliberately distinct because the
+remedies differ:
+
+| Status | Meaning | Effect |
+| --- | --- | --- |
+| `never_configured` | no mapping has ever been approved | cannot be enabled; run fails, audited `sync.run_blocked` |
+| `confirmed` | approved and still matching the source's shape | syncs normally |
+| `stale` | the source's fields moved since approval | **held** — flagged in the console, next run refused before the source is contacted |
+
+Staleness is PERSISTED (`mapping_stale_at`, audited `sync.mapping_stale`), not merely
+detected in flight: a connector that has quietly stopped must be visible between runs,
+not discoverable only by reading run logs. Re-confirming clears it. A connector cannot be
+**enabled** while unconfirmed or stale (`422 MAPPING_NOT_CONFIRMED`), though disabling is
+always allowed — an administrator is never trapped with a feed they cannot stop.
+
+Offline batches keep the adapter's alias mapping: a person posts them in the capture
+app's known shape, so there is no standing approval to give.
+
+UI: `web/src/features/sync/ConnectorMappingModal.tsx`, opened from Admin → Integrations,
+which shows each connector's mapping status and who confirmed it. It reuses the same
+proposal/suggestion/normalization payload the file-import screen consumes — one Data
+Import & Mapping layer, applied at two different moments.
+
 **Recorded on the batch, permanently:** `column_map`, `mapping_confirmed_at`,
 `mapping_confirmed_by`, `source_signature` and `mapping_template_id` — surfaced as
 `data.mapping` on the batch resource. The raw file is retained unmutated throughout.

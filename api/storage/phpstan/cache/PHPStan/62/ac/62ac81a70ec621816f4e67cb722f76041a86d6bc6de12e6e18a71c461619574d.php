@@ -84,7 +84,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
     ),
     1 => 
     array (
-      'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Resources\\SyncConnectorResource.php' => '444c066522a6f352d06c0e9af9f69fbda31c2989a36230f5c24bd0640656b311',
+      'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Resources\\SyncConnectorResource.php' => 'e01c22f5c49130474dda55c13d4af0b496255df23410ddce52d83b9380bdc163',
     ),
   ),
 ));

@@ -9,6 +9,9 @@ use App\Domain\Registry\Imports\ColumnMapper;
 use App\Domain\Registry\Jobs\ParseImportBatch;
 use App\Domain\Registry\Models\ImportBatch;
 use App\Domain\Registry\Services\ImportMappingService;
+use App\Domain\Registry\Support\CanonicalSchema;
+use App\Domain\Sync\Models\SyncConnector;
+use App\Domain\Sync\Services\ConnectorMappingService;
 
 /**
  * Performs the mapping confirmation an officer performs, for tests whose subject is
@@ -46,5 +49,37 @@ trait ConfirmsImportMapping
         ParseImportBatch::dispatchSync($batch->id);
 
         return $batch->fresh();
+    }
+
+    /**
+     * Give a sync connector its STANDING mapping confirmation (CLAUDE.md §11).
+     *
+     * A connector runs unattended, so the approval is given once at configuration time
+     * instead of per run — but it is still an approval a person gave, and a connector
+     * without one refuses to run. Tests whose subject is downstream of that satisfy it
+     * the way an administrator does.
+     */
+    protected function confirmConnectorMapping(SyncConnector $connector, ?User $actor = null): SyncConnector
+    {
+        /*
+         * The mock sources return records keyed by the canonical names, so an
+         * administrator confirming one would map each field to the field of the same
+         * name. Built from the schema rather than from a live sample because a connector
+         * is usually configured before its source has anything to return — and a mapping
+         * confirmed against an EMPTY sample would answer "not present" for everything,
+         * which the engine would faithfully apply by blanking every field.
+         *
+         * The household and provenance fields are deliberately left OUT: a field absent
+         * from the map falls back to the adapter, which is what keeps source-specific
+         * spellings working — a record id in `_id` or `instanceID`, a household
+         * reference in `household_id` rather than `household_ref`.
+         */
+        $columnMap = [];
+        foreach (CanonicalSchema::fields() as $field) {
+            $columnMap[$field] = $field;
+        }
+
+        return app(ConnectorMappingService::class)
+            ->confirm($connector, $columnMap, $actor ?? User::factory()->create());
     }
 }

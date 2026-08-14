@@ -20,6 +20,7 @@ use App\Domain\Sync\Services\SyncEngine;
 use Database\Seeders\MatchingConfigSeeder;
 use Database\Seeders\RolesAndPermissionsSeeder;
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use Tests\Concerns\ConfirmsImportMapping;
 use Tests\TestCase;
 
 /**
@@ -35,7 +36,7 @@ use Tests\TestCase;
  */
 class SyncHouseholdFormationTest extends TestCase
 {
-    use RefreshDatabase;
+    use ConfirmsImportMapping, RefreshDatabase;
 
     private Mda $mda;
 
@@ -56,10 +57,10 @@ class SyncHouseholdFormationTest extends TestCase
 
     private function connector(): SyncConnector
     {
-        return SyncConnector::factory()->create([
+        return $this->confirmConnectorMapping(SyncConnector::factory()->create([
             'owner_mda_id' => $this->mda->id,
             'source' => RegistrationSource::Socu,
-        ]);
+        ]), $this->officer);
     }
 
     /** @param array<int, array<string, mixed>> $records */

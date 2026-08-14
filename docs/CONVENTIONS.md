@@ -146,6 +146,33 @@ Conventions:
 - Required fields per PRD §6/§7; never silently drop or default required data.
 - Dates ISO-8601; enums validated against allowed values.
 
+### Column mapping before validation (CLAUDE.md §11)
+
+- A file upload lands in `mapping_required`. `GET /beneficiaries/imports/{batch}/mapping`
+  returns detected columns, **advisory** suggestions and sample values; `PUT …/mapping`
+  confirms. NIN, BVN, name and phone must each be a KEY in `column_map` — a column, or
+  `null` for "not present". An unanswered one is **422 `MAPPING_INCOMPLETE`**. A saved
+  template pre-fills but never counts as the confirmation.
+- The gate lives in `ParseImportBatch`, not in a controller, so every upload door
+  inherits it. Do not add a second check in a controller and do not enforce it
+  client-side only.
+- **Unattended ingestion confirms ONCE, at configuration time.** A sync connector has no
+  officer per run, so its mapping is approved via
+  `PUT /sync/connectors/{connector}/mapping` and **stands** for later runs. This is the
+  only relaxation of the per-import rule and it is bounded: the confirmation records the
+  source's `source_signature`, and a run whose records no longer match that shape
+  **fails** asking for re-confirmation rather than applying an approval given for a
+  different schema. An unconfirmed connector fails its run (audited `sync.run_blocked`);
+  a manual trigger returns **422 `MAPPING_NOT_CONFIRMED`**. Offline batches are
+  unaffected — a person posts them in the capture app's known shape.
+- **A stale mapping is a persisted state, not a per-run discovery.** When a run detects
+  the shape has changed the connector is flagged (`mapping_stale_at`, audited
+  `sync.mapping_stale`), shown as *needs review* in Admin → Integrations, and its next
+  sync is **held before the source is contacted**. A connector may not be ENABLED while
+  unconfirmed or stale (`PUT /sync/connectors/{id}/enabled` → 422); disabling is always
+  permitted. Re-confirming clears the flag. Without the persisted flag, "confirm once"
+  degrades into "confirm never".
+
 ---
 
 ## 7. Testing

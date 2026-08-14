@@ -18,6 +18,7 @@ use Database\Seeders\MatchingConfigSeeder;
 use Database\Seeders\RolesAndPermissionsSeeder;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Support\Facades\Queue;
+use Tests\Concerns\ConfirmsImportMapping;
 use Tests\TestCase;
 
 /**
@@ -38,7 +39,7 @@ use Tests\TestCase;
  */
 class SyncConflictMatrixTest extends TestCase
 {
-    use RefreshDatabase;
+    use ConfirmsImportMapping, RefreshDatabase;
 
     private Mda $mdaA;
 
@@ -56,12 +57,12 @@ class SyncConflictMatrixTest extends TestCase
 
     private function connector(ConflictPolicy $policy, bool $enabled = true): SyncConnector
     {
-        return SyncConnector::factory()->create([
+        return $this->confirmConnectorMapping(SyncConnector::factory()->create([
             'owner_mda_id' => $this->mdaA->id,
             'source' => RegistrationSource::Socu,
             'conflict_policy' => $policy,
             'enabled' => $enabled,
-        ]);
+        ]));
     }
 
     /** @param array<int, array<string, mixed>> $records */
@@ -187,11 +188,11 @@ class SyncConflictMatrixTest extends TestCase
     public function test_the_same_source_id_under_a_different_mda_is_a_different_record(): void
     {
         $a = $this->connector(ConflictPolicy::FlagForReview);
-        $b = SyncConnector::factory()->create([
+        $b = $this->confirmConnectorMapping(SyncConnector::factory()->create([
             'owner_mda_id' => $this->mdaB->id,
             'source' => RegistrationSource::Socu,
             'conflict_policy' => ConflictPolicy::FlagForReview,
-        ]);
+        ]));
 
         $this->mockSocu([['first_name' => 'Ada', 'last_name' => 'Eze', 'nin' => '20000000014', 'id' => 'SHARED-ID']]);
         $this->engine()->runConnector($a, SyncTrigger::Scheduled);
