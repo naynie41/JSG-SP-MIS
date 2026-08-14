@@ -8,6 +8,7 @@ use App\Domain\Access\Scopes\MdaScope;
 use App\Domain\Audit\Services\AuditLogger;
 use App\Domain\Registry\Models\Beneficiary;
 use App\Domain\Registry\Support\IdentifierHasher;
+use App\Domain\Registry\Support\NormalizationService;
 use Illuminate\Support\Collection;
 
 /**
@@ -23,7 +24,10 @@ use Illuminate\Support\Collection;
  */
 class BeneficiaryLookupService
 {
-    public function __construct(private readonly AuditLogger $audit) {}
+    public function __construct(
+        private readonly AuditLogger $audit,
+        private readonly NormalizationService $normalizer,
+    ) {}
 
     /**
      * Find beneficiaries by any provided exact identifier, across all MDAs.
@@ -50,7 +54,10 @@ class BeneficiaryLookupService
                     $query->orWhere('bvn_hash', IdentifierHasher::hash($bvn));
                 }
                 if ($phone !== null) {
-                    $query->orWhere('phone', $phone);
+                    // Compared on the normalized column, not the written one: a caller
+                    // searching "08031234567" must find a record stored as
+                    // "+234 803 123 4567". Both sides go through the same rule.
+                    $query->orWhere('phone_normalized', $this->normalizer->phone($phone));
                 }
             })
             ->get();

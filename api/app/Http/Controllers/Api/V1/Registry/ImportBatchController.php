@@ -15,24 +15,32 @@ use App\Domain\Registry\Jobs\ParseImportBatch;
 use App\Domain\Registry\Models\Beneficiary;
 use App\Domain\Registry\Models\ImportBatch;
 use App\Domain\Registry\Models\ImportRow;
+use App\Domain\Registry\Services\ImportMappingService;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Registry\ConfirmMappingRequest;
 use App\Http\Requests\Registry\ResolveImportRowRequest;
 use App\Http\Requests\Registry\UploadImportRequest;
 use App\Http\Resources\BeneficiaryRevealResource;
 use App\Http\Resources\ImportBatchResource;
 use App\Http\Resources\ImportRowResource;
 use App\Support\ApiResponse;
+use DomainException;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Collection;
 
 /**
- * Bulk import of beneficiaries from Excel/CSV (PRD FR-REG-02/06). Upload stages a
- * batch and queues parsing/validation; the client polls the batch for the preview
+ * Bulk import of beneficiaries from Excel/CSV (PRD FR-REG-02/06).
+ *
+ * Upload stages a batch and PROFILES its columns; the officer confirms which column is
+ * which canonical field (CLAUDE.md §11 — identity mappings are never auto-applied); only
+ * then is parsing/validation queued. The client polls the batch for the preview
  * (row-level errors + summary); confirm queues the commit of valid rows only.
  */
 class ImportBatchController extends Controller
 {
+    public function __construct(private readonly ImportMappingService $mapping) {}
+
     public function index(Request $request): JsonResponse
     {
         $this->authorize('viewAny', ImportBatch::class);
@@ -76,9 +84,46 @@ class ImportBatchController extends Controller
             'status' => ImportStatus::Pending,
         ]);
 
-        ParseImportBatch::dispatch($batch->id);
+        // Profile the columns and stop at `mapping_required` — parsing happens only
+        // after a human confirms the identity mappings (CLAUDE.md §11).
+        $this->mapping->profile($batch);
 
         return ApiResponse::success((new ImportBatchResource($batch->fresh()))->resolve(), status: 201);
+    }
+
+    /** The mapping screen: detected columns, suggestions, and what is still unanswered. */
+    public function mapping(string $batch): JsonResponse
+    {
+        $model = ImportBatch::query()->findOrFail($batch);
+        $this->authorize('view', $model);
+
+        return ApiResponse::success($this->mapping->proposal($model));
+    }
+
+    /**
+     * Confirm the mapping. Refused until every identity field is answered — pointed at
+     * a column, or explicitly marked not present.
+     */
+    public function confirmMapping(ConfirmMappingRequest $request, string $batch): JsonResponse
+    {
+        $model = ImportBatch::query()->findOrFail($batch);
+        $this->authorize('map', $model);
+
+        try {
+            $this->mapping->confirm(
+                $model,
+                $request->columnMap(),
+                $request->user(),
+                $request->string('save_template_as')->value() ?: null,
+            );
+        } catch (DomainException $e) {
+            return ApiResponse::error('MAPPING_INCOMPLETE', $e->getMessage(), [], 422);
+        }
+
+        // Only now does the file get parsed, screened and previewed.
+        ParseImportBatch::dispatch($model->id);
+
+        return ApiResponse::success((new ImportBatchResource($model->fresh()))->resolve());
     }
 
     /** Show the batch and its staged rows (the preview) with duplicate reveals. */

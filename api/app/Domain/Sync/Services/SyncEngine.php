@@ -16,6 +16,8 @@ use App\Domain\Registry\Imports\ImportRowValidator;
 use App\Domain\Registry\Models\Beneficiary;
 use App\Domain\Registry\Services\BatchDuplicateScreener;
 use App\Domain\Registry\Services\BeneficiaryRegistrar;
+use App\Domain\Registry\Services\HouseholdIngestionService;
+use App\Domain\Registry\Support\CanonicalSchema;
 use App\Domain\Sync\Enums\ConflictPolicy;
 use App\Domain\Sync\Enums\SyncRowOutcome;
 use App\Domain\Sync\Enums\SyncStatus;
@@ -42,11 +44,16 @@ use Throwable;
  */
 class SyncEngine
 {
-    /** Canonical beneficiary fields the adapter/validator produce. */
-    private const CANONICAL_FIELDS = [
-        'first_name', 'middle_name', 'last_name', 'nin', 'bvn', 'phone',
-        'date_of_birth', 'gender', 'address', 'lga', 'ward',
-    ];
+    /**
+     * The canonical field set — declared once in {@see CanonicalSchema}, so a field
+     * added to the schema reaches the sync door without a second edit here.
+     *
+     * @return list<string>
+     */
+    private function canonicalFields(): array
+    {
+        return CanonicalSchema::fields();
+    }
 
     public function __construct(
         private readonly SourceAdapterRegistry $adapters,
@@ -56,6 +63,7 @@ class SyncEngine
         private readonly BeneficiaryRegistrar $registrar,
         private readonly SyncSourceResolver $sources,
         private readonly AuditLogger $audit,
+        private readonly HouseholdIngestionService $households,
     ) {}
 
     /** Scheduled or manually-triggered sync from a configured connector. */
@@ -228,7 +236,7 @@ class SyncEngine
         // No match → create through the registrar (idempotency + provenance + pre-save check).
         try {
             $beneficiary = $this->registrar->register(
-                Arr::only($payload, self::CANONICAL_FIELDS),
+                Arr::only($payload, $this->canonicalFields()),
                 $ownerMdaId,
                 $source,
                 $originalRecordId,
@@ -236,10 +244,44 @@ class SyncEngine
                 $originalRecordId, // idempotency key = the source record id
             );
 
+            // Form/join the household from the source reference, exactly as the file
+            // pipeline does (PRD FR-REG-01/02, §9). Read from $mapped rather than
+            // $payload: the validator's payload carries beneficiary fields only, and
+            // since manual creation was removed a dropped reference is unrecoverable —
+            // the source has no other way to express household grouping.
+            $householdRef = $this->stringOrNull($mapped['household_ref'] ?? null);
+            if ($householdRef !== null) {
+                $this->households->attach(
+                    $ownerMdaId,
+                    $source,
+                    null, // no import batch — this record arrived through sync
+                    $householdRef,
+                    $beneficiary,
+                    $this->stringOrNull($mapped['household_role'] ?? null),
+                    HouseholdIngestionService::isHeadFlag($this->stringOrNull($mapped['household_head'] ?? null)),
+                );
+            }
+
             return [SyncRowOutcome::Created, $beneficiary->id, null, $meta];
         } catch (Throwable $e) {
             return [SyncRowOutcome::Error, null, null, [...$meta, 'error' => Str::limit($e->getMessage(), 300)]];
         }
+    }
+
+    /**
+     * A mapped source value as a trimmed non-empty string, or null. Source records are
+     * loosely typed (numbers, blanks, stray whitespace), and an empty household
+     * reference must read as "no household", never as a household named "".
+     */
+    private function stringOrNull(mixed $value): ?string
+    {
+        if ($value === null || is_array($value)) {
+            return null;
+        }
+
+        $string = trim((string) $value);
+
+        return $string === '' ? null : $string;
     }
 
     /**
@@ -251,7 +293,7 @@ class SyncEngine
     private function applyUpdate(Beneficiary $beneficiary, array $payload): void
     {
         $provided = array_filter(
-            Arr::only($payload, self::CANONICAL_FIELDS),
+            Arr::only($payload, $this->canonicalFields()),
             static fn ($value): bool => $value !== null,
         );
 

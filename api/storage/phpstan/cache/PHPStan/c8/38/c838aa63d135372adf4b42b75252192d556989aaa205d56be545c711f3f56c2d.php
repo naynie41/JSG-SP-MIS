@@ -2,7 +2,7 @@
 
 // odsl-C:\Users\ACER\Desktop\JSG-SP-MIS\JSG-SP-MIS\api\app\Http\Controllers\Api\V1\Registry\ImportBatchController.php-PHPStan\BetterReflection\Reflection\ReflectionClass-App\Http\Controllers\Api\V1\Registry\ImportBatchController
 return \PHPStan\Cache\CacheItem::__set_state(array(
-   'variableKey' => 'v2-6.70.0.1-8.3.31-4eb4ab6745da6d0fb1debaf1f74458541666405931c9d2fde03a32079a1553ec',
+   'variableKey' => 'v2-6.70.0.1-8.3.31-4c93ba07ae529b0abf5c6f435dc93fc18151cd960fbab59fa35b9aec7d4adcd5',
    'data' => 
   array (
     'locatedSource' => 
@@ -23,15 +23,18 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
     'isBackedEnum' => false,
     'modifiers' => 0,
     'docComment' => '/**
- * Bulk import of beneficiaries from Excel/CSV (PRD FR-REG-02/06). Upload stages a
- * batch and queues parsing/validation; the client polls the batch for the preview
+ * Bulk import of beneficiaries from Excel/CSV (PRD FR-REG-02/06).
+ *
+ * Upload stages a batch and PROFILES its columns; the officer confirms which column is
+ * which canonical field (CLAUDE.md §11 — identity mappings are never auto-applied); only
+ * then is parsing/validation queued. The client polls the batch for the preview
  * (row-level errors + summary); confirm queues the commit of valid rows only.
  */',
     'attributes' => 
     array (
     ),
-    'startLine' => 34,
-    'endLine' => 271,
+    'startLine' => 40,
+    'endLine' => 316,
     'startColumn' => 1,
     'endColumn' => 1,
     'parentClassName' => 'App\\Http\\Controllers\\Controller',
@@ -46,9 +49,93 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
     ),
     'immediateProperties' => 
     array (
+      'mapping' => 
+      array (
+        'declaringClassName' => 'App\\Http\\Controllers\\Api\\V1\\Registry\\ImportBatchController',
+        'implementingClassName' => 'App\\Http\\Controllers\\Api\\V1\\Registry\\ImportBatchController',
+        'name' => 'mapping',
+        'modifiers' => 132,
+        'type' => 
+        array (
+          'class' => 'PHPStan\\BetterReflection\\Reflection\\ReflectionNamedType',
+          'data' => 
+          array (
+            'name' => 'App\\Domain\\Registry\\Services\\ImportMappingService',
+            'isIdentifier' => false,
+          ),
+        ),
+        'default' => NULL,
+        'docComment' => NULL,
+        'attributes' => 
+        array (
+        ),
+        'startLine' => 42,
+        'endLine' => 42,
+        'startColumn' => 33,
+        'endColumn' => 78,
+        'isPromoted' => true,
+        'declaredAtCompileTime' => true,
+        'immediateVirtual' => false,
+        'immediateHooks' => 
+        array (
+        ),
+      ),
     ),
     'immediateMethods' => 
     array (
+      '__construct' => 
+      array (
+        'name' => '__construct',
+        'parameters' => 
+        array (
+          'mapping' => 
+          array (
+            'name' => 'mapping',
+            'default' => NULL,
+            'type' => 
+            array (
+              'class' => 'PHPStan\\BetterReflection\\Reflection\\ReflectionNamedType',
+              'data' => 
+              array (
+                'name' => 'App\\Domain\\Registry\\Services\\ImportMappingService',
+                'isIdentifier' => false,
+              ),
+            ),
+            'isVariadic' => false,
+            'byRef' => false,
+            'isPromoted' => true,
+            'attributes' => 
+            array (
+            ),
+            'startLine' => 42,
+            'endLine' => 42,
+            'startColumn' => 33,
+            'endColumn' => 78,
+            'parameterIndex' => 0,
+            'isOptional' => false,
+          ),
+        ),
+        'returnsReference' => false,
+        'returnType' => NULL,
+        'attributes' => 
+        array (
+        ),
+        'docComment' => NULL,
+        'startLine' => 42,
+        'endLine' => 42,
+        'startColumn' => 5,
+        'endColumn' => 82,
+        'couldThrow' => false,
+        'isClosure' => false,
+        'isGenerator' => false,
+        'isVariadic' => false,
+        'modifiers' => 1,
+        'namespace' => 'App\\Http\\Controllers\\Api\\V1\\Registry',
+        'declaringClassName' => 'App\\Http\\Controllers\\Api\\V1\\Registry\\ImportBatchController',
+        'implementingClassName' => 'App\\Http\\Controllers\\Api\\V1\\Registry\\ImportBatchController',
+        'currentClassName' => 'App\\Http\\Controllers\\Api\\V1\\Registry\\ImportBatchController',
+        'aliasName' => NULL,
+      ),
       'index' => 
       array (
         'name' => 'index',
@@ -73,8 +160,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             'attributes' => 
             array (
             ),
-            'startLine' => 36,
-            'endLine' => 36,
+            'startLine' => 44,
+            'endLine' => 44,
             'startColumn' => 27,
             'endColumn' => 42,
             'parameterIndex' => 0,
@@ -95,8 +182,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         array (
         ),
         'docComment' => NULL,
-        'startLine' => 36,
-        'endLine' => 44,
+        'startLine' => 44,
+        'endLine' => 52,
         'startColumn' => 5,
         'endColumn' => 5,
         'couldThrow' => false,
@@ -134,8 +221,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             'attributes' => 
             array (
             ),
-            'startLine' => 47,
-            'endLine' => 47,
+            'startLine' => 55,
+            'endLine' => 55,
             'startColumn' => 27,
             'endColumn' => 54,
             'parameterIndex' => 0,
@@ -156,8 +243,159 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         array (
         ),
         'docComment' => '/** Upload a file: store it, create the batch, and queue parsing/validation. */',
-        'startLine' => 47,
-        'endLine' => 82,
+        'startLine' => 55,
+        'endLine' => 92,
+        'startColumn' => 5,
+        'endColumn' => 5,
+        'couldThrow' => false,
+        'isClosure' => false,
+        'isGenerator' => false,
+        'isVariadic' => false,
+        'modifiers' => 1,
+        'namespace' => 'App\\Http\\Controllers\\Api\\V1\\Registry',
+        'declaringClassName' => 'App\\Http\\Controllers\\Api\\V1\\Registry\\ImportBatchController',
+        'implementingClassName' => 'App\\Http\\Controllers\\Api\\V1\\Registry\\ImportBatchController',
+        'currentClassName' => 'App\\Http\\Controllers\\Api\\V1\\Registry\\ImportBatchController',
+        'aliasName' => NULL,
+      ),
+      'mapping' => 
+      array (
+        'name' => 'mapping',
+        'parameters' => 
+        array (
+          'batch' => 
+          array (
+            'name' => 'batch',
+            'default' => NULL,
+            'type' => 
+            array (
+              'class' => 'PHPStan\\BetterReflection\\Reflection\\ReflectionNamedType',
+              'data' => 
+              array (
+                'name' => 'string',
+                'isIdentifier' => true,
+              ),
+            ),
+            'isVariadic' => false,
+            'byRef' => false,
+            'isPromoted' => false,
+            'attributes' => 
+            array (
+            ),
+            'startLine' => 95,
+            'endLine' => 95,
+            'startColumn' => 29,
+            'endColumn' => 41,
+            'parameterIndex' => 0,
+            'isOptional' => false,
+          ),
+        ),
+        'returnsReference' => false,
+        'returnType' => 
+        array (
+          'class' => 'PHPStan\\BetterReflection\\Reflection\\ReflectionNamedType',
+          'data' => 
+          array (
+            'name' => 'Illuminate\\Http\\JsonResponse',
+            'isIdentifier' => false,
+          ),
+        ),
+        'attributes' => 
+        array (
+        ),
+        'docComment' => '/** The mapping screen: detected columns, suggestions, and what is still unanswered. */',
+        'startLine' => 95,
+        'endLine' => 101,
+        'startColumn' => 5,
+        'endColumn' => 5,
+        'couldThrow' => false,
+        'isClosure' => false,
+        'isGenerator' => false,
+        'isVariadic' => false,
+        'modifiers' => 1,
+        'namespace' => 'App\\Http\\Controllers\\Api\\V1\\Registry',
+        'declaringClassName' => 'App\\Http\\Controllers\\Api\\V1\\Registry\\ImportBatchController',
+        'implementingClassName' => 'App\\Http\\Controllers\\Api\\V1\\Registry\\ImportBatchController',
+        'currentClassName' => 'App\\Http\\Controllers\\Api\\V1\\Registry\\ImportBatchController',
+        'aliasName' => NULL,
+      ),
+      'confirmMapping' => 
+      array (
+        'name' => 'confirmMapping',
+        'parameters' => 
+        array (
+          'request' => 
+          array (
+            'name' => 'request',
+            'default' => NULL,
+            'type' => 
+            array (
+              'class' => 'PHPStan\\BetterReflection\\Reflection\\ReflectionNamedType',
+              'data' => 
+              array (
+                'name' => 'App\\Http\\Requests\\Registry\\ConfirmMappingRequest',
+                'isIdentifier' => false,
+              ),
+            ),
+            'isVariadic' => false,
+            'byRef' => false,
+            'isPromoted' => false,
+            'attributes' => 
+            array (
+            ),
+            'startLine' => 107,
+            'endLine' => 107,
+            'startColumn' => 36,
+            'endColumn' => 65,
+            'parameterIndex' => 0,
+            'isOptional' => false,
+          ),
+          'batch' => 
+          array (
+            'name' => 'batch',
+            'default' => NULL,
+            'type' => 
+            array (
+              'class' => 'PHPStan\\BetterReflection\\Reflection\\ReflectionNamedType',
+              'data' => 
+              array (
+                'name' => 'string',
+                'isIdentifier' => true,
+              ),
+            ),
+            'isVariadic' => false,
+            'byRef' => false,
+            'isPromoted' => false,
+            'attributes' => 
+            array (
+            ),
+            'startLine' => 107,
+            'endLine' => 107,
+            'startColumn' => 68,
+            'endColumn' => 80,
+            'parameterIndex' => 1,
+            'isOptional' => false,
+          ),
+        ),
+        'returnsReference' => false,
+        'returnType' => 
+        array (
+          'class' => 'PHPStan\\BetterReflection\\Reflection\\ReflectionNamedType',
+          'data' => 
+          array (
+            'name' => 'Illuminate\\Http\\JsonResponse',
+            'isIdentifier' => false,
+          ),
+        ),
+        'attributes' => 
+        array (
+        ),
+        'docComment' => '/**
+ * Confirm the mapping. Refused until every identity field is answered — pointed at
+ * a column, or explicitly marked not present.
+ */',
+        'startLine' => 107,
+        'endLine' => 127,
         'startColumn' => 5,
         'endColumn' => 5,
         'couldThrow' => false,
@@ -195,8 +433,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             'attributes' => 
             array (
             ),
-            'startLine' => 85,
-            'endLine' => 85,
+            'startLine' => 130,
+            'endLine' => 130,
             'startColumn' => 26,
             'endColumn' => 38,
             'parameterIndex' => 0,
@@ -217,8 +455,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         array (
         ),
         'docComment' => '/** Show the batch and its staged rows (the preview) with duplicate reveals. */',
-        'startLine' => 85,
-        'endLine' => 96,
+        'startLine' => 130,
+        'endLine' => 141,
         'startColumn' => 5,
         'endColumn' => 5,
         'couldThrow' => false,
@@ -256,8 +494,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             'attributes' => 
             array (
             ),
-            'startLine' => 102,
-            'endLine' => 102,
+            'startLine' => 147,
+            'endLine' => 147,
             'startColumn' => 41,
             'endColumn' => 58,
             'parameterIndex' => 0,
@@ -281,8 +519,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
  * Resolve the matched existing beneficiaries (reveal-only, cross-MDA) and the
  * within-batch peers, and attach each row\'s reveal payload (FR-DUP-04).
  */',
-        'startLine' => 102,
-        'endLine' => 148,
+        'startLine' => 147,
+        'endLine' => 193,
         'startColumn' => 5,
         'endColumn' => 5,
         'couldThrow' => false,
@@ -320,8 +558,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             'attributes' => 
             array (
             ),
-            'startLine' => 154,
-            'endLine' => 154,
+            'startLine' => 199,
+            'endLine' => 199,
             'startColumn' => 37,
             'endColumn' => 61,
             'parameterIndex' => 0,
@@ -346,8 +584,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             'attributes' => 
             array (
             ),
-            'startLine' => 154,
-            'endLine' => 154,
+            'startLine' => 199,
+            'endLine' => 199,
             'startColumn' => 64,
             'endColumn' => 73,
             'parameterIndex' => 1,
@@ -390,8 +628,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
  * @param  Collection<string, Beneficiary>  $beneficiaries
  * @return array<string, mixed>|null
  */',
-        'startLine' => 154,
-        'endLine' => 159,
+        'startLine' => 199,
+        'endLine' => 204,
         'startColumn' => 5,
         'endColumn' => 5,
         'couldThrow' => false,
@@ -429,8 +667,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             'attributes' => 
             array (
             ),
-            'startLine' => 168,
-            'endLine' => 168,
+            'startLine' => 213,
+            'endLine' => 213,
             'startColumn' => 34,
             'endColumn' => 57,
             'parameterIndex' => 0,
@@ -455,8 +693,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             'attributes' => 
             array (
             ),
-            'startLine' => 168,
-            'endLine' => 168,
+            'startLine' => 213,
+            'endLine' => 213,
             'startColumn' => 60,
             'endColumn' => 77,
             'parameterIndex' => 1,
@@ -481,8 +719,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             'attributes' => 
             array (
             ),
-            'startLine' => 168,
-            'endLine' => 168,
+            'startLine' => 213,
+            'endLine' => 213,
             'startColumn' => 80,
             'endColumn' => 93,
             'parameterIndex' => 2,
@@ -528,8 +766,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
  * @param  Collection<int, ImportRow>  $rowsByNumber
  * @return array<string, mixed>|null
  */',
-        'startLine' => 168,
-        'endLine' => 190,
+        'startLine' => 213,
+        'endLine' => 235,
         'startColumn' => 5,
         'endColumn' => 5,
         'couldThrow' => false,
@@ -567,8 +805,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             'attributes' => 
             array (
             ),
-            'startLine' => 197,
-            'endLine' => 197,
+            'startLine' => 242,
+            'endLine' => 242,
             'startColumn' => 32,
             'endColumn' => 63,
             'parameterIndex' => 0,
@@ -593,8 +831,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             'attributes' => 
             array (
             ),
-            'startLine' => 197,
-            'endLine' => 197,
+            'startLine' => 242,
+            'endLine' => 242,
             'startColumn' => 66,
             'endColumn' => 78,
             'parameterIndex' => 1,
@@ -619,8 +857,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             'attributes' => 
             array (
             ),
-            'startLine' => 197,
-            'endLine' => 197,
+            'startLine' => 242,
+            'endLine' => 242,
             'startColumn' => 81,
             'endColumn' => 94,
             'parameterIndex' => 2,
@@ -645,8 +883,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             'attributes' => 
             array (
             ),
-            'startLine' => 197,
-            'endLine' => 197,
+            'startLine' => 242,
+            'endLine' => 242,
             'startColumn' => 97,
             'endColumn' => 114,
             'parameterIndex' => 3,
@@ -671,8 +909,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
  * skip. Owner MDA only; only while the batch is awaiting confirmation. The
  * decision is audited (FR-DUP-06); the effect is applied on confirm.
  */',
-        'startLine' => 197,
-        'endLine' => 249,
+        'startLine' => 242,
+        'endLine' => 294,
         'startColumn' => 5,
         'endColumn' => 5,
         'couldThrow' => false,
@@ -710,8 +948,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             'attributes' => 
             array (
             ),
-            'startLine' => 252,
-            'endLine' => 252,
+            'startLine' => 297,
+            'endLine' => 297,
             'startColumn' => 29,
             'endColumn' => 41,
             'parameterIndex' => 0,
@@ -732,8 +970,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         array (
         ),
         'docComment' => '/** Confirm the preview: queue the commit of valid rows (owner MDA only). */',
-        'startLine' => 252,
-        'endLine' => 270,
+        'startLine' => 297,
+        'endLine' => 315,
         'startColumn' => 5,
         'endColumn' => 5,
         'couldThrow' => false,

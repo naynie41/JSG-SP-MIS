@@ -59,6 +59,23 @@ class BeneficiaryPolicy
     }
 
     /**
+     * See who holds cross-MDA access to this record (FR-OWN-07).
+     *
+     * Owner-only, plus all-MDA oversight. Deliberately NOT extended to a serving MDA
+     * that holds a grant: knowing which other MDAs were given access to a record it does
+     * not own is the owner's information, not the grantee's.
+     *
+     * The owner needs this to exercise revocation at all — it cannot withdraw access it
+     * cannot see. `GET /data-sharing/grants` does not serve the purpose: that is the
+     * platform-wide oversight view behind `cross-mda.view`, which no MDA role holds.
+     */
+    public function viewGrants(User $user, Beneficiary $beneficiary): bool
+    {
+        return $user->hasPermission('beneficiary.view')
+            && ($user->canAccessAllMdas() || $this->owns($user, $beneficiary));
+    }
+
+    /**
      * Use the cross-MDA lookup/serve path (FR-OWN-03) — reveal fields only.
      */
     public function lookup(User $user): bool

@@ -19,6 +19,7 @@ use Database\Seeders\RolesAndPermissionsSeeder;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Facades\Storage;
+use Tests\Concerns\ConfirmsImportMapping;
 use Tests\TestCase;
 
 /**
@@ -29,7 +30,7 @@ use Tests\TestCase;
  */
 class HybridSourceImportTest extends TestCase
 {
-    use RefreshDatabase;
+    use ConfirmsImportMapping, RefreshDatabase;
 
     private Mda $mda;
 
@@ -66,7 +67,7 @@ class HybridSourceImportTest extends TestCase
             ->post('/api/v1/beneficiaries/imports', ['file' => $file, 'source' => $source, 'activity_id' => $this->activity->id], ['Accept' => 'application/json'])
             ->assertCreated();
 
-        return ImportBatch::query()->withoutGlobalScope(MdaScope::class)->findOrFail($response->json('data.id'));
+        return $this->confirmImportMapping(ImportBatch::query()->withoutGlobalScope(MdaScope::class)->findOrFail($response->json('data.id')));
     }
 
     public function test_kobo_export_is_mapped_and_committed_with_provenance(): void

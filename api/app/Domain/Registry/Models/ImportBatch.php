@@ -55,6 +55,15 @@ class ImportBatch extends Model implements MdaScoped
     protected $table = 'import_batches';
 
     /**
+     * Whether a human has confirmed which source column is which canonical field
+     * (CLAUDE.md §11). Nothing may be parsed, screened or committed until this is true.
+     */
+    public function mappingIsConfirmed(): bool
+    {
+        return $this->mapping_confirmed_at !== null;
+    }
+
+    /**
      * @var list<string>
      */
     protected $fillable = [
@@ -65,6 +74,11 @@ class ImportBatch extends Model implements MdaScoped
         'source',
         'activity_id',
         'draft_activity',
+        'detected_headers',
+        'column_map',
+        'source_signature',
+        'mapping_confirmed_at',
+        'mapping_confirmed_by',
         'status',
         'total_rows',
         'valid_rows',
@@ -86,6 +100,9 @@ class ImportBatch extends Model implements MdaScoped
             'source' => RegistrationSource::class,
             'status' => ImportStatus::class,
             'draft_activity' => 'array',
+            'detected_headers' => 'array',
+            'column_map' => 'array',
+            'mapping_confirmed_at' => 'datetime',
             'total_rows' => 'integer',
             'valid_rows' => 'integer',
             'invalid_rows' => 'integer',

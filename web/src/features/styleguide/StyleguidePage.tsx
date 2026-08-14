@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import type { ReactNode } from 'react'
-import { Plus } from 'lucide-react'
+import { Plus, Upload } from 'lucide-react'
 import { Badge } from '@/components/Badge/Badge'
 import { statusVariant } from '@/components/Badge/statusVariant'
 import { Button } from '@/components/Button/Button'
@@ -244,8 +244,16 @@ export function StyleguidePage() {
             columns={columns}
             rows={[]}
             getRowId={(r) => r.id}
-            emptyTitle="No beneficiaries yet"
-            emptyAction={<Button size="sm" leftIcon={Plus}>Register beneficiary</Button>}
+            emptyTitle="No beneficiaries yet — records are added by importing a source"
+            emptyAction={
+              // Mirrors the real BeneficiaryListPage. The styleguide is a pattern
+              // reference people copy from, so its empty state must not model a
+              // "register beneficiary" affordance that is banned everywhere else
+              // (CLAUDE.md §8 — ingestion is source-only).
+              <Button size="sm" leftIcon={Upload}>
+                Go to Import Center
+              </Button>
+            }
           />
         </div>
       </Section>

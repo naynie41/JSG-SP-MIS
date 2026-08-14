@@ -2,7 +2,7 @@
 
 // odsl-C:\Users\ACER\Desktop\JSG-SP-MIS\JSG-SP-MIS\api\app\Domain\Registry\Policies\BeneficiaryPolicy.php-PHPStan\BetterReflection\Reflection\ReflectionClass-App\Domain\Registry\Policies\BeneficiaryPolicy
 return \PHPStan\Cache\CacheItem::__set_state(array(
-   'variableKey' => 'v2-6.70.0.1-8.3.31-c8fb8fc4ba1ce1854deafd7d37f782df522e544568e00d1d00369ed6ab50357f',
+   'variableKey' => 'v2-6.70.0.1-8.3.31-056dd1b25c01fef1715da7f7c3cce4bcf504f02f1b36d4a3190682eb7d3a2661',
    'data' => 
   array (
     'locatedSource' => 
@@ -34,7 +34,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
     array (
     ),
     'startLine' => 19,
-    'endLine' => 86,
+    'endLine' => 103,
     'startColumn' => 1,
     'endColumn' => 1,
     'parentClassName' => NULL,
@@ -612,6 +612,103 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         'currentClassName' => 'App\\Domain\\Registry\\Policies\\BeneficiaryPolicy',
         'aliasName' => NULL,
       ),
+      'viewGrants' => 
+      array (
+        'name' => 'viewGrants',
+        'parameters' => 
+        array (
+          'user' => 
+          array (
+            'name' => 'user',
+            'default' => NULL,
+            'type' => 
+            array (
+              'class' => 'PHPStan\\BetterReflection\\Reflection\\ReflectionNamedType',
+              'data' => 
+              array (
+                'name' => 'App\\Domain\\Access\\Models\\User',
+                'isIdentifier' => false,
+              ),
+            ),
+            'isVariadic' => false,
+            'byRef' => false,
+            'isPromoted' => false,
+            'attributes' => 
+            array (
+            ),
+            'startLine' => 72,
+            'endLine' => 72,
+            'startColumn' => 32,
+            'endColumn' => 41,
+            'parameterIndex' => 0,
+            'isOptional' => false,
+          ),
+          'beneficiary' => 
+          array (
+            'name' => 'beneficiary',
+            'default' => NULL,
+            'type' => 
+            array (
+              'class' => 'PHPStan\\BetterReflection\\Reflection\\ReflectionNamedType',
+              'data' => 
+              array (
+                'name' => 'App\\Domain\\Registry\\Models\\Beneficiary',
+                'isIdentifier' => false,
+              ),
+            ),
+            'isVariadic' => false,
+            'byRef' => false,
+            'isPromoted' => false,
+            'attributes' => 
+            array (
+            ),
+            'startLine' => 72,
+            'endLine' => 72,
+            'startColumn' => 44,
+            'endColumn' => 67,
+            'parameterIndex' => 1,
+            'isOptional' => false,
+          ),
+        ),
+        'returnsReference' => false,
+        'returnType' => 
+        array (
+          'class' => 'PHPStan\\BetterReflection\\Reflection\\ReflectionNamedType',
+          'data' => 
+          array (
+            'name' => 'bool',
+            'isIdentifier' => true,
+          ),
+        ),
+        'attributes' => 
+        array (
+        ),
+        'docComment' => '/**
+ * See who holds cross-MDA access to this record (FR-OWN-07).
+ *
+ * Owner-only, plus all-MDA oversight. Deliberately NOT extended to a serving MDA
+ * that holds a grant: knowing which other MDAs were given access to a record it does
+ * not own is the owner\'s information, not the grantee\'s.
+ *
+ * The owner needs this to exercise revocation at all — it cannot withdraw access it
+ * cannot see. `GET /data-sharing/grants` does not serve the purpose: that is the
+ * platform-wide oversight view behind `cross-mda.view`, which no MDA role holds.
+ */',
+        'startLine' => 72,
+        'endLine' => 76,
+        'startColumn' => 5,
+        'endColumn' => 5,
+        'couldThrow' => false,
+        'isClosure' => false,
+        'isGenerator' => false,
+        'isVariadic' => false,
+        'modifiers' => 1,
+        'namespace' => 'App\\Domain\\Registry\\Policies',
+        'declaringClassName' => 'App\\Domain\\Registry\\Policies\\BeneficiaryPolicy',
+        'implementingClassName' => 'App\\Domain\\Registry\\Policies\\BeneficiaryPolicy',
+        'currentClassName' => 'App\\Domain\\Registry\\Policies\\BeneficiaryPolicy',
+        'aliasName' => NULL,
+      ),
       'lookup' => 
       array (
         'name' => 'lookup',
@@ -636,8 +733,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             'attributes' => 
             array (
             ),
-            'startLine' => 64,
-            'endLine' => 64,
+            'startLine' => 81,
+            'endLine' => 81,
             'startColumn' => 28,
             'endColumn' => 37,
             'parameterIndex' => 0,
@@ -660,8 +757,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         'docComment' => '/**
  * Use the cross-MDA lookup/serve path (FR-OWN-03) — reveal fields only.
  */',
-        'startLine' => 64,
-        'endLine' => 67,
+        'startLine' => 81,
+        'endLine' => 84,
         'startColumn' => 5,
         'endColumn' => 5,
         'couldThrow' => false,
@@ -699,8 +796,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             'attributes' => 
             array (
             ),
-            'startLine' => 72,
-            'endLine' => 72,
+            'startLine' => 89,
+            'endLine' => 89,
             'startColumn' => 37,
             'endColumn' => 46,
             'parameterIndex' => 0,
@@ -725,8 +822,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             'attributes' => 
             array (
             ),
-            'startLine' => 72,
-            'endLine' => 72,
+            'startLine' => 89,
+            'endLine' => 89,
             'startColumn' => 49,
             'endColumn' => 72,
             'parameterIndex' => 1,
@@ -749,8 +846,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         'docComment' => '/**
  * Request ownership of a beneficiary owned by another MDA (FR-OWN-05).
  */',
-        'startLine' => 72,
-        'endLine' => 77,
+        'startLine' => 89,
+        'endLine' => 94,
         'startColumn' => 5,
         'endColumn' => 5,
         'couldThrow' => false,
@@ -788,8 +885,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             'attributes' => 
             array (
             ),
-            'startLine' => 82,
-            'endLine' => 82,
+            'startLine' => 99,
+            'endLine' => 99,
             'startColumn' => 36,
             'endColumn' => 45,
             'parameterIndex' => 0,
@@ -814,8 +911,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             'attributes' => 
             array (
             ),
-            'startLine' => 82,
-            'endLine' => 82,
+            'startLine' => 99,
+            'endLine' => 99,
             'startColumn' => 48,
             'endColumn' => 71,
             'parameterIndex' => 1,
@@ -838,8 +935,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         'docComment' => '/**
  * Approve/reject a transfer — only the current owner MDA (FR-OWN-05).
  */',
-        'startLine' => 82,
-        'endLine' => 85,
+        'startLine' => 99,
+        'endLine' => 102,
         'startColumn' => 5,
         'endColumn' => 5,
         'couldThrow' => false,

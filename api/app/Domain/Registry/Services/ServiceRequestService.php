@@ -8,6 +8,7 @@ use App\Domain\Access\Models\User;
 use App\Domain\Access\Scopes\MdaScope;
 use App\Domain\Audit\Services\AuditLogger;
 use App\Domain\Registry\Enums\ServiceRequestStatus;
+use App\Domain\Registry\Events\BeneficiaryAccessRevoked;
 use App\Domain\Registry\Events\ServiceRequestAccepted;
 use App\Domain\Registry\Events\ServiceRequestDeclined;
 use App\Domain\Registry\Events\ServiceRequestRaised;
@@ -141,6 +142,51 @@ class ServiceRequestService
         ], actor: $decidedBy);
 
         return $request;
+    }
+
+    /**
+     * Withdraw an open read grant (FR-OWN-07). Forward-only and idempotent.
+     *
+     * What this does NOT touch, deliberately:
+     *   - interventions already recorded under the grant — they happened under a valid
+     *     authorization and the ledger is history, not a permission cache;
+     *   - `beneficiaries.owner_mda_id` — revocation is not an ownership change;
+     *   - the Service Request's status — it WAS accepted, and rewriting that to
+     *     `declined` would falsify a decision the audit chain already covers.
+     *
+     * Every gate reads the grant through {@see self::hasActiveGrant()}, so setting
+     * `revoked_at` is the whole enforcement — no gate needs telling.
+     *
+     * @return bool true if this call revoked it; false if it was already revoked
+     */
+    public function revokeGrant(BeneficiaryServiceGrant $grant, User $by, ?string $reason = null): bool
+    {
+        // Idempotent: a repeated revoke is a no-op. It must not re-stamp the actor or
+        // timestamp — the first withdrawal is the one that took access away, and that is
+        // the fact the audit trail has to keep.
+        if ($grant->revoked_at !== null) {
+            return false;
+        }
+
+        $grant->forceFill([
+            'revoked_at' => Carbon::now(),
+            'revoked_by' => $by->id,
+            'revocation_reason' => $reason,
+        ])->save();
+
+        $beneficiary = Beneficiary::query()->withoutGlobalScope(MdaScope::class)->find($grant->beneficiary_id);
+
+        $this->audit->record('beneficiary.access_revoked', $beneficiary, after: [
+            'revoked_mda_id' => $grant->mda_id,
+            'service_request_id' => $grant->service_request_id,
+            'grant_id' => $grant->id,
+            'reason' => $reason,
+            'access' => 'read',
+        ], actor: $by);
+
+        BeneficiaryAccessRevoked::dispatch($grant, $by, $reason);
+
+        return true;
     }
 
     /** Open (or reuse) the requester's active read-access grant. */

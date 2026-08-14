@@ -23,6 +23,7 @@ use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Testing\TestResponse;
+use Tests\Concerns\ConfirmsImportMapping;
 use Tests\TestCase;
 
 /**
@@ -32,7 +33,7 @@ use Tests\TestCase;
  */
 class ImportResolutionTest extends TestCase
 {
-    use RefreshDatabase;
+    use ConfirmsImportMapping, RefreshDatabase;
 
     private Mda $mdaA; // importer
 
@@ -103,7 +104,12 @@ class ImportResolutionTest extends TestCase
             ->assertCreated();
         $this->app['auth']->forgetGuards();
 
-        return $upload->json('data.id');
+        $batchId = (string) $upload->json('data.id');
+        $this->confirmImportMapping(
+            ImportBatch::query()->withoutGlobalScope(MdaScope::class)->findOrFail($batchId)
+        );
+
+        return $batchId;
     }
 
     private function resolve(string $batchId, int $row, array $body): TestResponse

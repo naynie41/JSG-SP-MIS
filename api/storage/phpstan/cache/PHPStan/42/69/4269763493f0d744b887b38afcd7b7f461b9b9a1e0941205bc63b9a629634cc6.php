@@ -13,6 +13,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
          'uses' => 
         array (
           'user' => 'App\\Domain\\Access\\Models\\User',
+          'beneficiary' => 'App\\Domain\\Registry\\Models\\Beneficiary',
+          'beneficiaryservicegrant' => 'App\\Domain\\Registry\\Models\\BeneficiaryServiceGrant',
           'servicerequest' => 'App\\Domain\\Registry\\Models\\ServiceRequest',
         ),
          'className' => 'App\\Domain\\Registry\\Policies\\OwnerMdaPolicy',
@@ -37,6 +39,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
          'uses' => 
         array (
           'user' => 'App\\Domain\\Access\\Models\\User',
+          'beneficiary' => 'App\\Domain\\Registry\\Models\\Beneficiary',
+          'beneficiaryservicegrant' => 'App\\Domain\\Registry\\Models\\BeneficiaryServiceGrant',
           'servicerequest' => 'App\\Domain\\Registry\\Models\\ServiceRequest',
         ),
          'className' => 'App\\Domain\\Registry\\Policies\\OwnerMdaPolicy',
@@ -50,6 +54,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
            'uses' => 
           array (
             'user' => 'App\\Domain\\Access\\Models\\User',
+            'beneficiary' => 'App\\Domain\\Registry\\Models\\Beneficiary',
+            'beneficiaryservicegrant' => 'App\\Domain\\Registry\\Models\\BeneficiaryServiceGrant',
             'servicerequest' => 'App\\Domain\\Registry\\Models\\ServiceRequest',
           ),
            'className' => 'App\\Domain\\Registry\\Policies\\OwnerMdaPolicy',
@@ -84,6 +90,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
          'uses' => 
         array (
           'user' => 'App\\Domain\\Access\\Models\\User',
+          'beneficiary' => 'App\\Domain\\Registry\\Models\\Beneficiary',
+          'beneficiaryservicegrant' => 'App\\Domain\\Registry\\Models\\BeneficiaryServiceGrant',
           'servicerequest' => 'App\\Domain\\Registry\\Models\\ServiceRequest',
         ),
          'className' => 'App\\Domain\\Registry\\Policies\\OwnerMdaPolicy',
@@ -97,6 +105,59 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
            'uses' => 
           array (
             'user' => 'App\\Domain\\Access\\Models\\User',
+            'beneficiary' => 'App\\Domain\\Registry\\Models\\Beneficiary',
+            'beneficiaryservicegrant' => 'App\\Domain\\Registry\\Models\\BeneficiaryServiceGrant',
+            'servicerequest' => 'App\\Domain\\Registry\\Models\\ServiceRequest',
+          ),
+           'className' => 'App\\Domain\\Registry\\Policies\\OwnerMdaPolicy',
+           'functionName' => NULL,
+           'templatePhpDocNodes' => 
+          array (
+          ),
+           'parent' => NULL,
+           'typeAliasesMap' => 
+          array (
+          ),
+           'bypassTypeAliases' => false,
+           'constUses' => 
+          array (
+          ),
+           'typeAliasClassName' => NULL,
+           'traitData' => NULL,
+        )),
+         'typeAliasesMap' => 
+        array (
+        ),
+         'bypassTypeAliases' => false,
+         'constUses' => 
+        array (
+        ),
+         'typeAliasClassName' => NULL,
+         'traitData' => NULL,
+      )),
+      '5f269bbf6084d07f03debcd22f55f026' => 
+      \PHPStan\Analyser\IntermediaryNameScope::__set_state(array(
+         'namespace' => 'App\\Domain\\Registry\\Policies',
+         'uses' => 
+        array (
+          'user' => 'App\\Domain\\Access\\Models\\User',
+          'beneficiary' => 'App\\Domain\\Registry\\Models\\Beneficiary',
+          'beneficiaryservicegrant' => 'App\\Domain\\Registry\\Models\\BeneficiaryServiceGrant',
+          'servicerequest' => 'App\\Domain\\Registry\\Models\\ServiceRequest',
+        ),
+         'className' => 'App\\Domain\\Registry\\Policies\\OwnerMdaPolicy',
+         'functionName' => 'revoke',
+         'templatePhpDocNodes' => 
+        array (
+        ),
+         'parent' => 
+        \PHPStan\Analyser\IntermediaryNameScope::__set_state(array(
+           'namespace' => 'App\\Domain\\Registry\\Policies',
+           'uses' => 
+          array (
+            'user' => 'App\\Domain\\Access\\Models\\User',
+            'beneficiary' => 'App\\Domain\\Registry\\Models\\Beneficiary',
+            'beneficiaryservicegrant' => 'App\\Domain\\Registry\\Models\\BeneficiaryServiceGrant',
             'servicerequest' => 'App\\Domain\\Registry\\Models\\ServiceRequest',
           ),
            'className' => 'App\\Domain\\Registry\\Policies\\OwnerMdaPolicy',
@@ -128,7 +189,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
     ),
     1 => 
     array (
-      'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Registry\\Policies\\OwnerMdaPolicy.php' => 'c46f38c984345bf6207d5a9c5d742f3c7e54993f7b6128daa1a8cb05e940433a',
+      'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Registry\\Policies\\OwnerMdaPolicy.php' => '857e369beb4325b0afa3ad80ada654cde2403a151e9f6ee8b89de440aa149d2b',
     ),
   ),
 ));

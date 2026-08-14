@@ -16,6 +16,7 @@ use App\Domain\Notification\Support\NotificationMessage;
 use App\Domain\Referral\Events\ReferralSlaBreached;
 use App\Domain\Referral\Events\ReferralStatusChanged;
 use App\Domain\Referral\Models\Referral;
+use App\Domain\Registry\Events\BeneficiaryAccessRevoked;
 use App\Domain\Registry\Events\ImportBatchCompleted;
 use App\Domain\Registry\Events\ImportDuplicatesSurfaced;
 use App\Domain\Registry\Events\OwnershipTransferRequested;
@@ -62,6 +63,29 @@ class NotificationSubscriber
                 related: $event->request,
             ),
             $this->requester($event->request->requested_by, $event->request->from_mda_id),
+        );
+    }
+
+    /**
+     * The serving MDA is told its access has ended (FR-OWN-07).
+     *
+     * The body names NO beneficiary. As of this event the recipient MDA is no longer
+     * authorized to read that record, so restating the person's name here would leak
+     * through the notification exactly the identity the revocation just withdrew. The
+     * related model is the GRANT, which carries ids rather than identity.
+     */
+    public function handleBeneficiaryAccessRevoked(BeneficiaryAccessRevoked $event): void
+    {
+        $this->notifier->notify(
+            new NotificationMessage(
+                type: 'beneficiary.access_revoked',
+                subject: 'Cross-MDA read access withdrawn',
+                body: 'The owner MDA has withdrawn your access to a beneficiary record you were serving'
+                    .($event->reason !== null ? ': '.$event->reason : '.')
+                    .' Deliveries already recorded are unaffected.',
+                related: $event->grant,
+            ),
+            $this->approversIn($event->grant->mda_id, 'beneficiary.view'),
         );
     }
 
@@ -416,6 +440,7 @@ class NotificationSubscriber
             ServiceRequestRaised::class => 'handleServiceRequestRaised',
             ServiceRequestAccepted::class => 'handleServiceRequestAccepted',
             ServiceRequestDeclined::class => 'handleServiceRequestDeclined',
+            BeneficiaryAccessRevoked::class => 'handleBeneficiaryAccessRevoked',
             OwnershipTransferRequested::class => 'handleOwnershipTransferRequested',
             ReferralStatusChanged::class => 'handleReferralStatusChanged',
             ReferralSlaBreached::class => 'handleReferralSlaBreached',

@@ -375,6 +375,55 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
          'typeAliasClassName' => NULL,
          'traitData' => NULL,
       )),
+      'a8fe076fc51aaaf637679fcde20c67cf' => 
+      \PHPStan\Analyser\IntermediaryNameScope::__set_state(array(
+         'namespace' => 'App\\Domain\\Registry\\Policies',
+         'uses' => 
+        array (
+          'user' => 'App\\Domain\\Access\\Models\\User',
+          'beneficiary' => 'App\\Domain\\Registry\\Models\\Beneficiary',
+          'datasharingguard' => 'App\\Domain\\Sharing\\DataSharingGuard',
+        ),
+         'className' => 'App\\Domain\\Registry\\Policies\\BeneficiaryPolicy',
+         'functionName' => 'viewGrants',
+         'templatePhpDocNodes' => 
+        array (
+        ),
+         'parent' => 
+        \PHPStan\Analyser\IntermediaryNameScope::__set_state(array(
+           'namespace' => 'App\\Domain\\Registry\\Policies',
+           'uses' => 
+          array (
+            'user' => 'App\\Domain\\Access\\Models\\User',
+            'beneficiary' => 'App\\Domain\\Registry\\Models\\Beneficiary',
+            'datasharingguard' => 'App\\Domain\\Sharing\\DataSharingGuard',
+          ),
+           'className' => 'App\\Domain\\Registry\\Policies\\BeneficiaryPolicy',
+           'functionName' => NULL,
+           'templatePhpDocNodes' => 
+          array (
+          ),
+           'parent' => NULL,
+           'typeAliasesMap' => 
+          array (
+          ),
+           'bypassTypeAliases' => false,
+           'constUses' => 
+          array (
+          ),
+           'typeAliasClassName' => NULL,
+           'traitData' => NULL,
+        )),
+         'typeAliasesMap' => 
+        array (
+        ),
+         'bypassTypeAliases' => false,
+         'constUses' => 
+        array (
+        ),
+         'typeAliasClassName' => NULL,
+         'traitData' => NULL,
+      )),
       'a5fd5894e55bb903435c916b783d55c5' => 
       \PHPStan\Analyser\IntermediaryNameScope::__set_state(array(
          'namespace' => 'App\\Domain\\Registry\\Policies',
@@ -525,7 +574,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
     ),
     1 => 
     array (
-      'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Registry\\Policies\\BeneficiaryPolicy.php' => 'c8fb8fc4ba1ce1854deafd7d37f782df522e544568e00d1d00369ed6ab50357f',
+      'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Registry\\Policies\\BeneficiaryPolicy.php' => '056dd1b25c01fef1715da7f7c3cce4bcf504f02f1b36d4a3190682eb7d3a2661',
     ),
   ),
 ));

@@ -18,6 +18,7 @@ use Database\Seeders\RolesAndPermissionsSeeder;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Facades\Storage;
+use Tests\Concerns\ConfirmsImportMapping;
 use Tests\TestCase;
 
 /**
@@ -27,7 +28,7 @@ use Tests\TestCase;
  */
 class ImportDuplicateScreeningTest extends TestCase
 {
-    use RefreshDatabase;
+    use ConfirmsImportMapping, RefreshDatabase;
 
     private Mda $mdaA;
 
@@ -87,6 +88,10 @@ class ImportDuplicateScreeningTest extends TestCase
 
         $batchId = $upload->json('data.id');
         $this->app['auth']->forgetGuards();
+
+        $this->confirmImportMapping(
+            ImportBatch::query()->withoutGlobalScope(MdaScope::class)->findOrFail($batchId)
+        );
 
         return [$existing, $this->withToken($this->token())->getJson("/api/v1/beneficiaries/imports/{$batchId}")->assertOk()];
     }

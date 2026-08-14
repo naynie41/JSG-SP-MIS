@@ -7,6 +7,7 @@ namespace App\Domain\Registry\Models;
 use App\Domain\Access\Concerns\MdaScoped;
 use App\Domain\Access\Concerns\ScopedToMda;
 use App\Domain\Access\Models\Mda;
+use App\Domain\Access\Models\User;
 use App\Domain\Audit\Concerns\Auditable;
 use Illuminate\Database\Eloquent\Concerns\HasUuids;
 use Illuminate\Database\Eloquent\Model;
@@ -29,8 +30,11 @@ use Illuminate\Support\Carbon;
  * @property string|null $granted_by
  * @property Carbon $granted_at
  * @property Carbon|null $revoked_at
+ * @property string|null $revoked_by
+ * @property string|null $revocation_reason
  * @property-read Beneficiary $beneficiary
  * @property-read Mda $mda
+ * @property-read User|null $revokedBy
  */
 class BeneficiaryServiceGrant extends Model implements MdaScoped
 {
@@ -48,6 +52,8 @@ class BeneficiaryServiceGrant extends Model implements MdaScoped
         'granted_by',
         'granted_at',
         'revoked_at',
+        'revoked_by',
+        'revocation_reason',
     ];
 
     /**
@@ -81,5 +87,19 @@ class BeneficiaryServiceGrant extends Model implements MdaScoped
     public function mda(): BelongsTo
     {
         return $this->belongsTo(Mda::class, 'mda_id');
+    }
+
+    /**
+     * @return BelongsTo<User, $this>
+     */
+    public function revokedBy(): BelongsTo
+    {
+        return $this->belongsTo(User::class, 'revoked_by');
+    }
+
+    /** Whether this grant still opens access. The gates ask this via `hasActiveGrant()`. */
+    public function isActive(): bool
+    {
+        return $this->revoked_at === null;
     }
 }

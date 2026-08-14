@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Domain\Registry\Jobs;
 
 use App\Domain\Access\Scopes\MdaScope;
+use App\Domain\Audit\Services\AuditLogger;
 use App\Domain\Matching\Enums\ExactMatchBehaviour;
 use App\Domain\Matching\Models\MatchingConfig;
 use App\Domain\Matching\Services\MatchingConfigService;
@@ -12,11 +13,13 @@ use App\Domain\Registry\Enums\ImportRowResolution;
 use App\Domain\Registry\Enums\ImportStatus;
 use App\Domain\Registry\Events\ImportDuplicatesSurfaced;
 use App\Domain\Registry\Imports\Adapters\SourceAdapterRegistry;
+use App\Domain\Registry\Imports\ColumnMapper;
 use App\Domain\Registry\Imports\ImportRowValidator;
 use App\Domain\Registry\Imports\SpreadsheetReader;
 use App\Domain\Registry\Models\ImportBatch;
 use App\Domain\Registry\Models\ImportRow;
 use App\Domain\Registry\Services\BatchDuplicateScreener;
+use App\Domain\Registry\Services\HouseholdIngestionService;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
@@ -46,12 +49,29 @@ class ParseImportBatch implements ShouldQueue
 
     public function __construct(public readonly string $batchId) {}
 
-    public function handle(SpreadsheetReader $reader, ImportRowValidator $validator, SourceAdapterRegistry $adapters, BatchDuplicateScreener $screener, MatchingConfigService $configs): void
+    public function handle(SpreadsheetReader $reader, ImportRowValidator $validator, SourceAdapterRegistry $adapters, BatchDuplicateScreener $screener, MatchingConfigService $configs, ColumnMapper $mapper): void
     {
         $batch = ImportBatch::query()->withoutGlobalScope(MdaScope::class)->find($this->batchId);
 
         // Never re-parse a batch that is already being/has been committed.
         if ($batch === null || in_array($batch->status, [ImportStatus::Committing, ImportStatus::Completed], true)) {
+            return;
+        }
+
+        /*
+         * THE MAPPING GATE (CLAUDE.md §11). Nothing is parsed, screened or previewed
+         * until a human has confirmed which column holds the NIN, BVN, name and phone.
+         *
+         * The guard lives here rather than in a controller on purpose: every upload door
+         * — the Import Center, the activity wizard, and anything added later — reaches
+         * the pipeline through this job, so none of them can bypass it by construction.
+         */
+        if (! $batch->mappingIsConfirmed()) {
+            $batch->update([
+                'status' => ImportStatus::MappingRequired,
+                'error' => 'Confirm the column mapping before this file can be processed.',
+            ]);
+
             return;
         }
 
@@ -69,8 +89,9 @@ class ParseImportBatch implements ShouldQueue
 
         $adapter = $adapters->for($batch->source);
         $matchConfig = $configs->activeOrNull(); // null → matching not configured; skip screening
+        $columnMap = $batch->column_map ?? [];
 
-        DB::transaction(function () use ($batch, $parsed, $validator, $adapter, $screener, $matchConfig): void {
+        DB::transaction(function () use ($batch, $parsed, $validator, $adapter, $screener, $matchConfig, $mapper, $columnMap): void {
             // Idempotent re-parse: discard any previously staged rows first.
             $batch->rows()->delete();
 
@@ -82,9 +103,21 @@ class ParseImportBatch implements ShouldQueue
 
             foreach ($parsed['rows'] as $row) {
                 $total++;
-                // Map the raw source record onto the canonical schema, then run
-                // the SAME validation as manual registration, split into groups.
-                $mapped = $adapter->map($row['values']);
+                /*
+                 * Map the raw source record onto the canonical schema using the
+                 * CONFIRMED column map, then run the same validation every other door
+                 * runs. The adapter still supplies source-specific values (Kobo's `_id`,
+                 * ODK's `instanceID`) for canonical fields the officer left unmapped —
+                 * but a field they answered, including one they marked "not present",
+                 * always wins, or marking a column absent would not stick.
+                 */
+                $mapped = array_replace(
+                    $adapter->map($row['values']),
+                    array_intersect_key(
+                        $mapper->apply($row['values'], $columnMap),
+                        $columnMap,
+                    ),
+                );
                 $result = $validator->validate($mapped);
                 $payload = $result['payload'];
                 $identityErrors = $result['identity_errors'];
@@ -163,6 +196,26 @@ class ParseImportBatch implements ShouldQueue
                 'committed_rows' => 0,
             ]);
 
+            // Identity-level rejections are the one outcome that DISCARDS citizen data,
+            // so they go to the audit trail and not just the batch's error report
+            // (SECURITY.md §6, PRD v1.2). Counts only — auditing the rejected values
+            // would reintroduce through the audit log exactly the PII we refused to
+            // store. The uploader is stamped explicitly: this runs on the queue, where
+            // `Auth::user()` is null, so an unstamped entry would not record WHO.
+            if ($rejected > 0) {
+                app(AuditLogger::class)->record(
+                    'import.rows_rejected',
+                    $batch,
+                    after: [
+                        'import_batch_id' => $batch->id,
+                        'total_rows' => $total,
+                        'rejected_rows' => $rejected,
+                        'reason' => 'identity_field_malformed',
+                    ],
+                    actor: $batch->uploadedBy,
+                );
+            }
+
             // Screening is done and the preview is ready. If anything matched, the
             // uploader needs to know there is a decision waiting — one notification for
             // the batch, carrying counts only.
@@ -194,10 +247,10 @@ class ParseImportBatch implements ShouldQueue
         return array_map(static fn (array $e): array => [...$e, 'group' => $group], $errors);
     }
 
-    /** Interpret a source "head of household" flag. */
+    /** Interpret a source "head of household" flag — shared with every other source. */
     private function isTruthy(?string $value): bool
     {
-        return $value !== null && in_array(strtolower(trim($value)), ['1', 'true', 'yes', 'y', 'head'], true);
+        return HouseholdIngestionService::isHeadFlag($value);
     }
 
     /**

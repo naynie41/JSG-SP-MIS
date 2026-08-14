@@ -16,6 +16,24 @@ export interface ConsentInput {
   note?: string
 }
 
+/**
+ * A cross-MDA READ grant opened when the owner MDA accepted a Service Request
+ * (FR-OWN-07). Revoked grants are returned too — who *could* read this record is part
+ * of the owner's accountability, not just who can today.
+ */
+export interface ServiceGrant {
+  id: string
+  /** The MDA the access was given to. Null only if that MDA was deleted. */
+  mda: { id: string; name: string } | null
+  service_request_id: string
+  granted_at: string | null
+  active: boolean
+  revoked_at: string | null
+  /** Name of whoever withdrew it. */
+  revoked_by: string | null
+  revocation_reason: string | null
+}
+
 export interface Beneficiary {
   id: string
   owner_mda_id: string

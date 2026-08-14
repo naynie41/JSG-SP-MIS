@@ -61,6 +61,48 @@ export function useRecordConsent() {
   })
 }
 
+/**
+ * Who holds cross-MDA read access to this record (FR-OWN-07). Owner MDA only, so the
+ * caller passes `enabled` rather than the hook guessing — a non-owner must not fire a
+ * request that will 403.
+ */
+export function useServiceGrants(beneficiaryId: string | undefined, enabled = true) {
+  return useQuery({
+    queryKey: ['beneficiary', beneficiaryId, 'service-grants'],
+    queryFn: () => beneficiaryApi.serviceGrants(beneficiaryId!),
+    enabled: enabled && Boolean(beneficiaryId),
+  })
+}
+
+/**
+ * Withdraw one cross-MDA grant.
+ *
+ * Invalidates the beneficiary too, not just the grant list: revocation changes who may
+ * read the record, and a stale detail view would keep implying access that has ended.
+ * `data-sharing` covers the platform-wide oversight report showing the same grant.
+ */
+export function useRevokeGrant(beneficiaryId: string) {
+  const qc = useQueryClient()
+  const toast = useToast()
+  return useMutation({
+    mutationFn: ({ grantId, reason }: { grantId: string; reason?: string }) =>
+      beneficiaryApi.revokeGrant(grantId, reason),
+    onSuccess: (result) => {
+      qc.invalidateQueries({ queryKey: ['beneficiary', beneficiaryId, 'service-grants'] })
+      qc.invalidateQueries({ queryKey: ['beneficiary', beneficiaryId] })
+      qc.invalidateQueries({ queryKey: ['data-sharing'] })
+      // The server is idempotent: a second revoke succeeds without changing anything,
+      // and saying "revoked" again would misreport what happened.
+      toast.success(
+        result.revoked ? 'Access withdrawn' : 'Already withdrawn',
+        result.revoked
+          ? 'That MDA can no longer read this record. Deliveries already recorded are unaffected.'
+          : 'This access had already been withdrawn; nothing changed.',
+      )
+    },
+  })
+}
+
 export function useDeleteBeneficiary() {
   const qc = useQueryClient()
   const toast = useToast()

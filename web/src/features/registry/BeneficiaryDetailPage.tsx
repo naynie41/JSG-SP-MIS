@@ -10,6 +10,7 @@ import { Spinner } from '@/components/Spinner/Spinner'
 import { useAuth } from '@/lib/auth/AuthProvider'
 import { BenefitsPanel } from '@/features/benefits/BenefitsPanel'
 import { EditBeneficiaryModal } from './EditBeneficiaryModal'
+import { AccessGrantsPanel } from './AccessGrantsPanel'
 import { ConsentPanel } from './ConsentPanel'
 import { DocumentsPanel } from './DocumentsPanel'
 import { REGISTRATION_SOURCE_LABELS, titleCase } from './constants'
@@ -46,6 +47,11 @@ function ProfileTab({ beneficiary }: { beneficiary: Beneficiary }) {
           here, and who may see it" — and the sharing gate reads this one on every
           cross-MDA access. */}
       <ConsentPanel beneficiary={beneficiary} />
+
+      {/* Directly after consent: consent is the basis on which sharing may happen, and
+          this is who is actually acting on it. Renders for the owner (and oversight)
+          only — it returns null for everyone else. */}
+      <AccessGrantsPanel beneficiary={beneficiary} />
 
       <Card title="Provenance" eyebrow="Origin" variant="mint">
         <dl className={styles.dl}>

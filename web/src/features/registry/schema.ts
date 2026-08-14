@@ -14,7 +14,15 @@ function isValidPastDob(value: string): boolean {
   return date < new Date() && date > new Date('1900-01-01')
 }
 
-/** Mirrors BeneficiaryRules::forRegistration() + StoreBeneficiaryRequest. */
+/**
+ * Mirrors the backend's `BeneficiaryRules::forRegistration()`.
+ *
+ * This is the CORRECTION schema — it validates owner-only edits of an already-imported
+ * record (`EditBeneficiaryModal` → `PATCH /beneficiaries/{id}`). There is no create form:
+ * ingestion is source-only (CLAUDE.md §8), so nothing on the client ever builds a new
+ * beneficiary. It still mirrors the registration ruleset because a correction has to
+ * satisfy exactly the same field rules an imported row did.
+ */
 export const beneficiarySchema = z.object({
   first_name: z.string().trim().min(1, 'First name is required').max(255),
   middle_name: z.string().trim().max(255),

@@ -10,6 +10,8 @@ use App\Domain\Access\Models\Role;
 use App\Domain\Access\Models\User;
 use App\Domain\Registry\Enums\RegistrationSource;
 use App\Domain\Registry\Models\Beneficiary;
+use App\Domain\Registry\Models\Household;
+use App\Domain\Registry\Models\HouseholdMembership;
 use App\Domain\Registry\Support\IdentifierHasher;
 use Database\Seeders\RolesAndPermissionsSeeder;
 use Illuminate\Foundation\Testing\RefreshDatabase;
@@ -110,6 +112,48 @@ class ApiIntakeTest extends TestCase
             ->assertJsonFragment(['field' => 'date_of_birth']);
 
         $this->assertDatabaseCount('beneficiaries', 0);
+    }
+
+    /* ------------------------------------------------------- household grouping */
+
+    public function test_intake_forms_a_household_from_the_canonical_household_ref(): void
+    {
+        // `household_ref` is the name the file pipeline uses; the intake endpoint
+        // shipped with `household_id`. Both must reach the same household.
+        $this->withToken($this->tokenFor('officer'))
+            ->postJson('/api/v1/beneficiaries/intake', [
+                ...$this->payload(),
+                'original_record_id' => 'REF-1',
+                'household_ref' => 'HH-77',
+                'household_head' => true,
+            ])
+            ->assertStatus(201);
+
+        $household = Household::query()->withoutGlobalScopes()->firstOrFail();
+        $this->assertSame('HH-77', $household->original_record_id);
+        $this->assertSame($this->mda->id, $household->owner_mda_id);
+        $this->assertSame(RegistrationSource::Api, $household->registration_source);
+        $this->assertNotNull($household->head_beneficiary_id);
+    }
+
+    public function test_the_two_household_field_names_are_the_same_field(): void
+    {
+        $token = $this->tokenFor('officer');
+
+        $this->withToken($token)->postJson('/api/v1/beneficiaries/intake', [
+            ...$this->payload(),
+            'original_record_id' => 'REF-1', 'nin' => '22200000041', 'household_id' => 'HH-88',
+        ])->assertStatus(201);
+
+        $this->withToken($token)->postJson('/api/v1/beneficiaries/intake', [
+            ...$this->payload(),
+            'original_record_id' => 'REF-2', 'nin' => '22200000042', 'household_ref' => 'HH-88',
+        ])->assertStatus(201);
+
+        // One household, two members — an integrator using either name lands in the
+        // same place rather than splitting one family across two records.
+        $this->assertSame(1, Household::query()->withoutGlobalScopes()->count());
+        $this->assertSame(2, HouseholdMembership::query()->withoutGlobalScopes()->count());
     }
 
     public function test_intake_requires_authentication(): void

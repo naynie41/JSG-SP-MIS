@@ -38,8 +38,7 @@
 
 ## 3. Authorization (FR-UAM-01, FR-UAM-03, FR-UAM-05, FR-DSH-01)
 
-- **RBAC** with predefined roles: Executive, SP Coordination, M&E Officer, MDA Officer,
-  MDA Admin, Development Partner, System Administrator.
+- **RBAC** with predefined roles: Executive, SP Coordination, M&E Officer, MDA Admin, Development Partner, System Administrator.
 - Permissions are configurable at **module + action** level (view, create, edit, approve, export).
 - **Least privilege** everywhere — deny by default; grant explicitly.
 - **MDA data scoping:** every query that touches MDA-owned data must be scoped to the user's MDA
@@ -54,6 +53,36 @@
   privilege (NFR-SEC-02) still applies: the grant is scoped to the specific beneficiary served, not
   to the Owner MDA's registry at large. An intervention on a non-owned beneficiary must not be
   recordable until an accepted Service Request exists.
+- **Revoking that access (FR-OWN-07).** Granted access must be withdrawable, or "least privilege"
+  only holds at the moment of granting. `POST /api/v1/service-grants/{grant}/revoke` sets
+  `revoked_at`, `revoked_by` and an optional reason.
+  - **Who:** the MDA that currently **owns** the beneficiary (with `beneficiary.approve`) — so the
+    right follows the record if ownership is ever transferred — or a System Administrator holding
+    `mda-access.edit` as an override. The serving MDA can **not** revoke its own grant; the party
+    being restricted does not administer the restriction.
+  - **Enforcement is automatic.** Every gate — read (`DataSharingGuard`), enroll
+    (`EnrollmentService::canServe`) and deliver (`DeliveryAuthorization`) — resolves the grant
+    through `hasActiveGrant()`, which excludes revoked rows. There is no separate revocation check
+    to keep in sync, and adding one would be a bug.
+  - **Forward-only.** Revocation withdraws ongoing access from that point. It does **not** delete
+    or alter interventions already recorded under the grant (the ledger is history, not a
+    permission cache), does **not** change ownership, and does **not** rewrite the Service Request,
+    which remains `accepted` because it was.
+  - **Not a global kill-switch.** It closes the *service-request* basis only. If an active Referral
+    independently authorizes delivery, that basis still stands and must be withdrawn separately.
+  - **Revocation is soft and idempotent.** The row is kept as the record that the access episode
+    happened; a repeat call is a no-op that does not overwrite the original actor, time or reason.
+    A partial unique index on `(beneficiary_id, mda_id) WHERE revoked_at IS NULL` keeps at most one
+    active grant per pair while allowing a later re-grant.
+  - **Audited and notified:** `beneficiary.access_revoked` (actor, revoked MDA, grant, service
+    request, reason) and an in-app notification to the serving MDA. That notification must never
+    name the beneficiary — the recipient is, as of the revocation, no longer entitled to read it.
+- **Revocation (PRD v1.7, FR-OWN-08):** a granted cross-MDA read access is **revocable by the Owner MDA**
+  that granted it (System Administrator may override). Revocation sets `revoked_at` and takes effect
+  immediately — the read path and all serve gates deny once revoked. It withdraws ongoing read access only:
+  it does **not** delete interventions already recorded, and never changes ownership. Every revocation is
+  audited (`beneficiary.access_revoked`) and the affected serving MDA is notified. Granted access that
+  cannot be withdrawn is a data-protection gap (NFR-PRV-01) — access to citizen PII must be revocable.
 - Authorization is enforced **server-side**. The frontend hides/show UI for UX only; it is never
   the security boundary.
 
@@ -73,7 +102,6 @@ regardless of role:
 | System Administrator | Yes | All MDAs. Audited. |
 | SP Coordination / M&E Officer | Yes | Cross-MDA (their M&E mandate). |
 | MDA Admin | Yes | Own MDA only. |
-| **MDA Officer** | **No by default** | May be granted per user by an admin, scoped to own MDA. (Largest, most junior group — bulk PII export is the classic leak vector.) |
 | Development Partner | **No** | Aggregate reports/dashboards for funded programmes only — never the beneficiary registry. |
 | Executive | **No** | Read-only dashboards and aggregate reports only. |
 
@@ -81,8 +109,7 @@ regardless of role:
 rarer permission from `export`. It must never be bundled into a role by default, requires a documented
 purpose, and is audited distinctly. Granting it to any other role is a Data Protection Officer decision.
 
-**Governance:** the export matrix (and any grant of `export` to an MDA Officer, or of
-`export.reveal_pii` to anyone) is subject to **DPO sign-off under NDPA/NDPR** (NFR-PRV-01), alongside
+**Governance:** the export matrix (and any grant of `export.reveal_pii` to anyone) is subject to **DPO sign-off under NDPA/NDPR** (NFR-PRV-01), alongside
 the consent and retention decisions. Review granted export permissions periodically.
 
 ---
@@ -93,18 +120,10 @@ the consent and retention decisions. Review granted export permissions periodica
 - **At rest:** encrypt the database volume/disk; encrypt sensitive columns (NIN, BVN, TOTP secret)
   at the application layer where feasible.
 - **PII minimisation:** collect only what the PRD requires; do not add fields "just in case".
-- **Consent:** capture and store consent per purpose (sharing, processing); expose consent status
-  on the record; enforce it at the sharing and processing gates. Purposes + whether each gate is
-  required are configuration (`config/privacy.php` — DPO-owned), never hard-coded.
+- **Consent:** capture and store consent where required; expose consent status on the record.
 - **Retention:** enforce a defined data-retention policy; support deletion/anonymisation flows
-  in line with **NDPA/NDPR**. Implemented as the retention engine (`config/privacy.php` policies →
-  flag / aggregate / anonymize / delete; scheduled + audited; `php artisan privacy:enforce-retention
-  --dry-run`). Legal periods/cohorts/actions are configuration; nothing runs until the DPO enables it.
-  Anonymisation preserves the audit trail and operational aggregates (history is de-identified, not
-  destroyed); a `delete` never removes a record that still has history.
-- **Right of access:** a beneficiary's full record + benefit history can be exported on an authorized
-  request (DSAR) — permission-gated (`beneficiary.access_request`, a data-controller obligation) and
-  audited.
+  in line with **NDPA/NDPR**.
+- **Right of access:** design so a beneficiary's data and benefit history can be exported on request.
 
 ---
 
@@ -132,17 +151,17 @@ the consent and retention decisions. Review granted export permissions periodica
   sensitive data, and approval action.
 - Each entry records: actor (user + MDA), action, entity + id, **before/after values**,
   timestamp, IP/user-agent, and correlation/request id.
-- Audit writes must be **tamper-evident**: no UPDATE/DELETE/TRUNCATE on the table (application
-  guard + database triggers) **and** hash-chained entries — each entry stores its chain position,
-  the previous entry's hash, and a SHA-256 over its own canonical payload. Verify with
-  `php artisan audit:verify-chain` (implemented in the Phase 7 hardening pass; see
-  `docs/SECURITY-FINDINGS.md`).
+- Audit writes must be **tamper-evident** (e.g. no UPDATE/DELETE permission on the table for the
+  app role; consider hash-chaining entries in a later hardening pass).
 - **Never** put raw PII or secrets in audit `before/after` for the most sensitive fields — store
   masked/hashed representations where the value itself is not needed for the audit purpose.
 - **Auditable events — additions (PRD v1.2):**
   - `service_request.created`, `service_request.accepted`, `service_request.declined` (with actor,
     MDA, beneficiary, activity, timestamp, and decline reason where present).
-  - `beneficiary.access_granted` when read access is opened to a serving MDA.
+  - `beneficiary.access_granted` when read access is opened to a serving MDA, and
+    `beneficiary.access_revoked` when it is withdrawn (actor, revoked MDA, grant, service request,
+    reason). Both are categorised under `permission` in the audit console.
+  - `beneficiary.access_revoked` when an owner MDA (or System Admin) withdraws a cross-MDA read grant.
   - Import validation rejections at identity-field level are recorded in the batch's error report and
     the import audit trail (who, when, batch, row count rejected) — no rejected PII is persisted to
     the live data pool (FR-REG-05).

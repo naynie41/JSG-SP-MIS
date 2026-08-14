@@ -21,6 +21,7 @@ use Database\Seeders\RolesAndPermissionsSeeder;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Http\UploadedFile;
 use Illuminate\Testing\TestResponse;
+use Tests\Concerns\ConfirmsImportMapping;
 use Tests\TestCase;
 
 /**
@@ -40,7 +41,7 @@ use Tests\TestCase;
  */
 class OnePipelineTest extends TestCase
 {
-    use RefreshDatabase;
+    use ConfirmsImportMapping, RefreshDatabase;
 
     /**
      * Row 1 carries a NIN so a seeded record with the same NIN produces a DETERMINISTIC
@@ -112,7 +113,9 @@ class OnePipelineTest extends TestCase
             'file' => $this->file('rows.csv', $content),
         ])->assertSuccessful()->json('data.id');
 
-        return ImportBatch::query()->withoutGlobalScope(MdaScope::class)->with('rows')->findOrFail($id);
+        return $this->confirmImportMapping(
+            ImportBatch::query()->withoutGlobalScope(MdaScope::class)->findOrFail($id)
+        )->load('rows');
     }
 
     /** Entry point B — the Import Center, bound to an activity that already exists. */
@@ -124,7 +127,9 @@ class OnePipelineTest extends TestCase
             'file' => $this->file('rows.csv', $content),
         ])->assertSuccessful()->json('data.id');
 
-        return ImportBatch::query()->withoutGlobalScope(MdaScope::class)->with('rows')->findOrFail($id);
+        return $this->confirmImportMapping(
+            ImportBatch::query()->withoutGlobalScope(MdaScope::class)->findOrFail($id)
+        )->load('rows');
     }
 
     /* ------------------------------------------------- the same parse + validation */

@@ -4,8 +4,9 @@ declare(strict_types=1);
 
 namespace App\Domain\Registry\Imports;
 
-use App\Domain\Registry\Models\Beneficiary;
 use App\Domain\Registry\Support\BeneficiaryRules;
+use App\Domain\Registry\Support\CanonicalSchema;
+use App\Domain\Registry\Support\NormalizationService;
 use App\Domain\Registry\Support\UniqueIdentifier;
 use Illuminate\Support\Facades\Validator;
 
@@ -24,10 +25,17 @@ use Illuminate\Support\Facades\Validator;
  */
 class ImportRowValidator
 {
-    private const FIELDS = [
-        'first_name', 'middle_name', 'last_name', 'nin', 'bvn', 'phone',
-        'date_of_birth', 'gender', 'address', 'lga', 'ward',
-    ];
+    public function __construct(private readonly NormalizationService $normalizer = new NormalizationService) {}
+
+    /**
+     * The canonical field set — declared once in {@see CanonicalSchema}.
+     *
+     * @return list<string>
+     */
+    private function fields(): array
+    {
+        return CanonicalSchema::fields();
+    }
 
     /**
      * @param  array<string, string>  $values  header-keyed source values
@@ -98,23 +106,33 @@ class ImportRowValidator
     private function normalise(array $values): array
     {
         $payload = [];
-        foreach (self::FIELDS as $field) {
+        foreach ($this->fields() as $field) {
             $value = $values[$field] ?? '';
             $payload[$field] = $value === '' ? null : $value;
         }
 
-        // Identifiers: same digit normalisation as the model/manual path.
-        $payload['nin'] = Beneficiary::normalizeDigits($payload['nin']);
-        $payload['bvn'] = Beneficiary::normalizeDigits($payload['bvn']);
-        $payload['phone'] = Beneficiary::normalizeDigits($payload['phone']);
+        // NIN/BVN reduce to digits because `digits:11` is the validated shape and the
+        // punctuation carries nothing. PHONE is left EXACTLY as the source wrote it —
+        // its written form is preserved on the record, and the comparable form is
+        // derived separately (CLAUDE.md §11). Normalising it here would store the
+        // normalized value and lose the original.
+        $payload['nin'] = $this->normalizer->identifier($payload['nin']);
+        $payload['bvn'] = $this->normalizer->identifier($payload['bvn']);
+
+        /*
+         * The date is parsed to ISO here rather than left to the validator, because
+         * `date_of_birth` is a DATE column — there is no "original written form" it can
+         * hold, so the only question is WHICH date gets stored. Left alone, PHP reads
+         * `12/03/1995` as 3 December; sources here are written day-first, and a birth
+         * date nine months out also shifts `block_name_dob`, the key that decides which
+         * candidates the fuzzy matcher ever sees. An unparseable value is left as-is so
+         * the validator reports it rather than this silently nulling it.
+         */
+        $payload['date_of_birth'] = $this->normalizer->date($payload['date_of_birth']) ?? $payload['date_of_birth'];
 
         // Enum-ish fields: fold to the canonical lower snake_case the enums use.
-        if ($payload['gender'] !== null) {
-            $payload['gender'] = strtolower(trim($payload['gender']));
-        }
-        if ($payload['lga'] !== null) {
-            $payload['lga'] = (string) preg_replace('/[\s\-]+/', '_', strtolower(trim($payload['lga'])));
-        }
+        $payload['gender'] = $this->normalizer->enumKey($payload['gender']);
+        $payload['lga'] = $this->normalizer->enumKey($payload['lga']);
 
         return $payload;
     }
