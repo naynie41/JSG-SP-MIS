@@ -1,7 +1,7 @@
 export type Gender = 'male' | 'female' | 'other'
 export type BeneficiaryStatus = 'active' | 'suspended' | 'flagged'
 export type HouseholdRole = 'head' | 'spouse' | 'child' | 'dependent' | 'other'
-export type ImportStatus = 'pending' | 'processing' | 'preview_ready' | 'committing' | 'completed' | 'failed'
+export type ImportStatus = 'mapping_required' | 'pending' | 'processing' | 'preview_ready' | 'committing' | 'completed' | 'failed'
 
 /** Mirrors the server's `ConsentStatus` — no status is ever inferred from absence. */
 export type ConsentStatus = 'unknown' | 'granted' | 'withdrawn'
@@ -161,6 +161,46 @@ export interface SearchCandidate {
   beneficiary: MatchReveal
 }
 
+/* ------------------------------------------------- Data Import & Mapping (§11) */
+
+export type MappingConfidence = 'high' | 'low' | 'none'
+
+/** An advisory proposal for one canonical field — never applied on its own. */
+export interface MappingSuggestion {
+  header: string | null
+  confidence: MappingConfidence
+  reason: string
+}
+
+/** What the current mapping would do to a real value, shown before anything commits. */
+export interface NormalizedPreviewRow {
+  field: string
+  header: string
+  original: string
+  normalized: string | null
+}
+
+/**
+ * The mapping screen's payload (CLAUDE.md §11).
+ *
+ * `column_map` records ANSWERS: a canonical field pointing at a header, or explicitly at
+ * null meaning "this source does not carry it". A field absent from the map is
+ * unanswered — which is why `unconfirmed_identity_fields` is computed server-side rather
+ * than inferred from null values here.
+ */
+export interface ImportMappingProposal {
+  detected_headers: string[]
+  suggestions: Record<string, MappingSuggestion>
+  column_map: Record<string, string | null>
+  samples: Record<string, string[]>
+  normalized_preview: NormalizedPreviewRow[]
+  template: { id: string; name: string } | null
+  identity_fields: string[]
+  unconfirmed_identity_fields: string[]
+  unknown_headers: string[]
+  mapping_confirmed_at: string | null
+}
+
 export type ImportRowResolution = 'new' | 'link' | 'skip'
 export type ServiceRequestStatus = 'pending' | 'accepted' | 'declined'
 
@@ -295,6 +335,18 @@ export interface ImportBatch {
   /** True when the uploaded row count differs from the target — a non-blocking warning. */
   target_mismatch: boolean
   status: ImportStatus
+  /**
+   * The mapping this batch was read with (CLAUDE.md §11) — part of its permanent
+   * history. `confirmed_by` and `template` are only present when the relations were
+   * loaded (the batch detail, not the list).
+   */
+  mapping?: {
+    confirmed_at: string | null
+    confirmed_by?: string | null
+    column_map: Record<string, string | null> | null
+    source_signature: string | null
+    template?: { id: string; name: string } | null
+  }
   summary: {
     total_rows: number
     valid_rows: number

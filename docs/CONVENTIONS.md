@@ -74,12 +74,51 @@
 - **Rate limiting** on auth and write-heavy endpoints. **CORS** locked to the frontend origin.
 - Document endpoints (OpenAPI/Swagger or a clear `docs/api/` markdown) as you build.
 
+### Endpoints & naming — Request-to-Serve (PRD v1.2)
+
+- `POST   /api/v1/service-requests`                  raise a request-to-serve (from a matched duplicate)
+- `POST   /api/v1/service-requests/{id}/accept`      Owner-MDA accepts (grants read access)
+- `POST   /api/v1/service-requests/{id}/decline`     Owner-MDA declines (optional reason)
+- `GET    /api/v1/service-requests?role=owner|requester&status=…`   inbox/outbox views
+
+Conventions:
+- Approve/decline are guarded by an `OwnerMdaPolicy`; only the Owner MDA of the beneficiary may decide.
+- Recording an intervention under a served beneficiary must assert an accepted service request exists
+  (409/422 otherwise). Keep the referral endpoints separate — do not overload FR-REF routes.
+
+### Import context (PRD v1.2)
+
+- Import endpoints require `activity_id`; reject the batch if the activity does not exist or the
+  caller's MDA cannot use it. Row-level error reports distinguish identity-field rejections
+  (row dropped) from non-identity field issues (field dropped/flagged, row kept).
+
+### Programme catalog & activities (revises FR-PRG-01/02)
+
+- **Programmes are a global catalog.** `POST/PUT/DELETE /api/v1/programmes` are **System Administrator
+  only** (guard with an `AdminOnlyPolicy`; optionally allow SP Coordination). `GET /api/v1/programmes`
+  is readable by all authenticated roles (the catalog). Programmes are NOT `ScopedToMda`.
+- **Activities are MDA-owned.** `POST/PUT /api/v1/activities` are for MDA Officer/Admin, `ScopedToMda`
+  by `owner_mda_id`. Activity creation requires a valid `programme_id` from the catalog; reject if
+  missing/invalid. Budget + funding_source are Activity fields, not Programme fields.
+- **UI rule:** no programme create/edit control appears in any MDA view; activity creation presents a
+  programme dropdown sourced from `GET /api/v1/programmes`.
+
+### Per-list ("export this grid") export
+
+- A data grid may expose an export of its **current filtered/searched view** (e.g.
+  `GET /api/v1/beneficiaries/export?format=csv|excel&<same filters as the list>`).
+- It **reuses the shared export service** (Phase 6) — no separate export logic. It honours the same
+  scope, permissions, and PII masking (NIN/BVN) as the list itself; a user can only export what they
+  can see, and reveal-gated fields stay masked unless the user holds the reveal permission.
+- Large exports run on the queue and notify when ready; every export is audited.
+
 ---
 
 ## 5. Frontend — React / TypeScript
 
-- **Design system is mandatory.** All UI derives tokens and components from `DESIGN.md`;
-  load the `frontend-design` skill before building UI. Tokens live once as CSS variables (or mapped
+- **Design system is mandatory.** All UI derives tokens and components from `DESIGN.md` at the
+  repo root (its generated token mirror is `web/DESIGN.md`; `npm run check:design` verifies they
+  match). Tokens live once as CSS variables (or mapped
   into the utility-framework theme) — never hard-code hex/spacing in components. Never duplicate a
   component that already exists in the design system; extend the shared one. Every interactive
   element ships all states incl. visible keyboard focus and meets WCAG AA.
@@ -106,44 +145,6 @@
   entry and import; reject/flag invalid rows with row-level errors (FR-REG-05/06).
 - Required fields per PRD §6/§7; never silently drop or default required data.
 - Dates ISO-8601; enums validated against allowed values.
-
-### Identity vs non-identity fields (PRD v1.2, FR-REG-05/09)
-
-A row's validation failures are **not** all equal. The split is a locked decision
-(CLAUDE.md §9) and is implemented once, in `ImportRowValidator` + `BeneficiaryRules`:
-
-| Group | Fields | On failure |
-| --- | --- | --- |
-| **Identity** | `first_name`, `middle_name`, `last_name`, `phone`, `nin`, `bvn` | **Reject the whole row** to the error report. Never partial-save. |
-| **Non-identity** | `date_of_birth`, `gender`, `address`, `lga`, `ward` | **Drop that field** (nulled) and still save the row. |
-| **Duplicate signal** | `nin` / `bvn` uniqueness only | Neither — route to the match/serve flow, not the error report. |
-
-- Only a **present-but-malformed** identity field rejects. An **absent** optional NIN/BVN
-  is valid, and normalisation (non-digits stripped) runs *before* validation — so a
-  non-numeric identifier normalises to *absent*, not to *malformed*.
-- No rejected PII reaches the live tables. Rejections are audited as
-  `import.rows_rejected` with the uploader as actor and **counts only** — never the
-  rejected values.
-- Never re-implement this per source. Every door (file import, REST intake, connector
-  sync, offline batch) goes through the same ruleset.
-
-### v1.2 endpoints
-
-| Concern | Endpoints |
-| --- | --- |
-| Request-to-serve (FR-OWN-06/07) | `POST /service-requests`, `POST /service-requests/{id}/accept\|decline`, `GET /service-requests/inbox\|outbox` |
-| Bulk import | `POST /beneficiaries/imports` (**requires `activity_id`**), `GET /beneficiaries/imports/{id}`, `POST /beneficiaries/imports/{id}/confirm`, `POST /beneficiaries/imports/{id}/rows/{row}/resolve` |
-| REST intake (FR-REG-02) | `POST /beneficiaries/intake` — requires `original_record_id`; rate-limited |
-
-- **Activity-first import context (FR-REG-10, ARCHITECTURE §12.3).** A file upload carries
-  a required `activity_id` that the caller's own MDA owns; an upload with none, an unknown
-  one, or another MDA's is refused **422**. Resolve the activity without the MDA global
-  scope so a cross-MDA id fails as "not usable" rather than a misleading 404.
-- **Accepting a Service Request opens an explicit grant record**, never an implicit policy
-  inference — it must be queryable and revocable. It is **read + serve**, scoped to that one
-  beneficiary; it never confers edit rights and never moves ownership.
-- **There is no manual create endpoint** for beneficiaries or households. `POST` to either
-  collection is a 405 by design (CLAUDE.md §8); ingestion is bulk/source-only.
 
 ---
 
@@ -195,3 +196,4 @@ Before declaring a task done, confirm:
 - [ ] Tests written and passing; lint + static analysis clean.
 - [ ] No secrets/PII committed or logged.
 - [ ] Docs/README updated; commits reference requirement IDs.
+

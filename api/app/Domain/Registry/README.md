@@ -20,6 +20,51 @@ via `registration_source` + `import_batch_id` + `original_record_id`.
 | Offline capture, flushed later | the capturing source | `POST /api/v1/sync/offline-batches` (`SyncEngine`, same pipeline) |
 | Future sources | … | Add an adapter (below) — it serves file import and sync alike |
 
+## Data Import & Mapping (CLAUDE.md §11, PRD v1.7)
+
+Between raw upload and validation. An MDA's file uses the MDA's own column names; this
+stage is where those columns are **declared** to mean canonical fields, by a person.
+
+```
+upload → PROFILE columns → status: mapping_required → officer confirms
+       → ParseImportBatch (validate → dedup) → preview → confirm → commit
+```
+
+- **Identity mappings are never automatic.** NIN, BVN, name and phone must be answered on
+  every import — pointed at a column, or explicitly marked *not present*. A field absent
+  from `column_map` is unanswered; a field present with `null` is confirmed absent, and
+  the two are deliberately distinguishable (`array_key_exists`, not `??`).
+- **The gate lives in `ParseImportBatch`,** not a controller, so every upload door — the
+  Import Center, the activity wizard, anything added later — inherits it by construction.
+- **Suggestions are advisory.** `ColumnMapper` proposes with a confidence level and never
+  applies; ambiguous headers (`national_id`) are flagged *low* because they are used for
+  several different identifiers. The screen shows real sample values so the confirmation
+  is a decision rather than a click-through.
+- **Templates pre-fill, never pre-confirm.** Keyed `(MDA, source, source_signature)`; a
+  changed export produces a new signature, so a stale mapping is not applied to columns
+  that moved. Identity fields are re-confirmed regardless.
+- **Audited:** `import.mapping_confirmed` records which column was declared to hold each
+  identity field; `import.mapping_template_saved` records the template.
+- The raw file is only ever READ. The canonical representation lives in
+  `import_rows.payload`.
+
+**Both doors, one stage.** The Import Center (`POST /beneficiaries/imports`) and the
+activity wizard (`POST /activity-imports`) both profile on upload and both stop at
+`mapping_required`; they differ only in *when* the activity binds. `OnePipelineTest`
+pins this, including that the job refuses even when dispatched directly.
+
+**Recorded on the batch, permanently:** `column_map`, `mapping_confirmed_at`,
+`mapping_confirmed_by`, `source_signature` and `mapping_template_id` — surfaced as
+`data.mapping` on the batch resource. The raw file is retained unmutated throughout.
+
+`CrossFormatDedupTest` is the end-to-end proof: two MDAs holding the same people with
+**no column name in common** and different value formats (`+234 803…` / `0803…`,
+`12/03/1995` / `1995-03-12`) produce correct exact matches after mapping + normalization,
+which on the raw files was impossible.
+
+UI: `web/src/features/registry/ImportMappingPanel.tsx`, shown by `ImportBatchPage` while
+the batch is in `mapping_required`; the confirmed mapping stays visible on the preview.
+
 > Read/browse/search, **owner-only correction of existing records** (edit/soft
 > delete), the ownership + non-owner **serve/lookup** seam, and household
 > **membership management + history** remain available — only the create paths

@@ -59,6 +59,7 @@ export const REGISTRATION_SOURCE_LABELS: Record<string, string> = {
 }
 
 export const IMPORT_STATUS_LABELS: Record<string, string> = {
+  mapping_required: 'Mapping required',
   pending: 'Pending',
   processing: 'Processing',
   preview_ready: 'Preview ready',

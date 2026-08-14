@@ -20,6 +20,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
           'importbatch' => 'App\\Domain\\Registry\\Models\\ImportBatch',
           'importmappingtemplate' => 'App\\Domain\\Registry\\Models\\ImportMappingTemplate',
           'canonicalschema' => 'App\\Domain\\Registry\\Support\\CanonicalSchema',
+          'normalizationservice' => 'App\\Domain\\Registry\\Support\\NormalizationService',
           'domainexception' => 'DomainException',
           'carbon' => 'Illuminate\\Support\\Carbon',
           'storage' => 'Illuminate\\Support\\Facades\\Storage',
@@ -53,6 +54,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
           'importbatch' => 'App\\Domain\\Registry\\Models\\ImportBatch',
           'importmappingtemplate' => 'App\\Domain\\Registry\\Models\\ImportMappingTemplate',
           'canonicalschema' => 'App\\Domain\\Registry\\Support\\CanonicalSchema',
+          'normalizationservice' => 'App\\Domain\\Registry\\Support\\NormalizationService',
           'domainexception' => 'DomainException',
           'carbon' => 'Illuminate\\Support\\Carbon',
           'storage' => 'Illuminate\\Support\\Facades\\Storage',
@@ -75,6 +77,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             'importbatch' => 'App\\Domain\\Registry\\Models\\ImportBatch',
             'importmappingtemplate' => 'App\\Domain\\Registry\\Models\\ImportMappingTemplate',
             'canonicalschema' => 'App\\Domain\\Registry\\Support\\CanonicalSchema',
+            'normalizationservice' => 'App\\Domain\\Registry\\Support\\NormalizationService',
             'domainexception' => 'DomainException',
             'carbon' => 'Illuminate\\Support\\Carbon',
             'storage' => 'Illuminate\\Support\\Facades\\Storage',
@@ -118,6 +121,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
           'importbatch' => 'App\\Domain\\Registry\\Models\\ImportBatch',
           'importmappingtemplate' => 'App\\Domain\\Registry\\Models\\ImportMappingTemplate',
           'canonicalschema' => 'App\\Domain\\Registry\\Support\\CanonicalSchema',
+          'normalizationservice' => 'App\\Domain\\Registry\\Support\\NormalizationService',
           'domainexception' => 'DomainException',
           'carbon' => 'Illuminate\\Support\\Carbon',
           'storage' => 'Illuminate\\Support\\Facades\\Storage',
@@ -140,6 +144,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             'importbatch' => 'App\\Domain\\Registry\\Models\\ImportBatch',
             'importmappingtemplate' => 'App\\Domain\\Registry\\Models\\ImportMappingTemplate',
             'canonicalschema' => 'App\\Domain\\Registry\\Support\\CanonicalSchema',
+            'normalizationservice' => 'App\\Domain\\Registry\\Support\\NormalizationService',
             'domainexception' => 'DomainException',
             'carbon' => 'Illuminate\\Support\\Carbon',
             'storage' => 'Illuminate\\Support\\Facades\\Storage',
@@ -183,6 +188,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
           'importbatch' => 'App\\Domain\\Registry\\Models\\ImportBatch',
           'importmappingtemplate' => 'App\\Domain\\Registry\\Models\\ImportMappingTemplate',
           'canonicalschema' => 'App\\Domain\\Registry\\Support\\CanonicalSchema',
+          'normalizationservice' => 'App\\Domain\\Registry\\Support\\NormalizationService',
           'domainexception' => 'DomainException',
           'carbon' => 'Illuminate\\Support\\Carbon',
           'storage' => 'Illuminate\\Support\\Facades\\Storage',
@@ -205,6 +211,208 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             'importbatch' => 'App\\Domain\\Registry\\Models\\ImportBatch',
             'importmappingtemplate' => 'App\\Domain\\Registry\\Models\\ImportMappingTemplate',
             'canonicalschema' => 'App\\Domain\\Registry\\Support\\CanonicalSchema',
+            'normalizationservice' => 'App\\Domain\\Registry\\Support\\NormalizationService',
+            'domainexception' => 'DomainException',
+            'carbon' => 'Illuminate\\Support\\Carbon',
+            'storage' => 'Illuminate\\Support\\Facades\\Storage',
+          ),
+           'className' => 'App\\Domain\\Registry\\Services\\ImportMappingService',
+           'functionName' => NULL,
+           'templatePhpDocNodes' => 
+          array (
+          ),
+           'parent' => NULL,
+           'typeAliasesMap' => 
+          array (
+          ),
+           'bypassTypeAliases' => false,
+           'constUses' => 
+          array (
+          ),
+           'typeAliasClassName' => NULL,
+           'traitData' => NULL,
+        )),
+         'typeAliasesMap' => 
+        array (
+        ),
+         'bypassTypeAliases' => false,
+         'constUses' => 
+        array (
+        ),
+         'typeAliasClassName' => NULL,
+         'traitData' => NULL,
+      )),
+      'b779a90a3db4ffa9d5ead8d4e5df6082' => 
+      \PHPStan\Analyser\IntermediaryNameScope::__set_state(array(
+         'namespace' => 'App\\Domain\\Registry\\Services',
+         'uses' => 
+        array (
+          'user' => 'App\\Domain\\Access\\Models\\User',
+          'auditlogger' => 'App\\Domain\\Audit\\Services\\AuditLogger',
+          'importstatus' => 'App\\Domain\\Registry\\Enums\\ImportStatus',
+          'columnmapper' => 'App\\Domain\\Registry\\Imports\\ColumnMapper',
+          'spreadsheetreader' => 'App\\Domain\\Registry\\Imports\\SpreadsheetReader',
+          'importbatch' => 'App\\Domain\\Registry\\Models\\ImportBatch',
+          'importmappingtemplate' => 'App\\Domain\\Registry\\Models\\ImportMappingTemplate',
+          'canonicalschema' => 'App\\Domain\\Registry\\Support\\CanonicalSchema',
+          'normalizationservice' => 'App\\Domain\\Registry\\Support\\NormalizationService',
+          'domainexception' => 'DomainException',
+          'carbon' => 'Illuminate\\Support\\Carbon',
+          'storage' => 'Illuminate\\Support\\Facades\\Storage',
+        ),
+         'className' => 'App\\Domain\\Registry\\Services\\ImportMappingService',
+         'functionName' => 'sampleRows',
+         'templatePhpDocNodes' => 
+        array (
+        ),
+         'parent' => 
+        \PHPStan\Analyser\IntermediaryNameScope::__set_state(array(
+           'namespace' => 'App\\Domain\\Registry\\Services',
+           'uses' => 
+          array (
+            'user' => 'App\\Domain\\Access\\Models\\User',
+            'auditlogger' => 'App\\Domain\\Audit\\Services\\AuditLogger',
+            'importstatus' => 'App\\Domain\\Registry\\Enums\\ImportStatus',
+            'columnmapper' => 'App\\Domain\\Registry\\Imports\\ColumnMapper',
+            'spreadsheetreader' => 'App\\Domain\\Registry\\Imports\\SpreadsheetReader',
+            'importbatch' => 'App\\Domain\\Registry\\Models\\ImportBatch',
+            'importmappingtemplate' => 'App\\Domain\\Registry\\Models\\ImportMappingTemplate',
+            'canonicalschema' => 'App\\Domain\\Registry\\Support\\CanonicalSchema',
+            'normalizationservice' => 'App\\Domain\\Registry\\Support\\NormalizationService',
+            'domainexception' => 'DomainException',
+            'carbon' => 'Illuminate\\Support\\Carbon',
+            'storage' => 'Illuminate\\Support\\Facades\\Storage',
+          ),
+           'className' => 'App\\Domain\\Registry\\Services\\ImportMappingService',
+           'functionName' => NULL,
+           'templatePhpDocNodes' => 
+          array (
+          ),
+           'parent' => NULL,
+           'typeAliasesMap' => 
+          array (
+          ),
+           'bypassTypeAliases' => false,
+           'constUses' => 
+          array (
+          ),
+           'typeAliasClassName' => NULL,
+           'traitData' => NULL,
+        )),
+         'typeAliasesMap' => 
+        array (
+        ),
+         'bypassTypeAliases' => false,
+         'constUses' => 
+        array (
+        ),
+         'typeAliasClassName' => NULL,
+         'traitData' => NULL,
+      )),
+      '7fcb8b03f73f4b2d91d0ffd290b944e6' => 
+      \PHPStan\Analyser\IntermediaryNameScope::__set_state(array(
+         'namespace' => 'App\\Domain\\Registry\\Services',
+         'uses' => 
+        array (
+          'user' => 'App\\Domain\\Access\\Models\\User',
+          'auditlogger' => 'App\\Domain\\Audit\\Services\\AuditLogger',
+          'importstatus' => 'App\\Domain\\Registry\\Enums\\ImportStatus',
+          'columnmapper' => 'App\\Domain\\Registry\\Imports\\ColumnMapper',
+          'spreadsheetreader' => 'App\\Domain\\Registry\\Imports\\SpreadsheetReader',
+          'importbatch' => 'App\\Domain\\Registry\\Models\\ImportBatch',
+          'importmappingtemplate' => 'App\\Domain\\Registry\\Models\\ImportMappingTemplate',
+          'canonicalschema' => 'App\\Domain\\Registry\\Support\\CanonicalSchema',
+          'normalizationservice' => 'App\\Domain\\Registry\\Support\\NormalizationService',
+          'domainexception' => 'DomainException',
+          'carbon' => 'Illuminate\\Support\\Carbon',
+          'storage' => 'Illuminate\\Support\\Facades\\Storage',
+        ),
+         'className' => 'App\\Domain\\Registry\\Services\\ImportMappingService',
+         'functionName' => 'samples',
+         'templatePhpDocNodes' => 
+        array (
+        ),
+         'parent' => 
+        \PHPStan\Analyser\IntermediaryNameScope::__set_state(array(
+           'namespace' => 'App\\Domain\\Registry\\Services',
+           'uses' => 
+          array (
+            'user' => 'App\\Domain\\Access\\Models\\User',
+            'auditlogger' => 'App\\Domain\\Audit\\Services\\AuditLogger',
+            'importstatus' => 'App\\Domain\\Registry\\Enums\\ImportStatus',
+            'columnmapper' => 'App\\Domain\\Registry\\Imports\\ColumnMapper',
+            'spreadsheetreader' => 'App\\Domain\\Registry\\Imports\\SpreadsheetReader',
+            'importbatch' => 'App\\Domain\\Registry\\Models\\ImportBatch',
+            'importmappingtemplate' => 'App\\Domain\\Registry\\Models\\ImportMappingTemplate',
+            'canonicalschema' => 'App\\Domain\\Registry\\Support\\CanonicalSchema',
+            'normalizationservice' => 'App\\Domain\\Registry\\Support\\NormalizationService',
+            'domainexception' => 'DomainException',
+            'carbon' => 'Illuminate\\Support\\Carbon',
+            'storage' => 'Illuminate\\Support\\Facades\\Storage',
+          ),
+           'className' => 'App\\Domain\\Registry\\Services\\ImportMappingService',
+           'functionName' => NULL,
+           'templatePhpDocNodes' => 
+          array (
+          ),
+           'parent' => NULL,
+           'typeAliasesMap' => 
+          array (
+          ),
+           'bypassTypeAliases' => false,
+           'constUses' => 
+          array (
+          ),
+           'typeAliasClassName' => NULL,
+           'traitData' => NULL,
+        )),
+         'typeAliasesMap' => 
+        array (
+        ),
+         'bypassTypeAliases' => false,
+         'constUses' => 
+        array (
+        ),
+         'typeAliasClassName' => NULL,
+         'traitData' => NULL,
+      )),
+      'db68087415479d00353a2ed0cdf91792' => 
+      \PHPStan\Analyser\IntermediaryNameScope::__set_state(array(
+         'namespace' => 'App\\Domain\\Registry\\Services',
+         'uses' => 
+        array (
+          'user' => 'App\\Domain\\Access\\Models\\User',
+          'auditlogger' => 'App\\Domain\\Audit\\Services\\AuditLogger',
+          'importstatus' => 'App\\Domain\\Registry\\Enums\\ImportStatus',
+          'columnmapper' => 'App\\Domain\\Registry\\Imports\\ColumnMapper',
+          'spreadsheetreader' => 'App\\Domain\\Registry\\Imports\\SpreadsheetReader',
+          'importbatch' => 'App\\Domain\\Registry\\Models\\ImportBatch',
+          'importmappingtemplate' => 'App\\Domain\\Registry\\Models\\ImportMappingTemplate',
+          'canonicalschema' => 'App\\Domain\\Registry\\Support\\CanonicalSchema',
+          'normalizationservice' => 'App\\Domain\\Registry\\Support\\NormalizationService',
+          'domainexception' => 'DomainException',
+          'carbon' => 'Illuminate\\Support\\Carbon',
+          'storage' => 'Illuminate\\Support\\Facades\\Storage',
+        ),
+         'className' => 'App\\Domain\\Registry\\Services\\ImportMappingService',
+         'functionName' => 'normalizedPreview',
+         'templatePhpDocNodes' => 
+        array (
+        ),
+         'parent' => 
+        \PHPStan\Analyser\IntermediaryNameScope::__set_state(array(
+           'namespace' => 'App\\Domain\\Registry\\Services',
+           'uses' => 
+          array (
+            'user' => 'App\\Domain\\Access\\Models\\User',
+            'auditlogger' => 'App\\Domain\\Audit\\Services\\AuditLogger',
+            'importstatus' => 'App\\Domain\\Registry\\Enums\\ImportStatus',
+            'columnmapper' => 'App\\Domain\\Registry\\Imports\\ColumnMapper',
+            'spreadsheetreader' => 'App\\Domain\\Registry\\Imports\\SpreadsheetReader',
+            'importbatch' => 'App\\Domain\\Registry\\Models\\ImportBatch',
+            'importmappingtemplate' => 'App\\Domain\\Registry\\Models\\ImportMappingTemplate',
+            'canonicalschema' => 'App\\Domain\\Registry\\Support\\CanonicalSchema',
+            'normalizationservice' => 'App\\Domain\\Registry\\Support\\NormalizationService',
             'domainexception' => 'DomainException',
             'carbon' => 'Illuminate\\Support\\Carbon',
             'storage' => 'Illuminate\\Support\\Facades\\Storage',
@@ -248,6 +456,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
           'importbatch' => 'App\\Domain\\Registry\\Models\\ImportBatch',
           'importmappingtemplate' => 'App\\Domain\\Registry\\Models\\ImportMappingTemplate',
           'canonicalschema' => 'App\\Domain\\Registry\\Support\\CanonicalSchema',
+          'normalizationservice' => 'App\\Domain\\Registry\\Support\\NormalizationService',
           'domainexception' => 'DomainException',
           'carbon' => 'Illuminate\\Support\\Carbon',
           'storage' => 'Illuminate\\Support\\Facades\\Storage',
@@ -270,6 +479,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             'importbatch' => 'App\\Domain\\Registry\\Models\\ImportBatch',
             'importmappingtemplate' => 'App\\Domain\\Registry\\Models\\ImportMappingTemplate',
             'canonicalschema' => 'App\\Domain\\Registry\\Support\\CanonicalSchema',
+            'normalizationservice' => 'App\\Domain\\Registry\\Support\\NormalizationService',
             'domainexception' => 'DomainException',
             'carbon' => 'Illuminate\\Support\\Carbon',
             'storage' => 'Illuminate\\Support\\Facades\\Storage',
@@ -313,6 +523,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
           'importbatch' => 'App\\Domain\\Registry\\Models\\ImportBatch',
           'importmappingtemplate' => 'App\\Domain\\Registry\\Models\\ImportMappingTemplate',
           'canonicalschema' => 'App\\Domain\\Registry\\Support\\CanonicalSchema',
+          'normalizationservice' => 'App\\Domain\\Registry\\Support\\NormalizationService',
           'domainexception' => 'DomainException',
           'carbon' => 'Illuminate\\Support\\Carbon',
           'storage' => 'Illuminate\\Support\\Facades\\Storage',
@@ -335,6 +546,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             'importbatch' => 'App\\Domain\\Registry\\Models\\ImportBatch',
             'importmappingtemplate' => 'App\\Domain\\Registry\\Models\\ImportMappingTemplate',
             'canonicalschema' => 'App\\Domain\\Registry\\Support\\CanonicalSchema',
+            'normalizationservice' => 'App\\Domain\\Registry\\Support\\NormalizationService',
             'domainexception' => 'DomainException',
             'carbon' => 'Illuminate\\Support\\Carbon',
             'storage' => 'Illuminate\\Support\\Facades\\Storage',
@@ -378,6 +590,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
           'importbatch' => 'App\\Domain\\Registry\\Models\\ImportBatch',
           'importmappingtemplate' => 'App\\Domain\\Registry\\Models\\ImportMappingTemplate',
           'canonicalschema' => 'App\\Domain\\Registry\\Support\\CanonicalSchema',
+          'normalizationservice' => 'App\\Domain\\Registry\\Support\\NormalizationService',
           'domainexception' => 'DomainException',
           'carbon' => 'Illuminate\\Support\\Carbon',
           'storage' => 'Illuminate\\Support\\Facades\\Storage',
@@ -400,6 +613,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             'importbatch' => 'App\\Domain\\Registry\\Models\\ImportBatch',
             'importmappingtemplate' => 'App\\Domain\\Registry\\Models\\ImportMappingTemplate',
             'canonicalschema' => 'App\\Domain\\Registry\\Support\\CanonicalSchema',
+            'normalizationservice' => 'App\\Domain\\Registry\\Support\\NormalizationService',
             'domainexception' => 'DomainException',
             'carbon' => 'Illuminate\\Support\\Carbon',
             'storage' => 'Illuminate\\Support\\Facades\\Storage',
@@ -443,6 +657,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
           'importbatch' => 'App\\Domain\\Registry\\Models\\ImportBatch',
           'importmappingtemplate' => 'App\\Domain\\Registry\\Models\\ImportMappingTemplate',
           'canonicalschema' => 'App\\Domain\\Registry\\Support\\CanonicalSchema',
+          'normalizationservice' => 'App\\Domain\\Registry\\Support\\NormalizationService',
           'domainexception' => 'DomainException',
           'carbon' => 'Illuminate\\Support\\Carbon',
           'storage' => 'Illuminate\\Support\\Facades\\Storage',
@@ -465,6 +680,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             'importbatch' => 'App\\Domain\\Registry\\Models\\ImportBatch',
             'importmappingtemplate' => 'App\\Domain\\Registry\\Models\\ImportMappingTemplate',
             'canonicalschema' => 'App\\Domain\\Registry\\Support\\CanonicalSchema',
+            'normalizationservice' => 'App\\Domain\\Registry\\Support\\NormalizationService',
             'domainexception' => 'DomainException',
             'carbon' => 'Illuminate\\Support\\Carbon',
             'storage' => 'Illuminate\\Support\\Facades\\Storage',
@@ -498,7 +714,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
     ),
     1 => 
     array (
-      'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Registry\\Services\\ImportMappingService.php' => 'a188bae616947e95adab592cc7ca8a30189c445f9afd3556d0aea39a8e829ac3',
+      'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Registry\\Services\\ImportMappingService.php' => 'b690710314ee831dedbef8eb93cd151b179588a37c088c1c1e719e6f99bf5549',
     ),
   ),
 ));

@@ -41,6 +41,24 @@ class ImportBatchResource extends JsonResource
             'draft_target_beneficiaries' => $target === null ? null : (int) $target,
             'target_mismatch' => $target !== null && $this->total_rows !== null && (int) $this->total_rows !== (int) $target,
             'status' => $this->status->value,
+            /*
+             * The mapping this batch was read with (CLAUDE.md §11) — part of its
+             * permanent history, not a transient wizard state. When a record turns out
+             * wrong, "which column did we believe held the NIN, and who said so" is the
+             * question, and the answer has to survive on the batch.
+             */
+            'mapping' => [
+                'confirmed_at' => $this->mapping_confirmed_at?->toIso8601String(),
+                'confirmed_by' => $this->whenLoaded('mappingConfirmedBy', fn () => $this->mappingConfirmedBy?->name),
+                'column_map' => $this->column_map,
+                'source_signature' => $this->source_signature,
+                'template' => $this->whenLoaded(
+                    'mappingTemplate',
+                    fn () => $this->mappingTemplate === null
+                        ? null
+                        : ['id' => $this->mappingTemplate->id, 'name' => $this->mappingTemplate->name],
+                ),
+            ],
             'summary' => [
                 'total_rows' => $this->total_rows,
                 'valid_rows' => $this->valid_rows,

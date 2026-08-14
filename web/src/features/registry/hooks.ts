@@ -208,6 +208,35 @@ export function useImports(page: number, enabled = true) {
   return useQuery({ queryKey: ['imports', page], queryFn: () => importApi.list(page), enabled })
 }
 
+/** The mapping screen's payload — detected columns, suggestions, samples, preview. */
+export function useImportMapping(id: string | undefined, enabled = true) {
+  return useQuery({
+    queryKey: ['import', id, 'mapping'],
+    queryFn: () => importApi.mapping(id!),
+    enabled: enabled && Boolean(id),
+  })
+}
+
+/**
+ * Confirm the mapping and release the file for parsing.
+ *
+ * Invalidates the BATCH as well as the mapping: confirming moves it out of
+ * `mapping_required`, and the page decides which step to show from that status.
+ */
+export function useConfirmMapping(batchId: string) {
+  const qc = useQueryClient()
+  const toast = useToast()
+  return useMutation({
+    mutationFn: ({ columnMap, saveTemplateAs }: { columnMap: Record<string, string | null>; saveTemplateAs?: string }) =>
+      importApi.confirmMapping(batchId, columnMap, saveTemplateAs),
+    onSuccess: () => {
+      qc.invalidateQueries({ queryKey: ['import', batchId] })
+      qc.invalidateQueries({ queryKey: ['imports'] })
+      toast.success('Mapping confirmed', 'Validating and checking for duplicates…')
+    },
+  })
+}
+
 export function useImportBatch(id: string | undefined, enabled = true) {
   return useQuery({
     queryKey: ['import', id],

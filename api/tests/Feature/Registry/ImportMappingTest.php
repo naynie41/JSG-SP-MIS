@@ -162,6 +162,34 @@ class ImportMappingTest extends TestCase
         $this->assertSame('low', $data['suggestions']['nin']['confidence']);
     }
 
+    public function test_it_returns_sample_values_so_the_confirmation_is_a_real_decision(): void
+    {
+        $batch = $this->upload();
+        $data = $this->send('GET', "/api/v1/beneficiaries/imports/{$batch->id}/mapping")->assertOk()->json('data');
+
+        // Whether `National ID` holds NINs is guesswork from the header and obvious from
+        // the values. Without these the confirmation degrades into a click-through.
+        $this->assertSame(['22200000011'], $data['samples']['national_id']);
+        $this->assertSame(['0803 123 4567'], $data['samples']['mobile']);
+    }
+
+    public function test_it_previews_the_normalized_value_beside_the_original(): void
+    {
+        $batch = $this->upload();
+        $this->send('PUT', "/api/v1/beneficiaries/imports/{$batch->id}/mapping", ['column_map' => $this->goodMap()])
+            ->assertOk();
+
+        $data = $this->send('GET', "/api/v1/beneficiaries/imports/{$batch->id}/mapping")->assertOk()->json('data');
+        $byField = collect($data['normalized_preview'])->keyBy('field');
+
+        // A wrong mapping is visible HERE and invisible afterwards: a date read as the
+        // wrong month, or a "NIN" that does not reduce to eleven digits.
+        $this->assertSame('0803 123 4567', $byField['phone']['original']);
+        $this->assertSame('08031234567', $byField['phone']['normalized']);
+        $this->assertSame('12/03/1995', $byField['date_of_birth']['original']);
+        $this->assertSame('1995-03-12', $byField['date_of_birth']['normalized']);
+    }
+
     /* -------------------------------------------------- the identity guard */
 
     public function test_the_mapping_cannot_be_confirmed_while_an_identity_field_is_unanswered(): void

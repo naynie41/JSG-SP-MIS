@@ -15,6 +15,7 @@ import { useToast } from '@/components/Toast/ToastProvider'
 import { useAuth } from '@/lib/auth/AuthProvider'
 import { IMPORT_STATUS_LABELS, MATCH_BAND_LABELS, RESOLUTION_LABELS } from './constants'
 import { useConfirmActivityImport, useConfirmImport, useImportBatch, useResolveRow } from './hooks'
+import { ImportMappingPanel } from './ImportMappingPanel'
 import { MatchComparison } from './MatchComparison'
 import { MatchRevealPanel } from './MatchRevealPanel'
 import { MatchStrengthBand } from './MatchStrengthBand'
@@ -257,6 +258,33 @@ export function ImportBatchPage() {
     )
   }
 
+  /*
+   * Mapping comes BEFORE validation and dedup (CLAUDE.md §11). While a batch sits in
+   * `mapping_required` there is nothing to preview — no rows are staged and nothing has
+   * been screened — so the mapping step replaces the preview rather than sitting above
+   * an empty one.
+   */
+  if (batch.status === 'mapping_required') {
+    return (
+      <div>
+        <div className={layout.pageHead}>
+          <div className={layout.pageTitle}>
+            <span className="eyebrow">{isWizard ? 'New activity · Upload' : '03 · Registry'}</span>
+            <h1 className="t-h1">{batch.original_filename}</h1>
+            <Link to="/imports" className={styles.note}>
+              ← All imports
+            </Link>
+          </div>
+          <Badge variant={statusVariant(`batch.${batch.status}`)}>
+            {IMPORT_STATUS_LABELS[batch.status] ?? batch.status}
+          </Badge>
+        </div>
+
+        {id && <ImportMappingPanel batchId={id} />}
+      </div>
+    )
+  }
+
   return (
     <div>
       <div className={layout.pageHead}>
@@ -300,6 +328,29 @@ export function ImportBatchPage() {
             </div>
           ))}
         </div>
+        {/* The mapping this file was read with, kept visible after the fact — "which
+            column did we believe held the NIN, and who said so" is the question when a
+            record turns out wrong (CLAUDE.md §11). */}
+        {batch.mapping?.confirmed_at && (
+          <details className={styles.note}>
+            <summary>
+              Read with a confirmed column mapping
+              {batch.mapping.confirmed_by ? ` by ${batch.mapping.confirmed_by}` : ''}
+              {batch.mapping.template ? ` · template “${batch.mapping.template.name}”` : ''}
+            </summary>
+            <dl className={styles.dl}>
+              {Object.entries(batch.mapping.column_map ?? {})
+                .filter(([, header]) => header !== null)
+                .map(([field, header]) => (
+                  <div key={field}>
+                    <dt>{field}</dt>
+                    <dd className={styles.mono}>{header}</dd>
+                  </div>
+                ))}
+            </dl>
+          </details>
+        )}
+
         {isPreviewReady && unresolvedFlagged > 0 && (
           // The flagged subset is the work. Rather than leaving the officer to
           // find it in the table, offer the queue that exists to process it.
