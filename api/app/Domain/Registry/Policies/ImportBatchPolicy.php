@@ -41,4 +41,16 @@ class ImportBatchPolicy
     {
         return $user->hasPermission('beneficiary.create') && $this->owns($user, $batch);
     }
+
+    /**
+     * Confirm the column mapping (CLAUDE.md §11) — owner MDA only.
+     *
+     * Held to the same authority as committing, deliberately. Declaring which column
+     * holds the NIN decides what the data MEANS; getting it wrong merges two citizens
+     * just as surely as committing bad rows does.
+     */
+    public function map(User $user, ImportBatch $batch): bool
+    {
+        return $this->commit($user, $batch);
+    }
 }

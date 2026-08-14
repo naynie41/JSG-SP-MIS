@@ -16,6 +16,7 @@ use App\Domain\Registry\Imports\Adapters\OdkAdapter;
 use App\Domain\Registry\Imports\Adapters\SourceAdapterRegistry;
 use App\Domain\Registry\Models\Beneficiary;
 use App\Domain\Registry\Models\BeneficiaryDocument;
+use App\Domain\Registry\Models\BeneficiaryServiceGrant;
 use App\Domain\Registry\Models\Household;
 use App\Domain\Registry\Models\ImportBatch;
 use App\Domain\Registry\Models\ServiceRequest;
@@ -69,6 +70,9 @@ class RegistryServiceProvider extends ServiceProvider
         Gate::policy(ImportBatch::class, ImportBatchPolicy::class);
         Gate::policy(BeneficiaryDocument::class, BeneficiaryDocumentPolicy::class);
         Gate::policy(ServiceRequest::class, OwnerMdaPolicy::class);
+        // The grant an acceptance opens is governed by the same owner-MDA authority that
+        // decided the request, so it shares the policy (FR-OWN-07 revocation).
+        Gate::policy(BeneficiaryServiceGrant::class, OwnerMdaPolicy::class);
     }
 
     private function registerPermissions(PermissionRegistry $registry): void

@@ -107,6 +107,44 @@
 - Required fields per PRD §6/§7; never silently drop or default required data.
 - Dates ISO-8601; enums validated against allowed values.
 
+### Identity vs non-identity fields (PRD v1.2, FR-REG-05/09)
+
+A row's validation failures are **not** all equal. The split is a locked decision
+(CLAUDE.md §9) and is implemented once, in `ImportRowValidator` + `BeneficiaryRules`:
+
+| Group | Fields | On failure |
+| --- | --- | --- |
+| **Identity** | `first_name`, `middle_name`, `last_name`, `phone`, `nin`, `bvn` | **Reject the whole row** to the error report. Never partial-save. |
+| **Non-identity** | `date_of_birth`, `gender`, `address`, `lga`, `ward` | **Drop that field** (nulled) and still save the row. |
+| **Duplicate signal** | `nin` / `bvn` uniqueness only | Neither — route to the match/serve flow, not the error report. |
+
+- Only a **present-but-malformed** identity field rejects. An **absent** optional NIN/BVN
+  is valid, and normalisation (non-digits stripped) runs *before* validation — so a
+  non-numeric identifier normalises to *absent*, not to *malformed*.
+- No rejected PII reaches the live tables. Rejections are audited as
+  `import.rows_rejected` with the uploader as actor and **counts only** — never the
+  rejected values.
+- Never re-implement this per source. Every door (file import, REST intake, connector
+  sync, offline batch) goes through the same ruleset.
+
+### v1.2 endpoints
+
+| Concern | Endpoints |
+| --- | --- |
+| Request-to-serve (FR-OWN-06/07) | `POST /service-requests`, `POST /service-requests/{id}/accept\|decline`, `GET /service-requests/inbox\|outbox` |
+| Bulk import | `POST /beneficiaries/imports` (**requires `activity_id`**), `GET /beneficiaries/imports/{id}`, `POST /beneficiaries/imports/{id}/confirm`, `POST /beneficiaries/imports/{id}/rows/{row}/resolve` |
+| REST intake (FR-REG-02) | `POST /beneficiaries/intake` — requires `original_record_id`; rate-limited |
+
+- **Activity-first import context (FR-REG-10, ARCHITECTURE §12.3).** A file upload carries
+  a required `activity_id` that the caller's own MDA owns; an upload with none, an unknown
+  one, or another MDA's is refused **422**. Resolve the activity without the MDA global
+  scope so a cross-MDA id fails as "not usable" rather than a misleading 404.
+- **Accepting a Service Request opens an explicit grant record**, never an implicit policy
+  inference — it must be queryable and revocable. It is **read + serve**, scoped to that one
+  beneficiary; it never confers edit rights and never moves ownership.
+- **There is no manual create endpoint** for beneficiaries or households. `POST` to either
+  collection is a 405 by design (CLAUDE.md §8); ingestion is bulk/source-only.
+
 ---
 
 ## 7. Testing

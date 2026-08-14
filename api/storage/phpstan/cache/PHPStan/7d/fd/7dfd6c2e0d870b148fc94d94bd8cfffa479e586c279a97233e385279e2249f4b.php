@@ -2,7 +2,7 @@
 
 // odsl-C:\Users\ACER\Desktop\JSG-SP-MIS\JSG-SP-MIS\api\app\Domain\Audit\Services\AuditQueryService.php-PHPStan\BetterReflection\Reflection\ReflectionClass-App\Domain\Audit\Services\AuditQueryService
 return \PHPStan\Cache\CacheItem::__set_state(array(
-   'variableKey' => 'v2-6.70.0.1-8.3.31-ebd583a630e2596f779d14c1fa1d915fe9bd57a3860590dc18a7216f353751a8',
+   'variableKey' => 'v2-6.70.0.1-8.3.31-0d298634dab32a1067f64eeb593fb019ea086de1a7215ad709c6d4dab5765c24',
    'data' => 
   array (
     'locatedSource' => 
@@ -37,7 +37,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
     array (
     ),
     'startLine' => 25,
-    'endLine' => 212,
+    'endLine' => 213,
     'startColumn' => 1,
     'endColumn' => 1,
     'parentClassName' => NULL,
@@ -62,7 +62,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
     // Authentication + account security (Phase 1).
     \'security\' => [\'auth.login\', \'auth.login_failed\', \'auth.logout\', \'auth.account_locked\', \'mfa.enrolled\', \'mfa.disabled\', \'mfa.challenge_failed\', \'user.mfa_reset\', \'user.password_reset_forced\'],
     // Permission / access-grant changes (Phase 1 + cross-MDA sharing).
-    \'permission\' => [\'cross_mda.granted\', \'cross_mda.revoked\', \'beneficiary.access_granted\', \'role.created\', \'role.updated\', \'role.deleted\'],
+    \'permission\' => [\'cross_mda.granted\', \'cross_mda.revoked\', \'beneficiary.access_granted\', \'beneficiary.access_revoked\', \'role.created\', \'role.updated\', \'role.deleted\'],
     // Request-to-serve decisions (Phase 3 ownership → Phase 5 coordination).
     \'service_request\' => [\'service_request.created\', \'service_request.accepted\', \'service_request.declined\', \'ownership_transfer.approved\', \'ownership_transfer.rejected\'],
     // Data access + egress (Phase 6 exports, document downloads).
@@ -71,11 +71,11 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
           'attributes' => 
           array (
             'startLine' => 33,
-            'endLine' => 56,
+            'endLine' => 57,
             'startTokenPos' => 63,
             'startFilePos' => 1248,
-            'endTokenPos' => 187,
-            'endFilePos' => 2399,
+            'endTokenPos' => 190,
+            'endFilePos' => 2441,
           ),
         ),
         'docComment' => '/**
@@ -88,7 +88,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         array (
         ),
         'startLine' => 33,
-        'endLine' => 56,
+        'endLine' => 57,
         'startColumn' => 5,
         'endColumn' => 6,
       ),
@@ -104,20 +104,20 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
           'code' => '\'activity\'',
           'attributes' => 
           array (
-            'startLine' => 58,
-            'endLine' => 58,
-            'startTokenPos' => 198,
-            'startFilePos' => 2439,
-            'endTokenPos' => 198,
-            'endFilePos' => 2448,
+            'startLine' => 59,
+            'endLine' => 59,
+            'startTokenPos' => 201,
+            'startFilePos' => 2481,
+            'endTokenPos' => 201,
+            'endFilePos' => 2490,
           ),
         ),
         'docComment' => NULL,
         'attributes' => 
         array (
         ),
-        'startLine' => 58,
-        'endLine' => 58,
+        'startLine' => 59,
+        'endLine' => 59,
         'startColumn' => 5,
         'endColumn' => 47,
       ),
@@ -151,8 +151,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             'attributes' => 
             array (
             ),
-            'startLine' => 66,
-            'endLine' => 66,
+            'startLine' => 67,
+            'endLine' => 67,
             'startColumn' => 30,
             'endColumn' => 43,
             'parameterIndex' => 0,
@@ -166,12 +166,12 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
               'code' => '25',
               'attributes' => 
               array (
-                'startLine' => 66,
-                'endLine' => 66,
-                'startTokenPos' => 220,
-                'startFilePos' => 2742,
-                'endTokenPos' => 220,
-                'endFilePos' => 2743,
+                'startLine' => 67,
+                'endLine' => 67,
+                'startTokenPos' => 223,
+                'startFilePos' => 2784,
+                'endTokenPos' => 223,
+                'endFilePos' => 2785,
               ),
             ),
             'type' => 
@@ -189,8 +189,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             'attributes' => 
             array (
             ),
-            'startLine' => 66,
-            'endLine' => 66,
+            'startLine' => 67,
+            'endLine' => 67,
             'startColumn' => 46,
             'endColumn' => 62,
             'parameterIndex' => 1,
@@ -216,8 +216,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
  * @param  array<string, mixed>  $filters  category, action, actor_id, entity_type, from, to, q
  * @return LengthAwarePaginator<int, AuditLog>
  */',
-        'startLine' => 66,
-        'endLine' => 69,
+        'startLine' => 67,
+        'endLine' => 70,
         'startColumn' => 5,
         'endColumn' => 5,
         'couldThrow' => false,
@@ -255,8 +255,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             'attributes' => 
             array (
             ),
-            'startLine' => 77,
-            'endLine' => 77,
+            'startLine' => 78,
+            'endLine' => 78,
             'startColumn' => 31,
             'endColumn' => 44,
             'parameterIndex' => 0,
@@ -270,12 +270,12 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
               'code' => '5000',
               'attributes' => 
               array (
-                'startLine' => 77,
-                'endLine' => 77,
-                'startTokenPos' => 264,
-                'startFilePos' => 3059,
-                'endTokenPos' => 264,
-                'endFilePos' => 3062,
+                'startLine' => 78,
+                'endLine' => 78,
+                'startTokenPos' => 267,
+                'startFilePos' => 3101,
+                'endTokenPos' => 267,
+                'endFilePos' => 3104,
               ),
             ),
             'type' => 
@@ -293,8 +293,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             'attributes' => 
             array (
             ),
-            'startLine' => 77,
-            'endLine' => 77,
+            'startLine' => 78,
+            'endLine' => 78,
             'startColumn' => 47,
             'endColumn' => 63,
             'parameterIndex' => 1,
@@ -320,8 +320,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
  * @param  array<string, mixed>  $filters
  * @return Collection<int, AuditLog>
  */',
-        'startLine' => 77,
-        'endLine' => 80,
+        'startLine' => 78,
+        'endLine' => 81,
         'startColumn' => 5,
         'endColumn' => 5,
         'couldThrow' => false,
@@ -359,8 +359,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             'attributes' => 
             array (
             ),
-            'startLine' => 86,
-            'endLine' => 86,
+            'startLine' => 87,
+            'endLine' => 87,
             'startColumn' => 28,
             'endColumn' => 41,
             'parameterIndex' => 0,
@@ -384,8 +384,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
  * @param  array<string, mixed>  $filters
  * @return Builder<AuditLog>
  */',
-        'startLine' => 86,
-        'endLine' => 125,
+        'startLine' => 87,
+        'endLine' => 126,
         'startColumn' => 5,
         'endColumn' => 5,
         'couldThrow' => false,
@@ -423,8 +423,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             'attributes' => 
             array (
             ),
-            'startLine' => 134,
-            'endLine' => 134,
+            'startLine' => 135,
+            'endLine' => 135,
             'startColumn' => 29,
             'endColumn' => 45,
             'parameterIndex' => 0,
@@ -451,8 +451,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
  * @param  iterable<int, AuditLog>  $entries
  * @return list<array<string, mixed>>
  */',
-        'startLine' => 134,
-        'endLine' => 166,
+        'startLine' => 135,
+        'endLine' => 167,
         'startColumn' => 5,
         'endColumn' => 5,
         'couldThrow' => false,
@@ -490,8 +490,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             'attributes' => 
             array (
             ),
-            'startLine' => 168,
-            'endLine' => 168,
+            'startLine' => 169,
+            'endLine' => 169,
             'startColumn' => 33,
             'endColumn' => 46,
             'parameterIndex' => 0,
@@ -512,8 +512,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         array (
         ),
         'docComment' => NULL,
-        'startLine' => 168,
-        'endLine' => 177,
+        'startLine' => 169,
+        'endLine' => 178,
         'startColumn' => 5,
         'endColumn' => 5,
         'couldThrow' => false,
@@ -552,8 +552,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
  *
  * @return list<string>
  */',
-        'startLine' => 185,
-        'endLine' => 188,
+        'startLine' => 186,
+        'endLine' => 189,
         'startColumn' => 5,
         'endColumn' => 5,
         'couldThrow' => false,
@@ -591,8 +591,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             'attributes' => 
             array (
             ),
-            'startLine' => 195,
-            'endLine' => 195,
+            'startLine' => 196,
+            'endLine' => 196,
             'startColumn' => 36,
             'endColumn' => 50,
             'parameterIndex' => 0,
@@ -617,8 +617,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
  *
  * @return list<string>
  */',
-        'startLine' => 195,
-        'endLine' => 203,
+        'startLine' => 196,
+        'endLine' => 204,
         'startColumn' => 5,
         'endColumn' => 5,
         'couldThrow' => false,
@@ -654,8 +654,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         'docComment' => '/**
  * @return list<string>
  */',
-        'startLine' => 208,
-        'endLine' => 211,
+        'startLine' => 209,
+        'endLine' => 212,
         'startColumn' => 5,
         'endColumn' => 5,
         'couldThrow' => false,

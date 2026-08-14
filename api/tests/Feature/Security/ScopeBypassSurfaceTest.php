@@ -66,6 +66,12 @@ class ScopeBypassSurfaceTest extends TestCase
             'Http/Controllers/Api/V1/Registry/ImportBatchController.php',
             'Http/Controllers/Api/V1/Registry/BeneficiaryRoutingController.php',
             'Http/Requests/Registry/UploadImportRequest.php',
+            // Mapping templates are resolved for the BATCH's owning MDA, which is not
+            // necessarily the acting user's scope (the parse job runs on the queue with
+            // no authenticated user at all). Every query is filtered on
+            // `owner_mda_id = $batch->owner_mda_id`, so the scope is re-applied
+            // explicitly rather than widened.
+            'Domain/Registry/Services/ImportMappingService.php',
         ],
         // Governed cross-MDA sharing: every one of these resolves through
         // DataSharingGuard or an owner-approval flow before releasing anything.
@@ -76,6 +82,11 @@ class ScopeBypassSurfaceTest extends TestCase
             'Domain/Referral/Models/Referral.php',
             'Domain/Benefit/Services/BenefitRecorder.php',
             'Domain/Benefit/Policies/BenefitPolicy.php',
+            // Revoking a read grant: the grant is ScopedToMda on the GRANTED mda_id, so
+            // the scope hides it from the owner MDA entitled to revoke it. The policy
+            // reads the beneficiary's owner unscoped precisely to compare against it —
+            // it widens nothing; it is the check that decides who may act.
+            'Domain/Registry/Policies/OwnerMdaPolicy.php',
             'Http/Controllers/Api/V1/Registry/BeneficiaryController.php',
             'Http/Controllers/Api/V1/Registry/ServiceRequestController.php',
             'Http/Controllers/Api/V1/Registry/OwnershipTransferController.php',

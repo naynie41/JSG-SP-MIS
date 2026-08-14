@@ -2,7 +2,7 @@
 
 // odsl-C:\Users\ACER\Desktop\JSG-SP-MIS\JSG-SP-MIS\api\app\Domain\Registry\Support\BeneficiaryRules.php-PHPStan\BetterReflection\Reflection\ReflectionClass-App\Domain\Registry\Support\BeneficiaryRules
 return \PHPStan\Cache\CacheItem::__set_state(array(
-   'variableKey' => 'v2-6.70.0.1-8.3.31-35d732b24e9186cd49da1eb663c0a207dd4fc4a35c125794459ee9eb85b6555d',
+   'variableKey' => 'v2-6.70.0.1-8.3.31-57af87d296a19eb01b46e56789b96d4448419e2d9c2d711fe9ed85aa865da319',
    'data' => 
   array (
     'locatedSource' => 
@@ -31,7 +31,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
     array (
     ),
     'startLine' => 16,
-    'endLine' => 74,
+    'endLine' => 79,
     'startColumn' => 1,
     'endColumn' => 1,
     'parentClassName' => NULL,
@@ -142,8 +142,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             'attributes' => 
             array (
             ),
-            'startLine' => 35,
-            'endLine' => 35,
+            'startLine' => 40,
+            'endLine' => 40,
             'startColumn' => 44,
             'endColumn' => 56,
             'parameterIndex' => 0,
@@ -163,9 +163,13 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         'attributes' => 
         array (
         ),
-        'docComment' => NULL,
-        'startLine' => 35,
-        'endLine' => 38,
+        'docComment' => '/**
+ * Delegates to {@see CanonicalSchema}, which is the authoritative declaration. The
+ * two consts above stay because an admin endpoint publishes them as its response
+ * shape; `RegistryRulesConsistencyTest` asserts they never drift apart from it.
+ */',
+        'startLine' => 40,
+        'endLine' => 43,
         'startColumn' => 5,
         'endColumn' => 5,
         'couldThrow' => false,
@@ -201,8 +205,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         'docComment' => '/**
  * @return array<string, mixed>
  */',
-        'startLine' => 43,
-        'endLine' => 60,
+        'startLine' => 48,
+        'endLine' => 65,
         'startColumn' => 5,
         'endColumn' => 5,
         'couldThrow' => false,
@@ -240,8 +244,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
  *
  * @return array<string, string>
  */',
-        'startLine' => 67,
-        'endLine' => 73,
+        'startLine' => 72,
+        'endLine' => 78,
         'startColumn' => 5,
         'endColumn' => 5,
         'couldThrow' => false,

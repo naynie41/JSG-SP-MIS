@@ -5,6 +5,8 @@ declare(strict_types=1);
 namespace App\Domain\Registry\Policies;
 
 use App\Domain\Access\Models\User;
+use App\Domain\Registry\Models\Beneficiary;
+use App\Domain\Registry\Models\BeneficiaryServiceGrant;
 use App\Domain\Registry\Models\ServiceRequest;
 
 /**
@@ -28,5 +30,28 @@ class OwnerMdaPolicy
         return $user->hasPermission('beneficiary.approve')
             && $user->mda_id !== null
             && $user->mda_id === $request->to_mda_id;
+    }
+
+    /**
+     * Revoke an open read grant (FR-OWN-07).
+     *
+     * Symmetry with `decide`: the MDA that opened the access closes it, using the same
+     * `beneficiary.approve` permission. Authority is checked against the beneficiary's
+     * CURRENT owner rather than the request's `to_mda_id` — were ownership ever
+     * transferred (FR-OWN-05), the right to withdraw access has to follow the record,
+     * not stay with the MDA that happened to grant it.
+     *
+     * A System Administrator holding `mda-access.edit` ("Revoke cross-MDA access") may
+     * override, which is the same capability that revokes an administrative grant.
+     */
+    public function revoke(User $user, BeneficiaryServiceGrant $grant): bool
+    {
+        if ($user->hasPermission('mda-access.edit') && $user->canAccessAllMdas()) {
+            return true;
+        }
+
+        return $user->hasPermission('beneficiary.approve')
+            && $user->mda_id !== null
+            && $user->mda_id === $grant->beneficiary()->withoutGlobalScopes()->value('owner_mda_id');
     }
 }

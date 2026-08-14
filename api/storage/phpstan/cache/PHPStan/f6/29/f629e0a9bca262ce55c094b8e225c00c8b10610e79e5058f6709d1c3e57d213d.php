@@ -16,6 +16,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
           'auditlogger' => 'App\\Domain\\Audit\\Services\\AuditLogger',
           'beneficiary' => 'App\\Domain\\Registry\\Models\\Beneficiary',
           'identifierhasher' => 'App\\Domain\\Registry\\Support\\IdentifierHasher',
+          'normalizationservice' => 'App\\Domain\\Registry\\Support\\NormalizationService',
           'collection' => 'Illuminate\\Support\\Collection',
         ),
          'className' => 'App\\Domain\\Registry\\Services\\BeneficiaryLookupService',
@@ -43,6 +44,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
           'auditlogger' => 'App\\Domain\\Audit\\Services\\AuditLogger',
           'beneficiary' => 'App\\Domain\\Registry\\Models\\Beneficiary',
           'identifierhasher' => 'App\\Domain\\Registry\\Support\\IdentifierHasher',
+          'normalizationservice' => 'App\\Domain\\Registry\\Support\\NormalizationService',
           'collection' => 'Illuminate\\Support\\Collection',
         ),
          'className' => 'App\\Domain\\Registry\\Services\\BeneficiaryLookupService',
@@ -59,6 +61,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             'auditlogger' => 'App\\Domain\\Audit\\Services\\AuditLogger',
             'beneficiary' => 'App\\Domain\\Registry\\Models\\Beneficiary',
             'identifierhasher' => 'App\\Domain\\Registry\\Support\\IdentifierHasher',
+            'normalizationservice' => 'App\\Domain\\Registry\\Support\\NormalizationService',
             'collection' => 'Illuminate\\Support\\Collection',
           ),
            'className' => 'App\\Domain\\Registry\\Services\\BeneficiaryLookupService',
@@ -96,6 +99,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
           'auditlogger' => 'App\\Domain\\Audit\\Services\\AuditLogger',
           'beneficiary' => 'App\\Domain\\Registry\\Models\\Beneficiary',
           'identifierhasher' => 'App\\Domain\\Registry\\Support\\IdentifierHasher',
+          'normalizationservice' => 'App\\Domain\\Registry\\Support\\NormalizationService',
           'collection' => 'Illuminate\\Support\\Collection',
         ),
          'className' => 'App\\Domain\\Registry\\Services\\BeneficiaryLookupService',
@@ -112,6 +116,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             'auditlogger' => 'App\\Domain\\Audit\\Services\\AuditLogger',
             'beneficiary' => 'App\\Domain\\Registry\\Models\\Beneficiary',
             'identifierhasher' => 'App\\Domain\\Registry\\Support\\IdentifierHasher',
+            'normalizationservice' => 'App\\Domain\\Registry\\Support\\NormalizationService',
             'collection' => 'Illuminate\\Support\\Collection',
           ),
            'className' => 'App\\Domain\\Registry\\Services\\BeneficiaryLookupService',
@@ -143,7 +148,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
     ),
     1 => 
     array (
-      'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Registry\\Services\\BeneficiaryLookupService.php' => 'cd66dde95ee8ec1554efaa076e51afe9d7efc53ad2ba73d62ae8697885bb4ff9',
+      'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Registry\\Services\\BeneficiaryLookupService.php' => '34e3e4b6c33186b275b1e0625c6ae6d8fef193f3fb91fbcdb79cd3e8a3723587',
     ),
   ),
 ));

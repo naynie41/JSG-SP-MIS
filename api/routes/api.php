@@ -176,6 +176,17 @@ Route::prefix('v1')->group(function (): void {
         Route::get('/beneficiaries/imports/{batch}', [ImportBatchController::class, 'show'])
             ->middleware('permission:beneficiary.view')->name('beneficiaries.imports.show');
         // Resolve a flagged row: new (with justification) / link-serve / skip (FR-DUP-05).
+        /*
+        | Data Import & Mapping (CLAUDE.md §11). Between raw upload and validation:
+        | the officer confirms which source column holds each canonical field. NIN,
+        | BVN, name and phone must be answered explicitly on every import — a saved
+        | template pre-fills the proposal but never satisfies the confirmation.
+        */
+        Route::get('/beneficiaries/imports/{batch}/mapping', [ImportBatchController::class, 'mapping'])
+            ->middleware('permission:beneficiary.view')->name('imports.mapping.show');
+        Route::put('/beneficiaries/imports/{batch}/mapping', [ImportBatchController::class, 'confirmMapping'])
+            ->middleware('permission:beneficiary.create')->name('imports.mapping.confirm');
+
         Route::post('/beneficiaries/imports/{batch}/rows/{rowNumber}/resolve', [ImportBatchController::class, 'resolveRow'])
             ->middleware('permission:beneficiary.create')->name('beneficiaries.imports.rows.resolve');
         Route::post('/beneficiaries/imports/{batch}/confirm', [ImportBatchController::class, 'confirm'])
@@ -195,6 +206,20 @@ Route::prefix('v1')->group(function (): void {
             ->middleware('permission:beneficiary.approve')->name('service-requests.accept');
         Route::post('/service-requests/{serviceRequest}/decline', [ServiceRequestController::class, 'decline'])
             ->middleware('permission:beneficiary.approve')->name('service-requests.decline');
+        /*
+        | Withdraw the read grant an acceptance opened (FR-OWN-07). No `permission:`
+        | middleware here: two different capabilities may revoke — the owner MDA via
+        | `beneficiary.approve` and a System Administrator via `mda-access.edit` — and
+        | route middleware can only require one. OwnerMdaPolicy::revoke authorizes both.
+        */
+        Route::post('/service-grants/{grant}/revoke', [ServiceRequestController::class, 'revoke'])
+            ->name('service-grants.revoke');
+        // Who holds cross-MDA access to MY beneficiary. Distinct from the platform-wide
+        // /data-sharing/grants oversight view (cross-mda.view, which no MDA role holds):
+        // this is the owner's own record, and an owner must see access to exercise
+        // revocation over it. OwnerMdaPolicy::viewGrants bounds it to the owner.
+        Route::get('/beneficiaries/{beneficiary}/service-grants', [ServiceRequestController::class, 'grants'])
+            ->middleware('permission:beneficiary.view')->name('beneficiaries.service-grants');
 
         // Inbound REST registration intake (FR-REG-02, source=api) — rate limited.
         Route::post('/beneficiaries/intake', [BeneficiaryIntakeController::class, 'store'])

@@ -16,7 +16,9 @@ via `registration_source` + `import_batch_id` + `original_record_id`.
 | Kobo Collect export | `kobo` | Bulk import pipeline (`source=kobo`) |
 | ODK export | `odk` | Bulk import pipeline (`source=odk`) |
 | Inbound REST API | `api` | `POST /api/v1/beneficiaries/intake` (see `docs/registry-intake.md`) |
-| Existing government systems / future sources | `government_system` / … | Add an adapter (below) |
+| SOCU / existing government systems | `socu` / `government_system` | Scheduled or triggered connector sync (`SyncEngine`, Phase 7) |
+| Offline capture, flushed later | the capturing source | `POST /api/v1/sync/offline-batches` (`SyncEngine`, same pipeline) |
+| Future sources | … | Add an adapter (below) — it serves file import and sync alike |
 
 > Read/browse/search, **owner-only correction of existing records** (edit/soft
 > delete), the ownership + non-owner **serve/lookup** seam, and household
@@ -38,8 +40,21 @@ owner **accepts** or **declines** (a reason is required to decline). State machi
   **read-only** — edit stays owner-only. It also authorizes serving (enroll /
   benefit delivery); without the grant an intervention is refused
   (`409 SERVICE_REQUEST_REQUIRED`).
+- **Revocable** (`POST /service-grants/{grant}/revoke`): the beneficiary's CURRENT owner
+  MDA, or a System Administrator with `mda-access.edit`, sets `revoked_at` / `revoked_by`
+  / an optional reason. The serving MDA cannot revoke its own grant. Soft and idempotent:
+  the row stays as the record of the access episode, a repeat call changes nothing, and
+  the partial unique index `(beneficiary_id, mda_id) WHERE revoked_at IS NULL` frees the
+  pair so access can later be re-granted as a NEW row.
+  Enforcement is automatic — all three gates resolve the grant through
+  `ServiceRequestService::hasActiveGrant()`, so there is no separate revocation check
+  anywhere and none should be added. Revocation is **forward-only**: interventions already
+  recorded stand, ownership is untouched, and the Service Request stays `accepted`. It
+  closes the service-request basis only — an active Referral still authorizes delivery.
 - **Audited**: `service_request.created` (Auditable), `service_request.accepted` /
-  `service_request.declined`, and `beneficiary.access_granted` on the grant.
+  `service_request.declined`, and `beneficiary.access_granted` / `beneficiary.access_revoked`
+  on the grant. Revocation also notifies the serving MDA — without naming the beneficiary,
+  whom that MDA may no longer read.
 - **Distinct from the Referral flow** (outbound) and from ownership transfer
   (which *does* move ownership). `OwnerMdaPolicy` gates the decision to the owner
   MDA; either party reads via inbox/outbox.
@@ -95,16 +110,33 @@ the importing MDA (keyed by `(owner_mda_id, original_record_id)`, idempotent),
 opens a membership (single-open rule enforced; DB partial-unique backstop), sets
 the head from a flagged row, and stamps provenance (`source` + `import_batch_id`).
 
-Recognised source columns (via the adapters' alias mapping):
-`household_id` / `household_ref` / `household_code` (the key), `household_role` /
-`relationship` (role), and `household_head` / `is_head` (truthy → head). The REST
-intake accepts the same as `household_id` / `household_role` / `household_head`.
+The canonical field is **`household_ref`**. Adapters resolve it from the first
+non-empty of `household_id` / `household_ref` / `household_code` / `household` /
+`hh_id`; the role from `household_role` / `relationship` / `role_in_household` /
+`hh_role`; and the head flag from `household_head` / `is_head` / `head` / `hh_head`
+(truthy values: `1`, `true`, `yes`, `y`, `head` — see
+`HouseholdIngestionService::isHeadFlag()`, which every door shares so no two
+sources can disagree about who heads a household).
+
+**Every source forms households, not just file uploads.** All four doors call
+`HouseholdIngestionService::attach()`:
+
+| Door | Sources | Where |
+| --- | --- | --- |
+| File import | Excel, CSV, Kobo, ODK | `ImportCommitter` (reads `import_rows.household_ref`) |
+| REST intake | `api` | `BeneficiaryIntakeController` (accepts `household_ref`, or `household_id` as an alias) |
+| Connector sync | SOCU, government systems | `SyncEngine` (reads the adapter's mapped `household_ref`) |
+| Offline batch | whichever source captured it | `SyncEngine`, same path as a connector |
+
+Sync passes a null `import_batch_id` — those records have no batch — but is
+otherwise identical. Since manual creation was removed, a source's household
+reference has no other way in: whatever a door drops here is lost.
 
 ## Shared building blocks
 
 | Piece | Role |
 | --- | --- |
-| `Support/BeneficiaryRules` | The single registration ruleset — used by manual, import, and API paths |
+| `Support/BeneficiaryRules` | The single registration ruleset — used by every ingestion door (import, REST intake, sync) |
 | `Services/BeneficiaryRegistrar` | The only place a beneficiary is persisted; stamps owner + provenance + origin, audited |
 | `Imports/SpreadsheetReader` | Reads Excel/CSV (incl. Kobo/ODK exports) into header-keyed rows |
 | `Imports/ImportRowValidator` | Normalises + validates one canonical row with `BeneficiaryRules`, classifying failures into identity-reject / non-identity-drop / duplicate |

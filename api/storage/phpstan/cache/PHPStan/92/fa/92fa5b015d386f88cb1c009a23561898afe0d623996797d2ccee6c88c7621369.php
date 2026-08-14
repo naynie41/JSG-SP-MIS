@@ -182,7 +182,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
     ),
     1 => 
     array (
-      'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Registry\\Support\\BeneficiaryRules.php' => '35d732b24e9186cd49da1eb663c0a207dd4fc4a35c125794459ee9eb85b6555d',
+      'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Registry\\Support\\BeneficiaryRules.php' => '57af87d296a19eb01b46e56789b96d4448419e2d9c2d711fe9ed85aa865da319',
     ),
   ),
 ));

@@ -13,6 +13,12 @@ namespace App\Domain\Registry\Enums;
 enum ImportStatus: string
 {
     case Pending = 'pending';
+    /**
+     * Uploaded and profiled, waiting for a human to confirm which source column is
+     * which canonical field (CLAUDE.md §11). Nothing is parsed or screened in this
+     * state — an unconfirmed identity mapping must never reach the duplicate cascade.
+     */
+    case MappingRequired = 'mapping_required';
     case Processing = 'processing';
     case PreviewReady = 'preview_ready';
     case Committing = 'committing';

@@ -25,6 +25,7 @@ use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Facades\Storage;
 use PhpOffice\PhpSpreadsheet\Spreadsheet;
 use PhpOffice\PhpSpreadsheet\Writer\Xlsx as XlsxWriter;
+use Tests\Concerns\ConfirmsImportMapping;
 use Tests\TestCase;
 
 /**
@@ -34,7 +35,7 @@ use Tests\TestCase;
  */
 class BulkImportTest extends TestCase
 {
-    use RefreshDatabase;
+    use ConfirmsImportMapping, RefreshDatabase;
 
     private Mda $mdaA;
 
@@ -104,7 +105,7 @@ class BulkImportTest extends TestCase
             ->post('/api/v1/beneficiaries/imports', ['file' => $file, 'activity_id' => $this->activityA->id], ['Accept' => 'application/json'])
             ->assertCreated();
 
-        return ImportBatch::query()->withoutGlobalScope(MdaScope::class)->findOrFail($response->json('data.id'));
+        return $this->confirmImportMapping(ImportBatch::query()->withoutGlobalScope(MdaScope::class)->findOrFail($response->json('data.id')));
     }
 
     public function test_upload_produces_a_preview_and_persists_nothing(): void

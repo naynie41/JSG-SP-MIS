@@ -5,13 +5,21 @@ and passes lint + static analysis. Requirement IDs trace to the PRD.
 
 ## FR-REG — Registration & hybrid registry
 
-- [x] **FR-REG-01** Manual registration of an **individual** and a **household** (with members)
-  — API (`POST /beneficiaries`, `POST /households`) + UI forms. Owned by the caller's MDA,
-  provenance `manual`, audited.
+- [x] **FR-REG-01** Registration of an **individual** and a **household** (with members) —
+  **source-only, no manual single-record entry** (CLAUDE.md §8). Beneficiaries enter through
+  the ingestion doors in FR-REG-02; households are formed from the source
+  **`household_ref`** field by `HouseholdIngestionService`, which finds-or-creates the
+  household owned by the importing MDA, opens a membership under the single-open rule, and
+  stamps provenance. Owned by the importing MDA, audited.
+  - Superseded: this item originally shipped `POST /beneficiaries` + `POST /households`
+    with UI forms and provenance `manual`. Those were removed; `NoManualCreateRouteTest`
+    keeps them removed.
 - [x] **FR-REG-02** Hybrid sources through one pipeline:
   - [x] Excel/CSV upload (queued parse → preview → confirm)
   - [x] Kobo Collect + ODK exports (source adapters map columns → canonical schema)
   - [x] Inbound REST API intake (`POST /beneficiaries/intake`, authenticated + rate-limited)
+  - [x] SOCU / government-system connectors + offline-batch flush through `SyncEngine` (Phase 7),
+        running the same validation → dedup → ownership → household-formation pipeline
   - [x] Clean **adapter interface** so government systems / future sources plug in with no core changes
 - [x] **FR-REG-03** Provenance on every record (`registration_source`, `import_batch_id`,
   `original_record_id`); surfaced in the beneficiary detail.

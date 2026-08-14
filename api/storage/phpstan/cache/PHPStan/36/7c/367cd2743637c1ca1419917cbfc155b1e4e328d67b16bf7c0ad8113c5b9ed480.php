@@ -2,7 +2,7 @@
 
 // odsl-C:\Users\ACER\Desktop\JSG-SP-MIS\JSG-SP-MIS\api\app\Domain\Matching\Scoring\FieldNormalizer.php-PHPStan\BetterReflection\Reflection\ReflectionClass-App\Domain\Matching\Scoring\FieldNormalizer
 return \PHPStan\Cache\CacheItem::__set_state(array(
-   'variableKey' => 'v2-6.70.0.1-8.3.31-186242c59e4c3594b279d0b5aa84bb0fee5d9c7a25ef08b8e05d55541dbbc04c',
+   'variableKey' => 'v2-6.70.0.1-8.3.31-d6b993e628a9a931e824623777a1b39c996f1f5e72ba36e94673dbdecad2ae81',
    'data' => 
   array (
     'locatedSource' => 
@@ -23,15 +23,25 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
     'isBackedEnum' => false,
     'modifiers' => 0,
     'docComment' => '/**
- * Normalises a raw field value into a comparable form before scoring:
- * identifiers → digits only; dates → `Y-m-d`; everything else → lower-cased,
- * whitespace-collapsed text. Returns null when nothing comparable remains.
+ * Normalises a raw field value into a comparable form before scoring.
+ *
+ * Both sides of a comparison pass through here, so this is where two written forms of
+ * the same fact are reconciled. It delegates to the one {@see NormalizationService} that
+ * the registry uses, rather than keeping a second set of rules: when the two drifted, a
+ * value stored one way and compared another silently stopped matching.
+ *
+ * Two of those drifts were real and are fixed by delegating:
+ *  - PHONE: digit-stripping alone left `+2348031234567` and `08031234567` as different
+ *    strings, so the exact phone comparator never matched them.
+ *  - DATE: `strtotime()` reads `12/03/1995` as 3 December (month-first). Sources here
+ *    are written day-first, so the date — and the birth-year half of the blocking key —
+ *    could be nine months out.
  */',
     'attributes' => 
     array (
     ),
-    'startLine' => 14,
-    'endLine' => 46,
+    'startLine' => 25,
+    'endLine' => 58,
     'startColumn' => 1,
     'endColumn' => 1,
     'parentClassName' => NULL,
@@ -46,9 +56,117 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
     ),
     'immediateProperties' => 
     array (
+      'normalizer' => 
+      array (
+        'declaringClassName' => 'App\\Domain\\Matching\\Scoring\\FieldNormalizer',
+        'implementingClassName' => 'App\\Domain\\Matching\\Scoring\\FieldNormalizer',
+        'name' => 'normalizer',
+        'modifiers' => 132,
+        'type' => 
+        array (
+          'class' => 'PHPStan\\BetterReflection\\Reflection\\ReflectionNamedType',
+          'data' => 
+          array (
+            'name' => 'App\\Domain\\Registry\\Support\\NormalizationService',
+            'isIdentifier' => false,
+          ),
+        ),
+        'default' => 
+        array (
+          'code' => 'new \\App\\Domain\\Registry\\Support\\NormalizationService()',
+          'attributes' => 
+          array (
+            'startLine' => 27,
+            'endLine' => 27,
+            'startTokenPos' => 49,
+            'startFilePos' => 1128,
+            'endTokenPos' => 51,
+            'endFilePos' => 1151,
+          ),
+        ),
+        'docComment' => NULL,
+        'attributes' => 
+        array (
+        ),
+        'startLine' => 27,
+        'endLine' => 27,
+        'startColumn' => 33,
+        'endColumn' => 108,
+        'isPromoted' => true,
+        'declaredAtCompileTime' => true,
+        'immediateVirtual' => false,
+        'immediateHooks' => 
+        array (
+        ),
+      ),
     ),
     'immediateMethods' => 
     array (
+      '__construct' => 
+      array (
+        'name' => '__construct',
+        'parameters' => 
+        array (
+          'normalizer' => 
+          array (
+            'name' => 'normalizer',
+            'default' => 
+            array (
+              'code' => 'new \\App\\Domain\\Registry\\Support\\NormalizationService()',
+              'attributes' => 
+              array (
+                'startLine' => 27,
+                'endLine' => 27,
+                'startTokenPos' => 49,
+                'startFilePos' => 1128,
+                'endTokenPos' => 51,
+                'endFilePos' => 1151,
+              ),
+            ),
+            'type' => 
+            array (
+              'class' => 'PHPStan\\BetterReflection\\Reflection\\ReflectionNamedType',
+              'data' => 
+              array (
+                'name' => 'App\\Domain\\Registry\\Support\\NormalizationService',
+                'isIdentifier' => false,
+              ),
+            ),
+            'isVariadic' => false,
+            'byRef' => false,
+            'isPromoted' => true,
+            'attributes' => 
+            array (
+            ),
+            'startLine' => 27,
+            'endLine' => 27,
+            'startColumn' => 33,
+            'endColumn' => 108,
+            'parameterIndex' => 0,
+            'isOptional' => true,
+          ),
+        ),
+        'returnsReference' => false,
+        'returnType' => NULL,
+        'attributes' => 
+        array (
+        ),
+        'docComment' => NULL,
+        'startLine' => 27,
+        'endLine' => 27,
+        'startColumn' => 5,
+        'endColumn' => 112,
+        'couldThrow' => false,
+        'isClosure' => false,
+        'isGenerator' => false,
+        'isVariadic' => false,
+        'modifiers' => 1,
+        'namespace' => 'App\\Domain\\Matching\\Scoring',
+        'declaringClassName' => 'App\\Domain\\Matching\\Scoring\\FieldNormalizer',
+        'implementingClassName' => 'App\\Domain\\Matching\\Scoring\\FieldNormalizer',
+        'currentClassName' => 'App\\Domain\\Matching\\Scoring\\FieldNormalizer',
+        'aliasName' => NULL,
+      ),
       'normalize' => 
       array (
         'name' => 'normalize',
@@ -73,8 +191,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             'attributes' => 
             array (
             ),
-            'startLine' => 16,
-            'endLine' => 16,
+            'startLine' => 29,
+            'endLine' => 29,
             'startColumn' => 31,
             'endColumn' => 43,
             'parameterIndex' => 0,
@@ -99,8 +217,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             'attributes' => 
             array (
             ),
-            'startLine' => 16,
-            'endLine' => 16,
+            'startLine' => 29,
+            'endLine' => 29,
             'startColumn' => 46,
             'endColumn' => 57,
             'parameterIndex' => 1,
@@ -140,8 +258,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         array (
         ),
         'docComment' => NULL,
-        'startLine' => 16,
-        'endLine' => 45,
+        'startLine' => 29,
+        'endLine' => 57,
         'startColumn' => 5,
         'endColumn' => 5,
         'couldThrow' => false,

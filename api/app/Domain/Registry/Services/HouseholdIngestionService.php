@@ -27,6 +27,18 @@ class HouseholdIngestionService
     public function __construct(private readonly AuditLogger $audit) {}
 
     /**
+     * Interpret a source "head of household" flag.
+     *
+     * Lives here so every ingestion door reads the flag identically — the file
+     * pipeline and sync both call it. A second copy would let one source quietly
+     * disagree with another about who heads a household.
+     */
+    public static function isHeadFlag(?string $value): bool
+    {
+        return $value !== null && in_array(strtolower(trim($value)), ['1', 'true', 'yes', 'y', 'head'], true);
+    }
+
+    /**
      * Attach a beneficiary to the source-referenced household, forming the
      * household on first sight. Safe to call repeatedly (re-imports).
      */

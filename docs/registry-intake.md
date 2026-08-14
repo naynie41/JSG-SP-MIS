@@ -34,9 +34,18 @@ account; exceeding it returns `429` with `Retry-After`).
 | `lga` | required, a Jigawa LGA (e.g. `dutse`) |
 | `ward` | required, string |
 | `original_record_id` | **required** — the caller's own id for this record |
+| `household_ref` | optional — the source's own household key (see §2a) |
+| `household_role` | optional — `head` `spouse` `child` `parent` `sibling` `other` |
+| `household_head` | optional boolean — marks this person as the head |
 
-Validation is identical to manual registration (`BeneficiaryRules`). NIN/BVN/phone
-are normalised (non-digits stripped) before validation.
+Validation is the shared `BeneficiaryRules` ruleset — identical to every other
+ingestion source. NIN/BVN/phone are normalised (non-digits stripped) before
+validation.
+
+> There is **no manual single-record create endpoint**. This intake is a *source*
+> channel (`source = "api"`): it requires the caller's own `original_record_id` so
+> the record stays traceable to origin. `POST /beneficiaries` and `POST /households`
+> do not exist.
 
 ### Responses
 
@@ -55,6 +64,31 @@ are normalised (non-digits stripped) before validation.
   "original_record_id": "PARTNER-SYS-4821"
 }
 ```
+
+## 2a. Households are formed from the source, never created by hand
+
+Since there is no manual create path, the **only** way to express household
+grouping is a household reference on the record itself. Supply the source's own
+household key and the system finds-or-creates that household (owned by your MDA,
+keyed by `(owner_mda_id, household key)`, idempotent across re-sends) and opens a
+membership for the person.
+
+The canonical field name is **`household_ref`**. For file imports the adapters also
+accept `household_id`, `household_code`, `household`, `hh_id`; the REST intake
+accepts `household_ref` or `household_id`. The head flag is truthy on `1`, `true`,
+`yes`, `y`, `head`.
+
+Two rules worth knowing before you integrate:
+
+- **One open membership per person.** If someone already belongs to a household,
+  a later record naming a different household does **not** move them — the existing
+  membership stands and the move must be made deliberately through the membership
+  API. Ingestion never reshuffles families silently.
+- **Absent means absent.** A record with no household reference creates no
+  household; a beneficiary-only source is perfectly valid.
+
+This applies to every source — file upload, this REST intake, SOCU/government
+connectors, and flushed offline batches all run the same formation step.
 
 ## 2. Kobo / ODK ingestion — `source = "kobo" | "odk"`
 
@@ -86,8 +120,8 @@ and a worked example.
 Create/intake paths accept an optional **client-supplied idempotency key** so a
 future offline client can flush its queue safely without creating duplicates.
 
-- `POST /beneficiaries` and `POST /beneficiaries/intake` accept `idempotency_key`
-  (the intake endpoint defaults it to `original_record_id` when omitted).
+- `POST /beneficiaries/intake` accepts `idempotency_key` (defaulting to
+  `original_record_id` when omitted).
 - The key is unique **per owning MDA**. A repeat submission with the same key
   resolves to the existing record and returns **`200 OK`** (a first submission
   returns `201 Created`).

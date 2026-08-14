@@ -2,7 +2,7 @@
 
 // odsl-C:\Users\ACER\Desktop\JSG-SP-MIS\JSG-SP-MIS\api\app\Domain\Registry\Imports\ImportRowValidator.php-PHPStan\BetterReflection\Reflection\ReflectionClass-App\Domain\Registry\Imports\ImportRowValidator
 return \PHPStan\Cache\CacheItem::__set_state(array(
-   'variableKey' => 'v2-6.70.0.1-8.3.31-a2a79f2a0e80d5129e9b0d6136343c7bf97ce353de73b10bcff97f1e0326ad45',
+   'variableKey' => 'v2-6.70.0.1-8.3.31-98ef143626a1fc075505369f267ede3d7cfc66803b53e344345faaee47711278',
    'data' => 
   array (
     'locatedSource' => 
@@ -38,8 +38,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
     'attributes' => 
     array (
     ),
-    'startLine' => 25,
-    'endLine' => 121,
+    'startLine' => 26,
+    'endLine' => 139,
     'startColumn' => 1,
     'endColumn' => 1,
     'parentClassName' => NULL,
@@ -51,41 +51,159 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
     ),
     'immediateConstants' => 
     array (
-      'FIELDS' => 
+    ),
+    'immediateProperties' => 
+    array (
+      'normalizer' => 
       array (
         'declaringClassName' => 'App\\Domain\\Registry\\Imports\\ImportRowValidator',
         'implementingClassName' => 'App\\Domain\\Registry\\Imports\\ImportRowValidator',
-        'name' => 'FIELDS',
-        'modifiers' => 4,
-        'type' => NULL,
-        'value' => 
+        'name' => 'normalizer',
+        'modifiers' => 132,
+        'type' => 
         array (
-          'code' => '[\'first_name\', \'middle_name\', \'last_name\', \'nin\', \'bvn\', \'phone\', \'date_of_birth\', \'gender\', \'address\', \'lga\', \'ward\']',
+          'class' => 'PHPStan\\BetterReflection\\Reflection\\ReflectionNamedType',
+          'data' => 
+          array (
+            'name' => 'App\\Domain\\Registry\\Support\\NormalizationService',
+            'isIdentifier' => false,
+          ),
+        ),
+        'default' => 
+        array (
+          'code' => 'new \\App\\Domain\\Registry\\Support\\NormalizationService()',
           'attributes' => 
           array (
-            'startLine' => 27,
-            'endLine' => 30,
-            'startTokenPos' => 51,
-            'startFilePos' => 1073,
-            'endTokenPos' => 86,
-            'endFilePos' => 1213,
+            'startLine' => 28,
+            'endLine' => 28,
+            'startTokenPos' => 64,
+            'startFilePos' => 1189,
+            'endTokenPos' => 66,
+            'endFilePos' => 1212,
           ),
         ),
         'docComment' => NULL,
         'attributes' => 
         array (
         ),
-        'startLine' => 27,
-        'endLine' => 30,
-        'startColumn' => 5,
-        'endColumn' => 6,
+        'startLine' => 28,
+        'endLine' => 28,
+        'startColumn' => 33,
+        'endColumn' => 108,
+        'isPromoted' => true,
+        'declaredAtCompileTime' => true,
+        'immediateVirtual' => false,
+        'immediateHooks' => 
+        array (
+        ),
       ),
-    ),
-    'immediateProperties' => 
-    array (
     ),
     'immediateMethods' => 
     array (
+      '__construct' => 
+      array (
+        'name' => '__construct',
+        'parameters' => 
+        array (
+          'normalizer' => 
+          array (
+            'name' => 'normalizer',
+            'default' => 
+            array (
+              'code' => 'new \\App\\Domain\\Registry\\Support\\NormalizationService()',
+              'attributes' => 
+              array (
+                'startLine' => 28,
+                'endLine' => 28,
+                'startTokenPos' => 64,
+                'startFilePos' => 1189,
+                'endTokenPos' => 66,
+                'endFilePos' => 1212,
+              ),
+            ),
+            'type' => 
+            array (
+              'class' => 'PHPStan\\BetterReflection\\Reflection\\ReflectionNamedType',
+              'data' => 
+              array (
+                'name' => 'App\\Domain\\Registry\\Support\\NormalizationService',
+                'isIdentifier' => false,
+              ),
+            ),
+            'isVariadic' => false,
+            'byRef' => false,
+            'isPromoted' => true,
+            'attributes' => 
+            array (
+            ),
+            'startLine' => 28,
+            'endLine' => 28,
+            'startColumn' => 33,
+            'endColumn' => 108,
+            'parameterIndex' => 0,
+            'isOptional' => true,
+          ),
+        ),
+        'returnsReference' => false,
+        'returnType' => NULL,
+        'attributes' => 
+        array (
+        ),
+        'docComment' => NULL,
+        'startLine' => 28,
+        'endLine' => 28,
+        'startColumn' => 5,
+        'endColumn' => 112,
+        'couldThrow' => false,
+        'isClosure' => false,
+        'isGenerator' => false,
+        'isVariadic' => false,
+        'modifiers' => 1,
+        'namespace' => 'App\\Domain\\Registry\\Imports',
+        'declaringClassName' => 'App\\Domain\\Registry\\Imports\\ImportRowValidator',
+        'implementingClassName' => 'App\\Domain\\Registry\\Imports\\ImportRowValidator',
+        'currentClassName' => 'App\\Domain\\Registry\\Imports\\ImportRowValidator',
+        'aliasName' => NULL,
+      ),
+      'fields' => 
+      array (
+        'name' => 'fields',
+        'parameters' => 
+        array (
+        ),
+        'returnsReference' => false,
+        'returnType' => 
+        array (
+          'class' => 'PHPStan\\BetterReflection\\Reflection\\ReflectionNamedType',
+          'data' => 
+          array (
+            'name' => 'array',
+            'isIdentifier' => true,
+          ),
+        ),
+        'attributes' => 
+        array (
+        ),
+        'docComment' => '/**
+ * The canonical field set — declared once in {@see CanonicalSchema}.
+ *
+ * @return list<string>
+ */',
+        'startLine' => 35,
+        'endLine' => 38,
+        'startColumn' => 5,
+        'endColumn' => 5,
+        'couldThrow' => false,
+        'isClosure' => false,
+        'isGenerator' => false,
+        'isVariadic' => false,
+        'modifiers' => 4,
+        'namespace' => 'App\\Domain\\Registry\\Imports',
+        'declaringClassName' => 'App\\Domain\\Registry\\Imports\\ImportRowValidator',
+        'implementingClassName' => 'App\\Domain\\Registry\\Imports\\ImportRowValidator',
+        'currentClassName' => 'App\\Domain\\Registry\\Imports\\ImportRowValidator',
+        'aliasName' => NULL,
+      ),
       'validate' => 
       array (
         'name' => 'validate',
@@ -110,8 +228,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             'attributes' => 
             array (
             ),
-            'startLine' => 41,
-            'endLine' => 41,
+            'startLine' => 49,
+            'endLine' => 49,
             'startColumn' => 30,
             'endColumn' => 42,
             'parameterIndex' => 0,
@@ -140,8 +258,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
  *     duplicate_errors: list<array{field: string, message: string}>,
  * }
  */',
-        'startLine' => 41,
-        'endLine' => 92,
+        'startLine' => 49,
+        'endLine' => 100,
         'startColumn' => 5,
         'endColumn' => 5,
         'couldThrow' => false,
@@ -179,8 +297,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             'attributes' => 
             array (
             ),
-            'startLine' => 98,
-            'endLine' => 98,
+            'startLine' => 106,
+            'endLine' => 106,
             'startColumn' => 32,
             'endColumn' => 44,
             'parameterIndex' => 0,
@@ -204,8 +322,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
  * @param  array<string, string>  $values
  * @return array<string, mixed>
  */',
-        'startLine' => 98,
-        'endLine' => 120,
+        'startLine' => 106,
+        'endLine' => 138,
         'startColumn' => 5,
         'endColumn' => 5,
         'couldThrow' => false,

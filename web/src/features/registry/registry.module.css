@@ -98,6 +98,26 @@
   gap: 2px;
 }
 
+/* Cross-MDA access grants (FR-OWN-07) — same row rhythm as household members. */
+.grantList {
+  list-style: none;
+  margin: var(--space-3) 0 0;
+  padding: 0;
+}
+
+.grantRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-3);
+  padding: var(--space-3) 0;
+  border-bottom: 1px solid var(--border);
+}
+
+.grantRow:last-child {
+  border-bottom: none;
+}
+
 .summaryRow {
   display: flex;
   flex-wrap: wrap;

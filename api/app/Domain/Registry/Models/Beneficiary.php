@@ -17,6 +17,7 @@ use App\Domain\Registry\Enums\ConsentStatus;
 use App\Domain\Registry\Enums\Gender;
 use App\Domain\Registry\Enums\RegistrationSource;
 use App\Domain\Registry\Support\IdentifierHasher;
+use App\Domain\Registry\Support\NormalizationService;
 use Database\Factories\BeneficiaryFactory;
 use Illuminate\Database\Eloquent\Concerns\HasUuids;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -43,7 +44,8 @@ use InvalidArgumentException;
  * @property string|null $bvn encrypted at rest; exact-match via $bvn_hash
  * @property string|null $nin_hash
  * @property string|null $bvn_hash
- * @property string|null $phone
+ * @property string|null $phone as the source wrote it — never overwritten
+ * @property string|null $phone_normalized canonical national form, for comparison only
  * @property string $first_name
  * @property string|null $middle_name
  * @property string $last_name
@@ -170,7 +172,7 @@ class Beneficiary extends Model implements MdaScoped
      */
     protected function auditExcluded(): array
     {
-        return ['block_name_dob', 'nin_hash', 'bvn_hash'];
+        return ['block_name_dob', 'nin_hash', 'bvn_hash', 'phone_normalized'];
     }
 
     protected static function booted(): void
@@ -190,9 +192,21 @@ class Beneficiary extends Model implements MdaScoped
         // the deterministic identifier hashes (exact matching + uniqueness run on
         // the hashes because the values themselves are encrypted at rest).
         static::saving(function (Beneficiary $beneficiary): void {
+            $normalizer = new NormalizationService;
+
+            /*
+             * NIN/BVN keep the digit normalization: `digits:11` is the validated shape,
+             * and the punctuation an MDA types around an identifier carries no
+             * information. The comparison form for these is `nin_hash`/`bvn_hash`.
+             *
+             * PHONE does NOT. Its written form varies in ways that are not noise —
+             * `+2348031234567` and `08031234567` are the same subscriber — so the
+             * original is preserved as given and the comparable form goes in its own
+             * column (CLAUDE.md §11: normalization is for comparison only).
+             */
             $beneficiary->nin = self::normalizeDigits($beneficiary->nin);
             $beneficiary->bvn = self::normalizeDigits($beneficiary->bvn);
-            $beneficiary->phone = self::normalizeDigits($beneficiary->phone);
+            $beneficiary->phone_normalized = $normalizer->phone($beneficiary->phone);
 
             foreach (['nin' => $beneficiary->nin, 'bvn' => $beneficiary->bvn] as $field => $value) {
                 if ($value !== null && preg_match('/^\d{11}$/', $value) !== 1) {

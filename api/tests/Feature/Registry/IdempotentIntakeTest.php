@@ -17,6 +17,7 @@ use Database\Seeders\RolesAndPermissionsSeeder;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Facades\Storage;
+use Tests\Concerns\ConfirmsImportMapping;
 use Tests\TestCase;
 
 /**
@@ -26,7 +27,7 @@ use Tests\TestCase;
  */
 class IdempotentIntakeTest extends TestCase
 {
-    use RefreshDatabase;
+    use ConfirmsImportMapping, RefreshDatabase;
 
     private Mda $mda;
 
@@ -111,6 +112,10 @@ class IdempotentIntakeTest extends TestCase
 
         $batchId = $response->json('data.id');
         $this->app['auth']->forgetGuards();
+
+        $this->confirmImportMapping(
+            ImportBatch::query()->withoutGlobalScope(MdaScope::class)->findOrFail($batchId)
+        );
 
         $this->withToken($this->token())
             ->postJson("/api/v1/beneficiaries/imports/{$batchId}/confirm")

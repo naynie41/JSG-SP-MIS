@@ -32,9 +32,14 @@ final class BeneficiaryRules
      */
     public const NON_IDENTITY_FIELDS = ['date_of_birth', 'gender', 'address', 'lga', 'ward'];
 
+    /**
+     * Delegates to {@see CanonicalSchema}, which is the authoritative declaration. The
+     * two consts above stay because an admin endpoint publishes them as its response
+     * shape; `RegistryRulesConsistencyTest` asserts they never drift apart from it.
+     */
     public static function isIdentityField(string $field): bool
     {
-        return in_array($field, self::IDENTITY_FIELDS, true);
+        return CanonicalSchema::isIdentityField($field);
     }
 
     /**

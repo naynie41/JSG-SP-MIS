@@ -13,6 +13,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
          'uses' => 
         array (
           'matchfield' => 'App\\Domain\\Matching\\Enums\\MatchField',
+          'normalizationservice' => 'App\\Domain\\Registry\\Support\\NormalizationService',
         ),
          'className' => 'App\\Domain\\Matching\\Scoring\\FieldNormalizer',
          'functionName' => NULL,
@@ -30,12 +31,60 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
          'typeAliasClassName' => NULL,
          'traitData' => NULL,
       )),
+      '8331150a363abf9083567c5950fd8b1c' => 
+      \PHPStan\Analyser\IntermediaryNameScope::__set_state(array(
+         'namespace' => 'App\\Domain\\Matching\\Scoring',
+         'uses' => 
+        array (
+          'matchfield' => 'App\\Domain\\Matching\\Enums\\MatchField',
+          'normalizationservice' => 'App\\Domain\\Registry\\Support\\NormalizationService',
+        ),
+         'className' => 'App\\Domain\\Matching\\Scoring\\FieldNormalizer',
+         'functionName' => '__construct',
+         'templatePhpDocNodes' => 
+        array (
+        ),
+         'parent' => 
+        \PHPStan\Analyser\IntermediaryNameScope::__set_state(array(
+           'namespace' => 'App\\Domain\\Matching\\Scoring',
+           'uses' => 
+          array (
+            'matchfield' => 'App\\Domain\\Matching\\Enums\\MatchField',
+            'normalizationservice' => 'App\\Domain\\Registry\\Support\\NormalizationService',
+          ),
+           'className' => 'App\\Domain\\Matching\\Scoring\\FieldNormalizer',
+           'functionName' => NULL,
+           'templatePhpDocNodes' => 
+          array (
+          ),
+           'parent' => NULL,
+           'typeAliasesMap' => 
+          array (
+          ),
+           'bypassTypeAliases' => false,
+           'constUses' => 
+          array (
+          ),
+           'typeAliasClassName' => NULL,
+           'traitData' => NULL,
+        )),
+         'typeAliasesMap' => 
+        array (
+        ),
+         'bypassTypeAliases' => false,
+         'constUses' => 
+        array (
+        ),
+         'typeAliasClassName' => NULL,
+         'traitData' => NULL,
+      )),
       '81ad69e260dcb5242e307d8d79f7dcdf' => 
       \PHPStan\Analyser\IntermediaryNameScope::__set_state(array(
          'namespace' => 'App\\Domain\\Matching\\Scoring',
          'uses' => 
         array (
           'matchfield' => 'App\\Domain\\Matching\\Enums\\MatchField',
+          'normalizationservice' => 'App\\Domain\\Registry\\Support\\NormalizationService',
         ),
          'className' => 'App\\Domain\\Matching\\Scoring\\FieldNormalizer',
          'functionName' => 'normalize',
@@ -48,6 +97,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
            'uses' => 
           array (
             'matchfield' => 'App\\Domain\\Matching\\Enums\\MatchField',
+            'normalizationservice' => 'App\\Domain\\Registry\\Support\\NormalizationService',
           ),
            'className' => 'App\\Domain\\Matching\\Scoring\\FieldNormalizer',
            'functionName' => NULL,
@@ -78,7 +128,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
     ),
     1 => 
     array (
-      'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Matching\\Scoring\\FieldNormalizer.php' => '186242c59e4c3594b279d0b5aa84bb0fee5d9c7a25ef08b8e05d55541dbbc04c',
+      'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Matching\\Scoring\\FieldNormalizer.php' => 'd6b993e628a9a931e824623777a1b39c996f1f5e72ba36e94673dbdecad2ae81',
     ),
   ),
 ));

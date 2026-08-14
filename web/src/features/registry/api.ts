@@ -16,6 +16,7 @@ import type {
   MatchingConfigInput,
   RevealMatch,
   SearchCandidate,
+  ServiceGrant,
   ServiceRequest,
 } from './types'
 
@@ -84,6 +85,27 @@ export const beneficiaryApi = {
    */
   recordConsent(id: string, input: ConsentInput): Promise<Beneficiary> {
     return apiRequest<Beneficiary>({ method: 'PUT', url: `/beneficiaries/${id}/consent`, data: input })
+  },
+  /**
+   * Who holds cross-MDA read access to this record (FR-OWN-07). Owner MDA only — this
+   * is NOT the platform-wide `/data-sharing/grants` oversight report, which sits behind
+   * `cross-mda.view` and no MDA role holds.
+   */
+  async serviceGrants(id: string): Promise<ServiceGrant[]> {
+    const { grants } = await apiRequest<{ grants: ServiceGrant[] }>({
+      method: 'GET',
+      url: `/beneficiaries/${id}/service-grants`,
+    })
+
+    return grants
+  },
+  /** Withdraw one grant. Idempotent server-side; the reason is optional. */
+  revokeGrant(grantId: string, reason?: string): Promise<{ id: string; revoked: boolean; message: string }> {
+    return apiRequest<{ id: string; revoked: boolean; message: string }>({
+      method: 'POST',
+      url: `/service-grants/${grantId}/revoke`,
+      data: reason ? { reason } : {},
+    })
   },
   async lookup(params: { nin?: string; bvn?: string; phone?: string }): Promise<RevealMatch[]> {
     const { matches } = await apiRequest<{ matches: RevealMatch[] }>({

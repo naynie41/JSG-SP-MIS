@@ -21,6 +21,7 @@ use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Testing\TestResponse;
+use Tests\Concerns\ConfirmsImportMapping;
 use Tests\TestCase;
 
 /**
@@ -31,7 +32,7 @@ use Tests\TestCase;
  */
 class ActivityInlineUploadTest extends TestCase
 {
-    use RefreshDatabase;
+    use ConfirmsImportMapping, RefreshDatabase;
 
     private Mda $mdaA; // importing MDA
 
@@ -104,6 +105,12 @@ class ActivityInlineUploadTest extends TestCase
         $batchId = $this->preview()->assertCreated()->json('data.id');
         $this->app['auth']->forgetGuards();
 
+        // Same mapping gate as the Import Center: accept the suggestion, as an
+        // officer would, before the pipeline runs (CLAUDE.md §11).
+        $this->confirmImportMapping(
+            ImportBatch::query()->withoutGlobalScope(MdaScope::class)->findOrFail($batchId)
+        );
+
         // The batch is an UNBOUND preview (no activity yet) with the dedup cascade run.
         $batch = ImportBatch::query()->withoutGlobalScope(MdaScope::class)->findOrFail($batchId);
         $this->assertNull($batch->activity_id);
@@ -126,6 +133,12 @@ class ActivityInlineUploadTest extends TestCase
 
         $batchId = $this->preview()->assertCreated()->json('data.id');
         $this->app['auth']->forgetGuards();
+
+        // Same mapping gate as the Import Center: accept the suggestion, as an
+        // officer would, before the pipeline runs (CLAUDE.md §11).
+        $this->confirmImportMapping(
+            ImportBatch::query()->withoutGlobalScope(MdaScope::class)->findOrFail($batchId)
+        );
 
         // Officer chooses to SERVE the exact duplicate (row 1).
         $this->withToken($this->token())->postJson("/api/v1/beneficiaries/imports/{$batchId}/rows/1/resolve", [
@@ -197,6 +210,12 @@ class ActivityInlineUploadTest extends TestCase
         $batchId = $this->preview(['target_beneficiaries' => 10])->assertCreated()->json('data.id');
         $this->app['auth']->forgetGuards();
 
+        // Same mapping gate as the Import Center: accept the suggestion, as an
+        // officer would, before the pipeline runs (CLAUDE.md §11).
+        $this->confirmImportMapping(
+            ImportBatch::query()->withoutGlobalScope(MdaScope::class)->findOrFail($batchId)
+        );
+
         $this->withToken($this->token())->getJson("/api/v1/beneficiaries/imports/{$batchId}")
             ->assertOk()
             ->assertJsonPath('data.target_mismatch', true)
@@ -225,6 +244,12 @@ class ActivityInlineUploadTest extends TestCase
             'file' => UploadedFile::fake()->createWithContent('dupes.csv', $csv),
         ])->assertCreated()->json('data.id');
         $this->app['auth']->forgetGuards();
+
+        // Same mapping gate as the Import Center: accept the suggestion, as an
+        // officer would, before the pipeline runs (CLAUDE.md §11).
+        $this->confirmImportMapping(
+            ImportBatch::query()->withoutGlobalScope(MdaScope::class)->findOrFail($batchId)
+        );
 
         $this->withToken($this->token())->postJson("/api/v1/beneficiaries/imports/{$batchId}/rows/1/resolve", [
             'resolution' => 'link',

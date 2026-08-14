@@ -2,7 +2,7 @@
 
 // odsl-C:\Users\ACER\Desktop\JSG-SP-MIS\JSG-SP-MIS\api\app\Domain\Registry\Services\HouseholdIngestionService.php-PHPStan\BetterReflection\Reflection\ReflectionClass-App\Domain\Registry\Services\HouseholdIngestionService
 return \PHPStan\Cache\CacheItem::__set_state(array(
-   'variableKey' => 'v2-6.70.0.1-8.3.31-3d03b7f2989c95688c8c17571d6bd145622e5c4efb7d7c557ce770e4ee75e143',
+   'variableKey' => 'v2-6.70.0.1-8.3.31-de9b2d0cb6eee54b3205c4dc8827c5d4a50d49c44aa53f19e0b41742580641bb',
    'data' => 
   array (
     'locatedSource' => 
@@ -36,7 +36,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
     array (
     ),
     'startLine' => 25,
-    'endLine' => 112,
+    'endLine' => 124,
     'startColumn' => 1,
     'endColumn' => 1,
     'parentClassName' => NULL,
@@ -138,6 +138,92 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         'currentClassName' => 'App\\Domain\\Registry\\Services\\HouseholdIngestionService',
         'aliasName' => NULL,
       ),
+      'isHeadFlag' => 
+      array (
+        'name' => 'isHeadFlag',
+        'parameters' => 
+        array (
+          'value' => 
+          array (
+            'name' => 'value',
+            'default' => NULL,
+            'type' => 
+            array (
+              'class' => 'PHPStan\\BetterReflection\\Reflection\\ReflectionUnionType',
+              'data' => 
+              array (
+                'types' => 
+                array (
+                  0 => 
+                  array (
+                    'class' => 'PHPStan\\BetterReflection\\Reflection\\ReflectionNamedType',
+                    'data' => 
+                    array (
+                      'name' => 'string',
+                      'isIdentifier' => true,
+                    ),
+                  ),
+                  1 => 
+                  array (
+                    'class' => 'PHPStan\\BetterReflection\\Reflection\\ReflectionNamedType',
+                    'data' => 
+                    array (
+                      'name' => 'null',
+                      'isIdentifier' => true,
+                    ),
+                  ),
+                ),
+              ),
+            ),
+            'isVariadic' => false,
+            'byRef' => false,
+            'isPromoted' => false,
+            'attributes' => 
+            array (
+            ),
+            'startLine' => 36,
+            'endLine' => 36,
+            'startColumn' => 39,
+            'endColumn' => 52,
+            'parameterIndex' => 0,
+            'isOptional' => false,
+          ),
+        ),
+        'returnsReference' => false,
+        'returnType' => 
+        array (
+          'class' => 'PHPStan\\BetterReflection\\Reflection\\ReflectionNamedType',
+          'data' => 
+          array (
+            'name' => 'bool',
+            'isIdentifier' => true,
+          ),
+        ),
+        'attributes' => 
+        array (
+        ),
+        'docComment' => '/**
+ * Interpret a source "head of household" flag.
+ *
+ * Lives here so every ingestion door reads the flag identically — the file
+ * pipeline and sync both call it. A second copy would let one source quietly
+ * disagree with another about who heads a household.
+ */',
+        'startLine' => 36,
+        'endLine' => 39,
+        'startColumn' => 5,
+        'endColumn' => 5,
+        'couldThrow' => false,
+        'isClosure' => false,
+        'isGenerator' => false,
+        'isVariadic' => false,
+        'modifiers' => 17,
+        'namespace' => 'App\\Domain\\Registry\\Services',
+        'declaringClassName' => 'App\\Domain\\Registry\\Services\\HouseholdIngestionService',
+        'implementingClassName' => 'App\\Domain\\Registry\\Services\\HouseholdIngestionService',
+        'currentClassName' => 'App\\Domain\\Registry\\Services\\HouseholdIngestionService',
+        'aliasName' => NULL,
+      ),
       'attach' => 
       array (
         'name' => 'attach',
@@ -162,8 +248,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             'attributes' => 
             array (
             ),
-            'startLine' => 34,
-            'endLine' => 34,
+            'startLine' => 46,
+            'endLine' => 46,
             'startColumn' => 9,
             'endColumn' => 26,
             'parameterIndex' => 0,
@@ -188,8 +274,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             'attributes' => 
             array (
             ),
-            'startLine' => 35,
-            'endLine' => 35,
+            'startLine' => 47,
+            'endLine' => 47,
             'startColumn' => 9,
             'endColumn' => 34,
             'parameterIndex' => 1,
@@ -233,8 +319,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             'attributes' => 
             array (
             ),
-            'startLine' => 36,
-            'endLine' => 36,
+            'startLine' => 48,
+            'endLine' => 48,
             'startColumn' => 9,
             'endColumn' => 30,
             'parameterIndex' => 2,
@@ -259,8 +345,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             'attributes' => 
             array (
             ),
-            'startLine' => 37,
-            'endLine' => 37,
+            'startLine' => 49,
+            'endLine' => 49,
             'startColumn' => 9,
             'endColumn' => 28,
             'parameterIndex' => 3,
@@ -285,8 +371,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             'attributes' => 
             array (
             ),
-            'startLine' => 38,
-            'endLine' => 38,
+            'startLine' => 50,
+            'endLine' => 50,
             'startColumn' => 9,
             'endColumn' => 32,
             'parameterIndex' => 4,
@@ -330,8 +416,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             'attributes' => 
             array (
             ),
-            'startLine' => 39,
-            'endLine' => 39,
+            'startLine' => 51,
+            'endLine' => 51,
             'startColumn' => 9,
             'endColumn' => 21,
             'parameterIndex' => 5,
@@ -356,8 +442,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             'attributes' => 
             array (
             ),
-            'startLine' => 40,
-            'endLine' => 40,
+            'startLine' => 52,
+            'endLine' => 52,
             'startColumn' => 9,
             'endColumn' => 20,
             'parameterIndex' => 6,
@@ -381,8 +467,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
  * Attach a beneficiary to the source-referenced household, forming the
  * household on first sight. Safe to call repeatedly (re-imports).
  */',
-        'startLine' => 33,
-        'endLine' => 68,
+        'startLine' => 45,
+        'endLine' => 80,
         'startColumn' => 5,
         'endColumn' => 5,
         'couldThrow' => false,
@@ -439,8 +525,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             'attributes' => 
             array (
             ),
-            'startLine' => 70,
-            'endLine' => 70,
+            'startLine' => 82,
+            'endLine' => 82,
             'startColumn' => 34,
             'endColumn' => 46,
             'parameterIndex' => 0,
@@ -465,8 +551,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             'attributes' => 
             array (
             ),
-            'startLine' => 70,
-            'endLine' => 70,
+            'startLine' => 82,
+            'endLine' => 82,
             'startColumn' => 49,
             'endColumn' => 60,
             'parameterIndex' => 1,
@@ -487,8 +573,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         array (
         ),
         'docComment' => NULL,
-        'startLine' => 70,
-        'endLine' => 80,
+        'startLine' => 82,
+        'endLine' => 92,
         'startColumn' => 5,
         'endColumn' => 5,
         'couldThrow' => false,
@@ -526,8 +612,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             'attributes' => 
             array (
             ),
-            'startLine' => 87,
-            'endLine' => 87,
+            'startLine' => 99,
+            'endLine' => 99,
             'startColumn' => 39,
             'endColumn' => 58,
             'parameterIndex' => 0,
@@ -552,8 +638,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             'attributes' => 
             array (
             ),
-            'startLine' => 87,
-            'endLine' => 87,
+            'startLine' => 99,
+            'endLine' => 99,
             'startColumn' => 61,
             'endColumn' => 84,
             'parameterIndex' => 1,
@@ -578,8 +664,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             'attributes' => 
             array (
             ),
-            'startLine' => 87,
-            'endLine' => 87,
+            'startLine' => 99,
+            'endLine' => 99,
             'startColumn' => 87,
             'endColumn' => 105,
             'parameterIndex' => 2,
@@ -623,8 +709,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
  * open membership is in a different household, it is left untouched (imports
  * never silently move a beneficiary between households).
  */',
-        'startLine' => 87,
-        'endLine' => 111,
+        'startLine' => 99,
+        'endLine' => 123,
         'startColumn' => 5,
         'endColumn' => 5,
         'couldThrow' => false,

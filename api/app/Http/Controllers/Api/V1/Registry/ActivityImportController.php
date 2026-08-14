@@ -12,6 +12,7 @@ use App\Domain\Registry\Enums\RegistrationSource;
 use App\Domain\Registry\Jobs\ParseImportBatch;
 use App\Domain\Registry\Models\ImportBatch;
 use App\Domain\Registry\Services\ImportCommitter;
+use App\Domain\Registry\Services\ImportMappingService;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Registry\UploadActivityImportRequest;
 use App\Http\Resources\ActivityResource;
@@ -33,7 +34,9 @@ use Illuminate\Support\Facades\DB;
  */
 class ActivityImportController extends Controller
 {
-    /** Stage an unbound preview batch for a draft activity + file, and queue parsing/dedup. */
+    public function __construct(private readonly ImportMappingService $mapping) {}
+
+    /** Stage an unbound preview batch for a draft activity + file, and profile its columns. */
     public function store(UploadActivityImportRequest $request): JsonResponse
     {
         $programme = Programme::query()->findOrFail($request->input('programme_id'));
@@ -64,7 +67,9 @@ class ActivityImportController extends Controller
             'status' => ImportStatus::Pending,
         ]);
 
-        ParseImportBatch::dispatch($batch->id);
+        // Same mapping gate as the Import Center — the wizard is a different entry
+        // point to one pipeline, not a second pipeline (CLAUDE.md §11).
+        $this->mapping->profile($batch);
 
         return ApiResponse::success((new ImportBatchResource($batch->fresh()))->resolve(), status: 201);
     }

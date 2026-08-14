@@ -41,18 +41,45 @@ class RegistrySchemaTest extends TestCase
         ]);
     }
 
-    public function test_nin_bvn_and_phone_are_normalised_on_save(): void
+    public function test_identifiers_are_reduced_to_digits_on_save(): void
     {
+        // NIN/BVN keep digit normalization: `digits:11` is the validated shape and the
+        // punctuation around an identifier carries no information.
         $beneficiary = Beneficiary::factory()->create([
             'nin' => '123-456-789 01',
             'bvn' => '109 876 543 21',
-            'phone' => '+234 (080) 123-4567',
         ]);
 
         $fresh = $beneficiary->fresh();
         $this->assertSame('12345678901', $fresh->nin);
         $this->assertSame('10987654321', $fresh->bvn);
-        $this->assertSame('2340801234567', $fresh->phone);
+    }
+
+    /**
+     * Phone keeps the form the source wrote and gains a separate comparable form
+     * (CLAUDE.md §11 — "normalization is for comparison only; the original value is
+     * always stored"). Previously the written value was overwritten in place, which both
+     * lost the original and left `+234…` and `0…` as different strings that the exact
+     * phone comparator could never match.
+     */
+    public function test_the_written_phone_is_preserved_and_a_compare_form_derived(): void
+    {
+        $beneficiary = Beneficiary::factory()->create(['phone' => '+234 803 123 4567']);
+
+        $fresh = $beneficiary->fresh();
+        $this->assertSame('+234 803 123 4567', $fresh->phone, 'the original must survive');
+        $this->assertSame('08031234567', $fresh->phone_normalized);
+    }
+
+    public function test_two_written_forms_of_one_number_share_a_compare_form(): void
+    {
+        $a = Beneficiary::factory()->create(['phone' => '+2348031234567']);
+        $b = Beneficiary::factory()->create(['phone' => '08031234567']);
+
+        // Same subscriber, two spellings — comparable at last, while each record still
+        // shows what its own source actually wrote.
+        $this->assertSame($a->fresh()->phone_normalized, $b->fresh()->phone_normalized);
+        $this->assertNotSame($a->fresh()->phone, $b->fresh()->phone);
     }
 
     public function test_invalid_nin_length_is_rejected(): void

@@ -15,6 +15,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
           'mdascoped' => 'App\\Domain\\Access\\Concerns\\MdaScoped',
           'scopedtomda' => 'App\\Domain\\Access\\Concerns\\ScopedToMda',
           'mda' => 'App\\Domain\\Access\\Models\\Mda',
+          'user' => 'App\\Domain\\Access\\Models\\User',
           'auditable' => 'App\\Domain\\Audit\\Concerns\\Auditable',
           'hasuuids' => 'Illuminate\\Database\\Eloquent\\Concerns\\HasUuids',
           'model' => 'Illuminate\\Database\\Eloquent\\Model',
@@ -1075,6 +1076,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
           'mdascoped' => 'App\\Domain\\Access\\Concerns\\MdaScoped',
           'scopedtomda' => 'App\\Domain\\Access\\Concerns\\ScopedToMda',
           'mda' => 'App\\Domain\\Access\\Models\\Mda',
+          'user' => 'App\\Domain\\Access\\Models\\User',
           'auditable' => 'App\\Domain\\Audit\\Concerns\\Auditable',
           'hasuuids' => 'Illuminate\\Database\\Eloquent\\Concerns\\HasUuids',
           'model' => 'Illuminate\\Database\\Eloquent\\Model',
@@ -1094,6 +1096,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             'mdascoped' => 'App\\Domain\\Access\\Concerns\\MdaScoped',
             'scopedtomda' => 'App\\Domain\\Access\\Concerns\\ScopedToMda',
             'mda' => 'App\\Domain\\Access\\Models\\Mda',
+            'user' => 'App\\Domain\\Access\\Models\\User',
             'auditable' => 'App\\Domain\\Audit\\Concerns\\Auditable',
             'hasuuids' => 'Illuminate\\Database\\Eloquent\\Concerns\\HasUuids',
             'model' => 'Illuminate\\Database\\Eloquent\\Model',
@@ -1134,6 +1137,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
           'mdascoped' => 'App\\Domain\\Access\\Concerns\\MdaScoped',
           'scopedtomda' => 'App\\Domain\\Access\\Concerns\\ScopedToMda',
           'mda' => 'App\\Domain\\Access\\Models\\Mda',
+          'user' => 'App\\Domain\\Access\\Models\\User',
           'auditable' => 'App\\Domain\\Audit\\Concerns\\Auditable',
           'hasuuids' => 'Illuminate\\Database\\Eloquent\\Concerns\\HasUuids',
           'model' => 'Illuminate\\Database\\Eloquent\\Model',
@@ -1153,6 +1157,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             'mdascoped' => 'App\\Domain\\Access\\Concerns\\MdaScoped',
             'scopedtomda' => 'App\\Domain\\Access\\Concerns\\ScopedToMda',
             'mda' => 'App\\Domain\\Access\\Models\\Mda',
+            'user' => 'App\\Domain\\Access\\Models\\User',
             'auditable' => 'App\\Domain\\Audit\\Concerns\\Auditable',
             'hasuuids' => 'Illuminate\\Database\\Eloquent\\Concerns\\HasUuids',
             'model' => 'Illuminate\\Database\\Eloquent\\Model',
@@ -1193,6 +1198,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
           'mdascoped' => 'App\\Domain\\Access\\Concerns\\MdaScoped',
           'scopedtomda' => 'App\\Domain\\Access\\Concerns\\ScopedToMda',
           'mda' => 'App\\Domain\\Access\\Models\\Mda',
+          'user' => 'App\\Domain\\Access\\Models\\User',
           'auditable' => 'App\\Domain\\Audit\\Concerns\\Auditable',
           'hasuuids' => 'Illuminate\\Database\\Eloquent\\Concerns\\HasUuids',
           'model' => 'Illuminate\\Database\\Eloquent\\Model',
@@ -1212,6 +1218,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             'mdascoped' => 'App\\Domain\\Access\\Concerns\\MdaScoped',
             'scopedtomda' => 'App\\Domain\\Access\\Concerns\\ScopedToMda',
             'mda' => 'App\\Domain\\Access\\Models\\Mda',
+            'user' => 'App\\Domain\\Access\\Models\\User',
             'auditable' => 'App\\Domain\\Audit\\Concerns\\Auditable',
             'hasuuids' => 'Illuminate\\Database\\Eloquent\\Concerns\\HasUuids',
             'model' => 'Illuminate\\Database\\Eloquent\\Model',
@@ -1252,6 +1259,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
           'mdascoped' => 'App\\Domain\\Access\\Concerns\\MdaScoped',
           'scopedtomda' => 'App\\Domain\\Access\\Concerns\\ScopedToMda',
           'mda' => 'App\\Domain\\Access\\Models\\Mda',
+          'user' => 'App\\Domain\\Access\\Models\\User',
           'auditable' => 'App\\Domain\\Audit\\Concerns\\Auditable',
           'hasuuids' => 'Illuminate\\Database\\Eloquent\\Concerns\\HasUuids',
           'model' => 'Illuminate\\Database\\Eloquent\\Model',
@@ -1271,6 +1279,129 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             'mdascoped' => 'App\\Domain\\Access\\Concerns\\MdaScoped',
             'scopedtomda' => 'App\\Domain\\Access\\Concerns\\ScopedToMda',
             'mda' => 'App\\Domain\\Access\\Models\\Mda',
+            'user' => 'App\\Domain\\Access\\Models\\User',
+            'auditable' => 'App\\Domain\\Audit\\Concerns\\Auditable',
+            'hasuuids' => 'Illuminate\\Database\\Eloquent\\Concerns\\HasUuids',
+            'model' => 'Illuminate\\Database\\Eloquent\\Model',
+            'belongsto' => 'Illuminate\\Database\\Eloquent\\Relations\\BelongsTo',
+            'carbon' => 'Illuminate\\Support\\Carbon',
+          ),
+           'className' => 'App\\Domain\\Registry\\Models\\BeneficiaryServiceGrant',
+           'functionName' => NULL,
+           'templatePhpDocNodes' => 
+          array (
+          ),
+           'parent' => NULL,
+           'typeAliasesMap' => 
+          array (
+          ),
+           'bypassTypeAliases' => false,
+           'constUses' => 
+          array (
+          ),
+           'typeAliasClassName' => NULL,
+           'traitData' => NULL,
+        )),
+         'typeAliasesMap' => 
+        array (
+        ),
+         'bypassTypeAliases' => false,
+         'constUses' => 
+        array (
+        ),
+         'typeAliasClassName' => NULL,
+         'traitData' => NULL,
+      )),
+      'b37e5da3b643c5aff1800f530cb72663' => 
+      \PHPStan\Analyser\IntermediaryNameScope::__set_state(array(
+         'namespace' => 'App\\Domain\\Registry\\Models',
+         'uses' => 
+        array (
+          'mdascoped' => 'App\\Domain\\Access\\Concerns\\MdaScoped',
+          'scopedtomda' => 'App\\Domain\\Access\\Concerns\\ScopedToMda',
+          'mda' => 'App\\Domain\\Access\\Models\\Mda',
+          'user' => 'App\\Domain\\Access\\Models\\User',
+          'auditable' => 'App\\Domain\\Audit\\Concerns\\Auditable',
+          'hasuuids' => 'Illuminate\\Database\\Eloquent\\Concerns\\HasUuids',
+          'model' => 'Illuminate\\Database\\Eloquent\\Model',
+          'belongsto' => 'Illuminate\\Database\\Eloquent\\Relations\\BelongsTo',
+          'carbon' => 'Illuminate\\Support\\Carbon',
+        ),
+         'className' => 'App\\Domain\\Registry\\Models\\BeneficiaryServiceGrant',
+         'functionName' => 'revokedBy',
+         'templatePhpDocNodes' => 
+        array (
+        ),
+         'parent' => 
+        \PHPStan\Analyser\IntermediaryNameScope::__set_state(array(
+           'namespace' => 'App\\Domain\\Registry\\Models',
+           'uses' => 
+          array (
+            'mdascoped' => 'App\\Domain\\Access\\Concerns\\MdaScoped',
+            'scopedtomda' => 'App\\Domain\\Access\\Concerns\\ScopedToMda',
+            'mda' => 'App\\Domain\\Access\\Models\\Mda',
+            'user' => 'App\\Domain\\Access\\Models\\User',
+            'auditable' => 'App\\Domain\\Audit\\Concerns\\Auditable',
+            'hasuuids' => 'Illuminate\\Database\\Eloquent\\Concerns\\HasUuids',
+            'model' => 'Illuminate\\Database\\Eloquent\\Model',
+            'belongsto' => 'Illuminate\\Database\\Eloquent\\Relations\\BelongsTo',
+            'carbon' => 'Illuminate\\Support\\Carbon',
+          ),
+           'className' => 'App\\Domain\\Registry\\Models\\BeneficiaryServiceGrant',
+           'functionName' => NULL,
+           'templatePhpDocNodes' => 
+          array (
+          ),
+           'parent' => NULL,
+           'typeAliasesMap' => 
+          array (
+          ),
+           'bypassTypeAliases' => false,
+           'constUses' => 
+          array (
+          ),
+           'typeAliasClassName' => NULL,
+           'traitData' => NULL,
+        )),
+         'typeAliasesMap' => 
+        array (
+        ),
+         'bypassTypeAliases' => false,
+         'constUses' => 
+        array (
+        ),
+         'typeAliasClassName' => NULL,
+         'traitData' => NULL,
+      )),
+      'a69b11a63d38760a3ed6f8bc47175293' => 
+      \PHPStan\Analyser\IntermediaryNameScope::__set_state(array(
+         'namespace' => 'App\\Domain\\Registry\\Models',
+         'uses' => 
+        array (
+          'mdascoped' => 'App\\Domain\\Access\\Concerns\\MdaScoped',
+          'scopedtomda' => 'App\\Domain\\Access\\Concerns\\ScopedToMda',
+          'mda' => 'App\\Domain\\Access\\Models\\Mda',
+          'user' => 'App\\Domain\\Access\\Models\\User',
+          'auditable' => 'App\\Domain\\Audit\\Concerns\\Auditable',
+          'hasuuids' => 'Illuminate\\Database\\Eloquent\\Concerns\\HasUuids',
+          'model' => 'Illuminate\\Database\\Eloquent\\Model',
+          'belongsto' => 'Illuminate\\Database\\Eloquent\\Relations\\BelongsTo',
+          'carbon' => 'Illuminate\\Support\\Carbon',
+        ),
+         'className' => 'App\\Domain\\Registry\\Models\\BeneficiaryServiceGrant',
+         'functionName' => 'isActive',
+         'templatePhpDocNodes' => 
+        array (
+        ),
+         'parent' => 
+        \PHPStan\Analyser\IntermediaryNameScope::__set_state(array(
+           'namespace' => 'App\\Domain\\Registry\\Models',
+           'uses' => 
+          array (
+            'mdascoped' => 'App\\Domain\\Access\\Concerns\\MdaScoped',
+            'scopedtomda' => 'App\\Domain\\Access\\Concerns\\ScopedToMda',
+            'mda' => 'App\\Domain\\Access\\Models\\Mda',
+            'user' => 'App\\Domain\\Access\\Models\\User',
             'auditable' => 'App\\Domain\\Audit\\Concerns\\Auditable',
             'hasuuids' => 'Illuminate\\Database\\Eloquent\\Concerns\\HasUuids',
             'model' => 'Illuminate\\Database\\Eloquent\\Model',
@@ -1306,7 +1437,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
     ),
     1 => 
     array (
-      'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Registry\\Models\\BeneficiaryServiceGrant.php' => '608b14533256f27b69458646a4c02048c3b1ffeff446ae8ef72151671213fb20',
+      'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Registry\\Models\\BeneficiaryServiceGrant.php' => '5e0e8e3e693686892213b1189f3619ee1049d8882618e12be9bdf67869cd4599',
       'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Audit\\Concerns\\Auditable.php' => '5ffa2245eaa31de5eade775b8b48dfcbbf9e33ae3b5651120046c5b92a6d4b7a',
       'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\vendor\\composer\\..\\laravel\\framework\\src\\Illuminate\\Database\\Eloquent\\Concerns\\HasUuids.php' => 'f75b8db33aafd61f17652a5e4bb5b8989e62197b306e9f7ae60bb3ac2c34d534',
       'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\vendor\\composer\\..\\laravel\\framework\\src\\Illuminate\\Database\\Eloquent\\Concerns\\HasUniqueStringIds.php' => '3d5612d3c0a56c6c9f19e628b02085d4d68a64d9d07656742725cec78d4a79c5',

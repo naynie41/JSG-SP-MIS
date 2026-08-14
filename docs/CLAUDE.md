@@ -2,7 +2,7 @@
 
 > This file is read at the start of every Claude Code session. It is the source of
 > truth for **how** we work on this project. Read it fully before doing anything.
-> The source of truth for **what** we are building is `docs/Jigawa_SP-MIS_PRD.pdf`.
+> The source of truth for **what** we are building is `docs/jigawa-SP-MIS.md`.
 
 ---
 
@@ -23,13 +23,13 @@ Three concepts sit at the heart of the system and must be respected in every des
    beneficiary is saved.
 
 This is a **government system holding citizens' personal data (PII)**. Security and data
-protection are not optional features — see `SECURITY.md`.
+protection are not optional features — see `docs/SECURITY.md`.
 
 ---
 
 ## 2. Golden rules (read these every time)
 
-1. **Read the PRD first.** `docs/Jigawa_SP-MIS_PRD.pdf` is authoritative. If code and PRD
+1. **Read the PRD first.** `docs/jigawa-SP-MIS.md` is authoritative. If code and PRD
    conflict, the PRD wins unless I explicitly say otherwise.
 2. **Stay in the current phase.** We build in 7 phases (Section 5). Do **not** build features
    that belong to a later phase, even if convenient. If a later-phase concern affects a
@@ -38,7 +38,7 @@ protection are not optional features — see `SECURITY.md`.
    trade-offs) and wait for my approval before writing feature code.
 4. **Trace to requirements.** Reference PRD requirement IDs (e.g. `FR-UAM-01`, `NFR-SEC-01`)
    in commit messages and PR descriptions so every line of code maps back to a requirement.
-5. **Security by default.** Follow `SECURITY.md`. Never weaken auth, validation, or audit
+5. **Security by default.** Follow `docs/SECURITY.md`. Never weaken auth, validation, or audit
    logging to make something easier. Never log PII or secrets.
 6. **Conventions are mandatory.** Follow `docs/CONVENTIONS.md` exactly (API shape, naming,
    error format, tests, commits).
@@ -51,7 +51,7 @@ protection are not optional features — see `SECURITY.md`.
 10. **Small, reviewable steps.** Work in logical commits, explain each briefly, and keep
     each change easy to review and run.
 11. **UI follows the design system.** Every screen derives its colors, type, spacing, and
-    components from `docs/DESIGN-SYSTEM.md`, and you load the `frontend-design` skill before
+    components from `DESIGN.md`, and you load the `frontend-design` skill before
     building UI. Never hand-roll a component that already exists there — extend the shared one.
 
 ---
@@ -76,20 +76,26 @@ Prefer the framework's built-in way of doing things over third-party packages.
 
 ```
 /
-├── CLAUDE.md                  # this file
-├── SECURITY.md                # security & data-protection requirements
+├── DESIGN.md                  # UI reference: tokens & components (all UI follows this)
 ├── README.md                  # how to set up and run (you generate this)
 ├── docker-compose.yml         # full local dev stack
 ├── .env.example               # documented, no real secrets
 ├── api/                       # Laravel 12 backend
 ├── web/                       # React + TypeScript frontend
+│   └── DESIGN.md              # generated token mirror — `npm run check:design` verifies it
 └── docs/
-    ├── Jigawa_SP-MIS_PRD.pdf   # the spec (authoritative)
-    ├── ARCHITECTURE.md         # system design & data model
-    ├── CONVENTIONS.md          # coding standards & API conventions
-    ├── DESIGN-SYSTEM.md         # UI reference: tokens & components (all UI follows this)
-    └── PHASE-1-BUILD-PROMPTS.md # the Phase 1 task prompts
+    ├── CLAUDE.md              # this file
+    ├── jigawa-SP-MIS.md       # the spec (authoritative) — the PRD PDF is not in the repo
+    ├── SECURITY.md            # security & data-protection requirements
+    ├── ARCHITECTURE.md        # system design & data model
+    ├── CONVENTIONS.md         # coding standards & API conventions
+    ├── registry-intake.md     # inbound source/integration surface
+    └── PHASE-<N>-CHECKLIST.md # per-phase completion checklists
 ```
+
+> The per-phase `PHASE-<N>-BUILD-PROMPTS.md` files referenced elsewhere in this document
+> are **not in the repository** — they have never been committed. Where a prompt cites one,
+> use the matching `PHASE-<N>-CHECKLIST.md` plus the locked decisions in §9–§11 below.
 
 ---
 
@@ -119,8 +125,8 @@ Phase 3 = Duplicate Verification; and so on per the list below.)
   `docs/PHASE-6P-BUILD-PROMPTS.md`.
 - **Phase Admin — System Administrator Console** (governance/config/oversight; composes existing
   modules) — `docs/PHASE-ADMIN-BUILD-PROMPTS.md`.
-- **Phase MDA — MDA Console Restructure** (task-based 6-module nav for MDA Officer + Admin, one nav
-  permission-gated; composes existing modules) — `docs/PHASE-MDA-BUILD-PROMPTS.md`.
+- **Phase MDA — MDA Console Restructure** (task-based 6-module nav for the single MDA Admin role;
+  composes existing modules) — `docs/PHASE-MDA-BUILD-PROMPTS.md`.
 Dashboard UI for all three follows the design system + the §5.12 dashboard-craft rules; load the
 `frontend-design` skill for composition, but the design-system tokens always win.
 
@@ -157,7 +163,7 @@ Keep `README.md` updated so these commands always work from a fresh clone.
 A task is done only when **all** of these are true:
 
 - [ ] It satisfies the relevant PRD requirement(s), referenced by ID.
-- [ ] It follows `docs/CONVENTIONS.md` and `SECURITY.md`.
+- [ ] It follows `docs/CONVENTIONS.md` and `docs/SECURITY.md`.
 - [ ] Input is validated; errors use the standard error format.
 - [ ] Security-relevant and data-changing actions are written to the audit log.
 - [ ] Automated tests cover the happy path and key failure/permission cases, and pass.
@@ -179,7 +185,7 @@ A task is done only when **all** of these are true:
 - Never fabricate integration with external systems (NIN/NIMC, SOCU) — mock against a clear
   interface and tell me what real access is required.
 - Never introduce off-palette colors, ad-hoc fonts/spacing, or a duplicate of a component that
-  already exists in `docs/DESIGN-SYSTEM.md`.
+  already exists in `DESIGN.md`.
 - Never add a manual single-record create path for beneficiaries or households — in the API or the
   UI. Ingestion is **bulk/source-only** (Excel/CSV, Kobo, ODK, REST API, SOCU, existing government
   systems), matching PRD §8.1. Editing/correcting an existing imported record (owner-only) is a
@@ -220,7 +226,7 @@ A task is done only when **all** of these are true:
   attributes only: name, objective, type (HH/individual), benefit category, standard eligibility.
   **MDAs cannot create, edit, or delete programmes** — remove programme create/edit from the MDA
   officer AND MDA admin views.
-- **An Activity is MDA-owned** (`owner_mda_id`, `ScopedToMda`) and is created by MDA officers/admins.
+- **An Activity is MDA-owned** (`owner_mda_id`, `ScopedToMda`) and is created by MDA Admins.
   Activity creation begins by **selecting a programme from a dropdown of available catalog
   programmes**, then captures the MDA-specific execution details: location (LGA/Ward), schedule,
   budget, funding source, period, targets, and any activity-level eligibility.
@@ -265,9 +271,14 @@ A task is done only when **all** of these are true:
   existing modules** (users/audit Ph1, registry Ph2, matching Ph3, catalog Ph4, reports Ph6, sync Ph7) —
   it never reimplements them, and it never includes infrastructure/system-health monitoring (DevOps) or
   programme-delivery operations (MDAs / SP Coordination).
-- **Never** grant beneficiary-data export beyond the export permission matrix in `SECURITY.md`, and
+- **Never** grant beneficiary-data export beyond the export permission matrix in `docs/SECURITY.md`, and
   never bundle `export.reveal_pii` (unmasked NIN/BVN) into a role by default. Exports always inherit the
   caller's scope, mask PII unless explicitly permitted, and are audited.
 - **Never** headline executive/reporting outputs with *gross registrations*, and never show a coverage
   **percentage** or index without a real denominator loaded. The headline is **net unique beneficiaries**;
   coverage is absolute counts until a population/eligibility denominator exists. (See Phase 6E.)
+- **Never** auto-map identity columns on import. Raw MDA files pass through the Data Import & Mapping layer
+  (canonical schema + normalization) before validation/dedup. Column mappings for **NIN, BVN, name, phone**
+  must be **explicitly confirmed every import** (templates may pre-fill but never skip confirmation), the
+  raw file is never mutated, and normalization is for comparison only — the original value is always stored.
+  (See Phase 2 — Data Import & Mapping / PRD v1.7.)

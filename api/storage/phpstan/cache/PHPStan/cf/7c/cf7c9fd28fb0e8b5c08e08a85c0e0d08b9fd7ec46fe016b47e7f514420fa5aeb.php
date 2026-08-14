@@ -20,6 +20,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
           'parseimportbatch' => 'App\\Domain\\Registry\\Jobs\\ParseImportBatch',
           'importbatch' => 'App\\Domain\\Registry\\Models\\ImportBatch',
           'importcommitter' => 'App\\Domain\\Registry\\Services\\ImportCommitter',
+          'importmappingservice' => 'App\\Domain\\Registry\\Services\\ImportMappingService',
           'controller' => 'App\\Http\\Controllers\\Controller',
           'uploadactivityimportrequest' => 'App\\Http\\Requests\\Registry\\UploadActivityImportRequest',
           'activityresource' => 'App\\Http\\Resources\\ActivityResource',
@@ -44,6 +45,81 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
          'typeAliasClassName' => NULL,
          'traitData' => NULL,
       )),
+      '7b0b9851f0d3c30401c938a1b30621be' => 
+      \PHPStan\Analyser\IntermediaryNameScope::__set_state(array(
+         'namespace' => 'App\\Http\\Controllers\\Api\\V1\\Registry',
+         'uses' => 
+        array (
+          'mdascope' => 'App\\Domain\\Access\\Scopes\\MdaScope',
+          'activity' => 'App\\Domain\\Programme\\Models\\Activity',
+          'programme' => 'App\\Domain\\Programme\\Models\\Programme',
+          'importstatus' => 'App\\Domain\\Registry\\Enums\\ImportStatus',
+          'registrationsource' => 'App\\Domain\\Registry\\Enums\\RegistrationSource',
+          'parseimportbatch' => 'App\\Domain\\Registry\\Jobs\\ParseImportBatch',
+          'importbatch' => 'App\\Domain\\Registry\\Models\\ImportBatch',
+          'importcommitter' => 'App\\Domain\\Registry\\Services\\ImportCommitter',
+          'importmappingservice' => 'App\\Domain\\Registry\\Services\\ImportMappingService',
+          'controller' => 'App\\Http\\Controllers\\Controller',
+          'uploadactivityimportrequest' => 'App\\Http\\Requests\\Registry\\UploadActivityImportRequest',
+          'activityresource' => 'App\\Http\\Resources\\ActivityResource',
+          'importbatchresource' => 'App\\Http\\Resources\\ImportBatchResource',
+          'apiresponse' => 'App\\Support\\ApiResponse',
+          'jsonresponse' => 'Illuminate\\Http\\JsonResponse',
+          'db' => 'Illuminate\\Support\\Facades\\DB',
+        ),
+         'className' => 'App\\Http\\Controllers\\Api\\V1\\Registry\\ActivityImportController',
+         'functionName' => '__construct',
+         'templatePhpDocNodes' => 
+        array (
+        ),
+         'parent' => 
+        \PHPStan\Analyser\IntermediaryNameScope::__set_state(array(
+           'namespace' => 'App\\Http\\Controllers\\Api\\V1\\Registry',
+           'uses' => 
+          array (
+            'mdascope' => 'App\\Domain\\Access\\Scopes\\MdaScope',
+            'activity' => 'App\\Domain\\Programme\\Models\\Activity',
+            'programme' => 'App\\Domain\\Programme\\Models\\Programme',
+            'importstatus' => 'App\\Domain\\Registry\\Enums\\ImportStatus',
+            'registrationsource' => 'App\\Domain\\Registry\\Enums\\RegistrationSource',
+            'parseimportbatch' => 'App\\Domain\\Registry\\Jobs\\ParseImportBatch',
+            'importbatch' => 'App\\Domain\\Registry\\Models\\ImportBatch',
+            'importcommitter' => 'App\\Domain\\Registry\\Services\\ImportCommitter',
+            'importmappingservice' => 'App\\Domain\\Registry\\Services\\ImportMappingService',
+            'controller' => 'App\\Http\\Controllers\\Controller',
+            'uploadactivityimportrequest' => 'App\\Http\\Requests\\Registry\\UploadActivityImportRequest',
+            'activityresource' => 'App\\Http\\Resources\\ActivityResource',
+            'importbatchresource' => 'App\\Http\\Resources\\ImportBatchResource',
+            'apiresponse' => 'App\\Support\\ApiResponse',
+            'jsonresponse' => 'Illuminate\\Http\\JsonResponse',
+            'db' => 'Illuminate\\Support\\Facades\\DB',
+          ),
+           'className' => 'App\\Http\\Controllers\\Api\\V1\\Registry\\ActivityImportController',
+           'functionName' => NULL,
+           'templatePhpDocNodes' => 
+          array (
+          ),
+           'parent' => NULL,
+           'typeAliasesMap' => 
+          array (
+          ),
+           'bypassTypeAliases' => false,
+           'constUses' => 
+          array (
+          ),
+           'typeAliasClassName' => NULL,
+           'traitData' => NULL,
+        )),
+         'typeAliasesMap' => 
+        array (
+        ),
+         'bypassTypeAliases' => false,
+         'constUses' => 
+        array (
+        ),
+         'typeAliasClassName' => NULL,
+         'traitData' => NULL,
+      )),
       'c9fe3c4b50ce5e983f4de8e6b1e047c8' => 
       \PHPStan\Analyser\IntermediaryNameScope::__set_state(array(
          'namespace' => 'App\\Http\\Controllers\\Api\\V1\\Registry',
@@ -57,6 +133,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
           'parseimportbatch' => 'App\\Domain\\Registry\\Jobs\\ParseImportBatch',
           'importbatch' => 'App\\Domain\\Registry\\Models\\ImportBatch',
           'importcommitter' => 'App\\Domain\\Registry\\Services\\ImportCommitter',
+          'importmappingservice' => 'App\\Domain\\Registry\\Services\\ImportMappingService',
           'controller' => 'App\\Http\\Controllers\\Controller',
           'uploadactivityimportrequest' => 'App\\Http\\Requests\\Registry\\UploadActivityImportRequest',
           'activityresource' => 'App\\Http\\Resources\\ActivityResource',
@@ -83,6 +160,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             'parseimportbatch' => 'App\\Domain\\Registry\\Jobs\\ParseImportBatch',
             'importbatch' => 'App\\Domain\\Registry\\Models\\ImportBatch',
             'importcommitter' => 'App\\Domain\\Registry\\Services\\ImportCommitter',
+            'importmappingservice' => 'App\\Domain\\Registry\\Services\\ImportMappingService',
             'controller' => 'App\\Http\\Controllers\\Controller',
             'uploadactivityimportrequest' => 'App\\Http\\Requests\\Registry\\UploadActivityImportRequest',
             'activityresource' => 'App\\Http\\Resources\\ActivityResource',
@@ -130,6 +208,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
           'parseimportbatch' => 'App\\Domain\\Registry\\Jobs\\ParseImportBatch',
           'importbatch' => 'App\\Domain\\Registry\\Models\\ImportBatch',
           'importcommitter' => 'App\\Domain\\Registry\\Services\\ImportCommitter',
+          'importmappingservice' => 'App\\Domain\\Registry\\Services\\ImportMappingService',
           'controller' => 'App\\Http\\Controllers\\Controller',
           'uploadactivityimportrequest' => 'App\\Http\\Requests\\Registry\\UploadActivityImportRequest',
           'activityresource' => 'App\\Http\\Resources\\ActivityResource',
@@ -156,6 +235,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             'parseimportbatch' => 'App\\Domain\\Registry\\Jobs\\ParseImportBatch',
             'importbatch' => 'App\\Domain\\Registry\\Models\\ImportBatch',
             'importcommitter' => 'App\\Domain\\Registry\\Services\\ImportCommitter',
+            'importmappingservice' => 'App\\Domain\\Registry\\Services\\ImportMappingService',
             'controller' => 'App\\Http\\Controllers\\Controller',
             'uploadactivityimportrequest' => 'App\\Http\\Requests\\Registry\\UploadActivityImportRequest',
             'activityresource' => 'App\\Http\\Resources\\ActivityResource',
@@ -193,7 +273,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
     ),
     1 => 
     array (
-      'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Registry\\ActivityImportController.php' => '324b7a055f6f663812fa2ea0c2e70e21e9d1d11662624003dcdc4b384e969ba4',
+      'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Registry\\ActivityImportController.php' => '9698a10e6c8266fa54107431340c45212be3e49fbcccd014f35092ff32eb3ea1',
     ),
   ),
 ));

@@ -39,7 +39,8 @@ class AuditQueryService
         ],
         // Permission / access-grant changes (Phase 1 + cross-MDA sharing).
         'permission' => [
-            'cross_mda.granted', 'cross_mda.revoked', 'beneficiary.access_granted',
+            'cross_mda.granted', 'cross_mda.revoked',
+            'beneficiary.access_granted', 'beneficiary.access_revoked',
             'role.created', 'role.updated', 'role.deleted',
         ],
         // Request-to-serve decisions (Phase 3 ownership → Phase 5 coordination).
