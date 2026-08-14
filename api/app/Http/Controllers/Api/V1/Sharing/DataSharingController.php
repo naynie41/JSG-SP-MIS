@@ -128,8 +128,11 @@ class DataSharingController extends Controller
     {
         $consentRequired = (bool) config('sharing.admin_grant_requires_consent', true);
 
+        // `active()` excludes REVOKED as well as expired. Since revocation now retains
+        // the row, a plain expiry filter would report withdrawn access as current — the
+        // oversight view answers "who can read this today", not "who ever could".
         return MdaAccessGrant::query()
-            ->where(fn ($q) => $q->whereNull('expires_at')->orWhere('expires_at', '>', now()))
+            ->active()
             ->with(['user:id,name,mda_id', 'user.mda:id,name', 'mda:id,name', 'grantedBy:id,name'])
             ->get()
             ->map(fn (MdaAccessGrant $grant): array => [

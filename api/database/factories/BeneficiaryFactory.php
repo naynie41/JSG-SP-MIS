@@ -34,7 +34,10 @@ class BeneficiaryFactory extends Factory
 
         return [
             'owner_mda_id' => Mda::factory(),
-            'registration_source' => RegistrationSource::Manual,
+            // A legitimate source, because provenance is required and has no default
+            // (CLAUDE.md §8). Excel stands in for "arrived through a file import" — the
+            // commonest door — and tests that care about a specific source set it.
+            'registration_source' => RegistrationSource::Excel,
             'registration_date' => now()->toDateString(),
             'nin' => fake()->unique()->numerify('###########'),
             'bvn' => fake()->unique()->numerify('###########'),

@@ -2,7 +2,7 @@
 
 // odsl-C:\Users\ACER\Desktop\JSG-SP-MIS\JSG-SP-MIS\api\app\Domain\Registry\Enums\RegistrationSource.php-PHPStan\BetterReflection\Reflection\ReflectionClass-App\Domain\Registry\Enums\RegistrationSource
 return \PHPStan\Cache\CacheItem::__set_state(array(
-   'variableKey' => 'v2-6.70.0.1-8.3.31-7740d9ad863728c6504681d12c7220cfec980f8f54643174903fc6cc95c204bb',
+   'variableKey' => 'v2-6.70.0.1-8.3.31-15b895792449734e89431d891132d0fac3db2e3aa1e3573426905c67173d9387',
    'data' => 
   array (
     'locatedSource' => 
@@ -23,15 +23,17 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
     'isBackedEnum' => true,
     'modifiers' => 0,
     'docComment' => '/**
- * Where a beneficiary/household record came from (PRD §6.1 provenance). Phase 2
- * ingests `manual` and `excel`/`csv`; the other sources have endpoints later but
- * their provenance values are defined now.
+ * Where a beneficiary/household record came from (PRD §6.1 provenance).
+ *
+ * Ingestion is bulk/source-only (CLAUDE.md §8) — every record enters through a file
+ * import, the REST intake, a connector sync, or an offline batch, and each of those
+ * knows its own source. There is no path by which a record\'s origin is unknown.
  */',
     'attributes' => 
     array (
     ),
-    'startLine' => 12,
-    'endLine' => 22,
+    'startLine' => 14,
+    'endLine' => 59,
     'startColumn' => 1,
     'endColumn' => 1,
     'parentClassName' => NULL,
@@ -111,6 +113,117 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
     ),
     'immediateMethods' => 
     array (
+      'isAssignable' => 
+      array (
+        'name' => 'isAssignable',
+        'parameters' => 
+        array (
+        ),
+        'returnsReference' => false,
+        'returnType' => 
+        array (
+          'class' => 'PHPStan\\BetterReflection\\Reflection\\ReflectionNamedType',
+          'data' => 
+          array (
+            'name' => 'bool',
+            'isIdentifier' => true,
+          ),
+        ),
+        'attributes' => 
+        array (
+        ),
+        'docComment' => '/** Whether a NEW record may be written with this provenance. */',
+        'startLine' => 37,
+        'endLine' => 40,
+        'startColumn' => 5,
+        'endColumn' => 5,
+        'couldThrow' => false,
+        'isClosure' => false,
+        'isGenerator' => false,
+        'isVariadic' => false,
+        'modifiers' => 1,
+        'namespace' => 'App\\Domain\\Registry\\Enums',
+        'declaringClassName' => 'App\\Domain\\Registry\\Enums\\RegistrationSource',
+        'implementingClassName' => 'App\\Domain\\Registry\\Enums\\RegistrationSource',
+        'currentClassName' => 'App\\Domain\\Registry\\Enums\\RegistrationSource',
+        'aliasName' => NULL,
+      ),
+      'assignable' => 
+      array (
+        'name' => 'assignable',
+        'parameters' => 
+        array (
+        ),
+        'returnsReference' => false,
+        'returnType' => 
+        array (
+          'class' => 'PHPStan\\BetterReflection\\Reflection\\ReflectionNamedType',
+          'data' => 
+          array (
+            'name' => 'array',
+            'isIdentifier' => true,
+          ),
+        ),
+        'attributes' => 
+        array (
+        ),
+        'docComment' => '/**
+ * The provenances a new record may carry.
+ *
+ * @return list<self>
+ */',
+        'startLine' => 47,
+        'endLine' => 50,
+        'startColumn' => 5,
+        'endColumn' => 5,
+        'couldThrow' => false,
+        'isClosure' => false,
+        'isGenerator' => false,
+        'isVariadic' => false,
+        'modifiers' => 17,
+        'namespace' => 'App\\Domain\\Registry\\Enums',
+        'declaringClassName' => 'App\\Domain\\Registry\\Enums\\RegistrationSource',
+        'implementingClassName' => 'App\\Domain\\Registry\\Enums\\RegistrationSource',
+        'currentClassName' => 'App\\Domain\\Registry\\Enums\\RegistrationSource',
+        'aliasName' => NULL,
+      ),
+      'assignableValues' => 
+      array (
+        'name' => 'assignableValues',
+        'parameters' => 
+        array (
+        ),
+        'returnsReference' => false,
+        'returnType' => 
+        array (
+          'class' => 'PHPStan\\BetterReflection\\Reflection\\ReflectionNamedType',
+          'data' => 
+          array (
+            'name' => 'array',
+            'isIdentifier' => true,
+          ),
+        ),
+        'attributes' => 
+        array (
+        ),
+        'docComment' => '/**
+ * @return list<string>
+ */',
+        'startLine' => 55,
+        'endLine' => 58,
+        'startColumn' => 5,
+        'endColumn' => 5,
+        'couldThrow' => false,
+        'isClosure' => false,
+        'isGenerator' => false,
+        'isVariadic' => false,
+        'modifiers' => 17,
+        'namespace' => 'App\\Domain\\Registry\\Enums',
+        'declaringClassName' => 'App\\Domain\\Registry\\Enums\\RegistrationSource',
+        'implementingClassName' => 'App\\Domain\\Registry\\Enums\\RegistrationSource',
+        'currentClassName' => 'App\\Domain\\Registry\\Enums\\RegistrationSource',
+        'aliasName' => NULL,
+      ),
       'cases' => 
       array (
         'name' => 'cases',
@@ -356,20 +469,29 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
           'code' => '\'manual\'',
           'attributes' => 
           array (
-            'startLine' => 14,
-            'endLine' => 14,
-            'startTokenPos' => 32,
-            'startFilePos' => 339,
-            'endTokenPos' => 32,
-            'endFilePos' => 346,
+            'startLine' => 26,
+            'endLine' => 26,
+            'startTokenPos' => 34,
+            'startFilePos' => 1010,
+            'endTokenPos' => 34,
+            'endFilePos' => 1017,
           ),
         ),
         'attributes' => 
         array (
         ),
-        'docComment' => NULL,
-        'startLine' => 14,
-        'endLine' => 14,
+        'docComment' => '/**
+ * @deprecated Historical only. Manual single-record entry was removed (CLAUDE.md §8),
+ * so no NEW record may carry this value — a record tagged `manual` today would be
+ * claiming an origin that cannot occur, which is a lineage the audit trail cannot
+ * account for.
+ *
+ * The case remains ONLY so rows written before the removal still cast and display.
+ * Deleting it would break reading that history, which is worse than keeping a value
+ * that {@see self::isAssignable()} refuses for writes.
+ */',
+        'startLine' => 26,
+        'endLine' => 26,
         'startColumn' => 5,
         'endColumn' => 27,
       ),
@@ -381,20 +503,20 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
           'code' => '\'excel\'',
           'attributes' => 
           array (
-            'startLine' => 15,
-            'endLine' => 15,
-            'startTokenPos' => 41,
-            'startFilePos' => 366,
-            'endTokenPos' => 41,
-            'endFilePos' => 372,
+            'startLine' => 28,
+            'endLine' => 28,
+            'startTokenPos' => 43,
+            'startFilePos' => 1038,
+            'endTokenPos' => 43,
+            'endFilePos' => 1044,
           ),
         ),
         'attributes' => 
         array (
         ),
         'docComment' => NULL,
-        'startLine' => 15,
-        'endLine' => 15,
+        'startLine' => 28,
+        'endLine' => 28,
         'startColumn' => 5,
         'endColumn' => 25,
       ),
@@ -406,20 +528,20 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
           'code' => '\'csv\'',
           'attributes' => 
           array (
-            'startLine' => 16,
-            'endLine' => 16,
-            'startTokenPos' => 50,
-            'startFilePos' => 390,
-            'endTokenPos' => 50,
-            'endFilePos' => 394,
+            'startLine' => 29,
+            'endLine' => 29,
+            'startTokenPos' => 52,
+            'startFilePos' => 1062,
+            'endTokenPos' => 52,
+            'endFilePos' => 1066,
           ),
         ),
         'attributes' => 
         array (
         ),
         'docComment' => NULL,
-        'startLine' => 16,
-        'endLine' => 16,
+        'startLine' => 29,
+        'endLine' => 29,
         'startColumn' => 5,
         'endColumn' => 21,
       ),
@@ -431,20 +553,20 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
           'code' => '\'kobo\'',
           'attributes' => 
           array (
-            'startLine' => 17,
-            'endLine' => 17,
-            'startTokenPos' => 59,
-            'startFilePos' => 413,
-            'endTokenPos' => 59,
-            'endFilePos' => 418,
+            'startLine' => 30,
+            'endLine' => 30,
+            'startTokenPos' => 61,
+            'startFilePos' => 1085,
+            'endTokenPos' => 61,
+            'endFilePos' => 1090,
           ),
         ),
         'attributes' => 
         array (
         ),
         'docComment' => NULL,
-        'startLine' => 17,
-        'endLine' => 17,
+        'startLine' => 30,
+        'endLine' => 30,
         'startColumn' => 5,
         'endColumn' => 23,
       ),
@@ -456,20 +578,20 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
           'code' => '\'odk\'',
           'attributes' => 
           array (
-            'startLine' => 18,
-            'endLine' => 18,
-            'startTokenPos' => 68,
-            'startFilePos' => 436,
-            'endTokenPos' => 68,
-            'endFilePos' => 440,
+            'startLine' => 31,
+            'endLine' => 31,
+            'startTokenPos' => 70,
+            'startFilePos' => 1108,
+            'endTokenPos' => 70,
+            'endFilePos' => 1112,
           ),
         ),
         'attributes' => 
         array (
         ),
         'docComment' => NULL,
-        'startLine' => 18,
-        'endLine' => 18,
+        'startLine' => 31,
+        'endLine' => 31,
         'startColumn' => 5,
         'endColumn' => 21,
       ),
@@ -481,20 +603,20 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
           'code' => '\'api\'',
           'attributes' => 
           array (
-            'startLine' => 19,
-            'endLine' => 19,
-            'startTokenPos' => 77,
-            'startFilePos' => 458,
-            'endTokenPos' => 77,
-            'endFilePos' => 462,
+            'startLine' => 32,
+            'endLine' => 32,
+            'startTokenPos' => 79,
+            'startFilePos' => 1130,
+            'endTokenPos' => 79,
+            'endFilePos' => 1134,
           ),
         ),
         'attributes' => 
         array (
         ),
         'docComment' => NULL,
-        'startLine' => 19,
-        'endLine' => 19,
+        'startLine' => 32,
+        'endLine' => 32,
         'startColumn' => 5,
         'endColumn' => 21,
       ),
@@ -506,20 +628,20 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
           'code' => '\'socu\'',
           'attributes' => 
           array (
-            'startLine' => 20,
-            'endLine' => 20,
-            'startTokenPos' => 86,
-            'startFilePos' => 481,
-            'endTokenPos' => 86,
-            'endFilePos' => 486,
+            'startLine' => 33,
+            'endLine' => 33,
+            'startTokenPos' => 88,
+            'startFilePos' => 1153,
+            'endTokenPos' => 88,
+            'endFilePos' => 1158,
           ),
         ),
         'attributes' => 
         array (
         ),
         'docComment' => NULL,
-        'startLine' => 20,
-        'endLine' => 20,
+        'startLine' => 33,
+        'endLine' => 33,
         'startColumn' => 5,
         'endColumn' => 23,
       ),
@@ -531,20 +653,20 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
           'code' => '\'government_system\'',
           'attributes' => 
           array (
-            'startLine' => 21,
-            'endLine' => 21,
-            'startTokenPos' => 95,
-            'startFilePos' => 517,
-            'endTokenPos' => 95,
-            'endFilePos' => 535,
+            'startLine' => 34,
+            'endLine' => 34,
+            'startTokenPos' => 97,
+            'startFilePos' => 1189,
+            'endTokenPos' => 97,
+            'endFilePos' => 1207,
           ),
         ),
         'attributes' => 
         array (
         ),
         'docComment' => NULL,
-        'startLine' => 21,
-        'endLine' => 21,
+        'startLine' => 34,
+        'endLine' => 34,
         'startColumn' => 5,
         'endColumn' => 48,
       ),

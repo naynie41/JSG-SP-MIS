@@ -329,7 +329,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
     ),
     1 => 
     array (
-      'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Registry\\RegistryServiceProvider.php' => '26aac99399d3372dcb18761252961701cdb944fabb1212453a6b43c9c6236ecb',
+      'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Registry\\RegistryServiceProvider.php' => '0b5938597414cbb56e8b488e7169765fc4d0d096e240e39436c18ebbe9555c3b',
     ),
   ),
 ));

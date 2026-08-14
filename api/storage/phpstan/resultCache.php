@@ -11232,6 +11232,43 @@ return [
       ),
     ),
   ),
+  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Registry\\Enums\\RegistrationSource.php' => 
+  array (
+    'PHPStan\\Rules\\DeadCode\\MethodWithoutImpurePointsCollector' => 
+    array (
+      0 => 
+      array (
+        0 => 'App\\Domain\\Registry\\Enums\\RegistrationSource',
+        1 => 'assignable',
+        2 => 'App\\Domain\\Registry\\Enums\\RegistrationSource',
+        3 => 
+        array (
+          0 => 'f' . "\0" . 'array_filter',
+          1 => 'm' . "\0" . 'app\\domain\\registry\\enums\\registrationsource' . "\0" . 'isassignable',
+        ),
+      ),
+      1 => 
+      array (
+        0 => 'App\\Domain\\Registry\\Enums\\RegistrationSource',
+        1 => 'assignableValues',
+        2 => 'App\\Domain\\Registry\\Enums\\RegistrationSource',
+        3 => 
+        array (
+          0 => 'f' . "\0" . 'array_map',
+          1 => 'm' . "\0" . 'app\\domain\\registry\\enums\\registrationsource' . "\0" . 'assignable',
+        ),
+      ),
+      2 => 
+      array (
+        0 => 'App\\Domain\\Registry\\Enums\\RegistrationSource',
+        1 => 'isAssignable',
+        2 => 'App\\Domain\\Registry\\Enums\\RegistrationSource',
+        3 => 
+        array (
+        ),
+      ),
+    ),
+  ),
   'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Registry\\Events\\BeneficiaryAccessRevoked.php' => 
   array (
     'PHPStan\\Rules\\DeadCode\\ConstructorWithoutImpurePointsCollector' => 
@@ -17865,7 +17902,7 @@ return [
       array (
         0 => 'App\\Domain\\Access\\Events\\CrossMdaAccessRevoked',
         1 => 'dispatch',
-        2 => 53,
+        2 => 72,
       ),
     ),
   ),
@@ -21965,7 +22002,7 @@ return [
   ),
   'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Access\\Models\\MdaAccessGrant.php' => 
   array (
-    'fileHash' => '80454f5cca1295177440dad59922c69b175d5bf25e20ef46174a8e4a926daa17',
+    'fileHash' => '90584e224e34a474065f3a0d01ac3bd5abebc9405871981966456218ab58f3b1',
     'dependentFiles' => 
     array (
       0 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Access\\Events\\CrossMdaAccessGranted.php',
@@ -22216,7 +22253,7 @@ return [
   ),
   'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Access\\Models\\User.php' => 
   array (
-    'fileHash' => 'fff53d6fcd4c37c7b9be357e0b475702957b85cf3233aed363cd267e7fda02c6',
+    'fileHash' => 'cb5dc1613afedc1a9fd1192af8b727a89fed98e76081a1b015be235aaa3d0e9a',
     'dependentFiles' => 
     array (
       0 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Console\\Commands\\CreateAdminUser.php',
@@ -24681,7 +24718,7 @@ return [
   ),
   'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Programme\\Services\\EnrollmentService.php' => 
   array (
-    'fileHash' => 'a76def3ec97d20bfb8562e0f9ef0b467ec38585795851d0385c219dc71ef44c1',
+    'fileHash' => '160393b8147c111f00387a53a7c5b8020b0cc7a43ac8a740a1e8de8e4ec03607',
     'dependentFiles' => 
     array (
       0 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Registry\\Services\\ImportCommitter.php',
@@ -25227,7 +25264,7 @@ return [
   ),
   'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Registry\\Enums\\RegistrationSource.php' => 
   array (
-    'fileHash' => '7740d9ad863728c6504681d12c7220cfec980f8f54643174903fc6cc95c204bb',
+    'fileHash' => '15b895792449734e89431d891132d0fac3db2e3aa1e3573426905c67173d9387',
     'dependentFiles' => 
     array (
       0 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Console\\Commands\\PerfBenchmark.php',
@@ -25297,48 +25334,49 @@ return [
       64 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Registry\\Services\\NullBeneficiaryRouter.php',
       65 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Registry\\Services\\OwnershipTransferService.php',
       66 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Registry\\Services\\ServiceRequestService.php',
-      67 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Registry\\Support\\UniqueIdentifier.php',
-      68 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Reporting\\Gis\\GisCoverageService.php',
-      69 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Reporting\\Reports\\AdHoc\\AdHocDatasetRegistry.php',
-      70 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Reporting\\Services\\AdminSummaryService.php',
-      71 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Reporting\\Services\\DashboardMetricsService.php',
-      72 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Sharing\\DataSharingGuard.php',
-      73 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Sync\\Jobs\\RunDueSyncConnectors.php',
-      74 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Sync\\Jobs\\RunSyncConnector.php',
-      75 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Sync\\Models\\SyncConnector.php',
-      76 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Sync\\Models\\SyncRun.php',
-      77 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Sync\\Services\\ConnectorMappingService.php',
-      78 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Sync\\Services\\SyncEngine.php',
-      79 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Sync\\Sources\\MockSyncSource.php',
-      80 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Sync\\Sources\\SyncSource.php',
-      81 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Sync\\Sources\\SyncSourceResolver.php',
-      82 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Benefit\\BenefitController.php',
-      83 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\HealthController.php',
-      84 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Programme\\EnrollmentController.php',
-      85 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Referral\\ReferralController.php',
-      86 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Registry\\ActivityImportController.php',
-      87 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Registry\\BeneficiaryController.php',
-      88 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Registry\\BeneficiaryDocumentController.php',
-      89 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Registry\\BeneficiaryIntakeController.php',
-      90 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Registry\\BeneficiaryRoutingController.php',
-      91 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Registry\\HouseholdController.php',
-      92 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Registry\\HouseholdMemberController.php',
-      93 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Registry\\ImportBatchController.php',
-      94 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Registry\\OwnershipTransferController.php',
-      95 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Registry\\ServiceRequestController.php',
-      96 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Sharing\\DataSharingController.php',
-      97 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Sync\\SyncController.php',
-      98 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Registry\\ApiRegistrationRequest.php',
-      99 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Registry\\ExportBeneficiariesRequest.php',
-      100 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Registry\\UpdateBeneficiaryRequest.php',
-      101 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Resources\\ActivityDetailResource.php',
-      102 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Resources\\BeneficiaryResource.php',
-      103 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Resources\\BeneficiaryRevealResource.php',
-      104 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Resources\\HouseholdMembershipResource.php',
-      105 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Resources\\HouseholdResource.php',
-      106 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Resources\\ImportBatchResource.php',
-      107 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Resources\\ServiceRequestResource.php',
-      108 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Resources\\SyncConnectorResource.php',
+      67 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Registry\\Support\\RegistrationSourceRule.php',
+      68 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Registry\\Support\\UniqueIdentifier.php',
+      69 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Reporting\\Gis\\GisCoverageService.php',
+      70 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Reporting\\Reports\\AdHoc\\AdHocDatasetRegistry.php',
+      71 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Reporting\\Services\\AdminSummaryService.php',
+      72 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Reporting\\Services\\DashboardMetricsService.php',
+      73 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Sharing\\DataSharingGuard.php',
+      74 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Sync\\Jobs\\RunDueSyncConnectors.php',
+      75 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Sync\\Jobs\\RunSyncConnector.php',
+      76 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Sync\\Models\\SyncConnector.php',
+      77 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Sync\\Models\\SyncRun.php',
+      78 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Sync\\Services\\ConnectorMappingService.php',
+      79 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Sync\\Services\\SyncEngine.php',
+      80 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Sync\\Sources\\MockSyncSource.php',
+      81 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Sync\\Sources\\SyncSource.php',
+      82 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Sync\\Sources\\SyncSourceResolver.php',
+      83 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Benefit\\BenefitController.php',
+      84 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\HealthController.php',
+      85 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Programme\\EnrollmentController.php',
+      86 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Referral\\ReferralController.php',
+      87 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Registry\\ActivityImportController.php',
+      88 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Registry\\BeneficiaryController.php',
+      89 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Registry\\BeneficiaryDocumentController.php',
+      90 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Registry\\BeneficiaryIntakeController.php',
+      91 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Registry\\BeneficiaryRoutingController.php',
+      92 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Registry\\HouseholdController.php',
+      93 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Registry\\HouseholdMemberController.php',
+      94 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Registry\\ImportBatchController.php',
+      95 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Registry\\OwnershipTransferController.php',
+      96 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Registry\\ServiceRequestController.php',
+      97 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Sharing\\DataSharingController.php',
+      98 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Sync\\SyncController.php',
+      99 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Registry\\ApiRegistrationRequest.php',
+      100 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Registry\\ExportBeneficiariesRequest.php',
+      101 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Registry\\UpdateBeneficiaryRequest.php',
+      102 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Resources\\ActivityDetailResource.php',
+      103 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Resources\\BeneficiaryResource.php',
+      104 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Resources\\BeneficiaryRevealResource.php',
+      105 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Resources\\HouseholdMembershipResource.php',
+      106 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Resources\\HouseholdResource.php',
+      107 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Resources\\ImportBatchResource.php',
+      108 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Resources\\ServiceRequestResource.php',
+      109 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Resources\\SyncConnectorResource.php',
     ),
   ),
   'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Registry\\Enums\\ServiceRequestStatus.php' => 
@@ -25547,7 +25585,7 @@ return [
   ),
   'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Registry\\Models\\Beneficiary.php' => 
   array (
-    'fileHash' => '9edc1ef40d63507769f67ae2771b92bad4b6d04bc76dc8f6fd0b72c192e5d854',
+    'fileHash' => '6c3aedbbc7134b2f604526bb685fc3e16ddc6d3733e74a758a445e111d8661b6',
     'dependentFiles' => 
     array (
       0 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Console\\Commands\\PerfBenchmark.php',
@@ -25720,7 +25758,7 @@ return [
   ),
   'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Registry\\Models\\Household.php' => 
   array (
-    'fileHash' => 'c0206c14eedb9c7e08b70f8d0a52ddc9cfd94cfd0d9990031e1c402a6920aeb0',
+    'fileHash' => '3f6730cb4af4d34fbb15f91959facf44cfba5bcc6a27a4b2ec7138f7171036f6',
     'dependentFiles' => 
     array (
       0 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Benefit\\Imports\\BenefitDeliveryRowValidator.php',
@@ -25970,7 +26008,7 @@ return [
   ),
   'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Registry\\Policies\\HouseholdPolicy.php' => 
   array (
-    'fileHash' => '410dd832e66f56c44fde79f1961801987574f5c0efa16a3b9de67eed45b10071',
+    'fileHash' => '258fa7deb87fd39a6716b9a59ad7e4c02dfa3040d985c3c9d25f62e162333d5b',
     'dependentFiles' => 
     array (
       0 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Registry\\RegistryServiceProvider.php',
@@ -25994,7 +26032,7 @@ return [
   ),
   'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Registry\\RegistryServiceProvider.php' => 
   array (
-    'fileHash' => '26aac99399d3372dcb18761252961701cdb944fabb1212453a6b43c9c6236ecb',
+    'fileHash' => '0b5938597414cbb56e8b488e7169765fc4d0d096e240e39436c18ebbe9555c3b',
     'dependentFiles' => 
     array (
     ),
@@ -26135,10 +26173,9 @@ return [
     'fileHash' => 'a8ab5c85859ffc8c3249da65fc00b577969984bd7072d65fce3eb27e1f6c4cb5',
     'dependentFiles' => 
     array (
-      0 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Programme\\Services\\EnrollmentService.php',
-      1 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Registry\\Services\\ImportCommitter.php',
-      2 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Sharing\\DataSharingGuard.php',
-      3 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Registry\\ServiceRequestController.php',
+      0 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Registry\\Services\\ImportCommitter.php',
+      1 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Sharing\\DataSharingGuard.php',
+      2 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Registry\\ServiceRequestController.php',
     ),
   ),
   'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Registry\\Support\\BeneficiaryRules.php' => 
@@ -26194,6 +26231,15 @@ return [
       4 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Registry\\Services\\BeneficiaryLookupService.php',
       5 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Registry\\Services\\ImportMappingService.php',
       6 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Sync\\Services\\ConnectorMappingService.php',
+    ),
+  ),
+  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Registry\\Support\\RegistrationSourceRule.php' => 
+  array (
+    'fileHash' => '05a83c4f1c02c73cf6317f4adea2fb6b80a0c578834acb8b52603aee42122fa2',
+    'dependentFiles' => 
+    array (
+      0 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Registry\\Models\\Beneficiary.php',
+      1 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Registry\\Models\\Household.php',
     ),
   ),
   'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Registry\\Support\\UniqueIdentifier.php' => 
@@ -26708,9 +26754,10 @@ return [
     'dependentFiles' => 
     array (
       0 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Benefit\\Authorization\\ServiceRequestAuthorizer.php',
-      1 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Registry\\Policies\\BeneficiaryPolicy.php',
-      2 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Registry\\BeneficiaryController.php',
-      3 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Sharing\\DataSharingController.php',
+      1 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Programme\\Services\\EnrollmentService.php',
+      2 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Registry\\Policies\\BeneficiaryPolicy.php',
+      3 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Registry\\BeneficiaryController.php',
+      4 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Sharing\\DataSharingController.php',
     ),
   ),
   'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Sharing\\SharingBasis.php' => 
@@ -26911,7 +26958,7 @@ return [
   ),
   'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Access\\MdaAccessGrantController.php' => 
   array (
-    'fileHash' => 'cd98c6ce05340c6982fb9994226c4af2d4a5274e2d8fcd93f13d880ab9aab3a4',
+    'fileHash' => 'e80c8266a350c48a4c52a6653aa06f20370c8feca1157968fdded040661f633e',
     'dependentFiles' => 
     array (
     ),
@@ -27219,7 +27266,7 @@ return [
   ),
   'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Sharing\\DataSharingController.php' => 
   array (
-    'fileHash' => '204adf07584c3463fd4c04482eb252e1cae525d8437dd0cbe6daefbf522d9c60',
+    'fileHash' => '28746063a2a3690ba4d7384c9ff19c0dffc17c7a0627cc07cb1f49ce9074645f',
     'dependentFiles' => 
     array (
     ),
@@ -27352,7 +27399,7 @@ return [
   ),
   'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Access\\StoreMdaAccessGrantRequest.php' => 
   array (
-    'fileHash' => 'e6bc2252404ad6131f57dad8416b11eaef9111709831eee428f916a906014314',
+    'fileHash' => 'eec1438369fd454520faaa2a924442afbd59e08ea327eac7cb45dd7dcd7a139c',
     'dependentFiles' => 
     array (
       0 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Access\\MdaAccessGrantController.php',
@@ -30378,7 +30425,8 @@ return [
   'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Access\\Models\\MdaAccessGrant.php' => 
   array (
     0 => 'laravel/framework',
-    1 => 'laravel/sanctum',
+    1 => 'nesbot/carbon',
+    2 => 'laravel/sanctum',
   ),
   'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Access\\Services\\RolePermissionService.php' => 
   array (
@@ -30509,6 +30557,9 @@ return [
     0 => 'laravel/framework',
     1 => 'symfony/http-foundation',
     2 => 'laravel/sanctum',
+  ),
+  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Registry\\Support\\RegistrationSourceRule.php' => 
+  array (
   ),
 ),
 	'exportedNodesCallback' => static function (): array { return array (
@@ -33152,11 +33203,15 @@ return [
  * @property string|null $granted_by
  * @property string|null $reason
  * @property Carbon|null $expires_at
+ * @property Carbon|null $revoked_at
+ * @property string|null $revoked_by
+ * @property string|null $revocation_reason
  * @property Carbon|null $created_at
  */',
          'namespace' => 'App\\Domain\\Access\\Models',
          'uses' => 
         array (
+          'builder' => 'Illuminate\\Database\\Eloquent\\Builder',
           'hasuuids' => 'Illuminate\\Database\\Eloquent\\Concerns\\HasUuids',
           'model' => 'Illuminate\\Database\\Eloquent\\Model',
           'belongsto' => 'Illuminate\\Database\\Eloquent\\Relations\\BelongsTo',
@@ -33220,6 +33275,7 @@ return [
              'namespace' => 'App\\Domain\\Access\\Models',
              'uses' => 
             array (
+              'builder' => 'Illuminate\\Database\\Eloquent\\Builder',
               'hasuuids' => 'Illuminate\\Database\\Eloquent\\Concerns\\HasUuids',
               'model' => 'Illuminate\\Database\\Eloquent\\Model',
               'belongsto' => 'Illuminate\\Database\\Eloquent\\Relations\\BelongsTo',
@@ -33258,6 +33314,7 @@ return [
              'namespace' => 'App\\Domain\\Access\\Models',
              'uses' => 
             array (
+              'builder' => 'Illuminate\\Database\\Eloquent\\Builder',
               'hasuuids' => 'Illuminate\\Database\\Eloquent\\Concerns\\HasUuids',
               'model' => 'Illuminate\\Database\\Eloquent\\Model',
               'belongsto' => 'Illuminate\\Database\\Eloquent\\Relations\\BelongsTo',
@@ -33283,6 +33340,95 @@ return [
         )),
         3 => 
         \PHPStan\Dependency\ExportedNode\ExportedMethodNode::__set_state(array(
+           'name' => 'isActive',
+           'phpDoc' => 
+          \PHPStan\Dependency\ExportedNode\ExportedPhpDocNode::__set_state(array(
+             'phpDocString' => '/**
+     * Whether this grant currently opens access.
+     *
+     * Two ways it can be over, and they are not the same fact: it EXPIRED on a date set
+     * when it was issued, or someone REVOKED it. Both are kept, because an audit of who
+     * held access to citizen records has to be able to tell a lapse from a withdrawal.
+     */',
+             'namespace' => 'App\\Domain\\Access\\Models',
+             'uses' => 
+            array (
+              'builder' => 'Illuminate\\Database\\Eloquent\\Builder',
+              'hasuuids' => 'Illuminate\\Database\\Eloquent\\Concerns\\HasUuids',
+              'model' => 'Illuminate\\Database\\Eloquent\\Model',
+              'belongsto' => 'Illuminate\\Database\\Eloquent\\Relations\\BelongsTo',
+              'carbon' => 'Illuminate\\Support\\Carbon',
+            ),
+             'constUses' => 
+            array (
+            ),
+          )),
+           'byRef' => false,
+           'public' => true,
+           'private' => false,
+           'abstract' => false,
+           'final' => false,
+           'static' => false,
+           'returnType' => 'bool',
+           'parameters' => 
+          array (
+          ),
+           'attributes' => 
+          array (
+          ),
+        )),
+        4 => 
+        \PHPStan\Dependency\ExportedNode\ExportedMethodNode::__set_state(array(
+           'name' => 'scopeActive',
+           'phpDoc' => 
+          \PHPStan\Dependency\ExportedNode\ExportedPhpDocNode::__set_state(array(
+             'phpDocString' => '/**
+     * Constrain a query to grants that currently open access.
+     *
+     * @param  Builder<covariant MdaAccessGrant>  $query
+     */',
+             'namespace' => 'App\\Domain\\Access\\Models',
+             'uses' => 
+            array (
+              'builder' => 'Illuminate\\Database\\Eloquent\\Builder',
+              'hasuuids' => 'Illuminate\\Database\\Eloquent\\Concerns\\HasUuids',
+              'model' => 'Illuminate\\Database\\Eloquent\\Model',
+              'belongsto' => 'Illuminate\\Database\\Eloquent\\Relations\\BelongsTo',
+              'carbon' => 'Illuminate\\Support\\Carbon',
+            ),
+             'constUses' => 
+            array (
+            ),
+          )),
+           'byRef' => false,
+           'public' => true,
+           'private' => false,
+           'abstract' => false,
+           'final' => false,
+           'static' => false,
+           'returnType' => 'void',
+           'parameters' => 
+          array (
+            0 => 
+            \PHPStan\Dependency\ExportedNode\ExportedParameterNode::__set_state(array(
+               'name' => 'query',
+               'type' => 'Illuminate\\Database\\Eloquent\\Builder',
+               'byRef' => false,
+               'variadic' => false,
+               'hasDefault' => false,
+               'attributes' => 
+              array (
+              ),
+               'phpDoc' => NULL,
+               'flags' => 0,
+            )),
+          ),
+           'attributes' => 
+          array (
+          ),
+        )),
+        5 => 
+        \PHPStan\Dependency\ExportedNode\ExportedMethodNode::__set_state(array(
            'name' => 'user',
            'phpDoc' => 
           \PHPStan\Dependency\ExportedNode\ExportedPhpDocNode::__set_state(array(
@@ -33292,6 +33438,7 @@ return [
              'namespace' => 'App\\Domain\\Access\\Models',
              'uses' => 
             array (
+              'builder' => 'Illuminate\\Database\\Eloquent\\Builder',
               'hasuuids' => 'Illuminate\\Database\\Eloquent\\Concerns\\HasUuids',
               'model' => 'Illuminate\\Database\\Eloquent\\Model',
               'belongsto' => 'Illuminate\\Database\\Eloquent\\Relations\\BelongsTo',
@@ -33315,7 +33462,7 @@ return [
           array (
           ),
         )),
-        4 => 
+        6 => 
         \PHPStan\Dependency\ExportedNode\ExportedMethodNode::__set_state(array(
            'name' => 'mda',
            'phpDoc' => 
@@ -33326,6 +33473,7 @@ return [
              'namespace' => 'App\\Domain\\Access\\Models',
              'uses' => 
             array (
+              'builder' => 'Illuminate\\Database\\Eloquent\\Builder',
               'hasuuids' => 'Illuminate\\Database\\Eloquent\\Concerns\\HasUuids',
               'model' => 'Illuminate\\Database\\Eloquent\\Model',
               'belongsto' => 'Illuminate\\Database\\Eloquent\\Relations\\BelongsTo',
@@ -33349,7 +33497,7 @@ return [
           array (
           ),
         )),
-        5 => 
+        7 => 
         \PHPStan\Dependency\ExportedNode\ExportedMethodNode::__set_state(array(
            'name' => 'grantedBy',
            'phpDoc' => 
@@ -33360,6 +33508,45 @@ return [
              'namespace' => 'App\\Domain\\Access\\Models',
              'uses' => 
             array (
+              'builder' => 'Illuminate\\Database\\Eloquent\\Builder',
+              'hasuuids' => 'Illuminate\\Database\\Eloquent\\Concerns\\HasUuids',
+              'model' => 'Illuminate\\Database\\Eloquent\\Model',
+              'belongsto' => 'Illuminate\\Database\\Eloquent\\Relations\\BelongsTo',
+              'carbon' => 'Illuminate\\Support\\Carbon',
+            ),
+             'constUses' => 
+            array (
+            ),
+          )),
+           'byRef' => false,
+           'public' => true,
+           'private' => false,
+           'abstract' => false,
+           'final' => false,
+           'static' => false,
+           'returnType' => 'Illuminate\\Database\\Eloquent\\Relations\\BelongsTo',
+           'parameters' => 
+          array (
+          ),
+           'attributes' => 
+          array (
+          ),
+        )),
+        8 => 
+        \PHPStan\Dependency\ExportedNode\ExportedMethodNode::__set_state(array(
+           'name' => 'revokedBy',
+           'phpDoc' => 
+          \PHPStan\Dependency\ExportedNode\ExportedPhpDocNode::__set_state(array(
+             'phpDocString' => '/**
+     * Who withdrew the access. Kept on the row rather than only in the audit log so the
+     * grant itself answers "when did this end, and on whose authority".
+     *
+     * @return BelongsTo<User, $this>
+     */',
+             'namespace' => 'App\\Domain\\Access\\Models',
+             'uses' => 
+            array (
+              'builder' => 'Illuminate\\Database\\Eloquent\\Builder',
               'hasuuids' => 'Illuminate\\Database\\Eloquent\\Concerns\\HasUuids',
               'model' => 'Illuminate\\Database\\Eloquent\\Model',
               'belongsto' => 'Illuminate\\Database\\Eloquent\\Relations\\BelongsTo',
@@ -57826,7 +58013,7 @@ return [
           'referral' => 'App\\Domain\\Referral\\Models\\Referral',
           'beneficiary' => 'App\\Domain\\Registry\\Models\\Beneficiary',
           'household' => 'App\\Domain\\Registry\\Models\\Household',
-          'servicerequestservice' => 'App\\Domain\\Registry\\Services\\ServiceRequestService',
+          'datasharingguard' => 'App\\Domain\\Sharing\\DataSharingGuard',
           'uniqueconstraintviolationexception' => 'Illuminate\\Database\\UniqueConstraintViolationException',
         ),
          'constUses' => 
@@ -57873,6 +58060,19 @@ return [
                'phpDoc' => NULL,
                'flags' => 68,
             )),
+            1 => 
+            \PHPStan\Dependency\ExportedNode\ExportedParameterNode::__set_state(array(
+               'name' => 'sharing',
+               'type' => 'App\\Domain\\Sharing\\DataSharingGuard',
+               'byRef' => false,
+               'variadic' => false,
+               'hasDefault' => false,
+               'attributes' => 
+              array (
+              ),
+               'phpDoc' => NULL,
+               'flags' => 68,
+            )),
           ),
            'attributes' => 
           array (
@@ -57901,7 +58101,7 @@ return [
               'referral' => 'App\\Domain\\Referral\\Models\\Referral',
               'beneficiary' => 'App\\Domain\\Registry\\Models\\Beneficiary',
               'household' => 'App\\Domain\\Registry\\Models\\Household',
-              'servicerequestservice' => 'App\\Domain\\Registry\\Services\\ServiceRequestService',
+              'datasharingguard' => 'App\\Domain\\Sharing\\DataSharingGuard',
               'uniqueconstraintviolationexception' => 'Illuminate\\Database\\UniqueConstraintViolationException',
             ),
              'constUses' => 
@@ -57970,7 +58170,7 @@ return [
               'referral' => 'App\\Domain\\Referral\\Models\\Referral',
               'beneficiary' => 'App\\Domain\\Registry\\Models\\Beneficiary',
               'household' => 'App\\Domain\\Registry\\Models\\Household',
-              'servicerequestservice' => 'App\\Domain\\Registry\\Services\\ServiceRequestService',
+              'datasharingguard' => 'App\\Domain\\Sharing\\DataSharingGuard',
               'uniqueconstraintviolationexception' => 'Illuminate\\Database\\UniqueConstraintViolationException',
             ),
              'constUses' => 
@@ -61502,9 +61702,11 @@ return [
        'phpDoc' => 
       \PHPStan\Dependency\ExportedNode\ExportedPhpDocNode::__set_state(array(
          'phpDocString' => '/**
- * Where a beneficiary/household record came from (PRD §6.1 provenance). Phase 2
- * ingests `manual` and `excel`/`csv`; the other sources have endpoints later but
- * their provenance values are defined now.
+ * Where a beneficiary/household record came from (PRD §6.1 provenance).
+ *
+ * Ingestion is bulk/source-only (CLAUDE.md §8) — every record enters through a file
+ * import, the REST intake, a connector sync, or an offline batch, and each of those
+ * knows its own source. There is no path by which a record\'s origin is unknown.
  */',
          'namespace' => 'App\\Domain\\Registry\\Enums',
          'uses' => 
@@ -61523,7 +61725,26 @@ return [
         \PHPStan\Dependency\ExportedNode\ExportedEnumCaseNode::__set_state(array(
            'name' => 'Manual',
            'value' => '\'manual\'',
-           'phpDoc' => NULL,
+           'phpDoc' => 
+          \PHPStan\Dependency\ExportedNode\ExportedPhpDocNode::__set_state(array(
+             'phpDocString' => '/**
+     * @deprecated Historical only. Manual single-record entry was removed (CLAUDE.md §8),
+     * so no NEW record may carry this value — a record tagged `manual` today would be
+     * claiming an origin that cannot occur, which is a lineage the audit trail cannot
+     * account for.
+     *
+     * The case remains ONLY so rows written before the removal still cast and display.
+     * Deleting it would break reading that history, which is worse than keeping a value
+     * that {@see self::isAssignable()} refuses for writes.
+     */',
+             'namespace' => 'App\\Domain\\Registry\\Enums',
+             'uses' => 
+            array (
+            ),
+             'constUses' => 
+            array (
+            ),
+          )),
         )),
         1 => 
         \PHPStan\Dependency\ExportedNode\ExportedEnumCaseNode::__set_state(array(
@@ -61566,6 +61787,96 @@ return [
            'name' => 'GovernmentSystem',
            'value' => '\'government_system\'',
            'phpDoc' => NULL,
+        )),
+        8 => 
+        \PHPStan\Dependency\ExportedNode\ExportedMethodNode::__set_state(array(
+           'name' => 'isAssignable',
+           'phpDoc' => 
+          \PHPStan\Dependency\ExportedNode\ExportedPhpDocNode::__set_state(array(
+             'phpDocString' => '/** Whether a NEW record may be written with this provenance. */',
+             'namespace' => 'App\\Domain\\Registry\\Enums',
+             'uses' => 
+            array (
+            ),
+             'constUses' => 
+            array (
+            ),
+          )),
+           'byRef' => false,
+           'public' => true,
+           'private' => false,
+           'abstract' => false,
+           'final' => false,
+           'static' => false,
+           'returnType' => 'bool',
+           'parameters' => 
+          array (
+          ),
+           'attributes' => 
+          array (
+          ),
+        )),
+        9 => 
+        \PHPStan\Dependency\ExportedNode\ExportedMethodNode::__set_state(array(
+           'name' => 'assignable',
+           'phpDoc' => 
+          \PHPStan\Dependency\ExportedNode\ExportedPhpDocNode::__set_state(array(
+             'phpDocString' => '/**
+     * The provenances a new record may carry.
+     *
+     * @return list<self>
+     */',
+             'namespace' => 'App\\Domain\\Registry\\Enums',
+             'uses' => 
+            array (
+            ),
+             'constUses' => 
+            array (
+            ),
+          )),
+           'byRef' => false,
+           'public' => true,
+           'private' => false,
+           'abstract' => false,
+           'final' => false,
+           'static' => true,
+           'returnType' => 'array',
+           'parameters' => 
+          array (
+          ),
+           'attributes' => 
+          array (
+          ),
+        )),
+        10 => 
+        \PHPStan\Dependency\ExportedNode\ExportedMethodNode::__set_state(array(
+           'name' => 'assignableValues',
+           'phpDoc' => 
+          \PHPStan\Dependency\ExportedNode\ExportedPhpDocNode::__set_state(array(
+             'phpDocString' => '/**
+     * @return list<string>
+     */',
+             'namespace' => 'App\\Domain\\Registry\\Enums',
+             'uses' => 
+            array (
+            ),
+             'constUses' => 
+            array (
+            ),
+          )),
+           'byRef' => false,
+           'public' => true,
+           'private' => false,
+           'abstract' => false,
+           'final' => false,
+           'static' => true,
+           'returnType' => 'array',
+           'parameters' => 
+          array (
+          ),
+           'attributes' => 
+          array (
+          ),
         )),
       ),
        'attributes' => 
@@ -64717,6 +65028,7 @@ return [
           'registrationsource' => 'App\\Domain\\Registry\\Enums\\RegistrationSource',
           'identifierhasher' => 'App\\Domain\\Registry\\Support\\IdentifierHasher',
           'normalizationservice' => 'App\\Domain\\Registry\\Support\\NormalizationService',
+          'registrationsourcerule' => 'App\\Domain\\Registry\\Support\\RegistrationSourceRule',
           'beneficiaryfactory' => 'Database\\Factories\\BeneficiaryFactory',
           'hasuuids' => 'Illuminate\\Database\\Eloquent\\Concerns\\HasUuids',
           'hasfactory' => 'Illuminate\\Database\\Eloquent\\Factories\\HasFactory',
@@ -64805,6 +65117,7 @@ return [
               'registrationsource' => 'App\\Domain\\Registry\\Enums\\RegistrationSource',
               'identifierhasher' => 'App\\Domain\\Registry\\Support\\IdentifierHasher',
               'normalizationservice' => 'App\\Domain\\Registry\\Support\\NormalizationService',
+              'registrationsourcerule' => 'App\\Domain\\Registry\\Support\\RegistrationSourceRule',
               'beneficiaryfactory' => 'Database\\Factories\\BeneficiaryFactory',
               'hasuuids' => 'Illuminate\\Database\\Eloquent\\Concerns\\HasUuids',
               'hasfactory' => 'Illuminate\\Database\\Eloquent\\Factories\\HasFactory',
@@ -64870,6 +65183,7 @@ return [
               'registrationsource' => 'App\\Domain\\Registry\\Enums\\RegistrationSource',
               'identifierhasher' => 'App\\Domain\\Registry\\Support\\IdentifierHasher',
               'normalizationservice' => 'App\\Domain\\Registry\\Support\\NormalizationService',
+              'registrationsourcerule' => 'App\\Domain\\Registry\\Support\\RegistrationSourceRule',
               'beneficiaryfactory' => 'Database\\Factories\\BeneficiaryFactory',
               'hasuuids' => 'Illuminate\\Database\\Eloquent\\Concerns\\HasUuids',
               'hasfactory' => 'Illuminate\\Database\\Eloquent\\Factories\\HasFactory',
@@ -64931,6 +65245,7 @@ return [
               'registrationsource' => 'App\\Domain\\Registry\\Enums\\RegistrationSource',
               'identifierhasher' => 'App\\Domain\\Registry\\Support\\IdentifierHasher',
               'normalizationservice' => 'App\\Domain\\Registry\\Support\\NormalizationService',
+              'registrationsourcerule' => 'App\\Domain\\Registry\\Support\\RegistrationSourceRule',
               'beneficiaryfactory' => 'Database\\Factories\\BeneficiaryFactory',
               'hasuuids' => 'Illuminate\\Database\\Eloquent\\Concerns\\HasUuids',
               'hasfactory' => 'Illuminate\\Database\\Eloquent\\Factories\\HasFactory',
@@ -64989,6 +65304,7 @@ return [
               'registrationsource' => 'App\\Domain\\Registry\\Enums\\RegistrationSource',
               'identifierhasher' => 'App\\Domain\\Registry\\Support\\IdentifierHasher',
               'normalizationservice' => 'App\\Domain\\Registry\\Support\\NormalizationService',
+              'registrationsourcerule' => 'App\\Domain\\Registry\\Support\\RegistrationSourceRule',
               'beneficiaryfactory' => 'Database\\Factories\\BeneficiaryFactory',
               'hasuuids' => 'Illuminate\\Database\\Eloquent\\Concerns\\HasUuids',
               'hasfactory' => 'Illuminate\\Database\\Eloquent\\Factories\\HasFactory',
@@ -65041,6 +65357,7 @@ return [
               'registrationsource' => 'App\\Domain\\Registry\\Enums\\RegistrationSource',
               'identifierhasher' => 'App\\Domain\\Registry\\Support\\IdentifierHasher',
               'normalizationservice' => 'App\\Domain\\Registry\\Support\\NormalizationService',
+              'registrationsourcerule' => 'App\\Domain\\Registry\\Support\\RegistrationSourceRule',
               'beneficiaryfactory' => 'Database\\Factories\\BeneficiaryFactory',
               'hasuuids' => 'Illuminate\\Database\\Eloquent\\Concerns\\HasUuids',
               'hasfactory' => 'Illuminate\\Database\\Eloquent\\Factories\\HasFactory',
@@ -65098,6 +65415,7 @@ return [
               'registrationsource' => 'App\\Domain\\Registry\\Enums\\RegistrationSource',
               'identifierhasher' => 'App\\Domain\\Registry\\Support\\IdentifierHasher',
               'normalizationservice' => 'App\\Domain\\Registry\\Support\\NormalizationService',
+              'registrationsourcerule' => 'App\\Domain\\Registry\\Support\\RegistrationSourceRule',
               'beneficiaryfactory' => 'Database\\Factories\\BeneficiaryFactory',
               'hasuuids' => 'Illuminate\\Database\\Eloquent\\Concerns\\HasUuids',
               'hasfactory' => 'Illuminate\\Database\\Eloquent\\Factories\\HasFactory',
@@ -65155,6 +65473,7 @@ return [
               'registrationsource' => 'App\\Domain\\Registry\\Enums\\RegistrationSource',
               'identifierhasher' => 'App\\Domain\\Registry\\Support\\IdentifierHasher',
               'normalizationservice' => 'App\\Domain\\Registry\\Support\\NormalizationService',
+              'registrationsourcerule' => 'App\\Domain\\Registry\\Support\\RegistrationSourceRule',
               'beneficiaryfactory' => 'Database\\Factories\\BeneficiaryFactory',
               'hasuuids' => 'Illuminate\\Database\\Eloquent\\Concerns\\HasUuids',
               'hasfactory' => 'Illuminate\\Database\\Eloquent\\Factories\\HasFactory',
@@ -65228,6 +65547,7 @@ return [
               'registrationsource' => 'App\\Domain\\Registry\\Enums\\RegistrationSource',
               'identifierhasher' => 'App\\Domain\\Registry\\Support\\IdentifierHasher',
               'normalizationservice' => 'App\\Domain\\Registry\\Support\\NormalizationService',
+              'registrationsourcerule' => 'App\\Domain\\Registry\\Support\\RegistrationSourceRule',
               'beneficiaryfactory' => 'Database\\Factories\\BeneficiaryFactory',
               'hasuuids' => 'Illuminate\\Database\\Eloquent\\Concerns\\HasUuids',
               'hasfactory' => 'Illuminate\\Database\\Eloquent\\Factories\\HasFactory',
@@ -65296,6 +65616,7 @@ return [
               'registrationsource' => 'App\\Domain\\Registry\\Enums\\RegistrationSource',
               'identifierhasher' => 'App\\Domain\\Registry\\Support\\IdentifierHasher',
               'normalizationservice' => 'App\\Domain\\Registry\\Support\\NormalizationService',
+              'registrationsourcerule' => 'App\\Domain\\Registry\\Support\\RegistrationSourceRule',
               'beneficiaryfactory' => 'Database\\Factories\\BeneficiaryFactory',
               'hasuuids' => 'Illuminate\\Database\\Eloquent\\Concerns\\HasUuids',
               'hasfactory' => 'Illuminate\\Database\\Eloquent\\Factories\\HasFactory',
@@ -65392,6 +65713,7 @@ return [
               'registrationsource' => 'App\\Domain\\Registry\\Enums\\RegistrationSource',
               'identifierhasher' => 'App\\Domain\\Registry\\Support\\IdentifierHasher',
               'normalizationservice' => 'App\\Domain\\Registry\\Support\\NormalizationService',
+              'registrationsourcerule' => 'App\\Domain\\Registry\\Support\\RegistrationSourceRule',
               'beneficiaryfactory' => 'Database\\Factories\\BeneficiaryFactory',
               'hasuuids' => 'Illuminate\\Database\\Eloquent\\Concerns\\HasUuids',
               'hasfactory' => 'Illuminate\\Database\\Eloquent\\Factories\\HasFactory',
@@ -65448,6 +65770,7 @@ return [
               'registrationsource' => 'App\\Domain\\Registry\\Enums\\RegistrationSource',
               'identifierhasher' => 'App\\Domain\\Registry\\Support\\IdentifierHasher',
               'normalizationservice' => 'App\\Domain\\Registry\\Support\\NormalizationService',
+              'registrationsourcerule' => 'App\\Domain\\Registry\\Support\\RegistrationSourceRule',
               'beneficiaryfactory' => 'Database\\Factories\\BeneficiaryFactory',
               'hasuuids' => 'Illuminate\\Database\\Eloquent\\Concerns\\HasUuids',
               'hasfactory' => 'Illuminate\\Database\\Eloquent\\Factories\\HasFactory',
@@ -65502,6 +65825,7 @@ return [
               'registrationsource' => 'App\\Domain\\Registry\\Enums\\RegistrationSource',
               'identifierhasher' => 'App\\Domain\\Registry\\Support\\IdentifierHasher',
               'normalizationservice' => 'App\\Domain\\Registry\\Support\\NormalizationService',
+              'registrationsourcerule' => 'App\\Domain\\Registry\\Support\\RegistrationSourceRule',
               'beneficiaryfactory' => 'Database\\Factories\\BeneficiaryFactory',
               'hasuuids' => 'Illuminate\\Database\\Eloquent\\Concerns\\HasUuids',
               'hasfactory' => 'Illuminate\\Database\\Eloquent\\Factories\\HasFactory',
@@ -65556,6 +65880,7 @@ return [
               'registrationsource' => 'App\\Domain\\Registry\\Enums\\RegistrationSource',
               'identifierhasher' => 'App\\Domain\\Registry\\Support\\IdentifierHasher',
               'normalizationservice' => 'App\\Domain\\Registry\\Support\\NormalizationService',
+              'registrationsourcerule' => 'App\\Domain\\Registry\\Support\\RegistrationSourceRule',
               'beneficiaryfactory' => 'Database\\Factories\\BeneficiaryFactory',
               'hasuuids' => 'Illuminate\\Database\\Eloquent\\Concerns\\HasUuids',
               'hasfactory' => 'Illuminate\\Database\\Eloquent\\Factories\\HasFactory',
@@ -65614,6 +65939,7 @@ return [
               'registrationsource' => 'App\\Domain\\Registry\\Enums\\RegistrationSource',
               'identifierhasher' => 'App\\Domain\\Registry\\Support\\IdentifierHasher',
               'normalizationservice' => 'App\\Domain\\Registry\\Support\\NormalizationService',
+              'registrationsourcerule' => 'App\\Domain\\Registry\\Support\\RegistrationSourceRule',
               'beneficiaryfactory' => 'Database\\Factories\\BeneficiaryFactory',
               'hasuuids' => 'Illuminate\\Database\\Eloquent\\Concerns\\HasUuids',
               'hasfactory' => 'Illuminate\\Database\\Eloquent\\Factories\\HasFactory',
@@ -65668,6 +65994,7 @@ return [
               'registrationsource' => 'App\\Domain\\Registry\\Enums\\RegistrationSource',
               'identifierhasher' => 'App\\Domain\\Registry\\Support\\IdentifierHasher',
               'normalizationservice' => 'App\\Domain\\Registry\\Support\\NormalizationService',
+              'registrationsourcerule' => 'App\\Domain\\Registry\\Support\\RegistrationSourceRule',
               'beneficiaryfactory' => 'Database\\Factories\\BeneficiaryFactory',
               'hasuuids' => 'Illuminate\\Database\\Eloquent\\Concerns\\HasUuids',
               'hasfactory' => 'Illuminate\\Database\\Eloquent\\Factories\\HasFactory',
@@ -65722,6 +66049,7 @@ return [
               'registrationsource' => 'App\\Domain\\Registry\\Enums\\RegistrationSource',
               'identifierhasher' => 'App\\Domain\\Registry\\Support\\IdentifierHasher',
               'normalizationservice' => 'App\\Domain\\Registry\\Support\\NormalizationService',
+              'registrationsourcerule' => 'App\\Domain\\Registry\\Support\\RegistrationSourceRule',
               'beneficiaryfactory' => 'Database\\Factories\\BeneficiaryFactory',
               'hasuuids' => 'Illuminate\\Database\\Eloquent\\Concerns\\HasUuids',
               'hasfactory' => 'Illuminate\\Database\\Eloquent\\Factories\\HasFactory',
@@ -65778,6 +66106,7 @@ return [
               'registrationsource' => 'App\\Domain\\Registry\\Enums\\RegistrationSource',
               'identifierhasher' => 'App\\Domain\\Registry\\Support\\IdentifierHasher',
               'normalizationservice' => 'App\\Domain\\Registry\\Support\\NormalizationService',
+              'registrationsourcerule' => 'App\\Domain\\Registry\\Support\\RegistrationSourceRule',
               'beneficiaryfactory' => 'Database\\Factories\\BeneficiaryFactory',
               'hasuuids' => 'Illuminate\\Database\\Eloquent\\Concerns\\HasUuids',
               'hasfactory' => 'Illuminate\\Database\\Eloquent\\Factories\\HasFactory',
@@ -66816,6 +67145,7 @@ return [
           'mda' => 'App\\Domain\\Access\\Models\\Mda',
           'auditable' => 'App\\Domain\\Audit\\Concerns\\Auditable',
           'registrationsource' => 'App\\Domain\\Registry\\Enums\\RegistrationSource',
+          'registrationsourcerule' => 'App\\Domain\\Registry\\Support\\RegistrationSourceRule',
           'householdfactory' => 'Database\\Factories\\HouseholdFactory',
           'collection' => 'Illuminate\\Database\\Eloquent\\Collection',
           'hasuuids' => 'Illuminate\\Database\\Eloquent\\Concerns\\HasUuids',
@@ -66894,6 +67224,7 @@ return [
               'mda' => 'App\\Domain\\Access\\Models\\Mda',
               'auditable' => 'App\\Domain\\Audit\\Concerns\\Auditable',
               'registrationsource' => 'App\\Domain\\Registry\\Enums\\RegistrationSource',
+              'registrationsourcerule' => 'App\\Domain\\Registry\\Support\\RegistrationSourceRule',
               'householdfactory' => 'Database\\Factories\\HouseholdFactory',
               'collection' => 'Illuminate\\Database\\Eloquent\\Collection',
               'hasuuids' => 'Illuminate\\Database\\Eloquent\\Concerns\\HasUuids',
@@ -66942,6 +67273,7 @@ return [
               'mda' => 'App\\Domain\\Access\\Models\\Mda',
               'auditable' => 'App\\Domain\\Audit\\Concerns\\Auditable',
               'registrationsource' => 'App\\Domain\\Registry\\Enums\\RegistrationSource',
+              'registrationsourcerule' => 'App\\Domain\\Registry\\Support\\RegistrationSourceRule',
               'householdfactory' => 'Database\\Factories\\HouseholdFactory',
               'collection' => 'Illuminate\\Database\\Eloquent\\Collection',
               'hasuuids' => 'Illuminate\\Database\\Eloquent\\Concerns\\HasUuids',
@@ -67004,6 +67336,7 @@ return [
               'mda' => 'App\\Domain\\Access\\Models\\Mda',
               'auditable' => 'App\\Domain\\Audit\\Concerns\\Auditable',
               'registrationsource' => 'App\\Domain\\Registry\\Enums\\RegistrationSource',
+              'registrationsourcerule' => 'App\\Domain\\Registry\\Support\\RegistrationSourceRule',
               'householdfactory' => 'Database\\Factories\\HouseholdFactory',
               'collection' => 'Illuminate\\Database\\Eloquent\\Collection',
               'hasuuids' => 'Illuminate\\Database\\Eloquent\\Concerns\\HasUuids',
@@ -67048,6 +67381,7 @@ return [
               'mda' => 'App\\Domain\\Access\\Models\\Mda',
               'auditable' => 'App\\Domain\\Audit\\Concerns\\Auditable',
               'registrationsource' => 'App\\Domain\\Registry\\Enums\\RegistrationSource',
+              'registrationsourcerule' => 'App\\Domain\\Registry\\Support\\RegistrationSourceRule',
               'householdfactory' => 'Database\\Factories\\HouseholdFactory',
               'collection' => 'Illuminate\\Database\\Eloquent\\Collection',
               'hasuuids' => 'Illuminate\\Database\\Eloquent\\Concerns\\HasUuids',
@@ -67092,6 +67426,7 @@ return [
               'mda' => 'App\\Domain\\Access\\Models\\Mda',
               'auditable' => 'App\\Domain\\Audit\\Concerns\\Auditable',
               'registrationsource' => 'App\\Domain\\Registry\\Enums\\RegistrationSource',
+              'registrationsourcerule' => 'App\\Domain\\Registry\\Support\\RegistrationSourceRule',
               'householdfactory' => 'Database\\Factories\\HouseholdFactory',
               'collection' => 'Illuminate\\Database\\Eloquent\\Collection',
               'hasuuids' => 'Illuminate\\Database\\Eloquent\\Concerns\\HasUuids',
@@ -67138,6 +67473,7 @@ return [
               'mda' => 'App\\Domain\\Access\\Models\\Mda',
               'auditable' => 'App\\Domain\\Audit\\Concerns\\Auditable',
               'registrationsource' => 'App\\Domain\\Registry\\Enums\\RegistrationSource',
+              'registrationsourcerule' => 'App\\Domain\\Registry\\Support\\RegistrationSourceRule',
               'householdfactory' => 'Database\\Factories\\HouseholdFactory',
               'collection' => 'Illuminate\\Database\\Eloquent\\Collection',
               'hasuuids' => 'Illuminate\\Database\\Eloquent\\Concerns\\HasUuids',
@@ -69968,37 +70304,6 @@ return [
         )),
         2 => 
         \PHPStan\Dependency\ExportedNode\ExportedMethodNode::__set_state(array(
-           'name' => 'create',
-           'phpDoc' => NULL,
-           'byRef' => false,
-           'public' => true,
-           'private' => false,
-           'abstract' => false,
-           'final' => false,
-           'static' => false,
-           'returnType' => 'bool',
-           'parameters' => 
-          array (
-            0 => 
-            \PHPStan\Dependency\ExportedNode\ExportedParameterNode::__set_state(array(
-               'name' => 'user',
-               'type' => 'App\\Domain\\Access\\Models\\User',
-               'byRef' => false,
-               'variadic' => false,
-               'hasDefault' => false,
-               'attributes' => 
-              array (
-              ),
-               'phpDoc' => NULL,
-               'flags' => 0,
-            )),
-          ),
-           'attributes' => 
-          array (
-          ),
-        )),
-        3 => 
-        \PHPStan\Dependency\ExportedNode\ExportedMethodNode::__set_state(array(
            'name' => 'update',
            'phpDoc' => 
           \PHPStan\Dependency\ExportedNode\ExportedPhpDocNode::__set_state(array(
@@ -70053,7 +70358,7 @@ return [
           array (
           ),
         )),
-        4 => 
+        3 => 
         \PHPStan\Dependency\ExportedNode\ExportedMethodNode::__set_state(array(
            'name' => 'delete',
            'phpDoc' => NULL,
@@ -75732,6 +76037,118 @@ return [
             \PHPStan\Dependency\ExportedNode\ExportedParameterNode::__set_state(array(
                'name' => 'value',
                'type' => '?string',
+               'byRef' => false,
+               'variadic' => false,
+               'hasDefault' => false,
+               'attributes' => 
+              array (
+              ),
+               'phpDoc' => NULL,
+               'flags' => 0,
+            )),
+          ),
+           'attributes' => 
+          array (
+          ),
+        )),
+      ),
+       'attributes' => 
+      array (
+      ),
+    )),
+  ),
+  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Registry\\Support\\RegistrationSourceRule.php' => 
+  array (
+    0 => 
+    \PHPStan\Dependency\ExportedNode\ExportedClassNode::__set_state(array(
+       'name' => 'App\\Domain\\Registry\\Support\\RegistrationSourceRule',
+       'phpDoc' => 
+      \PHPStan\Dependency\ExportedNode\ExportedPhpDocNode::__set_state(array(
+         'phpDocString' => '/**
+ * Guards the one thing every registry record must be able to answer: where it came from
+ * (FR-REG-03, CLAUDE.md §8).
+ *
+ * Ingestion is bulk/source-only, and each door — file import, REST intake, connector
+ * sync, offline batch — knows its own source. So a record without one is not a user
+ * error to be defaulted away; it is a code path that forgot, and defaulting it produces
+ * a plausible-looking lie that the audit trail cannot distinguish from the truth.
+ *
+ * Shared by {@see Beneficiary} and
+ * {@see Household} so the two cannot drift on a rule that
+ * only means anything if it holds everywhere.
+ */',
+         'namespace' => 'App\\Domain\\Registry\\Support',
+         'uses' => 
+        array (
+          'registrationsource' => 'App\\Domain\\Registry\\Enums\\RegistrationSource',
+          'beneficiary' => 'App\\Domain\\Registry\\Models\\Beneficiary',
+          'household' => 'App\\Domain\\Registry\\Models\\Household',
+          'invalidargumentexception' => 'InvalidArgumentException',
+        ),
+         'constUses' => 
+        array (
+        ),
+      )),
+       'abstract' => false,
+       'final' => true,
+       'extends' => NULL,
+       'implements' => 
+      array (
+      ),
+       'usedTraits' => 
+      array (
+      ),
+       'traitUseAdaptations' => 
+      array (
+      ),
+       'statements' => 
+      array (
+        0 => 
+        \PHPStan\Dependency\ExportedNode\ExportedMethodNode::__set_state(array(
+           'name' => 'assertAssignable',
+           'phpDoc' => 
+          \PHPStan\Dependency\ExportedNode\ExportedPhpDocNode::__set_state(array(
+             'phpDocString' => '/**
+     * @throws InvalidArgumentException when the source is absent or not assignable
+     */',
+             'namespace' => 'App\\Domain\\Registry\\Support',
+             'uses' => 
+            array (
+              'registrationsource' => 'App\\Domain\\Registry\\Enums\\RegistrationSource',
+              'beneficiary' => 'App\\Domain\\Registry\\Models\\Beneficiary',
+              'household' => 'App\\Domain\\Registry\\Models\\Household',
+              'invalidargumentexception' => 'InvalidArgumentException',
+            ),
+             'constUses' => 
+            array (
+            ),
+          )),
+           'byRef' => false,
+           'public' => true,
+           'private' => false,
+           'abstract' => false,
+           'final' => false,
+           'static' => true,
+           'returnType' => 'void',
+           'parameters' => 
+          array (
+            0 => 
+            \PHPStan\Dependency\ExportedNode\ExportedParameterNode::__set_state(array(
+               'name' => 'source',
+               'type' => 'mixed',
+               'byRef' => false,
+               'variadic' => false,
+               'hasDefault' => false,
+               'attributes' => 
+              array (
+              ),
+               'phpDoc' => NULL,
+               'flags' => 0,
+            )),
+            1 => 
+            \PHPStan\Dependency\ExportedNode\ExportedParameterNode::__set_state(array(
+               'name' => 'entity',
+               'type' => 'string',
                'byRef' => false,
                'variadic' => false,
                'hasDefault' => false,
@@ -87270,7 +87687,36 @@ return [
         2 => 
         \PHPStan\Dependency\ExportedNode\ExportedMethodNode::__set_state(array(
            'name' => 'destroy',
-           'phpDoc' => NULL,
+           'phpDoc' => 
+          \PHPStan\Dependency\ExportedNode\ExportedPhpDocNode::__set_state(array(
+             'phpDocString' => '/**
+     * Revoke a cross-MDA access grant.
+     *
+     * A SOFT revoke: the row is retained with `revoked_at`/`revoked_by`/reason set
+     * (NFR-PRV-01, FR-AUD-01). Deleting it would erase the evidence that the access ever
+     * existed, leaving an auditor unable to distinguish "access was held and withdrawn"
+     * from "access was never granted" — the opposite of what an access trail is for.
+     *
+     * Idempotent: revoking an already-revoked grant changes nothing and does not
+     * re-stamp the original actor or time, because the FIRST withdrawal is the one that
+     * ended the access.
+     */',
+             'namespace' => 'App\\Http\\Controllers\\Api\\V1\\Access',
+             'uses' => 
+            array (
+              'crossmdaaccessgranted' => 'App\\Domain\\Access\\Events\\CrossMdaAccessGranted',
+              'crossmdaaccessrevoked' => 'App\\Domain\\Access\\Events\\CrossMdaAccessRevoked',
+              'mdaaccessgrant' => 'App\\Domain\\Access\\Models\\MdaAccessGrant',
+              'controller' => 'App\\Http\\Controllers\\Controller',
+              'storemdaaccessgrantrequest' => 'App\\Http\\Requests\\Access\\StoreMdaAccessGrantRequest',
+              'apiresponse' => 'App\\Support\\ApiResponse',
+              'jsonresponse' => 'Illuminate\\Http\\JsonResponse',
+              'request' => 'Illuminate\\Http\\Request',
+            ),
+             'constUses' => 
+            array (
+            ),
+          )),
            'byRef' => false,
            'public' => true,
            'private' => false,

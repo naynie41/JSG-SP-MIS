@@ -9,6 +9,7 @@ use App\Domain\Access\Concerns\ScopedToMda;
 use App\Domain\Access\Models\Mda;
 use App\Domain\Audit\Concerns\Auditable;
 use App\Domain\Registry\Enums\RegistrationSource;
+use App\Domain\Registry\Support\RegistrationSourceRule;
 use Database\Factories\HouseholdFactory;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Concerns\HasUuids;
@@ -75,12 +76,22 @@ class Household extends Model implements MdaScoped
 
     protected static function booted(): void
     {
+        /*
+         * Provenance is REQUIRED and has no default (FR-REG-03, CLAUDE.md §8) — see
+         * RegistrationSourceRule. Households are formed by `HouseholdIngestionService`
+         * from a source household-reference, so the forming source is always known.
+         */
         static::creating(function (Household $household): void {
-            if (empty($household->registration_source)) {
-                $household->registration_source = RegistrationSource::Manual;
-            }
+            RegistrationSourceRule::assertAssignable($household->registration_source, 'household');
+
             if (empty($household->getAttribute('registration_date'))) {
                 $household->registration_date = Carbon::today();
+            }
+        });
+
+        static::updating(function (Household $household): void {
+            if ($household->isDirty('registration_source')) {
+                RegistrationSourceRule::assertAssignable($household->registration_source, 'household');
             }
         });
     }

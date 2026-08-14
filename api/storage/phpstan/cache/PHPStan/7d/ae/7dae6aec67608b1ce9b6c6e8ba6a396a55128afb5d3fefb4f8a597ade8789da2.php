@@ -2,7 +2,7 @@
 
 // odsl-C:\Users\ACER\Desktop\JSG-SP-MIS\JSG-SP-MIS\api\app\Domain\Registry\Models\Beneficiary.php-PHPStan\BetterReflection\Reflection\ReflectionClass-App\Domain\Registry\Models\Beneficiary
 return \PHPStan\Cache\CacheItem::__set_state(array(
-   'variableKey' => 'v2-6.70.0.1-8.3.31-9edc1ef40d63507769f67ae2771b92bad4b6d04bc76dc8f6fd0b72c192e5d854',
+   'variableKey' => 'v2-6.70.0.1-8.3.31-6c3aedbbc7134b2f604526bb685fc3e16ddc6d3733e74a758a445e111d8661b6',
    'data' => 
   array (
     'locatedSource' => 
@@ -62,8 +62,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
     'attributes' => 
     array (
     ),
-    'startLine' => 69,
-    'endLine' => 332,
+    'startLine' => 70,
+    'endLine' => 348,
     'startColumn' => 1,
     'endColumn' => 1,
     'parentClassName' => 'Illuminate\\Database\\Eloquent\\Model',
@@ -96,20 +96,20 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
           'code' => '\'beneficiaries\'',
           'attributes' => 
           array (
-            'startLine' => 74,
-            'endLine' => 74,
-            'startTokenPos' => 176,
-            'startFilePos' => 2913,
-            'endTokenPos' => 176,
-            'endFilePos' => 2927,
+            'startLine' => 75,
+            'endLine' => 75,
+            'startTokenPos' => 181,
+            'startFilePos' => 2969,
+            'endTokenPos' => 181,
+            'endFilePos' => 2983,
           ),
         ),
         'docComment' => NULL,
         'attributes' => 
         array (
         ),
-        'startLine' => 74,
-        'endLine' => 74,
+        'startLine' => 75,
+        'endLine' => 75,
         'startColumn' => 5,
         'endColumn' => 39,
         'isPromoted' => false,
@@ -131,12 +131,12 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
           'code' => '[\'owner_mda_id\', \'registration_source\', \'registration_date\', \'import_batch_id\', \'original_record_id\', \'idempotency_key\', \'nin\', \'bvn\', \'phone\', \'first_name\', \'middle_name\', \'last_name\', \'date_of_birth\', \'gender\', \'address\', \'lga\', \'ward\', \'block_name_dob\', \'status\', \'sharing_consent\', \'sharing_consent_at\', \'retention_flagged_at\', \'anonymized_at\', \'retention_policy\']',
           'attributes' => 
           array (
-            'startLine' => 79,
-            'endLine' => 104,
-            'startTokenPos' => 187,
-            'startFilePos' => 2998,
-            'endTokenPos' => 261,
-            'endFilePos' => 3564,
+            'startLine' => 80,
+            'endLine' => 105,
+            'startTokenPos' => 192,
+            'startFilePos' => 3054,
+            'endTokenPos' => 266,
+            'endFilePos' => 3620,
           ),
         ),
         'docComment' => '/**
@@ -145,8 +145,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         'attributes' => 
         array (
         ),
-        'startLine' => 79,
-        'endLine' => 104,
+        'startLine' => 80,
+        'endLine' => 105,
         'startColumn' => 5,
         'endColumn' => 6,
         'isPromoted' => false,
@@ -168,12 +168,12 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
           'code' => '[\'nin\', \'bvn\', \'nin_hash\', \'bvn_hash\']',
           'attributes' => 
           array (
-            'startLine' => 113,
-            'endLine' => 118,
-            'startTokenPos' => 272,
-            'startFilePos' => 3884,
-            'endTokenPos' => 286,
-            'endFilePos' => 3960,
+            'startLine' => 114,
+            'endLine' => 119,
+            'startTokenPos' => 277,
+            'startFilePos' => 3940,
+            'endTokenPos' => 291,
+            'endFilePos' => 4016,
           ),
         ),
         'docComment' => '/**
@@ -186,8 +186,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         'attributes' => 
         array (
         ),
-        'startLine' => 113,
-        'endLine' => 118,
+        'startLine' => 114,
+        'endLine' => 119,
         'startColumn' => 5,
         'endColumn' => 6,
         'isPromoted' => false,
@@ -209,12 +209,12 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
           'code' => '[\'status\' => \\App\\Domain\\Registry\\Enums\\BeneficiaryStatus::Active->value, \'sharing_consent\' => \\App\\Domain\\Registry\\Enums\\ConsentStatus::Unknown->value]',
           'attributes' => 
           array (
-            'startLine' => 123,
-            'endLine' => 126,
-            'startTokenPos' => 297,
-            'startFilePos' => 4041,
-            'endTokenPos' => 321,
-            'endFilePos' => 4161,
+            'startLine' => 124,
+            'endLine' => 127,
+            'startTokenPos' => 302,
+            'startFilePos' => 4097,
+            'endTokenPos' => 326,
+            'endFilePos' => 4217,
           ),
         ),
         'docComment' => '/**
@@ -223,8 +223,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         'attributes' => 
         array (
         ),
-        'startLine' => 123,
-        'endLine' => 126,
+        'startLine' => 124,
+        'endLine' => 127,
         'startColumn' => 5,
         'endColumn' => 6,
         'isPromoted' => false,
@@ -259,8 +259,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         'docComment' => '/**
  * @return array<string, string>
  */',
-        'startLine' => 131,
-        'endLine' => 148,
+        'startLine' => 132,
+        'endLine' => 149,
         'startColumn' => 5,
         'endColumn' => 5,
         'couldThrow' => false,
@@ -294,8 +294,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         array (
         ),
         'docComment' => '/** Whether the record has been de-identified by a retention policy (NFR-PRV-01). */',
-        'startLine' => 151,
-        'endLine' => 154,
+        'startLine' => 152,
+        'endLine' => 155,
         'startColumn' => 5,
         'endColumn' => 5,
         'couldThrow' => false,
@@ -334,8 +334,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
  *
  * @return list<string>
  */',
-        'startLine' => 162,
-        'endLine' => 165,
+        'startLine' => 163,
+        'endLine' => 166,
         'startColumn' => 5,
         'endColumn' => 5,
         'couldThrow' => false,
@@ -374,8 +374,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
  *
  * @return list<string>
  */',
-        'startLine' => 173,
-        'endLine' => 176,
+        'startLine' => 174,
+        'endLine' => 177,
         'startColumn' => 5,
         'endColumn' => 5,
         'couldThrow' => false,
@@ -409,8 +409,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         array (
         ),
         'docComment' => NULL,
-        'startLine' => 178,
-        'endLine' => 225,
+        'startLine' => 179,
+        'endLine' => 241,
         'startColumn' => 5,
         'endColumn' => 5,
         'couldThrow' => true,
@@ -467,8 +467,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             'attributes' => 
             array (
             ),
-            'startLine' => 231,
-            'endLine' => 231,
+            'startLine' => 247,
+            'endLine' => 247,
             'startColumn' => 44,
             'endColumn' => 57,
             'parameterIndex' => 0,
@@ -511,8 +511,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
  * Strip all non-digits; return null when nothing remains (so the column is
  * NULL, not an empty string — required for the partial unique indexes).
  */',
-        'startLine' => 231,
-        'endLine' => 239,
+        'startLine' => 247,
+        'endLine' => 255,
         'startColumn' => 5,
         'endColumn' => 5,
         'couldThrow' => false,
@@ -569,8 +569,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             'attributes' => 
             array (
             ),
-            'startLine' => 245,
-            'endLine' => 245,
+            'startLine' => 261,
+            'endLine' => 261,
             'startColumn' => 44,
             'endColumn' => 60,
             'parameterIndex' => 0,
@@ -614,8 +614,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             'attributes' => 
             array (
             ),
-            'startLine' => 245,
-            'endLine' => 245,
+            'startLine' => 261,
+            'endLine' => 261,
             'startColumn' => 63,
             'endColumn' => 74,
             'parameterIndex' => 1,
@@ -658,8 +658,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
  * The fuzzy-matching blocking key: phonetic(last_name) | dob_year (PRD
  * FR-DUP-03). Used both to maintain the column and to build the gather query.
  */',
-        'startLine' => 245,
-        'endLine' => 251,
+        'startLine' => 261,
+        'endLine' => 267,
         'startColumn' => 5,
         'endColumn' => 5,
         'couldThrow' => false,
@@ -693,8 +693,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         array (
         ),
         'docComment' => NULL,
-        'startLine' => 253,
-        'endLine' => 256,
+        'startLine' => 269,
+        'endLine' => 272,
         'startColumn' => 5,
         'endColumn' => 5,
         'couldThrow' => false,
@@ -728,8 +728,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         array (
         ),
         'docComment' => '/** Whether cross-MDA data-sharing consent is currently granted (NFR-PRV-01). */',
-        'startLine' => 259,
-        'endLine' => 262,
+        'startLine' => 275,
+        'endLine' => 278,
         'startColumn' => 5,
         'endColumn' => 5,
         'couldThrow' => false,
@@ -767,8 +767,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
  *
  * @return HasMany<BeneficiaryConsent, $this>
  */',
-        'startLine' => 269,
-        'endLine' => 272,
+        'startLine' => 285,
+        'endLine' => 288,
         'startColumn' => 5,
         'endColumn' => 5,
         'couldThrow' => false,
@@ -804,8 +804,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         'docComment' => '/**
  * @return BelongsTo<Mda, $this>
  */',
-        'startLine' => 277,
-        'endLine' => 280,
+        'startLine' => 293,
+        'endLine' => 296,
         'startColumn' => 5,
         'endColumn' => 5,
         'couldThrow' => false,
@@ -841,8 +841,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         'docComment' => '/**
  * @return HasMany<HouseholdMembership, $this>
  */',
-        'startLine' => 285,
-        'endLine' => 288,
+        'startLine' => 301,
+        'endLine' => 304,
         'startColumn' => 5,
         'endColumn' => 5,
         'couldThrow' => false,
@@ -882,8 +882,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
  *
  * @return HasMany<Benefit, $this>
  */',
-        'startLine' => 297,
-        'endLine' => 300,
+        'startLine' => 313,
+        'endLine' => 316,
         'startColumn' => 5,
         'endColumn' => 5,
         'couldThrow' => false,
@@ -919,8 +919,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         'docComment' => '/**
  * @return HasMany<Enrollment, $this>
  */',
-        'startLine' => 305,
-        'endLine' => 308,
+        'startLine' => 321,
+        'endLine' => 324,
         'startColumn' => 5,
         'endColumn' => 5,
         'couldThrow' => false,
@@ -956,8 +956,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         'docComment' => '/**
  * @return HasMany<BeneficiaryDocument, $this>
  */',
-        'startLine' => 313,
-        'endLine' => 316,
+        'startLine' => 329,
+        'endLine' => 332,
         'startColumn' => 5,
         'endColumn' => 5,
         'couldThrow' => false,
@@ -995,8 +995,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
  *
  * @return HasOne<HouseholdMembership, $this>
  */',
-        'startLine' => 323,
-        'endLine' => 326,
+        'startLine' => 339,
+        'endLine' => 342,
         'startColumn' => 5,
         'endColumn' => 5,
         'couldThrow' => false,
@@ -1030,8 +1030,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         array (
         ),
         'docComment' => NULL,
-        'startLine' => 328,
-        'endLine' => 331,
+        'startLine' => 344,
+        'endLine' => 347,
         'startColumn' => 5,
         'endColumn' => 5,
         'couldThrow' => false,

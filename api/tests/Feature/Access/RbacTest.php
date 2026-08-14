@@ -9,6 +9,7 @@ use App\Domain\Access\Models\Mda;
 use App\Domain\Access\Models\Permission;
 use App\Domain\Access\Models\Role;
 use App\Domain\Access\Models\User;
+use App\Domain\Access\Support\PermissionRegistry;
 use Database\Seeders\RolesAndPermissionsSeeder;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
@@ -44,7 +45,7 @@ class RbacTest extends TestCase
             'mda.view', 'user.view',
             'beneficiary.view', 'beneficiary.create', 'beneficiary.edit', 'beneficiary.approve', 'beneficiary.export',
             'beneficiary.access_request',
-            'beneficiary-lookup.view', 'household.view', 'household.create', 'household.edit',
+            'beneficiary-lookup.view', 'household.view', 'household.edit',
             'programme.view',
             'activity.view', 'activity.create', 'activity.edit',
             'enrollment.view', 'enrollment.create', 'enrollment.edit',
@@ -186,5 +187,45 @@ class RbacTest extends TestCase
         $this->assertTrue($officer->can('user.view'));
         $this->assertFalse($officer->can('permission.view'));
         $this->assertFalse($officer->can('user.create'));
+    }
+
+    /**
+     * `household.create` does not exist (CLAUDE.md §8).
+     *
+     * Households are formed by source ingestion, never created directly. A permission
+     * nothing can consume is worse than a missing one: it makes the RBAC set claim a
+     * capability the system does not have, so a reviewer reading the MDA role would
+     * conclude MDAs can create households by hand.
+     */
+    public function test_the_household_create_permission_does_not_exist(): void
+    {
+        $this->assertNull(
+            Permission::query()->where('key', 'household.create')->first(),
+            'household.create must not exist — households are import-only.',
+        );
+
+        $this->assertNotContains('household.create', app(PermissionRegistry::class)->keys());
+    }
+
+    public function test_no_role_grants_household_create(): void
+    {
+        foreach (Role::query()->with('permissions')->get() as $role) {
+            $this->assertNotContains(
+                'household.create',
+                $role->permissions->pluck('key')->all(),
+                "{$role->key} must not be granted household.create",
+            );
+        }
+    }
+
+    public function test_households_remain_readable_and_editable(): void
+    {
+        // Removing the create permission must not remove the ability to correct an
+        // imported household or manage its membership.
+        $officer = $this->userWithRole(RoleKey::MdaAdmin);
+
+        $this->assertTrue($officer->can('household.view'));
+        $this->assertTrue($officer->can('household.edit'));
+        $this->assertFalse($officer->can('household.create'));
     }
 }

@@ -62,8 +62,16 @@
     being restricted does not administer the restriction.
   - **Enforcement is automatic.** Every gate — read (`DataSharingGuard`), enroll
     (`EnrollmentService::canServe`) and deliver (`DeliveryAuthorization`) — resolves the grant
-    through `hasActiveGrant()`, which excludes revoked rows. There is no separate revocation check
-    to keep in sync, and adding one would be a bug.
+    through `DataSharingGuard`, which excludes revoked rows AND applies the cross-MDA consent
+    gate. There is no separate revocation check to keep in sync, and adding one would be a bug.
+  - **A grant is not sufficient on its own — consent gates it too.** A grant is the owner MDA's
+    permission; consent (NFR-PRV-01) is the person's. All three gates must therefore resolve
+    through `DataSharingGuard::mdaMayServeViaGrant()`, never through
+    `ServiceRequestService::hasActiveGrant()` directly. `canServe` once read the grant directly
+    and consequently still permitted ENROLMENT after a citizen withdrew consent, while read and
+    delivery correctly refused — three gates, two answers, and a withdrawal that only appeared to
+    take effect. `ServeSeamCoherenceTest` pins all three against the same
+    (MDA, beneficiary) pair for grant, revocation and consent.
   - **Forward-only.** Revocation withdraws ongoing access from that point. It does **not** delete
     or alter interventions already recorded under the grant (the ledger is history, not a
     permission cache), does **not** change ownership, and does **not** rewrite the Service Request,
@@ -77,6 +85,20 @@
   - **Audited and notified:** `beneficiary.access_revoked` (actor, revoked MDA, grant, service
     request, reason) and an in-app notification to the serving MDA. That notification must never
     name the beneficiary — the recipient is, as of the revocation, no longer entitled to read it.
+- **Access grants are revoked, never deleted — both kinds.** `beneficiary_service_grants` (per
+  beneficiary, from an accepted Service Request) and `mda_access_grants` (whole-MDA, admin-issued)
+  both set `revoked_at` / `revoked_by` / a reason and **retain the row**. Hard-deleting a grant
+  erases the evidence that the access ever existed, leaving an auditor unable to distinguish
+  "access was held and withdrawn" from "access was never granted" — the opposite of what an
+  auditable PII-access trail is for (NFR-PRV-01, FR-AUD-01).
+  - The row's presence therefore no longer means access is held. Every consumer must test
+    **`revoked_at IS NULL`** (via `MdaAccessGrant::scopeActive()` / `hasActiveGrant()`), never the
+    row's existence and never `expires_at` alone. `User::accessibleMdaIds()` previously relied on
+    deletion; it now filters on the active scope.
+  - A revocation and an expiry are different facts and are reported differently in the UI.
+  - Both tables carry a PARTIAL unique index (`… WHERE revoked_at IS NULL`) so a retained revoked
+    row does not permanently bar a future re-grant. Re-granting creates a NEW row, keeping the
+    timeline truthful as two access episodes rather than one that never ended.
 - **Revocation (PRD v1.7, FR-OWN-08):** a granted cross-MDA read access is **revocable by the Owner MDA**
   that granted it (System Administrator may override). Revocation sets `revoked_at` and takes effect
   immediately — the read path and all serve gates deny once revoked. It withdraws ongoing read access only:

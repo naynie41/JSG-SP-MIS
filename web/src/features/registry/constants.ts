@@ -47,8 +47,13 @@ export const DOCUMENT_TYPE_OPTIONS: SelectOption[] = [
   { value: 'other', label: 'Other' },
 ]
 
+/**
+ * Provenance labels. `manual` is retained for HISTORICAL records only — manual
+ * single-record entry was removed (CLAUDE.md §8) and the server refuses it for new
+ * writes, so it should never appear on a recently-created record.
+ */
 export const REGISTRATION_SOURCE_LABELS: Record<string, string> = {
-  manual: 'Manual entry',
+  manual: 'Manual entry (historical)',
   excel: 'Excel upload',
   csv: 'CSV upload',
   kobo: 'Kobo Collect',

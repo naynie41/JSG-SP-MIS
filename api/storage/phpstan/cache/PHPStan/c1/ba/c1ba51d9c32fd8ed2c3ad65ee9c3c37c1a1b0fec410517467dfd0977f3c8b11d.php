@@ -2,7 +2,7 @@
 
 // osfsl-C:/Users/ACER/Desktop/JSG-SP-MIS/JSG-SP-MIS/api/database/factories/BeneficiaryFactory.php-PHPStan\BetterReflection\Reflection\ReflectionClass-Database\Factories\BeneficiaryFactory
 return \PHPStan\Cache\CacheItem::__set_state(array(
-   'variableKey' => 'v2-a385b41b2a4123fcf46c07a65dc9863462f3a1b4671ff95662e0434fcdd4442e-8.3.31-6.70.0.1',
+   'variableKey' => 'v2-616651d63ae0a450b2b7feb696ec712f9d6a513c1d3932581cadba2a3f114a6f-8.3.31-6.70.0.1',
    'data' => 
   array (
     'locatedSource' => 
@@ -33,7 +33,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
     array (
     ),
     'startLine' => 23,
-    'endLine' => 69,
+    'endLine' => 72,
     'startColumn' => 1,
     'endColumn' => 1,
     'parentClassName' => 'Illuminate\\Database\\Eloquent\\Factories\\Factory',
@@ -109,7 +109,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
  * @return array<string, mixed>
  */',
         'startLine' => 30,
-        'endLine' => 58,
+        'endLine' => 61,
         'startColumn' => 5,
         'endColumn' => 5,
         'couldThrow' => false,
@@ -143,8 +143,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         array (
         ),
         'docComment' => NULL,
-        'startLine' => 60,
-        'endLine' => 63,
+        'startLine' => 63,
+        'endLine' => 66,
         'startColumn' => 5,
         'endColumn' => 5,
         'couldThrow' => false,
@@ -178,8 +178,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         array (
         ),
         'docComment' => NULL,
-        'startLine' => 65,
-        'endLine' => 68,
+        'startLine' => 68,
+        'endLine' => 71,
         'startColumn' => 5,
         'endColumn' => 5,
         'couldThrow' => false,

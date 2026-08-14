@@ -8,6 +8,19 @@ a future source adapter. Every channel converges on **one validation ruleset** a
 **one provenance-stamping choke-point**, so a record's origin is always traceable
 via `registration_source` + `import_batch_id` + `original_record_id`.
 
+## Provenance is required, with no default (FR-REG-03)
+
+`registration_source` must be set explicitly on every beneficiary and household; there is
+no default and a save without one throws. It previously defaulted to `manual`, which —
+once manual entry was removed — meant any record saved without an explicit source
+silently claimed an origin that can no longer occur. That is the worst kind of bad data:
+plausible, and indistinguishable in the audit trail from a genuine pre-removal record.
+
+`RegistrationSource::Manual` is **deprecated, not deleted**. It stays so historical rows
+still cast and display; `isAssignable()` returns false for it, and
+`RegistrationSourceRule` refuses it on create AND on update, so no new record can claim
+it. Use `RegistrationSource::assignable()` wherever a source is offered or validated.
+
 ## Channels
 
 | Channel | Provenance (`registration_source`) | Path |

@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Domain\Access\Models;
 
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Concerns\HasUuids;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -19,6 +20,9 @@ use Illuminate\Support\Carbon;
  * @property string|null $granted_by
  * @property string|null $reason
  * @property Carbon|null $expires_at
+ * @property Carbon|null $revoked_at
+ * @property string|null $revoked_by
+ * @property string|null $revocation_reason
  * @property Carbon|null $created_at
  */
 class MdaAccessGrant extends Model
@@ -36,6 +40,9 @@ class MdaAccessGrant extends Model
         'granted_by',
         'reason',
         'expires_at',
+        'revoked_at',
+        'revoked_by',
+        'revocation_reason',
     ];
 
     /**
@@ -45,7 +52,34 @@ class MdaAccessGrant extends Model
     {
         return [
             'expires_at' => 'datetime',
+            'revoked_at' => 'datetime',
         ];
+    }
+
+    /**
+     * Whether this grant currently opens access.
+     *
+     * Two ways it can be over, and they are not the same fact: it EXPIRED on a date set
+     * when it was issued, or someone REVOKED it. Both are kept, because an audit of who
+     * held access to citizen records has to be able to tell a lapse from a withdrawal.
+     */
+    public function isActive(): bool
+    {
+        return $this->revoked_at === null
+            && ($this->expires_at === null || $this->expires_at->isFuture());
+    }
+
+    /**
+     * Constrain a query to grants that currently open access.
+     *
+     * @param  Builder<covariant MdaAccessGrant>  $query
+     */
+    public function scopeActive(Builder $query): void
+    {
+        $query->whereNull('revoked_at')
+            ->where(function (Builder $inner): void {
+                $inner->whereNull('expires_at')->orWhere('expires_at', '>', now());
+            });
     }
 
     /**
@@ -70,5 +104,16 @@ class MdaAccessGrant extends Model
     public function grantedBy(): BelongsTo
     {
         return $this->belongsTo(User::class, 'granted_by');
+    }
+
+    /**
+     * Who withdrew the access. Kept on the row rather than only in the audit log so the
+     * grant itself answers "when did this end, and on whose authority".
+     *
+     * @return BelongsTo<User, $this>
+     */
+    public function revokedBy(): BelongsTo
+    {
+        return $this->belongsTo(User::class, 'revoked_by');
     }
 }

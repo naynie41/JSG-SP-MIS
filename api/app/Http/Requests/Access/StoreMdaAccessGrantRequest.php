@@ -25,9 +25,16 @@ class StoreMdaAccessGrantRequest extends FormRequest
                 'required',
                 'uuid',
                 'exists:mdas,id',
-                // One active grant row per (user, MDA).
+                /*
+                 * One ACTIVE grant per (user, MDA) — matching the partial unique index.
+                 * The `revoked_at` filter is load-bearing now that revocation retains
+                 * the row: without it, a single past grant would permanently bar that
+                 * user from ever being granted access to that MDA again.
+                 */
                 Rule::unique('mda_access_grants', 'mda_id')
-                    ->where(fn ($query) => $query->where('user_id', $this->input('user_id'))),
+                    ->where(fn ($query) => $query
+                        ->where('user_id', $this->input('user_id'))
+                        ->whereNull('revoked_at')),
             ],
             'reason' => ['nullable', 'string', 'max:500'],
             'expires_at' => ['nullable', 'date', 'after:now'],

@@ -217,7 +217,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
     ),
     1 => 
     array (
-      'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\database\\factories\\BeneficiaryFactory.php' => 'a385b41b2a4123fcf46c07a65dc9863462f3a1b4671ff95662e0434fcdd4442e',
+      'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\database\\factories\\BeneficiaryFactory.php' => '616651d63ae0a450b2b7feb696ec712f9d6a513c1d3932581cadba2a3f114a6f',
     ),
   ),
 ));

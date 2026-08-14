@@ -377,7 +377,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
     ),
     'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Access\\Models\\MdaAccessGrant.php' => 
     array (
-      0 => '80454f5cca1295177440dad59922c69b175d5bf25e20ef46174a8e4a926daa17',
+      0 => '90584e224e34a474065f3a0d01ac3bd5abebc9405871981966456218ab58f3b1',
       1 => 
       array (
         0 => 'app\\domain\\access\\models\\mdaaccessgrant',
@@ -385,9 +385,12 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
       2 => 
       array (
         0 => 'app\\domain\\access\\models\\casts',
-        1 => 'app\\domain\\access\\models\\user',
-        2 => 'app\\domain\\access\\models\\mda',
-        3 => 'app\\domain\\access\\models\\grantedby',
+        1 => 'app\\domain\\access\\models\\isactive',
+        2 => 'app\\domain\\access\\models\\scopeactive',
+        3 => 'app\\domain\\access\\models\\user',
+        4 => 'app\\domain\\access\\models\\mda',
+        5 => 'app\\domain\\access\\models\\grantedby',
+        6 => 'app\\domain\\access\\models\\revokedby',
       ),
       3 => 
       array (
@@ -427,7 +430,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
     ),
     'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Access\\Models\\User.php' => 
     array (
-      0 => 'fff53d6fcd4c37c7b9be357e0b475702957b85cf3233aed363cd267e7fda02c6',
+      0 => 'cb5dc1613afedc1a9fd1192af8b727a89fed98e76081a1b015be235aaa3d0e9a',
       1 => 
       array (
         0 => 'app\\domain\\access\\models\\user',
@@ -2644,7 +2647,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
     ),
     'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Programme\\Services\\EnrollmentService.php' => 
     array (
-      0 => 'a76def3ec97d20bfb8562e0f9ef0b467ec38585795851d0385c219dc71ef44c1',
+      0 => '160393b8147c111f00387a53a7c5b8020b0cc7a43ac8a740a1e8de8e4ec03607',
       1 => 
       array (
         0 => 'app\\domain\\programme\\services\\enrollmentservice',
@@ -3063,13 +3066,16 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
     ),
     'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Registry\\Enums\\RegistrationSource.php' => 
     array (
-      0 => '7740d9ad863728c6504681d12c7220cfec980f8f54643174903fc6cc95c204bb',
+      0 => '15b895792449734e89431d891132d0fac3db2e3aa1e3573426905c67173d9387',
       1 => 
       array (
         0 => 'app\\domain\\registry\\enums\\registrationsource',
       ),
       2 => 
       array (
+        0 => 'app\\domain\\registry\\enums\\isassignable',
+        1 => 'app\\domain\\registry\\enums\\assignable',
+        2 => 'app\\domain\\registry\\enums\\assignablevalues',
       ),
       3 => 
       array (
@@ -3351,7 +3357,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
     ),
     'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Registry\\Models\\Beneficiary.php' => 
     array (
-      0 => '9edc1ef40d63507769f67ae2771b92bad4b6d04bc76dc8f6fd0b72c192e5d854',
+      0 => '6c3aedbbc7134b2f604526bb685fc3e16ddc6d3733e74a758a445e111d8661b6',
       1 => 
       array (
         0 => 'app\\domain\\registry\\models\\beneficiary',
@@ -3436,7 +3442,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
     ),
     'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Registry\\Models\\Household.php' => 
     array (
-      0 => 'c0206c14eedb9c7e08b70f8d0a52ddc9cfd94cfd0d9990031e1c402a6920aeb0',
+      0 => '3f6730cb4af4d34fbb15f91959facf44cfba5bcc6a27a4b2ec7138f7171036f6',
       1 => 
       array (
         0 => 'app\\domain\\registry\\models\\household',
@@ -3597,7 +3603,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
     ),
     'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Registry\\Policies\\HouseholdPolicy.php' => 
     array (
-      0 => '410dd832e66f56c44fde79f1961801987574f5c0efa16a3b9de67eed45b10071',
+      0 => '258fa7deb87fd39a6716b9a59ad7e4c02dfa3040d985c3c9d25f62e162333d5b',
       1 => 
       array (
         0 => 'app\\domain\\registry\\policies\\householdpolicy',
@@ -3607,9 +3613,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         0 => 'app\\domain\\registry\\policies\\owns',
         1 => 'app\\domain\\registry\\policies\\viewany',
         2 => 'app\\domain\\registry\\policies\\view',
-        3 => 'app\\domain\\registry\\policies\\create',
-        4 => 'app\\domain\\registry\\policies\\update',
-        5 => 'app\\domain\\registry\\policies\\delete',
+        3 => 'app\\domain\\registry\\policies\\update',
+        4 => 'app\\domain\\registry\\policies\\delete',
       ),
       3 => 
       array (
@@ -3654,7 +3659,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
     ),
     'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Registry\\RegistryServiceProvider.php' => 
     array (
-      0 => '26aac99399d3372dcb18761252961701cdb944fabb1212453a6b43c9c6236ecb',
+      0 => '0b5938597414cbb56e8b488e7169765fc4d0d096e240e39436c18ebbe9555c3b',
       1 => 
       array (
         0 => 'app\\domain\\registry\\registryserviceprovider',
@@ -5021,7 +5026,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
     ),
     'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Access\\MdaAccessGrantController.php' => 
     array (
-      0 => 'cd98c6ce05340c6982fb9994226c4af2d4a5274e2d8fcd93f13d880ab9aab3a4',
+      0 => 'e80c8266a350c48a4c52a6653aa06f20370c8feca1157968fdded040661f633e',
       1 => 
       array (
         0 => 'app\\http\\controllers\\api\\v1\\access\\mdaaccessgrantcontroller',
@@ -5757,7 +5762,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
     ),
     'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Sharing\\DataSharingController.php' => 
     array (
-      0 => '204adf07584c3463fd4c04482eb252e1cae525d8437dd0cbe6daefbf522d9c60',
+      0 => '28746063a2a3690ba4d7384c9ff19c0dffc17c7a0627cc07cb1f49ce9074645f',
       1 => 
       array (
         0 => 'app\\http\\controllers\\api\\v1\\sharing\\datasharingcontroller',
@@ -5907,7 +5912,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
     ),
     'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Access\\StoreMdaAccessGrantRequest.php' => 
     array (
-      0 => 'e6bc2252404ad6131f57dad8416b11eaef9111709831eee428f916a906014314',
+      0 => 'eec1438369fd454520faaa2a924442afbd59e08ea327eac7cb45dd7dcd7a139c',
       1 => 
       array (
         0 => 'app\\http\\requests\\access\\storemdaaccessgrantrequest',
@@ -7975,6 +7980,21 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         1 => 'app\\http\\requests\\sync\\rules',
         2 => 'app\\http\\requests\\sync\\withvalidator',
         3 => 'app\\http\\requests\\sync\\columnmap',
+      ),
+      3 => 
+      array (
+      ),
+    ),
+    'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Registry\\Support\\RegistrationSourceRule.php' => 
+    array (
+      0 => '05a83c4f1c02c73cf6317f4adea2fb6b80a0c578834acb8b52603aee42122fa2',
+      1 => 
+      array (
+        0 => 'app\\domain\\registry\\support\\registrationsourcerule',
+      ),
+      2 => 
+      array (
+        0 => 'app\\domain\\registry\\support\\assertassignable',
       ),
       3 => 
       array (

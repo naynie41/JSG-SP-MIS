@@ -12,7 +12,7 @@ use App\Domain\Programme\Models\Programme;
 use App\Domain\Referral\Models\Referral;
 use App\Domain\Registry\Models\Beneficiary;
 use App\Domain\Registry\Models\Household;
-use App\Domain\Registry\Services\ServiceRequestService;
+use App\Domain\Sharing\DataSharingGuard;
 use Illuminate\Database\UniqueConstraintViolationException;
 
 /**
@@ -24,7 +24,10 @@ use Illuminate\Database\UniqueConstraintViolationException;
  */
 class EnrollmentService
 {
-    public function __construct(private readonly EligibilityEvaluator $eligibility) {}
+    public function __construct(
+        private readonly EligibilityEvaluator $eligibility,
+        private readonly DataSharingGuard $sharing,
+    ) {}
 
     /**
      * Whether the acting user's MDA may enroll (serve) this target: it owns the
@@ -40,7 +43,20 @@ class EnrollmentService
         }
 
         if ($target instanceof Beneficiary && $actor->mda_id !== null) {
-            return ServiceRequestService::hasActiveGrant($target->id, $actor->mda_id)
+            /*
+             * The grant path goes through DataSharingGuard, NOT straight to
+             * `hasActiveGrant`, because a grant alone is not sufficient: the guard also
+             * applies the cross-MDA consent gate (NFR-PRV-01).
+             *
+             * A grant is the owner MDA's permission; consent is the person's. Reading
+             * the grant directly here meant a citizen who withdrew consent was still
+             * enrollable by a non-owner MDA, while the read and delivery gates — which
+             * both consult the guard — correctly refused. Three gates, two answers.
+             *
+             * The referral path is deliberately unchanged: `ReferralAuthorizer` treats
+             * it the same way on the delivery side, so the two gates already agree there.
+             */
+            return $this->sharing->mdaMayServeViaGrant($actor->mda_id, $target)
                 || Referral::authorizesDelivery($target->id, $actor->mda_id);
         }
 

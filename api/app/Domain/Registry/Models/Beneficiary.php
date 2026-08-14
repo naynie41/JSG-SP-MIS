@@ -18,6 +18,7 @@ use App\Domain\Registry\Enums\Gender;
 use App\Domain\Registry\Enums\RegistrationSource;
 use App\Domain\Registry\Support\IdentifierHasher;
 use App\Domain\Registry\Support\NormalizationService;
+use App\Domain\Registry\Support\RegistrationSourceRule;
 use Database\Factories\BeneficiaryFactory;
 use Illuminate\Database\Eloquent\Concerns\HasUuids;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -177,13 +178,28 @@ class Beneficiary extends Model implements MdaScoped
 
     protected static function booted(): void
     {
-        // Provenance defaults on creation (FR-REG-03): manual entry, dated today.
+        /*
+         * Provenance is REQUIRED and has no default (FR-REG-03, CLAUDE.md §8).
+         *
+         * It used to default to `manual`, which since the removal of manual entry meant
+         * any record saved without an explicit source silently claimed an origin that
+         * cannot occur. A wrong-but-plausible lineage is worse than a failure: it is
+         * indistinguishable from a real one in the audit trail. Every ingestion door
+         * knows its own source, so a missing one is a bug, and it fails loudly here.
+         */
         static::creating(function (Beneficiary $beneficiary): void {
-            if (empty($beneficiary->registration_source)) {
-                $beneficiary->registration_source = RegistrationSource::Manual;
-            }
+            RegistrationSourceRule::assertAssignable($beneficiary->registration_source, 'beneficiary');
+
             if (empty($beneficiary->getAttribute('registration_date'))) {
                 $beneficiary->registration_date = Carbon::today();
+            }
+        });
+
+        // A record's origin is a historical fact — it cannot be edited into a different
+        // one, and least of all into the deprecated `manual`.
+        static::updating(function (Beneficiary $beneficiary): void {
+            if ($beneficiary->isDirty('registration_source')) {
+                RegistrationSourceRule::assertAssignable($beneficiary->registration_source, 'beneficiary');
             }
         });
 
