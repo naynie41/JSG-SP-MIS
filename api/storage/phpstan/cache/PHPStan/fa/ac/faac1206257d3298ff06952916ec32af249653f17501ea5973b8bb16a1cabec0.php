@@ -3476,7 +3476,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
     ),
     'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Registry\\Models\\ImportBatch.php' => 
     array (
-      0 => '37e630863e8ede50b5f46cdc24c9afd123922411903e6b47ec9c5e43c95cce54',
+      0 => 'e7925c5e579b4372e0103a1e137fcc854dfa13056a13b6f31ad463f995d5611f',
       1 => 
       array (
         0 => 'app\\domain\\registry\\models\\importbatch',
@@ -3489,7 +3489,9 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         3 => 'app\\domain\\registry\\models\\ownermda',
         4 => 'app\\domain\\registry\\models\\activity',
         5 => 'app\\domain\\registry\\models\\uploadedby',
-        6 => 'app\\domain\\registry\\models\\rows',
+        6 => 'app\\domain\\registry\\models\\mappingconfirmedby',
+        7 => 'app\\domain\\registry\\models\\mappingtemplate',
+        8 => 'app\\domain\\registry\\models\\rows',
       ),
       3 => 
       array (
@@ -5552,7 +5554,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
     ),
     'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Registry\\ImportBatchController.php' => 
     array (
-      0 => '4c93ba07ae529b0abf5c6f435dc93fc18151cd960fbab59fa35b9aec7d4adcd5',
+      0 => '79111c6fb95614fd52c2788276765e0d85a427f48fad6598137f2ca0529e268d',
       1 => 
       array (
         0 => 'app\\http\\controllers\\api\\v1\\registry\\importbatchcontroller',
@@ -7110,7 +7112,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
     ),
     'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Resources\\ImportBatchResource.php' => 
     array (
-      0 => '1b9e9bf5e1ee645ddfffa0397543013e6fa16502b5a7bf506e1961eae626325c',
+      0 => '62a167e0b727dac789780c8251eb707ea9881dc6816654978c4d1ecb60bd4a8d',
       1 => 
       array (
         0 => 'app\\http\\resources\\importbatchresource',
@@ -7847,7 +7849,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
     ),
     'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Registry\\Imports\\ColumnMapper.php' => 
     array (
-      0 => '089f166b161c8e2e88e759147eb8822a6213d2a229a8684218be9dc78a781455',
+      0 => 'e44d0b6c368fcf371654f4386770bcc108c10716b3b854ace16569d63cfa5a03',
       1 => 
       array (
         0 => 'app\\domain\\registry\\imports\\columnmapper',
@@ -7886,7 +7888,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
     ),
     'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Registry\\Services\\ImportMappingService.php' => 
     array (
-      0 => 'a188bae616947e95adab592cc7ca8a30189c445f9afd3556d0aea39a8e829ac3',
+      0 => 'b690710314ee831dedbef8eb93cd151b179588a37c088c1c1e719e6f99bf5549',
       1 => 
       array (
         0 => 'app\\domain\\registry\\services\\importmappingservice',
@@ -7896,10 +7898,13 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         0 => 'app\\domain\\registry\\services\\__construct',
         1 => 'app\\domain\\registry\\services\\profile',
         2 => 'app\\domain\\registry\\services\\proposal',
-        3 => 'app\\domain\\registry\\services\\confirm',
-        4 => 'app\\domain\\registry\\services\\savetemplate',
-        5 => 'app\\domain\\registry\\services\\templatefor',
-        6 => 'app\\domain\\registry\\services\\identitymapsummary',
+        3 => 'app\\domain\\registry\\services\\samplerows',
+        4 => 'app\\domain\\registry\\services\\samples',
+        5 => 'app\\domain\\registry\\services\\normalizedpreview',
+        6 => 'app\\domain\\registry\\services\\confirm',
+        7 => 'app\\domain\\registry\\services\\savetemplate',
+        8 => 'app\\domain\\registry\\services\\templatefor',
+        9 => 'app\\domain\\registry\\services\\identitymapsummary',
       ),
       3 => 
       array (

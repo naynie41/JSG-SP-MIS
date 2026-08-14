@@ -12,6 +12,7 @@ use App\Domain\Registry\Imports\SpreadsheetReader;
 use App\Domain\Registry\Models\ImportBatch;
 use App\Domain\Registry\Models\ImportMappingTemplate;
 use App\Domain\Registry\Support\CanonicalSchema;
+use App\Domain\Registry\Support\NormalizationService;
 use DomainException;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Storage;
@@ -37,6 +38,7 @@ class ImportMappingService
         private readonly SpreadsheetReader $reader,
         private readonly ColumnMapper $mapper,
         private readonly AuditLogger $audit,
+        private readonly NormalizationService $normalizer = new NormalizationService,
     ) {}
 
     /**
@@ -67,7 +69,10 @@ class ImportMappingService
             'detected_headers' => $headers,
             'source_signature' => $signature,
             // Pre-filled, NOT confirmed: `mapping_confirmed_at` stays null either way.
-            'column_map' => $template?->column_map ?? [],
+            'column_map' => $template === null ? [] : $template->column_map,
+            // Which saved mapping this came from, so "what else used that template" is
+            // answerable when one turns out to be wrong.
+            'mapping_template_id' => $template?->id,
             'status' => ImportStatus::MappingRequired,
         ]);
 
@@ -85,17 +90,112 @@ class ImportMappingService
         $headers = $batch->detected_headers ?? [];
         $template = $batch->source_signature === null ? null : $this->templateFor($batch, $batch->source_signature);
         $confirmed = $batch->column_map ?? [];
+        $sampleRows = $this->sampleRows($batch);
 
         return [
             'detected_headers' => $headers,
             'suggestions' => $this->mapper->suggest($headers),
             'column_map' => $confirmed,
+            // A few real values per column. Deciding whether a column called
+            // `national_id` actually holds NINs is guesswork from the header alone and
+            // obvious from three values — this is what makes the confirmation a real
+            // decision rather than a click-through.
+            'samples' => $this->samples($headers, $sampleRows),
+            'normalized_preview' => $this->normalizedPreview($confirmed, $sampleRows),
             'template' => $template === null ? null : ['id' => $template->id, 'name' => $template->name],
             'identity_fields' => CanonicalSchema::confirmationRequiredFields(),
             'unconfirmed_identity_fields' => $this->mapper->unconfirmedIdentityFields($confirmed),
             'unknown_headers' => $this->mapper->unknownHeaders($confirmed, $headers),
             'mapping_confirmed_at' => $batch->mapping_confirmed_at?->toIso8601String(),
         ];
+    }
+
+    /**
+     * The first few raw rows, read fresh from the stored file. The upload is only ever
+     * READ — nothing here writes back to it.
+     *
+     * @return list<array<string, string>>
+     */
+    private function sampleRows(ImportBatch $batch, int $limit = 3): array
+    {
+        try {
+            $path = Storage::disk('local')->path($batch->stored_path);
+            $extension = pathinfo($batch->stored_path, PATHINFO_EXTENSION);
+            $rows = $this->reader->read($path, $extension)['rows'];
+        } catch (\Throwable) {
+            return [];
+        }
+
+        return array_map(
+            static fn (array $row): array => $row['values'],
+            array_slice($rows, 0, $limit),
+        );
+    }
+
+    /**
+     * Up to three example values per source column, blanks skipped.
+     *
+     * @param  list<string>  $headers
+     * @param  list<array<string, string>>  $rows
+     * @return array<string, list<string>>
+     */
+    private function samples(array $headers, array $rows): array
+    {
+        $samples = [];
+        foreach ($headers as $header) {
+            $values = [];
+            foreach ($rows as $row) {
+                $value = trim((string) ($row[$header] ?? ''));
+                if ($value !== '') {
+                    $values[] = $value;
+                }
+            }
+            $samples[$header] = $values;
+        }
+
+        return $samples;
+    }
+
+    /**
+     * What the CURRENT mapping would produce: the value as written beside the value the
+     * matcher will compare on.
+     *
+     * Shown before anything is committed, because this is where a wrong mapping becomes
+     * visible — a "NIN" column normalising to something that is not eleven digits, or a
+     * date read as the wrong month, is obvious here and invisible later.
+     *
+     * @param  array<string, string|null>  $columnMap
+     * @param  list<array<string, string>>  $rows
+     * @return list<array{field: string, header: string, original: string, normalized: ?string}>
+     */
+    private function normalizedPreview(array $columnMap, array $rows): array
+    {
+        if ($rows === []) {
+            return [];
+        }
+
+        $first = $rows[0];
+        $preview = [];
+
+        foreach ($columnMap as $field => $header) {
+            if ($header === null || ! array_key_exists($field, CanonicalSchema::FIELDS)) {
+                continue;
+            }
+
+            $original = trim((string) ($first[$header] ?? ''));
+            if ($original === '') {
+                continue;
+            }
+
+            $preview[] = [
+                'field' => $field,
+                'header' => $header,
+                'original' => $original,
+                'normalized' => $this->normalizer->forField($field, $original),
+            ];
+        }
+
+        return $preview;
     }
 
     /**
@@ -160,6 +260,10 @@ class ImportMappingService
             ],
             ['name' => $name, 'column_map' => $columnMap, 'created_by' => $by->id],
         );
+
+        // The batch that CREATED a template is as much a user of it as one that was
+        // pre-filled by it — both should turn up when auditing that template's reach.
+        $batch->update(['mapping_template_id' => $template->id]);
 
         $this->audit->record('import.mapping_template_saved', $template, after: [
             'name' => $name,

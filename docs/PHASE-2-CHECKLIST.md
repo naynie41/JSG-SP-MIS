@@ -15,7 +15,13 @@ and passes lint + static analysis. Requirement IDs trace to the PRD.
     with UI forms and provenance `manual`. Those were removed; `NoManualCreateRouteTest`
     keeps them removed.
 - [x] **FR-REG-02** Hybrid sources through one pipeline:
-  - [x] Excel/CSV upload (queued parse → preview → confirm)
+  - [x] **Data Import & Mapping stage** (CLAUDE.md §11, PRD v1.7) between raw upload and
+        validation: columns detected, mappings **suggested** (advisory, with confidence and
+        sample values), and NIN/BVN/name/phone **explicitly confirmed on every import** —
+        a saved template pre-fills but never pre-confirms. The gate lives in
+        `ParseImportBatch`, so both upload doors inherit it. Mapping + template recorded on
+        the batch; raw file retained unmutated.
+  - [x] Excel/CSV upload (queued parse → **map** → preview → confirm)
   - [x] Kobo Collect + ODK exports (source adapters map columns → canonical schema)
   - [x] Inbound REST API intake (`POST /beneficiaries/intake`, authenticated + rate-limited)
   - [x] SOCU / government-system connectors + offline-batch flush through `SyncEngine` (Phase 7),

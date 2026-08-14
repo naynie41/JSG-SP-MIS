@@ -38,7 +38,8 @@ class ColumnMapper
         'date_of_birth' => ['date_of_birth', 'dob', 'birth_date', 'birthdate', 'date_of_birth_dd_mm_yyyy'],
         'gender' => ['gender', 'sex'],
         'address' => ['address', 'home_address', 'residential_address'],
-        'lga' => ['lga', 'local_government', 'local_government_area'],
+        // "Council" is how several MDAs write the Local Government Council.
+        'lga' => ['lga', 'local_government', 'local_government_area', 'council'],
         'ward' => ['ward', 'ward_name'],
         'household_ref' => ['household_id', 'household_ref', 'household_code', 'household', 'hh_id'],
         'household_role' => ['household_role', 'relationship', 'role_in_household', 'hh_role'],

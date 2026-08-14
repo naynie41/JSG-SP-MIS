@@ -133,7 +133,13 @@ class ImportBatchController extends Controller
 
         $this->authorize('view', $model);
 
-        $model->load(['rows' => fn ($query) => $query->orderBy('row_number')]);
+        $model->load([
+            'rows' => fn ($query) => $query->orderBy('row_number'),
+            // Part of the batch's permanent history: which mapping was applied, by whom,
+            // and from which saved template (CLAUDE.md §11).
+            'mappingConfirmedBy' => fn ($query) => $query->withoutGlobalScopes()->select('id', 'name'),
+            'mappingTemplate' => fn ($query) => $query->withoutGlobalScopes(),
+        ]);
 
         $this->attachMatchReveals($model);
 

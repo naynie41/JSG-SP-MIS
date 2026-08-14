@@ -12,6 +12,8 @@ use App\Domain\Access\Scopes\MdaScope;
 use App\Domain\Matching\Enums\MatchBand;
 use App\Domain\Programme\Models\Activity;
 use App\Domain\Programme\Models\Programme;
+use App\Domain\Registry\Enums\ImportStatus;
+use App\Domain\Registry\Jobs\ParseImportBatch;
 use App\Domain\Registry\Models\Beneficiary;
 use App\Domain\Registry\Models\ImportBatch;
 use App\Domain\Registry\Models\ImportRow;
@@ -130,6 +132,71 @@ class OnePipelineTest extends TestCase
         return $this->confirmImportMapping(
             ImportBatch::query()->withoutGlobalScope(MdaScope::class)->findOrFail($id)
         )->load('rows');
+    }
+
+    /* --------------------------------------------- the same mapping stage (§11) */
+
+    public function test_both_doors_stop_for_the_same_mapping_confirmation(): void
+    {
+        // Uploaded through each door, WITHOUT confirming a mapping.
+        $wizardId = $this->send('/api/v1/activity-imports', [
+            'programme_id' => $this->programme->id,
+            'name' => 'Wizard activity',
+            'target_beneficiaries' => 2,
+            'lga' => 'dutse',
+            'file' => $this->file('rows.csv'),
+        ])->assertSuccessful()->json('data.id');
+
+        $centreId = $this->send('/api/v1/beneficiaries/imports', [
+            'activity_id' => $this->activity->id,
+            'source' => 'csv',
+            'file' => $this->file('rows.csv'),
+        ])->assertSuccessful()->json('data.id');
+
+        foreach ([$wizardId, $centreId] as $id) {
+            $batch = ImportBatch::query()->withoutGlobalScope(MdaScope::class)->findOrFail($id);
+
+            // Both doors profile the columns and stop. Neither parses, screens or stages
+            // a single row until a human has said which column holds the NIN.
+            $this->assertSame(ImportStatus::MappingRequired, $batch->status);
+            $this->assertNull($batch->mapping_confirmed_at);
+            $this->assertNotEmpty($batch->detected_headers);
+            $this->assertSame(0, $batch->rows()->count());
+        }
+    }
+
+    public function test_the_gate_holds_even_when_the_parse_job_is_dispatched_directly(): void
+    {
+        $id = $this->send('/api/v1/beneficiaries/imports', [
+            'activity_id' => $this->activity->id,
+            'source' => 'csv',
+            'file' => $this->file('rows.csv'),
+        ])->assertSuccessful()->json('data.id');
+
+        // The guard lives in the JOB, not in either controller — which is what makes it
+        // impossible for a future third entry point to bypass it by construction.
+        ParseImportBatch::dispatchSync($id);
+
+        $batch = ImportBatch::query()->withoutGlobalScope(MdaScope::class)->findOrFail($id);
+        $this->assertSame(ImportStatus::MappingRequired, $batch->status);
+        $this->assertSame(0, $batch->rows()->count());
+    }
+
+    public function test_both_doors_record_the_mapping_they_were_read_with(): void
+    {
+        $wizard = $this->uploadViaWizard();
+        $centre = $this->uploadViaImportCenter();
+
+        foreach ([$wizard, $centre] as $batch) {
+            $this->assertNotNull($batch->mapping_confirmed_at);
+            $this->assertNotNull($batch->mapping_confirmed_by);
+            $this->assertNotEmpty($batch->column_map);
+            $this->assertNotNull($batch->source_signature);
+        }
+
+        // Same file shape through either door ⇒ same signature, so one saved template
+        // serves both. The doors differ in WHEN the activity binds, nothing else.
+        $this->assertSame($wizard->source_signature, $centre->source_signature);
     }
 
     /* ------------------------------------------------- the same parse + validation */

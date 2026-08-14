@@ -10,6 +10,7 @@ import type {
   HouseholdMembership,
   HouseholdRole,
   ImportBatch,
+  ImportMappingProposal,
   ImportRow,
   ImportRowResolution,
   MatchingConfig,
@@ -232,6 +233,28 @@ export const importApi = {
   },
   confirm(id: string): Promise<ImportBatch> {
     return apiRequest<ImportBatch>({ method: 'POST', url: `/beneficiaries/imports/${id}/confirm` })
+  },
+  /** The mapping screen: detected columns, advisory suggestions, samples, preview. */
+  mapping(id: string): Promise<ImportMappingProposal> {
+    return apiRequest<ImportMappingProposal>({ method: 'GET', url: `/beneficiaries/imports/${id}/mapping` })
+  },
+  /**
+   * Confirm the mapping and release the file for parsing (CLAUDE.md §11).
+   *
+   * Every identity field must be a KEY in `column_map` — pointing at a header, or at
+   * null for "not present". The server refuses an unanswered one; this is not a
+   * client-side rule and must not be re-implemented as one.
+   */
+  confirmMapping(
+    id: string,
+    columnMap: Record<string, string | null>,
+    saveTemplateAs?: string,
+  ): Promise<ImportBatch> {
+    return apiRequest<ImportBatch>({
+      method: 'PUT',
+      url: `/beneficiaries/imports/${id}/mapping`,
+      data: { column_map: columnMap, save_template_as: saveTemplateAs },
+    })
   },
   /**
    * Activity-wizard OPTIONAL inline upload (§10): stage an UNBOUND preview batch for a

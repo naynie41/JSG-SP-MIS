@@ -32,6 +32,14 @@ use Illuminate\Support\Carbon;
  * @property RegistrationSource $source
  * @property string|null $activity_id
  * @property array<string, mixed>|null $draft_activity
+ * @property list<string>|null $detected_headers
+ * @property array<string, string|null>|null $column_map
+ * @property string|null $source_signature
+ * @property Carbon|null $mapping_confirmed_at
+ * @property string|null $mapping_confirmed_by
+ * @property string|null $mapping_template_id
+ * @property-read ImportMappingTemplate|null $mappingTemplate
+ * @property-read User|null $mappingConfirmedBy
  * @property ImportStatus $status
  * @property int $total_rows
  * @property int $valid_rows
@@ -79,6 +87,7 @@ class ImportBatch extends Model implements MdaScoped
         'source_signature',
         'mapping_confirmed_at',
         'mapping_confirmed_by',
+        'mapping_template_id',
         'status',
         'total_rows',
         'valid_rows',
@@ -149,6 +158,26 @@ class ImportBatch extends Model implements MdaScoped
     public function uploadedBy(): BelongsTo
     {
         return $this->belongsTo(User::class, 'uploaded_by');
+    }
+
+    /**
+     * @return BelongsTo<User, $this>
+     */
+    public function mappingConfirmedBy(): BelongsTo
+    {
+        return $this->belongsTo(User::class, 'mapping_confirmed_by');
+    }
+
+    /**
+     * The saved mapping this batch used, when one applied (CLAUDE.md §11). Null for a
+     * file shape seen for the first time — and the batch's own `column_map` is the
+     * record of what was actually applied either way.
+     *
+     * @return BelongsTo<ImportMappingTemplate, $this>
+     */
+    public function mappingTemplate(): BelongsTo
+    {
+        return $this->belongsTo(ImportMappingTemplate::class, 'mapping_template_id');
     }
 
     /**
