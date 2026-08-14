@@ -1,5 +1,24 @@
 /** Phase 7 synchronization (mirrors /sync/*). */
 
+/**
+ * The state of a connector's STANDING column-mapping approval (CLAUDE.md §11).
+ *
+ * `stale` is deliberately separate from `never_configured`: the remedies differ — a
+ * first mapping versus a review of one that used to be right — and only `stale` means a
+ * working feed has stopped.
+ */
+export type ConnectorMappingStatus = 'never_configured' | 'stale' | 'confirmed'
+
+export interface ConnectorMappingState {
+  status: ConnectorMappingStatus
+  confirmed_at: string | null
+  confirmed_by?: string | null
+  stale_at: string | null
+  stale_reason: string | null
+  /** False while the mapping is unconfirmed or stale — the server refuses to enable. */
+  can_enable: boolean
+}
+
 export interface SyncConnector {
   id: string
   name: string
@@ -10,6 +29,34 @@ export interface SyncConnector {
   enabled: boolean
   schedule: string | null
   last_run_at: string | null
+  mapping: ConnectorMappingState
+}
+
+/** Advisory proposal for one canonical field — never applied on its own. */
+export interface ConnectorMappingSuggestion {
+  header: string | null
+  confidence: 'high' | 'low' | 'none'
+  reason: string
+}
+
+/**
+ * The connector mapping screen. Mirrors the file-import proposal deliberately: this is
+ * the SAME Data Import & Mapping layer applied at configuration time, not a second
+ * mapping engine.
+ */
+export interface ConnectorMappingProposal {
+  detected_fields: string[]
+  suggestions: Record<string, ConnectorMappingSuggestion>
+  column_map: Record<string, string | null>
+  samples: Record<string, string[]>
+  normalized_preview: { field: string; header: string; original: string; normalized: string | null }[]
+  identity_fields: string[]
+  unconfirmed_identity_fields: string[]
+  source_signature: string | null
+  confirmed_signature: string | null
+  /** The source's fields have moved since the mapping was approved. */
+  signature_changed: boolean
+  mapping_confirmed_at: string | null
 }
 
 export interface SyncRunSummary {

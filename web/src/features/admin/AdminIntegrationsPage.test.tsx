@@ -12,7 +12,10 @@ import { ApiError } from '@/types/api'
 import type { SyncConnector, SyncRun } from '@/features/sync/types'
 
 vi.mock('@/features/sync/api', () => ({
-  syncApi: { connectors: vi.fn(), runs: vi.fn(), trigger: vi.fn() },
+  syncApi: {
+    connectors: vi.fn(), runs: vi.fn(), trigger: vi.fn(),
+    mapping: vi.fn(), confirmMapping: vi.fn(), setEnabled: vi.fn(),
+  },
 }))
 vi.mock('@/features/registry/api', () => ({
   importApi: { list: vi.fn(), get: vi.fn(), upload: vi.fn() },
@@ -29,18 +32,35 @@ vi.mock('@/lib/auth/AuthProvider', () => ({
 const connectors = syncApi.connectors as Mock
 const runs = syncApi.runs as Mock
 const trigger = syncApi.trigger as Mock
+const mappingProposal = syncApi.mapping as Mock
 const listImports = importApi.list as Mock
+
+/** A connector whose standing mapping is approved and current (CLAUDE.md §11). */
+const confirmedMapping: SyncConnector['mapping'] = {
+  status: 'confirmed',
+  confirmed_at: new Date().toISOString(),
+  confirmed_by: 'Amina Bello',
+  stale_at: null,
+  stale_reason: null,
+  can_enable: true,
+}
 
 const connectorRows: SyncConnector[] = [
   {
     id: 'c1', name: 'SOCU feed', source: 'socu', owner_mda_id: 'm1',
     owner_mda: { id: 'm1', name: 'MDA A' }, conflict_policy: 'flag_for_review',
     enabled: true, schedule: 'daily', last_run_at: new Date().toISOString(),
+    mapping: confirmedMapping,
   },
   {
     id: 'c2', name: 'Legacy registry', source: 'government_system', owner_mda_id: 'm2',
     owner_mda: { id: 'm2', name: 'MDA B' }, conflict_policy: 'skip',
     enabled: false, schedule: null, last_run_at: null,
+    mapping: {
+      status: 'never_configured',
+      confirmed_at: null, confirmed_by: null, stale_at: null, stale_reason: null,
+      can_enable: false,
+    },
   },
 ]
 
@@ -124,6 +144,81 @@ describe('Admin console — Integrations', () => {
     await user.click(buttons[0]!)
 
     await waitFor(() => expect(trigger).toHaveBeenCalledWith('c1'))
+  })
+
+  /* ------------------------------- the connector's standing mapping (§11) */
+
+  it('shows each connector’s mapping status, and who confirmed it', async () => {
+    renderPage()
+    await screen.findByText('SOCU feed')
+
+    expect(screen.getByText('Confirmed')).toBeInTheDocument()
+    expect(screen.getByText(/by Amina Bello/)).toBeInTheDocument()
+    // Never-configured is shown distinctly — it needs a first mapping, not a review.
+    expect(screen.getByText('Not configured')).toBeInTheDocument()
+  })
+
+  it('distinguishes a STALE mapping from one that was never configured', async () => {
+    connectors.mockResolvedValue([
+      {
+        ...connectorRows[0]!,
+        mapping: {
+          status: 'stale',
+          confirmed_at: new Date().toISOString(),
+          confirmed_by: 'Amina Bello',
+          stale_at: new Date().toISOString(),
+          stale_reason: 'the source’s fields changed since the mapping was confirmed.',
+          can_enable: false,
+        },
+      },
+    ])
+    renderPage()
+
+    // A feed that WAS working and has stopped must not be filed under "not set up yet".
+    expect(await screen.findByText('Needs review')).toBeInTheDocument()
+    expect(screen.getByText(/fields changed/i)).toBeInTheDocument()
+  })
+
+  it('will not offer to enable a connector whose mapping is not confirmed', async () => {
+    renderPage()
+    await screen.findByText('Legacy registry')
+
+    // c2 is disabled AND unmapped — enabling is refused server-side, so the control is
+    // disabled rather than inviting a click that 422s.
+    const enable = screen.getByRole('button', { name: /^enable$/i })
+    expect(enable).toBeDisabled()
+  })
+
+  it('does not offer manual sync for a connector that is not mapped', async () => {
+    renderPage()
+    await screen.findByText('SOCU feed')
+
+    // Only the confirmed connector can sync; the unmapped one would be held anyway.
+    const syncButtons = screen.getAllByRole('button', { name: /sync now/i })
+    expect(syncButtons[0]).toBeEnabled()
+    expect(syncButtons[1]).toBeDisabled()
+  })
+
+  it('opens the mapping screen for a connector', async () => {
+    mappingProposal.mockResolvedValue({
+      detected_fields: ['surname'],
+      suggestions: { last_name: { header: 'surname', confidence: 'high', reason: '' } },
+      column_map: {},
+      samples: {},
+      normalized_preview: [],
+      identity_fields: ['last_name'],
+      unconfirmed_identity_fields: ['last_name'],
+      source_signature: 's', confirmed_signature: null,
+      signature_changed: false, mapping_confirmed_at: null,
+    })
+    const user = userEvent.setup()
+    renderPage()
+    await screen.findByText('Legacy registry')
+
+    await user.click(screen.getByRole('button', { name: /map columns/i }))
+
+    expect(await screen.findByRole('dialog')).toBeInTheDocument()
+    expect(mappingProposal).toHaveBeenCalledWith('c2')
   })
 
   it('does not offer manual sync without sync.run', async () => {

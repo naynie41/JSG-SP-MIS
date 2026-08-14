@@ -1,4 +1,5 @@
-import { PlugZap, RefreshCw } from 'lucide-react'
+import { useState } from 'react'
+import { Columns3, PlugZap, Power, PowerOff, RefreshCw } from 'lucide-react'
 import { Badge } from '@/components/Badge/Badge'
 import { Button } from '@/components/Button/Button'
 import { Card } from '@/components/Card/Card'
@@ -10,8 +11,16 @@ import { Tabs } from '@/components/Tabs/Tabs'
 import { statusVariant } from '@/components/Badge/statusVariant'
 import { useAuth } from '@/lib/auth/AuthProvider'
 import { ImportListPage } from '@/features/registry/ImportListPage'
-import { isSyncUnavailable, useSyncConnectors, useSyncRuns, useTriggerSync } from '@/features/sync/hooks'
+import { ConnectorMappingModal } from '@/features/sync/ConnectorMappingModal'
+import {
+  isSyncUnavailable,
+  useSetConnectorEnabled,
+  useSyncConnectors,
+  useSyncRuns,
+  useTriggerSync,
+} from '@/features/sync/hooks'
 import type { SyncConnector, SyncRun } from '@/features/sync/types'
+import syncStyles from '@/features/sync/sync.module.css'
 import styles from './admin.module.css'
 
 const num = (n: number | null | undefined): string => (n ?? 0).toLocaleString()
@@ -45,10 +54,53 @@ function SyncPending({ what }: { what: string }) {
   )
 }
 
+/**
+ * A connector's standing mapping state (CLAUDE.md §11).
+ *
+ * `stale` is shown distinctly from `never configured`, because they demand different
+ * actions: one connector has never been set up, the other WAS working and has stopped.
+ * Collapsing them into "not ready" would hide a broken feed among unfinished setup.
+ */
+function MappingStatusCell({ connector }: { connector: SyncConnector }) {
+  const { status, confirmed_at, confirmed_by, stale_reason } = connector.mapping
+
+  if (status === 'never_configured') {
+    return (
+      <Badge variant="neutral" dot>
+        Not configured
+      </Badge>
+    )
+  }
+
+  if (status === 'stale') {
+    return (
+      <div className={syncStyles.statusCell}>
+        <Badge variant="warning" dot>
+          Needs review
+        </Badge>
+        <span className={styles.muted}>{stale_reason ?? 'The source’s fields changed.'}</span>
+      </div>
+    )
+  }
+
+  return (
+    <div className={syncStyles.statusCell}>
+      <Badge variant="success" dot>
+        Confirmed
+      </Badge>
+      <span className={styles.muted}>
+        {confirmed_by ? `by ${confirmed_by}` : ''} {when(confirmed_at)}
+      </span>
+    </div>
+  )
+}
+
 /** Connected systems — the configured connectors and their status. */
 function ConnectorsPanel({ canRun }: { canRun: boolean }) {
   const { data, isLoading, error } = useSyncConnectors()
   const trigger = useTriggerSync()
+  const setEnabled = useSetConnectorEnabled()
+  const [mapping, setMapping] = useState<SyncConnector | null>(null)
 
   if (isSyncUnavailable(error)) return <SyncPending what="Connected systems" />
   if (isLoading) {
@@ -75,6 +127,11 @@ function ConnectorsPanel({ canRun }: { canRun: boolean }) {
         </Badge>
       ),
     },
+    {
+      key: 'mapping',
+      header: 'Column mapping',
+      render: (c) => <MappingStatusCell connector={c} />,
+    },
     { key: 'policy', header: 'Conflict policy', render: (c) => sentenceCase(c.conflict_policy) },
     { key: 'schedule', header: 'Schedule', render: (c) => c.schedule ?? 'manual only' },
     { key: 'last', header: 'Last run', render: (c) => when(c.last_run_at) },
@@ -84,15 +141,33 @@ function ConnectorsPanel({ canRun }: { canRun: boolean }) {
       align: 'right',
       render: (c) =>
         canRun ? (
-          <Button
-            size="sm"
-            variant="secondary"
-            leftIcon={RefreshCw}
-            disabled={!c.enabled || trigger.isPending}
-            onClick={() => trigger.mutate(c.id)}
-          >
-            Sync now
-          </Button>
+          <div className={styles.rowActions}>
+            <Button size="sm" variant="tertiary" leftIcon={Columns3} onClick={() => setMapping(c)}>
+              {c.mapping.status === 'never_configured' ? 'Map columns' : 'Review mapping'}
+            </Button>
+            <Button
+              size="sm"
+              variant="secondary"
+              leftIcon={c.enabled ? PowerOff : Power}
+              loading={setEnabled.isPending}
+              // Enabling is refused server-side while the mapping is unconfirmed or
+              // stale; disabling is always allowed, so an administrator is never
+              // trapped with a feed they cannot stop.
+              disabled={!c.enabled && !c.mapping.can_enable}
+              onClick={() => setEnabled.mutate({ id: c.id, enabled: !c.enabled })}
+            >
+              {c.enabled ? 'Disable' : 'Enable'}
+            </Button>
+            <Button
+              size="sm"
+              variant="secondary"
+              leftIcon={RefreshCw}
+              disabled={!c.enabled || c.mapping.status !== 'confirmed' || trigger.isPending}
+              onClick={() => trigger.mutate(c.id)}
+            >
+              Sync now
+            </Button>
+          </div>
         ) : null,
     },
   ]
@@ -103,8 +178,15 @@ function ConnectorsPanel({ canRun }: { canRun: boolean }) {
         <DataTable rows={connectors} columns={columns} getRowId={(c) => c.id} caption="Connected systems" />
       </Card>
       <p className={styles.footnote}>
-        Manual synchronization is queued and idempotent — re-running a connector never double-inserts a record
+        Manual synchronization is queued and idempotent — re-running a connector never double-inserts a record.
+        A connector syncs only once its NIN, BVN, name and phone columns have been confirmed, and holds again
+        if the source’s fields change.
       </p>
+
+      {/* Keyed per connector so one connector's answers never carry into another's. */}
+      {mapping !== null && (
+        <ConnectorMappingModal key={mapping.id} connector={mapping} onClose={() => setMapping(null)} />
+      )}
     </div>
   )
 }

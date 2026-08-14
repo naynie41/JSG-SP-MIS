@@ -4862,7 +4862,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
     ),
     'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Sync\\Models\\SyncConnector.php' => 
     array (
-      0 => '80400a44ad20f0223ce9afb87a9f93410e77238538022f3cafc8655c1cda3e0a',
+      0 => 'f9e490a293e041a3f856e561fe4a89d848fc8ca02d6ff8ad54eac56edef1357a',
       1 => 
       array (
         0 => 'app\\domain\\sync\\models\\syncconnector',
@@ -4870,8 +4870,12 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
       2 => 
       array (
         0 => 'app\\domain\\sync\\models\\casts',
-        1 => 'app\\domain\\sync\\models\\ownermda',
-        2 => 'app\\domain\\sync\\models\\newfactory',
+        1 => 'app\\domain\\sync\\models\\mappingstatus',
+        2 => 'app\\domain\\sync\\models\\mappingisstale',
+        3 => 'app\\domain\\sync\\models\\mappingisconfirmed',
+        4 => 'app\\domain\\sync\\models\\ownermda',
+        5 => 'app\\domain\\sync\\models\\mappingconfirmedby',
+        6 => 'app\\domain\\sync\\models\\newfactory',
       ),
       3 => 
       array (
@@ -4912,7 +4916,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
     ),
     'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Sync\\Services\\SyncEngine.php' => 
     array (
-      0 => '515eaa368a3f58d2f9e068aed2f6b9d15734104e27a9a0b26176fe37651fe1f1',
+      0 => '95943eb132fde4b1b536a11d661a5c48032c39b832d2b8af562ac0c43a5c3b38',
       1 => 
       array (
         0 => 'app\\domain\\sync\\services\\syncengine',
@@ -5772,18 +5776,22 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
     ),
     'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Sync\\SyncController.php' => 
     array (
-      0 => '6917ce46419d57eefb7b119bc1ded778a9535416c2fb4d674287a4b106044d6b',
+      0 => 'cab94b7cf357e1072740ea336c2b4f609ae55517e6691917a73b5326d84920ff',
       1 => 
       array (
         0 => 'app\\http\\controllers\\api\\v1\\sync\\synccontroller',
       ),
       2 => 
       array (
-        0 => 'app\\http\\controllers\\api\\v1\\sync\\connectors',
-        1 => 'app\\http\\controllers\\api\\v1\\sync\\runs',
-        2 => 'app\\http\\controllers\\api\\v1\\sync\\run',
-        3 => 'app\\http\\controllers\\api\\v1\\sync\\trigger',
-        4 => 'app\\http\\controllers\\api\\v1\\sync\\offlinebatch',
+        0 => 'app\\http\\controllers\\api\\v1\\sync\\__construct',
+        1 => 'app\\http\\controllers\\api\\v1\\sync\\connectors',
+        2 => 'app\\http\\controllers\\api\\v1\\sync\\runs',
+        3 => 'app\\http\\controllers\\api\\v1\\sync\\run',
+        4 => 'app\\http\\controllers\\api\\v1\\sync\\mapping',
+        5 => 'app\\http\\controllers\\api\\v1\\sync\\confirmmapping',
+        6 => 'app\\http\\controllers\\api\\v1\\sync\\setenabled',
+        7 => 'app\\http\\controllers\\api\\v1\\sync\\trigger',
+        8 => 'app\\http\\controllers\\api\\v1\\sync\\offlinebatch',
       ),
       3 => 
       array (
@@ -7309,7 +7317,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
     ),
     'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Resources\\SyncConnectorResource.php' => 
     array (
-      0 => '444c066522a6f352d06c0e9af9f69fbda31c2989a36230f5c24bd0640656b311',
+      0 => 'e01c22f5c49130474dda55c13d4af0b496255df23410ddce52d83b9380bdc163',
       1 => 
       array (
         0 => 'app\\http\\resources\\syncconnectorresource',
@@ -7924,6 +7932,49 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         2 => 'app\\http\\requests\\registry\\withvalidator',
         3 => 'app\\http\\requests\\registry\\columnmap',
         4 => 'app\\http\\requests\\registry\\messages',
+      ),
+      3 => 
+      array (
+      ),
+    ),
+    'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Sync\\Services\\ConnectorMappingService.php' => 
+    array (
+      0 => '6d2d71096f8c8e5cfb863c7ac52787c3d66786eec0a2b346d89d95f48c96bfa0',
+      1 => 
+      array (
+        0 => 'app\\domain\\sync\\services\\connectormappingservice',
+      ),
+      2 => 
+      array (
+        0 => 'app\\domain\\sync\\services\\__construct',
+        1 => 'app\\domain\\sync\\services\\proposal',
+        2 => 'app\\domain\\sync\\services\\confirm',
+        3 => 'app\\domain\\sync\\services\\blockedreason',
+        4 => 'app\\domain\\sync\\services\\markstale',
+        5 => 'app\\domain\\sync\\services\\signaturematches',
+        6 => 'app\\domain\\sync\\services\\samplerecords',
+        7 => 'app\\domain\\sync\\services\\fieldsin',
+        8 => 'app\\domain\\sync\\services\\samples',
+        9 => 'app\\domain\\sync\\services\\normalizedpreview',
+        10 => 'app\\domain\\sync\\services\\identitysummary',
+      ),
+      3 => 
+      array (
+      ),
+    ),
+    'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Sync\\ConfirmConnectorMappingRequest.php' => 
+    array (
+      0 => 'f6bfd6c536738629cd366229e5fbb5f3887abc2cd2a8681c0f35ba42cae25b18',
+      1 => 
+      array (
+        0 => 'app\\http\\requests\\sync\\confirmconnectormappingrequest',
+      ),
+      2 => 
+      array (
+        0 => 'app\\http\\requests\\sync\\authorize',
+        1 => 'app\\http\\requests\\sync\\rules',
+        2 => 'app\\http\\requests\\sync\\withvalidator',
+        3 => 'app\\http\\requests\\sync\\columnmap',
       ),
       3 => 
       array (

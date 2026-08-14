@@ -36,6 +36,58 @@ export function useSyncRuns(enabled = true) {
   })
 }
 
+/** The connector's mapping screen — sampled live from the source. */
+export function useConnectorMapping(connectorId: string | undefined, enabled = true) {
+  return useQuery({
+    queryKey: ['sync-connector', connectorId, 'mapping'],
+    queryFn: () => syncApi.mapping(connectorId!),
+    enabled: enabled && Boolean(connectorId),
+  })
+}
+
+/**
+ * Approve a connector's standing mapping.
+ *
+ * Invalidates the CONNECTOR LIST as well as the mapping: confirming changes the
+ * connector's status (and clears a stale flag), which is what the list shows.
+ */
+export function useConfirmConnectorMapping(connectorId: string) {
+  const qc = useQueryClient()
+  const toast = useToast()
+
+  return useMutation({
+    mutationFn: (columnMap: Record<string, string | null>) => syncApi.confirmMapping(connectorId, columnMap),
+    onSuccess: () => {
+      qc.invalidateQueries({ queryKey: ['sync-connector', connectorId, 'mapping'] })
+      qc.invalidateQueries({ queryKey: CONNECTORS_KEY })
+      toast.success(
+        'Mapping confirmed',
+        'This connector may now sync. It will hold again if the source’s fields change.',
+      )
+    },
+  })
+}
+
+/** Enable/disable a connector. The server refuses to enable an unmapped or stale one. */
+export function useSetConnectorEnabled() {
+  const qc = useQueryClient()
+  const toast = useToast()
+
+  return useMutation({
+    mutationFn: ({ id, enabled }: { id: string; enabled: boolean }) => syncApi.setEnabled(id, enabled),
+    onSuccess: (connector) => {
+      qc.invalidateQueries({ queryKey: CONNECTORS_KEY })
+      toast.success(connector.enabled ? 'Connector enabled' : 'Connector disabled', connector.name)
+    },
+    onError: (error) => {
+      toast.error(
+        'Could not change the connector',
+        error instanceof ApiError ? error.message : 'Please try again.',
+      )
+    },
+  })
+}
+
 /** Manual synchronization — dispatches the connector's queued run. */
 export function useTriggerSync() {
   const qc = useQueryClient()

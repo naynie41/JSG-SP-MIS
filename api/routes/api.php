@@ -265,6 +265,22 @@ Route::prefix('v1')->group(function (): void {
             ->middleware('permission:sync.view')->name('sync.runs');
         Route::get('/sync/runs/{run}', [SyncController::class, 'run'])
             ->middleware('permission:sync.view')->name('sync.runs.show');
+        /*
+        | A connector's standing column mapping (CLAUDE.md §11). Unattended ingestion
+        | cannot ask "which field is the NIN" on every run, so the confirmation is given
+        | once here and bounded by the source's shape — if its fields change, the
+        | connector stops until someone re-confirms.
+        */
+        Route::get('/sync/connectors/{connector}/mapping', [SyncController::class, 'mapping'])
+            ->middleware('permission:sync.view')->name('sync.connectors.mapping');
+        Route::put('/sync/connectors/{connector}/mapping', [SyncController::class, 'confirmMapping'])
+            ->middleware('permission:sync.run')->name('sync.connectors.mapping.confirm');
+
+        // Enabling is refused while the mapping is unconfirmed or stale — the same guard
+        // as the run, applied where the decision is actually made.
+        Route::put('/sync/connectors/{connector}/enabled', [SyncController::class, 'setEnabled'])
+            ->middleware('permission:sync.run')->name('sync.connectors.enabled');
+
         Route::post('/sync/connectors/{connector}/run', [SyncController::class, 'trigger'])
             ->middleware('permission:sync.run')->name('sync.connectors.run');
         Route::post('/sync/offline-batches', [SyncController::class, 'offlineBatch'])

@@ -12,6 +12,7 @@ use App\Domain\Matching\Services\MatchingConfigService;
 use App\Domain\Registry\Enums\RegistrationSource;
 use App\Domain\Registry\Imports\Adapters\RegistrationSourceAdapter;
 use App\Domain\Registry\Imports\Adapters\SourceAdapterRegistry;
+use App\Domain\Registry\Imports\ColumnMapper;
 use App\Domain\Registry\Imports\ImportRowValidator;
 use App\Domain\Registry\Models\Beneficiary;
 use App\Domain\Registry\Services\BatchDuplicateScreener;
@@ -29,6 +30,7 @@ use App\Domain\Sync\Sources\SyncSourceResolver;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Str;
+use RuntimeException;
 use Throwable;
 
 /**
@@ -64,6 +66,8 @@ class SyncEngine
         private readonly SyncSourceResolver $sources,
         private readonly AuditLogger $audit,
         private readonly HouseholdIngestionService $households,
+        private readonly ConnectorMappingService $connectorMappings,
+        private readonly ColumnMapper $columnMapper,
     ) {}
 
     /** Scheduled or manually-triggered sync from a configured connector. */
@@ -78,9 +82,55 @@ class SyncEngine
             'triggered_by' => $by?->id,
         ]);
 
+        /*
+         * THE MAPPING GATE for unattended ingestion (CLAUDE.md §11).
+         *
+         * A connector has no officer to answer "which field is the NIN", so the
+         * confirmation is given once at configuration time and stands. What it may NOT
+         * do is stand for a shape it was never given for — so a run stops both when no
+         * mapping was ever approved, and when the source's fields have moved since.
+         *
+         * The run is recorded as failed with the reason rather than silently skipped: a
+         * connector that quietly stops ingesting is indistinguishable from one with
+         * nothing to ingest.
+         */
+        $blocked = $this->connectorMappings->blockedReason($connector);
+        if ($blocked !== null) {
+            $run->update(['status' => SyncStatus::Failed, 'error' => $blocked, 'finished_at' => Carbon::now()]);
+            $this->audit->record('sync.run_blocked', $run->fresh(), after: [
+                'connector_id' => $connector->id,
+                'reason' => 'mapping_not_confirmed',
+            ], actor: $by);
+
+            return $run->fresh();
+        }
+
         $this->execute($run, function () use ($connector, $run): void {
             $records = $this->sources->for($connector)->fetch($connector);
-            $this->process($run, $records, $connector->source, $connector->owner_mda_id, $connector->conflict_policy);
+            $records = is_array($records) ? $records : iterator_to_array($records);
+
+            if (! $this->connectorMappings->signatureMatches($connector, $records)) {
+                // Flagged persistently, so the connector shows as needing review in the
+                // console and its NEXT run is held before the source is even contacted.
+                $this->connectorMappings->markStale(
+                    $connector,
+                    'the source’s fields changed since the mapping was confirmed.',
+                );
+
+                throw new RuntimeException(
+                    'The source’s fields have changed since this connector’s column mapping was confirmed. '
+                    .'This sync is held; re-confirm the identity mappings before it can run again.'
+                );
+            }
+
+            $this->process(
+                $run,
+                $records,
+                $connector->source,
+                $connector->owner_mda_id,
+                $connector->conflict_policy,
+                $connector->column_map ?? [],
+            );
             $connector->update(['last_run_at' => Carbon::now()]);
         });
 
@@ -141,7 +191,7 @@ class SyncEngine
      *
      * @param  iterable<int, array<string, mixed>>  $rawRecords
      */
-    private function process(SyncRun $run, iterable $rawRecords, RegistrationSource $source, string $ownerMdaId, ConflictPolicy $policy): void
+    private function process(SyncRun $run, iterable $rawRecords, RegistrationSource $source, string $ownerMdaId, ConflictPolicy $policy, array $columnMap = []): void
     {
         $adapter = $this->adapters->for($source);
         $config = $this->configs->activeOrNull(); // null → matching not configured; screening skipped
@@ -154,7 +204,7 @@ class SyncEngine
             $fetched++;
             $rowNumber++;
 
-            [$outcome, $beneficiaryId, $band, $detail] = $this->processRecord($raw, $adapter, $config, $source, $ownerMdaId, $policy, $rowNumber);
+            [$outcome, $beneficiaryId, $band, $detail] = $this->processRecord($raw, $adapter, $config, $source, $ownerMdaId, $policy, $rowNumber, $columnMap);
 
             SyncRunRow::create([
                 'sync_run_id' => $run->id,
@@ -175,9 +225,23 @@ class SyncEngine
      * @param  array<string, mixed>  $raw
      * @return array{0: SyncRowOutcome, 1: ?string, 2: ?string, 3: array<string, mixed>}
      */
-    private function processRecord(array $raw, RegistrationSourceAdapter $adapter, ?MatchingConfig $config, RegistrationSource $source, string $ownerMdaId, ConflictPolicy $policy, int $rowNumber): array
+    private function processRecord(array $raw, RegistrationSourceAdapter $adapter, ?MatchingConfig $config, RegistrationSource $source, string $ownerMdaId, ConflictPolicy $policy, int $rowNumber, array $columnMap = []): array
     {
+        /*
+         * The CONFIRMED mapping wins over the adapter's aliases, exactly as in the file
+         * pipeline: a field a person answered — including one marked "not present" —
+         * must not be re-supplied by an alias guess. Fields left unmapped still fall
+         * back to the adapter, which is how source-specific record ids keep working.
+         *
+         * An offline batch passes an empty map and behaves as before.
+         */
         $mapped = $adapter->map($raw);
+        if ($columnMap !== []) {
+            $mapped = array_replace(
+                $mapped,
+                array_intersect_key($this->columnMapper->apply($raw, $columnMap), $columnMap),
+            );
+        }
         $originalRecordId = $mapped['original_record_id'] ?? null;
         $meta = ['original_record_id' => $originalRecordId];
 

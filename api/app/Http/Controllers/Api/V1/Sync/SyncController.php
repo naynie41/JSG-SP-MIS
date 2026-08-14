@@ -4,18 +4,22 @@ declare(strict_types=1);
 
 namespace App\Http\Controllers\Api\V1\Sync;
 
+use App\Domain\Audit\Services\AuditLogger;
 use App\Domain\Registry\Enums\RegistrationSource;
 use App\Domain\Sync\Enums\ConflictPolicy;
 use App\Domain\Sync\Enums\SyncTrigger;
 use App\Domain\Sync\Jobs\RunSyncConnector;
 use App\Domain\Sync\Models\SyncConnector;
 use App\Domain\Sync\Models\SyncRun;
+use App\Domain\Sync\Services\ConnectorMappingService;
 use App\Domain\Sync\Services\SyncEngine;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Sync\ConfirmConnectorMappingRequest;
 use App\Http\Requests\Sync\OfflineBatchRequest;
 use App\Http\Resources\SyncConnectorResource;
 use App\Http\Resources\SyncRunResource;
 use App\Support\ApiResponse;
+use DomainException;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 
@@ -27,10 +31,20 @@ use Illuminate\Http\Request;
  */
 class SyncController extends Controller
 {
+    public function __construct(private readonly AuditLogger $audit) {}
+
     /** Configured connectors + their status. */
     public function connectors(Request $request): JsonResponse
     {
-        $connectors = SyncConnector::query()->with('ownerMda:id,name')->latest('created_at')->get();
+        $connectors = SyncConnector::query()
+            ->with([
+                'ownerMda:id,name',
+                // Who gave the standing approval — a mapping status without a name
+                // beside it is not accountability.
+                'mappingConfirmedBy' => fn ($query) => $query->withoutGlobalScopes()->select('id', 'name'),
+            ])
+            ->latest('created_at')
+            ->get();
 
         return ApiResponse::success(['connectors' => SyncConnectorResource::collection($connectors)->resolve()]);
     }
@@ -53,12 +67,75 @@ class SyncController extends Controller
     }
 
     /** Manually trigger a connector's sync (queued, idempotent, unique per connector). */
-    public function trigger(Request $request, string $connector): JsonResponse
+    /**
+     * The connector's mapping screen: a live sample from the source, suggestions, and
+     * whether the source's shape has moved since the mapping was approved.
+     */
+    public function mapping(string $connector, ConnectorMappingService $mappings): JsonResponse
+    {
+        $model = SyncConnector::query()->findOrFail($connector);
+
+        return ApiResponse::success($mappings->proposal($model));
+    }
+
+    /**
+     * Approve the connector's column mapping (CLAUDE.md §11).
+     *
+     * Unlike a file import this confirmation STANDS for later runs — a scheduled job has
+     * nobody to ask. It is bounded by the source's shape: if the fields change, the
+     * connector stops until someone re-confirms.
+     */
+    public function confirmMapping(ConfirmConnectorMappingRequest $request, string $connector, ConnectorMappingService $mappings): JsonResponse
+    {
+        $model = SyncConnector::query()->findOrFail($connector);
+
+        try {
+            $mappings->confirm($model, $request->columnMap(), $request->user());
+        } catch (DomainException $e) {
+            return ApiResponse::error('MAPPING_INCOMPLETE', $e->getMessage(), [], 422);
+        }
+
+        return ApiResponse::success(['message' => 'Column mapping confirmed for '.$model->name.'.']);
+    }
+
+    /**
+     * Enable or disable a connector.
+     *
+     * A connector may not be ENABLED while its mapping is unconfirmed or stale — the
+     * same guard as the run, applied at configuration time so the refusal lands where
+     * the decision is made rather than silently at 02:00.
+     */
+    public function setEnabled(Request $request, string $connector, ConnectorMappingService $mappings): JsonResponse
+    {
+        $model = SyncConnector::query()->findOrFail($connector);
+        $enabled = $request->boolean('enabled');
+
+        if ($enabled && ($blocked = $mappings->blockedReason($model)) !== null) {
+            return ApiResponse::error('MAPPING_NOT_CONFIRMED', $blocked, [], 422);
+        }
+
+        $model->update(['enabled' => $enabled]);
+
+        $this->audit->record($enabled ? 'sync.connector_enabled' : 'sync.connector_disabled', $model, after: [
+            'connector_id' => $model->id,
+            'mapping_status' => $model->mappingStatus(),
+        ], actor: $request->user());
+
+        return ApiResponse::success((new SyncConnectorResource($model->fresh()))->resolve());
+    }
+
+    public function trigger(Request $request, string $connector, ConnectorMappingService $mappings): JsonResponse
     {
         $model = SyncConnector::query()->findOrFail($connector);
 
         if (! $model->enabled) {
             return ApiResponse::error('CONNECTOR_DISABLED', 'This connector is disabled.', [], 422);
+        }
+
+        // Refused here as well as in the engine, so a manual trigger reports the problem
+        // to the person who pressed the button rather than failing on the queue.
+        if (($blocked = $mappings->blockedReason($model)) !== null) {
+            return ApiResponse::error('MAPPING_NOT_CONFIRMED', $blocked, [], 422);
         }
 
         RunSyncConnector::dispatch($model->id, SyncTrigger::Manual->value, $request->user()->id);

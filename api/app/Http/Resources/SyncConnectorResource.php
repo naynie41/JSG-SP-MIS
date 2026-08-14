@@ -28,6 +28,20 @@ class SyncConnectorResource extends JsonResource
             'enabled' => $this->enabled,
             'schedule' => $this->schedule,
             'last_run_at' => $this->last_run_at?->toIso8601String(),
+            /*
+             * The standing mapping approval (CLAUDE.md §11), as an administrator needs
+             * to see it. `stale` is distinct from `never_configured` because the remedy
+             * differs: one needs a first mapping, the other needs a REVIEW of one that
+             * used to be right — and only the second means a feed has stopped.
+             */
+            'mapping' => [
+                'status' => $this->mappingStatus(),
+                'confirmed_at' => $this->mapping_confirmed_at?->toIso8601String(),
+                'confirmed_by' => $this->whenLoaded('mappingConfirmedBy', fn () => $this->mappingConfirmedBy?->name),
+                'stale_at' => $this->mapping_stale_at?->toIso8601String(),
+                'stale_reason' => $this->mapping_stale_reason,
+                'can_enable' => $this->mappingIsConfirmed() && ! $this->mappingIsStale(),
+            ],
         ];
     }
 }
