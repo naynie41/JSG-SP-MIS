@@ -102,6 +102,12 @@ services:
       context: .
       dockerfile: docker/api/Dockerfile
     command: ["php", "artisan", "queue:work", "rabbitmq", "--tries=3", "--max-time=3600"]
+    # REQUIRED, not optional: `--max-time=3600` makes queue:work exit 0 after an hour on
+    # purpose (recycling the process avoids long-run memory bloat), so the orchestrator
+    # has to bring it back. Without this the worker dies after one hour and stays dead —
+    # imports, matching and notifications then queue up silently forever, with the UI
+    # stuck on "Processing…" and no error anywhere.
+    restart: unless-stopped
     environment:
       RUN_MIGRATIONS: "false"
     volumes:

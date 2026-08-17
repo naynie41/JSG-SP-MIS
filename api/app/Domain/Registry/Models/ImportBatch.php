@@ -72,6 +72,45 @@ class ImportBatch extends Model implements MdaScoped
     }
 
     /**
+     * Whether the batch is waiting on the queue (nothing for a human to do yet).
+     */
+    public function isProcessing(): bool
+    {
+        return in_array($this->status, [ImportStatus::Pending, ImportStatus::Processing, ImportStatus::Committing], true);
+    }
+
+    /**
+     * Seconds this batch has been waiting on the queue, or null when it is not waiting.
+     *
+     * Measured from `updated_at` — the last sign of life. A live worker at minimum flips
+     * pending → processing, which touches the row; a batch whose timestamp is frozen is
+     * one nothing has looked at.
+     */
+    public function processingForSeconds(): ?int
+    {
+        if (! $this->isProcessing()) {
+            return null;
+        }
+
+        // Carbon 3 returns a float from diffInSeconds; seconds-of-waiting is an integer.
+        return max(0, (int) (($this->updated_at ?? $this->created_at)?->diffInSeconds(now(), absolute: true) ?? 0));
+    }
+
+    /**
+     * Waiting on the queue for longer than parsing could plausibly take.
+     *
+     * Almost always means no queue worker is consuming — the failure mode that has no
+     * error anywhere, because nothing failed: the job was never picked up. Computed
+     * SERVER-side because only the server's clock can be trusted for this.
+     */
+    public function processingLooksStalled(): bool
+    {
+        $seconds = $this->processingForSeconds();
+
+        return $seconds !== null && $seconds >= (int) config('registry.import.stalled_after_seconds', 90);
+    }
+
+    /**
      * @var list<string>
      */
     protected $fillable = [

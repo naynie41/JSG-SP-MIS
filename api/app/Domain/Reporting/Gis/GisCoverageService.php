@@ -132,12 +132,7 @@ class GisCoverageService
         if ($filter->mdaId !== null) {
             $query->where('owner_mda_id', $filter->mdaId);
         }
-        if ($filter->lga !== null) {
-            $query->where('lga', $filter->lga);
-        }
-        if ($filter->ward !== null) {
-            $query->where('ward', $filter->ward);
-        }
+        $query->declaredIn($filter->lga, $filter->ward);
 
         return $query->pluck('id')->all();
     }
@@ -181,19 +176,55 @@ class GisCoverageService
         if ($filter->mdaId !== null) {
             $query->where('owner_mda_id', $filter->mdaId);
         }
-        if ($filter->lga !== null) {
-            $query->where('lga', $filter->lga);
-        }
-        if ($filter->ward !== null) {
-            $query->where('ward', $filter->ward);
-        }
+        $query->declaredIn($filter->lga, $filter->ward);
 
         $out = [];
-        foreach ($query->selectRaw("{$column} as k, coalesce(sum(budget_amount), 0) as s")->groupBy($column)->get() as $row) {
-            $out[(string) ($row->getAttribute('k') ?? '')] = (int) $row->getAttribute('s');
+        foreach ($query->with('locations.lga', 'locations.ward')->get(['id', 'budget_amount']) as $activity) {
+            foreach ($this->areaCodesFor($activity, $column) as $code) {
+                $out[$code] = ($out[$code] ?? 0) + (int) $activity->budget_amount;
+            }
         }
 
         return $out;
+    }
+
+    /**
+     * The area codes an activity declares, at the requested level.
+     *
+     * An activity can now declare SEVERAL areas, so its budget appears under each one it
+     * declares. The budget is NOT divided between them: the system has no basis for a
+     * per-area split, and inventing one would put a fabricated figure on a map. Each cell
+     * therefore reads "committed funding of activities operating here" — a per-area
+     * figure that must not be summed across areas to produce a state total.
+     *
+     * At ward level a whole-LGA declaration expands to every ward in that LGA, matching
+     * {@see Activity::scopeDeclaredIn}: declaring a whole LGA is a claim to cover all of it.
+     *
+     * @return list<string>
+     */
+    private function areaCodesFor(Activity $activity, string $column): array
+    {
+        $codes = [];
+
+        foreach ($activity->locations as $location) {
+            if ($column === 'lga') {
+                $codes[] = $location->lga->code;
+
+                continue;
+            }
+
+            if ($location->ward !== null) {
+                $codes[] = $location->ward->code;
+
+                continue;
+            }
+
+            foreach ($location->lga->wards as $ward) {
+                $codes[] = $ward->code;
+            }
+        }
+
+        return array_values(array_unique(array_filter($codes)));
     }
 
     /**
@@ -275,22 +306,27 @@ class GisCoverageService
         if ($filter->mdaId !== null) {
             $query->where('owner_mda_id', $filter->mdaId);
         }
-        if ($filter->lga !== null) {
-            $query->where('lga', $filter->lga);
-        }
-        if ($filter->ward !== null) {
-            $query->where('ward', $filter->ward);
-        }
+        $query->declaredIn($filter->lga, $filter->ward);
 
-        $activities = $query->get(['owner_mda_id', 'programme_id', $column]);
+        $activities = $query->with('locations.lga', 'locations.ward')->get(['id', 'owner_mda_id', 'programme_id']);
         // Resolve MDA names without the request-time scope — the caller (e.g. a partner with
         // no home MDA) may not otherwise "see" the implementing agencies' names.
         $names = Mda::query()->withoutGlobalScopes()
             ->whereIn('id', $activities->pluck('owner_mda_id')->filter()->unique()->all())->pluck('name', 'id');
 
+        // An activity declaring several areas is counted in each of them — see
+        // areaCodesFor(). These are per-area counts, not a partition of the total.
+        $byArea = [];
+        foreach ($activities as $activity) {
+            foreach ($this->areaCodesFor($activity, $column) as $code) {
+                $byArea[$code][] = $activity;
+            }
+        }
+
         $out = [];
-        foreach ($activities->groupBy(fn (Activity $a) => (string) ($a->getAttribute($column) ?? '')) as $raw => $items) {
-            $out[(string) $raw] = [
+        foreach ($byArea as $code => $items) {
+            $items = collect($items);
+            $out[(string) $code] = [
                 'activities' => $items->count(),
                 'programmes' => $items->pluck('programme_id')->unique()->count(),
                 'mdas' => $items->pluck('owner_mda_id')->unique()->filter()

@@ -6,8 +6,9 @@ namespace App\Http\Requests\Registry;
 
 use App\Domain\Programme\Enums\ActivityStatus;
 use App\Domain\Programme\Rules\IsFundingPartner;
-use App\Domain\Registry\Enums\Lga;
 use App\Domain\Registry\Imports\Adapters\SourceAdapterRegistry;
+use App\Http\Requests\Programme\Concerns\ValidatesLocationSet;
+use Illuminate\Contracts\Validation\Validator;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Rule;
 
@@ -22,9 +23,27 @@ use Illuminate\Validation\Rule;
  */
 class UploadActivityImportRequest extends FormRequest
 {
+    use ValidatesLocationSet;
+
     public function authorize(): bool
     {
         return $this->user() !== null;
+    }
+
+    /**
+     * @return array<string, string>
+     */
+    public function messages(): array
+    {
+        return $this->locationSetMessages();
+    }
+
+    public function withValidator(Validator $validator): void
+    {
+        // The location set is validated at PREVIEW, not deferred to confirm: a wizard
+        // that accepts a bad set here would fail after the file has been parsed and
+        // previewed, which is the worst possible moment to report it.
+        $validator->after(fn (Validator $v) => $this->validateLocationSet($v));
     }
 
     /**
@@ -41,8 +60,7 @@ class UploadActivityImportRequest extends FormRequest
             'description' => ['nullable', 'string', 'max:2000'],
             // Involvement is implied by this endpoint; a target is mandatory here.
             'target_beneficiaries' => ['required', 'integer', 'min:1'],
-            'lga' => ['nullable', Rule::enum(Lga::class)],
-            'ward' => ['nullable', 'string', 'max:100'],
+            ...$this->locationSetRules(),
             'location_description' => ['nullable', 'string', 'max:255'],
             'schedule' => ['nullable', 'array'],
             'starts_on' => ['nullable', 'date'],
@@ -61,6 +79,9 @@ class UploadActivityImportRequest extends FormRequest
     /**
      * The validated activity fields to stash until confirm. Reaching this endpoint
      * means the activity involves beneficiaries, so the flag is stamped on here.
+     *
+     * `locations` rides along in the stashed draft but is NOT an activity column — the
+     * confirm step splits it back out and writes it through ActivityLocationService.
      *
      * @return array<string, mixed>
      */

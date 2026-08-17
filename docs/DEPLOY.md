@@ -119,6 +119,10 @@ Then open the domain — the SPA loads and you can sign in.
 
 ## 3. Redeploy (new release)
 
+> **Check §3.1 before deploying the release that introduces LGA/Ward reference data.**
+> On an existing database it needs one ordered pre-step, and skipping it stops the `api`
+> container from booting.
+
 ```bash
 cd /opt/spmis
 git fetch --tags && git checkout v1.1.0        # refresh compose/nginx config
@@ -129,6 +133,168 @@ docker compose -f docker-compose.prod.yml ps
 ```
 Take a backup first (§5). Migrations are forward-only; a redeploy applies any new
 ones automatically.
+
+### 3.1 One-time: LGA/Ward reference data before the activity-locations migration
+
+**Fresh installs are unaffected** — skip to §3.2. This applies only when upgrading a
+database that **already has activities**.
+
+Three migrations ship together:
+
+| Migration | What it does |
+| --- | --- |
+| `2026_08_15_000000_create_administrative_divisions_tables` | creates `lgas` + `wards` (empty) |
+| `2026_08_15_100000_create_activity_locations_table` | creates `activity_locations` **and backfills** each activity's old single LGA/Ward into it |
+| `2026_08_15_100001_drop_single_location_from_activities` | drops `activities.lga` / `.ward` |
+
+The backfill resolves the old free-text LGA values against `lgas`. If `lgas` is **empty**
+it cannot resolve anything — and the very next migration drops the columns, which would
+destroy every activity's location permanently. So it **deliberately refuses to run** and
+throws:
+
+```
+Cannot migrate activity locations: 14 activities have an LGA set,
+but the `lgas` lookup table is empty.
+```
+
+#### Why this stops the deploy, not just the migration
+
+The `api` container runs `php artisan migrate --force` on boot (`RUN_MIGRATIONS=true`),
+and its entrypoint is `set -euo pipefail` with no guard around that command. A refused
+migration therefore **exits the entrypoint non-zero and the `api` container fails to
+start** — the site goes down until reference data is loaded. This is a hard ordering
+dependency, not a warning you can defer.
+
+#### The ordered upgrade
+
+Run the first migration on its own, populate `lgas`, then let the rest proceed.
+
+```bash
+cd /opt/spmis
+docker compose -f docker-compose.prod.yml exec api php artisan down        # maintenance mode
+# BACK UP FIRST — migration 100001 is destructive (§5).
+
+# 1. Create the lookup tables only.
+docker compose -f docker-compose.prod.yml exec api \
+  php artisan migrate --force \
+  --path=database/migrations/2026_08_15_000000_create_administrative_divisions_tables.php
+
+# 2. Populate `lgas` — EITHER (a) or (b) below.
+
+# 3. Apply the remaining migrations (backfill + column drop).
+docker compose -f docker-compose.prod.yml exec api php artisan migrate --force
+
+docker compose -f docker-compose.prod.yml exec api php artisan up
+```
+
+**(a) With an authoritative dataset — preferred.** Place the maintainer-supplied
+CSV/JSON (HDX / GRID3 / State ward register) where the container can read it. The target
+directory is **not** in the image, so create it first:
+
+```bash
+docker compose -f docker-compose.prod.yml exec -u root api sh -c \
+  'mkdir -p storage/app/reference && chown www-data:www-data storage/app/reference'
+docker compose -f docker-compose.prod.yml cp ./jigawa-divisions.csv \
+  api:/var/www/html/storage/app/reference/jigawa-administrative-divisions.csv
+docker compose -f docker-compose.prod.yml exec api php artisan reference:load-divisions
+```
+
+`storage/` is a named volume, so the file survives redeploys. Point
+`REFERENCE_DIVISIONS_PATH` elsewhere if you keep it somewhere else.
+
+This loads LGAs **and wards**. It refuses a file that is not credibly Jigawa's (unknown
+LGAs, or fewer than all 27) — see `api/app/Domain/Reference/README.md`.
+
+**(b) Without a dataset yet — LGAs only.**
+
+```bash
+docker compose -f docker-compose.prod.yml exec api php artisan reference:seed-lgas
+```
+
+Writes the 27 LGAs from the committed `Lga` enum — the same list FR-REG-04/05 already
+validates `beneficiaries.lga` against, so it copies a fact the repo asserts rather than
+inventing one. It creates **no wards**; ward names are never generated. Run
+`reference:load-divisions` later to add them — it matches on the same `code` and updates
+these rows in place.
+
+#### What the backfill does to existing values
+
+- LGA resolves → one `activity_locations` row for that LGA.
+- LGA resolves, ward does **not** (e.g. free text like `Ward 8`, or option (b) where no
+  wards exist) → kept as a **whole-LGA** row. The activity demonstrably operates in that
+  LGA, and that stays true even when the ward string does not resolve.
+- LGA does not resolve → **no row**, and the activity's location is not represented.
+
+Every unresolved value is recorded with its raw text in the audit log, so nothing is lost
+when the columns drop:
+
+```bash
+docker compose -f docker-compose.prod.yml exec api php artisan tinker --execute='
+$a = DB::table("audit_log")->where("action","activity.locations.migrated")
+     ->latest("created_at")->first();
+echo $a->after, "\n";'
+```
+
+Expect `{"migrated_rows":N,"unresolved_count":M,"unresolved":[{...,"reason":"unknown_ward_kept_whole_lga"}]}`.
+A `reason` of `unknown_lga` means that activity got **no** location row — review those by hand.
+
+#### Verify
+
+```bash
+docker compose -f docker-compose.prod.yml exec api php artisan migrate:status | grep -c Pending   # 0
+docker compose -f docker-compose.prod.yml exec api php artisan tinker --execute='
+echo "lgas=", DB::table("lgas")->count(),
+   " wards=", DB::table("wards")->count(),
+   " activity_locations=", DB::table("activity_locations")->count(),
+   " activities=", DB::table("activities")->count(), "\n";'
+curl -fsS https://spmis.example.gov.ng/api/v1/health | jq .
+```
+
+`lgas` must be **27**. `activity_locations` should be ≥ the number of activities that had
+an LGA, minus any `unknown_lga` above.
+
+#### If it already failed and `api` is down
+
+The refusal happens **before any write**, so the database is untouched and the fix is just
+ordering. Run steps 1–3 above against the stopped stack:
+
+```bash
+docker compose -f docker-compose.prod.yml up -d postgres redis rabbitmq
+docker compose -f docker-compose.prod.yml run --rm --entrypoint sh api -c \
+  'php artisan migrate --force --path=database/migrations/2026_08_15_000000_create_administrative_divisions_tables.php \
+   && php artisan reference:seed-lgas && php artisan migrate --force'
+docker compose -f docker-compose.prod.yml up -d
+```
+
+#### Rollback
+
+`2026_08_15_100001`'s `down()` re-creates `activities.lga` / `.ward` and repopulates each
+activity from **one** of its locations. A set cannot round-trip into a single field, so
+this is **lossy by design**: the first location wins and the rest remain only in
+`activity_locations`. If you must return to the previous release with its schema, restore
+the pre-deploy backup instead (§5).
+
+### 3.2 Post-deploy: confirm the queue worker is consuming
+
+Do this on **every** deploy. `queue:work` is started with `--max-time=3600`, so it exits 0
+every hour **on purpose** (recycling the process avoids memory bloat) and relies entirely
+on its `restart` policy to come back. `docker-compose.prod.yml` sets
+`restart: *restart` (`unless-stopped`) on both `worker` and `scheduler` — do not remove it.
+
+Check anyway, because the failure is invisible: imports, matching and notifications are all
+queued, so a dead worker leaves the UI showing "Processing…" indefinitely with **no error
+in any log**. `docker compose ps` also hides exited containers by default, so the stack
+looks healthy. (This is exactly how it failed in local dev, where the worker had no
+restart policy.)
+
+```bash
+docker compose -f docker-compose.prod.yml ps --all | grep -E "worker|scheduler"   # Up, not Exited
+docker compose -f docker-compose.prod.yml exec rabbitmq \
+  rabbitmqctl list_queues name messages_ready consumers
+```
+
+`consumers` must be **≥ 1**. A queue with `messages_ready > 0` and `consumers = 0` is a
+dead worker, whatever the container status says.
 
 ## 4. Rollback (previous tag)
 

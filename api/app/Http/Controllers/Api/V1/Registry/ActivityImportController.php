@@ -7,6 +7,7 @@ namespace App\Http\Controllers\Api\V1\Registry;
 use App\Domain\Access\Scopes\MdaScope;
 use App\Domain\Programme\Models\Activity;
 use App\Domain\Programme\Models\Programme;
+use App\Domain\Programme\Services\ActivityLocationService;
 use App\Domain\Registry\Enums\ImportStatus;
 use App\Domain\Registry\Enums\RegistrationSource;
 use App\Domain\Registry\Jobs\ParseImportBatch;
@@ -34,7 +35,10 @@ use Illuminate\Support\Facades\DB;
  */
 class ActivityImportController extends Controller
 {
-    public function __construct(private readonly ImportMappingService $mapping) {}
+    public function __construct(
+        private readonly ImportMappingService $mapping,
+        private readonly ActivityLocationService $locations,
+    ) {}
 
     /** Stage an unbound preview batch for a draft activity + file, and profile its columns. */
     public function store(UploadActivityImportRequest $request): JsonResponse
@@ -95,11 +99,20 @@ class ActivityImportController extends Controller
 
         $activity = DB::transaction(function () use ($model, $committer, $actor) {
             $draft = $model->draft_activity;
+
+            // `locations` rode along in the stashed draft but is not an activity column;
+            // it is written through the same service the direct-create path uses, so the
+            // two entry points cannot produce different location sets.
+            $locationSet = $draft['locations'] ?? [];
+            unset($draft['locations']);
+
             $activity = Activity::create([
                 ...$draft,
                 'owner_mda_id' => $model->owner_mda_id, // the CREATING MDA owns it (§10)
                 'created_by' => $actor?->id,
             ]);
+
+            $this->locations->sync($activity, is_array($locationSet) ? $locationSet : []);
 
             // Bind the batch, then commit under the just-created activity — same txn.
             $model->update(['activity_id' => $activity->id, 'draft_activity' => null]);

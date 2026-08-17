@@ -1,5 +1,6 @@
 import { apiRequest, apiRequestList, http } from '@/lib/api/client'
 import type { Paginated } from '@/lib/api/client'
+import { appendFormObject } from '@/lib/api/formData'
 import type {
   Beneficiary,
   BeneficiaryDocument,
@@ -261,13 +262,13 @@ export const importApi = {
    * draft activity + file. Reuses the standard preview + row-resolve endpoints; confirm
    * via {@link confirmActivityImport}.
    */
-  previewActivityImport(draft: Record<string, string | number | null | undefined>, file: File, source?: string): Promise<ImportBatch> {
+  previewActivityImport(draft: object, file: File, source?: string): Promise<ImportBatch> {
     const form = new FormData()
     form.append('file', file)
     if (source) form.append('source', source)
-    for (const [key, value] of Object.entries(draft)) {
-      if (value !== null && value !== undefined && value !== '') form.append(key, String(value))
-    }
+    // The draft carries the nested `locations` set, so it needs the bracket-notation
+    // serializer — a plain append would send it as "[object Object]".
+    appendFormObject(form, draft)
     return apiRequest<ImportBatch>({ method: 'POST', url: '/activity-imports', data: form })
   },
   /** Atomically create the activity and commit the previewed file under it. */

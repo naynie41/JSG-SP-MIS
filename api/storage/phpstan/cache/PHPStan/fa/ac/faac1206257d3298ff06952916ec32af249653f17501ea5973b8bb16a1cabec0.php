@@ -1141,7 +1141,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
     ),
     'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Benefit\\Services\\LedgerAggregator.php' => 
     array (
-      0 => 'f133afb81afd8b5e7bf8dbbb3eafc7845755c2de9abc72db06e2c66a69ba345c',
+      0 => '5dec90e8fba082fea2b1f4f32da72bad3c96951da3a5183573391819f5979af3',
       1 => 
       array (
         0 => 'app\\domain\\benefit\\services\\ledgeraggregator',
@@ -2483,7 +2483,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
     ),
     'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Programme\\Models\\Activity.php' => 
     array (
-      0 => 'dc7089eed1d6bf4cf81ea4882b5862986ab26acdfae0a426bcc2bb47372c81e5',
+      0 => 'cf685db77b182d8ddf848ee1686606eb6180d03a26921bf55cc95d9c4d18d908',
       1 => 
       array (
         0 => 'app\\domain\\programme\\models\\activity',
@@ -2496,6 +2496,9 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         3 => 'app\\domain\\programme\\models\\ownermda',
         4 => 'app\\domain\\programme\\models\\creator',
         5 => 'app\\domain\\programme\\models\\fundingpartner',
+        6 => 'app\\domain\\programme\\models\\locations',
+        7 => 'app\\domain\\programme\\models\\scopedeclaredin',
+        8 => 'app\\domain\\programme\\models\\areaslug',
       ),
       3 => 
       array (
@@ -3482,7 +3485,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
     ),
     'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Registry\\Models\\ImportBatch.php' => 
     array (
-      0 => 'e7925c5e579b4372e0103a1e137fcc854dfa13056a13b6f31ad463f995d5611f',
+      0 => '439f12d9fde5e7da8d6f6bd5cb8139970318a8689b1eaf04ee580ba7864e5f99',
       1 => 
       array (
         0 => 'app\\domain\\registry\\models\\importbatch',
@@ -3490,14 +3493,17 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
       2 => 
       array (
         0 => 'app\\domain\\registry\\models\\mappingisconfirmed',
-        1 => 'app\\domain\\registry\\models\\casts',
-        2 => 'app\\domain\\registry\\models\\auditexcluded',
-        3 => 'app\\domain\\registry\\models\\ownermda',
-        4 => 'app\\domain\\registry\\models\\activity',
-        5 => 'app\\domain\\registry\\models\\uploadedby',
-        6 => 'app\\domain\\registry\\models\\mappingconfirmedby',
-        7 => 'app\\domain\\registry\\models\\mappingtemplate',
-        8 => 'app\\domain\\registry\\models\\rows',
+        1 => 'app\\domain\\registry\\models\\isprocessing',
+        2 => 'app\\domain\\registry\\models\\processingforseconds',
+        3 => 'app\\domain\\registry\\models\\processinglooksstalled',
+        4 => 'app\\domain\\registry\\models\\casts',
+        5 => 'app\\domain\\registry\\models\\auditexcluded',
+        6 => 'app\\domain\\registry\\models\\ownermda',
+        7 => 'app\\domain\\registry\\models\\activity',
+        8 => 'app\\domain\\registry\\models\\uploadedby',
+        9 => 'app\\domain\\registry\\models\\mappingconfirmedby',
+        10 => 'app\\domain\\registry\\models\\mappingtemplate',
+        11 => 'app\\domain\\registry\\models\\rows',
       ),
       3 => 
       array (
@@ -4227,7 +4233,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
     ),
     'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Reporting\\Gis\\GisCoverageService.php' => 
     array (
-      0 => '3a3818110022d7eab82d8c543097d3c7e837d81747090d72e892acee72401638',
+      0 => 'b0adf7f994271b725c22b2f44cce21ef17477eac5da1bf6efe65fac8901718f5',
       1 => 
       array (
         0 => 'app\\domain\\reporting\\gis\\giscoverageservice',
@@ -4239,11 +4245,12 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         2 => 'app\\domain\\reporting\\gis\\partneractivityids',
         3 => 'app\\domain\\reporting\\gis\\servedbeneficiaryids',
         4 => 'app\\domain\\reporting\\gis\\fundingbyarea',
-        5 => 'app\\domain\\reporting\\gis\\householdcounts',
-        6 => 'app\\domain\\reporting\\gis\\activitybreakdown',
-        7 => 'app\\domain\\reporting\\gis\\beneficiarycounts',
-        8 => 'app\\domain\\reporting\\gis\\slug',
-        9 => 'app\\domain\\reporting\\gis\\title',
+        5 => 'app\\domain\\reporting\\gis\\areacodesfor',
+        6 => 'app\\domain\\reporting\\gis\\householdcounts',
+        7 => 'app\\domain\\reporting\\gis\\activitybreakdown',
+        8 => 'app\\domain\\reporting\\gis\\beneficiarycounts',
+        9 => 'app\\domain\\reporting\\gis\\slug',
+        10 => 'app\\domain\\reporting\\gis\\title',
       ),
       3 => 
       array (
@@ -4538,7 +4545,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
     ),
     'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Reporting\\Services\\DashboardMetricsService.php' => 
     array (
-      0 => 'c61dc49f28816204a309df10739414870f816702a5c2f3b49cdee765e9578d9a',
+      0 => 'd9a8874cc600eecd7a15ad962728a0eb32831d7a375ad078396163217e633213',
       1 => 
       array (
         0 => 'app\\domain\\reporting\\services\\dashboardmetricsservice',
@@ -5327,19 +5334,20 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
     ),
     'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Programme\\ActivityController.php' => 
     array (
-      0 => '232148330fd07f90a03686f4995b3e589828622aa9bef7f7131eeceaf9250f31',
+      0 => '75e7f8a98b4413ff74107a5160af2614f03379390a5e5800a7c28df932ca83e9',
       1 => 
       array (
         0 => 'app\\http\\controllers\\api\\v1\\programme\\activitycontroller',
       ),
       2 => 
       array (
-        0 => 'app\\http\\controllers\\api\\v1\\programme\\index',
-        1 => 'app\\http\\controllers\\api\\v1\\programme\\store',
-        2 => 'app\\http\\controllers\\api\\v1\\programme\\show',
-        3 => 'app\\http\\controllers\\api\\v1\\programme\\update',
-        4 => 'app\\http\\controllers\\api\\v1\\programme\\budget',
-        5 => 'app\\http\\controllers\\api\\v1\\programme\\archive',
+        0 => 'app\\http\\controllers\\api\\v1\\programme\\__construct',
+        1 => 'app\\http\\controllers\\api\\v1\\programme\\index',
+        2 => 'app\\http\\controllers\\api\\v1\\programme\\store',
+        3 => 'app\\http\\controllers\\api\\v1\\programme\\show',
+        4 => 'app\\http\\controllers\\api\\v1\\programme\\update',
+        5 => 'app\\http\\controllers\\api\\v1\\programme\\budget',
+        6 => 'app\\http\\controllers\\api\\v1\\programme\\archive',
       ),
       3 => 
       array (
@@ -5434,7 +5442,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
     ),
     'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Registry\\ActivityImportController.php' => 
     array (
-      0 => '9698a10e6c8266fa54107431340c45212be3e49fbcccd014f35092ff32eb3ea1',
+      0 => '3025b8b942afa0e25bfe284ff9d954ebb710e505da85455c220a20787d4ab0a6',
       1 => 
       array (
         0 => 'app\\http\\controllers\\api\\v1\\registry\\activityimportcontroller',
@@ -6283,7 +6291,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
     ),
     'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Programme\\StoreActivityRequest.php' => 
     array (
-      0 => '908d1c28ac8aca40eac1bcaa16eca3ec5d3354dc052ac115709500de2bb2e682',
+      0 => 'c94735078fcbfcdf35767759909517b53be6ba3bd0b16efad0f80fbf9518314e',
       1 => 
       array (
         0 => 'app\\http\\requests\\programme\\storeactivityrequest',
@@ -6291,8 +6299,9 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
       2 => 
       array (
         0 => 'app\\http\\requests\\programme\\authorize',
-        1 => 'app\\http\\requests\\programme\\rules',
-        2 => 'app\\http\\requests\\programme\\withvalidator',
+        1 => 'app\\http\\requests\\programme\\messages',
+        2 => 'app\\http\\requests\\programme\\rules',
+        3 => 'app\\http\\requests\\programme\\withvalidator',
       ),
       3 => 
       array (
@@ -6333,7 +6342,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
     ),
     'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Programme\\UpdateActivityRequest.php' => 
     array (
-      0 => '3a54190b6b1f606662433297f6d496389ad7cfee25570065626e3d9676d20f73',
+      0 => 'df6986f587d088da619a931710574cd592bc2987712684f7bd91e787f2d46e3f',
       1 => 
       array (
         0 => 'app\\http\\requests\\programme\\updateactivityrequest',
@@ -6341,7 +6350,9 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
       2 => 
       array (
         0 => 'app\\http\\requests\\programme\\authorize',
-        1 => 'app\\http\\requests\\programme\\rules',
+        1 => 'app\\http\\requests\\programme\\messages',
+        2 => 'app\\http\\requests\\programme\\withvalidator',
+        3 => 'app\\http\\requests\\programme\\rules',
       ),
       3 => 
       array (
@@ -6705,7 +6716,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
     ),
     'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Registry\\UploadActivityImportRequest.php' => 
     array (
-      0 => '02f7b4d875c854d9e5ef936d6aa934368a90fba5199ccd719aa150e758974349',
+      0 => '1388f7464d63b4c61aeef97be9ae4c8be9a7cc50c155d0c8ef5db3d44b5394de',
       1 => 
       array (
         0 => 'app\\http\\requests\\registry\\uploadactivityimportrequest',
@@ -6713,8 +6724,10 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
       2 => 
       array (
         0 => 'app\\http\\requests\\registry\\authorize',
-        1 => 'app\\http\\requests\\registry\\rules',
-        2 => 'app\\http\\requests\\registry\\activitydraft',
+        1 => 'app\\http\\requests\\registry\\messages',
+        2 => 'app\\http\\requests\\registry\\withvalidator',
+        3 => 'app\\http\\requests\\registry\\rules',
+        4 => 'app\\http\\requests\\registry\\activitydraft',
       ),
       3 => 
       array (
@@ -6899,7 +6912,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
     ),
     'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Resources\\ActivityResource.php' => 
     array (
-      0 => 'cda18115ba36e038d0434673d3338bccd34d8a2bd36ff904b3f78fe590700340',
+      0 => 'b1c79770ddaee571774b1064ffd830a97aa12f05fe0390220ab3dbf9515ff466',
       1 => 
       array (
         0 => 'app\\http\\resources\\activityresource',
@@ -7125,7 +7138,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
     ),
     'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Resources\\ImportBatchResource.php' => 
     array (
-      0 => '62a167e0b727dac789780c8251eb707ea9881dc6816654978c4d1ecb60bd4a8d',
+      0 => '0f0939041c4b9d38f59a0f59280807c2f46716f7e12dee73c73d32729e9fb768',
       1 => 
       array (
         0 => 'app\\http\\resources\\importbatchresource',
@@ -7995,6 +8008,258 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
       2 => 
       array (
         0 => 'app\\domain\\registry\\support\\assertassignable',
+      ),
+      3 => 
+      array (
+      ),
+    ),
+    'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Reference\\Imports\\AdministrativeDivisionLoader.php' => 
+    array (
+      0 => '26aa645e68617114439515b617cc473590d878c09242247d36b40583cae5080a',
+      1 => 
+      array (
+        0 => 'app\\domain\\reference\\imports\\administrativedivisionloader',
+      ),
+      2 => 
+      array (
+        0 => 'app\\domain\\reference\\imports\\__construct',
+        1 => 'app\\domain\\reference\\imports\\loadfromfile',
+        2 => 'app\\domain\\reference\\imports\\load',
+        3 => 'app\\domain\\reference\\imports\\collate',
+        4 => 'app\\domain\\reference\\imports\\assertcoversjigawa',
+        5 => 'app\\domain\\reference\\imports\\persist',
+        6 => 'app\\domain\\reference\\imports\\stalewards',
+        7 => 'app\\domain\\reference\\imports\\parsecsv',
+        8 => 'app\\domain\\reference\\imports\\parsejson',
+        9 => 'app\\domain\\reference\\imports\\stripbom',
+        10 => 'app\\domain\\reference\\imports\\slug',
+      ),
+      3 => 
+      array (
+      ),
+    ),
+    'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Reference\\Imports\\DivisionLoadResult.php' => 
+    array (
+      0 => 'ca71cb8d07db662d584f3ab45405fce17f5f356d80bd95ca3733776e6b3b9166',
+      1 => 
+      array (
+        0 => 'app\\domain\\reference\\imports\\divisionloadresult',
+      ),
+      2 => 
+      array (
+        0 => 'app\\domain\\reference\\imports\\__construct',
+        1 => 'app\\domain\\reference\\imports\\totalwards',
+        2 => 'app\\domain\\reference\\imports\\totallgas',
+      ),
+      3 => 
+      array (
+      ),
+    ),
+    'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Reference\\Imports\\LoadAdministrativeDivisions.php' => 
+    array (
+      0 => 'dfe96b814d906ce5fba62786eaac8f192ea87eaff18b3b1fb13c6ba63ca61280',
+      1 => 
+      array (
+        0 => 'app\\domain\\reference\\imports\\loadadministrativedivisions',
+      ),
+      2 => 
+      array (
+        0 => 'app\\domain\\reference\\imports\\handle',
+      ),
+      3 => 
+      array (
+      ),
+    ),
+    'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Reference\\Imports\\ReferenceDatasetException.php' => 
+    array (
+      0 => 'dc9c30addd1e297e80e5f8df1c067fcf24c6553a9ea86a9d63077a54b29a784f',
+      1 => 
+      array (
+        0 => 'app\\domain\\reference\\imports\\referencedatasetexception',
+      ),
+      2 => 
+      array (
+        0 => 'app\\domain\\reference\\imports\\filemissing',
+        1 => 'app\\domain\\reference\\imports\\unreadable',
+        2 => 'app\\domain\\reference\\imports\\empty',
+        3 => 'app\\domain\\reference\\imports\\unsupportedformat',
+        4 => 'app\\domain\\reference\\imports\\malformed',
+        5 => 'app\\domain\\reference\\imports\\missingcolumns',
+        6 => 'app\\domain\\reference\\imports\\unknownlgas',
+        7 => 'app\\domain\\reference\\imports\\incompletelgas',
+        8 => 'app\\domain\\reference\\imports\\conflictingward',
+      ),
+      3 => 
+      array (
+      ),
+    ),
+    'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Reference\\Models\\Lga.php' => 
+    array (
+      0 => 'ec11637781a3ca3f3a1336fa52b9fb191e77881289c157a0c3ced05e6f4ab5c6',
+      1 => 
+      array (
+        0 => 'app\\domain\\reference\\models\\lga',
+      ),
+      2 => 
+      array (
+        0 => 'app\\domain\\reference\\models\\casts',
+        1 => 'app\\domain\\reference\\models\\wards',
+        2 => 'app\\domain\\reference\\models\\newfactory',
+      ),
+      3 => 
+      array (
+      ),
+    ),
+    'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Reference\\Models\\Ward.php' => 
+    array (
+      0 => '3373c96b0a834e1e15ec581f3e892ee9b4e6c9d7ea33c4918e92f57f9ddf9a40',
+      1 => 
+      array (
+        0 => 'app\\domain\\reference\\models\\ward',
+      ),
+      2 => 
+      array (
+        0 => 'app\\domain\\reference\\models\\casts',
+        1 => 'app\\domain\\reference\\models\\lga',
+        2 => 'app\\domain\\reference\\models\\newfactory',
+      ),
+      3 => 
+      array (
+      ),
+    ),
+    'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Reference\\ReferenceServiceProvider.php' => 
+    array (
+      0 => '3e7d962fd00de9622dcb44a4bf4b23d78a2b32707bec7ffd93156713d00078c0',
+      1 => 
+      array (
+        0 => 'app\\domain\\reference\\referenceserviceprovider',
+      ),
+      2 => 
+      array (
+        0 => 'app\\domain\\reference\\boot',
+      ),
+      3 => 
+      array (
+      ),
+    ),
+    'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Reference\\Services\\ReferenceDataCache.php' => 
+    array (
+      0 => 'a4ab666aaa3e3f890fc5da3cecc2f89b28aa5ddbf0bc25f88431da6447593331',
+      1 => 
+      array (
+        0 => 'app\\domain\\reference\\services\\referencedatacache',
+      ),
+      2 => 
+      array (
+        0 => 'app\\domain\\reference\\services\\lgas',
+        1 => 'app\\domain\\reference\\services\\wardsfor',
+        2 => 'app\\domain\\reference\\services\\flush',
+        3 => 'app\\domain\\reference\\services\\version',
+        4 => 'app\\domain\\reference\\services\\key',
+      ),
+      3 => 
+      array (
+      ),
+    ),
+    'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Reference\\AdministrativeDivisionController.php' => 
+    array (
+      0 => 'ae98774035ded4d707158d5711fad61b8d2d046653c1fc073f210ed951c45850',
+      1 => 
+      array (
+        0 => 'app\\http\\controllers\\api\\v1\\reference\\administrativedivisioncontroller',
+      ),
+      2 => 
+      array (
+        0 => 'app\\http\\controllers\\api\\v1\\reference\\__construct',
+        1 => 'app\\http\\controllers\\api\\v1\\reference\\lgas',
+        2 => 'app\\http\\controllers\\api\\v1\\reference\\wards',
+      ),
+      3 => 
+      array (
+      ),
+    ),
+    'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Reference\\ListWardsRequest.php' => 
+    array (
+      0 => '4aba59a610696c00039c68c36cf92ba3e67aadf47260f4d497195838b7fd217e',
+      1 => 
+      array (
+        0 => 'app\\http\\requests\\reference\\listwardsrequest',
+      ),
+      2 => 
+      array (
+        0 => 'app\\http\\requests\\reference\\authorize',
+        1 => 'app\\http\\requests\\reference\\rules',
+        2 => 'app\\http\\requests\\reference\\messages',
+      ),
+      3 => 
+      array (
+      ),
+    ),
+    'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Programme\\Models\\ActivityLocation.php' => 
+    array (
+      0 => 'f0fdaa2d48af15f86c9c2820e231e35e72b489734e9af9691c1621ca3512c6e1',
+      1 => 
+      array (
+        0 => 'app\\domain\\programme\\models\\activitylocation',
+      ),
+      2 => 
+      array (
+        0 => 'app\\domain\\programme\\models\\iswholelga',
+        1 => 'app\\domain\\programme\\models\\activity',
+        2 => 'app\\domain\\programme\\models\\lga',
+        3 => 'app\\domain\\programme\\models\\ward',
+      ),
+      3 => 
+      array (
+      ),
+    ),
+    'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Programme\\Services\\ActivityLocationService.php' => 
+    array (
+      0 => '6eb143ddf3f96f1c08fd437bae6ccd71ba17bdd224e807cdb42a81083197a6b0',
+      1 => 
+      array (
+        0 => 'app\\domain\\programme\\services\\activitylocationservice',
+      ),
+      2 => 
+      array (
+        0 => 'app\\domain\\programme\\services\\sync',
+        1 => 'app\\domain\\programme\\services\\flatten',
+        2 => 'app\\domain\\programme\\services\\present',
+        3 => 'app\\domain\\programme\\services\\misplacedwards',
+        4 => 'app\\domain\\programme\\services\\duplicatelgas',
+        5 => 'app\\domain\\programme\\services\\lganames',
+      ),
+      3 => 
+      array (
+      ),
+    ),
+    'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Programme\\Concerns\\ValidatesLocationSet.php' => 
+    array (
+      0 => 'a6eb8ba2a790f6dd6d9f721d36bd4ba669e406dcd1fdac88bfde45254d9c65cb',
+      1 => 
+      array (
+        0 => 'app\\http\\requests\\programme\\concerns\\validateslocationset',
+      ),
+      2 => 
+      array (
+        0 => 'app\\http\\requests\\programme\\concerns\\locationsetrules',
+        1 => 'app\\http\\requests\\programme\\concerns\\locationsetmessages',
+        2 => 'app\\http\\requests\\programme\\concerns\\validatelocationset',
+      ),
+      3 => 
+      array (
+      ),
+    ),
+    'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Reference\\Imports\\SeedJigawaLgas.php' => 
+    array (
+      0 => 'b0677e08c2b7092621415ce2eacf08ac8525bcdb646990f417581c65d47e1a26',
+      1 => 
+      array (
+        0 => 'app\\domain\\reference\\imports\\seedjigawalgas',
+      ),
+      2 => 
+      array (
+        0 => 'app\\domain\\reference\\imports\\handle',
       ),
       3 => 
       array (

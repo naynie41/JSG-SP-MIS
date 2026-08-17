@@ -387,6 +387,75 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
          'typeAliasClassName' => NULL,
          'traitData' => NULL,
       )),
+      '7c2cace7d81ee29a5fb4fe926a95d82b' => 
+      \PHPStan\Analyser\IntermediaryNameScope::__set_state(array(
+         'namespace' => 'App\\Domain\\Reporting\\Gis',
+         'uses' => 
+        array (
+          'mda' => 'App\\Domain\\Access\\Models\\Mda',
+          'mdascope' => 'App\\Domain\\Access\\Scopes\\MdaScope',
+          'benefitstatus' => 'App\\Domain\\Benefit\\Enums\\BenefitStatus',
+          'benefit' => 'App\\Domain\\Benefit\\Models\\Benefit',
+          'ledgeraggregator' => 'App\\Domain\\Benefit\\Services\\LedgerAggregator',
+          'activitystatus' => 'App\\Domain\\Programme\\Enums\\ActivityStatus',
+          'activity' => 'App\\Domain\\Programme\\Models\\Activity',
+          'beneficiary' => 'App\\Domain\\Registry\\Models\\Beneficiary',
+          'household' => 'App\\Domain\\Registry\\Models\\Household',
+          'householdmembership' => 'App\\Domain\\Registry\\Models\\HouseholdMembership',
+          'dashboardfilter' => 'App\\Domain\\Reporting\\Support\\DashboardFilter',
+          'dashboardscope' => 'App\\Domain\\Reporting\\Support\\DashboardScope',
+          'str' => 'Illuminate\\Support\\Str',
+        ),
+         'className' => 'App\\Domain\\Reporting\\Gis\\GisCoverageService',
+         'functionName' => 'areaCodesFor',
+         'templatePhpDocNodes' => 
+        array (
+        ),
+         'parent' => 
+        \PHPStan\Analyser\IntermediaryNameScope::__set_state(array(
+           'namespace' => 'App\\Domain\\Reporting\\Gis',
+           'uses' => 
+          array (
+            'mda' => 'App\\Domain\\Access\\Models\\Mda',
+            'mdascope' => 'App\\Domain\\Access\\Scopes\\MdaScope',
+            'benefitstatus' => 'App\\Domain\\Benefit\\Enums\\BenefitStatus',
+            'benefit' => 'App\\Domain\\Benefit\\Models\\Benefit',
+            'ledgeraggregator' => 'App\\Domain\\Benefit\\Services\\LedgerAggregator',
+            'activitystatus' => 'App\\Domain\\Programme\\Enums\\ActivityStatus',
+            'activity' => 'App\\Domain\\Programme\\Models\\Activity',
+            'beneficiary' => 'App\\Domain\\Registry\\Models\\Beneficiary',
+            'household' => 'App\\Domain\\Registry\\Models\\Household',
+            'householdmembership' => 'App\\Domain\\Registry\\Models\\HouseholdMembership',
+            'dashboardfilter' => 'App\\Domain\\Reporting\\Support\\DashboardFilter',
+            'dashboardscope' => 'App\\Domain\\Reporting\\Support\\DashboardScope',
+            'str' => 'Illuminate\\Support\\Str',
+          ),
+           'className' => 'App\\Domain\\Reporting\\Gis\\GisCoverageService',
+           'functionName' => NULL,
+           'templatePhpDocNodes' => 
+          array (
+          ),
+           'parent' => NULL,
+           'typeAliasesMap' => 
+          array (
+          ),
+           'bypassTypeAliases' => false,
+           'constUses' => 
+          array (
+          ),
+           'typeAliasClassName' => NULL,
+           'traitData' => NULL,
+        )),
+         'typeAliasesMap' => 
+        array (
+        ),
+         'bypassTypeAliases' => false,
+         'constUses' => 
+        array (
+        ),
+         'typeAliasClassName' => NULL,
+         'traitData' => NULL,
+      )),
       '59ea9edd4ba0d0e3ad43057a54ec1568' => 
       \PHPStan\Analyser\IntermediaryNameScope::__set_state(array(
          'namespace' => 'App\\Domain\\Reporting\\Gis',
@@ -735,7 +804,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
     ),
     1 => 
     array (
-      'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Reporting\\Gis\\GisCoverageService.php' => '3a3818110022d7eab82d8c543097d3c7e837d81747090d72e892acee72401638',
+      'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Reporting\\Gis\\GisCoverageService.php' => 'b0adf7f994271b725c22b2f44cce21ef17477eac5da1bf6efe65fac8901718f5',
     ),
   ),
 ));

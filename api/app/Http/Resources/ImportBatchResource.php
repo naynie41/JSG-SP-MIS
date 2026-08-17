@@ -73,6 +73,18 @@ class ImportBatchResource extends JsonResource
                 'skipped_rows' => $this->skipped_rows,
             ],
             'error' => $this->error,
+            /*
+             * Queue liveness, so the UI can stop claiming work is happening when it is
+             * not. `processing_stalled` means the batch has sat in a queued state longer
+             * than parsing could plausibly take — nearly always a queue worker that is
+             * not consuming, which produces NO error because nothing failed: the job was
+             * simply never picked up.
+             *
+             * Computed server-side: only the server's clock can be trusted to measure
+             * elapsed time against its own timestamps.
+             */
+            'processing_for_seconds' => $this->processingForSeconds(),
+            'processing_stalled' => $this->processingLooksStalled(),
             // The thresholds the engine actually used. The adjudication screen
             // renders a match's position against these instead of a bare
             // decimal, so "0.87" reads as "above review, below auto-accept" —

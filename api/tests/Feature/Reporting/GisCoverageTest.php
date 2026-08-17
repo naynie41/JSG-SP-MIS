@@ -57,7 +57,7 @@ class GisCoverageTest extends TestCase
         // served beneficiary (net-unique) with delivered value.
         Household::factory()->create(['owner_mda_id' => $this->mdaA->id, 'lga' => 'dutse']);
         $programme = Programme::factory()->individual()->create(['status' => 'active']);
-        $activity = Activity::factory()->forProgramme($programme, $this->mdaA)->create(['status' => 'active', 'lga' => 'dutse', 'budget_amount' => 500_000]);
+        $activity = Activity::factory()->forProgramme($programme, $this->mdaA)->inLgaCode('dutse')->create(['status' => 'active', 'budget_amount' => 500_000]);
         Benefit::factory()->create([
             'beneficiary_id' => $dutse->first()->id, 'programme_id' => $programme->id, 'mda_id' => $this->mdaA->id,
             'activity_id' => $activity->id, 'lga' => 'dutse', 'monetary_value' => 300_000, 'status' => 'verified',
@@ -214,8 +214,8 @@ class GisCoverageTest extends TestCase
         $programme = Programme::factory()->individual()->create(['status' => 'active']);
         // The partner FUNDS an activity in Dutse (MDA A). A co-funded activity in the SAME
         // programme (Hadejia, MDA B) is NOT funded by this partner — it must stay out of scope.
-        $funded = Activity::factory()->forProgramme($programme, $this->mdaA)->create(['status' => 'active', 'lga' => 'dutse', 'budget_amount' => 2_000_000, 'funding_partner_id' => $this->users['partner']->id]);
-        Activity::factory()->forProgramme($programme, $this->mdaB)->create(['status' => 'active', 'lga' => 'hadejia', 'budget_amount' => 9_000_000]);
+        $funded = Activity::factory()->forProgramme($programme, $this->mdaA)->inLgaCode('dutse')->create(['status' => 'active', 'budget_amount' => 2_000_000, 'funding_partner_id' => $this->users['partner']->id]);
+        Activity::factory()->forProgramme($programme, $this->mdaB)->inLgaCode('hadejia')->create(['status' => 'active', 'budget_amount' => 9_000_000]);
 
         $ben = Beneficiary::factory()->create(['owner_mda_id' => $this->mdaA->id, 'lga' => 'dutse']);
         Benefit::factory()->create([

@@ -96,8 +96,8 @@ class PartnerFundingTest extends TestCase
 
     private function activity(Programme $p, Mda $mda, string $lga, int $budget, int $target, string $partnerKey): Activity
     {
-        return Activity::factory()->forProgramme($p, $mda)->create([
-            'status' => 'active', 'lga' => $lga, 'budget_amount' => $budget,
+        return Activity::factory()->forProgramme($p, $mda)->inLgaCode($lga)->create([
+            'status' => 'active', 'budget_amount' => $budget,
             'target_beneficiaries' => $target, 'funding_partner_id' => $this->users[$partnerKey]->id,
         ]);
     }
@@ -127,14 +127,14 @@ class PartnerFundingTest extends TestCase
     private function fundedActivity(Programme $p, User $partner, int $budget, int $target, ?string $endsOn = null): Activity
     {
         $attrs = [
-            'status' => 'active', 'lga' => 'dutse', 'budget_amount' => $budget,
+            'status' => 'active', 'budget_amount' => $budget,
             'target_beneficiaries' => $target, 'funding_partner_id' => $partner->id,
         ];
         if ($endsOn !== null) {
             $attrs['ends_on'] = $endsOn;
         }
 
-        return Activity::factory()->forProgramme($p, $this->mdaA)->create($attrs);
+        return Activity::factory()->forProgramme($p, $this->mdaA)->inLgaCode('dutse')->create($attrs);
     }
 
     private function deliverTyped(Beneficiary $b, Activity $a, string $type, int $kobo = 100_000): void
@@ -235,7 +235,7 @@ class PartnerFundingTest extends TestCase
         $this->assertSame(1, $overlap['count']); // only the shared programme × dutse overlaps
         $cell = $overlap['cells'][0];
         $this->assertSame($this->shared->id, $cell['programme_id']);
-        $this->assertSame('dutse', $cell['lga']);
+        $this->assertSame('Dutse', $cell['lga']); // resolved LGA name, not the raw id
         $this->assertSame(1, $cell['other_funders']); // partnerB
         $this->assertSame(1, $cell['other_mdas']);    // MDA B
 

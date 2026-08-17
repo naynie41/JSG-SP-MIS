@@ -25,6 +25,7 @@ use App\Http\Controllers\Api\V1\Notification\NotificationController;
 use App\Http\Controllers\Api\V1\Programme\ActivityController;
 use App\Http\Controllers\Api\V1\Programme\EnrollmentController;
 use App\Http\Controllers\Api\V1\Programme\ProgrammeController;
+use App\Http\Controllers\Api\V1\Reference\AdministrativeDivisionController;
 use App\Http\Controllers\Api\V1\Referral\ReferralController;
 use App\Http\Controllers\Api\V1\Referral\ReferralSlaPolicyController;
 use App\Http\Controllers\Api\V1\Registry\ActivityImportController;
@@ -105,6 +106,22 @@ Route::prefix('v1')->group(function (): void {
 
         Route::get('/access/matrix', [AccessController::class, 'matrix'])
             ->middleware('permission:permission.view')->name('access.matrix');
+
+        /*
+        | Reference data — Jigawa LGAs and their wards (the cascading selector).
+        |
+        | Authenticated but NOT permission-gated, and that is deliberate: this is a
+        | non-PII, MDA-independent lookup list that every role needs to render a form
+        | or a filter. A permission granted to all six roles would deny nothing while
+        | making the RBAC set look like it draws a distinction here.
+        |
+        | Read-only — the list comes from an authoritative dataset loaded by a
+        | maintainer (`php artisan reference:load-divisions`), never from the API.
+        */
+        Route::get('/reference/lgas', [AdministrativeDivisionController::class, 'lgas'])
+            ->name('reference.lgas');
+        Route::get('/reference/wards', [AdministrativeDivisionController::class, 'wards'])
+            ->name('reference.wards');
 
         // MDA management (PRD FR-UAM-02). List/show are MDA-scoped.
         Route::get('/mdas', [MdaController::class, 'index'])

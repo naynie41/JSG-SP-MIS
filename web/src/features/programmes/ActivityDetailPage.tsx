@@ -84,8 +84,30 @@ export function ActivityDetailPage() {
         <dl className={styles.dl}>
           <dt>Programme</dt>
           <dd>{activity.programme?.name ?? '—'}</dd>
-          <dt>Location</dt>
-          <dd>{activity.lga ? titleCase(activity.lga) : '—'}{activity.ward ? ` · ${activity.ward}` : ''}</dd>
+          <dt>Areas covered</dt>
+          <dd>
+            {activity.locations.length === 0 ? (
+              '—'
+            ) : (
+              <ul className={styles.areaList}>
+                {activity.locations.map((group) => (
+                  <li key={group.lga_id}>
+                    <strong>{group.lga_name ?? '—'}</strong>
+                    {' · '}
+                    {group.whole_lga
+                      ? <span className={styles.areaWhole}>whole LGA</span>
+                      : group.wards.map((ward) => ward.ward_name).join(', ')}
+                  </li>
+                ))}
+              </ul>
+            )}
+          </dd>
+          {activity.location_description && (
+            <>
+              <dt>Location detail</dt>
+              <dd>{activity.location_description}</dd>
+            </>
+          )}
           <dt>Budget</dt>
           <dd className={styles.mono}>{formatNaira(activity.budget_amount)}</dd>
           <dt>Funding</dt>

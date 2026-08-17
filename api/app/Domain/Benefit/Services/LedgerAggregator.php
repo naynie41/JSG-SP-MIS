@@ -138,12 +138,9 @@ class LedgerAggregator
         if (! empty($filters['mda_id'])) {
             $activities->where('owner_mda_id', $filters['mda_id']);
         }
-        if (! empty($filters['lga'])) {
-            $activities->where('lga', $filters['lga']);
-        }
-        if (! empty($filters['ward'])) {
-            $activities->where('ward', $filters['ward']);
-        }
+        // Area now comes from the activity's declared location SET (many LGAs/wards),
+        // not a single column — see Activity::scopeDeclaredIn.
+        $activities->declaredIn($filters['lga'] ?? null, $filters['ward'] ?? null);
 
         $allocated = (int) $activities->sum('budget_amount');
         $totals = $this->scopedTotals($mdaIds, $programmeIds, $filters);

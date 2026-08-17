@@ -56,6 +56,33 @@ upload → PROFILE columns → status: mapping_required → officer confirms
 - **Templates pre-fill, never pre-confirm.** Keyed `(MDA, source, source_signature)`; a
   changed export produces a new signature, so a stale mapping is not applied to columns
   that moved. Identity fields are re-confirmed regardless.
+
+### Detecting an import nothing is working on
+
+Parsing runs on the queue, so a batch waiting on a **dead queue worker produces no error** —
+nothing failed, the job was simply never picked up. Without a signal the UI says
+"Processing… this view refreshes automatically" forever, which is indistinguishable from
+progress and is exactly how a real afternoon got lost.
+
+`ImportBatch::processingLooksStalled()` is that signal, surfaced as
+`processing_stalled` + `processing_for_seconds` on `ImportBatchResource`:
+
+- measured from **`updated_at`** — the last sign of life. A live worker at minimum flips
+  `pending → processing`, which touches the row, so progress resets the clock;
+- **computed server-side**, because only the server's clock can be trusted against its own
+  timestamps (a client with a skewed clock would report nonsense);
+- only for the **queued** states (`pending`, `processing`, `committing`).
+  `mapping_required` is waiting on a *person*, and a settled batch is waiting on nothing —
+  flagging either would train people to ignore the warning;
+- threshold in `config/registry.php` (`registry.import.stalled_after_seconds`, default 90).
+  Operational, not a stakeholder decision: a few hundred rows take seconds.
+
+When it trips, the import page drops the "Processing…" line entirely and says how long it
+has waited, that the worker may be down, and that **nothing is lost** — the batch resumes
+by itself once a worker returns. Operator-side checks and the `--max-time` restart
+requirement are in [DEPLOY.md §3.2](../../../../docs/DEPLOY.md).
+
+Tests: `tests/Feature/Registry/ImportStalledDetectionTest`.
 - **Audited:** `import.mapping_confirmed` records which column was declared to hold each
   identity field; `import.mapping_template_saved` records the template.
 - The raw file is only ever READ. The canonical representation lives in

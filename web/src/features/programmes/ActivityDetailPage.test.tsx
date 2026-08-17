@@ -16,8 +16,20 @@ const activity = {
   name: 'Q1 Cash Round',
   description: null,
   target_beneficiaries: 1200,
-  lga: 'dutse',
-  ward: 'Ward 3',
+  // A multi-LGA set: specific wards in one LGA, the whole of another.
+  locations: [
+    {
+      lga_id: 'lga-1',
+      lga_code: 'dutse',
+      lga_name: 'Dutse',
+      whole_lga: false,
+      wards: [
+        { ward_id: 'w-1', ward_code: 'limawa', ward_name: 'Limawa' },
+        { ward_id: 'w-2', ward_code: 'madobi', ward_name: 'Madobi' },
+      ],
+    },
+    { lga_id: 'lga-2', lga_code: 'kiyawa', lga_name: 'Kiyawa', whole_lga: true, wards: [] },
+  ],
   location_description: null,
   schedule: null,
   starts_on: '2026-01-01',
@@ -81,6 +93,29 @@ describe('ActivityDetailPage', () => {
     expect(within(section).getByText('pending')).toBeInTheDocument()
     expect(within(section).getByText('accepted')).toBeInTheDocument()
     expect(within(section).getByText(/1 awaiting approval/i)).toBeInTheDocument()
+  })
+
+  it('shows the declared coverage broken down LGA by LGA', () => {
+    activityData = activity
+    renderPage()
+
+    const details = screen.getByText('Areas covered').closest('dl') as HTMLElement
+
+    // Named wards under the LGA they belong to...
+    expect(within(details).getByText('Dutse')).toBeInTheDocument()
+    expect(within(details).getByText(/Limawa, Madobi/)).toBeInTheDocument()
+
+    // ...and a whole-LGA declaration said in words, not as an empty ward list.
+    expect(within(details).getByText('Kiyawa')).toBeInTheDocument()
+    expect(within(details).getByText('whole LGA')).toBeInTheDocument()
+  })
+
+  it('shows an em dash when no areas are declared', () => {
+    activityData = { ...activity, locations: [] }
+    renderPage()
+
+    const details = screen.getByText('Areas covered').closest('dl') as HTMLElement
+    expect(within(details).getAllByText('—').length).toBeGreaterThan(0)
   })
 
   it('shows no beneficiary sections for an activity that does not involve beneficiaries', () => {

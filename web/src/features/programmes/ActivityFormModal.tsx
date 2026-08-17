@@ -11,7 +11,8 @@ import { SelectField } from '@/components/Field/SelectField'
 import { Icon } from '@/components/Icon/Icon'
 import { applyApiErrors } from '@/lib/forms/applyApiErrors'
 import { koboToNaira, nairaToKobo } from '@/lib/utils/money'
-import { LGA_OPTIONS } from '@/features/registry/constants'
+import { LocationSetField } from '@/features/reference/LocationSetField'
+import type { LocationSetEntry } from '@/features/reference/types'
 import { usePreviewActivityImport } from '@/features/registry/hooks'
 import { ACTIVITY_STATUS_OPTIONS } from './constants'
 import { activitySchema } from './schema'
@@ -30,7 +31,32 @@ interface ActivityFormModalProps {
   activity?: Activity | null
 }
 
-const KNOWN = ['programme_id', 'involves_beneficiaries', 'name', 'description', 'target_beneficiaries', 'lga', 'ward', 'location_description', 'budget_naira', 'funding_source', 'starts_on', 'ends_on', 'status'] as const
+const KNOWN = ['programme_id', 'involves_beneficiaries', 'name', 'description', 'target_beneficiaries', 'location_description', 'budget_naira', 'funding_source', 'starts_on', 'ends_on', 'status'] as const
+
+/** The saved location set, back into the shape the picker edits. */
+function toEntries(activity?: Activity | null): LocationSetEntry[] {
+  return (activity?.locations ?? []).map((location) => ({
+    lga_id: location.lga_id,
+    ward_ids: location.wards.map((ward) => ward.ward_id),
+    whole_lga: location.whole_lga,
+  }))
+}
+
+/**
+ * Pulls the `locations.*` field errors out of an API 422 and keys them by path.
+ *
+ * They are handled separately from `applyApiErrors` because the paths are positional
+ * (`locations.1.ward_ids.0`) — the picker uses them to mark the exact ward chip the
+ * server rejected, which is the only way a user can tell WHICH ward was wrong.
+ */
+function locationFieldErrors(error: unknown): Record<string, string> {
+  const details = (error as { details?: Array<{ field?: string; message?: string }> })?.details ?? []
+  const out: Record<string, string> = {}
+  for (const detail of details) {
+    if (detail.field?.startsWith('locations') && detail.message) out[detail.field] = detail.message
+  }
+  return out
+}
 
 /**
  * Create/edit an MDA-owned activity that runs a GLOBAL catalog programme (§10). Creation
@@ -54,14 +80,21 @@ export function ActivityFormModal({ open, onClose, programmeId, activity }: Acti
   const [formError, setFormError] = useState<string | null>(null)
   const [created, setCreated] = useState<Activity | null>(null)
 
+  // The location set is held outside react-hook-form: it is a nested array whose errors
+  // come back keyed by path (`locations.0.ward_ids.1`), which RHF cannot address.
+  const [locations, setLocations] = useState<LocationSetEntry[]>(() => toEntries(activity))
+  const [locationErrors, setLocationErrors] = useState<Record<string, string>>({})
+
   useEffect(() => {
     if (open) {
       setStep(1)
       setFile(null)
       setFormError(null)
       setCreated(null)
+      setLocations(toEntries(activity))
+      setLocationErrors({})
     }
-  }, [open])
+  }, [open, activity])
 
   const {
     register,
@@ -78,8 +111,6 @@ export function ActivityFormModal({ open, onClose, programmeId, activity }: Acti
       name: activity?.name ?? '',
       description: activity?.description ?? '',
       target_beneficiaries: activity?.target_beneficiaries != null ? String(activity.target_beneficiaries) : '',
-      lga: activity?.lga ?? '',
-      ward: activity?.ward ?? '',
       location_description: activity?.location_description ?? '',
       budget_naira: koboToNaira(activity?.budget_amount),
       funding_source: activity?.funding_source ?? '',
@@ -100,8 +131,14 @@ export function ActivityFormModal({ open, onClose, programmeId, activity }: Acti
       description: values.description || null,
       // No beneficiaries → no target (the API prohibits it on the no-file path).
       target_beneficiaries: involvesBeneficiaries && values.target_beneficiaries ? Number(values.target_beneficiaries) : null,
-      lga: values.lga || null,
-      ward: values.ward || null,
+      // An LGA with no wards ticked is whole-LGA coverage — the same claim, so it is
+      // sent the same way rather than as an empty ward list.
+      locations: locations.map((entry) => ({
+        lga_id: entry.lga_id,
+        ...(entry.whole_lga || entry.ward_ids.length === 0
+          ? { whole_lga: true }
+          : { ward_ids: entry.ward_ids }),
+      })),
       location_description: values.location_description || null,
       budget_amount: nairaToKobo(values.budget_naira) ?? null,
       funding_source: values.funding_source || null,
@@ -125,6 +162,7 @@ export function ActivityFormModal({ open, onClose, programmeId, activity }: Acti
       if (isCreate) setCreated(saved)
       else onClose()
     } catch (error) {
+      setLocationErrors(locationFieldErrors(error))
       setFormError(applyApiErrors(error, setError, KNOWN))
     }
   })
@@ -138,11 +176,23 @@ export function ActivityFormModal({ open, onClose, programmeId, activity }: Acti
       return
     }
     try {
-      const batch = await previewImport.mutateAsync({ draft: buildInput(values) as unknown as Record<string, string | number | null | undefined>, file })
+      const batch = await previewImport.mutateAsync({ draft: buildInput(values), file })
       onClose()
       navigate(`/imports/${batch.id}`)
     } catch (error) {
-      setFormError(applyApiErrors(error, setError, KNOWN))
+      const locationProblems = locationFieldErrors(error)
+      setLocationErrors(locationProblems)
+      const message = applyApiErrors(error, setError, KNOWN)
+
+      // The rejected field lives on step 1, so leaving the user on the upload step would
+      // show an error next to a file input that is not what the server complained about.
+      // Go back to where the problem is visible and fixable.
+      if (Object.keys(locationProblems).length > 0) {
+        setStep(1)
+        setFormError(message ?? 'Check the areas declared for this activity.')
+        return
+      }
+      setFormError(message)
     }
   })
 
@@ -246,11 +296,8 @@ export function ActivityFormModal({ open, onClose, programmeId, activity }: Acti
             ) : (
               <TextField label="Budget (₦)" type="number" min={0} step="0.01" error={errors.budget_naira?.message} {...register('budget_naira')} />
             )}
-            <div className={formStyles.grid2}>
-              <SelectField label="LGA" placeholder="Select LGA" options={LGA_OPTIONS} error={errors.lga?.message} {...register('lga')} />
-              <TextField label="Ward" error={errors.ward?.message} {...register('ward')} />
-            </div>
-            <TextField label="Location" error={errors.location_description?.message} {...register('location_description')} />
+            <LocationSetField value={locations} onChange={setLocations} errors={locationErrors} disabled={busy} />
+            <TextField label="Location detail" helper="Free description — a landmark or route, not an admin area." error={errors.location_description?.message} {...register('location_description')} />
             <TextField label="Funding source" error={errors.funding_source?.message} {...register('funding_source')} />
             <div className={formStyles.grid2}>
               <TextField label="Start date" type="date" error={errors.starts_on?.message} {...register('starts_on')} />

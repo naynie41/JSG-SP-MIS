@@ -59,8 +59,8 @@ class ExecutiveFilterTest extends TestCase
 
         $this->progA = Programme::factory()->individual()->create(['status' => 'active']);
         $this->progB = Programme::factory()->individual()->create(['status' => 'active']);
-        $actA = Activity::factory()->forProgramme($this->progA, $this->mdaA)->create(['status' => 'active', 'lga' => 'dutse', 'budget_amount' => 1_000_000, 'target_beneficiaries' => 4]);
-        $actB = Activity::factory()->forProgramme($this->progB, $this->mdaB)->create(['status' => 'active', 'lga' => 'hadejia', 'budget_amount' => 500_000, 'target_beneficiaries' => 2]);
+        $actA = Activity::factory()->forProgramme($this->progA, $this->mdaA)->inLgaCode('dutse')->create(['status' => 'active', 'budget_amount' => 1_000_000, 'target_beneficiaries' => 4]);
+        $actB = Activity::factory()->forProgramme($this->progB, $this->mdaB)->inLgaCode('hadejia')->create(['status' => 'active', 'budget_amount' => 500_000, 'target_beneficiaries' => 2]);
         ProgrammeFunder::create(['programme_id' => $this->progA->id, 'user_id' => $this->users['partner']->id]);
 
         // Deliveries: benA1 via progA (dutse, 2026); benA2 via progA (kano, 2025); benB1 via progB (hadejia, 2026).

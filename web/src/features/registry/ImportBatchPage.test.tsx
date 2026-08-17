@@ -7,6 +7,7 @@ import { MemoryRouter, Route, Routes } from 'react-router-dom'
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 import { ToastProvider } from '@/components/Toast/ToastProvider'
 import { ImportBatchPage } from './ImportBatchPage'
+import { formatWaitedFor } from '@/lib/utils/duration'
 import { importApi } from './api'
 import type { ImportBatch, MatchReveal } from './types'
 
@@ -54,6 +55,8 @@ function makeBatch(band: 'exact' | 'probable' = 'exact'): ImportBatch {
     status: 'preview_ready',
     summary: { total_rows: 1, valid_rows: 1, invalid_rows: 0, committed_rows: 0, served_rows: 0, skipped_rows: 0 },
     error: null,
+    processing_for_seconds: null,
+    processing_stalled: false,
     rows: [
       {
         row_number: 1,
@@ -200,5 +203,72 @@ describe('ImportBatchPage — duplicate resolution', () => {
 
     await user.click(screen.getByRole('button', { name: /all rows/i }))
     expect(screen.getByRole('button', { name: /all rows/i })).toHaveAttribute('aria-pressed', 'true')
+  })
+
+  describe('a batch nothing is working on', () => {
+    it('says it is processing while it genuinely is', async () => {
+      get.mockResolvedValue({
+        ...makeBatch(),
+        status: 'pending',
+        rows: [],
+        processing_for_seconds: 3,
+        processing_stalled: false,
+      })
+      renderPage(<ImportBatchPage />)
+
+      expect(await screen.findByText(/Processing… this view refreshes automatically/)).toBeInTheDocument()
+      expect(screen.queryByText(/background worker/i)).not.toBeInTheDocument()
+    })
+
+    it('stops claiming progress once it has waited too long', async () => {
+      // The failure has no error to show — nothing failed, the job was never picked up.
+      // Saying "Processing…" indefinitely is what wasted someone's afternoon.
+      get.mockResolvedValue({
+        ...makeBatch(),
+        status: 'pending',
+        rows: [],
+        processing_for_seconds: 600,
+        processing_stalled: true,
+      })
+      renderPage(<ImportBatchPage />)
+
+      const alert = await screen.findByRole('alert')
+      expect(alert).toHaveTextContent(/Still waiting after 10 minutes/)
+      expect(alert).toHaveTextContent(/background worker/i)
+      // Reassure, and point at who can fix it — the officer cannot.
+      expect(alert).toHaveTextContent(/Nothing has been lost/)
+
+      // The contradictory "Processing…" line is gone, not merely joined by a warning.
+      expect(screen.queryByText(/this view refreshes automatically/)).not.toBeInTheDocument()
+      expect(await screen.findByText('Not started yet')).toBeInTheDocument()
+    })
+
+    it('shows no worker warning for a batch that is not queued', async () => {
+      // A settled batch is not waiting on anything; warning here would train people to
+      // ignore the warning.
+      get.mockResolvedValue({ ...makeBatch(), processing_for_seconds: null, processing_stalled: false })
+      renderPage(<ImportBatchPage />)
+
+      await screen.findByText('beneficiaries.csv')
+      expect(screen.queryByText(/background worker/i)).not.toBeInTheDocument()
+      expect(screen.queryByText(/this view refreshes automatically/)).not.toBeInTheDocument()
+    })
+  })
+})
+
+describe('formatWaitedFor', () => {
+  it('reads like a status, not a stack trace', () => {
+    expect(formatWaitedFor(45)).toBe('45 seconds')
+    expect(formatWaitedFor(119)).toBe('119 seconds')
+    expect(formatWaitedFor(600)).toBe('10 minutes')
+    expect(formatWaitedFor(3600)).toBe('1 hour')
+    expect(formatWaitedFor(5400)).toBe('1 hour 30 min')
+    expect(formatWaitedFor(7200)).toBe('2 hours')
+  })
+
+  it('never renders a negative or missing duration', () => {
+    // Clock skew between server and client must not produce "-3 seconds".
+    expect(formatWaitedFor(null)).toBe('0 seconds')
+    expect(formatWaitedFor(-5)).toBe('0 seconds')
   })
 })

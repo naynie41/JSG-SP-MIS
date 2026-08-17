@@ -100,8 +100,8 @@ class PartnerDemoSeeder extends Seeder
      */
     private function fund(User $partner, Programme $programme, Mda $mda, string $lga, int $budget, int $target, int $reached, ?string $endsOn, array $types): void
     {
-        $activity = Activity::factory()->forProgramme($programme, $mda)->create([
-            'status' => 'active', 'lga' => $lga, 'ward' => 'Ward 1',
+        $activity = Activity::factory()->forProgramme($programme, $mda)->inLgaCode($lga)->create([
+            'status' => 'active',
             'budget_amount' => $budget, 'target_beneficiaries' => $target,
             'funding_partner_id' => $partner->id,
             'starts_on' => Carbon::now()->subMonths(6)->toDateString(),
