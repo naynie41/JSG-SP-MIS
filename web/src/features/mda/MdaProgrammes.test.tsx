@@ -60,7 +60,7 @@ const ACTIVITIES = [
   {
     id: 'a1', programme_id: 'p1', owner_mda_id: 'm1', involves_beneficiaries: true,
     name: 'CCT Dutse Q1', description: null, target_beneficiaries: 500,
-    lga: 'dutse', ward: null, location_description: null, schedule: null,
+    locations: [{ lga_id: 'lga-1', lga_code: 'dutse', lga_name: 'Dutse', whole_lga: true, wards: [] }], location_description: null, schedule: null,
     starts_on: '2026-01-01', ends_on: '2026-03-31',
     budget_amount: 250000000, funding_source: 'state_budget', status: 'active',
     created_by: null, created_at: null, updated_at: null,
@@ -68,7 +68,7 @@ const ACTIVITIES = [
   {
     id: 'a2', programme_id: 'p1', owner_mda_id: 'm1', involves_beneficiaries: false,
     name: 'CCT staff training', description: null, target_beneficiaries: null,
-    lga: 'hadejia', ward: null, location_description: null, schedule: null,
+    locations: [{ lga_id: 'lga-2', lga_code: 'hadejia', lga_name: 'Hadejia', whole_lga: true, wards: [] }], location_description: null, schedule: null,
     starts_on: null, ends_on: null,
     budget_amount: 50000000, funding_source: 'donor', status: 'planned',
     created_by: null, created_at: null, updated_at: null,

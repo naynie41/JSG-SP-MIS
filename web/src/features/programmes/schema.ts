@@ -24,8 +24,9 @@ export const activitySchema = z
     name: z.string().min(1, 'A name is required').max(255),
     description: z.string().max(2000).optional().or(z.literal('')),
     target_beneficiaries: z.string().optional().or(z.literal('')),
-    lga: z.string().optional().or(z.literal('')),
-    ward: z.string().max(100).optional().or(z.literal('')),
+    // The LGA/ward location SET is not in this schema: it is a nested array edited by
+    // LocationSetField and validated server-side, where the ward-belongs-to-LGA rule
+    // can actually be checked against the reference data.
     location_description: z.string().max(255).optional().or(z.literal('')),
     budget_naira: z.string().optional().or(z.literal('')),
     funding_source: z.string().max(255).optional().or(z.literal('')),

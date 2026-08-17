@@ -94,7 +94,10 @@ class RegistryServiceProvider extends ServiceProvider
             // exactly as the on-screen list does.
             ->register('export', PermissionAction::RevealPii, 'Reveal beneficiary NIN/BVN in exports (unmasked)')
             ->register('household', PermissionAction::View, 'View households')
-            ->register('household', PermissionAction::Create, 'Create households')
+            // No `household.create`: households are formed by source ingestion from the
+            // household-reference field (CLAUDE.md §8), never by a create action. A
+            // permission nothing can consume makes the RBAC set claim a capability the
+            // system does not have.
             ->register('household', PermissionAction::Edit, 'Edit households');
     }
 }

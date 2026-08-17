@@ -21,6 +21,7 @@ import { MatchRevealPanel } from './MatchRevealPanel'
 import { MatchStrengthBand } from './MatchStrengthBand'
 import { ResolveRowControls } from './ResolveRowControls'
 import type { ImportRow } from './types'
+import { formatWaitedFor } from '@/lib/utils/duration'
 import layout from '@/features/shared/formLayout.module.css'
 import styles from './registry.module.css'
 
@@ -42,6 +43,7 @@ const ROW_FILTERS: { value: RowFilter; label: string; match: (r: ImportRow) => b
 
 const rowName = (r: ImportRow) =>
   [r.preview.first_name, r.preview.last_name].filter(Boolean).join(' ') || `row ${r.row_number}`
+
 
 export function ImportBatchPage() {
   const { id } = useParams<{ id: string }>()
@@ -377,7 +379,23 @@ export function ImportBatchPage() {
             {batch.draft_target_beneficiaries}. You can still continue — this is only a warning.
           </p>
         )}
-        {isProcessing && <p className={styles.note}>Processing… this view refreshes automatically.</p>}
+        {/* While it is genuinely being worked on, say so quietly. Once it has waited
+            longer than parsing could take, stop claiming progress: the job was almost
+            certainly never picked up, which produces no error anywhere because nothing
+            failed. Saying "Processing…" indefinitely is the part that wasted someone's
+            afternoon. */}
+        {isProcessing && !batch.processing_stalled && (
+          <p className={styles.note}>Processing… this view refreshes automatically.</p>
+        )}
+
+        {isProcessing && batch.processing_stalled && (
+          <p className={layout.alert} role="alert" data-variant="warning">
+            Still waiting after {formatWaitedFor(batch.processing_for_seconds)}. A file this size
+            normally takes seconds, so the background worker that processes imports may not be
+            running. Nothing has been lost — this batch resumes on its own once the worker is
+            back. Ask whoever administers this system to check the queue worker.
+          </p>
+        )}
         {batch.error && (
           <p className={layout.alert} role="alert">
             {batch.error}
@@ -449,7 +467,9 @@ export function ImportBatchPage() {
           }
           emptyTitle={
             isProcessing
-              ? 'Parsing rows…'
+              ? batch.processing_stalled
+                ? 'Not started yet'
+                : 'Parsing rows…'
               : filter === 'review'
                 ? 'No rows need review'
                 : 'No rows match this filter'

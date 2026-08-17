@@ -9,6 +9,7 @@ use App\Domain\Benefit\Services\LedgerAggregator;
 use App\Domain\Programme\Enums\ActivityStatus;
 use App\Domain\Programme\Models\Activity;
 use App\Domain\Programme\Models\Programme;
+use App\Domain\Programme\Services\ActivityLocationService;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Programme\StoreActivityRequest;
 use App\Http\Requests\Programme\UpdateActivityRequest;
@@ -17,6 +18,7 @@ use App\Http\Resources\ActivityResource;
 use App\Support\ApiResponse;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 /**
  * Activity management (PRD §10, ARCH §12.4, FR-PRG-02). An activity runs a global
@@ -25,6 +27,8 @@ use Illuminate\Http\Request;
  */
 class ActivityController extends Controller
 {
+    public function __construct(private readonly ActivityLocationService $locations) {}
+
     public function index(Request $request): JsonResponse
     {
         $this->authorize('viewAny', Activity::class);
@@ -34,6 +38,9 @@ class ActivityController extends Controller
         $status = $request->input('filter.status');
 
         $page = Activity::query()
+            // Eager-loaded because ActivityResource renders the location set for every
+            // row — without this the list is an N+1 over three tables.
+            ->with(['locations.lga', 'locations.ward'])
             ->when(is_string($programmeId) && $programmeId !== '', fn ($q) => $q->where('programme_id', $programmeId))
             ->when(is_string($status) && $status !== '', fn ($q) => $q->where('status', $status))
             ->latest('created_at')
@@ -55,12 +62,20 @@ class ActivityController extends Controller
             return ApiResponse::error('MDA_REQUIRED', 'Only users assigned to an MDA can create activities.', [], 422);
         }
 
-        $activity = Activity::create([
-            ...$request->safe()->except('programme_id'),
-            'programme_id' => $programme->id,
-            'owner_mda_id' => $mdaId, // the CREATING MDA owns the activity (§10)
-            'created_by' => $request->user()->id,
-        ]);
+        $activity = DB::transaction(function () use ($request, $programme, $mdaId): Activity {
+            $activity = Activity::create([
+                ...$request->safe()->except(['programme_id', 'locations']),
+                'programme_id' => $programme->id,
+                'owner_mda_id' => $mdaId, // the CREATING MDA owns the activity (§10)
+                'created_by' => $request->user()->id,
+            ]);
+
+            // Same transaction: an activity that saved but lost its location set would
+            // silently claim to cover nowhere.
+            $this->locations->sync($activity, $request->validated('locations') ?? []);
+
+            return $activity;
+        });
 
         return ApiResponse::success((new ActivityResource($activity))->resolve(), status: 201);
     }
@@ -74,7 +89,9 @@ class ActivityController extends Controller
      */
     public function show(string $activity): JsonResponse
     {
-        $model = Activity::query()->with('programme')->findOrFail($activity);
+        $model = Activity::query()
+            ->with(['programme', 'locations.lga', 'locations.ward'])
+            ->findOrFail($activity);
 
         $this->authorize('view', $model);
 
@@ -87,9 +104,20 @@ class ActivityController extends Controller
 
         $this->authorize('update', $model);
 
-        $model->update($request->validated());
+        $fresh = DB::transaction(function () use ($request, $model): Activity {
+            $model->update($request->safe()->except('locations'));
 
-        return ApiResponse::success((new ActivityResource($model->fresh()))->resolve());
+            // Submitting `locations` replaces the whole set; omitting it leaves the
+            // existing set alone, so a partial update of (say) the budget cannot wipe
+            // an activity's declared coverage.
+            if ($request->has('locations')) {
+                $this->locations->sync($model, $request->validated('locations') ?? []);
+            }
+
+            return $model->fresh();
+        });
+
+        return ApiResponse::success((new ActivityResource($fresh))->resolve());
     }
 
     /** Budget: allocated vs utilised, derived from the benefit ledger (FR-PRG-04). */

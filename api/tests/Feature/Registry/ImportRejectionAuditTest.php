@@ -16,6 +16,7 @@ use App\Domain\Registry\Models\ImportBatch;
 use Database\Seeders\RolesAndPermissionsSeeder;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Http\UploadedFile;
+use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Storage;
 use Tests\Concerns\ConfirmsImportMapping;
 use Tests\TestCase;
@@ -163,9 +164,16 @@ class ImportRejectionAuditTest extends TestCase
             collect(array_keys($after))->sort()->values()->all(),
         );
 
-        // A rejected row is exactly the data we refused to store; auditing it would
-        // reintroduce that PII through the back door (SECURITY.md §6).
-        $payload = (string) json_encode($after);
+        /*
+         * A rejected row is exactly the data we refused to store; auditing it would
+         * reintroduce that PII through the back door (SECURITY.md §6).
+         *
+         * The batch id is excluded from the scan rather than searched: it is a UUID, and
+         * short numeric needles like "123" occur inside random hex often enough to make
+         * the assertion pass or fail on the luck of a generated id. Its value is checked
+         * exactly, above.
+         */
+        $payload = (string) json_encode(Arr::except($after, ['import_batch_id']));
         foreach (['Bad', 'Worse', 'not_a_lga', '123', '456'] as $value) {
             $this->assertStringNotContainsString($value, $payload);
         }

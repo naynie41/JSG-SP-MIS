@@ -23,7 +23,7 @@ class HouseholdFactory extends Factory
     {
         return [
             'owner_mda_id' => Mda::factory(),
-            'registration_source' => RegistrationSource::Manual,
+            'registration_source' => RegistrationSource::Excel,
             'registration_date' => now()->toDateString(),
             'address' => fake()->streetAddress(),
             'lga' => fake()->city(),

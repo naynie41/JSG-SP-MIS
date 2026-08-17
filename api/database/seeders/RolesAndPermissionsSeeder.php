@@ -59,7 +59,10 @@ class RolesAndPermissionsSeeder extends Seeder
             'beneficiary.view', 'beneficiary.create', 'beneficiary.edit', 'beneficiary.approve', 'beneficiary.export',
             // Right-of-access (DSAR): the owner MDA is the data controller (NFR-PRV-01).
             'beneficiary.access_request',
-            'beneficiary-lookup.view', 'household.view', 'household.create', 'household.edit',
+            // No `household.create` — households are formed by source ingestion, never
+            // created directly (CLAUDE.md §8). `household.edit` covers correcting one
+            // and managing its membership.
+            'beneficiary-lookup.view', 'household.view', 'household.edit',
             // Programmes are a global catalog (§10) — MDAs read but never create/edit them;
             // they run programmes through their own MDA-owned activities.
             'programme.view',

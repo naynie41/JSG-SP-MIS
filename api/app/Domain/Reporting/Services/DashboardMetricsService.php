@@ -16,6 +16,7 @@ use App\Domain\Programme\Models\Activity;
 use App\Domain\Programme\Models\Enrollment;
 use App\Domain\Programme\Models\Programme;
 use App\Domain\Programme\Models\ProgrammeFunder;
+use App\Domain\Reference\Models\Lga;
 use App\Domain\Referral\Models\Referral;
 use App\Domain\Registry\Models\Beneficiary;
 use App\Domain\Registry\Models\Household;
@@ -736,12 +737,7 @@ class DashboardMetricsService
         if ($this->filter->programmeId !== null) {
             $query->where('programme_id', $this->filter->programmeId);
         }
-        if ($this->filter->lga !== null) {
-            $query->where('lga', $this->filter->lga);
-        }
-        if ($this->filter->ward !== null) {
-            $query->where('ward', $this->filter->ward);
-        }
+        $query->declaredIn($this->filter->lga, $this->filter->ward);
 
         $joint = $query->select('programme_id')
             ->groupBy('programme_id')
@@ -1402,18 +1398,31 @@ class DashboardMetricsService
             return ['count' => 0, 'cells' => []];
         }
 
-        $partnerCells = $partnerActivities
-            ->filter(fn (Activity $a) => $a->lga !== null && $a->lga !== '')
-            ->map(fn (Activity $a) => $a->programme_id.'|'.$a->lga)->unique()->values()->all();
+        // A cell is (programme, LGA). An activity now declares a SET of LGAs, so one
+        // activity can occupy several cells — previously it could only ever occupy one,
+        // which under-reported overlap for any activity working across LGAs.
+        $partnerCells = Activity::query()->withoutGlobalScope(MdaScope::class)
+            ->whereIn('id', $partnerActivities->pluck('id')->all())
+            ->with('locations')
+            ->get()
+            ->flatMap(fn (Activity $a) => $a->locations->map(fn ($loc) => $a->programme_id.'|'.$loc->lga_id))
+            ->unique()->values()->all();
         if ($partnerCells === []) {
             return ['count' => 0, 'cells' => []];
         }
 
         $byCell = Activity::query()->withoutGlobalScope(MdaScope::class)
-            ->whereIn('programme_id', $fundedProgrammeIds)->whereNotNull('lga')
-            ->get(['programme_id', 'lga', 'owner_mda_id', 'funding_partner_id'])
-            ->groupBy(fn (Activity $a) => $a->programme_id.'|'.$a->lga);
+            ->whereIn('programme_id', $fundedProgrammeIds)
+            ->whereHas('locations')
+            ->with('locations')
+            ->get(['id', 'programme_id', 'owner_mda_id', 'funding_partner_id'])
+            ->flatMap(fn (Activity $a) => $a->locations->map(fn ($loc) => [$a->programme_id.'|'.$loc->lga_id, $a]))
+            ->groupBy(fn (array $pair): string => $pair[0])
+            ->map(fn ($pairs) => $pairs->map(fn (array $pair): Activity => $pair[1])->unique('id')->values());
         $names = Programme::query()->whereIn('id', $fundedProgrammeIds)->pluck('name', 'id');
+        $lgaNames = Lga::query()
+            ->whereIn('id', array_map(fn (string $cell): string => explode('|', $cell, 2)[1], $partnerCells))
+            ->pluck('name', 'id');
 
         $cells = [];
         foreach ($partnerCells as $cellKey) {
@@ -1424,11 +1433,14 @@ class DashboardMetricsService
                 ->pluck('owner_mda_id')->filter()->unique()->count();
 
             if ($otherFunders > 0 || $otherMdas > 0) {
-                [$pid, $lga] = explode('|', (string) $cellKey, 2);
+                [$pid, $lgaId] = explode('|', (string) $cellKey, 2);
                 $cells[] = [
                     'programme_id' => $pid,
                     'programme' => $names[$pid] ?? null,
-                    'lga' => $lga,
+                    // The cell is keyed by lga_id now, but the payload keeps reporting a
+                    // readable LGA — a uuid here would be a regression for every consumer.
+                    'lga_id' => $lgaId,
+                    'lga' => $lgaNames[$lgaId] ?? null,
                     'other_funders' => $otherFunders,
                     'other_mdas' => $otherMdas,
                 ];

@@ -18,6 +18,14 @@ function expiryLabel(grant: AccessGrant): string {
   return new Date(grant.expires_at).toLocaleDateString(undefined, { year: 'numeric', month: 'short', day: 'numeric' })
 }
 
+const when = (iso: string | null): string => {
+  if (!iso) return ''
+  const date = new Date(iso)
+  return Number.isNaN(date.getTime())
+    ? ''
+    : date.toLocaleDateString(undefined, { year: 'numeric', month: 'short', day: 'numeric' })
+}
+
 /**
  * Cross-MDA access grants (FR-UAM-03, FR-DSH-01): who can read another MDA's scoped
  * data, why, and until when. Admins grant and revoke; every change is audited
@@ -60,15 +68,46 @@ export function GrantsPage() {
     {
       key: 'status',
       header: 'Status',
-      render: (g) => (g.active ? <Badge variant="success" dot>Active</Badge> : <Badge variant="neutral" dot>Expired</Badge>),
+      // Three states, not two. A revoked grant is retained for the audit trail
+      // (NFR-PRV-01), so "not active" no longer implies "expired" — and calling a
+      // withdrawal an expiry would misreport how the access actually ended.
+      render: (g) => {
+        if (g.active) {
+          return (
+            <Badge variant="success" dot>
+              Active
+            </Badge>
+          )
+        }
+        if (g.revoked_at) {
+          return (
+            <div className={styles.statusStack}>
+              <Badge variant="warning" dot>
+                Revoked
+              </Badge>
+              <span className={styles.note}>
+                {g.revoked_by ? `by ${g.revoked_by}` : ''} {when(g.revoked_at)}
+                {g.revocation_reason ? ` — ${g.revocation_reason}` : ''}
+              </span>
+            </div>
+          )
+        }
+        return (
+          <Badge variant="neutral" dot>
+            Expired
+          </Badge>
+        )
+      },
     },
     { key: 'granted_by', header: 'Granted by', render: (g) => g.granted_by ?? <span className={styles.note}>—</span> },
     {
       key: 'actions',
       header: '',
       align: 'right',
+      // Only a live grant can be withdrawn; the row remains listed afterwards as
+      // history, and offering "Revoke" on it again would be a dead control.
       render: (g) =>
-        canRevoke ? (
+        canRevoke && g.active ? (
           <Button size="sm" variant="tertiary" leftIcon={Trash2} onClick={() => setConfirm(g)}>
             Revoke
           </Button>

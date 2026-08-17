@@ -9300,6 +9300,28 @@ return [
       ),
     ),
   ),
+  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Programme\\Models\\ActivityLocation.php' => 
+  array (
+    'PHPStan\\Rules\\DeadCode\\MethodWithoutImpurePointsCollector' => 
+    array (
+      0 => 
+      array (
+        0 => 'App\\Domain\\Programme\\Models\\ActivityLocation',
+        1 => 'isWholeLga',
+        2 => 'App\\Domain\\Programme\\Models\\ActivityLocation',
+        3 => 
+        array (
+        ),
+      ),
+    ),
+    'PHPStan\\Rules\\Traits\\TraitUseCollector' => 
+    array (
+      0 => 
+      array (
+        0 => 'Illuminate\\Database\\Eloquent\\Concerns\\HasUuids',
+      ),
+    ),
+  ),
   'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Programme\\Models\\Enrollment.php' => 
   array (
     'PHPStan\\Rules\\Comparison\\ConstantConditionInTraitCollector' => 
@@ -10092,6 +10114,54 @@ return [
       ),
     ),
   ),
+  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Programme\\Services\\ActivityLocationService.php' => 
+  array (
+    'PHPStan\\Rules\\DeadCode\\MethodWithoutImpurePointsCollector' => 
+    array (
+      0 => 
+      array (
+        0 => 'App\\Domain\\Programme\\Services\\ActivityLocationService',
+        1 => 'flatten',
+        2 => 'App\\Domain\\Programme\\Services\\ActivityLocationService',
+        3 => 
+        array (
+        ),
+      ),
+      1 => 
+      array (
+        0 => 'App\\Domain\\Programme\\Services\\ActivityLocationService',
+        1 => 'duplicateLgas',
+        2 => 'App\\Domain\\Programme\\Services\\ActivityLocationService',
+        3 => 
+        array (
+          0 => 'f' . "\0" . 'array_map',
+          1 => 'f' . "\0" . 'array_filter',
+        ),
+      ),
+    ),
+    'PHPStan\\Rules\\DeadCode\\PossiblyPureFuncCallCollector' => 
+    array (
+      0 => 
+      array (
+        0 => 'usort',
+        1 => 138,
+      ),
+      1 => 
+      array (
+        0 => 'usort',
+        1 => 143,
+      ),
+    ),
+    'PHPStan\\Rules\\DeadCode\\PossiblyPureStaticCallCollector' => 
+    array (
+      0 => 
+      array (
+        0 => 'Illuminate\\Database\\Connection',
+        1 => 'transaction',
+        2 => 43,
+      ),
+    ),
+  ),
   'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Programme\\Services\\EligibilityEvaluator.php' => 
   array (
     'PHPStan\\Rules\\DeadCode\\MethodWithoutImpurePointsCollector' => 
@@ -10179,6 +10249,280 @@ return [
         1 => 
         array (
         ),
+      ),
+    ),
+  ),
+  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Reference\\Imports\\AdministrativeDivisionLoader.php' => 
+  array (
+    'PHPStan\\Rules\\DeadCode\\ConstructorWithoutImpurePointsCollector' => 
+    array (
+      0 => 
+      array (
+        0 => 'App\\Domain\\Reference\\Imports\\AdministrativeDivisionLoader',
+        1 => 
+        array (
+        ),
+      ),
+    ),
+    'PHPStan\\Rules\\DeadCode\\MethodWithoutImpurePointsCollector' => 
+    array (
+      0 => 
+      array (
+        0 => 'App\\Domain\\Reference\\Imports\\AdministrativeDivisionLoader',
+        1 => 'stripBom',
+        2 => 'App\\Domain\\Reference\\Imports\\AdministrativeDivisionLoader',
+        3 => 
+        array (
+        ),
+      ),
+    ),
+  ),
+  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Reference\\Imports\\DivisionLoadResult.php' => 
+  array (
+    'PHPStan\\Rules\\DeadCode\\ConstructorWithoutImpurePointsCollector' => 
+    array (
+      0 => 
+      array (
+        0 => 'App\\Domain\\Reference\\Imports\\DivisionLoadResult',
+        1 => 
+        array (
+        ),
+      ),
+    ),
+    'PHPStan\\Rules\\DeadCode\\MethodWithoutImpurePointsCollector' => 
+    array (
+      0 => 
+      array (
+        0 => 'App\\Domain\\Reference\\Imports\\DivisionLoadResult',
+        1 => 'totalWards',
+        2 => 'App\\Domain\\Reference\\Imports\\DivisionLoadResult',
+        3 => 
+        array (
+        ),
+      ),
+      1 => 
+      array (
+        0 => 'App\\Domain\\Reference\\Imports\\DivisionLoadResult',
+        1 => 'totalLgas',
+        2 => 'App\\Domain\\Reference\\Imports\\DivisionLoadResult',
+        3 => 
+        array (
+        ),
+      ),
+    ),
+  ),
+  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Reference\\Imports\\ReferenceDatasetException.php' => 
+  array (
+    'PHPStan\\Rules\\DeadCode\\MethodWithoutImpurePointsCollector' => 
+    array (
+      0 => 
+      array (
+        0 => 'App\\Domain\\Reference\\Imports\\ReferenceDatasetException',
+        1 => 'fileMissing',
+        2 => 'App\\Domain\\Reference\\Imports\\ReferenceDatasetException',
+        3 => 
+        array (
+        ),
+      ),
+      1 => 
+      array (
+        0 => 'App\\Domain\\Reference\\Imports\\ReferenceDatasetException',
+        1 => 'unreadable',
+        2 => 'App\\Domain\\Reference\\Imports\\ReferenceDatasetException',
+        3 => 
+        array (
+        ),
+      ),
+      2 => 
+      array (
+        0 => 'App\\Domain\\Reference\\Imports\\ReferenceDatasetException',
+        1 => 'empty',
+        2 => 'App\\Domain\\Reference\\Imports\\ReferenceDatasetException',
+        3 => 
+        array (
+        ),
+      ),
+      3 => 
+      array (
+        0 => 'App\\Domain\\Reference\\Imports\\ReferenceDatasetException',
+        1 => 'unsupportedFormat',
+        2 => 'App\\Domain\\Reference\\Imports\\ReferenceDatasetException',
+        3 => 
+        array (
+        ),
+      ),
+      4 => 
+      array (
+        0 => 'App\\Domain\\Reference\\Imports\\ReferenceDatasetException',
+        1 => 'malformed',
+        2 => 'App\\Domain\\Reference\\Imports\\ReferenceDatasetException',
+        3 => 
+        array (
+        ),
+      ),
+      5 => 
+      array (
+        0 => 'App\\Domain\\Reference\\Imports\\ReferenceDatasetException',
+        1 => 'missingColumns',
+        2 => 'App\\Domain\\Reference\\Imports\\ReferenceDatasetException',
+        3 => 
+        array (
+        ),
+      ),
+      6 => 
+      array (
+        0 => 'App\\Domain\\Reference\\Imports\\ReferenceDatasetException',
+        1 => 'unknownLgas',
+        2 => 'App\\Domain\\Reference\\Imports\\ReferenceDatasetException',
+        3 => 
+        array (
+          0 => 'f' . "\0" . 'sort',
+        ),
+      ),
+      7 => 
+      array (
+        0 => 'App\\Domain\\Reference\\Imports\\ReferenceDatasetException',
+        1 => 'incompleteLgas',
+        2 => 'App\\Domain\\Reference\\Imports\\ReferenceDatasetException',
+        3 => 
+        array (
+          0 => 'f' . "\0" . 'sort',
+        ),
+      ),
+      8 => 
+      array (
+        0 => 'App\\Domain\\Reference\\Imports\\ReferenceDatasetException',
+        1 => 'conflictingWard',
+        2 => 'App\\Domain\\Reference\\Imports\\ReferenceDatasetException',
+        3 => 
+        array (
+        ),
+      ),
+    ),
+    'PHPStan\\Rules\\DeadCode\\PossiblyPureFuncCallCollector' => 
+    array (
+      0 => 
+      array (
+        0 => 'sort',
+        1 => 89,
+      ),
+      1 => 
+      array (
+        0 => 'sort',
+        1 => 108,
+      ),
+    ),
+  ),
+  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Reference\\Models\\Lga.php' => 
+  array (
+    'PHPStan\\Rules\\DeadCode\\MethodWithoutImpurePointsCollector' => 
+    array (
+      0 => 
+      array (
+        0 => 'App\\Domain\\Reference\\Models\\Lga',
+        1 => 'newFactory',
+        2 => 'App\\Domain\\Reference\\Models\\Lga',
+        3 => 
+        array (
+          0 => 'm' . "\0" . 'illuminate\\database\\eloquent\\factories\\factory' . "\0" . 'new',
+        ),
+      ),
+      1 => 
+      array (
+        0 => 'App\\Domain\\Reference\\Models\\Lga',
+        1 => 'casts',
+        2 => 'App\\Domain\\Reference\\Models\\Lga',
+        3 => 
+        array (
+        ),
+      ),
+    ),
+    'PHPStan\\Rules\\Traits\\TraitUseCollector' => 
+    array (
+      0 => 
+      array (
+        0 => 'Illuminate\\Database\\Eloquent\\Factories\\HasFactory',
+        1 => 'Illuminate\\Database\\Eloquent\\Concerns\\HasUuids',
+      ),
+    ),
+  ),
+  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Reference\\Models\\Ward.php' => 
+  array (
+    'PHPStan\\Rules\\DeadCode\\MethodWithoutImpurePointsCollector' => 
+    array (
+      0 => 
+      array (
+        0 => 'App\\Domain\\Reference\\Models\\Ward',
+        1 => 'newFactory',
+        2 => 'App\\Domain\\Reference\\Models\\Ward',
+        3 => 
+        array (
+          0 => 'm' . "\0" . 'illuminate\\database\\eloquent\\factories\\factory' . "\0" . 'new',
+        ),
+      ),
+      1 => 
+      array (
+        0 => 'App\\Domain\\Reference\\Models\\Ward',
+        1 => 'casts',
+        2 => 'App\\Domain\\Reference\\Models\\Ward',
+        3 => 
+        array (
+        ),
+      ),
+    ),
+    'PHPStan\\Rules\\Traits\\TraitUseCollector' => 
+    array (
+      0 => 
+      array (
+        0 => 'Illuminate\\Database\\Eloquent\\Factories\\HasFactory',
+        1 => 'Illuminate\\Database\\Eloquent\\Concerns\\HasUuids',
+      ),
+    ),
+  ),
+  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Reference\\Services\\ReferenceDataCache.php' => 
+  array (
+    'PHPStan\\Rules\\DeadCode\\MethodWithoutImpurePointsCollector' => 
+    array (
+      0 => 
+      array (
+        0 => 'App\\Domain\\Reference\\Services\\ReferenceDataCache',
+        1 => 'lgas',
+        2 => 'App\\Domain\\Reference\\Services\\ReferenceDataCache',
+        3 => 
+        array (
+          0 => 'm' . "\0" . 'illuminate\\cache\\repository' . "\0" . 'remember',
+          1 => 'm' . "\0" . 'app\\domain\\reference\\services\\referencedatacache' . "\0" . 'key',
+        ),
+      ),
+      1 => 
+      array (
+        0 => 'App\\Domain\\Reference\\Services\\ReferenceDataCache',
+        1 => 'wardsFor',
+        2 => 'App\\Domain\\Reference\\Services\\ReferenceDataCache',
+        3 => 
+        array (
+          0 => 'm' . "\0" . 'illuminate\\cache\\repository' . "\0" . 'remember',
+          1 => 'm' . "\0" . 'app\\domain\\reference\\services\\referencedatacache' . "\0" . 'key',
+        ),
+      ),
+      2 => 
+      array (
+        0 => 'App\\Domain\\Reference\\Services\\ReferenceDataCache',
+        1 => 'version',
+        2 => 'App\\Domain\\Reference\\Services\\ReferenceDataCache',
+        3 => 
+        array (
+          0 => 'm' . "\0" . 'illuminate\\cache\\repository' . "\0" . 'rememberforever',
+        ),
+      ),
+    ),
+    'PHPStan\\Rules\\DeadCode\\PossiblyPureStaticCallCollector' => 
+    array (
+      0 => 
+      array (
+        0 => 'Illuminate\\Cache\\Repository',
+        1 => 'forever',
+        2 => 87,
       ),
     ),
   ),
@@ -11226,6 +11570,43 @@ return [
         0 => 'App\\Domain\\Registry\\Enums\\HouseholdRole',
         1 => 'label',
         2 => 'App\\Domain\\Registry\\Enums\\HouseholdRole',
+        3 => 
+        array (
+        ),
+      ),
+    ),
+  ),
+  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Registry\\Enums\\RegistrationSource.php' => 
+  array (
+    'PHPStan\\Rules\\DeadCode\\MethodWithoutImpurePointsCollector' => 
+    array (
+      0 => 
+      array (
+        0 => 'App\\Domain\\Registry\\Enums\\RegistrationSource',
+        1 => 'assignable',
+        2 => 'App\\Domain\\Registry\\Enums\\RegistrationSource',
+        3 => 
+        array (
+          0 => 'f' . "\0" . 'array_filter',
+          1 => 'm' . "\0" . 'app\\domain\\registry\\enums\\registrationsource' . "\0" . 'isassignable',
+        ),
+      ),
+      1 => 
+      array (
+        0 => 'App\\Domain\\Registry\\Enums\\RegistrationSource',
+        1 => 'assignableValues',
+        2 => 'App\\Domain\\Registry\\Enums\\RegistrationSource',
+        3 => 
+        array (
+          0 => 'f' . "\0" . 'array_map',
+          1 => 'm' . "\0" . 'app\\domain\\registry\\enums\\registrationsource' . "\0" . 'assignable',
+        ),
+      ),
+      2 => 
+      array (
+        0 => 'App\\Domain\\Registry\\Enums\\RegistrationSource',
+        1 => 'isAssignable',
+        2 => 'App\\Domain\\Registry\\Enums\\RegistrationSource',
         3 => 
         array (
         ),
@@ -14075,13 +14456,22 @@ return [
       5 => 
       array (
         0 => 'App\\Domain\\Registry\\Models\\ImportBatch',
-        1 => 'casts',
+        1 => 'isProcessing',
         2 => 'App\\Domain\\Registry\\Models\\ImportBatch',
         3 => 
         array (
         ),
       ),
       6 => 
+      array (
+        0 => 'App\\Domain\\Registry\\Models\\ImportBatch',
+        1 => 'casts',
+        2 => 'App\\Domain\\Registry\\Models\\ImportBatch',
+        3 => 
+        array (
+        ),
+      ),
+      7 => 
       array (
         0 => 'App\\Domain\\Registry\\Models\\ImportBatch',
         1 => 'auditExcluded',
@@ -14098,6 +14488,16 @@ return [
         0 => 'Illuminate\\Database\\Eloquent\\Model',
         1 => 'addGlobalScope',
         2 => 21,
+      ),
+    ),
+    'PHPStan\\Rules\\Methods\\NamedArgumentParameterMethodCallsCollector' => 
+    array (
+      0 => 
+      array (
+        0 => 'Carbon\\Carbon',
+        1 => 'diffInSeconds',
+        2 => 'absolute',
+        3 => 96,
       ),
     ),
     'PHPStan\\Rules\\Traits\\TraitUseCollector' => 
@@ -16417,6 +16817,19 @@ return [
         ),
       ),
     ),
+    'PHPStan\\Rules\\DeadCode\\MethodWithoutImpurePointsCollector' => 
+    array (
+      0 => 
+      array (
+        0 => 'App\\Domain\\Reporting\\Gis\\GisCoverageService',
+        1 => 'areaCodesFor',
+        2 => 'App\\Domain\\Reporting\\Gis\\GisCoverageService',
+        3 => 
+        array (
+          0 => 'f' . "\0" . 'array_filter',
+        ),
+      ),
+    ),
   ),
   'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Reporting\\Jobs\\GenerateReport.php' => 
   array (
@@ -17036,17 +17449,17 @@ return [
       0 => 
       array (
         0 => 'usort',
-        1 => 1142,
+        1 => 1138,
       ),
       1 => 
       array (
         0 => 'usort',
-        1 => 1231,
+        1 => 1227,
       ),
       2 => 
       array (
         0 => 'usort',
-        1 => 1347,
+        1 => 1343,
       ),
     ),
     'PHPStan\\Rules\\DeadCode\\PossiblyPureMethodCallCollector' => 
@@ -17058,7 +17471,7 @@ return [
           0 => 'App\\Domain\\Reporting\\Services\\DashboardMetricsService',
         ),
         1 => 'applyActivityFilter',
-        2 => 189,
+        2 => 190,
       ),
       1 => 
       array (
@@ -17067,7 +17480,7 @@ return [
           0 => 'App\\Domain\\Reporting\\Services\\DashboardMetricsService',
         ),
         1 => 'applyActivityFilter',
-        2 => 483,
+        2 => 484,
       ),
       2 => 
       array (
@@ -17076,7 +17489,7 @@ return [
           0 => 'App\\Domain\\Reporting\\Services\\DashboardMetricsService',
         ),
         1 => 'applyCoordinationFilter',
-        2 => 648,
+        2 => 649,
       ),
       3 => 
       array (
@@ -17085,7 +17498,7 @@ return [
           0 => 'App\\Domain\\Reporting\\Services\\DashboardMetricsService',
         ),
         1 => 'applyCoordinationFilter',
-        2 => 657,
+        2 => 658,
       ),
     ),
   ),
@@ -17865,7 +18278,7 @@ return [
       array (
         0 => 'App\\Domain\\Access\\Events\\CrossMdaAccessRevoked',
         1 => 'dispatch',
-        2 => 53,
+        2 => 72,
       ),
     ),
   ),
@@ -18360,6 +18773,19 @@ return [
       ),
     ),
   ),
+  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Programme\\ActivityController.php' => 
+  array (
+    'PHPStan\\Rules\\DeadCode\\ConstructorWithoutImpurePointsCollector' => 
+    array (
+      0 => 
+      array (
+        0 => 'App\\Http\\Controllers\\Api\\V1\\Programme\\ActivityController',
+        1 => 
+        array (
+        ),
+      ),
+    ),
+  ),
   'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Programme\\EnrollmentController.php' => 
   array (
     'PHPStan\\Rules\\DeadCode\\ConstructorWithoutImpurePointsCollector' => 
@@ -18396,6 +18822,19 @@ return [
         1 => 'usageCounts',
         2 => 'App\\Http\\Controllers\\Api\\V1\\Programme\\ProgrammeController',
         3 => 
+        array (
+        ),
+      ),
+    ),
+  ),
+  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Reference\\AdministrativeDivisionController.php' => 
+  array (
+    'PHPStan\\Rules\\DeadCode\\ConstructorWithoutImpurePointsCollector' => 
+    array (
+      0 => 
+      array (
+        0 => 'App\\Http\\Controllers\\Api\\V1\\Reference\\AdministrativeDivisionController',
+        1 => 
         array (
         ),
       ),
@@ -19883,19 +20322,328 @@ return [
       ),
     ),
   ),
+  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Programme\\Concerns\\ValidatesLocationSet.php' => 
+  array (
+    'PHPStan\\Rules\\Traits\\TraitDeclarationCollector' => 
+    array (
+      0 => 
+      array (
+        0 => 'App\\Http\\Requests\\Programme\\Concerns\\ValidatesLocationSet',
+        1 => 32,
+      ),
+    ),
+  ),
   'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Programme\\StoreActivityRequest.php' => 
   array (
+    'PHPStan\\Rules\\Comparison\\ConstantConditionInTraitCollector' => 
+    array (
+      0 => 
+      array (
+        0 => 'PHPStan\\Rules\\Comparison\\ImpossibleCheckTypeMethodCallRule',
+        1 => 'App\\Http\\Requests\\Programme\\Concerns\\ValidatesLocationSet',
+        2 => '$this->input(\'locations\'):66',
+        3 => NULL,
+      ),
+      1 => 
+      array (
+        0 => 'PHPStan\\Rules\\Comparison\\IfConstantConditionRule',
+        1 => 'App\\Http\\Requests\\Programme\\Concerns\\ValidatesLocationSet',
+        2 => '!is_array($locations) || $locations === [] || $validator->errors()->isNotEmpty():68',
+        3 => NULL,
+      ),
+      2 => 
+      array (
+        0 => 'PHPStan\\Rules\\Comparison\\BooleanNotConstantConditionRule',
+        1 => 'App\\Http\\Requests\\Programme\\Concerns\\ValidatesLocationSet',
+        2 => 'is_array($locations):68',
+        3 => NULL,
+      ),
+      3 => 
+      array (
+        0 => 'PHPStan\\Rules\\Comparison\\ImpossibleCheckTypeFunctionCallRule',
+        1 => 'App\\Http\\Requests\\Programme\\Concerns\\ValidatesLocationSet',
+        2 => 'is_array($locations):68',
+        3 => NULL,
+      ),
+      4 => 
+      array (
+        0 => 'PHPStan\\Rules\\Comparison\\StrictComparisonOfDifferentTypesRule',
+        1 => 'App\\Http\\Requests\\Programme\\Concerns\\ValidatesLocationSet',
+        2 => '$locations === []:68',
+        3 => NULL,
+      ),
+      5 => 
+      array (
+        0 => 'PHPStan\\Rules\\Comparison\\BooleanOrConstantConditionRule',
+        1 => 'App\\Http\\Requests\\Programme\\Concerns\\ValidatesLocationSet',
+        2 => '!is_array($locations):68',
+        3 => NULL,
+      ),
+      6 => 
+      array (
+        0 => 'PHPStan\\Rules\\Comparison\\BooleanOrConstantConditionRule',
+        1 => 'App\\Http\\Requests\\Programme\\Concerns\\ValidatesLocationSet',
+        2 => '$locations === []:68',
+        3 => NULL,
+      ),
+      7 => 
+      array (
+        0 => 'PHPStan\\Rules\\Comparison\\BooleanOrConstantConditionRule',
+        1 => 'App\\Http\\Requests\\Programme\\Concerns\\ValidatesLocationSet',
+        2 => '!is_array($locations) || $locations === []:68',
+        3 => NULL,
+      ),
+      8 => 
+      array (
+        0 => 'PHPStan\\Rules\\Comparison\\ImpossibleCheckTypeMethodCallRule',
+        1 => 'App\\Http\\Requests\\Programme\\Concerns\\ValidatesLocationSet',
+        2 => '$validator->errors()->isNotEmpty():68',
+        3 => NULL,
+      ),
+      9 => 
+      array (
+        0 => 'PHPStan\\Rules\\Comparison\\ImpossibleCheckTypeMethodCallRule',
+        1 => 'App\\Http\\Requests\\Programme\\Concerns\\ValidatesLocationSet',
+        2 => '$validator->errors():68',
+        3 => NULL,
+      ),
+      10 => 
+      array (
+        0 => 'PHPStan\\Rules\\Comparison\\BooleanOrConstantConditionRule',
+        1 => 'App\\Http\\Requests\\Programme\\Concerns\\ValidatesLocationSet',
+        2 => '!is_array($locations) || $locations === []:68',
+        3 => NULL,
+      ),
+      11 => 
+      array (
+        0 => 'PHPStan\\Rules\\Comparison\\BooleanOrConstantConditionRule',
+        1 => 'App\\Http\\Requests\\Programme\\Concerns\\ValidatesLocationSet',
+        2 => '$validator->errors()->isNotEmpty():68',
+        3 => NULL,
+      ),
+      12 => 
+      array (
+        0 => 'PHPStan\\Rules\\Comparison\\BooleanOrConstantConditionRule',
+        1 => 'App\\Http\\Requests\\Programme\\Concerns\\ValidatesLocationSet',
+        2 => '!is_array($locations) || $locations === [] || $validator->errors()->isNotEmpty():68',
+        3 => NULL,
+      ),
+      13 => 
+      array (
+        0 => 'PHPStan\\Rules\\Comparison\\ImpossibleCheckTypeFunctionCallRule',
+        1 => 'App\\Http\\Requests\\Programme\\Concerns\\ValidatesLocationSet',
+        2 => 'app(\\App\\Domain\\Programme\\Services\\ActivityLocationService::class):74',
+        3 => NULL,
+      ),
+      14 => 
+      array (
+        0 => 'PHPStan\\Rules\\Comparison\\IfConstantConditionRule',
+        1 => 'App\\Http\\Requests\\Programme\\Concerns\\ValidatesLocationSet',
+        2 => '($entry[\'whole_lga\'] ?? false) === true && ($entry[\'ward_ids\'] ?? []) !== []:77',
+        3 => NULL,
+      ),
+      15 => 
+      array (
+        0 => 'PHPStan\\Rules\\Comparison\\StrictComparisonOfDifferentTypesRule',
+        1 => 'App\\Http\\Requests\\Programme\\Concerns\\ValidatesLocationSet',
+        2 => '($entry[\'whole_lga\'] ?? false) === true:77',
+        3 => NULL,
+      ),
+      16 => 
+      array (
+        0 => 'PHPStan\\Rules\\Comparison\\StrictComparisonOfDifferentTypesRule',
+        1 => 'App\\Http\\Requests\\Programme\\Concerns\\ValidatesLocationSet',
+        2 => '($entry[\'ward_ids\'] ?? []) !== []:77',
+        3 => NULL,
+      ),
+      17 => 
+      array (
+        0 => 'PHPStan\\Rules\\Comparison\\BooleanAndConstantConditionRule',
+        1 => 'App\\Http\\Requests\\Programme\\Concerns\\ValidatesLocationSet',
+        2 => '($entry[\'whole_lga\'] ?? false) === true:77',
+        3 => NULL,
+      ),
+      18 => 
+      array (
+        0 => 'PHPStan\\Rules\\Comparison\\BooleanAndConstantConditionRule',
+        1 => 'App\\Http\\Requests\\Programme\\Concerns\\ValidatesLocationSet',
+        2 => '($entry[\'ward_ids\'] ?? []) !== []:77',
+        3 => NULL,
+      ),
+      19 => 
+      array (
+        0 => 'PHPStan\\Rules\\Comparison\\BooleanAndConstantConditionRule',
+        1 => 'App\\Http\\Requests\\Programme\\Concerns\\ValidatesLocationSet',
+        2 => '($entry[\'whole_lga\'] ?? false) === true && ($entry[\'ward_ids\'] ?? []) !== []:77',
+        3 => NULL,
+      ),
+      20 => 
+      array (
+        0 => 'PHPStan\\Rules\\Comparison\\ImpossibleCheckTypeMethodCallRule',
+        1 => 'App\\Http\\Requests\\Programme\\Concerns\\ValidatesLocationSet',
+        2 => '$validator->errors()->add("locations.{$index}.whole_lga", \'Choose either the whole LGA or specific wards, not both.\'):78',
+        3 => NULL,
+      ),
+      21 => 
+      array (
+        0 => 'PHPStan\\Rules\\Comparison\\ImpossibleCheckTypeMethodCallRule',
+        1 => 'App\\Http\\Requests\\Programme\\Concerns\\ValidatesLocationSet',
+        2 => '$validator->errors():78',
+        3 => NULL,
+      ),
+      22 => 
+      array (
+        0 => 'PHPStan\\Rules\\Comparison\\ImpossibleCheckTypeMethodCallRule',
+        1 => 'App\\Http\\Requests\\Programme\\Concerns\\ValidatesLocationSet',
+        2 => '$service->duplicateLgas($set):85',
+        3 => NULL,
+      ),
+      23 => 
+      array (
+        0 => 'PHPStan\\Rules\\Comparison\\IfConstantConditionRule',
+        1 => 'App\\Http\\Requests\\Programme\\Concerns\\ValidatesLocationSet',
+        2 => '$duplicates !== []:86',
+        3 => NULL,
+      ),
+      24 => 
+      array (
+        0 => 'PHPStan\\Rules\\Comparison\\StrictComparisonOfDifferentTypesRule',
+        1 => 'App\\Http\\Requests\\Programme\\Concerns\\ValidatesLocationSet',
+        2 => '$duplicates !== []:86',
+        3 => NULL,
+      ),
+      25 => 
+      array (
+        0 => 'PHPStan\\Rules\\Comparison\\ImpossibleCheckTypeMethodCallRule',
+        1 => 'App\\Http\\Requests\\Programme\\Concerns\\ValidatesLocationSet',
+        2 => '$service->lgaNames($duplicates):87',
+        3 => NULL,
+      ),
+      26 => 
+      array (
+        0 => 'PHPStan\\Rules\\Comparison\\ImpossibleCheckTypeMethodCallRule',
+        1 => 'App\\Http\\Requests\\Programme\\Concerns\\ValidatesLocationSet',
+        2 => '$validator->errors()->add(\'locations\', \'Each LGA may appear only once — list all of its wards in a single entry. Repeated: \' . implode(\', \', array_values($names)) . \'.\'):88',
+        3 => NULL,
+      ),
+      27 => 
+      array (
+        0 => 'PHPStan\\Rules\\Comparison\\ImpossibleCheckTypeMethodCallRule',
+        1 => 'App\\Http\\Requests\\Programme\\Concerns\\ValidatesLocationSet',
+        2 => '$validator->errors():88',
+        3 => NULL,
+      ),
+      28 => 
+      array (
+        0 => 'PHPStan\\Rules\\Comparison\\ImpossibleCheckTypeFunctionCallRule',
+        1 => 'App\\Http\\Requests\\Programme\\Concerns\\ValidatesLocationSet',
+        2 => 'implode(\', \', array_values($names)):91',
+        3 => NULL,
+      ),
+      29 => 
+      array (
+        0 => 'PHPStan\\Rules\\Comparison\\ImpossibleCheckTypeFunctionCallRule',
+        1 => 'App\\Http\\Requests\\Programme\\Concerns\\ValidatesLocationSet',
+        2 => 'array_values($names):91',
+        3 => NULL,
+      ),
+      30 => 
+      array (
+        0 => 'PHPStan\\Rules\\Comparison\\ImpossibleCheckTypeMethodCallRule',
+        1 => 'App\\Http\\Requests\\Programme\\Concerns\\ValidatesLocationSet',
+        2 => '$service->misplacedWards($set):96',
+        3 => NULL,
+      ),
+      31 => 
+      array (
+        0 => 'PHPStan\\Rules\\Comparison\\ImpossibleCheckTypeFunctionCallRule',
+        1 => 'App\\Http\\Requests\\Programme\\Concerns\\ValidatesLocationSet',
+        2 => 'array_search($wardId, $entry[\'ward_ids\'] ?? [], true):99',
+        3 => NULL,
+      ),
+      32 => 
+      array (
+        0 => 'PHPStan\\Rules\\Comparison\\IfConstantConditionRule',
+        1 => 'App\\Http\\Requests\\Programme\\Concerns\\ValidatesLocationSet',
+        2 => '$entry[\'lga_id\'] === $lgaId && $position !== false:100',
+        3 => NULL,
+      ),
+      33 => 
+      array (
+        0 => 'PHPStan\\Rules\\Comparison\\StrictComparisonOfDifferentTypesRule',
+        1 => 'App\\Http\\Requests\\Programme\\Concerns\\ValidatesLocationSet',
+        2 => '$entry[\'lga_id\'] === $lgaId:100',
+        3 => NULL,
+      ),
+      34 => 
+      array (
+        0 => 'PHPStan\\Rules\\Comparison\\StrictComparisonOfDifferentTypesRule',
+        1 => 'App\\Http\\Requests\\Programme\\Concerns\\ValidatesLocationSet',
+        2 => '$position !== false:100',
+        3 => NULL,
+      ),
+      35 => 
+      array (
+        0 => 'PHPStan\\Rules\\Comparison\\BooleanAndConstantConditionRule',
+        1 => 'App\\Http\\Requests\\Programme\\Concerns\\ValidatesLocationSet',
+        2 => '$entry[\'lga_id\'] === $lgaId:100',
+        3 => NULL,
+      ),
+      36 => 
+      array (
+        0 => 'PHPStan\\Rules\\Comparison\\BooleanAndConstantConditionRule',
+        1 => 'App\\Http\\Requests\\Programme\\Concerns\\ValidatesLocationSet',
+        2 => '$position !== false:100',
+        3 => NULL,
+      ),
+      37 => 
+      array (
+        0 => 'PHPStan\\Rules\\Comparison\\BooleanAndConstantConditionRule',
+        1 => 'App\\Http\\Requests\\Programme\\Concerns\\ValidatesLocationSet',
+        2 => '$entry[\'lga_id\'] === $lgaId && $position !== false:100',
+        3 => NULL,
+      ),
+      38 => 
+      array (
+        0 => 'PHPStan\\Rules\\Comparison\\ImpossibleCheckTypeMethodCallRule',
+        1 => 'App\\Http\\Requests\\Programme\\Concerns\\ValidatesLocationSet',
+        2 => '$validator->errors()->add("locations.{$index}.ward_ids.{$position}", \'That ward does not belong to the selected LGA.\'):101',
+        3 => NULL,
+      ),
+      39 => 
+      array (
+        0 => 'PHPStan\\Rules\\Comparison\\ImpossibleCheckTypeMethodCallRule',
+        1 => 'App\\Http\\Requests\\Programme\\Concerns\\ValidatesLocationSet',
+        2 => '$validator->errors():101',
+        3 => NULL,
+      ),
+    ),
     'PHPStan\\Rules\\DeadCode\\MethodWithoutImpurePointsCollector' => 
     array (
       0 => 
       array (
         0 => 'App\\Http\\Requests\\Programme\\StoreActivityRequest',
-        1 => 'rules',
+        1 => 'locationSetRules',
         2 => 'App\\Http\\Requests\\Programme\\StoreActivityRequest',
         3 => 
         array (
-          0 => 'm' . "\0" . 'illuminate\\validation\\rule' . "\0" . 'enum',
         ),
+      ),
+      1 => 
+      array (
+        0 => 'App\\Http\\Requests\\Programme\\StoreActivityRequest',
+        1 => 'locationSetMessages',
+        2 => 'App\\Http\\Requests\\Programme\\StoreActivityRequest',
+        3 => 
+        array (
+        ),
+      ),
+    ),
+    'PHPStan\\Rules\\Traits\\TraitUseCollector' => 
+    array (
+      0 => 
+      array (
+        0 => 'App\\Http\\Requests\\Programme\\Concerns\\ValidatesLocationSet',
       ),
     ),
   ),
@@ -19932,17 +20680,315 @@ return [
   ),
   'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Programme\\UpdateActivityRequest.php' => 
   array (
+    'PHPStan\\Rules\\Comparison\\ConstantConditionInTraitCollector' => 
+    array (
+      0 => 
+      array (
+        0 => 'PHPStan\\Rules\\Comparison\\ImpossibleCheckTypeMethodCallRule',
+        1 => 'App\\Http\\Requests\\Programme\\Concerns\\ValidatesLocationSet',
+        2 => '$this->input(\'locations\'):66',
+        3 => NULL,
+      ),
+      1 => 
+      array (
+        0 => 'PHPStan\\Rules\\Comparison\\IfConstantConditionRule',
+        1 => 'App\\Http\\Requests\\Programme\\Concerns\\ValidatesLocationSet',
+        2 => '!is_array($locations) || $locations === [] || $validator->errors()->isNotEmpty():68',
+        3 => NULL,
+      ),
+      2 => 
+      array (
+        0 => 'PHPStan\\Rules\\Comparison\\BooleanNotConstantConditionRule',
+        1 => 'App\\Http\\Requests\\Programme\\Concerns\\ValidatesLocationSet',
+        2 => 'is_array($locations):68',
+        3 => NULL,
+      ),
+      3 => 
+      array (
+        0 => 'PHPStan\\Rules\\Comparison\\ImpossibleCheckTypeFunctionCallRule',
+        1 => 'App\\Http\\Requests\\Programme\\Concerns\\ValidatesLocationSet',
+        2 => 'is_array($locations):68',
+        3 => NULL,
+      ),
+      4 => 
+      array (
+        0 => 'PHPStan\\Rules\\Comparison\\StrictComparisonOfDifferentTypesRule',
+        1 => 'App\\Http\\Requests\\Programme\\Concerns\\ValidatesLocationSet',
+        2 => '$locations === []:68',
+        3 => NULL,
+      ),
+      5 => 
+      array (
+        0 => 'PHPStan\\Rules\\Comparison\\BooleanOrConstantConditionRule',
+        1 => 'App\\Http\\Requests\\Programme\\Concerns\\ValidatesLocationSet',
+        2 => '!is_array($locations):68',
+        3 => NULL,
+      ),
+      6 => 
+      array (
+        0 => 'PHPStan\\Rules\\Comparison\\BooleanOrConstantConditionRule',
+        1 => 'App\\Http\\Requests\\Programme\\Concerns\\ValidatesLocationSet',
+        2 => '$locations === []:68',
+        3 => NULL,
+      ),
+      7 => 
+      array (
+        0 => 'PHPStan\\Rules\\Comparison\\BooleanOrConstantConditionRule',
+        1 => 'App\\Http\\Requests\\Programme\\Concerns\\ValidatesLocationSet',
+        2 => '!is_array($locations) || $locations === []:68',
+        3 => NULL,
+      ),
+      8 => 
+      array (
+        0 => 'PHPStan\\Rules\\Comparison\\ImpossibleCheckTypeMethodCallRule',
+        1 => 'App\\Http\\Requests\\Programme\\Concerns\\ValidatesLocationSet',
+        2 => '$validator->errors()->isNotEmpty():68',
+        3 => NULL,
+      ),
+      9 => 
+      array (
+        0 => 'PHPStan\\Rules\\Comparison\\ImpossibleCheckTypeMethodCallRule',
+        1 => 'App\\Http\\Requests\\Programme\\Concerns\\ValidatesLocationSet',
+        2 => '$validator->errors():68',
+        3 => NULL,
+      ),
+      10 => 
+      array (
+        0 => 'PHPStan\\Rules\\Comparison\\BooleanOrConstantConditionRule',
+        1 => 'App\\Http\\Requests\\Programme\\Concerns\\ValidatesLocationSet',
+        2 => '!is_array($locations) || $locations === []:68',
+        3 => NULL,
+      ),
+      11 => 
+      array (
+        0 => 'PHPStan\\Rules\\Comparison\\BooleanOrConstantConditionRule',
+        1 => 'App\\Http\\Requests\\Programme\\Concerns\\ValidatesLocationSet',
+        2 => '$validator->errors()->isNotEmpty():68',
+        3 => NULL,
+      ),
+      12 => 
+      array (
+        0 => 'PHPStan\\Rules\\Comparison\\BooleanOrConstantConditionRule',
+        1 => 'App\\Http\\Requests\\Programme\\Concerns\\ValidatesLocationSet',
+        2 => '!is_array($locations) || $locations === [] || $validator->errors()->isNotEmpty():68',
+        3 => NULL,
+      ),
+      13 => 
+      array (
+        0 => 'PHPStan\\Rules\\Comparison\\ImpossibleCheckTypeFunctionCallRule',
+        1 => 'App\\Http\\Requests\\Programme\\Concerns\\ValidatesLocationSet',
+        2 => 'app(\\App\\Domain\\Programme\\Services\\ActivityLocationService::class):74',
+        3 => NULL,
+      ),
+      14 => 
+      array (
+        0 => 'PHPStan\\Rules\\Comparison\\IfConstantConditionRule',
+        1 => 'App\\Http\\Requests\\Programme\\Concerns\\ValidatesLocationSet',
+        2 => '($entry[\'whole_lga\'] ?? false) === true && ($entry[\'ward_ids\'] ?? []) !== []:77',
+        3 => NULL,
+      ),
+      15 => 
+      array (
+        0 => 'PHPStan\\Rules\\Comparison\\StrictComparisonOfDifferentTypesRule',
+        1 => 'App\\Http\\Requests\\Programme\\Concerns\\ValidatesLocationSet',
+        2 => '($entry[\'whole_lga\'] ?? false) === true:77',
+        3 => NULL,
+      ),
+      16 => 
+      array (
+        0 => 'PHPStan\\Rules\\Comparison\\StrictComparisonOfDifferentTypesRule',
+        1 => 'App\\Http\\Requests\\Programme\\Concerns\\ValidatesLocationSet',
+        2 => '($entry[\'ward_ids\'] ?? []) !== []:77',
+        3 => NULL,
+      ),
+      17 => 
+      array (
+        0 => 'PHPStan\\Rules\\Comparison\\BooleanAndConstantConditionRule',
+        1 => 'App\\Http\\Requests\\Programme\\Concerns\\ValidatesLocationSet',
+        2 => '($entry[\'whole_lga\'] ?? false) === true:77',
+        3 => NULL,
+      ),
+      18 => 
+      array (
+        0 => 'PHPStan\\Rules\\Comparison\\BooleanAndConstantConditionRule',
+        1 => 'App\\Http\\Requests\\Programme\\Concerns\\ValidatesLocationSet',
+        2 => '($entry[\'ward_ids\'] ?? []) !== []:77',
+        3 => NULL,
+      ),
+      19 => 
+      array (
+        0 => 'PHPStan\\Rules\\Comparison\\BooleanAndConstantConditionRule',
+        1 => 'App\\Http\\Requests\\Programme\\Concerns\\ValidatesLocationSet',
+        2 => '($entry[\'whole_lga\'] ?? false) === true && ($entry[\'ward_ids\'] ?? []) !== []:77',
+        3 => NULL,
+      ),
+      20 => 
+      array (
+        0 => 'PHPStan\\Rules\\Comparison\\ImpossibleCheckTypeMethodCallRule',
+        1 => 'App\\Http\\Requests\\Programme\\Concerns\\ValidatesLocationSet',
+        2 => '$validator->errors()->add("locations.{$index}.whole_lga", \'Choose either the whole LGA or specific wards, not both.\'):78',
+        3 => NULL,
+      ),
+      21 => 
+      array (
+        0 => 'PHPStan\\Rules\\Comparison\\ImpossibleCheckTypeMethodCallRule',
+        1 => 'App\\Http\\Requests\\Programme\\Concerns\\ValidatesLocationSet',
+        2 => '$validator->errors():78',
+        3 => NULL,
+      ),
+      22 => 
+      array (
+        0 => 'PHPStan\\Rules\\Comparison\\ImpossibleCheckTypeMethodCallRule',
+        1 => 'App\\Http\\Requests\\Programme\\Concerns\\ValidatesLocationSet',
+        2 => '$service->duplicateLgas($set):85',
+        3 => NULL,
+      ),
+      23 => 
+      array (
+        0 => 'PHPStan\\Rules\\Comparison\\IfConstantConditionRule',
+        1 => 'App\\Http\\Requests\\Programme\\Concerns\\ValidatesLocationSet',
+        2 => '$duplicates !== []:86',
+        3 => NULL,
+      ),
+      24 => 
+      array (
+        0 => 'PHPStan\\Rules\\Comparison\\StrictComparisonOfDifferentTypesRule',
+        1 => 'App\\Http\\Requests\\Programme\\Concerns\\ValidatesLocationSet',
+        2 => '$duplicates !== []:86',
+        3 => NULL,
+      ),
+      25 => 
+      array (
+        0 => 'PHPStan\\Rules\\Comparison\\ImpossibleCheckTypeMethodCallRule',
+        1 => 'App\\Http\\Requests\\Programme\\Concerns\\ValidatesLocationSet',
+        2 => '$service->lgaNames($duplicates):87',
+        3 => NULL,
+      ),
+      26 => 
+      array (
+        0 => 'PHPStan\\Rules\\Comparison\\ImpossibleCheckTypeMethodCallRule',
+        1 => 'App\\Http\\Requests\\Programme\\Concerns\\ValidatesLocationSet',
+        2 => '$validator->errors()->add(\'locations\', \'Each LGA may appear only once — list all of its wards in a single entry. Repeated: \' . implode(\', \', array_values($names)) . \'.\'):88',
+        3 => NULL,
+      ),
+      27 => 
+      array (
+        0 => 'PHPStan\\Rules\\Comparison\\ImpossibleCheckTypeMethodCallRule',
+        1 => 'App\\Http\\Requests\\Programme\\Concerns\\ValidatesLocationSet',
+        2 => '$validator->errors():88',
+        3 => NULL,
+      ),
+      28 => 
+      array (
+        0 => 'PHPStan\\Rules\\Comparison\\ImpossibleCheckTypeFunctionCallRule',
+        1 => 'App\\Http\\Requests\\Programme\\Concerns\\ValidatesLocationSet',
+        2 => 'implode(\', \', array_values($names)):91',
+        3 => NULL,
+      ),
+      29 => 
+      array (
+        0 => 'PHPStan\\Rules\\Comparison\\ImpossibleCheckTypeFunctionCallRule',
+        1 => 'App\\Http\\Requests\\Programme\\Concerns\\ValidatesLocationSet',
+        2 => 'array_values($names):91',
+        3 => NULL,
+      ),
+      30 => 
+      array (
+        0 => 'PHPStan\\Rules\\Comparison\\ImpossibleCheckTypeMethodCallRule',
+        1 => 'App\\Http\\Requests\\Programme\\Concerns\\ValidatesLocationSet',
+        2 => '$service->misplacedWards($set):96',
+        3 => NULL,
+      ),
+      31 => 
+      array (
+        0 => 'PHPStan\\Rules\\Comparison\\ImpossibleCheckTypeFunctionCallRule',
+        1 => 'App\\Http\\Requests\\Programme\\Concerns\\ValidatesLocationSet',
+        2 => 'array_search($wardId, $entry[\'ward_ids\'] ?? [], true):99',
+        3 => NULL,
+      ),
+      32 => 
+      array (
+        0 => 'PHPStan\\Rules\\Comparison\\IfConstantConditionRule',
+        1 => 'App\\Http\\Requests\\Programme\\Concerns\\ValidatesLocationSet',
+        2 => '$entry[\'lga_id\'] === $lgaId && $position !== false:100',
+        3 => NULL,
+      ),
+      33 => 
+      array (
+        0 => 'PHPStan\\Rules\\Comparison\\StrictComparisonOfDifferentTypesRule',
+        1 => 'App\\Http\\Requests\\Programme\\Concerns\\ValidatesLocationSet',
+        2 => '$entry[\'lga_id\'] === $lgaId:100',
+        3 => NULL,
+      ),
+      34 => 
+      array (
+        0 => 'PHPStan\\Rules\\Comparison\\StrictComparisonOfDifferentTypesRule',
+        1 => 'App\\Http\\Requests\\Programme\\Concerns\\ValidatesLocationSet',
+        2 => '$position !== false:100',
+        3 => NULL,
+      ),
+      35 => 
+      array (
+        0 => 'PHPStan\\Rules\\Comparison\\BooleanAndConstantConditionRule',
+        1 => 'App\\Http\\Requests\\Programme\\Concerns\\ValidatesLocationSet',
+        2 => '$entry[\'lga_id\'] === $lgaId:100',
+        3 => NULL,
+      ),
+      36 => 
+      array (
+        0 => 'PHPStan\\Rules\\Comparison\\BooleanAndConstantConditionRule',
+        1 => 'App\\Http\\Requests\\Programme\\Concerns\\ValidatesLocationSet',
+        2 => '$position !== false:100',
+        3 => NULL,
+      ),
+      37 => 
+      array (
+        0 => 'PHPStan\\Rules\\Comparison\\BooleanAndConstantConditionRule',
+        1 => 'App\\Http\\Requests\\Programme\\Concerns\\ValidatesLocationSet',
+        2 => '$entry[\'lga_id\'] === $lgaId && $position !== false:100',
+        3 => NULL,
+      ),
+      38 => 
+      array (
+        0 => 'PHPStan\\Rules\\Comparison\\ImpossibleCheckTypeMethodCallRule',
+        1 => 'App\\Http\\Requests\\Programme\\Concerns\\ValidatesLocationSet',
+        2 => '$validator->errors()->add("locations.{$index}.ward_ids.{$position}", \'That ward does not belong to the selected LGA.\'):101',
+        3 => NULL,
+      ),
+      39 => 
+      array (
+        0 => 'PHPStan\\Rules\\Comparison\\ImpossibleCheckTypeMethodCallRule',
+        1 => 'App\\Http\\Requests\\Programme\\Concerns\\ValidatesLocationSet',
+        2 => '$validator->errors():101',
+        3 => NULL,
+      ),
+    ),
     'PHPStan\\Rules\\DeadCode\\MethodWithoutImpurePointsCollector' => 
     array (
       0 => 
       array (
         0 => 'App\\Http\\Requests\\Programme\\UpdateActivityRequest',
-        1 => 'rules',
+        1 => 'locationSetRules',
         2 => 'App\\Http\\Requests\\Programme\\UpdateActivityRequest',
         3 => 
         array (
-          0 => 'm' . "\0" . 'illuminate\\validation\\rule' . "\0" . 'enum',
         ),
+      ),
+      1 => 
+      array (
+        0 => 'App\\Http\\Requests\\Programme\\UpdateActivityRequest',
+        1 => 'locationSetMessages',
+        2 => 'App\\Http\\Requests\\Programme\\UpdateActivityRequest',
+        3 => 
+        array (
+        ),
+      ),
+    ),
+    'PHPStan\\Rules\\Traits\\TraitUseCollector' => 
+    array (
+      0 => 
+      array (
+        0 => 'App\\Http\\Requests\\Programme\\Concerns\\ValidatesLocationSet',
       ),
     ),
   ),
@@ -19974,6 +21020,39 @@ return [
         3 => 
         array (
           0 => 'm' . "\0" . 'illuminate\\validation\\rule' . "\0" . 'enum',
+        ),
+      ),
+    ),
+  ),
+  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Reference\\ListWardsRequest.php' => 
+  array (
+    'PHPStan\\Rules\\DeadCode\\MethodWithoutImpurePointsCollector' => 
+    array (
+      0 => 
+      array (
+        0 => 'App\\Http\\Requests\\Reference\\ListWardsRequest',
+        1 => 'authorize',
+        2 => 'App\\Http\\Requests\\Reference\\ListWardsRequest',
+        3 => 
+        array (
+        ),
+      ),
+      1 => 
+      array (
+        0 => 'App\\Http\\Requests\\Reference\\ListWardsRequest',
+        1 => 'rules',
+        2 => 'App\\Http\\Requests\\Reference\\ListWardsRequest',
+        3 => 
+        array (
+        ),
+      ),
+      2 => 
+      array (
+        0 => 'App\\Http\\Requests\\Reference\\ListWardsRequest',
+        1 => 'messages',
+        2 => 'App\\Http\\Requests\\Reference\\ListWardsRequest',
+        3 => 
+        array (
         ),
       ),
     ),
@@ -20320,6 +21399,320 @@ return [
         array (
           0 => 'm' . "\0" . 'illuminate\\validation\\rule' . "\0" . 'enum',
         ),
+      ),
+    ),
+  ),
+  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Registry\\UploadActivityImportRequest.php' => 
+  array (
+    'PHPStan\\Rules\\Comparison\\ConstantConditionInTraitCollector' => 
+    array (
+      0 => 
+      array (
+        0 => 'PHPStan\\Rules\\Comparison\\ImpossibleCheckTypeMethodCallRule',
+        1 => 'App\\Http\\Requests\\Programme\\Concerns\\ValidatesLocationSet',
+        2 => '$this->input(\'locations\'):66',
+        3 => NULL,
+      ),
+      1 => 
+      array (
+        0 => 'PHPStan\\Rules\\Comparison\\IfConstantConditionRule',
+        1 => 'App\\Http\\Requests\\Programme\\Concerns\\ValidatesLocationSet',
+        2 => '!is_array($locations) || $locations === [] || $validator->errors()->isNotEmpty():68',
+        3 => NULL,
+      ),
+      2 => 
+      array (
+        0 => 'PHPStan\\Rules\\Comparison\\BooleanNotConstantConditionRule',
+        1 => 'App\\Http\\Requests\\Programme\\Concerns\\ValidatesLocationSet',
+        2 => 'is_array($locations):68',
+        3 => NULL,
+      ),
+      3 => 
+      array (
+        0 => 'PHPStan\\Rules\\Comparison\\ImpossibleCheckTypeFunctionCallRule',
+        1 => 'App\\Http\\Requests\\Programme\\Concerns\\ValidatesLocationSet',
+        2 => 'is_array($locations):68',
+        3 => NULL,
+      ),
+      4 => 
+      array (
+        0 => 'PHPStan\\Rules\\Comparison\\StrictComparisonOfDifferentTypesRule',
+        1 => 'App\\Http\\Requests\\Programme\\Concerns\\ValidatesLocationSet',
+        2 => '$locations === []:68',
+        3 => NULL,
+      ),
+      5 => 
+      array (
+        0 => 'PHPStan\\Rules\\Comparison\\BooleanOrConstantConditionRule',
+        1 => 'App\\Http\\Requests\\Programme\\Concerns\\ValidatesLocationSet',
+        2 => '!is_array($locations):68',
+        3 => NULL,
+      ),
+      6 => 
+      array (
+        0 => 'PHPStan\\Rules\\Comparison\\BooleanOrConstantConditionRule',
+        1 => 'App\\Http\\Requests\\Programme\\Concerns\\ValidatesLocationSet',
+        2 => '$locations === []:68',
+        3 => NULL,
+      ),
+      7 => 
+      array (
+        0 => 'PHPStan\\Rules\\Comparison\\BooleanOrConstantConditionRule',
+        1 => 'App\\Http\\Requests\\Programme\\Concerns\\ValidatesLocationSet',
+        2 => '!is_array($locations) || $locations === []:68',
+        3 => NULL,
+      ),
+      8 => 
+      array (
+        0 => 'PHPStan\\Rules\\Comparison\\ImpossibleCheckTypeMethodCallRule',
+        1 => 'App\\Http\\Requests\\Programme\\Concerns\\ValidatesLocationSet',
+        2 => '$validator->errors()->isNotEmpty():68',
+        3 => NULL,
+      ),
+      9 => 
+      array (
+        0 => 'PHPStan\\Rules\\Comparison\\ImpossibleCheckTypeMethodCallRule',
+        1 => 'App\\Http\\Requests\\Programme\\Concerns\\ValidatesLocationSet',
+        2 => '$validator->errors():68',
+        3 => NULL,
+      ),
+      10 => 
+      array (
+        0 => 'PHPStan\\Rules\\Comparison\\BooleanOrConstantConditionRule',
+        1 => 'App\\Http\\Requests\\Programme\\Concerns\\ValidatesLocationSet',
+        2 => '!is_array($locations) || $locations === []:68',
+        3 => NULL,
+      ),
+      11 => 
+      array (
+        0 => 'PHPStan\\Rules\\Comparison\\BooleanOrConstantConditionRule',
+        1 => 'App\\Http\\Requests\\Programme\\Concerns\\ValidatesLocationSet',
+        2 => '$validator->errors()->isNotEmpty():68',
+        3 => NULL,
+      ),
+      12 => 
+      array (
+        0 => 'PHPStan\\Rules\\Comparison\\BooleanOrConstantConditionRule',
+        1 => 'App\\Http\\Requests\\Programme\\Concerns\\ValidatesLocationSet',
+        2 => '!is_array($locations) || $locations === [] || $validator->errors()->isNotEmpty():68',
+        3 => NULL,
+      ),
+      13 => 
+      array (
+        0 => 'PHPStan\\Rules\\Comparison\\ImpossibleCheckTypeFunctionCallRule',
+        1 => 'App\\Http\\Requests\\Programme\\Concerns\\ValidatesLocationSet',
+        2 => 'app(\\App\\Domain\\Programme\\Services\\ActivityLocationService::class):74',
+        3 => NULL,
+      ),
+      14 => 
+      array (
+        0 => 'PHPStan\\Rules\\Comparison\\IfConstantConditionRule',
+        1 => 'App\\Http\\Requests\\Programme\\Concerns\\ValidatesLocationSet',
+        2 => '($entry[\'whole_lga\'] ?? false) === true && ($entry[\'ward_ids\'] ?? []) !== []:77',
+        3 => NULL,
+      ),
+      15 => 
+      array (
+        0 => 'PHPStan\\Rules\\Comparison\\StrictComparisonOfDifferentTypesRule',
+        1 => 'App\\Http\\Requests\\Programme\\Concerns\\ValidatesLocationSet',
+        2 => '($entry[\'whole_lga\'] ?? false) === true:77',
+        3 => NULL,
+      ),
+      16 => 
+      array (
+        0 => 'PHPStan\\Rules\\Comparison\\StrictComparisonOfDifferentTypesRule',
+        1 => 'App\\Http\\Requests\\Programme\\Concerns\\ValidatesLocationSet',
+        2 => '($entry[\'ward_ids\'] ?? []) !== []:77',
+        3 => NULL,
+      ),
+      17 => 
+      array (
+        0 => 'PHPStan\\Rules\\Comparison\\BooleanAndConstantConditionRule',
+        1 => 'App\\Http\\Requests\\Programme\\Concerns\\ValidatesLocationSet',
+        2 => '($entry[\'whole_lga\'] ?? false) === true:77',
+        3 => NULL,
+      ),
+      18 => 
+      array (
+        0 => 'PHPStan\\Rules\\Comparison\\BooleanAndConstantConditionRule',
+        1 => 'App\\Http\\Requests\\Programme\\Concerns\\ValidatesLocationSet',
+        2 => '($entry[\'ward_ids\'] ?? []) !== []:77',
+        3 => NULL,
+      ),
+      19 => 
+      array (
+        0 => 'PHPStan\\Rules\\Comparison\\BooleanAndConstantConditionRule',
+        1 => 'App\\Http\\Requests\\Programme\\Concerns\\ValidatesLocationSet',
+        2 => '($entry[\'whole_lga\'] ?? false) === true && ($entry[\'ward_ids\'] ?? []) !== []:77',
+        3 => NULL,
+      ),
+      20 => 
+      array (
+        0 => 'PHPStan\\Rules\\Comparison\\ImpossibleCheckTypeMethodCallRule',
+        1 => 'App\\Http\\Requests\\Programme\\Concerns\\ValidatesLocationSet',
+        2 => '$validator->errors()->add("locations.{$index}.whole_lga", \'Choose either the whole LGA or specific wards, not both.\'):78',
+        3 => NULL,
+      ),
+      21 => 
+      array (
+        0 => 'PHPStan\\Rules\\Comparison\\ImpossibleCheckTypeMethodCallRule',
+        1 => 'App\\Http\\Requests\\Programme\\Concerns\\ValidatesLocationSet',
+        2 => '$validator->errors():78',
+        3 => NULL,
+      ),
+      22 => 
+      array (
+        0 => 'PHPStan\\Rules\\Comparison\\ImpossibleCheckTypeMethodCallRule',
+        1 => 'App\\Http\\Requests\\Programme\\Concerns\\ValidatesLocationSet',
+        2 => '$service->duplicateLgas($set):85',
+        3 => NULL,
+      ),
+      23 => 
+      array (
+        0 => 'PHPStan\\Rules\\Comparison\\IfConstantConditionRule',
+        1 => 'App\\Http\\Requests\\Programme\\Concerns\\ValidatesLocationSet',
+        2 => '$duplicates !== []:86',
+        3 => NULL,
+      ),
+      24 => 
+      array (
+        0 => 'PHPStan\\Rules\\Comparison\\StrictComparisonOfDifferentTypesRule',
+        1 => 'App\\Http\\Requests\\Programme\\Concerns\\ValidatesLocationSet',
+        2 => '$duplicates !== []:86',
+        3 => NULL,
+      ),
+      25 => 
+      array (
+        0 => 'PHPStan\\Rules\\Comparison\\ImpossibleCheckTypeMethodCallRule',
+        1 => 'App\\Http\\Requests\\Programme\\Concerns\\ValidatesLocationSet',
+        2 => '$service->lgaNames($duplicates):87',
+        3 => NULL,
+      ),
+      26 => 
+      array (
+        0 => 'PHPStan\\Rules\\Comparison\\ImpossibleCheckTypeMethodCallRule',
+        1 => 'App\\Http\\Requests\\Programme\\Concerns\\ValidatesLocationSet',
+        2 => '$validator->errors()->add(\'locations\', \'Each LGA may appear only once — list all of its wards in a single entry. Repeated: \' . implode(\', \', array_values($names)) . \'.\'):88',
+        3 => NULL,
+      ),
+      27 => 
+      array (
+        0 => 'PHPStan\\Rules\\Comparison\\ImpossibleCheckTypeMethodCallRule',
+        1 => 'App\\Http\\Requests\\Programme\\Concerns\\ValidatesLocationSet',
+        2 => '$validator->errors():88',
+        3 => NULL,
+      ),
+      28 => 
+      array (
+        0 => 'PHPStan\\Rules\\Comparison\\ImpossibleCheckTypeFunctionCallRule',
+        1 => 'App\\Http\\Requests\\Programme\\Concerns\\ValidatesLocationSet',
+        2 => 'implode(\', \', array_values($names)):91',
+        3 => NULL,
+      ),
+      29 => 
+      array (
+        0 => 'PHPStan\\Rules\\Comparison\\ImpossibleCheckTypeFunctionCallRule',
+        1 => 'App\\Http\\Requests\\Programme\\Concerns\\ValidatesLocationSet',
+        2 => 'array_values($names):91',
+        3 => NULL,
+      ),
+      30 => 
+      array (
+        0 => 'PHPStan\\Rules\\Comparison\\ImpossibleCheckTypeMethodCallRule',
+        1 => 'App\\Http\\Requests\\Programme\\Concerns\\ValidatesLocationSet',
+        2 => '$service->misplacedWards($set):96',
+        3 => NULL,
+      ),
+      31 => 
+      array (
+        0 => 'PHPStan\\Rules\\Comparison\\ImpossibleCheckTypeFunctionCallRule',
+        1 => 'App\\Http\\Requests\\Programme\\Concerns\\ValidatesLocationSet',
+        2 => 'array_search($wardId, $entry[\'ward_ids\'] ?? [], true):99',
+        3 => NULL,
+      ),
+      32 => 
+      array (
+        0 => 'PHPStan\\Rules\\Comparison\\IfConstantConditionRule',
+        1 => 'App\\Http\\Requests\\Programme\\Concerns\\ValidatesLocationSet',
+        2 => '$entry[\'lga_id\'] === $lgaId && $position !== false:100',
+        3 => NULL,
+      ),
+      33 => 
+      array (
+        0 => 'PHPStan\\Rules\\Comparison\\StrictComparisonOfDifferentTypesRule',
+        1 => 'App\\Http\\Requests\\Programme\\Concerns\\ValidatesLocationSet',
+        2 => '$entry[\'lga_id\'] === $lgaId:100',
+        3 => NULL,
+      ),
+      34 => 
+      array (
+        0 => 'PHPStan\\Rules\\Comparison\\StrictComparisonOfDifferentTypesRule',
+        1 => 'App\\Http\\Requests\\Programme\\Concerns\\ValidatesLocationSet',
+        2 => '$position !== false:100',
+        3 => NULL,
+      ),
+      35 => 
+      array (
+        0 => 'PHPStan\\Rules\\Comparison\\BooleanAndConstantConditionRule',
+        1 => 'App\\Http\\Requests\\Programme\\Concerns\\ValidatesLocationSet',
+        2 => '$entry[\'lga_id\'] === $lgaId:100',
+        3 => NULL,
+      ),
+      36 => 
+      array (
+        0 => 'PHPStan\\Rules\\Comparison\\BooleanAndConstantConditionRule',
+        1 => 'App\\Http\\Requests\\Programme\\Concerns\\ValidatesLocationSet',
+        2 => '$position !== false:100',
+        3 => NULL,
+      ),
+      37 => 
+      array (
+        0 => 'PHPStan\\Rules\\Comparison\\BooleanAndConstantConditionRule',
+        1 => 'App\\Http\\Requests\\Programme\\Concerns\\ValidatesLocationSet',
+        2 => '$entry[\'lga_id\'] === $lgaId && $position !== false:100',
+        3 => NULL,
+      ),
+      38 => 
+      array (
+        0 => 'PHPStan\\Rules\\Comparison\\ImpossibleCheckTypeMethodCallRule',
+        1 => 'App\\Http\\Requests\\Programme\\Concerns\\ValidatesLocationSet',
+        2 => '$validator->errors()->add("locations.{$index}.ward_ids.{$position}", \'That ward does not belong to the selected LGA.\'):101',
+        3 => NULL,
+      ),
+      39 => 
+      array (
+        0 => 'PHPStan\\Rules\\Comparison\\ImpossibleCheckTypeMethodCallRule',
+        1 => 'App\\Http\\Requests\\Programme\\Concerns\\ValidatesLocationSet',
+        2 => '$validator->errors():101',
+        3 => NULL,
+      ),
+    ),
+    'PHPStan\\Rules\\DeadCode\\MethodWithoutImpurePointsCollector' => 
+    array (
+      0 => 
+      array (
+        0 => 'App\\Http\\Requests\\Registry\\UploadActivityImportRequest',
+        1 => 'locationSetRules',
+        2 => 'App\\Http\\Requests\\Registry\\UploadActivityImportRequest',
+        3 => 
+        array (
+        ),
+      ),
+      1 => 
+      array (
+        0 => 'App\\Http\\Requests\\Registry\\UploadActivityImportRequest',
+        1 => 'locationSetMessages',
+        2 => 'App\\Http\\Requests\\Registry\\UploadActivityImportRequest',
+        3 => 
+        array (
+        ),
+      ),
+    ),
+    'PHPStan\\Rules\\Traits\\TraitUseCollector' => 
+    array (
+      0 => 
+      array (
+        0 => 'App\\Http\\Requests\\Programme\\Concerns\\ValidatesLocationSet',
       ),
     ),
   ),
@@ -20760,211 +22153,213 @@ return [
       69 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Privacy\\Services\\RetentionService.php',
       70 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Privacy\\Services\\SubjectAccessAssembler.php',
       71 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Programme\\Models\\Activity.php',
-      72 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Programme\\Models\\Enrollment.php',
-      73 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Programme\\Models\\Programme.php',
-      74 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Programme\\Policies\\ActivityPolicy.php',
-      75 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Programme\\Policies\\EnrollmentPolicy.php',
-      76 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Programme\\Policies\\ProgrammePolicy.php',
-      77 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Programme\\ProgrammeServiceProvider.php',
-      78 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Programme\\Rules\\IsFundingPartner.php',
-      79 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Programme\\Services\\EligibilityEvaluator.php',
-      80 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Programme\\Services\\EnrollmentService.php',
-      81 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Programme\\Services\\ProgrammeMatcher.php',
-      82 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Programme\\Services\\ProgrammeMatchingRouter.php',
-      83 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Referral\\Authorization\\ReferralAuthorizer.php',
-      84 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Referral\\Events\\ReferralStatusChanged.php',
-      85 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Referral\\Models\\Referral.php',
-      86 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Referral\\Policies\\ReferralPolicy.php',
-      87 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Referral\\Scopes\\ReferralScope.php',
-      88 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Referral\\Services\\ReferralService.php',
-      89 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Registry\\Contracts\\BeneficiaryRouter.php',
-      90 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Registry\\Events\\BeneficiaryAccessRevoked.php',
-      91 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Registry\\Events\\ImportBatchCompleted.php',
-      92 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Registry\\Events\\ImportDuplicatesSurfaced.php',
-      93 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Registry\\Events\\OwnershipTransferRequested.php',
-      94 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Registry\\Events\\ServiceRequestAccepted.php',
-      95 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Registry\\Events\\ServiceRequestDeclined.php',
-      96 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Registry\\Events\\ServiceRequestRaised.php',
-      97 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Registry\\Export\\BeneficiaryListExport.php',
-      98 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Registry\\Jobs\\CommitImportBatch.php',
-      99 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Registry\\Jobs\\ParseImportBatch.php',
-      100 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Registry\\Models\\Beneficiary.php',
-      101 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Registry\\Models\\BeneficiaryConsent.php',
-      102 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Registry\\Models\\BeneficiaryDocument.php',
-      103 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Registry\\Models\\BeneficiaryServiceGrant.php',
-      104 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Registry\\Models\\Household.php',
-      105 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Registry\\Models\\HouseholdMembership.php',
-      106 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Registry\\Models\\ImportBatch.php',
-      107 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Registry\\Models\\ImportMappingTemplate.php',
-      108 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Registry\\Models\\ImportRow.php',
-      109 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Registry\\Models\\OwnershipTransferRequest.php',
-      110 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Registry\\Models\\ServiceRequest.php',
-      111 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Registry\\Policies\\BeneficiaryDocumentPolicy.php',
-      112 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Registry\\Policies\\BeneficiaryPolicy.php',
-      113 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Registry\\Policies\\HouseholdPolicy.php',
-      114 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Registry\\Policies\\ImportBatchPolicy.php',
-      115 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Registry\\Policies\\OwnerMdaPolicy.php',
-      116 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Registry\\RegistryServiceProvider.php',
-      117 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Registry\\Services\\BatchDuplicateScreener.php',
-      118 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Registry\\Services\\BeneficiaryLookupService.php',
-      119 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Registry\\Services\\BeneficiaryRegistrar.php',
-      120 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Registry\\Services\\CandidateGatherer.php',
-      121 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Registry\\Services\\ConsentGate.php',
-      122 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Registry\\Services\\ConsentService.php',
-      123 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Registry\\Services\\DeterministicDuplicateFinder.php',
-      124 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Registry\\Services\\HouseholdIngestionService.php',
-      125 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Registry\\Services\\HouseholdMembershipService.php',
-      126 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Registry\\Services\\ImportCommitter.php',
-      127 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Registry\\Services\\ImportMappingService.php',
-      128 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Registry\\Services\\NullBeneficiaryRouter.php',
-      129 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Registry\\Services\\OwnershipTransferService.php',
-      130 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Registry\\Services\\ServiceRequestService.php',
-      131 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Registry\\Support\\UniqueIdentifier.php',
-      132 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Reporting\\Gis\\GisCoverageService.php',
-      133 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Reporting\\Jobs\\GenerateReport.php',
-      134 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Reporting\\Listeners\\DeliverScheduledReport.php',
-      135 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Reporting\\Reports\\AdHoc\\AdHocDatasetRegistry.php',
-      136 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Reporting\\Reports\\AdHoc\\AdHocReportBuilder.php',
-      137 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Reporting\\Reports\\ReportBuilder.php',
-      138 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Reporting\\Services\\AdminOrganizationService.php',
-      139 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Reporting\\Services\\AdminSummaryService.php',
-      140 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Reporting\\Services\\DashboardMetricsService.php',
-      141 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Reporting\\Services\\DashboardScopeResolver.php',
-      142 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Reporting\\Services\\DashboardService.php',
-      143 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Reporting\\Services\\DashboardSnapshotService.php',
-      144 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Reporting\\Services\\MdaActionRequiredService.php',
-      145 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Reporting\\Services\\ReportScheduleService.php',
-      146 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Reporting\\Services\\ReportService.php',
-      147 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Sharing\\DataSharingGuard.php',
-      148 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Sync\\Jobs\\RunSyncConnector.php',
-      149 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Sync\\Models\\SyncConnector.php',
-      150 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Sync\\Services\\ConnectorMappingService.php',
-      151 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Sync\\Services\\SyncEngine.php',
-      152 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Access\\AccessController.php',
-      153 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Access\\MdaAccessGrantController.php',
-      154 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Access\\MdaController.php',
-      155 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Access\\UserController.php',
-      156 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\AuthController.php',
-      157 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Benefit\\BenefitController.php',
-      158 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Benefit\\BenefitFlagController.php',
-      159 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Benefit\\BenefitImportController.php',
-      160 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Benefit\\DoubleDippingRuleController.php',
-      161 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Graduation\\GraduationController.php',
-      162 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Grievance\\GrievanceController.php',
-      163 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\HealthController.php',
-      164 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Matching\\MatchingConfigController.php',
-      165 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\MfaController.php',
-      166 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Notification\\BroadcastController.php',
-      167 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Notification\\NotificationController.php',
-      168 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Programme\\ActivityController.php',
-      169 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Programme\\EnrollmentController.php',
-      170 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Programme\\ProgrammeController.php',
-      171 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Referral\\ReferralController.php',
-      172 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Registry\\ActivityImportController.php',
-      173 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Registry\\BeneficiaryController.php',
-      174 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Registry\\BeneficiaryDocumentController.php',
-      175 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Registry\\BeneficiaryIntakeController.php',
-      176 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Registry\\BeneficiaryRoutingController.php',
-      177 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Registry\\HouseholdController.php',
-      178 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Registry\\HouseholdMemberController.php',
-      179 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Registry\\ImportBatchController.php',
-      180 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Registry\\OwnershipTransferController.php',
-      181 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Registry\\ServiceRequestController.php',
-      182 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Reporting\\AdHocReportController.php',
-      183 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Reporting\\DashboardController.php',
-      184 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Reporting\\DashboardExportController.php',
-      185 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Reporting\\GisController.php',
-      186 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Reporting\\MdaActionRequiredController.php',
-      187 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Reporting\\ReportController.php',
-      188 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Reporting\\ReportDefinitionController.php',
-      189 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Reporting\\ReportScheduleController.php',
-      190 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Sharing\\DataSharingController.php',
-      191 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Sync\\SyncController.php',
-      192 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Middleware\\CheckPermission.php',
-      193 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Middleware\\CheckRole.php',
-      194 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Access\\StoreMdaAccessGrantRequest.php',
-      195 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Access\\StoreMdaRequest.php',
-      196 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Access\\StoreUserRequest.php',
-      197 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Access\\UpdateMdaRequest.php',
-      198 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Access\\UpdateRolePermissionsRequest.php',
-      199 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Access\\UpdateUserRequest.php',
-      200 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Auth\\ChangePasswordRequest.php',
-      201 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Auth\\MfaCodeRequest.php',
-      202 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Benefit\\AggregateBenefitsRequest.php',
-      203 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Benefit\\RecordBenefitRequest.php',
-      204 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Benefit\\ReviewBenefitFlagRequest.php',
-      205 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Benefit\\StoreDoubleDippingRuleRequest.php',
-      206 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Benefit\\UploadBenefitImportRequest.php',
-      207 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Benefit\\VerifyBenefitRequest.php',
-      208 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Graduation\\GraduateRequest.php',
-      209 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Graduation\\GraduationCriteriaRequest.php',
-      210 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Grievance\\AssignGrievanceRequest.php',
-      211 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Grievance\\StoreGrievanceRequest.php',
-      212 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Grievance\\TransitionGrievanceRequest.php',
-      213 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Grievance\\UpdateGrievanceSlaRequest.php',
-      214 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Matching\\UpdateMatchingConfigRequest.php',
-      215 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Notification\\BroadcastRequest.php',
-      216 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Notification\\UpdateNotificationPreferencesRequest.php',
-      217 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Programme\\BulkEnrollmentRequest.php',
-      218 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Programme\\StoreActivityRequest.php',
-      219 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Programme\\StoreEnrollmentRequest.php',
-      220 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Programme\\StoreProgrammeRequest.php',
-      221 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Programme\\UpdateActivityRequest.php',
-      222 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Programme\\UpdateEnrollmentRequest.php',
-      223 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Programme\\UpdateProgrammeRequest.php',
-      224 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Referral\\StoreReferralRequest.php',
-      225 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Referral\\TransitionReferralRequest.php',
-      226 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Referral\\UpdateReferralSlaRequest.php',
-      227 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Registry\\AcceptServiceRequestRequest.php',
-      228 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Registry\\AddHouseholdMemberRequest.php',
-      229 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Registry\\ApiRegistrationRequest.php',
-      230 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Registry\\BeneficiaryLookupRequest.php',
-      231 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Registry\\BeneficiaryMatchSearchRequest.php',
-      232 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Registry\\ConfirmMappingRequest.php',
-      233 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Registry\\DecideOwnershipTransferRequest.php',
-      234 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Registry\\DeclineServiceRequestRequest.php',
-      235 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Registry\\DesignateHeadRequest.php',
-      236 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Registry\\ExportBeneficiariesRequest.php',
-      237 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Registry\\MoveHouseholdMemberRequest.php',
-      238 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Registry\\RecordConsentRequest.php',
-      239 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Registry\\ResolveImportRowRequest.php',
-      240 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Registry\\RevokeServiceGrantRequest.php',
-      241 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Registry\\RouteAssignmentRequest.php',
-      242 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Registry\\StoreOwnershipTransferRequest.php',
-      243 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Registry\\StoreServiceRequestRequest.php',
-      244 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Registry\\UpdateBeneficiaryRequest.php',
-      245 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Registry\\UpdateHouseholdRequest.php',
-      246 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Registry\\UploadActivityImportRequest.php',
-      247 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Registry\\UploadDocumentRequest.php',
-      248 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Registry\\UploadImportRequest.php',
-      249 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Reporting\\AdHocReportRequest.php',
-      250 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Reporting\\GenerateReportRequest.php',
-      251 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Reporting\\RunReportDefinitionRequest.php',
-      252 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Reporting\\StoreReportScheduleRequest.php',
-      253 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Reporting\\UpdateReportScheduleRequest.php',
-      254 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Sync\\ConfirmConnectorMappingRequest.php',
-      255 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Sync\\OfflineBatchRequest.php',
-      256 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Resources\\ActivityDetailResource.php',
-      257 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Resources\\ActivityResource.php',
-      258 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Resources\\BeneficiaryDocumentResource.php',
-      259 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Resources\\BeneficiaryResource.php',
-      260 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Resources\\BeneficiaryRevealResource.php',
-      261 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Resources\\BenefitImportBatchResource.php',
-      262 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Resources\\BenefitResource.php',
-      263 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Resources\\EnrollmentResource.php',
-      264 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Resources\\GraduationCriteriaResource.php',
-      265 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Resources\\GraduationEventResource.php',
-      266 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Resources\\GrievanceResource.php',
-      267 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Resources\\HouseholdMembershipResource.php',
-      268 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Resources\\HouseholdResource.php',
-      269 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Resources\\ImportBatchResource.php',
-      270 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Resources\\MdaResource.php',
-      271 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Resources\\NotificationResource.php',
-      272 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Resources\\ServiceRequestResource.php',
-      273 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Resources\\SyncConnectorResource.php',
-      274 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Resources\\UserResource.php',
-      275 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Logging\\CorrelationIdProcessor.php',
-      276 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Providers\\AppServiceProvider.php',
+      72 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Programme\\Models\\ActivityLocation.php',
+      73 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Programme\\Models\\Enrollment.php',
+      74 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Programme\\Models\\Programme.php',
+      75 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Programme\\Policies\\ActivityPolicy.php',
+      76 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Programme\\Policies\\EnrollmentPolicy.php',
+      77 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Programme\\Policies\\ProgrammePolicy.php',
+      78 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Programme\\ProgrammeServiceProvider.php',
+      79 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Programme\\Rules\\IsFundingPartner.php',
+      80 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Programme\\Services\\ActivityLocationService.php',
+      81 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Programme\\Services\\EligibilityEvaluator.php',
+      82 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Programme\\Services\\EnrollmentService.php',
+      83 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Programme\\Services\\ProgrammeMatcher.php',
+      84 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Programme\\Services\\ProgrammeMatchingRouter.php',
+      85 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Referral\\Authorization\\ReferralAuthorizer.php',
+      86 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Referral\\Events\\ReferralStatusChanged.php',
+      87 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Referral\\Models\\Referral.php',
+      88 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Referral\\Policies\\ReferralPolicy.php',
+      89 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Referral\\Scopes\\ReferralScope.php',
+      90 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Referral\\Services\\ReferralService.php',
+      91 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Registry\\Contracts\\BeneficiaryRouter.php',
+      92 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Registry\\Events\\BeneficiaryAccessRevoked.php',
+      93 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Registry\\Events\\ImportBatchCompleted.php',
+      94 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Registry\\Events\\ImportDuplicatesSurfaced.php',
+      95 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Registry\\Events\\OwnershipTransferRequested.php',
+      96 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Registry\\Events\\ServiceRequestAccepted.php',
+      97 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Registry\\Events\\ServiceRequestDeclined.php',
+      98 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Registry\\Events\\ServiceRequestRaised.php',
+      99 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Registry\\Export\\BeneficiaryListExport.php',
+      100 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Registry\\Jobs\\CommitImportBatch.php',
+      101 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Registry\\Jobs\\ParseImportBatch.php',
+      102 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Registry\\Models\\Beneficiary.php',
+      103 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Registry\\Models\\BeneficiaryConsent.php',
+      104 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Registry\\Models\\BeneficiaryDocument.php',
+      105 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Registry\\Models\\BeneficiaryServiceGrant.php',
+      106 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Registry\\Models\\Household.php',
+      107 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Registry\\Models\\HouseholdMembership.php',
+      108 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Registry\\Models\\ImportBatch.php',
+      109 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Registry\\Models\\ImportMappingTemplate.php',
+      110 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Registry\\Models\\ImportRow.php',
+      111 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Registry\\Models\\OwnershipTransferRequest.php',
+      112 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Registry\\Models\\ServiceRequest.php',
+      113 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Registry\\Policies\\BeneficiaryDocumentPolicy.php',
+      114 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Registry\\Policies\\BeneficiaryPolicy.php',
+      115 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Registry\\Policies\\HouseholdPolicy.php',
+      116 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Registry\\Policies\\ImportBatchPolicy.php',
+      117 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Registry\\Policies\\OwnerMdaPolicy.php',
+      118 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Registry\\RegistryServiceProvider.php',
+      119 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Registry\\Services\\BatchDuplicateScreener.php',
+      120 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Registry\\Services\\BeneficiaryLookupService.php',
+      121 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Registry\\Services\\BeneficiaryRegistrar.php',
+      122 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Registry\\Services\\CandidateGatherer.php',
+      123 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Registry\\Services\\ConsentGate.php',
+      124 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Registry\\Services\\ConsentService.php',
+      125 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Registry\\Services\\DeterministicDuplicateFinder.php',
+      126 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Registry\\Services\\HouseholdIngestionService.php',
+      127 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Registry\\Services\\HouseholdMembershipService.php',
+      128 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Registry\\Services\\ImportCommitter.php',
+      129 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Registry\\Services\\ImportMappingService.php',
+      130 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Registry\\Services\\NullBeneficiaryRouter.php',
+      131 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Registry\\Services\\OwnershipTransferService.php',
+      132 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Registry\\Services\\ServiceRequestService.php',
+      133 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Registry\\Support\\UniqueIdentifier.php',
+      134 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Reporting\\Gis\\GisCoverageService.php',
+      135 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Reporting\\Jobs\\GenerateReport.php',
+      136 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Reporting\\Listeners\\DeliverScheduledReport.php',
+      137 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Reporting\\Reports\\AdHoc\\AdHocDatasetRegistry.php',
+      138 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Reporting\\Reports\\AdHoc\\AdHocReportBuilder.php',
+      139 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Reporting\\Reports\\ReportBuilder.php',
+      140 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Reporting\\Services\\AdminOrganizationService.php',
+      141 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Reporting\\Services\\AdminSummaryService.php',
+      142 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Reporting\\Services\\DashboardMetricsService.php',
+      143 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Reporting\\Services\\DashboardScopeResolver.php',
+      144 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Reporting\\Services\\DashboardService.php',
+      145 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Reporting\\Services\\DashboardSnapshotService.php',
+      146 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Reporting\\Services\\MdaActionRequiredService.php',
+      147 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Reporting\\Services\\ReportScheduleService.php',
+      148 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Reporting\\Services\\ReportService.php',
+      149 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Sharing\\DataSharingGuard.php',
+      150 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Sync\\Jobs\\RunSyncConnector.php',
+      151 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Sync\\Models\\SyncConnector.php',
+      152 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Sync\\Services\\ConnectorMappingService.php',
+      153 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Sync\\Services\\SyncEngine.php',
+      154 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Access\\AccessController.php',
+      155 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Access\\MdaAccessGrantController.php',
+      156 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Access\\MdaController.php',
+      157 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Access\\UserController.php',
+      158 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\AuthController.php',
+      159 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Benefit\\BenefitController.php',
+      160 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Benefit\\BenefitFlagController.php',
+      161 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Benefit\\BenefitImportController.php',
+      162 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Benefit\\DoubleDippingRuleController.php',
+      163 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Graduation\\GraduationController.php',
+      164 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Grievance\\GrievanceController.php',
+      165 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\HealthController.php',
+      166 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Matching\\MatchingConfigController.php',
+      167 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\MfaController.php',
+      168 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Notification\\BroadcastController.php',
+      169 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Notification\\NotificationController.php',
+      170 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Programme\\ActivityController.php',
+      171 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Programme\\EnrollmentController.php',
+      172 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Programme\\ProgrammeController.php',
+      173 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Referral\\ReferralController.php',
+      174 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Registry\\ActivityImportController.php',
+      175 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Registry\\BeneficiaryController.php',
+      176 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Registry\\BeneficiaryDocumentController.php',
+      177 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Registry\\BeneficiaryIntakeController.php',
+      178 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Registry\\BeneficiaryRoutingController.php',
+      179 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Registry\\HouseholdController.php',
+      180 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Registry\\HouseholdMemberController.php',
+      181 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Registry\\ImportBatchController.php',
+      182 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Registry\\OwnershipTransferController.php',
+      183 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Registry\\ServiceRequestController.php',
+      184 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Reporting\\AdHocReportController.php',
+      185 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Reporting\\DashboardController.php',
+      186 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Reporting\\DashboardExportController.php',
+      187 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Reporting\\GisController.php',
+      188 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Reporting\\MdaActionRequiredController.php',
+      189 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Reporting\\ReportController.php',
+      190 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Reporting\\ReportDefinitionController.php',
+      191 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Reporting\\ReportScheduleController.php',
+      192 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Sharing\\DataSharingController.php',
+      193 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Sync\\SyncController.php',
+      194 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Middleware\\CheckPermission.php',
+      195 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Middleware\\CheckRole.php',
+      196 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Access\\StoreMdaAccessGrantRequest.php',
+      197 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Access\\StoreMdaRequest.php',
+      198 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Access\\StoreUserRequest.php',
+      199 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Access\\UpdateMdaRequest.php',
+      200 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Access\\UpdateRolePermissionsRequest.php',
+      201 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Access\\UpdateUserRequest.php',
+      202 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Auth\\ChangePasswordRequest.php',
+      203 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Auth\\MfaCodeRequest.php',
+      204 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Benefit\\AggregateBenefitsRequest.php',
+      205 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Benefit\\RecordBenefitRequest.php',
+      206 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Benefit\\ReviewBenefitFlagRequest.php',
+      207 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Benefit\\StoreDoubleDippingRuleRequest.php',
+      208 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Benefit\\UploadBenefitImportRequest.php',
+      209 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Benefit\\VerifyBenefitRequest.php',
+      210 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Graduation\\GraduateRequest.php',
+      211 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Graduation\\GraduationCriteriaRequest.php',
+      212 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Grievance\\AssignGrievanceRequest.php',
+      213 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Grievance\\StoreGrievanceRequest.php',
+      214 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Grievance\\TransitionGrievanceRequest.php',
+      215 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Grievance\\UpdateGrievanceSlaRequest.php',
+      216 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Matching\\UpdateMatchingConfigRequest.php',
+      217 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Notification\\BroadcastRequest.php',
+      218 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Notification\\UpdateNotificationPreferencesRequest.php',
+      219 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Programme\\BulkEnrollmentRequest.php',
+      220 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Programme\\StoreActivityRequest.php',
+      221 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Programme\\StoreEnrollmentRequest.php',
+      222 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Programme\\StoreProgrammeRequest.php',
+      223 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Programme\\UpdateActivityRequest.php',
+      224 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Programme\\UpdateEnrollmentRequest.php',
+      225 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Programme\\UpdateProgrammeRequest.php',
+      226 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Referral\\StoreReferralRequest.php',
+      227 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Referral\\TransitionReferralRequest.php',
+      228 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Referral\\UpdateReferralSlaRequest.php',
+      229 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Registry\\AcceptServiceRequestRequest.php',
+      230 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Registry\\AddHouseholdMemberRequest.php',
+      231 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Registry\\ApiRegistrationRequest.php',
+      232 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Registry\\BeneficiaryLookupRequest.php',
+      233 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Registry\\BeneficiaryMatchSearchRequest.php',
+      234 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Registry\\ConfirmMappingRequest.php',
+      235 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Registry\\DecideOwnershipTransferRequest.php',
+      236 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Registry\\DeclineServiceRequestRequest.php',
+      237 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Registry\\DesignateHeadRequest.php',
+      238 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Registry\\ExportBeneficiariesRequest.php',
+      239 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Registry\\MoveHouseholdMemberRequest.php',
+      240 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Registry\\RecordConsentRequest.php',
+      241 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Registry\\ResolveImportRowRequest.php',
+      242 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Registry\\RevokeServiceGrantRequest.php',
+      243 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Registry\\RouteAssignmentRequest.php',
+      244 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Registry\\StoreOwnershipTransferRequest.php',
+      245 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Registry\\StoreServiceRequestRequest.php',
+      246 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Registry\\UpdateBeneficiaryRequest.php',
+      247 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Registry\\UpdateHouseholdRequest.php',
+      248 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Registry\\UploadActivityImportRequest.php',
+      249 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Registry\\UploadDocumentRequest.php',
+      250 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Registry\\UploadImportRequest.php',
+      251 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Reporting\\AdHocReportRequest.php',
+      252 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Reporting\\GenerateReportRequest.php',
+      253 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Reporting\\RunReportDefinitionRequest.php',
+      254 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Reporting\\StoreReportScheduleRequest.php',
+      255 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Reporting\\UpdateReportScheduleRequest.php',
+      256 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Sync\\ConfirmConnectorMappingRequest.php',
+      257 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Sync\\OfflineBatchRequest.php',
+      258 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Resources\\ActivityDetailResource.php',
+      259 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Resources\\ActivityResource.php',
+      260 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Resources\\BeneficiaryDocumentResource.php',
+      261 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Resources\\BeneficiaryResource.php',
+      262 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Resources\\BeneficiaryRevealResource.php',
+      263 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Resources\\BenefitImportBatchResource.php',
+      264 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Resources\\BenefitResource.php',
+      265 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Resources\\EnrollmentResource.php',
+      266 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Resources\\GraduationCriteriaResource.php',
+      267 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Resources\\GraduationEventResource.php',
+      268 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Resources\\GrievanceResource.php',
+      269 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Resources\\HouseholdMembershipResource.php',
+      270 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Resources\\HouseholdResource.php',
+      271 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Resources\\ImportBatchResource.php',
+      272 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Resources\\MdaResource.php',
+      273 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Resources\\NotificationResource.php',
+      274 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Resources\\ServiceRequestResource.php',
+      275 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Resources\\SyncConnectorResource.php',
+      276 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Resources\\UserResource.php',
+      277 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Logging\\CorrelationIdProcessor.php',
+      278 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Providers\\AppServiceProvider.php',
     ),
   ),
   'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Access\\Concerns\\ScopedToMda.php' => 
@@ -21044,211 +22439,213 @@ return [
       69 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Privacy\\Services\\RetentionService.php',
       70 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Privacy\\Services\\SubjectAccessAssembler.php',
       71 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Programme\\Models\\Activity.php',
-      72 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Programme\\Models\\Enrollment.php',
-      73 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Programme\\Models\\Programme.php',
-      74 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Programme\\Policies\\ActivityPolicy.php',
-      75 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Programme\\Policies\\EnrollmentPolicy.php',
-      76 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Programme\\Policies\\ProgrammePolicy.php',
-      77 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Programme\\ProgrammeServiceProvider.php',
-      78 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Programme\\Rules\\IsFundingPartner.php',
-      79 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Programme\\Services\\EligibilityEvaluator.php',
-      80 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Programme\\Services\\EnrollmentService.php',
-      81 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Programme\\Services\\ProgrammeMatcher.php',
-      82 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Programme\\Services\\ProgrammeMatchingRouter.php',
-      83 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Referral\\Authorization\\ReferralAuthorizer.php',
-      84 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Referral\\Events\\ReferralStatusChanged.php',
-      85 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Referral\\Models\\Referral.php',
-      86 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Referral\\Policies\\ReferralPolicy.php',
-      87 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Referral\\Scopes\\ReferralScope.php',
-      88 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Referral\\Services\\ReferralService.php',
-      89 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Registry\\Contracts\\BeneficiaryRouter.php',
-      90 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Registry\\Events\\BeneficiaryAccessRevoked.php',
-      91 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Registry\\Events\\ImportBatchCompleted.php',
-      92 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Registry\\Events\\ImportDuplicatesSurfaced.php',
-      93 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Registry\\Events\\OwnershipTransferRequested.php',
-      94 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Registry\\Events\\ServiceRequestAccepted.php',
-      95 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Registry\\Events\\ServiceRequestDeclined.php',
-      96 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Registry\\Events\\ServiceRequestRaised.php',
-      97 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Registry\\Export\\BeneficiaryListExport.php',
-      98 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Registry\\Jobs\\CommitImportBatch.php',
-      99 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Registry\\Jobs\\ParseImportBatch.php',
-      100 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Registry\\Models\\Beneficiary.php',
-      101 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Registry\\Models\\BeneficiaryConsent.php',
-      102 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Registry\\Models\\BeneficiaryDocument.php',
-      103 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Registry\\Models\\BeneficiaryServiceGrant.php',
-      104 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Registry\\Models\\Household.php',
-      105 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Registry\\Models\\HouseholdMembership.php',
-      106 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Registry\\Models\\ImportBatch.php',
-      107 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Registry\\Models\\ImportMappingTemplate.php',
-      108 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Registry\\Models\\ImportRow.php',
-      109 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Registry\\Models\\OwnershipTransferRequest.php',
-      110 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Registry\\Models\\ServiceRequest.php',
-      111 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Registry\\Policies\\BeneficiaryDocumentPolicy.php',
-      112 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Registry\\Policies\\BeneficiaryPolicy.php',
-      113 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Registry\\Policies\\HouseholdPolicy.php',
-      114 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Registry\\Policies\\ImportBatchPolicy.php',
-      115 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Registry\\Policies\\OwnerMdaPolicy.php',
-      116 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Registry\\RegistryServiceProvider.php',
-      117 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Registry\\Services\\BatchDuplicateScreener.php',
-      118 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Registry\\Services\\BeneficiaryLookupService.php',
-      119 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Registry\\Services\\BeneficiaryRegistrar.php',
-      120 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Registry\\Services\\CandidateGatherer.php',
-      121 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Registry\\Services\\ConsentGate.php',
-      122 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Registry\\Services\\ConsentService.php',
-      123 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Registry\\Services\\DeterministicDuplicateFinder.php',
-      124 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Registry\\Services\\HouseholdIngestionService.php',
-      125 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Registry\\Services\\HouseholdMembershipService.php',
-      126 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Registry\\Services\\ImportCommitter.php',
-      127 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Registry\\Services\\ImportMappingService.php',
-      128 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Registry\\Services\\NullBeneficiaryRouter.php',
-      129 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Registry\\Services\\OwnershipTransferService.php',
-      130 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Registry\\Services\\ServiceRequestService.php',
-      131 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Registry\\Support\\UniqueIdentifier.php',
-      132 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Reporting\\Gis\\GisCoverageService.php',
-      133 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Reporting\\Jobs\\GenerateReport.php',
-      134 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Reporting\\Listeners\\DeliverScheduledReport.php',
-      135 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Reporting\\Reports\\AdHoc\\AdHocDatasetRegistry.php',
-      136 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Reporting\\Reports\\AdHoc\\AdHocReportBuilder.php',
-      137 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Reporting\\Reports\\ReportBuilder.php',
-      138 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Reporting\\Services\\AdminOrganizationService.php',
-      139 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Reporting\\Services\\AdminSummaryService.php',
-      140 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Reporting\\Services\\DashboardMetricsService.php',
-      141 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Reporting\\Services\\DashboardScopeResolver.php',
-      142 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Reporting\\Services\\DashboardService.php',
-      143 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Reporting\\Services\\DashboardSnapshotService.php',
-      144 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Reporting\\Services\\MdaActionRequiredService.php',
-      145 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Reporting\\Services\\ReportScheduleService.php',
-      146 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Reporting\\Services\\ReportService.php',
-      147 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Sharing\\DataSharingGuard.php',
-      148 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Sync\\Jobs\\RunSyncConnector.php',
-      149 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Sync\\Models\\SyncConnector.php',
-      150 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Sync\\Services\\ConnectorMappingService.php',
-      151 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Sync\\Services\\SyncEngine.php',
-      152 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Access\\AccessController.php',
-      153 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Access\\MdaAccessGrantController.php',
-      154 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Access\\MdaController.php',
-      155 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Access\\UserController.php',
-      156 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\AuthController.php',
-      157 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Benefit\\BenefitController.php',
-      158 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Benefit\\BenefitFlagController.php',
-      159 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Benefit\\BenefitImportController.php',
-      160 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Benefit\\DoubleDippingRuleController.php',
-      161 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Graduation\\GraduationController.php',
-      162 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Grievance\\GrievanceController.php',
-      163 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\HealthController.php',
-      164 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Matching\\MatchingConfigController.php',
-      165 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\MfaController.php',
-      166 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Notification\\BroadcastController.php',
-      167 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Notification\\NotificationController.php',
-      168 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Programme\\ActivityController.php',
-      169 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Programme\\EnrollmentController.php',
-      170 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Programme\\ProgrammeController.php',
-      171 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Referral\\ReferralController.php',
-      172 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Registry\\ActivityImportController.php',
-      173 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Registry\\BeneficiaryController.php',
-      174 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Registry\\BeneficiaryDocumentController.php',
-      175 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Registry\\BeneficiaryIntakeController.php',
-      176 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Registry\\BeneficiaryRoutingController.php',
-      177 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Registry\\HouseholdController.php',
-      178 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Registry\\HouseholdMemberController.php',
-      179 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Registry\\ImportBatchController.php',
-      180 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Registry\\OwnershipTransferController.php',
-      181 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Registry\\ServiceRequestController.php',
-      182 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Reporting\\AdHocReportController.php',
-      183 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Reporting\\DashboardController.php',
-      184 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Reporting\\DashboardExportController.php',
-      185 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Reporting\\GisController.php',
-      186 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Reporting\\MdaActionRequiredController.php',
-      187 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Reporting\\ReportController.php',
-      188 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Reporting\\ReportDefinitionController.php',
-      189 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Reporting\\ReportScheduleController.php',
-      190 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Sharing\\DataSharingController.php',
-      191 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Sync\\SyncController.php',
-      192 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Middleware\\CheckPermission.php',
-      193 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Middleware\\CheckRole.php',
-      194 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Access\\StoreMdaAccessGrantRequest.php',
-      195 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Access\\StoreMdaRequest.php',
-      196 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Access\\StoreUserRequest.php',
-      197 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Access\\UpdateMdaRequest.php',
-      198 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Access\\UpdateRolePermissionsRequest.php',
-      199 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Access\\UpdateUserRequest.php',
-      200 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Auth\\ChangePasswordRequest.php',
-      201 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Auth\\MfaCodeRequest.php',
-      202 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Benefit\\AggregateBenefitsRequest.php',
-      203 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Benefit\\RecordBenefitRequest.php',
-      204 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Benefit\\ReviewBenefitFlagRequest.php',
-      205 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Benefit\\StoreDoubleDippingRuleRequest.php',
-      206 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Benefit\\UploadBenefitImportRequest.php',
-      207 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Benefit\\VerifyBenefitRequest.php',
-      208 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Graduation\\GraduateRequest.php',
-      209 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Graduation\\GraduationCriteriaRequest.php',
-      210 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Grievance\\AssignGrievanceRequest.php',
-      211 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Grievance\\StoreGrievanceRequest.php',
-      212 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Grievance\\TransitionGrievanceRequest.php',
-      213 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Grievance\\UpdateGrievanceSlaRequest.php',
-      214 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Matching\\UpdateMatchingConfigRequest.php',
-      215 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Notification\\BroadcastRequest.php',
-      216 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Notification\\UpdateNotificationPreferencesRequest.php',
-      217 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Programme\\BulkEnrollmentRequest.php',
-      218 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Programme\\StoreActivityRequest.php',
-      219 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Programme\\StoreEnrollmentRequest.php',
-      220 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Programme\\StoreProgrammeRequest.php',
-      221 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Programme\\UpdateActivityRequest.php',
-      222 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Programme\\UpdateEnrollmentRequest.php',
-      223 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Programme\\UpdateProgrammeRequest.php',
-      224 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Referral\\StoreReferralRequest.php',
-      225 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Referral\\TransitionReferralRequest.php',
-      226 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Referral\\UpdateReferralSlaRequest.php',
-      227 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Registry\\AcceptServiceRequestRequest.php',
-      228 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Registry\\AddHouseholdMemberRequest.php',
-      229 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Registry\\ApiRegistrationRequest.php',
-      230 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Registry\\BeneficiaryLookupRequest.php',
-      231 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Registry\\BeneficiaryMatchSearchRequest.php',
-      232 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Registry\\ConfirmMappingRequest.php',
-      233 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Registry\\DecideOwnershipTransferRequest.php',
-      234 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Registry\\DeclineServiceRequestRequest.php',
-      235 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Registry\\DesignateHeadRequest.php',
-      236 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Registry\\ExportBeneficiariesRequest.php',
-      237 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Registry\\MoveHouseholdMemberRequest.php',
-      238 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Registry\\RecordConsentRequest.php',
-      239 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Registry\\ResolveImportRowRequest.php',
-      240 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Registry\\RevokeServiceGrantRequest.php',
-      241 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Registry\\RouteAssignmentRequest.php',
-      242 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Registry\\StoreOwnershipTransferRequest.php',
-      243 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Registry\\StoreServiceRequestRequest.php',
-      244 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Registry\\UpdateBeneficiaryRequest.php',
-      245 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Registry\\UpdateHouseholdRequest.php',
-      246 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Registry\\UploadActivityImportRequest.php',
-      247 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Registry\\UploadDocumentRequest.php',
-      248 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Registry\\UploadImportRequest.php',
-      249 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Reporting\\AdHocReportRequest.php',
-      250 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Reporting\\GenerateReportRequest.php',
-      251 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Reporting\\RunReportDefinitionRequest.php',
-      252 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Reporting\\StoreReportScheduleRequest.php',
-      253 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Reporting\\UpdateReportScheduleRequest.php',
-      254 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Sync\\ConfirmConnectorMappingRequest.php',
-      255 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Sync\\OfflineBatchRequest.php',
-      256 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Resources\\ActivityDetailResource.php',
-      257 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Resources\\ActivityResource.php',
-      258 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Resources\\BeneficiaryDocumentResource.php',
-      259 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Resources\\BeneficiaryResource.php',
-      260 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Resources\\BeneficiaryRevealResource.php',
-      261 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Resources\\BenefitImportBatchResource.php',
-      262 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Resources\\BenefitResource.php',
-      263 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Resources\\EnrollmentResource.php',
-      264 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Resources\\GraduationCriteriaResource.php',
-      265 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Resources\\GraduationEventResource.php',
-      266 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Resources\\GrievanceResource.php',
-      267 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Resources\\HouseholdMembershipResource.php',
-      268 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Resources\\HouseholdResource.php',
-      269 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Resources\\ImportBatchResource.php',
-      270 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Resources\\MdaResource.php',
-      271 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Resources\\NotificationResource.php',
-      272 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Resources\\ServiceRequestResource.php',
-      273 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Resources\\SyncConnectorResource.php',
-      274 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Resources\\UserResource.php',
-      275 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Logging\\CorrelationIdProcessor.php',
-      276 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Providers\\AppServiceProvider.php',
+      72 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Programme\\Models\\ActivityLocation.php',
+      73 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Programme\\Models\\Enrollment.php',
+      74 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Programme\\Models\\Programme.php',
+      75 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Programme\\Policies\\ActivityPolicy.php',
+      76 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Programme\\Policies\\EnrollmentPolicy.php',
+      77 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Programme\\Policies\\ProgrammePolicy.php',
+      78 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Programme\\ProgrammeServiceProvider.php',
+      79 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Programme\\Rules\\IsFundingPartner.php',
+      80 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Programme\\Services\\ActivityLocationService.php',
+      81 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Programme\\Services\\EligibilityEvaluator.php',
+      82 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Programme\\Services\\EnrollmentService.php',
+      83 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Programme\\Services\\ProgrammeMatcher.php',
+      84 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Programme\\Services\\ProgrammeMatchingRouter.php',
+      85 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Referral\\Authorization\\ReferralAuthorizer.php',
+      86 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Referral\\Events\\ReferralStatusChanged.php',
+      87 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Referral\\Models\\Referral.php',
+      88 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Referral\\Policies\\ReferralPolicy.php',
+      89 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Referral\\Scopes\\ReferralScope.php',
+      90 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Referral\\Services\\ReferralService.php',
+      91 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Registry\\Contracts\\BeneficiaryRouter.php',
+      92 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Registry\\Events\\BeneficiaryAccessRevoked.php',
+      93 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Registry\\Events\\ImportBatchCompleted.php',
+      94 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Registry\\Events\\ImportDuplicatesSurfaced.php',
+      95 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Registry\\Events\\OwnershipTransferRequested.php',
+      96 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Registry\\Events\\ServiceRequestAccepted.php',
+      97 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Registry\\Events\\ServiceRequestDeclined.php',
+      98 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Registry\\Events\\ServiceRequestRaised.php',
+      99 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Registry\\Export\\BeneficiaryListExport.php',
+      100 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Registry\\Jobs\\CommitImportBatch.php',
+      101 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Registry\\Jobs\\ParseImportBatch.php',
+      102 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Registry\\Models\\Beneficiary.php',
+      103 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Registry\\Models\\BeneficiaryConsent.php',
+      104 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Registry\\Models\\BeneficiaryDocument.php',
+      105 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Registry\\Models\\BeneficiaryServiceGrant.php',
+      106 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Registry\\Models\\Household.php',
+      107 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Registry\\Models\\HouseholdMembership.php',
+      108 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Registry\\Models\\ImportBatch.php',
+      109 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Registry\\Models\\ImportMappingTemplate.php',
+      110 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Registry\\Models\\ImportRow.php',
+      111 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Registry\\Models\\OwnershipTransferRequest.php',
+      112 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Registry\\Models\\ServiceRequest.php',
+      113 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Registry\\Policies\\BeneficiaryDocumentPolicy.php',
+      114 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Registry\\Policies\\BeneficiaryPolicy.php',
+      115 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Registry\\Policies\\HouseholdPolicy.php',
+      116 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Registry\\Policies\\ImportBatchPolicy.php',
+      117 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Registry\\Policies\\OwnerMdaPolicy.php',
+      118 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Registry\\RegistryServiceProvider.php',
+      119 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Registry\\Services\\BatchDuplicateScreener.php',
+      120 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Registry\\Services\\BeneficiaryLookupService.php',
+      121 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Registry\\Services\\BeneficiaryRegistrar.php',
+      122 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Registry\\Services\\CandidateGatherer.php',
+      123 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Registry\\Services\\ConsentGate.php',
+      124 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Registry\\Services\\ConsentService.php',
+      125 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Registry\\Services\\DeterministicDuplicateFinder.php',
+      126 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Registry\\Services\\HouseholdIngestionService.php',
+      127 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Registry\\Services\\HouseholdMembershipService.php',
+      128 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Registry\\Services\\ImportCommitter.php',
+      129 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Registry\\Services\\ImportMappingService.php',
+      130 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Registry\\Services\\NullBeneficiaryRouter.php',
+      131 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Registry\\Services\\OwnershipTransferService.php',
+      132 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Registry\\Services\\ServiceRequestService.php',
+      133 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Registry\\Support\\UniqueIdentifier.php',
+      134 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Reporting\\Gis\\GisCoverageService.php',
+      135 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Reporting\\Jobs\\GenerateReport.php',
+      136 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Reporting\\Listeners\\DeliverScheduledReport.php',
+      137 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Reporting\\Reports\\AdHoc\\AdHocDatasetRegistry.php',
+      138 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Reporting\\Reports\\AdHoc\\AdHocReportBuilder.php',
+      139 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Reporting\\Reports\\ReportBuilder.php',
+      140 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Reporting\\Services\\AdminOrganizationService.php',
+      141 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Reporting\\Services\\AdminSummaryService.php',
+      142 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Reporting\\Services\\DashboardMetricsService.php',
+      143 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Reporting\\Services\\DashboardScopeResolver.php',
+      144 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Reporting\\Services\\DashboardService.php',
+      145 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Reporting\\Services\\DashboardSnapshotService.php',
+      146 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Reporting\\Services\\MdaActionRequiredService.php',
+      147 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Reporting\\Services\\ReportScheduleService.php',
+      148 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Reporting\\Services\\ReportService.php',
+      149 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Sharing\\DataSharingGuard.php',
+      150 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Sync\\Jobs\\RunSyncConnector.php',
+      151 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Sync\\Models\\SyncConnector.php',
+      152 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Sync\\Services\\ConnectorMappingService.php',
+      153 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Sync\\Services\\SyncEngine.php',
+      154 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Access\\AccessController.php',
+      155 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Access\\MdaAccessGrantController.php',
+      156 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Access\\MdaController.php',
+      157 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Access\\UserController.php',
+      158 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\AuthController.php',
+      159 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Benefit\\BenefitController.php',
+      160 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Benefit\\BenefitFlagController.php',
+      161 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Benefit\\BenefitImportController.php',
+      162 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Benefit\\DoubleDippingRuleController.php',
+      163 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Graduation\\GraduationController.php',
+      164 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Grievance\\GrievanceController.php',
+      165 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\HealthController.php',
+      166 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Matching\\MatchingConfigController.php',
+      167 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\MfaController.php',
+      168 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Notification\\BroadcastController.php',
+      169 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Notification\\NotificationController.php',
+      170 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Programme\\ActivityController.php',
+      171 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Programme\\EnrollmentController.php',
+      172 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Programme\\ProgrammeController.php',
+      173 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Referral\\ReferralController.php',
+      174 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Registry\\ActivityImportController.php',
+      175 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Registry\\BeneficiaryController.php',
+      176 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Registry\\BeneficiaryDocumentController.php',
+      177 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Registry\\BeneficiaryIntakeController.php',
+      178 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Registry\\BeneficiaryRoutingController.php',
+      179 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Registry\\HouseholdController.php',
+      180 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Registry\\HouseholdMemberController.php',
+      181 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Registry\\ImportBatchController.php',
+      182 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Registry\\OwnershipTransferController.php',
+      183 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Registry\\ServiceRequestController.php',
+      184 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Reporting\\AdHocReportController.php',
+      185 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Reporting\\DashboardController.php',
+      186 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Reporting\\DashboardExportController.php',
+      187 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Reporting\\GisController.php',
+      188 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Reporting\\MdaActionRequiredController.php',
+      189 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Reporting\\ReportController.php',
+      190 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Reporting\\ReportDefinitionController.php',
+      191 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Reporting\\ReportScheduleController.php',
+      192 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Sharing\\DataSharingController.php',
+      193 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Sync\\SyncController.php',
+      194 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Middleware\\CheckPermission.php',
+      195 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Middleware\\CheckRole.php',
+      196 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Access\\StoreMdaAccessGrantRequest.php',
+      197 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Access\\StoreMdaRequest.php',
+      198 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Access\\StoreUserRequest.php',
+      199 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Access\\UpdateMdaRequest.php',
+      200 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Access\\UpdateRolePermissionsRequest.php',
+      201 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Access\\UpdateUserRequest.php',
+      202 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Auth\\ChangePasswordRequest.php',
+      203 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Auth\\MfaCodeRequest.php',
+      204 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Benefit\\AggregateBenefitsRequest.php',
+      205 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Benefit\\RecordBenefitRequest.php',
+      206 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Benefit\\ReviewBenefitFlagRequest.php',
+      207 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Benefit\\StoreDoubleDippingRuleRequest.php',
+      208 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Benefit\\UploadBenefitImportRequest.php',
+      209 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Benefit\\VerifyBenefitRequest.php',
+      210 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Graduation\\GraduateRequest.php',
+      211 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Graduation\\GraduationCriteriaRequest.php',
+      212 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Grievance\\AssignGrievanceRequest.php',
+      213 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Grievance\\StoreGrievanceRequest.php',
+      214 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Grievance\\TransitionGrievanceRequest.php',
+      215 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Grievance\\UpdateGrievanceSlaRequest.php',
+      216 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Matching\\UpdateMatchingConfigRequest.php',
+      217 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Notification\\BroadcastRequest.php',
+      218 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Notification\\UpdateNotificationPreferencesRequest.php',
+      219 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Programme\\BulkEnrollmentRequest.php',
+      220 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Programme\\StoreActivityRequest.php',
+      221 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Programme\\StoreEnrollmentRequest.php',
+      222 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Programme\\StoreProgrammeRequest.php',
+      223 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Programme\\UpdateActivityRequest.php',
+      224 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Programme\\UpdateEnrollmentRequest.php',
+      225 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Programme\\UpdateProgrammeRequest.php',
+      226 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Referral\\StoreReferralRequest.php',
+      227 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Referral\\TransitionReferralRequest.php',
+      228 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Referral\\UpdateReferralSlaRequest.php',
+      229 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Registry\\AcceptServiceRequestRequest.php',
+      230 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Registry\\AddHouseholdMemberRequest.php',
+      231 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Registry\\ApiRegistrationRequest.php',
+      232 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Registry\\BeneficiaryLookupRequest.php',
+      233 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Registry\\BeneficiaryMatchSearchRequest.php',
+      234 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Registry\\ConfirmMappingRequest.php',
+      235 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Registry\\DecideOwnershipTransferRequest.php',
+      236 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Registry\\DeclineServiceRequestRequest.php',
+      237 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Registry\\DesignateHeadRequest.php',
+      238 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Registry\\ExportBeneficiariesRequest.php',
+      239 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Registry\\MoveHouseholdMemberRequest.php',
+      240 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Registry\\RecordConsentRequest.php',
+      241 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Registry\\ResolveImportRowRequest.php',
+      242 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Registry\\RevokeServiceGrantRequest.php',
+      243 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Registry\\RouteAssignmentRequest.php',
+      244 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Registry\\StoreOwnershipTransferRequest.php',
+      245 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Registry\\StoreServiceRequestRequest.php',
+      246 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Registry\\UpdateBeneficiaryRequest.php',
+      247 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Registry\\UpdateHouseholdRequest.php',
+      248 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Registry\\UploadActivityImportRequest.php',
+      249 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Registry\\UploadDocumentRequest.php',
+      250 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Registry\\UploadImportRequest.php',
+      251 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Reporting\\AdHocReportRequest.php',
+      252 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Reporting\\GenerateReportRequest.php',
+      253 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Reporting\\RunReportDefinitionRequest.php',
+      254 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Reporting\\StoreReportScheduleRequest.php',
+      255 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Reporting\\UpdateReportScheduleRequest.php',
+      256 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Sync\\ConfirmConnectorMappingRequest.php',
+      257 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Sync\\OfflineBatchRequest.php',
+      258 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Resources\\ActivityDetailResource.php',
+      259 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Resources\\ActivityResource.php',
+      260 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Resources\\BeneficiaryDocumentResource.php',
+      261 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Resources\\BeneficiaryResource.php',
+      262 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Resources\\BeneficiaryRevealResource.php',
+      263 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Resources\\BenefitImportBatchResource.php',
+      264 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Resources\\BenefitResource.php',
+      265 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Resources\\EnrollmentResource.php',
+      266 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Resources\\GraduationCriteriaResource.php',
+      267 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Resources\\GraduationEventResource.php',
+      268 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Resources\\GrievanceResource.php',
+      269 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Resources\\HouseholdMembershipResource.php',
+      270 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Resources\\HouseholdResource.php',
+      271 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Resources\\ImportBatchResource.php',
+      272 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Resources\\MdaResource.php',
+      273 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Resources\\NotificationResource.php',
+      274 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Resources\\ServiceRequestResource.php',
+      275 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Resources\\SyncConnectorResource.php',
+      276 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Resources\\UserResource.php',
+      277 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Logging\\CorrelationIdProcessor.php',
+      278 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Providers\\AppServiceProvider.php',
     ),
     'usedTraitDependentFiles' => 
     array (
@@ -21757,215 +23154,217 @@ return [
       68 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Privacy\\Services\\RetentionService.php',
       69 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Privacy\\Services\\SubjectAccessAssembler.php',
       70 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Programme\\Models\\Activity.php',
-      71 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Programme\\Models\\Enrollment.php',
-      72 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Programme\\Models\\Programme.php',
-      73 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Programme\\Policies\\ActivityPolicy.php',
-      74 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Programme\\Policies\\EnrollmentPolicy.php',
-      75 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Programme\\Policies\\ProgrammePolicy.php',
-      76 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Programme\\ProgrammeServiceProvider.php',
-      77 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Programme\\Rules\\IsFundingPartner.php',
-      78 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Programme\\Services\\EligibilityEvaluator.php',
-      79 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Programme\\Services\\EnrollmentService.php',
-      80 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Programme\\Services\\ProgrammeMatcher.php',
-      81 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Programme\\Services\\ProgrammeMatchingRouter.php',
-      82 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Referral\\Authorization\\ReferralAuthorizer.php',
-      83 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Referral\\Events\\ReferralSlaBreached.php',
-      84 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Referral\\Events\\ReferralStatusChanged.php',
-      85 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Referral\\Jobs\\EscalateOverdueReferrals.php',
-      86 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Referral\\Models\\Referral.php',
-      87 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Referral\\Policies\\ReferralPolicy.php',
-      88 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Referral\\ReferralServiceProvider.php',
-      89 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Referral\\Scopes\\ReferralScope.php',
-      90 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Referral\\Services\\ReferralService.php',
-      91 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Registry\\Contracts\\BeneficiaryRouter.php',
-      92 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Registry\\Events\\BeneficiaryAccessRevoked.php',
-      93 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Registry\\Events\\ImportBatchCompleted.php',
-      94 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Registry\\Events\\ImportDuplicatesSurfaced.php',
-      95 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Registry\\Events\\OwnershipTransferRequested.php',
-      96 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Registry\\Events\\ServiceRequestAccepted.php',
-      97 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Registry\\Events\\ServiceRequestDeclined.php',
-      98 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Registry\\Events\\ServiceRequestRaised.php',
-      99 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Registry\\Export\\BeneficiaryListExport.php',
-      100 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Registry\\Jobs\\CommitImportBatch.php',
-      101 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Registry\\Jobs\\ParseImportBatch.php',
-      102 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Registry\\Models\\Beneficiary.php',
-      103 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Registry\\Models\\BeneficiaryConsent.php',
-      104 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Registry\\Models\\BeneficiaryDocument.php',
-      105 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Registry\\Models\\BeneficiaryServiceGrant.php',
-      106 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Registry\\Models\\Household.php',
-      107 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Registry\\Models\\HouseholdMembership.php',
-      108 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Registry\\Models\\ImportBatch.php',
-      109 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Registry\\Models\\ImportRow.php',
-      110 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Registry\\Models\\OwnershipTransferRequest.php',
-      111 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Registry\\Models\\ServiceRequest.php',
-      112 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Registry\\Policies\\BeneficiaryDocumentPolicy.php',
-      113 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Registry\\Policies\\BeneficiaryPolicy.php',
-      114 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Registry\\Policies\\HouseholdPolicy.php',
-      115 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Registry\\Policies\\ImportBatchPolicy.php',
-      116 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Registry\\Policies\\OwnerMdaPolicy.php',
-      117 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Registry\\RegistryServiceProvider.php',
-      118 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Registry\\Services\\BatchDuplicateScreener.php',
-      119 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Registry\\Services\\BeneficiaryLookupService.php',
-      120 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Registry\\Services\\BeneficiaryRegistrar.php',
-      121 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Registry\\Services\\CandidateGatherer.php',
-      122 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Registry\\Services\\ConsentGate.php',
-      123 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Registry\\Services\\ConsentService.php',
-      124 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Registry\\Services\\DeterministicDuplicateFinder.php',
-      125 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Registry\\Services\\HouseholdIngestionService.php',
-      126 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Registry\\Services\\HouseholdMembershipService.php',
-      127 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Registry\\Services\\ImportCommitter.php',
-      128 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Registry\\Services\\ImportMappingService.php',
-      129 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Registry\\Services\\NullBeneficiaryRouter.php',
-      130 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Registry\\Services\\OwnershipTransferService.php',
-      131 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Registry\\Services\\ServiceRequestService.php',
-      132 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Registry\\Support\\UniqueIdentifier.php',
-      133 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Reporting\\Gis\\GisCoverageService.php',
-      134 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Reporting\\Jobs\\GenerateReport.php',
-      135 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Reporting\\Listeners\\DeliverScheduledReport.php',
-      136 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Reporting\\Reports\\AdHoc\\AdHocDatasetRegistry.php',
-      137 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Reporting\\Reports\\AdHoc\\AdHocReportBuilder.php',
-      138 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Reporting\\Reports\\ReportBuilder.php',
-      139 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Reporting\\Services\\AdminOrganizationService.php',
-      140 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Reporting\\Services\\AdminSummaryService.php',
-      141 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Reporting\\Services\\DashboardMetricsService.php',
-      142 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Reporting\\Services\\DashboardScopeResolver.php',
-      143 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Reporting\\Services\\DashboardService.php',
-      144 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Reporting\\Services\\DashboardSnapshotService.php',
-      145 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Reporting\\Services\\MdaActionRequiredService.php',
-      146 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Reporting\\Services\\ReportScheduleService.php',
-      147 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Reporting\\Services\\ReportService.php',
-      148 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Sharing\\DataSharingGuard.php',
-      149 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Sync\\Jobs\\RunSyncConnector.php',
-      150 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Sync\\Models\\SyncConnector.php',
-      151 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Sync\\Services\\ConnectorMappingService.php',
-      152 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Sync\\Services\\SyncEngine.php',
-      153 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Access\\AccessController.php',
-      154 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Access\\MdaAccessGrantController.php',
-      155 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Access\\MdaController.php',
-      156 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Access\\UserController.php',
-      157 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\AuthController.php',
-      158 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Benefit\\BenefitController.php',
-      159 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Benefit\\BenefitFlagController.php',
-      160 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Benefit\\BenefitImportController.php',
-      161 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Benefit\\DoubleDippingRuleController.php',
-      162 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Graduation\\GraduationController.php',
-      163 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Grievance\\GrievanceController.php',
-      164 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\HealthController.php',
-      165 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Matching\\MatchingConfigController.php',
-      166 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\MfaController.php',
-      167 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Notification\\BroadcastController.php',
-      168 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Notification\\NotificationController.php',
-      169 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Programme\\ActivityController.php',
-      170 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Programme\\EnrollmentController.php',
-      171 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Programme\\ProgrammeController.php',
-      172 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Referral\\ReferralController.php',
-      173 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Registry\\ActivityImportController.php',
-      174 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Registry\\BeneficiaryController.php',
-      175 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Registry\\BeneficiaryDocumentController.php',
-      176 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Registry\\BeneficiaryIntakeController.php',
-      177 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Registry\\BeneficiaryRoutingController.php',
-      178 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Registry\\HouseholdController.php',
-      179 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Registry\\HouseholdMemberController.php',
-      180 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Registry\\ImportBatchController.php',
-      181 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Registry\\OwnershipTransferController.php',
-      182 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Registry\\ServiceRequestController.php',
-      183 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Reporting\\AdHocReportController.php',
-      184 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Reporting\\DashboardController.php',
-      185 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Reporting\\DashboardExportController.php',
-      186 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Reporting\\GisController.php',
-      187 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Reporting\\MdaActionRequiredController.php',
-      188 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Reporting\\ReportController.php',
-      189 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Reporting\\ReportDefinitionController.php',
-      190 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Reporting\\ReportScheduleController.php',
-      191 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Sharing\\DataSharingController.php',
-      192 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Sync\\SyncController.php',
-      193 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Middleware\\CheckPermission.php',
-      194 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Middleware\\CheckRole.php',
-      195 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Access\\StoreMdaAccessGrantRequest.php',
-      196 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Access\\StoreMdaRequest.php',
-      197 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Access\\StoreUserRequest.php',
-      198 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Access\\UpdateMdaRequest.php',
-      199 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Access\\UpdateRolePermissionsRequest.php',
-      200 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Access\\UpdateUserRequest.php',
-      201 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Auth\\ChangePasswordRequest.php',
-      202 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Auth\\MfaCodeRequest.php',
-      203 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Benefit\\AggregateBenefitsRequest.php',
-      204 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Benefit\\RecordBenefitRequest.php',
-      205 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Benefit\\ReviewBenefitFlagRequest.php',
-      206 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Benefit\\StoreDoubleDippingRuleRequest.php',
-      207 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Benefit\\UploadBenefitImportRequest.php',
-      208 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Benefit\\VerifyBenefitRequest.php',
-      209 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Graduation\\GraduateRequest.php',
-      210 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Graduation\\GraduationCriteriaRequest.php',
-      211 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Grievance\\AssignGrievanceRequest.php',
-      212 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Grievance\\StoreGrievanceRequest.php',
-      213 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Grievance\\TransitionGrievanceRequest.php',
-      214 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Grievance\\UpdateGrievanceSlaRequest.php',
-      215 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Matching\\UpdateMatchingConfigRequest.php',
-      216 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Notification\\BroadcastRequest.php',
-      217 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Notification\\UpdateNotificationPreferencesRequest.php',
-      218 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Programme\\BulkEnrollmentRequest.php',
-      219 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Programme\\StoreActivityRequest.php',
-      220 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Programme\\StoreEnrollmentRequest.php',
-      221 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Programme\\StoreProgrammeRequest.php',
-      222 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Programme\\UpdateActivityRequest.php',
-      223 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Programme\\UpdateEnrollmentRequest.php',
-      224 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Programme\\UpdateProgrammeRequest.php',
-      225 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Referral\\StoreReferralRequest.php',
-      226 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Referral\\TransitionReferralRequest.php',
-      227 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Referral\\UpdateReferralSlaRequest.php',
-      228 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Registry\\AcceptServiceRequestRequest.php',
-      229 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Registry\\AddHouseholdMemberRequest.php',
-      230 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Registry\\ApiRegistrationRequest.php',
-      231 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Registry\\BeneficiaryLookupRequest.php',
-      232 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Registry\\BeneficiaryMatchSearchRequest.php',
-      233 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Registry\\ConfirmMappingRequest.php',
-      234 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Registry\\DecideOwnershipTransferRequest.php',
-      235 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Registry\\DeclineServiceRequestRequest.php',
-      236 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Registry\\DesignateHeadRequest.php',
-      237 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Registry\\ExportBeneficiariesRequest.php',
-      238 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Registry\\MoveHouseholdMemberRequest.php',
-      239 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Registry\\RecordConsentRequest.php',
-      240 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Registry\\ResolveImportRowRequest.php',
-      241 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Registry\\RevokeServiceGrantRequest.php',
-      242 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Registry\\RouteAssignmentRequest.php',
-      243 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Registry\\StoreOwnershipTransferRequest.php',
-      244 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Registry\\StoreServiceRequestRequest.php',
-      245 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Registry\\UpdateBeneficiaryRequest.php',
-      246 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Registry\\UpdateHouseholdRequest.php',
-      247 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Registry\\UploadActivityImportRequest.php',
-      248 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Registry\\UploadDocumentRequest.php',
-      249 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Registry\\UploadImportRequest.php',
-      250 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Reporting\\AdHocReportRequest.php',
-      251 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Reporting\\GenerateReportRequest.php',
-      252 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Reporting\\RunReportDefinitionRequest.php',
-      253 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Reporting\\StoreReportScheduleRequest.php',
-      254 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Reporting\\UpdateReportScheduleRequest.php',
-      255 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Sync\\ConfirmConnectorMappingRequest.php',
-      256 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Sync\\OfflineBatchRequest.php',
-      257 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Resources\\ActivityDetailResource.php',
-      258 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Resources\\ActivityResource.php',
-      259 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Resources\\BeneficiaryDocumentResource.php',
-      260 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Resources\\BeneficiaryResource.php',
-      261 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Resources\\BeneficiaryRevealResource.php',
-      262 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Resources\\BenefitImportBatchResource.php',
-      263 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Resources\\BenefitResource.php',
-      264 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Resources\\GrievanceResource.php',
-      265 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Resources\\HouseholdMembershipResource.php',
-      266 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Resources\\HouseholdResource.php',
-      267 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Resources\\ImportBatchResource.php',
-      268 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Resources\\MdaResource.php',
-      269 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Resources\\ReferralResource.php',
-      270 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Resources\\ServiceRequestResource.php',
-      271 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Resources\\SyncConnectorResource.php',
-      272 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Resources\\UserResource.php',
-      273 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Logging\\CorrelationIdProcessor.php',
-      274 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Providers\\AppServiceProvider.php',
+      71 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Programme\\Models\\ActivityLocation.php',
+      72 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Programme\\Models\\Enrollment.php',
+      73 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Programme\\Models\\Programme.php',
+      74 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Programme\\Policies\\ActivityPolicy.php',
+      75 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Programme\\Policies\\EnrollmentPolicy.php',
+      76 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Programme\\Policies\\ProgrammePolicy.php',
+      77 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Programme\\ProgrammeServiceProvider.php',
+      78 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Programme\\Rules\\IsFundingPartner.php',
+      79 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Programme\\Services\\ActivityLocationService.php',
+      80 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Programme\\Services\\EligibilityEvaluator.php',
+      81 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Programme\\Services\\EnrollmentService.php',
+      82 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Programme\\Services\\ProgrammeMatcher.php',
+      83 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Programme\\Services\\ProgrammeMatchingRouter.php',
+      84 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Referral\\Authorization\\ReferralAuthorizer.php',
+      85 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Referral\\Events\\ReferralSlaBreached.php',
+      86 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Referral\\Events\\ReferralStatusChanged.php',
+      87 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Referral\\Jobs\\EscalateOverdueReferrals.php',
+      88 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Referral\\Models\\Referral.php',
+      89 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Referral\\Policies\\ReferralPolicy.php',
+      90 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Referral\\ReferralServiceProvider.php',
+      91 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Referral\\Scopes\\ReferralScope.php',
+      92 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Referral\\Services\\ReferralService.php',
+      93 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Registry\\Contracts\\BeneficiaryRouter.php',
+      94 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Registry\\Events\\BeneficiaryAccessRevoked.php',
+      95 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Registry\\Events\\ImportBatchCompleted.php',
+      96 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Registry\\Events\\ImportDuplicatesSurfaced.php',
+      97 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Registry\\Events\\OwnershipTransferRequested.php',
+      98 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Registry\\Events\\ServiceRequestAccepted.php',
+      99 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Registry\\Events\\ServiceRequestDeclined.php',
+      100 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Registry\\Events\\ServiceRequestRaised.php',
+      101 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Registry\\Export\\BeneficiaryListExport.php',
+      102 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Registry\\Jobs\\CommitImportBatch.php',
+      103 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Registry\\Jobs\\ParseImportBatch.php',
+      104 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Registry\\Models\\Beneficiary.php',
+      105 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Registry\\Models\\BeneficiaryConsent.php',
+      106 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Registry\\Models\\BeneficiaryDocument.php',
+      107 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Registry\\Models\\BeneficiaryServiceGrant.php',
+      108 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Registry\\Models\\Household.php',
+      109 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Registry\\Models\\HouseholdMembership.php',
+      110 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Registry\\Models\\ImportBatch.php',
+      111 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Registry\\Models\\ImportRow.php',
+      112 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Registry\\Models\\OwnershipTransferRequest.php',
+      113 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Registry\\Models\\ServiceRequest.php',
+      114 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Registry\\Policies\\BeneficiaryDocumentPolicy.php',
+      115 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Registry\\Policies\\BeneficiaryPolicy.php',
+      116 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Registry\\Policies\\HouseholdPolicy.php',
+      117 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Registry\\Policies\\ImportBatchPolicy.php',
+      118 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Registry\\Policies\\OwnerMdaPolicy.php',
+      119 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Registry\\RegistryServiceProvider.php',
+      120 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Registry\\Services\\BatchDuplicateScreener.php',
+      121 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Registry\\Services\\BeneficiaryLookupService.php',
+      122 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Registry\\Services\\BeneficiaryRegistrar.php',
+      123 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Registry\\Services\\CandidateGatherer.php',
+      124 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Registry\\Services\\ConsentGate.php',
+      125 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Registry\\Services\\ConsentService.php',
+      126 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Registry\\Services\\DeterministicDuplicateFinder.php',
+      127 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Registry\\Services\\HouseholdIngestionService.php',
+      128 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Registry\\Services\\HouseholdMembershipService.php',
+      129 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Registry\\Services\\ImportCommitter.php',
+      130 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Registry\\Services\\ImportMappingService.php',
+      131 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Registry\\Services\\NullBeneficiaryRouter.php',
+      132 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Registry\\Services\\OwnershipTransferService.php',
+      133 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Registry\\Services\\ServiceRequestService.php',
+      134 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Registry\\Support\\UniqueIdentifier.php',
+      135 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Reporting\\Gis\\GisCoverageService.php',
+      136 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Reporting\\Jobs\\GenerateReport.php',
+      137 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Reporting\\Listeners\\DeliverScheduledReport.php',
+      138 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Reporting\\Reports\\AdHoc\\AdHocDatasetRegistry.php',
+      139 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Reporting\\Reports\\AdHoc\\AdHocReportBuilder.php',
+      140 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Reporting\\Reports\\ReportBuilder.php',
+      141 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Reporting\\Services\\AdminOrganizationService.php',
+      142 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Reporting\\Services\\AdminSummaryService.php',
+      143 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Reporting\\Services\\DashboardMetricsService.php',
+      144 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Reporting\\Services\\DashboardScopeResolver.php',
+      145 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Reporting\\Services\\DashboardService.php',
+      146 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Reporting\\Services\\DashboardSnapshotService.php',
+      147 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Reporting\\Services\\MdaActionRequiredService.php',
+      148 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Reporting\\Services\\ReportScheduleService.php',
+      149 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Reporting\\Services\\ReportService.php',
+      150 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Sharing\\DataSharingGuard.php',
+      151 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Sync\\Jobs\\RunSyncConnector.php',
+      152 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Sync\\Models\\SyncConnector.php',
+      153 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Sync\\Services\\ConnectorMappingService.php',
+      154 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Sync\\Services\\SyncEngine.php',
+      155 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Access\\AccessController.php',
+      156 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Access\\MdaAccessGrantController.php',
+      157 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Access\\MdaController.php',
+      158 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Access\\UserController.php',
+      159 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\AuthController.php',
+      160 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Benefit\\BenefitController.php',
+      161 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Benefit\\BenefitFlagController.php',
+      162 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Benefit\\BenefitImportController.php',
+      163 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Benefit\\DoubleDippingRuleController.php',
+      164 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Graduation\\GraduationController.php',
+      165 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Grievance\\GrievanceController.php',
+      166 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\HealthController.php',
+      167 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Matching\\MatchingConfigController.php',
+      168 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\MfaController.php',
+      169 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Notification\\BroadcastController.php',
+      170 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Notification\\NotificationController.php',
+      171 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Programme\\ActivityController.php',
+      172 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Programme\\EnrollmentController.php',
+      173 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Programme\\ProgrammeController.php',
+      174 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Referral\\ReferralController.php',
+      175 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Registry\\ActivityImportController.php',
+      176 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Registry\\BeneficiaryController.php',
+      177 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Registry\\BeneficiaryDocumentController.php',
+      178 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Registry\\BeneficiaryIntakeController.php',
+      179 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Registry\\BeneficiaryRoutingController.php',
+      180 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Registry\\HouseholdController.php',
+      181 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Registry\\HouseholdMemberController.php',
+      182 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Registry\\ImportBatchController.php',
+      183 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Registry\\OwnershipTransferController.php',
+      184 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Registry\\ServiceRequestController.php',
+      185 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Reporting\\AdHocReportController.php',
+      186 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Reporting\\DashboardController.php',
+      187 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Reporting\\DashboardExportController.php',
+      188 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Reporting\\GisController.php',
+      189 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Reporting\\MdaActionRequiredController.php',
+      190 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Reporting\\ReportController.php',
+      191 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Reporting\\ReportDefinitionController.php',
+      192 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Reporting\\ReportScheduleController.php',
+      193 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Sharing\\DataSharingController.php',
+      194 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Sync\\SyncController.php',
+      195 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Middleware\\CheckPermission.php',
+      196 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Middleware\\CheckRole.php',
+      197 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Access\\StoreMdaAccessGrantRequest.php',
+      198 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Access\\StoreMdaRequest.php',
+      199 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Access\\StoreUserRequest.php',
+      200 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Access\\UpdateMdaRequest.php',
+      201 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Access\\UpdateRolePermissionsRequest.php',
+      202 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Access\\UpdateUserRequest.php',
+      203 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Auth\\ChangePasswordRequest.php',
+      204 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Auth\\MfaCodeRequest.php',
+      205 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Benefit\\AggregateBenefitsRequest.php',
+      206 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Benefit\\RecordBenefitRequest.php',
+      207 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Benefit\\ReviewBenefitFlagRequest.php',
+      208 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Benefit\\StoreDoubleDippingRuleRequest.php',
+      209 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Benefit\\UploadBenefitImportRequest.php',
+      210 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Benefit\\VerifyBenefitRequest.php',
+      211 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Graduation\\GraduateRequest.php',
+      212 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Graduation\\GraduationCriteriaRequest.php',
+      213 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Grievance\\AssignGrievanceRequest.php',
+      214 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Grievance\\StoreGrievanceRequest.php',
+      215 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Grievance\\TransitionGrievanceRequest.php',
+      216 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Grievance\\UpdateGrievanceSlaRequest.php',
+      217 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Matching\\UpdateMatchingConfigRequest.php',
+      218 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Notification\\BroadcastRequest.php',
+      219 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Notification\\UpdateNotificationPreferencesRequest.php',
+      220 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Programme\\BulkEnrollmentRequest.php',
+      221 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Programme\\StoreActivityRequest.php',
+      222 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Programme\\StoreEnrollmentRequest.php',
+      223 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Programme\\StoreProgrammeRequest.php',
+      224 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Programme\\UpdateActivityRequest.php',
+      225 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Programme\\UpdateEnrollmentRequest.php',
+      226 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Programme\\UpdateProgrammeRequest.php',
+      227 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Referral\\StoreReferralRequest.php',
+      228 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Referral\\TransitionReferralRequest.php',
+      229 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Referral\\UpdateReferralSlaRequest.php',
+      230 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Registry\\AcceptServiceRequestRequest.php',
+      231 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Registry\\AddHouseholdMemberRequest.php',
+      232 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Registry\\ApiRegistrationRequest.php',
+      233 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Registry\\BeneficiaryLookupRequest.php',
+      234 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Registry\\BeneficiaryMatchSearchRequest.php',
+      235 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Registry\\ConfirmMappingRequest.php',
+      236 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Registry\\DecideOwnershipTransferRequest.php',
+      237 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Registry\\DeclineServiceRequestRequest.php',
+      238 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Registry\\DesignateHeadRequest.php',
+      239 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Registry\\ExportBeneficiariesRequest.php',
+      240 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Registry\\MoveHouseholdMemberRequest.php',
+      241 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Registry\\RecordConsentRequest.php',
+      242 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Registry\\ResolveImportRowRequest.php',
+      243 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Registry\\RevokeServiceGrantRequest.php',
+      244 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Registry\\RouteAssignmentRequest.php',
+      245 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Registry\\StoreOwnershipTransferRequest.php',
+      246 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Registry\\StoreServiceRequestRequest.php',
+      247 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Registry\\UpdateBeneficiaryRequest.php',
+      248 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Registry\\UpdateHouseholdRequest.php',
+      249 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Registry\\UploadActivityImportRequest.php',
+      250 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Registry\\UploadDocumentRequest.php',
+      251 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Registry\\UploadImportRequest.php',
+      252 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Reporting\\AdHocReportRequest.php',
+      253 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Reporting\\GenerateReportRequest.php',
+      254 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Reporting\\RunReportDefinitionRequest.php',
+      255 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Reporting\\StoreReportScheduleRequest.php',
+      256 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Reporting\\UpdateReportScheduleRequest.php',
+      257 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Sync\\ConfirmConnectorMappingRequest.php',
+      258 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Sync\\OfflineBatchRequest.php',
+      259 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Resources\\ActivityDetailResource.php',
+      260 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Resources\\ActivityResource.php',
+      261 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Resources\\BeneficiaryDocumentResource.php',
+      262 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Resources\\BeneficiaryResource.php',
+      263 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Resources\\BeneficiaryRevealResource.php',
+      264 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Resources\\BenefitImportBatchResource.php',
+      265 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Resources\\BenefitResource.php',
+      266 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Resources\\GrievanceResource.php',
+      267 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Resources\\HouseholdMembershipResource.php',
+      268 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Resources\\HouseholdResource.php',
+      269 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Resources\\ImportBatchResource.php',
+      270 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Resources\\MdaResource.php',
+      271 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Resources\\ReferralResource.php',
+      272 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Resources\\ServiceRequestResource.php',
+      273 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Resources\\SyncConnectorResource.php',
+      274 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Resources\\UserResource.php',
+      275 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Logging\\CorrelationIdProcessor.php',
+      276 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Providers\\AppServiceProvider.php',
     ),
   ),
   'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Access\\Models\\MdaAccessGrant.php' => 
   array (
-    'fileHash' => '80454f5cca1295177440dad59922c69b175d5bf25e20ef46174a8e4a926daa17',
+    'fileHash' => '90584e224e34a474065f3a0d01ac3bd5abebc9405871981966456218ab58f3b1',
     'dependentFiles' => 
     array (
       0 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Access\\Events\\CrossMdaAccessGranted.php',
@@ -22216,7 +23615,7 @@ return [
   ),
   'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Access\\Models\\User.php' => 
   array (
-    'fileHash' => 'fff53d6fcd4c37c7b9be357e0b475702957b85cf3233aed363cd267e7fda02c6',
+    'fileHash' => 'cb5dc1613afedc1a9fd1192af8b727a89fed98e76081a1b015be235aaa3d0e9a',
     'dependentFiles' => 
     array (
       0 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Console\\Commands\\CreateAdminUser.php',
@@ -22282,184 +23681,186 @@ return [
       60 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Privacy\\Services\\AnonymizationService.php',
       61 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Privacy\\Services\\SubjectAccessAssembler.php',
       62 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Programme\\Models\\Activity.php',
-      63 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Programme\\Models\\Enrollment.php',
-      64 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Programme\\Models\\Programme.php',
-      65 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Programme\\Policies\\ActivityPolicy.php',
-      66 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Programme\\Policies\\EnrollmentPolicy.php',
-      67 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Programme\\Policies\\ProgrammePolicy.php',
-      68 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Programme\\ProgrammeServiceProvider.php',
-      69 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Programme\\Rules\\IsFundingPartner.php',
-      70 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Programme\\Services\\EnrollmentService.php',
-      71 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Programme\\Services\\ProgrammeMatchingRouter.php',
-      72 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Referral\\Events\\ReferralStatusChanged.php',
-      73 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Referral\\Policies\\ReferralPolicy.php',
-      74 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Referral\\Scopes\\ReferralScope.php',
-      75 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Referral\\Services\\ReferralService.php',
-      76 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Registry\\Events\\BeneficiaryAccessRevoked.php',
-      77 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Registry\\Events\\ImportBatchCompleted.php',
-      78 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Registry\\Events\\ImportDuplicatesSurfaced.php',
-      79 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Registry\\Events\\OwnershipTransferRequested.php',
-      80 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Registry\\Events\\ServiceRequestAccepted.php',
-      81 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Registry\\Events\\ServiceRequestDeclined.php',
-      82 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Registry\\Events\\ServiceRequestRaised.php',
-      83 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Registry\\Jobs\\CommitImportBatch.php',
-      84 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Registry\\Jobs\\ParseImportBatch.php',
-      85 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Registry\\Models\\Beneficiary.php',
-      86 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Registry\\Models\\BeneficiaryDocument.php',
-      87 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Registry\\Models\\BeneficiaryServiceGrant.php',
-      88 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Registry\\Models\\ImportBatch.php',
-      89 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Registry\\Models\\ImportRow.php',
-      90 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Registry\\Models\\OwnershipTransferRequest.php',
-      91 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Registry\\Policies\\BeneficiaryDocumentPolicy.php',
-      92 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Registry\\Policies\\BeneficiaryPolicy.php',
-      93 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Registry\\Policies\\HouseholdPolicy.php',
-      94 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Registry\\Policies\\ImportBatchPolicy.php',
-      95 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Registry\\Policies\\OwnerMdaPolicy.php',
-      96 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Registry\\RegistryServiceProvider.php',
-      97 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Registry\\Services\\BatchDuplicateScreener.php',
-      98 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Registry\\Services\\CandidateGatherer.php',
-      99 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Registry\\Services\\ConsentService.php',
-      100 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Registry\\Services\\DeterministicDuplicateFinder.php',
-      101 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Registry\\Services\\FuzzyDuplicateFinder.php',
-      102 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Registry\\Services\\ImportCommitter.php',
-      103 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Registry\\Services\\ImportMappingService.php',
-      104 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Registry\\Services\\OwnershipTransferService.php',
-      105 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Registry\\Services\\ServiceRequestService.php',
-      106 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Reporting\\Gis\\GisCoverageService.php',
-      107 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Reporting\\Jobs\\GenerateReport.php',
-      108 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Reporting\\Listeners\\DeliverScheduledReport.php',
-      109 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Reporting\\Reports\\AdHoc\\AdHocDatasetRegistry.php',
-      110 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Reporting\\Services\\AdminOrganizationService.php',
-      111 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Reporting\\Services\\AdminSummaryService.php',
-      112 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Reporting\\Services\\DashboardMetricsService.php',
-      113 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Reporting\\Services\\DashboardScopeResolver.php',
-      114 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Reporting\\Services\\DashboardService.php',
-      115 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Reporting\\Services\\DashboardSnapshotService.php',
-      116 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Reporting\\Services\\MdaActionRequiredService.php',
-      117 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Reporting\\Services\\ReportScheduleService.php',
-      118 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Reporting\\Services\\ReportService.php',
-      119 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Sharing\\DataSharingGuard.php',
-      120 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Sync\\Jobs\\RunDueSyncConnectors.php',
-      121 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Sync\\Jobs\\RunSyncConnector.php',
-      122 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Sync\\Models\\SyncConnector.php',
-      123 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Sync\\Models\\SyncRun.php',
-      124 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Sync\\Services\\ConnectorMappingService.php',
-      125 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Sync\\Services\\SyncEngine.php',
-      126 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Sync\\Sources\\MockSyncSource.php',
-      127 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Sync\\Sources\\SyncSource.php',
-      128 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Sync\\Sources\\SyncSourceResolver.php',
-      129 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Access\\AccessController.php',
-      130 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Access\\MdaAccessGrantController.php',
-      131 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Access\\UserController.php',
-      132 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\AuthController.php',
-      133 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Benefit\\BenefitController.php',
-      134 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Benefit\\BenefitFlagController.php',
-      135 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Benefit\\BenefitImportController.php',
-      136 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Benefit\\DoubleDippingRuleController.php',
-      137 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Graduation\\GraduationController.php',
-      138 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Grievance\\GrievanceController.php',
-      139 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Matching\\MatchingConfigController.php',
-      140 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\MfaController.php',
-      141 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Notification\\BroadcastController.php',
-      142 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Notification\\NotificationController.php',
-      143 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Programme\\ActivityController.php',
-      144 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Programme\\EnrollmentController.php',
-      145 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Programme\\ProgrammeController.php',
-      146 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Referral\\ReferralController.php',
-      147 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Registry\\ActivityImportController.php',
-      148 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Registry\\BeneficiaryController.php',
-      149 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Registry\\BeneficiaryDocumentController.php',
-      150 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Registry\\BeneficiaryIntakeController.php',
-      151 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Registry\\BeneficiaryRoutingController.php',
-      152 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Registry\\ImportBatchController.php',
-      153 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Registry\\OwnershipTransferController.php',
-      154 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Registry\\ServiceRequestController.php',
-      155 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Reporting\\AdHocReportController.php',
-      156 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Reporting\\DashboardController.php',
-      157 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Reporting\\DashboardExportController.php',
-      158 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Reporting\\GisController.php',
-      159 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Reporting\\MdaActionRequiredController.php',
-      160 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Reporting\\ReportController.php',
-      161 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Reporting\\ReportDefinitionController.php',
-      162 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Reporting\\ReportScheduleController.php',
-      163 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Sharing\\DataSharingController.php',
-      164 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Sync\\SyncController.php',
-      165 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Middleware\\CheckPermission.php',
-      166 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Middleware\\CheckRole.php',
-      167 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Access\\StoreMdaAccessGrantRequest.php',
-      168 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Access\\StoreMdaRequest.php',
-      169 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Access\\StoreUserRequest.php',
-      170 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Access\\UpdateMdaRequest.php',
-      171 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Access\\UpdateRolePermissionsRequest.php',
-      172 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Access\\UpdateUserRequest.php',
-      173 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Auth\\ChangePasswordRequest.php',
-      174 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Auth\\MfaCodeRequest.php',
-      175 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Benefit\\AggregateBenefitsRequest.php',
-      176 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Benefit\\RecordBenefitRequest.php',
-      177 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Benefit\\ReviewBenefitFlagRequest.php',
-      178 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Benefit\\StoreDoubleDippingRuleRequest.php',
-      179 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Benefit\\UploadBenefitImportRequest.php',
-      180 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Benefit\\VerifyBenefitRequest.php',
-      181 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Graduation\\GraduateRequest.php',
-      182 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Graduation\\GraduationCriteriaRequest.php',
-      183 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Grievance\\AssignGrievanceRequest.php',
-      184 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Grievance\\StoreGrievanceRequest.php',
-      185 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Grievance\\TransitionGrievanceRequest.php',
-      186 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Grievance\\UpdateGrievanceSlaRequest.php',
-      187 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Matching\\UpdateMatchingConfigRequest.php',
-      188 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Notification\\BroadcastRequest.php',
-      189 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Notification\\UpdateNotificationPreferencesRequest.php',
-      190 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Programme\\BulkEnrollmentRequest.php',
-      191 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Programme\\StoreActivityRequest.php',
-      192 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Programme\\StoreEnrollmentRequest.php',
-      193 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Programme\\StoreProgrammeRequest.php',
-      194 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Programme\\UpdateActivityRequest.php',
-      195 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Programme\\UpdateEnrollmentRequest.php',
-      196 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Programme\\UpdateProgrammeRequest.php',
-      197 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Referral\\StoreReferralRequest.php',
-      198 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Referral\\TransitionReferralRequest.php',
-      199 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Referral\\UpdateReferralSlaRequest.php',
-      200 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Registry\\AcceptServiceRequestRequest.php',
-      201 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Registry\\AddHouseholdMemberRequest.php',
-      202 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Registry\\ApiRegistrationRequest.php',
-      203 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Registry\\BeneficiaryLookupRequest.php',
-      204 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Registry\\BeneficiaryMatchSearchRequest.php',
-      205 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Registry\\ConfirmMappingRequest.php',
-      206 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Registry\\DecideOwnershipTransferRequest.php',
-      207 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Registry\\DeclineServiceRequestRequest.php',
-      208 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Registry\\DesignateHeadRequest.php',
-      209 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Registry\\ExportBeneficiariesRequest.php',
-      210 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Registry\\MoveHouseholdMemberRequest.php',
-      211 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Registry\\RecordConsentRequest.php',
-      212 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Registry\\ResolveImportRowRequest.php',
-      213 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Registry\\RevokeServiceGrantRequest.php',
-      214 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Registry\\RouteAssignmentRequest.php',
-      215 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Registry\\StoreOwnershipTransferRequest.php',
-      216 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Registry\\StoreServiceRequestRequest.php',
-      217 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Registry\\UpdateBeneficiaryRequest.php',
-      218 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Registry\\UpdateHouseholdRequest.php',
-      219 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Registry\\UploadActivityImportRequest.php',
-      220 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Registry\\UploadDocumentRequest.php',
-      221 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Registry\\UploadImportRequest.php',
-      222 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Reporting\\AdHocReportRequest.php',
-      223 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Reporting\\GenerateReportRequest.php',
-      224 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Reporting\\RunReportDefinitionRequest.php',
-      225 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Reporting\\StoreReportScheduleRequest.php',
-      226 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Reporting\\UpdateReportScheduleRequest.php',
-      227 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Sync\\ConfirmConnectorMappingRequest.php',
-      228 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Sync\\OfflineBatchRequest.php',
-      229 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Resources\\ActivityDetailResource.php',
-      230 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Resources\\ActivityResource.php',
-      231 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Resources\\BeneficiaryDocumentResource.php',
-      232 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Resources\\BeneficiaryRevealResource.php',
-      233 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Resources\\GrievanceResource.php',
-      234 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Resources\\ImportBatchResource.php',
-      235 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Resources\\MatchingConfigResource.php',
-      236 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Resources\\NotificationResource.php',
-      237 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Resources\\SyncConnectorResource.php',
-      238 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Resources\\UserResource.php',
-      239 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Logging\\CorrelationIdProcessor.php',
-      240 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Providers\\AppServiceProvider.php',
+      63 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Programme\\Models\\ActivityLocation.php',
+      64 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Programme\\Models\\Enrollment.php',
+      65 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Programme\\Models\\Programme.php',
+      66 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Programme\\Policies\\ActivityPolicy.php',
+      67 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Programme\\Policies\\EnrollmentPolicy.php',
+      68 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Programme\\Policies\\ProgrammePolicy.php',
+      69 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Programme\\ProgrammeServiceProvider.php',
+      70 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Programme\\Rules\\IsFundingPartner.php',
+      71 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Programme\\Services\\ActivityLocationService.php',
+      72 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Programme\\Services\\EnrollmentService.php',
+      73 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Programme\\Services\\ProgrammeMatchingRouter.php',
+      74 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Referral\\Events\\ReferralStatusChanged.php',
+      75 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Referral\\Policies\\ReferralPolicy.php',
+      76 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Referral\\Scopes\\ReferralScope.php',
+      77 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Referral\\Services\\ReferralService.php',
+      78 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Registry\\Events\\BeneficiaryAccessRevoked.php',
+      79 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Registry\\Events\\ImportBatchCompleted.php',
+      80 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Registry\\Events\\ImportDuplicatesSurfaced.php',
+      81 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Registry\\Events\\OwnershipTransferRequested.php',
+      82 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Registry\\Events\\ServiceRequestAccepted.php',
+      83 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Registry\\Events\\ServiceRequestDeclined.php',
+      84 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Registry\\Events\\ServiceRequestRaised.php',
+      85 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Registry\\Jobs\\CommitImportBatch.php',
+      86 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Registry\\Jobs\\ParseImportBatch.php',
+      87 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Registry\\Models\\Beneficiary.php',
+      88 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Registry\\Models\\BeneficiaryDocument.php',
+      89 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Registry\\Models\\BeneficiaryServiceGrant.php',
+      90 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Registry\\Models\\ImportBatch.php',
+      91 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Registry\\Models\\ImportRow.php',
+      92 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Registry\\Models\\OwnershipTransferRequest.php',
+      93 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Registry\\Policies\\BeneficiaryDocumentPolicy.php',
+      94 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Registry\\Policies\\BeneficiaryPolicy.php',
+      95 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Registry\\Policies\\HouseholdPolicy.php',
+      96 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Registry\\Policies\\ImportBatchPolicy.php',
+      97 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Registry\\Policies\\OwnerMdaPolicy.php',
+      98 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Registry\\RegistryServiceProvider.php',
+      99 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Registry\\Services\\BatchDuplicateScreener.php',
+      100 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Registry\\Services\\CandidateGatherer.php',
+      101 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Registry\\Services\\ConsentService.php',
+      102 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Registry\\Services\\DeterministicDuplicateFinder.php',
+      103 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Registry\\Services\\FuzzyDuplicateFinder.php',
+      104 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Registry\\Services\\ImportCommitter.php',
+      105 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Registry\\Services\\ImportMappingService.php',
+      106 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Registry\\Services\\OwnershipTransferService.php',
+      107 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Registry\\Services\\ServiceRequestService.php',
+      108 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Reporting\\Gis\\GisCoverageService.php',
+      109 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Reporting\\Jobs\\GenerateReport.php',
+      110 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Reporting\\Listeners\\DeliverScheduledReport.php',
+      111 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Reporting\\Reports\\AdHoc\\AdHocDatasetRegistry.php',
+      112 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Reporting\\Services\\AdminOrganizationService.php',
+      113 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Reporting\\Services\\AdminSummaryService.php',
+      114 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Reporting\\Services\\DashboardMetricsService.php',
+      115 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Reporting\\Services\\DashboardScopeResolver.php',
+      116 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Reporting\\Services\\DashboardService.php',
+      117 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Reporting\\Services\\DashboardSnapshotService.php',
+      118 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Reporting\\Services\\MdaActionRequiredService.php',
+      119 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Reporting\\Services\\ReportScheduleService.php',
+      120 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Reporting\\Services\\ReportService.php',
+      121 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Sharing\\DataSharingGuard.php',
+      122 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Sync\\Jobs\\RunDueSyncConnectors.php',
+      123 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Sync\\Jobs\\RunSyncConnector.php',
+      124 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Sync\\Models\\SyncConnector.php',
+      125 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Sync\\Models\\SyncRun.php',
+      126 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Sync\\Services\\ConnectorMappingService.php',
+      127 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Sync\\Services\\SyncEngine.php',
+      128 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Sync\\Sources\\MockSyncSource.php',
+      129 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Sync\\Sources\\SyncSource.php',
+      130 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Sync\\Sources\\SyncSourceResolver.php',
+      131 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Access\\AccessController.php',
+      132 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Access\\MdaAccessGrantController.php',
+      133 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Access\\UserController.php',
+      134 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\AuthController.php',
+      135 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Benefit\\BenefitController.php',
+      136 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Benefit\\BenefitFlagController.php',
+      137 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Benefit\\BenefitImportController.php',
+      138 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Benefit\\DoubleDippingRuleController.php',
+      139 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Graduation\\GraduationController.php',
+      140 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Grievance\\GrievanceController.php',
+      141 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Matching\\MatchingConfigController.php',
+      142 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\MfaController.php',
+      143 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Notification\\BroadcastController.php',
+      144 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Notification\\NotificationController.php',
+      145 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Programme\\ActivityController.php',
+      146 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Programme\\EnrollmentController.php',
+      147 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Programme\\ProgrammeController.php',
+      148 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Referral\\ReferralController.php',
+      149 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Registry\\ActivityImportController.php',
+      150 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Registry\\BeneficiaryController.php',
+      151 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Registry\\BeneficiaryDocumentController.php',
+      152 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Registry\\BeneficiaryIntakeController.php',
+      153 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Registry\\BeneficiaryRoutingController.php',
+      154 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Registry\\ImportBatchController.php',
+      155 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Registry\\OwnershipTransferController.php',
+      156 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Registry\\ServiceRequestController.php',
+      157 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Reporting\\AdHocReportController.php',
+      158 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Reporting\\DashboardController.php',
+      159 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Reporting\\DashboardExportController.php',
+      160 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Reporting\\GisController.php',
+      161 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Reporting\\MdaActionRequiredController.php',
+      162 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Reporting\\ReportController.php',
+      163 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Reporting\\ReportDefinitionController.php',
+      164 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Reporting\\ReportScheduleController.php',
+      165 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Sharing\\DataSharingController.php',
+      166 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Sync\\SyncController.php',
+      167 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Middleware\\CheckPermission.php',
+      168 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Middleware\\CheckRole.php',
+      169 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Access\\StoreMdaAccessGrantRequest.php',
+      170 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Access\\StoreMdaRequest.php',
+      171 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Access\\StoreUserRequest.php',
+      172 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Access\\UpdateMdaRequest.php',
+      173 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Access\\UpdateRolePermissionsRequest.php',
+      174 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Access\\UpdateUserRequest.php',
+      175 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Auth\\ChangePasswordRequest.php',
+      176 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Auth\\MfaCodeRequest.php',
+      177 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Benefit\\AggregateBenefitsRequest.php',
+      178 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Benefit\\RecordBenefitRequest.php',
+      179 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Benefit\\ReviewBenefitFlagRequest.php',
+      180 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Benefit\\StoreDoubleDippingRuleRequest.php',
+      181 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Benefit\\UploadBenefitImportRequest.php',
+      182 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Benefit\\VerifyBenefitRequest.php',
+      183 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Graduation\\GraduateRequest.php',
+      184 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Graduation\\GraduationCriteriaRequest.php',
+      185 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Grievance\\AssignGrievanceRequest.php',
+      186 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Grievance\\StoreGrievanceRequest.php',
+      187 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Grievance\\TransitionGrievanceRequest.php',
+      188 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Grievance\\UpdateGrievanceSlaRequest.php',
+      189 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Matching\\UpdateMatchingConfigRequest.php',
+      190 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Notification\\BroadcastRequest.php',
+      191 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Notification\\UpdateNotificationPreferencesRequest.php',
+      192 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Programme\\BulkEnrollmentRequest.php',
+      193 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Programme\\StoreActivityRequest.php',
+      194 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Programme\\StoreEnrollmentRequest.php',
+      195 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Programme\\StoreProgrammeRequest.php',
+      196 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Programme\\UpdateActivityRequest.php',
+      197 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Programme\\UpdateEnrollmentRequest.php',
+      198 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Programme\\UpdateProgrammeRequest.php',
+      199 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Referral\\StoreReferralRequest.php',
+      200 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Referral\\TransitionReferralRequest.php',
+      201 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Referral\\UpdateReferralSlaRequest.php',
+      202 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Registry\\AcceptServiceRequestRequest.php',
+      203 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Registry\\AddHouseholdMemberRequest.php',
+      204 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Registry\\ApiRegistrationRequest.php',
+      205 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Registry\\BeneficiaryLookupRequest.php',
+      206 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Registry\\BeneficiaryMatchSearchRequest.php',
+      207 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Registry\\ConfirmMappingRequest.php',
+      208 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Registry\\DecideOwnershipTransferRequest.php',
+      209 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Registry\\DeclineServiceRequestRequest.php',
+      210 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Registry\\DesignateHeadRequest.php',
+      211 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Registry\\ExportBeneficiariesRequest.php',
+      212 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Registry\\MoveHouseholdMemberRequest.php',
+      213 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Registry\\RecordConsentRequest.php',
+      214 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Registry\\ResolveImportRowRequest.php',
+      215 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Registry\\RevokeServiceGrantRequest.php',
+      216 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Registry\\RouteAssignmentRequest.php',
+      217 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Registry\\StoreOwnershipTransferRequest.php',
+      218 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Registry\\StoreServiceRequestRequest.php',
+      219 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Registry\\UpdateBeneficiaryRequest.php',
+      220 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Registry\\UpdateHouseholdRequest.php',
+      221 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Registry\\UploadActivityImportRequest.php',
+      222 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Registry\\UploadDocumentRequest.php',
+      223 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Registry\\UploadImportRequest.php',
+      224 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Reporting\\AdHocReportRequest.php',
+      225 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Reporting\\GenerateReportRequest.php',
+      226 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Reporting\\RunReportDefinitionRequest.php',
+      227 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Reporting\\StoreReportScheduleRequest.php',
+      228 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Reporting\\UpdateReportScheduleRequest.php',
+      229 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Sync\\ConfirmConnectorMappingRequest.php',
+      230 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Sync\\OfflineBatchRequest.php',
+      231 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Resources\\ActivityDetailResource.php',
+      232 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Resources\\ActivityResource.php',
+      233 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Resources\\BeneficiaryDocumentResource.php',
+      234 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Resources\\BeneficiaryRevealResource.php',
+      235 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Resources\\GrievanceResource.php',
+      236 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Resources\\ImportBatchResource.php',
+      237 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Resources\\MatchingConfigResource.php',
+      238 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Resources\\NotificationResource.php',
+      239 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Resources\\SyncConnectorResource.php',
+      240 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Resources\\UserResource.php',
+      241 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Logging\\CorrelationIdProcessor.php',
+      242 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Providers\\AppServiceProvider.php',
     ),
   ),
   'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Access\\Scopes\\MdaScope.php' => 
@@ -22705,223 +24106,225 @@ return [
       78 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Privacy\\Services\\RetentionService.php',
       79 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Privacy\\Services\\SubjectAccessAssembler.php',
       80 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Programme\\Models\\Activity.php',
-      81 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Programme\\Models\\Enrollment.php',
-      82 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Programme\\Models\\Programme.php',
-      83 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Programme\\Policies\\ActivityPolicy.php',
-      84 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Programme\\Policies\\EnrollmentPolicy.php',
-      85 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Programme\\Policies\\ProgrammePolicy.php',
-      86 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Programme\\ProgrammeServiceProvider.php',
-      87 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Programme\\Rules\\IsFundingPartner.php',
-      88 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Programme\\Services\\EligibilityEvaluator.php',
-      89 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Programme\\Services\\EnrollmentService.php',
-      90 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Programme\\Services\\ProgrammeMatcher.php',
-      91 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Programme\\Services\\ProgrammeMatchingRouter.php',
-      92 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Referral\\Authorization\\ReferralAuthorizer.php',
-      93 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Referral\\Events\\ReferralSlaBreached.php',
-      94 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Referral\\Events\\ReferralStatusChanged.php',
-      95 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Referral\\Jobs\\EscalateOverdueReferrals.php',
-      96 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Referral\\Models\\Referral.php',
-      97 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Referral\\Models\\ReferralSlaPolicy.php',
-      98 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Referral\\Policies\\ReferralPolicy.php',
-      99 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Referral\\ReferralServiceProvider.php',
-      100 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Referral\\Scopes\\ReferralScope.php',
-      101 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Referral\\Services\\ReferralService.php',
-      102 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Registry\\Contracts\\BeneficiaryRouter.php',
-      103 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Registry\\Events\\BeneficiaryAccessRevoked.php',
-      104 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Registry\\Events\\ImportBatchCompleted.php',
-      105 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Registry\\Events\\ImportDuplicatesSurfaced.php',
-      106 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Registry\\Events\\OwnershipTransferRequested.php',
-      107 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Registry\\Events\\ServiceRequestAccepted.php',
-      108 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Registry\\Events\\ServiceRequestDeclined.php',
-      109 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Registry\\Events\\ServiceRequestRaised.php',
-      110 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Registry\\Export\\BeneficiaryListExport.php',
-      111 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Registry\\Jobs\\CommitImportBatch.php',
-      112 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Registry\\Jobs\\ParseImportBatch.php',
-      113 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Registry\\Models\\Beneficiary.php',
-      114 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Registry\\Models\\BeneficiaryConsent.php',
-      115 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Registry\\Models\\BeneficiaryDocument.php',
-      116 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Registry\\Models\\BeneficiaryServiceGrant.php',
-      117 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Registry\\Models\\Household.php',
-      118 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Registry\\Models\\HouseholdMembership.php',
-      119 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Registry\\Models\\ImportBatch.php',
-      120 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Registry\\Models\\ImportMappingTemplate.php',
-      121 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Registry\\Models\\ImportRow.php',
-      122 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Registry\\Models\\OwnershipTransferRequest.php',
-      123 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Registry\\Models\\ServiceRequest.php',
-      124 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Registry\\Policies\\BeneficiaryDocumentPolicy.php',
-      125 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Registry\\Policies\\BeneficiaryPolicy.php',
-      126 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Registry\\Policies\\HouseholdPolicy.php',
-      127 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Registry\\Policies\\ImportBatchPolicy.php',
-      128 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Registry\\Policies\\OwnerMdaPolicy.php',
-      129 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Registry\\RegistryServiceProvider.php',
-      130 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Registry\\Services\\BatchDuplicateScreener.php',
-      131 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Registry\\Services\\BeneficiaryLookupService.php',
-      132 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Registry\\Services\\BeneficiaryRegistrar.php',
-      133 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Registry\\Services\\CandidateGatherer.php',
-      134 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Registry\\Services\\ConsentGate.php',
-      135 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Registry\\Services\\ConsentService.php',
-      136 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Registry\\Services\\DeterministicDuplicateFinder.php',
-      137 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Registry\\Services\\FuzzyDuplicateFinder.php',
-      138 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Registry\\Services\\HouseholdIngestionService.php',
-      139 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Registry\\Services\\HouseholdMembershipService.php',
-      140 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Registry\\Services\\ImportCommitter.php',
-      141 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Registry\\Services\\ImportMappingService.php',
-      142 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Registry\\Services\\NullBeneficiaryRouter.php',
-      143 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Registry\\Services\\OwnershipTransferService.php',
-      144 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Registry\\Services\\ServiceRequestService.php',
-      145 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Registry\\Support\\UniqueIdentifier.php',
-      146 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Reporting\\Gis\\GisCoverageService.php',
-      147 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Reporting\\Jobs\\GenerateReport.php',
-      148 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Reporting\\Listeners\\DeliverScheduledReport.php',
-      149 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Reporting\\Reports\\AdHoc\\AdHocDatasetRegistry.php',
-      150 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Reporting\\Reports\\AdHoc\\AdHocReportBuilder.php',
-      151 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Reporting\\Reports\\ReportBuilder.php',
-      152 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Reporting\\Services\\AdminOrganizationService.php',
-      153 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Reporting\\Services\\AdminSettingsService.php',
-      154 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Reporting\\Services\\AdminSummaryService.php',
-      155 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Reporting\\Services\\DashboardMetricsService.php',
-      156 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Reporting\\Services\\DashboardScopeResolver.php',
-      157 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Reporting\\Services\\DashboardService.php',
-      158 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Reporting\\Services\\DashboardSnapshotService.php',
-      159 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Reporting\\Services\\MdaActionRequiredService.php',
-      160 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Reporting\\Services\\ReportScheduleService.php',
-      161 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Reporting\\Services\\ReportService.php',
-      162 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Sharing\\DataSharingGuard.php',
-      163 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Sync\\Jobs\\RunSyncConnector.php',
-      164 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Sync\\Models\\SyncConnector.php',
-      165 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Sync\\Services\\ConnectorMappingService.php',
-      166 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Sync\\Services\\SyncEngine.php',
-      167 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Access\\AccessController.php',
-      168 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Access\\MdaAccessGrantController.php',
-      169 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Access\\MdaController.php',
-      170 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Access\\UserController.php',
-      171 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\AuthController.php',
-      172 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Benefit\\BenefitController.php',
-      173 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Benefit\\BenefitFlagController.php',
-      174 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Benefit\\BenefitImportController.php',
-      175 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Benefit\\DoubleDippingRuleController.php',
-      176 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Graduation\\GraduationController.php',
-      177 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Grievance\\GrievanceController.php',
-      178 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Grievance\\GrievanceSlaPolicyController.php',
-      179 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\HealthController.php',
-      180 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Matching\\MatchingConfigController.php',
-      181 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\MfaController.php',
-      182 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Notification\\BroadcastController.php',
-      183 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Notification\\NotificationController.php',
-      184 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Programme\\ActivityController.php',
-      185 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Programme\\EnrollmentController.php',
-      186 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Programme\\ProgrammeController.php',
-      187 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Referral\\ReferralController.php',
-      188 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Referral\\ReferralSlaPolicyController.php',
-      189 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Registry\\ActivityImportController.php',
-      190 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Registry\\BeneficiaryController.php',
-      191 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Registry\\BeneficiaryDocumentController.php',
-      192 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Registry\\BeneficiaryIntakeController.php',
-      193 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Registry\\BeneficiaryRoutingController.php',
-      194 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Registry\\HouseholdController.php',
-      195 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Registry\\HouseholdMemberController.php',
-      196 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Registry\\ImportBatchController.php',
-      197 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Registry\\OwnershipTransferController.php',
-      198 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Registry\\ServiceRequestController.php',
-      199 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Reporting\\AdHocReportController.php',
-      200 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Reporting\\DashboardController.php',
-      201 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Reporting\\DashboardExportController.php',
-      202 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Reporting\\GisController.php',
-      203 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Reporting\\MdaActionRequiredController.php',
-      204 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Reporting\\ReportController.php',
-      205 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Reporting\\ReportDefinitionController.php',
-      206 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Reporting\\ReportScheduleController.php',
-      207 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Sharing\\DataSharingController.php',
-      208 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Sync\\SyncController.php',
-      209 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Middleware\\CheckPermission.php',
-      210 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Middleware\\CheckRole.php',
-      211 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Access\\StoreMdaAccessGrantRequest.php',
-      212 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Access\\StoreMdaRequest.php',
-      213 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Access\\StoreUserRequest.php',
-      214 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Access\\UpdateMdaRequest.php',
-      215 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Access\\UpdateRolePermissionsRequest.php',
-      216 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Access\\UpdateUserRequest.php',
-      217 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Auth\\ChangePasswordRequest.php',
-      218 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Auth\\MfaCodeRequest.php',
-      219 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Benefit\\AggregateBenefitsRequest.php',
-      220 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Benefit\\RecordBenefitRequest.php',
-      221 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Benefit\\ReviewBenefitFlagRequest.php',
-      222 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Benefit\\StoreDoubleDippingRuleRequest.php',
-      223 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Benefit\\UploadBenefitImportRequest.php',
-      224 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Benefit\\VerifyBenefitRequest.php',
-      225 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Graduation\\GraduateRequest.php',
-      226 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Graduation\\GraduationCriteriaRequest.php',
-      227 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Grievance\\AssignGrievanceRequest.php',
-      228 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Grievance\\StoreGrievanceRequest.php',
-      229 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Grievance\\TransitionGrievanceRequest.php',
-      230 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Grievance\\UpdateGrievanceSlaRequest.php',
-      231 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Matching\\UpdateMatchingConfigRequest.php',
-      232 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Notification\\BroadcastRequest.php',
-      233 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Notification\\UpdateNotificationPreferencesRequest.php',
-      234 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Programme\\BulkEnrollmentRequest.php',
-      235 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Programme\\StoreActivityRequest.php',
-      236 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Programme\\StoreEnrollmentRequest.php',
-      237 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Programme\\StoreProgrammeRequest.php',
-      238 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Programme\\UpdateActivityRequest.php',
-      239 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Programme\\UpdateEnrollmentRequest.php',
-      240 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Programme\\UpdateProgrammeRequest.php',
-      241 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Referral\\StoreReferralRequest.php',
-      242 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Referral\\TransitionReferralRequest.php',
-      243 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Referral\\UpdateReferralSlaRequest.php',
-      244 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Registry\\AcceptServiceRequestRequest.php',
-      245 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Registry\\AddHouseholdMemberRequest.php',
-      246 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Registry\\ApiRegistrationRequest.php',
-      247 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Registry\\BeneficiaryLookupRequest.php',
-      248 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Registry\\BeneficiaryMatchSearchRequest.php',
-      249 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Registry\\ConfirmMappingRequest.php',
-      250 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Registry\\DecideOwnershipTransferRequest.php',
-      251 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Registry\\DeclineServiceRequestRequest.php',
-      252 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Registry\\DesignateHeadRequest.php',
-      253 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Registry\\ExportBeneficiariesRequest.php',
-      254 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Registry\\MoveHouseholdMemberRequest.php',
-      255 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Registry\\RecordConsentRequest.php',
-      256 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Registry\\ResolveImportRowRequest.php',
-      257 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Registry\\RevokeServiceGrantRequest.php',
-      258 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Registry\\RouteAssignmentRequest.php',
-      259 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Registry\\StoreOwnershipTransferRequest.php',
-      260 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Registry\\StoreServiceRequestRequest.php',
-      261 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Registry\\UpdateBeneficiaryRequest.php',
-      262 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Registry\\UpdateHouseholdRequest.php',
-      263 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Registry\\UploadActivityImportRequest.php',
-      264 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Registry\\UploadDocumentRequest.php',
-      265 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Registry\\UploadImportRequest.php',
-      266 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Reporting\\AdHocReportRequest.php',
-      267 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Reporting\\GenerateReportRequest.php',
-      268 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Reporting\\RunReportDefinitionRequest.php',
-      269 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Reporting\\StoreReportScheduleRequest.php',
-      270 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Reporting\\UpdateReportScheduleRequest.php',
-      271 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Sync\\ConfirmConnectorMappingRequest.php',
-      272 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Sync\\OfflineBatchRequest.php',
-      273 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Resources\\ActivityDetailResource.php',
-      274 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Resources\\ActivityResource.php',
-      275 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Resources\\BeneficiaryDocumentResource.php',
-      276 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Resources\\BeneficiaryResource.php',
-      277 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Resources\\BeneficiaryRevealResource.php',
-      278 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Resources\\BenefitFlagResource.php',
-      279 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Resources\\BenefitImportBatchResource.php',
-      280 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Resources\\BenefitResource.php',
-      281 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Resources\\DoubleDippingRuleResource.php',
-      282 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Resources\\EnrollmentResource.php',
-      283 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Resources\\GraduationCriteriaResource.php',
-      284 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Resources\\GrievanceResource.php',
-      285 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Resources\\HouseholdMembershipResource.php',
-      286 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Resources\\HouseholdResource.php',
-      287 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Resources\\ImportBatchResource.php',
-      288 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Resources\\MatchingConfigResource.php',
-      289 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Resources\\MdaResource.php',
-      290 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Resources\\OwnershipTransferResource.php',
-      291 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Resources\\ProgrammeResource.php',
-      292 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Resources\\ReferralResource.php',
-      293 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Resources\\ServiceRequestResource.php',
-      294 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Resources\\SyncConnectorResource.php',
-      295 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Resources\\UserResource.php',
-      296 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Logging\\CorrelationIdProcessor.php',
-      297 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Providers\\AppServiceProvider.php',
+      81 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Programme\\Models\\ActivityLocation.php',
+      82 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Programme\\Models\\Enrollment.php',
+      83 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Programme\\Models\\Programme.php',
+      84 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Programme\\Policies\\ActivityPolicy.php',
+      85 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Programme\\Policies\\EnrollmentPolicy.php',
+      86 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Programme\\Policies\\ProgrammePolicy.php',
+      87 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Programme\\ProgrammeServiceProvider.php',
+      88 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Programme\\Rules\\IsFundingPartner.php',
+      89 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Programme\\Services\\ActivityLocationService.php',
+      90 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Programme\\Services\\EligibilityEvaluator.php',
+      91 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Programme\\Services\\EnrollmentService.php',
+      92 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Programme\\Services\\ProgrammeMatcher.php',
+      93 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Programme\\Services\\ProgrammeMatchingRouter.php',
+      94 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Referral\\Authorization\\ReferralAuthorizer.php',
+      95 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Referral\\Events\\ReferralSlaBreached.php',
+      96 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Referral\\Events\\ReferralStatusChanged.php',
+      97 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Referral\\Jobs\\EscalateOverdueReferrals.php',
+      98 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Referral\\Models\\Referral.php',
+      99 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Referral\\Models\\ReferralSlaPolicy.php',
+      100 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Referral\\Policies\\ReferralPolicy.php',
+      101 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Referral\\ReferralServiceProvider.php',
+      102 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Referral\\Scopes\\ReferralScope.php',
+      103 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Referral\\Services\\ReferralService.php',
+      104 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Registry\\Contracts\\BeneficiaryRouter.php',
+      105 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Registry\\Events\\BeneficiaryAccessRevoked.php',
+      106 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Registry\\Events\\ImportBatchCompleted.php',
+      107 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Registry\\Events\\ImportDuplicatesSurfaced.php',
+      108 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Registry\\Events\\OwnershipTransferRequested.php',
+      109 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Registry\\Events\\ServiceRequestAccepted.php',
+      110 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Registry\\Events\\ServiceRequestDeclined.php',
+      111 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Registry\\Events\\ServiceRequestRaised.php',
+      112 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Registry\\Export\\BeneficiaryListExport.php',
+      113 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Registry\\Jobs\\CommitImportBatch.php',
+      114 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Registry\\Jobs\\ParseImportBatch.php',
+      115 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Registry\\Models\\Beneficiary.php',
+      116 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Registry\\Models\\BeneficiaryConsent.php',
+      117 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Registry\\Models\\BeneficiaryDocument.php',
+      118 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Registry\\Models\\BeneficiaryServiceGrant.php',
+      119 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Registry\\Models\\Household.php',
+      120 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Registry\\Models\\HouseholdMembership.php',
+      121 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Registry\\Models\\ImportBatch.php',
+      122 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Registry\\Models\\ImportMappingTemplate.php',
+      123 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Registry\\Models\\ImportRow.php',
+      124 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Registry\\Models\\OwnershipTransferRequest.php',
+      125 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Registry\\Models\\ServiceRequest.php',
+      126 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Registry\\Policies\\BeneficiaryDocumentPolicy.php',
+      127 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Registry\\Policies\\BeneficiaryPolicy.php',
+      128 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Registry\\Policies\\HouseholdPolicy.php',
+      129 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Registry\\Policies\\ImportBatchPolicy.php',
+      130 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Registry\\Policies\\OwnerMdaPolicy.php',
+      131 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Registry\\RegistryServiceProvider.php',
+      132 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Registry\\Services\\BatchDuplicateScreener.php',
+      133 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Registry\\Services\\BeneficiaryLookupService.php',
+      134 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Registry\\Services\\BeneficiaryRegistrar.php',
+      135 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Registry\\Services\\CandidateGatherer.php',
+      136 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Registry\\Services\\ConsentGate.php',
+      137 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Registry\\Services\\ConsentService.php',
+      138 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Registry\\Services\\DeterministicDuplicateFinder.php',
+      139 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Registry\\Services\\FuzzyDuplicateFinder.php',
+      140 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Registry\\Services\\HouseholdIngestionService.php',
+      141 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Registry\\Services\\HouseholdMembershipService.php',
+      142 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Registry\\Services\\ImportCommitter.php',
+      143 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Registry\\Services\\ImportMappingService.php',
+      144 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Registry\\Services\\NullBeneficiaryRouter.php',
+      145 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Registry\\Services\\OwnershipTransferService.php',
+      146 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Registry\\Services\\ServiceRequestService.php',
+      147 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Registry\\Support\\UniqueIdentifier.php',
+      148 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Reporting\\Gis\\GisCoverageService.php',
+      149 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Reporting\\Jobs\\GenerateReport.php',
+      150 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Reporting\\Listeners\\DeliverScheduledReport.php',
+      151 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Reporting\\Reports\\AdHoc\\AdHocDatasetRegistry.php',
+      152 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Reporting\\Reports\\AdHoc\\AdHocReportBuilder.php',
+      153 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Reporting\\Reports\\ReportBuilder.php',
+      154 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Reporting\\Services\\AdminOrganizationService.php',
+      155 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Reporting\\Services\\AdminSettingsService.php',
+      156 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Reporting\\Services\\AdminSummaryService.php',
+      157 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Reporting\\Services\\DashboardMetricsService.php',
+      158 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Reporting\\Services\\DashboardScopeResolver.php',
+      159 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Reporting\\Services\\DashboardService.php',
+      160 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Reporting\\Services\\DashboardSnapshotService.php',
+      161 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Reporting\\Services\\MdaActionRequiredService.php',
+      162 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Reporting\\Services\\ReportScheduleService.php',
+      163 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Reporting\\Services\\ReportService.php',
+      164 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Sharing\\DataSharingGuard.php',
+      165 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Sync\\Jobs\\RunSyncConnector.php',
+      166 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Sync\\Models\\SyncConnector.php',
+      167 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Sync\\Services\\ConnectorMappingService.php',
+      168 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Sync\\Services\\SyncEngine.php',
+      169 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Access\\AccessController.php',
+      170 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Access\\MdaAccessGrantController.php',
+      171 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Access\\MdaController.php',
+      172 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Access\\UserController.php',
+      173 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\AuthController.php',
+      174 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Benefit\\BenefitController.php',
+      175 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Benefit\\BenefitFlagController.php',
+      176 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Benefit\\BenefitImportController.php',
+      177 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Benefit\\DoubleDippingRuleController.php',
+      178 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Graduation\\GraduationController.php',
+      179 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Grievance\\GrievanceController.php',
+      180 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Grievance\\GrievanceSlaPolicyController.php',
+      181 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\HealthController.php',
+      182 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Matching\\MatchingConfigController.php',
+      183 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\MfaController.php',
+      184 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Notification\\BroadcastController.php',
+      185 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Notification\\NotificationController.php',
+      186 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Programme\\ActivityController.php',
+      187 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Programme\\EnrollmentController.php',
+      188 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Programme\\ProgrammeController.php',
+      189 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Referral\\ReferralController.php',
+      190 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Referral\\ReferralSlaPolicyController.php',
+      191 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Registry\\ActivityImportController.php',
+      192 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Registry\\BeneficiaryController.php',
+      193 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Registry\\BeneficiaryDocumentController.php',
+      194 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Registry\\BeneficiaryIntakeController.php',
+      195 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Registry\\BeneficiaryRoutingController.php',
+      196 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Registry\\HouseholdController.php',
+      197 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Registry\\HouseholdMemberController.php',
+      198 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Registry\\ImportBatchController.php',
+      199 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Registry\\OwnershipTransferController.php',
+      200 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Registry\\ServiceRequestController.php',
+      201 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Reporting\\AdHocReportController.php',
+      202 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Reporting\\DashboardController.php',
+      203 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Reporting\\DashboardExportController.php',
+      204 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Reporting\\GisController.php',
+      205 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Reporting\\MdaActionRequiredController.php',
+      206 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Reporting\\ReportController.php',
+      207 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Reporting\\ReportDefinitionController.php',
+      208 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Reporting\\ReportScheduleController.php',
+      209 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Sharing\\DataSharingController.php',
+      210 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Sync\\SyncController.php',
+      211 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Middleware\\CheckPermission.php',
+      212 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Middleware\\CheckRole.php',
+      213 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Access\\StoreMdaAccessGrantRequest.php',
+      214 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Access\\StoreMdaRequest.php',
+      215 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Access\\StoreUserRequest.php',
+      216 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Access\\UpdateMdaRequest.php',
+      217 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Access\\UpdateRolePermissionsRequest.php',
+      218 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Access\\UpdateUserRequest.php',
+      219 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Auth\\ChangePasswordRequest.php',
+      220 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Auth\\MfaCodeRequest.php',
+      221 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Benefit\\AggregateBenefitsRequest.php',
+      222 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Benefit\\RecordBenefitRequest.php',
+      223 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Benefit\\ReviewBenefitFlagRequest.php',
+      224 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Benefit\\StoreDoubleDippingRuleRequest.php',
+      225 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Benefit\\UploadBenefitImportRequest.php',
+      226 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Benefit\\VerifyBenefitRequest.php',
+      227 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Graduation\\GraduateRequest.php',
+      228 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Graduation\\GraduationCriteriaRequest.php',
+      229 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Grievance\\AssignGrievanceRequest.php',
+      230 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Grievance\\StoreGrievanceRequest.php',
+      231 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Grievance\\TransitionGrievanceRequest.php',
+      232 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Grievance\\UpdateGrievanceSlaRequest.php',
+      233 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Matching\\UpdateMatchingConfigRequest.php',
+      234 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Notification\\BroadcastRequest.php',
+      235 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Notification\\UpdateNotificationPreferencesRequest.php',
+      236 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Programme\\BulkEnrollmentRequest.php',
+      237 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Programme\\StoreActivityRequest.php',
+      238 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Programme\\StoreEnrollmentRequest.php',
+      239 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Programme\\StoreProgrammeRequest.php',
+      240 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Programme\\UpdateActivityRequest.php',
+      241 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Programme\\UpdateEnrollmentRequest.php',
+      242 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Programme\\UpdateProgrammeRequest.php',
+      243 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Referral\\StoreReferralRequest.php',
+      244 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Referral\\TransitionReferralRequest.php',
+      245 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Referral\\UpdateReferralSlaRequest.php',
+      246 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Registry\\AcceptServiceRequestRequest.php',
+      247 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Registry\\AddHouseholdMemberRequest.php',
+      248 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Registry\\ApiRegistrationRequest.php',
+      249 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Registry\\BeneficiaryLookupRequest.php',
+      250 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Registry\\BeneficiaryMatchSearchRequest.php',
+      251 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Registry\\ConfirmMappingRequest.php',
+      252 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Registry\\DecideOwnershipTransferRequest.php',
+      253 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Registry\\DeclineServiceRequestRequest.php',
+      254 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Registry\\DesignateHeadRequest.php',
+      255 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Registry\\ExportBeneficiariesRequest.php',
+      256 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Registry\\MoveHouseholdMemberRequest.php',
+      257 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Registry\\RecordConsentRequest.php',
+      258 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Registry\\ResolveImportRowRequest.php',
+      259 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Registry\\RevokeServiceGrantRequest.php',
+      260 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Registry\\RouteAssignmentRequest.php',
+      261 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Registry\\StoreOwnershipTransferRequest.php',
+      262 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Registry\\StoreServiceRequestRequest.php',
+      263 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Registry\\UpdateBeneficiaryRequest.php',
+      264 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Registry\\UpdateHouseholdRequest.php',
+      265 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Registry\\UploadActivityImportRequest.php',
+      266 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Registry\\UploadDocumentRequest.php',
+      267 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Registry\\UploadImportRequest.php',
+      268 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Reporting\\AdHocReportRequest.php',
+      269 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Reporting\\GenerateReportRequest.php',
+      270 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Reporting\\RunReportDefinitionRequest.php',
+      271 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Reporting\\StoreReportScheduleRequest.php',
+      272 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Reporting\\UpdateReportScheduleRequest.php',
+      273 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Sync\\ConfirmConnectorMappingRequest.php',
+      274 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Sync\\OfflineBatchRequest.php',
+      275 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Resources\\ActivityDetailResource.php',
+      276 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Resources\\ActivityResource.php',
+      277 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Resources\\BeneficiaryDocumentResource.php',
+      278 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Resources\\BeneficiaryResource.php',
+      279 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Resources\\BeneficiaryRevealResource.php',
+      280 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Resources\\BenefitFlagResource.php',
+      281 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Resources\\BenefitImportBatchResource.php',
+      282 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Resources\\BenefitResource.php',
+      283 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Resources\\DoubleDippingRuleResource.php',
+      284 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Resources\\EnrollmentResource.php',
+      285 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Resources\\GraduationCriteriaResource.php',
+      286 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Resources\\GrievanceResource.php',
+      287 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Resources\\HouseholdMembershipResource.php',
+      288 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Resources\\HouseholdResource.php',
+      289 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Resources\\ImportBatchResource.php',
+      290 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Resources\\MatchingConfigResource.php',
+      291 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Resources\\MdaResource.php',
+      292 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Resources\\OwnershipTransferResource.php',
+      293 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Resources\\ProgrammeResource.php',
+      294 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Resources\\ReferralResource.php',
+      295 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Resources\\ServiceRequestResource.php',
+      296 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Resources\\SyncConnectorResource.php',
+      297 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Resources\\UserResource.php',
+      298 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Logging\\CorrelationIdProcessor.php',
+      299 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Providers\\AppServiceProvider.php',
     ),
     'usedTraitDependentFiles' => 
     array (
@@ -23519,7 +24922,7 @@ return [
   ),
   'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Benefit\\Services\\LedgerAggregator.php' => 
   array (
-    'fileHash' => 'f133afb81afd8b5e7bf8dbbb3eafc7845755c2de9abc72db06e2c66a69ba345c',
+    'fileHash' => '5dec90e8fba082fea2b1f4f32da72bad3c96951da3a5183573391819f5979af3',
     'dependentFiles' => 
     array (
       0 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Console\\Commands\\PerfBenchmark.php',
@@ -24330,30 +25733,32 @@ return [
       2 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Benefit\\Policies\\BenefitImportPolicy.php',
       3 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Benefit\\Services\\LedgerAggregator.php',
       4 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Programme\\Models\\Activity.php',
-      5 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Programme\\Models\\Enrollment.php',
-      6 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Programme\\Models\\Programme.php',
-      7 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Programme\\Policies\\ActivityPolicy.php',
-      8 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Programme\\ProgrammeServiceProvider.php',
-      9 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Programme\\Services\\ProgrammeMatchingRouter.php',
-      10 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Registry\\Models\\ImportBatch.php',
-      11 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Registry\\Services\\ImportCommitter.php',
-      12 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Reporting\\Gis\\GisCoverageService.php',
-      13 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Reporting\\Reports\\AdHoc\\AdHocDatasetRegistry.php',
-      14 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Reporting\\Services\\AdminOrganizationService.php',
-      15 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Reporting\\Services\\AdminSummaryService.php',
-      16 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Reporting\\Services\\DashboardMetricsService.php',
-      17 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Reporting\\Services\\DashboardScopeResolver.php',
-      18 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Benefit\\BenefitController.php',
-      19 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Benefit\\BenefitImportController.php',
-      20 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Programme\\ActivityController.php',
-      21 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Programme\\EnrollmentController.php',
-      22 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Registry\\ActivityImportController.php',
-      23 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Programme\\StoreActivityRequest.php',
-      24 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Programme\\UpdateActivityRequest.php',
-      25 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Registry\\UploadActivityImportRequest.php',
-      26 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Registry\\UploadImportRequest.php',
-      27 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Resources\\ActivityDetailResource.php',
-      28 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Resources\\ActivityResource.php',
+      5 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Programme\\Models\\ActivityLocation.php',
+      6 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Programme\\Models\\Enrollment.php',
+      7 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Programme\\Models\\Programme.php',
+      8 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Programme\\Policies\\ActivityPolicy.php',
+      9 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Programme\\ProgrammeServiceProvider.php',
+      10 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Programme\\Services\\ActivityLocationService.php',
+      11 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Programme\\Services\\ProgrammeMatchingRouter.php',
+      12 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Registry\\Models\\ImportBatch.php',
+      13 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Registry\\Services\\ImportCommitter.php',
+      14 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Reporting\\Gis\\GisCoverageService.php',
+      15 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Reporting\\Reports\\AdHoc\\AdHocDatasetRegistry.php',
+      16 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Reporting\\Services\\AdminOrganizationService.php',
+      17 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Reporting\\Services\\AdminSummaryService.php',
+      18 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Reporting\\Services\\DashboardMetricsService.php',
+      19 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Reporting\\Services\\DashboardScopeResolver.php',
+      20 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Benefit\\BenefitController.php',
+      21 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Benefit\\BenefitImportController.php',
+      22 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Programme\\ActivityController.php',
+      23 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Programme\\EnrollmentController.php',
+      24 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Registry\\ActivityImportController.php',
+      25 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Programme\\StoreActivityRequest.php',
+      26 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Programme\\UpdateActivityRequest.php',
+      27 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Registry\\UploadActivityImportRequest.php',
+      28 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Registry\\UploadImportRequest.php',
+      29 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Resources\\ActivityDetailResource.php',
+      30 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Resources\\ActivityResource.php',
     ),
   ),
   'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Programme\\Enums\\EnrollmentStatus.php' => 
@@ -24474,7 +25879,7 @@ return [
   ),
   'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Programme\\Models\\Activity.php' => 
   array (
-    'fileHash' => 'dc7089eed1d6bf4cf81ea4882b5862986ab26acdfae0a426bcc2bb47372c81e5',
+    'fileHash' => 'cf685db77b182d8ddf848ee1686606eb6180d03a26921bf55cc95d9c4d18d908',
     'dependentFiles' => 
     array (
       0 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Benefit\\BenefitServiceProvider.php',
@@ -24490,38 +25895,74 @@ return [
       10 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Benefit\\Services\\BenefitRecorder.php',
       11 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Benefit\\Services\\LedgerAggregator.php',
       12 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Graduation\\Models\\GraduationCriteria.php',
-      13 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Programme\\Models\\Enrollment.php',
-      14 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Programme\\Models\\Programme.php',
-      15 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Programme\\Policies\\ActivityPolicy.php',
-      16 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Programme\\Policies\\EnrollmentPolicy.php',
-      17 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Programme\\Policies\\ProgrammePolicy.php',
-      18 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Programme\\ProgrammeServiceProvider.php',
-      19 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Programme\\Services\\EnrollmentService.php',
-      20 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Programme\\Services\\ProgrammeMatcher.php',
-      21 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Programme\\Services\\ProgrammeMatchingRouter.php',
-      22 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Registry\\Models\\ImportBatch.php',
-      23 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Registry\\Services\\ImportCommitter.php',
-      24 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Reporting\\Gis\\GisCoverageService.php',
-      25 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Reporting\\Reports\\AdHoc\\AdHocDatasetRegistry.php',
-      26 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Reporting\\Reports\\AdHoc\\AdHocReportBuilder.php',
-      27 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Reporting\\Reports\\ReportBuilder.php',
-      28 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Reporting\\Services\\AdminOrganizationService.php',
-      29 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Reporting\\Services\\AdminSummaryService.php',
-      30 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Reporting\\Services\\DashboardMetricsService.php',
-      31 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Reporting\\Services\\DashboardScopeResolver.php',
-      32 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Benefit\\BenefitController.php',
-      33 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Benefit\\BenefitImportController.php',
-      34 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Graduation\\GraduationController.php',
-      35 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Programme\\ActivityController.php',
-      36 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Programme\\EnrollmentController.php',
-      37 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Programme\\ProgrammeController.php',
-      38 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Registry\\ActivityImportController.php',
-      39 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Registry\\BeneficiaryRoutingController.php',
-      40 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Registry\\UploadImportRequest.php',
-      41 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Resources\\ActivityDetailResource.php',
-      42 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Resources\\ActivityResource.php',
-      43 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Resources\\BenefitImportBatchResource.php',
-      44 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Resources\\ProgrammeResource.php',
+      13 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Programme\\Models\\ActivityLocation.php',
+      14 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Programme\\Models\\Enrollment.php',
+      15 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Programme\\Models\\Programme.php',
+      16 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Programme\\Policies\\ActivityPolicy.php',
+      17 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Programme\\Policies\\EnrollmentPolicy.php',
+      18 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Programme\\Policies\\ProgrammePolicy.php',
+      19 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Programme\\ProgrammeServiceProvider.php',
+      20 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Programme\\Services\\ActivityLocationService.php',
+      21 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Programme\\Services\\EnrollmentService.php',
+      22 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Programme\\Services\\ProgrammeMatcher.php',
+      23 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Programme\\Services\\ProgrammeMatchingRouter.php',
+      24 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Registry\\Models\\ImportBatch.php',
+      25 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Registry\\Services\\ImportCommitter.php',
+      26 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Reporting\\Gis\\GisCoverageService.php',
+      27 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Reporting\\Reports\\AdHoc\\AdHocDatasetRegistry.php',
+      28 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Reporting\\Reports\\AdHoc\\AdHocReportBuilder.php',
+      29 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Reporting\\Reports\\ReportBuilder.php',
+      30 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Reporting\\Services\\AdminOrganizationService.php',
+      31 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Reporting\\Services\\AdminSummaryService.php',
+      32 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Reporting\\Services\\DashboardMetricsService.php',
+      33 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Reporting\\Services\\DashboardScopeResolver.php',
+      34 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Benefit\\BenefitController.php',
+      35 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Benefit\\BenefitImportController.php',
+      36 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Graduation\\GraduationController.php',
+      37 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Programme\\ActivityController.php',
+      38 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Programme\\EnrollmentController.php',
+      39 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Programme\\ProgrammeController.php',
+      40 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Registry\\ActivityImportController.php',
+      41 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Registry\\BeneficiaryRoutingController.php',
+      42 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Registry\\UploadImportRequest.php',
+      43 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Resources\\ActivityDetailResource.php',
+      44 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Resources\\ActivityResource.php',
+      45 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Resources\\BenefitImportBatchResource.php',
+      46 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Resources\\ProgrammeResource.php',
+    ),
+  ),
+  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Programme\\Models\\ActivityLocation.php' => 
+  array (
+    'fileHash' => 'f0fdaa2d48af15f86c9c2820e231e35e72b489734e9af9691c1621ca3512c6e1',
+    'dependentFiles' => 
+    array (
+      0 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Benefit\\Models\\Benefit.php',
+      1 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Benefit\\Models\\BenefitImportBatch.php',
+      2 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Benefit\\Policies\\BenefitImportPolicy.php',
+      3 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Benefit\\Services\\LedgerAggregator.php',
+      4 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Programme\\Models\\Activity.php',
+      5 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Programme\\Models\\Enrollment.php',
+      6 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Programme\\Models\\Programme.php',
+      7 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Programme\\Policies\\ActivityPolicy.php',
+      8 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Programme\\ProgrammeServiceProvider.php',
+      9 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Programme\\Services\\ActivityLocationService.php',
+      10 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Programme\\Services\\ProgrammeMatchingRouter.php',
+      11 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Registry\\Models\\ImportBatch.php',
+      12 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Registry\\Services\\ImportCommitter.php',
+      13 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Reporting\\Gis\\GisCoverageService.php',
+      14 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Reporting\\Reports\\AdHoc\\AdHocDatasetRegistry.php',
+      15 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Reporting\\Services\\AdminOrganizationService.php',
+      16 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Reporting\\Services\\AdminSummaryService.php',
+      17 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Reporting\\Services\\DashboardMetricsService.php',
+      18 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Reporting\\Services\\DashboardScopeResolver.php',
+      19 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Benefit\\BenefitController.php',
+      20 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Benefit\\BenefitImportController.php',
+      21 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Programme\\ActivityController.php',
+      22 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Programme\\EnrollmentController.php',
+      23 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Registry\\ActivityImportController.php',
+      24 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Registry\\UploadImportRequest.php',
+      25 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Resources\\ActivityDetailResource.php',
+      26 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Resources\\ActivityResource.php',
     ),
   ),
   'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Programme\\Models\\Enrollment.php' => 
@@ -24582,42 +26023,44 @@ return [
       22 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Privacy\\Services\\RetentionService.php',
       23 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Privacy\\Services\\SubjectAccessAssembler.php',
       24 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Programme\\Models\\Activity.php',
-      25 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Programme\\Models\\Enrollment.php',
-      26 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Programme\\Policies\\ActivityPolicy.php',
-      27 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Programme\\Policies\\EnrollmentPolicy.php',
-      28 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Programme\\Policies\\ProgrammePolicy.php',
-      29 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Programme\\ProgrammeServiceProvider.php',
-      30 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Programme\\Services\\EnrollmentService.php',
-      31 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Programme\\Services\\ProgrammeMatcher.php',
-      32 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Programme\\Services\\ProgrammeMatchingRouter.php',
-      33 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Referral\\Services\\ReferralService.php',
-      34 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Registry\\Models\\Beneficiary.php',
-      35 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Registry\\Models\\ImportBatch.php',
-      36 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Registry\\Services\\ImportCommitter.php',
-      37 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Reporting\\Gis\\GisCoverageService.php',
-      38 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Reporting\\Reports\\AdHoc\\AdHocDatasetRegistry.php',
-      39 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Reporting\\Reports\\AdHoc\\AdHocReportBuilder.php',
-      40 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Reporting\\Reports\\ReportBuilder.php',
-      41 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Reporting\\Services\\AdminOrganizationService.php',
-      42 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Reporting\\Services\\AdminSummaryService.php',
-      43 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Reporting\\Services\\DashboardMetricsService.php',
-      44 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Reporting\\Services\\DashboardScopeResolver.php',
-      45 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Benefit\\BenefitController.php',
-      46 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Benefit\\BenefitImportController.php',
-      47 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Graduation\\GraduationController.php',
-      48 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\HealthController.php',
-      49 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Programme\\ActivityController.php',
-      50 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Programme\\EnrollmentController.php',
-      51 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Programme\\ProgrammeController.php',
-      52 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Registry\\ActivityImportController.php',
-      53 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Registry\\BeneficiaryRoutingController.php',
-      54 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Registry\\UploadImportRequest.php',
-      55 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Resources\\ActivityDetailResource.php',
-      56 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Resources\\ActivityResource.php',
-      57 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Resources\\BenefitImportBatchResource.php',
-      58 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Resources\\BenefitResource.php',
-      59 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Resources\\EnrollmentResource.php',
-      60 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Resources\\ProgrammeResource.php',
+      25 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Programme\\Models\\ActivityLocation.php',
+      26 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Programme\\Models\\Enrollment.php',
+      27 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Programme\\Policies\\ActivityPolicy.php',
+      28 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Programme\\Policies\\EnrollmentPolicy.php',
+      29 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Programme\\Policies\\ProgrammePolicy.php',
+      30 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Programme\\ProgrammeServiceProvider.php',
+      31 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Programme\\Services\\ActivityLocationService.php',
+      32 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Programme\\Services\\EnrollmentService.php',
+      33 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Programme\\Services\\ProgrammeMatcher.php',
+      34 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Programme\\Services\\ProgrammeMatchingRouter.php',
+      35 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Referral\\Services\\ReferralService.php',
+      36 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Registry\\Models\\Beneficiary.php',
+      37 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Registry\\Models\\ImportBatch.php',
+      38 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Registry\\Services\\ImportCommitter.php',
+      39 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Reporting\\Gis\\GisCoverageService.php',
+      40 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Reporting\\Reports\\AdHoc\\AdHocDatasetRegistry.php',
+      41 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Reporting\\Reports\\AdHoc\\AdHocReportBuilder.php',
+      42 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Reporting\\Reports\\ReportBuilder.php',
+      43 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Reporting\\Services\\AdminOrganizationService.php',
+      44 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Reporting\\Services\\AdminSummaryService.php',
+      45 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Reporting\\Services\\DashboardMetricsService.php',
+      46 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Reporting\\Services\\DashboardScopeResolver.php',
+      47 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Benefit\\BenefitController.php',
+      48 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Benefit\\BenefitImportController.php',
+      49 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Graduation\\GraduationController.php',
+      50 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\HealthController.php',
+      51 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Programme\\ActivityController.php',
+      52 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Programme\\EnrollmentController.php',
+      53 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Programme\\ProgrammeController.php',
+      54 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Registry\\ActivityImportController.php',
+      55 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Registry\\BeneficiaryRoutingController.php',
+      56 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Registry\\UploadImportRequest.php',
+      57 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Resources\\ActivityDetailResource.php',
+      58 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Resources\\ActivityResource.php',
+      59 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Resources\\BenefitImportBatchResource.php',
+      60 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Resources\\BenefitResource.php',
+      61 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Resources\\EnrollmentResource.php',
+      62 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Resources\\ProgrammeResource.php',
     ),
   ),
   'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Programme\\Models\\ProgrammeFunder.php' => 
@@ -24669,6 +26112,19 @@ return [
       2 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Registry\\UploadActivityImportRequest.php',
     ),
   ),
+  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Programme\\Services\\ActivityLocationService.php' => 
+  array (
+    'fileHash' => '6eb143ddf3f96f1c08fd437bae6ccd71ba17bdd224e807cdb42a81083197a6b0',
+    'dependentFiles' => 
+    array (
+      0 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Programme\\ActivityController.php',
+      1 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Registry\\ActivityImportController.php',
+      2 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Programme\\StoreActivityRequest.php',
+      3 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Programme\\UpdateActivityRequest.php',
+      4 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Registry\\UploadActivityImportRequest.php',
+      5 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Resources\\ActivityResource.php',
+    ),
+  ),
   'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Programme\\Services\\EligibilityEvaluator.php' => 
   array (
     'fileHash' => 'd03fc48242bc0d11e9cf36e0f43ce3e21e2f3190e09052d97768cf16d638f25f',
@@ -24681,7 +26137,7 @@ return [
   ),
   'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Programme\\Services\\EnrollmentService.php' => 
   array (
-    'fileHash' => 'a76def3ec97d20bfb8562e0f9ef0b467ec38585795851d0385c219dc71ef44c1',
+    'fileHash' => '160393b8147c111f00387a53a7c5b8020b0cc7a43ac8a740a1e8de8e4ec03607',
     'dependentFiles' => 
     array (
       0 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Registry\\Services\\ImportCommitter.php',
@@ -24704,6 +26160,97 @@ return [
     'dependentFiles' => 
     array (
       0 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Registry\\RegistryServiceProvider.php',
+    ),
+  ),
+  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Reference\\Imports\\AdministrativeDivisionLoader.php' => 
+  array (
+    'fileHash' => '26aa645e68617114439515b617cc473590d878c09242247d36b40583cae5080a',
+    'dependentFiles' => 
+    array (
+      0 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Reference\\Imports\\LoadAdministrativeDivisions.php',
+    ),
+  ),
+  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Reference\\Imports\\DivisionLoadResult.php' => 
+  array (
+    'fileHash' => 'ca71cb8d07db662d584f3ab45405fce17f5f356d80bd95ca3733776e6b3b9166',
+    'dependentFiles' => 
+    array (
+      0 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Reference\\Imports\\AdministrativeDivisionLoader.php',
+      1 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Reference\\Imports\\LoadAdministrativeDivisions.php',
+    ),
+  ),
+  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Reference\\Imports\\LoadAdministrativeDivisions.php' => 
+  array (
+    'fileHash' => 'dfe96b814d906ce5fba62786eaac8f192ea87eaff18b3b1fb13c6ba63ca61280',
+    'dependentFiles' => 
+    array (
+      0 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Reference\\ReferenceServiceProvider.php',
+    ),
+  ),
+  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Reference\\Imports\\ReferenceDatasetException.php' => 
+  array (
+    'fileHash' => 'dc9c30addd1e297e80e5f8df1c067fcf24c6553a9ea86a9d63077a54b29a784f',
+    'dependentFiles' => 
+    array (
+      0 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Reference\\Imports\\AdministrativeDivisionLoader.php',
+      1 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Reference\\Imports\\LoadAdministrativeDivisions.php',
+    ),
+  ),
+  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Reference\\Imports\\SeedJigawaLgas.php' => 
+  array (
+    'fileHash' => 'b0677e08c2b7092621415ce2eacf08ac8525bcdb646990f417581c65d47e1a26',
+    'dependentFiles' => 
+    array (
+      0 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Reference\\ReferenceServiceProvider.php',
+    ),
+  ),
+  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Reference\\Models\\Lga.php' => 
+  array (
+    'fileHash' => 'ec11637781a3ca3f3a1336fa52b9fb191e77881289c157a0c3ced05e6f4ab5c6',
+    'dependentFiles' => 
+    array (
+      0 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Programme\\Models\\Activity.php',
+      1 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Programme\\Models\\ActivityLocation.php',
+      2 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Programme\\Services\\ActivityLocationService.php',
+      3 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Reference\\Imports\\AdministrativeDivisionLoader.php',
+      4 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Reference\\Imports\\SeedJigawaLgas.php',
+      5 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Reference\\Models\\Ward.php',
+      6 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Reference\\Services\\ReferenceDataCache.php',
+      7 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Reporting\\Gis\\GisCoverageService.php',
+      8 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Reporting\\Services\\DashboardMetricsService.php',
+    ),
+  ),
+  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Reference\\Models\\Ward.php' => 
+  array (
+    'fileHash' => '3373c96b0a834e1e15ec581f3e892ee9b4e6c9d7ea33c4918e92f57f9ddf9a40',
+    'dependentFiles' => 
+    array (
+      0 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Programme\\Models\\Activity.php',
+      1 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Programme\\Models\\ActivityLocation.php',
+      2 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Programme\\Services\\ActivityLocationService.php',
+      3 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Reference\\Imports\\AdministrativeDivisionLoader.php',
+      4 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Reference\\Imports\\SeedJigawaLgas.php',
+      5 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Reference\\Models\\Lga.php',
+      6 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Reference\\Services\\ReferenceDataCache.php',
+      7 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Reporting\\Gis\\GisCoverageService.php',
+      8 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Reporting\\Services\\DashboardMetricsService.php',
+    ),
+  ),
+  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Reference\\ReferenceServiceProvider.php' => 
+  array (
+    'fileHash' => '3e7d962fd00de9622dcb44a4bf4b23d78a2b32707bec7ffd93156713d00078c0',
+    'dependentFiles' => 
+    array (
+    ),
+  ),
+  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Reference\\Services\\ReferenceDataCache.php' => 
+  array (
+    'fileHash' => 'a4ab666aaa3e3f890fc5da3cecc2f89b28aa5ddbf0bc25f88431da6447593331',
+    'dependentFiles' => 
+    array (
+      0 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Reference\\Imports\\AdministrativeDivisionLoader.php',
+      1 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Reference\\Imports\\SeedJigawaLgas.php',
+      2 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Reference\\AdministrativeDivisionController.php',
     ),
   ),
   'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Referral\\Authorization\\ReferralAuthorizer.php' => 
@@ -25205,11 +26752,10 @@ return [
     'fileHash' => 'd5ed56dc15e9c2198671ee106d6ce61fbc909d6b76a3ab0345305e72fea1b1c2',
     'dependentFiles' => 
     array (
-      0 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Registry\\Support\\BeneficiaryRules.php',
-      1 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Programme\\StoreActivityRequest.php',
-      2 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Programme\\UpdateActivityRequest.php',
+      0 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Reference\\Imports\\AdministrativeDivisionLoader.php',
+      1 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Reference\\Imports\\SeedJigawaLgas.php',
+      2 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Registry\\Support\\BeneficiaryRules.php',
       3 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Registry\\UpdateHouseholdRequest.php',
-      4 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Registry\\UploadActivityImportRequest.php',
     ),
   ),
   'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Registry\\Enums\\OwnershipTransferStatus.php' => 
@@ -25227,7 +26773,7 @@ return [
   ),
   'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Registry\\Enums\\RegistrationSource.php' => 
   array (
-    'fileHash' => '7740d9ad863728c6504681d12c7220cfec980f8f54643174903fc6cc95c204bb',
+    'fileHash' => '15b895792449734e89431d891132d0fac3db2e3aa1e3573426905c67173d9387',
     'dependentFiles' => 
     array (
       0 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Console\\Commands\\PerfBenchmark.php',
@@ -25297,48 +26843,49 @@ return [
       64 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Registry\\Services\\NullBeneficiaryRouter.php',
       65 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Registry\\Services\\OwnershipTransferService.php',
       66 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Registry\\Services\\ServiceRequestService.php',
-      67 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Registry\\Support\\UniqueIdentifier.php',
-      68 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Reporting\\Gis\\GisCoverageService.php',
-      69 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Reporting\\Reports\\AdHoc\\AdHocDatasetRegistry.php',
-      70 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Reporting\\Services\\AdminSummaryService.php',
-      71 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Reporting\\Services\\DashboardMetricsService.php',
-      72 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Sharing\\DataSharingGuard.php',
-      73 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Sync\\Jobs\\RunDueSyncConnectors.php',
-      74 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Sync\\Jobs\\RunSyncConnector.php',
-      75 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Sync\\Models\\SyncConnector.php',
-      76 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Sync\\Models\\SyncRun.php',
-      77 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Sync\\Services\\ConnectorMappingService.php',
-      78 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Sync\\Services\\SyncEngine.php',
-      79 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Sync\\Sources\\MockSyncSource.php',
-      80 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Sync\\Sources\\SyncSource.php',
-      81 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Sync\\Sources\\SyncSourceResolver.php',
-      82 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Benefit\\BenefitController.php',
-      83 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\HealthController.php',
-      84 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Programme\\EnrollmentController.php',
-      85 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Referral\\ReferralController.php',
-      86 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Registry\\ActivityImportController.php',
-      87 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Registry\\BeneficiaryController.php',
-      88 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Registry\\BeneficiaryDocumentController.php',
-      89 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Registry\\BeneficiaryIntakeController.php',
-      90 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Registry\\BeneficiaryRoutingController.php',
-      91 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Registry\\HouseholdController.php',
-      92 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Registry\\HouseholdMemberController.php',
-      93 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Registry\\ImportBatchController.php',
-      94 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Registry\\OwnershipTransferController.php',
-      95 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Registry\\ServiceRequestController.php',
-      96 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Sharing\\DataSharingController.php',
-      97 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Sync\\SyncController.php',
-      98 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Registry\\ApiRegistrationRequest.php',
-      99 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Registry\\ExportBeneficiariesRequest.php',
-      100 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Registry\\UpdateBeneficiaryRequest.php',
-      101 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Resources\\ActivityDetailResource.php',
-      102 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Resources\\BeneficiaryResource.php',
-      103 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Resources\\BeneficiaryRevealResource.php',
-      104 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Resources\\HouseholdMembershipResource.php',
-      105 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Resources\\HouseholdResource.php',
-      106 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Resources\\ImportBatchResource.php',
-      107 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Resources\\ServiceRequestResource.php',
-      108 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Resources\\SyncConnectorResource.php',
+      67 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Registry\\Support\\RegistrationSourceRule.php',
+      68 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Registry\\Support\\UniqueIdentifier.php',
+      69 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Reporting\\Gis\\GisCoverageService.php',
+      70 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Reporting\\Reports\\AdHoc\\AdHocDatasetRegistry.php',
+      71 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Reporting\\Services\\AdminSummaryService.php',
+      72 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Reporting\\Services\\DashboardMetricsService.php',
+      73 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Sharing\\DataSharingGuard.php',
+      74 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Sync\\Jobs\\RunDueSyncConnectors.php',
+      75 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Sync\\Jobs\\RunSyncConnector.php',
+      76 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Sync\\Models\\SyncConnector.php',
+      77 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Sync\\Models\\SyncRun.php',
+      78 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Sync\\Services\\ConnectorMappingService.php',
+      79 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Sync\\Services\\SyncEngine.php',
+      80 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Sync\\Sources\\MockSyncSource.php',
+      81 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Sync\\Sources\\SyncSource.php',
+      82 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Sync\\Sources\\SyncSourceResolver.php',
+      83 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Benefit\\BenefitController.php',
+      84 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\HealthController.php',
+      85 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Programme\\EnrollmentController.php',
+      86 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Referral\\ReferralController.php',
+      87 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Registry\\ActivityImportController.php',
+      88 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Registry\\BeneficiaryController.php',
+      89 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Registry\\BeneficiaryDocumentController.php',
+      90 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Registry\\BeneficiaryIntakeController.php',
+      91 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Registry\\BeneficiaryRoutingController.php',
+      92 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Registry\\HouseholdController.php',
+      93 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Registry\\HouseholdMemberController.php',
+      94 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Registry\\ImportBatchController.php',
+      95 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Registry\\OwnershipTransferController.php',
+      96 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Registry\\ServiceRequestController.php',
+      97 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Sharing\\DataSharingController.php',
+      98 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Sync\\SyncController.php',
+      99 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Registry\\ApiRegistrationRequest.php',
+      100 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Registry\\ExportBeneficiariesRequest.php',
+      101 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Registry\\UpdateBeneficiaryRequest.php',
+      102 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Resources\\ActivityDetailResource.php',
+      103 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Resources\\BeneficiaryResource.php',
+      104 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Resources\\BeneficiaryRevealResource.php',
+      105 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Resources\\HouseholdMembershipResource.php',
+      106 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Resources\\HouseholdResource.php',
+      107 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Resources\\ImportBatchResource.php',
+      108 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Resources\\ServiceRequestResource.php',
+      109 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Resources\\SyncConnectorResource.php',
     ),
   ),
   'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Registry\\Enums\\ServiceRequestStatus.php' => 
@@ -25547,7 +27094,7 @@ return [
   ),
   'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Registry\\Models\\Beneficiary.php' => 
   array (
-    'fileHash' => '9edc1ef40d63507769f67ae2771b92bad4b6d04bc76dc8f6fd0b72c192e5d854',
+    'fileHash' => '6c3aedbbc7134b2f604526bb685fc3e16ddc6d3733e74a758a445e111d8661b6',
     'dependentFiles' => 
     array (
       0 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Console\\Commands\\PerfBenchmark.php',
@@ -25720,7 +27267,7 @@ return [
   ),
   'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Registry\\Models\\Household.php' => 
   array (
-    'fileHash' => 'c0206c14eedb9c7e08b70f8d0a52ddc9cfd94cfd0d9990031e1c402a6920aeb0',
+    'fileHash' => '3f6730cb4af4d34fbb15f91959facf44cfba5bcc6a27a4b2ec7138f7171036f6',
     'dependentFiles' => 
     array (
       0 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Benefit\\Imports\\BenefitDeliveryRowValidator.php',
@@ -25853,7 +27400,7 @@ return [
   ),
   'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Registry\\Models\\ImportBatch.php' => 
   array (
-    'fileHash' => 'e7925c5e579b4372e0103a1e137fcc854dfa13056a13b6f31ad463f995d5611f',
+    'fileHash' => '439f12d9fde5e7da8d6f6bd5cb8139970318a8689b1eaf04ee580ba7864e5f99',
     'dependentFiles' => 
     array (
       0 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Notification\\Listeners\\NotificationSubscriber.php',
@@ -25970,7 +27517,7 @@ return [
   ),
   'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Registry\\Policies\\HouseholdPolicy.php' => 
   array (
-    'fileHash' => '410dd832e66f56c44fde79f1961801987574f5c0efa16a3b9de67eed45b10071',
+    'fileHash' => '258fa7deb87fd39a6716b9a59ad7e4c02dfa3040d985c3c9d25f62e162333d5b',
     'dependentFiles' => 
     array (
       0 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Registry\\RegistryServiceProvider.php',
@@ -25994,7 +27541,7 @@ return [
   ),
   'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Registry\\RegistryServiceProvider.php' => 
   array (
-    'fileHash' => '26aac99399d3372dcb18761252961701cdb944fabb1212453a6b43c9c6236ecb',
+    'fileHash' => '0b5938597414cbb56e8b488e7169765fc4d0d096e240e39436c18ebbe9555c3b',
     'dependentFiles' => 
     array (
     ),
@@ -26135,10 +27682,9 @@ return [
     'fileHash' => 'a8ab5c85859ffc8c3249da65fc00b577969984bd7072d65fce3eb27e1f6c4cb5',
     'dependentFiles' => 
     array (
-      0 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Programme\\Services\\EnrollmentService.php',
-      1 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Registry\\Services\\ImportCommitter.php',
-      2 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Sharing\\DataSharingGuard.php',
-      3 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Registry\\ServiceRequestController.php',
+      0 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Registry\\Services\\ImportCommitter.php',
+      1 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Sharing\\DataSharingGuard.php',
+      2 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Registry\\ServiceRequestController.php',
     ),
   ),
   'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Registry\\Support\\BeneficiaryRules.php' => 
@@ -26194,6 +27740,15 @@ return [
       4 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Registry\\Services\\BeneficiaryLookupService.php',
       5 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Registry\\Services\\ImportMappingService.php',
       6 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Sync\\Services\\ConnectorMappingService.php',
+    ),
+  ),
+  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Registry\\Support\\RegistrationSourceRule.php' => 
+  array (
+    'fileHash' => '05a83c4f1c02c73cf6317f4adea2fb6b80a0c578834acb8b52603aee42122fa2',
+    'dependentFiles' => 
+    array (
+      0 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Registry\\Models\\Beneficiary.php',
+      1 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Registry\\Models\\Household.php',
     ),
   ),
   'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Registry\\Support\\UniqueIdentifier.php' => 
@@ -26384,7 +27939,7 @@ return [
   ),
   'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Reporting\\Gis\\GisCoverageService.php' => 
   array (
-    'fileHash' => '3a3818110022d7eab82d8c543097d3c7e837d81747090d72e892acee72401638',
+    'fileHash' => 'b0adf7f994271b725c22b2f44cce21ef17477eac5da1bf6efe65fac8901718f5',
     'dependentFiles' => 
     array (
       0 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Reporting\\GisController.php',
@@ -26585,7 +28140,7 @@ return [
   ),
   'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Reporting\\Services\\DashboardMetricsService.php' => 
   array (
-    'fileHash' => 'c61dc49f28816204a309df10739414870f816702a5c2f3b49cdee765e9578d9a',
+    'fileHash' => 'd9a8874cc600eecd7a15ad962728a0eb32831d7a375ad078396163217e633213',
     'dependentFiles' => 
     array (
       0 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Reporting\\Reports\\ReportBuilder.php',
@@ -26708,9 +28263,10 @@ return [
     'dependentFiles' => 
     array (
       0 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Benefit\\Authorization\\ServiceRequestAuthorizer.php',
-      1 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Registry\\Policies\\BeneficiaryPolicy.php',
-      2 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Registry\\BeneficiaryController.php',
-      3 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Sharing\\DataSharingController.php',
+      1 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Programme\\Services\\EnrollmentService.php',
+      2 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Registry\\Policies\\BeneficiaryPolicy.php',
+      3 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Registry\\BeneficiaryController.php',
+      4 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Sharing\\DataSharingController.php',
     ),
   ),
   'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Sharing\\SharingBasis.php' => 
@@ -26911,7 +28467,7 @@ return [
   ),
   'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Access\\MdaAccessGrantController.php' => 
   array (
-    'fileHash' => 'cd98c6ce05340c6982fb9994226c4af2d4a5274e2d8fcd93f13d880ab9aab3a4',
+    'fileHash' => 'e80c8266a350c48a4c52a6653aa06f20370c8feca1157968fdded040661f633e',
     'dependentFiles' => 
     array (
     ),
@@ -27030,7 +28586,7 @@ return [
   ),
   'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Programme\\ActivityController.php' => 
   array (
-    'fileHash' => '232148330fd07f90a03686f4995b3e589828622aa9bef7f7131eeceaf9250f31',
+    'fileHash' => '75e7f8a98b4413ff74107a5160af2614f03379390a5e5800a7c28df932ca83e9',
     'dependentFiles' => 
     array (
     ),
@@ -27045,6 +28601,13 @@ return [
   'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Programme\\ProgrammeController.php' => 
   array (
     'fileHash' => '695ee813ebca19d0f8e6afe71e8948388ffe557959bec774df9fdd0b374eaddc',
+    'dependentFiles' => 
+    array (
+    ),
+  ),
+  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Reference\\AdministrativeDivisionController.php' => 
+  array (
+    'fileHash' => 'ae98774035ded4d707158d5711fad61b8d2d046653c1fc073f210ed951c45850',
     'dependentFiles' => 
     array (
     ),
@@ -27065,7 +28628,7 @@ return [
   ),
   'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Registry\\ActivityImportController.php' => 
   array (
-    'fileHash' => '9698a10e6c8266fa54107431340c45212be3e49fbcccd014f35092ff32eb3ea1',
+    'fileHash' => '3025b8b942afa0e25bfe284ff9d954ebb710e505da85455c220a20787d4ab0a6',
     'dependentFiles' => 
     array (
     ),
@@ -27219,7 +28782,7 @@ return [
   ),
   'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Sharing\\DataSharingController.php' => 
   array (
-    'fileHash' => '204adf07584c3463fd4c04482eb252e1cae525d8437dd0cbe6daefbf522d9c60',
+    'fileHash' => '28746063a2a3690ba4d7384c9ff19c0dffc17c7a0627cc07cb1f49ce9074645f',
     'dependentFiles' => 
     array (
     ),
@@ -27272,32 +28835,33 @@ return [
       19 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Programme\\ActivityController.php',
       20 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Programme\\EnrollmentController.php',
       21 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Programme\\ProgrammeController.php',
-      22 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Referral\\ReferralController.php',
-      23 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Referral\\ReferralSlaPolicyController.php',
-      24 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Registry\\ActivityImportController.php',
-      25 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Registry\\BeneficiaryController.php',
-      26 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Registry\\BeneficiaryDocumentController.php',
-      27 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Registry\\BeneficiaryIntakeController.php',
-      28 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Registry\\BeneficiaryRoutingController.php',
-      29 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Registry\\HouseholdController.php',
-      30 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Registry\\HouseholdMemberController.php',
-      31 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Registry\\ImportBatchController.php',
-      32 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Registry\\OwnershipTransferController.php',
-      33 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Registry\\RegistryRulesController.php',
-      34 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Registry\\ServiceRequestController.php',
-      35 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Reporting\\AdHocReportController.php',
-      36 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Reporting\\AdminOrganizationController.php',
-      37 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Reporting\\AdminSettingsController.php',
-      38 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Reporting\\AdminSummaryController.php',
-      39 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Reporting\\DashboardController.php',
-      40 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Reporting\\DashboardExportController.php',
-      41 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Reporting\\GisController.php',
-      42 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Reporting\\MdaActionRequiredController.php',
-      43 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Reporting\\ReportController.php',
-      44 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Reporting\\ReportDefinitionController.php',
-      45 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Reporting\\ReportScheduleController.php',
-      46 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Sharing\\DataSharingController.php',
-      47 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Sync\\SyncController.php',
+      22 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Reference\\AdministrativeDivisionController.php',
+      23 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Referral\\ReferralController.php',
+      24 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Referral\\ReferralSlaPolicyController.php',
+      25 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Registry\\ActivityImportController.php',
+      26 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Registry\\BeneficiaryController.php',
+      27 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Registry\\BeneficiaryDocumentController.php',
+      28 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Registry\\BeneficiaryIntakeController.php',
+      29 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Registry\\BeneficiaryRoutingController.php',
+      30 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Registry\\HouseholdController.php',
+      31 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Registry\\HouseholdMemberController.php',
+      32 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Registry\\ImportBatchController.php',
+      33 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Registry\\OwnershipTransferController.php',
+      34 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Registry\\RegistryRulesController.php',
+      35 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Registry\\ServiceRequestController.php',
+      36 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Reporting\\AdHocReportController.php',
+      37 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Reporting\\AdminOrganizationController.php',
+      38 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Reporting\\AdminSettingsController.php',
+      39 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Reporting\\AdminSummaryController.php',
+      40 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Reporting\\DashboardController.php',
+      41 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Reporting\\DashboardExportController.php',
+      42 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Reporting\\GisController.php',
+      43 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Reporting\\MdaActionRequiredController.php',
+      44 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Reporting\\ReportController.php',
+      45 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Reporting\\ReportDefinitionController.php',
+      46 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Reporting\\ReportScheduleController.php',
+      47 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Sharing\\DataSharingController.php',
+      48 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Sync\\SyncController.php',
     ),
   ),
   'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Middleware\\AssignCorrelationId.php' => 
@@ -27352,7 +28916,7 @@ return [
   ),
   'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Access\\StoreMdaAccessGrantRequest.php' => 
   array (
-    'fileHash' => 'e6bc2252404ad6131f57dad8416b11eaef9111709831eee428f916a906014314',
+    'fileHash' => 'eec1438369fd454520faaa2a924442afbd59e08ea327eac7cb45dd7dcd7a139c',
     'dependentFiles' => 
     array (
       0 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Access\\MdaAccessGrantController.php',
@@ -27550,9 +29114,27 @@ return [
       0 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Programme\\EnrollmentController.php',
     ),
   ),
+  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Programme\\Concerns\\ValidatesLocationSet.php' => 
+  array (
+    'fileHash' => 'a6eb8ba2a790f6dd6d9f721d36bd4ba669e406dcd1fdac88bfde45254d9c65cb',
+    'dependentFiles' => 
+    array (
+      0 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Programme\\ActivityController.php',
+      1 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Registry\\ActivityImportController.php',
+      2 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Programme\\StoreActivityRequest.php',
+      3 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Programme\\UpdateActivityRequest.php',
+      4 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Registry\\UploadActivityImportRequest.php',
+    ),
+    'usedTraitDependentFiles' => 
+    array (
+      0 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Programme\\StoreActivityRequest.php',
+      1 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Programme\\UpdateActivityRequest.php',
+      2 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Registry\\UploadActivityImportRequest.php',
+    ),
+  ),
   'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Programme\\StoreActivityRequest.php' => 
   array (
-    'fileHash' => '908d1c28ac8aca40eac1bcaa16eca3ec5d3354dc052ac115709500de2bb2e682',
+    'fileHash' => 'c94735078fcbfcdf35767759909517b53be6ba3bd0b16efad0f80fbf9518314e',
     'dependentFiles' => 
     array (
       0 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Programme\\ActivityController.php',
@@ -27576,7 +29158,7 @@ return [
   ),
   'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Programme\\UpdateActivityRequest.php' => 
   array (
-    'fileHash' => '3a54190b6b1f606662433297f6d496389ad7cfee25570065626e3d9676d20f73',
+    'fileHash' => 'df6986f587d088da619a931710574cd592bc2987712684f7bd91e787f2d46e3f',
     'dependentFiles' => 
     array (
       0 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Programme\\ActivityController.php',
@@ -27596,6 +29178,14 @@ return [
     'dependentFiles' => 
     array (
       0 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Programme\\ProgrammeController.php',
+    ),
+  ),
+  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Reference\\ListWardsRequest.php' => 
+  array (
+    'fileHash' => '4aba59a610696c00039c68c36cf92ba3e67aadf47260f4d497195838b7fd217e',
+    'dependentFiles' => 
+    array (
+      0 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Reference\\AdministrativeDivisionController.php',
     ),
   ),
   'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Referral\\StoreReferralRequest.php' => 
@@ -27776,7 +29366,7 @@ return [
   ),
   'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Registry\\UploadActivityImportRequest.php' => 
   array (
-    'fileHash' => '02f7b4d875c854d9e5ef936d6aa934368a90fba5199ccd719aa150e758974349',
+    'fileHash' => '1388f7464d63b4c61aeef97be9ae4c8be9a7cc50c155d0c8ef5db3d44b5394de',
     'dependentFiles' => 
     array (
       0 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Registry\\ActivityImportController.php',
@@ -27883,7 +29473,7 @@ return [
   ),
   'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Resources\\ActivityResource.php' => 
   array (
-    'fileHash' => 'cda18115ba36e038d0434673d3338bccd34d8a2bd36ff904b3f78fe590700340',
+    'fileHash' => 'b1c79770ddaee571774b1064ffd830a97aa12f05fe0390220ab3dbf9515ff466',
     'dependentFiles' => 
     array (
       0 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Programme\\ActivityController.php',
@@ -28010,7 +29600,7 @@ return [
   ),
   'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Resources\\ImportBatchResource.php' => 
   array (
-    'fileHash' => '62a167e0b727dac789780c8251eb707ea9881dc6816654978c4d1ecb60bd4a8d',
+    'fileHash' => '0f0939041c4b9d38f59a0f59280807c2f46716f7e12dee73c73d32729e9fb768',
     'dependentFiles' => 
     array (
       0 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Registry\\ActivityImportController.php',
@@ -28186,34 +29776,35 @@ return [
       19 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Programme\\ActivityController.php',
       20 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Programme\\EnrollmentController.php',
       21 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Programme\\ProgrammeController.php',
-      22 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Referral\\ReferralController.php',
-      23 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Referral\\ReferralSlaPolicyController.php',
-      24 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Registry\\ActivityImportController.php',
-      25 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Registry\\BeneficiaryController.php',
-      26 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Registry\\BeneficiaryDocumentController.php',
-      27 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Registry\\BeneficiaryIntakeController.php',
-      28 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Registry\\BeneficiaryRoutingController.php',
-      29 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Registry\\HouseholdController.php',
-      30 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Registry\\HouseholdMemberController.php',
-      31 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Registry\\ImportBatchController.php',
-      32 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Registry\\OwnershipTransferController.php',
-      33 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Registry\\RegistryRulesController.php',
-      34 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Registry\\ServiceRequestController.php',
-      35 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Reporting\\AdHocReportController.php',
-      36 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Reporting\\AdminOrganizationController.php',
-      37 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Reporting\\AdminSettingsController.php',
-      38 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Reporting\\AdminSummaryController.php',
-      39 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Reporting\\DashboardController.php',
-      40 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Reporting\\GisController.php',
-      41 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Reporting\\MdaActionRequiredController.php',
-      42 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Reporting\\ReportController.php',
-      43 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Reporting\\ReportDefinitionController.php',
-      44 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Reporting\\ReportScheduleController.php',
-      45 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Sharing\\DataSharingController.php',
-      46 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Sync\\SyncController.php',
-      47 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Middleware\\CheckPermission.php',
-      48 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Middleware\\CheckRole.php',
-      49 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Middleware\\EnforceIdleTimeout.php',
+      22 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Reference\\AdministrativeDivisionController.php',
+      23 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Referral\\ReferralController.php',
+      24 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Referral\\ReferralSlaPolicyController.php',
+      25 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Registry\\ActivityImportController.php',
+      26 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Registry\\BeneficiaryController.php',
+      27 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Registry\\BeneficiaryDocumentController.php',
+      28 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Registry\\BeneficiaryIntakeController.php',
+      29 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Registry\\BeneficiaryRoutingController.php',
+      30 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Registry\\HouseholdController.php',
+      31 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Registry\\HouseholdMemberController.php',
+      32 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Registry\\ImportBatchController.php',
+      33 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Registry\\OwnershipTransferController.php',
+      34 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Registry\\RegistryRulesController.php',
+      35 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Registry\\ServiceRequestController.php',
+      36 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Reporting\\AdHocReportController.php',
+      37 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Reporting\\AdminOrganizationController.php',
+      38 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Reporting\\AdminSettingsController.php',
+      39 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Reporting\\AdminSummaryController.php',
+      40 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Reporting\\DashboardController.php',
+      41 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Reporting\\GisController.php',
+      42 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Reporting\\MdaActionRequiredController.php',
+      43 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Reporting\\ReportController.php',
+      44 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Reporting\\ReportDefinitionController.php',
+      45 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Reporting\\ReportScheduleController.php',
+      46 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Sharing\\DataSharingController.php',
+      47 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Sync\\SyncController.php',
+      48 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Middleware\\CheckPermission.php',
+      49 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Middleware\\CheckRole.php',
+      50 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Middleware\\EnforceIdleTimeout.php',
     ),
   ),
 ),
@@ -30378,7 +31969,8 @@ return [
   'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Access\\Models\\MdaAccessGrant.php' => 
   array (
     0 => 'laravel/framework',
-    1 => 'laravel/sanctum',
+    1 => 'nesbot/carbon',
+    2 => 'laravel/sanctum',
   ),
   'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Access\\Services\\RolePermissionService.php' => 
   array (
@@ -30509,6 +32101,69 @@ return [
     0 => 'laravel/framework',
     1 => 'symfony/http-foundation',
     2 => 'laravel/sanctum',
+  ),
+  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Registry\\Support\\RegistrationSourceRule.php' => 
+  array (
+  ),
+  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Reference\\Imports\\AdministrativeDivisionLoader.php' => 
+  array (
+    0 => 'laravel/framework',
+  ),
+  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Reference\\Imports\\DivisionLoadResult.php' => 
+  array (
+  ),
+  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Reference\\Imports\\LoadAdministrativeDivisions.php' => 
+  array (
+    0 => 'symfony/console',
+    1 => 'laravel/framework',
+  ),
+  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Reference\\Imports\\ReferenceDatasetException.php' => 
+  array (
+  ),
+  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Reference\\Models\\Lga.php' => 
+  array (
+    0 => 'laravel/framework',
+  ),
+  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Reference\\Models\\Ward.php' => 
+  array (
+    0 => 'laravel/framework',
+  ),
+  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Reference\\ReferenceServiceProvider.php' => 
+  array (
+    0 => 'laravel/framework',
+    1 => 'psr/container',
+    2 => 'symfony/console',
+  ),
+  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Reference\\Services\\ReferenceDataCache.php' => 
+  array (
+    0 => 'laravel/framework',
+    1 => 'psr/simple-cache',
+  ),
+  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Reference\\AdministrativeDivisionController.php' => 
+  array (
+    0 => 'laravel/framework',
+    1 => 'symfony/http-foundation',
+  ),
+  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Reference\\ListWardsRequest.php' => 
+  array (
+    0 => 'laravel/framework',
+    1 => 'symfony/http-foundation',
+  ),
+  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Programme\\Models\\ActivityLocation.php' => 
+  array (
+    0 => 'laravel/framework',
+  ),
+  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Programme\\Services\\ActivityLocationService.php' => 
+  array (
+    0 => 'laravel/framework',
+  ),
+  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Programme\\Concerns\\ValidatesLocationSet.php' => 
+  array (
+  ),
+  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Reference\\Imports\\SeedJigawaLgas.php' => 
+  array (
+    0 => 'symfony/console',
+    1 => 'laravel/framework',
   ),
 ),
 	'exportedNodesCallback' => static function (): array { return array (
@@ -33152,11 +34807,15 @@ return [
  * @property string|null $granted_by
  * @property string|null $reason
  * @property Carbon|null $expires_at
+ * @property Carbon|null $revoked_at
+ * @property string|null $revoked_by
+ * @property string|null $revocation_reason
  * @property Carbon|null $created_at
  */',
          'namespace' => 'App\\Domain\\Access\\Models',
          'uses' => 
         array (
+          'builder' => 'Illuminate\\Database\\Eloquent\\Builder',
           'hasuuids' => 'Illuminate\\Database\\Eloquent\\Concerns\\HasUuids',
           'model' => 'Illuminate\\Database\\Eloquent\\Model',
           'belongsto' => 'Illuminate\\Database\\Eloquent\\Relations\\BelongsTo',
@@ -33220,6 +34879,7 @@ return [
              'namespace' => 'App\\Domain\\Access\\Models',
              'uses' => 
             array (
+              'builder' => 'Illuminate\\Database\\Eloquent\\Builder',
               'hasuuids' => 'Illuminate\\Database\\Eloquent\\Concerns\\HasUuids',
               'model' => 'Illuminate\\Database\\Eloquent\\Model',
               'belongsto' => 'Illuminate\\Database\\Eloquent\\Relations\\BelongsTo',
@@ -33258,6 +34918,7 @@ return [
              'namespace' => 'App\\Domain\\Access\\Models',
              'uses' => 
             array (
+              'builder' => 'Illuminate\\Database\\Eloquent\\Builder',
               'hasuuids' => 'Illuminate\\Database\\Eloquent\\Concerns\\HasUuids',
               'model' => 'Illuminate\\Database\\Eloquent\\Model',
               'belongsto' => 'Illuminate\\Database\\Eloquent\\Relations\\BelongsTo',
@@ -33283,6 +34944,95 @@ return [
         )),
         3 => 
         \PHPStan\Dependency\ExportedNode\ExportedMethodNode::__set_state(array(
+           'name' => 'isActive',
+           'phpDoc' => 
+          \PHPStan\Dependency\ExportedNode\ExportedPhpDocNode::__set_state(array(
+             'phpDocString' => '/**
+     * Whether this grant currently opens access.
+     *
+     * Two ways it can be over, and they are not the same fact: it EXPIRED on a date set
+     * when it was issued, or someone REVOKED it. Both are kept, because an audit of who
+     * held access to citizen records has to be able to tell a lapse from a withdrawal.
+     */',
+             'namespace' => 'App\\Domain\\Access\\Models',
+             'uses' => 
+            array (
+              'builder' => 'Illuminate\\Database\\Eloquent\\Builder',
+              'hasuuids' => 'Illuminate\\Database\\Eloquent\\Concerns\\HasUuids',
+              'model' => 'Illuminate\\Database\\Eloquent\\Model',
+              'belongsto' => 'Illuminate\\Database\\Eloquent\\Relations\\BelongsTo',
+              'carbon' => 'Illuminate\\Support\\Carbon',
+            ),
+             'constUses' => 
+            array (
+            ),
+          )),
+           'byRef' => false,
+           'public' => true,
+           'private' => false,
+           'abstract' => false,
+           'final' => false,
+           'static' => false,
+           'returnType' => 'bool',
+           'parameters' => 
+          array (
+          ),
+           'attributes' => 
+          array (
+          ),
+        )),
+        4 => 
+        \PHPStan\Dependency\ExportedNode\ExportedMethodNode::__set_state(array(
+           'name' => 'scopeActive',
+           'phpDoc' => 
+          \PHPStan\Dependency\ExportedNode\ExportedPhpDocNode::__set_state(array(
+             'phpDocString' => '/**
+     * Constrain a query to grants that currently open access.
+     *
+     * @param  Builder<covariant MdaAccessGrant>  $query
+     */',
+             'namespace' => 'App\\Domain\\Access\\Models',
+             'uses' => 
+            array (
+              'builder' => 'Illuminate\\Database\\Eloquent\\Builder',
+              'hasuuids' => 'Illuminate\\Database\\Eloquent\\Concerns\\HasUuids',
+              'model' => 'Illuminate\\Database\\Eloquent\\Model',
+              'belongsto' => 'Illuminate\\Database\\Eloquent\\Relations\\BelongsTo',
+              'carbon' => 'Illuminate\\Support\\Carbon',
+            ),
+             'constUses' => 
+            array (
+            ),
+          )),
+           'byRef' => false,
+           'public' => true,
+           'private' => false,
+           'abstract' => false,
+           'final' => false,
+           'static' => false,
+           'returnType' => 'void',
+           'parameters' => 
+          array (
+            0 => 
+            \PHPStan\Dependency\ExportedNode\ExportedParameterNode::__set_state(array(
+               'name' => 'query',
+               'type' => 'Illuminate\\Database\\Eloquent\\Builder',
+               'byRef' => false,
+               'variadic' => false,
+               'hasDefault' => false,
+               'attributes' => 
+              array (
+              ),
+               'phpDoc' => NULL,
+               'flags' => 0,
+            )),
+          ),
+           'attributes' => 
+          array (
+          ),
+        )),
+        5 => 
+        \PHPStan\Dependency\ExportedNode\ExportedMethodNode::__set_state(array(
            'name' => 'user',
            'phpDoc' => 
           \PHPStan\Dependency\ExportedNode\ExportedPhpDocNode::__set_state(array(
@@ -33292,6 +35042,7 @@ return [
              'namespace' => 'App\\Domain\\Access\\Models',
              'uses' => 
             array (
+              'builder' => 'Illuminate\\Database\\Eloquent\\Builder',
               'hasuuids' => 'Illuminate\\Database\\Eloquent\\Concerns\\HasUuids',
               'model' => 'Illuminate\\Database\\Eloquent\\Model',
               'belongsto' => 'Illuminate\\Database\\Eloquent\\Relations\\BelongsTo',
@@ -33315,7 +35066,7 @@ return [
           array (
           ),
         )),
-        4 => 
+        6 => 
         \PHPStan\Dependency\ExportedNode\ExportedMethodNode::__set_state(array(
            'name' => 'mda',
            'phpDoc' => 
@@ -33326,6 +35077,7 @@ return [
              'namespace' => 'App\\Domain\\Access\\Models',
              'uses' => 
             array (
+              'builder' => 'Illuminate\\Database\\Eloquent\\Builder',
               'hasuuids' => 'Illuminate\\Database\\Eloquent\\Concerns\\HasUuids',
               'model' => 'Illuminate\\Database\\Eloquent\\Model',
               'belongsto' => 'Illuminate\\Database\\Eloquent\\Relations\\BelongsTo',
@@ -33349,7 +35101,7 @@ return [
           array (
           ),
         )),
-        5 => 
+        7 => 
         \PHPStan\Dependency\ExportedNode\ExportedMethodNode::__set_state(array(
            'name' => 'grantedBy',
            'phpDoc' => 
@@ -33360,6 +35112,45 @@ return [
              'namespace' => 'App\\Domain\\Access\\Models',
              'uses' => 
             array (
+              'builder' => 'Illuminate\\Database\\Eloquent\\Builder',
+              'hasuuids' => 'Illuminate\\Database\\Eloquent\\Concerns\\HasUuids',
+              'model' => 'Illuminate\\Database\\Eloquent\\Model',
+              'belongsto' => 'Illuminate\\Database\\Eloquent\\Relations\\BelongsTo',
+              'carbon' => 'Illuminate\\Support\\Carbon',
+            ),
+             'constUses' => 
+            array (
+            ),
+          )),
+           'byRef' => false,
+           'public' => true,
+           'private' => false,
+           'abstract' => false,
+           'final' => false,
+           'static' => false,
+           'returnType' => 'Illuminate\\Database\\Eloquent\\Relations\\BelongsTo',
+           'parameters' => 
+          array (
+          ),
+           'attributes' => 
+          array (
+          ),
+        )),
+        8 => 
+        \PHPStan\Dependency\ExportedNode\ExportedMethodNode::__set_state(array(
+           'name' => 'revokedBy',
+           'phpDoc' => 
+          \PHPStan\Dependency\ExportedNode\ExportedPhpDocNode::__set_state(array(
+             'phpDocString' => '/**
+     * Who withdrew the access. Kept on the row rather than only in the audit log so the
+     * grant itself answers "when did this end, and on whose authority".
+     *
+     * @return BelongsTo<User, $this>
+     */',
+             'namespace' => 'App\\Domain\\Access\\Models',
+             'uses' => 
+            array (
+              'builder' => 'Illuminate\\Database\\Eloquent\\Builder',
               'hasuuids' => 'Illuminate\\Database\\Eloquent\\Concerns\\HasUuids',
               'model' => 'Illuminate\\Database\\Eloquent\\Model',
               'belongsto' => 'Illuminate\\Database\\Eloquent\\Relations\\BelongsTo',
@@ -55388,8 +57179,6 @@ return [
  * @property string $name
  * @property string|null $description
  * @property int|null $target_beneficiaries
- * @property string|null $lga
- * @property string|null $ward
  * @property string|null $location_description
  * @property array<string, mixed>|null $schedule
  * @property Carbon|null $starts_on
@@ -55404,6 +57193,7 @@ return [
  * @property-read Programme $programme
  * @property-read Mda $ownerMda
  * @property-read User|null $fundingPartner
+ * @property-read Collection<int, ActivityLocation> $locations
  */',
          'namespace' => 'App\\Domain\\Programme\\Models',
          'uses' => 
@@ -55415,12 +57205,16 @@ return [
           'auditable' => 'App\\Domain\\Audit\\Concerns\\Auditable',
           'activitystatus' => 'App\\Domain\\Programme\\Enums\\ActivityStatus',
           'activityfactory' => 'Database\\Factories\\ActivityFactory',
+          'builder' => 'Illuminate\\Database\\Eloquent\\Builder',
+          'collection' => 'Illuminate\\Database\\Eloquent\\Collection',
           'hasuuids' => 'Illuminate\\Database\\Eloquent\\Concerns\\HasUuids',
           'hasfactory' => 'Illuminate\\Database\\Eloquent\\Factories\\HasFactory',
           'model' => 'Illuminate\\Database\\Eloquent\\Model',
           'belongsto' => 'Illuminate\\Database\\Eloquent\\Relations\\BelongsTo',
+          'hasmany' => 'Illuminate\\Database\\Eloquent\\Relations\\HasMany',
           'softdeletes' => 'Illuminate\\Database\\Eloquent\\SoftDeletes',
           'carbon' => 'Illuminate\\Support\\Carbon',
+          'str' => 'Illuminate\\Support\\Str',
         ),
          'constUses' => 
         array (
@@ -55492,12 +57286,16 @@ return [
               'auditable' => 'App\\Domain\\Audit\\Concerns\\Auditable',
               'activitystatus' => 'App\\Domain\\Programme\\Enums\\ActivityStatus',
               'activityfactory' => 'Database\\Factories\\ActivityFactory',
+              'builder' => 'Illuminate\\Database\\Eloquent\\Builder',
+              'collection' => 'Illuminate\\Database\\Eloquent\\Collection',
               'hasuuids' => 'Illuminate\\Database\\Eloquent\\Concerns\\HasUuids',
               'hasfactory' => 'Illuminate\\Database\\Eloquent\\Factories\\HasFactory',
               'model' => 'Illuminate\\Database\\Eloquent\\Model',
               'belongsto' => 'Illuminate\\Database\\Eloquent\\Relations\\BelongsTo',
+              'hasmany' => 'Illuminate\\Database\\Eloquent\\Relations\\HasMany',
               'softdeletes' => 'Illuminate\\Database\\Eloquent\\SoftDeletes',
               'carbon' => 'Illuminate\\Support\\Carbon',
+              'str' => 'Illuminate\\Support\\Str',
             ),
              'constUses' => 
             array (
@@ -55542,12 +57340,16 @@ return [
               'auditable' => 'App\\Domain\\Audit\\Concerns\\Auditable',
               'activitystatus' => 'App\\Domain\\Programme\\Enums\\ActivityStatus',
               'activityfactory' => 'Database\\Factories\\ActivityFactory',
+              'builder' => 'Illuminate\\Database\\Eloquent\\Builder',
+              'collection' => 'Illuminate\\Database\\Eloquent\\Collection',
               'hasuuids' => 'Illuminate\\Database\\Eloquent\\Concerns\\HasUuids',
               'hasfactory' => 'Illuminate\\Database\\Eloquent\\Factories\\HasFactory',
               'model' => 'Illuminate\\Database\\Eloquent\\Model',
               'belongsto' => 'Illuminate\\Database\\Eloquent\\Relations\\BelongsTo',
+              'hasmany' => 'Illuminate\\Database\\Eloquent\\Relations\\HasMany',
               'softdeletes' => 'Illuminate\\Database\\Eloquent\\SoftDeletes',
               'carbon' => 'Illuminate\\Support\\Carbon',
+              'str' => 'Illuminate\\Support\\Str',
             ),
              'constUses' => 
             array (
@@ -55589,12 +57391,16 @@ return [
               'auditable' => 'App\\Domain\\Audit\\Concerns\\Auditable',
               'activitystatus' => 'App\\Domain\\Programme\\Enums\\ActivityStatus',
               'activityfactory' => 'Database\\Factories\\ActivityFactory',
+              'builder' => 'Illuminate\\Database\\Eloquent\\Builder',
+              'collection' => 'Illuminate\\Database\\Eloquent\\Collection',
               'hasuuids' => 'Illuminate\\Database\\Eloquent\\Concerns\\HasUuids',
               'hasfactory' => 'Illuminate\\Database\\Eloquent\\Factories\\HasFactory',
               'model' => 'Illuminate\\Database\\Eloquent\\Model',
               'belongsto' => 'Illuminate\\Database\\Eloquent\\Relations\\BelongsTo',
+              'hasmany' => 'Illuminate\\Database\\Eloquent\\Relations\\HasMany',
               'softdeletes' => 'Illuminate\\Database\\Eloquent\\SoftDeletes',
               'carbon' => 'Illuminate\\Support\\Carbon',
+              'str' => 'Illuminate\\Support\\Str',
             ),
              'constUses' => 
             array (
@@ -55650,12 +57456,16 @@ return [
               'auditable' => 'App\\Domain\\Audit\\Concerns\\Auditable',
               'activitystatus' => 'App\\Domain\\Programme\\Enums\\ActivityStatus',
               'activityfactory' => 'Database\\Factories\\ActivityFactory',
+              'builder' => 'Illuminate\\Database\\Eloquent\\Builder',
+              'collection' => 'Illuminate\\Database\\Eloquent\\Collection',
               'hasuuids' => 'Illuminate\\Database\\Eloquent\\Concerns\\HasUuids',
               'hasfactory' => 'Illuminate\\Database\\Eloquent\\Factories\\HasFactory',
               'model' => 'Illuminate\\Database\\Eloquent\\Model',
               'belongsto' => 'Illuminate\\Database\\Eloquent\\Relations\\BelongsTo',
+              'hasmany' => 'Illuminate\\Database\\Eloquent\\Relations\\HasMany',
               'softdeletes' => 'Illuminate\\Database\\Eloquent\\SoftDeletes',
               'carbon' => 'Illuminate\\Support\\Carbon',
+              'str' => 'Illuminate\\Support\\Str',
             ),
              'constUses' => 
             array (
@@ -55693,12 +57503,16 @@ return [
               'auditable' => 'App\\Domain\\Audit\\Concerns\\Auditable',
               'activitystatus' => 'App\\Domain\\Programme\\Enums\\ActivityStatus',
               'activityfactory' => 'Database\\Factories\\ActivityFactory',
+              'builder' => 'Illuminate\\Database\\Eloquent\\Builder',
+              'collection' => 'Illuminate\\Database\\Eloquent\\Collection',
               'hasuuids' => 'Illuminate\\Database\\Eloquent\\Concerns\\HasUuids',
               'hasfactory' => 'Illuminate\\Database\\Eloquent\\Factories\\HasFactory',
               'model' => 'Illuminate\\Database\\Eloquent\\Model',
               'belongsto' => 'Illuminate\\Database\\Eloquent\\Relations\\BelongsTo',
+              'hasmany' => 'Illuminate\\Database\\Eloquent\\Relations\\HasMany',
               'softdeletes' => 'Illuminate\\Database\\Eloquent\\SoftDeletes',
               'carbon' => 'Illuminate\\Support\\Carbon',
+              'str' => 'Illuminate\\Support\\Str',
             ),
              'constUses' => 
             array (
@@ -55736,12 +57550,16 @@ return [
               'auditable' => 'App\\Domain\\Audit\\Concerns\\Auditable',
               'activitystatus' => 'App\\Domain\\Programme\\Enums\\ActivityStatus',
               'activityfactory' => 'Database\\Factories\\ActivityFactory',
+              'builder' => 'Illuminate\\Database\\Eloquent\\Builder',
+              'collection' => 'Illuminate\\Database\\Eloquent\\Collection',
               'hasuuids' => 'Illuminate\\Database\\Eloquent\\Concerns\\HasUuids',
               'hasfactory' => 'Illuminate\\Database\\Eloquent\\Factories\\HasFactory',
               'model' => 'Illuminate\\Database\\Eloquent\\Model',
               'belongsto' => 'Illuminate\\Database\\Eloquent\\Relations\\BelongsTo',
+              'hasmany' => 'Illuminate\\Database\\Eloquent\\Relations\\HasMany',
               'softdeletes' => 'Illuminate\\Database\\Eloquent\\SoftDeletes',
               'carbon' => 'Illuminate\\Support\\Carbon',
+              'str' => 'Illuminate\\Support\\Str',
             ),
              'constUses' => 
             array (
@@ -55782,11 +57600,440 @@ return [
               'auditable' => 'App\\Domain\\Audit\\Concerns\\Auditable',
               'activitystatus' => 'App\\Domain\\Programme\\Enums\\ActivityStatus',
               'activityfactory' => 'Database\\Factories\\ActivityFactory',
+              'builder' => 'Illuminate\\Database\\Eloquent\\Builder',
+              'collection' => 'Illuminate\\Database\\Eloquent\\Collection',
               'hasuuids' => 'Illuminate\\Database\\Eloquent\\Concerns\\HasUuids',
               'hasfactory' => 'Illuminate\\Database\\Eloquent\\Factories\\HasFactory',
               'model' => 'Illuminate\\Database\\Eloquent\\Model',
               'belongsto' => 'Illuminate\\Database\\Eloquent\\Relations\\BelongsTo',
+              'hasmany' => 'Illuminate\\Database\\Eloquent\\Relations\\HasMany',
               'softdeletes' => 'Illuminate\\Database\\Eloquent\\SoftDeletes',
+              'carbon' => 'Illuminate\\Support\\Carbon',
+              'str' => 'Illuminate\\Support\\Str',
+            ),
+             'constUses' => 
+            array (
+            ),
+          )),
+           'byRef' => false,
+           'public' => true,
+           'private' => false,
+           'abstract' => false,
+           'final' => false,
+           'static' => false,
+           'returnType' => 'Illuminate\\Database\\Eloquent\\Relations\\BelongsTo',
+           'parameters' => 
+          array (
+          ),
+           'attributes' => 
+          array (
+          ),
+        )),
+        9 => 
+        \PHPStan\Dependency\ExportedNode\ExportedMethodNode::__set_state(array(
+           'name' => 'locations',
+           'phpDoc' => 
+          \PHPStan\Dependency\ExportedNode\ExportedPhpDocNode::__set_state(array(
+             'phpDocString' => '/**
+     * The DECLARED location set: many LGAs, many wards per LGA, a null `ward_id`
+     * meaning the whole LGA. Replaces the old single `lga`/`ward` pair.
+     *
+     * Descriptive only — it states where the activity plans to operate and is never
+     * checked against the beneficiaries uploaded under it.
+     *
+     * @return HasMany<ActivityLocation, $this>
+     */',
+             'namespace' => 'App\\Domain\\Programme\\Models',
+             'uses' => 
+            array (
+              'mdascoped' => 'App\\Domain\\Access\\Concerns\\MdaScoped',
+              'scopedtomda' => 'App\\Domain\\Access\\Concerns\\ScopedToMda',
+              'mda' => 'App\\Domain\\Access\\Models\\Mda',
+              'user' => 'App\\Domain\\Access\\Models\\User',
+              'auditable' => 'App\\Domain\\Audit\\Concerns\\Auditable',
+              'activitystatus' => 'App\\Domain\\Programme\\Enums\\ActivityStatus',
+              'activityfactory' => 'Database\\Factories\\ActivityFactory',
+              'builder' => 'Illuminate\\Database\\Eloquent\\Builder',
+              'collection' => 'Illuminate\\Database\\Eloquent\\Collection',
+              'hasuuids' => 'Illuminate\\Database\\Eloquent\\Concerns\\HasUuids',
+              'hasfactory' => 'Illuminate\\Database\\Eloquent\\Factories\\HasFactory',
+              'model' => 'Illuminate\\Database\\Eloquent\\Model',
+              'belongsto' => 'Illuminate\\Database\\Eloquent\\Relations\\BelongsTo',
+              'hasmany' => 'Illuminate\\Database\\Eloquent\\Relations\\HasMany',
+              'softdeletes' => 'Illuminate\\Database\\Eloquent\\SoftDeletes',
+              'carbon' => 'Illuminate\\Support\\Carbon',
+              'str' => 'Illuminate\\Support\\Str',
+            ),
+             'constUses' => 
+            array (
+            ),
+          )),
+           'byRef' => false,
+           'public' => true,
+           'private' => false,
+           'abstract' => false,
+           'final' => false,
+           'static' => false,
+           'returnType' => 'Illuminate\\Database\\Eloquent\\Relations\\HasMany',
+           'parameters' => 
+          array (
+          ),
+           'attributes' => 
+          array (
+          ),
+        )),
+        10 => 
+        \PHPStan\Dependency\ExportedNode\ExportedMethodNode::__set_state(array(
+           'name' => 'scopeDeclaredIn',
+           'phpDoc' => 
+          \PHPStan\Dependency\ExportedNode\ExportedPhpDocNode::__set_state(array(
+             'phpDocString' => '/**
+     * Narrows to activities that DECLARE the given area, replacing the old exact-string
+     * match on `activities.lga` / `.ward`.
+     *
+     * Values arrive as free text from the dashboard filter (the LGA/ward values seen on
+     * beneficiary records), so they are slugged to `lgas.code` / `wards.code` — the same
+     * slug GEO.1 stores.
+     *
+     * A ward filter also matches an activity that declared the WHOLE LGA containing that
+     * ward. Declaring a whole LGA is a claim to cover every ward in it, so excluding
+     * those activities would under-report coverage for exactly the activities with the
+     * broadest declared reach.
+     *
+     * @param  Builder<Activity>  $query
+     * @return Builder<Activity>
+     */',
+             'namespace' => 'App\\Domain\\Programme\\Models',
+             'uses' => 
+            array (
+              'mdascoped' => 'App\\Domain\\Access\\Concerns\\MdaScoped',
+              'scopedtomda' => 'App\\Domain\\Access\\Concerns\\ScopedToMda',
+              'mda' => 'App\\Domain\\Access\\Models\\Mda',
+              'user' => 'App\\Domain\\Access\\Models\\User',
+              'auditable' => 'App\\Domain\\Audit\\Concerns\\Auditable',
+              'activitystatus' => 'App\\Domain\\Programme\\Enums\\ActivityStatus',
+              'activityfactory' => 'Database\\Factories\\ActivityFactory',
+              'builder' => 'Illuminate\\Database\\Eloquent\\Builder',
+              'collection' => 'Illuminate\\Database\\Eloquent\\Collection',
+              'hasuuids' => 'Illuminate\\Database\\Eloquent\\Concerns\\HasUuids',
+              'hasfactory' => 'Illuminate\\Database\\Eloquent\\Factories\\HasFactory',
+              'model' => 'Illuminate\\Database\\Eloquent\\Model',
+              'belongsto' => 'Illuminate\\Database\\Eloquent\\Relations\\BelongsTo',
+              'hasmany' => 'Illuminate\\Database\\Eloquent\\Relations\\HasMany',
+              'softdeletes' => 'Illuminate\\Database\\Eloquent\\SoftDeletes',
+              'carbon' => 'Illuminate\\Support\\Carbon',
+              'str' => 'Illuminate\\Support\\Str',
+            ),
+             'constUses' => 
+            array (
+            ),
+          )),
+           'byRef' => false,
+           'public' => true,
+           'private' => false,
+           'abstract' => false,
+           'final' => false,
+           'static' => false,
+           'returnType' => 'Illuminate\\Database\\Eloquent\\Builder',
+           'parameters' => 
+          array (
+            0 => 
+            \PHPStan\Dependency\ExportedNode\ExportedParameterNode::__set_state(array(
+               'name' => 'query',
+               'type' => 'Illuminate\\Database\\Eloquent\\Builder',
+               'byRef' => false,
+               'variadic' => false,
+               'hasDefault' => false,
+               'attributes' => 
+              array (
+              ),
+               'phpDoc' => NULL,
+               'flags' => 0,
+            )),
+            1 => 
+            \PHPStan\Dependency\ExportedNode\ExportedParameterNode::__set_state(array(
+               'name' => 'lga',
+               'type' => '?string',
+               'byRef' => false,
+               'variadic' => false,
+               'hasDefault' => false,
+               'attributes' => 
+              array (
+              ),
+               'phpDoc' => NULL,
+               'flags' => 0,
+            )),
+            2 => 
+            \PHPStan\Dependency\ExportedNode\ExportedParameterNode::__set_state(array(
+               'name' => 'ward',
+               'type' => '?string',
+               'byRef' => false,
+               'variadic' => false,
+               'hasDefault' => false,
+               'attributes' => 
+              array (
+              ),
+               'phpDoc' => NULL,
+               'flags' => 0,
+            )),
+          ),
+           'attributes' => 
+          array (
+          ),
+        )),
+      ),
+       'attributes' => 
+      array (
+      ),
+    )),
+  ),
+  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Programme\\Models\\ActivityLocation.php' => 
+  array (
+    0 => 
+    \PHPStan\Dependency\ExportedNode\ExportedClassNode::__set_state(array(
+       'name' => 'App\\Domain\\Programme\\Models\\ActivityLocation',
+       'phpDoc' => 
+      \PHPStan\Dependency\ExportedNode\ExportedPhpDocNode::__set_state(array(
+         'phpDocString' => '/**
+ * One declared place in an activity\'s location set: an LGA, and optionally one ward
+ * within it. `ward_id === null` means "the whole LGA".
+ *
+ * DESCRIPTIVE ONLY — see the migration. Nothing validates uploaded beneficiaries
+ * against these rows.
+ *
+ * Not MdaScoped: the parent {@see Activity} is, and every read goes through it. Not
+ * Auditable either — a location set is edited as a whole, so the meaningful audit
+ * entry is on the activity, not on individual rows appearing and disappearing.
+ *
+ * @property string $id
+ * @property string $activity_id
+ * @property string $lga_id
+ * @property string|null $ward_id
+ * @property Carbon|null $created_at
+ * @property Carbon|null $updated_at
+ * @property-read Activity $activity
+ * @property-read Lga $lga
+ * @property-read Ward|null $ward
+ */',
+         'namespace' => 'App\\Domain\\Programme\\Models',
+         'uses' => 
+        array (
+          'lga' => 'App\\Domain\\Reference\\Models\\Lga',
+          'ward' => 'App\\Domain\\Reference\\Models\\Ward',
+          'hasuuids' => 'Illuminate\\Database\\Eloquent\\Concerns\\HasUuids',
+          'model' => 'Illuminate\\Database\\Eloquent\\Model',
+          'belongsto' => 'Illuminate\\Database\\Eloquent\\Relations\\BelongsTo',
+          'carbon' => 'Illuminate\\Support\\Carbon',
+        ),
+         'constUses' => 
+        array (
+        ),
+      )),
+       'abstract' => false,
+       'final' => false,
+       'extends' => 'Illuminate\\Database\\Eloquent\\Model',
+       'implements' => 
+      array (
+      ),
+       'usedTraits' => 
+      array (
+        0 => 'Illuminate\\Database\\Eloquent\\Concerns\\HasUuids',
+      ),
+       'traitUseAdaptations' => 
+      array (
+      ),
+       'statements' => 
+      array (
+        0 => 
+        \PHPStan\Dependency\ExportedNode\ExportedPropertiesNode::__set_state(array(
+           'names' => 
+          array (
+            0 => 'table',
+          ),
+           'phpDoc' => NULL,
+           'type' => NULL,
+           'public' => false,
+           'private' => false,
+           'static' => false,
+           'readonly' => false,
+           'abstract' => false,
+           'final' => false,
+           'publicSet' => false,
+           'protectedSet' => false,
+           'privateSet' => false,
+           'virtual' => false,
+           'attributes' => 
+          array (
+          ),
+           'hooks' => 
+          array (
+          ),
+        )),
+        1 => 
+        \PHPStan\Dependency\ExportedNode\ExportedPropertiesNode::__set_state(array(
+           'names' => 
+          array (
+            0 => 'fillable',
+          ),
+           'phpDoc' => 
+          \PHPStan\Dependency\ExportedNode\ExportedPhpDocNode::__set_state(array(
+             'phpDocString' => '/**
+     * @var list<string>
+     */',
+             'namespace' => 'App\\Domain\\Programme\\Models',
+             'uses' => 
+            array (
+              'lga' => 'App\\Domain\\Reference\\Models\\Lga',
+              'ward' => 'App\\Domain\\Reference\\Models\\Ward',
+              'hasuuids' => 'Illuminate\\Database\\Eloquent\\Concerns\\HasUuids',
+              'model' => 'Illuminate\\Database\\Eloquent\\Model',
+              'belongsto' => 'Illuminate\\Database\\Eloquent\\Relations\\BelongsTo',
+              'carbon' => 'Illuminate\\Support\\Carbon',
+            ),
+             'constUses' => 
+            array (
+            ),
+          )),
+           'type' => NULL,
+           'public' => false,
+           'private' => false,
+           'static' => false,
+           'readonly' => false,
+           'abstract' => false,
+           'final' => false,
+           'publicSet' => false,
+           'protectedSet' => false,
+           'privateSet' => false,
+           'virtual' => false,
+           'attributes' => 
+          array (
+          ),
+           'hooks' => 
+          array (
+          ),
+        )),
+        2 => 
+        \PHPStan\Dependency\ExportedNode\ExportedMethodNode::__set_state(array(
+           'name' => 'isWholeLga',
+           'phpDoc' => 
+          \PHPStan\Dependency\ExportedNode\ExportedPhpDocNode::__set_state(array(
+             'phpDocString' => '/** True when this row declares the whole LGA rather than a single ward. */',
+             'namespace' => 'App\\Domain\\Programme\\Models',
+             'uses' => 
+            array (
+              'lga' => 'App\\Domain\\Reference\\Models\\Lga',
+              'ward' => 'App\\Domain\\Reference\\Models\\Ward',
+              'hasuuids' => 'Illuminate\\Database\\Eloquent\\Concerns\\HasUuids',
+              'model' => 'Illuminate\\Database\\Eloquent\\Model',
+              'belongsto' => 'Illuminate\\Database\\Eloquent\\Relations\\BelongsTo',
+              'carbon' => 'Illuminate\\Support\\Carbon',
+            ),
+             'constUses' => 
+            array (
+            ),
+          )),
+           'byRef' => false,
+           'public' => true,
+           'private' => false,
+           'abstract' => false,
+           'final' => false,
+           'static' => false,
+           'returnType' => 'bool',
+           'parameters' => 
+          array (
+          ),
+           'attributes' => 
+          array (
+          ),
+        )),
+        3 => 
+        \PHPStan\Dependency\ExportedNode\ExportedMethodNode::__set_state(array(
+           'name' => 'activity',
+           'phpDoc' => 
+          \PHPStan\Dependency\ExportedNode\ExportedPhpDocNode::__set_state(array(
+             'phpDocString' => '/**
+     * @return BelongsTo<Activity, $this>
+     */',
+             'namespace' => 'App\\Domain\\Programme\\Models',
+             'uses' => 
+            array (
+              'lga' => 'App\\Domain\\Reference\\Models\\Lga',
+              'ward' => 'App\\Domain\\Reference\\Models\\Ward',
+              'hasuuids' => 'Illuminate\\Database\\Eloquent\\Concerns\\HasUuids',
+              'model' => 'Illuminate\\Database\\Eloquent\\Model',
+              'belongsto' => 'Illuminate\\Database\\Eloquent\\Relations\\BelongsTo',
+              'carbon' => 'Illuminate\\Support\\Carbon',
+            ),
+             'constUses' => 
+            array (
+            ),
+          )),
+           'byRef' => false,
+           'public' => true,
+           'private' => false,
+           'abstract' => false,
+           'final' => false,
+           'static' => false,
+           'returnType' => 'Illuminate\\Database\\Eloquent\\Relations\\BelongsTo',
+           'parameters' => 
+          array (
+          ),
+           'attributes' => 
+          array (
+          ),
+        )),
+        4 => 
+        \PHPStan\Dependency\ExportedNode\ExportedMethodNode::__set_state(array(
+           'name' => 'lga',
+           'phpDoc' => 
+          \PHPStan\Dependency\ExportedNode\ExportedPhpDocNode::__set_state(array(
+             'phpDocString' => '/**
+     * @return BelongsTo<Lga, $this>
+     */',
+             'namespace' => 'App\\Domain\\Programme\\Models',
+             'uses' => 
+            array (
+              'lga' => 'App\\Domain\\Reference\\Models\\Lga',
+              'ward' => 'App\\Domain\\Reference\\Models\\Ward',
+              'hasuuids' => 'Illuminate\\Database\\Eloquent\\Concerns\\HasUuids',
+              'model' => 'Illuminate\\Database\\Eloquent\\Model',
+              'belongsto' => 'Illuminate\\Database\\Eloquent\\Relations\\BelongsTo',
+              'carbon' => 'Illuminate\\Support\\Carbon',
+            ),
+             'constUses' => 
+            array (
+            ),
+          )),
+           'byRef' => false,
+           'public' => true,
+           'private' => false,
+           'abstract' => false,
+           'final' => false,
+           'static' => false,
+           'returnType' => 'Illuminate\\Database\\Eloquent\\Relations\\BelongsTo',
+           'parameters' => 
+          array (
+          ),
+           'attributes' => 
+          array (
+          ),
+        )),
+        5 => 
+        \PHPStan\Dependency\ExportedNode\ExportedMethodNode::__set_state(array(
+           'name' => 'ward',
+           'phpDoc' => 
+          \PHPStan\Dependency\ExportedNode\ExportedPhpDocNode::__set_state(array(
+             'phpDocString' => '/**
+     * @return BelongsTo<Ward, $this>
+     */',
+             'namespace' => 'App\\Domain\\Programme\\Models',
+             'uses' => 
+            array (
+              'lga' => 'App\\Domain\\Reference\\Models\\Lga',
+              'ward' => 'App\\Domain\\Reference\\Models\\Ward',
+              'hasuuids' => 'Illuminate\\Database\\Eloquent\\Concerns\\HasUuids',
+              'model' => 'Illuminate\\Database\\Eloquent\\Model',
+              'belongsto' => 'Illuminate\\Database\\Eloquent\\Relations\\BelongsTo',
               'carbon' => 'Illuminate\\Support\\Carbon',
             ),
              'constUses' => 
@@ -57694,6 +59941,395 @@ return [
       ),
     )),
   ),
+  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Programme\\Services\\ActivityLocationService.php' => 
+  array (
+    0 => 
+    \PHPStan\Dependency\ExportedNode\ExportedClassNode::__set_state(array(
+       'name' => 'App\\Domain\\Programme\\Services\\ActivityLocationService',
+       'phpDoc' => 
+      \PHPStan\Dependency\ExportedNode\ExportedPhpDocNode::__set_state(array(
+         'phpDocString' => '/**
+ * Turns a submitted location set into `activity_locations` rows.
+ *
+ * The submitted shape is one entry per LGA — `{ lga_id, ward_ids: [...] }`, or
+ * `{ lga_id, whole_lga: true }` — because that is how the set is chosen in the UI and
+ * how it reads back. It is flattened to one row per ward here, so the storage shape
+ * stays queryable by coverage/GIS aggregations.
+ *
+ * Validation lives in {@see ValidatesLocationSet}
+ * (it must produce field-level 422s); this service assumes a validated set and owns
+ * only the flatten + replace.
+ *
+ * DESCRIPTIVE ONLY: nothing here — and nothing anywhere — checks the beneficiaries
+ * uploaded under the activity against these places.
+ */',
+         'namespace' => 'App\\Domain\\Programme\\Services',
+         'uses' => 
+        array (
+          'activity' => 'App\\Domain\\Programme\\Models\\Activity',
+          'activitylocation' => 'App\\Domain\\Programme\\Models\\ActivityLocation',
+          'lga' => 'App\\Domain\\Reference\\Models\\Lga',
+          'ward' => 'App\\Domain\\Reference\\Models\\Ward',
+          'validateslocationset' => 'App\\Http\\Requests\\Programme\\Concerns\\ValidatesLocationSet',
+          'db' => 'Illuminate\\Support\\Facades\\DB',
+        ),
+         'constUses' => 
+        array (
+        ),
+      )),
+       'abstract' => false,
+       'final' => false,
+       'extends' => NULL,
+       'implements' => 
+      array (
+      ),
+       'usedTraits' => 
+      array (
+      ),
+       'traitUseAdaptations' => 
+      array (
+      ),
+       'statements' => 
+      array (
+        0 => 
+        \PHPStan\Dependency\ExportedNode\ExportedMethodNode::__set_state(array(
+           'name' => 'sync',
+           'phpDoc' => 
+          \PHPStan\Dependency\ExportedNode\ExportedPhpDocNode::__set_state(array(
+             'phpDocString' => '/**
+     * Replaces an activity\'s entire location set.
+     *
+     * Replace rather than merge: the set is edited as a whole in the UI, so a submitted
+     * set is the complete intended statement, and removing an LGA has to remove its
+     * wards with it. Wrapped in a transaction so a failure never leaves an activity
+     * with half a set.
+     *
+     * @param  list<array{lga_id: string, ward_ids?: list<string>, whole_lga?: bool}>  $set
+     */',
+             'namespace' => 'App\\Domain\\Programme\\Services',
+             'uses' => 
+            array (
+              'activity' => 'App\\Domain\\Programme\\Models\\Activity',
+              'activitylocation' => 'App\\Domain\\Programme\\Models\\ActivityLocation',
+              'lga' => 'App\\Domain\\Reference\\Models\\Lga',
+              'ward' => 'App\\Domain\\Reference\\Models\\Ward',
+              'validateslocationset' => 'App\\Http\\Requests\\Programme\\Concerns\\ValidatesLocationSet',
+              'db' => 'Illuminate\\Support\\Facades\\DB',
+            ),
+             'constUses' => 
+            array (
+            ),
+          )),
+           'byRef' => false,
+           'public' => true,
+           'private' => false,
+           'abstract' => false,
+           'final' => false,
+           'static' => false,
+           'returnType' => 'void',
+           'parameters' => 
+          array (
+            0 => 
+            \PHPStan\Dependency\ExportedNode\ExportedParameterNode::__set_state(array(
+               'name' => 'activity',
+               'type' => 'App\\Domain\\Programme\\Models\\Activity',
+               'byRef' => false,
+               'variadic' => false,
+               'hasDefault' => false,
+               'attributes' => 
+              array (
+              ),
+               'phpDoc' => NULL,
+               'flags' => 0,
+            )),
+            1 => 
+            \PHPStan\Dependency\ExportedNode\ExportedParameterNode::__set_state(array(
+               'name' => 'set',
+               'type' => 'array',
+               'byRef' => false,
+               'variadic' => false,
+               'hasDefault' => false,
+               'attributes' => 
+              array (
+              ),
+               'phpDoc' => NULL,
+               'flags' => 0,
+            )),
+          ),
+           'attributes' => 
+          array (
+          ),
+        )),
+        1 => 
+        \PHPStan\Dependency\ExportedNode\ExportedMethodNode::__set_state(array(
+           'name' => 'flatten',
+           'phpDoc' => 
+          \PHPStan\Dependency\ExportedNode\ExportedPhpDocNode::__set_state(array(
+             'phpDocString' => '/**
+     * One (lga_id, ward_id) pair per row; ward_id null for a whole-LGA declaration.
+     *
+     * An entry with no wards is a whole-LGA row — selecting an LGA and no wards means
+     * the same thing as ticking "whole LGA", and storing it as one null-ward row keeps
+     * a single representation of that idea instead of two.
+     *
+     * @param  list<array{lga_id: string, ward_ids?: list<string>, whole_lga?: bool}>  $set
+     * @return list<array{0: string, 1: string|null}>
+     */',
+             'namespace' => 'App\\Domain\\Programme\\Services',
+             'uses' => 
+            array (
+              'activity' => 'App\\Domain\\Programme\\Models\\Activity',
+              'activitylocation' => 'App\\Domain\\Programme\\Models\\ActivityLocation',
+              'lga' => 'App\\Domain\\Reference\\Models\\Lga',
+              'ward' => 'App\\Domain\\Reference\\Models\\Ward',
+              'validateslocationset' => 'App\\Http\\Requests\\Programme\\Concerns\\ValidatesLocationSet',
+              'db' => 'Illuminate\\Support\\Facades\\DB',
+            ),
+             'constUses' => 
+            array (
+            ),
+          )),
+           'byRef' => false,
+           'public' => true,
+           'private' => false,
+           'abstract' => false,
+           'final' => false,
+           'static' => false,
+           'returnType' => 'array',
+           'parameters' => 
+          array (
+            0 => 
+            \PHPStan\Dependency\ExportedNode\ExportedParameterNode::__set_state(array(
+               'name' => 'set',
+               'type' => 'array',
+               'byRef' => false,
+               'variadic' => false,
+               'hasDefault' => false,
+               'attributes' => 
+              array (
+              ),
+               'phpDoc' => NULL,
+               'flags' => 0,
+            )),
+          ),
+           'attributes' => 
+          array (
+          ),
+        )),
+        2 => 
+        \PHPStan\Dependency\ExportedNode\ExportedMethodNode::__set_state(array(
+           'name' => 'present',
+           'phpDoc' => 
+          \PHPStan\Dependency\ExportedNode\ExportedPhpDocNode::__set_state(array(
+             'phpDocString' => '/**
+     * The set as the API returns it: grouped by LGA, wards nested, whole-LGA flagged.
+     *
+     * Built from the loaded relation so a caller that eager-loaded pays no extra query.
+     *
+     * @return list<array<string, mixed>>
+     */',
+             'namespace' => 'App\\Domain\\Programme\\Services',
+             'uses' => 
+            array (
+              'activity' => 'App\\Domain\\Programme\\Models\\Activity',
+              'activitylocation' => 'App\\Domain\\Programme\\Models\\ActivityLocation',
+              'lga' => 'App\\Domain\\Reference\\Models\\Lga',
+              'ward' => 'App\\Domain\\Reference\\Models\\Ward',
+              'validateslocationset' => 'App\\Http\\Requests\\Programme\\Concerns\\ValidatesLocationSet',
+              'db' => 'Illuminate\\Support\\Facades\\DB',
+            ),
+             'constUses' => 
+            array (
+            ),
+          )),
+           'byRef' => false,
+           'public' => true,
+           'private' => false,
+           'abstract' => false,
+           'final' => false,
+           'static' => false,
+           'returnType' => 'array',
+           'parameters' => 
+          array (
+            0 => 
+            \PHPStan\Dependency\ExportedNode\ExportedParameterNode::__set_state(array(
+               'name' => 'activity',
+               'type' => 'App\\Domain\\Programme\\Models\\Activity',
+               'byRef' => false,
+               'variadic' => false,
+               'hasDefault' => false,
+               'attributes' => 
+              array (
+              ),
+               'phpDoc' => NULL,
+               'flags' => 0,
+            )),
+          ),
+           'attributes' => 
+          array (
+          ),
+        )),
+        3 => 
+        \PHPStan\Dependency\ExportedNode\ExportedMethodNode::__set_state(array(
+           'name' => 'misplacedWards',
+           'phpDoc' => 
+          \PHPStan\Dependency\ExportedNode\ExportedPhpDocNode::__set_state(array(
+             'phpDocString' => '/**
+     * Wards that do not belong to the LGA they were submitted under, keyed by ward id.
+     *
+     * Shared by the form requests so the "ward belongs to its LGA" rule has exactly one
+     * implementation. Returns the offenders rather than a bool so the caller can name
+     * them in the error.
+     *
+     * @param  list<array{lga_id: string, ward_ids?: list<string>, whole_lga?: bool}>  $set
+     * @return array<string, string> ward id => the lga id it was wrongly submitted under
+     */',
+             'namespace' => 'App\\Domain\\Programme\\Services',
+             'uses' => 
+            array (
+              'activity' => 'App\\Domain\\Programme\\Models\\Activity',
+              'activitylocation' => 'App\\Domain\\Programme\\Models\\ActivityLocation',
+              'lga' => 'App\\Domain\\Reference\\Models\\Lga',
+              'ward' => 'App\\Domain\\Reference\\Models\\Ward',
+              'validateslocationset' => 'App\\Http\\Requests\\Programme\\Concerns\\ValidatesLocationSet',
+              'db' => 'Illuminate\\Support\\Facades\\DB',
+            ),
+             'constUses' => 
+            array (
+            ),
+          )),
+           'byRef' => false,
+           'public' => true,
+           'private' => false,
+           'abstract' => false,
+           'final' => false,
+           'static' => false,
+           'returnType' => 'array',
+           'parameters' => 
+          array (
+            0 => 
+            \PHPStan\Dependency\ExportedNode\ExportedParameterNode::__set_state(array(
+               'name' => 'set',
+               'type' => 'array',
+               'byRef' => false,
+               'variadic' => false,
+               'hasDefault' => false,
+               'attributes' => 
+              array (
+              ),
+               'phpDoc' => NULL,
+               'flags' => 0,
+            )),
+          ),
+           'attributes' => 
+          array (
+          ),
+        )),
+        4 => 
+        \PHPStan\Dependency\ExportedNode\ExportedMethodNode::__set_state(array(
+           'name' => 'duplicateLgas',
+           'phpDoc' => 
+          \PHPStan\Dependency\ExportedNode\ExportedPhpDocNode::__set_state(array(
+             'phpDocString' => '/**
+     * @param  list<array{lga_id: string, ward_ids?: list<string>, whole_lga?: bool}>  $set
+     * @return list<string> lga ids submitted more than once
+     */',
+             'namespace' => 'App\\Domain\\Programme\\Services',
+             'uses' => 
+            array (
+              'activity' => 'App\\Domain\\Programme\\Models\\Activity',
+              'activitylocation' => 'App\\Domain\\Programme\\Models\\ActivityLocation',
+              'lga' => 'App\\Domain\\Reference\\Models\\Lga',
+              'ward' => 'App\\Domain\\Reference\\Models\\Ward',
+              'validateslocationset' => 'App\\Http\\Requests\\Programme\\Concerns\\ValidatesLocationSet',
+              'db' => 'Illuminate\\Support\\Facades\\DB',
+            ),
+             'constUses' => 
+            array (
+            ),
+          )),
+           'byRef' => false,
+           'public' => true,
+           'private' => false,
+           'abstract' => false,
+           'final' => false,
+           'static' => false,
+           'returnType' => 'array',
+           'parameters' => 
+          array (
+            0 => 
+            \PHPStan\Dependency\ExportedNode\ExportedParameterNode::__set_state(array(
+               'name' => 'set',
+               'type' => 'array',
+               'byRef' => false,
+               'variadic' => false,
+               'hasDefault' => false,
+               'attributes' => 
+              array (
+              ),
+               'phpDoc' => NULL,
+               'flags' => 0,
+            )),
+          ),
+           'attributes' => 
+          array (
+          ),
+        )),
+        5 => 
+        \PHPStan\Dependency\ExportedNode\ExportedMethodNode::__set_state(array(
+           'name' => 'lgaNames',
+           'phpDoc' => 
+          \PHPStan\Dependency\ExportedNode\ExportedPhpDocNode::__set_state(array(
+             'phpDocString' => '/**
+     * @return array<string, string> lga id => name, for error messages
+     */',
+             'namespace' => 'App\\Domain\\Programme\\Services',
+             'uses' => 
+            array (
+              'activity' => 'App\\Domain\\Programme\\Models\\Activity',
+              'activitylocation' => 'App\\Domain\\Programme\\Models\\ActivityLocation',
+              'lga' => 'App\\Domain\\Reference\\Models\\Lga',
+              'ward' => 'App\\Domain\\Reference\\Models\\Ward',
+              'validateslocationset' => 'App\\Http\\Requests\\Programme\\Concerns\\ValidatesLocationSet',
+              'db' => 'Illuminate\\Support\\Facades\\DB',
+            ),
+             'constUses' => 
+            array (
+            ),
+          )),
+           'byRef' => false,
+           'public' => true,
+           'private' => false,
+           'abstract' => false,
+           'final' => false,
+           'static' => false,
+           'returnType' => 'array',
+           'parameters' => 
+          array (
+            0 => 
+            \PHPStan\Dependency\ExportedNode\ExportedParameterNode::__set_state(array(
+               'name' => 'ids',
+               'type' => 'array',
+               'byRef' => false,
+               'variadic' => false,
+               'hasDefault' => false,
+               'attributes' => 
+              array (
+              ),
+               'phpDoc' => NULL,
+               'flags' => 0,
+            )),
+          ),
+           'attributes' => 
+          array (
+          ),
+        )),
+      ),
+       'attributes' => 
+      array (
+      ),
+    )),
+  ),
   'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Programme\\Services\\EligibilityEvaluator.php' => 
   array (
     0 => 
@@ -57826,7 +60462,7 @@ return [
           'referral' => 'App\\Domain\\Referral\\Models\\Referral',
           'beneficiary' => 'App\\Domain\\Registry\\Models\\Beneficiary',
           'household' => 'App\\Domain\\Registry\\Models\\Household',
-          'servicerequestservice' => 'App\\Domain\\Registry\\Services\\ServiceRequestService',
+          'datasharingguard' => 'App\\Domain\\Sharing\\DataSharingGuard',
           'uniqueconstraintviolationexception' => 'Illuminate\\Database\\UniqueConstraintViolationException',
         ),
          'constUses' => 
@@ -57873,6 +60509,19 @@ return [
                'phpDoc' => NULL,
                'flags' => 68,
             )),
+            1 => 
+            \PHPStan\Dependency\ExportedNode\ExportedParameterNode::__set_state(array(
+               'name' => 'sharing',
+               'type' => 'App\\Domain\\Sharing\\DataSharingGuard',
+               'byRef' => false,
+               'variadic' => false,
+               'hasDefault' => false,
+               'attributes' => 
+              array (
+              ),
+               'phpDoc' => NULL,
+               'flags' => 68,
+            )),
           ),
            'attributes' => 
           array (
@@ -57901,7 +60550,7 @@ return [
               'referral' => 'App\\Domain\\Referral\\Models\\Referral',
               'beneficiary' => 'App\\Domain\\Registry\\Models\\Beneficiary',
               'household' => 'App\\Domain\\Registry\\Models\\Household',
-              'servicerequestservice' => 'App\\Domain\\Registry\\Services\\ServiceRequestService',
+              'datasharingguard' => 'App\\Domain\\Sharing\\DataSharingGuard',
               'uniqueconstraintviolationexception' => 'Illuminate\\Database\\UniqueConstraintViolationException',
             ),
              'constUses' => 
@@ -57970,7 +60619,7 @@ return [
               'referral' => 'App\\Domain\\Referral\\Models\\Referral',
               'beneficiary' => 'App\\Domain\\Registry\\Models\\Beneficiary',
               'household' => 'App\\Domain\\Registry\\Models\\Household',
-              'servicerequestservice' => 'App\\Domain\\Registry\\Services\\ServiceRequestService',
+              'datasharingguard' => 'App\\Domain\\Sharing\\DataSharingGuard',
               'uniqueconstraintviolationexception' => 'Illuminate\\Database\\UniqueConstraintViolationException',
             ),
              'constUses' => 
@@ -58299,6 +60948,1819 @@ return [
                'phpDoc' => NULL,
                'flags' => 0,
             )),
+          ),
+           'attributes' => 
+          array (
+          ),
+        )),
+      ),
+       'attributes' => 
+      array (
+      ),
+    )),
+  ),
+  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Reference\\Imports\\AdministrativeDivisionLoader.php' => 
+  array (
+    0 => 
+    \PHPStan\Dependency\ExportedNode\ExportedClassNode::__set_state(array(
+       'name' => 'App\\Domain\\Reference\\Imports\\AdministrativeDivisionLoader',
+       'phpDoc' => 
+      \PHPStan\Dependency\ExportedNode\ExportedPhpDocNode::__set_state(array(
+         'phpDocString' => '/**
+ * Loads Jigawa LGAs and wards from an authoritative dataset FILE supplied by the
+ * maintainer (HDX / GRID3 / State administrative records).
+ *
+ * The one rule this class exists to enforce: **it never invents data**. There is no
+ * fallback list, no partial seed, no placeholder. If the file is absent, unreadable,
+ * empty, or not credibly a Jigawa dataset, it throws
+ * {@see ReferenceDatasetException} and writes nothing.
+ *
+ * Accepted shapes (see README):
+ *   CSV  — header row with lga_name, ward_name (+ optional lga_code, ward_code)
+ *   JSON — a flat list of the same keys, or nested: [{ name, code?, wards: [...] }]
+ *
+ * Codes are slugged from names when not supplied, using the same slug the registry
+ * already uses ("Birnin Kudu" → birnin_kudu), so `lgas.code` lines up with both the
+ * {@see LgaEnum} validation values and `geo_boundaries.code`.
+ *
+ * VALIDATION HAPPENS BEFORE ANY WRITE, so an error message can honestly say nothing
+ * was loaded. Two checks reject a file that would otherwise look fine:
+ *
+ *  - an LGA the state does not have → wrong file (usually national data, unfiltered);
+ *  - fewer than all 27 LGAs → a partial dataset, which is the dangerous case: it
+ *    yields a lookup table that is silently missing real places.
+ *
+ * Ward counts are NOT checked against an expected total. Jigawa\'s ward count is
+ * commonly cited as ~287, but that figure is not a fact this code is entitled to
+ * enforce — the supplied file is the authority, and the loader reports what it found
+ * so the maintainer can verify it.
+ *
+ * Idempotent: upserts by `code` / `(lga_id, code)`, so re-running with a corrected
+ * file updates in place.
+ */',
+         'namespace' => 'App\\Domain\\Reference\\Imports',
+         'uses' => 
+        array (
+          'lga' => 'App\\Domain\\Reference\\Models\\Lga',
+          'ward' => 'App\\Domain\\Reference\\Models\\Ward',
+          'referencedatacache' => 'App\\Domain\\Reference\\Services\\ReferenceDataCache',
+          'lgaenum' => 'App\\Domain\\Registry\\Enums\\Lga',
+          'db' => 'Illuminate\\Support\\Facades\\DB',
+          'str' => 'Illuminate\\Support\\Str',
+        ),
+         'constUses' => 
+        array (
+        ),
+      )),
+       'abstract' => false,
+       'final' => false,
+       'extends' => NULL,
+       'implements' => 
+      array (
+      ),
+       'usedTraits' => 
+      array (
+      ),
+       'traitUseAdaptations' => 
+      array (
+      ),
+       'statements' => 
+      array (
+        0 => 
+        \PHPStan\Dependency\ExportedNode\ExportedMethodNode::__set_state(array(
+           'name' => '__construct',
+           'phpDoc' => NULL,
+           'byRef' => false,
+           'public' => true,
+           'private' => false,
+           'abstract' => false,
+           'final' => false,
+           'static' => false,
+           'returnType' => NULL,
+           'parameters' => 
+          array (
+            0 => 
+            \PHPStan\Dependency\ExportedNode\ExportedParameterNode::__set_state(array(
+               'name' => 'cache',
+               'type' => 'App\\Domain\\Reference\\Services\\ReferenceDataCache',
+               'byRef' => false,
+               'variadic' => false,
+               'hasDefault' => false,
+               'attributes' => 
+              array (
+              ),
+               'phpDoc' => NULL,
+               'flags' => 68,
+            )),
+          ),
+           'attributes' => 
+          array (
+          ),
+        )),
+        1 => 
+        \PHPStan\Dependency\ExportedNode\ExportedMethodNode::__set_state(array(
+           'name' => 'loadFromFile',
+           'phpDoc' => 
+          \PHPStan\Dependency\ExportedNode\ExportedPhpDocNode::__set_state(array(
+             'phpDocString' => '/**
+     * @throws ReferenceDatasetException
+     */',
+             'namespace' => 'App\\Domain\\Reference\\Imports',
+             'uses' => 
+            array (
+              'lga' => 'App\\Domain\\Reference\\Models\\Lga',
+              'ward' => 'App\\Domain\\Reference\\Models\\Ward',
+              'referencedatacache' => 'App\\Domain\\Reference\\Services\\ReferenceDataCache',
+              'lgaenum' => 'App\\Domain\\Registry\\Enums\\Lga',
+              'db' => 'Illuminate\\Support\\Facades\\DB',
+              'str' => 'Illuminate\\Support\\Str',
+            ),
+             'constUses' => 
+            array (
+            ),
+          )),
+           'byRef' => false,
+           'public' => true,
+           'private' => false,
+           'abstract' => false,
+           'final' => false,
+           'static' => false,
+           'returnType' => 'App\\Domain\\Reference\\Imports\\DivisionLoadResult',
+           'parameters' => 
+          array (
+            0 => 
+            \PHPStan\Dependency\ExportedNode\ExportedParameterNode::__set_state(array(
+               'name' => 'path',
+               'type' => '?string',
+               'byRef' => false,
+               'variadic' => false,
+               'hasDefault' => true,
+               'attributes' => 
+              array (
+              ),
+               'phpDoc' => NULL,
+               'flags' => 0,
+            )),
+          ),
+           'attributes' => 
+          array (
+          ),
+        )),
+        2 => 
+        \PHPStan\Dependency\ExportedNode\ExportedMethodNode::__set_state(array(
+           'name' => 'load',
+           'phpDoc' => 
+          \PHPStan\Dependency\ExportedNode\ExportedPhpDocNode::__set_state(array(
+             'phpDocString' => '/**
+     * @param  list<array<string, string>>  $records  each with lga_name/ward_name (+ optional codes)
+     *
+     * @throws ReferenceDatasetException
+     */',
+             'namespace' => 'App\\Domain\\Reference\\Imports',
+             'uses' => 
+            array (
+              'lga' => 'App\\Domain\\Reference\\Models\\Lga',
+              'ward' => 'App\\Domain\\Reference\\Models\\Ward',
+              'referencedatacache' => 'App\\Domain\\Reference\\Services\\ReferenceDataCache',
+              'lgaenum' => 'App\\Domain\\Registry\\Enums\\Lga',
+              'db' => 'Illuminate\\Support\\Facades\\DB',
+              'str' => 'Illuminate\\Support\\Str',
+            ),
+             'constUses' => 
+            array (
+            ),
+          )),
+           'byRef' => false,
+           'public' => true,
+           'private' => false,
+           'abstract' => false,
+           'final' => false,
+           'static' => false,
+           'returnType' => 'App\\Domain\\Reference\\Imports\\DivisionLoadResult',
+           'parameters' => 
+          array (
+            0 => 
+            \PHPStan\Dependency\ExportedNode\ExportedParameterNode::__set_state(array(
+               'name' => 'records',
+               'type' => 'array',
+               'byRef' => false,
+               'variadic' => false,
+               'hasDefault' => false,
+               'attributes' => 
+              array (
+              ),
+               'phpDoc' => NULL,
+               'flags' => 0,
+            )),
+          ),
+           'attributes' => 
+          array (
+          ),
+        )),
+      ),
+       'attributes' => 
+      array (
+      ),
+    )),
+  ),
+  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Reference\\Imports\\DivisionLoadResult.php' => 
+  array (
+    0 => 
+    \PHPStan\Dependency\ExportedNode\ExportedClassNode::__set_state(array(
+       'name' => 'App\\Domain\\Reference\\Imports\\DivisionLoadResult',
+       'phpDoc' => 
+      \PHPStan\Dependency\ExportedNode\ExportedPhpDocNode::__set_state(array(
+         'phpDocString' => '/**
+ * What a dataset load actually did. Returned rather than logged so the artisan command
+ * and the seeder can both report it, and so tests can assert on it.
+ *
+ * `staleWards` is reported but never deleted — see {@see AdministrativeDivisionLoader}.
+ */',
+         'namespace' => 'App\\Domain\\Reference\\Imports',
+         'uses' => 
+        array (
+        ),
+         'constUses' => 
+        array (
+        ),
+      )),
+       'abstract' => false,
+       'final' => true,
+       'extends' => NULL,
+       'implements' => 
+      array (
+      ),
+       'usedTraits' => 
+      array (
+      ),
+       'traitUseAdaptations' => 
+      array (
+      ),
+       'statements' => 
+      array (
+        0 => 
+        \PHPStan\Dependency\ExportedNode\ExportedMethodNode::__set_state(array(
+           'name' => '__construct',
+           'phpDoc' => 
+          \PHPStan\Dependency\ExportedNode\ExportedPhpDocNode::__set_state(array(
+             'phpDocString' => '/**
+     * @param  array<string, int>  $wardsPerLga  lga code => ward count in this dataset
+     * @param  list<string>  $staleWards  "lga_code/ward_code" rows in the DB but absent from this file
+     * @param  list<string>  $lgasWithoutWards  lga codes the dataset gave no wards for
+     */',
+             'namespace' => 'App\\Domain\\Reference\\Imports',
+             'uses' => 
+            array (
+            ),
+             'constUses' => 
+            array (
+            ),
+          )),
+           'byRef' => false,
+           'public' => true,
+           'private' => false,
+           'abstract' => false,
+           'final' => false,
+           'static' => false,
+           'returnType' => NULL,
+           'parameters' => 
+          array (
+            0 => 
+            \PHPStan\Dependency\ExportedNode\ExportedParameterNode::__set_state(array(
+               'name' => 'lgasCreated',
+               'type' => 'int',
+               'byRef' => false,
+               'variadic' => false,
+               'hasDefault' => false,
+               'attributes' => 
+              array (
+              ),
+               'phpDoc' => NULL,
+               'flags' => 1,
+            )),
+            1 => 
+            \PHPStan\Dependency\ExportedNode\ExportedParameterNode::__set_state(array(
+               'name' => 'lgasUpdated',
+               'type' => 'int',
+               'byRef' => false,
+               'variadic' => false,
+               'hasDefault' => false,
+               'attributes' => 
+              array (
+              ),
+               'phpDoc' => NULL,
+               'flags' => 1,
+            )),
+            2 => 
+            \PHPStan\Dependency\ExportedNode\ExportedParameterNode::__set_state(array(
+               'name' => 'wardsCreated',
+               'type' => 'int',
+               'byRef' => false,
+               'variadic' => false,
+               'hasDefault' => false,
+               'attributes' => 
+              array (
+              ),
+               'phpDoc' => NULL,
+               'flags' => 1,
+            )),
+            3 => 
+            \PHPStan\Dependency\ExportedNode\ExportedParameterNode::__set_state(array(
+               'name' => 'wardsUpdated',
+               'type' => 'int',
+               'byRef' => false,
+               'variadic' => false,
+               'hasDefault' => false,
+               'attributes' => 
+              array (
+              ),
+               'phpDoc' => NULL,
+               'flags' => 1,
+            )),
+            4 => 
+            \PHPStan\Dependency\ExportedNode\ExportedParameterNode::__set_state(array(
+               'name' => 'wardsPerLga',
+               'type' => 'array',
+               'byRef' => false,
+               'variadic' => false,
+               'hasDefault' => false,
+               'attributes' => 
+              array (
+              ),
+               'phpDoc' => NULL,
+               'flags' => 1,
+            )),
+            5 => 
+            \PHPStan\Dependency\ExportedNode\ExportedParameterNode::__set_state(array(
+               'name' => 'staleWards',
+               'type' => 'array',
+               'byRef' => false,
+               'variadic' => false,
+               'hasDefault' => false,
+               'attributes' => 
+              array (
+              ),
+               'phpDoc' => NULL,
+               'flags' => 1,
+            )),
+            6 => 
+            \PHPStan\Dependency\ExportedNode\ExportedParameterNode::__set_state(array(
+               'name' => 'lgasWithoutWards',
+               'type' => 'array',
+               'byRef' => false,
+               'variadic' => false,
+               'hasDefault' => false,
+               'attributes' => 
+              array (
+              ),
+               'phpDoc' => NULL,
+               'flags' => 1,
+            )),
+          ),
+           'attributes' => 
+          array (
+          ),
+        )),
+        1 => 
+        \PHPStan\Dependency\ExportedNode\ExportedMethodNode::__set_state(array(
+           'name' => 'totalWards',
+           'phpDoc' => NULL,
+           'byRef' => false,
+           'public' => true,
+           'private' => false,
+           'abstract' => false,
+           'final' => false,
+           'static' => false,
+           'returnType' => 'int',
+           'parameters' => 
+          array (
+          ),
+           'attributes' => 
+          array (
+          ),
+        )),
+        2 => 
+        \PHPStan\Dependency\ExportedNode\ExportedMethodNode::__set_state(array(
+           'name' => 'totalLgas',
+           'phpDoc' => NULL,
+           'byRef' => false,
+           'public' => true,
+           'private' => false,
+           'abstract' => false,
+           'final' => false,
+           'static' => false,
+           'returnType' => 'int',
+           'parameters' => 
+          array (
+          ),
+           'attributes' => 
+          array (
+          ),
+        )),
+      ),
+       'attributes' => 
+      array (
+      ),
+    )),
+  ),
+  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Reference\\Imports\\LoadAdministrativeDivisions.php' => 
+  array (
+    0 => 
+    \PHPStan\Dependency\ExportedNode\ExportedClassNode::__set_state(array(
+       'name' => 'App\\Domain\\Reference\\Imports\\LoadAdministrativeDivisions',
+       'phpDoc' => 
+      \PHPStan\Dependency\ExportedNode\ExportedPhpDocNode::__set_state(array(
+         'phpDocString' => '/**
+ * Loads Jigawa LGA/Ward reference data from an authoritative dataset file:
+ *
+ *   php artisan reference:load-divisions
+ *   php artisan reference:load-divisions storage/app/reference/jigawa-wards.csv
+ *
+ * With no argument it reads `config(\'reference.divisions.path\')`. Idempotent.
+ * Fails loudly (non-zero exit, explanatory message) rather than seeding placeholders.
+ */',
+         'namespace' => 'App\\Domain\\Reference\\Imports',
+         'uses' => 
+        array (
+          'command' => 'Illuminate\\Console\\Command',
+        ),
+         'constUses' => 
+        array (
+        ),
+      )),
+       'abstract' => false,
+       'final' => false,
+       'extends' => 'Illuminate\\Console\\Command',
+       'implements' => 
+      array (
+      ),
+       'usedTraits' => 
+      array (
+      ),
+       'traitUseAdaptations' => 
+      array (
+      ),
+       'statements' => 
+      array (
+        0 => 
+        \PHPStan\Dependency\ExportedNode\ExportedPropertiesNode::__set_state(array(
+           'names' => 
+          array (
+            0 => 'signature',
+          ),
+           'phpDoc' => NULL,
+           'type' => NULL,
+           'public' => false,
+           'private' => false,
+           'static' => false,
+           'readonly' => false,
+           'abstract' => false,
+           'final' => false,
+           'publicSet' => false,
+           'protectedSet' => false,
+           'privateSet' => false,
+           'virtual' => false,
+           'attributes' => 
+          array (
+          ),
+           'hooks' => 
+          array (
+          ),
+        )),
+        1 => 
+        \PHPStan\Dependency\ExportedNode\ExportedPropertiesNode::__set_state(array(
+           'names' => 
+          array (
+            0 => 'description',
+          ),
+           'phpDoc' => NULL,
+           'type' => NULL,
+           'public' => false,
+           'private' => false,
+           'static' => false,
+           'readonly' => false,
+           'abstract' => false,
+           'final' => false,
+           'publicSet' => false,
+           'protectedSet' => false,
+           'privateSet' => false,
+           'virtual' => false,
+           'attributes' => 
+          array (
+          ),
+           'hooks' => 
+          array (
+          ),
+        )),
+        2 => 
+        \PHPStan\Dependency\ExportedNode\ExportedMethodNode::__set_state(array(
+           'name' => 'handle',
+           'phpDoc' => NULL,
+           'byRef' => false,
+           'public' => true,
+           'private' => false,
+           'abstract' => false,
+           'final' => false,
+           'static' => false,
+           'returnType' => 'int',
+           'parameters' => 
+          array (
+            0 => 
+            \PHPStan\Dependency\ExportedNode\ExportedParameterNode::__set_state(array(
+               'name' => 'loader',
+               'type' => 'App\\Domain\\Reference\\Imports\\AdministrativeDivisionLoader',
+               'byRef' => false,
+               'variadic' => false,
+               'hasDefault' => false,
+               'attributes' => 
+              array (
+              ),
+               'phpDoc' => NULL,
+               'flags' => 0,
+            )),
+          ),
+           'attributes' => 
+          array (
+          ),
+        )),
+      ),
+       'attributes' => 
+      array (
+      ),
+    )),
+  ),
+  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Reference\\Imports\\ReferenceDatasetException.php' => 
+  array (
+    0 => 
+    \PHPStan\Dependency\ExportedNode\ExportedClassNode::__set_state(array(
+       'name' => 'App\\Domain\\Reference\\Imports\\ReferenceDatasetException',
+       'phpDoc' => 
+      \PHPStan\Dependency\ExportedNode\ExportedPhpDocNode::__set_state(array(
+         'phpDocString' => '/**
+ * Raised when the authoritative administrative-divisions dataset is absent or is not
+ * credibly a Jigawa dataset.
+ *
+ * Every message here is written for a maintainer standing at a terminal: it says what
+ * was wrong, where the file was looked for, and where a real one is sourced. The
+ * alternative — seeding placeholder wards — is the failure this class exists to
+ * prevent: a fabricated ward list is worse than free text, because free text is
+ * visibly unverified while a populated lookup table looks authoritative.
+ */',
+         'namespace' => 'App\\Domain\\Reference\\Imports',
+         'uses' => 
+        array (
+          'runtimeexception' => 'RuntimeException',
+        ),
+         'constUses' => 
+        array (
+        ),
+      )),
+       'abstract' => false,
+       'final' => false,
+       'extends' => 'RuntimeException',
+       'implements' => 
+      array (
+      ),
+       'usedTraits' => 
+      array (
+      ),
+       'traitUseAdaptations' => 
+      array (
+      ),
+       'statements' => 
+      array (
+        0 => 
+        \PHPStan\Dependency\ExportedNode\ExportedMethodNode::__set_state(array(
+           'name' => 'fileMissing',
+           'phpDoc' => NULL,
+           'byRef' => false,
+           'public' => true,
+           'private' => false,
+           'abstract' => false,
+           'final' => false,
+           'static' => true,
+           'returnType' => 'self',
+           'parameters' => 
+          array (
+            0 => 
+            \PHPStan\Dependency\ExportedNode\ExportedParameterNode::__set_state(array(
+               'name' => 'path',
+               'type' => 'string',
+               'byRef' => false,
+               'variadic' => false,
+               'hasDefault' => false,
+               'attributes' => 
+              array (
+              ),
+               'phpDoc' => NULL,
+               'flags' => 0,
+            )),
+          ),
+           'attributes' => 
+          array (
+          ),
+        )),
+        1 => 
+        \PHPStan\Dependency\ExportedNode\ExportedMethodNode::__set_state(array(
+           'name' => 'unreadable',
+           'phpDoc' => NULL,
+           'byRef' => false,
+           'public' => true,
+           'private' => false,
+           'abstract' => false,
+           'final' => false,
+           'static' => true,
+           'returnType' => 'self',
+           'parameters' => 
+          array (
+            0 => 
+            \PHPStan\Dependency\ExportedNode\ExportedParameterNode::__set_state(array(
+               'name' => 'path',
+               'type' => 'string',
+               'byRef' => false,
+               'variadic' => false,
+               'hasDefault' => false,
+               'attributes' => 
+              array (
+              ),
+               'phpDoc' => NULL,
+               'flags' => 0,
+            )),
+          ),
+           'attributes' => 
+          array (
+          ),
+        )),
+        2 => 
+        \PHPStan\Dependency\ExportedNode\ExportedMethodNode::__set_state(array(
+           'name' => 'empty',
+           'phpDoc' => NULL,
+           'byRef' => false,
+           'public' => true,
+           'private' => false,
+           'abstract' => false,
+           'final' => false,
+           'static' => true,
+           'returnType' => 'self',
+           'parameters' => 
+          array (
+            0 => 
+            \PHPStan\Dependency\ExportedNode\ExportedParameterNode::__set_state(array(
+               'name' => 'path',
+               'type' => 'string',
+               'byRef' => false,
+               'variadic' => false,
+               'hasDefault' => false,
+               'attributes' => 
+              array (
+              ),
+               'phpDoc' => NULL,
+               'flags' => 0,
+            )),
+          ),
+           'attributes' => 
+          array (
+          ),
+        )),
+        3 => 
+        \PHPStan\Dependency\ExportedNode\ExportedMethodNode::__set_state(array(
+           'name' => 'unsupportedFormat',
+           'phpDoc' => NULL,
+           'byRef' => false,
+           'public' => true,
+           'private' => false,
+           'abstract' => false,
+           'final' => false,
+           'static' => true,
+           'returnType' => 'self',
+           'parameters' => 
+          array (
+            0 => 
+            \PHPStan\Dependency\ExportedNode\ExportedParameterNode::__set_state(array(
+               'name' => 'extension',
+               'type' => 'string',
+               'byRef' => false,
+               'variadic' => false,
+               'hasDefault' => false,
+               'attributes' => 
+              array (
+              ),
+               'phpDoc' => NULL,
+               'flags' => 0,
+            )),
+          ),
+           'attributes' => 
+          array (
+          ),
+        )),
+        4 => 
+        \PHPStan\Dependency\ExportedNode\ExportedMethodNode::__set_state(array(
+           'name' => 'malformed',
+           'phpDoc' => NULL,
+           'byRef' => false,
+           'public' => true,
+           'private' => false,
+           'abstract' => false,
+           'final' => false,
+           'static' => true,
+           'returnType' => 'self',
+           'parameters' => 
+          array (
+            0 => 
+            \PHPStan\Dependency\ExportedNode\ExportedParameterNode::__set_state(array(
+               'name' => 'path',
+               'type' => 'string',
+               'byRef' => false,
+               'variadic' => false,
+               'hasDefault' => false,
+               'attributes' => 
+              array (
+              ),
+               'phpDoc' => NULL,
+               'flags' => 0,
+            )),
+            1 => 
+            \PHPStan\Dependency\ExportedNode\ExportedParameterNode::__set_state(array(
+               'name' => 'detail',
+               'type' => 'string',
+               'byRef' => false,
+               'variadic' => false,
+               'hasDefault' => false,
+               'attributes' => 
+              array (
+              ),
+               'phpDoc' => NULL,
+               'flags' => 0,
+            )),
+          ),
+           'attributes' => 
+          array (
+          ),
+        )),
+        5 => 
+        \PHPStan\Dependency\ExportedNode\ExportedMethodNode::__set_state(array(
+           'name' => 'missingColumns',
+           'phpDoc' => 
+          \PHPStan\Dependency\ExportedNode\ExportedPhpDocNode::__set_state(array(
+             'phpDocString' => '/**
+     * @param  list<string>  $missing
+     */',
+             'namespace' => 'App\\Domain\\Reference\\Imports',
+             'uses' => 
+            array (
+              'runtimeexception' => 'RuntimeException',
+            ),
+             'constUses' => 
+            array (
+            ),
+          )),
+           'byRef' => false,
+           'public' => true,
+           'private' => false,
+           'abstract' => false,
+           'final' => false,
+           'static' => true,
+           'returnType' => 'self',
+           'parameters' => 
+          array (
+            0 => 
+            \PHPStan\Dependency\ExportedNode\ExportedParameterNode::__set_state(array(
+               'name' => 'missing',
+               'type' => 'array',
+               'byRef' => false,
+               'variadic' => false,
+               'hasDefault' => false,
+               'attributes' => 
+              array (
+              ),
+               'phpDoc' => NULL,
+               'flags' => 0,
+            )),
+            1 => 
+            \PHPStan\Dependency\ExportedNode\ExportedParameterNode::__set_state(array(
+               'name' => 'found',
+               'type' => 'string',
+               'byRef' => false,
+               'variadic' => false,
+               'hasDefault' => false,
+               'attributes' => 
+              array (
+              ),
+               'phpDoc' => NULL,
+               'flags' => 0,
+            )),
+          ),
+           'attributes' => 
+          array (
+          ),
+        )),
+        6 => 
+        \PHPStan\Dependency\ExportedNode\ExportedMethodNode::__set_state(array(
+           'name' => 'unknownLgas',
+           'phpDoc' => 
+          \PHPStan\Dependency\ExportedNode\ExportedPhpDocNode::__set_state(array(
+             'phpDocString' => '/**
+     * The dataset names LGAs that are not Jigawa\'s — almost always the wrong file, or
+     * the national file left unfiltered.
+     *
+     * @param  list<string>  $unknown
+     */',
+             'namespace' => 'App\\Domain\\Reference\\Imports',
+             'uses' => 
+            array (
+              'runtimeexception' => 'RuntimeException',
+            ),
+             'constUses' => 
+            array (
+            ),
+          )),
+           'byRef' => false,
+           'public' => true,
+           'private' => false,
+           'abstract' => false,
+           'final' => false,
+           'static' => true,
+           'returnType' => 'self',
+           'parameters' => 
+          array (
+            0 => 
+            \PHPStan\Dependency\ExportedNode\ExportedParameterNode::__set_state(array(
+               'name' => 'unknown',
+               'type' => 'array',
+               'byRef' => false,
+               'variadic' => false,
+               'hasDefault' => false,
+               'attributes' => 
+              array (
+              ),
+               'phpDoc' => NULL,
+               'flags' => 0,
+            )),
+          ),
+           'attributes' => 
+          array (
+          ),
+        )),
+        7 => 
+        \PHPStan\Dependency\ExportedNode\ExportedMethodNode::__set_state(array(
+           'name' => 'incompleteLgas',
+           'phpDoc' => 
+          \PHPStan\Dependency\ExportedNode\ExportedPhpDocNode::__set_state(array(
+             'phpDocString' => '/**
+     * The dataset covers only part of the state. Loading it would produce a lookup
+     * table that silently omits real places — the "partial list that looks
+     * authoritative" case.
+     *
+     * @param  list<string>  $missing
+     */',
+             'namespace' => 'App\\Domain\\Reference\\Imports',
+             'uses' => 
+            array (
+              'runtimeexception' => 'RuntimeException',
+            ),
+             'constUses' => 
+            array (
+            ),
+          )),
+           'byRef' => false,
+           'public' => true,
+           'private' => false,
+           'abstract' => false,
+           'final' => false,
+           'static' => true,
+           'returnType' => 'self',
+           'parameters' => 
+          array (
+            0 => 
+            \PHPStan\Dependency\ExportedNode\ExportedParameterNode::__set_state(array(
+               'name' => 'missing',
+               'type' => 'array',
+               'byRef' => false,
+               'variadic' => false,
+               'hasDefault' => false,
+               'attributes' => 
+              array (
+              ),
+               'phpDoc' => NULL,
+               'flags' => 0,
+            )),
+          ),
+           'attributes' => 
+          array (
+          ),
+        )),
+        8 => 
+        \PHPStan\Dependency\ExportedNode\ExportedMethodNode::__set_state(array(
+           'name' => 'conflictingWard',
+           'phpDoc' => NULL,
+           'byRef' => false,
+           'public' => true,
+           'private' => false,
+           'abstract' => false,
+           'final' => false,
+           'static' => true,
+           'returnType' => 'self',
+           'parameters' => 
+          array (
+            0 => 
+            \PHPStan\Dependency\ExportedNode\ExportedParameterNode::__set_state(array(
+               'name' => 'lgaCode',
+               'type' => 'string',
+               'byRef' => false,
+               'variadic' => false,
+               'hasDefault' => false,
+               'attributes' => 
+              array (
+              ),
+               'phpDoc' => NULL,
+               'flags' => 0,
+            )),
+            1 => 
+            \PHPStan\Dependency\ExportedNode\ExportedParameterNode::__set_state(array(
+               'name' => 'wardCode',
+               'type' => 'string',
+               'byRef' => false,
+               'variadic' => false,
+               'hasDefault' => false,
+               'attributes' => 
+              array (
+              ),
+               'phpDoc' => NULL,
+               'flags' => 0,
+            )),
+            2 => 
+            \PHPStan\Dependency\ExportedNode\ExportedParameterNode::__set_state(array(
+               'name' => 'first',
+               'type' => 'string',
+               'byRef' => false,
+               'variadic' => false,
+               'hasDefault' => false,
+               'attributes' => 
+              array (
+              ),
+               'phpDoc' => NULL,
+               'flags' => 0,
+            )),
+            3 => 
+            \PHPStan\Dependency\ExportedNode\ExportedParameterNode::__set_state(array(
+               'name' => 'second',
+               'type' => 'string',
+               'byRef' => false,
+               'variadic' => false,
+               'hasDefault' => false,
+               'attributes' => 
+              array (
+              ),
+               'phpDoc' => NULL,
+               'flags' => 0,
+            )),
+          ),
+           'attributes' => 
+          array (
+          ),
+        )),
+      ),
+       'attributes' => 
+      array (
+      ),
+    )),
+  ),
+  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Reference\\Imports\\SeedJigawaLgas.php' => 
+  array (
+    0 => 
+    \PHPStan\Dependency\ExportedNode\ExportedClassNode::__set_state(array(
+       'name' => 'App\\Domain\\Reference\\Imports\\SeedJigawaLgas',
+       'phpDoc' => 
+      \PHPStan\Dependency\ExportedNode\ExportedPhpDocNode::__set_state(array(
+         'phpDocString' => '/**
+ * Seeds the 27 Jigawa LGAs — and NO wards — from {@see LgaEnum}:
+ *
+ *   php artisan reference:seed-lgas
+ *
+ * This is NOT a substitute for `reference:load-divisions`. It exists because the LGA list
+ * and the ward list have different provenance:
+ *
+ *  - The 27 LGAs are already committed, authoritative reference data. They are the values
+ *    `beneficiaries.lga` is validated against (FR-REG-04/05, a locked decision), and
+ *    `AdministrativeDivisionLoader` checks supplied files against this same enum. Writing
+ *    them into `lgas` copies a fact the repository already asserts.
+ *  - Ward names are NOT in this repository and are never generated. They come only from a
+ *    maintainer-supplied dataset.
+ *
+ * So this command makes the legitimate intermediate state reachable: LGAs known, wards not
+ * yet supplied. That state is what the activity location set needs in order to record
+ * whole-LGA coverage, and what the activity-location backfill needs in order to resolve
+ * existing LGA values instead of refusing to run.
+ *
+ * Idempotent. Never touches wards. Once a real dataset arrives,
+ * `reference:load-divisions` updates these rows in place (it matches on the same `code`)
+ * and adds the wards.
+ */',
+         'namespace' => 'App\\Domain\\Reference\\Imports',
+         'uses' => 
+        array (
+          'lga' => 'App\\Domain\\Reference\\Models\\Lga',
+          'referencedatacache' => 'App\\Domain\\Reference\\Services\\ReferenceDataCache',
+          'lgaenum' => 'App\\Domain\\Registry\\Enums\\Lga',
+          'command' => 'Illuminate\\Console\\Command',
+        ),
+         'constUses' => 
+        array (
+        ),
+      )),
+       'abstract' => false,
+       'final' => false,
+       'extends' => 'Illuminate\\Console\\Command',
+       'implements' => 
+      array (
+      ),
+       'usedTraits' => 
+      array (
+      ),
+       'traitUseAdaptations' => 
+      array (
+      ),
+       'statements' => 
+      array (
+        0 => 
+        \PHPStan\Dependency\ExportedNode\ExportedPropertiesNode::__set_state(array(
+           'names' => 
+          array (
+            0 => 'signature',
+          ),
+           'phpDoc' => NULL,
+           'type' => NULL,
+           'public' => false,
+           'private' => false,
+           'static' => false,
+           'readonly' => false,
+           'abstract' => false,
+           'final' => false,
+           'publicSet' => false,
+           'protectedSet' => false,
+           'privateSet' => false,
+           'virtual' => false,
+           'attributes' => 
+          array (
+          ),
+           'hooks' => 
+          array (
+          ),
+        )),
+        1 => 
+        \PHPStan\Dependency\ExportedNode\ExportedPropertiesNode::__set_state(array(
+           'names' => 
+          array (
+            0 => 'description',
+          ),
+           'phpDoc' => NULL,
+           'type' => NULL,
+           'public' => false,
+           'private' => false,
+           'static' => false,
+           'readonly' => false,
+           'abstract' => false,
+           'final' => false,
+           'publicSet' => false,
+           'protectedSet' => false,
+           'privateSet' => false,
+           'virtual' => false,
+           'attributes' => 
+          array (
+          ),
+           'hooks' => 
+          array (
+          ),
+        )),
+        2 => 
+        \PHPStan\Dependency\ExportedNode\ExportedMethodNode::__set_state(array(
+           'name' => 'handle',
+           'phpDoc' => NULL,
+           'byRef' => false,
+           'public' => true,
+           'private' => false,
+           'abstract' => false,
+           'final' => false,
+           'static' => false,
+           'returnType' => 'int',
+           'parameters' => 
+          array (
+            0 => 
+            \PHPStan\Dependency\ExportedNode\ExportedParameterNode::__set_state(array(
+               'name' => 'cache',
+               'type' => 'App\\Domain\\Reference\\Services\\ReferenceDataCache',
+               'byRef' => false,
+               'variadic' => false,
+               'hasDefault' => false,
+               'attributes' => 
+              array (
+              ),
+               'phpDoc' => NULL,
+               'flags' => 0,
+            )),
+          ),
+           'attributes' => 
+          array (
+          ),
+        )),
+      ),
+       'attributes' => 
+      array (
+      ),
+    )),
+  ),
+  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Reference\\Models\\Lga.php' => 
+  array (
+    0 => 
+    \PHPStan\Dependency\ExportedNode\ExportedClassNode::__set_state(array(
+       'name' => 'App\\Domain\\Reference\\Models\\Lga',
+       'phpDoc' => 
+      \PHPStan\Dependency\ExportedNode\ExportedPhpDocNode::__set_state(array(
+         'phpDocString' => '/**
+ * A Local Government Area — reference data, not owned by any MDA.
+ *
+ * Deliberately NOT MdaScoped and NOT Auditable: this is a shared lookup list every
+ * MDA reads identically, and it changes only when a maintainer loads a new
+ * authoritative dataset (which the loader reports on) — not through user action.
+ *
+ * `code` is the slug shared with {@see \\App\\Domain\\Registry\\Enums\\Lga} and
+ * `geo_boundaries.code`. The enum remains the validation authority for
+ * `beneficiaries.lga` (FR-REG-04/05, a locked decision); this table is the
+ * navigable hierarchy that the enum cannot express, since the enum has no wards.
+ *
+ * @property string $id
+ * @property string $code
+ * @property string $name
+ * @property string $state
+ * @property string|null $latitude
+ * @property string|null $longitude
+ * @property array<string, mixed>|null $geometry
+ * @property Carbon|null $created_at
+ * @property Carbon|null $updated_at
+ * @property-read Collection<int, Ward> $wards
+ * @property-read int|null $wards_count
+ */',
+         'namespace' => 'App\\Domain\\Reference\\Models',
+         'uses' => 
+        array (
+          'lgafactory' => 'Database\\Factories\\LgaFactory',
+          'collection' => 'Illuminate\\Database\\Eloquent\\Collection',
+          'hasuuids' => 'Illuminate\\Database\\Eloquent\\Concerns\\HasUuids',
+          'hasfactory' => 'Illuminate\\Database\\Eloquent\\Factories\\HasFactory',
+          'model' => 'Illuminate\\Database\\Eloquent\\Model',
+          'hasmany' => 'Illuminate\\Database\\Eloquent\\Relations\\HasMany',
+          'carbon' => 'Illuminate\\Support\\Carbon',
+        ),
+         'constUses' => 
+        array (
+        ),
+      )),
+       'abstract' => false,
+       'final' => false,
+       'extends' => 'Illuminate\\Database\\Eloquent\\Model',
+       'implements' => 
+      array (
+      ),
+       'usedTraits' => 
+      array (
+        0 => 'Illuminate\\Database\\Eloquent\\Factories\\HasFactory',
+        1 => 'Illuminate\\Database\\Eloquent\\Concerns\\HasUuids',
+      ),
+       'traitUseAdaptations' => 
+      array (
+      ),
+       'statements' => 
+      array (
+        0 => 
+        \PHPStan\Dependency\ExportedNode\ExportedPropertiesNode::__set_state(array(
+           'names' => 
+          array (
+            0 => 'table',
+          ),
+           'phpDoc' => NULL,
+           'type' => NULL,
+           'public' => false,
+           'private' => false,
+           'static' => false,
+           'readonly' => false,
+           'abstract' => false,
+           'final' => false,
+           'publicSet' => false,
+           'protectedSet' => false,
+           'privateSet' => false,
+           'virtual' => false,
+           'attributes' => 
+          array (
+          ),
+           'hooks' => 
+          array (
+          ),
+        )),
+        1 => 
+        \PHPStan\Dependency\ExportedNode\ExportedPropertiesNode::__set_state(array(
+           'names' => 
+          array (
+            0 => 'fillable',
+          ),
+           'phpDoc' => 
+          \PHPStan\Dependency\ExportedNode\ExportedPhpDocNode::__set_state(array(
+             'phpDocString' => '/**
+     * @var list<string>
+     */',
+             'namespace' => 'App\\Domain\\Reference\\Models',
+             'uses' => 
+            array (
+              'lgafactory' => 'Database\\Factories\\LgaFactory',
+              'collection' => 'Illuminate\\Database\\Eloquent\\Collection',
+              'hasuuids' => 'Illuminate\\Database\\Eloquent\\Concerns\\HasUuids',
+              'hasfactory' => 'Illuminate\\Database\\Eloquent\\Factories\\HasFactory',
+              'model' => 'Illuminate\\Database\\Eloquent\\Model',
+              'hasmany' => 'Illuminate\\Database\\Eloquent\\Relations\\HasMany',
+              'carbon' => 'Illuminate\\Support\\Carbon',
+            ),
+             'constUses' => 
+            array (
+            ),
+          )),
+           'type' => NULL,
+           'public' => false,
+           'private' => false,
+           'static' => false,
+           'readonly' => false,
+           'abstract' => false,
+           'final' => false,
+           'publicSet' => false,
+           'protectedSet' => false,
+           'privateSet' => false,
+           'virtual' => false,
+           'attributes' => 
+          array (
+          ),
+           'hooks' => 
+          array (
+          ),
+        )),
+        2 => 
+        \PHPStan\Dependency\ExportedNode\ExportedMethodNode::__set_state(array(
+           'name' => 'casts',
+           'phpDoc' => 
+          \PHPStan\Dependency\ExportedNode\ExportedPhpDocNode::__set_state(array(
+             'phpDocString' => '/**
+     * @return array<string, string>
+     */',
+             'namespace' => 'App\\Domain\\Reference\\Models',
+             'uses' => 
+            array (
+              'lgafactory' => 'Database\\Factories\\LgaFactory',
+              'collection' => 'Illuminate\\Database\\Eloquent\\Collection',
+              'hasuuids' => 'Illuminate\\Database\\Eloquent\\Concerns\\HasUuids',
+              'hasfactory' => 'Illuminate\\Database\\Eloquent\\Factories\\HasFactory',
+              'model' => 'Illuminate\\Database\\Eloquent\\Model',
+              'hasmany' => 'Illuminate\\Database\\Eloquent\\Relations\\HasMany',
+              'carbon' => 'Illuminate\\Support\\Carbon',
+            ),
+             'constUses' => 
+            array (
+            ),
+          )),
+           'byRef' => false,
+           'public' => false,
+           'private' => false,
+           'abstract' => false,
+           'final' => false,
+           'static' => false,
+           'returnType' => 'array',
+           'parameters' => 
+          array (
+          ),
+           'attributes' => 
+          array (
+          ),
+        )),
+        3 => 
+        \PHPStan\Dependency\ExportedNode\ExportedMethodNode::__set_state(array(
+           'name' => 'wards',
+           'phpDoc' => 
+          \PHPStan\Dependency\ExportedNode\ExportedPhpDocNode::__set_state(array(
+             'phpDocString' => '/**
+     * @return HasMany<Ward, $this>
+     */',
+             'namespace' => 'App\\Domain\\Reference\\Models',
+             'uses' => 
+            array (
+              'lgafactory' => 'Database\\Factories\\LgaFactory',
+              'collection' => 'Illuminate\\Database\\Eloquent\\Collection',
+              'hasuuids' => 'Illuminate\\Database\\Eloquent\\Concerns\\HasUuids',
+              'hasfactory' => 'Illuminate\\Database\\Eloquent\\Factories\\HasFactory',
+              'model' => 'Illuminate\\Database\\Eloquent\\Model',
+              'hasmany' => 'Illuminate\\Database\\Eloquent\\Relations\\HasMany',
+              'carbon' => 'Illuminate\\Support\\Carbon',
+            ),
+             'constUses' => 
+            array (
+            ),
+          )),
+           'byRef' => false,
+           'public' => true,
+           'private' => false,
+           'abstract' => false,
+           'final' => false,
+           'static' => false,
+           'returnType' => 'Illuminate\\Database\\Eloquent\\Relations\\HasMany',
+           'parameters' => 
+          array (
+          ),
+           'attributes' => 
+          array (
+          ),
+        )),
+        4 => 
+        \PHPStan\Dependency\ExportedNode\ExportedMethodNode::__set_state(array(
+           'name' => 'newFactory',
+           'phpDoc' => NULL,
+           'byRef' => false,
+           'public' => false,
+           'private' => false,
+           'abstract' => false,
+           'final' => false,
+           'static' => true,
+           'returnType' => 'Database\\Factories\\LgaFactory',
+           'parameters' => 
+          array (
+          ),
+           'attributes' => 
+          array (
+          ),
+        )),
+      ),
+       'attributes' => 
+      array (
+      ),
+    )),
+  ),
+  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Reference\\Models\\Ward.php' => 
+  array (
+    0 => 
+    \PHPStan\Dependency\ExportedNode\ExportedClassNode::__set_state(array(
+       'name' => 'App\\Domain\\Reference\\Models\\Ward',
+       'phpDoc' => 
+      \PHPStan\Dependency\ExportedNode\ExportedPhpDocNode::__set_state(array(
+         'phpDocString' => '/**
+ * A ward — reference data, always belonging to exactly one LGA.
+ *
+ * `code` is unique only WITHIN its LGA: ward names repeat across Jigawa, so a ward is
+ * identified by the pair (lga_id, code) and never by code alone. Any future resolution
+ * of a free-text ward value must therefore go through its LGA first.
+ *
+ * @property string $id
+ * @property string $lga_id
+ * @property string $code
+ * @property string $name
+ * @property string|null $latitude
+ * @property string|null $longitude
+ * @property array<string, mixed>|null $geometry
+ * @property Carbon|null $created_at
+ * @property Carbon|null $updated_at
+ * @property-read Lga|null $lga
+ */',
+         'namespace' => 'App\\Domain\\Reference\\Models',
+         'uses' => 
+        array (
+          'wardfactory' => 'Database\\Factories\\WardFactory',
+          'hasuuids' => 'Illuminate\\Database\\Eloquent\\Concerns\\HasUuids',
+          'hasfactory' => 'Illuminate\\Database\\Eloquent\\Factories\\HasFactory',
+          'model' => 'Illuminate\\Database\\Eloquent\\Model',
+          'belongsto' => 'Illuminate\\Database\\Eloquent\\Relations\\BelongsTo',
+          'carbon' => 'Illuminate\\Support\\Carbon',
+        ),
+         'constUses' => 
+        array (
+        ),
+      )),
+       'abstract' => false,
+       'final' => false,
+       'extends' => 'Illuminate\\Database\\Eloquent\\Model',
+       'implements' => 
+      array (
+      ),
+       'usedTraits' => 
+      array (
+        0 => 'Illuminate\\Database\\Eloquent\\Factories\\HasFactory',
+        1 => 'Illuminate\\Database\\Eloquent\\Concerns\\HasUuids',
+      ),
+       'traitUseAdaptations' => 
+      array (
+      ),
+       'statements' => 
+      array (
+        0 => 
+        \PHPStan\Dependency\ExportedNode\ExportedPropertiesNode::__set_state(array(
+           'names' => 
+          array (
+            0 => 'table',
+          ),
+           'phpDoc' => NULL,
+           'type' => NULL,
+           'public' => false,
+           'private' => false,
+           'static' => false,
+           'readonly' => false,
+           'abstract' => false,
+           'final' => false,
+           'publicSet' => false,
+           'protectedSet' => false,
+           'privateSet' => false,
+           'virtual' => false,
+           'attributes' => 
+          array (
+          ),
+           'hooks' => 
+          array (
+          ),
+        )),
+        1 => 
+        \PHPStan\Dependency\ExportedNode\ExportedPropertiesNode::__set_state(array(
+           'names' => 
+          array (
+            0 => 'fillable',
+          ),
+           'phpDoc' => 
+          \PHPStan\Dependency\ExportedNode\ExportedPhpDocNode::__set_state(array(
+             'phpDocString' => '/**
+     * @var list<string>
+     */',
+             'namespace' => 'App\\Domain\\Reference\\Models',
+             'uses' => 
+            array (
+              'wardfactory' => 'Database\\Factories\\WardFactory',
+              'hasuuids' => 'Illuminate\\Database\\Eloquent\\Concerns\\HasUuids',
+              'hasfactory' => 'Illuminate\\Database\\Eloquent\\Factories\\HasFactory',
+              'model' => 'Illuminate\\Database\\Eloquent\\Model',
+              'belongsto' => 'Illuminate\\Database\\Eloquent\\Relations\\BelongsTo',
+              'carbon' => 'Illuminate\\Support\\Carbon',
+            ),
+             'constUses' => 
+            array (
+            ),
+          )),
+           'type' => NULL,
+           'public' => false,
+           'private' => false,
+           'static' => false,
+           'readonly' => false,
+           'abstract' => false,
+           'final' => false,
+           'publicSet' => false,
+           'protectedSet' => false,
+           'privateSet' => false,
+           'virtual' => false,
+           'attributes' => 
+          array (
+          ),
+           'hooks' => 
+          array (
+          ),
+        )),
+        2 => 
+        \PHPStan\Dependency\ExportedNode\ExportedMethodNode::__set_state(array(
+           'name' => 'casts',
+           'phpDoc' => 
+          \PHPStan\Dependency\ExportedNode\ExportedPhpDocNode::__set_state(array(
+             'phpDocString' => '/**
+     * @return array<string, string>
+     */',
+             'namespace' => 'App\\Domain\\Reference\\Models',
+             'uses' => 
+            array (
+              'wardfactory' => 'Database\\Factories\\WardFactory',
+              'hasuuids' => 'Illuminate\\Database\\Eloquent\\Concerns\\HasUuids',
+              'hasfactory' => 'Illuminate\\Database\\Eloquent\\Factories\\HasFactory',
+              'model' => 'Illuminate\\Database\\Eloquent\\Model',
+              'belongsto' => 'Illuminate\\Database\\Eloquent\\Relations\\BelongsTo',
+              'carbon' => 'Illuminate\\Support\\Carbon',
+            ),
+             'constUses' => 
+            array (
+            ),
+          )),
+           'byRef' => false,
+           'public' => false,
+           'private' => false,
+           'abstract' => false,
+           'final' => false,
+           'static' => false,
+           'returnType' => 'array',
+           'parameters' => 
+          array (
+          ),
+           'attributes' => 
+          array (
+          ),
+        )),
+        3 => 
+        \PHPStan\Dependency\ExportedNode\ExportedMethodNode::__set_state(array(
+           'name' => 'lga',
+           'phpDoc' => 
+          \PHPStan\Dependency\ExportedNode\ExportedPhpDocNode::__set_state(array(
+             'phpDocString' => '/**
+     * @return BelongsTo<Lga, $this>
+     */',
+             'namespace' => 'App\\Domain\\Reference\\Models',
+             'uses' => 
+            array (
+              'wardfactory' => 'Database\\Factories\\WardFactory',
+              'hasuuids' => 'Illuminate\\Database\\Eloquent\\Concerns\\HasUuids',
+              'hasfactory' => 'Illuminate\\Database\\Eloquent\\Factories\\HasFactory',
+              'model' => 'Illuminate\\Database\\Eloquent\\Model',
+              'belongsto' => 'Illuminate\\Database\\Eloquent\\Relations\\BelongsTo',
+              'carbon' => 'Illuminate\\Support\\Carbon',
+            ),
+             'constUses' => 
+            array (
+            ),
+          )),
+           'byRef' => false,
+           'public' => true,
+           'private' => false,
+           'abstract' => false,
+           'final' => false,
+           'static' => false,
+           'returnType' => 'Illuminate\\Database\\Eloquent\\Relations\\BelongsTo',
+           'parameters' => 
+          array (
+          ),
+           'attributes' => 
+          array (
+          ),
+        )),
+        4 => 
+        \PHPStan\Dependency\ExportedNode\ExportedMethodNode::__set_state(array(
+           'name' => 'newFactory',
+           'phpDoc' => NULL,
+           'byRef' => false,
+           'public' => false,
+           'private' => false,
+           'abstract' => false,
+           'final' => false,
+           'static' => true,
+           'returnType' => 'Database\\Factories\\WardFactory',
+           'parameters' => 
+          array (
+          ),
+           'attributes' => 
+          array (
+          ),
+        )),
+      ),
+       'attributes' => 
+      array (
+      ),
+    )),
+  ),
+  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Reference\\ReferenceServiceProvider.php' => 
+  array (
+    0 => 
+    \PHPStan\Dependency\ExportedNode\ExportedClassNode::__set_state(array(
+       'name' => 'App\\Domain\\Reference\\ReferenceServiceProvider',
+       'phpDoc' => 
+      \PHPStan\Dependency\ExportedNode\ExportedPhpDocNode::__set_state(array(
+         'phpDocString' => '/**
+ * Wires the Reference domain: shared, non-PII lookup data (Jigawa LGAs and wards).
+ *
+ * It registers NO permission. The lookups are read by every authenticated role to
+ * render a cascading LGA → Ward selector, so a `reference.view` permission would be
+ * granted to every role at once — a permission that can never deny anything makes the
+ * RBAC set describe a distinction the system does not draw. The routes are gated by
+ * authentication alone, and deliberately so (see routes/api.php).
+ */',
+         'namespace' => 'App\\Domain\\Reference',
+         'uses' => 
+        array (
+          'loadadministrativedivisions' => 'App\\Domain\\Reference\\Imports\\LoadAdministrativeDivisions',
+          'seedjigawalgas' => 'App\\Domain\\Reference\\Imports\\SeedJigawaLgas',
+          'serviceprovider' => 'Illuminate\\Support\\ServiceProvider',
+        ),
+         'constUses' => 
+        array (
+        ),
+      )),
+       'abstract' => false,
+       'final' => false,
+       'extends' => 'Illuminate\\Support\\ServiceProvider',
+       'implements' => 
+      array (
+      ),
+       'usedTraits' => 
+      array (
+      ),
+       'traitUseAdaptations' => 
+      array (
+      ),
+       'statements' => 
+      array (
+        0 => 
+        \PHPStan\Dependency\ExportedNode\ExportedMethodNode::__set_state(array(
+           'name' => 'boot',
+           'phpDoc' => NULL,
+           'byRef' => false,
+           'public' => true,
+           'private' => false,
+           'abstract' => false,
+           'final' => false,
+           'static' => false,
+           'returnType' => 'void',
+           'parameters' => 
+          array (
+          ),
+           'attributes' => 
+          array (
+          ),
+        )),
+      ),
+       'attributes' => 
+      array (
+      ),
+    )),
+  ),
+  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Reference\\Services\\ReferenceDataCache.php' => 
+  array (
+    0 => 
+    \PHPStan\Dependency\ExportedNode\ExportedClassNode::__set_state(array(
+       'name' => 'App\\Domain\\Reference\\Services\\ReferenceDataCache',
+       'phpDoc' => 
+      \PHPStan\Dependency\ExportedNode\ExportedPhpDocNode::__set_state(array(
+         'phpDocString' => '/**
+ * Caches the administrative-division lookups.
+ *
+ * These lists are read on nearly every form and filter, are identical for every user
+ * (no MDA scoping, no PII), and change only when a maintainer loads a new dataset —
+ * the ideal cache shape.
+ *
+ * Invalidation is by VERSION COUNTER, not by cache tags: the default store is
+ * `database` (see config/cache.php), and tags are unsupported there — a tag-based
+ * flush would silently do nothing in production while passing in a redis-backed test.
+ * Bumping an integer that is baked into every key works on every store, and leaves the
+ * stale entries to expire on their own TTL.
+ *
+ * {@see AdministrativeDivisionLoader} calls flush() after
+ * a load, so a re-seed is visible immediately.
+ */',
+         'namespace' => 'App\\Domain\\Reference\\Services',
+         'uses' => 
+        array (
+          'administrativedivisionloader' => 'App\\Domain\\Reference\\Imports\\AdministrativeDivisionLoader',
+          'lga' => 'App\\Domain\\Reference\\Models\\Lga',
+          'ward' => 'App\\Domain\\Reference\\Models\\Ward',
+          'cache' => 'Illuminate\\Support\\Facades\\Cache',
+        ),
+         'constUses' => 
+        array (
+        ),
+      )),
+       'abstract' => false,
+       'final' => false,
+       'extends' => NULL,
+       'implements' => 
+      array (
+      ),
+       'usedTraits' => 
+      array (
+      ),
+       'traitUseAdaptations' => 
+      array (
+      ),
+       'statements' => 
+      array (
+        0 => 
+        \PHPStan\Dependency\ExportedNode\ExportedMethodNode::__set_state(array(
+           'name' => 'lgas',
+           'phpDoc' => 
+          \PHPStan\Dependency\ExportedNode\ExportedPhpDocNode::__set_state(array(
+             'phpDocString' => '/**
+     * @return list<array<string, mixed>>
+     */',
+             'namespace' => 'App\\Domain\\Reference\\Services',
+             'uses' => 
+            array (
+              'administrativedivisionloader' => 'App\\Domain\\Reference\\Imports\\AdministrativeDivisionLoader',
+              'lga' => 'App\\Domain\\Reference\\Models\\Lga',
+              'ward' => 'App\\Domain\\Reference\\Models\\Ward',
+              'cache' => 'Illuminate\\Support\\Facades\\Cache',
+            ),
+             'constUses' => 
+            array (
+            ),
+          )),
+           'byRef' => false,
+           'public' => true,
+           'private' => false,
+           'abstract' => false,
+           'final' => false,
+           'static' => false,
+           'returnType' => 'array',
+           'parameters' => 
+          array (
+          ),
+           'attributes' => 
+          array (
+          ),
+        )),
+        1 => 
+        \PHPStan\Dependency\ExportedNode\ExportedMethodNode::__set_state(array(
+           'name' => 'wardsFor',
+           'phpDoc' => 
+          \PHPStan\Dependency\ExportedNode\ExportedPhpDocNode::__set_state(array(
+             'phpDocString' => '/**
+     * Wards of one LGA, ordered by name — the second step of the cascading selector.
+     *
+     * @return list<array<string, mixed>>
+     */',
+             'namespace' => 'App\\Domain\\Reference\\Services',
+             'uses' => 
+            array (
+              'administrativedivisionloader' => 'App\\Domain\\Reference\\Imports\\AdministrativeDivisionLoader',
+              'lga' => 'App\\Domain\\Reference\\Models\\Lga',
+              'ward' => 'App\\Domain\\Reference\\Models\\Ward',
+              'cache' => 'Illuminate\\Support\\Facades\\Cache',
+            ),
+             'constUses' => 
+            array (
+            ),
+          )),
+           'byRef' => false,
+           'public' => true,
+           'private' => false,
+           'abstract' => false,
+           'final' => false,
+           'static' => false,
+           'returnType' => 'array',
+           'parameters' => 
+          array (
+            0 => 
+            \PHPStan\Dependency\ExportedNode\ExportedParameterNode::__set_state(array(
+               'name' => 'lgaId',
+               'type' => 'string',
+               'byRef' => false,
+               'variadic' => false,
+               'hasDefault' => false,
+               'attributes' => 
+              array (
+              ),
+               'phpDoc' => NULL,
+               'flags' => 0,
+            )),
+          ),
+           'attributes' => 
+          array (
+          ),
+        )),
+        2 => 
+        \PHPStan\Dependency\ExportedNode\ExportedMethodNode::__set_state(array(
+           'name' => 'flush',
+           'phpDoc' => 
+          \PHPStan\Dependency\ExportedNode\ExportedPhpDocNode::__set_state(array(
+             'phpDocString' => '/**
+     * Invalidate everything by moving the version every key is built from.
+     */',
+             'namespace' => 'App\\Domain\\Reference\\Services',
+             'uses' => 
+            array (
+              'administrativedivisionloader' => 'App\\Domain\\Reference\\Imports\\AdministrativeDivisionLoader',
+              'lga' => 'App\\Domain\\Reference\\Models\\Lga',
+              'ward' => 'App\\Domain\\Reference\\Models\\Ward',
+              'cache' => 'Illuminate\\Support\\Facades\\Cache',
+            ),
+             'constUses' => 
+            array (
+            ),
+          )),
+           'byRef' => false,
+           'public' => true,
+           'private' => false,
+           'abstract' => false,
+           'final' => false,
+           'static' => false,
+           'returnType' => 'void',
+           'parameters' => 
+          array (
+          ),
+           'attributes' => 
+          array (
+          ),
+        )),
+        3 => 
+        \PHPStan\Dependency\ExportedNode\ExportedMethodNode::__set_state(array(
+           'name' => 'version',
+           'phpDoc' => NULL,
+           'byRef' => false,
+           'public' => true,
+           'private' => false,
+           'abstract' => false,
+           'final' => false,
+           'static' => false,
+           'returnType' => 'int',
+           'parameters' => 
+          array (
           ),
            'attributes' => 
           array (
@@ -61502,9 +65964,11 @@ return [
        'phpDoc' => 
       \PHPStan\Dependency\ExportedNode\ExportedPhpDocNode::__set_state(array(
          'phpDocString' => '/**
- * Where a beneficiary/household record came from (PRD §6.1 provenance). Phase 2
- * ingests `manual` and `excel`/`csv`; the other sources have endpoints later but
- * their provenance values are defined now.
+ * Where a beneficiary/household record came from (PRD §6.1 provenance).
+ *
+ * Ingestion is bulk/source-only (CLAUDE.md §8) — every record enters through a file
+ * import, the REST intake, a connector sync, or an offline batch, and each of those
+ * knows its own source. There is no path by which a record\'s origin is unknown.
  */',
          'namespace' => 'App\\Domain\\Registry\\Enums',
          'uses' => 
@@ -61523,7 +65987,26 @@ return [
         \PHPStan\Dependency\ExportedNode\ExportedEnumCaseNode::__set_state(array(
            'name' => 'Manual',
            'value' => '\'manual\'',
-           'phpDoc' => NULL,
+           'phpDoc' => 
+          \PHPStan\Dependency\ExportedNode\ExportedPhpDocNode::__set_state(array(
+             'phpDocString' => '/**
+     * @deprecated Historical only. Manual single-record entry was removed (CLAUDE.md §8),
+     * so no NEW record may carry this value — a record tagged `manual` today would be
+     * claiming an origin that cannot occur, which is a lineage the audit trail cannot
+     * account for.
+     *
+     * The case remains ONLY so rows written before the removal still cast and display.
+     * Deleting it would break reading that history, which is worse than keeping a value
+     * that {@see self::isAssignable()} refuses for writes.
+     */',
+             'namespace' => 'App\\Domain\\Registry\\Enums',
+             'uses' => 
+            array (
+            ),
+             'constUses' => 
+            array (
+            ),
+          )),
         )),
         1 => 
         \PHPStan\Dependency\ExportedNode\ExportedEnumCaseNode::__set_state(array(
@@ -61566,6 +66049,96 @@ return [
            'name' => 'GovernmentSystem',
            'value' => '\'government_system\'',
            'phpDoc' => NULL,
+        )),
+        8 => 
+        \PHPStan\Dependency\ExportedNode\ExportedMethodNode::__set_state(array(
+           'name' => 'isAssignable',
+           'phpDoc' => 
+          \PHPStan\Dependency\ExportedNode\ExportedPhpDocNode::__set_state(array(
+             'phpDocString' => '/** Whether a NEW record may be written with this provenance. */',
+             'namespace' => 'App\\Domain\\Registry\\Enums',
+             'uses' => 
+            array (
+            ),
+             'constUses' => 
+            array (
+            ),
+          )),
+           'byRef' => false,
+           'public' => true,
+           'private' => false,
+           'abstract' => false,
+           'final' => false,
+           'static' => false,
+           'returnType' => 'bool',
+           'parameters' => 
+          array (
+          ),
+           'attributes' => 
+          array (
+          ),
+        )),
+        9 => 
+        \PHPStan\Dependency\ExportedNode\ExportedMethodNode::__set_state(array(
+           'name' => 'assignable',
+           'phpDoc' => 
+          \PHPStan\Dependency\ExportedNode\ExportedPhpDocNode::__set_state(array(
+             'phpDocString' => '/**
+     * The provenances a new record may carry.
+     *
+     * @return list<self>
+     */',
+             'namespace' => 'App\\Domain\\Registry\\Enums',
+             'uses' => 
+            array (
+            ),
+             'constUses' => 
+            array (
+            ),
+          )),
+           'byRef' => false,
+           'public' => true,
+           'private' => false,
+           'abstract' => false,
+           'final' => false,
+           'static' => true,
+           'returnType' => 'array',
+           'parameters' => 
+          array (
+          ),
+           'attributes' => 
+          array (
+          ),
+        )),
+        10 => 
+        \PHPStan\Dependency\ExportedNode\ExportedMethodNode::__set_state(array(
+           'name' => 'assignableValues',
+           'phpDoc' => 
+          \PHPStan\Dependency\ExportedNode\ExportedPhpDocNode::__set_state(array(
+             'phpDocString' => '/**
+     * @return list<string>
+     */',
+             'namespace' => 'App\\Domain\\Registry\\Enums',
+             'uses' => 
+            array (
+            ),
+             'constUses' => 
+            array (
+            ),
+          )),
+           'byRef' => false,
+           'public' => true,
+           'private' => false,
+           'abstract' => false,
+           'final' => false,
+           'static' => true,
+           'returnType' => 'array',
+           'parameters' => 
+          array (
+          ),
+           'attributes' => 
+          array (
+          ),
         )),
       ),
        'attributes' => 
@@ -64717,6 +69290,7 @@ return [
           'registrationsource' => 'App\\Domain\\Registry\\Enums\\RegistrationSource',
           'identifierhasher' => 'App\\Domain\\Registry\\Support\\IdentifierHasher',
           'normalizationservice' => 'App\\Domain\\Registry\\Support\\NormalizationService',
+          'registrationsourcerule' => 'App\\Domain\\Registry\\Support\\RegistrationSourceRule',
           'beneficiaryfactory' => 'Database\\Factories\\BeneficiaryFactory',
           'hasuuids' => 'Illuminate\\Database\\Eloquent\\Concerns\\HasUuids',
           'hasfactory' => 'Illuminate\\Database\\Eloquent\\Factories\\HasFactory',
@@ -64805,6 +69379,7 @@ return [
               'registrationsource' => 'App\\Domain\\Registry\\Enums\\RegistrationSource',
               'identifierhasher' => 'App\\Domain\\Registry\\Support\\IdentifierHasher',
               'normalizationservice' => 'App\\Domain\\Registry\\Support\\NormalizationService',
+              'registrationsourcerule' => 'App\\Domain\\Registry\\Support\\RegistrationSourceRule',
               'beneficiaryfactory' => 'Database\\Factories\\BeneficiaryFactory',
               'hasuuids' => 'Illuminate\\Database\\Eloquent\\Concerns\\HasUuids',
               'hasfactory' => 'Illuminate\\Database\\Eloquent\\Factories\\HasFactory',
@@ -64870,6 +69445,7 @@ return [
               'registrationsource' => 'App\\Domain\\Registry\\Enums\\RegistrationSource',
               'identifierhasher' => 'App\\Domain\\Registry\\Support\\IdentifierHasher',
               'normalizationservice' => 'App\\Domain\\Registry\\Support\\NormalizationService',
+              'registrationsourcerule' => 'App\\Domain\\Registry\\Support\\RegistrationSourceRule',
               'beneficiaryfactory' => 'Database\\Factories\\BeneficiaryFactory',
               'hasuuids' => 'Illuminate\\Database\\Eloquent\\Concerns\\HasUuids',
               'hasfactory' => 'Illuminate\\Database\\Eloquent\\Factories\\HasFactory',
@@ -64931,6 +69507,7 @@ return [
               'registrationsource' => 'App\\Domain\\Registry\\Enums\\RegistrationSource',
               'identifierhasher' => 'App\\Domain\\Registry\\Support\\IdentifierHasher',
               'normalizationservice' => 'App\\Domain\\Registry\\Support\\NormalizationService',
+              'registrationsourcerule' => 'App\\Domain\\Registry\\Support\\RegistrationSourceRule',
               'beneficiaryfactory' => 'Database\\Factories\\BeneficiaryFactory',
               'hasuuids' => 'Illuminate\\Database\\Eloquent\\Concerns\\HasUuids',
               'hasfactory' => 'Illuminate\\Database\\Eloquent\\Factories\\HasFactory',
@@ -64989,6 +69566,7 @@ return [
               'registrationsource' => 'App\\Domain\\Registry\\Enums\\RegistrationSource',
               'identifierhasher' => 'App\\Domain\\Registry\\Support\\IdentifierHasher',
               'normalizationservice' => 'App\\Domain\\Registry\\Support\\NormalizationService',
+              'registrationsourcerule' => 'App\\Domain\\Registry\\Support\\RegistrationSourceRule',
               'beneficiaryfactory' => 'Database\\Factories\\BeneficiaryFactory',
               'hasuuids' => 'Illuminate\\Database\\Eloquent\\Concerns\\HasUuids',
               'hasfactory' => 'Illuminate\\Database\\Eloquent\\Factories\\HasFactory',
@@ -65041,6 +69619,7 @@ return [
               'registrationsource' => 'App\\Domain\\Registry\\Enums\\RegistrationSource',
               'identifierhasher' => 'App\\Domain\\Registry\\Support\\IdentifierHasher',
               'normalizationservice' => 'App\\Domain\\Registry\\Support\\NormalizationService',
+              'registrationsourcerule' => 'App\\Domain\\Registry\\Support\\RegistrationSourceRule',
               'beneficiaryfactory' => 'Database\\Factories\\BeneficiaryFactory',
               'hasuuids' => 'Illuminate\\Database\\Eloquent\\Concerns\\HasUuids',
               'hasfactory' => 'Illuminate\\Database\\Eloquent\\Factories\\HasFactory',
@@ -65098,6 +69677,7 @@ return [
               'registrationsource' => 'App\\Domain\\Registry\\Enums\\RegistrationSource',
               'identifierhasher' => 'App\\Domain\\Registry\\Support\\IdentifierHasher',
               'normalizationservice' => 'App\\Domain\\Registry\\Support\\NormalizationService',
+              'registrationsourcerule' => 'App\\Domain\\Registry\\Support\\RegistrationSourceRule',
               'beneficiaryfactory' => 'Database\\Factories\\BeneficiaryFactory',
               'hasuuids' => 'Illuminate\\Database\\Eloquent\\Concerns\\HasUuids',
               'hasfactory' => 'Illuminate\\Database\\Eloquent\\Factories\\HasFactory',
@@ -65155,6 +69735,7 @@ return [
               'registrationsource' => 'App\\Domain\\Registry\\Enums\\RegistrationSource',
               'identifierhasher' => 'App\\Domain\\Registry\\Support\\IdentifierHasher',
               'normalizationservice' => 'App\\Domain\\Registry\\Support\\NormalizationService',
+              'registrationsourcerule' => 'App\\Domain\\Registry\\Support\\RegistrationSourceRule',
               'beneficiaryfactory' => 'Database\\Factories\\BeneficiaryFactory',
               'hasuuids' => 'Illuminate\\Database\\Eloquent\\Concerns\\HasUuids',
               'hasfactory' => 'Illuminate\\Database\\Eloquent\\Factories\\HasFactory',
@@ -65228,6 +69809,7 @@ return [
               'registrationsource' => 'App\\Domain\\Registry\\Enums\\RegistrationSource',
               'identifierhasher' => 'App\\Domain\\Registry\\Support\\IdentifierHasher',
               'normalizationservice' => 'App\\Domain\\Registry\\Support\\NormalizationService',
+              'registrationsourcerule' => 'App\\Domain\\Registry\\Support\\RegistrationSourceRule',
               'beneficiaryfactory' => 'Database\\Factories\\BeneficiaryFactory',
               'hasuuids' => 'Illuminate\\Database\\Eloquent\\Concerns\\HasUuids',
               'hasfactory' => 'Illuminate\\Database\\Eloquent\\Factories\\HasFactory',
@@ -65296,6 +69878,7 @@ return [
               'registrationsource' => 'App\\Domain\\Registry\\Enums\\RegistrationSource',
               'identifierhasher' => 'App\\Domain\\Registry\\Support\\IdentifierHasher',
               'normalizationservice' => 'App\\Domain\\Registry\\Support\\NormalizationService',
+              'registrationsourcerule' => 'App\\Domain\\Registry\\Support\\RegistrationSourceRule',
               'beneficiaryfactory' => 'Database\\Factories\\BeneficiaryFactory',
               'hasuuids' => 'Illuminate\\Database\\Eloquent\\Concerns\\HasUuids',
               'hasfactory' => 'Illuminate\\Database\\Eloquent\\Factories\\HasFactory',
@@ -65392,6 +69975,7 @@ return [
               'registrationsource' => 'App\\Domain\\Registry\\Enums\\RegistrationSource',
               'identifierhasher' => 'App\\Domain\\Registry\\Support\\IdentifierHasher',
               'normalizationservice' => 'App\\Domain\\Registry\\Support\\NormalizationService',
+              'registrationsourcerule' => 'App\\Domain\\Registry\\Support\\RegistrationSourceRule',
               'beneficiaryfactory' => 'Database\\Factories\\BeneficiaryFactory',
               'hasuuids' => 'Illuminate\\Database\\Eloquent\\Concerns\\HasUuids',
               'hasfactory' => 'Illuminate\\Database\\Eloquent\\Factories\\HasFactory',
@@ -65448,6 +70032,7 @@ return [
               'registrationsource' => 'App\\Domain\\Registry\\Enums\\RegistrationSource',
               'identifierhasher' => 'App\\Domain\\Registry\\Support\\IdentifierHasher',
               'normalizationservice' => 'App\\Domain\\Registry\\Support\\NormalizationService',
+              'registrationsourcerule' => 'App\\Domain\\Registry\\Support\\RegistrationSourceRule',
               'beneficiaryfactory' => 'Database\\Factories\\BeneficiaryFactory',
               'hasuuids' => 'Illuminate\\Database\\Eloquent\\Concerns\\HasUuids',
               'hasfactory' => 'Illuminate\\Database\\Eloquent\\Factories\\HasFactory',
@@ -65502,6 +70087,7 @@ return [
               'registrationsource' => 'App\\Domain\\Registry\\Enums\\RegistrationSource',
               'identifierhasher' => 'App\\Domain\\Registry\\Support\\IdentifierHasher',
               'normalizationservice' => 'App\\Domain\\Registry\\Support\\NormalizationService',
+              'registrationsourcerule' => 'App\\Domain\\Registry\\Support\\RegistrationSourceRule',
               'beneficiaryfactory' => 'Database\\Factories\\BeneficiaryFactory',
               'hasuuids' => 'Illuminate\\Database\\Eloquent\\Concerns\\HasUuids',
               'hasfactory' => 'Illuminate\\Database\\Eloquent\\Factories\\HasFactory',
@@ -65556,6 +70142,7 @@ return [
               'registrationsource' => 'App\\Domain\\Registry\\Enums\\RegistrationSource',
               'identifierhasher' => 'App\\Domain\\Registry\\Support\\IdentifierHasher',
               'normalizationservice' => 'App\\Domain\\Registry\\Support\\NormalizationService',
+              'registrationsourcerule' => 'App\\Domain\\Registry\\Support\\RegistrationSourceRule',
               'beneficiaryfactory' => 'Database\\Factories\\BeneficiaryFactory',
               'hasuuids' => 'Illuminate\\Database\\Eloquent\\Concerns\\HasUuids',
               'hasfactory' => 'Illuminate\\Database\\Eloquent\\Factories\\HasFactory',
@@ -65614,6 +70201,7 @@ return [
               'registrationsource' => 'App\\Domain\\Registry\\Enums\\RegistrationSource',
               'identifierhasher' => 'App\\Domain\\Registry\\Support\\IdentifierHasher',
               'normalizationservice' => 'App\\Domain\\Registry\\Support\\NormalizationService',
+              'registrationsourcerule' => 'App\\Domain\\Registry\\Support\\RegistrationSourceRule',
               'beneficiaryfactory' => 'Database\\Factories\\BeneficiaryFactory',
               'hasuuids' => 'Illuminate\\Database\\Eloquent\\Concerns\\HasUuids',
               'hasfactory' => 'Illuminate\\Database\\Eloquent\\Factories\\HasFactory',
@@ -65668,6 +70256,7 @@ return [
               'registrationsource' => 'App\\Domain\\Registry\\Enums\\RegistrationSource',
               'identifierhasher' => 'App\\Domain\\Registry\\Support\\IdentifierHasher',
               'normalizationservice' => 'App\\Domain\\Registry\\Support\\NormalizationService',
+              'registrationsourcerule' => 'App\\Domain\\Registry\\Support\\RegistrationSourceRule',
               'beneficiaryfactory' => 'Database\\Factories\\BeneficiaryFactory',
               'hasuuids' => 'Illuminate\\Database\\Eloquent\\Concerns\\HasUuids',
               'hasfactory' => 'Illuminate\\Database\\Eloquent\\Factories\\HasFactory',
@@ -65722,6 +70311,7 @@ return [
               'registrationsource' => 'App\\Domain\\Registry\\Enums\\RegistrationSource',
               'identifierhasher' => 'App\\Domain\\Registry\\Support\\IdentifierHasher',
               'normalizationservice' => 'App\\Domain\\Registry\\Support\\NormalizationService',
+              'registrationsourcerule' => 'App\\Domain\\Registry\\Support\\RegistrationSourceRule',
               'beneficiaryfactory' => 'Database\\Factories\\BeneficiaryFactory',
               'hasuuids' => 'Illuminate\\Database\\Eloquent\\Concerns\\HasUuids',
               'hasfactory' => 'Illuminate\\Database\\Eloquent\\Factories\\HasFactory',
@@ -65778,6 +70368,7 @@ return [
               'registrationsource' => 'App\\Domain\\Registry\\Enums\\RegistrationSource',
               'identifierhasher' => 'App\\Domain\\Registry\\Support\\IdentifierHasher',
               'normalizationservice' => 'App\\Domain\\Registry\\Support\\NormalizationService',
+              'registrationsourcerule' => 'App\\Domain\\Registry\\Support\\RegistrationSourceRule',
               'beneficiaryfactory' => 'Database\\Factories\\BeneficiaryFactory',
               'hasuuids' => 'Illuminate\\Database\\Eloquent\\Concerns\\HasUuids',
               'hasfactory' => 'Illuminate\\Database\\Eloquent\\Factories\\HasFactory',
@@ -66816,6 +71407,7 @@ return [
           'mda' => 'App\\Domain\\Access\\Models\\Mda',
           'auditable' => 'App\\Domain\\Audit\\Concerns\\Auditable',
           'registrationsource' => 'App\\Domain\\Registry\\Enums\\RegistrationSource',
+          'registrationsourcerule' => 'App\\Domain\\Registry\\Support\\RegistrationSourceRule',
           'householdfactory' => 'Database\\Factories\\HouseholdFactory',
           'collection' => 'Illuminate\\Database\\Eloquent\\Collection',
           'hasuuids' => 'Illuminate\\Database\\Eloquent\\Concerns\\HasUuids',
@@ -66894,6 +71486,7 @@ return [
               'mda' => 'App\\Domain\\Access\\Models\\Mda',
               'auditable' => 'App\\Domain\\Audit\\Concerns\\Auditable',
               'registrationsource' => 'App\\Domain\\Registry\\Enums\\RegistrationSource',
+              'registrationsourcerule' => 'App\\Domain\\Registry\\Support\\RegistrationSourceRule',
               'householdfactory' => 'Database\\Factories\\HouseholdFactory',
               'collection' => 'Illuminate\\Database\\Eloquent\\Collection',
               'hasuuids' => 'Illuminate\\Database\\Eloquent\\Concerns\\HasUuids',
@@ -66942,6 +71535,7 @@ return [
               'mda' => 'App\\Domain\\Access\\Models\\Mda',
               'auditable' => 'App\\Domain\\Audit\\Concerns\\Auditable',
               'registrationsource' => 'App\\Domain\\Registry\\Enums\\RegistrationSource',
+              'registrationsourcerule' => 'App\\Domain\\Registry\\Support\\RegistrationSourceRule',
               'householdfactory' => 'Database\\Factories\\HouseholdFactory',
               'collection' => 'Illuminate\\Database\\Eloquent\\Collection',
               'hasuuids' => 'Illuminate\\Database\\Eloquent\\Concerns\\HasUuids',
@@ -67004,6 +71598,7 @@ return [
               'mda' => 'App\\Domain\\Access\\Models\\Mda',
               'auditable' => 'App\\Domain\\Audit\\Concerns\\Auditable',
               'registrationsource' => 'App\\Domain\\Registry\\Enums\\RegistrationSource',
+              'registrationsourcerule' => 'App\\Domain\\Registry\\Support\\RegistrationSourceRule',
               'householdfactory' => 'Database\\Factories\\HouseholdFactory',
               'collection' => 'Illuminate\\Database\\Eloquent\\Collection',
               'hasuuids' => 'Illuminate\\Database\\Eloquent\\Concerns\\HasUuids',
@@ -67048,6 +71643,7 @@ return [
               'mda' => 'App\\Domain\\Access\\Models\\Mda',
               'auditable' => 'App\\Domain\\Audit\\Concerns\\Auditable',
               'registrationsource' => 'App\\Domain\\Registry\\Enums\\RegistrationSource',
+              'registrationsourcerule' => 'App\\Domain\\Registry\\Support\\RegistrationSourceRule',
               'householdfactory' => 'Database\\Factories\\HouseholdFactory',
               'collection' => 'Illuminate\\Database\\Eloquent\\Collection',
               'hasuuids' => 'Illuminate\\Database\\Eloquent\\Concerns\\HasUuids',
@@ -67092,6 +71688,7 @@ return [
               'mda' => 'App\\Domain\\Access\\Models\\Mda',
               'auditable' => 'App\\Domain\\Audit\\Concerns\\Auditable',
               'registrationsource' => 'App\\Domain\\Registry\\Enums\\RegistrationSource',
+              'registrationsourcerule' => 'App\\Domain\\Registry\\Support\\RegistrationSourceRule',
               'householdfactory' => 'Database\\Factories\\HouseholdFactory',
               'collection' => 'Illuminate\\Database\\Eloquent\\Collection',
               'hasuuids' => 'Illuminate\\Database\\Eloquent\\Concerns\\HasUuids',
@@ -67138,6 +71735,7 @@ return [
               'mda' => 'App\\Domain\\Access\\Models\\Mda',
               'auditable' => 'App\\Domain\\Audit\\Concerns\\Auditable',
               'registrationsource' => 'App\\Domain\\Registry\\Enums\\RegistrationSource',
+              'registrationsourcerule' => 'App\\Domain\\Registry\\Support\\RegistrationSourceRule',
               'householdfactory' => 'Database\\Factories\\HouseholdFactory',
               'collection' => 'Illuminate\\Database\\Eloquent\\Collection',
               'hasuuids' => 'Illuminate\\Database\\Eloquent\\Concerns\\HasUuids',
@@ -67625,6 +72223,146 @@ return [
           ),
         )),
         2 => 
+        \PHPStan\Dependency\ExportedNode\ExportedMethodNode::__set_state(array(
+           'name' => 'isProcessing',
+           'phpDoc' => 
+          \PHPStan\Dependency\ExportedNode\ExportedPhpDocNode::__set_state(array(
+             'phpDocString' => '/**
+     * Whether the batch is waiting on the queue (nothing for a human to do yet).
+     */',
+             'namespace' => 'App\\Domain\\Registry\\Models',
+             'uses' => 
+            array (
+              'mdascoped' => 'App\\Domain\\Access\\Concerns\\MdaScoped',
+              'scopedtomda' => 'App\\Domain\\Access\\Concerns\\ScopedToMda',
+              'mda' => 'App\\Domain\\Access\\Models\\Mda',
+              'user' => 'App\\Domain\\Access\\Models\\User',
+              'auditable' => 'App\\Domain\\Audit\\Concerns\\Auditable',
+              'activity' => 'App\\Domain\\Programme\\Models\\Activity',
+              'importstatus' => 'App\\Domain\\Registry\\Enums\\ImportStatus',
+              'registrationsource' => 'App\\Domain\\Registry\\Enums\\RegistrationSource',
+              'collection' => 'Illuminate\\Database\\Eloquent\\Collection',
+              'hasuuids' => 'Illuminate\\Database\\Eloquent\\Concerns\\HasUuids',
+              'model' => 'Illuminate\\Database\\Eloquent\\Model',
+              'belongsto' => 'Illuminate\\Database\\Eloquent\\Relations\\BelongsTo',
+              'hasmany' => 'Illuminate\\Database\\Eloquent\\Relations\\HasMany',
+              'carbon' => 'Illuminate\\Support\\Carbon',
+            ),
+             'constUses' => 
+            array (
+            ),
+          )),
+           'byRef' => false,
+           'public' => true,
+           'private' => false,
+           'abstract' => false,
+           'final' => false,
+           'static' => false,
+           'returnType' => 'bool',
+           'parameters' => 
+          array (
+          ),
+           'attributes' => 
+          array (
+          ),
+        )),
+        3 => 
+        \PHPStan\Dependency\ExportedNode\ExportedMethodNode::__set_state(array(
+           'name' => 'processingForSeconds',
+           'phpDoc' => 
+          \PHPStan\Dependency\ExportedNode\ExportedPhpDocNode::__set_state(array(
+             'phpDocString' => '/**
+     * Seconds this batch has been waiting on the queue, or null when it is not waiting.
+     *
+     * Measured from `updated_at` — the last sign of life. A live worker at minimum flips
+     * pending → processing, which touches the row; a batch whose timestamp is frozen is
+     * one nothing has looked at.
+     */',
+             'namespace' => 'App\\Domain\\Registry\\Models',
+             'uses' => 
+            array (
+              'mdascoped' => 'App\\Domain\\Access\\Concerns\\MdaScoped',
+              'scopedtomda' => 'App\\Domain\\Access\\Concerns\\ScopedToMda',
+              'mda' => 'App\\Domain\\Access\\Models\\Mda',
+              'user' => 'App\\Domain\\Access\\Models\\User',
+              'auditable' => 'App\\Domain\\Audit\\Concerns\\Auditable',
+              'activity' => 'App\\Domain\\Programme\\Models\\Activity',
+              'importstatus' => 'App\\Domain\\Registry\\Enums\\ImportStatus',
+              'registrationsource' => 'App\\Domain\\Registry\\Enums\\RegistrationSource',
+              'collection' => 'Illuminate\\Database\\Eloquent\\Collection',
+              'hasuuids' => 'Illuminate\\Database\\Eloquent\\Concerns\\HasUuids',
+              'model' => 'Illuminate\\Database\\Eloquent\\Model',
+              'belongsto' => 'Illuminate\\Database\\Eloquent\\Relations\\BelongsTo',
+              'hasmany' => 'Illuminate\\Database\\Eloquent\\Relations\\HasMany',
+              'carbon' => 'Illuminate\\Support\\Carbon',
+            ),
+             'constUses' => 
+            array (
+            ),
+          )),
+           'byRef' => false,
+           'public' => true,
+           'private' => false,
+           'abstract' => false,
+           'final' => false,
+           'static' => false,
+           'returnType' => '?int',
+           'parameters' => 
+          array (
+          ),
+           'attributes' => 
+          array (
+          ),
+        )),
+        4 => 
+        \PHPStan\Dependency\ExportedNode\ExportedMethodNode::__set_state(array(
+           'name' => 'processingLooksStalled',
+           'phpDoc' => 
+          \PHPStan\Dependency\ExportedNode\ExportedPhpDocNode::__set_state(array(
+             'phpDocString' => '/**
+     * Waiting on the queue for longer than parsing could plausibly take.
+     *
+     * Almost always means no queue worker is consuming — the failure mode that has no
+     * error anywhere, because nothing failed: the job was never picked up. Computed
+     * SERVER-side because only the server\'s clock can be trusted for this.
+     */',
+             'namespace' => 'App\\Domain\\Registry\\Models',
+             'uses' => 
+            array (
+              'mdascoped' => 'App\\Domain\\Access\\Concerns\\MdaScoped',
+              'scopedtomda' => 'App\\Domain\\Access\\Concerns\\ScopedToMda',
+              'mda' => 'App\\Domain\\Access\\Models\\Mda',
+              'user' => 'App\\Domain\\Access\\Models\\User',
+              'auditable' => 'App\\Domain\\Audit\\Concerns\\Auditable',
+              'activity' => 'App\\Domain\\Programme\\Models\\Activity',
+              'importstatus' => 'App\\Domain\\Registry\\Enums\\ImportStatus',
+              'registrationsource' => 'App\\Domain\\Registry\\Enums\\RegistrationSource',
+              'collection' => 'Illuminate\\Database\\Eloquent\\Collection',
+              'hasuuids' => 'Illuminate\\Database\\Eloquent\\Concerns\\HasUuids',
+              'model' => 'Illuminate\\Database\\Eloquent\\Model',
+              'belongsto' => 'Illuminate\\Database\\Eloquent\\Relations\\BelongsTo',
+              'hasmany' => 'Illuminate\\Database\\Eloquent\\Relations\\HasMany',
+              'carbon' => 'Illuminate\\Support\\Carbon',
+            ),
+             'constUses' => 
+            array (
+            ),
+          )),
+           'byRef' => false,
+           'public' => true,
+           'private' => false,
+           'abstract' => false,
+           'final' => false,
+           'static' => false,
+           'returnType' => 'bool',
+           'parameters' => 
+          array (
+          ),
+           'attributes' => 
+          array (
+          ),
+        )),
+        5 => 
         \PHPStan\Dependency\ExportedNode\ExportedPropertiesNode::__set_state(array(
            'names' => 
           array (
@@ -67675,7 +72413,7 @@ return [
           array (
           ),
         )),
-        3 => 
+        6 => 
         \PHPStan\Dependency\ExportedNode\ExportedMethodNode::__set_state(array(
            'name' => 'casts',
            'phpDoc' => 
@@ -67719,7 +72457,7 @@ return [
           array (
           ),
         )),
-        4 => 
+        7 => 
         \PHPStan\Dependency\ExportedNode\ExportedMethodNode::__set_state(array(
            'name' => 'auditExcluded',
            'phpDoc' => 
@@ -67765,7 +72503,7 @@ return [
           array (
           ),
         )),
-        5 => 
+        8 => 
         \PHPStan\Dependency\ExportedNode\ExportedMethodNode::__set_state(array(
            'name' => 'ownerMda',
            'phpDoc' => 
@@ -67809,7 +72547,7 @@ return [
           array (
           ),
         )),
-        6 => 
+        9 => 
         \PHPStan\Dependency\ExportedNode\ExportedMethodNode::__set_state(array(
            'name' => 'activity',
            'phpDoc' => 
@@ -67856,7 +72594,7 @@ return [
           array (
           ),
         )),
-        7 => 
+        10 => 
         \PHPStan\Dependency\ExportedNode\ExportedMethodNode::__set_state(array(
            'name' => 'uploadedBy',
            'phpDoc' => 
@@ -67900,7 +72638,7 @@ return [
           array (
           ),
         )),
-        8 => 
+        11 => 
         \PHPStan\Dependency\ExportedNode\ExportedMethodNode::__set_state(array(
            'name' => 'mappingConfirmedBy',
            'phpDoc' => 
@@ -67944,7 +72682,7 @@ return [
           array (
           ),
         )),
-        9 => 
+        12 => 
         \PHPStan\Dependency\ExportedNode\ExportedMethodNode::__set_state(array(
            'name' => 'mappingTemplate',
            'phpDoc' => 
@@ -67992,7 +72730,7 @@ return [
           array (
           ),
         )),
-        10 => 
+        13 => 
         \PHPStan\Dependency\ExportedNode\ExportedMethodNode::__set_state(array(
            'name' => 'rows',
            'phpDoc' => 
@@ -69968,37 +74706,6 @@ return [
         )),
         2 => 
         \PHPStan\Dependency\ExportedNode\ExportedMethodNode::__set_state(array(
-           'name' => 'create',
-           'phpDoc' => NULL,
-           'byRef' => false,
-           'public' => true,
-           'private' => false,
-           'abstract' => false,
-           'final' => false,
-           'static' => false,
-           'returnType' => 'bool',
-           'parameters' => 
-          array (
-            0 => 
-            \PHPStan\Dependency\ExportedNode\ExportedParameterNode::__set_state(array(
-               'name' => 'user',
-               'type' => 'App\\Domain\\Access\\Models\\User',
-               'byRef' => false,
-               'variadic' => false,
-               'hasDefault' => false,
-               'attributes' => 
-              array (
-              ),
-               'phpDoc' => NULL,
-               'flags' => 0,
-            )),
-          ),
-           'attributes' => 
-          array (
-          ),
-        )),
-        3 => 
-        \PHPStan\Dependency\ExportedNode\ExportedMethodNode::__set_state(array(
            'name' => 'update',
            'phpDoc' => 
           \PHPStan\Dependency\ExportedNode\ExportedPhpDocNode::__set_state(array(
@@ -70053,7 +74760,7 @@ return [
           array (
           ),
         )),
-        4 => 
+        3 => 
         \PHPStan\Dependency\ExportedNode\ExportedMethodNode::__set_state(array(
            'name' => 'delete',
            'phpDoc' => NULL,
@@ -75752,6 +80459,118 @@ return [
       ),
     )),
   ),
+  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Registry\\Support\\RegistrationSourceRule.php' => 
+  array (
+    0 => 
+    \PHPStan\Dependency\ExportedNode\ExportedClassNode::__set_state(array(
+       'name' => 'App\\Domain\\Registry\\Support\\RegistrationSourceRule',
+       'phpDoc' => 
+      \PHPStan\Dependency\ExportedNode\ExportedPhpDocNode::__set_state(array(
+         'phpDocString' => '/**
+ * Guards the one thing every registry record must be able to answer: where it came from
+ * (FR-REG-03, CLAUDE.md §8).
+ *
+ * Ingestion is bulk/source-only, and each door — file import, REST intake, connector
+ * sync, offline batch — knows its own source. So a record without one is not a user
+ * error to be defaulted away; it is a code path that forgot, and defaulting it produces
+ * a plausible-looking lie that the audit trail cannot distinguish from the truth.
+ *
+ * Shared by {@see Beneficiary} and
+ * {@see Household} so the two cannot drift on a rule that
+ * only means anything if it holds everywhere.
+ */',
+         'namespace' => 'App\\Domain\\Registry\\Support',
+         'uses' => 
+        array (
+          'registrationsource' => 'App\\Domain\\Registry\\Enums\\RegistrationSource',
+          'beneficiary' => 'App\\Domain\\Registry\\Models\\Beneficiary',
+          'household' => 'App\\Domain\\Registry\\Models\\Household',
+          'invalidargumentexception' => 'InvalidArgumentException',
+        ),
+         'constUses' => 
+        array (
+        ),
+      )),
+       'abstract' => false,
+       'final' => true,
+       'extends' => NULL,
+       'implements' => 
+      array (
+      ),
+       'usedTraits' => 
+      array (
+      ),
+       'traitUseAdaptations' => 
+      array (
+      ),
+       'statements' => 
+      array (
+        0 => 
+        \PHPStan\Dependency\ExportedNode\ExportedMethodNode::__set_state(array(
+           'name' => 'assertAssignable',
+           'phpDoc' => 
+          \PHPStan\Dependency\ExportedNode\ExportedPhpDocNode::__set_state(array(
+             'phpDocString' => '/**
+     * @throws InvalidArgumentException when the source is absent or not assignable
+     */',
+             'namespace' => 'App\\Domain\\Registry\\Support',
+             'uses' => 
+            array (
+              'registrationsource' => 'App\\Domain\\Registry\\Enums\\RegistrationSource',
+              'beneficiary' => 'App\\Domain\\Registry\\Models\\Beneficiary',
+              'household' => 'App\\Domain\\Registry\\Models\\Household',
+              'invalidargumentexception' => 'InvalidArgumentException',
+            ),
+             'constUses' => 
+            array (
+            ),
+          )),
+           'byRef' => false,
+           'public' => true,
+           'private' => false,
+           'abstract' => false,
+           'final' => false,
+           'static' => true,
+           'returnType' => 'void',
+           'parameters' => 
+          array (
+            0 => 
+            \PHPStan\Dependency\ExportedNode\ExportedParameterNode::__set_state(array(
+               'name' => 'source',
+               'type' => 'mixed',
+               'byRef' => false,
+               'variadic' => false,
+               'hasDefault' => false,
+               'attributes' => 
+              array (
+              ),
+               'phpDoc' => NULL,
+               'flags' => 0,
+            )),
+            1 => 
+            \PHPStan\Dependency\ExportedNode\ExportedParameterNode::__set_state(array(
+               'name' => 'entity',
+               'type' => 'string',
+               'byRef' => false,
+               'variadic' => false,
+               'hasDefault' => false,
+               'attributes' => 
+              array (
+              ),
+               'phpDoc' => NULL,
+               'flags' => 0,
+            )),
+          ),
+           'attributes' => 
+          array (
+          ),
+        )),
+      ),
+       'attributes' => 
+      array (
+      ),
+    )),
+  ),
   'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Registry\\Support\\UniqueIdentifier.php' => 
   array (
     0 => 
@@ -81197,6 +86016,7 @@ return [
           'enrollment' => 'App\\Domain\\Programme\\Models\\Enrollment',
           'programme' => 'App\\Domain\\Programme\\Models\\Programme',
           'programmefunder' => 'App\\Domain\\Programme\\Models\\ProgrammeFunder',
+          'lga' => 'App\\Domain\\Reference\\Models\\Lga',
           'referral' => 'App\\Domain\\Referral\\Models\\Referral',
           'beneficiary' => 'App\\Domain\\Registry\\Models\\Beneficiary',
           'household' => 'App\\Domain\\Registry\\Models\\Household',
@@ -81287,6 +86107,7 @@ return [
               'enrollment' => 'App\\Domain\\Programme\\Models\\Enrollment',
               'programme' => 'App\\Domain\\Programme\\Models\\Programme',
               'programmefunder' => 'App\\Domain\\Programme\\Models\\ProgrammeFunder',
+              'lga' => 'App\\Domain\\Reference\\Models\\Lga',
               'referral' => 'App\\Domain\\Referral\\Models\\Referral',
               'beneficiary' => 'App\\Domain\\Registry\\Models\\Beneficiary',
               'household' => 'App\\Domain\\Registry\\Models\\Household',
@@ -81372,6 +86193,7 @@ return [
               'enrollment' => 'App\\Domain\\Programme\\Models\\Enrollment',
               'programme' => 'App\\Domain\\Programme\\Models\\Programme',
               'programmefunder' => 'App\\Domain\\Programme\\Models\\ProgrammeFunder',
+              'lga' => 'App\\Domain\\Reference\\Models\\Lga',
               'referral' => 'App\\Domain\\Referral\\Models\\Referral',
               'beneficiary' => 'App\\Domain\\Registry\\Models\\Beneficiary',
               'household' => 'App\\Domain\\Registry\\Models\\Household',
@@ -87270,7 +92092,36 @@ return [
         2 => 
         \PHPStan\Dependency\ExportedNode\ExportedMethodNode::__set_state(array(
            'name' => 'destroy',
-           'phpDoc' => NULL,
+           'phpDoc' => 
+          \PHPStan\Dependency\ExportedNode\ExportedPhpDocNode::__set_state(array(
+             'phpDocString' => '/**
+     * Revoke a cross-MDA access grant.
+     *
+     * A SOFT revoke: the row is retained with `revoked_at`/`revoked_by`/reason set
+     * (NFR-PRV-01, FR-AUD-01). Deleting it would erase the evidence that the access ever
+     * existed, leaving an auditor unable to distinguish "access was held and withdrawn"
+     * from "access was never granted" — the opposite of what an access trail is for.
+     *
+     * Idempotent: revoking an already-revoked grant changes nothing and does not
+     * re-stamp the original actor or time, because the FIRST withdrawal is the one that
+     * ended the access.
+     */',
+             'namespace' => 'App\\Http\\Controllers\\Api\\V1\\Access',
+             'uses' => 
+            array (
+              'crossmdaaccessgranted' => 'App\\Domain\\Access\\Events\\CrossMdaAccessGranted',
+              'crossmdaaccessrevoked' => 'App\\Domain\\Access\\Events\\CrossMdaAccessRevoked',
+              'mdaaccessgrant' => 'App\\Domain\\Access\\Models\\MdaAccessGrant',
+              'controller' => 'App\\Http\\Controllers\\Controller',
+              'storemdaaccessgrantrequest' => 'App\\Http\\Requests\\Access\\StoreMdaAccessGrantRequest',
+              'apiresponse' => 'App\\Support\\ApiResponse',
+              'jsonresponse' => 'Illuminate\\Http\\JsonResponse',
+              'request' => 'Illuminate\\Http\\Request',
+            ),
+             'constUses' => 
+            array (
+            ),
+          )),
            'byRef' => false,
            'public' => true,
            'private' => false,
@@ -91657,6 +96508,7 @@ return [
           'activitystatus' => 'App\\Domain\\Programme\\Enums\\ActivityStatus',
           'activity' => 'App\\Domain\\Programme\\Models\\Activity',
           'programme' => 'App\\Domain\\Programme\\Models\\Programme',
+          'activitylocationservice' => 'App\\Domain\\Programme\\Services\\ActivityLocationService',
           'controller' => 'App\\Http\\Controllers\\Controller',
           'storeactivityrequest' => 'App\\Http\\Requests\\Programme\\StoreActivityRequest',
           'updateactivityrequest' => 'App\\Http\\Requests\\Programme\\UpdateActivityRequest',
@@ -91665,6 +96517,7 @@ return [
           'apiresponse' => 'App\\Support\\ApiResponse',
           'jsonresponse' => 'Illuminate\\Http\\JsonResponse',
           'request' => 'Illuminate\\Http\\Request',
+          'db' => 'Illuminate\\Support\\Facades\\DB',
         ),
          'constUses' => 
         array (
@@ -91685,6 +96538,37 @@ return [
        'statements' => 
       array (
         0 => 
+        \PHPStan\Dependency\ExportedNode\ExportedMethodNode::__set_state(array(
+           'name' => '__construct',
+           'phpDoc' => NULL,
+           'byRef' => false,
+           'public' => true,
+           'private' => false,
+           'abstract' => false,
+           'final' => false,
+           'static' => false,
+           'returnType' => NULL,
+           'parameters' => 
+          array (
+            0 => 
+            \PHPStan\Dependency\ExportedNode\ExportedParameterNode::__set_state(array(
+               'name' => 'locations',
+               'type' => 'App\\Domain\\Programme\\Services\\ActivityLocationService',
+               'byRef' => false,
+               'variadic' => false,
+               'hasDefault' => false,
+               'attributes' => 
+              array (
+              ),
+               'phpDoc' => NULL,
+               'flags' => 68,
+            )),
+          ),
+           'attributes' => 
+          array (
+          ),
+        )),
+        1 => 
         \PHPStan\Dependency\ExportedNode\ExportedMethodNode::__set_state(array(
            'name' => 'index',
            'phpDoc' => NULL,
@@ -91715,7 +96599,7 @@ return [
           array (
           ),
         )),
-        1 => 
+        2 => 
         \PHPStan\Dependency\ExportedNode\ExportedMethodNode::__set_state(array(
            'name' => 'store',
            'phpDoc' => NULL,
@@ -91746,7 +96630,7 @@ return [
           array (
           ),
         )),
-        2 => 
+        3 => 
         \PHPStan\Dependency\ExportedNode\ExportedMethodNode::__set_state(array(
            'name' => 'show',
            'phpDoc' => 
@@ -91766,6 +96650,7 @@ return [
               'activitystatus' => 'App\\Domain\\Programme\\Enums\\ActivityStatus',
               'activity' => 'App\\Domain\\Programme\\Models\\Activity',
               'programme' => 'App\\Domain\\Programme\\Models\\Programme',
+              'activitylocationservice' => 'App\\Domain\\Programme\\Services\\ActivityLocationService',
               'controller' => 'App\\Http\\Controllers\\Controller',
               'storeactivityrequest' => 'App\\Http\\Requests\\Programme\\StoreActivityRequest',
               'updateactivityrequest' => 'App\\Http\\Requests\\Programme\\UpdateActivityRequest',
@@ -91774,6 +96659,7 @@ return [
               'apiresponse' => 'App\\Support\\ApiResponse',
               'jsonresponse' => 'Illuminate\\Http\\JsonResponse',
               'request' => 'Illuminate\\Http\\Request',
+              'db' => 'Illuminate\\Support\\Facades\\DB',
             ),
              'constUses' => 
             array (
@@ -91806,7 +96692,7 @@ return [
           array (
           ),
         )),
-        3 => 
+        4 => 
         \PHPStan\Dependency\ExportedNode\ExportedMethodNode::__set_state(array(
            'name' => 'update',
            'phpDoc' => NULL,
@@ -91850,7 +96736,7 @@ return [
           array (
           ),
         )),
-        4 => 
+        5 => 
         \PHPStan\Dependency\ExportedNode\ExportedMethodNode::__set_state(array(
            'name' => 'budget',
            'phpDoc' => 
@@ -91864,6 +96750,7 @@ return [
               'activitystatus' => 'App\\Domain\\Programme\\Enums\\ActivityStatus',
               'activity' => 'App\\Domain\\Programme\\Models\\Activity',
               'programme' => 'App\\Domain\\Programme\\Models\\Programme',
+              'activitylocationservice' => 'App\\Domain\\Programme\\Services\\ActivityLocationService',
               'controller' => 'App\\Http\\Controllers\\Controller',
               'storeactivityrequest' => 'App\\Http\\Requests\\Programme\\StoreActivityRequest',
               'updateactivityrequest' => 'App\\Http\\Requests\\Programme\\UpdateActivityRequest',
@@ -91872,6 +96759,7 @@ return [
               'apiresponse' => 'App\\Support\\ApiResponse',
               'jsonresponse' => 'Illuminate\\Http\\JsonResponse',
               'request' => 'Illuminate\\Http\\Request',
+              'db' => 'Illuminate\\Support\\Facades\\DB',
             ),
              'constUses' => 
             array (
@@ -91917,7 +96805,7 @@ return [
           array (
           ),
         )),
-        5 => 
+        6 => 
         \PHPStan\Dependency\ExportedNode\ExportedMethodNode::__set_state(array(
            'name' => 'archive',
            'phpDoc' => 
@@ -91931,6 +96819,7 @@ return [
               'activitystatus' => 'App\\Domain\\Programme\\Enums\\ActivityStatus',
               'activity' => 'App\\Domain\\Programme\\Models\\Activity',
               'programme' => 'App\\Domain\\Programme\\Models\\Programme',
+              'activitylocationservice' => 'App\\Domain\\Programme\\Services\\ActivityLocationService',
               'controller' => 'App\\Http\\Controllers\\Controller',
               'storeactivityrequest' => 'App\\Http\\Requests\\Programme\\StoreActivityRequest',
               'updateactivityrequest' => 'App\\Http\\Requests\\Programme\\UpdateActivityRequest',
@@ -91939,6 +96828,7 @@ return [
               'apiresponse' => 'App\\Support\\ApiResponse',
               'jsonresponse' => 'Illuminate\\Http\\JsonResponse',
               'request' => 'Illuminate\\Http\\Request',
+              'db' => 'Illuminate\\Support\\Facades\\DB',
             ),
              'constUses' => 
             array (
@@ -92536,6 +97426,174 @@ return [
             \PHPStan\Dependency\ExportedNode\ExportedParameterNode::__set_state(array(
                'name' => 'programme',
                'type' => 'string',
+               'byRef' => false,
+               'variadic' => false,
+               'hasDefault' => false,
+               'attributes' => 
+              array (
+              ),
+               'phpDoc' => NULL,
+               'flags' => 0,
+            )),
+          ),
+           'attributes' => 
+          array (
+          ),
+        )),
+      ),
+       'attributes' => 
+      array (
+      ),
+    )),
+  ),
+  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Reference\\AdministrativeDivisionController.php' => 
+  array (
+    0 => 
+    \PHPStan\Dependency\ExportedNode\ExportedClassNode::__set_state(array(
+       'name' => 'App\\Http\\Controllers\\Api\\V1\\Reference\\AdministrativeDivisionController',
+       'phpDoc' => 
+      \PHPStan\Dependency\ExportedNode\ExportedPhpDocNode::__set_state(array(
+         'phpDocString' => '/**
+ * READ-ONLY LGA/Ward reference lookups (the cascading selector).
+ *
+ * There is no write side by design: this data comes from an authoritative dataset
+ * loaded by a maintainer (`reference:load-divisions`), not from user input. An API
+ * that let a user add a ward would let the lookup table drift away from the source it
+ * is supposed to reproduce — the same reasoning that makes registry ingestion
+ * bulk/source-only (CLAUDE.md §8).
+ *
+ * Both responses are cached; see {@see ReferenceDataCache} for the invalidation model.
+ */',
+         'namespace' => 'App\\Http\\Controllers\\Api\\V1\\Reference',
+         'uses' => 
+        array (
+          'referencedatacache' => 'App\\Domain\\Reference\\Services\\ReferenceDataCache',
+          'controller' => 'App\\Http\\Controllers\\Controller',
+          'listwardsrequest' => 'App\\Http\\Requests\\Reference\\ListWardsRequest',
+          'apiresponse' => 'App\\Support\\ApiResponse',
+          'jsonresponse' => 'Illuminate\\Http\\JsonResponse',
+        ),
+         'constUses' => 
+        array (
+        ),
+      )),
+       'abstract' => false,
+       'final' => false,
+       'extends' => 'App\\Http\\Controllers\\Controller',
+       'implements' => 
+      array (
+      ),
+       'usedTraits' => 
+      array (
+      ),
+       'traitUseAdaptations' => 
+      array (
+      ),
+       'statements' => 
+      array (
+        0 => 
+        \PHPStan\Dependency\ExportedNode\ExportedMethodNode::__set_state(array(
+           'name' => '__construct',
+           'phpDoc' => NULL,
+           'byRef' => false,
+           'public' => true,
+           'private' => false,
+           'abstract' => false,
+           'final' => false,
+           'static' => false,
+           'returnType' => NULL,
+           'parameters' => 
+          array (
+            0 => 
+            \PHPStan\Dependency\ExportedNode\ExportedParameterNode::__set_state(array(
+               'name' => 'cache',
+               'type' => 'App\\Domain\\Reference\\Services\\ReferenceDataCache',
+               'byRef' => false,
+               'variadic' => false,
+               'hasDefault' => false,
+               'attributes' => 
+              array (
+              ),
+               'phpDoc' => NULL,
+               'flags' => 68,
+            )),
+          ),
+           'attributes' => 
+          array (
+          ),
+        )),
+        1 => 
+        \PHPStan\Dependency\ExportedNode\ExportedMethodNode::__set_state(array(
+           'name' => 'lgas',
+           'phpDoc' => 
+          \PHPStan\Dependency\ExportedNode\ExportedPhpDocNode::__set_state(array(
+             'phpDocString' => '/**
+     * All 27 LGAs, with the number of wards loaded for each.
+     *
+     * `ward_count` is what tells a client whether ward data is present at all: a fresh
+     * install has LGAs from the dataset and zero wards until one is supplied.
+     */',
+             'namespace' => 'App\\Http\\Controllers\\Api\\V1\\Reference',
+             'uses' => 
+            array (
+              'referencedatacache' => 'App\\Domain\\Reference\\Services\\ReferenceDataCache',
+              'controller' => 'App\\Http\\Controllers\\Controller',
+              'listwardsrequest' => 'App\\Http\\Requests\\Reference\\ListWardsRequest',
+              'apiresponse' => 'App\\Support\\ApiResponse',
+              'jsonresponse' => 'Illuminate\\Http\\JsonResponse',
+            ),
+             'constUses' => 
+            array (
+            ),
+          )),
+           'byRef' => false,
+           'public' => true,
+           'private' => false,
+           'abstract' => false,
+           'final' => false,
+           'static' => false,
+           'returnType' => 'Illuminate\\Http\\JsonResponse',
+           'parameters' => 
+          array (
+          ),
+           'attributes' => 
+          array (
+          ),
+        )),
+        2 => 
+        \PHPStan\Dependency\ExportedNode\ExportedMethodNode::__set_state(array(
+           'name' => 'wards',
+           'phpDoc' => 
+          \PHPStan\Dependency\ExportedNode\ExportedPhpDocNode::__set_state(array(
+             'phpDocString' => '/**
+     * The wards of one LGA — step two of the cascade.
+     */',
+             'namespace' => 'App\\Http\\Controllers\\Api\\V1\\Reference',
+             'uses' => 
+            array (
+              'referencedatacache' => 'App\\Domain\\Reference\\Services\\ReferenceDataCache',
+              'controller' => 'App\\Http\\Controllers\\Controller',
+              'listwardsrequest' => 'App\\Http\\Requests\\Reference\\ListWardsRequest',
+              'apiresponse' => 'App\\Support\\ApiResponse',
+              'jsonresponse' => 'Illuminate\\Http\\JsonResponse',
+            ),
+             'constUses' => 
+            array (
+            ),
+          )),
+           'byRef' => false,
+           'public' => true,
+           'private' => false,
+           'abstract' => false,
+           'final' => false,
+           'static' => false,
+           'returnType' => 'Illuminate\\Http\\JsonResponse',
+           'parameters' => 
+          array (
+            0 => 
+            \PHPStan\Dependency\ExportedNode\ExportedParameterNode::__set_state(array(
+               'name' => 'request',
+               'type' => 'App\\Http\\Requests\\Reference\\ListWardsRequest',
                'byRef' => false,
                'variadic' => false,
                'hasDefault' => false,
@@ -93230,6 +98288,7 @@ return [
           'mdascope' => 'App\\Domain\\Access\\Scopes\\MdaScope',
           'activity' => 'App\\Domain\\Programme\\Models\\Activity',
           'programme' => 'App\\Domain\\Programme\\Models\\Programme',
+          'activitylocationservice' => 'App\\Domain\\Programme\\Services\\ActivityLocationService',
           'importstatus' => 'App\\Domain\\Registry\\Enums\\ImportStatus',
           'registrationsource' => 'App\\Domain\\Registry\\Enums\\RegistrationSource',
           'parseimportbatch' => 'App\\Domain\\Registry\\Jobs\\ParseImportBatch',
@@ -93288,6 +98347,19 @@ return [
                'phpDoc' => NULL,
                'flags' => 68,
             )),
+            1 => 
+            \PHPStan\Dependency\ExportedNode\ExportedParameterNode::__set_state(array(
+               'name' => 'locations',
+               'type' => 'App\\Domain\\Programme\\Services\\ActivityLocationService',
+               'byRef' => false,
+               'variadic' => false,
+               'hasDefault' => false,
+               'attributes' => 
+              array (
+              ),
+               'phpDoc' => NULL,
+               'flags' => 68,
+            )),
           ),
            'attributes' => 
           array (
@@ -93305,6 +98377,7 @@ return [
               'mdascope' => 'App\\Domain\\Access\\Scopes\\MdaScope',
               'activity' => 'App\\Domain\\Programme\\Models\\Activity',
               'programme' => 'App\\Domain\\Programme\\Models\\Programme',
+              'activitylocationservice' => 'App\\Domain\\Programme\\Services\\ActivityLocationService',
               'importstatus' => 'App\\Domain\\Registry\\Enums\\ImportStatus',
               'registrationsource' => 'App\\Domain\\Registry\\Enums\\RegistrationSource',
               'parseimportbatch' => 'App\\Domain\\Registry\\Jobs\\ParseImportBatch',
@@ -93366,6 +98439,7 @@ return [
               'mdascope' => 'App\\Domain\\Access\\Scopes\\MdaScope',
               'activity' => 'App\\Domain\\Programme\\Models\\Activity',
               'programme' => 'App\\Domain\\Programme\\Models\\Programme',
+              'activitylocationservice' => 'App\\Domain\\Programme\\Services\\ActivityLocationService',
               'importstatus' => 'App\\Domain\\Registry\\Enums\\ImportStatus',
               'registrationsource' => 'App\\Domain\\Registry\\Enums\\RegistrationSource',
               'parseimportbatch' => 'App\\Domain\\Registry\\Jobs\\ParseImportBatch',
@@ -103024,6 +108098,170 @@ return [
       ),
     )),
   ),
+  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Programme\\Concerns\\ValidatesLocationSet.php' => 
+  array (
+    0 => 
+    \PHPStan\Dependency\ExportedNode\ExportedTraitNode::__set_state(array(
+       'name' => 'App\\Http\\Requests\\Programme\\Concerns\\ValidatesLocationSet',
+       'phpDoc' => 
+      \PHPStan\Dependency\ExportedNode\ExportedPhpDocNode::__set_state(array(
+         'phpDocString' => '/**
+ * The activity location-set rules, shared by every request that accepts one so the
+ * three entry points cannot drift apart.
+ *
+ * Submitted shape — one entry per LGA:
+ *
+ *   "locations": [
+ *     { "lga_id": "…", "ward_ids": ["…", "…"] },   // specific wards
+ *     { "lga_id": "…", "whole_lga": true }          // the whole LGA
+ *   ]
+ *
+ * Enforced here:
+ *  - every `lga_id` and `ward_id` exists in the GEO.1 lookups;
+ *  - each ward belongs to the LGA it was submitted under (the rule that matters —
+ *    ward codes repeat across Jigawa, so a ward id under the wrong LGA is a real and
+ *    silent way to mis-target an activity);
+ *  - an LGA appears at most once, so its wards are unambiguous;
+ *  - `whole_lga` and `ward_ids` are not both given.
+ *
+ * NOT enforced, deliberately: anything about the beneficiaries uploaded under the
+ * activity. The set is a plan, not a constraint on the people.
+ */',
+         'namespace' => 'App\\Http\\Requests\\Programme\\Concerns',
+         'uses' => 
+        array (
+          'activitylocationservice' => 'App\\Domain\\Programme\\Services\\ActivityLocationService',
+          'validator' => 'Illuminate\\Contracts\\Validation\\Validator',
+        ),
+         'constUses' => 
+        array (
+        ),
+      )),
+       'usedTraits' => 
+      array (
+      ),
+       'traitUseAdaptations' => 
+      array (
+      ),
+       'statements' => 
+      array (
+        0 => 
+        \PHPStan\Dependency\ExportedNode\ExportedMethodNode::__set_state(array(
+           'name' => 'locationSetRules',
+           'phpDoc' => 
+          \PHPStan\Dependency\ExportedNode\ExportedPhpDocNode::__set_state(array(
+             'phpDocString' => '/**
+     * @return array<string, mixed>
+     */',
+             'namespace' => 'App\\Http\\Requests\\Programme\\Concerns',
+             'uses' => 
+            array (
+              'activitylocationservice' => 'App\\Domain\\Programme\\Services\\ActivityLocationService',
+              'validator' => 'Illuminate\\Contracts\\Validation\\Validator',
+            ),
+             'constUses' => 
+            array (
+            ),
+          )),
+           'byRef' => false,
+           'public' => false,
+           'private' => false,
+           'abstract' => false,
+           'final' => false,
+           'static' => false,
+           'returnType' => 'array',
+           'parameters' => 
+          array (
+          ),
+           'attributes' => 
+          array (
+          ),
+        )),
+        1 => 
+        \PHPStan\Dependency\ExportedNode\ExportedMethodNode::__set_state(array(
+           'name' => 'locationSetMessages',
+           'phpDoc' => 
+          \PHPStan\Dependency\ExportedNode\ExportedPhpDocNode::__set_state(array(
+             'phpDocString' => '/**
+     * @return array<string, string>
+     */',
+             'namespace' => 'App\\Http\\Requests\\Programme\\Concerns',
+             'uses' => 
+            array (
+              'activitylocationservice' => 'App\\Domain\\Programme\\Services\\ActivityLocationService',
+              'validator' => 'Illuminate\\Contracts\\Validation\\Validator',
+            ),
+             'constUses' => 
+            array (
+            ),
+          )),
+           'byRef' => false,
+           'public' => false,
+           'private' => false,
+           'abstract' => false,
+           'final' => false,
+           'static' => false,
+           'returnType' => 'array',
+           'parameters' => 
+          array (
+          ),
+           'attributes' => 
+          array (
+          ),
+        )),
+        2 => 
+        \PHPStan\Dependency\ExportedNode\ExportedMethodNode::__set_state(array(
+           'name' => 'validateLocationSet',
+           'phpDoc' => 
+          \PHPStan\Dependency\ExportedNode\ExportedPhpDocNode::__set_state(array(
+             'phpDocString' => '/**
+     * Cross-field checks that need the database, run only once the per-field rules
+     * above have passed — otherwise a nonexistent ward id would produce two errors
+     * saying different things.
+     */',
+             'namespace' => 'App\\Http\\Requests\\Programme\\Concerns',
+             'uses' => 
+            array (
+              'activitylocationservice' => 'App\\Domain\\Programme\\Services\\ActivityLocationService',
+              'validator' => 'Illuminate\\Contracts\\Validation\\Validator',
+            ),
+             'constUses' => 
+            array (
+            ),
+          )),
+           'byRef' => false,
+           'public' => false,
+           'private' => false,
+           'abstract' => false,
+           'final' => false,
+           'static' => false,
+           'returnType' => 'void',
+           'parameters' => 
+          array (
+            0 => 
+            \PHPStan\Dependency\ExportedNode\ExportedParameterNode::__set_state(array(
+               'name' => 'validator',
+               'type' => 'Illuminate\\Contracts\\Validation\\Validator',
+               'byRef' => false,
+               'variadic' => false,
+               'hasDefault' => false,
+               'attributes' => 
+              array (
+              ),
+               'phpDoc' => NULL,
+               'flags' => 0,
+            )),
+          ),
+           'attributes' => 
+          array (
+          ),
+        )),
+      ),
+       'attributes' => 
+      array (
+      ),
+    )),
+  ),
   'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Programme\\StoreActivityRequest.php' => 
   array (
     0 => 
@@ -103044,7 +108282,7 @@ return [
         array (
           'activitystatus' => 'App\\Domain\\Programme\\Enums\\ActivityStatus',
           'isfundingpartner' => 'App\\Domain\\Programme\\Rules\\IsFundingPartner',
-          'lga' => 'App\\Domain\\Registry\\Enums\\Lga',
+          'validateslocationset' => 'App\\Http\\Requests\\Programme\\Concerns\\ValidatesLocationSet',
           'validator' => 'Illuminate\\Contracts\\Validation\\Validator',
           'formrequest' => 'Illuminate\\Foundation\\Http\\FormRequest',
           'rule' => 'Illuminate\\Validation\\Rule',
@@ -103061,6 +108299,7 @@ return [
       ),
        'usedTraits' => 
       array (
+        0 => 'App\\Http\\Requests\\Programme\\Concerns\\ValidatesLocationSet',
       ),
        'traitUseAdaptations' => 
       array (
@@ -103087,18 +108326,18 @@ return [
         )),
         1 => 
         \PHPStan\Dependency\ExportedNode\ExportedMethodNode::__set_state(array(
-           'name' => 'rules',
+           'name' => 'messages',
            'phpDoc' => 
           \PHPStan\Dependency\ExportedNode\ExportedPhpDocNode::__set_state(array(
              'phpDocString' => '/**
-     * @return array<string, mixed>
+     * @return array<string, string>
      */',
              'namespace' => 'App\\Http\\Requests\\Programme',
              'uses' => 
             array (
               'activitystatus' => 'App\\Domain\\Programme\\Enums\\ActivityStatus',
               'isfundingpartner' => 'App\\Domain\\Programme\\Rules\\IsFundingPartner',
-              'lga' => 'App\\Domain\\Registry\\Enums\\Lga',
+              'validateslocationset' => 'App\\Http\\Requests\\Programme\\Concerns\\ValidatesLocationSet',
               'validator' => 'Illuminate\\Contracts\\Validation\\Validator',
               'formrequest' => 'Illuminate\\Foundation\\Http\\FormRequest',
               'rule' => 'Illuminate\\Validation\\Rule',
@@ -103122,6 +108361,42 @@ return [
           ),
         )),
         2 => 
+        \PHPStan\Dependency\ExportedNode\ExportedMethodNode::__set_state(array(
+           'name' => 'rules',
+           'phpDoc' => 
+          \PHPStan\Dependency\ExportedNode\ExportedPhpDocNode::__set_state(array(
+             'phpDocString' => '/**
+     * @return array<string, mixed>
+     */',
+             'namespace' => 'App\\Http\\Requests\\Programme',
+             'uses' => 
+            array (
+              'activitystatus' => 'App\\Domain\\Programme\\Enums\\ActivityStatus',
+              'isfundingpartner' => 'App\\Domain\\Programme\\Rules\\IsFundingPartner',
+              'validateslocationset' => 'App\\Http\\Requests\\Programme\\Concerns\\ValidatesLocationSet',
+              'validator' => 'Illuminate\\Contracts\\Validation\\Validator',
+              'formrequest' => 'Illuminate\\Foundation\\Http\\FormRequest',
+              'rule' => 'Illuminate\\Validation\\Rule',
+            ),
+             'constUses' => 
+            array (
+            ),
+          )),
+           'byRef' => false,
+           'public' => true,
+           'private' => false,
+           'abstract' => false,
+           'final' => false,
+           'static' => false,
+           'returnType' => 'array',
+           'parameters' => 
+          array (
+          ),
+           'attributes' => 
+          array (
+          ),
+        )),
+        3 => 
         \PHPStan\Dependency\ExportedNode\ExportedMethodNode::__set_state(array(
            'name' => 'withValidator',
            'phpDoc' => NULL,
@@ -103396,7 +108671,8 @@ return [
         array (
           'activitystatus' => 'App\\Domain\\Programme\\Enums\\ActivityStatus',
           'isfundingpartner' => 'App\\Domain\\Programme\\Rules\\IsFundingPartner',
-          'lga' => 'App\\Domain\\Registry\\Enums\\Lga',
+          'validateslocationset' => 'App\\Http\\Requests\\Programme\\Concerns\\ValidatesLocationSet',
+          'validator' => 'Illuminate\\Contracts\\Validation\\Validator',
           'formrequest' => 'Illuminate\\Foundation\\Http\\FormRequest',
           'rule' => 'Illuminate\\Validation\\Rule',
         ),
@@ -103412,6 +108688,7 @@ return [
       ),
        'usedTraits' => 
       array (
+        0 => 'App\\Http\\Requests\\Programme\\Concerns\\ValidatesLocationSet',
       ),
        'traitUseAdaptations' => 
       array (
@@ -103438,6 +108715,73 @@ return [
         )),
         1 => 
         \PHPStan\Dependency\ExportedNode\ExportedMethodNode::__set_state(array(
+           'name' => 'messages',
+           'phpDoc' => 
+          \PHPStan\Dependency\ExportedNode\ExportedPhpDocNode::__set_state(array(
+             'phpDocString' => '/**
+     * @return array<string, string>
+     */',
+             'namespace' => 'App\\Http\\Requests\\Programme',
+             'uses' => 
+            array (
+              'activitystatus' => 'App\\Domain\\Programme\\Enums\\ActivityStatus',
+              'isfundingpartner' => 'App\\Domain\\Programme\\Rules\\IsFundingPartner',
+              'validateslocationset' => 'App\\Http\\Requests\\Programme\\Concerns\\ValidatesLocationSet',
+              'validator' => 'Illuminate\\Contracts\\Validation\\Validator',
+              'formrequest' => 'Illuminate\\Foundation\\Http\\FormRequest',
+              'rule' => 'Illuminate\\Validation\\Rule',
+            ),
+             'constUses' => 
+            array (
+            ),
+          )),
+           'byRef' => false,
+           'public' => true,
+           'private' => false,
+           'abstract' => false,
+           'final' => false,
+           'static' => false,
+           'returnType' => 'array',
+           'parameters' => 
+          array (
+          ),
+           'attributes' => 
+          array (
+          ),
+        )),
+        2 => 
+        \PHPStan\Dependency\ExportedNode\ExportedMethodNode::__set_state(array(
+           'name' => 'withValidator',
+           'phpDoc' => NULL,
+           'byRef' => false,
+           'public' => true,
+           'private' => false,
+           'abstract' => false,
+           'final' => false,
+           'static' => false,
+           'returnType' => 'void',
+           'parameters' => 
+          array (
+            0 => 
+            \PHPStan\Dependency\ExportedNode\ExportedParameterNode::__set_state(array(
+               'name' => 'validator',
+               'type' => 'Illuminate\\Contracts\\Validation\\Validator',
+               'byRef' => false,
+               'variadic' => false,
+               'hasDefault' => false,
+               'attributes' => 
+              array (
+              ),
+               'phpDoc' => NULL,
+               'flags' => 0,
+            )),
+          ),
+           'attributes' => 
+          array (
+          ),
+        )),
+        3 => 
+        \PHPStan\Dependency\ExportedNode\ExportedMethodNode::__set_state(array(
            'name' => 'rules',
            'phpDoc' => 
           \PHPStan\Dependency\ExportedNode\ExportedPhpDocNode::__set_state(array(
@@ -103449,7 +108793,8 @@ return [
             array (
               'activitystatus' => 'App\\Domain\\Programme\\Enums\\ActivityStatus',
               'isfundingpartner' => 'App\\Domain\\Programme\\Rules\\IsFundingPartner',
-              'lga' => 'App\\Domain\\Registry\\Enums\\Lga',
+              'validateslocationset' => 'App\\Http\\Requests\\Programme\\Concerns\\ValidatesLocationSet',
+              'validator' => 'Illuminate\\Contracts\\Validation\\Validator',
               'formrequest' => 'Illuminate\\Foundation\\Http\\FormRequest',
               'rule' => 'Illuminate\\Validation\\Rule',
             ),
@@ -103640,6 +108985,128 @@ return [
               'programmetype' => 'App\\Domain\\Programme\\Enums\\ProgrammeType',
               'formrequest' => 'Illuminate\\Foundation\\Http\\FormRequest',
               'rule' => 'Illuminate\\Validation\\Rule',
+            ),
+             'constUses' => 
+            array (
+            ),
+          )),
+           'byRef' => false,
+           'public' => true,
+           'private' => false,
+           'abstract' => false,
+           'final' => false,
+           'static' => false,
+           'returnType' => 'array',
+           'parameters' => 
+          array (
+          ),
+           'attributes' => 
+          array (
+          ),
+        )),
+      ),
+       'attributes' => 
+      array (
+      ),
+    )),
+  ),
+  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Reference\\ListWardsRequest.php' => 
+  array (
+    0 => 
+    \PHPStan\Dependency\ExportedNode\ExportedClassNode::__set_state(array(
+       'name' => 'App\\Http\\Requests\\Reference\\ListWardsRequest',
+       'phpDoc' => 
+      \PHPStan\Dependency\ExportedNode\ExportedPhpDocNode::__set_state(array(
+         'phpDocString' => '/**
+ * Wards are always requested for ONE LGA — that is what the cascading selector asks
+ * for, and `lga_id` is required rather than optional on purpose: an unfiltered call
+ * would return every ward in the state, which no screen wants and which would quietly
+ * become the expensive default.
+ */',
+         'namespace' => 'App\\Http\\Requests\\Reference',
+         'uses' => 
+        array (
+          'formrequest' => 'Illuminate\\Foundation\\Http\\FormRequest',
+        ),
+         'constUses' => 
+        array (
+        ),
+      )),
+       'abstract' => false,
+       'final' => false,
+       'extends' => 'Illuminate\\Foundation\\Http\\FormRequest',
+       'implements' => 
+      array (
+      ),
+       'usedTraits' => 
+      array (
+      ),
+       'traitUseAdaptations' => 
+      array (
+      ),
+       'statements' => 
+      array (
+        0 => 
+        \PHPStan\Dependency\ExportedNode\ExportedMethodNode::__set_state(array(
+           'name' => 'authorize',
+           'phpDoc' => NULL,
+           'byRef' => false,
+           'public' => true,
+           'private' => false,
+           'abstract' => false,
+           'final' => false,
+           'static' => false,
+           'returnType' => 'bool',
+           'parameters' => 
+          array (
+          ),
+           'attributes' => 
+          array (
+          ),
+        )),
+        1 => 
+        \PHPStan\Dependency\ExportedNode\ExportedMethodNode::__set_state(array(
+           'name' => 'rules',
+           'phpDoc' => 
+          \PHPStan\Dependency\ExportedNode\ExportedPhpDocNode::__set_state(array(
+             'phpDocString' => '/**
+     * @return array<string, list<string>>
+     */',
+             'namespace' => 'App\\Http\\Requests\\Reference',
+             'uses' => 
+            array (
+              'formrequest' => 'Illuminate\\Foundation\\Http\\FormRequest',
+            ),
+             'constUses' => 
+            array (
+            ),
+          )),
+           'byRef' => false,
+           'public' => true,
+           'private' => false,
+           'abstract' => false,
+           'final' => false,
+           'static' => false,
+           'returnType' => 'array',
+           'parameters' => 
+          array (
+          ),
+           'attributes' => 
+          array (
+          ),
+        )),
+        2 => 
+        \PHPStan\Dependency\ExportedNode\ExportedMethodNode::__set_state(array(
+           'name' => 'messages',
+           'phpDoc' => 
+          \PHPStan\Dependency\ExportedNode\ExportedPhpDocNode::__set_state(array(
+             'phpDocString' => '/**
+     * @return array<string, string>
+     */',
+             'namespace' => 'App\\Http\\Requests\\Reference',
+             'uses' => 
+            array (
+              'formrequest' => 'Illuminate\\Foundation\\Http\\FormRequest',
             ),
              'constUses' => 
             array (
@@ -105897,8 +111364,9 @@ return [
         array (
           'activitystatus' => 'App\\Domain\\Programme\\Enums\\ActivityStatus',
           'isfundingpartner' => 'App\\Domain\\Programme\\Rules\\IsFundingPartner',
-          'lga' => 'App\\Domain\\Registry\\Enums\\Lga',
           'sourceadapterregistry' => 'App\\Domain\\Registry\\Imports\\Adapters\\SourceAdapterRegistry',
+          'validateslocationset' => 'App\\Http\\Requests\\Programme\\Concerns\\ValidatesLocationSet',
+          'validator' => 'Illuminate\\Contracts\\Validation\\Validator',
           'formrequest' => 'Illuminate\\Foundation\\Http\\FormRequest',
           'rule' => 'Illuminate\\Validation\\Rule',
         ),
@@ -105914,6 +111382,7 @@ return [
       ),
        'usedTraits' => 
       array (
+        0 => 'App\\Http\\Requests\\Programme\\Concerns\\ValidatesLocationSet',
       ),
        'traitUseAdaptations' => 
       array (
@@ -105940,19 +111409,20 @@ return [
         )),
         1 => 
         \PHPStan\Dependency\ExportedNode\ExportedMethodNode::__set_state(array(
-           'name' => 'rules',
+           'name' => 'messages',
            'phpDoc' => 
           \PHPStan\Dependency\ExportedNode\ExportedPhpDocNode::__set_state(array(
              'phpDocString' => '/**
-     * @return array<string, mixed>
+     * @return array<string, string>
      */',
              'namespace' => 'App\\Http\\Requests\\Registry',
              'uses' => 
             array (
               'activitystatus' => 'App\\Domain\\Programme\\Enums\\ActivityStatus',
               'isfundingpartner' => 'App\\Domain\\Programme\\Rules\\IsFundingPartner',
-              'lga' => 'App\\Domain\\Registry\\Enums\\Lga',
               'sourceadapterregistry' => 'App\\Domain\\Registry\\Imports\\Adapters\\SourceAdapterRegistry',
+              'validateslocationset' => 'App\\Http\\Requests\\Programme\\Concerns\\ValidatesLocationSet',
+              'validator' => 'Illuminate\\Contracts\\Validation\\Validator',
               'formrequest' => 'Illuminate\\Foundation\\Http\\FormRequest',
               'rule' => 'Illuminate\\Validation\\Rule',
             ),
@@ -105976,12 +111446,83 @@ return [
         )),
         2 => 
         \PHPStan\Dependency\ExportedNode\ExportedMethodNode::__set_state(array(
+           'name' => 'withValidator',
+           'phpDoc' => NULL,
+           'byRef' => false,
+           'public' => true,
+           'private' => false,
+           'abstract' => false,
+           'final' => false,
+           'static' => false,
+           'returnType' => 'void',
+           'parameters' => 
+          array (
+            0 => 
+            \PHPStan\Dependency\ExportedNode\ExportedParameterNode::__set_state(array(
+               'name' => 'validator',
+               'type' => 'Illuminate\\Contracts\\Validation\\Validator',
+               'byRef' => false,
+               'variadic' => false,
+               'hasDefault' => false,
+               'attributes' => 
+              array (
+              ),
+               'phpDoc' => NULL,
+               'flags' => 0,
+            )),
+          ),
+           'attributes' => 
+          array (
+          ),
+        )),
+        3 => 
+        \PHPStan\Dependency\ExportedNode\ExportedMethodNode::__set_state(array(
+           'name' => 'rules',
+           'phpDoc' => 
+          \PHPStan\Dependency\ExportedNode\ExportedPhpDocNode::__set_state(array(
+             'phpDocString' => '/**
+     * @return array<string, mixed>
+     */',
+             'namespace' => 'App\\Http\\Requests\\Registry',
+             'uses' => 
+            array (
+              'activitystatus' => 'App\\Domain\\Programme\\Enums\\ActivityStatus',
+              'isfundingpartner' => 'App\\Domain\\Programme\\Rules\\IsFundingPartner',
+              'sourceadapterregistry' => 'App\\Domain\\Registry\\Imports\\Adapters\\SourceAdapterRegistry',
+              'validateslocationset' => 'App\\Http\\Requests\\Programme\\Concerns\\ValidatesLocationSet',
+              'validator' => 'Illuminate\\Contracts\\Validation\\Validator',
+              'formrequest' => 'Illuminate\\Foundation\\Http\\FormRequest',
+              'rule' => 'Illuminate\\Validation\\Rule',
+            ),
+             'constUses' => 
+            array (
+            ),
+          )),
+           'byRef' => false,
+           'public' => true,
+           'private' => false,
+           'abstract' => false,
+           'final' => false,
+           'static' => false,
+           'returnType' => 'array',
+           'parameters' => 
+          array (
+          ),
+           'attributes' => 
+          array (
+          ),
+        )),
+        4 => 
+        \PHPStan\Dependency\ExportedNode\ExportedMethodNode::__set_state(array(
            'name' => 'activityDraft',
            'phpDoc' => 
           \PHPStan\Dependency\ExportedNode\ExportedPhpDocNode::__set_state(array(
              'phpDocString' => '/**
      * The validated activity fields to stash until confirm. Reaching this endpoint
      * means the activity involves beneficiaries, so the flag is stamped on here.
+     *
+     * `locations` rides along in the stashed draft but is NOT an activity column — the
+     * confirm step splits it back out and writes it through ActivityLocationService.
      *
      * @return array<string, mixed>
      */',
@@ -105990,8 +111531,9 @@ return [
             array (
               'activitystatus' => 'App\\Domain\\Programme\\Enums\\ActivityStatus',
               'isfundingpartner' => 'App\\Domain\\Programme\\Rules\\IsFundingPartner',
-              'lga' => 'App\\Domain\\Registry\\Enums\\Lga',
               'sourceadapterregistry' => 'App\\Domain\\Registry\\Imports\\Adapters\\SourceAdapterRegistry',
+              'validateslocationset' => 'App\\Http\\Requests\\Programme\\Concerns\\ValidatesLocationSet',
+              'validator' => 'Illuminate\\Contracts\\Validation\\Validator',
               'formrequest' => 'Illuminate\\Foundation\\Http\\FormRequest',
               'rule' => 'Illuminate\\Validation\\Rule',
             ),
@@ -107205,6 +112747,7 @@ return [
          'uses' => 
         array (
           'activity' => 'App\\Domain\\Programme\\Models\\Activity',
+          'activitylocationservice' => 'App\\Domain\\Programme\\Services\\ActivityLocationService',
           'request' => 'Illuminate\\Http\\Request',
           'jsonresource' => 'Illuminate\\Http\\Resources\\Json\\JsonResource',
         ),
@@ -107238,6 +112781,7 @@ return [
              'uses' => 
             array (
               'activity' => 'App\\Domain\\Programme\\Models\\Activity',
+              'activitylocationservice' => 'App\\Domain\\Programme\\Services\\ActivityLocationService',
               'request' => 'Illuminate\\Http\\Request',
               'jsonresource' => 'Illuminate\\Http\\Resources\\Json\\JsonResource',
             ),

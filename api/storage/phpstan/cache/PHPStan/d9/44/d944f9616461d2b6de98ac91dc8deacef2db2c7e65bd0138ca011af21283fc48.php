@@ -172,53 +172,6 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
          'typeAliasClassName' => NULL,
          'traitData' => NULL,
       )),
-      '9061c0a60bc331504cba457da8ed4cc1' => 
-      \PHPStan\Analyser\IntermediaryNameScope::__set_state(array(
-         'namespace' => 'App\\Domain\\Registry\\Policies',
-         'uses' => 
-        array (
-          'user' => 'App\\Domain\\Access\\Models\\User',
-          'household' => 'App\\Domain\\Registry\\Models\\Household',
-        ),
-         'className' => 'App\\Domain\\Registry\\Policies\\HouseholdPolicy',
-         'functionName' => 'create',
-         'templatePhpDocNodes' => 
-        array (
-        ),
-         'parent' => 
-        \PHPStan\Analyser\IntermediaryNameScope::__set_state(array(
-           'namespace' => 'App\\Domain\\Registry\\Policies',
-           'uses' => 
-          array (
-            'user' => 'App\\Domain\\Access\\Models\\User',
-            'household' => 'App\\Domain\\Registry\\Models\\Household',
-          ),
-           'className' => 'App\\Domain\\Registry\\Policies\\HouseholdPolicy',
-           'functionName' => NULL,
-           'templatePhpDocNodes' => 
-          array (
-          ),
-           'parent' => NULL,
-           'typeAliasesMap' => 
-          array (
-          ),
-           'bypassTypeAliases' => false,
-           'constUses' => 
-          array (
-          ),
-           'typeAliasClassName' => NULL,
-           'traitData' => NULL,
-        )),
-         'typeAliasesMap' => 
-        array (
-        ),
-         'bypassTypeAliases' => false,
-         'constUses' => 
-        array (
-        ),
-         'typeAliasClassName' => NULL,
-         'traitData' => NULL,
-      )),
       'c72ea1d07d62545c0702da06e45e67bc' => 
       \PHPStan\Analyser\IntermediaryNameScope::__set_state(array(
          'namespace' => 'App\\Domain\\Registry\\Policies',
@@ -316,7 +269,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
     ),
     1 => 
     array (
-      'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Registry\\Policies\\HouseholdPolicy.php' => '410dd832e66f56c44fde79f1961801987574f5c0efa16a3b9de67eed45b10071',
+      'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Registry\\Policies\\HouseholdPolicy.php' => '258fa7deb87fd39a6716b9a59ad7e4c02dfa3040d985c3c9d25f62e162333d5b',
     ),
   ),
 ));

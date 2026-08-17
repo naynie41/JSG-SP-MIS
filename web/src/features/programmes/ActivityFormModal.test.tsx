@@ -26,6 +26,28 @@ vi.mock('@/features/registry/hooks', () => ({
   usePreviewActivityImport: () => ({ mutateAsync: previewImport, isPending: false }),
 }))
 
+vi.mock('@/features/reference/api', () => ({
+  referenceApi: {
+    lgas: vi.fn().mockResolvedValue({
+      lgas: [
+        { id: 'lga-dutse', code: 'dutse', name: 'Dutse', state: 'Jigawa', ward_count: 2 },
+        { id: 'lga-kiyawa', code: 'kiyawa', name: 'Kiyawa', state: 'Jigawa', ward_count: 1 },
+      ],
+    }),
+    wards: vi.fn((lgaId: string) =>
+      Promise.resolve({
+        wards:
+          lgaId === 'lga-dutse'
+            ? [
+                { id: 'w-dutse-limawa', lga_id: 'lga-dutse', code: 'limawa', name: 'Limawa' },
+                { id: 'w-dutse-madobi', lga_id: 'lga-dutse', code: 'madobi', name: 'Madobi' },
+              ]
+            : [{ id: 'w-kiyawa-kwanda', lga_id: 'lga-kiyawa', code: 'kwanda', name: 'Kwanda' }],
+      }),
+    ),
+  },
+}))
+
 const catalog = programmeApi.catalog as Mock
 const createActivity = activityApi.create as Mock
 
@@ -53,6 +75,12 @@ describe('ActivityFormModal', () => {
     vi.clearAllMocks()
     catalog.mockResolvedValue(CATALOG)
   })
+
+  async function addLga(user: ReturnType<typeof userEvent.setup>, id: string, name: string) {
+    const add = await screen.findByLabelText('Add an LGA')
+    await waitFor(() => expect(within(add).getByRole('option', { name })).toBeInTheDocument())
+    await user.selectOptions(add, id)
+  }
 
   async function selectProgramme(user: ReturnType<typeof userEvent.setup>, programme = 'p-1') {
     await screen.findByLabelText('Programme')
@@ -159,5 +187,139 @@ describe('ActivityFormModal', () => {
 
     const programme = await screen.findByLabelText('Programme')
     expect(programme).toBeDisabled()
+  })
+
+  it('submits a multi-LGA, multi-ward location set', async () => {
+    createActivity.mockResolvedValue({ id: 'a-1' })
+    const user = userEvent.setup()
+    renderModal(<ActivityFormModal open onClose={() => {}} />)
+
+    await selectProgramme(user, 'p-1')
+    await user.type(screen.getByLabelText('Name'), 'Multi-area round')
+
+    // Two LGAs: specific wards in one, the whole of the other.
+    await addLga(user, 'lga-dutse', 'Dutse')
+    const dutse = await screen.findByRole('region', { name: 'Dutse' })
+    await waitFor(() => expect(within(dutse).getByLabelText('Limawa')).toBeInTheDocument())
+    await user.click(within(dutse).getByLabelText('Limawa'))
+    await user.click(within(dutse).getByLabelText('Madobi'))
+
+    await addLga(user, 'lga-kiyawa', 'Kiyawa')
+    const kiyawa = await screen.findByRole('region', { name: 'Kiyawa' })
+    await user.click(within(kiyawa).getByLabelText('Whole LGA (all wards)'))
+
+    await user.click(screen.getByRole('button', { name: /create activity/i }))
+
+    await waitFor(() =>
+      expect(createActivity).toHaveBeenCalledWith(
+        expect.objectContaining({
+          locations: [
+            { lga_id: 'lga-dutse', ward_ids: ['w-dutse-limawa', 'w-dutse-madobi'] },
+            { lga_id: 'lga-kiyawa', whole_lga: true },
+          ],
+        }),
+      ),
+    )
+  })
+
+  it('sends an LGA with no wards ticked as whole-LGA coverage', async () => {
+    // Picking an LGA and no wards is the same claim as ticking "whole LGA"; sending it
+    // as an empty ward list would store the same intent a second, different way.
+    createActivity.mockResolvedValue({ id: 'a-2' })
+    const user = userEvent.setup()
+    renderModal(<ActivityFormModal open onClose={() => {}} />)
+
+    await selectProgramme(user, 'p-1')
+    await user.type(screen.getByLabelText('Name'), 'Whole LGA round')
+    await addLga(user, 'lga-dutse', 'Dutse')
+
+    await user.click(screen.getByRole('button', { name: /create activity/i }))
+
+    await waitFor(() =>
+      expect(createActivity).toHaveBeenCalledWith(
+        expect.objectContaining({ locations: [{ lga_id: 'lga-dutse', whole_lga: true }] }),
+      ),
+    )
+  })
+
+  it('sends the location set on the upload path too', async () => {
+    // The wizard's upload path is multipart, a different transport from the JSON create —
+    // the set has to survive it, not arrive as "[object Object]".
+    previewImport.mockResolvedValue({ id: 'batch-7' })
+    const user = userEvent.setup()
+    renderModal(<ActivityFormModal open onClose={() => {}} />)
+
+    await selectProgramme(user, 'p-1')
+    await user.selectOptions(screen.getByLabelText('Does this activity involve beneficiaries?'), 'yes')
+    await user.type(screen.getByLabelText('Name'), 'Q1 Round')
+    await user.type(screen.getByLabelText('Target beneficiaries'), '250')
+
+    await addLga(user, 'lga-dutse', 'Dutse')
+    const dutse = await screen.findByRole('region', { name: 'Dutse' })
+    await waitFor(() => expect(within(dutse).getByLabelText('Limawa')).toBeInTheDocument())
+    await user.click(within(dutse).getByLabelText('Limawa'))
+
+    await user.click(screen.getByRole('button', { name: /next: upload/i }))
+    await user.upload(screen.getByLabelText(/choose a beneficiary file/i), new File(['a,b'], 'people.csv', { type: 'text/csv' }))
+    await user.click(screen.getByRole('button', { name: /upload & preview/i }))
+
+    await waitFor(() =>
+      expect(previewImport).toHaveBeenCalledWith(
+        expect.objectContaining({
+          draft: expect.objectContaining({
+            locations: [{ lga_id: 'lga-dutse', ward_ids: ['w-dutse-limawa'] }],
+          }),
+        }),
+      ),
+    )
+  })
+
+  it('returns to step 1 when the server rejects the location set on upload', async () => {
+    // The rejected field lives on step 1. Leaving the user on the upload step showed a
+    // bare "The request is invalid." next to a file input that was not the problem.
+    previewImport.mockRejectedValue({
+      code: 'VALIDATION_ERROR',
+      message: 'The request is invalid.',
+      details: [{ field: 'locations.0.ward_ids.0', message: 'That ward does not belong to the selected LGA.' }],
+    })
+    const user = userEvent.setup()
+    renderModal(<ActivityFormModal open onClose={() => {}} />)
+
+    await selectProgramme(user, 'p-1')
+    await user.selectOptions(screen.getByLabelText('Does this activity involve beneficiaries?'), 'yes')
+    await user.type(screen.getByLabelText('Name'), 'Q1 Round')
+    await user.type(screen.getByLabelText('Target beneficiaries'), '250')
+    await addLga(user, 'lga-dutse', 'Dutse')
+    const dutse = await screen.findByRole('region', { name: 'Dutse' })
+    await waitFor(() => expect(within(dutse).getByLabelText('Limawa')).toBeInTheDocument())
+    await user.click(within(dutse).getByLabelText('Limawa'))
+
+    await user.click(screen.getByRole('button', { name: /next: upload/i }))
+    await user.upload(screen.getByLabelText(/choose a beneficiary file/i), new File(['a,b'], 'people.csv', { type: 'text/csv' }))
+    await user.click(screen.getByRole('button', { name: /upload & preview/i }))
+
+    // Back on step 1, with the actual reason visible next to the ward that caused it.
+    expect(await screen.findByText('That ward does not belong to the selected LGA.')).toBeInTheDocument()
+    expect(screen.getByRole('button', { name: /next: upload/i })).toBeInTheDocument()
+  })
+
+  it('marks the ward the server rejected as belonging to another LGA', async () => {
+    createActivity.mockRejectedValue({
+      code: 'VALIDATION_ERROR',
+      details: [{ field: 'locations.0.ward_ids.0', message: 'That ward does not belong to the selected LGA.' }],
+    })
+    const user = userEvent.setup()
+    renderModal(<ActivityFormModal open onClose={() => {}} />)
+
+    await selectProgramme(user, 'p-1')
+    await user.type(screen.getByLabelText('Name'), 'Bad wards')
+    await addLga(user, 'lga-dutse', 'Dutse')
+    const dutse = await screen.findByRole('region', { name: 'Dutse' })
+    await waitFor(() => expect(within(dutse).getByLabelText('Limawa')).toBeInTheDocument())
+    await user.click(within(dutse).getByLabelText('Limawa'))
+
+    await user.click(screen.getByRole('button', { name: /create activity/i }))
+
+    expect(await screen.findByText('That ward does not belong to the selected LGA.')).toBeInTheDocument()
   })
 })

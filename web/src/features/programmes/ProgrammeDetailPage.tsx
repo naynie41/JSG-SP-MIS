@@ -14,7 +14,7 @@ import { ConfirmDialog } from '@/components/Modal/ConfirmDialog'
 import { Spinner } from '@/components/Spinner/Spinner'
 import { useAuth } from '@/lib/auth/AuthProvider'
 import { formatNaira } from '@/lib/utils/money'
-import { titleCase } from '@/features/registry/constants'
+import { summariseLocations } from '@/features/reference/format'
 import { cn } from '@/lib/utils/cn'
 import { GraduationCriteriaCard } from '@/features/graduation/GraduationCriteriaCard'
 import { GraduationModal } from '@/features/graduation/GraduationModal'
@@ -115,7 +115,7 @@ export function ProgrammeDetailPage() {
   const activityColumns: Column<Activity>[] = [
     { key: 'name', header: 'Activity', render: (a) => <Link to={`/activities/${a.id}`}>{a.name}</Link> },
     { key: 'status', header: 'Status', render: (a) => <Badge variant={statusVariant(`programme.${a.status === 'completed' ? 'closed' : a.status}`)} dot>{a.status}</Badge> },
-    { key: 'lga', header: 'LGA', render: (a) => (a.lga ? titleCase(a.lga) : '—') },
+    { key: 'locations', header: 'Areas', render: (a) => summariseLocations(a.locations) },
     { key: 'target', header: 'Target', align: 'right', render: (a) => (a.involves_beneficiaries ? a.target_beneficiaries ?? '—' : '—') },
     { key: 'budget', header: 'Budget', align: 'right', render: (a) => <span className={styles.mono}>{formatNaira(a.budget_amount)}</span> },
     {

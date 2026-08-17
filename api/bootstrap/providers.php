@@ -8,6 +8,7 @@ use App\Domain\Matching\MatchingServiceProvider;
 use App\Domain\Notification\NotificationServiceProvider;
 use App\Domain\Ops\OpsServiceProvider;
 use App\Domain\Programme\ProgrammeServiceProvider;
+use App\Domain\Reference\ReferenceServiceProvider;
 use App\Domain\Referral\ReferralServiceProvider;
 use App\Domain\Registry\RegistryServiceProvider;
 use App\Domain\Reporting\ReportingServiceProvider;
@@ -17,6 +18,7 @@ use App\Providers\AppServiceProvider;
 return [
     AppServiceProvider::class,
     AccessServiceProvider::class,
+    ReferenceServiceProvider::class,
     RegistryServiceProvider::class,
     MatchingServiceProvider::class,
     ProgrammeServiceProvider::class,

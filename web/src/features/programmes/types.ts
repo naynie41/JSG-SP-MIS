@@ -41,6 +41,18 @@ export interface ProgrammeInput {
   status?: ProgrammeStatus
 }
 
+/**
+ * One LGA of an activity's declared coverage, with the wards chosen inside it.
+ * `whole_lga` means the activity declared the entire LGA (stored as a null-ward row).
+ */
+export interface ActivityLocationGroup {
+  lga_id: string
+  lga_code: string | null
+  lga_name: string | null
+  whole_lga: boolean
+  wards: Array<{ ward_id: string; ward_code: string | null; ward_name: string | null }>
+}
+
 /** An MDA-owned activity that runs a catalog programme (§10); carries budget + funding. */
 export interface Activity {
   id: string
@@ -50,8 +62,8 @@ export interface Activity {
   name: string
   description: string | null
   target_beneficiaries: number | null
-  lga: string | null
-  ward: string | null
+  /** The declared location set, grouped LGA → wards. Descriptive only. */
+  locations: ActivityLocationGroup[]
   location_description: string | null
   schedule: Record<string, unknown> | null
   starts_on: string | null
@@ -106,8 +118,11 @@ export interface ActivityInput {
   name: string
   description?: string | null
   target_beneficiaries?: number | null
-  lga?: string | null
-  ward?: string | null
+  /**
+   * The declared location set. Sending it REPLACES the whole set; omitting it leaves
+   * the existing one untouched, so a partial edit cannot wipe an activity's coverage.
+   */
+  locations?: Array<{ lga_id: string; ward_ids?: string[]; whole_lga?: boolean }>
   location_description?: string | null
   starts_on?: string | null
   ends_on?: string | null

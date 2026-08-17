@@ -2,7 +2,7 @@
 
 // odsl-C:\Users\ACER\Desktop\JSG-SP-MIS\JSG-SP-MIS\api\app\Http\Controllers\Api\V1\Registry\ActivityImportController.php-PHPStan\BetterReflection\Reflection\ReflectionClass-App\Http\Controllers\Api\V1\Registry\ActivityImportController
 return \PHPStan\Cache\CacheItem::__set_state(array(
-   'variableKey' => 'v2-6.70.0.1-8.3.31-9698a10e6c8266fa54107431340c45212be3e49fbcccd014f35092ff32eb3ea1',
+   'variableKey' => 'v2-6.70.0.1-8.3.31-3025b8b942afa0e25bfe284ff9d954ebb710e505da85455c220a20787d4ab0a6',
    'data' => 
   array (
     'locatedSource' => 
@@ -36,8 +36,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
     'attributes' => 
     array (
     ),
-    'startLine' => 35,
-    'endLine' => 124,
+    'startLine' => 36,
+    'endLine' => 137,
     'startColumn' => 1,
     'endColumn' => 1,
     'parentClassName' => 'App\\Http\\Controllers\\Controller',
@@ -72,10 +72,41 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         'attributes' => 
         array (
         ),
-        'startLine' => 37,
-        'endLine' => 37,
-        'startColumn' => 33,
-        'endColumn' => 78,
+        'startLine' => 39,
+        'endLine' => 39,
+        'startColumn' => 9,
+        'endColumn' => 54,
+        'isPromoted' => true,
+        'declaredAtCompileTime' => true,
+        'immediateVirtual' => false,
+        'immediateHooks' => 
+        array (
+        ),
+      ),
+      'locations' => 
+      array (
+        'declaringClassName' => 'App\\Http\\Controllers\\Api\\V1\\Registry\\ActivityImportController',
+        'implementingClassName' => 'App\\Http\\Controllers\\Api\\V1\\Registry\\ActivityImportController',
+        'name' => 'locations',
+        'modifiers' => 132,
+        'type' => 
+        array (
+          'class' => 'PHPStan\\BetterReflection\\Reflection\\ReflectionNamedType',
+          'data' => 
+          array (
+            'name' => 'App\\Domain\\Programme\\Services\\ActivityLocationService',
+            'isIdentifier' => false,
+          ),
+        ),
+        'default' => NULL,
+        'docComment' => NULL,
+        'attributes' => 
+        array (
+        ),
+        'startLine' => 40,
+        'endLine' => 40,
+        'startColumn' => 9,
+        'endColumn' => 59,
         'isPromoted' => true,
         'declaredAtCompileTime' => true,
         'immediateVirtual' => false,
@@ -110,11 +141,37 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             'attributes' => 
             array (
             ),
-            'startLine' => 37,
-            'endLine' => 37,
-            'startColumn' => 33,
-            'endColumn' => 78,
+            'startLine' => 39,
+            'endLine' => 39,
+            'startColumn' => 9,
+            'endColumn' => 54,
             'parameterIndex' => 0,
+            'isOptional' => false,
+          ),
+          'locations' => 
+          array (
+            'name' => 'locations',
+            'default' => NULL,
+            'type' => 
+            array (
+              'class' => 'PHPStan\\BetterReflection\\Reflection\\ReflectionNamedType',
+              'data' => 
+              array (
+                'name' => 'App\\Domain\\Programme\\Services\\ActivityLocationService',
+                'isIdentifier' => false,
+              ),
+            ),
+            'isVariadic' => false,
+            'byRef' => false,
+            'isPromoted' => true,
+            'attributes' => 
+            array (
+            ),
+            'startLine' => 40,
+            'endLine' => 40,
+            'startColumn' => 9,
+            'endColumn' => 59,
+            'parameterIndex' => 1,
             'isOptional' => false,
           ),
         ),
@@ -124,10 +181,10 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         array (
         ),
         'docComment' => NULL,
-        'startLine' => 37,
-        'endLine' => 37,
+        'startLine' => 38,
+        'endLine' => 41,
         'startColumn' => 5,
-        'endColumn' => 82,
+        'endColumn' => 8,
         'couldThrow' => false,
         'isClosure' => false,
         'isGenerator' => false,
@@ -163,8 +220,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             'attributes' => 
             array (
             ),
-            'startLine' => 40,
-            'endLine' => 40,
+            'startLine' => 44,
+            'endLine' => 44,
             'startColumn' => 27,
             'endColumn' => 62,
             'parameterIndex' => 0,
@@ -185,8 +242,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         array (
         ),
         'docComment' => '/** Stage an unbound preview batch for a draft activity + file, and profile its columns. */',
-        'startLine' => 40,
-        'endLine' => 75,
+        'startLine' => 44,
+        'endLine' => 79,
         'startColumn' => 5,
         'endColumn' => 5,
         'couldThrow' => false,
@@ -224,8 +281,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             'attributes' => 
             array (
             ),
-            'startLine' => 82,
-            'endLine' => 82,
+            'startLine' => 86,
+            'endLine' => 86,
             'startColumn' => 29,
             'endColumn' => 41,
             'parameterIndex' => 0,
@@ -250,8 +307,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             'attributes' => 
             array (
             ),
-            'startLine' => 82,
-            'endLine' => 82,
+            'startLine' => 86,
+            'endLine' => 86,
             'startColumn' => 44,
             'endColumn' => 69,
             'parameterIndex' => 1,
@@ -276,8 +333,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
  * under it (new beneficiaries + interventions; pending Service Requests for served
  * duplicates). Any failure rolls back everything, including the activity.
  */',
-        'startLine' => 82,
-        'endLine' => 123,
+        'startLine' => 86,
+        'endLine' => 136,
         'startColumn' => 5,
         'endColumn' => 5,
         'couldThrow' => false,

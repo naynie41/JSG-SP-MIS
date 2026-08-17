@@ -2,7 +2,7 @@
 
 // odsl-C:\Users\ACER\Desktop\JSG-SP-MIS\JSG-SP-MIS\api\app\Domain\Reporting\Gis\GisCoverageService.php-PHPStan\BetterReflection\Reflection\ReflectionClass-App\Domain\Reporting\Gis\GisCoverageService
 return \PHPStan\Cache\CacheItem::__set_state(array(
-   'variableKey' => 'v2-6.70.0.1-8.3.31-3a3818110022d7eab82d8c543097d3c7e837d81747090d72e892acee72401638',
+   'variableKey' => 'v2-6.70.0.1-8.3.31-b0adf7f994271b725c22b2f44cce21ef17477eac5da1bf6efe65fac8901718f5',
    'data' => 
   array (
     'locatedSource' => 
@@ -33,7 +33,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
     array (
     ),
     'startLine' => 28,
-    'endLine' => 365,
+    'endLine' => 401,
     'startColumn' => 1,
     'endColumn' => 1,
     'parentClassName' => NULL,
@@ -365,7 +365,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
  * @return list<string>
  */',
         'startLine' => 122,
-        'endLine' => 143,
+        'endLine' => 138,
         'startColumn' => 5,
         'endColumn' => 5,
         'couldThrow' => false,
@@ -403,8 +403,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             'attributes' => 
             array (
             ),
-            'startLine' => 151,
-            'endLine' => 151,
+            'startLine' => 146,
+            'endLine' => 146,
             'startColumn' => 43,
             'endColumn' => 60,
             'parameterIndex' => 0,
@@ -430,8 +430,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
  * @param  list<string>  $activityIds
  * @return list<string>
  */',
-        'startLine' => 151,
-        'endLine' => 161,
+        'startLine' => 146,
+        'endLine' => 156,
         'startColumn' => 5,
         'endColumn' => 5,
         'couldThrow' => false,
@@ -469,8 +469,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             'attributes' => 
             array (
             ),
-            'startLine' => 170,
-            'endLine' => 170,
+            'startLine' => 165,
+            'endLine' => 165,
             'startColumn' => 36,
             'endColumn' => 56,
             'parameterIndex' => 0,
@@ -495,8 +495,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             'attributes' => 
             array (
             ),
-            'startLine' => 170,
-            'endLine' => 170,
+            'startLine' => 165,
+            'endLine' => 165,
             'startColumn' => 59,
             'endColumn' => 72,
             'parameterIndex' => 1,
@@ -521,8 +521,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             'attributes' => 
             array (
             ),
-            'startLine' => 170,
-            'endLine' => 170,
+            'startLine' => 165,
+            'endLine' => 165,
             'startColumn' => 75,
             'endColumn' => 97,
             'parameterIndex' => 2,
@@ -549,8 +549,108 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
  *
  * @return array<string, int>
  */',
-        'startLine' => 170,
-        'endLine' => 197,
+        'startLine' => 165,
+        'endLine' => 189,
+        'startColumn' => 5,
+        'endColumn' => 5,
+        'couldThrow' => false,
+        'isClosure' => false,
+        'isGenerator' => false,
+        'isVariadic' => false,
+        'modifiers' => 4,
+        'namespace' => 'App\\Domain\\Reporting\\Gis',
+        'declaringClassName' => 'App\\Domain\\Reporting\\Gis\\GisCoverageService',
+        'implementingClassName' => 'App\\Domain\\Reporting\\Gis\\GisCoverageService',
+        'currentClassName' => 'App\\Domain\\Reporting\\Gis\\GisCoverageService',
+        'aliasName' => NULL,
+      ),
+      'areaCodesFor' => 
+      array (
+        'name' => 'areaCodesFor',
+        'parameters' => 
+        array (
+          'activity' => 
+          array (
+            'name' => 'activity',
+            'default' => NULL,
+            'type' => 
+            array (
+              'class' => 'PHPStan\\BetterReflection\\Reflection\\ReflectionNamedType',
+              'data' => 
+              array (
+                'name' => 'App\\Domain\\Programme\\Models\\Activity',
+                'isIdentifier' => false,
+              ),
+            ),
+            'isVariadic' => false,
+            'byRef' => false,
+            'isPromoted' => false,
+            'attributes' => 
+            array (
+            ),
+            'startLine' => 205,
+            'endLine' => 205,
+            'startColumn' => 35,
+            'endColumn' => 52,
+            'parameterIndex' => 0,
+            'isOptional' => false,
+          ),
+          'column' => 
+          array (
+            'name' => 'column',
+            'default' => NULL,
+            'type' => 
+            array (
+              'class' => 'PHPStan\\BetterReflection\\Reflection\\ReflectionNamedType',
+              'data' => 
+              array (
+                'name' => 'string',
+                'isIdentifier' => true,
+              ),
+            ),
+            'isVariadic' => false,
+            'byRef' => false,
+            'isPromoted' => false,
+            'attributes' => 
+            array (
+            ),
+            'startLine' => 205,
+            'endLine' => 205,
+            'startColumn' => 55,
+            'endColumn' => 68,
+            'parameterIndex' => 1,
+            'isOptional' => false,
+          ),
+        ),
+        'returnsReference' => false,
+        'returnType' => 
+        array (
+          'class' => 'PHPStan\\BetterReflection\\Reflection\\ReflectionNamedType',
+          'data' => 
+          array (
+            'name' => 'array',
+            'isIdentifier' => true,
+          ),
+        ),
+        'attributes' => 
+        array (
+        ),
+        'docComment' => '/**
+ * The area codes an activity declares, at the requested level.
+ *
+ * An activity can now declare SEVERAL areas, so its budget appears under each one it
+ * declares. The budget is NOT divided between them: the system has no basis for a
+ * per-area split, and inventing one would put a fabricated figure on a map. Each cell
+ * therefore reads "committed funding of activities operating here" — a per-area
+ * figure that must not be summed across areas to produce a state total.
+ *
+ * At ward level a whole-LGA declaration expands to every ward in that LGA, matching
+ * {@see Activity::scopeDeclaredIn}: declaring a whole LGA is a claim to cover all of it.
+ *
+ * @return list<string>
+ */',
+        'startLine' => 205,
+        'endLine' => 228,
         'startColumn' => 5,
         'endColumn' => 5,
         'couldThrow' => false,
@@ -588,8 +688,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             'attributes' => 
             array (
             ),
-            'startLine' => 207,
-            'endLine' => 207,
+            'startLine' => 238,
+            'endLine' => 238,
             'startColumn' => 38,
             'endColumn' => 58,
             'parameterIndex' => 0,
@@ -614,8 +714,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             'attributes' => 
             array (
             ),
-            'startLine' => 207,
-            'endLine' => 207,
+            'startLine' => 238,
+            'endLine' => 238,
             'startColumn' => 61,
             'endColumn' => 74,
             'parameterIndex' => 1,
@@ -640,8 +740,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             'attributes' => 
             array (
             ),
-            'startLine' => 207,
-            'endLine' => 207,
+            'startLine' => 238,
+            'endLine' => 238,
             'startColumn' => 77,
             'endColumn' => 99,
             'parameterIndex' => 2,
@@ -655,12 +755,12 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
               'code' => 'null',
               'attributes' => 
               array (
-                'startLine' => 207,
-                'endLine' => 207,
-                'startTokenPos' => 1607,
-                'startFilePos' => 9080,
-                'endTokenPos' => 1607,
-                'endFilePos' => 9083,
+                'startLine' => 238,
+                'endLine' => 238,
+                'startTokenPos' => 1693,
+                'startFilePos' => 10233,
+                'endTokenPos' => 1693,
+                'endFilePos' => 10236,
               ),
             ),
             'type' => 
@@ -697,8 +797,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             'attributes' => 
             array (
             ),
-            'startLine' => 207,
-            'endLine' => 207,
+            'startLine' => 238,
+            'endLine' => 238,
             'startColumn' => 102,
             'endColumn' => 132,
             'parameterIndex' => 3,
@@ -726,8 +826,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
  * @param  list<string>|null  $partnerServedIds
  * @return array<string, int>
  */',
-        'startLine' => 207,
-        'endLine' => 256,
+        'startLine' => 238,
+        'endLine' => 287,
         'startColumn' => 5,
         'endColumn' => 5,
         'couldThrow' => false,
@@ -765,8 +865,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             'attributes' => 
             array (
             ),
-            'startLine' => 264,
-            'endLine' => 264,
+            'startLine' => 295,
+            'endLine' => 295,
             'startColumn' => 40,
             'endColumn' => 60,
             'parameterIndex' => 0,
@@ -791,8 +891,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             'attributes' => 
             array (
             ),
-            'startLine' => 264,
-            'endLine' => 264,
+            'startLine' => 295,
+            'endLine' => 295,
             'startColumn' => 63,
             'endColumn' => 76,
             'parameterIndex' => 1,
@@ -817,8 +917,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             'attributes' => 
             array (
             ),
-            'startLine' => 264,
-            'endLine' => 264,
+            'startLine' => 295,
+            'endLine' => 295,
             'startColumn' => 79,
             'endColumn' => 101,
             'parameterIndex' => 2,
@@ -844,8 +944,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
  *
  * @return array<string, array{activities: int, programmes: int, mdas: list<string>}>
  */',
-        'startLine' => 264,
-        'endLine' => 302,
+        'startLine' => 295,
+        'endLine' => 338,
         'startColumn' => 5,
         'endColumn' => 5,
         'couldThrow' => false,
@@ -883,8 +983,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             'attributes' => 
             array (
             ),
-            'startLine' => 311,
-            'endLine' => 311,
+            'startLine' => 347,
+            'endLine' => 347,
             'startColumn' => 40,
             'endColumn' => 60,
             'parameterIndex' => 0,
@@ -909,8 +1009,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             'attributes' => 
             array (
             ),
-            'startLine' => 311,
-            'endLine' => 311,
+            'startLine' => 347,
+            'endLine' => 347,
             'startColumn' => 63,
             'endColumn' => 76,
             'parameterIndex' => 1,
@@ -935,8 +1035,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             'attributes' => 
             array (
             ),
-            'startLine' => 311,
-            'endLine' => 311,
+            'startLine' => 347,
+            'endLine' => 347,
             'startColumn' => 79,
             'endColumn' => 101,
             'parameterIndex' => 2,
@@ -950,12 +1050,12 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
               'code' => 'null',
               'attributes' => 
               array (
-                'startLine' => 311,
-                'endLine' => 311,
-                'startTokenPos' => 2596,
-                'startFilePos' => 13436,
-                'endTokenPos' => 2596,
-                'endFilePos' => 13439,
+                'startLine' => 347,
+                'endLine' => 347,
+                'startTokenPos' => 2689,
+                'startFilePos' => 14831,
+                'endTokenPos' => 2689,
+                'endFilePos' => 14834,
               ),
             ),
             'type' => 
@@ -992,8 +1092,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             'attributes' => 
             array (
             ),
-            'startLine' => 311,
-            'endLine' => 311,
+            'startLine' => 347,
+            'endLine' => 347,
             'startColumn' => 104,
             'endColumn' => 134,
             'parameterIndex' => 3,
@@ -1020,8 +1120,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
  * @param  list<string>|null  $partnerServedIds
  * @return array<string, int>
  */',
-        'startLine' => 311,
-        'endLine' => 348,
+        'startLine' => 347,
+        'endLine' => 384,
         'startColumn' => 5,
         'endColumn' => 5,
         'couldThrow' => false,
@@ -1059,8 +1159,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             'attributes' => 
             array (
             ),
-            'startLine' => 350,
-            'endLine' => 350,
+            'startLine' => 386,
+            'endLine' => 386,
             'startColumn' => 27,
             'endColumn' => 39,
             'parameterIndex' => 0,
@@ -1081,8 +1181,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         array (
         ),
         'docComment' => NULL,
-        'startLine' => 350,
-        'endLine' => 355,
+        'startLine' => 386,
+        'endLine' => 391,
         'startColumn' => 5,
         'endColumn' => 5,
         'couldThrow' => false,
@@ -1120,8 +1220,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             'attributes' => 
             array (
             ),
-            'startLine' => 357,
-            'endLine' => 357,
+            'startLine' => 393,
+            'endLine' => 393,
             'startColumn' => 28,
             'endColumn' => 40,
             'parameterIndex' => 0,
@@ -1142,8 +1242,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         array (
         ),
         'docComment' => NULL,
-        'startLine' => 357,
-        'endLine' => 364,
+        'startLine' => 393,
+        'endLine' => 400,
         'startColumn' => 5,
         'endColumn' => 5,
         'couldThrow' => false,

@@ -301,10 +301,11 @@ class User extends Authenticatable implements MdaScoped
 
         $ids = $this->mda_id !== null ? [$this->mda_id] : [];
 
+        // Only grants that currently open access. This filters REVOKED as well as
+        // expired: revoking retains the row for the audit trail (NFR-PRV-01), so the row
+        // existing no longer means access is held.
         $granted = $this->mdaAccessGrants()
-            ->where(function ($query): void {
-                $query->whereNull('expires_at')->orWhere('expires_at', '>', now());
-            })
+            ->active()
             ->pluck('mda_id')
             ->all();
 

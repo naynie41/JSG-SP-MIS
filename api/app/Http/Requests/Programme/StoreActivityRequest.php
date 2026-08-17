@@ -6,7 +6,7 @@ namespace App\Http\Requests\Programme;
 
 use App\Domain\Programme\Enums\ActivityStatus;
 use App\Domain\Programme\Rules\IsFundingPartner;
-use App\Domain\Registry\Enums\Lga;
+use App\Http\Requests\Programme\Concerns\ValidatesLocationSet;
 use Illuminate\Contracts\Validation\Validator;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Rule;
@@ -21,9 +21,19 @@ use Illuminate\Validation\Rule;
  */
 class StoreActivityRequest extends FormRequest
 {
+    use ValidatesLocationSet;
+
     public function authorize(): bool
     {
         return $this->user() !== null;
+    }
+
+    /**
+     * @return array<string, string>
+     */
+    public function messages(): array
+    {
+        return $this->locationSetMessages();
     }
 
     /**
@@ -40,8 +50,9 @@ class StoreActivityRequest extends FormRequest
             // involves=true wizard flow (rejected here per §10).
             'target_beneficiaries' => ['prohibited'],
             'file' => ['prohibited'],
-            'lga' => ['nullable', Rule::enum(Lga::class)],
-            'ward' => ['nullable', 'string', 'max:100'],
+            // The location SET replaces the old single lga/ward pair — many LGAs, many
+            // wards per LGA, a whole-LGA entry for "everywhere in this LGA".
+            ...$this->locationSetRules(),
             'location_description' => ['nullable', 'string', 'max:255'],
             'schedule' => ['nullable', 'array'],
             'starts_on' => ['nullable', 'date'],
@@ -56,6 +67,8 @@ class StoreActivityRequest extends FormRequest
     public function withValidator(Validator $validator): void
     {
         $validator->after(function (Validator $validator): void {
+            $this->validateLocationSet($validator);
+
             // A beneficiary-involving activity MUST come through the upload wizard,
             // which requires a mandatory beneficiary file (§10). This metadata-only
             // endpoint cannot create one.

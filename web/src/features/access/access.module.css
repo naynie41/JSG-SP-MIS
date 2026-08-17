@@ -102,3 +102,11 @@
   color: var(--text-muted-strong);
   font-size: var(--fs-label);
 }
+
+/* A revoked grant stays listed as history (NFR-PRV-01), so its status cell carries
+   who ended the access and when — not just that it is no longer active. */
+.statusStack {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}

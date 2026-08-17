@@ -356,6 +356,14 @@ export interface ImportBatch {
     skipped_rows: number
   }
   error: string | null
+  /** Seconds this batch has been waiting on the queue; null when it is not waiting. */
+  processing_for_seconds: number | null
+  /**
+   * Waiting on the queue longer than parsing could plausibly take — nearly always a
+   * queue worker that is not consuming. Server-computed; there is no error to show
+   * because nothing failed, the job was just never picked up.
+   */
+  processing_stalled: boolean
   /** Thresholds the engine used, for the band shown in place of a raw score. */
   matching_thresholds?: { review: number; auto_accept: number | null } | null
   rows?: ImportRow[]

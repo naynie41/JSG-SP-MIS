@@ -2,7 +2,7 @@
 
 // odsl-C:\Users\ACER\Desktop\JSG-SP-MIS\JSG-SP-MIS\api\app\Http\Requests\Programme\UpdateActivityRequest.php-PHPStan\BetterReflection\Reflection\ReflectionClass-App\Http\Requests\Programme\UpdateActivityRequest
 return \PHPStan\Cache\CacheItem::__set_state(array(
-   'variableKey' => 'v2-6.70.0.1-8.3.31-3a54190b6b1f606662433297f6d496389ad7cfee25570065626e3d9676d20f73',
+   'variableKey' => 'v2-6.70.0.1-8.3.31-df6986f587d088da619a931710574cd592bc2987712684f7bd91e787f2d46e3f',
    'data' => 
   array (
     'locatedSource' => 
@@ -31,8 +31,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
     'attributes' => 
     array (
     ),
-    'startLine' => 19,
-    'endLine' => 47,
+    'startLine' => 20,
+    'endLine' => 64,
     'startColumn' => 1,
     'endColumn' => 1,
     'parentClassName' => 'Illuminate\\Foundation\\Http\\FormRequest',
@@ -41,6 +41,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
     ),
     'traitClassNames' => 
     array (
+      0 => 'App\\Http\\Requests\\Programme\\Concerns\\ValidatesLocationSet',
     ),
     'immediateConstants' => 
     array (
@@ -70,8 +71,106 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         array (
         ),
         'docComment' => NULL,
-        'startLine' => 21,
-        'endLine' => 24,
+        'startLine' => 24,
+        'endLine' => 27,
+        'startColumn' => 5,
+        'endColumn' => 5,
+        'couldThrow' => false,
+        'isClosure' => false,
+        'isGenerator' => false,
+        'isVariadic' => false,
+        'modifiers' => 1,
+        'namespace' => 'App\\Http\\Requests\\Programme',
+        'declaringClassName' => 'App\\Http\\Requests\\Programme\\UpdateActivityRequest',
+        'implementingClassName' => 'App\\Http\\Requests\\Programme\\UpdateActivityRequest',
+        'currentClassName' => 'App\\Http\\Requests\\Programme\\UpdateActivityRequest',
+        'aliasName' => NULL,
+      ),
+      'messages' => 
+      array (
+        'name' => 'messages',
+        'parameters' => 
+        array (
+        ),
+        'returnsReference' => false,
+        'returnType' => 
+        array (
+          'class' => 'PHPStan\\BetterReflection\\Reflection\\ReflectionNamedType',
+          'data' => 
+          array (
+            'name' => 'array',
+            'isIdentifier' => true,
+          ),
+        ),
+        'attributes' => 
+        array (
+        ),
+        'docComment' => '/**
+ * @return array<string, string>
+ */',
+        'startLine' => 32,
+        'endLine' => 35,
+        'startColumn' => 5,
+        'endColumn' => 5,
+        'couldThrow' => false,
+        'isClosure' => false,
+        'isGenerator' => false,
+        'isVariadic' => false,
+        'modifiers' => 1,
+        'namespace' => 'App\\Http\\Requests\\Programme',
+        'declaringClassName' => 'App\\Http\\Requests\\Programme\\UpdateActivityRequest',
+        'implementingClassName' => 'App\\Http\\Requests\\Programme\\UpdateActivityRequest',
+        'currentClassName' => 'App\\Http\\Requests\\Programme\\UpdateActivityRequest',
+        'aliasName' => NULL,
+      ),
+      'withValidator' => 
+      array (
+        'name' => 'withValidator',
+        'parameters' => 
+        array (
+          'validator' => 
+          array (
+            'name' => 'validator',
+            'default' => NULL,
+            'type' => 
+            array (
+              'class' => 'PHPStan\\BetterReflection\\Reflection\\ReflectionNamedType',
+              'data' => 
+              array (
+                'name' => 'Illuminate\\Contracts\\Validation\\Validator',
+                'isIdentifier' => false,
+              ),
+            ),
+            'isVariadic' => false,
+            'byRef' => false,
+            'isPromoted' => false,
+            'attributes' => 
+            array (
+            ),
+            'startLine' => 37,
+            'endLine' => 37,
+            'startColumn' => 35,
+            'endColumn' => 54,
+            'parameterIndex' => 0,
+            'isOptional' => false,
+          ),
+        ),
+        'returnsReference' => false,
+        'returnType' => 
+        array (
+          'class' => 'PHPStan\\BetterReflection\\Reflection\\ReflectionNamedType',
+          'data' => 
+          array (
+            'name' => 'void',
+            'isIdentifier' => true,
+          ),
+        ),
+        'attributes' => 
+        array (
+        ),
+        'docComment' => NULL,
+        'startLine' => 37,
+        'endLine' => 40,
         'startColumn' => 5,
         'endColumn' => 5,
         'couldThrow' => false,
@@ -107,8 +206,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         'docComment' => '/**
  * @return array<string, mixed>
  */',
-        'startLine' => 29,
-        'endLine' => 46,
+        'startLine' => 45,
+        'endLine' => 63,
         'startColumn' => 5,
         'endColumn' => 5,
         'couldThrow' => false,

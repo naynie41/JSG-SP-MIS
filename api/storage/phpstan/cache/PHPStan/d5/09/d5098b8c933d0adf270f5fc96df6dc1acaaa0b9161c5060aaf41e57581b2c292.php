@@ -2,7 +2,7 @@
 
 // odsl-C:\Users\ACER\Desktop\JSG-SP-MIS\JSG-SP-MIS\api\app\Http\Controllers\Api\V1\Access\MdaAccessGrantController.php-PHPStan\BetterReflection\Reflection\ReflectionClass-App\Http\Controllers\Api\V1\Access\MdaAccessGrantController
 return \PHPStan\Cache\CacheItem::__set_state(array(
-   'variableKey' => 'v2-6.70.0.1-8.3.31-cd98c6ce05340c6982fb9994226c4af2d4a5274e2d8fcd93f13d880ab9aab3a4',
+   'variableKey' => 'v2-6.70.0.1-8.3.31-e80c8266a350c48a4c52a6653aa06f20370c8feca1157968fdded040661f633e',
    'data' => 
   array (
     'locatedSource' => 
@@ -31,7 +31,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
     array (
     ),
     'startLine' => 21,
-    'endLine' => 78,
+    'endLine' => 112,
     'startColumn' => 1,
     'endColumn' => 1,
     'parentClassName' => 'App\\Http\\Controllers\\Controller',
@@ -169,8 +169,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             'attributes' => 
             array (
             ),
-            'startLine' => 51,
-            'endLine' => 51,
+            'startLine' => 63,
+            'endLine' => 63,
             'startColumn' => 29,
             'endColumn' => 44,
             'parameterIndex' => 0,
@@ -195,8 +195,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             'attributes' => 
             array (
             ),
-            'startLine' => 51,
-            'endLine' => 51,
+            'startLine' => 63,
+            'endLine' => 63,
             'startColumn' => 47,
             'endColumn' => 67,
             'parameterIndex' => 1,
@@ -216,9 +216,20 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         'attributes' => 
         array (
         ),
-        'docComment' => NULL,
-        'startLine' => 51,
-        'endLine' => 58,
+        'docComment' => '/**
+ * Revoke a cross-MDA access grant.
+ *
+ * A SOFT revoke: the row is retained with `revoked_at`/`revoked_by`/reason set
+ * (NFR-PRV-01, FR-AUD-01). Deleting it would erase the evidence that the access ever
+ * existed, leaving an auditor unable to distinguish "access was held and withdrawn"
+ * from "access was never granted" — the opposite of what an access trail is for.
+ *
+ * Idempotent: revoking an already-revoked grant changes nothing and does not
+ * re-stamp the original actor or time, because the FIRST withdrawal is the one that
+ * ended the access.
+ */',
+        'startLine' => 63,
+        'endLine' => 84,
         'startColumn' => 5,
         'endColumn' => 5,
         'couldThrow' => false,
@@ -256,8 +267,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             'attributes' => 
             array (
             ),
-            'startLine' => 63,
-            'endLine' => 63,
+            'startLine' => 89,
+            'endLine' => 89,
             'startColumn' => 30,
             'endColumn' => 50,
             'parameterIndex' => 0,
@@ -280,8 +291,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         'docComment' => '/**
  * @return array<string, mixed>
  */',
-        'startLine' => 63,
-        'endLine' => 77,
+        'startLine' => 89,
+        'endLine' => 111,
         'startColumn' => 5,
         'endColumn' => 5,
         'couldThrow' => false,

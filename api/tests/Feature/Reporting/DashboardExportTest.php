@@ -37,7 +37,7 @@ class DashboardExportTest extends TestCase
 
         $this->mda = Mda::factory()->create(['name' => 'MDA A']);
         $this->programme = Programme::factory()->individual()->create(['status' => 'active']);
-        $activity = Activity::factory()->forProgramme($this->programme, $this->mda)->create(['status' => 'active', 'lga' => 'dutse', 'budget_amount' => 1_000_000, 'target_beneficiaries' => 4]);
+        $activity = Activity::factory()->forProgramme($this->programme, $this->mda)->inLgaCode('dutse')->create(['status' => 'active', 'budget_amount' => 1_000_000, 'target_beneficiaries' => 4]);
 
         // A distinctively-named beneficiary so we can prove the export never leaks it.
         $ben = Beneficiary::factory()->create(['owner_mda_id' => $this->mda->id, 'lga' => 'dutse', 'first_name' => 'Zzxq', 'last_name' => 'Secretname']);

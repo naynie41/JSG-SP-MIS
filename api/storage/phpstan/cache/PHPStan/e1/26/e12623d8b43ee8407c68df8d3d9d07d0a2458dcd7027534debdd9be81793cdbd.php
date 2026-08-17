@@ -2,7 +2,7 @@
 
 // odsl-C:\Users\ACER\Desktop\JSG-SP-MIS\JSG-SP-MIS\api\app\Domain\Access\Models\User.php-PHPStan\BetterReflection\Reflection\ReflectionClass-App\Domain\Access\Models\User
 return \PHPStan\Cache\CacheItem::__set_state(array(
-   'variableKey' => 'v2-6.70.0.1-8.3.31-fff53d6fcd4c37c7b9be357e0b475702957b85cf3233aed363cd267e7fda02c6',
+   'variableKey' => 'v2-6.70.0.1-8.3.31-cb5dc1613afedc1a9fd1192af8b727a89fed98e76081a1b015be235aaa3d0e9a',
    'data' => 
   array (
     'locatedSource' => 
@@ -44,7 +44,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
     array (
     ),
     'startLine' => 40,
-    'endLine' => 341,
+    'endLine' => 342,
     'startColumn' => 1,
     'endColumn' => 1,
     'parentClassName' => 'Illuminate\\Foundation\\Auth\\User',
@@ -939,7 +939,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
  * @return list<string>
  */',
         'startLine' => 296,
-        'endLine' => 312,
+        'endLine' => 313,
         'startColumn' => 5,
         'endColumn' => 5,
         'couldThrow' => false,
@@ -977,8 +977,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
  *
  * @return HasMany<MdaAccessGrant, $this>
  */',
-        'startLine' => 319,
-        'endLine' => 322,
+        'startLine' => 320,
+        'endLine' => 323,
         'startColumn' => 5,
         'endColumn' => 5,
         'couldThrow' => false,
@@ -1012,8 +1012,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         array (
         ),
         'docComment' => NULL,
-        'startLine' => 324,
-        'endLine' => 327,
+        'startLine' => 325,
+        'endLine' => 328,
         'startColumn' => 5,
         'endColumn' => 5,
         'couldThrow' => false,
@@ -1050,8 +1050,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
  * Invalidate all access tokens whenever the password changes
  * (SECURITY.md §2: invalidate tokens on password change).
  */',
-        'startLine' => 333,
-        'endLine' => 340,
+        'startLine' => 334,
+        'endLine' => 341,
         'startColumn' => 5,
         'endColumn' => 5,
         'couldThrow' => false,

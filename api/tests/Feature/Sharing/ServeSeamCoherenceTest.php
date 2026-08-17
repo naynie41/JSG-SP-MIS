@@ -10,6 +10,7 @@ use App\Domain\Access\Models\Role;
 use App\Domain\Access\Models\User;
 use App\Domain\Benefit\Services\DeliveryAuthorization;
 use App\Domain\Programme\Services\EnrollmentService;
+use App\Domain\Registry\Enums\ConsentStatus;
 use App\Domain\Registry\Enums\ServiceRequestStatus;
 use App\Domain\Registry\Models\Beneficiary;
 use App\Domain\Registry\Models\BeneficiaryServiceGrant;
@@ -180,6 +181,49 @@ class ServeSeamCoherenceTest extends TestCase
         app(ServiceRequestService::class)->decline($request, $this->ownerUser, 'Already served this quarter');
 
         $this->assertAllAgree($this->otherUser, false, 'after the owner declined');
+    }
+
+    /* ---------------------------------------------- consent gates all three too */
+
+    /**
+     * Withdrawing consent must close every door, not two of three.
+     *
+     * The cross-MDA consent gate (NFR-PRV-01) is what makes a grant EFFECTIVE. A grant
+     * is the owner MDA's permission; consent is the person's. If enrolment can proceed
+     * on the grant alone, a citizen who withdrew consent is still enrolled by an MDA
+     * that is not their data controller — and the read and delivery gates that DO honour
+     * the withdrawal give a false impression that the withdrawal took effect.
+     */
+    public function test_withdrawing_consent_closes_all_three_gates(): void
+    {
+        $this->acceptedRequest();
+        $this->assertAllAgree($this->otherUser, true, 'while consent stands');
+
+        $this->beneficiary->sharing_consent = ConsentStatus::Withdrawn;
+        $this->beneficiary->saveQuietly();
+
+        $this->assertAllAgree($this->otherUser, false, 'after consent was withdrawn');
+    }
+
+    public function test_an_unrecorded_consent_decision_is_not_consent(): void
+    {
+        $this->acceptedRequest();
+
+        // `unknown` is an absent decision, never an implied yes (NFR-PRV-01).
+        $this->beneficiary->sharing_consent = ConsentStatus::Unknown;
+        $this->beneficiary->saveQuietly();
+
+        $this->assertAllAgree($this->otherUser, false, 'with no consent decision recorded');
+    }
+
+    public function test_the_owner_is_unaffected_by_the_cross_mda_consent_gate(): void
+    {
+        $this->beneficiary->sharing_consent = ConsentStatus::Withdrawn;
+        $this->beneficiary->saveQuietly();
+
+        // The gate governs CROSS-MDA sharing. The owning MDA is not a third party to its
+        // own record, and must not lose access to it.
+        $this->assertAllAgree($this->ownerUser, true, 'for the owner after consent was withdrawn');
     }
 
     /* ------------------------------------------- the grant is per-beneficiary only */

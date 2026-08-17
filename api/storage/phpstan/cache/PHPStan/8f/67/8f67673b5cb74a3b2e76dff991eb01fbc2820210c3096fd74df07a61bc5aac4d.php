@@ -2,7 +2,7 @@
 
 // odsl-C:\Users\ACER\Desktop\JSG-SP-MIS\JSG-SP-MIS\api\app\Domain\Registry\Models\ImportBatch.php-PHPStan\BetterReflection\Reflection\ReflectionClass-App\Domain\Registry\Models\ImportBatch
 return \PHPStan\Cache\CacheItem::__set_state(array(
-   'variableKey' => 'v2-6.70.0.1-8.3.31-e7925c5e579b4372e0103a1e137fcc854dfa13056a13b6f31ad463f995d5611f',
+   'variableKey' => 'v2-6.70.0.1-8.3.31-439f12d9fde5e7da8d6f6bd5cb8139970318a8689b1eaf04ee580ba7864e5f99',
    'data' => 
   array (
     'locatedSource' => 
@@ -63,7 +63,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
     array (
     ),
     'startLine' => 59,
-    'endLine' => 190,
+    'endLine' => 229,
     'startColumn' => 1,
     'endColumn' => 1,
     'parentClassName' => 'Illuminate\\Database\\Eloquent\\Model',
@@ -129,12 +129,12 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
           'code' => '[\'owner_mda_id\', \'uploaded_by\', \'original_filename\', \'stored_path\', \'source\', \'activity_id\', \'draft_activity\', \'detected_headers\', \'column_map\', \'source_signature\', \'mapping_confirmed_at\', \'mapping_confirmed_by\', \'mapping_template_id\', \'status\', \'total_rows\', \'valid_rows\', \'invalid_rows\', \'rejected_rows\', \'dropped_field_rows\', \'committed_rows\', \'served_rows\', \'skipped_rows\', \'error\']',
           'attributes' => 
           array (
-            'startLine' => 77,
-            'endLine' => 101,
-            'startTokenPos' => 157,
-            'startFilePos' => 2623,
-            'endTokenPos' => 228,
-            'endFilePos' => 3199,
+            'startLine' => 116,
+            'endLine' => 140,
+            'startTokenPos' => 340,
+            'startFilePos' => 4140,
+            'endTokenPos' => 411,
+            'endFilePos' => 4716,
           ),
         ),
         'docComment' => '/**
@@ -143,8 +143,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         'attributes' => 
         array (
         ),
-        'startLine' => 77,
-        'endLine' => 101,
+        'startLine' => 116,
+        'endLine' => 140,
         'startColumn' => 5,
         'endColumn' => 6,
         'isPromoted' => false,
@@ -195,6 +195,144 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         'currentClassName' => 'App\\Domain\\Registry\\Models\\ImportBatch',
         'aliasName' => NULL,
       ),
+      'isProcessing' => 
+      array (
+        'name' => 'isProcessing',
+        'parameters' => 
+        array (
+        ),
+        'returnsReference' => false,
+        'returnType' => 
+        array (
+          'class' => 'PHPStan\\BetterReflection\\Reflection\\ReflectionNamedType',
+          'data' => 
+          array (
+            'name' => 'bool',
+            'isIdentifier' => true,
+          ),
+        ),
+        'attributes' => 
+        array (
+        ),
+        'docComment' => '/**
+ * Whether the batch is waiting on the queue (nothing for a human to do yet).
+ */',
+        'startLine' => 77,
+        'endLine' => 80,
+        'startColumn' => 5,
+        'endColumn' => 5,
+        'couldThrow' => false,
+        'isClosure' => false,
+        'isGenerator' => false,
+        'isVariadic' => false,
+        'modifiers' => 1,
+        'namespace' => 'App\\Domain\\Registry\\Models',
+        'declaringClassName' => 'App\\Domain\\Registry\\Models\\ImportBatch',
+        'implementingClassName' => 'App\\Domain\\Registry\\Models\\ImportBatch',
+        'currentClassName' => 'App\\Domain\\Registry\\Models\\ImportBatch',
+        'aliasName' => NULL,
+      ),
+      'processingForSeconds' => 
+      array (
+        'name' => 'processingForSeconds',
+        'parameters' => 
+        array (
+        ),
+        'returnsReference' => false,
+        'returnType' => 
+        array (
+          'class' => 'PHPStan\\BetterReflection\\Reflection\\ReflectionUnionType',
+          'data' => 
+          array (
+            'types' => 
+            array (
+              0 => 
+              array (
+                'class' => 'PHPStan\\BetterReflection\\Reflection\\ReflectionNamedType',
+                'data' => 
+                array (
+                  'name' => 'int',
+                  'isIdentifier' => true,
+                ),
+              ),
+              1 => 
+              array (
+                'class' => 'PHPStan\\BetterReflection\\Reflection\\ReflectionNamedType',
+                'data' => 
+                array (
+                  'name' => 'null',
+                  'isIdentifier' => true,
+                ),
+              ),
+            ),
+          ),
+        ),
+        'attributes' => 
+        array (
+        ),
+        'docComment' => '/**
+ * Seconds this batch has been waiting on the queue, or null when it is not waiting.
+ *
+ * Measured from `updated_at` — the last sign of life. A live worker at minimum flips
+ * pending → processing, which touches the row; a batch whose timestamp is frozen is
+ * one nothing has looked at.
+ */',
+        'startLine' => 89,
+        'endLine' => 97,
+        'startColumn' => 5,
+        'endColumn' => 5,
+        'couldThrow' => false,
+        'isClosure' => false,
+        'isGenerator' => false,
+        'isVariadic' => false,
+        'modifiers' => 1,
+        'namespace' => 'App\\Domain\\Registry\\Models',
+        'declaringClassName' => 'App\\Domain\\Registry\\Models\\ImportBatch',
+        'implementingClassName' => 'App\\Domain\\Registry\\Models\\ImportBatch',
+        'currentClassName' => 'App\\Domain\\Registry\\Models\\ImportBatch',
+        'aliasName' => NULL,
+      ),
+      'processingLooksStalled' => 
+      array (
+        'name' => 'processingLooksStalled',
+        'parameters' => 
+        array (
+        ),
+        'returnsReference' => false,
+        'returnType' => 
+        array (
+          'class' => 'PHPStan\\BetterReflection\\Reflection\\ReflectionNamedType',
+          'data' => 
+          array (
+            'name' => 'bool',
+            'isIdentifier' => true,
+          ),
+        ),
+        'attributes' => 
+        array (
+        ),
+        'docComment' => '/**
+ * Waiting on the queue for longer than parsing could plausibly take.
+ *
+ * Almost always means no queue worker is consuming — the failure mode that has no
+ * error anywhere, because nothing failed: the job was never picked up. Computed
+ * SERVER-side because only the server\'s clock can be trusted for this.
+ */',
+        'startLine' => 106,
+        'endLine' => 111,
+        'startColumn' => 5,
+        'endColumn' => 5,
+        'couldThrow' => false,
+        'isClosure' => false,
+        'isGenerator' => false,
+        'isVariadic' => false,
+        'modifiers' => 1,
+        'namespace' => 'App\\Domain\\Registry\\Models',
+        'declaringClassName' => 'App\\Domain\\Registry\\Models\\ImportBatch',
+        'implementingClassName' => 'App\\Domain\\Registry\\Models\\ImportBatch',
+        'currentClassName' => 'App\\Domain\\Registry\\Models\\ImportBatch',
+        'aliasName' => NULL,
+      ),
       'casts' => 
       array (
         'name' => 'casts',
@@ -217,8 +355,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         'docComment' => '/**
  * @return array<string, string>
  */',
-        'startLine' => 106,
-        'endLine' => 124,
+        'startLine' => 145,
+        'endLine' => 163,
         'startColumn' => 5,
         'endColumn' => 5,
         'couldThrow' => false,
@@ -256,8 +394,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
  *
  * @return list<string>
  */',
-        'startLine' => 131,
-        'endLine' => 134,
+        'startLine' => 170,
+        'endLine' => 173,
         'startColumn' => 5,
         'endColumn' => 5,
         'couldThrow' => false,
@@ -293,8 +431,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         'docComment' => '/**
  * @return BelongsTo<Mda, $this>
  */',
-        'startLine' => 139,
-        'endLine' => 142,
+        'startLine' => 178,
+        'endLine' => 181,
         'startColumn' => 5,
         'endColumn' => 5,
         'couldThrow' => false,
@@ -333,8 +471,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
  *
  * @return BelongsTo<Activity, $this>
  */',
-        'startLine' => 150,
-        'endLine' => 153,
+        'startLine' => 189,
+        'endLine' => 192,
         'startColumn' => 5,
         'endColumn' => 5,
         'couldThrow' => false,
@@ -370,8 +508,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         'docComment' => '/**
  * @return BelongsTo<User, $this>
  */',
-        'startLine' => 158,
-        'endLine' => 161,
+        'startLine' => 197,
+        'endLine' => 200,
         'startColumn' => 5,
         'endColumn' => 5,
         'couldThrow' => false,
@@ -407,8 +545,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         'docComment' => '/**
  * @return BelongsTo<User, $this>
  */',
-        'startLine' => 166,
-        'endLine' => 169,
+        'startLine' => 205,
+        'endLine' => 208,
         'startColumn' => 5,
         'endColumn' => 5,
         'couldThrow' => false,
@@ -448,8 +586,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
  *
  * @return BelongsTo<ImportMappingTemplate, $this>
  */',
-        'startLine' => 178,
-        'endLine' => 181,
+        'startLine' => 217,
+        'endLine' => 220,
         'startColumn' => 5,
         'endColumn' => 5,
         'couldThrow' => false,
@@ -485,8 +623,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         'docComment' => '/**
  * @return HasMany<ImportRow, $this>
  */',
-        'startLine' => 186,
-        'endLine' => 189,
+        'startLine' => 225,
+        'endLine' => 228,
         'startColumn' => 5,
         'endColumn' => 5,
         'couldThrow' => false,

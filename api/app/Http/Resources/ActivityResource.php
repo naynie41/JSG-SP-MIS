@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Http\Resources;
 
 use App\Domain\Programme\Models\Activity;
+use App\Domain\Programme\Services\ActivityLocationService;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
 
@@ -26,8 +27,9 @@ class ActivityResource extends JsonResource
             'name' => $this->name,
             'description' => $this->description,
             'target_beneficiaries' => $this->target_beneficiaries,
-            'lga' => $this->lga,
-            'ward' => $this->ward,
+            // The declared location set, grouped LGA → wards (replaces the old single
+            // lga/ward pair). `whole_lga` marks an LGA declared without specific wards.
+            'locations' => app(ActivityLocationService::class)->present($this->resource),
             'location_description' => $this->location_description,
             'schedule' => $this->schedule,
             'starts_on' => $this->starts_on?->toDateString(),

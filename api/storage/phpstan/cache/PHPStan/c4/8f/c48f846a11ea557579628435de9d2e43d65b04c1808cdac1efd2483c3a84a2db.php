@@ -2,7 +2,7 @@
 
 // odsl-C:\Users\ACER\Desktop\JSG-SP-MIS\JSG-SP-MIS\api\app\Http\Resources\ImportBatchResource.php-PHPStan\BetterReflection\Reflection\ReflectionClass-App\Http\Resources\ImportBatchResource
 return \PHPStan\Cache\CacheItem::__set_state(array(
-   'variableKey' => 'v2-6.70.0.1-8.3.31-62a167e0b727dac789780c8251eb707ea9881dc6816654978c4d1ecb60bd4a8d',
+   'variableKey' => 'v2-6.70.0.1-8.3.31-0f0939041c4b9d38f59a0f59280807c2f46716f7e12dee73c73d32729e9fb768',
    'data' => 
   array (
     'locatedSource' => 
@@ -32,7 +32,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
     array (
     ),
     'startLine' => 18,
-    'endLine' => 108,
+    'endLine' => 120,
     'startColumn' => 1,
     'endColumn' => 1,
     'parentClassName' => 'Illuminate\\Http\\Resources\\Json\\JsonResource',
@@ -99,7 +99,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
  * @return array<string, mixed>
  */',
         'startLine' => 23,
-        'endLine' => 86,
+        'endLine' => 98,
         'startColumn' => 5,
         'endColumn' => 5,
         'couldThrow' => false,
@@ -158,8 +158,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
  *
  * @return array{review: float, auto_accept: float|null}|null
  */',
-        'startLine' => 95,
-        'endLine' => 107,
+        'startLine' => 107,
+        'endLine' => 119,
         'startColumn' => 5,
         'endColumn' => 5,
         'couldThrow' => false,

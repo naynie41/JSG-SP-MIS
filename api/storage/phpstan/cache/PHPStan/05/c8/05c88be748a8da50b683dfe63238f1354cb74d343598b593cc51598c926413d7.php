@@ -2,7 +2,7 @@
 
 // odsl-C:\Users\ACER\Desktop\JSG-SP-MIS\JSG-SP-MIS\api\app\Domain\Registry\Policies\HouseholdPolicy.php-PHPStan\BetterReflection\Reflection\ReflectionClass-App\Domain\Registry\Policies\HouseholdPolicy
 return \PHPStan\Cache\CacheItem::__set_state(array(
-   'variableKey' => 'v2-6.70.0.1-8.3.31-410dd832e66f56c44fde79f1961801987574f5c0efa16a3b9de67eed45b10071',
+   'variableKey' => 'v2-6.70.0.1-8.3.31-258fa7deb87fd39a6716b9a59ad7e4c02dfa3040d985c3c9d25f62e162333d5b',
    'data' => 
   array (
     'locatedSource' => 
@@ -33,7 +33,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
     array (
     ),
     'startLine' => 17,
-    'endLine' => 50,
+    'endLine' => 52,
     'startColumn' => 1,
     'endColumn' => 1,
     'parentClassName' => NULL,
@@ -286,67 +286,6 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         'currentClassName' => 'App\\Domain\\Registry\\Policies\\HouseholdPolicy',
         'aliasName' => NULL,
       ),
-      'create' => 
-      array (
-        'name' => 'create',
-        'parameters' => 
-        array (
-          'user' => 
-          array (
-            'name' => 'user',
-            'default' => NULL,
-            'type' => 
-            array (
-              'class' => 'PHPStan\\BetterReflection\\Reflection\\ReflectionNamedType',
-              'data' => 
-              array (
-                'name' => 'App\\Domain\\Access\\Models\\User',
-                'isIdentifier' => false,
-              ),
-            ),
-            'isVariadic' => false,
-            'byRef' => false,
-            'isPromoted' => false,
-            'attributes' => 
-            array (
-            ),
-            'startLine' => 35,
-            'endLine' => 35,
-            'startColumn' => 28,
-            'endColumn' => 37,
-            'parameterIndex' => 0,
-            'isOptional' => false,
-          ),
-        ),
-        'returnsReference' => false,
-        'returnType' => 
-        array (
-          'class' => 'PHPStan\\BetterReflection\\Reflection\\ReflectionNamedType',
-          'data' => 
-          array (
-            'name' => 'bool',
-            'isIdentifier' => true,
-          ),
-        ),
-        'attributes' => 
-        array (
-        ),
-        'docComment' => NULL,
-        'startLine' => 35,
-        'endLine' => 38,
-        'startColumn' => 5,
-        'endColumn' => 5,
-        'couldThrow' => false,
-        'isClosure' => false,
-        'isGenerator' => false,
-        'isVariadic' => false,
-        'modifiers' => 1,
-        'namespace' => 'App\\Domain\\Registry\\Policies',
-        'declaringClassName' => 'App\\Domain\\Registry\\Policies\\HouseholdPolicy',
-        'implementingClassName' => 'App\\Domain\\Registry\\Policies\\HouseholdPolicy',
-        'currentClassName' => 'App\\Domain\\Registry\\Policies\\HouseholdPolicy',
-        'aliasName' => NULL,
-      ),
       'update' => 
       array (
         'name' => 'update',
@@ -371,8 +310,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             'attributes' => 
             array (
             ),
-            'startLine' => 41,
-            'endLine' => 41,
+            'startLine' => 43,
+            'endLine' => 43,
             'startColumn' => 28,
             'endColumn' => 37,
             'parameterIndex' => 0,
@@ -397,8 +336,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             'attributes' => 
             array (
             ),
-            'startLine' => 41,
-            'endLine' => 41,
+            'startLine' => 43,
+            'endLine' => 43,
             'startColumn' => 40,
             'endColumn' => 59,
             'parameterIndex' => 1,
@@ -419,8 +358,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         array (
         ),
         'docComment' => '/** Owner-only edit (incl. membership changes and head designation). */',
-        'startLine' => 41,
-        'endLine' => 44,
+        'startLine' => 43,
+        'endLine' => 46,
         'startColumn' => 5,
         'endColumn' => 5,
         'couldThrow' => false,
@@ -458,8 +397,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             'attributes' => 
             array (
             ),
-            'startLine' => 46,
-            'endLine' => 46,
+            'startLine' => 48,
+            'endLine' => 48,
             'startColumn' => 28,
             'endColumn' => 37,
             'parameterIndex' => 0,
@@ -484,8 +423,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             'attributes' => 
             array (
             ),
-            'startLine' => 46,
-            'endLine' => 46,
+            'startLine' => 48,
+            'endLine' => 48,
             'startColumn' => 40,
             'endColumn' => 59,
             'parameterIndex' => 1,
@@ -506,8 +445,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         array (
         ),
         'docComment' => NULL,
-        'startLine' => 46,
-        'endLine' => 49,
+        'startLine' => 48,
+        'endLine' => 51,
         'startColumn' => 5,
         'endColumn' => 5,
         'couldThrow' => false,

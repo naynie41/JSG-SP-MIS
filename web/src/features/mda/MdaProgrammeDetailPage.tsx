@@ -10,6 +10,7 @@ import { Icon } from '@/components/Icon/Icon'
 import { Spinner } from '@/components/Spinner/Spinner'
 import { statusVariant } from '@/components/Badge/statusVariant'
 import { useAuth } from '@/lib/auth/AuthProvider'
+import { summariseLocations } from '@/features/reference/format'
 import { ActivityFormModal } from '@/features/programmes/ActivityFormModal'
 import { useActivities, useProgramme } from '@/features/programmes/hooks'
 import type { Activity } from '@/features/programmes/types'
@@ -93,7 +94,7 @@ export function MdaProgrammeDetailPage() {
   const columns: Column<Activity>[] = [
     { key: 'name', header: 'Activity', render: (a) => <Link to={`/activities/${a.id}`}>{a.name}</Link> },
     { key: 'timeline', header: 'Timeline', render: (a) => timeline(a) },
-    { key: 'location', header: 'Location', render: (a) => titleCase(a.lga) },
+    { key: 'location', header: 'Areas', render: (a) => summariseLocations(a.locations) },
     {
       key: 'target',
       header: 'Target',

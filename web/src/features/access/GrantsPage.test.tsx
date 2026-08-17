@@ -36,9 +36,13 @@ const grants: AccessGrant[] = [
     user: { id: 'u-1', name: 'Amina Bello', email: 'amina@x.test' },
     mda: { id: 'm-2', name: 'MDA B' },
     granted_by: 'Admin',
+    granted_at: new Date().toISOString(),
     reason: 'Joint programme',
     expires_at: null,
     active: true,
+    revoked_at: null,
+    revoked_by: null,
+    revocation_reason: null,
     created_at: new Date().toISOString(),
   },
 ]
@@ -96,6 +100,48 @@ describe('GrantsPage', () => {
     await user.click(within(screen.getByRole('dialog')).getByRole('button', { name: /^revoke$/i }))
 
     await waitFor(() => expect(revokeFn).toHaveBeenCalledWith('g-1'))
+  })
+
+  it('shows a revoked grant as revoked, not as expired', async () => {
+    grantsFn.mockResolvedValue([
+      {
+        ...grants[0]!,
+        active: false,
+        revoked_at: new Date().toISOString(),
+        revoked_by: 'Admin',
+        revocation_reason: 'Review concluded',
+      },
+    ])
+    renderPage(<GrantsPage />)
+
+    // Revoking retains the row (NFR-PRV-01), so "not active" no longer means "expired".
+    // Reporting a withdrawal as a lapse would misstate how the access actually ended.
+    expect(await screen.findByText('Revoked')).toBeInTheDocument()
+    expect(screen.queryByText('Expired')).not.toBeInTheDocument()
+    expect(screen.getByText(/by Admin/)).toBeInTheDocument()
+    expect(screen.getByText(/Review concluded/)).toBeInTheDocument()
+  })
+
+  it('still shows an expired grant as expired', async () => {
+    grantsFn.mockResolvedValue([
+      { ...grants[0]!, active: false, expires_at: '2020-01-01T00:00:00Z' },
+    ])
+    renderPage(<GrantsPage />)
+
+    // A grant that simply lapsed is a different fact from one someone withdrew.
+    expect(await screen.findByText('Expired')).toBeInTheDocument()
+    expect(screen.queryByText('Revoked')).not.toBeInTheDocument()
+  })
+
+  it('offers no revoke control on a grant that is already revoked', async () => {
+    grantsFn.mockResolvedValue([
+      { ...grants[0]!, active: false, revoked_at: new Date().toISOString(), revoked_by: 'Admin' },
+    ])
+    renderPage(<GrantsPage />)
+
+    await screen.findByText('Revoked')
+    // The row stays listed as history; a second Revoke button on it would be dead.
+    expect(screen.queryByRole('button', { name: 'Revoke' })).not.toBeInTheDocument()
   })
 
   it('hides grant/revoke controls without the write permissions', async () => {

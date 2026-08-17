@@ -57,9 +57,54 @@ the sibling [Benefit domain](../Benefit/README.md). **Status: Phase 4 complete.*
   stay exact.
 - `eligibility` is structured JSON (list of criteria) — used by programme-matching
   (FR-OWN-04) in a later Phase 4 step; validated as an array here.
-- Activity **location** is captured as LGA/Ward + a free description now; a PostGIS
-  `geom` point column is added **on PostgreSQL only** (skipped on the sqlite test
-  DB) for later GIS work (Phase 6) and is not surfaced in the API yet.
+### Activity location — a SET, not a single place
+
+An activity declares **many LGAs, and many wards within each**, in `activity_locations`
+(`activity_id`, `lga_id`, nullable `ward_id`). One row per selected ward; a row with
+`ward_id = NULL` means **the whole LGA**. This replaced the old single
+`activities.lga` / `.ward` free-text pair, which could express only one place and joined
+to nothing.
+
+- **Real foreign keys** into the GEO.1 lookups, so coverage/GIS aggregations group by
+  `lga_id` / `ward_id` instead of matching strings.
+- **DESCRIPTIVE ONLY.** It states where the activity plans to operate. Nothing checks
+  the beneficiaries uploaded under it against these places, deliberately: the declared
+  set is a plan and the uploaded people are the fact, so a mismatch means the plan
+  changed, not that the data is wrong. `ActivityLocationSetTest` has a test asserting
+  no such check exists.
+- **Validation** (`ValidatesLocationSet`, shared by all three entry points): every LGA
+  and ward must exist, an LGA may appear once, `whole_lga` and `ward_ids` are mutually
+  exclusive, and **each ward must belong to the LGA it was submitted under** — ward codes
+  repeat across Jigawa, so a ward id filed under the wrong LGA is a silent way to
+  mis-target an activity.
+- **Writes go through `ActivityLocationService::sync()`**, which REPLACES the whole set.
+  Submitting `locations` replaces it; omitting it leaves it untouched, so editing a
+  budget cannot wipe an activity's declared coverage.
+- An LGA chosen with **no wards ticked is stored as whole-LGA** — the same claim, kept
+  as one representation rather than two.
+- `Activity::scopeDeclaredIn()` is the single area filter for dashboards/GIS. A **ward
+  filter also matches an activity that declared the whole LGA** containing it: declaring
+  a whole LGA is a claim to cover all of it.
+- **Per-area figures do not partition a total.** An activity declaring three LGAs
+  appears under each, with its **full** budget — the system has no basis for splitting it
+  between areas, and inventing one would put a fabricated figure on a map. Never sum
+  these cells to get a state total.
+- `location_description` is kept: it is free prose ("along the Hadejia road"), not an
+  admin area.
+- A PostGIS `geom` point column exists **on PostgreSQL only** (skipped on the sqlite
+  test DB) for later GIS work and is not surfaced in the API.
+
+**Migration:** `2026_08_15_100000` backfills each activity's old single LGA/Ward into one
+row (resolving the ward *within* its LGA), records anything unresolved in the audit log
+so the raw values survive, and **refuses to run** if activities have an LGA while the
+`lgas` lookup is empty — otherwise a migrate-before-loading-reference-data mistake would
+become permanent data loss when `2026_08_15_100001` drops the columns.
+
+> **Deploying this to an existing database needs an ordered pre-step** — reference data must
+> be populated between the first and second migration, or the refusal above stops the `api`
+> container from booting (it migrates on start). Runbook:
+> [DEPLOY.md §3.1](../../../../docs/DEPLOY.md). Fresh installs are unaffected: with no
+> activities there is nothing to backfill.
 
 ## Enrollment (FR-PRG-03)
 

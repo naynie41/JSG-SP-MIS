@@ -32,10 +32,12 @@ class HouseholdPolicy
             && ($this->owns($user, $household) || $user->canAccessAllMdas());
     }
 
-    public function create(User $user): bool
-    {
-        return $user->hasPermission('household.create');
-    }
+    /*
+     * No create() ability: households are formed by source ingestion
+     * (HouseholdIngestionService), never by a create action, and there is no route that
+     * would authorize one. A policy method for a capability that does not exist invites
+     * someone to wire an endpoint to it.
+     */
 
     /** Owner-only edit (incl. membership changes and head designation). */
     public function update(User $user, Household $household): bool

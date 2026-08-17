@@ -1,0 +1,4 @@
+lga_code,lga_name,ward_code,ward_name
+EXAMPLE_LGA,EXAMPLE LGA — replace with a real Jigawa LGA name,EXAMPLE_WARD_A,EXAMPLE WARD A — replace with a real ward name
+EXAMPLE_LGA,EXAMPLE LGA — replace with a real Jigawa LGA name,EXAMPLE_WARD_B,EXAMPLE WARD B — replace with a real ward name
+ANOTHER_EXAMPLE_LGA,ANOTHER EXAMPLE LGA,EXAMPLE_WARD_C,EXAMPLE WARD C

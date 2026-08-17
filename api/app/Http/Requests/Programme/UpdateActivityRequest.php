@@ -6,7 +6,8 @@ namespace App\Http\Requests\Programme;
 
 use App\Domain\Programme\Enums\ActivityStatus;
 use App\Domain\Programme\Rules\IsFundingPartner;
-use App\Domain\Registry\Enums\Lga;
+use App\Http\Requests\Programme\Concerns\ValidatesLocationSet;
+use Illuminate\Contracts\Validation\Validator;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Rule;
 
@@ -18,9 +19,24 @@ use Illuminate\Validation\Rule;
  */
 class UpdateActivityRequest extends FormRequest
 {
+    use ValidatesLocationSet;
+
     public function authorize(): bool
     {
         return $this->user() !== null;
+    }
+
+    /**
+     * @return array<string, string>
+     */
+    public function messages(): array
+    {
+        return $this->locationSetMessages();
+    }
+
+    public function withValidator(Validator $validator): void
+    {
+        $validator->after(fn (Validator $v) => $this->validateLocationSet($v));
     }
 
     /**
@@ -32,8 +48,9 @@ class UpdateActivityRequest extends FormRequest
             'name' => ['sometimes', 'required', 'string', 'max:255'],
             'description' => ['nullable', 'string', 'max:2000'],
             'target_beneficiaries' => ['nullable', 'integer', 'min:1'],
-            'lga' => ['nullable', Rule::enum(Lga::class)],
-            'ward' => ['nullable', 'string', 'max:100'],
+            // Submitting `locations` REPLACES the whole set (see ActivityLocationService);
+            // omitting it leaves the existing set untouched.
+            ...$this->locationSetRules(),
             'location_description' => ['nullable', 'string', 'max:255'],
             'schedule' => ['nullable', 'array'],
             'starts_on' => ['nullable', 'date'],

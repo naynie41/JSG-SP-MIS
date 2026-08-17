@@ -10,7 +10,7 @@ import type { Column } from '@/components/DataTable/DataTable'
 import { Menu } from '@/components/Menu/Menu'
 import { useAuth } from '@/lib/auth/AuthProvider'
 import { formatNaira } from '@/lib/utils/money'
-import { titleCase } from '@/features/registry/constants'
+import { summariseLocations } from '@/features/reference/format'
 import { ActivityFormModal } from './ActivityFormModal'
 import { useAllActivities, useArchiveActivity, useProgrammeCatalog } from './hooks'
 import type { Activity } from './types'
@@ -47,7 +47,7 @@ export function ActivitiesPage() {
     { key: 'name', header: 'Activity', render: (a) => <Link to={`/activities/${a.id}`}>{a.name}</Link> },
     // The catalog programme is a read-only label — MDAs run it, they don't edit it.
     { key: 'programme', header: 'Programme', render: (a) => <Badge variant="neutral">{programmeName(a.programme_id)}</Badge> },
-    { key: 'lga', header: 'LGA', render: (a) => (a.lga ? titleCase(a.lga) : '—') },
+    { key: 'locations', header: 'Areas', render: (a) => summariseLocations(a.locations) },
     { key: 'budget', header: 'Budget', align: 'right', render: (a) => <span className={styles.mono}>{formatNaira(a.budget_amount)}</span> },
     { key: 'status', header: 'Status', render: (a) => <Badge variant={statusVariant(`programme.${a.status === 'completed' ? 'closed' : a.status}`)} dot>{a.status}</Badge> },
     {

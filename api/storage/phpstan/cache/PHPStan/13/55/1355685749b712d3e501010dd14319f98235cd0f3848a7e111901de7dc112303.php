@@ -13,6 +13,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
          'uses' => 
         array (
           'activity' => 'App\\Domain\\Programme\\Models\\Activity',
+          'activitylocationservice' => 'App\\Domain\\Programme\\Services\\ActivityLocationService',
           'request' => 'Illuminate\\Http\\Request',
           'jsonresource' => 'Illuminate\\Http\\Resources\\Json\\JsonResource',
         ),
@@ -38,6 +39,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
          'uses' => 
         array (
           'activity' => 'App\\Domain\\Programme\\Models\\Activity',
+          'activitylocationservice' => 'App\\Domain\\Programme\\Services\\ActivityLocationService',
           'request' => 'Illuminate\\Http\\Request',
           'jsonresource' => 'Illuminate\\Http\\Resources\\Json\\JsonResource',
         ),
@@ -52,6 +54,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
            'uses' => 
           array (
             'activity' => 'App\\Domain\\Programme\\Models\\Activity',
+            'activitylocationservice' => 'App\\Domain\\Programme\\Services\\ActivityLocationService',
             'request' => 'Illuminate\\Http\\Request',
             'jsonresource' => 'Illuminate\\Http\\Resources\\Json\\JsonResource',
           ),
@@ -84,7 +87,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
     ),
     1 => 
     array (
-      'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Resources\\ActivityResource.php' => 'cda18115ba36e038d0434673d3338bccd34d8a2bd36ff904b3f78fe590700340',
+      'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Resources\\ActivityResource.php' => 'b1c79770ddaee571774b1064ffd830a97aa12f05fe0390220ab3dbf9515ff466',
     ),
   ),
 ));

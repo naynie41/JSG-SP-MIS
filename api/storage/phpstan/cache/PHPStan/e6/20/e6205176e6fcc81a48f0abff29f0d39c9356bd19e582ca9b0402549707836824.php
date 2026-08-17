@@ -2,7 +2,7 @@
 
 // odsl-C:\Users\ACER\Desktop\JSG-SP-MIS\JSG-SP-MIS\api\app\Http\Requests\Programme\StoreActivityRequest.php-PHPStan\BetterReflection\Reflection\ReflectionClass-App\Http\Requests\Programme\StoreActivityRequest
 return \PHPStan\Cache\CacheItem::__set_state(array(
-   'variableKey' => 'v2-6.70.0.1-8.3.31-908d1c28ac8aca40eac1bcaa16eca3ec5d3354dc052ac115709500de2bb2e682',
+   'variableKey' => 'v2-6.70.0.1-8.3.31-c94735078fcbfcdf35767759909517b53be6ba3bd0b16efad0f80fbf9518314e',
    'data' => 
   array (
     'locatedSource' => 
@@ -34,7 +34,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
     array (
     ),
     'startLine' => 22,
-    'endLine' => 70,
+    'endLine' => 83,
     'startColumn' => 1,
     'endColumn' => 1,
     'parentClassName' => 'Illuminate\\Foundation\\Http\\FormRequest',
@@ -43,6 +43,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
     ),
     'traitClassNames' => 
     array (
+      0 => 'App\\Http\\Requests\\Programme\\Concerns\\ValidatesLocationSet',
     ),
     'immediateConstants' => 
     array (
@@ -72,8 +73,45 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         array (
         ),
         'docComment' => NULL,
-        'startLine' => 24,
-        'endLine' => 27,
+        'startLine' => 26,
+        'endLine' => 29,
+        'startColumn' => 5,
+        'endColumn' => 5,
+        'couldThrow' => false,
+        'isClosure' => false,
+        'isGenerator' => false,
+        'isVariadic' => false,
+        'modifiers' => 1,
+        'namespace' => 'App\\Http\\Requests\\Programme',
+        'declaringClassName' => 'App\\Http\\Requests\\Programme\\StoreActivityRequest',
+        'implementingClassName' => 'App\\Http\\Requests\\Programme\\StoreActivityRequest',
+        'currentClassName' => 'App\\Http\\Requests\\Programme\\StoreActivityRequest',
+        'aliasName' => NULL,
+      ),
+      'messages' => 
+      array (
+        'name' => 'messages',
+        'parameters' => 
+        array (
+        ),
+        'returnsReference' => false,
+        'returnType' => 
+        array (
+          'class' => 'PHPStan\\BetterReflection\\Reflection\\ReflectionNamedType',
+          'data' => 
+          array (
+            'name' => 'array',
+            'isIdentifier' => true,
+          ),
+        ),
+        'attributes' => 
+        array (
+        ),
+        'docComment' => '/**
+ * @return array<string, string>
+ */',
+        'startLine' => 34,
+        'endLine' => 37,
         'startColumn' => 5,
         'endColumn' => 5,
         'couldThrow' => false,
@@ -109,8 +147,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         'docComment' => '/**
  * @return array<string, mixed>
  */',
-        'startLine' => 32,
-        'endLine' => 54,
+        'startLine' => 42,
+        'endLine' => 65,
         'startColumn' => 5,
         'endColumn' => 5,
         'couldThrow' => false,
@@ -148,8 +186,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             'attributes' => 
             array (
             ),
-            'startLine' => 56,
-            'endLine' => 56,
+            'startLine' => 67,
+            'endLine' => 67,
             'startColumn' => 35,
             'endColumn' => 54,
             'parameterIndex' => 0,
@@ -170,8 +208,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         array (
         ),
         'docComment' => NULL,
-        'startLine' => 56,
-        'endLine' => 69,
+        'startLine' => 67,
+        'endLine' => 82,
         'startColumn' => 5,
         'endColumn' => 5,
         'couldThrow' => false,

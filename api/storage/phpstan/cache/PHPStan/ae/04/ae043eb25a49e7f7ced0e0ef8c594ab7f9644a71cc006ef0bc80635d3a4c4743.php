@@ -2,7 +2,7 @@
 
 // odsl-C:\Users\ACER\Desktop\JSG-SP-MIS\JSG-SP-MIS\api\app\Http\Resources\ActivityResource.php-PHPStan\BetterReflection\Reflection\ReflectionClass-App\Http\Resources\ActivityResource
 return \PHPStan\Cache\CacheItem::__set_state(array(
-   'variableKey' => 'v2-6.70.0.1-8.3.31-cda18115ba36e038d0434673d3338bccd34d8a2bd36ff904b3f78fe590700340',
+   'variableKey' => 'v2-6.70.0.1-8.3.31-b1c79770ddaee571774b1064ffd830a97aa12f05fe0390220ab3dbf9515ff466',
    'data' => 
   array (
     'locatedSource' => 
@@ -28,8 +28,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
     'attributes' => 
     array (
     ),
-    'startLine' => 14,
-    'endLine' => 44,
+    'startLine' => 15,
+    'endLine' => 46,
     'startColumn' => 1,
     'endColumn' => 1,
     'parentClassName' => 'Illuminate\\Http\\Resources\\Json\\JsonResource',
@@ -71,8 +71,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             'attributes' => 
             array (
             ),
-            'startLine' => 19,
-            'endLine' => 19,
+            'startLine' => 20,
+            'endLine' => 20,
             'startColumn' => 29,
             'endColumn' => 44,
             'parameterIndex' => 0,
@@ -95,8 +95,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         'docComment' => '/**
  * @return array<string, mixed>
  */',
-        'startLine' => 19,
-        'endLine' => 43,
+        'startLine' => 20,
+        'endLine' => 45,
         'startColumn' => 5,
         'endColumn' => 5,
         'couldThrow' => false,

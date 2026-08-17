@@ -10,6 +10,8 @@ use App\Domain\Access\Models\Role;
 use App\Domain\Access\Models\User;
 use App\Domain\Programme\Models\Activity;
 use App\Domain\Programme\Models\Programme;
+use App\Domain\Reference\Models\Lga;
+use App\Domain\Registry\Enums\Lga as LgaEnum;
 use Database\Seeders\RolesAndPermissionsSeeder;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Testing\TestResponse;
@@ -30,6 +32,8 @@ class ActivityManagementTest extends TestCase
 
     private Programme $programmeA;
 
+    private Lga $lga;
+
     /** @var array<string, User> */
     private array $users = [];
 
@@ -46,6 +50,7 @@ class ActivityManagementTest extends TestCase
         $this->users['oversight'] = $this->user($this->mdaB, RoleKey::Executive);
 
         $this->programmeA = Programme::factory()->create(); // a global catalog programme
+        $this->lga = Lga::factory()->forEnum(LgaEnum::Dutse)->create();
     }
 
     private function user(Mda $mda, RoleKey $role): User
@@ -71,8 +76,9 @@ class ActivityManagementTest extends TestCase
             'involves_beneficiaries' => false, // no-beneficiary activity (POST /activities path)
             'name' => 'Q1 Cash Disbursement',
             'description' => 'First quarter payout',
-            'lga' => 'dutse',
-            'ward' => 'Ward 3',
+            // The declared location SET — whole-LGA here; multi-LGA/multi-ward coverage
+            // lives in ActivityLocationSetTest.
+            'locations' => [['lga_id' => $this->lga->id, 'whole_lga' => true]],
             'location_description' => 'Dutse central',
             'schedule' => ['cadence' => 'monthly'],
             'starts_on' => '2026-01-01',
@@ -116,7 +122,8 @@ class ActivityManagementTest extends TestCase
             ->assertJsonPath('data.owner_mda_id', $this->mdaA->id) // the CREATING MDA
             ->assertJsonPath('data.budget_amount', 10_000_000)
             ->assertJsonPath('data.funding_source', 'State budget')
-            ->assertJsonPath('data.lga', 'dutse');
+            ->assertJsonPath('data.locations.0.lga_code', 'dutse')
+            ->assertJsonPath('data.locations.0.whole_lga', true);
 
         $activity = Activity::query()->firstOrFail();
         $this->assertSame($this->mdaA->id, $activity->owner_mda_id);
@@ -149,10 +156,12 @@ class ActivityManagementTest extends TestCase
             ->assertStatus(422)
             ->assertJsonFragment(['field' => 'name']);
 
-        // Unknown LGA.
-        $this->send('officerA', 'POST', '/api/v1/activities', $this->payload(['lga' => 'nowhere']))
+        // An LGA that is not in the reference lookups.
+        $this->send('officerA', 'POST', '/api/v1/activities', $this->payload([
+            'locations' => [['lga_id' => '01930000-0000-7000-8000-000000000000', 'whole_lga' => true]],
+        ]))
             ->assertStatus(422)
-            ->assertJsonFragment(['field' => 'lga']);
+            ->assertJsonFragment(['field' => 'locations.0.lga_id']);
 
         // Non-existent programme.
         $this->send('officerA', 'POST', '/api/v1/activities', $this->payload(['programme_id' => '00000000-0000-0000-0000-000000000000']))

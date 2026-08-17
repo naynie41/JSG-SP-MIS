@@ -11,12 +11,16 @@ use App\Domain\Access\Models\User;
 use App\Domain\Audit\Concerns\Auditable;
 use App\Domain\Programme\Enums\ActivityStatus;
 use Database\Factories\ActivityFactory;
+use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Concerns\HasUuids;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Support\Carbon;
+use Illuminate\Support\Str;
 
 /**
  * An MDA-owned unit of work that runs a global catalog {@see Programme} (PRD §10,
@@ -33,8 +37,6 @@ use Illuminate\Support\Carbon;
  * @property string $name
  * @property string|null $description
  * @property int|null $target_beneficiaries
- * @property string|null $lga
- * @property string|null $ward
  * @property string|null $location_description
  * @property array<string, mixed>|null $schedule
  * @property Carbon|null $starts_on
@@ -49,6 +51,7 @@ use Illuminate\Support\Carbon;
  * @property-read Programme $programme
  * @property-read Mda $ownerMda
  * @property-read User|null $fundingPartner
+ * @property-read Collection<int, ActivityLocation> $locations
  */
 class Activity extends Model implements MdaScoped
 {
@@ -67,8 +70,6 @@ class Activity extends Model implements MdaScoped
         'name',
         'description',
         'target_beneficiaries',
-        'lga',
-        'ward',
         'location_description',
         'schedule',
         'starts_on',
@@ -141,5 +142,63 @@ class Activity extends Model implements MdaScoped
     public function fundingPartner(): BelongsTo
     {
         return $this->belongsTo(User::class, 'funding_partner_id');
+    }
+
+    /**
+     * The DECLARED location set: many LGAs, many wards per LGA, a null `ward_id`
+     * meaning the whole LGA. Replaces the old single `lga`/`ward` pair.
+     *
+     * Descriptive only — it states where the activity plans to operate and is never
+     * checked against the beneficiaries uploaded under it.
+     *
+     * @return HasMany<ActivityLocation, $this>
+     */
+    public function locations(): HasMany
+    {
+        return $this->hasMany(ActivityLocation::class);
+    }
+
+    /**
+     * Narrows to activities that DECLARE the given area, replacing the old exact-string
+     * match on `activities.lga` / `.ward`.
+     *
+     * Values arrive as free text from the dashboard filter (the LGA/ward values seen on
+     * beneficiary records), so they are slugged to `lgas.code` / `wards.code` — the same
+     * slug GEO.1 stores.
+     *
+     * A ward filter also matches an activity that declared the WHOLE LGA containing that
+     * ward. Declaring a whole LGA is a claim to cover every ward in it, so excluding
+     * those activities would under-report coverage for exactly the activities with the
+     * broadest declared reach.
+     *
+     * @param  Builder<Activity>  $query
+     * @return Builder<Activity>
+     */
+    public function scopeDeclaredIn(Builder $query, ?string $lga, ?string $ward): Builder
+    {
+        if ($lga !== null && $lga !== '') {
+            $code = self::areaSlug($lga);
+            $query->whereHas('locations', fn (Builder $q) => $q->whereHas('lga', fn (Builder $l) => $l->where('code', $code)));
+        }
+
+        if ($ward !== null && $ward !== '') {
+            $code = self::areaSlug($ward);
+            $query->whereHas('locations', function (Builder $q) use ($code): void {
+                $q->whereHas('ward', fn (Builder $w) => $w->where('code', $code))
+                    // ...or the whole-LGA row of the LGA this ward sits in.
+                    ->orWhere(fn (Builder $whole) => $whole
+                        ->whereNull('ward_id')
+                        ->whereHas('lga', fn (Builder $l) => $l
+                            ->whereHas('wards', fn (Builder $w) => $w->where('code', $code))));
+            });
+        }
+
+        return $query;
+    }
+
+    /** The registry slug shared by `lgas.code` and `wards.code`. */
+    private static function areaSlug(string $value): string
+    {
+        return Str::of($value)->lower()->replaceMatches('/[^a-z0-9]+/', '_')->trim('_')->value();
     }
 }

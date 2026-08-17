@@ -169,7 +169,11 @@ class MdaScopingTest extends TestCase
         $this->withToken($this->token($admin))
             ->deleteJson("/api/v1/mda-access-grants/{$grant->id}")->assertOk();
 
-        $this->assertDatabaseMissing('mda_access_grants', ['id' => $grant->id]);
+        // Soft revoke (NFR-PRV-01): the row is RETAINED as evidence that the access
+        // existed and when it ended — deleting it would erase the access trail. What
+        // must change is its effect, asserted below and in AdminGrantSoftRevokeTest.
+        $this->assertDatabaseHas('mda_access_grants', ['id' => $grant->id]);
+        $this->assertNotNull($grant->fresh()->revoked_at);
 
         $this->app['auth']->forgetGuards();
         $emails = $this->withToken($this->token($this->userA))

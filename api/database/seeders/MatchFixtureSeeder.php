@@ -49,7 +49,7 @@ class MatchFixtureSeeder extends Seeder
                     'date_of_birth' => $record['date_of_birth'],
                 ],
                 [
-                    'registration_source' => RegistrationSource::Manual,
+                    'registration_source' => RegistrationSource::Excel,
                     'registration_date' => now()->toDateString(),
                     'nin' => $record['nin'] ?? null,
                     'bvn' => null,

@@ -24,13 +24,15 @@ class RegistrySchemaTest extends TestCase
 
         $beneficiary = Beneficiary::create([
             'owner_mda_id' => $mda->id,
+            'registration_source' => RegistrationSource::Excel,
             'first_name' => 'Amina',
             'last_name' => 'Bello',
             'nin' => '12345678901',
         ]);
 
-        // Provenance defaulted (FR-REG-03).
-        $this->assertSame(RegistrationSource::Manual, $beneficiary->registration_source);
+        // Provenance is explicit and required (FR-REG-03) — see RequiredProvenanceTest.
+        // Only the DATE defaults.
+        $this->assertSame(RegistrationSource::Excel, $beneficiary->registration_source);
         $this->assertTrue($beneficiary->registration_date->isToday());
 
         // Audited via the Auditable trait (FR-AUD-01).

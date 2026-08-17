@@ -1144,6 +1144,219 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
          'typeAliasClassName' => NULL,
          'traitData' => NULL,
       )),
+      'dd7c3726688c0ebdffac58647e15a532' => 
+      \PHPStan\Analyser\IntermediaryNameScope::__set_state(array(
+         'namespace' => 'App\\Domain\\Registry\\Models',
+         'uses' => 
+        array (
+          'mdascoped' => 'App\\Domain\\Access\\Concerns\\MdaScoped',
+          'scopedtomda' => 'App\\Domain\\Access\\Concerns\\ScopedToMda',
+          'mda' => 'App\\Domain\\Access\\Models\\Mda',
+          'user' => 'App\\Domain\\Access\\Models\\User',
+          'auditable' => 'App\\Domain\\Audit\\Concerns\\Auditable',
+          'activity' => 'App\\Domain\\Programme\\Models\\Activity',
+          'importstatus' => 'App\\Domain\\Registry\\Enums\\ImportStatus',
+          'registrationsource' => 'App\\Domain\\Registry\\Enums\\RegistrationSource',
+          'collection' => 'Illuminate\\Database\\Eloquent\\Collection',
+          'hasuuids' => 'Illuminate\\Database\\Eloquent\\Concerns\\HasUuids',
+          'model' => 'Illuminate\\Database\\Eloquent\\Model',
+          'belongsto' => 'Illuminate\\Database\\Eloquent\\Relations\\BelongsTo',
+          'hasmany' => 'Illuminate\\Database\\Eloquent\\Relations\\HasMany',
+          'carbon' => 'Illuminate\\Support\\Carbon',
+        ),
+         'className' => 'App\\Domain\\Registry\\Models\\ImportBatch',
+         'functionName' => 'isProcessing',
+         'templatePhpDocNodes' => 
+        array (
+        ),
+         'parent' => 
+        \PHPStan\Analyser\IntermediaryNameScope::__set_state(array(
+           'namespace' => 'App\\Domain\\Registry\\Models',
+           'uses' => 
+          array (
+            'mdascoped' => 'App\\Domain\\Access\\Concerns\\MdaScoped',
+            'scopedtomda' => 'App\\Domain\\Access\\Concerns\\ScopedToMda',
+            'mda' => 'App\\Domain\\Access\\Models\\Mda',
+            'user' => 'App\\Domain\\Access\\Models\\User',
+            'auditable' => 'App\\Domain\\Audit\\Concerns\\Auditable',
+            'activity' => 'App\\Domain\\Programme\\Models\\Activity',
+            'importstatus' => 'App\\Domain\\Registry\\Enums\\ImportStatus',
+            'registrationsource' => 'App\\Domain\\Registry\\Enums\\RegistrationSource',
+            'collection' => 'Illuminate\\Database\\Eloquent\\Collection',
+            'hasuuids' => 'Illuminate\\Database\\Eloquent\\Concerns\\HasUuids',
+            'model' => 'Illuminate\\Database\\Eloquent\\Model',
+            'belongsto' => 'Illuminate\\Database\\Eloquent\\Relations\\BelongsTo',
+            'hasmany' => 'Illuminate\\Database\\Eloquent\\Relations\\HasMany',
+            'carbon' => 'Illuminate\\Support\\Carbon',
+          ),
+           'className' => 'App\\Domain\\Registry\\Models\\ImportBatch',
+           'functionName' => NULL,
+           'templatePhpDocNodes' => 
+          array (
+          ),
+           'parent' => NULL,
+           'typeAliasesMap' => 
+          array (
+          ),
+           'bypassTypeAliases' => false,
+           'constUses' => 
+          array (
+          ),
+           'typeAliasClassName' => NULL,
+           'traitData' => NULL,
+        )),
+         'typeAliasesMap' => 
+        array (
+        ),
+         'bypassTypeAliases' => false,
+         'constUses' => 
+        array (
+        ),
+         'typeAliasClassName' => NULL,
+         'traitData' => NULL,
+      )),
+      'c960bdb6573ae19cfdb2b56e676241a1' => 
+      \PHPStan\Analyser\IntermediaryNameScope::__set_state(array(
+         'namespace' => 'App\\Domain\\Registry\\Models',
+         'uses' => 
+        array (
+          'mdascoped' => 'App\\Domain\\Access\\Concerns\\MdaScoped',
+          'scopedtomda' => 'App\\Domain\\Access\\Concerns\\ScopedToMda',
+          'mda' => 'App\\Domain\\Access\\Models\\Mda',
+          'user' => 'App\\Domain\\Access\\Models\\User',
+          'auditable' => 'App\\Domain\\Audit\\Concerns\\Auditable',
+          'activity' => 'App\\Domain\\Programme\\Models\\Activity',
+          'importstatus' => 'App\\Domain\\Registry\\Enums\\ImportStatus',
+          'registrationsource' => 'App\\Domain\\Registry\\Enums\\RegistrationSource',
+          'collection' => 'Illuminate\\Database\\Eloquent\\Collection',
+          'hasuuids' => 'Illuminate\\Database\\Eloquent\\Concerns\\HasUuids',
+          'model' => 'Illuminate\\Database\\Eloquent\\Model',
+          'belongsto' => 'Illuminate\\Database\\Eloquent\\Relations\\BelongsTo',
+          'hasmany' => 'Illuminate\\Database\\Eloquent\\Relations\\HasMany',
+          'carbon' => 'Illuminate\\Support\\Carbon',
+        ),
+         'className' => 'App\\Domain\\Registry\\Models\\ImportBatch',
+         'functionName' => 'processingForSeconds',
+         'templatePhpDocNodes' => 
+        array (
+        ),
+         'parent' => 
+        \PHPStan\Analyser\IntermediaryNameScope::__set_state(array(
+           'namespace' => 'App\\Domain\\Registry\\Models',
+           'uses' => 
+          array (
+            'mdascoped' => 'App\\Domain\\Access\\Concerns\\MdaScoped',
+            'scopedtomda' => 'App\\Domain\\Access\\Concerns\\ScopedToMda',
+            'mda' => 'App\\Domain\\Access\\Models\\Mda',
+            'user' => 'App\\Domain\\Access\\Models\\User',
+            'auditable' => 'App\\Domain\\Audit\\Concerns\\Auditable',
+            'activity' => 'App\\Domain\\Programme\\Models\\Activity',
+            'importstatus' => 'App\\Domain\\Registry\\Enums\\ImportStatus',
+            'registrationsource' => 'App\\Domain\\Registry\\Enums\\RegistrationSource',
+            'collection' => 'Illuminate\\Database\\Eloquent\\Collection',
+            'hasuuids' => 'Illuminate\\Database\\Eloquent\\Concerns\\HasUuids',
+            'model' => 'Illuminate\\Database\\Eloquent\\Model',
+            'belongsto' => 'Illuminate\\Database\\Eloquent\\Relations\\BelongsTo',
+            'hasmany' => 'Illuminate\\Database\\Eloquent\\Relations\\HasMany',
+            'carbon' => 'Illuminate\\Support\\Carbon',
+          ),
+           'className' => 'App\\Domain\\Registry\\Models\\ImportBatch',
+           'functionName' => NULL,
+           'templatePhpDocNodes' => 
+          array (
+          ),
+           'parent' => NULL,
+           'typeAliasesMap' => 
+          array (
+          ),
+           'bypassTypeAliases' => false,
+           'constUses' => 
+          array (
+          ),
+           'typeAliasClassName' => NULL,
+           'traitData' => NULL,
+        )),
+         'typeAliasesMap' => 
+        array (
+        ),
+         'bypassTypeAliases' => false,
+         'constUses' => 
+        array (
+        ),
+         'typeAliasClassName' => NULL,
+         'traitData' => NULL,
+      )),
+      'd872144d0ec173fbd6461b515ea529af' => 
+      \PHPStan\Analyser\IntermediaryNameScope::__set_state(array(
+         'namespace' => 'App\\Domain\\Registry\\Models',
+         'uses' => 
+        array (
+          'mdascoped' => 'App\\Domain\\Access\\Concerns\\MdaScoped',
+          'scopedtomda' => 'App\\Domain\\Access\\Concerns\\ScopedToMda',
+          'mda' => 'App\\Domain\\Access\\Models\\Mda',
+          'user' => 'App\\Domain\\Access\\Models\\User',
+          'auditable' => 'App\\Domain\\Audit\\Concerns\\Auditable',
+          'activity' => 'App\\Domain\\Programme\\Models\\Activity',
+          'importstatus' => 'App\\Domain\\Registry\\Enums\\ImportStatus',
+          'registrationsource' => 'App\\Domain\\Registry\\Enums\\RegistrationSource',
+          'collection' => 'Illuminate\\Database\\Eloquent\\Collection',
+          'hasuuids' => 'Illuminate\\Database\\Eloquent\\Concerns\\HasUuids',
+          'model' => 'Illuminate\\Database\\Eloquent\\Model',
+          'belongsto' => 'Illuminate\\Database\\Eloquent\\Relations\\BelongsTo',
+          'hasmany' => 'Illuminate\\Database\\Eloquent\\Relations\\HasMany',
+          'carbon' => 'Illuminate\\Support\\Carbon',
+        ),
+         'className' => 'App\\Domain\\Registry\\Models\\ImportBatch',
+         'functionName' => 'processingLooksStalled',
+         'templatePhpDocNodes' => 
+        array (
+        ),
+         'parent' => 
+        \PHPStan\Analyser\IntermediaryNameScope::__set_state(array(
+           'namespace' => 'App\\Domain\\Registry\\Models',
+           'uses' => 
+          array (
+            'mdascoped' => 'App\\Domain\\Access\\Concerns\\MdaScoped',
+            'scopedtomda' => 'App\\Domain\\Access\\Concerns\\ScopedToMda',
+            'mda' => 'App\\Domain\\Access\\Models\\Mda',
+            'user' => 'App\\Domain\\Access\\Models\\User',
+            'auditable' => 'App\\Domain\\Audit\\Concerns\\Auditable',
+            'activity' => 'App\\Domain\\Programme\\Models\\Activity',
+            'importstatus' => 'App\\Domain\\Registry\\Enums\\ImportStatus',
+            'registrationsource' => 'App\\Domain\\Registry\\Enums\\RegistrationSource',
+            'collection' => 'Illuminate\\Database\\Eloquent\\Collection',
+            'hasuuids' => 'Illuminate\\Database\\Eloquent\\Concerns\\HasUuids',
+            'model' => 'Illuminate\\Database\\Eloquent\\Model',
+            'belongsto' => 'Illuminate\\Database\\Eloquent\\Relations\\BelongsTo',
+            'hasmany' => 'Illuminate\\Database\\Eloquent\\Relations\\HasMany',
+            'carbon' => 'Illuminate\\Support\\Carbon',
+          ),
+           'className' => 'App\\Domain\\Registry\\Models\\ImportBatch',
+           'functionName' => NULL,
+           'templatePhpDocNodes' => 
+          array (
+          ),
+           'parent' => NULL,
+           'typeAliasesMap' => 
+          array (
+          ),
+           'bypassTypeAliases' => false,
+           'constUses' => 
+          array (
+          ),
+           'typeAliasClassName' => NULL,
+           'traitData' => NULL,
+        )),
+         'typeAliasesMap' => 
+        array (
+        ),
+         'bypassTypeAliases' => false,
+         'constUses' => 
+        array (
+        ),
+         'typeAliasClassName' => NULL,
+         'traitData' => NULL,
+      )),
       '0ae50aaa74647591cf76e4a2c278181b' => 
       \PHPStan\Analyser\IntermediaryNameScope::__set_state(array(
          'namespace' => 'App\\Domain\\Registry\\Models',
@@ -1715,7 +1928,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
     ),
     1 => 
     array (
-      'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Registry\\Models\\ImportBatch.php' => 'e7925c5e579b4372e0103a1e137fcc854dfa13056a13b6f31ad463f995d5611f',
+      'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Registry\\Models\\ImportBatch.php' => '439f12d9fde5e7da8d6f6bd5cb8139970318a8689b1eaf04ee580ba7864e5f99',
       'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Audit\\Concerns\\Auditable.php' => '5ffa2245eaa31de5eade775b8b48dfcbbf9e33ae3b5651120046c5b92a6d4b7a',
       'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\vendor\\composer\\..\\laravel\\framework\\src\\Illuminate\\Database\\Eloquent\\Concerns\\HasUuids.php' => 'f75b8db33aafd61f17652a5e4bb5b8989e62197b306e9f7ae60bb3ac2c34d534',
       'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\vendor\\composer\\..\\laravel\\framework\\src\\Illuminate\\Database\\Eloquent\\Concerns\\HasUniqueStringIds.php' => '3d5612d3c0a56c6c9f19e628b02085d4d68a64d9d07656742725cec78d4a79c5',

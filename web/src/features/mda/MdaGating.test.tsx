@@ -70,7 +70,7 @@ const MDA = [
   'mda.view', 'user.view',
   'beneficiary.view', 'beneficiary.create', 'beneficiary.edit',
   'beneficiary.approve', 'beneficiary.export', 'beneficiary.access_request',
-  'beneficiary-lookup.view', 'household.view', 'household.create', 'household.edit',
+  'beneficiary-lookup.view', 'household.view', 'household.edit',
   'programme.view', 'activity.view', 'activity.create', 'activity.edit',
   'enrollment.view', 'enrollment.create', 'enrollment.edit',
   'benefit.view', 'benefit.create', 'benefit.approve',

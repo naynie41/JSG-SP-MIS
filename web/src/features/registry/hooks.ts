@@ -3,6 +3,7 @@ import { useToast } from '@/components/Toast/ToastProvider'
 import { beneficiaryApi, documentApi, householdApi, importApi, matchingApi, serviceRequestApi } from './api'
 import type { BeneficiaryListParams, ResolveRowInput, SearchQuery } from './api'
 import { RESOLUTION_LABELS } from './constants'
+import type { ActivityInput } from '@/features/programmes/types'
 import type { BeneficiaryInput, ConsentInput, HouseholdRole, MatchingConfigInput } from './types'
 
 /* ----------------------------------------------------------------- beneficiaries */
@@ -284,7 +285,9 @@ export function useConfirmImport() {
 export function usePreviewActivityImport() {
   const qc = useQueryClient()
   return useMutation({
-    mutationFn: ({ draft, file, source }: { draft: Record<string, string | number | null | undefined>; file: File; source?: string }) =>
+    // The draft is the activity payload — it carries the nested `locations` set, so it is
+    // typed as the input itself rather than a scalar map.
+    mutationFn: ({ draft, file, source }: { draft: ActivityInput; file: File; source?: string }) =>
       importApi.previewActivityImport(draft, file, source),
     onSuccess: () => qc.invalidateQueries({ queryKey: ['imports'] }),
   })
