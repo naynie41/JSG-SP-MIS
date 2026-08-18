@@ -324,13 +324,15 @@ class BulkImportTest extends TestCase
         $this->assertSame(RegistrationSource::Excel, $batch->source);
     }
 
-    public function test_upload_without_an_activity_is_refused(): void
+    public function test_upload_naming_neither_a_programme_nor_an_activity_is_refused(): void
     {
+        // Programme-first (§9, revised): an activity is OPTIONAL, but something must say
+        // what these people are being registered under. Naming neither is refused.
         $this->withToken($this->tokenFor('officerA'))
             ->post('/api/v1/beneficiaries/imports', ['file' => $this->mixedCsv()], ['Accept' => 'application/json'])
             ->assertStatus(422)
             ->assertJsonPath('error.code', 'VALIDATION_ERROR')
-            ->assertJsonFragment(['field' => 'activity_id']);
+            ->assertJsonFragment(['field' => 'programme_id']);
 
         $this->assertSame(0, ImportBatch::query()->withoutGlobalScope(MdaScope::class)->count());
     }

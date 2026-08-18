@@ -1,6 +1,8 @@
-import { Clock, Target, UserCheck, Users } from 'lucide-react'
+import { useMemo, useState } from 'react'
+import { ArrowDownWideNarrow, ArrowUpNarrowWide, Clock, Target, UserCheck, Users } from 'lucide-react'
 import { Link, useParams } from 'react-router-dom'
 import { Badge } from '@/components/Badge/Badge'
+import { Button } from '@/components/Button/Button'
 import { statusVariant } from '@/components/Badge/statusVariant'
 import { Card } from '@/components/Card/Card'
 import { DataTable } from '@/components/DataTable/DataTable'
@@ -16,6 +18,36 @@ import type { ActivityBeneficiary } from './types'
 import layout from '@/features/shared/formLayout.module.css'
 import styles from './programmes.module.css'
 
+type BeneficiarySortKey = 'name' | 'location' | 'status' | 'enrolled'
+
+/**
+ * The orderings offered for the beneficiary list.
+ *
+ * NIN is deliberately absent: it is masked (`•••••••5052`), so sorting by it would
+ * order the list by the mask rather than by anything real.
+ */
+const BENEFICIARY_SORTS: { key: BeneficiarySortKey; label: string }[] = [
+  { key: 'name', label: 'Name' },
+  { key: 'location', label: 'LGA / Ward' },
+  { key: 'status', label: 'Status' },
+  { key: 'enrolled', label: 'Date enrolled' },
+]
+
+/** The value a given ordering compares on. */
+function sortValue(b: ActivityBeneficiary, key: BeneficiarySortKey): string {
+  switch (key) {
+    case 'name':
+      return b.full_name ?? ''
+    case 'location':
+      // LGA first, then ward, so one LGA's people stay together.
+      return `${b.lga ?? ''} ${b.ward ?? ''}`
+    case 'status':
+      return b.beneficiary_status ?? ''
+    case 'enrolled':
+      return b.enrolled_on ?? '' // ISO dates sort correctly as strings
+  }
+}
+
 /**
  * Activity detail (§10 / DESIGN.md §5.10) — powered by GET /activities/{id}: the
  * catalog programme, target vs actual beneficiary counts, the beneficiaries/interventions
@@ -28,6 +60,27 @@ export function ActivityDetailPage() {
   const canView = hasPermission('activity.view')
 
   const { data: activity, isLoading } = useActivity(id, canView)
+
+  // Name A–Z by default: with hundreds of rows the question is almost always
+  // "is this person on the list", and enrolment order cannot answer it.
+  const [sort, setSort] = useState<{ key: BeneficiarySortKey; direction: 'asc' | 'desc' }>({
+    key: 'name',
+    direction: 'asc',
+  })
+
+  const sortedBeneficiaries = useMemo(() => {
+    const rows = [...(activity?.beneficiaries ?? [])]
+    const factor = sort.direction === 'asc' ? 1 : -1
+
+    return rows.sort((a, b) =>
+      // localeCompare so accented and mixed-case names order the way a reader expects
+      // rather than by code point; numeric so "Ward 2" precedes "Ward 10".
+      sortValue(a, sort.key).localeCompare(sortValue(b, sort.key), undefined, {
+        sensitivity: 'base',
+        numeric: true,
+      }) * factor,
+    )
+  }, [activity?.beneficiaries, sort])
 
   if (!canView) {
     return <Card><p className={layout.forbidden}>You do not have permission to view activities.</p></Card>
@@ -42,11 +95,12 @@ export function ActivityDetailPage() {
   const summary = activity.import_summary
 
   const beneficiaryColumns: Column<ActivityBeneficiary>[] = [
-    { key: 'name', header: 'Name', render: (b) => b.full_name ?? '—' },
-    { key: 'location', header: 'LGA / Ward', render: (b) => `${b.lga ? titleCase(b.lga) : '—'}${b.ward ? ` · ${b.ward}` : ''}` },
+    { key: 'name', header: 'Name', sortable: true, render: (b) => b.full_name ?? '—' },
+    { key: 'location', header: 'LGA / Ward', sortable: true, render: (b) => `${b.lga ? titleCase(b.lga) : '—'}${b.ward ? ` · ${b.ward}` : ''}` },
+    // NIN is masked, so ordering by it would sort on the mask — not offered.
     { key: 'nin', header: 'NIN', render: (b) => <span className={styles.mono}>{b.nin ?? '—'}</span> },
-    { key: 'status', header: 'Status', render: (b) => <Badge variant={statusVariant(`beneficiary.${b.beneficiary_status}`)} dot>{b.beneficiary_status ?? '—'}</Badge> },
-    { key: 'enrolled', header: 'Enrolled', align: 'right', render: (b) => <span className={styles.mono}>{b.enrolled_on}</span> },
+    { key: 'status', header: 'Status', sortable: true, render: (b) => <Badge variant={statusVariant(`beneficiary.${b.beneficiary_status}`)} dot>{b.beneficiary_status ?? '—'}</Badge> },
+    { key: 'enrolled', header: 'Enrolled', align: 'right', sortable: true, render: (b) => <span className={styles.mono}>{b.enrolled_on}</span> },
   ]
 
   const srColumns: Column<ServiceRequest>[] = [
@@ -120,12 +174,51 @@ export function ActivityDetailPage() {
       </Card>
 
       {involves && (
-        <Card title="Beneficiaries" eyebrow="Interventions" actions={<Badge variant="info" dot>{activity.counts.actual} enrolled</Badge>}>
+        <Card
+          title="Beneficiaries"
+          eyebrow="Interventions"
+          // Hundreds of rows otherwise push the import summary and service requests
+          // off the page; the count stays in the header when it is folded away.
+          collapsible
+          actions={<Badge variant="info" dot>{activity.counts.actual} enrolled</Badge>}
+        >
+          <div className={styles.sortRow}>
+            <label className={styles.sortLabel} htmlFor="beneficiary-sort">Sort by</label>
+            <select
+              id="beneficiary-sort"
+              className={styles.sortSelect}
+              value={sort.key}
+              onChange={(e) => setSort({ key: e.target.value as BeneficiarySortKey, direction: 'asc' })}
+            >
+              {BENEFICIARY_SORTS.map((option) => (
+                <option key={option.key} value={option.key}>{option.label}</option>
+              ))}
+            </select>
+            <Button
+              size="sm"
+              variant="tertiary"
+              leftIcon={sort.direction === 'asc' ? ArrowUpNarrowWide : ArrowDownWideNarrow}
+              onClick={() => setSort((s) => ({ ...s, direction: s.direction === 'asc' ? 'desc' : 'asc' }))}
+              aria-label={`Sorted ${sort.direction === 'asc' ? 'ascending' : 'descending'} — reverse the order`}
+            >
+              {sort.direction === 'asc' ? 'Ascending' : 'Descending'}
+            </Button>
+          </div>
           <DataTable
             caption="Beneficiaries recorded under this activity"
             columns={beneficiaryColumns}
-            rows={activity.beneficiaries}
+            rows={sortedBeneficiaries}
             getRowId={(b) => b.enrollment_id}
+            // Column headers drive the SAME state as the row above, so the two
+            // affordances can never disagree about how the table is ordered.
+            sort={sort}
+            onSortChange={(key) =>
+              setSort((s) =>
+                s.key === key
+                  ? { ...s, direction: s.direction === 'asc' ? 'desc' : 'asc' }
+                  : { key: key as BeneficiarySortKey, direction: 'asc' },
+              )
+            }
             emptyTitle="No beneficiaries recorded under this activity yet"
           />
         </Card>

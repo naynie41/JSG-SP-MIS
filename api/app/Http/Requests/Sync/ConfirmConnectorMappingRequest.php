@@ -38,7 +38,10 @@ class ConfirmConnectorMappingRequest extends FormRequest
     {
         $validator->after(function (Validator $v): void {
             foreach (array_keys((array) $this->input('column_map', [])) as $field) {
-                if (! in_array((string) $field, CanonicalSchema::allFields(), true)) {
+                // `mappableFields()`, not `allFields()`: a source field may be mapped onto
+                // a derived field such as `full_name`, which is split into first/last name
+                // rather than stored under its own name.
+                if (! in_array((string) $field, CanonicalSchema::mappableFields(), true)) {
                     $v->errors()->add('column_map', "“{$field}” is not a field in the canonical schema.");
                 }
             }

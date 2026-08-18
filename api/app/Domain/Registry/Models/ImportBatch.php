@@ -10,6 +10,7 @@ use App\Domain\Access\Models\Mda;
 use App\Domain\Access\Models\User;
 use App\Domain\Audit\Concerns\Auditable;
 use App\Domain\Programme\Models\Activity;
+use App\Domain\Programme\Models\Programme;
 use App\Domain\Registry\Enums\ImportStatus;
 use App\Domain\Registry\Enums\RegistrationSource;
 use Illuminate\Database\Eloquent\Collection;
@@ -31,6 +32,9 @@ use Illuminate\Support\Carbon;
  * @property string $stored_path
  * @property RegistrationSource $source
  * @property string|null $activity_id
+ * @property string|null $programme_id
+ * @property-read Activity|null $activity
+ * @property-read Programme|null $programme
  * @property array<string, mixed>|null $draft_activity
  * @property list<string>|null $detected_headers
  * @property array<string, string|null>|null $column_map
@@ -38,7 +42,9 @@ use Illuminate\Support\Carbon;
  * @property Carbon|null $mapping_confirmed_at
  * @property string|null $mapping_confirmed_by
  * @property string|null $mapping_template_id
+ * @property string|null $mapping_prefilled_from_id
  * @property-read ImportMappingTemplate|null $mappingTemplate
+ * @property-read ImportBatch|null $mappingPrefilledFrom
  * @property-read User|null $mappingConfirmedBy
  * @property ImportStatus $status
  * @property int $total_rows
@@ -120,6 +126,7 @@ class ImportBatch extends Model implements MdaScoped
         'stored_path',
         'source',
         'activity_id',
+        'programme_id',
         'draft_activity',
         'detected_headers',
         'column_map',
@@ -127,6 +134,7 @@ class ImportBatch extends Model implements MdaScoped
         'mapping_confirmed_at',
         'mapping_confirmed_by',
         'mapping_template_id',
+        'mapping_prefilled_from_id',
         'status',
         'total_rows',
         'valid_rows',
@@ -192,6 +200,40 @@ class ImportBatch extends Model implements MdaScoped
     }
 
     /**
+     * The catalog programme this upload is for.
+     *
+     * Set when the batch names a programme WITHOUT an activity. When an activity is bound,
+     * the programme comes from it instead, so the two cannot disagree — read the effective
+     * one via {@see effectiveProgrammeId()}.
+     *
+     * @return BelongsTo<Programme, $this>
+     */
+    public function programme(): BelongsTo
+    {
+        return $this->belongsTo(Programme::class, 'programme_id');
+    }
+
+    /**
+     * The programme this batch enrolls into: the bound activity's, else its own.
+     *
+     * Short-circuits on `activity_id` rather than loading the relation and testing it,
+     * because {@see Activity} is soft-deleted — an archived activity makes the relation
+     * null while the id is still there, and falling back to `programme_id` in that case
+     * is right: the batch's own record of its programme outlives the activity row.
+     */
+    public function effectiveProgrammeId(): ?string
+    {
+        if ($this->activity_id === null) {
+            return $this->programme_id;
+        }
+
+        /** @var Activity|null $activity */
+        $activity = $this->activity;
+
+        return $activity instanceof Activity ? $activity->programme_id : $this->programme_id;
+    }
+
+    /**
      * @return BelongsTo<User, $this>
      */
     public function uploadedBy(): BelongsTo
@@ -217,6 +259,21 @@ class ImportBatch extends Model implements MdaScoped
     public function mappingTemplate(): BelongsTo
     {
         return $this->belongsTo(ImportMappingTemplate::class, 'mapping_template_id');
+    }
+
+    /**
+     * The EARLIER BATCH this batch's mapping was pre-filled from.
+     *
+     * Set when the same MDA uploads the same file shape again without ever having saved
+     * a named template — the ordinary case. Distinct from `mappingTemplate`: a template
+     * is a deliberate, reusable artefact, this is "we recognised the layout from your
+     * last import". Either way the mapping is only pre-filled, never pre-confirmed.
+     *
+     * @return BelongsTo<ImportBatch, $this>
+     */
+    public function mappingPrefilledFrom(): BelongsTo
+    {
+        return $this->belongsTo(ImportBatch::class, 'mapping_prefilled_from_id');
     }
 
     /**

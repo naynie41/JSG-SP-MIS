@@ -65,14 +65,34 @@ class ImportMappingService
         $signature = $this->mapper->signature($headers);
         $template = $this->templateFor($batch, $signature);
 
+        // A saved template is the deliberate case. The ORDINARY case is an MDA uploading
+        // the same export again having never named a template — so fall back to the last
+        // mapping this MDA actually confirmed for this exact file shape. Without this,
+        // recognising a layout depends on someone having thought to save one, and the
+        // second file of a familiar shape is mapped from scratch.
+        $previous = $template !== null ? null : $this->lastConfirmedBatchFor($batch, $signature);
+
+        // Explicit rather than a chain of ?->/??: the two sources are mutually exclusive
+        // by construction above, and spelling that out keeps it obvious which one won.
+        $prefill = [];
+        if ($template !== null) {
+            $prefill = $template->column_map;
+        } elseif ($previous !== null) {
+            $prefill = $previous->column_map ?? [];
+        }
+
         $batch->update([
             'detected_headers' => $headers,
             'source_signature' => $signature,
-            // Pre-filled, NOT confirmed: `mapping_confirmed_at` stays null either way.
-            'column_map' => $template === null ? [] : $template->column_map,
+            // Pre-filled, NOT confirmed: `mapping_confirmed_at` stays null either way,
+            // so the identity fields are still answered by a person every import
+            // (CLAUDE.md §11).
+            'column_map' => $prefill,
             // Which saved mapping this came from, so "what else used that template" is
             // answerable when one turns out to be wrong.
             'mapping_template_id' => $template?->id,
+            // ...and where a template-less pre-fill came from, for the same reason.
+            'mapping_prefilled_from_id' => $previous?->id,
             'status' => ImportStatus::MappingRequired,
         ]);
 
@@ -103,6 +123,9 @@ class ImportMappingService
             'samples' => $this->samples($headers, $sampleRows),
             'normalized_preview' => $this->normalizedPreview($confirmed, $sampleRows),
             'template' => $template === null ? null : ['id' => $template->id, 'name' => $template->name],
+            // Where a pre-filled mapping came from, so the reviewer is not asked to
+            // confirm choices that appeared from nowhere. Null when this shape is new.
+            'prefilled_from' => $this->prefillProvenance($batch, $template),
             'identity_fields' => CanonicalSchema::confirmationRequiredFields(),
             'unconfirmed_identity_fields' => $this->mapper->unconfirmedIdentityFields($confirmed),
             'unknown_headers' => $this->mapper->unknownHeaders($confirmed, $headers),
@@ -214,6 +237,31 @@ class ImportMappingService
             );
         }
 
+        // A mapping with no name source at all guarantees every row fails validation on a
+        // missing required name. Caught here, at the one decision point, rather than as
+        // several hundred identical rejections after the file has been parsed.
+        $first = $columnMap['first_name'] ?? null;
+        $last = $columnMap['last_name'] ?? null;
+
+        // Pointing first AND last name at the SAME column cannot be right: it stores the
+        // whole name twice and produces "Rekiya Bagwai Rekiya Bagwai". It is the natural
+        // thing to try when a file has one name column, which is exactly why it has to be
+        // refused here rather than discovered in the data afterwards.
+        if ($first !== null && $first === $last) {
+            throw new DomainException(
+                'First name and last name are both mapped to “'.$first.'”, which would store the whole name twice. '
+                .'Map that column to “Full name (one column)” instead and leave first and last name not present — '
+                .'SP-MIS will split it.'
+            );
+        }
+
+        $hasSplitName = $first !== null && $last !== null;
+        if (! $hasSplitName && ($columnMap['full_name'] ?? null) === null) {
+            throw new DomainException(
+                'This mapping has no name: point first and last name at columns, or map a single full-name column.'
+            );
+        }
+
         $unknown = $this->mapper->unknownHeaders($columnMap, $batch->detected_headers ?? []);
         if ($unknown !== []) {
             // Usually a stale template applied to a changed export. Silently mapping the
@@ -270,6 +318,59 @@ class ImportMappingService
             'source_signature' => $batch->source_signature,
             'column_map' => $columnMap,
         ], actor: $by);
+    }
+
+    /**
+     * Describes where this batch's pre-filled mapping came from.
+     *
+     * Two kinds, kept distinct because they warrant different scrutiny: a TEMPLATE is a
+     * deliberate reusable artefact someone named, while a PREVIOUS IMPORT is "we
+     * recognised the layout from the last file you mapped". Naming the earlier file and
+     * who confirmed it is what turns the review into a check rather than a formality.
+     *
+     * @return array<string, mixed>|null
+     */
+    private function prefillProvenance(ImportBatch $batch, ?ImportMappingTemplate $template): ?array
+    {
+        if ($template !== null) {
+            return ['type' => 'template', 'name' => $template->name];
+        }
+
+        $previous = $batch->mapping_prefilled_from_id === null
+            ? null
+            : ImportBatch::withoutGlobalScopes()->with('mappingConfirmedBy')->find($batch->mapping_prefilled_from_id);
+
+        if ($previous === null) {
+            return null;
+        }
+
+        return [
+            'type' => 'previous_import',
+            'name' => $previous->original_filename,
+            'confirmed_by' => $previous->mappingConfirmedBy?->name,
+            'confirmed_at' => $previous->mapping_confirmed_at?->toIso8601String(),
+        ];
+    }
+
+    /**
+     * The most recent batch this MDA already CONFIRMED a mapping for, with exactly this
+     * file shape — the source of a template-less pre-fill.
+     *
+     * Scoped to the same MDA and source deliberately: a column layout is a fact about
+     * one agency's export, and another MDA's decision about which column holds a NIN is
+     * not evidence about this one's file. Only confirmed batches count — an abandoned
+     * batch's half-finished mapping is not a decision anyone made.
+     */
+    private function lastConfirmedBatchFor(ImportBatch $batch, string $signature): ?ImportBatch
+    {
+        return ImportBatch::withoutGlobalScopes()
+            ->where('owner_mda_id', $batch->owner_mda_id)
+            ->where('source', $batch->source->value)
+            ->where('source_signature', $signature)
+            ->whereNotNull('mapping_confirmed_at')
+            ->whereKeyNot($batch->getKey()) // never itself, on a re-profile
+            ->latest('mapping_confirmed_at')
+            ->first();
     }
 
     /** The saved template for this batch's MDA, source and file shape, if any. */

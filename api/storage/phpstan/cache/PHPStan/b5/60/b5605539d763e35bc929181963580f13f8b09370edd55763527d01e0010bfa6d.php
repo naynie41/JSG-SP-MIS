@@ -2,7 +2,7 @@
 
 // odsl-C:\Users\ACER\Desktop\JSG-SP-MIS\JSG-SP-MIS\api\app\Http\Requests\Registry\ConfirmMappingRequest.php-PHPStan\BetterReflection\Reflection\ReflectionClass-App\Http\Requests\Registry\ConfirmMappingRequest
 return \PHPStan\Cache\CacheItem::__set_state(array(
-   'variableKey' => 'v2-6.70.0.1-8.3.31-0da88efa84d3efe95a4883c9b8ed6cee5711d0492aeb76d2afa2b4ecc901e714',
+   'variableKey' => 'v2-6.70.0.1-8.3.31-7ad5ad7e34e48c97b524b79656bb79e1edafc13b4dd5bdf5ffb7bc6a0ba7cff2',
    'data' => 
   array (
     'locatedSource' => 
@@ -38,7 +38,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
     array (
     ),
     'startLine' => 24,
-    'endLine' => 80,
+    'endLine' => 83,
     'startColumn' => 1,
     'endColumn' => 1,
     'parentClassName' => 'Illuminate\\Foundation\\Http\\FormRequest',
@@ -175,7 +175,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         ),
         'docComment' => NULL,
         'startLine' => 43,
-        'endLine' => 54,
+        'endLine' => 57,
         'startColumn' => 5,
         'endColumn' => 5,
         'couldThrow' => false,
@@ -214,8 +214,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
  *
  * @return array<string, string|null>
  */',
-        'startLine' => 62,
-        'endLine' => 71,
+        'startLine' => 65,
+        'endLine' => 74,
         'startColumn' => 5,
         'endColumn' => 5,
         'couldThrow' => false,
@@ -251,8 +251,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         'docComment' => '/**
  * @return array<string, string>
  */',
-        'startLine' => 76,
-        'endLine' => 79,
+        'startLine' => 79,
+        'endLine' => 82,
         'startColumn' => 5,
         'endColumn' => 5,
         'couldThrow' => false,

@@ -44,6 +44,7 @@ function makeProposal(overrides: Partial<ImportMappingProposal> = {}): ImportMap
     },
     normalized_preview: [],
     template: null,
+    prefilled_from: null,
     identity_fields: ['first_name', 'last_name', 'nin', 'bvn', 'phone'],
     unconfirmed_identity_fields: ['first_name', 'last_name', 'nin', 'bvn', 'phone'],
     unknown_headers: [],
@@ -174,19 +175,70 @@ describe('ImportMappingPanel', () => {
     mapping.mockResolvedValue(
       makeProposal({
         template: { id: 't-1', name: 'Health monthly returns' },
+        prefilled_from: { type: 'template', name: 'Health monthly returns' },
         column_map: { first_name: 'given_name', last_name: 'surname', date_of_birth: 'date_of_birth' },
         unconfirmed_identity_fields: ['nin', 'bvn', 'phone'],
       }),
     )
     renderPanel()
 
-    expect(await screen.findByText(/Health monthly returns/)).toBeInTheDocument()
-    expect(screen.getByText(/never carried over/i)).toBeInTheDocument()
+    expect(await screen.findByText(/saved mapping “Health monthly returns”/)).toBeInTheDocument()
+    expect(screen.getByText(/pre-filled but never pre-confirmed/i)).toBeInTheDocument()
 
     // Pre-filled fields ARE applied…
     expect(screen.getByLabelText(/^first name/i)).toHaveValue('given_name')
     // …but the identity fields the template did not answer still block the step.
     expect(continueButton()).toBeDisabled()
+  })
+
+  it('says when a familiar layout was recognised from an earlier import', async () => {
+    // The ordinary case: the same export uploaded again, with no template ever saved.
+    // Naming the earlier file and who confirmed it is what makes this a review rather
+    // than a formality — otherwise the mapping simply appears, from nowhere.
+    mapping.mockResolvedValue(
+      makeProposal({
+        template: null,
+        prefilled_from: {
+          type: 'previous_import',
+          name: 'MoH CMPND Beneficiaries.xlsx',
+          confirmed_by: 'Health MDA Admin',
+          confirmed_at: '2026-08-17T09:12:00Z',
+        },
+        column_map: { first_name: 'given_name', last_name: 'surname' },
+        unconfirmed_identity_fields: ['nin', 'bvn', 'phone'],
+      }),
+    )
+    renderPanel()
+
+    expect(await screen.findByText(/same columns as “MoH CMPND Beneficiaries.xlsx”/)).toBeInTheDocument()
+    expect(screen.getByText(/confirmed by Health MDA Admin on 2026-08-17/)).toBeInTheDocument()
+
+    // Recognised, pre-filled — and still blocked until the identity fields are answered.
+    expect(screen.getByLabelText(/^first name/i)).toHaveValue('given_name')
+    expect(continueButton()).toBeDisabled()
+  })
+
+  it('omits the attribution when the earlier import has none', async () => {
+    mapping.mockResolvedValue(
+      makeProposal({
+        prefilled_from: { type: 'previous_import', name: 'january.csv', confirmed_by: null, confirmed_at: null },
+      }),
+    )
+    renderPanel()
+
+    // No dangling empty parentheses when there is nobody to credit.
+    const note = await screen.findByText(/same columns as “january.csv”/)
+    expect(note).toHaveTextContent(/pre-filled\./)
+    expect(note.textContent).not.toMatch(/\(\s*\)/)
+  })
+
+  it('shows no pre-fill notice for a file shape seen for the first time', async () => {
+    mapping.mockResolvedValue(makeProposal({ template: null, prefilled_from: null }))
+    renderPanel()
+
+    await user_waitForLoad()
+    expect(screen.queryByText(/pre-filled/i)).not.toBeInTheDocument()
+    expect(screen.queryByText(/same columns as/i)).not.toBeInTheDocument()
   })
 
   it('warns when the saved mapping names a column this file does not have', async () => {

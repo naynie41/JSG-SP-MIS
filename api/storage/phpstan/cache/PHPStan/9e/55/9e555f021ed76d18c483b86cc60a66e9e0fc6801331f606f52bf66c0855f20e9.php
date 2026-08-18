@@ -2,7 +2,7 @@
 
 // odsl-C:\Users\ACER\Desktop\JSG-SP-MIS\JSG-SP-MIS\api\app\Http\Requests\Sync\ConfirmConnectorMappingRequest.php-PHPStan\BetterReflection\Reflection\ReflectionClass-App\Http\Requests\Sync\ConfirmConnectorMappingRequest
 return \PHPStan\Cache\CacheItem::__set_state(array(
-   'variableKey' => 'v2-6.70.0.1-8.3.31-f6bfd6c536738629cd366229e5fbb5f3887abc2cd2a8681c0f35ba42cae25b18',
+   'variableKey' => 'v2-6.70.0.1-8.3.31-5314fb8c2706c2e320d13cc315f9bb40a35e8cd796ecbbdb7462803bc8eced7b',
    'data' => 
   array (
     'locatedSource' => 
@@ -34,7 +34,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
     array (
     ),
     'startLine' => 19,
-    'endLine' => 61,
+    'endLine' => 64,
     'startColumn' => 1,
     'endColumn' => 1,
     'parentClassName' => 'Illuminate\\Foundation\\Http\\FormRequest',
@@ -171,7 +171,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         ),
         'docComment' => NULL,
         'startLine' => 37,
-        'endLine' => 46,
+        'endLine' => 49,
         'startColumn' => 5,
         'endColumn' => 5,
         'couldThrow' => false,
@@ -207,8 +207,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         'docComment' => '/**
  * @return array<string, string|null>
  */',
-        'startLine' => 51,
-        'endLine' => 60,
+        'startLine' => 54,
+        'endLine' => 63,
         'startColumn' => 5,
         'endColumn' => 5,
         'couldThrow' => false,

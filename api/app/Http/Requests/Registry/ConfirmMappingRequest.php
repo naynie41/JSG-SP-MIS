@@ -46,7 +46,10 @@ class ConfirmMappingRequest extends FormRequest
             // A typo'd key would otherwise look like an answered field while mapping
             // nothing — and for an identity field that would defeat the guard.
             foreach (array_keys((array) $this->input('column_map', [])) as $field) {
-                if (! in_array((string) $field, CanonicalSchema::allFields(), true)) {
+                // `mappableFields()`, not `allFields()`: a column may be mapped onto a
+                // derived source field such as `full_name`, which is split into canonical
+                // fields rather than stored under its own name.
+                if (! in_array((string) $field, CanonicalSchema::mappableFields(), true)) {
                     $v->errors()->add('column_map', "“{$field}” is not a field in the canonical schema.");
                 }
             }

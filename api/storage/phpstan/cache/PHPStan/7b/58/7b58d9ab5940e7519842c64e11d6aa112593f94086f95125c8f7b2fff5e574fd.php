@@ -78,6 +78,53 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
          'typeAliasClassName' => NULL,
          'traitData' => NULL,
       )),
+      '15830303d3be815958545533fcd04b9f' => 
+      \PHPStan\Analyser\IntermediaryNameScope::__set_state(array(
+         'namespace' => 'App\\Domain\\Registry\\Imports',
+         'uses' => 
+        array (
+          'invalidargumentexception' => 'InvalidArgumentException',
+          'iofactory' => 'PhpOffice\\PhpSpreadsheet\\IOFactory',
+        ),
+         'className' => 'App\\Domain\\Registry\\Imports\\SpreadsheetReader',
+         'functionName' => 'headerRowIndex',
+         'templatePhpDocNodes' => 
+        array (
+        ),
+         'parent' => 
+        \PHPStan\Analyser\IntermediaryNameScope::__set_state(array(
+           'namespace' => 'App\\Domain\\Registry\\Imports',
+           'uses' => 
+          array (
+            'invalidargumentexception' => 'InvalidArgumentException',
+            'iofactory' => 'PhpOffice\\PhpSpreadsheet\\IOFactory',
+          ),
+           'className' => 'App\\Domain\\Registry\\Imports\\SpreadsheetReader',
+           'functionName' => NULL,
+           'templatePhpDocNodes' => 
+          array (
+          ),
+           'parent' => NULL,
+           'typeAliasesMap' => 
+          array (
+          ),
+           'bypassTypeAliases' => false,
+           'constUses' => 
+          array (
+          ),
+           'typeAliasClassName' => NULL,
+           'traitData' => NULL,
+        )),
+         'typeAliasesMap' => 
+        array (
+        ),
+         'bypassTypeAliases' => false,
+         'constUses' => 
+        array (
+        ),
+         'typeAliasClassName' => NULL,
+         'traitData' => NULL,
+      )),
       '3ce3a3159de48ee93792bfa4f35b9155' => 
       \PHPStan\Analyser\IntermediaryNameScope::__set_state(array(
          'namespace' => 'App\\Domain\\Registry\\Imports',
@@ -175,7 +222,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
     ),
     1 => 
     array (
-      'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Registry\\Imports\\SpreadsheetReader.php' => 'fcd2abdccef905df4648c583dc1187bcf5cff2fb9510ef7387dc600beeba5581',
+      'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Registry\\Imports\\SpreadsheetReader.php' => 'e1e84caf5f9ff88dd84766a9c658e7716149185a72a151fe2556635d4969bb3f',
     ),
   ),
 ));

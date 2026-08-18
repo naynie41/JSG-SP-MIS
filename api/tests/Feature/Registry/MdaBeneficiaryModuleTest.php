@@ -144,10 +144,10 @@ class MdaBeneficiaryModuleTest extends TestCase
 
     /* --------------------------------------------- Import Center is activity-bound */
 
-    public function test_an_import_must_name_an_activity(): void
+    public function test_an_import_must_name_a_programme_when_it_names_no_activity(): void
     {
-        // A file with no activity is exactly what the Import Center used to send,
-        // and why every upload from it failed.
+        // Programme-first (§9, revised): the activity is optional, but a file that names
+        // neither has nothing to register these people under.
         $response = $this->withToken($this->users['officerA']->createToken('t')->plainTextToken)
             ->post('/api/v1/beneficiaries/imports', [
                 'file' => UploadedFile::fake()->createWithContent('rows.csv', "first_name,last_name\nA,B\n"),
@@ -156,7 +156,8 @@ class MdaBeneficiaryModuleTest extends TestCase
         $this->app['auth']->forgetGuards();
 
         $fields = array_column($response->json('error.details'), 'field');
-        $this->assertContains('activity_id', $fields);
+        $this->assertContains('programme_id', $fields);
+        $this->assertNotContains('activity_id', $fields, 'an activity is no longer required');
     }
 
     public function test_an_import_cannot_be_bound_to_another_mdas_activity(): void

@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Domain\Registry\Imports;
 
 use App\Domain\Registry\Support\CanonicalSchema;
+use App\Domain\Registry\Support\NameSplitter;
 use App\Domain\Registry\Support\NormalizationService;
 
 /**
@@ -29,6 +30,8 @@ class ColumnMapper
      * @var array<string, list<string>>
      */
     private const ALIASES = [
+        // One name column, split into first/last at apply() time (see NameSplitter).
+        'full_name' => ['full_name', 'fullname', 'full_names', 'name', 'names', 'beneficiary_name'],
         'first_name' => ['first_name', 'firstname', 'given_name', 'givenname', 'fname', 'forename'],
         'middle_name' => ['middle_name', 'middlename', 'other_name', 'othername', 'other_names'],
         'last_name' => ['last_name', 'lastname', 'surname', 'family_name', 'familyname', 'lname'],
@@ -38,8 +41,8 @@ class ColumnMapper
         'date_of_birth' => ['date_of_birth', 'dob', 'birth_date', 'birthdate', 'date_of_birth_dd_mm_yyyy'],
         'gender' => ['gender', 'sex'],
         'address' => ['address', 'home_address', 'residential_address'],
-        // "Council" is how several MDAs write the Local Government Council.
-        'lga' => ['lga', 'local_government', 'local_government_area', 'council'],
+        // "LG" and "Council" are both how MDAs write the Local Government.
+        'lga' => ['lga', 'lg', 'local_government', 'local_government_area', 'council'],
         'ward' => ['ward', 'ward_name'],
         'household_ref' => ['household_id', 'household_ref', 'household_code', 'household', 'hh_id'],
         'household_role' => ['household_role', 'relationship', 'role_in_household', 'hh_role'],
@@ -97,7 +100,7 @@ class ColumnMapper
          * it. A confident match should never lose to a speculative one declared earlier.
          */
         foreach ([true, false] as $exactPass) {
-            foreach (CanonicalSchema::allFields() as $field) {
+            foreach (CanonicalSchema::mappableFields() as $field) {
                 if (isset($suggestions[$field])) {
                     continue;
                 }
@@ -116,7 +119,7 @@ class ColumnMapper
             }
         }
 
-        foreach (CanonicalSchema::allFields() as $field) {
+        foreach (CanonicalSchema::mappableFields() as $field) {
             $suggestions[$field] ??= ['header' => null, 'confidence' => 'none', 'reason' => 'No column resembled this field.'];
         }
 
@@ -193,14 +196,25 @@ class ColumnMapper
      */
     public function apply(array $rawRow, array $columnMap): array
     {
-        $canonical = [];
-
-        foreach (CanonicalSchema::allFields() as $field) {
+        $read = function (string $field) use ($rawRow, $columnMap): ?string {
             $header = $columnMap[$field] ?? null;
             $value = $header === null ? null : ($rawRow[$header] ?? null);
 
-            $canonical[$field] = ($value === null || trim((string) $value) === '') ? null : (string) $value;
+            return ($value === null || trim((string) $value) === '') ? null : (string) $value;
+        };
+
+        $canonical = [];
+        foreach (CanonicalSchema::allFields() as $field) {
+            $canonical[$field] = $read($field);
         }
+
+        // A single mapped name column, split into first/last (see NameSplitter). Applied
+        // PER ROW and only where the explicit columns left a gap, so a file that carries
+        // both — or carries separate names for some people and one field for others —
+        // keeps whatever it actually stated. `full_name` is never stored under that name.
+        $split = NameSplitter::split($read('full_name'));
+        $canonical['first_name'] ??= $split['first_name'];
+        $canonical['last_name'] ??= $split['last_name'];
 
         return $canonical;
     }

@@ -255,8 +255,18 @@ export function useUploadImport() {
   const qc = useQueryClient()
   const toast = useToast()
   return useMutation({
-    mutationFn: ({ file, activityId, source }: { file: File; activityId: string; source?: string }) =>
-      importApi.upload(file, activityId, source),
+    mutationFn: ({
+      file,
+      programmeId,
+      activityId,
+      source,
+    }: {
+      file: File
+      programmeId: string
+      /** Optional: which of the MDA's activities delivered to these people, if known. */
+      activityId?: string
+      source?: string
+    }) => importApi.upload(file, programmeId, activityId, source),
     onSuccess: () => {
       qc.invalidateQueries({ queryKey: ['imports'] })
       toast.success('File uploaded', 'Parsing and validating…')

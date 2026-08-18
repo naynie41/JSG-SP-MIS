@@ -2,7 +2,7 @@
 
 > This file is read at the start of every Claude Code session. It is the source of
 > truth for **how** we work on this project. Read it fully before doing anything.
-> The source of truth for **what** we are building is `docs/jigawa-SP-MIS.md`.
+> The source of truth for **what** we are building is `docs/Jigawa_SP-MIS_PRD.pdf`.
 
 ---
 
@@ -23,13 +23,13 @@ Three concepts sit at the heart of the system and must be respected in every des
    beneficiary is saved.
 
 This is a **government system holding citizens' personal data (PII)**. Security and data
-protection are not optional features — see `docs/SECURITY.md`.
+protection are not optional features — see `SECURITY.md`.
 
 ---
 
 ## 2. Golden rules (read these every time)
 
-1. **Read the PRD first.** `docs/jigawa-SP-MIS.md` is authoritative. If code and PRD
+1. **Read the PRD first.** `docs/Jigawa_SP-MIS_PRD.pdf` is authoritative. If code and PRD
    conflict, the PRD wins unless I explicitly say otherwise.
 2. **Stay in the current phase.** We build in 7 phases (Section 5). Do **not** build features
    that belong to a later phase, even if convenient. If a later-phase concern affects a
@@ -38,7 +38,7 @@ protection are not optional features — see `docs/SECURITY.md`.
    trade-offs) and wait for my approval before writing feature code.
 4. **Trace to requirements.** Reference PRD requirement IDs (e.g. `FR-UAM-01`, `NFR-SEC-01`)
    in commit messages and PR descriptions so every line of code maps back to a requirement.
-5. **Security by default.** Follow `docs/SECURITY.md`. Never weaken auth, validation, or audit
+5. **Security by default.** Follow `SECURITY.md`. Never weaken auth, validation, or audit
    logging to make something easier. Never log PII or secrets.
 6. **Conventions are mandatory.** Follow `docs/CONVENTIONS.md` exactly (API shape, naming,
    error format, tests, commits).
@@ -51,7 +51,7 @@ protection are not optional features — see `docs/SECURITY.md`.
 10. **Small, reviewable steps.** Work in logical commits, explain each briefly, and keep
     each change easy to review and run.
 11. **UI follows the design system.** Every screen derives its colors, type, spacing, and
-    components from `DESIGN.md`, and you load the `frontend-design` skill before
+    components from `docs/DESIGN-SYSTEM.md`, and you load the `frontend-design` skill before
     building UI. Never hand-roll a component that already exists there — extend the shared one.
 
 ---
@@ -76,26 +76,20 @@ Prefer the framework's built-in way of doing things over third-party packages.
 
 ```
 /
-├── DESIGN.md                  # UI reference: tokens & components (all UI follows this)
+├── CLAUDE.md                  # this file
+├── SECURITY.md                # security & data-protection requirements
 ├── README.md                  # how to set up and run (you generate this)
 ├── docker-compose.yml         # full local dev stack
 ├── .env.example               # documented, no real secrets
 ├── api/                       # Laravel 12 backend
 ├── web/                       # React + TypeScript frontend
-│   └── DESIGN.md              # generated token mirror — `npm run check:design` verifies it
 └── docs/
-    ├── CLAUDE.md              # this file
-    ├── jigawa-SP-MIS.md       # the spec (authoritative) — the PRD PDF is not in the repo
-    ├── SECURITY.md            # security & data-protection requirements
-    ├── ARCHITECTURE.md        # system design & data model
-    ├── CONVENTIONS.md         # coding standards & API conventions
-    ├── registry-intake.md     # inbound source/integration surface
-    └── PHASE-<N>-CHECKLIST.md # per-phase completion checklists
+    ├── Jigawa_SP-MIS_PRD.pdf   # the spec (authoritative)
+    ├── ARCHITECTURE.md         # system design & data model
+    ├── CONVENTIONS.md          # coding standards & API conventions
+    ├── DESIGN-SYSTEM.md         # UI reference: tokens & components (all UI follows this)
+    └── PHASE-1-BUILD-PROMPTS.md # the Phase 1 task prompts
 ```
-
-> The per-phase `PHASE-<N>-BUILD-PROMPTS.md` files referenced elsewhere in this document
-> are **not in the repository** — they have never been committed. Where a prompt cites one,
-> use the matching `PHASE-<N>-CHECKLIST.md` plus the locked decisions in §9–§11 below.
 
 ---
 
@@ -163,7 +157,7 @@ Keep `README.md` updated so these commands always work from a fresh clone.
 A task is done only when **all** of these are true:
 
 - [ ] It satisfies the relevant PRD requirement(s), referenced by ID.
-- [ ] It follows `docs/CONVENTIONS.md` and `docs/SECURITY.md`.
+- [ ] It follows `docs/CONVENTIONS.md` and `SECURITY.md`.
 - [ ] Input is validated; errors use the standard error format.
 - [ ] Security-relevant and data-changing actions are written to the audit log.
 - [ ] Automated tests cover the happy path and key failure/permission cases, and pass.
@@ -185,7 +179,7 @@ A task is done only when **all** of these are true:
 - Never fabricate integration with external systems (NIN/NIMC, SOCU) — mock against a clear
   interface and tell me what real access is required.
 - Never introduce off-palette colors, ad-hoc fonts/spacing, or a duplicate of a component that
-  already exists in `DESIGN.md`.
+  already exists in `docs/DESIGN-SYSTEM.md`.
 - Never add a manual single-record create path for beneficiaries or households — in the API or the
   UI. Ingestion is **bulk/source-only** (Excel/CSV, Kobo, ODK, REST API, SOCU, existing government
   systems), matching PRD §8.1. Editing/correcting an existing imported record (owner-only) is a
@@ -211,10 +205,15 @@ A task is done only when **all** of these are true:
   ONLY after acceptance. On acceptance the requester gains READ access to the full beneficiary
   record (FR-OWN-07); ownership/edit rights never move. This is distinct from a Referral (FR-REF,
   outbound). Log every request and decision (FR-AUD-01).
-- **Activity-first upload.** An activity must exist before beneficiaries are uploaded to it; every
-  upload is bound to a selected registered activity, and the resulting intervention is recorded
-  under it (FR-REG-10, FR-PRG-05). Beneficiaries still enter the shared registry under first-importer
-  ownership (FR-OWN-01).
+- **Programme-first upload** *(revised — supersedes the earlier activity-first rule).* Every upload
+  names a **catalog programme**, and MAY additionally name an **activity** the caller's MDA owns.
+  Registering people under a programme is a complete act: the intervention is an enrollment into that
+  programme, with a null activity when none applies. An activity, when given, records *which MDA-run
+  instance* delivered to them (FR-REG-10, FR-PRG-05) and must run the selected programme — a
+  contradiction between the two is refused. Requiring an activity previously forced officers to
+  invent placeholder activities, and a placeholder is a worse record than an honest absence.
+  Beneficiaries still enter the shared registry under first-importer ownership (FR-OWN-01).
+  The activity-creation wizard's own upload is unchanged: it always creates its activity.
 
 ---
 
@@ -271,7 +270,7 @@ A task is done only when **all** of these are true:
   existing modules** (users/audit Ph1, registry Ph2, matching Ph3, catalog Ph4, reports Ph6, sync Ph7) —
   it never reimplements them, and it never includes infrastructure/system-health monitoring (DevOps) or
   programme-delivery operations (MDAs / SP Coordination).
-- **Never** grant beneficiary-data export beyond the export permission matrix in `docs/SECURITY.md`, and
+- **Never** grant beneficiary-data export beyond the export permission matrix in `SECURITY.md`, and
   never bundle `export.reveal_pii` (unmasked NIN/BVN) into a role by default. Exports always inherit the
   caller's scope, mask PII unless explicitly permitted, and are audited.
 - **Never** headline executive/reporting outputs with *gross registrations*, and never show a coverage
@@ -282,3 +281,8 @@ A task is done only when **all** of these are true:
   must be **explicitly confirmed every import** (templates may pre-fill but never skip confirmation), the
   raw file is never mutated, and normalization is for comparison only — the original value is always stored.
   (See Phase 2 — Data Import & Mapping / PRD v1.7.)
+  - **Sync connectors (unattended ingestion):** because `SyncEngine` runs with no human present, identity-
+    field confirmation happens **once at connector configuration time**, not per sync — and the mapping
+    must **re-confirm when the source schema changes** (a stale connector holds its next sync until an
+    admin re-confirms). Same guarantee (a human confirms identity mappings before data flows), applied at
+    the right moment for the ingestion mode. Never let a sync run on an unconfirmed or stale mapping.

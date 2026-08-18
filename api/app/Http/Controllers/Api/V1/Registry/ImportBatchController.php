@@ -78,9 +78,14 @@ class ImportBatchController extends Controller
             'original_filename' => $file->getClientOriginalName(),
             'stored_path' => $storedPath,
             'source' => $source,
-            // Activity-first (§9): validated by UploadImportRequest to exist and be
-            // owned by this MDA; the commit records the intervention under it.
-            'activity_id' => $request->string('activity_id')->value(),
+            // Programme-first (§9): a programme is required unless an activity is given
+            // (which names one), and an activity — when given — is validated to be owned
+            // by this MDA and to run that programme. Both stored as null rather than ''
+            // so "not given" is one value, not two. When an activity IS bound the
+            // programme column stays null and is read through the activity, so the two
+            // can never drift apart.
+            'programme_id' => $request->string('programme_id')->value() ?: null,
+            'activity_id' => $request->string('activity_id')->value() ?: null,
             'status' => ImportStatus::Pending,
         ]);
 

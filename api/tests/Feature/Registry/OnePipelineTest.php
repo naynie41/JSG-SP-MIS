@@ -327,13 +327,16 @@ class OnePipelineTest extends TestCase
         ])->assertStatus(422);
     }
 
-    public function test_the_import_center_requires_an_activity_the_wizard_supplies_itself(): void
+    public function test_the_import_center_requires_a_programme_the_wizard_supplies_itself(): void
     {
-        // The asymmetry is deliberate: the wizard IS creating the activity, the Import
-        // Center must be told which existing one to bind to. Both end up activity-bound.
+        // The asymmetry is deliberate and unchanged in shape, only in which field: the
+        // wizard IS creating the activity (and so knows its programme), while the Import
+        // Center must be told the programme. Binding an activity there is now optional.
         $response = $this->send('/api/v1/beneficiaries/imports', ['file' => $this->file()])
             ->assertStatus(422);
 
-        $this->assertContains('activity_id', array_column($response->json('error.details'), 'field'));
+        $fields = array_column($response->json('error.details'), 'field');
+        $this->assertContains('programme_id', $fields);
+        $this->assertNotContains('activity_id', $fields);
     }
 }

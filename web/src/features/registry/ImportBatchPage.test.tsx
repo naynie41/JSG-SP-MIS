@@ -49,6 +49,7 @@ function makeBatch(band: 'exact' | 'probable' = 'exact'): ImportBatch {
     original_filename: 'beneficiaries.csv',
     source: 'csv',
     activity_id: 'a-1',
+    programme_id: 'p-1',
     draft_activity_name: null,
     draft_target_beneficiaries: null,
     target_mismatch: false,

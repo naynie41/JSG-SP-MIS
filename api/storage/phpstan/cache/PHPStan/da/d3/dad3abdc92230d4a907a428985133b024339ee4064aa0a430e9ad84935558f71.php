@@ -2,7 +2,7 @@
 
 // odsl-C:\Users\ACER\Desktop\JSG-SP-MIS\JSG-SP-MIS\api\app\Domain\Registry\Support\CanonicalSchema.php-PHPStan\BetterReflection\Reflection\ReflectionClass-App\Domain\Registry\Support\CanonicalSchema
 return \PHPStan\Cache\CacheItem::__set_state(array(
-   'variableKey' => 'v2-6.70.0.1-8.3.31-60946f2c218bb1ccabaa2f2e16ba51968a6dd12891f7661b6ba542fdd0a262a2',
+   'variableKey' => 'v2-6.70.0.1-8.3.31-a92f4a70e0f20da1712ac6a4a48ece37d2f1b2008592fe4398a5117d3a88e575',
    'data' => 
   array (
     'locatedSource' => 
@@ -46,7 +46,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
     array (
     ),
     'startLine' => 30,
-    'endLine' => 143,
+    'endLine' => 176,
     'startColumn' => 1,
     'endColumn' => 1,
     'parentClassName' => NULL,
@@ -157,6 +157,47 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         'startColumn' => 5,
         'endColumn' => 6,
       ),
+      'DERIVED_SOURCE_FIELDS' => 
+      array (
+        'declaringClassName' => 'App\\Domain\\Registry\\Support\\CanonicalSchema',
+        'implementingClassName' => 'App\\Domain\\Registry\\Support\\CanonicalSchema',
+        'name' => 'DERIVED_SOURCE_FIELDS',
+        'modifiers' => 1,
+        'type' => NULL,
+        'value' => 
+        array (
+          'code' => '[\'full_name\' => [\'type\' => \'string\', \'required\' => false, \'identity\' => true, \'note\' => \'One name column; split into first/last name\']]',
+          'attributes' => 
+          array (
+            'startLine' => 84,
+            'endLine' => 86,
+            'startTokenPos' => 600,
+            'startFilePos' => 4885,
+            'endTokenPos' => 636,
+            'endFilePos' => 5034,
+          ),
+        ),
+        'docComment' => '/**
+ * Source-shape fields that are MAPPABLE but are not beneficiary columns — they are
+ * derived into canonical fields at mapping time and never stored under these names.
+ *
+ * `full_name` exists because many MDA exports carry one `Name` column. Mapping such a
+ * column to both `first_name` and `last_name` is what produced records reading
+ * "Rekiya Bagwai Rekiya Bagwai"; mapping it here instead lets
+ * {@see NameSplitter} derive the two properly. It is an
+ * IDENTITY field: it is the name, so a malformed value must reject the row exactly as
+ * a malformed `first_name` would.
+ *
+ * @var array<string, array{type: string, required: bool, identity: bool, note: string}>
+ */',
+        'attributes' => 
+        array (
+        ),
+        'startLine' => 84,
+        'endLine' => 86,
+        'startColumn' => 5,
+        'endColumn' => 6,
+      ),
     ),
     'immediateProperties' => 
     array (
@@ -183,8 +224,47 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         array (
         ),
         'docComment' => '/** @return list<string> */',
-        'startLine' => 72,
-        'endLine' => 75,
+        'startLine' => 89,
+        'endLine' => 92,
+        'startColumn' => 5,
+        'endColumn' => 5,
+        'couldThrow' => false,
+        'isClosure' => false,
+        'isGenerator' => false,
+        'isVariadic' => false,
+        'modifiers' => 17,
+        'namespace' => 'App\\Domain\\Registry\\Support',
+        'declaringClassName' => 'App\\Domain\\Registry\\Support\\CanonicalSchema',
+        'implementingClassName' => 'App\\Domain\\Registry\\Support\\CanonicalSchema',
+        'currentClassName' => 'App\\Domain\\Registry\\Support\\CanonicalSchema',
+        'aliasName' => NULL,
+      ),
+      'mappableFields' => 
+      array (
+        'name' => 'mappableFields',
+        'parameters' => 
+        array (
+        ),
+        'returnsReference' => false,
+        'returnType' => 
+        array (
+          'class' => 'PHPStan\\BetterReflection\\Reflection\\ReflectionNamedType',
+          'data' => 
+          array (
+            'name' => 'array',
+            'isIdentifier' => true,
+          ),
+        ),
+        'attributes' => 
+        array (
+        ),
+        'docComment' => '/**
+ * Everything a column may be mapped ONTO, including the derived source fields.
+ *
+ * @return list<string>
+ */',
+        'startLine' => 99,
+        'endLine' => 102,
         'startColumn' => 5,
         'endColumn' => 5,
         'couldThrow' => false,
@@ -218,8 +298,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         array (
         ),
         'docComment' => '/** @return list<string> */',
-        'startLine' => 78,
-        'endLine' => 81,
+        'startLine' => 105,
+        'endLine' => 108,
         'startColumn' => 5,
         'endColumn' => 5,
         'couldThrow' => false,
@@ -257,8 +337,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
  *
  * @return list<string>
  */',
-        'startLine' => 88,
-        'endLine' => 91,
+        'startLine' => 115,
+        'endLine' => 118,
         'startColumn' => 5,
         'endColumn' => 5,
         'couldThrow' => false,
@@ -296,8 +376,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
  *
  * @return list<string>
  */',
-        'startLine' => 98,
-        'endLine' => 101,
+        'startLine' => 125,
+        'endLine' => 128,
         'startColumn' => 5,
         'endColumn' => 5,
         'couldThrow' => false,
@@ -331,8 +411,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         array (
         ),
         'docComment' => '/** @return list<string> */',
-        'startLine' => 104,
-        'endLine' => 107,
+        'startLine' => 131,
+        'endLine' => 134,
         'startColumn' => 5,
         'endColumn' => 5,
         'couldThrow' => false,
@@ -370,8 +450,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             'attributes' => 
             array (
             ),
-            'startLine' => 109,
-            'endLine' => 109,
+            'startLine' => 136,
+            'endLine' => 136,
             'startColumn' => 44,
             'endColumn' => 56,
             'parameterIndex' => 0,
@@ -392,8 +472,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         array (
         ),
         'docComment' => NULL,
-        'startLine' => 109,
-        'endLine' => 112,
+        'startLine' => 136,
+        'endLine' => 139,
         'startColumn' => 5,
         'endColumn' => 5,
         'couldThrow' => false,
@@ -442,8 +522,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
  *
  * @return list<string>
  */',
-        'startLine' => 130,
-        'endLine' => 133,
+        'startLine' => 157,
+        'endLine' => 165,
         'startColumn' => 5,
         'endColumn' => 5,
         'couldThrow' => false,
@@ -481,8 +561,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             'attributes' => 
             array (
             ),
-            'startLine' => 136,
-            'endLine' => 136,
+            'startLine' => 168,
+            'endLine' => 168,
             'startColumn' => 35,
             'endColumn' => 47,
             'parameterIndex' => 0,
@@ -522,8 +602,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         array (
         ),
         'docComment' => '/** The declared type of a canonical field, or null when the field is unknown. */',
-        'startLine' => 136,
-        'endLine' => 142,
+        'startLine' => 168,
+        'endLine' => 175,
         'startColumn' => 5,
         'endColumn' => 5,
         'couldThrow' => false,

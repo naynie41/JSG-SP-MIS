@@ -221,14 +221,18 @@ export const importApi = {
     return apiRequest<ImportBatch>({ method: 'GET', url: `/beneficiaries/imports/${id}` })
   },
   /**
-   * Standalone (Import Center) upload. `activity_id` is REQUIRED by the server —
-   * activity-first ingestion (CLAUDE.md §9, FR-REG-10): every uploaded row becomes an
-   * intervention under a registered activity the caller's MDA owns.
+   * Standalone (Import Center) upload. `programme_id` is REQUIRED by the server and
+   * `activity_id` is optional — programme-first ingestion (CLAUDE.md §9, FR-REG-10):
+   * every uploaded row is registered under a catalog programme, and an activity, when
+   * given, records which MDA-run instance delivered to them.
    */
-  upload(file: File, activityId: string, source?: string): Promise<ImportBatch> {
+  upload(file: File, programmeId: string, activityId?: string, source?: string): Promise<ImportBatch> {
     const form = new FormData()
     form.append('file', file)
-    form.append('activity_id', activityId)
+    form.append('programme_id', programmeId)
+    // Omitted entirely when absent: an empty string would be a value the server has to
+    // interpret, and "no activity" should not need interpreting.
+    if (activityId) form.append('activity_id', activityId)
     if (source) form.append('source', source)
     return apiRequest<ImportBatch>({ method: 'POST', url: '/beneficiaries/imports', data: form })
   },

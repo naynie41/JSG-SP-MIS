@@ -2,7 +2,7 @@
 
 // odsl-C:\Users\ACER\Desktop\JSG-SP-MIS\JSG-SP-MIS\api\app\Domain\Registry\Services\ImportCommitter.php-PHPStan\BetterReflection\Reflection\ReflectionClass-App\Domain\Registry\Services\ImportCommitter
 return \PHPStan\Cache\CacheItem::__set_state(array(
-   'variableKey' => 'v2-6.70.0.1-8.3.31-b464479767a7bbf2aae5e9e9e9aa5d9c21d682492f33a9eb8f585d32833efbc1',
+   'variableKey' => 'v2-6.70.0.1-8.3.31-43487a231365279f1cfaa368215b27aa4fe27f863dd1fba24631084fe3637438',
    'data' => 
   array (
     'locatedSource' => 
@@ -40,7 +40,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
     array (
     ),
     'startLine' => 38,
-    'endLine' => 204,
+    'endLine' => 215,
     'startColumn' => 1,
     'endColumn' => 1,
     'parentClassName' => NULL,
@@ -405,7 +405,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         ),
         'docComment' => NULL,
         'startLine' => 47,
-        'endLine' => 150,
+        'endLine' => 156,
         'startColumn' => 5,
         'endColumn' => 5,
         'couldThrow' => true,
@@ -443,8 +443,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             'attributes' => 
             array (
             ),
-            'startLine' => 156,
-            'endLine' => 156,
+            'startLine' => 162,
+            'endLine' => 162,
             'startColumn' => 42,
             'endColumn' => 55,
             'parameterIndex' => 0,
@@ -487,8 +487,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
  * A row\'s effective decision: an explicit resolution, else NEW for a non-flagged
  * row, else null (flagged + unresolved → create nothing).
  */',
-        'startLine' => 156,
-        'endLine' => 163,
+        'startLine' => 162,
+        'endLine' => 169,
         'startColumn' => 5,
         'endColumn' => 5,
         'couldThrow' => false,
@@ -545,8 +545,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             'attributes' => 
             array (
             ),
-            'startLine' => 172,
-            'endLine' => 172,
+            'startLine' => 183,
+            'endLine' => 183,
             'startColumn' => 41,
             'endColumn' => 61,
             'parameterIndex' => 0,
@@ -590,8 +590,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             'attributes' => 
             array (
             ),
-            'startLine' => 172,
-            'endLine' => 172,
+            'startLine' => 183,
+            'endLine' => 183,
             'startColumn' => 64,
             'endColumn' => 82,
             'parameterIndex' => 1,
@@ -616,8 +616,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             'attributes' => 
             array (
             ),
-            'startLine' => 172,
-            'endLine' => 172,
+            'startLine' => 183,
+            'endLine' => 183,
             'startColumn' => 85,
             'endColumn' => 108,
             'parameterIndex' => 2,
@@ -661,8 +661,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             'attributes' => 
             array (
             ),
-            'startLine' => 172,
-            'endLine' => 172,
+            'startLine' => 183,
+            'endLine' => 183,
             'startColumn' => 111,
             'endColumn' => 131,
             'parameterIndex' => 3,
@@ -706,8 +706,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             'attributes' => 
             array (
             ),
-            'startLine' => 172,
-            'endLine' => 172,
+            'startLine' => 183,
+            'endLine' => 183,
             'startColumn' => 134,
             'endColumn' => 145,
             'parameterIndex' => 4,
@@ -728,14 +728,19 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         array (
         ),
         'docComment' => '/**
- * Record the intervention under the batch\'s activity (§9/§10, FR-REG-10): an
- * enrollment of the just-imported target into the activity\'s programme. Individual
- * programmes enroll the beneficiary; household programmes enroll the formed
- * household. Best-effort — a duplicate/ineligible/type-mismatched target records no
- * enrollment and never blocks the commit. Needs a confirming actor for attribution.
+ * Record the intervention (§9/§10, FR-REG-10): an enrollment of the just-imported
+ * target into the batch\'s programme. Individual programmes enroll the beneficiary;
+ * household programmes enroll the formed household. Best-effort — a
+ * duplicate/ineligible/type-mismatched target records no enrollment and never blocks
+ * the commit. Needs a confirming actor for attribution.
+ *
+ * The PROGRAMME is required; the activity is not. A programme-only import enrolls
+ * with a null activity — the person is on the programme, and which MDA-run activity
+ * served them is simply not yet known. `EnrollmentService::enroll()` already takes a
+ * nullable activity id, so this is the shape it was built for.
  */',
-        'startLine' => 172,
-        'endLine' => 184,
+        'startLine' => 183,
+        'endLine' => 195,
         'startColumn' => 5,
         'endColumn' => 5,
         'couldThrow' => false,
@@ -773,8 +778,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             'attributes' => 
             array (
             ),
-            'startLine' => 191,
-            'endLine' => 191,
+            'startLine' => 202,
+            'endLine' => 202,
             'startColumn' => 28,
             'endColumn' => 41,
             'parameterIndex' => 0,
@@ -799,8 +804,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             'attributes' => 
             array (
             ),
-            'startLine' => 191,
-            'endLine' => 191,
+            'startLine' => 202,
+            'endLine' => 202,
             'startColumn' => 44,
             'endColumn' => 61,
             'parameterIndex' => 1,
@@ -844,8 +849,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             'attributes' => 
             array (
             ),
-            'startLine' => 191,
-            'endLine' => 191,
+            'startLine' => 202,
+            'endLine' => 202,
             'startColumn' => 64,
             'endColumn' => 75,
             'parameterIndex' => 2,
@@ -870,8 +875,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
  * (§10). Never creates a beneficiary; the intervention is deferred until the owner
  * MDA approves.
  */',
-        'startLine' => 191,
-        'endLine' => 203,
+        'startLine' => 202,
+        'endLine' => 214,
         'startColumn' => 5,
         'endColumn' => 5,
         'couldThrow' => false,

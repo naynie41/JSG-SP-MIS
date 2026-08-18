@@ -16,6 +16,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
           'activity' => 'App\\Domain\\Programme\\Models\\Activity',
           'sourceadapterregistry' => 'App\\Domain\\Registry\\Imports\\Adapters\\SourceAdapterRegistry',
           'closure' => 'Closure',
+          'validator' => 'Illuminate\\Contracts\\Validation\\Validator',
           'formrequest' => 'Illuminate\\Foundation\\Http\\FormRequest',
           'rule' => 'Illuminate\\Validation\\Rule',
         ),
@@ -44,6 +45,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
           'activity' => 'App\\Domain\\Programme\\Models\\Activity',
           'sourceadapterregistry' => 'App\\Domain\\Registry\\Imports\\Adapters\\SourceAdapterRegistry',
           'closure' => 'Closure',
+          'validator' => 'Illuminate\\Contracts\\Validation\\Validator',
           'formrequest' => 'Illuminate\\Foundation\\Http\\FormRequest',
           'rule' => 'Illuminate\\Validation\\Rule',
         ),
@@ -61,6 +63,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             'activity' => 'App\\Domain\\Programme\\Models\\Activity',
             'sourceadapterregistry' => 'App\\Domain\\Registry\\Imports\\Adapters\\SourceAdapterRegistry',
             'closure' => 'Closure',
+            'validator' => 'Illuminate\\Contracts\\Validation\\Validator',
             'formrequest' => 'Illuminate\\Foundation\\Http\\FormRequest',
             'rule' => 'Illuminate\\Validation\\Rule',
           ),
@@ -99,6 +102,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
           'activity' => 'App\\Domain\\Programme\\Models\\Activity',
           'sourceadapterregistry' => 'App\\Domain\\Registry\\Imports\\Adapters\\SourceAdapterRegistry',
           'closure' => 'Closure',
+          'validator' => 'Illuminate\\Contracts\\Validation\\Validator',
           'formrequest' => 'Illuminate\\Foundation\\Http\\FormRequest',
           'rule' => 'Illuminate\\Validation\\Rule',
         ),
@@ -116,6 +120,64 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             'activity' => 'App\\Domain\\Programme\\Models\\Activity',
             'sourceadapterregistry' => 'App\\Domain\\Registry\\Imports\\Adapters\\SourceAdapterRegistry',
             'closure' => 'Closure',
+            'validator' => 'Illuminate\\Contracts\\Validation\\Validator',
+            'formrequest' => 'Illuminate\\Foundation\\Http\\FormRequest',
+            'rule' => 'Illuminate\\Validation\\Rule',
+          ),
+           'className' => 'App\\Http\\Requests\\Registry\\UploadImportRequest',
+           'functionName' => NULL,
+           'templatePhpDocNodes' => 
+          array (
+          ),
+           'parent' => NULL,
+           'typeAliasesMap' => 
+          array (
+          ),
+           'bypassTypeAliases' => false,
+           'constUses' => 
+          array (
+          ),
+           'typeAliasClassName' => NULL,
+           'traitData' => NULL,
+        )),
+         'typeAliasesMap' => 
+        array (
+        ),
+         'bypassTypeAliases' => false,
+         'constUses' => 
+        array (
+        ),
+         'typeAliasClassName' => NULL,
+         'traitData' => NULL,
+      )),
+      '2db131a78b59ff13a328b7aa30c266ad' => 
+      \PHPStan\Analyser\IntermediaryNameScope::__set_state(array(
+         'namespace' => 'App\\Http\\Requests\\Registry',
+         'uses' => 
+        array (
+          'mdascope' => 'App\\Domain\\Access\\Scopes\\MdaScope',
+          'activity' => 'App\\Domain\\Programme\\Models\\Activity',
+          'sourceadapterregistry' => 'App\\Domain\\Registry\\Imports\\Adapters\\SourceAdapterRegistry',
+          'closure' => 'Closure',
+          'validator' => 'Illuminate\\Contracts\\Validation\\Validator',
+          'formrequest' => 'Illuminate\\Foundation\\Http\\FormRequest',
+          'rule' => 'Illuminate\\Validation\\Rule',
+        ),
+         'className' => 'App\\Http\\Requests\\Registry\\UploadImportRequest',
+         'functionName' => 'withValidator',
+         'templatePhpDocNodes' => 
+        array (
+        ),
+         'parent' => 
+        \PHPStan\Analyser\IntermediaryNameScope::__set_state(array(
+           'namespace' => 'App\\Http\\Requests\\Registry',
+           'uses' => 
+          array (
+            'mdascope' => 'App\\Domain\\Access\\Scopes\\MdaScope',
+            'activity' => 'App\\Domain\\Programme\\Models\\Activity',
+            'sourceadapterregistry' => 'App\\Domain\\Registry\\Imports\\Adapters\\SourceAdapterRegistry',
+            'closure' => 'Closure',
+            'validator' => 'Illuminate\\Contracts\\Validation\\Validator',
             'formrequest' => 'Illuminate\\Foundation\\Http\\FormRequest',
             'rule' => 'Illuminate\\Validation\\Rule',
           ),
@@ -154,6 +216,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
           'activity' => 'App\\Domain\\Programme\\Models\\Activity',
           'sourceadapterregistry' => 'App\\Domain\\Registry\\Imports\\Adapters\\SourceAdapterRegistry',
           'closure' => 'Closure',
+          'validator' => 'Illuminate\\Contracts\\Validation\\Validator',
           'formrequest' => 'Illuminate\\Foundation\\Http\\FormRequest',
           'rule' => 'Illuminate\\Validation\\Rule',
         ),
@@ -171,6 +234,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             'activity' => 'App\\Domain\\Programme\\Models\\Activity',
             'sourceadapterregistry' => 'App\\Domain\\Registry\\Imports\\Adapters\\SourceAdapterRegistry',
             'closure' => 'Closure',
+            'validator' => 'Illuminate\\Contracts\\Validation\\Validator',
             'formrequest' => 'Illuminate\\Foundation\\Http\\FormRequest',
             'rule' => 'Illuminate\\Validation\\Rule',
           ),
@@ -203,7 +267,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
     ),
     1 => 
     array (
-      'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Registry\\UploadImportRequest.php' => 'c95e59dc9e89819ffdcee0e177d04b687a443732c8116871ddedf894055a4a81',
+      'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Registry\\UploadImportRequest.php' => 'b1b6a27859b1def5ed9e62eb4c8e1c9ba991c47bc0b99169f0d6f75be3033ba9',
     ),
   ),
 ));
