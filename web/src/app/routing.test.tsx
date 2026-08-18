@@ -17,6 +17,66 @@ vi.mock('@/lib/api/authApi', () => ({
   },
 }))
 
+/*
+ * Stub the data every LANDING PAGE fetches on mount.
+ *
+ * These tests are about routing — which rail a role lands on — but landing renders a
+ * real page, and those pages query on mount (`useAdminSummary`, `useDashboard`,
+ * `useMdaActionRequired`, `useNotifications`). Left unmocked, each fired a real HTTP
+ * request through axios in jsdom, which rejects on its own schedule; the resulting
+ * loading → error re-renders raced the rail assertion and made this file fail roughly
+ * one run in three under CPU contention while passing fourteen times in a row on an
+ * idle machine.
+ *
+ * Resolving them to empty keeps the tree settling on React's clock instead of the
+ * network's. What each endpoint RETURNS is asserted where it belongs — in each
+ * feature's own tests — so nothing is lost by making them inert here.
+ */
+// NB: `vi.mock` factories are hoisted above every top-level binding, so each one builds
+// its own values inline — a shared `const` up here is not initialised when they run.
+vi.mock('@/features/admin/api', () => {
+  const page = { items: [], pagination: { page: 1, per_page: 25, total: 0, total_pages: 0 } }
+  return {
+    adminApi: {
+      summary: vi.fn().mockResolvedValue({}),
+      loginActivity: vi.fn().mockResolvedValue(page),
+      organizations: vi.fn().mockResolvedValue({ organizations: [] }),
+      registryRules: vi.fn().mockResolvedValue({ fields: [] }),
+      auditLogs: vi.fn().mockResolvedValue(page),
+      exportAuditLogs: vi.fn().mockResolvedValue(new Blob()),
+      settings: vi.fn().mockResolvedValue({}),
+      broadcastAudience: vi.fn().mockResolvedValue({ count: 0 }),
+      broadcast: vi.fn().mockResolvedValue({}),
+    },
+  }
+})
+
+// `filterParams` is a pure helper other modules import from here, so it is kept real —
+// replacing a whole module silently removes everything it also exported.
+vi.mock('@/features/dashboard/api', async (importOriginal) => ({
+  ...(await importOriginal<typeof import('@/features/dashboard/api')>()),
+  dashboardApi: {
+    get: vi.fn().mockResolvedValue({}),
+    opsMetrics: vi.fn().mockResolvedValue({}),
+    export: vi.fn().mockResolvedValue(new Blob()),
+  },
+}))
+
+vi.mock('@/features/mda/api', () => ({
+  mdaApi: { actionRequired: vi.fn().mockResolvedValue({ items: [] }) },
+}))
+
+vi.mock('@/features/notifications/api', () => ({
+  notificationApi: {
+    list: vi.fn().mockResolvedValue({ items: [], pagination: { page: 1, per_page: 25, total: 0, total_pages: 0 } }),
+    unreadCount: vi.fn().mockResolvedValue({ count: 0 }),
+    markRead: vi.fn().mockResolvedValue({}),
+    markAllRead: vi.fn().mockResolvedValue({}),
+    preferences: vi.fn().mockResolvedValue({}),
+    updatePreferences: vi.fn().mockResolvedValue({}),
+  },
+}))
+
 const me = authApi.me as Mock
 
 describe('protected routing', () => {
