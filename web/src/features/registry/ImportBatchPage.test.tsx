@@ -49,6 +49,7 @@ function makeBatch(band: 'exact' | 'probable' = 'exact'): ImportBatch {
     original_filename: 'beneficiaries.csv',
     source: 'csv',
     activity_id: 'a-1',
+    programme_id: 'p-1',
     draft_activity_name: null,
     draft_target_beneficiaries: null,
     target_mismatch: false,
@@ -203,6 +204,96 @@ describe('ImportBatchPage — duplicate resolution', () => {
 
     await user.click(screen.getByRole('button', { name: /all rows/i }))
     expect(screen.getByRole('button', { name: /all rows/i })).toHaveAttribute('aria-pressed', 'true')
+  })
+
+  /**
+   * Deciding a whole cohort at once.
+   *
+   * A re-uploaded cohort arrives as dozens of exact NIN matches, and one-at-a-time is
+   * the wrong tool for a decision that carries no per-person judgement. These pin what
+   * bulk may and may not do — it writes audited judgements about citizens' identities,
+   * so it must not be able to do anything the per-row control forbids.
+   */
+  describe('deciding many rows at once', () => {
+    /** A flagged row matching its own distinct existing record. */
+    function flaggedRow(rowNumber: number, band: 'exact' | 'probable', beneficiaryId: string) {
+      const base = makeBatch(band).rows![0]!
+      return {
+        ...base,
+        row_number: rowNumber,
+        match: {
+          band,
+          candidates: [
+            {
+              ...base.match.candidates[0]!,
+              band,
+              reveal: { ...reveal, id: beneficiaryId, full_name: `Existing ${rowNumber}` },
+            },
+          ],
+        },
+        preview: { ...base.preview, first_name: `Person${rowNumber}`, last_name: 'Test' },
+      }
+    }
+
+    async function selectAll(user: ReturnType<typeof userEvent.setup>) {
+      await user.click(await screen.findByRole('checkbox', { name: /select all/i }))
+    }
+
+    it('links every selected row to ITS OWN matched record', async () => {
+      // The failure this prevents: one shared beneficiary id attaching a whole
+      // selection to the wrong person.
+      get.mockResolvedValue({
+        ...makeBatch(),
+        rows: [flaggedRow(1, 'exact', 'ben-A'), flaggedRow(2, 'exact', 'ben-B')],
+      })
+      resolveRow.mockResolvedValue({})
+      const user = userEvent.setup()
+      renderPage(<ImportBatchPage />)
+
+      await selectAll(user)
+      await user.click(screen.getByRole('button', { name: /provide service/i }))
+
+      await waitFor(() => expect(resolveRow).toHaveBeenCalledTimes(2))
+      expect(resolveRow).toHaveBeenCalledWith('batch-1', 1, expect.objectContaining({ resolution: 'link', beneficiary_id: 'ben-A' }))
+      expect(resolveRow).toHaveBeenCalledWith('batch-1', 2, expect.objectContaining({ resolution: 'link', beneficiary_id: 'ben-B' }))
+    })
+
+    it('does not offer "create as new" when the selection contains an exact match', async () => {
+      // §9: an exact match is definitive and is never adjudicated as a new person. The
+      // server refuses it, so offering it in bulk would invite 45 identical failures.
+      get.mockResolvedValue({ ...makeBatch(), rows: [flaggedRow(1, 'exact', 'ben-A'), flaggedRow(2, 'probable', 'ben-B')] })
+      const user = userEvent.setup()
+      renderPage(<ImportBatchPage />)
+
+      await selectAll(user)
+
+      expect(screen.queryByRole('button', { name: /create as new/i })).not.toBeInTheDocument()
+      // ...while the decisions that ARE valid at every band remain available.
+      expect(screen.getByRole('button', { name: /provide service/i })).toBeEnabled()
+      expect(screen.getByRole('button', { name: /skip selected/i })).toBeEnabled()
+    })
+
+    it('offers "create as new" when every selected row is a probable match', async () => {
+      get.mockResolvedValue({ ...makeBatch(), rows: [flaggedRow(1, 'probable', 'ben-A'), flaggedRow(2, 'probable', 'ben-B')] })
+      const user = userEvent.setup()
+      renderPage(<ImportBatchPage />)
+
+      await selectAll(user)
+
+      expect(screen.getByRole('button', { name: /create as new/i })).toBeInTheDocument()
+    })
+
+    it('cannot provide service for a row with no matched record', async () => {
+      // Nothing to link TO. It must be reported and stay selected, never guessed at.
+      const orphan = { ...flaggedRow(1, 'probable', 'ben-A'), match: { band: 'probable', candidates: [] } }
+      get.mockResolvedValue({ ...makeBatch(), rows: [orphan] })
+      const user = userEvent.setup()
+      renderPage(<ImportBatchPage />)
+
+      await selectAll(user)
+      expect(screen.getByRole('button', { name: /provide service/i })).toBeDisabled()
+      expect(resolveRow).not.toHaveBeenCalled()
+    })
   })
 
   describe('a batch nothing is working on', () => {

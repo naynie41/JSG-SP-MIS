@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { Link, useNavigate, useParams } from 'react-router-dom'
-import { ArrowRight, CheckCircle2, SkipForward, UserPlus } from 'lucide-react'
+import { ArrowRight, CheckCircle2, Link2, SkipForward, UserPlus } from 'lucide-react'
 import { Button } from '@/components/Button/Button'
 import { Badge } from '@/components/Badge/Badge'
 import { statusVariant } from '@/components/Badge/statusVariant'
@@ -20,7 +20,7 @@ import { MatchComparison } from './MatchComparison'
 import { MatchRevealPanel } from './MatchRevealPanel'
 import { MatchStrengthBand } from './MatchStrengthBand'
 import { ResolveRowControls } from './ResolveRowControls'
-import type { ImportRow } from './types'
+import type { ImportRow, ImportRowResolution } from './types'
 import { formatWaitedFor } from '@/lib/utils/duration'
 import layout from '@/features/shared/formLayout.module.css'
 import styles from './registry.module.css'
@@ -43,6 +43,16 @@ const ROW_FILTERS: { value: RowFilter; label: string; match: (r: ImportRow) => b
 
 const rowName = (r: ImportRow) =>
   [r.preview.first_name, r.preview.last_name].filter(Boolean).join(' ') || `row ${r.row_number}`
+
+/**
+ * The existing registry record a row matched, if any.
+ *
+ * "Provide service" links a row to a specific beneficiary, so in bulk each row must
+ * resolve to its own match — the server rejects an id that is not a candidate for that
+ * row, which is what stops a bulk action from attaching people to the wrong record.
+ */
+const registryMatchId = (r: ImportRow): string | undefined =>
+  r.match.candidates.find((c) => c.type === 'registry' && c.reveal?.id)?.reveal?.id ?? undefined
 
 
 export function ImportBatchPage() {
@@ -105,6 +115,12 @@ export function ImportBatchPage() {
   }
   const isProcessing = batch.status === 'pending' || batch.status === 'processing' || batch.status === 'committing'
   const unresolvedFlagged = rows.filter((r) => isFlagged(r) && !r.resolution).length
+
+  const selectedRows = rows.filter((r) => selected.has(String(r.row_number)))
+  // How many of the selection can actually take each bulk decision, so the bar states
+  // what will happen rather than offering an action that will fail per row.
+  const linkableSelected = selectedRows.filter((r) => registryMatchId(r) !== undefined).length
+  const adjudicableSelected = selectedRows.filter((r) => r.match.band !== 'exact').length
   const activeFilter = ROW_FILTERS.find((f) => f.value === filter) ?? ROW_FILTERS[3]!
   const visibleRows = rows.filter(activeFilter.match)
 
@@ -124,7 +140,7 @@ export function ImportBatchPage() {
    * it got, keeps the rows it could not save selected so they can be retried,
    * and always reports.
    */
-  async function runBulk(resolution: 'skip' | 'new', note?: string) {
+  async function runBulk(resolution: ImportRowResolution, note?: string) {
     const targets = rows.filter((r) => selected.has(String(r.row_number)))
     if (targets.length === 0) return
 
@@ -133,7 +149,21 @@ export function ImportBatchPage() {
 
     for (const [index, row] of targets.entries()) {
       try {
-        await bulkResolve.mutateAsync({ rowNumber: row.row_number, input: { resolution, note } })
+        // Link resolves each row to ITS OWN matched record — there is no single
+        // "the" beneficiary across a selection, so the id is read per row. A row
+        // with no registry candidate cannot be linked and is reported, never
+        // guessed at.
+        const beneficiaryId = resolution === 'link' ? registryMatchId(row) : undefined
+        if (resolution === 'link' && beneficiaryId === undefined) {
+          failed.add(String(row.row_number))
+          setBulkProgress({ done: index + 1, total: targets.length })
+          continue
+        }
+
+        await bulkResolve.mutateAsync({
+          rowNumber: row.row_number,
+          input: { resolution, note, beneficiary_id: beneficiaryId },
+        })
       } catch {
         failed.add(String(row.row_number))
       }
@@ -411,9 +441,28 @@ export function ImportBatchPage() {
               : `${selected.size} selected`}
           </span>
           <span className={styles.spacer} />
-          <Button size="sm" variant="tertiary" leftIcon={UserPlus} onClick={() => setBulkNewOpen(true)} loading={bulkResolve.isPending}>
-            Create as new…
+          {/* Provide service in bulk. Safe precisely BECAUSE identity is already settled:
+              each row links to its own matched record, and for an exact NIN/BVN match
+              there is no same-person judgement left to make — only whether to serve them.
+              Disabled when nothing selected has a record to link to. */}
+          <Button
+            size="sm"
+            variant="tertiary"
+            leftIcon={Link2}
+            onClick={() => runBulk('link')}
+            loading={bulkResolve.isPending}
+            disabled={linkableSelected === 0}
+          >
+            Provide service {linkableSelected > 0 && `(${linkableSelected})`}
           </Button>
+          {/* "Create as new" is an ADJUDICATION — it asserts these are different people.
+              The server refuses it for an exact match (§9), so it is not offered when the
+              selection contains one; offering it would invite 45 identical failures. */}
+          {adjudicableSelected === selected.size && (
+            <Button size="sm" variant="tertiary" leftIcon={UserPlus} onClick={() => setBulkNewOpen(true)} loading={bulkResolve.isPending}>
+              Create as new…
+            </Button>
+          )}
           <Button size="sm" variant="tertiary" leftIcon={SkipForward} onClick={() => runBulk('skip')} loading={bulkResolve.isPending}>
             Skip selected
           </Button>

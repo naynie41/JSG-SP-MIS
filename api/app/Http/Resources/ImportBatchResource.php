@@ -32,6 +32,10 @@ class ImportBatchResource extends JsonResource
             'original_filename' => $this->original_filename,
             'source' => $this->source->value,
             'activity_id' => $this->activity_id,
+            // The programme the batch enrolls into: the bound activity's when there is
+            // one, else the batch's own. A programme-only import is a complete intake,
+            // not a half-finished one, so the UI has something definite to name.
+            'programme_id' => $this->effectiveProgrammeId(),
             // Activity-wizard preview (§10): unbound batch whose activity is created on
             // confirm. Non-null name + null activity_id ⇒ confirm via the wizard endpoint.
             'draft_activity_name' => $draft['name'] ?? null,

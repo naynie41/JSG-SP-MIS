@@ -200,4 +200,123 @@ describe('AdjudicateQueuePage', () => {
 
     expect(await screen.findByText(/nothing to adjudicate/i)).toBeInTheDocument()
   })
+
+  /**
+   * The shape a real exact-NIN duplicate arrives in: `is_valid: false` (the row carries
+   * duplicate errors), a deterministic stage, score 1, and no fuzzy weights. Every
+   * flagged row in a re-uploaded cohort looks like this, so if it cannot render, the
+   * whole adjudication queue is unreachable exactly when it is needed.
+   */
+  function exactDuplicateRow(rowNumber: number) {
+    return row({
+      row_number: rowNumber,
+      is_valid: false,
+      errors: [
+        { field: 'nin', message: 'A beneficiary with this NIN is already registered.', group: 'duplicate' },
+        { field: 'date_of_birth', message: 'The date of birth field is required.', group: 'dropped' },
+      ],
+      match: {
+        band: 'exact',
+        candidates: [
+          {
+            type: 'registry',
+            band: 'exact',
+            score: 1,
+            matched_fields: ['nin'],
+            stage: 'deterministic',
+            comparison: [
+              { field: 'nin', verdict: 'exact', similarity: 1, weight: null, participated: true, deterministic: true },
+            ],
+            reveal: {
+              id: 'ben-1',
+              full_name: 'Ladidi Ciroma',
+              owner_mda: { id: 'mda-2', name: 'Ministry of Health' },
+              registration_source: 'excel',
+              registration_date: '2026-08-17',
+              lga: 'auyo',
+              ward: 'Kafur',
+              status: 'active',
+              programmes: [
+                {
+                  programme_id: 'p-1',
+                  name: 'Health Insurance',
+                  owner_mda: { id: 'mda-2', name: 'Ministry of Health' },
+                  status: 'enrolled',
+                },
+              ],
+              benefits: { summary: { count: 0, total_value: null, last_delivery_date: null, types: [] }, items: [] },
+            },
+          },
+        ],
+      },
+      preview: {
+        first_name: 'Ladidi Ciroma',
+        last_name: 'Ladidi Ciroma',
+        nin: '•••••••2619',
+        bvn: null,
+        phone: '07085046387',
+        date_of_birth: null,
+        gender: 'female',
+        lga: 'auyo',
+        ward: 'Kafur',
+      },
+    })
+  }
+
+  it('renders an exact-NIN duplicate row', async () => {
+    get.mockResolvedValue(batch([exactDuplicateRow(5)]))
+    renderPage()
+
+    expect(await screen.findByText('Row 5')).toBeInTheDocument()
+    // The existing record is disclosed so the decision can actually be made.
+    expect(screen.getByText('Ladidi Ciroma')).toBeInTheDocument()
+    expect(screen.getByText('Ministry of Health')).toBeInTheDocument()
+  })
+
+  it('states what the existing person already received, without calling it expenditure', async () => {
+    // The reveal exists to answer "is this the same person, and are we about to serve
+    // them twice" — so the delivery history has to render, not just be present.
+    const withHistory = exactDuplicateRow(5)
+    const candidate = (withHistory.match as { candidates: { reveal: Record<string, unknown> }[] }).candidates[0]!
+    candidate.reveal.benefits = {
+      summary: { count: 3, total_value: 4500000, last_delivery_date: '2026-06-30', types: ['cash'] },
+      items: [],
+    }
+
+    get.mockResolvedValue(batch([withHistory]))
+    renderPage()
+
+    const line = await screen.findByText(/3 deliveries/)
+    expect(line).toHaveTextContent('₦45,000.00 delivered')
+    expect(line).toHaveTextContent('last 2026-06-30')
+    // Delivery value is NOT treasury expenditure.
+    expect(line).not.toHaveTextContent(/spent|disbursed|expenditure/i)
+  })
+
+  it('omits the monetary value when the viewing MDA may not see it', async () => {
+    // null total_value means "not permitted to see", which is not zero — showing ₦0.00
+    // would state something false about what this person received.
+    const masked = exactDuplicateRow(5)
+    const candidate = (masked.match as { candidates: { reveal: Record<string, unknown> }[] }).candidates[0]!
+    candidate.reveal.benefits = {
+      summary: { count: 2, total_value: null, last_delivery_date: '2026-06-30', types: [] },
+      items: [],
+    }
+
+    get.mockResolvedValue(batch([masked]))
+    renderPage()
+
+    const line = await screen.findByText(/2 deliveries/)
+    expect(line).not.toHaveTextContent('₦')
+  })
+
+  it('renders a queue of exact duplicates with no matching thresholds configured', async () => {
+    // A deterministic match needs no thresholds, and a batch can legitimately have none.
+    const b = batch([exactDuplicateRow(5), exactDuplicateRow(6)])
+    get.mockResolvedValue({ ...b, matching_thresholds: null })
+    renderPage()
+
+    expect(await screen.findByText('Row 5')).toBeInTheDocument()
+    expect(screen.getByText(/1 of 2/)).toBeInTheDocument()
+  })
 })

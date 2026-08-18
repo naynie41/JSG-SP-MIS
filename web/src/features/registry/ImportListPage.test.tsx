@@ -7,7 +7,7 @@ import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 import { ToastProvider } from '@/components/Toast/ToastProvider'
 import { ImportListPage } from './ImportListPage'
 import { importApi } from './api'
-import { activityApi } from '@/features/programmes/api'
+import { activityApi, programmeApi } from '@/features/programmes/api'
 import type { ImportBatch } from './types'
 
 /**
@@ -50,6 +50,7 @@ vi.mock('react-router-dom', async () => ({
 const listImports = importApi.list as Mock
 const upload = importApi.upload as Mock
 const listActivities = activityApi.list as Mock
+const listCatalog = programmeApi.catalog as Mock
 
 function makeBatch(overrides: Partial<ImportBatch> = {}): ImportBatch {
   return {
@@ -58,6 +59,7 @@ function makeBatch(overrides: Partial<ImportBatch> = {}): ImportBatch {
     source: 'excel',
     status: 'completed',
     activity_id: 'a-1',
+    programme_id: 'p-1',
     summary: { total_rows: 120, valid_rows: 118, rejected_rows: 2, dropped_field_rows: 0, committed_rows: 118 },
     error: null,
     created_at: '2026-08-01T09:00:00Z',
@@ -67,17 +69,31 @@ function makeBatch(overrides: Partial<ImportBatch> = {}): ImportBatch {
 
 const page = <T,>(items: T[]) => ({ items, pagination: { page: 1, per_page: 25, total: items.length, total_pages: 1 } })
 
-/** An activity that accepts beneficiaries — the precondition for any upload (§9). */
-const ACTIVITY = { id: 'a-1', name: 'Cash transfer — Q3', involves_beneficiaries: true, status: 'active' }
+/** The catalog programme — the precondition for any upload (§9, programme-first). */
+const PROGRAMME = { id: 'p-1', name: 'Cash Transfer', type: 'individual', status: 'active' }
+
+/** An OPTIONAL activity under that programme. */
+const ACTIVITY = {
+  id: 'a-1',
+  name: 'Cash transfer — Q3',
+  programme_id: 'p-1',
+  involves_beneficiaries: true,
+  status: 'active',
+}
 
 /**
- * The activity list and the batch list are separate queries, so the batch table can be
- * on screen while the activity dropdown is still empty. Anchor on the option itself
- * before selecting it, or the test races the query it depends on.
+ * The catalog, activity list and batch list are separate queries, so the batch table can
+ * be on screen while a dropdown is still empty. Anchor on the option itself before
+ * selecting it, or the test races the query it depends on.
  */
-async function chooseActivity(user: ReturnType<typeof userEvent.setup>, name = ACTIVITY.name) {
+async function chooseProgramme(user: ReturnType<typeof userEvent.setup>, name = PROGRAMME.name) {
   await screen.findByRole('option', { name })
-  await user.selectOptions(screen.getByLabelText(/activity/i), ACTIVITY.id)
+  await user.selectOptions(screen.getByLabelText(/^programme/i), PROGRAMME.id)
+}
+
+async function chooseActivity(user: ReturnType<typeof userEvent.setup>) {
+  await screen.findByRole('option', { name: ACTIVITY.name })
+  await user.selectOptions(screen.getByLabelText(/^activity/i), ACTIVITY.id)
 }
 
 /**
@@ -109,6 +125,7 @@ describe('ImportListPage — the source-ingestion front door', () => {
     permissions = ['beneficiary.view', 'beneficiary.create']
     listImports.mockResolvedValue(page([makeBatch()]))
     listActivities.mockResolvedValue(page([ACTIVITY]))
+    listCatalog.mockResolvedValue(page([PROGRAMME]))
   })
 
   /* ------------------------------------------------------------ batch history */
@@ -142,49 +159,95 @@ describe('ImportListPage — the source-ingestion front door', () => {
     expect(await screen.findByText(/no imports yet/i)).toBeInTheDocument()
   })
 
-  /* ------------------------------------------------- activity-first upload (§9) */
+  /* ------------------------------------------------ programme-first upload (§9) */
 
-  it('refuses to upload without an activity, before touching the network', async () => {
+  it('refuses to upload without a programme, before touching the network', async () => {
     const user = userEvent.setup()
     renderPage()
     await screen.findByRole('table', { name: /import batches/i })
 
     await user.click(screen.getByRole('button', { name: /upload & preview/i }))
 
-    expect(await screen.findByRole('alert')).toHaveTextContent(/choose the activity/i)
-    // Activity-first is a hard precondition: nothing is sent until it is satisfied.
+    expect(await screen.findByRole('alert')).toHaveTextContent(/choose the programme/i)
+    // Programme-first is the hard precondition: nothing is sent until it is satisfied.
     expect(upload).not.toHaveBeenCalled()
   })
 
-  it('refuses to upload without a file once an activity is chosen', async () => {
+  it('refuses to upload without a file once a programme is chosen', async () => {
     const user = userEvent.setup()
     renderPage()
     await screen.findByRole('table', { name: /import batches/i })
 
-    await chooseActivity(user)
+    await chooseProgramme(user)
     await user.click(screen.getByRole('button', { name: /upload & preview/i }))
 
     expect(await screen.findByRole('alert')).toHaveTextContent(/choose a file/i)
     expect(upload).not.toHaveBeenCalled()
   })
 
-  it('uploads bound to the chosen activity and goes to the preview', async () => {
+  it('uploads with a programme and NO activity — the whole point of the change', async () => {
     upload.mockResolvedValue({ id: 'ib-9' })
     const user = userEvent.setup()
     renderPage()
     await screen.findByRole('table', { name: /import batches/i })
 
-    await chooseActivity(user)
+    await chooseProgramme(user)
     await user.selectOptions(screen.getByLabelText(/source/i), 'kobo')
     attachFile()
 
     await user.click(screen.getByRole('button', { name: /upload & preview/i }))
 
-    // (file, activityId, source) — the activity binding is the middle argument, and it
-    // is what makes every imported row traceable to a delivery (§9).
-    await waitFor(() => expect(upload).toHaveBeenCalledWith(expect.any(File), 'a-1', 'kobo'))
-    // Nothing is committed here — the user lands on the preview to review first.
+    // (file, programmeId, activityId, source) — activity undefined, not '': an intake
+    // that does not know which activity delivered says so rather than inventing one.
+    await waitFor(() => expect(upload).toHaveBeenCalledWith(expect.any(File), 'p-1', undefined, 'kobo'))
     expect(navigate).toHaveBeenCalledWith('/imports/ib-9')
+  })
+
+  it('still allows binding an activity when the officer knows it', async () => {
+    upload.mockResolvedValue({ id: 'ib-9' })
+    const user = userEvent.setup()
+    renderPage()
+    await screen.findByRole('table', { name: /import batches/i })
+
+    await chooseProgramme(user)
+    await chooseActivity(user)
+    attachFile()
+    await user.click(screen.getByRole('button', { name: /upload & preview/i }))
+
+    await waitFor(() => expect(upload).toHaveBeenCalledWith(expect.any(File), 'p-1', 'a-1', undefined))
+  })
+
+  it('only offers activities that run the selected programme', async () => {
+    // An activity belongs to exactly one programme, so offering another's would let the
+    // two contradict each other — which the server rejects at upload.
+    listActivities.mockResolvedValue(page([ACTIVITY, { ...ACTIVITY, id: 'a-2', name: 'Food — Q3', programme_id: 'p-9' }]))
+    const user = userEvent.setup()
+    renderPage()
+    await screen.findByRole('table', { name: /import batches/i })
+
+    await chooseProgramme(user)
+
+    const activitySelect = screen.getByLabelText(/^activity/i)
+    expect(within(activitySelect).getByRole('option', { name: ACTIVITY.name })).toBeInTheDocument()
+    expect(within(activitySelect).queryByRole('option', { name: 'Food — Q3' })).not.toBeInTheDocument()
+  })
+
+  it('clears a chosen activity when the programme changes', async () => {
+    upload.mockResolvedValue({ id: 'ib-9' })
+    listCatalog.mockResolvedValue(page([PROGRAMME, { ...PROGRAMME, id: 'p-2', name: 'Food Support' }]))
+    const user = userEvent.setup()
+    renderPage()
+    await screen.findByRole('table', { name: /import batches/i })
+
+    await chooseProgramme(user)
+    await chooseActivity(user)
+
+    // Switching programme must not leave the old activity attached to the new one.
+    await user.selectOptions(screen.getByLabelText(/^programme/i), 'p-2')
+    attachFile()
+    await user.click(screen.getByRole('button', { name: /upload & preview/i }))
+
+    await waitFor(() => expect(upload).toHaveBeenCalledWith(expect.any(File), 'p-2', undefined, undefined))
   })
 
   it('surfaces a rejected upload instead of navigating away', async () => {
@@ -193,7 +256,7 @@ describe('ImportListPage — the source-ingestion front door', () => {
     renderPage()
     await screen.findByRole('table', { name: /import batches/i })
 
-    await chooseActivity(user)
+    await chooseProgramme(user)
     attachFile()
     await user.click(screen.getByRole('button', { name: /upload & preview/i }))
 
@@ -201,15 +264,30 @@ describe('ImportListPage — the source-ingestion front door', () => {
     expect(navigate).not.toHaveBeenCalled()
   })
 
-  it('blocks the upload and explains when the MDA has no activity that accepts beneficiaries', async () => {
-    // An activity that declared it involves NO beneficiaries must not be an upload
-    // target — that would contradict what was recorded when it was created (§10).
+  it('having no usable activity no longer blocks importing', async () => {
+    // The regression this change exists to remove: an MDA with no activity could not
+    // register anyone at all.
     listActivities.mockResolvedValue(page([{ ...ACTIVITY, involves_beneficiaries: false }]))
+    upload.mockResolvedValue({ id: 'ib-9' })
+    const user = userEvent.setup()
+    renderPage()
+    await screen.findByRole('table', { name: /import batches/i })
+
+    await chooseProgramme(user)
+    attachFile()
+    await user.click(screen.getByRole('button', { name: /upload & preview/i }))
+
+    await waitFor(() => expect(upload).toHaveBeenCalledWith(expect.any(File), 'p-1', undefined, undefined))
+  })
+
+  it('blocks the upload and explains when no catalog programme exists', async () => {
+    // Programmes are created centrally (§10), so an MDA cannot fix this itself — say who can.
+    listCatalog.mockResolvedValue(page([]))
 
     renderPage()
     await screen.findByRole('table', { name: /import batches/i })
 
-    expect(await screen.findByRole('status')).toHaveTextContent(/no activity that accepts beneficiaries/i)
+    expect(await screen.findByRole('status')).toHaveTextContent(/no catalog programme is available/i)
     expect(screen.getByRole('button', { name: /upload & preview/i })).toBeDisabled()
   })
 

@@ -105,6 +105,9 @@ class ImportMappingTest extends TestCase
         return [
             'first_name' => 'given_name',
             'last_name' => 'surname',
+            // This file has separate name columns, so the single full-name column is
+            // explicitly absent — an answer, not a blank (CLAUDE.md §11).
+            'full_name' => null,
             'nin' => 'national_id',
             'bvn' => null,          // explicitly not present in this file
             'phone' => 'mobile',
@@ -146,7 +149,9 @@ class ImportMappingTest extends TestCase
         // is still outstanding. A suggestion is advice, not a decision.
         $this->assertSame([], $data['column_map']);
         $this->assertEqualsCanonicalizing(
-            ['first_name', 'last_name', 'nin', 'bvn', 'phone'],
+            // `full_name` is confirmation-required too: a single "Name" column IS the
+            // identity, so it must never be applied without a person saying so.
+            ['first_name', 'last_name', 'full_name', 'nin', 'bvn', 'phone'],
             $data['unconfirmed_identity_fields'],
         );
     }
@@ -422,5 +427,146 @@ class ImportMappingTest extends TestCase
         ])->assertOk();
 
         $this->assertSame(1, AuditLog::query()->where('action', 'import.mapping_template_saved')->count());
+    }
+
+    /* ------------------------------------------- recognising a familiar layout */
+
+    /**
+     * The ordinary case: the same MDA uploads another export of the same shape, having
+     * never saved a named template. Recognising the layout must not depend on somebody
+     * having thought to save one.
+     */
+    public function test_a_second_file_of_the_same_shape_is_pre_filled_from_the_last_confirmed_import(): void
+    {
+        $first = $this->upload(filename: 'january.csv');
+        $this->send('PUT', "/api/v1/beneficiaries/imports/{$first->id}/mapping", ['column_map' => $this->goodMap()])
+            ->assertOk();
+
+        // No template was ever saved — this is what makes the fallback necessary.
+        $this->assertSame(0, ImportMappingTemplate::query()->withoutGlobalScopes()->count());
+
+        $second = $this->upload(filename: 'february.csv');
+
+        $this->assertSame($first->source_signature, $second->source_signature, 'same layout, same signature');
+        $this->assertSame($this->goodMap(), $second->column_map);
+        $this->assertSame($first->id, $second->mapping_prefilled_from_id);
+    }
+
+    /** Pre-filled is not confirmed — the §11 guard survives the convenience. */
+    public function test_a_pre_filled_mapping_still_has_to_be_confirmed(): void
+    {
+        $first = $this->upload(filename: 'january.csv');
+        $this->send('PUT', "/api/v1/beneficiaries/imports/{$first->id}/mapping", ['column_map' => $this->goodMap()]);
+
+        $second = $this->upload(filename: 'february.csv');
+
+        $this->assertNull($second->mapping_confirmed_at);
+        $this->assertSame(ImportStatus::MappingRequired, $second->status);
+
+        // ...and the job refuses to parse it until a person confirms.
+        ParseImportBatch::dispatchSync($second->id);
+        $this->assertSame(ImportStatus::MappingRequired, $second->fresh()->status);
+    }
+
+    /** The review screen names where the pre-fill came from. */
+    public function test_the_proposal_reports_the_earlier_import_it_recognised(): void
+    {
+        $first = $this->upload(filename: 'january.csv');
+        $this->send('PUT', "/api/v1/beneficiaries/imports/{$first->id}/mapping", ['column_map' => $this->goodMap()]);
+
+        $second = $this->upload(filename: 'february.csv');
+
+        $this->send('GET', "/api/v1/beneficiaries/imports/{$second->id}/mapping")
+            ->assertOk()
+            ->assertJsonPath('data.prefilled_from.type', 'previous_import')
+            ->assertJsonPath('data.prefilled_from.name', 'january.csv')
+            ->assertJsonPath('data.prefilled_from.confirmed_by', $this->users['officer']->name)
+            ->assertJsonPath('data.template', null);
+    }
+
+    /** A named template still wins — it is the deliberate artefact. */
+    public function test_a_saved_template_takes_precedence_over_the_previous_import(): void
+    {
+        $first = $this->upload(filename: 'january.csv');
+        $this->send('PUT', "/api/v1/beneficiaries/imports/{$first->id}/mapping", [
+            'column_map' => $this->goodMap(),
+            'save_template_as' => 'MoH monthly export',
+        ])->assertOk();
+
+        $second = $this->upload(filename: 'february.csv');
+
+        $this->assertNotNull($second->mapping_template_id);
+        $this->assertNull($second->mapping_prefilled_from_id);
+
+        $this->send('GET', "/api/v1/beneficiaries/imports/{$second->id}/mapping")
+            ->assertOk()
+            ->assertJsonPath('data.prefilled_from.type', 'template')
+            ->assertJsonPath('data.prefilled_from.name', 'MoH monthly export');
+    }
+
+    /** An abandoned mapping is not a decision anyone made. */
+    public function test_an_unconfirmed_earlier_batch_is_not_used_as_a_source(): void
+    {
+        $this->upload(filename: 'abandoned.csv'); // never confirmed
+
+        $second = $this->upload(filename: 'february.csv');
+
+        $this->assertSame([], $second->column_map);
+        $this->assertNull($second->mapping_prefilled_from_id);
+    }
+
+    /** A different file shape is not "familiar" — the signature has to match exactly. */
+    public function test_a_different_layout_is_not_pre_filled(): void
+    {
+        $first = $this->upload(filename: 'january.csv');
+        $this->send('PUT', "/api/v1/beneficiaries/imports/{$first->id}/mapping", ['column_map' => $this->goodMap()]);
+
+        $other = $this->upload(
+            "Full Name,NIN,Phone\nAda Okoye,22200000011,08031234567",
+            'different-shape.csv',
+        );
+
+        $this->assertNotSame($first->source_signature, $other->source_signature);
+        $this->assertSame([], $other->column_map);
+        $this->assertNull($other->mapping_prefilled_from_id);
+    }
+
+    /**
+     * Another MDA's mapping decision is not evidence about this MDA's file.
+     *
+     * Two agencies can export identical column headers and mean different things by
+     * `national_id`; borrowing across the boundary would also leak one MDA's working
+     * practice into another's screen.
+     */
+    public function test_another_mdas_confirmed_mapping_is_never_borrowed(): void
+    {
+        // Built BEFORE any request: creating an Auditable model between requests
+        // resolves Auth::user() against the previous one and caches it, which would
+        // authenticate this upload as the wrong MDA.
+        $otherMda = Mda::factory()->create(['name' => 'Ministry of Education']);
+        $otherUser = User::factory()->create([
+            'mda_id' => $otherMda->id,
+            'role_id' => Role::where('key', RoleKey::MdaAdmin->value)->firstOrFail()->id,
+        ]);
+        $otherProgramme = Programme::factory()->individual()->create();
+        $otherActivity = Activity::factory()->forProgramme($otherProgramme, $otherMda)->create();
+        $otherToken = $otherUser->createToken('t')->plainTextToken;
+
+        $first = $this->upload(filename: 'january.csv');
+        $this->send('PUT', "/api/v1/beneficiaries/imports/{$first->id}/mapping", ['column_map' => $this->goodMap()]);
+
+        $this->app['auth']->forgetGuards();
+        $response = $this->withToken($otherToken)
+            ->post('/api/v1/beneficiaries/imports', [
+                'file' => UploadedFile::fake()->createWithContent('theirs.csv', $this->mdaShapedCsv()),
+                'activity_id' => $otherActivity->id,
+            ], ['Accept' => 'application/json'])->assertCreated();
+        $this->app['auth']->forgetGuards();
+
+        $theirs = ImportBatch::query()->withoutGlobalScope(MdaScope::class)->findOrFail($response->json('data.id'));
+
+        $this->assertSame($first->source_signature, $theirs->source_signature, 'identical headers');
+        $this->assertSame([], $theirs->column_map, 'but no mapping borrowed across MDAs');
+        $this->assertNull($theirs->mapping_prefilled_from_id);
     }
 }

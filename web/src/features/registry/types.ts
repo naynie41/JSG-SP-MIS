@@ -112,7 +112,26 @@ export interface MatchReveal {
   ward: string | null
   status: string
   programmes: unknown[]
-  benefits: { summary: string | null; items: unknown[] }
+  /**
+   * What this person has already received (BeneficiaryRevealPresenter).
+   *
+   * `summary` is an OBJECT, not a string — it was typed as `string | null` and every
+   * fixture used null, so nothing caught it until a real reveal rendered the object as a
+   * React child and blanked the adjudication page.
+   *
+   * `total_value` is null when the viewing MDA may not see monetary value, which is not
+   * the same as zero — a non-owner sees that deliveries happened without seeing what
+   * they were worth.
+   */
+  benefits: {
+    summary: {
+      count: number
+      total_value: number | null
+      last_delivery_date: string | null
+      types: string[]
+    } | null
+    items: unknown[]
+  }
 }
 
 /**
@@ -195,6 +214,16 @@ export interface ImportMappingProposal {
   samples: Record<string, string[]>
   normalized_preview: NormalizedPreviewRow[]
   template: { id: string; name: string } | null
+  /**
+   * Where a pre-filled mapping came from, so the reviewer is not asked to confirm
+   * choices that appeared from nowhere. `template` is a deliberately saved artefact;
+   * `previous_import` is "we recognised this layout from the last file you mapped".
+   * Null when this file shape has not been seen before.
+   */
+  prefilled_from:
+    | { type: 'template'; name: string }
+    | { type: 'previous_import'; name: string; confirmed_by: string | null; confirmed_at: string | null }
+    | null
   identity_fields: string[]
   unconfirmed_identity_fields: string[]
   unknown_headers: string[]
@@ -328,6 +357,11 @@ export interface ImportBatch {
   original_filename: string
   source: string
   activity_id: string | null
+  /**
+   * The catalog programme this batch registers people under — the bound activity's when
+   * there is one, else the batch's own. A programme-only import is a complete intake.
+   */
+  programme_id: string | null
   /** Activity-wizard preview (§10): name of the activity created on confirm; null for a standalone batch. */
   draft_activity_name: string | null
   /** Activity-wizard target beneficiaries; null for a standalone batch. */

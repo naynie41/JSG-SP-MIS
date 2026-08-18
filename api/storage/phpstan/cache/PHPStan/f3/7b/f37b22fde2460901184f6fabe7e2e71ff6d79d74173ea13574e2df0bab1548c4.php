@@ -78,6 +78,53 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
          'typeAliasClassName' => NULL,
          'traitData' => NULL,
       )),
+      'e43118b47a62390bacd0c4c82b4f4e49' => 
+      \PHPStan\Analyser\IntermediaryNameScope::__set_state(array(
+         'namespace' => 'App\\Domain\\Registry\\Support',
+         'uses' => 
+        array (
+          'importrowvalidator' => 'App\\Domain\\Registry\\Imports\\ImportRowValidator',
+          'householdingestionservice' => 'App\\Domain\\Registry\\Services\\HouseholdIngestionService',
+        ),
+         'className' => 'App\\Domain\\Registry\\Support\\CanonicalSchema',
+         'functionName' => 'mappableFields',
+         'templatePhpDocNodes' => 
+        array (
+        ),
+         'parent' => 
+        \PHPStan\Analyser\IntermediaryNameScope::__set_state(array(
+           'namespace' => 'App\\Domain\\Registry\\Support',
+           'uses' => 
+          array (
+            'importrowvalidator' => 'App\\Domain\\Registry\\Imports\\ImportRowValidator',
+            'householdingestionservice' => 'App\\Domain\\Registry\\Services\\HouseholdIngestionService',
+          ),
+           'className' => 'App\\Domain\\Registry\\Support\\CanonicalSchema',
+           'functionName' => NULL,
+           'templatePhpDocNodes' => 
+          array (
+          ),
+           'parent' => NULL,
+           'typeAliasesMap' => 
+          array (
+          ),
+           'bypassTypeAliases' => false,
+           'constUses' => 
+          array (
+          ),
+           'typeAliasClassName' => NULL,
+           'traitData' => NULL,
+        )),
+         'typeAliasesMap' => 
+        array (
+        ),
+         'bypassTypeAliases' => false,
+         'constUses' => 
+        array (
+        ),
+         'typeAliasClassName' => NULL,
+         'traitData' => NULL,
+      )),
       '601c4eb9d76d18717eb6d3d5f5f56669' => 
       \PHPStan\Analyser\IntermediaryNameScope::__set_state(array(
          'namespace' => 'App\\Domain\\Registry\\Support',
@@ -410,7 +457,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
     ),
     1 => 
     array (
-      'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Registry\\Support\\CanonicalSchema.php' => '60946f2c218bb1ccabaa2f2e16ba51968a6dd12891f7661b6ba542fdd0a262a2',
+      'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Registry\\Support\\CanonicalSchema.php' => 'a92f4a70e0f20da1712ac6a4a48ece37d2f1b2008592fe4398a5117d3a88e575',
     ),
   ),
 ));

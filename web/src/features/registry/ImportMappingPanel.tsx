@@ -16,6 +16,9 @@ import styles from './registry.module.css'
 const ABSENT = '__absent__'
 
 const FIELD_LABELS: Record<string, string> = {
+  // One combined name column, split into first/last on the way in. Named so it is
+  // obviously an alternative to the two below rather than a third name field.
+  full_name: 'Full name (one column)',
   first_name: 'First name',
   middle_name: 'Middle name',
   last_name: 'Last name',
@@ -54,6 +57,30 @@ const CONFIDENCE: Record<MappingConfidence, { label: string; variant: 'success' 
  * The server enforces the guard (`MAPPING_INCOMPLETE`); the disabled button here is
  * courtesy, not protection.
  */
+/**
+ * One sentence saying where a pre-filled mapping came from.
+ *
+ * A saved template and a recognised earlier file warrant different scrutiny, and the
+ * attribution ("confirmed by X on DATE") is what lets a reviewer judge whether to trust
+ * it — so it is stated plainly rather than implied by a generic "pre-filled" note.
+ */
+function prefillSentence(source: NonNullable<ImportMappingProposal['prefilled_from']>): string {
+  if (source.type === 'template') {
+    return `Pre-filled from your saved mapping “${source.name}”.`
+  }
+
+  const attribution = [
+    source.confirmed_by ? `confirmed by ${source.confirmed_by}` : null,
+    source.confirmed_at ? `on ${source.confirmed_at.slice(0, 10)}` : null,
+  ]
+    .filter(Boolean)
+    .join(' ')
+
+  return `This file has the same columns as “${source.name}”, so its mapping has been pre-filled${
+    attribution ? ` (${attribution})` : ''
+  }.`
+}
+
 export function ImportMappingPanel({ batchId }: { batchId: string }) {
   const { data: proposal, isLoading } = useImportMapping(batchId)
   const confirm = useConfirmMapping(batchId)
@@ -176,12 +203,16 @@ export function ImportMappingPanel({ batchId }: { batchId: string }) {
 
   return (
     <div className={styles.stack}>
-      {proposal.template && (
+      {/* Where the pre-fill came from. Naming the source is what makes this a review
+          rather than a formality — "confirm these choices" is unanswerable if the
+          reviewer cannot see whose choices they were. */}
+      {proposal.prefilled_from && (
         <Card variant="mint">
           <p className={styles.note}>
-            <Icon icon={BookmarkCheck} size={14} /> Pre-filled from your saved mapping “
-            {proposal.template.name}”. Confirm the identity fields below — they are never carried
-            over, because the columns behind them may have changed.
+            <Icon icon={BookmarkCheck} size={14} />{' '}
+            {prefillSentence(proposal.prefilled_from)}{' '}
+            Check the identity fields below before continuing: NIN, BVN, name and phone are
+            pre-filled but never pre-confirmed, and the columns behind them may have moved since.
           </p>
         </Card>
       )}

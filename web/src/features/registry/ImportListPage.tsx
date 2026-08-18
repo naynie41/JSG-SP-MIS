@@ -13,7 +13,7 @@ import { ApiError } from '@/types/api'
 import { useAuth } from '@/lib/auth/AuthProvider'
 import { IMPORT_STATUS_LABELS } from './constants'
 import { useImports, useUploadImport } from './hooks'
-import { useAllActivities } from '@/features/programmes/hooks'
+import { useAllActivities, useProgrammeCatalog } from '@/features/programmes/hooks'
 import type { ImportBatch } from './types'
 import layout from '@/features/shared/formLayout.module.css'
 import styles from './registry.module.css'
@@ -40,6 +40,7 @@ export function ImportListPage({ readOnly = false }: ImportListPageProps = {}) {
 
   const [page, setPage] = useState(1)
   const [source, setSource] = useState('')
+  const [programmeId, setProgrammeId] = useState('')
   const [activityId, setActivityId] = useState('')
   const [file, setFile] = useState<File | null>(null)
   const [uploadError, setUploadError] = useState<string | null>(null)
@@ -47,13 +48,19 @@ export function ImportListPage({ readOnly = false }: ImportListPageProps = {}) {
   const { data, isLoading } = useImports(page, canView)
   const uploadImport = useUploadImport()
 
-  // Activity-first (§9): the upload must name the activity the rows are delivered
-  // under. Only this MDA's own activities are offered, and only those that declared
-  // they involve beneficiaries — uploading into an activity that declared it has none
-  // would contradict what was recorded when it was created (§10).
+  // Programme-first (§9): the upload names the catalog PROGRAMME the rows are registered
+  // under. An activity is optional — it says which MDA-run instance delivered to them,
+  // which an intake often does not know yet.
+  const { data: catalog } = useProgrammeCatalog(canImport)
+  const programmeOptions = (catalog?.items ?? []).map((p) => ({ value: p.id, label: p.name }))
+
+  // Only this MDA's own activities, only those that declared they involve beneficiaries
+  // (uploading into one that declared it has none would contradict its own record, §10),
+  // and only those running the SELECTED programme — an activity belongs to exactly one,
+  // so offering the rest would let the two contradict each other.
   const { data: activityPage } = useAllActivities(canImport)
   const activityOptions = (activityPage?.items ?? [])
-    .filter((a) => a.involves_beneficiaries && a.status !== 'archived')
+    .filter((a) => a.involves_beneficiaries && a.status !== 'archived' && a.programme_id === programmeId)
     .map((a) => ({ value: a.id, label: a.name }))
 
   if (!canView) {
@@ -65,8 +72,8 @@ export function ImportListPage({ readOnly = false }: ImportListPageProps = {}) {
   }
 
   async function submitUpload() {
-    if (!activityId) {
-      setUploadError('Choose the activity these beneficiaries are being delivered under.')
+    if (!programmeId) {
+      setUploadError('Choose the programme these beneficiaries are being registered under.')
       return
     }
     if (!file) {
@@ -75,7 +82,13 @@ export function ImportListPage({ readOnly = false }: ImportListPageProps = {}) {
     }
     setUploadError(null)
     try {
-      const batch = await uploadImport.mutateAsync({ file, activityId, source: source || undefined })
+      const batch = await uploadImport.mutateAsync({
+        file,
+        programmeId,
+        // Omitted rather than sent empty — "no activity" is one value, not two.
+        activityId: activityId || undefined,
+        source: source || undefined,
+      })
       navigate(`/imports/${batch.id}`)
     } catch (error) {
       setUploadError(error instanceof ApiError ? error.message : 'Upload failed. Please try again.')
@@ -125,20 +138,41 @@ export function ImportListPage({ readOnly = false }: ImportListPageProps = {}) {
           )}
           <div className={layout.grid2}>
             <SelectField
-              label="Activity"
+              label="Programme"
               required
-              placeholder="Select the activity"
+              placeholder="Select the programme"
+              options={programmeOptions}
+              value={programmeId}
+              onChange={(e) => {
+                // Changing programme invalidates the chosen activity — an activity
+                // belongs to one programme, so keeping it would create a contradiction
+                // the server would (correctly) reject at upload.
+                setProgrammeId(e.target.value)
+                setActivityId('')
+              }}
+              helper="Every uploaded row is registered under this catalog programme."
+            />
+            <SelectField
+              label="Activity (optional)"
+              placeholder={
+                !programmeId
+                  ? 'Select a programme first'
+                  : activityOptions.length === 0
+                    ? 'No matching activity — leave blank'
+                    : 'No specific activity'
+              }
               options={activityOptions}
+              disabled={!programmeId || activityOptions.length === 0}
               value={activityId}
               onChange={(e) => setActivityId(e.target.value)}
-              helper="Every uploaded row is recorded as an intervention under this activity."
+              helper="Only if you know which of your activities delivered to these people."
             />
-            <SelectField label="Source" options={SOURCE_OPTIONS} value={source} onChange={(e) => setSource(e.target.value)} />
           </div>
-          {activityOptions.length === 0 && (
+          <SelectField label="Source" options={SOURCE_OPTIONS} value={source} onChange={(e) => setSource(e.target.value)} />
+          {programmeOptions.length === 0 && (
             <p className={layout.alert} role="status">
-              Your MDA has no activity that accepts beneficiaries yet. Create one first — an upload is always
-              recorded under an activity.
+              No catalog programme is available yet. Programmes are created centrally — ask a System
+              Administrator to add one before importing.
             </p>
           )}
           <FileField
@@ -152,7 +186,9 @@ export function ImportListPage({ readOnly = false }: ImportListPageProps = {}) {
               leftIcon={Upload}
               onClick={submitUpload}
               loading={uploadImport.isPending}
-              disabled={activityOptions.length === 0}
+              // Gated on the PROGRAMME catalog now, not on the MDA owning an activity —
+              // having no activity is no longer a reason it cannot register anyone.
+              disabled={programmeOptions.length === 0}
             >
               Upload &amp; preview
             </Button>

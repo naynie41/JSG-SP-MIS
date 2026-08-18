@@ -1,5 +1,6 @@
 import { Badge } from '@/components/Badge/Badge'
 import { statusVariant } from '@/components/Badge/statusVariant'
+import { formatNaira } from '@/lib/utils/money'
 import { REGISTRATION_SOURCE_LABELS, titleCase } from './constants'
 import type { MatchReveal } from './types'
 import styles from './registry.module.css'
@@ -8,6 +9,31 @@ interface MatchRevealPanelProps {
   reveal: MatchReveal
   /** Optional heading eyebrow — defaults to "Existing record". */
   eyebrow?: string
+}
+
+/**
+ * One readable line about what this person already received.
+ *
+ * Deliberately says "delivered", never "spent" or "disbursed": this is the recorded
+ * VALUE OF BENEFITS DELIVERED under a programme, not treasury expenditure.
+ *
+ * `total_value` null means the viewing MDA may not see monetary value — which is not
+ * zero — so the value is simply omitted rather than shown as ₦0.
+ */
+function benefitsSummaryLine(summary: NonNullable<MatchReveal['benefits']['summary']>): string {
+  const parts = [`${summary.count} ${summary.count === 1 ? 'delivery' : 'deliveries'}`]
+
+  if (summary.total_value !== null) {
+    parts.push(`${formatNaira(summary.total_value)} delivered`)
+  }
+  if (summary.types.length > 0) {
+    parts.push(summary.types.map((t) => titleCase(t)).join(', '))
+  }
+  if (summary.last_delivery_date !== null) {
+    parts.push(`last ${summary.last_delivery_date}`)
+  }
+
+  return parts.join(' · ')
 }
 
 /**
@@ -56,10 +82,13 @@ export function MatchRevealPanel({ reveal, eyebrow = 'Existing record' }: MatchR
           <p>{reveal.programmes.length} recorded</p>
         </section>
       )}
-      {reveal.benefits.summary && (
+      {/* Only when something was actually received. A count of zero is the same as no
+          history for this decision, and an empty "Benefits received" section would add a
+          line to read at the moment of maximum concentration. */}
+      {reveal.benefits.summary && reveal.benefits.summary.count > 0 && (
         <section className={styles.revealSection}>
           <span className="eyebrow">Benefits received</span>
-          <p>{reveal.benefits.summary}</p>
+          <p>{benefitsSummaryLine(reveal.benefits.summary)}</p>
         </section>
       )}
     </div>

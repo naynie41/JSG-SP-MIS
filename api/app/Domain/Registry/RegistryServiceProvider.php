@@ -26,6 +26,7 @@ use App\Domain\Registry\Policies\HouseholdPolicy;
 use App\Domain\Registry\Policies\ImportBatchPolicy;
 use App\Domain\Registry\Policies\OwnerMdaPolicy;
 use App\Domain\Registry\Services\NullDuplicateChecker;
+use App\Domain\Registry\Support\RepairDoubledNames;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\ServiceProvider;
 
@@ -73,6 +74,10 @@ class RegistryServiceProvider extends ServiceProvider
         // The grant an acceptance opens is governed by the same owner-MDA authority that
         // decided the request, so it shares the policy (FR-OWN-07 revocation).
         Gate::policy(BeneficiaryServiceGrant::class, OwnerMdaPolicy::class);
+
+        if ($this->app->runningInConsole()) {
+            $this->commands([RepairDoubledNames::class]);
+        }
     }
 
     private function registerPermissions(PermissionRegistry $registry): void

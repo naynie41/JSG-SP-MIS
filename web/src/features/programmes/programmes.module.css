@@ -261,3 +261,29 @@
   color: var(--text-muted-strong);
   font-style: italic;
 }
+
+/* "Sort by" row above a long list. Sits inside the card, above the table, so the
+   control and the thing it controls read as one unit. */
+.sortRow {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  flex-wrap: wrap;
+  margin-bottom: var(--space-3);
+}
+
+.sortLabel {
+  font-size: var(--fs-label);
+  font-weight: 600;
+  color: var(--text-muted-strong);
+}
+
+.sortSelect {
+  font: inherit;
+  font-size: var(--fs-label);
+  padding: var(--space-1) var(--space-2);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  background: var(--surface);
+  color: var(--ink);
+}

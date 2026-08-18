@@ -2,7 +2,7 @@
 
 // odsl-C:\Users\ACER\Desktop\JSG-SP-MIS\JSG-SP-MIS\api\app\Domain\Registry\Models\ImportBatch.php-PHPStan\BetterReflection\Reflection\ReflectionClass-App\Domain\Registry\Models\ImportBatch
 return \PHPStan\Cache\CacheItem::__set_state(array(
-   'variableKey' => 'v2-6.70.0.1-8.3.31-439f12d9fde5e7da8d6f6bd5cb8139970318a8689b1eaf04ee580ba7864e5f99',
+   'variableKey' => 'v2-6.70.0.1-8.3.31-6ae8b543f65c3f9947409abe4af4612009140a62f247849d907a95a05c4edee2',
    'data' => 
   array (
     'locatedSource' => 
@@ -34,6 +34,9 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
  * @property string $stored_path
  * @property RegistrationSource $source
  * @property string|null $activity_id
+ * @property string|null $programme_id
+ * @property-read Activity|null $activity
+ * @property-read Programme|null $programme
  * @property array<string, mixed>|null $draft_activity
  * @property list<string>|null $detected_headers
  * @property array<string, string|null>|null $column_map
@@ -41,7 +44,9 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
  * @property Carbon|null $mapping_confirmed_at
  * @property string|null $mapping_confirmed_by
  * @property string|null $mapping_template_id
+ * @property string|null $mapping_prefilled_from_id
  * @property-read ImportMappingTemplate|null $mappingTemplate
+ * @property-read ImportBatch|null $mappingPrefilledFrom
  * @property-read User|null $mappingConfirmedBy
  * @property ImportStatus $status
  * @property int $total_rows
@@ -62,8 +67,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
     'attributes' => 
     array (
     ),
-    'startLine' => 59,
-    'endLine' => 229,
+    'startLine' => 65,
+    'endLine' => 286,
     'startColumn' => 1,
     'endColumn' => 1,
     'parentClassName' => 'Illuminate\\Database\\Eloquent\\Model',
@@ -94,20 +99,20 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
           'code' => '\'import_batches\'',
           'attributes' => 
           array (
-            'startLine' => 63,
-            'endLine' => 63,
-            'startTokenPos' => 118,
-            'startFilePos' => 2236,
-            'endTokenPos' => 118,
-            'endFilePos' => 2251,
+            'startLine' => 69,
+            'endLine' => 69,
+            'startTokenPos' => 123,
+            'startFilePos' => 2513,
+            'endTokenPos' => 123,
+            'endFilePos' => 2528,
           ),
         ),
         'docComment' => NULL,
         'attributes' => 
         array (
         ),
-        'startLine' => 63,
-        'endLine' => 63,
+        'startLine' => 69,
+        'endLine' => 69,
         'startColumn' => 5,
         'endColumn' => 40,
         'isPromoted' => false,
@@ -126,15 +131,15 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         'type' => NULL,
         'default' => 
         array (
-          'code' => '[\'owner_mda_id\', \'uploaded_by\', \'original_filename\', \'stored_path\', \'source\', \'activity_id\', \'draft_activity\', \'detected_headers\', \'column_map\', \'source_signature\', \'mapping_confirmed_at\', \'mapping_confirmed_by\', \'mapping_template_id\', \'status\', \'total_rows\', \'valid_rows\', \'invalid_rows\', \'rejected_rows\', \'dropped_field_rows\', \'committed_rows\', \'served_rows\', \'skipped_rows\', \'error\']',
+          'code' => '[\'owner_mda_id\', \'uploaded_by\', \'original_filename\', \'stored_path\', \'source\', \'activity_id\', \'programme_id\', \'draft_activity\', \'detected_headers\', \'column_map\', \'source_signature\', \'mapping_confirmed_at\', \'mapping_confirmed_by\', \'mapping_template_id\', \'mapping_prefilled_from_id\', \'status\', \'total_rows\', \'valid_rows\', \'invalid_rows\', \'rejected_rows\', \'dropped_field_rows\', \'committed_rows\', \'served_rows\', \'skipped_rows\', \'error\']',
           'attributes' => 
           array (
-            'startLine' => 116,
-            'endLine' => 140,
-            'startTokenPos' => 340,
-            'startFilePos' => 4140,
-            'endTokenPos' => 411,
-            'endFilePos' => 4716,
+            'startLine' => 122,
+            'endLine' => 148,
+            'startTokenPos' => 345,
+            'startFilePos' => 4417,
+            'endTokenPos' => 422,
+            'endFilePos' => 5054,
           ),
         ),
         'docComment' => '/**
@@ -143,8 +148,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         'attributes' => 
         array (
         ),
-        'startLine' => 116,
-        'endLine' => 140,
+        'startLine' => 122,
+        'endLine' => 148,
         'startColumn' => 5,
         'endColumn' => 6,
         'isPromoted' => false,
@@ -180,8 +185,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
  * Whether a human has confirmed which source column is which canonical field
  * (CLAUDE.md §11). Nothing may be parsed, screened or committed until this is true.
  */',
-        'startLine' => 69,
-        'endLine' => 72,
+        'startLine' => 75,
+        'endLine' => 78,
         'startColumn' => 5,
         'endColumn' => 5,
         'couldThrow' => false,
@@ -217,8 +222,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         'docComment' => '/**
  * Whether the batch is waiting on the queue (nothing for a human to do yet).
  */',
-        'startLine' => 77,
-        'endLine' => 80,
+        'startLine' => 83,
+        'endLine' => 86,
         'startColumn' => 5,
         'endColumn' => 5,
         'couldThrow' => false,
@@ -277,8 +282,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
  * pending → processing, which touches the row; a batch whose timestamp is frozen is
  * one nothing has looked at.
  */',
-        'startLine' => 89,
-        'endLine' => 97,
+        'startLine' => 95,
+        'endLine' => 103,
         'startColumn' => 5,
         'endColumn' => 5,
         'couldThrow' => false,
@@ -318,8 +323,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
  * error anywhere, because nothing failed: the job was never picked up. Computed
  * SERVER-side because only the server\'s clock can be trusted for this.
  */',
-        'startLine' => 106,
-        'endLine' => 111,
+        'startLine' => 112,
+        'endLine' => 117,
         'startColumn' => 5,
         'endColumn' => 5,
         'couldThrow' => false,
@@ -355,8 +360,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         'docComment' => '/**
  * @return array<string, string>
  */',
-        'startLine' => 145,
-        'endLine' => 163,
+        'startLine' => 153,
+        'endLine' => 171,
         'startColumn' => 5,
         'endColumn' => 5,
         'couldThrow' => false,
@@ -394,8 +399,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
  *
  * @return list<string>
  */',
-        'startLine' => 170,
-        'endLine' => 173,
+        'startLine' => 178,
+        'endLine' => 181,
         'startColumn' => 5,
         'endColumn' => 5,
         'couldThrow' => false,
@@ -431,8 +436,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         'docComment' => '/**
  * @return BelongsTo<Mda, $this>
  */',
-        'startLine' => 178,
-        'endLine' => 181,
+        'startLine' => 186,
+        'endLine' => 189,
         'startColumn' => 5,
         'endColumn' => 5,
         'couldThrow' => false,
@@ -471,8 +476,112 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
  *
  * @return BelongsTo<Activity, $this>
  */',
-        'startLine' => 189,
-        'endLine' => 192,
+        'startLine' => 197,
+        'endLine' => 200,
+        'startColumn' => 5,
+        'endColumn' => 5,
+        'couldThrow' => false,
+        'isClosure' => false,
+        'isGenerator' => false,
+        'isVariadic' => false,
+        'modifiers' => 1,
+        'namespace' => 'App\\Domain\\Registry\\Models',
+        'declaringClassName' => 'App\\Domain\\Registry\\Models\\ImportBatch',
+        'implementingClassName' => 'App\\Domain\\Registry\\Models\\ImportBatch',
+        'currentClassName' => 'App\\Domain\\Registry\\Models\\ImportBatch',
+        'aliasName' => NULL,
+      ),
+      'programme' => 
+      array (
+        'name' => 'programme',
+        'parameters' => 
+        array (
+        ),
+        'returnsReference' => false,
+        'returnType' => 
+        array (
+          'class' => 'PHPStan\\BetterReflection\\Reflection\\ReflectionNamedType',
+          'data' => 
+          array (
+            'name' => 'Illuminate\\Database\\Eloquent\\Relations\\BelongsTo',
+            'isIdentifier' => false,
+          ),
+        ),
+        'attributes' => 
+        array (
+        ),
+        'docComment' => '/**
+ * The catalog programme this upload is for.
+ *
+ * Set when the batch names a programme WITHOUT an activity. When an activity is bound,
+ * the programme comes from it instead, so the two cannot disagree — read the effective
+ * one via {@see effectiveProgrammeId()}.
+ *
+ * @return BelongsTo<Programme, $this>
+ */',
+        'startLine' => 211,
+        'endLine' => 214,
+        'startColumn' => 5,
+        'endColumn' => 5,
+        'couldThrow' => false,
+        'isClosure' => false,
+        'isGenerator' => false,
+        'isVariadic' => false,
+        'modifiers' => 1,
+        'namespace' => 'App\\Domain\\Registry\\Models',
+        'declaringClassName' => 'App\\Domain\\Registry\\Models\\ImportBatch',
+        'implementingClassName' => 'App\\Domain\\Registry\\Models\\ImportBatch',
+        'currentClassName' => 'App\\Domain\\Registry\\Models\\ImportBatch',
+        'aliasName' => NULL,
+      ),
+      'effectiveProgrammeId' => 
+      array (
+        'name' => 'effectiveProgrammeId',
+        'parameters' => 
+        array (
+        ),
+        'returnsReference' => false,
+        'returnType' => 
+        array (
+          'class' => 'PHPStan\\BetterReflection\\Reflection\\ReflectionUnionType',
+          'data' => 
+          array (
+            'types' => 
+            array (
+              0 => 
+              array (
+                'class' => 'PHPStan\\BetterReflection\\Reflection\\ReflectionNamedType',
+                'data' => 
+                array (
+                  'name' => 'string',
+                  'isIdentifier' => true,
+                ),
+              ),
+              1 => 
+              array (
+                'class' => 'PHPStan\\BetterReflection\\Reflection\\ReflectionNamedType',
+                'data' => 
+                array (
+                  'name' => 'null',
+                  'isIdentifier' => true,
+                ),
+              ),
+            ),
+          ),
+        ),
+        'attributes' => 
+        array (
+        ),
+        'docComment' => '/**
+ * The programme this batch enrolls into: the bound activity\'s, else its own.
+ *
+ * Short-circuits on `activity_id` rather than loading the relation and testing it,
+ * because {@see Activity} is soft-deleted — an archived activity makes the relation
+ * null while the id is still there, and falling back to `programme_id` in that case
+ * is right: the batch\'s own record of its programme outlives the activity row.
+ */',
+        'startLine' => 224,
+        'endLine' => 234,
         'startColumn' => 5,
         'endColumn' => 5,
         'couldThrow' => false,
@@ -508,8 +617,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         'docComment' => '/**
  * @return BelongsTo<User, $this>
  */',
-        'startLine' => 197,
-        'endLine' => 200,
+        'startLine' => 239,
+        'endLine' => 242,
         'startColumn' => 5,
         'endColumn' => 5,
         'couldThrow' => false,
@@ -545,8 +654,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         'docComment' => '/**
  * @return BelongsTo<User, $this>
  */',
-        'startLine' => 205,
-        'endLine' => 208,
+        'startLine' => 247,
+        'endLine' => 250,
         'startColumn' => 5,
         'endColumn' => 5,
         'couldThrow' => false,
@@ -586,8 +695,52 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
  *
  * @return BelongsTo<ImportMappingTemplate, $this>
  */',
-        'startLine' => 217,
-        'endLine' => 220,
+        'startLine' => 259,
+        'endLine' => 262,
+        'startColumn' => 5,
+        'endColumn' => 5,
+        'couldThrow' => false,
+        'isClosure' => false,
+        'isGenerator' => false,
+        'isVariadic' => false,
+        'modifiers' => 1,
+        'namespace' => 'App\\Domain\\Registry\\Models',
+        'declaringClassName' => 'App\\Domain\\Registry\\Models\\ImportBatch',
+        'implementingClassName' => 'App\\Domain\\Registry\\Models\\ImportBatch',
+        'currentClassName' => 'App\\Domain\\Registry\\Models\\ImportBatch',
+        'aliasName' => NULL,
+      ),
+      'mappingPrefilledFrom' => 
+      array (
+        'name' => 'mappingPrefilledFrom',
+        'parameters' => 
+        array (
+        ),
+        'returnsReference' => false,
+        'returnType' => 
+        array (
+          'class' => 'PHPStan\\BetterReflection\\Reflection\\ReflectionNamedType',
+          'data' => 
+          array (
+            'name' => 'Illuminate\\Database\\Eloquent\\Relations\\BelongsTo',
+            'isIdentifier' => false,
+          ),
+        ),
+        'attributes' => 
+        array (
+        ),
+        'docComment' => '/**
+ * The EARLIER BATCH this batch\'s mapping was pre-filled from.
+ *
+ * Set when the same MDA uploads the same file shape again without ever having saved
+ * a named template — the ordinary case. Distinct from `mappingTemplate`: a template
+ * is a deliberate, reusable artefact, this is "we recognised the layout from your
+ * last import". Either way the mapping is only pre-filled, never pre-confirmed.
+ *
+ * @return BelongsTo<ImportBatch, $this>
+ */',
+        'startLine' => 274,
+        'endLine' => 277,
         'startColumn' => 5,
         'endColumn' => 5,
         'couldThrow' => false,
@@ -623,8 +776,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         'docComment' => '/**
  * @return HasMany<ImportRow, $this>
  */',
-        'startLine' => 225,
-        'endLine' => 228,
+        'startLine' => 282,
+        'endLine' => 285,
         'startColumn' => 5,
         'endColumn' => 5,
         'couldThrow' => false,

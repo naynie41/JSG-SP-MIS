@@ -7,7 +7,7 @@ import { MemoryRouter, Route, Routes } from 'react-router-dom'
 import { ToastProvider } from '@/components/Toast/ToastProvider'
 import { MdaBeneficiariesPage } from './MdaBeneficiariesPage'
 import { beneficiaryApi, householdApi, importApi } from '@/features/registry/api'
-import { activityApi } from '@/features/programmes/api'
+import { activityApi, programmeApi } from '@/features/programmes/api'
 
 vi.mock('@/features/registry/api', () => ({
   beneficiaryApi: { list: vi.fn(), get: vi.fn(), update: vi.fn(), lookup: vi.fn() },
@@ -33,6 +33,7 @@ const listHouseholds = householdApi.list as Mock
 const listImports = importApi.list as Mock
 const upload = importApi.upload as Mock
 const listActivities = activityApi.list as Mock
+const listCatalog = programmeApi.catalog as Mock
 
 const BENEFICIARY = {
   id: 'b1', full_name: 'Aisha Bello', first_name: 'Aisha', middle_name: null, last_name: 'Bello',
@@ -86,6 +87,8 @@ describe('MDA console — Beneficiaries', () => {
     listHouseholds.mockResolvedValue(page([HOUSEHOLD]))
     listImports.mockResolvedValue(page([]))
     listActivities.mockResolvedValue(page(ACTIVITIES))
+    // The Import Center is programme-first now, so the catalog has to be there.
+    listCatalog.mockResolvedValue(page([{ id: 'p1', name: 'Conditional Cash Transfer', type: 'individual', status: 'active' }]))
   })
 
   /* ------------------------------------------------------------------ browse */
@@ -159,7 +162,7 @@ describe('MDA console — Beneficiaries', () => {
 
   /* --------------------------------------------------- Import Center reuse */
 
-  it('binds an Import Center upload to an existing activity — the same pipeline', async () => {
+  it('binds an Import Center upload to a programme, optionally an activity — same pipeline', async () => {
     upload.mockResolvedValue({ id: 'ib9', status: 'preview_ready' })
     const user = userEvent.setup()
     renderPage()
@@ -168,8 +171,9 @@ describe('MDA console — Beneficiaries', () => {
     await user.click(screen.getByRole('tab', { name: 'Import Center' }))
     await screen.findByText('Upload a file')
 
-    // Activity-first: the picker exists and offers only activities that accept
-    // beneficiaries.
+    // Programme-first (§9, revised). Picking the programme unlocks its activities, and
+    // only those that accept beneficiaries are offered.
+    await user.selectOptions(screen.getByLabelText(/^programme/i), 'p1')
     const activity = screen.getByLabelText(/^activity/i)
     await user.selectOptions(activity, 'a1')
     expect(within(activity).queryByText('Staff training')).not.toBeInTheDocument()
@@ -178,11 +182,11 @@ describe('MDA console — Beneficiaries', () => {
     await user.upload(screen.getByLabelText(/^file/i), file)
     await user.click(screen.getByRole('button', { name: /upload & preview/i }))
 
-    // The SAME endpoint the wizard's inline upload uses, now carrying the activity.
-    await waitFor(() => expect(upload).toHaveBeenCalledWith(file, 'a1', undefined))
+    // The SAME endpoint the wizard's inline upload uses.
+    await waitFor(() => expect(upload).toHaveBeenCalledWith(file, 'p1', 'a1', undefined))
   })
 
-  it('will not upload without naming an activity', async () => {
+  it('will not upload without naming a programme', async () => {
     const user = userEvent.setup()
     renderPage()
     await screen.findByText('Aisha Bello')
@@ -193,19 +197,27 @@ describe('MDA console — Beneficiaries', () => {
     await user.upload(screen.getByLabelText(/^file/i), file)
     await user.click(screen.getByRole('button', { name: /upload & preview/i }))
 
-    expect(await screen.findByText(/choose the activity/i)).toBeInTheDocument()
+    expect(await screen.findByText(/choose the programme/i)).toBeInTheDocument()
     expect(upload).not.toHaveBeenCalled()
   })
 
-  it('blocks upload when the MDA has no activity that accepts beneficiaries', async () => {
+  it('still imports when the MDA has no activity that accepts beneficiaries', async () => {
+    // The regression this change removes: an MDA with no usable activity could not
+    // register anyone at all.
     listActivities.mockResolvedValue(page([ACTIVITIES[1]!])) // training only
+    upload.mockResolvedValue({ id: 'ib9', status: 'preview_ready' })
     const user = userEvent.setup()
     renderPage()
     await screen.findByText('Aisha Bello')
     await user.click(screen.getByRole('tab', { name: 'Import Center' }))
+    await screen.findByText('Upload a file')
 
-    expect(await screen.findByText(/no activity that accepts beneficiaries yet/i)).toBeInTheDocument()
-    expect(screen.getByRole('button', { name: /upload & preview/i })).toBeDisabled()
+    await user.selectOptions(screen.getByLabelText(/^programme/i), 'p1')
+    const file = new File(['x'], 'rows.csv', { type: 'text/csv' })
+    await user.upload(screen.getByLabelText(/^file/i), file)
+    await user.click(screen.getByRole('button', { name: /upload & preview/i }))
+
+    await waitFor(() => expect(upload).toHaveBeenCalledWith(file, 'p1', undefined, undefined))
   })
 
   it('shows import history without the upload panel when the user cannot import', async () => {

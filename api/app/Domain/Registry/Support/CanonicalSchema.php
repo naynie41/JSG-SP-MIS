@@ -68,10 +68,37 @@ final class CanonicalSchema
         'original_record_id' => ['type' => 'string', 'required' => false, 'identity' => false, 'note' => "The source's own record id; doubles as the idempotency key"],
     ];
 
+    /**
+     * Source-shape fields that are MAPPABLE but are not beneficiary columns — they are
+     * derived into canonical fields at mapping time and never stored under these names.
+     *
+     * `full_name` exists because many MDA exports carry one `Name` column. Mapping such a
+     * column to both `first_name` and `last_name` is what produced records reading
+     * "Rekiya Bagwai Rekiya Bagwai"; mapping it here instead lets
+     * {@see NameSplitter} derive the two properly. It is an
+     * IDENTITY field: it is the name, so a malformed value must reject the row exactly as
+     * a malformed `first_name` would.
+     *
+     * @var array<string, array{type: string, required: bool, identity: bool, note: string}>
+     */
+    public const DERIVED_SOURCE_FIELDS = [
+        'full_name' => ['type' => 'string', 'required' => false, 'identity' => true, 'note' => 'One name column; split into first/last name'],
+    ];
+
     /** @return list<string> */
     public static function fields(): array
     {
         return array_keys(self::FIELDS);
+    }
+
+    /**
+     * Everything a column may be mapped ONTO, including the derived source fields.
+     *
+     * @return list<string>
+     */
+    public static function mappableFields(): array
+    {
+        return [...self::allFields(), ...array_keys(self::DERIVED_SOURCE_FIELDS)];
     }
 
     /** @return list<string> */
@@ -129,7 +156,12 @@ final class CanonicalSchema
      */
     public static function confirmationRequiredFields(): array
     {
-        return ['first_name', 'last_name', 'nin', 'bvn', 'phone'];
+        // `full_name` is here for the same reason as first/last name: it IS the name.
+        // Left out, a confident "Name" → full_name suggestion would be auto-applied and
+        // would then populate first and last name with no human ever confirming which
+        // column the name came from — precisely what CLAUDE.md §11 forbids. Answering
+        // "not present" is one click for the many files that have no such column.
+        return ['first_name', 'last_name', 'full_name', 'nin', 'bvn', 'phone'];
     }
 
     /** The declared type of a canonical field, or null when the field is unknown. */
@@ -138,6 +170,7 @@ final class CanonicalSchema
         return self::FIELDS[$field]['type']
             ?? self::HOUSEHOLD_FIELDS[$field]['type']
             ?? self::PROVENANCE_FIELDS[$field]['type']
+            ?? self::DERIVED_SOURCE_FIELDS[$field]['type']
             ?? null;
     }
 }

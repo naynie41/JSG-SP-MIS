@@ -79,6 +79,11 @@ trait ConfirmsImportMapping
             $columnMap[$field] = $field;
         }
 
+        // `full_name` is confirmation-required but is NOT a canonical field — it is a
+        // source shape split into first/last name. These sources key by the canonical
+        // names, so it is explicitly absent: an answer, not a blank.
+        $columnMap['full_name'] = null;
+
         return app(ConnectorMappingService::class)
             ->confirm($connector, $columnMap, $actor ?? User::factory()->create());
     }

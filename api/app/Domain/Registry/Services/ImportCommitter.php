@@ -52,17 +52,23 @@ class ImportCommitter
         if (! in_array($batch->status, [ImportStatus::PreviewReady, ImportStatus::Committing], true)) {
             return; // only a confirmed preview may be committed
         }
-        if ($batch->activity_id === null) {
-            // Activity-first at commit: a batch cannot produce interventions unbound.
-            throw new RuntimeException('The import batch is not bound to an activity.');
+        // A batch must name a PROGRAMME; an activity is optional. Registering people
+        // under a catalog programme is a complete, meaningful act — the activity adds
+        // *which MDA-run instance* delivered to them, which not every intake has yet.
+        // Without a programme there is nothing to enroll into, and the upload would be a
+        // silent registry-only write dressed up as an intervention.
+        if ($batch->activity_id === null && $batch->programme_id === null) {
+            throw new RuntimeException('The import batch names neither a programme nor an activity.');
         }
 
-        // The bound activity + its catalog programme drive whether the intervention is
-        // recorded per beneficiary or per household.
-        $activity = Activity::query()->withoutGlobalScope(MdaScope::class)->find($batch->activity_id);
-        $programme = $activity !== null
-            ? Programme::query()->find($activity->programme_id)
-            : null;
+        // The activity, when there is one, decides which MDA-run instance the intervention
+        // sits under. The programme decides whether it is recorded per beneficiary or per
+        // household, and is taken from the activity when bound so the two cannot disagree.
+        $activity = $batch->activity_id === null
+            ? null
+            : Activity::query()->withoutGlobalScope(MdaScope::class)->find($batch->activity_id);
+
+        $programme = Programme::query()->find($activity->programme_id ?? $batch->programme_id);
 
         $batch->update(['status' => ImportStatus::Committing]);
 
@@ -163,15 +169,20 @@ class ImportCommitter
     }
 
     /**
-     * Record the intervention under the batch's activity (§9/§10, FR-REG-10): an
-     * enrollment of the just-imported target into the activity's programme. Individual
-     * programmes enroll the beneficiary; household programmes enroll the formed
-     * household. Best-effort — a duplicate/ineligible/type-mismatched target records no
-     * enrollment and never blocks the commit. Needs a confirming actor for attribution.
+     * Record the intervention (§9/§10, FR-REG-10): an enrollment of the just-imported
+     * target into the batch's programme. Individual programmes enroll the beneficiary;
+     * household programmes enroll the formed household. Best-effort — a
+     * duplicate/ineligible/type-mismatched target records no enrollment and never blocks
+     * the commit. Needs a confirming actor for attribution.
+     *
+     * The PROGRAMME is required; the activity is not. A programme-only import enrolls
+     * with a null activity — the person is on the programme, and which MDA-run activity
+     * served them is simply not yet known. `EnrollmentService::enroll()` already takes a
+     * nullable activity id, so this is the shape it was built for.
      */
     private function recordIntervention(?Programme $programme, ?Activity $activity, Beneficiary $beneficiary, ?Household $household, ?User $actor): void
     {
-        if ($programme === null || $activity === null || $actor === null) {
+        if ($programme === null || $actor === null) {
             return;
         }
 
@@ -180,7 +191,7 @@ class ImportCommitter
             return; // household programme but this row formed no household
         }
 
-        $this->enrollments->enroll($programme, $target, $activity->id, $actor);
+        $this->enrollments->enroll($programme, $target, $activity?->id, $actor);
     }
 
     /**

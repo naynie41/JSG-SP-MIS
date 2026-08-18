@@ -1,5 +1,6 @@
-import { describe, expect, it, vi } from 'vitest'
+import { beforeEach, describe, expect, it, vi } from 'vitest'
 import { render, screen, within } from '@testing-library/react'
+import userEvent from '@testing-library/user-event'
 import { MemoryRouter, Route, Routes } from 'react-router-dom'
 import { ActivityDetailPage } from './ActivityDetailPage'
 
@@ -69,6 +70,14 @@ function renderPage() {
 }
 
 describe('ActivityDetailPage', () => {
+  // `activityData` is module-level state the mocked hook reads, so without a reset a
+  // test that narrows it (no beneficiaries, no locations) silently changes what every
+  // test after it renders. Ordering-dependent tests are the kind that fail for reasons
+  // that have nothing to do with the change under review.
+  beforeEach(() => {
+    activityData = activity
+  })
+
   it('shows the full activity picture: counts, beneficiaries (masked), import summary, and requests', () => {
     activityData = activity
     renderPage()
@@ -125,5 +134,86 @@ describe('ActivityDetailPage', () => {
     expect(screen.getByText('No')).toBeInTheDocument()
     expect(screen.queryByText('Beneficiaries recorded under this activity')).not.toBeInTheDocument()
     expect(screen.queryByText('Pending service requests')).not.toBeInTheDocument()
+  })
+
+  describe('the beneficiary list', () => {
+    /** Row names in the order they are rendered. */
+    function renderedNames(): string[] {
+      const table = screen.getByText('Beneficiaries recorded under this activity').closest('table') as HTMLElement
+      return within(table)
+        .getAllByRole('row')
+        .slice(1) // skip the header row
+        .map((row) => within(row).getAllByRole('cell')[0]?.textContent ?? '')
+    }
+
+    it('can be folded away, keeping the count visible', async () => {
+      const user = userEvent.setup()
+      renderPage()
+
+      expect(screen.getByText('Beneficiaries recorded under this activity')).toBeInTheDocument()
+
+      const toggle = screen.getByRole('button', { name: /beneficiaries/i })
+      expect(toggle).toHaveAttribute('aria-expanded', 'true')
+      await user.click(toggle)
+
+      // Body gone, header and count still there — a folded section must still say
+      // what it contains, or it reads as missing rather than collapsed.
+      expect(toggle).toHaveAttribute('aria-expanded', 'false')
+      expect(screen.queryByText('Beneficiaries recorded under this activity')).not.toBeInTheDocument()
+      expect(screen.getByText('2 enrolled')).toBeInTheDocument()
+
+      await user.click(toggle)
+      expect(screen.getByText('Beneficiaries recorded under this activity')).toBeInTheDocument()
+    })
+
+    it('starts open — a list that vanishes on load reads as missing data', () => {
+      renderPage()
+      expect(screen.getByRole('button', { name: /beneficiaries/i })).toHaveAttribute('aria-expanded', 'true')
+    })
+
+    it('sorts by name A–Z by default', () => {
+      renderPage()
+      expect(renderedNames()).toEqual(['Ada Okoye', 'Bala Sule'])
+    })
+
+    it('reverses the order without changing the field', async () => {
+      const user = userEvent.setup()
+      renderPage()
+
+      await user.click(screen.getByRole('button', { name: /reverse the order/i }))
+
+      expect(renderedNames()).toEqual(['Bala Sule', 'Ada Okoye'])
+      expect(screen.getByLabelText('Sort by')).toHaveValue('name')
+    })
+
+    it('sorts by another field from the sort row', async () => {
+      const user = userEvent.setup()
+      renderPage()
+
+      // Both are in Dutse, so ward decides: Ward 2 before Ward 3.
+      await user.selectOptions(screen.getByLabelText('Sort by'), 'location')
+
+      expect(renderedNames()).toEqual(['Bala Sule', 'Ada Okoye'])
+    })
+
+    it('does not offer sorting by the masked NIN', () => {
+      // Ordering by "•••••••8901" would sort the list by the mask, not by anything real.
+      renderPage()
+      const options = within(screen.getByLabelText('Sort by')).getAllByRole('option').map((o) => o.textContent)
+      expect(options).not.toContain('NIN')
+      expect(options).toEqual(['Name', 'LGA / Ward', 'Status', 'Date enrolled'])
+    })
+
+    it('keeps the sort row and the column headers in agreement', async () => {
+      // Two controls over one ordering: if they held separate state the table could
+      // show one order while the row claimed another.
+      const user = userEvent.setup()
+      renderPage()
+
+      await user.click(screen.getByRole('button', { name: /^enrolled$/i }))
+
+      expect(screen.getByLabelText('Sort by')).toHaveValue('enrolled')
+      expect(renderedNames()).toEqual(['Ada Okoye', 'Bala Sule'])
+    })
   })
 })

@@ -41,6 +41,13 @@ class ScopeBypassSurfaceTest extends TestCase
             'Domain/Referral/Jobs/EscalateOverdueReferrals.php',
             'Domain/Registry/Jobs/CommitImportBatch.php',
             'Domain/Registry/Jobs/ParseImportBatch.php',
+            // A one-off data repair for names doubled by imports made before the
+            // full-name split existed. Runs from the console with no authenticated user,
+            // so there is no MDA to scope to, and the damage it fixes is not confined to
+            // one MDA. It reads and writes ONLY the two name fields of rows it can prove
+            // are doubled, exposes nothing (its report is token counts, never names), and
+            // audits every record it touches.
+            'Domain/Registry/Support/RepairDoubledNames.php',
             'Domain/Reporting/Jobs/GenerateReport.php',
             'Domain/Reporting/Listeners/DeliverScheduledReport.php',
             'Domain/Sync/Jobs/RunSyncConnector.php',

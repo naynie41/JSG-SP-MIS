@@ -2,7 +2,7 @@
 
 // odsl-C:\Users\ACER\Desktop\JSG-SP-MIS\JSG-SP-MIS\api\app\Domain\Registry\Services\ImportMappingService.php-PHPStan\BetterReflection\Reflection\ReflectionClass-App\Domain\Registry\Services\ImportMappingService
 return \PHPStan\Cache\CacheItem::__set_state(array(
-   'variableKey' => 'v2-6.70.0.1-8.3.31-b690710314ee831dedbef8eb93cd151b179588a37c088c1c1e719e6f99bf5549',
+   'variableKey' => 'v2-6.70.0.1-8.3.31-e7bd3db9e362195ec584b58f13d6f25ea5cad88077cb205bedde9c5bbba3b0fa',
    'data' => 
   array (
     'locatedSource' => 
@@ -41,7 +41,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
     array (
     ),
     'startLine' => 35,
-    'endLine' => 301,
+    'endLine' => 402,
     'startColumn' => 1,
     'endColumn' => 1,
     'parentClassName' => NULL,
@@ -390,7 +390,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
  * rather than presenting an empty mapping screen the officer cannot act on.
  */',
         'startLine' => 50,
-        'endLine' => 80,
+        'endLine' => 100,
         'startColumn' => 5,
         'endColumn' => 5,
         'couldThrow' => false,
@@ -428,8 +428,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             'attributes' => 
             array (
             ),
-            'startLine' => 88,
-            'endLine' => 88,
+            'startLine' => 108,
+            'endLine' => 108,
             'startColumn' => 30,
             'endColumn' => 47,
             'parameterIndex' => 0,
@@ -455,8 +455,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
  *
  * @return array<string, mixed>
  */',
-        'startLine' => 88,
-        'endLine' => 111,
+        'startLine' => 108,
+        'endLine' => 134,
         'startColumn' => 5,
         'endColumn' => 5,
         'couldThrow' => false,
@@ -494,8 +494,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             'attributes' => 
             array (
             ),
-            'startLine' => 119,
-            'endLine' => 119,
+            'startLine' => 142,
+            'endLine' => 142,
             'startColumn' => 33,
             'endColumn' => 50,
             'parameterIndex' => 0,
@@ -509,12 +509,12 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
               'code' => '3',
               'attributes' => 
               array (
-                'startLine' => 119,
-                'endLine' => 119,
-                'startTokenPos' => 657,
-                'startFilePos' => 5077,
-                'endTokenPos' => 657,
-                'endFilePos' => 5077,
+                'startLine' => 142,
+                'endLine' => 142,
+                'startTokenPos' => 776,
+                'startFilePos' => 6454,
+                'endTokenPos' => 776,
+                'endFilePos' => 6454,
               ),
             ),
             'type' => 
@@ -532,8 +532,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             'attributes' => 
             array (
             ),
-            'startLine' => 119,
-            'endLine' => 119,
+            'startLine' => 142,
+            'endLine' => 142,
             'startColumn' => 53,
             'endColumn' => 66,
             'parameterIndex' => 1,
@@ -559,8 +559,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
  *
  * @return list<array<string, string>>
  */',
-        'startLine' => 119,
-        'endLine' => 133,
+        'startLine' => 142,
+        'endLine' => 156,
         'startColumn' => 5,
         'endColumn' => 5,
         'couldThrow' => false,
@@ -598,8 +598,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             'attributes' => 
             array (
             ),
-            'startLine' => 142,
-            'endLine' => 142,
+            'startLine' => 165,
+            'endLine' => 165,
             'startColumn' => 30,
             'endColumn' => 43,
             'parameterIndex' => 0,
@@ -624,8 +624,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             'attributes' => 
             array (
             ),
-            'startLine' => 142,
-            'endLine' => 142,
+            'startLine' => 165,
+            'endLine' => 165,
             'startColumn' => 46,
             'endColumn' => 56,
             'parameterIndex' => 1,
@@ -652,8 +652,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
  * @param  list<array<string, string>>  $rows
  * @return array<string, list<string>>
  */',
-        'startLine' => 142,
-        'endLine' => 157,
+        'startLine' => 165,
+        'endLine' => 180,
         'startColumn' => 5,
         'endColumn' => 5,
         'couldThrow' => false,
@@ -691,8 +691,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             'attributes' => 
             array (
             ),
-            'startLine' => 171,
-            'endLine' => 171,
+            'startLine' => 194,
+            'endLine' => 194,
             'startColumn' => 40,
             'endColumn' => 55,
             'parameterIndex' => 0,
@@ -717,8 +717,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             'attributes' => 
             array (
             ),
-            'startLine' => 171,
-            'endLine' => 171,
+            'startLine' => 194,
+            'endLine' => 194,
             'startColumn' => 58,
             'endColumn' => 68,
             'parameterIndex' => 1,
@@ -750,8 +750,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
  * @param  list<array<string, string>>  $rows
  * @return list<array{field: string, header: string, original: string, normalized: ?string}>
  */',
-        'startLine' => 171,
-        'endLine' => 199,
+        'startLine' => 194,
+        'endLine' => 222,
         'startColumn' => 5,
         'endColumn' => 5,
         'couldThrow' => false,
@@ -789,8 +789,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             'attributes' => 
             array (
             ),
-            'startLine' => 208,
-            'endLine' => 208,
+            'startLine' => 231,
+            'endLine' => 231,
             'startColumn' => 29,
             'endColumn' => 46,
             'parameterIndex' => 0,
@@ -815,8 +815,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             'attributes' => 
             array (
             ),
-            'startLine' => 208,
-            'endLine' => 208,
+            'startLine' => 231,
+            'endLine' => 231,
             'startColumn' => 49,
             'endColumn' => 64,
             'parameterIndex' => 1,
@@ -841,8 +841,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             'attributes' => 
             array (
             ),
-            'startLine' => 208,
-            'endLine' => 208,
+            'startLine' => 231,
+            'endLine' => 231,
             'startColumn' => 67,
             'endColumn' => 74,
             'parameterIndex' => 2,
@@ -856,12 +856,12 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
               'code' => 'null',
               'attributes' => 
               array (
-                'startLine' => 208,
-                'endLine' => 208,
-                'startTokenPos' => 1147,
-                'startFilePos' => 7956,
-                'endTokenPos' => 1147,
-                'endFilePos' => 7959,
+                'startLine' => 231,
+                'endLine' => 231,
+                'startTokenPos' => 1266,
+                'startFilePos' => 9333,
+                'endTokenPos' => 1266,
+                'endFilePos' => 9336,
               ),
             ),
             'type' => 
@@ -898,8 +898,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             'attributes' => 
             array (
             ),
-            'startLine' => 208,
-            'endLine' => 208,
+            'startLine' => 231,
+            'endLine' => 231,
             'startColumn' => 77,
             'endColumn' => 106,
             'parameterIndex' => 3,
@@ -926,8 +926,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
  *
  * @throws DomainException when an identity field is unanswered or a header is unknown
  */',
-        'startLine' => 208,
-        'endLine' => 245,
+        'startLine' => 231,
+        'endLine' => 293,
         'startColumn' => 5,
         'endColumn' => 5,
         'couldThrow' => true,
@@ -965,8 +965,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             'attributes' => 
             array (
             ),
-            'startLine' => 253,
-            'endLine' => 253,
+            'startLine' => 301,
+            'endLine' => 301,
             'startColumn' => 35,
             'endColumn' => 52,
             'parameterIndex' => 0,
@@ -991,8 +991,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             'attributes' => 
             array (
             ),
-            'startLine' => 253,
-            'endLine' => 253,
+            'startLine' => 301,
+            'endLine' => 301,
             'startColumn' => 55,
             'endColumn' => 70,
             'parameterIndex' => 1,
@@ -1017,8 +1017,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             'attributes' => 
             array (
             ),
-            'startLine' => 253,
-            'endLine' => 253,
+            'startLine' => 301,
+            'endLine' => 301,
             'startColumn' => 73,
             'endColumn' => 80,
             'parameterIndex' => 2,
@@ -1043,8 +1043,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             'attributes' => 
             array (
             ),
-            'startLine' => 253,
-            'endLine' => 253,
+            'startLine' => 301,
+            'endLine' => 301,
             'startColumn' => 83,
             'endColumn' => 94,
             'parameterIndex' => 3,
@@ -1070,8 +1070,256 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
  *
  * @param  array<string, string|null>  $columnMap
  */',
-        'startLine' => 253,
-        'endLine' => 273,
+        'startLine' => 301,
+        'endLine' => 321,
+        'startColumn' => 5,
+        'endColumn' => 5,
+        'couldThrow' => false,
+        'isClosure' => false,
+        'isGenerator' => false,
+        'isVariadic' => false,
+        'modifiers' => 4,
+        'namespace' => 'App\\Domain\\Registry\\Services',
+        'declaringClassName' => 'App\\Domain\\Registry\\Services\\ImportMappingService',
+        'implementingClassName' => 'App\\Domain\\Registry\\Services\\ImportMappingService',
+        'currentClassName' => 'App\\Domain\\Registry\\Services\\ImportMappingService',
+        'aliasName' => NULL,
+      ),
+      'prefillProvenance' => 
+      array (
+        'name' => 'prefillProvenance',
+        'parameters' => 
+        array (
+          'batch' => 
+          array (
+            'name' => 'batch',
+            'default' => NULL,
+            'type' => 
+            array (
+              'class' => 'PHPStan\\BetterReflection\\Reflection\\ReflectionNamedType',
+              'data' => 
+              array (
+                'name' => 'App\\Domain\\Registry\\Models\\ImportBatch',
+                'isIdentifier' => false,
+              ),
+            ),
+            'isVariadic' => false,
+            'byRef' => false,
+            'isPromoted' => false,
+            'attributes' => 
+            array (
+            ),
+            'startLine' => 333,
+            'endLine' => 333,
+            'startColumn' => 40,
+            'endColumn' => 57,
+            'parameterIndex' => 0,
+            'isOptional' => false,
+          ),
+          'template' => 
+          array (
+            'name' => 'template',
+            'default' => NULL,
+            'type' => 
+            array (
+              'class' => 'PHPStan\\BetterReflection\\Reflection\\ReflectionUnionType',
+              'data' => 
+              array (
+                'types' => 
+                array (
+                  0 => 
+                  array (
+                    'class' => 'PHPStan\\BetterReflection\\Reflection\\ReflectionNamedType',
+                    'data' => 
+                    array (
+                      'name' => 'App\\Domain\\Registry\\Models\\ImportMappingTemplate',
+                      'isIdentifier' => false,
+                    ),
+                  ),
+                  1 => 
+                  array (
+                    'class' => 'PHPStan\\BetterReflection\\Reflection\\ReflectionNamedType',
+                    'data' => 
+                    array (
+                      'name' => 'null',
+                      'isIdentifier' => true,
+                    ),
+                  ),
+                ),
+              ),
+            ),
+            'isVariadic' => false,
+            'byRef' => false,
+            'isPromoted' => false,
+            'attributes' => 
+            array (
+            ),
+            'startLine' => 333,
+            'endLine' => 333,
+            'startColumn' => 60,
+            'endColumn' => 91,
+            'parameterIndex' => 1,
+            'isOptional' => false,
+          ),
+        ),
+        'returnsReference' => false,
+        'returnType' => 
+        array (
+          'class' => 'PHPStan\\BetterReflection\\Reflection\\ReflectionUnionType',
+          'data' => 
+          array (
+            'types' => 
+            array (
+              0 => 
+              array (
+                'class' => 'PHPStan\\BetterReflection\\Reflection\\ReflectionNamedType',
+                'data' => 
+                array (
+                  'name' => 'array',
+                  'isIdentifier' => true,
+                ),
+              ),
+              1 => 
+              array (
+                'class' => 'PHPStan\\BetterReflection\\Reflection\\ReflectionNamedType',
+                'data' => 
+                array (
+                  'name' => 'null',
+                  'isIdentifier' => true,
+                ),
+              ),
+            ),
+          ),
+        ),
+        'attributes' => 
+        array (
+        ),
+        'docComment' => '/**
+ * Describes where this batch\'s pre-filled mapping came from.
+ *
+ * Two kinds, kept distinct because they warrant different scrutiny: a TEMPLATE is a
+ * deliberate reusable artefact someone named, while a PREVIOUS IMPORT is "we
+ * recognised the layout from the last file you mapped". Naming the earlier file and
+ * who confirmed it is what turns the review into a check rather than a formality.
+ *
+ * @return array<string, mixed>|null
+ */',
+        'startLine' => 333,
+        'endLine' => 353,
+        'startColumn' => 5,
+        'endColumn' => 5,
+        'couldThrow' => false,
+        'isClosure' => false,
+        'isGenerator' => false,
+        'isVariadic' => false,
+        'modifiers' => 4,
+        'namespace' => 'App\\Domain\\Registry\\Services',
+        'declaringClassName' => 'App\\Domain\\Registry\\Services\\ImportMappingService',
+        'implementingClassName' => 'App\\Domain\\Registry\\Services\\ImportMappingService',
+        'currentClassName' => 'App\\Domain\\Registry\\Services\\ImportMappingService',
+        'aliasName' => NULL,
+      ),
+      'lastConfirmedBatchFor' => 
+      array (
+        'name' => 'lastConfirmedBatchFor',
+        'parameters' => 
+        array (
+          'batch' => 
+          array (
+            'name' => 'batch',
+            'default' => NULL,
+            'type' => 
+            array (
+              'class' => 'PHPStan\\BetterReflection\\Reflection\\ReflectionNamedType',
+              'data' => 
+              array (
+                'name' => 'App\\Domain\\Registry\\Models\\ImportBatch',
+                'isIdentifier' => false,
+              ),
+            ),
+            'isVariadic' => false,
+            'byRef' => false,
+            'isPromoted' => false,
+            'attributes' => 
+            array (
+            ),
+            'startLine' => 364,
+            'endLine' => 364,
+            'startColumn' => 44,
+            'endColumn' => 61,
+            'parameterIndex' => 0,
+            'isOptional' => false,
+          ),
+          'signature' => 
+          array (
+            'name' => 'signature',
+            'default' => NULL,
+            'type' => 
+            array (
+              'class' => 'PHPStan\\BetterReflection\\Reflection\\ReflectionNamedType',
+              'data' => 
+              array (
+                'name' => 'string',
+                'isIdentifier' => true,
+              ),
+            ),
+            'isVariadic' => false,
+            'byRef' => false,
+            'isPromoted' => false,
+            'attributes' => 
+            array (
+            ),
+            'startLine' => 364,
+            'endLine' => 364,
+            'startColumn' => 64,
+            'endColumn' => 80,
+            'parameterIndex' => 1,
+            'isOptional' => false,
+          ),
+        ),
+        'returnsReference' => false,
+        'returnType' => 
+        array (
+          'class' => 'PHPStan\\BetterReflection\\Reflection\\ReflectionUnionType',
+          'data' => 
+          array (
+            'types' => 
+            array (
+              0 => 
+              array (
+                'class' => 'PHPStan\\BetterReflection\\Reflection\\ReflectionNamedType',
+                'data' => 
+                array (
+                  'name' => 'App\\Domain\\Registry\\Models\\ImportBatch',
+                  'isIdentifier' => false,
+                ),
+              ),
+              1 => 
+              array (
+                'class' => 'PHPStan\\BetterReflection\\Reflection\\ReflectionNamedType',
+                'data' => 
+                array (
+                  'name' => 'null',
+                  'isIdentifier' => true,
+                ),
+              ),
+            ),
+          ),
+        ),
+        'attributes' => 
+        array (
+        ),
+        'docComment' => '/**
+ * The most recent batch this MDA already CONFIRMED a mapping for, with exactly this
+ * file shape — the source of a template-less pre-fill.
+ *
+ * Scoped to the same MDA and source deliberately: a column layout is a fact about
+ * one agency\'s export, and another MDA\'s decision about which column holds a NIN is
+ * not evidence about this one\'s file. Only confirmed batches count — an abandoned
+ * batch\'s half-finished mapping is not a decision anyone made.
+ */',
+        'startLine' => 364,
+        'endLine' => 374,
         'startColumn' => 5,
         'endColumn' => 5,
         'couldThrow' => false,
@@ -1109,8 +1357,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             'attributes' => 
             array (
             ),
-            'startLine' => 276,
-            'endLine' => 276,
+            'startLine' => 377,
+            'endLine' => 377,
             'startColumn' => 34,
             'endColumn' => 51,
             'parameterIndex' => 0,
@@ -1135,8 +1383,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             'attributes' => 
             array (
             ),
-            'startLine' => 276,
-            'endLine' => 276,
+            'startLine' => 377,
+            'endLine' => 377,
             'startColumn' => 54,
             'endColumn' => 70,
             'parameterIndex' => 1,
@@ -1176,8 +1424,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         array (
         ),
         'docComment' => '/** The saved template for this batch\'s MDA, source and file shape, if any. */',
-        'startLine' => 276,
-        'endLine' => 283,
+        'startLine' => 377,
+        'endLine' => 384,
         'startColumn' => 5,
         'endColumn' => 5,
         'couldThrow' => false,
@@ -1215,8 +1463,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             'attributes' => 
             array (
             ),
-            'startLine' => 292,
-            'endLine' => 292,
+            'startLine' => 393,
+            'endLine' => 393,
             'startColumn' => 41,
             'endColumn' => 56,
             'parameterIndex' => 0,
@@ -1243,8 +1491,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
  * @param  array<string, string|null>  $columnMap
  * @return array<string, string>
  */',
-        'startLine' => 292,
-        'endLine' => 300,
+        'startLine' => 393,
+        'endLine' => 401,
         'startColumn' => 5,
         'endColumn' => 5,
         'couldThrow' => false,

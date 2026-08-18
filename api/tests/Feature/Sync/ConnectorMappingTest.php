@@ -94,6 +94,9 @@ class ConnectorMappingTest extends TestCase
         return [
             'first_name' => 'first_name',
             'last_name' => 'last_name',
+            // This source carries separate name fields, so the single full-name field is
+            // explicitly absent — an answer, not a blank (CLAUDE.md §11).
+            'full_name' => null,
             'nin' => 'nin',
             'bvn' => null,
             'phone' => 'phone',
@@ -215,6 +218,7 @@ class ConnectorMappingTest extends TestCase
             'column_map' => [
                 'first_name' => 'forename',
                 'last_name' => 'family_name',
+                'full_name' => null,
                 'nin' => 'national_id',
                 'bvn' => null,
                 'phone' => null,
@@ -265,7 +269,7 @@ class ConnectorMappingTest extends TestCase
 
         // Re-confirming IS the review the connector was waiting for.
         $this->send('sysAdmin', 'PUT', "/api/v1/sync/connectors/{$connector->id}/mapping", [
-            'column_map' => ['first_name' => 'forename', 'last_name' => 'family_name', 'nin' => null, 'bvn' => null, 'phone' => null],
+            'column_map' => ['first_name' => 'forename', 'last_name' => 'family_name', 'full_name' => null, 'nin' => null, 'bvn' => null, 'phone' => null],
         ])->assertOk();
 
         $this->assertSame('confirmed', $connector->fresh()->mappingStatus());
