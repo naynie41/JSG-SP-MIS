@@ -11,6 +11,14 @@ export interface FieldShellProps {
   /** Hide the visible label (still read by screen readers via aria-label on the control). */
   hideLabel?: boolean
   children: ReactNode
+  /**
+   * Applied to the FIELD (label + control + message), not the control.
+   *
+   * This is what callers mean when they size a field inside a filter row
+   * (`flex: 0 1 180px`). Putting it on the control instead used to make that a HEIGHT —
+   * the shell is a column flex container, so `flex-basis` runs down the main axis — and
+   * every filter select in the app rendered as a 180px-tall box.
+   */
   className?: string
 }
 

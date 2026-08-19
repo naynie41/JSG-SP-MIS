@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import { useQueries } from '@tanstack/react-query'
-import { CheckCircle2, ChevronRight, History, Scale, Search, ShieldCheck } from 'lucide-react'
+import { CheckCircle2, ChevronRight, History, Link2, Scale, Search, ShieldCheck, SkipForward } from 'lucide-react'
 import { Badge } from '@/components/Badge/Badge'
 import { Button } from '@/components/Button/Button'
 import { Card } from '@/components/Card/Card'
@@ -10,10 +10,11 @@ import type { Column } from '@/components/DataTable/DataTable'
 import { Icon } from '@/components/Icon/Icon'
 import { Spinner } from '@/components/Spinner/Spinner'
 import { Tabs } from '@/components/Tabs/Tabs'
+import { useToast } from '@/components/Toast/ToastProvider'
 import { statusVariant } from '@/components/Badge/statusVariant'
 import { useAuth } from '@/lib/auth/AuthProvider'
 import { importApi } from '@/features/registry/api'
-import { useImports } from '@/features/registry/hooks'
+import { useImports, useResolveMatch } from '@/features/registry/hooks'
 import { MATCH_BAND_LABELS, RESOLUTION_LABELS } from '@/features/registry/constants'
 import { DuplicateSearchPage } from '@/features/registry/DuplicateSearchPage'
 import { MatchComparison } from '@/features/registry/MatchComparison'
@@ -47,6 +48,210 @@ function when(iso: string | null): string {
     : d.toLocaleString(undefined, { day: 'numeric', month: 'short', year: 'numeric', hour: '2-digit', minute: '2-digit' })
 }
 
+/* ------------------------------------------------------- decision-state filter */
+
+type DecisionState = 'awaiting' | 'decided' | 'all'
+
+/**
+ * Decision state, within a band tab.
+ *
+ * This is the axis that used to be three extra tabs. As a filter it composes with the
+ * band instead of competing with it, so "the exact matches I still have to decide" is
+ * one place rather than an intersection the officer has to work out.
+ *
+ * The awaiting count is on the control because it is the only number that represents
+ * WORK — a decided match needs nothing from anyone.
+ */
+function StateFilter({
+  value,
+  onChange,
+  awaiting,
+  total,
+}: {
+  value: DecisionState
+  onChange: (next: DecisionState) => void
+  awaiting: number
+  total: number
+}) {
+  const options: { id: DecisionState; label: string }[] = [
+    { id: 'awaiting', label: awaiting > 0 ? `Awaiting decision (${awaiting})` : 'Awaiting decision' },
+    { id: 'decided', label: 'Decided' },
+    { id: 'all', label: total > 0 ? `All (${total})` : 'All' },
+  ]
+
+  return (
+    <div className={styles.choiceRow} role="group" aria-label="Filter by decision state">
+      {options.map((option) => (
+        <button
+          key={option.id}
+          type="button"
+          className={option.id === value ? styles.stateChipActive : styles.stateChip}
+          aria-pressed={option.id === value}
+          onClick={() => onChange(option.id)}
+        >
+          {option.label}
+        </button>
+      ))}
+    </div>
+  )
+}
+
+/** Empty copy that says which filter is hiding the rest, not just that nothing is here. */
+function emptyFor(state: DecisionState, band: 'exact' | 'probable'): string {
+  const noun = band === 'exact' ? 'exact matches' : 'probable matches'
+
+  if (state === 'awaiting') return `No ${noun} awaiting a decision`
+  if (state === 'decided') return `No ${noun} decided yet`
+
+  return `No ${noun} surfaced`
+}
+
+/* ------------------------------------------------------------ bulk decisions */
+
+type BulkDecision = 'link' | 'skip'
+
+/**
+ * Selection + the run loop for deciding many matches at once.
+ *
+ * Rows here come from DIFFERENT import batches, so each decision carries its own batch
+ * id — a hook bound to one batch cannot serve this page.
+ */
+function useBulkMatchDecision(items: MatchItem[], keyOf: (item: MatchItem) => string) {
+  const resolve = useResolveMatch()
+  const toast = useToast()
+  const [selected, setSelected] = useState<Set<string>>(new Set())
+  const [progress, setProgress] = useState<{ done: number; total: number } | null>(null)
+
+  const toggle = (id: string) =>
+    setSelected((current) => {
+      const next = new Set(current)
+      if (next.has(id)) next.delete(id)
+      else next.add(id)
+      return next
+    })
+
+  const toggleAll = (ids: string[], nextSelected: boolean) =>
+    setSelected((current) => {
+      const next = new Set(current)
+      for (const id of ids) {
+        if (nextSelected) next.add(id)
+        else next.delete(id)
+      }
+      return next
+    })
+
+  async function run(decision: BulkDecision) {
+    // Read from the live list, never from the selection alone: a row decided elsewhere
+    // since selecting must not be decided again.
+    const targets = items.filter((m) => selected.has(keyOf(m)) && !m.row.resolution)
+    if (targets.length === 0) return
+
+    const failed = new Set<string>()
+    setProgress({ done: 0, total: targets.length })
+
+    for (const [index, item] of targets.entries()) {
+      try {
+        // "Provide service" links each row to ITS OWN matched record — there is no one
+        // beneficiary across a selection, and the server rejects an id that is not a
+        // candidate for that row.
+        const beneficiaryId = decision === 'link' ? registryMatchId(item.row) : undefined
+        if (decision === 'link' && beneficiaryId === undefined) {
+          failed.add(keyOf(item))
+        } else {
+          await resolve.mutateAsync({
+            batchId: item.batch.id,
+            rowNumber: item.row.row_number,
+            input: { resolution: decision, beneficiary_id: beneficiaryId },
+          })
+        }
+      } catch {
+        failed.add(keyOf(item))
+      }
+      setProgress({ done: index + 1, total: targets.length })
+    }
+
+    setProgress(null)
+    setSelected(failed)
+
+    const saved = targets.length - failed.size
+    if (failed.size === 0) {
+      toast.success(
+        `${saved} ${saved === 1 ? 'match' : 'matches'} decided`,
+        `${RESOLUTION_LABELS[decision]} — each recorded in the audit log.`,
+      )
+    } else {
+      toast.error(
+        `${saved} of ${targets.length} saved`,
+        `${failed.size} could not be saved and ${failed.size === 1 ? 'is' : 'are'} still selected.`,
+      )
+    }
+  }
+
+  return { selected, toggle, toggleAll, clear: () => setSelected(new Set()), run, progress, busy: resolve.isPending }
+}
+
+/** The existing record a row matched, if any. */
+const registryMatchId = (row: ImportRow): string | undefined =>
+  row.match.candidates.find((c) => c.type === 'registry' && c.reveal?.id)?.reveal?.id ?? undefined
+
+/**
+ * What can be decided in bulk, and what deliberately cannot.
+ *
+ * **Exact** matches are settled by a unique identifier, so no same-person judgement
+ * remains — only whether to serve against the existing record or discard. Both are safe
+ * to apply to many rows at once.
+ *
+ * **Probable** matches are a judgement about whether two records are one human
+ * (FR-DUP-09). Bulk "provide service" would assert sameness across many people without
+ * anyone looking, which is the auto-merge CLAUDE.md §9 forbids — so only **discard** is
+ * offered here, because discarding creates nothing and asserts nothing about identity.
+ */
+function BulkDecisionBar({
+  band,
+  count,
+  progress,
+  busy,
+  onDecide,
+  onClear,
+}: {
+  band?: 'exact' | 'probable'
+  count: number
+  progress: { done: number; total: number } | null
+  busy: boolean
+  onDecide: (decision: BulkDecision) => void
+  onClear: () => void
+}) {
+  const canBulkLink = band === 'exact'
+
+  return (
+    <div className={styles.bulkBar}>
+      <span className={styles.bulkCount}>
+        {progress ? `Saving ${progress.done} of ${progress.total}…` : `${count} selected`}
+      </span>
+
+      {!canBulkLink && (
+        <span className={styles.bulkNote}>
+          A possible match is a judgement about one person — decide those individually.
+        </span>
+      )}
+
+      <span className={styles.spacer} />
+
+      {canBulkLink && (
+        <Button size="sm" leftIcon={Link2} onClick={() => onDecide('link')} loading={busy}>
+          Provide service
+        </Button>
+      )}
+      <Button size="sm" variant="tertiary" leftIcon={SkipForward} onClick={() => onDecide('skip')} loading={busy}>
+        Discard
+      </Button>
+      <Button size="sm" variant="tertiary" onClick={onClear}>
+        Clear
+      </Button>
+    </div>
+  )
+}
+
 /* --------------------------------------------------------------- match table */
 
 /**
@@ -61,16 +266,25 @@ function MatchTable({
   canResolve,
   /** Decisions are only accepted while the batch awaits confirmation (server-enforced). */
   showDecision,
+  /** The band these rows belong to — decides which bulk decisions are offered at all. */
+  band,
+  /** Bulk is offered only over rows that are actually awaiting a decision. */
+  allowBulk = false,
 }: {
   items: MatchItem[]
   caption: string
   emptyTitle: string
   canResolve: boolean
   showDecision: boolean
+  band?: 'exact' | 'probable'
+  allowBulk?: boolean
 }) {
   const navigate = useNavigate()
   const [open, setOpen] = useState<string | null>(null)
   const keyOf = (item: MatchItem) => `${item.batch.id}:${item.row.row_number}`
+
+  const bulk = useBulkMatchDecision(items, keyOf)
+  const bulkEnabled = allowBulk && canResolve && showDecision && items.length > 0
 
   const columns: Column<MatchItem>[] = [
     { key: 'person', header: 'Incoming row', render: (m) => personName(m.row) },
@@ -138,6 +352,17 @@ function MatchTable({
 
   return (
     <div className={styles.section}>
+      {bulkEnabled && bulk.selected.size > 0 && (
+        <BulkDecisionBar
+          band={band}
+          count={bulk.selected.size}
+          progress={bulk.progress}
+          busy={bulk.busy}
+          onDecide={bulk.run}
+          onClear={bulk.clear}
+        />
+      )}
+
       <DataTable
         caption={caption}
         columns={columns}
@@ -145,6 +370,9 @@ function MatchTable({
         getRowId={keyOf}
         getRowLabel={(m) => personName(m.row)}
         emptyTitle={emptyTitle}
+        selectedIds={bulkEnabled ? bulk.selected : undefined}
+        onToggleRow={bulkEnabled ? bulk.toggle : undefined}
+        onToggleAll={bulkEnabled ? bulk.toggleAll : undefined}
       />
 
       {expanded && (
@@ -221,6 +449,10 @@ export function MdaDuplicateResolutionPage() {
   const canResolve = hasPermission('beneficiary.create')
   const canSearch = hasPermission('beneficiary-lookup.view')
 
+  // Defaults to the work: the page exists to get undecided matches decided, and opening
+  // it on a mixed list makes the officer filter before they can start.
+  const [state, setState] = useState<DecisionState>('awaiting')
+
   const { data: batchPage, isLoading: batchesLoading } = useImports(1, canView)
   const batches = batchPage?.items ?? []
 
@@ -263,12 +495,31 @@ export function MdaDuplicateResolutionPage() {
     return (b.row.resolved_at ?? '').localeCompare(a.row.resolved_at ?? '')
   })
 
+  /*
+   * Two INDEPENDENT axes, and only one of them is a tab.
+   *
+   * The band — exact vs probable — decides what the officer is being asked (§9: an exact
+   * identifier match is settled; only a probable one asks "same person?"). That is a
+   * different job, so it is a different tab.
+   *
+   * Decision state — awaiting vs decided — is the same job at a different stage. It used
+   * to be three more tabs ("Pending reviews", "Duplicate decisions", "Match history"),
+   * which flattened two axes into one row: "Match history" was exactly Exact + Possible
+   * combined, and a row could be counted in three tabs at once. It is a filter now.
+   */
   const exact = items.filter((m) => m.row.match.band === 'exact')
   const possible = items.filter((m) => m.row.match.band === 'probable')
+
   // Only a batch still awaiting confirmation can take a decision (server-enforced), so
-  // the pending queue is scoped to those rather than listing work that cannot be done.
-  const pending = items.filter((m) => !m.row.resolution && m.batch.status === 'preview_ready')
-  const decided = items.filter((m) => m.row.resolution !== null)
+  // "awaiting" means work that can actually be done, not merely work left undone.
+  const byState = (list: MatchItem[]): MatchItem[] => {
+    if (state === 'awaiting') return list.filter((m) => !m.row.resolution && m.batch.status === 'preview_ready')
+    if (state === 'decided') return list.filter((m) => m.row.resolution !== null)
+    return list
+  }
+
+  const awaitingCount = (list: MatchItem[]) =>
+    list.filter((m) => !m.row.resolution && m.batch.status === 'preview_ready').length
 
   if (!canView) {
     return (
@@ -301,7 +552,9 @@ export function MdaDuplicateResolutionPage() {
           items={[
             {
               id: 'exact',
-              label: `Exact matches${exact.length ? ` (${exact.length})` : ''}`,
+              // Counts the work outstanding, not the total. A tab reading "(45)" when all
+              // 45 are already decided invites someone to go looking for nothing.
+              label: `Exact matches${awaitingCount(exact) ? ` (${awaitingCount(exact)})` : ''}`,
               content: (
                 <div className={styles.section}>
                   <div className={styles.queue}>
@@ -315,19 +568,24 @@ export function MdaDuplicateResolutionPage() {
                       to provide service against the existing record or discard the row.
                     </p>
                   </div>
+                  <StateFilter value={state} onChange={setState} awaiting={awaitingCount(exact)} total={exact.length} />
                   <MatchTable
-                    items={exact}
+                    items={byState(exact)}
                     caption="Exact identifier matches"
-                    emptyTitle="No exact matches surfaced"
+                    emptyTitle={emptyFor(state, 'exact')}
                     canResolve={canResolve}
                     showDecision
+                    band="exact"
+                    // Only the awaiting view: bulk exists to clear outstanding work, and
+                    // selecting across decided rows invites re-deciding settled ones.
+                    allowBulk={state === 'awaiting'}
                   />
                 </div>
               ),
             },
             {
               id: 'possible',
-              label: `Possible matches${possible.length ? ` (${possible.length})` : ''}`,
+              label: `Possible matches${awaitingCount(possible) ? ` (${awaitingCount(possible)})` : ''}`,
               content: (
                 <div className={styles.section}>
                   <div className={styles.queue}>
@@ -341,63 +599,15 @@ export function MdaDuplicateResolutionPage() {
                       recorded.
                     </p>
                   </div>
+                  <StateFilter value={state} onChange={setState} awaiting={awaitingCount(possible)} total={possible.length} />
                   <MatchTable
-                    items={possible}
+                    items={byState(possible)}
                     caption="Probable matches awaiting judgement"
-                    emptyTitle="No probable matches surfaced"
+                    emptyTitle={emptyFor(state, 'probable')}
                     canResolve={canResolve}
                     showDecision
-                  />
-                </div>
-              ),
-            },
-            {
-              id: 'pending',
-              label: `Pending reviews${pending.length ? ` (${pending.length})` : ''}`,
-              content: (
-                <MatchTable
-                  items={pending}
-                  caption="Matches awaiting a decision"
-                  emptyTitle="Nothing awaiting a decision"
-                  canResolve={canResolve}
-                  showDecision
-                />
-              ),
-            },
-            {
-              id: 'decisions',
-              label: 'Duplicate decisions',
-              content: (
-                <div className={styles.section}>
-                  <p className={styles.queueNote}>
-                    Decisions your MDA has recorded. Each one is in the audit log with who made it, what they chose and
-                    the justification given — this view is a convenience, not the record itself.
-                  </p>
-                  <MatchTable
-                    items={decided}
-                    caption="Recorded duplicate decisions"
-                    emptyTitle="No decisions recorded yet"
-                    canResolve={canResolve}
-                    showDecision
-                  />
-                </div>
-              ),
-            },
-            {
-              id: 'history',
-              label: 'Match history',
-              content: (
-                <div className={styles.section}>
-                  <p className={styles.queueNote}>
-                    Every match ever surfaced against your imports, decided or not, newest decision first — including
-                    rows in batches already committed, which can no longer be changed.
-                  </p>
-                  <MatchTable
-                    items={items}
-                    caption="All surfaced matches"
-                    emptyTitle="No matches have been surfaced yet"
-                    canResolve={canResolve}
-                    showDecision={false}
+                    band="probable"
+                    allowBulk={state === 'awaiting'}
                   />
                 </div>
               ),

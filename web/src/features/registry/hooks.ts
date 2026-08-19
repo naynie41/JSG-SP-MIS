@@ -346,6 +346,27 @@ export function useResolveRow(batchId: string, options?: { silent?: boolean }) {
   })
 }
 
+/**
+ * Resolve a row in ANY batch — the cross-batch counterpart of {@link useResolveRow}.
+ *
+ * Duplicate Resolution aggregates matches from every open import, so a bulk decision
+ * there spans batches and cannot use a hook bound to one. Each result invalidates its
+ * own batch, keyed exactly as `useImportBatch` keys it, so only the affected lists
+ * refetch.
+ *
+ * Always silent: this exists for bulk runs, which report once at the end.
+ */
+export function useResolveMatch() {
+  const qc = useQueryClient()
+  return useMutation({
+    mutationFn: ({ batchId, rowNumber, input }: { batchId: string; rowNumber: number; input: ResolveRowInput }) =>
+      importApi.resolveRow(batchId, rowNumber, input),
+    onSuccess: (_data, variables) => {
+      qc.invalidateQueries({ queryKey: ['import', variables.batchId] })
+    },
+  })
+}
+
 /* ------------------------------------------------------------ duplicate search */
 
 export function useDuplicateSearch() {
@@ -391,9 +412,14 @@ export function useActivityServiceRequests(activityId: string | undefined, statu
  * Owner accept/decline. Accept opens the requester's read-access grant; decline
  * blocks and requires a reason (surfaced to the requester in their outbox).
  */
-export function useDecideServiceRequest() {
+/**
+ * @param options.silent Suppress the per-decision toast. A bulk run reports once at the
+ *   end; forty toasts would bury the summary and hide any failure among them.
+ */
+export function useDecideServiceRequest(options?: { silent?: boolean }) {
   const qc = useQueryClient()
   const toast = useToast()
+  const silent = options?.silent ?? false
   return useMutation({
     mutationFn: ({ id, accept, reason }: { id: string; accept: boolean; reason?: string }) =>
       accept ? serviceRequestApi.accept(id, reason) : serviceRequestApi.decline(id, reason ?? ''),
@@ -404,6 +430,7 @@ export function useDecideServiceRequest() {
       // showing the old number until its own interval elapses, and the console reports
       // work that is already done.
       qc.invalidateQueries({ queryKey: ['mda-action-required'] })
+      if (silent) return
       toast.success(request.status === 'accepted' ? 'Service Request accepted' : 'Service Request declined')
     },
   })
