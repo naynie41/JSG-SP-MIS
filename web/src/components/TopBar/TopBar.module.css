@@ -39,12 +39,18 @@
   display: flex;
   align-items: center;
   gap: var(--space-2);
+  /* Without this the identity block is unshrinkable and the BREADCRUMB gets squeezed
+     instead — the wrong way round, since the breadcrumb says where you are. */
+  min-width: 0;
 }
 
 .iconButton {
   appearance: none;
   border: none;
   background: transparent;
+  /* Fixed-size targets: they must not compress into unhittable slivers when the
+     identity block is wide (WCAG 2.5.8 target size). */
+  flex: none;
   color: var(--text-muted-strong);
   cursor: pointer;
   padding: var(--space-2);
@@ -77,24 +83,67 @@
   cursor: pointer;
   padding: var(--space-1) var(--space-2);
   border-radius: var(--radius-full);
+  /* Shrinkable, so the text inside can truncate rather than force the bar wider. */
+  min-width: 0;
+}
+
+/* The avatar is the one part that must never shrink — a squashed initials disc reads
+   as a rendering fault, and it is the anchor the menu opens from. */
+.user > :last-child {
+  flex: none;
 }
 .user:hover {
   background-color: var(--surface-mint);
+}
+
+/*
+ * The identity block: who you are, and which MDA you are acting for.
+ *
+ * Bounded and truncating rather than free to grow. In the mono uppercase idiom a name
+ * like "MDA ADMIN · MINISTRY OF WOMEN AFFAIRS & SOCIAL DEVELOPMENT" measures well over
+ * 500px — more than half the bar on a laptop — which pushed the breadcrumb into the
+ * corner and left the page head looking empty beside it. The cap is generous enough
+ * that most agencies read in full and only the longest are cut.
+ */
+.userMeta {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  max-width: 22rem;
+}
+
+.userName,
+.userRole {
+  /* Each line truncates independently; the full value stays in the `title`. */
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  text-align: left;
 }
 
 .userName {
   font-size: var(--fs-label);
   font-weight: 500;
   color: var(--ink);
-  text-align: left;
 }
+
 .userRole {
   font-family: var(--font-mono);
   font-size: var(--fs-caption);
-  letter-spacing: 0.08em;
+  /* Tightened from 0.08em: the tracking is what makes a long agency name unmanageable,
+     and the mono uppercase already carries the "meta" reading on its own. */
+  letter-spacing: 0.04em;
   text-transform: uppercase;
   color: var(--text-muted-strong);
 }
+
+/* Narrower viewports: the agency still matters, but not at this width. */
+@media (max-width: 1280px) {
+  .userMeta {
+    max-width: 14rem;
+  }
+}
+
 @media (max-width: 640px) {
   .userMeta {
     display: none;

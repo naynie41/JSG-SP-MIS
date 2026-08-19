@@ -26,11 +26,18 @@ export interface TopBarProps {
 }
 
 function UserMeta({ userName, userRole, userMda }: Pick<TopBarProps, 'userName' | 'userRole' | 'userMda'>) {
+  const context = userMda ? `${userRole} · ${userMda}` : userRole
+
   return (
+    // A flex column, not a `<br>`: the break is layout, and a content-level line break
+    // cannot be reasoned about by the truncation below.
     <span className={styles.userMeta}>
       <span className={styles.userName}>{userName}</span>
-      <br />
-      <span className={styles.userRole}>{userMda ? `${userRole} · ${userMda}` : userRole}</span>
+      {/* The full value on hover/focus, because the visible text may be cut short —
+          "MINISTRY OF WOMEN AFFAIRS & SOC…" must still be resolvable to what it is. */}
+      <span className={styles.userRole} title={context}>
+        {context}
+      </span>
     </span>
   )
 }

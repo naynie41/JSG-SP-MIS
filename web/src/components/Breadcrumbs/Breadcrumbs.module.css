@@ -1,13 +1,25 @@
 .crumbs {
   display: flex;
   align-items: center;
-  flex-wrap: wrap;
+  /* Never wrap: these sit in a fixed-height top bar, so a second line does not make the
+     bar taller — it overflows it. A long trail truncates instead. */
+  flex-wrap: nowrap;
+  min-width: 0;
   gap: var(--space-2);
   font-size: var(--fs-label);
 }
 
 .crumb {
   color: var(--text-muted-strong);
+  white-space: nowrap;
+}
+
+/* The last crumb is the one that can be long (a beneficiary's name, a file), so it is
+   the one that gives way. The trail above it stays legible. */
+.crumbs > :last-child {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  min-width: 0;
 }
 
 .link {
