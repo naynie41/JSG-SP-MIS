@@ -11,6 +11,7 @@ import { Modal } from '@/components/Modal/Modal'
 import { SelectField } from '@/components/Field/SelectField'
 import type { SelectOption } from '@/components/Field/SelectField'
 import { TextareaField } from '@/components/Field/TextareaField'
+import { useToast } from '@/components/Toast/ToastProvider'
 import { ApiError } from '@/types/api'
 import { cn } from '@/lib/utils/cn'
 import { useAuth } from '@/lib/auth/AuthProvider'
@@ -89,6 +90,10 @@ export function ServiceRequestsPage({ embedded = false }: ServiceRequestsPagePro
   const { data: inbox, isLoading: inboxLoading } = useServiceInbox(canView)
   const { data: outbox, isLoading: outboxLoading } = useServiceOutbox(canView)
   const decide = useDecideServiceRequest()
+  // Bulk runs report once at the end; a toast per decision would bury the summary and
+  // hide a partial failure among forty successes.
+  const bulkDecide = useDecideServiceRequest({ silent: true })
+  const toast = useToast()
 
   // Filtered client-side: both endpoints return the MDA's own requests unpaginated,
   // so this is a view over data already fetched rather than a new query per tab.
@@ -97,6 +102,10 @@ export function ServiceRequestsPage({ embedded = false }: ServiceRequestsPagePro
   const [target, setTarget] = useState<{ request: ServiceRequest; accept: boolean } | null>(null)
   const [reason, setReason] = useState('')
   const [error, setError] = useState<string | null>(null)
+
+  const [selected, setSelected] = useState<Set<string>>(new Set())
+  const [bulkTarget, setBulkTarget] = useState<{ accept: boolean } | null>(null)
+  const [bulkProgress, setBulkProgress] = useState<{ done: number; total: number } | null>(null)
 
   if (!canView) {
     return (
@@ -184,6 +193,75 @@ export function ServiceRequestsPage({ embedded = false }: ServiceRequestsPagePro
   ]
 
   const inboxRows = (inbox ?? []).filter((r) => inboxView === '' || r.status === inboxView)
+
+  // The selection only ever means PENDING rows. Derived from the live list rather than
+  // trusted from state, so a row decided in another tab (or by the single-row buttons)
+  // cannot be re-decided from a stale selection.
+  const selectedPending = (inbox ?? []).filter((r) => selected.has(r.id) && r.status === 'pending')
+
+  function toggleRow(id: string) {
+    setSelected((current) => {
+      const next = new Set(current)
+      if (next.has(id)) next.delete(id)
+      else next.add(id)
+      return next
+    })
+  }
+
+  function toggleAllPending(ids: string[], nextSelected: boolean) {
+    const pendingOnPage = ids.filter((id) => (inbox ?? []).some((r) => r.id === id && r.status === 'pending'))
+    setSelected((current) => {
+      const next = new Set(current)
+      for (const id of pendingOnPage) {
+        if (nextSelected) next.add(id)
+        else next.delete(id)
+      }
+      return next
+    })
+  }
+
+  /**
+   * Apply one decision to every selected pending request.
+   *
+   * Sequential because there is no batch endpoint, and each decision is separately
+   * audited — which is the point: accepting grants READ access to one person's record,
+   * so forty acceptances are forty recorded authorisations, not one. A failure part way
+   * through keeps the rows it could not save selected so they can be retried.
+   */
+  async function runBulkDecision(accept: boolean, bulkReason: string) {
+    const targets = selectedPending
+    if (targets.length === 0) return
+
+    const failed = new Set<string>()
+    setBulkProgress({ done: 0, total: targets.length })
+
+    for (const [index, request] of targets.entries()) {
+      try {
+        await bulkDecide.mutateAsync({ id: request.id, accept, reason: bulkReason || undefined })
+      } catch {
+        failed.add(request.id)
+      }
+      setBulkProgress({ done: index + 1, total: targets.length })
+    }
+
+    setBulkProgress(null)
+    setSelected(failed)
+    setBulkTarget(null)
+    setReason('')
+
+    const saved = targets.length - failed.size
+    if (failed.size === 0) {
+      toast.success(
+        `${saved} ${saved === 1 ? 'request' : 'requests'} ${accept ? 'accepted' : 'declined'}`,
+        accept ? 'Read access granted; each decision is in the audit log.' : 'Each decision is in the audit log.',
+      )
+    } else {
+      toast.error(
+        `${saved} of ${targets.length} saved`,
+        `${failed.size} could not be saved and ${failed.size === 1 ? 'is' : 'are'} still selected. Try again.`,
+      )
+    }
+  }
   const outboxRows = (outbox ?? []).filter((r) => outboxView === '' || r.status === outboxView)
   // Incoming AND pending is the only combination that is work waiting on this MDA —
   // the same definition the Overview counter uses (MdaActionRequiredService).
@@ -234,6 +312,40 @@ export function ServiceRequestsPage({ embedded = false }: ServiceRequestsPagePro
             administrator accepts or declines it.
           </p>
         )}
+        {/* Bulk decisions, offered only over the PENDING view. Selecting across a mixed
+            list would let "accept 40" quietly include rows already decided, and an
+            approval is not something to re-apply by accident. */}
+        {canDecide && selectedPending.length > 0 && (
+          <div className={styles.bulkBar}>
+            <span className={styles.bulkCount}>
+              {bulkProgress
+                ? `Saving ${bulkProgress.done} of ${bulkProgress.total}…`
+                : `${selectedPending.length} selected`}
+            </span>
+            <span className={styles.spacer} />
+            <Button
+              size="sm"
+              leftIcon={Check}
+              onClick={() => setBulkTarget({ accept: true })}
+              loading={decide.isPending || bulkDecide.isPending}
+            >
+              Accept selected
+            </Button>
+            <Button
+              size="sm"
+              variant="tertiary"
+              leftIcon={X}
+              onClick={() => setBulkTarget({ accept: false })}
+              loading={decide.isPending || bulkDecide.isPending}
+            >
+              Decline selected…
+            </Button>
+            <Button size="sm" variant="tertiary" onClick={() => setSelected(new Set())}>
+              Clear
+            </Button>
+          </div>
+        )}
+
         <DataTable
           caption="Incoming service requests"
           columns={inboxColumns}
@@ -241,6 +353,10 @@ export function ServiceRequestsPage({ embedded = false }: ServiceRequestsPagePro
           getRowId={(r) => r.id}
           loading={inboxLoading}
           emptyTitle={inboxView === 'pending' ? 'Nothing awaiting your decision' : 'No incoming requests'}
+          // Only a pending row can be decided, so only a pending row is selectable.
+          selectedIds={canDecide ? selected : undefined}
+          onToggleRow={canDecide ? toggleRow : undefined}
+          onToggleAll={canDecide ? toggleAllPending : undefined}
         />
       </Card>
 
@@ -320,6 +436,78 @@ export function ServiceRequestsPage({ embedded = false }: ServiceRequestsPagePro
           />
         </div>
       </Modal>
+
+      {/* Bulk decision. Confirmed rather than immediate: accepting hands another MDA
+          READ access to this many citizens' full records at once, which is the largest
+          single authorisation this screen can perform. */}
+      <Modal
+        open={bulkTarget !== null}
+        onClose={() => setBulkTarget(null)}
+        title={
+          bulkTarget?.accept
+            ? `Accept ${selectedPending.length} service ${selectedPending.length === 1 ? 'request' : 'requests'}?`
+            : `Decline ${selectedPending.length} service ${selectedPending.length === 1 ? 'request' : 'requests'}?`
+        }
+        footer={
+          <>
+            <Button variant="tertiary" onClick={() => setBulkTarget(null)} disabled={bulkDecide.isPending}>
+              Cancel
+            </Button>
+            <Button
+              variant={bulkTarget?.accept ? 'primary' : 'danger'}
+              loading={decide.isPending || bulkDecide.isPending}
+              onClick={() => {
+                if (!bulkTarget) return
+                if (!bulkTarget.accept && reason.trim() === '') {
+                  setError('A reason is required to decline a request.')
+                  return
+                }
+                setError(null)
+                void runBulkDecision(bulkTarget.accept, reason.trim())
+              }}
+            >
+              {bulkTarget?.accept ? 'Accept all' : 'Decline all'}
+            </Button>
+          </>
+        }
+      >
+        <div className={styles.stack}>
+          <p className={styles.note}>
+            {bulkTarget?.accept
+              ? `${requestingMdaSummary(selectedPending)} will gain READ access to the full record of each of these ${selectedPending.length} beneficiaries and may serve them. Ownership is unchanged, and every acceptance is recorded separately in the audit log.`
+              : `${requestingMdaSummary(selectedPending)} will not gain access. The same reason is shared with them for every request.`}
+          </p>
+          {error && (
+            <p className={layout.alert} role="alert">
+              {error}
+            </p>
+          )}
+          <TextareaField
+            label={bulkTarget?.accept ? 'Note applied to all (optional)' : 'Reason applied to all'}
+            required={!bulkTarget?.accept}
+            rows={3}
+            value={reason}
+            onChange={(event) => setReason(event.target.value)}
+            helper="Recorded against each decision in the audit log."
+          />
+        </div>
+      </Modal>
     </div>
   )
+}
+
+/**
+ * Who is asking, for the bulk confirmation.
+ *
+ * Names the MDA when a selection comes from one, and counts them when it does not —
+ * "3 MDAs will gain READ access" is the fact that matters, and a list of names would
+ * bury it.
+ */
+function requestingMdaSummary(requests: ServiceRequest[]): string {
+  const names = [...new Set(requests.map((r) => r.from_mda?.name).filter((n): n is string => Boolean(n)))]
+
+  if (names.length === 1) return names[0]!
+  if (names.length === 0) return 'The requesting MDA'
+
+  return `${names.length} MDAs`
 }

@@ -1,6 +1,5 @@
 import { forwardRef, useId } from 'react'
 import type { TextareaHTMLAttributes } from 'react'
-import { cn } from '@/lib/utils/cn'
 import { FieldShell, fieldMessageId } from './FieldShell'
 import styles from './Field.module.css'
 
@@ -19,11 +18,19 @@ export const TextareaField = forwardRef<HTMLTextAreaElement, TextareaFieldProps>
     const fieldId = id ?? generatedId
 
     return (
-      <FieldShell id={fieldId} label={label} required={required} helper={helper} error={error} hideLabel={hideLabel}>
+      <FieldShell
+        id={fieldId}
+        label={label}
+        required={required}
+        helper={helper}
+        error={error}
+        hideLabel={hideLabel}
+        className={className}
+      >
         <textarea
           ref={ref}
           id={fieldId}
-          className={cn(styles.control, className)}
+          className={styles.control}
           aria-invalid={error ? true : undefined}
           aria-describedby={helper || error ? fieldMessageId(fieldId) : undefined}
           aria-required={required || undefined}

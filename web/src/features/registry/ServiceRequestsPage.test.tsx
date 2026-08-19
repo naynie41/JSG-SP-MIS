@@ -126,4 +126,129 @@ describe('ServiceRequestsPage', () => {
     expect(within(table).getByText('Declined')).toBeInTheDocument()
     expect(within(table).getByText('Not eligible')).toBeInTheDocument()
   })
+
+  describe('deciding many at once', () => {
+    const pending = (id: string, mdaName = 'Ministry of Women Affairs'): ServiceRequest => ({
+      ...incoming,
+      id,
+      beneficiary_id: `ben-${id}`,
+      beneficiary_name: `Beneficiary ${id}`,
+      from_mda: { id: 'm-2', name: mdaName },
+    })
+
+    /** Select every pending row via the table's select-all checkbox. */
+    async function selectAll(user: ReturnType<typeof userEvent.setup>) {
+      const table = await screen.findByRole('table', { name: 'Incoming service requests' })
+      const [selectAllBox] = within(table).getAllByRole('checkbox')
+      await user.click(selectAllBox!)
+    }
+
+    it('accepts every selected request in one action', async () => {
+      inbox.mockResolvedValue([pending('sr-1'), pending('sr-2'), pending('sr-3')])
+      outbox.mockResolvedValue([])
+      accept.mockImplementation((id: string) => Promise.resolve({ ...pending(id), status: 'accepted' }))
+      const user = userEvent.setup()
+      renderPage(<ServiceRequestsPage />)
+
+      await selectAll(user)
+      expect(await screen.findByText('3 selected')).toBeInTheDocument()
+
+      await user.click(screen.getByRole('button', { name: /accept selected/i }))
+
+      // The confirmation states what is being granted, to whom, and how many —
+      // this is the largest single PII authorisation this screen can perform.
+      const dialog = await screen.findByRole('dialog')
+      expect(dialog).toHaveTextContent(/Ministry of Women Affairs will gain READ access/i)
+      expect(dialog).toHaveTextContent(/3 beneficiaries/)
+      expect(dialog).toHaveTextContent(/Ownership is unchanged/i)
+
+      await user.click(within(dialog).getByRole('button', { name: /accept all/i }))
+
+      await waitFor(() => expect(accept).toHaveBeenCalledTimes(3))
+      expect(accept.mock.calls.map((c) => c[0])).toEqual(['sr-1', 'sr-2', 'sr-3'])
+    })
+
+    it('counts the requesting MDAs when a selection spans several', async () => {
+      inbox.mockResolvedValue([pending('sr-1', 'Women Affairs'), pending('sr-2', 'Education')])
+      outbox.mockResolvedValue([])
+      const user = userEvent.setup()
+      renderPage(<ServiceRequestsPage />)
+
+      await selectAll(user)
+      await user.click(screen.getByRole('button', { name: /accept selected/i }))
+
+      // Naming both would bury the fact that matters: how many agencies gain access.
+      expect(await screen.findByRole('dialog')).toHaveTextContent(/2 MDAs will gain READ access/i)
+    })
+
+    it('requires one reason to decline them all', async () => {
+      inbox.mockResolvedValue([pending('sr-1'), pending('sr-2')])
+      outbox.mockResolvedValue([])
+      decline.mockImplementation((id: string) => Promise.resolve({ ...pending(id), status: 'declined' }))
+      const user = userEvent.setup()
+      renderPage(<ServiceRequestsPage />)
+
+      await selectAll(user)
+      await user.click(screen.getByRole('button', { name: /decline selected/i }))
+
+      const dialog = await screen.findByRole('dialog')
+      await user.click(within(dialog).getByRole('button', { name: /decline all/i }))
+
+      // Same rule as a single decline — a refusal the requester cannot understand
+      // is not a decision, it is a dead end.
+      expect(await within(dialog).findByText(/a reason is required/i)).toBeInTheDocument()
+      expect(decline).not.toHaveBeenCalled()
+
+      await user.type(within(dialog).getByLabelText(/reason applied to all/i), 'Out of scope')
+      await user.click(within(dialog).getByRole('button', { name: /decline all/i }))
+
+      await waitFor(() => expect(decline).toHaveBeenCalledTimes(2))
+      expect(decline).toHaveBeenCalledWith('sr-1', 'Out of scope')
+    })
+
+    it('keeps the rows it could not save selected', async () => {
+      inbox.mockResolvedValue([pending('sr-1'), pending('sr-2')])
+      outbox.mockResolvedValue([])
+      accept.mockImplementation((id: string) =>
+        id === 'sr-2' ? Promise.reject(new Error('boom')) : Promise.resolve({ ...pending(id), status: 'accepted' }),
+      )
+      const user = userEvent.setup()
+      renderPage(<ServiceRequestsPage />)
+
+      await selectAll(user)
+      await user.click(screen.getByRole('button', { name: /accept selected/i }))
+      await user.click(within(await screen.findByRole('dialog')).getByRole('button', { name: /accept all/i }))
+
+      // A partial failure must not vanish: the one that failed stays selected so it
+      // can be retried, and the count says so.
+      await waitFor(() => expect(screen.getByText('1 selected')).toBeInTheDocument())
+    })
+
+    it('offers no bulk bar until something is selected', async () => {
+      inbox.mockResolvedValue([pending('sr-1')])
+      outbox.mockResolvedValue([])
+      renderPage(<ServiceRequestsPage />)
+
+      await screen.findByRole('table', { name: 'Incoming service requests' })
+      expect(screen.queryByRole('button', { name: /accept selected/i })).not.toBeInTheDocument()
+    })
+
+    it('never bulk-decides an already-decided request', async () => {
+      // Selecting across the History view could otherwise re-apply a decision to a row
+      // that was settled days ago.
+      inbox.mockResolvedValue([pending('sr-1'), { ...pending('sr-2'), status: 'accepted' as const }])
+      outbox.mockResolvedValue([])
+      accept.mockImplementation((id: string) => Promise.resolve({ ...pending(id), status: 'accepted' }))
+      const user = userEvent.setup()
+      renderPage(<ServiceRequestsPage />)
+
+      await user.selectOptions(screen.getAllByLabelText('View')[0]!, '')
+      await selectAll(user)
+      await user.click(screen.getByRole('button', { name: /accept selected/i }))
+      await user.click(within(await screen.findByRole('dialog')).getByRole('button', { name: /accept all/i }))
+
+      await waitFor(() => expect(accept).toHaveBeenCalledTimes(1))
+      expect(accept).toHaveBeenCalledWith('sr-1', undefined)
+    })
+  })
 })

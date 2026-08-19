@@ -391,9 +391,14 @@ export function useActivityServiceRequests(activityId: string | undefined, statu
  * Owner accept/decline. Accept opens the requester's read-access grant; decline
  * blocks and requires a reason (surfaced to the requester in their outbox).
  */
-export function useDecideServiceRequest() {
+/**
+ * @param options.silent Suppress the per-decision toast. A bulk run reports once at the
+ *   end; forty toasts would bury the summary and hide any failure among them.
+ */
+export function useDecideServiceRequest(options?: { silent?: boolean }) {
   const qc = useQueryClient()
   const toast = useToast()
+  const silent = options?.silent ?? false
   return useMutation({
     mutationFn: ({ id, accept, reason }: { id: string; accept: boolean; reason?: string }) =>
       accept ? serviceRequestApi.accept(id, reason) : serviceRequestApi.decline(id, reason ?? ''),
@@ -404,6 +409,7 @@ export function useDecideServiceRequest() {
       // showing the old number until its own interval elapses, and the console reports
       // work that is already done.
       qc.invalidateQueries({ queryKey: ['mda-action-required'] })
+      if (silent) return
       toast.success(request.status === 'accepted' ? 'Service Request accepted' : 'Service Request declined')
     },
   })

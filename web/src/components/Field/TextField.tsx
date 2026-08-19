@@ -1,6 +1,5 @@
 import { forwardRef, useId } from 'react'
 import type { InputHTMLAttributes } from 'react'
-import { cn } from '@/lib/utils/cn'
 import { FieldShell, fieldMessageId } from './FieldShell'
 import styles from './Field.module.css'
 
@@ -25,12 +24,20 @@ export const TextField = forwardRef<HTMLInputElement, TextFieldProps>(function T
   const fieldId = id ?? generatedId
 
   return (
-    <FieldShell id={fieldId} label={label} required={required} helper={helper} error={error} hideLabel={hideLabel}>
+    <FieldShell
+      id={fieldId}
+      label={label}
+      required={required}
+      helper={helper}
+      error={error}
+      hideLabel={hideLabel}
+      className={className}
+    >
       <input
         ref={ref}
         id={fieldId}
         type={type}
-        className={cn(styles.control, className)}
+        className={styles.control}
         aria-invalid={error ? true : undefined}
         aria-describedby={helper || error ? fieldMessageId(fieldId) : undefined}
         aria-required={required || undefined}
