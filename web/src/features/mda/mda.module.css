@@ -546,3 +546,30 @@
     transition: none;
   }
 }
+
+/* Bulk decision bar over the awaiting-decision queue. Mirrors the Import Center's
+   so a bulk action looks the same wherever it is offered. */
+.bulkBar {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  flex-wrap: wrap;
+  padding: var(--space-3) var(--space-4);
+  background: var(--accent-soft);
+  border-radius: var(--radius-md);
+  margin-bottom: var(--space-4);
+}
+
+.bulkCount {
+  font-weight: 600;
+}
+
+/* Why an action is absent, stated where it would have been. */
+.bulkNote {
+  font-size: var(--fs-caption);
+  color: var(--text-muted-strong);
+}
+
+.spacer {
+  flex: 1 1 auto;
+}

@@ -346,6 +346,27 @@ export function useResolveRow(batchId: string, options?: { silent?: boolean }) {
   })
 }
 
+/**
+ * Resolve a row in ANY batch — the cross-batch counterpart of {@link useResolveRow}.
+ *
+ * Duplicate Resolution aggregates matches from every open import, so a bulk decision
+ * there spans batches and cannot use a hook bound to one. Each result invalidates its
+ * own batch, keyed exactly as `useImportBatch` keys it, so only the affected lists
+ * refetch.
+ *
+ * Always silent: this exists for bulk runs, which report once at the end.
+ */
+export function useResolveMatch() {
+  const qc = useQueryClient()
+  return useMutation({
+    mutationFn: ({ batchId, rowNumber, input }: { batchId: string; rowNumber: number; input: ResolveRowInput }) =>
+      importApi.resolveRow(batchId, rowNumber, input),
+    onSuccess: (_data, variables) => {
+      qc.invalidateQueries({ queryKey: ['import', variables.batchId] })
+    },
+  })
+}
+
 /* ------------------------------------------------------------ duplicate search */
 
 export function useDuplicateSearch() {

@@ -442,6 +442,98 @@ describe('MDA console — Duplicate Resolution', () => {
     expect(within(decidedTable).getByText('Aisha Bello')).toBeInTheDocument()
   })
 
+  /* -------------------------------------------------------- bulk decisions */
+
+  /** Tick the select-all box in the currently open band tab. */
+  async function selectAllRows(user: ReturnType<typeof userEvent.setup>, caption: string) {
+    const table = await screen.findByRole('table', { name: caption })
+    const [selectAll] = within(table).getAllByRole('checkbox')
+    await user.click(selectAll!)
+  }
+
+  it('decides many exact matches at once', async () => {
+    // The case this exists for: a re-uploaded cohort where every row is the same person
+    // as an existing record, and the only question is serve-or-discard.
+    resolveRow.mockResolvedValue({ ...EXACT_ROW, resolution: 'skip' })
+    const user = userEvent.setup()
+    renderPage()
+    await ready()
+
+    await openTab(user, /Exact matches/)
+    await selectAllRows(user, 'Exact identifier matches')
+    expect(await screen.findByText('1 selected')).toBeInTheDocument()
+
+    await user.click(screen.getByRole('button', { name: /^Discard$/ }))
+
+    await waitFor(() =>
+      expect(resolveRow).toHaveBeenCalledWith('ib1', 1, expect.objectContaining({ resolution: 'skip' })),
+    )
+  })
+
+  it('links each exact match to its own matched record', async () => {
+    // There is no single "the" beneficiary across a selection — each row carries its own
+    // candidate, and the server rejects an id that is not a candidate for that row.
+    resolveRow.mockResolvedValue({ ...EXACT_ROW, resolution: 'link' })
+    const user = userEvent.setup()
+    renderPage()
+    await ready()
+
+    await openTab(user, /Exact matches/)
+    await selectAllRows(user, 'Exact identifier matches')
+    await user.click(screen.getByRole('button', { name: /Provide service/ }))
+
+    await waitFor(() =>
+      expect(resolveRow).toHaveBeenCalledWith(
+        'ib1',
+        1,
+        expect.objectContaining({ resolution: 'link', beneficiary_id: 'ben-existing' }),
+      ),
+    )
+  })
+
+  it('offers no bulk same-person judgement on probable matches', async () => {
+    // FR-DUP-09 / CLAUDE.md §9: asserting sameness across many people without anyone
+    // looking is the auto-merge the rule forbids. Discard creates nothing, so it stays.
+    const user = userEvent.setup()
+    renderPage()
+    await ready()
+
+    await openTab(user, /Possible matches/)
+    await selectAllRows(user, 'Probable matches awaiting judgement')
+
+    expect(await screen.findByText('1 selected')).toBeInTheDocument()
+    expect(screen.queryByRole('button', { name: /Provide service/ })).not.toBeInTheDocument()
+    expect(screen.getByRole('button', { name: /^Discard$/ })).toBeInTheDocument()
+    // ...and it says why, where the missing action would have been.
+    expect(screen.getByText(/decide those individually/i)).toBeInTheDocument()
+  })
+
+  it('offers bulk only over the awaiting queue', async () => {
+    // Selecting across decided rows invites re-deciding something already settled.
+    const user = userEvent.setup()
+    renderPage()
+    await ready()
+
+    await openTab(user, /Possible matches/)
+    await setState(user, /^Decided$/)
+
+    const table = await screen.findByRole('table', { name: 'Probable matches awaiting judgement' })
+    expect(within(table).queryAllByRole('checkbox')).toHaveLength(0)
+  })
+
+  it('keeps a failed row selected so it can be retried', async () => {
+    resolveRow.mockRejectedValue(new Error('boom'))
+    const user = userEvent.setup()
+    renderPage()
+    await ready()
+
+    await openTab(user, /Exact matches/)
+    await selectAllRows(user, 'Exact identifier matches')
+    await user.click(screen.getByRole('button', { name: /^Discard$/ }))
+
+    await waitFor(() => expect(screen.getByText('1 selected')).toBeInTheDocument())
+  })
+
   it('says which filter is hiding the rest when a view is empty', async () => {
     const user = userEvent.setup()
     renderPage()

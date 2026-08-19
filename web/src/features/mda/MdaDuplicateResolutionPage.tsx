@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import { useQueries } from '@tanstack/react-query'
-import { CheckCircle2, ChevronRight, History, Scale, Search, ShieldCheck } from 'lucide-react'
+import { CheckCircle2, ChevronRight, History, Link2, Scale, Search, ShieldCheck, SkipForward } from 'lucide-react'
 import { Badge } from '@/components/Badge/Badge'
 import { Button } from '@/components/Button/Button'
 import { Card } from '@/components/Card/Card'
@@ -10,10 +10,11 @@ import type { Column } from '@/components/DataTable/DataTable'
 import { Icon } from '@/components/Icon/Icon'
 import { Spinner } from '@/components/Spinner/Spinner'
 import { Tabs } from '@/components/Tabs/Tabs'
+import { useToast } from '@/components/Toast/ToastProvider'
 import { statusVariant } from '@/components/Badge/statusVariant'
 import { useAuth } from '@/lib/auth/AuthProvider'
 import { importApi } from '@/features/registry/api'
-import { useImports } from '@/features/registry/hooks'
+import { useImports, useResolveMatch } from '@/features/registry/hooks'
 import { MATCH_BAND_LABELS, RESOLUTION_LABELS } from '@/features/registry/constants'
 import { DuplicateSearchPage } from '@/features/registry/DuplicateSearchPage'
 import { MatchComparison } from '@/features/registry/MatchComparison'
@@ -105,6 +106,152 @@ function emptyFor(state: DecisionState, band: 'exact' | 'probable'): string {
   return `No ${noun} surfaced`
 }
 
+/* ------------------------------------------------------------ bulk decisions */
+
+type BulkDecision = 'link' | 'skip'
+
+/**
+ * Selection + the run loop for deciding many matches at once.
+ *
+ * Rows here come from DIFFERENT import batches, so each decision carries its own batch
+ * id — a hook bound to one batch cannot serve this page.
+ */
+function useBulkMatchDecision(items: MatchItem[], keyOf: (item: MatchItem) => string) {
+  const resolve = useResolveMatch()
+  const toast = useToast()
+  const [selected, setSelected] = useState<Set<string>>(new Set())
+  const [progress, setProgress] = useState<{ done: number; total: number } | null>(null)
+
+  const toggle = (id: string) =>
+    setSelected((current) => {
+      const next = new Set(current)
+      if (next.has(id)) next.delete(id)
+      else next.add(id)
+      return next
+    })
+
+  const toggleAll = (ids: string[], nextSelected: boolean) =>
+    setSelected((current) => {
+      const next = new Set(current)
+      for (const id of ids) {
+        if (nextSelected) next.add(id)
+        else next.delete(id)
+      }
+      return next
+    })
+
+  async function run(decision: BulkDecision) {
+    // Read from the live list, never from the selection alone: a row decided elsewhere
+    // since selecting must not be decided again.
+    const targets = items.filter((m) => selected.has(keyOf(m)) && !m.row.resolution)
+    if (targets.length === 0) return
+
+    const failed = new Set<string>()
+    setProgress({ done: 0, total: targets.length })
+
+    for (const [index, item] of targets.entries()) {
+      try {
+        // "Provide service" links each row to ITS OWN matched record — there is no one
+        // beneficiary across a selection, and the server rejects an id that is not a
+        // candidate for that row.
+        const beneficiaryId = decision === 'link' ? registryMatchId(item.row) : undefined
+        if (decision === 'link' && beneficiaryId === undefined) {
+          failed.add(keyOf(item))
+        } else {
+          await resolve.mutateAsync({
+            batchId: item.batch.id,
+            rowNumber: item.row.row_number,
+            input: { resolution: decision, beneficiary_id: beneficiaryId },
+          })
+        }
+      } catch {
+        failed.add(keyOf(item))
+      }
+      setProgress({ done: index + 1, total: targets.length })
+    }
+
+    setProgress(null)
+    setSelected(failed)
+
+    const saved = targets.length - failed.size
+    if (failed.size === 0) {
+      toast.success(
+        `${saved} ${saved === 1 ? 'match' : 'matches'} decided`,
+        `${RESOLUTION_LABELS[decision]} — each recorded in the audit log.`,
+      )
+    } else {
+      toast.error(
+        `${saved} of ${targets.length} saved`,
+        `${failed.size} could not be saved and ${failed.size === 1 ? 'is' : 'are'} still selected.`,
+      )
+    }
+  }
+
+  return { selected, toggle, toggleAll, clear: () => setSelected(new Set()), run, progress, busy: resolve.isPending }
+}
+
+/** The existing record a row matched, if any. */
+const registryMatchId = (row: ImportRow): string | undefined =>
+  row.match.candidates.find((c) => c.type === 'registry' && c.reveal?.id)?.reveal?.id ?? undefined
+
+/**
+ * What can be decided in bulk, and what deliberately cannot.
+ *
+ * **Exact** matches are settled by a unique identifier, so no same-person judgement
+ * remains — only whether to serve against the existing record or discard. Both are safe
+ * to apply to many rows at once.
+ *
+ * **Probable** matches are a judgement about whether two records are one human
+ * (FR-DUP-09). Bulk "provide service" would assert sameness across many people without
+ * anyone looking, which is the auto-merge CLAUDE.md §9 forbids — so only **discard** is
+ * offered here, because discarding creates nothing and asserts nothing about identity.
+ */
+function BulkDecisionBar({
+  band,
+  count,
+  progress,
+  busy,
+  onDecide,
+  onClear,
+}: {
+  band?: 'exact' | 'probable'
+  count: number
+  progress: { done: number; total: number } | null
+  busy: boolean
+  onDecide: (decision: BulkDecision) => void
+  onClear: () => void
+}) {
+  const canBulkLink = band === 'exact'
+
+  return (
+    <div className={styles.bulkBar}>
+      <span className={styles.bulkCount}>
+        {progress ? `Saving ${progress.done} of ${progress.total}…` : `${count} selected`}
+      </span>
+
+      {!canBulkLink && (
+        <span className={styles.bulkNote}>
+          A possible match is a judgement about one person — decide those individually.
+        </span>
+      )}
+
+      <span className={styles.spacer} />
+
+      {canBulkLink && (
+        <Button size="sm" leftIcon={Link2} onClick={() => onDecide('link')} loading={busy}>
+          Provide service
+        </Button>
+      )}
+      <Button size="sm" variant="tertiary" leftIcon={SkipForward} onClick={() => onDecide('skip')} loading={busy}>
+        Discard
+      </Button>
+      <Button size="sm" variant="tertiary" onClick={onClear}>
+        Clear
+      </Button>
+    </div>
+  )
+}
+
 /* --------------------------------------------------------------- match table */
 
 /**
@@ -119,16 +266,25 @@ function MatchTable({
   canResolve,
   /** Decisions are only accepted while the batch awaits confirmation (server-enforced). */
   showDecision,
+  /** The band these rows belong to — decides which bulk decisions are offered at all. */
+  band,
+  /** Bulk is offered only over rows that are actually awaiting a decision. */
+  allowBulk = false,
 }: {
   items: MatchItem[]
   caption: string
   emptyTitle: string
   canResolve: boolean
   showDecision: boolean
+  band?: 'exact' | 'probable'
+  allowBulk?: boolean
 }) {
   const navigate = useNavigate()
   const [open, setOpen] = useState<string | null>(null)
   const keyOf = (item: MatchItem) => `${item.batch.id}:${item.row.row_number}`
+
+  const bulk = useBulkMatchDecision(items, keyOf)
+  const bulkEnabled = allowBulk && canResolve && showDecision && items.length > 0
 
   const columns: Column<MatchItem>[] = [
     { key: 'person', header: 'Incoming row', render: (m) => personName(m.row) },
@@ -196,6 +352,17 @@ function MatchTable({
 
   return (
     <div className={styles.section}>
+      {bulkEnabled && bulk.selected.size > 0 && (
+        <BulkDecisionBar
+          band={band}
+          count={bulk.selected.size}
+          progress={bulk.progress}
+          busy={bulk.busy}
+          onDecide={bulk.run}
+          onClear={bulk.clear}
+        />
+      )}
+
       <DataTable
         caption={caption}
         columns={columns}
@@ -203,6 +370,9 @@ function MatchTable({
         getRowId={keyOf}
         getRowLabel={(m) => personName(m.row)}
         emptyTitle={emptyTitle}
+        selectedIds={bulkEnabled ? bulk.selected : undefined}
+        onToggleRow={bulkEnabled ? bulk.toggle : undefined}
+        onToggleAll={bulkEnabled ? bulk.toggleAll : undefined}
       />
 
       {expanded && (
@@ -405,6 +575,10 @@ export function MdaDuplicateResolutionPage() {
                     emptyTitle={emptyFor(state, 'exact')}
                     canResolve={canResolve}
                     showDecision
+                    band="exact"
+                    // Only the awaiting view: bulk exists to clear outstanding work, and
+                    // selecting across decided rows invites re-deciding settled ones.
+                    allowBulk={state === 'awaiting'}
                   />
                 </div>
               ),
@@ -432,6 +606,8 @@ export function MdaDuplicateResolutionPage() {
                     emptyTitle={emptyFor(state, 'probable')}
                     canResolve={canResolve}
                     showDecision
+                    band="probable"
+                    allowBulk={state === 'awaiting'}
                   />
                 </div>
               ),
