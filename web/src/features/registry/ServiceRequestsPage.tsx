@@ -360,7 +360,11 @@ export function ServiceRequestsPage({ embedded = false }: ServiceRequestsPagePro
         />
       </Card>
 
-      <Card eyebrow="Requester" title="My requests">
+      {/* Collapsible: this is a record of requests already raised, not work waiting on
+          anyone here — scrolling past it to reach the approval inbox is the common case,
+          so it can be folded away. Starts open, since content that vanishes on load
+          reads as missing. */}
+      <Card eyebrow="Requester" title="My requests" collapsible>
         <div className={styles.filters}>
           <SelectField
             className={styles.filterField}

@@ -164,14 +164,35 @@ describe('MDA console — Duplicate Resolution', () => {
 
   /* --------------------------------------------------------------- the five views */
 
-  it('offers the five views over the surfaced matches', async () => {
+  /**
+   * One tab per KIND of decision, not per stage of one.
+   *
+   * "Pending reviews", "Duplicate decisions" and "Match history" were three more tabs
+   * over the same rows: history was exactly Exact + Possible combined, and a single row
+   * could appear in three tabs at once. Decision state is a filter inside a band now, so
+   * the tabs answer "what am I being asked?" and the filter answers "has it been
+   * answered yet?".
+   */
+  it('offers one tab per kind of match, and no tab that merely re-slices them', async () => {
     renderPage()
     await ready()
 
     expect(screen.getByRole('heading', { name: 'Duplicate Resolution' })).toBeInTheDocument()
-    for (const name of [/Exact matches/, /Possible matches/, /Pending reviews/, /Duplicate decisions/, /Match history/]) {
+    for (const name of [/Exact matches/, /Possible matches/]) {
       expect(screen.getByRole('tab', { name })).toBeInTheDocument()
     }
+    for (const gone of [/Pending reviews/, /Duplicate decisions/, /Match history/]) {
+      expect(screen.queryByRole('tab', { name: gone })).not.toBeInTheDocument()
+    }
+  })
+
+  it('counts the work outstanding on a tab, not the total', async () => {
+    // A tab reading "(45)" when all 45 are decided sends someone looking for nothing.
+    renderPage()
+    await ready()
+
+    const exactTab = screen.getByRole('tab', { name: /Exact matches/ })
+    expect(exactTab).toHaveTextContent('Exact matches (1)')
   })
 
   it('reads matches from the existing import endpoints, not a new one', async () => {
@@ -182,17 +203,6 @@ describe('MDA console — Duplicate Resolution', () => {
       expect(listImports).toHaveBeenCalled()
       expect(getImport).toHaveBeenCalledWith('ib1')
     })
-  })
-
-  it('never lists a row the engine did not flag', async () => {
-    const user = userEvent.setup()
-    renderPage()
-    await ready()
-
-    const history = await openTab(user, /Match history/)
-    // Halima matched nothing, so she is not a duplicate question at all.
-    expect(within(history).queryByText('Halima Yusuf')).not.toBeInTheDocument()
-    expect(within(history).getByText('Aisha Bello')).toBeInTheDocument()
   })
 
   it('separates exact from possible', async () => {
@@ -317,67 +327,131 @@ describe('MDA console — Duplicate Resolution', () => {
     )
   })
 
-  it('shows a recorded decision in Duplicate decisions and in history', async () => {
+  /* ----------------------------------------------- the decision-state filter */
+
+  /** Switch the decision-state filter inside the currently open band tab. */
+  async function setState(user: ReturnType<typeof userEvent.setup>, name: RegExp) {
+    await user.click(screen.getByRole('button', { name }))
+  }
+
+  it('opens on the work — undecided matches, not a mixed list', async () => {
     const user = userEvent.setup()
     renderPage()
     await ready()
 
-    const decisions = await openTab(user, /Duplicate decisions/)
-    expect(within(decisions).getByText('Ibrahim Danjuma')).toBeInTheDocument()
-    // Undecided rows are not decisions.
-    expect(within(decisions).queryByText('Musa Sani')).not.toBeInTheDocument()
-
-    const history = await openTab(user, /Match history/)
-    expect(within(history).getByText('Ibrahim Danjuma')).toBeInTheDocument()
-    expect(within(history).getByText('Musa Sani')).toBeInTheDocument()
+    const possible = await openTab(user, /Possible matches/)
+    // Musa is undecided; Ibrahim was already decided, so he is not in the way.
+    expect(within(possible).getByText('Musa Sani')).toBeInTheDocument()
+    expect(within(possible).queryByText('Ibrahim Danjuma')).not.toBeInTheDocument()
+    expect(screen.getByRole('button', { name: /Awaiting decision/ })).toHaveAttribute('aria-pressed', 'true')
   })
 
-  it('names the audit log as the record of a decision', async () => {
+  it('shows a recorded decision under Decided', async () => {
     const user = userEvent.setup()
     renderPage()
     await ready()
 
-    const decisions = await openTab(user, /Duplicate decisions/)
-    expect(within(decisions).getByText(/in the audit log with who made it/i)).toBeInTheDocument()
+    const possible = await openTab(user, /Possible matches/)
+    await setState(user, /^Decided$/)
+
+    expect(within(possible).getByText('Ibrahim Danjuma')).toBeInTheDocument()
+    // An undecided row is not a decision.
+    expect(within(possible).queryByText('Musa Sani')).not.toBeInTheDocument()
   })
 
-  /* ------------------------------------------------------------ pending reviews */
-
-  it('lists only undecided rows in Pending reviews', async () => {
+  it('shows decided and undecided together under All', async () => {
     const user = userEvent.setup()
     renderPage()
     await ready()
 
-    const pending = await openTab(user, /Pending reviews/)
-    expect(within(pending).getByText('Aisha Bello')).toBeInTheDocument()
-    expect(within(pending).getByText('Musa Sani')).toBeInTheDocument()
-    expect(within(pending).queryByText('Ibrahim Danjuma')).not.toBeInTheDocument()
+    const possible = await openTab(user, /Possible matches/)
+    await setState(user, /^All/)
+
+    expect(within(possible).getByText('Musa Sani')).toBeInTheDocument()
+    expect(within(possible).getByText('Ibrahim Danjuma')).toBeInTheDocument()
   })
 
-  it('does not queue rows in a batch that can no longer be decided', async () => {
-    // Once committed, the server refuses a resolution — so it is not pending work.
+  it('never lists a row the engine did not flag, under any filter', async () => {
+    const user = userEvent.setup()
+    renderPage()
+    await ready()
+
+    const exact = await openTab(user, /Exact matches/)
+    await setState(user, /^All/)
+    // Halima matched nothing, so she is not a duplicate question at all.
+    expect(within(exact).queryByText('Halima Yusuf')).not.toBeInTheDocument()
+  })
+
+  it('does not count rows in a batch that can no longer be decided as awaiting', async () => {
+    // Once committed, the server refuses a resolution — so it is not outstanding work.
     listImports.mockResolvedValue(page([batch({ status: 'completed' })]))
     getImport.mockResolvedValue(batch({ status: 'completed' }))
     const user = userEvent.setup()
     renderPage()
     await ready()
 
-    const pending = await openTab(user, /Pending reviews/)
-    expect(within(pending).getByText('Nothing awaiting a decision')).toBeInTheDocument()
+    const exact = await openTab(user, /Exact matches/)
+    expect(within(exact).getByText('No exact matches awaiting a decision')).toBeInTheDocument()
 
-    // …but they remain visible as history.
-    const history = await openTab(user, /Match history/)
-    expect(within(history).getByText('Aisha Bello')).toBeInTheDocument()
+    // …but they remain visible, which is what the All filter is for.
+    await setState(user, /^All/)
+    expect(within(exact).getByText('Aisha Bello')).toBeInTheDocument()
   })
 
-  it('offers no decision control at all in Match history', async () => {
+  /**
+   * The whole journey, through the tabs that remain: open on the work, decide a row,
+   * watch it leave the queue, and find it again where decisions live.
+   *
+   * Worth pinning as one test rather than four: the value of the filter is that these
+   * steps compose, and a decided row that stayed in "Awaiting" — or vanished entirely —
+   * would pass every individual assertion above.
+   */
+  it('carries a match from awaiting, through a decision, to decided', async () => {
     const user = userEvent.setup()
     renderPage()
     await ready()
 
-    const history = await openTab(user, /Match history/)
-    expect(within(history).queryByRole('button', { name: 'Decide' })).not.toBeInTheDocument()
-    expect(within(history).queryByRole('button', { name: 'Revisit decision' })).not.toBeInTheDocument()
+    const exact = await openTab(user, /Exact matches/)
+
+    // 1. It starts as outstanding work, and the tab counts it.
+    expect(within(exact).getByText('Aisha Bello')).toBeInTheDocument()
+    expect(screen.getByRole('tab', { name: /Exact matches/ })).toHaveTextContent('(1)')
+
+    // 2. Decide it. The decision invalidates the batch query, so what the refetch
+    //    returns has to be staged BEFORE saving — otherwise the list refreshes from the
+    //    old mock and the assertion below measures nothing.
+    resolveRow.mockResolvedValue({ ...EXACT_ROW, resolution: 'skip' })
+    getImport.mockResolvedValue(
+      batch({ rows: [{ ...EXACT_ROW, resolution: 'skip', resolved_at: '2026-08-18T09:00:00Z' }, PROBABLE_ROW] }),
+    )
+
+    await user.click(within(exact).getByRole('button', { name: 'Decide' }))
+    await user.click(await screen.findByRole('radio', { name: /Discard this row/i }))
+    await user.click(screen.getByRole('button', { name: /Save decision/i }))
+    await waitFor(() => expect(resolveRow).toHaveBeenCalled())
+
+    // 3. It leaves the queue — the work is done, so it stops being work.
+    await waitFor(() =>
+      expect(within(screen.getByRole('tabpanel')).getByText('No exact matches awaiting a decision')).toBeInTheDocument(),
+    )
+
+    // 4. ...and it is findable where decisions live, not lost. Scoped to the table:
+    //    the open decision panel names her too, and matching that would prove nothing.
+    await setState(user, /^Decided$/)
+    const decidedTable = await screen.findByRole('table', { name: 'Exact identifier matches' })
+    expect(within(decidedTable).getByText('Aisha Bello')).toBeInTheDocument()
+  })
+
+  it('says which filter is hiding the rest when a view is empty', async () => {
+    const user = userEvent.setup()
+    renderPage()
+    await ready()
+
+    const exact = await openTab(user, /Exact matches/)
+    await setState(user, /^Decided$/)
+
+    // "No exact matches" alone would read as "there are none", which is false.
+    expect(within(exact).getByText('No exact matches decided yet')).toBeInTheDocument()
   })
 
   /* ------------------------------------------------------------- permissions */

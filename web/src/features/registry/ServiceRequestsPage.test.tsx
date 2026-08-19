@@ -127,6 +127,37 @@ describe('ServiceRequestsPage', () => {
     expect(within(table).getByText('Not eligible')).toBeInTheDocument()
   })
 
+  it('lets the requester section be folded away', async () => {
+    // "My requests" is a record of what this MDA already asked for, not work waiting on
+    // anyone here — so it can be collapsed rather than scrolled past to reach the inbox.
+    inbox.mockResolvedValue([])
+    outbox.mockResolvedValue([mine])
+    const user = userEvent.setup()
+    renderPage(<ServiceRequestsPage />)
+
+    expect(await screen.findByRole('table', { name: 'Service requests my MDA raised' })).toBeInTheDocument()
+
+    const toggle = screen.getByRole('button', { name: /my requests/i })
+    expect(toggle).toHaveAttribute('aria-expanded', 'true')
+    await user.click(toggle)
+
+    expect(toggle).toHaveAttribute('aria-expanded', 'false')
+    expect(screen.queryByRole('table', { name: 'Service requests my MDA raised' })).not.toBeInTheDocument()
+
+    await user.click(toggle)
+    expect(await screen.findByRole('table', { name: 'Service requests my MDA raised' })).toBeInTheDocument()
+  })
+
+  it('leaves the approval inbox open — it is the work', async () => {
+    inbox.mockResolvedValue([incoming])
+    outbox.mockResolvedValue([])
+    renderPage(<ServiceRequestsPage />)
+
+    // Only the requester section folds; the inbox is what the page is for.
+    expect(await screen.findByRole('table', { name: 'Incoming service requests' })).toBeInTheDocument()
+    expect(screen.queryByRole('button', { name: /^approval inbox/i })).not.toBeInTheDocument()
+  })
+
   describe('deciding many at once', () => {
     const pending = (id: string, mdaName = 'Ministry of Women Affairs'): ServiceRequest => ({
       ...incoming,

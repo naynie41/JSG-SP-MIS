@@ -512,3 +512,37 @@
   font-size: var(--fs-label);
   color: var(--forest);
 }
+
+/* Decision-state filter inside a band tab. Reads as a segmented control, not as a
+   second row of tabs — the band is the tab, this is a lens on it. */
+.stateChip,
+.stateChipActive {
+  padding: var(--space-1) var(--space-3);
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  background: var(--surface);
+  font: inherit;
+  font-size: var(--fs-label);
+  color: var(--text-muted-strong);
+  cursor: pointer;
+  transition: background-color var(--transition), border-color var(--transition), color var(--transition);
+}
+
+.stateChip:hover {
+  border-color: var(--border-strong);
+  color: var(--ink);
+}
+
+.stateChipActive {
+  background: var(--forest);
+  border-color: var(--forest);
+  color: var(--paper, #fff);
+  font-weight: 600;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .stateChip,
+  .stateChipActive {
+    transition: none;
+  }
+}
