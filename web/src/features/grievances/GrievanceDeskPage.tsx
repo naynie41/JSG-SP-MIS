@@ -47,7 +47,14 @@ export function GrievanceSla({ grievance }: { grievance: Pick<Grievance, 'sla_br
  * handles, each with its lifecycle status and an SLA/escalation flag. Staff log new
  * grievances here and open one to assign + resolve it.
  */
-export function GrievanceDeskPage() {
+export interface GrievanceDeskPageProps {
+  /** Rendered inside a host page that owns the heading (the MDA console's Service
+   *  Delivery module). Suppresses this page's own title block so the document keeps a
+   *  single h1 — the same contract {@link ServiceRequestsPage} uses. */
+  embedded?: boolean
+}
+
+export function GrievanceDeskPage({ embedded = false }: GrievanceDeskPageProps = {}) {
   const { hasPermission } = useAuth()
   const navigate = useNavigate()
   const canView = hasPermission('grievance.view')
@@ -96,14 +103,18 @@ export function GrievanceDeskPage() {
   return (
     <div>
       <div className={layout.pageHead}>
-        <div className={layout.pageTitle}>
-          <span className="eyebrow">05 · Coordination</span>
-          <h1 className="t-h1">Grievance desk</h1>
-          <p className={styles.note}>
-            Staff log grievances on behalf of beneficiaries, then assign and track them to resolution. Overdue items are
-            flagged against their category SLA.
-          </p>
-        </div>
+        {!embedded && (
+          <div className={layout.pageTitle}>
+            <span className="eyebrow">05 · Coordination</span>
+            <h1 className="t-h1">Grievance desk</h1>
+            <p className={styles.note}>
+              Staff log grievances on behalf of beneficiaries, then assign and track them to resolution. Overdue items
+              are flagged against their category SLA.
+            </p>
+          </div>
+        )}
+        {/* The action stays in both modes — logging a grievance is the point of the
+            desk, and the host page's heading does not carry it. */}
         {canCreate && (
           <Button leftIcon={Plus} onClick={() => setLogging(true)}>
             Log grievance

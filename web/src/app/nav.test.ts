@@ -102,4 +102,46 @@ describe('navSectionsFor', () => {
     // A partner with no permissions sees no rail (every partner item needs dashboard.view).
     expect(navSectionsFor('development_partner', () => false)).toEqual([])
   })
+
+  /* ------------------------------------------------------------ grievances */
+
+  it('puts the grievance desk on the operator rail', () => {
+    // It was a rail item, was folded into the Coordination hub, and is promoted back:
+    // a grievance is inbound work with an SLA already running, so it is the one
+    // sub-task that earns a place people cannot miss.
+    const tos = navSectionsFor('sp_coordination', all).flatMap((s) => s.items.map((i) => i.to))
+
+    expect(tos).toContain('/grievances')
+    // ...without displacing the hub, which still carries the coordination metrics.
+    expect(tos).toContain('/coordination')
+  })
+
+  it('hides the grievance desk from a caller without grievance.view', () => {
+    // Visibility is UX-only, but the rail must still not advertise what the server
+    // would refuse.
+    const tos = navSectionsFor('sp_coordination', (p) => p !== 'grievance.view').flatMap((s) =>
+      s.items.map((i) => i.to),
+    )
+
+    expect(tos).not.toContain('/grievances')
+    expect(tos).toContain('/coordination')
+  })
+
+  it('keeps the grievance desk off the console rails', () => {
+    // An Executive's rail IS the briefing suite and a Partner's IS the funding suite —
+    // neither handles grievances, and a Partner never sees operational queues at all.
+    for (const role of ['executive', 'development_partner', 'system_administrator']) {
+      const tos = navSectionsFor(role, all).flatMap((s) => s.items.map((i) => i.to))
+      expect(tos).not.toContain('/grievances')
+    }
+  })
+
+  it('leaves the MDA workspace at six modules', () => {
+    // MDAs reach grievances through Service Delivery, so the six-module rail is unchanged.
+    const mdaSections = navSectionsFor('mda_admin', all)
+    const tos = mdaSections.flatMap((s) => s.items.map((i) => i.to))
+
+    expect(tos).not.toContain('/grievances')
+    expect(tos).toHaveLength(6)
+  })
 })

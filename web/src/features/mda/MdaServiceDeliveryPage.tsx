@@ -15,6 +15,7 @@ import { AggregateTab, DeliveriesTab, FlagsTab } from '@/features/benefits/Benef
 import { BenefitsPanel } from '@/features/benefits/BenefitsPanel'
 import { ReferralTable } from '@/features/referrals/ReferralsPage'
 import { RaiseReferralModal } from '@/features/referrals/RaiseReferralModal'
+import { GrievanceDeskPage } from '@/features/grievances/GrievanceDeskPage'
 import { ServiceRequestsPage } from '@/features/registry/ServiceRequestsPage'
 import { useBeneficiaries } from '@/features/registry/hooks'
 import { titleCase } from '@/features/registry/constants'
@@ -22,8 +23,8 @@ import type { Beneficiary } from '@/features/registry/types'
 import { useMdaActionRequired } from './hooks'
 import styles from './mda.module.css'
 
-/** The three groups, and the `?tab=` values the Overview's counters deep-link with. */
-const TABS = ['benefits', 'referrals', 'service-requests'] as const
+/** The groups, and the `?tab=` values the Overview's counters deep-link with. */
+const TABS = ['benefits', 'referrals', 'grievances', 'service-requests'] as const
 type TabId = (typeof TABS)[number]
 
 const isTabId = (value: string | null): value is TabId => TABS.includes((value ?? '') as TabId)
@@ -235,6 +236,7 @@ function ReferralsGroup({ pending }: { pending: number | null }) {
 export function MdaServiceDeliveryPage() {
   const { hasPermission } = useAuth()
   const canViewBenefits = hasPermission('benefit.view')
+  const canViewGrievances = hasPermission('grievance.view')
   const [params, setParams] = useSearchParams()
 
   // Deep-linked from the Overview's action cards (`?tab=referrals`,
@@ -283,6 +285,27 @@ export function MdaServiceDeliveryPage() {
             id: 'referrals',
             label: 'Referrals',
             content: <ReferralsGroup pending={pendingReferrals} />,
+          },
+          {
+            /*
+             * Grievances belong to delivery: a complaint is about something this MDA did
+             * or failed to do, and `grievances.handling_mda_id` is the MDA answering it.
+             *
+             * The MDA role holds `grievance.view`/`create`/`edit`, but the "Grievance
+             * desk" rail item was removed when the consoles were restructured, and the
+             * Coordination hub that inherited it is not on this rail — so an MDA had the
+             * permission and no way to reach the feature. Composed here rather than
+             * added as a seventh rail item, which would break the six-module design.
+             */
+            id: 'grievances',
+            label: 'Grievances',
+            content: canViewGrievances ? (
+              <GrievanceDeskPage embedded />
+            ) : (
+              <Card>
+                <p className={styles.forbidden}>You do not have permission to view grievances.</p>
+              </Card>
+            ),
           },
           {
             id: 'service-requests',
