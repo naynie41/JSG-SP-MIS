@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { Download, FileBarChart, Lock, ShieldCheck } from 'lucide-react'
+import { Download, Lock, ShieldCheck } from 'lucide-react'
 import { Badge } from '@/components/Badge/Badge'
 import { Card } from '@/components/Card/Card'
 import { Icon } from '@/components/Icon/Icon'
@@ -15,58 +15,6 @@ import {
   SchedulesPanel,
 } from '@/features/reports/ReportPanels'
 import styles from './mda.module.css'
-
-/**
- * The six report types this module offers, each mapped to the dataset that answers it.
- *
- * There is no "programmes" dataset for an MDA: a programme is a shared, unowned
- * catalogue entry (§10), so counting catalogue rows would tell an MDA nothing about
- * itself. A programme report is therefore the MDA's own delivery GROUPED BY programme —
- * which is what `activities` and `benefits` already express.
- */
-const REPORT_TYPES: { label: string; dataset: string; hint: string }[] = [
-  { label: 'Programme', dataset: 'benefits', hint: 'Your delivery grouped by programme — the catalogue is shared, your delivery is yours.' },
-  { label: 'Activity', dataset: 'activities', hint: 'Activities you run, their targets and budgets, by programme, status or locality.' },
-  { label: 'Beneficiary', dataset: 'beneficiaries', hint: 'Who you have registered, by LGA, ward, status or source.' },
-  { label: 'Benefit', dataset: 'benefits', hint: 'Deliveries recorded and their value, by programme, type or locality.' },
-  { label: 'Referral', dataset: 'referrals', hint: 'Referrals your MDA is party to, by status and counterparty.' },
-  { label: 'Duplicate', dataset: 'duplicates', hint: 'Match bands and resolutions across your own imports.' },
-]
-
-/** "a benefit report" / "an activity report" — the labels are fixed, so this is enough. */
-const article = (word: string): string => (/^[aeiou]/i.test(word) ? 'an' : 'a')
-
-/* ---------------------------------------------------------- report type overview */
-
-function ReportTypes({ available, onBuild }: { available: Set<string>; onBuild: (dataset: string) => void }) {
-  return (
-    <div className={styles.section}>
-      <div className={styles.cardGrid}>
-        {REPORT_TYPES.map((type) => {
-          const reachable = available.has(type.dataset)
-          return (
-            <Card key={type.label} titleAs="h3" title={`${type.label} reports`} eyebrow="Aggregate · your MDA">
-              <p className={styles.queueNote}>{type.hint}</p>
-              {reachable ? (
-                <button type="button" className={styles.action} onClick={() => onBuild(type.dataset)}>
-                  <Icon icon={FileBarChart} size={15} />
-                  Build {article(type.label)} {type.label.toLowerCase()} report
-                </button>
-              ) : (
-                <p className={styles.muted}>
-                  <Icon icon={Lock} size={13} /> Not available to your account.
-                </p>
-              )}
-            </Card>
-          )
-        })}
-      </div>
-      <p className={styles.footnote}>
-        Every figure here is scoped to your MDA — a filter can narrow it further but never reach another MDA&apos;s data
-      </p>
-    </div>
-  )
-}
 
 /* --------------------------------------------------------- beneficiary list export */
 
@@ -166,7 +114,7 @@ export function MdaReportsPage() {
   const canExport = hasPermission('reporting.export')
 
   const { data, isLoading, error } = useReportDatasets(canView)
-  const [tab, setTab] = useState('types')
+  const [tab, setTab] = useState('catalogue')
   const [seedDataset, setSeedDataset] = useState<string | undefined>(undefined)
 
   if (!canView) {
@@ -178,7 +126,6 @@ export function MdaReportsPage() {
   }
 
   const datasets = data ?? []
-  const available = new Set(datasets.map((d) => d.key))
 
   function buildFrom(dataset: string) {
     setSeedDataset(dataset)
@@ -206,13 +153,14 @@ export function MdaReportsPage() {
           onChange={setTab}
           items={[
             {
-              id: 'types',
-              label: 'Report types',
-              content: <ReportTypes available={available} onBuild={buildFrom} />,
-            },
-            {
+              // Was two tabs — a hardcoded "Report types" list beside this one — both
+              // card grids whose only action was to seed the builder with a dataset.
+              // The hardcoded list had drifted: it offered two cards for the same
+              // `benefits` dataset and omitted grievances entirely, so a capability the
+              // server grants MDAs was unreachable from it. This one comes from the
+              // server, so it cannot drift, and it names the real group-by dimensions.
               id: 'catalogue',
-              label: 'Datasets',
+              label: 'Report types',
               content: (
                 <CataloguePanel
                   datasets={datasets}

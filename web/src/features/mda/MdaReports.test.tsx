@@ -116,35 +116,67 @@ describe('MDA console — Reports', () => {
 
   /* ------------------------------------------------------------ the six types */
 
-  it('offers all six report types', async () => {
+  /**
+   * The report types come from the SERVER, not a list in this file.
+   *
+   * There used to be a hardcoded "Report types" tab beside the dataset catalogue — two
+   * card grids whose only action was to seed the builder. It had drifted: two cards
+   * ("Programme", "Benefit") pointed at the same `benefits` dataset, and it omitted
+   * grievances entirely, so a dataset the server grants MDAs could not be reached from
+   * it. Rendering what `/reports/adhoc/datasets` returns cannot drift that way.
+   */
+  it('offers exactly the report types the server released', async () => {
     renderPage()
     const panel = await screen.findByRole('tabpanel')
     await ready()
 
-    for (const type of ['Programme', 'Activity', 'Beneficiary', 'Benefit', 'Referral', 'Duplicate']) {
-      expect(within(panel).getByRole('heading', { name: `${type} reports` })).toBeInTheDocument()
+    for (const label of ['Benefits (ledger)', 'Beneficiaries (registry)', 'Activities (delivery)', 'Referrals', 'Duplicate review']) {
+      expect(within(panel).getByRole('heading', { name: label })).toBeInTheDocument()
     }
   })
 
-  it('says a programme report is the MDA’s own delivery, not the shared catalogue', async () => {
+  it('offers one card per dataset, never two for the same one', async () => {
+    // "Programme" and "Benefit" were two doors onto `benefits`, producing an identical
+    // builder state from either — a choice that was not a choice.
     renderPage()
+    const panel = await screen.findByRole('tabpanel')
     await ready()
 
-    expect(screen.getByText(/the catalogue is shared, your delivery is yours/i)).toBeInTheDocument()
+    expect(within(panel).getAllByRole('button', { name: /build report/i })).toHaveLength(MDA_DATASETS.length)
   })
 
-  it('marks a report type unavailable when the server did not release its dataset', async () => {
-    // No `duplicates` — e.g. a scope the exception does not admit.
-    datasets.mockResolvedValue(MDA_DATASETS.filter((d) => d.key !== 'duplicates'))
+  it('lists a dataset the old hardcoded set left out', async () => {
+    // Grievances are `coordination` data, which every non-Partner scope includes — so an
+    // MDA may report on them, and the catalogue says so.
+    datasets.mockResolvedValue([...MDA_DATASETS, dataset('grievances', 'Grievances')])
     renderPage()
+    const panel = await screen.findByRole('tabpanel')
     await ready()
 
-    const panel = screen.getByRole('tabpanel')
-    const duplicates = within(panel).getByRole('heading', { name: 'Duplicate reports' }).closest('section')!
-    expect(within(duplicates as HTMLElement).getByText(/not available to your account/i)).toBeInTheDocument()
-    // The available ones still offer a build action.
-    const benefit = within(panel).getByRole('heading', { name: 'Benefit reports' }).closest('section')!
-    expect(within(benefit as HTMLElement).getByRole('button', { name: /build a benefit report/i })).toBeInTheDocument()
+    expect(within(panel).getByRole('heading', { name: 'Grievances' })).toBeInTheDocument()
+  })
+
+  it('simply omits a dataset the server did not release', async () => {
+    // No dead card claiming "not available to your account" — if the scope does not
+    // admit it, it is not a report type this MDA has.
+    datasets.mockResolvedValue(MDA_DATASETS.filter((d) => d.key !== 'duplicates'))
+    renderPage()
+    const panel = await screen.findByRole('tabpanel')
+    await ready()
+
+    expect(within(panel).queryByRole('heading', { name: 'Duplicate review' })).not.toBeInTheDocument()
+    expect(within(panel).getByRole('heading', { name: 'Benefits (ledger)' })).toBeInTheDocument()
+  })
+
+  it('names the dimensions a dataset can be grouped by', async () => {
+    // The operative information for building a report — the hardcoded cards showed prose
+    // hints instead, which could not tell you what the builder would actually offer.
+    renderPage()
+    const panel = await screen.findByRole('tabpanel')
+    await ready()
+
+    const benefits = within(panel).getByRole('heading', { name: 'Benefits (ledger)' }).closest('section')!
+    expect(within(benefits as HTMLElement).getByText(/^Group by/)).toBeInTheDocument()
   })
 
   /* --------------------------------------------------------------- engine reuse */
@@ -169,8 +201,10 @@ describe('MDA console — Reports', () => {
     renderPage()
     await ready()
 
-    // Launching from a report type seeds the builder with that dataset.
-    await user.click(screen.getByRole('button', { name: /build an activity report/i }))
+    // Launching from a report type seeds the builder with that dataset. Scoped to the
+    // card, since every card now offers the same "Build report" action.
+    const activities = screen.getByRole('heading', { name: 'Activities (delivery)' }).closest('section')!
+    await user.click(within(activities as HTMLElement).getByRole('button', { name: /build report/i }))
     const builder = screen.getByRole('tabpanel')
     expect(within(builder).getByLabelText('Dataset')).toHaveValue('activities')
 

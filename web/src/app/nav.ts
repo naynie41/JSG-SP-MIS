@@ -7,6 +7,7 @@ import {
   GaugeCircle,
   HandHeart,
   LibraryBig,
+  LifeBuoy,
   MapPinned,
   Plug,
   ShieldCheck,
@@ -46,6 +47,12 @@ export interface NavConfigSection {
  * (a launcher of permission-aware cards) rather than exploding its sub-tasks into
  * the rail — this keeps the navbar clean. The sub-tasks live on the hub page.
  *
+ * One deliberate exception: the **Grievance desk**. The rule above is about keeping
+ * BROWSING out of the rail, and a grievance is not something you go looking for — it is
+ * inbound work with an SLA already running, which is why it has escalation and breach
+ * tracking at all. Anything a citizen is waiting on earns a place people cannot miss.
+ * It stays on the Coordination hub as well, so neither route is a dead end.
+ *
  * The console roles are the exception: an Executive's rail IS the five pages of the
  * executive briefing, a Development Partner's IS the five pages of the funding-partner
  * suite, and a System Administrator's IS the nine pages of the administration console —
@@ -79,6 +86,11 @@ export const NAV_CONFIG: NavConfigSection[] = [
       { label: 'Programmes', to: '/programmes', icon: ClipboardList, permission: 'programme.view' },
       { label: 'Registry', to: '/registry', icon: UserSquare2, permission: 'beneficiary.view' },
       { label: 'Coordination', to: '/coordination', icon: Split, permission: 'referral.view' },
+      // Promoted out of the Coordination hub. A grievance is inbound work with an SLA
+      // running against it — unlike the hub's other card, it is something a person is
+      // waiting on, and burying it one click deep made it easy to leave unattended.
+      // It remains a card on the hub too, where it sits beside the coordination metrics.
+      { label: 'Grievance desk', to: '/grievances', icon: LifeBuoy, permission: 'grievance.view' },
       { label: 'Coverage map', to: '/gis', icon: MapPinned, permission: 'dashboard.view' },
     ],
   },

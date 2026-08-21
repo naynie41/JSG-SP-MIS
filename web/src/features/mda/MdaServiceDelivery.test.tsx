@@ -11,6 +11,7 @@ import { benefitApi, flagApi } from '@/features/benefits/api'
 import { referralApi } from '@/features/referrals/api'
 import { beneficiaryApi, serviceRequestApi } from '@/features/registry/api'
 import { programmeApi } from '@/features/programmes/api'
+import { grievanceApi } from '@/features/grievances/api'
 
 /*
  * Every api layer the module composes is mocked at the SOURCE module. That is what
@@ -42,6 +43,11 @@ vi.mock('@/features/programmes/api', () => ({
   activityApi: { list: vi.fn(), listForProgramme: vi.fn(), get: vi.fn() },
   enrollmentApi: { list: vi.fn(), create: vi.fn(), update: vi.fn() },
 }))
+// The Grievances tab composes the real desk, which queries on mount. Unmocked it would
+// issue a real request in jsdom and settle on the network's schedule, not React's.
+vi.mock('@/features/grievances/api', () => ({
+  grievanceApi: { list: vi.fn(), get: vi.fn(), create: vi.fn(), assign: vi.fn(), act: vi.fn() },
+}))
 
 const auth = { perms: [] as string[] }
 vi.mock('@/lib/auth/AuthProvider', () => ({
@@ -61,12 +67,16 @@ const outbox = serviceRequestApi.outbox as Mock
 const accept = serviceRequestApi.accept as Mock
 const listBeneficiaries = beneficiaryApi.list as Mock
 const ledger = benefitApi.ledger as Mock
+const listGrievances = grievanceApi.list as Mock
 
 const OFFICER = [
   'beneficiary.view', 'beneficiary.create', 'beneficiary-lookup.view',
   'programme.view', 'activity.view', 'enrollment.view',
   'benefit.view', 'benefit.create', 'benefit.approve',
   'referral.view', 'referral.create', 'referral.edit', 'dashboard.view',
+  // The seeded MDA role holds these (RolesAndPermissionsSeeder) — a grievance is a
+  // complaint about this MDA's own delivery.
+  'grievance.view', 'grievance.create', 'grievance.edit',
 ]
 /** Admin = Officer + the request-to-serve decision. */
 const ADMIN = [...OFFICER, 'beneficiary.approve']
@@ -86,6 +96,15 @@ const PENDING_REQUEST = {
   decided_at: null, decision_reason: null, created_at: null,
 }
 const DECLINED_REQUEST = { ...PENDING_REQUEST, id: 'sr-2', status: 'declined', decision_reason: 'Already served', beneficiary_name: 'Musa Sani' }
+
+const GRIEVANCE = {
+  id: 'g1111111-aaaa', handling_mda_id: 'm1', beneficiary_id: null,
+  category: 'service_quality' as const, channel: 'walk_in' as const,
+  description: 'Poor treatment at the clinic', status: 'open' as const,
+  assignee_user_id: null, resolution_notes: null, submitted_by: null,
+  escalation_level: 0, sla_breached_at: null,
+  timeline: { created_at: null, assigned_at: null, started_at: null, resolved_at: null, closed_at: null },
+}
 
 function renderAt(path = '/mda/service-delivery') {
   const qc = new QueryClient({ defaultOptions: { queries: { retry: false } } })
@@ -120,6 +139,65 @@ describe('MDA console — Service Delivery', () => {
     ledger.mockResolvedValue(page([]))
     programmeApi.list = vi.fn().mockResolvedValue(page([]))
     ;(programmeApi.catalog as Mock).mockResolvedValue(page([]))
+    listGrievances.mockResolvedValue(page([GRIEVANCE]))
+  })
+
+  /* ----------------------------------------------------------- grievances */
+
+  /**
+   * The MDA role holds `grievance.view`/`create`/`edit`, but the "Grievance desk" rail
+   * item was dropped when the consoles were restructured and the Coordination hub that
+   * inherited it is not on the MDA rail — so the permission was granted and the feature
+   * unreachable. A capability nobody can reach is the same defect as a permission
+   * nothing can consume, just inverted.
+   */
+  it('gives the MDA a way to reach grievances', async () => {
+    const user = userEvent.setup()
+    renderAt()
+
+    await user.click(await screen.findByRole('tab', { name: 'Grievances' }))
+
+    expect(await screen.findByText('#g1111111')).toBeInTheDocument()
+    await waitFor(() => expect(listGrievances).toHaveBeenCalled())
+  })
+
+  it('reuses the existing grievance desk rather than a second copy', async () => {
+    // Composed, not rebuilt (CLAUDE.md Phase MDA): the desk keeps its own filters and
+    // its log action, and reads the same endpoint the Coordination hub reads.
+    const user = userEvent.setup()
+    renderAt()
+
+    await user.click(await screen.findByRole('tab', { name: 'Grievances' }))
+
+    expect(await screen.findByRole('button', { name: /log grievance/i })).toBeInTheDocument()
+  })
+
+  it('keeps one h1 on the page when the desk is embedded', async () => {
+    // The host page owns the heading; a second h1 would break the document outline.
+    const user = userEvent.setup()
+    renderAt()
+
+    await user.click(await screen.findByRole('tab', { name: 'Grievances' }))
+    await screen.findByText('#g1111111')
+
+    expect(screen.getAllByRole('heading', { level: 1 })).toHaveLength(1)
+  })
+
+  it('is deep-linkable, like the other queues', async () => {
+    renderAt('/mda/service-delivery?tab=grievances')
+
+    expect(await screen.findByText('#g1111111')).toBeInTheDocument()
+  })
+
+  it('refuses the tab without the grievance permission', async () => {
+    auth.perms = OFFICER.filter((p) => p !== 'grievance.view')
+    const user = userEvent.setup()
+    renderAt()
+
+    await user.click(await screen.findByRole('tab', { name: 'Grievances' }))
+
+    expect(await screen.findByText(/do not have permission to view grievances/i)).toBeInTheDocument()
+    expect(listGrievances).not.toHaveBeenCalled()
   })
 
   /* --------------------------------------------------------------- structure */
