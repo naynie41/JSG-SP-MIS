@@ -8,7 +8,7 @@
 
 declare(strict_types=1);
 
-class Container_189aeb5c02 extends _PHPStan_48ec32058\Nette\DI\Container
+class Container_afd935d8bc extends _PHPStan_48ec32058\Nette\DI\Container
 {
 	protected $tags = [
 		'phpstan.broker.allowedSubTypesClassReflectionExtension' => ['017' => true, '018' => true],
@@ -5905,7 +5905,7 @@ class Container_189aeb5c02 extends _PHPStan_48ec32058\Nette\DI\Container
 			private $container;
 
 
-			public function __construct(Container_189aeb5c02 $container)
+			public function __construct(Container_afd935d8bc $container)
 			{
 				$this->container = $container;
 			}
@@ -5953,7 +5953,7 @@ class Container_189aeb5c02 extends _PHPStan_48ec32058\Nette\DI\Container
 			private $container;
 
 
-			public function __construct(Container_189aeb5c02 $container)
+			public function __construct(Container_afd935d8bc $container)
 			{
 				$this->container = $container;
 			}
@@ -6011,7 +6011,7 @@ class Container_189aeb5c02 extends _PHPStan_48ec32058\Nette\DI\Container
 			private $container;
 
 
-			public function __construct(Container_189aeb5c02 $container)
+			public function __construct(Container_afd935d8bc $container)
 			{
 				$this->container = $container;
 			}
@@ -6078,7 +6078,7 @@ class Container_189aeb5c02 extends _PHPStan_48ec32058\Nette\DI\Container
 			private $container;
 
 
-			public function __construct(Container_189aeb5c02 $container)
+			public function __construct(Container_afd935d8bc $container)
 			{
 				$this->container = $container;
 			}
@@ -6098,7 +6098,7 @@ class Container_189aeb5c02 extends _PHPStan_48ec32058\Nette\DI\Container
 			private $container;
 
 
-			public function __construct(Container_189aeb5c02 $container)
+			public function __construct(Container_afd935d8bc $container)
 			{
 				$this->container = $container;
 			}
@@ -6123,7 +6123,7 @@ class Container_189aeb5c02 extends _PHPStan_48ec32058\Nette\DI\Container
 			private $container;
 
 
-			public function __construct(Container_189aeb5c02 $container)
+			public function __construct(Container_afd935d8bc $container)
 			{
 				$this->container = $container;
 			}
@@ -6143,7 +6143,7 @@ class Container_189aeb5c02 extends _PHPStan_48ec32058\Nette\DI\Container
 			private $container;
 
 
-			public function __construct(Container_189aeb5c02 $container)
+			public function __construct(Container_afd935d8bc $container)
 			{
 				$this->container = $container;
 			}
@@ -6163,7 +6163,7 @@ class Container_189aeb5c02 extends _PHPStan_48ec32058\Nette\DI\Container
 			private $container;
 
 
-			public function __construct(Container_189aeb5c02 $container)
+			public function __construct(Container_afd935d8bc $container)
 			{
 				$this->container = $container;
 			}
@@ -9638,7 +9638,7 @@ class Container_189aeb5c02 extends _PHPStan_48ec32058\Nette\DI\Container
 	}
 
 
-	public function createServiceContainer(): Container_189aeb5c02
+	public function createServiceContainer(): Container_afd935d8bc
 	{
 		return $this;
 	}
@@ -10291,23 +10291,25 @@ class Container_189aeb5c02 extends _PHPStan_48ec32058\Nette\DI\Container
 			'cliAutoloadFile' => null,
 			'env' => [
 				'ACLOCAL_PATH' => 'C:\Program Files\Git\mingw64\share\aclocal;C:\Program Files\Git\usr\share\aclocal',
-				'AI_AGENT' => 'claude-code_2-1-231_agent',
+				'AI_AGENT' => 'claude-code_2-1-237_agent',
 				'ALLUSERSPROFILE' => 'C:\ProgramData',
 				'ANTHROPIC_AUTH_TOKEN' => 'sk-xQFJexJhG8E4DwUH0vBlp3Y3w3bOqaNCp390fM3iYhwefWaZ',
 				'ANTHROPIC_BASE_URL' => 'https://agentrouter.org',
 				'ANTHROPIC_MODEL' => 'claude-opus-4-6',
 				'APPDATA' => 'C:\Users\ACER\AppData\Roaming',
-				'CHROME_CRASHPAD_PIPE_NAME' => '\\\.\pipe\crashpad_1760_UEMGNHKIFRPGJIQA',
+				'CHROME_CRASHPAD_PIPE_NAME' => '\\\.\pipe\crashpad_24196_RDLLVOKDIWLLMXNC',
 				'CLAUDECODE' => '1',
-				'CLAUDE_AGENT_SDK_VERSION' => '0.3.231',
+				'CLAUDE_AGENT_SDK_VERSION' => '0.3.237',
 				'CLAUDE_CODE_CHILD_SESSION' => '1',
 				'CLAUDE_CODE_ENABLE_SDK_FILE_CHECKPOINTING' => 'true',
 				'CLAUDE_CODE_ENABLE_TASKS' => '0',
 				'CLAUDE_CODE_ENTRYPOINT' => 'claude-vscode',
-				'CLAUDE_CODE_EXECPATH' => 'C:\Users\ACER\.vscode\extensions\anthropic.claude-code-2.1.231-win32-x64\resources\native-binary\claude.exe',
+				'CLAUDE_CODE_EXECPATH' => 'C:\Users\ACER\.vscode\extensions\anthropic.claude-code-2.1.237-win32-x64\resources\native-binary\claude.exe',
+				'CLAUDE_CODE_MESSAGING_SOCKET' => '\\\.\pipe\cc-msg-970cdbafc29c325f65993bfdf78975c9',
+				'CLAUDE_CODE_MESSAGING_TOKEN' => 'd50d8a535d0785a4b9e42e707be6d11a',
 				'CLAUDE_CODE_SESSION_ID' => '71bdfd08-53a2-4d53-94aa-60c9dfb41448',
 				'CLAUDE_EFFORT' => 'high',
-				'CLAUDE_PID' => '18292',
+				'CLAUDE_PID' => '20892',
 				'COLUMNS' => '120',
 				'COMMONPROGRAMFILES' => 'C:\Program Files\Common Files',
 				'COMPUTERNAME' => 'NITRO-5',
@@ -10391,7 +10393,7 @@ class Container_189aeb5c02 extends _PHPStan_48ec32058\Nette\DI\Container
 				'VSCODE_IPC_HOOK' => '\\\.\pipe\e4ee10c7-1.127.0-main-sock',
 				'VSCODE_L10N_BUNDLE_LOCATION' => '',
 				'VSCODE_NLS_CONFIG' => '{"userLocale":"en-us","osLocale":"en-us","resolvedLanguage":"en","defaultMessagesFile":"C:\\\Users\\\ACER\\\AppData\\\Local\\\Programs\\\Microsoft VS Code\\\4fe60c8b1c\\\resources\\\app\\\out\\\nls.messages.json","locale":"en-us","availableLanguages":{}}',
-				'VSCODE_PID' => '1760',
+				'VSCODE_PID' => '24196',
 				'WINDIR' => 'C:\Windows',
 				'ZES_ENABLE_SYSMAN' => '1',
 				'_' => 'C:/Users/ACER/Downloads/php-8.5.1-nts-Win32-vs17-x64/php',

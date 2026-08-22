@@ -224,6 +224,14 @@ export interface ImportMappingProposal {
     | { type: 'template'; name: string }
     | { type: 'previous_import'; name: string; confirmed_by: string | null; confirmed_at: string | null }
     | null
+  /** The batch's provenance (PRD §6.1) — what this upload claims its data came from. */
+  source: string
+  /**
+   * True for a SOCU-mined batch: each row must carry its SOCU record id, mapped onto
+   * `original_record_id`. Source is not ownership — the record is still owned by the
+   * first MDA to import it (FR-OWN-01).
+   */
+  requires_source_record_id: boolean
   identity_fields: string[]
   unconfirmed_identity_fields: string[]
   unknown_headers: string[]

@@ -45,6 +45,8 @@ function makeProposal(overrides: Partial<ImportMappingProposal> = {}): ImportMap
     normalized_preview: [],
     template: null,
     prefilled_from: null,
+    source: 'csv',
+    requires_source_record_id: false,
     identity_fields: ['first_name', 'last_name', 'nin', 'bvn', 'phone'],
     unconfirmed_identity_fields: ['first_name', 'last_name', 'nin', 'bvn', 'phone'],
     unknown_headers: [],
@@ -167,6 +169,83 @@ describe('ImportMappingPanel', () => {
     // The file genuinely has no BVN column; saying so is answering.
     const bvnRow = screen.getByLabelText(/^bvn/i).closest('div')!.parentElement!
     expect(within(bvnRow).getByText(/^confirmed$/i)).toBeInTheDocument()
+  })
+
+  /* ------------------------------------------------------- SOCU provenance */
+
+  /**
+   * A SOCU-mined batch must carry each row's SOCU id.
+   *
+   * The batch flag says these people came from SOCU; `original_record_id` says WHICH
+   * SOCU record each one is. Without it nobody can trace a beneficiary back to the
+   * register, and a re-mine has no key to recognise itself by.
+   */
+  it('will not continue a SOCU import until the SOCU record id is mapped', async () => {
+    const user = userEvent.setup()
+    mapping.mockResolvedValue(
+      makeProposal({
+        source: 'socu',
+        requires_source_record_id: true,
+        detected_headers: ['socu_id', 'surname', 'given_name', 'national_id', 'mobile'],
+        suggestions: {
+          ...makeProposal().suggestions,
+          original_record_id: { header: 'socu_id', confidence: 'high', reason: 'Header matches “socu_id”.' },
+        },
+      }),
+    )
+    renderPanel()
+    await user_waitForLoad()
+
+    await answerIdentityFields(user)
+
+    // Identity fields all answered, and it is STILL blocked — on the SOCU id.
+    expect(continueButton()).toBeDisabled()
+    expect(screen.getByText(/Confirm Source record ID to continue/i)).toBeInTheDocument()
+
+    await user.selectOptions(screen.getByLabelText(/source record id/i), 'socu_id')
+
+    expect(continueButton()).toBeEnabled()
+  })
+
+  it('sends the SOCU id mapping with the rest', async () => {
+    const user = userEvent.setup()
+    mapping.mockResolvedValue(
+      makeProposal({
+        source: 'socu',
+        requires_source_record_id: true,
+        detected_headers: ['socu_id', 'surname', 'given_name', 'national_id', 'mobile'],
+        suggestions: {
+          ...makeProposal().suggestions,
+          original_record_id: { header: 'socu_id', confidence: 'high', reason: 'Header matches “socu_id”.' },
+        },
+      }),
+    )
+    renderPanel()
+    await user_waitForLoad()
+
+    await answerIdentityFields(user)
+    await user.selectOptions(screen.getByLabelText(/source record id/i), 'socu_id')
+    await user.click(continueButton())
+
+    await waitFor(() =>
+      expect(confirmMapping).toHaveBeenCalledWith(
+        'ib-1',
+        expect.objectContaining({ original_record_id: 'socu_id' }),
+        undefined,
+      ),
+    )
+  })
+
+  it('does not demand a source record id for the MDA’s own file', async () => {
+    // A self-collected file has no external register to point at; demanding an id
+    // would make officers invent them.
+    const user = userEvent.setup()
+    renderPanel()
+    await user_waitForLoad()
+
+    await answerIdentityFields(user)
+
+    expect(continueButton()).toBeEnabled()
   })
 
   /* -------------------------------------------------------------- templates */

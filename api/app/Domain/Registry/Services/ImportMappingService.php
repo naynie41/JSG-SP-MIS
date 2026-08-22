@@ -7,6 +7,7 @@ namespace App\Domain\Registry\Services;
 use App\Domain\Access\Models\User;
 use App\Domain\Audit\Services\AuditLogger;
 use App\Domain\Registry\Enums\ImportStatus;
+use App\Domain\Registry\Enums\RegistrationSource;
 use App\Domain\Registry\Imports\ColumnMapper;
 use App\Domain\Registry\Imports\SpreadsheetReader;
 use App\Domain\Registry\Models\ImportBatch;
@@ -126,6 +127,10 @@ class ImportMappingService
             // Where a pre-filled mapping came from, so the reviewer is not asked to
             // confirm choices that appeared from nowhere. Null when this shape is new.
             'prefilled_from' => $this->prefillProvenance($batch, $template),
+            // The batch's provenance, so the mapping screen can state what this upload is
+            // claiming and mark the source-record id required where it must be.
+            'source' => $batch->source->value,
+            'requires_source_record_id' => $batch->source === RegistrationSource::Socu,
             'identity_fields' => CanonicalSchema::confirmationRequiredFields(),
             'unconfirmed_identity_fields' => $this->mapper->unconfirmedIdentityFields($confirmed),
             'unknown_headers' => $this->mapper->unknownHeaders($confirmed, $headers),
@@ -259,6 +264,24 @@ class ImportMappingService
         if (! $hasSplitName && ($columnMap['full_name'] ?? null) === null) {
             throw new DomainException(
                 'This mapping has no name: point first and last name at columns, or map a single full-name column.'
+            );
+        }
+
+        /*
+         * A SOCU-mined batch must carry the SOCU record id PER ROW.
+         *
+         * The batch flag says these people came from SOCU; `original_record_id` says
+         * WHICH SOCU record each one is. Without it the claim is unverifiable — nobody
+         * can trace a beneficiary back to the source register, and a re-mine of the same
+         * data has no key to recognise itself by (it is also the idempotency key).
+         *
+         * Only enforced for SOCU: a self-sourced MDA file legitimately has no external
+         * id, and demanding one would make officers invent them.
+         */
+        if ($batch->source === RegistrationSource::Socu && ($columnMap['original_record_id'] ?? null) === null) {
+            throw new DomainException(
+                'A SOCU import must map the SOCU record id — point “Source record ID” at the column holding it. '
+                .'It is what ties each row back to its SOCU record.'
             );
         }
 

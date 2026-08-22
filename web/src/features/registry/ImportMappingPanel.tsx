@@ -108,7 +108,23 @@ export function ImportMappingPanel({ batchId }: { batchId: string }) {
 
   const unanswered = useMemo(() => {
     if (!proposal) return []
-    return identityFields.filter((field) => valueFor(field, proposal) === '')
+
+    const missing = identityFields.filter((field) => valueFor(field, proposal) === '')
+
+    /*
+     * A SOCU-mined batch must also point at the column holding each row's SOCU id.
+     * The batch flag says these people came from SOCU; this says WHICH SOCU record
+     * each one is. Without it the claim cannot be traced back to the register.
+     *
+     * Unlike the identity fields, "not present" is not an answer here — the server
+     * refuses the confirmation either way, so the button reflects that rather than
+     * letting the officer submit into a 422.
+     */
+    if (proposal.requires_source_record_id && !answers.original_record_id) {
+      missing.push('original_record_id')
+    }
+
+    return missing
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [proposal, answers, identityFields])
 
