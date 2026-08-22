@@ -1,7 +1,7 @@
 <?php declare(strict_types = 1);
 
 return [
-	'lastFullAnalysisTime' => 1786641520,
+	'lastFullAnalysisTime' => 1787418772,
 	'meta' => array (
   'cacheVersion' => 'v13-packageDependencies',
   'phpstanVersion' => '2.2.3',
@@ -16086,28 +16086,28 @@ return [
         0 => 'App\\Domain\\Audit\\Services\\AuditLogger',
         1 => 'record',
         2 => 'after',
-        3 => 281,
+        3 => 304,
       ),
       1 => 
       array (
         0 => 'App\\Domain\\Audit\\Services\\AuditLogger',
         1 => 'record',
         2 => 'actor',
-        3 => 286,
+        3 => 309,
       ),
       2 => 
       array (
         0 => 'App\\Domain\\Audit\\Services\\AuditLogger',
         1 => 'record',
         2 => 'after',
-        3 => 316,
+        3 => 339,
       ),
       3 => 
       array (
         0 => 'App\\Domain\\Audit\\Services\\AuditLogger',
         1 => 'record',
         2 => 'actor',
-        3 => 320,
+        3 => 343,
       ),
     ),
   ),
@@ -27766,7 +27766,7 @@ return [
   ),
   'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Registry\\Services\\ImportMappingService.php' => 
   array (
-    'fileHash' => 'e7bd3db9e362195ec584b58f13d6f25ea5cad88077cb205bedde9c5bbba3b0fa',
+    'fileHash' => '1801b764a672fff529de94c6623f93a4c5cd3cac807a4a95be0dc41b4d252844',
     'dependentFiles' => 
     array (
       0 => 'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Registry\\ActivityImportController.php',
@@ -29945,82 +29945,283 @@ return [
   ),
 ),
 	'packageDependencies' => array (
-  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Console\\Commands\\SyncPermissions.php' => 
+  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Console\\Commands\\RunBackup.php' => 
   array (
     0 => 'symfony/console',
     1 => 'laravel/framework',
   ),
-  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Access\\Enums\\RoleKey.php' => 
+  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Access\\Support\\PermissionRegistry.php' => 
   array (
   ),
-  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Benefit\\Services\\DeliveryAuthorization.php' => 
-  array (
-    0 => 'laravel/framework',
-  ),
-  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Matching\\Enums\\ExactMatchBehaviour.php' => 
-  array (
-  ),
-  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Matching\\Models\\MatchingConfig.php' => 
+  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Benefit\\Services\\BeneficiaryRevealPresenter.php' => 
   array (
     0 => 'laravel/framework',
     1 => 'laravel/sanctum',
+    2 => 'nesbot/carbon',
   ),
-  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Referral\\Scopes\\ReferralScope.php' => 
-  array (
-    0 => 'laravel/framework',
-    1 => 'symfony/http-foundation',
-    2 => 'laravel/sanctum',
-  ),
-  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Registry\\Contracts\\DuplicateChecker.php' => 
-  array (
-  ),
-  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Registry\\Enums\\HouseholdRole.php' => 
-  array (
-  ),
-  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Registry\\Services\\BeneficiaryRegistrar.php' => 
-  array (
-    0 => 'laravel/framework',
-  ),
-  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Registry\\Services\\NullBeneficiaryRouter.php' => 
-  array (
-    0 => 'laravel/framework',
-  ),
-  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Reporting\\Export\\ExecutiveExportBuilder.php' => 
+  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Graduation\\Services\\GraduationProgressService.php' => 
   array (
     0 => 'laravel/framework',
     1 => 'nesbot/carbon',
   ),
-  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Reporting\\Models\\ReportRun.php' => 
+  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Graduation\\Services\\GraduationService.php' => 
+  array (
+    0 => 'laravel/framework',
+    1 => 'laravel/sanctum',
+    2 => 'nesbot/carbon',
+  ),
+  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Grievance\\Events\\GrievanceSlaBreached.php' => 
   array (
     0 => 'laravel/framework',
   ),
-  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Reporting\\Reports\\AdHoc\\AdHocDatasetRegistry.php' => 
+  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Matching\\Scoring\\MatchScore.php' => 
+  array (
+  ),
+  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Notification\\Listeners\\NotificationSubscriber.php' => 
   array (
     0 => 'laravel/framework',
     1 => 'laravel/sanctum',
   ),
-  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Reporting\\Reports\\AdHoc\\AdHocDefinition.php' => 
+  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Registry\\Contracts\\DuplicateChecker.php' => 
   array (
   ),
-  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Reporting\\Support\\DashboardScope.php' => 
+  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Registry\\Enums\\Gender.php' => 
   array (
   ),
-  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Reporting\\ReportDefinitionController.php' => 
+  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Registry\\Enums\\ImportRowResolution.php' => 
+  array (
+  ),
+  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Registry\\Models\\BeneficiaryConsent.php' => 
+  array (
+    0 => 'laravel/framework',
+  ),
+  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Reporting\\Export\\PdfExporter.php' => 
+  array (
+    0 => 'laravel/framework',
+    1 => 'dompdf/dompdf',
+  ),
+  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Reporting\\Services\\DashboardScopeResolver.php' => 
+  array (
+    0 => 'laravel/framework',
+    1 => 'laravel/sanctum',
+  ),
+  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Reporting\\Services\\ReportScheduleService.php' => 
+  array (
+    0 => 'laravel/framework',
+    1 => 'laravel/sanctum',
+    2 => 'nesbot/carbon',
+  ),
+  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Registry\\BeneficiaryIntakeController.php' => 
   array (
     0 => 'laravel/framework',
     1 => 'symfony/http-foundation',
     2 => 'laravel/sanctum',
   ),
-  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Access\\Concerns\\ValidatesUserAssignment.php' => 
-  array (
-  ),
-  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Programme\\UpdateProgrammeRequest.php' => 
+  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Grievance\\UpdateGrievanceSlaRequest.php' => 
   array (
     0 => 'laravel/framework',
     1 => 'symfony/http-foundation',
     2 => 'laravel/sanctum',
   ),
-  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Registry\\UpdateHouseholdRequest.php' => 
+  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Registry\\DecideOwnershipTransferRequest.php' => 
+  array (
+    0 => 'laravel/framework',
+    1 => 'symfony/http-foundation',
+    2 => 'laravel/sanctum',
+  ),
+  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Resources\\ReportDefinitionResource.php' => 
+  array (
+    0 => 'laravel/framework',
+    1 => 'symfony/http-foundation',
+    2 => 'nesbot/carbon',
+  ),
+  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Resources\\SyncConnectorResource.php' => 
+  array (
+    0 => 'laravel/framework',
+    1 => 'symfony/http-foundation',
+    2 => 'nesbot/carbon',
+    3 => 'laravel/sanctum',
+  ),
+  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Benefit\\Imports\\BenefitDeliveryRowValidator.php' => 
+  array (
+    0 => 'laravel/framework',
+    1 => 'nesbot/carbon',
+  ),
+  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Grievance\\Models\\GrievanceSlaPolicy.php' => 
+  array (
+    0 => 'laravel/framework',
+  ),
+  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Matching\\Enums\\MatchBand.php' => 
+  array (
+  ),
+  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Notification\\Mail\\NotificationMail.php' => 
+  array (
+    0 => 'laravel/framework',
+  ),
+  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Notification\\Models\\Notification.php' => 
+  array (
+    0 => 'laravel/framework',
+    1 => 'laravel/sanctum',
+  ),
+  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Programme\\Services\\EnrollmentService.php' => 
+  array (
+    0 => 'laravel/framework',
+    1 => 'laravel/sanctum',
+    2 => 'nesbot/carbon',
+  ),
+  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Reference\\Services\\ReferenceDataCache.php' => 
+  array (
+    0 => 'laravel/framework',
+    1 => 'psr/simple-cache',
+  ),
+  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Registry\\Enums\\BeneficiaryStatus.php' => 
+  array (
+  ),
+  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Registry\\Events\\ServiceRequestAccepted.php' => 
+  array (
+    0 => 'laravel/framework',
+    1 => 'laravel/sanctum',
+  ),
+  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Registry\\Policies\\BeneficiaryDocumentPolicy.php' => 
+  array (
+    0 => 'laravel/framework',
+    1 => 'laravel/sanctum',
+  ),
+  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Registry\\Services\\ImportMappingService.php' => 
+  array (
+    0 => 'laravel/framework',
+    1 => 'league/flysystem',
+    2 => 'psr/http-message',
+    3 => 'symfony/http-foundation',
+    4 => 'nesbot/carbon',
+    5 => 'laravel/sanctum',
+  ),
+  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Reporting\\Export\\ReportData.php' => 
+  array (
+    0 => 'laravel/framework',
+    1 => 'nesbot/carbon',
+  ),
+  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Sync\\Enums\\SyncTrigger.php' => 
+  array (
+  ),
+  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Sync\\Models\\SyncRun.php' => 
+  array (
+    0 => 'laravel/framework',
+  ),
+  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Registry\\HouseholdController.php' => 
+  array (
+    0 => 'laravel/framework',
+    1 => 'symfony/http-foundation',
+  ),
+  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Reporting\\ReportController.php' => 
+  array (
+    0 => 'laravel/framework',
+    1 => 'symfony/http-foundation',
+    2 => 'laravel/sanctum',
+    3 => 'league/flysystem',
+    4 => 'psr/http-message',
+  ),
+  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Access\\UpdateMdaRequest.php' => 
+  array (
+    0 => 'laravel/framework',
+    1 => 'symfony/http-foundation',
+    2 => 'laravel/sanctum',
+  ),
+  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Access\\UpdateRolePermissionsRequest.php' => 
+  array (
+    0 => 'laravel/framework',
+    1 => 'symfony/http-foundation',
+    2 => 'laravel/sanctum',
+  ),
+  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Resources\\BenefitResource.php' => 
+  array (
+    0 => 'laravel/framework',
+    1 => 'symfony/http-foundation',
+    2 => 'nesbot/carbon',
+  ),
+  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Resources\\UserResource.php' => 
+  array (
+    0 => 'laravel/framework',
+    1 => 'symfony/http-foundation',
+    2 => 'laravel/sanctum',
+    3 => 'nesbot/carbon',
+  ),
+  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Console\\Commands\\GenerateBackupKey.php' => 
+  array (
+    0 => 'symfony/console',
+    1 => 'laravel/framework',
+  ),
+  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Access\\Models\\MdaAccessGrant.php' => 
+  array (
+    0 => 'laravel/framework',
+    1 => 'nesbot/carbon',
+    2 => 'laravel/sanctum',
+  ),
+  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Benefit\\Authorization\\ServiceRequestAuthorizer.php' => 
+  array (
+    0 => 'laravel/framework',
+  ),
+  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Notification\\NotificationServiceProvider.php' => 
+  array (
+    0 => 'laravel/framework',
+    1 => 'psr/container',
+  ),
+  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Registry\\Imports\\Adapters\\DefaultImportAdapter.php' => 
+  array (
+  ),
+  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Registry\\Services\\DeterministicDuplicateFinder.php' => 
+  array (
+    0 => 'laravel/framework',
+  ),
+  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Reporting\\Export\\ReportColumn.php' => 
+  array (
+  ),
+  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Reporting\\Mail\\ScheduledReportMail.php' => 
+  array (
+    0 => 'laravel/framework',
+  ),
+  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Reporting\\Models\\ReportSchedule.php' => 
+  array (
+    0 => 'laravel/framework',
+    1 => 'nesbot/carbon',
+  ),
+  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Reporting\\Services\\ReportService.php' => 
+  array (
+    0 => 'laravel/framework',
+    1 => 'laravel/sanctum',
+  ),
+  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Sync\\Enums\\SyncStatus.php' => 
+  array (
+  ),
+  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Sync\\Services\\SyncEngine.php' => 
+  array (
+    0 => 'laravel/framework',
+    1 => 'laravel/sanctum',
+    2 => 'nesbot/carbon',
+  ),
+  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Benefit\\BenefitController.php' => 
+  array (
+    0 => 'laravel/framework',
+    1 => 'symfony/http-foundation',
+    2 => 'laravel/sanctum',
+  ),
+  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Reporting\\AdminSummaryController.php' => 
+  array (
+    0 => 'laravel/framework',
+    1 => 'symfony/http-foundation',
+  ),
+  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Middleware\\SecurityHeaders.php' => 
+  array (
+    0 => 'laravel/framework',
+    1 => 'symfony/http-foundation',
+  ),
+  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Access\\StoreUserRequest.php' => 
+  array (
+    0 => 'laravel/framework',
+    1 => 'symfony/http-foundation',
+    2 => 'laravel/sanctum',
+  ),
+  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Referral\\UpdateReferralSlaRequest.php' => 
   array (
     0 => 'laravel/framework',
     1 => 'symfony/http-foundation',
@@ -30032,708 +30233,29 @@ return [
     1 => 'symfony/http-foundation',
     2 => 'laravel/sanctum',
   ),
-  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Access\\Enums\\MdaStatus.php' => 
-  array (
-  ),
-  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Access\\Enums\\MdaType.php' => 
-  array (
-  ),
-  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Benefit\\Policies\\BenefitPolicy.php' => 
+  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Resources\\ImportRowResource.php' => 
   array (
     0 => 'laravel/framework',
-    1 => 'laravel/sanctum',
+    1 => 'symfony/http-foundation',
+    2 => 'nesbot/carbon',
   ),
-  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Benefit\\Services\\LedgerAggregator.php' => 
+  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Support\\ApiResponse.php' => 
   array (
     0 => 'laravel/framework',
-    1 => 'nesbot/carbon',
+    1 => 'symfony/http-foundation',
   ),
-  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Graduation\\Enums\\GraduationCriterionType.php' => 
+  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Access\\Scopes\\MdaScope.php' => 
   array (
+    0 => 'laravel/framework',
+    1 => 'symfony/http-foundation',
+    2 => 'laravel/sanctum',
   ),
-  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Grievance\\Enums\\GrievanceStatus.php' => 
-  array (
-  ),
-  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Matching\\MatchingServiceProvider.php' => 
+  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Benefit\\BenefitServiceProvider.php' => 
   array (
     0 => 'laravel/framework',
     1 => 'psr/container',
   ),
-  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Matching\\Scoring\\RuleBasedMatchScorer.php' => 
-  array (
-    0 => 'laravel/framework',
-  ),
-  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Matching\\Support\\PhoneticEncoder.php' => 
-  array (
-  ),
-  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Registry\\Enums\\ConsentStatus.php' => 
-  array (
-  ),
-  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Registry\\Enums\\ImportRowResolution.php' => 
-  array (
-  ),
-  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Registry\\Models\\ImportBatch.php' => 
-  array (
-    0 => 'laravel/framework',
-    1 => 'nesbot/carbon',
-    2 => 'laravel/sanctum',
-  ),
-  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Reporting\\Export\\SensitiveMasker.php' => 
-  array (
-  ),
-  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Reporting\\Services\\DashboardSnapshotService.php' => 
-  array (
-    0 => 'laravel/framework',
-    1 => 'laravel/sanctum',
-    2 => 'nesbot/carbon',
-  ),
-  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Access\\AccessController.php' => 
-  array (
-    0 => 'laravel/framework',
-    1 => 'symfony/http-foundation',
-    2 => 'laravel/sanctum',
-  ),
-  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Referral\\ReferralController.php' => 
-  array (
-    0 => 'laravel/framework',
-    1 => 'symfony/http-foundation',
-    2 => 'laravel/sanctum',
-  ),
-  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Reporting\\AdminSummaryController.php' => 
-  array (
-    0 => 'laravel/framework',
-    1 => 'symfony/http-foundation',
-  ),
-  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Registry\\UploadImportRequest.php' => 
-  array (
-    0 => 'laravel/framework',
-    1 => 'symfony/http-foundation',
-    2 => 'laravel/sanctum',
-  ),
-  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Resources\\BeneficiaryRevealResource.php' => 
-  array (
-    0 => 'laravel/framework',
-    1 => 'symfony/http-foundation',
-    2 => 'laravel/sanctum',
-    3 => 'nesbot/carbon',
-  ),
-  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Resources\\ReportDefinitionResource.php' => 
-  array (
-    0 => 'laravel/framework',
-    1 => 'symfony/http-foundation',
-    2 => 'nesbot/carbon',
-  ),
-  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Benefit\\Exceptions\\ProcessingConsentRequiredException.php' => 
-  array (
-  ),
-  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Grievance\\Events\\GrievanceResolved.php' => 
-  array (
-    0 => 'laravel/framework',
-    1 => 'laravel/sanctum',
-  ),
-  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Matching\\Engine\\DuplicateCascade.php' => 
-  array (
-    0 => 'laravel/framework',
-  ),
-  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Notification\\Channels\\InAppChannel.php' => 
-  array (
-    0 => 'laravel/framework',
-    1 => 'laravel/sanctum',
-  ),
-  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Notification\\Services\\Notifier.php' => 
-  array (
-    0 => 'laravel/framework',
-    1 => 'laravel/sanctum',
-  ),
-  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Privacy\\Services\\RetentionService.php' => 
-  array (
-    0 => 'laravel/framework',
-    1 => 'nesbot/carbon',
-  ),
-  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Programme\\Enums\\ProgrammeStatus.php' => 
-  array (
-  ),
-  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Programme\\Models\\ProgrammeFunder.php' => 
-  array (
-    0 => 'laravel/framework',
-  ),
-  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Referral\\Enums\\ReferralStatus.php' => 
-  array (
-  ),
-  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Registry\\Imports\\Adapters\\FieldMappingAdapter.php' => 
-  array (
-  ),
-  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Registry\\Models\\HouseholdMembership.php' => 
-  array (
-    0 => 'laravel/framework',
-    1 => 'nesbot/carbon',
-  ),
-  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Reporting\\Reports\\AdHoc\\AdHocReportBuilder.php' => 
-  array (
-    0 => 'laravel/framework',
-    1 => 'nesbot/carbon',
-  ),
-  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Middleware\\EnforceIdleTimeout.php' => 
-  array (
-    0 => 'laravel/framework',
-    1 => 'symfony/http-foundation',
-    2 => 'laravel/sanctum',
-    3 => 'nesbot/carbon',
-  ),
-  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Access\\UpdateRolePermissionsRequest.php' => 
-  array (
-    0 => 'laravel/framework',
-    1 => 'symfony/http-foundation',
-    2 => 'laravel/sanctum',
-  ),
-  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Benefit\\AggregateBenefitsRequest.php' => 
-  array (
-    0 => 'laravel/framework',
-    1 => 'symfony/http-foundation',
-    2 => 'laravel/sanctum',
-  ),
-  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Referral\\StoreReferralRequest.php' => 
-  array (
-    0 => 'laravel/framework',
-    1 => 'symfony/http-foundation',
-    2 => 'laravel/sanctum',
-  ),
-  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Resources\\ImportBatchResource.php' => 
-  array (
-    0 => 'laravel/framework',
-    1 => 'symfony/http-foundation',
-    2 => 'nesbot/carbon',
-    3 => 'laravel/sanctum',
-  ),
-  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Resources\\MatchingConfigResource.php' => 
-  array (
-    0 => 'laravel/framework',
-    1 => 'symfony/http-foundation',
-    2 => 'nesbot/carbon',
-  ),
-  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Resources\\OwnershipTransferResource.php' => 
-  array (
-    0 => 'laravel/framework',
-    1 => 'symfony/http-foundation',
-    2 => 'nesbot/carbon',
-  ),
-  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Providers\\AppServiceProvider.php' => 
-  array (
-    0 => 'laravel/framework',
-    1 => 'symfony/http-foundation',
-    2 => 'laravel/sanctum',
-  ),
-  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Access\\Events\\AccountLocked.php' => 
-  array (
-    0 => 'laravel/framework',
-    1 => 'laravel/sanctum',
-  ),
-  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Access\\Events\\CrossMdaAccessGranted.php' => 
-  array (
-    0 => 'laravel/framework',
-    1 => 'laravel/sanctum',
-  ),
-  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Audit\\Support\\AuditScrubber.php' => 
-  array (
-    0 => 'laravel/framework',
-  ),
-  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Grievance\\Models\\GrievanceSlaPolicy.php' => 
-  array (
-    0 => 'laravel/framework',
-  ),
-  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Grievance\\Policies\\GrievancePolicy.php' => 
-  array (
-    0 => 'laravel/framework',
-    1 => 'laravel/sanctum',
-  ),
-  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Matching\\Scoring\\Comparators\\ComparatorRegistry.php' => 
-  array (
-  ),
-  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Notification\\Exceptions\\ChannelUnavailableException.php' => 
-  array (
-  ),
-  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Notification\\Listeners\\NotificationSubscriber.php' => 
-  array (
-    0 => 'laravel/framework',
-    1 => 'laravel/sanctum',
-  ),
-  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Registry\\Imports\\Adapters\\RegistrationSourceAdapter.php' => 
-  array (
-  ),
-  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Registry\\Services\\HouseholdIngestionService.php' => 
-  array (
-    0 => 'laravel/framework',
-  ),
-  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Registry\\Services\\OwnershipTransferService.php' => 
-  array (
-    0 => 'laravel/framework',
-    1 => 'laravel/sanctum',
-    2 => 'nesbot/carbon',
-  ),
-  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Registry\\Services\\ServiceRequestService.php' => 
-  array (
-    0 => 'laravel/framework',
-    1 => 'laravel/sanctum',
-    2 => 'nesbot/carbon',
-  ),
-  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Reporting\\Services\\DashboardService.php' => 
-  array (
-    0 => 'laravel/framework',
-    1 => 'laravel/sanctum',
-    2 => 'nesbot/carbon',
-  ),
-  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Grievance\\GrievanceController.php' => 
-  array (
-    0 => 'laravel/framework',
-    1 => 'symfony/http-foundation',
-    2 => 'laravel/sanctum',
-  ),
-  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Referral\\ReferralSlaPolicyController.php' => 
-  array (
-    0 => 'laravel/framework',
-    1 => 'symfony/http-foundation',
-  ),
-  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Reporting\\AdminSettingsController.php' => 
-  array (
-    0 => 'laravel/framework',
-    1 => 'symfony/http-foundation',
-  ),
-  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Reporting\\DashboardExportController.php' => 
-  array (
-    0 => 'laravel/framework',
-    1 => 'symfony/http-foundation',
-    2 => 'laravel/sanctum',
-    3 => 'nesbot/carbon',
-  ),
-  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Reporting\\ReportScheduleController.php' => 
-  array (
-    0 => 'laravel/framework',
-    1 => 'symfony/http-foundation',
-    2 => 'laravel/sanctum',
-  ),
-  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Benefit\\VerifyBenefitRequest.php' => 
-  array (
-    0 => 'laravel/framework',
-    1 => 'symfony/http-foundation',
-    2 => 'laravel/sanctum',
-  ),
-  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Referral\\TransitionReferralRequest.php' => 
-  array (
-    0 => 'laravel/framework',
-    1 => 'symfony/http-foundation',
-    2 => 'laravel/sanctum',
-  ),
-  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Console\\Commands\\BackupDrill.php' => 
-  array (
-    0 => 'symfony/console',
-    1 => 'laravel/framework',
-  ),
-  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Console\\Commands\\GenerateBackupKey.php' => 
-  array (
-    0 => 'symfony/console',
-    1 => 'laravel/framework',
-  ),
-  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Audit\\Listeners\\AuditEventSubscriber.php' => 
-  array (
-    0 => 'laravel/framework',
-    1 => 'laravel/sanctum',
-    2 => 'nesbot/carbon',
-  ),
-  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Audit\\Models\\AuditLog.php' => 
-  array (
-    0 => 'laravel/framework',
-    1 => 'nesbot/carbon',
-  ),
-  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Benefit\\Authorization\\ServiceRequestAuthorizer.php' => 
-  array (
-    0 => 'laravel/framework',
-  ),
-  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Benefit\\Enums\\BenefitStatus.php' => 
-  array (
-  ),
-  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Benefit\\Models\\BenefitImportRow.php' => 
-  array (
-    0 => 'laravel/framework',
-  ),
-  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Grievance\\Events\\GrievanceSlaBreached.php' => 
-  array (
-    0 => 'laravel/framework',
-  ),
-  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Privacy\\Retention\\RetentionRunSummary.php' => 
-  array (
-  ),
-  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Programme\\Services\\EnrollmentService.php' => 
-  array (
-    0 => 'laravel/framework',
-    1 => 'laravel/sanctum',
-    2 => 'nesbot/carbon',
-  ),
-  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Referral\\Exceptions\\InvalidReferralTransitionException.php' => 
-  array (
-  ),
-  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Registry\\Enums\\DocumentType.php' => 
-  array (
-    0 => 'laravel/framework',
-  ),
-  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Registry\\Events\\ImportBatchCompleted.php' => 
-  array (
-    0 => 'laravel/framework',
-  ),
-  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Reporting\\Gis\\GisCoverageService.php' => 
-  array (
-    0 => 'laravel/framework',
-  ),
-  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Sync\\Models\\SyncRunRow.php' => 
-  array (
-    0 => 'laravel/framework',
-  ),
-  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Benefit\\BenefitImportController.php' => 
-  array (
-    0 => 'laravel/framework',
-    1 => 'symfony/http-foundation',
-    2 => 'laravel/sanctum',
-  ),
-  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Registry\\OwnershipTransferController.php' => 
-  array (
-    0 => 'laravel/framework',
-    1 => 'symfony/http-foundation',
-    2 => 'laravel/sanctum',
-  ),
-  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Graduation\\GraduationCriteriaRequest.php' => 
-  array (
-    0 => 'laravel/framework',
-    1 => 'symfony/http-foundation',
-    2 => 'laravel/sanctum',
-  ),
-  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Programme\\StoreEnrollmentRequest.php' => 
-  array (
-    0 => 'laravel/framework',
-    1 => 'symfony/http-foundation',
-    2 => 'laravel/sanctum',
-  ),
-  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Resources\\ReportRunResource.php' => 
-  array (
-    0 => 'laravel/framework',
-    1 => 'symfony/http-foundation',
-    2 => 'nesbot/carbon',
-  ),
-  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Access\\Events\\MfaChallengeFailed.php' => 
-  array (
-    0 => 'laravel/framework',
-    1 => 'laravel/sanctum',
-  ),
-  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Benefit\\Models\\BenefitFlag.php' => 
-  array (
-    0 => 'laravel/framework',
-  ),
-  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Benefit\\Policies\\BenefitImportPolicy.php' => 
-  array (
-    0 => 'laravel/framework',
-    1 => 'laravel/sanctum',
-  ),
-  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Grievance\\Jobs\\EscalateOverdueGrievances.php' => 
-  array (
-    0 => 'laravel/framework',
-    1 => 'nesbot/carbon',
-  ),
-  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Ops\\Backup\\BackupService.php' => 
-  array (
-    0 => 'laravel/framework',
-    1 => 'nesbot/carbon',
-    2 => 'league/flysystem',
-    3 => 'psr/http-message',
-    4 => 'symfony/http-foundation',
-    5 => 'psr/log',
-    6 => 'monolog/monolog',
-    7 => 'symfony/process',
-    8 => 'ramsey/uuid',
-  ),
-  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Programme\\Enums\\ActivityStatus.php' => 
-  array (
-  ),
-  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Programme\\Models\\Enrollment.php' => 
-  array (
-    0 => 'laravel/framework',
-  ),
-  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Referral\\Authorization\\ReferralAuthorizer.php' => 
-  array (
-    0 => 'laravel/framework',
-  ),
-  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Referral\\Models\\Referral.php' => 
-  array (
-    0 => 'laravel/framework',
-  ),
-  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Referral\\Models\\ReferralSlaPolicy.php' => 
-  array (
-    0 => 'laravel/framework',
-  ),
-  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Registry\\Enums\\RegistrationSource.php' => 
-  array (
-  ),
-  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Registry\\Imports\\Adapters\\DefaultImportAdapter.php' => 
-  array (
-  ),
-  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Registry\\Models\\BeneficiaryDocument.php' => 
-  array (
-    0 => 'laravel/framework',
-    1 => 'laravel/sanctum',
-  ),
-  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Reporting\\Services\\AdminSettingsService.php' => 
-  array (
-    0 => 'laravel/framework',
-  ),
-  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Middleware\\AssignCorrelationId.php' => 
-  array (
-    0 => 'laravel/framework',
-    1 => 'symfony/http-foundation',
-    2 => 'ramsey/uuid',
-  ),
-  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Benefit\\StoreDoubleDippingRuleRequest.php' => 
-  array (
-    0 => 'laravel/framework',
-    1 => 'symfony/http-foundation',
-    2 => 'laravel/sanctum',
-  ),
-  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Registry\\RouteAssignmentRequest.php' => 
-  array (
-    0 => 'laravel/framework',
-    1 => 'symfony/http-foundation',
-    2 => 'laravel/sanctum',
-  ),
-  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Registry\\UpdateBeneficiaryRequest.php' => 
-  array (
-    0 => 'laravel/framework',
-    1 => 'symfony/http-foundation',
-    2 => 'laravel/sanctum',
-  ),
-  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Resources\\ActivityResource.php' => 
-  array (
-    0 => 'laravel/framework',
-    1 => 'symfony/http-foundation',
-    2 => 'nesbot/carbon',
-  ),
-  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Resources\\ReferralResource.php' => 
-  array (
-    0 => 'laravel/framework',
-    1 => 'symfony/http-foundation',
-    2 => 'nesbot/carbon',
-  ),
-  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Access\\Enums\\PermissionAction.php' => 
-  array (
-  ),
-  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Benefit\\Authorization\\DeliveryAuthorizer.php' => 
-  array (
-    0 => 'laravel/framework',
-  ),
-  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Grievance\\Models\\Grievance.php' => 
-  array (
-    0 => 'laravel/framework',
-    1 => 'laravel/sanctum',
-  ),
-  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Notification\\Channels\\EmailChannel.php' => 
-  array (
-    0 => 'laravel/framework',
-    1 => 'laravel/sanctum',
-    2 => 'symfony/mailer',
-  ),
-  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Programme\\Enums\\ProgrammeType.php' => 
-  array (
-  ),
-  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Programme\\Policies\\ActivityPolicy.php' => 
-  array (
-    0 => 'laravel/framework',
-    1 => 'laravel/sanctum',
-  ),
-  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Programme\\ProgrammeServiceProvider.php' => 
-  array (
-    0 => 'laravel/framework',
-    1 => 'psr/container',
-  ),
-  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Programme\\Services\\EligibilityEvaluator.php' => 
-  array (
-    0 => 'laravel/framework',
-    1 => 'nesbot/carbon',
-  ),
-  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Referral\\Events\\ReferralSlaBreached.php' => 
-  array (
-    0 => 'laravel/framework',
-  ),
-  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Registry\\Services\\HouseholdMembershipService.php' => 
-  array (
-    0 => 'laravel/framework',
-    1 => 'nesbot/carbon',
-  ),
-  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Registry\\Support\\BeneficiaryRules.php' => 
-  array (
-    0 => 'laravel/framework',
-  ),
-  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Registry\\Support\\UniqueIdentifier.php' => 
-  array (
-    0 => 'laravel/framework',
-  ),
-  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Reporting\\Exceptions\\InvalidReportDefinitionException.php' => 
-  array (
-  ),
-  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Sync\\Services\\SyncEngine.php' => 
-  array (
-    0 => 'laravel/framework',
-    1 => 'laravel/sanctum',
-    2 => 'nesbot/carbon',
-  ),
-  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\AuthController.php' => 
-  array (
-    0 => 'laravel/framework',
-    1 => 'symfony/http-foundation',
-    2 => 'laravel/sanctum',
-    3 => 'nesbot/carbon',
-  ),
-  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Registry\\RegistryRulesController.php' => 
-  array (
-    0 => 'laravel/framework',
-    1 => 'symfony/http-foundation',
-  ),
-  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Grievance\\UpdateGrievanceSlaRequest.php' => 
-  array (
-    0 => 'laravel/framework',
-    1 => 'symfony/http-foundation',
-    2 => 'laravel/sanctum',
-  ),
-  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Programme\\StoreProgrammeRequest.php' => 
-  array (
-    0 => 'laravel/framework',
-    1 => 'symfony/http-foundation',
-    2 => 'laravel/sanctum',
-  ),
-  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Resources\\BenefitFlagResource.php' => 
-  array (
-    0 => 'laravel/framework',
-    1 => 'symfony/http-foundation',
-    2 => 'nesbot/carbon',
-  ),
-  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Resources\\EnrollmentResource.php' => 
-  array (
-    0 => 'laravel/framework',
-    1 => 'symfony/http-foundation',
-    2 => 'nesbot/carbon',
-  ),
-  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Access\\Models\\User.php' => 
-  array (
-    0 => 'laravel/framework',
-    1 => 'laravel/sanctum',
-    2 => 'symfony/http-kernel',
-    3 => 'psr/container',
-    4 => 'nesbot/carbon',
-  ),
-  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Benefit\\Models\\Benefit.php' => 
-  array (
-    0 => 'laravel/framework',
-  ),
-  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Benefit\\Services\\Verifiers\\FieldConfirmationVerifier.php' => 
-  array (
-    0 => 'laravel/framework',
-    1 => 'laravel/sanctum',
-  ),
-  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Matching\\Engine\\MatchingEngine.php' => 
-  array (
-    0 => 'laravel/framework',
-  ),
-  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Registry\\Enums\\Gender.php' => 
-  array (
-  ),
-  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Registry\\Events\\ImportDuplicatesSurfaced.php' => 
-  array (
-    0 => 'laravel/framework',
-  ),
-  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Registry\\Models\\BeneficiaryConsent.php' => 
-  array (
-    0 => 'laravel/framework',
-  ),
-  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Registry\\Models\\ServiceRequest.php' => 
-  array (
-    0 => 'laravel/framework',
-  ),
-  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Registry\\Policies\\BeneficiaryPolicy.php' => 
-  array (
-    0 => 'laravel/framework',
-    1 => 'laravel/sanctum',
-  ),
-  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Reporting\\Export\\ReportColumn.php' => 
-  array (
-  ),
-  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Benefit\\DoubleDippingRuleController.php' => 
-  array (
-    0 => 'laravel/framework',
-    1 => 'symfony/http-foundation',
-    2 => 'laravel/sanctum',
-  ),
-  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Registry\\ServiceRequestController.php' => 
-  array (
-    0 => 'laravel/framework',
-    1 => 'symfony/http-foundation',
-    2 => 'laravel/sanctum',
-    3 => 'nesbot/carbon',
-  ),
-  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Reporting\\AdHocReportController.php' => 
-  array (
-    0 => 'laravel/framework',
-    1 => 'symfony/http-foundation',
-    2 => 'laravel/sanctum',
-  ),
-  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Concerns\\AuthResponses.php' => 
-  array (
-  ),
-  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Benefit\\ReviewBenefitFlagRequest.php' => 
-  array (
-    0 => 'laravel/framework',
-    1 => 'symfony/http-foundation',
-    2 => 'laravel/sanctum',
-  ),
-  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Graduation\\GraduateRequest.php' => 
-  array (
-    0 => 'laravel/framework',
-    1 => 'symfony/http-foundation',
-    2 => 'laravel/sanctum',
-  ),
-  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Grievance\\AssignGrievanceRequest.php' => 
-  array (
-    0 => 'laravel/framework',
-    1 => 'symfony/http-foundation',
-    2 => 'laravel/sanctum',
-  ),
-  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Registry\\ResolveImportRowRequest.php' => 
-  array (
-    0 => 'laravel/framework',
-    1 => 'symfony/http-foundation',
-    2 => 'laravel/sanctum',
-  ),
-  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Resources\\DoubleDippingRuleResource.php' => 
-  array (
-    0 => 'laravel/framework',
-    1 => 'symfony/http-foundation',
-    2 => 'nesbot/carbon',
-  ),
-  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Resources\\GrievanceResource.php' => 
-  array (
-    0 => 'laravel/framework',
-    1 => 'symfony/http-foundation',
-    2 => 'nesbot/carbon',
-  ),
-  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Access\\Models\\Permission.php' => 
-  array (
-    0 => 'laravel/framework',
-  ),
-  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Access\\Services\\PermissionSynchronizer.php' => 
-  array (
-    0 => 'laravel/framework',
-  ),
-  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Benefit\\Jobs\\ParseBenefitImport.php' => 
-  array (
-    0 => 'laravel/framework',
-    1 => 'league/flysystem',
-    2 => 'psr/http-message',
-    3 => 'symfony/http-foundation',
-  ),
-  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Benefit\\Policies\\DoubleDippingRulePolicy.php' => 
+  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Benefit\\Services\\Verifiers\\SignatureVerifier.php' => 
   array (
     0 => 'laravel/framework',
     1 => 'laravel/sanctum',
@@ -30741,232 +30263,17 @@ return [
   'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Graduation\\Enums\\CriteriaLogic.php' => 
   array (
   ),
-  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Matching\\Scoring\\MatchScore.php' => 
-  array (
-  ),
-  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Privacy\\Enums\\RetentionAction.php' => 
-  array (
-  ),
-  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Registry\\Enums\\BeneficiaryStatus.php' => 
-  array (
-  ),
-  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Registry\\Jobs\\ParseImportBatch.php' => 
-  array (
-    0 => 'laravel/framework',
-    1 => 'league/flysystem',
-    2 => 'psr/http-message',
-    3 => 'symfony/http-foundation',
-    4 => 'nesbot/carbon',
-    5 => 'laravel/sanctum',
-  ),
-  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Reporting\\Services\\MdaActionRequiredService.php' => 
+  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Grievance\\Events\\GrievanceResolved.php' => 
   array (
     0 => 'laravel/framework',
     1 => 'laravel/sanctum',
   ),
-  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Reporting\\Support\\DashboardFilter.php' => 
-  array (
-    0 => 'laravel/framework',
-    1 => 'symfony/http-foundation',
-    2 => 'nesbot/carbon',
-  ),
-  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Sync\\Enums\\ConflictPolicy.php' => 
-  array (
-  ),
-  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Access\\MdaAccessGrantController.php' => 
-  array (
-    0 => 'laravel/framework',
-    1 => 'symfony/http-foundation',
-    2 => 'laravel/sanctum',
-    3 => 'nesbot/carbon',
-  ),
-  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Benefit\\BenefitFlagController.php' => 
-  array (
-    0 => 'laravel/framework',
-    1 => 'symfony/http-foundation',
-    2 => 'laravel/sanctum',
-    3 => 'nesbot/carbon',
-  ),
-  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Grievance\\GrievanceSlaPolicyController.php' => 
-  array (
-    0 => 'laravel/framework',
-    1 => 'symfony/http-foundation',
-  ),
-  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Notification\\UpdateNotificationPreferencesRequest.php' => 
-  array (
-    0 => 'laravel/framework',
-    1 => 'symfony/http-foundation',
-    2 => 'laravel/sanctum',
-  ),
-  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Resources\\BenefitImportBatchResource.php' => 
-  array (
-    0 => 'laravel/framework',
-    1 => 'symfony/http-foundation',
-    2 => 'nesbot/carbon',
-  ),
-  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Resources\\HouseholdResource.php' => 
-  array (
-    0 => 'laravel/framework',
-    1 => 'symfony/http-foundation',
-    2 => 'nesbot/carbon',
-  ),
-  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Resources\\NotificationResource.php' => 
-  array (
-    0 => 'laravel/framework',
-    1 => 'symfony/http-foundation',
-    2 => 'nesbot/carbon',
-  ),
-  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Resources\\SyncRunResource.php' => 
-  array (
-    0 => 'laravel/framework',
-    1 => 'symfony/http-foundation',
-    2 => 'nesbot/carbon',
-  ),
-  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Access\\AccessServiceProvider.php' => 
-  array (
-    0 => 'laravel/framework',
-    1 => 'psr/container',
-    2 => 'laravel/sanctum',
-  ),
-  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Benefit\\Services\\Verifiers\\BiometricVerifier.php' => 
+  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Programme\\Policies\\EnrollmentPolicy.php' => 
   array (
     0 => 'laravel/framework',
     1 => 'laravel/sanctum',
   ),
-  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Graduation\\Services\\GraduationProgressService.php' => 
-  array (
-    0 => 'laravel/framework',
-    1 => 'nesbot/carbon',
-  ),
-  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Matching\\Scoring\\Comparators\\PhoneticComparator.php' => 
-  array (
-  ),
-  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Registry\\Policies\\ImportBatchPolicy.php' => 
-  array (
-    0 => 'laravel/framework',
-    1 => 'laravel/sanctum',
-  ),
-  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Registry\\Services\\ConsentGate.php' => 
-  array (
-    0 => 'laravel/framework',
-  ),
-  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Registry\\Services\\ImportCommitter.php' => 
-  array (
-    0 => 'laravel/framework',
-    1 => 'laravel/sanctum',
-  ),
-  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Reporting\\Exceptions\\InvalidReportScheduleException.php' => 
-  array (
-  ),
-  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Reporting\\Gis\\BoundaryLoader.php' => 
-  array (
-    0 => 'laravel/framework',
-  ),
-  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Reporting\\ReportingServiceProvider.php' => 
-  array (
-    0 => 'laravel/framework',
-    1 => 'psr/container',
-    2 => 'symfony/console',
-  ),
-  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Reporting\\Services\\ReportService.php' => 
-  array (
-    0 => 'laravel/framework',
-    1 => 'laravel/sanctum',
-  ),
-  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Sync\\Enums\\SyncTrigger.php' => 
-  array (
-  ),
-  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Sync\\Sources\\MockSyncSource.php' => 
-  array (
-    0 => 'laravel/framework',
-  ),
-  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Access\\MdaController.php' => 
-  array (
-    0 => 'laravel/framework',
-    1 => 'symfony/http-foundation',
-  ),
-  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Registry\\BeneficiaryRoutingController.php' => 
-  array (
-    0 => 'laravel/framework',
-    1 => 'symfony/http-foundation',
-    2 => 'laravel/sanctum',
-  ),
-  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Programme\\UpdateEnrollmentRequest.php' => 
-  array (
-    0 => 'laravel/framework',
-    1 => 'symfony/http-foundation',
-    2 => 'laravel/sanctum',
-  ),
-  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Registry\\AcceptServiceRequestRequest.php' => 
-  array (
-    0 => 'laravel/framework',
-    1 => 'symfony/http-foundation',
-    2 => 'laravel/sanctum',
-  ),
-  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Reporting\\ExportAdHocRequest.php' => 
-  array (
-    0 => 'laravel/framework',
-    1 => 'symfony/http-foundation',
-  ),
-  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Resources\\BenefitResource.php' => 
-  array (
-    0 => 'laravel/framework',
-    1 => 'symfony/http-foundation',
-    2 => 'nesbot/carbon',
-  ),
-  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Resources\\MdaResource.php' => 
-  array (
-    0 => 'laravel/framework',
-    1 => 'symfony/http-foundation',
-    2 => 'nesbot/carbon',
-  ),
-  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Audit\\Services\\AuditLogger.php' => 
-  array (
-    0 => 'laravel/framework',
-    1 => 'symfony/http-foundation',
-    2 => 'laravel/sanctum',
-    3 => 'nesbot/carbon',
-  ),
-  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Benefit\\Exceptions\\NotEnrolledException.php' => 
-  array (
-  ),
-  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Benefit\\Jobs\\CommitBenefitImport.php' => 
-  array (
-    0 => 'laravel/framework',
-    1 => 'laravel/sanctum',
-    2 => 'symfony/http-foundation',
-  ),
-  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Benefit\\Policies\\BenefitFlagPolicy.php' => 
-  array (
-    0 => 'laravel/framework',
-    1 => 'laravel/sanctum',
-  ),
-  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Graduation\\Models\\GraduationCriteria.php' => 
-  array (
-    0 => 'laravel/framework',
-  ),
-  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Matching\\Enums\\MatchBand.php' => 
-  array (
-  ),
-  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Notification\\Channels\\WhatsAppChannel.php' => 
-  array (
-    0 => 'laravel/framework',
-    1 => 'laravel/sanctum',
-  ),
-  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Privacy\\Retention\\RetentionPolicyRepository.php' => 
-  array (
-    0 => 'laravel/framework',
-  ),
-  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Privacy\\Services\\AnonymizationService.php' => 
-  array (
-    0 => 'laravel/framework',
-    1 => 'laravel/sanctum',
-    2 => 'nesbot/carbon',
-    3 => 'league/flysystem',
-    4 => 'psr/http-message',
-    5 => 'symfony/http-foundation',
-  ),
-  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Registry\\Events\\ServiceRequestRaised.php' => 
+  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Programme\\Rules\\IsFundingPartner.php' => 
   array (
     0 => 'laravel/framework',
     1 => 'laravel/sanctum',
@@ -30974,25 +30281,120 @@ return [
   'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Registry\\Imports\\Adapters\\KoboAdapter.php' => 
   array (
   ),
-  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Registry\\Imports\\SpreadsheetReader.php' => 
+  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Registry\\Services\\HouseholdIngestionService.php' => 
+  array (
+    0 => 'laravel/framework',
+  ),
+  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Reporting\\Export\\ExcelExporter.php' => 
   array (
     0 => 'phpoffice/phpspreadsheet',
+    1 => 'laravel/framework',
+    2 => 'nesbot/carbon',
   ),
-  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Registry\\Services\\ConsentService.php' => 
+  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Reporting\\Reports\\AdHoc\\AdHocDatasetRegistry.php' => 
   array (
     0 => 'laravel/framework',
     1 => 'laravel/sanctum',
+  ),
+  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Reporting\\Reports\\ReportBuilder.php' => 
+  array (
+    0 => 'laravel/framework',
+    1 => 'nesbot/carbon',
+  ),
+  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Access\\MdaController.php' => 
+  array (
+    0 => 'laravel/framework',
+    1 => 'symfony/http-foundation',
+  ),
+  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Grievance\\GrievanceSlaPolicyController.php' => 
+  array (
+    0 => 'laravel/framework',
+    1 => 'symfony/http-foundation',
+  ),
+  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\HealthController.php' => 
+  array (
+    0 => 'laravel/framework',
+    1 => 'symfony/http-foundation',
     2 => 'nesbot/carbon',
+    3 => 'ramsey/uuid',
+    4 => 'psr/simple-cache',
   ),
-  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Registry\\Services\\NullDuplicateChecker.php' => 
+  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Registry\\HouseholdMemberController.php' => 
+  array (
+    0 => 'laravel/framework',
+    1 => 'symfony/http-foundation',
+  ),
+  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Auth\\LoginRequest.php' => 
+  array (
+    0 => 'laravel/framework',
+    1 => 'symfony/http-foundation',
+  ),
+  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Benefit\\VerifyBenefitRequest.php' => 
+  array (
+    0 => 'laravel/framework',
+    1 => 'symfony/http-foundation',
+    2 => 'laravel/sanctum',
+  ),
+  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Reference\\ListWardsRequest.php' => 
+  array (
+    0 => 'laravel/framework',
+    1 => 'symfony/http-foundation',
+  ),
+  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Referral\\TransitionReferralRequest.php' => 
+  array (
+    0 => 'laravel/framework',
+    1 => 'symfony/http-foundation',
+    2 => 'laravel/sanctum',
+  ),
+  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Access\\Enums\\PermissionAction.php' => 
   array (
   ),
-  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Reporting\\Gis\\LoadGeoBoundaries.php' => 
+  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Access\\Models\\Role.php' => 
   array (
-    0 => 'symfony/console',
-    1 => 'laravel/framework',
+    0 => 'laravel/framework',
   ),
-  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Graduation\\GraduationController.php' => 
+  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Benefit\\Authorization\\DeliveryAuthorizer.php' => 
+  array (
+    0 => 'laravel/framework',
+  ),
+  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Benefit\\Policies\\BenefitFlagPolicy.php' => 
+  array (
+    0 => 'laravel/framework',
+    1 => 'laravel/sanctum',
+  ),
+  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Graduation\\Enums\\GraduationCriterionType.php' => 
+  array (
+  ),
+  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Grievance\\Enums\\GrievanceChannel.php' => 
+  array (
+  ),
+  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Matching\\Contracts\\MatchScorer.php' => 
+  array (
+    0 => 'laravel/framework',
+  ),
+  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Programme\\Models\\ProgrammeFunder.php' => 
+  array (
+    0 => 'laravel/framework',
+  ),
+  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Programme\\Policies\\ProgrammePolicy.php' => 
+  array (
+    0 => 'laravel/framework',
+    1 => 'laravel/sanctum',
+  ),
+  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Registry\\Services\\BeneficiaryRegistrar.php' => 
+  array (
+    0 => 'laravel/framework',
+  ),
+  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Reporting\\Jobs\\GenerateReport.php' => 
+  array (
+    0 => 'laravel/framework',
+    1 => 'nesbot/carbon',
+    2 => 'league/flysystem',
+    3 => 'laravel/sanctum',
+    4 => 'psr/http-message',
+    5 => 'symfony/http-foundation',
+  ),
+  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Programme\\ProgrammeController.php' => 
   array (
     0 => 'laravel/framework',
     1 => 'symfony/http-foundation',
@@ -31005,91 +30407,108 @@ return [
     2 => 'laravel/sanctum',
     3 => 'nesbot/carbon',
   ),
-  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Middleware\\CheckRole.php' => 
+  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Reporting\\GisController.php' => 
   array (
     0 => 'laravel/framework',
     1 => 'symfony/http-foundation',
     2 => 'laravel/sanctum',
   ),
-  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Access\\UpdateMdaRequest.php' => 
+  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Sync\\SyncController.php' => 
   array (
     0 => 'laravel/framework',
     1 => 'symfony/http-foundation',
     2 => 'laravel/sanctum',
   ),
-  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Registry\\RecordConsentRequest.php' => 
+  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Grievance\\AssignGrievanceRequest.php' => 
   array (
     0 => 'laravel/framework',
     1 => 'symfony/http-foundation',
     2 => 'laravel/sanctum',
   ),
-  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Benefit\\Services\\VerifierRegistry.php' => 
-  array (
-  ),
-  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Programme\\Services\\ProgrammeMatcher.php' => 
+  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Matching\\UpdateMatchingConfigRequest.php' => 
   array (
     0 => 'laravel/framework',
+    1 => 'symfony/http-foundation',
+    2 => 'laravel/sanctum',
   ),
-  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Registry\\Export\\BeneficiaryListExport.php' => 
+  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Reporting\\RunReportDefinitionRequest.php' => 
+  array (
+    0 => 'laravel/framework',
+    1 => 'symfony/http-foundation',
+    2 => 'laravel/sanctum',
+  ),
+  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Resources\\BeneficiaryResource.php' => 
   array (
     0 => 'laravel/framework',
     1 => 'symfony/http-foundation',
     2 => 'nesbot/carbon',
   ),
-  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Registry\\Imports\\Adapters\\SourceAdapterRegistry.php' => 
+  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Access\\Concerns\\ScopedToMda.php' => 
   array (
   ),
-  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Registry\\Models\\OwnershipTransferRequest.php' => 
+  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Matching\\Engine\\DeterministicMatcher.php' => 
+  array (
+    0 => 'laravel/framework',
+  ),
+  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Matching\\Scoring\\Comparators\\ExactComparator.php' => 
+  array (
+  ),
+  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Notification\\Channels\\EmailChannel.php' => 
+  array (
+    0 => 'laravel/framework',
+    1 => 'laravel/sanctum',
+    2 => 'symfony/mailer',
+  ),
+  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Reference\\Imports\\SeedJigawaLgas.php' => 
+  array (
+    0 => 'symfony/console',
+    1 => 'laravel/framework',
+  ),
+  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Registry\\Events\\ImportBatchCompleted.php' => 
+  array (
+    0 => 'laravel/framework',
+  ),
+  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Registry\\Imports\\Adapters\\RegistrationSourceAdapter.php' => 
+  array (
+  ),
+  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Registry\\Models\\ImportMappingTemplate.php' => 
+  array (
+    0 => 'laravel/framework',
+  ),
+  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Registry\\Services\\OwnershipTransferService.php' => 
+  array (
+    0 => 'laravel/framework',
+    1 => 'laravel/sanctum',
+    2 => 'nesbot/carbon',
+  ),
+  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Reporting\\Export\\ReportExporterRegistry.php' => 
+  array (
+  ),
+  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Reporting\\Reports\\AdHoc\\AdHocReportBuilder.php' => 
+  array (
+    0 => 'laravel/framework',
+    1 => 'nesbot/carbon',
+  ),
+  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Reporting\\Support\\DashboardScope.php' => 
+  array (
+  ),
+  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Sharing\\DataSharingGuard.php' => 
   array (
     0 => 'laravel/framework',
     1 => 'laravel/sanctum',
   ),
-  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Reporting\\Mail\\ScheduledReportMail.php' => 
+  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Sync\\Jobs\\RunSyncConnector.php' => 
   array (
     0 => 'laravel/framework',
+    1 => 'laravel/sanctum',
   ),
-  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Sync\\Enums\\SyncStatus.php' => 
-  array (
-  ),
-  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Access\\UserController.php' => 
+  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Notification\\UpdateNotificationPreferencesRequest.php' => 
   array (
     0 => 'laravel/framework',
     1 => 'symfony/http-foundation',
     2 => 'laravel/sanctum',
   ),
-  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Registry\\ActivityImportController.php' => 
-  array (
-    0 => 'laravel/framework',
-    1 => 'symfony/http-foundation',
-    2 => 'laravel/sanctum',
-  ),
-  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Reporting\\ReportController.php' => 
-  array (
-    0 => 'laravel/framework',
-    1 => 'symfony/http-foundation',
-    2 => 'laravel/sanctum',
-    3 => 'league/flysystem',
-    4 => 'psr/http-message',
-  ),
-  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Middleware\\CheckPermission.php' => 
-  array (
-    0 => 'laravel/framework',
-    1 => 'symfony/http-foundation',
-    2 => 'laravel/sanctum',
-  ),
-  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Access\\StoreMdaRequest.php' => 
-  array (
-    0 => 'laravel/framework',
-    1 => 'symfony/http-foundation',
-    2 => 'laravel/sanctum',
-  ),
-  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Auth\\MfaCodeRequest.php' => 
-  array (
-    0 => 'laravel/framework',
-    1 => 'symfony/http-foundation',
-    2 => 'laravel/sanctum',
-  ),
-  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Notification\\BroadcastRequest.php' => 
+  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Programme\\BulkEnrollmentRequest.php' => 
   array (
     0 => 'laravel/framework',
     1 => 'symfony/http-foundation',
@@ -31107,7 +30526,470 @@ return [
     1 => 'symfony/http-foundation',
     2 => 'laravel/sanctum',
   ),
-  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Registry\\UploadDocumentRequest.php' => 
+  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Resources\\MatchingConfigResource.php' => 
+  array (
+    0 => 'laravel/framework',
+    1 => 'symfony/http-foundation',
+    2 => 'nesbot/carbon',
+  ),
+  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Console\\Commands\\RestoreBackup.php' => 
+  array (
+    0 => 'symfony/console',
+    1 => 'laravel/framework',
+  ),
+  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Access\\Models\\Mda.php' => 
+  array (
+    0 => 'laravel/framework',
+    1 => 'laravel/sanctum',
+  ),
+  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Benefit\\Models\\BenefitImportBatch.php' => 
+  array (
+    0 => 'laravel/framework',
+  ),
+  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Matching\\Scoring\\Comparators\\ComparatorRegistry.php' => 
+  array (
+  ),
+  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Notification\\Channels\\WhatsAppChannel.php' => 
+  array (
+    0 => 'laravel/framework',
+    1 => 'laravel/sanctum',
+  ),
+  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Referral\\Events\\ReferralSlaBreached.php' => 
+  array (
+    0 => 'laravel/framework',
+  ),
+  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Registry\\Events\\ServiceRequestDeclined.php' => 
+  array (
+    0 => 'laravel/framework',
+    1 => 'laravel/sanctum',
+  ),
+  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Registry\\Services\\BatchDuplicateScreener.php' => 
+  array (
+    0 => 'laravel/framework',
+  ),
+  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Registry\\Support\\BeneficiaryRules.php' => 
+  array (
+    0 => 'laravel/framework',
+  ),
+  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Reporting\\Exceptions\\InvalidReportScheduleException.php' => 
+  array (
+  ),
+  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Reporting\\Gis\\GisCoverageService.php' => 
+  array (
+    0 => 'laravel/framework',
+  ),
+  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Sync\\Models\\SyncConnector.php' => 
+  array (
+    0 => 'laravel/framework',
+    1 => 'nesbot/carbon',
+    2 => 'laravel/sanctum',
+  ),
+  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Matching\\MatchingConfigController.php' => 
+  array (
+    0 => 'laravel/framework',
+    1 => 'symfony/http-foundation',
+    2 => 'laravel/sanctum',
+  ),
+  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Sharing\\DataSharingController.php' => 
+  array (
+    0 => 'laravel/framework',
+    1 => 'symfony/http-foundation',
+    2 => 'nesbot/carbon',
+    3 => 'laravel/sanctum',
+  ),
+  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Controller.php' => 
+  array (
+    0 => 'laravel/framework',
+  ),
+  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Programme\\UpdateProgrammeRequest.php' => 
+  array (
+    0 => 'laravel/framework',
+    1 => 'symfony/http-foundation',
+    2 => 'laravel/sanctum',
+  ),
+  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Referral\\StoreReferralRequest.php' => 
+  array (
+    0 => 'laravel/framework',
+    1 => 'symfony/http-foundation',
+    2 => 'laravel/sanctum',
+  ),
+  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Registry\\ExportBeneficiariesRequest.php' => 
+  array (
+    0 => 'laravel/framework',
+    1 => 'symfony/http-foundation',
+    2 => 'laravel/sanctum',
+  ),
+  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Sync\\ConfirmConnectorMappingRequest.php' => 
+  array (
+    0 => 'laravel/framework',
+    1 => 'symfony/http-foundation',
+    2 => 'laravel/sanctum',
+  ),
+  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Resources\\OwnershipTransferResource.php' => 
+  array (
+    0 => 'laravel/framework',
+    1 => 'symfony/http-foundation',
+    2 => 'nesbot/carbon',
+  ),
+  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Benefit\\Services\\BenefitRecorder.php' => 
+  array (
+    0 => 'laravel/framework',
+    1 => 'laravel/sanctum',
+    2 => 'nesbot/carbon',
+  ),
+  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Grievance\\Exceptions\\InvalidGrievanceTransitionException.php' => 
+  array (
+  ),
+  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Matching\\Scoring\\Comparators\\JaroWinklerComparator.php' => 
+  array (
+  ),
+  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Matching\\Scoring\\Comparators\\LevenshteinComparator.php' => 
+  array (
+  ),
+  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Privacy\\Retention\\RetentionRunSummary.php' => 
+  array (
+  ),
+  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Referral\\Models\\ReferralSlaPolicy.php' => 
+  array (
+    0 => 'laravel/framework',
+  ),
+  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Referral\\Policies\\ReferralPolicy.php' => 
+  array (
+    0 => 'laravel/framework',
+    1 => 'laravel/sanctum',
+  ),
+  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Referral\\Scopes\\ReferralScope.php' => 
+  array (
+    0 => 'laravel/framework',
+    1 => 'symfony/http-foundation',
+    2 => 'laravel/sanctum',
+  ),
+  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Registry\\Models\\Household.php' => 
+  array (
+    0 => 'laravel/framework',
+    1 => 'nesbot/carbon',
+  ),
+  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Registry\\Services\\FuzzyDuplicateFinder.php' => 
+  array (
+    0 => 'laravel/framework',
+  ),
+  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Reporting\\Export\\CsvExporter.php' => 
+  array (
+  ),
+  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Reporting\\Models\\ReportRun.php' => 
+  array (
+    0 => 'laravel/framework',
+  ),
+  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Notification\\BroadcastController.php' => 
+  array (
+    0 => 'laravel/framework',
+    1 => 'symfony/http-foundation',
+    2 => 'laravel/sanctum',
+  ),
+  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Registry\\ImportBatchController.php' => 
+  array (
+    0 => 'laravel/framework',
+    1 => 'symfony/http-foundation',
+    2 => 'laravel/sanctum',
+    3 => 'nesbot/carbon',
+  ),
+  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Reporting\\DashboardExportController.php' => 
+  array (
+    0 => 'laravel/framework',
+    1 => 'symfony/http-foundation',
+    2 => 'laravel/sanctum',
+    3 => 'nesbot/carbon',
+  ),
+  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Registry\\DeclineServiceRequestRequest.php' => 
+  array (
+    0 => 'laravel/framework',
+    1 => 'symfony/http-foundation',
+    2 => 'laravel/sanctum',
+  ),
+  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Registry\\RecordConsentRequest.php' => 
+  array (
+    0 => 'laravel/framework',
+    1 => 'symfony/http-foundation',
+    2 => 'laravel/sanctum',
+  ),
+  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Reporting\\ExportAdHocRequest.php' => 
+  array (
+    0 => 'laravel/framework',
+    1 => 'symfony/http-foundation',
+  ),
+  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Resources\\ActivityDetailResource.php' => 
+  array (
+    0 => 'laravel/framework',
+    1 => 'symfony/http-foundation',
+    2 => 'nesbot/carbon',
+  ),
+  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Access\\Services\\AuthTokenIssuer.php' => 
+  array (
+    0 => 'laravel/framework',
+    1 => 'laravel/sanctum',
+    2 => 'nesbot/carbon',
+  ),
+  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Benefit\\Services\\LedgerAggregator.php' => 
+  array (
+    0 => 'laravel/framework',
+    1 => 'nesbot/carbon',
+  ),
+  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Grievance\\Policies\\GrievancePolicy.php' => 
+  array (
+    0 => 'laravel/framework',
+    1 => 'laravel/sanctum',
+  ),
+  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Matching\\MatchingServiceProvider.php' => 
+  array (
+    0 => 'laravel/framework',
+    1 => 'psr/container',
+  ),
+  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Referral\\Authorization\\ReferralAuthorizer.php' => 
+  array (
+    0 => 'laravel/framework',
+  ),
+  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Registry\\Enums\\Lga.php' => 
+  array (
+    0 => 'laravel/framework',
+  ),
+  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Registry\\Imports\\Adapters\\OdkAdapter.php' => 
+  array (
+  ),
+  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Registry\\Jobs\\CommitImportBatch.php' => 
+  array (
+    0 => 'laravel/framework',
+    1 => 'laravel/sanctum',
+    2 => 'symfony/http-foundation',
+  ),
+  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Registry\\Services\\CandidateGatherer.php' => 
+  array (
+    0 => 'laravel/framework',
+  ),
+  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Registry\\Support\\NameSplitter.php' => 
+  array (
+  ),
+  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Registry\\Support\\NormalizationService.php' => 
+  array (
+  ),
+  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Reporting\\Reports\\ReportCatalogue.php' => 
+  array (
+  ),
+  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Reporting\\Services\\AdminOrganizationService.php' => 
+  array (
+    0 => 'laravel/framework',
+    1 => 'laravel/sanctum',
+  ),
+  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Sync\\Enums\\ConflictPolicy.php' => 
+  array (
+  ),
+  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Access\\MdaAccessGrantController.php' => 
+  array (
+    0 => 'laravel/framework',
+    1 => 'symfony/http-foundation',
+    2 => 'laravel/sanctum',
+    3 => 'nesbot/carbon',
+  ),
+  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Registry\\RouteAssignmentRequest.php' => 
+  array (
+    0 => 'laravel/framework',
+    1 => 'symfony/http-foundation',
+    2 => 'laravel/sanctum',
+  ),
+  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Reporting\\SaveReportDefinitionRequest.php' => 
+  array (
+    0 => 'laravel/framework',
+    1 => 'symfony/http-foundation',
+  ),
+  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Resources\\ReportRunResource.php' => 
+  array (
+    0 => 'laravel/framework',
+    1 => 'symfony/http-foundation',
+    2 => 'nesbot/carbon',
+  ),
+  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Resources\\ServiceRequestResource.php' => 
+  array (
+    0 => 'laravel/framework',
+    1 => 'symfony/http-foundation',
+    2 => 'nesbot/carbon',
+  ),
+  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Access\\Events\\MfaEnrolled.php' => 
+  array (
+    0 => 'laravel/framework',
+    1 => 'laravel/sanctum',
+  ),
+  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Access\\Services\\LoginActivityService.php' => 
+  array (
+    0 => 'laravel/framework',
+    1 => 'nesbot/carbon',
+    2 => 'laravel/sanctum',
+  ),
+  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Graduation\\Models\\GraduationCriteria.php' => 
+  array (
+    0 => 'laravel/framework',
+  ),
+  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Grievance\\Enums\\GrievanceStatus.php' => 
+  array (
+  ),
+  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Matching\\Scoring\\RuleBasedMatchScorer.php' => 
+  array (
+    0 => 'laravel/framework',
+  ),
+  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Matching\\Services\\MatchingConfigService.php' => 
+  array (
+    0 => 'laravel/framework',
+    1 => 'laravel/sanctum',
+  ),
+  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Notification\\Channels\\InAppChannel.php' => 
+  array (
+    0 => 'laravel/framework',
+    1 => 'laravel/sanctum',
+  ),
+  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Privacy\\Jobs\\EnforceDataRetention.php' => 
+  array (
+    0 => 'laravel/framework',
+  ),
+  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Programme\\Services\\ActivityLocationService.php' => 
+  array (
+    0 => 'laravel/framework',
+  ),
+  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Programme\\Services\\ProgrammeMatchingRouter.php' => 
+  array (
+    0 => 'laravel/framework',
+  ),
+  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Reference\\Imports\\AdministrativeDivisionLoader.php' => 
+  array (
+    0 => 'laravel/framework',
+  ),
+  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Reporting\\Export\\Contracts\\ReportExporter.php' => 
+  array (
+  ),
+  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Reporting\\Reports\\AdHoc\\AdHocDefinition.php' => 
+  array (
+  ),
+  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Audit\\AuditLogController.php' => 
+  array (
+    0 => 'laravel/framework',
+    1 => 'symfony/http-foundation',
+    2 => 'nesbot/carbon',
+  ),
+  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Reporting\\AdminOrganizationController.php' => 
+  array (
+    0 => 'laravel/framework',
+    1 => 'symfony/http-foundation',
+  ),
+  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Benefit\\StoreDoubleDippingRuleRequest.php' => 
+  array (
+    0 => 'laravel/framework',
+    1 => 'symfony/http-foundation',
+    2 => 'laravel/sanctum',
+  ),
+  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Graduation\\GraduateRequest.php' => 
+  array (
+    0 => 'laravel/framework',
+    1 => 'symfony/http-foundation',
+    2 => 'laravel/sanctum',
+  ),
+  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Registry\\ConfirmMappingRequest.php' => 
+  array (
+    0 => 'laravel/framework',
+    1 => 'symfony/http-foundation',
+    2 => 'laravel/sanctum',
+  ),
+  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Registry\\MoveHouseholdMemberRequest.php' => 
+  array (
+    0 => 'laravel/framework',
+    1 => 'symfony/http-foundation',
+    2 => 'laravel/sanctum',
+  ),
+  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Access\\Events\\CrossMdaAccessRevoked.php' => 
+  array (
+    0 => 'laravel/framework',
+    1 => 'laravel/sanctum',
+  ),
+  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Audit\\Support\\AuditScrubber.php' => 
+  array (
+    0 => 'laravel/framework',
+  ),
+  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Benefit\\Enums\\VerificationMethod.php' => 
+  array (
+  ),
+  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Benefit\\Services\\Verifiers\\FieldConfirmationVerifier.php' => 
+  array (
+    0 => 'laravel/framework',
+    1 => 'laravel/sanctum',
+  ),
+  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Grievance\\GrievanceServiceProvider.php' => 
+  array (
+    0 => 'laravel/framework',
+    1 => 'psr/container',
+  ),
+  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Matching\\Engine\\DuplicateCascade.php' => 
+  array (
+    0 => 'laravel/framework',
+  ),
+  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Matching\\Scoring\\Comparators\\Comparator.php' => 
+  array (
+  ),
+  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Matching\\Support\\PhoneticEncoder.php' => 
+  array (
+  ),
+  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Privacy\\Services\\AnonymizationService.php' => 
+  array (
+    0 => 'laravel/framework',
+    1 => 'laravel/sanctum',
+    2 => 'nesbot/carbon',
+    3 => 'league/flysystem',
+    4 => 'psr/http-message',
+    5 => 'symfony/http-foundation',
+  ),
+  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Reporting\\Services\\AdminSummaryService.php' => 
+  array (
+    0 => 'laravel/framework',
+    1 => 'nesbot/carbon',
+    2 => 'laravel/sanctum',
+  ),
+  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Access\\AccessController.php' => 
+  array (
+    0 => 'laravel/framework',
+    1 => 'symfony/http-foundation',
+    2 => 'laravel/sanctum',
+  ),
+  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Graduation\\GraduationController.php' => 
+  array (
+    0 => 'laravel/framework',
+    1 => 'symfony/http-foundation',
+    2 => 'laravel/sanctum',
+  ),
+  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Registry\\RegistryRulesController.php' => 
+  array (
+    0 => 'laravel/framework',
+    1 => 'symfony/http-foundation',
+  ),
+  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Reporting\\ReportScheduleController.php' => 
+  array (
+    0 => 'laravel/framework',
+    1 => 'symfony/http-foundation',
+    2 => 'laravel/sanctum',
+  ),
+  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Benefit\\AggregateBenefitsRequest.php' => 
+  array (
+    0 => 'laravel/framework',
+    1 => 'symfony/http-foundation',
+    2 => 'laravel/sanctum',
+  ),
+  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Graduation\\GraduationCriteriaRequest.php' => 
+  array (
+    0 => 'laravel/framework',
+    1 => 'symfony/http-foundation',
+    2 => 'laravel/sanctum',
+  ),
+  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Notification\\BroadcastRequest.php' => 
+  array (
+    0 => 'laravel/framework',
+    1 => 'symfony/http-foundation',
+    2 => 'laravel/sanctum',
+  ),
+  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Reporting\\AdHocReportRequest.php' => 
   array (
     0 => 'laravel/framework',
     1 => 'symfony/http-foundation',
@@ -31119,178 +31001,158 @@ return [
     1 => 'symfony/http-foundation',
     2 => 'laravel/sanctum',
   ),
-  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Reporting\\SaveReportDefinitionRequest.php' => 
-  array (
-    0 => 'laravel/framework',
-    1 => 'symfony/http-foundation',
-  ),
-  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Resources\\UserResource.php' => 
+  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Audit\\Services\\AuditLogger.php' => 
   array (
     0 => 'laravel/framework',
     1 => 'symfony/http-foundation',
     2 => 'laravel/sanctum',
     3 => 'nesbot/carbon',
   ),
-  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Console\\Commands\\VerifyAuditChain.php' => 
+  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Benefit\\Contracts\\BenefitVerifier.php' => 
+  array (
+    0 => 'laravel/framework',
+    1 => 'laravel/sanctum',
+  ),
+  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Benefit\\Enums\\BenefitFlagStatus.php' => 
+  array (
+  ),
+  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Benefit\\Models\\BenefitFlag.php' => 
+  array (
+    0 => 'laravel/framework',
+  ),
+  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Grievance\\Events\\GrievanceAssigned.php' => 
+  array (
+    0 => 'laravel/framework',
+    1 => 'laravel/sanctum',
+  ),
+  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Matching\\Models\\MatchingConfig.php' => 
+  array (
+    0 => 'laravel/framework',
+    1 => 'laravel/sanctum',
+  ),
+  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Ops\\OpsServiceProvider.php' => 
+  array (
+    0 => 'laravel/framework',
+    1 => 'psr/container',
+  ),
+  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Privacy\\Enums\\RetentionAction.php' => 
+  array (
+  ),
+  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Registry\\Models\\Beneficiary.php' => 
+  array (
+    0 => 'laravel/framework',
+    1 => 'nesbot/carbon',
+  ),
+  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Registry\\Policies\\ImportBatchPolicy.php' => 
+  array (
+    0 => 'laravel/framework',
+    1 => 'laravel/sanctum',
+  ),
+  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Registry\\Support\\RepairDoubledNames.php' => 
   array (
     0 => 'symfony/console',
     1 => 'laravel/framework',
-  ),
-  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Access\\Events\\MfaDisabled.php' => 
-  array (
-    0 => 'laravel/framework',
-    1 => 'laravel/sanctum',
-  ),
-  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Benefit\\Exceptions\\DeliveryNotAuthorizedException.php' => 
-  array (
-  ),
-  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Grievance\\Services\\GrievanceService.php' => 
-  array (
-    0 => 'laravel/framework',
-    1 => 'laravel/sanctum',
     2 => 'nesbot/carbon',
   ),
-  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Matching\\Scoring\\Comparators\\LevenshteinComparator.php' => 
-  array (
-  ),
-  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Referral\\Jobs\\EscalateOverdueReferrals.php' => 
-  array (
-    0 => 'laravel/framework',
-    1 => 'nesbot/carbon',
-  ),
-  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Referral\\Services\\ReferralService.php' => 
-  array (
-    0 => 'laravel/framework',
-    1 => 'laravel/sanctum',
-    2 => 'nesbot/carbon',
-  ),
-  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Registry\\Events\\ServiceRequestAccepted.php' => 
-  array (
-    0 => 'laravel/framework',
-    1 => 'laravel/sanctum',
-  ),
-  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Registry\\Imports\\Adapters\\OdkAdapter.php' => 
-  array (
-  ),
-  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Registry\\Models\\BeneficiaryServiceGrant.php' => 
-  array (
-    0 => 'laravel/framework',
-    1 => 'laravel/sanctum',
-    2 => 'nesbot/carbon',
-  ),
-  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Registry\\Services\\BeneficiaryLookupService.php' => 
-  array (
-    0 => 'laravel/framework',
-  ),
-  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Registry\\Support\\IdentifierHasher.php' => 
-  array (
-    0 => 'laravel/framework',
-  ),
-  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Reporting\\Export\\CsvExporter.php' => 
-  array (
-  ),
-  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Reporting\\Models\\ReportDefinition.php' => 
-  array (
-    0 => 'laravel/framework',
-  ),
-  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Reporting\\Services\\AdminSummaryService.php' => 
-  array (
-    0 => 'laravel/framework',
-    1 => 'nesbot/carbon',
-    2 => 'laravel/sanctum',
-  ),
-  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Sharing\\SharingBasis.php' => 
-  array (
-  ),
-  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Reporting\\AdminOrganizationController.php' => 
-  array (
-    0 => 'laravel/framework',
-    1 => 'symfony/http-foundation',
-  ),
-  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Reporting\\AdHocReportRequest.php' => 
+  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Grievance\\GrievanceController.php' => 
   array (
     0 => 'laravel/framework',
     1 => 'symfony/http-foundation',
     2 => 'laravel/sanctum',
   ),
-  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Reporting\\StoreReportScheduleRequest.php' => 
+  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Referral\\ReferralSlaPolicyController.php' => 
+  array (
+    0 => 'laravel/framework',
+    1 => 'symfony/http-foundation',
+  ),
+  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Registry\\OwnershipTransferController.php' => 
   array (
     0 => 'laravel/framework',
     1 => 'symfony/http-foundation',
     2 => 'laravel/sanctum',
   ),
-  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Resources\\BeneficiaryDocumentResource.php' => 
+  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Reporting\\ReportDefinitionController.php' => 
+  array (
+    0 => 'laravel/framework',
+    1 => 'symfony/http-foundation',
+    2 => 'laravel/sanctum',
+  ),
+  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Programme\\StoreEnrollmentRequest.php' => 
+  array (
+    0 => 'laravel/framework',
+    1 => 'symfony/http-foundation',
+    2 => 'laravel/sanctum',
+  ),
+  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Programme\\UpdateEnrollmentRequest.php' => 
+  array (
+    0 => 'laravel/framework',
+    1 => 'symfony/http-foundation',
+    2 => 'laravel/sanctum',
+  ),
+  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Resources\\EnrollmentResource.php' => 
   array (
     0 => 'laravel/framework',
     1 => 'symfony/http-foundation',
     2 => 'nesbot/carbon',
   ),
-  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Access\\Models\\Role.php' => 
+  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Resources\\MdaResource.php' => 
   array (
     0 => 'laravel/framework',
-  ),
-  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Benefit\\Services\\BenefitRecorder.php' => 
-  array (
-    0 => 'laravel/framework',
-    1 => 'laravel/sanctum',
+    1 => 'symfony/http-foundation',
     2 => 'nesbot/carbon',
   ),
-  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Graduation\\Events\\BeneficiaryGraduated.php' => 
+  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Benefit\\Policies\\BenefitPolicy.php' => 
   array (
     0 => 'laravel/framework',
     1 => 'laravel/sanctum',
   ),
-  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Grievance\\Enums\\GrievanceCategory.php' => 
-  array (
-  ),
-  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Matching\\Scoring\\Comparators\\Comparator.php' => 
-  array (
-  ),
-  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Matching\\Scoring\\Comparators\\DateProximityComparator.php' => 
-  array (
-  ),
-  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Notification\\Mail\\NotificationMail.php' => 
+  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Benefit\\Services\\DeliveryAuthorization.php' => 
   array (
     0 => 'laravel/framework',
   ),
-  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Privacy\\Services\\SubjectAccessAssembler.php' => 
+  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Ops\\Backup\\BackupResult.php' => 
+  array (
+  ),
+  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Ops\\Backup\\BackupService.php' => 
   array (
     0 => 'laravel/framework',
     1 => 'nesbot/carbon',
+    2 => 'league/flysystem',
+    3 => 'psr/http-message',
+    4 => 'symfony/http-foundation',
+    5 => 'psr/log',
+    6 => 'monolog/monolog',
+    7 => 'symfony/process',
+    8 => 'ramsey/uuid',
+  ),
+  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Programme\\Enums\\EnrollmentStatus.php' => 
+  array (
   ),
   'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Programme\\Models\\Programme.php' => 
   array (
     0 => 'laravel/framework',
     1 => 'laravel/sanctum',
   ),
-  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Programme\\Rules\\IsFundingPartner.php' => 
+  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Reference\\Imports\\DivisionLoadResult.php' => 
+  array (
+  ),
+  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Registry\\Models\\HouseholdMembership.php' => 
+  array (
+    0 => 'laravel/framework',
+    1 => 'nesbot/carbon',
+  ),
+  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Registry\\Services\\ConsentService.php' => 
   array (
     0 => 'laravel/framework',
     1 => 'laravel/sanctum',
+    2 => 'nesbot/carbon',
   ),
-  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Reporting\\Jobs\\GenerateReport.php' => 
+  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Reporting\\Export\\ExecutiveExportBuilder.php' => 
   array (
     0 => 'laravel/framework',
     1 => 'nesbot/carbon',
-    2 => 'league/flysystem',
-    3 => 'laravel/sanctum',
-    4 => 'psr/http-message',
-    5 => 'symfony/http-foundation',
   ),
-  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Reporting\\Reports\\ReportCatalogue.php' => 
-  array (
-  ),
-  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Reporting\\Services\\DashboardMetricsService.php' => 
-  array (
-    0 => 'laravel/framework',
-    1 => 'nesbot/carbon',
-    2 => 'laravel/sanctum',
-  ),
-  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Sync\\Sources\\SyncSourceResolver.php' => 
-  array (
-    0 => 'laravel/framework',
-  ),
-  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Notification\\BroadcastController.php' => 
+  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Referral\\ReferralController.php' => 
   array (
     0 => 'laravel/framework',
     1 => 'symfony/http-foundation',
@@ -31304,110 +31166,113 @@ return [
     3 => 'league/flysystem',
     4 => 'psr/http-message',
   ),
-  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Access\\StoreUserRequest.php' => 
+  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Middleware\\CheckRole.php' => 
   array (
     0 => 'laravel/framework',
     1 => 'symfony/http-foundation',
     2 => 'laravel/sanctum',
   ),
-  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Grievance\\TransitionGrievanceRequest.php' => 
+  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Auth\\MfaCodeRequest.php' => 
   array (
     0 => 'laravel/framework',
     1 => 'symfony/http-foundation',
     2 => 'laravel/sanctum',
   ),
-  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Programme\\UpdateActivityRequest.php' => 
+  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Benefit\\ReviewBenefitFlagRequest.php' => 
   array (
     0 => 'laravel/framework',
     1 => 'symfony/http-foundation',
     2 => 'laravel/sanctum',
   ),
-  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Resources\\GraduationCriteriaResource.php' => 
+  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Registry\\DesignateHeadRequest.php' => 
+  array (
+    0 => 'laravel/framework',
+    1 => 'symfony/http-foundation',
+    2 => 'laravel/sanctum',
+  ),
+  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Resources\\ActivityResource.php' => 
   array (
     0 => 'laravel/framework',
     1 => 'symfony/http-foundation',
     2 => 'nesbot/carbon',
   ),
-  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Console\\Commands\\EnforceDataRetention.php' => 
-  array (
-    0 => 'symfony/console',
-    1 => 'laravel/framework',
-  ),
-  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Access\\Scopes\\MdaScope.php' => 
+  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Resources\\BeneficiaryDocumentResource.php' => 
   array (
     0 => 'laravel/framework',
     1 => 'symfony/http-foundation',
-    2 => 'laravel/sanctum',
+    2 => 'nesbot/carbon',
   ),
-  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Benefit\\BenefitServiceProvider.php' => 
+  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Resources\\DoubleDippingRuleResource.php' => 
   array (
     0 => 'laravel/framework',
-    1 => 'psr/container',
+    1 => 'symfony/http-foundation',
+    2 => 'nesbot/carbon',
   ),
-  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Grievance\\Enums\\GrievanceChannel.php' => 
+  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Access\\Services\\PermissionSynchronizer.php' => 
   array (
+    0 => 'laravel/framework',
   ),
-  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Matching\\Engine\\MatchResult.php' => 
+  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Audit\\Models\\AuditLog.php' => 
   array (
+    0 => 'laravel/framework',
+    1 => 'nesbot/carbon',
   ),
-  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Matching\\Enums\\MatchField.php' => 
-  array (
-  ),
-  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Notification\\Contracts\\NotificationChannel.php' => 
+  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Benefit\\Policies\\BenefitImportPolicy.php' => 
   array (
     0 => 'laravel/framework',
     1 => 'laravel/sanctum',
   ),
-  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Notification\\NotificationServiceProvider.php' => 
+  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Grievance\\Jobs\\EscalateOverdueGrievances.php' => 
+  array (
+    0 => 'laravel/framework',
+    1 => 'nesbot/carbon',
+  ),
+  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Privacy\\Retention\\RetentionPolicyRepository.php' => 
+  array (
+    0 => 'laravel/framework',
+  ),
+  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Programme\\Models\\ActivityLocation.php' => 
+  array (
+    0 => 'laravel/framework',
+  ),
+  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Reference\\ReferenceServiceProvider.php' => 
   array (
     0 => 'laravel/framework',
     1 => 'psr/container',
+    2 => 'symfony/console',
   ),
-  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Ops\\OpsServiceProvider.php' => 
-  array (
-    0 => 'laravel/framework',
-    1 => 'psr/container',
-  ),
-  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Registry\\Enums\\ImportStatus.php' => 
-  array (
-  ),
-  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Registry\\Services\\BatchDuplicateScreener.php' => 
-  array (
-    0 => 'laravel/framework',
-  ),
-  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Registry\\Services\\DeterministicDuplicateFinder.php' => 
-  array (
-    0 => 'laravel/framework',
-  ),
-  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Reporting\\Gis\\GeoBoundary.php' => 
-  array (
-    0 => 'laravel/framework',
-  ),
-  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Reporting\\Listeners\\DeliverScheduledReport.php' => 
+  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Referral\\Events\\ReferralStatusChanged.php' => 
   array (
     0 => 'laravel/framework',
     1 => 'laravel/sanctum',
-    2 => 'symfony/mailer',
   ),
-  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Matching\\MatchingConfigController.php' => 
+  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Registry\\Enums\\HouseholdRole.php' => 
+  array (
+  ),
+  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Registry\\Events\\BeneficiaryAccessRevoked.php' => 
   array (
     0 => 'laravel/framework',
-    1 => 'symfony/http-foundation',
-    2 => 'laravel/sanctum',
+    1 => 'laravel/sanctum',
   ),
-  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Programme\\EnrollmentController.php' => 
+  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Registry\\Imports\\ColumnMapper.php' => 
+  array (
+  ),
+  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Registry\\Imports\\SpreadsheetReader.php' => 
+  array (
+    0 => 'phpoffice/phpspreadsheet',
+  ),
+  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Registry\\Models\\BeneficiaryServiceGrant.php' => 
   array (
     0 => 'laravel/framework',
-    1 => 'symfony/http-foundation',
-    2 => 'laravel/sanctum',
-    3 => 'nesbot/carbon',
+    1 => 'laravel/sanctum',
+    2 => 'nesbot/carbon',
   ),
-  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Registry\\HouseholdMemberController.php' => 
+  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Registry\\Policies\\OwnerMdaPolicy.php' => 
   array (
     0 => 'laravel/framework',
-    1 => 'symfony/http-foundation',
+    1 => 'laravel/sanctum',
   ),
-  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Controller.php' => 
+  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Reporting\\Events\\ReportReady.php' => 
   array (
     0 => 'laravel/framework',
   ),
@@ -31417,182 +31282,85 @@ return [
     1 => 'symfony/http-foundation',
     2 => 'laravel/sanctum',
   ),
-  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Reporting\\UpdateReportScheduleRequest.php' => 
-  array (
-    0 => 'laravel/framework',
-    1 => 'symfony/http-foundation',
-    2 => 'laravel/sanctum',
-  ),
-  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Console\\Commands\\CreateAdminUser.php' => 
-  array (
-    0 => 'symfony/console',
-    1 => 'laravel/framework',
-    2 => 'laravel/sanctum',
-    3 => 'nesbot/carbon',
-  ),
-  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Access\\Concerns\\ScopedToMda.php' => 
+  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Programme\\Concerns\\ValidatesLocationSet.php' => 
   array (
   ),
-  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Benefit\\Contracts\\BenefitVerifier.php' => 
-  array (
-    0 => 'laravel/framework',
-    1 => 'laravel/sanctum',
-  ),
-  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Benefit\\Models\\DoubleDippingRule.php' => 
-  array (
-    0 => 'laravel/framework',
-  ),
-  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Graduation\\Models\\GraduationEvent.php' => 
-  array (
-    0 => 'laravel/framework',
-  ),
-  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Notification\\Services\\BroadcastService.php' => 
-  array (
-    0 => 'laravel/framework',
-    1 => 'laravel/sanctum',
-  ),
-  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Ops\\Backup\\DrillResult.php' => 
-  array (
-  ),
-  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Referral\\ReferralServiceProvider.php' => 
-  array (
-    0 => 'laravel/framework',
-    1 => 'psr/container',
-  ),
-  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Registry\\Enums\\OwnershipTransferStatus.php' => 
-  array (
-  ),
-  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Registry\\Imports\\ImportRowValidator.php' => 
-  array (
-    0 => 'laravel/framework',
-  ),
-  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Registry\\Policies\\HouseholdPolicy.php' => 
-  array (
-    0 => 'laravel/framework',
-    1 => 'laravel/sanctum',
-  ),
-  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Reporting\\Export\\ReportExporterRegistry.php' => 
-  array (
-  ),
-  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\MfaController.php' => 
+  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Resources\\BeneficiaryRevealResource.php' => 
   array (
     0 => 'laravel/framework',
     1 => 'symfony/http-foundation',
     2 => 'laravel/sanctum',
     3 => 'nesbot/carbon',
-  ),
-  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Registry\\ImportBatchController.php' => 
-  array (
-    0 => 'laravel/framework',
-    1 => 'symfony/http-foundation',
-    2 => 'laravel/sanctum',
-    3 => 'nesbot/carbon',
-  ),
-  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Reporting\\DashboardController.php' => 
-  array (
-    0 => 'laravel/framework',
-    1 => 'symfony/http-foundation',
-    2 => 'laravel/sanctum',
-  ),
-  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Sync\\SyncController.php' => 
-  array (
-    0 => 'laravel/framework',
-    1 => 'symfony/http-foundation',
-    2 => 'laravel/sanctum',
-  ),
-  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Auth\\LoginRequest.php' => 
-  array (
-    0 => 'laravel/framework',
-    1 => 'symfony/http-foundation',
-  ),
-  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Referral\\UpdateReferralSlaRequest.php' => 
-  array (
-    0 => 'laravel/framework',
-    1 => 'symfony/http-foundation',
-    2 => 'laravel/sanctum',
-  ),
-  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Reporting\\RunReportDefinitionRequest.php' => 
-  array (
-    0 => 'laravel/framework',
-    1 => 'symfony/http-foundation',
-    2 => 'laravel/sanctum',
   ),
   'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Resources\\MatchCandidateResource.php' => 
   array (
     0 => 'laravel/framework',
     1 => 'symfony/http-foundation',
   ),
-  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Console\\Commands\\RestoreBackup.php' => 
-  array (
-    0 => 'symfony/console',
-    1 => 'laravel/framework',
-  ),
-  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Audit\\Services\\AuditQueryService.php' => 
-  array (
-    0 => 'laravel/framework',
-    1 => 'laravel/sanctum',
-    2 => 'nesbot/carbon',
-  ),
-  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Benefit\\Enums\\VerificationMethod.php' => 
+  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Grievance\\Enums\\GrievanceCategory.php' => 
   array (
   ),
-  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Benefit\\Services\\BeneficiaryRevealPresenter.php' => 
+  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Matching\\Enums\\MatchComparator.php' => 
+  array (
+  ),
+  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Matching\\Scoring\\Comparators\\PhoneticComparator.php' => 
+  array (
+  ),
+  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Notification\\Contracts\\NotificationChannel.php' => 
   array (
     0 => 'laravel/framework',
     1 => 'laravel/sanctum',
-    2 => 'nesbot/carbon',
   ),
-  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Benefit\\Services\\DoubleDippingDetector.php' => 
+  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Notification\\Exceptions\\ChannelUnavailableException.php' => 
+  array (
+  ),
+  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Notification\\Services\\Notifier.php' => 
+  array (
+    0 => 'laravel/framework',
+    1 => 'laravel/sanctum',
+  ),
+  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Privacy\\Services\\RetentionService.php' => 
   array (
     0 => 'laravel/framework',
     1 => 'nesbot/carbon',
   ),
-  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Benefit\\Services\\Verifiers\\OtpVerifier.php' => 
+  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Programme\\Services\\EligibilityEvaluator.php' => 
   array (
     0 => 'laravel/framework',
-    1 => 'laravel/sanctum',
+    1 => 'nesbot/carbon',
   ),
-  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Graduation\\Services\\GraduationService.php' => 
+  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Reference\\Imports\\LoadAdministrativeDivisions.php' => 
+  array (
+    0 => 'symfony/console',
+    1 => 'laravel/framework',
+  ),
+  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Reference\\Models\\Ward.php' => 
+  array (
+    0 => 'laravel/framework',
+  ),
+  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Reporting\\Services\\DashboardSnapshotService.php' => 
   array (
     0 => 'laravel/framework',
     1 => 'laravel/sanctum',
     2 => 'nesbot/carbon',
   ),
-  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Grievance\\Exceptions\\InvalidGrievanceTransitionException.php' => 
-  array (
-  ),
-  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Notification\\Channels\\SmsChannel.php' => 
-  array (
-    0 => 'laravel/framework',
-    1 => 'laravel/sanctum',
-  ),
-  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Notification\\Support\\NotificationMessage.php' => 
+  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Sync\\Models\\SyncRunRow.php' => 
   array (
     0 => 'laravel/framework',
   ),
-  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Programme\\Policies\\EnrollmentPolicy.php' => 
+  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Sync\\Services\\ConnectorMappingService.php' => 
   array (
     0 => 'laravel/framework',
-    1 => 'laravel/sanctum',
+    1 => 'nesbot/carbon',
+    2 => 'laravel/sanctum',
   ),
-  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Registry\\Contracts\\BeneficiaryRouter.php' => 
+  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Benefit\\BenefitImportController.php' => 
   array (
     0 => 'laravel/framework',
+    1 => 'symfony/http-foundation',
+    2 => 'laravel/sanctum',
   ),
-  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Reporting\\Export\\Contracts\\ReportExporter.php' => 
-  array (
-  ),
-  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Reporting\\Services\\AdminOrganizationService.php' => 
-  array (
-    0 => 'laravel/framework',
-    1 => 'laravel/sanctum',
-  ),
-  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Reporting\\Services\\DashboardScopeResolver.php' => 
-  array (
-    0 => 'laravel/framework',
-    1 => 'laravel/sanctum',
-  ),
-  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Programme\\ActivityController.php' => 
+  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Programme\\StoreProgrammeRequest.php' => 
   array (
     0 => 'laravel/framework',
     1 => 'symfony/http-foundation',
@@ -31604,107 +31372,13 @@ return [
     1 => 'symfony/http-foundation',
     2 => 'laravel/sanctum',
   ),
-  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Resources\\ProgrammeResource.php' => 
-  array (
-    0 => 'laravel/framework',
-    1 => 'symfony/http-foundation',
-    2 => 'nesbot/carbon',
-  ),
-  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Resources\\ServiceRequestResource.php' => 
-  array (
-    0 => 'laravel/framework',
-    1 => 'symfony/http-foundation',
-    2 => 'nesbot/carbon',
-  ),
-  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Console\\Commands\\PerfBenchmark.php' => 
-  array (
-    0 => 'symfony/console',
-    1 => 'laravel/framework',
-    2 => 'nesbot/carbon',
-  ),
-  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Access\\Concerns\\MdaScoped.php' => 
-  array (
-  ),
-  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Access\\Services\\MfaService.php' => 
-  array (
-    0 => 'pragmarx/google2fa',
-    1 => 'laravel/framework',
-  ),
-  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Audit\\Concerns\\Auditable.php' => 
-  array (
-  ),
-  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Grievance\\GrievanceServiceProvider.php' => 
-  array (
-    0 => 'laravel/framework',
-    1 => 'psr/container',
-  ),
-  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Ops\\Backup\\BackupResult.php' => 
-  array (
-  ),
-  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Privacy\\Jobs\\EnforceDataRetention.php' => 
-  array (
-    0 => 'laravel/framework',
-  ),
-  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Privacy\\Retention\\RetentionPolicy.php' => 
-  array (
-  ),
-  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Registry\\Events\\ServiceRequestDeclined.php' => 
-  array (
-    0 => 'laravel/framework',
-    1 => 'laravel/sanctum',
-  ),
-  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Registry\\Models\\Beneficiary.php' => 
-  array (
-    0 => 'laravel/framework',
-    1 => 'nesbot/carbon',
-  ),
-  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Registry\\Models\\ImportRow.php' => 
-  array (
-    0 => 'laravel/framework',
-  ),
-  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Sync\\Enums\\SyncRowOutcome.php' => 
-  array (
-  ),
-  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\HealthController.php' => 
-  array (
-    0 => 'laravel/framework',
-    1 => 'symfony/http-foundation',
-    2 => 'nesbot/carbon',
-    3 => 'ramsey/uuid',
-    4 => 'psr/simple-cache',
-  ),
-  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Notification\\NotificationController.php' => 
-  array (
-    0 => 'laravel/framework',
-    1 => 'symfony/http-foundation',
-    2 => 'nesbot/carbon',
-    3 => 'laravel/sanctum',
-  ),
-  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Benefit\\RecordBenefitRequest.php' => 
+  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Registry\\ResolveImportRowRequest.php' => 
   array (
     0 => 'laravel/framework',
     1 => 'symfony/http-foundation',
     2 => 'laravel/sanctum',
   ),
-  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Registry\\BeneficiaryMatchSearchRequest.php' => 
-  array (
-    0 => 'laravel/framework',
-    1 => 'symfony/http-foundation',
-    2 => 'laravel/sanctum',
-  ),
-  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Registry\\DecideOwnershipTransferRequest.php' => 
-  array (
-    0 => 'laravel/framework',
-    1 => 'symfony/http-foundation',
-    2 => 'laravel/sanctum',
-  ),
-  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Registry\\DeclineServiceRequestRequest.php' => 
-  array (
-    0 => 'laravel/framework',
-    1 => 'symfony/http-foundation',
-    2 => 'laravel/sanctum',
-  ),
-  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Registry\\MoveHouseholdMemberRequest.php' => 
+  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Registry\\UploadImportRequest.php' => 
   array (
     0 => 'laravel/framework',
     1 => 'symfony/http-foundation',
@@ -31719,223 +31393,32 @@ return [
     4 => 'symfony/http-foundation',
     5 => 'laravel/sanctum',
   ),
-  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Access\\Events\\MfaEnrolled.php' => 
+  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Access\\Services\\RolePermissionService.php' => 
   array (
     0 => 'laravel/framework',
     1 => 'laravel/sanctum',
-  ),
-  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Matching\\Enums\\MatchComparator.php' => 
-  array (
-  ),
-  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Programme\\Models\\Activity.php' => 
-  array (
-    0 => 'laravel/framework',
-    1 => 'laravel/sanctum',
-  ),
-  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Registry\\Services\\FuzzyDuplicateFinder.php' => 
-  array (
-    0 => 'laravel/framework',
-  ),
-  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Reporting\\Export\\ReportData.php' => 
-  array (
-    0 => 'laravel/framework',
-    1 => 'nesbot/carbon',
-  ),
-  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Reporting\\Jobs\\RunDueReportSchedules.php' => 
-  array (
-    0 => 'laravel/framework',
-    1 => 'nesbot/carbon',
-  ),
-  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Reporting\\Models\\DashboardSnapshot.php' => 
-  array (
-    0 => 'laravel/framework',
-  ),
-  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Reporting\\Services\\ReportScheduleService.php' => 
-  array (
-    0 => 'laravel/framework',
-    1 => 'laravel/sanctum',
-    2 => 'nesbot/carbon',
-  ),
-  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Sync\\Sources\\SyncSource.php' => 
-  array (
-    0 => 'laravel/framework',
-  ),
-  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Sync\\SyncServiceProvider.php' => 
-  array (
-    0 => 'laravel/framework',
-    1 => 'psr/container',
-  ),
-  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Registry\\BeneficiaryIntakeController.php' => 
-  array (
-    0 => 'laravel/framework',
-    1 => 'symfony/http-foundation',
-    2 => 'laravel/sanctum',
-  ),
-  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Registry\\HouseholdController.php' => 
-  array (
-    0 => 'laravel/framework',
-    1 => 'symfony/http-foundation',
-  ),
-  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Grievance\\StoreGrievanceRequest.php' => 
-  array (
-    0 => 'laravel/framework',
-    1 => 'symfony/http-foundation',
-    2 => 'laravel/sanctum',
-  ),
-  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Matching\\UpdateMatchingConfigRequest.php' => 
-  array (
-    0 => 'laravel/framework',
-    1 => 'symfony/http-foundation',
-    2 => 'laravel/sanctum',
-  ),
-  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Registry\\DesignateHeadRequest.php' => 
-  array (
-    0 => 'laravel/framework',
-    1 => 'symfony/http-foundation',
-    2 => 'laravel/sanctum',
-  ),
-  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Resources\\ActivityDetailResource.php' => 
-  array (
-    0 => 'laravel/framework',
-    1 => 'symfony/http-foundation',
-    2 => 'nesbot/carbon',
-  ),
-  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Resources\\BeneficiaryResource.php' => 
-  array (
-    0 => 'laravel/framework',
-    1 => 'symfony/http-foundation',
-    2 => 'nesbot/carbon',
-  ),
-  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Resources\\GraduationEventResource.php' => 
-  array (
-    0 => 'laravel/framework',
-    1 => 'symfony/http-foundation',
-    2 => 'nesbot/carbon',
-  ),
-  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Support\\ApiResponse.php' => 
-  array (
-    0 => 'laravel/framework',
-    1 => 'symfony/http-foundation',
-  ),
-  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Access\\Support\\TokenAbility.php' => 
-  array (
   ),
   'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Benefit\\Exceptions\\VerificationUnavailableException.php' => 
   array (
   ),
-  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Benefit\\Imports\\BenefitDeliveryRowValidator.php' => 
+  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Benefit\\Models\\BenefitImportRow.php' => 
+  array (
+    0 => 'laravel/framework',
+  ),
+  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Benefit\\Policies\\DoubleDippingRulePolicy.php' => 
+  array (
+    0 => 'laravel/framework',
+    1 => 'laravel/sanctum',
+  ),
+  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Ops\\Backup\\BackupCipher.php' => 
+  array (
+  ),
+  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Privacy\\Services\\SubjectAccessAssembler.php' => 
   array (
     0 => 'laravel/framework',
     1 => 'nesbot/carbon',
   ),
-  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Benefit\\Services\\Verifiers\\SignatureVerifier.php' => 
-  array (
-    0 => 'laravel/framework',
-    1 => 'laravel/sanctum',
-  ),
-  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Grievance\\Events\\GrievanceAssigned.php' => 
-  array (
-    0 => 'laravel/framework',
-    1 => 'laravel/sanctum',
-  ),
-  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Matching\\Engine\\DeterministicMatcher.php' => 
-  array (
-    0 => 'laravel/framework',
-  ),
-  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Matching\\Scoring\\Comparators\\JaroWinklerComparator.php' => 
-  array (
-  ),
-  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Referral\\Policies\\ReferralPolicy.php' => 
-  array (
-    0 => 'laravel/framework',
-    1 => 'laravel/sanctum',
-  ),
-  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Registry\\Events\\OwnershipTransferRequested.php' => 
-  array (
-    0 => 'laravel/framework',
-    1 => 'laravel/sanctum',
-  ),
-  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Reporting\\Models\\ReportSchedule.php' => 
-  array (
-    0 => 'laravel/framework',
-    1 => 'nesbot/carbon',
-  ),
-  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Sharing\\DataSharingGuard.php' => 
-  array (
-    0 => 'laravel/framework',
-    1 => 'laravel/sanctum',
-  ),
-  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Sync\\Models\\SyncConnector.php' => 
-  array (
-    0 => 'laravel/framework',
-    1 => 'nesbot/carbon',
-    2 => 'laravel/sanctum',
-  ),
-  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Sync\\Models\\SyncRun.php' => 
-  array (
-    0 => 'laravel/framework',
-  ),
-  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Reporting\\MdaActionRequiredController.php' => 
-  array (
-    0 => 'laravel/framework',
-    1 => 'symfony/http-foundation',
-    2 => 'laravel/sanctum',
-  ),
-  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Middleware\\SecurityHeaders.php' => 
-  array (
-    0 => 'laravel/framework',
-    1 => 'symfony/http-foundation',
-  ),
-  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Access\\StoreMdaAccessGrantRequest.php' => 
-  array (
-    0 => 'laravel/framework',
-    1 => 'symfony/http-foundation',
-    2 => 'laravel/sanctum',
-  ),
-  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Access\\UpdateUserRequest.php' => 
-  array (
-    0 => 'laravel/framework',
-    1 => 'symfony/http-foundation',
-    2 => 'laravel/sanctum',
-  ),
-  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Programme\\BulkEnrollmentRequest.php' => 
-  array (
-    0 => 'laravel/framework',
-    1 => 'symfony/http-foundation',
-    2 => 'laravel/sanctum',
-  ),
-  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Resources\\ReportScheduleResource.php' => 
-  array (
-    0 => 'laravel/framework',
-    1 => 'symfony/http-foundation',
-    2 => 'nesbot/carbon',
-  ),
-  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Access\\Services\\AuthTokenIssuer.php' => 
-  array (
-    0 => 'laravel/framework',
-    1 => 'laravel/sanctum',
-    2 => 'nesbot/carbon',
-  ),
-  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Access\\Support\\PermissionRegistry.php' => 
-  array (
-  ),
-  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Matching\\Scoring\\Comparators\\ExactComparator.php' => 
-  array (
-  ),
-  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Matching\\Scoring\\FieldNormalizer.php' => 
-  array (
-  ),
-  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Notification\\Models\\Notification.php' => 
-  array (
-    0 => 'laravel/framework',
-    1 => 'laravel/sanctum',
-  ),
-  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Programme\\Policies\\ProgrammePolicy.php' => 
-  array (
-    0 => 'laravel/framework',
-    1 => 'laravel/sanctum',
-  ),
-  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Referral\\Events\\ReferralStatusChanged.php' => 
+  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Programme\\Models\\Activity.php' => 
   array (
     0 => 'laravel/framework',
     1 => 'laravel/sanctum',
@@ -31943,127 +31426,136 @@ return [
   'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Registry\\Enums\\ServiceRequestStatus.php' => 
   array (
   ),
-  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Registry\\Models\\Household.php' => 
+  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Registry\\Jobs\\ParseImportBatch.php' => 
   array (
     0 => 'laravel/framework',
-    1 => 'nesbot/carbon',
+    1 => 'league/flysystem',
+    2 => 'psr/http-message',
+    3 => 'symfony/http-foundation',
+    4 => 'nesbot/carbon',
+    5 => 'laravel/sanctum',
   ),
-  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Registry\\Policies\\OwnerMdaPolicy.php' => 
+  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Registry\\Policies\\BeneficiaryPolicy.php' => 
   array (
     0 => 'laravel/framework',
     1 => 'laravel/sanctum',
   ),
-  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Reporting\\Export\\ExcelExporter.php' => 
+  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Reporting\\Services\\DashboardService.php' => 
   array (
-    0 => 'phpoffice/phpspreadsheet',
-    1 => 'laravel/framework',
+    0 => 'laravel/framework',
+    1 => 'laravel/sanctum',
     2 => 'nesbot/carbon',
   ),
-  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Reporting\\Export\\ReportFormat.php' => 
-  array (
-  ),
-  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Reporting\\Reports\\ReportBuilder.php' => 
-  array (
-    0 => 'laravel/framework',
-    1 => 'nesbot/carbon',
-  ),
-  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Access\\LoginActivityController.php' => 
-  array (
-    0 => 'laravel/framework',
-    1 => 'symfony/http-foundation',
-  ),
-  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Programme\\ProgrammeController.php' => 
+  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Reporting\\DashboardController.php' => 
   array (
     0 => 'laravel/framework',
     1 => 'symfony/http-foundation',
     2 => 'laravel/sanctum',
   ),
-  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Reporting\\GisController.php' => 
+  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Middleware\\AssignCorrelationId.php' => 
+  array (
+    0 => 'laravel/framework',
+    1 => 'symfony/http-foundation',
+    2 => 'ramsey/uuid',
+  ),
+  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Access\\Concerns\\ValidatesUserAssignment.php' => 
+  array (
+  ),
+  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Access\\StoreMdaAccessGrantRequest.php' => 
   array (
     0 => 'laravel/framework',
     1 => 'symfony/http-foundation',
     2 => 'laravel/sanctum',
   ),
-  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Auth\\ChangePasswordRequest.php' => 
+  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Registry\\AcceptServiceRequestRequest.php' => 
   array (
     0 => 'laravel/framework',
     1 => 'symfony/http-foundation',
     2 => 'laravel/sanctum',
   ),
-  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Registry\\StoreServiceRequestRequest.php' => 
+  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Resources\\BenefitFlagResource.php' => 
   array (
     0 => 'laravel/framework',
     1 => 'symfony/http-foundation',
-    2 => 'laravel/sanctum',
+    2 => 'nesbot/carbon',
   ),
-  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Registry\\UploadActivityImportRequest.php' => 
+  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Resources\\GraduationCriteriaResource.php' => 
   array (
     0 => 'laravel/framework',
     1 => 'symfony/http-foundation',
-    2 => 'laravel/sanctum',
+    2 => 'nesbot/carbon',
   ),
-  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Console\\Commands\\RunBackup.php' => 
+  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Resources\\NotificationResource.php' => 
   array (
-    0 => 'symfony/console',
-    1 => 'laravel/framework',
+    0 => 'laravel/framework',
+    1 => 'symfony/http-foundation',
+    2 => 'nesbot/carbon',
   ),
-  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Access\\Enums\\UserStatus.php' => 
+  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Access\\Enums\\MdaStatus.php' => 
   array (
   ),
-  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Access\\Events\\CrossMdaAccessRevoked.php' => 
+  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Access\\Models\\Permission.php' => 
+  array (
+    0 => 'laravel/framework',
+  ),
+  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Audit\\Listeners\\AuditEventSubscriber.php' => 
   array (
     0 => 'laravel/framework',
     1 => 'laravel/sanctum',
+    2 => 'nesbot/carbon',
   ),
-  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Access\\Services\\LoginActivityService.php' => 
-  array (
-    0 => 'laravel/framework',
-    1 => 'nesbot/carbon',
-    2 => 'laravel/sanctum',
-  ),
-  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Access\\Support\\PasswordRules.php' => 
-  array (
-    0 => 'laravel/framework',
-  ),
-  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Benefit\\Models\\BenefitImportBatch.php' => 
-  array (
-    0 => 'laravel/framework',
-  ),
-  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Graduation\\GraduationServiceProvider.php' => 
-  array (
-    0 => 'laravel/framework',
-    1 => 'psr/container',
-  ),
-  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Notification\\Models\\NotificationPreference.php' => 
-  array (
-    0 => 'laravel/framework',
-    1 => 'laravel/sanctum',
-  ),
-  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Programme\\Enums\\EnrollmentStatus.php' => 
-  array (
-  ),
-  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Programme\\Services\\ProgrammeMatchingRouter.php' => 
-  array (
-    0 => 'laravel/framework',
-  ),
-  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Registry\\Jobs\\CommitImportBatch.php' => 
+  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Benefit\\Jobs\\CommitBenefitImport.php' => 
   array (
     0 => 'laravel/framework',
     1 => 'laravel/sanctum',
     2 => 'symfony/http-foundation',
   ),
-  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Registry\\RegistryServiceProvider.php' => 
+  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Programme\\Models\\Enrollment.php' => 
   array (
     0 => 'laravel/framework',
-    1 => 'psr/container',
-    2 => 'symfony/console',
   ),
-  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Sync\\Jobs\\RunSyncConnector.php' => 
+  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Registry\\Contracts\\BeneficiaryRouter.php' => 
+  array (
+    0 => 'laravel/framework',
+  ),
+  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Registry\\Events\\OwnershipTransferRequested.php' => 
   array (
     0 => 'laravel/framework',
     1 => 'laravel/sanctum',
   ),
-  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Benefit\\BenefitController.php' => 
+  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Registry\\Services\\ImportCommitter.php' => 
+  array (
+    0 => 'laravel/framework',
+    1 => 'laravel/sanctum',
+  ),
+  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Registry\\Services\\NullBeneficiaryRouter.php' => 
+  array (
+    0 => 'laravel/framework',
+  ),
+  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Registry\\Support\\RegistrationSourceRule.php' => 
+  array (
+  ),
+  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Reporting\\Gis\\LoadGeoBoundaries.php' => 
+  array (
+    0 => 'symfony/console',
+    1 => 'laravel/framework',
+  ),
+  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Reporting\\Services\\AdminSettingsService.php' => 
+  array (
+    0 => 'laravel/framework',
+  ),
+  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Sync\\Sources\\MockSyncSource.php' => 
+  array (
+    0 => 'laravel/framework',
+  ),
+  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Middleware\\EnforceIdleTimeout.php' => 
+  array (
+    0 => 'laravel/framework',
+    1 => 'symfony/http-foundation',
+    2 => 'laravel/sanctum',
+    3 => 'nesbot/carbon',
+  ),
+  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Access\\StoreMdaRequest.php' => 
   array (
     0 => 'laravel/framework',
     1 => 'symfony/http-foundation',
@@ -32075,7 +31567,354 @@ return [
     1 => 'symfony/http-foundation',
     2 => 'laravel/sanctum',
   ),
-  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Registry\\ExportBeneficiariesRequest.php' => 
+  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Registry\\StoreServiceRequestRequest.php' => 
+  array (
+    0 => 'laravel/framework',
+    1 => 'symfony/http-foundation',
+    2 => 'laravel/sanctum',
+  ),
+  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Registry\\UpdateBeneficiaryRequest.php' => 
+  array (
+    0 => 'laravel/framework',
+    1 => 'symfony/http-foundation',
+    2 => 'laravel/sanctum',
+  ),
+  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Reporting\\StoreReportScheduleRequest.php' => 
+  array (
+    0 => 'laravel/framework',
+    1 => 'symfony/http-foundation',
+    2 => 'laravel/sanctum',
+  ),
+  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Access\\Enums\\MdaType.php' => 
+  array (
+  ),
+  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Access\\Support\\TokenAbility.php' => 
+  array (
+  ),
+  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Benefit\\Enums\\BenefitType.php' => 
+  array (
+  ),
+  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Benefit\\Services\\Verifiers\\BiometricVerifier.php' => 
+  array (
+    0 => 'laravel/framework',
+    1 => 'laravel/sanctum',
+  ),
+  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Matching\\Engine\\MatchResult.php' => 
+  array (
+  ),
+  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Notification\\Channels\\SmsChannel.php' => 
+  array (
+    0 => 'laravel/framework',
+    1 => 'laravel/sanctum',
+  ),
+  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Notification\\Services\\BroadcastService.php' => 
+  array (
+    0 => 'laravel/framework',
+    1 => 'laravel/sanctum',
+  ),
+  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Referral\\Enums\\ReferralStatus.php' => 
+  array (
+  ),
+  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Referral\\Exceptions\\InvalidReferralTransitionException.php' => 
+  array (
+  ),
+  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Referral\\Jobs\\EscalateOverdueReferrals.php' => 
+  array (
+    0 => 'laravel/framework',
+    1 => 'nesbot/carbon',
+  ),
+  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Registry\\Enums\\ImportStatus.php' => 
+  array (
+  ),
+  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Registry\\Imports\\Adapters\\FieldMappingAdapter.php' => 
+  array (
+  ),
+  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Registry\\Models\\BeneficiaryDocument.php' => 
+  array (
+    0 => 'laravel/framework',
+    1 => 'laravel/sanctum',
+  ),
+  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Registry\\Models\\ImportBatch.php' => 
+  array (
+    0 => 'laravel/framework',
+    1 => 'nesbot/carbon',
+    2 => 'laravel/sanctum',
+  ),
+  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Reporting\\Models\\ReportDefinition.php' => 
+  array (
+    0 => 'laravel/framework',
+  ),
+  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Sharing\\SharingBasis.php' => 
+  array (
+  ),
+  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Sync\\Enums\\SyncRowOutcome.php' => 
+  array (
+  ),
+  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Programme\\UpdateActivityRequest.php' => 
+  array (
+    0 => 'laravel/framework',
+    1 => 'symfony/http-foundation',
+    2 => 'laravel/sanctum',
+  ),
+  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Resources\\ImportBatchResource.php' => 
+  array (
+    0 => 'laravel/framework',
+    1 => 'symfony/http-foundation',
+    2 => 'nesbot/carbon',
+    3 => 'laravel/sanctum',
+  ),
+  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Console\\Commands\\BackupDrill.php' => 
+  array (
+    0 => 'symfony/console',
+    1 => 'laravel/framework',
+  ),
+  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Console\\Commands\\VerifyAuditChain.php' => 
+  array (
+    0 => 'symfony/console',
+    1 => 'laravel/framework',
+  ),
+  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Access\\Enums\\UserStatus.php' => 
+  array (
+  ),
+  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Access\\Events\\AccountLocked.php' => 
+  array (
+    0 => 'laravel/framework',
+    1 => 'laravel/sanctum',
+  ),
+  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Access\\Models\\User.php' => 
+  array (
+    0 => 'laravel/framework',
+    1 => 'laravel/sanctum',
+    2 => 'symfony/http-kernel',
+    3 => 'psr/container',
+    4 => 'nesbot/carbon',
+  ),
+  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Benefit\\Exceptions\\NotEnrolledException.php' => 
+  array (
+  ),
+  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Graduation\\Models\\GraduationEvent.php' => 
+  array (
+    0 => 'laravel/framework',
+  ),
+  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Grievance\\Models\\Grievance.php' => 
+  array (
+    0 => 'laravel/framework',
+    1 => 'laravel/sanctum',
+  ),
+  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Matching\\Enums\\MatchField.php' => 
+  array (
+  ),
+  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Ops\\Backup\\DrillResult.php' => 
+  array (
+  ),
+  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Programme\\ProgrammeServiceProvider.php' => 
+  array (
+    0 => 'laravel/framework',
+    1 => 'psr/container',
+  ),
+  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Reference\\Imports\\ReferenceDatasetException.php' => 
+  array (
+  ),
+  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Registry\\Events\\ImportDuplicatesSurfaced.php' => 
+  array (
+    0 => 'laravel/framework',
+  ),
+  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Registry\\Support\\UniqueIdentifier.php' => 
+  array (
+    0 => 'laravel/framework',
+  ),
+  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Reporting\\Export\\ReportFormat.php' => 
+  array (
+  ),
+  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Sync\\Sources\\SyncSource.php' => 
+  array (
+    0 => 'laravel/framework',
+  ),
+  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Registry\\ActivityImportController.php' => 
+  array (
+    0 => 'laravel/framework',
+    1 => 'symfony/http-foundation',
+    2 => 'laravel/sanctum',
+  ),
+  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Registry\\UploadDocumentRequest.php' => 
+  array (
+    0 => 'laravel/framework',
+    1 => 'symfony/http-foundation',
+    2 => 'laravel/sanctum',
+  ),
+  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Providers\\AppServiceProvider.php' => 
+  array (
+    0 => 'laravel/framework',
+    1 => 'symfony/http-foundation',
+    2 => 'laravel/sanctum',
+  ),
+  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Console\\Commands\\CreateAdminUser.php' => 
+  array (
+    0 => 'symfony/console',
+    1 => 'laravel/framework',
+    2 => 'laravel/sanctum',
+    3 => 'nesbot/carbon',
+  ),
+  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Access\\Support\\PasswordRules.php' => 
+  array (
+    0 => 'laravel/framework',
+  ),
+  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Audit\\Concerns\\Auditable.php' => 
+  array (
+  ),
+  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Benefit\\Models\\DoubleDippingRule.php' => 
+  array (
+    0 => 'laravel/framework',
+  ),
+  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Graduation\\Events\\BeneficiaryGraduated.php' => 
+  array (
+    0 => 'laravel/framework',
+    1 => 'laravel/sanctum',
+  ),
+  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Notification\\Support\\NotificationMessage.php' => 
+  array (
+    0 => 'laravel/framework',
+  ),
+  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Privacy\\Retention\\RetentionPolicy.php' => 
+  array (
+  ),
+  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Programme\\Enums\\ProgrammeStatus.php' => 
+  array (
+  ),
+  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Referral\\Models\\Referral.php' => 
+  array (
+    0 => 'laravel/framework',
+  ),
+  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Registry\\Services\\HouseholdMembershipService.php' => 
+  array (
+    0 => 'laravel/framework',
+    1 => 'nesbot/carbon',
+  ),
+  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Registry\\Services\\NullDuplicateChecker.php' => 
+  array (
+  ),
+  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Reporting\\Jobs\\RunDueReportSchedules.php' => 
+  array (
+    0 => 'laravel/framework',
+    1 => 'nesbot/carbon',
+  ),
+  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Notification\\NotificationController.php' => 
+  array (
+    0 => 'laravel/framework',
+    1 => 'symfony/http-foundation',
+    2 => 'nesbot/carbon',
+    3 => 'laravel/sanctum',
+  ),
+  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Registry\\ServiceRequestController.php' => 
+  array (
+    0 => 'laravel/framework',
+    1 => 'symfony/http-foundation',
+    2 => 'laravel/sanctum',
+    3 => 'nesbot/carbon',
+  ),
+  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Middleware\\CheckPermission.php' => 
+  array (
+    0 => 'laravel/framework',
+    1 => 'symfony/http-foundation',
+    2 => 'laravel/sanctum',
+  ),
+  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Auth\\ChangePasswordRequest.php' => 
+  array (
+    0 => 'laravel/framework',
+    1 => 'symfony/http-foundation',
+    2 => 'laravel/sanctum',
+  ),
+  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Registry\\BeneficiaryMatchSearchRequest.php' => 
+  array (
+    0 => 'laravel/framework',
+    1 => 'symfony/http-foundation',
+    2 => 'laravel/sanctum',
+  ),
+  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Resources\\BenefitImportBatchResource.php' => 
+  array (
+    0 => 'laravel/framework',
+    1 => 'symfony/http-foundation',
+    2 => 'nesbot/carbon',
+  ),
+  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Resources\\ReferralResource.php' => 
+  array (
+    0 => 'laravel/framework',
+    1 => 'symfony/http-foundation',
+    2 => 'nesbot/carbon',
+  ),
+  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Access\\AccessServiceProvider.php' => 
+  array (
+    0 => 'laravel/framework',
+    1 => 'psr/container',
+    2 => 'laravel/sanctum',
+  ),
+  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Access\\Events\\CrossMdaAccessGranted.php' => 
+  array (
+    0 => 'laravel/framework',
+    1 => 'laravel/sanctum',
+  ),
+  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Benefit\\Exceptions\\ProcessingConsentRequiredException.php' => 
+  array (
+  ),
+  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Benefit\\Services\\Verifiers\\OtpVerifier.php' => 
+  array (
+    0 => 'laravel/framework',
+    1 => 'laravel/sanctum',
+  ),
+  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Grievance\\Services\\GrievanceService.php' => 
+  array (
+    0 => 'laravel/framework',
+    1 => 'laravel/sanctum',
+    2 => 'nesbot/carbon',
+  ),
+  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Matching\\Engine\\MatchingEngine.php' => 
+  array (
+    0 => 'laravel/framework',
+  ),
+  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Programme\\Enums\\ProgrammeType.php' => 
+  array (
+  ),
+  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Registry\\Imports\\Adapters\\SourceAdapterRegistry.php' => 
+  array (
+  ),
+  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Registry\\Models\\ServiceRequest.php' => 
+  array (
+    0 => 'laravel/framework',
+  ),
+  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Registry\\Services\\ServiceRequestService.php' => 
+  array (
+    0 => 'laravel/framework',
+    1 => 'laravel/sanctum',
+    2 => 'nesbot/carbon',
+  ),
+  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Registry\\Support\\IdentifierHasher.php' => 
+  array (
+    0 => 'laravel/framework',
+  ),
+  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Sync\\SyncServiceProvider.php' => 
+  array (
+    0 => 'laravel/framework',
+    1 => 'psr/container',
+  ),
+  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Programme\\ActivityController.php' => 
+  array (
+    0 => 'laravel/framework',
+    1 => 'symfony/http-foundation',
+    2 => 'laravel/sanctum',
+  ),
+  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Grievance\\TransitionGrievanceRequest.php' => 
+  array (
+    0 => 'laravel/framework',
+    1 => 'symfony/http-foundation',
+    2 => 'laravel/sanctum',
+  ),
+  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Registry\\RevokeServiceGrantRequest.php' => 
+  array (
+    0 => 'laravel/framework',
+    1 => 'symfony/http-foundation',
+    2 => 'laravel/sanctum',
+  ),
+  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Registry\\UploadActivityImportRequest.php' => 
   array (
     0 => 'laravel/framework',
     1 => 'symfony/http-foundation',
@@ -32086,94 +31925,102 @@ return [
     0 => 'laravel/framework',
     1 => 'symfony/http-foundation',
   ),
-  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Resources\\HouseholdMembershipResource.php' => 
+  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Resources\\GrievanceResource.php' => 
   array (
     0 => 'laravel/framework',
     1 => 'symfony/http-foundation',
     2 => 'nesbot/carbon',
   ),
-  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Resources\\ImportRowResource.php' => 
+  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Resources\\SyncRunResource.php' => 
   array (
     0 => 'laravel/framework',
     1 => 'symfony/http-foundation',
     2 => 'nesbot/carbon',
   ),
-  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Access\\Models\\Mda.php' => 
+  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Access\\Services\\MfaService.php' => 
+  array (
+    0 => 'pragmarx/google2fa',
+    1 => 'laravel/framework',
+  ),
+  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Benefit\\Enums\\BenefitStatus.php' => 
+  array (
+  ),
+  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Benefit\\Jobs\\ParseBenefitImport.php' => 
+  array (
+    0 => 'laravel/framework',
+    1 => 'league/flysystem',
+    2 => 'psr/http-message',
+    3 => 'symfony/http-foundation',
+  ),
+  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Matching\\Enums\\ExactMatchBehaviour.php' => 
+  array (
+  ),
+  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Programme\\Enums\\ActivityStatus.php' => 
+  array (
+  ),
+  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Programme\\Policies\\ActivityPolicy.php' => 
   array (
     0 => 'laravel/framework',
     1 => 'laravel/sanctum',
   ),
-  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Access\\Models\\MdaAccessGrant.php' => 
+  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Referral\\Services\\ReferralService.php' => 
   array (
     0 => 'laravel/framework',
-    1 => 'nesbot/carbon',
+    1 => 'laravel/sanctum',
+    2 => 'nesbot/carbon',
+  ),
+  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Registry\\Export\\BeneficiaryListExport.php' => 
+  array (
+    0 => 'laravel/framework',
+    1 => 'symfony/http-foundation',
+    2 => 'nesbot/carbon',
+  ),
+  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Registry\\Models\\ImportRow.php' => 
+  array (
+    0 => 'laravel/framework',
+  ),
+  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Reporting\\Gis\\GeoBoundary.php' => 
+  array (
+    0 => 'laravel/framework',
+  ),
+  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Reporting\\Services\\MdaActionRequiredService.php' => 
+  array (
+    0 => 'laravel/framework',
+    1 => 'laravel/sanctum',
+  ),
+  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Access\\LoginActivityController.php' => 
+  array (
+    0 => 'laravel/framework',
+    1 => 'symfony/http-foundation',
+  ),
+  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\AuthController.php' => 
+  array (
+    0 => 'laravel/framework',
+    1 => 'symfony/http-foundation',
+    2 => 'laravel/sanctum',
+    3 => 'nesbot/carbon',
+  ),
+  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Benefit\\BenefitFlagController.php' => 
+  array (
+    0 => 'laravel/framework',
+    1 => 'symfony/http-foundation',
+    2 => 'laravel/sanctum',
+    3 => 'nesbot/carbon',
+  ),
+  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Reporting\\MdaActionRequiredController.php' => 
+  array (
+    0 => 'laravel/framework',
+    1 => 'symfony/http-foundation',
     2 => 'laravel/sanctum',
   ),
-  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Access\\Services\\RolePermissionService.php' => 
-  array (
-    0 => 'laravel/framework',
-    1 => 'laravel/sanctum',
-  ),
-  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Benefit\\Enums\\BenefitFlagStatus.php' => 
+  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Concerns\\AuthResponses.php' => 
   array (
   ),
-  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Benefit\\Enums\\BenefitType.php' => 
-  array (
-  ),
-  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Matching\\Contracts\\MatchScorer.php' => 
-  array (
-    0 => 'laravel/framework',
-  ),
-  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Matching\\Services\\MatchingConfigService.php' => 
-  array (
-    0 => 'laravel/framework',
-    1 => 'laravel/sanctum',
-  ),
-  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Ops\\Backup\\BackupCipher.php' => 
-  array (
-  ),
-  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Registry\\Enums\\Lga.php' => 
-  array (
-    0 => 'laravel/framework',
-  ),
-  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Registry\\Policies\\BeneficiaryDocumentPolicy.php' => 
-  array (
-    0 => 'laravel/framework',
-    1 => 'laravel/sanctum',
-  ),
-  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Registry\\Services\\CandidateGatherer.php' => 
-  array (
-    0 => 'laravel/framework',
-  ),
-  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Reporting\\Events\\ReportReady.php' => 
-  array (
-    0 => 'laravel/framework',
-  ),
-  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Reporting\\Export\\PdfExporter.php' => 
-  array (
-    0 => 'laravel/framework',
-    1 => 'dompdf/dompdf',
-  ),
-  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Reporting\\Jobs\\RefreshDashboardSnapshots.php' => 
-  array (
-    0 => 'laravel/framework',
-  ),
-  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Sync\\Jobs\\RunDueSyncConnectors.php' => 
-  array (
-    0 => 'laravel/framework',
-  ),
-  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Audit\\AuditLogController.php' => 
+  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Grievance\\StoreGrievanceRequest.php' => 
   array (
     0 => 'laravel/framework',
     1 => 'symfony/http-foundation',
-    2 => 'nesbot/carbon',
-  ),
-  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Sharing\\DataSharingController.php' => 
-  array (
-    0 => 'laravel/framework',
-    1 => 'symfony/http-foundation',
-    2 => 'nesbot/carbon',
-    3 => 'laravel/sanctum',
+    2 => 'laravel/sanctum',
   ),
   'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Registry\\AddHouseholdMemberRequest.php' => 
   array (
@@ -32181,134 +32028,287 @@ return [
     1 => 'symfony/http-foundation',
     2 => 'laravel/sanctum',
   ),
-  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Resources\\SyncConnectorResource.php' => 
+  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Resources\\HouseholdResource.php' => 
   array (
     0 => 'laravel/framework',
     1 => 'symfony/http-foundation',
     2 => 'nesbot/carbon',
-    3 => 'laravel/sanctum',
   ),
-  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Registry\\Events\\BeneficiaryAccessRevoked.php' => 
+  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Console\\Commands\\EnforceDataRetention.php' => 
+  array (
+    0 => 'symfony/console',
+    1 => 'laravel/framework',
+  ),
+  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Access\\Concerns\\MdaScoped.php' => 
+  array (
+  ),
+  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Access\\Enums\\RoleKey.php' => 
+  array (
+  ),
+  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Audit\\Services\\AuditQueryService.php' => 
+  array (
+    0 => 'laravel/framework',
+    1 => 'laravel/sanctum',
+    2 => 'nesbot/carbon',
+  ),
+  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Benefit\\Exceptions\\DeliveryNotAuthorizedException.php' => 
+  array (
+  ),
+  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Benefit\\Models\\Benefit.php' => 
+  array (
+    0 => 'laravel/framework',
+  ),
+  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Benefit\\Services\\DoubleDippingDetector.php' => 
+  array (
+    0 => 'laravel/framework',
+    1 => 'nesbot/carbon',
+  ),
+  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Matching\\Scoring\\FieldNormalizer.php' => 
+  array (
+  ),
+  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Notification\\Models\\NotificationPreference.php' => 
   array (
     0 => 'laravel/framework',
     1 => 'laravel/sanctum',
   ),
-  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Registry\\RevokeServiceGrantRequest.php' => 
-  array (
-    0 => 'laravel/framework',
-    1 => 'symfony/http-foundation',
-    2 => 'laravel/sanctum',
-  ),
-  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Registry\\Support\\CanonicalSchema.php' => 
-  array (
-  ),
-  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Registry\\Support\\NormalizationService.php' => 
-  array (
-  ),
-  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Registry\\Imports\\ColumnMapper.php' => 
-  array (
-  ),
-  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Registry\\Models\\ImportMappingTemplate.php' => 
+  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Programme\\Services\\ProgrammeMatcher.php' => 
   array (
     0 => 'laravel/framework',
   ),
-  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Registry\\Services\\ImportMappingService.php' => 
+  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Registry\\Enums\\ConsentStatus.php' => 
+  array (
+  ),
+  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Registry\\Enums\\DocumentType.php' => 
   array (
     0 => 'laravel/framework',
-    1 => 'league/flysystem',
-    2 => 'psr/http-message',
-    3 => 'symfony/http-foundation',
-    4 => 'nesbot/carbon',
-    5 => 'laravel/sanctum',
   ),
-  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Registry\\ConfirmMappingRequest.php' => 
+  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Registry\\Imports\\ImportRowValidator.php' => 
   array (
     0 => 'laravel/framework',
-    1 => 'symfony/http-foundation',
-    2 => 'laravel/sanctum',
   ),
-  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Sync\\Services\\ConnectorMappingService.php' => 
+  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Reporting\\Models\\DashboardSnapshot.php' => 
+  array (
+    0 => 'laravel/framework',
+  ),
+  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Reporting\\Services\\DashboardMetricsService.php' => 
   array (
     0 => 'laravel/framework',
     1 => 'nesbot/carbon',
     2 => 'laravel/sanctum',
   ),
-  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Sync\\ConfirmConnectorMappingRequest.php' => 
+  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Sync\\Jobs\\RunDueSyncConnectors.php' => 
+  array (
+    0 => 'laravel/framework',
+  ),
+  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Access\\UserController.php' => 
   array (
     0 => 'laravel/framework',
     1 => 'symfony/http-foundation',
     2 => 'laravel/sanctum',
-  ),
-  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Registry\\Support\\RegistrationSourceRule.php' => 
-  array (
-  ),
-  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Reference\\Imports\\AdministrativeDivisionLoader.php' => 
-  array (
-    0 => 'laravel/framework',
-  ),
-  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Reference\\Imports\\DivisionLoadResult.php' => 
-  array (
-  ),
-  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Reference\\Imports\\LoadAdministrativeDivisions.php' => 
-  array (
-    0 => 'symfony/console',
-    1 => 'laravel/framework',
-  ),
-  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Reference\\Imports\\ReferenceDatasetException.php' => 
-  array (
-  ),
-  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Reference\\Models\\Lga.php' => 
-  array (
-    0 => 'laravel/framework',
-  ),
-  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Reference\\Models\\Ward.php' => 
-  array (
-    0 => 'laravel/framework',
-  ),
-  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Reference\\ReferenceServiceProvider.php' => 
-  array (
-    0 => 'laravel/framework',
-    1 => 'psr/container',
-    2 => 'symfony/console',
-  ),
-  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Reference\\Services\\ReferenceDataCache.php' => 
-  array (
-    0 => 'laravel/framework',
-    1 => 'psr/simple-cache',
   ),
   'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Reference\\AdministrativeDivisionController.php' => 
   array (
     0 => 'laravel/framework',
     1 => 'symfony/http-foundation',
   ),
-  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Reference\\ListWardsRequest.php' => 
+  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Benefit\\RecordBenefitRequest.php' => 
+  array (
+    0 => 'laravel/framework',
+    1 => 'symfony/http-foundation',
+    2 => 'laravel/sanctum',
+  ),
+  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Registry\\UpdateHouseholdRequest.php' => 
+  array (
+    0 => 'laravel/framework',
+    1 => 'symfony/http-foundation',
+    2 => 'laravel/sanctum',
+  ),
+  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Benefit\\Services\\VerifierRegistry.php' => 
+  array (
+  ),
+  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Graduation\\GraduationServiceProvider.php' => 
+  array (
+    0 => 'laravel/framework',
+    1 => 'psr/container',
+  ),
+  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Matching\\Scoring\\Comparators\\DateProximityComparator.php' => 
+  array (
+  ),
+  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Reference\\Models\\Lga.php' => 
+  array (
+    0 => 'laravel/framework',
+  ),
+  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Registry\\Enums\\OwnershipTransferStatus.php' => 
+  array (
+  ),
+  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Registry\\Enums\\RegistrationSource.php' => 
+  array (
+  ),
+  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Registry\\Events\\ServiceRequestRaised.php' => 
+  array (
+    0 => 'laravel/framework',
+    1 => 'laravel/sanctum',
+  ),
+  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Registry\\Policies\\HouseholdPolicy.php' => 
+  array (
+    0 => 'laravel/framework',
+    1 => 'laravel/sanctum',
+  ),
+  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Registry\\Services\\BeneficiaryLookupService.php' => 
+  array (
+    0 => 'laravel/framework',
+  ),
+  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Reporting\\Exceptions\\InvalidReportDefinitionException.php' => 
+  array (
+  ),
+  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Reporting\\Listeners\\DeliverScheduledReport.php' => 
+  array (
+    0 => 'laravel/framework',
+    1 => 'laravel/sanctum',
+    2 => 'symfony/mailer',
+  ),
+  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Reporting\\Support\\DashboardFilter.php' => 
+  array (
+    0 => 'laravel/framework',
+    1 => 'symfony/http-foundation',
+    2 => 'nesbot/carbon',
+  ),
+  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Sync\\Sources\\SyncSourceResolver.php' => 
+  array (
+    0 => 'laravel/framework',
+  ),
+  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\MfaController.php' => 
+  array (
+    0 => 'laravel/framework',
+    1 => 'symfony/http-foundation',
+    2 => 'laravel/sanctum',
+    3 => 'nesbot/carbon',
+  ),
+  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Programme\\EnrollmentController.php' => 
+  array (
+    0 => 'laravel/framework',
+    1 => 'symfony/http-foundation',
+    2 => 'laravel/sanctum',
+    3 => 'nesbot/carbon',
+  ),
+  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Registry\\BeneficiaryRoutingController.php' => 
+  array (
+    0 => 'laravel/framework',
+    1 => 'symfony/http-foundation',
+    2 => 'laravel/sanctum',
+  ),
+  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Reporting\\AdminSettingsController.php' => 
   array (
     0 => 'laravel/framework',
     1 => 'symfony/http-foundation',
   ),
-  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Programme\\Models\\ActivityLocation.php' => 
+  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Resources\\ProgrammeResource.php' => 
   array (
     0 => 'laravel/framework',
+    1 => 'symfony/http-foundation',
+    2 => 'nesbot/carbon',
   ),
-  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Programme\\Services\\ActivityLocationService.php' => 
+  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Resources\\ReportScheduleResource.php' => 
   array (
     0 => 'laravel/framework',
+    1 => 'symfony/http-foundation',
+    2 => 'nesbot/carbon',
   ),
-  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Programme\\Concerns\\ValidatesLocationSet.php' => 
+  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Console\\Commands\\PerfBenchmark.php' => 
   array (
+    0 => 'symfony/console',
+    1 => 'laravel/framework',
+    2 => 'nesbot/carbon',
   ),
-  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Reference\\Imports\\SeedJigawaLgas.php' => 
+  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Console\\Commands\\SyncPermissions.php' => 
   array (
     0 => 'symfony/console',
     1 => 'laravel/framework',
   ),
-  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Registry\\Support\\NameSplitter.php' => 
+  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Access\\Events\\MfaChallengeFailed.php' => 
+  array (
+    0 => 'laravel/framework',
+    1 => 'laravel/sanctum',
+  ),
+  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Access\\Events\\MfaDisabled.php' => 
+  array (
+    0 => 'laravel/framework',
+    1 => 'laravel/sanctum',
+  ),
+  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Referral\\ReferralServiceProvider.php' => 
+  array (
+    0 => 'laravel/framework',
+    1 => 'psr/container',
+  ),
+  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Registry\\Models\\OwnershipTransferRequest.php' => 
+  array (
+    0 => 'laravel/framework',
+    1 => 'laravel/sanctum',
+  ),
+  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Registry\\RegistryServiceProvider.php' => 
+  array (
+    0 => 'laravel/framework',
+    1 => 'psr/container',
+    2 => 'symfony/console',
+  ),
+  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Registry\\Services\\ConsentGate.php' => 
+  array (
+    0 => 'laravel/framework',
+  ),
+  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Registry\\Support\\CanonicalSchema.php' => 
   array (
   ),
-  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Registry\\Support\\RepairDoubledNames.php' => 
+  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Reporting\\Export\\SensitiveMasker.php' => 
   array (
-    0 => 'symfony/console',
-    1 => 'laravel/framework',
+  ),
+  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Reporting\\Gis\\BoundaryLoader.php' => 
+  array (
+    0 => 'laravel/framework',
+  ),
+  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Reporting\\Jobs\\RefreshDashboardSnapshots.php' => 
+  array (
+    0 => 'laravel/framework',
+  ),
+  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Reporting\\ReportingServiceProvider.php' => 
+  array (
+    0 => 'laravel/framework',
+    1 => 'psr/container',
+    2 => 'symfony/console',
+  ),
+  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Benefit\\DoubleDippingRuleController.php' => 
+  array (
+    0 => 'laravel/framework',
+    1 => 'symfony/http-foundation',
+    2 => 'laravel/sanctum',
+  ),
+  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Reporting\\AdHocReportController.php' => 
+  array (
+    0 => 'laravel/framework',
+    1 => 'symfony/http-foundation',
+    2 => 'laravel/sanctum',
+  ),
+  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Access\\UpdateUserRequest.php' => 
+  array (
+    0 => 'laravel/framework',
+    1 => 'symfony/http-foundation',
+    2 => 'laravel/sanctum',
+  ),
+  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Reporting\\UpdateReportScheduleRequest.php' => 
+  array (
+    0 => 'laravel/framework',
+    1 => 'symfony/http-foundation',
+    2 => 'laravel/sanctum',
+  ),
+  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Resources\\GraduationEventResource.php' => 
+  array (
+    0 => 'laravel/framework',
+    1 => 'symfony/http-foundation',
+    2 => 'nesbot/carbon',
+  ),
+  'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Resources\\HouseholdMembershipResource.php' => 
+  array (
+    0 => 'laravel/framework',
+    1 => 'symfony/http-foundation',
     2 => 'nesbot/carbon',
   ),
 ),
@@ -78298,6 +78298,7 @@ return [
           'user' => 'App\\Domain\\Access\\Models\\User',
           'auditlogger' => 'App\\Domain\\Audit\\Services\\AuditLogger',
           'importstatus' => 'App\\Domain\\Registry\\Enums\\ImportStatus',
+          'registrationsource' => 'App\\Domain\\Registry\\Enums\\RegistrationSource',
           'columnmapper' => 'App\\Domain\\Registry\\Imports\\ColumnMapper',
           'spreadsheetreader' => 'App\\Domain\\Registry\\Imports\\SpreadsheetReader',
           'importbatch' => 'App\\Domain\\Registry\\Models\\ImportBatch',
@@ -78413,6 +78414,7 @@ return [
               'user' => 'App\\Domain\\Access\\Models\\User',
               'auditlogger' => 'App\\Domain\\Audit\\Services\\AuditLogger',
               'importstatus' => 'App\\Domain\\Registry\\Enums\\ImportStatus',
+              'registrationsource' => 'App\\Domain\\Registry\\Enums\\RegistrationSource',
               'columnmapper' => 'App\\Domain\\Registry\\Imports\\ColumnMapper',
               'spreadsheetreader' => 'App\\Domain\\Registry\\Imports\\SpreadsheetReader',
               'importbatch' => 'App\\Domain\\Registry\\Models\\ImportBatch',
@@ -78471,6 +78473,7 @@ return [
               'user' => 'App\\Domain\\Access\\Models\\User',
               'auditlogger' => 'App\\Domain\\Audit\\Services\\AuditLogger',
               'importstatus' => 'App\\Domain\\Registry\\Enums\\ImportStatus',
+              'registrationsource' => 'App\\Domain\\Registry\\Enums\\RegistrationSource',
               'columnmapper' => 'App\\Domain\\Registry\\Imports\\ColumnMapper',
               'spreadsheetreader' => 'App\\Domain\\Registry\\Imports\\SpreadsheetReader',
               'importbatch' => 'App\\Domain\\Registry\\Models\\ImportBatch',
@@ -78530,6 +78533,7 @@ return [
               'user' => 'App\\Domain\\Access\\Models\\User',
               'auditlogger' => 'App\\Domain\\Audit\\Services\\AuditLogger',
               'importstatus' => 'App\\Domain\\Registry\\Enums\\ImportStatus',
+              'registrationsource' => 'App\\Domain\\Registry\\Enums\\RegistrationSource',
               'columnmapper' => 'App\\Domain\\Registry\\Imports\\ColumnMapper',
               'spreadsheetreader' => 'App\\Domain\\Registry\\Imports\\SpreadsheetReader',
               'importbatch' => 'App\\Domain\\Registry\\Models\\ImportBatch',

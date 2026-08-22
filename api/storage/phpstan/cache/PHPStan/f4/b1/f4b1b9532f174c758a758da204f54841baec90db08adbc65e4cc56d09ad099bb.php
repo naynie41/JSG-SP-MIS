@@ -2,7 +2,7 @@
 
 // osfsl-C:/Users/ACER/Desktop/JSG-SP-MIS/JSG-SP-MIS/api/database/factories/LgaFactory.php-PHPStan\BetterReflection\Reflection\ReflectionClass-Database\Factories\LgaFactory
 return \PHPStan\Cache\CacheItem::__set_state(array(
-   'variableKey' => 'v2-00a2c60ea9edd98bc71992ba40441ea2157d8276e1697acce2f8dbc190656390-8.3.31-6.70.0.1',
+   'variableKey' => 'v2-b57688ac7971817012f234b4fb2de84b5c807b1388d46bf66dff835621a138af-8.3.31-6.70.0.1',
    'data' => 
   array (
     'locatedSource' => 
@@ -35,7 +35,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
     array (
     ),
     'startLine' => 20,
-    'endLine' => 46,
+    'endLine' => 56,
     'startColumn' => 1,
     'endColumn' => 1,
     'parentClassName' => 'Illuminate\\Database\\Eloquent\\Factories\\Factory',
@@ -85,6 +85,55 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         array (
         ),
       ),
+      'next' => 
+      array (
+        'declaringClassName' => 'Database\\Factories\\LgaFactory',
+        'implementingClassName' => 'Database\\Factories\\LgaFactory',
+        'name' => 'next',
+        'modifiers' => 20,
+        'type' => 
+        array (
+          'class' => 'PHPStan\\BetterReflection\\Reflection\\ReflectionNamedType',
+          'data' => 
+          array (
+            'name' => 'int',
+            'isIdentifier' => true,
+          ),
+        ),
+        'default' => 
+        array (
+          'code' => '0',
+          'attributes' => 
+          array (
+            'startLine' => 31,
+            'endLine' => 31,
+            'startTokenPos' => 69,
+            'startFilePos' => 923,
+            'endTokenPos' => 69,
+            'endFilePos' => 923,
+          ),
+        ),
+        'docComment' => '/**
+ * Walks the 27 enum cases in order rather than picking at random.
+ *
+ * `lgas.code` is unique, so a random pick makes any test that creates two LGAs
+ * fail roughly one run in twenty-seven — a flake that looks like an unrelated bug
+ * and is nearly impossible to reproduce on demand.
+ */',
+        'attributes' => 
+        array (
+        ),
+        'startLine' => 31,
+        'endLine' => 31,
+        'startColumn' => 5,
+        'endColumn' => 33,
+        'isPromoted' => false,
+        'declaredAtCompileTime' => true,
+        'immediateVirtual' => false,
+        'immediateHooks' => 
+        array (
+        ),
+      ),
     ),
     'immediateMethods' => 
     array (
@@ -110,8 +159,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         'docComment' => '/**
  * @return array<string, mixed>
  */',
-        'startLine' => 27,
-        'endLine' => 40,
+        'startLine' => 36,
+        'endLine' => 50,
         'startColumn' => 5,
         'endColumn' => 5,
         'couldThrow' => false,
@@ -149,8 +198,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             'attributes' => 
             array (
             ),
-            'startLine' => 42,
-            'endLine' => 42,
+            'startLine' => 52,
+            'endLine' => 52,
             'startColumn' => 29,
             'endColumn' => 40,
             'parameterIndex' => 0,
@@ -171,8 +220,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         array (
         ),
         'docComment' => NULL,
-        'startLine' => 42,
-        'endLine' => 45,
+        'startLine' => 52,
+        'endLine' => 55,
         'startColumn' => 5,
         'endColumn' => 5,
         'couldThrow' => false,

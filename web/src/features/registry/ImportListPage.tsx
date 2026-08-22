@@ -18,10 +18,22 @@ import type { ImportBatch } from './types'
 import layout from '@/features/shared/formLayout.module.css'
 import styles from './registry.module.css'
 
+/**
+ * Where this file's data came from — the batch's provenance (PRD §6.1).
+ *
+ * The distinction that matters is SELF-SOURCED (the MDA collected it) versus MINED from
+ * an external register. A SOCU upload additionally has to carry each row's SOCU id, so
+ * the record can be traced back — the mapping step enforces that.
+ *
+ * Source is not ownership: a SOCU-mined record is still owned by the first MDA to import
+ * it (FR-OWN-01).
+ */
 const SOURCE_OPTIONS = [
-  { value: '', label: 'Excel / CSV (auto-detect)' },
-  { value: 'kobo', label: 'Kobo Collect export' },
-  { value: 'odk', label: 'ODK export' },
+  { value: '', label: 'Our own data — Excel / CSV (auto-detect)' },
+  { value: 'kobo', label: 'Our own data — Kobo Collect export' },
+  { value: 'odk', label: 'Our own data — ODK export' },
+  { value: 'socu', label: 'Mined from SOCU' },
+  { value: 'government_system', label: 'Mined from another government system' },
 ]
 
 export interface ImportListPageProps {
@@ -168,7 +180,17 @@ export function ImportListPage({ readOnly = false }: ImportListPageProps = {}) {
               helper="Only if you know which of your activities delivered to these people."
             />
           </div>
-          <SelectField label="Source" options={SOURCE_OPTIONS} value={source} onChange={(e) => setSource(e.target.value)} />
+          <SelectField
+            label="Data source"
+            options={SOURCE_OPTIONS}
+            value={source}
+            onChange={(e) => setSource(e.target.value)}
+            helper={
+              source === 'socu'
+                ? 'You will be asked to map each row’s SOCU record ID at the mapping step. Records stay owned by your MDA.'
+                : 'Where this data came from. It is recorded on every record, and does not affect who owns them.'
+            }
+          />
           {programmeOptions.length === 0 && (
             <p className={layout.alert} role="status">
               No catalog programme is available yet. Programmes are created centrally — ask a System
