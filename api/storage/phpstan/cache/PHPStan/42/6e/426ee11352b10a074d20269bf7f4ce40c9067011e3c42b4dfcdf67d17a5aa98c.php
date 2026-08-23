@@ -2,7 +2,7 @@
 
 // odsl-C:\Users\ACER\Desktop\JSG-SP-MIS\JSG-SP-MIS\api\app\Domain\Reporting\Models\ReportRun.php-PHPStan\BetterReflection\Reflection\ReflectionClass-App\Domain\Reporting\Models\ReportRun
 return \PHPStan\Cache\CacheItem::__set_state(array(
-   'variableKey' => 'v2-6.70.0.1-8.3.31-e843f9debeb21f19966d25ed0f47f7cc5866f1ad2e9248d3084b03d8e5cdf5fd',
+   'variableKey' => 'v2-6.70.0.1-8.3.31-5386016caf18aaed4ecdfe5f378bba919406ab244ce83068f8f3399c014f5bda',
    'data' => 
   array (
     'locatedSource' => 
@@ -55,7 +55,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
     array (
     ),
     'startLine' => 42,
-    'endLine' => 111,
+    'endLine' => 127,
     'startColumn' => 1,
     'endColumn' => 1,
     'parentClassName' => 'Illuminate\\Database\\Eloquent\\Model',
@@ -184,6 +184,64 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         'startColumn' => 5,
         'endColumn' => 42,
       ),
+      'KEY_ADHOC' => 
+      array (
+        'declaringClassName' => 'App\\Domain\\Reporting\\Models\\ReportRun',
+        'implementingClassName' => 'App\\Domain\\Reporting\\Models\\ReportRun',
+        'name' => 'KEY_ADHOC',
+        'modifiers' => 1,
+        'type' => NULL,
+        'value' => 
+        array (
+          'code' => '\'adhoc\'',
+          'attributes' => 
+          array (
+            'startLine' => 55,
+            'endLine' => 55,
+            'startTokenPos' => 111,
+            'startFilePos' => 1808,
+            'endTokenPos' => 111,
+            'endFilePos' => 1814,
+          ),
+        ),
+        'docComment' => '/** Report keys whose run carries a `definition` rather than a catalogue key. */',
+        'attributes' => 
+        array (
+        ),
+        'startLine' => 55,
+        'endLine' => 55,
+        'startColumn' => 5,
+        'endColumn' => 37,
+      ),
+      'KEY_SEGMENT' => 
+      array (
+        'declaringClassName' => 'App\\Domain\\Reporting\\Models\\ReportRun',
+        'implementingClassName' => 'App\\Domain\\Reporting\\Models\\ReportRun',
+        'name' => 'KEY_SEGMENT',
+        'modifiers' => 1,
+        'type' => NULL,
+        'value' => 
+        array (
+          'code' => '\'segment\'',
+          'attributes' => 
+          array (
+            'startLine' => 57,
+            'endLine' => 57,
+            'startTokenPos' => 122,
+            'startFilePos' => 1849,
+            'endTokenPos' => 122,
+            'endFilePos' => 1857,
+          ),
+        ),
+        'docComment' => NULL,
+        'attributes' => 
+        array (
+        ),
+        'startLine' => 57,
+        'endLine' => 57,
+        'startColumn' => 5,
+        'endColumn' => 41,
+      ),
     ),
     'immediateProperties' => 
     array (
@@ -199,20 +257,20 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
           'code' => '\'report_runs\'',
           'attributes' => 
           array (
-            'startLine' => 54,
-            'endLine' => 54,
-            'startTokenPos' => 107,
-            'startFilePos' => 1717,
-            'endTokenPos' => 107,
-            'endFilePos' => 1729,
+            'startLine' => 59,
+            'endLine' => 59,
+            'startTokenPos' => 131,
+            'startFilePos' => 1884,
+            'endTokenPos' => 131,
+            'endFilePos' => 1896,
           ),
         ),
         'docComment' => NULL,
         'attributes' => 
         array (
         ),
-        'startLine' => 54,
-        'endLine' => 54,
+        'startLine' => 59,
+        'endLine' => 59,
         'startColumn' => 5,
         'endColumn' => 37,
         'isPromoted' => false,
@@ -234,12 +292,12 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
           'code' => '[\'report_key\', \'report_label\', \'format\', \'status\', \'scope_kind\', \'scope_label\', \'scope_governance\', \'scope_mda_ids\', \'scope_programme_ids\', \'params\', \'definition\', \'row_count\', \'file_path\', \'file_name\', \'error\', \'requested_by\', \'requested_mda_id\', \'schedule_id\', \'recipient_user_ids\', \'delivery\', \'completed_at\']',
           'attributes' => 
           array (
-            'startLine' => 59,
-            'endLine' => 64,
-            'startTokenPos' => 118,
-            'startFilePos' => 1800,
-            'endTokenPos' => 183,
-            'endFilePos' => 2150,
+            'startLine' => 64,
+            'endLine' => 69,
+            'startTokenPos' => 142,
+            'startFilePos' => 1967,
+            'endTokenPos' => 207,
+            'endFilePos' => 2317,
           ),
         ),
         'docComment' => '/**
@@ -248,8 +306,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         'attributes' => 
         array (
         ),
-        'startLine' => 59,
-        'endLine' => 64,
+        'startLine' => 64,
+        'endLine' => 69,
         'startColumn' => 5,
         'endColumn' => 6,
         'isPromoted' => false,
@@ -284,8 +342,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         'docComment' => '/**
  * @return array<string, string>
  */',
-        'startLine' => 69,
-        'endLine' => 81,
+        'startLine' => 74,
+        'endLine' => 86,
         'startColumn' => 5,
         'endColumn' => 5,
         'couldThrow' => false,
@@ -323,8 +381,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             'attributes' => 
             array (
             ),
-            'startLine' => 84,
-            'endLine' => 84,
+            'startLine' => 89,
+            'endLine' => 89,
             'startColumn' => 36,
             'endColumn' => 49,
             'parameterIndex' => 0,
@@ -345,8 +403,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         array (
         ),
         'docComment' => '/** Users allowed to access this run: the requester plus any scheduled recipients. */',
-        'startLine' => 84,
-        'endLine' => 87,
+        'startLine' => 89,
+        'endLine' => 92,
         'startColumn' => 5,
         'endColumn' => 5,
         'couldThrow' => false,
@@ -398,9 +456,16 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         'attributes' => 
         array (
         ),
-        'docComment' => '/** The ad-hoc definition this run was built from, if it is an ad-hoc report. */',
-        'startLine' => 90,
-        'endLine' => 93,
+        'docComment' => '/**
+ * The ad-hoc definition this run was built from, if it is an ad-hoc report.
+ *
+ * Keyed on `report_key`, not merely on `definition` being present: the segment
+ * builder persists a definition of its own shape, and dispatching on presence alone
+ * would hand a segment run to the ad-hoc aggregator — which would either fail or,
+ * worse, render a different report than the one that was requested and audited.
+ */',
+        'startLine' => 102,
+        'endLine' => 109,
         'startColumn' => 5,
         'endColumn' => 5,
         'couldThrow' => false,
@@ -434,8 +499,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         array (
         ),
         'docComment' => '/** Rebuild the scope this run was requested under. */',
-        'startLine' => 96,
-        'endLine' => 105,
+        'startLine' => 112,
+        'endLine' => 121,
         'startColumn' => 5,
         'endColumn' => 5,
         'couldThrow' => false,
@@ -469,8 +534,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         array (
         ),
         'docComment' => NULL,
-        'startLine' => 107,
-        'endLine' => 110,
+        'startLine' => 123,
+        'endLine' => 126,
         'startColumn' => 5,
         'endColumn' => 5,
         'couldThrow' => false,

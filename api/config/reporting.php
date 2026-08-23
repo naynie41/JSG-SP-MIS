@@ -16,6 +16,25 @@ declare(strict_types=1);
 */
 
 return [
+    /*
+    | Minimum group size in AGGREGATE report output (NFR-PRV-01).
+    |
+    | A count of 1 in "female, 20-25, one ward" identifies a person to anyone local, and
+    | a filter builder makes that trivial to reach. Below this number, a group publishes
+    | no count. Configurable because how much disclosure risk is acceptable is a
+    | stakeholder/DPO decision, not an engineering one (CLAUDE.md §8) — set it to 0 only
+    | with that decision recorded.
+    |
+    | It does NOT apply to an MDA segmenting its own beneficiaries: it already holds
+    | those records, so there is nothing to re-identify.
+    */
+    'min_cell_size' => (int) env('REPORTING_MIN_CELL_SIZE', 5),
+
+    // Segment-builder table page size, and the ceiling on a single preview.
+    'segment_page_size' => (int) env('REPORTING_SEGMENT_PAGE_SIZE', 50),
+
+    // Above this many matching rows, an export is queued rather than built in-request.
+    'segment_sync_max' => (int) env('REPORTING_SEGMENT_SYNC_MAX', 2000),
     // "New registrations this period" window.
     'current_period_days' => (int) env('REPORTING_PERIOD_DAYS', 30),
 

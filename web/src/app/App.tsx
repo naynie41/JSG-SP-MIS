@@ -76,6 +76,7 @@ const ImportBatchPage = lazy(() => import('@/features/registry/ImportBatchPage')
 const AdjudicateQueuePage = lazy(() => import('@/features/registry/AdjudicateQueuePage').then((m) => ({ default: m.AdjudicateQueuePage })))
 const DuplicateSearchPage = lazy(() => import('@/features/registry/DuplicateSearchPage').then((m) => ({ default: m.DuplicateSearchPage })))
 const ServiceRequestsPage = lazy(() => import('@/features/registry/ServiceRequestsPage').then((m) => ({ default: m.ServiceRequestsPage })))
+const NotificationPreferencesPage = lazy(() => import('@/features/notifications/NotificationPreferencesPage').then((m) => ({ default: m.NotificationPreferencesPage })))
 const MatchingConfigPage = lazy(() => import('@/features/registry/MatchingConfigPage').then((m) => ({ default: m.MatchingConfigPage })))
 const RegistryHubPage = lazy(() => import('@/features/registry/RegistryHubPage').then((m) => ({ default: m.RegistryHubPage })))
 
@@ -196,6 +197,8 @@ export function App() {
         <Route path="/imports/:id/adjudicate" element={<AdjudicateQueuePage />} />
         <Route path="/duplicate-search" element={<DuplicateSearchPage />} />
         <Route path="/service-requests" element={<ServiceRequestsPage />} />
+        {/* Addressable so notification emails can point somewhere real (FR-NOT-02). */}
+        <Route path="/settings/notifications" element={<NotificationPreferencesPage />} />
         <Route path="/matching" element={<MatchingConfigPage />} />
         <Route path="/registry" element={<RegistryHubPage />} />
         <Route path="/coordination" element={<CoordinationHubPage />} />

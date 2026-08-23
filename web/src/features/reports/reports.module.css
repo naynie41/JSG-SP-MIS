@@ -88,3 +88,177 @@
   place-items: center;
   padding: var(--space-8);
 }
+
+/* ------------------------------------------------- segment builder (FR-RPT-03) */
+
+.tierBadges {
+  display: flex;
+  gap: var(--space-2);
+  flex-wrap: wrap;
+}
+
+/*
+ * Filters read as a dense control panel, not a form to fill top-to-bottom: people
+ * reach for two or three of a dozen dimensions and want the rest out of the way.
+ */
+.filterGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(15rem, 1fr));
+  gap: var(--space-4);
+  margin-block: var(--space-4);
+}
+
+.rangeField,
+.multiField {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  margin: 0;
+  padding: var(--space-3);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+}
+
+.rangeField {
+  flex-direction: row;
+  align-items: flex-end;
+}
+
+.rangeLegend {
+  padding-inline: var(--space-1);
+  color: var(--text-muted-strong);
+  font-size: var(--fs-label);
+  font-weight: 600;
+}
+
+.checkRow {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  font-size: var(--fs-label);
+}
+
+.builderActions {
+  display: flex;
+  align-items: flex-end;
+  flex-wrap: wrap;
+  gap: var(--space-3);
+  padding-top: var(--space-3);
+  border-top: 1px solid var(--border);
+}
+
+.segmentResult {
+  margin-top: var(--space-5);
+}
+
+.resultHead {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-3);
+  flex-wrap: wrap;
+}
+
+.resultTotal {
+  margin: 0;
+  font-size: var(--fs-body);
+}
+
+/* Wide tables scroll inside their own box; the page never scrolls sideways. */
+.tableScroll {
+  overflow-x: auto;
+  margin-top: var(--space-3);
+}
+
+.resultTable {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: var(--fs-label);
+  font-variant-numeric: tabular-nums;
+}
+
+.resultTable th,
+.resultTable td {
+  padding: var(--space-2) var(--space-3);
+  text-align: left;
+  border-bottom: 1px solid var(--border);
+  white-space: nowrap;
+}
+
+.resultTable th {
+  color: var(--text-muted-strong);
+  font-weight: 600;
+}
+
+/* ---- breakdown chart ---- */
+
+.chart {
+  margin: var(--space-4) 0 0;
+}
+
+.chartCaption {
+  color: var(--text-muted-strong);
+  font-size: var(--fs-label);
+  font-weight: 600;
+  margin-bottom: var(--space-2);
+}
+
+.chartList {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+
+.chartRow {
+  display: grid;
+  grid-template-columns: minmax(6rem, 12rem) 1fr auto;
+  align-items: center;
+  gap: var(--space-3);
+  font-size: var(--fs-label);
+}
+
+.chartLabel {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.chartTrack {
+  display: block;
+  height: 0.75rem;
+  border-radius: var(--radius-sm);
+  background: var(--surface-sunken, var(--border));
+  overflow: hidden;
+}
+
+.chartBar {
+  display: block;
+  height: 100%;
+  border-radius: var(--radius-sm);
+  background: var(--accent, var(--text-muted-strong));
+}
+
+/*
+ * A withheld group still occupies its row, hatched rather than measured — the absence
+ * of a bar would read as zero, which is a different and wrong claim.
+ */
+.chartBarSuppressed {
+  display: block;
+  height: 100%;
+  border-radius: var(--radius-sm);
+  background: repeating-linear-gradient(
+    45deg,
+    var(--border) 0,
+    var(--border) 4px,
+    transparent 4px,
+    transparent 8px
+  );
+}
+
+.chartValue {
+  font-variant-numeric: tabular-nums;
+  color: var(--text-muted-strong);
+}

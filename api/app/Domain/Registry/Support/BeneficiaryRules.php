@@ -53,7 +53,6 @@ final class BeneficiaryRules
             'last_name' => ['required', 'string', 'max:255'],
             // NIN/BVN are encrypted at rest; uniqueness runs on the keyed hash
             // columns (matching the partial DB indexes, WHERE <hash> IS NOT NULL).
-            // NIN/BVN are encrypted at rest; uniqueness runs on the keyed hash columns.
             // The FORMAT rule reports the actual length ("has 9"), which `digits:11`
             // could not — on a 200-row file that is the difference between finding the
             // bad row and hunting for it.
@@ -67,7 +66,10 @@ final class BeneficiaryRules
             'gender' => ['required', Rule::enum(Gender::class)],
             'address' => ['nullable', 'string', 'max:500'],
             'lga' => ['required', Rule::enum(Lga::class)],
-            'ward' => ['required', 'string', 'max:120'],
+            // Ward resolves against the administrative-division lookup ONCE that lookup
+            // is loaded; while it is empty the rule stands down rather than nulling every
+            // ward in every import. See KnownWard.
+            'ward' => ['required', 'string', 'max:120', new KnownWard],
         ];
     }
 

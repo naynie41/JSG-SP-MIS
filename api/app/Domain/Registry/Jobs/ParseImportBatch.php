@@ -16,6 +16,7 @@ use App\Domain\Registry\Imports\Adapters\SourceAdapterRegistry;
 use App\Domain\Registry\Imports\ColumnMapper;
 use App\Domain\Registry\Imports\ImportRowValidator;
 use App\Domain\Registry\Imports\SpreadsheetReader;
+use App\Domain\Registry\Models\Beneficiary;
 use App\Domain\Registry\Models\ImportBatch;
 use App\Domain\Registry\Models\ImportRow;
 use App\Domain\Registry\Services\BatchDuplicateScreener;
@@ -164,7 +165,7 @@ class ParseImportBatch implements ShouldQueue
 
                 // Deterministic-exact behaviour (FR-DUP-03/05): auto-link when so
                 // configured and there is an existing exact registry match.
-                [$resolution, $resolvedBeneficiaryId] = $this->autoResolve($match, $matchConfig);
+                [$resolution, $resolvedBeneficiaryId] = $this->autoResolve($match, $matchConfig, $batch->owner_mda_id);
 
                 ImportRow::create([
                     'import_batch_id' => $batch->id,
@@ -254,23 +255,42 @@ class ParseImportBatch implements ShouldQueue
     }
 
     /**
-     * Pre-resolve a row to LINK when the config auto-links exact matches and an
-     * existing registry beneficiary matched exactly. Otherwise leaves it for the
-     * officer to decide.
+     * Pre-resolve a row when the config auto-links exact matches and an existing registry
+     * beneficiary matched exactly. Otherwise leaves it for the officer to decide.
+     *
+     * OWN when the matched record already belongs to the uploading MDA — a re-upload of
+     * its own data — and LINK only when it belongs to someone else. Auto-linking a
+     * self-owned match would queue a request-to-serve against yourself, which
+     * `ServiceRequestService` refuses outright: the batch would sail through preview and
+     * then throw at commit. The committer re-derives this anyway; getting it right here
+     * is what makes the PREVIEW tell the officer the truth before they confirm.
      *
      * @param  array{band: ?string, candidates: ?list<array<string, mixed>>}  $match
      * @return array{0: ?string, 1: ?string} [resolution, resolved_beneficiary_id]
      */
-    private function autoResolve(array $match, ?MatchingConfig $config): array
+    private function autoResolve(array $match, ?MatchingConfig $config, string $uploadingMdaId): array
     {
         if ($config === null || $match['band'] !== 'exact' || $config->exact_match_behaviour !== ExactMatchBehaviour::AutoLink) {
             return [null, null];
         }
 
         foreach ($match['candidates'] ?? [] as $candidate) {
-            if (($candidate['type'] ?? null) === 'registry' && ($candidate['band'] ?? null) === 'exact') {
-                return [ImportRowResolution::Link->value, (string) $candidate['reference']];
+            if (($candidate['type'] ?? null) !== 'registry' || ($candidate['band'] ?? null) !== 'exact') {
+                continue;
             }
+
+            $id = (string) $candidate['reference'];
+            $ownerMdaId = Beneficiary::query()
+                ->withoutGlobalScope(MdaScope::class)
+                ->whereKey($id)
+                ->value('owner_mda_id');
+
+            return [
+                $ownerMdaId === $uploadingMdaId
+                    ? ImportRowResolution::Own->value
+                    : ImportRowResolution::Link->value,
+                $id,
+            ];
         }
 
         return [null, null];

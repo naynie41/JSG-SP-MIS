@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Http\Controllers\Api\V1\Registry;
 
 use App\Domain\Registry\Support\BeneficiaryRules;
+use App\Domain\Registry\Support\DescribesConstraint;
 use App\Http\Controllers\Controller;
 use App\Support\ApiResponse;
 use Illuminate\Http\JsonResponse;
@@ -60,6 +61,13 @@ class RegistryRulesController extends Controller
 
         if ($rule instanceof Enum) {
             return 'enum';
+        }
+
+        // A rule that knows its own shape says so. Falling back to the class name would
+        // publish `NationalIdentifier` where the page previously read `digits:11` —
+        // structurally fine, but it hides the one thing this page exists to show.
+        if ($rule instanceof DescribesConstraint) {
+            return $rule->constraintToken();
         }
 
         return class_basename($rule::class);

@@ -200,6 +200,20 @@ A task is done only when **all** of these are true:
   but malformed, reject the whole row to the error report; do not save it (FR-REG-05). Absent
   optional NIN/BVN is valid. Non-identity fields that fail validation are dropped/flagged for that
   row and the row still saves (FR-REG-09). Never partial-save an identity field.
+  The concrete SHAPES live in one place — `config/registry.php` → `identity` (NIN/BVN digit
+  counts, phone national length, earliest date of birth) — and are read by the rule objects in
+  `app/Domain/Registry/Support/`. Never scatter a format literal into a request, importer, or
+  connector; and never expose these as admin-editable — they are national identifier standards,
+  not stakeholder preferences. Ward is the exception that proves the rule: it resolves against
+  the `wards` lookup only once an authoritative division list is loaded, because enforcing an
+  empty list would null every ward on every import (see GEO.1).
+- **A self-owned match is never a request-to-serve.** When dedup matches a record the UPLOADING
+  MDA already owns (a re-upload of its own data), there is no second record and no Service Request —
+  an MDA does not ask permission to serve its own beneficiary. The row resolves as "already in your
+  registry" and the EXISTING person receives a new intervention under the batch's programme/activity:
+  the duplicate ROW is blocked, the person is not. Which outcome applies is decided by OWNERSHIP of
+  the matched record and re-derived at commit — never trusted from a stored label, because
+  `ServiceRequestService::request()` refuses a self-owned target and would abort the whole commit.
 - **Request-to-serve requires Owner-MDA approval.** A non-owner MDA that matches a duplicate must
   raise a Service Request; the Owner MDA accepts/declines (FR-OWN-06). Interventions may be recorded
   ONLY after acceptance. On acceptance the requester gains READ access to the full beneficiary
@@ -276,7 +290,19 @@ A task is done only when **all** of these are true:
 - **Never** headline executive/reporting outputs with *gross registrations*, and never show a coverage
   **percentage** or index without a real denominator loaded. The headline is **net unique beneficiaries**;
   coverage is absolute counts until a population/eligibility denominator exists. (See Phase 6E.)
-- **Never** auto-map identity columns on import. Raw MDA files pass through the Data Import & Mapping layer
+- **Report filters are DERIVED from the canonical schema, never hand-listed** (FR-RPT-03). A field is
+  offered as a segment filter only if `CanonicalSchema::FIELDS` declares a `segment` spec on it, and
+  an IDENTITY field is excluded structurally regardless of what is declared — NIN, BVN, phone and
+  name pick out individuals, not segments, and are masked in output. A new segmentable field appears
+  as a filter with no code change in the reporting layer, the API, or the UI.
+- **The segment builder is not a bypass of the export matrix.** Rows-vs-counts is decided by
+  `beneficiary.export` (SECURITY.md §3): Partners and Executives get aggregates only, an MDA Admin
+  gets its own MDA, SP Coordination goes cross-MDA. Scope is applied to the query BEFORE any user
+  filter, so a filter can only narrow within it. Identifiers stay masked without `export.reveal_pii`.
+- **Minimum cell size on aggregate output** (`reporting.min_cell_size`, default 5, NFR-PRV-01). A
+  count of 1 in a narrow segment identifies a person, so groups below N publish no count and say they
+  were withheld. It does NOT apply to an MDA segmenting its OWN beneficiaries — it holds those
+  records already — and a total is suppressed only where the caller cannot see the rows anyway.- **Never** auto-map identity columns on import. Raw MDA files pass through the Data Import & Mapping layer
   (canonical schema + normalization) before validation/dedup. Column mappings for **NIN, BVN, name, phone**
   must be **explicitly confirmed every import** (templates may pre-fill but never skip confirmation), the
   raw file is never mutated, and normalization is for comparison only — the original value is always stored.

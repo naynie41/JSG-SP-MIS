@@ -17,12 +17,18 @@ use Illuminate\Contracts\Validation\ValidationRule;
  * column the partial-unique DB indexes guard. Cross-MDA (register once, serve
  * many), mirroring the old plaintext behaviour exactly.
  */
-class UniqueIdentifier implements ValidationRule
+class UniqueIdentifier implements DescribesConstraint, ValidationRule
 {
     public function __construct(
         private readonly string $field,
         private readonly string $message,
     ) {}
+
+    /** The shape this enforces, for the read-only rules page in the admin console. */
+    public function constraintToken(): string
+    {
+        return 'unique';
+    }
 
     public function validate(string $attribute, mixed $value, Closure $fail): void
     {

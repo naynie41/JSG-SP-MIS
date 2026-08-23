@@ -2,7 +2,7 @@
 
 // odsl-C:\Users\ACER\Desktop\JSG-SP-MIS\JSG-SP-MIS\api\app\Domain\Registry\Models\ImportBatch.php-PHPStan\BetterReflection\Reflection\ReflectionClass-App\Domain\Registry\Models\ImportBatch
 return \PHPStan\Cache\CacheItem::__set_state(array(
-   'variableKey' => 'v2-6.70.0.1-8.3.31-6ae8b543f65c3f9947409abe4af4612009140a62f247849d907a95a05c4edee2',
+   'variableKey' => 'v2-6.70.0.1-8.3.31-bdd797a5fc0346637d3fe0b60a4ba3d4a0ccffbc099707004fd61cbe9eb41fc4',
    'data' => 
   array (
     'locatedSource' => 
@@ -56,6 +56,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
  * @property int $dropped_field_rows
  * @property int $committed_rows
  * @property int $served_rows
+ * @property int $own_rows
  * @property int $skipped_rows
  * @property string|null $error
  * @property Carbon|null $created_at
@@ -67,8 +68,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
     'attributes' => 
     array (
     ),
-    'startLine' => 65,
-    'endLine' => 286,
+    'startLine' => 66,
+    'endLine' => 289,
     'startColumn' => 1,
     'endColumn' => 1,
     'parentClassName' => 'Illuminate\\Database\\Eloquent\\Model',
@@ -99,20 +100,20 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
           'code' => '\'import_batches\'',
           'attributes' => 
           array (
-            'startLine' => 69,
-            'endLine' => 69,
+            'startLine' => 70,
+            'endLine' => 70,
             'startTokenPos' => 123,
-            'startFilePos' => 2513,
+            'startFilePos' => 2540,
             'endTokenPos' => 123,
-            'endFilePos' => 2528,
+            'endFilePos' => 2555,
           ),
         ),
         'docComment' => NULL,
         'attributes' => 
         array (
         ),
-        'startLine' => 69,
-        'endLine' => 69,
+        'startLine' => 70,
+        'endLine' => 70,
         'startColumn' => 5,
         'endColumn' => 40,
         'isPromoted' => false,
@@ -131,15 +132,15 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         'type' => NULL,
         'default' => 
         array (
-          'code' => '[\'owner_mda_id\', \'uploaded_by\', \'original_filename\', \'stored_path\', \'source\', \'activity_id\', \'programme_id\', \'draft_activity\', \'detected_headers\', \'column_map\', \'source_signature\', \'mapping_confirmed_at\', \'mapping_confirmed_by\', \'mapping_template_id\', \'mapping_prefilled_from_id\', \'status\', \'total_rows\', \'valid_rows\', \'invalid_rows\', \'rejected_rows\', \'dropped_field_rows\', \'committed_rows\', \'served_rows\', \'skipped_rows\', \'error\']',
+          'code' => '[\'owner_mda_id\', \'uploaded_by\', \'original_filename\', \'stored_path\', \'source\', \'activity_id\', \'programme_id\', \'draft_activity\', \'detected_headers\', \'column_map\', \'source_signature\', \'mapping_confirmed_at\', \'mapping_confirmed_by\', \'mapping_template_id\', \'mapping_prefilled_from_id\', \'status\', \'total_rows\', \'valid_rows\', \'invalid_rows\', \'rejected_rows\', \'dropped_field_rows\', \'committed_rows\', \'served_rows\', \'own_rows\', \'skipped_rows\', \'error\']',
           'attributes' => 
           array (
-            'startLine' => 122,
-            'endLine' => 148,
+            'startLine' => 123,
+            'endLine' => 150,
             'startTokenPos' => 345,
-            'startFilePos' => 4417,
-            'endTokenPos' => 422,
-            'endFilePos' => 5054,
+            'startFilePos' => 4444,
+            'endTokenPos' => 425,
+            'endFilePos' => 5101,
           ),
         ),
         'docComment' => '/**
@@ -148,8 +149,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         'attributes' => 
         array (
         ),
-        'startLine' => 122,
-        'endLine' => 148,
+        'startLine' => 123,
+        'endLine' => 150,
         'startColumn' => 5,
         'endColumn' => 6,
         'isPromoted' => false,
@@ -185,8 +186,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
  * Whether a human has confirmed which source column is which canonical field
  * (CLAUDE.md §11). Nothing may be parsed, screened or committed until this is true.
  */',
-        'startLine' => 75,
-        'endLine' => 78,
+        'startLine' => 76,
+        'endLine' => 79,
         'startColumn' => 5,
         'endColumn' => 5,
         'couldThrow' => false,
@@ -222,8 +223,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         'docComment' => '/**
  * Whether the batch is waiting on the queue (nothing for a human to do yet).
  */',
-        'startLine' => 83,
-        'endLine' => 86,
+        'startLine' => 84,
+        'endLine' => 87,
         'startColumn' => 5,
         'endColumn' => 5,
         'couldThrow' => false,
@@ -282,8 +283,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
  * pending → processing, which touches the row; a batch whose timestamp is frozen is
  * one nothing has looked at.
  */',
-        'startLine' => 95,
-        'endLine' => 103,
+        'startLine' => 96,
+        'endLine' => 104,
         'startColumn' => 5,
         'endColumn' => 5,
         'couldThrow' => false,
@@ -323,8 +324,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
  * error anywhere, because nothing failed: the job was never picked up. Computed
  * SERVER-side because only the server\'s clock can be trusted for this.
  */',
-        'startLine' => 112,
-        'endLine' => 117,
+        'startLine' => 113,
+        'endLine' => 118,
         'startColumn' => 5,
         'endColumn' => 5,
         'couldThrow' => false,
@@ -360,8 +361,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         'docComment' => '/**
  * @return array<string, string>
  */',
-        'startLine' => 153,
-        'endLine' => 171,
+        'startLine' => 155,
+        'endLine' => 174,
         'startColumn' => 5,
         'endColumn' => 5,
         'couldThrow' => false,
@@ -399,8 +400,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
  *
  * @return list<string>
  */',
-        'startLine' => 178,
-        'endLine' => 181,
+        'startLine' => 181,
+        'endLine' => 184,
         'startColumn' => 5,
         'endColumn' => 5,
         'couldThrow' => false,
@@ -436,8 +437,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         'docComment' => '/**
  * @return BelongsTo<Mda, $this>
  */',
-        'startLine' => 186,
-        'endLine' => 189,
+        'startLine' => 189,
+        'endLine' => 192,
         'startColumn' => 5,
         'endColumn' => 5,
         'couldThrow' => false,
@@ -476,8 +477,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
  *
  * @return BelongsTo<Activity, $this>
  */',
-        'startLine' => 197,
-        'endLine' => 200,
+        'startLine' => 200,
+        'endLine' => 203,
         'startColumn' => 5,
         'endColumn' => 5,
         'couldThrow' => false,
@@ -519,8 +520,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
  *
  * @return BelongsTo<Programme, $this>
  */',
-        'startLine' => 211,
-        'endLine' => 214,
+        'startLine' => 214,
+        'endLine' => 217,
         'startColumn' => 5,
         'endColumn' => 5,
         'couldThrow' => false,
@@ -580,8 +581,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
  * null while the id is still there, and falling back to `programme_id` in that case
  * is right: the batch\'s own record of its programme outlives the activity row.
  */',
-        'startLine' => 224,
-        'endLine' => 234,
+        'startLine' => 227,
+        'endLine' => 237,
         'startColumn' => 5,
         'endColumn' => 5,
         'couldThrow' => false,
@@ -617,8 +618,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         'docComment' => '/**
  * @return BelongsTo<User, $this>
  */',
-        'startLine' => 239,
-        'endLine' => 242,
+        'startLine' => 242,
+        'endLine' => 245,
         'startColumn' => 5,
         'endColumn' => 5,
         'couldThrow' => false,
@@ -654,8 +655,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         'docComment' => '/**
  * @return BelongsTo<User, $this>
  */',
-        'startLine' => 247,
-        'endLine' => 250,
+        'startLine' => 250,
+        'endLine' => 253,
         'startColumn' => 5,
         'endColumn' => 5,
         'couldThrow' => false,
@@ -695,8 +696,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
  *
  * @return BelongsTo<ImportMappingTemplate, $this>
  */',
-        'startLine' => 259,
-        'endLine' => 262,
+        'startLine' => 262,
+        'endLine' => 265,
         'startColumn' => 5,
         'endColumn' => 5,
         'couldThrow' => false,
@@ -739,8 +740,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
  *
  * @return BelongsTo<ImportBatch, $this>
  */',
-        'startLine' => 274,
-        'endLine' => 277,
+        'startLine' => 277,
+        'endLine' => 280,
         'startColumn' => 5,
         'endColumn' => 5,
         'couldThrow' => false,
@@ -776,8 +777,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         'docComment' => '/**
  * @return HasMany<ImportRow, $this>
  */',
-        'startLine' => 282,
-        'endLine' => 285,
+        'startLine' => 285,
+        'endLine' => 288,
         'startColumn' => 5,
         'endColumn' => 5,
         'couldThrow' => false,

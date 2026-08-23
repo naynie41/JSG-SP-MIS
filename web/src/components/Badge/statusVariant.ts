@@ -34,6 +34,7 @@ export const STATUS_VARIANTS: Record<string, BadgeVariant> = {
   // Import row resolution (FR-DUP-05)
   'resolution.new': 'success',
   'resolution.link': 'info',
+  'resolution.own': 'info',
   'resolution.skip': 'neutral',
 
   // Programme / activity lifecycle (FR-PRG-01/02)

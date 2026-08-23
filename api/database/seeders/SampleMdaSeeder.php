@@ -11,7 +11,11 @@ use Illuminate\Database\Seeder;
 
 /**
  * A couple of sample MDAs so the app has data to show on first run. Idempotent
- * (keyed by name). Safe for local/staging; real MDAs are created via the admin UI.
+ * (keyed by name). Local/staging only; real MDAs are created via the admin UI.
+ *
+ * Guarded against production like every other sample seeder. An MDA is not harmless
+ * demo data: `beneficiaries.owner_mda_id` points at it, so a fictional ministry that
+ * reaches a live database acquires real records and cannot simply be deleted afterwards.
  */
 class SampleMdaSeeder extends Seeder
 {
@@ -35,6 +39,10 @@ class SampleMdaSeeder extends Seeder
 
     public function run(): void
     {
+        if (app()->environment('production')) {
+            return;
+        }
+
         foreach (self::MDAS as $mda) {
             Mda::updateOrCreate(
                 ['name' => $mda['name']],

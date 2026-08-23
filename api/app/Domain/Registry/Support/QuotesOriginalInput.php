@@ -20,9 +20,6 @@ namespace App\Domain\Registry\Support;
  */
 trait QuotesOriginalInput
 {
-    /** Where the importer stashes the untouched row for message rendering. */
-    public const ORIGINALS_KEY = '__original';
-
     /** @var array<string, mixed> */
     protected array $data = [];
 
@@ -39,7 +36,7 @@ trait QuotesOriginalInput
     /** What the source wrote for this field, falling back to the value being judged. */
     protected function originalFor(string $attribute, mixed $value): string
     {
-        $originals = $this->data[self::ORIGINALS_KEY] ?? [];
+        $originals = $this->data[OriginalInput::KEY] ?? [];
         $original = is_array($originals) ? ($originals[$attribute] ?? null) : null;
 
         return (string) ($original === null || $original === '' ? $value : $original);

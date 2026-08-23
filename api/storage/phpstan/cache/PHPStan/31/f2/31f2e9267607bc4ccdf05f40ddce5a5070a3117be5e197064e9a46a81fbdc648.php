@@ -2,7 +2,7 @@
 
 // odsl-C:\Users\ACER\Desktop\JSG-SP-MIS\JSG-SP-MIS\api\app\Domain\Registry\Support\UniqueIdentifier.php-PHPStan\BetterReflection\Reflection\ReflectionClass-App\Domain\Registry\Support\UniqueIdentifier
 return \PHPStan\Cache\CacheItem::__set_state(array(
-   'variableKey' => 'v2-6.70.0.1-8.3.31-ac82dc3fe5f6c6430deb9b4d3dc4ce39db164aaac54e9b0e150336cb9aa8e350',
+   'variableKey' => 'v2-6.70.0.1-8.3.31-7e70ab4333cbae8ad9fb6bc65e8a657bc615ecdac6fccd30ba959908e47e9141',
    'data' => 
   array (
     'locatedSource' => 
@@ -34,13 +34,14 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
     array (
     ),
     'startLine' => 20,
-    'endLine' => 46,
+    'endLine' => 52,
     'startColumn' => 1,
     'endColumn' => 1,
     'parentClassName' => NULL,
     'implementsClassNames' => 
     array (
-      0 => 'Illuminate\\Contracts\\Validation\\ValidationRule',
+      0 => 'App\\Domain\\Registry\\Support\\DescribesConstraint',
+      1 => 'Illuminate\\Contracts\\Validation\\ValidationRule',
     ),
     'traitClassNames' => 
     array (
@@ -194,6 +195,41 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         'currentClassName' => 'App\\Domain\\Registry\\Support\\UniqueIdentifier',
         'aliasName' => NULL,
       ),
+      'constraintToken' => 
+      array (
+        'name' => 'constraintToken',
+        'parameters' => 
+        array (
+        ),
+        'returnsReference' => false,
+        'returnType' => 
+        array (
+          'class' => 'PHPStan\\BetterReflection\\Reflection\\ReflectionNamedType',
+          'data' => 
+          array (
+            'name' => 'string',
+            'isIdentifier' => true,
+          ),
+        ),
+        'attributes' => 
+        array (
+        ),
+        'docComment' => '/** The shape this enforces, for the read-only rules page in the admin console. */',
+        'startLine' => 28,
+        'endLine' => 31,
+        'startColumn' => 5,
+        'endColumn' => 5,
+        'couldThrow' => false,
+        'isClosure' => false,
+        'isGenerator' => false,
+        'isVariadic' => false,
+        'modifiers' => 1,
+        'namespace' => 'App\\Domain\\Registry\\Support',
+        'declaringClassName' => 'App\\Domain\\Registry\\Support\\UniqueIdentifier',
+        'implementingClassName' => 'App\\Domain\\Registry\\Support\\UniqueIdentifier',
+        'currentClassName' => 'App\\Domain\\Registry\\Support\\UniqueIdentifier',
+        'aliasName' => NULL,
+      ),
       'validate' => 
       array (
         'name' => 'validate',
@@ -218,8 +254,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             'attributes' => 
             array (
             ),
-            'startLine' => 27,
-            'endLine' => 27,
+            'startLine' => 33,
+            'endLine' => 33,
             'startColumn' => 30,
             'endColumn' => 46,
             'parameterIndex' => 0,
@@ -244,8 +280,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             'attributes' => 
             array (
             ),
-            'startLine' => 27,
-            'endLine' => 27,
+            'startLine' => 33,
+            'endLine' => 33,
             'startColumn' => 49,
             'endColumn' => 60,
             'parameterIndex' => 1,
@@ -270,8 +306,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             'attributes' => 
             array (
             ),
-            'startLine' => 27,
-            'endLine' => 27,
+            'startLine' => 33,
+            'endLine' => 33,
             'startColumn' => 63,
             'endColumn' => 75,
             'parameterIndex' => 2,
@@ -292,8 +328,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         array (
         ),
         'docComment' => NULL,
-        'startLine' => 27,
-        'endLine' => 45,
+        'startLine' => 33,
+        'endLine' => 51,
         'startColumn' => 5,
         'endColumn' => 5,
         'couldThrow' => false,

@@ -39,17 +39,40 @@ class NotificationSubscriber
 {
     public function __construct(private readonly Notifier $notifier) {}
 
+    /**
+     * A non-owner MDA wants to serve one of this MDA's beneficiaries (FR-OWN-06).
+     *
+     * Framed as ACTION REQUIRED with somewhere to go, because nothing reaches the
+     * person until an approver here decides: a request left unread is a service not
+     * delivered. The body names the requesting MDA and the activity so the approver
+     * knows what they are being asked to allow before they log in.
+     *
+     * It names NO beneficiary. Email is not a secure channel (NDPA/NDPR minimisation),
+     * and this same text is what the email renders — so the person is identified by the
+     * LINK, behind authentication, scope and the audit trail, never in the message.
+     */
     public function handleServiceRequestRaised(ServiceRequestRaised $event): void
     {
-        // The owner MDA's approvers decide the request.
+        $request = $event->request;
+        $requester = $request->fromMda()->withoutGlobalScopes()->value('name') ?? 'Another MDA';
+        $activity = $request->activity()->value('name');
+
+        $under = $activity === null
+            ? '' // a request can precede any activity; inventing one would be a fiction
+            : ' under the activity “'.$activity.'”';
+
         $this->notifier->notify(
             new NotificationMessage(
                 type: 'service_request.created',
-                subject: 'New service request to review',
-                body: 'Another MDA has requested to serve a beneficiary your MDA owns.',
-                related: $event->request,
+                subject: 'Action required: service request awaiting your decision',
+                body: $requester.' has requested to serve a beneficiary your MDA owns'.$under.'. '
+                    .'Sign in to review the request and accept or decline it. '
+                    .'The beneficiary is not named in this message — open the request to see the record.',
+                related: $request,
+                actionPath: '/service-requests',
+                actionLabel: 'Review the request',
             ),
-            $this->approversIn($event->request->to_mda_id, 'beneficiary.approve'),
+            $this->approversIn($request->to_mda_id, 'beneficiary.approve'),
         );
     }
 
@@ -59,8 +82,11 @@ class NotificationSubscriber
             new NotificationMessage(
                 type: 'service_request.accepted',
                 subject: 'Service request accepted',
-                body: 'Your service request was accepted — your MDA may now serve this beneficiary.',
+                body: 'Your service request was accepted — your MDA may now serve this beneficiary. '
+                    .'Sign in to see the record and record the intervention.',
                 related: $event->request,
+                actionPath: '/service-requests',
+                actionLabel: 'Open the request',
             ),
             $this->requester($event->request->requested_by, $event->request->from_mda_id),
         );
@@ -97,6 +123,8 @@ class NotificationSubscriber
                 subject: 'Service request declined',
                 body: 'Your service request was declined'.($event->request->decision_reason !== null ? ': '.$event->request->decision_reason : '.'),
                 related: $event->request,
+                actionPath: '/service-requests',
+                actionLabel: 'Open the request',
             ),
             $this->requester($event->request->requested_by, $event->request->from_mda_id),
         );
@@ -154,6 +182,7 @@ class NotificationSubscriber
                 type: 'import.completed',
                 subject: 'Import finished: '.$event->batch->original_filename,
                 body: $event->committed.' registered, '.$event->served.' linked to an existing record, '
+                    .($event->own > 0 ? $event->own.' already in your registry, ' : '')
                     .$event->skipped.' not created.',
                 payload: ['committed' => $event->committed, 'served' => $event->served, 'skipped' => $event->skipped],
                 related: $event->batch,

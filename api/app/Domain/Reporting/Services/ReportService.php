@@ -12,6 +12,8 @@ use App\Domain\Reporting\Models\ReportSchedule;
 use App\Domain\Reporting\Reports\AdHoc\AdHocDefinition;
 use App\Domain\Reporting\Reports\AdHoc\AdHocReportBuilder;
 use App\Domain\Reporting\Reports\ReportCatalogue;
+use App\Domain\Reporting\Segments\SegmentAccess;
+use App\Domain\Reporting\Segments\SegmentDefinition;
 use App\Domain\Reporting\Support\DashboardScope;
 use RuntimeException;
 
@@ -76,6 +78,25 @@ class ReportService
             'report_label' => $definition->label(),
             'definition' => $definition->toArray(),
         ], $scope, $user->id, $user->mda_id);
+    }
+
+    /**
+     * Queue a SEGMENT builder export (FR-RPT-03).
+     *
+     * Both the query definition AND the resolved entitlement are persisted on the run.
+     * The definition answers "which population" for an auditor; the entitlement answers
+     * "on what authority" — tier, whether identifiers were revealed, whether small-cell
+     * suppression applied. Recording only the filters would leave the most important
+     * question about an export unanswerable after the fact.
+     */
+    public function queueSegmentExport(User $user, SegmentDefinition $definition, SegmentAccess $access, ReportFormat $format): ReportRun
+    {
+        return $this->createRun($format, [
+            'report_key' => ReportRun::KEY_SEGMENT,
+            'report_label' => $definition->label(),
+            'definition' => $definition->toArray(),
+            'params' => $access->toParams(),
+        ], $access->scope, $user->id, $user->mda_id);
     }
 
     /**

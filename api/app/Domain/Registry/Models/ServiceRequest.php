@@ -5,7 +5,9 @@ declare(strict_types=1);
 namespace App\Domain\Registry\Models;
 
 use App\Domain\Access\Models\Mda;
+use App\Domain\Access\Scopes\MdaScope;
 use App\Domain\Audit\Concerns\Auditable;
+use App\Domain\Programme\Models\Activity;
 use App\Domain\Registry\Enums\ServiceRequestStatus;
 use App\Domain\Registry\Policies\OwnerMdaPolicy;
 use Illuminate\Database\Eloquent\Concerns\HasUuids;
@@ -110,5 +112,20 @@ class ServiceRequest extends Model
     public function toMda(): BelongsTo
     {
         return $this->belongsTo(Mda::class, 'to_mda_id');
+    }
+
+    /**
+     * The REQUESTING MDA's activity the service would be delivered under (§10).
+     *
+     * Scope is bypassed because the reader is the OWNER MDA — the whole point of this
+     * record is that two MDAs are looking at it. Without the bypass the owner's
+     * approver, deciding whether to allow the delivery, could not see what they were
+     * being asked to allow. It exposes an activity NAME, never beneficiary data.
+     *
+     * @return BelongsTo<Activity, $this>
+     */
+    public function activity(): BelongsTo
+    {
+        return $this->belongsTo(Activity::class)->withoutGlobalScope(MdaScope::class);
     }
 }

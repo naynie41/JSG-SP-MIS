@@ -2,7 +2,7 @@
 
 // odsl-C:\Users\ACER\Desktop\JSG-SP-MIS\JSG-SP-MIS\api\app\Domain\Reference\Services\ReferenceDataCache.php-PHPStan\BetterReflection\Reflection\ReflectionClass-App\Domain\Reference\Services\ReferenceDataCache
 return \PHPStan\Cache\CacheItem::__set_state(array(
-   'variableKey' => 'v2-6.70.0.1-8.3.31-a4ab666aaa3e3f890fc5da3cecc2f89b28aa5ddbf0bc25f88431da6447593331',
+   'variableKey' => 'v2-6.70.0.1-8.3.31-b2920f29a2acf4c3973e6a4ac471d31b6cce33f80cbdeb2f76db9518f9a79aa0',
    'data' => 
   array (
     'locatedSource' => 
@@ -41,8 +41,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
     'attributes' => 
     array (
     ),
-    'startLine' => 28,
-    'endLine' => 99,
+    'startLine' => 30,
+    'endLine' => 145,
     'startColumn' => 1,
     'endColumn' => 1,
     'parentClassName' => NULL,
@@ -66,20 +66,20 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
           'code' => '\'reference.divisions.version\'',
           'attributes' => 
           array (
-            'startLine' => 30,
-            'endLine' => 30,
-            'startTokenPos' => 51,
-            'startFilePos' => 1065,
-            'endTokenPos' => 51,
-            'endFilePos' => 1093,
+            'startLine' => 32,
+            'endLine' => 32,
+            'startTokenPos' => 61,
+            'startFilePos' => 1154,
+            'endTokenPos' => 61,
+            'endFilePos' => 1182,
           ),
         ),
         'docComment' => NULL,
         'attributes' => 
         array (
         ),
-        'startLine' => 30,
-        'endLine' => 30,
+        'startLine' => 32,
+        'endLine' => 32,
         'startColumn' => 5,
         'endColumn' => 62,
       ),
@@ -95,20 +95,20 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
           'code' => '86400',
           'attributes' => 
           array (
-            'startLine' => 33,
-            'endLine' => 33,
-            'startTokenPos' => 64,
-            'startFilePos' => 1220,
-            'endTokenPos' => 64,
-            'endFilePos' => 1224,
+            'startLine' => 35,
+            'endLine' => 35,
+            'startTokenPos' => 74,
+            'startFilePos' => 1309,
+            'endTokenPos' => 74,
+            'endFilePos' => 1313,
           ),
         ),
         'docComment' => '/** Safety net only — a load flushes explicitly, so this rarely decides anything. */',
         'attributes' => 
         array (
         ),
-        'startLine' => 33,
-        'endLine' => 33,
+        'startLine' => 35,
+        'endLine' => 35,
         'startColumn' => 5,
         'endColumn' => 38,
       ),
@@ -140,8 +140,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         'docComment' => '/**
  * @return list<array<string, mixed>>
  */',
-        'startLine' => 38,
-        'endLine' => 56,
+        'startLine' => 40,
+        'endLine' => 58,
         'startColumn' => 5,
         'endColumn' => 5,
         'couldThrow' => false,
@@ -179,8 +179,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             'attributes' => 
             array (
             ),
-            'startLine' => 63,
-            'endLine' => 63,
+            'startLine' => 65,
+            'endLine' => 65,
             'startColumn' => 30,
             'endColumn' => 42,
             'parameterIndex' => 0,
@@ -205,8 +205,55 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
  *
  * @return list<array<string, mixed>>
  */',
-        'startLine' => 63,
-        'endLine' => 80,
+        'startLine' => 65,
+        'endLine' => 82,
+        'startColumn' => 5,
+        'endColumn' => 5,
+        'couldThrow' => false,
+        'isClosure' => false,
+        'isGenerator' => false,
+        'isVariadic' => false,
+        'modifiers' => 1,
+        'namespace' => 'App\\Domain\\Reference\\Services',
+        'declaringClassName' => 'App\\Domain\\Reference\\Services\\ReferenceDataCache',
+        'implementingClassName' => 'App\\Domain\\Reference\\Services\\ReferenceDataCache',
+        'currentClassName' => 'App\\Domain\\Reference\\Services\\ReferenceDataCache',
+        'aliasName' => NULL,
+      ),
+      'wardKeysByLgaCode' => 
+      array (
+        'name' => 'wardKeysByLgaCode',
+        'parameters' => 
+        array (
+        ),
+        'returnsReference' => false,
+        'returnType' => 
+        array (
+          'class' => 'PHPStan\\BetterReflection\\Reflection\\ReflectionNamedType',
+          'data' => 
+          array (
+            'name' => 'array',
+            'isIdentifier' => true,
+          ),
+        ),
+        'attributes' => 
+        array (
+        ),
+        'docComment' => '/**
+ * Every ward name folded to a comparison key, grouped by its LGA\'s code.
+ *
+ * Import validation asks "is this a real ward?" once per ROW, so it cannot go to the
+ * database each time — a 5,000-row file would issue 5,000 queries. This is the whole
+ * list in one cached array, keyed by the LGA `code` (which is the `Lga` enum value the
+ * beneficiary row normalizes to), so the check is an array lookup.
+ *
+ * Shape: `[\'birnin_kudu\' => [\'limawa\' => \'Limawa\', …], …]` — key for comparison,
+ * value kept for messages that need to name a real ward.
+ *
+ * @return array<string, array<string, string>>
+ */',
+        'startLine' => 97,
+        'endLine' => 126,
         'startColumn' => 5,
         'endColumn' => 5,
         'couldThrow' => false,
@@ -242,8 +289,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         'docComment' => '/**
  * Invalidate everything by moving the version every key is built from.
  */',
-        'startLine' => 85,
-        'endLine' => 88,
+        'startLine' => 131,
+        'endLine' => 134,
         'startColumn' => 5,
         'endColumn' => 5,
         'couldThrow' => false,
@@ -277,8 +324,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         array (
         ),
         'docComment' => NULL,
-        'startLine' => 90,
-        'endLine' => 93,
+        'startLine' => 136,
+        'endLine' => 139,
         'startColumn' => 5,
         'endColumn' => 5,
         'couldThrow' => false,
@@ -316,8 +363,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             'attributes' => 
             array (
             ),
-            'startLine' => 95,
-            'endLine' => 95,
+            'startLine' => 141,
+            'endLine' => 141,
             'startColumn' => 26,
             'endColumn' => 39,
             'parameterIndex' => 0,
@@ -338,8 +385,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         array (
         ),
         'docComment' => NULL,
-        'startLine' => 95,
-        'endLine' => 98,
+        'startLine' => 141,
+        'endLine' => 144,
         'startColumn' => 5,
         'endColumn' => 5,
         'couldThrow' => false,

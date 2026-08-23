@@ -192,6 +192,12 @@ class ImportBatchController extends Controller
                     // the client must treat them as optional.
                     'comparison' => $candidate['comparison'] ?? [],
                     'stage' => $candidate['stage'] ?? null,
+                    // Whose record this is, stated by the server rather than left for the
+                    // client to infer by comparing MDA ids. It decides which resolution
+                    // the officer is even offered — "already in your registry" versus a
+                    // cross-MDA request-to-serve — so it is policy, not presentation.
+                    'owned_by_you' => $candidate['type'] === 'registry'
+                        && $beneficiaries->get((string) $candidate['reference'])?->owner_mda_id === $model->owner_mda_id,
                     'reveal' => $reveal,
                 ];
             }
@@ -276,11 +282,37 @@ class ImportBatchController extends Controller
             );
         }
 
-        if ($resolution === ImportRowResolution::Link) {
+        if (in_array($resolution, ImportRowResolution::againstExisting(), true)) {
             $beneficiaryId = (string) $request->input('beneficiary_id');
             $registryIds = collect($row->match_candidates ?? [])->where('type', 'registry')->pluck('reference')->all();
             if (! in_array($beneficiaryId, $registryIds, true)) {
                 return ApiResponse::error('INVALID_MATCH', 'The selected beneficiary is not a match candidate for this row.', [], 422);
+            }
+
+            // LINK and OWN are not a preference — ownership decides which one is even
+            // available, so a mismatch is refused here rather than quietly corrected at
+            // commit. The officer sees the right choice while they can still act on it.
+            $ownerMdaId = Beneficiary::query()
+                ->withoutGlobalScope(MdaScope::class)
+                ->whereKey($beneficiaryId)
+                ->value('owner_mda_id');
+            $selfOwned = $ownerMdaId === $model->owner_mda_id;
+
+            if ($resolution === ImportRowResolution::Link && $selfOwned) {
+                return ApiResponse::error(
+                    'ALREADY_OWNED',
+                    'This beneficiary is already in your registry — an MDA does not request to serve its own record. Choose "already in your registry" to record a new intervention on the existing person.',
+                    [],
+                    422,
+                );
+            }
+            if ($resolution === ImportRowResolution::Own && ! $selfOwned) {
+                return ApiResponse::error(
+                    'NOT_OWNED',
+                    'This beneficiary belongs to another MDA — choose provide-service to raise a request to serve.',
+                    [],
+                    422,
+                );
             }
         }
 

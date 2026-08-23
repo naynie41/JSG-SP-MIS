@@ -50,6 +50,7 @@ use App\Http\Controllers\Api\V1\Reporting\MdaActionRequiredController;
 use App\Http\Controllers\Api\V1\Reporting\ReportController;
 use App\Http\Controllers\Api\V1\Reporting\ReportDefinitionController;
 use App\Http\Controllers\Api\V1\Reporting\ReportScheduleController;
+use App\Http\Controllers\Api\V1\Reporting\SegmentReportController;
 use App\Http\Controllers\Api\V1\Sharing\DataSharingController;
 use App\Http\Controllers\Api\V1\Sync\SyncController;
 use Illuminate\Support\Facades\Route;
@@ -654,6 +655,19 @@ Route::prefix('v1')->group(function (): void {
         | Ad-hoc report builder (FR-RPT-03). Compose from a whitelisted dataset →
         | preview → export. Registered before the /reports/{report} wildcard.
         */
+        /*
+        | Segment builder (FR-RPT-03): filter the registry by segmentable dimensions,
+        | preview a table/breakdown, export via the shared pipeline. `reporting.view`
+        | opens the builder; the EXPORT MATRIX is enforced inside (SegmentAccess), which
+        | is what decides rows-vs-counts — a permission on the route could not express
+        | "you may run this, but only aggregates come back".
+        */
+        Route::get('/reports/segments/dimensions', [SegmentReportController::class, 'dimensions'])
+            ->middleware('permission:reporting.view')->name('reports.segments.dimensions');
+        Route::post('/reports/segments/preview', [SegmentReportController::class, 'preview'])
+            ->middleware('permission:reporting.view')->name('reports.segments.preview');
+        Route::post('/reports/segments/export', [SegmentReportController::class, 'export'])
+            ->middleware(['permission:reporting.export', 'throttle:exports'])->name('reports.segments.export');
         Route::get('/reports/adhoc/datasets', [AdHocReportController::class, 'datasets'])
             ->middleware('permission:reporting.view')->name('reports.adhoc.datasets');
         Route::post('/reports/adhoc/preview', [AdHocReportController::class, 'preview'])

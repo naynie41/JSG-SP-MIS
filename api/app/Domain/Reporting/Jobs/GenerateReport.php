@@ -14,6 +14,10 @@ use App\Domain\Reporting\Export\ReportFormat;
 use App\Domain\Reporting\Models\ReportRun;
 use App\Domain\Reporting\Reports\AdHoc\AdHocReportBuilder;
 use App\Domain\Reporting\Reports\ReportBuilder;
+use App\Domain\Reporting\Segments\SegmentAccess;
+use App\Domain\Reporting\Segments\SegmentDefinition;
+use App\Domain\Reporting\Segments\SegmentDimensionRegistry;
+use App\Domain\Reporting\Segments\SegmentReportService;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
@@ -37,7 +41,7 @@ class GenerateReport implements ShouldQueue
 
     public function __construct(public readonly string $runId) {}
 
-    public function handle(ReportBuilder $builder, AdHocReportBuilder $adHoc, ReportExporterRegistry $exporters, AuditLogger $audit, BeneficiaryListExport $beneficiaryExport): void
+    public function handle(ReportBuilder $builder, AdHocReportBuilder $adHoc, ReportExporterRegistry $exporters, AuditLogger $audit, BeneficiaryListExport $beneficiaryExport, SegmentReportService $segments, SegmentDimensionRegistry $dimensions): void
     {
         $run = ReportRun::query()->find($this->runId);
         if ($run === null) {
@@ -53,6 +57,14 @@ class GenerateReport implements ShouldQueue
             $data = match (true) {
                 $definition !== null => $adHoc->build($definition, $scope),
                 $run->report_key === 'beneficiary_list' => $beneficiaryExport->fromRun($scope, $run->params),
+                // The segment builder renders from the CAPTURED definition + entitlement,
+                // never a re-resolution: the file is the population the requester was
+                // entitled to when they asked, whatever their roles are by the time the
+                // queue reaches it.
+                $run->report_key === 'segment' => $segments->toReportData(
+                    SegmentDefinition::fromArray((array) ($run->definition ?? []), $dimensions),
+                    SegmentAccess::fromParams((array) ($run->params ?? []), $scope),
+                ),
                 default => $builder->build($run->report_key, $scope),
             };
             $bytes = $exporters->for($format)->render($data);

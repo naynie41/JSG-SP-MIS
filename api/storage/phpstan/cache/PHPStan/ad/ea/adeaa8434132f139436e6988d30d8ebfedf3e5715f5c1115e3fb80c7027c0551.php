@@ -2,7 +2,7 @@
 
 // odsl-C:\Users\ACER\Desktop\JSG-SP-MIS\JSG-SP-MIS\api\app\Domain\Registry\Models\ServiceRequest.php-PHPStan\BetterReflection\Reflection\ReflectionClass-App\Domain\Registry\Models\ServiceRequest
 return \PHPStan\Cache\CacheItem::__set_state(array(
-   'variableKey' => 'v2-6.70.0.1-8.3.31-68d0c757d35761a76552ff59fe51789d44b2eb69a2b17a4a933611303f480883',
+   'variableKey' => 'v2-6.70.0.1-8.3.31-7ab380f4fde55b45fcf807f127648cb0407fea6670c84afed3b37c9e421067b1',
    'data' => 
   array (
     'locatedSource' => 
@@ -55,8 +55,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
     'attributes' => 
     array (
     ),
-    'startLine' => 46,
-    'endLine' => 114,
+    'startLine' => 48,
+    'endLine' => 131,
     'startColumn' => 1,
     'endColumn' => 1,
     'parentClassName' => 'Illuminate\\Database\\Eloquent\\Model',
@@ -85,20 +85,20 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
           'code' => '\'service_requests\'',
           'attributes' => 
           array (
-            'startLine' => 50,
-            'endLine' => 50,
-            'startTokenPos' => 81,
-            'startFilePos' => 1795,
-            'endTokenPos' => 81,
-            'endFilePos' => 1812,
+            'startLine' => 52,
+            'endLine' => 52,
+            'startTokenPos' => 91,
+            'startFilePos' => 1876,
+            'endTokenPos' => 91,
+            'endFilePos' => 1893,
           ),
         ),
         'docComment' => NULL,
         'attributes' => 
         array (
         ),
-        'startLine' => 50,
-        'endLine' => 50,
+        'startLine' => 52,
+        'endLine' => 52,
         'startColumn' => 5,
         'endColumn' => 42,
         'isPromoted' => false,
@@ -120,12 +120,12 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
           'code' => '[\'beneficiary_id\', \'from_mda_id\', \'to_mda_id\', \'activity_id\', \'status\', \'reason\', \'import_row_id\', \'requested_by\', \'decided_by\', \'decided_at\', \'decision_reason\']',
           'attributes' => 
           array (
-            'startLine' => 55,
-            'endLine' => 67,
-            'startTokenPos' => 92,
-            'startFilePos' => 1883,
-            'endTokenPos' => 127,
-            'endFilePos' => 2138,
+            'startLine' => 57,
+            'endLine' => 69,
+            'startTokenPos' => 102,
+            'startFilePos' => 1964,
+            'endTokenPos' => 137,
+            'endFilePos' => 2219,
           ),
         ),
         'docComment' => '/**
@@ -134,8 +134,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         'attributes' => 
         array (
         ),
-        'startLine' => 55,
-        'endLine' => 67,
+        'startLine' => 57,
+        'endLine' => 69,
         'startColumn' => 5,
         'endColumn' => 6,
         'isPromoted' => false,
@@ -170,8 +170,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         'docComment' => '/**
  * @return array<string, string>
  */',
-        'startLine' => 72,
-        'endLine' => 78,
+        'startLine' => 74,
+        'endLine' => 80,
         'startColumn' => 5,
         'endColumn' => 5,
         'couldThrow' => false,
@@ -210,8 +210,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
  *
  * @return list<string>
  */',
-        'startLine' => 86,
-        'endLine' => 89,
+        'startLine' => 88,
+        'endLine' => 91,
         'startColumn' => 5,
         'endColumn' => 5,
         'couldThrow' => false,
@@ -247,8 +247,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         'docComment' => '/**
  * @return BelongsTo<Beneficiary, $this>
  */',
-        'startLine' => 94,
-        'endLine' => 97,
+        'startLine' => 96,
+        'endLine' => 99,
         'startColumn' => 5,
         'endColumn' => 5,
         'couldThrow' => false,
@@ -284,8 +284,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         'docComment' => '/**
  * @return BelongsTo<Mda, $this>
  */',
-        'startLine' => 102,
-        'endLine' => 105,
+        'startLine' => 104,
+        'endLine' => 107,
         'startColumn' => 5,
         'endColumn' => 5,
         'couldThrow' => false,
@@ -321,8 +321,52 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         'docComment' => '/**
  * @return BelongsTo<Mda, $this>
  */',
-        'startLine' => 110,
-        'endLine' => 113,
+        'startLine' => 112,
+        'endLine' => 115,
+        'startColumn' => 5,
+        'endColumn' => 5,
+        'couldThrow' => false,
+        'isClosure' => false,
+        'isGenerator' => false,
+        'isVariadic' => false,
+        'modifiers' => 1,
+        'namespace' => 'App\\Domain\\Registry\\Models',
+        'declaringClassName' => 'App\\Domain\\Registry\\Models\\ServiceRequest',
+        'implementingClassName' => 'App\\Domain\\Registry\\Models\\ServiceRequest',
+        'currentClassName' => 'App\\Domain\\Registry\\Models\\ServiceRequest',
+        'aliasName' => NULL,
+      ),
+      'activity' => 
+      array (
+        'name' => 'activity',
+        'parameters' => 
+        array (
+        ),
+        'returnsReference' => false,
+        'returnType' => 
+        array (
+          'class' => 'PHPStan\\BetterReflection\\Reflection\\ReflectionNamedType',
+          'data' => 
+          array (
+            'name' => 'Illuminate\\Database\\Eloquent\\Relations\\BelongsTo',
+            'isIdentifier' => false,
+          ),
+        ),
+        'attributes' => 
+        array (
+        ),
+        'docComment' => '/**
+ * The REQUESTING MDA\'s activity the service would be delivered under (§10).
+ *
+ * Scope is bypassed because the reader is the OWNER MDA — the whole point of this
+ * record is that two MDAs are looking at it. Without the bypass the owner\'s
+ * approver, deciding whether to allow the delivery, could not see what they were
+ * being asked to allow. It exposes an activity NAME, never beneficiary data.
+ *
+ * @return BelongsTo<Activity, $this>
+ */',
+        'startLine' => 127,
+        'endLine' => 130,
         'startColumn' => 5,
         'endColumn' => 5,
         'couldThrow' => false,

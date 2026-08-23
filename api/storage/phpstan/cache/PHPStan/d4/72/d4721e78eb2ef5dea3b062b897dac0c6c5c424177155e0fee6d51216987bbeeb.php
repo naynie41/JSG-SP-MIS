@@ -2,7 +2,7 @@
 
 // odsl-C:\Users\ACER\Desktop\JSG-SP-MIS\JSG-SP-MIS\api\app\Domain\Reporting\Jobs\GenerateReport.php-PHPStan\BetterReflection\Reflection\ReflectionClass-App\Domain\Reporting\Jobs\GenerateReport
 return \PHPStan\Cache\CacheItem::__set_state(array(
-   'variableKey' => 'v2-6.70.0.1-8.3.31-ff8f6f3817adeb35db1f0d6d6428dbf1cdd9a026b1486cd448b6b187737f0e8b',
+   'variableKey' => 'v2-6.70.0.1-8.3.31-ad1ad3c913162e2937a74ac6d506d8935346fc30b3143cd28f77ae28490c482c',
    'data' => 
   array (
     'locatedSource' => 
@@ -32,8 +32,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
     'attributes' => 
     array (
     ),
-    'startLine' => 34,
-    'endLine' => 95,
+    'startLine' => 38,
+    'endLine' => 107,
     'startColumn' => 1,
     'endColumn' => 1,
     'parentClassName' => NULL,
@@ -73,8 +73,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         'attributes' => 
         array (
         ),
-        'startLine' => 38,
-        'endLine' => 38,
+        'startLine' => 42,
+        'endLine' => 42,
         'startColumn' => 33,
         'endColumn' => 61,
         'isPromoted' => true,
@@ -111,8 +111,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             'attributes' => 
             array (
             ),
-            'startLine' => 38,
-            'endLine' => 38,
+            'startLine' => 42,
+            'endLine' => 42,
             'startColumn' => 33,
             'endColumn' => 61,
             'parameterIndex' => 0,
@@ -125,8 +125,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         array (
         ),
         'docComment' => NULL,
-        'startLine' => 38,
-        'endLine' => 38,
+        'startLine' => 42,
+        'endLine' => 42,
         'startColumn' => 5,
         'endColumn' => 65,
         'couldThrow' => false,
@@ -164,8 +164,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             'attributes' => 
             array (
             ),
-            'startLine' => 40,
-            'endLine' => 40,
+            'startLine' => 44,
+            'endLine' => 44,
             'startColumn' => 28,
             'endColumn' => 49,
             'parameterIndex' => 0,
@@ -190,8 +190,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             'attributes' => 
             array (
             ),
-            'startLine' => 40,
-            'endLine' => 40,
+            'startLine' => 44,
+            'endLine' => 44,
             'startColumn' => 52,
             'endColumn' => 76,
             'parameterIndex' => 1,
@@ -216,8 +216,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             'attributes' => 
             array (
             ),
-            'startLine' => 40,
-            'endLine' => 40,
+            'startLine' => 44,
+            'endLine' => 44,
             'startColumn' => 79,
             'endColumn' => 111,
             'parameterIndex' => 2,
@@ -242,8 +242,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             'attributes' => 
             array (
             ),
-            'startLine' => 40,
-            'endLine' => 40,
+            'startLine' => 44,
+            'endLine' => 44,
             'startColumn' => 114,
             'endColumn' => 131,
             'parameterIndex' => 3,
@@ -268,11 +268,63 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             'attributes' => 
             array (
             ),
-            'startLine' => 40,
-            'endLine' => 40,
+            'startLine' => 44,
+            'endLine' => 44,
             'startColumn' => 134,
             'endColumn' => 173,
             'parameterIndex' => 4,
+            'isOptional' => false,
+          ),
+          'segments' => 
+          array (
+            'name' => 'segments',
+            'default' => NULL,
+            'type' => 
+            array (
+              'class' => 'PHPStan\\BetterReflection\\Reflection\\ReflectionNamedType',
+              'data' => 
+              array (
+                'name' => 'App\\Domain\\Reporting\\Segments\\SegmentReportService',
+                'isIdentifier' => false,
+              ),
+            ),
+            'isVariadic' => false,
+            'byRef' => false,
+            'isPromoted' => false,
+            'attributes' => 
+            array (
+            ),
+            'startLine' => 44,
+            'endLine' => 44,
+            'startColumn' => 176,
+            'endColumn' => 205,
+            'parameterIndex' => 5,
+            'isOptional' => false,
+          ),
+          'dimensions' => 
+          array (
+            'name' => 'dimensions',
+            'default' => NULL,
+            'type' => 
+            array (
+              'class' => 'PHPStan\\BetterReflection\\Reflection\\ReflectionNamedType',
+              'data' => 
+              array (
+                'name' => 'App\\Domain\\Reporting\\Segments\\SegmentDimensionRegistry',
+                'isIdentifier' => false,
+              ),
+            ),
+            'isVariadic' => false,
+            'byRef' => false,
+            'isPromoted' => false,
+            'attributes' => 
+            array (
+            ),
+            'startLine' => 44,
+            'endLine' => 44,
+            'startColumn' => 208,
+            'endColumn' => 243,
+            'parameterIndex' => 6,
             'isOptional' => false,
           ),
         ),
@@ -290,8 +342,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         array (
         ),
         'docComment' => NULL,
-        'startLine' => 40,
-        'endLine' => 85,
+        'startLine' => 44,
+        'endLine' => 97,
         'startColumn' => 5,
         'endColumn' => 5,
         'couldThrow' => true,
@@ -329,8 +381,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             'attributes' => 
             array (
             ),
-            'startLine' => 87,
-            'endLine' => 87,
+            'startLine' => 99,
+            'endLine' => 99,
             'startColumn' => 32,
             'endColumn' => 45,
             'parameterIndex' => 0,
@@ -370,8 +422,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         array (
         ),
         'docComment' => NULL,
-        'startLine' => 87,
-        'endLine' => 94,
+        'startLine' => 99,
+        'endLine' => 106,
         'startColumn' => 5,
         'endColumn' => 5,
         'couldThrow' => false,

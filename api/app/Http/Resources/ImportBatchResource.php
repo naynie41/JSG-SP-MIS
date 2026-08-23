@@ -74,6 +74,7 @@ class ImportBatchResource extends JsonResource
                 'dropped_field_rows' => $this->dropped_field_rows,
                 'committed_rows' => $this->committed_rows,
                 'served_rows' => $this->served_rows,
+                'own_rows' => $this->own_rows,
                 'skipped_rows' => $this->skipped_rows,
             ],
             'error' => $this->error,

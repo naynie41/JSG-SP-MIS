@@ -89,6 +89,12 @@ class ScopeBypassSurfaceTest extends TestCase
         // DataSharingGuard or an owner-approval flow before releasing anything.
         'governed cross-MDA sharing' => [
             'Domain/Registry/Services/ServiceRequestService.php',
+            // A service request is cross-MDA by definition: the requester's ACTIVITY has
+            // to be readable by the OWNER MDA's approver, or they would be deciding
+            // whether to allow a delivery they cannot see. The bypass covers that one
+            // relation and exposes an activity NAME — never beneficiary data, which stays
+            // behind the approval this record exists to obtain.
+            'Domain/Registry/Models/ServiceRequest.php',
             'Domain/Registry/Services/OwnershipTransferService.php',
             'Domain/Referral/Services/ReferralService.php',
             'Domain/Referral/Models/Referral.php',
@@ -110,6 +116,16 @@ class ScopeBypassSurfaceTest extends TestCase
         'scope-resolved reporting + aggregates' => [
             'Domain/Reporting/Gis/GisCoverageService.php',
             'Domain/Reporting/Reports/AdHoc/AdHocReportBuilder.php',
+            // The segment builder. It drops the implicit scope because a report runs on
+            // the queue with no authenticated user, where that scope resolves to nothing
+            // — and replaces it with the DashboardScope captured at request time, applied
+            // BEFORE any user filter so a filter can only ever narrow within it. The
+            // export matrix (rows vs counts, masking) is enforced separately by
+            // SegmentAccess.
+            'Domain/Reporting/Segments/SegmentQueryBuilder.php',
+            // Resolves an owner-MDA name for a chart label, and reads back the rows the
+            // query builder already bounded.
+            'Domain/Reporting/Segments/SegmentReportService.php',
             'Domain/Reporting/Reports/ReportBuilder.php',
             'Domain/Reporting/Services/AdminOrganizationService.php',
             'Domain/Reporting/Services/AdminSummaryService.php',

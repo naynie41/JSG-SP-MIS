@@ -2,7 +2,7 @@
 
 // odsl-C:\Users\ACER\Desktop\JSG-SP-MIS\JSG-SP-MIS\api\app\Domain\Notification\Support\NotificationMessage.php-PHPStan\BetterReflection\Reflection\ReflectionClass-App\Domain\Notification\Support\NotificationMessage
 return \PHPStan\Cache\CacheItem::__set_state(array(
-   'variableKey' => 'v2-6.70.0.1-8.3.31-a136eb37ba2520d08b847859cfb44c85da68e4edaaeb5d17d7a98e7c09f2042e',
+   'variableKey' => 'v2-6.70.0.1-8.3.31-f87d9cba79aed85ec41c071e4ba7da909c0b38d779fdadd1c7b484a1aeddf950',
    'data' => 
   array (
     'locatedSource' => 
@@ -27,12 +27,19 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
  * one of these per domain event; each channel renders it for its medium. An
  * optional `related` model is captured as a `(type, id)` reference so the client
  * can deep-link to the originating entity — without embedding its PII.
+ *
+ * `actionPath` is what turns an announcement into something actionable. It is a
+ * RELATIVE SPA path, never an absolute URL: the message must stay
+ * environment-agnostic (dev, staging, the state\'s own domain) and it is the channel
+ * that knows the base — see `config(\'notifications.app_url\')`. Email needs it most,
+ * because unlike the in-app bell an email has no surrounding application to click
+ * into; a mail saying "a decision is waiting" with no way to reach it is a dead end.
  */',
     'attributes' => 
     array (
     ),
-    'startLine' => 16,
-    'endLine' => 35,
+    'startLine' => 23,
+    'endLine' => 56,
     'startColumn' => 1,
     'endColumn' => 1,
     'parentClassName' => NULL,
@@ -86,8 +93,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         'attributes' => 
         array (
         ),
-        'startLine' => 18,
-        'endLine' => 18,
+        'startLine' => 25,
+        'endLine' => 25,
         'startColumn' => 5,
         'endColumn' => 32,
         'isPromoted' => false,
@@ -136,8 +143,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         'attributes' => 
         array (
         ),
-        'startLine' => 20,
-        'endLine' => 20,
+        'startLine' => 27,
+        'endLine' => 27,
         'startColumn' => 5,
         'endColumn' => 30,
         'isPromoted' => false,
@@ -167,8 +174,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         'attributes' => 
         array (
         ),
-        'startLine' => 26,
-        'endLine' => 26,
+        'startLine' => 35,
+        'endLine' => 35,
         'startColumn' => 9,
         'endColumn' => 27,
         'isPromoted' => true,
@@ -198,8 +205,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         'attributes' => 
         array (
         ),
-        'startLine' => 27,
-        'endLine' => 27,
+        'startLine' => 36,
+        'endLine' => 36,
         'startColumn' => 9,
         'endColumn' => 30,
         'isPromoted' => true,
@@ -248,20 +255,20 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
           'code' => 'null',
           'attributes' => 
           array (
-            'startLine' => 28,
-            'endLine' => 28,
+            'startLine' => 37,
+            'endLine' => 37,
             'startTokenPos' => 85,
-            'startFilePos' => 765,
+            'startFilePos' => 1432,
             'endTokenPos' => 85,
-            'endFilePos' => 768,
+            'endFilePos' => 1435,
           ),
         ),
         'docComment' => NULL,
         'attributes' => 
         array (
         ),
-        'startLine' => 28,
-        'endLine' => 28,
+        'startLine' => 37,
+        'endLine' => 37,
         'startColumn' => 9,
         'endColumn' => 35,
         'isPromoted' => true,
@@ -291,22 +298,146 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
           'code' => '[]',
           'attributes' => 
           array (
-            'startLine' => 29,
-            'endLine' => 29,
+            'startLine' => 38,
+            'endLine' => 38,
             'startTokenPos' => 96,
-            'startFilePos' => 803,
+            'startFilePos' => 1470,
             'endTokenPos' => 97,
-            'endFilePos' => 804,
+            'endFilePos' => 1471,
           ),
         ),
         'docComment' => NULL,
         'attributes' => 
         array (
         ),
-        'startLine' => 29,
-        'endLine' => 29,
+        'startLine' => 38,
+        'endLine' => 38,
         'startColumn' => 9,
         'endColumn' => 34,
+        'isPromoted' => true,
+        'declaredAtCompileTime' => true,
+        'immediateVirtual' => false,
+        'immediateHooks' => 
+        array (
+        ),
+      ),
+      'actionPath' => 
+      array (
+        'declaringClassName' => 'App\\Domain\\Notification\\Support\\NotificationMessage',
+        'implementingClassName' => 'App\\Domain\\Notification\\Support\\NotificationMessage',
+        'name' => 'actionPath',
+        'modifiers' => 2049,
+        'type' => 
+        array (
+          'class' => 'PHPStan\\BetterReflection\\Reflection\\ReflectionUnionType',
+          'data' => 
+          array (
+            'types' => 
+            array (
+              0 => 
+              array (
+                'class' => 'PHPStan\\BetterReflection\\Reflection\\ReflectionNamedType',
+                'data' => 
+                array (
+                  'name' => 'string',
+                  'isIdentifier' => true,
+                ),
+              ),
+              1 => 
+              array (
+                'class' => 'PHPStan\\BetterReflection\\Reflection\\ReflectionNamedType',
+                'data' => 
+                array (
+                  'name' => 'null',
+                  'isIdentifier' => true,
+                ),
+              ),
+            ),
+          ),
+        ),
+        'default' => 
+        array (
+          'code' => 'null',
+          'attributes' => 
+          array (
+            'startLine' => 40,
+            'endLine' => 40,
+            'startTokenPos' => 119,
+            'startFilePos' => 1543,
+            'endTokenPos' => 119,
+            'endFilePos' => 1546,
+          ),
+        ),
+        'docComment' => NULL,
+        'attributes' => 
+        array (
+        ),
+        'startLine' => 40,
+        'endLine' => 40,
+        'startColumn' => 9,
+        'endColumn' => 41,
+        'isPromoted' => true,
+        'declaredAtCompileTime' => true,
+        'immediateVirtual' => false,
+        'immediateHooks' => 
+        array (
+        ),
+      ),
+      'actionLabel' => 
+      array (
+        'declaringClassName' => 'App\\Domain\\Notification\\Support\\NotificationMessage',
+        'implementingClassName' => 'App\\Domain\\Notification\\Support\\NotificationMessage',
+        'name' => 'actionLabel',
+        'modifiers' => 2049,
+        'type' => 
+        array (
+          'class' => 'PHPStan\\BetterReflection\\Reflection\\ReflectionUnionType',
+          'data' => 
+          array (
+            'types' => 
+            array (
+              0 => 
+              array (
+                'class' => 'PHPStan\\BetterReflection\\Reflection\\ReflectionNamedType',
+                'data' => 
+                array (
+                  'name' => 'string',
+                  'isIdentifier' => true,
+                ),
+              ),
+              1 => 
+              array (
+                'class' => 'PHPStan\\BetterReflection\\Reflection\\ReflectionNamedType',
+                'data' => 
+                array (
+                  'name' => 'null',
+                  'isIdentifier' => true,
+                ),
+              ),
+            ),
+          ),
+        ),
+        'default' => 
+        array (
+          'code' => 'null',
+          'attributes' => 
+          array (
+            'startLine' => 41,
+            'endLine' => 41,
+            'startTokenPos' => 131,
+            'startFilePos' => 1587,
+            'endTokenPos' => 131,
+            'endFilePos' => 1590,
+          ),
+        ),
+        'docComment' => NULL,
+        'attributes' => 
+        array (
+        ),
+        'startLine' => 41,
+        'endLine' => 41,
+        'startColumn' => 9,
+        'endColumn' => 42,
         'isPromoted' => true,
         'declaredAtCompileTime' => true,
         'immediateVirtual' => false,
@@ -341,8 +472,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             'attributes' => 
             array (
             ),
-            'startLine' => 26,
-            'endLine' => 26,
+            'startLine' => 35,
+            'endLine' => 35,
             'startColumn' => 9,
             'endColumn' => 27,
             'parameterIndex' => 0,
@@ -367,8 +498,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             'attributes' => 
             array (
             ),
-            'startLine' => 27,
-            'endLine' => 27,
+            'startLine' => 36,
+            'endLine' => 36,
             'startColumn' => 9,
             'endColumn' => 30,
             'parameterIndex' => 1,
@@ -382,12 +513,12 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
               'code' => 'null',
               'attributes' => 
               array (
-                'startLine' => 28,
-                'endLine' => 28,
+                'startLine' => 37,
+                'endLine' => 37,
                 'startTokenPos' => 85,
-                'startFilePos' => 765,
+                'startFilePos' => 1432,
                 'endTokenPos' => 85,
-                'endFilePos' => 768,
+                'endFilePos' => 1435,
               ),
             ),
             'type' => 
@@ -424,8 +555,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             'attributes' => 
             array (
             ),
-            'startLine' => 28,
-            'endLine' => 28,
+            'startLine' => 37,
+            'endLine' => 37,
             'startColumn' => 9,
             'endColumn' => 35,
             'parameterIndex' => 2,
@@ -439,12 +570,12 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
               'code' => '[]',
               'attributes' => 
               array (
-                'startLine' => 29,
-                'endLine' => 29,
+                'startLine' => 38,
+                'endLine' => 38,
                 'startTokenPos' => 96,
-                'startFilePos' => 803,
+                'startFilePos' => 1470,
                 'endTokenPos' => 97,
-                'endFilePos' => 804,
+                'endFilePos' => 1471,
               ),
             ),
             'type' => 
@@ -462,8 +593,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             'attributes' => 
             array (
             ),
-            'startLine' => 29,
-            'endLine' => 29,
+            'startLine' => 38,
+            'endLine' => 38,
             'startColumn' => 9,
             'endColumn' => 34,
             'parameterIndex' => 3,
@@ -477,12 +608,12 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
               'code' => 'null',
               'attributes' => 
               array (
-                'startLine' => 30,
-                'endLine' => 30,
+                'startLine' => 39,
+                'endLine' => 39,
                 'startTokenPos' => 107,
-                'startFilePos' => 833,
+                'startFilePos' => 1500,
                 'endTokenPos' => 107,
-                'endFilePos' => 836,
+                'endFilePos' => 1503,
               ),
             ),
             'type' => 
@@ -519,11 +650,125 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             'attributes' => 
             array (
             ),
-            'startLine' => 30,
-            'endLine' => 30,
+            'startLine' => 39,
+            'endLine' => 39,
             'startColumn' => 9,
             'endColumn' => 30,
             'parameterIndex' => 4,
+            'isOptional' => true,
+          ),
+          'actionPath' => 
+          array (
+            'name' => 'actionPath',
+            'default' => 
+            array (
+              'code' => 'null',
+              'attributes' => 
+              array (
+                'startLine' => 40,
+                'endLine' => 40,
+                'startTokenPos' => 119,
+                'startFilePos' => 1543,
+                'endTokenPos' => 119,
+                'endFilePos' => 1546,
+              ),
+            ),
+            'type' => 
+            array (
+              'class' => 'PHPStan\\BetterReflection\\Reflection\\ReflectionUnionType',
+              'data' => 
+              array (
+                'types' => 
+                array (
+                  0 => 
+                  array (
+                    'class' => 'PHPStan\\BetterReflection\\Reflection\\ReflectionNamedType',
+                    'data' => 
+                    array (
+                      'name' => 'string',
+                      'isIdentifier' => true,
+                    ),
+                  ),
+                  1 => 
+                  array (
+                    'class' => 'PHPStan\\BetterReflection\\Reflection\\ReflectionNamedType',
+                    'data' => 
+                    array (
+                      'name' => 'null',
+                      'isIdentifier' => true,
+                    ),
+                  ),
+                ),
+              ),
+            ),
+            'isVariadic' => false,
+            'byRef' => false,
+            'isPromoted' => true,
+            'attributes' => 
+            array (
+            ),
+            'startLine' => 40,
+            'endLine' => 40,
+            'startColumn' => 9,
+            'endColumn' => 41,
+            'parameterIndex' => 5,
+            'isOptional' => true,
+          ),
+          'actionLabel' => 
+          array (
+            'name' => 'actionLabel',
+            'default' => 
+            array (
+              'code' => 'null',
+              'attributes' => 
+              array (
+                'startLine' => 41,
+                'endLine' => 41,
+                'startTokenPos' => 131,
+                'startFilePos' => 1587,
+                'endTokenPos' => 131,
+                'endFilePos' => 1590,
+              ),
+            ),
+            'type' => 
+            array (
+              'class' => 'PHPStan\\BetterReflection\\Reflection\\ReflectionUnionType',
+              'data' => 
+              array (
+                'types' => 
+                array (
+                  0 => 
+                  array (
+                    'class' => 'PHPStan\\BetterReflection\\Reflection\\ReflectionNamedType',
+                    'data' => 
+                    array (
+                      'name' => 'string',
+                      'isIdentifier' => true,
+                    ),
+                  ),
+                  1 => 
+                  array (
+                    'class' => 'PHPStan\\BetterReflection\\Reflection\\ReflectionNamedType',
+                    'data' => 
+                    array (
+                      'name' => 'null',
+                      'isIdentifier' => true,
+                    ),
+                  ),
+                ),
+              ),
+            ),
+            'isVariadic' => false,
+            'byRef' => false,
+            'isPromoted' => true,
+            'attributes' => 
+            array (
+            ),
+            'startLine' => 41,
+            'endLine' => 41,
+            'startColumn' => 9,
+            'endColumn' => 42,
+            'parameterIndex' => 6,
             'isOptional' => true,
           ),
         ),
@@ -534,9 +779,65 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         ),
         'docComment' => '/**
  * @param  array<string, mixed>  $payload
+ * @param  string|null  $actionPath  relative SPA path, e.g. `/service-requests`
+ * @param  string|null  $actionLabel  the button/link text, e.g. `Review the request`
  */',
-        'startLine' => 25,
-        'endLine' => 34,
+        'startLine' => 34,
+        'endLine' => 45,
+        'startColumn' => 5,
+        'endColumn' => 5,
+        'couldThrow' => false,
+        'isClosure' => false,
+        'isGenerator' => false,
+        'isVariadic' => false,
+        'modifiers' => 1,
+        'namespace' => 'App\\Domain\\Notification\\Support',
+        'declaringClassName' => 'App\\Domain\\Notification\\Support\\NotificationMessage',
+        'implementingClassName' => 'App\\Domain\\Notification\\Support\\NotificationMessage',
+        'currentClassName' => 'App\\Domain\\Notification\\Support\\NotificationMessage',
+        'aliasName' => NULL,
+      ),
+      'actionUrl' => 
+      array (
+        'name' => 'actionUrl',
+        'parameters' => 
+        array (
+        ),
+        'returnsReference' => false,
+        'returnType' => 
+        array (
+          'class' => 'PHPStan\\BetterReflection\\Reflection\\ReflectionUnionType',
+          'data' => 
+          array (
+            'types' => 
+            array (
+              0 => 
+              array (
+                'class' => 'PHPStan\\BetterReflection\\Reflection\\ReflectionNamedType',
+                'data' => 
+                array (
+                  'name' => 'string',
+                  'isIdentifier' => true,
+                ),
+              ),
+              1 => 
+              array (
+                'class' => 'PHPStan\\BetterReflection\\Reflection\\ReflectionNamedType',
+                'data' => 
+                array (
+                  'name' => 'null',
+                  'isIdentifier' => true,
+                ),
+              ),
+            ),
+          ),
+        ),
+        'attributes' => 
+        array (
+        ),
+        'docComment' => '/** The absolute destination for a channel that has to render a real link. */',
+        'startLine' => 48,
+        'endLine' => 55,
         'startColumn' => 5,
         'endColumn' => 5,
         'couldThrow' => false,

@@ -2,7 +2,7 @@
 
 // odsl-C:\Users\ACER\Desktop\JSG-SP-MIS\JSG-SP-MIS\api\app\Http\Controllers\Api\V1\Registry\ImportBatchController.php-PHPStan\BetterReflection\Reflection\ReflectionClass-App\Http\Controllers\Api\V1\Registry\ImportBatchController
 return \PHPStan\Cache\CacheItem::__set_state(array(
-   'variableKey' => 'v2-6.70.0.1-8.3.31-2fcafe0af2bf3a70784cd17f64b277d0225b04bc0e4e4bd8f334f50ddf2e9343',
+   'variableKey' => 'v2-6.70.0.1-8.3.31-e64e728daf928c3cd135c6a7ffc645004eb8f2e8b865b1e2ae98c9ed06dfb864',
    'data' => 
   array (
     'locatedSource' => 
@@ -34,7 +34,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
     array (
     ),
     'startLine' => 40,
-    'endLine' => 327,
+    'endLine' => 359,
     'startColumn' => 1,
     'endColumn' => 1,
     'parentClassName' => 'App\\Http\\Controllers\\Controller',
@@ -520,7 +520,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
  * within-batch peers, and attach each row\'s reveal payload (FR-DUP-04).
  */',
         'startLine' => 158,
-        'endLine' => 204,
+        'endLine' => 210,
         'startColumn' => 5,
         'endColumn' => 5,
         'couldThrow' => false,
@@ -558,8 +558,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             'attributes' => 
             array (
             ),
-            'startLine' => 210,
-            'endLine' => 210,
+            'startLine' => 216,
+            'endLine' => 216,
             'startColumn' => 37,
             'endColumn' => 61,
             'parameterIndex' => 0,
@@ -584,8 +584,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             'attributes' => 
             array (
             ),
-            'startLine' => 210,
-            'endLine' => 210,
+            'startLine' => 216,
+            'endLine' => 216,
             'startColumn' => 64,
             'endColumn' => 73,
             'parameterIndex' => 1,
@@ -628,8 +628,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
  * @param  Collection<string, Beneficiary>  $beneficiaries
  * @return array<string, mixed>|null
  */',
-        'startLine' => 210,
-        'endLine' => 215,
+        'startLine' => 216,
+        'endLine' => 221,
         'startColumn' => 5,
         'endColumn' => 5,
         'couldThrow' => false,
@@ -667,8 +667,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             'attributes' => 
             array (
             ),
-            'startLine' => 224,
-            'endLine' => 224,
+            'startLine' => 230,
+            'endLine' => 230,
             'startColumn' => 34,
             'endColumn' => 57,
             'parameterIndex' => 0,
@@ -693,8 +693,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             'attributes' => 
             array (
             ),
-            'startLine' => 224,
-            'endLine' => 224,
+            'startLine' => 230,
+            'endLine' => 230,
             'startColumn' => 60,
             'endColumn' => 77,
             'parameterIndex' => 1,
@@ -719,8 +719,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             'attributes' => 
             array (
             ),
-            'startLine' => 224,
-            'endLine' => 224,
+            'startLine' => 230,
+            'endLine' => 230,
             'startColumn' => 80,
             'endColumn' => 93,
             'parameterIndex' => 2,
@@ -766,8 +766,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
  * @param  Collection<int, ImportRow>  $rowsByNumber
  * @return array<string, mixed>|null
  */',
-        'startLine' => 224,
-        'endLine' => 246,
+        'startLine' => 230,
+        'endLine' => 252,
         'startColumn' => 5,
         'endColumn' => 5,
         'couldThrow' => false,
@@ -805,8 +805,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             'attributes' => 
             array (
             ),
-            'startLine' => 253,
-            'endLine' => 253,
+            'startLine' => 259,
+            'endLine' => 259,
             'startColumn' => 32,
             'endColumn' => 63,
             'parameterIndex' => 0,
@@ -831,8 +831,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             'attributes' => 
             array (
             ),
-            'startLine' => 253,
-            'endLine' => 253,
+            'startLine' => 259,
+            'endLine' => 259,
             'startColumn' => 66,
             'endColumn' => 78,
             'parameterIndex' => 1,
@@ -857,8 +857,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             'attributes' => 
             array (
             ),
-            'startLine' => 253,
-            'endLine' => 253,
+            'startLine' => 259,
+            'endLine' => 259,
             'startColumn' => 81,
             'endColumn' => 94,
             'parameterIndex' => 2,
@@ -883,8 +883,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             'attributes' => 
             array (
             ),
-            'startLine' => 253,
-            'endLine' => 253,
+            'startLine' => 259,
+            'endLine' => 259,
             'startColumn' => 97,
             'endColumn' => 114,
             'parameterIndex' => 3,
@@ -909,8 +909,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
  * skip. Owner MDA only; only while the batch is awaiting confirmation. The
  * decision is audited (FR-DUP-06); the effect is applied on confirm.
  */',
-        'startLine' => 253,
-        'endLine' => 305,
+        'startLine' => 259,
+        'endLine' => 337,
         'startColumn' => 5,
         'endColumn' => 5,
         'couldThrow' => false,
@@ -948,8 +948,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             'attributes' => 
             array (
             ),
-            'startLine' => 308,
-            'endLine' => 308,
+            'startLine' => 340,
+            'endLine' => 340,
             'startColumn' => 29,
             'endColumn' => 41,
             'parameterIndex' => 0,
@@ -970,8 +970,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         array (
         ),
         'docComment' => '/** Confirm the preview: queue the commit of valid rows (owner MDA only). */',
-        'startLine' => 308,
-        'endLine' => 326,
+        'startLine' => 340,
+        'endLine' => 358,
         'startColumn' => 5,
         'endColumn' => 5,
         'couldThrow' => false,

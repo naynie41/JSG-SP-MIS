@@ -9,6 +9,7 @@ import {
   RunsPanel,
   SchedulesPanel,
 } from '@/features/reports/ReportPanels'
+import { SegmentBuilderPanel } from '@/features/reports/SegmentBuilderPanel'
 import styles from './admin.module.css'
 
 /**
@@ -80,6 +81,15 @@ export function AdminReportsPage() {
                   Generating and exporting reports needs the reporting export permission.
                 </p>
               ),
+            },
+            {
+              // The registry segment builder. Distinct from "Build & export" above: that
+              // aggregates a whitelisted dataset, this filters the PEOPLE and — for a
+              // role entitled to them — lists them. The server decides which of those
+              // two a given caller actually gets.
+              id: 'segments',
+              label: 'Segment builder',
+              content: <SegmentBuilderPanel />,
             },
             {
               id: 'schedules',

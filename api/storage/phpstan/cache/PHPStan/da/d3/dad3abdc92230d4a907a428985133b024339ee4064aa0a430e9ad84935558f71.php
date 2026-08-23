@@ -2,7 +2,7 @@
 
 // odsl-C:\Users\ACER\Desktop\JSG-SP-MIS\JSG-SP-MIS\api\app\Domain\Registry\Support\CanonicalSchema.php-PHPStan\BetterReflection\Reflection\ReflectionClass-App\Domain\Registry\Support\CanonicalSchema
 return \PHPStan\Cache\CacheItem::__set_state(array(
-   'variableKey' => 'v2-6.70.0.1-8.3.31-a92f4a70e0f20da1712ac6a4a48ece37d2f1b2008592fe4398a5117d3a88e575',
+   'variableKey' => 'v2-6.70.0.1-8.3.31-354cc3f1ce6cb7cccd2b7862e2e3b3e14af83fe275b394f6d16ab146bb41000b',
    'data' => 
   array (
     'locatedSource' => 
@@ -45,8 +45,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
     'attributes' => 
     array (
     ),
-    'startLine' => 30,
-    'endLine' => 176,
+    'startLine' => 32,
+    'endLine' => 228,
     'startColumn' => 1,
     'endColumn' => 1,
     'parentClassName' => NULL,
@@ -67,15 +67,15 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         'type' => NULL,
         'value' => 
         array (
-          'code' => '[\'first_name\' => [\'type\' => \'string\', \'required\' => true, \'identity\' => true, \'note\' => \'Given name\'], \'middle_name\' => [\'type\' => \'string\', \'required\' => false, \'identity\' => true, \'note\' => \'Other name(s)\'], \'last_name\' => [\'type\' => \'string\', \'required\' => true, \'identity\' => true, \'note\' => \'Surname; also the fuzzy blocking key\'], \'nin\' => [\'type\' => \'digits:11\', \'required\' => false, \'identity\' => true, \'note\' => \'National Identification Number; deterministic match stage 1\'], \'bvn\' => [\'type\' => \'digits:11\', \'required\' => false, \'identity\' => true, \'note\' => \'Bank Verification Number; deterministic match stage 2\'], \'phone\' => [\'type\' => \'phone\', \'required\' => false, \'identity\' => true, \'note\' => \'Nigerian MSISDN in any written form\'], \'date_of_birth\' => [\'type\' => \'date\', \'required\' => true, \'identity\' => false, \'note\' => \'Must be in the past; part of the blocking key\'], \'gender\' => [\'type\' => \'enum\', \'required\' => true, \'identity\' => false, \'note\' => \'male | female | other\'], \'address\' => [\'type\' => \'string\', \'required\' => false, \'identity\' => false, \'note\' => \'Residential address\'], \'lga\' => [\'type\' => \'enum\', \'required\' => true, \'identity\' => false, \'note\' => \'A Jigawa LGA\'], \'ward\' => [\'type\' => \'string\', \'required\' => true, \'identity\' => false, \'note\' => \'Ward within the LGA\']]',
+          'code' => '[\'first_name\' => [\'type\' => \'string\', \'required\' => true, \'identity\' => true, \'note\' => \'Given name\'], \'middle_name\' => [\'type\' => \'string\', \'required\' => false, \'identity\' => true, \'note\' => \'Other name(s)\'], \'last_name\' => [\'type\' => \'string\', \'required\' => true, \'identity\' => true, \'note\' => \'Surname; also the fuzzy blocking key\'], \'nin\' => [\'type\' => \'digits:11\', \'required\' => false, \'identity\' => true, \'note\' => \'National Identification Number; deterministic match stage 1\'], \'bvn\' => [\'type\' => \'digits:11\', \'required\' => false, \'identity\' => true, \'note\' => \'Bank Verification Number; deterministic match stage 2\'], \'phone\' => [\'type\' => \'phone\', \'required\' => false, \'identity\' => true, \'note\' => \'Nigerian MSISDN in any written form\'], \'date_of_birth\' => [\'type\' => \'date\', \'required\' => true, \'identity\' => false, \'note\' => \'Must be in the past; part of the blocking key\', \'segment\' => [\'kind\' => \'age\', \'label\' => \'Age\', \'unit\' => \'years\']], \'gender\' => [\'type\' => \'enum\', \'required\' => true, \'identity\' => false, \'note\' => \'male | female | other\', \'segment\' => [\'kind\' => \'enum\', \'label\' => \'Gender\', \'values\' => \\App\\Domain\\Registry\\Enums\\Gender::class]], \'address\' => [\'type\' => \'string\', \'required\' => false, \'identity\' => false, \'note\' => \'Residential address\'], \'lga\' => [\'type\' => \'enum\', \'required\' => true, \'identity\' => false, \'note\' => \'A Jigawa LGA\', \'segment\' => [\'kind\' => \'enum\', \'label\' => \'LGA\', \'values\' => \\App\\Domain\\Registry\\Enums\\Lga::class]], \'ward\' => [\'type\' => \'string\', \'required\' => true, \'identity\' => false, \'note\' => \'Ward within the LGA\', \'segment\' => [\'kind\' => \'lookup\', \'label\' => \'Ward\']]]',
           'attributes' => 
           array (
-            'startLine' => 39,
-            'endLine' => 51,
-            'startTokenPos' => 45,
-            'startFilePos' => 1618,
-            'endTokenPos' => 421,
-            'endFilePos' => 3019,
+            'startLine' => 58,
+            'endLine' => 70,
+            'startTokenPos' => 55,
+            'startFilePos' => 2764,
+            'endTokenPos' => 536,
+            'endFilePos' => 4444,
           ),
         ),
         'docComment' => '/**
@@ -83,13 +83,30 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
  *
  * `required` is about presence; `identity` is about the malformed-value rule.
  *
- * @var array<string, array{type: string, required: bool, identity: bool, note: string}>
+ * `segment` is a THIRD, independent axis: whether the field describes a GROUP of
+ * people rather than one person, and so may be offered as a report filter
+ * (FR-RPT-03). Declaring it here rather than in the reporting layer is what lets a
+ * new schema field appear as a filter with no code change — and what stops the two
+ * from drifting, which is how a field ends up filterable in one report and missing
+ * from another.
+ *
+ * An IDENTITY field is never segmentable, and {@see self::segmentableFields()}
+ * enforces that regardless of what is declared: NIN, BVN, phone and name pick out
+ * individuals, not segments. They are masked in output and are never a filter.
+ *
+ * `segment.kind` tells the builder how to filter:
+ *   enum   — multi-select over `values` (a backed enum class)
+ *   lookup — multi-select over values present in the data (free text, e.g. ward)
+ *   age    — a numeric range, derived from a DATE column
+ *   date   — a calendar range
+ *
+ * @var array<string, array{type: string, required: bool, identity: bool, note: string, segment?: array<string, mixed>}>
  */',
         'attributes' => 
         array (
         ),
-        'startLine' => 39,
-        'endLine' => 51,
+        'startLine' => 58,
+        'endLine' => 70,
         'startColumn' => 5,
         'endColumn' => 6,
       ),
@@ -105,12 +122,12 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
           'code' => '[\'household_ref\' => [\'type\' => \'string\', \'required\' => false, \'identity\' => false, \'note\' => "The source\'s own household key"], \'household_role\' => [\'type\' => \'enum\', \'required\' => false, \'identity\' => false, \'note\' => \'head | spouse | child | parent | sibling | other\'], \'household_head\' => [\'type\' => \'boolean\', \'required\' => false, \'identity\' => false, \'note\' => \'Truthy marks this person as the head\']]',
           'attributes' => 
           array (
-            'startLine' => 60,
-            'endLine' => 64,
-            'startTokenPos' => 434,
-            'startFilePos' => 3373,
-            'endTokenPos' => 538,
-            'endFilePos' => 3809,
+            'startLine' => 79,
+            'endLine' => 83,
+            'startTokenPos' => 549,
+            'startFilePos' => 4798,
+            'endTokenPos' => 653,
+            'endFilePos' => 5234,
           ),
         ),
         'docComment' => '/**
@@ -123,8 +140,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         'attributes' => 
         array (
         ),
-        'startLine' => 60,
-        'endLine' => 64,
+        'startLine' => 79,
+        'endLine' => 83,
         'startColumn' => 5,
         'endColumn' => 6,
       ),
@@ -140,20 +157,20 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
           'code' => '[\'original_record_id\' => [\'type\' => \'string\', \'required\' => false, \'identity\' => false, \'note\' => "The source\'s own record id; doubles as the idempotency key"]]',
           'attributes' => 
           array (
-            'startLine' => 67,
-            'endLine' => 69,
-            'startTokenPos' => 551,
-            'startFilePos' => 3931,
-            'endTokenPos' => 587,
-            'endFilePos' => 4105,
+            'startLine' => 86,
+            'endLine' => 88,
+            'startTokenPos' => 666,
+            'startFilePos' => 5356,
+            'endTokenPos' => 702,
+            'endFilePos' => 5530,
           ),
         ),
         'docComment' => '/** Provenance the source supplies; the rest is stamped by the registrar. */',
         'attributes' => 
         array (
         ),
-        'startLine' => 67,
-        'endLine' => 69,
+        'startLine' => 86,
+        'endLine' => 88,
         'startColumn' => 5,
         'endColumn' => 6,
       ),
@@ -169,12 +186,12 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
           'code' => '[\'full_name\' => [\'type\' => \'string\', \'required\' => false, \'identity\' => true, \'note\' => \'One name column; split into first/last name\']]',
           'attributes' => 
           array (
-            'startLine' => 84,
-            'endLine' => 86,
-            'startTokenPos' => 600,
-            'startFilePos' => 4885,
-            'endTokenPos' => 636,
-            'endFilePos' => 5034,
+            'startLine' => 103,
+            'endLine' => 105,
+            'startTokenPos' => 715,
+            'startFilePos' => 6310,
+            'endTokenPos' => 751,
+            'endFilePos' => 6459,
           ),
         ),
         'docComment' => '/**
@@ -193,8 +210,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         'attributes' => 
         array (
         ),
-        'startLine' => 84,
-        'endLine' => 86,
+        'startLine' => 103,
+        'endLine' => 105,
         'startColumn' => 5,
         'endColumn' => 6,
       ),
@@ -224,8 +241,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         array (
         ),
         'docComment' => '/** @return list<string> */',
-        'startLine' => 89,
-        'endLine' => 92,
+        'startLine' => 108,
+        'endLine' => 111,
         'startColumn' => 5,
         'endColumn' => 5,
         'couldThrow' => false,
@@ -263,8 +280,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
  *
  * @return list<string>
  */',
-        'startLine' => 99,
-        'endLine' => 102,
+        'startLine' => 118,
+        'endLine' => 121,
         'startColumn' => 5,
         'endColumn' => 5,
         'couldThrow' => false,
@@ -298,8 +315,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         array (
         ),
         'docComment' => '/** @return list<string> */',
-        'startLine' => 105,
-        'endLine' => 108,
+        'startLine' => 124,
+        'endLine' => 127,
         'startColumn' => 5,
         'endColumn' => 5,
         'couldThrow' => false,
@@ -337,8 +354,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
  *
  * @return list<string>
  */',
-        'startLine' => 115,
-        'endLine' => 118,
+        'startLine' => 134,
+        'endLine' => 137,
         'startColumn' => 5,
         'endColumn' => 5,
         'couldThrow' => false,
@@ -376,8 +393,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
  *
  * @return list<string>
  */',
-        'startLine' => 125,
-        'endLine' => 128,
+        'startLine' => 144,
+        'endLine' => 147,
         'startColumn' => 5,
         'endColumn' => 5,
         'couldThrow' => false,
@@ -411,8 +428,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         array (
         ),
         'docComment' => '/** @return list<string> */',
-        'startLine' => 131,
-        'endLine' => 134,
+        'startLine' => 150,
+        'endLine' => 153,
         'startColumn' => 5,
         'endColumn' => 5,
         'couldThrow' => false,
@@ -450,8 +467,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             'attributes' => 
             array (
             ),
-            'startLine' => 136,
-            'endLine' => 136,
+            'startLine' => 155,
+            'endLine' => 155,
             'startColumn' => 44,
             'endColumn' => 56,
             'parameterIndex' => 0,
@@ -472,8 +489,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         array (
         ),
         'docComment' => NULL,
-        'startLine' => 136,
-        'endLine' => 139,
+        'startLine' => 155,
+        'endLine' => 158,
         'startColumn' => 5,
         'endColumn' => 5,
         'couldThrow' => false,
@@ -522,8 +539,60 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
  *
  * @return list<string>
  */',
-        'startLine' => 157,
-        'endLine' => 165,
+        'startLine' => 176,
+        'endLine' => 184,
+        'startColumn' => 5,
+        'endColumn' => 5,
+        'couldThrow' => false,
+        'isClosure' => false,
+        'isGenerator' => false,
+        'isVariadic' => false,
+        'modifiers' => 17,
+        'namespace' => 'App\\Domain\\Registry\\Support',
+        'declaringClassName' => 'App\\Domain\\Registry\\Support\\CanonicalSchema',
+        'implementingClassName' => 'App\\Domain\\Registry\\Support\\CanonicalSchema',
+        'currentClassName' => 'App\\Domain\\Registry\\Support\\CanonicalSchema',
+        'aliasName' => NULL,
+      ),
+      'segmentableFields' => 
+      array (
+        'name' => 'segmentableFields',
+        'parameters' => 
+        array (
+        ),
+        'returnsReference' => false,
+        'returnType' => 
+        array (
+          'class' => 'PHPStan\\BetterReflection\\Reflection\\ReflectionNamedType',
+          'data' => 
+          array (
+            'name' => 'array',
+            'isIdentifier' => true,
+          ),
+        ),
+        'attributes' => 
+        array (
+        ),
+        'docComment' => '/**
+ * The fields that may be offered as REPORT FILTERS (FR-RPT-03), keyed by field name.
+ *
+ * Two rules, in this order:
+ *  1. An identity field is excluded, always — even if something declares `segment`
+ *     on it. This is the structural guarantee that NIN, BVN, phone and name can
+ *     never become a filter: a filter on an identifier is not a segment, it is a
+ *     search for one person wearing a report\'s clothing.
+ *  2. Of what remains, a field is offered only if it DECLARES how it segments.
+ *
+ * Rule 2 is why `address` is absent. It is non-identity — a malformed one is
+ * dropped, not fatal — but it is free text that narrows to a household or a person,
+ * so it describes an individual rather than a group. Silence here is the safe
+ * default: a new field appears as a filter because someone decided it segments, not
+ * because nobody stopped it.
+ *
+ * @return array<string, array<string, mixed>>
+ */',
+        'startLine' => 204,
+        'endLine' => 217,
         'startColumn' => 5,
         'endColumn' => 5,
         'couldThrow' => false,
@@ -561,8 +630,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             'attributes' => 
             array (
             ),
-            'startLine' => 168,
-            'endLine' => 168,
+            'startLine' => 220,
+            'endLine' => 220,
             'startColumn' => 35,
             'endColumn' => 47,
             'parameterIndex' => 0,
@@ -602,8 +671,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         array (
         ),
         'docComment' => '/** The declared type of a canonical field, or null when the field is unknown. */',
-        'startLine' => 168,
-        'endLine' => 175,
+        'startLine' => 220,
+        'endLine' => 227,
         'startColumn' => 5,
         'endColumn' => 5,
         'couldThrow' => false,
