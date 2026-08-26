@@ -180,44 +180,44 @@ function LgaBlock({ entry, index, name, errors, open, onToggle, onRemove, onChan
 
       {expanded && (
         <>
-      <Checkbox
-        label="Whole LGA (all wards)"
-        checked={entry.whole_lga}
-        // Choosing the whole LGA clears any ward picks: "everywhere in this LGA" and
-        // "only these wards" are different claims, and the API rejects both at once.
-        onChange={(event) => onChange({ whole_lga: event.target.checked, ward_ids: [] })}
-      />
+        <Checkbox
+          label="Whole LGA (all wards)"
+          checked={entry.whole_lga}
+          // Choosing the whole LGA clears any ward picks: "everywhere in this LGA" and
+          // "only these wards" are different claims, and the API rejects both at once.
+          onChange={(event) => onChange({ whole_lga: event.target.checked, ward_ids: [] })}
+        />
 
-      {!entry.whole_lga && (
-        <div className={styles.wards}>
-          {wards.isPending && <p className={styles.muted}>Loading wards…</p>}
+        {!entry.whole_lga && (
+          <div className={styles.wards}>
+            {wards.isPending && <p className={styles.muted}>Loading wards…</p>}
 
-          {!wards.isPending && list.length === 0 && (
-            <p className={styles.muted}>
-              No ward data loaded for {name}. Choose “Whole LGA” to declare it.
-            </p>
-          )}
+            {!wards.isPending && list.length === 0 && (
+              <p className={styles.muted}>
+                No ward data loaded for {name}. Choose “Whole LGA” to declare it.
+              </p>
+            )}
 
-          {list.map((ward) => {
-            const position = entry.ward_ids.indexOf(ward.id)
-            const wardError = position >= 0 ? errors[`locations.${index}.ward_ids.${position}`] : undefined
-            return (
-              <div key={ward.id} className={wardError ? styles.wardInvalid : undefined}>
-                <Checkbox
-                  label={ward.name}
-                  checked={selected.has(ward.id)}
-                  onChange={(event) => toggleWard(ward.id, event.target.checked)}
-                />
-                {wardError && <span className={styles.error} role="alert">{wardError}</span>}
-              </div>
-            )
-          })}
-        </div>
-      )}
+            {list.map((ward) => {
+              const position = entry.ward_ids.indexOf(ward.id)
+              const wardError = position >= 0 ? errors[`locations.${index}.ward_ids.${position}`] : undefined
+              return (
+                <div key={ward.id} className={wardError ? styles.wardInvalid : undefined}>
+                  <Checkbox
+                    label={ward.name}
+                    checked={selected.has(ward.id)}
+                    onChange={(event) => toggleWard(ward.id, event.target.checked)}
+                  />
+                  {wardError && <span className={styles.error} role="alert">{wardError}</span>}
+                </div>
+              )
+            })}
+          </div>
+        )}
 
-      {!entry.whole_lga && entry.ward_ids.length === 0 && list.length > 0 && (
-        <p className={styles.muted}>No wards selected — this LGA will be saved as whole-LGA coverage.</p>
-      )}
+        {!entry.whole_lga && entry.ward_ids.length === 0 && list.length > 0 && (
+          <p className={styles.muted}>No wards selected — this LGA will be saved as whole-LGA coverage.</p>
+        )}
         </>
       )}
     </section>

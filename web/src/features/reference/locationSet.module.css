@@ -95,6 +95,12 @@
   font-size: var(--fs-label);
 }
 
+/* Closed, the block is a row, not a card with an empty body: the point of the
+   disclosure is the vertical space it gives back. */
+.block[data-open='false'] {
+  padding-block: var(--space-2);
+}
+
 .blockChevron {
   flex: none;
   color: var(--text-muted-strong);

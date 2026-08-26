@@ -87,6 +87,14 @@ describe('LocationSetField', () => {
     expect(state()).toHaveLength(2)
   })
 
+  /** Adding an LGA opens it and collapses the rest, so a second block must be opened. */
+  const expand = async (user: ReturnType<typeof userEvent.setup>, name: string) => {
+    const region = await screen.findByRole('region', { name })
+    const toggle = within(region).getByRole('button', { expanded: false })
+    await user.click(toggle)
+    return region
+  }
+
   it('scopes each ward selector to its own LGA', async () => {
     const user = userEvent.setup()
     renderField(<Harness />)
@@ -94,15 +102,16 @@ describe('LocationSetField', () => {
     await addLga(user, 'lga-dutse')
     await addLga(user, 'lga-kiyawa')
 
-    const dutse = await screen.findByRole('region', { name: 'Dutse' })
+    // One block is open at a time, so each is checked while it holds the floor.
+    // Kiyawa is open already — adding it collapsed Dutse.
     const kiyawa = screen.getByRole('region', { name: 'Kiyawa' })
-
-    // Each block offers ONLY its own wards, fetched with its own lga_id.
-    await waitFor(() => expect(within(dutse).getByLabelText('Limawa')).toBeInTheDocument())
-    expect(within(dutse).queryByLabelText('Kwanda')).not.toBeInTheDocument()
-
     await waitFor(() => expect(within(kiyawa).getByLabelText('Kwanda')).toBeInTheDocument())
     expect(within(kiyawa).queryByLabelText('Limawa')).not.toBeInTheDocument()
+
+    // Each block offers ONLY its own wards, fetched with its own lga_id.
+    const dutse = await expand(user, 'Dutse')
+    await waitFor(() => expect(within(dutse).getByLabelText('Limawa')).toBeInTheDocument())
+    expect(within(dutse).queryByLabelText('Kwanda')).not.toBeInTheDocument()
 
     expect(wards).toHaveBeenCalledWith('lga-dutse')
     expect(wards).toHaveBeenCalledWith('lga-kiyawa')
@@ -164,7 +173,7 @@ describe('LocationSetField', () => {
     await addLga(user, 'lga-dutse')
     await addLga(user, 'lga-kiyawa')
 
-    const dutse = await screen.findByRole('region', { name: 'Dutse' })
+    const dutse = await expand(user, 'Dutse')
     await waitFor(() => expect(within(dutse).getByLabelText('Limawa')).toBeInTheDocument())
     await user.click(within(dutse).getByLabelText('Limawa'))
 
@@ -211,12 +220,59 @@ describe('LocationSetField', () => {
   })
 
   it('renders an existing set for editing', async () => {
+    const user = userEvent.setup()
+    renderField(
+      <Harness initial={[{ lga_id: 'lga-kiyawa', ward_ids: ['w-kiyawa-kwanda'], whole_lga: false }]} />,
+    )
+
+    const kiyawa = await expand(user, 'Kiyawa')
+    await waitFor(() => expect(within(kiyawa).getByLabelText('Kwanda')).toBeChecked())
+    expect(within(kiyawa).getByLabelText('Sabon Gari')).not.toBeChecked()
+  })
+
+  /* ------------------------------------------------------------------ collapse */
+
+  it('collapses a configured LGA to a line that still says what it covers', async () => {
+    // Every block used to render its whole ward list, so three LGAs pushed the dialog's
+    // actions below the fold.
+    const user = userEvent.setup()
     renderField(
       <Harness initial={[{ lga_id: 'lga-kiyawa', ward_ids: ['w-kiyawa-kwanda'], whole_lga: false }]} />,
     )
 
     const kiyawa = await screen.findByRole('region', { name: 'Kiyawa' })
-    await waitFor(() => expect(within(kiyawa).getByLabelText('Kwanda')).toBeChecked())
-    expect(within(kiyawa).getByLabelText('Sabon Gari')).not.toBeChecked()
+
+    // Closed: the ward controls are not on the page at all…
+    await waitFor(() => expect(within(kiyawa).queryByLabelText('Kwanda')).not.toBeInTheDocument())
+    // …but the selection is still legible.
+    expect(within(kiyawa).getByText(/Kwanda of 2/)).toBeInTheDocument()
+
+    await user.click(within(kiyawa).getByRole('button', { expanded: false }))
+    expect(within(kiyawa).getByLabelText('Kwanda')).toBeChecked()
+  })
+
+  it('says a whole-LGA block covers the whole LGA without opening it', async () => {
+    renderField(
+      <Harness initial={[{ lga_id: 'lga-kiyawa', ward_ids: [], whole_lga: true }]} />,
+    )
+
+    const kiyawa = await screen.findByRole('region', { name: 'Kiyawa' })
+    expect(within(kiyawa).getByText('Whole LGA')).toBeInTheDocument()
+  })
+
+  it('never hides a validation message behind a collapsed block', async () => {
+    // A closed disclosure holding the reason a form will not submit is how a user sees
+    // an error count and no error.
+    renderField(
+      <Harness
+        initial={[{ lga_id: 'lga-kiyawa', ward_ids: [], whole_lga: false }]}
+        errors={{ 'locations.0.lga_id': 'This LGA is already declared.' }}
+      />,
+    )
+
+    const kiyawa = await screen.findByRole('region', { name: 'Kiyawa' })
+    expect(within(kiyawa).getByRole('alert')).toHaveTextContent('already declared')
+    // Forced open, so the control that fixes it is reachable.
+    expect(within(kiyawa).getByRole('button', { expanded: true })).toBeInTheDocument()
   })
 })
