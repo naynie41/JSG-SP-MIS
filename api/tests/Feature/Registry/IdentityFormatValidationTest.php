@@ -308,6 +308,36 @@ class IdentityFormatValidationTest extends TestCase
 
         $this->assertNull($result['payload']['ward']);
     }
+
+    public function test_a_ward_is_accepted_in_an_lga_whose_wards_were_never_supplied(): void
+    {
+        // The dataset covers all 27 LGAs but lists wards for only some of them — the
+        // source gives prose, not names, for the rest. An LGA with zero wards loaded is
+        // an ABSENCE of information, not evidence that a ward is wrong. Enforcing there
+        // would drop every ward in those LGAs from every import, silently.
+        $this->loadWards();
+
+        $bare = LgaModel::query()->create(['code' => 'maigatari', 'name' => 'Maigatari', 'state' => 'Jigawa']);
+        $this->assertSame(0, $bare->wards()->count());
+        app(ReferenceDataCache::class)->flush();
+
+        $result = $this->validate(['lga' => 'maigatari', 'ward' => 'A Ward Nobody Listed']);
+
+        $this->assertSame([], $result['dropped_fields']);
+        $this->assertSame('A Ward Nobody Listed', $result['payload']['ward']);
+    }
+
+    public function test_partial_coverage_does_not_weaken_an_lga_that_was_supplied(): void
+    {
+        // The other half of the rule: where wards ARE known, they still bind.
+        $this->loadWards();
+        LgaModel::query()->create(['code' => 'maigatari', 'name' => 'Maigatari', 'state' => 'Jigawa']);
+        app(ReferenceDataCache::class)->flush();
+
+        $result = $this->validate(['lga' => 'birnin kudu', 'ward' => 'Nowhere']);
+
+        $this->assertNull($result['payload']['ward']);
+    }
     /* --------------------------------------------- identity vs non-identity outcome */
 
     public function test_the_two_failure_kinds_are_reported_separately_on_one_row(): void
