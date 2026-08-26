@@ -54,13 +54,61 @@
   gap: var(--space-2);
 }
 
-.blockTitle {
+/*
+ * The header IS the disclosure. It carries the LGA, what it covers, and the chevron —
+ * so a closed block is one line that still answers "which wards did I pick here".
+ */
+.blockToggle {
   display: flex;
   align-items: center;
   gap: var(--space-2);
-  margin: 0;
+  flex: 1 1 auto;
+  min-width: 0;
+  padding: var(--space-1) 0;
+  border: none;
+  background: none;
+  font: inherit;
+  text-align: left;
+  color: var(--text);
+  cursor: pointer;
+}
+
+.blockToggle:focus-visible {
+  outline: 2px solid var(--forest);
+  outline-offset: 2px;
+  border-radius: var(--radius-sm);
+}
+
+.blockTitle {
   font-size: var(--fs-body);
   font-weight: 600;
+  white-space: nowrap;
+}
+
+.blockSummary {
+  flex: 1 1 auto;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  color: var(--text-muted-strong);
+  font-size: var(--fs-label);
+}
+
+.blockChevron {
+  flex: none;
+  color: var(--text-muted-strong);
+  transition: transform 180ms ease;
+}
+
+.block[data-open='true'] .blockChevron {
+  transform: rotate(180deg);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .blockChevron {
+    transition: none;
+  }
 }
 
 .wards {

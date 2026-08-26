@@ -1,4 +1,5 @@
-import { MapPin, X } from 'lucide-react'
+import { useState } from 'react'
+import { ChevronDown, MapPin, X } from 'lucide-react'
 import { Button } from '@/components/Button/Button'
 import { Checkbox } from '@/components/Field/Checkbox'
 import { SelectField } from '@/components/Field/SelectField'
@@ -30,6 +31,15 @@ interface LocationSetFieldProps {
  */
 export function LocationSetField({ value, onChange, errors = {}, disabled }: LocationSetFieldProps) {
   const lgas = useLgas()
+  /*
+   * One LGA open at a time.
+   *
+   * Every block used to render its full ward list, so three LGAs filled the dialog and
+   * pushed the actions below the fold. Collapsed, a block still states what it covers —
+   * which is what lets it stay collapsed: the set of blocks reads as the declared area
+   * without opening anything.
+   */
+  const [openLga, setOpenLga] = useState<string | null>(null)
   const all = lgas.data?.lgas ?? []
   const chosen = new Set(value.map((entry) => entry.lga_id))
   const available = all.filter((lga) => !chosen.has(lga.id))
@@ -37,6 +47,8 @@ export function LocationSetField({ value, onChange, errors = {}, disabled }: Loc
   function addLga(lgaId: string) {
     if (!lgaId || chosen.has(lgaId)) return
     onChange([...value, { lga_id: lgaId, ward_ids: [], whole_lga: false }])
+    // Opens on its wards: adding an LGA is the start of choosing them, not the end.
+    setOpenLga(lgaId)
   }
 
   function removeLga(lgaId: string) {
@@ -65,6 +77,8 @@ export function LocationSetField({ value, onChange, errors = {}, disabled }: Loc
             index={index}
             name={all.find((lga) => lga.id === entry.lga_id)?.name ?? 'Unknown LGA'}
             errors={errors}
+            open={openLga === entry.lga_id}
+            onToggle={() => setOpenLga((current) => (current === entry.lga_id ? null : entry.lga_id))}
             onRemove={() => removeLga(entry.lga_id)}
             onChange={(patch) => updateEntry(entry.lga_id, patch)}
           />
@@ -94,12 +108,14 @@ interface LgaBlockProps {
   index: number
   name: string
   errors: Record<string, string>
+  open: boolean
+  onToggle: () => void
   onRemove: () => void
   onChange: (patch: Partial<LocationSetEntry>) => void
 }
 
 /** One chosen LGA: its title, its own ward multi-select, and the whole-LGA option. */
-function LgaBlock({ entry, index, name, errors, onRemove, onChange }: LgaBlockProps) {
+function LgaBlock({ entry, index, name, errors, open, onToggle, onRemove, onChange }: LgaBlockProps) {
   // Scoped to THIS LGA — the selector can only ever offer its own wards.
   const wards = useWards(entry.lga_id)
   const list = wards.data?.wards ?? []
@@ -113,6 +129,17 @@ function LgaBlock({ entry, index, name, errors, onRemove, onChange }: LgaBlockPr
     .map((wardId, position) => (list.some((ward) => ward.id === wardId) ? null : errors[`locations.${index}.ward_ids.${position}`]))
     .filter((message): message is string => Boolean(message))
 
+  /*
+   * A block with a problem is never collapsed.
+   *
+   * Hiding a validation message behind a closed disclosure is how a form refuses to
+   * submit and does not say why — the officer sees an error count and no error.
+   */
+  const hasError = Boolean(lgaError) || orphanWardErrors.length > 0
+  const expanded = open || hasError
+
+  const summary = describeCoverage(entry, list, wards.isPending)
+
   function toggleWard(wardId: string, checked: boolean) {
     onChange({
       ward_ids: checked ? [...entry.ward_ids, wardId] : entry.ward_ids.filter((id) => id !== wardId),
@@ -120,11 +147,21 @@ function LgaBlock({ entry, index, name, errors, onRemove, onChange }: LgaBlockPr
   }
 
   return (
-    <section className={styles.block} aria-label={name}>
+    <section className={styles.block} aria-label={name} data-open={expanded}>
       <header className={styles.blockHeader}>
-        <h4 className={styles.blockTitle}>
-          <Icon icon={MapPin} size={16} aria-hidden="true" /> {name}
-        </h4>
+        <button
+          type="button"
+          className={styles.blockToggle}
+          aria-expanded={expanded}
+          onClick={onToggle}
+        >
+          <Icon icon={MapPin} size={16} aria-hidden="true" />
+          <span className={styles.blockTitle}>{name}</span>
+          {/* The summary is what lets the block stay closed: collapsed, it still says
+              what this LGA covers. */}
+          <span className={styles.blockSummary}>{summary}</span>
+          <Icon icon={ChevronDown} size={15} className={styles.blockChevron} aria-hidden="true" />
+        </button>
         <Button
           size="sm"
           variant="tertiary"
@@ -141,6 +178,8 @@ function LgaBlock({ entry, index, name, errors, onRemove, onChange }: LgaBlockPr
         <p key={i} className={styles.error} role="alert">{message}</p>
       ))}
 
+      {expanded && (
+        <>
       <Checkbox
         label="Whole LGA (all wards)"
         checked={entry.whole_lga}
@@ -179,6 +218,35 @@ function LgaBlock({ entry, index, name, errors, onRemove, onChange }: LgaBlockPr
       {!entry.whole_lga && entry.ward_ids.length === 0 && list.length > 0 && (
         <p className={styles.muted}>No wards selected — this LGA will be saved as whole-LGA coverage.</p>
       )}
+        </>
+      )}
     </section>
   )
+}
+
+/**
+ * What a collapsed LGA block says about itself.
+ *
+ * Names the first two wards rather than only counting them: "Baturiya, Doleri +1" tells
+ * the officer they picked the right places, where "3 wards" only tells them how many.
+ */
+function describeCoverage(
+  entry: LocationSetEntry,
+  wards: { id: string; name: string }[],
+  loading: boolean,
+): string {
+  if (entry.whole_lga) return 'Whole LGA'
+  if (loading) return 'Loading wards…'
+  if (wards.length === 0) return 'No ward data'
+
+  const names = entry.ward_ids
+    .map((id) => wards.find((ward) => ward.id === id)?.name)
+    .filter((name): name is string => Boolean(name))
+
+  // No wards chosen saves as whole-LGA coverage, so the summary says the outcome rather
+  // than the empty input that produced it.
+  if (names.length === 0) return `Whole LGA · none of ${wards.length} chosen`
+  if (names.length <= 2) return `${names.join(', ')} of ${wards.length}`
+
+  return `${names[0]}, ${names[1]} +${names.length - 2} of ${wards.length}`
 }
