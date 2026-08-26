@@ -25,7 +25,89 @@ network. Uploaded documents and the data services persist in named volumes.
 
 ---
 
-## 1. CI: build & push images (GitHub)
+## 1. Pre-go-live checklist — decisions and secrets SP-MIS cannot supply for itself
+
+Work through this **before** §2. Nothing here can be defaulted safely: each item is
+either a real credential, a value that depends on your domain, or a policy decision that
+belongs to a named owner (CLAUDE.md §8 — never hard-code a stakeholder decision).
+
+A tick means *someone decided*, not *someone typed something*. Several of these are
+silent when wrong: the system keeps working and quietly does the wrong thing.
+
+### 1.1 Secrets to generate or obtain
+
+| Value | Where it comes from | Owner |
+|---|---|---|
+| `APP_KEY` | `php artisan key:generate --show` | DevOps |
+| `BACKUP_ENCRYPTION_KEY` | `php artisan backup:keygen`, stored **apart from** `AWS_*` | DevOps |
+| `DB_PASSWORD` = `POSTGRES_PASSWORD` | generated; the two MUST be identical | DevOps |
+| `REDIS_PASSWORD`, `RABBITMQ_PASSWORD` | generated | DevOps |
+| `MAIL_HOST` / `MAIL_USERNAME` / `MAIL_PASSWORD` | your SMTP provider | IT |
+| `AWS_*`, `AWS_BUCKET` | offsite object store, a **different failure domain** than this VPS | DevOps |
+| `GHCR_OWNER`, `IMAGE_TAG` | your GitHub org + the release tag to run | DevOps |
+
+> **`APP_KEY` is generated once and never rotated with data present.** It decrypts
+> NIN/BVN and TOTP secrets; changing it orphans every encrypted column and every backup
+> taken before the change. Rotation is a re-encryption project, not an edit.
+
+> The initial administrator password is **prompted** by `spmis:create-admin` (§2.6) — it
+> is never an argument or an env var, so it stays out of shell history and `ps`.
+
+### 1.2 Values that depend on your domain
+
+Everything below ships as `spmis.example.gov.ng` and must be changed together:
+
+`APP_URL` · `SPA_URL` · `CORS_ALLOWED_ORIGINS` · `SANCTUM_STATEFUL_DOMAINS` ·
+`NGINX_SERVER_NAME` · `NGINX_SSL_CERTIFICATE` · `NGINX_SSL_CERTIFICATE_KEY` ·
+`MAIL_FROM_ADDRESS` · the admin email in §2.6.
+
+- **`APP_URL` is the API; `SPA_URL` is where a human is sent.** They are separate on
+  purpose — notification emails build their links from `SPA_URL` (FR-NOT-01). In the
+  default single-domain topology (§0) they are the same host; if you split the SPA onto
+  its own domain, they are not.
+- `SANCTUM_STATEFUL_DOMAINS` takes **no scheme**; `CORS_ALLOWED_ORIGINS` takes a full
+  origin. A mismatch fails at login, loudly.
+
+### 1.3 Authentication policy — confirm, do not inherit
+
+| Setting | Ships as | Decide |
+|---|---|---|
+| Roles requiring MFA | System Administrator, Executive | **MDA Admin is NOT on this list** — yet it holds `beneficiary.export`, approves request-to-serve, and creates activities. Confirm this is intended. |
+| Account lockout | 5 attempts, 1 min → ×2 → 60 min cap | Confirm with the security owner |
+| Session | 30 min idle, 8 h absolute | Confirm |
+| Rate limits | 10 exports/min, 12 imports/min per user | Confirm |
+| `export.reveal_pii` | System Administrator only | **DPO decision** to grant to anyone else (SECURITY.md §3) |
+
+`MFA_ENFORCE` is deliberately **absent** from `.env.prod.example`. It can only ever
+*disable* enforcement outside production (`User::mfaRequired()` ignores it when
+`APP_ENV=production`), so setting it in production has no effect — do not add it.
+
+### 1.4 Stakeholder / DPO decisions still at shipped defaults
+
+These run on defaults that were chosen to be reasonable, **not** chosen by you:
+
+| Decision | Ships as | Owner |
+|---|---|---|
+| Matching review / auto-accept thresholds | `0.75` / `0.92` | SP Coordination |
+| Fuzzy field weights | last_name .25, first_name .15, DOB .20, phone .20, LGA .05, ward .05, address .10 | SP Coordination |
+| `REPORTING_MIN_CELL_SIZE` (small-group suppression) | `5` | DPO |
+| `PRIVACY_RETENTION_ENABLED` + policy list | `false`, **empty** | DPO |
+| `PRIVACY_PROCESSING_REQUIRES_CONSENT` | `false` | DPO |
+| Referral SLA | 48 h accept / 168 h complete | SP Coordination |
+| Grievance SLA | 72 h payment & data-correction, 120 h eligibility/quality/complaint, 168 h other | SP Coordination |
+
+The matching values are editable in the admin console after go-live; the retention and
+consent settings are env-driven and need a restart.
+
+### 1.5 Reference data you must supply
+
+- **Wards.** `lgas` is seeded from the committed 27-LGA enum, but `wards` ships EMPTY and
+  ward names are never invented (GEO.1). Load the authoritative dataset with
+  `reference:load-divisions` (§3.1). Until you do, ward validation stands down and ward
+  is accepted as free text — see `KnownWard`.
+
+---
+## CI: build & push images (GitHub)
 
 Images build automatically when you push a version tag:
 
@@ -100,11 +182,43 @@ docker compose -f docker-compose.prod.yml ps
 docker compose -f docker-compose.prod.yml logs -f api
 ```
 
-### 2.6 Seed roles + the initial administrator
+### 2.6 Install the operating configuration + the initial administrator
+
+> Run each seeder **by class**. Never `db:seed --force` on its own: `DatabaseSeeder`
+> also lists the sample-data seeders, and while each of those refuses to run in
+> production, naming the ones you want is what makes that a decision rather than a
+> reliance on someone else's guard.
+
 ```bash
-docker compose -f docker-compose.prod.yml exec api php artisan db:seed --class=RolesAndPermissionsSeeder --force
-docker compose -f docker-compose.prod.yml exec api php artisan spmis:create-admin admin@spmis.example.gov.ng --name="SP-MIS Administrator"
-# Prompts for a strong password (policy-checked). MFA enrolment is forced at first login.
+# One handle for the rest of this section (note the quotes — it is one string).
+C="docker compose -f docker-compose.prod.yml exec api php artisan"
+
+# Roles + permissions (FR-UAM-01/05).
+$C db:seed --class=RolesAndPermissionsSeeder --force
+# Duplicate matching cascade + thresholds (FR-DUP-02/03/08). SEE THE WARNING BELOW.
+$C db:seed --class=MatchingConfigSeeder --force
+# Double-dipping detection rules (FR-BEN-07).
+$C db:seed --class=DoubleDippingRuleSeeder --force
+# Referral + grievance SLA windows (FR-REF, FR-GRM-03).
+$C db:seed --class=ReferralSlaSeeder --force
+$C db:seed --class=GrievanceSlaSeeder --force
+```
+
+> **Without `MatchingConfigSeeder` there is no active matching config, and the import
+> pipeline SKIPS DUPLICATE SCREENING ENTIRELY** — `MatchingConfigService::activeOrNull()`
+> has no lazy default, and `ParseImportBatch` treats "no config" as "do not screen". No
+> error is raised and no warning is shown; the registry simply fills with duplicates.
+> Verify before the first import:
+> ```bash
+> $C tinker --execute="echo app(App\Domain\Matching\Services\MatchingConfigService::class)->activeOrNull()?->version ?? 'NO ACTIVE CONFIG';"
+> ```
+> These four are **configuration**, not sample data. The shipped values are DEFAULTS
+> awaiting stakeholder sign-off — see §1.4.
+
+```bash
+$C spmis:create-admin admin@spmis.example.gov.ng --name="SP-MIS Administrator"
+# Prompts for a strong password (policy-checked, never an argument or env var, so it
+# stays out of shell history). MFA enrolment is forced at first login.
 ```
 
 ### 2.7 Verify

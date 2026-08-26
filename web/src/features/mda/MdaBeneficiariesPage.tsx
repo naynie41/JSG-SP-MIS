@@ -59,7 +59,7 @@ export function MdaBeneficiariesPage() {
           ...(canViewHouseholds
             ? [{ id: 'households', label: 'Households', content: <HouseholdListPage embedded /> }]
             : []),
-          { id: 'imports', label: 'Import Center', content: <ImportListPage /> },
+          { id: 'imports', label: 'Import Center', content: <ImportListPage embedded /> },
         ]}
       />
 

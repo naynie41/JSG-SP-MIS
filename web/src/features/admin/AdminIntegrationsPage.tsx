@@ -311,7 +311,7 @@ export function AdminIntegrationsPage() {
             label: 'Sync status & history',
             content: syncTab(<RunsPanel />, 'Synchronization history'),
           },
-          { id: 'imports', label: 'Import logs', content: <ImportListPage readOnly /> },
+          { id: 'imports', label: 'Import logs', content: <ImportListPage readOnly embedded /> },
         ]}
       />
     </div>

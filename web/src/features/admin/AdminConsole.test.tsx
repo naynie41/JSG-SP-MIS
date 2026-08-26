@@ -39,6 +39,26 @@ vi.mock('@/features/access/api', () => ({
 vi.mock('@/features/sync/api', () => ({
   syncApi: { connectors: vi.fn().mockResolvedValue([]), runs: vi.fn().mockResolvedValue({ items: [] }), trigger: vi.fn() },
 }))
+// The Overview's reporting summary reads the Phase 6 dashboard aggregation — the same
+// query the full Reports dashboard uses, which is what stops the two drifting.
+vi.mock('@/features/dashboard/api', () => ({
+  dashboardApi: {
+    opsMetrics: vi.fn(),
+    export: vi.fn(),
+    get: vi.fn().mockResolvedValue({
+      scope: { kind: 'state_wide', label: 'State-wide', tier: 'statewide' },
+      computed_at: '2026-08-20T09:30:00+01:00',
+      min_cell_size: 5,
+      metrics: {
+        registry: { beneficiaries: { total: 15402, by_status: {}, by_source: {}, by_lga: {} }, households: { total: 4120, by_lga: {} } },
+        programmes: { total: 12, active: 9, activities_total: 30, activities_active: 23 },
+        duplicates: { matches_surfaced: 47, resolved_new: 0, resolved_served: 0, resolved_skipped: 0 },
+        benefits: { disbursed: { benefit_count: 8800, total_value: 0, total_quantity: '0' }, budget: { allocated: 0, utilized_value: 0 }, by_type: [] },
+        referrals: {},
+      },
+    }),
+  },
+}))
 vi.mock('@/features/registry/api', () => ({
   importApi: { list: vi.fn().mockResolvedValue({ items: [] }), get: vi.fn(), upload: vi.fn() },
 }))
@@ -159,12 +179,22 @@ describe('System Administrator console', () => {
     expect(within(band).getByText('4')).toBeInTheDocument()
     expect(within(band).getByText('Programmes in catalog')).toBeInTheDocument()
     expect(within(band).getByText('9')).toBeInTheDocument()
-    expect(within(band).getByText('Active activities')).toBeInTheDocument()
-    expect(within(band).getByText('23')).toBeInTheDocument()
-    expect(within(band).getByText('Registered beneficiaries')).toBeInTheDocument()
-    expect(within(band).getByText('15,402')).toBeInTheDocument()
-    expect(within(band).getByText('Registered households')).toBeInTheDocument()
-    expect(within(band).getByText('4,120')).toBeInTheDocument()
+
+    // Beneficiary, household and activity counts are REPORTING figures and no longer
+    // live in this band. They were read from `useAdminSummary` — a second source for
+    // the same question, free to disagree with the dashboard the admin opens next — and
+    // now come from the shared ReportingSummaryCard below.
+    expect(within(band).queryByText('Registered beneficiaries')).not.toBeInTheDocument()
+    expect(within(band).queryByText('Registered households')).not.toBeInTheDocument()
+    expect(within(band).queryByText('Active activities')).not.toBeInTheDocument()
+  })
+
+  it('summarises the reporting dashboard and expands into the full one', async () => {
+    renderAt()
+    expect(await screen.findByRole('link', { name: /open full dashboard/i })).toHaveAttribute(
+      'href',
+      '/admin/reports',
+    )
   })
 
   it('shows adoption, the registry snapshot, alerts and recent activity', async () => {

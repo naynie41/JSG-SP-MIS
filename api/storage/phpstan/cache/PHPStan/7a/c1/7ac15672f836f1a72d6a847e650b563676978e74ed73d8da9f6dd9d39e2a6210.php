@@ -13,7 +13,9 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
          'uses' => 
         array (
           'mda' => 'App\\Domain\\Access\\Models\\Mda',
+          'mdascope' => 'App\\Domain\\Access\\Scopes\\MdaScope',
           'auditable' => 'App\\Domain\\Audit\\Concerns\\Auditable',
+          'activity' => 'App\\Domain\\Programme\\Models\\Activity',
           'servicerequeststatus' => 'App\\Domain\\Registry\\Enums\\ServiceRequestStatus',
           'ownermdapolicy' => 'App\\Domain\\Registry\\Policies\\OwnerMdaPolicy',
           'hasuuids' => 'Illuminate\\Database\\Eloquent\\Concerns\\HasUuids',
@@ -939,7 +941,9 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
          'uses' => 
         array (
           'mda' => 'App\\Domain\\Access\\Models\\Mda',
+          'mdascope' => 'App\\Domain\\Access\\Scopes\\MdaScope',
           'auditable' => 'App\\Domain\\Audit\\Concerns\\Auditable',
+          'activity' => 'App\\Domain\\Programme\\Models\\Activity',
           'servicerequeststatus' => 'App\\Domain\\Registry\\Enums\\ServiceRequestStatus',
           'ownermdapolicy' => 'App\\Domain\\Registry\\Policies\\OwnerMdaPolicy',
           'hasuuids' => 'Illuminate\\Database\\Eloquent\\Concerns\\HasUuids',
@@ -958,7 +962,9 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
            'uses' => 
           array (
             'mda' => 'App\\Domain\\Access\\Models\\Mda',
+            'mdascope' => 'App\\Domain\\Access\\Scopes\\MdaScope',
             'auditable' => 'App\\Domain\\Audit\\Concerns\\Auditable',
+            'activity' => 'App\\Domain\\Programme\\Models\\Activity',
             'servicerequeststatus' => 'App\\Domain\\Registry\\Enums\\ServiceRequestStatus',
             'ownermdapolicy' => 'App\\Domain\\Registry\\Policies\\OwnerMdaPolicy',
             'hasuuids' => 'Illuminate\\Database\\Eloquent\\Concerns\\HasUuids',
@@ -998,7 +1004,9 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
          'uses' => 
         array (
           'mda' => 'App\\Domain\\Access\\Models\\Mda',
+          'mdascope' => 'App\\Domain\\Access\\Scopes\\MdaScope',
           'auditable' => 'App\\Domain\\Audit\\Concerns\\Auditable',
+          'activity' => 'App\\Domain\\Programme\\Models\\Activity',
           'servicerequeststatus' => 'App\\Domain\\Registry\\Enums\\ServiceRequestStatus',
           'ownermdapolicy' => 'App\\Domain\\Registry\\Policies\\OwnerMdaPolicy',
           'hasuuids' => 'Illuminate\\Database\\Eloquent\\Concerns\\HasUuids',
@@ -1017,7 +1025,9 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
            'uses' => 
           array (
             'mda' => 'App\\Domain\\Access\\Models\\Mda',
+            'mdascope' => 'App\\Domain\\Access\\Scopes\\MdaScope',
             'auditable' => 'App\\Domain\\Audit\\Concerns\\Auditable',
+            'activity' => 'App\\Domain\\Programme\\Models\\Activity',
             'servicerequeststatus' => 'App\\Domain\\Registry\\Enums\\ServiceRequestStatus',
             'ownermdapolicy' => 'App\\Domain\\Registry\\Policies\\OwnerMdaPolicy',
             'hasuuids' => 'Illuminate\\Database\\Eloquent\\Concerns\\HasUuids',
@@ -1057,7 +1067,9 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
          'uses' => 
         array (
           'mda' => 'App\\Domain\\Access\\Models\\Mda',
+          'mdascope' => 'App\\Domain\\Access\\Scopes\\MdaScope',
           'auditable' => 'App\\Domain\\Audit\\Concerns\\Auditable',
+          'activity' => 'App\\Domain\\Programme\\Models\\Activity',
           'servicerequeststatus' => 'App\\Domain\\Registry\\Enums\\ServiceRequestStatus',
           'ownermdapolicy' => 'App\\Domain\\Registry\\Policies\\OwnerMdaPolicy',
           'hasuuids' => 'Illuminate\\Database\\Eloquent\\Concerns\\HasUuids',
@@ -1076,7 +1088,9 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
            'uses' => 
           array (
             'mda' => 'App\\Domain\\Access\\Models\\Mda',
+            'mdascope' => 'App\\Domain\\Access\\Scopes\\MdaScope',
             'auditable' => 'App\\Domain\\Audit\\Concerns\\Auditable',
+            'activity' => 'App\\Domain\\Programme\\Models\\Activity',
             'servicerequeststatus' => 'App\\Domain\\Registry\\Enums\\ServiceRequestStatus',
             'ownermdapolicy' => 'App\\Domain\\Registry\\Policies\\OwnerMdaPolicy',
             'hasuuids' => 'Illuminate\\Database\\Eloquent\\Concerns\\HasUuids',
@@ -1116,7 +1130,9 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
          'uses' => 
         array (
           'mda' => 'App\\Domain\\Access\\Models\\Mda',
+          'mdascope' => 'App\\Domain\\Access\\Scopes\\MdaScope',
           'auditable' => 'App\\Domain\\Audit\\Concerns\\Auditable',
+          'activity' => 'App\\Domain\\Programme\\Models\\Activity',
           'servicerequeststatus' => 'App\\Domain\\Registry\\Enums\\ServiceRequestStatus',
           'ownermdapolicy' => 'App\\Domain\\Registry\\Policies\\OwnerMdaPolicy',
           'hasuuids' => 'Illuminate\\Database\\Eloquent\\Concerns\\HasUuids',
@@ -1135,7 +1151,9 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
            'uses' => 
           array (
             'mda' => 'App\\Domain\\Access\\Models\\Mda',
+            'mdascope' => 'App\\Domain\\Access\\Scopes\\MdaScope',
             'auditable' => 'App\\Domain\\Audit\\Concerns\\Auditable',
+            'activity' => 'App\\Domain\\Programme\\Models\\Activity',
             'servicerequeststatus' => 'App\\Domain\\Registry\\Enums\\ServiceRequestStatus',
             'ownermdapolicy' => 'App\\Domain\\Registry\\Policies\\OwnerMdaPolicy',
             'hasuuids' => 'Illuminate\\Database\\Eloquent\\Concerns\\HasUuids',
@@ -1175,7 +1193,9 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
          'uses' => 
         array (
           'mda' => 'App\\Domain\\Access\\Models\\Mda',
+          'mdascope' => 'App\\Domain\\Access\\Scopes\\MdaScope',
           'auditable' => 'App\\Domain\\Audit\\Concerns\\Auditable',
+          'activity' => 'App\\Domain\\Programme\\Models\\Activity',
           'servicerequeststatus' => 'App\\Domain\\Registry\\Enums\\ServiceRequestStatus',
           'ownermdapolicy' => 'App\\Domain\\Registry\\Policies\\OwnerMdaPolicy',
           'hasuuids' => 'Illuminate\\Database\\Eloquent\\Concerns\\HasUuids',
@@ -1194,7 +1214,72 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
            'uses' => 
           array (
             'mda' => 'App\\Domain\\Access\\Models\\Mda',
+            'mdascope' => 'App\\Domain\\Access\\Scopes\\MdaScope',
             'auditable' => 'App\\Domain\\Audit\\Concerns\\Auditable',
+            'activity' => 'App\\Domain\\Programme\\Models\\Activity',
+            'servicerequeststatus' => 'App\\Domain\\Registry\\Enums\\ServiceRequestStatus',
+            'ownermdapolicy' => 'App\\Domain\\Registry\\Policies\\OwnerMdaPolicy',
+            'hasuuids' => 'Illuminate\\Database\\Eloquent\\Concerns\\HasUuids',
+            'model' => 'Illuminate\\Database\\Eloquent\\Model',
+            'belongsto' => 'Illuminate\\Database\\Eloquent\\Relations\\BelongsTo',
+            'carbon' => 'Illuminate\\Support\\Carbon',
+          ),
+           'className' => 'App\\Domain\\Registry\\Models\\ServiceRequest',
+           'functionName' => NULL,
+           'templatePhpDocNodes' => 
+          array (
+          ),
+           'parent' => NULL,
+           'typeAliasesMap' => 
+          array (
+          ),
+           'bypassTypeAliases' => false,
+           'constUses' => 
+          array (
+          ),
+           'typeAliasClassName' => NULL,
+           'traitData' => NULL,
+        )),
+         'typeAliasesMap' => 
+        array (
+        ),
+         'bypassTypeAliases' => false,
+         'constUses' => 
+        array (
+        ),
+         'typeAliasClassName' => NULL,
+         'traitData' => NULL,
+      )),
+      '85dd5cb1e3483bf3b5794875f62eb2d4' => 
+      \PHPStan\Analyser\IntermediaryNameScope::__set_state(array(
+         'namespace' => 'App\\Domain\\Registry\\Models',
+         'uses' => 
+        array (
+          'mda' => 'App\\Domain\\Access\\Models\\Mda',
+          'mdascope' => 'App\\Domain\\Access\\Scopes\\MdaScope',
+          'auditable' => 'App\\Domain\\Audit\\Concerns\\Auditable',
+          'activity' => 'App\\Domain\\Programme\\Models\\Activity',
+          'servicerequeststatus' => 'App\\Domain\\Registry\\Enums\\ServiceRequestStatus',
+          'ownermdapolicy' => 'App\\Domain\\Registry\\Policies\\OwnerMdaPolicy',
+          'hasuuids' => 'Illuminate\\Database\\Eloquent\\Concerns\\HasUuids',
+          'model' => 'Illuminate\\Database\\Eloquent\\Model',
+          'belongsto' => 'Illuminate\\Database\\Eloquent\\Relations\\BelongsTo',
+          'carbon' => 'Illuminate\\Support\\Carbon',
+        ),
+         'className' => 'App\\Domain\\Registry\\Models\\ServiceRequest',
+         'functionName' => 'activity',
+         'templatePhpDocNodes' => 
+        array (
+        ),
+         'parent' => 
+        \PHPStan\Analyser\IntermediaryNameScope::__set_state(array(
+           'namespace' => 'App\\Domain\\Registry\\Models',
+           'uses' => 
+          array (
+            'mda' => 'App\\Domain\\Access\\Models\\Mda',
+            'mdascope' => 'App\\Domain\\Access\\Scopes\\MdaScope',
+            'auditable' => 'App\\Domain\\Audit\\Concerns\\Auditable',
+            'activity' => 'App\\Domain\\Programme\\Models\\Activity',
             'servicerequeststatus' => 'App\\Domain\\Registry\\Enums\\ServiceRequestStatus',
             'ownermdapolicy' => 'App\\Domain\\Registry\\Policies\\OwnerMdaPolicy',
             'hasuuids' => 'Illuminate\\Database\\Eloquent\\Concerns\\HasUuids',
@@ -1231,7 +1316,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
     ),
     1 => 
     array (
-      'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Registry\\Models\\ServiceRequest.php' => '68d0c757d35761a76552ff59fe51789d44b2eb69a2b17a4a933611303f480883',
+      'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Registry\\Models\\ServiceRequest.php' => '7ab380f4fde55b45fcf807f127648cb0407fea6670c84afed3b37c9e421067b1',
       'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Audit\\Concerns\\Auditable.php' => '5ffa2245eaa31de5eade775b8b48dfcbbf9e33ae3b5651120046c5b92a6d4b7a',
       'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\vendor\\composer\\..\\laravel\\framework\\src\\Illuminate\\Database\\Eloquent\\Concerns\\HasUuids.php' => 'f75b8db33aafd61f17652a5e4bb5b8989e62197b306e9f7ae60bb3ac2c34d534',
       'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\vendor\\composer\\..\\laravel\\framework\\src\\Illuminate\\Database\\Eloquent\\Concerns\\HasUniqueStringIds.php' => '3d5612d3c0a56c6c9f19e628b02085d4d68a64d9d07656742725cec78d4a79c5',

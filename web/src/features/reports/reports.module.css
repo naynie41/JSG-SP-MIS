@@ -53,6 +53,7 @@
 }
 
 .muted {
+  margin: 0;
   color: var(--text-muted-strong);
   font-size: var(--fs-label);
 }
@@ -66,17 +67,6 @@
   line-height: 1.6;
 }
 
-.cardGrid {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: var(--space-4);
-}
-@media (max-width: 720px) {
-  .cardGrid {
-    grid-template-columns: 1fr;
-  }
-}
-
 .stack2 {
   display: grid;
   gap: var(--space-1);
@@ -87,4 +77,513 @@
   display: grid;
   place-items: center;
   padding: var(--space-8);
+}
+
+/* ==========================================================================
+   Reports: dashboard | build a report | history   (FR-RPT-03, FR-DSH-01)
+   ========================================================================== */
+
+.dashLoading {
+  display: grid;
+  place-items: center;
+  padding: var(--space-8);
+}
+
+.dash {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-5);
+}
+
+.dashHead {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: var(--space-2) var(--space-4);
+}
+
+.dashScope {
+  margin: 0;
+  font-size: var(--fs-h3);
+  font-weight: 600;
+  color: var(--text);
+}
+
+.dashMeta,
+.dashNote {
+  margin: 0;
+  color: var(--text-muted-strong);
+  font-size: var(--fs-label);
+}
+
+/*
+ * Figures sit on the page ground, separated by rules rather than boxed. Six bordered
+ * cards in a row would read as six unrelated things; these are one reading of one
+ * population.
+ */
+.dashFigures {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(10rem, 1fr));
+  gap: var(--space-4);
+  margin: 0;
+  padding: var(--space-4) 0;
+  border-block: 1px solid var(--border);
+}
+
+.dashFigure {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+  min-width: 0;
+}
+
+.dashFigureLabel {
+  color: var(--text-muted-strong);
+  font-size: var(--fs-label);
+  line-height: 1.3;
+}
+
+.dashFigureValue,
+.dashFigureHeld {
+  margin: 0;
+  font-size: var(--fs-h1);
+  font-weight: 600;
+  line-height: 1.05;
+  font-variant-numeric: tabular-nums;
+  letter-spacing: -0.02em;
+  color: var(--text);
+}
+
+.dashFigureHeld {
+  font-size: var(--fs-h2);
+  font-weight: 500;
+  color: var(--text-muted-strong);
+}
+
+.dashBreakdowns {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(17rem, 1fr));
+  gap: var(--space-5) var(--space-6);
+}
+
+/* ---- breakdown bars (shared by the dashboard and the report chart) ---- */
+
+.breakdown {
+  margin: 0;
+  min-width: 0;
+}
+
+.breakdownTitle {
+  margin: 0 0 var(--space-3);
+  font-size: var(--fs-label);
+  font-weight: 600;
+  color: var(--text-muted-strong);
+}
+
+.breakdownEmpty {
+  margin: 0;
+  color: var(--text-muted-strong);
+  font-size: var(--fs-label);
+}
+
+.breakdownList {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+
+.breakdownRow {
+  display: grid;
+  grid-template-columns: minmax(5rem, 9rem) 1fr auto;
+  align-items: center;
+  gap: var(--space-3);
+  font-size: var(--fs-label);
+}
+
+.breakdownLabel {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.breakdownTrack {
+  display: block;
+  height: 0.6rem;
+  border-radius: var(--radius-sm);
+  background: var(--surface-mint, var(--border));
+  overflow: hidden;
+}
+
+.breakdownBar {
+  display: block;
+  height: 100%;
+  border-radius: var(--radius-sm);
+  background: var(--forest, var(--text));
+}
+
+/* A withheld group keeps its row, hatched. An absent bar would read as zero. */
+.breakdownBarHeld {
+  display: block;
+  height: 100%;
+  border-radius: var(--radius-sm);
+  background: repeating-linear-gradient(
+    45deg,
+    var(--border-strong) 0,
+    var(--border-strong) 3px,
+    transparent 3px,
+    transparent 7px
+  );
+}
+
+.breakdownValue {
+  font-variant-numeric: tabular-nums;
+  color: var(--text-muted-strong);
+}
+
+/* ---------------------------------------------------------- build a report ---- */
+
+.builder {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-5);
+}
+
+.builderSubject {
+  max-width: 28rem;
+}
+
+.segment {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-5);
+}
+
+/* What this role will actually get back, stated before they build the query. */
+.segmentNotice {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+}
+
+.segmentIdle {
+  margin: 0;
+  color: var(--text-muted-strong);
+  font-size: var(--fs-label);
+}
+
+/* ---- filters ---- */
+
+.filters {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+  padding: var(--space-4);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  background: var(--bg);
+}
+
+.filtersHead {
+  display: flex;
+  align-items: baseline;
+  gap: var(--space-3);
+  flex-wrap: wrap;
+}
+
+.filtersTitle {
+  margin: 0;
+  font-size: var(--fs-ui);
+  font-weight: 600;
+}
+
+.filtersHint {
+  margin: 0;
+  color: var(--text-muted-strong);
+  font-size: var(--fs-label);
+}
+
+/*
+ * Filters are PILLS in a wrapping row: one line each, carrying their own selection, so
+ * the row reads as the query. Four filters cost a single wrapped row rather than four
+ * tall cards — the space problem with showing every control at once.
+ */
+.pillRow {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-2);
+}
+
+/* The positioning context for each overlay menu. */
+.pillWrap {
+  position: relative;
+}
+
+.pill {
+  display: inline-flex;
+  align-items: stretch;
+  border: 1px solid var(--border-strong);
+  border-radius: var(--radius-full);
+  background: var(--surface);
+  max-width: 22rem;
+}
+
+.pillOpen {
+  border-color: var(--forest);
+  box-shadow: 0 1px 2px rgb(24 24 24 / 0.06);
+}
+
+.pillTrigger {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  min-width: 0;
+  padding: var(--space-2) var(--space-1) var(--space-2) var(--space-3);
+  border: none;
+  border-radius: var(--radius-full) 0 0 var(--radius-full);
+  background: none;
+  font-size: var(--fs-label);
+  cursor: pointer;
+  color: var(--text);
+}
+
+.pillTrigger:hover {
+  background: var(--surface-mint);
+}
+
+.pillName {
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.pillName::after {
+  content: ':';
+  color: var(--text-muted-strong);
+}
+
+.pillValue {
+  color: var(--text-muted-strong);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.pillChevron {
+  flex: none;
+  color: var(--text-muted-strong);
+}
+
+.pillRemove {
+  display: grid;
+  place-items: center;
+  flex: none;
+  width: 1.9rem;
+  border: none;
+  border-left: 1px solid var(--border);
+  border-radius: 0 var(--radius-full) var(--radius-full) 0;
+  background: none;
+  color: var(--text-muted-strong);
+  cursor: pointer;
+}
+
+.pillRemove:hover {
+  background: var(--danger-soft);
+  color: var(--danger-ink);
+}
+
+.pillTrigger:focus-visible,
+.pillRemove:focus-visible,
+.addButton:focus-visible,
+.menuItem:focus-visible,
+.menuClear:focus-visible {
+  outline: 2px solid var(--forest);
+  outline-offset: -2px;
+}
+
+.addButton {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-1);
+  padding: var(--space-2) var(--space-3);
+  border: 1px dashed var(--border-strong);
+  border-radius: var(--radius-full);
+  background: none;
+  color: var(--text);
+  font-size: var(--fs-label);
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.addButton:hover {
+  border-style: solid;
+  background: var(--surface);
+}
+
+/* ---- the overlay menu ---- */
+
+/*
+ * Absolutely positioned so opening a filter does not reflow the page beneath it. The
+ * filter panel sets no overflow of its own, so nothing clips this.
+ */
+.menu {
+  position: absolute;
+  z-index: 30;
+  top: calc(100% + var(--space-1));
+  left: 0;
+  min-width: 15rem;
+  max-width: min(22rem, 90vw);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  padding: var(--space-3);
+  border: 1px solid var(--border-strong);
+  border-radius: var(--radius-md);
+  background: var(--surface);
+  box-shadow: 0 6px 20px rgb(24 24 24 / 0.12);
+}
+
+.menuHead {
+  margin: 0;
+  color: var(--text-muted-strong);
+  font-size: var(--fs-caption);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+
+/* Long lists scroll inside the menu rather than running off the viewport. */
+.menuList {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+  max-height: 14rem;
+  overflow-y: auto;
+}
+
+.menuItem {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: var(--space-3);
+  width: 100%;
+  padding: var(--space-2);
+  border: none;
+  border-radius: var(--radius-sm);
+  background: none;
+  font-size: var(--fs-label);
+  text-align: left;
+  cursor: pointer;
+  color: var(--text);
+}
+
+.menuItem:hover {
+  background: var(--surface-mint);
+}
+
+/* Where the field comes from: the import schema, or stamped on the record. */
+.menuOrigin {
+  flex: none;
+  color: var(--text-muted-strong);
+  font-size: var(--fs-caption);
+}
+
+.menuOption {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  padding: var(--space-1) 0;
+  font-size: var(--fs-label);
+  cursor: pointer;
+}
+
+.menuRange {
+  display: flex;
+  gap: var(--space-2);
+}
+
+.menuEmpty {
+  margin: 0;
+  color: var(--text-muted-strong);
+  font-size: var(--fs-label);
+}
+
+.menuClear {
+  align-self: flex-start;
+  padding: 0;
+  border: none;
+  background: none;
+  color: var(--text-muted-strong);
+  font-size: var(--fs-caption);
+  text-decoration: underline;
+  cursor: pointer;
+}
+/* ---- run + results ---- */
+
+.segmentRun {
+  display: flex;
+  align-items: flex-end;
+  flex-wrap: wrap;
+  gap: var(--space-3);
+}
+
+.segmentResult {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+  padding-top: var(--space-4);
+  border-top: 1px solid var(--border);
+}
+
+.resultHead {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: var(--space-3);
+}
+
+.resultTotal {
+  margin: 0;
+  font-size: var(--fs-body);
+}
+
+.tableScroll {
+  overflow-x: auto;
+}
+
+.resultTable {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: var(--fs-label);
+  font-variant-numeric: tabular-nums;
+}
+
+.resultTable th,
+.resultTable td {
+  padding: var(--space-2) var(--space-3);
+  text-align: left;
+  border-bottom: 1px solid var(--border);
+  white-space: nowrap;
+}
+
+.resultTable th {
+  color: var(--text-muted-strong);
+  font-weight: 600;
+}
+
+/* ---- history ---- */
+
+.historySections {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-6);
+}
+
+.historySectionTitle {
+  margin: 0 0 var(--space-3);
+  font-size: var(--fs-h3);
+  font-weight: 600;
 }

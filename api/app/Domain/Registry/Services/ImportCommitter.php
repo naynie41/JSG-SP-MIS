@@ -15,6 +15,7 @@ use App\Domain\Registry\Enums\ImportStatus;
 use App\Domain\Registry\Events\ImportBatchCompleted;
 use App\Domain\Registry\Models\Beneficiary;
 use App\Domain\Registry\Models\Household;
+use App\Domain\Registry\Models\HouseholdMembership;
 use App\Domain\Registry\Models\ImportBatch;
 use App\Domain\Registry\Models\ImportRow;
 use Illuminate\Database\UniqueConstraintViolationException;
@@ -26,8 +27,11 @@ use RuntimeException;
  * §10). Per row, honouring the officer's resolution: NEW → create a beneficiary
  * (owned by the importing MDA, FR-OWN-01) + record the intervention under the batch's
  * activity (activity-first); LINK → raise a PENDING Service Request attached to that
- * activity (FR-OWN-06), intervention DEFERRED until owner approval (FR-BEN-06); SKIP
- * (or an unresolved flagged/invalid row) → nothing.
+ * activity (FR-OWN-06), intervention DEFERRED until owner approval (FR-BEN-06); OWN →
+ * the match is this MDA's OWN beneficiary, so no second record and no request — the
+ * existing person receives a new intervention; SKIP (or an unresolved flagged/invalid
+ * row) → nothing. LINK and OWN are chosen by OWNERSHIP of the matched record, not by
+ * the stored label (see resolveAgainstExisting).
  *
  * Reused verbatim by BOTH the async {@see CommitImportBatch} job (standalone Import
  * Center) and the activity-creation wizard's atomic confirm — no parallel logic. The
@@ -83,10 +87,11 @@ class ImportCommitter
                     /** @var ImportRow $row */
                     $resolution = $this->effectiveResolution($row);
 
-                    if ($resolution === ImportRowResolution::Link) {
-                        // Serve the matched existing beneficiary — a PENDING Service
-                        // Request under the activity; nothing is created, no intervention.
-                        $this->serve($row, $batch, $actor);
+                    if (in_array($resolution, ImportRowResolution::againstExisting(), true)) {
+                        // Acts on an EXISTING person. Which act depends on who owns them,
+                        // and that is read from the record here rather than trusted from
+                        // the stored label — see resolveAgainstExisting().
+                        $this->resolveAgainstExisting($row, $batch, $activity, $programme, $actor);
 
                         continue;
                     }
@@ -139,20 +144,25 @@ class ImportCommitter
         $total = (int) $batch->rows()->count();
         $committed = (int) $batch->rows()->whereNotNull('beneficiary_id')->count();
         $served = (int) $batch->rows()->where('resolution', ImportRowResolution::Link->value)->count();
+        // Rows that matched a person this MDA already owns. Counted apart from `skipped`
+        // because an own-match records a delivery on the existing record — reporting it
+        // as discarded would tell the officer the opposite of what happened.
+        $own = (int) $batch->rows()->where('resolution', ImportRowResolution::Own->value)->count();
 
-        $skipped = max(0, $total - $committed - $served);
+        $skipped = max(0, $total - $committed - $served - $own);
 
         $batch->update([
             'status' => ImportStatus::Completed,
             'committed_rows' => $committed,
             'served_rows' => $served,
+            'own_rows' => $own,
             'skipped_rows' => $skipped,
         ]);
 
         // Tell the uploader how it went. Fired here rather than in CommitImportBatch so
         // it covers BOTH entry points — the Import Center's queued commit and the
         // activity wizard's atomic confirm both land in this method.
-        ImportBatchCompleted::dispatch($batch, $committed, $served, $skipped);
+        ImportBatchCompleted::dispatch($batch, $committed, $served, $skipped, $own);
     }
 
     /**
@@ -195,11 +205,24 @@ class ImportCommitter
     }
 
     /**
-     * Raise a PENDING Service Request for a LINK row, attached to the batch's activity
-     * (§10). Never creates a beneficiary; the intervention is deferred until the owner
-     * MDA approves.
+     * A row that acts on an EXISTING matched beneficiary. OWNERSHIP decides which act:
+     *
+     *  - another MDA's record → PENDING Service Request under the batch's activity
+     *    (§10, FR-OWN-06); nothing created, intervention deferred until approval;
+     *  - this MDA's own record → no request at all (you do not ask permission to serve
+     *    your own beneficiary) and a NEW INTERVENTION on the person who is already there.
+     *
+     * The decision is re-derived from the record instead of trusting `resolution`, for
+     * two reasons. It makes "never request-to-serve your own beneficiary" structural
+     * rather than a rule every caller has to remember — `ServiceRequestService::request()`
+     * throws a DomainException on a self-owned target, which mid-chunk would abort the
+     * whole commit. And it heals rows already stored as LINK against a self-owned match,
+     * which auto-link could produce before own-matches were modelled.
+     *
+     * The row's stored resolution is corrected to whichever act ran, so the batch
+     * counters and the decision history describe what actually happened.
      */
-    private function serve(ImportRow $row, ImportBatch $batch, ?User $actor): void
+    private function resolveAgainstExisting(ImportRow $row, ImportBatch $batch, ?Activity $activity, ?Programme $programme, ?User $actor): void
     {
         if ($row->resolved_beneficiary_id === null) {
             return;
@@ -210,6 +233,40 @@ class ImportCommitter
             return;
         }
 
+        if ($beneficiary->owner_mda_id === $batch->owner_mda_id) {
+            $row->update(['resolution' => ImportRowResolution::Own->value]);
+
+            // The existing person, under this batch's programme/activity. No new
+            // beneficiary row: `beneficiary_id` stays null so the row is never counted
+            // as a creation, and re-running the commit re-enters this branch harmlessly
+            // (EnrollmentService already no-ops on a duplicate enrollment).
+            $this->recordIntervention($programme, $activity, $beneficiary, $this->householdOf($beneficiary), $actor);
+
+            return;
+        }
+
+        $row->update(['resolution' => ImportRowResolution::Link->value]);
+
         $this->serviceRequests->request($beneficiary, $batch->owner_mda_id, $actor, $row->resolution_note, $row->id, $batch->activity_id);
+    }
+
+    /**
+     * The household an already-registered beneficiary belongs to, for a household-typed
+     * programme. An own-match enrolls the person as they ALREADY are — the re-uploaded
+     * row does not re-form or re-shape their household, because the registry copy is the
+     * authoritative one and the upload is a delivery record, not a correction.
+     */
+    private function householdOf(Beneficiary $beneficiary): ?Household
+    {
+        // HouseholdMembership carries no MDA scope of its own; the household it points
+        // at does, hence the explicit bypass on that lookup and not this one.
+        $membership = HouseholdMembership::query()
+            ->where('beneficiary_id', $beneficiary->id)
+            ->whereNull('left_at')
+            ->first();
+
+        return $membership === null
+            ? null
+            : Household::query()->withoutGlobalScope(MdaScope::class)->find($membership->household_id);
     }
 }

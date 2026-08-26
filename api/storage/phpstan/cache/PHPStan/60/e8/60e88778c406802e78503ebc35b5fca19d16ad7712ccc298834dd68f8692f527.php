@@ -2,7 +2,7 @@
 
 // odsl-C:\Users\ACER\Desktop\JSG-SP-MIS\JSG-SP-MIS\api\app\Http\Controllers\Api\V1\Registry\RegistryRulesController.php-PHPStan\BetterReflection\Reflection\ReflectionClass-App\Http\Controllers\Api\V1\Registry\RegistryRulesController
 return \PHPStan\Cache\CacheItem::__set_state(array(
-   'variableKey' => 'v2-6.70.0.1-8.3.31-3a92ebbf3bbcd00c2cb571ab84ba9757d3fc8f24672d8e624cdcc071c818bfe6',
+   'variableKey' => 'v2-6.70.0.1-8.3.31-1925101afc52331d7f5d0790d23a80d0fbdd4b0c7cb17bfaf881495d6adf5d9a',
    'data' => 
   array (
     'locatedSource' => 
@@ -35,8 +35,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
     'attributes' => 
     array (
     ),
-    'startLine' => 23,
-    'endLine' => 67,
+    'startLine' => 24,
+    'endLine' => 75,
     'startColumn' => 1,
     'endColumn' => 1,
     'parentClassName' => 'App\\Http\\Controllers\\Controller',
@@ -74,8 +74,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         array (
         ),
         'docComment' => NULL,
-        'startLine' => 25,
-        'endLine' => 52,
+        'startLine' => 26,
+        'endLine' => 53,
         'startColumn' => 5,
         'endColumn' => 5,
         'couldThrow' => false,
@@ -113,8 +113,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             'attributes' => 
             array (
             ),
-            'startLine' => 55,
-            'endLine' => 55,
+            'startLine' => 56,
+            'endLine' => 56,
             'startColumn' => 31,
             'endColumn' => 41,
             'parameterIndex' => 0,
@@ -135,8 +135,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         array (
         ),
         'docComment' => '/** Render a Laravel rule (string or rule object) as a readable token. */',
-        'startLine' => 55,
-        'endLine' => 66,
+        'startLine' => 56,
+        'endLine' => 74,
         'startColumn' => 5,
         'endColumn' => 5,
         'couldThrow' => false,

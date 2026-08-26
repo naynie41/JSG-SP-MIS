@@ -13,6 +13,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
          'uses' => 
         array (
           'user' => 'App\\Domain\\Access\\Models\\User',
+          'grievancestatus' => 'App\\Domain\\Grievance\\Enums\\GrievanceStatus',
+          'grievance' => 'App\\Domain\\Grievance\\Models\\Grievance',
           'referralstatus' => 'App\\Domain\\Referral\\Enums\\ReferralStatus',
           'referral' => 'App\\Domain\\Referral\\Models\\Referral',
           'referralscope' => 'App\\Domain\\Referral\\Scopes\\ReferralScope',
@@ -41,6 +43,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
          'uses' => 
         array (
           'user' => 'App\\Domain\\Access\\Models\\User',
+          'grievancestatus' => 'App\\Domain\\Grievance\\Enums\\GrievanceStatus',
+          'grievance' => 'App\\Domain\\Grievance\\Models\\Grievance',
           'referralstatus' => 'App\\Domain\\Referral\\Enums\\ReferralStatus',
           'referral' => 'App\\Domain\\Referral\\Models\\Referral',
           'referralscope' => 'App\\Domain\\Referral\\Scopes\\ReferralScope',
@@ -58,6 +62,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
            'uses' => 
           array (
             'user' => 'App\\Domain\\Access\\Models\\User',
+            'grievancestatus' => 'App\\Domain\\Grievance\\Enums\\GrievanceStatus',
+            'grievance' => 'App\\Domain\\Grievance\\Models\\Grievance',
             'referralstatus' => 'App\\Domain\\Referral\\Enums\\ReferralStatus',
             'referral' => 'App\\Domain\\Referral\\Models\\Referral',
             'referralscope' => 'App\\Domain\\Referral\\Scopes\\ReferralScope',
@@ -93,7 +99,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
     ),
     1 => 
     array (
-      'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Reporting\\Services\\MdaActionRequiredService.php' => 'ae6b94f921c6b1b1a36eec147c9e7fbd42093b64915a3c56d8d1ac65e183e98c',
+      'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Reporting\\Services\\MdaActionRequiredService.php' => '88a07c2fbbadd2468da3a73624f1917257a4ce5e4783ecdfe533ab6b0f0ec530',
     ),
   ),
 ));

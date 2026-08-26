@@ -154,6 +154,16 @@ a {
   text-decoration: none;
 }
 
+/*
+ * Colour alone cannot carry "this is a link" (WCAG 1.4.1). Underlining on hover and
+ * focus keeps body copy and dense tables clean while still giving every pointer and
+ * keyboard user a non-colour signal before they commit to a click.
+ */
+a:hover,
+a:focus-visible {
+  text-decoration: underline;
+}
+
 img,
 svg {
   display: block;

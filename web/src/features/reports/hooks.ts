@@ -2,7 +2,7 @@ import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query'
 import { useToast } from '@/components/Toast/ToastProvider'
 import { ApiError } from '@/types/api'
 import { reportsApi } from './api'
-import type { AdHocDefinitionInput, ReportFormat, ReportRun } from './types'
+import type { AdHocDefinitionInput, ReportFormat, ReportRun, SegmentDefinitionInput } from './types'
 
 const DATASETS_KEY = ['report-datasets']
 const CATALOGUE_KEY = ['report-catalogue']
@@ -102,5 +102,46 @@ export function useUpdateSchedule() {
       toast.success('Schedule updated')
     },
     onError: (error) => toast.error('Could not update the schedule', message(error, 'Please try again.')),
+  })
+}
+
+/* ------------------------------------------------- segment builder (FR-RPT-03) */
+
+const SEGMENT_DIMENSIONS_KEY = ['report-segment-dimensions']
+
+export function useSegmentDimensions(enabled = true) {
+  return useQuery({
+    queryKey: SEGMENT_DIMENSIONS_KEY,
+    queryFn: () => reportsApi.segmentDimensions(),
+    enabled,
+  })
+}
+
+/**
+ * The composed query. Kept as a mutation rather than a query because it runs on
+ * demand: a filter builder that refetched on every keystroke would put an unbounded
+ * count over the registry behind each one.
+ */
+export function useSegmentPreview() {
+  const toast = useToast()
+
+  return useMutation({
+    mutationFn: (definition: SegmentDefinitionInput) => reportsApi.segmentPreview(definition),
+    onError: (error) => toast.error('Could not run the segment', message(error, 'Please adjust the filters.')),
+  })
+}
+
+export function useExportSegment() {
+  const qc = useQueryClient()
+  const toast = useToast()
+
+  return useMutation({
+    mutationFn: ({ definition, format }: { definition: SegmentDefinitionInput; format: ReportFormat }) =>
+      reportsApi.exportSegment(definition, format),
+    onSuccess: () => {
+      void qc.invalidateQueries({ queryKey: RUNS_KEY })
+      toast.success('Export queued', 'It appears under Recent exports as soon as it is ready.')
+    },
+    onError: (error) => toast.error('Could not start the export', message(error, 'Please try again.')),
   })
 }

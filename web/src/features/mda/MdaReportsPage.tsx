@@ -7,13 +7,11 @@ import { Tabs } from '@/components/Tabs/Tabs'
 import { DataTableExport } from '@/components/DataTable/DataTableExport'
 import { useAuth } from '@/lib/auth/AuthProvider'
 import { useReportDatasets } from '@/features/reports/hooks'
-import {
-  BuilderPanel,
-  CataloguePanel,
-  ReportsLoading,
-  RunsPanel,
-  SchedulesPanel,
-} from '@/features/reports/ReportPanels'
+import { ReportsLoading } from '@/features/reports/ReportPanels'
+import { ReportBuilderPanel } from '@/features/reports/ReportBuilderPanel'
+import { ReportHistoryPanel } from '@/features/reports/ReportHistoryPanel'
+import { ReportsDashboardPanel } from '@/features/reports/ReportsDashboardPanel'
+import reportStyles from '@/features/reports/reports.module.css'
 import styles from './mda.module.css'
 
 /* --------------------------------------------------------- beneficiary list export */
@@ -114,8 +112,7 @@ export function MdaReportsPage() {
   const canExport = hasPermission('reporting.export')
 
   const { data, isLoading, error } = useReportDatasets(canView)
-  const [tab, setTab] = useState('catalogue')
-  const [seedDataset, setSeedDataset] = useState<string | undefined>(undefined)
+  const [tab, setTab] = useState('dashboard')
 
   if (!canView) {
     return (
@@ -126,11 +123,6 @@ export function MdaReportsPage() {
   }
 
   const datasets = data ?? []
-
-  function buildFrom(dataset: string) {
-    setSeedDataset(dataset)
-    setTab('builder')
-  }
 
   return (
     <div className={styles.page}>
@@ -153,54 +145,35 @@ export function MdaReportsPage() {
           onChange={setTab}
           items={[
             {
-              // Was two tabs — a hardcoded "Report types" list beside this one — both
-              // card grids whose only action was to seed the builder with a dataset.
-              // The hardcoded list had drifted: it offered two cards for the same
-              // `benefits` dataset and omitted grievances entirely, so a capability the
-              // server grants MDAs was unreachable from it. This one comes from the
-              // server, so it cannot drift, and it names the real group-by dimensions.
-              id: 'catalogue',
-              label: 'Report types',
-              content: (
-                <CataloguePanel
-                  datasets={datasets}
-                  onBuild={buildFrom}
-                  footnote="Each dataset is constrained to your MDA by the server — counts and sums only, never a personal record"
-                />
-              ),
+              // The full reporting dashboard — what the Overview summary expands into.
+              id: 'dashboard',
+              label: 'Dashboard',
+              content: <ReportsDashboardPanel />,
             },
             {
-              id: 'builder',
-              label: 'Build & export',
-              content: canExport ? (
-                <BuilderPanel
-                  datasets={datasets}
-                  initialDataset={seedDataset}
-                  eyebrow="Aggregate only — scoped to your MDA"
-                />
-              ) : (
-                <p className={styles.muted}>
-                  Generating and exporting reports needs the reporting export permission.
-                </p>
-              ),
+              // ONE builder. Reporting on PEOPLE (filter the registry, list or count
+              // them) and reporting on a DATASET (group and total it) were separate
+              // tabs, which asked the officer to know which engine answers their
+              // question before they had asked it. The subject picker inside decides.
+              id: 'build',
+              label: 'Build a report',
+              content: <ReportBuilderPanel datasets={datasets} canExport={canExport} />,
             },
             {
-              id: 'schedules',
-              label: 'Scheduled reports',
+              id: 'history',
+              label: 'History',
               content: (
-                <SchedulesPanel
+                <ReportHistoryPanel
                   canManage={canExport}
-                  footnote="A scheduled report is delivered only to recipients whose own scope covers it, so a schedule can never carry your MDA’s data to someone who could not have run the report themselves"
-                />
+                  scheduleFootnote="A scheduled report is delivered only to recipients whose own scope covers it, so a schedule can never carry your MDA's data to someone who could not have run the report themselves"
+                >
+                  <section>
+                    <h3 className={reportStyles.historySectionTitle}>Beneficiary export</h3>
+                    <BeneficiaryExportPanel />
+                  </section>
+                </ReportHistoryPanel>
               ),
-            },
-            { id: 'runs', label: 'Recent exports', content: <RunsPanel /> },
-            {
-              id: 'registry-export',
-              label: 'Beneficiary export',
-              content: <BeneficiaryExportPanel />,
-            },
-          ]}
+            },          ]}
         />
       )}
 

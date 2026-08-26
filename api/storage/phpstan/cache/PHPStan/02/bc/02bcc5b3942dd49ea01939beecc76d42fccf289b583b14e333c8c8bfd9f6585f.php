@@ -13,6 +13,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
          'uses' => 
         array (
           'beneficiaryrules' => 'App\\Domain\\Registry\\Support\\BeneficiaryRules',
+          'describesconstraint' => 'App\\Domain\\Registry\\Support\\DescribesConstraint',
           'controller' => 'App\\Http\\Controllers\\Controller',
           'apiresponse' => 'App\\Support\\ApiResponse',
           'jsonresponse' => 'Illuminate\\Http\\JsonResponse',
@@ -40,6 +41,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
          'uses' => 
         array (
           'beneficiaryrules' => 'App\\Domain\\Registry\\Support\\BeneficiaryRules',
+          'describesconstraint' => 'App\\Domain\\Registry\\Support\\DescribesConstraint',
           'controller' => 'App\\Http\\Controllers\\Controller',
           'apiresponse' => 'App\\Support\\ApiResponse',
           'jsonresponse' => 'Illuminate\\Http\\JsonResponse',
@@ -56,6 +58,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
            'uses' => 
           array (
             'beneficiaryrules' => 'App\\Domain\\Registry\\Support\\BeneficiaryRules',
+            'describesconstraint' => 'App\\Domain\\Registry\\Support\\DescribesConstraint',
             'controller' => 'App\\Http\\Controllers\\Controller',
             'apiresponse' => 'App\\Support\\ApiResponse',
             'jsonresponse' => 'Illuminate\\Http\\JsonResponse',
@@ -93,6 +96,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
          'uses' => 
         array (
           'beneficiaryrules' => 'App\\Domain\\Registry\\Support\\BeneficiaryRules',
+          'describesconstraint' => 'App\\Domain\\Registry\\Support\\DescribesConstraint',
           'controller' => 'App\\Http\\Controllers\\Controller',
           'apiresponse' => 'App\\Support\\ApiResponse',
           'jsonresponse' => 'Illuminate\\Http\\JsonResponse',
@@ -109,6 +113,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
            'uses' => 
           array (
             'beneficiaryrules' => 'App\\Domain\\Registry\\Support\\BeneficiaryRules',
+            'describesconstraint' => 'App\\Domain\\Registry\\Support\\DescribesConstraint',
             'controller' => 'App\\Http\\Controllers\\Controller',
             'apiresponse' => 'App\\Support\\ApiResponse',
             'jsonresponse' => 'Illuminate\\Http\\JsonResponse',
@@ -143,7 +148,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
     ),
     1 => 
     array (
-      'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Registry\\RegistryRulesController.php' => '3a92ebbf3bbcd00c2cb571ab84ba9757d3fc8f24672d8e624cdcc071c818bfe6',
+      'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Registry\\RegistryRulesController.php' => '1925101afc52331d7f5d0790d23a80d0fbdd4b0c7cb17bfaf881495d6adf5d9a',
     ),
   ),
 ));

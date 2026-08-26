@@ -10,7 +10,8 @@ use Illuminate\Validation\Rule;
 
 /**
  * Resolve a flagged import row (PRD FR-DUP-05): create as new (with a required
- * justification), link/request-to-serve an existing beneficiary, or skip.
+ * justification), link/request-to-serve another MDA's beneficiary, record the row
+ * against one this MDA already owns, or skip.
  */
 class ResolveImportRowRequest extends FormRequest
 {
@@ -28,8 +29,9 @@ class ResolveImportRowRequest extends FormRequest
             'resolution' => ['required', Rule::enum(ImportRowResolution::class)],
             // Creating a NEW record despite a potential duplicate needs a reason.
             'note' => ['required_if:resolution,new', 'nullable', 'string', 'max:1000'],
-            // Linking/serving must target one of the row's matched existing records.
-            'beneficiary_id' => ['required_if:resolution,link', 'nullable', 'uuid'],
+            // Linking/serving and "already in your registry" both act on an EXISTING
+            // record, so both must name which one.
+            'beneficiary_id' => ['required_if:resolution,link,own', 'nullable', 'uuid'],
         ];
     }
 }

@@ -101,7 +101,11 @@ class OnePipelineTest extends TestCase
      */
     private function distinctFile(string $tag): string
     {
-        return "first_name,last_name,phone,lga\n{$tag}One,Danjuma,0803000{$tag}1,dutse\n{$tag}Two,Garba,0803000{$tag}2,dutse\n";
+        // 11 digits: `0803` + 4 fillers + the 2-digit tag + an index. The tag keeps the
+        // two files distinct; the length keeps the phones VALID, which now matters —
+        // phone is an identity field with a real format rule, so a 10-digit number
+        // rejects the row and this test would measure validation instead of the commit.
+        return "first_name,last_name,phone,lga\n{$tag}One,Danjuma,08030000{$tag}1,dutse\n{$tag}Two,Garba,08030000{$tag}2,dutse\n";
     }
 
     /** Entry point A — the activity-creation wizard's inline upload (primary path). */

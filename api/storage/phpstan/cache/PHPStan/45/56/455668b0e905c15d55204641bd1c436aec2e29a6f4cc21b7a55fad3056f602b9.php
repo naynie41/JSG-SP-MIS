@@ -2,7 +2,7 @@
 
 // odsl-C:\Users\ACER\Desktop\JSG-SP-MIS\JSG-SP-MIS\api\app\Domain\Reporting\Services\DashboardSnapshotService.php-PHPStan\BetterReflection\Reflection\ReflectionClass-App\Domain\Reporting\Services\DashboardSnapshotService
 return \PHPStan\Cache\CacheItem::__set_state(array(
-   'variableKey' => 'v2-6.70.0.1-8.3.31-b0a6e05182a9f8b6716f2f9e9d0df4a3e64498a12ea1afbe1af67e40a2ea89c6',
+   'variableKey' => 'v2-6.70.0.1-8.3.31-867246651bffacdc36201b6d7516db4b194eb8f33977c2b818745593f0833d95',
    'data' => 
   array (
     'locatedSource' => 
@@ -32,7 +32,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
     array (
     ),
     'startLine' => 22,
-    'endLine' => 88,
+    'endLine' => 122,
     'startColumn' => 1,
     'endColumn' => 1,
     'parentClassName' => NULL,
@@ -314,8 +314,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             'attributes' => 
             array (
             ),
-            'startLine' => 73,
-            'endLine' => 73,
+            'startLine' => 81,
+            'endLine' => 81,
             'startColumn' => 26,
             'endColumn' => 46,
             'parameterIndex' => 0,
@@ -354,9 +354,163 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         'attributes' => 
         array (
         ),
-        'docComment' => NULL,
-        'startLine' => 73,
-        'endLine' => 76,
+        'docComment' => '/**
+ * The stored snapshot, if it is still fresh enough to stand in for "now".
+ *
+ * An EXPIRED snapshot reads as absent, so the caller recomputes rather than serving
+ * it. It used to return whatever was stored at any age: with the scheduler stopped
+ * — which is exactly when nobody is watching — the dashboard served figures weeks
+ * old and presented them as current.
+ */',
+        'startLine' => 81,
+        'endLine' => 90,
+        'startColumn' => 5,
+        'endColumn' => 5,
+        'couldThrow' => false,
+        'isClosure' => false,
+        'isGenerator' => false,
+        'isVariadic' => false,
+        'modifiers' => 1,
+        'namespace' => 'App\\Domain\\Reporting\\Services',
+        'declaringClassName' => 'App\\Domain\\Reporting\\Services\\DashboardSnapshotService',
+        'implementingClassName' => 'App\\Domain\\Reporting\\Services\\DashboardSnapshotService',
+        'currentClassName' => 'App\\Domain\\Reporting\\Services\\DashboardSnapshotService',
+        'aliasName' => NULL,
+      ),
+      'readAtAnyAge' => 
+      array (
+        'name' => 'readAtAnyAge',
+        'parameters' => 
+        array (
+          'scope' => 
+          array (
+            'name' => 'scope',
+            'default' => NULL,
+            'type' => 
+            array (
+              'class' => 'PHPStan\\BetterReflection\\Reflection\\ReflectionNamedType',
+              'data' => 
+              array (
+                'name' => 'App\\Domain\\Reporting\\Support\\DashboardScope',
+                'isIdentifier' => false,
+              ),
+            ),
+            'isVariadic' => false,
+            'byRef' => false,
+            'isPromoted' => false,
+            'attributes' => 
+            array (
+            ),
+            'startLine' => 99,
+            'endLine' => 99,
+            'startColumn' => 34,
+            'endColumn' => 54,
+            'parameterIndex' => 0,
+            'isOptional' => false,
+          ),
+        ),
+        'returnsReference' => false,
+        'returnType' => 
+        array (
+          'class' => 'PHPStan\\BetterReflection\\Reflection\\ReflectionUnionType',
+          'data' => 
+          array (
+            'types' => 
+            array (
+              0 => 
+              array (
+                'class' => 'PHPStan\\BetterReflection\\Reflection\\ReflectionNamedType',
+                'data' => 
+                array (
+                  'name' => 'App\\Domain\\Reporting\\Models\\DashboardSnapshot',
+                  'isIdentifier' => false,
+                ),
+              ),
+              1 => 
+              array (
+                'class' => 'PHPStan\\BetterReflection\\Reflection\\ReflectionNamedType',
+                'data' => 
+                array (
+                  'name' => 'null',
+                  'isIdentifier' => true,
+                ),
+              ),
+            ),
+          ),
+        ),
+        'attributes' => 
+        array (
+        ),
+        'docComment' => '/**
+ * The stored snapshot regardless of age.
+ *
+ * Only for the case where a reader could not take the recompute lock: an old figure
+ * that the UI marks as stale beats a timeout, and the reader that holds the lock is
+ * already refreshing it.
+ */',
+        'startLine' => 99,
+        'endLine' => 102,
+        'startColumn' => 5,
+        'endColumn' => 5,
+        'couldThrow' => false,
+        'isClosure' => false,
+        'isGenerator' => false,
+        'isVariadic' => false,
+        'modifiers' => 1,
+        'namespace' => 'App\\Domain\\Reporting\\Services',
+        'declaringClassName' => 'App\\Domain\\Reporting\\Services\\DashboardSnapshotService',
+        'implementingClassName' => 'App\\Domain\\Reporting\\Services\\DashboardSnapshotService',
+        'currentClassName' => 'App\\Domain\\Reporting\\Services\\DashboardSnapshotService',
+        'aliasName' => NULL,
+      ),
+      'isFresh' => 
+      array (
+        'name' => 'isFresh',
+        'parameters' => 
+        array (
+          'snapshot' => 
+          array (
+            'name' => 'snapshot',
+            'default' => NULL,
+            'type' => 
+            array (
+              'class' => 'PHPStan\\BetterReflection\\Reflection\\ReflectionNamedType',
+              'data' => 
+              array (
+                'name' => 'App\\Domain\\Reporting\\Models\\DashboardSnapshot',
+                'isIdentifier' => false,
+              ),
+            ),
+            'isVariadic' => false,
+            'byRef' => false,
+            'isPromoted' => false,
+            'attributes' => 
+            array (
+            ),
+            'startLine' => 105,
+            'endLine' => 105,
+            'startColumn' => 29,
+            'endColumn' => 55,
+            'parameterIndex' => 0,
+            'isOptional' => false,
+          ),
+        ),
+        'returnsReference' => false,
+        'returnType' => 
+        array (
+          'class' => 'PHPStan\\BetterReflection\\Reflection\\ReflectionNamedType',
+          'data' => 
+          array (
+            'name' => 'bool',
+            'isIdentifier' => true,
+          ),
+        ),
+        'attributes' => 
+        array (
+        ),
+        'docComment' => '/** Whether a snapshot is young enough to serve. `0` disables the check. */',
+        'startLine' => 105,
+        'endLine' => 110,
         'startColumn' => 5,
         'endColumn' => 5,
         'couldThrow' => false,
@@ -392,8 +546,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         'docComment' => '/**
  * @return Collection<int, User>
  */',
-        'startLine' => 81,
-        'endLine' => 87,
+        'startLine' => 115,
+        'endLine' => 121,
         'startColumn' => 5,
         'endColumn' => 5,
         'couldThrow' => false,

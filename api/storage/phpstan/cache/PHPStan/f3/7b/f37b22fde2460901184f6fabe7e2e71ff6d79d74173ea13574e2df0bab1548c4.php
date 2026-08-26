@@ -12,6 +12,9 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
          'namespace' => 'App\\Domain\\Registry\\Support',
          'uses' => 
         array (
+          'gender' => 'App\\Domain\\Registry\\Enums\\Gender',
+          'householdrole' => 'App\\Domain\\Registry\\Enums\\HouseholdRole',
+          'lga' => 'App\\Domain\\Registry\\Enums\\Lga',
           'importrowvalidator' => 'App\\Domain\\Registry\\Imports\\ImportRowValidator',
           'householdingestionservice' => 'App\\Domain\\Registry\\Services\\HouseholdIngestionService',
         ),
@@ -36,6 +39,9 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
          'namespace' => 'App\\Domain\\Registry\\Support',
          'uses' => 
         array (
+          'gender' => 'App\\Domain\\Registry\\Enums\\Gender',
+          'householdrole' => 'App\\Domain\\Registry\\Enums\\HouseholdRole',
+          'lga' => 'App\\Domain\\Registry\\Enums\\Lga',
           'importrowvalidator' => 'App\\Domain\\Registry\\Imports\\ImportRowValidator',
           'householdingestionservice' => 'App\\Domain\\Registry\\Services\\HouseholdIngestionService',
         ),
@@ -49,6 +55,9 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
            'namespace' => 'App\\Domain\\Registry\\Support',
            'uses' => 
           array (
+            'gender' => 'App\\Domain\\Registry\\Enums\\Gender',
+            'householdrole' => 'App\\Domain\\Registry\\Enums\\HouseholdRole',
+            'lga' => 'App\\Domain\\Registry\\Enums\\Lga',
             'importrowvalidator' => 'App\\Domain\\Registry\\Imports\\ImportRowValidator',
             'householdingestionservice' => 'App\\Domain\\Registry\\Services\\HouseholdIngestionService',
           ),
@@ -83,6 +92,9 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
          'namespace' => 'App\\Domain\\Registry\\Support',
          'uses' => 
         array (
+          'gender' => 'App\\Domain\\Registry\\Enums\\Gender',
+          'householdrole' => 'App\\Domain\\Registry\\Enums\\HouseholdRole',
+          'lga' => 'App\\Domain\\Registry\\Enums\\Lga',
           'importrowvalidator' => 'App\\Domain\\Registry\\Imports\\ImportRowValidator',
           'householdingestionservice' => 'App\\Domain\\Registry\\Services\\HouseholdIngestionService',
         ),
@@ -96,6 +108,9 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
            'namespace' => 'App\\Domain\\Registry\\Support',
            'uses' => 
           array (
+            'gender' => 'App\\Domain\\Registry\\Enums\\Gender',
+            'householdrole' => 'App\\Domain\\Registry\\Enums\\HouseholdRole',
+            'lga' => 'App\\Domain\\Registry\\Enums\\Lga',
             'importrowvalidator' => 'App\\Domain\\Registry\\Imports\\ImportRowValidator',
             'householdingestionservice' => 'App\\Domain\\Registry\\Services\\HouseholdIngestionService',
           ),
@@ -130,6 +145,9 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
          'namespace' => 'App\\Domain\\Registry\\Support',
          'uses' => 
         array (
+          'gender' => 'App\\Domain\\Registry\\Enums\\Gender',
+          'householdrole' => 'App\\Domain\\Registry\\Enums\\HouseholdRole',
+          'lga' => 'App\\Domain\\Registry\\Enums\\Lga',
           'importrowvalidator' => 'App\\Domain\\Registry\\Imports\\ImportRowValidator',
           'householdingestionservice' => 'App\\Domain\\Registry\\Services\\HouseholdIngestionService',
         ),
@@ -143,6 +161,9 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
            'namespace' => 'App\\Domain\\Registry\\Support',
            'uses' => 
           array (
+            'gender' => 'App\\Domain\\Registry\\Enums\\Gender',
+            'householdrole' => 'App\\Domain\\Registry\\Enums\\HouseholdRole',
+            'lga' => 'App\\Domain\\Registry\\Enums\\Lga',
             'importrowvalidator' => 'App\\Domain\\Registry\\Imports\\ImportRowValidator',
             'householdingestionservice' => 'App\\Domain\\Registry\\Services\\HouseholdIngestionService',
           ),
@@ -177,6 +198,9 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
          'namespace' => 'App\\Domain\\Registry\\Support',
          'uses' => 
         array (
+          'gender' => 'App\\Domain\\Registry\\Enums\\Gender',
+          'householdrole' => 'App\\Domain\\Registry\\Enums\\HouseholdRole',
+          'lga' => 'App\\Domain\\Registry\\Enums\\Lga',
           'importrowvalidator' => 'App\\Domain\\Registry\\Imports\\ImportRowValidator',
           'householdingestionservice' => 'App\\Domain\\Registry\\Services\\HouseholdIngestionService',
         ),
@@ -190,6 +214,9 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
            'namespace' => 'App\\Domain\\Registry\\Support',
            'uses' => 
           array (
+            'gender' => 'App\\Domain\\Registry\\Enums\\Gender',
+            'householdrole' => 'App\\Domain\\Registry\\Enums\\HouseholdRole',
+            'lga' => 'App\\Domain\\Registry\\Enums\\Lga',
             'importrowvalidator' => 'App\\Domain\\Registry\\Imports\\ImportRowValidator',
             'householdingestionservice' => 'App\\Domain\\Registry\\Services\\HouseholdIngestionService',
           ),
@@ -224,6 +251,9 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
          'namespace' => 'App\\Domain\\Registry\\Support',
          'uses' => 
         array (
+          'gender' => 'App\\Domain\\Registry\\Enums\\Gender',
+          'householdrole' => 'App\\Domain\\Registry\\Enums\\HouseholdRole',
+          'lga' => 'App\\Domain\\Registry\\Enums\\Lga',
           'importrowvalidator' => 'App\\Domain\\Registry\\Imports\\ImportRowValidator',
           'householdingestionservice' => 'App\\Domain\\Registry\\Services\\HouseholdIngestionService',
         ),
@@ -237,6 +267,9 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
            'namespace' => 'App\\Domain\\Registry\\Support',
            'uses' => 
           array (
+            'gender' => 'App\\Domain\\Registry\\Enums\\Gender',
+            'householdrole' => 'App\\Domain\\Registry\\Enums\\HouseholdRole',
+            'lga' => 'App\\Domain\\Registry\\Enums\\Lga',
             'importrowvalidator' => 'App\\Domain\\Registry\\Imports\\ImportRowValidator',
             'householdingestionservice' => 'App\\Domain\\Registry\\Services\\HouseholdIngestionService',
           ),
@@ -271,6 +304,9 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
          'namespace' => 'App\\Domain\\Registry\\Support',
          'uses' => 
         array (
+          'gender' => 'App\\Domain\\Registry\\Enums\\Gender',
+          'householdrole' => 'App\\Domain\\Registry\\Enums\\HouseholdRole',
+          'lga' => 'App\\Domain\\Registry\\Enums\\Lga',
           'importrowvalidator' => 'App\\Domain\\Registry\\Imports\\ImportRowValidator',
           'householdingestionservice' => 'App\\Domain\\Registry\\Services\\HouseholdIngestionService',
         ),
@@ -284,6 +320,9 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
            'namespace' => 'App\\Domain\\Registry\\Support',
            'uses' => 
           array (
+            'gender' => 'App\\Domain\\Registry\\Enums\\Gender',
+            'householdrole' => 'App\\Domain\\Registry\\Enums\\HouseholdRole',
+            'lga' => 'App\\Domain\\Registry\\Enums\\Lga',
             'importrowvalidator' => 'App\\Domain\\Registry\\Imports\\ImportRowValidator',
             'householdingestionservice' => 'App\\Domain\\Registry\\Services\\HouseholdIngestionService',
           ),
@@ -318,6 +357,9 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
          'namespace' => 'App\\Domain\\Registry\\Support',
          'uses' => 
         array (
+          'gender' => 'App\\Domain\\Registry\\Enums\\Gender',
+          'householdrole' => 'App\\Domain\\Registry\\Enums\\HouseholdRole',
+          'lga' => 'App\\Domain\\Registry\\Enums\\Lga',
           'importrowvalidator' => 'App\\Domain\\Registry\\Imports\\ImportRowValidator',
           'householdingestionservice' => 'App\\Domain\\Registry\\Services\\HouseholdIngestionService',
         ),
@@ -331,6 +373,9 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
            'namespace' => 'App\\Domain\\Registry\\Support',
            'uses' => 
           array (
+            'gender' => 'App\\Domain\\Registry\\Enums\\Gender',
+            'householdrole' => 'App\\Domain\\Registry\\Enums\\HouseholdRole',
+            'lga' => 'App\\Domain\\Registry\\Enums\\Lga',
             'importrowvalidator' => 'App\\Domain\\Registry\\Imports\\ImportRowValidator',
             'householdingestionservice' => 'App\\Domain\\Registry\\Services\\HouseholdIngestionService',
           ),
@@ -365,6 +410,9 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
          'namespace' => 'App\\Domain\\Registry\\Support',
          'uses' => 
         array (
+          'gender' => 'App\\Domain\\Registry\\Enums\\Gender',
+          'householdrole' => 'App\\Domain\\Registry\\Enums\\HouseholdRole',
+          'lga' => 'App\\Domain\\Registry\\Enums\\Lga',
           'importrowvalidator' => 'App\\Domain\\Registry\\Imports\\ImportRowValidator',
           'householdingestionservice' => 'App\\Domain\\Registry\\Services\\HouseholdIngestionService',
         ),
@@ -378,6 +426,62 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
            'namespace' => 'App\\Domain\\Registry\\Support',
            'uses' => 
           array (
+            'gender' => 'App\\Domain\\Registry\\Enums\\Gender',
+            'householdrole' => 'App\\Domain\\Registry\\Enums\\HouseholdRole',
+            'lga' => 'App\\Domain\\Registry\\Enums\\Lga',
+            'importrowvalidator' => 'App\\Domain\\Registry\\Imports\\ImportRowValidator',
+            'householdingestionservice' => 'App\\Domain\\Registry\\Services\\HouseholdIngestionService',
+          ),
+           'className' => 'App\\Domain\\Registry\\Support\\CanonicalSchema',
+           'functionName' => NULL,
+           'templatePhpDocNodes' => 
+          array (
+          ),
+           'parent' => NULL,
+           'typeAliasesMap' => 
+          array (
+          ),
+           'bypassTypeAliases' => false,
+           'constUses' => 
+          array (
+          ),
+           'typeAliasClassName' => NULL,
+           'traitData' => NULL,
+        )),
+         'typeAliasesMap' => 
+        array (
+        ),
+         'bypassTypeAliases' => false,
+         'constUses' => 
+        array (
+        ),
+         'typeAliasClassName' => NULL,
+         'traitData' => NULL,
+      )),
+      '4045d512cf54366c541bbf65e294f539' => 
+      \PHPStan\Analyser\IntermediaryNameScope::__set_state(array(
+         'namespace' => 'App\\Domain\\Registry\\Support',
+         'uses' => 
+        array (
+          'gender' => 'App\\Domain\\Registry\\Enums\\Gender',
+          'householdrole' => 'App\\Domain\\Registry\\Enums\\HouseholdRole',
+          'lga' => 'App\\Domain\\Registry\\Enums\\Lga',
+          'importrowvalidator' => 'App\\Domain\\Registry\\Imports\\ImportRowValidator',
+          'householdingestionservice' => 'App\\Domain\\Registry\\Services\\HouseholdIngestionService',
+        ),
+         'className' => 'App\\Domain\\Registry\\Support\\CanonicalSchema',
+         'functionName' => 'segmentableFields',
+         'templatePhpDocNodes' => 
+        array (
+        ),
+         'parent' => 
+        \PHPStan\Analyser\IntermediaryNameScope::__set_state(array(
+           'namespace' => 'App\\Domain\\Registry\\Support',
+           'uses' => 
+          array (
+            'gender' => 'App\\Domain\\Registry\\Enums\\Gender',
+            'householdrole' => 'App\\Domain\\Registry\\Enums\\HouseholdRole',
+            'lga' => 'App\\Domain\\Registry\\Enums\\Lga',
             'importrowvalidator' => 'App\\Domain\\Registry\\Imports\\ImportRowValidator',
             'householdingestionservice' => 'App\\Domain\\Registry\\Services\\HouseholdIngestionService',
           ),
@@ -412,6 +516,9 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
          'namespace' => 'App\\Domain\\Registry\\Support',
          'uses' => 
         array (
+          'gender' => 'App\\Domain\\Registry\\Enums\\Gender',
+          'householdrole' => 'App\\Domain\\Registry\\Enums\\HouseholdRole',
+          'lga' => 'App\\Domain\\Registry\\Enums\\Lga',
           'importrowvalidator' => 'App\\Domain\\Registry\\Imports\\ImportRowValidator',
           'householdingestionservice' => 'App\\Domain\\Registry\\Services\\HouseholdIngestionService',
         ),
@@ -425,6 +532,9 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
            'namespace' => 'App\\Domain\\Registry\\Support',
            'uses' => 
           array (
+            'gender' => 'App\\Domain\\Registry\\Enums\\Gender',
+            'householdrole' => 'App\\Domain\\Registry\\Enums\\HouseholdRole',
+            'lga' => 'App\\Domain\\Registry\\Enums\\Lga',
             'importrowvalidator' => 'App\\Domain\\Registry\\Imports\\ImportRowValidator',
             'householdingestionservice' => 'App\\Domain\\Registry\\Services\\HouseholdIngestionService',
           ),
@@ -457,7 +567,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
     ),
     1 => 
     array (
-      'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Registry\\Support\\CanonicalSchema.php' => 'a92f4a70e0f20da1712ac6a4a48ece37d2f1b2008592fe4398a5117d3a88e575',
+      'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Registry\\Support\\CanonicalSchema.php' => '325490ebc9035b751f67e2b47ac77f27c88ab26de36aaa3c168b1fe4d7ab2add',
     ),
   ),
 ));

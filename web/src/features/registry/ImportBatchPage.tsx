@@ -352,6 +352,9 @@ export function ImportBatchPage() {
             ['Invalid', batch.summary.invalid_rows],
             ['Committed', batch.summary.committed_rows],
             ['Served', batch.summary.served_rows],
+            // Own-matches are a delivery on an existing record, not a discard — folding
+            // them into "skipped" would report the opposite of what happened.
+            ['Already yours', batch.summary.own_rows ?? 0],
             ['Skipped', batch.summary.skipped_rows],
           ].map(([label, value]) => (
             <div key={label} className={styles.summaryItem}>

@@ -7,7 +7,9 @@ namespace App\Domain\Reference\Services;
 use App\Domain\Reference\Imports\AdministrativeDivisionLoader;
 use App\Domain\Reference\Models\Lga;
 use App\Domain\Reference\Models\Ward;
+use App\Domain\Registry\Support\NormalizationService;
 use Illuminate\Support\Facades\Cache;
+use Illuminate\Support\Facades\DB;
 
 /**
  * Caches the administrative-division lookups.
@@ -76,6 +78,50 @@ class ReferenceDataCache
                     'name' => $ward->name,
                 ])
                 ->all(),
+        );
+    }
+
+    /**
+     * Every ward name folded to a comparison key, grouped by its LGA's code.
+     *
+     * Import validation asks "is this a real ward?" once per ROW, so it cannot go to the
+     * database each time — a 5,000-row file would issue 5,000 queries. This is the whole
+     * list in one cached array, keyed by the LGA `code` (which is the `Lga` enum value the
+     * beneficiary row normalizes to), so the check is an array lookup.
+     *
+     * Shape: `['birnin_kudu' => ['limawa' => 'Limawa', …], …]` — key for comparison,
+     * value kept for messages that need to name a real ward.
+     *
+     * @return array<string, array<string, string>>
+     */
+    public function wardKeysByLgaCode(): array
+    {
+        return Cache::remember(
+            $this->key('ward-keys'),
+            self::TTL_SECONDS,
+            function (): array {
+                $normalizer = new NormalizationService;
+                $index = [];
+
+                // Query builder rather than the Eloquent model: the joined columns are
+                // not Ward attributes, and hydrating ~287 models to read two strings off
+                // each is work with nothing to show for it.
+                $rows = DB::table('wards')
+                    ->join('lgas', 'lgas.id', '=', 'wards.lga_id')
+                    ->orderBy('wards.name')
+                    ->get(['wards.name as ward_name', 'lgas.code as lga_code']);
+
+                foreach ($rows as $row) {
+                    $name = (string) $row->ward_name;
+                    $key = $normalizer->enumKey($name);
+
+                    if ($key !== null) {
+                        $index[(string) $row->lga_code][$key] = $name;
+                    }
+                }
+
+                return $index;
+            },
         );
     }
 

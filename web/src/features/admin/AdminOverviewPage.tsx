@@ -3,7 +3,6 @@ import {
   AlertTriangle,
   Bell,
   Building2,
-  ClipboardList,
   Database,
   FileWarning,
   HandCoins,
@@ -15,12 +14,12 @@ import {
   ShieldCheck,
   SlidersHorizontal,
   UserPlus,
-  UserSquare2,
   Users,
 } from 'lucide-react'
 import type { LucideIcon } from 'lucide-react'
 import { Icon } from '@/components/Icon/Icon'
 import { Spinner } from '@/components/Spinner/Spinner'
+import { ReportingSummaryCard } from '@/features/dashboard/ReportingSummaryCard'
 import { useAdminSummary } from './hooks'
 import type { AdminSummary } from './types'
 import styles from './admin.module.css'
@@ -223,14 +222,21 @@ export function AdminOverviewPage() {
           <Kpi icon={HandCoins} label="Development partners" value={num(k.development_partners)} />
         </div>
 
-        <span className={styles.groupLabel}>Programmes &amp; registry</span>
+        {/*
+          Catalogue size is a GOVERNANCE figure — how many programme types exist, which
+          is the System Administrator's own responsibility (§10). Beneficiary, household
+          and activity counts are REPORTING figures and have moved to the summary card
+          below, which reads the dashboard aggregation. They were read here from
+          `useAdminSummary` — a second source for the same question, free to disagree
+          with the dashboard the same admin opens next.
+        */}
+        <span className={styles.groupLabel}>Catalogue</span>
         <div className={styles.kpiBand}>
           <Kpi icon={LibraryBig} label="Programmes in catalog" value={num(k.programmes_catalog)} />
-          <Kpi icon={ClipboardList} label="Active activities" value={num(k.activities_active)} />
-          <Kpi icon={UserSquare2} label="Registered beneficiaries" value={num(k.beneficiaries_registered)} />
-          <Kpi icon={Database} label="Registered households" value={num(k.households_registered)} />
         </div>
       </section>
+
+      <ReportingSummaryCard />
 
       <AdoptionTrend trend={data.adoption_trend} />
       <RegistrySnapshot registry={data.registry} />

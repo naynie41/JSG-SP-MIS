@@ -82,6 +82,7 @@ export const MATCH_BAND_LABELS: Record<string, string> = {
 export const RESOLUTION_LABELS: Record<string, string> = {
   new: 'Create new',
   link: 'Link / serve',
+  own: 'Already yours',
   skip: 'Skip',
 }
 

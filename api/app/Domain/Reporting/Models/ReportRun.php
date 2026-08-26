@@ -51,6 +51,11 @@ class ReportRun extends Model
 
     public const STATUS_FAILED = 'failed';
 
+    /** Report keys whose run carries a `definition` rather than a catalogue key. */
+    public const KEY_ADHOC = 'adhoc';
+
+    public const KEY_SEGMENT = 'segment';
+
     protected $table = 'report_runs';
 
     /**
@@ -86,10 +91,21 @@ class ReportRun extends Model
         return $this->requested_by === $userId || in_array($userId, $this->recipient_user_ids ?? [], true);
     }
 
-    /** The ad-hoc definition this run was built from, if it is an ad-hoc report. */
+    /**
+     * The ad-hoc definition this run was built from, if it is an ad-hoc report.
+     *
+     * Keyed on `report_key`, not merely on `definition` being present: the segment
+     * builder persists a definition of its own shape, and dispatching on presence alone
+     * would hand a segment run to the ad-hoc aggregator — which would either fail or,
+     * worse, render a different report than the one that was requested and audited.
+     */
     public function adHocDefinition(): ?AdHocDefinition
     {
-        return $this->definition === null ? null : AdHocDefinition::fromArray($this->definition);
+        if ($this->report_key !== self::KEY_ADHOC || $this->definition === null) {
+            return null;
+        }
+
+        return AdHocDefinition::fromArray($this->definition);
     }
 
     /** Rebuild the scope this run was requested under. */

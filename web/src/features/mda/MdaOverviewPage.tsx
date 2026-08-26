@@ -4,37 +4,30 @@ import {
   Bell,
   CalendarPlus,
   ChevronRight,
-  ClipboardList,
   FileBarChart,
   HandHeart,
   Inbox,
+  Info,
   Layers,
-  LibraryBig,
+  MessageSquareWarning,
   ShieldCheck,
   Split,
   UploadCloud,
   UserSquare2,
-  Users,
 } from 'lucide-react'
 import type { LucideIcon } from 'lucide-react'
 import { Card } from '@/components/Card/Card'
 import { Icon } from '@/components/Icon/Icon'
-import { Spinner } from '@/components/Spinner/Spinner'
+import { MdaForbidden, MdaLoadError, MdaLoading } from './MdaLoadState'
 import { useAuth } from '@/lib/auth/AuthProvider'
 import { useDashboard } from '@/features/dashboard/hooks'
+import { ReportingSummaryCard } from '@/features/dashboard/ReportingSummaryCard'
 import { useNotifications } from '@/features/notifications/hooks'
 import { useMdaActionRequired } from './hooks'
+import { when } from './format'
 import styles from './mda.module.css'
 
 const num = (n: number | null | undefined): string => (n ?? 0).toLocaleString()
-
-function when(iso: string | null): string {
-  if (!iso) return '—'
-  const d = new Date(iso)
-  return Number.isNaN(d.getTime())
-    ? '—'
-    : d.toLocaleString(undefined, { day: 'numeric', month: 'short', hour: '2-digit', minute: '2-digit' })
-}
 
 /* --------------------------------------------------------------- quick actions */
 
@@ -87,20 +80,6 @@ function QuickActions() {
   )
 }
 
-/* ------------------------------------------------------------------ KPI band */
-
-function Kpi({ icon, label, value, hint }: { icon: LucideIcon; label: string; value: string; hint?: string }) {
-  return (
-    <div className={styles.kpi}>
-      <span className={styles.kpiLabel}>
-        <Icon icon={icon} size={13} />
-        {label}
-      </span>
-      <span className={styles.kpiValue}>{value}</span>
-      {hint && <span className={styles.kpiHint}>{hint}</span>}
-    </div>
-  )
-}
 
 /* ------------------------------------------------------------ action required */
 
@@ -170,17 +149,11 @@ export function MdaOverviewPage() {
   const { user, hasPermission } = useAuth()
   const canView = hasPermission('dashboard.view')
 
-  const { data, isLoading } = useDashboard(undefined, canView)
+  const { data, isLoading, isError, refetch } = useDashboard(undefined, canView)
   const { data: actions, isLoading: actionsLoading } = useMdaActionRequired(canView)
   const { data: notifications } = useNotifications(true)
 
-  if (!canView) {
-    return (
-      <Card>
-        <p className={styles.forbidden}>You do not have permission to view the MDA dashboard.</p>
-      </Card>
-    )
-  }
+  if (!canView) return <MdaForbidden what="the MDA dashboard" />
 
   const m = data?.metrics
   const mdaName = user?.mda?.name ?? 'your MDA'
@@ -228,41 +201,13 @@ export function MdaOverviewPage() {
         </p>
       </header>
 
-      {isLoading ? (
-        <div style={{ display: 'grid', placeItems: 'center', padding: 'var(--space-8)' }}>
-          <Spinner size={26} label="Loading your MDA overview" />
-        </div>
-      ) : (
-        <>
-          <section className={styles.section} aria-label="Delivery at a glance">
-            <div className={styles.kpiBand}>
-              <Kpi
-                icon={LibraryBig}
-                label="Programmes"
-                value={num(m?.programmes?.total)}
-                hint="catalogue programmes you deliver"
-              />
-              <Kpi
-                icon={ClipboardList}
-                label="Activities"
-                value={num(m?.programmes?.activities_total)}
-                hint={`${num(m?.programmes?.activities_active)} active`}
-              />
-              <Kpi
-                icon={Users}
-                label="Registered beneficiaries"
-                value={num(m?.registry?.beneficiaries?.total)}
-                hint="owned by your MDA"
-              />
-              <Kpi
-                icon={HandHeart}
-                label="Benefits delivered"
-                value={num(m?.benefits?.disbursed?.benefit_count)}
-                hint="interventions recorded"
-              />
-            </div>
-          </section>
-
+      {/*
+            One summary of the reporting figures, reading the same dashboard aggregation
+            the full Reports dashboard renders — so the two can never disagree — and
+            carrying what a bare KPI band could not: when it was computed, and a way
+            through to the detail.
+          */}
+          <ReportingSummaryCard />
           <section className={styles.section} aria-label="Action required">
             <div className={styles.sectionHead}>
               <Icon icon={Inbox} size={16} />
@@ -289,6 +234,23 @@ export function MdaOverviewPage() {
                 hint="Another MDA wants to serve a beneficiary you own."
                 to="/mda/service-delivery?tab=service-requests"
               />
+              {/*
+                Grievances sit two clicks deep, behind a tab that opens on Benefits — and
+                they are the one queue here with a clock on it (FR-GRM-03). Surfacing the
+                count is what makes an SLA breach visible without a seventh rail item.
+              */}
+              <ActionCard
+                icon={MessageSquareWarning}
+                loading={actionsLoading}
+                count={actions?.open_grievances ?? 0}
+                label="Grievances on your desk"
+                hint={
+                  (actions?.breached_grievances ?? 0) > 0
+                    ? `${actions?.breached_grievances} past their SLA.`
+                    : 'Complaints your MDA is handling, each on an SLA.'
+                }
+                to="/mda/service-delivery?tab=grievances"
+              />
             </div>
           </section>
 
@@ -299,7 +261,13 @@ export function MdaOverviewPage() {
               <Icon icon={AlertTriangle} size={16} />
               <h2 className={styles.sectionTitle}>Alerts</h2>
             </div>
-            {alerts.length === 0 ? (
+            {isError ? (
+              // A failed request used to fall through to the green all-clear below, telling
+              // the officer their MDA was clear when nothing had been checked.
+              <MdaLoadError subject="your alerts" onRetry={() => void refetch()} />
+            ) : isLoading ? (
+              <MdaLoading label="Checking your MDA for overdue work" />
+            ) : alerts.length === 0 ? (
               <p className={styles.allClear}>
                 <Icon icon={ShieldCheck} size={15} />
                 Nothing overdue or unresolved in your MDA.
@@ -308,7 +276,17 @@ export function MdaOverviewPage() {
               <div className={styles.alerts}>
                 {alerts.map((a) => (
                   <div key={a.id} className={styles.alert} data-severity={a.severity}>
-                    <Icon icon={AlertTriangle} size={16} className={styles.alertIcon} />
+                    {/*
+                      The icon is derived from severity, not hard-coded. Warning and info
+                      differed only by background colour, and both drew the same warning
+                      triangle — so severity was carried by colour alone (WCAG 1.4.1).
+                    */}
+                    <Icon
+                      icon={a.severity === 'warning' ? AlertTriangle : Info}
+                      size={16}
+                      className={styles.alertIcon}
+                      label={a.severity === 'warning' ? 'Needs attention' : 'For information'}
+                    />
                     <div className={styles.alertBody}>
                       <span className={styles.alertTitle}>{a.title}</span>
                       <span className={styles.alertDetail}>{a.detail}</span>
@@ -344,9 +322,7 @@ export function MdaOverviewPage() {
                 trail
               </p>
             </Card>
-          </section>
-        </>
-      )}
+      </section>
     </div>
   )
 }

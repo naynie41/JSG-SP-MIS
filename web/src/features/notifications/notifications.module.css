@@ -157,3 +157,31 @@
   font-size: var(--fs-label);
   color: var(--text-muted-strong);
 }
+
+/* ---------------------------------------------------- preferences page (FR-NOT-02) */
+
+/*
+ * Control on the right, explanation on the left. The explanation is the point: an
+ * officer deciding whether to switch these off needs to know what they would stop
+ * receiving, and `gap` keeps the toggle clear of the text at every width.
+ */
+.prefRow {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: var(--space-4);
+}
+
+.prefLabel {
+  margin: 0 0 var(--space-1);
+  font-weight: 600;
+  color: var(--text);
+}
+
+.note {
+  margin: 0;
+  max-width: 60ch;
+  color: var(--text-muted-strong);
+  font-size: var(--fs-label);
+  line-height: 1.5;
+}

@@ -213,7 +213,7 @@ export function AdminRegistryPage() {
             label: 'Data quality',
             content: <QualityPanel metrics={dashboard.metrics} snapshot={summary.registry} />,
           },
-          { id: 'imports', label: 'Import history', content: <ImportListPage readOnly /> },
+          { id: 'imports', label: 'Import history', content: <ImportListPage readOnly embedded /> },
         ]}
       />
     </div>

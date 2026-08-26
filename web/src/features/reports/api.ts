@@ -5,6 +5,9 @@ import type {
   AdHocDataset,
   AdHocDefinitionInput,
   AdHocPreview,
+  SegmentDefinitionInput,
+  SegmentDimensionCatalogue,
+  SegmentPreview,
   CatalogueReport,
   ReportDefinition,
   ReportFormat,
@@ -40,6 +43,21 @@ export const reportsApi = {
   /** Queue an ad-hoc export. Returns the run; the file is fetched once it is ready. */
   exportAdHoc(definition: AdHocDefinitionInput, format: ReportFormat): Promise<ReportRun> {
     return apiRequest<ReportRun>({ method: 'POST', url: '/reports/adhoc', data: { ...definition, format } })
+  },
+
+  /** The segment builder's filter catalogue, derived server-side from the schema. */
+  segmentDimensions(): Promise<SegmentDimensionCatalogue> {
+    return apiRequest<SegmentDimensionCatalogue>({ method: 'GET', url: '/reports/segments/dimensions' })
+  },
+
+  /** Run a composed segment and return one page of it. */
+  segmentPreview(definition: SegmentDefinitionInput): Promise<SegmentPreview> {
+    return apiRequest<SegmentPreview>({ method: 'POST', url: '/reports/segments/preview', data: definition })
+  },
+
+  /** Queue a segment export; the file is fetched once the run is ready. */
+  exportSegment(definition: SegmentDefinitionInput, format: ReportFormat): Promise<ReportRun> {
+    return apiRequest<ReportRun>({ method: 'POST', url: '/reports/segments/export', data: { ...definition, format } })
   },
 
   /** Queue a standard catalogue report. */

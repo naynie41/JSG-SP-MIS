@@ -32,5 +32,7 @@ class ImportBatchCompleted
         public readonly int $served,
         /** Rows discarded, or flagged and left undecided. */
         public readonly int $skipped,
+        /** Rows matching a beneficiary this MDA already owns (a re-upload of its own data). */
+        public readonly int $own = 0,
     ) {}
 }

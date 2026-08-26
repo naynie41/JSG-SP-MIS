@@ -163,7 +163,9 @@ describe('MDA console — Programmes', () => {
     expect(within(row).getByText('500')).toBeInTheDocument()
     expect(within(row).getByText('₦2,500,000.00')).toBeInTheDocument()
     expect(within(row).getByText('State budget')).toBeInTheDocument()
-    expect(within(row).getByText('active')).toBeInTheDocument()
+    // Title-cased like every neighbouring cell — the row used to read
+    // "Cash transfer · Individual · active", mixing presentation with the raw enum.
+    expect(within(row).getByText('Active')).toBeInTheDocument()
     expect(within(row).getByText('Dutse')).toBeInTheDocument()
   })
 

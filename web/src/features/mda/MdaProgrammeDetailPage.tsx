@@ -7,17 +7,15 @@ import { Card } from '@/components/Card/Card'
 import { DataTable } from '@/components/DataTable/DataTable'
 import type { Column } from '@/components/DataTable/DataTable'
 import { Icon } from '@/components/Icon/Icon'
-import { Spinner } from '@/components/Spinner/Spinner'
+import { MdaForbidden, MdaLoadError, MdaLoading } from './MdaLoadState'
 import { statusVariant } from '@/components/Badge/statusVariant'
 import { useAuth } from '@/lib/auth/AuthProvider'
 import { summariseLocations } from '@/features/reference/format'
 import { ActivityFormModal } from '@/features/programmes/ActivityFormModal'
 import { useActivities, useProgramme } from '@/features/programmes/hooks'
 import type { Activity } from '@/features/programmes/types'
+import { titleCase } from './format'
 import styles from './mda.module.css'
-
-const titleCase = (s: string | null | undefined): string =>
-  !s ? '—' : s.replace(/[_-]/g, ' ').replace(/^./, (c) => c.toUpperCase())
 
 /** Budget is stored in minor units (kobo). */
 const naira = (kobo: number | null | undefined): string =>
@@ -65,24 +63,19 @@ export function MdaProgrammeDetailPage() {
   const canViewActivities = hasPermission('activity.view')
   const canCreate = hasPermission('activity.create')
 
-  const { data: programme, isLoading } = useProgramme(id, canView)
+  const { data: programme, isLoading, isError, refetch } = useProgramme(id, canView)
   const { data: activities, isLoading: activitiesLoading } = useActivities(id, canViewActivities)
   const [wizardOpen, setWizardOpen] = useState(false)
 
-  if (!canView) {
-    return (
-      <Card>
-        <p className={styles.forbidden}>You do not have permission to view programmes.</p>
-      </Card>
-    )
-  }
+  if (!canView) return <MdaForbidden what="programmes" />
 
-  if (isLoading || !programme) {
-    return (
-      <div style={{ display: 'grid', placeItems: 'center', padding: 'var(--space-8)' }}>
-        <Spinner size={26} label="Loading programme" />
-      </div>
-    )
+  if (isLoading) return <MdaLoading label="Loading programme" />
+
+  // Split from the loading branch deliberately. It used to read `isLoading || !programme`,
+  // so a 404 or a 500 left `isLoading` false and `programme` undefined — and the page
+  // showed "Loading programme" forever, with no error and no way out.
+  if (isError || !programme) {
+    return <MdaLoadError subject="this programme" onRetry={() => void refetch()} />
   }
 
   const rows: Activity[] = activities?.items ?? []
@@ -109,8 +102,8 @@ export function MdaProgrammeDetailPage() {
       key: 'status',
       header: 'Status',
       render: (a) => (
-        <Badge variant={statusVariant(a.status)} dot>
-          {a.status}
+        <Badge variant={statusVariant(`programme.${a.status === 'completed' ? 'closed' : a.status}`)} dot>
+          {titleCase(a.status)}
         </Badge>
       ),
     },
@@ -135,8 +128,8 @@ export function MdaProgrammeDetailPage() {
         <div className={styles.choiceRow}>
           <Badge variant="neutral">{titleCase(programme.type)}</Badge>
           {programme.benefit_category && <Badge variant="neutral">{titleCase(programme.benefit_category)}</Badge>}
-          <Badge variant={statusVariant(programme.status)} dot>
-            {programme.status}
+          <Badge variant={statusVariant(`programme.${programme.status}`)} dot>
+            {titleCase(programme.status)}
           </Badge>
         </div>
       </header>

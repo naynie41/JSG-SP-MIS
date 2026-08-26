@@ -169,6 +169,13 @@ export interface MatchCandidate {
   /** Empty on batches screened before per-field verdicts shipped. */
   comparison?: FieldComparison[]
   stage?: 'deterministic' | 'fuzzy' | null
+  /**
+   * Whether this matched record already belongs to the MDA doing the import. It
+   * decides which resolution is even offered — "already in your registry" versus a
+   * cross-MDA request-to-serve — so the server states it rather than leaving the
+   * client to compare MDA ids. Absent on batches previewed before this shipped.
+   */
+  owned_by_you?: boolean
   reveal: MatchReveal | null
 }
 
@@ -238,7 +245,7 @@ export interface ImportMappingProposal {
   mapping_confirmed_at: string | null
 }
 
-export type ImportRowResolution = 'new' | 'link' | 'skip'
+export type ImportRowResolution = 'new' | 'link' | 'own' | 'skip'
 export type ServiceRequestStatus = 'pending' | 'accepted' | 'declined'
 
 /**
@@ -395,6 +402,11 @@ export interface ImportBatch {
     invalid_rows: number
     committed_rows: number
     served_rows: number
+    /**
+     * Rows matching a beneficiary this MDA already owns. Absent on batches committed
+     * before the own-match outcome shipped, where those rows were counted as skipped.
+     */
+    own_rows?: number
     skipped_rows: number
   }
   error: string | null
@@ -423,4 +435,42 @@ export interface BeneficiaryDocument {
   checksum_sha256: string
   uploaded_by: string | null
   created_at: string | null
+}
+
+/* --------------------------------------------- the duplicate queue (FR-DUP-01/05) */
+
+/**
+ * A flagged row as the QUEUE serves it: the row itself, plus just enough of its batch
+ * to decide it and to say which file it came from.
+ *
+ * The queue spans files, so context the batch page gets for free — which import am I
+ * looking at — has to travel with the row.
+ */
+export interface DuplicateQueueRow extends ImportRow {
+  batch: {
+    id: string
+    original_filename: string | null
+    status: string | null
+    matching_thresholds: { review: number; auto_accept: number | null } | null
+  }
+}
+
+/** Outstanding vs total flagged rows per band, across everything in scope. */
+export interface DuplicateQueueCounts {
+  exact: { awaiting: number; total: number }
+  probable: { awaiting: number; total: number }
+}
+
+export interface DuplicateQueuePage {
+  items: DuplicateQueueRow[]
+  counts: DuplicateQueueCounts
+  pagination: { page: number; per_page: number; total: number; total_pages: number }
+}
+
+export interface DuplicateQueueQuery {
+  band?: 'exact' | 'probable'
+  /** Omit for both — the server defaults to `awaiting`, the working queue. */
+  state?: 'awaiting' | 'decided' | 'all'
+  page?: number
+  per_page?: number
 }

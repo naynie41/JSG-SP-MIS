@@ -1,5 +1,5 @@
 import { useMemo, useState } from 'react'
-import { Download, FileBarChart, Pause, Play, Save, Table2 } from 'lucide-react'
+import { Download, Pause, Play, Save, Table2 } from 'lucide-react'
 import { Badge } from '@/components/Badge/Badge'
 import { Button } from '@/components/Button/Button'
 import { Card } from '@/components/Card/Card'
@@ -230,37 +230,6 @@ export function BuilderPanel({
           </div>
         </Card>
       )}
-    </div>
-  )
-}
-
-/* ------------------------------------------------------------------- catalogue */
-
-/** The report families available to the caller, taken from the server's catalogue. */
-export function CataloguePanel({
-  datasets,
-  onBuild,
-  footnote = 'Every report is an aggregate — counts and sums over whitelisted attributes, never a personal record',
-}: {
-  datasets: AdHocDataset[]
-  onBuild: (key: string) => void
-  footnote?: string
-}) {
-  return (
-    <div className={styles.page}>
-      <div className={styles.cardGrid}>
-        {datasets.map((d) => (
-          <Card key={d.key} titleAs="h2" title={d.label} eyebrow={d.admin ? 'Administrative' : 'Delivery'}>
-            <p className={styles.muted}>Group by {d.dimensions.map((dim) => dim.label).join(' · ')}</p>
-            <div className={styles.filterActions}>
-              <Button size="sm" variant="secondary" leftIcon={FileBarChart} onClick={() => onBuild(d.key)}>
-                Build report
-              </Button>
-            </div>
-          </Card>
-        ))}
-      </div>
-      <p className={styles.footnote}>{footnote}</p>
     </div>
   )
 }

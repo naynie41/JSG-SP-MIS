@@ -217,6 +217,22 @@ class AdminMatchingConfigTest extends TestCase
         $this->assertFalse($byField['lga']['identity']);
         $this->assertTrue($byField['last_name']['required']);
 
+        // Phone became a rule OBJECT when its format was made concrete. The page must
+        // still read as a SHAPE, because that is the only thing it exists to publish.
+        $this->assertContains('nigerian_phone:11', $byField['phone']['constraints']);
+
+        // The guard for the next one: a rule object rendered by class name would still
+        // fill this page while telling an admin nothing about what is enforced.
+        foreach ($data['fields'] as $entry) {
+            foreach ($entry['constraints'] as $token) {
+                $this->assertDoesNotMatchRegularExpression(
+                    '/^[A-Z]\w*$/',
+                    (string) $token,
+                    "{$entry['field']} publishes a bare class name instead of the shape it enforces",
+                );
+            }
+        }
+
         // Every registration rule is represented — the console cannot drift.
         $this->assertSame(
             array_keys(BeneficiaryRules::forRegistration()),

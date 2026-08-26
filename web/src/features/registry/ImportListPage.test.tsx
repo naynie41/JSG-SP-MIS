@@ -6,6 +6,7 @@ import { MemoryRouter } from 'react-router-dom'
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 import { ToastProvider } from '@/components/Toast/ToastProvider'
 import { ImportListPage } from './ImportListPage'
+import type { ImportListPageProps } from './ImportListPage'
 import { importApi } from './api'
 import { activityApi, programmeApi } from '@/features/programmes/api'
 import type { ImportBatch } from './types'
@@ -106,7 +107,7 @@ function attachFile(name = 'cohort.csv') {
   fireEvent.change(input, { target: { files: [new File(['first_name\nAda'], name, { type: 'text/csv' })] } })
 }
 
-function renderPage(props: { readOnly?: boolean } = {}) {
+function renderPage(props: ImportListPageProps = {}) {
   const qc = new QueryClient({ defaultOptions: { queries: { retry: false } } })
   return render(
     <QueryClientProvider client={qc}>
@@ -310,7 +311,25 @@ describe('ImportListPage — the source-ingestion front door', () => {
 
     expect(await screen.findByRole('table', { name: /import batches/i })).toBeInTheDocument()
     expect(screen.queryByRole('button', { name: /upload & preview/i })).not.toBeInTheDocument()
+  })
+
+  it('keeps the upload panel when only the page header is suppressed', async () => {
+    // `embedded` and `readOnly` answer different questions and were one flag, so the MDA
+    // console could not suppress a duplicate <h1> without also losing the upload panel
+    // it exists to offer.
+    renderPage({ embedded: true })
+
+    expect(await screen.findByRole('table', { name: /import batches/i })).toBeInTheDocument()
     expect(screen.queryByRole('heading', { name: /bulk import/i })).not.toBeInTheDocument()
+    expect(screen.getByRole('button', { name: /upload & preview/i })).toBeInTheDocument()
+  })
+
+  it('drops both for an oversight console that neither uploads nor owns the heading', async () => {
+    renderPage({ readOnly: true, embedded: true })
+
+    expect(await screen.findByRole('table', { name: /import batches/i })).toBeInTheDocument()
+    expect(screen.queryByRole('heading', { name: /bulk import/i })).not.toBeInTheDocument()
+    expect(screen.queryByRole('button', { name: /upload & preview/i })).not.toBeInTheDocument()
   })
 
   it('refuses the page to a user without view permission', async () => {

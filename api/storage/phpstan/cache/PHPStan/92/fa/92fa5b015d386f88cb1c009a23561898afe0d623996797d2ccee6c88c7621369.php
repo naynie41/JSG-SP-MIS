@@ -130,6 +130,55 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
          'typeAliasClassName' => NULL,
          'traitData' => NULL,
       )),
+      '8296722bb9c50d710917feb93931662d' => 
+      \PHPStan\Analyser\IntermediaryNameScope::__set_state(array(
+         'namespace' => 'App\\Domain\\Registry\\Support',
+         'uses' => 
+        array (
+          'gender' => 'App\\Domain\\Registry\\Enums\\Gender',
+          'lga' => 'App\\Domain\\Registry\\Enums\\Lga',
+          'rule' => 'Illuminate\\Validation\\Rule',
+        ),
+         'className' => 'App\\Domain\\Registry\\Support\\BeneficiaryRules',
+         'functionName' => 'earliestDateOfBirth',
+         'templatePhpDocNodes' => 
+        array (
+        ),
+         'parent' => 
+        \PHPStan\Analyser\IntermediaryNameScope::__set_state(array(
+           'namespace' => 'App\\Domain\\Registry\\Support',
+           'uses' => 
+          array (
+            'gender' => 'App\\Domain\\Registry\\Enums\\Gender',
+            'lga' => 'App\\Domain\\Registry\\Enums\\Lga',
+            'rule' => 'Illuminate\\Validation\\Rule',
+          ),
+           'className' => 'App\\Domain\\Registry\\Support\\BeneficiaryRules',
+           'functionName' => NULL,
+           'templatePhpDocNodes' => 
+          array (
+          ),
+           'parent' => NULL,
+           'typeAliasesMap' => 
+          array (
+          ),
+           'bypassTypeAliases' => false,
+           'constUses' => 
+          array (
+          ),
+           'typeAliasClassName' => NULL,
+           'traitData' => NULL,
+        )),
+         'typeAliasesMap' => 
+        array (
+        ),
+         'bypassTypeAliases' => false,
+         'constUses' => 
+        array (
+        ),
+         'typeAliasClassName' => NULL,
+         'traitData' => NULL,
+      )),
       'f7e39a44118e8fb6da02a240a297030c' => 
       \PHPStan\Analyser\IntermediaryNameScope::__set_state(array(
          'namespace' => 'App\\Domain\\Registry\\Support',
@@ -182,7 +231,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
     ),
     1 => 
     array (
-      'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Registry\\Support\\BeneficiaryRules.php' => '57af87d296a19eb01b46e56789b96d4448419e2d9c2d711fe9ed85aa865da319',
+      'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Registry\\Support\\BeneficiaryRules.php' => '16d885cf6ea754a4516cf9ea000eb4d22a82e0697bde19484731e713f69da1a8',
     ),
   ),
 ));

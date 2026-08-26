@@ -273,6 +273,124 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
          'typeAliasClassName' => NULL,
          'traitData' => NULL,
       )),
+      '82f2b08ac27b36169823a36fc0d3ee6a' => 
+      \PHPStan\Analyser\IntermediaryNameScope::__set_state(array(
+         'namespace' => 'App\\Domain\\Reporting\\Services',
+         'uses' => 
+        array (
+          'rolekey' => 'App\\Domain\\Access\\Enums\\RoleKey',
+          'mda' => 'App\\Domain\\Access\\Models\\Mda',
+          'user' => 'App\\Domain\\Access\\Models\\User',
+          'mdascope' => 'App\\Domain\\Access\\Scopes\\MdaScope',
+          'dashboardsnapshot' => 'App\\Domain\\Reporting\\Models\\DashboardSnapshot',
+          'dashboardscope' => 'App\\Domain\\Reporting\\Support\\DashboardScope',
+          'carbon' => 'Illuminate\\Support\\Carbon',
+          'collection' => 'Illuminate\\Support\\Collection',
+        ),
+         'className' => 'App\\Domain\\Reporting\\Services\\DashboardSnapshotService',
+         'functionName' => 'readAtAnyAge',
+         'templatePhpDocNodes' => 
+        array (
+        ),
+         'parent' => 
+        \PHPStan\Analyser\IntermediaryNameScope::__set_state(array(
+           'namespace' => 'App\\Domain\\Reporting\\Services',
+           'uses' => 
+          array (
+            'rolekey' => 'App\\Domain\\Access\\Enums\\RoleKey',
+            'mda' => 'App\\Domain\\Access\\Models\\Mda',
+            'user' => 'App\\Domain\\Access\\Models\\User',
+            'mdascope' => 'App\\Domain\\Access\\Scopes\\MdaScope',
+            'dashboardsnapshot' => 'App\\Domain\\Reporting\\Models\\DashboardSnapshot',
+            'dashboardscope' => 'App\\Domain\\Reporting\\Support\\DashboardScope',
+            'carbon' => 'Illuminate\\Support\\Carbon',
+            'collection' => 'Illuminate\\Support\\Collection',
+          ),
+           'className' => 'App\\Domain\\Reporting\\Services\\DashboardSnapshotService',
+           'functionName' => NULL,
+           'templatePhpDocNodes' => 
+          array (
+          ),
+           'parent' => NULL,
+           'typeAliasesMap' => 
+          array (
+          ),
+           'bypassTypeAliases' => false,
+           'constUses' => 
+          array (
+          ),
+           'typeAliasClassName' => NULL,
+           'traitData' => NULL,
+        )),
+         'typeAliasesMap' => 
+        array (
+        ),
+         'bypassTypeAliases' => false,
+         'constUses' => 
+        array (
+        ),
+         'typeAliasClassName' => NULL,
+         'traitData' => NULL,
+      )),
+      'a84849e7ccf5a96543fc2e0fda26b3a6' => 
+      \PHPStan\Analyser\IntermediaryNameScope::__set_state(array(
+         'namespace' => 'App\\Domain\\Reporting\\Services',
+         'uses' => 
+        array (
+          'rolekey' => 'App\\Domain\\Access\\Enums\\RoleKey',
+          'mda' => 'App\\Domain\\Access\\Models\\Mda',
+          'user' => 'App\\Domain\\Access\\Models\\User',
+          'mdascope' => 'App\\Domain\\Access\\Scopes\\MdaScope',
+          'dashboardsnapshot' => 'App\\Domain\\Reporting\\Models\\DashboardSnapshot',
+          'dashboardscope' => 'App\\Domain\\Reporting\\Support\\DashboardScope',
+          'carbon' => 'Illuminate\\Support\\Carbon',
+          'collection' => 'Illuminate\\Support\\Collection',
+        ),
+         'className' => 'App\\Domain\\Reporting\\Services\\DashboardSnapshotService',
+         'functionName' => 'isFresh',
+         'templatePhpDocNodes' => 
+        array (
+        ),
+         'parent' => 
+        \PHPStan\Analyser\IntermediaryNameScope::__set_state(array(
+           'namespace' => 'App\\Domain\\Reporting\\Services',
+           'uses' => 
+          array (
+            'rolekey' => 'App\\Domain\\Access\\Enums\\RoleKey',
+            'mda' => 'App\\Domain\\Access\\Models\\Mda',
+            'user' => 'App\\Domain\\Access\\Models\\User',
+            'mdascope' => 'App\\Domain\\Access\\Scopes\\MdaScope',
+            'dashboardsnapshot' => 'App\\Domain\\Reporting\\Models\\DashboardSnapshot',
+            'dashboardscope' => 'App\\Domain\\Reporting\\Support\\DashboardScope',
+            'carbon' => 'Illuminate\\Support\\Carbon',
+            'collection' => 'Illuminate\\Support\\Collection',
+          ),
+           'className' => 'App\\Domain\\Reporting\\Services\\DashboardSnapshotService',
+           'functionName' => NULL,
+           'templatePhpDocNodes' => 
+          array (
+          ),
+           'parent' => NULL,
+           'typeAliasesMap' => 
+          array (
+          ),
+           'bypassTypeAliases' => false,
+           'constUses' => 
+          array (
+          ),
+           'typeAliasClassName' => NULL,
+           'traitData' => NULL,
+        )),
+         'typeAliasesMap' => 
+        array (
+        ),
+         'bypassTypeAliases' => false,
+         'constUses' => 
+        array (
+        ),
+         'typeAliasClassName' => NULL,
+         'traitData' => NULL,
+      )),
       'd3a092b67eb07ad5bdcdfc6e5b2b33e4' => 
       \PHPStan\Analyser\IntermediaryNameScope::__set_state(array(
          'namespace' => 'App\\Domain\\Reporting\\Services',
@@ -335,7 +453,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
     ),
     1 => 
     array (
-      'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Reporting\\Services\\DashboardSnapshotService.php' => 'b0a6e05182a9f8b6716f2f9e9d0df4a3e64498a12ea1afbe1af67e40a2ea89c6',
+      'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Reporting\\Services\\DashboardSnapshotService.php' => '867246651bffacdc36201b6d7516db4b194eb8f33977c2b818745593f0833d95',
     ),
   ),
 ));

@@ -16,18 +16,8 @@ import {
   useUpdateNotificationPreferences,
 } from '@/features/notifications/hooks'
 import layout from '@/features/shared/formLayout.module.css'
+import { titleCase, when as formatWhen } from './format'
 import styles from './mda.module.css'
-
-const when = (iso: string | null | undefined): string => {
-  if (!iso) return 'never'
-  const d = new Date(iso)
-  return Number.isNaN(d.getTime())
-    ? 'never'
-    : d.toLocaleString(undefined, { day: 'numeric', month: 'short', year: 'numeric', hour: '2-digit', minute: '2-digit' })
-}
-
-const titleCase = (s: string | null | undefined): string =>
-  !s ? '—' : s.replace(/[_-]/g, ' ').replace(/^./, (c) => c.toUpperCase())
 
 /* -------------------------------------------------------------------- profile */
 
@@ -63,7 +53,7 @@ function ProfilePanel() {
             </Badge>
           </dd>
           <dt>Last sign-in</dt>
-          <dd className={styles.mono}>{when(user?.last_login_at)}</dd>
+          <dd className={styles.mono}>{formatWhen(user?.last_login_at, { year: true, absent: 'never' })}</dd>
         </dl>
         <p className={styles.footnote}>
           Your name, email, role and MDA are maintained by an administrator — ask them to correct anything here. Your

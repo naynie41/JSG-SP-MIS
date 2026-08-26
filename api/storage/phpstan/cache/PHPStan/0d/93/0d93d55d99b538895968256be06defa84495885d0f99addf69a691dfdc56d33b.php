@@ -1229,10 +1229,63 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
          'typeAliasClassName' => NULL,
          'traitData' => NULL,
       )),
+      'a10751f1f0458814783fcf6ddf5e5c54' => 
+      \PHPStan\Analyser\IntermediaryNameScope::__set_state(array(
+         'namespace' => 'App\\Domain\\Notification\\Mail',
+         'uses' => 
+        array (
+          'notificationmessage' => 'App\\Domain\\Notification\\Support\\NotificationMessage',
+          'queueable' => 'Illuminate\\Bus\\Queueable',
+          'shouldqueue' => 'Illuminate\\Contracts\\Queue\\ShouldQueue',
+          'mailable' => 'Illuminate\\Mail\\Mailable',
+          'serializesmodels' => 'Illuminate\\Queue\\SerializesModels',
+        ),
+         'className' => 'App\\Domain\\Notification\\Mail\\NotificationMail',
+         'functionName' => 'footer',
+         'templatePhpDocNodes' => 
+        array (
+        ),
+         'parent' => 
+        \PHPStan\Analyser\IntermediaryNameScope::__set_state(array(
+           'namespace' => 'App\\Domain\\Notification\\Mail',
+           'uses' => 
+          array (
+            'notificationmessage' => 'App\\Domain\\Notification\\Support\\NotificationMessage',
+            'queueable' => 'Illuminate\\Bus\\Queueable',
+            'shouldqueue' => 'Illuminate\\Contracts\\Queue\\ShouldQueue',
+            'mailable' => 'Illuminate\\Mail\\Mailable',
+            'serializesmodels' => 'Illuminate\\Queue\\SerializesModels',
+          ),
+           'className' => 'App\\Domain\\Notification\\Mail\\NotificationMail',
+           'functionName' => NULL,
+           'templatePhpDocNodes' => 
+          array (
+          ),
+           'parent' => NULL,
+           'typeAliasesMap' => 
+          array (
+          ),
+           'bypassTypeAliases' => false,
+           'constUses' => 
+          array (
+          ),
+           'typeAliasClassName' => NULL,
+           'traitData' => NULL,
+        )),
+         'typeAliasesMap' => 
+        array (
+        ),
+         'bypassTypeAliases' => false,
+         'constUses' => 
+        array (
+        ),
+         'typeAliasClassName' => NULL,
+         'traitData' => NULL,
+      )),
     ),
     1 => 
     array (
-      'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Notification\\Mail\\NotificationMail.php' => '38e56bec06fccdad2e17e88696d69734407cd98d3cc1f87b74f4c5f32e3484a1',
+      'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Notification\\Mail\\NotificationMail.php' => '9527a3d1217f814e8be0720941274df2adcbb57a6c20ca7ada61624ca745b728',
       'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\vendor\\composer\\..\\laravel\\framework\\src\\Illuminate\\Bus\\Queueable.php' => '7df8b51aab8bd3196229be1a8e398c2c2ec636ae1767ce499a64bfdbf5675c47',
       'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\vendor\\composer\\..\\laravel\\framework\\src\\Illuminate\\Queue\\SerializesModels.php' => '29ff50de875925956c56b217ef9b78643cef0e12e23885fdf37e0ed9b697e51d',
       'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\vendor\\composer\\..\\laravel\\framework\\src\\Illuminate\\Queue\\SerializesAndRestoresModelIdentifiers.php' => 'd4cb97259a134d2089c54c969c2176704f0df2fa2483f149b61029c5c993f82d',

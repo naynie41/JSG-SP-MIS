@@ -139,7 +139,7 @@ describe('MDA console — shell + Overview', () => {
     auth.roleKey = 'mda_admin'
     auth.perms = MDA
     getDashboard.mockResolvedValue({ metrics: METRICS, scope: { kind: 'mda', label: 'Ministry of Health' }, tier: 'operational', live: false, filters: {}, filter_options: {} })
-    actionRequired.mockResolvedValue({ pending_referrals: 3, pending_service_requests: 2, mda_id: 'm1' })
+    actionRequired.mockResolvedValue({ pending_referrals: 3, pending_service_requests: 2, open_grievances: 0, breached_grievances: 0, mda_id: 'm1' })
     listNotifications.mockResolvedValue({ items: [], pagination: { page: 1, per_page: 20, total: 0, total_pages: 1 } })
   })
 
@@ -194,16 +194,28 @@ describe('MDA console — shell + Overview', () => {
 
   /* ------------------------------------------------------------------ KPIs */
 
-  it('shows MDA KPIs from the Phase 6 aggregation', async () => {
+  it('summarises the reporting dashboard from the Phase 6 aggregation', async () => {
+    // The hand-rolled KPI band was replaced by the shared ReportingSummaryCard, which
+    // reads the SAME dashboard query the full Reports dashboard renders — so the two
+    // can no longer disagree. It reports ACTIVE programmes/activities (what is running
+    // now) rather than lifetime totals.
     renderAt()
-    await screen.findByRole('heading', { name: 'Action required' })
+    // Anchored on a dashboard figure: the Action-required heading now paints before the
+    // dashboard resolves, so it no longer implies the snapshot has arrived.
+    expect(await screen.findByText('1,840')).toBeInTheDocument() // net-unique beneficiaries
 
-    expect(screen.getByText('4')).toBeInTheDocument()          // programmes participated in
-    expect(screen.getByText('11')).toBeInTheDocument()         // activities total
-    expect(screen.getByText('7 active')).toBeInTheDocument()   // activities active
-    expect(screen.getByText('1,840')).toBeInTheDocument()      // registered beneficiaries
-    expect(screen.getByText('962')).toBeInTheDocument()        // benefits delivered
+    expect(screen.getByText('7')).toBeInTheDocument()          // active activities
+    expect(screen.getByText('962')).toBeInTheDocument()        // benefit deliveries
     expect(getDashboard).toHaveBeenCalled()
+  })
+
+  it('expands from the Overview summary into the full reports dashboard', async () => {
+    renderAt()
+
+    expect(await screen.findByRole('link', { name: /open full dashboard/i })).toHaveAttribute(
+      'href',
+      '/mda/reports',
+    )
   })
 
   it('names the signed-in user’s MDA so scope is legible', async () => {
@@ -215,9 +227,8 @@ describe('MDA console — shell + Overview', () => {
 
   it('shows both action-required counters from the LIVE endpoint, not the snapshot', async () => {
     renderAt()
-    await screen.findByRole('heading', { name: 'Action required' })
 
-    const referrals = screen.getByRole('link', { name: /Referrals awaiting your response: 3/i })
+    const referrals = await screen.findByRole('link', { name: /Referrals awaiting your response: 3/i })
     const approvals = screen.getByRole('link', { name: /Request-to-serve approvals: 2/i })
 
     expect(referrals).toBeInTheDocument()
@@ -225,6 +236,20 @@ describe('MDA console — shell + Overview', () => {
     expect(actionRequired).toHaveBeenCalled()
   })
 
+  it('surfaces grievances on the Overview instead of burying them behind a tab', async () => {
+    // They were two clicks deep, behind a tab that opens on Benefits — the one queue in
+    // the console with a running SLA, and nothing said so.
+    actionRequired.mockResolvedValue({
+      pending_referrals: 0, pending_service_requests: 0,
+      open_grievances: 4, breached_grievances: 2, mda_id: 'm1',
+    })
+    renderAt()
+
+    const tile = await screen.findByRole('link', { name: /Grievances on your desk: 4/i })
+    expect(tile).toHaveAttribute('href', '/mda/service-delivery?tab=grievances')
+    // Says what is LATE, not only how much there is.
+    expect(screen.getByText('2 past their SLA.')).toBeInTheDocument()
+  })
   it('deep-links both counters into Service Delivery', async () => {
     renderAt()
     await screen.findByRole('heading', { name: 'Action required' })
@@ -249,11 +274,11 @@ describe('MDA console — shell + Overview', () => {
   })
 
   it('reads quietly when the queue is clear rather than shouting a zero', async () => {
-    actionRequired.mockResolvedValue({ pending_referrals: 0, pending_service_requests: 0, mda_id: 'm1' })
+    actionRequired.mockResolvedValue({ pending_referrals: 0, pending_service_requests: 0, open_grievances: 0, breached_grievances: 0, mda_id: 'm1' })
     renderAt()
-    await screen.findByRole('heading', { name: 'Action required' })
 
-    expect(screen.getAllByText('Nothing waiting on your MDA')).toHaveLength(2)
+    // Three inbound queues now: referrals, request-to-serve, grievances.
+    expect(await screen.findAllByText('Nothing waiting on your MDA')).toHaveLength(3)
   })
 
   /* --------------------------------------------------------- quick actions */
@@ -286,9 +311,8 @@ describe('MDA console — shell + Overview', () => {
 
   it('derives alerts from real scoped figures', async () => {
     renderAt()
-    await screen.findByRole('heading', { name: 'Action required' })
 
-    expect(screen.getByText(/3 referrals past their SLA/i)).toBeInTheDocument()
+    expect(await screen.findByText(/3 referrals past their SLA/i)).toBeInTheDocument()
     expect(screen.getByText(/2 grievances past their SLA/i)).toBeInTheDocument()
     // 30 surfaced − (10+8+5) resolved = 7 outstanding.
     expect(screen.getByText(/7 possible duplicates awaiting review/i)).toBeInTheDocument()
@@ -300,9 +324,8 @@ describe('MDA console — shell + Overview', () => {
       scope: { kind: 'mda', label: 'Ministry of Health' }, tier: 'operational', live: false, filters: {}, filter_options: {},
     })
     renderAt()
-    await screen.findByRole('heading', { name: 'Action required' })
 
-    expect(screen.getByText(/Nothing overdue or unresolved in your MDA/i)).toBeInTheDocument()
+    expect(await screen.findByText(/Nothing overdue or unresolved in your MDA/i)).toBeInTheDocument()
   })
 
   /* ------------------------------------------------------------- permission */

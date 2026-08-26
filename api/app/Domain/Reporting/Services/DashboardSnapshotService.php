@@ -70,9 +70,43 @@ class DashboardSnapshotService
         );
     }
 
+    /**
+     * The stored snapshot, if it is still fresh enough to stand in for "now".
+     *
+     * An EXPIRED snapshot reads as absent, so the caller recomputes rather than serving
+     * it. It used to return whatever was stored at any age: with the scheduler stopped
+     * — which is exactly when nobody is watching — the dashboard served figures weeks
+     * old and presented them as current.
+     */
     public function read(DashboardScope $scope): ?DashboardSnapshot
     {
+        $snapshot = DashboardSnapshot::query()->where('scope_key', $scope->key())->first();
+
+        if ($snapshot === null || $this->isFresh($snapshot)) {
+            return $snapshot;
+        }
+
+        return null;
+    }
+
+    /**
+     * The stored snapshot regardless of age.
+     *
+     * Only for the case where a reader could not take the recompute lock: an old figure
+     * that the UI marks as stale beats a timeout, and the reader that holds the lock is
+     * already refreshing it.
+     */
+    public function readAtAnyAge(DashboardScope $scope): ?DashboardSnapshot
+    {
         return DashboardSnapshot::query()->where('scope_key', $scope->key())->first();
+    }
+
+    /** Whether a snapshot is young enough to serve. `0` disables the check. */
+    public function isFresh(DashboardSnapshot $snapshot): bool
+    {
+        $maxAge = (int) config('reporting.snapshot_max_age_minutes', 60);
+
+        return $maxAge <= 0 || $snapshot->computed_at->gt(Carbon::now()->subMinutes($maxAge));
     }
 
     /**

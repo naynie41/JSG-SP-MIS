@@ -5,6 +5,8 @@ declare(strict_types=1);
 namespace App\Domain\Reporting\Services;
 
 use App\Domain\Access\Models\User;
+use App\Domain\Grievance\Enums\GrievanceStatus;
+use App\Domain\Grievance\Models\Grievance;
 use App\Domain\Referral\Enums\ReferralStatus;
 use App\Domain\Referral\Models\Referral;
 use App\Domain\Referral\Scopes\ReferralScope;
@@ -43,7 +45,18 @@ class MdaActionRequiredService
     ];
 
     /**
-     * @return array{pending_referrals: int, pending_service_requests: int, mda_id: string|null}
+     * Grievance states still on this MDA's desk. Resolved and Closed are done.
+     *
+     * @var list<string>
+     */
+    private const GRIEVANCE_OPEN = [
+        GrievanceStatus::Open->value,
+        GrievanceStatus::Assigned->value,
+        GrievanceStatus::InProgress->value,
+    ];
+
+    /**
+     * @return array{pending_referrals: int, pending_service_requests: int, open_grievances: int, breached_grievances: int, mda_id: string|null}
      */
     public function forUser(User $user): array
     {
@@ -51,7 +64,13 @@ class MdaActionRequiredService
 
         // A user with no MDA (oversight roles) has no inbound queue of their own.
         if ($mdaId === null) {
-            return ['pending_referrals' => 0, 'pending_service_requests' => 0, 'mda_id' => null];
+            return [
+                'pending_referrals' => 0,
+                'pending_service_requests' => 0,
+                'open_grievances' => 0,
+                'breached_grievances' => 0,
+                'mda_id' => null,
+            ];
         }
 
         return [
@@ -71,6 +90,22 @@ class MdaActionRequiredService
             'pending_service_requests' => ServiceRequest::query()
                 ->where('to_mda_id', $mdaId)
                 ->where('status', ServiceRequestStatus::Pending->value)
+                ->count(),
+
+            // Grievances this MDA is handling that are not yet resolved. They carry a
+            // running SLA (FR-GRM-03) but sat two clicks deep behind a tab that opens on
+            // Benefits — a queue with a clock on it that nothing surfaced.
+            'open_grievances' => Grievance::query()
+                ->where('handling_mda_id', $mdaId)
+                ->whereIn('status', self::GRIEVANCE_OPEN)
+                ->count(),
+
+            // The subset already past their window, so the tile can say what is urgent
+            // rather than only how much there is.
+            'breached_grievances' => Grievance::query()
+                ->where('handling_mda_id', $mdaId)
+                ->whereIn('status', self::GRIEVANCE_OPEN)
+                ->whereNotNull('sla_breached_at')
                 ->count(),
 
             'mda_id' => $mdaId,

@@ -2,7 +2,7 @@
 
 // odsl-C:\Users\ACER\Desktop\JSG-SP-MIS\JSG-SP-MIS\api\app\Domain\Registry\Events\ImportBatchCompleted.php-PHPStan\BetterReflection\Reflection\ReflectionClass-App\Domain\Registry\Events\ImportBatchCompleted
 return \PHPStan\Cache\CacheItem::__set_state(array(
-   'variableKey' => 'v2-6.70.0.1-8.3.31-260506bc32c983bf1876fe8a1d06afe6925a93629ec071373821822742e86c38',
+   'variableKey' => 'v2-6.70.0.1-8.3.31-2e635fdea0d2029b22eea6114fd84f51fb64637044debf4e10aa7db58de4f3e2',
    'data' => 
   array (
     'locatedSource' => 
@@ -38,7 +38,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
     array (
     ),
     'startLine' => 23,
-    'endLine' => 36,
+    'endLine' => 38,
     'startColumn' => 1,
     'endColumn' => 1,
     'parentClassName' => NULL,
@@ -178,6 +178,49 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         array (
         ),
       ),
+      'own' => 
+      array (
+        'declaringClassName' => 'App\\Domain\\Registry\\Events\\ImportBatchCompleted',
+        'implementingClassName' => 'App\\Domain\\Registry\\Events\\ImportBatchCompleted',
+        'name' => 'own',
+        'modifiers' => 2177,
+        'type' => 
+        array (
+          'class' => 'PHPStan\\BetterReflection\\Reflection\\ReflectionNamedType',
+          'data' => 
+          array (
+            'name' => 'int',
+            'isIdentifier' => true,
+          ),
+        ),
+        'default' => 
+        array (
+          'code' => '0',
+          'attributes' => 
+          array (
+            'startLine' => 36,
+            'endLine' => 36,
+            'startTokenPos' => 104,
+            'startFilePos' => 1328,
+            'endTokenPos' => 104,
+            'endFilePos' => 1328,
+          ),
+        ),
+        'docComment' => '/** Rows matching a beneficiary this MDA already owns (a re-upload of its own data). */',
+        'attributes' => 
+        array (
+        ),
+        'startLine' => 36,
+        'endLine' => 36,
+        'startColumn' => 9,
+        'endColumn' => 36,
+        'isPromoted' => true,
+        'declaredAtCompileTime' => true,
+        'immediateVirtual' => false,
+        'immediateHooks' => 
+        array (
+        ),
+      ),
     ),
     'immediateMethods' => 
     array (
@@ -290,6 +333,44 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             'parameterIndex' => 3,
             'isOptional' => false,
           ),
+          'own' => 
+          array (
+            'name' => 'own',
+            'default' => 
+            array (
+              'code' => '0',
+              'attributes' => 
+              array (
+                'startLine' => 36,
+                'endLine' => 36,
+                'startTokenPos' => 104,
+                'startFilePos' => 1328,
+                'endTokenPos' => 104,
+                'endFilePos' => 1328,
+              ),
+            ),
+            'type' => 
+            array (
+              'class' => 'PHPStan\\BetterReflection\\Reflection\\ReflectionNamedType',
+              'data' => 
+              array (
+                'name' => 'int',
+                'isIdentifier' => true,
+              ),
+            ),
+            'isVariadic' => false,
+            'byRef' => false,
+            'isPromoted' => true,
+            'attributes' => 
+            array (
+            ),
+            'startLine' => 36,
+            'endLine' => 36,
+            'startColumn' => 9,
+            'endColumn' => 36,
+            'parameterIndex' => 4,
+            'isOptional' => true,
+          ),
         ),
         'returnsReference' => false,
         'returnType' => NULL,
@@ -298,7 +379,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         ),
         'docComment' => NULL,
         'startLine' => 27,
-        'endLine' => 35,
+        'endLine' => 37,
         'startColumn' => 5,
         'endColumn' => 8,
         'couldThrow' => false,

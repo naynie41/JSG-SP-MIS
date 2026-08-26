@@ -1966,16 +1966,17 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
     ),
     'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Notification\\Channels\\EmailChannel.php' => 
     array (
-      0 => 'c3adfe2d2fe6ca8dd22dc1e021da4c0237090a357dbdef44ba6a712f4fceae3a',
+      0 => '48fc2247f718f5c96c3c9d6f86755dbf6f3d9308a8e42e764887b92cfd02b976',
       1 => 
       array (
         0 => 'app\\domain\\notification\\channels\\emailchannel',
       ),
       2 => 
       array (
-        0 => 'app\\domain\\notification\\channels\\key',
-        1 => 'app\\domain\\notification\\channels\\isavailable',
-        2 => 'app\\domain\\notification\\channels\\send',
+        0 => 'app\\domain\\notification\\channels\\__construct',
+        1 => 'app\\domain\\notification\\channels\\key',
+        2 => 'app\\domain\\notification\\channels\\isavailable',
+        3 => 'app\\domain\\notification\\channels\\send',
       ),
       3 => 
       array (
@@ -1983,7 +1984,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
     ),
     'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Notification\\Channels\\InAppChannel.php' => 
     array (
-      0 => 'ad427d0ac3927c1cefcede52fd115f12e4fd633bd0c03730da86cd53cb960229',
+      0 => '8aecc28492ea8603ba3a59b01b65d8fefec43a2d5188debf931552b6a332bd29',
       1 => 
       array (
         0 => 'app\\domain\\notification\\channels\\inappchannel',
@@ -1993,6 +1994,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         0 => 'app\\domain\\notification\\channels\\key',
         1 => 'app\\domain\\notification\\channels\\isavailable',
         2 => 'app\\domain\\notification\\channels\\send',
+        3 => 'app\\domain\\notification\\channels\\payloadfor',
       ),
       3 => 
       array (
@@ -2065,7 +2067,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
     ),
     'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Notification\\Listeners\\NotificationSubscriber.php' => 
     array (
-      0 => '2b7e93b1e29be93aa09f4115e342946bebebd03b90a86f8b64dba369a6b263ce',
+      0 => 'bb6f7082e3c595075eb370e5fa74895a20bea73e4b6b9734ccec2e67578f1cc2',
       1 => 
       array (
         0 => 'app\\domain\\notification\\listeners\\notificationsubscriber',
@@ -2101,7 +2103,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
     ),
     'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Notification\\Mail\\NotificationMail.php' => 
     array (
-      0 => '38e56bec06fccdad2e17e88696d69734407cd98d3cc1f87b74f4c5f32e3484a1',
+      0 => '9527a3d1217f814e8be0720941274df2adcbb57a6c20ca7ada61624ca745b728',
       1 => 
       array (
         0 => 'app\\domain\\notification\\mail\\notificationmail',
@@ -2110,6 +2112,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
       array (
         0 => 'app\\domain\\notification\\mail\\__construct',
         1 => 'app\\domain\\notification\\mail\\build',
+        2 => 'app\\domain\\notification\\mail\\footer',
       ),
       3 => 
       array (
@@ -2150,7 +2153,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
     ),
     'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Notification\\NotificationServiceProvider.php' => 
     array (
-      0 => 'e89fc1e84994370afca71208f0470ae66401c5a1a79425739521f5473c3e69d2',
+      0 => 'a9a207374f92e2f6b12eb0e3d07adb4801de861d9897aba067ece3dd36e153ba',
       1 => 
       array (
         0 => 'app\\domain\\notification\\notificationserviceprovider',
@@ -2183,7 +2186,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
     ),
     'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Notification\\Support\\NotificationMessage.php' => 
     array (
-      0 => 'a136eb37ba2520d08b847859cfb44c85da68e4edaaeb5d17d7a98e7c09f2042e',
+      0 => 'f87d9cba79aed85ec41c071e4ba7da909c0b38d779fdadd1c7b484a1aeddf950',
       1 => 
       array (
         0 => 'app\\domain\\notification\\support\\notificationmessage',
@@ -2191,6 +2194,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
       2 => 
       array (
         0 => 'app\\domain\\notification\\support\\__construct',
+        1 => 'app\\domain\\notification\\support\\actionurl',
       ),
       3 => 
       array (
@@ -3012,13 +3016,14 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
     ),
     'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Registry\\Enums\\ImportRowResolution.php' => 
     array (
-      0 => 'fe4032867c0c8dcbade681b08155378bd774b1fd53b7b00d46268dfdea34bbf2',
+      0 => '433a30945300562aeb4f43c15427b10e7210ef01367b074e4a69d4a1cc0af57b',
       1 => 
       array (
         0 => 'app\\domain\\registry\\enums\\importrowresolution',
       ),
       2 => 
       array (
+        0 => 'app\\domain\\registry\\enums\\againstexisting',
       ),
       3 => 
       array (
@@ -3288,7 +3293,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
     ),
     'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Registry\\Imports\\ImportRowValidator.php' => 
     array (
-      0 => '98ef143626a1fc075505369f267ede3d7cfc66803b53e344345faaee47711278',
+      0 => 'b57db7d617924f3d2e1a9208d3c4e53fbc3d15b70e43296f4b022dc715eb3703',
       1 => 
       array (
         0 => 'app\\domain\\registry\\imports\\importrowvalidator',
@@ -3341,7 +3346,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
     ),
     'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Registry\\Jobs\\ParseImportBatch.php' => 
     array (
-      0 => 'c4c9dab5fc3e2d986cbda2582e8779786428e4a59db4812714847c2a3f43a46b',
+      0 => '5b28b1ce0f4ffc081ee913bbc1151aa09f751d2413cb044eb44c527ba454fb14',
       1 => 
       array (
         0 => 'app\\domain\\registry\\jobs\\parseimportbatch',
@@ -3486,7 +3491,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
     ),
     'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Registry\\Models\\ImportBatch.php' => 
     array (
-      0 => '6ae8b543f65c3f9947409abe4af4612009140a62f247849d907a95a05c4edee2',
+      0 => 'bdd797a5fc0346637d3fe0b60a4ba3d4a0ccffbc099707004fd61cbe9eb41fc4',
       1 => 
       array (
         0 => 'app\\domain\\registry\\models\\importbatch',
@@ -3552,7 +3557,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
     ),
     'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Registry\\Models\\ServiceRequest.php' => 
     array (
-      0 => '68d0c757d35761a76552ff59fe51789d44b2eb69a2b17a4a933611303f480883',
+      0 => '7ab380f4fde55b45fcf807f127648cb0407fea6670c84afed3b37c9e421067b1',
       1 => 
       array (
         0 => 'app\\domain\\registry\\models\\servicerequest',
@@ -3564,6 +3569,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         2 => 'app\\domain\\registry\\models\\beneficiary',
         3 => 'app\\domain\\registry\\models\\frommda',
         4 => 'app\\domain\\registry\\models\\tomda',
+        5 => 'app\\domain\\registry\\models\\activity',
       ),
       3 => 
       array (
@@ -3864,7 +3870,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
     ),
     'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Registry\\Services\\ImportCommitter.php' => 
     array (
-      0 => '43487a231365279f1cfaa368215b27aa4fe27f863dd1fba24631084fe3637438',
+      0 => '3e39be08043e0a3a02293dfdbc6c335bf877a6b28d5e5de3975e6301fc874bf2',
       1 => 
       array (
         0 => 'app\\domain\\registry\\services\\importcommitter',
@@ -3875,7 +3881,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         1 => 'app\\domain\\registry\\services\\commit',
         2 => 'app\\domain\\registry\\services\\effectiveresolution',
         3 => 'app\\domain\\registry\\services\\recordintervention',
-        4 => 'app\\domain\\registry\\services\\serve',
+        4 => 'app\\domain\\registry\\services\\resolveagainstexisting',
+        5 => 'app\\domain\\registry\\services\\householdof',
       ),
       3 => 
       array (
@@ -3954,7 +3961,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
     ),
     'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Registry\\Support\\BeneficiaryRules.php' => 
     array (
-      0 => '57af87d296a19eb01b46e56789b96d4448419e2d9c2d711fe9ed85aa865da319',
+      0 => '16d885cf6ea754a4516cf9ea000eb4d22a82e0697bde19484731e713f69da1a8',
       1 => 
       array (
         0 => 'app\\domain\\registry\\support\\beneficiaryrules',
@@ -3963,7 +3970,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
       array (
         0 => 'app\\domain\\registry\\support\\isidentityfield',
         1 => 'app\\domain\\registry\\support\\forregistration',
-        2 => 'app\\domain\\registry\\support\\messages',
+        2 => 'app\\domain\\registry\\support\\earliestdateofbirth',
+        3 => 'app\\domain\\registry\\support\\messages',
       ),
       3 => 
       array (
@@ -3988,7 +3996,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
     ),
     'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Registry\\Support\\UniqueIdentifier.php' => 
     array (
-      0 => 'ac82dc3fe5f6c6430deb9b4d3dc4ce39db164aaac54e9b0e150336cb9aa8e350',
+      0 => '7e70ab4333cbae8ad9fb6bc65e8a657bc615ecdac6fccd30ba959908e47e9141',
       1 => 
       array (
         0 => 'app\\domain\\registry\\support\\uniqueidentifier',
@@ -3996,7 +4004,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
       2 => 
       array (
         0 => 'app\\domain\\registry\\support\\__construct',
-        1 => 'app\\domain\\registry\\support\\validate',
+        1 => 'app\\domain\\registry\\support\\constrainttoken',
+        2 => 'app\\domain\\registry\\support\\validate',
       ),
       3 => 
       array (
@@ -4277,7 +4286,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
     ),
     'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Reporting\\Jobs\\GenerateReport.php' => 
     array (
-      0 => 'ff8f6f3817adeb35db1f0d6d6428dbf1cdd9a026b1486cd448b6b187737f0e8b',
+      0 => 'ad1ad3c913162e2937a74ac6d506d8935346fc30b3143cd28f77ae28490c482c',
       1 => 
       array (
         0 => 'app\\domain\\reporting\\jobs\\generatereport',
@@ -4387,7 +4396,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
     ),
     'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Reporting\\Models\\ReportRun.php' => 
     array (
-      0 => 'e843f9debeb21f19966d25ed0f47f7cc5866f1ad2e9248d3084b03d8e5cdf5fd',
+      0 => '5386016caf18aaed4ecdfe5f378bba919406ab244ce83068f8f3399c014f5bda',
       1 => 
       array (
         0 => 'app\\domain\\reporting\\models\\reportrun',
@@ -4622,7 +4631,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
     ),
     'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Reporting\\Services\\DashboardService.php' => 
     array (
-      0 => 'f77351f19d6192f86f9bba5a24e574dfd30ba256f9c745f745f6feab3786a071',
+      0 => 'a33e8369e685d175f688c14240b42762088120613ae705ed2575388fe63b780c',
       1 => 
       array (
         0 => 'app\\domain\\reporting\\services\\dashboardservice',
@@ -4630,7 +4639,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
       2 => 
       array (
         0 => 'app\\domain\\reporting\\services\\__construct',
-        1 => 'app\\domain\\reporting\\services\\foruser',
+        1 => 'app\\domain\\reporting\\services\\refreshonce',
+        2 => 'app\\domain\\reporting\\services\\foruser',
       ),
       3 => 
       array (
@@ -4638,7 +4648,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
     ),
     'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Reporting\\Services\\DashboardSnapshotService.php' => 
     array (
-      0 => 'b0a6e05182a9f8b6716f2f9e9d0df4a3e64498a12ea1afbe1af67e40a2ea89c6',
+      0 => '867246651bffacdc36201b6d7516db4b194eb8f33977c2b818745593f0833d95',
       1 => 
       array (
         0 => 'app\\domain\\reporting\\services\\dashboardsnapshotservice',
@@ -4649,7 +4659,9 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         1 => 'app\\domain\\reporting\\services\\refreshall',
         2 => 'app\\domain\\reporting\\services\\refreshfor',
         3 => 'app\\domain\\reporting\\services\\read',
-        4 => 'app\\domain\\reporting\\services\\partnerusers',
+        4 => 'app\\domain\\reporting\\services\\readatanyage',
+        5 => 'app\\domain\\reporting\\services\\isfresh',
+        6 => 'app\\domain\\reporting\\services\\partnerusers',
       ),
       3 => 
       array (
@@ -4681,7 +4693,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
     ),
     'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Reporting\\Services\\ReportService.php' => 
     array (
-      0 => 'd02b38c86f42cc649095d3e61bb679a68b9fd4c53400d43250eb1442b64f1a95',
+      0 => '717022a7d792050f0ae8695fe54bdb998a4901af2a2e33cc98e42e2df9aa0848',
       1 => 
       array (
         0 => 'app\\domain\\reporting\\services\\reportservice',
@@ -4692,9 +4704,10 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         1 => 'app\\domain\\reporting\\services\\request',
         2 => 'app\\domain\\reporting\\services\\queuebeneficiaryexport',
         3 => 'app\\domain\\reporting\\services\\requestadhoc',
-        4 => 'app\\domain\\reporting\\services\\runfromschedule',
-        5 => 'app\\domain\\reporting\\services\\schedulereportattributes',
-        6 => 'app\\domain\\reporting\\services\\createrun',
+        4 => 'app\\domain\\reporting\\services\\queuesegmentexport',
+        5 => 'app\\domain\\reporting\\services\\runfromschedule',
+        6 => 'app\\domain\\reporting\\services\\schedulereportattributes',
+        7 => 'app\\domain\\reporting\\services\\createrun',
       ),
       3 => 
       array (
@@ -5575,7 +5588,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
     ),
     'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Registry\\ImportBatchController.php' => 
     array (
-      0 => '2fcafe0af2bf3a70784cd17f64b277d0225b04bc0e4e4bd8f334f50ddf2e9343',
+      0 => 'c82526efce9cad59c23b42f0c849d847cdcb26762dd4a6cd10ffe324e9511a6c',
       1 => 
       array (
         0 => 'app\\http\\controllers\\api\\v1\\registry\\importbatchcontroller',
@@ -5589,10 +5602,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         4 => 'app\\http\\controllers\\api\\v1\\registry\\confirmmapping',
         5 => 'app\\http\\controllers\\api\\v1\\registry\\show',
         6 => 'app\\http\\controllers\\api\\v1\\registry\\attachmatchreveals',
-        7 => 'app\\http\\controllers\\api\\v1\\registry\\registryreveal',
-        8 => 'app\\http\\controllers\\api\\v1\\registry\\batchreveal',
-        9 => 'app\\http\\controllers\\api\\v1\\registry\\resolverow',
-        10 => 'app\\http\\controllers\\api\\v1\\registry\\confirm',
+        7 => 'app\\http\\controllers\\api\\v1\\registry\\resolverow',
+        8 => 'app\\http\\controllers\\api\\v1\\registry\\confirm',
       ),
       3 => 
       array (
@@ -6623,7 +6634,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
     ),
     'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Registry\\ResolveImportRowRequest.php' => 
     array (
-      0 => 'd1d5edf7340532d674e91b35401b0b7fdf91e77e7b4f1d09cd120c9ac843a1e6',
+      0 => 'f05dcc73f9515c2ee4e3f35215eb25121fba714aee913a94fb1a4e9d6b6fd81a',
       1 => 
       array (
         0 => 'app\\http\\requests\\registry\\resolveimportrowrequest',
@@ -7143,7 +7154,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
     ),
     'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Resources\\ImportBatchResource.php' => 
     array (
-      0 => '8509101f00d6c596b7282114ca50f64c993f2ed45714ce8ad4d501831fa6e93a',
+      0 => '9f64da30ceecc01da138f0ec9813f5791114559f9c4928ae01fd1b4d259231b7',
       1 => 
       array (
         0 => 'app\\http\\resources\\importbatchresource',
@@ -7565,7 +7576,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
     ),
     'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Registry\\RegistryRulesController.php' => 
     array (
-      0 => '3a92ebbf3bbcd00c2cb571ab84ba9757d3fc8f24672d8e624cdcc071c818bfe6',
+      0 => '1925101afc52331d7f5d0790d23a80d0fbdd4b0c7cb17bfaf881495d6adf5d9a',
       1 => 
       array (
         0 => 'app\\http\\controllers\\api\\v1\\registry\\registryrulescontroller',
@@ -7742,7 +7753,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
     ),
     'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Reporting\\Services\\MdaActionRequiredService.php' => 
     array (
-      0 => 'ae6b94f921c6b1b1a36eec147c9e7fbd42093b64915a3c56d8d1ac65e183e98c',
+      0 => '88a07c2fbbadd2468da3a73624f1917257a4ce5e4783ecdfe533ab6b0f0ec530',
       1 => 
       array (
         0 => 'app\\domain\\reporting\\services\\mdaactionrequiredservice',
@@ -7773,7 +7784,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
     ),
     'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Registry\\Events\\ImportBatchCompleted.php' => 
     array (
-      0 => '260506bc32c983bf1876fe8a1d06afe6925a93629ec071373821822742e86c38',
+      0 => '2e635fdea0d2029b22eea6114fd84f51fb64637044debf4e10aa7db58de4f3e2',
       1 => 
       array (
         0 => 'app\\domain\\registry\\events\\importbatchcompleted',
@@ -7835,7 +7846,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
     ),
     'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Registry\\Support\\CanonicalSchema.php' => 
     array (
-      0 => 'a92f4a70e0f20da1712ac6a4a48ece37d2f1b2008592fe4398a5117d3a88e575',
+      0 => '325490ebc9035b751f67e2b47ac77f27c88ab26de36aaa3c168b1fe4d7ab2add',
       1 => 
       array (
         0 => 'app\\domain\\registry\\support\\canonicalschema',
@@ -7850,7 +7861,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         5 => 'app\\domain\\registry\\support\\requiredfields',
         6 => 'app\\domain\\registry\\support\\isidentityfield',
         7 => 'app\\domain\\registry\\support\\confirmationrequiredfields',
-        8 => 'app\\domain\\registry\\support\\typeof',
+        8 => 'app\\domain\\registry\\support\\segmentablefields',
+        9 => 'app\\domain\\registry\\support\\typeof',
       ),
       3 => 
       array (
@@ -8152,7 +8164,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
     ),
     'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Reference\\Services\\ReferenceDataCache.php' => 
     array (
-      0 => 'a4ab666aaa3e3f890fc5da3cecc2f89b28aa5ddbf0bc25f88431da6447593331',
+      0 => 'b2920f29a2acf4c3973e6a4ac471d31b6cce33f80cbdeb2f76db9518f9a79aa0',
       1 => 
       array (
         0 => 'app\\domain\\reference\\services\\referencedatacache',
@@ -8161,9 +8173,10 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
       array (
         0 => 'app\\domain\\reference\\services\\lgas',
         1 => 'app\\domain\\reference\\services\\wardsfor',
-        2 => 'app\\domain\\reference\\services\\flush',
-        3 => 'app\\domain\\reference\\services\\version',
-        4 => 'app\\domain\\reference\\services\\key',
+        2 => 'app\\domain\\reference\\services\\wardkeysbylgacode',
+        3 => 'app\\domain\\reference\\services\\flush',
+        4 => 'app\\domain\\reference\\services\\version',
+        5 => 'app\\domain\\reference\\services\\key',
       ),
       3 => 
       array (
@@ -8301,6 +8314,332 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         0 => 'app\\domain\\registry\\support\\handle',
         1 => 'app\\domain\\registry\\support\\reportshapes',
         2 => 'app\\domain\\registry\\support\\recordsummary',
+      ),
+      3 => 
+      array (
+      ),
+    ),
+    'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Registry\\Support\\DescribesConstraint.php' => 
+    array (
+      0 => '6f3712e2cc790eecb9c32536d2897c628f88b65e6c7c7e2a75520e3531d79dc7',
+      1 => 
+      array (
+        0 => 'app\\domain\\registry\\support\\describesconstraint',
+      ),
+      2 => 
+      array (
+        0 => 'app\\domain\\registry\\support\\constrainttoken',
+      ),
+      3 => 
+      array (
+      ),
+    ),
+    'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Registry\\Support\\NationalIdentifier.php' => 
+    array (
+      0 => '6f426f53500b2881741aa1e4e713bbca7acafc55ad2710f43f07be760e84fdc8',
+      1 => 
+      array (
+        0 => 'app\\domain\\registry\\support\\nationalidentifier',
+      ),
+      2 => 
+      array (
+        0 => 'app\\domain\\registry\\support\\__construct',
+        1 => 'app\\domain\\registry\\support\\constrainttoken',
+        2 => 'app\\domain\\registry\\support\\expecteddigits',
+        3 => 'app\\domain\\registry\\support\\validate',
+      ),
+      3 => 
+      array (
+      ),
+    ),
+    'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Registry\\Support\\NigerianPhone.php' => 
+    array (
+      0 => '6fbcacb15c8ebaf14f8b7ed869e1c19279a11e91691f8fd1565f3f0832e62fc6',
+      1 => 
+      array (
+        0 => 'app\\domain\\registry\\support\\nigerianphone',
+      ),
+      2 => 
+      array (
+        0 => 'app\\domain\\registry\\support\\__construct',
+        1 => 'app\\domain\\registry\\support\\constrainttoken',
+        2 => 'app\\domain\\registry\\support\\expecteddigits',
+        3 => 'app\\domain\\registry\\support\\validate',
+      ),
+      3 => 
+      array (
+      ),
+    ),
+    'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Registry\\Support\\OriginalInput.php' => 
+    array (
+      0 => '054d501f263f8bf16172a50cbc68723a0edf58a67647f52026ce5ce98f4d5f0a',
+      1 => 
+      array (
+        0 => 'app\\domain\\registry\\support\\originalinput',
+      ),
+      2 => 
+      array (
+      ),
+      3 => 
+      array (
+      ),
+    ),
+    'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Registry\\Support\\QuotesOriginalInput.php' => 
+    array (
+      0 => '854a6f3a50f7c39b3a8b442bd81ed2ed24abf3a0feb14f8e4fe63a99e2bd03f1',
+      1 => 
+      array (
+        0 => 'app\\domain\\registry\\support\\quotesoriginalinput',
+      ),
+      2 => 
+      array (
+        0 => 'app\\domain\\registry\\support\\setdata',
+        1 => 'app\\domain\\registry\\support\\originalfor',
+      ),
+      3 => 
+      array (
+      ),
+    ),
+    'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Registry\\Support\\KnownWard.php' => 
+    array (
+      0 => '87cc72cc4624228d0e99a05458c124454d65408327dc3a964a96af44c43c5bc9',
+      1 => 
+      array (
+        0 => 'app\\domain\\registry\\support\\knownward',
+      ),
+      2 => 
+      array (
+        0 => 'app\\domain\\registry\\support\\__construct',
+        1 => 'app\\domain\\registry\\support\\setdata',
+        2 => 'app\\domain\\registry\\support\\constrainttoken',
+        3 => 'app\\domain\\registry\\support\\validate',
+        4 => 'app\\domain\\registry\\support\\countof',
+      ),
+      3 => 
+      array (
+      ),
+    ),
+    'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Reporting\\Segments\\CellSizeGuard.php' => 
+    array (
+      0 => 'a72c28c16c2ce9fd6e8e54e65526281017bc12474f8c7031de57dc714af24b88',
+      1 => 
+      array (
+        0 => 'app\\domain\\reporting\\segments\\cellsizeguard',
+      ),
+      2 => 
+      array (
+        0 => 'app\\domain\\reporting\\segments\\minimum',
+        1 => 'app\\domain\\reporting\\segments\\apply',
+        2 => 'app\\domain\\reporting\\segments\\totalissuppressed',
+      ),
+      3 => 
+      array (
+      ),
+    ),
+    'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Reporting\\Segments\\SegmentAccess.php' => 
+    array (
+      0 => '8fd4cc2384f0411781da4c3834ba20b36bd64a9d47e113f54289a7ff321f73ab',
+      1 => 
+      array (
+        0 => 'app\\domain\\reporting\\segments\\segmentaccess',
+      ),
+      2 => 
+      array (
+        0 => 'app\\domain\\reporting\\segments\\__construct',
+        1 => 'app\\domain\\reporting\\segments\\foruser',
+        2 => 'app\\domain\\reporting\\segments\\fromparams',
+        3 => 'app\\domain\\reporting\\segments\\showsrows',
+        4 => 'app\\domain\\reporting\\segments\\toparams',
+      ),
+      3 => 
+      array (
+      ),
+    ),
+    'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Reporting\\Segments\\SegmentDefinition.php' => 
+    array (
+      0 => 'ee10ec165833217f6033782ec04c205521f5542b033bd3a0b287fb06a43ca9dc',
+      1 => 
+      array (
+        0 => 'app\\domain\\reporting\\segments\\segmentdefinition',
+      ),
+      2 => 
+      array (
+        0 => 'app\\domain\\reporting\\segments\\__construct',
+        1 => 'app\\domain\\reporting\\segments\\fromarray',
+        2 => 'app\\domain\\reporting\\segments\\operatorfor',
+        3 => 'app\\domain\\reporting\\segments\\assertallowedvalues',
+        4 => 'app\\domain\\reporting\\segments\\toarray',
+        5 => 'app\\domain\\reporting\\segments\\label',
+      ),
+      3 => 
+      array (
+      ),
+    ),
+    'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Reporting\\Segments\\SegmentDimension.php' => 
+    array (
+      0 => '82da72ddcc40a9a0410b4d6f7638b2e6ad1fc28219ddcfc4b9378a1dd2f48b0c',
+      1 => 
+      array (
+        0 => 'app\\domain\\reporting\\segments\\segmentdimension',
+      ),
+      2 => 
+      array (
+        0 => 'app\\domain\\reporting\\segments\\__construct',
+        1 => 'app\\domain\\reporting\\segments\\toarray',
+      ),
+      3 => 
+      array (
+      ),
+    ),
+    'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Reporting\\Segments\\SegmentDimensionRegistry.php' => 
+    array (
+      0 => '579039f14e82e2a523231449a7c44362208e2ae87016fede0c5f6d117a01a64c',
+      1 => 
+      array (
+        0 => 'app\\domain\\reporting\\segments\\segmentdimensionregistry',
+      ),
+      2 => 
+      array (
+        0 => 'app\\domain\\reporting\\segments\\all',
+        1 => 'app\\domain\\reporting\\segments\\get',
+        2 => 'app\\domain\\reporting\\segments\\keys',
+        3 => 'app\\domain\\reporting\\segments\\optionsfrom',
+      ),
+      3 => 
+      array (
+      ),
+    ),
+    'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Reporting\\Segments\\SegmentQueryBuilder.php' => 
+    array (
+      0 => '02d06be3568b2af1e81e647816554cf02247215d2faded431214d2b195ac22eb',
+      1 => 
+      array (
+        0 => 'app\\domain\\reporting\\segments\\segmentquerybuilder',
+      ),
+      2 => 
+      array (
+        0 => 'app\\domain\\reporting\\segments\\__construct',
+        1 => 'app\\domain\\reporting\\segments\\query',
+        2 => 'app\\domain\\reporting\\segments\\applyscope',
+        3 => 'app\\domain\\reporting\\segments\\applyfilter',
+        4 => 'app\\domain\\reporting\\segments\\applyage',
+        5 => 'app\\domain\\reporting\\segments\\applyenrollment',
+        6 => 'app\\domain\\reporting\\segments\\applyhouseholdrole',
+        7 => 'app\\domain\\reporting\\segments\\applyhousehold',
+      ),
+      3 => 
+      array (
+      ),
+    ),
+    'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Reporting\\Segments\\SegmentReportService.php' => 
+    array (
+      0 => '3be056fe3d0ffdd6c1ebcceed9e1b89c62c0f6bbf1144148ed45ac314948beb3',
+      1 => 
+      array (
+        0 => 'app\\domain\\reporting\\segments\\segmentreportservice',
+      ),
+      2 => 
+      array (
+        0 => 'app\\domain\\reporting\\segments\\__construct',
+        1 => 'app\\domain\\reporting\\segments\\pagesize',
+        2 => 'app\\domain\\reporting\\segments\\syncmax',
+        3 => 'app\\domain\\reporting\\segments\\total',
+        4 => 'app\\domain\\reporting\\segments\\preview',
+        5 => 'app\\domain\\reporting\\segments\\breakdown',
+        6 => 'app\\domain\\reporting\\segments\\toreportdata',
+        7 => 'app\\domain\\reporting\\segments\\aggregatereportdata',
+        8 => 'app\\domain\\reporting\\segments\\columns',
+        9 => 'app\\domain\\reporting\\segments\\rows',
+        10 => 'app\\domain\\reporting\\segments\\row',
+        11 => 'app\\domain\\reporting\\segments\\groupablecolumn',
+        12 => 'app\\domain\\reporting\\segments\\labelfor',
+        13 => 'app\\domain\\reporting\\segments\\nameof',
+      ),
+      3 => 
+      array (
+      ),
+    ),
+    'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Reporting\\SegmentReportController.php' => 
+    array (
+      0 => 'cdcc75edb8c6761f76f1702915bbd13d29b5fd3648eafca7ee0e9a63ef950d07',
+      1 => 
+      array (
+        0 => 'app\\http\\controllers\\api\\v1\\reporting\\segmentreportcontroller',
+      ),
+      2 => 
+      array (
+        0 => 'app\\http\\controllers\\api\\v1\\reporting\\__construct',
+        1 => 'app\\http\\controllers\\api\\v1\\reporting\\dimensions',
+        2 => 'app\\http\\controllers\\api\\v1\\reporting\\preview',
+        3 => 'app\\http\\controllers\\api\\v1\\reporting\\export',
+        4 => 'app\\http\\controllers\\api\\v1\\reporting\\accessfor',
+      ),
+      3 => 
+      array (
+      ),
+    ),
+    'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Reporting\\SegmentReportRequest.php' => 
+    array (
+      0 => '5f2680caf46c28c71af584fcc13baf160735196807a2378d4fa115fd804bb7ce',
+      1 => 
+      array (
+        0 => 'app\\http\\requests\\reporting\\segmentreportrequest',
+      ),
+      2 => 
+      array (
+        0 => 'app\\http\\requests\\reporting\\authorize',
+        1 => 'app\\http\\requests\\reporting\\rules',
+      ),
+      3 => 
+      array (
+      ),
+    ),
+    'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Registry\\Services\\MatchRevealAssembler.php' => 
+    array (
+      0 => 'd9d81e21365fe0fdba9f6f88c5fb04569c37d65e8d6bc6f18f47c541bef3e201',
+      1 => 
+      array (
+        0 => 'app\\domain\\registry\\services\\matchrevealassembler',
+      ),
+      2 => 
+      array (
+        0 => 'app\\domain\\registry\\services\\attach',
+        1 => 'app\\domain\\registry\\services\\registryreveal',
+        2 => 'app\\domain\\registry\\services\\peerreveal',
+      ),
+      3 => 
+      array (
+      ),
+    ),
+    'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Controllers\\Api\\V1\\Registry\\DuplicateQueueController.php' => 
+    array (
+      0 => 'cbf1f5c5e6a6d3ff93e67e987e3d7ef17b7e4f237cb7b93bb90996bef007a0e7',
+      1 => 
+      array (
+        0 => 'app\\http\\controllers\\api\\v1\\registry\\duplicatequeuecontroller',
+      ),
+      2 => 
+      array (
+        0 => 'app\\http\\controllers\\api\\v1\\registry\\__construct',
+        1 => 'app\\http\\controllers\\api\\v1\\registry\\counts',
+        2 => 'app\\http\\controllers\\api\\v1\\registry\\activethresholds',
+        3 => 'app\\http\\controllers\\api\\v1\\registry\\index',
+      ),
+      3 => 
+      array (
+      ),
+    ),
+    'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Http\\Requests\\Registry\\DuplicateQueueRequest.php' => 
+    array (
+      0 => '0d93a49fd8ee25f49319586b7acd31fccda04ba09945777e3b85c15db427e18f',
+      1 => 
+      array (
+        0 => 'app\\http\\requests\\registry\\duplicatequeuerequest',
+      ),
+      2 => 
+      array (
+        0 => 'app\\http\\requests\\registry\\authorize',
+        1 => 'app\\http\\requests\\registry\\rules',
       ),
       3 => 
       array (

@@ -7,6 +7,7 @@ namespace App\Domain\Registry\Imports;
 use App\Domain\Registry\Support\BeneficiaryRules;
 use App\Domain\Registry\Support\CanonicalSchema;
 use App\Domain\Registry\Support\NormalizationService;
+use App\Domain\Registry\Support\OriginalInput;
 use App\Domain\Registry\Support\UniqueIdentifier;
 use Illuminate\Support\Facades\Validator;
 
@@ -50,7 +51,25 @@ class ImportRowValidator
     {
         $payload = $this->normalise($values);
 
-        $validator = Validator::make($payload, BeneficiaryRules::forRegistration(), BeneficiaryRules::messages());
+        /*
+         * Validate the NORMALIZED row, but carry the untouched values alongside so a
+         * failure can quote what the file actually said (FR-REG-16).
+         *
+         * Without this the report tells an officer that `8031234567` is the wrong
+         * length while their cell reads `+234 (0) 803 123 456` — a string they cannot
+         * find. The key is stripped from the payload before it is returned, so nothing
+         * downstream ever sees it.
+         */
+        $originals = [];
+        foreach ($this->fields() as $field) {
+            $originals[$field] = $values[$field] ?? null;
+        }
+
+        $validator = Validator::make(
+            [...$payload, OriginalInput::KEY => $originals],
+            BeneficiaryRules::forRegistration(),
+            BeneficiaryRules::messages(),
+        );
 
         $messages = $validator->errors();      // triggers validation
         $failedRules = $validator->failed();   // field => [RuleName => params]

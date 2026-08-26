@@ -33,6 +33,7 @@ use App\Http\Controllers\Api\V1\Registry\BeneficiaryController;
 use App\Http\Controllers\Api\V1\Registry\BeneficiaryDocumentController;
 use App\Http\Controllers\Api\V1\Registry\BeneficiaryIntakeController;
 use App\Http\Controllers\Api\V1\Registry\BeneficiaryRoutingController;
+use App\Http\Controllers\Api\V1\Registry\DuplicateQueueController;
 use App\Http\Controllers\Api\V1\Registry\HouseholdController;
 use App\Http\Controllers\Api\V1\Registry\HouseholdMemberController;
 use App\Http\Controllers\Api\V1\Registry\ImportBatchController;
@@ -50,6 +51,7 @@ use App\Http\Controllers\Api\V1\Reporting\MdaActionRequiredController;
 use App\Http\Controllers\Api\V1\Reporting\ReportController;
 use App\Http\Controllers\Api\V1\Reporting\ReportDefinitionController;
 use App\Http\Controllers\Api\V1\Reporting\ReportScheduleController;
+use App\Http\Controllers\Api\V1\Reporting\SegmentReportController;
 use App\Http\Controllers\Api\V1\Sharing\DataSharingController;
 use App\Http\Controllers\Api\V1\Sync\SyncController;
 use Illuminate\Support\Facades\Route;
@@ -186,6 +188,14 @@ Route::prefix('v1')->group(function (): void {
             ->middleware('permission:beneficiary-lookup.view')->name('beneficiaries.search');
 
         // Bulk import (Excel/CSV) — upload → preview → confirm → commit (FR-REG-02/06).
+        /*
+        | The duplicate QUEUE: flagged rows across every import this MDA owns, paginated
+        | server-side (FR-DUP-01/05). Distinct from the per-batch view below — the
+        | console used to build this by fetching batches and flattening in the browser,
+        | which could only ever reach the first page.
+        */
+        Route::get('/beneficiaries/duplicates', [DuplicateQueueController::class, 'index'])
+            ->middleware('permission:beneficiary.view')->name('beneficiaries.duplicates');
         Route::get('/beneficiaries/imports', [ImportBatchController::class, 'index'])
             ->middleware('permission:beneficiary.view')->name('beneficiaries.imports.index');
         Route::post('/beneficiaries/imports', [ImportBatchController::class, 'store'])
@@ -654,6 +664,19 @@ Route::prefix('v1')->group(function (): void {
         | Ad-hoc report builder (FR-RPT-03). Compose from a whitelisted dataset →
         | preview → export. Registered before the /reports/{report} wildcard.
         */
+        /*
+        | Segment builder (FR-RPT-03): filter the registry by segmentable dimensions,
+        | preview a table/breakdown, export via the shared pipeline. `reporting.view`
+        | opens the builder; the EXPORT MATRIX is enforced inside (SegmentAccess), which
+        | is what decides rows-vs-counts — a permission on the route could not express
+        | "you may run this, but only aggregates come back".
+        */
+        Route::get('/reports/segments/dimensions', [SegmentReportController::class, 'dimensions'])
+            ->middleware('permission:reporting.view')->name('reports.segments.dimensions');
+        Route::post('/reports/segments/preview', [SegmentReportController::class, 'preview'])
+            ->middleware('permission:reporting.view')->name('reports.segments.preview');
+        Route::post('/reports/segments/export', [SegmentReportController::class, 'export'])
+            ->middleware(['permission:reporting.export', 'throttle:exports'])->name('reports.segments.export');
         Route::get('/reports/adhoc/datasets', [AdHocReportController::class, 'datasets'])
             ->middleware('permission:reporting.view')->name('reports.adhoc.datasets');
         Route::post('/reports/adhoc/preview', [AdHocReportController::class, 'preview'])

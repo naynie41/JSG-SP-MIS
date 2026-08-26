@@ -33,9 +33,27 @@ class InAppChannel implements NotificationChannel
             'type' => $message->type,
             'subject' => $message->subject,
             'body' => $message->body,
-            'payload' => $message->payload === [] ? null : $message->payload,
+            // The deep link travels with the notification so the bell and the email agree
+            // on where the work is. `linkFor()` in the SPA still resolves the role-aware
+            // destination; this is the fallback when an event names one explicitly.
+            'payload' => $this->payloadFor($message),
             'related_type' => $message->relatedType,
             'related_id' => $message->relatedId,
         ]);
+    }
+
+    /**
+     * @return array<string, mixed>|null
+     */
+    private function payloadFor(NotificationMessage $message): ?array
+    {
+        $payload = $message->payload;
+
+        if ($message->actionPath !== null) {
+            $payload['action_path'] = $message->actionPath;
+            $payload['action_label'] = $message->actionLabel;
+        }
+
+        return $payload === [] ? null : $payload;
     }
 }

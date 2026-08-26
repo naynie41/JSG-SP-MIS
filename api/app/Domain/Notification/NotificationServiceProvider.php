@@ -30,9 +30,10 @@ class NotificationServiceProvider extends ServiceProvider
         // sends, and the console's Settings projection that reports availability. A
         // second hard-coded list would let Settings claim a delivery path that does
         // not exist.
-        $this->app->singleton(self::CHANNELS, fn (): array => [
+        $this->app->singleton(self::CHANNELS, fn ($app): array => [
             new InAppChannel,
-            new EmailChannel,
+            // Resolved, not constructed: EmailChannel audits every send and needs the logger.
+            $app->make(EmailChannel::class),
             new SmsChannel,       // stub — unavailable until an SMS gateway is provided
             new WhatsAppChannel,  // stub — unavailable until a WhatsApp provider is provided
         ]);

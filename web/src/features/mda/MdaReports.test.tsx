@@ -97,11 +97,21 @@ function renderPage() {
 }
 
 /** The page renders its header before the datasets land; anchor on a tab instead. */
-const ready = () => screen.findByRole('tab', { name: 'Report types' })
+const ready = () => screen.findByRole('tab', { name: 'Dashboard' })
 
 async function openTab(user: ReturnType<typeof userEvent.setup>, name: string) {
   await user.click(await screen.findByRole('tab', { name }))
   return screen.getByRole('tabpanel')
+}
+
+/**
+ * The aggregate builder now sits behind the subject picker on one merged tab: an
+ * officer names WHAT they are reporting on, and the matching builder follows.
+ */
+async function openDatasetBuilder(user: ReturnType<typeof userEvent.setup>, dataset: string) {
+  const panel = await openTab(user, 'Build a report')
+  await user.selectOptions(within(panel).getByLabelText(/what are you reporting on/i), dataset)
+  return panel
 }
 
 describe('MDA console — Reports', () => {
@@ -117,68 +127,76 @@ describe('MDA console — Reports', () => {
   /* ------------------------------------------------------------ the six types */
 
   /**
-   * The report types come from the SERVER, not a list in this file.
+   * The report subjects come from the SERVER, not a list in this file.
    *
-   * There used to be a hardcoded "Report types" tab beside the dataset catalogue — two
-   * card grids whose only action was to seed the builder. It had drifted: two cards
-   * ("Programme", "Benefit") pointed at the same `benefits` dataset, and it omitted
-   * grievances entirely, so a dataset the server grants MDAs could not be reached from
-   * it. Rendering what `/reports/adhoc/datasets` returns cannot drift that way.
+   * They used to be a grid of cards on their own "Report types" tab, which had drifted:
+   * two cards ("Programme", "Benefit") pointed at the same `benefits` dataset, and it
+   * omitted grievances entirely. That tab is gone and the subjects are now the options
+   * of the builder's own subject picker — one list, rendered from what
+   * `/reports/adhoc/datasets` returns, so it cannot drift from what the engine offers.
    */
-  it('offers exactly the report types the server released', async () => {
+  async function subjectPicker(user: ReturnType<typeof userEvent.setup>) {
+    const panel = await openTab(user, 'Build a report')
+    return within(panel).getByLabelText(/what are you reporting on/i) as HTMLSelectElement
+  }
+
+  it('offers exactly the report subjects the server released', async () => {
+    const user = userEvent.setup()
     renderPage()
-    const panel = await screen.findByRole('tabpanel')
     await ready()
 
+    const picker = await subjectPicker(user)
     for (const label of ['Benefits (ledger)', 'Beneficiaries (registry)', 'Activities (delivery)', 'Referrals', 'Duplicate review']) {
-      expect(within(panel).getByRole('heading', { name: label })).toBeInTheDocument()
+      expect(within(picker).getByRole('option', { name: label })).toBeInTheDocument()
     }
   })
 
-  it('offers one card per dataset, never two for the same one', async () => {
-    // "Programme" and "Benefit" were two doors onto `benefits`, producing an identical
-    // builder state from either — a choice that was not a choice.
+  it('offers one subject per dataset, never two for the same one', async () => {
+    // "Programme" and "Benefit" were two doors onto `benefits` — a choice that was not
+    // a choice. The extra option is the registry itself, which is not a dataset.
+    const user = userEvent.setup()
     renderPage()
-    const panel = await screen.findByRole('tabpanel')
     await ready()
 
-    expect(within(panel).getAllByRole('button', { name: /build report/i })).toHaveLength(MDA_DATASETS.length)
+    const picker = await subjectPicker(user)
+    expect(within(picker).getAllByRole('option')).toHaveLength(MDA_DATASETS.length + 1)
+    expect(within(picker).getByRole('option', { name: 'People in the registry' })).toBeInTheDocument()
   })
 
   it('lists a dataset the old hardcoded set left out', async () => {
     // Grievances are `coordination` data, which every non-Partner scope includes — so an
-    // MDA may report on them, and the catalogue says so.
+    // MDA may report on them, and the picker says so.
     datasets.mockResolvedValue([...MDA_DATASETS, dataset('grievances', 'Grievances')])
+    const user = userEvent.setup()
     renderPage()
-    const panel = await screen.findByRole('tabpanel')
     await ready()
 
-    expect(within(panel).getByRole('heading', { name: 'Grievances' })).toBeInTheDocument()
+    const picker = await subjectPicker(user)
+    expect(within(picker).getByRole('option', { name: 'Grievances' })).toBeInTheDocument()
   })
 
   it('simply omits a dataset the server did not release', async () => {
-    // No dead card claiming "not available to your account" — if the scope does not
-    // admit it, it is not a report type this MDA has.
+    // No dead entry claiming "not available to your account" — if the scope does not
+    // admit it, it is not a subject this MDA has.
     datasets.mockResolvedValue(MDA_DATASETS.filter((d) => d.key !== 'duplicates'))
+    const user = userEvent.setup()
     renderPage()
-    const panel = await screen.findByRole('tabpanel')
     await ready()
 
-    expect(within(panel).queryByRole('heading', { name: 'Duplicate review' })).not.toBeInTheDocument()
-    expect(within(panel).getByRole('heading', { name: 'Benefits (ledger)' })).toBeInTheDocument()
+    const picker = await subjectPicker(user)
+    expect(within(picker).queryByRole('option', { name: 'Duplicate review' })).not.toBeInTheDocument()
+    expect(within(picker).getByRole('option', { name: 'Benefits (ledger)' })).toBeInTheDocument()
   })
 
   it('names the dimensions a dataset can be grouped by', async () => {
-    // The operative information for building a report — the hardcoded cards showed prose
-    // hints instead, which could not tell you what the builder would actually offer.
+    // The operative information for building a report, shown once a subject is chosen.
+    const user = userEvent.setup()
     renderPage()
-    const panel = await screen.findByRole('tabpanel')
     await ready()
 
-    const benefits = within(panel).getByRole('heading', { name: 'Benefits (ledger)' }).closest('section')!
-    expect(within(benefits as HTMLElement).getByText(/^Group by/)).toBeInTheDocument()
+    const builder = await openDatasetBuilder(user, 'benefits')
+    expect(within(builder).getByRole('checkbox', { name: 'Programme' })).toBeInTheDocument()
   })
-
   /* --------------------------------------------------------------- engine reuse */
 
   it('reads its datasets from the Phase 6 endpoint, not a new one', async () => {
@@ -201,11 +219,8 @@ describe('MDA console — Reports', () => {
     renderPage()
     await ready()
 
-    // Launching from a report type seeds the builder with that dataset. Scoped to the
-    // card, since every card now offers the same "Build report" action.
-    const activities = screen.getByRole('heading', { name: 'Activities (delivery)' }).closest('section')!
-    await user.click(within(activities as HTMLElement).getByRole('button', { name: /build report/i }))
-    const builder = screen.getByRole('tabpanel')
+    // Choosing the subject seeds the builder with that dataset.
+    const builder = await openDatasetBuilder(user, 'activities')
     expect(within(builder).getByLabelText('Dataset')).toHaveValue('activities')
 
     await user.click(within(builder).getByRole('checkbox', { name: 'Count' }))
@@ -229,7 +244,7 @@ describe('MDA console — Reports', () => {
     renderPage()
     await ready()
 
-    const builder = await openTab(user, 'Build & export')
+    const builder = await openDatasetBuilder(user, 'benefits')
     await user.click(within(builder).getByRole('checkbox', { name: 'Count' }))
     await user.click(within(builder).getByRole('button', { name: 'Preview' }))
 
@@ -242,10 +257,10 @@ describe('MDA console — Reports', () => {
     renderPage()
     await ready()
 
-    await openTab(user, 'Scheduled reports')
+    await openTab(user, 'History')
     await waitFor(() => expect(schedules).toHaveBeenCalled())
 
-    await openTab(user, 'Recent exports')
+    await openTab(user, 'History')
     await waitFor(() => expect(runs).toHaveBeenCalled())
   })
 
@@ -254,7 +269,7 @@ describe('MDA console — Reports', () => {
     renderPage()
     await ready()
 
-    const builder = await openTab(user, 'Build & export')
+    const builder = await openDatasetBuilder(user, 'benefits')
     const format = within(builder).getByLabelText('Format')
     for (const label of ['CSV', 'Excel', 'PDF']) {
       expect(within(format).getByRole('option', { name: label })).toBeInTheDocument()
@@ -268,7 +283,7 @@ describe('MDA console — Reports', () => {
     renderPage()
     await ready()
 
-    const panel = await openTab(user, 'Beneficiary export')
+    const panel = await openTab(user, 'History')
     expect(within(panel).getByText('Not permitted')).toBeInTheDocument()
     expect(within(panel).getByText(/MDA Administrator permission/i)).toBeInTheDocument()
     // The export control itself is absent, not merely disabled.
@@ -281,7 +296,7 @@ describe('MDA console — Reports', () => {
     renderPage()
     await ready()
 
-    const panel = await openTab(user, 'Beneficiary export')
+    const panel = await openTab(user, 'History')
     expect(within(panel).getByText('You may export')).toBeInTheDocument()
 
     await user.click(within(panel).getByRole('button', { name: /export/i }))
@@ -296,7 +311,7 @@ describe('MDA console — Reports', () => {
     renderPage()
     await ready()
 
-    const panel = await openTab(user, 'Beneficiary export')
+    const panel = await openTab(user, 'History')
     expect(within(panel).getByText('NIN/BVN masked')).toBeInTheDocument()
     expect(within(panel).getByText(/Identifiers are masked in the file/i)).toBeInTheDocument()
     expect(within(panel).queryByText('NIN/BVN revealed')).not.toBeInTheDocument()
@@ -308,7 +323,7 @@ describe('MDA console — Reports', () => {
     renderPage()
     await ready()
 
-    const panel = await openTab(user, 'Beneficiary export')
+    const panel = await openTab(user, 'History')
     expect(within(panel).getByText('NIN/BVN revealed')).toBeInTheDocument()
     expect(within(panel).getByText(/audited distinctly/i)).toBeInTheDocument()
   })
@@ -321,10 +336,10 @@ describe('MDA console — Reports', () => {
     renderPage()
     await ready()
 
-    const builder = await openTab(user, 'Build & export')
+    const builder = await openDatasetBuilder(user, 'benefits')
     expect(within(builder).getByRole('button', { name: 'Export' })).toBeInTheDocument()
 
-    const registry = await openTab(user, 'Beneficiary export')
+    const registry = await openTab(user, 'History')
     expect(within(registry).getByText('Not permitted')).toBeInTheDocument()
   })
 
@@ -334,7 +349,7 @@ describe('MDA console — Reports', () => {
     renderPage()
     await ready()
 
-    const builder = await openTab(user, 'Build & export')
+    const builder = await openDatasetBuilder(user, 'benefits')
     expect(within(builder).getByText(/needs the reporting export permission/i)).toBeInTheDocument()
     expect(within(builder).queryByRole('button', { name: 'Preview' })).not.toBeInTheDocument()
   })
@@ -355,7 +370,7 @@ describe('MDA console — Reports', () => {
     await ready()
 
     // Tabs render only the active panel, so this lives where the export does.
-    const panel = await openTab(user, 'Beneficiary export')
+    const panel = await openTab(user, 'History')
     expect(
       within(panel).getByText(/recorded in the audit log with who ran it, the scope and filters applied/i),
     ).toBeInTheDocument()

@@ -54,6 +54,7 @@ use Illuminate\Support\Carbon;
  * @property int $dropped_field_rows
  * @property int $committed_rows
  * @property int $served_rows
+ * @property int $own_rows
  * @property int $skipped_rows
  * @property string|null $error
  * @property Carbon|null $created_at
@@ -143,6 +144,7 @@ class ImportBatch extends Model implements MdaScoped
         'dropped_field_rows',
         'committed_rows',
         'served_rows',
+        'own_rows',
         'skipped_rows',
         'error',
     ];
@@ -166,6 +168,7 @@ class ImportBatch extends Model implements MdaScoped
             'dropped_field_rows' => 'integer',
             'committed_rows' => 'integer',
             'served_rows' => 'integer',
+            'own_rows' => 'integer',
             'skipped_rows' => 'integer',
         ];
     }
@@ -177,7 +180,7 @@ class ImportBatch extends Model implements MdaScoped
      */
     protected function auditExcluded(): array
     {
-        return ['total_rows', 'valid_rows', 'invalid_rows', 'committed_rows', 'served_rows', 'skipped_rows'];
+        return ['total_rows', 'valid_rows', 'invalid_rows', 'committed_rows', 'served_rows', 'own_rows', 'skipped_rows'];
     }
 
     /**

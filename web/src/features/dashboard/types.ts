@@ -468,6 +468,12 @@ export interface DashboardResponse {
   filters?: DashboardFilterValue
   filter_options?: FilterOptions
   computed_at: string
+  /**
+   * Small-group suppression threshold for AGGREGATE tiers, published by the server so
+   * the client never carries its own copy of a DPO-owned number. `null` on the
+   * operational tier, where an MDA already holds the records it is counting.
+   */
+  min_cell_size?: number | null
   metrics: DashboardMetrics
 }
 

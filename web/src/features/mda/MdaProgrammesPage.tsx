@@ -10,10 +10,8 @@ import { statusVariant } from '@/components/Badge/statusVariant'
 import { useAuth } from '@/lib/auth/AuthProvider'
 import { useProgrammes } from '@/features/programmes/hooks'
 import type { Programme } from '@/features/programmes/types'
+import { titleCase } from './format'
 import styles from './mda.module.css'
-
-const titleCase = (s: string | null | undefined): string =>
-  !s ? '—' : s.replace(/[_-]/g, ' ').replace(/^./, (c) => c.toUpperCase())
 
 /**
  * Programmes — the catalog programmes THIS MDA participates in.
@@ -58,8 +56,8 @@ export function MdaProgrammesPage() {
       key: 'status',
       header: 'Status',
       render: (p) => (
-        <Badge variant={statusVariant(p.status)} dot>
-          {p.status}
+        <Badge variant={statusVariant(`programme.${p.status}`)} dot>
+          {titleCase(p.status)}
         </Badge>
       ),
     },
