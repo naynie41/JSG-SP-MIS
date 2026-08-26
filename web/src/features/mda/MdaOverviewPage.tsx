@@ -202,126 +202,134 @@ export function MdaOverviewPage() {
       </header>
 
       {/*
-            One summary of the reporting figures, reading the same dashboard aggregation
-            the full Reports dashboard renders — so the two can never disagree — and
-            carrying what a bare KPI band could not: when it was computed, and a way
-            through to the detail.
+        Quick actions lead.
+
+        The Overview opens on what the officer came to DO. Reporting figures are the
+        state of the world — worth seeing, but read after deciding to act, not before.
+        Putting the summary first made the first screenful a set of numbers to absorb
+        before any of the six things this page exists to launch.
+      */}
+      <QuickActions />
+
+      {/*
+        Then the reporting figures, from the same dashboard aggregation the full Reports
+        dashboard renders — so the two can never disagree — carrying what a bare KPI band
+        could not: when they were computed, and a way through to the detail.
+      */}
+      <ReportingSummaryCard />
+
+      <section className={styles.section} aria-label="Action required">
+        <div className={styles.sectionHead}>
+          <Icon icon={Inbox} size={16} />
+          <h2 className={styles.sectionTitle}>Action required</h2>
+          <span className={styles.sectionSub}>live · waiting on your MDA</span>
+        </div>
+        {/* Rendered unconditionally: the counts load on a separate request, and
+            swapping a spinner for the grid shifted everything below it down the
+            page the moment they arrived. */}
+        <div className={styles.actionGrid}>
+          <ActionCard
+            icon={Split}
+            loading={actionsLoading}
+            count={actions?.pending_referrals ?? 0}
+            label="Referrals awaiting your response"
+            hint="Another MDA referred a beneficiary to you."
+            to="/mda/service-delivery?tab=referrals"
+          />
+          <ActionCard
+            icon={ShieldCheck}
+            loading={actionsLoading}
+            count={actions?.pending_service_requests ?? 0}
+            label="Request-to-serve approvals"
+            hint="Another MDA wants to serve a beneficiary you own."
+            to="/mda/service-delivery?tab=service-requests"
+          />
+          {/*
+            Grievances sit two clicks deep, behind a tab that opens on Benefits — and
+            they are the one queue here with a clock on it (FR-GRM-03). Surfacing the
+            count is what makes an SLA breach visible without a seventh rail item.
           */}
-          <ReportingSummaryCard />
-          <section className={styles.section} aria-label="Action required">
-            <div className={styles.sectionHead}>
-              <Icon icon={Inbox} size={16} />
-              <h2 className={styles.sectionTitle}>Action required</h2>
-              <span className={styles.sectionSub}>live · waiting on your MDA</span>
-            </div>
-            {/* Rendered unconditionally: the counts load on a separate request, and
-                swapping a spinner for the grid shifted everything below it down the
-                page the moment they arrived. */}
-            <div className={styles.actionGrid}>
-              <ActionCard
-                icon={Split}
-                loading={actionsLoading}
-                count={actions?.pending_referrals ?? 0}
-                label="Referrals awaiting your response"
-                hint="Another MDA referred a beneficiary to you."
-                to="/mda/service-delivery?tab=referrals"
-              />
-              <ActionCard
-                icon={ShieldCheck}
-                loading={actionsLoading}
-                count={actions?.pending_service_requests ?? 0}
-                label="Request-to-serve approvals"
-                hint="Another MDA wants to serve a beneficiary you own."
-                to="/mda/service-delivery?tab=service-requests"
-              />
-              {/*
-                Grievances sit two clicks deep, behind a tab that opens on Benefits — and
-                they are the one queue here with a clock on it (FR-GRM-03). Surfacing the
-                count is what makes an SLA breach visible without a seventh rail item.
-              */}
-              <ActionCard
-                icon={MessageSquareWarning}
-                loading={actionsLoading}
-                count={actions?.open_grievances ?? 0}
-                label="Grievances on your desk"
-                hint={
-                  (actions?.breached_grievances ?? 0) > 0
-                    ? `${actions?.breached_grievances} past their SLA.`
-                    : 'Complaints your MDA is handling, each on an SLA.'
-                }
-                to="/mda/service-delivery?tab=grievances"
-              />
-            </div>
-          </section>
+          <ActionCard
+            icon={MessageSquareWarning}
+            loading={actionsLoading}
+            count={actions?.open_grievances ?? 0}
+            label="Grievances on your desk"
+            hint={
+              (actions?.breached_grievances ?? 0) > 0
+                ? `${actions?.breached_grievances} past their SLA.`
+                : 'Complaints your MDA is handling, each on an SLA.'
+            }
+            to="/mda/service-delivery?tab=grievances"
+          />
+        </div>
+      </section>
 
-          <QuickActions />
-
-          <section className={styles.section} aria-label="Operational alerts">
-            <div className={styles.sectionHead}>
-              <Icon icon={AlertTriangle} size={16} />
-              <h2 className={styles.sectionTitle}>Alerts</h2>
-            </div>
-            {isError ? (
-              // A failed request used to fall through to the green all-clear below, telling
-              // the officer their MDA was clear when nothing had been checked.
-              <MdaLoadError subject="your alerts" onRetry={() => void refetch()} />
-            ) : isLoading ? (
-              <MdaLoading label="Checking your MDA for overdue work" />
-            ) : alerts.length === 0 ? (
-              <p className={styles.allClear}>
-                <Icon icon={ShieldCheck} size={15} />
-                Nothing overdue or unresolved in your MDA.
-              </p>
-            ) : (
-              <div className={styles.alerts}>
-                {alerts.map((a) => (
-                  <div key={a.id} className={styles.alert} data-severity={a.severity}>
-                    {/*
-                      The icon is derived from severity, not hard-coded. Warning and info
-                      differed only by background colour, and both drew the same warning
-                      triangle — so severity was carried by colour alone (WCAG 1.4.1).
-                    */}
-                    <Icon
-                      icon={a.severity === 'warning' ? AlertTriangle : Info}
-                      size={16}
-                      className={styles.alertIcon}
-                      label={a.severity === 'warning' ? 'Needs attention' : 'For information'}
-                    />
-                    <div className={styles.alertBody}>
-                      <span className={styles.alertTitle}>{a.title}</span>
-                      <span className={styles.alertDetail}>{a.detail}</span>
-                    </div>
-                  </div>
-                ))}
-              </div>
-            )}
-          </section>
-
-          <section className={styles.section} aria-label="Recent activity">
-            <div className={styles.sectionHead}>
-              <Icon icon={Bell} size={16} />
-              <h2 className={styles.sectionTitle}>Recent activity</h2>
-              <span className={styles.sectionSub}>your notifications</span>
-            </div>
-            <Card>
-              {recent.length === 0 ? (
-                <p className={styles.muted}>Nothing yet. Referrals, approvals and import results appear here.</p>
-              ) : (
-                <div className={styles.activity}>
-                  {recent.map((n) => (
-                    <div key={n.id} className={styles.activityRow}>
-                      <span className={styles.activityAction}>{n.subject}</span>
-                      <span className={styles.activityMeta}>{n.body}</span>
-                      <span className={styles.activityAt}>{when(n.created_at)}</span>
-                    </div>
-                  ))}
+      <section className={styles.section} aria-label="Operational alerts">
+        <div className={styles.sectionHead}>
+          <Icon icon={AlertTriangle} size={16} />
+          <h2 className={styles.sectionTitle}>Alerts</h2>
+        </div>
+        {isError ? (
+          // A failed request used to fall through to the green all-clear below, telling
+          // the officer their MDA was clear when nothing had been checked.
+          <MdaLoadError subject="your alerts" onRetry={() => void refetch()} />
+        ) : isLoading ? (
+          <MdaLoading label="Checking your MDA for overdue work" />
+        ) : alerts.length === 0 ? (
+          <p className={styles.allClear}>
+            <Icon icon={ShieldCheck} size={15} />
+            Nothing overdue or unresolved in your MDA.
+          </p>
+        ) : (
+          <div className={styles.alerts}>
+            {alerts.map((a) => (
+              <div key={a.id} className={styles.alert} data-severity={a.severity}>
+                {/*
+                  The icon is derived from severity, not hard-coded. Warning and info
+                  differed only by background colour, and both drew the same warning
+                  triangle — so severity was carried by colour alone (WCAG 1.4.1).
+                */}
+                <Icon
+                  icon={a.severity === 'warning' ? AlertTriangle : Info}
+                  size={16}
+                  className={styles.alertIcon}
+                  label={a.severity === 'warning' ? 'Needs attention' : 'For information'}
+                />
+                <div className={styles.alertBody}>
+                  <span className={styles.alertTitle}>{a.title}</span>
+                  <span className={styles.alertDetail}>{a.detail}</span>
                 </div>
-              )}
-              <p className={styles.footnote}>
-                Drawn from your notification inbox — the same feed as the bell in the header, not an MDA-wide audit
-                trail
-              </p>
-            </Card>
+              </div>
+            ))}
+          </div>
+        )}
+      </section>
+
+      <section className={styles.section} aria-label="Recent activity">
+        <div className={styles.sectionHead}>
+          <Icon icon={Bell} size={16} />
+          <h2 className={styles.sectionTitle}>Recent activity</h2>
+          <span className={styles.sectionSub}>your notifications</span>
+        </div>
+        <Card>
+          {recent.length === 0 ? (
+            <p className={styles.muted}>Nothing yet. Referrals, approvals and import results appear here.</p>
+          ) : (
+            <div className={styles.activity}>
+              {recent.map((n) => (
+                <div key={n.id} className={styles.activityRow}>
+                  <span className={styles.activityAction}>{n.subject}</span>
+                  <span className={styles.activityMeta}>{n.body}</span>
+                  <span className={styles.activityAt}>{when(n.created_at)}</span>
+                </div>
+              ))}
+            </div>
+          )}
+          <p className={styles.footnote}>
+            Drawn from your notification inbox — the same feed as the bell in the header, not an MDA-wide audit
+            trail
+          </p>
+        </Card>
       </section>
     </div>
   )

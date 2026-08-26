@@ -161,6 +161,32 @@
   color: var(--text-muted-strong);
 }
 
+/*
+ * The headline figure leads on SIZE, not colour.
+ *
+ * Values stay in text ink: a number tinted with the series colour would claim to be
+ * part of a chart it is not in, and the palette's job here is to mark data, not to
+ * decorate type.
+ */
+.dashLead {
+  grid-column: span 2;
+}
+
+@media (max-width: 640px) {
+  .dashLead {
+    grid-column: auto;
+  }
+}
+
+.dashLead .dashFigureValue {
+  font-size: var(--fs-kpi);
+}
+
+.dashLead .dashFigureLabel {
+  color: var(--text);
+  font-weight: 600;
+}
+
 .dashBreakdowns {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(17rem, 1fr));
@@ -210,26 +236,44 @@
   white-space: nowrap;
 }
 
+/*
+ * The track is NEUTRAL, not tinted.
+ *
+ * It was mint — a green ground under a green bar, so the two ends of the scale sat
+ * closest together in hue exactly where the reader needs them furthest apart.
+ */
 .breakdownTrack {
   display: block;
-  height: 0.6rem;
-  border-radius: var(--radius-sm);
-  background: var(--surface-mint, var(--border));
+  height: 0.5rem;
+  border-radius: var(--radius-full);
+  background: var(--border);
   overflow: hidden;
 }
 
+/*
+ * ONE colour for every bar in a chart.
+ *
+ * Each of these is a SINGLE SERIES — one measure counted across categories — so hue
+ * carries nothing: bar length already shows the magnitude, and the row label already
+ * carries the identity. Colouring each bar differently, or ramping them
+ * darker-where-bigger, spends the only free channel re-stating what the chart shows.
+ *
+ * The bar was `--forest` (#2C3512), which is near-black: at this weight it read as a
+ * slab of ink rather than a measured quantity. `--chart-1` is the categorical palette's
+ * first slot — a real green with chroma, and it clears 3:1 against the surface.
+ */
 .breakdownBar {
   display: block;
   height: 100%;
-  border-radius: var(--radius-sm);
-  background: var(--forest, var(--text));
+  border-radius: var(--radius-full);
+  background: var(--chart-1);
 }
 
 /* A withheld group keeps its row, hatched. An absent bar would read as zero. */
 .breakdownBarHeld {
   display: block;
   height: 100%;
-  border-radius: var(--radius-sm);
+  border-radius: var(--radius-full);
   background: repeating-linear-gradient(
     45deg,
     var(--border-strong) 0,

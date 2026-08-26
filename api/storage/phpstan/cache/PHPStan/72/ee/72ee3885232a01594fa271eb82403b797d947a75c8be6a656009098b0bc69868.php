@@ -2,7 +2,7 @@
 
 // odsl-C:\Users\ACER\Desktop\JSG-SP-MIS\JSG-SP-MIS\api\app\Domain\Registry\Support\KnownWard.php-PHPStan\BetterReflection\Reflection\ReflectionClass-App\Domain\Registry\Support\KnownWard
 return \PHPStan\Cache\CacheItem::__set_state(array(
-   'variableKey' => 'v2-6.70.0.1-8.3.31-87cc72cc4624228d0e99a05458c124454d65408327dc3a964a96af44c43c5bc9',
+   'variableKey' => 'v2-6.70.0.1-8.3.31-fce6c99f8a9e93c55425faf286f4c5331e6cee5a5da91f857fddfe1640845cd0',
    'data' => 
   array (
     'locatedSource' => 
@@ -43,7 +43,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
     array (
     ),
     'startLine' => 29,
-    'endLine' => 88,
+    'endLine' => 99,
     'startColumn' => 1,
     'endColumn' => 1,
     'parentClassName' => NULL,
@@ -412,7 +412,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         ),
         'docComment' => NULL,
         'startLine' => 53,
-        'endLine' => 81,
+        'endLine' => 92,
         'startColumn' => 5,
         'endColumn' => 5,
         'couldThrow' => false,
@@ -450,8 +450,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             'attributes' => 
             array (
             ),
-            'startLine' => 84,
-            'endLine' => 84,
+            'startLine' => 95,
+            'endLine' => 95,
             'startColumn' => 30,
             'endColumn' => 41,
             'parameterIndex' => 0,
@@ -472,8 +472,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         array (
         ),
         'docComment' => '/** @param  array<string, string>  $wards */',
-        'startLine' => 84,
-        'endLine' => 87,
+        'startLine' => 95,
+        'endLine' => 98,
         'startColumn' => 5,
         'endColumn' => 5,
         'couldThrow' => false,

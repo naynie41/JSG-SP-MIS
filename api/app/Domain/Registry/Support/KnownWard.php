@@ -66,17 +66,28 @@ class KnownWard implements DataAwareRule, DescribesConstraint, ValidationRule
         $ward = $normalizer->enumKey((string) $value);
         $lga = $normalizer->enumKey(is_string($this->data['lga'] ?? null) ? $this->data['lga'] : '');
 
-        // With a known LGA the ward must belong to THAT LGA. Without one (the LGA was
-        // itself unrecognised and is being dropped) fall back to "a real ward somewhere",
-        // so one bad cell does not cascade into a second misleading error on the row.
-        $allowed = $lga !== null && isset($index[$lga])
-            ? $index[$lga]
-            : array_merge(...array_values($index));
+        /*
+         * COVERAGE IS PER-LGA, and so is the rule.
+         *
+         * The supplied dataset lists wards for some LGAs and not others — the source
+         * gives only prose for several ("covers multiple historical rural and urban
+         * wards"). For those, the table holds the LGA with zero wards, and that absence
+         * says nothing about whether a given ward is real. Enforcing a list we do not
+         * have would drop every ward in those LGAs from every import: silent, total,
+         * and indistinguishable from the data never having been sent.
+         *
+         * So the rule binds exactly where there is something to bind to. It is the same
+         * reasoning that keeps it silent while the whole table is empty, applied one
+         * level down.
+         */
+        if ($lga === null || ! isset($index[$lga]) || $index[$lga] === []) {
+            return;
+        }
+
+        $allowed = $index[$lga];
 
         if ($ward === null || ! isset($allowed[$ward])) {
-            $fail($lga !== null && isset($index[$lga])
-                ? "Ward must be one of the wards recorded for the LGA on this row ({$this->countOf($index[$lga])} available)."
-                : 'Ward must be one of the wards in the administrative division list.');
+            $fail("Ward must be one of the wards recorded for the LGA on this row ({$this->countOf($allowed)} available).");
         }
     }
 

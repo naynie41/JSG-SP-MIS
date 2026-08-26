@@ -56,9 +56,17 @@ export function ReportsDashboardPanel() {
         <p className={styles.dashMeta}>Computed {computedAt(summary.computedAt)}</p>
       </div>
 
+      {/*
+        Six numbers at one size is a list; the reader has to do the ranking. Net-unique
+        beneficiaries is THE headline (CLAUDE.md §11), so it leads — the same order of
+        importance the Overview card states, stated the same way.
+      */}
       <dl className={styles.dashFigures}>
-        {summary.tiles.map((tile) => (
-          <div key={tile.key} className={styles.dashFigure}>
+        {summary.tiles.map((tile, index) => (
+          <div
+            key={tile.key}
+            className={index === 0 ? `${styles.dashFigure} ${styles.dashLead}` : styles.dashFigure}
+          >
             <dt className={styles.dashFigureLabel}>{tile.label}</dt>
             <dd className={tile.suppressed ? styles.dashFigureHeld : styles.dashFigureValue}>
               {tile.suppressed ? `< ${summary.minCellSize}` : tile.value?.toLocaleString()}
