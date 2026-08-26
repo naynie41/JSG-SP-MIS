@@ -15,6 +15,7 @@ use App\Domain\Programme\Models\Programme;
 use App\Domain\Programme\Models\ProgrammeFunder;
 use App\Domain\Referral\Models\Referral;
 use App\Domain\Registry\Models\Beneficiary;
+use App\Domain\Reporting\Services\DashboardScopeResolver;
 use App\Domain\Reporting\Services\DashboardService;
 use App\Domain\Reporting\Services\DashboardSnapshotService;
 use Database\Seeders\RolesAndPermissionsSeeder;
@@ -295,5 +296,99 @@ class DashboardMetricsTest extends TestCase
             ->assertJsonPath('data.scope.kind', 'partner')
             ->assertJsonPath('data.metrics.benefits.disbursed.benefit_count', 2)
             ->assertJsonPath('data.metrics.referrals', null);
+    }
+
+    public function test_the_dashboard_publishes_the_small_cell_threshold_per_tier(): void
+    {
+        // The Overview summary and the full dashboard both read this rather than each
+        // keeping a copy of a DPO-owned number (config `reporting.min_cell_size`).
+        config(['reporting.min_cell_size' => 7]);
+        app(DashboardSnapshotService::class)->refreshAll();
+
+        // Aggregate tiers get the threshold: a headline of 2 identifies people.
+        $this->withToken($this->users['exec']->createToken('t')->plainTextToken)
+            ->getJson('/api/v1/dashboard')
+            ->assertOk()
+            ->assertJsonPath('data.scope.tier', 'statewide')
+            ->assertJsonPath('data.min_cell_size', 7);
+        $this->app['auth']->forgetGuards();
+
+        $this->withToken($this->users['partner']->createToken('t')->plainTextToken)
+            ->getJson('/api/v1/dashboard')
+            ->assertOk()
+            ->assertJsonPath('data.min_cell_size', 7);
+        $this->app['auth']->forgetGuards();
+
+        // An MDA already holds the records its own dashboard counts, so there is
+        // nothing to re-identify and the guard is off by construction.
+        $this->withToken($this->users['officerA']->createToken('t')->plainTextToken)
+            ->getJson('/api/v1/dashboard')
+            ->assertOk()
+            ->assertJsonPath('data.scope.tier', 'operational')
+            ->assertJsonPath('data.min_cell_size', null);
+    }
+
+    public function test_an_expired_snapshot_is_recomputed_rather_than_served(): void
+    {
+        config(['reporting.snapshot_max_age_minutes' => 60]);
+        app(DashboardSnapshotService::class)->refreshAll();
+
+        $scope = app(DashboardScopeResolver::class)->forUser($this->users['officerA']);
+        $snapshot = app(DashboardSnapshotService::class)->readAtAnyAge($scope);
+        $this->assertNotNull($snapshot);
+
+        // Age it past the window and corrupt the stored figure. If the read path serves
+        // the stored row, the wrong number comes back; if it recomputes, the real one
+        // does. With the scheduler stopped this is the whole difference between a
+        // dashboard that is late and one that is quietly wrong.
+        $snapshot->forceFill([
+            'computed_at' => now()->subDay(),
+            'metrics' => [...$snapshot->metrics, 'registry' => ['beneficiaries' => ['total' => 99999, 'by_status' => [], 'by_source' => [], 'by_lga' => []], 'households' => null]],
+        ])->save();
+
+        $this->withToken($this->users['officerA']->createToken('t')->plainTextToken)
+            ->getJson('/api/v1/dashboard')
+            ->assertOk()
+            ->assertJsonPath('data.metrics.registry.beneficiaries.total', 3);
+    }
+
+    public function test_a_fresh_snapshot_is_served_as_stored(): void
+    {
+        config(['reporting.snapshot_max_age_minutes' => 60]);
+        app(DashboardSnapshotService::class)->refreshAll();
+
+        $scope = app(DashboardScopeResolver::class)->forUser($this->users['officerA']);
+        $snapshot = app(DashboardSnapshotService::class)->readAtAnyAge($scope);
+
+        // Within the window the stored row stands — the point of snapshotting at all is
+        // that the request path does not scan the registry.
+        $snapshot->forceFill([
+            'metrics' => [...$snapshot->metrics, 'registry' => ['beneficiaries' => ['total' => 4242, 'by_status' => [], 'by_source' => [], 'by_lga' => []], 'households' => null]],
+        ])->save();
+
+        $this->withToken($this->users['officerA']->createToken('t')->plainTextToken)
+            ->getJson('/api/v1/dashboard')
+            ->assertOk()
+            ->assertJsonPath('data.metrics.registry.beneficiaries.total', 4242);
+    }
+
+    public function test_the_freshness_check_can_be_switched_off(): void
+    {
+        // `0` means "serve whatever is stored" — the pre-existing behaviour, kept
+        // reachable for an operator who would rather have a fast stale figure.
+        config(['reporting.snapshot_max_age_minutes' => 0]);
+        app(DashboardSnapshotService::class)->refreshAll();
+
+        $scope = app(DashboardScopeResolver::class)->forUser($this->users['officerA']);
+        $snapshot = app(DashboardSnapshotService::class)->readAtAnyAge($scope);
+        $snapshot->forceFill([
+            'computed_at' => now()->subYear(),
+            'metrics' => [...$snapshot->metrics, 'registry' => ['beneficiaries' => ['total' => 7, 'by_status' => [], 'by_source' => [], 'by_lga' => []], 'households' => null]],
+        ])->save();
+
+        $this->withToken($this->users['officerA']->createToken('t')->plainTextToken)
+            ->getJson('/api/v1/dashboard')
+            ->assertOk()
+            ->assertJsonPath('data.metrics.registry.beneficiaries.total', 7);
     }
 }

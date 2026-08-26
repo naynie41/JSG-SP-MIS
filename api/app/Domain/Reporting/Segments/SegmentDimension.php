@@ -36,18 +36,33 @@ final readonly class SegmentDimension
         public array $options = [],
         public bool $canonical = true,
         public ?string $unit = null,
+        /**
+         * Whether the chart can group by this dimension.
+         *
+         * False for anything resolved through a RELATIONSHIP — programme, activity,
+         * household role. Those filter the population correctly but have no column on
+         * `beneficiaries` to group by, and joining to get one would make the chart count
+         * enrollments or memberships while the table counts people.
+         */
+        public bool $groupable = true,
     ) {}
 
     /** @return array<string, mixed> */
     public function toArray(): array
     {
-        return array_filter([
+        $payload = array_filter([
             'key' => $this->key,
             'label' => $this->label,
             'kind' => $this->kind,
             'canonical' => $this->canonical,
             'unit' => $this->unit,
+            'groupable' => $this->groupable,
             'options' => $this->options === [] ? null : $this->options,
         ], static fn (mixed $value): bool => $value !== null);
+
+        // Re-set after the filter: `false` is meaningful here, not absence.
+        $payload['groupable'] = $this->groupable;
+
+        return $payload;
     }
 }

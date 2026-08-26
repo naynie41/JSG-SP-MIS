@@ -2,7 +2,7 @@
 
 // odsl-C:\Users\ACER\Desktop\JSG-SP-MIS\JSG-SP-MIS\api\app\Domain\Reporting\Services\MdaActionRequiredService.php-PHPStan\BetterReflection\Reflection\ReflectionClass-App\Domain\Reporting\Services\MdaActionRequiredService
 return \PHPStan\Cache\CacheItem::__set_state(array(
-   'variableKey' => 'v2-6.70.0.1-8.3.31-ae6b94f921c6b1b1a36eec147c9e7fbd42093b64915a3c56d8d1ac65e183e98c',
+   'variableKey' => 'v2-6.70.0.1-8.3.31-88a07c2fbbadd2468da3a73624f1917257a4ce5e4783ecdfe533ab6b0f0ec530',
    'data' => 
   array (
     'locatedSource' => 
@@ -43,8 +43,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
     'attributes' => 
     array (
     ),
-    'startLine' => 32,
-    'endLine' => 79,
+    'startLine' => 34,
+    'endLine' => 114,
     'startColumn' => 1,
     'endColumn' => 1,
     'parentClassName' => NULL,
@@ -68,12 +68,12 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
           'code' => '[\\App\\Domain\\Referral\\Enums\\ReferralStatus::Created->value, \\App\\Domain\\Referral\\Enums\\ReferralStatus::MoreInfoRequested->value]',
           'attributes' => 
           array (
-            'startLine' => 40,
-            'endLine' => 43,
-            'startTokenPos' => 63,
-            'startFilePos' => 1630,
-            'endTokenPos' => 79,
-            'endFilePos' => 1726,
+            'startLine' => 42,
+            'endLine' => 45,
+            'startTokenPos' => 73,
+            'startFilePos' => 1721,
+            'endTokenPos' => 89,
+            'endFilePos' => 1817,
           ),
         ),
         'docComment' => '/**
@@ -85,8 +85,41 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         'attributes' => 
         array (
         ),
-        'startLine' => 40,
-        'endLine' => 43,
+        'startLine' => 42,
+        'endLine' => 45,
+        'startColumn' => 5,
+        'endColumn' => 6,
+      ),
+      'GRIEVANCE_OPEN' => 
+      array (
+        'declaringClassName' => 'App\\Domain\\Reporting\\Services\\MdaActionRequiredService',
+        'implementingClassName' => 'App\\Domain\\Reporting\\Services\\MdaActionRequiredService',
+        'name' => 'GRIEVANCE_OPEN',
+        'modifiers' => 4,
+        'type' => NULL,
+        'value' => 
+        array (
+          'code' => '[\\App\\Domain\\Grievance\\Enums\\GrievanceStatus::Open->value, \\App\\Domain\\Grievance\\Enums\\GrievanceStatus::Assigned->value, \\App\\Domain\\Grievance\\Enums\\GrievanceStatus::InProgress->value]',
+          'attributes' => 
+          array (
+            'startLine' => 52,
+            'endLine' => 56,
+            'startTokenPos' => 102,
+            'startFilePos' => 1984,
+            'endTokenPos' => 125,
+            'endFilePos' => 2114,
+          ),
+        ),
+        'docComment' => '/**
+ * Grievance states still on this MDA\'s desk. Resolved and Closed are done.
+ *
+ * @var list<string>
+ */',
+        'attributes' => 
+        array (
+        ),
+        'startLine' => 52,
+        'endLine' => 56,
         'startColumn' => 5,
         'endColumn' => 6,
       ),
@@ -120,8 +153,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             'attributes' => 
             array (
             ),
-            'startLine' => 48,
-            'endLine' => 48,
+            'startLine' => 61,
+            'endLine' => 61,
             'startColumn' => 29,
             'endColumn' => 38,
             'parameterIndex' => 0,
@@ -142,10 +175,10 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         array (
         ),
         'docComment' => '/**
- * @return array{pending_referrals: int, pending_service_requests: int, mda_id: string|null}
+ * @return array{pending_referrals: int, pending_service_requests: int, open_grievances: int, breached_grievances: int, mda_id: string|null}
  */',
-        'startLine' => 48,
-        'endLine' => 78,
+        'startLine' => 61,
+        'endLine' => 113,
         'startColumn' => 5,
         'endColumn' => 5,
         'couldThrow' => false,

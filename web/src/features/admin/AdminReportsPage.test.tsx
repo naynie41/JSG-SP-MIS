@@ -117,6 +117,18 @@ function renderPage() {
   )
 }
 
+/**
+ * The aggregate builder sits behind the merged tab's subject picker: the officer names
+ * what they are reporting on, and the matching builder follows.
+ */
+async function openDatasetBuilder(user: ReturnType<typeof userEvent.setup>, dataset: string) {
+  await user.click(await screen.findByRole('tab', { name: 'Build a report' }))
+  await user.selectOptions(
+    await screen.findByLabelText(/what are you reporting on/i),
+    dataset,
+  )
+}
+
 describe('Admin console — Reports', () => {
   beforeEach(() => {
     vi.clearAllMocks()
@@ -129,20 +141,27 @@ describe('Admin console — Reports', () => {
   /* --------------------------------------------------------------- catalogue */
 
   it('lists the administrative report families from the server catalogue', async () => {
+    // They are the builder's subject options now rather than a tab of cards, but the
+    // property is unchanged: the list is what the server released, never a copy here.
+    const user = userEvent.setup()
     renderPage()
+    await user.click(await screen.findByRole('tab', { name: 'Build a report' }))
 
-    expect(await screen.findByText('Users & access')).toBeInTheDocument()
-    expect(screen.getByText('Audit events')).toBeInTheDocument()
-    expect(screen.getByText('Import batches')).toBeInTheDocument()
+    const picker = await screen.findByLabelText(/what are you reporting on/i)
+    expect(within(picker).getByRole('option', { name: 'Users & access' })).toBeInTheDocument()
+    expect(within(picker).getByRole('option', { name: 'Audit events' })).toBeInTheDocument()
+    expect(within(picker).getByRole('option', { name: 'Import batches' })).toBeInTheDocument()
     expect(datasets).toHaveBeenCalled()
   })
 
   it('does not present delivery datasets as administrative reports', async () => {
+    const user = userEvent.setup()
     renderPage()
-    await screen.findByText('Users & access')
+    await user.click(await screen.findByRole('tab', { name: 'Build a report' }))
 
     // `benefits` came back from the server but is not an admin dataset.
-    expect(screen.queryByText('Benefits (ledger)')).not.toBeInTheDocument()
+    const picker = await screen.findByLabelText(/what are you reporting on/i)
+    expect(within(picker).queryByRole('option', { name: 'Benefits (ledger)' })).not.toBeInTheDocument()
   })
 
   /* ----------------------------------------------------------------- builder */
@@ -159,9 +178,9 @@ describe('Admin console — Reports', () => {
 
     const user = userEvent.setup()
     renderPage()
-    await screen.findByText('Users & access')
+    await screen.findByRole('tab', { name: 'Dashboard' })
 
-    await user.click(screen.getByRole('tab', { name: /build & export/i }))
+    await openDatasetBuilder(user, 'users')
     await user.click(await screen.findByRole('checkbox', { name: 'Role' }))
     await user.click(screen.getByRole('checkbox', { name: 'Users' }))
     await user.click(screen.getByRole('button', { name: /preview/i }))
@@ -178,8 +197,8 @@ describe('Admin console — Reports', () => {
   it('offers only the dimensions and measures the server returned', async () => {
     const user = userEvent.setup()
     renderPage()
-    await screen.findByText('Users & access')
-    await user.click(screen.getByRole('tab', { name: /build & export/i }))
+    await screen.findByRole('tab', { name: 'Dashboard' })
+    await openDatasetBuilder(user, 'users')
 
     // The users dataset exposes role + status only. Nothing identifying is offered,
     // because the UI never invents a column — it renders the whitelist.
@@ -192,9 +211,9 @@ describe('Admin console — Reports', () => {
     exportAdHoc.mockResolvedValue(RUNS[0])
     const user = userEvent.setup()
     renderPage()
-    await screen.findByText('Users & access')
+    await screen.findByRole('tab', { name: 'Dashboard' })
 
-    await user.click(screen.getByRole('tab', { name: /build & export/i }))
+    await openDatasetBuilder(user, 'users')
     await user.click(await screen.findByRole('checkbox', { name: 'Role' }))
     await user.click(screen.getByRole('checkbox', { name: 'Users' }))
     await user.selectOptions(screen.getByLabelText('Format'), 'csv')
@@ -213,8 +232,8 @@ describe('Admin console — Reports', () => {
   it('will not run a report with no measure selected', async () => {
     const user = userEvent.setup()
     renderPage()
-    await screen.findByText('Users & access')
-    await user.click(screen.getByRole('tab', { name: /build & export/i }))
+    await screen.findByRole('tab', { name: 'Dashboard' })
+    await openDatasetBuilder(user, 'users')
 
     expect(await screen.findByRole('button', { name: /preview/i })).toBeDisabled()
     expect(screen.getByRole('button', { name: /^export$/i })).toBeDisabled()
@@ -227,9 +246,9 @@ describe('Admin console — Reports', () => {
     perms.value = ['reporting.view'] // view only
     const user = userEvent.setup()
     renderPage()
-    await screen.findByText('Users & access')
+    await screen.findByRole('tab', { name: 'Dashboard' })
 
-    await user.click(screen.getByRole('tab', { name: /build & export/i }))
+    await openDatasetBuilder(user, 'users')
 
     expect(await screen.findByText(/needs the reporting export permission/i)).toBeInTheDocument()
     expect(screen.queryByRole('button', { name: /^export$/i })).not.toBeInTheDocument()
@@ -239,9 +258,9 @@ describe('Admin console — Reports', () => {
     perms.value = ['reporting.view']
     const user = userEvent.setup()
     renderPage()
-    await screen.findByText('Users & access')
+    await screen.findByRole('tab', { name: 'Dashboard' })
 
-    await user.click(screen.getByRole('tab', { name: /scheduled reports/i }))
+    await user.click(screen.getByRole('tab', { name: /history/i }))
 
     expect(await screen.findByText('Weekly access review')).toBeInTheDocument()
     expect(screen.queryByRole('button', { name: /pause|resume/i })).not.toBeInTheDocument()
@@ -253,9 +272,9 @@ describe('Admin console — Reports', () => {
     updateSchedule.mockResolvedValue({ ...SCHEDULES[0]!, status: 'paused' })
     const user = userEvent.setup()
     renderPage()
-    await screen.findByText('Users & access')
+    await screen.findByRole('tab', { name: 'Dashboard' })
 
-    await user.click(screen.getByRole('tab', { name: /scheduled reports/i }))
+    await user.click(screen.getByRole('tab', { name: /history/i }))
     expect(await screen.findByText('Weekly access review')).toBeInTheDocument()
     expect(screen.getByText('Weekly')).toBeInTheDocument()
 
@@ -269,9 +288,9 @@ describe('Admin console — Reports', () => {
     download.mockResolvedValue(undefined)
     const user = userEvent.setup()
     renderPage()
-    await screen.findByText('Users & access')
+    await screen.findByRole('tab', { name: 'Dashboard' })
 
-    await user.click(screen.getByRole('tab', { name: /recent exports/i }))
+    await user.click(screen.getByRole('tab', { name: /history/i }))
 
     const table = await screen.findByRole('table', { name: /recent exports/i })
     expect(within(table).getByText('ready')).toBeInTheDocument()

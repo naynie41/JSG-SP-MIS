@@ -18,7 +18,7 @@ vi.mock('@/features/registry/api', () => ({
   serviceRequestApi: { create: vi.fn(), inbox: vi.fn(), outbox: vi.fn(), forActivity: vi.fn(), accept: vi.fn(), decline: vi.fn() },
   matchingApi: { config: vi.fn(), versions: vi.fn(), publish: vi.fn() },
   householdApi: { list: vi.fn(), get: vi.fn() },
-  importApi: { list: vi.fn(), get: vi.fn(), upload: vi.fn(), confirm: vi.fn(), resolveRow: vi.fn() },
+  importApi: { list: vi.fn(), get: vi.fn(), upload: vi.fn(), confirm: vi.fn(), resolveRow: vi.fn(), duplicates: vi.fn() },
   documentApi: { list: vi.fn(), upload: vi.fn(), remove: vi.fn() },
 }))
 
@@ -32,6 +32,7 @@ vi.mock('@/lib/auth/AuthProvider', () => ({
 
 const listImports = importApi.list as Mock
 const getImport = importApi.get as Mock
+const duplicates = importApi.duplicates as Mock
 const resolveRow = importApi.resolveRow as Mock
 
 const OFFICER = ['beneficiary.view', 'beneficiary.create', 'beneficiary-lookup.view']
@@ -120,6 +121,55 @@ function batch(overrides: Partial<ImportBatch> = {}): ImportBatch {
   } as ImportBatch
 }
 
+/**
+ * The queue's shape: flagged rows with their batch attached, plus scope-wide counts.
+ *
+ * The page used to assemble this in the browser from whole batches. It now asks the
+ * server for the band and state it wants, so the fixture answers per query rather than
+ * handing over a corpus to filter.
+ */
+function queuePage(rows: ImportRow[], base: ImportBatch = batch()) {
+  const stub = {
+    id: base.id,
+    original_filename: base.original_filename,
+    status: base.status,
+    matching_thresholds: base.matching_thresholds,
+  }
+  const exact = rows.filter((r) => r.match.band === 'exact')
+  const probable = rows.filter((r) => r.match.band === 'probable')
+  const awaiting = (list: ImportRow[]) =>
+    base.status === 'preview_ready' ? list.filter((r) => !r.resolution).length : 0
+
+  return {
+    items: rows.map((r) => ({ ...r, batch: stub })),
+    counts: {
+      exact: { awaiting: awaiting(exact), total: exact.length },
+      probable: { awaiting: awaiting(probable), total: probable.length },
+    },
+    pagination: { page: 1, per_page: 25, total: rows.length, total_pages: 1 },
+  }
+}
+
+/** Serve the queue per band/state, the way the endpoint does. */
+function serveQueue(rows: ImportRow[], base: ImportBatch = batch()) {
+  duplicates.mockImplementation((q: { band?: string; state?: string } = {}) => {
+    const all = queuePage(rows, base)
+    const banded = rows.filter((r) => (q.band ? r.match.band === q.band : true))
+    // Mirrors the endpoint: "awaiting" means DECIDABLE, so a committed batch is history.
+    const decidable = base.status === 'preview_ready'
+    const stateFiltered = banded.filter((r) =>
+      q.state === 'decided'
+        ? r.resolution !== null
+        : q.state === 'all'
+          ? true
+          : r.resolution === null && decidable,
+    )
+    return Promise.resolve({
+      ...queuePage(stateFiltered, base),
+      counts: all.counts,
+    })
+  })
+}
 const page = <T,>(items: T[]) => ({ items, pagination: { page: 1, per_page: 25, total: items.length, total_pages: 1 } })
 
 function renderPage() {
@@ -160,6 +210,7 @@ describe('MDA console — Duplicate Resolution', () => {
     auth.perms = OFFICER
     listImports.mockResolvedValue(page([batch()]))
     getImport.mockResolvedValue(batch())
+    serveQueue([EXACT_ROW, PROBABLE_ROW, CLEAN_ROW, DECIDED_ROW])
   })
 
   /* --------------------------------------------------------------- the five views */
@@ -195,16 +246,68 @@ describe('MDA console — Duplicate Resolution', () => {
     expect(exactTab).toHaveTextContent('Exact matches (1)')
   })
 
-  it('reads matches from the existing import endpoints, not a new one', async () => {
+  it('reads the whole queue from one paginated endpoint, not a fan-out over batches', async () => {
+    // It used to fetch page one of BATCHES and then one detail request per batch, so the
+    // module for clearing a backlog could only ever see the first page of it.
     renderPage()
     await ready()
 
-    await waitFor(() => {
-      expect(listImports).toHaveBeenCalled()
-      expect(getImport).toHaveBeenCalledWith('ib1')
-    })
+    await waitFor(() => expect(duplicates).toHaveBeenCalled())
+    expect(listImports).not.toHaveBeenCalled()
+    expect(getImport).not.toHaveBeenCalled()
   })
 
+  it('asks the server for the band and state on screen', async () => {
+    const user = userEvent.setup()
+    renderPage()
+    await ready()
+
+    await waitFor(() =>
+      expect(duplicates).toHaveBeenCalledWith(expect.objectContaining({ band: 'exact', state: 'awaiting' })),
+    )
+
+    await openTab(user, /Possible matches/)
+    await waitFor(() =>
+      expect(duplicates).toHaveBeenCalledWith(expect.objectContaining({ band: 'probable' })),
+    )
+  })
+
+  it('pages through a backlog larger than one screen', async () => {
+    // The module could previously only ever reach the first page of import BATCHES, so
+    // undecided matches in older files were unreachable from the page meant to clear
+    // them — with nothing on screen saying so.
+    duplicates.mockImplementation((q: { page?: number } = {}) =>
+      Promise.resolve({
+        items: [{ ...EXACT_ROW, row_number: q.page === 2 ? 99 : 1, batch: { id: 'ib1', original_filename: 'dutse-q1.csv', status: 'preview_ready', matching_thresholds: null } }],
+        counts: { exact: { awaiting: 60, total: 60 }, probable: { awaiting: 0, total: 0 } },
+        pagination: { page: q.page ?? 1, per_page: 25, total: 60, total_pages: 3 },
+      }),
+    )
+    const user = userEvent.setup()
+    renderPage()
+    await ready()
+
+    const exact = await openTab(user, /Exact matches/)
+    expect(within(exact).getByText(/Page 1 of 3/)).toBeInTheDocument()
+    expect(within(exact).getByText(/60 matches/)).toBeInTheDocument()
+
+    await user.click(within(exact).getByRole('button', { name: 'Next' }))
+    await waitFor(() => expect(duplicates).toHaveBeenCalledWith(expect.objectContaining({ page: 2 })))
+  })
+
+  it('counts the whole backlog on the tab, not the page in hand', async () => {
+    // The count used to be computed from whatever had been fetched, so a tab could read
+    // "(4)" while forty sat unreachable behind it.
+    duplicates.mockResolvedValue({
+      items: [],
+      counts: { exact: { awaiting: 60, total: 60 }, probable: { awaiting: 0, total: 0 } },
+      pagination: { page: 1, per_page: 25, total: 60, total_pages: 3 },
+    })
+    renderPage()
+    await ready()
+
+    expect(screen.getByRole('tab', { name: /Exact matches/ })).toHaveTextContent('(60)')
+  })
   it('separates exact from possible', async () => {
     const user = userEvent.setup()
     renderPage()
@@ -384,8 +487,7 @@ describe('MDA console — Duplicate Resolution', () => {
 
   it('does not count rows in a batch that can no longer be decided as awaiting', async () => {
     // Once committed, the server refuses a resolution — so it is not outstanding work.
-    listImports.mockResolvedValue(page([batch({ status: 'completed' })]))
-    getImport.mockResolvedValue(batch({ status: 'completed' }))
+    serveQueue([EXACT_ROW, PROBABLE_ROW, CLEAN_ROW, DECIDED_ROW], batch({ status: 'completed' }))
     const user = userEvent.setup()
     renderPage()
     await ready()
@@ -421,9 +523,7 @@ describe('MDA console — Duplicate Resolution', () => {
     //    returns has to be staged BEFORE saving — otherwise the list refreshes from the
     //    old mock and the assertion below measures nothing.
     resolveRow.mockResolvedValue({ ...EXACT_ROW, resolution: 'skip' })
-    getImport.mockResolvedValue(
-      batch({ rows: [{ ...EXACT_ROW, resolution: 'skip', resolved_at: '2026-08-18T09:00:00Z' }, PROBABLE_ROW] }),
-    )
+    serveQueue([{ ...EXACT_ROW, resolution: 'skip', resolved_at: '2026-08-18T09:00:00Z' }, PROBABLE_ROW])
 
     await user.click(within(exact).getByRole('button', { name: 'Decide' }))
     await user.click(await screen.findByRole('radio', { name: /Discard this row/i }))
@@ -465,11 +565,103 @@ describe('MDA console — Duplicate Resolution', () => {
 
     await user.click(screen.getByRole('button', { name: /^Discard$/ }))
 
+    // Discard is irreversible, so it now asks first (DESIGN.md §5.7). It used to start
+    // an unstoppable loop on one click.
+    expect(await screen.findByRole('heading', { name: /Discard 1 incoming row\?/i })).toBeInTheDocument()
+    await user.click(screen.getByRole('button', { name: /^Discard 1$/ }))
+
     await waitFor(() =>
       expect(resolveRow).toHaveBeenCalledWith('ib1', 1, expect.objectContaining({ resolution: 'skip' })),
     )
   })
 
+  it('does not discard anything if the confirmation is cancelled', async () => {
+    const user = userEvent.setup()
+    renderPage()
+    await ready()
+
+    await openTab(user, /Exact matches/)
+    await selectAllRows(user, 'Exact identifier matches')
+    await user.click(screen.getByRole('button', { name: /^Discard$/ }))
+    await user.click(screen.getByRole('button', { name: /^Cancel$/ }))
+
+    expect(resolveRow).not.toHaveBeenCalled()
+    // Still selected, so the officer has not lost their place.
+    expect(screen.getByText('1 selected')).toBeInTheDocument()
+  })
+
+  it('records an intervention, not a request-to-serve, on a record this MDA already owns', async () => {
+    // The bug this replaces: bulk "Provide service" sent `link` for every match,
+    // including records the MDA already owns — asking the server for permission to serve
+    // its own beneficiary, which it refuses. Re-uploading your own list is the normal
+    // case for a repeat activity, so this was the batch path most officers hit first.
+    const owned = {
+      ...EXACT_ROW,
+      match: {
+        band: 'exact' as const,
+        candidates: [
+          {
+            ...registryCandidate('exact', 'deterministic'),
+            owned_by_you: true,
+            reveal: {
+              ...registryCandidate('exact', 'deterministic').reveal,
+              id: 'ben-mine',
+              owner_mda: { id: 'm1', name: 'Ministry of Health' },
+            },
+          },
+        ],
+      },
+    }
+    serveQueue([owned])
+    resolveRow.mockResolvedValue({ ...owned, resolution: 'own' })
+
+    const user = userEvent.setup()
+    renderPage()
+    await ready()
+
+    await openTab(user, /Exact matches/)
+    await selectAllRows(user, 'Exact identifier matches')
+    await user.click(screen.getByRole('button', { name: /Provide service/ }))
+
+    await waitFor(() =>
+      expect(resolveRow).toHaveBeenCalledWith(
+        'ib1',
+        1,
+        expect.objectContaining({ resolution: 'own', beneficiary_id: 'ben-mine' }),
+      ),
+    )
+  })
+
+  it('refuses to decide a row that matched more than one record', async () => {
+    // The single-row control makes the officer choose WHICH record. Picking the first
+    // arbitrarily in bulk would make that choice for them, invisibly.
+    const ambiguous = {
+      ...EXACT_ROW,
+      match: {
+        band: 'exact' as const,
+        candidates: [
+          registryCandidate('exact', 'deterministic'),
+          {
+            ...registryCandidate('exact', 'deterministic'),
+            reveal: { ...registryCandidate('exact', 'deterministic').reveal, id: 'ben-other' },
+          },
+        ],
+      },
+    }
+    serveQueue([ambiguous])
+
+    const user = userEvent.setup()
+    renderPage()
+    await ready()
+
+    await openTab(user, /Exact matches/)
+    await selectAllRows(user, 'Exact identifier matches')
+    await user.click(screen.getByRole('button', { name: /Provide service/ }))
+
+    await waitFor(() => expect(resolveRow).not.toHaveBeenCalled())
+    // ...and it says WHY, rather than an anonymous "could not be saved".
+    expect(await screen.findByText(/need an individual decision/i)).toBeInTheDocument()
+  })
   it('links each exact match to its own matched record', async () => {
     // There is no single "the" beneficiary across a selection — each row carries its own
     // candidate, and the server rejects an id that is not a candidate for that row.

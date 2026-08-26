@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Domain\Registry\Support;
 
 use App\Domain\Registry\Enums\Gender;
+use App\Domain\Registry\Enums\HouseholdRole;
 use App\Domain\Registry\Enums\Lga;
 use App\Domain\Registry\Imports\ImportRowValidator;
 use App\Domain\Registry\Services\HouseholdIngestionService;
@@ -78,7 +79,7 @@ final class CanonicalSchema
      */
     public const HOUSEHOLD_FIELDS = [
         'household_ref' => ['type' => 'string', 'required' => false, 'identity' => false, 'note' => "The source's own household key"],
-        'household_role' => ['type' => 'enum', 'required' => false, 'identity' => false, 'note' => 'head | spouse | child | parent | sibling | other'],
+        'household_role' => ['type' => 'enum', 'required' => false, 'identity' => false, 'note' => 'head | spouse | child | parent | sibling | other', 'segment' => ['kind' => 'enum', 'label' => 'Household role', 'values' => HouseholdRole::class]],
         'household_head' => ['type' => 'boolean', 'required' => false, 'identity' => false, 'note' => 'Truthy marks this person as the head'],
     ];
 
@@ -205,7 +206,12 @@ final class CanonicalSchema
     {
         $offered = [];
 
-        foreach (self::FIELDS as $field => $spec) {
+        // Beneficiary columns AND the household grouping fields. The latter are not
+        // columns on `beneficiaries` — they form the household on import — but they
+        // describe a group as truly as gender does, and an officer asking "how many
+        // household heads" is asking a segment question. The query layer resolves them
+        // through the membership; the schema only declares that they segment.
+        foreach ([...self::FIELDS, ...self::HOUSEHOLD_FIELDS] as $field => $spec) {
             if ($spec['identity'] || ! isset($spec['segment'])) {
                 continue;
             }

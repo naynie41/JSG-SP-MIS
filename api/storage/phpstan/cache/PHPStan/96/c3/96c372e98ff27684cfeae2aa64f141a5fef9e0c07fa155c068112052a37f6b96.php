@@ -2,7 +2,7 @@
 
 // odsl-C:\Users\ACER\Desktop\JSG-SP-MIS\JSG-SP-MIS\api\app\Domain\Reporting\Segments\SegmentDimensionRegistry.php-PHPStan\BetterReflection\Reflection\ReflectionClass-App\Domain\Reporting\Segments\SegmentDimensionRegistry
 return \PHPStan\Cache\CacheItem::__set_state(array(
-   'variableKey' => 'v2-6.70.0.1-8.3.31-a34eaa13b3c4a82d6fdbe84ca19960337feabd3c54439d8353a6baa10a911e6e',
+   'variableKey' => 'v2-6.70.0.1-8.3.31-579039f14e82e2a523231449a7c44362208e2ae87016fede0c5f6d117a01a64c',
    'data' => 
   array (
     'locatedSource' => 
@@ -50,7 +50,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
     array (
     ),
     'startLine' => 37,
-    'endLine' => 165,
+    'endLine' => 176,
     'startColumn' => 1,
     'endColumn' => 1,
     'parentClassName' => NULL,
@@ -105,6 +105,41 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         'startColumn' => 5,
         'endColumn' => 6,
       ),
+      'RELATIONAL' => 
+      array (
+        'declaringClassName' => 'App\\Domain\\Reporting\\Segments\\SegmentDimensionRegistry',
+        'implementingClassName' => 'App\\Domain\\Reporting\\Segments\\SegmentDimensionRegistry',
+        'name' => 'RELATIONAL',
+        'modifiers' => 4,
+        'type' => NULL,
+        'value' => 
+        array (
+          'code' => '[\'programme\', \'activity\', \'household\', \'household_role\']',
+          'attributes' => 
+          array (
+            'startLine' => 97,
+            'endLine' => 97,
+            'startTokenPos' => 362,
+            'startFilePos' => 3899,
+            'endTokenPos' => 373,
+            'endFilePos' => 3954,
+          ),
+        ),
+        'docComment' => '/**
+ * Filter keys resolved through a RELATIONSHIP (an enrollment or a household
+ * membership) rather than a column on `beneficiaries`. They filter correctly; they
+ * cannot be grouped by.
+ *
+ * @var list<string>
+ */',
+        'attributes' => 
+        array (
+        ),
+        'startLine' => 97,
+        'endLine' => 97,
+        'startColumn' => 5,
+        'endColumn' => 88,
+      ),
     ),
     'immediateProperties' => 
     array (
@@ -135,8 +170,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
  *
  * @return array<string, SegmentDimension>
  */',
-        'startLine' => 95,
-        'endLine' => 123,
+        'startLine' => 104,
+        'endLine' => 134,
         'startColumn' => 5,
         'endColumn' => 5,
         'couldThrow' => false,
@@ -174,8 +209,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             'attributes' => 
             array (
             ),
-            'startLine' => 125,
-            'endLine' => 125,
+            'startLine' => 136,
+            'endLine' => 136,
             'startColumn' => 25,
             'endColumn' => 35,
             'parameterIndex' => 0,
@@ -215,8 +250,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         array (
         ),
         'docComment' => NULL,
-        'startLine' => 125,
-        'endLine' => 128,
+        'startLine' => 136,
+        'endLine' => 139,
         'startColumn' => 5,
         'endColumn' => 5,
         'couldThrow' => false,
@@ -250,8 +285,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         array (
         ),
         'docComment' => '/** @return list<string> */',
-        'startLine' => 131,
-        'endLine' => 134,
+        'startLine' => 142,
+        'endLine' => 145,
         'startColumn' => 5,
         'endColumn' => 5,
         'couldThrow' => false,
@@ -289,8 +324,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             'attributes' => 
             array (
             ),
-            'startLine' => 142,
-            'endLine' => 142,
+            'startLine' => 153,
+            'endLine' => 153,
             'startColumn' => 34,
             'endColumn' => 44,
             'parameterIndex' => 0,
@@ -316,8 +351,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
  * @param  array<string, mixed>  $spec
  * @return list<array{value: string, label: string}>
  */',
-        'startLine' => 142,
-        'endLine' => 164,
+        'startLine' => 153,
+        'endLine' => 175,
         'startColumn' => 5,
         'endColumn' => 5,
         'couldThrow' => false,

@@ -2,7 +2,7 @@
 
 // odsl-C:\Users\ACER\Desktop\JSG-SP-MIS\JSG-SP-MIS\api\app\Domain\Reporting\Segments\SegmentQueryBuilder.php-PHPStan\BetterReflection\Reflection\ReflectionClass-App\Domain\Reporting\Segments\SegmentQueryBuilder
 return \PHPStan\Cache\CacheItem::__set_state(array(
-   'variableKey' => 'v2-6.70.0.1-8.3.31-3c0860c1a8158ffd34ee3b841b364f0f9c8cf851435661aee50ce58872beab86',
+   'variableKey' => 'v2-6.70.0.1-8.3.31-02d06be3568b2af1e81e647816554cf02247215d2faded431214d2b195ac22eb',
    'data' => 
   array (
     'locatedSource' => 
@@ -40,7 +40,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
     array (
     ),
     'startLine' => 29,
-    'endLine' => 169,
+    'endLine' => 188,
     'startColumn' => 1,
     'endColumn' => 1,
     'parentClassName' => NULL,
@@ -454,7 +454,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
  * @param  list<string>  $values
  */',
         'startLine' => 90,
-        'endLine' => 103,
+        'endLine' => 104,
         'startColumn' => 5,
         'endColumn' => 5,
         'couldThrow' => false,
@@ -492,8 +492,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             'attributes' => 
             array (
             ),
-            'startLine' => 118,
-            'endLine' => 118,
+            'startLine' => 119,
+            'endLine' => 119,
             'startColumn' => 31,
             'endColumn' => 44,
             'parameterIndex' => 0,
@@ -518,8 +518,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             'attributes' => 
             array (
             ),
-            'startLine' => 118,
-            'endLine' => 118,
+            'startLine' => 119,
+            'endLine' => 119,
             'startColumn' => 47,
             'endColumn' => 73,
             'parameterIndex' => 1,
@@ -544,8 +544,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             'attributes' => 
             array (
             ),
-            'startLine' => 118,
-            'endLine' => 118,
+            'startLine' => 119,
+            'endLine' => 119,
             'startColumn' => 76,
             'endColumn' => 88,
             'parameterIndex' => 2,
@@ -578,8 +578,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
  * @param  Builder<Beneficiary>  $query
  * @param  list<string>  $values
  */',
-        'startLine' => 118,
-        'endLine' => 129,
+        'startLine' => 119,
+        'endLine' => 130,
         'startColumn' => 5,
         'endColumn' => 5,
         'couldThrow' => false,
@@ -617,8 +617,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             'attributes' => 
             array (
             ),
-            'startLine' => 135,
-            'endLine' => 135,
+            'startLine' => 136,
+            'endLine' => 136,
             'startColumn' => 38,
             'endColumn' => 51,
             'parameterIndex' => 0,
@@ -643,8 +643,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             'attributes' => 
             array (
             ),
-            'startLine' => 135,
-            'endLine' => 135,
+            'startLine' => 136,
+            'endLine' => 136,
             'startColumn' => 54,
             'endColumn' => 67,
             'parameterIndex' => 1,
@@ -669,8 +669,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             'attributes' => 
             array (
             ),
-            'startLine' => 135,
-            'endLine' => 135,
+            'startLine' => 136,
+            'endLine' => 136,
             'startColumn' => 70,
             'endColumn' => 82,
             'parameterIndex' => 2,
@@ -694,8 +694,103 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
  * @param  Builder<Beneficiary>  $query
  * @param  list<string>  $values
  */',
-        'startLine' => 135,
-        'endLine' => 142,
+        'startLine' => 136,
+        'endLine' => 143,
+        'startColumn' => 5,
+        'endColumn' => 5,
+        'couldThrow' => false,
+        'isClosure' => false,
+        'isGenerator' => false,
+        'isVariadic' => false,
+        'modifiers' => 4,
+        'namespace' => 'App\\Domain\\Reporting\\Segments',
+        'declaringClassName' => 'App\\Domain\\Reporting\\Segments\\SegmentQueryBuilder',
+        'implementingClassName' => 'App\\Domain\\Reporting\\Segments\\SegmentQueryBuilder',
+        'currentClassName' => 'App\\Domain\\Reporting\\Segments\\SegmentQueryBuilder',
+        'aliasName' => NULL,
+      ),
+      'applyHouseholdRole' => 
+      array (
+        'name' => 'applyHouseholdRole',
+        'parameters' => 
+        array (
+          'query' => 
+          array (
+            'name' => 'query',
+            'default' => NULL,
+            'type' => 
+            array (
+              'class' => 'PHPStan\\BetterReflection\\Reflection\\ReflectionNamedType',
+              'data' => 
+              array (
+                'name' => 'Illuminate\\Database\\Eloquent\\Builder',
+                'isIdentifier' => false,
+              ),
+            ),
+            'isVariadic' => false,
+            'byRef' => false,
+            'isPromoted' => false,
+            'attributes' => 
+            array (
+            ),
+            'startLine' => 154,
+            'endLine' => 154,
+            'startColumn' => 41,
+            'endColumn' => 54,
+            'parameterIndex' => 0,
+            'isOptional' => false,
+          ),
+          'values' => 
+          array (
+            'name' => 'values',
+            'default' => NULL,
+            'type' => 
+            array (
+              'class' => 'PHPStan\\BetterReflection\\Reflection\\ReflectionNamedType',
+              'data' => 
+              array (
+                'name' => 'array',
+                'isIdentifier' => true,
+              ),
+            ),
+            'isVariadic' => false,
+            'byRef' => false,
+            'isPromoted' => false,
+            'attributes' => 
+            array (
+            ),
+            'startLine' => 154,
+            'endLine' => 154,
+            'startColumn' => 57,
+            'endColumn' => 69,
+            'parameterIndex' => 1,
+            'isOptional' => false,
+          ),
+        ),
+        'returnsReference' => false,
+        'returnType' => 
+        array (
+          'class' => 'PHPStan\\BetterReflection\\Reflection\\ReflectionNamedType',
+          'data' => 
+          array (
+            'name' => 'void',
+            'isIdentifier' => true,
+          ),
+        ),
+        'attributes' => 
+        array (
+        ),
+        'docComment' => '/**
+ * Role within the household, from the person\'s OPEN membership.
+ *
+ * A closed membership is history: someone who has left is not a household head now,
+ * and a report that counted them would overstate every household-targeted programme.
+ *
+ * @param  Builder<Beneficiary>  $query
+ * @param  list<string>  $values
+ */',
+        'startLine' => 154,
+        'endLine' => 161,
         'startColumn' => 5,
         'endColumn' => 5,
         'couldThrow' => false,
@@ -733,8 +828,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             'attributes' => 
             array (
             ),
-            'startLine' => 151,
-            'endLine' => 151,
+            'startLine' => 170,
+            'endLine' => 170,
             'startColumn' => 37,
             'endColumn' => 50,
             'parameterIndex' => 0,
@@ -759,8 +854,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             'attributes' => 
             array (
             ),
-            'startLine' => 151,
-            'endLine' => 151,
+            'startLine' => 170,
+            'endLine' => 170,
             'startColumn' => 53,
             'endColumn' => 65,
             'parameterIndex' => 1,
@@ -787,8 +882,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
  * @param  Builder<Beneficiary>  $query
  * @param  list<string>  $values
  */',
-        'startLine' => 151,
-        'endLine' => 168,
+        'startLine' => 170,
+        'endLine' => 187,
         'startColumn' => 5,
         'endColumn' => 5,
         'couldThrow' => false,

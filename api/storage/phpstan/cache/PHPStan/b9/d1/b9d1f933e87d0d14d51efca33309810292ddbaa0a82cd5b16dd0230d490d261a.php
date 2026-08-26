@@ -2,7 +2,7 @@
 
 // odsl-C:\Users\ACER\Desktop\JSG-SP-MIS\JSG-SP-MIS\api\app\Domain\Reporting\Segments\SegmentReportService.php-PHPStan\BetterReflection\Reflection\ReflectionClass-App\Domain\Reporting\Segments\SegmentReportService
 return \PHPStan\Cache\CacheItem::__set_state(array(
-   'variableKey' => 'v2-6.70.0.1-8.3.31-4c54f86140784295f343022c2313ef06c4ed51f2be7130a59f94d9e3e07f56e0',
+   'variableKey' => 'v2-6.70.0.1-8.3.31-3be056fe3d0ffdd6c1ebcceed9e1b89c62c0f6bbf1144148ed45ac314948beb3',
    'data' => 
   array (
     'locatedSource' => 
@@ -34,7 +34,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
     array (
     ),
     'startLine' => 23,
-    'endLine' => 299,
+    'endLine' => 300,
     'startColumn' => 1,
     'endColumn' => 1,
     'parentClassName' => NULL,
@@ -1145,7 +1145,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         ),
         'docComment' => '/** The `beneficiaries` column a dimension can be grouped by, or null. */',
         'startLine' => 264,
-        'endLine' => 272,
+        'endLine' => 273,
         'startColumn' => 5,
         'endColumn' => 5,
         'couldThrow' => false,
@@ -1183,8 +1183,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             'attributes' => 
             array (
             ),
-            'startLine' => 274,
-            'endLine' => 274,
+            'startLine' => 275,
+            'endLine' => 275,
             'startColumn' => 31,
             'endColumn' => 57,
             'parameterIndex' => 0,
@@ -1209,8 +1209,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             'attributes' => 
             array (
             ),
-            'startLine' => 274,
-            'endLine' => 274,
+            'startLine' => 275,
+            'endLine' => 275,
             'startColumn' => 60,
             'endColumn' => 72,
             'parameterIndex' => 1,
@@ -1231,8 +1231,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         array (
         ),
         'docComment' => NULL,
-        'startLine' => 274,
-        'endLine' => 291,
+        'startLine' => 275,
+        'endLine' => 292,
         'startColumn' => 5,
         'endColumn' => 5,
         'couldThrow' => false,
@@ -1270,8 +1270,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             'attributes' => 
             array (
             ),
-            'startLine' => 293,
-            'endLine' => 293,
+            'startLine' => 294,
+            'endLine' => 294,
             'startColumn' => 29,
             'endColumn' => 38,
             'parameterIndex' => 0,
@@ -1292,8 +1292,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         array (
         ),
         'docComment' => NULL,
-        'startLine' => 293,
-        'endLine' => 298,
+        'startLine' => 294,
+        'endLine' => 299,
         'startColumn' => 5,
         'endColumn' => 5,
         'couldThrow' => false,

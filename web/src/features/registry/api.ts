@@ -2,6 +2,8 @@ import { apiRequest, apiRequestList, http } from '@/lib/api/client'
 import type { Paginated } from '@/lib/api/client'
 import { appendFormObject } from '@/lib/api/formData'
 import type {
+  DuplicateQueuePage,
+  DuplicateQueueQuery,
   Beneficiary,
   BeneficiaryDocument,
   BeneficiaryInput,
@@ -214,6 +216,16 @@ export const householdApi = {
 }
 
 export const importApi = {
+  /**
+   * Every flagged row across this MDA's imports, paginated server-side.
+   *
+   * Replaces fetching page one of BATCHES and fanning out one request per batch: that
+   * could only ever reach the first page, blocked on the slowest request, and dropped
+   * any batch whose request failed without saying so.
+   */
+  duplicates(query: DuplicateQueueQuery = {}): Promise<DuplicateQueuePage> {
+    return apiRequest<DuplicateQueuePage>({ method: 'GET', url: '/beneficiaries/duplicates', params: query })
+  },
   list(page?: number): Promise<Paginated<ImportBatch>> {
     return apiRequestList<ImportBatch>({ method: 'GET', url: '/beneficiaries/imports', params: { page } })
   },

@@ -2,7 +2,7 @@
 
 // odsl-C:\Users\ACER\Desktop\JSG-SP-MIS\JSG-SP-MIS\api\app\Domain\Reporting\Services\DashboardService.php-PHPStan\BetterReflection\Reflection\ReflectionClass-App\Domain\Reporting\Services\DashboardService
 return \PHPStan\Cache\CacheItem::__set_state(array(
-   'variableKey' => 'v2-6.70.0.1-8.3.31-f77351f19d6192f86f9bba5a24e574dfd30ba256f9c745f745f6feab3786a071',
+   'variableKey' => 'v2-6.70.0.1-8.3.31-a33e8369e685d175f688c14240b42762088120613ae705ed2575388fe63b780c',
    'data' => 
   array (
     'locatedSource' => 
@@ -36,8 +36,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
     'attributes' => 
     array (
     ),
-    'startLine' => 22,
-    'endLine' => 60,
+    'startLine' => 26,
+    'endLine' => 105,
     'startColumn' => 1,
     'endColumn' => 1,
     'parentClassName' => NULL,
@@ -72,8 +72,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         'attributes' => 
         array (
         ),
-        'startLine' => 25,
-        'endLine' => 25,
+        'startLine' => 29,
+        'endLine' => 29,
         'startColumn' => 9,
         'endColumn' => 57,
         'isPromoted' => true,
@@ -103,8 +103,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         'attributes' => 
         array (
         ),
-        'startLine' => 26,
-        'endLine' => 26,
+        'startLine' => 30,
+        'endLine' => 30,
         'startColumn' => 9,
         'endColumn' => 60,
         'isPromoted' => true,
@@ -134,8 +134,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         'attributes' => 
         array (
         ),
-        'startLine' => 27,
-        'endLine' => 27,
+        'startLine' => 31,
+        'endLine' => 31,
         'startColumn' => 9,
         'endColumn' => 57,
         'isPromoted' => true,
@@ -172,8 +172,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             'attributes' => 
             array (
             ),
-            'startLine' => 25,
-            'endLine' => 25,
+            'startLine' => 29,
+            'endLine' => 29,
             'startColumn' => 9,
             'endColumn' => 57,
             'parameterIndex' => 0,
@@ -198,8 +198,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             'attributes' => 
             array (
             ),
-            'startLine' => 26,
-            'endLine' => 26,
+            'startLine' => 30,
+            'endLine' => 30,
             'startColumn' => 9,
             'endColumn' => 60,
             'parameterIndex' => 1,
@@ -224,8 +224,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             'attributes' => 
             array (
             ),
-            'startLine' => 27,
-            'endLine' => 27,
+            'startLine' => 31,
+            'endLine' => 31,
             'startColumn' => 9,
             'endColumn' => 57,
             'parameterIndex' => 2,
@@ -238,8 +238,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         array (
         ),
         'docComment' => NULL,
-        'startLine' => 24,
-        'endLine' => 28,
+        'startLine' => 28,
+        'endLine' => 32,
         'startColumn' => 5,
         'endColumn' => 8,
         'couldThrow' => false,
@@ -247,6 +247,78 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         'isGenerator' => false,
         'isVariadic' => false,
         'modifiers' => 1,
+        'namespace' => 'App\\Domain\\Reporting\\Services',
+        'declaringClassName' => 'App\\Domain\\Reporting\\Services\\DashboardService',
+        'implementingClassName' => 'App\\Domain\\Reporting\\Services\\DashboardService',
+        'currentClassName' => 'App\\Domain\\Reporting\\Services\\DashboardService',
+        'aliasName' => NULL,
+      ),
+      'refreshOnce' => 
+      array (
+        'name' => 'refreshOnce',
+        'parameters' => 
+        array (
+          'scope' => 
+          array (
+            'name' => 'scope',
+            'default' => NULL,
+            'type' => 
+            array (
+              'class' => 'PHPStan\\BetterReflection\\Reflection\\ReflectionNamedType',
+              'data' => 
+              array (
+                'name' => 'App\\Domain\\Reporting\\Support\\DashboardScope',
+                'isIdentifier' => false,
+              ),
+            ),
+            'isVariadic' => false,
+            'byRef' => false,
+            'isPromoted' => false,
+            'attributes' => 
+            array (
+            ),
+            'startLine' => 46,
+            'endLine' => 46,
+            'startColumn' => 34,
+            'endColumn' => 54,
+            'parameterIndex' => 0,
+            'isOptional' => false,
+          ),
+        ),
+        'returnsReference' => false,
+        'returnType' => 
+        array (
+          'class' => 'PHPStan\\BetterReflection\\Reflection\\ReflectionNamedType',
+          'data' => 
+          array (
+            'name' => 'App\\Domain\\Reporting\\Models\\DashboardSnapshot',
+            'isIdentifier' => false,
+          ),
+        ),
+        'attributes' => 
+        array (
+        ),
+        'docComment' => '/**
+ * Recompute a scope\'s snapshot, but only once across concurrent readers.
+ *
+ * A missing or expired snapshot means every request for that scope arrives at the
+ * same moment wanting the same expensive aggregate. The lock lets one of them do the
+ * work; the rest wait briefly and then read what it wrote. Without it, a scheduler
+ * outage on a busy MDA turns into a stampede over the raw registry.
+ *
+ * If the lock cannot be taken in time the caller computes anyway rather than
+ * failing — a slow dashboard beats no dashboard, and the write is an idempotent
+ * upsert keyed on the scope.
+ */',
+        'startLine' => 46,
+        'endLine' => 62,
+        'startColumn' => 5,
+        'endColumn' => 5,
+        'couldThrow' => false,
+        'isClosure' => false,
+        'isGenerator' => false,
+        'isVariadic' => false,
+        'modifiers' => 4,
         'namespace' => 'App\\Domain\\Reporting\\Services',
         'declaringClassName' => 'App\\Domain\\Reporting\\Services\\DashboardService',
         'implementingClassName' => 'App\\Domain\\Reporting\\Services\\DashboardService',
@@ -277,8 +349,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             'attributes' => 
             array (
             ),
-            'startLine' => 33,
-            'endLine' => 33,
+            'startLine' => 67,
+            'endLine' => 67,
             'startColumn' => 29,
             'endColumn' => 38,
             'parameterIndex' => 0,
@@ -292,12 +364,12 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
               'code' => 'null',
               'attributes' => 
               array (
-                'startLine' => 33,
-                'endLine' => 33,
-                'startTokenPos' => 97,
-                'startFilePos' => 1072,
-                'endTokenPos' => 97,
-                'endFilePos' => 1075,
+                'startLine' => 67,
+                'endLine' => 67,
+                'startTokenPos' => 249,
+                'startFilePos' => 2499,
+                'endTokenPos' => 249,
+                'endFilePos' => 2502,
               ),
             ),
             'type' => 
@@ -334,8 +406,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             'attributes' => 
             array (
             ),
-            'startLine' => 33,
-            'endLine' => 33,
+            'startLine' => 67,
+            'endLine' => 67,
             'startColumn' => 41,
             'endColumn' => 71,
             'parameterIndex' => 1,
@@ -358,8 +430,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         'docComment' => '/**
  * @return array<string, mixed>
  */',
-        'startLine' => 33,
-        'endLine' => 59,
+        'startLine' => 67,
+        'endLine' => 104,
         'startColumn' => 5,
         'endColumn' => 5,
         'couldThrow' => false,

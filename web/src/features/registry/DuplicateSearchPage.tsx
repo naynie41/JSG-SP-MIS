@@ -26,7 +26,18 @@ const EMPTY: SearchQuery = {
  * returns ranked, reveal-only candidates across MDAs; from any result the officer
  * can raise a request-to-serve without taking ownership.
  */
-export function DuplicateSearchPage() {
+interface DuplicateSearchPageProps {
+  /**
+   * Rendered inside a console that already owns the page header.
+   *
+   * Without this the MDA console showed two `<h1>`s and two eyebrows on one document —
+   * a screen reader announces two page titles, and the outline stops describing the
+   * page. Every other composed registry surface takes the same prop.
+   */
+  embedded?: boolean
+}
+
+export function DuplicateSearchPage({ embedded = false }: DuplicateSearchPageProps = {}) {
   const { hasPermission, user } = useAuth()
   const canSearch = hasPermission('beneficiary-lookup.view')
   const canServe = hasPermission('beneficiary.create')
@@ -67,15 +78,17 @@ export function DuplicateSearchPage() {
 
   return (
     <div>
-      <div className={layout.pageHead}>
-        <div className={layout.pageTitle}>
-          <span className="eyebrow">03 · Registry</span>
-          <h1 className="t-h1">Duplicate search</h1>
-          <p className={styles.note}>
-            Find an existing beneficiary across all MDAs before registering. Reveal fields only — never the full profile.
-          </p>
+      {!embedded && (
+        <div className={layout.pageHead}>
+          <div className={layout.pageTitle}>
+            <span className="eyebrow">03 · Registry</span>
+            <h1 className="t-h1">Duplicate search</h1>
+            <p className={styles.note}>
+              Find an existing beneficiary across all MDAs before registering. Reveal fields only — never the full profile.
+            </p>
+          </div>
         </div>
-      </div>
+      )}
 
       <Card>
         <form onSubmit={runSearch} className={layout.form} noValidate>

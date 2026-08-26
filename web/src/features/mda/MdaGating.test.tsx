@@ -189,9 +189,9 @@ describe('MDA console — permission gating for the single MDA role', () => {
   it('gives the MDA role the beneficiary export', async () => {
     const user = userEvent.setup()
     renderAt(<MdaReportsPage />)
-    await screen.findByRole('tab', { name: 'Report types' })
+    await screen.findByRole('tab', { name: 'Dashboard' })
 
-    await user.click(screen.getByRole('tab', { name: 'Beneficiary export' }))
+    await user.click(screen.getByRole('tab', { name: 'History' }))
     expect(screen.getByText('You may export')).toBeInTheDocument()
   })
 
@@ -199,15 +199,17 @@ describe('MDA console — permission gating for the single MDA role', () => {
     auth.perms = without('beneficiary.export')
     const user = userEvent.setup()
     renderAt(<MdaReportsPage />)
-    await screen.findByRole('tab', { name: 'Report types' })
+    await screen.findByRole('tab', { name: 'Dashboard' })
 
-    await user.click(screen.getByRole('tab', { name: 'Beneficiary export' }))
+    await user.click(screen.getByRole('tab', { name: 'History' }))
     expect(screen.getByText('Not permitted')).toBeInTheDocument()
 
     // The two gates are separate: aggregate reporting rides `reporting.export`, which is
     // untouched. Conflating them would either block reporting or open a PII path.
-    await user.click(screen.getByRole('tab', { name: 'Build & export' }))
+    await user.click(screen.getByRole('tab', { name: 'Build a report' }))
+    await screen.findByLabelText(/what are you reporting on/i)
     expect(screen.queryByText(/needs the reporting export permission/i)).not.toBeInTheDocument()
+    expect(screen.getByRole('button', { name: 'Export' })).toBeInTheDocument()
   })
 
   it('masks identifiers for the MDA role — reveal is never an MDA permission', async () => {
@@ -216,9 +218,9 @@ describe('MDA console — permission gating for the single MDA role', () => {
     // going to leak, it would be to an account holding everything an MDA can hold.
     const user = userEvent.setup()
     renderAt(<MdaReportsPage />)
-    await screen.findByRole('tab', { name: 'Report types' })
+    await screen.findByRole('tab', { name: 'Dashboard' })
 
-    await user.click(screen.getByRole('tab', { name: 'Beneficiary export' }))
+    await user.click(screen.getByRole('tab', { name: 'History' }))
 
     expect(screen.getByText('NIN/BVN masked')).toBeInTheDocument()
     expect(screen.queryByText('NIN/BVN revealed')).not.toBeInTheDocument()
@@ -230,7 +232,7 @@ describe('MDA console — permission gating for the single MDA role', () => {
     // The point of the centralisation: account administration lives in the System
     // Administrator console, and the widest MDA account there is must not find it here.
     renderAt(<MdaReportsPage />)
-    await screen.findByRole('tab', { name: 'Report types' })
+    await screen.findByRole('tab', { name: 'Dashboard' })
 
     for (const label of [/add user/i, /invite user/i, /manage roles/i, /permissions/i]) {
       expect(screen.queryByRole('button', { name: label })).not.toBeInTheDocument()

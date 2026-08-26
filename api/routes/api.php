@@ -33,6 +33,7 @@ use App\Http\Controllers\Api\V1\Registry\BeneficiaryController;
 use App\Http\Controllers\Api\V1\Registry\BeneficiaryDocumentController;
 use App\Http\Controllers\Api\V1\Registry\BeneficiaryIntakeController;
 use App\Http\Controllers\Api\V1\Registry\BeneficiaryRoutingController;
+use App\Http\Controllers\Api\V1\Registry\DuplicateQueueController;
 use App\Http\Controllers\Api\V1\Registry\HouseholdController;
 use App\Http\Controllers\Api\V1\Registry\HouseholdMemberController;
 use App\Http\Controllers\Api\V1\Registry\ImportBatchController;
@@ -187,6 +188,14 @@ Route::prefix('v1')->group(function (): void {
             ->middleware('permission:beneficiary-lookup.view')->name('beneficiaries.search');
 
         // Bulk import (Excel/CSV) — upload → preview → confirm → commit (FR-REG-02/06).
+        /*
+        | The duplicate QUEUE: flagged rows across every import this MDA owns, paginated
+        | server-side (FR-DUP-01/05). Distinct from the per-batch view below — the
+        | console used to build this by fetching batches and flattening in the browser,
+        | which could only ever reach the first page.
+        */
+        Route::get('/beneficiaries/duplicates', [DuplicateQueueController::class, 'index'])
+            ->middleware('permission:beneficiary.view')->name('beneficiaries.duplicates');
         Route::get('/beneficiaries/imports', [ImportBatchController::class, 'index'])
             ->middleware('permission:beneficiary.view')->name('beneficiaries.imports.index');
         Route::post('/beneficiaries/imports', [ImportBatchController::class, 'store'])

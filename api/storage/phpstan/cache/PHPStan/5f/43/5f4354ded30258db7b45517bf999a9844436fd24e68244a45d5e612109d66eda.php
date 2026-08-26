@@ -13,8 +13,12 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
          'uses' => 
         array (
           'user' => 'App\\Domain\\Access\\Models\\User',
+          'dashboardsnapshot' => 'App\\Domain\\Reporting\\Models\\DashboardSnapshot',
           'dashboardfilter' => 'App\\Domain\\Reporting\\Support\\DashboardFilter',
+          'dashboardscope' => 'App\\Domain\\Reporting\\Support\\DashboardScope',
+          'locktimeoutexception' => 'Illuminate\\Contracts\\Cache\\LockTimeoutException',
           'carbon' => 'Illuminate\\Support\\Carbon',
+          'cache' => 'Illuminate\\Support\\Facades\\Cache',
         ),
          'className' => 'App\\Domain\\Reporting\\Services\\DashboardService',
          'functionName' => NULL,
@@ -38,8 +42,12 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
          'uses' => 
         array (
           'user' => 'App\\Domain\\Access\\Models\\User',
+          'dashboardsnapshot' => 'App\\Domain\\Reporting\\Models\\DashboardSnapshot',
           'dashboardfilter' => 'App\\Domain\\Reporting\\Support\\DashboardFilter',
+          'dashboardscope' => 'App\\Domain\\Reporting\\Support\\DashboardScope',
+          'locktimeoutexception' => 'Illuminate\\Contracts\\Cache\\LockTimeoutException',
           'carbon' => 'Illuminate\\Support\\Carbon',
+          'cache' => 'Illuminate\\Support\\Facades\\Cache',
         ),
          'className' => 'App\\Domain\\Reporting\\Services\\DashboardService',
          'functionName' => '__construct',
@@ -52,8 +60,69 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
            'uses' => 
           array (
             'user' => 'App\\Domain\\Access\\Models\\User',
+            'dashboardsnapshot' => 'App\\Domain\\Reporting\\Models\\DashboardSnapshot',
             'dashboardfilter' => 'App\\Domain\\Reporting\\Support\\DashboardFilter',
+            'dashboardscope' => 'App\\Domain\\Reporting\\Support\\DashboardScope',
+            'locktimeoutexception' => 'Illuminate\\Contracts\\Cache\\LockTimeoutException',
             'carbon' => 'Illuminate\\Support\\Carbon',
+            'cache' => 'Illuminate\\Support\\Facades\\Cache',
+          ),
+           'className' => 'App\\Domain\\Reporting\\Services\\DashboardService',
+           'functionName' => NULL,
+           'templatePhpDocNodes' => 
+          array (
+          ),
+           'parent' => NULL,
+           'typeAliasesMap' => 
+          array (
+          ),
+           'bypassTypeAliases' => false,
+           'constUses' => 
+          array (
+          ),
+           'typeAliasClassName' => NULL,
+           'traitData' => NULL,
+        )),
+         'typeAliasesMap' => 
+        array (
+        ),
+         'bypassTypeAliases' => false,
+         'constUses' => 
+        array (
+        ),
+         'typeAliasClassName' => NULL,
+         'traitData' => NULL,
+      )),
+      '2bc12b79ef7f4b09d182fabd7e1d9d03' => 
+      \PHPStan\Analyser\IntermediaryNameScope::__set_state(array(
+         'namespace' => 'App\\Domain\\Reporting\\Services',
+         'uses' => 
+        array (
+          'user' => 'App\\Domain\\Access\\Models\\User',
+          'dashboardsnapshot' => 'App\\Domain\\Reporting\\Models\\DashboardSnapshot',
+          'dashboardfilter' => 'App\\Domain\\Reporting\\Support\\DashboardFilter',
+          'dashboardscope' => 'App\\Domain\\Reporting\\Support\\DashboardScope',
+          'locktimeoutexception' => 'Illuminate\\Contracts\\Cache\\LockTimeoutException',
+          'carbon' => 'Illuminate\\Support\\Carbon',
+          'cache' => 'Illuminate\\Support\\Facades\\Cache',
+        ),
+         'className' => 'App\\Domain\\Reporting\\Services\\DashboardService',
+         'functionName' => 'refreshOnce',
+         'templatePhpDocNodes' => 
+        array (
+        ),
+         'parent' => 
+        \PHPStan\Analyser\IntermediaryNameScope::__set_state(array(
+           'namespace' => 'App\\Domain\\Reporting\\Services',
+           'uses' => 
+          array (
+            'user' => 'App\\Domain\\Access\\Models\\User',
+            'dashboardsnapshot' => 'App\\Domain\\Reporting\\Models\\DashboardSnapshot',
+            'dashboardfilter' => 'App\\Domain\\Reporting\\Support\\DashboardFilter',
+            'dashboardscope' => 'App\\Domain\\Reporting\\Support\\DashboardScope',
+            'locktimeoutexception' => 'Illuminate\\Contracts\\Cache\\LockTimeoutException',
+            'carbon' => 'Illuminate\\Support\\Carbon',
+            'cache' => 'Illuminate\\Support\\Facades\\Cache',
           ),
            'className' => 'App\\Domain\\Reporting\\Services\\DashboardService',
            'functionName' => NULL,
@@ -87,8 +156,12 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
          'uses' => 
         array (
           'user' => 'App\\Domain\\Access\\Models\\User',
+          'dashboardsnapshot' => 'App\\Domain\\Reporting\\Models\\DashboardSnapshot',
           'dashboardfilter' => 'App\\Domain\\Reporting\\Support\\DashboardFilter',
+          'dashboardscope' => 'App\\Domain\\Reporting\\Support\\DashboardScope',
+          'locktimeoutexception' => 'Illuminate\\Contracts\\Cache\\LockTimeoutException',
           'carbon' => 'Illuminate\\Support\\Carbon',
+          'cache' => 'Illuminate\\Support\\Facades\\Cache',
         ),
          'className' => 'App\\Domain\\Reporting\\Services\\DashboardService',
          'functionName' => 'forUser',
@@ -101,8 +174,12 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
            'uses' => 
           array (
             'user' => 'App\\Domain\\Access\\Models\\User',
+            'dashboardsnapshot' => 'App\\Domain\\Reporting\\Models\\DashboardSnapshot',
             'dashboardfilter' => 'App\\Domain\\Reporting\\Support\\DashboardFilter',
+            'dashboardscope' => 'App\\Domain\\Reporting\\Support\\DashboardScope',
+            'locktimeoutexception' => 'Illuminate\\Contracts\\Cache\\LockTimeoutException',
             'carbon' => 'Illuminate\\Support\\Carbon',
+            'cache' => 'Illuminate\\Support\\Facades\\Cache',
           ),
            'className' => 'App\\Domain\\Reporting\\Services\\DashboardService',
            'functionName' => NULL,
@@ -133,7 +210,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
     ),
     1 => 
     array (
-      'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Reporting\\Services\\DashboardService.php' => 'f77351f19d6192f86f9bba5a24e574dfd30ba256f9c745f745f6feab3786a071',
+      'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Reporting\\Services\\DashboardService.php' => 'a33e8369e685d175f688c14240b42762088120613ae705ed2575388fe63b780c',
     ),
   ),
 ));

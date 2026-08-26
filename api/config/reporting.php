@@ -17,6 +17,18 @@ declare(strict_types=1);
 
 return [
     /*
+    | How long a dashboard snapshot may stand in for "now" (FR-RPT-01/02).
+    |
+    | Snapshots recompute every fifteen minutes on the scheduler, so this is slack for a
+    | restart or a slow run — NOT a cache lifetime. Past it the reader is served a figure
+    | recomputed on demand rather than one nobody has refreshed, because a stale number
+    | presented as current is the failure PRODUCT.md principle 5 forbids.
+    |
+    | Set to 0 to disable the check and always serve whatever is stored.
+    */
+    'snapshot_max_age_minutes' => (int) env('REPORTING_SNAPSHOT_MAX_AGE_MINUTES', 60),
+
+    /*
     | Minimum group size in AGGREGATE report output (NFR-PRV-01).
     |
     | A count of 1 in "female, 20-25, one ward" identifies a person to anyone local, and

@@ -2,7 +2,7 @@
 
 // odsl-C:\Users\ACER\Desktop\JSG-SP-MIS\JSG-SP-MIS\api\app\Domain\Reporting\Segments\SegmentDimension.php-PHPStan\BetterReflection\Reflection\ReflectionClass-App\Domain\Reporting\Segments\SegmentDimension
 return \PHPStan\Cache\CacheItem::__set_state(array(
-   'variableKey' => 'v2-6.70.0.1-8.3.31-2faad459224147fa1e154bc1db828dbf9e6d19a05eddb0e42e9ffc545204b272',
+   'variableKey' => 'v2-6.70.0.1-8.3.31-82da72ddcc40a9a0410b4d6f7638b2e6ad1fc28219ddcfc4b9378a1dd2f48b0c',
    'data' => 
   array (
     'locatedSource' => 
@@ -33,7 +33,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
     array (
     ),
     'startLine' => 14,
-    'endLine' => 53,
+    'endLine' => 68,
     'startColumn' => 1,
     'endColumn' => 1,
     'parentClassName' => NULL,
@@ -436,6 +436,56 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         array (
         ),
       ),
+      'groupable' => 
+      array (
+        'declaringClassName' => 'App\\Domain\\Reporting\\Segments\\SegmentDimension',
+        'implementingClassName' => 'App\\Domain\\Reporting\\Segments\\SegmentDimension',
+        'name' => 'groupable',
+        'modifiers' => 2049,
+        'type' => 
+        array (
+          'class' => 'PHPStan\\BetterReflection\\Reflection\\ReflectionNamedType',
+          'data' => 
+          array (
+            'name' => 'bool',
+            'isIdentifier' => true,
+          ),
+        ),
+        'default' => 
+        array (
+          'code' => 'true',
+          'attributes' => 
+          array (
+            'startLine' => 47,
+            'endLine' => 47,
+            'startTokenPos' => 153,
+            'startFilePos' => 1716,
+            'endTokenPos' => 153,
+            'endFilePos' => 1719,
+          ),
+        ),
+        'docComment' => '/**
+ * Whether the chart can group by this dimension.
+ *
+ * False for anything resolved through a RELATIONSHIP — programme, activity,
+ * household role. Those filter the population correctly but have no column on
+ * `beneficiaries` to group by, and joining to get one would make the chart count
+ * enrollments or memberships while the table counts people.
+ */',
+        'attributes' => 
+        array (
+        ),
+        'startLine' => 47,
+        'endLine' => 47,
+        'startColumn' => 9,
+        'endColumn' => 37,
+        'isPromoted' => true,
+        'declaredAtCompileTime' => true,
+        'immediateVirtual' => false,
+        'immediateHooks' => 
+        array (
+        ),
+      ),
     ),
     'immediateMethods' => 
     array (
@@ -681,6 +731,44 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             'parameterIndex' => 6,
             'isOptional' => true,
           ),
+          'groupable' => 
+          array (
+            'name' => 'groupable',
+            'default' => 
+            array (
+              'code' => 'true',
+              'attributes' => 
+              array (
+                'startLine' => 47,
+                'endLine' => 47,
+                'startTokenPos' => 153,
+                'startFilePos' => 1716,
+                'endTokenPos' => 153,
+                'endFilePos' => 1719,
+              ),
+            ),
+            'type' => 
+            array (
+              'class' => 'PHPStan\\BetterReflection\\Reflection\\ReflectionNamedType',
+              'data' => 
+              array (
+                'name' => 'bool',
+                'isIdentifier' => true,
+              ),
+            ),
+            'isVariadic' => false,
+            'byRef' => false,
+            'isPromoted' => true,
+            'attributes' => 
+            array (
+            ),
+            'startLine' => 47,
+            'endLine' => 47,
+            'startColumn' => 9,
+            'endColumn' => 37,
+            'parameterIndex' => 7,
+            'isOptional' => true,
+          ),
         ),
         'returnsReference' => false,
         'returnType' => NULL,
@@ -695,7 +783,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
  *                           (DM.1) rather than being a system-stamped attribute
  */',
         'startLine' => 31,
-        'endLine' => 39,
+        'endLine' => 48,
         'startColumn' => 5,
         'endColumn' => 8,
         'couldThrow' => false,
@@ -729,8 +817,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         array (
         ),
         'docComment' => '/** @return array<string, mixed> */',
-        'startLine' => 42,
-        'endLine' => 52,
+        'startLine' => 51,
+        'endLine' => 67,
         'startColumn' => 5,
         'endColumn' => 5,
         'couldThrow' => false,

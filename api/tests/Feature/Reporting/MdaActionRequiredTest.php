@@ -8,6 +8,7 @@ use App\Domain\Access\Enums\RoleKey;
 use App\Domain\Access\Models\Mda;
 use App\Domain\Access\Models\Role;
 use App\Domain\Access\Models\User;
+use App\Domain\Grievance\Models\Grievance;
 use App\Domain\Referral\Models\Referral;
 use App\Domain\Registry\Models\Beneficiary;
 use App\Domain\Registry\Models\ServiceRequest;
@@ -156,6 +157,61 @@ class MdaActionRequiredTest extends TestCase
         foreach ([$ben->id, 'first_name', 'last_name', 'nin', 'bvn', 'phone', 'beneficiary'] as $leak) {
             $this->assertStringNotContainsString((string) $leak, $json);
         }
+    }
+
+    /* ------------------------------------------------------------ grievances */
+
+    public function test_counts_open_grievances_this_mda_is_handling(): void
+    {
+        // Grievances carry a running SLA (FR-GRM-03) but sat two clicks deep behind a
+        // tab that opens on Benefits. Counting them here is what lets the Overview say
+        // there is a clock running.
+        $ben = $this->beneficiaryOwnedBy($this->mdaA);
+
+        foreach (['open', 'assigned', 'in_progress'] as $status) {
+            Grievance::create([
+                'handling_mda_id' => $this->mdaA->id, 'beneficiary_id' => $ben->id,
+                'category' => 'payment', 'channel' => 'walk_in',
+                'description' => 'x', 'status' => $status,
+            ]);
+        }
+        // Finished work is not a queue.
+        foreach (['resolved', 'closed'] as $status) {
+            Grievance::create([
+                'handling_mda_id' => $this->mdaA->id, 'beneficiary_id' => $ben->id,
+                'category' => 'payment', 'channel' => 'walk_in',
+                'description' => 'x', 'status' => $status,
+            ]);
+        }
+        // Another MDA's desk is not this MDA's queue.
+        Grievance::create([
+            'handling_mda_id' => $this->mdaB->id, 'beneficiary_id' => $ben->id,
+            'category' => 'payment', 'channel' => 'walk_in',
+            'description' => 'x', 'status' => 'open',
+        ]);
+
+        $this->send('officerA')->assertOk()->assertJsonPath('data.open_grievances', 3);
+    }
+
+    public function test_reports_the_breached_subset_separately(): void
+    {
+        $ben = $this->beneficiaryOwnedBy($this->mdaA);
+
+        Grievance::create([
+            'handling_mda_id' => $this->mdaA->id, 'beneficiary_id' => $ben->id,
+            'category' => 'payment', 'channel' => 'walk_in', 'description' => 'x',
+            'status' => 'open', 'sla_breached_at' => now()->subDay(),
+        ]);
+        Grievance::create([
+            'handling_mda_id' => $this->mdaA->id, 'beneficiary_id' => $ben->id,
+            'category' => 'payment', 'channel' => 'walk_in', 'description' => 'x',
+            'status' => 'open',
+        ]);
+
+        $this->send('officerA')->assertOk()
+            ->assertJsonPath('data.open_grievances', 2)
+            // How much is waiting and how much is LATE are different questions.
+            ->assertJsonPath('data.breached_grievances', 1);
     }
 
     public function test_it_reflects_a_decision_immediately(): void

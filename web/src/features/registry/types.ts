@@ -436,3 +436,41 @@ export interface BeneficiaryDocument {
   uploaded_by: string | null
   created_at: string | null
 }
+
+/* --------------------------------------------- the duplicate queue (FR-DUP-01/05) */
+
+/**
+ * A flagged row as the QUEUE serves it: the row itself, plus just enough of its batch
+ * to decide it and to say which file it came from.
+ *
+ * The queue spans files, so context the batch page gets for free — which import am I
+ * looking at — has to travel with the row.
+ */
+export interface DuplicateQueueRow extends ImportRow {
+  batch: {
+    id: string
+    original_filename: string | null
+    status: string | null
+    matching_thresholds: { review: number; auto_accept: number | null } | null
+  }
+}
+
+/** Outstanding vs total flagged rows per band, across everything in scope. */
+export interface DuplicateQueueCounts {
+  exact: { awaiting: number; total: number }
+  probable: { awaiting: number; total: number }
+}
+
+export interface DuplicateQueuePage {
+  items: DuplicateQueueRow[]
+  counts: DuplicateQueueCounts
+  pagination: { page: number; per_page: number; total: number; total_pages: number }
+}
+
+export interface DuplicateQueueQuery {
+  band?: 'exact' | 'probable'
+  /** Omit for both — the server defaults to `awaiting`, the working queue. */
+  state?: 'awaiting' | 'decided' | 'all'
+  page?: number
+  per_page?: number
+}

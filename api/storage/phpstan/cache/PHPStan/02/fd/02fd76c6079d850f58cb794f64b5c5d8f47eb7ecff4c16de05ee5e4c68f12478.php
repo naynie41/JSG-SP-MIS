@@ -378,6 +378,63 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
          'typeAliasClassName' => NULL,
          'traitData' => NULL,
       )),
+      'b7074aebca1edf1e7931fcdf6d95fc01' => 
+      \PHPStan\Analyser\IntermediaryNameScope::__set_state(array(
+         'namespace' => 'App\\Domain\\Reporting\\Segments',
+         'uses' => 
+        array (
+          'mdascope' => 'App\\Domain\\Access\\Scopes\\MdaScope',
+          'enrollment' => 'App\\Domain\\Programme\\Models\\Enrollment',
+          'beneficiary' => 'App\\Domain\\Registry\\Models\\Beneficiary',
+          'householdmembership' => 'App\\Domain\\Registry\\Models\\HouseholdMembership',
+          'dashboardscope' => 'App\\Domain\\Reporting\\Support\\DashboardScope',
+          'builder' => 'Illuminate\\Database\\Eloquent\\Builder',
+          'carbon' => 'Illuminate\\Support\\Carbon',
+        ),
+         'className' => 'App\\Domain\\Reporting\\Segments\\SegmentQueryBuilder',
+         'functionName' => 'applyHouseholdRole',
+         'templatePhpDocNodes' => 
+        array (
+        ),
+         'parent' => 
+        \PHPStan\Analyser\IntermediaryNameScope::__set_state(array(
+           'namespace' => 'App\\Domain\\Reporting\\Segments',
+           'uses' => 
+          array (
+            'mdascope' => 'App\\Domain\\Access\\Scopes\\MdaScope',
+            'enrollment' => 'App\\Domain\\Programme\\Models\\Enrollment',
+            'beneficiary' => 'App\\Domain\\Registry\\Models\\Beneficiary',
+            'householdmembership' => 'App\\Domain\\Registry\\Models\\HouseholdMembership',
+            'dashboardscope' => 'App\\Domain\\Reporting\\Support\\DashboardScope',
+            'builder' => 'Illuminate\\Database\\Eloquent\\Builder',
+            'carbon' => 'Illuminate\\Support\\Carbon',
+          ),
+           'className' => 'App\\Domain\\Reporting\\Segments\\SegmentQueryBuilder',
+           'functionName' => NULL,
+           'templatePhpDocNodes' => 
+          array (
+          ),
+           'parent' => NULL,
+           'typeAliasesMap' => 
+          array (
+          ),
+           'bypassTypeAliases' => false,
+           'constUses' => 
+          array (
+          ),
+           'typeAliasClassName' => NULL,
+           'traitData' => NULL,
+        )),
+         'typeAliasesMap' => 
+        array (
+        ),
+         'bypassTypeAliases' => false,
+         'constUses' => 
+        array (
+        ),
+         'typeAliasClassName' => NULL,
+         'traitData' => NULL,
+      )),
       '5a05ff40baa5167ebb385b8fcb445ef0' => 
       \PHPStan\Analyser\IntermediaryNameScope::__set_state(array(
          'namespace' => 'App\\Domain\\Reporting\\Segments',
@@ -438,7 +495,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
     ),
     1 => 
     array (
-      'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Reporting\\Segments\\SegmentQueryBuilder.php' => '3c0860c1a8158ffd34ee3b841b364f0f9c8cf851435661aee50ce58872beab86',
+      'C:\\Users\\ACER\\Desktop\\JSG-SP-MIS\\JSG-SP-MIS\\api\\app\\Domain\\Reporting\\Segments\\SegmentQueryBuilder.php' => '02d06be3568b2af1e81e647816554cf02247215d2faded431214d2b195ac22eb',
     ),
   ),
 ));

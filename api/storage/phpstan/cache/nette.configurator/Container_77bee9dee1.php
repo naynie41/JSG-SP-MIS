@@ -8,7 +8,7 @@
 
 declare(strict_types=1);
 
-class Container_dfe9cd95ff extends _PHPStan_48ec32058\Nette\DI\Container
+class Container_77bee9dee1 extends _PHPStan_48ec32058\Nette\DI\Container
 {
 	protected $tags = [
 		'phpstan.broker.allowedSubTypesClassReflectionExtension' => ['017' => true, '018' => true],
@@ -5905,7 +5905,7 @@ class Container_dfe9cd95ff extends _PHPStan_48ec32058\Nette\DI\Container
 			private $container;
 
 
-			public function __construct(Container_dfe9cd95ff $container)
+			public function __construct(Container_77bee9dee1 $container)
 			{
 				$this->container = $container;
 			}
@@ -5953,7 +5953,7 @@ class Container_dfe9cd95ff extends _PHPStan_48ec32058\Nette\DI\Container
 			private $container;
 
 
-			public function __construct(Container_dfe9cd95ff $container)
+			public function __construct(Container_77bee9dee1 $container)
 			{
 				$this->container = $container;
 			}
@@ -6011,7 +6011,7 @@ class Container_dfe9cd95ff extends _PHPStan_48ec32058\Nette\DI\Container
 			private $container;
 
 
-			public function __construct(Container_dfe9cd95ff $container)
+			public function __construct(Container_77bee9dee1 $container)
 			{
 				$this->container = $container;
 			}
@@ -6078,7 +6078,7 @@ class Container_dfe9cd95ff extends _PHPStan_48ec32058\Nette\DI\Container
 			private $container;
 
 
-			public function __construct(Container_dfe9cd95ff $container)
+			public function __construct(Container_77bee9dee1 $container)
 			{
 				$this->container = $container;
 			}
@@ -6098,7 +6098,7 @@ class Container_dfe9cd95ff extends _PHPStan_48ec32058\Nette\DI\Container
 			private $container;
 
 
-			public function __construct(Container_dfe9cd95ff $container)
+			public function __construct(Container_77bee9dee1 $container)
 			{
 				$this->container = $container;
 			}
@@ -6123,7 +6123,7 @@ class Container_dfe9cd95ff extends _PHPStan_48ec32058\Nette\DI\Container
 			private $container;
 
 
-			public function __construct(Container_dfe9cd95ff $container)
+			public function __construct(Container_77bee9dee1 $container)
 			{
 				$this->container = $container;
 			}
@@ -6143,7 +6143,7 @@ class Container_dfe9cd95ff extends _PHPStan_48ec32058\Nette\DI\Container
 			private $container;
 
 
-			public function __construct(Container_dfe9cd95ff $container)
+			public function __construct(Container_77bee9dee1 $container)
 			{
 				$this->container = $container;
 			}
@@ -6163,7 +6163,7 @@ class Container_dfe9cd95ff extends _PHPStan_48ec32058\Nette\DI\Container
 			private $container;
 
 
-			public function __construct(Container_dfe9cd95ff $container)
+			public function __construct(Container_77bee9dee1 $container)
 			{
 				$this->container = $container;
 			}
@@ -9638,7 +9638,7 @@ class Container_dfe9cd95ff extends _PHPStan_48ec32058\Nette\DI\Container
 	}
 
 
-	public function createServiceContainer(): Container_dfe9cd95ff
+	public function createServiceContainer(): Container_77bee9dee1
 	{
 		return $this;
 	}
@@ -10290,20 +10290,34 @@ class Container_dfe9cd95ff extends _PHPStan_48ec32058\Nette\DI\Container
 			'usedLevel' => '5',
 			'cliAutoloadFile' => null,
 			'env' => [
-				'AI_AGENT' => 'claude-code_2-1-231_agent',
+				'AI_AGENT' => 'claude-code_2-1-241_agent',
 				'ALLUSERSPROFILE' => 'C:\ProgramData',
 				'APPDATA' => 'C:\Users\ACER\AppData\Roaming',
-				'CHROME_CRASHPAD_PIPE_NAME' => '\\\.\pipe\crashpad_18664_IZIHDOOLPDZBEBKX',
+				'APP_DEBUG' => 'false',
+				'APP_ENV' => 'local',
+				'APP_FAKER_LOCALE' => 'en_US',
+				'APP_FALLBACK_LOCALE' => 'en',
+				'APP_KEY' => 'base64:RKZzWxKzqVXtH2kfUrkHI3yTuW/Nu3Xw/3M/oRnIh8o=',
+				'APP_LOCALE' => 'en',
+				'APP_MAINTENANCE_DRIVER' => 'file',
+				'APP_NAME' => 'SP-MIS',
+				'APP_URL' => 'http://localhost:8080',
+				'BCRYPT_ROUNDS' => '12',
+				'BROADCAST_CONNECTION' => 'log',
+				'CACHE_STORE' => 'redis',
+				'CHROME_CRASHPAD_PIPE_NAME' => '\\\.\pipe\crashpad_12216_HYDTJPWDAIQHDIFV',
 				'CLAUDECODE' => '1',
-				'CLAUDE_AGENT_SDK_VERSION' => '0.3.231',
+				'CLAUDE_AGENT_SDK_VERSION' => '0.3.241',
 				'CLAUDE_CODE_CHILD_SESSION' => '1',
 				'CLAUDE_CODE_ENABLE_SDK_FILE_CHECKPOINTING' => 'true',
 				'CLAUDE_CODE_ENABLE_TASKS' => '0',
 				'CLAUDE_CODE_ENTRYPOINT' => 'claude-vscode',
-				'CLAUDE_CODE_EXECPATH' => 'C:\Users\ACER\.vscode\extensions\anthropic.claude-code-2.1.231-win32-x64\resources\native-binary\claude.exe',
+				'CLAUDE_CODE_EXECPATH' => 'C:\Users\ACER\.vscode\extensions\anthropic.claude-code-2.1.241-win32-x64\resources\native-binary\claude.exe',
+				'CLAUDE_CODE_MESSAGING_SOCKET' => '\\\.\pipe\LOCAL\cc-msg-c603812ff457500e9dcbf84c4d21d540',
+				'CLAUDE_CODE_MESSAGING_TOKEN' => 'beef8ebc64785347f1fb0c5b0618d85a',
 				'CLAUDE_CODE_SESSION_ID' => '71bdfd08-53a2-4d53-94aa-60c9dfb41448',
 				'CLAUDE_EFFORT' => 'high',
-				'CLAUDE_PID' => '20104',
+				'CLAUDE_PID' => '8668',
 				'COLUMNS' => '120',
 				'COMMONPROGRAMFILES' => 'C:\Program Files\Common Files',
 				'COMPUTERNAME' => 'NITRO-5',
@@ -10311,9 +10325,19 @@ class Container_dfe9cd95ff extends _PHPStan_48ec32058\Nette\DI\Container
 				'COREPACK_ENABLE_AUTO_PIN' => '0',
 				'CommonProgramFiles(x86)' => 'C:\Program Files (x86)\Common Files',
 				'CommonProgramW6432' => 'C:\Program Files\Common Files',
+				'CORS_ALLOWED_ORIGINS' => 'http://localhost:5173,http://localhost:3000',
+				'CORS_MAX_AGE' => '0',
+				'CORS_SUPPORTS_CREDENTIALS' => 'true',
+				'DB_CONNECTION' => 'pgsql',
+				'DB_DATABASE' => 'spmis',
+				'DB_HOST' => 'postgres',
+				'DB_PASSWORD' => 'change-me-postgres',
+				'DB_PORT' => '5432',
+				'DB_USERNAME' => 'spmis',
 				'DriverData' => 'C:\Windows\System32\Drivers\DriverData',
 				'ELECTRON_RUN_AS_NODE' => '1',
 				'EXEPATH' => 'C:\Program Files\Git\bin',
+				'FILESYSTEM_DISK' => 'local',
 				'FPS_BROWSER_APP_PROFILE_STRING' => 'Internet Explorer',
 				'FPS_BROWSER_USER_PROFILE_STRING' => 'Default',
 				'GIT_EDITOR' => 'true',
@@ -10323,7 +10347,19 @@ class Container_dfe9cd95ff extends _PHPStan_48ec32058\Nette\DI\Container
 				'LINES' => '9001',
 				'LOCALAPPDATA' => 'C:\Users\ACER\AppData\Local',
 				'LOGONSERVER' => '\\\NITRO-5',
+				'LOG_CHANNEL' => 'stack',
+				'LOG_DEPRECATIONS_CHANNEL' => 'null',
+				'LOG_LEVEL' => 'debug',
+				'LOG_STACK' => 'single',
+				'MAIL_FROM_ADDRESS' => 'no-reply@spmis.local',
+				'MAIL_FROM_NAME' => 'SP-MIS',
+				'MAIL_HOST' => '127.0.0.1',
+				'MAIL_MAILER' => 'log',
+				'MAIL_PASSWORD' => 'null',
+				'MAIL_PORT' => '2525',
+				'MAIL_USERNAME' => 'null',
 				'MCP_CONNECTION_NONBLOCKING' => 'true',
+				'MFA_ENFORCE' => 'false',
 				'MSYSTEM' => 'MINGW64',
 				'NUMBER_OF_PROCESSORS' => '8',
 				'NoDefaultCurrentDirectoryInExePath' => '1',
@@ -10344,7 +10380,24 @@ class Container_dfe9cd95ff extends _PHPStan_48ec32058\Nette\DI\Container
 				'ProgramData' => 'C:\ProgramData',
 				'ProgramFiles(x86)' => 'C:\Program Files (x86)',
 				'ProgramW6432' => 'C:\Program Files',
+				'QUEUE_CONNECTION' => 'rabbitmq',
+				'RABBITMQ_HOST' => 'rabbitmq',
+				'RABBITMQ_PASSWORD' => 'change-me-rabbitmq',
+				'RABBITMQ_PORT' => '5672',
+				'RABBITMQ_QUEUE' => 'default',
+				'RABBITMQ_USER' => 'spmis',
+				'RABBITMQ_VHOST' => '/',
+				'REDIS_CLIENT' => 'predis',
+				'REDIS_HOST' => 'redis',
+				'REDIS_PASSWORD' => 'null',
+				'REDIS_PORT' => '6379',
+				'SANCTUM_STATEFUL_DOMAINS' => 'localhost:5173,localhost:3000',
 				'SESSIONNAME' => 'Console',
+				'SESSION_DOMAIN' => 'null',
+				'SESSION_DRIVER' => 'redis',
+				'SESSION_ENCRYPT' => 'false',
+				'SESSION_LIFETIME' => '120',
+				'SESSION_PATH' => '/',
 				'SHELL' => 'C:\Program Files\Git\bin\bash.exe',
 				'SHELL_VERBOSITY' => '0',
 				'SHLVL' => '1',
@@ -10366,7 +10419,7 @@ class Container_dfe9cd95ff extends _PHPStan_48ec32058\Nette\DI\Container
 				'VSCODE_IPC_HOOK' => '\\\.\pipe\e4ee10c7-1.127.0-main-sock',
 				'VSCODE_L10N_BUNDLE_LOCATION' => '',
 				'VSCODE_NLS_CONFIG' => '{"userLocale":"en-us","osLocale":"en-us","resolvedLanguage":"en","defaultMessagesFile":"C:\\\Users\\\ACER\\\AppData\\\Local\\\Programs\\\Microsoft VS Code\\\4fe60c8b1c\\\resources\\\app\\\out\\\nls.messages.json","locale":"en-us","availableLanguages":{}}',
-				'VSCODE_PID' => '18664',
+				'VSCODE_PID' => '12216',
 				'WINDIR' => 'C:\Windows',
 				'ZES_ENABLE_SYSMAN' => '1',
 				'_' => 'C:/Users/ACER/Downloads/php-8.5.1-nts-Win32-vs17-x64/php',

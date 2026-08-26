@@ -10,5 +10,9 @@ export interface MdaActionRequired {
   pending_referrals: number
   /** Request-to-serve on a beneficiary this MDA owns, awaiting accept/decline. */
   pending_service_requests: number
+  /** Grievances this MDA is handling that are not yet resolved — each with a running SLA. */
+  open_grievances: number
+  /** The subset already past their SLA window. */
+  breached_grievances: number
   mda_id: string | null
 }

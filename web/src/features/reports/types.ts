@@ -100,6 +100,13 @@ export interface SegmentDimension {
   /** True when it came from the canonical import schema rather than being system-stamped. */
   canonical: boolean
   unit?: string
+  /**
+   * Whether the chart can group by this dimension. False for anything resolved through
+   * a RELATIONSHIP — programme, activity, household role — which filters the population
+   * correctly but has no column to group by; charting it would count enrollments or
+   * memberships while the table counts people.
+   */
+  groupable?: boolean
   options?: { value: string; label: string }[]
 }
 

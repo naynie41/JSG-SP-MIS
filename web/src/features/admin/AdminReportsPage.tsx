@@ -2,14 +2,10 @@ import { useState } from 'react'
 import { Tabs } from '@/components/Tabs/Tabs'
 import { useAuth } from '@/lib/auth/AuthProvider'
 import { useReportDatasets } from '@/features/reports/hooks'
-import {
-  BuilderPanel,
-  CataloguePanel,
-  ReportsLoading,
-  RunsPanel,
-  SchedulesPanel,
-} from '@/features/reports/ReportPanels'
-import { SegmentBuilderPanel } from '@/features/reports/SegmentBuilderPanel'
+import { ReportsLoading } from '@/features/reports/ReportPanels'
+import { ReportBuilderPanel } from '@/features/reports/ReportBuilderPanel'
+import { ReportHistoryPanel } from '@/features/reports/ReportHistoryPanel'
+import { ReportsDashboardPanel } from '@/features/reports/ReportsDashboardPanel'
 import styles from './admin.module.css'
 
 /**
@@ -29,16 +25,9 @@ export function AdminReportsPage() {
   const { hasPermission } = useAuth()
   const canExport = hasPermission('reporting.export')
   const { data, isLoading, error } = useReportDatasets()
-  const [tab, setTab] = useState('catalogue')
-  const [seedDataset, setSeedDataset] = useState<string | undefined>(undefined)
+  const [tab, setTab] = useState('dashboard')
 
-  const datasets = data ?? []
-  const adminDatasets = datasets.filter((d) => d.admin)
-
-  function buildFrom(key: string) {
-    setSeedDataset(key)
-    setTab('builder')
-  }
+  const adminDatasets = (data ?? []).filter((d) => d.admin)
 
   return (
     <div className={styles.page}>
@@ -61,54 +50,29 @@ export function AdminReportsPage() {
           onChange={setTab}
           items={[
             {
-              id: 'catalogue',
-              label: 'Report catalogue',
+              id: 'dashboard',
+              label: 'Dashboard',
+              content: <ReportsDashboardPanel />,
+            },
+            {
+              // One builder. The subject picker inside it replaces what used to be a
+              // separate "Report catalogue" tab: an officer chooses what they are
+              // reporting on, and the right builder follows from that.
+              id: 'build',
+              label: 'Build a report',
+              content: <ReportBuilderPanel datasets={adminDatasets} canExport={canExport} />,
+            },
+            {
+              id: 'history',
+              label: 'History',
               content: (
-                <CataloguePanel
-                  datasets={adminDatasets}
-                  onBuild={buildFrom}
-                  footnote="Every report is an aggregate — counts and sums over administrative attributes, never a personal record"
-                />
-              ),
-            },
-            {
-              id: 'builder',
-              label: 'Build & export',
-              content: canExport ? (
-                <BuilderPanel datasets={adminDatasets} initialDataset={seedDataset} />
-              ) : (
-                <p className={styles.muted}>
-                  Generating and exporting reports needs the reporting export permission.
-                </p>
-              ),
-            },
-            {
-              // The registry segment builder. Distinct from "Build & export" above: that
-              // aggregates a whitelisted dataset, this filters the PEOPLE and — for a
-              // role entitled to them — lists them. The server decides which of those
-              // two a given caller actually gets.
-              id: 'segments',
-              label: 'Segment builder',
-              content: <SegmentBuilderPanel />,
-            },
-            {
-              id: 'schedules',
-              label: 'Scheduled reports',
-              content: (
-                <SchedulesPanel
+                <ReportHistoryPanel
                   canManage={canExport}
-                  footnote="A schedule delivers only to recipients whose own scope covers the report — an administrative report can never be delivered outside the administration console"
+                  scheduleFootnote="A schedule delivers only to recipients whose own scope covers the report — an administrative report can never be delivered outside the administration console"
+                  runsFootnote="Every export is generated and audited by the shared reporting engine — the console adds datasets, not a second pipeline"
                 />
               ),
-            },
-            {
-              id: 'runs',
-              label: 'Recent exports',
-              content: (
-                <RunsPanel footnote="Every export is generated and audited by the shared reporting engine — the console adds datasets, not a second pipeline" />
-              ),
-            },
-          ]}
+            },          ]}
         />
       )}
     </div>

@@ -263,12 +263,13 @@ class SegmentReportService
     /** The `beneficiaries` column a dimension can be grouped by, or null. */
     private function groupableColumn(SegmentDimension $dimension): ?string
     {
-        return match ($dimension->kind) {
-            SegmentDimension::KIND_AGE => null, // bands, not raw dates — handled separately
-            default => str_contains($dimension->column, '.') || $dimension->column === 'household_membership'
-                ? null
-                : $dimension->column,
-        };
+        if (! $dimension->groupable || $dimension->kind === SegmentDimension::KIND_AGE) {
+            // Age would group by raw birth date — one bar per person. Bands are a
+            // separate feature; a thousand one-count bars is not a chart.
+            return null;
+        }
+
+        return $dimension->column;
     }
 
     private function labelFor(SegmentDimension $dimension, string $value): string

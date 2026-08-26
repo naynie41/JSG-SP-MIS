@@ -1,7 +1,8 @@
-import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query'
+import { keepPreviousData, useMutation, useQuery, useQueryClient } from '@tanstack/react-query'
 import { useToast } from '@/components/Toast/ToastProvider'
 import { beneficiaryApi, documentApi, householdApi, importApi, matchingApi, serviceRequestApi } from './api'
 import type { BeneficiaryListParams, ResolveRowInput, SearchQuery } from './api'
+import type { DuplicateQueueQuery } from './types'
 import { RESOLUTION_LABELS } from './constants'
 import type { ActivityInput } from '@/features/programmes/types'
 import type { BeneficiaryInput, ConsentInput, HouseholdRole, MatchingConfigInput } from './types'
@@ -209,6 +210,21 @@ export function useImports(page: number, enabled = true) {
   return useQuery({ queryKey: ['imports', page], queryFn: () => importApi.list(page), enabled })
 }
 
+/**
+ * The duplicate queue: flagged rows across every import in scope, paginated.
+ *
+ * Keyed on the whole query so each band/state/page is its own cache entry, and
+ * `useResolveRow` invalidating `['duplicates']` refreshes whichever one is on screen.
+ */
+export function useDuplicateQueue(query: DuplicateQueueQuery, enabled = true) {
+  return useQuery({
+    queryKey: ['duplicates', query],
+    queryFn: () => importApi.duplicates(query),
+    enabled,
+    placeholderData: keepPreviousData,
+  })
+}
+
 /** The mapping screen's payload — detected columns, suggestions, samples, preview. */
 export function useImportMapping(id: string | undefined, enabled = true) {
   return useQuery({
@@ -232,6 +248,8 @@ export function useConfirmMapping(batchId: string) {
       importApi.confirmMapping(batchId, columnMap, saveTemplateAs),
     onSuccess: () => {
       qc.invalidateQueries({ queryKey: ['import', batchId] })
+      // The queue is a second view of the same rows; a decision has to move both.
+      qc.invalidateQueries({ queryKey: ['duplicates'] })
       qc.invalidateQueries({ queryKey: ['imports'] })
       toast.success('Mapping confirmed', 'Validating and checking for duplicates…')
     },
@@ -337,6 +355,8 @@ export function useResolveRow(batchId: string, options?: { silent?: boolean }) {
       importApi.resolveRow(batchId, rowNumber, input),
     onSuccess: (_data, variables) => {
       qc.invalidateQueries({ queryKey: ['import', batchId] })
+      // The queue is a second view of the same rows; a decision has to move both.
+      qc.invalidateQueries({ queryKey: ['duplicates'] })
       if (silent) return
       toast.success(
         `Row ${variables.rowNumber} decided`,
@@ -363,6 +383,7 @@ export function useResolveMatch() {
       importApi.resolveRow(batchId, rowNumber, input),
     onSuccess: (_data, variables) => {
       qc.invalidateQueries({ queryKey: ['import', variables.batchId] })
+      qc.invalidateQueries({ queryKey: ['duplicates'] })
     },
   })
 }

@@ -96,6 +96,7 @@ class SegmentQueryBuilder
                 Carbon::parse($values[1])->endOfDay(),
             ]),
             $dimension->key === 'household' => $this->applyHousehold($query, $values),
+            $dimension->key === 'household_role' => $this->applyHouseholdRole($query, $values),
             $dimension->key === 'programme' => $this->applyEnrollment($query, 'programme_id', $values),
             $dimension->key === 'activity' => $this->applyEnrollment($query, 'activity_id', $values),
             default => $query->whereIn($dimension->column, $values),
@@ -137,6 +138,24 @@ class SegmentQueryBuilder
         $query->whereIn('id', Enrollment::query()
             ->withoutGlobalScope(MdaScope::class)
             ->whereIn($column, $values)
+            ->whereNotNull('beneficiary_id')
+            ->select('beneficiary_id'));
+    }
+
+    /**
+     * Role within the household, from the person's OPEN membership.
+     *
+     * A closed membership is history: someone who has left is not a household head now,
+     * and a report that counted them would overstate every household-targeted programme.
+     *
+     * @param  Builder<Beneficiary>  $query
+     * @param  list<string>  $values
+     */
+    private function applyHouseholdRole(Builder $query, array $values): void
+    {
+        $query->whereIn('id', HouseholdMembership::query()
+            ->whereNull('left_at')
+            ->whereIn('role_in_household', $values)
             ->whereNotNull('beneficiary_id')
             ->select('beneficiary_id'));
     }

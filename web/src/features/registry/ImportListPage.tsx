@@ -37,14 +37,24 @@ const SOURCE_OPTIONS = [
 ]
 
 export interface ImportListPageProps {
-  /** Render as embedded read-only history: no page header (the host page owns the
-   *  heading) and no upload panel. Used by the administration console's oversight
-   *  sections — an administrator reviews imports but does not perform them; bulk
-   *  ingestion belongs to an acting MDA (CLAUDE.md §10). */
+  /**
+   * No upload panel: imports are reviewed, not performed.
+   *
+   * The administration console's oversight sections use this — an administrator reads
+   * import history but bulk ingestion belongs to an acting MDA (CLAUDE.md §10).
+   */
   readOnly?: boolean
+  /**
+   * No page header: the host page already owns the heading.
+   *
+   * SEPARATE from `readOnly` on purpose. They were one flag, so the MDA console could
+   * not suppress a duplicate `<h1>` without also losing the upload panel it needs —
+   * one prop answering two unrelated questions, and neither answer usable alone.
+   */
+  embedded?: boolean
 }
 
-export function ImportListPage({ readOnly = false }: ImportListPageProps = {}) {
+export function ImportListPage({ readOnly = false, embedded = false }: ImportListPageProps = {}) {
   const { hasPermission } = useAuth()
   const canView = hasPermission('beneficiary.view')
   const canImport = !readOnly && hasPermission('beneficiary.create')
@@ -132,7 +142,7 @@ export function ImportListPage({ readOnly = false }: ImportListPageProps = {}) {
 
   return (
     <div>
-      {!readOnly && (
+      {!embedded && (
         <div className={layout.pageHead}>
           <div className={layout.pageTitle}>
             <span className="eyebrow">03 · Registry</span>

@@ -88,6 +88,15 @@ final class SegmentDimensionRegistry
     ];
 
     /**
+     * Filter keys resolved through a RELATIONSHIP (an enrollment or a household
+     * membership) rather than a column on `beneficiaries`. They filter correctly; they
+     * cannot be grouped by.
+     *
+     * @var list<string>
+     */
+    private const RELATIONAL = ['programme', 'activity', 'household', 'household_role'];
+
+    /**
      * Every dimension the builder offers, keyed by filter key.
      *
      * @return array<string, SegmentDimension>
@@ -105,6 +114,7 @@ final class SegmentDimensionRegistry
                 options: $this->optionsFrom($segment),
                 canonical: true,
                 unit: isset($segment['unit']) ? (string) $segment['unit'] : null,
+                groupable: ! in_array($field, self::RELATIONAL, true),
             );
         }
 
@@ -116,6 +126,7 @@ final class SegmentDimensionRegistry
                 column: (string) $spec['column'],
                 options: $this->optionsFrom($spec),
                 canonical: false,
+                groupable: ! in_array($key, self::RELATIONAL, true),
             );
         }
 

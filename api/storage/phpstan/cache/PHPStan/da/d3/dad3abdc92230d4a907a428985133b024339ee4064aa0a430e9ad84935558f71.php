@@ -2,7 +2,7 @@
 
 // odsl-C:\Users\ACER\Desktop\JSG-SP-MIS\JSG-SP-MIS\api\app\Domain\Registry\Support\CanonicalSchema.php-PHPStan\BetterReflection\Reflection\ReflectionClass-App\Domain\Registry\Support\CanonicalSchema
 return \PHPStan\Cache\CacheItem::__set_state(array(
-   'variableKey' => 'v2-6.70.0.1-8.3.31-354cc3f1ce6cb7cccd2b7862e2e3b3e14af83fe275b394f6d16ab146bb41000b',
+   'variableKey' => 'v2-6.70.0.1-8.3.31-325490ebc9035b751f67e2b47ac77f27c88ab26de36aaa3c168b1fe4d7ab2add',
    'data' => 
   array (
     'locatedSource' => 
@@ -45,8 +45,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
     'attributes' => 
     array (
     ),
-    'startLine' => 32,
-    'endLine' => 228,
+    'startLine' => 33,
+    'endLine' => 234,
     'startColumn' => 1,
     'endColumn' => 1,
     'parentClassName' => NULL,
@@ -70,12 +70,12 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
           'code' => '[\'first_name\' => [\'type\' => \'string\', \'required\' => true, \'identity\' => true, \'note\' => \'Given name\'], \'middle_name\' => [\'type\' => \'string\', \'required\' => false, \'identity\' => true, \'note\' => \'Other name(s)\'], \'last_name\' => [\'type\' => \'string\', \'required\' => true, \'identity\' => true, \'note\' => \'Surname; also the fuzzy blocking key\'], \'nin\' => [\'type\' => \'digits:11\', \'required\' => false, \'identity\' => true, \'note\' => \'National Identification Number; deterministic match stage 1\'], \'bvn\' => [\'type\' => \'digits:11\', \'required\' => false, \'identity\' => true, \'note\' => \'Bank Verification Number; deterministic match stage 2\'], \'phone\' => [\'type\' => \'phone\', \'required\' => false, \'identity\' => true, \'note\' => \'Nigerian MSISDN in any written form\'], \'date_of_birth\' => [\'type\' => \'date\', \'required\' => true, \'identity\' => false, \'note\' => \'Must be in the past; part of the blocking key\', \'segment\' => [\'kind\' => \'age\', \'label\' => \'Age\', \'unit\' => \'years\']], \'gender\' => [\'type\' => \'enum\', \'required\' => true, \'identity\' => false, \'note\' => \'male | female | other\', \'segment\' => [\'kind\' => \'enum\', \'label\' => \'Gender\', \'values\' => \\App\\Domain\\Registry\\Enums\\Gender::class]], \'address\' => [\'type\' => \'string\', \'required\' => false, \'identity\' => false, \'note\' => \'Residential address\'], \'lga\' => [\'type\' => \'enum\', \'required\' => true, \'identity\' => false, \'note\' => \'A Jigawa LGA\', \'segment\' => [\'kind\' => \'enum\', \'label\' => \'LGA\', \'values\' => \\App\\Domain\\Registry\\Enums\\Lga::class]], \'ward\' => [\'type\' => \'string\', \'required\' => true, \'identity\' => false, \'note\' => \'Ward within the LGA\', \'segment\' => [\'kind\' => \'lookup\', \'label\' => \'Ward\']]]',
           'attributes' => 
           array (
-            'startLine' => 58,
-            'endLine' => 70,
-            'startTokenPos' => 55,
-            'startFilePos' => 2764,
-            'endTokenPos' => 536,
-            'endFilePos' => 4444,
+            'startLine' => 59,
+            'endLine' => 71,
+            'startTokenPos' => 60,
+            'startFilePos' => 2809,
+            'endTokenPos' => 541,
+            'endFilePos' => 4489,
           ),
         ),
         'docComment' => '/**
@@ -105,8 +105,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         'attributes' => 
         array (
         ),
-        'startLine' => 58,
-        'endLine' => 70,
+        'startLine' => 59,
+        'endLine' => 71,
         'startColumn' => 5,
         'endColumn' => 6,
       ),
@@ -119,15 +119,15 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         'type' => NULL,
         'value' => 
         array (
-          'code' => '[\'household_ref\' => [\'type\' => \'string\', \'required\' => false, \'identity\' => false, \'note\' => "The source\'s own household key"], \'household_role\' => [\'type\' => \'enum\', \'required\' => false, \'identity\' => false, \'note\' => \'head | spouse | child | parent | sibling | other\'], \'household_head\' => [\'type\' => \'boolean\', \'required\' => false, \'identity\' => false, \'note\' => \'Truthy marks this person as the head\']]',
+          'code' => '[\'household_ref\' => [\'type\' => \'string\', \'required\' => false, \'identity\' => false, \'note\' => "The source\'s own household key"], \'household_role\' => [\'type\' => \'enum\', \'required\' => false, \'identity\' => false, \'note\' => \'head | spouse | child | parent | sibling | other\', \'segment\' => [\'kind\' => \'enum\', \'label\' => \'Household role\', \'values\' => \\App\\Domain\\Registry\\Enums\\HouseholdRole::class]], \'household_head\' => [\'type\' => \'boolean\', \'required\' => false, \'identity\' => false, \'note\' => \'Truthy marks this person as the head\']]',
           'attributes' => 
           array (
-            'startLine' => 79,
-            'endLine' => 83,
-            'startTokenPos' => 549,
-            'startFilePos' => 4798,
-            'endTokenPos' => 653,
-            'endFilePos' => 5234,
+            'startLine' => 80,
+            'endLine' => 84,
+            'startTokenPos' => 554,
+            'startFilePos' => 4843,
+            'endTokenPos' => 687,
+            'endFilePos' => 5375,
           ),
         ),
         'docComment' => '/**
@@ -140,8 +140,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         'attributes' => 
         array (
         ),
-        'startLine' => 79,
-        'endLine' => 83,
+        'startLine' => 80,
+        'endLine' => 84,
         'startColumn' => 5,
         'endColumn' => 6,
       ),
@@ -157,20 +157,20 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
           'code' => '[\'original_record_id\' => [\'type\' => \'string\', \'required\' => false, \'identity\' => false, \'note\' => "The source\'s own record id; doubles as the idempotency key"]]',
           'attributes' => 
           array (
-            'startLine' => 86,
-            'endLine' => 88,
-            'startTokenPos' => 666,
-            'startFilePos' => 5356,
-            'endTokenPos' => 702,
-            'endFilePos' => 5530,
+            'startLine' => 87,
+            'endLine' => 89,
+            'startTokenPos' => 700,
+            'startFilePos' => 5497,
+            'endTokenPos' => 736,
+            'endFilePos' => 5671,
           ),
         ),
         'docComment' => '/** Provenance the source supplies; the rest is stamped by the registrar. */',
         'attributes' => 
         array (
         ),
-        'startLine' => 86,
-        'endLine' => 88,
+        'startLine' => 87,
+        'endLine' => 89,
         'startColumn' => 5,
         'endColumn' => 6,
       ),
@@ -186,12 +186,12 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
           'code' => '[\'full_name\' => [\'type\' => \'string\', \'required\' => false, \'identity\' => true, \'note\' => \'One name column; split into first/last name\']]',
           'attributes' => 
           array (
-            'startLine' => 103,
-            'endLine' => 105,
-            'startTokenPos' => 715,
-            'startFilePos' => 6310,
-            'endTokenPos' => 751,
-            'endFilePos' => 6459,
+            'startLine' => 104,
+            'endLine' => 106,
+            'startTokenPos' => 749,
+            'startFilePos' => 6451,
+            'endTokenPos' => 785,
+            'endFilePos' => 6600,
           ),
         ),
         'docComment' => '/**
@@ -210,8 +210,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         'attributes' => 
         array (
         ),
-        'startLine' => 103,
-        'endLine' => 105,
+        'startLine' => 104,
+        'endLine' => 106,
         'startColumn' => 5,
         'endColumn' => 6,
       ),
@@ -241,8 +241,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         array (
         ),
         'docComment' => '/** @return list<string> */',
-        'startLine' => 108,
-        'endLine' => 111,
+        'startLine' => 109,
+        'endLine' => 112,
         'startColumn' => 5,
         'endColumn' => 5,
         'couldThrow' => false,
@@ -280,8 +280,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
  *
  * @return list<string>
  */',
-        'startLine' => 118,
-        'endLine' => 121,
+        'startLine' => 119,
+        'endLine' => 122,
         'startColumn' => 5,
         'endColumn' => 5,
         'couldThrow' => false,
@@ -315,8 +315,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         array (
         ),
         'docComment' => '/** @return list<string> */',
-        'startLine' => 124,
-        'endLine' => 127,
+        'startLine' => 125,
+        'endLine' => 128,
         'startColumn' => 5,
         'endColumn' => 5,
         'couldThrow' => false,
@@ -354,8 +354,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
  *
  * @return list<string>
  */',
-        'startLine' => 134,
-        'endLine' => 137,
+        'startLine' => 135,
+        'endLine' => 138,
         'startColumn' => 5,
         'endColumn' => 5,
         'couldThrow' => false,
@@ -393,8 +393,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
  *
  * @return list<string>
  */',
-        'startLine' => 144,
-        'endLine' => 147,
+        'startLine' => 145,
+        'endLine' => 148,
         'startColumn' => 5,
         'endColumn' => 5,
         'couldThrow' => false,
@@ -428,8 +428,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         array (
         ),
         'docComment' => '/** @return list<string> */',
-        'startLine' => 150,
-        'endLine' => 153,
+        'startLine' => 151,
+        'endLine' => 154,
         'startColumn' => 5,
         'endColumn' => 5,
         'couldThrow' => false,
@@ -467,8 +467,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             'attributes' => 
             array (
             ),
-            'startLine' => 155,
-            'endLine' => 155,
+            'startLine' => 156,
+            'endLine' => 156,
             'startColumn' => 44,
             'endColumn' => 56,
             'parameterIndex' => 0,
@@ -489,8 +489,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         array (
         ),
         'docComment' => NULL,
-        'startLine' => 155,
-        'endLine' => 158,
+        'startLine' => 156,
+        'endLine' => 159,
         'startColumn' => 5,
         'endColumn' => 5,
         'couldThrow' => false,
@@ -539,8 +539,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
  *
  * @return list<string>
  */',
-        'startLine' => 176,
-        'endLine' => 184,
+        'startLine' => 177,
+        'endLine' => 185,
         'startColumn' => 5,
         'endColumn' => 5,
         'couldThrow' => false,
@@ -591,8 +591,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
  *
  * @return array<string, array<string, mixed>>
  */',
-        'startLine' => 204,
-        'endLine' => 217,
+        'startLine' => 205,
+        'endLine' => 223,
         'startColumn' => 5,
         'endColumn' => 5,
         'couldThrow' => false,
@@ -630,8 +630,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             'attributes' => 
             array (
             ),
-            'startLine' => 220,
-            'endLine' => 220,
+            'startLine' => 226,
+            'endLine' => 226,
             'startColumn' => 35,
             'endColumn' => 47,
             'parameterIndex' => 0,
@@ -671,8 +671,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         array (
         ),
         'docComment' => '/** The declared type of a canonical field, or null when the field is unknown. */',
-        'startLine' => 220,
-        'endLine' => 227,
+        'startLine' => 226,
+        'endLine' => 233,
         'startColumn' => 5,
         'endColumn' => 5,
         'couldThrow' => false,

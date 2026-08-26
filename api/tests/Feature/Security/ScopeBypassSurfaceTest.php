@@ -68,6 +68,11 @@ class ScopeBypassSurfaceTest extends TestCase
             'Domain/Benefit/Imports/BenefitDeliveryRowValidator.php',
             'Domain/Benefit/Services/BeneficiaryRevealPresenter.php',
             'Domain/Registry/Services/BeneficiaryLookupService.php',
+            // Resolves the matched record behind a flagged import row. It must read across
+            // MDAs — the whole point of a duplicate is that the other record belongs to
+            // someone else — and emits BeneficiaryRevealResource only: name, owner MDA,
+            // LGA, status. Never NIN, BVN or phone.
+            'Domain/Registry/Services/MatchRevealAssembler.php',
             'Domain/Registry/Services/CandidateGatherer.php',
             'Domain/Registry/Services/DeterministicDuplicateFinder.php',
             'Domain/Registry/Support/UniqueIdentifier.php',

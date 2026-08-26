@@ -13,6 +13,8 @@ use App\Domain\Audit\Models\AuditLog;
 use App\Domain\Registry\Enums\Gender;
 use App\Domain\Registry\Enums\Lga;
 use App\Domain\Registry\Models\Beneficiary;
+use App\Domain\Registry\Models\Household;
+use App\Domain\Registry\Models\HouseholdMembership;
 use App\Domain\Registry\Support\CanonicalSchema;
 use App\Domain\Reporting\Models\ReportRun;
 use App\Domain\Reporting\Segments\CellSizeGuard;
@@ -160,6 +162,57 @@ class SegmentBuilderTest extends TestCase
         $this->assertArrayHasKey('address', CanonicalSchema::FIELDS);
         $this->assertFalse(CanonicalSchema::isIdentityField('address'));
         $this->assertNotContains('address', (new SegmentDimensionRegistry)->keys());
+    }
+
+    public function test_the_household_grouping_fields_are_offered_too(): void
+    {
+        // DM.1's household fields are not columns on `beneficiaries` — they form the
+        // household on import — but they describe a group as truly as gender does. The
+        // query layer resolves them through the membership; the schema declares them.
+        $this->assertContains('household_role', (new SegmentDimensionRegistry)->keys());
+    }
+
+    public function test_a_relationship_dimension_cannot_be_charted(): void
+    {
+        // It filters correctly but has no column on `beneficiaries` to group by, and
+        // joining to get one would make the chart count memberships while the table
+        // counts people.
+        $registry = new SegmentDimensionRegistry;
+
+        foreach (['programme', 'activity', 'household', 'household_role'] as $key) {
+            $this->assertFalse($registry->get($key)?->groupable, "{$key} must not be groupable");
+        }
+
+        $this->assertTrue($registry->get('gender')?->groupable);
+        $this->assertTrue($registry->get('lga')?->groupable);
+    }
+
+    public function test_filtering_by_household_role_uses_the_open_membership(): void
+    {
+        $head = $this->person($this->mine, 40, Gender::Male, Lga::Dutse);
+        $child = $this->person($this->mine, 9, Gender::Female, Lga::Dutse);
+        $former = $this->person($this->mine, 30, Gender::Female, Lga::Dutse);
+
+        $household = Household::factory()->create(['owner_mda_id' => $this->mine->id]);
+        $this->member($household->id, $head->id, 'head');
+        $this->member($household->id, $child->id, 'child');
+        // Left the household: history, not a current head.
+        $this->member($household->id, $former->id, 'head', left: true);
+
+        $this->send('mdaAdmin', 'POST', '/api/v1/reports/segments/preview', [
+            'filters' => ['household_role' => ['values' => ['head']]],
+        ])->assertOk()->assertJsonPath('data.total', 1);
+    }
+
+    private function member(string $householdId, string $beneficiaryId, string $role, bool $left = false): void
+    {
+        HouseholdMembership::query()->create([
+            'household_id' => $householdId,
+            'beneficiary_id' => $beneficiaryId,
+            'role_in_household' => $role,
+            'joined_at' => now()->subMonth(),
+            'left_at' => $left ? now()->subDay() : null,
+        ]);
     }
     /* -------------------------------------------------------- filter composition */
 

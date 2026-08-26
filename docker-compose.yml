@@ -125,6 +125,31 @@ services:
       retries: 5
       start_period: 60s
 
+  scheduler:
+    build:
+      context: .
+      dockerfile: docker/api/Dockerfile
+    # Mirrors the production `scheduler` service. Dev had no scheduler at all, so
+    # anything on a timer simply never ran locally: dashboard snapshots stayed frozen at
+    # whenever they were first computed, SLA sweeps never fired, and retention never ran.
+    # The Overview then showed a weeks-old figure as current — a whole class of bug that
+    # exists only in the environment where it is hardest to notice.
+    command: ["php", "artisan", "schedule:work"]
+    restart: unless-stopped
+    environment:
+      RUN_MIGRATIONS: "false"
+    volumes:
+      - ./api:/var/www/html
+      - api_vendor:/var/www/html/vendor
+    depends_on:
+      api:
+        condition: service_healthy
+    healthcheck:
+      test: ["CMD-SHELL", "pgrep -f 'schedule:work' || exit 1"]
+      interval: 20s
+      timeout: 5s
+      retries: 5
+      start_period: 60s
   web:
     build:
       context: .
