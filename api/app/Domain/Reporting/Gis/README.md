@@ -9,7 +9,7 @@ page **degrades gracefully** to a ranked table when no boundaries are loaded.
 Load boundaries from a GeoJSON `FeatureCollection` (LGA first; wards additive):
 
 ```bash
-php artisan gis:load-boundaries lga  storage/app/boundaries/jigawa-lga.geojson
+php artisan gis:load-boundaries lga  database/data/jigawa-lga-boundaries.geojson
 php artisan gis:load-boundaries ward storage/app/boundaries/jigawa-ward.geojson
 ```
 
@@ -35,9 +35,36 @@ On PostgreSQL the loader also fills a PostGIS `geom` (`geometry(MultiPolygon,432
 column — the **extension point for heat maps (FR-GIS-02)** and point-in-polygon work.
 On sqlite (tests) only the portable JSON `geometry` is stored.
 
-### Where to source Jigawa boundaries
+### The shipped LGA boundaries
 
-Public admin-boundary GeoJSON for Nigeria (Jigawa = state; filter to its LGAs/wards):
+Jigawa.'.s 27 LGA outlines ship with the repo at
+[`database/data/jigawa-lga-boundaries.geojson`](../../../../database/data/jigawa-lga-boundaries.geojson)
+and `ReportingSampleSeeder` loads them, so a fresh environment draws the state without
+anyone remembering to run the command. They are also the default argument above.
+
+| | |
+| --- | --- |
+| Source | [geoBoundaries](https://www.geoboundaries.org) `gbOpen` **NGA ADM2** |
+| Upstream | **GRID3 Nigeria** Local Government Area boundaries, 2022 |
+| Licence | **CC BY 4.0** — attribution required wherever the map is published |
+| CRS | EPSG:4326 (WGS84) |
+| Selection | spatial: an ADM2 whose centroid falls inside the ADM1 Jigawa polygon |
+
+Selection is spatial rather than by name because Nigerian LGA names are not unique —
+`Garki` exists in both Jigawa and the FCT. The 27 it returns are then cross-checked
+against the {@see App\Domain\Registry\Enums\Lga} enum: two independent sources agreeing
+is what makes the set trustworthy. Geometry is passed through **unedited**.
+
+`tests/Feature/Reporting/JigawaBoundariesTest` pins all of that, including that no
+boundary is a rectangle — this used to plant 27 placeholder squares on a grid, and
+nothing failed while the map was wrong.
+
+### Wards, and other sources
+
+Ward boundaries (admin level 3) are **not** shipped. When they are sourced, load them
+with the `ward` command above; each feature needs its parent LGA name (see the table
+below). Do not hand-draw or approximate them: a fabricated boundary is worse than an
+absent one, because it looks authoritative.
 
 - **GRID3 Nigeria** — operational LGA + Ward boundaries (`grid3.org` / data portal).
 - **OCHA HDX** — *Nigeria - Administrative Boundaries* (admin 1–3), CKAN/`data.humdata.org`.
@@ -45,8 +72,7 @@ Public admin-boundary GeoJSON for Nigeria (Jigawa = state; filter to its LGAs/wa
 - **geoBoundaries** (`geoboundaries.org`) — ADM2 for Nigeria.
 
 Reproject to **EPSG:4326** (WGS84) and ensure each feature has a name property before
-loading. `ReportingSampleSeeder` plants synthetic placeholder LGA squares for local dev
-so the map renders; replace them with real boundaries via the command above.
+loading.
 
 ## Coverage endpoint
 

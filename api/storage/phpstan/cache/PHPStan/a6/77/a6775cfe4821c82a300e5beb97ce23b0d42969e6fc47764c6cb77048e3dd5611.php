@@ -130,6 +130,55 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
          'typeAliasClassName' => NULL,
          'traitData' => NULL,
       )),
+      '26aa08f7dd6f976ef2dcf940f8f1d9f4' => 
+      \PHPStan\Analyser\IntermediaryNameScope::__set_state(array(
+         'namespace' => 'App\\Domain\\Registry\\Support',
+         'uses' => 
+        array (
+          'gender' => 'App\\Domain\\Registry\\Enums\\Gender',
+          'lga' => 'App\\Domain\\Registry\\Enums\\Lga',
+          'rule' => 'Illuminate\\Validation\\Rule',
+        ),
+         'className' => 'App\\Domain\\Registry\\Support\\BeneficiaryRules',
+         'functionName' => 'earliestDateOfBirth',
+         'templatePhpDocNodes' => 
+        array (
+        ),
+         'parent' => 
+        \PHPStan\Analyser\IntermediaryNameScope::__set_state(array(
+           'namespace' => 'App\\Domain\\Registry\\Support',
+           'uses' => 
+          array (
+            'gender' => 'App\\Domain\\Registry\\Enums\\Gender',
+            'lga' => 'App\\Domain\\Registry\\Enums\\Lga',
+            'rule' => 'Illuminate\\Validation\\Rule',
+          ),
+           'className' => 'App\\Domain\\Registry\\Support\\BeneficiaryRules',
+           'functionName' => NULL,
+           'templatePhpDocNodes' => 
+          array (
+          ),
+           'parent' => NULL,
+           'typeAliasesMap' => 
+          array (
+          ),
+           'bypassTypeAliases' => false,
+           'constUses' => 
+          array (
+          ),
+           'typeAliasClassName' => NULL,
+           'traitData' => NULL,
+        )),
+         'typeAliasesMap' => 
+        array (
+        ),
+         'bypassTypeAliases' => false,
+         'constUses' => 
+        array (
+        ),
+         'typeAliasClassName' => NULL,
+         'traitData' => NULL,
+      )),
       '37b63c83685bef956444e6617ec4ece2' => 
       \PHPStan\Analyser\IntermediaryNameScope::__set_state(array(
          'namespace' => 'App\\Domain\\Registry\\Support',
@@ -182,7 +231,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
     ),
     1 => 
     array (
-      '/var/www/html/app/Domain/Registry/Support/BeneficiaryRules.php' => 'e8b474377cefbfb1f1c2f1b854667e5cbdbf891eedf01a3498998eb8ad381254',
+      '/var/www/html/app/Domain/Registry/Support/BeneficiaryRules.php' => '16d885cf6ea754a4516cf9ea000eb4d22a82e0697bde19484731e713f69da1a8',
     ),
   ),
 ));

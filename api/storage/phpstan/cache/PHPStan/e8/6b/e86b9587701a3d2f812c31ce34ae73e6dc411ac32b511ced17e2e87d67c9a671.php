@@ -133,7 +133,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
     ),
     1 => 
     array (
-      '/var/www/html/app/Http/Resources/BeneficiaryResource.php' => '0ec3c58a5fd56d855fcc69280c8af36167afa8afc4d37fa23a93bd8656d29a19',
+      '/var/www/html/app/Http/Resources/BeneficiaryResource.php' => '179492f1da995ecc6c5eb9709e947c7af58d8e0577a56696dd4ebc560053e91b',
     ),
   ),
 ));

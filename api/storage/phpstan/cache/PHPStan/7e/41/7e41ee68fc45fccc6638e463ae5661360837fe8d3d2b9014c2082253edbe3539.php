@@ -2,7 +2,7 @@
 
 // odsl-/var/www/html/app/Domain/Reporting/ReportingServiceProvider.php-PHPStan\BetterReflection\Reflection\ReflectionClass-App\Domain\Reporting\ReportingServiceProvider
 return \PHPStan\Cache\CacheItem::__set_state(array(
-   'variableKey' => 'v2-6.70.0.1-8.3.31-4984868596907509f65a7229d4b7abe7d46bff595cf0e48f93f59b93b5b9e7f3',
+   'variableKey' => 'v2-6.70.0.1-8.3.31-61d293a69a6bad39b60f0ef98abad91d4d05d47e81ebe5d2cacf9ca0db91bb0d',
    'data' => 
   array (
     'locatedSource' => 
@@ -31,8 +31,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
     'attributes' => 
     array (
     ),
-    'startLine' => 21,
-    'endLine' => 38,
+    'startLine' => 23,
+    'endLine' => 53,
     'startColumn' => 1,
     'endColumn' => 1,
     'parentClassName' => 'Illuminate\\Support\\ServiceProvider',
@@ -50,6 +50,41 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
     ),
     'immediateMethods' => 
     array (
+      'register' => 
+      array (
+        'name' => 'register',
+        'parameters' => 
+        array (
+        ),
+        'returnsReference' => false,
+        'returnType' => 
+        array (
+          'class' => 'PHPStan\\BetterReflection\\Reflection\\ReflectionNamedType',
+          'data' => 
+          array (
+            'name' => 'void',
+            'isIdentifier' => true,
+          ),
+        ),
+        'attributes' => 
+        array (
+        ),
+        'docComment' => NULL,
+        'startLine' => 25,
+        'endLine' => 36,
+        'startColumn' => 5,
+        'endColumn' => 5,
+        'couldThrow' => false,
+        'isClosure' => false,
+        'isGenerator' => false,
+        'isVariadic' => false,
+        'modifiers' => 1,
+        'namespace' => 'App\\Domain\\Reporting',
+        'declaringClassName' => 'App\\Domain\\Reporting\\ReportingServiceProvider',
+        'implementingClassName' => 'App\\Domain\\Reporting\\ReportingServiceProvider',
+        'currentClassName' => 'App\\Domain\\Reporting\\ReportingServiceProvider',
+        'aliasName' => NULL,
+      ),
       'boot' => 
       array (
         'name' => 'boot',
@@ -70,8 +105,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         array (
         ),
         'docComment' => NULL,
-        'startLine' => 23,
-        'endLine' => 37,
+        'startLine' => 38,
+        'endLine' => 52,
         'startColumn' => 5,
         'endColumn' => 5,
         'couldThrow' => false,

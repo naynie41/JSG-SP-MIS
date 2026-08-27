@@ -2,7 +2,7 @@
 
 // odsl-/var/www/html/app/Http/Requests/Programme/UpdateActivityRequest.php-PHPStan\BetterReflection\Reflection\ReflectionClass-App\Http\Requests\Programme\UpdateActivityRequest
 return \PHPStan\Cache\CacheItem::__set_state(array(
-   'variableKey' => 'v2-6.70.0.1-8.3.31-a682d1ccff8a56dc049fed691e580ea7cd46ebf1db7ecddf8d92d3d69b2c83b5',
+   'variableKey' => 'v2-6.70.0.1-8.3.31-df6986f587d088da619a931710574cd592bc2987712684f7bd91e787f2d46e3f',
    'data' => 
   array (
     'locatedSource' => 
@@ -24,13 +24,15 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
     'modifiers' => 0,
     'docComment' => '/**
  * Update an activity (PRD FR-PRG-02) — partial; owner MDA only (policy). The
- * parent programme is fixed (an activity does not move between programmes).
+ * parent programme is fixed (an activity does not move between programmes), and
+ * `involves_beneficiaries` is immutable after creation (changing it would orphan
+ * interventions or bypass the mandatory upload), so it is intentionally absent here.
  */',
     'attributes' => 
     array (
     ),
-    'startLine' => 16,
-    'endLine' => 43,
+    'startLine' => 20,
+    'endLine' => 64,
     'startColumn' => 1,
     'endColumn' => 1,
     'parentClassName' => 'Illuminate\\Foundation\\Http\\FormRequest',
@@ -39,6 +41,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
     ),
     'traitClassNames' => 
     array (
+      0 => 'App\\Http\\Requests\\Programme\\Concerns\\ValidatesLocationSet',
     ),
     'immediateConstants' => 
     array (
@@ -68,8 +71,106 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         array (
         ),
         'docComment' => NULL,
-        'startLine' => 18,
-        'endLine' => 21,
+        'startLine' => 24,
+        'endLine' => 27,
+        'startColumn' => 5,
+        'endColumn' => 5,
+        'couldThrow' => false,
+        'isClosure' => false,
+        'isGenerator' => false,
+        'isVariadic' => false,
+        'modifiers' => 1,
+        'namespace' => 'App\\Http\\Requests\\Programme',
+        'declaringClassName' => 'App\\Http\\Requests\\Programme\\UpdateActivityRequest',
+        'implementingClassName' => 'App\\Http\\Requests\\Programme\\UpdateActivityRequest',
+        'currentClassName' => 'App\\Http\\Requests\\Programme\\UpdateActivityRequest',
+        'aliasName' => NULL,
+      ),
+      'messages' => 
+      array (
+        'name' => 'messages',
+        'parameters' => 
+        array (
+        ),
+        'returnsReference' => false,
+        'returnType' => 
+        array (
+          'class' => 'PHPStan\\BetterReflection\\Reflection\\ReflectionNamedType',
+          'data' => 
+          array (
+            'name' => 'array',
+            'isIdentifier' => true,
+          ),
+        ),
+        'attributes' => 
+        array (
+        ),
+        'docComment' => '/**
+ * @return array<string, string>
+ */',
+        'startLine' => 32,
+        'endLine' => 35,
+        'startColumn' => 5,
+        'endColumn' => 5,
+        'couldThrow' => false,
+        'isClosure' => false,
+        'isGenerator' => false,
+        'isVariadic' => false,
+        'modifiers' => 1,
+        'namespace' => 'App\\Http\\Requests\\Programme',
+        'declaringClassName' => 'App\\Http\\Requests\\Programme\\UpdateActivityRequest',
+        'implementingClassName' => 'App\\Http\\Requests\\Programme\\UpdateActivityRequest',
+        'currentClassName' => 'App\\Http\\Requests\\Programme\\UpdateActivityRequest',
+        'aliasName' => NULL,
+      ),
+      'withValidator' => 
+      array (
+        'name' => 'withValidator',
+        'parameters' => 
+        array (
+          'validator' => 
+          array (
+            'name' => 'validator',
+            'default' => NULL,
+            'type' => 
+            array (
+              'class' => 'PHPStan\\BetterReflection\\Reflection\\ReflectionNamedType',
+              'data' => 
+              array (
+                'name' => 'Illuminate\\Contracts\\Validation\\Validator',
+                'isIdentifier' => false,
+              ),
+            ),
+            'isVariadic' => false,
+            'byRef' => false,
+            'isPromoted' => false,
+            'attributes' => 
+            array (
+            ),
+            'startLine' => 37,
+            'endLine' => 37,
+            'startColumn' => 35,
+            'endColumn' => 54,
+            'parameterIndex' => 0,
+            'isOptional' => false,
+          ),
+        ),
+        'returnsReference' => false,
+        'returnType' => 
+        array (
+          'class' => 'PHPStan\\BetterReflection\\Reflection\\ReflectionNamedType',
+          'data' => 
+          array (
+            'name' => 'void',
+            'isIdentifier' => true,
+          ),
+        ),
+        'attributes' => 
+        array (
+        ),
+        'docComment' => NULL,
+        'startLine' => 37,
+        'endLine' => 40,
         'startColumn' => 5,
         'endColumn' => 5,
         'couldThrow' => false,
@@ -105,8 +206,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         'docComment' => '/**
  * @return array<string, mixed>
  */',
-        'startLine' => 26,
-        'endLine' => 42,
+        'startLine' => 45,
+        'endLine' => 63,
         'startColumn' => 5,
         'endColumn' => 5,
         'couldThrow' => false,

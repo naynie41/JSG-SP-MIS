@@ -2,7 +2,7 @@
 
 // odsl-/var/www/html/app/Domain/Registry/Services/BatchDuplicateScreener.php-PHPStan\BetterReflection\Reflection\ReflectionClass-App\Domain\Registry\Services\BatchDuplicateScreener
 return \PHPStan\Cache\CacheItem::__set_state(array(
-   'variableKey' => 'v2-6.70.0.1-8.3.31-ed23a96b20f70997f8a4541bd5ba077519843c5e745af50684c7bbd12f472e14',
+   'variableKey' => 'v2-6.70.0.1-8.3.31-1c22444020033f46adc2a1a3a3f473aea6a851c1df730e2fd0f30f2bf283cd4d',
    'data' => 
   array (
     'locatedSource' => 
@@ -36,7 +36,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
     array (
     ),
     'startLine' => 23,
-    'endLine' => 141,
+    'endLine' => 147,
     'startColumn' => 1,
     'endColumn' => 1,
     'parentClassName' => NULL,
@@ -708,7 +708,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
  * @return array<string, mixed>
  */',
         'startLine' => 131,
-        'endLine' => 140,
+        'endLine' => 146,
         'startColumn' => 5,
         'endColumn' => 5,
         'couldThrow' => false,

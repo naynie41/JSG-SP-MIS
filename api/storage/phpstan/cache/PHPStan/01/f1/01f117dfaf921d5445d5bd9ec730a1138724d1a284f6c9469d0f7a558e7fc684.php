@@ -2,7 +2,7 @@
 
 // odsl-/var/www/html/app/Domain/Notification/Listeners/NotificationSubscriber.php-PHPStan\BetterReflection\Reflection\ReflectionClass-App\Domain\Notification\Listeners\NotificationSubscriber
 return \PHPStan\Cache\CacheItem::__set_state(array(
-   'variableKey' => 'v2-6.70.0.1-8.3.31-86b29f126f6da5c75b69629b217f4a45178b2622b1a2e6e861f1a6653580c236',
+   'variableKey' => 'v2-6.70.0.1-8.3.31-bb6f7082e3c595075eb370e5fa74895a20bea73e4b6b9734ccec2e67578f1cc2',
    'data' => 
   array (
     'locatedSource' => 
@@ -31,8 +31,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
     'attributes' => 
     array (
     ),
-    'startLine' => 32,
-    'endLine' => 328,
+    'startLine' => 38,
+    'endLine' => 485,
     'startColumn' => 1,
     'endColumn' => 1,
     'parentClassName' => NULL,
@@ -67,8 +67,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         'attributes' => 
         array (
         ),
-        'startLine' => 34,
-        'endLine' => 34,
+        'startLine' => 40,
+        'endLine' => 40,
         'startColumn' => 33,
         'endColumn' => 67,
         'isPromoted' => true,
@@ -105,8 +105,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             'attributes' => 
             array (
             ),
-            'startLine' => 34,
-            'endLine' => 34,
+            'startLine' => 40,
+            'endLine' => 40,
             'startColumn' => 33,
             'endColumn' => 67,
             'parameterIndex' => 0,
@@ -119,8 +119,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         array (
         ),
         'docComment' => NULL,
-        'startLine' => 34,
-        'endLine' => 34,
+        'startLine' => 40,
+        'endLine' => 40,
         'startColumn' => 5,
         'endColumn' => 71,
         'couldThrow' => false,
@@ -158,8 +158,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             'attributes' => 
             array (
             ),
-            'startLine' => 36,
-            'endLine' => 36,
+            'startLine' => 54,
+            'endLine' => 54,
             'startColumn' => 48,
             'endColumn' => 74,
             'parameterIndex' => 0,
@@ -179,9 +179,20 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         'attributes' => 
         array (
         ),
-        'docComment' => NULL,
-        'startLine' => 36,
-        'endLine' => 48,
+        'docComment' => '/**
+ * A non-owner MDA wants to serve one of this MDA\'s beneficiaries (FR-OWN-06).
+ *
+ * Framed as ACTION REQUIRED with somewhere to go, because nothing reaches the
+ * person until an approver here decides: a request left unread is a service not
+ * delivered. The body names the requesting MDA and the activity so the approver
+ * knows what they are being asked to allow before they log in.
+ *
+ * It names NO beneficiary. Email is not a secure channel (NDPA/NDPR minimisation),
+ * and this same text is what the email renders — so the person is identified by the
+ * LINK, behind authentication, scope and the audit trail, never in the message.
+ */',
+        'startLine' => 54,
+        'endLine' => 77,
         'startColumn' => 5,
         'endColumn' => 5,
         'couldThrow' => false,
@@ -219,8 +230,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             'attributes' => 
             array (
             ),
-            'startLine' => 50,
-            'endLine' => 50,
+            'startLine' => 79,
+            'endLine' => 79,
             'startColumn' => 50,
             'endColumn' => 78,
             'parameterIndex' => 0,
@@ -241,8 +252,76 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         array (
         ),
         'docComment' => NULL,
-        'startLine' => 50,
-        'endLine' => 61,
+        'startLine' => 79,
+        'endLine' => 93,
+        'startColumn' => 5,
+        'endColumn' => 5,
+        'couldThrow' => false,
+        'isClosure' => false,
+        'isGenerator' => false,
+        'isVariadic' => false,
+        'modifiers' => 1,
+        'namespace' => 'App\\Domain\\Notification\\Listeners',
+        'declaringClassName' => 'App\\Domain\\Notification\\Listeners\\NotificationSubscriber',
+        'implementingClassName' => 'App\\Domain\\Notification\\Listeners\\NotificationSubscriber',
+        'currentClassName' => 'App\\Domain\\Notification\\Listeners\\NotificationSubscriber',
+        'aliasName' => NULL,
+      ),
+      'handleBeneficiaryAccessRevoked' => 
+      array (
+        'name' => 'handleBeneficiaryAccessRevoked',
+        'parameters' => 
+        array (
+          'event' => 
+          array (
+            'name' => 'event',
+            'default' => NULL,
+            'type' => 
+            array (
+              'class' => 'PHPStan\\BetterReflection\\Reflection\\ReflectionNamedType',
+              'data' => 
+              array (
+                'name' => 'App\\Domain\\Registry\\Events\\BeneficiaryAccessRevoked',
+                'isIdentifier' => false,
+              ),
+            ),
+            'isVariadic' => false,
+            'byRef' => false,
+            'isPromoted' => false,
+            'attributes' => 
+            array (
+            ),
+            'startLine' => 103,
+            'endLine' => 103,
+            'startColumn' => 52,
+            'endColumn' => 82,
+            'parameterIndex' => 0,
+            'isOptional' => false,
+          ),
+        ),
+        'returnsReference' => false,
+        'returnType' => 
+        array (
+          'class' => 'PHPStan\\BetterReflection\\Reflection\\ReflectionNamedType',
+          'data' => 
+          array (
+            'name' => 'void',
+            'isIdentifier' => true,
+          ),
+        ),
+        'attributes' => 
+        array (
+        ),
+        'docComment' => '/**
+ * The serving MDA is told its access has ended (FR-OWN-07).
+ *
+ * The body names NO beneficiary. As of this event the recipient MDA is no longer
+ * authorized to read that record, so restating the person\'s name here would leak
+ * through the notification exactly the identity the revocation just withdrew. The
+ * related model is the GRANT, which carries ids rather than identity.
+ */',
+        'startLine' => 103,
+        'endLine' => 116,
         'startColumn' => 5,
         'endColumn' => 5,
         'couldThrow' => false,
@@ -280,8 +359,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             'attributes' => 
             array (
             ),
-            'startLine' => 63,
-            'endLine' => 63,
+            'startLine' => 118,
+            'endLine' => 118,
             'startColumn' => 50,
             'endColumn' => 78,
             'parameterIndex' => 0,
@@ -302,8 +381,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         array (
         ),
         'docComment' => NULL,
-        'startLine' => 63,
-        'endLine' => 74,
+        'startLine' => 118,
+        'endLine' => 131,
         'startColumn' => 5,
         'endColumn' => 5,
         'couldThrow' => false,
@@ -341,8 +420,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             'attributes' => 
             array (
             ),
-            'startLine' => 76,
-            'endLine' => 76,
+            'startLine' => 133,
+            'endLine' => 133,
             'startColumn' => 54,
             'endColumn' => 86,
             'parameterIndex' => 0,
@@ -363,8 +442,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         array (
         ),
         'docComment' => NULL,
-        'startLine' => 76,
-        'endLine' => 88,
+        'startLine' => 133,
+        'endLine' => 145,
         'startColumn' => 5,
         'endColumn' => 5,
         'couldThrow' => false,
@@ -372,6 +451,202 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         'isGenerator' => false,
         'isVariadic' => false,
         'modifiers' => 1,
+        'namespace' => 'App\\Domain\\Notification\\Listeners',
+        'declaringClassName' => 'App\\Domain\\Notification\\Listeners\\NotificationSubscriber',
+        'implementingClassName' => 'App\\Domain\\Notification\\Listeners\\NotificationSubscriber',
+        'currentClassName' => 'App\\Domain\\Notification\\Listeners\\NotificationSubscriber',
+        'aliasName' => NULL,
+      ),
+      'handleImportDuplicatesSurfaced' => 
+      array (
+        'name' => 'handleImportDuplicatesSurfaced',
+        'parameters' => 
+        array (
+          'event' => 
+          array (
+            'name' => 'event',
+            'default' => NULL,
+            'type' => 
+            array (
+              'class' => 'PHPStan\\BetterReflection\\Reflection\\ReflectionNamedType',
+              'data' => 
+              array (
+                'name' => 'App\\Domain\\Registry\\Events\\ImportDuplicatesSurfaced',
+                'isIdentifier' => false,
+              ),
+            ),
+            'isVariadic' => false,
+            'byRef' => false,
+            'isPromoted' => false,
+            'attributes' => 
+            array (
+            ),
+            'startLine' => 152,
+            'endLine' => 152,
+            'startColumn' => 52,
+            'endColumn' => 82,
+            'parameterIndex' => 0,
+            'isOptional' => false,
+          ),
+        ),
+        'returnsReference' => false,
+        'returnType' => 
+        array (
+          'class' => 'PHPStan\\BetterReflection\\Reflection\\ReflectionNamedType',
+          'data' => 
+          array (
+            'name' => 'void',
+            'isIdentifier' => true,
+          ),
+        ),
+        'attributes' => 
+        array (
+        ),
+        'docComment' => '/**
+ * Duplicate review is waiting. Goes to the uploader — they chose the file and they
+ * are the one who can answer "is this the same person?" — and to nobody else, so a
+ * routine import does not fan out across the MDA.
+ */',
+        'startLine' => 152,
+        'endLine' => 172,
+        'startColumn' => 5,
+        'endColumn' => 5,
+        'couldThrow' => false,
+        'isClosure' => false,
+        'isGenerator' => false,
+        'isVariadic' => false,
+        'modifiers' => 1,
+        'namespace' => 'App\\Domain\\Notification\\Listeners',
+        'declaringClassName' => 'App\\Domain\\Notification\\Listeners\\NotificationSubscriber',
+        'implementingClassName' => 'App\\Domain\\Notification\\Listeners\\NotificationSubscriber',
+        'currentClassName' => 'App\\Domain\\Notification\\Listeners\\NotificationSubscriber',
+        'aliasName' => NULL,
+      ),
+      'handleImportBatchCompleted' => 
+      array (
+        'name' => 'handleImportBatchCompleted',
+        'parameters' => 
+        array (
+          'event' => 
+          array (
+            'name' => 'event',
+            'default' => NULL,
+            'type' => 
+            array (
+              'class' => 'PHPStan\\BetterReflection\\Reflection\\ReflectionNamedType',
+              'data' => 
+              array (
+                'name' => 'App\\Domain\\Registry\\Events\\ImportBatchCompleted',
+                'isIdentifier' => false,
+              ),
+            ),
+            'isVariadic' => false,
+            'byRef' => false,
+            'isPromoted' => false,
+            'attributes' => 
+            array (
+            ),
+            'startLine' => 178,
+            'endLine' => 178,
+            'startColumn' => 48,
+            'endColumn' => 74,
+            'parameterIndex' => 0,
+            'isOptional' => false,
+          ),
+        ),
+        'returnsReference' => false,
+        'returnType' => 
+        array (
+          'class' => 'PHPStan\\BetterReflection\\Reflection\\ReflectionNamedType',
+          'data' => 
+          array (
+            'name' => 'void',
+            'isIdentifier' => true,
+          ),
+        ),
+        'attributes' => 
+        array (
+        ),
+        'docComment' => '/**
+ * The import finished. An import is asynchronous, so the officer who confirmed it has
+ * usually moved on — this is how they learn the outcome.
+ */',
+        'startLine' => 178,
+        'endLine' => 192,
+        'startColumn' => 5,
+        'endColumn' => 5,
+        'couldThrow' => false,
+        'isClosure' => false,
+        'isGenerator' => false,
+        'isVariadic' => false,
+        'modifiers' => 1,
+        'namespace' => 'App\\Domain\\Notification\\Listeners',
+        'declaringClassName' => 'App\\Domain\\Notification\\Listeners\\NotificationSubscriber',
+        'implementingClassName' => 'App\\Domain\\Notification\\Listeners\\NotificationSubscriber',
+        'currentClassName' => 'App\\Domain\\Notification\\Listeners\\NotificationSubscriber',
+        'aliasName' => NULL,
+      ),
+      'uploader' => 
+      array (
+        'name' => 'uploader',
+        'parameters' => 
+        array (
+          'batch' => 
+          array (
+            'name' => 'batch',
+            'default' => NULL,
+            'type' => 
+            array (
+              'class' => 'PHPStan\\BetterReflection\\Reflection\\ReflectionNamedType',
+              'data' => 
+              array (
+                'name' => 'App\\Domain\\Registry\\Models\\ImportBatch',
+                'isIdentifier' => false,
+              ),
+            ),
+            'isVariadic' => false,
+            'byRef' => false,
+            'isPromoted' => false,
+            'attributes' => 
+            array (
+            ),
+            'startLine' => 201,
+            'endLine' => 201,
+            'startColumn' => 31,
+            'endColumn' => 48,
+            'parameterIndex' => 0,
+            'isOptional' => false,
+          ),
+        ),
+        'returnsReference' => false,
+        'returnType' => 
+        array (
+          'class' => 'PHPStan\\BetterReflection\\Reflection\\ReflectionNamedType',
+          'data' => 
+          array (
+            'name' => 'Illuminate\\Support\\Collection',
+            'isIdentifier' => false,
+          ),
+        ),
+        'attributes' => 
+        array (
+        ),
+        'docComment' => '/**
+ * The user who uploaded a batch. Falls back to the owning MDA\'s importers when the
+ * uploader is unknown (an API-intake batch has no interactive uploader), so the
+ * result is never lost — and always stays inside the owning MDA.
+ *
+ * @return Collection<int, User>
+ */',
+        'startLine' => 201,
+        'endLine' => 211,
+        'startColumn' => 5,
+        'endColumn' => 5,
+        'couldThrow' => false,
+        'isClosure' => false,
+        'isGenerator' => false,
+        'isVariadic' => false,
+        'modifiers' => 4,
         'namespace' => 'App\\Domain\\Notification\\Listeners',
         'declaringClassName' => 'App\\Domain\\Notification\\Listeners\\NotificationSubscriber',
         'implementingClassName' => 'App\\Domain\\Notification\\Listeners\\NotificationSubscriber',
@@ -402,8 +677,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             'attributes' => 
             array (
             ),
-            'startLine' => 96,
-            'endLine' => 96,
+            'startLine' => 219,
+            'endLine' => 219,
             'startColumn' => 34,
             'endColumn' => 46,
             'parameterIndex' => 0,
@@ -428,8 +703,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             'attributes' => 
             array (
             ),
-            'startLine' => 96,
-            'endLine' => 96,
+            'startLine' => 219,
+            'endLine' => 219,
             'startColumn' => 49,
             'endColumn' => 66,
             'parameterIndex' => 1,
@@ -455,8 +730,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
  *
  * @return Collection<int, User>
  */',
-        'startLine' => 96,
-        'endLine' => 104,
+        'startLine' => 219,
+        'endLine' => 227,
         'startColumn' => 5,
         'endColumn' => 5,
         'couldThrow' => false,
@@ -513,8 +788,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             'attributes' => 
             array (
             ),
-            'startLine' => 112,
-            'endLine' => 112,
+            'startLine' => 235,
+            'endLine' => 235,
             'startColumn' => 32,
             'endColumn' => 51,
             'parameterIndex' => 0,
@@ -539,8 +814,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             'attributes' => 
             array (
             ),
-            'startLine' => 112,
-            'endLine' => 112,
+            'startLine' => 235,
+            'endLine' => 235,
             'startColumn' => 54,
             'endColumn' => 70,
             'parameterIndex' => 1,
@@ -566,8 +841,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
  *
  * @return Collection<int, User>
  */',
-        'startLine' => 112,
-        'endLine' => 122,
+        'startLine' => 235,
+        'endLine' => 245,
         'startColumn' => 5,
         'endColumn' => 5,
         'couldThrow' => false,
@@ -605,8 +880,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             'attributes' => 
             array (
             ),
-            'startLine' => 124,
-            'endLine' => 124,
+            'startLine' => 247,
+            'endLine' => 247,
             'startColumn' => 49,
             'endColumn' => 76,
             'parameterIndex' => 0,
@@ -627,8 +902,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         array (
         ),
         'docComment' => NULL,
-        'startLine' => 124,
-        'endLine' => 136,
+        'startLine' => 247,
+        'endLine' => 259,
         'startColumn' => 5,
         'endColumn' => 5,
         'couldThrow' => false,
@@ -666,8 +941,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             'attributes' => 
             array (
             ),
-            'startLine' => 138,
-            'endLine' => 138,
+            'startLine' => 261,
+            'endLine' => 261,
             'startColumn' => 47,
             'endColumn' => 72,
             'parameterIndex' => 0,
@@ -688,8 +963,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         array (
         ),
         'docComment' => NULL,
-        'startLine' => 138,
-        'endLine' => 156,
+        'startLine' => 261,
+        'endLine' => 279,
         'startColumn' => 5,
         'endColumn' => 5,
         'couldThrow' => false,
@@ -727,8 +1002,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             'attributes' => 
             array (
             ),
-            'startLine' => 163,
-            'endLine' => 163,
+            'startLine' => 286,
+            'endLine' => 286,
             'startColumn' => 34,
             'endColumn' => 51,
             'parameterIndex' => 0,
@@ -753,8 +1028,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
  *
  * @return Collection<int, User>
  */',
-        'startLine' => 163,
-        'endLine' => 169,
+        'startLine' => 286,
+        'endLine' => 292,
         'startColumn' => 5,
         'endColumn' => 5,
         'couldThrow' => false,
@@ -792,8 +1067,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             'attributes' => 
             array (
             ),
-            'startLine' => 177,
-            'endLine' => 177,
+            'startLine' => 300,
+            'endLine' => 300,
             'startColumn' => 37,
             'endColumn' => 54,
             'parameterIndex' => 0,
@@ -818,8 +1093,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             'attributes' => 
             array (
             ),
-            'startLine' => 177,
-            'endLine' => 177,
+            'startLine' => 300,
+            'endLine' => 300,
             'startColumn' => 57,
             'endColumn' => 66,
             'parameterIndex' => 1,
@@ -845,8 +1120,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
  *
  * @return Collection<int, User>
  */',
-        'startLine' => 177,
-        'endLine' => 191,
+        'startLine' => 300,
+        'endLine' => 314,
         'startColumn' => 5,
         'endColumn' => 5,
         'couldThrow' => false,
@@ -884,8 +1159,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             'attributes' => 
             array (
             ),
-            'startLine' => 193,
-            'endLine' => 193,
+            'startLine' => 316,
+            'endLine' => 316,
             'startColumn' => 45,
             'endColumn' => 68,
             'parameterIndex' => 0,
@@ -906,8 +1181,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         array (
         ),
         'docComment' => NULL,
-        'startLine' => 193,
-        'endLine' => 205,
+        'startLine' => 316,
+        'endLine' => 328,
         'startColumn' => 5,
         'endColumn' => 5,
         'couldThrow' => false,
@@ -945,8 +1220,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             'attributes' => 
             array (
             ),
-            'startLine' => 207,
-            'endLine' => 207,
+            'startLine' => 330,
+            'endLine' => 330,
             'startColumn' => 45,
             'endColumn' => 68,
             'parameterIndex' => 0,
@@ -967,8 +1242,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         array (
         ),
         'docComment' => NULL,
-        'startLine' => 207,
-        'endLine' => 227,
+        'startLine' => 330,
+        'endLine' => 350,
         'startColumn' => 5,
         'endColumn' => 5,
         'couldThrow' => false,
@@ -1006,8 +1281,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             'attributes' => 
             array (
             ),
-            'startLine' => 229,
-            'endLine' => 229,
+            'startLine' => 352,
+            'endLine' => 352,
             'startColumn' => 48,
             'endColumn' => 74,
             'parameterIndex' => 0,
@@ -1028,8 +1303,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         array (
         ),
         'docComment' => NULL,
-        'startLine' => 229,
-        'endLine' => 248,
+        'startLine' => 352,
+        'endLine' => 371,
         'startColumn' => 5,
         'endColumn' => 5,
         'couldThrow' => false,
@@ -1067,8 +1342,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             'attributes' => 
             array (
             ),
-            'startLine' => 258,
-            'endLine' => 258,
+            'startLine' => 381,
+            'endLine' => 381,
             'startColumn' => 46,
             'endColumn' => 65,
             'parameterIndex' => 0,
@@ -1093,8 +1368,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             'attributes' => 
             array (
             ),
-            'startLine' => 258,
-            'endLine' => 258,
+            'startLine' => 381,
+            'endLine' => 381,
             'startColumn' => 68,
             'endColumn' => 77,
             'parameterIndex' => 1,
@@ -1122,8 +1397,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
  *
  * @return Collection<int, User>
  */',
-        'startLine' => 258,
-        'endLine' => 282,
+        'startLine' => 381,
+        'endLine' => 405,
         'startColumn' => 5,
         'endColumn' => 5,
         'couldThrow' => false,
@@ -1161,8 +1436,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             'attributes' => 
             array (
             ),
-            'startLine' => 284,
-            'endLine' => 284,
+            'startLine' => 407,
+            'endLine' => 407,
             'startColumn' => 39,
             'endColumn' => 56,
             'parameterIndex' => 0,
@@ -1183,8 +1458,69 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         array (
         ),
         'docComment' => NULL,
-        'startLine' => 284,
-        'endLine' => 308,
+        'startLine' => 407,
+        'endLine' => 431,
+        'startColumn' => 5,
+        'endColumn' => 5,
+        'couldThrow' => false,
+        'isClosure' => false,
+        'isGenerator' => false,
+        'isVariadic' => false,
+        'modifiers' => 1,
+        'namespace' => 'App\\Domain\\Notification\\Listeners',
+        'declaringClassName' => 'App\\Domain\\Notification\\Listeners\\NotificationSubscriber',
+        'implementingClassName' => 'App\\Domain\\Notification\\Listeners\\NotificationSubscriber',
+        'currentClassName' => 'App\\Domain\\Notification\\Listeners\\NotificationSubscriber',
+        'aliasName' => NULL,
+      ),
+      'handleBeneficiaryGraduated' => 
+      array (
+        'name' => 'handleBeneficiaryGraduated',
+        'parameters' => 
+        array (
+          'event' => 
+          array (
+            'name' => 'event',
+            'default' => NULL,
+            'type' => 
+            array (
+              'class' => 'PHPStan\\BetterReflection\\Reflection\\ReflectionNamedType',
+              'data' => 
+              array (
+                'name' => 'App\\Domain\\Graduation\\Events\\BeneficiaryGraduated',
+                'isIdentifier' => false,
+              ),
+            ),
+            'isVariadic' => false,
+            'byRef' => false,
+            'isPromoted' => false,
+            'attributes' => 
+            array (
+            ),
+            'startLine' => 433,
+            'endLine' => 433,
+            'startColumn' => 48,
+            'endColumn' => 74,
+            'parameterIndex' => 0,
+            'isOptional' => false,
+          ),
+        ),
+        'returnsReference' => false,
+        'returnType' => 
+        array (
+          'class' => 'PHPStan\\BetterReflection\\Reflection\\ReflectionNamedType',
+          'data' => 
+          array (
+            'name' => 'void',
+            'isIdentifier' => true,
+          ),
+        ),
+        'attributes' => 
+        array (
+        ),
+        'docComment' => NULL,
+        'startLine' => 433,
+        'endLine' => 461,
         'startColumn' => 5,
         'endColumn' => 5,
         'couldThrow' => false,
@@ -1222,8 +1558,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             'attributes' => 
             array (
             ),
-            'startLine' => 313,
-            'endLine' => 313,
+            'startLine' => 466,
+            'endLine' => 466,
             'startColumn' => 31,
             'endColumn' => 48,
             'parameterIndex' => 0,
@@ -1246,8 +1582,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         'docComment' => '/**
  * @return array<class-string, string>
  */',
-        'startLine' => 313,
-        'endLine' => 327,
+        'startLine' => 466,
+        'endLine' => 484,
         'startColumn' => 5,
         'endColumn' => 5,
         'couldThrow' => false,

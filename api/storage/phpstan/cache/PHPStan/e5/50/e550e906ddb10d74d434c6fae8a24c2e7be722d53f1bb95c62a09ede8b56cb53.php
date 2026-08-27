@@ -12,10 +12,17 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
          'namespace' => 'App\\Domain\\Reporting\\Reports\\AdHoc',
          'uses' => 
         array (
+          'mda' => 'App\\Domain\\Access\\Models\\Mda',
+          'user' => 'App\\Domain\\Access\\Models\\User',
+          'auditlog' => 'App\\Domain\\Audit\\Models\\AuditLog',
           'benefit' => 'App\\Domain\\Benefit\\Models\\Benefit',
           'grievance' => 'App\\Domain\\Grievance\\Models\\Grievance',
+          'activity' => 'App\\Domain\\Programme\\Models\\Activity',
+          'programme' => 'App\\Domain\\Programme\\Models\\Programme',
           'referral' => 'App\\Domain\\Referral\\Models\\Referral',
           'beneficiary' => 'App\\Domain\\Registry\\Models\\Beneficiary',
+          'importbatch' => 'App\\Domain\\Registry\\Models\\ImportBatch',
+          'importrow' => 'App\\Domain\\Registry\\Models\\ImportRow',
           'dashboardscope' => 'App\\Domain\\Reporting\\Support\\DashboardScope',
         ),
          'className' => 'App\\Domain\\Reporting\\Reports\\AdHoc\\AdHocDatasetRegistry',
@@ -39,10 +46,17 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
          'namespace' => 'App\\Domain\\Reporting\\Reports\\AdHoc',
          'uses' => 
         array (
+          'mda' => 'App\\Domain\\Access\\Models\\Mda',
+          'user' => 'App\\Domain\\Access\\Models\\User',
+          'auditlog' => 'App\\Domain\\Audit\\Models\\AuditLog',
           'benefit' => 'App\\Domain\\Benefit\\Models\\Benefit',
           'grievance' => 'App\\Domain\\Grievance\\Models\\Grievance',
+          'activity' => 'App\\Domain\\Programme\\Models\\Activity',
+          'programme' => 'App\\Domain\\Programme\\Models\\Programme',
           'referral' => 'App\\Domain\\Referral\\Models\\Referral',
           'beneficiary' => 'App\\Domain\\Registry\\Models\\Beneficiary',
+          'importbatch' => 'App\\Domain\\Registry\\Models\\ImportBatch',
+          'importrow' => 'App\\Domain\\Registry\\Models\\ImportRow',
           'dashboardscope' => 'App\\Domain\\Reporting\\Support\\DashboardScope',
         ),
          'className' => 'App\\Domain\\Reporting\\Reports\\AdHoc\\AdHocDatasetRegistry',
@@ -55,10 +69,17 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
            'namespace' => 'App\\Domain\\Reporting\\Reports\\AdHoc',
            'uses' => 
           array (
+            'mda' => 'App\\Domain\\Access\\Models\\Mda',
+            'user' => 'App\\Domain\\Access\\Models\\User',
+            'auditlog' => 'App\\Domain\\Audit\\Models\\AuditLog',
             'benefit' => 'App\\Domain\\Benefit\\Models\\Benefit',
             'grievance' => 'App\\Domain\\Grievance\\Models\\Grievance',
+            'activity' => 'App\\Domain\\Programme\\Models\\Activity',
+            'programme' => 'App\\Domain\\Programme\\Models\\Programme',
             'referral' => 'App\\Domain\\Referral\\Models\\Referral',
             'beneficiary' => 'App\\Domain\\Registry\\Models\\Beneficiary',
+            'importbatch' => 'App\\Domain\\Registry\\Models\\ImportBatch',
+            'importrow' => 'App\\Domain\\Registry\\Models\\ImportRow',
             'dashboardscope' => 'App\\Domain\\Reporting\\Support\\DashboardScope',
           ),
            'className' => 'App\\Domain\\Reporting\\Reports\\AdHoc\\AdHocDatasetRegistry',
@@ -92,10 +113,17 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
          'namespace' => 'App\\Domain\\Reporting\\Reports\\AdHoc',
          'uses' => 
         array (
+          'mda' => 'App\\Domain\\Access\\Models\\Mda',
+          'user' => 'App\\Domain\\Access\\Models\\User',
+          'auditlog' => 'App\\Domain\\Audit\\Models\\AuditLog',
           'benefit' => 'App\\Domain\\Benefit\\Models\\Benefit',
           'grievance' => 'App\\Domain\\Grievance\\Models\\Grievance',
+          'activity' => 'App\\Domain\\Programme\\Models\\Activity',
+          'programme' => 'App\\Domain\\Programme\\Models\\Programme',
           'referral' => 'App\\Domain\\Referral\\Models\\Referral',
           'beneficiary' => 'App\\Domain\\Registry\\Models\\Beneficiary',
+          'importbatch' => 'App\\Domain\\Registry\\Models\\ImportBatch',
+          'importrow' => 'App\\Domain\\Registry\\Models\\ImportRow',
           'dashboardscope' => 'App\\Domain\\Reporting\\Support\\DashboardScope',
         ),
          'className' => 'App\\Domain\\Reporting\\Reports\\AdHoc\\AdHocDatasetRegistry',
@@ -108,10 +136,151 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
            'namespace' => 'App\\Domain\\Reporting\\Reports\\AdHoc',
            'uses' => 
           array (
+            'mda' => 'App\\Domain\\Access\\Models\\Mda',
+            'user' => 'App\\Domain\\Access\\Models\\User',
+            'auditlog' => 'App\\Domain\\Audit\\Models\\AuditLog',
             'benefit' => 'App\\Domain\\Benefit\\Models\\Benefit',
             'grievance' => 'App\\Domain\\Grievance\\Models\\Grievance',
+            'activity' => 'App\\Domain\\Programme\\Models\\Activity',
+            'programme' => 'App\\Domain\\Programme\\Models\\Programme',
             'referral' => 'App\\Domain\\Referral\\Models\\Referral',
             'beneficiary' => 'App\\Domain\\Registry\\Models\\Beneficiary',
+            'importbatch' => 'App\\Domain\\Registry\\Models\\ImportBatch',
+            'importrow' => 'App\\Domain\\Registry\\Models\\ImportRow',
+            'dashboardscope' => 'App\\Domain\\Reporting\\Support\\DashboardScope',
+          ),
+           'className' => 'App\\Domain\\Reporting\\Reports\\AdHoc\\AdHocDatasetRegistry',
+           'functionName' => NULL,
+           'templatePhpDocNodes' => 
+          array (
+          ),
+           'parent' => NULL,
+           'typeAliasesMap' => 
+          array (
+          ),
+           'bypassTypeAliases' => false,
+           'constUses' => 
+          array (
+          ),
+           'typeAliasClassName' => NULL,
+           'traitData' => NULL,
+        )),
+         'typeAliasesMap' => 
+        array (
+        ),
+         'bypassTypeAliases' => false,
+         'constUses' => 
+        array (
+        ),
+         'typeAliasClassName' => NULL,
+         'traitData' => NULL,
+      )),
+      '152d3ce873a73cd700032b75a572028f' => 
+      \PHPStan\Analyser\IntermediaryNameScope::__set_state(array(
+         'namespace' => 'App\\Domain\\Reporting\\Reports\\AdHoc',
+         'uses' => 
+        array (
+          'mda' => 'App\\Domain\\Access\\Models\\Mda',
+          'user' => 'App\\Domain\\Access\\Models\\User',
+          'auditlog' => 'App\\Domain\\Audit\\Models\\AuditLog',
+          'benefit' => 'App\\Domain\\Benefit\\Models\\Benefit',
+          'grievance' => 'App\\Domain\\Grievance\\Models\\Grievance',
+          'activity' => 'App\\Domain\\Programme\\Models\\Activity',
+          'programme' => 'App\\Domain\\Programme\\Models\\Programme',
+          'referral' => 'App\\Domain\\Referral\\Models\\Referral',
+          'beneficiary' => 'App\\Domain\\Registry\\Models\\Beneficiary',
+          'importbatch' => 'App\\Domain\\Registry\\Models\\ImportBatch',
+          'importrow' => 'App\\Domain\\Registry\\Models\\ImportRow',
+          'dashboardscope' => 'App\\Domain\\Reporting\\Support\\DashboardScope',
+        ),
+         'className' => 'App\\Domain\\Reporting\\Reports\\AdHoc\\AdHocDatasetRegistry',
+         'functionName' => 'isAdmin',
+         'templatePhpDocNodes' => 
+        array (
+        ),
+         'parent' => 
+        \PHPStan\Analyser\IntermediaryNameScope::__set_state(array(
+           'namespace' => 'App\\Domain\\Reporting\\Reports\\AdHoc',
+           'uses' => 
+          array (
+            'mda' => 'App\\Domain\\Access\\Models\\Mda',
+            'user' => 'App\\Domain\\Access\\Models\\User',
+            'auditlog' => 'App\\Domain\\Audit\\Models\\AuditLog',
+            'benefit' => 'App\\Domain\\Benefit\\Models\\Benefit',
+            'grievance' => 'App\\Domain\\Grievance\\Models\\Grievance',
+            'activity' => 'App\\Domain\\Programme\\Models\\Activity',
+            'programme' => 'App\\Domain\\Programme\\Models\\Programme',
+            'referral' => 'App\\Domain\\Referral\\Models\\Referral',
+            'beneficiary' => 'App\\Domain\\Registry\\Models\\Beneficiary',
+            'importbatch' => 'App\\Domain\\Registry\\Models\\ImportBatch',
+            'importrow' => 'App\\Domain\\Registry\\Models\\ImportRow',
+            'dashboardscope' => 'App\\Domain\\Reporting\\Support\\DashboardScope',
+          ),
+           'className' => 'App\\Domain\\Reporting\\Reports\\AdHoc\\AdHocDatasetRegistry',
+           'functionName' => NULL,
+           'templatePhpDocNodes' => 
+          array (
+          ),
+           'parent' => NULL,
+           'typeAliasesMap' => 
+          array (
+          ),
+           'bypassTypeAliases' => false,
+           'constUses' => 
+          array (
+          ),
+           'typeAliasClassName' => NULL,
+           'traitData' => NULL,
+        )),
+         'typeAliasesMap' => 
+        array (
+        ),
+         'bypassTypeAliases' => false,
+         'constUses' => 
+        array (
+        ),
+         'typeAliasClassName' => NULL,
+         'traitData' => NULL,
+      )),
+      'ce53a7abe63e8c69d3899b112017da87' => 
+      \PHPStan\Analyser\IntermediaryNameScope::__set_state(array(
+         'namespace' => 'App\\Domain\\Reporting\\Reports\\AdHoc',
+         'uses' => 
+        array (
+          'mda' => 'App\\Domain\\Access\\Models\\Mda',
+          'user' => 'App\\Domain\\Access\\Models\\User',
+          'auditlog' => 'App\\Domain\\Audit\\Models\\AuditLog',
+          'benefit' => 'App\\Domain\\Benefit\\Models\\Benefit',
+          'grievance' => 'App\\Domain\\Grievance\\Models\\Grievance',
+          'activity' => 'App\\Domain\\Programme\\Models\\Activity',
+          'programme' => 'App\\Domain\\Programme\\Models\\Programme',
+          'referral' => 'App\\Domain\\Referral\\Models\\Referral',
+          'beneficiary' => 'App\\Domain\\Registry\\Models\\Beneficiary',
+          'importbatch' => 'App\\Domain\\Registry\\Models\\ImportBatch',
+          'importrow' => 'App\\Domain\\Registry\\Models\\ImportRow',
+          'dashboardscope' => 'App\\Domain\\Reporting\\Support\\DashboardScope',
+        ),
+         'className' => 'App\\Domain\\Reporting\\Reports\\AdHoc\\AdHocDatasetRegistry',
+         'functionName' => 'isMdaScopable',
+         'templatePhpDocNodes' => 
+        array (
+        ),
+         'parent' => 
+        \PHPStan\Analyser\IntermediaryNameScope::__set_state(array(
+           'namespace' => 'App\\Domain\\Reporting\\Reports\\AdHoc',
+           'uses' => 
+          array (
+            'mda' => 'App\\Domain\\Access\\Models\\Mda',
+            'user' => 'App\\Domain\\Access\\Models\\User',
+            'auditlog' => 'App\\Domain\\Audit\\Models\\AuditLog',
+            'benefit' => 'App\\Domain\\Benefit\\Models\\Benefit',
+            'grievance' => 'App\\Domain\\Grievance\\Models\\Grievance',
+            'activity' => 'App\\Domain\\Programme\\Models\\Activity',
+            'programme' => 'App\\Domain\\Programme\\Models\\Programme',
+            'referral' => 'App\\Domain\\Referral\\Models\\Referral',
+            'beneficiary' => 'App\\Domain\\Registry\\Models\\Beneficiary',
+            'importbatch' => 'App\\Domain\\Registry\\Models\\ImportBatch',
+            'importrow' => 'App\\Domain\\Registry\\Models\\ImportRow',
             'dashboardscope' => 'App\\Domain\\Reporting\\Support\\DashboardScope',
           ),
            'className' => 'App\\Domain\\Reporting\\Reports\\AdHoc\\AdHocDatasetRegistry',
@@ -145,10 +314,17 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
          'namespace' => 'App\\Domain\\Reporting\\Reports\\AdHoc',
          'uses' => 
         array (
+          'mda' => 'App\\Domain\\Access\\Models\\Mda',
+          'user' => 'App\\Domain\\Access\\Models\\User',
+          'auditlog' => 'App\\Domain\\Audit\\Models\\AuditLog',
           'benefit' => 'App\\Domain\\Benefit\\Models\\Benefit',
           'grievance' => 'App\\Domain\\Grievance\\Models\\Grievance',
+          'activity' => 'App\\Domain\\Programme\\Models\\Activity',
+          'programme' => 'App\\Domain\\Programme\\Models\\Programme',
           'referral' => 'App\\Domain\\Referral\\Models\\Referral',
           'beneficiary' => 'App\\Domain\\Registry\\Models\\Beneficiary',
+          'importbatch' => 'App\\Domain\\Registry\\Models\\ImportBatch',
+          'importrow' => 'App\\Domain\\Registry\\Models\\ImportRow',
           'dashboardscope' => 'App\\Domain\\Reporting\\Support\\DashboardScope',
         ),
          'className' => 'App\\Domain\\Reporting\\Reports\\AdHoc\\AdHocDatasetRegistry',
@@ -161,10 +337,17 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
            'namespace' => 'App\\Domain\\Reporting\\Reports\\AdHoc',
            'uses' => 
           array (
+            'mda' => 'App\\Domain\\Access\\Models\\Mda',
+            'user' => 'App\\Domain\\Access\\Models\\User',
+            'auditlog' => 'App\\Domain\\Audit\\Models\\AuditLog',
             'benefit' => 'App\\Domain\\Benefit\\Models\\Benefit',
             'grievance' => 'App\\Domain\\Grievance\\Models\\Grievance',
+            'activity' => 'App\\Domain\\Programme\\Models\\Activity',
+            'programme' => 'App\\Domain\\Programme\\Models\\Programme',
             'referral' => 'App\\Domain\\Referral\\Models\\Referral',
             'beneficiary' => 'App\\Domain\\Registry\\Models\\Beneficiary',
+            'importbatch' => 'App\\Domain\\Registry\\Models\\ImportBatch',
+            'importrow' => 'App\\Domain\\Registry\\Models\\ImportRow',
             'dashboardscope' => 'App\\Domain\\Reporting\\Support\\DashboardScope',
           ),
            'className' => 'App\\Domain\\Reporting\\Reports\\AdHoc\\AdHocDatasetRegistry',
@@ -198,10 +381,17 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
          'namespace' => 'App\\Domain\\Reporting\\Reports\\AdHoc',
          'uses' => 
         array (
+          'mda' => 'App\\Domain\\Access\\Models\\Mda',
+          'user' => 'App\\Domain\\Access\\Models\\User',
+          'auditlog' => 'App\\Domain\\Audit\\Models\\AuditLog',
           'benefit' => 'App\\Domain\\Benefit\\Models\\Benefit',
           'grievance' => 'App\\Domain\\Grievance\\Models\\Grievance',
+          'activity' => 'App\\Domain\\Programme\\Models\\Activity',
+          'programme' => 'App\\Domain\\Programme\\Models\\Programme',
           'referral' => 'App\\Domain\\Referral\\Models\\Referral',
           'beneficiary' => 'App\\Domain\\Registry\\Models\\Beneficiary',
+          'importbatch' => 'App\\Domain\\Registry\\Models\\ImportBatch',
+          'importrow' => 'App\\Domain\\Registry\\Models\\ImportRow',
           'dashboardscope' => 'App\\Domain\\Reporting\\Support\\DashboardScope',
         ),
          'className' => 'App\\Domain\\Reporting\\Reports\\AdHoc\\AdHocDatasetRegistry',
@@ -214,10 +404,17 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
            'namespace' => 'App\\Domain\\Reporting\\Reports\\AdHoc',
            'uses' => 
           array (
+            'mda' => 'App\\Domain\\Access\\Models\\Mda',
+            'user' => 'App\\Domain\\Access\\Models\\User',
+            'auditlog' => 'App\\Domain\\Audit\\Models\\AuditLog',
             'benefit' => 'App\\Domain\\Benefit\\Models\\Benefit',
             'grievance' => 'App\\Domain\\Grievance\\Models\\Grievance',
+            'activity' => 'App\\Domain\\Programme\\Models\\Activity',
+            'programme' => 'App\\Domain\\Programme\\Models\\Programme',
             'referral' => 'App\\Domain\\Referral\\Models\\Referral',
             'beneficiary' => 'App\\Domain\\Registry\\Models\\Beneficiary',
+            'importbatch' => 'App\\Domain\\Registry\\Models\\ImportBatch',
+            'importrow' => 'App\\Domain\\Registry\\Models\\ImportRow',
             'dashboardscope' => 'App\\Domain\\Reporting\\Support\\DashboardScope',
           ),
            'className' => 'App\\Domain\\Reporting\\Reports\\AdHoc\\AdHocDatasetRegistry',
@@ -251,10 +448,17 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
          'namespace' => 'App\\Domain\\Reporting\\Reports\\AdHoc',
          'uses' => 
         array (
+          'mda' => 'App\\Domain\\Access\\Models\\Mda',
+          'user' => 'App\\Domain\\Access\\Models\\User',
+          'auditlog' => 'App\\Domain\\Audit\\Models\\AuditLog',
           'benefit' => 'App\\Domain\\Benefit\\Models\\Benefit',
           'grievance' => 'App\\Domain\\Grievance\\Models\\Grievance',
+          'activity' => 'App\\Domain\\Programme\\Models\\Activity',
+          'programme' => 'App\\Domain\\Programme\\Models\\Programme',
           'referral' => 'App\\Domain\\Referral\\Models\\Referral',
           'beneficiary' => 'App\\Domain\\Registry\\Models\\Beneficiary',
+          'importbatch' => 'App\\Domain\\Registry\\Models\\ImportBatch',
+          'importrow' => 'App\\Domain\\Registry\\Models\\ImportRow',
           'dashboardscope' => 'App\\Domain\\Reporting\\Support\\DashboardScope',
         ),
          'className' => 'App\\Domain\\Reporting\\Reports\\AdHoc\\AdHocDatasetRegistry',
@@ -267,10 +471,17 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
            'namespace' => 'App\\Domain\\Reporting\\Reports\\AdHoc',
            'uses' => 
           array (
+            'mda' => 'App\\Domain\\Access\\Models\\Mda',
+            'user' => 'App\\Domain\\Access\\Models\\User',
+            'auditlog' => 'App\\Domain\\Audit\\Models\\AuditLog',
             'benefit' => 'App\\Domain\\Benefit\\Models\\Benefit',
             'grievance' => 'App\\Domain\\Grievance\\Models\\Grievance',
+            'activity' => 'App\\Domain\\Programme\\Models\\Activity',
+            'programme' => 'App\\Domain\\Programme\\Models\\Programme',
             'referral' => 'App\\Domain\\Referral\\Models\\Referral',
             'beneficiary' => 'App\\Domain\\Registry\\Models\\Beneficiary',
+            'importbatch' => 'App\\Domain\\Registry\\Models\\ImportBatch',
+            'importrow' => 'App\\Domain\\Registry\\Models\\ImportRow',
             'dashboardscope' => 'App\\Domain\\Reporting\\Support\\DashboardScope',
           ),
            'className' => 'App\\Domain\\Reporting\\Reports\\AdHoc\\AdHocDatasetRegistry',
@@ -302,7 +513,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
     ),
     1 => 
     array (
-      '/var/www/html/app/Domain/Reporting/Reports/AdHoc/AdHocDatasetRegistry.php' => 'da058c66e37aa027f0aa82588ee7bc10c9ae511ecb7a1db2172035949642e1e2',
+      '/var/www/html/app/Domain/Reporting/Reports/AdHoc/AdHocDatasetRegistry.php' => '01f16047ab5213febd7e77bf488f54d64d9fb004a647365ce9076afba6165d6c',
     ),
   ),
 ));

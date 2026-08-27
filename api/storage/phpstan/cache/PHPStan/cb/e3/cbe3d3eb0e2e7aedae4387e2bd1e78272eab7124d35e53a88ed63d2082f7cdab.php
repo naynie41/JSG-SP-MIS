@@ -12,6 +12,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
          'namespace' => 'App\\Domain\\Access\\Models',
          'uses' => 
         array (
+          'builder' => 'Illuminate\\Database\\Eloquent\\Builder',
           'hasuuids' => 'Illuminate\\Database\\Eloquent\\Concerns\\HasUuids',
           'model' => 'Illuminate\\Database\\Eloquent\\Model',
           'belongsto' => 'Illuminate\\Database\\Eloquent\\Relations\\BelongsTo',
@@ -398,6 +399,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
          'namespace' => 'App\\Domain\\Access\\Models',
          'uses' => 
         array (
+          'builder' => 'Illuminate\\Database\\Eloquent\\Builder',
           'hasuuids' => 'Illuminate\\Database\\Eloquent\\Concerns\\HasUuids',
           'model' => 'Illuminate\\Database\\Eloquent\\Model',
           'belongsto' => 'Illuminate\\Database\\Eloquent\\Relations\\BelongsTo',
@@ -413,6 +415,113 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
            'namespace' => 'App\\Domain\\Access\\Models',
            'uses' => 
           array (
+            'builder' => 'Illuminate\\Database\\Eloquent\\Builder',
+            'hasuuids' => 'Illuminate\\Database\\Eloquent\\Concerns\\HasUuids',
+            'model' => 'Illuminate\\Database\\Eloquent\\Model',
+            'belongsto' => 'Illuminate\\Database\\Eloquent\\Relations\\BelongsTo',
+            'carbon' => 'Illuminate\\Support\\Carbon',
+          ),
+           'className' => 'App\\Domain\\Access\\Models\\MdaAccessGrant',
+           'functionName' => NULL,
+           'templatePhpDocNodes' => 
+          array (
+          ),
+           'parent' => NULL,
+           'typeAliasesMap' => 
+          array (
+          ),
+           'bypassTypeAliases' => false,
+           'constUses' => 
+          array (
+          ),
+           'typeAliasClassName' => NULL,
+           'traitData' => NULL,
+        )),
+         'typeAliasesMap' => 
+        array (
+        ),
+         'bypassTypeAliases' => false,
+         'constUses' => 
+        array (
+        ),
+         'typeAliasClassName' => NULL,
+         'traitData' => NULL,
+      )),
+      '306295b2a2369919ab27e2c1d9adff30' => 
+      \PHPStan\Analyser\IntermediaryNameScope::__set_state(array(
+         'namespace' => 'App\\Domain\\Access\\Models',
+         'uses' => 
+        array (
+          'builder' => 'Illuminate\\Database\\Eloquent\\Builder',
+          'hasuuids' => 'Illuminate\\Database\\Eloquent\\Concerns\\HasUuids',
+          'model' => 'Illuminate\\Database\\Eloquent\\Model',
+          'belongsto' => 'Illuminate\\Database\\Eloquent\\Relations\\BelongsTo',
+          'carbon' => 'Illuminate\\Support\\Carbon',
+        ),
+         'className' => 'App\\Domain\\Access\\Models\\MdaAccessGrant',
+         'functionName' => 'isActive',
+         'templatePhpDocNodes' => 
+        array (
+        ),
+         'parent' => 
+        \PHPStan\Analyser\IntermediaryNameScope::__set_state(array(
+           'namespace' => 'App\\Domain\\Access\\Models',
+           'uses' => 
+          array (
+            'builder' => 'Illuminate\\Database\\Eloquent\\Builder',
+            'hasuuids' => 'Illuminate\\Database\\Eloquent\\Concerns\\HasUuids',
+            'model' => 'Illuminate\\Database\\Eloquent\\Model',
+            'belongsto' => 'Illuminate\\Database\\Eloquent\\Relations\\BelongsTo',
+            'carbon' => 'Illuminate\\Support\\Carbon',
+          ),
+           'className' => 'App\\Domain\\Access\\Models\\MdaAccessGrant',
+           'functionName' => NULL,
+           'templatePhpDocNodes' => 
+          array (
+          ),
+           'parent' => NULL,
+           'typeAliasesMap' => 
+          array (
+          ),
+           'bypassTypeAliases' => false,
+           'constUses' => 
+          array (
+          ),
+           'typeAliasClassName' => NULL,
+           'traitData' => NULL,
+        )),
+         'typeAliasesMap' => 
+        array (
+        ),
+         'bypassTypeAliases' => false,
+         'constUses' => 
+        array (
+        ),
+         'typeAliasClassName' => NULL,
+         'traitData' => NULL,
+      )),
+      '5d9eb0d35b28f4660a3c554003529178' => 
+      \PHPStan\Analyser\IntermediaryNameScope::__set_state(array(
+         'namespace' => 'App\\Domain\\Access\\Models',
+         'uses' => 
+        array (
+          'builder' => 'Illuminate\\Database\\Eloquent\\Builder',
+          'hasuuids' => 'Illuminate\\Database\\Eloquent\\Concerns\\HasUuids',
+          'model' => 'Illuminate\\Database\\Eloquent\\Model',
+          'belongsto' => 'Illuminate\\Database\\Eloquent\\Relations\\BelongsTo',
+          'carbon' => 'Illuminate\\Support\\Carbon',
+        ),
+         'className' => 'App\\Domain\\Access\\Models\\MdaAccessGrant',
+         'functionName' => 'scopeActive',
+         'templatePhpDocNodes' => 
+        array (
+        ),
+         'parent' => 
+        \PHPStan\Analyser\IntermediaryNameScope::__set_state(array(
+           'namespace' => 'App\\Domain\\Access\\Models',
+           'uses' => 
+          array (
+            'builder' => 'Illuminate\\Database\\Eloquent\\Builder',
             'hasuuids' => 'Illuminate\\Database\\Eloquent\\Concerns\\HasUuids',
             'model' => 'Illuminate\\Database\\Eloquent\\Model',
             'belongsto' => 'Illuminate\\Database\\Eloquent\\Relations\\BelongsTo',
@@ -449,6 +558,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
          'namespace' => 'App\\Domain\\Access\\Models',
          'uses' => 
         array (
+          'builder' => 'Illuminate\\Database\\Eloquent\\Builder',
           'hasuuids' => 'Illuminate\\Database\\Eloquent\\Concerns\\HasUuids',
           'model' => 'Illuminate\\Database\\Eloquent\\Model',
           'belongsto' => 'Illuminate\\Database\\Eloquent\\Relations\\BelongsTo',
@@ -464,6 +574,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
            'namespace' => 'App\\Domain\\Access\\Models',
            'uses' => 
           array (
+            'builder' => 'Illuminate\\Database\\Eloquent\\Builder',
             'hasuuids' => 'Illuminate\\Database\\Eloquent\\Concerns\\HasUuids',
             'model' => 'Illuminate\\Database\\Eloquent\\Model',
             'belongsto' => 'Illuminate\\Database\\Eloquent\\Relations\\BelongsTo',
@@ -500,6 +611,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
          'namespace' => 'App\\Domain\\Access\\Models',
          'uses' => 
         array (
+          'builder' => 'Illuminate\\Database\\Eloquent\\Builder',
           'hasuuids' => 'Illuminate\\Database\\Eloquent\\Concerns\\HasUuids',
           'model' => 'Illuminate\\Database\\Eloquent\\Model',
           'belongsto' => 'Illuminate\\Database\\Eloquent\\Relations\\BelongsTo',
@@ -515,6 +627,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
            'namespace' => 'App\\Domain\\Access\\Models',
            'uses' => 
           array (
+            'builder' => 'Illuminate\\Database\\Eloquent\\Builder',
             'hasuuids' => 'Illuminate\\Database\\Eloquent\\Concerns\\HasUuids',
             'model' => 'Illuminate\\Database\\Eloquent\\Model',
             'belongsto' => 'Illuminate\\Database\\Eloquent\\Relations\\BelongsTo',
@@ -551,6 +664,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
          'namespace' => 'App\\Domain\\Access\\Models',
          'uses' => 
         array (
+          'builder' => 'Illuminate\\Database\\Eloquent\\Builder',
           'hasuuids' => 'Illuminate\\Database\\Eloquent\\Concerns\\HasUuids',
           'model' => 'Illuminate\\Database\\Eloquent\\Model',
           'belongsto' => 'Illuminate\\Database\\Eloquent\\Relations\\BelongsTo',
@@ -566,6 +680,60 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
            'namespace' => 'App\\Domain\\Access\\Models',
            'uses' => 
           array (
+            'builder' => 'Illuminate\\Database\\Eloquent\\Builder',
+            'hasuuids' => 'Illuminate\\Database\\Eloquent\\Concerns\\HasUuids',
+            'model' => 'Illuminate\\Database\\Eloquent\\Model',
+            'belongsto' => 'Illuminate\\Database\\Eloquent\\Relations\\BelongsTo',
+            'carbon' => 'Illuminate\\Support\\Carbon',
+          ),
+           'className' => 'App\\Domain\\Access\\Models\\MdaAccessGrant',
+           'functionName' => NULL,
+           'templatePhpDocNodes' => 
+          array (
+          ),
+           'parent' => NULL,
+           'typeAliasesMap' => 
+          array (
+          ),
+           'bypassTypeAliases' => false,
+           'constUses' => 
+          array (
+          ),
+           'typeAliasClassName' => NULL,
+           'traitData' => NULL,
+        )),
+         'typeAliasesMap' => 
+        array (
+        ),
+         'bypassTypeAliases' => false,
+         'constUses' => 
+        array (
+        ),
+         'typeAliasClassName' => NULL,
+         'traitData' => NULL,
+      )),
+      '3395c43a8904d839bb3275f96013d6dd' => 
+      \PHPStan\Analyser\IntermediaryNameScope::__set_state(array(
+         'namespace' => 'App\\Domain\\Access\\Models',
+         'uses' => 
+        array (
+          'builder' => 'Illuminate\\Database\\Eloquent\\Builder',
+          'hasuuids' => 'Illuminate\\Database\\Eloquent\\Concerns\\HasUuids',
+          'model' => 'Illuminate\\Database\\Eloquent\\Model',
+          'belongsto' => 'Illuminate\\Database\\Eloquent\\Relations\\BelongsTo',
+          'carbon' => 'Illuminate\\Support\\Carbon',
+        ),
+         'className' => 'App\\Domain\\Access\\Models\\MdaAccessGrant',
+         'functionName' => 'revokedBy',
+         'templatePhpDocNodes' => 
+        array (
+        ),
+         'parent' => 
+        \PHPStan\Analyser\IntermediaryNameScope::__set_state(array(
+           'namespace' => 'App\\Domain\\Access\\Models',
+           'uses' => 
+          array (
+            'builder' => 'Illuminate\\Database\\Eloquent\\Builder',
             'hasuuids' => 'Illuminate\\Database\\Eloquent\\Concerns\\HasUuids',
             'model' => 'Illuminate\\Database\\Eloquent\\Model',
             'belongsto' => 'Illuminate\\Database\\Eloquent\\Relations\\BelongsTo',
@@ -600,7 +768,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
     ),
     1 => 
     array (
-      '/var/www/html/app/Domain/Access/Models/MdaAccessGrant.php' => '80454f5cca1295177440dad59922c69b175d5bf25e20ef46174a8e4a926daa17',
+      '/var/www/html/app/Domain/Access/Models/MdaAccessGrant.php' => '90584e224e34a474065f3a0d01ac3bd5abebc9405871981966456218ab58f3b1',
       '/var/www/html/vendor/composer/../laravel/framework/src/Illuminate/Database/Eloquent/Concerns/HasUuids.php' => 'f75b8db33aafd61f17652a5e4bb5b8989e62197b306e9f7ae60bb3ac2c34d534',
       '/var/www/html/vendor/composer/../laravel/framework/src/Illuminate/Database/Eloquent/Concerns/HasUniqueStringIds.php' => '3d5612d3c0a56c6c9f19e628b02085d4d68a64d9d07656742725cec78d4a79c5',
     ),

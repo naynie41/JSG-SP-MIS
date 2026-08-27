@@ -2,7 +2,7 @@
 
 // odsl-/var/www/html/app/Http/Controllers/Api/V1/Programme/ProgrammeController.php-PHPStan\BetterReflection\Reflection\ReflectionClass-App\Http\Controllers\Api\V1\Programme\ProgrammeController
 return \PHPStan\Cache\CacheItem::__set_state(array(
-   'variableKey' => 'v2-6.70.0.1-8.3.31-7b25702b7c1c4ef724b7635e912114d299dd40337a9de520d3e8fb40688c0098',
+   'variableKey' => 'v2-6.70.0.1-8.3.31-695ee813ebca19d0f8e6afe71e8948388ffe557959bec774df9fdd0b374eaddc',
    'data' => 
   array (
     'locatedSource' => 
@@ -31,8 +31,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
     'attributes' => 
     array (
     ),
-    'startLine' => 24,
-    'endLine' => 102,
+    'startLine' => 25,
+    'endLine' => 129,
     'startColumn' => 1,
     'endColumn' => 1,
     'parentClassName' => 'App\\Http\\Controllers\\Controller',
@@ -74,8 +74,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             'attributes' => 
             array (
             ),
-            'startLine' => 26,
-            'endLine' => 26,
+            'startLine' => 27,
+            'endLine' => 27,
             'startColumn' => 27,
             'endColumn' => 42,
             'parameterIndex' => 0,
@@ -96,8 +96,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         array (
         ),
         'docComment' => NULL,
-        'startLine' => 26,
-        'endLine' => 45,
+        'startLine' => 27,
+        'endLine' => 53,
         'startColumn' => 5,
         'endColumn' => 5,
         'couldThrow' => false,
@@ -135,8 +135,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             'attributes' => 
             array (
             ),
-            'startLine' => 47,
-            'endLine' => 47,
+            'startLine' => 55,
+            'endLine' => 55,
             'startColumn' => 27,
             'endColumn' => 56,
             'parameterIndex' => 0,
@@ -157,8 +157,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         array (
         ),
         'docComment' => NULL,
-        'startLine' => 47,
-        'endLine' => 59,
+        'startLine' => 55,
+        'endLine' => 67,
         'startColumn' => 5,
         'endColumn' => 5,
         'couldThrow' => false,
@@ -166,6 +166,49 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         'isGenerator' => false,
         'isVariadic' => false,
         'modifiers' => 1,
+        'namespace' => 'App\\Http\\Controllers\\Api\\V1\\Programme',
+        'declaringClassName' => 'App\\Http\\Controllers\\Api\\V1\\Programme\\ProgrammeController',
+        'implementingClassName' => 'App\\Http\\Controllers\\Api\\V1\\Programme\\ProgrammeController',
+        'currentClassName' => 'App\\Http\\Controllers\\Api\\V1\\Programme\\ProgrammeController',
+        'aliasName' => NULL,
+      ),
+      'usageCounts' => 
+      array (
+        'name' => 'usageCounts',
+        'parameters' => 
+        array (
+        ),
+        'returnsReference' => false,
+        'returnType' => 
+        array (
+          'class' => 'PHPStan\\BetterReflection\\Reflection\\ReflectionNamedType',
+          'data' => 
+          array (
+            'name' => 'array',
+            'isIdentifier' => true,
+          ),
+        ),
+        'attributes' => 
+        array (
+        ),
+        'docComment' => '/**
+ * CATALOG USAGE: how widely a global programme is taken up — the activities that
+ * reference it and the distinct MDAs running those activities. Both counts run
+ * through the `activities` relation, so they inherit the SAME MDA scoping the
+ * caller already gets (oversight roles see across all MDAs; an MDA user sees its
+ * own take-up). Programmes themselves stay global and unowned (§10).
+ *
+ * @return array<array-key, \\Closure|string>
+ */',
+        'startLine' => 78,
+        'endLine' => 86,
+        'startColumn' => 5,
+        'endColumn' => 5,
+        'couldThrow' => false,
+        'isClosure' => false,
+        'isGenerator' => false,
+        'isVariadic' => false,
+        'modifiers' => 4,
         'namespace' => 'App\\Http\\Controllers\\Api\\V1\\Programme',
         'declaringClassName' => 'App\\Http\\Controllers\\Api\\V1\\Programme\\ProgrammeController',
         'implementingClassName' => 'App\\Http\\Controllers\\Api\\V1\\Programme\\ProgrammeController',
@@ -196,8 +239,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             'attributes' => 
             array (
             ),
-            'startLine' => 61,
-            'endLine' => 61,
+            'startLine' => 88,
+            'endLine' => 88,
             'startColumn' => 26,
             'endColumn' => 42,
             'parameterIndex' => 0,
@@ -218,8 +261,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         array (
         ),
         'docComment' => NULL,
-        'startLine' => 61,
-        'endLine' => 68,
+        'startLine' => 88,
+        'endLine' => 95,
         'startColumn' => 5,
         'endColumn' => 5,
         'couldThrow' => false,
@@ -257,8 +300,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             'attributes' => 
             array (
             ),
-            'startLine' => 71,
-            'endLine' => 71,
+            'startLine' => 98,
+            'endLine' => 98,
             'startColumn' => 28,
             'endColumn' => 58,
             'parameterIndex' => 0,
@@ -283,8 +326,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             'attributes' => 
             array (
             ),
-            'startLine' => 71,
-            'endLine' => 71,
+            'startLine' => 98,
+            'endLine' => 98,
             'startColumn' => 61,
             'endColumn' => 77,
             'parameterIndex' => 1,
@@ -305,8 +348,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         array (
         ),
         'docComment' => '/** Edit the catalog entry — catalog admin only (§10), enforced by the policy. */',
-        'startLine' => 71,
-        'endLine' => 80,
+        'startLine' => 98,
+        'endLine' => 107,
         'startColumn' => 5,
         'endColumn' => 5,
         'couldThrow' => false,
@@ -344,8 +387,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             'attributes' => 
             array (
             ),
-            'startLine' => 83,
-            'endLine' => 83,
+            'startLine' => 110,
+            'endLine' => 110,
             'startColumn' => 28,
             'endColumn' => 44,
             'parameterIndex' => 0,
@@ -370,8 +413,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             'attributes' => 
             array (
             ),
-            'startLine' => 83,
-            'endLine' => 83,
+            'startLine' => 110,
+            'endLine' => 110,
             'startColumn' => 47,
             'endColumn' => 74,
             'parameterIndex' => 1,
@@ -392,8 +435,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         array (
         ),
         'docComment' => '/** Budget: allocated vs utilised, derived from the benefit ledger (FR-PRG-04). */',
-        'startLine' => 83,
-        'endLine' => 89,
+        'startLine' => 110,
+        'endLine' => 116,
         'startColumn' => 5,
         'endColumn' => 5,
         'couldThrow' => false,
@@ -431,8 +474,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             'attributes' => 
             array (
             ),
-            'startLine' => 92,
-            'endLine' => 92,
+            'startLine' => 119,
+            'endLine' => 119,
             'startColumn' => 29,
             'endColumn' => 45,
             'parameterIndex' => 0,
@@ -453,8 +496,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         array (
         ),
         'docComment' => '/** Archive the catalog entry (catalog admin only) — reversible status change, not a delete. */',
-        'startLine' => 92,
-        'endLine' => 101,
+        'startLine' => 119,
+        'endLine' => 128,
         'startColumn' => 5,
         'endColumn' => 5,
         'couldThrow' => false,

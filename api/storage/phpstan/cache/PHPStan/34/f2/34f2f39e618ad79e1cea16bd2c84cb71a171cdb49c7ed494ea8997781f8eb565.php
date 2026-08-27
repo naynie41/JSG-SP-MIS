@@ -2,7 +2,7 @@
 
 // odsl-/var/www/html/app/Domain/Registry/Policies/ImportBatchPolicy.php-PHPStan\BetterReflection\Reflection\ReflectionClass-App\Domain\Registry\Policies\ImportBatchPolicy
 return \PHPStan\Cache\CacheItem::__set_state(array(
-   'variableKey' => 'v2-6.70.0.1-8.3.31-decd4c37aec185115f989b7700ec37dfa6ba3c9083c9579191d7da8438b86e0f',
+   'variableKey' => 'v2-6.70.0.1-8.3.31-7aaabdcc31e1fb41c90de39f1c18470536ccb85d8c9c8dd26d2b4d94234efdb9',
    'data' => 
   array (
     'locatedSource' => 
@@ -32,7 +32,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
     array (
     ),
     'startLine' => 16,
-    'endLine' => 44,
+    'endLine' => 56,
     'startColumn' => 1,
     'endColumn' => 1,
     'parentClassName' => NULL,
@@ -420,6 +420,99 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         'docComment' => '/** Confirm + commit a preview — owner MDA only. */',
         'startLine' => 40,
         'endLine' => 43,
+        'startColumn' => 5,
+        'endColumn' => 5,
+        'couldThrow' => false,
+        'isClosure' => false,
+        'isGenerator' => false,
+        'isVariadic' => false,
+        'modifiers' => 1,
+        'namespace' => 'App\\Domain\\Registry\\Policies',
+        'declaringClassName' => 'App\\Domain\\Registry\\Policies\\ImportBatchPolicy',
+        'implementingClassName' => 'App\\Domain\\Registry\\Policies\\ImportBatchPolicy',
+        'currentClassName' => 'App\\Domain\\Registry\\Policies\\ImportBatchPolicy',
+        'aliasName' => NULL,
+      ),
+      'map' => 
+      array (
+        'name' => 'map',
+        'parameters' => 
+        array (
+          'user' => 
+          array (
+            'name' => 'user',
+            'default' => NULL,
+            'type' => 
+            array (
+              'class' => 'PHPStan\\BetterReflection\\Reflection\\ReflectionNamedType',
+              'data' => 
+              array (
+                'name' => 'App\\Domain\\Access\\Models\\User',
+                'isIdentifier' => false,
+              ),
+            ),
+            'isVariadic' => false,
+            'byRef' => false,
+            'isPromoted' => false,
+            'attributes' => 
+            array (
+            ),
+            'startLine' => 52,
+            'endLine' => 52,
+            'startColumn' => 25,
+            'endColumn' => 34,
+            'parameterIndex' => 0,
+            'isOptional' => false,
+          ),
+          'batch' => 
+          array (
+            'name' => 'batch',
+            'default' => NULL,
+            'type' => 
+            array (
+              'class' => 'PHPStan\\BetterReflection\\Reflection\\ReflectionNamedType',
+              'data' => 
+              array (
+                'name' => 'App\\Domain\\Registry\\Models\\ImportBatch',
+                'isIdentifier' => false,
+              ),
+            ),
+            'isVariadic' => false,
+            'byRef' => false,
+            'isPromoted' => false,
+            'attributes' => 
+            array (
+            ),
+            'startLine' => 52,
+            'endLine' => 52,
+            'startColumn' => 37,
+            'endColumn' => 54,
+            'parameterIndex' => 1,
+            'isOptional' => false,
+          ),
+        ),
+        'returnsReference' => false,
+        'returnType' => 
+        array (
+          'class' => 'PHPStan\\BetterReflection\\Reflection\\ReflectionNamedType',
+          'data' => 
+          array (
+            'name' => 'bool',
+            'isIdentifier' => true,
+          ),
+        ),
+        'attributes' => 
+        array (
+        ),
+        'docComment' => '/**
+ * Confirm the column mapping (CLAUDE.md §11) — owner MDA only.
+ *
+ * Held to the same authority as committing, deliberately. Declaring which column
+ * holds the NIN decides what the data MEANS; getting it wrong merges two citizens
+ * just as surely as committing bad rows does.
+ */',
+        'startLine' => 52,
+        'endLine' => 55,
         'startColumn' => 5,
         'endColumn' => 5,
         'couldThrow' => false,

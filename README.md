@@ -285,9 +285,10 @@ only** — no PII leaves via a dashboard, report or export.
 > (GeoJSON boundary format + how to source Jigawa boundaries) and the completion
 > checklist in [docs/PHASE-6-CHECKLIST.md](docs/PHASE-6-CHECKLIST.md).
 > **Sample data (local only):** `ReportingSampleSeeder` adds a funded Development
-> Partner, synthetic LGA boundaries (so the map renders), and warms dashboard
-> snapshots. Load real boundaries with
-> `php artisan gis:load-boundaries lga <file.geojson>`.
+> Partner, Jigawa's real 27 LGA boundaries (so the map draws the state), and warms
+> dashboard snapshots. The boundaries ship at
+> `api/database/data/jigawa-lga-boundaries.geojson` (geoBoundaries/GRID3, CC BY 4.0);
+> reload or replace them with `php artisan gis:load-boundaries lga <file.geojson>`.
 
 #### Phase 6E — Executive Reporting Suite
 

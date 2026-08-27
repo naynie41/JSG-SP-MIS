@@ -8,6 +8,7 @@ use App\Domain\Access\Models\Mda;
 use App\Domain\Access\Models\Role;
 use App\Domain\Access\Scopes\MdaScope;
 use App\Domain\Benefit\Models\Benefit;
+use App\Domain\Programme\Models\Activity;
 use App\Domain\Programme\Models\Programme;
 use App\Domain\Referral\Scopes\ReferralScope;
 use App\Domain\Reporting\Exceptions\InvalidReportDefinitionException;
@@ -246,9 +247,34 @@ class AdHocReportBuilder
                 'date_from' => $query->whereDate($column, '>=', $value),
                 'date_to' => $query->whereDate($column, '<=', $value),
                 'mda_two_party' => $query->where(fn (Builder $q) => $q->where('from_mda_id', $value)->orWhere('to_mda_id', $value)),
+                'declared_area' => $this->applyDeclaredArea($query, (string) ($cfg['area'] ?? ''), (string) $value),
                 default => null,
             };
         }
+    }
+
+    /**
+     * Narrow to the activities that DECLARED an area.
+     *
+     * An activity covers a SET of areas (`activity_locations`) — the single
+     * `activities.lga`/`.ward` pair was dropped — so this is a whereHas, never a column
+     * comparison. A ward also matches an activity that declared the WHOLE LGA the ward
+     * sits in: declaring a whole LGA is a claim to cover every ward in it.
+     *
+     * Only Activity carries a location set, so any other dataset is REFUSED rather than
+     * silently left unfiltered: a filter that quietly does nothing produces a report that
+     * looks narrowed and is not.
+     *
+     * @param  Builder<Model>  $query
+     */
+    private function applyDeclaredArea(Builder $query, string $area, string $value): void
+    {
+        if (! $query->getModel() instanceof Activity) {
+            throw new InvalidReportDefinitionException("The {$area} filter applies only to activities.");
+        }
+
+        /** @var Builder<Activity> $query */
+        $query->declaredIn($area === 'lga' ? $value : null, $area === 'ward' ? $value : null);
     }
 
     /**

@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Database\Factories;
 
 use App\Domain\Access\Models\Mda;
+use App\Domain\Registry\Enums\Lga;
 use App\Domain\Registry\Enums\RegistrationSource;
 use App\Domain\Registry\Models\Household;
 use Illuminate\Database\Eloquent\Factories\Factory;
@@ -26,7 +27,10 @@ class HouseholdFactory extends Factory
             'registration_source' => RegistrationSource::Excel,
             'registration_date' => now()->toDateString(),
             'address' => fake()->streetAddress(),
-            'lga' => fake()->city(),
+            // A real Jigawa LGA, as {@see BeneficiaryFactory} already does. `fake()->city()`
+            // put households in invented places, which a fixture has no licence to create:
+            // the import path would refuse the same value.
+            'lga' => fake()->randomElement(Lga::cases())->value,
             'ward' => 'Ward '.fake()->numberBetween(1, 12),
         ];
     }

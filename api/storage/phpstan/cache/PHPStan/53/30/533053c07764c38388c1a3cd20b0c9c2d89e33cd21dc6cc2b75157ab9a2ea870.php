@@ -15,11 +15,13 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
           'mdascope' => 'App\\Domain\\Access\\Scopes\\MdaScope',
           'activity' => 'App\\Domain\\Programme\\Models\\Activity',
           'programme' => 'App\\Domain\\Programme\\Models\\Programme',
+          'activitylocationservice' => 'App\\Domain\\Programme\\Services\\ActivityLocationService',
           'importstatus' => 'App\\Domain\\Registry\\Enums\\ImportStatus',
           'registrationsource' => 'App\\Domain\\Registry\\Enums\\RegistrationSource',
           'parseimportbatch' => 'App\\Domain\\Registry\\Jobs\\ParseImportBatch',
           'importbatch' => 'App\\Domain\\Registry\\Models\\ImportBatch',
           'importcommitter' => 'App\\Domain\\Registry\\Services\\ImportCommitter',
+          'importmappingservice' => 'App\\Domain\\Registry\\Services\\ImportMappingService',
           'controller' => 'App\\Http\\Controllers\\Controller',
           'uploadactivityimportrequest' => 'App\\Http\\Requests\\Registry\\UploadActivityImportRequest',
           'activityresource' => 'App\\Http\\Resources\\ActivityResource',
@@ -44,6 +46,83 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
          'typeAliasClassName' => NULL,
          'traitData' => NULL,
       )),
+      'b2abd7c65a5f0f61fd0a0aaf43700c26' => 
+      \PHPStan\Analyser\IntermediaryNameScope::__set_state(array(
+         'namespace' => 'App\\Http\\Controllers\\Api\\V1\\Registry',
+         'uses' => 
+        array (
+          'mdascope' => 'App\\Domain\\Access\\Scopes\\MdaScope',
+          'activity' => 'App\\Domain\\Programme\\Models\\Activity',
+          'programme' => 'App\\Domain\\Programme\\Models\\Programme',
+          'activitylocationservice' => 'App\\Domain\\Programme\\Services\\ActivityLocationService',
+          'importstatus' => 'App\\Domain\\Registry\\Enums\\ImportStatus',
+          'registrationsource' => 'App\\Domain\\Registry\\Enums\\RegistrationSource',
+          'parseimportbatch' => 'App\\Domain\\Registry\\Jobs\\ParseImportBatch',
+          'importbatch' => 'App\\Domain\\Registry\\Models\\ImportBatch',
+          'importcommitter' => 'App\\Domain\\Registry\\Services\\ImportCommitter',
+          'importmappingservice' => 'App\\Domain\\Registry\\Services\\ImportMappingService',
+          'controller' => 'App\\Http\\Controllers\\Controller',
+          'uploadactivityimportrequest' => 'App\\Http\\Requests\\Registry\\UploadActivityImportRequest',
+          'activityresource' => 'App\\Http\\Resources\\ActivityResource',
+          'importbatchresource' => 'App\\Http\\Resources\\ImportBatchResource',
+          'apiresponse' => 'App\\Support\\ApiResponse',
+          'jsonresponse' => 'Illuminate\\Http\\JsonResponse',
+          'db' => 'Illuminate\\Support\\Facades\\DB',
+        ),
+         'className' => 'App\\Http\\Controllers\\Api\\V1\\Registry\\ActivityImportController',
+         'functionName' => '__construct',
+         'templatePhpDocNodes' => 
+        array (
+        ),
+         'parent' => 
+        \PHPStan\Analyser\IntermediaryNameScope::__set_state(array(
+           'namespace' => 'App\\Http\\Controllers\\Api\\V1\\Registry',
+           'uses' => 
+          array (
+            'mdascope' => 'App\\Domain\\Access\\Scopes\\MdaScope',
+            'activity' => 'App\\Domain\\Programme\\Models\\Activity',
+            'programme' => 'App\\Domain\\Programme\\Models\\Programme',
+            'activitylocationservice' => 'App\\Domain\\Programme\\Services\\ActivityLocationService',
+            'importstatus' => 'App\\Domain\\Registry\\Enums\\ImportStatus',
+            'registrationsource' => 'App\\Domain\\Registry\\Enums\\RegistrationSource',
+            'parseimportbatch' => 'App\\Domain\\Registry\\Jobs\\ParseImportBatch',
+            'importbatch' => 'App\\Domain\\Registry\\Models\\ImportBatch',
+            'importcommitter' => 'App\\Domain\\Registry\\Services\\ImportCommitter',
+            'importmappingservice' => 'App\\Domain\\Registry\\Services\\ImportMappingService',
+            'controller' => 'App\\Http\\Controllers\\Controller',
+            'uploadactivityimportrequest' => 'App\\Http\\Requests\\Registry\\UploadActivityImportRequest',
+            'activityresource' => 'App\\Http\\Resources\\ActivityResource',
+            'importbatchresource' => 'App\\Http\\Resources\\ImportBatchResource',
+            'apiresponse' => 'App\\Support\\ApiResponse',
+            'jsonresponse' => 'Illuminate\\Http\\JsonResponse',
+            'db' => 'Illuminate\\Support\\Facades\\DB',
+          ),
+           'className' => 'App\\Http\\Controllers\\Api\\V1\\Registry\\ActivityImportController',
+           'functionName' => NULL,
+           'templatePhpDocNodes' => 
+          array (
+          ),
+           'parent' => NULL,
+           'typeAliasesMap' => 
+          array (
+          ),
+           'bypassTypeAliases' => false,
+           'constUses' => 
+          array (
+          ),
+           'typeAliasClassName' => NULL,
+           'traitData' => NULL,
+        )),
+         'typeAliasesMap' => 
+        array (
+        ),
+         'bypassTypeAliases' => false,
+         'constUses' => 
+        array (
+        ),
+         'typeAliasClassName' => NULL,
+         'traitData' => NULL,
+      )),
       '99dcdecce2241e5d46c9e85dcb72fc26' => 
       \PHPStan\Analyser\IntermediaryNameScope::__set_state(array(
          'namespace' => 'App\\Http\\Controllers\\Api\\V1\\Registry',
@@ -52,11 +131,13 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
           'mdascope' => 'App\\Domain\\Access\\Scopes\\MdaScope',
           'activity' => 'App\\Domain\\Programme\\Models\\Activity',
           'programme' => 'App\\Domain\\Programme\\Models\\Programme',
+          'activitylocationservice' => 'App\\Domain\\Programme\\Services\\ActivityLocationService',
           'importstatus' => 'App\\Domain\\Registry\\Enums\\ImportStatus',
           'registrationsource' => 'App\\Domain\\Registry\\Enums\\RegistrationSource',
           'parseimportbatch' => 'App\\Domain\\Registry\\Jobs\\ParseImportBatch',
           'importbatch' => 'App\\Domain\\Registry\\Models\\ImportBatch',
           'importcommitter' => 'App\\Domain\\Registry\\Services\\ImportCommitter',
+          'importmappingservice' => 'App\\Domain\\Registry\\Services\\ImportMappingService',
           'controller' => 'App\\Http\\Controllers\\Controller',
           'uploadactivityimportrequest' => 'App\\Http\\Requests\\Registry\\UploadActivityImportRequest',
           'activityresource' => 'App\\Http\\Resources\\ActivityResource',
@@ -78,11 +159,13 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             'mdascope' => 'App\\Domain\\Access\\Scopes\\MdaScope',
             'activity' => 'App\\Domain\\Programme\\Models\\Activity',
             'programme' => 'App\\Domain\\Programme\\Models\\Programme',
+            'activitylocationservice' => 'App\\Domain\\Programme\\Services\\ActivityLocationService',
             'importstatus' => 'App\\Domain\\Registry\\Enums\\ImportStatus',
             'registrationsource' => 'App\\Domain\\Registry\\Enums\\RegistrationSource',
             'parseimportbatch' => 'App\\Domain\\Registry\\Jobs\\ParseImportBatch',
             'importbatch' => 'App\\Domain\\Registry\\Models\\ImportBatch',
             'importcommitter' => 'App\\Domain\\Registry\\Services\\ImportCommitter',
+            'importmappingservice' => 'App\\Domain\\Registry\\Services\\ImportMappingService',
             'controller' => 'App\\Http\\Controllers\\Controller',
             'uploadactivityimportrequest' => 'App\\Http\\Requests\\Registry\\UploadActivityImportRequest',
             'activityresource' => 'App\\Http\\Resources\\ActivityResource',
@@ -125,11 +208,13 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
           'mdascope' => 'App\\Domain\\Access\\Scopes\\MdaScope',
           'activity' => 'App\\Domain\\Programme\\Models\\Activity',
           'programme' => 'App\\Domain\\Programme\\Models\\Programme',
+          'activitylocationservice' => 'App\\Domain\\Programme\\Services\\ActivityLocationService',
           'importstatus' => 'App\\Domain\\Registry\\Enums\\ImportStatus',
           'registrationsource' => 'App\\Domain\\Registry\\Enums\\RegistrationSource',
           'parseimportbatch' => 'App\\Domain\\Registry\\Jobs\\ParseImportBatch',
           'importbatch' => 'App\\Domain\\Registry\\Models\\ImportBatch',
           'importcommitter' => 'App\\Domain\\Registry\\Services\\ImportCommitter',
+          'importmappingservice' => 'App\\Domain\\Registry\\Services\\ImportMappingService',
           'controller' => 'App\\Http\\Controllers\\Controller',
           'uploadactivityimportrequest' => 'App\\Http\\Requests\\Registry\\UploadActivityImportRequest',
           'activityresource' => 'App\\Http\\Resources\\ActivityResource',
@@ -151,11 +236,13 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             'mdascope' => 'App\\Domain\\Access\\Scopes\\MdaScope',
             'activity' => 'App\\Domain\\Programme\\Models\\Activity',
             'programme' => 'App\\Domain\\Programme\\Models\\Programme',
+            'activitylocationservice' => 'App\\Domain\\Programme\\Services\\ActivityLocationService',
             'importstatus' => 'App\\Domain\\Registry\\Enums\\ImportStatus',
             'registrationsource' => 'App\\Domain\\Registry\\Enums\\RegistrationSource',
             'parseimportbatch' => 'App\\Domain\\Registry\\Jobs\\ParseImportBatch',
             'importbatch' => 'App\\Domain\\Registry\\Models\\ImportBatch',
             'importcommitter' => 'App\\Domain\\Registry\\Services\\ImportCommitter',
+            'importmappingservice' => 'App\\Domain\\Registry\\Services\\ImportMappingService',
             'controller' => 'App\\Http\\Controllers\\Controller',
             'uploadactivityimportrequest' => 'App\\Http\\Requests\\Registry\\UploadActivityImportRequest',
             'activityresource' => 'App\\Http\\Resources\\ActivityResource',
@@ -193,7 +280,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
     ),
     1 => 
     array (
-      '/var/www/html/app/Http/Controllers/Api/V1/Registry/ActivityImportController.php' => '324b7a055f6f663812fa2ea0c2e70e21e9d1d11662624003dcdc4b384e969ba4',
+      '/var/www/html/app/Http/Controllers/Api/V1/Registry/ActivityImportController.php' => '3025b8b942afa0e25bfe284ff9d954ebb710e505da85455c220a20787d4ab0a6',
     ),
   ),
 ));

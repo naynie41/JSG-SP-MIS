@@ -115,8 +115,16 @@ final class AdHocDatasetRegistry
                 'programme' => ['label' => 'Programme', 'column' => 'programme_id', 'render' => 'programme'],
                 'mda' => ['label' => 'Owner MDA', 'column' => 'owner_mda_id', 'render' => 'mda'],
                 'status' => ['label' => 'Status', 'column' => 'status', 'render' => 'title'],
-                'lga' => ['label' => 'LGA', 'column' => 'lga', 'render' => 'title'],
-                'ward' => ['label' => 'Ward', 'column' => 'ward', 'render' => 'title'],
+                /*
+                 * No LGA/ward DIMENSION here, deliberately.
+                 *
+                 * An activity declares a SET of areas, so grouping by area means joining
+                 * `activity_locations` — which repeats an activity once per declared LGA
+                 * and makes `count(*)` and `sum(budget_amount)` larger than the truth.
+                 * An inflated budget total is exactly the fabricated money figure this
+                 * system must never produce, so area stays a FILTER (below), which
+                 * narrows without duplicating.
+                 */
                 'involves_beneficiaries' => ['label' => 'Registers beneficiaries', 'column' => 'involves_beneficiaries', 'render' => 'bool'],
             ],
             'measures' => [
@@ -128,8 +136,10 @@ final class AdHocDatasetRegistry
                 'programme_id' => ['column' => 'programme_id', 'kind' => 'equals'],
                 'mda_id' => ['column' => 'owner_mda_id', 'kind' => 'equals'],
                 'status' => ['column' => 'status', 'kind' => 'equals'],
-                'lga' => ['column' => 'lga', 'kind' => 'equals'],
-                'ward' => ['column' => 'ward', 'kind' => 'equals'],
+                // Matched against the declared location set, not a column: `activities.lga`
+                // and `.ward` were dropped when an activity became multi-area.
+                'lga' => ['area' => 'lga', 'kind' => 'declared_area'],
+                'ward' => ['area' => 'ward', 'kind' => 'declared_area'],
                 'date_from' => ['column' => 'starts_on', 'kind' => 'date_from'],
                 'date_to' => ['column' => 'ends_on', 'kind' => 'date_to'],
             ],

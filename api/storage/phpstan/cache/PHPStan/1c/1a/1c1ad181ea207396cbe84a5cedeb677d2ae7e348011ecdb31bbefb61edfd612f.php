@@ -20,6 +20,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
           'adhocdefinition' => 'App\\Domain\\Reporting\\Reports\\AdHoc\\AdHocDefinition',
           'adhocreportbuilder' => 'App\\Domain\\Reporting\\Reports\\AdHoc\\AdHocReportBuilder',
           'reportcatalogue' => 'App\\Domain\\Reporting\\Reports\\ReportCatalogue',
+          'segmentaccess' => 'App\\Domain\\Reporting\\Segments\\SegmentAccess',
+          'segmentdefinition' => 'App\\Domain\\Reporting\\Segments\\SegmentDefinition',
           'dashboardscope' => 'App\\Domain\\Reporting\\Support\\DashboardScope',
           'runtimeexception' => 'RuntimeException',
         ),
@@ -52,6 +54,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
           'adhocdefinition' => 'App\\Domain\\Reporting\\Reports\\AdHoc\\AdHocDefinition',
           'adhocreportbuilder' => 'App\\Domain\\Reporting\\Reports\\AdHoc\\AdHocReportBuilder',
           'reportcatalogue' => 'App\\Domain\\Reporting\\Reports\\ReportCatalogue',
+          'segmentaccess' => 'App\\Domain\\Reporting\\Segments\\SegmentAccess',
+          'segmentdefinition' => 'App\\Domain\\Reporting\\Segments\\SegmentDefinition',
           'dashboardscope' => 'App\\Domain\\Reporting\\Support\\DashboardScope',
           'runtimeexception' => 'RuntimeException',
         ),
@@ -73,6 +77,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             'adhocdefinition' => 'App\\Domain\\Reporting\\Reports\\AdHoc\\AdHocDefinition',
             'adhocreportbuilder' => 'App\\Domain\\Reporting\\Reports\\AdHoc\\AdHocReportBuilder',
             'reportcatalogue' => 'App\\Domain\\Reporting\\Reports\\ReportCatalogue',
+            'segmentaccess' => 'App\\Domain\\Reporting\\Segments\\SegmentAccess',
+            'segmentdefinition' => 'App\\Domain\\Reporting\\Segments\\SegmentDefinition',
             'dashboardscope' => 'App\\Domain\\Reporting\\Support\\DashboardScope',
             'runtimeexception' => 'RuntimeException',
           ),
@@ -115,6 +121,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
           'adhocdefinition' => 'App\\Domain\\Reporting\\Reports\\AdHoc\\AdHocDefinition',
           'adhocreportbuilder' => 'App\\Domain\\Reporting\\Reports\\AdHoc\\AdHocReportBuilder',
           'reportcatalogue' => 'App\\Domain\\Reporting\\Reports\\ReportCatalogue',
+          'segmentaccess' => 'App\\Domain\\Reporting\\Segments\\SegmentAccess',
+          'segmentdefinition' => 'App\\Domain\\Reporting\\Segments\\SegmentDefinition',
           'dashboardscope' => 'App\\Domain\\Reporting\\Support\\DashboardScope',
           'runtimeexception' => 'RuntimeException',
         ),
@@ -136,6 +144,75 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             'adhocdefinition' => 'App\\Domain\\Reporting\\Reports\\AdHoc\\AdHocDefinition',
             'adhocreportbuilder' => 'App\\Domain\\Reporting\\Reports\\AdHoc\\AdHocReportBuilder',
             'reportcatalogue' => 'App\\Domain\\Reporting\\Reports\\ReportCatalogue',
+            'segmentaccess' => 'App\\Domain\\Reporting\\Segments\\SegmentAccess',
+            'segmentdefinition' => 'App\\Domain\\Reporting\\Segments\\SegmentDefinition',
+            'dashboardscope' => 'App\\Domain\\Reporting\\Support\\DashboardScope',
+            'runtimeexception' => 'RuntimeException',
+          ),
+           'className' => 'App\\Domain\\Reporting\\Services\\ReportService',
+           'functionName' => NULL,
+           'templatePhpDocNodes' => 
+          array (
+          ),
+           'parent' => NULL,
+           'typeAliasesMap' => 
+          array (
+          ),
+           'bypassTypeAliases' => false,
+           'constUses' => 
+          array (
+          ),
+           'typeAliasClassName' => NULL,
+           'traitData' => NULL,
+        )),
+         'typeAliasesMap' => 
+        array (
+        ),
+         'bypassTypeAliases' => false,
+         'constUses' => 
+        array (
+        ),
+         'typeAliasClassName' => NULL,
+         'traitData' => NULL,
+      )),
+      'f6bb94cbecca7c6bed0c154b1af6a17d' => 
+      \PHPStan\Analyser\IntermediaryNameScope::__set_state(array(
+         'namespace' => 'App\\Domain\\Reporting\\Services',
+         'uses' => 
+        array (
+          'user' => 'App\\Domain\\Access\\Models\\User',
+          'reportformat' => 'App\\Domain\\Reporting\\Export\\ReportFormat',
+          'generatereport' => 'App\\Domain\\Reporting\\Jobs\\GenerateReport',
+          'reportrun' => 'App\\Domain\\Reporting\\Models\\ReportRun',
+          'reportschedule' => 'App\\Domain\\Reporting\\Models\\ReportSchedule',
+          'adhocdefinition' => 'App\\Domain\\Reporting\\Reports\\AdHoc\\AdHocDefinition',
+          'adhocreportbuilder' => 'App\\Domain\\Reporting\\Reports\\AdHoc\\AdHocReportBuilder',
+          'reportcatalogue' => 'App\\Domain\\Reporting\\Reports\\ReportCatalogue',
+          'segmentaccess' => 'App\\Domain\\Reporting\\Segments\\SegmentAccess',
+          'segmentdefinition' => 'App\\Domain\\Reporting\\Segments\\SegmentDefinition',
+          'dashboardscope' => 'App\\Domain\\Reporting\\Support\\DashboardScope',
+          'runtimeexception' => 'RuntimeException',
+        ),
+         'className' => 'App\\Domain\\Reporting\\Services\\ReportService',
+         'functionName' => 'queueBeneficiaryExport',
+         'templatePhpDocNodes' => 
+        array (
+        ),
+         'parent' => 
+        \PHPStan\Analyser\IntermediaryNameScope::__set_state(array(
+           'namespace' => 'App\\Domain\\Reporting\\Services',
+           'uses' => 
+          array (
+            'user' => 'App\\Domain\\Access\\Models\\User',
+            'reportformat' => 'App\\Domain\\Reporting\\Export\\ReportFormat',
+            'generatereport' => 'App\\Domain\\Reporting\\Jobs\\GenerateReport',
+            'reportrun' => 'App\\Domain\\Reporting\\Models\\ReportRun',
+            'reportschedule' => 'App\\Domain\\Reporting\\Models\\ReportSchedule',
+            'adhocdefinition' => 'App\\Domain\\Reporting\\Reports\\AdHoc\\AdHocDefinition',
+            'adhocreportbuilder' => 'App\\Domain\\Reporting\\Reports\\AdHoc\\AdHocReportBuilder',
+            'reportcatalogue' => 'App\\Domain\\Reporting\\Reports\\ReportCatalogue',
+            'segmentaccess' => 'App\\Domain\\Reporting\\Segments\\SegmentAccess',
+            'segmentdefinition' => 'App\\Domain\\Reporting\\Segments\\SegmentDefinition',
             'dashboardscope' => 'App\\Domain\\Reporting\\Support\\DashboardScope',
             'runtimeexception' => 'RuntimeException',
           ),
@@ -178,6 +255,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
           'adhocdefinition' => 'App\\Domain\\Reporting\\Reports\\AdHoc\\AdHocDefinition',
           'adhocreportbuilder' => 'App\\Domain\\Reporting\\Reports\\AdHoc\\AdHocReportBuilder',
           'reportcatalogue' => 'App\\Domain\\Reporting\\Reports\\ReportCatalogue',
+          'segmentaccess' => 'App\\Domain\\Reporting\\Segments\\SegmentAccess',
+          'segmentdefinition' => 'App\\Domain\\Reporting\\Segments\\SegmentDefinition',
           'dashboardscope' => 'App\\Domain\\Reporting\\Support\\DashboardScope',
           'runtimeexception' => 'RuntimeException',
         ),
@@ -199,6 +278,75 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             'adhocdefinition' => 'App\\Domain\\Reporting\\Reports\\AdHoc\\AdHocDefinition',
             'adhocreportbuilder' => 'App\\Domain\\Reporting\\Reports\\AdHoc\\AdHocReportBuilder',
             'reportcatalogue' => 'App\\Domain\\Reporting\\Reports\\ReportCatalogue',
+            'segmentaccess' => 'App\\Domain\\Reporting\\Segments\\SegmentAccess',
+            'segmentdefinition' => 'App\\Domain\\Reporting\\Segments\\SegmentDefinition',
+            'dashboardscope' => 'App\\Domain\\Reporting\\Support\\DashboardScope',
+            'runtimeexception' => 'RuntimeException',
+          ),
+           'className' => 'App\\Domain\\Reporting\\Services\\ReportService',
+           'functionName' => NULL,
+           'templatePhpDocNodes' => 
+          array (
+          ),
+           'parent' => NULL,
+           'typeAliasesMap' => 
+          array (
+          ),
+           'bypassTypeAliases' => false,
+           'constUses' => 
+          array (
+          ),
+           'typeAliasClassName' => NULL,
+           'traitData' => NULL,
+        )),
+         'typeAliasesMap' => 
+        array (
+        ),
+         'bypassTypeAliases' => false,
+         'constUses' => 
+        array (
+        ),
+         'typeAliasClassName' => NULL,
+         'traitData' => NULL,
+      )),
+      'ba8a74a5d3d1f9b4c7fafc091f3d89e7' => 
+      \PHPStan\Analyser\IntermediaryNameScope::__set_state(array(
+         'namespace' => 'App\\Domain\\Reporting\\Services',
+         'uses' => 
+        array (
+          'user' => 'App\\Domain\\Access\\Models\\User',
+          'reportformat' => 'App\\Domain\\Reporting\\Export\\ReportFormat',
+          'generatereport' => 'App\\Domain\\Reporting\\Jobs\\GenerateReport',
+          'reportrun' => 'App\\Domain\\Reporting\\Models\\ReportRun',
+          'reportschedule' => 'App\\Domain\\Reporting\\Models\\ReportSchedule',
+          'adhocdefinition' => 'App\\Domain\\Reporting\\Reports\\AdHoc\\AdHocDefinition',
+          'adhocreportbuilder' => 'App\\Domain\\Reporting\\Reports\\AdHoc\\AdHocReportBuilder',
+          'reportcatalogue' => 'App\\Domain\\Reporting\\Reports\\ReportCatalogue',
+          'segmentaccess' => 'App\\Domain\\Reporting\\Segments\\SegmentAccess',
+          'segmentdefinition' => 'App\\Domain\\Reporting\\Segments\\SegmentDefinition',
+          'dashboardscope' => 'App\\Domain\\Reporting\\Support\\DashboardScope',
+          'runtimeexception' => 'RuntimeException',
+        ),
+         'className' => 'App\\Domain\\Reporting\\Services\\ReportService',
+         'functionName' => 'queueSegmentExport',
+         'templatePhpDocNodes' => 
+        array (
+        ),
+         'parent' => 
+        \PHPStan\Analyser\IntermediaryNameScope::__set_state(array(
+           'namespace' => 'App\\Domain\\Reporting\\Services',
+           'uses' => 
+          array (
+            'user' => 'App\\Domain\\Access\\Models\\User',
+            'reportformat' => 'App\\Domain\\Reporting\\Export\\ReportFormat',
+            'generatereport' => 'App\\Domain\\Reporting\\Jobs\\GenerateReport',
+            'reportrun' => 'App\\Domain\\Reporting\\Models\\ReportRun',
+            'reportschedule' => 'App\\Domain\\Reporting\\Models\\ReportSchedule',
+            'adhocdefinition' => 'App\\Domain\\Reporting\\Reports\\AdHoc\\AdHocDefinition',
+            'adhocreportbuilder' => 'App\\Domain\\Reporting\\Reports\\AdHoc\\AdHocReportBuilder',
+            'reportcatalogue' => 'App\\Domain\\Reporting\\Reports\\ReportCatalogue',
+            'segmentaccess' => 'App\\Domain\\Reporting\\Segments\\SegmentAccess',
+            'segmentdefinition' => 'App\\Domain\\Reporting\\Segments\\SegmentDefinition',
             'dashboardscope' => 'App\\Domain\\Reporting\\Support\\DashboardScope',
             'runtimeexception' => 'RuntimeException',
           ),
@@ -241,6 +389,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
           'adhocdefinition' => 'App\\Domain\\Reporting\\Reports\\AdHoc\\AdHocDefinition',
           'adhocreportbuilder' => 'App\\Domain\\Reporting\\Reports\\AdHoc\\AdHocReportBuilder',
           'reportcatalogue' => 'App\\Domain\\Reporting\\Reports\\ReportCatalogue',
+          'segmentaccess' => 'App\\Domain\\Reporting\\Segments\\SegmentAccess',
+          'segmentdefinition' => 'App\\Domain\\Reporting\\Segments\\SegmentDefinition',
           'dashboardscope' => 'App\\Domain\\Reporting\\Support\\DashboardScope',
           'runtimeexception' => 'RuntimeException',
         ),
@@ -262,6 +412,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             'adhocdefinition' => 'App\\Domain\\Reporting\\Reports\\AdHoc\\AdHocDefinition',
             'adhocreportbuilder' => 'App\\Domain\\Reporting\\Reports\\AdHoc\\AdHocReportBuilder',
             'reportcatalogue' => 'App\\Domain\\Reporting\\Reports\\ReportCatalogue',
+            'segmentaccess' => 'App\\Domain\\Reporting\\Segments\\SegmentAccess',
+            'segmentdefinition' => 'App\\Domain\\Reporting\\Segments\\SegmentDefinition',
             'dashboardscope' => 'App\\Domain\\Reporting\\Support\\DashboardScope',
             'runtimeexception' => 'RuntimeException',
           ),
@@ -304,6 +456,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
           'adhocdefinition' => 'App\\Domain\\Reporting\\Reports\\AdHoc\\AdHocDefinition',
           'adhocreportbuilder' => 'App\\Domain\\Reporting\\Reports\\AdHoc\\AdHocReportBuilder',
           'reportcatalogue' => 'App\\Domain\\Reporting\\Reports\\ReportCatalogue',
+          'segmentaccess' => 'App\\Domain\\Reporting\\Segments\\SegmentAccess',
+          'segmentdefinition' => 'App\\Domain\\Reporting\\Segments\\SegmentDefinition',
           'dashboardscope' => 'App\\Domain\\Reporting\\Support\\DashboardScope',
           'runtimeexception' => 'RuntimeException',
         ),
@@ -325,6 +479,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             'adhocdefinition' => 'App\\Domain\\Reporting\\Reports\\AdHoc\\AdHocDefinition',
             'adhocreportbuilder' => 'App\\Domain\\Reporting\\Reports\\AdHoc\\AdHocReportBuilder',
             'reportcatalogue' => 'App\\Domain\\Reporting\\Reports\\ReportCatalogue',
+            'segmentaccess' => 'App\\Domain\\Reporting\\Segments\\SegmentAccess',
+            'segmentdefinition' => 'App\\Domain\\Reporting\\Segments\\SegmentDefinition',
             'dashboardscope' => 'App\\Domain\\Reporting\\Support\\DashboardScope',
             'runtimeexception' => 'RuntimeException',
           ),
@@ -367,6 +523,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
           'adhocdefinition' => 'App\\Domain\\Reporting\\Reports\\AdHoc\\AdHocDefinition',
           'adhocreportbuilder' => 'App\\Domain\\Reporting\\Reports\\AdHoc\\AdHocReportBuilder',
           'reportcatalogue' => 'App\\Domain\\Reporting\\Reports\\ReportCatalogue',
+          'segmentaccess' => 'App\\Domain\\Reporting\\Segments\\SegmentAccess',
+          'segmentdefinition' => 'App\\Domain\\Reporting\\Segments\\SegmentDefinition',
           'dashboardscope' => 'App\\Domain\\Reporting\\Support\\DashboardScope',
           'runtimeexception' => 'RuntimeException',
         ),
@@ -388,6 +546,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             'adhocdefinition' => 'App\\Domain\\Reporting\\Reports\\AdHoc\\AdHocDefinition',
             'adhocreportbuilder' => 'App\\Domain\\Reporting\\Reports\\AdHoc\\AdHocReportBuilder',
             'reportcatalogue' => 'App\\Domain\\Reporting\\Reports\\ReportCatalogue',
+            'segmentaccess' => 'App\\Domain\\Reporting\\Segments\\SegmentAccess',
+            'segmentdefinition' => 'App\\Domain\\Reporting\\Segments\\SegmentDefinition',
             'dashboardscope' => 'App\\Domain\\Reporting\\Support\\DashboardScope',
             'runtimeexception' => 'RuntimeException',
           ),
@@ -420,7 +580,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
     ),
     1 => 
     array (
-      '/var/www/html/app/Domain/Reporting/Services/ReportService.php' => 'bbe6f948c465a4ca4bb66fe7fe99050b6d7033caee9c32466ff5c90892e78a14',
+      '/var/www/html/app/Domain/Reporting/Services/ReportService.php' => '717022a7d792050f0ae8695fe54bdb998a4901af2a2e33cc98e42e2df9aa0848',
     ),
   ),
 ));

@@ -61,7 +61,7 @@ Module docs: [api/app/Domain/Reporting/README.md](../api/app/Domain/Reporting/RE
 # Funded partner + synthetic LGA boundaries + warmed dashboard snapshots:
 docker compose exec api php artisan db:seed --class="Database\Seeders\ReportingSampleSeeder"
 # Real Jigawa boundaries (see Gis/README.md for the GeoJSON format + sources):
-docker compose exec api php artisan gis:load-boundaries lga  storage/app/boundaries/jigawa-lga.geojson
+docker compose exec api php artisan gis:load-boundaries lga  database/data/jigawa-lga-boundaries.geojson
 docker compose exec api php artisan gis:load-boundaries ward storage/app/boundaries/jigawa-ward.geojson
 # (or a full rebuild) migrate:fresh --seed
 ```

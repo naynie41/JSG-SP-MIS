@@ -2,7 +2,7 @@
 
 // odsl-/var/www/html/app/Domain/Registry/Jobs/ParseImportBatch.php-PHPStan\BetterReflection\Reflection\ReflectionClass-App\Domain\Registry\Jobs\ParseImportBatch
 return \PHPStan\Cache\CacheItem::__set_state(array(
-   'variableKey' => 'v2-6.70.0.1-8.3.31-62156c677d92f573206d8d0f30c99dc5bb2a6ee38789e4ddded27648523f35aa',
+   'variableKey' => 'v2-6.70.0.1-8.3.31-5b28b1ce0f4ffc081ee913bbc1151aa09f751d2413cb044eb44c527ba454fb14',
    'data' => 
   array (
     'locatedSource' => 
@@ -36,8 +36,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
     'attributes' => 
     array (
     ),
-    'startLine' => 40,
-    'endLine' => 215,
+    'startLine' => 45,
+    'endLine' => 298,
     'startColumn' => 1,
     'endColumn' => 1,
     'parentClassName' => NULL,
@@ -77,20 +77,20 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
           'code' => '3',
           'attributes' => 
           array (
-            'startLine' => 44,
-            'endLine' => 44,
-            'startTokenPos' => 154,
-            'startFilePos' => 1727,
-            'endTokenPos' => 154,
-            'endFilePos' => 1727,
+            'startLine' => 49,
+            'endLine' => 49,
+            'startTokenPos' => 179,
+            'startFilePos' => 1977,
+            'endTokenPos' => 179,
+            'endFilePos' => 1977,
           ),
         ),
         'docComment' => NULL,
         'attributes' => 
         array (
         ),
-        'startLine' => 44,
-        'endLine' => 44,
+        'startLine' => 49,
+        'endLine' => 49,
         'startColumn' => 5,
         'endColumn' => 26,
         'isPromoted' => false,
@@ -120,8 +120,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         'attributes' => 
         array (
         ),
-        'startLine' => 46,
-        'endLine' => 46,
+        'startLine' => 51,
+        'endLine' => 51,
         'startColumn' => 33,
         'endColumn' => 63,
         'isPromoted' => true,
@@ -158,8 +158,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             'attributes' => 
             array (
             ),
-            'startLine' => 46,
-            'endLine' => 46,
+            'startLine' => 51,
+            'endLine' => 51,
             'startColumn' => 33,
             'endColumn' => 63,
             'parameterIndex' => 0,
@@ -172,8 +172,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         array (
         ),
         'docComment' => NULL,
-        'startLine' => 46,
-        'endLine' => 46,
+        'startLine' => 51,
+        'endLine' => 51,
         'startColumn' => 5,
         'endColumn' => 67,
         'couldThrow' => false,
@@ -211,8 +211,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             'attributes' => 
             array (
             ),
-            'startLine' => 48,
-            'endLine' => 48,
+            'startLine' => 53,
+            'endLine' => 53,
             'startColumn' => 28,
             'endColumn' => 52,
             'parameterIndex' => 0,
@@ -237,8 +237,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             'attributes' => 
             array (
             ),
-            'startLine' => 48,
-            'endLine' => 48,
+            'startLine' => 53,
+            'endLine' => 53,
             'startColumn' => 55,
             'endColumn' => 83,
             'parameterIndex' => 1,
@@ -263,8 +263,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             'attributes' => 
             array (
             ),
-            'startLine' => 48,
-            'endLine' => 48,
+            'startLine' => 53,
+            'endLine' => 53,
             'startColumn' => 86,
             'endColumn' => 116,
             'parameterIndex' => 2,
@@ -289,8 +289,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             'attributes' => 
             array (
             ),
-            'startLine' => 48,
-            'endLine' => 48,
+            'startLine' => 53,
+            'endLine' => 53,
             'startColumn' => 119,
             'endColumn' => 150,
             'parameterIndex' => 3,
@@ -315,11 +315,37 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             'attributes' => 
             array (
             ),
-            'startLine' => 48,
-            'endLine' => 48,
+            'startLine' => 53,
+            'endLine' => 53,
             'startColumn' => 153,
             'endColumn' => 182,
             'parameterIndex' => 4,
+            'isOptional' => false,
+          ),
+          'mapper' => 
+          array (
+            'name' => 'mapper',
+            'default' => NULL,
+            'type' => 
+            array (
+              'class' => 'PHPStan\\BetterReflection\\Reflection\\ReflectionNamedType',
+              'data' => 
+              array (
+                'name' => 'App\\Domain\\Registry\\Imports\\ColumnMapper',
+                'isIdentifier' => false,
+              ),
+            ),
+            'isVariadic' => false,
+            'byRef' => false,
+            'isPromoted' => false,
+            'attributes' => 
+            array (
+            ),
+            'startLine' => 53,
+            'endLine' => 53,
+            'startColumn' => 185,
+            'endColumn' => 204,
+            'parameterIndex' => 5,
             'isOptional' => false,
           ),
         ),
@@ -337,8 +363,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         array (
         ),
         'docComment' => NULL,
-        'startLine' => 48,
-        'endLine' => 165,
+        'startLine' => 53,
+        'endLine' => 229,
         'startColumn' => 5,
         'endColumn' => 5,
         'couldThrow' => false,
@@ -376,8 +402,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             'attributes' => 
             array (
             ),
-            'startLine' => 167,
-            'endLine' => 167,
+            'startLine' => 231,
+            'endLine' => 231,
             'startColumn' => 28,
             'endColumn' => 39,
             'parameterIndex' => 0,
@@ -398,8 +424,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         array (
         ),
         'docComment' => NULL,
-        'startLine' => 167,
-        'endLine' => 173,
+        'startLine' => 231,
+        'endLine' => 237,
         'startColumn' => 5,
         'endColumn' => 5,
         'couldThrow' => false,
@@ -437,8 +463,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             'attributes' => 
             array (
             ),
-            'startLine' => 182,
-            'endLine' => 182,
+            'startLine' => 246,
+            'endLine' => 246,
             'startColumn' => 26,
             'endColumn' => 38,
             'parameterIndex' => 0,
@@ -463,8 +489,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             'attributes' => 
             array (
             ),
-            'startLine' => 182,
-            'endLine' => 182,
+            'startLine' => 246,
+            'endLine' => 246,
             'startColumn' => 41,
             'endColumn' => 53,
             'parameterIndex' => 1,
@@ -491,8 +517,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
  * @param  list<array{field: string, message: string}>  $errors
  * @return list<array{field: string, message: string, group: string}>
  */',
-        'startLine' => 182,
-        'endLine' => 185,
+        'startLine' => 246,
+        'endLine' => 249,
         'startColumn' => 5,
         'endColumn' => 5,
         'couldThrow' => false,
@@ -549,8 +575,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             'attributes' => 
             array (
             ),
-            'startLine' => 188,
-            'endLine' => 188,
+            'startLine' => 252,
+            'endLine' => 252,
             'startColumn' => 31,
             'endColumn' => 44,
             'parameterIndex' => 0,
@@ -570,9 +596,9 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         'attributes' => 
         array (
         ),
-        'docComment' => '/** Interpret a source "head of household" flag. */',
-        'startLine' => 188,
-        'endLine' => 191,
+        'docComment' => '/** Interpret a source "head of household" flag — shared with every other source. */',
+        'startLine' => 252,
+        'endLine' => 255,
         'startColumn' => 5,
         'endColumn' => 5,
         'couldThrow' => false,
@@ -610,8 +636,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             'attributes' => 
             array (
             ),
-            'startLine' => 201,
-            'endLine' => 201,
+            'startLine' => 271,
+            'endLine' => 271,
             'startColumn' => 34,
             'endColumn' => 45,
             'parameterIndex' => 0,
@@ -655,11 +681,37 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             'attributes' => 
             array (
             ),
-            'startLine' => 201,
-            'endLine' => 201,
+            'startLine' => 271,
+            'endLine' => 271,
             'startColumn' => 48,
             'endColumn' => 70,
             'parameterIndex' => 1,
+            'isOptional' => false,
+          ),
+          'uploadingMdaId' => 
+          array (
+            'name' => 'uploadingMdaId',
+            'default' => NULL,
+            'type' => 
+            array (
+              'class' => 'PHPStan\\BetterReflection\\Reflection\\ReflectionNamedType',
+              'data' => 
+              array (
+                'name' => 'string',
+                'isIdentifier' => true,
+              ),
+            ),
+            'isVariadic' => false,
+            'byRef' => false,
+            'isPromoted' => false,
+            'attributes' => 
+            array (
+            ),
+            'startLine' => 271,
+            'endLine' => 271,
+            'startColumn' => 73,
+            'endColumn' => 94,
+            'parameterIndex' => 2,
             'isOptional' => false,
           ),
         ),
@@ -677,15 +729,21 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         array (
         ),
         'docComment' => '/**
- * Pre-resolve a row to LINK when the config auto-links exact matches and an
- * existing registry beneficiary matched exactly. Otherwise leaves it for the
- * officer to decide.
+ * Pre-resolve a row when the config auto-links exact matches and an existing registry
+ * beneficiary matched exactly. Otherwise leaves it for the officer to decide.
+ *
+ * OWN when the matched record already belongs to the uploading MDA — a re-upload of
+ * its own data — and LINK only when it belongs to someone else. Auto-linking a
+ * self-owned match would queue a request-to-serve against yourself, which
+ * `ServiceRequestService` refuses outright: the batch would sail through preview and
+ * then throw at commit. The committer re-derives this anyway; getting it right here
+ * is what makes the PREVIEW tell the officer the truth before they confirm.
  *
  * @param  array{band: ?string, candidates: ?list<array<string, mixed>>}  $match
  * @return array{0: ?string, 1: ?string} [resolution, resolved_beneficiary_id]
  */',
-        'startLine' => 201,
-        'endLine' => 214,
+        'startLine' => 271,
+        'endLine' => 297,
         'startColumn' => 5,
         'endColumn' => 5,
         'couldThrow' => false,

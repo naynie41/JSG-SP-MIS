@@ -2,7 +2,7 @@
 
 // odsl-/var/www/html/app/Domain/Registry/Support/BeneficiaryRules.php-PHPStan\BetterReflection\Reflection\ReflectionClass-App\Domain\Registry\Support\BeneficiaryRules
 return \PHPStan\Cache\CacheItem::__set_state(array(
-   'variableKey' => 'v2-6.70.0.1-8.3.31-e8b474377cefbfb1f1c2f1b854667e5cbdbf891eedf01a3498998eb8ad381254',
+   'variableKey' => 'v2-6.70.0.1-8.3.31-16d885cf6ea754a4516cf9ea000eb4d22a82e0697bde19484731e713f69da1a8',
    'data' => 
   array (
     'locatedSource' => 
@@ -31,7 +31,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
     array (
     ),
     'startLine' => 16,
-    'endLine' => 73,
+    'endLine' => 117,
     'startColumn' => 1,
     'endColumn' => 1,
     'parentClassName' => NULL,
@@ -142,8 +142,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             'attributes' => 
             array (
             ),
-            'startLine' => 35,
-            'endLine' => 35,
+            'startLine' => 40,
+            'endLine' => 40,
             'startColumn' => 44,
             'endColumn' => 56,
             'parameterIndex' => 0,
@@ -163,9 +163,13 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         'attributes' => 
         array (
         ),
-        'docComment' => NULL,
-        'startLine' => 35,
-        'endLine' => 38,
+        'docComment' => '/**
+ * Delegates to {@see CanonicalSchema}, which is the authoritative declaration. The
+ * two consts above stay because an admin endpoint publishes them as its response
+ * shape; `RegistryRulesConsistencyTest` asserts they never drift apart from it.
+ */',
+        'startLine' => 40,
+        'endLine' => 43,
         'startColumn' => 5,
         'endColumn' => 5,
         'couldThrow' => false,
@@ -201,8 +205,43 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         'docComment' => '/**
  * @return array<string, mixed>
  */',
-        'startLine' => 43,
-        'endLine' => 59,
+        'startLine' => 48,
+        'endLine' => 74,
+        'startColumn' => 5,
+        'endColumn' => 5,
+        'couldThrow' => false,
+        'isClosure' => false,
+        'isGenerator' => false,
+        'isVariadic' => false,
+        'modifiers' => 17,
+        'namespace' => 'App\\Domain\\Registry\\Support',
+        'declaringClassName' => 'App\\Domain\\Registry\\Support\\BeneficiaryRules',
+        'implementingClassName' => 'App\\Domain\\Registry\\Support\\BeneficiaryRules',
+        'currentClassName' => 'App\\Domain\\Registry\\Support\\BeneficiaryRules',
+        'aliasName' => NULL,
+      ),
+      'earliestDateOfBirth' => 
+      array (
+        'name' => 'earliestDateOfBirth',
+        'parameters' => 
+        array (
+        ),
+        'returnsReference' => false,
+        'returnType' => 
+        array (
+          'class' => 'PHPStan\\BetterReflection\\Reflection\\ReflectionNamedType',
+          'data' => 
+          array (
+            'name' => 'string',
+            'isIdentifier' => true,
+          ),
+        ),
+        'attributes' => 
+        array (
+        ),
+        'docComment' => '/** The earliest date of birth accepted as real data (config, not a literal here). */',
+        'startLine' => 77,
+        'endLine' => 80,
         'startColumn' => 5,
         'endColumn' => 5,
         'couldThrow' => false,
@@ -238,10 +277,15 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         'docComment' => '/**
  * Human-readable messages shared by both entry paths.
  *
+ * Every message names the FIELD and the REASON, so a row-level error report is
+ * actionable without opening the rules: "Date of birth cannot be in the future"
+ * tells an officer what to change; "The date of birth field must be a date before
+ * today" makes them work it out.
+ *
  * @return array<string, string>
  */',
-        'startLine' => 66,
-        'endLine' => 72,
+        'startLine' => 92,
+        'endLine' => 116,
         'startColumn' => 5,
         'endColumn' => 5,
         'couldThrow' => false,

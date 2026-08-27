@@ -148,3 +148,8 @@
   text-align: center;
   color: var(--text-muted-strong);
 }
+
+/* Positioning context for the pinned hover card that sits over the map. */
+.mapFrame {
+  position: relative;
+}

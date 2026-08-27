@@ -12,10 +12,17 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
          'namespace' => 'App\\Domain\\Reporting\\Gis',
          'uses' => 
         array (
+          'mda' => 'App\\Domain\\Access\\Models\\Mda',
           'mdascope' => 'App\\Domain\\Access\\Scopes\\MdaScope',
+          'benefitstatus' => 'App\\Domain\\Benefit\\Enums\\BenefitStatus',
           'benefit' => 'App\\Domain\\Benefit\\Models\\Benefit',
           'ledgeraggregator' => 'App\\Domain\\Benefit\\Services\\LedgerAggregator',
+          'activitystatus' => 'App\\Domain\\Programme\\Enums\\ActivityStatus',
+          'activity' => 'App\\Domain\\Programme\\Models\\Activity',
           'beneficiary' => 'App\\Domain\\Registry\\Models\\Beneficiary',
+          'household' => 'App\\Domain\\Registry\\Models\\Household',
+          'householdmembership' => 'App\\Domain\\Registry\\Models\\HouseholdMembership',
+          'dashboardfilter' => 'App\\Domain\\Reporting\\Support\\DashboardFilter',
           'dashboardscope' => 'App\\Domain\\Reporting\\Support\\DashboardScope',
           'str' => 'Illuminate\\Support\\Str',
         ),
@@ -40,10 +47,17 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
          'namespace' => 'App\\Domain\\Reporting\\Gis',
          'uses' => 
         array (
+          'mda' => 'App\\Domain\\Access\\Models\\Mda',
           'mdascope' => 'App\\Domain\\Access\\Scopes\\MdaScope',
+          'benefitstatus' => 'App\\Domain\\Benefit\\Enums\\BenefitStatus',
           'benefit' => 'App\\Domain\\Benefit\\Models\\Benefit',
           'ledgeraggregator' => 'App\\Domain\\Benefit\\Services\\LedgerAggregator',
+          'activitystatus' => 'App\\Domain\\Programme\\Enums\\ActivityStatus',
+          'activity' => 'App\\Domain\\Programme\\Models\\Activity',
           'beneficiary' => 'App\\Domain\\Registry\\Models\\Beneficiary',
+          'household' => 'App\\Domain\\Registry\\Models\\Household',
+          'householdmembership' => 'App\\Domain\\Registry\\Models\\HouseholdMembership',
+          'dashboardfilter' => 'App\\Domain\\Reporting\\Support\\DashboardFilter',
           'dashboardscope' => 'App\\Domain\\Reporting\\Support\\DashboardScope',
           'str' => 'Illuminate\\Support\\Str',
         ),
@@ -57,10 +71,17 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
            'namespace' => 'App\\Domain\\Reporting\\Gis',
            'uses' => 
           array (
+            'mda' => 'App\\Domain\\Access\\Models\\Mda',
             'mdascope' => 'App\\Domain\\Access\\Scopes\\MdaScope',
+            'benefitstatus' => 'App\\Domain\\Benefit\\Enums\\BenefitStatus',
             'benefit' => 'App\\Domain\\Benefit\\Models\\Benefit',
             'ledgeraggregator' => 'App\\Domain\\Benefit\\Services\\LedgerAggregator',
+            'activitystatus' => 'App\\Domain\\Programme\\Enums\\ActivityStatus',
+            'activity' => 'App\\Domain\\Programme\\Models\\Activity',
             'beneficiary' => 'App\\Domain\\Registry\\Models\\Beneficiary',
+            'household' => 'App\\Domain\\Registry\\Models\\Household',
+            'householdmembership' => 'App\\Domain\\Registry\\Models\\HouseholdMembership',
+            'dashboardfilter' => 'App\\Domain\\Reporting\\Support\\DashboardFilter',
             'dashboardscope' => 'App\\Domain\\Reporting\\Support\\DashboardScope',
             'str' => 'Illuminate\\Support\\Str',
           ),
@@ -95,10 +116,17 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
          'namespace' => 'App\\Domain\\Reporting\\Gis',
          'uses' => 
         array (
+          'mda' => 'App\\Domain\\Access\\Models\\Mda',
           'mdascope' => 'App\\Domain\\Access\\Scopes\\MdaScope',
+          'benefitstatus' => 'App\\Domain\\Benefit\\Enums\\BenefitStatus',
           'benefit' => 'App\\Domain\\Benefit\\Models\\Benefit',
           'ledgeraggregator' => 'App\\Domain\\Benefit\\Services\\LedgerAggregator',
+          'activitystatus' => 'App\\Domain\\Programme\\Enums\\ActivityStatus',
+          'activity' => 'App\\Domain\\Programme\\Models\\Activity',
           'beneficiary' => 'App\\Domain\\Registry\\Models\\Beneficiary',
+          'household' => 'App\\Domain\\Registry\\Models\\Household',
+          'householdmembership' => 'App\\Domain\\Registry\\Models\\HouseholdMembership',
+          'dashboardfilter' => 'App\\Domain\\Reporting\\Support\\DashboardFilter',
           'dashboardscope' => 'App\\Domain\\Reporting\\Support\\DashboardScope',
           'str' => 'Illuminate\\Support\\Str',
         ),
@@ -112,10 +140,431 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
            'namespace' => 'App\\Domain\\Reporting\\Gis',
            'uses' => 
           array (
+            'mda' => 'App\\Domain\\Access\\Models\\Mda',
             'mdascope' => 'App\\Domain\\Access\\Scopes\\MdaScope',
+            'benefitstatus' => 'App\\Domain\\Benefit\\Enums\\BenefitStatus',
             'benefit' => 'App\\Domain\\Benefit\\Models\\Benefit',
             'ledgeraggregator' => 'App\\Domain\\Benefit\\Services\\LedgerAggregator',
+            'activitystatus' => 'App\\Domain\\Programme\\Enums\\ActivityStatus',
+            'activity' => 'App\\Domain\\Programme\\Models\\Activity',
             'beneficiary' => 'App\\Domain\\Registry\\Models\\Beneficiary',
+            'household' => 'App\\Domain\\Registry\\Models\\Household',
+            'householdmembership' => 'App\\Domain\\Registry\\Models\\HouseholdMembership',
+            'dashboardfilter' => 'App\\Domain\\Reporting\\Support\\DashboardFilter',
+            'dashboardscope' => 'App\\Domain\\Reporting\\Support\\DashboardScope',
+            'str' => 'Illuminate\\Support\\Str',
+          ),
+           'className' => 'App\\Domain\\Reporting\\Gis\\GisCoverageService',
+           'functionName' => NULL,
+           'templatePhpDocNodes' => 
+          array (
+          ),
+           'parent' => NULL,
+           'typeAliasesMap' => 
+          array (
+          ),
+           'bypassTypeAliases' => false,
+           'constUses' => 
+          array (
+          ),
+           'typeAliasClassName' => NULL,
+           'traitData' => NULL,
+        )),
+         'typeAliasesMap' => 
+        array (
+        ),
+         'bypassTypeAliases' => false,
+         'constUses' => 
+        array (
+        ),
+         'typeAliasClassName' => NULL,
+         'traitData' => NULL,
+      )),
+      'c12d83e11b4c5b262e208a8664b6f796' => 
+      \PHPStan\Analyser\IntermediaryNameScope::__set_state(array(
+         'namespace' => 'App\\Domain\\Reporting\\Gis',
+         'uses' => 
+        array (
+          'mda' => 'App\\Domain\\Access\\Models\\Mda',
+          'mdascope' => 'App\\Domain\\Access\\Scopes\\MdaScope',
+          'benefitstatus' => 'App\\Domain\\Benefit\\Enums\\BenefitStatus',
+          'benefit' => 'App\\Domain\\Benefit\\Models\\Benefit',
+          'ledgeraggregator' => 'App\\Domain\\Benefit\\Services\\LedgerAggregator',
+          'activitystatus' => 'App\\Domain\\Programme\\Enums\\ActivityStatus',
+          'activity' => 'App\\Domain\\Programme\\Models\\Activity',
+          'beneficiary' => 'App\\Domain\\Registry\\Models\\Beneficiary',
+          'household' => 'App\\Domain\\Registry\\Models\\Household',
+          'householdmembership' => 'App\\Domain\\Registry\\Models\\HouseholdMembership',
+          'dashboardfilter' => 'App\\Domain\\Reporting\\Support\\DashboardFilter',
+          'dashboardscope' => 'App\\Domain\\Reporting\\Support\\DashboardScope',
+          'str' => 'Illuminate\\Support\\Str',
+        ),
+         'className' => 'App\\Domain\\Reporting\\Gis\\GisCoverageService',
+         'functionName' => 'partnerActivityIds',
+         'templatePhpDocNodes' => 
+        array (
+        ),
+         'parent' => 
+        \PHPStan\Analyser\IntermediaryNameScope::__set_state(array(
+           'namespace' => 'App\\Domain\\Reporting\\Gis',
+           'uses' => 
+          array (
+            'mda' => 'App\\Domain\\Access\\Models\\Mda',
+            'mdascope' => 'App\\Domain\\Access\\Scopes\\MdaScope',
+            'benefitstatus' => 'App\\Domain\\Benefit\\Enums\\BenefitStatus',
+            'benefit' => 'App\\Domain\\Benefit\\Models\\Benefit',
+            'ledgeraggregator' => 'App\\Domain\\Benefit\\Services\\LedgerAggregator',
+            'activitystatus' => 'App\\Domain\\Programme\\Enums\\ActivityStatus',
+            'activity' => 'App\\Domain\\Programme\\Models\\Activity',
+            'beneficiary' => 'App\\Domain\\Registry\\Models\\Beneficiary',
+            'household' => 'App\\Domain\\Registry\\Models\\Household',
+            'householdmembership' => 'App\\Domain\\Registry\\Models\\HouseholdMembership',
+            'dashboardfilter' => 'App\\Domain\\Reporting\\Support\\DashboardFilter',
+            'dashboardscope' => 'App\\Domain\\Reporting\\Support\\DashboardScope',
+            'str' => 'Illuminate\\Support\\Str',
+          ),
+           'className' => 'App\\Domain\\Reporting\\Gis\\GisCoverageService',
+           'functionName' => NULL,
+           'templatePhpDocNodes' => 
+          array (
+          ),
+           'parent' => NULL,
+           'typeAliasesMap' => 
+          array (
+          ),
+           'bypassTypeAliases' => false,
+           'constUses' => 
+          array (
+          ),
+           'typeAliasClassName' => NULL,
+           'traitData' => NULL,
+        )),
+         'typeAliasesMap' => 
+        array (
+        ),
+         'bypassTypeAliases' => false,
+         'constUses' => 
+        array (
+        ),
+         'typeAliasClassName' => NULL,
+         'traitData' => NULL,
+      )),
+      '3323d05dac7be00167dccfca8fd1df14' => 
+      \PHPStan\Analyser\IntermediaryNameScope::__set_state(array(
+         'namespace' => 'App\\Domain\\Reporting\\Gis',
+         'uses' => 
+        array (
+          'mda' => 'App\\Domain\\Access\\Models\\Mda',
+          'mdascope' => 'App\\Domain\\Access\\Scopes\\MdaScope',
+          'benefitstatus' => 'App\\Domain\\Benefit\\Enums\\BenefitStatus',
+          'benefit' => 'App\\Domain\\Benefit\\Models\\Benefit',
+          'ledgeraggregator' => 'App\\Domain\\Benefit\\Services\\LedgerAggregator',
+          'activitystatus' => 'App\\Domain\\Programme\\Enums\\ActivityStatus',
+          'activity' => 'App\\Domain\\Programme\\Models\\Activity',
+          'beneficiary' => 'App\\Domain\\Registry\\Models\\Beneficiary',
+          'household' => 'App\\Domain\\Registry\\Models\\Household',
+          'householdmembership' => 'App\\Domain\\Registry\\Models\\HouseholdMembership',
+          'dashboardfilter' => 'App\\Domain\\Reporting\\Support\\DashboardFilter',
+          'dashboardscope' => 'App\\Domain\\Reporting\\Support\\DashboardScope',
+          'str' => 'Illuminate\\Support\\Str',
+        ),
+         'className' => 'App\\Domain\\Reporting\\Gis\\GisCoverageService',
+         'functionName' => 'servedBeneficiaryIds',
+         'templatePhpDocNodes' => 
+        array (
+        ),
+         'parent' => 
+        \PHPStan\Analyser\IntermediaryNameScope::__set_state(array(
+           'namespace' => 'App\\Domain\\Reporting\\Gis',
+           'uses' => 
+          array (
+            'mda' => 'App\\Domain\\Access\\Models\\Mda',
+            'mdascope' => 'App\\Domain\\Access\\Scopes\\MdaScope',
+            'benefitstatus' => 'App\\Domain\\Benefit\\Enums\\BenefitStatus',
+            'benefit' => 'App\\Domain\\Benefit\\Models\\Benefit',
+            'ledgeraggregator' => 'App\\Domain\\Benefit\\Services\\LedgerAggregator',
+            'activitystatus' => 'App\\Domain\\Programme\\Enums\\ActivityStatus',
+            'activity' => 'App\\Domain\\Programme\\Models\\Activity',
+            'beneficiary' => 'App\\Domain\\Registry\\Models\\Beneficiary',
+            'household' => 'App\\Domain\\Registry\\Models\\Household',
+            'householdmembership' => 'App\\Domain\\Registry\\Models\\HouseholdMembership',
+            'dashboardfilter' => 'App\\Domain\\Reporting\\Support\\DashboardFilter',
+            'dashboardscope' => 'App\\Domain\\Reporting\\Support\\DashboardScope',
+            'str' => 'Illuminate\\Support\\Str',
+          ),
+           'className' => 'App\\Domain\\Reporting\\Gis\\GisCoverageService',
+           'functionName' => NULL,
+           'templatePhpDocNodes' => 
+          array (
+          ),
+           'parent' => NULL,
+           'typeAliasesMap' => 
+          array (
+          ),
+           'bypassTypeAliases' => false,
+           'constUses' => 
+          array (
+          ),
+           'typeAliasClassName' => NULL,
+           'traitData' => NULL,
+        )),
+         'typeAliasesMap' => 
+        array (
+        ),
+         'bypassTypeAliases' => false,
+         'constUses' => 
+        array (
+        ),
+         'typeAliasClassName' => NULL,
+         'traitData' => NULL,
+      )),
+      '983aaf1441908eb1cadcb9eab1d4e31a' => 
+      \PHPStan\Analyser\IntermediaryNameScope::__set_state(array(
+         'namespace' => 'App\\Domain\\Reporting\\Gis',
+         'uses' => 
+        array (
+          'mda' => 'App\\Domain\\Access\\Models\\Mda',
+          'mdascope' => 'App\\Domain\\Access\\Scopes\\MdaScope',
+          'benefitstatus' => 'App\\Domain\\Benefit\\Enums\\BenefitStatus',
+          'benefit' => 'App\\Domain\\Benefit\\Models\\Benefit',
+          'ledgeraggregator' => 'App\\Domain\\Benefit\\Services\\LedgerAggregator',
+          'activitystatus' => 'App\\Domain\\Programme\\Enums\\ActivityStatus',
+          'activity' => 'App\\Domain\\Programme\\Models\\Activity',
+          'beneficiary' => 'App\\Domain\\Registry\\Models\\Beneficiary',
+          'household' => 'App\\Domain\\Registry\\Models\\Household',
+          'householdmembership' => 'App\\Domain\\Registry\\Models\\HouseholdMembership',
+          'dashboardfilter' => 'App\\Domain\\Reporting\\Support\\DashboardFilter',
+          'dashboardscope' => 'App\\Domain\\Reporting\\Support\\DashboardScope',
+          'str' => 'Illuminate\\Support\\Str',
+        ),
+         'className' => 'App\\Domain\\Reporting\\Gis\\GisCoverageService',
+         'functionName' => 'fundingByArea',
+         'templatePhpDocNodes' => 
+        array (
+        ),
+         'parent' => 
+        \PHPStan\Analyser\IntermediaryNameScope::__set_state(array(
+           'namespace' => 'App\\Domain\\Reporting\\Gis',
+           'uses' => 
+          array (
+            'mda' => 'App\\Domain\\Access\\Models\\Mda',
+            'mdascope' => 'App\\Domain\\Access\\Scopes\\MdaScope',
+            'benefitstatus' => 'App\\Domain\\Benefit\\Enums\\BenefitStatus',
+            'benefit' => 'App\\Domain\\Benefit\\Models\\Benefit',
+            'ledgeraggregator' => 'App\\Domain\\Benefit\\Services\\LedgerAggregator',
+            'activitystatus' => 'App\\Domain\\Programme\\Enums\\ActivityStatus',
+            'activity' => 'App\\Domain\\Programme\\Models\\Activity',
+            'beneficiary' => 'App\\Domain\\Registry\\Models\\Beneficiary',
+            'household' => 'App\\Domain\\Registry\\Models\\Household',
+            'householdmembership' => 'App\\Domain\\Registry\\Models\\HouseholdMembership',
+            'dashboardfilter' => 'App\\Domain\\Reporting\\Support\\DashboardFilter',
+            'dashboardscope' => 'App\\Domain\\Reporting\\Support\\DashboardScope',
+            'str' => 'Illuminate\\Support\\Str',
+          ),
+           'className' => 'App\\Domain\\Reporting\\Gis\\GisCoverageService',
+           'functionName' => NULL,
+           'templatePhpDocNodes' => 
+          array (
+          ),
+           'parent' => NULL,
+           'typeAliasesMap' => 
+          array (
+          ),
+           'bypassTypeAliases' => false,
+           'constUses' => 
+          array (
+          ),
+           'typeAliasClassName' => NULL,
+           'traitData' => NULL,
+        )),
+         'typeAliasesMap' => 
+        array (
+        ),
+         'bypassTypeAliases' => false,
+         'constUses' => 
+        array (
+        ),
+         'typeAliasClassName' => NULL,
+         'traitData' => NULL,
+      )),
+      '66dae32d5b661fd577da41dc40359186' => 
+      \PHPStan\Analyser\IntermediaryNameScope::__set_state(array(
+         'namespace' => 'App\\Domain\\Reporting\\Gis',
+         'uses' => 
+        array (
+          'mda' => 'App\\Domain\\Access\\Models\\Mda',
+          'mdascope' => 'App\\Domain\\Access\\Scopes\\MdaScope',
+          'benefitstatus' => 'App\\Domain\\Benefit\\Enums\\BenefitStatus',
+          'benefit' => 'App\\Domain\\Benefit\\Models\\Benefit',
+          'ledgeraggregator' => 'App\\Domain\\Benefit\\Services\\LedgerAggregator',
+          'activitystatus' => 'App\\Domain\\Programme\\Enums\\ActivityStatus',
+          'activity' => 'App\\Domain\\Programme\\Models\\Activity',
+          'beneficiary' => 'App\\Domain\\Registry\\Models\\Beneficiary',
+          'household' => 'App\\Domain\\Registry\\Models\\Household',
+          'householdmembership' => 'App\\Domain\\Registry\\Models\\HouseholdMembership',
+          'dashboardfilter' => 'App\\Domain\\Reporting\\Support\\DashboardFilter',
+          'dashboardscope' => 'App\\Domain\\Reporting\\Support\\DashboardScope',
+          'str' => 'Illuminate\\Support\\Str',
+        ),
+         'className' => 'App\\Domain\\Reporting\\Gis\\GisCoverageService',
+         'functionName' => 'areaCodesFor',
+         'templatePhpDocNodes' => 
+        array (
+        ),
+         'parent' => 
+        \PHPStan\Analyser\IntermediaryNameScope::__set_state(array(
+           'namespace' => 'App\\Domain\\Reporting\\Gis',
+           'uses' => 
+          array (
+            'mda' => 'App\\Domain\\Access\\Models\\Mda',
+            'mdascope' => 'App\\Domain\\Access\\Scopes\\MdaScope',
+            'benefitstatus' => 'App\\Domain\\Benefit\\Enums\\BenefitStatus',
+            'benefit' => 'App\\Domain\\Benefit\\Models\\Benefit',
+            'ledgeraggregator' => 'App\\Domain\\Benefit\\Services\\LedgerAggregator',
+            'activitystatus' => 'App\\Domain\\Programme\\Enums\\ActivityStatus',
+            'activity' => 'App\\Domain\\Programme\\Models\\Activity',
+            'beneficiary' => 'App\\Domain\\Registry\\Models\\Beneficiary',
+            'household' => 'App\\Domain\\Registry\\Models\\Household',
+            'householdmembership' => 'App\\Domain\\Registry\\Models\\HouseholdMembership',
+            'dashboardfilter' => 'App\\Domain\\Reporting\\Support\\DashboardFilter',
+            'dashboardscope' => 'App\\Domain\\Reporting\\Support\\DashboardScope',
+            'str' => 'Illuminate\\Support\\Str',
+          ),
+           'className' => 'App\\Domain\\Reporting\\Gis\\GisCoverageService',
+           'functionName' => NULL,
+           'templatePhpDocNodes' => 
+          array (
+          ),
+           'parent' => NULL,
+           'typeAliasesMap' => 
+          array (
+          ),
+           'bypassTypeAliases' => false,
+           'constUses' => 
+          array (
+          ),
+           'typeAliasClassName' => NULL,
+           'traitData' => NULL,
+        )),
+         'typeAliasesMap' => 
+        array (
+        ),
+         'bypassTypeAliases' => false,
+         'constUses' => 
+        array (
+        ),
+         'typeAliasClassName' => NULL,
+         'traitData' => NULL,
+      )),
+      'c3aad847929daf0baa3e45981befa8b5' => 
+      \PHPStan\Analyser\IntermediaryNameScope::__set_state(array(
+         'namespace' => 'App\\Domain\\Reporting\\Gis',
+         'uses' => 
+        array (
+          'mda' => 'App\\Domain\\Access\\Models\\Mda',
+          'mdascope' => 'App\\Domain\\Access\\Scopes\\MdaScope',
+          'benefitstatus' => 'App\\Domain\\Benefit\\Enums\\BenefitStatus',
+          'benefit' => 'App\\Domain\\Benefit\\Models\\Benefit',
+          'ledgeraggregator' => 'App\\Domain\\Benefit\\Services\\LedgerAggregator',
+          'activitystatus' => 'App\\Domain\\Programme\\Enums\\ActivityStatus',
+          'activity' => 'App\\Domain\\Programme\\Models\\Activity',
+          'beneficiary' => 'App\\Domain\\Registry\\Models\\Beneficiary',
+          'household' => 'App\\Domain\\Registry\\Models\\Household',
+          'householdmembership' => 'App\\Domain\\Registry\\Models\\HouseholdMembership',
+          'dashboardfilter' => 'App\\Domain\\Reporting\\Support\\DashboardFilter',
+          'dashboardscope' => 'App\\Domain\\Reporting\\Support\\DashboardScope',
+          'str' => 'Illuminate\\Support\\Str',
+        ),
+         'className' => 'App\\Domain\\Reporting\\Gis\\GisCoverageService',
+         'functionName' => 'householdCounts',
+         'templatePhpDocNodes' => 
+        array (
+        ),
+         'parent' => 
+        \PHPStan\Analyser\IntermediaryNameScope::__set_state(array(
+           'namespace' => 'App\\Domain\\Reporting\\Gis',
+           'uses' => 
+          array (
+            'mda' => 'App\\Domain\\Access\\Models\\Mda',
+            'mdascope' => 'App\\Domain\\Access\\Scopes\\MdaScope',
+            'benefitstatus' => 'App\\Domain\\Benefit\\Enums\\BenefitStatus',
+            'benefit' => 'App\\Domain\\Benefit\\Models\\Benefit',
+            'ledgeraggregator' => 'App\\Domain\\Benefit\\Services\\LedgerAggregator',
+            'activitystatus' => 'App\\Domain\\Programme\\Enums\\ActivityStatus',
+            'activity' => 'App\\Domain\\Programme\\Models\\Activity',
+            'beneficiary' => 'App\\Domain\\Registry\\Models\\Beneficiary',
+            'household' => 'App\\Domain\\Registry\\Models\\Household',
+            'householdmembership' => 'App\\Domain\\Registry\\Models\\HouseholdMembership',
+            'dashboardfilter' => 'App\\Domain\\Reporting\\Support\\DashboardFilter',
+            'dashboardscope' => 'App\\Domain\\Reporting\\Support\\DashboardScope',
+            'str' => 'Illuminate\\Support\\Str',
+          ),
+           'className' => 'App\\Domain\\Reporting\\Gis\\GisCoverageService',
+           'functionName' => NULL,
+           'templatePhpDocNodes' => 
+          array (
+          ),
+           'parent' => NULL,
+           'typeAliasesMap' => 
+          array (
+          ),
+           'bypassTypeAliases' => false,
+           'constUses' => 
+          array (
+          ),
+           'typeAliasClassName' => NULL,
+           'traitData' => NULL,
+        )),
+         'typeAliasesMap' => 
+        array (
+        ),
+         'bypassTypeAliases' => false,
+         'constUses' => 
+        array (
+        ),
+         'typeAliasClassName' => NULL,
+         'traitData' => NULL,
+      )),
+      '31d43357a10137b6078e7ea8f7c2f51e' => 
+      \PHPStan\Analyser\IntermediaryNameScope::__set_state(array(
+         'namespace' => 'App\\Domain\\Reporting\\Gis',
+         'uses' => 
+        array (
+          'mda' => 'App\\Domain\\Access\\Models\\Mda',
+          'mdascope' => 'App\\Domain\\Access\\Scopes\\MdaScope',
+          'benefitstatus' => 'App\\Domain\\Benefit\\Enums\\BenefitStatus',
+          'benefit' => 'App\\Domain\\Benefit\\Models\\Benefit',
+          'ledgeraggregator' => 'App\\Domain\\Benefit\\Services\\LedgerAggregator',
+          'activitystatus' => 'App\\Domain\\Programme\\Enums\\ActivityStatus',
+          'activity' => 'App\\Domain\\Programme\\Models\\Activity',
+          'beneficiary' => 'App\\Domain\\Registry\\Models\\Beneficiary',
+          'household' => 'App\\Domain\\Registry\\Models\\Household',
+          'householdmembership' => 'App\\Domain\\Registry\\Models\\HouseholdMembership',
+          'dashboardfilter' => 'App\\Domain\\Reporting\\Support\\DashboardFilter',
+          'dashboardscope' => 'App\\Domain\\Reporting\\Support\\DashboardScope',
+          'str' => 'Illuminate\\Support\\Str',
+        ),
+         'className' => 'App\\Domain\\Reporting\\Gis\\GisCoverageService',
+         'functionName' => 'activityBreakdown',
+         'templatePhpDocNodes' => 
+        array (
+        ),
+         'parent' => 
+        \PHPStan\Analyser\IntermediaryNameScope::__set_state(array(
+           'namespace' => 'App\\Domain\\Reporting\\Gis',
+           'uses' => 
+          array (
+            'mda' => 'App\\Domain\\Access\\Models\\Mda',
+            'mdascope' => 'App\\Domain\\Access\\Scopes\\MdaScope',
+            'benefitstatus' => 'App\\Domain\\Benefit\\Enums\\BenefitStatus',
+            'benefit' => 'App\\Domain\\Benefit\\Models\\Benefit',
+            'ledgeraggregator' => 'App\\Domain\\Benefit\\Services\\LedgerAggregator',
+            'activitystatus' => 'App\\Domain\\Programme\\Enums\\ActivityStatus',
+            'activity' => 'App\\Domain\\Programme\\Models\\Activity',
+            'beneficiary' => 'App\\Domain\\Registry\\Models\\Beneficiary',
+            'household' => 'App\\Domain\\Registry\\Models\\Household',
+            'householdmembership' => 'App\\Domain\\Registry\\Models\\HouseholdMembership',
+            'dashboardfilter' => 'App\\Domain\\Reporting\\Support\\DashboardFilter',
             'dashboardscope' => 'App\\Domain\\Reporting\\Support\\DashboardScope',
             'str' => 'Illuminate\\Support\\Str',
           ),
@@ -150,10 +599,17 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
          'namespace' => 'App\\Domain\\Reporting\\Gis',
          'uses' => 
         array (
+          'mda' => 'App\\Domain\\Access\\Models\\Mda',
           'mdascope' => 'App\\Domain\\Access\\Scopes\\MdaScope',
+          'benefitstatus' => 'App\\Domain\\Benefit\\Enums\\BenefitStatus',
           'benefit' => 'App\\Domain\\Benefit\\Models\\Benefit',
           'ledgeraggregator' => 'App\\Domain\\Benefit\\Services\\LedgerAggregator',
+          'activitystatus' => 'App\\Domain\\Programme\\Enums\\ActivityStatus',
+          'activity' => 'App\\Domain\\Programme\\Models\\Activity',
           'beneficiary' => 'App\\Domain\\Registry\\Models\\Beneficiary',
+          'household' => 'App\\Domain\\Registry\\Models\\Household',
+          'householdmembership' => 'App\\Domain\\Registry\\Models\\HouseholdMembership',
+          'dashboardfilter' => 'App\\Domain\\Reporting\\Support\\DashboardFilter',
           'dashboardscope' => 'App\\Domain\\Reporting\\Support\\DashboardScope',
           'str' => 'Illuminate\\Support\\Str',
         ),
@@ -167,10 +623,17 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
            'namespace' => 'App\\Domain\\Reporting\\Gis',
            'uses' => 
           array (
+            'mda' => 'App\\Domain\\Access\\Models\\Mda',
             'mdascope' => 'App\\Domain\\Access\\Scopes\\MdaScope',
+            'benefitstatus' => 'App\\Domain\\Benefit\\Enums\\BenefitStatus',
             'benefit' => 'App\\Domain\\Benefit\\Models\\Benefit',
             'ledgeraggregator' => 'App\\Domain\\Benefit\\Services\\LedgerAggregator',
+            'activitystatus' => 'App\\Domain\\Programme\\Enums\\ActivityStatus',
+            'activity' => 'App\\Domain\\Programme\\Models\\Activity',
             'beneficiary' => 'App\\Domain\\Registry\\Models\\Beneficiary',
+            'household' => 'App\\Domain\\Registry\\Models\\Household',
+            'householdmembership' => 'App\\Domain\\Registry\\Models\\HouseholdMembership',
+            'dashboardfilter' => 'App\\Domain\\Reporting\\Support\\DashboardFilter',
             'dashboardscope' => 'App\\Domain\\Reporting\\Support\\DashboardScope',
             'str' => 'Illuminate\\Support\\Str',
           ),
@@ -205,10 +668,17 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
          'namespace' => 'App\\Domain\\Reporting\\Gis',
          'uses' => 
         array (
+          'mda' => 'App\\Domain\\Access\\Models\\Mda',
           'mdascope' => 'App\\Domain\\Access\\Scopes\\MdaScope',
+          'benefitstatus' => 'App\\Domain\\Benefit\\Enums\\BenefitStatus',
           'benefit' => 'App\\Domain\\Benefit\\Models\\Benefit',
           'ledgeraggregator' => 'App\\Domain\\Benefit\\Services\\LedgerAggregator',
+          'activitystatus' => 'App\\Domain\\Programme\\Enums\\ActivityStatus',
+          'activity' => 'App\\Domain\\Programme\\Models\\Activity',
           'beneficiary' => 'App\\Domain\\Registry\\Models\\Beneficiary',
+          'household' => 'App\\Domain\\Registry\\Models\\Household',
+          'householdmembership' => 'App\\Domain\\Registry\\Models\\HouseholdMembership',
+          'dashboardfilter' => 'App\\Domain\\Reporting\\Support\\DashboardFilter',
           'dashboardscope' => 'App\\Domain\\Reporting\\Support\\DashboardScope',
           'str' => 'Illuminate\\Support\\Str',
         ),
@@ -222,10 +692,17 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
            'namespace' => 'App\\Domain\\Reporting\\Gis',
            'uses' => 
           array (
+            'mda' => 'App\\Domain\\Access\\Models\\Mda',
             'mdascope' => 'App\\Domain\\Access\\Scopes\\MdaScope',
+            'benefitstatus' => 'App\\Domain\\Benefit\\Enums\\BenefitStatus',
             'benefit' => 'App\\Domain\\Benefit\\Models\\Benefit',
             'ledgeraggregator' => 'App\\Domain\\Benefit\\Services\\LedgerAggregator',
+            'activitystatus' => 'App\\Domain\\Programme\\Enums\\ActivityStatus',
+            'activity' => 'App\\Domain\\Programme\\Models\\Activity',
             'beneficiary' => 'App\\Domain\\Registry\\Models\\Beneficiary',
+            'household' => 'App\\Domain\\Registry\\Models\\Household',
+            'householdmembership' => 'App\\Domain\\Registry\\Models\\HouseholdMembership',
+            'dashboardfilter' => 'App\\Domain\\Reporting\\Support\\DashboardFilter',
             'dashboardscope' => 'App\\Domain\\Reporting\\Support\\DashboardScope',
             'str' => 'Illuminate\\Support\\Str',
           ),
@@ -260,10 +737,17 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
          'namespace' => 'App\\Domain\\Reporting\\Gis',
          'uses' => 
         array (
+          'mda' => 'App\\Domain\\Access\\Models\\Mda',
           'mdascope' => 'App\\Domain\\Access\\Scopes\\MdaScope',
+          'benefitstatus' => 'App\\Domain\\Benefit\\Enums\\BenefitStatus',
           'benefit' => 'App\\Domain\\Benefit\\Models\\Benefit',
           'ledgeraggregator' => 'App\\Domain\\Benefit\\Services\\LedgerAggregator',
+          'activitystatus' => 'App\\Domain\\Programme\\Enums\\ActivityStatus',
+          'activity' => 'App\\Domain\\Programme\\Models\\Activity',
           'beneficiary' => 'App\\Domain\\Registry\\Models\\Beneficiary',
+          'household' => 'App\\Domain\\Registry\\Models\\Household',
+          'householdmembership' => 'App\\Domain\\Registry\\Models\\HouseholdMembership',
+          'dashboardfilter' => 'App\\Domain\\Reporting\\Support\\DashboardFilter',
           'dashboardscope' => 'App\\Domain\\Reporting\\Support\\DashboardScope',
           'str' => 'Illuminate\\Support\\Str',
         ),
@@ -277,10 +761,17 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
            'namespace' => 'App\\Domain\\Reporting\\Gis',
            'uses' => 
           array (
+            'mda' => 'App\\Domain\\Access\\Models\\Mda',
             'mdascope' => 'App\\Domain\\Access\\Scopes\\MdaScope',
+            'benefitstatus' => 'App\\Domain\\Benefit\\Enums\\BenefitStatus',
             'benefit' => 'App\\Domain\\Benefit\\Models\\Benefit',
             'ledgeraggregator' => 'App\\Domain\\Benefit\\Services\\LedgerAggregator',
+            'activitystatus' => 'App\\Domain\\Programme\\Enums\\ActivityStatus',
+            'activity' => 'App\\Domain\\Programme\\Models\\Activity',
             'beneficiary' => 'App\\Domain\\Registry\\Models\\Beneficiary',
+            'household' => 'App\\Domain\\Registry\\Models\\Household',
+            'householdmembership' => 'App\\Domain\\Registry\\Models\\HouseholdMembership',
+            'dashboardfilter' => 'App\\Domain\\Reporting\\Support\\DashboardFilter',
             'dashboardscope' => 'App\\Domain\\Reporting\\Support\\DashboardScope',
             'str' => 'Illuminate\\Support\\Str',
           ),
@@ -313,7 +804,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
     ),
     1 => 
     array (
-      '/var/www/html/app/Domain/Reporting/Gis/GisCoverageService.php' => '118c26a15f3dec075ff7eaaad799d9db83f33edb111a34a9ee9dc4b1af515633',
+      '/var/www/html/app/Domain/Reporting/Gis/GisCoverageService.php' => 'b0adf7f994271b725c22b2f44cce21ef17477eac5da1bf6efe65fac8901718f5',
     ),
   ),
 ));

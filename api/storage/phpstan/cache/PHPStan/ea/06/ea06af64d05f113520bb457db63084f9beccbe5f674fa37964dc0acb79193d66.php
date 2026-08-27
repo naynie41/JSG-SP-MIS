@@ -662,7 +662,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
     ),
     1 => 
     array (
-      '/var/www/html/app/Domain/Reporting/Models/ReportRun.php' => '2793228d889e663871b3371890daa77fd4a781d5da63c9bd78a4d0573243aeae',
+      '/var/www/html/app/Domain/Reporting/Models/ReportRun.php' => '5386016caf18aaed4ecdfe5f378bba919406ab244ce83068f8f3399c014f5bda',
       '/var/www/html/vendor/composer/../laravel/framework/src/Illuminate/Database/Eloquent/Concerns/HasUuids.php' => 'f75b8db33aafd61f17652a5e4bb5b8989e62197b306e9f7ae60bb3ac2c34d534',
       '/var/www/html/vendor/composer/../laravel/framework/src/Illuminate/Database/Eloquent/Concerns/HasUniqueStringIds.php' => '3d5612d3c0a56c6c9f19e628b02085d4d68a64d9d07656742725cec78d4a79c5',
     ),

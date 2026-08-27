@@ -764,7 +764,7 @@ class DashboardMetricsService
 
         $activities = $this->applyActivityFilter(
             Activity::query()->withoutGlobalScope(MdaScope::class)->where('funding_partner_id', $partnerId)
-        )->get(['id', 'programme_id', 'owner_mda_id', 'lga', 'name', 'budget_amount', 'target_beneficiaries', 'status', 'starts_on', 'ends_on']);
+        )->get(['id', 'programme_id', 'owner_mda_id', 'name', 'budget_amount', 'target_beneficiaries', 'status', 'starts_on', 'ends_on']);
 
         $activityIds = $activities->pluck('id')->all();
         $allocated = (int) $activities->sum('budget_amount');
@@ -1754,12 +1754,12 @@ class DashboardMetricsService
         if ($f->mdaId !== null) {
             $query->where('owner_mda_id', $f->mdaId);
         }
-        if ($f->lga !== null) {
-            $query->where('lga', $f->lga);
-        }
-        if ($f->ward !== null) {
-            $query->where('ward', $f->ward);
-        }
+
+        // An activity DECLARES a set of areas (`activity_locations`); the single
+        // `activities.lga`/`.ward` pair this used to read was dropped with that change.
+        // `declaredIn` also matches an activity that declared the whole LGA a ward sits
+        // in, which a column comparison never could.
+        $query->declaredIn($f->lga, $f->ward);
 
         return $query;
     }

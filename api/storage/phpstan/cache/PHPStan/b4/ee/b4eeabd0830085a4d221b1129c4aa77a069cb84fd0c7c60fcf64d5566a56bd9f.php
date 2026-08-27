@@ -266,10 +266,57 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
          'typeAliasClassName' => NULL,
          'traitData' => NULL,
       )),
+      'ba3025d785e146a88185a71f6ebadf53' => 
+      \PHPStan\Analyser\IntermediaryNameScope::__set_state(array(
+         'namespace' => 'App\\Domain\\Registry\\Policies',
+         'uses' => 
+        array (
+          'user' => 'App\\Domain\\Access\\Models\\User',
+          'importbatch' => 'App\\Domain\\Registry\\Models\\ImportBatch',
+        ),
+         'className' => 'App\\Domain\\Registry\\Policies\\ImportBatchPolicy',
+         'functionName' => 'map',
+         'templatePhpDocNodes' => 
+        array (
+        ),
+         'parent' => 
+        \PHPStan\Analyser\IntermediaryNameScope::__set_state(array(
+           'namespace' => 'App\\Domain\\Registry\\Policies',
+           'uses' => 
+          array (
+            'user' => 'App\\Domain\\Access\\Models\\User',
+            'importbatch' => 'App\\Domain\\Registry\\Models\\ImportBatch',
+          ),
+           'className' => 'App\\Domain\\Registry\\Policies\\ImportBatchPolicy',
+           'functionName' => NULL,
+           'templatePhpDocNodes' => 
+          array (
+          ),
+           'parent' => NULL,
+           'typeAliasesMap' => 
+          array (
+          ),
+           'bypassTypeAliases' => false,
+           'constUses' => 
+          array (
+          ),
+           'typeAliasClassName' => NULL,
+           'traitData' => NULL,
+        )),
+         'typeAliasesMap' => 
+        array (
+        ),
+         'bypassTypeAliases' => false,
+         'constUses' => 
+        array (
+        ),
+         'typeAliasClassName' => NULL,
+         'traitData' => NULL,
+      )),
     ),
     1 => 
     array (
-      '/var/www/html/app/Domain/Registry/Policies/ImportBatchPolicy.php' => 'decd4c37aec185115f989b7700ec37dfa6ba3c9083c9579191d7da8438b86e0f',
+      '/var/www/html/app/Domain/Registry/Policies/ImportBatchPolicy.php' => '7aaabdcc31e1fb41c90de39f1c18470536ccb85d8c9c8dd26d2b4d94234efdb9',
     ),
   ),
 ));

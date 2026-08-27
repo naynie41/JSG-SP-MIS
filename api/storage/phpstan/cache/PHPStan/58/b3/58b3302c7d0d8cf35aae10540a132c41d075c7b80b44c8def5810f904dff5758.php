@@ -2,7 +2,7 @@
 
 // odsl-/var/www/html/app/Http/Requests/Registry/ApiRegistrationRequest.php-PHPStan\BetterReflection\Reflection\ReflectionClass-App\Http\Requests\Registry\ApiRegistrationRequest
 return \PHPStan\Cache\CacheItem::__set_state(array(
-   'variableKey' => 'v2-6.70.0.1-8.3.31-ee2bfcf50e698747a2a225cd17ccf286326ef6b18a10bda85bed30249d171095',
+   'variableKey' => 'v2-6.70.0.1-8.3.31-18de712fc69e5401614e4dd441f0633f69090181ee76b659f9713873d399797c',
    'data' => 
   array (
     'locatedSource' => 
@@ -23,16 +23,18 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
     'isBackedEnum' => false,
     'modifiers' => 0,
     'docComment' => '/**
- * Inbound REST registration intake (PRD FR-REG-02, source = "api"). Uses the
- * shared registration rules so an API submission is validated identically to a
- * manual entry, and additionally requires the caller\'s own record id so every
- * ingested record stays traceable to origin.
+ * Inbound REST registration intake (PRD FR-REG-02, source = "api") — one of the
+ * source-ingestion doors, not a manual-entry form: it requires the caller\'s own
+ * record id so every ingested record stays traceable to origin.
+ *
+ * Uses the shared {@see BeneficiaryRules} so an API submission is validated
+ * identically to every other source.
  */',
     'attributes' => 
     array (
     ),
-    'startLine' => 19,
-    'endLine' => 62,
+    'startLine' => 21,
+    'endLine' => 76,
     'startColumn' => 1,
     'endColumn' => 1,
     'parentClassName' => 'Illuminate\\Foundation\\Http\\FormRequest',
@@ -70,8 +72,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         array (
         ),
         'docComment' => NULL,
-        'startLine' => 21,
-        'endLine' => 24,
+        'startLine' => 23,
+        'endLine' => 26,
         'startColumn' => 5,
         'endColumn' => 5,
         'couldThrow' => false,
@@ -105,10 +107,14 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         array (
         ),
         'docComment' => '/**
- * Normalise identifiers before validation (mirrors the model/manual path).
+ * Normalise identifiers before validation (mirrors every other source path), and
+ * accept the file pipeline\'s canonical `household_ref` name alongside the
+ * `household_id` this endpoint originally shipped with. One concept, one meaning:
+ * an integrator reading docs/registry-intake.md should not have to discover that
+ * the same field is named differently depending on which door they use.
  */',
-        'startLine' => 29,
-        'endLine' => 36,
+        'startLine' => 35,
+        'endLine' => 47,
         'startColumn' => 5,
         'endColumn' => 5,
         'couldThrow' => false,
@@ -144,8 +150,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         'docComment' => '/**
  * @return array<string, mixed>
  */',
-        'startLine' => 41,
-        'endLine' => 53,
+        'startLine' => 52,
+        'endLine' => 67,
         'startColumn' => 5,
         'endColumn' => 5,
         'couldThrow' => false,
@@ -181,8 +187,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         'docComment' => '/**
  * @return array<string, string>
  */',
-        'startLine' => 58,
-        'endLine' => 61,
+        'startLine' => 72,
+        'endLine' => 75,
         'startColumn' => 5,
         'endColumn' => 5,
         'couldThrow' => false,

@@ -158,7 +158,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
     ),
     1 => 
     array (
-      '/var/www/html/app/Domain/Notification/NotificationServiceProvider.php' => '1d6f1323ac9eeebf0162d6ec3a050737cece4fd3b9b2192da08d45880ec789ef',
+      '/var/www/html/app/Domain/Notification/NotificationServiceProvider.php' => 'a9a207374f92e2f6b12eb0e3d07adb4801de861d9897aba067ece3dd36e153ba',
     ),
   ),
 ));

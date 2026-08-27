@@ -2,7 +2,7 @@
 
 // odsl-/var/www/html/app/Http/Requests/Registry/ResolveImportRowRequest.php-PHPStan\BetterReflection\Reflection\ReflectionClass-App\Http\Requests\Registry\ResolveImportRowRequest
 return \PHPStan\Cache\CacheItem::__set_state(array(
-   'variableKey' => 'v2-6.70.0.1-8.3.31-d1d5edf7340532d674e91b35401b0b7fdf91e77e7b4f1d09cd120c9ac843a1e6',
+   'variableKey' => 'v2-6.70.0.1-8.3.31-f05dcc73f9515c2ee4e3f35215eb25121fba714aee913a94fb1a4e9d6b6fd81a',
    'data' => 
   array (
     'locatedSource' => 
@@ -24,13 +24,14 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
     'modifiers' => 0,
     'docComment' => '/**
  * Resolve a flagged import row (PRD FR-DUP-05): create as new (with a required
- * justification), link/request-to-serve an existing beneficiary, or skip.
+ * justification), link/request-to-serve another MDA\'s beneficiary, record the row
+ * against one this MDA already owns, or skip.
  */',
     'attributes' => 
     array (
     ),
-    'startLine' => 15,
-    'endLine' => 35,
+    'startLine' => 16,
+    'endLine' => 37,
     'startColumn' => 1,
     'endColumn' => 1,
     'parentClassName' => 'Illuminate\\Foundation\\Http\\FormRequest',
@@ -68,8 +69,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         array (
         ),
         'docComment' => NULL,
-        'startLine' => 17,
-        'endLine' => 20,
+        'startLine' => 18,
+        'endLine' => 21,
         'startColumn' => 5,
         'endColumn' => 5,
         'couldThrow' => false,
@@ -105,8 +106,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         'docComment' => '/**
  * @return array<string, mixed>
  */',
-        'startLine' => 25,
-        'endLine' => 34,
+        'startLine' => 26,
+        'endLine' => 36,
         'startColumn' => 5,
         'endColumn' => 5,
         'couldThrow' => false,

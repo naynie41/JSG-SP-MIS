@@ -2,7 +2,7 @@
 
 // odsl-/var/www/html/app/Domain/Notification/NotificationServiceProvider.php-PHPStan\BetterReflection\Reflection\ReflectionClass-App\Domain\Notification\NotificationServiceProvider
 return \PHPStan\Cache\CacheItem::__set_state(array(
-   'variableKey' => 'v2-6.70.0.1-8.3.31-1d6f1323ac9eeebf0162d6ec3a050737cece4fd3b9b2192da08d45880ec789ef',
+   'variableKey' => 'v2-6.70.0.1-8.3.31-a9a207374f92e2f6b12eb0e3d07adb4801de861d9897aba067ece3dd36e153ba',
    'data' => 
   array (
     'locatedSource' => 
@@ -32,7 +32,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
     array (
     ),
     'startLine' => 22,
-    'endLine' => 38,
+    'endLine' => 48,
     'startColumn' => 1,
     'endColumn' => 1,
     'parentClassName' => 'Illuminate\\Support\\ServiceProvider',
@@ -44,6 +44,35 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
     ),
     'immediateConstants' => 
     array (
+      'CHANNELS' => 
+      array (
+        'declaringClassName' => 'App\\Domain\\Notification\\NotificationServiceProvider',
+        'implementingClassName' => 'App\\Domain\\Notification\\NotificationServiceProvider',
+        'name' => 'CHANNELS',
+        'modifiers' => 1,
+        'type' => NULL,
+        'value' => 
+        array (
+          'code' => '\'notification.channels\'',
+          'attributes' => 
+          array (
+            'startLine' => 25,
+            'endLine' => 25,
+            'startTokenPos' => 77,
+            'startFilePos' => 926,
+            'endTokenPos' => 77,
+            'endFilePos' => 948,
+          ),
+        ),
+        'docComment' => '/** The container key for the registered channel set. */',
+        'attributes' => 
+        array (
+        ),
+        'startLine' => 25,
+        'endLine' => 25,
+        'startColumn' => 5,
+        'endColumn' => 52,
+      ),
     ),
     'immediateProperties' => 
     array (
@@ -70,8 +99,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         array (
         ),
         'docComment' => NULL,
-        'startLine' => 24,
-        'endLine' => 32,
+        'startLine' => 27,
+        'endLine' => 42,
         'startColumn' => 5,
         'endColumn' => 5,
         'couldThrow' => false,
@@ -105,8 +134,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         array (
         ),
         'docComment' => NULL,
-        'startLine' => 34,
-        'endLine' => 37,
+        'startLine' => 44,
+        'endLine' => 47,
         'startColumn' => 5,
         'endColumn' => 5,
         'couldThrow' => false,

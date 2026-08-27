@@ -1,9 +1,10 @@
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import { GeoJSON, MapContainer, TileLayer, useMap } from 'react-leaflet'
 import L from 'leaflet'
 import 'leaflet/dist/leaflet.css'
 import { colorFor } from './choropleth'
 import type { CoverageFeatureCollection, CoverageFeatureProperties, CoverageMetric } from './types'
+import { CoverageHoverCard } from '@/features/dashboard/CoverageHoverCard'
 import styles from './gis.module.css'
 
 const TILE_URL = (import.meta.env.VITE_MAP_TILE_URL as string | undefined) ?? 'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png'
@@ -32,8 +33,10 @@ function FitBounds({ data }: { data: CoverageFeatureCollection }) {
  */
 export function CoverageMap({ data, metric }: { data: CoverageFeatureCollection; metric: CoverageMetric }) {
   const max = Math.max(1, ...data.features.map((f) => f.properties[metric]))
+  const [hovered, setHovered] = useState<CoverageFeatureProperties | null>(null)
 
   return (
+    <div className={styles.mapFrame}>
     <MapContainer center={[12.2, 9.55]} zoom={8} scrollWheelZoom={false} className={styles.map}>
       <TileLayer url={TILE_URL} attribution="&copy; OpenStreetMap contributors" />
       <GeoJSON
@@ -44,14 +47,18 @@ export function CoverageMap({ data, metric }: { data: CoverageFeatureCollection;
           return { fillColor: colorFor(props?.[metric] ?? 0, max), weight: 1, color: '#2C3512', fillOpacity: 0.75 }
         }}
         onEachFeature={(feature, layer) => {
+          // The same card the executive coverage map shows: one map, one answer to
+          // "what is happening in this LGA", whichever page you reached it from.
           const props = feature.properties as CoverageFeatureProperties
-          const value = metric === 'benefit_value'
-            ? `₦${(props.benefit_value / 100).toLocaleString()}`
-            : `${props.beneficiary_count.toLocaleString()} beneficiaries`
-          layer.bindTooltip(`${props.name}: ${value}`)
+          layer.on({
+            mouseover: () => setHovered(props),
+            mouseout: () => setHovered((current) => (current?.code === props.code ? null : current)),
+          })
         }}
       />
       <FitBounds data={data} />
     </MapContainer>
+      <CoverageHoverCard area={hovered} areaWord="area" />
+    </div>
   )
 }

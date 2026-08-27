@@ -355,7 +355,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
     ),
     1 => 
     array (
-      '/var/www/html/app/Domain/Registry/Services/BatchDuplicateScreener.php' => 'ed23a96b20f70997f8a4541bd5ba077519843c5e745af50684c7bbd12f472e14',
+      '/var/www/html/app/Domain/Registry/Services/BatchDuplicateScreener.php' => '1c22444020033f46adc2a1a3a3f473aea6a851c1df730e2fd0f30f2bf283cd4d',
     ),
   ),
 ));

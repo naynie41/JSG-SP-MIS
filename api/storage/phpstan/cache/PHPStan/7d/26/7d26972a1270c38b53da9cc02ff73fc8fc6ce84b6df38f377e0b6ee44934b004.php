@@ -2,7 +2,7 @@
 
 // odsl-/var/www/html/app/Domain/Benefit/Services/BenefitRecorder.php-PHPStan\BetterReflection\Reflection\ReflectionClass-App\Domain\Benefit\Services\BenefitRecorder
 return \PHPStan\Cache\CacheItem::__set_state(array(
-   'variableKey' => 'v2-6.70.0.1-8.3.31-e52587f2ab3e1325e4fb6d3094a3cb5a547dba2e4f834e53fa4f642840b282de',
+   'variableKey' => 'v2-6.70.0.1-8.3.31-3260cdd273c69f6ba969b701b8696d4d52c9a4f6d175577af8424c819fa4d89c',
    'data' => 
   array (
     'locatedSource' => 
@@ -33,8 +33,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
     'attributes' => 
     array (
     ),
-    'startLine' => 30,
-    'endLine' => 146,
+    'startLine' => 32,
+    'endLine' => 158,
     'startColumn' => 1,
     'endColumn' => 1,
     'parentClassName' => NULL,
@@ -69,8 +69,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         'attributes' => 
         array (
         ),
-        'startLine' => 33,
-        'endLine' => 33,
+        'startLine' => 35,
+        'endLine' => 35,
         'startColumn' => 9,
         'endColumn' => 52,
         'isPromoted' => true,
@@ -100,8 +100,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         'attributes' => 
         array (
         ),
-        'startLine' => 34,
-        'endLine' => 34,
+        'startLine' => 36,
+        'endLine' => 36,
         'startColumn' => 9,
         'endColumn' => 61,
         'isPromoted' => true,
@@ -131,10 +131,41 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         'attributes' => 
         array (
         ),
-        'startLine' => 35,
-        'endLine' => 35,
+        'startLine' => 37,
+        'endLine' => 37,
         'startColumn' => 9,
         'endColumn' => 61,
+        'isPromoted' => true,
+        'declaredAtCompileTime' => true,
+        'immediateVirtual' => false,
+        'immediateHooks' => 
+        array (
+        ),
+      ),
+      'consentGate' => 
+      array (
+        'declaringClassName' => 'App\\Domain\\Benefit\\Services\\BenefitRecorder',
+        'implementingClassName' => 'App\\Domain\\Benefit\\Services\\BenefitRecorder',
+        'name' => 'consentGate',
+        'modifiers' => 132,
+        'type' => 
+        array (
+          'class' => 'PHPStan\\BetterReflection\\Reflection\\ReflectionNamedType',
+          'data' => 
+          array (
+            'name' => 'App\\Domain\\Registry\\Services\\ConsentGate',
+            'isIdentifier' => false,
+          ),
+        ),
+        'default' => NULL,
+        'docComment' => NULL,
+        'attributes' => 
+        array (
+        ),
+        'startLine' => 38,
+        'endLine' => 38,
+        'startColumn' => 9,
+        'endColumn' => 49,
         'isPromoted' => true,
         'declaredAtCompileTime' => true,
         'immediateVirtual' => false,
@@ -162,8 +193,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         'attributes' => 
         array (
         ),
-        'startLine' => 36,
-        'endLine' => 36,
+        'startLine' => 39,
+        'endLine' => 39,
         'startColumn' => 9,
         'endColumn' => 43,
         'isPromoted' => true,
@@ -200,8 +231,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             'attributes' => 
             array (
             ),
-            'startLine' => 33,
-            'endLine' => 33,
+            'startLine' => 35,
+            'endLine' => 35,
             'startColumn' => 9,
             'endColumn' => 52,
             'parameterIndex' => 0,
@@ -226,8 +257,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             'attributes' => 
             array (
             ),
-            'startLine' => 34,
-            'endLine' => 34,
+            'startLine' => 36,
+            'endLine' => 36,
             'startColumn' => 9,
             'endColumn' => 61,
             'parameterIndex' => 1,
@@ -252,11 +283,37 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             'attributes' => 
             array (
             ),
-            'startLine' => 35,
-            'endLine' => 35,
+            'startLine' => 37,
+            'endLine' => 37,
             'startColumn' => 9,
             'endColumn' => 61,
             'parameterIndex' => 2,
+            'isOptional' => false,
+          ),
+          'consentGate' => 
+          array (
+            'name' => 'consentGate',
+            'default' => NULL,
+            'type' => 
+            array (
+              'class' => 'PHPStan\\BetterReflection\\Reflection\\ReflectionNamedType',
+              'data' => 
+              array (
+                'name' => 'App\\Domain\\Registry\\Services\\ConsentGate',
+                'isIdentifier' => false,
+              ),
+            ),
+            'isVariadic' => false,
+            'byRef' => false,
+            'isPromoted' => true,
+            'attributes' => 
+            array (
+            ),
+            'startLine' => 38,
+            'endLine' => 38,
+            'startColumn' => 9,
+            'endColumn' => 49,
+            'parameterIndex' => 3,
             'isOptional' => false,
           ),
           'audit' => 
@@ -278,11 +335,11 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             'attributes' => 
             array (
             ),
-            'startLine' => 36,
-            'endLine' => 36,
+            'startLine' => 39,
+            'endLine' => 39,
             'startColumn' => 9,
             'endColumn' => 43,
-            'parameterIndex' => 3,
+            'parameterIndex' => 4,
             'isOptional' => false,
           ),
         ),
@@ -292,8 +349,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         array (
         ),
         'docComment' => NULL,
-        'startLine' => 32,
-        'endLine' => 37,
+        'startLine' => 34,
+        'endLine' => 40,
         'startColumn' => 5,
         'endColumn' => 8,
         'couldThrow' => false,
@@ -331,8 +388,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             'attributes' => 
             array (
             ),
-            'startLine' => 46,
-            'endLine' => 46,
+            'startLine' => 49,
+            'endLine' => 49,
             'startColumn' => 28,
             'endColumn' => 51,
             'parameterIndex' => 0,
@@ -357,8 +414,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             'attributes' => 
             array (
             ),
-            'startLine' => 46,
-            'endLine' => 46,
+            'startLine' => 49,
+            'endLine' => 49,
             'startColumn' => 54,
             'endColumn' => 73,
             'parameterIndex' => 1,
@@ -402,8 +459,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             'attributes' => 
             array (
             ),
-            'startLine' => 46,
-            'endLine' => 46,
+            'startLine' => 49,
+            'endLine' => 49,
             'startColumn' => 76,
             'endColumn' => 94,
             'parameterIndex' => 2,
@@ -428,8 +485,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             'attributes' => 
             array (
             ),
-            'startLine' => 46,
-            'endLine' => 46,
+            'startLine' => 49,
+            'endLine' => 49,
             'startColumn' => 97,
             'endColumn' => 107,
             'parameterIndex' => 3,
@@ -454,8 +511,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             'attributes' => 
             array (
             ),
-            'startLine' => 46,
-            'endLine' => 46,
+            'startLine' => 49,
+            'endLine' => 49,
             'startColumn' => 110,
             'endColumn' => 122,
             'parameterIndex' => 4,
@@ -482,8 +539,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
  * @throws NotEnrolledException
  * @throws VerificationUnavailableException
  */',
-        'startLine' => 46,
-        'endLine' => 120,
+        'startLine' => 49,
+        'endLine' => 132,
         'startColumn' => 5,
         'endColumn' => 5,
         'couldThrow' => true,
@@ -521,8 +578,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             'attributes' => 
             array (
             ),
-            'startLine' => 127,
-            'endLine' => 127,
+            'startLine' => 139,
+            'endLine' => 139,
             'startColumn' => 28,
             'endColumn' => 43,
             'parameterIndex' => 0,
@@ -547,8 +604,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             'attributes' => 
             array (
             ),
-            'startLine' => 127,
-            'endLine' => 127,
+            'startLine' => 139,
+            'endLine' => 139,
             'startColumn' => 46,
             'endColumn' => 71,
             'parameterIndex' => 1,
@@ -592,8 +649,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             'attributes' => 
             array (
             ),
-            'startLine' => 127,
-            'endLine' => 127,
+            'startLine' => 139,
+            'endLine' => 139,
             'startColumn' => 74,
             'endColumn' => 91,
             'parameterIndex' => 2,
@@ -618,8 +675,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             'attributes' => 
             array (
             ),
-            'startLine' => 127,
-            'endLine' => 127,
+            'startLine' => 139,
+            'endLine' => 139,
             'startColumn' => 94,
             'endColumn' => 104,
             'parameterIndex' => 3,
@@ -644,8 +701,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
  *
  * @throws VerificationUnavailableException
  */',
-        'startLine' => 127,
-        'endLine' => 132,
+        'startLine' => 139,
+        'endLine' => 144,
         'startColumn' => 5,
         'endColumn' => 5,
         'couldThrow' => false,
@@ -683,8 +740,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             'attributes' => 
             array (
             ),
-            'startLine' => 134,
-            'endLine' => 134,
+            'startLine' => 146,
+            'endLine' => 146,
             'startColumn' => 40,
             'endColumn' => 55,
             'parameterIndex' => 0,
@@ -709,8 +766,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             'attributes' => 
             array (
             ),
-            'startLine' => 134,
-            'endLine' => 134,
+            'startLine' => 146,
+            'endLine' => 146,
             'startColumn' => 58,
             'endColumn' => 83,
             'parameterIndex' => 1,
@@ -754,8 +811,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             'attributes' => 
             array (
             ),
-            'startLine' => 134,
-            'endLine' => 134,
+            'startLine' => 146,
+            'endLine' => 146,
             'startColumn' => 86,
             'endColumn' => 103,
             'parameterIndex' => 2,
@@ -780,8 +837,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             'attributes' => 
             array (
             ),
-            'startLine' => 134,
-            'endLine' => 134,
+            'startLine' => 146,
+            'endLine' => 146,
             'startColumn' => 106,
             'endColumn' => 116,
             'parameterIndex' => 3,
@@ -802,8 +859,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         array (
         ),
         'docComment' => NULL,
-        'startLine' => 134,
-        'endLine' => 145,
+        'startLine' => 146,
+        'endLine' => 157,
         'startColumn' => 5,
         'endColumn' => 5,
         'couldThrow' => false,

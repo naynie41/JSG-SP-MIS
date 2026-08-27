@@ -13,7 +13,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
          'uses' => 
         array (
           'beneficiary' => 'App\\Domain\\Registry\\Models\\Beneficiary',
-          'servicerequestservice' => 'App\\Domain\\Registry\\Services\\ServiceRequestService',
+          'datasharingguard' => 'App\\Domain\\Sharing\\DataSharingGuard',
         ),
          'className' => 'App\\Domain\\Benefit\\Authorization\\ServiceRequestAuthorizer',
          'functionName' => NULL,
@@ -31,13 +31,60 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
          'typeAliasClassName' => NULL,
          'traitData' => NULL,
       )),
+      '41204108c62ef0815183c8230467df64' => 
+      \PHPStan\Analyser\IntermediaryNameScope::__set_state(array(
+         'namespace' => 'App\\Domain\\Benefit\\Authorization',
+         'uses' => 
+        array (
+          'beneficiary' => 'App\\Domain\\Registry\\Models\\Beneficiary',
+          'datasharingguard' => 'App\\Domain\\Sharing\\DataSharingGuard',
+        ),
+         'className' => 'App\\Domain\\Benefit\\Authorization\\ServiceRequestAuthorizer',
+         'functionName' => '__construct',
+         'templatePhpDocNodes' => 
+        array (
+        ),
+         'parent' => 
+        \PHPStan\Analyser\IntermediaryNameScope::__set_state(array(
+           'namespace' => 'App\\Domain\\Benefit\\Authorization',
+           'uses' => 
+          array (
+            'beneficiary' => 'App\\Domain\\Registry\\Models\\Beneficiary',
+            'datasharingguard' => 'App\\Domain\\Sharing\\DataSharingGuard',
+          ),
+           'className' => 'App\\Domain\\Benefit\\Authorization\\ServiceRequestAuthorizer',
+           'functionName' => NULL,
+           'templatePhpDocNodes' => 
+          array (
+          ),
+           'parent' => NULL,
+           'typeAliasesMap' => 
+          array (
+          ),
+           'bypassTypeAliases' => false,
+           'constUses' => 
+          array (
+          ),
+           'typeAliasClassName' => NULL,
+           'traitData' => NULL,
+        )),
+         'typeAliasesMap' => 
+        array (
+        ),
+         'bypassTypeAliases' => false,
+         'constUses' => 
+        array (
+        ),
+         'typeAliasClassName' => NULL,
+         'traitData' => NULL,
+      )),
       '7b423221209145e1131adc6e93449275' => 
       \PHPStan\Analyser\IntermediaryNameScope::__set_state(array(
          'namespace' => 'App\\Domain\\Benefit\\Authorization',
          'uses' => 
         array (
           'beneficiary' => 'App\\Domain\\Registry\\Models\\Beneficiary',
-          'servicerequestservice' => 'App\\Domain\\Registry\\Services\\ServiceRequestService',
+          'datasharingguard' => 'App\\Domain\\Sharing\\DataSharingGuard',
         ),
          'className' => 'App\\Domain\\Benefit\\Authorization\\ServiceRequestAuthorizer',
          'functionName' => 'authorizes',
@@ -50,7 +97,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
            'uses' => 
           array (
             'beneficiary' => 'App\\Domain\\Registry\\Models\\Beneficiary',
-            'servicerequestservice' => 'App\\Domain\\Registry\\Services\\ServiceRequestService',
+            'datasharingguard' => 'App\\Domain\\Sharing\\DataSharingGuard',
           ),
            'className' => 'App\\Domain\\Benefit\\Authorization\\ServiceRequestAuthorizer',
            'functionName' => NULL,
@@ -84,7 +131,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
          'uses' => 
         array (
           'beneficiary' => 'App\\Domain\\Registry\\Models\\Beneficiary',
-          'servicerequestservice' => 'App\\Domain\\Registry\\Services\\ServiceRequestService',
+          'datasharingguard' => 'App\\Domain\\Sharing\\DataSharingGuard',
         ),
          'className' => 'App\\Domain\\Benefit\\Authorization\\ServiceRequestAuthorizer',
          'functionName' => 'source',
@@ -97,7 +144,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
            'uses' => 
           array (
             'beneficiary' => 'App\\Domain\\Registry\\Models\\Beneficiary',
-            'servicerequestservice' => 'App\\Domain\\Registry\\Services\\ServiceRequestService',
+            'datasharingguard' => 'App\\Domain\\Sharing\\DataSharingGuard',
           ),
            'className' => 'App\\Domain\\Benefit\\Authorization\\ServiceRequestAuthorizer',
            'functionName' => NULL,
@@ -128,7 +175,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
     ),
     1 => 
     array (
-      '/var/www/html/app/Domain/Benefit/Authorization/ServiceRequestAuthorizer.php' => '7ceb99540aea8ce741bd1551518e0226ee7c1829685e64e0aac1c491a86ec84a',
+      '/var/www/html/app/Domain/Benefit/Authorization/ServiceRequestAuthorizer.php' => '75c623ee7541eac0cb5e14ec94f16b132d3c07ee2f80b499eed14c76aac52dc1',
     ),
   ),
 ));

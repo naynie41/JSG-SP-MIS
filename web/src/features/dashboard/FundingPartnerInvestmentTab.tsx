@@ -204,7 +204,8 @@ export function FundingPartnerInvestmentTab({ filter, onDrill }: { filter?: Dash
                 selectedCode={selectedCode}
                 onSelect={setSelectedCode}
                 overlays={activeOverlays}
-                tooltipOf={(p) => `${p.name}: ${fmtMetric(metric, metric.value(p))}`}
+                areaWord={areaWord}
+                leadOf={(p) => ({ label: metric.label, value: fmtMetric(metric, metric.value(p)) })}
               />
               {overlays.length > 0 && (
                 <div className={styles.overlays} role="group" aria-label="Overlay layers">

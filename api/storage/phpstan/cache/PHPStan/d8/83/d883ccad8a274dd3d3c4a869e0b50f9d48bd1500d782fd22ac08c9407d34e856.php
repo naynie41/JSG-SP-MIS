@@ -14,11 +14,13 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         array (
           'mdascope' => 'App\\Domain\\Access\\Scopes\\MdaScope',
           'beneficiary' => 'App\\Domain\\Registry\\Models\\Beneficiary',
+          'beneficiaryservicegrant' => 'App\\Domain\\Registry\\Models\\BeneficiaryServiceGrant',
           'servicerequest' => 'App\\Domain\\Registry\\Models\\ServiceRequest',
           'servicerequestservice' => 'App\\Domain\\Registry\\Services\\ServiceRequestService',
           'controller' => 'App\\Http\\Controllers\\Controller',
           'acceptservicerequestrequest' => 'App\\Http\\Requests\\Registry\\AcceptServiceRequestRequest',
           'declineservicerequestrequest' => 'App\\Http\\Requests\\Registry\\DeclineServiceRequestRequest',
+          'revokeservicegrantrequest' => 'App\\Http\\Requests\\Registry\\RevokeServiceGrantRequest',
           'storeservicerequestrequest' => 'App\\Http\\Requests\\Registry\\StoreServiceRequestRequest',
           'servicerequestresource' => 'App\\Http\\Resources\\ServiceRequestResource',
           'apiresponse' => 'App\\Support\\ApiResponse',
@@ -49,11 +51,13 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         array (
           'mdascope' => 'App\\Domain\\Access\\Scopes\\MdaScope',
           'beneficiary' => 'App\\Domain\\Registry\\Models\\Beneficiary',
+          'beneficiaryservicegrant' => 'App\\Domain\\Registry\\Models\\BeneficiaryServiceGrant',
           'servicerequest' => 'App\\Domain\\Registry\\Models\\ServiceRequest',
           'servicerequestservice' => 'App\\Domain\\Registry\\Services\\ServiceRequestService',
           'controller' => 'App\\Http\\Controllers\\Controller',
           'acceptservicerequestrequest' => 'App\\Http\\Requests\\Registry\\AcceptServiceRequestRequest',
           'declineservicerequestrequest' => 'App\\Http\\Requests\\Registry\\DeclineServiceRequestRequest',
+          'revokeservicegrantrequest' => 'App\\Http\\Requests\\Registry\\RevokeServiceGrantRequest',
           'storeservicerequestrequest' => 'App\\Http\\Requests\\Registry\\StoreServiceRequestRequest',
           'servicerequestresource' => 'App\\Http\\Resources\\ServiceRequestResource',
           'apiresponse' => 'App\\Support\\ApiResponse',
@@ -73,11 +77,13 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
           array (
             'mdascope' => 'App\\Domain\\Access\\Scopes\\MdaScope',
             'beneficiary' => 'App\\Domain\\Registry\\Models\\Beneficiary',
+            'beneficiaryservicegrant' => 'App\\Domain\\Registry\\Models\\BeneficiaryServiceGrant',
             'servicerequest' => 'App\\Domain\\Registry\\Models\\ServiceRequest',
             'servicerequestservice' => 'App\\Domain\\Registry\\Services\\ServiceRequestService',
             'controller' => 'App\\Http\\Controllers\\Controller',
             'acceptservicerequestrequest' => 'App\\Http\\Requests\\Registry\\AcceptServiceRequestRequest',
             'declineservicerequestrequest' => 'App\\Http\\Requests\\Registry\\DeclineServiceRequestRequest',
+            'revokeservicegrantrequest' => 'App\\Http\\Requests\\Registry\\RevokeServiceGrantRequest',
             'storeservicerequestrequest' => 'App\\Http\\Requests\\Registry\\StoreServiceRequestRequest',
             'servicerequestresource' => 'App\\Http\\Resources\\ServiceRequestResource',
             'apiresponse' => 'App\\Support\\ApiResponse',
@@ -118,11 +124,13 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         array (
           'mdascope' => 'App\\Domain\\Access\\Scopes\\MdaScope',
           'beneficiary' => 'App\\Domain\\Registry\\Models\\Beneficiary',
+          'beneficiaryservicegrant' => 'App\\Domain\\Registry\\Models\\BeneficiaryServiceGrant',
           'servicerequest' => 'App\\Domain\\Registry\\Models\\ServiceRequest',
           'servicerequestservice' => 'App\\Domain\\Registry\\Services\\ServiceRequestService',
           'controller' => 'App\\Http\\Controllers\\Controller',
           'acceptservicerequestrequest' => 'App\\Http\\Requests\\Registry\\AcceptServiceRequestRequest',
           'declineservicerequestrequest' => 'App\\Http\\Requests\\Registry\\DeclineServiceRequestRequest',
+          'revokeservicegrantrequest' => 'App\\Http\\Requests\\Registry\\RevokeServiceGrantRequest',
           'storeservicerequestrequest' => 'App\\Http\\Requests\\Registry\\StoreServiceRequestRequest',
           'servicerequestresource' => 'App\\Http\\Resources\\ServiceRequestResource',
           'apiresponse' => 'App\\Support\\ApiResponse',
@@ -142,11 +150,13 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
           array (
             'mdascope' => 'App\\Domain\\Access\\Scopes\\MdaScope',
             'beneficiary' => 'App\\Domain\\Registry\\Models\\Beneficiary',
+            'beneficiaryservicegrant' => 'App\\Domain\\Registry\\Models\\BeneficiaryServiceGrant',
             'servicerequest' => 'App\\Domain\\Registry\\Models\\ServiceRequest',
             'servicerequestservice' => 'App\\Domain\\Registry\\Services\\ServiceRequestService',
             'controller' => 'App\\Http\\Controllers\\Controller',
             'acceptservicerequestrequest' => 'App\\Http\\Requests\\Registry\\AcceptServiceRequestRequest',
             'declineservicerequestrequest' => 'App\\Http\\Requests\\Registry\\DeclineServiceRequestRequest',
+            'revokeservicegrantrequest' => 'App\\Http\\Requests\\Registry\\RevokeServiceGrantRequest',
             'storeservicerequestrequest' => 'App\\Http\\Requests\\Registry\\StoreServiceRequestRequest',
             'servicerequestresource' => 'App\\Http\\Resources\\ServiceRequestResource',
             'apiresponse' => 'App\\Support\\ApiResponse',
@@ -187,11 +197,13 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         array (
           'mdascope' => 'App\\Domain\\Access\\Scopes\\MdaScope',
           'beneficiary' => 'App\\Domain\\Registry\\Models\\Beneficiary',
+          'beneficiaryservicegrant' => 'App\\Domain\\Registry\\Models\\BeneficiaryServiceGrant',
           'servicerequest' => 'App\\Domain\\Registry\\Models\\ServiceRequest',
           'servicerequestservice' => 'App\\Domain\\Registry\\Services\\ServiceRequestService',
           'controller' => 'App\\Http\\Controllers\\Controller',
           'acceptservicerequestrequest' => 'App\\Http\\Requests\\Registry\\AcceptServiceRequestRequest',
           'declineservicerequestrequest' => 'App\\Http\\Requests\\Registry\\DeclineServiceRequestRequest',
+          'revokeservicegrantrequest' => 'App\\Http\\Requests\\Registry\\RevokeServiceGrantRequest',
           'storeservicerequestrequest' => 'App\\Http\\Requests\\Registry\\StoreServiceRequestRequest',
           'servicerequestresource' => 'App\\Http\\Resources\\ServiceRequestResource',
           'apiresponse' => 'App\\Support\\ApiResponse',
@@ -211,11 +223,13 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
           array (
             'mdascope' => 'App\\Domain\\Access\\Scopes\\MdaScope',
             'beneficiary' => 'App\\Domain\\Registry\\Models\\Beneficiary',
+            'beneficiaryservicegrant' => 'App\\Domain\\Registry\\Models\\BeneficiaryServiceGrant',
             'servicerequest' => 'App\\Domain\\Registry\\Models\\ServiceRequest',
             'servicerequestservice' => 'App\\Domain\\Registry\\Services\\ServiceRequestService',
             'controller' => 'App\\Http\\Controllers\\Controller',
             'acceptservicerequestrequest' => 'App\\Http\\Requests\\Registry\\AcceptServiceRequestRequest',
             'declineservicerequestrequest' => 'App\\Http\\Requests\\Registry\\DeclineServiceRequestRequest',
+            'revokeservicegrantrequest' => 'App\\Http\\Requests\\Registry\\RevokeServiceGrantRequest',
             'storeservicerequestrequest' => 'App\\Http\\Requests\\Registry\\StoreServiceRequestRequest',
             'servicerequestresource' => 'App\\Http\\Resources\\ServiceRequestResource',
             'apiresponse' => 'App\\Support\\ApiResponse',
@@ -256,11 +270,13 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         array (
           'mdascope' => 'App\\Domain\\Access\\Scopes\\MdaScope',
           'beneficiary' => 'App\\Domain\\Registry\\Models\\Beneficiary',
+          'beneficiaryservicegrant' => 'App\\Domain\\Registry\\Models\\BeneficiaryServiceGrant',
           'servicerequest' => 'App\\Domain\\Registry\\Models\\ServiceRequest',
           'servicerequestservice' => 'App\\Domain\\Registry\\Services\\ServiceRequestService',
           'controller' => 'App\\Http\\Controllers\\Controller',
           'acceptservicerequestrequest' => 'App\\Http\\Requests\\Registry\\AcceptServiceRequestRequest',
           'declineservicerequestrequest' => 'App\\Http\\Requests\\Registry\\DeclineServiceRequestRequest',
+          'revokeservicegrantrequest' => 'App\\Http\\Requests\\Registry\\RevokeServiceGrantRequest',
           'storeservicerequestrequest' => 'App\\Http\\Requests\\Registry\\StoreServiceRequestRequest',
           'servicerequestresource' => 'App\\Http\\Resources\\ServiceRequestResource',
           'apiresponse' => 'App\\Support\\ApiResponse',
@@ -280,11 +296,13 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
           array (
             'mdascope' => 'App\\Domain\\Access\\Scopes\\MdaScope',
             'beneficiary' => 'App\\Domain\\Registry\\Models\\Beneficiary',
+            'beneficiaryservicegrant' => 'App\\Domain\\Registry\\Models\\BeneficiaryServiceGrant',
             'servicerequest' => 'App\\Domain\\Registry\\Models\\ServiceRequest',
             'servicerequestservice' => 'App\\Domain\\Registry\\Services\\ServiceRequestService',
             'controller' => 'App\\Http\\Controllers\\Controller',
             'acceptservicerequestrequest' => 'App\\Http\\Requests\\Registry\\AcceptServiceRequestRequest',
             'declineservicerequestrequest' => 'App\\Http\\Requests\\Registry\\DeclineServiceRequestRequest',
+            'revokeservicegrantrequest' => 'App\\Http\\Requests\\Registry\\RevokeServiceGrantRequest',
             'storeservicerequestrequest' => 'App\\Http\\Requests\\Registry\\StoreServiceRequestRequest',
             'servicerequestresource' => 'App\\Http\\Resources\\ServiceRequestResource',
             'apiresponse' => 'App\\Support\\ApiResponse',
@@ -325,11 +343,13 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         array (
           'mdascope' => 'App\\Domain\\Access\\Scopes\\MdaScope',
           'beneficiary' => 'App\\Domain\\Registry\\Models\\Beneficiary',
+          'beneficiaryservicegrant' => 'App\\Domain\\Registry\\Models\\BeneficiaryServiceGrant',
           'servicerequest' => 'App\\Domain\\Registry\\Models\\ServiceRequest',
           'servicerequestservice' => 'App\\Domain\\Registry\\Services\\ServiceRequestService',
           'controller' => 'App\\Http\\Controllers\\Controller',
           'acceptservicerequestrequest' => 'App\\Http\\Requests\\Registry\\AcceptServiceRequestRequest',
           'declineservicerequestrequest' => 'App\\Http\\Requests\\Registry\\DeclineServiceRequestRequest',
+          'revokeservicegrantrequest' => 'App\\Http\\Requests\\Registry\\RevokeServiceGrantRequest',
           'storeservicerequestrequest' => 'App\\Http\\Requests\\Registry\\StoreServiceRequestRequest',
           'servicerequestresource' => 'App\\Http\\Resources\\ServiceRequestResource',
           'apiresponse' => 'App\\Support\\ApiResponse',
@@ -349,11 +369,13 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
           array (
             'mdascope' => 'App\\Domain\\Access\\Scopes\\MdaScope',
             'beneficiary' => 'App\\Domain\\Registry\\Models\\Beneficiary',
+            'beneficiaryservicegrant' => 'App\\Domain\\Registry\\Models\\BeneficiaryServiceGrant',
             'servicerequest' => 'App\\Domain\\Registry\\Models\\ServiceRequest',
             'servicerequestservice' => 'App\\Domain\\Registry\\Services\\ServiceRequestService',
             'controller' => 'App\\Http\\Controllers\\Controller',
             'acceptservicerequestrequest' => 'App\\Http\\Requests\\Registry\\AcceptServiceRequestRequest',
             'declineservicerequestrequest' => 'App\\Http\\Requests\\Registry\\DeclineServiceRequestRequest',
+            'revokeservicegrantrequest' => 'App\\Http\\Requests\\Registry\\RevokeServiceGrantRequest',
             'storeservicerequestrequest' => 'App\\Http\\Requests\\Registry\\StoreServiceRequestRequest',
             'servicerequestresource' => 'App\\Http\\Resources\\ServiceRequestResource',
             'apiresponse' => 'App\\Support\\ApiResponse',
@@ -394,11 +416,13 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         array (
           'mdascope' => 'App\\Domain\\Access\\Scopes\\MdaScope',
           'beneficiary' => 'App\\Domain\\Registry\\Models\\Beneficiary',
+          'beneficiaryservicegrant' => 'App\\Domain\\Registry\\Models\\BeneficiaryServiceGrant',
           'servicerequest' => 'App\\Domain\\Registry\\Models\\ServiceRequest',
           'servicerequestservice' => 'App\\Domain\\Registry\\Services\\ServiceRequestService',
           'controller' => 'App\\Http\\Controllers\\Controller',
           'acceptservicerequestrequest' => 'App\\Http\\Requests\\Registry\\AcceptServiceRequestRequest',
           'declineservicerequestrequest' => 'App\\Http\\Requests\\Registry\\DeclineServiceRequestRequest',
+          'revokeservicegrantrequest' => 'App\\Http\\Requests\\Registry\\RevokeServiceGrantRequest',
           'storeservicerequestrequest' => 'App\\Http\\Requests\\Registry\\StoreServiceRequestRequest',
           'servicerequestresource' => 'App\\Http\\Resources\\ServiceRequestResource',
           'apiresponse' => 'App\\Support\\ApiResponse',
@@ -418,11 +442,13 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
           array (
             'mdascope' => 'App\\Domain\\Access\\Scopes\\MdaScope',
             'beneficiary' => 'App\\Domain\\Registry\\Models\\Beneficiary',
+            'beneficiaryservicegrant' => 'App\\Domain\\Registry\\Models\\BeneficiaryServiceGrant',
             'servicerequest' => 'App\\Domain\\Registry\\Models\\ServiceRequest',
             'servicerequestservice' => 'App\\Domain\\Registry\\Services\\ServiceRequestService',
             'controller' => 'App\\Http\\Controllers\\Controller',
             'acceptservicerequestrequest' => 'App\\Http\\Requests\\Registry\\AcceptServiceRequestRequest',
             'declineservicerequestrequest' => 'App\\Http\\Requests\\Registry\\DeclineServiceRequestRequest',
+            'revokeservicegrantrequest' => 'App\\Http\\Requests\\Registry\\RevokeServiceGrantRequest',
             'storeservicerequestrequest' => 'App\\Http\\Requests\\Registry\\StoreServiceRequestRequest',
             'servicerequestresource' => 'App\\Http\\Resources\\ServiceRequestResource',
             'apiresponse' => 'App\\Support\\ApiResponse',
@@ -463,11 +489,13 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         array (
           'mdascope' => 'App\\Domain\\Access\\Scopes\\MdaScope',
           'beneficiary' => 'App\\Domain\\Registry\\Models\\Beneficiary',
+          'beneficiaryservicegrant' => 'App\\Domain\\Registry\\Models\\BeneficiaryServiceGrant',
           'servicerequest' => 'App\\Domain\\Registry\\Models\\ServiceRequest',
           'servicerequestservice' => 'App\\Domain\\Registry\\Services\\ServiceRequestService',
           'controller' => 'App\\Http\\Controllers\\Controller',
           'acceptservicerequestrequest' => 'App\\Http\\Requests\\Registry\\AcceptServiceRequestRequest',
           'declineservicerequestrequest' => 'App\\Http\\Requests\\Registry\\DeclineServiceRequestRequest',
+          'revokeservicegrantrequest' => 'App\\Http\\Requests\\Registry\\RevokeServiceGrantRequest',
           'storeservicerequestrequest' => 'App\\Http\\Requests\\Registry\\StoreServiceRequestRequest',
           'servicerequestresource' => 'App\\Http\\Resources\\ServiceRequestResource',
           'apiresponse' => 'App\\Support\\ApiResponse',
@@ -487,11 +515,159 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
           array (
             'mdascope' => 'App\\Domain\\Access\\Scopes\\MdaScope',
             'beneficiary' => 'App\\Domain\\Registry\\Models\\Beneficiary',
+            'beneficiaryservicegrant' => 'App\\Domain\\Registry\\Models\\BeneficiaryServiceGrant',
             'servicerequest' => 'App\\Domain\\Registry\\Models\\ServiceRequest',
             'servicerequestservice' => 'App\\Domain\\Registry\\Services\\ServiceRequestService',
             'controller' => 'App\\Http\\Controllers\\Controller',
             'acceptservicerequestrequest' => 'App\\Http\\Requests\\Registry\\AcceptServiceRequestRequest',
             'declineservicerequestrequest' => 'App\\Http\\Requests\\Registry\\DeclineServiceRequestRequest',
+            'revokeservicegrantrequest' => 'App\\Http\\Requests\\Registry\\RevokeServiceGrantRequest',
+            'storeservicerequestrequest' => 'App\\Http\\Requests\\Registry\\StoreServiceRequestRequest',
+            'servicerequestresource' => 'App\\Http\\Resources\\ServiceRequestResource',
+            'apiresponse' => 'App\\Support\\ApiResponse',
+            'domainexception' => 'DomainException',
+            'jsonresponse' => 'Illuminate\\Http\\JsonResponse',
+            'request' => 'Illuminate\\Http\\Request',
+          ),
+           'className' => 'App\\Http\\Controllers\\Api\\V1\\Registry\\ServiceRequestController',
+           'functionName' => NULL,
+           'templatePhpDocNodes' => 
+          array (
+          ),
+           'parent' => NULL,
+           'typeAliasesMap' => 
+          array (
+          ),
+           'bypassTypeAliases' => false,
+           'constUses' => 
+          array (
+          ),
+           'typeAliasClassName' => NULL,
+           'traitData' => NULL,
+        )),
+         'typeAliasesMap' => 
+        array (
+        ),
+         'bypassTypeAliases' => false,
+         'constUses' => 
+        array (
+        ),
+         'typeAliasClassName' => NULL,
+         'traitData' => NULL,
+      )),
+      '60a2cadf8935b458b6096b8bc007ee21' => 
+      \PHPStan\Analyser\IntermediaryNameScope::__set_state(array(
+         'namespace' => 'App\\Http\\Controllers\\Api\\V1\\Registry',
+         'uses' => 
+        array (
+          'mdascope' => 'App\\Domain\\Access\\Scopes\\MdaScope',
+          'beneficiary' => 'App\\Domain\\Registry\\Models\\Beneficiary',
+          'beneficiaryservicegrant' => 'App\\Domain\\Registry\\Models\\BeneficiaryServiceGrant',
+          'servicerequest' => 'App\\Domain\\Registry\\Models\\ServiceRequest',
+          'servicerequestservice' => 'App\\Domain\\Registry\\Services\\ServiceRequestService',
+          'controller' => 'App\\Http\\Controllers\\Controller',
+          'acceptservicerequestrequest' => 'App\\Http\\Requests\\Registry\\AcceptServiceRequestRequest',
+          'declineservicerequestrequest' => 'App\\Http\\Requests\\Registry\\DeclineServiceRequestRequest',
+          'revokeservicegrantrequest' => 'App\\Http\\Requests\\Registry\\RevokeServiceGrantRequest',
+          'storeservicerequestrequest' => 'App\\Http\\Requests\\Registry\\StoreServiceRequestRequest',
+          'servicerequestresource' => 'App\\Http\\Resources\\ServiceRequestResource',
+          'apiresponse' => 'App\\Support\\ApiResponse',
+          'domainexception' => 'DomainException',
+          'jsonresponse' => 'Illuminate\\Http\\JsonResponse',
+          'request' => 'Illuminate\\Http\\Request',
+        ),
+         'className' => 'App\\Http\\Controllers\\Api\\V1\\Registry\\ServiceRequestController',
+         'functionName' => 'grants',
+         'templatePhpDocNodes' => 
+        array (
+        ),
+         'parent' => 
+        \PHPStan\Analyser\IntermediaryNameScope::__set_state(array(
+           'namespace' => 'App\\Http\\Controllers\\Api\\V1\\Registry',
+           'uses' => 
+          array (
+            'mdascope' => 'App\\Domain\\Access\\Scopes\\MdaScope',
+            'beneficiary' => 'App\\Domain\\Registry\\Models\\Beneficiary',
+            'beneficiaryservicegrant' => 'App\\Domain\\Registry\\Models\\BeneficiaryServiceGrant',
+            'servicerequest' => 'App\\Domain\\Registry\\Models\\ServiceRequest',
+            'servicerequestservice' => 'App\\Domain\\Registry\\Services\\ServiceRequestService',
+            'controller' => 'App\\Http\\Controllers\\Controller',
+            'acceptservicerequestrequest' => 'App\\Http\\Requests\\Registry\\AcceptServiceRequestRequest',
+            'declineservicerequestrequest' => 'App\\Http\\Requests\\Registry\\DeclineServiceRequestRequest',
+            'revokeservicegrantrequest' => 'App\\Http\\Requests\\Registry\\RevokeServiceGrantRequest',
+            'storeservicerequestrequest' => 'App\\Http\\Requests\\Registry\\StoreServiceRequestRequest',
+            'servicerequestresource' => 'App\\Http\\Resources\\ServiceRequestResource',
+            'apiresponse' => 'App\\Support\\ApiResponse',
+            'domainexception' => 'DomainException',
+            'jsonresponse' => 'Illuminate\\Http\\JsonResponse',
+            'request' => 'Illuminate\\Http\\Request',
+          ),
+           'className' => 'App\\Http\\Controllers\\Api\\V1\\Registry\\ServiceRequestController',
+           'functionName' => NULL,
+           'templatePhpDocNodes' => 
+          array (
+          ),
+           'parent' => NULL,
+           'typeAliasesMap' => 
+          array (
+          ),
+           'bypassTypeAliases' => false,
+           'constUses' => 
+          array (
+          ),
+           'typeAliasClassName' => NULL,
+           'traitData' => NULL,
+        )),
+         'typeAliasesMap' => 
+        array (
+        ),
+         'bypassTypeAliases' => false,
+         'constUses' => 
+        array (
+        ),
+         'typeAliasClassName' => NULL,
+         'traitData' => NULL,
+      )),
+      '348dd3d8d72fbd821cf38144eb4f9de9' => 
+      \PHPStan\Analyser\IntermediaryNameScope::__set_state(array(
+         'namespace' => 'App\\Http\\Controllers\\Api\\V1\\Registry',
+         'uses' => 
+        array (
+          'mdascope' => 'App\\Domain\\Access\\Scopes\\MdaScope',
+          'beneficiary' => 'App\\Domain\\Registry\\Models\\Beneficiary',
+          'beneficiaryservicegrant' => 'App\\Domain\\Registry\\Models\\BeneficiaryServiceGrant',
+          'servicerequest' => 'App\\Domain\\Registry\\Models\\ServiceRequest',
+          'servicerequestservice' => 'App\\Domain\\Registry\\Services\\ServiceRequestService',
+          'controller' => 'App\\Http\\Controllers\\Controller',
+          'acceptservicerequestrequest' => 'App\\Http\\Requests\\Registry\\AcceptServiceRequestRequest',
+          'declineservicerequestrequest' => 'App\\Http\\Requests\\Registry\\DeclineServiceRequestRequest',
+          'revokeservicegrantrequest' => 'App\\Http\\Requests\\Registry\\RevokeServiceGrantRequest',
+          'storeservicerequestrequest' => 'App\\Http\\Requests\\Registry\\StoreServiceRequestRequest',
+          'servicerequestresource' => 'App\\Http\\Resources\\ServiceRequestResource',
+          'apiresponse' => 'App\\Support\\ApiResponse',
+          'domainexception' => 'DomainException',
+          'jsonresponse' => 'Illuminate\\Http\\JsonResponse',
+          'request' => 'Illuminate\\Http\\Request',
+        ),
+         'className' => 'App\\Http\\Controllers\\Api\\V1\\Registry\\ServiceRequestController',
+         'functionName' => 'revoke',
+         'templatePhpDocNodes' => 
+        array (
+        ),
+         'parent' => 
+        \PHPStan\Analyser\IntermediaryNameScope::__set_state(array(
+           'namespace' => 'App\\Http\\Controllers\\Api\\V1\\Registry',
+           'uses' => 
+          array (
+            'mdascope' => 'App\\Domain\\Access\\Scopes\\MdaScope',
+            'beneficiary' => 'App\\Domain\\Registry\\Models\\Beneficiary',
+            'beneficiaryservicegrant' => 'App\\Domain\\Registry\\Models\\BeneficiaryServiceGrant',
+            'servicerequest' => 'App\\Domain\\Registry\\Models\\ServiceRequest',
+            'servicerequestservice' => 'App\\Domain\\Registry\\Services\\ServiceRequestService',
+            'controller' => 'App\\Http\\Controllers\\Controller',
+            'acceptservicerequestrequest' => 'App\\Http\\Requests\\Registry\\AcceptServiceRequestRequest',
+            'declineservicerequestrequest' => 'App\\Http\\Requests\\Registry\\DeclineServiceRequestRequest',
+            'revokeservicegrantrequest' => 'App\\Http\\Requests\\Registry\\RevokeServiceGrantRequest',
             'storeservicerequestrequest' => 'App\\Http\\Requests\\Registry\\StoreServiceRequestRequest',
             'servicerequestresource' => 'App\\Http\\Resources\\ServiceRequestResource',
             'apiresponse' => 'App\\Support\\ApiResponse',
@@ -528,7 +704,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
     ),
     1 => 
     array (
-      '/var/www/html/app/Http/Controllers/Api/V1/Registry/ServiceRequestController.php' => 'cb07ef0733d8820ef5275db933f218429b95b360dbd177597a158d5164b325bc',
+      '/var/www/html/app/Http/Controllers/Api/V1/Registry/ServiceRequestController.php' => '3657acc2c592e932c7dd7b6ecfe8acea48a823d305cb26508d1cc88e62516afd',
     ),
   ),
 ));

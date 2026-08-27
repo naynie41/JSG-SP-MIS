@@ -2,7 +2,7 @@
 
 // odsl-/var/www/html/app/Domain/Benefit/Authorization/ServiceRequestAuthorizer.php-PHPStan\BetterReflection\Reflection\ReflectionClass-App\Domain\Benefit\Authorization\ServiceRequestAuthorizer
 return \PHPStan\Cache\CacheItem::__set_state(array(
-   'variableKey' => 'v2-6.70.0.1-8.3.31-7ceb99540aea8ce741bd1551518e0226ee7c1829685e64e0aac1c491a86ec84a',
+   'variableKey' => 'v2-6.70.0.1-8.3.31-75c623ee7541eac0cb5e14ec94f16b132d3c07ee2f80b499eed14c76aac52dc1',
    'data' => 
   array (
     'locatedSource' => 
@@ -25,14 +25,14 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
     'docComment' => '/**
  * Authorizes delivery when the MDA holds an active read/serve grant opened by an
  * ACCEPTED Service Request (PRD §12, FR-OWN-06/07 · FR-BEN-06). Ownership is never
- * involved here — the grant only authorizes serving, and this asserts against that
- * explicit grant, not any generic cross-MDA access.
+ * involved here — the grant only authorizes serving. The decision (grant + consent
+ * gate) is resolved by the single {@see DataSharingGuard}, not re-implemented here.
  */',
     'attributes' => 
     array (
     ),
     'startLine' => 16,
-    'endLine' => 27,
+    'endLine' => 29,
     'startColumn' => 1,
     'endColumn' => 1,
     'parentClassName' => NULL,
@@ -48,9 +48,93 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
     ),
     'immediateProperties' => 
     array (
+      'sharing' => 
+      array (
+        'declaringClassName' => 'App\\Domain\\Benefit\\Authorization\\ServiceRequestAuthorizer',
+        'implementingClassName' => 'App\\Domain\\Benefit\\Authorization\\ServiceRequestAuthorizer',
+        'name' => 'sharing',
+        'modifiers' => 132,
+        'type' => 
+        array (
+          'class' => 'PHPStan\\BetterReflection\\Reflection\\ReflectionNamedType',
+          'data' => 
+          array (
+            'name' => 'App\\Domain\\Sharing\\DataSharingGuard',
+            'isIdentifier' => false,
+          ),
+        ),
+        'default' => NULL,
+        'docComment' => NULL,
+        'attributes' => 
+        array (
+        ),
+        'startLine' => 18,
+        'endLine' => 18,
+        'startColumn' => 33,
+        'endColumn' => 74,
+        'isPromoted' => true,
+        'declaredAtCompileTime' => true,
+        'immediateVirtual' => false,
+        'immediateHooks' => 
+        array (
+        ),
+      ),
     ),
     'immediateMethods' => 
     array (
+      '__construct' => 
+      array (
+        'name' => '__construct',
+        'parameters' => 
+        array (
+          'sharing' => 
+          array (
+            'name' => 'sharing',
+            'default' => NULL,
+            'type' => 
+            array (
+              'class' => 'PHPStan\\BetterReflection\\Reflection\\ReflectionNamedType',
+              'data' => 
+              array (
+                'name' => 'App\\Domain\\Sharing\\DataSharingGuard',
+                'isIdentifier' => false,
+              ),
+            ),
+            'isVariadic' => false,
+            'byRef' => false,
+            'isPromoted' => true,
+            'attributes' => 
+            array (
+            ),
+            'startLine' => 18,
+            'endLine' => 18,
+            'startColumn' => 33,
+            'endColumn' => 74,
+            'parameterIndex' => 0,
+            'isOptional' => false,
+          ),
+        ),
+        'returnsReference' => false,
+        'returnType' => NULL,
+        'attributes' => 
+        array (
+        ),
+        'docComment' => NULL,
+        'startLine' => 18,
+        'endLine' => 18,
+        'startColumn' => 5,
+        'endColumn' => 78,
+        'couldThrow' => false,
+        'isClosure' => false,
+        'isGenerator' => false,
+        'isVariadic' => false,
+        'modifiers' => 1,
+        'namespace' => 'App\\Domain\\Benefit\\Authorization',
+        'declaringClassName' => 'App\\Domain\\Benefit\\Authorization\\ServiceRequestAuthorizer',
+        'implementingClassName' => 'App\\Domain\\Benefit\\Authorization\\ServiceRequestAuthorizer',
+        'currentClassName' => 'App\\Domain\\Benefit\\Authorization\\ServiceRequestAuthorizer',
+        'aliasName' => NULL,
+      ),
       'authorizes' => 
       array (
         'name' => 'authorizes',
@@ -75,8 +159,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             'attributes' => 
             array (
             ),
-            'startLine' => 18,
-            'endLine' => 18,
+            'startLine' => 20,
+            'endLine' => 20,
             'startColumn' => 32,
             'endColumn' => 44,
             'parameterIndex' => 0,
@@ -101,8 +185,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             'attributes' => 
             array (
             ),
-            'startLine' => 18,
-            'endLine' => 18,
+            'startLine' => 20,
+            'endLine' => 20,
             'startColumn' => 47,
             'endColumn' => 70,
             'parameterIndex' => 1,
@@ -123,8 +207,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         array (
         ),
         'docComment' => NULL,
-        'startLine' => 18,
-        'endLine' => 21,
+        'startLine' => 20,
+        'endLine' => 23,
         'startColumn' => 5,
         'endColumn' => 5,
         'couldThrow' => false,
@@ -158,8 +242,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         array (
         ),
         'docComment' => NULL,
-        'startLine' => 23,
-        'endLine' => 26,
+        'startLine' => 25,
+        'endLine' => 28,
         'startColumn' => 5,
         'endColumn' => 5,
         'couldThrow' => false,

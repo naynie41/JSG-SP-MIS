@@ -2,7 +2,7 @@
 
 // odsl-/var/www/html/app/Http/Controllers/Api/V1/Reporting/GisController.php-PHPStan\BetterReflection\Reflection\ReflectionClass-App\Http\Controllers\Api\V1\Reporting\GisController
 return \PHPStan\Cache\CacheItem::__set_state(array(
-   'variableKey' => 'v2-6.70.0.1-8.3.31-bca3af064ef26c991cd54602756546185687ccc539720c71db81b77be60fdf4f',
+   'variableKey' => 'v2-6.70.0.1-8.3.31-d53528e42c7475e9d7ff9e97a47769a711a499ffc50a8c67b0c91eba9f8022f9',
    'data' => 
   array (
     'locatedSource' => 
@@ -31,8 +31,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
     'attributes' => 
     array (
     ),
-    'startLine' => 22,
-    'endLine' => 81,
+    'startLine' => 23,
+    'endLine' => 103,
     'startColumn' => 1,
     'endColumn' => 1,
     'parentClassName' => 'App\\Http\\Controllers\\Controller',
@@ -67,8 +67,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         'attributes' => 
         array (
         ),
-        'startLine' => 25,
-        'endLine' => 25,
+        'startLine' => 26,
+        'endLine' => 26,
         'startColumn' => 9,
         'endColumn' => 57,
         'isPromoted' => true,
@@ -98,8 +98,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         'attributes' => 
         array (
         ),
-        'startLine' => 26,
-        'endLine' => 26,
+        'startLine' => 27,
+        'endLine' => 27,
         'startColumn' => 9,
         'endColumn' => 53,
         'isPromoted' => true,
@@ -136,8 +136,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             'attributes' => 
             array (
             ),
-            'startLine' => 25,
-            'endLine' => 25,
+            'startLine' => 26,
+            'endLine' => 26,
             'startColumn' => 9,
             'endColumn' => 57,
             'parameterIndex' => 0,
@@ -162,8 +162,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             'attributes' => 
             array (
             ),
-            'startLine' => 26,
-            'endLine' => 26,
+            'startLine' => 27,
+            'endLine' => 27,
             'startColumn' => 9,
             'endColumn' => 53,
             'parameterIndex' => 1,
@@ -176,8 +176,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         array (
         ),
         'docComment' => NULL,
-        'startLine' => 24,
-        'endLine' => 27,
+        'startLine' => 25,
+        'endLine' => 28,
         'startColumn' => 5,
         'endColumn' => 8,
         'couldThrow' => false,
@@ -215,8 +215,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             'attributes' => 
             array (
             ),
-            'startLine' => 29,
-            'endLine' => 29,
+            'startLine' => 30,
+            'endLine' => 30,
             'startColumn' => 30,
             'endColumn' => 45,
             'parameterIndex' => 0,
@@ -237,8 +237,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         array (
         ),
         'docComment' => NULL,
-        'startLine' => 29,
-        'endLine' => 46,
+        'startLine' => 30,
+        'endLine' => 54,
         'startColumn' => 5,
         'endColumn' => 5,
         'couldThrow' => false,
@@ -268,8 +268,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             'attributes' => 
             array (
             ),
-            'startLine' => 55,
-            'endLine' => 55,
+            'startLine' => 64,
+            'endLine' => 64,
             'startColumn' => 40,
             'endColumn' => 50,
             'parameterIndex' => 0,
@@ -294,8 +294,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             'attributes' => 
             array (
             ),
-            'startLine' => 55,
-            'endLine' => 55,
+            'startLine' => 64,
+            'endLine' => 64,
             'startColumn' => 53,
             'endColumn' => 63,
             'parameterIndex' => 1,
@@ -316,14 +316,15 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         array (
         ),
         'docComment' => '/**
- * A GeoJSON FeatureCollection joining each boundary shape to its coverage metrics.
+ * A GeoJSON FeatureCollection joining each boundary shape to its coverage row
+ * (metrics + click-through detail + band).
  *
  * @param  Collection<int, GeoBoundary>  $boundaries
- * @param  list<array{key: string, name: string, beneficiary_count: int, benefit_count: int, benefit_value: int}>  $rows
+ * @param  list<array<string, mixed>>  $rows
  * @return array<string, mixed>
  */',
-        'startLine' => 55,
-        'endLine' => 80,
+        'startLine' => 64,
+        'endLine' => 102,
         'startColumn' => 5,
         'endColumn' => 5,
         'couldThrow' => false,

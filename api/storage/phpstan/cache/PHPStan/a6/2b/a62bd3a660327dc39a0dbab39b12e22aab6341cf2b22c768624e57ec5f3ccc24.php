@@ -2,7 +2,7 @@
 
 // odsl-/var/www/html/app/Domain/Registry/Models/BeneficiaryServiceGrant.php-PHPStan\BetterReflection\Reflection\ReflectionClass-App\Domain\Registry\Models\BeneficiaryServiceGrant
 return \PHPStan\Cache\CacheItem::__set_state(array(
-   'variableKey' => 'v2-6.70.0.1-8.3.31-608b14533256f27b69458646a4c02048c3b1ffeff446ae8ef72151671213fb20',
+   'variableKey' => 'v2-6.70.0.1-8.3.31-5e0e8e3e693686892213b1189f3619ee1049d8882618e12be9bdf67869cd4599',
    'data' => 
   array (
     'locatedSource' => 
@@ -38,14 +38,17 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
  * @property string|null $granted_by
  * @property Carbon $granted_at
  * @property Carbon|null $revoked_at
+ * @property string|null $revoked_by
+ * @property string|null $revocation_reason
  * @property-read Beneficiary $beneficiary
  * @property-read Mda $mda
+ * @property-read User|null $revokedBy
  */',
     'attributes' => 
     array (
     ),
-    'startLine' => 35,
-    'endLine' => 85,
+    'startLine' => 39,
+    'endLine' => 105,
     'startColumn' => 1,
     'endColumn' => 1,
     'parentClassName' => 'Illuminate\\Database\\Eloquent\\Model',
@@ -76,20 +79,20 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
           'code' => '\'beneficiary_service_grants\'',
           'attributes' => 
           array (
-            'startLine' => 39,
-            'endLine' => 39,
-            'startTokenPos' => 88,
-            'startFilePos' => 1327,
-            'endTokenPos' => 88,
-            'endFilePos' => 1354,
+            'startLine' => 43,
+            'endLine' => 43,
+            'startTokenPos' => 93,
+            'startFilePos' => 1482,
+            'endTokenPos' => 93,
+            'endFilePos' => 1509,
           ),
         ),
         'docComment' => NULL,
         'attributes' => 
         array (
         ),
-        'startLine' => 39,
-        'endLine' => 39,
+        'startLine' => 43,
+        'endLine' => 43,
         'startColumn' => 5,
         'endColumn' => 52,
         'isPromoted' => false,
@@ -108,15 +111,15 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         'type' => NULL,
         'default' => 
         array (
-          'code' => '[\'beneficiary_id\', \'mda_id\', \'service_request_id\', \'granted_by\', \'granted_at\', \'revoked_at\']',
+          'code' => '[\'beneficiary_id\', \'mda_id\', \'service_request_id\', \'granted_by\', \'granted_at\', \'revoked_at\', \'revoked_by\', \'revocation_reason\']',
           'attributes' => 
           array (
-            'startLine' => 44,
-            'endLine' => 51,
-            'startTokenPos' => 99,
-            'startFilePos' => 1425,
-            'endTokenPos' => 119,
-            'endFilePos' => 1571,
+            'startLine' => 48,
+            'endLine' => 57,
+            'startTokenPos' => 104,
+            'startFilePos' => 1580,
+            'endTokenPos' => 130,
+            'endFilePos' => 1777,
           ),
         ),
         'docComment' => '/**
@@ -125,8 +128,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         'attributes' => 
         array (
         ),
-        'startLine' => 44,
-        'endLine' => 51,
+        'startLine' => 48,
+        'endLine' => 57,
         'startColumn' => 5,
         'endColumn' => 6,
         'isPromoted' => false,
@@ -161,8 +164,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         'docComment' => '/**
  * @return array<string, string>
  */',
-        'startLine' => 56,
-        'endLine' => 62,
+        'startLine' => 62,
+        'endLine' => 68,
         'startColumn' => 5,
         'endColumn' => 5,
         'couldThrow' => false,
@@ -196,8 +199,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         array (
         ),
         'docComment' => '/** The grant is scoped to the granted (requesting) MDA, not an owner column. */',
-        'startLine' => 65,
-        'endLine' => 68,
+        'startLine' => 71,
+        'endLine' => 74,
         'startColumn' => 5,
         'endColumn' => 5,
         'couldThrow' => false,
@@ -233,8 +236,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         'docComment' => '/**
  * @return BelongsTo<Beneficiary, $this>
  */',
-        'startLine' => 73,
-        'endLine' => 76,
+        'startLine' => 79,
+        'endLine' => 82,
         'startColumn' => 5,
         'endColumn' => 5,
         'couldThrow' => false,
@@ -270,8 +273,80 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         'docComment' => '/**
  * @return BelongsTo<Mda, $this>
  */',
-        'startLine' => 81,
-        'endLine' => 84,
+        'startLine' => 87,
+        'endLine' => 90,
+        'startColumn' => 5,
+        'endColumn' => 5,
+        'couldThrow' => false,
+        'isClosure' => false,
+        'isGenerator' => false,
+        'isVariadic' => false,
+        'modifiers' => 1,
+        'namespace' => 'App\\Domain\\Registry\\Models',
+        'declaringClassName' => 'App\\Domain\\Registry\\Models\\BeneficiaryServiceGrant',
+        'implementingClassName' => 'App\\Domain\\Registry\\Models\\BeneficiaryServiceGrant',
+        'currentClassName' => 'App\\Domain\\Registry\\Models\\BeneficiaryServiceGrant',
+        'aliasName' => NULL,
+      ),
+      'revokedBy' => 
+      array (
+        'name' => 'revokedBy',
+        'parameters' => 
+        array (
+        ),
+        'returnsReference' => false,
+        'returnType' => 
+        array (
+          'class' => 'PHPStan\\BetterReflection\\Reflection\\ReflectionNamedType',
+          'data' => 
+          array (
+            'name' => 'Illuminate\\Database\\Eloquent\\Relations\\BelongsTo',
+            'isIdentifier' => false,
+          ),
+        ),
+        'attributes' => 
+        array (
+        ),
+        'docComment' => '/**
+ * @return BelongsTo<User, $this>
+ */',
+        'startLine' => 95,
+        'endLine' => 98,
+        'startColumn' => 5,
+        'endColumn' => 5,
+        'couldThrow' => false,
+        'isClosure' => false,
+        'isGenerator' => false,
+        'isVariadic' => false,
+        'modifiers' => 1,
+        'namespace' => 'App\\Domain\\Registry\\Models',
+        'declaringClassName' => 'App\\Domain\\Registry\\Models\\BeneficiaryServiceGrant',
+        'implementingClassName' => 'App\\Domain\\Registry\\Models\\BeneficiaryServiceGrant',
+        'currentClassName' => 'App\\Domain\\Registry\\Models\\BeneficiaryServiceGrant',
+        'aliasName' => NULL,
+      ),
+      'isActive' => 
+      array (
+        'name' => 'isActive',
+        'parameters' => 
+        array (
+        ),
+        'returnsReference' => false,
+        'returnType' => 
+        array (
+          'class' => 'PHPStan\\BetterReflection\\Reflection\\ReflectionNamedType',
+          'data' => 
+          array (
+            'name' => 'bool',
+            'isIdentifier' => true,
+          ),
+        ),
+        'attributes' => 
+        array (
+        ),
+        'docComment' => '/** Whether this grant still opens access. The gates ask this via `hasActiveGrant()`. */',
+        'startLine' => 101,
+        'endLine' => 104,
         'startColumn' => 5,
         'endColumn' => 5,
         'couldThrow' => false,

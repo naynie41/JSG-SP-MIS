@@ -2,7 +2,7 @@
 
 // odsl-/var/www/html/app/Domain/Registry/Enums/ImportStatus.php-PHPStan\BetterReflection\Reflection\ReflectionClass-App\Domain\Registry\Enums\ImportStatus
 return \PHPStan\Cache\CacheItem::__set_state(array(
-   'variableKey' => 'v2-6.70.0.1-8.3.31-eba19626b5869f30aa8bb267c0aa2a97f16ffe33b3f0b9b278cf3c628f8b6f5a',
+   'variableKey' => 'v2-6.70.0.1-8.3.31-c5ca74da97cb2fce1454dd24cb338161af49484f70748ab9aafdf8d5e29e0538',
    'data' => 
   array (
     'locatedSource' => 
@@ -32,7 +32,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
     array (
     ),
     'startLine' => 13,
-    'endLine' => 21,
+    'endLine' => 27,
     'startColumn' => 1,
     'endColumn' => 1,
     'parentClassName' => NULL,
@@ -374,6 +374,35 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         'startColumn' => 5,
         'endColumn' => 29,
       ),
+      'MappingRequired' => 
+      array (
+        'name' => 'MappingRequired',
+        'value' => 
+        array (
+          'code' => '\'mapping_required\'',
+          'attributes' => 
+          array (
+            'startLine' => 21,
+            'endLine' => 21,
+            'startTokenPos' => 43,
+            'startFilePos' => 650,
+            'endTokenPos' => 43,
+            'endFilePos' => 667,
+          ),
+        ),
+        'attributes' => 
+        array (
+        ),
+        'docComment' => '/**
+ * Uploaded and profiled, waiting for a human to confirm which source column is
+ * which canonical field (CLAUDE.md §11). Nothing is parsed or screened in this
+ * state — an unconfirmed identity mapping must never reach the duplicate cascade.
+ */',
+        'startLine' => 21,
+        'endLine' => 21,
+        'startColumn' => 5,
+        'endColumn' => 46,
+      ),
       'Processing' => 
       array (
         'name' => 'Processing',
@@ -382,20 +411,20 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
           'code' => '\'processing\'',
           'attributes' => 
           array (
-            'startLine' => 16,
-            'endLine' => 16,
-            'startTokenPos' => 41,
-            'startFilePos' => 371,
-            'endTokenPos' => 41,
-            'endFilePos' => 382,
+            'startLine' => 22,
+            'endLine' => 22,
+            'startTokenPos' => 52,
+            'startFilePos' => 692,
+            'endTokenPos' => 52,
+            'endFilePos' => 703,
           ),
         ),
         'attributes' => 
         array (
         ),
         'docComment' => NULL,
-        'startLine' => 16,
-        'endLine' => 16,
+        'startLine' => 22,
+        'endLine' => 22,
         'startColumn' => 5,
         'endColumn' => 35,
       ),
@@ -407,20 +436,20 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
           'code' => '\'preview_ready\'',
           'attributes' => 
           array (
-            'startLine' => 17,
-            'endLine' => 17,
-            'startTokenPos' => 50,
-            'startFilePos' => 409,
-            'endTokenPos' => 50,
-            'endFilePos' => 423,
+            'startLine' => 23,
+            'endLine' => 23,
+            'startTokenPos' => 61,
+            'startFilePos' => 730,
+            'endTokenPos' => 61,
+            'endFilePos' => 744,
           ),
         ),
         'attributes' => 
         array (
         ),
         'docComment' => NULL,
-        'startLine' => 17,
-        'endLine' => 17,
+        'startLine' => 23,
+        'endLine' => 23,
         'startColumn' => 5,
         'endColumn' => 40,
       ),
@@ -432,20 +461,20 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
           'code' => '\'committing\'',
           'attributes' => 
           array (
-            'startLine' => 18,
-            'endLine' => 18,
-            'startTokenPos' => 59,
-            'startFilePos' => 448,
-            'endTokenPos' => 59,
-            'endFilePos' => 459,
+            'startLine' => 24,
+            'endLine' => 24,
+            'startTokenPos' => 70,
+            'startFilePos' => 769,
+            'endTokenPos' => 70,
+            'endFilePos' => 780,
           ),
         ),
         'attributes' => 
         array (
         ),
         'docComment' => NULL,
-        'startLine' => 18,
-        'endLine' => 18,
+        'startLine' => 24,
+        'endLine' => 24,
         'startColumn' => 5,
         'endColumn' => 35,
       ),
@@ -457,20 +486,20 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
           'code' => '\'completed\'',
           'attributes' => 
           array (
-            'startLine' => 19,
-            'endLine' => 19,
-            'startTokenPos' => 68,
-            'startFilePos' => 483,
-            'endTokenPos' => 68,
-            'endFilePos' => 493,
+            'startLine' => 25,
+            'endLine' => 25,
+            'startTokenPos' => 79,
+            'startFilePos' => 804,
+            'endTokenPos' => 79,
+            'endFilePos' => 814,
           ),
         ),
         'attributes' => 
         array (
         ),
         'docComment' => NULL,
-        'startLine' => 19,
-        'endLine' => 19,
+        'startLine' => 25,
+        'endLine' => 25,
         'startColumn' => 5,
         'endColumn' => 33,
       ),
@@ -482,20 +511,20 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
           'code' => '\'failed\'',
           'attributes' => 
           array (
-            'startLine' => 20,
-            'endLine' => 20,
-            'startTokenPos' => 77,
-            'startFilePos' => 514,
-            'endTokenPos' => 77,
-            'endFilePos' => 521,
+            'startLine' => 26,
+            'endLine' => 26,
+            'startTokenPos' => 88,
+            'startFilePos' => 835,
+            'endTokenPos' => 88,
+            'endFilePos' => 842,
           ),
         ),
         'attributes' => 
         array (
         ),
         'docComment' => NULL,
-        'startLine' => 20,
-        'endLine' => 20,
+        'startLine' => 26,
+        'endLine' => 26,
         'startColumn' => 5,
         'endColumn' => 27,
       ),
