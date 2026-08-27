@@ -1,0 +1,165 @@
+/* =============================================================================
+   Coverage hover card — pinned inside the choropleth, top-right.
+
+   Reads as the compact sibling of the area-detail panel below the map: the same mono
+   micro-labels, display figures, and band dot. Top-right because Leaflet's zoom control
+   owns top-left and the attribution owns bottom-right.
+   ============================================================================= */
+
+.card {
+  position: absolute;
+  top: var(--space-3);
+  right: var(--space-3);
+  z-index: 400; /* above Leaflet's tile and overlay panes, below its controls (800+) */
+  /* Wide enough that no stat label wraps — a wrapped label pushes its figure down and
+     breaks the row's shared baseline. */
+  width: min(340px, calc(100% - var(--space-6)));
+  display: grid;
+  gap: var(--space-3);
+  padding: var(--space-3) var(--space-4) var(--space-4);
+  border: 1px solid var(--border-strong);
+  border-radius: var(--radius-md);
+  background: var(--surface);
+  box-shadow: var(--elev-lg);
+  color: var(--ink);
+  /* The card sits over the map but must not swallow a hover meant for the boundary
+     underneath it. */
+  pointer-events: none;
+}
+
+/* Waiting for a pointer: quieter, and no border fighting the map for attention. */
+.card[data-empty='true'] {
+  background: color-mix(in srgb, var(--surface) 88%, transparent);
+  box-shadow: var(--elev-sm);
+  border-color: var(--border);
+}
+
+.head {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+}
+.dot {
+  width: 10px;
+  height: 10px;
+  border-radius: var(--radius-full);
+  flex: 0 0 auto;
+  background: var(--border-strong);
+}
+.dot[data-band='green'] {
+  background: var(--success);
+}
+.dot[data-band='yellow'] {
+  background: var(--warning);
+}
+.dot[data-band='red'] {
+  background: var(--danger);
+}
+.name {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: var(--fs-h3);
+  letter-spacing: -0.01em;
+  color: var(--ink);
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.band {
+  margin-left: auto;
+  padding-left: var(--space-2);
+  font-family: var(--font-mono);
+  font-size: var(--fs-caption);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--text-muted-strong);
+  white-space: nowrap;
+}
+
+.stats {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--space-3) var(--space-4);
+  margin: 0;
+}
+.stat {
+  display: grid;
+  gap: 2px;
+  min-width: 0;
+}
+.stat dt {
+  font-family: var(--font-mono);
+  font-size: var(--fs-caption);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--text-muted-strong);
+}
+.stat dd {
+  margin: 0;
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: var(--fs-ui);
+  color: var(--ink);
+  font-variant-numeric: tabular-nums;
+}
+
+.prompt {
+  margin: 0;
+  font-size: var(--fs-label);
+  color: var(--text-muted-strong);
+}
+
+.mdas {
+  display: grid;
+  gap: 2px;
+  padding-top: var(--space-3);
+  border-top: 1px solid var(--border);
+  font-size: var(--fs-label);
+  color: var(--ink);
+}
+.mdaLabel {
+  font-family: var(--font-mono);
+  font-size: var(--fs-caption);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--text-muted-strong);
+}
+
+/* On a narrow screen the card would cover the state it describes. */
+@media (max-width: 640px) {
+  .card {
+    position: static;
+    width: auto;
+    margin-top: var(--space-3);
+    box-shadow: none;
+  }
+  .card[data-empty='true'] {
+    display: none;
+  }
+}
+
+/* The figure the map is coloured by, when it has one. Larger than the standing stats
+   because it is the reason this LGA is the shade it is. */
+.lead {
+  display: grid;
+  gap: 2px;
+  padding-bottom: var(--space-3);
+  border-bottom: 1px solid var(--border);
+}
+.lead dt {
+  font-family: var(--font-mono);
+  font-size: var(--fs-caption);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--text-muted-strong);
+}
+.lead dd {
+  margin: 0;
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: var(--fs-h2);
+  letter-spacing: -0.01em;
+  color: var(--ink);
+  font-variant-numeric: tabular-nums;
+}

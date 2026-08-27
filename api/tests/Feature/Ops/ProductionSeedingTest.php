@@ -107,7 +107,18 @@ class ProductionSeedingTest extends TestCase
         // The runbook is the only thing that decides what a real deployment runs, so it
         // is what has to name them. A seeder that exists but is never invoked delivers
         // nothing.
-        $runbook = (string) File::get(base_path('../docs/DEPLOY.md'));
+        //
+        // The runbook lives at the REPO root, one level above the Laravel app. In the
+        // Docker dev stack only `api/` is mounted, so it is genuinely unreachable there
+        // — and a check that errors when it cannot see its subject reports a problem
+        // that does not exist. Skipped loudly instead, so it still guards on the host
+        // and in CI, where the whole repo is present.
+        $path = base_path('../docs/DEPLOY.md');
+        if (! File::exists($path)) {
+            $this->markTestSkipped('docs/DEPLOY.md is outside this environment (the container mounts api/ only).');
+        }
+
+        $runbook = (string) File::get($path);
 
         foreach (self::CONFIG_SEEDERS as $seeder) {
             $this->assertStringContainsString(

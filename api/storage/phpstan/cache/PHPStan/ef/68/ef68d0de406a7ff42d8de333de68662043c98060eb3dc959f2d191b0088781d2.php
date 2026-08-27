@@ -249,7 +249,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
     ),
     1 => 
     array (
-      '/var/www/html/app/Http/Requests/Registry/ApiRegistrationRequest.php' => 'ee2bfcf50e698747a2a225cd17ccf286326ef6b18a10bda85bed30249d171095',
+      '/var/www/html/app/Http/Requests/Registry/ApiRegistrationRequest.php' => '18de712fc69e5401614e4dd441f0633f69090181ee76b659f9713873d399797c',
     ),
   ),
 ));

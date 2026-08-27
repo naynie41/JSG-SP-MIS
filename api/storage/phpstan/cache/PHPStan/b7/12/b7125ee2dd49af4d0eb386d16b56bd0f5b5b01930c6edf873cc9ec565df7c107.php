@@ -12,10 +12,17 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
          'namespace' => 'App\\Http\\Controllers\\Api\\V1',
          'uses' => 
         array (
+          'auditlog' => 'App\\Domain\\Audit\\Models\\AuditLog',
+          'benefit' => 'App\\Domain\\Benefit\\Models\\Benefit',
+          'beneficiary' => 'App\\Domain\\Registry\\Models\\Beneficiary',
+          'dashboardsnapshot' => 'App\\Domain\\Reporting\\Models\\DashboardSnapshot',
           'controller' => 'App\\Http\\Controllers\\Controller',
           'apiresponse' => 'App\\Support\\ApiResponse',
           'jsonresponse' => 'Illuminate\\Http\\JsonResponse',
+          'carbon' => 'Illuminate\\Support\\Carbon',
+          'cache' => 'Illuminate\\Support\\Facades\\Cache',
           'db' => 'Illuminate\\Support\\Facades\\DB',
+          'str' => 'Illuminate\\Support\\Str',
           'throwable' => 'Throwable',
         ),
          'className' => 'App\\Http\\Controllers\\Api\\V1\\HealthController',
@@ -39,10 +46,17 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
          'namespace' => 'App\\Http\\Controllers\\Api\\V1',
          'uses' => 
         array (
+          'auditlog' => 'App\\Domain\\Audit\\Models\\AuditLog',
+          'benefit' => 'App\\Domain\\Benefit\\Models\\Benefit',
+          'beneficiary' => 'App\\Domain\\Registry\\Models\\Beneficiary',
+          'dashboardsnapshot' => 'App\\Domain\\Reporting\\Models\\DashboardSnapshot',
           'controller' => 'App\\Http\\Controllers\\Controller',
           'apiresponse' => 'App\\Support\\ApiResponse',
           'jsonresponse' => 'Illuminate\\Http\\JsonResponse',
+          'carbon' => 'Illuminate\\Support\\Carbon',
+          'cache' => 'Illuminate\\Support\\Facades\\Cache',
           'db' => 'Illuminate\\Support\\Facades\\DB',
+          'str' => 'Illuminate\\Support\\Str',
           'throwable' => 'Throwable',
         ),
          'className' => 'App\\Http\\Controllers\\Api\\V1\\HealthController',
@@ -50,7 +64,107 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
          'templatePhpDocNodes' => 
         array (
         ),
-         'parent' => NULL,
+         'parent' => 
+        \PHPStan\Analyser\IntermediaryNameScope::__set_state(array(
+           'namespace' => 'App\\Http\\Controllers\\Api\\V1',
+           'uses' => 
+          array (
+            'auditlog' => 'App\\Domain\\Audit\\Models\\AuditLog',
+            'benefit' => 'App\\Domain\\Benefit\\Models\\Benefit',
+            'beneficiary' => 'App\\Domain\\Registry\\Models\\Beneficiary',
+            'dashboardsnapshot' => 'App\\Domain\\Reporting\\Models\\DashboardSnapshot',
+            'controller' => 'App\\Http\\Controllers\\Controller',
+            'apiresponse' => 'App\\Support\\ApiResponse',
+            'jsonresponse' => 'Illuminate\\Http\\JsonResponse',
+            'carbon' => 'Illuminate\\Support\\Carbon',
+            'cache' => 'Illuminate\\Support\\Facades\\Cache',
+            'db' => 'Illuminate\\Support\\Facades\\DB',
+            'str' => 'Illuminate\\Support\\Str',
+            'throwable' => 'Throwable',
+          ),
+           'className' => 'App\\Http\\Controllers\\Api\\V1\\HealthController',
+           'functionName' => NULL,
+           'templatePhpDocNodes' => 
+          array (
+          ),
+           'parent' => NULL,
+           'typeAliasesMap' => 
+          array (
+          ),
+           'bypassTypeAliases' => false,
+           'constUses' => 
+          array (
+          ),
+           'typeAliasClassName' => NULL,
+           'traitData' => NULL,
+        )),
+         'typeAliasesMap' => 
+        array (
+        ),
+         'bypassTypeAliases' => false,
+         'constUses' => 
+        array (
+        ),
+         'typeAliasClassName' => NULL,
+         'traitData' => NULL,
+      )),
+      '25a397e6fc1899d254082a2d5be4865a' => 
+      \PHPStan\Analyser\IntermediaryNameScope::__set_state(array(
+         'namespace' => 'App\\Http\\Controllers\\Api\\V1',
+         'uses' => 
+        array (
+          'auditlog' => 'App\\Domain\\Audit\\Models\\AuditLog',
+          'benefit' => 'App\\Domain\\Benefit\\Models\\Benefit',
+          'beneficiary' => 'App\\Domain\\Registry\\Models\\Beneficiary',
+          'dashboardsnapshot' => 'App\\Domain\\Reporting\\Models\\DashboardSnapshot',
+          'controller' => 'App\\Http\\Controllers\\Controller',
+          'apiresponse' => 'App\\Support\\ApiResponse',
+          'jsonresponse' => 'Illuminate\\Http\\JsonResponse',
+          'carbon' => 'Illuminate\\Support\\Carbon',
+          'cache' => 'Illuminate\\Support\\Facades\\Cache',
+          'db' => 'Illuminate\\Support\\Facades\\DB',
+          'str' => 'Illuminate\\Support\\Str',
+          'throwable' => 'Throwable',
+        ),
+         'className' => 'App\\Http\\Controllers\\Api\\V1\\HealthController',
+         'functionName' => 'metrics',
+         'templatePhpDocNodes' => 
+        array (
+        ),
+         'parent' => 
+        \PHPStan\Analyser\IntermediaryNameScope::__set_state(array(
+           'namespace' => 'App\\Http\\Controllers\\Api\\V1',
+           'uses' => 
+          array (
+            'auditlog' => 'App\\Domain\\Audit\\Models\\AuditLog',
+            'benefit' => 'App\\Domain\\Benefit\\Models\\Benefit',
+            'beneficiary' => 'App\\Domain\\Registry\\Models\\Beneficiary',
+            'dashboardsnapshot' => 'App\\Domain\\Reporting\\Models\\DashboardSnapshot',
+            'controller' => 'App\\Http\\Controllers\\Controller',
+            'apiresponse' => 'App\\Support\\ApiResponse',
+            'jsonresponse' => 'Illuminate\\Http\\JsonResponse',
+            'carbon' => 'Illuminate\\Support\\Carbon',
+            'cache' => 'Illuminate\\Support\\Facades\\Cache',
+            'db' => 'Illuminate\\Support\\Facades\\DB',
+            'str' => 'Illuminate\\Support\\Str',
+            'throwable' => 'Throwable',
+          ),
+           'className' => 'App\\Http\\Controllers\\Api\\V1\\HealthController',
+           'functionName' => NULL,
+           'templatePhpDocNodes' => 
+          array (
+          ),
+           'parent' => NULL,
+           'typeAliasesMap' => 
+          array (
+          ),
+           'bypassTypeAliases' => false,
+           'constUses' => 
+          array (
+          ),
+           'typeAliasClassName' => NULL,
+           'traitData' => NULL,
+        )),
          'typeAliasesMap' => 
         array (
         ),
@@ -66,10 +180,17 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
          'namespace' => 'App\\Http\\Controllers\\Api\\V1',
          'uses' => 
         array (
+          'auditlog' => 'App\\Domain\\Audit\\Models\\AuditLog',
+          'benefit' => 'App\\Domain\\Benefit\\Models\\Benefit',
+          'beneficiary' => 'App\\Domain\\Registry\\Models\\Beneficiary',
+          'dashboardsnapshot' => 'App\\Domain\\Reporting\\Models\\DashboardSnapshot',
           'controller' => 'App\\Http\\Controllers\\Controller',
           'apiresponse' => 'App\\Support\\ApiResponse',
           'jsonresponse' => 'Illuminate\\Http\\JsonResponse',
+          'carbon' => 'Illuminate\\Support\\Carbon',
+          'cache' => 'Illuminate\\Support\\Facades\\Cache',
           'db' => 'Illuminate\\Support\\Facades\\DB',
+          'str' => 'Illuminate\\Support\\Str',
           'throwable' => 'Throwable',
         ),
          'className' => 'App\\Http\\Controllers\\Api\\V1\\HealthController',
@@ -77,7 +198,174 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
          'templatePhpDocNodes' => 
         array (
         ),
-         'parent' => NULL,
+         'parent' => 
+        \PHPStan\Analyser\IntermediaryNameScope::__set_state(array(
+           'namespace' => 'App\\Http\\Controllers\\Api\\V1',
+           'uses' => 
+          array (
+            'auditlog' => 'App\\Domain\\Audit\\Models\\AuditLog',
+            'benefit' => 'App\\Domain\\Benefit\\Models\\Benefit',
+            'beneficiary' => 'App\\Domain\\Registry\\Models\\Beneficiary',
+            'dashboardsnapshot' => 'App\\Domain\\Reporting\\Models\\DashboardSnapshot',
+            'controller' => 'App\\Http\\Controllers\\Controller',
+            'apiresponse' => 'App\\Support\\ApiResponse',
+            'jsonresponse' => 'Illuminate\\Http\\JsonResponse',
+            'carbon' => 'Illuminate\\Support\\Carbon',
+            'cache' => 'Illuminate\\Support\\Facades\\Cache',
+            'db' => 'Illuminate\\Support\\Facades\\DB',
+            'str' => 'Illuminate\\Support\\Str',
+            'throwable' => 'Throwable',
+          ),
+           'className' => 'App\\Http\\Controllers\\Api\\V1\\HealthController',
+           'functionName' => NULL,
+           'templatePhpDocNodes' => 
+          array (
+          ),
+           'parent' => NULL,
+           'typeAliasesMap' => 
+          array (
+          ),
+           'bypassTypeAliases' => false,
+           'constUses' => 
+          array (
+          ),
+           'typeAliasClassName' => NULL,
+           'traitData' => NULL,
+        )),
+         'typeAliasesMap' => 
+        array (
+        ),
+         'bypassTypeAliases' => false,
+         'constUses' => 
+        array (
+        ),
+         'typeAliasClassName' => NULL,
+         'traitData' => NULL,
+      )),
+      'a953467e23b26b8247dc8d4deeb4598c' => 
+      \PHPStan\Analyser\IntermediaryNameScope::__set_state(array(
+         'namespace' => 'App\\Http\\Controllers\\Api\\V1',
+         'uses' => 
+        array (
+          'auditlog' => 'App\\Domain\\Audit\\Models\\AuditLog',
+          'benefit' => 'App\\Domain\\Benefit\\Models\\Benefit',
+          'beneficiary' => 'App\\Domain\\Registry\\Models\\Beneficiary',
+          'dashboardsnapshot' => 'App\\Domain\\Reporting\\Models\\DashboardSnapshot',
+          'controller' => 'App\\Http\\Controllers\\Controller',
+          'apiresponse' => 'App\\Support\\ApiResponse',
+          'jsonresponse' => 'Illuminate\\Http\\JsonResponse',
+          'carbon' => 'Illuminate\\Support\\Carbon',
+          'cache' => 'Illuminate\\Support\\Facades\\Cache',
+          'db' => 'Illuminate\\Support\\Facades\\DB',
+          'str' => 'Illuminate\\Support\\Str',
+          'throwable' => 'Throwable',
+        ),
+         'className' => 'App\\Http\\Controllers\\Api\\V1\\HealthController',
+         'functionName' => 'checkCache',
+         'templatePhpDocNodes' => 
+        array (
+        ),
+         'parent' => 
+        \PHPStan\Analyser\IntermediaryNameScope::__set_state(array(
+           'namespace' => 'App\\Http\\Controllers\\Api\\V1',
+           'uses' => 
+          array (
+            'auditlog' => 'App\\Domain\\Audit\\Models\\AuditLog',
+            'benefit' => 'App\\Domain\\Benefit\\Models\\Benefit',
+            'beneficiary' => 'App\\Domain\\Registry\\Models\\Beneficiary',
+            'dashboardsnapshot' => 'App\\Domain\\Reporting\\Models\\DashboardSnapshot',
+            'controller' => 'App\\Http\\Controllers\\Controller',
+            'apiresponse' => 'App\\Support\\ApiResponse',
+            'jsonresponse' => 'Illuminate\\Http\\JsonResponse',
+            'carbon' => 'Illuminate\\Support\\Carbon',
+            'cache' => 'Illuminate\\Support\\Facades\\Cache',
+            'db' => 'Illuminate\\Support\\Facades\\DB',
+            'str' => 'Illuminate\\Support\\Str',
+            'throwable' => 'Throwable',
+          ),
+           'className' => 'App\\Http\\Controllers\\Api\\V1\\HealthController',
+           'functionName' => NULL,
+           'templatePhpDocNodes' => 
+          array (
+          ),
+           'parent' => NULL,
+           'typeAliasesMap' => 
+          array (
+          ),
+           'bypassTypeAliases' => false,
+           'constUses' => 
+          array (
+          ),
+           'typeAliasClassName' => NULL,
+           'traitData' => NULL,
+        )),
+         'typeAliasesMap' => 
+        array (
+        ),
+         'bypassTypeAliases' => false,
+         'constUses' => 
+        array (
+        ),
+         'typeAliasClassName' => NULL,
+         'traitData' => NULL,
+      )),
+      '0fcedf69c89783f574b31f99151a74e6' => 
+      \PHPStan\Analyser\IntermediaryNameScope::__set_state(array(
+         'namespace' => 'App\\Http\\Controllers\\Api\\V1',
+         'uses' => 
+        array (
+          'auditlog' => 'App\\Domain\\Audit\\Models\\AuditLog',
+          'benefit' => 'App\\Domain\\Benefit\\Models\\Benefit',
+          'beneficiary' => 'App\\Domain\\Registry\\Models\\Beneficiary',
+          'dashboardsnapshot' => 'App\\Domain\\Reporting\\Models\\DashboardSnapshot',
+          'controller' => 'App\\Http\\Controllers\\Controller',
+          'apiresponse' => 'App\\Support\\ApiResponse',
+          'jsonresponse' => 'Illuminate\\Http\\JsonResponse',
+          'carbon' => 'Illuminate\\Support\\Carbon',
+          'cache' => 'Illuminate\\Support\\Facades\\Cache',
+          'db' => 'Illuminate\\Support\\Facades\\DB',
+          'str' => 'Illuminate\\Support\\Str',
+          'throwable' => 'Throwable',
+        ),
+         'className' => 'App\\Http\\Controllers\\Api\\V1\\HealthController',
+         'functionName' => 'isStateless',
+         'templatePhpDocNodes' => 
+        array (
+        ),
+         'parent' => 
+        \PHPStan\Analyser\IntermediaryNameScope::__set_state(array(
+           'namespace' => 'App\\Http\\Controllers\\Api\\V1',
+           'uses' => 
+          array (
+            'auditlog' => 'App\\Domain\\Audit\\Models\\AuditLog',
+            'benefit' => 'App\\Domain\\Benefit\\Models\\Benefit',
+            'beneficiary' => 'App\\Domain\\Registry\\Models\\Beneficiary',
+            'dashboardsnapshot' => 'App\\Domain\\Reporting\\Models\\DashboardSnapshot',
+            'controller' => 'App\\Http\\Controllers\\Controller',
+            'apiresponse' => 'App\\Support\\ApiResponse',
+            'jsonresponse' => 'Illuminate\\Http\\JsonResponse',
+            'carbon' => 'Illuminate\\Support\\Carbon',
+            'cache' => 'Illuminate\\Support\\Facades\\Cache',
+            'db' => 'Illuminate\\Support\\Facades\\DB',
+            'str' => 'Illuminate\\Support\\Str',
+            'throwable' => 'Throwable',
+          ),
+           'className' => 'App\\Http\\Controllers\\Api\\V1\\HealthController',
+           'functionName' => NULL,
+           'templatePhpDocNodes' => 
+          array (
+          ),
+           'parent' => NULL,
+           'typeAliasesMap' => 
+          array (
+          ),
+           'bypassTypeAliases' => false,
+           'constUses' => 
+          array (
+          ),
+           'typeAliasClassName' => NULL,
+           'traitData' => NULL,
+        )),
          'typeAliasesMap' => 
         array (
         ),
@@ -91,7 +379,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
     ),
     1 => 
     array (
-      '/var/www/html/app/Http/Controllers/Api/V1/HealthController.php' => '26d690b2b0b2ae7d192487f87e9c6bda8ffe434a6aac9ada2ebf73cfa171000b',
+      '/var/www/html/app/Http/Controllers/Api/V1/HealthController.php' => '1aedac156f565ee883e7c7aebca9411a3fc0c2bff93648fa4d9d7b472afd03d1',
     ),
   ),
 ));

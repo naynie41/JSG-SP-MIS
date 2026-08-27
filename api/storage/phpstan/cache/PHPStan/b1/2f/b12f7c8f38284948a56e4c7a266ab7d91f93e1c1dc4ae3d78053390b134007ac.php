@@ -287,6 +287,49 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
          'typeAliasClassName' => NULL,
          'traitData' => NULL,
       )),
+      '11e1465cd1948bff78b81e7d58b78fbf' => 
+      \PHPStan\Analyser\IntermediaryNameScope::__set_state(array(
+         'namespace' => 'App\\Domain\\Reporting\\Support',
+         'uses' => 
+        array (
+        ),
+         'className' => 'App\\Domain\\Reporting\\Support\\DashboardScope',
+         'functionName' => 'tier',
+         'templatePhpDocNodes' => 
+        array (
+        ),
+         'parent' => 
+        \PHPStan\Analyser\IntermediaryNameScope::__set_state(array(
+           'namespace' => 'App\\Domain\\Reporting\\Support',
+           'uses' => 
+          array (
+          ),
+           'className' => 'App\\Domain\\Reporting\\Support\\DashboardScope',
+           'functionName' => NULL,
+           'templatePhpDocNodes' => 
+          array (
+          ),
+           'parent' => NULL,
+           'typeAliasesMap' => 
+          array (
+          ),
+           'bypassTypeAliases' => false,
+           'constUses' => 
+          array (
+          ),
+           'typeAliasClassName' => NULL,
+           'traitData' => NULL,
+        )),
+         'typeAliasesMap' => 
+        array (
+        ),
+         'bypassTypeAliases' => false,
+         'constUses' => 
+        array (
+        ),
+         'typeAliasClassName' => NULL,
+         'traitData' => NULL,
+      )),
       'ff16b29773ede956c9fb8b341b1cae5c' => 
       \PHPStan\Analyser\IntermediaryNameScope::__set_state(array(
          'namespace' => 'App\\Domain\\Reporting\\Support',
@@ -338,6 +381,49 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         ),
          'className' => 'App\\Domain\\Reporting\\Support\\DashboardScope',
          'functionName' => 'includesCoordinationMetrics',
+         'templatePhpDocNodes' => 
+        array (
+        ),
+         'parent' => 
+        \PHPStan\Analyser\IntermediaryNameScope::__set_state(array(
+           'namespace' => 'App\\Domain\\Reporting\\Support',
+           'uses' => 
+          array (
+          ),
+           'className' => 'App\\Domain\\Reporting\\Support\\DashboardScope',
+           'functionName' => NULL,
+           'templatePhpDocNodes' => 
+          array (
+          ),
+           'parent' => NULL,
+           'typeAliasesMap' => 
+          array (
+          ),
+           'bypassTypeAliases' => false,
+           'constUses' => 
+          array (
+          ),
+           'typeAliasClassName' => NULL,
+           'traitData' => NULL,
+        )),
+         'typeAliasesMap' => 
+        array (
+        ),
+         'bypassTypeAliases' => false,
+         'constUses' => 
+        array (
+        ),
+         'typeAliasClassName' => NULL,
+         'traitData' => NULL,
+      )),
+      '6307fc9dc3a7b52a45d529ba2830de23' => 
+      \PHPStan\Analyser\IntermediaryNameScope::__set_state(array(
+         'namespace' => 'App\\Domain\\Reporting\\Support',
+         'uses' => 
+        array (
+        ),
+         'className' => 'App\\Domain\\Reporting\\Support\\DashboardScope',
+         'functionName' => 'includesGovernanceData',
          'templatePhpDocNodes' => 
         array (
         ),
@@ -462,7 +548,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
     ),
     1 => 
     array (
-      '/var/www/html/app/Domain/Reporting/Support/DashboardScope.php' => '28013976808af5b5a4905b12cb7e57030a19ab3c2e341fdbef2b92e0c111904d',
+      '/var/www/html/app/Domain/Reporting/Support/DashboardScope.php' => 'b52c0b828d2c06e49788a53c42a88c93b03787ff3b7ab3e810ece8ff0d01d914',
     ),
   ),
 ));

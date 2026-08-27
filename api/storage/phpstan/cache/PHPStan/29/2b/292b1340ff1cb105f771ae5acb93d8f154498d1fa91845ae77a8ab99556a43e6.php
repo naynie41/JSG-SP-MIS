@@ -2,7 +2,7 @@
 
 // odsl-/var/www/html/app/Domain/Registry/Models/Beneficiary.php-PHPStan\BetterReflection\Reflection\ReflectionClass-App\Domain\Registry\Models\Beneficiary
 return \PHPStan\Cache\CacheItem::__set_state(array(
-   'variableKey' => 'v2-6.70.0.1-8.3.31-9ced46225f6fd13a36e79d5d039efb55a6bb7cfcaffa41aab28e212aa66fe8e5',
+   'variableKey' => 'v2-6.70.0.1-8.3.31-6c3aedbbc7134b2f604526bb685fc3e16ddc6d3733e74a758a445e111d8661b6',
    'data' => 
   array (
     'locatedSource' => 
@@ -33,9 +33,12 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
  * @property string|null $import_batch_id
  * @property string|null $original_record_id
  * @property string|null $idempotency_key
- * @property string|null $nin
- * @property string|null $bvn
- * @property string|null $phone
+ * @property string|null $nin encrypted at rest; exact-match via $nin_hash
+ * @property string|null $bvn encrypted at rest; exact-match via $bvn_hash
+ * @property string|null $nin_hash
+ * @property string|null $bvn_hash
+ * @property string|null $phone as the source wrote it — never overwritten
+ * @property string|null $phone_normalized canonical national form, for comparison only
  * @property string $first_name
  * @property string|null $middle_name
  * @property string $last_name
@@ -46,6 +49,11 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
  * @property string|null $ward
  * @property string|null $block_name_dob
  * @property BeneficiaryStatus $status
+ * @property ConsentStatus $sharing_consent
+ * @property Carbon|null $sharing_consent_at
+ * @property Carbon|null $retention_flagged_at
+ * @property Carbon|null $anonymized_at
+ * @property string|null $retention_policy
  * @property Carbon|null $created_at
  * @property Carbon|null $updated_at
  * @property-read Mda|null $ownerMda
@@ -54,8 +62,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
     'attributes' => 
     array (
     ),
-    'startLine' => 55,
-    'endLine' => 234,
+    'startLine' => 70,
+    'endLine' => 348,
     'startColumn' => 1,
     'endColumn' => 1,
     'parentClassName' => 'Illuminate\\Database\\Eloquent\\Model',
@@ -88,20 +96,20 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
           'code' => '\'beneficiaries\'',
           'attributes' => 
           array (
-            'startLine' => 60,
-            'endLine' => 60,
-            'startTokenPos' => 146,
-            'startFilePos' => 2130,
-            'endTokenPos' => 146,
-            'endFilePos' => 2144,
+            'startLine' => 75,
+            'endLine' => 75,
+            'startTokenPos' => 181,
+            'startFilePos' => 2969,
+            'endTokenPos' => 181,
+            'endFilePos' => 2983,
           ),
         ),
         'docComment' => NULL,
         'attributes' => 
         array (
         ),
-        'startLine' => 60,
-        'endLine' => 60,
+        'startLine' => 75,
+        'endLine' => 75,
         'startColumn' => 5,
         'endColumn' => 39,
         'isPromoted' => false,
@@ -120,15 +128,15 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         'type' => NULL,
         'default' => 
         array (
-          'code' => '[\'owner_mda_id\', \'registration_source\', \'registration_date\', \'import_batch_id\', \'original_record_id\', \'idempotency_key\', \'nin\', \'bvn\', \'phone\', \'first_name\', \'middle_name\', \'last_name\', \'date_of_birth\', \'gender\', \'address\', \'lga\', \'ward\', \'block_name_dob\', \'status\']',
+          'code' => '[\'owner_mda_id\', \'registration_source\', \'registration_date\', \'import_batch_id\', \'original_record_id\', \'idempotency_key\', \'nin\', \'bvn\', \'phone\', \'first_name\', \'middle_name\', \'last_name\', \'date_of_birth\', \'gender\', \'address\', \'lga\', \'ward\', \'block_name_dob\', \'status\', \'sharing_consent\', \'sharing_consent_at\', \'retention_flagged_at\', \'anonymized_at\', \'retention_policy\']',
           'attributes' => 
           array (
-            'startLine' => 65,
-            'endLine' => 85,
-            'startTokenPos' => 157,
-            'startFilePos' => 2215,
-            'endTokenPos' => 216,
-            'endFilePos' => 2639,
+            'startLine' => 80,
+            'endLine' => 105,
+            'startTokenPos' => 192,
+            'startFilePos' => 3054,
+            'endTokenPos' => 266,
+            'endFilePos' => 3620,
           ),
         ),
         'docComment' => '/**
@@ -137,8 +145,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         'attributes' => 
         array (
         ),
-        'startLine' => 65,
-        'endLine' => 85,
+        'startLine' => 80,
+        'endLine' => 105,
         'startColumn' => 5,
         'endColumn' => 6,
         'isPromoted' => false,
@@ -157,28 +165,29 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         'type' => NULL,
         'default' => 
         array (
-          'code' => '[\'nin\', \'bvn\']',
+          'code' => '[\'nin\', \'bvn\', \'nin_hash\', \'bvn_hash\']',
           'attributes' => 
           array (
-            'startLine' => 93,
-            'endLine' => 96,
-            'startTokenPos' => 227,
-            'startFilePos' => 2872,
-            'endTokenPos' => 235,
-            'endFilePos' => 2908,
+            'startLine' => 114,
+            'endLine' => 119,
+            'startTokenPos' => 277,
+            'startFilePos' => 3940,
+            'endTokenPos' => 291,
+            'endFilePos' => 4016,
           ),
         ),
         'docComment' => '/**
  * NIN/BVN are national identifiers — never exposed by default serialization;
- * screens reveal them (masked) through a permission-gated resource.
+ * screens reveal them (masked) through a permission-gated resource. The
+ * `*_hash` columns are the operational lookup keys (never useful to clients).
  *
  * @var list<string>
  */',
         'attributes' => 
         array (
         ),
-        'startLine' => 93,
-        'endLine' => 96,
+        'startLine' => 114,
+        'endLine' => 119,
         'startColumn' => 5,
         'endColumn' => 6,
         'isPromoted' => false,
@@ -197,15 +206,15 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         'type' => NULL,
         'default' => 
         array (
-          'code' => '[\'status\' => \\App\\Domain\\Registry\\Enums\\BeneficiaryStatus::Active->value]',
+          'code' => '[\'status\' => \\App\\Domain\\Registry\\Enums\\BeneficiaryStatus::Active->value, \'sharing_consent\' => \\App\\Domain\\Registry\\Enums\\ConsentStatus::Unknown->value]',
           'attributes' => 
           array (
-            'startLine' => 101,
-            'endLine' => 103,
-            'startTokenPos' => 246,
-            'startFilePos' => 2989,
-            'endTokenPos' => 259,
-            'endFilePos' => 3049,
+            'startLine' => 124,
+            'endLine' => 127,
+            'startTokenPos' => 302,
+            'startFilePos' => 4097,
+            'endTokenPos' => 326,
+            'endFilePos' => 4217,
           ),
         ),
         'docComment' => '/**
@@ -214,8 +223,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         'attributes' => 
         array (
         ),
-        'startLine' => 101,
-        'endLine' => 103,
+        'startLine' => 124,
+        'endLine' => 127,
         'startColumn' => 5,
         'endColumn' => 6,
         'isPromoted' => false,
@@ -250,8 +259,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         'docComment' => '/**
  * @return array<string, string>
  */',
-        'startLine' => 108,
-        'endLine' => 117,
+        'startLine' => 132,
+        'endLine' => 149,
         'startColumn' => 5,
         'endColumn' => 5,
         'couldThrow' => false,
@@ -259,6 +268,41 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         'isGenerator' => false,
         'isVariadic' => false,
         'modifiers' => 2,
+        'namespace' => 'App\\Domain\\Registry\\Models',
+        'declaringClassName' => 'App\\Domain\\Registry\\Models\\Beneficiary',
+        'implementingClassName' => 'App\\Domain\\Registry\\Models\\Beneficiary',
+        'currentClassName' => 'App\\Domain\\Registry\\Models\\Beneficiary',
+        'aliasName' => NULL,
+      ),
+      'isAnonymized' => 
+      array (
+        'name' => 'isAnonymized',
+        'parameters' => 
+        array (
+        ),
+        'returnsReference' => false,
+        'returnType' => 
+        array (
+          'class' => 'PHPStan\\BetterReflection\\Reflection\\ReflectionNamedType',
+          'data' => 
+          array (
+            'name' => 'bool',
+            'isIdentifier' => true,
+          ),
+        ),
+        'attributes' => 
+        array (
+        ),
+        'docComment' => '/** Whether the record has been de-identified by a retention policy (NFR-PRV-01). */',
+        'startLine' => 152,
+        'endLine' => 155,
+        'startColumn' => 5,
+        'endColumn' => 5,
+        'couldThrow' => false,
+        'isClosure' => false,
+        'isGenerator' => false,
+        'isVariadic' => false,
+        'modifiers' => 1,
         'namespace' => 'App\\Domain\\Registry\\Models',
         'declaringClassName' => 'App\\Domain\\Registry\\Models\\Beneficiary',
         'implementingClassName' => 'App\\Domain\\Registry\\Models\\Beneficiary',
@@ -290,8 +334,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
  *
  * @return list<string>
  */',
-        'startLine' => 125,
-        'endLine' => 128,
+        'startLine' => 163,
+        'endLine' => 166,
         'startColumn' => 5,
         'endColumn' => 5,
         'couldThrow' => false,
@@ -325,13 +369,13 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         array (
         ),
         'docComment' => '/**
- * The derived matching blocking key is operational (and name-derived) — keep
- * it out of the audit trail.
+ * Derived operational columns (blocking key, identifier hashes) — keep them
+ * out of the audit trail; they add nothing to "who changed what".
  *
  * @return list<string>
  */',
-        'startLine' => 136,
-        'endLine' => 139,
+        'startLine' => 174,
+        'endLine' => 177,
         'startColumn' => 5,
         'endColumn' => 5,
         'couldThrow' => false,
@@ -365,8 +409,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         array (
         ),
         'docComment' => NULL,
-        'startLine' => 141,
-        'endLine' => 171,
+        'startLine' => 179,
+        'endLine' => 241,
         'startColumn' => 5,
         'endColumn' => 5,
         'couldThrow' => true,
@@ -423,8 +467,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             'attributes' => 
             array (
             ),
-            'startLine' => 177,
-            'endLine' => 177,
+            'startLine' => 247,
+            'endLine' => 247,
             'startColumn' => 44,
             'endColumn' => 57,
             'parameterIndex' => 0,
@@ -467,8 +511,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
  * Strip all non-digits; return null when nothing remains (so the column is
  * NULL, not an empty string — required for the partial unique indexes).
  */',
-        'startLine' => 177,
-        'endLine' => 185,
+        'startLine' => 247,
+        'endLine' => 255,
         'startColumn' => 5,
         'endColumn' => 5,
         'couldThrow' => false,
@@ -525,8 +569,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             'attributes' => 
             array (
             ),
-            'startLine' => 191,
-            'endLine' => 191,
+            'startLine' => 261,
+            'endLine' => 261,
             'startColumn' => 44,
             'endColumn' => 60,
             'parameterIndex' => 0,
@@ -570,8 +614,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             'attributes' => 
             array (
             ),
-            'startLine' => 191,
-            'endLine' => 191,
+            'startLine' => 261,
+            'endLine' => 261,
             'startColumn' => 63,
             'endColumn' => 74,
             'parameterIndex' => 1,
@@ -614,8 +658,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
  * The fuzzy-matching blocking key: phonetic(last_name) | dob_year (PRD
  * FR-DUP-03). Used both to maintain the column and to build the gather query.
  */',
-        'startLine' => 191,
-        'endLine' => 197,
+        'startLine' => 261,
+        'endLine' => 267,
         'startColumn' => 5,
         'endColumn' => 5,
         'couldThrow' => false,
@@ -649,8 +693,82 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         array (
         ),
         'docComment' => NULL,
-        'startLine' => 199,
-        'endLine' => 202,
+        'startLine' => 269,
+        'endLine' => 272,
+        'startColumn' => 5,
+        'endColumn' => 5,
+        'couldThrow' => false,
+        'isClosure' => false,
+        'isGenerator' => false,
+        'isVariadic' => false,
+        'modifiers' => 1,
+        'namespace' => 'App\\Domain\\Registry\\Models',
+        'declaringClassName' => 'App\\Domain\\Registry\\Models\\Beneficiary',
+        'implementingClassName' => 'App\\Domain\\Registry\\Models\\Beneficiary',
+        'currentClassName' => 'App\\Domain\\Registry\\Models\\Beneficiary',
+        'aliasName' => NULL,
+      ),
+      'hasSharingConsent' => 
+      array (
+        'name' => 'hasSharingConsent',
+        'parameters' => 
+        array (
+        ),
+        'returnsReference' => false,
+        'returnType' => 
+        array (
+          'class' => 'PHPStan\\BetterReflection\\Reflection\\ReflectionNamedType',
+          'data' => 
+          array (
+            'name' => 'bool',
+            'isIdentifier' => true,
+          ),
+        ),
+        'attributes' => 
+        array (
+        ),
+        'docComment' => '/** Whether cross-MDA data-sharing consent is currently granted (NFR-PRV-01). */',
+        'startLine' => 275,
+        'endLine' => 278,
+        'startColumn' => 5,
+        'endColumn' => 5,
+        'couldThrow' => false,
+        'isClosure' => false,
+        'isGenerator' => false,
+        'isVariadic' => false,
+        'modifiers' => 1,
+        'namespace' => 'App\\Domain\\Registry\\Models',
+        'declaringClassName' => 'App\\Domain\\Registry\\Models\\Beneficiary',
+        'implementingClassName' => 'App\\Domain\\Registry\\Models\\Beneficiary',
+        'currentClassName' => 'App\\Domain\\Registry\\Models\\Beneficiary',
+        'aliasName' => NULL,
+      ),
+      'consents' => 
+      array (
+        'name' => 'consents',
+        'parameters' => 
+        array (
+        ),
+        'returnsReference' => false,
+        'returnType' => 
+        array (
+          'class' => 'PHPStan\\BetterReflection\\Reflection\\ReflectionNamedType',
+          'data' => 
+          array (
+            'name' => 'Illuminate\\Database\\Eloquent\\Relations\\HasMany',
+            'isIdentifier' => false,
+          ),
+        ),
+        'attributes' => 
+        array (
+        ),
+        'docComment' => '/**
+ * Append-only consent history (most recent first).
+ *
+ * @return HasMany<BeneficiaryConsent, $this>
+ */',
+        'startLine' => 285,
+        'endLine' => 288,
         'startColumn' => 5,
         'endColumn' => 5,
         'couldThrow' => false,
@@ -686,8 +804,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         'docComment' => '/**
  * @return BelongsTo<Mda, $this>
  */',
-        'startLine' => 207,
-        'endLine' => 210,
+        'startLine' => 293,
+        'endLine' => 296,
         'startColumn' => 5,
         'endColumn' => 5,
         'couldThrow' => false,
@@ -723,8 +841,123 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         'docComment' => '/**
  * @return HasMany<HouseholdMembership, $this>
  */',
-        'startLine' => 215,
-        'endLine' => 218,
+        'startLine' => 301,
+        'endLine' => 304,
+        'startColumn' => 5,
+        'endColumn' => 5,
+        'couldThrow' => false,
+        'isClosure' => false,
+        'isGenerator' => false,
+        'isVariadic' => false,
+        'modifiers' => 1,
+        'namespace' => 'App\\Domain\\Registry\\Models',
+        'declaringClassName' => 'App\\Domain\\Registry\\Models\\Beneficiary',
+        'implementingClassName' => 'App\\Domain\\Registry\\Models\\Beneficiary',
+        'currentClassName' => 'App\\Domain\\Registry\\Models\\Beneficiary',
+        'aliasName' => NULL,
+      ),
+      'benefits' => 
+      array (
+        'name' => 'benefits',
+        'parameters' => 
+        array (
+        ),
+        'returnsReference' => false,
+        'returnType' => 
+        array (
+          'class' => 'PHPStan\\BetterReflection\\Reflection\\ReflectionNamedType',
+          'data' => 
+          array (
+            'name' => 'Illuminate\\Database\\Eloquent\\Relations\\HasMany',
+            'isIdentifier' => false,
+          ),
+        ),
+        'attributes' => 
+        array (
+        ),
+        'docComment' => '/**
+ * The benefit-ledger history (cross-MDA — the ledger belongs to the subject, not
+ * one MDA). Bypasses the delivering-MDA scope so the FULL history is available for
+ * right-of-access and the retention "has history" check.
+ *
+ * @return HasMany<Benefit, $this>
+ */',
+        'startLine' => 313,
+        'endLine' => 316,
+        'startColumn' => 5,
+        'endColumn' => 5,
+        'couldThrow' => false,
+        'isClosure' => false,
+        'isGenerator' => false,
+        'isVariadic' => false,
+        'modifiers' => 1,
+        'namespace' => 'App\\Domain\\Registry\\Models',
+        'declaringClassName' => 'App\\Domain\\Registry\\Models\\Beneficiary',
+        'implementingClassName' => 'App\\Domain\\Registry\\Models\\Beneficiary',
+        'currentClassName' => 'App\\Domain\\Registry\\Models\\Beneficiary',
+        'aliasName' => NULL,
+      ),
+      'enrollments' => 
+      array (
+        'name' => 'enrollments',
+        'parameters' => 
+        array (
+        ),
+        'returnsReference' => false,
+        'returnType' => 
+        array (
+          'class' => 'PHPStan\\BetterReflection\\Reflection\\ReflectionNamedType',
+          'data' => 
+          array (
+            'name' => 'Illuminate\\Database\\Eloquent\\Relations\\HasMany',
+            'isIdentifier' => false,
+          ),
+        ),
+        'attributes' => 
+        array (
+        ),
+        'docComment' => '/**
+ * @return HasMany<Enrollment, $this>
+ */',
+        'startLine' => 321,
+        'endLine' => 324,
+        'startColumn' => 5,
+        'endColumn' => 5,
+        'couldThrow' => false,
+        'isClosure' => false,
+        'isGenerator' => false,
+        'isVariadic' => false,
+        'modifiers' => 1,
+        'namespace' => 'App\\Domain\\Registry\\Models',
+        'declaringClassName' => 'App\\Domain\\Registry\\Models\\Beneficiary',
+        'implementingClassName' => 'App\\Domain\\Registry\\Models\\Beneficiary',
+        'currentClassName' => 'App\\Domain\\Registry\\Models\\Beneficiary',
+        'aliasName' => NULL,
+      ),
+      'documents' => 
+      array (
+        'name' => 'documents',
+        'parameters' => 
+        array (
+        ),
+        'returnsReference' => false,
+        'returnType' => 
+        array (
+          'class' => 'PHPStan\\BetterReflection\\Reflection\\ReflectionNamedType',
+          'data' => 
+          array (
+            'name' => 'Illuminate\\Database\\Eloquent\\Relations\\HasMany',
+            'isIdentifier' => false,
+          ),
+        ),
+        'attributes' => 
+        array (
+        ),
+        'docComment' => '/**
+ * @return HasMany<BeneficiaryDocument, $this>
+ */',
+        'startLine' => 329,
+        'endLine' => 332,
         'startColumn' => 5,
         'endColumn' => 5,
         'couldThrow' => false,
@@ -762,8 +995,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
  *
  * @return HasOne<HouseholdMembership, $this>
  */',
-        'startLine' => 225,
-        'endLine' => 228,
+        'startLine' => 339,
+        'endLine' => 342,
         'startColumn' => 5,
         'endColumn' => 5,
         'couldThrow' => false,
@@ -797,8 +1030,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         array (
         ),
         'docComment' => NULL,
-        'startLine' => 230,
-        'endLine' => 233,
+        'startLine' => 344,
+        'endLine' => 347,
         'startColumn' => 5,
         'endColumn' => 5,
         'couldThrow' => false,

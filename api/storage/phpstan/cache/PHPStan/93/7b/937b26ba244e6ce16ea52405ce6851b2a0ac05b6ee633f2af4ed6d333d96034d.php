@@ -93,6 +93,63 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
          'typeAliasClassName' => NULL,
          'traitData' => NULL,
       )),
+      '914cdf0209eb8199590f5937b6b32db0' => 
+      \PHPStan\Analyser\IntermediaryNameScope::__set_state(array(
+         'namespace' => 'App\\Domain\\Registry\\Services',
+         'uses' => 
+        array (
+          'mdascope' => 'App\\Domain\\Access\\Scopes\\MdaScope',
+          'auditlogger' => 'App\\Domain\\Audit\\Services\\AuditLogger',
+          'householdrole' => 'App\\Domain\\Registry\\Enums\\HouseholdRole',
+          'registrationsource' => 'App\\Domain\\Registry\\Enums\\RegistrationSource',
+          'beneficiary' => 'App\\Domain\\Registry\\Models\\Beneficiary',
+          'household' => 'App\\Domain\\Registry\\Models\\Household',
+          'householdmembership' => 'App\\Domain\\Registry\\Models\\HouseholdMembership',
+        ),
+         'className' => 'App\\Domain\\Registry\\Services\\HouseholdIngestionService',
+         'functionName' => 'isHeadFlag',
+         'templatePhpDocNodes' => 
+        array (
+        ),
+         'parent' => 
+        \PHPStan\Analyser\IntermediaryNameScope::__set_state(array(
+           'namespace' => 'App\\Domain\\Registry\\Services',
+           'uses' => 
+          array (
+            'mdascope' => 'App\\Domain\\Access\\Scopes\\MdaScope',
+            'auditlogger' => 'App\\Domain\\Audit\\Services\\AuditLogger',
+            'householdrole' => 'App\\Domain\\Registry\\Enums\\HouseholdRole',
+            'registrationsource' => 'App\\Domain\\Registry\\Enums\\RegistrationSource',
+            'beneficiary' => 'App\\Domain\\Registry\\Models\\Beneficiary',
+            'household' => 'App\\Domain\\Registry\\Models\\Household',
+            'householdmembership' => 'App\\Domain\\Registry\\Models\\HouseholdMembership',
+          ),
+           'className' => 'App\\Domain\\Registry\\Services\\HouseholdIngestionService',
+           'functionName' => NULL,
+           'templatePhpDocNodes' => 
+          array (
+          ),
+           'parent' => NULL,
+           'typeAliasesMap' => 
+          array (
+          ),
+           'bypassTypeAliases' => false,
+           'constUses' => 
+          array (
+          ),
+           'typeAliasClassName' => NULL,
+           'traitData' => NULL,
+        )),
+         'typeAliasesMap' => 
+        array (
+        ),
+         'bypassTypeAliases' => false,
+         'constUses' => 
+        array (
+        ),
+         'typeAliasClassName' => NULL,
+         'traitData' => NULL,
+      )),
       '51fbf7fd3cb4e8ee2a1a1a2856448d2e' => 
       \PHPStan\Analyser\IntermediaryNameScope::__set_state(array(
          'namespace' => 'App\\Domain\\Registry\\Services',
@@ -267,7 +324,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
     ),
     1 => 
     array (
-      '/var/www/html/app/Domain/Registry/Services/HouseholdIngestionService.php' => '3d03b7f2989c95688c8c17571d6bd145622e5c4efb7d7c557ce770e4ee75e143',
+      '/var/www/html/app/Domain/Registry/Services/HouseholdIngestionService.php' => 'de9b2d0cb6eee54b3205c4dc8827c5d4a50d49c44aa53f19e0b41742580641bb',
     ),
   ),
 ));

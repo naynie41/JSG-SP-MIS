@@ -2,7 +2,7 @@
 
 // odsl-/var/www/html/app/Domain/Access/Enums/PermissionAction.php-PHPStan\BetterReflection\Reflection\ReflectionClass-App\Domain\Access\Enums\PermissionAction
 return \PHPStan\Cache\CacheItem::__set_state(array(
-   'variableKey' => 'v2-6.70.0.1-8.3.31-0b5f8b6fa4ffbafe23ced98bd900648fb725b0d0bbd4773372d7a4abdbd5bc87',
+   'variableKey' => 'v2-6.70.0.1-8.3.31-e98f695b425c216bbc4b409a2c436ff4e957b51facaa48918ecbe36258bbabd3',
    'data' => 
   array (
     'locatedSource' => 
@@ -31,7 +31,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
     array (
     ),
     'startLine' => 12,
-    'endLine' => 24,
+    'endLine' => 31,
     'startColumn' => 1,
     'endColumn' => 1,
     'parentClassName' => NULL,
@@ -131,8 +131,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         array (
         ),
         'docComment' => NULL,
-        'startLine' => 20,
-        'endLine' => 23,
+        'startLine' => 23,
+        'endLine' => 30,
         'startColumn' => 5,
         'endColumn' => 5,
         'couldThrow' => false,
@@ -507,6 +507,81 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         'endLine' => 18,
         'startColumn' => 5,
         'endColumn' => 27,
+      ),
+      'RevealPii' => 
+      array (
+        'name' => 'RevealPii',
+        'value' => 
+        array (
+          'code' => '\'reveal_pii\'',
+          'attributes' => 
+          array (
+            'startLine' => 19,
+            'endLine' => 19,
+            'startTokenPos' => 77,
+            'startFilePos' => 446,
+            'endTokenPos' => 77,
+            'endFilePos' => 457,
+          ),
+        ),
+        'attributes' => 
+        array (
+        ),
+        'docComment' => NULL,
+        'startLine' => 19,
+        'endLine' => 19,
+        'startColumn' => 5,
+        'endColumn' => 34,
+      ),
+      'Run' => 
+      array (
+        'name' => 'Run',
+        'value' => 
+        array (
+          'code' => '\'run\'',
+          'attributes' => 
+          array (
+            'startLine' => 20,
+            'endLine' => 20,
+            'startTokenPos' => 86,
+            'startFilePos' => 475,
+            'endTokenPos' => 86,
+            'endFilePos' => 479,
+          ),
+        ),
+        'attributes' => 
+        array (
+        ),
+        'docComment' => NULL,
+        'startLine' => 20,
+        'endLine' => 20,
+        'startColumn' => 5,
+        'endColumn' => 21,
+      ),
+      'AccessRequest' => 
+      array (
+        'name' => 'AccessRequest',
+        'value' => 
+        array (
+          'code' => '\'access_request\'',
+          'attributes' => 
+          array (
+            'startLine' => 21,
+            'endLine' => 21,
+            'startTokenPos' => 95,
+            'startFilePos' => 507,
+            'endTokenPos' => 95,
+            'endFilePos' => 522,
+          ),
+        ),
+        'attributes' => 
+        array (
+        ),
+        'docComment' => NULL,
+        'startLine' => 21,
+        'endLine' => 21,
+        'startColumn' => 5,
+        'endColumn' => 42,
       ),
     ),
   ),

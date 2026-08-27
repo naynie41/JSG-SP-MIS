@@ -14,9 +14,13 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         array (
           'permission' => 'App\\Domain\\Access\\Models\\Permission',
           'role' => 'App\\Domain\\Access\\Models\\Role',
+          'user' => 'App\\Domain\\Access\\Models\\User',
+          'rolepermissionservice' => 'App\\Domain\\Access\\Services\\RolePermissionService',
           'controller' => 'App\\Http\\Controllers\\Controller',
+          'updaterolepermissionsrequest' => 'App\\Http\\Requests\\Access\\UpdateRolePermissionsRequest',
           'apiresponse' => 'App\\Support\\ApiResponse',
           'jsonresponse' => 'Illuminate\\Http\\JsonResponse',
+          'runtimeexception' => 'RuntimeException',
         ),
          'className' => 'App\\Http\\Controllers\\Api\\V1\\Access\\AccessController',
          'functionName' => NULL,
@@ -41,9 +45,13 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         array (
           'permission' => 'App\\Domain\\Access\\Models\\Permission',
           'role' => 'App\\Domain\\Access\\Models\\Role',
+          'user' => 'App\\Domain\\Access\\Models\\User',
+          'rolepermissionservice' => 'App\\Domain\\Access\\Services\\RolePermissionService',
           'controller' => 'App\\Http\\Controllers\\Controller',
+          'updaterolepermissionsrequest' => 'App\\Http\\Requests\\Access\\UpdateRolePermissionsRequest',
           'apiresponse' => 'App\\Support\\ApiResponse',
           'jsonresponse' => 'Illuminate\\Http\\JsonResponse',
+          'runtimeexception' => 'RuntimeException',
         ),
          'className' => 'App\\Http\\Controllers\\Api\\V1\\Access\\AccessController',
          'functionName' => 'permissions',
@@ -57,9 +65,13 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
           array (
             'permission' => 'App\\Domain\\Access\\Models\\Permission',
             'role' => 'App\\Domain\\Access\\Models\\Role',
+            'user' => 'App\\Domain\\Access\\Models\\User',
+            'rolepermissionservice' => 'App\\Domain\\Access\\Services\\RolePermissionService',
             'controller' => 'App\\Http\\Controllers\\Controller',
+            'updaterolepermissionsrequest' => 'App\\Http\\Requests\\Access\\UpdateRolePermissionsRequest',
             'apiresponse' => 'App\\Support\\ApiResponse',
             'jsonresponse' => 'Illuminate\\Http\\JsonResponse',
+            'runtimeexception' => 'RuntimeException',
           ),
            'className' => 'App\\Http\\Controllers\\Api\\V1\\Access\\AccessController',
            'functionName' => NULL,
@@ -94,9 +106,13 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         array (
           'permission' => 'App\\Domain\\Access\\Models\\Permission',
           'role' => 'App\\Domain\\Access\\Models\\Role',
+          'user' => 'App\\Domain\\Access\\Models\\User',
+          'rolepermissionservice' => 'App\\Domain\\Access\\Services\\RolePermissionService',
           'controller' => 'App\\Http\\Controllers\\Controller',
+          'updaterolepermissionsrequest' => 'App\\Http\\Requests\\Access\\UpdateRolePermissionsRequest',
           'apiresponse' => 'App\\Support\\ApiResponse',
           'jsonresponse' => 'Illuminate\\Http\\JsonResponse',
+          'runtimeexception' => 'RuntimeException',
         ),
          'className' => 'App\\Http\\Controllers\\Api\\V1\\Access\\AccessController',
          'functionName' => 'roles',
@@ -110,9 +126,13 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
           array (
             'permission' => 'App\\Domain\\Access\\Models\\Permission',
             'role' => 'App\\Domain\\Access\\Models\\Role',
+            'user' => 'App\\Domain\\Access\\Models\\User',
+            'rolepermissionservice' => 'App\\Domain\\Access\\Services\\RolePermissionService',
             'controller' => 'App\\Http\\Controllers\\Controller',
+            'updaterolepermissionsrequest' => 'App\\Http\\Requests\\Access\\UpdateRolePermissionsRequest',
             'apiresponse' => 'App\\Support\\ApiResponse',
             'jsonresponse' => 'Illuminate\\Http\\JsonResponse',
+            'runtimeexception' => 'RuntimeException',
           ),
            'className' => 'App\\Http\\Controllers\\Api\\V1\\Access\\AccessController',
            'functionName' => NULL,
@@ -147,9 +167,13 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         array (
           'permission' => 'App\\Domain\\Access\\Models\\Permission',
           'role' => 'App\\Domain\\Access\\Models\\Role',
+          'user' => 'App\\Domain\\Access\\Models\\User',
+          'rolepermissionservice' => 'App\\Domain\\Access\\Services\\RolePermissionService',
           'controller' => 'App\\Http\\Controllers\\Controller',
+          'updaterolepermissionsrequest' => 'App\\Http\\Requests\\Access\\UpdateRolePermissionsRequest',
           'apiresponse' => 'App\\Support\\ApiResponse',
           'jsonresponse' => 'Illuminate\\Http\\JsonResponse',
+          'runtimeexception' => 'RuntimeException',
         ),
          'className' => 'App\\Http\\Controllers\\Api\\V1\\Access\\AccessController',
          'functionName' => 'matrix',
@@ -163,9 +187,74 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
           array (
             'permission' => 'App\\Domain\\Access\\Models\\Permission',
             'role' => 'App\\Domain\\Access\\Models\\Role',
+            'user' => 'App\\Domain\\Access\\Models\\User',
+            'rolepermissionservice' => 'App\\Domain\\Access\\Services\\RolePermissionService',
             'controller' => 'App\\Http\\Controllers\\Controller',
+            'updaterolepermissionsrequest' => 'App\\Http\\Requests\\Access\\UpdateRolePermissionsRequest',
             'apiresponse' => 'App\\Support\\ApiResponse',
             'jsonresponse' => 'Illuminate\\Http\\JsonResponse',
+            'runtimeexception' => 'RuntimeException',
+          ),
+           'className' => 'App\\Http\\Controllers\\Api\\V1\\Access\\AccessController',
+           'functionName' => NULL,
+           'templatePhpDocNodes' => 
+          array (
+          ),
+           'parent' => NULL,
+           'typeAliasesMap' => 
+          array (
+          ),
+           'bypassTypeAliases' => false,
+           'constUses' => 
+          array (
+          ),
+           'typeAliasClassName' => NULL,
+           'traitData' => NULL,
+        )),
+         'typeAliasesMap' => 
+        array (
+        ),
+         'bypassTypeAliases' => false,
+         'constUses' => 
+        array (
+        ),
+         'typeAliasClassName' => NULL,
+         'traitData' => NULL,
+      )),
+      '5f1a09ce22b63944e27552171f41d341' => 
+      \PHPStan\Analyser\IntermediaryNameScope::__set_state(array(
+         'namespace' => 'App\\Http\\Controllers\\Api\\V1\\Access',
+         'uses' => 
+        array (
+          'permission' => 'App\\Domain\\Access\\Models\\Permission',
+          'role' => 'App\\Domain\\Access\\Models\\Role',
+          'user' => 'App\\Domain\\Access\\Models\\User',
+          'rolepermissionservice' => 'App\\Domain\\Access\\Services\\RolePermissionService',
+          'controller' => 'App\\Http\\Controllers\\Controller',
+          'updaterolepermissionsrequest' => 'App\\Http\\Requests\\Access\\UpdateRolePermissionsRequest',
+          'apiresponse' => 'App\\Support\\ApiResponse',
+          'jsonresponse' => 'Illuminate\\Http\\JsonResponse',
+          'runtimeexception' => 'RuntimeException',
+        ),
+         'className' => 'App\\Http\\Controllers\\Api\\V1\\Access\\AccessController',
+         'functionName' => 'updatePermissions',
+         'templatePhpDocNodes' => 
+        array (
+        ),
+         'parent' => 
+        \PHPStan\Analyser\IntermediaryNameScope::__set_state(array(
+           'namespace' => 'App\\Http\\Controllers\\Api\\V1\\Access',
+           'uses' => 
+          array (
+            'permission' => 'App\\Domain\\Access\\Models\\Permission',
+            'role' => 'App\\Domain\\Access\\Models\\Role',
+            'user' => 'App\\Domain\\Access\\Models\\User',
+            'rolepermissionservice' => 'App\\Domain\\Access\\Services\\RolePermissionService',
+            'controller' => 'App\\Http\\Controllers\\Controller',
+            'updaterolepermissionsrequest' => 'App\\Http\\Requests\\Access\\UpdateRolePermissionsRequest',
+            'apiresponse' => 'App\\Support\\ApiResponse',
+            'jsonresponse' => 'Illuminate\\Http\\JsonResponse',
+            'runtimeexception' => 'RuntimeException',
           ),
            'className' => 'App\\Http\\Controllers\\Api\\V1\\Access\\AccessController',
            'functionName' => NULL,
@@ -196,7 +285,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
     ),
     1 => 
     array (
-      '/var/www/html/app/Http/Controllers/Api/V1/Access/AccessController.php' => '50e08fd003e95002e51e920225053678139ff7ff176e81700ecf1cc5d9165613',
+      '/var/www/html/app/Http/Controllers/Api/V1/Access/AccessController.php' => '8f493204741d0ef812168b4091fc2f40107f47bdf8512312f97a2f0418c750e5',
     ),
   ),
 ));

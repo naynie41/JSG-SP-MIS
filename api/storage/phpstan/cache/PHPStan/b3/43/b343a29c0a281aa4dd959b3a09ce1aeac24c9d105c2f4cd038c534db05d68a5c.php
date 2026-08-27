@@ -13,6 +13,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
          'uses' => 
         array (
           'dashboardservice' => 'App\\Domain\\Reporting\\Services\\DashboardService',
+          'dashboardfilter' => 'App\\Domain\\Reporting\\Support\\DashboardFilter',
           'controller' => 'App\\Http\\Controllers\\Controller',
           'apiresponse' => 'App\\Support\\ApiResponse',
           'jsonresponse' => 'Illuminate\\Http\\JsonResponse',
@@ -40,6 +41,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
          'uses' => 
         array (
           'dashboardservice' => 'App\\Domain\\Reporting\\Services\\DashboardService',
+          'dashboardfilter' => 'App\\Domain\\Reporting\\Support\\DashboardFilter',
           'controller' => 'App\\Http\\Controllers\\Controller',
           'apiresponse' => 'App\\Support\\ApiResponse',
           'jsonresponse' => 'Illuminate\\Http\\JsonResponse',
@@ -56,6 +58,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
            'uses' => 
           array (
             'dashboardservice' => 'App\\Domain\\Reporting\\Services\\DashboardService',
+            'dashboardfilter' => 'App\\Domain\\Reporting\\Support\\DashboardFilter',
             'controller' => 'App\\Http\\Controllers\\Controller',
             'apiresponse' => 'App\\Support\\ApiResponse',
             'jsonresponse' => 'Illuminate\\Http\\JsonResponse',
@@ -93,6 +96,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
          'uses' => 
         array (
           'dashboardservice' => 'App\\Domain\\Reporting\\Services\\DashboardService',
+          'dashboardfilter' => 'App\\Domain\\Reporting\\Support\\DashboardFilter',
           'controller' => 'App\\Http\\Controllers\\Controller',
           'apiresponse' => 'App\\Support\\ApiResponse',
           'jsonresponse' => 'Illuminate\\Http\\JsonResponse',
@@ -109,6 +113,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
            'uses' => 
           array (
             'dashboardservice' => 'App\\Domain\\Reporting\\Services\\DashboardService',
+            'dashboardfilter' => 'App\\Domain\\Reporting\\Support\\DashboardFilter',
             'controller' => 'App\\Http\\Controllers\\Controller',
             'apiresponse' => 'App\\Support\\ApiResponse',
             'jsonresponse' => 'Illuminate\\Http\\JsonResponse',
@@ -143,7 +148,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
     ),
     1 => 
     array (
-      '/var/www/html/app/Http/Controllers/Api/V1/Reporting/DashboardController.php' => '7cbf8fc9c6c8570d32dc82e27ea127d9c849adc2894818e5861e8b5cb914b917',
+      '/var/www/html/app/Http/Controllers/Api/V1/Reporting/DashboardController.php' => '500bc00eca8471683795dc255728edc2fab7eb28c9937b9edd3ca4999acb002e',
     ),
   ),
 ));

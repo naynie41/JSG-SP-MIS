@@ -2,7 +2,7 @@
 
 // odsl-/var/www/html/app/Http/Controllers/Api/V1/Programme/ActivityController.php-PHPStan\BetterReflection\Reflection\ReflectionClass-App\Http\Controllers\Api\V1\Programme\ActivityController
 return \PHPStan\Cache\CacheItem::__set_state(array(
-   'variableKey' => 'v2-6.70.0.1-8.3.31-ce6dca3cb0429fbab50ff51707a055b7a4befa396c3ff0263e1e417759e332dc',
+   'variableKey' => 'v2-6.70.0.1-8.3.31-75e7f8a98b4413ff74107a5160af2614f03379390a5e5800a7c28df932ca83e9',
    'data' => 
   array (
     'locatedSource' => 
@@ -30,8 +30,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
     'attributes' => 
     array (
     ),
-    'startLine' => 25,
-    'endLine' => 107,
+    'startLine' => 28,
+    'endLine' => 143,
     'startColumn' => 1,
     'endColumn' => 1,
     'parentClassName' => 'App\\Http\\Controllers\\Controller',
@@ -46,9 +46,93 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
     ),
     'immediateProperties' => 
     array (
+      'locations' => 
+      array (
+        'declaringClassName' => 'App\\Http\\Controllers\\Api\\V1\\Programme\\ActivityController',
+        'implementingClassName' => 'App\\Http\\Controllers\\Api\\V1\\Programme\\ActivityController',
+        'name' => 'locations',
+        'modifiers' => 132,
+        'type' => 
+        array (
+          'class' => 'PHPStan\\BetterReflection\\Reflection\\ReflectionNamedType',
+          'data' => 
+          array (
+            'name' => 'App\\Domain\\Programme\\Services\\ActivityLocationService',
+            'isIdentifier' => false,
+          ),
+        ),
+        'default' => NULL,
+        'docComment' => NULL,
+        'attributes' => 
+        array (
+        ),
+        'startLine' => 30,
+        'endLine' => 30,
+        'startColumn' => 33,
+        'endColumn' => 83,
+        'isPromoted' => true,
+        'declaredAtCompileTime' => true,
+        'immediateVirtual' => false,
+        'immediateHooks' => 
+        array (
+        ),
+      ),
     ),
     'immediateMethods' => 
     array (
+      '__construct' => 
+      array (
+        'name' => '__construct',
+        'parameters' => 
+        array (
+          'locations' => 
+          array (
+            'name' => 'locations',
+            'default' => NULL,
+            'type' => 
+            array (
+              'class' => 'PHPStan\\BetterReflection\\Reflection\\ReflectionNamedType',
+              'data' => 
+              array (
+                'name' => 'App\\Domain\\Programme\\Services\\ActivityLocationService',
+                'isIdentifier' => false,
+              ),
+            ),
+            'isVariadic' => false,
+            'byRef' => false,
+            'isPromoted' => true,
+            'attributes' => 
+            array (
+            ),
+            'startLine' => 30,
+            'endLine' => 30,
+            'startColumn' => 33,
+            'endColumn' => 83,
+            'parameterIndex' => 0,
+            'isOptional' => false,
+          ),
+        ),
+        'returnsReference' => false,
+        'returnType' => NULL,
+        'attributes' => 
+        array (
+        ),
+        'docComment' => NULL,
+        'startLine' => 30,
+        'endLine' => 30,
+        'startColumn' => 5,
+        'endColumn' => 87,
+        'couldThrow' => false,
+        'isClosure' => false,
+        'isGenerator' => false,
+        'isVariadic' => false,
+        'modifiers' => 1,
+        'namespace' => 'App\\Http\\Controllers\\Api\\V1\\Programme',
+        'declaringClassName' => 'App\\Http\\Controllers\\Api\\V1\\Programme\\ActivityController',
+        'implementingClassName' => 'App\\Http\\Controllers\\Api\\V1\\Programme\\ActivityController',
+        'currentClassName' => 'App\\Http\\Controllers\\Api\\V1\\Programme\\ActivityController',
+        'aliasName' => NULL,
+      ),
       'index' => 
       array (
         'name' => 'index',
@@ -73,8 +157,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             'attributes' => 
             array (
             ),
-            'startLine' => 27,
-            'endLine' => 27,
+            'startLine' => 32,
+            'endLine' => 32,
             'startColumn' => 27,
             'endColumn' => 42,
             'parameterIndex' => 0,
@@ -95,8 +179,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         array (
         ),
         'docComment' => NULL,
-        'startLine' => 27,
-        'endLine' => 43,
+        'startLine' => 32,
+        'endLine' => 51,
         'startColumn' => 5,
         'endColumn' => 5,
         'couldThrow' => false,
@@ -134,8 +218,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             'attributes' => 
             array (
             ),
-            'startLine' => 45,
-            'endLine' => 45,
+            'startLine' => 53,
+            'endLine' => 53,
             'startColumn' => 27,
             'endColumn' => 55,
             'parameterIndex' => 0,
@@ -156,8 +240,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         array (
         ),
         'docComment' => NULL,
-        'startLine' => 45,
-        'endLine' => 65,
+        'startLine' => 53,
+        'endLine' => 81,
         'startColumn' => 5,
         'endColumn' => 5,
         'couldThrow' => false,
@@ -195,8 +279,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             'attributes' => 
             array (
             ),
-            'startLine' => 67,
-            'endLine' => 67,
+            'startLine' => 90,
+            'endLine' => 90,
             'startColumn' => 26,
             'endColumn' => 41,
             'parameterIndex' => 0,
@@ -216,9 +300,15 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         'attributes' => 
         array (
         ),
-        'docComment' => NULL,
-        'startLine' => 67,
-        'endLine' => 74,
+        'docComment' => '/**
+ * The full "View Activity" detail (PRD §10): catalog programme, all activity fields,
+ * target vs actual beneficiary counts, the beneficiaries/interventions under it, the
+ * import/validation summary of its batch(es), and the attached request-to-serve items.
+ * Owner-MDA scoped (MdaScope) + view policy; NIN/BVN masked, foreign beneficiaries
+ * shown reveal-only.
+ */',
+        'startLine' => 90,
+        'endLine' => 99,
         'startColumn' => 5,
         'endColumn' => 5,
         'couldThrow' => false,
@@ -256,8 +346,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             'attributes' => 
             array (
             ),
-            'startLine' => 76,
-            'endLine' => 76,
+            'startLine' => 101,
+            'endLine' => 101,
             'startColumn' => 28,
             'endColumn' => 57,
             'parameterIndex' => 0,
@@ -282,8 +372,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             'attributes' => 
             array (
             ),
-            'startLine' => 76,
-            'endLine' => 76,
+            'startLine' => 101,
+            'endLine' => 101,
             'startColumn' => 60,
             'endColumn' => 75,
             'parameterIndex' => 1,
@@ -304,8 +394,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         array (
         ),
         'docComment' => NULL,
-        'startLine' => 76,
-        'endLine' => 85,
+        'startLine' => 101,
+        'endLine' => 121,
         'startColumn' => 5,
         'endColumn' => 5,
         'couldThrow' => false,
@@ -343,8 +433,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             'attributes' => 
             array (
             ),
-            'startLine' => 88,
-            'endLine' => 88,
+            'startLine' => 124,
+            'endLine' => 124,
             'startColumn' => 28,
             'endColumn' => 43,
             'parameterIndex' => 0,
@@ -369,8 +459,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             'attributes' => 
             array (
             ),
-            'startLine' => 88,
-            'endLine' => 88,
+            'startLine' => 124,
+            'endLine' => 124,
             'startColumn' => 46,
             'endColumn' => 73,
             'parameterIndex' => 1,
@@ -391,8 +481,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         array (
         ),
         'docComment' => '/** Budget: allocated vs utilised, derived from the benefit ledger (FR-PRG-04). */',
-        'startLine' => 88,
-        'endLine' => 94,
+        'startLine' => 124,
+        'endLine' => 130,
         'startColumn' => 5,
         'endColumn' => 5,
         'couldThrow' => false,
@@ -430,8 +520,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             'attributes' => 
             array (
             ),
-            'startLine' => 97,
-            'endLine' => 97,
+            'startLine' => 133,
+            'endLine' => 133,
             'startColumn' => 29,
             'endColumn' => 44,
             'parameterIndex' => 0,
@@ -452,8 +542,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         array (
         ),
         'docComment' => '/** Archive the activity (owner MDA only) — reversible status change, not a delete. */',
-        'startLine' => 97,
-        'endLine' => 106,
+        'startLine' => 133,
+        'endLine' => 142,
         'startColumn' => 5,
         'endColumn' => 5,
         'couldThrow' => false,

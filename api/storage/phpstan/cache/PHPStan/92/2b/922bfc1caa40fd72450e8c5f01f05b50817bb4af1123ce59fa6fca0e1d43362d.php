@@ -75,7 +75,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
     ),
     1 => 
     array (
-      '/var/www/html/app/Domain/Access/Enums/PermissionAction.php' => '0b5f8b6fa4ffbafe23ced98bd900648fb725b0d0bbd4773372d7a4abdbd5bc87',
+      '/var/www/html/app/Domain/Access/Enums/PermissionAction.php' => 'e98f695b425c216bbc4b409a2c436ff4e957b51facaa48918ecbe36258bbabd3',
     ),
   ),
 ));

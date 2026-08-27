@@ -323,3 +323,9 @@
 .detailMuted {
   color: var(--text-muted-strong);
 }
+
+
+/* The positioning context for the pinned hover card, which sits over the map. */
+.mapFrame {
+  position: relative;
+}

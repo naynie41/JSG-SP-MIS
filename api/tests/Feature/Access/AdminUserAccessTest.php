@@ -13,6 +13,7 @@ use App\Domain\Audit\Models\AuditLog;
 use Database\Seeders\RolesAndPermissionsSeeder;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Support\Carbon;
+use Illuminate\Support\Facades\Http;
 use Illuminate\Testing\TestResponse;
 use Tests\TestCase;
 
@@ -64,6 +65,12 @@ class AdminUserAccessTest extends TestCase
 
     public function test_the_console_manages_users_through_the_existing_phase_1_endpoints(): void
     {
+        // The password policy checks HaveIBeenPwned over the network. Left real, this
+        // test makes a live external call whose verdict depends on a breach corpus that
+        // changes without us — which is exactly how it started failing on a fixture
+        // password that used to pass. Faked, as {@see AuthTest} already does.
+        Http::fake(['*' => Http::response('', 200)]); // uncompromised() => not breached
+
         $target = $this->users['officer'];
 
         // Create — the existing /users endpoint, with MDA + role assignment.

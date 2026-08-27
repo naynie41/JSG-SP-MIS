@@ -16,7 +16,6 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
           'mda' => 'App\\Domain\\Access\\Models\\Mda',
           'user' => 'App\\Domain\\Access\\Models\\User',
           'mdascope' => 'App\\Domain\\Access\\Scopes\\MdaScope',
-          'programmefunder' => 'App\\Domain\\Programme\\Models\\ProgrammeFunder',
           'dashboardsnapshot' => 'App\\Domain\\Reporting\\Models\\DashboardSnapshot',
           'dashboardscope' => 'App\\Domain\\Reporting\\Support\\DashboardScope',
           'carbon' => 'Illuminate\\Support\\Carbon',
@@ -47,7 +46,6 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
           'mda' => 'App\\Domain\\Access\\Models\\Mda',
           'user' => 'App\\Domain\\Access\\Models\\User',
           'mdascope' => 'App\\Domain\\Access\\Scopes\\MdaScope',
-          'programmefunder' => 'App\\Domain\\Programme\\Models\\ProgrammeFunder',
           'dashboardsnapshot' => 'App\\Domain\\Reporting\\Models\\DashboardSnapshot',
           'dashboardscope' => 'App\\Domain\\Reporting\\Support\\DashboardScope',
           'carbon' => 'Illuminate\\Support\\Carbon',
@@ -67,7 +65,6 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             'mda' => 'App\\Domain\\Access\\Models\\Mda',
             'user' => 'App\\Domain\\Access\\Models\\User',
             'mdascope' => 'App\\Domain\\Access\\Scopes\\MdaScope',
-            'programmefunder' => 'App\\Domain\\Programme\\Models\\ProgrammeFunder',
             'dashboardsnapshot' => 'App\\Domain\\Reporting\\Models\\DashboardSnapshot',
             'dashboardscope' => 'App\\Domain\\Reporting\\Support\\DashboardScope',
             'carbon' => 'Illuminate\\Support\\Carbon',
@@ -108,7 +105,6 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
           'mda' => 'App\\Domain\\Access\\Models\\Mda',
           'user' => 'App\\Domain\\Access\\Models\\User',
           'mdascope' => 'App\\Domain\\Access\\Scopes\\MdaScope',
-          'programmefunder' => 'App\\Domain\\Programme\\Models\\ProgrammeFunder',
           'dashboardsnapshot' => 'App\\Domain\\Reporting\\Models\\DashboardSnapshot',
           'dashboardscope' => 'App\\Domain\\Reporting\\Support\\DashboardScope',
           'carbon' => 'Illuminate\\Support\\Carbon',
@@ -128,7 +124,6 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             'mda' => 'App\\Domain\\Access\\Models\\Mda',
             'user' => 'App\\Domain\\Access\\Models\\User',
             'mdascope' => 'App\\Domain\\Access\\Scopes\\MdaScope',
-            'programmefunder' => 'App\\Domain\\Programme\\Models\\ProgrammeFunder',
             'dashboardsnapshot' => 'App\\Domain\\Reporting\\Models\\DashboardSnapshot',
             'dashboardscope' => 'App\\Domain\\Reporting\\Support\\DashboardScope',
             'carbon' => 'Illuminate\\Support\\Carbon',
@@ -169,7 +164,6 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
           'mda' => 'App\\Domain\\Access\\Models\\Mda',
           'user' => 'App\\Domain\\Access\\Models\\User',
           'mdascope' => 'App\\Domain\\Access\\Scopes\\MdaScope',
-          'programmefunder' => 'App\\Domain\\Programme\\Models\\ProgrammeFunder',
           'dashboardsnapshot' => 'App\\Domain\\Reporting\\Models\\DashboardSnapshot',
           'dashboardscope' => 'App\\Domain\\Reporting\\Support\\DashboardScope',
           'carbon' => 'Illuminate\\Support\\Carbon',
@@ -189,7 +183,6 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             'mda' => 'App\\Domain\\Access\\Models\\Mda',
             'user' => 'App\\Domain\\Access\\Models\\User',
             'mdascope' => 'App\\Domain\\Access\\Scopes\\MdaScope',
-            'programmefunder' => 'App\\Domain\\Programme\\Models\\ProgrammeFunder',
             'dashboardsnapshot' => 'App\\Domain\\Reporting\\Models\\DashboardSnapshot',
             'dashboardscope' => 'App\\Domain\\Reporting\\Support\\DashboardScope',
             'carbon' => 'Illuminate\\Support\\Carbon',
@@ -230,7 +223,6 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
           'mda' => 'App\\Domain\\Access\\Models\\Mda',
           'user' => 'App\\Domain\\Access\\Models\\User',
           'mdascope' => 'App\\Domain\\Access\\Scopes\\MdaScope',
-          'programmefunder' => 'App\\Domain\\Programme\\Models\\ProgrammeFunder',
           'dashboardsnapshot' => 'App\\Domain\\Reporting\\Models\\DashboardSnapshot',
           'dashboardscope' => 'App\\Domain\\Reporting\\Support\\DashboardScope',
           'carbon' => 'Illuminate\\Support\\Carbon',
@@ -250,7 +242,124 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             'mda' => 'App\\Domain\\Access\\Models\\Mda',
             'user' => 'App\\Domain\\Access\\Models\\User',
             'mdascope' => 'App\\Domain\\Access\\Scopes\\MdaScope',
-            'programmefunder' => 'App\\Domain\\Programme\\Models\\ProgrammeFunder',
+            'dashboardsnapshot' => 'App\\Domain\\Reporting\\Models\\DashboardSnapshot',
+            'dashboardscope' => 'App\\Domain\\Reporting\\Support\\DashboardScope',
+            'carbon' => 'Illuminate\\Support\\Carbon',
+            'collection' => 'Illuminate\\Support\\Collection',
+          ),
+           'className' => 'App\\Domain\\Reporting\\Services\\DashboardSnapshotService',
+           'functionName' => NULL,
+           'templatePhpDocNodes' => 
+          array (
+          ),
+           'parent' => NULL,
+           'typeAliasesMap' => 
+          array (
+          ),
+           'bypassTypeAliases' => false,
+           'constUses' => 
+          array (
+          ),
+           'typeAliasClassName' => NULL,
+           'traitData' => NULL,
+        )),
+         'typeAliasesMap' => 
+        array (
+        ),
+         'bypassTypeAliases' => false,
+         'constUses' => 
+        array (
+        ),
+         'typeAliasClassName' => NULL,
+         'traitData' => NULL,
+      )),
+      '2e0ea025364080b16948b48e02489484' => 
+      \PHPStan\Analyser\IntermediaryNameScope::__set_state(array(
+         'namespace' => 'App\\Domain\\Reporting\\Services',
+         'uses' => 
+        array (
+          'rolekey' => 'App\\Domain\\Access\\Enums\\RoleKey',
+          'mda' => 'App\\Domain\\Access\\Models\\Mda',
+          'user' => 'App\\Domain\\Access\\Models\\User',
+          'mdascope' => 'App\\Domain\\Access\\Scopes\\MdaScope',
+          'dashboardsnapshot' => 'App\\Domain\\Reporting\\Models\\DashboardSnapshot',
+          'dashboardscope' => 'App\\Domain\\Reporting\\Support\\DashboardScope',
+          'carbon' => 'Illuminate\\Support\\Carbon',
+          'collection' => 'Illuminate\\Support\\Collection',
+        ),
+         'className' => 'App\\Domain\\Reporting\\Services\\DashboardSnapshotService',
+         'functionName' => 'readAtAnyAge',
+         'templatePhpDocNodes' => 
+        array (
+        ),
+         'parent' => 
+        \PHPStan\Analyser\IntermediaryNameScope::__set_state(array(
+           'namespace' => 'App\\Domain\\Reporting\\Services',
+           'uses' => 
+          array (
+            'rolekey' => 'App\\Domain\\Access\\Enums\\RoleKey',
+            'mda' => 'App\\Domain\\Access\\Models\\Mda',
+            'user' => 'App\\Domain\\Access\\Models\\User',
+            'mdascope' => 'App\\Domain\\Access\\Scopes\\MdaScope',
+            'dashboardsnapshot' => 'App\\Domain\\Reporting\\Models\\DashboardSnapshot',
+            'dashboardscope' => 'App\\Domain\\Reporting\\Support\\DashboardScope',
+            'carbon' => 'Illuminate\\Support\\Carbon',
+            'collection' => 'Illuminate\\Support\\Collection',
+          ),
+           'className' => 'App\\Domain\\Reporting\\Services\\DashboardSnapshotService',
+           'functionName' => NULL,
+           'templatePhpDocNodes' => 
+          array (
+          ),
+           'parent' => NULL,
+           'typeAliasesMap' => 
+          array (
+          ),
+           'bypassTypeAliases' => false,
+           'constUses' => 
+          array (
+          ),
+           'typeAliasClassName' => NULL,
+           'traitData' => NULL,
+        )),
+         'typeAliasesMap' => 
+        array (
+        ),
+         'bypassTypeAliases' => false,
+         'constUses' => 
+        array (
+        ),
+         'typeAliasClassName' => NULL,
+         'traitData' => NULL,
+      )),
+      'd8a63811e8acf89c48d83ee7f770ad30' => 
+      \PHPStan\Analyser\IntermediaryNameScope::__set_state(array(
+         'namespace' => 'App\\Domain\\Reporting\\Services',
+         'uses' => 
+        array (
+          'rolekey' => 'App\\Domain\\Access\\Enums\\RoleKey',
+          'mda' => 'App\\Domain\\Access\\Models\\Mda',
+          'user' => 'App\\Domain\\Access\\Models\\User',
+          'mdascope' => 'App\\Domain\\Access\\Scopes\\MdaScope',
+          'dashboardsnapshot' => 'App\\Domain\\Reporting\\Models\\DashboardSnapshot',
+          'dashboardscope' => 'App\\Domain\\Reporting\\Support\\DashboardScope',
+          'carbon' => 'Illuminate\\Support\\Carbon',
+          'collection' => 'Illuminate\\Support\\Collection',
+        ),
+         'className' => 'App\\Domain\\Reporting\\Services\\DashboardSnapshotService',
+         'functionName' => 'isFresh',
+         'templatePhpDocNodes' => 
+        array (
+        ),
+         'parent' => 
+        \PHPStan\Analyser\IntermediaryNameScope::__set_state(array(
+           'namespace' => 'App\\Domain\\Reporting\\Services',
+           'uses' => 
+          array (
+            'rolekey' => 'App\\Domain\\Access\\Enums\\RoleKey',
+            'mda' => 'App\\Domain\\Access\\Models\\Mda',
+            'user' => 'App\\Domain\\Access\\Models\\User',
+            'mdascope' => 'App\\Domain\\Access\\Scopes\\MdaScope',
             'dashboardsnapshot' => 'App\\Domain\\Reporting\\Models\\DashboardSnapshot',
             'dashboardscope' => 'App\\Domain\\Reporting\\Support\\DashboardScope',
             'carbon' => 'Illuminate\\Support\\Carbon',
@@ -291,7 +400,6 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
           'mda' => 'App\\Domain\\Access\\Models\\Mda',
           'user' => 'App\\Domain\\Access\\Models\\User',
           'mdascope' => 'App\\Domain\\Access\\Scopes\\MdaScope',
-          'programmefunder' => 'App\\Domain\\Programme\\Models\\ProgrammeFunder',
           'dashboardsnapshot' => 'App\\Domain\\Reporting\\Models\\DashboardSnapshot',
           'dashboardscope' => 'App\\Domain\\Reporting\\Support\\DashboardScope',
           'carbon' => 'Illuminate\\Support\\Carbon',
@@ -311,7 +419,6 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             'mda' => 'App\\Domain\\Access\\Models\\Mda',
             'user' => 'App\\Domain\\Access\\Models\\User',
             'mdascope' => 'App\\Domain\\Access\\Scopes\\MdaScope',
-            'programmefunder' => 'App\\Domain\\Programme\\Models\\ProgrammeFunder',
             'dashboardsnapshot' => 'App\\Domain\\Reporting\\Models\\DashboardSnapshot',
             'dashboardscope' => 'App\\Domain\\Reporting\\Support\\DashboardScope',
             'carbon' => 'Illuminate\\Support\\Carbon',
@@ -346,7 +453,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
     ),
     1 => 
     array (
-      '/var/www/html/app/Domain/Reporting/Services/DashboardSnapshotService.php' => '716b2e27bdec0a372b59820091162ef722bf4d94e548b5597a9687340825cbb1',
+      '/var/www/html/app/Domain/Reporting/Services/DashboardSnapshotService.php' => '867246651bffacdc36201b6d7516db4b194eb8f33977c2b818745593f0833d95',
     ),
   ),
 ));

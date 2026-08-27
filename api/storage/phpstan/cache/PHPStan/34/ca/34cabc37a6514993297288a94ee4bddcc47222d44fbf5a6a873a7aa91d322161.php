@@ -2,7 +2,7 @@
 
 // odsl-/var/www/html/app/Providers/AppServiceProvider.php-PHPStan\BetterReflection\Reflection\ReflectionClass-App\Providers\AppServiceProvider
 return \PHPStan\Cache\CacheItem::__set_state(array(
-   'variableKey' => 'v2-6.70.0.1-8.3.31-a8411944932725e334fba8e64bd41812d047e3242b9674ac8ebed95aa12dd9a5',
+   'variableKey' => 'v2-6.70.0.1-8.3.31-78ee441d7c7554df9a81550d5d1a95e7fc60cb86987d27b754d9f42425bd8d38',
    'data' => 
   array (
     'locatedSource' => 
@@ -27,7 +27,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
     array (
     ),
     'startLine' => 15,
-    'endLine' => 64,
+    'endLine' => 81,
     'startColumn' => 1,
     'endColumn' => 1,
     'parentClassName' => 'Illuminate\\Support\\ServiceProvider',
@@ -144,7 +144,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
  * SECURITY.md A07).
  */',
         'startLine' => 40,
-        'endLine' => 63,
+        'endLine' => 80,
         'startColumn' => 5,
         'endColumn' => 5,
         'couldThrow' => false,

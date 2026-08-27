@@ -13,8 +13,10 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
          'uses' => 
         array (
           'mda' => 'App\\Domain\\Access\\Models\\Mda',
+          'role' => 'App\\Domain\\Access\\Models\\Role',
           'mdascope' => 'App\\Domain\\Access\\Scopes\\MdaScope',
           'benefit' => 'App\\Domain\\Benefit\\Models\\Benefit',
+          'activity' => 'App\\Domain\\Programme\\Models\\Activity',
           'programme' => 'App\\Domain\\Programme\\Models\\Programme',
           'referralscope' => 'App\\Domain\\Referral\\Scopes\\ReferralScope',
           'invalidreportdefinitionexception' => 'App\\Domain\\Reporting\\Exceptions\\InvalidReportDefinitionException',
@@ -49,8 +51,10 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
          'uses' => 
         array (
           'mda' => 'App\\Domain\\Access\\Models\\Mda',
+          'role' => 'App\\Domain\\Access\\Models\\Role',
           'mdascope' => 'App\\Domain\\Access\\Scopes\\MdaScope',
           'benefit' => 'App\\Domain\\Benefit\\Models\\Benefit',
+          'activity' => 'App\\Domain\\Programme\\Models\\Activity',
           'programme' => 'App\\Domain\\Programme\\Models\\Programme',
           'referralscope' => 'App\\Domain\\Referral\\Scopes\\ReferralScope',
           'invalidreportdefinitionexception' => 'App\\Domain\\Reporting\\Exceptions\\InvalidReportDefinitionException',
@@ -74,8 +78,10 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
            'uses' => 
           array (
             'mda' => 'App\\Domain\\Access\\Models\\Mda',
+            'role' => 'App\\Domain\\Access\\Models\\Role',
             'mdascope' => 'App\\Domain\\Access\\Scopes\\MdaScope',
             'benefit' => 'App\\Domain\\Benefit\\Models\\Benefit',
+            'activity' => 'App\\Domain\\Programme\\Models\\Activity',
             'programme' => 'App\\Domain\\Programme\\Models\\Programme',
             'referralscope' => 'App\\Domain\\Referral\\Scopes\\ReferralScope',
             'invalidreportdefinitionexception' => 'App\\Domain\\Reporting\\Exceptions\\InvalidReportDefinitionException',
@@ -120,8 +126,10 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
          'uses' => 
         array (
           'mda' => 'App\\Domain\\Access\\Models\\Mda',
+          'role' => 'App\\Domain\\Access\\Models\\Role',
           'mdascope' => 'App\\Domain\\Access\\Scopes\\MdaScope',
           'benefit' => 'App\\Domain\\Benefit\\Models\\Benefit',
+          'activity' => 'App\\Domain\\Programme\\Models\\Activity',
           'programme' => 'App\\Domain\\Programme\\Models\\Programme',
           'referralscope' => 'App\\Domain\\Referral\\Scopes\\ReferralScope',
           'invalidreportdefinitionexception' => 'App\\Domain\\Reporting\\Exceptions\\InvalidReportDefinitionException',
@@ -145,8 +153,10 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
            'uses' => 
           array (
             'mda' => 'App\\Domain\\Access\\Models\\Mda',
+            'role' => 'App\\Domain\\Access\\Models\\Role',
             'mdascope' => 'App\\Domain\\Access\\Scopes\\MdaScope',
             'benefit' => 'App\\Domain\\Benefit\\Models\\Benefit',
+            'activity' => 'App\\Domain\\Programme\\Models\\Activity',
             'programme' => 'App\\Domain\\Programme\\Models\\Programme',
             'referralscope' => 'App\\Domain\\Referral\\Scopes\\ReferralScope',
             'invalidreportdefinitionexception' => 'App\\Domain\\Reporting\\Exceptions\\InvalidReportDefinitionException',
@@ -191,8 +201,10 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
          'uses' => 
         array (
           'mda' => 'App\\Domain\\Access\\Models\\Mda',
+          'role' => 'App\\Domain\\Access\\Models\\Role',
           'mdascope' => 'App\\Domain\\Access\\Scopes\\MdaScope',
           'benefit' => 'App\\Domain\\Benefit\\Models\\Benefit',
+          'activity' => 'App\\Domain\\Programme\\Models\\Activity',
           'programme' => 'App\\Domain\\Programme\\Models\\Programme',
           'referralscope' => 'App\\Domain\\Referral\\Scopes\\ReferralScope',
           'invalidreportdefinitionexception' => 'App\\Domain\\Reporting\\Exceptions\\InvalidReportDefinitionException',
@@ -216,8 +228,10 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
            'uses' => 
           array (
             'mda' => 'App\\Domain\\Access\\Models\\Mda',
+            'role' => 'App\\Domain\\Access\\Models\\Role',
             'mdascope' => 'App\\Domain\\Access\\Scopes\\MdaScope',
             'benefit' => 'App\\Domain\\Benefit\\Models\\Benefit',
+            'activity' => 'App\\Domain\\Programme\\Models\\Activity',
             'programme' => 'App\\Domain\\Programme\\Models\\Programme',
             'referralscope' => 'App\\Domain\\Referral\\Scopes\\ReferralScope',
             'invalidreportdefinitionexception' => 'App\\Domain\\Reporting\\Exceptions\\InvalidReportDefinitionException',
@@ -262,8 +276,10 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
          'uses' => 
         array (
           'mda' => 'App\\Domain\\Access\\Models\\Mda',
+          'role' => 'App\\Domain\\Access\\Models\\Role',
           'mdascope' => 'App\\Domain\\Access\\Scopes\\MdaScope',
           'benefit' => 'App\\Domain\\Benefit\\Models\\Benefit',
+          'activity' => 'App\\Domain\\Programme\\Models\\Activity',
           'programme' => 'App\\Domain\\Programme\\Models\\Programme',
           'referralscope' => 'App\\Domain\\Referral\\Scopes\\ReferralScope',
           'invalidreportdefinitionexception' => 'App\\Domain\\Reporting\\Exceptions\\InvalidReportDefinitionException',
@@ -287,8 +303,10 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
            'uses' => 
           array (
             'mda' => 'App\\Domain\\Access\\Models\\Mda',
+            'role' => 'App\\Domain\\Access\\Models\\Role',
             'mdascope' => 'App\\Domain\\Access\\Scopes\\MdaScope',
             'benefit' => 'App\\Domain\\Benefit\\Models\\Benefit',
+            'activity' => 'App\\Domain\\Programme\\Models\\Activity',
             'programme' => 'App\\Domain\\Programme\\Models\\Programme',
             'referralscope' => 'App\\Domain\\Referral\\Scopes\\ReferralScope',
             'invalidreportdefinitionexception' => 'App\\Domain\\Reporting\\Exceptions\\InvalidReportDefinitionException',
@@ -333,8 +351,10 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
          'uses' => 
         array (
           'mda' => 'App\\Domain\\Access\\Models\\Mda',
+          'role' => 'App\\Domain\\Access\\Models\\Role',
           'mdascope' => 'App\\Domain\\Access\\Scopes\\MdaScope',
           'benefit' => 'App\\Domain\\Benefit\\Models\\Benefit',
+          'activity' => 'App\\Domain\\Programme\\Models\\Activity',
           'programme' => 'App\\Domain\\Programme\\Models\\Programme',
           'referralscope' => 'App\\Domain\\Referral\\Scopes\\ReferralScope',
           'invalidreportdefinitionexception' => 'App\\Domain\\Reporting\\Exceptions\\InvalidReportDefinitionException',
@@ -358,8 +378,85 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
            'uses' => 
           array (
             'mda' => 'App\\Domain\\Access\\Models\\Mda',
+            'role' => 'App\\Domain\\Access\\Models\\Role',
             'mdascope' => 'App\\Domain\\Access\\Scopes\\MdaScope',
             'benefit' => 'App\\Domain\\Benefit\\Models\\Benefit',
+            'activity' => 'App\\Domain\\Programme\\Models\\Activity',
+            'programme' => 'App\\Domain\\Programme\\Models\\Programme',
+            'referralscope' => 'App\\Domain\\Referral\\Scopes\\ReferralScope',
+            'invalidreportdefinitionexception' => 'App\\Domain\\Reporting\\Exceptions\\InvalidReportDefinitionException',
+            'reportcolumn' => 'App\\Domain\\Reporting\\Export\\ReportColumn',
+            'reportdata' => 'App\\Domain\\Reporting\\Export\\ReportData',
+            'dashboardscope' => 'App\\Domain\\Reporting\\Support\\DashboardScope',
+            'builder' => 'Illuminate\\Database\\Eloquent\\Builder',
+            'model' => 'Illuminate\\Database\\Eloquent\\Model',
+            'carbon' => 'Illuminate\\Support\\Carbon',
+            'collection' => 'Illuminate\\Support\\Collection',
+            'str' => 'Illuminate\\Support\\Str',
+          ),
+           'className' => 'App\\Domain\\Reporting\\Reports\\AdHoc\\AdHocReportBuilder',
+           'functionName' => NULL,
+           'templatePhpDocNodes' => 
+          array (
+          ),
+           'parent' => NULL,
+           'typeAliasesMap' => 
+          array (
+          ),
+           'bypassTypeAliases' => false,
+           'constUses' => 
+          array (
+          ),
+           'typeAliasClassName' => NULL,
+           'traitData' => NULL,
+        )),
+         'typeAliasesMap' => 
+        array (
+        ),
+         'bypassTypeAliases' => false,
+         'constUses' => 
+        array (
+        ),
+         'typeAliasClassName' => NULL,
+         'traitData' => NULL,
+      )),
+      '807b9cfe13e55e4a10c56a8377e016f6' => 
+      \PHPStan\Analyser\IntermediaryNameScope::__set_state(array(
+         'namespace' => 'App\\Domain\\Reporting\\Reports\\AdHoc',
+         'uses' => 
+        array (
+          'mda' => 'App\\Domain\\Access\\Models\\Mda',
+          'role' => 'App\\Domain\\Access\\Models\\Role',
+          'mdascope' => 'App\\Domain\\Access\\Scopes\\MdaScope',
+          'benefit' => 'App\\Domain\\Benefit\\Models\\Benefit',
+          'activity' => 'App\\Domain\\Programme\\Models\\Activity',
+          'programme' => 'App\\Domain\\Programme\\Models\\Programme',
+          'referralscope' => 'App\\Domain\\Referral\\Scopes\\ReferralScope',
+          'invalidreportdefinitionexception' => 'App\\Domain\\Reporting\\Exceptions\\InvalidReportDefinitionException',
+          'reportcolumn' => 'App\\Domain\\Reporting\\Export\\ReportColumn',
+          'reportdata' => 'App\\Domain\\Reporting\\Export\\ReportData',
+          'dashboardscope' => 'App\\Domain\\Reporting\\Support\\DashboardScope',
+          'builder' => 'Illuminate\\Database\\Eloquent\\Builder',
+          'model' => 'Illuminate\\Database\\Eloquent\\Model',
+          'carbon' => 'Illuminate\\Support\\Carbon',
+          'collection' => 'Illuminate\\Support\\Collection',
+          'str' => 'Illuminate\\Support\\Str',
+        ),
+         'className' => 'App\\Domain\\Reporting\\Reports\\AdHoc\\AdHocReportBuilder',
+         'functionName' => 'applyDeclaredArea',
+         'templatePhpDocNodes' => 
+        array (
+        ),
+         'parent' => 
+        \PHPStan\Analyser\IntermediaryNameScope::__set_state(array(
+           'namespace' => 'App\\Domain\\Reporting\\Reports\\AdHoc',
+           'uses' => 
+          array (
+            'mda' => 'App\\Domain\\Access\\Models\\Mda',
+            'role' => 'App\\Domain\\Access\\Models\\Role',
+            'mdascope' => 'App\\Domain\\Access\\Scopes\\MdaScope',
+            'benefit' => 'App\\Domain\\Benefit\\Models\\Benefit',
+            'activity' => 'App\\Domain\\Programme\\Models\\Activity',
             'programme' => 'App\\Domain\\Programme\\Models\\Programme',
             'referralscope' => 'App\\Domain\\Referral\\Scopes\\ReferralScope',
             'invalidreportdefinitionexception' => 'App\\Domain\\Reporting\\Exceptions\\InvalidReportDefinitionException',
@@ -404,8 +501,10 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
          'uses' => 
         array (
           'mda' => 'App\\Domain\\Access\\Models\\Mda',
+          'role' => 'App\\Domain\\Access\\Models\\Role',
           'mdascope' => 'App\\Domain\\Access\\Scopes\\MdaScope',
           'benefit' => 'App\\Domain\\Benefit\\Models\\Benefit',
+          'activity' => 'App\\Domain\\Programme\\Models\\Activity',
           'programme' => 'App\\Domain\\Programme\\Models\\Programme',
           'referralscope' => 'App\\Domain\\Referral\\Scopes\\ReferralScope',
           'invalidreportdefinitionexception' => 'App\\Domain\\Reporting\\Exceptions\\InvalidReportDefinitionException',
@@ -429,8 +528,10 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
            'uses' => 
           array (
             'mda' => 'App\\Domain\\Access\\Models\\Mda',
+            'role' => 'App\\Domain\\Access\\Models\\Role',
             'mdascope' => 'App\\Domain\\Access\\Scopes\\MdaScope',
             'benefit' => 'App\\Domain\\Benefit\\Models\\Benefit',
+            'activity' => 'App\\Domain\\Programme\\Models\\Activity',
             'programme' => 'App\\Domain\\Programme\\Models\\Programme',
             'referralscope' => 'App\\Domain\\Referral\\Scopes\\ReferralScope',
             'invalidreportdefinitionexception' => 'App\\Domain\\Reporting\\Exceptions\\InvalidReportDefinitionException',
@@ -475,8 +576,10 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
          'uses' => 
         array (
           'mda' => 'App\\Domain\\Access\\Models\\Mda',
+          'role' => 'App\\Domain\\Access\\Models\\Role',
           'mdascope' => 'App\\Domain\\Access\\Scopes\\MdaScope',
           'benefit' => 'App\\Domain\\Benefit\\Models\\Benefit',
+          'activity' => 'App\\Domain\\Programme\\Models\\Activity',
           'programme' => 'App\\Domain\\Programme\\Models\\Programme',
           'referralscope' => 'App\\Domain\\Referral\\Scopes\\ReferralScope',
           'invalidreportdefinitionexception' => 'App\\Domain\\Reporting\\Exceptions\\InvalidReportDefinitionException',
@@ -500,8 +603,10 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
            'uses' => 
           array (
             'mda' => 'App\\Domain\\Access\\Models\\Mda',
+            'role' => 'App\\Domain\\Access\\Models\\Role',
             'mdascope' => 'App\\Domain\\Access\\Scopes\\MdaScope',
             'benefit' => 'App\\Domain\\Benefit\\Models\\Benefit',
+            'activity' => 'App\\Domain\\Programme\\Models\\Activity',
             'programme' => 'App\\Domain\\Programme\\Models\\Programme',
             'referralscope' => 'App\\Domain\\Referral\\Scopes\\ReferralScope',
             'invalidreportdefinitionexception' => 'App\\Domain\\Reporting\\Exceptions\\InvalidReportDefinitionException',
@@ -546,8 +651,10 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
          'uses' => 
         array (
           'mda' => 'App\\Domain\\Access\\Models\\Mda',
+          'role' => 'App\\Domain\\Access\\Models\\Role',
           'mdascope' => 'App\\Domain\\Access\\Scopes\\MdaScope',
           'benefit' => 'App\\Domain\\Benefit\\Models\\Benefit',
+          'activity' => 'App\\Domain\\Programme\\Models\\Activity',
           'programme' => 'App\\Domain\\Programme\\Models\\Programme',
           'referralscope' => 'App\\Domain\\Referral\\Scopes\\ReferralScope',
           'invalidreportdefinitionexception' => 'App\\Domain\\Reporting\\Exceptions\\InvalidReportDefinitionException',
@@ -571,8 +678,10 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
            'uses' => 
           array (
             'mda' => 'App\\Domain\\Access\\Models\\Mda',
+            'role' => 'App\\Domain\\Access\\Models\\Role',
             'mdascope' => 'App\\Domain\\Access\\Scopes\\MdaScope',
             'benefit' => 'App\\Domain\\Benefit\\Models\\Benefit',
+            'activity' => 'App\\Domain\\Programme\\Models\\Activity',
             'programme' => 'App\\Domain\\Programme\\Models\\Programme',
             'referralscope' => 'App\\Domain\\Referral\\Scopes\\ReferralScope',
             'invalidreportdefinitionexception' => 'App\\Domain\\Reporting\\Exceptions\\InvalidReportDefinitionException',
@@ -614,7 +723,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
     ),
     1 => 
     array (
-      '/var/www/html/app/Domain/Reporting/Reports/AdHoc/AdHocReportBuilder.php' => '07c16c51476e04e2ffa13aa7d912409b335cebbd5e6a617d31132f3ec0889417',
+      '/var/www/html/app/Domain/Reporting/Reports/AdHoc/AdHocReportBuilder.php' => '653703e29bdb5c55b7df1805d396e27bcd7a41ccf723f8443cf2c3f54dc84e35',
     ),
   ),
 ));

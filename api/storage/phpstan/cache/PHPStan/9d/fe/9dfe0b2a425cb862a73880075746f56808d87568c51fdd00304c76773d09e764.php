@@ -13,6 +13,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
          'uses' => 
         array (
           'activity' => 'App\\Domain\\Programme\\Models\\Activity',
+          'activitylocationservice' => 'App\\Domain\\Programme\\Services\\ActivityLocationService',
           'request' => 'Illuminate\\Http\\Request',
           'jsonresource' => 'Illuminate\\Http\\Resources\\Json\\JsonResource',
         ),
@@ -38,6 +39,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
          'uses' => 
         array (
           'activity' => 'App\\Domain\\Programme\\Models\\Activity',
+          'activitylocationservice' => 'App\\Domain\\Programme\\Services\\ActivityLocationService',
           'request' => 'Illuminate\\Http\\Request',
           'jsonresource' => 'Illuminate\\Http\\Resources\\Json\\JsonResource',
         ),
@@ -52,6 +54,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
            'uses' => 
           array (
             'activity' => 'App\\Domain\\Programme\\Models\\Activity',
+            'activitylocationservice' => 'App\\Domain\\Programme\\Services\\ActivityLocationService',
             'request' => 'Illuminate\\Http\\Request',
             'jsonresource' => 'Illuminate\\Http\\Resources\\Json\\JsonResource',
           ),
@@ -84,7 +87,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
     ),
     1 => 
     array (
-      '/var/www/html/app/Http/Resources/ActivityResource.php' => '63791b5a6f39ba9ca28ea0258d29a4b6232e3226111bff25f730cd033d733d72',
+      '/var/www/html/app/Http/Resources/ActivityResource.php' => 'b1c79770ddaee571774b1064ffd830a97aa12f05fe0390220ab3dbf9515ff466',
     ),
   ),
 ));

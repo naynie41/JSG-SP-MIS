@@ -18,6 +18,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
           'activity' => 'App\\Domain\\Programme\\Models\\Activity',
           'programme' => 'App\\Domain\\Programme\\Models\\Programme',
           'builder' => 'Illuminate\\Database\\Eloquent\\Builder',
+          'carbon' => 'Illuminate\\Support\\Carbon',
+          'db' => 'Illuminate\\Support\\Facades\\DB',
         ),
          'className' => 'App\\Domain\\Benefit\\Services\\LedgerAggregator',
          'functionName' => NULL,
@@ -46,6 +48,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
           'activity' => 'App\\Domain\\Programme\\Models\\Activity',
           'programme' => 'App\\Domain\\Programme\\Models\\Programme',
           'builder' => 'Illuminate\\Database\\Eloquent\\Builder',
+          'carbon' => 'Illuminate\\Support\\Carbon',
+          'db' => 'Illuminate\\Support\\Facades\\DB',
         ),
          'className' => 'App\\Domain\\Benefit\\Services\\LedgerAggregator',
          'functionName' => 'programmeBudget',
@@ -63,6 +67,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             'activity' => 'App\\Domain\\Programme\\Models\\Activity',
             'programme' => 'App\\Domain\\Programme\\Models\\Programme',
             'builder' => 'Illuminate\\Database\\Eloquent\\Builder',
+            'carbon' => 'Illuminate\\Support\\Carbon',
+            'db' => 'Illuminate\\Support\\Facades\\DB',
           ),
            'className' => 'App\\Domain\\Benefit\\Services\\LedgerAggregator',
            'functionName' => NULL,
@@ -101,6 +107,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
           'activity' => 'App\\Domain\\Programme\\Models\\Activity',
           'programme' => 'App\\Domain\\Programme\\Models\\Programme',
           'builder' => 'Illuminate\\Database\\Eloquent\\Builder',
+          'carbon' => 'Illuminate\\Support\\Carbon',
+          'db' => 'Illuminate\\Support\\Facades\\DB',
         ),
          'className' => 'App\\Domain\\Benefit\\Services\\LedgerAggregator',
          'functionName' => 'activityBudget',
@@ -118,6 +126,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             'activity' => 'App\\Domain\\Programme\\Models\\Activity',
             'programme' => 'App\\Domain\\Programme\\Models\\Programme',
             'builder' => 'Illuminate\\Database\\Eloquent\\Builder',
+            'carbon' => 'Illuminate\\Support\\Carbon',
+            'db' => 'Illuminate\\Support\\Facades\\DB',
           ),
            'className' => 'App\\Domain\\Benefit\\Services\\LedgerAggregator',
            'functionName' => NULL,
@@ -156,6 +166,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
           'activity' => 'App\\Domain\\Programme\\Models\\Activity',
           'programme' => 'App\\Domain\\Programme\\Models\\Programme',
           'builder' => 'Illuminate\\Database\\Eloquent\\Builder',
+          'carbon' => 'Illuminate\\Support\\Carbon',
+          'db' => 'Illuminate\\Support\\Facades\\DB',
         ),
          'className' => 'App\\Domain\\Benefit\\Services\\LedgerAggregator',
          'functionName' => 'aggregate',
@@ -173,6 +185,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             'activity' => 'App\\Domain\\Programme\\Models\\Activity',
             'programme' => 'App\\Domain\\Programme\\Models\\Programme',
             'builder' => 'Illuminate\\Database\\Eloquent\\Builder',
+            'carbon' => 'Illuminate\\Support\\Carbon',
+            'db' => 'Illuminate\\Support\\Facades\\DB',
           ),
            'className' => 'App\\Domain\\Benefit\\Services\\LedgerAggregator',
            'functionName' => NULL,
@@ -211,6 +225,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
           'activity' => 'App\\Domain\\Programme\\Models\\Activity',
           'programme' => 'App\\Domain\\Programme\\Models\\Programme',
           'builder' => 'Illuminate\\Database\\Eloquent\\Builder',
+          'carbon' => 'Illuminate\\Support\\Carbon',
+          'db' => 'Illuminate\\Support\\Facades\\DB',
         ),
          'className' => 'App\\Domain\\Benefit\\Services\\LedgerAggregator',
          'functionName' => 'scopedTotals',
@@ -228,6 +244,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             'activity' => 'App\\Domain\\Programme\\Models\\Activity',
             'programme' => 'App\\Domain\\Programme\\Models\\Programme',
             'builder' => 'Illuminate\\Database\\Eloquent\\Builder',
+            'carbon' => 'Illuminate\\Support\\Carbon',
+            'db' => 'Illuminate\\Support\\Facades\\DB',
           ),
            'className' => 'App\\Domain\\Benefit\\Services\\LedgerAggregator',
            'functionName' => NULL,
@@ -266,6 +284,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
           'activity' => 'App\\Domain\\Programme\\Models\\Activity',
           'programme' => 'App\\Domain\\Programme\\Models\\Programme',
           'builder' => 'Illuminate\\Database\\Eloquent\\Builder',
+          'carbon' => 'Illuminate\\Support\\Carbon',
+          'db' => 'Illuminate\\Support\\Facades\\DB',
         ),
          'className' => 'App\\Domain\\Benefit\\Services\\LedgerAggregator',
          'functionName' => 'scopedBudget',
@@ -283,6 +303,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             'activity' => 'App\\Domain\\Programme\\Models\\Activity',
             'programme' => 'App\\Domain\\Programme\\Models\\Programme',
             'builder' => 'Illuminate\\Database\\Eloquent\\Builder',
+            'carbon' => 'Illuminate\\Support\\Carbon',
+            'db' => 'Illuminate\\Support\\Facades\\DB',
           ),
            'className' => 'App\\Domain\\Benefit\\Services\\LedgerAggregator',
            'functionName' => NULL,
@@ -321,6 +343,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
           'activity' => 'App\\Domain\\Programme\\Models\\Activity',
           'programme' => 'App\\Domain\\Programme\\Models\\Programme',
           'builder' => 'Illuminate\\Database\\Eloquent\\Builder',
+          'carbon' => 'Illuminate\\Support\\Carbon',
+          'db' => 'Illuminate\\Support\\Facades\\DB',
         ),
          'className' => 'App\\Domain\\Benefit\\Services\\LedgerAggregator',
          'functionName' => 'scopedGroup',
@@ -338,6 +362,362 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             'activity' => 'App\\Domain\\Programme\\Models\\Activity',
             'programme' => 'App\\Domain\\Programme\\Models\\Programme',
             'builder' => 'Illuminate\\Database\\Eloquent\\Builder',
+            'carbon' => 'Illuminate\\Support\\Carbon',
+            'db' => 'Illuminate\\Support\\Facades\\DB',
+          ),
+           'className' => 'App\\Domain\\Benefit\\Services\\LedgerAggregator',
+           'functionName' => NULL,
+           'templatePhpDocNodes' => 
+          array (
+          ),
+           'parent' => NULL,
+           'typeAliasesMap' => 
+          array (
+          ),
+           'bypassTypeAliases' => false,
+           'constUses' => 
+          array (
+          ),
+           'typeAliasClassName' => NULL,
+           'traitData' => NULL,
+        )),
+         'typeAliasesMap' => 
+        array (
+        ),
+         'bypassTypeAliases' => false,
+         'constUses' => 
+        array (
+        ),
+         'typeAliasClassName' => NULL,
+         'traitData' => NULL,
+      )),
+      'd99efe95a108c16746f8a877b3d4a914' => 
+      \PHPStan\Analyser\IntermediaryNameScope::__set_state(array(
+         'namespace' => 'App\\Domain\\Benefit\\Services',
+         'uses' => 
+        array (
+          'mdascope' => 'App\\Domain\\Access\\Scopes\\MdaScope',
+          'benefitstatus' => 'App\\Domain\\Benefit\\Enums\\BenefitStatus',
+          'benefit' => 'App\\Domain\\Benefit\\Models\\Benefit',
+          'activity' => 'App\\Domain\\Programme\\Models\\Activity',
+          'programme' => 'App\\Domain\\Programme\\Models\\Programme',
+          'builder' => 'Illuminate\\Database\\Eloquent\\Builder',
+          'carbon' => 'Illuminate\\Support\\Carbon',
+          'db' => 'Illuminate\\Support\\Facades\\DB',
+        ),
+         'className' => 'App\\Domain\\Benefit\\Services\\LedgerAggregator',
+         'functionName' => 'scopedDistinctBeneficiaries',
+         'templatePhpDocNodes' => 
+        array (
+        ),
+         'parent' => 
+        \PHPStan\Analyser\IntermediaryNameScope::__set_state(array(
+           'namespace' => 'App\\Domain\\Benefit\\Services',
+           'uses' => 
+          array (
+            'mdascope' => 'App\\Domain\\Access\\Scopes\\MdaScope',
+            'benefitstatus' => 'App\\Domain\\Benefit\\Enums\\BenefitStatus',
+            'benefit' => 'App\\Domain\\Benefit\\Models\\Benefit',
+            'activity' => 'App\\Domain\\Programme\\Models\\Activity',
+            'programme' => 'App\\Domain\\Programme\\Models\\Programme',
+            'builder' => 'Illuminate\\Database\\Eloquent\\Builder',
+            'carbon' => 'Illuminate\\Support\\Carbon',
+            'db' => 'Illuminate\\Support\\Facades\\DB',
+          ),
+           'className' => 'App\\Domain\\Benefit\\Services\\LedgerAggregator',
+           'functionName' => NULL,
+           'templatePhpDocNodes' => 
+          array (
+          ),
+           'parent' => NULL,
+           'typeAliasesMap' => 
+          array (
+          ),
+           'bypassTypeAliases' => false,
+           'constUses' => 
+          array (
+          ),
+           'typeAliasClassName' => NULL,
+           'traitData' => NULL,
+        )),
+         'typeAliasesMap' => 
+        array (
+        ),
+         'bypassTypeAliases' => false,
+         'constUses' => 
+        array (
+        ),
+         'typeAliasClassName' => NULL,
+         'traitData' => NULL,
+      )),
+      '59951221b74455cecdfae15c545684ce' => 
+      \PHPStan\Analyser\IntermediaryNameScope::__set_state(array(
+         'namespace' => 'App\\Domain\\Benefit\\Services',
+         'uses' => 
+        array (
+          'mdascope' => 'App\\Domain\\Access\\Scopes\\MdaScope',
+          'benefitstatus' => 'App\\Domain\\Benefit\\Enums\\BenefitStatus',
+          'benefit' => 'App\\Domain\\Benefit\\Models\\Benefit',
+          'activity' => 'App\\Domain\\Programme\\Models\\Activity',
+          'programme' => 'App\\Domain\\Programme\\Models\\Programme',
+          'builder' => 'Illuminate\\Database\\Eloquent\\Builder',
+          'carbon' => 'Illuminate\\Support\\Carbon',
+          'db' => 'Illuminate\\Support\\Facades\\DB',
+        ),
+         'className' => 'App\\Domain\\Benefit\\Services\\LedgerAggregator',
+         'functionName' => 'scopedReachByProgramme',
+         'templatePhpDocNodes' => 
+        array (
+        ),
+         'parent' => 
+        \PHPStan\Analyser\IntermediaryNameScope::__set_state(array(
+           'namespace' => 'App\\Domain\\Benefit\\Services',
+           'uses' => 
+          array (
+            'mdascope' => 'App\\Domain\\Access\\Scopes\\MdaScope',
+            'benefitstatus' => 'App\\Domain\\Benefit\\Enums\\BenefitStatus',
+            'benefit' => 'App\\Domain\\Benefit\\Models\\Benefit',
+            'activity' => 'App\\Domain\\Programme\\Models\\Activity',
+            'programme' => 'App\\Domain\\Programme\\Models\\Programme',
+            'builder' => 'Illuminate\\Database\\Eloquent\\Builder',
+            'carbon' => 'Illuminate\\Support\\Carbon',
+            'db' => 'Illuminate\\Support\\Facades\\DB',
+          ),
+           'className' => 'App\\Domain\\Benefit\\Services\\LedgerAggregator',
+           'functionName' => NULL,
+           'templatePhpDocNodes' => 
+          array (
+          ),
+           'parent' => NULL,
+           'typeAliasesMap' => 
+          array (
+          ),
+           'bypassTypeAliases' => false,
+           'constUses' => 
+          array (
+          ),
+           'typeAliasClassName' => NULL,
+           'traitData' => NULL,
+        )),
+         'typeAliasesMap' => 
+        array (
+        ),
+         'bypassTypeAliases' => false,
+         'constUses' => 
+        array (
+        ),
+         'typeAliasClassName' => NULL,
+         'traitData' => NULL,
+      )),
+      'be4c406356765b96f016045007a9701b' => 
+      \PHPStan\Analyser\IntermediaryNameScope::__set_state(array(
+         'namespace' => 'App\\Domain\\Benefit\\Services',
+         'uses' => 
+        array (
+          'mdascope' => 'App\\Domain\\Access\\Scopes\\MdaScope',
+          'benefitstatus' => 'App\\Domain\\Benefit\\Enums\\BenefitStatus',
+          'benefit' => 'App\\Domain\\Benefit\\Models\\Benefit',
+          'activity' => 'App\\Domain\\Programme\\Models\\Activity',
+          'programme' => 'App\\Domain\\Programme\\Models\\Programme',
+          'builder' => 'Illuminate\\Database\\Eloquent\\Builder',
+          'carbon' => 'Illuminate\\Support\\Carbon',
+          'db' => 'Illuminate\\Support\\Facades\\DB',
+        ),
+         'className' => 'App\\Domain\\Benefit\\Services\\LedgerAggregator',
+         'functionName' => 'scopedReachByActivity',
+         'templatePhpDocNodes' => 
+        array (
+        ),
+         'parent' => 
+        \PHPStan\Analyser\IntermediaryNameScope::__set_state(array(
+           'namespace' => 'App\\Domain\\Benefit\\Services',
+           'uses' => 
+          array (
+            'mdascope' => 'App\\Domain\\Access\\Scopes\\MdaScope',
+            'benefitstatus' => 'App\\Domain\\Benefit\\Enums\\BenefitStatus',
+            'benefit' => 'App\\Domain\\Benefit\\Models\\Benefit',
+            'activity' => 'App\\Domain\\Programme\\Models\\Activity',
+            'programme' => 'App\\Domain\\Programme\\Models\\Programme',
+            'builder' => 'Illuminate\\Database\\Eloquent\\Builder',
+            'carbon' => 'Illuminate\\Support\\Carbon',
+            'db' => 'Illuminate\\Support\\Facades\\DB',
+          ),
+           'className' => 'App\\Domain\\Benefit\\Services\\LedgerAggregator',
+           'functionName' => NULL,
+           'templatePhpDocNodes' => 
+          array (
+          ),
+           'parent' => NULL,
+           'typeAliasesMap' => 
+          array (
+          ),
+           'bypassTypeAliases' => false,
+           'constUses' => 
+          array (
+          ),
+           'typeAliasClassName' => NULL,
+           'traitData' => NULL,
+        )),
+         'typeAliasesMap' => 
+        array (
+        ),
+         'bypassTypeAliases' => false,
+         'constUses' => 
+        array (
+        ),
+         'typeAliasClassName' => NULL,
+         'traitData' => NULL,
+      )),
+      'f3cc504426b05602ac1ab720867de9be' => 
+      \PHPStan\Analyser\IntermediaryNameScope::__set_state(array(
+         'namespace' => 'App\\Domain\\Benefit\\Services',
+         'uses' => 
+        array (
+          'mdascope' => 'App\\Domain\\Access\\Scopes\\MdaScope',
+          'benefitstatus' => 'App\\Domain\\Benefit\\Enums\\BenefitStatus',
+          'benefit' => 'App\\Domain\\Benefit\\Models\\Benefit',
+          'activity' => 'App\\Domain\\Programme\\Models\\Activity',
+          'programme' => 'App\\Domain\\Programme\\Models\\Programme',
+          'builder' => 'Illuminate\\Database\\Eloquent\\Builder',
+          'carbon' => 'Illuminate\\Support\\Carbon',
+          'db' => 'Illuminate\\Support\\Facades\\DB',
+        ),
+         'className' => 'App\\Domain\\Benefit\\Services\\LedgerAggregator',
+         'functionName' => 'scopedDisbursementSeries',
+         'templatePhpDocNodes' => 
+        array (
+        ),
+         'parent' => 
+        \PHPStan\Analyser\IntermediaryNameScope::__set_state(array(
+           'namespace' => 'App\\Domain\\Benefit\\Services',
+           'uses' => 
+          array (
+            'mdascope' => 'App\\Domain\\Access\\Scopes\\MdaScope',
+            'benefitstatus' => 'App\\Domain\\Benefit\\Enums\\BenefitStatus',
+            'benefit' => 'App\\Domain\\Benefit\\Models\\Benefit',
+            'activity' => 'App\\Domain\\Programme\\Models\\Activity',
+            'programme' => 'App\\Domain\\Programme\\Models\\Programme',
+            'builder' => 'Illuminate\\Database\\Eloquent\\Builder',
+            'carbon' => 'Illuminate\\Support\\Carbon',
+            'db' => 'Illuminate\\Support\\Facades\\DB',
+          ),
+           'className' => 'App\\Domain\\Benefit\\Services\\LedgerAggregator',
+           'functionName' => NULL,
+           'templatePhpDocNodes' => 
+          array (
+          ),
+           'parent' => NULL,
+           'typeAliasesMap' => 
+          array (
+          ),
+           'bypassTypeAliases' => false,
+           'constUses' => 
+          array (
+          ),
+           'typeAliasClassName' => NULL,
+           'traitData' => NULL,
+        )),
+         'typeAliasesMap' => 
+        array (
+        ),
+         'bypassTypeAliases' => false,
+         'constUses' => 
+        array (
+        ),
+         'typeAliasClassName' => NULL,
+         'traitData' => NULL,
+      )),
+      '61c61db44130b08c8bf244c981f4c565' => 
+      \PHPStan\Analyser\IntermediaryNameScope::__set_state(array(
+         'namespace' => 'App\\Domain\\Benefit\\Services',
+         'uses' => 
+        array (
+          'mdascope' => 'App\\Domain\\Access\\Scopes\\MdaScope',
+          'benefitstatus' => 'App\\Domain\\Benefit\\Enums\\BenefitStatus',
+          'benefit' => 'App\\Domain\\Benefit\\Models\\Benefit',
+          'activity' => 'App\\Domain\\Programme\\Models\\Activity',
+          'programme' => 'App\\Domain\\Programme\\Models\\Programme',
+          'builder' => 'Illuminate\\Database\\Eloquent\\Builder',
+          'carbon' => 'Illuminate\\Support\\Carbon',
+          'db' => 'Illuminate\\Support\\Facades\\DB',
+        ),
+         'className' => 'App\\Domain\\Benefit\\Services\\LedgerAggregator',
+         'functionName' => 'scopedDistinctByArea',
+         'templatePhpDocNodes' => 
+        array (
+        ),
+         'parent' => 
+        \PHPStan\Analyser\IntermediaryNameScope::__set_state(array(
+           'namespace' => 'App\\Domain\\Benefit\\Services',
+           'uses' => 
+          array (
+            'mdascope' => 'App\\Domain\\Access\\Scopes\\MdaScope',
+            'benefitstatus' => 'App\\Domain\\Benefit\\Enums\\BenefitStatus',
+            'benefit' => 'App\\Domain\\Benefit\\Models\\Benefit',
+            'activity' => 'App\\Domain\\Programme\\Models\\Activity',
+            'programme' => 'App\\Domain\\Programme\\Models\\Programme',
+            'builder' => 'Illuminate\\Database\\Eloquent\\Builder',
+            'carbon' => 'Illuminate\\Support\\Carbon',
+            'db' => 'Illuminate\\Support\\Facades\\DB',
+          ),
+           'className' => 'App\\Domain\\Benefit\\Services\\LedgerAggregator',
+           'functionName' => NULL,
+           'templatePhpDocNodes' => 
+          array (
+          ),
+           'parent' => NULL,
+           'typeAliasesMap' => 
+          array (
+          ),
+           'bypassTypeAliases' => false,
+           'constUses' => 
+          array (
+          ),
+           'typeAliasClassName' => NULL,
+           'traitData' => NULL,
+        )),
+         'typeAliasesMap' => 
+        array (
+        ),
+         'bypassTypeAliases' => false,
+         'constUses' => 
+        array (
+        ),
+         'typeAliasClassName' => NULL,
+         'traitData' => NULL,
+      )),
+      'b128717164d324f5d0c9a50cc6da4715' => 
+      \PHPStan\Analyser\IntermediaryNameScope::__set_state(array(
+         'namespace' => 'App\\Domain\\Benefit\\Services',
+         'uses' => 
+        array (
+          'mdascope' => 'App\\Domain\\Access\\Scopes\\MdaScope',
+          'benefitstatus' => 'App\\Domain\\Benefit\\Enums\\BenefitStatus',
+          'benefit' => 'App\\Domain\\Benefit\\Models\\Benefit',
+          'activity' => 'App\\Domain\\Programme\\Models\\Activity',
+          'programme' => 'App\\Domain\\Programme\\Models\\Programme',
+          'builder' => 'Illuminate\\Database\\Eloquent\\Builder',
+          'carbon' => 'Illuminate\\Support\\Carbon',
+          'db' => 'Illuminate\\Support\\Facades\\DB',
+        ),
+         'className' => 'App\\Domain\\Benefit\\Services\\LedgerAggregator',
+         'functionName' => 'monthKeyExpr',
+         'templatePhpDocNodes' => 
+        array (
+        ),
+         'parent' => 
+        \PHPStan\Analyser\IntermediaryNameScope::__set_state(array(
+           'namespace' => 'App\\Domain\\Benefit\\Services',
+           'uses' => 
+          array (
+            'mdascope' => 'App\\Domain\\Access\\Scopes\\MdaScope',
+            'benefitstatus' => 'App\\Domain\\Benefit\\Enums\\BenefitStatus',
+            'benefit' => 'App\\Domain\\Benefit\\Models\\Benefit',
+            'activity' => 'App\\Domain\\Programme\\Models\\Activity',
+            'programme' => 'App\\Domain\\Programme\\Models\\Programme',
+            'builder' => 'Illuminate\\Database\\Eloquent\\Builder',
+            'carbon' => 'Illuminate\\Support\\Carbon',
+            'db' => 'Illuminate\\Support\\Facades\\DB',
           ),
            'className' => 'App\\Domain\\Benefit\\Services\\LedgerAggregator',
            'functionName' => NULL,
@@ -376,6 +756,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
           'activity' => 'App\\Domain\\Programme\\Models\\Activity',
           'programme' => 'App\\Domain\\Programme\\Models\\Programme',
           'builder' => 'Illuminate\\Database\\Eloquent\\Builder',
+          'carbon' => 'Illuminate\\Support\\Carbon',
+          'db' => 'Illuminate\\Support\\Facades\\DB',
         ),
          'className' => 'App\\Domain\\Benefit\\Services\\LedgerAggregator',
          'functionName' => 'scopedLedger',
@@ -393,6 +775,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             'activity' => 'App\\Domain\\Programme\\Models\\Activity',
             'programme' => 'App\\Domain\\Programme\\Models\\Programme',
             'builder' => 'Illuminate\\Database\\Eloquent\\Builder',
+            'carbon' => 'Illuminate\\Support\\Carbon',
+            'db' => 'Illuminate\\Support\\Facades\\DB',
           ),
            'className' => 'App\\Domain\\Benefit\\Services\\LedgerAggregator',
            'functionName' => NULL,
@@ -431,6 +815,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
           'activity' => 'App\\Domain\\Programme\\Models\\Activity',
           'programme' => 'App\\Domain\\Programme\\Models\\Programme',
           'builder' => 'Illuminate\\Database\\Eloquent\\Builder',
+          'carbon' => 'Illuminate\\Support\\Carbon',
+          'db' => 'Illuminate\\Support\\Facades\\DB',
         ),
          'className' => 'App\\Domain\\Benefit\\Services\\LedgerAggregator',
          'functionName' => 'budget',
@@ -448,6 +834,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             'activity' => 'App\\Domain\\Programme\\Models\\Activity',
             'programme' => 'App\\Domain\\Programme\\Models\\Programme',
             'builder' => 'Illuminate\\Database\\Eloquent\\Builder',
+            'carbon' => 'Illuminate\\Support\\Carbon',
+            'db' => 'Illuminate\\Support\\Facades\\DB',
           ),
            'className' => 'App\\Domain\\Benefit\\Services\\LedgerAggregator',
            'functionName' => NULL,
@@ -486,6 +874,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
           'activity' => 'App\\Domain\\Programme\\Models\\Activity',
           'programme' => 'App\\Domain\\Programme\\Models\\Programme',
           'builder' => 'Illuminate\\Database\\Eloquent\\Builder',
+          'carbon' => 'Illuminate\\Support\\Carbon',
+          'db' => 'Illuminate\\Support\\Facades\\DB',
         ),
          'className' => 'App\\Domain\\Benefit\\Services\\LedgerAggregator',
          'functionName' => 'totals',
@@ -503,6 +893,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             'activity' => 'App\\Domain\\Programme\\Models\\Activity',
             'programme' => 'App\\Domain\\Programme\\Models\\Programme',
             'builder' => 'Illuminate\\Database\\Eloquent\\Builder',
+            'carbon' => 'Illuminate\\Support\\Carbon',
+            'db' => 'Illuminate\\Support\\Facades\\DB',
           ),
            'className' => 'App\\Domain\\Benefit\\Services\\LedgerAggregator',
            'functionName' => NULL,
@@ -541,6 +933,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
           'activity' => 'App\\Domain\\Programme\\Models\\Activity',
           'programme' => 'App\\Domain\\Programme\\Models\\Programme',
           'builder' => 'Illuminate\\Database\\Eloquent\\Builder',
+          'carbon' => 'Illuminate\\Support\\Carbon',
+          'db' => 'Illuminate\\Support\\Facades\\DB',
         ),
          'className' => 'App\\Domain\\Benefit\\Services\\LedgerAggregator',
          'functionName' => 'applyFilters',
@@ -558,6 +952,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             'activity' => 'App\\Domain\\Programme\\Models\\Activity',
             'programme' => 'App\\Domain\\Programme\\Models\\Programme',
             'builder' => 'Illuminate\\Database\\Eloquent\\Builder',
+            'carbon' => 'Illuminate\\Support\\Carbon',
+            'db' => 'Illuminate\\Support\\Facades\\DB',
           ),
            'className' => 'App\\Domain\\Benefit\\Services\\LedgerAggregator',
            'functionName' => NULL,
@@ -588,7 +984,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
     ),
     1 => 
     array (
-      '/var/www/html/app/Domain/Benefit/Services/LedgerAggregator.php' => '34ac8a4569f1c973ad723a19fa9ce2c6e12b9c324b9bb5354a816caca9a89731',
+      '/var/www/html/app/Domain/Benefit/Services/LedgerAggregator.php' => '5dec90e8fba082fea2b1f4f32da72bad3c96951da3a5183573391819f5979af3',
     ),
   ),
 ));

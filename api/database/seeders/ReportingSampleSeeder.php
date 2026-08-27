@@ -21,7 +21,7 @@ use Illuminate\Database\Seeder;
 /**
  * Phase 6 sample data (PRD FR-RPT/FR-GIS) so every dashboard, report and the map render
  * meaningfully out of the box: a Development Partner + a funded programme (partner
- * dashboard), synthetic LGA boundaries (GIS choropleth), and warmed dashboard
+ * dashboard), the real Jigawa LGA boundaries (GIS choropleth), and warmed dashboard
  * snapshots. LOCAL/STAGING ONLY — never real PII, never production. Idempotent.
  */
 class ReportingSampleSeeder extends Seeder
@@ -72,35 +72,31 @@ class ReportingSampleSeeder extends Seeder
     }
 
     /**
-     * Synthetic LGA boundaries for the map (real Jigawa boundaries are loaded from a
-     * GeoJSON file via `php artisan gis:load-boundaries` — see the GIS README). Placeholder
-     * squares laid over Jigawa; `code` slugs match the registry LGA values so coverage joins.
+     * Jigawa's 27 LGA boundaries for the map.
+     *
+     * These are REAL traced boundaries, shipped with the repo
+     * (`database/data/jigawa-lga-boundaries.geojson`) rather than fetched or invented, so
+     * a fresh environment renders the state and not a stand-in. This used to plant 27
+     * identical squares on a 6-column grid: harmless in principle, because the loader
+     * command was documented as the way to replace them — and permanent in practice,
+     * because nothing failed while they were wrong. A map of made-up shapes is worse than
+     * no map: it invites people to read coverage off geography that does not exist.
+     *
+     * Re-runnable: the loader upserts on (level, code), so this also REPLACES the old
+     * placeholder squares in an environment that still has them.
      */
     private function seedLgaBoundaries(): void
     {
-        if (GeoBoundary::query()->where('level', GeoBoundary::LEVEL_LGA)->exists()) {
+        $file = database_path('data/jigawa-lga-boundaries.geojson');
+        if (! is_file($file)) {
             return;
         }
 
-        $features = [];
-        foreach (Lga::cases() as $index => $lga) {
-            $column = $index % 6;
-            $row = intdiv($index, 6);
-            $lng = 8.4 + $column * 0.4;
-            $lat = 12.9 - $row * 0.4;
-
-            $features[] = [
-                'type' => 'Feature',
-                'properties' => ['name' => $lga->label()],
-                'geometry' => [
-                    'type' => 'Polygon',
-                    'coordinates' => [[
-                        [$lng, $lat], [$lng + 0.35, $lat], [$lng + 0.35, $lat - 0.35], [$lng, $lat - 0.35], [$lng, $lat],
-                    ]],
-                ],
-            ];
+        $decoded = json_decode((string) file_get_contents($file), true);
+        if (! is_array($decoded) || ($decoded['type'] ?? null) !== 'FeatureCollection') {
+            return;
         }
 
-        app(BoundaryLoader::class)->load(GeoBoundary::LEVEL_LGA, ['type' => 'FeatureCollection', 'features' => $features]);
+        app(BoundaryLoader::class)->load(GeoBoundary::LEVEL_LGA, $decoded);
     }
 }

@@ -2,7 +2,7 @@
 
 // odsl-/var/www/html/app/Domain/Registry/RegistryServiceProvider.php-PHPStan\BetterReflection\Reflection\ReflectionClass-App\Domain\Registry\RegistryServiceProvider
 return \PHPStan\Cache\CacheItem::__set_state(array(
-   'variableKey' => 'v2-6.70.0.1-8.3.31-a6093c4b7fcf6308933ce49e15a4047636c0c5dda3a5590c2597f57657da88ea',
+   'variableKey' => 'v2-6.70.0.1-8.3.31-f73dcfd860e401c205fe9634efc13e086c0e43f370edc05670f69f1bc9111bbf',
    'data' => 
   array (
     'locatedSource' => 
@@ -30,8 +30,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
     'attributes' => 
     array (
     ),
-    'startLine' => 36,
-    'endLine' => 82,
+    'startLine' => 38,
+    'endLine' => 108,
     'startColumn' => 1,
     'endColumn' => 1,
     'parentClassName' => 'Illuminate\\Support\\ServiceProvider',
@@ -69,8 +69,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         array (
         ),
         'docComment' => NULL,
-        'startLine' => 38,
-        'endLine' => 57,
+        'startLine' => 40,
+        'endLine' => 64,
         'startColumn' => 5,
         'endColumn' => 5,
         'couldThrow' => false,
@@ -104,8 +104,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         array (
         ),
         'docComment' => NULL,
-        'startLine' => 59,
-        'endLine' => 67,
+        'startLine' => 66,
+        'endLine' => 81,
         'startColumn' => 5,
         'endColumn' => 5,
         'couldThrow' => false,
@@ -143,8 +143,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             'attributes' => 
             array (
             ),
-            'startLine' => 69,
-            'endLine' => 69,
+            'startLine' => 83,
+            'endLine' => 83,
             'startColumn' => 42,
             'endColumn' => 69,
             'parameterIndex' => 0,
@@ -165,8 +165,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         array (
         ),
         'docComment' => NULL,
-        'startLine' => 69,
-        'endLine' => 81,
+        'startLine' => 83,
+        'endLine' => 107,
         'startColumn' => 5,
         'endColumn' => 5,
         'couldThrow' => false,

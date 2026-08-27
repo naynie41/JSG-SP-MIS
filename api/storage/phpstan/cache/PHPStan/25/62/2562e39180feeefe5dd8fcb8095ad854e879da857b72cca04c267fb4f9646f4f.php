@@ -13,7 +13,9 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
          'uses' => 
         array (
           'activitystatus' => 'App\\Domain\\Programme\\Enums\\ActivityStatus',
-          'lga' => 'App\\Domain\\Registry\\Enums\\Lga',
+          'isfundingpartner' => 'App\\Domain\\Programme\\Rules\\IsFundingPartner',
+          'validateslocationset' => 'App\\Http\\Requests\\Programme\\Concerns\\ValidatesLocationSet',
+          'validator' => 'Illuminate\\Contracts\\Validation\\Validator',
           'formrequest' => 'Illuminate\\Foundation\\Http\\FormRequest',
           'rule' => 'Illuminate\\Validation\\Rule',
         ),
@@ -33,13 +35,208 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
          'typeAliasClassName' => NULL,
          'traitData' => NULL,
       )),
+      '0f33210c06360e8bec99f13011fe58b1' => 
+      \PHPStan\Analyser\IntermediaryNameScope::__set_state(array(
+         'namespace' => 'App\\Http\\Requests\\Programme\\Concerns',
+         'uses' => 
+        array (
+          'activitylocationservice' => 'App\\Domain\\Programme\\Services\\ActivityLocationService',
+          'validator' => 'Illuminate\\Contracts\\Validation\\Validator',
+        ),
+         'className' => 'App\\Http\\Requests\\Programme\\UpdateActivityRequest',
+         'functionName' => NULL,
+         'templatePhpDocNodes' => 
+        array (
+        ),
+         'parent' => NULL,
+         'typeAliasesMap' => 
+        array (
+        ),
+         'bypassTypeAliases' => false,
+         'constUses' => 
+        array (
+        ),
+         'typeAliasClassName' => 'App\\Http\\Requests\\Programme\\Concerns\\ValidatesLocationSet',
+         'traitData' => 
+        array (
+          0 => '/var/www/html/app/Http/Requests/Programme/UpdateActivityRequest.php',
+          1 => 'App\\Http\\Requests\\Programme\\UpdateActivityRequest',
+          2 => 'App\\Http\\Requests\\Programme\\Concerns\\ValidatesLocationSet',
+          3 => NULL,
+          4 => NULL,
+        ),
+      )),
+      '2ef2ec51bfaf7d991b6c0908b260d333' => 
+      \PHPStan\Analyser\IntermediaryNameScope::__set_state(array(
+         'namespace' => 'App\\Http\\Requests\\Programme\\Concerns',
+         'uses' => 
+        array (
+          'activitylocationservice' => 'App\\Domain\\Programme\\Services\\ActivityLocationService',
+          'validator' => 'Illuminate\\Contracts\\Validation\\Validator',
+        ),
+         'className' => 'App\\Http\\Requests\\Programme\\UpdateActivityRequest',
+         'functionName' => 'locationSetRules',
+         'templatePhpDocNodes' => 
+        array (
+        ),
+         'parent' => 
+        \PHPStan\Analyser\IntermediaryNameScope::__set_state(array(
+           'namespace' => 'App\\Http\\Requests\\Programme\\Concerns',
+           'uses' => 
+          array (
+            'activitylocationservice' => 'App\\Domain\\Programme\\Services\\ActivityLocationService',
+            'validator' => 'Illuminate\\Contracts\\Validation\\Validator',
+          ),
+           'className' => 'App\\Http\\Requests\\Programme\\UpdateActivityRequest',
+           'functionName' => NULL,
+           'templatePhpDocNodes' => 
+          array (
+          ),
+           'parent' => NULL,
+           'typeAliasesMap' => 
+          array (
+          ),
+           'bypassTypeAliases' => false,
+           'constUses' => 
+          array (
+          ),
+           'typeAliasClassName' => 'App\\Http\\Requests\\Programme\\Concerns\\ValidatesLocationSet',
+           'traitData' => NULL,
+        )),
+         'typeAliasesMap' => 
+        array (
+        ),
+         'bypassTypeAliases' => false,
+         'constUses' => 
+        array (
+        ),
+         'typeAliasClassName' => 'App\\Http\\Requests\\Programme\\Concerns\\ValidatesLocationSet',
+         'traitData' => 
+        array (
+          0 => '/var/www/html/app/Http/Requests/Programme/UpdateActivityRequest.php',
+          1 => 'App\\Http\\Requests\\Programme\\UpdateActivityRequest',
+          2 => 'App\\Http\\Requests\\Programme\\Concerns\\ValidatesLocationSet',
+          3 => NULL,
+          4 => NULL,
+        ),
+      )),
+      'e226179ff5d98a072855c9427f851b24' => 
+      \PHPStan\Analyser\IntermediaryNameScope::__set_state(array(
+         'namespace' => 'App\\Http\\Requests\\Programme\\Concerns',
+         'uses' => 
+        array (
+          'activitylocationservice' => 'App\\Domain\\Programme\\Services\\ActivityLocationService',
+          'validator' => 'Illuminate\\Contracts\\Validation\\Validator',
+        ),
+         'className' => 'App\\Http\\Requests\\Programme\\UpdateActivityRequest',
+         'functionName' => 'locationSetMessages',
+         'templatePhpDocNodes' => 
+        array (
+        ),
+         'parent' => 
+        \PHPStan\Analyser\IntermediaryNameScope::__set_state(array(
+           'namespace' => 'App\\Http\\Requests\\Programme\\Concerns',
+           'uses' => 
+          array (
+            'activitylocationservice' => 'App\\Domain\\Programme\\Services\\ActivityLocationService',
+            'validator' => 'Illuminate\\Contracts\\Validation\\Validator',
+          ),
+           'className' => 'App\\Http\\Requests\\Programme\\UpdateActivityRequest',
+           'functionName' => NULL,
+           'templatePhpDocNodes' => 
+          array (
+          ),
+           'parent' => NULL,
+           'typeAliasesMap' => 
+          array (
+          ),
+           'bypassTypeAliases' => false,
+           'constUses' => 
+          array (
+          ),
+           'typeAliasClassName' => 'App\\Http\\Requests\\Programme\\Concerns\\ValidatesLocationSet',
+           'traitData' => NULL,
+        )),
+         'typeAliasesMap' => 
+        array (
+        ),
+         'bypassTypeAliases' => false,
+         'constUses' => 
+        array (
+        ),
+         'typeAliasClassName' => 'App\\Http\\Requests\\Programme\\Concerns\\ValidatesLocationSet',
+         'traitData' => 
+        array (
+          0 => '/var/www/html/app/Http/Requests/Programme/UpdateActivityRequest.php',
+          1 => 'App\\Http\\Requests\\Programme\\UpdateActivityRequest',
+          2 => 'App\\Http\\Requests\\Programme\\Concerns\\ValidatesLocationSet',
+          3 => NULL,
+          4 => NULL,
+        ),
+      )),
+      '649ebe2ad023ea588a5e5b9428d1c9a4' => 
+      \PHPStan\Analyser\IntermediaryNameScope::__set_state(array(
+         'namespace' => 'App\\Http\\Requests\\Programme\\Concerns',
+         'uses' => 
+        array (
+          'activitylocationservice' => 'App\\Domain\\Programme\\Services\\ActivityLocationService',
+          'validator' => 'Illuminate\\Contracts\\Validation\\Validator',
+        ),
+         'className' => 'App\\Http\\Requests\\Programme\\UpdateActivityRequest',
+         'functionName' => 'validateLocationSet',
+         'templatePhpDocNodes' => 
+        array (
+        ),
+         'parent' => 
+        \PHPStan\Analyser\IntermediaryNameScope::__set_state(array(
+           'namespace' => 'App\\Http\\Requests\\Programme\\Concerns',
+           'uses' => 
+          array (
+            'activitylocationservice' => 'App\\Domain\\Programme\\Services\\ActivityLocationService',
+            'validator' => 'Illuminate\\Contracts\\Validation\\Validator',
+          ),
+           'className' => 'App\\Http\\Requests\\Programme\\UpdateActivityRequest',
+           'functionName' => NULL,
+           'templatePhpDocNodes' => 
+          array (
+          ),
+           'parent' => NULL,
+           'typeAliasesMap' => 
+          array (
+          ),
+           'bypassTypeAliases' => false,
+           'constUses' => 
+          array (
+          ),
+           'typeAliasClassName' => 'App\\Http\\Requests\\Programme\\Concerns\\ValidatesLocationSet',
+           'traitData' => NULL,
+        )),
+         'typeAliasesMap' => 
+        array (
+        ),
+         'bypassTypeAliases' => false,
+         'constUses' => 
+        array (
+        ),
+         'typeAliasClassName' => 'App\\Http\\Requests\\Programme\\Concerns\\ValidatesLocationSet',
+         'traitData' => 
+        array (
+          0 => '/var/www/html/app/Http/Requests/Programme/UpdateActivityRequest.php',
+          1 => 'App\\Http\\Requests\\Programme\\UpdateActivityRequest',
+          2 => 'App\\Http\\Requests\\Programme\\Concerns\\ValidatesLocationSet',
+          3 => NULL,
+          4 => NULL,
+        ),
+      )),
       '5d7234d1487b84cfce7c03c20dd6c66a' => 
       \PHPStan\Analyser\IntermediaryNameScope::__set_state(array(
          'namespace' => 'App\\Http\\Requests\\Programme',
          'uses' => 
         array (
           'activitystatus' => 'App\\Domain\\Programme\\Enums\\ActivityStatus',
-          'lga' => 'App\\Domain\\Registry\\Enums\\Lga',
+          'isfundingpartner' => 'App\\Domain\\Programme\\Rules\\IsFundingPartner',
+          'validateslocationset' => 'App\\Http\\Requests\\Programme\\Concerns\\ValidatesLocationSet',
+          'validator' => 'Illuminate\\Contracts\\Validation\\Validator',
           'formrequest' => 'Illuminate\\Foundation\\Http\\FormRequest',
           'rule' => 'Illuminate\\Validation\\Rule',
         ),
@@ -54,7 +251,119 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
            'uses' => 
           array (
             'activitystatus' => 'App\\Domain\\Programme\\Enums\\ActivityStatus',
-            'lga' => 'App\\Domain\\Registry\\Enums\\Lga',
+            'isfundingpartner' => 'App\\Domain\\Programme\\Rules\\IsFundingPartner',
+            'validateslocationset' => 'App\\Http\\Requests\\Programme\\Concerns\\ValidatesLocationSet',
+            'validator' => 'Illuminate\\Contracts\\Validation\\Validator',
+            'formrequest' => 'Illuminate\\Foundation\\Http\\FormRequest',
+            'rule' => 'Illuminate\\Validation\\Rule',
+          ),
+           'className' => 'App\\Http\\Requests\\Programme\\UpdateActivityRequest',
+           'functionName' => NULL,
+           'templatePhpDocNodes' => 
+          array (
+          ),
+           'parent' => NULL,
+           'typeAliasesMap' => 
+          array (
+          ),
+           'bypassTypeAliases' => false,
+           'constUses' => 
+          array (
+          ),
+           'typeAliasClassName' => NULL,
+           'traitData' => NULL,
+        )),
+         'typeAliasesMap' => 
+        array (
+        ),
+         'bypassTypeAliases' => false,
+         'constUses' => 
+        array (
+        ),
+         'typeAliasClassName' => NULL,
+         'traitData' => NULL,
+      )),
+      '758373b5c76806abe30b60593eac14d0' => 
+      \PHPStan\Analyser\IntermediaryNameScope::__set_state(array(
+         'namespace' => 'App\\Http\\Requests\\Programme',
+         'uses' => 
+        array (
+          'activitystatus' => 'App\\Domain\\Programme\\Enums\\ActivityStatus',
+          'isfundingpartner' => 'App\\Domain\\Programme\\Rules\\IsFundingPartner',
+          'validateslocationset' => 'App\\Http\\Requests\\Programme\\Concerns\\ValidatesLocationSet',
+          'validator' => 'Illuminate\\Contracts\\Validation\\Validator',
+          'formrequest' => 'Illuminate\\Foundation\\Http\\FormRequest',
+          'rule' => 'Illuminate\\Validation\\Rule',
+        ),
+         'className' => 'App\\Http\\Requests\\Programme\\UpdateActivityRequest',
+         'functionName' => 'messages',
+         'templatePhpDocNodes' => 
+        array (
+        ),
+         'parent' => 
+        \PHPStan\Analyser\IntermediaryNameScope::__set_state(array(
+           'namespace' => 'App\\Http\\Requests\\Programme',
+           'uses' => 
+          array (
+            'activitystatus' => 'App\\Domain\\Programme\\Enums\\ActivityStatus',
+            'isfundingpartner' => 'App\\Domain\\Programme\\Rules\\IsFundingPartner',
+            'validateslocationset' => 'App\\Http\\Requests\\Programme\\Concerns\\ValidatesLocationSet',
+            'validator' => 'Illuminate\\Contracts\\Validation\\Validator',
+            'formrequest' => 'Illuminate\\Foundation\\Http\\FormRequest',
+            'rule' => 'Illuminate\\Validation\\Rule',
+          ),
+           'className' => 'App\\Http\\Requests\\Programme\\UpdateActivityRequest',
+           'functionName' => NULL,
+           'templatePhpDocNodes' => 
+          array (
+          ),
+           'parent' => NULL,
+           'typeAliasesMap' => 
+          array (
+          ),
+           'bypassTypeAliases' => false,
+           'constUses' => 
+          array (
+          ),
+           'typeAliasClassName' => NULL,
+           'traitData' => NULL,
+        )),
+         'typeAliasesMap' => 
+        array (
+        ),
+         'bypassTypeAliases' => false,
+         'constUses' => 
+        array (
+        ),
+         'typeAliasClassName' => NULL,
+         'traitData' => NULL,
+      )),
+      '1becc168917e09531755c86642f71b33' => 
+      \PHPStan\Analyser\IntermediaryNameScope::__set_state(array(
+         'namespace' => 'App\\Http\\Requests\\Programme',
+         'uses' => 
+        array (
+          'activitystatus' => 'App\\Domain\\Programme\\Enums\\ActivityStatus',
+          'isfundingpartner' => 'App\\Domain\\Programme\\Rules\\IsFundingPartner',
+          'validateslocationset' => 'App\\Http\\Requests\\Programme\\Concerns\\ValidatesLocationSet',
+          'validator' => 'Illuminate\\Contracts\\Validation\\Validator',
+          'formrequest' => 'Illuminate\\Foundation\\Http\\FormRequest',
+          'rule' => 'Illuminate\\Validation\\Rule',
+        ),
+         'className' => 'App\\Http\\Requests\\Programme\\UpdateActivityRequest',
+         'functionName' => 'withValidator',
+         'templatePhpDocNodes' => 
+        array (
+        ),
+         'parent' => 
+        \PHPStan\Analyser\IntermediaryNameScope::__set_state(array(
+           'namespace' => 'App\\Http\\Requests\\Programme',
+           'uses' => 
+          array (
+            'activitystatus' => 'App\\Domain\\Programme\\Enums\\ActivityStatus',
+            'isfundingpartner' => 'App\\Domain\\Programme\\Rules\\IsFundingPartner',
+            'validateslocationset' => 'App\\Http\\Requests\\Programme\\Concerns\\ValidatesLocationSet',
+            'validator' => 'Illuminate\\Contracts\\Validation\\Validator',
             'formrequest' => 'Illuminate\\Foundation\\Http\\FormRequest',
             'rule' => 'Illuminate\\Validation\\Rule',
           ),
@@ -90,7 +399,9 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
          'uses' => 
         array (
           'activitystatus' => 'App\\Domain\\Programme\\Enums\\ActivityStatus',
-          'lga' => 'App\\Domain\\Registry\\Enums\\Lga',
+          'isfundingpartner' => 'App\\Domain\\Programme\\Rules\\IsFundingPartner',
+          'validateslocationset' => 'App\\Http\\Requests\\Programme\\Concerns\\ValidatesLocationSet',
+          'validator' => 'Illuminate\\Contracts\\Validation\\Validator',
           'formrequest' => 'Illuminate\\Foundation\\Http\\FormRequest',
           'rule' => 'Illuminate\\Validation\\Rule',
         ),
@@ -105,7 +416,9 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
            'uses' => 
           array (
             'activitystatus' => 'App\\Domain\\Programme\\Enums\\ActivityStatus',
-            'lga' => 'App\\Domain\\Registry\\Enums\\Lga',
+            'isfundingpartner' => 'App\\Domain\\Programme\\Rules\\IsFundingPartner',
+            'validateslocationset' => 'App\\Http\\Requests\\Programme\\Concerns\\ValidatesLocationSet',
+            'validator' => 'Illuminate\\Contracts\\Validation\\Validator',
             'formrequest' => 'Illuminate\\Foundation\\Http\\FormRequest',
             'rule' => 'Illuminate\\Validation\\Rule',
           ),
@@ -138,7 +451,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
     ),
     1 => 
     array (
-      '/var/www/html/app/Http/Requests/Programme/UpdateActivityRequest.php' => 'a682d1ccff8a56dc049fed691e580ea7cd46ebf1db7ecddf8d92d3d69b2c83b5',
+      '/var/www/html/app/Http/Requests/Programme/UpdateActivityRequest.php' => 'df6986f587d088da619a931710574cd592bc2987712684f7bd91e787f2d46e3f',
+      '/var/www/html/app/Http/Requests/Programme/Concerns/ValidatesLocationSet.php' => 'a6eb8ba2a790f6dd6d9f721d36bd4ba669e406dcd1fdac88bfde45254d9c65cb',
     ),
   ),
 ));

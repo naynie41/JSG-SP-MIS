@@ -16,6 +16,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
           'mdascope' => 'App\\Domain\\Access\\Scopes\\MdaScope',
           'auditlogger' => 'App\\Domain\\Audit\\Services\\AuditLogger',
           'servicerequeststatus' => 'App\\Domain\\Registry\\Enums\\ServiceRequestStatus',
+          'beneficiaryaccessrevoked' => 'App\\Domain\\Registry\\Events\\BeneficiaryAccessRevoked',
           'servicerequestaccepted' => 'App\\Domain\\Registry\\Events\\ServiceRequestAccepted',
           'servicerequestdeclined' => 'App\\Domain\\Registry\\Events\\ServiceRequestDeclined',
           'servicerequestraised' => 'App\\Domain\\Registry\\Events\\ServiceRequestRaised',
@@ -50,6 +51,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
           'mdascope' => 'App\\Domain\\Access\\Scopes\\MdaScope',
           'auditlogger' => 'App\\Domain\\Audit\\Services\\AuditLogger',
           'servicerequeststatus' => 'App\\Domain\\Registry\\Enums\\ServiceRequestStatus',
+          'beneficiaryaccessrevoked' => 'App\\Domain\\Registry\\Events\\BeneficiaryAccessRevoked',
           'servicerequestaccepted' => 'App\\Domain\\Registry\\Events\\ServiceRequestAccepted',
           'servicerequestdeclined' => 'App\\Domain\\Registry\\Events\\ServiceRequestDeclined',
           'servicerequestraised' => 'App\\Domain\\Registry\\Events\\ServiceRequestRaised',
@@ -73,6 +75,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             'mdascope' => 'App\\Domain\\Access\\Scopes\\MdaScope',
             'auditlogger' => 'App\\Domain\\Audit\\Services\\AuditLogger',
             'servicerequeststatus' => 'App\\Domain\\Registry\\Enums\\ServiceRequestStatus',
+            'beneficiaryaccessrevoked' => 'App\\Domain\\Registry\\Events\\BeneficiaryAccessRevoked',
             'servicerequestaccepted' => 'App\\Domain\\Registry\\Events\\ServiceRequestAccepted',
             'servicerequestdeclined' => 'App\\Domain\\Registry\\Events\\ServiceRequestDeclined',
             'servicerequestraised' => 'App\\Domain\\Registry\\Events\\ServiceRequestRaised',
@@ -117,6 +120,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
           'mdascope' => 'App\\Domain\\Access\\Scopes\\MdaScope',
           'auditlogger' => 'App\\Domain\\Audit\\Services\\AuditLogger',
           'servicerequeststatus' => 'App\\Domain\\Registry\\Enums\\ServiceRequestStatus',
+          'beneficiaryaccessrevoked' => 'App\\Domain\\Registry\\Events\\BeneficiaryAccessRevoked',
           'servicerequestaccepted' => 'App\\Domain\\Registry\\Events\\ServiceRequestAccepted',
           'servicerequestdeclined' => 'App\\Domain\\Registry\\Events\\ServiceRequestDeclined',
           'servicerequestraised' => 'App\\Domain\\Registry\\Events\\ServiceRequestRaised',
@@ -140,6 +144,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             'mdascope' => 'App\\Domain\\Access\\Scopes\\MdaScope',
             'auditlogger' => 'App\\Domain\\Audit\\Services\\AuditLogger',
             'servicerequeststatus' => 'App\\Domain\\Registry\\Enums\\ServiceRequestStatus',
+            'beneficiaryaccessrevoked' => 'App\\Domain\\Registry\\Events\\BeneficiaryAccessRevoked',
             'servicerequestaccepted' => 'App\\Domain\\Registry\\Events\\ServiceRequestAccepted',
             'servicerequestdeclined' => 'App\\Domain\\Registry\\Events\\ServiceRequestDeclined',
             'servicerequestraised' => 'App\\Domain\\Registry\\Events\\ServiceRequestRaised',
@@ -184,6 +189,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
           'mdascope' => 'App\\Domain\\Access\\Scopes\\MdaScope',
           'auditlogger' => 'App\\Domain\\Audit\\Services\\AuditLogger',
           'servicerequeststatus' => 'App\\Domain\\Registry\\Enums\\ServiceRequestStatus',
+          'beneficiaryaccessrevoked' => 'App\\Domain\\Registry\\Events\\BeneficiaryAccessRevoked',
           'servicerequestaccepted' => 'App\\Domain\\Registry\\Events\\ServiceRequestAccepted',
           'servicerequestdeclined' => 'App\\Domain\\Registry\\Events\\ServiceRequestDeclined',
           'servicerequestraised' => 'App\\Domain\\Registry\\Events\\ServiceRequestRaised',
@@ -207,6 +213,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             'mdascope' => 'App\\Domain\\Access\\Scopes\\MdaScope',
             'auditlogger' => 'App\\Domain\\Audit\\Services\\AuditLogger',
             'servicerequeststatus' => 'App\\Domain\\Registry\\Enums\\ServiceRequestStatus',
+            'beneficiaryaccessrevoked' => 'App\\Domain\\Registry\\Events\\BeneficiaryAccessRevoked',
             'servicerequestaccepted' => 'App\\Domain\\Registry\\Events\\ServiceRequestAccepted',
             'servicerequestdeclined' => 'App\\Domain\\Registry\\Events\\ServiceRequestDeclined',
             'servicerequestraised' => 'App\\Domain\\Registry\\Events\\ServiceRequestRaised',
@@ -251,6 +258,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
           'mdascope' => 'App\\Domain\\Access\\Scopes\\MdaScope',
           'auditlogger' => 'App\\Domain\\Audit\\Services\\AuditLogger',
           'servicerequeststatus' => 'App\\Domain\\Registry\\Enums\\ServiceRequestStatus',
+          'beneficiaryaccessrevoked' => 'App\\Domain\\Registry\\Events\\BeneficiaryAccessRevoked',
           'servicerequestaccepted' => 'App\\Domain\\Registry\\Events\\ServiceRequestAccepted',
           'servicerequestdeclined' => 'App\\Domain\\Registry\\Events\\ServiceRequestDeclined',
           'servicerequestraised' => 'App\\Domain\\Registry\\Events\\ServiceRequestRaised',
@@ -274,6 +282,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             'mdascope' => 'App\\Domain\\Access\\Scopes\\MdaScope',
             'auditlogger' => 'App\\Domain\\Audit\\Services\\AuditLogger',
             'servicerequeststatus' => 'App\\Domain\\Registry\\Enums\\ServiceRequestStatus',
+            'beneficiaryaccessrevoked' => 'App\\Domain\\Registry\\Events\\BeneficiaryAccessRevoked',
             'servicerequestaccepted' => 'App\\Domain\\Registry\\Events\\ServiceRequestAccepted',
             'servicerequestdeclined' => 'App\\Domain\\Registry\\Events\\ServiceRequestDeclined',
             'servicerequestraised' => 'App\\Domain\\Registry\\Events\\ServiceRequestRaised',
@@ -318,6 +327,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
           'mdascope' => 'App\\Domain\\Access\\Scopes\\MdaScope',
           'auditlogger' => 'App\\Domain\\Audit\\Services\\AuditLogger',
           'servicerequeststatus' => 'App\\Domain\\Registry\\Enums\\ServiceRequestStatus',
+          'beneficiaryaccessrevoked' => 'App\\Domain\\Registry\\Events\\BeneficiaryAccessRevoked',
           'servicerequestaccepted' => 'App\\Domain\\Registry\\Events\\ServiceRequestAccepted',
           'servicerequestdeclined' => 'App\\Domain\\Registry\\Events\\ServiceRequestDeclined',
           'servicerequestraised' => 'App\\Domain\\Registry\\Events\\ServiceRequestRaised',
@@ -341,6 +351,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             'mdascope' => 'App\\Domain\\Access\\Scopes\\MdaScope',
             'auditlogger' => 'App\\Domain\\Audit\\Services\\AuditLogger',
             'servicerequeststatus' => 'App\\Domain\\Registry\\Enums\\ServiceRequestStatus',
+            'beneficiaryaccessrevoked' => 'App\\Domain\\Registry\\Events\\BeneficiaryAccessRevoked',
             'servicerequestaccepted' => 'App\\Domain\\Registry\\Events\\ServiceRequestAccepted',
             'servicerequestdeclined' => 'App\\Domain\\Registry\\Events\\ServiceRequestDeclined',
             'servicerequestraised' => 'App\\Domain\\Registry\\Events\\ServiceRequestRaised',
@@ -385,6 +396,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
           'mdascope' => 'App\\Domain\\Access\\Scopes\\MdaScope',
           'auditlogger' => 'App\\Domain\\Audit\\Services\\AuditLogger',
           'servicerequeststatus' => 'App\\Domain\\Registry\\Enums\\ServiceRequestStatus',
+          'beneficiaryaccessrevoked' => 'App\\Domain\\Registry\\Events\\BeneficiaryAccessRevoked',
           'servicerequestaccepted' => 'App\\Domain\\Registry\\Events\\ServiceRequestAccepted',
           'servicerequestdeclined' => 'App\\Domain\\Registry\\Events\\ServiceRequestDeclined',
           'servicerequestraised' => 'App\\Domain\\Registry\\Events\\ServiceRequestRaised',
@@ -408,6 +420,76 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             'mdascope' => 'App\\Domain\\Access\\Scopes\\MdaScope',
             'auditlogger' => 'App\\Domain\\Audit\\Services\\AuditLogger',
             'servicerequeststatus' => 'App\\Domain\\Registry\\Enums\\ServiceRequestStatus',
+            'beneficiaryaccessrevoked' => 'App\\Domain\\Registry\\Events\\BeneficiaryAccessRevoked',
+            'servicerequestaccepted' => 'App\\Domain\\Registry\\Events\\ServiceRequestAccepted',
+            'servicerequestdeclined' => 'App\\Domain\\Registry\\Events\\ServiceRequestDeclined',
+            'servicerequestraised' => 'App\\Domain\\Registry\\Events\\ServiceRequestRaised',
+            'beneficiary' => 'App\\Domain\\Registry\\Models\\Beneficiary',
+            'beneficiaryservicegrant' => 'App\\Domain\\Registry\\Models\\BeneficiaryServiceGrant',
+            'servicerequest' => 'App\\Domain\\Registry\\Models\\ServiceRequest',
+            'domainexception' => 'DomainException',
+            'carbon' => 'Illuminate\\Support\\Carbon',
+          ),
+           'className' => 'App\\Domain\\Registry\\Services\\ServiceRequestService',
+           'functionName' => NULL,
+           'templatePhpDocNodes' => 
+          array (
+          ),
+           'parent' => NULL,
+           'typeAliasesMap' => 
+          array (
+          ),
+           'bypassTypeAliases' => false,
+           'constUses' => 
+          array (
+          ),
+           'typeAliasClassName' => NULL,
+           'traitData' => NULL,
+        )),
+         'typeAliasesMap' => 
+        array (
+        ),
+         'bypassTypeAliases' => false,
+         'constUses' => 
+        array (
+        ),
+         'typeAliasClassName' => NULL,
+         'traitData' => NULL,
+      )),
+      '07f50f6a878ca1273e862ed4f21906d1' => 
+      \PHPStan\Analyser\IntermediaryNameScope::__set_state(array(
+         'namespace' => 'App\\Domain\\Registry\\Services',
+         'uses' => 
+        array (
+          'user' => 'App\\Domain\\Access\\Models\\User',
+          'mdascope' => 'App\\Domain\\Access\\Scopes\\MdaScope',
+          'auditlogger' => 'App\\Domain\\Audit\\Services\\AuditLogger',
+          'servicerequeststatus' => 'App\\Domain\\Registry\\Enums\\ServiceRequestStatus',
+          'beneficiaryaccessrevoked' => 'App\\Domain\\Registry\\Events\\BeneficiaryAccessRevoked',
+          'servicerequestaccepted' => 'App\\Domain\\Registry\\Events\\ServiceRequestAccepted',
+          'servicerequestdeclined' => 'App\\Domain\\Registry\\Events\\ServiceRequestDeclined',
+          'servicerequestraised' => 'App\\Domain\\Registry\\Events\\ServiceRequestRaised',
+          'beneficiary' => 'App\\Domain\\Registry\\Models\\Beneficiary',
+          'beneficiaryservicegrant' => 'App\\Domain\\Registry\\Models\\BeneficiaryServiceGrant',
+          'servicerequest' => 'App\\Domain\\Registry\\Models\\ServiceRequest',
+          'domainexception' => 'DomainException',
+          'carbon' => 'Illuminate\\Support\\Carbon',
+        ),
+         'className' => 'App\\Domain\\Registry\\Services\\ServiceRequestService',
+         'functionName' => 'revokeGrant',
+         'templatePhpDocNodes' => 
+        array (
+        ),
+         'parent' => 
+        \PHPStan\Analyser\IntermediaryNameScope::__set_state(array(
+           'namespace' => 'App\\Domain\\Registry\\Services',
+           'uses' => 
+          array (
+            'user' => 'App\\Domain\\Access\\Models\\User',
+            'mdascope' => 'App\\Domain\\Access\\Scopes\\MdaScope',
+            'auditlogger' => 'App\\Domain\\Audit\\Services\\AuditLogger',
+            'servicerequeststatus' => 'App\\Domain\\Registry\\Enums\\ServiceRequestStatus',
+            'beneficiaryaccessrevoked' => 'App\\Domain\\Registry\\Events\\BeneficiaryAccessRevoked',
             'servicerequestaccepted' => 'App\\Domain\\Registry\\Events\\ServiceRequestAccepted',
             'servicerequestdeclined' => 'App\\Domain\\Registry\\Events\\ServiceRequestDeclined',
             'servicerequestraised' => 'App\\Domain\\Registry\\Events\\ServiceRequestRaised',
@@ -452,6 +534,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
           'mdascope' => 'App\\Domain\\Access\\Scopes\\MdaScope',
           'auditlogger' => 'App\\Domain\\Audit\\Services\\AuditLogger',
           'servicerequeststatus' => 'App\\Domain\\Registry\\Enums\\ServiceRequestStatus',
+          'beneficiaryaccessrevoked' => 'App\\Domain\\Registry\\Events\\BeneficiaryAccessRevoked',
           'servicerequestaccepted' => 'App\\Domain\\Registry\\Events\\ServiceRequestAccepted',
           'servicerequestdeclined' => 'App\\Domain\\Registry\\Events\\ServiceRequestDeclined',
           'servicerequestraised' => 'App\\Domain\\Registry\\Events\\ServiceRequestRaised',
@@ -475,6 +558,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             'mdascope' => 'App\\Domain\\Access\\Scopes\\MdaScope',
             'auditlogger' => 'App\\Domain\\Audit\\Services\\AuditLogger',
             'servicerequeststatus' => 'App\\Domain\\Registry\\Enums\\ServiceRequestStatus',
+            'beneficiaryaccessrevoked' => 'App\\Domain\\Registry\\Events\\BeneficiaryAccessRevoked',
             'servicerequestaccepted' => 'App\\Domain\\Registry\\Events\\ServiceRequestAccepted',
             'servicerequestdeclined' => 'App\\Domain\\Registry\\Events\\ServiceRequestDeclined',
             'servicerequestraised' => 'App\\Domain\\Registry\\Events\\ServiceRequestRaised',
@@ -513,7 +597,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
     ),
     1 => 
     array (
-      '/var/www/html/app/Domain/Registry/Services/ServiceRequestService.php' => 'ae4bae881d05a717e3867e2e2efbaf798584153c7493ced43e11e759a4014390',
+      '/var/www/html/app/Domain/Registry/Services/ServiceRequestService.php' => 'a8ab5c85859ffc8c3249da65fc00b577969984bd7072d65fce3eb27e1f6c4cb5',
     ),
   ),
 ));

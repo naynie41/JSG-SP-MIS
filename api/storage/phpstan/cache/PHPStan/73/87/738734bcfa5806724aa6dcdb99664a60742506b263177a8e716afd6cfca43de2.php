@@ -2,7 +2,7 @@
 
 // odsl-/var/www/html/app/Http/Requests/Registry/UploadActivityImportRequest.php-PHPStan\BetterReflection\Reflection\ReflectionClass-App\Http\Requests\Registry\UploadActivityImportRequest
 return \PHPStan\Cache\CacheItem::__set_state(array(
-   'variableKey' => 'v2-6.70.0.1-8.3.31-481ba1a16ff601745a881bae5344adcb3f6196e6b10bb253a1f26d60cb1566cb',
+   'variableKey' => 'v2-6.70.0.1-8.3.31-1388f7464d63b4c61aeef97be9ae4c8be9a7cc50c155d0c8ef5db3d44b5394de',
    'data' => 
   array (
     'locatedSource' => 
@@ -23,16 +23,19 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
     'isBackedEnum' => false,
     'modifiers' => 0,
     'docComment' => '/**
- * Preview step of the activity-creation wizard\'s OPTIONAL inline upload (§10). Carries
- * the draft ACTIVITY fields (validated but NOT persisted) plus a REQUIRED beneficiary
- * file; validation + the duplicate cascade run in preview before anything is saved. On
- * confirm, the activity is created and the file committed under it, atomically.
+ * Preview step of the activity-creation wizard\'s MANDATORY upload for a beneficiary-
+ * involving activity (§10). Reaching this endpoint means the activity involves
+ * beneficiaries, so a `target_beneficiaries` count and a beneficiary file are BOTH
+ * required, and the draft is stamped `involves_beneficiaries = true`. It carries the
+ * draft ACTIVITY fields (validated but NOT persisted); validation + the duplicate
+ * cascade run in preview before anything is saved. On confirm, the activity is created
+ * and the file committed under it, atomically.
  */',
     'attributes' => 
     array (
     ),
-    'startLine' => 19,
-    'endLine' => 64,
+    'startLine' => 24,
+    'endLine' => 95,
     'startColumn' => 1,
     'endColumn' => 1,
     'parentClassName' => 'Illuminate\\Foundation\\Http\\FormRequest',
@@ -41,6 +44,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
     ),
     'traitClassNames' => 
     array (
+      0 => 'App\\Http\\Requests\\Programme\\Concerns\\ValidatesLocationSet',
     ),
     'immediateConstants' => 
     array (
@@ -70,8 +74,106 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         array (
         ),
         'docComment' => NULL,
-        'startLine' => 21,
-        'endLine' => 24,
+        'startLine' => 28,
+        'endLine' => 31,
+        'startColumn' => 5,
+        'endColumn' => 5,
+        'couldThrow' => false,
+        'isClosure' => false,
+        'isGenerator' => false,
+        'isVariadic' => false,
+        'modifiers' => 1,
+        'namespace' => 'App\\Http\\Requests\\Registry',
+        'declaringClassName' => 'App\\Http\\Requests\\Registry\\UploadActivityImportRequest',
+        'implementingClassName' => 'App\\Http\\Requests\\Registry\\UploadActivityImportRequest',
+        'currentClassName' => 'App\\Http\\Requests\\Registry\\UploadActivityImportRequest',
+        'aliasName' => NULL,
+      ),
+      'messages' => 
+      array (
+        'name' => 'messages',
+        'parameters' => 
+        array (
+        ),
+        'returnsReference' => false,
+        'returnType' => 
+        array (
+          'class' => 'PHPStan\\BetterReflection\\Reflection\\ReflectionNamedType',
+          'data' => 
+          array (
+            'name' => 'array',
+            'isIdentifier' => true,
+          ),
+        ),
+        'attributes' => 
+        array (
+        ),
+        'docComment' => '/**
+ * @return array<string, string>
+ */',
+        'startLine' => 36,
+        'endLine' => 39,
+        'startColumn' => 5,
+        'endColumn' => 5,
+        'couldThrow' => false,
+        'isClosure' => false,
+        'isGenerator' => false,
+        'isVariadic' => false,
+        'modifiers' => 1,
+        'namespace' => 'App\\Http\\Requests\\Registry',
+        'declaringClassName' => 'App\\Http\\Requests\\Registry\\UploadActivityImportRequest',
+        'implementingClassName' => 'App\\Http\\Requests\\Registry\\UploadActivityImportRequest',
+        'currentClassName' => 'App\\Http\\Requests\\Registry\\UploadActivityImportRequest',
+        'aliasName' => NULL,
+      ),
+      'withValidator' => 
+      array (
+        'name' => 'withValidator',
+        'parameters' => 
+        array (
+          'validator' => 
+          array (
+            'name' => 'validator',
+            'default' => NULL,
+            'type' => 
+            array (
+              'class' => 'PHPStan\\BetterReflection\\Reflection\\ReflectionNamedType',
+              'data' => 
+              array (
+                'name' => 'Illuminate\\Contracts\\Validation\\Validator',
+                'isIdentifier' => false,
+              ),
+            ),
+            'isVariadic' => false,
+            'byRef' => false,
+            'isPromoted' => false,
+            'attributes' => 
+            array (
+            ),
+            'startLine' => 41,
+            'endLine' => 41,
+            'startColumn' => 35,
+            'endColumn' => 54,
+            'parameterIndex' => 0,
+            'isOptional' => false,
+          ),
+        ),
+        'returnsReference' => false,
+        'returnType' => 
+        array (
+          'class' => 'PHPStan\\BetterReflection\\Reflection\\ReflectionNamedType',
+          'data' => 
+          array (
+            'name' => 'void',
+            'isIdentifier' => true,
+          ),
+        ),
+        'attributes' => 
+        array (
+        ),
+        'docComment' => NULL,
+        'startLine' => 41,
+        'endLine' => 47,
         'startColumn' => 5,
         'endColumn' => 5,
         'couldThrow' => false,
@@ -107,8 +209,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         'docComment' => '/**
  * @return array<string, mixed>
  */',
-        'startLine' => 29,
-        'endLine' => 53,
+        'startLine' => 52,
+        'endLine' => 77,
         'startColumn' => 5,
         'endColumn' => 5,
         'couldThrow' => false,
@@ -142,12 +244,16 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         array (
         ),
         'docComment' => '/**
- * The validated activity fields to stash until confirm.
+ * The validated activity fields to stash until confirm. Reaching this endpoint
+ * means the activity involves beneficiaries, so the flag is stamped on here.
+ *
+ * `locations` rides along in the stashed draft but is NOT an activity column — the
+ * confirm step splits it back out and writes it through ActivityLocationService.
  *
  * @return array<string, mixed>
  */',
-        'startLine' => 60,
-        'endLine' => 63,
+        'startLine' => 88,
+        'endLine' => 94,
         'startColumn' => 5,
         'endColumn' => 5,
         'couldThrow' => false,

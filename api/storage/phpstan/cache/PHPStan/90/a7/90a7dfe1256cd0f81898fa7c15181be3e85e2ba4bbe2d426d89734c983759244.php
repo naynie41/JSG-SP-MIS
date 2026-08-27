@@ -14,7 +14,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         array (
           'user' => 'App\\Domain\\Access\\Models\\User',
           'beneficiary' => 'App\\Domain\\Registry\\Models\\Beneficiary',
-          'servicerequestservice' => 'App\\Domain\\Registry\\Services\\ServiceRequestService',
+          'datasharingguard' => 'App\\Domain\\Sharing\\DataSharingGuard',
         ),
          'className' => 'App\\Domain\\Registry\\Policies\\BeneficiaryPolicy',
          'functionName' => NULL,
@@ -32,6 +32,55 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
          'typeAliasClassName' => NULL,
          'traitData' => NULL,
       )),
+      '6ebe093e7eb90241d1b9dca3ae53c56e' => 
+      \PHPStan\Analyser\IntermediaryNameScope::__set_state(array(
+         'namespace' => 'App\\Domain\\Registry\\Policies',
+         'uses' => 
+        array (
+          'user' => 'App\\Domain\\Access\\Models\\User',
+          'beneficiary' => 'App\\Domain\\Registry\\Models\\Beneficiary',
+          'datasharingguard' => 'App\\Domain\\Sharing\\DataSharingGuard',
+        ),
+         'className' => 'App\\Domain\\Registry\\Policies\\BeneficiaryPolicy',
+         'functionName' => '__construct',
+         'templatePhpDocNodes' => 
+        array (
+        ),
+         'parent' => 
+        \PHPStan\Analyser\IntermediaryNameScope::__set_state(array(
+           'namespace' => 'App\\Domain\\Registry\\Policies',
+           'uses' => 
+          array (
+            'user' => 'App\\Domain\\Access\\Models\\User',
+            'beneficiary' => 'App\\Domain\\Registry\\Models\\Beneficiary',
+            'datasharingguard' => 'App\\Domain\\Sharing\\DataSharingGuard',
+          ),
+           'className' => 'App\\Domain\\Registry\\Policies\\BeneficiaryPolicy',
+           'functionName' => NULL,
+           'templatePhpDocNodes' => 
+          array (
+          ),
+           'parent' => NULL,
+           'typeAliasesMap' => 
+          array (
+          ),
+           'bypassTypeAliases' => false,
+           'constUses' => 
+          array (
+          ),
+           'typeAliasClassName' => NULL,
+           'traitData' => NULL,
+        )),
+         'typeAliasesMap' => 
+        array (
+        ),
+         'bypassTypeAliases' => false,
+         'constUses' => 
+        array (
+        ),
+         'typeAliasClassName' => NULL,
+         'traitData' => NULL,
+      )),
       'db88e53ff7480b4e0d8d69a8b283abb6' => 
       \PHPStan\Analyser\IntermediaryNameScope::__set_state(array(
          'namespace' => 'App\\Domain\\Registry\\Policies',
@@ -39,7 +88,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         array (
           'user' => 'App\\Domain\\Access\\Models\\User',
           'beneficiary' => 'App\\Domain\\Registry\\Models\\Beneficiary',
-          'servicerequestservice' => 'App\\Domain\\Registry\\Services\\ServiceRequestService',
+          'datasharingguard' => 'App\\Domain\\Sharing\\DataSharingGuard',
         ),
          'className' => 'App\\Domain\\Registry\\Policies\\BeneficiaryPolicy',
          'functionName' => 'owns',
@@ -53,7 +102,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
           array (
             'user' => 'App\\Domain\\Access\\Models\\User',
             'beneficiary' => 'App\\Domain\\Registry\\Models\\Beneficiary',
-            'servicerequestservice' => 'App\\Domain\\Registry\\Services\\ServiceRequestService',
+            'datasharingguard' => 'App\\Domain\\Sharing\\DataSharingGuard',
           ),
            'className' => 'App\\Domain\\Registry\\Policies\\BeneficiaryPolicy',
            'functionName' => NULL,
@@ -88,7 +137,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         array (
           'user' => 'App\\Domain\\Access\\Models\\User',
           'beneficiary' => 'App\\Domain\\Registry\\Models\\Beneficiary',
-          'servicerequestservice' => 'App\\Domain\\Registry\\Services\\ServiceRequestService',
+          'datasharingguard' => 'App\\Domain\\Sharing\\DataSharingGuard',
         ),
          'className' => 'App\\Domain\\Registry\\Policies\\BeneficiaryPolicy',
          'functionName' => 'viewAny',
@@ -102,7 +151,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
           array (
             'user' => 'App\\Domain\\Access\\Models\\User',
             'beneficiary' => 'App\\Domain\\Registry\\Models\\Beneficiary',
-            'servicerequestservice' => 'App\\Domain\\Registry\\Services\\ServiceRequestService',
+            'datasharingguard' => 'App\\Domain\\Sharing\\DataSharingGuard',
           ),
            'className' => 'App\\Domain\\Registry\\Policies\\BeneficiaryPolicy',
            'functionName' => NULL,
@@ -137,7 +186,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         array (
           'user' => 'App\\Domain\\Access\\Models\\User',
           'beneficiary' => 'App\\Domain\\Registry\\Models\\Beneficiary',
-          'servicerequestservice' => 'App\\Domain\\Registry\\Services\\ServiceRequestService',
+          'datasharingguard' => 'App\\Domain\\Sharing\\DataSharingGuard',
         ),
          'className' => 'App\\Domain\\Registry\\Policies\\BeneficiaryPolicy',
          'functionName' => 'view',
@@ -151,56 +200,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
           array (
             'user' => 'App\\Domain\\Access\\Models\\User',
             'beneficiary' => 'App\\Domain\\Registry\\Models\\Beneficiary',
-            'servicerequestservice' => 'App\\Domain\\Registry\\Services\\ServiceRequestService',
-          ),
-           'className' => 'App\\Domain\\Registry\\Policies\\BeneficiaryPolicy',
-           'functionName' => NULL,
-           'templatePhpDocNodes' => 
-          array (
-          ),
-           'parent' => NULL,
-           'typeAliasesMap' => 
-          array (
-          ),
-           'bypassTypeAliases' => false,
-           'constUses' => 
-          array (
-          ),
-           'typeAliasClassName' => NULL,
-           'traitData' => NULL,
-        )),
-         'typeAliasesMap' => 
-        array (
-        ),
-         'bypassTypeAliases' => false,
-         'constUses' => 
-        array (
-        ),
-         'typeAliasClassName' => NULL,
-         'traitData' => NULL,
-      )),
-      '4f584de4302b5df16fc087cd0e5dd16d' => 
-      \PHPStan\Analyser\IntermediaryNameScope::__set_state(array(
-         'namespace' => 'App\\Domain\\Registry\\Policies',
-         'uses' => 
-        array (
-          'user' => 'App\\Domain\\Access\\Models\\User',
-          'beneficiary' => 'App\\Domain\\Registry\\Models\\Beneficiary',
-          'servicerequestservice' => 'App\\Domain\\Registry\\Services\\ServiceRequestService',
-        ),
-         'className' => 'App\\Domain\\Registry\\Policies\\BeneficiaryPolicy',
-         'functionName' => 'hasServiceGrant',
-         'templatePhpDocNodes' => 
-        array (
-        ),
-         'parent' => 
-        \PHPStan\Analyser\IntermediaryNameScope::__set_state(array(
-           'namespace' => 'App\\Domain\\Registry\\Policies',
-           'uses' => 
-          array (
-            'user' => 'App\\Domain\\Access\\Models\\User',
-            'beneficiary' => 'App\\Domain\\Registry\\Models\\Beneficiary',
-            'servicerequestservice' => 'App\\Domain\\Registry\\Services\\ServiceRequestService',
+            'datasharingguard' => 'App\\Domain\\Sharing\\DataSharingGuard',
           ),
            'className' => 'App\\Domain\\Registry\\Policies\\BeneficiaryPolicy',
            'functionName' => NULL,
@@ -235,7 +235,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         array (
           'user' => 'App\\Domain\\Access\\Models\\User',
           'beneficiary' => 'App\\Domain\\Registry\\Models\\Beneficiary',
-          'servicerequestservice' => 'App\\Domain\\Registry\\Services\\ServiceRequestService',
+          'datasharingguard' => 'App\\Domain\\Sharing\\DataSharingGuard',
         ),
          'className' => 'App\\Domain\\Registry\\Policies\\BeneficiaryPolicy',
          'functionName' => 'create',
@@ -249,7 +249,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
           array (
             'user' => 'App\\Domain\\Access\\Models\\User',
             'beneficiary' => 'App\\Domain\\Registry\\Models\\Beneficiary',
-            'servicerequestservice' => 'App\\Domain\\Registry\\Services\\ServiceRequestService',
+            'datasharingguard' => 'App\\Domain\\Sharing\\DataSharingGuard',
           ),
            'className' => 'App\\Domain\\Registry\\Policies\\BeneficiaryPolicy',
            'functionName' => NULL,
@@ -284,7 +284,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         array (
           'user' => 'App\\Domain\\Access\\Models\\User',
           'beneficiary' => 'App\\Domain\\Registry\\Models\\Beneficiary',
-          'servicerequestservice' => 'App\\Domain\\Registry\\Services\\ServiceRequestService',
+          'datasharingguard' => 'App\\Domain\\Sharing\\DataSharingGuard',
         ),
          'className' => 'App\\Domain\\Registry\\Policies\\BeneficiaryPolicy',
          'functionName' => 'update',
@@ -298,7 +298,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
           array (
             'user' => 'App\\Domain\\Access\\Models\\User',
             'beneficiary' => 'App\\Domain\\Registry\\Models\\Beneficiary',
-            'servicerequestservice' => 'App\\Domain\\Registry\\Services\\ServiceRequestService',
+            'datasharingguard' => 'App\\Domain\\Sharing\\DataSharingGuard',
           ),
            'className' => 'App\\Domain\\Registry\\Policies\\BeneficiaryPolicy',
            'functionName' => NULL,
@@ -333,7 +333,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         array (
           'user' => 'App\\Domain\\Access\\Models\\User',
           'beneficiary' => 'App\\Domain\\Registry\\Models\\Beneficiary',
-          'servicerequestservice' => 'App\\Domain\\Registry\\Services\\ServiceRequestService',
+          'datasharingguard' => 'App\\Domain\\Sharing\\DataSharingGuard',
         ),
          'className' => 'App\\Domain\\Registry\\Policies\\BeneficiaryPolicy',
          'functionName' => 'delete',
@@ -347,7 +347,56 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
           array (
             'user' => 'App\\Domain\\Access\\Models\\User',
             'beneficiary' => 'App\\Domain\\Registry\\Models\\Beneficiary',
-            'servicerequestservice' => 'App\\Domain\\Registry\\Services\\ServiceRequestService',
+            'datasharingguard' => 'App\\Domain\\Sharing\\DataSharingGuard',
+          ),
+           'className' => 'App\\Domain\\Registry\\Policies\\BeneficiaryPolicy',
+           'functionName' => NULL,
+           'templatePhpDocNodes' => 
+          array (
+          ),
+           'parent' => NULL,
+           'typeAliasesMap' => 
+          array (
+          ),
+           'bypassTypeAliases' => false,
+           'constUses' => 
+          array (
+          ),
+           'typeAliasClassName' => NULL,
+           'traitData' => NULL,
+        )),
+         'typeAliasesMap' => 
+        array (
+        ),
+         'bypassTypeAliases' => false,
+         'constUses' => 
+        array (
+        ),
+         'typeAliasClassName' => NULL,
+         'traitData' => NULL,
+      )),
+      'a6a2b8894558a23790e67fd6ba39e3e8' => 
+      \PHPStan\Analyser\IntermediaryNameScope::__set_state(array(
+         'namespace' => 'App\\Domain\\Registry\\Policies',
+         'uses' => 
+        array (
+          'user' => 'App\\Domain\\Access\\Models\\User',
+          'beneficiary' => 'App\\Domain\\Registry\\Models\\Beneficiary',
+          'datasharingguard' => 'App\\Domain\\Sharing\\DataSharingGuard',
+        ),
+         'className' => 'App\\Domain\\Registry\\Policies\\BeneficiaryPolicy',
+         'functionName' => 'viewGrants',
+         'templatePhpDocNodes' => 
+        array (
+        ),
+         'parent' => 
+        \PHPStan\Analyser\IntermediaryNameScope::__set_state(array(
+           'namespace' => 'App\\Domain\\Registry\\Policies',
+           'uses' => 
+          array (
+            'user' => 'App\\Domain\\Access\\Models\\User',
+            'beneficiary' => 'App\\Domain\\Registry\\Models\\Beneficiary',
+            'datasharingguard' => 'App\\Domain\\Sharing\\DataSharingGuard',
           ),
            'className' => 'App\\Domain\\Registry\\Policies\\BeneficiaryPolicy',
            'functionName' => NULL,
@@ -382,7 +431,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         array (
           'user' => 'App\\Domain\\Access\\Models\\User',
           'beneficiary' => 'App\\Domain\\Registry\\Models\\Beneficiary',
-          'servicerequestservice' => 'App\\Domain\\Registry\\Services\\ServiceRequestService',
+          'datasharingguard' => 'App\\Domain\\Sharing\\DataSharingGuard',
         ),
          'className' => 'App\\Domain\\Registry\\Policies\\BeneficiaryPolicy',
          'functionName' => 'lookup',
@@ -396,7 +445,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
           array (
             'user' => 'App\\Domain\\Access\\Models\\User',
             'beneficiary' => 'App\\Domain\\Registry\\Models\\Beneficiary',
-            'servicerequestservice' => 'App\\Domain\\Registry\\Services\\ServiceRequestService',
+            'datasharingguard' => 'App\\Domain\\Sharing\\DataSharingGuard',
           ),
            'className' => 'App\\Domain\\Registry\\Policies\\BeneficiaryPolicy',
            'functionName' => NULL,
@@ -431,7 +480,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         array (
           'user' => 'App\\Domain\\Access\\Models\\User',
           'beneficiary' => 'App\\Domain\\Registry\\Models\\Beneficiary',
-          'servicerequestservice' => 'App\\Domain\\Registry\\Services\\ServiceRequestService',
+          'datasharingguard' => 'App\\Domain\\Sharing\\DataSharingGuard',
         ),
          'className' => 'App\\Domain\\Registry\\Policies\\BeneficiaryPolicy',
          'functionName' => 'requestTransfer',
@@ -445,7 +494,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
           array (
             'user' => 'App\\Domain\\Access\\Models\\User',
             'beneficiary' => 'App\\Domain\\Registry\\Models\\Beneficiary',
-            'servicerequestservice' => 'App\\Domain\\Registry\\Services\\ServiceRequestService',
+            'datasharingguard' => 'App\\Domain\\Sharing\\DataSharingGuard',
           ),
            'className' => 'App\\Domain\\Registry\\Policies\\BeneficiaryPolicy',
            'functionName' => NULL,
@@ -480,7 +529,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         array (
           'user' => 'App\\Domain\\Access\\Models\\User',
           'beneficiary' => 'App\\Domain\\Registry\\Models\\Beneficiary',
-          'servicerequestservice' => 'App\\Domain\\Registry\\Services\\ServiceRequestService',
+          'datasharingguard' => 'App\\Domain\\Sharing\\DataSharingGuard',
         ),
          'className' => 'App\\Domain\\Registry\\Policies\\BeneficiaryPolicy',
          'functionName' => 'decideTransfer',
@@ -494,7 +543,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
           array (
             'user' => 'App\\Domain\\Access\\Models\\User',
             'beneficiary' => 'App\\Domain\\Registry\\Models\\Beneficiary',
-            'servicerequestservice' => 'App\\Domain\\Registry\\Services\\ServiceRequestService',
+            'datasharingguard' => 'App\\Domain\\Sharing\\DataSharingGuard',
           ),
            'className' => 'App\\Domain\\Registry\\Policies\\BeneficiaryPolicy',
            'functionName' => NULL,
@@ -525,7 +574,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
     ),
     1 => 
     array (
-      '/var/www/html/app/Domain/Registry/Policies/BeneficiaryPolicy.php' => '05724e706f5bbb2fb9a397cd99990f83c5cfe362b8bc4d552a051c1d5e107ab2',
+      '/var/www/html/app/Domain/Registry/Policies/BeneficiaryPolicy.php' => '056dd1b25c01fef1715da7f7c3cce4bcf504f02f1b36d4a3190682eb7d3a2661',
     ),
   ),
 ));

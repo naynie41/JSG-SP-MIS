@@ -14,7 +14,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         array (
           'rolekey' => 'App\\Domain\\Access\\Enums\\RoleKey',
           'user' => 'App\\Domain\\Access\\Models\\User',
-          'programmefunder' => 'App\\Domain\\Programme\\Models\\ProgrammeFunder',
+          'mdascope' => 'App\\Domain\\Access\\Scopes\\MdaScope',
+          'activity' => 'App\\Domain\\Programme\\Models\\Activity',
           'dashboardscope' => 'App\\Domain\\Reporting\\Support\\DashboardScope',
         ),
          'className' => 'App\\Domain\\Reporting\\Services\\DashboardScopeResolver',
@@ -40,7 +41,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         array (
           'rolekey' => 'App\\Domain\\Access\\Enums\\RoleKey',
           'user' => 'App\\Domain\\Access\\Models\\User',
-          'programmefunder' => 'App\\Domain\\Programme\\Models\\ProgrammeFunder',
+          'mdascope' => 'App\\Domain\\Access\\Scopes\\MdaScope',
+          'activity' => 'App\\Domain\\Programme\\Models\\Activity',
           'dashboardscope' => 'App\\Domain\\Reporting\\Support\\DashboardScope',
         ),
          'className' => 'App\\Domain\\Reporting\\Services\\DashboardScopeResolver',
@@ -55,7 +57,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
           array (
             'rolekey' => 'App\\Domain\\Access\\Enums\\RoleKey',
             'user' => 'App\\Domain\\Access\\Models\\User',
-            'programmefunder' => 'App\\Domain\\Programme\\Models\\ProgrammeFunder',
+            'mdascope' => 'App\\Domain\\Access\\Scopes\\MdaScope',
+            'activity' => 'App\\Domain\\Programme\\Models\\Activity',
             'dashboardscope' => 'App\\Domain\\Reporting\\Support\\DashboardScope',
           ),
            'className' => 'App\\Domain\\Reporting\\Services\\DashboardScopeResolver',
@@ -87,7 +90,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
     ),
     1 => 
     array (
-      '/var/www/html/app/Domain/Reporting/Services/DashboardScopeResolver.php' => '99a54a3ab2d3153997e51052a21bdb40dc69d8ddb55c1d55932c71388f674407',
+      '/var/www/html/app/Domain/Reporting/Services/DashboardScopeResolver.php' => 'c4cbb84397a27f4e03d30da91c3375d1acc98302e92bf4b18d9dd09821e2e9bc',
     ),
   ),
 ));

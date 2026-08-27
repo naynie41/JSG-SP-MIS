@@ -2,7 +2,7 @@
 
 // odsl-/var/www/html/app/Domain/Reporting/Services/ReportService.php-PHPStan\BetterReflection\Reflection\ReflectionClass-App\Domain\Reporting\Services\ReportService
 return \PHPStan\Cache\CacheItem::__set_state(array(
-   'variableKey' => 'v2-6.70.0.1-8.3.31-bbe6f948c465a4ca4bb66fe7fe99050b6d7033caee9c32466ff5c90892e78a14',
+   'variableKey' => 'v2-6.70.0.1-8.3.31-717022a7d792050f0ae8695fe54bdb998a4901af2a2e33cc98e42e2df9aa0848',
    'data' => 
   array (
     'locatedSource' => 
@@ -31,8 +31,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
     'attributes' => 
     array (
     ),
-    'startLine' => 24,
-    'endLine' => 121,
+    'startLine' => 26,
+    'endLine' => 162,
     'startColumn' => 1,
     'endColumn' => 1,
     'parentClassName' => NULL,
@@ -67,8 +67,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         'attributes' => 
         array (
         ),
-        'startLine' => 27,
-        'endLine' => 27,
+        'startLine' => 29,
+        'endLine' => 29,
         'startColumn' => 9,
         'endColumn' => 57,
         'isPromoted' => true,
@@ -98,8 +98,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         'attributes' => 
         array (
         ),
-        'startLine' => 28,
-        'endLine' => 28,
+        'startLine' => 30,
+        'endLine' => 30,
         'startColumn' => 9,
         'endColumn' => 50,
         'isPromoted' => true,
@@ -136,8 +136,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             'attributes' => 
             array (
             ),
-            'startLine' => 27,
-            'endLine' => 27,
+            'startLine' => 29,
+            'endLine' => 29,
             'startColumn' => 9,
             'endColumn' => 57,
             'parameterIndex' => 0,
@@ -162,8 +162,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             'attributes' => 
             array (
             ),
-            'startLine' => 28,
-            'endLine' => 28,
+            'startLine' => 30,
+            'endLine' => 30,
             'startColumn' => 9,
             'endColumn' => 50,
             'parameterIndex' => 1,
@@ -176,8 +176,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         array (
         ),
         'docComment' => NULL,
-        'startLine' => 26,
-        'endLine' => 29,
+        'startLine' => 28,
+        'endLine' => 31,
         'startColumn' => 5,
         'endColumn' => 8,
         'couldThrow' => false,
@@ -215,8 +215,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             'attributes' => 
             array (
             ),
-            'startLine' => 34,
-            'endLine' => 34,
+            'startLine' => 36,
+            'endLine' => 36,
             'startColumn' => 29,
             'endColumn' => 38,
             'parameterIndex' => 0,
@@ -241,8 +241,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             'attributes' => 
             array (
             ),
-            'startLine' => 34,
-            'endLine' => 34,
+            'startLine' => 36,
+            'endLine' => 36,
             'startColumn' => 41,
             'endColumn' => 57,
             'parameterIndex' => 1,
@@ -267,8 +267,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             'attributes' => 
             array (
             ),
-            'startLine' => 34,
-            'endLine' => 34,
+            'startLine' => 36,
+            'endLine' => 36,
             'startColumn' => 60,
             'endColumn' => 79,
             'parameterIndex' => 2,
@@ -282,12 +282,12 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
               'code' => '[]',
               'attributes' => 
               array (
-                'startLine' => 34,
-                'endLine' => 34,
-                'startTokenPos' => 132,
-                'startFilePos' => 1190,
-                'endTokenPos' => 133,
-                'endFilePos' => 1191,
+                'startLine' => 36,
+                'endLine' => 36,
+                'startTokenPos' => 142,
+                'startFilePos' => 1292,
+                'endTokenPos' => 143,
+                'endFilePos' => 1293,
               ),
             ),
             'type' => 
@@ -305,8 +305,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             'attributes' => 
             array (
             ),
-            'startLine' => 34,
-            'endLine' => 34,
+            'startLine' => 36,
+            'endLine' => 36,
             'startColumn' => 82,
             'endColumn' => 99,
             'parameterIndex' => 3,
@@ -329,11 +329,157 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         'docComment' => '/**
  * @param  array<string, mixed>  $params
  */',
-        'startLine' => 34,
-        'endLine' => 47,
+        'startLine' => 36,
+        'endLine' => 49,
         'startColumn' => 5,
         'endColumn' => 5,
         'couldThrow' => true,
+        'isClosure' => false,
+        'isGenerator' => false,
+        'isVariadic' => false,
+        'modifiers' => 1,
+        'namespace' => 'App\\Domain\\Reporting\\Services',
+        'declaringClassName' => 'App\\Domain\\Reporting\\Services\\ReportService',
+        'implementingClassName' => 'App\\Domain\\Reporting\\Services\\ReportService',
+        'currentClassName' => 'App\\Domain\\Reporting\\Services\\ReportService',
+        'aliasName' => NULL,
+      ),
+      'queueBeneficiaryExport' => 
+      array (
+        'name' => 'queueBeneficiaryExport',
+        'parameters' => 
+        array (
+          'user' => 
+          array (
+            'name' => 'user',
+            'default' => NULL,
+            'type' => 
+            array (
+              'class' => 'PHPStan\\BetterReflection\\Reflection\\ReflectionNamedType',
+              'data' => 
+              array (
+                'name' => 'App\\Domain\\Access\\Models\\User',
+                'isIdentifier' => false,
+              ),
+            ),
+            'isVariadic' => false,
+            'byRef' => false,
+            'isPromoted' => false,
+            'attributes' => 
+            array (
+            ),
+            'startLine' => 59,
+            'endLine' => 59,
+            'startColumn' => 44,
+            'endColumn' => 53,
+            'parameterIndex' => 0,
+            'isOptional' => false,
+          ),
+          'filters' => 
+          array (
+            'name' => 'filters',
+            'default' => NULL,
+            'type' => 
+            array (
+              'class' => 'PHPStan\\BetterReflection\\Reflection\\ReflectionNamedType',
+              'data' => 
+              array (
+                'name' => 'array',
+                'isIdentifier' => true,
+              ),
+            ),
+            'isVariadic' => false,
+            'byRef' => false,
+            'isPromoted' => false,
+            'attributes' => 
+            array (
+            ),
+            'startLine' => 59,
+            'endLine' => 59,
+            'startColumn' => 56,
+            'endColumn' => 69,
+            'parameterIndex' => 1,
+            'isOptional' => false,
+          ),
+          'format' => 
+          array (
+            'name' => 'format',
+            'default' => NULL,
+            'type' => 
+            array (
+              'class' => 'PHPStan\\BetterReflection\\Reflection\\ReflectionNamedType',
+              'data' => 
+              array (
+                'name' => 'App\\Domain\\Reporting\\Export\\ReportFormat',
+                'isIdentifier' => false,
+              ),
+            ),
+            'isVariadic' => false,
+            'byRef' => false,
+            'isPromoted' => false,
+            'attributes' => 
+            array (
+            ),
+            'startLine' => 59,
+            'endLine' => 59,
+            'startColumn' => 72,
+            'endColumn' => 91,
+            'parameterIndex' => 2,
+            'isOptional' => false,
+          ),
+          'reveal' => 
+          array (
+            'name' => 'reveal',
+            'default' => NULL,
+            'type' => 
+            array (
+              'class' => 'PHPStan\\BetterReflection\\Reflection\\ReflectionNamedType',
+              'data' => 
+              array (
+                'name' => 'bool',
+                'isIdentifier' => true,
+              ),
+            ),
+            'isVariadic' => false,
+            'byRef' => false,
+            'isPromoted' => false,
+            'attributes' => 
+            array (
+            ),
+            'startLine' => 59,
+            'endLine' => 59,
+            'startColumn' => 94,
+            'endColumn' => 105,
+            'parameterIndex' => 3,
+            'isOptional' => false,
+          ),
+        ),
+        'returnsReference' => false,
+        'returnType' => 
+        array (
+          'class' => 'PHPStan\\BetterReflection\\Reflection\\ReflectionNamedType',
+          'data' => 
+          array (
+            'name' => 'App\\Domain\\Reporting\\Models\\ReportRun',
+            'isIdentifier' => false,
+          ),
+        ),
+        'attributes' => 
+        array (
+        ),
+        'docComment' => '/**
+ * Queue a beneficiary registry list export (FR-REG-04). Captures the caller\'s
+ * scope + the list filters + the reveal decision, so the queued job renders
+ * exactly the view the requester was entitled to — masking NIN/BVN unless
+ * `$reveal`. Reuses the standard run → generate → notify → download pipeline.
+ *
+ * @param  array<string, mixed>  $filters
+ */',
+        'startLine' => 59,
+        'endLine' => 68,
+        'startColumn' => 5,
+        'endColumn' => 5,
+        'couldThrow' => false,
         'isClosure' => false,
         'isGenerator' => false,
         'isVariadic' => false,
@@ -368,8 +514,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             'attributes' => 
             array (
             ),
-            'startLine' => 50,
-            'endLine' => 50,
+            'startLine' => 71,
+            'endLine' => 71,
             'startColumn' => 34,
             'endColumn' => 43,
             'parameterIndex' => 0,
@@ -394,8 +540,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             'attributes' => 
             array (
             ),
-            'startLine' => 50,
-            'endLine' => 50,
+            'startLine' => 71,
+            'endLine' => 71,
             'startColumn' => 46,
             'endColumn' => 72,
             'parameterIndex' => 1,
@@ -420,8 +566,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             'attributes' => 
             array (
             ),
-            'startLine' => 50,
-            'endLine' => 50,
+            'startLine' => 71,
+            'endLine' => 71,
             'startColumn' => 75,
             'endColumn' => 94,
             'parameterIndex' => 2,
@@ -442,8 +588,155 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         array (
         ),
         'docComment' => '/** Queue an ad-hoc report. Validates the definition against the caller\'s scope first. */',
-        'startLine' => 50,
-        'endLine' => 60,
+        'startLine' => 71,
+        'endLine' => 81,
+        'startColumn' => 5,
+        'endColumn' => 5,
+        'couldThrow' => false,
+        'isClosure' => false,
+        'isGenerator' => false,
+        'isVariadic' => false,
+        'modifiers' => 1,
+        'namespace' => 'App\\Domain\\Reporting\\Services',
+        'declaringClassName' => 'App\\Domain\\Reporting\\Services\\ReportService',
+        'implementingClassName' => 'App\\Domain\\Reporting\\Services\\ReportService',
+        'currentClassName' => 'App\\Domain\\Reporting\\Services\\ReportService',
+        'aliasName' => NULL,
+      ),
+      'queueSegmentExport' => 
+      array (
+        'name' => 'queueSegmentExport',
+        'parameters' => 
+        array (
+          'user' => 
+          array (
+            'name' => 'user',
+            'default' => NULL,
+            'type' => 
+            array (
+              'class' => 'PHPStan\\BetterReflection\\Reflection\\ReflectionNamedType',
+              'data' => 
+              array (
+                'name' => 'App\\Domain\\Access\\Models\\User',
+                'isIdentifier' => false,
+              ),
+            ),
+            'isVariadic' => false,
+            'byRef' => false,
+            'isPromoted' => false,
+            'attributes' => 
+            array (
+            ),
+            'startLine' => 92,
+            'endLine' => 92,
+            'startColumn' => 40,
+            'endColumn' => 49,
+            'parameterIndex' => 0,
+            'isOptional' => false,
+          ),
+          'definition' => 
+          array (
+            'name' => 'definition',
+            'default' => NULL,
+            'type' => 
+            array (
+              'class' => 'PHPStan\\BetterReflection\\Reflection\\ReflectionNamedType',
+              'data' => 
+              array (
+                'name' => 'App\\Domain\\Reporting\\Segments\\SegmentDefinition',
+                'isIdentifier' => false,
+              ),
+            ),
+            'isVariadic' => false,
+            'byRef' => false,
+            'isPromoted' => false,
+            'attributes' => 
+            array (
+            ),
+            'startLine' => 92,
+            'endLine' => 92,
+            'startColumn' => 52,
+            'endColumn' => 80,
+            'parameterIndex' => 1,
+            'isOptional' => false,
+          ),
+          'access' => 
+          array (
+            'name' => 'access',
+            'default' => NULL,
+            'type' => 
+            array (
+              'class' => 'PHPStan\\BetterReflection\\Reflection\\ReflectionNamedType',
+              'data' => 
+              array (
+                'name' => 'App\\Domain\\Reporting\\Segments\\SegmentAccess',
+                'isIdentifier' => false,
+              ),
+            ),
+            'isVariadic' => false,
+            'byRef' => false,
+            'isPromoted' => false,
+            'attributes' => 
+            array (
+            ),
+            'startLine' => 92,
+            'endLine' => 92,
+            'startColumn' => 83,
+            'endColumn' => 103,
+            'parameterIndex' => 2,
+            'isOptional' => false,
+          ),
+          'format' => 
+          array (
+            'name' => 'format',
+            'default' => NULL,
+            'type' => 
+            array (
+              'class' => 'PHPStan\\BetterReflection\\Reflection\\ReflectionNamedType',
+              'data' => 
+              array (
+                'name' => 'App\\Domain\\Reporting\\Export\\ReportFormat',
+                'isIdentifier' => false,
+              ),
+            ),
+            'isVariadic' => false,
+            'byRef' => false,
+            'isPromoted' => false,
+            'attributes' => 
+            array (
+            ),
+            'startLine' => 92,
+            'endLine' => 92,
+            'startColumn' => 106,
+            'endColumn' => 125,
+            'parameterIndex' => 3,
+            'isOptional' => false,
+          ),
+        ),
+        'returnsReference' => false,
+        'returnType' => 
+        array (
+          'class' => 'PHPStan\\BetterReflection\\Reflection\\ReflectionNamedType',
+          'data' => 
+          array (
+            'name' => 'App\\Domain\\Reporting\\Models\\ReportRun',
+            'isIdentifier' => false,
+          ),
+        ),
+        'attributes' => 
+        array (
+        ),
+        'docComment' => '/**
+ * Queue a SEGMENT builder export (FR-RPT-03).
+ *
+ * Both the query definition AND the resolved entitlement are persisted on the run.
+ * The definition answers "which population" for an auditor; the entitlement answers
+ * "on what authority" — tier, whether identifiers were revealed, whether small-cell
+ * suppression applied. Recording only the filters would leave the most important
+ * question about an export unanswerable after the fact.
+ */',
+        'startLine' => 92,
+        'endLine' => 100,
         'startColumn' => 5,
         'endColumn' => 5,
         'couldThrow' => false,
@@ -481,8 +774,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             'attributes' => 
             array (
             ),
-            'startLine' => 68,
-            'endLine' => 68,
+            'startLine' => 108,
+            'endLine' => 108,
             'startColumn' => 37,
             'endColumn' => 60,
             'parameterIndex' => 0,
@@ -508,8 +801,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
  * user, so an unattended run honours exactly the scope the schedule was created
  * with, and the run is delivered only to the covered recipients.
  */',
-        'startLine' => 68,
-        'endLine' => 82,
+        'startLine' => 108,
+        'endLine' => 122,
         'startColumn' => 5,
         'endColumn' => 5,
         'couldThrow' => false,
@@ -547,8 +840,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             'attributes' => 
             array (
             ),
-            'startLine' => 87,
-            'endLine' => 87,
+            'startLine' => 127,
+            'endLine' => 127,
             'startColumn' => 47,
             'endColumn' => 70,
             'parameterIndex' => 0,
@@ -571,8 +864,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         'docComment' => '/**
  * @return array<string, mixed>
  */',
-        'startLine' => 87,
-        'endLine' => 98,
+        'startLine' => 127,
+        'endLine' => 138,
         'startColumn' => 5,
         'endColumn' => 5,
         'couldThrow' => false,
@@ -610,8 +903,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             'attributes' => 
             array (
             ),
-            'startLine' => 103,
-            'endLine' => 103,
+            'startLine' => 143,
+            'endLine' => 143,
             'startColumn' => 32,
             'endColumn' => 51,
             'parameterIndex' => 0,
@@ -636,8 +929,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             'attributes' => 
             array (
             ),
-            'startLine' => 103,
-            'endLine' => 103,
+            'startLine' => 143,
+            'endLine' => 143,
             'startColumn' => 54,
             'endColumn' => 70,
             'parameterIndex' => 1,
@@ -662,8 +955,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             'attributes' => 
             array (
             ),
-            'startLine' => 103,
-            'endLine' => 103,
+            'startLine' => 143,
+            'endLine' => 143,
             'startColumn' => 73,
             'endColumn' => 93,
             'parameterIndex' => 2,
@@ -707,8 +1000,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             'attributes' => 
             array (
             ),
-            'startLine' => 103,
-            'endLine' => 103,
+            'startLine' => 143,
+            'endLine' => 143,
             'startColumn' => 96,
             'endColumn' => 115,
             'parameterIndex' => 3,
@@ -752,8 +1045,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             'attributes' => 
             array (
             ),
-            'startLine' => 103,
-            'endLine' => 103,
+            'startLine' => 143,
+            'endLine' => 143,
             'startColumn' => 118,
             'endColumn' => 140,
             'parameterIndex' => 4,
@@ -776,8 +1069,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         'docComment' => '/**
  * @param  array<string, mixed>  $attributes
  */',
-        'startLine' => 103,
-        'endLine' => 120,
+        'startLine' => 143,
+        'endLine' => 161,
         'startColumn' => 5,
         'endColumn' => 5,
         'couldThrow' => false,

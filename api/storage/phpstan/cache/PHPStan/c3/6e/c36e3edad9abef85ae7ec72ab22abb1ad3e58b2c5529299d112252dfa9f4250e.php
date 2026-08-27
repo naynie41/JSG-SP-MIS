@@ -172,53 +172,6 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
          'typeAliasClassName' => NULL,
          'traitData' => NULL,
       )),
-      '79b0915d7cf0b226d65a255a9e8a22d4' => 
-      \PHPStan\Analyser\IntermediaryNameScope::__set_state(array(
-         'namespace' => 'App\\Domain\\Registry\\Policies',
-         'uses' => 
-        array (
-          'user' => 'App\\Domain\\Access\\Models\\User',
-          'household' => 'App\\Domain\\Registry\\Models\\Household',
-        ),
-         'className' => 'App\\Domain\\Registry\\Policies\\HouseholdPolicy',
-         'functionName' => 'create',
-         'templatePhpDocNodes' => 
-        array (
-        ),
-         'parent' => 
-        \PHPStan\Analyser\IntermediaryNameScope::__set_state(array(
-           'namespace' => 'App\\Domain\\Registry\\Policies',
-           'uses' => 
-          array (
-            'user' => 'App\\Domain\\Access\\Models\\User',
-            'household' => 'App\\Domain\\Registry\\Models\\Household',
-          ),
-           'className' => 'App\\Domain\\Registry\\Policies\\HouseholdPolicy',
-           'functionName' => NULL,
-           'templatePhpDocNodes' => 
-          array (
-          ),
-           'parent' => NULL,
-           'typeAliasesMap' => 
-          array (
-          ),
-           'bypassTypeAliases' => false,
-           'constUses' => 
-          array (
-          ),
-           'typeAliasClassName' => NULL,
-           'traitData' => NULL,
-        )),
-         'typeAliasesMap' => 
-        array (
-        ),
-         'bypassTypeAliases' => false,
-         'constUses' => 
-        array (
-        ),
-         'typeAliasClassName' => NULL,
-         'traitData' => NULL,
-      )),
       'f52ec3945c8c4c7bcc09533f9d91fc79' => 
       \PHPStan\Analyser\IntermediaryNameScope::__set_state(array(
          'namespace' => 'App\\Domain\\Registry\\Policies',
@@ -316,7 +269,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
     ),
     1 => 
     array (
-      '/var/www/html/app/Domain/Registry/Policies/HouseholdPolicy.php' => '410dd832e66f56c44fde79f1961801987574f5c0efa16a3b9de67eed45b10071',
+      '/var/www/html/app/Domain/Registry/Policies/HouseholdPolicy.php' => '258fa7deb87fd39a6716b9a59ad7e4c02dfa3040d985c3c9d25f62e162333d5b',
     ),
   ),
 ));

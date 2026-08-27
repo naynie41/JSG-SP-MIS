@@ -22,6 +22,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
           'apiresponse' => 'App\\Support\\ApiResponse',
           'jsonresponse' => 'Illuminate\\Http\\JsonResponse',
           'request' => 'Illuminate\\Http\\Request',
+          'db' => 'Illuminate\\Support\\Facades\\DB',
         ),
          'className' => 'App\\Http\\Controllers\\Api\\V1\\Programme\\ProgrammeController',
          'functionName' => NULL,
@@ -54,6 +55,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
           'apiresponse' => 'App\\Support\\ApiResponse',
           'jsonresponse' => 'Illuminate\\Http\\JsonResponse',
           'request' => 'Illuminate\\Http\\Request',
+          'db' => 'Illuminate\\Support\\Facades\\DB',
         ),
          'className' => 'App\\Http\\Controllers\\Api\\V1\\Programme\\ProgrammeController',
          'functionName' => 'index',
@@ -75,6 +77,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             'apiresponse' => 'App\\Support\\ApiResponse',
             'jsonresponse' => 'Illuminate\\Http\\JsonResponse',
             'request' => 'Illuminate\\Http\\Request',
+            'db' => 'Illuminate\\Support\\Facades\\DB',
           ),
            'className' => 'App\\Http\\Controllers\\Api\\V1\\Programme\\ProgrammeController',
            'functionName' => NULL,
@@ -117,6 +120,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
           'apiresponse' => 'App\\Support\\ApiResponse',
           'jsonresponse' => 'Illuminate\\Http\\JsonResponse',
           'request' => 'Illuminate\\Http\\Request',
+          'db' => 'Illuminate\\Support\\Facades\\DB',
         ),
          'className' => 'App\\Http\\Controllers\\Api\\V1\\Programme\\ProgrammeController',
          'functionName' => 'store',
@@ -138,6 +142,72 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             'apiresponse' => 'App\\Support\\ApiResponse',
             'jsonresponse' => 'Illuminate\\Http\\JsonResponse',
             'request' => 'Illuminate\\Http\\Request',
+            'db' => 'Illuminate\\Support\\Facades\\DB',
+          ),
+           'className' => 'App\\Http\\Controllers\\Api\\V1\\Programme\\ProgrammeController',
+           'functionName' => NULL,
+           'templatePhpDocNodes' => 
+          array (
+          ),
+           'parent' => NULL,
+           'typeAliasesMap' => 
+          array (
+          ),
+           'bypassTypeAliases' => false,
+           'constUses' => 
+          array (
+          ),
+           'typeAliasClassName' => NULL,
+           'traitData' => NULL,
+        )),
+         'typeAliasesMap' => 
+        array (
+        ),
+         'bypassTypeAliases' => false,
+         'constUses' => 
+        array (
+        ),
+         'typeAliasClassName' => NULL,
+         'traitData' => NULL,
+      )),
+      '49c7e5cbdceb0d8a0292df727c45cbc8' => 
+      \PHPStan\Analyser\IntermediaryNameScope::__set_state(array(
+         'namespace' => 'App\\Http\\Controllers\\Api\\V1\\Programme',
+         'uses' => 
+        array (
+          'ledgeraggregator' => 'App\\Domain\\Benefit\\Services\\LedgerAggregator',
+          'programmestatus' => 'App\\Domain\\Programme\\Enums\\ProgrammeStatus',
+          'programme' => 'App\\Domain\\Programme\\Models\\Programme',
+          'controller' => 'App\\Http\\Controllers\\Controller',
+          'storeprogrammerequest' => 'App\\Http\\Requests\\Programme\\StoreProgrammeRequest',
+          'updateprogrammerequest' => 'App\\Http\\Requests\\Programme\\UpdateProgrammeRequest',
+          'programmeresource' => 'App\\Http\\Resources\\ProgrammeResource',
+          'apiresponse' => 'App\\Support\\ApiResponse',
+          'jsonresponse' => 'Illuminate\\Http\\JsonResponse',
+          'request' => 'Illuminate\\Http\\Request',
+          'db' => 'Illuminate\\Support\\Facades\\DB',
+        ),
+         'className' => 'App\\Http\\Controllers\\Api\\V1\\Programme\\ProgrammeController',
+         'functionName' => 'usageCounts',
+         'templatePhpDocNodes' => 
+        array (
+        ),
+         'parent' => 
+        \PHPStan\Analyser\IntermediaryNameScope::__set_state(array(
+           'namespace' => 'App\\Http\\Controllers\\Api\\V1\\Programme',
+           'uses' => 
+          array (
+            'ledgeraggregator' => 'App\\Domain\\Benefit\\Services\\LedgerAggregator',
+            'programmestatus' => 'App\\Domain\\Programme\\Enums\\ProgrammeStatus',
+            'programme' => 'App\\Domain\\Programme\\Models\\Programme',
+            'controller' => 'App\\Http\\Controllers\\Controller',
+            'storeprogrammerequest' => 'App\\Http\\Requests\\Programme\\StoreProgrammeRequest',
+            'updateprogrammerequest' => 'App\\Http\\Requests\\Programme\\UpdateProgrammeRequest',
+            'programmeresource' => 'App\\Http\\Resources\\ProgrammeResource',
+            'apiresponse' => 'App\\Support\\ApiResponse',
+            'jsonresponse' => 'Illuminate\\Http\\JsonResponse',
+            'request' => 'Illuminate\\Http\\Request',
+            'db' => 'Illuminate\\Support\\Facades\\DB',
           ),
            'className' => 'App\\Http\\Controllers\\Api\\V1\\Programme\\ProgrammeController',
            'functionName' => NULL,
@@ -180,6 +250,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
           'apiresponse' => 'App\\Support\\ApiResponse',
           'jsonresponse' => 'Illuminate\\Http\\JsonResponse',
           'request' => 'Illuminate\\Http\\Request',
+          'db' => 'Illuminate\\Support\\Facades\\DB',
         ),
          'className' => 'App\\Http\\Controllers\\Api\\V1\\Programme\\ProgrammeController',
          'functionName' => 'show',
@@ -201,6 +272,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             'apiresponse' => 'App\\Support\\ApiResponse',
             'jsonresponse' => 'Illuminate\\Http\\JsonResponse',
             'request' => 'Illuminate\\Http\\Request',
+            'db' => 'Illuminate\\Support\\Facades\\DB',
           ),
            'className' => 'App\\Http\\Controllers\\Api\\V1\\Programme\\ProgrammeController',
            'functionName' => NULL,
@@ -243,6 +315,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
           'apiresponse' => 'App\\Support\\ApiResponse',
           'jsonresponse' => 'Illuminate\\Http\\JsonResponse',
           'request' => 'Illuminate\\Http\\Request',
+          'db' => 'Illuminate\\Support\\Facades\\DB',
         ),
          'className' => 'App\\Http\\Controllers\\Api\\V1\\Programme\\ProgrammeController',
          'functionName' => 'update',
@@ -264,6 +337,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             'apiresponse' => 'App\\Support\\ApiResponse',
             'jsonresponse' => 'Illuminate\\Http\\JsonResponse',
             'request' => 'Illuminate\\Http\\Request',
+            'db' => 'Illuminate\\Support\\Facades\\DB',
           ),
            'className' => 'App\\Http\\Controllers\\Api\\V1\\Programme\\ProgrammeController',
            'functionName' => NULL,
@@ -306,6 +380,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
           'apiresponse' => 'App\\Support\\ApiResponse',
           'jsonresponse' => 'Illuminate\\Http\\JsonResponse',
           'request' => 'Illuminate\\Http\\Request',
+          'db' => 'Illuminate\\Support\\Facades\\DB',
         ),
          'className' => 'App\\Http\\Controllers\\Api\\V1\\Programme\\ProgrammeController',
          'functionName' => 'budget',
@@ -327,6 +402,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             'apiresponse' => 'App\\Support\\ApiResponse',
             'jsonresponse' => 'Illuminate\\Http\\JsonResponse',
             'request' => 'Illuminate\\Http\\Request',
+            'db' => 'Illuminate\\Support\\Facades\\DB',
           ),
            'className' => 'App\\Http\\Controllers\\Api\\V1\\Programme\\ProgrammeController',
            'functionName' => NULL,
@@ -369,6 +445,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
           'apiresponse' => 'App\\Support\\ApiResponse',
           'jsonresponse' => 'Illuminate\\Http\\JsonResponse',
           'request' => 'Illuminate\\Http\\Request',
+          'db' => 'Illuminate\\Support\\Facades\\DB',
         ),
          'className' => 'App\\Http\\Controllers\\Api\\V1\\Programme\\ProgrammeController',
          'functionName' => 'archive',
@@ -390,6 +467,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             'apiresponse' => 'App\\Support\\ApiResponse',
             'jsonresponse' => 'Illuminate\\Http\\JsonResponse',
             'request' => 'Illuminate\\Http\\Request',
+            'db' => 'Illuminate\\Support\\Facades\\DB',
           ),
            'className' => 'App\\Http\\Controllers\\Api\\V1\\Programme\\ProgrammeController',
            'functionName' => NULL,
@@ -420,7 +498,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
     ),
     1 => 
     array (
-      '/var/www/html/app/Http/Controllers/Api/V1/Programme/ProgrammeController.php' => '7b25702b7c1c4ef724b7635e912114d299dd40337a9de520d3e8fb40688c0098',
+      '/var/www/html/app/Http/Controllers/Api/V1/Programme/ProgrammeController.php' => '695ee813ebca19d0f8e6afe71e8948388ffe557959bec774df9fdd0b374eaddc',
     ),
   ),
 ));

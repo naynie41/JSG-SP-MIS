@@ -2,7 +2,7 @@
 
 // odsl-/var/www/html/app/Domain/Benefit/Imports/BenefitDeliveryRowValidator.php-PHPStan\BetterReflection\Reflection\ReflectionClass-App\Domain\Benefit\Imports\BenefitDeliveryRowValidator
 return \PHPStan\Cache\CacheItem::__set_state(array(
-   'variableKey' => 'v2-6.70.0.1-8.3.31-3c2ee5bdffc2e6f77ddb04d6b6a0593a8b16446940c46071edfa72f4f421fcb0',
+   'variableKey' => 'v2-6.70.0.1-8.3.31-e6e06970f4530d98dd0db7a024862f42f882abd53894e3a0d1c4e63892c05b6d',
    'data' => 
   array (
     'locatedSource' => 
@@ -32,8 +32,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
     'attributes' => 
     array (
     ),
-    'startLine' => 25,
-    'endLine' => 182,
+    'startLine' => 26,
+    'endLine' => 184,
     'startColumn' => 1,
     'endColumn' => 1,
     'parentClassName' => NULL,
@@ -68,8 +68,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         'attributes' => 
         array (
         ),
-        'startLine' => 27,
-        'endLine' => 27,
+        'startLine' => 28,
+        'endLine' => 28,
         'startColumn' => 33,
         'endColumn' => 82,
         'isPromoted' => true,
@@ -106,8 +106,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             'attributes' => 
             array (
             ),
-            'startLine' => 27,
-            'endLine' => 27,
+            'startLine' => 28,
+            'endLine' => 28,
             'startColumn' => 33,
             'endColumn' => 82,
             'parameterIndex' => 0,
@@ -120,8 +120,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         array (
         ),
         'docComment' => NULL,
-        'startLine' => 27,
-        'endLine' => 27,
+        'startLine' => 28,
+        'endLine' => 28,
         'startColumn' => 5,
         'endColumn' => 86,
         'couldThrow' => false,
@@ -159,8 +159,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             'attributes' => 
             array (
             ),
-            'startLine' => 33,
-            'endLine' => 33,
+            'startLine' => 34,
+            'endLine' => 34,
             'startColumn' => 30,
             'endColumn' => 42,
             'parameterIndex' => 0,
@@ -185,8 +185,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             'attributes' => 
             array (
             ),
-            'startLine' => 33,
-            'endLine' => 33,
+            'startLine' => 34,
+            'endLine' => 34,
             'startColumn' => 45,
             'endColumn' => 64,
             'parameterIndex' => 1,
@@ -210,8 +210,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
  * @param  array<string, string>  $values  canonical (lower_snake) header => value
  * @return array{is_valid: bool, errors: list<array{field: string, message: string}>, resolved_beneficiary_id: ?string, eligibility_flagged: bool, payload: array<string, mixed>}
  */',
-        'startLine' => 33,
-        'endLine' => 70,
+        'startLine' => 34,
+        'endLine' => 71,
         'startColumn' => 5,
         'endColumn' => 5,
         'couldThrow' => false,
@@ -249,8 +249,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             'attributes' => 
             array (
             ),
-            'startLine' => 76,
-            'endLine' => 76,
+            'startLine' => 77,
+            'endLine' => 77,
             'startColumn' => 41,
             'endColumn' => 53,
             'parameterIndex' => 0,
@@ -275,8 +275,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             'attributes' => 
             array (
             ),
-            'startLine' => 76,
-            'endLine' => 76,
+            'startLine' => 77,
+            'endLine' => 77,
             'startColumn' => 56,
             'endColumn' => 69,
             'parameterIndex' => 1,
@@ -319,8 +319,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
  * @param  array<string, string>  $values
  * @param  list<array{field: string, message: string}>  $errors
  */',
-        'startLine' => 76,
-        'endLine' => 107,
+        'startLine' => 77,
+        'endLine' => 109,
         'startColumn' => 5,
         'endColumn' => 5,
         'couldThrow' => false,
@@ -358,8 +358,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             'attributes' => 
             array (
             ),
-            'startLine' => 114,
-            'endLine' => 114,
+            'startLine' => 116,
+            'endLine' => 116,
             'startColumn' => 36,
             'endColumn' => 48,
             'parameterIndex' => 0,
@@ -384,8 +384,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             'attributes' => 
             array (
             ),
-            'startLine' => 114,
-            'endLine' => 114,
+            'startLine' => 116,
+            'endLine' => 116,
             'startColumn' => 51,
             'endColumn' => 64,
             'parameterIndex' => 1,
@@ -410,8 +410,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
  * @param  list<array{field: string, message: string}>  $errors
  * @return array<string, mixed>
  */',
-        'startLine' => 114,
-        'endLine' => 157,
+        'startLine' => 116,
+        'endLine' => 159,
         'startColumn' => 5,
         'endColumn' => 5,
         'couldThrow' => false,
@@ -449,8 +449,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             'attributes' => 
             array (
             ),
-            'startLine' => 162,
-            'endLine' => 162,
+            'startLine' => 164,
+            'endLine' => 164,
             'startColumn' => 32,
             'endColumn' => 44,
             'parameterIndex' => 0,
@@ -475,8 +475,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             'attributes' => 
             array (
             ),
-            'startLine' => 162,
-            'endLine' => 162,
+            'startLine' => 164,
+            'endLine' => 164,
             'startColumn' => 47,
             'endColumn' => 60,
             'parameterIndex' => 1,
@@ -518,8 +518,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         'docComment' => '/**
  * @param  list<array{field: string, message: string}>  $errors
  */',
-        'startLine' => 162,
-        'endLine' => 181,
+        'startLine' => 164,
+        'endLine' => 183,
         'startColumn' => 5,
         'endColumn' => 5,
         'couldThrow' => false,

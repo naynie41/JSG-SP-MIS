@@ -101,7 +101,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
     ),
     '/var/www/html/app/Domain/Access/Enums/PermissionAction.php' => 
     array (
-      0 => '0b5f8b6fa4ffbafe23ced98bd900648fb725b0d0bbd4773372d7a4abdbd5bc87',
+      0 => 'e98f695b425c216bbc4b409a2c436ff4e957b51facaa48918ecbe36258bbabd3',
       1 => 
       array (
         0 => 'app\\domain\\access\\enums\\permissionaction',
@@ -116,7 +116,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
     ),
     '/var/www/html/app/Domain/Access/Enums/RoleKey.php' => 
     array (
-      0 => 'aa800acebadff237b3c94d7c656afe6bb41249a9394e49867aae94dd38406890',
+      0 => '76874685d19773e560f052060b973a58faa395f635d30da3703e4e290be494aa',
       1 => 
       array (
         0 => 'app\\domain\\access\\enums\\rolekey',
@@ -255,7 +255,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
     ),
     '/var/www/html/app/Domain/Access/Models/MdaAccessGrant.php' => 
     array (
-      0 => '80454f5cca1295177440dad59922c69b175d5bf25e20ef46174a8e4a926daa17',
+      0 => '90584e224e34a474065f3a0d01ac3bd5abebc9405871981966456218ab58f3b1',
       1 => 
       array (
         0 => 'app\\domain\\access\\models\\mdaaccessgrant',
@@ -263,9 +263,12 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
       2 => 
       array (
         0 => 'app\\domain\\access\\models\\casts',
-        1 => 'app\\domain\\access\\models\\user',
-        2 => 'app\\domain\\access\\models\\mda',
-        3 => 'app\\domain\\access\\models\\grantedby',
+        1 => 'app\\domain\\access\\models\\isactive',
+        2 => 'app\\domain\\access\\models\\scopeactive',
+        3 => 'app\\domain\\access\\models\\user',
+        4 => 'app\\domain\\access\\models\\mda',
+        5 => 'app\\domain\\access\\models\\grantedby',
+        6 => 'app\\domain\\access\\models\\revokedby',
       ),
       3 => 
       array (
@@ -305,7 +308,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
     ),
     '/var/www/html/app/Domain/Access/Models/User.php' => 
     array (
-      0 => 'ca09043f98e418ab889b12f7312deef7f00c09162d6de61ef5350c3a68c9fc2d',
+      0 => 'cb5dc1613afedc1a9fd1192af8b727a89fed98e76081a1b015be235aaa3d0e9a',
       1 => 
       array (
         0 => 'app\\domain\\access\\models\\user',
@@ -497,7 +500,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
     ),
     '/var/www/html/app/Domain/Audit/Models/AuditLog.php' => 
     array (
-      0 => '7990b6b04f64b90d3ea36b5735a22ea90fb3d906fdc2738ef33f7621234761ef',
+      0 => '339ea8c889c477ab1dd847693c63cb9ec521c6a6e83f65bd02f8aba7d25d2589',
       1 => 
       array (
         0 => 'app\\domain\\audit\\models\\auditlog',
@@ -506,6 +509,9 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
       array (
         0 => 'app\\domain\\audit\\models\\casts',
         1 => 'app\\domain\\audit\\models\\booted',
+        2 => 'app\\domain\\audit\\models\\save',
+        3 => 'app\\domain\\audit\\models\\computeentryhash',
+        4 => 'app\\domain\\audit\\models\\canonicalize',
       ),
       3 => 
       array (
@@ -561,15 +567,16 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
     ),
     '/var/www/html/app/Domain/Benefit/Authorization/ServiceRequestAuthorizer.php' => 
     array (
-      0 => '7ceb99540aea8ce741bd1551518e0226ee7c1829685e64e0aac1c491a86ec84a',
+      0 => '75c623ee7541eac0cb5e14ec94f16b132d3c07ee2f80b499eed14c76aac52dc1',
       1 => 
       array (
         0 => 'app\\domain\\benefit\\authorization\\servicerequestauthorizer',
       ),
       2 => 
       array (
-        0 => 'app\\domain\\benefit\\authorization\\authorizes',
-        1 => 'app\\domain\\benefit\\authorization\\source',
+        0 => 'app\\domain\\benefit\\authorization\\__construct',
+        1 => 'app\\domain\\benefit\\authorization\\authorizes',
+        2 => 'app\\domain\\benefit\\authorization\\source',
       ),
       3 => 
       array (
@@ -708,7 +715,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
     ),
     '/var/www/html/app/Domain/Benefit/Imports/BenefitDeliveryRowValidator.php' => 
     array (
-      0 => '3c2ee5bdffc2e6f77ddb04d6b6a0593a8b16446940c46071edfa72f4f421fcb0',
+      0 => 'e6e06970f4530d98dd0db7a024862f42f882abd53894e3a0d1c4e63892c05b6d',
       1 => 
       array (
         0 => 'app\\domain\\benefit\\imports\\benefitdeliveryrowvalidator',
@@ -948,7 +955,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
     ),
     '/var/www/html/app/Domain/Benefit/Services/BenefitRecorder.php' => 
     array (
-      0 => 'e52587f2ab3e1325e4fb6d3094a3cb5a547dba2e4f834e53fa4f642840b282de',
+      0 => '3260cdd273c69f6ba969b701b8696d4d52c9a4f6d175577af8424c819fa4d89c',
       1 => 
       array (
         0 => 'app\\domain\\benefit\\services\\benefitrecorder',
@@ -998,7 +1005,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
     ),
     '/var/www/html/app/Domain/Benefit/Services/LedgerAggregator.php' => 
     array (
-      0 => '34ac8a4569f1c973ad723a19fa9ce2c6e12b9c324b9bb5354a816caca9a89731',
+      0 => '5dec90e8fba082fea2b1f4f32da72bad3c96951da3a5183573391819f5979af3',
       1 => 
       array (
         0 => 'app\\domain\\benefit\\services\\ledgeraggregator',
@@ -1011,10 +1018,16 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         3 => 'app\\domain\\benefit\\services\\scopedtotals',
         4 => 'app\\domain\\benefit\\services\\scopedbudget',
         5 => 'app\\domain\\benefit\\services\\scopedgroup',
-        6 => 'app\\domain\\benefit\\services\\scopedledger',
-        7 => 'app\\domain\\benefit\\services\\budget',
-        8 => 'app\\domain\\benefit\\services\\totals',
-        9 => 'app\\domain\\benefit\\services\\applyfilters',
+        6 => 'app\\domain\\benefit\\services\\scopeddistinctbeneficiaries',
+        7 => 'app\\domain\\benefit\\services\\scopedreachbyprogramme',
+        8 => 'app\\domain\\benefit\\services\\scopedreachbyactivity',
+        9 => 'app\\domain\\benefit\\services\\scopeddisbursementseries',
+        10 => 'app\\domain\\benefit\\services\\scopeddistinctbyarea',
+        11 => 'app\\domain\\benefit\\services\\monthkeyexpr',
+        12 => 'app\\domain\\benefit\\services\\scopedledger',
+        13 => 'app\\domain\\benefit\\services\\budget',
+        14 => 'app\\domain\\benefit\\services\\totals',
+        15 => 'app\\domain\\benefit\\services\\applyfilters',
       ),
       3 => 
       array (
@@ -1602,14 +1615,15 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
     ),
     '/var/www/html/app/Domain/Matching/Scoring/FieldNormalizer.php' => 
     array (
-      0 => '186242c59e4c3594b279d0b5aa84bb0fee5d9c7a25ef08b8e05d55541dbbc04c',
+      0 => 'd6b993e628a9a931e824623777a1b39c996f1f5e72ba36e94673dbdecad2ae81',
       1 => 
       array (
         0 => 'app\\domain\\matching\\scoring\\fieldnormalizer',
       ),
       2 => 
       array (
-        0 => 'app\\domain\\matching\\scoring\\normalize',
+        0 => 'app\\domain\\matching\\scoring\\__construct',
+        1 => 'app\\domain\\matching\\scoring\\normalize',
       ),
       3 => 
       array (
@@ -1617,7 +1631,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
     ),
     '/var/www/html/app/Domain/Matching/Scoring/MatchScore.php' => 
     array (
-      0 => 'd10013b3839213a53ec095f90028cd01c498c90eb70d443d1be58b800cfc2f30',
+      0 => '9f53b04c942773c62cb180cda85c7ac227d34020adf77508118420a200d51e03',
       1 => 
       array (
         0 => 'app\\domain\\matching\\scoring\\matchscore',
@@ -1626,7 +1640,9 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
       array (
         0 => 'app\\domain\\matching\\scoring\\__construct',
         1 => 'app\\domain\\matching\\scoring\\toarray',
-        2 => 'app\\domain\\matching\\scoring\\matchedfields',
+        2 => 'app\\domain\\matching\\scoring\\fieldcomparisons',
+        3 => 'app\\domain\\matching\\scoring\\verdictfor',
+        4 => 'app\\domain\\matching\\scoring\\matchedfields',
       ),
       3 => 
       array (
@@ -1634,7 +1650,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
     ),
     '/var/www/html/app/Domain/Matching/Scoring/RuleBasedMatchScorer.php' => 
     array (
-      0 => '840d9653435479683a1072b915545761cb3e6ff7c032e2d855572eb0a343400b',
+      0 => 'c071cf9ef1af51cf3a9a6860627fafe514de7745cabfdf953a28d04d19a5886c',
       1 => 
       array (
         0 => 'app\\domain\\matching\\scoring\\rulebasedmatchscorer',
@@ -1684,16 +1700,17 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
     ),
     '/var/www/html/app/Domain/Notification/Channels/EmailChannel.php' => 
     array (
-      0 => 'c3adfe2d2fe6ca8dd22dc1e021da4c0237090a357dbdef44ba6a712f4fceae3a',
+      0 => '48fc2247f718f5c96c3c9d6f86755dbf6f3d9308a8e42e764887b92cfd02b976',
       1 => 
       array (
         0 => 'app\\domain\\notification\\channels\\emailchannel',
       ),
       2 => 
       array (
-        0 => 'app\\domain\\notification\\channels\\key',
-        1 => 'app\\domain\\notification\\channels\\isavailable',
-        2 => 'app\\domain\\notification\\channels\\send',
+        0 => 'app\\domain\\notification\\channels\\__construct',
+        1 => 'app\\domain\\notification\\channels\\key',
+        2 => 'app\\domain\\notification\\channels\\isavailable',
+        3 => 'app\\domain\\notification\\channels\\send',
       ),
       3 => 
       array (
@@ -1701,7 +1718,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
     ),
     '/var/www/html/app/Domain/Notification/Channels/InAppChannel.php' => 
     array (
-      0 => 'ad427d0ac3927c1cefcede52fd115f12e4fd633bd0c03730da86cd53cb960229',
+      0 => '8aecc28492ea8603ba3a59b01b65d8fefec43a2d5188debf931552b6a332bd29',
       1 => 
       array (
         0 => 'app\\domain\\notification\\channels\\inappchannel',
@@ -1711,6 +1728,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         0 => 'app\\domain\\notification\\channels\\key',
         1 => 'app\\domain\\notification\\channels\\isavailable',
         2 => 'app\\domain\\notification\\channels\\send',
+        3 => 'app\\domain\\notification\\channels\\payloadfor',
       ),
       3 => 
       array (
@@ -1783,7 +1801,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
     ),
     '/var/www/html/app/Domain/Notification/Listeners/NotificationSubscriber.php' => 
     array (
-      0 => '86b29f126f6da5c75b69629b217f4a45178b2622b1a2e6e861f1a6653580c236',
+      0 => 'bb6f7082e3c595075eb370e5fa74895a20bea73e4b6b9734ccec2e67578f1cc2',
       1 => 
       array (
         0 => 'app\\domain\\notification\\listeners\\notificationsubscriber',
@@ -1793,20 +1811,25 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         0 => 'app\\domain\\notification\\listeners\\__construct',
         1 => 'app\\domain\\notification\\listeners\\handleservicerequestraised',
         2 => 'app\\domain\\notification\\listeners\\handleservicerequestaccepted',
-        3 => 'app\\domain\\notification\\listeners\\handleservicerequestdeclined',
-        4 => 'app\\domain\\notification\\listeners\\handleownershiptransferrequested',
-        5 => 'app\\domain\\notification\\listeners\\approversin',
-        6 => 'app\\domain\\notification\\listeners\\requester',
-        7 => 'app\\domain\\notification\\listeners\\handlereferralstatuschanged',
-        8 => 'app\\domain\\notification\\listeners\\handlereferralslabreached',
-        9 => 'app\\domain\\notification\\listeners\\bothparties',
-        10 => 'app\\domain\\notification\\listeners\\escalationtier',
-        11 => 'app\\domain\\notification\\listeners\\handlegrievanceassigned',
-        12 => 'app\\domain\\notification\\listeners\\handlegrievanceresolved',
-        13 => 'app\\domain\\notification\\listeners\\handlegrievanceslabreached',
-        14 => 'app\\domain\\notification\\listeners\\grievanceescalationtier',
-        15 => 'app\\domain\\notification\\listeners\\handlereportready',
-        16 => 'app\\domain\\notification\\listeners\\subscribe',
+        3 => 'app\\domain\\notification\\listeners\\handlebeneficiaryaccessrevoked',
+        4 => 'app\\domain\\notification\\listeners\\handleservicerequestdeclined',
+        5 => 'app\\domain\\notification\\listeners\\handleownershiptransferrequested',
+        6 => 'app\\domain\\notification\\listeners\\handleimportduplicatessurfaced',
+        7 => 'app\\domain\\notification\\listeners\\handleimportbatchcompleted',
+        8 => 'app\\domain\\notification\\listeners\\uploader',
+        9 => 'app\\domain\\notification\\listeners\\approversin',
+        10 => 'app\\domain\\notification\\listeners\\requester',
+        11 => 'app\\domain\\notification\\listeners\\handlereferralstatuschanged',
+        12 => 'app\\domain\\notification\\listeners\\handlereferralslabreached',
+        13 => 'app\\domain\\notification\\listeners\\bothparties',
+        14 => 'app\\domain\\notification\\listeners\\escalationtier',
+        15 => 'app\\domain\\notification\\listeners\\handlegrievanceassigned',
+        16 => 'app\\domain\\notification\\listeners\\handlegrievanceresolved',
+        17 => 'app\\domain\\notification\\listeners\\handlegrievanceslabreached',
+        18 => 'app\\domain\\notification\\listeners\\grievanceescalationtier',
+        19 => 'app\\domain\\notification\\listeners\\handlereportready',
+        20 => 'app\\domain\\notification\\listeners\\handlebeneficiarygraduated',
+        21 => 'app\\domain\\notification\\listeners\\subscribe',
       ),
       3 => 
       array (
@@ -1814,7 +1837,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
     ),
     '/var/www/html/app/Domain/Notification/Mail/NotificationMail.php' => 
     array (
-      0 => '38e56bec06fccdad2e17e88696d69734407cd98d3cc1f87b74f4c5f32e3484a1',
+      0 => '9527a3d1217f814e8be0720941274df2adcbb57a6c20ca7ada61624ca745b728',
       1 => 
       array (
         0 => 'app\\domain\\notification\\mail\\notificationmail',
@@ -1823,6 +1846,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
       array (
         0 => 'app\\domain\\notification\\mail\\__construct',
         1 => 'app\\domain\\notification\\mail\\build',
+        2 => 'app\\domain\\notification\\mail\\footer',
       ),
       3 => 
       array (
@@ -1863,7 +1887,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
     ),
     '/var/www/html/app/Domain/Notification/NotificationServiceProvider.php' => 
     array (
-      0 => '1d6f1323ac9eeebf0162d6ec3a050737cece4fd3b9b2192da08d45880ec789ef',
+      0 => 'a9a207374f92e2f6b12eb0e3d07adb4801de861d9897aba067ece3dd36e153ba',
       1 => 
       array (
         0 => 'app\\domain\\notification\\notificationserviceprovider',
@@ -1896,7 +1920,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
     ),
     '/var/www/html/app/Domain/Notification/Support/NotificationMessage.php' => 
     array (
-      0 => 'a136eb37ba2520d08b847859cfb44c85da68e4edaaeb5d17d7a98e7c09f2042e',
+      0 => 'f87d9cba79aed85ec41c071e4ba7da909c0b38d779fdadd1c7b484a1aeddf950',
       1 => 
       array (
         0 => 'app\\domain\\notification\\support\\notificationmessage',
@@ -1904,6 +1928,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
       2 => 
       array (
         0 => 'app\\domain\\notification\\support\\__construct',
+        1 => 'app\\domain\\notification\\support\\actionurl',
       ),
       3 => 
       array (
@@ -1967,7 +1992,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
     ),
     '/var/www/html/app/Domain/Programme/Models/Activity.php' => 
     array (
-      0 => '03f0b4950c66e6cfcc0f65692ea000ebfa47b76648d1e6a551653c1c50153b92',
+      0 => 'cf685db77b182d8ddf848ee1686606eb6180d03a26921bf55cc95d9c4d18d908',
       1 => 
       array (
         0 => 'app\\domain\\programme\\models\\activity',
@@ -1979,6 +2004,10 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         2 => 'app\\domain\\programme\\models\\programme',
         3 => 'app\\domain\\programme\\models\\ownermda',
         4 => 'app\\domain\\programme\\models\\creator',
+        5 => 'app\\domain\\programme\\models\\fundingpartner',
+        6 => 'app\\domain\\programme\\models\\locations',
+        7 => 'app\\domain\\programme\\models\\scopedeclaredin',
+        8 => 'app\\domain\\programme\\models\\areaslug',
       ),
       3 => 
       array (
@@ -2130,7 +2159,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
     ),
     '/var/www/html/app/Domain/Programme/Services/EnrollmentService.php' => 
     array (
-      0 => 'a76def3ec97d20bfb8562e0f9ef0b467ec38585795851d0385c219dc71ef44c1',
+      0 => '160393b8147c111f00387a53a7c5b8020b0cc7a43ac8a740a1e8de8e4ec03607',
       1 => 
       array (
         0 => 'app\\domain\\programme\\services\\enrollmentservice',
@@ -2417,7 +2446,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
     ),
     '/var/www/html/app/Domain/Registry/Enums/BeneficiaryStatus.php' => 
     array (
-      0 => '7e1b800d5f869d042d11ac0ca74c755e2d1a4637c064faaee90822c18b9bef55',
+      0 => '827510558bf4c38cc90e338513495ec2bb48d9387111c250ac0d344b142ab30e',
       1 => 
       array (
         0 => 'app\\domain\\registry\\enums\\beneficiarystatus',
@@ -2477,13 +2506,14 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
     ),
     '/var/www/html/app/Domain/Registry/Enums/ImportRowResolution.php' => 
     array (
-      0 => 'fe4032867c0c8dcbade681b08155378bd774b1fd53b7b00d46268dfdea34bbf2',
+      0 => '433a30945300562aeb4f43c15427b10e7210ef01367b074e4a69d4a1cc0af57b',
       1 => 
       array (
         0 => 'app\\domain\\registry\\enums\\importrowresolution',
       ),
       2 => 
       array (
+        0 => 'app\\domain\\registry\\enums\\againstexisting',
       ),
       3 => 
       array (
@@ -2491,7 +2521,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
     ),
     '/var/www/html/app/Domain/Registry/Enums/ImportStatus.php' => 
     array (
-      0 => 'eba19626b5869f30aa8bb267c0aa2a97f16ffe33b3f0b9b278cf3c628f8b6f5a',
+      0 => 'c5ca74da97cb2fce1454dd24cb338161af49484f70748ab9aafdf8d5e29e0538',
       1 => 
       array (
         0 => 'app\\domain\\registry\\enums\\importstatus',
@@ -2534,13 +2564,16 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
     ),
     '/var/www/html/app/Domain/Registry/Enums/RegistrationSource.php' => 
     array (
-      0 => '7740d9ad863728c6504681d12c7220cfec980f8f54643174903fc6cc95c204bb',
+      0 => '15b895792449734e89431d891132d0fac3db2e3aa1e3573426905c67173d9387',
       1 => 
       array (
         0 => 'app\\domain\\registry\\enums\\registrationsource',
       ),
       2 => 
       array (
+        0 => 'app\\domain\\registry\\enums\\isassignable',
+        1 => 'app\\domain\\registry\\enums\\assignable',
+        2 => 'app\\domain\\registry\\enums\\assignablevalues',
       ),
       3 => 
       array (
@@ -2726,15 +2759,17 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
     ),
     '/var/www/html/app/Domain/Registry/Imports/ImportRowValidator.php' => 
     array (
-      0 => '9d396786d1ddc150f07d8a959b6e2340fe49b9dbe397f289593986f61fdf08ed',
+      0 => 'b57db7d617924f3d2e1a9208d3c4e53fbc3d15b70e43296f4b022dc715eb3703',
       1 => 
       array (
         0 => 'app\\domain\\registry\\imports\\importrowvalidator',
       ),
       2 => 
       array (
-        0 => 'app\\domain\\registry\\imports\\validate',
-        1 => 'app\\domain\\registry\\imports\\normalise',
+        0 => 'app\\domain\\registry\\imports\\__construct',
+        1 => 'app\\domain\\registry\\imports\\fields',
+        2 => 'app\\domain\\registry\\imports\\validate',
+        3 => 'app\\domain\\registry\\imports\\normalise',
       ),
       3 => 
       array (
@@ -2742,7 +2777,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
     ),
     '/var/www/html/app/Domain/Registry/Imports/SpreadsheetReader.php' => 
     array (
-      0 => 'fcd2abdccef905df4648c583dc1187bcf5cff2fb9510ef7387dc600beeba5581',
+      0 => 'e1e84caf5f9ff88dd84766a9c658e7716149185a72a151fe2556635d4969bb3f',
       1 => 
       array (
         0 => 'app\\domain\\registry\\imports\\spreadsheetreader',
@@ -2750,8 +2785,9 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
       2 => 
       array (
         0 => 'app\\domain\\registry\\imports\\read',
-        1 => 'app\\domain\\registry\\imports\\canonicalheader',
-        2 => 'app\\domain\\registry\\imports\\stringify',
+        1 => 'app\\domain\\registry\\imports\\headerrowindex',
+        2 => 'app\\domain\\registry\\imports\\canonicalheader',
+        3 => 'app\\domain\\registry\\imports\\stringify',
       ),
       3 => 
       array (
@@ -2776,7 +2812,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
     ),
     '/var/www/html/app/Domain/Registry/Jobs/ParseImportBatch.php' => 
     array (
-      0 => '62156c677d92f573206d8d0f30c99dc5bb2a6ee38789e4ddded27648523f35aa',
+      0 => '5b28b1ce0f4ffc081ee913bbc1151aa09f751d2413cb044eb44c527ba454fb14',
       1 => 
       array (
         0 => 'app\\domain\\registry\\jobs\\parseimportbatch',
@@ -2796,7 +2832,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
     ),
     '/var/www/html/app/Domain/Registry/Models/Beneficiary.php' => 
     array (
-      0 => '9ced46225f6fd13a36e79d5d039efb55a6bb7cfcaffa41aab28e212aa66fe8e5',
+      0 => '6c3aedbbc7134b2f604526bb685fc3e16ddc6d3733e74a758a445e111d8661b6',
       1 => 
       array (
         0 => 'app\\domain\\registry\\models\\beneficiary',
@@ -2804,16 +2840,22 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
       2 => 
       array (
         0 => 'app\\domain\\registry\\models\\casts',
-        1 => 'app\\domain\\registry\\models\\auditmask',
-        2 => 'app\\domain\\registry\\models\\auditexcluded',
-        3 => 'app\\domain\\registry\\models\\booted',
-        4 => 'app\\domain\\registry\\models\\normalizedigits',
-        5 => 'app\\domain\\registry\\models\\blocknamedobfor',
-        6 => 'app\\domain\\registry\\models\\fullname',
-        7 => 'app\\domain\\registry\\models\\ownermda',
-        8 => 'app\\domain\\registry\\models\\householdmemberships',
-        9 => 'app\\domain\\registry\\models\\currentmembership',
-        10 => 'app\\domain\\registry\\models\\newfactory',
+        1 => 'app\\domain\\registry\\models\\isanonymized',
+        2 => 'app\\domain\\registry\\models\\auditmask',
+        3 => 'app\\domain\\registry\\models\\auditexcluded',
+        4 => 'app\\domain\\registry\\models\\booted',
+        5 => 'app\\domain\\registry\\models\\normalizedigits',
+        6 => 'app\\domain\\registry\\models\\blocknamedobfor',
+        7 => 'app\\domain\\registry\\models\\fullname',
+        8 => 'app\\domain\\registry\\models\\hassharingconsent',
+        9 => 'app\\domain\\registry\\models\\consents',
+        10 => 'app\\domain\\registry\\models\\ownermda',
+        11 => 'app\\domain\\registry\\models\\householdmemberships',
+        12 => 'app\\domain\\registry\\models\\benefits',
+        13 => 'app\\domain\\registry\\models\\enrollments',
+        14 => 'app\\domain\\registry\\models\\documents',
+        15 => 'app\\domain\\registry\\models\\currentmembership',
+        16 => 'app\\domain\\registry\\models\\newfactory',
       ),
       3 => 
       array (
@@ -2839,7 +2881,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
     ),
     '/var/www/html/app/Domain/Registry/Models/BeneficiaryServiceGrant.php' => 
     array (
-      0 => '608b14533256f27b69458646a4c02048c3b1ffeff446ae8ef72151671213fb20',
+      0 => '5e0e8e3e693686892213b1189f3619ee1049d8882618e12be9bdf67869cd4599',
       1 => 
       array (
         0 => 'app\\domain\\registry\\models\\beneficiaryservicegrant',
@@ -2850,6 +2892,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         1 => 'app\\domain\\registry\\models\\mdaownershipcolumn',
         2 => 'app\\domain\\registry\\models\\beneficiary',
         3 => 'app\\domain\\registry\\models\\mda',
+        4 => 'app\\domain\\registry\\models\\revokedby',
+        5 => 'app\\domain\\registry\\models\\isactive',
       ),
       3 => 
       array (
@@ -2857,7 +2901,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
     ),
     '/var/www/html/app/Domain/Registry/Models/Household.php' => 
     array (
-      0 => 'c0206c14eedb9c7e08b70f8d0a52ddc9cfd94cfd0d9990031e1c402a6920aeb0',
+      0 => '3f6730cb4af4d34fbb15f91959facf44cfba5bcc6a27a4b2ec7138f7171036f6',
       1 => 
       array (
         0 => 'app\\domain\\registry\\models\\household',
@@ -2897,19 +2941,28 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
     ),
     '/var/www/html/app/Domain/Registry/Models/ImportBatch.php' => 
     array (
-      0 => 'a40a9699c2bdf827b3f5d95716f9bfe525a86e52a584f455f07650a9c59b8a51',
+      0 => 'bdd797a5fc0346637d3fe0b60a4ba3d4a0ccffbc099707004fd61cbe9eb41fc4',
       1 => 
       array (
         0 => 'app\\domain\\registry\\models\\importbatch',
       ),
       2 => 
       array (
-        0 => 'app\\domain\\registry\\models\\casts',
-        1 => 'app\\domain\\registry\\models\\auditexcluded',
-        2 => 'app\\domain\\registry\\models\\ownermda',
-        3 => 'app\\domain\\registry\\models\\activity',
-        4 => 'app\\domain\\registry\\models\\uploadedby',
-        5 => 'app\\domain\\registry\\models\\rows',
+        0 => 'app\\domain\\registry\\models\\mappingisconfirmed',
+        1 => 'app\\domain\\registry\\models\\isprocessing',
+        2 => 'app\\domain\\registry\\models\\processingforseconds',
+        3 => 'app\\domain\\registry\\models\\processinglooksstalled',
+        4 => 'app\\domain\\registry\\models\\casts',
+        5 => 'app\\domain\\registry\\models\\auditexcluded',
+        6 => 'app\\domain\\registry\\models\\ownermda',
+        7 => 'app\\domain\\registry\\models\\activity',
+        8 => 'app\\domain\\registry\\models\\programme',
+        9 => 'app\\domain\\registry\\models\\effectiveprogrammeid',
+        10 => 'app\\domain\\registry\\models\\uploadedby',
+        11 => 'app\\domain\\registry\\models\\mappingconfirmedby',
+        12 => 'app\\domain\\registry\\models\\mappingtemplate',
+        13 => 'app\\domain\\registry\\models\\mappingprefilledfrom',
+        14 => 'app\\domain\\registry\\models\\rows',
       ),
       3 => 
       array (
@@ -2954,7 +3007,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
     ),
     '/var/www/html/app/Domain/Registry/Models/ServiceRequest.php' => 
     array (
-      0 => '68d0c757d35761a76552ff59fe51789d44b2eb69a2b17a4a933611303f480883',
+      0 => '7ab380f4fde55b45fcf807f127648cb0407fea6670c84afed3b37c9e421067b1',
       1 => 
       array (
         0 => 'app\\domain\\registry\\models\\servicerequest',
@@ -2966,6 +3019,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         2 => 'app\\domain\\registry\\models\\beneficiary',
         3 => 'app\\domain\\registry\\models\\frommda',
         4 => 'app\\domain\\registry\\models\\tomda',
+        5 => 'app\\domain\\registry\\models\\activity',
       ),
       3 => 
       array (
@@ -2990,23 +3044,24 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
     ),
     '/var/www/html/app/Domain/Registry/Policies/BeneficiaryPolicy.php' => 
     array (
-      0 => '05724e706f5bbb2fb9a397cd99990f83c5cfe362b8bc4d552a051c1d5e107ab2',
+      0 => '056dd1b25c01fef1715da7f7c3cce4bcf504f02f1b36d4a3190682eb7d3a2661',
       1 => 
       array (
         0 => 'app\\domain\\registry\\policies\\beneficiarypolicy',
       ),
       2 => 
       array (
-        0 => 'app\\domain\\registry\\policies\\owns',
-        1 => 'app\\domain\\registry\\policies\\viewany',
-        2 => 'app\\domain\\registry\\policies\\view',
-        3 => 'app\\domain\\registry\\policies\\hasservicegrant',
+        0 => 'app\\domain\\registry\\policies\\__construct',
+        1 => 'app\\domain\\registry\\policies\\owns',
+        2 => 'app\\domain\\registry\\policies\\viewany',
+        3 => 'app\\domain\\registry\\policies\\view',
         4 => 'app\\domain\\registry\\policies\\create',
         5 => 'app\\domain\\registry\\policies\\update',
         6 => 'app\\domain\\registry\\policies\\delete',
-        7 => 'app\\domain\\registry\\policies\\lookup',
-        8 => 'app\\domain\\registry\\policies\\requesttransfer',
-        9 => 'app\\domain\\registry\\policies\\decidetransfer',
+        7 => 'app\\domain\\registry\\policies\\viewgrants',
+        8 => 'app\\domain\\registry\\policies\\lookup',
+        9 => 'app\\domain\\registry\\policies\\requesttransfer',
+        10 => 'app\\domain\\registry\\policies\\decidetransfer',
       ),
       3 => 
       array (
@@ -3014,7 +3069,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
     ),
     '/var/www/html/app/Domain/Registry/Policies/HouseholdPolicy.php' => 
     array (
-      0 => '410dd832e66f56c44fde79f1961801987574f5c0efa16a3b9de67eed45b10071',
+      0 => '258fa7deb87fd39a6716b9a59ad7e4c02dfa3040d985c3c9d25f62e162333d5b',
       1 => 
       array (
         0 => 'app\\domain\\registry\\policies\\householdpolicy',
@@ -3024,9 +3079,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         0 => 'app\\domain\\registry\\policies\\owns',
         1 => 'app\\domain\\registry\\policies\\viewany',
         2 => 'app\\domain\\registry\\policies\\view',
-        3 => 'app\\domain\\registry\\policies\\create',
-        4 => 'app\\domain\\registry\\policies\\update',
-        5 => 'app\\domain\\registry\\policies\\delete',
+        3 => 'app\\domain\\registry\\policies\\update',
+        4 => 'app\\domain\\registry\\policies\\delete',
       ),
       3 => 
       array (
@@ -3034,7 +3088,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
     ),
     '/var/www/html/app/Domain/Registry/Policies/ImportBatchPolicy.php' => 
     array (
-      0 => 'decd4c37aec185115f989b7700ec37dfa6ba3c9083c9579191d7da8438b86e0f',
+      0 => '7aaabdcc31e1fb41c90de39f1c18470536ccb85d8c9c8dd26d2b4d94234efdb9',
       1 => 
       array (
         0 => 'app\\domain\\registry\\policies\\importbatchpolicy',
@@ -3046,6 +3100,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         2 => 'app\\domain\\registry\\policies\\view',
         3 => 'app\\domain\\registry\\policies\\create',
         4 => 'app\\domain\\registry\\policies\\commit',
+        5 => 'app\\domain\\registry\\policies\\map',
       ),
       3 => 
       array (
@@ -3053,7 +3108,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
     ),
     '/var/www/html/app/Domain/Registry/Policies/OwnerMdaPolicy.php' => 
     array (
-      0 => 'c46f38c984345bf6207d5a9c5d742f3c7e54993f7b6128daa1a8cb05e940433a',
+      0 => '857e369beb4325b0afa3ad80ada654cde2403a151e9f6ee8b89de440aa149d2b',
       1 => 
       array (
         0 => 'app\\domain\\registry\\policies\\ownermdapolicy',
@@ -3062,6 +3117,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
       array (
         0 => 'app\\domain\\registry\\policies\\view',
         1 => 'app\\domain\\registry\\policies\\decide',
+        2 => 'app\\domain\\registry\\policies\\revoke',
       ),
       3 => 
       array (
@@ -3069,7 +3125,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
     ),
     '/var/www/html/app/Domain/Registry/RegistryServiceProvider.php' => 
     array (
-      0 => 'a6093c4b7fcf6308933ce49e15a4047636c0c5dda3a5590c2597f57657da88ea',
+      0 => 'f73dcfd860e401c205fe9634efc13e086c0e43f370edc05670f69f1bc9111bbf',
       1 => 
       array (
         0 => 'app\\domain\\registry\\registryserviceprovider',
@@ -3086,7 +3142,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
     ),
     '/var/www/html/app/Domain/Registry/Services/BatchDuplicateScreener.php' => 
     array (
-      0 => 'ed23a96b20f70997f8a4541bd5ba077519843c5e745af50684c7bbd12f472e14',
+      0 => '1c22444020033f46adc2a1a3a3f473aea6a851c1df730e2fd0f30f2bf283cd4d',
       1 => 
       array (
         0 => 'app\\domain\\registry\\services\\batchduplicatescreener',
@@ -3106,7 +3162,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
     ),
     '/var/www/html/app/Domain/Registry/Services/BeneficiaryLookupService.php' => 
     array (
-      0 => 'dedb58080e2291681f1ecbe4f2a3af76fe40c49f11d7eb9311b01355bf08a80b',
+      0 => '34e3e4b6c33186b275b1e0625c6ae6d8fef193f3fb91fbcdb79cd3e8a3723587',
       1 => 
       array (
         0 => 'app\\domain\\registry\\services\\beneficiarylookupservice',
@@ -3138,7 +3194,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
     ),
     '/var/www/html/app/Domain/Registry/Services/CandidateGatherer.php' => 
     array (
-      0 => '632b8b5456fc44649577973373b5e46c005220dd95c0973d0c05e39f653af96c',
+      0 => 'f483dcb632fd8534b5e66c93f6cfeee9fc700a0f4d707ee3d776552e98767bca',
       1 => 
       array (
         0 => 'app\\domain\\registry\\services\\candidategatherer',
@@ -3155,7 +3211,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
     ),
     '/var/www/html/app/Domain/Registry/Services/DeterministicDuplicateFinder.php' => 
     array (
-      0 => '9655e23a08143ca53687fc5e0b187c6772504829a171661de8dff1b10ec2f79e',
+      0 => '61adea704b81372e4acd4e3ea03d2b0d2f7875eb4d1c051bf6af8fc7e1935792',
       1 => 
       array (
         0 => 'app\\domain\\registry\\services\\deterministicduplicatefinder',
@@ -3189,7 +3245,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
     ),
     '/var/www/html/app/Domain/Registry/Services/HouseholdIngestionService.php' => 
     array (
-      0 => '3d03b7f2989c95688c8c17571d6bd145622e5c4efb7d7c557ce770e4ee75e143',
+      0 => 'de9b2d0cb6eee54b3205c4dc8827c5d4a50d49c44aa53f19e0b41742580641bb',
       1 => 
       array (
         0 => 'app\\domain\\registry\\services\\householdingestionservice',
@@ -3197,9 +3253,10 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
       2 => 
       array (
         0 => 'app\\domain\\registry\\services\\__construct',
-        1 => 'app\\domain\\registry\\services\\attach',
-        2 => 'app\\domain\\registry\\services\\resolverole',
-        3 => 'app\\domain\\registry\\services\\ensuremembership',
+        1 => 'app\\domain\\registry\\services\\isheadflag',
+        2 => 'app\\domain\\registry\\services\\attach',
+        3 => 'app\\domain\\registry\\services\\resolverole',
+        4 => 'app\\domain\\registry\\services\\ensuremembership',
       ),
       3 => 
       array (
@@ -3278,7 +3335,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
     ),
     '/var/www/html/app/Domain/Registry/Services/ServiceRequestService.php' => 
     array (
-      0 => 'ae4bae881d05a717e3867e2e2efbaf798584153c7493ced43e11e759a4014390',
+      0 => 'a8ab5c85859ffc8c3249da65fc00b577969984bd7072d65fce3eb27e1f6c4cb5',
       1 => 
       array (
         0 => 'app\\domain\\registry\\services\\servicerequestservice',
@@ -3291,7 +3348,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         3 => 'app\\domain\\registry\\services\\decline',
         4 => 'app\\domain\\registry\\services\\hasactivegrant',
         5 => 'app\\domain\\registry\\services\\decide',
-        6 => 'app\\domain\\registry\\services\\opengrant',
+        6 => 'app\\domain\\registry\\services\\revokegrant',
+        7 => 'app\\domain\\registry\\services\\opengrant',
       ),
       3 => 
       array (
@@ -3299,7 +3357,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
     ),
     '/var/www/html/app/Domain/Registry/Support/BeneficiaryRules.php' => 
     array (
-      0 => 'e8b474377cefbfb1f1c2f1b854667e5cbdbf891eedf01a3498998eb8ad381254',
+      0 => '16d885cf6ea754a4516cf9ea000eb4d22a82e0697bde19484731e713f69da1a8',
       1 => 
       array (
         0 => 'app\\domain\\registry\\support\\beneficiaryrules',
@@ -3308,7 +3366,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
       array (
         0 => 'app\\domain\\registry\\support\\isidentityfield',
         1 => 'app\\domain\\registry\\support\\forregistration',
-        2 => 'app\\domain\\registry\\support\\messages',
+        2 => 'app\\domain\\registry\\support\\earliestdateofbirth',
+        3 => 'app\\domain\\registry\\support\\messages',
       ),
       3 => 
       array (
@@ -3475,7 +3534,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
     ),
     '/var/www/html/app/Domain/Reporting/Jobs/GenerateReport.php' => 
     array (
-      0 => 'fb96aed2b9204e84145cc68b574e231cbc500974290ead5739621efc39684957',
+      0 => 'ad1ad3c913162e2937a74ac6d506d8935346fc30b3143cd28f77ae28490c482c',
       1 => 
       array (
         0 => 'app\\domain\\reporting\\jobs\\generatereport',
@@ -3522,7 +3581,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
     ),
     '/var/www/html/app/Domain/Reporting/Models/ReportRun.php' => 
     array (
-      0 => '2793228d889e663871b3371890daa77fd4a781d5da63c9bd78a4d0573243aeae',
+      0 => '5386016caf18aaed4ecdfe5f378bba919406ab244ce83068f8f3399c014f5bda',
       1 => 
       array (
         0 => 'app\\domain\\reporting\\models\\reportrun',
@@ -3541,14 +3600,15 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
     ),
     '/var/www/html/app/Domain/Reporting/ReportingServiceProvider.php' => 
     array (
-      0 => '4984868596907509f65a7229d4b7abe7d46bff595cf0e48f93f59b93b5b9e7f3',
+      0 => '61d293a69a6bad39b60f0ef98abad91d4d05d47e81ebe5d2cacf9ca0db91bb0d',
       1 => 
       array (
         0 => 'app\\domain\\reporting\\reportingserviceprovider',
       ),
       2 => 
       array (
-        0 => 'app\\domain\\reporting\\boot',
+        0 => 'app\\domain\\reporting\\register',
+        1 => 'app\\domain\\reporting\\boot',
       ),
       3 => 
       array (
@@ -3603,7 +3663,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
     ),
     '/var/www/html/app/Domain/Reporting/Services/DashboardMetricsService.php' => 
     array (
-      0 => 'f503d4ee20dc6f968f9d2f0871e8a52d8d01560b93111fd17a537d06372edc54',
+      0 => 'b386e67cfdd226c396f19f1a674bd56a6ec7102f6dc28e63b9a4f105f94db98d',
       1 => 
       array (
         0 => 'app\\domain\\reporting\\services\\dashboardmetricsservice',
@@ -3612,16 +3672,48 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
       array (
         0 => 'app\\domain\\reporting\\services\\__construct',
         1 => 'app\\domain\\reporting\\services\\compute',
-        2 => 'app\\domain\\reporting\\services\\registry',
-        3 => 'app\\domain\\reporting\\services\\programmes',
-        4 => 'app\\domain\\reporting\\services\\duplicates',
-        5 => 'app\\domain\\reporting\\services\\benefits',
-        6 => 'app\\domain\\reporting\\services\\referrals',
-        7 => 'app\\domain\\reporting\\services\\grievances',
-        8 => 'app\\domain\\reporting\\services\\coverage',
-        9 => 'app\\domain\\reporting\\services\\beneficiarybase',
-        10 => 'app\\domain\\reporting\\services\\householdbase',
-        11 => 'app\\domain\\reporting\\services\\countby',
+        2 => 'app\\domain\\reporting\\services\\filteroptions',
+        3 => 'app\\domain\\reporting\\services\\registry',
+        4 => 'app\\domain\\reporting\\services\\programmes',
+        5 => 'app\\domain\\reporting\\services\\duplicates',
+        6 => 'app\\domain\\reporting\\services\\benefits',
+        7 => 'app\\domain\\reporting\\services\\referrals',
+        8 => 'app\\domain\\reporting\\services\\grievances',
+        9 => 'app\\domain\\reporting\\services\\coverage',
+        10 => 'app\\domain\\reporting\\services\\population',
+        11 => 'app\\domain\\reporting\\services\\demographics',
+        12 => 'app\\domain\\reporting\\services\\agebands',
+        13 => 'app\\domain\\reporting\\services\\householdsize',
+        14 => 'app\\domain\\reporting\\services\\programmeperformance',
+        15 => 'app\\domain\\reporting\\services\\registryquality',
+        16 => 'app\\domain\\reporting\\services\\matchessurfaced',
+        17 => 'app\\domain\\reporting\\services\\coordination',
+        18 => 'app\\domain\\reporting\\services\\jointprogrammes',
+        19 => 'app\\domain\\reporting\\services\\partnerfunding',
+        20 => 'app\\domain\\reporting\\services\\partnerreach',
+        21 => 'app\\domain\\reporting\\services\\partnerregistry',
+        22 => 'app\\domain\\reporting\\services\\cohorthouseholdsize',
+        23 => 'app\\domain\\reporting\\services\\partnerprogrammes',
+        24 => 'app\\domain\\reporting\\services\\programmestatuslight',
+        25 => 'app\\domain\\reporting\\services\\partneroutputindicators',
+        26 => 'app\\domain\\reporting\\services\\zerofilledseries',
+        27 => 'app\\domain\\reporting\\services\\partnercoordination',
+        28 => 'app\\domain\\reporting\\services\\programmeoverlap',
+        29 => 'app\\domain\\reporting\\services\\partnercontributions',
+        30 => 'app\\domain\\reporting\\services\\coveragebands',
+        31 => 'app\\domain\\reporting\\services\\trends',
+        32 => 'app\\domain\\reporting\\services\\deferredslots',
+        33 => 'app\\domain\\reporting\\services\\monthlabels',
+        34 => 'app\\domain\\reporting\\services\\monthcountseries',
+        35 => 'app\\domain\\reporting\\services\\programmegrowthseries',
+        36 => 'app\\domain\\reporting\\services\\programmeidsinscope',
+        37 => 'app\\domain\\reporting\\services\\beneficiarybase',
+        38 => 'app\\domain\\reporting\\services\\applybeneficiaryfilter',
+        39 => 'app\\domain\\reporting\\services\\applyactivityfilter',
+        40 => 'app\\domain\\reporting\\services\\applybenefitfilter',
+        41 => 'app\\domain\\reporting\\services\\applycoordinationfilter',
+        42 => 'app\\domain\\reporting\\services\\householdbase',
+        43 => 'app\\domain\\reporting\\services\\countby',
       ),
       3 => 
       array (
@@ -3629,7 +3721,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
     ),
     '/var/www/html/app/Domain/Reporting/Services/DashboardScopeResolver.php' => 
     array (
-      0 => '99a54a3ab2d3153997e51052a21bdb40dc69d8ddb55c1d55932c71388f674407',
+      0 => 'c4cbb84397a27f4e03d30da91c3375d1acc98302e92bf4b18d9dd09821e2e9bc',
       1 => 
       array (
         0 => 'app\\domain\\reporting\\services\\dashboardscoperesolver',
@@ -3644,7 +3736,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
     ),
     '/var/www/html/app/Domain/Reporting/Services/DashboardService.php' => 
     array (
-      0 => '4b59768434b511fddcfe7e220f08951de58627628b4672d1f619505d1e13d5c9',
+      0 => 'a33e8369e685d175f688c14240b42762088120613ae705ed2575388fe63b780c',
       1 => 
       array (
         0 => 'app\\domain\\reporting\\services\\dashboardservice',
@@ -3652,7 +3744,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
       2 => 
       array (
         0 => 'app\\domain\\reporting\\services\\__construct',
-        1 => 'app\\domain\\reporting\\services\\foruser',
+        1 => 'app\\domain\\reporting\\services\\refreshonce',
+        2 => 'app\\domain\\reporting\\services\\foruser',
       ),
       3 => 
       array (
@@ -3660,7 +3753,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
     ),
     '/var/www/html/app/Domain/Reporting/Services/DashboardSnapshotService.php' => 
     array (
-      0 => '716b2e27bdec0a372b59820091162ef722bf4d94e548b5597a9687340825cbb1',
+      0 => '867246651bffacdc36201b6d7516db4b194eb8f33977c2b818745593f0833d95',
       1 => 
       array (
         0 => 'app\\domain\\reporting\\services\\dashboardsnapshotservice',
@@ -3671,7 +3764,9 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         1 => 'app\\domain\\reporting\\services\\refreshall',
         2 => 'app\\domain\\reporting\\services\\refreshfor',
         3 => 'app\\domain\\reporting\\services\\read',
-        4 => 'app\\domain\\reporting\\services\\partnerusers',
+        4 => 'app\\domain\\reporting\\services\\readatanyage',
+        5 => 'app\\domain\\reporting\\services\\isfresh',
+        6 => 'app\\domain\\reporting\\services\\partnerusers',
       ),
       3 => 
       array (
@@ -3679,7 +3774,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
     ),
     '/var/www/html/app/Domain/Reporting/Services/ReportService.php' => 
     array (
-      0 => 'bbe6f948c465a4ca4bb66fe7fe99050b6d7033caee9c32466ff5c90892e78a14',
+      0 => '717022a7d792050f0ae8695fe54bdb998a4901af2a2e33cc98e42e2df9aa0848',
       1 => 
       array (
         0 => 'app\\domain\\reporting\\services\\reportservice',
@@ -3688,10 +3783,12 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
       array (
         0 => 'app\\domain\\reporting\\services\\__construct',
         1 => 'app\\domain\\reporting\\services\\request',
-        2 => 'app\\domain\\reporting\\services\\requestadhoc',
-        3 => 'app\\domain\\reporting\\services\\runfromschedule',
-        4 => 'app\\domain\\reporting\\services\\schedulereportattributes',
-        5 => 'app\\domain\\reporting\\services\\createrun',
+        2 => 'app\\domain\\reporting\\services\\queuebeneficiaryexport',
+        3 => 'app\\domain\\reporting\\services\\requestadhoc',
+        4 => 'app\\domain\\reporting\\services\\queuesegmentexport',
+        5 => 'app\\domain\\reporting\\services\\runfromschedule',
+        6 => 'app\\domain\\reporting\\services\\schedulereportattributes',
+        7 => 'app\\domain\\reporting\\services\\createrun',
       ),
       3 => 
       array (
@@ -3699,7 +3796,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
     ),
     '/var/www/html/app/Domain/Reporting/Support/DashboardScope.php' => 
     array (
-      0 => '28013976808af5b5a4905b12cb7e57030a19ab3c2e341fdbef2b92e0c111904d',
+      0 => 'b52c0b828d2c06e49788a53c42a88c93b03787ff3b7ab3e810ece8ff0d01d914',
       1 => 
       array (
         0 => 'app\\domain\\reporting\\support\\dashboardscope',
@@ -3712,10 +3809,12 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         3 => 'app\\domain\\reporting\\support\\partner',
         4 => 'app\\domain\\reporting\\support\\rehydrate',
         5 => 'app\\domain\\reporting\\support\\isstatewide',
-        6 => 'app\\domain\\reporting\\support\\ispartner',
-        7 => 'app\\domain\\reporting\\support\\includescoordinationmetrics',
-        8 => 'app\\domain\\reporting\\support\\covers',
-        9 => 'app\\domain\\reporting\\support\\key',
+        6 => 'app\\domain\\reporting\\support\\tier',
+        7 => 'app\\domain\\reporting\\support\\ispartner',
+        8 => 'app\\domain\\reporting\\support\\includescoordinationmetrics',
+        9 => 'app\\domain\\reporting\\support\\includesgovernancedata',
+        10 => 'app\\domain\\reporting\\support\\covers',
+        11 => 'app\\domain\\reporting\\support\\key',
       ),
       3 => 
       array (
@@ -3723,7 +3822,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
     ),
     '/var/www/html/app/Http/Controllers/Api/V1/Access/AccessController.php' => 
     array (
-      0 => '50e08fd003e95002e51e920225053678139ff7ff176e81700ecf1cc5d9165613',
+      0 => '8f493204741d0ef812168b4091fc2f40107f47bdf8512312f97a2f0418c750e5',
       1 => 
       array (
         0 => 'app\\http\\controllers\\api\\v1\\access\\accesscontroller',
@@ -3733,6 +3832,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         0 => 'app\\http\\controllers\\api\\v1\\access\\permissions',
         1 => 'app\\http\\controllers\\api\\v1\\access\\roles',
         2 => 'app\\http\\controllers\\api\\v1\\access\\matrix',
+        3 => 'app\\http\\controllers\\api\\v1\\access\\updatepermissions',
       ),
       3 => 
       array (
@@ -3740,7 +3840,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
     ),
     '/var/www/html/app/Http/Controllers/Api/V1/Access/MdaAccessGrantController.php' => 
     array (
-      0 => 'f9c76533b24c0d12a84f8ce3bdb1a696b4d9357acfe4f888621b2b86bf2ab766',
+      0 => 'e80c8266a350c48a4c52a6653aa06f20370c8feca1157968fdded040661f633e',
       1 => 
       array (
         0 => 'app\\http\\controllers\\api\\v1\\access\\mdaaccessgrantcontroller',
@@ -3824,7 +3924,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
     ),
     '/var/www/html/app/Http/Controllers/Api/V1/Benefit/BenefitController.php' => 
     array (
-      0 => 'c544b46befd919bb65b00612761aea798505d1a7e040e41638f8a5da3197f38d',
+      0 => '683539f6b0ab2afdb39f5180848da23f8a668c317e811d963f7cd6dcc04c8d31',
       1 => 
       array (
         0 => 'app\\http\\controllers\\api\\v1\\benefit\\benefitcontroller',
@@ -3939,7 +4039,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
     ),
     '/var/www/html/app/Http/Controllers/Api/V1/HealthController.php' => 
     array (
-      0 => '26d690b2b0b2ae7d192487f87e9c6bda8ffe434a6aac9ada2ebf73cfa171000b',
+      0 => '1aedac156f565ee883e7c7aebca9411a3fc0c2bff93648fa4d9d7b472afd03d1',
       1 => 
       array (
         0 => 'app\\http\\controllers\\api\\v1\\healthcontroller',
@@ -3947,7 +4047,10 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
       2 => 
       array (
         0 => 'app\\http\\controllers\\api\\v1\\show',
-        1 => 'app\\http\\controllers\\api\\v1\\checkdatabase',
+        1 => 'app\\http\\controllers\\api\\v1\\metrics',
+        2 => 'app\\http\\controllers\\api\\v1\\checkdatabase',
+        3 => 'app\\http\\controllers\\api\\v1\\checkcache',
+        4 => 'app\\http\\controllers\\api\\v1\\isstateless',
       ),
       3 => 
       array (
@@ -4015,19 +4118,20 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
     ),
     '/var/www/html/app/Http/Controllers/Api/V1/Programme/ActivityController.php' => 
     array (
-      0 => 'ce6dca3cb0429fbab50ff51707a055b7a4befa396c3ff0263e1e417759e332dc',
+      0 => '75e7f8a98b4413ff74107a5160af2614f03379390a5e5800a7c28df932ca83e9',
       1 => 
       array (
         0 => 'app\\http\\controllers\\api\\v1\\programme\\activitycontroller',
       ),
       2 => 
       array (
-        0 => 'app\\http\\controllers\\api\\v1\\programme\\index',
-        1 => 'app\\http\\controllers\\api\\v1\\programme\\store',
-        2 => 'app\\http\\controllers\\api\\v1\\programme\\show',
-        3 => 'app\\http\\controllers\\api\\v1\\programme\\update',
-        4 => 'app\\http\\controllers\\api\\v1\\programme\\budget',
-        5 => 'app\\http\\controllers\\api\\v1\\programme\\archive',
+        0 => 'app\\http\\controllers\\api\\v1\\programme\\__construct',
+        1 => 'app\\http\\controllers\\api\\v1\\programme\\index',
+        2 => 'app\\http\\controllers\\api\\v1\\programme\\store',
+        3 => 'app\\http\\controllers\\api\\v1\\programme\\show',
+        4 => 'app\\http\\controllers\\api\\v1\\programme\\update',
+        5 => 'app\\http\\controllers\\api\\v1\\programme\\budget',
+        6 => 'app\\http\\controllers\\api\\v1\\programme\\archive',
       ),
       3 => 
       array (
@@ -4057,7 +4161,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
     ),
     '/var/www/html/app/Http/Controllers/Api/V1/Programme/ProgrammeController.php' => 
     array (
-      0 => '7b25702b7c1c4ef724b7635e912114d299dd40337a9de520d3e8fb40688c0098',
+      0 => '695ee813ebca19d0f8e6afe71e8948388ffe557959bec774df9fdd0b374eaddc',
       1 => 
       array (
         0 => 'app\\http\\controllers\\api\\v1\\programme\\programmecontroller',
@@ -4066,10 +4170,11 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
       array (
         0 => 'app\\http\\controllers\\api\\v1\\programme\\index',
         1 => 'app\\http\\controllers\\api\\v1\\programme\\store',
-        2 => 'app\\http\\controllers\\api\\v1\\programme\\show',
-        3 => 'app\\http\\controllers\\api\\v1\\programme\\update',
-        4 => 'app\\http\\controllers\\api\\v1\\programme\\budget',
-        5 => 'app\\http\\controllers\\api\\v1\\programme\\archive',
+        2 => 'app\\http\\controllers\\api\\v1\\programme\\usagecounts',
+        3 => 'app\\http\\controllers\\api\\v1\\programme\\show',
+        4 => 'app\\http\\controllers\\api\\v1\\programme\\update',
+        5 => 'app\\http\\controllers\\api\\v1\\programme\\budget',
+        6 => 'app\\http\\controllers\\api\\v1\\programme\\archive',
       ),
       3 => 
       array (
@@ -4121,7 +4226,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
     ),
     '/var/www/html/app/Http/Controllers/Api/V1/Registry/BeneficiaryController.php' => 
     array (
-      0 => '62cd49791682ee7f6cd8a0647bdb39a80e0be2d87c1c860d61945f7e5d25dff9',
+      0 => 'ea9ac188761cffb2b92d3c456037c1011ecd19064ea9f45d8d201471c82f371f',
       1 => 
       array (
         0 => 'app\\http\\controllers\\api\\v1\\registry\\beneficiarycontroller',
@@ -4129,11 +4234,15 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
       2 => 
       array (
         0 => 'app\\http\\controllers\\api\\v1\\registry\\index',
-        1 => 'app\\http\\controllers\\api\\v1\\registry\\show',
-        2 => 'app\\http\\controllers\\api\\v1\\registry\\update',
-        3 => 'app\\http\\controllers\\api\\v1\\registry\\destroy',
-        4 => 'app\\http\\controllers\\api\\v1\\registry\\lookup',
-        5 => 'app\\http\\controllers\\api\\v1\\registry\\search',
+        1 => 'app\\http\\controllers\\api\\v1\\registry\\export',
+        2 => 'app\\http\\controllers\\api\\v1\\registry\\exportauditmeta',
+        3 => 'app\\http\\controllers\\api\\v1\\registry\\show',
+        4 => 'app\\http\\controllers\\api\\v1\\registry\\consent',
+        5 => 'app\\http\\controllers\\api\\v1\\registry\\accessrequest',
+        6 => 'app\\http\\controllers\\api\\v1\\registry\\update',
+        7 => 'app\\http\\controllers\\api\\v1\\registry\\destroy',
+        8 => 'app\\http\\controllers\\api\\v1\\registry\\lookup',
+        9 => 'app\\http\\controllers\\api\\v1\\registry\\search',
       ),
       3 => 
       array (
@@ -4229,21 +4338,22 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
     ),
     '/var/www/html/app/Http/Controllers/Api/V1/Registry/ImportBatchController.php' => 
     array (
-      0 => 'ebb7358182fe121666e4733ee227d0edeea60ba99e2876cc33bf2a97fd81a0ca',
+      0 => 'c82526efce9cad59c23b42f0c849d847cdcb26762dd4a6cd10ffe324e9511a6c',
       1 => 
       array (
         0 => 'app\\http\\controllers\\api\\v1\\registry\\importbatchcontroller',
       ),
       2 => 
       array (
-        0 => 'app\\http\\controllers\\api\\v1\\registry\\index',
-        1 => 'app\\http\\controllers\\api\\v1\\registry\\store',
-        2 => 'app\\http\\controllers\\api\\v1\\registry\\show',
-        3 => 'app\\http\\controllers\\api\\v1\\registry\\attachmatchreveals',
-        4 => 'app\\http\\controllers\\api\\v1\\registry\\registryreveal',
-        5 => 'app\\http\\controllers\\api\\v1\\registry\\batchreveal',
-        6 => 'app\\http\\controllers\\api\\v1\\registry\\resolverow',
-        7 => 'app\\http\\controllers\\api\\v1\\registry\\confirm',
+        0 => 'app\\http\\controllers\\api\\v1\\registry\\__construct',
+        1 => 'app\\http\\controllers\\api\\v1\\registry\\index',
+        2 => 'app\\http\\controllers\\api\\v1\\registry\\store',
+        3 => 'app\\http\\controllers\\api\\v1\\registry\\mapping',
+        4 => 'app\\http\\controllers\\api\\v1\\registry\\confirmmapping',
+        5 => 'app\\http\\controllers\\api\\v1\\registry\\show',
+        6 => 'app\\http\\controllers\\api\\v1\\registry\\attachmatchreveals',
+        7 => 'app\\http\\controllers\\api\\v1\\registry\\resolverow',
+        8 => 'app\\http\\controllers\\api\\v1\\registry\\confirm',
       ),
       3 => 
       array (
@@ -4270,7 +4380,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
     ),
     '/var/www/html/app/Http/Controllers/Api/V1/Registry/ServiceRequestController.php' => 
     array (
-      0 => 'cb07ef0733d8820ef5275db933f218429b95b360dbd177597a158d5164b325bc',
+      0 => '3657acc2c592e932c7dd7b6ecfe8acea48a823d305cb26508d1cc88e62516afd',
       1 => 
       array (
         0 => 'app\\http\\controllers\\api\\v1\\registry\\servicerequestcontroller',
@@ -4284,6 +4394,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         4 => 'app\\http\\controllers\\api\\v1\\registry\\store',
         5 => 'app\\http\\controllers\\api\\v1\\registry\\accept',
         6 => 'app\\http\\controllers\\api\\v1\\registry\\decline',
+        7 => 'app\\http\\controllers\\api\\v1\\registry\\grants',
+        8 => 'app\\http\\controllers\\api\\v1\\registry\\revoke',
       ),
       3 => 
       array (
@@ -4291,7 +4403,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
     ),
     '/var/www/html/app/Http/Controllers/Api/V1/Reporting/DashboardController.php' => 
     array (
-      0 => '7cbf8fc9c6c8570d32dc82e27ea127d9c849adc2894818e5861e8b5cb914b917',
+      0 => '500bc00eca8471683795dc255728edc2fab7eb28c9937b9edd3ca4999acb002e',
       1 => 
       array (
         0 => 'app\\http\\controllers\\api\\v1\\reporting\\dashboardcontroller',
@@ -4437,7 +4549,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
     ),
     '/var/www/html/app/Http/Requests/Access/StoreMdaAccessGrantRequest.php' => 
     array (
-      0 => 'e6bc2252404ad6131f57dad8416b11eaef9111709831eee428f916a906014314',
+      0 => 'eec1438369fd454520faaa2a924442afbd59e08ea327eac7cb45dd7dcd7a139c',
       1 => 
       array (
         0 => 'app\\http\\requests\\access\\storemdaaccessgrantrequest',
@@ -4775,7 +4887,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
     ),
     '/var/www/html/app/Http/Requests/Programme/StoreActivityRequest.php' => 
     array (
-      0 => 'ed673fe6d47aa5a4bc6bf159816c3adb839021b567f5fcc8ba34de071980a33d',
+      0 => 'c94735078fcbfcdf35767759909517b53be6ba3bd0b16efad0f80fbf9518314e',
       1 => 
       array (
         0 => 'app\\http\\requests\\programme\\storeactivityrequest',
@@ -4783,7 +4895,9 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
       2 => 
       array (
         0 => 'app\\http\\requests\\programme\\authorize',
-        1 => 'app\\http\\requests\\programme\\rules',
+        1 => 'app\\http\\requests\\programme\\messages',
+        2 => 'app\\http\\requests\\programme\\rules',
+        3 => 'app\\http\\requests\\programme\\withvalidator',
       ),
       3 => 
       array (
@@ -4824,7 +4938,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
     ),
     '/var/www/html/app/Http/Requests/Programme/UpdateActivityRequest.php' => 
     array (
-      0 => 'a682d1ccff8a56dc049fed691e580ea7cd46ebf1db7ecddf8d92d3d69b2c83b5',
+      0 => 'df6986f587d088da619a931710574cd592bc2987712684f7bd91e787f2d46e3f',
       1 => 
       array (
         0 => 'app\\http\\requests\\programme\\updateactivityrequest',
@@ -4832,7 +4946,9 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
       2 => 
       array (
         0 => 'app\\http\\requests\\programme\\authorize',
-        1 => 'app\\http\\requests\\programme\\rules',
+        1 => 'app\\http\\requests\\programme\\messages',
+        2 => 'app\\http\\requests\\programme\\withvalidator',
+        3 => 'app\\http\\requests\\programme\\rules',
       ),
       3 => 
       array (
@@ -4952,7 +5068,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
     ),
     '/var/www/html/app/Http/Requests/Registry/ApiRegistrationRequest.php' => 
     array (
-      0 => 'ee2bfcf50e698747a2a225cd17ccf286326ef6b18a10bda85bed30249d171095',
+      0 => '18de712fc69e5401614e4dd441f0633f69090181ee76b659f9713873d399797c',
       1 => 
       array (
         0 => 'app\\http\\requests\\registry\\apiregistrationrequest',
@@ -5067,7 +5183,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
     ),
     '/var/www/html/app/Http/Requests/Registry/ResolveImportRowRequest.php' => 
     array (
-      0 => 'd1d5edf7340532d674e91b35401b0b7fdf91e77e7b4f1d09cd120c9ac843a1e6',
+      0 => 'f05dcc73f9515c2ee4e3f35215eb25121fba714aee913a94fb1a4e9d6b6fd81a',
       1 => 
       array (
         0 => 'app\\http\\requests\\registry\\resolveimportrowrequest',
@@ -5180,7 +5296,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
     ),
     '/var/www/html/app/Http/Requests/Registry/UploadImportRequest.php' => 
     array (
-      0 => 'c95e59dc9e89819ffdcee0e177d04b687a443732c8116871ddedf894055a4a81',
+      0 => 'b1b6a27859b1def5ed9e62eb4c8e1c9ba991c47bc0b99169f0d6f75be3033ba9',
       1 => 
       array (
         0 => 'app\\http\\requests\\registry\\uploadimportrequest',
@@ -5189,7 +5305,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
       array (
         0 => 'app\\http\\requests\\registry\\authorize',
         1 => 'app\\http\\requests\\registry\\rules',
-        2 => 'app\\http\\requests\\registry\\usableactivityrule',
+        2 => 'app\\http\\requests\\registry\\withvalidator',
+        3 => 'app\\http\\requests\\registry\\usableactivityrule',
       ),
       3 => 
       array (
@@ -5213,7 +5330,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
     ),
     '/var/www/html/app/Http/Resources/ActivityResource.php' => 
     array (
-      0 => '63791b5a6f39ba9ca28ea0258d29a4b6232e3226111bff25f730cd033d733d72',
+      0 => 'b1c79770ddaee571774b1064ffd830a97aa12f05fe0390220ab3dbf9515ff466',
       1 => 
       array (
         0 => 'app\\http\\resources\\activityresource',
@@ -5243,7 +5360,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
     ),
     '/var/www/html/app/Http/Resources/BeneficiaryResource.php' => 
     array (
-      0 => '0ec3c58a5fd56d855fcc69280c8af36167afa8afc4d37fa23a93bd8656d29a19',
+      0 => '179492f1da995ecc6c5eb9709e947c7af58d8e0577a56696dd4ebc560053e91b',
       1 => 
       array (
         0 => 'app\\http\\resources\\beneficiaryresource',
@@ -5409,7 +5526,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
     ),
     '/var/www/html/app/Http/Resources/ImportBatchResource.php' => 
     array (
-      0 => '515a3bdc9d405d44b83426dbffc201bca1c92f4494adbe646de936aed202334c',
+      0 => '9f64da30ceecc01da138f0ec9813f5791114559f9c4928ae01fd1b4d259231b7',
       1 => 
       array (
         0 => 'app\\http\\resources\\importbatchresource',
@@ -5417,6 +5534,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
       2 => 
       array (
         0 => 'app\\http\\resources\\toarray',
+        1 => 'app\\http\\resources\\matchingthresholds',
       ),
       3 => 
       array (
@@ -5424,7 +5542,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
     ),
     '/var/www/html/app/Http/Resources/ImportRowResource.php' => 
     array (
-      0 => '80a859a3e582d1662d3400383ba8ccc6a8e1d9ed18bb4e631da561903b5f3301',
+      0 => '83854137d7db58ea59c815e0f2de358f7cd1b69e1eaa81719ed46577f813ff0c',
       1 => 
       array (
         0 => 'app\\http\\resources\\importrowresource',
@@ -5515,7 +5633,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
     ),
     '/var/www/html/app/Http/Resources/ProgrammeResource.php' => 
     array (
-      0 => 'ae627dc82abf3182493704e29888f956676ee8236d93b206157a3e3f15d5f9ae',
+      0 => 'c1e3b85563641994c9660a8e41f285137fbd422c72a65cf82d7b6f1bf592afb4',
       1 => 
       array (
         0 => 'app\\http\\resources\\programmeresource',
@@ -5560,7 +5678,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
     ),
     '/var/www/html/app/Http/Resources/ServiceRequestResource.php' => 
     array (
-      0 => '9daef78aeced493221ae5482f8760aef95a9f6b79b76827c0383e6207318a36a',
+      0 => '1695938513bbbdc598ab98ff0a08b6c2ff7770a1757c0fc38de97893b0c919ba',
       1 => 
       array (
         0 => 'app\\http\\resources\\servicerequestresource',
@@ -5575,7 +5693,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
     ),
     '/var/www/html/app/Http/Resources/UserResource.php' => 
     array (
-      0 => '5da0c98084da01f9c663dd20d1aacfa3f724546d6904d627e50ac354b387a8ad',
+      0 => '5b388404228015cf8c0bbf4f1de22679319b6bd04796a4ac7318279a2c0dafed',
       1 => 
       array (
         0 => 'app\\http\\resources\\userresource',
@@ -5590,7 +5708,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
     ),
     '/var/www/html/app/Providers/AppServiceProvider.php' => 
     array (
-      0 => 'a8411944932725e334fba8e64bd41812d047e3242b9674ac8ebed95aa12dd9a5',
+      0 => '78ee441d7c7554df9a81550d5d1a95e7fc60cb86987d27b754d9f42425bd8d38',
       1 => 
       array (
         0 => 'app\\providers\\appserviceprovider',
@@ -5654,7 +5772,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
     ),
     '/var/www/html/app/Domain/Reporting/Reports/AdHoc/AdHocDatasetRegistry.php' => 
     array (
-      0 => 'da058c66e37aa027f0aa82588ee7bc10c9ae511ecb7a1db2172035949642e1e2',
+      0 => '01f16047ab5213febd7e77bf488f54d64d9fb004a647365ce9076afba6165d6c',
       1 => 
       array (
         0 => 'app\\domain\\reporting\\reports\\adhoc\\adhocdatasetregistry',
@@ -5663,9 +5781,11 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
       array (
         0 => 'app\\domain\\reporting\\reports\\adhoc\\get',
         1 => 'app\\domain\\reporting\\reports\\adhoc\\iscoordination',
-        2 => 'app\\domain\\reporting\\reports\\adhoc\\availableto',
-        3 => 'app\\domain\\reporting\\reports\\adhoc\\cataloguefor',
-        4 => 'app\\domain\\reporting\\reports\\adhoc\\optionlist',
+        2 => 'app\\domain\\reporting\\reports\\adhoc\\isadmin',
+        3 => 'app\\domain\\reporting\\reports\\adhoc\\ismdascopable',
+        4 => 'app\\domain\\reporting\\reports\\adhoc\\availableto',
+        5 => 'app\\domain\\reporting\\reports\\adhoc\\cataloguefor',
+        6 => 'app\\domain\\reporting\\reports\\adhoc\\optionlist',
       ),
       3 => 
       array (
@@ -5691,7 +5811,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
     ),
     '/var/www/html/app/Domain/Reporting/Reports/AdHoc/AdHocReportBuilder.php' => 
     array (
-      0 => '07c16c51476e04e2ffa13aa7d912409b335cebbd5e6a617d31132f3ec0889417',
+      0 => '653703e29bdb5c55b7df1805d396e27bcd7a41ccf723f8443cf2c3f54dc84e35',
       1 => 
       array (
         0 => 'app\\domain\\reporting\\reports\\adhoc\\adhocreportbuilder',
@@ -5703,9 +5823,10 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         2 => 'app\\domain\\reporting\\reports\\adhoc\\basequery',
         3 => 'app\\domain\\reporting\\reports\\adhoc\\applyscope',
         4 => 'app\\domain\\reporting\\reports\\adhoc\\applyfilters',
-        5 => 'app\\domain\\reporting\\reports\\adhoc\\namemaps',
-        6 => 'app\\domain\\reporting\\reports\\adhoc\\renderdimension',
-        7 => 'app\\domain\\reporting\\reports\\adhoc\\rendermeasure',
+        5 => 'app\\domain\\reporting\\reports\\adhoc\\applydeclaredarea',
+        6 => 'app\\domain\\reporting\\reports\\adhoc\\namemaps',
+        7 => 'app\\domain\\reporting\\reports\\adhoc\\renderdimension',
+        8 => 'app\\domain\\reporting\\reports\\adhoc\\rendermeasure',
       ),
       3 => 
       array (
@@ -5753,7 +5874,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
     ),
     '/var/www/html/app/Http/Requests/Reporting/AdHocReportRequest.php' => 
     array (
-      0 => 'b1986f9cff82410ceab76031bd4b0abb2588f3201e5e9b9e7d156d0d6635c216',
+      0 => '2942692e5b840df9b484cde020971af9aa50db9b887087dc002b037a9e8c84b6',
       1 => 
       array (
         0 => 'app\\http\\requests\\reporting\\adhocreportrequest',
@@ -5891,7 +6012,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
     ),
     '/var/www/html/app/Domain/Reporting/Models/ReportSchedule.php' => 
     array (
-      0 => '8a140ce5887a4b1bbb5a7ccddda9cc95d82a40551c908ad03dd26b30f86ce9a9',
+      0 => '1abf281c0f66d62a6730b556678742baaeae66027f14c30f829783d64c6cb581',
       1 => 
       array (
         0 => 'app\\domain\\reporting\\models\\reportschedule',
@@ -5910,7 +6031,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
     ),
     '/var/www/html/app/Domain/Reporting/Services/ReportScheduleService.php' => 
     array (
-      0 => '17ec135fab548b24b6fb6f35406291da7fce3a25c2f1ee872304aefcc38a2f99',
+      0 => 'd44d0c2c19d4f4760079d72dcb491a2237fa8832a92b9af7360df9ca205edc33',
       1 => 
       array (
         0 => 'app\\domain\\reporting\\services\\reportscheduleservice',
@@ -6033,7 +6154,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
     ),
     '/var/www/html/app/Domain/Reporting/Gis/GisCoverageService.php' => 
     array (
-      0 => '118c26a15f3dec075ff7eaaad799d9db83f33edb111a34a9ee9dc4b1af515633',
+      0 => 'b0adf7f994271b725c22b2f44cce21ef17477eac5da1bf6efe65fac8901718f5',
       1 => 
       array (
         0 => 'app\\domain\\reporting\\gis\\giscoverageservice',
@@ -6042,9 +6163,15 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
       array (
         0 => 'app\\domain\\reporting\\gis\\__construct',
         1 => 'app\\domain\\reporting\\gis\\coverage',
-        2 => 'app\\domain\\reporting\\gis\\beneficiarycounts',
-        3 => 'app\\domain\\reporting\\gis\\slug',
-        4 => 'app\\domain\\reporting\\gis\\title',
+        2 => 'app\\domain\\reporting\\gis\\partneractivityids',
+        3 => 'app\\domain\\reporting\\gis\\servedbeneficiaryids',
+        4 => 'app\\domain\\reporting\\gis\\fundingbyarea',
+        5 => 'app\\domain\\reporting\\gis\\areacodesfor',
+        6 => 'app\\domain\\reporting\\gis\\householdcounts',
+        7 => 'app\\domain\\reporting\\gis\\activitybreakdown',
+        8 => 'app\\domain\\reporting\\gis\\beneficiarycounts',
+        9 => 'app\\domain\\reporting\\gis\\slug',
+        10 => 'app\\domain\\reporting\\gis\\title',
       ),
       3 => 
       array (
@@ -6067,7 +6194,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
     ),
     '/var/www/html/app/Http/Controllers/Api/V1/Reporting/GisController.php' => 
     array (
-      0 => 'bca3af064ef26c991cd54602756546185687ccc539720c71db81b77be60fdf4f',
+      0 => 'd53528e42c7475e9d7ff9e97a47769a711a499ffc50a8c67b0c91eba9f8022f9',
       1 => 
       array (
         0 => 'app\\http\\controllers\\api\\v1\\reporting\\giscontroller',
@@ -6084,7 +6211,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
     ),
     '/var/www/html/app/Domain/Registry/Services/ImportCommitter.php' => 
     array (
-      0 => '5551956ea22676d4488efe4a3a083ecf5c686900fbe6f11a06b6d2bf53ffbcbe',
+      0 => '3e39be08043e0a3a02293dfdbc6c335bf877a6b28d5e5de3975e6301fc874bf2',
       1 => 
       array (
         0 => 'app\\domain\\registry\\services\\importcommitter',
@@ -6095,7 +6222,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         1 => 'app\\domain\\registry\\services\\commit',
         2 => 'app\\domain\\registry\\services\\effectiveresolution',
         3 => 'app\\domain\\registry\\services\\recordintervention',
-        4 => 'app\\domain\\registry\\services\\serve',
+        4 => 'app\\domain\\registry\\services\\resolveagainstexisting',
+        5 => 'app\\domain\\registry\\services\\householdof',
       ),
       3 => 
       array (
@@ -6103,15 +6231,16 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
     ),
     '/var/www/html/app/Http/Controllers/Api/V1/Registry/ActivityImportController.php' => 
     array (
-      0 => '324b7a055f6f663812fa2ea0c2e70e21e9d1d11662624003dcdc4b384e969ba4',
+      0 => '3025b8b942afa0e25bfe284ff9d954ebb710e505da85455c220a20787d4ab0a6',
       1 => 
       array (
         0 => 'app\\http\\controllers\\api\\v1\\registry\\activityimportcontroller',
       ),
       2 => 
       array (
-        0 => 'app\\http\\controllers\\api\\v1\\registry\\store',
-        1 => 'app\\http\\controllers\\api\\v1\\registry\\confirm',
+        0 => 'app\\http\\controllers\\api\\v1\\registry\\__construct',
+        1 => 'app\\http\\controllers\\api\\v1\\registry\\store',
+        2 => 'app\\http\\controllers\\api\\v1\\registry\\confirm',
       ),
       3 => 
       array (
@@ -6119,7 +6248,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
     ),
     '/var/www/html/app/Http/Requests/Registry/UploadActivityImportRequest.php' => 
     array (
-      0 => '481ba1a16ff601745a881bae5344adcb3f6196e6b10bb253a1f26d60cb1566cb',
+      0 => '1388f7464d63b4c61aeef97be9ae4c8be9a7cc50c155d0c8ef5db3d44b5394de',
       1 => 
       array (
         0 => 'app\\http\\requests\\registry\\uploadactivityimportrequest',
@@ -6127,8 +6256,2391 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
       2 => 
       array (
         0 => 'app\\http\\requests\\registry\\authorize',
+        1 => 'app\\http\\requests\\registry\\messages',
+        2 => 'app\\http\\requests\\registry\\withvalidator',
+        3 => 'app\\http\\requests\\registry\\rules',
+        4 => 'app\\http\\requests\\registry\\activitydraft',
+      ),
+      3 => 
+      array (
+      ),
+    ),
+    '/var/www/html/app/Console/Commands/BackupDrill.php' => 
+    array (
+      0 => 'e92d8de7595920e347eaf3ea659738c3f36c1607e256762e6f5f2733ae8d7be6',
+      1 => 
+      array (
+        0 => 'app\\console\\commands\\backupdrill',
+      ),
+      2 => 
+      array (
+        0 => 'app\\console\\commands\\handle',
+      ),
+      3 => 
+      array (
+      ),
+    ),
+    '/var/www/html/app/Console/Commands/CreateAdminUser.php' => 
+    array (
+      0 => '973437edea2fe1281c81e72cd85742802984728036d78931c3ff0398f46cb39b',
+      1 => 
+      array (
+        0 => 'app\\console\\commands\\createadminuser',
+      ),
+      2 => 
+      array (
+        0 => 'app\\console\\commands\\handle',
+      ),
+      3 => 
+      array (
+      ),
+    ),
+    '/var/www/html/app/Console/Commands/EnforceDataRetention.php' => 
+    array (
+      0 => '589c61acc4d734fecc0c09bc5d13b23095fe97c60bf22a6c4bc5a23f64e76260',
+      1 => 
+      array (
+        0 => 'app\\console\\commands\\enforcedataretention',
+      ),
+      2 => 
+      array (
+        0 => 'app\\console\\commands\\handle',
+      ),
+      3 => 
+      array (
+      ),
+    ),
+    '/var/www/html/app/Console/Commands/GenerateBackupKey.php' => 
+    array (
+      0 => 'aa399f663b150942607669f7853cb44b43a003c045a6a3d364eecaf3d8b4c2fc',
+      1 => 
+      array (
+        0 => 'app\\console\\commands\\generatebackupkey',
+      ),
+      2 => 
+      array (
+        0 => 'app\\console\\commands\\handle',
+      ),
+      3 => 
+      array (
+      ),
+    ),
+    '/var/www/html/app/Console/Commands/PerfBenchmark.php' => 
+    array (
+      0 => 'de7071b99c64818da1d9a6c084cc941d307c13dece2f9d6569e9375a9a6ab709',
+      1 => 
+      array (
+        0 => 'app\\console\\commands\\perfbenchmark',
+      ),
+      2 => 
+      array (
+        0 => 'app\\console\\commands\\handle',
+        1 => 'app\\console\\commands\\measure',
+        2 => 'app\\console\\commands\\seed',
+      ),
+      3 => 
+      array (
+      ),
+    ),
+    '/var/www/html/app/Console/Commands/RestoreBackup.php' => 
+    array (
+      0 => '07622f719b010123cc65274276cabf5cb5f8eed266ed9490d75ae50a6991be96',
+      1 => 
+      array (
+        0 => 'app\\console\\commands\\restorebackup',
+      ),
+      2 => 
+      array (
+        0 => 'app\\console\\commands\\handle',
+      ),
+      3 => 
+      array (
+      ),
+    ),
+    '/var/www/html/app/Console/Commands/RunBackup.php' => 
+    array (
+      0 => '261ab980b2a37c5fff895b0cc4c6bf6ade0491ff4a9c5399726e12b358bd1f0d',
+      1 => 
+      array (
+        0 => 'app\\console\\commands\\runbackup',
+      ),
+      2 => 
+      array (
+        0 => 'app\\console\\commands\\handle',
+      ),
+      3 => 
+      array (
+      ),
+    ),
+    '/var/www/html/app/Console/Commands/VerifyAuditChain.php' => 
+    array (
+      0 => '7c9fd94ad571b976b1e0365316f5772b8e0e0f2dc7aae5ef92b3900524efe32a',
+      1 => 
+      array (
+        0 => 'app\\console\\commands\\verifyauditchain',
+      ),
+      2 => 
+      array (
+        0 => 'app\\console\\commands\\handle',
+      ),
+      3 => 
+      array (
+      ),
+    ),
+    '/var/www/html/app/Domain/Access/Services/LoginActivityService.php' => 
+    array (
+      0 => 'a2c6efe0ddbe86f108e79bc549a5702b284c73502bba70b1a9a98537284536a5',
+      1 => 
+      array (
+        0 => 'app\\domain\\access\\services\\loginactivityservice',
+      ),
+      2 => 
+      array (
+        0 => 'app\\domain\\access\\services\\recent',
+        1 => 'app\\domain\\access\\services\\outcome',
+      ),
+      3 => 
+      array (
+      ),
+    ),
+    '/var/www/html/app/Domain/Access/Services/RolePermissionService.php' => 
+    array (
+      0 => 'cbcaa351d397a644c052d6c50a92d45fdaf664b255a2aec88d6af64a7283e8d7',
+      1 => 
+      array (
+        0 => 'app\\domain\\access\\services\\rolepermissionservice',
+      ),
+      2 => 
+      array (
+        0 => 'app\\domain\\access\\services\\__construct',
+        1 => 'app\\domain\\access\\services\\iseditable',
+        2 => 'app\\domain\\access\\services\\sync',
+      ),
+      3 => 
+      array (
+      ),
+    ),
+    '/var/www/html/app/Domain/Audit/Services/AuditQueryService.php' => 
+    array (
+      0 => '0d298634dab32a1067f64eeb593fb019ea086de1a7215ad709c6d4dab5765c24',
+      1 => 
+      array (
+        0 => 'app\\domain\\audit\\services\\auditqueryservice',
+      ),
+      2 => 
+      array (
+        0 => 'app\\domain\\audit\\services\\paginate',
+        1 => 'app\\domain\\audit\\services\\forexport',
+        2 => 'app\\domain\\audit\\services\\query',
+        3 => 'app\\domain\\audit\\services\\present',
+        4 => 'app\\domain\\audit\\services\\categoryfor',
+        5 => 'app\\domain\\audit\\services\\knownactions',
+        6 => 'app\\domain\\audit\\services\\changedfields',
+        7 => 'app\\domain\\audit\\services\\allcategorisedactions',
+      ),
+      3 => 
+      array (
+      ),
+    ),
+    '/var/www/html/app/Domain/Benefit/Exceptions/ProcessingConsentRequiredException.php' => 
+    array (
+      0 => 'e4683e16f60026872822bfaa965943b8439d80888c1ab6ebd3d5ae7313c93a5b',
+      1 => 
+      array (
+        0 => 'app\\domain\\benefit\\exceptions\\processingconsentrequiredexception',
+      ),
+      2 => 
+      array (
+      ),
+      3 => 
+      array (
+      ),
+    ),
+    '/var/www/html/app/Domain/Graduation/Enums/CriteriaLogic.php' => 
+    array (
+      0 => 'a3d77359c0ed8d2bd3de74d595f910c4ca442074252d3fa1217883d02b3fd89d',
+      1 => 
+      array (
+        0 => 'app\\domain\\graduation\\enums\\criterialogic',
+      ),
+      2 => 
+      array (
+      ),
+      3 => 
+      array (
+      ),
+    ),
+    '/var/www/html/app/Domain/Graduation/Enums/GraduationCriterionType.php' => 
+    array (
+      0 => '222aeb045d44f2ccdfdd6cc9700e4f1b601600d069db3d30090b1fb1f997ac6c',
+      1 => 
+      array (
+        0 => 'app\\domain\\graduation\\enums\\graduationcriteriontype',
+      ),
+      2 => 
+      array (
+        0 => 'app\\domain\\graduation\\enums\\label',
+        1 => 'app\\domain\\graduation\\enums\\isautomatic',
+      ),
+      3 => 
+      array (
+      ),
+    ),
+    '/var/www/html/app/Domain/Graduation/Events/BeneficiaryGraduated.php' => 
+    array (
+      0 => '78168c905434101657d03f15709175755398cd65585e9fb034319ca61971ff7b',
+      1 => 
+      array (
+        0 => 'app\\domain\\graduation\\events\\beneficiarygraduated',
+      ),
+      2 => 
+      array (
+        0 => 'app\\domain\\graduation\\events\\__construct',
+      ),
+      3 => 
+      array (
+      ),
+    ),
+    '/var/www/html/app/Domain/Graduation/GraduationServiceProvider.php' => 
+    array (
+      0 => 'f568d09aaf4f24018ad8cf6972925c6663ffabc4cc18cb35a78fd1c2d1faf6b4',
+      1 => 
+      array (
+        0 => 'app\\domain\\graduation\\graduationserviceprovider',
+      ),
+      2 => 
+      array (
+        0 => 'app\\domain\\graduation\\boot',
+      ),
+      3 => 
+      array (
+      ),
+    ),
+    '/var/www/html/app/Domain/Graduation/Models/GraduationCriteria.php' => 
+    array (
+      0 => '598a2e9a73e8dc0b3cd7987821ad9309678e6591b0ce8abfe327ec597b953370',
+      1 => 
+      array (
+        0 => 'app\\domain\\graduation\\models\\graduationcriteria',
+      ),
+      2 => 
+      array (
+        0 => 'app\\domain\\graduation\\models\\casts',
+        1 => 'app\\domain\\graduation\\models\\programme',
+        2 => 'app\\domain\\graduation\\models\\ownermda',
+        3 => 'app\\domain\\graduation\\models\\newfactory',
+      ),
+      3 => 
+      array (
+      ),
+    ),
+    '/var/www/html/app/Domain/Graduation/Models/GraduationEvent.php' => 
+    array (
+      0 => '237c6b282631e2a7b9770840974c060601b64bbd3a3c053a410b981bf0b1ca1b',
+      1 => 
+      array (
+        0 => 'app\\domain\\graduation\\models\\graduationevent',
+      ),
+      2 => 
+      array (
+        0 => 'app\\domain\\graduation\\models\\mdaownershipcolumn',
+        1 => 'app\\domain\\graduation\\models\\casts',
+        2 => 'app\\domain\\graduation\\models\\enrollment',
+        3 => 'app\\domain\\graduation\\models\\beneficiary',
+      ),
+      3 => 
+      array (
+      ),
+    ),
+    '/var/www/html/app/Domain/Graduation/Services/GraduationProgressService.php' => 
+    array (
+      0 => '66e957c93405a3bc6e74d30391034de88e9b2db0416cbe460d8e5070ffb13867',
+      1 => 
+      array (
+        0 => 'app\\domain\\graduation\\services\\graduationprogressservice',
+      ),
+      2 => 
+      array (
+        0 => 'app\\domain\\graduation\\services\\forenrollment',
+        1 => 'app\\domain\\graduation\\services\\activecriteria',
+        2 => 'app\\domain\\graduation\\services\\ledgertotals',
+      ),
+      3 => 
+      array (
+      ),
+    ),
+    '/var/www/html/app/Domain/Graduation/Services/GraduationService.php' => 
+    array (
+      0 => 'be2ad4cbb28ab4c30ba0a20ecbd69133c4cb1c6d3611b147f3845a0c78216452',
+      1 => 
+      array (
+        0 => 'app\\domain\\graduation\\services\\graduationservice',
+      ),
+      2 => 
+      array (
+        0 => 'app\\domain\\graduation\\services\\__construct',
+        1 => 'app\\domain\\graduation\\services\\graduate',
+        2 => 'app\\domain\\graduation\\services\\activateexclusively',
+      ),
+      3 => 
+      array (
+      ),
+    ),
+    '/var/www/html/app/Domain/Notification/Services/BroadcastService.php' => 
+    array (
+      0 => '26546422e5ce668fe7fb2d4db686bcd635ba2e83affeea12119a905b4f5eda96',
+      1 => 
+      array (
+        0 => 'app\\domain\\notification\\services\\broadcastservice',
+      ),
+      2 => 
+      array (
+        0 => 'app\\domain\\notification\\services\\__construct',
+        1 => 'app\\domain\\notification\\services\\send',
+        2 => 'app\\domain\\notification\\services\\audiencecount',
+      ),
+      3 => 
+      array (
+      ),
+    ),
+    '/var/www/html/app/Domain/Ops/Backup/BackupCipher.php' => 
+    array (
+      0 => '947b3edbc3468b1d753f1458ded982dc65afafcb8491471077454ef50da9388f',
+      1 => 
+      array (
+        0 => 'app\\domain\\ops\\backup\\backupcipher',
+      ),
+      2 => 
+      array (
+        0 => 'app\\domain\\ops\\backup\\__construct',
+        1 => 'app\\domain\\ops\\backup\\isconfigured',
+        2 => 'app\\domain\\ops\\backup\\encrypt',
+        3 => 'app\\domain\\ops\\backup\\decrypt',
+        4 => 'app\\domain\\ops\\backup\\enckey',
+        5 => 'app\\domain\\ops\\backup\\mackey',
+        6 => 'app\\domain\\ops\\backup\\requirekey',
+      ),
+      3 => 
+      array (
+      ),
+    ),
+    '/var/www/html/app/Domain/Ops/Backup/BackupResult.php' => 
+    array (
+      0 => '3f4d096ccdeaae3b6c2b213ea650c5e9a8cede34f5de9e75cc3375b23223e3bd',
+      1 => 
+      array (
+        0 => 'app\\domain\\ops\\backup\\backupresult',
+      ),
+      2 => 
+      array (
+        0 => 'app\\domain\\ops\\backup\\__construct',
+        1 => 'app\\domain\\ops\\backup\\toarray',
+      ),
+      3 => 
+      array (
+      ),
+    ),
+    '/var/www/html/app/Domain/Ops/Backup/BackupService.php' => 
+    array (
+      0 => 'e153ff9ed082e13f5c06f3a479a4d4d7921b186bf75a9adf68944977fa6603ca',
+      1 => 
+      array (
+        0 => 'app\\domain\\ops\\backup\\backupservice',
+      ),
+      2 => 
+      array (
+        0 => 'app\\domain\\ops\\backup\\__construct',
+        1 => 'app\\domain\\ops\\backup\\run',
+        2 => 'app\\domain\\ops\\backup\\restoredatabaseinto',
+        3 => 'app\\domain\\ops\\backup\\drill',
+        4 => 'app\\domain\\ops\\backup\\dumpdatabase',
+        5 => 'app\\domain\\ops\\backup\\pgdump',
+        6 => 'app\\domain\\ops\\backup\\restorepostgres',
+        7 => 'app\\domain\\ops\\backup\\adddocuments',
+        8 => 'app\\domain\\ops\\backup\\restoredocuments',
+        9 => 'app\\domain\\ops\\backup\\prune',
+        10 => 'app\\domain\\ops\\backup\\tablecounts',
+        11 => 'app\\domain\\ops\\backup\\tempdir',
+        12 => 'app\\domain\\ops\\backup\\cleanup',
+      ),
+      3 => 
+      array (
+      ),
+    ),
+    '/var/www/html/app/Domain/Ops/Backup/DrillResult.php' => 
+    array (
+      0 => 'f3bb7c2eaebdc62ecf8debbe10507c080daf23a7f04a55322ee68e686ef3ff07',
+      1 => 
+      array (
+        0 => 'app\\domain\\ops\\backup\\drillresult',
+      ),
+      2 => 
+      array (
+        0 => 'app\\domain\\ops\\backup\\__construct',
+        1 => 'app\\domain\\ops\\backup\\toarray',
+      ),
+      3 => 
+      array (
+      ),
+    ),
+    '/var/www/html/app/Domain/Ops/OpsServiceProvider.php' => 
+    array (
+      0 => 'dad6ef790be34d2b8e895023681790b57afd085cfd52ec3716603cfcdcccc67d',
+      1 => 
+      array (
+        0 => 'app\\domain\\ops\\opsserviceprovider',
+      ),
+      2 => 
+      array (
+        0 => 'app\\domain\\ops\\register',
+      ),
+      3 => 
+      array (
+      ),
+    ),
+    '/var/www/html/app/Domain/Privacy/Enums/RetentionAction.php' => 
+    array (
+      0 => '9729e7ed985fca1a366498a42bdd2657a61d586101cf58421e4c8f996d4a83ec',
+      1 => 
+      array (
+        0 => 'app\\domain\\privacy\\enums\\retentionaction',
+      ),
+      2 => 
+      array (
+        0 => 'app\\domain\\privacy\\enums\\label',
+      ),
+      3 => 
+      array (
+      ),
+    ),
+    '/var/www/html/app/Domain/Privacy/Jobs/EnforceDataRetention.php' => 
+    array (
+      0 => '6b4300ef156ceb24b7f3fd1dd3b203a35faa740940c393284f520c0f8bb8658c',
+      1 => 
+      array (
+        0 => 'app\\domain\\privacy\\jobs\\enforcedataretention',
+      ),
+      2 => 
+      array (
+        0 => 'app\\domain\\privacy\\jobs\\handle',
+      ),
+      3 => 
+      array (
+      ),
+    ),
+    '/var/www/html/app/Domain/Privacy/Retention/RetentionPolicy.php' => 
+    array (
+      0 => '1396ce70dedd90072faddb7bc2618ca7abe25744984ffb9fd88a617653eb6d96',
+      1 => 
+      array (
+        0 => 'app\\domain\\privacy\\retention\\retentionpolicy',
+      ),
+      2 => 
+      array (
+        0 => 'app\\domain\\privacy\\retention\\__construct',
+        1 => 'app\\domain\\privacy\\retention\\fromconfig',
+      ),
+      3 => 
+      array (
+      ),
+    ),
+    '/var/www/html/app/Domain/Privacy/Retention/RetentionPolicyRepository.php' => 
+    array (
+      0 => 'd1e571fdcca080a2643ebfd9e3c838bc4f7617314336c8e59cb5f35c848d5275',
+      1 => 
+      array (
+        0 => 'app\\domain\\privacy\\retention\\retentionpolicyrepository',
+      ),
+      2 => 
+      array (
+        0 => 'app\\domain\\privacy\\retention\\enabled',
+        1 => 'app\\domain\\privacy\\retention\\batchlimit',
+        2 => 'app\\domain\\privacy\\retention\\deletehard',
+        3 => 'app\\domain\\privacy\\retention\\enabledpolicies',
+      ),
+      3 => 
+      array (
+      ),
+    ),
+    '/var/www/html/app/Domain/Privacy/Retention/RetentionRunSummary.php' => 
+    array (
+      0 => 'cb4db1f8e61ea5526b3aabc2e9fbd749b02b175cd19d51a0c5822a9bea3ae086',
+      1 => 
+      array (
+        0 => 'app\\domain\\privacy\\retention\\retentionrunsummary',
+      ),
+      2 => 
+      array (
+        0 => 'app\\domain\\privacy\\retention\\__construct',
+        1 => 'app\\domain\\privacy\\retention\\total',
+        2 => 'app\\domain\\privacy\\retention\\toarray',
+      ),
+      3 => 
+      array (
+      ),
+    ),
+    '/var/www/html/app/Domain/Privacy/Services/AnonymizationService.php' => 
+    array (
+      0 => '736d5478783905f902bd5249e2ed728c53b93f9c421f674a9449141512111fba',
+      1 => 
+      array (
+        0 => 'app\\domain\\privacy\\services\\anonymizationservice',
+      ),
+      2 => 
+      array (
+        0 => 'app\\domain\\privacy\\services\\__construct',
+        1 => 'app\\domain\\privacy\\services\\anonymize',
+        2 => 'app\\domain\\privacy\\services\\purgedocuments',
+      ),
+      3 => 
+      array (
+      ),
+    ),
+    '/var/www/html/app/Domain/Privacy/Services/RetentionService.php' => 
+    array (
+      0 => 'b64171e383c32f7ecc2243457b8b7402cec766fb6e3349d00f1c40d357891477',
+      1 => 
+      array (
+        0 => 'app\\domain\\privacy\\services\\retentionservice',
+      ),
+      2 => 
+      array (
+        0 => 'app\\domain\\privacy\\services\\__construct',
+        1 => 'app\\domain\\privacy\\services\\run',
+        2 => 'app\\domain\\privacy\\services\\cohort',
+        3 => 'app\\domain\\privacy\\services\\apply',
+        4 => 'app\\domain\\privacy\\services\\applydelete',
+      ),
+      3 => 
+      array (
+      ),
+    ),
+    '/var/www/html/app/Domain/Privacy/Services/SubjectAccessAssembler.php' => 
+    array (
+      0 => '587aebae5552b77a87b60d3cbb0b741082056b6d7dac3d2b4b97dc8a5b134b1b',
+      1 => 
+      array (
+        0 => 'app\\domain\\privacy\\services\\subjectaccessassembler',
+      ),
+      2 => 
+      array (
+        0 => 'app\\domain\\privacy\\services\\assemble',
+        1 => 'app\\domain\\privacy\\services\\corerecord',
+        2 => 'app\\domain\\privacy\\services\\grants',
+      ),
+      3 => 
+      array (
+      ),
+    ),
+    '/var/www/html/app/Domain/Programme/Models/ActivityLocation.php' => 
+    array (
+      0 => 'f0fdaa2d48af15f86c9c2820e231e35e72b489734e9af9691c1621ca3512c6e1',
+      1 => 
+      array (
+        0 => 'app\\domain\\programme\\models\\activitylocation',
+      ),
+      2 => 
+      array (
+        0 => 'app\\domain\\programme\\models\\iswholelga',
+        1 => 'app\\domain\\programme\\models\\activity',
+        2 => 'app\\domain\\programme\\models\\lga',
+        3 => 'app\\domain\\programme\\models\\ward',
+      ),
+      3 => 
+      array (
+      ),
+    ),
+    '/var/www/html/app/Domain/Programme/Rules/IsFundingPartner.php' => 
+    array (
+      0 => 'a3280b94189f0c65b20529a593612958693a5773714d63ed3cf4fc29f56f690c',
+      1 => 
+      array (
+        0 => 'app\\domain\\programme\\rules\\isfundingpartner',
+      ),
+      2 => 
+      array (
+        0 => 'app\\domain\\programme\\rules\\validate',
+      ),
+      3 => 
+      array (
+      ),
+    ),
+    '/var/www/html/app/Domain/Programme/Services/ActivityLocationService.php' => 
+    array (
+      0 => '6eb143ddf3f96f1c08fd437bae6ccd71ba17bdd224e807cdb42a81083197a6b0',
+      1 => 
+      array (
+        0 => 'app\\domain\\programme\\services\\activitylocationservice',
+      ),
+      2 => 
+      array (
+        0 => 'app\\domain\\programme\\services\\sync',
+        1 => 'app\\domain\\programme\\services\\flatten',
+        2 => 'app\\domain\\programme\\services\\present',
+        3 => 'app\\domain\\programme\\services\\misplacedwards',
+        4 => 'app\\domain\\programme\\services\\duplicatelgas',
+        5 => 'app\\domain\\programme\\services\\lganames',
+      ),
+      3 => 
+      array (
+      ),
+    ),
+    '/var/www/html/app/Domain/Reference/Imports/AdministrativeDivisionLoader.php' => 
+    array (
+      0 => '26aa645e68617114439515b617cc473590d878c09242247d36b40583cae5080a',
+      1 => 
+      array (
+        0 => 'app\\domain\\reference\\imports\\administrativedivisionloader',
+      ),
+      2 => 
+      array (
+        0 => 'app\\domain\\reference\\imports\\__construct',
+        1 => 'app\\domain\\reference\\imports\\loadfromfile',
+        2 => 'app\\domain\\reference\\imports\\load',
+        3 => 'app\\domain\\reference\\imports\\collate',
+        4 => 'app\\domain\\reference\\imports\\assertcoversjigawa',
+        5 => 'app\\domain\\reference\\imports\\persist',
+        6 => 'app\\domain\\reference\\imports\\stalewards',
+        7 => 'app\\domain\\reference\\imports\\parsecsv',
+        8 => 'app\\domain\\reference\\imports\\parsejson',
+        9 => 'app\\domain\\reference\\imports\\stripbom',
+        10 => 'app\\domain\\reference\\imports\\slug',
+      ),
+      3 => 
+      array (
+      ),
+    ),
+    '/var/www/html/app/Domain/Reference/Imports/DivisionLoadResult.php' => 
+    array (
+      0 => 'ca71cb8d07db662d584f3ab45405fce17f5f356d80bd95ca3733776e6b3b9166',
+      1 => 
+      array (
+        0 => 'app\\domain\\reference\\imports\\divisionloadresult',
+      ),
+      2 => 
+      array (
+        0 => 'app\\domain\\reference\\imports\\__construct',
+        1 => 'app\\domain\\reference\\imports\\totalwards',
+        2 => 'app\\domain\\reference\\imports\\totallgas',
+      ),
+      3 => 
+      array (
+      ),
+    ),
+    '/var/www/html/app/Domain/Reference/Imports/LoadAdministrativeDivisions.php' => 
+    array (
+      0 => 'dfe96b814d906ce5fba62786eaac8f192ea87eaff18b3b1fb13c6ba63ca61280',
+      1 => 
+      array (
+        0 => 'app\\domain\\reference\\imports\\loadadministrativedivisions',
+      ),
+      2 => 
+      array (
+        0 => 'app\\domain\\reference\\imports\\handle',
+      ),
+      3 => 
+      array (
+      ),
+    ),
+    '/var/www/html/app/Domain/Reference/Imports/ReferenceDatasetException.php' => 
+    array (
+      0 => 'dc9c30addd1e297e80e5f8df1c067fcf24c6553a9ea86a9d63077a54b29a784f',
+      1 => 
+      array (
+        0 => 'app\\domain\\reference\\imports\\referencedatasetexception',
+      ),
+      2 => 
+      array (
+        0 => 'app\\domain\\reference\\imports\\filemissing',
+        1 => 'app\\domain\\reference\\imports\\unreadable',
+        2 => 'app\\domain\\reference\\imports\\empty',
+        3 => 'app\\domain\\reference\\imports\\unsupportedformat',
+        4 => 'app\\domain\\reference\\imports\\malformed',
+        5 => 'app\\domain\\reference\\imports\\missingcolumns',
+        6 => 'app\\domain\\reference\\imports\\unknownlgas',
+        7 => 'app\\domain\\reference\\imports\\incompletelgas',
+        8 => 'app\\domain\\reference\\imports\\conflictingward',
+      ),
+      3 => 
+      array (
+      ),
+    ),
+    '/var/www/html/app/Domain/Reference/Imports/SeedJigawaLgas.php' => 
+    array (
+      0 => 'b0677e08c2b7092621415ce2eacf08ac8525bcdb646990f417581c65d47e1a26',
+      1 => 
+      array (
+        0 => 'app\\domain\\reference\\imports\\seedjigawalgas',
+      ),
+      2 => 
+      array (
+        0 => 'app\\domain\\reference\\imports\\handle',
+      ),
+      3 => 
+      array (
+      ),
+    ),
+    '/var/www/html/app/Domain/Reference/Models/Lga.php' => 
+    array (
+      0 => 'ec11637781a3ca3f3a1336fa52b9fb191e77881289c157a0c3ced05e6f4ab5c6',
+      1 => 
+      array (
+        0 => 'app\\domain\\reference\\models\\lga',
+      ),
+      2 => 
+      array (
+        0 => 'app\\domain\\reference\\models\\casts',
+        1 => 'app\\domain\\reference\\models\\wards',
+        2 => 'app\\domain\\reference\\models\\newfactory',
+      ),
+      3 => 
+      array (
+      ),
+    ),
+    '/var/www/html/app/Domain/Reference/Models/Ward.php' => 
+    array (
+      0 => '3373c96b0a834e1e15ec581f3e892ee9b4e6c9d7ea33c4918e92f57f9ddf9a40',
+      1 => 
+      array (
+        0 => 'app\\domain\\reference\\models\\ward',
+      ),
+      2 => 
+      array (
+        0 => 'app\\domain\\reference\\models\\casts',
+        1 => 'app\\domain\\reference\\models\\lga',
+        2 => 'app\\domain\\reference\\models\\newfactory',
+      ),
+      3 => 
+      array (
+      ),
+    ),
+    '/var/www/html/app/Domain/Reference/ReferenceServiceProvider.php' => 
+    array (
+      0 => '3e7d962fd00de9622dcb44a4bf4b23d78a2b32707bec7ffd93156713d00078c0',
+      1 => 
+      array (
+        0 => 'app\\domain\\reference\\referenceserviceprovider',
+      ),
+      2 => 
+      array (
+        0 => 'app\\domain\\reference\\boot',
+      ),
+      3 => 
+      array (
+      ),
+    ),
+    '/var/www/html/app/Domain/Reference/Services/ReferenceDataCache.php' => 
+    array (
+      0 => 'b2920f29a2acf4c3973e6a4ac471d31b6cce33f80cbdeb2f76db9518f9a79aa0',
+      1 => 
+      array (
+        0 => 'app\\domain\\reference\\services\\referencedatacache',
+      ),
+      2 => 
+      array (
+        0 => 'app\\domain\\reference\\services\\lgas',
+        1 => 'app\\domain\\reference\\services\\wardsfor',
+        2 => 'app\\domain\\reference\\services\\wardkeysbylgacode',
+        3 => 'app\\domain\\reference\\services\\flush',
+        4 => 'app\\domain\\reference\\services\\version',
+        5 => 'app\\domain\\reference\\services\\key',
+      ),
+      3 => 
+      array (
+      ),
+    ),
+    '/var/www/html/app/Domain/Registry/Enums/ConsentStatus.php' => 
+    array (
+      0 => '6d099a811928044e146319e18cd845e6bc1cdc776c3c570bf77ae677d9e9b9f1',
+      1 => 
+      array (
+        0 => 'app\\domain\\registry\\enums\\consentstatus',
+      ),
+      2 => 
+      array (
+        0 => 'app\\domain\\registry\\enums\\label',
+      ),
+      3 => 
+      array (
+      ),
+    ),
+    '/var/www/html/app/Domain/Registry/Events/BeneficiaryAccessRevoked.php' => 
+    array (
+      0 => '24cbb0b58eec8da7e5b803317989f25b07cfbced0ed383d6d58e746b9f9fd286',
+      1 => 
+      array (
+        0 => 'app\\domain\\registry\\events\\beneficiaryaccessrevoked',
+      ),
+      2 => 
+      array (
+        0 => 'app\\domain\\registry\\events\\__construct',
+      ),
+      3 => 
+      array (
+      ),
+    ),
+    '/var/www/html/app/Domain/Registry/Events/ImportBatchCompleted.php' => 
+    array (
+      0 => '2e635fdea0d2029b22eea6114fd84f51fb64637044debf4e10aa7db58de4f3e2',
+      1 => 
+      array (
+        0 => 'app\\domain\\registry\\events\\importbatchcompleted',
+      ),
+      2 => 
+      array (
+        0 => 'app\\domain\\registry\\events\\__construct',
+      ),
+      3 => 
+      array (
+      ),
+    ),
+    '/var/www/html/app/Domain/Registry/Events/ImportDuplicatesSurfaced.php' => 
+    array (
+      0 => '362df1fccbda2789511c2d4313e14cdc7c13af6da0e34ac0c2e518d45fab30d4',
+      1 => 
+      array (
+        0 => 'app\\domain\\registry\\events\\importduplicatessurfaced',
+      ),
+      2 => 
+      array (
+        0 => 'app\\domain\\registry\\events\\__construct',
+        1 => 'app\\domain\\registry\\events\\total',
+      ),
+      3 => 
+      array (
+      ),
+    ),
+    '/var/www/html/app/Domain/Registry/Export/BeneficiaryListExport.php' => 
+    array (
+      0 => 'f5085a62440007f0ea5c484d34640592edd1a083fed6e71a3bad58dc6c17c4aa',
+      1 => 
+      array (
+        0 => 'app\\domain\\registry\\export\\beneficiarylistexport',
+      ),
+      2 => 
+      array (
+        0 => 'app\\domain\\registry\\export\\syncmax',
+        1 => 'app\\domain\\registry\\export\\filtersfromrequest',
+        2 => 'app\\domain\\registry\\export\\applyfilters',
+        3 => 'app\\domain\\registry\\export\\ordered',
+        4 => 'app\\domain\\registry\\export\\columns',
+        5 => 'app\\domain\\registry\\export\\toreportdata',
+        6 => 'app\\domain\\registry\\export\\fromrun',
+        7 => 'app\\domain\\registry\\export\\scopedquery',
+        8 => 'app\\domain\\registry\\export\\row',
+        9 => 'app\\domain\\registry\\export\\stringornull',
+      ),
+      3 => 
+      array (
+      ),
+    ),
+    '/var/www/html/app/Domain/Registry/Imports/ColumnMapper.php' => 
+    array (
+      0 => 'cfcb8274e7202a9b977c4d04e425b3ab4f5c297c3ca8b9576d835d577a3cd886',
+      1 => 
+      array (
+        0 => 'app\\domain\\registry\\imports\\columnmapper',
+      ),
+      2 => 
+      array (
+        0 => 'app\\domain\\registry\\imports\\__construct',
+        1 => 'app\\domain\\registry\\imports\\signature',
+        2 => 'app\\domain\\registry\\imports\\suggest',
+        3 => 'app\\domain\\registry\\imports\\exactheaderfor',
+        4 => 'app\\domain\\registry\\imports\\fuzzyheaderfor',
+        5 => 'app\\domain\\registry\\imports\\apply',
+        6 => 'app\\domain\\registry\\imports\\unconfirmedidentityfields',
+        7 => 'app\\domain\\registry\\imports\\unknownheaders',
+        8 => 'app\\domain\\registry\\imports\\canonicaliseheader',
+      ),
+      3 => 
+      array (
+      ),
+    ),
+    '/var/www/html/app/Domain/Registry/Models/BeneficiaryConsent.php' => 
+    array (
+      0 => '5993664f377bcb25e0a238f8a2b71ec6c67c0fc7c97cd752a3452611e241b4a5',
+      1 => 
+      array (
+        0 => 'app\\domain\\registry\\models\\beneficiaryconsent',
+      ),
+      2 => 
+      array (
+        0 => 'app\\domain\\registry\\models\\casts',
+        1 => 'app\\domain\\registry\\models\\beneficiary',
+      ),
+      3 => 
+      array (
+      ),
+    ),
+    '/var/www/html/app/Domain/Registry/Models/ImportMappingTemplate.php' => 
+    array (
+      0 => 'b66f4ba9d0d5230f3598a92ce268fa59431e8c7a2e57f9b0bf424e23ccd76567',
+      1 => 
+      array (
+        0 => 'app\\domain\\registry\\models\\importmappingtemplate',
+      ),
+      2 => 
+      array (
+        0 => 'app\\domain\\registry\\models\\casts',
+        1 => 'app\\domain\\registry\\models\\mdaownershipcolumn',
+      ),
+      3 => 
+      array (
+      ),
+    ),
+    '/var/www/html/app/Domain/Registry/Services/ConsentGate.php' => 
+    array (
+      0 => '38c32156444eb3986473fb22127c89499578aa09ebddc179fc969b2dbde54416',
+      1 => 
+      array (
+        0 => 'app\\domain\\registry\\services\\consentgate',
+      ),
+      2 => 
+      array (
+        0 => 'app\\domain\\registry\\services\\__construct',
+        1 => 'app\\domain\\registry\\services\\processingrequired',
+        2 => 'app\\domain\\registry\\services\\mayprocess',
+      ),
+      3 => 
+      array (
+      ),
+    ),
+    '/var/www/html/app/Domain/Registry/Services/ConsentService.php' => 
+    array (
+      0 => '041a688db7b3d725e7cfe6a92c483295d3c1b264680e107523b9226c0651872f',
+      1 => 
+      array (
+        0 => 'app\\domain\\registry\\services\\consentservice',
+      ),
+      2 => 
+      array (
+        0 => 'app\\domain\\registry\\services\\__construct',
+        1 => 'app\\domain\\registry\\services\\record',
+        2 => 'app\\domain\\registry\\services\\currentstatus',
+      ),
+      3 => 
+      array (
+      ),
+    ),
+    '/var/www/html/app/Domain/Registry/Services/ImportMappingService.php' => 
+    array (
+      0 => '1801b764a672fff529de94c6623f93a4c5cd3cac807a4a95be0dc41b4d252844',
+      1 => 
+      array (
+        0 => 'app\\domain\\registry\\services\\importmappingservice',
+      ),
+      2 => 
+      array (
+        0 => 'app\\domain\\registry\\services\\__construct',
+        1 => 'app\\domain\\registry\\services\\profile',
+        2 => 'app\\domain\\registry\\services\\proposal',
+        3 => 'app\\domain\\registry\\services\\samplerows',
+        4 => 'app\\domain\\registry\\services\\samples',
+        5 => 'app\\domain\\registry\\services\\normalizedpreview',
+        6 => 'app\\domain\\registry\\services\\confirm',
+        7 => 'app\\domain\\registry\\services\\savetemplate',
+        8 => 'app\\domain\\registry\\services\\prefillprovenance',
+        9 => 'app\\domain\\registry\\services\\lastconfirmedbatchfor',
+        10 => 'app\\domain\\registry\\services\\templatefor',
+        11 => 'app\\domain\\registry\\services\\identitymapsummary',
+      ),
+      3 => 
+      array (
+      ),
+    ),
+    '/var/www/html/app/Domain/Registry/Services/MatchRevealAssembler.php' => 
+    array (
+      0 => 'd9d81e21365fe0fdba9f6f88c5fb04569c37d65e8d6bc6f18f47c541bef3e201',
+      1 => 
+      array (
+        0 => 'app\\domain\\registry\\services\\matchrevealassembler',
+      ),
+      2 => 
+      array (
+        0 => 'app\\domain\\registry\\services\\attach',
+        1 => 'app\\domain\\registry\\services\\registryreveal',
+        2 => 'app\\domain\\registry\\services\\peerreveal',
+      ),
+      3 => 
+      array (
+      ),
+    ),
+    '/var/www/html/app/Domain/Registry/Support/CanonicalSchema.php' => 
+    array (
+      0 => '325490ebc9035b751f67e2b47ac77f27c88ab26de36aaa3c168b1fe4d7ab2add',
+      1 => 
+      array (
+        0 => 'app\\domain\\registry\\support\\canonicalschema',
+      ),
+      2 => 
+      array (
+        0 => 'app\\domain\\registry\\support\\fields',
+        1 => 'app\\domain\\registry\\support\\mappablefields',
+        2 => 'app\\domain\\registry\\support\\allfields',
+        3 => 'app\\domain\\registry\\support\\identityfields',
+        4 => 'app\\domain\\registry\\support\\nonidentityfields',
+        5 => 'app\\domain\\registry\\support\\requiredfields',
+        6 => 'app\\domain\\registry\\support\\isidentityfield',
+        7 => 'app\\domain\\registry\\support\\confirmationrequiredfields',
+        8 => 'app\\domain\\registry\\support\\segmentablefields',
+        9 => 'app\\domain\\registry\\support\\typeof',
+      ),
+      3 => 
+      array (
+      ),
+    ),
+    '/var/www/html/app/Domain/Registry/Support/DescribesConstraint.php' => 
+    array (
+      0 => '6f3712e2cc790eecb9c32536d2897c628f88b65e6c7c7e2a75520e3531d79dc7',
+      1 => 
+      array (
+        0 => 'app\\domain\\registry\\support\\describesconstraint',
+      ),
+      2 => 
+      array (
+        0 => 'app\\domain\\registry\\support\\constrainttoken',
+      ),
+      3 => 
+      array (
+      ),
+    ),
+    '/var/www/html/app/Domain/Registry/Support/IdentifierHasher.php' => 
+    array (
+      0 => '54f25d6e9df390e42d91670400ce353e67df88f7c358401fe48a7c6af6ec2cf4',
+      1 => 
+      array (
+        0 => 'app\\domain\\registry\\support\\identifierhasher',
+      ),
+      2 => 
+      array (
+        0 => 'app\\domain\\registry\\support\\hash',
+        1 => 'app\\domain\\registry\\support\\key',
+        2 => 'app\\domain\\registry\\support\\flush',
+      ),
+      3 => 
+      array (
+      ),
+    ),
+    '/var/www/html/app/Domain/Registry/Support/KnownWard.php' => 
+    array (
+      0 => 'fce6c99f8a9e93c55425faf286f4c5331e6cee5a5da91f857fddfe1640845cd0',
+      1 => 
+      array (
+        0 => 'app\\domain\\registry\\support\\knownward',
+      ),
+      2 => 
+      array (
+        0 => 'app\\domain\\registry\\support\\__construct',
+        1 => 'app\\domain\\registry\\support\\setdata',
+        2 => 'app\\domain\\registry\\support\\constrainttoken',
+        3 => 'app\\domain\\registry\\support\\validate',
+        4 => 'app\\domain\\registry\\support\\countof',
+      ),
+      3 => 
+      array (
+      ),
+    ),
+    '/var/www/html/app/Domain/Registry/Support/NameSplitter.php' => 
+    array (
+      0 => '27cfa70d43fad955f35149df5cd783a9a546ec9b80c87319083c5c8f37500a34',
+      1 => 
+      array (
+        0 => 'app\\domain\\registry\\support\\namesplitter',
+      ),
+      2 => 
+      array (
+        0 => 'app\\domain\\registry\\support\\split',
+        1 => 'app\\domain\\registry\\support\\tokenise',
+      ),
+      3 => 
+      array (
+      ),
+    ),
+    '/var/www/html/app/Domain/Registry/Support/NationalIdentifier.php' => 
+    array (
+      0 => '6f426f53500b2881741aa1e4e713bbca7acafc55ad2710f43f07be760e84fdc8',
+      1 => 
+      array (
+        0 => 'app\\domain\\registry\\support\\nationalidentifier',
+      ),
+      2 => 
+      array (
+        0 => 'app\\domain\\registry\\support\\__construct',
+        1 => 'app\\domain\\registry\\support\\constrainttoken',
+        2 => 'app\\domain\\registry\\support\\expecteddigits',
+        3 => 'app\\domain\\registry\\support\\validate',
+      ),
+      3 => 
+      array (
+      ),
+    ),
+    '/var/www/html/app/Domain/Registry/Support/NigerianPhone.php' => 
+    array (
+      0 => '6fbcacb15c8ebaf14f8b7ed869e1c19279a11e91691f8fd1565f3f0832e62fc6',
+      1 => 
+      array (
+        0 => 'app\\domain\\registry\\support\\nigerianphone',
+      ),
+      2 => 
+      array (
+        0 => 'app\\domain\\registry\\support\\__construct',
+        1 => 'app\\domain\\registry\\support\\constrainttoken',
+        2 => 'app\\domain\\registry\\support\\expecteddigits',
+        3 => 'app\\domain\\registry\\support\\validate',
+      ),
+      3 => 
+      array (
+      ),
+    ),
+    '/var/www/html/app/Domain/Registry/Support/NormalizationService.php' => 
+    array (
+      0 => '97d9019304681197b4cca7f460253bd59575454bbf2083e964dda3fb29da81c3',
+      1 => 
+      array (
+        0 => 'app\\domain\\registry\\support\\normalizationservice',
+      ),
+      2 => 
+      array (
+        0 => 'app\\domain\\registry\\support\\identifier',
+        1 => 'app\\domain\\registry\\support\\phone',
+        2 => 'app\\domain\\registry\\support\\name',
+        3 => 'app\\domain\\registry\\support\\nametokenssorted',
+        4 => 'app\\domain\\registry\\support\\date',
+        5 => 'app\\domain\\registry\\support\\roundtrips',
+        6 => 'app\\domain\\registry\\support\\enumkey',
+        7 => 'app\\domain\\registry\\support\\boolean',
+        8 => 'app\\domain\\registry\\support\\forfield',
+      ),
+      3 => 
+      array (
+      ),
+    ),
+    '/var/www/html/app/Domain/Registry/Support/OriginalInput.php' => 
+    array (
+      0 => '054d501f263f8bf16172a50cbc68723a0edf58a67647f52026ce5ce98f4d5f0a',
+      1 => 
+      array (
+        0 => 'app\\domain\\registry\\support\\originalinput',
+      ),
+      2 => 
+      array (
+      ),
+      3 => 
+      array (
+      ),
+    ),
+    '/var/www/html/app/Domain/Registry/Support/QuotesOriginalInput.php' => 
+    array (
+      0 => '854a6f3a50f7c39b3a8b442bd81ed2ed24abf3a0feb14f8e4fe63a99e2bd03f1',
+      1 => 
+      array (
+        0 => 'app\\domain\\registry\\support\\quotesoriginalinput',
+      ),
+      2 => 
+      array (
+        0 => 'app\\domain\\registry\\support\\setdata',
+        1 => 'app\\domain\\registry\\support\\originalfor',
+      ),
+      3 => 
+      array (
+      ),
+    ),
+    '/var/www/html/app/Domain/Registry/Support/RegistrationSourceRule.php' => 
+    array (
+      0 => '05a83c4f1c02c73cf6317f4adea2fb6b80a0c578834acb8b52603aee42122fa2',
+      1 => 
+      array (
+        0 => 'app\\domain\\registry\\support\\registrationsourcerule',
+      ),
+      2 => 
+      array (
+        0 => 'app\\domain\\registry\\support\\assertassignable',
+      ),
+      3 => 
+      array (
+      ),
+    ),
+    '/var/www/html/app/Domain/Registry/Support/RepairDoubledNames.php' => 
+    array (
+      0 => '7c9cdfdee61432bd9238de1b79a4ed3ad1921e5ffcc7372f2261f867b708b1af',
+      1 => 
+      array (
+        0 => 'app\\domain\\registry\\support\\repairdoublednames',
+      ),
+      2 => 
+      array (
+        0 => 'app\\domain\\registry\\support\\handle',
+        1 => 'app\\domain\\registry\\support\\reportshapes',
+        2 => 'app\\domain\\registry\\support\\recordsummary',
+      ),
+      3 => 
+      array (
+      ),
+    ),
+    '/var/www/html/app/Domain/Registry/Support/UniqueIdentifier.php' => 
+    array (
+      0 => '7e70ab4333cbae8ad9fb6bc65e8a657bc615ecdac6fccd30ba959908e47e9141',
+      1 => 
+      array (
+        0 => 'app\\domain\\registry\\support\\uniqueidentifier',
+      ),
+      2 => 
+      array (
+        0 => 'app\\domain\\registry\\support\\__construct',
+        1 => 'app\\domain\\registry\\support\\constrainttoken',
+        2 => 'app\\domain\\registry\\support\\validate',
+      ),
+      3 => 
+      array (
+      ),
+    ),
+    '/var/www/html/app/Domain/Reporting/Export/ExecutiveExportBuilder.php' => 
+    array (
+      0 => '6676312622a2668775414d44ef25fcb32009cfb6f6407f1f0684c40e60b5472d',
+      1 => 
+      array (
+        0 => 'app\\domain\\reporting\\export\\executiveexportbuilder',
+      ),
+      2 => 
+      array (
+        0 => 'app\\domain\\reporting\\export\\build',
+      ),
+      3 => 
+      array (
+      ),
+    ),
+    '/var/www/html/app/Domain/Reporting/Segments/CellSizeGuard.php' => 
+    array (
+      0 => 'a72c28c16c2ce9fd6e8e54e65526281017bc12474f8c7031de57dc714af24b88',
+      1 => 
+      array (
+        0 => 'app\\domain\\reporting\\segments\\cellsizeguard',
+      ),
+      2 => 
+      array (
+        0 => 'app\\domain\\reporting\\segments\\minimum',
+        1 => 'app\\domain\\reporting\\segments\\apply',
+        2 => 'app\\domain\\reporting\\segments\\totalissuppressed',
+      ),
+      3 => 
+      array (
+      ),
+    ),
+    '/var/www/html/app/Domain/Reporting/Segments/SegmentAccess.php' => 
+    array (
+      0 => '8fd4cc2384f0411781da4c3834ba20b36bd64a9d47e113f54289a7ff321f73ab',
+      1 => 
+      array (
+        0 => 'app\\domain\\reporting\\segments\\segmentaccess',
+      ),
+      2 => 
+      array (
+        0 => 'app\\domain\\reporting\\segments\\__construct',
+        1 => 'app\\domain\\reporting\\segments\\foruser',
+        2 => 'app\\domain\\reporting\\segments\\fromparams',
+        3 => 'app\\domain\\reporting\\segments\\showsrows',
+        4 => 'app\\domain\\reporting\\segments\\toparams',
+      ),
+      3 => 
+      array (
+      ),
+    ),
+    '/var/www/html/app/Domain/Reporting/Segments/SegmentDefinition.php' => 
+    array (
+      0 => 'ee10ec165833217f6033782ec04c205521f5542b033bd3a0b287fb06a43ca9dc',
+      1 => 
+      array (
+        0 => 'app\\domain\\reporting\\segments\\segmentdefinition',
+      ),
+      2 => 
+      array (
+        0 => 'app\\domain\\reporting\\segments\\__construct',
+        1 => 'app\\domain\\reporting\\segments\\fromarray',
+        2 => 'app\\domain\\reporting\\segments\\operatorfor',
+        3 => 'app\\domain\\reporting\\segments\\assertallowedvalues',
+        4 => 'app\\domain\\reporting\\segments\\toarray',
+        5 => 'app\\domain\\reporting\\segments\\label',
+      ),
+      3 => 
+      array (
+      ),
+    ),
+    '/var/www/html/app/Domain/Reporting/Segments/SegmentDimension.php' => 
+    array (
+      0 => '82da72ddcc40a9a0410b4d6f7638b2e6ad1fc28219ddcfc4b9378a1dd2f48b0c',
+      1 => 
+      array (
+        0 => 'app\\domain\\reporting\\segments\\segmentdimension',
+      ),
+      2 => 
+      array (
+        0 => 'app\\domain\\reporting\\segments\\__construct',
+        1 => 'app\\domain\\reporting\\segments\\toarray',
+      ),
+      3 => 
+      array (
+      ),
+    ),
+    '/var/www/html/app/Domain/Reporting/Segments/SegmentDimensionRegistry.php' => 
+    array (
+      0 => '579039f14e82e2a523231449a7c44362208e2ae87016fede0c5f6d117a01a64c',
+      1 => 
+      array (
+        0 => 'app\\domain\\reporting\\segments\\segmentdimensionregistry',
+      ),
+      2 => 
+      array (
+        0 => 'app\\domain\\reporting\\segments\\all',
+        1 => 'app\\domain\\reporting\\segments\\get',
+        2 => 'app\\domain\\reporting\\segments\\keys',
+        3 => 'app\\domain\\reporting\\segments\\optionsfrom',
+      ),
+      3 => 
+      array (
+      ),
+    ),
+    '/var/www/html/app/Domain/Reporting/Segments/SegmentQueryBuilder.php' => 
+    array (
+      0 => '02d06be3568b2af1e81e647816554cf02247215d2faded431214d2b195ac22eb',
+      1 => 
+      array (
+        0 => 'app\\domain\\reporting\\segments\\segmentquerybuilder',
+      ),
+      2 => 
+      array (
+        0 => 'app\\domain\\reporting\\segments\\__construct',
+        1 => 'app\\domain\\reporting\\segments\\query',
+        2 => 'app\\domain\\reporting\\segments\\applyscope',
+        3 => 'app\\domain\\reporting\\segments\\applyfilter',
+        4 => 'app\\domain\\reporting\\segments\\applyage',
+        5 => 'app\\domain\\reporting\\segments\\applyenrollment',
+        6 => 'app\\domain\\reporting\\segments\\applyhouseholdrole',
+        7 => 'app\\domain\\reporting\\segments\\applyhousehold',
+      ),
+      3 => 
+      array (
+      ),
+    ),
+    '/var/www/html/app/Domain/Reporting/Segments/SegmentReportService.php' => 
+    array (
+      0 => '3be056fe3d0ffdd6c1ebcceed9e1b89c62c0f6bbf1144148ed45ac314948beb3',
+      1 => 
+      array (
+        0 => 'app\\domain\\reporting\\segments\\segmentreportservice',
+      ),
+      2 => 
+      array (
+        0 => 'app\\domain\\reporting\\segments\\__construct',
+        1 => 'app\\domain\\reporting\\segments\\pagesize',
+        2 => 'app\\domain\\reporting\\segments\\syncmax',
+        3 => 'app\\domain\\reporting\\segments\\total',
+        4 => 'app\\domain\\reporting\\segments\\preview',
+        5 => 'app\\domain\\reporting\\segments\\breakdown',
+        6 => 'app\\domain\\reporting\\segments\\toreportdata',
+        7 => 'app\\domain\\reporting\\segments\\aggregatereportdata',
+        8 => 'app\\domain\\reporting\\segments\\columns',
+        9 => 'app\\domain\\reporting\\segments\\rows',
+        10 => 'app\\domain\\reporting\\segments\\row',
+        11 => 'app\\domain\\reporting\\segments\\groupablecolumn',
+        12 => 'app\\domain\\reporting\\segments\\labelfor',
+        13 => 'app\\domain\\reporting\\segments\\nameof',
+      ),
+      3 => 
+      array (
+      ),
+    ),
+    '/var/www/html/app/Domain/Reporting/Services/AdminOrganizationService.php' => 
+    array (
+      0 => 'fbbc683ac0238fc6a9469de724693eac55ded042b0716c6619933678de9e1c40',
+      1 => 
+      array (
+        0 => 'app\\domain\\reporting\\services\\adminorganizationservice',
+      ),
+      2 => 
+      array (
+        0 => 'app\\domain\\reporting\\services\\build',
+        1 => 'app\\domain\\reporting\\services\\partners',
+      ),
+      3 => 
+      array (
+      ),
+    ),
+    '/var/www/html/app/Domain/Reporting/Services/AdminSettingsService.php' => 
+    array (
+      0 => 'a53f0ed5beb353e40a7d68403cb02d45bdfa12b12694b7c880dc4e6aa312fd3f',
+      1 => 
+      array (
+        0 => 'app\\domain\\reporting\\services\\adminsettingsservice',
+      ),
+      2 => 
+      array (
+        0 => 'app\\domain\\reporting\\services\\__construct',
+        1 => 'app\\domain\\reporting\\services\\all',
+        2 => 'app\\domain\\reporting\\services\\general',
+        3 => 'app\\domain\\reporting\\services\\security',
+        4 => 'app\\domain\\reporting\\services\\registry',
+        5 => 'app\\domain\\reporting\\services\\notifications',
+        6 => 'app\\domain\\reporting\\services\\row',
+        7 => 'app\\domain\\reporting\\services\\bool',
+      ),
+      3 => 
+      array (
+      ),
+    ),
+    '/var/www/html/app/Domain/Reporting/Services/AdminSummaryService.php' => 
+    array (
+      0 => '1e8a1f648370d8c57357805e89a12fbb67e5a4e7668492183670d3b99fa14621',
+      1 => 
+      array (
+        0 => 'app\\domain\\reporting\\services\\adminsummaryservice',
+      ),
+      2 => 
+      array (
+        0 => 'app\\domain\\reporting\\services\\build',
+        1 => 'app\\domain\\reporting\\services\\kpis',
+        2 => 'app\\domain\\reporting\\services\\adoptiontrend',
+        3 => 'app\\domain\\reporting\\services\\registrysnapshot',
+        4 => 'app\\domain\\reporting\\services\\alerts',
+        5 => 'app\\domain\\reporting\\services\\recentactivity',
+        6 => 'app\\domain\\reporting\\services\\monthlabels',
+      ),
+      3 => 
+      array (
+      ),
+    ),
+    '/var/www/html/app/Domain/Reporting/Services/MdaActionRequiredService.php' => 
+    array (
+      0 => '88a07c2fbbadd2468da3a73624f1917257a4ce5e4783ecdfe533ab6b0f0ec530',
+      1 => 
+      array (
+        0 => 'app\\domain\\reporting\\services\\mdaactionrequiredservice',
+      ),
+      2 => 
+      array (
+        0 => 'app\\domain\\reporting\\services\\foruser',
+      ),
+      3 => 
+      array (
+      ),
+    ),
+    '/var/www/html/app/Domain/Reporting/Support/DashboardFilter.php' => 
+    array (
+      0 => 'f14e310ef0fda8cc69a26ee268795801467b88638314b12882eb6a358803666c',
+      1 => 
+      array (
+        0 => 'app\\domain\\reporting\\support\\dashboardfilter',
+      ),
+      2 => 
+      array (
+        0 => 'app\\domain\\reporting\\support\\__construct',
+        1 => 'app\\domain\\reporting\\support\\none',
+        2 => 'app\\domain\\reporting\\support\\fromrequest',
+        3 => 'app\\domain\\reporting\\support\\isempty',
+        4 => 'app\\domain\\reporting\\support\\daterange',
+        5 => 'app\\domain\\reporting\\support\\ledgerfilters',
+        6 => 'app\\domain\\reporting\\support\\toarray',
+      ),
+      3 => 
+      array (
+      ),
+    ),
+    '/var/www/html/app/Domain/Sharing/DataSharingGuard.php' => 
+    array (
+      0 => '436d70a9d4f7683b8bd2d613735accb459133a4ea66bb64892575bd68be1833d',
+      1 => 
+      array (
+        0 => 'app\\domain\\sharing\\datasharingguard',
+      ),
+      2 => 
+      array (
+        0 => 'app\\domain\\sharing\\canread',
+        1 => 'app\\domain\\sharing\\basisfor',
+        2 => 'app\\domain\\sharing\\hasadmingrant',
+        3 => 'app\\domain\\sharing\\admingrantconsentsatisfied',
+        4 => 'app\\domain\\sharing\\admingrantconsentrequired',
+        5 => 'app\\domain\\sharing\\mdamayserveviagrant',
+        6 => 'app\\domain\\sharing\\grantedandconsented',
+        7 => 'app\\domain\\sharing\\consentsatisfied',
+        8 => 'app\\domain\\sharing\\consentrequired',
+      ),
+      3 => 
+      array (
+      ),
+    ),
+    '/var/www/html/app/Domain/Sharing/SharingBasis.php' => 
+    array (
+      0 => 'dead268236e5edec4b3c419a87c99802fc3ec2b210b82599298d807ef49d3a65',
+      1 => 
+      array (
+        0 => 'app\\domain\\sharing\\sharingbasis',
+      ),
+      2 => 
+      array (
+        0 => 'app\\domain\\sharing\\label',
+        1 => 'app\\domain\\sharing\\scope',
+        2 => 'app\\domain\\sharing\\iscrossmda',
+      ),
+      3 => 
+      array (
+      ),
+    ),
+    '/var/www/html/app/Domain/Sync/Enums/ConflictPolicy.php' => 
+    array (
+      0 => 'aae7ec6f56d86145ed07a6176203da24202889b03e4dc2d6c38ba79ced19df7b',
+      1 => 
+      array (
+        0 => 'app\\domain\\sync\\enums\\conflictpolicy',
+      ),
+      2 => 
+      array (
+      ),
+      3 => 
+      array (
+      ),
+    ),
+    '/var/www/html/app/Domain/Sync/Enums/SyncRowOutcome.php' => 
+    array (
+      0 => '1cf69fa777816ef76410dc6ff24cb96c74d07022f85d4cd7c5269839d77d1862',
+      1 => 
+      array (
+        0 => 'app\\domain\\sync\\enums\\syncrowoutcome',
+      ),
+      2 => 
+      array (
+        0 => 'app\\domain\\sync\\enums\\counter',
+      ),
+      3 => 
+      array (
+      ),
+    ),
+    '/var/www/html/app/Domain/Sync/Enums/SyncStatus.php' => 
+    array (
+      0 => '6bce9f0dfea43c463727d425301ff2261c37ae84721c500b898ab6563cede863',
+      1 => 
+      array (
+        0 => 'app\\domain\\sync\\enums\\syncstatus',
+      ),
+      2 => 
+      array (
+      ),
+      3 => 
+      array (
+      ),
+    ),
+    '/var/www/html/app/Domain/Sync/Enums/SyncTrigger.php' => 
+    array (
+      0 => '8175c4adc61d43bf4b37e6efa09d810c8968bb5834e6dda8428b32479da9df1c',
+      1 => 
+      array (
+        0 => 'app\\domain\\sync\\enums\\synctrigger',
+      ),
+      2 => 
+      array (
+      ),
+      3 => 
+      array (
+      ),
+    ),
+    '/var/www/html/app/Domain/Sync/Jobs/RunDueSyncConnectors.php' => 
+    array (
+      0 => 'fa22d7ca4a2803b7270df7f08104a07d6b23de587b8b497e6c60aef98cfd7bbc',
+      1 => 
+      array (
+        0 => 'app\\domain\\sync\\jobs\\runduesyncconnectors',
+      ),
+      2 => 
+      array (
+        0 => 'app\\domain\\sync\\jobs\\handle',
+      ),
+      3 => 
+      array (
+      ),
+    ),
+    '/var/www/html/app/Domain/Sync/Jobs/RunSyncConnector.php' => 
+    array (
+      0 => 'ff0a1d1653ef811081d8924f80e3cc608d063eeef8a455f7aa3d002ab015ea1b',
+      1 => 
+      array (
+        0 => 'app\\domain\\sync\\jobs\\runsyncconnector',
+      ),
+      2 => 
+      array (
+        0 => 'app\\domain\\sync\\jobs\\__construct',
+        1 => 'app\\domain\\sync\\jobs\\uniqueid',
+        2 => 'app\\domain\\sync\\jobs\\handle',
+      ),
+      3 => 
+      array (
+      ),
+    ),
+    '/var/www/html/app/Domain/Sync/Models/SyncConnector.php' => 
+    array (
+      0 => 'f9e490a293e041a3f856e561fe4a89d848fc8ca02d6ff8ad54eac56edef1357a',
+      1 => 
+      array (
+        0 => 'app\\domain\\sync\\models\\syncconnector',
+      ),
+      2 => 
+      array (
+        0 => 'app\\domain\\sync\\models\\casts',
+        1 => 'app\\domain\\sync\\models\\mappingstatus',
+        2 => 'app\\domain\\sync\\models\\mappingisstale',
+        3 => 'app\\domain\\sync\\models\\mappingisconfirmed',
+        4 => 'app\\domain\\sync\\models\\ownermda',
+        5 => 'app\\domain\\sync\\models\\mappingconfirmedby',
+        6 => 'app\\domain\\sync\\models\\newfactory',
+      ),
+      3 => 
+      array (
+      ),
+    ),
+    '/var/www/html/app/Domain/Sync/Models/SyncRun.php' => 
+    array (
+      0 => '2530fe302ca6fa458b60cdf725f29bb91c59a2cbf344d0b216788d8658c33e83',
+      1 => 
+      array (
+        0 => 'app\\domain\\sync\\models\\syncrun',
+      ),
+      2 => 
+      array (
+        0 => 'app\\domain\\sync\\models\\casts',
+        1 => 'app\\domain\\sync\\models\\connector',
+        2 => 'app\\domain\\sync\\models\\rows',
+      ),
+      3 => 
+      array (
+      ),
+    ),
+    '/var/www/html/app/Domain/Sync/Models/SyncRunRow.php' => 
+    array (
+      0 => '8177ece4a478ba8d75012546cbdb69c354ced5f7b6754939ae88511bb98bdf7e',
+      1 => 
+      array (
+        0 => 'app\\domain\\sync\\models\\syncrunrow',
+      ),
+      2 => 
+      array (
+        0 => 'app\\domain\\sync\\models\\casts',
+        1 => 'app\\domain\\sync\\models\\run',
+      ),
+      3 => 
+      array (
+      ),
+    ),
+    '/var/www/html/app/Domain/Sync/Services/ConnectorMappingService.php' => 
+    array (
+      0 => '6d2d71096f8c8e5cfb863c7ac52787c3d66786eec0a2b346d89d95f48c96bfa0',
+      1 => 
+      array (
+        0 => 'app\\domain\\sync\\services\\connectormappingservice',
+      ),
+      2 => 
+      array (
+        0 => 'app\\domain\\sync\\services\\__construct',
+        1 => 'app\\domain\\sync\\services\\proposal',
+        2 => 'app\\domain\\sync\\services\\confirm',
+        3 => 'app\\domain\\sync\\services\\blockedreason',
+        4 => 'app\\domain\\sync\\services\\markstale',
+        5 => 'app\\domain\\sync\\services\\signaturematches',
+        6 => 'app\\domain\\sync\\services\\samplerecords',
+        7 => 'app\\domain\\sync\\services\\fieldsin',
+        8 => 'app\\domain\\sync\\services\\samples',
+        9 => 'app\\domain\\sync\\services\\normalizedpreview',
+        10 => 'app\\domain\\sync\\services\\identitysummary',
+      ),
+      3 => 
+      array (
+      ),
+    ),
+    '/var/www/html/app/Domain/Sync/Services/SyncEngine.php' => 
+    array (
+      0 => '95943eb132fde4b1b536a11d661a5c48032c39b832d2b8af562ac0c43a5c3b38',
+      1 => 
+      array (
+        0 => 'app\\domain\\sync\\services\\syncengine',
+      ),
+      2 => 
+      array (
+        0 => 'app\\domain\\sync\\services\\canonicalfields',
+        1 => 'app\\domain\\sync\\services\\__construct',
+        2 => 'app\\domain\\sync\\services\\runconnector',
+        3 => 'app\\domain\\sync\\services\\runofflinebatch',
+        4 => 'app\\domain\\sync\\services\\startrun',
+        5 => 'app\\domain\\sync\\services\\execute',
+        6 => 'app\\domain\\sync\\services\\process',
+        7 => 'app\\domain\\sync\\services\\processrecord',
+        8 => 'app\\domain\\sync\\services\\stringornull',
+        9 => 'app\\domain\\sync\\services\\applyupdate',
+        10 => 'app\\domain\\sync\\services\\firstregistryreference',
+        11 => 'app\\domain\\sync\\services\\summary',
+      ),
+      3 => 
+      array (
+      ),
+    ),
+    '/var/www/html/app/Domain/Sync/Sources/MockSyncSource.php' => 
+    array (
+      0 => '0224acd4a98371ec01d708b1e64109c5c208eb95592c534023ce2e339cd34004',
+      1 => 
+      array (
+        0 => 'app\\domain\\sync\\sources\\mocksyncsource',
+      ),
+      2 => 
+      array (
+        0 => 'app\\domain\\sync\\sources\\fetch',
+      ),
+      3 => 
+      array (
+      ),
+    ),
+    '/var/www/html/app/Domain/Sync/Sources/SyncSource.php' => 
+    array (
+      0 => 'c60175eaf9773e628baa42e93a3301f87575ff96f51da1744510ffbcd1e649b4',
+      1 => 
+      array (
+        0 => 'app\\domain\\sync\\sources\\syncsource',
+      ),
+      2 => 
+      array (
+        0 => 'app\\domain\\sync\\sources\\fetch',
+      ),
+      3 => 
+      array (
+      ),
+    ),
+    '/var/www/html/app/Domain/Sync/Sources/SyncSourceResolver.php' => 
+    array (
+      0 => 'ce38637bde5ea6faf12bd30a55dd63216a39fbdf87ad2ec7b358196a77de9ce4',
+      1 => 
+      array (
+        0 => 'app\\domain\\sync\\sources\\syncsourceresolver',
+      ),
+      2 => 
+      array (
+        0 => 'app\\domain\\sync\\sources\\__construct',
+        1 => 'app\\domain\\sync\\sources\\for',
+      ),
+      3 => 
+      array (
+      ),
+    ),
+    '/var/www/html/app/Domain/Sync/SyncServiceProvider.php' => 
+    array (
+      0 => 'b9bb19d8521b2888085705b0d5a186258c47eb281b58fccadba32391c73d9057',
+      1 => 
+      array (
+        0 => 'app\\domain\\sync\\syncserviceprovider',
+      ),
+      2 => 
+      array (
+        0 => 'app\\domain\\sync\\boot',
+      ),
+      3 => 
+      array (
+      ),
+    ),
+    '/var/www/html/app/Http/Controllers/Api/V1/Access/LoginActivityController.php' => 
+    array (
+      0 => '8cdb2c9f70d16c081434a4f2618e3ef03b35b93c4dd241038558bd2954599883',
+      1 => 
+      array (
+        0 => 'app\\http\\controllers\\api\\v1\\access\\loginactivitycontroller',
+      ),
+      2 => 
+      array (
+        0 => 'app\\http\\controllers\\api\\v1\\access\\__construct',
+        1 => 'app\\http\\controllers\\api\\v1\\access\\index',
+      ),
+      3 => 
+      array (
+      ),
+    ),
+    '/var/www/html/app/Http/Controllers/Api/V1/Audit/AuditLogController.php' => 
+    array (
+      0 => '2c6a6d00cadf8f80be8064f1e0a89adc99f00a1ca24af5bad2815f3e701399a4',
+      1 => 
+      array (
+        0 => 'app\\http\\controllers\\api\\v1\\audit\\auditlogcontroller',
+      ),
+      2 => 
+      array (
+        0 => 'app\\http\\controllers\\api\\v1\\audit\\__construct',
+        1 => 'app\\http\\controllers\\api\\v1\\audit\\index',
+        2 => 'app\\http\\controllers\\api\\v1\\audit\\export',
+        3 => 'app\\http\\controllers\\api\\v1\\audit\\filters',
+      ),
+      3 => 
+      array (
+      ),
+    ),
+    '/var/www/html/app/Http/Controllers/Api/V1/Graduation/GraduationController.php' => 
+    array (
+      0 => 'ea856315b9ae1fd5d83023db93185cd655f2b83fe134050c2be14607aa64e687',
+      1 => 
+      array (
+        0 => 'app\\http\\controllers\\api\\v1\\graduation\\graduationcontroller',
+      ),
+      2 => 
+      array (
+        0 => 'app\\http\\controllers\\api\\v1\\graduation\\__construct',
+        1 => 'app\\http\\controllers\\api\\v1\\graduation\\criteriaindex',
+        2 => 'app\\http\\controllers\\api\\v1\\graduation\\criteriastore',
+        3 => 'app\\http\\controllers\\api\\v1\\graduation\\criteriaupdate',
+        4 => 'app\\http\\controllers\\api\\v1\\graduation\\criteriadestroy',
+        5 => 'app\\http\\controllers\\api\\v1\\graduation\\progress',
+        6 => 'app\\http\\controllers\\api\\v1\\graduation\\graduate',
+        7 => 'app\\http\\controllers\\api\\v1\\graduation\\history',
+        8 => 'app\\http\\controllers\\api\\v1\\graduation\\normalizerules',
+      ),
+      3 => 
+      array (
+      ),
+    ),
+    '/var/www/html/app/Http/Controllers/Api/V1/Notification/BroadcastController.php' => 
+    array (
+      0 => '84fe2ef5e051d1ef045353cc84e96706cccd9f2e8fa8ed57be90a18414299e9e',
+      1 => 
+      array (
+        0 => 'app\\http\\controllers\\api\\v1\\notification\\broadcastcontroller',
+      ),
+      2 => 
+      array (
+        0 => 'app\\http\\controllers\\api\\v1\\notification\\__construct',
+        1 => 'app\\http\\controllers\\api\\v1\\notification\\audience',
+        2 => 'app\\http\\controllers\\api\\v1\\notification\\store',
+      ),
+      3 => 
+      array (
+      ),
+    ),
+    '/var/www/html/app/Http/Controllers/Api/V1/Reference/AdministrativeDivisionController.php' => 
+    array (
+      0 => 'ae98774035ded4d707158d5711fad61b8d2d046653c1fc073f210ed951c45850',
+      1 => 
+      array (
+        0 => 'app\\http\\controllers\\api\\v1\\reference\\administrativedivisioncontroller',
+      ),
+      2 => 
+      array (
+        0 => 'app\\http\\controllers\\api\\v1\\reference\\__construct',
+        1 => 'app\\http\\controllers\\api\\v1\\reference\\lgas',
+        2 => 'app\\http\\controllers\\api\\v1\\reference\\wards',
+      ),
+      3 => 
+      array (
+      ),
+    ),
+    '/var/www/html/app/Http/Controllers/Api/V1/Registry/DuplicateQueueController.php' => 
+    array (
+      0 => 'cbf1f5c5e6a6d3ff93e67e987e3d7ef17b7e4f237cb7b93bb90996bef007a0e7',
+      1 => 
+      array (
+        0 => 'app\\http\\controllers\\api\\v1\\registry\\duplicatequeuecontroller',
+      ),
+      2 => 
+      array (
+        0 => 'app\\http\\controllers\\api\\v1\\registry\\__construct',
+        1 => 'app\\http\\controllers\\api\\v1\\registry\\counts',
+        2 => 'app\\http\\controllers\\api\\v1\\registry\\activethresholds',
+        3 => 'app\\http\\controllers\\api\\v1\\registry\\index',
+      ),
+      3 => 
+      array (
+      ),
+    ),
+    '/var/www/html/app/Http/Controllers/Api/V1/Registry/RegistryRulesController.php' => 
+    array (
+      0 => '1925101afc52331d7f5d0790d23a80d0fbdd4b0c7cb17bfaf881495d6adf5d9a',
+      1 => 
+      array (
+        0 => 'app\\http\\controllers\\api\\v1\\registry\\registryrulescontroller',
+      ),
+      2 => 
+      array (
+        0 => 'app\\http\\controllers\\api\\v1\\registry\\index',
+        1 => 'app\\http\\controllers\\api\\v1\\registry\\describe',
+      ),
+      3 => 
+      array (
+      ),
+    ),
+    '/var/www/html/app/Http/Controllers/Api/V1/Reporting/AdminOrganizationController.php' => 
+    array (
+      0 => '1f95596ead1e62f1a3c54bf488261511be4debaf842c6346391e9cb22543e7e2',
+      1 => 
+      array (
+        0 => 'app\\http\\controllers\\api\\v1\\reporting\\adminorganizationcontroller',
+      ),
+      2 => 
+      array (
+        0 => 'app\\http\\controllers\\api\\v1\\reporting\\__construct',
+        1 => 'app\\http\\controllers\\api\\v1\\reporting\\index',
+      ),
+      3 => 
+      array (
+      ),
+    ),
+    '/var/www/html/app/Http/Controllers/Api/V1/Reporting/AdminSettingsController.php' => 
+    array (
+      0 => '1134f7ba4e0dcddfd8e93ad2d26bf9a5324fb53b58ed48cb42f9666735e7b5c4',
+      1 => 
+      array (
+        0 => 'app\\http\\controllers\\api\\v1\\reporting\\adminsettingscontroller',
+      ),
+      2 => 
+      array (
+        0 => 'app\\http\\controllers\\api\\v1\\reporting\\__construct',
+        1 => 'app\\http\\controllers\\api\\v1\\reporting\\index',
+      ),
+      3 => 
+      array (
+      ),
+    ),
+    '/var/www/html/app/Http/Controllers/Api/V1/Reporting/AdminSummaryController.php' => 
+    array (
+      0 => 'd908dd84e7b617126db9a5b65be0eaeab1673f479558d5bdbd75ead9bc5546cd',
+      1 => 
+      array (
+        0 => 'app\\http\\controllers\\api\\v1\\reporting\\adminsummarycontroller',
+      ),
+      2 => 
+      array (
+        0 => 'app\\http\\controllers\\api\\v1\\reporting\\__construct',
+        1 => 'app\\http\\controllers\\api\\v1\\reporting\\show',
+      ),
+      3 => 
+      array (
+      ),
+    ),
+    '/var/www/html/app/Http/Controllers/Api/V1/Reporting/DashboardExportController.php' => 
+    array (
+      0 => '42c28e4c3c03784d882ff6a0b7a78a850171526eff975983e2683ca7cfcf2601',
+      1 => 
+      array (
+        0 => 'app\\http\\controllers\\api\\v1\\reporting\\dashboardexportcontroller',
+      ),
+      2 => 
+      array (
+        0 => 'app\\http\\controllers\\api\\v1\\reporting\\__construct',
+        1 => 'app\\http\\controllers\\api\\v1\\reporting\\export',
+      ),
+      3 => 
+      array (
+      ),
+    ),
+    '/var/www/html/app/Http/Controllers/Api/V1/Reporting/MdaActionRequiredController.php' => 
+    array (
+      0 => '245bbdf022acdc48f9fdf07cc60cc4a6f3742d9c7aff3f0314eeaed4fe807492',
+      1 => 
+      array (
+        0 => 'app\\http\\controllers\\api\\v1\\reporting\\mdaactionrequiredcontroller',
+      ),
+      2 => 
+      array (
+        0 => 'app\\http\\controllers\\api\\v1\\reporting\\__construct',
+        1 => 'app\\http\\controllers\\api\\v1\\reporting\\index',
+      ),
+      3 => 
+      array (
+      ),
+    ),
+    '/var/www/html/app/Http/Controllers/Api/V1/Reporting/SegmentReportController.php' => 
+    array (
+      0 => 'cdcc75edb8c6761f76f1702915bbd13d29b5fd3648eafca7ee0e9a63ef950d07',
+      1 => 
+      array (
+        0 => 'app\\http\\controllers\\api\\v1\\reporting\\segmentreportcontroller',
+      ),
+      2 => 
+      array (
+        0 => 'app\\http\\controllers\\api\\v1\\reporting\\__construct',
+        1 => 'app\\http\\controllers\\api\\v1\\reporting\\dimensions',
+        2 => 'app\\http\\controllers\\api\\v1\\reporting\\preview',
+        3 => 'app\\http\\controllers\\api\\v1\\reporting\\export',
+        4 => 'app\\http\\controllers\\api\\v1\\reporting\\accessfor',
+      ),
+      3 => 
+      array (
+      ),
+    ),
+    '/var/www/html/app/Http/Controllers/Api/V1/Sharing/DataSharingController.php' => 
+    array (
+      0 => '28746063a2a3690ba4d7384c9ff19c0dffc17c7a0627cc07cb1f49ce9074645f',
+      1 => 
+      array (
+        0 => 'app\\http\\controllers\\api\\v1\\sharing\\datasharingcontroller',
+      ),
+      2 => 
+      array (
+        0 => 'app\\http\\controllers\\api\\v1\\sharing\\grants',
+        1 => 'app\\http\\controllers\\api\\v1\\sharing\\servicegrants',
+        2 => 'app\\http\\controllers\\api\\v1\\sharing\\servicegrantrow',
+        3 => 'app\\http\\controllers\\api\\v1\\sharing\\admingrants',
+        4 => 'app\\http\\controllers\\api\\v1\\sharing\\mdaref',
+      ),
+      3 => 
+      array (
+      ),
+    ),
+    '/var/www/html/app/Http/Controllers/Api/V1/Sync/SyncController.php' => 
+    array (
+      0 => 'cab94b7cf357e1072740ea336c2b4f609ae55517e6691917a73b5326d84920ff',
+      1 => 
+      array (
+        0 => 'app\\http\\controllers\\api\\v1\\sync\\synccontroller',
+      ),
+      2 => 
+      array (
+        0 => 'app\\http\\controllers\\api\\v1\\sync\\__construct',
+        1 => 'app\\http\\controllers\\api\\v1\\sync\\connectors',
+        2 => 'app\\http\\controllers\\api\\v1\\sync\\runs',
+        3 => 'app\\http\\controllers\\api\\v1\\sync\\run',
+        4 => 'app\\http\\controllers\\api\\v1\\sync\\mapping',
+        5 => 'app\\http\\controllers\\api\\v1\\sync\\confirmmapping',
+        6 => 'app\\http\\controllers\\api\\v1\\sync\\setenabled',
+        7 => 'app\\http\\controllers\\api\\v1\\sync\\trigger',
+        8 => 'app\\http\\controllers\\api\\v1\\sync\\offlinebatch',
+      ),
+      3 => 
+      array (
+      ),
+    ),
+    '/var/www/html/app/Http/Middleware/CheckRole.php' => 
+    array (
+      0 => '33268dbbb66e26eebe33a4ec63ac41760fcf312919c9c4a23beeea93f2740356',
+      1 => 
+      array (
+        0 => 'app\\http\\middleware\\checkrole',
+      ),
+      2 => 
+      array (
+        0 => 'app\\http\\middleware\\handle',
+      ),
+      3 => 
+      array (
+      ),
+    ),
+    '/var/www/html/app/Http/Requests/Access/UpdateRolePermissionsRequest.php' => 
+    array (
+      0 => '579579a0311cada7c64c826ae11aa252b6ae18a3b5cd91cde52016ce73cf017e',
+      1 => 
+      array (
+        0 => 'app\\http\\requests\\access\\updaterolepermissionsrequest',
+      ),
+      2 => 
+      array (
+        0 => 'app\\http\\requests\\access\\authorize',
+        1 => 'app\\http\\requests\\access\\rules',
+      ),
+      3 => 
+      array (
+      ),
+    ),
+    '/var/www/html/app/Http/Requests/Graduation/GraduateRequest.php' => 
+    array (
+      0 => 'e5bc7d0cc879ef9d5354f151a561a584d2e32fbc60eb18920bd0f0eb357a3ed3',
+      1 => 
+      array (
+        0 => 'app\\http\\requests\\graduation\\graduaterequest',
+      ),
+      2 => 
+      array (
+        0 => 'app\\http\\requests\\graduation\\authorize',
+        1 => 'app\\http\\requests\\graduation\\rules',
+      ),
+      3 => 
+      array (
+      ),
+    ),
+    '/var/www/html/app/Http/Requests/Graduation/GraduationCriteriaRequest.php' => 
+    array (
+      0 => 'b34183eb6cd5d886e5dc979b9917fa9542cdd84bc88957e54c49484cc99bd0f3',
+      1 => 
+      array (
+        0 => 'app\\http\\requests\\graduation\\graduationcriteriarequest',
+      ),
+      2 => 
+      array (
+        0 => 'app\\http\\requests\\graduation\\authorize',
+        1 => 'app\\http\\requests\\graduation\\rules',
+        2 => 'app\\http\\requests\\graduation\\withvalidator',
+      ),
+      3 => 
+      array (
+      ),
+    ),
+    '/var/www/html/app/Http/Requests/Notification/BroadcastRequest.php' => 
+    array (
+      0 => 'ab65228d8c5f97a39dd8360a0755a6becbb4e04d60ce264d923eaf1585de533a',
+      1 => 
+      array (
+        0 => 'app\\http\\requests\\notification\\broadcastrequest',
+      ),
+      2 => 
+      array (
+        0 => 'app\\http\\requests\\notification\\authorize',
+        1 => 'app\\http\\requests\\notification\\rules',
+      ),
+      3 => 
+      array (
+      ),
+    ),
+    '/var/www/html/app/Http/Requests/Programme/Concerns/ValidatesLocationSet.php' => 
+    array (
+      0 => 'a6eb8ba2a790f6dd6d9f721d36bd4ba669e406dcd1fdac88bfde45254d9c65cb',
+      1 => 
+      array (
+        0 => 'app\\http\\requests\\programme\\concerns\\validateslocationset',
+      ),
+      2 => 
+      array (
+        0 => 'app\\http\\requests\\programme\\concerns\\locationsetrules',
+        1 => 'app\\http\\requests\\programme\\concerns\\locationsetmessages',
+        2 => 'app\\http\\requests\\programme\\concerns\\validatelocationset',
+      ),
+      3 => 
+      array (
+      ),
+    ),
+    '/var/www/html/app/Http/Requests/Reference/ListWardsRequest.php' => 
+    array (
+      0 => '4aba59a610696c00039c68c36cf92ba3e67aadf47260f4d497195838b7fd217e',
+      1 => 
+      array (
+        0 => 'app\\http\\requests\\reference\\listwardsrequest',
+      ),
+      2 => 
+      array (
+        0 => 'app\\http\\requests\\reference\\authorize',
+        1 => 'app\\http\\requests\\reference\\rules',
+        2 => 'app\\http\\requests\\reference\\messages',
+      ),
+      3 => 
+      array (
+      ),
+    ),
+    '/var/www/html/app/Http/Requests/Registry/ConfirmMappingRequest.php' => 
+    array (
+      0 => '7ad5ad7e34e48c97b524b79656bb79e1edafc13b4dd5bdf5ffb7bc6a0ba7cff2',
+      1 => 
+      array (
+        0 => 'app\\http\\requests\\registry\\confirmmappingrequest',
+      ),
+      2 => 
+      array (
+        0 => 'app\\http\\requests\\registry\\authorize',
         1 => 'app\\http\\requests\\registry\\rules',
-        2 => 'app\\http\\requests\\registry\\activitydraft',
+        2 => 'app\\http\\requests\\registry\\withvalidator',
+        3 => 'app\\http\\requests\\registry\\columnmap',
+        4 => 'app\\http\\requests\\registry\\messages',
+      ),
+      3 => 
+      array (
+      ),
+    ),
+    '/var/www/html/app/Http/Requests/Registry/DuplicateQueueRequest.php' => 
+    array (
+      0 => '0d93a49fd8ee25f49319586b7acd31fccda04ba09945777e3b85c15db427e18f',
+      1 => 
+      array (
+        0 => 'app\\http\\requests\\registry\\duplicatequeuerequest',
+      ),
+      2 => 
+      array (
+        0 => 'app\\http\\requests\\registry\\authorize',
+        1 => 'app\\http\\requests\\registry\\rules',
+      ),
+      3 => 
+      array (
+      ),
+    ),
+    '/var/www/html/app/Http/Requests/Registry/ExportBeneficiariesRequest.php' => 
+    array (
+      0 => '5c2d3e8a89a5e614055022d5227ea3a910953cc6a96e46c076ba74d251bbfcd8',
+      1 => 
+      array (
+        0 => 'app\\http\\requests\\registry\\exportbeneficiariesrequest',
+      ),
+      2 => 
+      array (
+        0 => 'app\\http\\requests\\registry\\authorize',
+        1 => 'app\\http\\requests\\registry\\rules',
+      ),
+      3 => 
+      array (
+      ),
+    ),
+    '/var/www/html/app/Http/Requests/Registry/RecordConsentRequest.php' => 
+    array (
+      0 => 'fc86b945269b087cb44576c36cee2b76caa34bd547ad7db9399a9531fdbc784e',
+      1 => 
+      array (
+        0 => 'app\\http\\requests\\registry\\recordconsentrequest',
+      ),
+      2 => 
+      array (
+        0 => 'app\\http\\requests\\registry\\authorize',
+        1 => 'app\\http\\requests\\registry\\rules',
+      ),
+      3 => 
+      array (
+      ),
+    ),
+    '/var/www/html/app/Http/Requests/Registry/RevokeServiceGrantRequest.php' => 
+    array (
+      0 => 'a539f267fc7799ae9a5b582010e8a79c32cf93c103c47bdf41d4ae313a7c2d10',
+      1 => 
+      array (
+        0 => 'app\\http\\requests\\registry\\revokeservicegrantrequest',
+      ),
+      2 => 
+      array (
+        0 => 'app\\http\\requests\\registry\\authorize',
+        1 => 'app\\http\\requests\\registry\\rules',
+      ),
+      3 => 
+      array (
+      ),
+    ),
+    '/var/www/html/app/Http/Requests/Reporting/SegmentReportRequest.php' => 
+    array (
+      0 => '5f2680caf46c28c71af584fcc13baf160735196807a2378d4fa115fd804bb7ce',
+      1 => 
+      array (
+        0 => 'app\\http\\requests\\reporting\\segmentreportrequest',
+      ),
+      2 => 
+      array (
+        0 => 'app\\http\\requests\\reporting\\authorize',
+        1 => 'app\\http\\requests\\reporting\\rules',
+      ),
+      3 => 
+      array (
+      ),
+    ),
+    '/var/www/html/app/Http/Requests/Sync/ConfirmConnectorMappingRequest.php' => 
+    array (
+      0 => '5314fb8c2706c2e320d13cc315f9bb40a35e8cd796ecbbdb7462803bc8eced7b',
+      1 => 
+      array (
+        0 => 'app\\http\\requests\\sync\\confirmconnectormappingrequest',
+      ),
+      2 => 
+      array (
+        0 => 'app\\http\\requests\\sync\\authorize',
+        1 => 'app\\http\\requests\\sync\\rules',
+        2 => 'app\\http\\requests\\sync\\withvalidator',
+        3 => 'app\\http\\requests\\sync\\columnmap',
+      ),
+      3 => 
+      array (
+      ),
+    ),
+    '/var/www/html/app/Http/Requests/Sync/OfflineBatchRequest.php' => 
+    array (
+      0 => '904921a273453550038b295ce2686edf310cb83f1c3d0994e978d1348b517132',
+      1 => 
+      array (
+        0 => 'app\\http\\requests\\sync\\offlinebatchrequest',
+      ),
+      2 => 
+      array (
+        0 => 'app\\http\\requests\\sync\\authorize',
+        1 => 'app\\http\\requests\\sync\\rules',
+      ),
+      3 => 
+      array (
+      ),
+    ),
+    '/var/www/html/app/Http/Resources/ActivityDetailResource.php' => 
+    array (
+      0 => '1c47e27702b86c0205211479bc097166b873da30eff3bf1738bfeeee45fdb003',
+      1 => 
+      array (
+        0 => 'app\\http\\resources\\activitydetailresource',
+      ),
+      2 => 
+      array (
+        0 => 'app\\http\\resources\\toarray',
+        1 => 'app\\http\\resources\\beneficiaryline',
+        2 => 'app\\http\\resources\\mask',
+        3 => 'app\\http\\resources\\importsummary',
+      ),
+      3 => 
+      array (
+      ),
+    ),
+    '/var/www/html/app/Http/Resources/GraduationCriteriaResource.php' => 
+    array (
+      0 => 'bc5821cced339f7707eeee21ce2dc89b2bafd9b1c0b16586bc418cd7e64eb381',
+      1 => 
+      array (
+        0 => 'app\\http\\resources\\graduationcriteriaresource',
+      ),
+      2 => 
+      array (
+        0 => 'app\\http\\resources\\toarray',
+      ),
+      3 => 
+      array (
+      ),
+    ),
+    '/var/www/html/app/Http/Resources/GraduationEventResource.php' => 
+    array (
+      0 => '52546880f2d2e0ea034e09b0668d52bb1f4a1942d02ae13055f0b0290d89a4eb',
+      1 => 
+      array (
+        0 => 'app\\http\\resources\\graduationeventresource',
+      ),
+      2 => 
+      array (
+        0 => 'app\\http\\resources\\toarray',
+      ),
+      3 => 
+      array (
+      ),
+    ),
+    '/var/www/html/app/Http/Resources/SyncConnectorResource.php' => 
+    array (
+      0 => 'e01c22f5c49130474dda55c13d4af0b496255df23410ddce52d83b9380bdc163',
+      1 => 
+      array (
+        0 => 'app\\http\\resources\\syncconnectorresource',
+      ),
+      2 => 
+      array (
+        0 => 'app\\http\\resources\\toarray',
+      ),
+      3 => 
+      array (
+      ),
+    ),
+    '/var/www/html/app/Http/Resources/SyncRunResource.php' => 
+    array (
+      0 => 'b19651bcd50fe7326a62f2ec7b4e50705bace7df525025fe6fe654fbd993e620',
+      1 => 
+      array (
+        0 => 'app\\http\\resources\\syncrunresource',
+      ),
+      2 => 
+      array (
+        0 => 'app\\http\\resources\\toarray',
+      ),
+      3 => 
+      array (
+      ),
+    ),
+    '/var/www/html/app/Logging/CorrelationIdProcessor.php' => 
+    array (
+      0 => 'a4da65ad898dc596306101bccec1c6689fcd09ab50588b480523ffda91bb8b96',
+      1 => 
+      array (
+        0 => 'app\\logging\\correlationidprocessor',
+      ),
+      2 => 
+      array (
+        0 => 'app\\logging\\__invoke',
       ),
       3 => 
       array (

@@ -2,7 +2,7 @@
 
 // odsl-/var/www/html/app/Http/Requests/Registry/UploadImportRequest.php-PHPStan\BetterReflection\Reflection\ReflectionClass-App\Http\Requests\Registry\UploadImportRequest
 return \PHPStan\Cache\CacheItem::__set_state(array(
-   'variableKey' => 'v2-6.70.0.1-8.3.31-c95e59dc9e89819ffdcee0e177d04b687a443732c8116871ddedf894055a4a81',
+   'variableKey' => 'v2-6.70.0.1-8.3.31-b1b6a27859b1def5ed9e62eb4c8e1c9ba991c47bc0b99169f0d6f75be3033ba9',
    'data' => 
   array (
     'locatedSource' => 
@@ -28,16 +28,25 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
  * ingestion adapter (and thus the stamped provenance). When omitted, the source
  * is inferred from the file extension (excel/csv).
  *
- * Activity-first (PRD §9, FR-REG-10): a required, valid `activity_id` that the
- * caller\'s MDA owns must accompany every upload — the resulting intervention is
- * recorded under it. An upload with no/invalid activity, or one the caller\'s MDA
- * cannot use, is refused here.
+ * PROGRAMME-first (revises the activity-first rule in PRD §9 / CLAUDE.md §9): every
+ * upload must name a catalog programme, and MAY additionally name an `activity_id` the
+ * caller\'s MDA owns. `programme_id` is required only when no activity is given — an
+ * activity already names its programme, so the two together are one fact, not two.
+ *
+ * Registering people under a catalog programme is a complete act — the enrollment records
+ * that they are on that programme. An activity adds *which MDA-run instance* delivered to
+ * them, which an intake frequently does not know yet; requiring one made officers invent
+ * placeholder activities, and a placeholder is a worse record than an honest absence.
+ *
+ * When both are given they must agree: an activity belongs to exactly one programme, and
+ * accepting a contradiction would leave the batch\'s own `programme_id` disagreeing with
+ * the programme its enrollments actually land in.
  */',
     'attributes' => 
     array (
     ),
-    'startLine' => 25,
-    'endLine' => 72,
+    'startLine' => 35,
+    'endLine' => 117,
     'startColumn' => 1,
     'endColumn' => 1,
     'parentClassName' => 'Illuminate\\Foundation\\Http\\FormRequest',
@@ -75,8 +84,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         array (
         ),
         'docComment' => NULL,
-        'startLine' => 27,
-        'endLine' => 30,
+        'startLine' => 37,
+        'endLine' => 40,
         'startColumn' => 5,
         'endColumn' => 5,
         'couldThrow' => false,
@@ -112,8 +121,69 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         'docComment' => '/**
  * @return array<string, mixed>
  */',
-        'startLine' => 35,
-        'endLine' => 44,
+        'startLine' => 45,
+        'endLine' => 63,
+        'startColumn' => 5,
+        'endColumn' => 5,
+        'couldThrow' => false,
+        'isClosure' => false,
+        'isGenerator' => false,
+        'isVariadic' => false,
+        'modifiers' => 1,
+        'namespace' => 'App\\Http\\Requests\\Registry',
+        'declaringClassName' => 'App\\Http\\Requests\\Registry\\UploadImportRequest',
+        'implementingClassName' => 'App\\Http\\Requests\\Registry\\UploadImportRequest',
+        'currentClassName' => 'App\\Http\\Requests\\Registry\\UploadImportRequest',
+        'aliasName' => NULL,
+      ),
+      'withValidator' => 
+      array (
+        'name' => 'withValidator',
+        'parameters' => 
+        array (
+          'validator' => 
+          array (
+            'name' => 'validator',
+            'default' => NULL,
+            'type' => 
+            array (
+              'class' => 'PHPStan\\BetterReflection\\Reflection\\ReflectionNamedType',
+              'data' => 
+              array (
+                'name' => 'Illuminate\\Contracts\\Validation\\Validator',
+                'isIdentifier' => false,
+              ),
+            ),
+            'isVariadic' => false,
+            'byRef' => false,
+            'isPromoted' => false,
+            'attributes' => 
+            array (
+            ),
+            'startLine' => 65,
+            'endLine' => 65,
+            'startColumn' => 35,
+            'endColumn' => 54,
+            'parameterIndex' => 0,
+            'isOptional' => false,
+          ),
+        ),
+        'returnsReference' => false,
+        'returnType' => 
+        array (
+          'class' => 'PHPStan\\BetterReflection\\Reflection\\ReflectionNamedType',
+          'data' => 
+          array (
+            'name' => 'void',
+            'isIdentifier' => true,
+          ),
+        ),
+        'attributes' => 
+        array (
+        ),
+        'docComment' => NULL,
+        'startLine' => 65,
+        'endLine' => 89,
         'startColumn' => 5,
         'endColumn' => 5,
         'couldThrow' => false,
@@ -151,8 +221,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
  * MDA. Resolved without the global MDA scope so a cross-MDA activity fails as
  * "not usable" (a clear 422) rather than a bare "not found".
  */',
-        'startLine' => 51,
-        'endLine' => 71,
+        'startLine' => 96,
+        'endLine' => 116,
         'startColumn' => 5,
         'endColumn' => 5,
         'couldThrow' => false,

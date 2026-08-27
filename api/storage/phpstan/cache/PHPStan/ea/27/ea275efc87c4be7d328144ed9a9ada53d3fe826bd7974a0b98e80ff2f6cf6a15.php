@@ -2,7 +2,7 @@
 
 // odsl-/var/www/html/app/Http/Requests/Reporting/AdHocReportRequest.php-PHPStan\BetterReflection\Reflection\ReflectionClass-App\Http\Requests\Reporting\AdHocReportRequest
 return \PHPStan\Cache\CacheItem::__set_state(array(
-   'variableKey' => 'v2-6.70.0.1-8.3.31-b1986f9cff82410ceab76031bd4b0abb2588f3201e5e9b9e7d156d0d6635c216',
+   'variableKey' => 'v2-6.70.0.1-8.3.31-2942692e5b840df9b484cde020971af9aa50db9b887087dc002b037a9e8c84b6',
    'data' => 
   array (
     'locatedSource' => 
@@ -31,7 +31,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
     array (
     ),
     'startLine' => 14,
-    'endLine' => 35,
+    'endLine' => 38,
     'startColumn' => 1,
     'endColumn' => 1,
     'parentClassName' => 'Illuminate\\Foundation\\Http\\FormRequest',
@@ -107,7 +107,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
  * @return array<string, mixed>
  */',
         'startLine' => 24,
-        'endLine' => 34,
+        'endLine' => 37,
         'startColumn' => 5,
         'endColumn' => 5,
         'couldThrow' => false,

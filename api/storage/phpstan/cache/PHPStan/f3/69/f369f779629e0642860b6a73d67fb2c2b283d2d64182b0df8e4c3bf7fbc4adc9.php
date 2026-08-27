@@ -2,7 +2,7 @@
 
 // odsl-/var/www/html/app/Domain/Notification/Channels/InAppChannel.php-PHPStan\BetterReflection\Reflection\ReflectionClass-App\Domain\Notification\Channels\InAppChannel
 return \PHPStan\Cache\CacheItem::__set_state(array(
-   'variableKey' => 'v2-6.70.0.1-8.3.31-ad427d0ac3927c1cefcede52fd115f12e4fd633bd0c03730da86cd53cb960229',
+   'variableKey' => 'v2-6.70.0.1-8.3.31-8aecc28492ea8603ba3a59b01b65d8fefec43a2d5188debf931552b6a332bd29',
    'data' => 
   array (
     'locatedSource' => 
@@ -30,7 +30,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
     array (
     ),
     'startLine' => 16,
-    'endLine' => 41,
+    'endLine' => 59,
     'startColumn' => 1,
     'endColumn' => 1,
     'parentClassName' => NULL,
@@ -192,7 +192,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         ),
         'docComment' => NULL,
         'startLine' => 28,
-        'endLine' => 40,
+        'endLine' => 43,
         'startColumn' => 5,
         'endColumn' => 5,
         'couldThrow' => false,
@@ -200,6 +200,88 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         'isGenerator' => false,
         'isVariadic' => false,
         'modifiers' => 1,
+        'namespace' => 'App\\Domain\\Notification\\Channels',
+        'declaringClassName' => 'App\\Domain\\Notification\\Channels\\InAppChannel',
+        'implementingClassName' => 'App\\Domain\\Notification\\Channels\\InAppChannel',
+        'currentClassName' => 'App\\Domain\\Notification\\Channels\\InAppChannel',
+        'aliasName' => NULL,
+      ),
+      'payloadFor' => 
+      array (
+        'name' => 'payloadFor',
+        'parameters' => 
+        array (
+          'message' => 
+          array (
+            'name' => 'message',
+            'default' => NULL,
+            'type' => 
+            array (
+              'class' => 'PHPStan\\BetterReflection\\Reflection\\ReflectionNamedType',
+              'data' => 
+              array (
+                'name' => 'App\\Domain\\Notification\\Support\\NotificationMessage',
+                'isIdentifier' => false,
+              ),
+            ),
+            'isVariadic' => false,
+            'byRef' => false,
+            'isPromoted' => false,
+            'attributes' => 
+            array (
+            ),
+            'startLine' => 48,
+            'endLine' => 48,
+            'startColumn' => 33,
+            'endColumn' => 60,
+            'parameterIndex' => 0,
+            'isOptional' => false,
+          ),
+        ),
+        'returnsReference' => false,
+        'returnType' => 
+        array (
+          'class' => 'PHPStan\\BetterReflection\\Reflection\\ReflectionUnionType',
+          'data' => 
+          array (
+            'types' => 
+            array (
+              0 => 
+              array (
+                'class' => 'PHPStan\\BetterReflection\\Reflection\\ReflectionNamedType',
+                'data' => 
+                array (
+                  'name' => 'array',
+                  'isIdentifier' => true,
+                ),
+              ),
+              1 => 
+              array (
+                'class' => 'PHPStan\\BetterReflection\\Reflection\\ReflectionNamedType',
+                'data' => 
+                array (
+                  'name' => 'null',
+                  'isIdentifier' => true,
+                ),
+              ),
+            ),
+          ),
+        ),
+        'attributes' => 
+        array (
+        ),
+        'docComment' => '/**
+ * @return array<string, mixed>|null
+ */',
+        'startLine' => 48,
+        'endLine' => 58,
+        'startColumn' => 5,
+        'endColumn' => 5,
+        'couldThrow' => false,
+        'isClosure' => false,
+        'isGenerator' => false,
+        'isVariadic' => false,
+        'modifiers' => 4,
         'namespace' => 'App\\Domain\\Notification\\Channels',
         'declaringClassName' => 'App\\Domain\\Notification\\Channels\\InAppChannel',
         'implementingClassName' => 'App\\Domain\\Notification\\Channels\\InAppChannel',

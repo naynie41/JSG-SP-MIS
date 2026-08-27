@@ -154,7 +154,7 @@ export function CoverageMapTab({ filter }: CoverageMapTabProps) {
         <>
           {data.mode === 'choropleth' && data.feature_collection ? (
             <div className={styles.mapCard}>
-              <BandChoroplethMap data={data.feature_collection} selectedCode={selectedCode} onSelect={setSelectedCode} overlays={activeOverlays} />
+              <BandChoroplethMap data={data.feature_collection} selectedCode={selectedCode} onSelect={setSelectedCode} overlays={activeOverlays} areaWord={areaWord} />
               {overlays.length > 0 && (
                 <div className={styles.layers} role="group" aria-label="Overlay layers">
                   <span className={styles.layersLabel}>Overlays</span>
