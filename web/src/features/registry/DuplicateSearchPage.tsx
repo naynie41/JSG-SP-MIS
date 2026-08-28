@@ -84,7 +84,7 @@ export function DuplicateSearchPage({ embedded = false }: DuplicateSearchPagePro
             <span className="eyebrow">03 · Registry</span>
             <h1 className="t-h1">Duplicate search</h1>
             <p className={styles.note}>
-              Find an existing beneficiary across all MDAs before registering. Reveal fields only — never the full profile.
+              Find an existing beneficiary across all MDAs before registering. Reveal fields only, never the full profile.
             </p>
           </div>
         </div>

@@ -132,7 +132,7 @@ export function GraduationCriteriaModal({ open, onClose, programmeId, criteria }
 
         <div>
           <p className={styles.note} style={{ marginBottom: 'var(--space-2)' }}>
-            Criteria are evaluated against real data — benefits delivered, months enrolled, total value. “Manual readiness” is confirmed by an officer.
+            Criteria are evaluated against real data: benefits delivered, months enrolled, total value. “Manual readiness” is confirmed by an officer.
           </p>
           <div className={styles.rules}>
             {rules.map((rule, index) => (

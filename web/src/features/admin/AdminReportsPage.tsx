@@ -35,7 +35,7 @@ export function AdminReportsPage() {
         <span className={styles.eyebrow}>Administration console</span>
         <h1 className={styles.pageTitle}>Reports</h1>
         <p className={styles.lead}>
-          Administrative reporting over the platform's own records — users and access, organizations, the programme
+          Administrative reporting over the platform's own records: users and access, organizations, the programme
           catalogue, duplicate review, the audit log and imports. Reports are generated, scheduled and exported by
           the shared reporting engine.
         </p>
@@ -68,8 +68,8 @@ export function AdminReportsPage() {
               content: (
                 <ReportHistoryPanel
                   canManage={canExport}
-                  scheduleFootnote="A schedule delivers only to recipients whose own scope covers the report — an administrative report can never be delivered outside the administration console"
-                  runsFootnote="Every export is generated and audited by the shared reporting engine — the console adds datasets, not a second pipeline"
+                  scheduleFootnote="A schedule delivers only to recipients whose own scope covers the report. An administrative report can never be delivered outside the administration console"
+                  runsFootnote="Every export is generated and audited by the shared reporting engine. The console adds datasets, not a second pipeline"
                 />
               ),
             },          ]}

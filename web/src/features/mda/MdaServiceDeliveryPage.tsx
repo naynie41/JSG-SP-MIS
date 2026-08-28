@@ -94,7 +94,7 @@ function InterventionHistory() {
           </Button>
         </div>
         <p className={styles.queueNote}>
-          Every intervention recorded for this person, by any MDA — this is what makes duplicate support visible.
+          Every intervention recorded for this person, by any MDA. This is what makes duplicate support visible.
         </p>
         <BenefitsPanel beneficiaryId={subject.id} />
       </div>
@@ -185,7 +185,7 @@ function ReferralsGroup({ pending }: { pending: number | null }) {
         icon={Inbox}
         title="Referrals received"
         count={pending}
-        note="Another MDA referred a beneficiary to you. Open one to accept, reject, request more information, or drive it through to completion — the same lifecycle both parties see."
+        note="Another MDA referred a beneficiary to you. Open one to accept, reject, request more information, or drive it through to completion. It is the same lifecycle both parties see."
       >
         <ReferralTable direction="incoming" />
       </Queue>
@@ -197,7 +197,7 @@ function ReferralsGroup({ pending }: { pending: number | null }) {
         </div>
         <p className={styles.queueNote}>
           Referrals your MDA raised, with the receiving MDA&apos;s progress and any SLA breach. Referring never
-          transfers ownership — the beneficiary stays yours throughout.
+          transfers ownership. The beneficiary stays yours throughout.
         </p>
         <ReferralTable direction="outgoing" />
       </section>
@@ -261,7 +261,7 @@ export function MdaServiceDeliveryPage() {
         <span className={styles.eyebrow}>MDA workspace</span>
         <h1 className={styles.pageTitle}>Service Delivery</h1>
         <p className={styles.lead}>
-          What your MDA delivered, and the coordination around it — referrals in both directions and request-to-serve
+          What your MDA delivered, and the coordination around it: referrals in both directions and request-to-serve
           decisions on the people you own. Items waiting on your MDA are marked as such.
         </p>
       </header>
@@ -316,7 +316,7 @@ export function MdaServiceDeliveryPage() {
                   icon={ShieldCheck}
                   title="Approvals awaiting your MDA"
                   count={pendingApprovals}
-                  note="Another MDA has asked to serve a beneficiary you own. Accepting grants them READ access to the record and authorises delivery; declining blocks it. Either way, ownership stays with you."
+                  note="Another MDA has asked to serve a beneficiary you own. Accepting grants them READ access to the record and authorises delivery. Declining blocks it. Either way, ownership stays with you."
                 >
                   <ServiceRequestsPage embedded />
                 </Queue>
@@ -334,7 +334,7 @@ export function MdaServiceDeliveryPage() {
         <Card>
           <p className={styles.muted}>
             <Icon icon={Split} size={14} /> You may always record a delivery for a beneficiary your MDA owns. For
-            anyone else, an accepted request-to-serve or an accepted referral is required — the server refuses the
+            anyone else, an accepted request-to-serve or an accepted referral is required. The server refuses the
             delivery otherwise, and no page can grant it.
           </p>
           <p className={styles.footnote}>

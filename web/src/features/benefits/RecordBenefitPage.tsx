@@ -185,7 +185,7 @@ export function RecordBenefitPage({ embedded = false }: RecordBenefitPageProps =
               <TextField label="Unit" placeholder="e.g. bags" value={unit} onChange={(e) => setUnit(e.target.value)} />
             </div>
             <div className={layout.grid2}>
-              <TextField label="Monetary value (₦)" type="number" min={0} step="0.01" helper="Data only — not disbursed." value={monetary} onChange={(e) => setMonetary(e.target.value)} />
+              <TextField label="Monetary value (₦)" type="number" min={0} step="0.01" helper="Data only. Not disbursed." value={monetary} onChange={(e) => setMonetary(e.target.value)} />
               <TextField label="Funding source" value={funding} onChange={(e) => setFunding(e.target.value)} />
             </div>
             <TextareaField label="Notes" rows={2} value={notes} onChange={(e) => setNotes(e.target.value)} />

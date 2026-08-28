@@ -130,7 +130,7 @@ export function AdminAccessPage() {
         <span className={styles.eyebrow}>Administration console</span>
         <h1 className={styles.pageTitle}>User &amp; Access</h1>
         <p className={styles.lead}>
-          Accounts, roles, permissions and authentication activity — backed by the existing access module.
+          Accounts, roles, permissions and authentication activity, backed by the existing access module.
         </p>
       </header>
 

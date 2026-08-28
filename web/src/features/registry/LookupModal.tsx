@@ -79,7 +79,7 @@ export function LookupModal({ open, onClose }: LookupModalProps) {
       <div className={styles.stack}>
         <p className={styles.note}>
           Search by an exact identifier to see whether a beneficiary already exists in another MDA.
-          Only reveal fields are shown — never the full profile.
+          Only reveal fields are shown, never the full profile.
         </p>
         {error && (
           <p className={formStyles.alert} role="alert">

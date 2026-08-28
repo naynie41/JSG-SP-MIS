@@ -88,7 +88,7 @@ export function SegmentFilters({ dimensions, value, onChange }: SegmentFiltersPr
         <h3 className={styles.filtersTitle}>Filters</h3>
         <p className={styles.filtersHint}>
           {active.length === 0
-            ? 'No filters — every beneficiary in your scope.'
+            ? 'No filters. Every beneficiary in your scope.'
             : 'All conditions must match. Within one filter, any selected value matches.'}
         </p>
       </div>

@@ -90,7 +90,7 @@ export function GisDashboardPage() {
           <span className="eyebrow">Reporting</span>
           <h1 className="t-h1">Coverage map</h1>
           <p className={styles.lead}>
-            Where social protection reaches across Jigawa — beneficiaries and benefits by
+            Where social protection reaches across Jigawa: beneficiaries and benefits by
             {level === 'lga' ? ' LGA' : ' ward'}, within your scope.
           </p>
         </div>

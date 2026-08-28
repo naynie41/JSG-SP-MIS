@@ -119,7 +119,7 @@ function SegmentBuilder() {
     <div className={styles.segment}>
       <div className={styles.segmentNotice}>
         <Badge variant={tier === 'rows' ? 'info' : 'neutral'}>
-          {tier === 'rows' ? 'You can see beneficiary rows' : 'Counts only — no beneficiary rows'}
+          {tier === 'rows' ? 'You can see beneficiary rows' : 'Counts only, no beneficiary rows'}
         </Badge>
         {catalogue.data?.reveal_pii === false && <Badge variant="neutral">NIN and BVN masked</Badge>}
         {guardOn && <Badge variant="neutral">Groups under {minimum} withheld</Badge>}
@@ -211,7 +211,7 @@ function SegmentResult({
 
       {result.tier === 'aggregate' ? (
         <p className={styles.muted}>
-          Your role receives aggregate reporting — counts and breakdowns, never the beneficiary
+          Your role receives aggregate reporting: counts and breakdowns, never the beneficiary
           registry itself.
         </p>
       ) : result.rows.length === 0 ? (

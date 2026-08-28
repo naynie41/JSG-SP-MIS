@@ -123,7 +123,7 @@ export function AdminAuditPage() {
         <span className={styles.eyebrow}>Administration console</span>
         <h1 className={styles.pageTitle}>Audit &amp; Security</h1>
         <p className={styles.lead}>
-          The immutable, hash-chained record of who did what, when and from where — sign-in and security events,
+          The immutable, hash-chained record of who did what, when and from where. It covers sign-in and security events,
           permission changes, request-to-serve decisions and data access.
         </p>
       </header>
@@ -185,7 +185,7 @@ export function AdminAuditPage() {
 
       <p className={styles.footnote}>
         <Icon icon={ShieldCheck} size={13} /> Append-only and hash-chained · the envelope and changed field NAMES are
-        shown; recorded values never leave the server
+        shown. Recorded values never leave the server
       </p>
     </div>
   )

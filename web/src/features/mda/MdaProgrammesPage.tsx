@@ -79,7 +79,7 @@ export function MdaProgrammesPage() {
         <span className={styles.eyebrow}>MDA workspace</span>
         <h1 className={styles.pageTitle}>Programmes</h1>
         <p className={styles.lead}>
-          The catalogue programmes your MDA delivers — those you run at least one activity under. Open one to see
+          The catalogue programmes your MDA delivers, meaning those you run at least one activity under. Open one to see
           your activities, their budgets and targets, and to create another.
         </p>
       </header>

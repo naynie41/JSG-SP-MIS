@@ -176,7 +176,7 @@ export function ConsentPanel({ beneficiary }: { beneficiary: Beneficiary }) {
               required
               value={basis}
               onChange={(event) => setBasis(event.target.value)}
-              helper="e.g. signed enrolment form, verbal at registration — recorded in the audit log."
+              helper="e.g. signed enrolment form, or verbal at registration. Recorded in the audit log."
             />
           )}
 

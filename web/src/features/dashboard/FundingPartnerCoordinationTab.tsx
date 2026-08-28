@@ -62,14 +62,14 @@ function OverlapSection({ pf, onDrill }: { pf: PartnerFunding; onDrill?: DrillFn
       <div className={shell.panel}>
         {overlap.count === 0 ? (
           <p className={styles.allClear}>
-            <Icon icon={CheckCircle2} size={16} /> No overlap detected — no funded programme is run in the same LGA by
+            <Icon icon={CheckCircle2} size={16} /> No overlap detected. No funded programme is run in the same LGA by
             another funder or MDA.
           </p>
         ) : (
           <>
             <p className={styles.overlapLede}>
               {num(overlap.count)} {overlap.count === 1 ? 'cell where a' : 'cells where a'} funded programme is also run
-              in the same LGA by a different funder or MDA — a signal to coordinate or reallocate.
+              in the same LGA by a different funder or MDA. That is a signal to coordinate or reallocate.
             </p>
 
             {/* Map indicator — overlapped LGAs at a glance (the full map lives in the GIS view). */}
@@ -279,13 +279,13 @@ export function FundingPartnerCoordinationTab({ data, onDrill }: FundingPartnerC
             <span className={styles.inertLabel}>
               <Icon icon={CalendarX} size={13} /> Coordination meetings &amp; action items
             </span>
-            <span className={styles.inertNote}>No meetings module — not tracked in SP-MIS.</span>
+            <span className={styles.inertNote}>No meetings module. Not tracked in SP-MIS.</span>
           </div>
           <div className={styles.inert}>
             <span className={styles.inertLabel}>
               <Icon icon={ClipboardX} size={13} /> Reporting compliance
             </span>
-            <span className={styles.inertNote}>No reporting workflow — not tracked in SP-MIS.</span>
+            <span className={styles.inertNote}>No reporting workflow. Not tracked in SP-MIS.</span>
           </div>
         </div>
       </section>

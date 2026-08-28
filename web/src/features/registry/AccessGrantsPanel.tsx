@@ -81,7 +81,7 @@ export function AccessGrantsPanel({ beneficiary }: { beneficiary: Beneficiary })
     <Card title="Cross-MDA access" eyebrow="Sharing">
       <p className={styles.note}>
         MDAs that were granted read access to this record by an accepted request to serve. Access is
-        read-only — it never allowed editing this profile, and it never moved ownership.
+        read-only. It never allowed editing this profile, and it never moved ownership.
       </p>
 
       {isLoading && <p className={styles.cellSub}>Loading access…</p>}

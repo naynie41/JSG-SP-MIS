@@ -250,7 +250,7 @@ export function AdminOverviewPage() {
         <div className={styles.panel}>
           {data.alerts.length === 0 ? (
             <p className={styles.allClear}>
-              <Icon icon={ShieldCheck} size={16} /> Nothing needs attention — provisioning and data quality are in order.
+              <Icon icon={ShieldCheck} size={16} /> Nothing needs attention. Provisioning and data quality are in order.
             </p>
           ) : (
             <ul className={styles.alerts}>

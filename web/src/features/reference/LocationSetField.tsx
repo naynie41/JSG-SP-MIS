@@ -63,8 +63,8 @@ export function LocationSetField({ value, onChange, errors = {}, disabled }: Loc
     <fieldset className={styles.fieldset} disabled={disabled}>
       <legend className={styles.legend}>Where does this activity run?</legend>
       <p className={styles.helper}>
-        Add every LGA this activity covers, then choose its wards — or the whole LGA. This describes
-        the plan; it does not restrict which beneficiaries can be uploaded.
+        Add every LGA this activity covers, then choose its wards, or the whole LGA. This describes
+        the plan. It does not restrict which beneficiaries can be uploaded.
       </p>
 
       {errors.locations && <p className={styles.error} role="alert">{errors.locations}</p>}
@@ -216,7 +216,7 @@ function LgaBlock({ entry, index, name, errors, open, onToggle, onRemove, onChan
         )}
 
         {!entry.whole_lga && entry.ward_ids.length === 0 && list.length > 0 && (
-          <p className={styles.muted}>No wards selected — this LGA will be saved as whole-LGA coverage.</p>
+          <p className={styles.muted}>No wards selected. This LGA will be saved as whole-LGA coverage.</p>
         )}
         </>
       )}

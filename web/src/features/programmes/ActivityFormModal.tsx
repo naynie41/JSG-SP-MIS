@@ -172,7 +172,7 @@ export function ActivityFormModal({ open, onClose, programmeId, activity }: Acti
   const uploadAndPreview = handleSubmit(async (values) => {
     setFormError(null)
     if (!file) {
-      setFormError('Attach a beneficiary file to continue — the upload is required for this activity.')
+      setFormError('Attach a beneficiary file to continue. The upload is required for this activity.')
       return
     }
     try {
@@ -278,8 +278,8 @@ export function ActivityFormModal({ open, onClose, programmeId, activity }: Acti
               label="Does this activity involve beneficiaries?"
               required
               options={[
-                { value: 'no', label: 'No — no beneficiaries (save the activity alone)' },
-                { value: 'yes', label: 'Yes — onboard or serve beneficiaries' },
+                { value: 'no', label: 'No, this activity has no beneficiaries (save it alone)' },
+                { value: 'yes', label: 'Yes, onboard or serve beneficiaries' },
               ]}
               disabled={!isCreate}
               helper="Yes requires a target and a beneficiary upload; No saves the activity on its own."
@@ -297,7 +297,7 @@ export function ActivityFormModal({ open, onClose, programmeId, activity }: Acti
               <TextField label="Budget (₦)" type="number" min={0} step="0.01" error={errors.budget_naira?.message} {...register('budget_naira')} />
             )}
             <LocationSetField value={locations} onChange={setLocations} errors={locationErrors} disabled={busy} />
-            <TextField label="Location detail" helper="Free description — a landmark or route, not an admin area." error={errors.location_description?.message} {...register('location_description')} />
+            <TextField label="Location detail" helper="Free description: a landmark or route, not an admin area." error={errors.location_description?.message} {...register('location_description')} />
             <TextField label="Funding source" error={errors.funding_source?.message} {...register('funding_source')} />
             <div className={formStyles.grid2}>
               <TextField label="Start date" type="date" error={errors.starts_on?.message} {...register('starts_on')} />
@@ -312,7 +312,7 @@ export function ActivityFormModal({ open, onClose, programmeId, activity }: Acti
           <div>
             <p className={styles.note} style={{ marginBottom: 'var(--space-3)' }}>
               Attach the beneficiary file for this activity. It’s validated and screened for duplicates in a
-              preview before anything is saved — you’ll resolve any matches and confirm on the next screen.
+              preview before anything is saved. You’ll resolve any matches and confirm on the next screen.
             </p>
 
             {file ? (

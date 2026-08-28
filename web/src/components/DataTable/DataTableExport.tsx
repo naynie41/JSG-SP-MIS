@@ -34,7 +34,7 @@ export function DataTableExport({ endpoint, params, permission, label }: DataTab
     try {
       const { queued } = await exportListFile(endpoint, params, format)
       if (queued) {
-        toast.info('Export queued', "It's a large export — we'll notify you when the file is ready to download.")
+        toast.info('Export queued', "It's a large export. We'll notify you when the file is ready to download.")
       } else {
         toast.success('Export started', 'Your download should begin shortly.')
       }

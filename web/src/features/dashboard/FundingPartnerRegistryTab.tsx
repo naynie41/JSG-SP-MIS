@@ -171,7 +171,7 @@ export function FundingPartnerRegistryTab({ data }: FundingPartnerRegistryTabPro
                 <Icon icon={Lock} size={12} /> Eligible → Selected
               </span>
               <span className={styles.funnelExternalNote}>
-                Not tracked — needs an eligible-population denominator and a selection model
+                Not tracked. Needs an eligible-population denominator and a selection model
               </span>
             </div>
             {funnelStages.map((s) => (
@@ -254,7 +254,7 @@ export function FundingPartnerRegistryTab({ data }: FundingPartnerRegistryTabPro
           </div>
 
           <p className={styles.qualityFoot}>
-            Bank / mobile-money verification is not shown — SP-MIS records value as data and is not a payment engine, so
+            Bank and mobile-money verification is not shown. SP-MIS records value as data and is not a payment engine, so
             no such field is captured.
           </p>
         </div>

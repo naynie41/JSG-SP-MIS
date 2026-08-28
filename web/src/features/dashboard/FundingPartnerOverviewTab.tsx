@@ -212,7 +212,7 @@ export function FundingPartnerOverviewTab({ data, onDrill }: FundingPartnerOverv
             <span className={styles.lifecycleDelivered} style={{ width: `${reachPctOfBudget}%` }} />
           </div>
           <p className={styles.deliveryNote}>
-            <strong>Delivery value</strong>, not treasury expenditure — the recorded value of benefits delivered under funded activities (programme data). SP-MIS records value; it does not move money.
+            <strong>Delivery value</strong>, not treasury expenditure. It is the recorded value of benefits delivered under funded activities (programme data). SP-MIS records value. It does not move money.
           </p>
         </div>
       </section>
@@ -272,7 +272,7 @@ export function FundingPartnerOverviewTab({ data, onDrill }: FundingPartnerOverv
             <span className={styles.frameNote}>reached · {formatNaira(pf.delivered_value)} delivered</span>
           </div>
           <Icon icon={ArrowRight} size={18} className={styles.frameArrow} />
-          <div className={`${styles.frameNode} ${styles.frameExternal}`} aria-label="Outcomes and impact — tracked externally">
+          <div className={`${styles.frameNode} ${styles.frameExternal}`} aria-label="Outcomes and impact, tracked externally">
             <span className={styles.frameLabel}>
               <Icon icon={Lock} size={12} /> Outcomes → Impact
             </span>
@@ -290,7 +290,7 @@ export function FundingPartnerOverviewTab({ data, onDrill }: FundingPartnerOverv
         <div className={styles.panel}>
           {alerts.length === 0 ? (
             <p className={styles.allClear}>
-              <Icon icon={CheckCircle2} size={16} /> No alerts — funding delivery and reach are within range.
+              <Icon icon={CheckCircle2} size={16} /> No alerts. Funding delivery and reach are within range.
             </p>
           ) : (
             <ul className={styles.alerts}>

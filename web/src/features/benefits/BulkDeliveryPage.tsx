@@ -72,7 +72,7 @@ export function BulkDeliveryPage() {
         <div className={layout.pageTitle}>
           <span className="eyebrow">04 · Benefits</span>
           <h1 className="t-h1">Bulk delivery</h1>
-          <p className={styles.note}>Upload a delivery list keyed to an activity. Rows reference existing beneficiaries — this records benefits, not beneficiaries.</p>
+          <p className={styles.note}>Upload a delivery list keyed to an activity. Rows reference existing beneficiaries. This records benefits, not beneficiaries.</p>
         </div>
       </div>
 

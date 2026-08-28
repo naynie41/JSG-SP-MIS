@@ -242,7 +242,7 @@ export function ImportMappingPanel({ batchId }: { batchId: string }) {
 
         <p className={styles.note}>
           Your file’s columns are listed against the fields SP-MIS uses. Suggestions are a starting
-          point only — your MDA is not required to name its columns our way.
+          point only. Your MDA is not required to name its columns our way.
         </p>
 
         <section className={styles.mapGroup}>
@@ -251,7 +251,7 @@ export function ImportMappingPanel({ batchId }: { batchId: string }) {
           </h3>
           <p className={styles.note}>
             These decide whether two records are the same person. Each one must be confirmed on
-            every import — point it at a column, or mark it not present.
+            every import. Point it at a column, or mark it not present.
           </p>
           {identity.map(renderField)}
         </section>
@@ -266,7 +266,7 @@ export function ImportMappingPanel({ batchId }: { batchId: string }) {
           placeholder="e.g. Health monthly returns"
           value={templateName}
           onChange={(e) => setTemplateName(e.target.value)}
-          helper="Optional. A saved mapping pre-fills a future file with the same columns — it never skips identity confirmation."
+          helper="Optional. A saved mapping pre-fills a future file with the same columns. It never skips identity confirmation."
         />
 
         <div className={styles.rowActions}>
@@ -292,7 +292,7 @@ export function ImportMappingPanel({ batchId }: { batchId: string }) {
         <Card title="How your values will be read" eyebrow="Step 4 · Preview">
           <p className={styles.note}>
             The value on the left is stored exactly as your file has it. The value on the right is
-            what duplicate checking compares — this is where a wrong mapping shows itself.
+            what duplicate checking compares. This is where a wrong mapping shows itself.
           </p>
           <table className={styles.previewTable}>
             <caption className="sr-only">Original and normalized values from the first row</caption>
@@ -319,7 +319,7 @@ export function ImportMappingPanel({ batchId }: { batchId: string }) {
           </table>
           <p className={styles.footnote}>
             A row whose name, phone, NIN or BVN is present but malformed is rejected whole and never
-            saved; other fields that fail are dropped and the row still saves.
+            saved. Other fields that fail are dropped and the row still saves.
           </p>
         </Card>
       )}

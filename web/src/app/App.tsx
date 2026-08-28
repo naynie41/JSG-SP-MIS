@@ -5,6 +5,9 @@ import { Spinner } from '@/components/Spinner/Spinner'
 import { useAuth } from '@/lib/auth/AuthProvider'
 import { isMdaRole } from '@/features/mda/roles'
 import { LoginPage } from '@/features/auth/LoginPage'
+// Eager, like the login page: this is the public front door and the first paint for
+// every anonymous visitor — a lazy chunk would put a spinner there.
+import { LandingPage } from '@/features/public/LandingPage'
 import { NotFoundPage } from '@/features/misc/NotFoundPage'
 import { AppLayout } from './AppLayout'
 import { ProtectedRoute } from './ProtectedRoute'
@@ -131,9 +134,34 @@ function PublicOnlyRoute({ children }: { children: ReactNode }) {
   return <>{children}</>
 }
 
+/**
+ * The site root.
+ *
+ * Anonymous visitors get the PUBLIC landing page — a document about what SP-MIS is,
+ * reading nothing from the API (NDPA/NDPR: an anonymous visitor is entitled to know what
+ * the system is for, not what is in it). Signed-in users are sent straight on to their
+ * role dashboard, so the landing page never stands between someone and their work.
+ *
+ * Deliberately OUTSIDE {@link ProtectedRoute}: the landing page must not mount the
+ * authenticated shell, and must not trigger a redirect to /login.
+ */
+function RootRoute() {
+  const { status } = useAuth()
+  if (status === 'loading') {
+    return (
+      <div style={{ display: 'grid', placeItems: 'center', minHeight: '100vh' }}>
+        <Spinner size={28} />
+      </div>
+    )
+  }
+  return status === 'authenticated' ? <Navigate to="/home" replace /> : <LandingPage />
+}
+
 export function App() {
   return (
     <Routes>
+      <Route path="/" element={<RootRoute />} />
+
       <Route
         path="/login"
         element={
@@ -150,7 +178,8 @@ export function App() {
           </ProtectedRoute>
         }
       >
-        <Route index element={<HomeDashboard />} />
+        {/* Was the index route; `/` is the public landing page now. */}
+        <Route path="/home" element={<HomeDashboard />} />
         <Route path="/admin" element={<AdminLayout />}>
           <Route index element={<AdminOverviewPage />} />
           <Route path="access" element={<AdminAccessPage />} />

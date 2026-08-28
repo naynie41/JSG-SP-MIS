@@ -41,7 +41,7 @@ export function BenefitsPanel({ beneficiaryId }: { beneficiaryId: string }) {
         <Card title="Potential double-dipping" eyebrow="Review" variant="mint">
           <p className={styles.note} style={{ display: 'flex', alignItems: 'center', gap: 'var(--space-2)', marginBottom: 'var(--space-3)' }}>
             <Icon icon={AlertTriangle} size={16} />
-            {openFlags.length} open {openFlags.length === 1 ? 'flag' : 'flags'}. Delivery was not blocked — review below.
+            {openFlags.length} open {openFlags.length === 1 ? 'flag' : 'flags'}. Delivery was not blocked. Review below.
           </p>
           {openFlags.map((flag) => (
             <div key={flag.id} className={styles.rowActions} style={{ justifyContent: 'space-between', paddingBottom: 'var(--space-2)' }}>

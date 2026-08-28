@@ -40,9 +40,9 @@ export function NotificationPreferencesPage() {
           <div>
             <p className={styles.prefLabel}>Email notifications</p>
             <p className={styles.note}>
-              Sent when something needs your decision — a request to serve one of your
+              Sent when something needs your decision, such as a request to serve one of your
               beneficiaries, or a decision on a request you raised. Emails never contain
-              beneficiary details; they link you here to review the record.
+              beneficiary details. They link you here to review the record.
             </p>
           </div>
           <Toggle

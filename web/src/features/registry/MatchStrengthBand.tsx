@@ -23,14 +23,14 @@ export function MatchStrengthBand({ score, thresholds, deterministic }: MatchStr
   if (deterministic) {
     return (
       <p className={styles.bandDefinitive}>
-        Matched on a unique identifier — definitively the same person.
+        Matched on a unique identifier. Definitively the same person.
       </p>
     )
   }
 
   if (!thresholds) {
     // No active configuration: say so rather than implying a calibrated verdict.
-    return <p className={styles.note}>Match strength cannot be placed — no active matching configuration.</p>
+    return <p className={styles.note}>Match strength cannot be placed. There is no active matching configuration.</p>
   }
 
   const { review, auto_accept: autoAccept } = thresholds
@@ -40,7 +40,7 @@ export function MatchStrengthBand({ score, thresholds, deterministic }: MatchStr
   const verdict = aboveAuto
     ? 'Above the auto-accept threshold'
     : aboveReview
-      ? 'Above the review threshold — needs your judgement'
+      ? 'Above the review threshold. Needs your judgement'
       : 'Below the review threshold'
 
   return (

@@ -58,12 +58,12 @@ describe('CoordinationTab', () => {
     expect(screen.getByText('API')).toBeInTheDocument()
   })
 
-  it('notes the meetings module as a future/external slot but does NOT build it', () => {
+  it('notes the meetings module as a future or external slot but does NOT build it', () => {
     render(<CoordinationTab data={makeExecutivePayload()} />)
 
     // Only a note is present — no attendance/action-item panels or controls.
     expect(screen.getByText(/not part of SP-MIS/i)).toBeInTheDocument()
-    expect(screen.getByText(/future\/external slot/i)).toBeInTheDocument()
+    expect(screen.getByText(/future or external slot/i)).toBeInTheDocument()
     expect(screen.queryByText(/attendance/i)?.closest('table')).toBeFalsy()
     expect(screen.queryByRole('table', { name: /attendance|action item|minutes/i })).toBeNull()
   })

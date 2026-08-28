@@ -321,7 +321,7 @@ export function CoordinationTab({ data }: CoordinationTabProps) {
       {/* ---------- OMITTED MODULE (future/external slot) ---------- */}
       <p className={styles.slotNote}>
         <Icon icon={CalendarClock} size={14} />
-        Meetings, attendance &amp; action items are not part of SP-MIS — coordinate those in your external meeting tool. Reserved as a future/external slot.
+        Meetings, attendance and action items are not part of SP-MIS. Coordinate those in your external meeting tool. Reserved as a future or external slot.
       </p>
     </div>
   )

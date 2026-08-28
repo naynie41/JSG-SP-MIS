@@ -57,10 +57,10 @@ export interface QuadrantMeta {
 
 /** The four coverage-vs-funding quadrants (high value: exposes implementation gaps). */
 export const QUADRANTS: Record<Quadrant, QuadrantMeta> = {
-  strong: { id: 'strong', label: 'High funding · High coverage', detail: 'Strong — investment is reaching people.', tone: 'good' },
-  review: { id: 'review', label: 'High funding · Low coverage', detail: 'Review — funded but few reached (possible implementation problem).', tone: 'warn' },
-  efficient: { id: 'efficient', label: 'Low funding · High coverage', detail: 'Efficient — high reach on modest funding.', tone: 'info' },
-  emerging: { id: 'emerging', label: 'Low funding · Low coverage', detail: 'Emerging — low investment and low reach.', tone: 'muted' },
+  strong: { id: 'strong', label: 'High funding · High coverage', detail: 'Strong. Investment is reaching people.', tone: 'good' },
+  review: { id: 'review', label: 'High funding · Low coverage', detail: 'Review. Funded but few reached, which may point to an implementation problem.', tone: 'warn' },
+  efficient: { id: 'efficient', label: 'Low funding · High coverage', detail: 'Efficient. High reach on modest funding.', tone: 'info' },
+  emerging: { id: 'emerging', label: 'Low funding · Low coverage', detail: 'Emerging. Low investment and low reach.', tone: 'muted' },
 }
 
 export const QUADRANT_ORDER: Quadrant[] = ['strong', 'review', 'efficient', 'emerging']

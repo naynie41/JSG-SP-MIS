@@ -99,7 +99,7 @@ export function useRevokeGrant(beneficiaryId: string) {
         result.revoked ? 'Access withdrawn' : 'Already withdrawn',
         result.revoked
           ? 'That MDA can no longer read this record. Deliveries already recorded are unaffected.'
-          : 'This access had already been withdrawn; nothing changed.',
+          : 'This access had already been withdrawn. Nothing changed.',
       )
     },
   })
@@ -174,7 +174,7 @@ export function useMoveMember(householdId: string) {
       householdApi.moveMember(householdId, input),
     onSuccess: () => {
       refresh()
-      toast.success('Member moved', 'Previous membership closed; history retained.')
+      toast.success('Member moved', 'Previous membership closed. History retained.')
     },
   })
 }
@@ -301,7 +301,7 @@ export function useConfirmImport() {
       qc.invalidateQueries({ queryKey: ['import', batch.id] })
       qc.invalidateQueries({ queryKey: ['imports'] })
       qc.invalidateQueries({ queryKey: ['beneficiaries'] })
-      toast.success('Import confirmed', 'Only new rows are committed; linked rows raise a Service Request.')
+      toast.success('Import confirmed', 'Only new rows are committed. Linked rows raise a Service Request.')
     },
   })
 }
