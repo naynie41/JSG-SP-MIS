@@ -179,7 +179,7 @@ export function BeneficiaryListPage({ embedded = false }: BeneficiaryListPagePro
         rows={rows}
         getRowId={(b) => b.id}
         loading={isLoading}
-        emptyTitle="No beneficiaries yet — records are added by importing a source"
+        emptyTitle="No beneficiaries yet. Records are added by importing a source"
         emptyAction={
           canImport ? (
             <Button size="sm" leftIcon={FileUp} onClick={() => navigate('/imports')}>

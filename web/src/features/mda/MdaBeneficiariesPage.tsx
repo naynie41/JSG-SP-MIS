@@ -49,7 +49,7 @@ export function MdaBeneficiariesPage() {
         <h1 className={styles.pageTitle}>Beneficiaries</h1>
         <p className={styles.lead}>
           The people and households your MDA owns, and the imports that brought them in. Records are never keyed in
-          one at a time — every beneficiary arrives through a file uploaded against one of your activities.
+          one at a time. Every beneficiary arrives through a file uploaded against one of your activities.
         </p>
       </header>
 
@@ -70,7 +70,7 @@ export function MdaBeneficiariesPage() {
           an existing record are made by the MDA that owns it.
         </p>
         <p className={styles.footnote}>
-          NIN and BVN are masked in every response; revealing them is a separate, audited permission
+          NIN and BVN are masked in every response. Revealing them is a separate, audited permission
         </p>
       </Card>
     </div>

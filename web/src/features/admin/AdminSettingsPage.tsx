@@ -42,7 +42,7 @@ function ConfigList({ rows }: { rows: SettingRow[] }) {
 }
 
 const READ_ONLY_NOTE =
-  'Read-only. These are the values in force for this deployment — change them where they are set, then redeploy. The console keeps no settings of its own, so it can never disagree with the running configuration.'
+  'Read-only. These are the values in force for this deployment. Change them where they are set, then redeploy. The console keeps no settings of its own, so it can never disagree with the running configuration.'
 
 /* --------------------------------------------------------------- general */
 
@@ -85,7 +85,7 @@ function SecurityPanel({
           ))}
         </ul>
         <p className={styles.footnote}>
-          Individual accounts are administered in User &amp; Access — this is the role-level requirement
+          Individual accounts are administered in User &amp; Access. This is the role-level requirement
         </p>
       </Card>
     </div>
@@ -107,7 +107,7 @@ function RegistryPanel({
 }) {
   return (
     <div className={styles.page}>
-      <Card titleAs="h2" title="Identity validation" eyebrow="Locked — not administrator-editable">
+      <Card titleAs="h2" title="Identity validation" eyebrow="Locked, not administrator-editable">
         <p className={styles.groupLabel}>Identity fields</p>
         <div className={styles.choiceRow}>
           {identityFields.map((field) => (
@@ -125,7 +125,7 @@ function RegistryPanel({
           ))}
         </div>
         <p className={styles.footnote}>
-          Which fields identify a person is a locked decision — it governs matching and masking everywhere, so it is
+          Which fields identify a person is a locked decision. It governs matching and masking everywhere, so it is
           reported here, never offered as a control
         </p>
       </Card>
@@ -185,7 +185,7 @@ function NotificationsPanel({
           ))}
         </ul>
         <p className={styles.footnote}>
-          A channel reports its own availability — an unconfigured provider is skipped at send time rather than
+          A channel reports its own availability. An unconfigured provider is skipped at send time rather than
           failing silently
         </p>
       </Card>
@@ -297,7 +297,7 @@ function MatrixEditor() {
           <p className={styles.policyNote}>
             <span className={styles.policyLabel}>Locked</span>
             <span className={styles.policyText}>
-              The System Administrator role holds every permission implicitly. It cannot be edited — otherwise an
+              The System Administrator role holds every permission implicitly. It cannot be edited, because otherwise an
               administrator could remove their own ability to administer.
             </span>
           </p>

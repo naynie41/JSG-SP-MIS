@@ -279,7 +279,7 @@ function BulkDecisionBar({
 
       {!canBulkLink && (
         <span className={styles.bulkNote}>
-          A possible match is a judgement about one person — decide those individually.
+          A possible match is a judgement about one person, so decide those individually.
         </span>
       )}
 
@@ -676,7 +676,7 @@ export function MdaDuplicateResolutionPage() {
                     </div>
                     <p className={styles.queueNote}>
                       These rows matched an existing record on a unique identifier, so they are the same person as a
-                      matter of fact, not of opinion. There is no same-person question to answer — decide only whether
+                      matter of fact, not of opinion. There is no same-person question to answer. Decide only whether
                       to provide service against the existing record or discard the row.
                     </p>
                   </div>
@@ -720,8 +720,8 @@ export function MdaDuplicateResolutionPage() {
                       <h3 className={styles.queueTitle}>Needs a judgement</h3>
                     </div>
                     <p className={styles.queueNote}>
-                      A fuzzy match on name, date of birth or locality — close enough to raise, not close enough to
-                      settle. Answer whether it is the same person; if it is not, a justification is required and
+                      A fuzzy match on name, date of birth or locality, close enough to raise but not close enough to
+                      settle. Answer whether it is the same person. If it is not, a justification is required and
                       recorded.
                     </p>
                   </div>
@@ -770,12 +770,12 @@ export function MdaDuplicateResolutionPage() {
         <Card>
           <p className={styles.muted}>
             <Icon icon={CheckCircle2} size={14} /> Providing service links the incoming row to the existing record and
-            raises a request-to-serve with its owner — read access, never a transfer of ownership. Discarding drops the
+            raises a request-to-serve with its owner. That grants read access, never a transfer of ownership. Discarding drops the
             row. Creating a new record is available only where the match is genuinely uncertain, and always with a
             justification.
           </p>
           <p className={styles.footnote}>
-            Screening runs on the configured thresholds; changing them never rewrites a decision already recorded
+            Screening runs on the configured thresholds. Changing them never rewrites a decision already recorded
           </p>
         </Card>
       </section>

@@ -103,7 +103,7 @@ export function ExecutiveOverviewTab({ data }: ExecutiveOverviewTabProps) {
           </div>
           {alerts.length === 0 ? (
             <p className={styles.allClear}>
-              <Icon icon={CheckCircle2} size={16} /> No alerts — all indicators within range.
+              <Icon icon={CheckCircle2} size={16} /> No alerts. All indicators are within range.
             </p>
           ) : (
             <ul className={styles.alerts}>

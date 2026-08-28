@@ -48,7 +48,7 @@ function SyncPending({ what }: { what: string }) {
       <p className={styles.scaffoldTitle}>Available when synchronization (Phase 7) is enabled</p>
       <p className={styles.scaffoldNote}>
         {what} will appear here once the synchronization engine is switched on for this deployment. Nothing is shown in
-        the meantime — this console never displays placeholder sync data.
+        the meantime. This console never displays placeholder sync data.
       </p>
     </div>
   )
@@ -178,7 +178,7 @@ function ConnectorsPanel({ canRun }: { canRun: boolean }) {
         <DataTable rows={connectors} columns={columns} getRowId={(c) => c.id} caption="Connected systems" />
       </Card>
       <p className={styles.footnote}>
-        Manual synchronization is queued and idempotent — re-running a connector never double-inserts a record.
+        Manual synchronization is queued and idempotent. Re-running a connector never double-inserts a record.
         A connector syncs only once its NIN, BVN, name and phone columns have been confirmed, and holds again
         if the source’s fields change.
       </p>
@@ -294,7 +294,7 @@ export function AdminIntegrationsPage() {
         <span className={styles.eyebrow}>Administration console</span>
         <h1 className={styles.pageTitle}>Integrations</h1>
         <p className={styles.lead}>
-          Systems feeding the registry — connectors and their synchronization runs, plus the bulk-import history. Every
+          Systems feeding the registry: connectors and their synchronization runs, plus the bulk-import history. Every
           inbound record passes the same validation, duplicate and ownership checks as a manual import.
         </p>
       </header>

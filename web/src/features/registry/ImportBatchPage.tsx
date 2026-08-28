@@ -282,7 +282,7 @@ export function ImportBatchPage() {
           ) : (
             <div className={styles.resolveBox}>
               <span className="eyebrow">Resolve row {row.row_number}</span>
-              <p className={styles.note}>Nothing to resolve — no match was found.</p>
+              <p className={styles.note}>Nothing to resolve. No match was found.</p>
             </div>
           )}
         </div>
@@ -409,7 +409,7 @@ export function ImportBatchPage() {
           <p className={layout.alert} role="alert" data-variant="warning">
             Heads up: this file has {batch.summary.total_rows}{' '}
             {batch.summary.total_rows === 1 ? 'row' : 'rows'}, but the activity target is{' '}
-            {batch.draft_target_beneficiaries}. You can still continue — this is only a warning.
+            {batch.draft_target_beneficiaries}. You can still continue. This is only a warning.
           </p>
         )}
         {/* While it is genuinely being worked on, say so quietly. Once it has waited
@@ -425,7 +425,7 @@ export function ImportBatchPage() {
           <p className={layout.alert} role="alert" data-variant="warning">
             Still waiting after {formatWaitedFor(batch.processing_for_seconds)}. A file this size
             normally takes seconds, so the background worker that processes imports may not be
-            running. Nothing has been lost — this batch resumes on its own once the worker is
+            running. Nothing has been lost. This batch resumes on its own once the worker is
             back. Ask whoever administers this system to check the queue worker.
           </p>
         )}
@@ -446,7 +446,7 @@ export function ImportBatchPage() {
           <span className={styles.spacer} />
           {/* Provide service in bulk. Safe precisely BECAUSE identity is already settled:
               each row links to its own matched record, and for an exact NIN/BVN match
-              there is no same-person judgement left to make — only whether to serve them.
+              there is no same-person judgement left to make, only whether to serve them.
               Disabled when nothing selected has a record to link to. */}
           <Button
             size="sm"
@@ -551,7 +551,7 @@ export function ImportBatchPage() {
           {unresolvedFlagged > 0 && (
             <p className={layout.alert} role="alert" data-variant="warning">
               {unresolvedFlagged} flagged {unresolvedFlagged === 1 ? 'row has' : 'rows have'} no decision
-              and will be discarded — nothing is created for {unresolvedFlagged === 1 ? 'it' : 'them'}.
+              and will be discarded. Nothing is created for {unresolvedFlagged === 1 ? 'it' : 'them'}.
               This cannot be undone.
             </p>
           )}

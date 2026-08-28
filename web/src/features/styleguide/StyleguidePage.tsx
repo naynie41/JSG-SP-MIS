@@ -244,7 +244,7 @@ export function StyleguidePage() {
             columns={columns}
             rows={[]}
             getRowId={(r) => r.id}
-            emptyTitle="No beneficiaries yet — records are added by importing a source"
+            emptyTitle="No beneficiaries yet. Records are added by importing a source"
             emptyAction={
               // Mirrors the real BeneficiaryListPage. The styleguide is a pattern
               // reference people copy from, so its empty state must not model a

@@ -326,7 +326,7 @@ export function MdaOverviewPage() {
             </div>
           )}
           <p className={styles.footnote}>
-            Drawn from your notification inbox — the same feed as the bell in the header, not an MDA-wide audit
+            Drawn from your notification inbox, the same feed as the bell in the header, not an MDA-wide audit
             trail
           </p>
         </Card>

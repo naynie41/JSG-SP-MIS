@@ -37,7 +37,7 @@ export function MdaLoadError({ subject, onRetry }: MdaLoadErrorProps) {
         <div>
           <p className={styles.loadErrorTitle}>Could not load {subject}.</p>
           <p className={styles.loadErrorNote}>
-            This is a connection or server problem, not an empty result — the figures on this
+            This is a connection or server problem, not an empty result. The figures on this
             page are not showing what your MDA has.
           </p>
         </div>

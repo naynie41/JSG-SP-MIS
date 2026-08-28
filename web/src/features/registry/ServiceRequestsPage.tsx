@@ -79,7 +79,7 @@ const STATUS_VIEWS: SelectOption[] = [
   { value: 'pending', label: 'Pending' },
   { value: 'accepted', label: 'Approved' },
   { value: 'declined', label: 'Declined' },
-  { value: '', label: 'History — all' },
+  { value: '', label: 'History: all' },
 ]
 
 export function ServiceRequestsPage({ embedded = false }: ServiceRequestsPageProps = {}) {
@@ -253,7 +253,7 @@ export function ServiceRequestsPage({ embedded = false }: ServiceRequestsPagePro
     if (failed.size === 0) {
       toast.success(
         `${saved} ${saved === 1 ? 'request' : 'requests'} ${accept ? 'accepted' : 'declined'}`,
-        accept ? 'Read access granted; each decision is in the audit log.' : 'Each decision is in the audit log.',
+        accept ? 'Read access granted. Each decision is in the audit log.' : 'Each decision is in the audit log.',
       )
     } else {
       toast.error(
@@ -276,7 +276,7 @@ export function ServiceRequestsPage({ embedded = false }: ServiceRequestsPagePro
             <h1 className="t-h1">Service requests</h1>
             <p className={styles.note}>
               A non-owner MDA asks to serve a beneficiary. Accepting grants the requester READ access to the full
-              record and authorises serving — it never changes ownership. Declining blocks access.
+              record and authorises serving. It never changes ownership. Declining blocks access.
             </p>
           </div>
         </div>
@@ -294,7 +294,7 @@ export function ServiceRequestsPage({ embedded = false }: ServiceRequestsPagePro
       */}
       <Card
         eyebrow="Owner MDA · action required"
-        title={!embedded && awaitingUs > 0 ? `Approval inbox — ${awaitingUs} awaiting you` : 'Approval inbox'}
+        title={!embedded && awaitingUs > 0 ? `Approval inbox: ${awaitingUs} awaiting you` : 'Approval inbox'}
         variant={!embedded && awaitingUs > 0 ? 'mint' : undefined}
       >
         <div className={styles.filters}>
@@ -308,7 +308,7 @@ export function ServiceRequestsPage({ embedded = false }: ServiceRequestsPagePro
         </div>
         {!canDecide && (
           <p className={styles.note}>
-            Deciding a request-to-serve is an MDA Administrator permission. You can see what is waiting; an
+            Deciding a request-to-serve is an MDA Administrator permission. You can see what is waiting. An
             administrator accepts or declines it.
           </p>
         )}

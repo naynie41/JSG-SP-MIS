@@ -42,7 +42,7 @@ function BeneficiaryExportPanel() {
         eyebrow="Personal records · permission-controlled"
       >
         <p className={styles.queueNote}>
-          A row-level export of the beneficiaries your MDA owns — the only export here that contains personal records.
+          A row-level export of the beneficiaries your MDA owns. It is the only export here that contains personal records.
           It carries the same scope and filters as the registry list it comes from.
         </p>
 
@@ -70,7 +70,7 @@ function BeneficiaryExportPanel() {
         ) : (
           <p className={styles.muted}>
             <Icon icon={Lock} size={13} /> Bulk export of personal records is an MDA Administrator permission. An
-            administrator can grant it to your account if your work requires it — it stays limited to your own MDA.
+            administrator can grant it to your account if your work requires it, and it stays limited to your own MDA.
           </p>
         )}
 
@@ -130,7 +130,7 @@ export function MdaReportsPage() {
         <span className={styles.eyebrow}>MDA workspace</span>
         <h1 className={styles.pageTitle}>Reports</h1>
         <p className={styles.lead}>
-          Reporting over your MDA&apos;s own data — programmes you deliver, activities you run, people you have
+          Reporting over your MDA&apos;s own data: programmes you deliver, activities you run, people you have
           registered, benefits delivered, referrals and duplicate review. Generated, scheduled and exported by the
           shared reporting engine.
         </p>
@@ -190,7 +190,7 @@ export function MdaReportsPage() {
             permission has been granted.
           </p>
           <p className={styles.footnote}>
-            You can only ever export what you could already see — an export inherits the scope and filters of the
+            You can only ever export what you could already see. An export inherits the scope and filters of the
             report or list it came from
           </p>
         </Card>

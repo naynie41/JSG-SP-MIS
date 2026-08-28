@@ -97,7 +97,7 @@ function UsagePanel() {
       </Card>
 
       <p className={styles.footnote}>
-        One global programme, many MDAs — each running it through its own activity · budget and delivery live on the
+        One global programme, many MDAs, each running it through its own activity. Budget and delivery live on the
         activity, never on the catalog entry
       </p>
     </div>
@@ -123,8 +123,8 @@ export function AdminCatalogPage() {
         <span className={styles.eyebrow}>Administration console</span>
         <h1 className={styles.pageTitle}>Programme Catalog</h1>
         <p className={styles.lead}>
-          The global catalog of social-protection programme types — categories, standard eligibility and status — plus
-          how widely each is run across MDAs. Programmes are unowned; MDAs deliver them through their own activities.
+          The global catalog of social-protection programme types, with their categories, standard eligibility and
+          status, plus how widely each is run across MDAs. Programmes are unowned; MDAs deliver them through their own activities.
         </p>
       </header>
 

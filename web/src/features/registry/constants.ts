@@ -123,6 +123,6 @@ export const MATCH_FIELD_LABELS: Record<string, string> = {
 }
 
 export const EXACT_BEHAVIOUR_OPTIONS: SelectOption[] = [
-  { value: 'confirm', label: 'Confirm — a human confirms each exact match' },
-  { value: 'auto_link', label: 'Auto-link — treat exact matches as the same person' },
+  { value: 'confirm', label: 'Confirm: a human confirms each exact match' },
+  { value: 'auto_link', label: 'Auto-link: treat exact matches as the same person' },
 ]

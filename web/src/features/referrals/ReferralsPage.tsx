@@ -115,7 +115,7 @@ export function ReferralsPage() {
           <span className="eyebrow">05 · Coordination</span>
           <h1 className="t-h1">Referrals</h1>
           <p className={styles.note}>
-            Refer a beneficiary to another MDA to serve a need. Referrals never change ownership; both MDAs track the
+            Refer a beneficiary to another MDA to serve a need. Referrals never change ownership. Both MDAs track the
             lifecycle and are notified at each step and on SLA breach.
           </p>
         </div>
@@ -128,8 +128,8 @@ export function ReferralsPage() {
 
       <Tabs
         items={[
-          { id: 'outbox', label: 'Outbox — raised by us', content: <ReferralTable direction="outgoing" /> },
-          { id: 'inbox', label: 'Inbox — referred to us', content: <ReferralTable direction="incoming" /> },
+          { id: 'outbox', label: 'Outbox: raised by us', content: <ReferralTable direction="outgoing" /> },
+          { id: 'inbox', label: 'Inbox: referred to us', content: <ReferralTable direction="incoming" /> },
         ]}
       />
 

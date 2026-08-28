@@ -91,7 +91,7 @@ export function HouseholdListPage({ embedded = false }: HouseholdListPageProps =
         rows={rows}
         getRowId={(h) => h.id}
         loading={isLoading}
-        emptyTitle="No households yet — households are formed when a source groups its records"
+        emptyTitle="No households yet. Households are formed when a source groups its records"
         pagination={{ page, pageCount: data?.pagination?.total_pages ?? 1, onPageChange: setPage }}
       />
 

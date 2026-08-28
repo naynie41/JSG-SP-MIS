@@ -147,7 +147,7 @@ export function buildAlerts(m: DashboardMetrics): Alert[] {
       out.push({
         id: `low-${p.programme_id}`,
         severity: critical ? 'critical' : 'warning',
-        title: `Low delivery — ${programmeName(p)}`,
+        title: `Low delivery: ${programmeName(p)}`,
         detail: `Reached ${pct(p.completion_rate)}% of target (${num(p.reached)} of ${num(p.target)}).`,
       })
     })
@@ -168,7 +168,7 @@ export function buildAlerts(m: DashboardMetrics): Alert[] {
       out.push({
         id: `budget-${p.programme_id}`,
         severity: 'warning',
-        title: `Budget nearly exhausted — ${programmeName(p)}`,
+        title: `Budget nearly exhausted: ${programmeName(p)}`,
         detail: `${pct(p.budget.utilization_rate)}% utilised, ${formatNaira(p.budget.remaining)} remaining.`,
       })
     })

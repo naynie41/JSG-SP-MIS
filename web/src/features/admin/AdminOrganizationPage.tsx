@@ -165,7 +165,7 @@ export function AdminOrganizationPage() {
         <span className={styles.eyebrow}>Administration console</span>
         <h1 className={styles.pageTitle}>Organization</h1>
         <p className={styles.lead}>
-          MDAs and development partners, their people and the delivery they run — backed by the existing organization,
+          MDAs and development partners, their people and the delivery they run, backed by the existing organization,
           user and activity records.
         </p>
       </header>

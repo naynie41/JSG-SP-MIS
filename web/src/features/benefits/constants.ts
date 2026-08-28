@@ -18,8 +18,8 @@ export const VERIFICATION_METHOD_OPTIONS: SelectOption[] = [
   { value: 'none', label: 'None (record only)' },
   { value: 'field_confirmation', label: 'Field confirmation' },
   { value: 'signature', label: 'Signature' },
-  { value: 'otp', label: 'OTP — unavailable', disabled: true },
-  { value: 'biometric', label: 'Biometric — unavailable', disabled: true },
+  { value: 'otp', label: 'OTP (unavailable)', disabled: true },
+  { value: 'biometric', label: 'Biometric (unavailable)', disabled: true },
 ]
 
 export const BENEFIT_STATUS_LABELS: Record<string, string> = {

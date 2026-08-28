@@ -203,7 +203,7 @@ function ValidationRulesPanel() {
       </Card>
 
       <p className={styles.footnote}>
-        Read-only — these rules are a locked decision, not configuration · shown from the same source both ingestion
+        Read-only. These rules are a locked decision, not configuration, shown from the same source both ingestion
         paths enforce
       </p>
     </div>
@@ -227,7 +227,7 @@ export function AdminMatchingPage() {
         <span className={styles.eyebrow}>Administration console</span>
         <h1 className={styles.pageTitle}>Matching Rules &amp; Registry Config</h1>
         <p className={styles.lead}>
-          The duplicate-verification cascade, confidence weights and thresholds — versioned and audited — plus the
+          The duplicate-verification cascade, confidence weights and thresholds, all versioned and audited, plus the
           statistics they produce and the registry validation rules they run alongside.
         </p>
       </header>

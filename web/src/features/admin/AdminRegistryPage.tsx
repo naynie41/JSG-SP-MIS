@@ -103,7 +103,7 @@ function RegistryPanel({ metrics }: { metrics: DashboardMetrics }) {
       </Card>
 
       <p className={styles.footnote}>
-        Aggregate counts only · every figure is de-identified — no beneficiary record is read here
+        Aggregate counts only. Every figure is de-identified, and no beneficiary record is read here
       </p>
     </div>
   )
@@ -201,7 +201,7 @@ export function AdminRegistryPage() {
         <h1 className={styles.pageTitle}>Registry &amp; Data Quality</h1>
         <p className={styles.lead}>
           Read-only oversight of the shared registry: size and provenance, import throughput, validation results and
-          duplicate detection. Aggregates only — beneficiary records stay with their owning MDA.
+          duplicate detection. Aggregates only. Beneficiary records stay with their owning MDA.
         </p>
       </header>
 

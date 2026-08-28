@@ -72,12 +72,12 @@ export function ResolveRowControls({ batchId, row, canResolve, onResolved }: Res
 
   const options: RadioOption[] = [
     ...(canAdjudicate
-      ? [{ value: 'new', label: 'Not the same person — create new (justification required)' }]
+      ? [{ value: 'new', label: 'Not the same person. Create new (justification required)' }]
       : []),
     ...(canOwn
-      ? [{ value: 'own', label: 'Already in your registry — record a new intervention on the existing record' }]
+      ? [{ value: 'own', label: 'Already in your registry. Record a new intervention on the existing record' }]
       : []),
-    { value: 'link', label: 'Provide service — link to another MDA’s record (request to serve)', disabled: !canLink },
+    { value: 'link', label: 'Provide service. Link to another MDA’s record (request to serve)', disabled: !canLink },
     { value: 'skip', label: 'Discard this row' },
   ]
 
@@ -132,7 +132,7 @@ export function ResolveRowControls({ batchId, row, canResolve, onResolved }: Res
         // reading of "duplicate" is that the row is simply thrown away.
         <p className={styles.note}>
           This person is already in your registry, so no second record is created and no request to
-          serve is raised — you own them. Recording an intervention keeps the existing record and
+          serve is raised, because you own them. Recording an intervention keeps the existing record and
           delivers under this activity.
         </p>
       )}

@@ -1,0 +1,777 @@
+/* =============================================================================
+   Public landing page (unauthenticated).
+
+   Built entirely from theme.css tokens — no hex, no off-palette value (DESIGN.md §8.2).
+   The rules that shape it:
+
+   • Lime is scarce (§1, §8.6). It appears on the two Login pills, the wordmark badge,
+     and as a hairline on the dark bands. Nothing else competes.
+   • Text on lime is --ink, never white (§2 contrast rules).
+   • Forest bands carry --bg text; mint bands carry --ink text.
+   • Mono uppercase eyebrows are the structural device (§1).
+   • Motion is restrained and reduced-motion is honoured (§6).
+
+   This is a public document, not a dashboard: wide measure-limited prose, one idea per
+   band, alternating paper / mint / forest so the page has rhythm without decoration.
+   ============================================================================= */
+
+.page {
+  background: var(--bg);
+  color: var(--ink);
+  font-family: var(--font-body);
+}
+
+.skipLink {
+  position: absolute;
+  left: var(--space-4);
+  top: calc(var(--space-4) * -4);
+  z-index: 100;
+  padding: var(--space-3) var(--space-4);
+  border-radius: var(--radius-full);
+  background: var(--accent);
+  color: var(--ink);
+  font-weight: 600;
+  text-decoration: none;
+  transition: top var(--transition);
+}
+.skipLink:focus-visible {
+  top: var(--space-4);
+}
+
+/* ------------------------------------------------------------------- header */
+
+.header {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  /* Transparent over the hero so the photograph is not boxed in at the top. */
+  background: transparent;
+  transition: background-color var(--transition), border-color var(--transition);
+  border-bottom: 1px solid transparent;
+}
+.header[data-solid='true'] {
+  background: var(--forest);
+  border-bottom-color: var(--forest-2);
+}
+
+.headerInner {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: var(--space-3) var(--space-5);
+  display: flex;
+  align-items: center;
+  gap: var(--space-5);
+}
+
+.wordmark {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-3);
+  text-decoration: none;
+  color: var(--bg);
+  border-radius: var(--radius-sm);
+}
+.wordmarkBadge {
+  display: grid;
+  place-items: center;
+  width: 34px;
+  height: 34px;
+  flex: none;
+  border-radius: var(--radius-md);
+  background: var(--accent);
+  color: var(--ink); /* never white on lime */
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: var(--fs-ui);
+}
+.wordmarkText {
+  display: grid;
+  line-height: 1.15;
+}
+.wordmarkText strong {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: var(--fs-h3);
+  letter-spacing: -0.01em;
+}
+.wordmarkSub {
+  font-family: var(--font-mono);
+  font-size: var(--fs-caption);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  opacity: 0.75;
+}
+
+.nav {
+  margin-left: auto;
+}
+.navList {
+  display: flex;
+  align-items: center;
+  gap: var(--space-5);
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.navLink {
+  color: var(--bg);
+  text-decoration: none;
+  font-size: var(--fs-ui);
+  padding: var(--space-2) 0;
+  border-bottom: 1px solid transparent;
+  transition: border-color var(--transition);
+}
+.navLink:hover {
+  border-bottom-color: var(--accent);
+}
+
+.headerActions {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+}
+
+.menuButton {
+  display: none;
+  align-items: center;
+  justify-content: center;
+  /* 44px minimum tap target (§6). */
+  width: 44px;
+  height: 44px;
+  border: 1px solid var(--forest-2);
+  border-radius: var(--radius-full);
+  background: transparent;
+  color: var(--bg);
+  cursor: pointer;
+}
+
+.mobileNav {
+  display: none;
+  background: var(--forest);
+  border-top: 1px solid var(--forest-2);
+  padding: var(--space-3) var(--space-5) var(--space-5);
+}
+.mobileNav ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+}
+.mobileNavLink {
+  display: block;
+  padding: var(--space-4) 0;
+  color: var(--bg);
+  text-decoration: none;
+  font-size: var(--fs-body);
+  border-bottom: 1px solid var(--forest-2);
+}
+
+/* --------------------------------------------------------------------- hero */
+
+.hero {
+  position: relative;
+  isolation: isolate;
+  min-height: min(78vh, 680px);
+  display: grid;
+  align-items: center;
+  /* Pulled under the transparent sticky header. */
+  margin-top: calc(-1 * (34px + var(--space-3) * 2 + 2px));
+  padding: var(--space-8) var(--space-5) var(--space-8);
+  padding-top: calc(var(--space-8) * 2);
+  background: var(--forest);
+  color: var(--bg);
+  overflow: hidden;
+}
+
+/* The gradient the hero ships with: a finished treatment, not a grey placeholder. */
+.hero::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: -2;
+  background:
+    radial-gradient(120% 90% at 12% 8%, var(--forest-2) 0%, transparent 58%),
+    radial-gradient(90% 70% at 92% 100%, var(--forest-2) 0%, transparent 62%),
+    var(--forest);
+}
+
+.heroImage {
+  position: absolute;
+  inset: 0;
+  z-index: -2;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Legibility overlay — the reason a photograph can sit under this copy at all. */
+.heroOverlay {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: linear-gradient(
+    100deg,
+    color-mix(in srgb, var(--forest) 94%, transparent) 0%,
+    color-mix(in srgb, var(--forest) 82%, transparent) 46%,
+    color-mix(in srgb, var(--forest) 62%, transparent) 100%
+  );
+}
+.hero[data-has-image='false'] .heroOverlay {
+  /* Without a photograph the gradient below is already dark; a second veil would only
+     flatten it. */
+  background: linear-gradient(100deg, color-mix(in srgb, var(--forest) 35%, transparent) 0%, transparent 70%);
+}
+
+.heroInner {
+  max-width: 1200px;
+  width: 100%;
+  margin: 0 auto;
+}
+
+.eyebrow {
+  margin: 0 0 var(--space-4);
+  font-family: var(--font-mono);
+  font-size: var(--fs-caption);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--accent);
+}
+
+.heroTitle {
+  margin: 0;
+  max-width: 16ch;
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: clamp(2.4rem, 6vw, var(--fs-display));
+  line-height: 1.03;
+  letter-spacing: -0.02em;
+  text-wrap: balance;
+}
+
+.heroLead {
+  margin: var(--space-5) 0 0;
+  max-width: 54ch;
+  font-size: var(--fs-body-lg);
+  line-height: 1.55;
+  color: var(--bg);
+  opacity: 0.88;
+}
+
+.heroActions {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: var(--space-5);
+  margin-top: var(--space-7);
+}
+.heroSecondary {
+  color: var(--bg);
+  font-size: var(--fs-body);
+  text-decoration: none;
+  border-bottom: 1px solid var(--forest-2);
+  padding-bottom: 2px;
+  transition: border-color var(--transition);
+}
+.heroSecondary:hover {
+  border-bottom-color: var(--accent);
+}
+
+/* ----------------------------------------------------------------- sections */
+
+.section,
+.sectionMint {
+  padding: clamp(var(--space-8), 9vw, calc(var(--space-8) * 1.75)) var(--space-5);
+}
+.section {
+  background: var(--bg);
+}
+.sectionMint {
+  background: var(--surface-mint);
+}
+
+.sectionInner {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.eyebrowDark {
+  margin: 0 0 var(--space-4);
+  font-family: var(--font-mono);
+  font-size: var(--fs-caption);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--text-muted-strong);
+}
+
+.sectionTitle {
+  margin: 0;
+  max-width: 22ch;
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: clamp(var(--fs-h2), 3.6vw, var(--fs-h1));
+  line-height: 1.14;
+  letter-spacing: -0.015em;
+  color: var(--forest);
+  text-wrap: balance;
+}
+
+.sectionLead {
+  margin: var(--space-5) 0 0;
+  max-width: 68ch;
+  font-size: var(--fs-body-lg);
+  line-height: 1.6;
+  color: var(--text-muted-strong);
+}
+
+.sectionNote {
+  margin: var(--space-6) 0 0;
+}
+
+.textLink {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  color: var(--forest);
+  font-weight: 500;
+  text-decoration: none;
+  border-bottom: 1px solid var(--border-strong);
+  padding-bottom: 2px;
+  transition: border-color var(--transition);
+}
+.textLink:hover {
+  border-bottom-color: var(--forest);
+}
+
+/* ------------------------------------------------------- 3. three pillars */
+
+.pillars {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: var(--space-6);
+  list-style: none;
+  margin: var(--space-7) 0 0;
+  padding: 0;
+}
+.pillar {
+  display: grid;
+  gap: var(--space-3);
+  align-content: start;
+  padding-top: var(--space-5);
+  border-top: 2px solid var(--forest);
+}
+.pillarIcon {
+  color: var(--forest);
+}
+.pillarTitle {
+  margin: 0;
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: var(--fs-h2);
+  letter-spacing: -0.01em;
+  color: var(--forest);
+}
+.pillarBody {
+  margin: 0;
+  font-size: var(--fs-body);
+  line-height: 1.6;
+  color: var(--text-muted-strong);
+}
+
+/* --------------------------------------------------- 4. capability cards */
+
+.capabilities {
+  display: grid;
+  /* Capped at three: five cards over four columns strand the fifth alone. */
+  grid-template-columns: repeat(auto-fit, minmax(min(280px, 100%), 1fr));
+  max-width: 960px;
+  gap: var(--space-4);
+  list-style: none;
+  margin: var(--space-7) 0 0;
+  padding: 0;
+}
+.capability {
+  display: grid;
+  gap: var(--space-3);
+  align-content: start;
+  padding: var(--space-5);
+  border-radius: var(--radius-lg);
+  background: var(--surface);
+  border: 1px solid var(--border);
+  box-shadow: var(--elev-sm);
+}
+.capabilityIcon {
+  display: grid;
+  place-items: center;
+  width: 40px;
+  height: 40px;
+  border-radius: var(--radius-md);
+  background: var(--surface-mint);
+  color: var(--forest);
+}
+.capabilityTitle {
+  margin: 0;
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: var(--fs-h3);
+  color: var(--ink);
+}
+.capabilityBody {
+  margin: 0;
+  font-size: var(--fs-ui);
+  line-height: 1.6;
+  color: var(--text-muted-strong);
+}
+
+/* --------------------------------------------------------- 5. how it works */
+
+.steps {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: var(--space-5);
+  list-style: none;
+  margin: var(--space-7) 0 0;
+  padding: 0;
+  counter-reset: none;
+}
+.step {
+  display: grid;
+  gap: var(--space-3);
+  align-content: start;
+  padding-top: var(--space-4);
+  border-top: 1px solid var(--border-strong);
+}
+.stepNumber {
+  font-family: var(--font-mono);
+  font-size: var(--fs-caption);
+  letter-spacing: 0.14em;
+  color: var(--forest);
+}
+.stepTitle {
+  margin: 0;
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: var(--fs-h3);
+  line-height: 1.25;
+  color: var(--ink);
+}
+.stepBody {
+  margin: 0;
+  font-size: var(--fs-ui);
+  line-height: 1.6;
+  color: var(--text-muted-strong);
+}
+
+/* ------------------------------------------------ 6. illustrative diagram */
+
+.mapFigure {
+  margin: var(--space-7) 0 0;
+}
+.mapSvg {
+  display: block;
+  width: 100%;
+  max-width: 720px;
+  height: auto;
+}
+.mapNode {
+  fill: var(--surface-mint-2);
+  stroke: var(--forest-2);
+  stroke-width: 1;
+  opacity: 0.9;
+}
+/* A fixed decorative cycle. These tones encode nothing — see IllustrativeMap.tsx. */
+.mapNode[data-tone='1'] {
+  fill: var(--forest);
+  opacity: 0.85;
+}
+.mapNode[data-tone='2'] {
+  fill: var(--forest-2);
+  opacity: 0.75;
+}
+
+
+.mapLegend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-3) var(--space-5);
+  list-style: none;
+  margin: var(--space-5) 0 0;
+  padding: 0;
+  font-size: var(--fs-label);
+  color: var(--text-muted-strong);
+}
+.mapLegend li {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+}
+.mapSwatch {
+  width: 12px;
+  height: 12px;
+  flex: none;
+  border-radius: var(--radius-swatch);
+  background: var(--surface-mint-2);
+  border: 1px solid var(--forest-2);
+}
+.mapSwatch[data-tone='2'] {
+  background: var(--forest-2);
+}
+.mapSwatch[data-tone='1'] {
+  background: var(--forest);
+}
+
+.mapCaption {
+  max-width: 62ch;
+  margin: var(--space-4) 0 0;
+  font-size: var(--fs-label);
+  line-height: 1.55;
+  color: var(--text-muted-strong);
+}
+
+/* ------------------------------------------------------- 7. grievance flow */
+
+.flow {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-2);
+  list-style: none;
+  margin: var(--space-6) 0 0;
+  padding: 0;
+}
+.flowStage {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+}
+.flowLabel {
+  display: inline-flex;
+  align-items: center;
+  padding: var(--space-2) var(--space-4);
+  border-radius: var(--radius-full);
+  background: var(--surface-mint);
+  color: var(--forest);
+  font-size: var(--fs-label);
+  font-weight: 500;
+}
+.flowArrow {
+  color: var(--text-muted-strong);
+}
+
+/* ---------------------------------------------------------- 8. stakeholders */
+
+.stakeholders {
+  display: grid;
+  /* Two up: four over three columns would strand the fourth. */
+  grid-template-columns: repeat(auto-fit, minmax(min(420px, 100%), 1fr));
+  max-width: 980px;
+  gap: var(--space-6);
+  list-style: none;
+  margin: var(--space-7) 0 0;
+  padding: 0;
+}
+.stakeholder {
+  display: flex;
+  gap: var(--space-4);
+  align-items: start;
+}
+.stakeholderIcon {
+  display: grid;
+  place-items: center;
+  width: 40px;
+  height: 40px;
+  flex: none;
+  border-radius: var(--radius-full);
+  background: var(--surface-mint);
+  color: var(--forest);
+}
+.stakeholderTitle {
+  margin: 0 0 var(--space-2);
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: var(--fs-h3);
+  color: var(--ink);
+}
+.stakeholderBody {
+  margin: 0;
+  font-size: var(--fs-ui);
+  line-height: 1.6;
+  color: var(--text-muted-strong);
+}
+
+/* --------------------------------------------------------------- 9. CTA band */
+
+.cta {
+  padding: clamp(var(--space-8), 9vw, calc(var(--space-8) * 1.5)) var(--space-5);
+  background: var(--forest);
+  color: var(--bg);
+}
+.ctaInner {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: grid;
+  justify-items: start;
+  gap: var(--space-5);
+}
+.ctaTitle {
+  margin: 0;
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: clamp(var(--fs-h1), 4.5vw, 44px);
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+}
+.ctaLead {
+  margin: 0;
+  max-width: 58ch;
+  font-size: var(--fs-body-lg);
+  line-height: 1.6;
+  opacity: 0.88;
+}
+.ctaNote {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  margin: 0;
+  font-size: var(--fs-label);
+  color: var(--bg);
+  opacity: 0.75;
+}
+
+/* ------------------------------------------------------------------ footer */
+
+.footer {
+  background: var(--ink);
+  color: var(--bg);
+}
+.footerInner {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: var(--space-8) var(--space-5) var(--space-7);
+  display: grid;
+  grid-template-columns: minmax(0, 2fr) repeat(2, minmax(0, 1fr));
+  gap: var(--space-7);
+}
+.footerBrand {
+  display: grid;
+  gap: var(--space-4);
+  justify-items: start;
+}
+.footerAbout {
+  margin: 0;
+  max-width: 46ch;
+  font-size: var(--fs-ui);
+  line-height: 1.65;
+  opacity: 0.72;
+}
+.footerGroup ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: var(--space-3);
+}
+.footerHeading {
+  margin: 0 0 var(--space-4);
+  font-family: var(--font-mono);
+  font-size: var(--fs-caption);
+  font-weight: 400;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  opacity: 0.72;
+}
+.footerLink {
+  color: var(--bg);
+  font-size: var(--fs-ui);
+  text-decoration: none;
+  opacity: 0.86;
+  transition: opacity var(--transition);
+}
+.footerLink:hover {
+  opacity: 1;
+  text-decoration: underline;
+}
+
+.footerBase {
+  border-top: 1px solid color-mix(in srgb, var(--bg) 14%, transparent);
+}
+.footerBase p {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: var(--space-5);
+  font-size: var(--fs-label);
+  opacity: 0.62;
+}
+
+/* ------------------------------------------------------------------- focus */
+
+/* One visible focus treatment for every interactive element on the page (§6). */
+.page a:focus-visible,
+.page button:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+  border-radius: var(--radius-sm);
+}
+/* On lime, an accent ring would disappear into the button. */
+.hero a:focus-visible,
+.cta a:focus-visible {
+  outline-color: var(--bg);
+}
+
+/* ------------------------------------------------------------ no scroll reveal
+
+   A scroll-linked entrance was built here and removed. Two reasons, both about reading:
+
+   • With `animation-timeline: view()` a section is only fully opaque once it is well
+     into the viewport, so a heading sits visible-but-washed-out for the whole time a
+     reader is first looking at it. Content you can see and cannot read is worse than
+     content that simply arrives.
+   • Any render without a scroll position — print, PDF, a full-page capture — freezes
+     every below-the-fold section at opacity 0, so the page renders blank.
+
+   DESIGN.md §6 asks for restrained motion and no marketing-style animation. The motion
+   that remains is interaction feedback: the header solidifying, hover and focus states.
+   ----------------------------------------------------------------------------------- */
+
+@media (prefers-reduced-motion: reduce) {
+  .skipLink {
+    transition: none;
+  }
+}
+
+/* -------------------------------------------------------------- responsive */
+
+@media (max-width: 900px) {
+  .footerInner {
+    grid-template-columns: 1fr 1fr;
+  }
+  .footerBrand {
+    grid-column: 1 / -1;
+  }
+}
+
+@media (max-width: 768px) {
+  .nav,
+  .headerLogin {
+    display: none;
+  }
+  .menuButton {
+    display: inline-flex;
+  }
+  .headerActions {
+    margin-left: auto;
+  }
+  .mobileNav {
+    display: block;
+  }
+  .hero {
+    min-height: 0;
+    padding-top: calc(var(--space-8) * 1.5);
+  }
+  .heroActions {
+    gap: var(--space-4);
+  }
+  .footerInner {
+    grid-template-columns: 1fr;
+    gap: var(--space-6);
+  }
+}

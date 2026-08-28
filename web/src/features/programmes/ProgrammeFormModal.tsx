@@ -114,7 +114,7 @@ export function ProgrammeFormModal({ open, onClose, programme }: ProgrammeFormMo
               Add criterion
             </Button>
           </div>
-          {criteria.length === 0 && <p className={styles.note}>No criteria — everyone is eligible. Add one to flag (or block) non-matching beneficiaries.</p>}
+          {criteria.length === 0 && <p className={styles.note}>No criteria. Everyone is eligible. Add one to flag or block non-matching beneficiaries.</p>}
           {criteria.map((criterion, i) => (
             <div key={i} className={styles.criterionRow} style={{ marginTop: 'var(--space-2)' }}>
               <SelectField
@@ -141,7 +141,7 @@ export function ProgrammeFormModal({ open, onClose, programme }: ProgrammeFormMo
         <div>
           <Toggle label="Enforce eligibility" {...register('enforce_eligibility')} />
           <p className={styles.note} style={{ marginTop: 'var(--space-1)' }}>
-            When on, ineligible beneficiaries are blocked at enrollment; when off, they are only flagged.
+            When on, ineligible beneficiaries are blocked at enrollment. When off, they are only flagged.
           </p>
         </div>
       </form>

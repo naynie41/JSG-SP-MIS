@@ -73,7 +73,7 @@ export function BuilderPanel({
   datasets,
   initialDataset,
   /** Copy for the "aggregate only" reassurance, which differs per console. */
-  eyebrow = 'Aggregate only — no personal records',
+  eyebrow = 'Aggregate only, no personal records',
 }: {
   datasets: AdHocDataset[]
   initialDataset?: string
@@ -203,7 +203,7 @@ export function BuilderPanel({
               render: (row: { cells: string[] }) => row.cells[i] ?? '',
             }))}
           />
-          {result.truncated && <p className={styles.footnote}>Preview is capped — the export contains every row</p>}
+          {result.truncated && <p className={styles.footnote}>Preview is capped. The export contains every row</p>}
         </Card>
       )}
 
@@ -305,7 +305,7 @@ export function SchedulesPanel({
 /* ------------------------------------------------------------------ recent runs */
 
 export function RunsPanel({
-  footnote = 'Every export is generated and audited by the shared reporting engine — this console adds datasets, not a second pipeline',
+  footnote = 'Every export is generated and audited by the shared reporting engine. This console adds datasets, not a second pipeline',
 }: {
   footnote?: string
 } = {}) {

@@ -19,8 +19,8 @@ export function DashboardPage() {
 
       {/* KPI panels are illustrative until the registry module lands. */}
       <div className={styles.kpis}>
-        <KpiPanel label="Beneficiaries" value="—" hint="Registry — Phase 2" />
-        <KpiPanel label="Active programmes" value="—" hint="Programmes — Phase 4" />
+        <KpiPanel label="Beneficiaries" value="—" hint="Registry, Phase 2" />
+        <KpiPanel label="Active programmes" value="—" hint="Programmes, Phase 4" />
         <KpiPanel label="MDAs onboarded" value="—" hint="Administration" />
       </div>
 

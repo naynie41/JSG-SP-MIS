@@ -237,7 +237,7 @@ function ProgrammeCard({ p, canDrill }: { p: PartnerProgramme; canDrill: boolean
       {p.output_indicators.length > 0 && (
         <div className={styles.outputs}>
           <span className={styles.blockLabel}>
-            Output indicators <span className={styles.blockHint}>interventions delivered — outputs only</span>
+            Output indicators <span className={styles.blockHint}>interventions delivered, outputs only</span>
           </span>
           <OutputTable rows={p.output_indicators} />
         </div>
@@ -367,7 +367,7 @@ export function FundingPartnerProgrammesTab({ data, canDrill }: FundingPartnerPr
             <span className={shell.frameNote}>interventions · {num(pf.net_unique_reached)} reached</span>
           </div>
           <Icon icon={ArrowRight} size={18} className={shell.frameArrow} />
-          <div className={`${shell.frameNode} ${shell.frameExternal}`} aria-label="Outcomes and impact — requires external evaluation data">
+          <div className={`${shell.frameNode} ${shell.frameExternal}`} aria-label="Outcomes and impact, requires external evaluation data">
             <span className={shell.frameLabel}>
               <Icon icon={Lock} size={12} /> Outcomes → Impact
             </span>

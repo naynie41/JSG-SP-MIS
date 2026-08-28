@@ -29,9 +29,9 @@ import styles from './registry.module.css'
  * it (FR-OWN-01).
  */
 const SOURCE_OPTIONS = [
-  { value: '', label: 'Our own data — Excel / CSV (auto-detect)' },
-  { value: 'kobo', label: 'Our own data — Kobo Collect export' },
-  { value: 'odk', label: 'Our own data — ODK export' },
+  { value: '', label: 'Our own data: Excel or CSV (auto-detect)' },
+  { value: 'kobo', label: 'Our own data: Kobo Collect export' },
+  { value: 'odk', label: 'Our own data: ODK export' },
   { value: 'socu', label: 'Mined from SOCU' },
   { value: 'government_system', label: 'Mined from another government system' },
 ]
@@ -180,7 +180,7 @@ export function ImportListPage({ readOnly = false, embedded = false }: ImportLis
                 !programmeId
                   ? 'Select a programme first'
                   : activityOptions.length === 0
-                    ? 'No matching activity — leave blank'
+                    ? 'No matching activity. Leave blank'
                     : 'No specific activity'
               }
               options={activityOptions}
@@ -203,7 +203,7 @@ export function ImportListPage({ readOnly = false, embedded = false }: ImportLis
           />
           {programmeOptions.length === 0 && (
             <p className={layout.alert} role="status">
-              No catalog programme is available yet. Programmes are created centrally — ask a System
+              No catalog programme is available yet. Programmes are created centrally. Ask a System
               Administrator to add one before importing.
             </p>
           )}

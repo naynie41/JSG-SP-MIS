@@ -56,7 +56,7 @@ function ProfilePanel() {
           <dd className={styles.mono}>{formatWhen(user?.last_login_at, { year: true, absent: 'never' })}</dd>
         </dl>
         <p className={styles.footnote}>
-          Your name, email, role and MDA are maintained by an administrator — ask them to correct anything here. Your
+          Your name, email, role and MDA are maintained by an administrator. Ask them to correct anything here. Your
           role determines what you can do; your MDA determines what you can see.
         </p>
       </Card>
@@ -83,11 +83,11 @@ function PreferencesPanel() {
           />
         </div>
         <p className={styles.queueNote}>
-          <Icon icon={Mail} size={14} /> When this is off you still receive everything in the bell — only the email
+          <Icon icon={Mail} size={14} /> When this is off you still receive everything in the bell. Only the email
           copy stops. Notifications about work waiting on you are never suppressed entirely.
         </p>
         <p className={styles.footnote}>
-          This is the same preference the bell&apos;s toggle sets — one setting, two places to reach it
+          This is the same preference the bell&apos;s toggle sets: one setting, two places to reach it
         </p>
       </Card>
     </div>
@@ -248,7 +248,7 @@ function SecurityPanel() {
         )}
 
         <p className={styles.footnote}>
-          Whether two-factor authentication may be turned off is decided by your role on the server — this page reports
+          Whether two-factor authentication may be turned off is decided by your role on the server. This page reports
           that decision rather than making it
         </p>
       </Card>
@@ -278,7 +278,7 @@ export function MdaSettingsPage() {
         <h1 className={styles.pageTitle}>Settings</h1>
         <p className={styles.lead}>
           Your own account and how you are notified. Nothing here changes your MDA&apos;s data or what your colleagues
-          can do — that is an administrator&apos;s job.
+          can do. That is an administrator&apos;s job.
         </p>
       </header>
 

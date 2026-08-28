@@ -162,7 +162,7 @@ export function ConnectorMappingModal({
     <Modal
       open
       onClose={onClose}
-      title={`Column mapping — ${connector.name}`}
+      title={`Column mapping: ${connector.name}`}
       footer={
         <>
           <Button variant="tertiary" onClick={onClose}>
@@ -193,7 +193,7 @@ export function ConnectorMappingModal({
           {proposal.signature_changed && (
             <p className={layout.alert} role="status">
               <Icon icon={AlertTriangle} size={14} /> This source’s fields have changed since the mapping was
-              confirmed, so syncing is on hold. Review every identity field below — a field that moved will
+              confirmed, so syncing is on hold. Review every identity field below. A field that moved will
               otherwise be read from the wrong column.
             </p>
           )}
@@ -208,7 +208,7 @@ export function ConnectorMappingModal({
               <Icon icon={ShieldAlert} size={16} /> Identity fields
             </h3>
             <p className={styles.note}>
-              These decide whether two records are the same person. Each must be answered — point it at a
+              These decide whether two records are the same person. Each must be answered. Point it at a
               source field, or mark it not present.
             </p>
             {Object.keys(proposal.suggestions).filter((f) => identityFields.includes(f)).map(renderField)}

@@ -60,7 +60,7 @@ function DetailsTab({ programme }: { programme: Programme }) {
       </Card>
       <Card title="Eligibility" eyebrow="Criteria" variant="mint">
         {programme.eligibility.length === 0 ? (
-          <p className={styles.note}>No criteria — all beneficiaries are eligible.</p>
+          <p className={styles.note}>No criteria. All beneficiaries are eligible.</p>
         ) : (
           <div className={styles.chipRow}>
             {programme.eligibility.map((c, i) => (
@@ -71,7 +71,7 @@ function DetailsTab({ programme }: { programme: Programme }) {
           </div>
         )}
         <p className={styles.note} style={{ marginTop: 'var(--space-2)' }}>
-          {programme.enforce_eligibility ? 'Enforced — ineligible beneficiaries are blocked.' : 'Advisory — ineligible beneficiaries are flagged, not blocked.'}
+          {programme.enforce_eligibility ? 'Enforced. Ineligible beneficiaries are blocked.' : 'Advisory. Ineligible beneficiaries are flagged, not blocked.'}
         </p>
       </Card>
     </div>

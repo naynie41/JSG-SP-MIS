@@ -124,8 +124,8 @@ export function LoginPage() {
           Coordinated social protection for <span className={styles.accentText}>Jigawa State</span>.
         </h1>
         <p className={styles.brandFoot}>
-          One secure platform for MDAs to register, coordinate, and track social-protection
-          beneficiaries — without duplication, without losing ownership.
+          The shared register every MDA works from, so the same person is not enrolled twice and
+          the MDA that registered them keeps ownership.
         </p>
       </aside>
 
@@ -238,7 +238,7 @@ export function LoginPage() {
             </div>
 
             <div className={styles.secretBox}>
-              <span className={styles.secretLabel}>Recovery codes — save these now</span>
+              <span className={styles.secretLabel}>Recovery codes: save these now</span>
               <div className={styles.recoveryList}>
                 {enrollment.recovery_codes.map((rc) => (
                   <span key={rc}>{rc}</span>

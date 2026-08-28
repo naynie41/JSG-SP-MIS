@@ -33,8 +33,8 @@ describe('ExecutiveOverviewTab', () => {
     expect(screen.getByText(/net-unique beneficiaries have been reached/i)).toBeInTheDocument()
     expect(screen.getByText(/Cash Transfer reached 90% of its target/i)).toBeInTheDocument()
 
-    expect(screen.getByText(/Low delivery — School Feeding/i)).toBeInTheDocument()
-    expect(screen.getByText(/Budget nearly exhausted — Cash Transfer/i)).toBeInTheDocument()
+    expect(screen.getByText(/Low delivery: School Feeding/i)).toBeInTheDocument()
+    expect(screen.getByText(/Budget nearly exhausted: Cash Transfer/i)).toBeInTheDocument()
     expect(screen.getByText(/records pending verification/i)).toBeInTheDocument()
   })
 

@@ -185,7 +185,7 @@ export function FundingPartnerInvestmentTab({ filter, onDrill }: { filter?: Dash
           </button>
         ))}
         {OMITTED_LAYERS.map((l) => (
-          <span key={l.id} className={styles.layerSlot} title={`Not available — ${l.reason}`}>
+          <span key={l.id} className={styles.layerSlot} title={`Not available: ${l.reason}`}>
             <Icon icon={Lock} size={11} /> {l.label}
           </span>
         ))}
