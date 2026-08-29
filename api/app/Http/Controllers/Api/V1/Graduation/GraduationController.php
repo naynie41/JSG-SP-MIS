@@ -145,7 +145,11 @@ class GraduationController extends Controller
     {
         $perPage = min(max($request->integer('per_page', 20), 1), 100);
 
-        $query = GraduationEvent::query()->latest('graduated_at');
+        // Loaded so the record reads as a record rather than a page of ids. Every one is
+        // already inside this MDA's scope — the events themselves are scoped on `mda_id`.
+        $query = GraduationEvent::query()
+            ->with(['decidedBy:id,name', 'beneficiary', 'household.head', 'criteria:id,name'])
+            ->latest('graduated_at');
         if ($request->filled('programme_id')) {
             $query->where('programme_id', $request->string('programme_id')->toString());
         }

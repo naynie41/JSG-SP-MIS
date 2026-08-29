@@ -302,6 +302,8 @@ Route::prefix('v1')->group(function (): void {
             ->middleware('permission:sync.view')->name('sync.connectors.mapping');
         Route::put('/sync/connectors/{connector}/mapping', [SyncController::class, 'confirmMapping'])
             ->middleware('permission:sync.run')->name('sync.connectors.mapping.confirm');
+        Route::put('/sync/connectors/{connector}/activity', [SyncController::class, 'setActivity'])
+            ->middleware('permission:sync.run')->name('sync.connectors.activity');
 
         // Enabling is refused while the mapping is unconfirmed or stale — the same guard
         // as the run, applied where the decision is actually made.
@@ -342,7 +344,7 @@ Route::prefix('v1')->group(function (): void {
         Route::post('/beneficiaries/{beneficiary}/documents', [BeneficiaryDocumentController::class, 'store'])
             ->middleware(['permission:beneficiary.edit', 'throttle:imports'])->name('beneficiaries.documents.store');
         Route::get('/beneficiaries/{beneficiary}/documents/{document}/download', [BeneficiaryDocumentController::class, 'download'])
-            ->middleware('permission:beneficiary.view')->name('beneficiaries.documents.download');
+            ->middleware('permission:beneficiary.view', 'throttle:exports')->name('beneficiaries.documents.download');
         Route::delete('/beneficiaries/{beneficiary}/documents/{document}', [BeneficiaryDocumentController::class, 'destroy'])
             ->middleware('permission:beneficiary.edit')->name('beneficiaries.documents.destroy');
 
@@ -674,13 +676,13 @@ Route::prefix('v1')->group(function (): void {
         Route::get('/reports/segments/dimensions', [SegmentReportController::class, 'dimensions'])
             ->middleware('permission:reporting.view')->name('reports.segments.dimensions');
         Route::post('/reports/segments/preview', [SegmentReportController::class, 'preview'])
-            ->middleware('permission:reporting.view')->name('reports.segments.preview');
+            ->middleware('permission:reporting.view', 'throttle:reports')->name('reports.segments.preview');
         Route::post('/reports/segments/export', [SegmentReportController::class, 'export'])
             ->middleware(['permission:reporting.export', 'throttle:exports'])->name('reports.segments.export');
         Route::get('/reports/adhoc/datasets', [AdHocReportController::class, 'datasets'])
             ->middleware('permission:reporting.view')->name('reports.adhoc.datasets');
         Route::post('/reports/adhoc/preview', [AdHocReportController::class, 'preview'])
-            ->middleware('permission:reporting.view')->name('reports.adhoc.preview');
+            ->middleware('permission:reporting.view', 'throttle:reports')->name('reports.adhoc.preview');
         Route::post('/reports/adhoc', [AdHocReportController::class, 'export'])
             ->middleware(['permission:reporting.export', 'throttle:exports'])->name('reports.adhoc.export');
 

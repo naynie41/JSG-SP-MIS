@@ -2,7 +2,7 @@
 
 // odsl-/var/www/html/app/Domain/Graduation/Services/GraduationProgressService.php-PHPStan\BetterReflection\Reflection\ReflectionClass-App\Domain\Graduation\Services\GraduationProgressService
 return \PHPStan\Cache\CacheItem::__set_state(array(
-   'variableKey' => 'v2-6.70.0.1-8.3.31-66e957c93405a3bc6e74d30391034de88e9b2db0416cbe460d8e5070ffb13867',
+   'variableKey' => 'v2-6.70.0.1-8.3.31-b1cf488932ea20578fdd35611e0d865bbf32468bb882d7e0e0e684e0f0640f1d',
    'data' => 
   array (
     'locatedSource' => 
@@ -32,8 +32,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
     'attributes' => 
     array (
     ),
-    'startLine' => 23,
-    'endLine' => 122,
+    'startLine' => 24,
+    'endLine' => 142,
     'startColumn' => 1,
     'endColumn' => 1,
     'parentClassName' => NULL,
@@ -75,8 +75,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             'attributes' => 
             array (
             ),
-            'startLine' => 28,
-            'endLine' => 28,
+            'startLine' => 29,
+            'endLine' => 29,
             'startColumn' => 35,
             'endColumn' => 56,
             'parameterIndex' => 0,
@@ -99,8 +99,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         'docComment' => '/**
  * @return array<string, mixed>
  */',
-        'startLine' => 28,
-        'endLine' => 91,
+        'startLine' => 29,
+        'endLine' => 92,
         'startColumn' => 5,
         'endColumn' => 5,
         'couldThrow' => false,
@@ -138,8 +138,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             'attributes' => 
             array (
             ),
-            'startLine' => 93,
-            'endLine' => 93,
+            'startLine' => 94,
+            'endLine' => 94,
             'startColumn' => 36,
             'endColumn' => 57,
             'parameterIndex' => 0,
@@ -179,8 +179,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         array (
         ),
         'docComment' => NULL,
-        'startLine' => 93,
-        'endLine' => 102,
+        'startLine' => 94,
+        'endLine' => 103,
         'startColumn' => 5,
         'endColumn' => 5,
         'couldThrow' => false,
@@ -218,8 +218,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             'attributes' => 
             array (
             ),
-            'startLine' => 109,
-            'endLine' => 109,
+            'startLine' => 122,
+            'endLine' => 122,
             'startColumn' => 35,
             'endColumn' => 56,
             'parameterIndex' => 0,
@@ -240,12 +240,24 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         array (
         ),
         'docComment' => '/**
- * Full-ledger totals for the beneficiary in this programme (cross-MDA history).
+ * Full-ledger totals for this enrolment\'s subject, in this programme (cross-MDA
+ * history).
+ *
+ * A HOUSEHOLD enrolment has no `beneficiary_id`, and `benefits` has no household
+ * column — a benefit is always delivered to a person. So a household\'s ledger is its
+ * members\' ledger, and this reads it that way. It previously returned zero for a
+ * household, which is the dangerous answer rather than an error: a household with a
+ * year of support showed no progress, and under `all` logic could never become
+ * eligible, with nothing to say why.
+ *
+ * Only CURRENT members count (`left_at is null`). Support follows the person: someone
+ * who has left is no longer part of this household, and crediting it for what they
+ * received would graduate it on the strength of help it no longer contains.
  *
  * @return array{0: int, 1: int}
  */',
-        'startLine' => 109,
-        'endLine' => 121,
+        'startLine' => 122,
+        'endLine' => 141,
         'startColumn' => 5,
         'endColumn' => 5,
         'couldThrow' => false,

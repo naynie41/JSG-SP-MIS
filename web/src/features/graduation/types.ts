@@ -49,6 +49,10 @@ export interface GraduationProgress {
 /** The permanent record of a graduation. */
 export interface GraduationEvent {
   id: string
+  /** Named by the server so the record can be reviewed; MDA-scoped. */
+  decided_by_name?: string | null
+  criteria_name?: string | null
+  subject?: { type: 'beneficiary' | 'household'; name: string | null }
   enrollment_id: string
   beneficiary_id: string | null
   household_id: string | null

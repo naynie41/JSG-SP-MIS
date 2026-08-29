@@ -30,6 +30,19 @@ export interface SyncConnector {
   schedule: string | null
   last_run_at: string | null
   mapping: ConnectorMappingState
+  /**
+   * The activity synced rows bind to (activity-first). The second standing decision a
+   * connector cannot run without, alongside the mapping — `blocker` is non-null when it
+   * is the one holding the feed, and carries the same sentence the held run records.
+   */
+  activity: ConnectorActivityBinding
+}
+
+export interface ConnectorActivityBinding {
+  id: string | null
+  name?: string | null
+  /** Why this connector cannot sync yet, or null when it can. */
+  blocker: string | null
 }
 
 /** Advisory proposal for one canonical field — never applied on its own. */

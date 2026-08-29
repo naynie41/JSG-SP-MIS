@@ -2,7 +2,7 @@
 
 // odsl-/var/www/html/app/Domain/Graduation/Models/GraduationEvent.php-PHPStan\BetterReflection\Reflection\ReflectionClass-App\Domain\Graduation\Models\GraduationEvent
 return \PHPStan\Cache\CacheItem::__set_state(array(
-   'variableKey' => 'v2-6.70.0.1-8.3.31-237c6b282631e2a7b9770840974c060601b64bbd3a3c053a410b981bf0b1ca1b',
+   'variableKey' => 'v2-6.70.0.1-8.3.31-0157d1ef24618c27cc65c439752caf659f939a388f2d8e5dda49e2a813008d7d',
    'data' => 
   array (
     'locatedSource' => 
@@ -45,8 +45,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
     'attributes' => 
     array (
     ),
-    'startLine' => 36,
-    'endLine' => 79,
+    'startLine' => 38,
+    'endLine' => 110,
     'startColumn' => 1,
     'endColumn' => 1,
     'parentClassName' => 'Illuminate\\Database\\Eloquent\\Model',
@@ -76,20 +76,20 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
           'code' => '\'graduation_events\'',
           'attributes' => 
           array (
-            'startLine' => 40,
-            'endLine' => 40,
-            'startTokenPos' => 85,
-            'startFilePos' => 1337,
-            'endTokenPos' => 85,
-            'endFilePos' => 1355,
+            'startLine' => 42,
+            'endLine' => 42,
+            'startTokenPos' => 95,
+            'startFilePos' => 1414,
+            'endTokenPos' => 95,
+            'endFilePos' => 1432,
           ),
         ),
         'docComment' => NULL,
         'attributes' => 
         array (
         ),
-        'startLine' => 40,
-        'endLine' => 40,
+        'startLine' => 42,
+        'endLine' => 42,
         'startColumn' => 5,
         'endColumn' => 43,
         'isPromoted' => false,
@@ -111,12 +111,12 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
           'code' => '[\'enrollment_id\', \'beneficiary_id\', \'household_id\', \'programme_id\', \'activity_id\', \'mda_id\', \'criteria_id\', \'reason\', \'decided_by\', \'graduated_at\']',
           'attributes' => 
           array (
-            'startLine' => 51,
-            'endLine' => 54,
-            'startTokenPos' => 118,
-            'startFilePos' => 1589,
-            'endTokenPos' => 150,
-            'endFilePos' => 1758,
+            'startLine' => 53,
+            'endLine' => 56,
+            'startTokenPos' => 128,
+            'startFilePos' => 1666,
+            'endTokenPos' => 160,
+            'endFilePos' => 1835,
           ),
         ),
         'docComment' => '/**
@@ -125,8 +125,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         'attributes' => 
         array (
         ),
-        'startLine' => 51,
-        'endLine' => 54,
+        'startLine' => 53,
+        'endLine' => 56,
         'startColumn' => 5,
         'endColumn' => 6,
         'isPromoted' => false,
@@ -159,8 +159,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         array (
         ),
         'docComment' => '/** Scoped to the MDA that ran the programme, not an `owner_mda_id`. */',
-        'startLine' => 43,
-        'endLine' => 46,
+        'startLine' => 45,
+        'endLine' => 48,
         'startColumn' => 5,
         'endColumn' => 5,
         'couldThrow' => false,
@@ -196,8 +196,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         'docComment' => '/**
  * @return array<string, string>
  */',
-        'startLine' => 59,
-        'endLine' => 62,
+        'startLine' => 61,
+        'endLine' => 64,
         'startColumn' => 5,
         'endColumn' => 5,
         'couldThrow' => false,
@@ -233,8 +233,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         'docComment' => '/**
  * @return BelongsTo<Enrollment, $this>
  */',
-        'startLine' => 67,
-        'endLine' => 70,
+        'startLine' => 69,
+        'endLine' => 72,
         'startColumn' => 5,
         'endColumn' => 5,
         'couldThrow' => false,
@@ -270,8 +270,124 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         'docComment' => '/**
  * @return BelongsTo<Beneficiary, $this>
  */',
-        'startLine' => 75,
-        'endLine' => 78,
+        'startLine' => 77,
+        'endLine' => 80,
+        'startColumn' => 5,
+        'endColumn' => 5,
+        'couldThrow' => false,
+        'isClosure' => false,
+        'isGenerator' => false,
+        'isVariadic' => false,
+        'modifiers' => 1,
+        'namespace' => 'App\\Domain\\Graduation\\Models',
+        'declaringClassName' => 'App\\Domain\\Graduation\\Models\\GraduationEvent',
+        'implementingClassName' => 'App\\Domain\\Graduation\\Models\\GraduationEvent',
+        'currentClassName' => 'App\\Domain\\Graduation\\Models\\GraduationEvent',
+        'aliasName' => NULL,
+      ),
+      'household' => 
+      array (
+        'name' => 'household',
+        'parameters' => 
+        array (
+        ),
+        'returnsReference' => false,
+        'returnType' => 
+        array (
+          'class' => 'PHPStan\\BetterReflection\\Reflection\\ReflectionNamedType',
+          'data' => 
+          array (
+            'name' => 'Illuminate\\Database\\Eloquent\\Relations\\BelongsTo',
+            'isIdentifier' => false,
+          ),
+        ),
+        'attributes' => 
+        array (
+        ),
+        'docComment' => '/**
+ * The household, when the enrolment was a household one.
+ *
+ * @return BelongsTo<Household, $this>
+ */',
+        'startLine' => 87,
+        'endLine' => 90,
+        'startColumn' => 5,
+        'endColumn' => 5,
+        'couldThrow' => false,
+        'isClosure' => false,
+        'isGenerator' => false,
+        'isVariadic' => false,
+        'modifiers' => 1,
+        'namespace' => 'App\\Domain\\Graduation\\Models',
+        'declaringClassName' => 'App\\Domain\\Graduation\\Models\\GraduationEvent',
+        'implementingClassName' => 'App\\Domain\\Graduation\\Models\\GraduationEvent',
+        'currentClassName' => 'App\\Domain\\Graduation\\Models\\GraduationEvent',
+        'aliasName' => NULL,
+      ),
+      'decidedBy' => 
+      array (
+        'name' => 'decidedBy',
+        'parameters' => 
+        array (
+        ),
+        'returnsReference' => false,
+        'returnType' => 
+        array (
+          'class' => 'PHPStan\\BetterReflection\\Reflection\\ReflectionNamedType',
+          'data' => 
+          array (
+            'name' => 'Illuminate\\Database\\Eloquent\\Relations\\BelongsTo',
+            'isIdentifier' => false,
+          ),
+        ),
+        'attributes' => 
+        array (
+        ),
+        'docComment' => '/**
+ * The officer who decided. A graduation is a judgement about a person\'s
+ * circumstances, so the record names who made it — an id alone is not accountability.
+ *
+ * @return BelongsTo<User, $this>
+ */',
+        'startLine' => 98,
+        'endLine' => 101,
+        'startColumn' => 5,
+        'endColumn' => 5,
+        'couldThrow' => false,
+        'isClosure' => false,
+        'isGenerator' => false,
+        'isVariadic' => false,
+        'modifiers' => 1,
+        'namespace' => 'App\\Domain\\Graduation\\Models',
+        'declaringClassName' => 'App\\Domain\\Graduation\\Models\\GraduationEvent',
+        'implementingClassName' => 'App\\Domain\\Graduation\\Models\\GraduationEvent',
+        'currentClassName' => 'App\\Domain\\Graduation\\Models\\GraduationEvent',
+        'aliasName' => NULL,
+      ),
+      'criteria' => 
+      array (
+        'name' => 'criteria',
+        'parameters' => 
+        array (
+        ),
+        'returnsReference' => false,
+        'returnType' => 
+        array (
+          'class' => 'PHPStan\\BetterReflection\\Reflection\\ReflectionNamedType',
+          'data' => 
+          array (
+            'name' => 'Illuminate\\Database\\Eloquent\\Relations\\BelongsTo',
+            'isIdentifier' => false,
+          ),
+        ),
+        'attributes' => 
+        array (
+        ),
+        'docComment' => '/**
+ * @return BelongsTo<GraduationCriteria, $this>
+ */',
+        'startLine' => 106,
+        'endLine' => 109,
         'startColumn' => 5,
         'endColumn' => 5,
         'couldThrow' => false,

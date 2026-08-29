@@ -1041,6 +1041,50 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
          'typeAliasClassName' => NULL,
          'traitData' => NULL,
       )),
+      'f91dec0a647f1032e4e82ff8075dd2ba' => 
+      \PHPStan\Analyser\IntermediaryNameScope::__set_state(array(
+         'namespace' => 'Dompdf',
+         'uses' => 
+        array (
+        ),
+         'className' => 'Dompdf\\Options',
+         'functionName' => 'setImageByteSizeLimit',
+         'templatePhpDocNodes' => 
+        array (
+        ),
+         'parent' => NULL,
+         'typeAliasesMap' => 
+        array (
+        ),
+         'bypassTypeAliases' => false,
+         'constUses' => 
+        array (
+        ),
+         'typeAliasClassName' => NULL,
+         'traitData' => NULL,
+      )),
+      'dc54bbb5d096e9fd8ac5ffd0b6588f33' => 
+      \PHPStan\Analyser\IntermediaryNameScope::__set_state(array(
+         'namespace' => 'Dompdf',
+         'uses' => 
+        array (
+        ),
+         'className' => 'Dompdf\\Options',
+         'functionName' => 'getImageByteSizeLimit',
+         'templatePhpDocNodes' => 
+        array (
+        ),
+         'parent' => NULL,
+         'typeAliasesMap' => 
+        array (
+        ),
+         'bypassTypeAliases' => false,
+         'constUses' => 
+        array (
+        ),
+         'typeAliasClassName' => NULL,
+         'traitData' => NULL,
+      )),
       '5a3a0d6670b5be433b80a27c11a4c337' => 
       \PHPStan\Analyser\IntermediaryNameScope::__set_state(array(
          'namespace' => 'Dompdf',
@@ -1748,7 +1792,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
     ),
     1 => 
     array (
-      '/var/www/html/vendor/dompdf/dompdf/src/Options.php' => 'df2c160cd437634360551348a6bf91cdffb28451b3294b6232eeda04f45fd146',
+      '/var/www/html/vendor/dompdf/dompdf/src/Options.php' => '0d75f8af136c80ba949355fba06109688f1ad46fbc932fb2a8d2bb22f41a020e',
     ),
   ),
 ));

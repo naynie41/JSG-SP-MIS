@@ -15,6 +15,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
           'user' => 'App\\Domain\\Access\\Models\\User',
           'auditlogger' => 'App\\Domain\\Audit\\Services\\AuditLogger',
           'beneficiary' => 'App\\Domain\\Registry\\Models\\Beneficiary',
+          'importrow' => 'App\\Domain\\Registry\\Models\\ImportRow',
           'carbon' => 'Illuminate\\Support\\Carbon',
           'db' => 'Illuminate\\Support\\Facades\\DB',
           'storage' => 'Illuminate\\Support\\Facades\\Storage',
@@ -43,6 +44,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
           'user' => 'App\\Domain\\Access\\Models\\User',
           'auditlogger' => 'App\\Domain\\Audit\\Services\\AuditLogger',
           'beneficiary' => 'App\\Domain\\Registry\\Models\\Beneficiary',
+          'importrow' => 'App\\Domain\\Registry\\Models\\ImportRow',
           'carbon' => 'Illuminate\\Support\\Carbon',
           'db' => 'Illuminate\\Support\\Facades\\DB',
           'storage' => 'Illuminate\\Support\\Facades\\Storage',
@@ -60,6 +62,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             'user' => 'App\\Domain\\Access\\Models\\User',
             'auditlogger' => 'App\\Domain\\Audit\\Services\\AuditLogger',
             'beneficiary' => 'App\\Domain\\Registry\\Models\\Beneficiary',
+            'importrow' => 'App\\Domain\\Registry\\Models\\ImportRow',
             'carbon' => 'Illuminate\\Support\\Carbon',
             'db' => 'Illuminate\\Support\\Facades\\DB',
             'storage' => 'Illuminate\\Support\\Facades\\Storage',
@@ -98,6 +101,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
           'user' => 'App\\Domain\\Access\\Models\\User',
           'auditlogger' => 'App\\Domain\\Audit\\Services\\AuditLogger',
           'beneficiary' => 'App\\Domain\\Registry\\Models\\Beneficiary',
+          'importrow' => 'App\\Domain\\Registry\\Models\\ImportRow',
           'carbon' => 'Illuminate\\Support\\Carbon',
           'db' => 'Illuminate\\Support\\Facades\\DB',
           'storage' => 'Illuminate\\Support\\Facades\\Storage',
@@ -115,6 +119,64 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             'user' => 'App\\Domain\\Access\\Models\\User',
             'auditlogger' => 'App\\Domain\\Audit\\Services\\AuditLogger',
             'beneficiary' => 'App\\Domain\\Registry\\Models\\Beneficiary',
+            'importrow' => 'App\\Domain\\Registry\\Models\\ImportRow',
+            'carbon' => 'Illuminate\\Support\\Carbon',
+            'db' => 'Illuminate\\Support\\Facades\\DB',
+            'storage' => 'Illuminate\\Support\\Facades\\Storage',
+          ),
+           'className' => 'App\\Domain\\Privacy\\Services\\AnonymizationService',
+           'functionName' => NULL,
+           'templatePhpDocNodes' => 
+          array (
+          ),
+           'parent' => NULL,
+           'typeAliasesMap' => 
+          array (
+          ),
+           'bypassTypeAliases' => false,
+           'constUses' => 
+          array (
+          ),
+           'typeAliasClassName' => NULL,
+           'traitData' => NULL,
+        )),
+         'typeAliasesMap' => 
+        array (
+        ),
+         'bypassTypeAliases' => false,
+         'constUses' => 
+        array (
+        ),
+         'typeAliasClassName' => NULL,
+         'traitData' => NULL,
+      )),
+      '7a4a851849cbb100c4f4acf3423ca7b8' => 
+      \PHPStan\Analyser\IntermediaryNameScope::__set_state(array(
+         'namespace' => 'App\\Domain\\Privacy\\Services',
+         'uses' => 
+        array (
+          'user' => 'App\\Domain\\Access\\Models\\User',
+          'auditlogger' => 'App\\Domain\\Audit\\Services\\AuditLogger',
+          'beneficiary' => 'App\\Domain\\Registry\\Models\\Beneficiary',
+          'importrow' => 'App\\Domain\\Registry\\Models\\ImportRow',
+          'carbon' => 'Illuminate\\Support\\Carbon',
+          'db' => 'Illuminate\\Support\\Facades\\DB',
+          'storage' => 'Illuminate\\Support\\Facades\\Storage',
+        ),
+         'className' => 'App\\Domain\\Privacy\\Services\\AnonymizationService',
+         'functionName' => 'redactStagingRows',
+         'templatePhpDocNodes' => 
+        array (
+        ),
+         'parent' => 
+        \PHPStan\Analyser\IntermediaryNameScope::__set_state(array(
+           'namespace' => 'App\\Domain\\Privacy\\Services',
+           'uses' => 
+          array (
+            'user' => 'App\\Domain\\Access\\Models\\User',
+            'auditlogger' => 'App\\Domain\\Audit\\Services\\AuditLogger',
+            'beneficiary' => 'App\\Domain\\Registry\\Models\\Beneficiary',
+            'importrow' => 'App\\Domain\\Registry\\Models\\ImportRow',
             'carbon' => 'Illuminate\\Support\\Carbon',
             'db' => 'Illuminate\\Support\\Facades\\DB',
             'storage' => 'Illuminate\\Support\\Facades\\Storage',
@@ -153,6 +215,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
           'user' => 'App\\Domain\\Access\\Models\\User',
           'auditlogger' => 'App\\Domain\\Audit\\Services\\AuditLogger',
           'beneficiary' => 'App\\Domain\\Registry\\Models\\Beneficiary',
+          'importrow' => 'App\\Domain\\Registry\\Models\\ImportRow',
           'carbon' => 'Illuminate\\Support\\Carbon',
           'db' => 'Illuminate\\Support\\Facades\\DB',
           'storage' => 'Illuminate\\Support\\Facades\\Storage',
@@ -170,6 +233,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             'user' => 'App\\Domain\\Access\\Models\\User',
             'auditlogger' => 'App\\Domain\\Audit\\Services\\AuditLogger',
             'beneficiary' => 'App\\Domain\\Registry\\Models\\Beneficiary',
+            'importrow' => 'App\\Domain\\Registry\\Models\\ImportRow',
             'carbon' => 'Illuminate\\Support\\Carbon',
             'db' => 'Illuminate\\Support\\Facades\\DB',
             'storage' => 'Illuminate\\Support\\Facades\\Storage',
@@ -203,7 +267,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
     ),
     1 => 
     array (
-      '/var/www/html/app/Domain/Privacy/Services/AnonymizationService.php' => '736d5478783905f902bd5249e2ed728c53b93f9c421f674a9449141512111fba',
+      '/var/www/html/app/Domain/Privacy/Services/AnonymizationService.php' => '1462464ef7efaf5e39e15a91f16f841b8fceb8168fa182f4e39488a3081b9074',
     ),
   ),
 ));

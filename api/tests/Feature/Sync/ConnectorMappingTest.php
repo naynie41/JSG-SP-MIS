@@ -67,7 +67,7 @@ class ConnectorMappingTest extends TestCase
      */
     private function connector(): SyncConnector
     {
-        return SyncConnector::factory()->create([
+        return SyncConnector::factory()->bound()->create([
             'owner_mda_id' => $this->mda->id,
             'source' => RegistrationSource::Socu,
             'enabled' => false,
@@ -124,7 +124,7 @@ class ConnectorMappingTest extends TestCase
     {
         // Enabled but never mapped — the state every connector configured before this
         // rule existed is in, so the guard has to hold for them too.
-        $connector = SyncConnector::factory()->create([
+        $connector = SyncConnector::factory()->bound()->create([
             'owner_mda_id' => $this->mda->id,
             'source' => RegistrationSource::Socu,
             'enabled' => true,

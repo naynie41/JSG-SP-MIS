@@ -11,6 +11,7 @@ use App\Domain\Graduation\Enums\GraduationCriterionType;
 use App\Domain\Graduation\Models\GraduationCriteria;
 use App\Domain\Programme\Enums\EnrollmentStatus;
 use App\Domain\Programme\Models\Enrollment;
+use App\Domain\Registry\Models\HouseholdMembership;
 use Illuminate\Support\Carbon;
 
 /**
@@ -102,20 +103,39 @@ class GraduationProgressService
     }
 
     /**
-     * Full-ledger totals for the beneficiary in this programme (cross-MDA history).
+     * Full-ledger totals for this enrolment's subject, in this programme (cross-MDA
+     * history).
+     *
+     * A HOUSEHOLD enrolment has no `beneficiary_id`, and `benefits` has no household
+     * column — a benefit is always delivered to a person. So a household's ledger is its
+     * members' ledger, and this reads it that way. It previously returned zero for a
+     * household, which is the dangerous answer rather than an error: a household with a
+     * year of support showed no progress, and under `all` logic could never become
+     * eligible, with nothing to say why.
+     *
+     * Only CURRENT members count (`left_at is null`). Support follows the person: someone
+     * who has left is no longer part of this household, and crediting it for what they
+     * received would graduate it on the strength of help it no longer contains.
      *
      * @return array{0: int, 1: int}
      */
     private function ledgerTotals(Enrollment $enrollment): array
     {
-        if ($enrollment->beneficiary_id === null) {
-            return [0, 0];
-        }
-
         $query = Benefit::query()
             ->withoutGlobalScope(MdaScope::class)
-            ->where('beneficiary_id', $enrollment->beneficiary_id)
             ->where('programme_id', $enrollment->programme_id);
+
+        if ($enrollment->beneficiary_id !== null) {
+            $query->where('beneficiary_id', $enrollment->beneficiary_id);
+        } elseif ($enrollment->household_id !== null) {
+            $query->whereIn('beneficiary_id', HouseholdMembership::query()
+                ->withoutGlobalScope(MdaScope::class)
+                ->where('household_id', $enrollment->household_id)
+                ->whereNull('left_at')
+                ->select('beneficiary_id'));
+        } else {
+            return [0, 0]; // an enrolment with no subject at all
+        }
 
         return [(int) $query->count(), (int) $query->sum('monetary_value')];
     }

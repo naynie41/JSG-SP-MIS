@@ -2,7 +2,7 @@
 
 // osfsl-/var/www/html/vendor/composer/../symfony/console/Style/SymfonyStyle.php-presentSymbols
 return \PHPStan\Cache\CacheItem::__set_state(array(
-   'variableKey' => 'v2-1096a5d98d8d2807672727083ade4eca571ea8e90e6ba895b595924697fac479-8.3.31',
+   'variableKey' => 'v2-affa961a5476a0449bf0e07b371d5e9a409847e668796864405ecb2c36ebc08a-8.3.31',
    'data' => 
   array (
     'classes' => 

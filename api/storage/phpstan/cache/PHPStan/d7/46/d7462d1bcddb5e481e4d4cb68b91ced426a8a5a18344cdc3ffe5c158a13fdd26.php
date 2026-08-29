@@ -2,7 +2,7 @@
 
 // odsl-/var/www/html/app/Http/Controllers/Api/V1/Graduation/GraduationController.php-PHPStan\BetterReflection\Reflection\ReflectionClass-App\Http\Controllers\Api\V1\Graduation\GraduationController
 return \PHPStan\Cache\CacheItem::__set_state(array(
-   'variableKey' => 'v2-6.70.0.1-8.3.31-ea856315b9ae1fd5d83023db93185cd655f2b83fe134050c2be14607aa64e687',
+   'variableKey' => 'v2-6.70.0.1-8.3.31-4775f5f307e7a00e4383b9db9712e2fe9b90904d5e652b4aab88c44b1b873ebe',
    'data' => 
   array (
     'locatedSource' => 
@@ -33,7 +33,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
     array (
     ),
     'startLine' => 31,
-    'endLine' => 173,
+    'endLine' => 177,
     'startColumn' => 1,
     'endColumn' => 1,
     'parentClassName' => 'App\\Http\\Controllers\\Controller',
@@ -683,7 +683,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         ),
         'docComment' => '/** The graduation history (scoped to the caller\'s MDAs; oversight sees all). */',
         'startLine' => 144,
-        'endLine' => 156,
+        'endLine' => 160,
         'startColumn' => 5,
         'endColumn' => 5,
         'couldThrow' => false,
@@ -721,8 +721,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             'attributes' => 
             array (
             ),
-            'startLine' => 163,
-            'endLine' => 163,
+            'startLine' => 167,
+            'endLine' => 167,
             'startColumn' => 37,
             'endColumn' => 52,
             'parameterIndex' => 0,
@@ -747,8 +747,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
  *
  * @return list<array{type: string, threshold: float}>
  */',
-        'startLine' => 163,
-        'endLine' => 172,
+        'startLine' => 167,
+        'endLine' => 176,
         'startColumn' => 5,
         'endColumn' => 5,
         'couldThrow' => false,

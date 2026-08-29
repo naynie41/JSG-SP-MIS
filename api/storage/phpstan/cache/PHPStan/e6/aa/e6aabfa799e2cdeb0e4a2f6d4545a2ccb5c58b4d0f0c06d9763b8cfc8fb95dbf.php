@@ -902,9 +902,10 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
     ),
     '/var/www/html/vendor/composer/../symfony/polyfill-intl-grapheme/bootstrap.php' => 
     array (
-      0 => 'f8fe6f266364354cc84dfa5171da4e717553bb0f84d34ec52ff11a608b500c51',
+      0 => '356c4b7e565eb25919dc31c504bcd91353c0777e7de99809676e11e27db7e076',
       1 => 
       array (
+        0 => 'valueerror',
       ),
       2 => 
       array (
@@ -1083,9 +1084,10 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
     ),
     '/var/www/html/vendor/composer/../symfony/polyfill-php85/bootstrap.php' => 
     array (
-      0 => '284aa090970bfaca0589ac017efd9116bf54f6116fbf1203bb91e652ee1d4115',
+      0 => 'b40bb89199e8dedcf55ef1597be54216a9bb134647138925b3f43a1fa0001d55',
       1 => 
       array (
+        0 => 'valueerror',
       ),
       2 => 
       array (

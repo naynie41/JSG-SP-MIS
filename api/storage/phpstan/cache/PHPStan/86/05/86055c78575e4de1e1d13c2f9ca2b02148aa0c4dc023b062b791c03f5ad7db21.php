@@ -2,7 +2,7 @@
 
 // odsl-/var/www/html/app/Domain/Sync/Models/SyncConnector.php-PHPStan\BetterReflection\Reflection\ReflectionClass-App\Domain\Sync\Models\SyncConnector
 return \PHPStan\Cache\CacheItem::__set_state(array(
-   'variableKey' => 'v2-6.70.0.1-8.3.31-f9e490a293e041a3f856e561fe4a89d848fc8ca02d6ff8ad54eac56edef1357a',
+   'variableKey' => 'v2-6.70.0.1-8.3.31-6f6086e2fd4fee61b9f398252bfde6282b6b8a03508881c0c2e94c538b7a2c2d',
    'data' => 
   array (
     'locatedSource' => 
@@ -31,6 +31,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
  * @property string $name
  * @property RegistrationSource $source
  * @property string $owner_mda_id
+ * @property string|null $activity_id
  * @property ConflictPolicy $conflict_policy
  * @property string|null $credentials_ref
  * @property bool $enabled
@@ -43,12 +44,13 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
  * @property Carbon|null $mapping_stale_at
  * @property string|null $mapping_stale_reason
  * @property-read User|null $mappingConfirmedBy
+ * @property-read Activity|null $activity
  */',
     'attributes' => 
     array (
     ),
-    'startLine' => 40,
-    'endLine' => 140,
+    'startLine' => 44,
+    'endLine' => 189,
     'startColumn' => 1,
     'endColumn' => 1,
     'parentClassName' => 'Illuminate\\Database\\Eloquent\\Model',
@@ -77,20 +79,20 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
           'code' => '\'sync_connectors\'',
           'attributes' => 
           array (
-            'startLine' => 45,
-            'endLine' => 45,
-            'startTokenPos' => 93,
-            'startFilePos' => 1544,
-            'endTokenPos' => 93,
-            'endFilePos' => 1560,
+            'startLine' => 49,
+            'endLine' => 49,
+            'startTokenPos' => 103,
+            'startFilePos' => 1705,
+            'endTokenPos' => 103,
+            'endFilePos' => 1721,
           ),
         ),
         'docComment' => NULL,
         'attributes' => 
         array (
         ),
-        'startLine' => 45,
-        'endLine' => 45,
+        'startLine' => 49,
+        'endLine' => 49,
         'startColumn' => 5,
         'endColumn' => 41,
         'isPromoted' => false,
@@ -109,15 +111,15 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         'type' => NULL,
         'default' => 
         array (
-          'code' => '[\'name\', \'source\', \'owner_mda_id\', \'conflict_policy\', \'credentials_ref\', \'enabled\', \'schedule\', \'last_run_at\', \'column_map\', \'source_signature\', \'mapping_confirmed_at\', \'mapping_confirmed_by\', \'mapping_stale_at\', \'mapping_stale_reason\']',
+          'code' => '[\'name\', \'source\', \'owner_mda_id\', \'activity_id\', \'conflict_policy\', \'credentials_ref\', \'enabled\', \'schedule\', \'last_run_at\', \'column_map\', \'source_signature\', \'mapping_confirmed_at\', \'mapping_confirmed_by\', \'mapping_stale_at\', \'mapping_stale_reason\']',
           'attributes' => 
           array (
-            'startLine' => 50,
-            'endLine' => 65,
-            'startTokenPos' => 104,
-            'startFilePos' => 1631,
-            'endTokenPos' => 148,
-            'endFilePos' => 1985,
+            'startLine' => 54,
+            'endLine' => 70,
+            'startTokenPos' => 114,
+            'startFilePos' => 1792,
+            'endTokenPos' => 161,
+            'endFilePos' => 2169,
           ),
         ),
         'docComment' => '/**
@@ -126,8 +128,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         'attributes' => 
         array (
         ),
-        'startLine' => 50,
-        'endLine' => 65,
+        'startLine' => 54,
+        'endLine' => 70,
         'startColumn' => 5,
         'endColumn' => 6,
         'isPromoted' => false,
@@ -162,8 +164,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         'docComment' => '/**
  * @return array<string, string>
  */',
-        'startLine' => 70,
-        'endLine' => 81,
+        'startLine' => 75,
+        'endLine' => 86,
         'startColumn' => 5,
         'endColumn' => 5,
         'couldThrow' => false,
@@ -204,8 +206,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
  * remedy differs — one needs a first mapping, the other needs a REVIEW of a mapping
  * that used to be right.
  */',
-        'startLine' => 91,
-        'endLine' => 98,
+        'startLine' => 96,
+        'endLine' => 103,
         'startColumn' => 5,
         'endColumn' => 5,
         'couldThrow' => false,
@@ -239,8 +241,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         array (
         ),
         'docComment' => '/** Whether the source\'s shape has moved since the mapping was approved. */',
-        'startLine' => 101,
-        'endLine' => 104,
+        'startLine' => 106,
+        'endLine' => 109,
         'startColumn' => 5,
         'endColumn' => 5,
         'couldThrow' => false,
@@ -279,8 +281,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
  * configuration time and STANDS for later runs — but a run whose records no longer
  * match {@see $source_signature} must stop and ask again.
  */',
-        'startLine' => 112,
-        'endLine' => 115,
+        'startLine' => 117,
+        'endLine' => 120,
         'startColumn' => 5,
         'endColumn' => 5,
         'couldThrow' => false,
@@ -316,8 +318,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         'docComment' => '/**
  * @return BelongsTo<Mda, $this>
  */',
-        'startLine' => 120,
-        'endLine' => 123,
+        'startLine' => 125,
+        'endLine' => 128,
         'startColumn' => 5,
         'endColumn' => 5,
         'couldThrow' => false,
@@ -356,8 +358,115 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
  *
  * @return BelongsTo<User, $this>
  */',
-        'startLine' => 131,
-        'endLine' => 134,
+        'startLine' => 136,
+        'endLine' => 139,
+        'startColumn' => 5,
+        'endColumn' => 5,
+        'couldThrow' => false,
+        'isClosure' => false,
+        'isGenerator' => false,
+        'isVariadic' => false,
+        'modifiers' => 1,
+        'namespace' => 'App\\Domain\\Sync\\Models',
+        'declaringClassName' => 'App\\Domain\\Sync\\Models\\SyncConnector',
+        'implementingClassName' => 'App\\Domain\\Sync\\Models\\SyncConnector',
+        'currentClassName' => 'App\\Domain\\Sync\\Models\\SyncConnector',
+        'aliasName' => NULL,
+      ),
+      'activity' => 
+      array (
+        'name' => 'activity',
+        'parameters' => 
+        array (
+        ),
+        'returnsReference' => false,
+        'returnType' => 
+        array (
+          'class' => 'PHPStan\\BetterReflection\\Reflection\\ReflectionNamedType',
+          'data' => 
+          array (
+            'name' => 'Illuminate\\Database\\Eloquent\\Relations\\BelongsTo',
+            'isIdentifier' => false,
+          ),
+        ),
+        'attributes' => 
+        array (
+        ),
+        'docComment' => '/**
+ * The activity every synced row binds to (activity-first).
+ *
+ * The connector\'s equivalent of the activity an officer picks when uploading a file.
+ * Unscoped, because the engine runs on the queue with no authenticated user to
+ * resolve a scope from; the activity is constrained to the connector\'s own MDA at
+ * configuration time instead, which is where the decision belongs.
+ *
+ * @return BelongsTo<Activity, $this>
+ */',
+        'startLine' => 151,
+        'endLine' => 154,
+        'startColumn' => 5,
+        'endColumn' => 5,
+        'couldThrow' => false,
+        'isClosure' => false,
+        'isGenerator' => false,
+        'isVariadic' => false,
+        'modifiers' => 1,
+        'namespace' => 'App\\Domain\\Sync\\Models',
+        'declaringClassName' => 'App\\Domain\\Sync\\Models\\SyncConnector',
+        'implementingClassName' => 'App\\Domain\\Sync\\Models\\SyncConnector',
+        'currentClassName' => 'App\\Domain\\Sync\\Models\\SyncConnector',
+        'aliasName' => NULL,
+      ),
+      'activityBindingBlocker' => 
+      array (
+        'name' => 'activityBindingBlocker',
+        'parameters' => 
+        array (
+        ),
+        'returnsReference' => false,
+        'returnType' => 
+        array (
+          'class' => 'PHPStan\\BetterReflection\\Reflection\\ReflectionUnionType',
+          'data' => 
+          array (
+            'types' => 
+            array (
+              0 => 
+              array (
+                'class' => 'PHPStan\\BetterReflection\\Reflection\\ReflectionNamedType',
+                'data' => 
+                array (
+                  'name' => 'string',
+                  'isIdentifier' => true,
+                ),
+              ),
+              1 => 
+              array (
+                'class' => 'PHPStan\\BetterReflection\\Reflection\\ReflectionNamedType',
+                'data' => 
+                array (
+                  'name' => 'null',
+                  'isIdentifier' => true,
+                ),
+              ),
+            ),
+          ),
+        ),
+        'attributes' => 
+        array (
+        ),
+        'docComment' => '/**
+ * Why this connector may not sync yet, or null when it may.
+ *
+ * Activity-first is not advisory here: without an activity there is nothing to
+ * attribute a synced delivery to, so the run is HELD rather than allowed to put
+ * people into the register unattached. The activity\'s creator is who the engine
+ * enrols as, so an activity whose creator has since been removed holds too — it can
+ * no longer answer "who did this", and recording an intervention with no actor would
+ * lose exactly the accountability the binding exists to keep.
+ */',
+        'startLine' => 166,
+        'endLine' => 183,
         'startColumn' => 5,
         'endColumn' => 5,
         'couldThrow' => false,
@@ -391,8 +500,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         array (
         ),
         'docComment' => NULL,
-        'startLine' => 136,
-        'endLine' => 139,
+        'startLine' => 185,
+        'endLine' => 188,
         'startColumn' => 5,
         'endColumn' => 5,
         'couldThrow' => false,

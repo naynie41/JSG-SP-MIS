@@ -84,7 +84,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
     ),
     1 => 
     array (
-      '/var/www/html/app/Http/Resources/SyncConnectorResource.php' => 'e01c22f5c49130474dda55c13d4af0b496255df23410ddce52d83b9380bdc163',
+      '/var/www/html/app/Http/Resources/SyncConnectorResource.php' => '03b965984dee79100758b06d50a2c0329645d786ab3eeaa1bb866a5a3ec18872',
     ),
   ),
 ));

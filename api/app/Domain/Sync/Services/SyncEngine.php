@@ -9,6 +9,9 @@ use App\Domain\Access\Scopes\MdaScope;
 use App\Domain\Audit\Services\AuditLogger;
 use App\Domain\Matching\Models\MatchingConfig;
 use App\Domain\Matching\Services\MatchingConfigService;
+use App\Domain\Programme\Models\Activity;
+use App\Domain\Programme\Models\Programme;
+use App\Domain\Programme\Services\EnrollmentService;
 use App\Domain\Registry\Enums\RegistrationSource;
 use App\Domain\Registry\Imports\Adapters\RegistrationSourceAdapter;
 use App\Domain\Registry\Imports\Adapters\SourceAdapterRegistry;
@@ -68,6 +71,7 @@ class SyncEngine
         private readonly HouseholdIngestionService $households,
         private readonly ConnectorMappingService $connectorMappings,
         private readonly ColumnMapper $columnMapper,
+        private readonly EnrollmentService $enrollments,
     ) {}
 
     /** Scheduled or manually-triggered sync from a configured connector. */
@@ -95,11 +99,28 @@ class SyncEngine
          * nothing to ingest.
          */
         $blocked = $this->connectorMappings->blockedReason($connector);
+        $reason = 'mapping_not_confirmed';
+
+        /*
+         * Activity-first, held the same way.
+         *
+         * An upload names the activity that brought people in; a connector declares one
+         * in its configuration. Without it there is nothing to attribute a synced
+         * delivery to, so the run stops here rather than putting people into the register
+         * attached to nothing — the same visible failure as an unconfirmed mapping, for
+         * the same reason: a connector that quietly ingests the wrong shape is worse than
+         * one that stops and says so.
+         */
+        if ($blocked === null) {
+            $blocked = $connector->activityBindingBlocker();
+            $reason = 'activity_not_bound';
+        }
+
         if ($blocked !== null) {
             $run->update(['status' => SyncStatus::Failed, 'error' => $blocked, 'finished_at' => Carbon::now()]);
             $this->audit->record('sync.run_blocked', $run->fresh(), after: [
                 'connector_id' => $connector->id,
-                'reason' => 'mapping_not_confirmed',
+                'reason' => $reason,
             ], actor: $by);
 
             return $run->fresh();
@@ -130,6 +151,7 @@ class SyncEngine
                 $connector->owner_mda_id,
                 $connector->conflict_policy,
                 $connector->column_map ?? [],
+                $connector->activity()->first(),
             );
             $connector->update(['last_run_at' => Carbon::now()]);
         });
@@ -191,10 +213,20 @@ class SyncEngine
      *
      * @param  iterable<int, array<string, mixed>>  $rawRecords
      */
-    private function process(SyncRun $run, iterable $rawRecords, RegistrationSource $source, string $ownerMdaId, ConflictPolicy $policy, array $columnMap = []): void
+    private function process(SyncRun $run, iterable $rawRecords, RegistrationSource $source, string $ownerMdaId, ConflictPolicy $policy, array $columnMap = [], ?Activity $activity = null): void
     {
         $adapter = $this->adapters->for($source);
         $config = $this->configs->activeOrNull(); // null → matching not configured; screening skipped
+
+        /*
+         * Who the enrolment is recorded as. A scheduled run has no authenticated user, so
+         * the actor is the activity's creator — the officer who set up the delivery
+         * vehicle these records arrive under, and the closest thing to the person who
+         * would have clicked "upload". `runConnector` refuses to start when that user is
+         * gone, so by here it resolves or the activity is absent entirely.
+         */
+        $binding = $activity?->programme_id === null ? null : Programme::query()->find($activity->programme_id);
+        $actor = $activity?->created_by === null ? null : User::query()->find($activity->created_by);
 
         $fetched = 0;
         $rowNumber = 0;
@@ -215,6 +247,15 @@ class SyncEngine
                 'detail' => ($clean = Arr::except($detail, ['original_record_id'])) === [] ? null : $clean,
             ]);
 
+            // Bind the person to the connector's activity, exactly as the file pipeline
+            // binds a committed row to the activity it was uploaded against. Only for a
+            // row this sync actually placed or refreshed: a flagged conflict is an open
+            // question, and enrolling on it would record a delivery nobody decided.
+            if ($activity !== null && $binding !== null && $actor !== null && $beneficiaryId !== null
+                && in_array($outcome, [SyncRowOutcome::Created, SyncRowOutcome::Updated], true)) {
+                $this->bind($binding, $activity, $beneficiaryId, $actor);
+            }
+
             $counts[$outcome->counter()]++;
         }
 
@@ -225,6 +266,25 @@ class SyncEngine
      * @param  array<string, mixed>  $raw
      * @return array{0: SyncRowOutcome, 1: ?string, 2: ?string, 3: array<string, mixed>}
      */
+    /**
+     * Enrol a synced beneficiary into the connector's activity.
+     *
+     * Goes through the same {@see EnrollmentService} the upload path uses rather than
+     * writing an Enrollment directly, so eligibility, the serve check and the
+     * already-enrolled no-op all behave identically however a person arrived. That no-op
+     * is what makes a repeat sync harmless: the second run re-enters this and changes
+     * nothing.
+     */
+    private function bind(Programme $programme, Activity $activity, string $beneficiaryId, User $actor): void
+    {
+        $beneficiary = Beneficiary::query()->withoutGlobalScope(MdaScope::class)->find($beneficiaryId);
+        if ($beneficiary === null) {
+            return;
+        }
+
+        $this->enrollments->enroll($programme, $beneficiary, $activity->id, $actor);
+    }
+
     private function processRecord(array $raw, RegistrationSourceAdapter $adapter, ?MatchingConfig $config, RegistrationSource $source, string $ownerMdaId, ConflictPolicy $policy, int $rowNumber, array $columnMap = []): array
     {
         /*

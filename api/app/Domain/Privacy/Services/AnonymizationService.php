@@ -7,6 +7,7 @@ namespace App\Domain\Privacy\Services;
 use App\Domain\Access\Models\User;
 use App\Domain\Audit\Services\AuditLogger;
 use App\Domain\Registry\Models\Beneficiary;
+use App\Domain\Registry\Models\ImportRow;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
@@ -72,6 +73,7 @@ class AnonymizationService
             $beneficiary->forceFill($updates)->saveQuietly();
 
             $this->purgeDocuments($beneficiary);
+            $this->redactStagingRows($beneficiary);
         });
 
         $this->audit->record('beneficiary.anonymized', $beneficiary, after: [
@@ -80,6 +82,44 @@ class AnonymizationService
             'reason' => $reason,
             'quasi_retained' => $keepQuasi,
         ], actor: $actor);
+    }
+
+    /**
+     * Redact the person out of the import rows that created them.
+     *
+     * Every beneficiary here arrived through an import, and the staging row keeps the
+     * payload it was built from — name, NIN, BVN, phone, address, as the MDA supplied
+     * them. Clearing the registry row while that payload survives de-identifies nobody:
+     * the values are still queryable and still joined to the same person by
+     * `beneficiary_id`. Worse, the record now REPORTS itself as anonymized, so every
+     * downstream check believes an erasure that did not happen.
+     *
+     * The row itself is kept and only its identifying keys are removed. It records that
+     * this batch produced this record; deleting it would rewrite provenance and silently
+     * change import tallies that were already reported. Both the direct and the quasi
+     * lists go, whatever the mode: `aggregate` keeps quasi fields on the REGISTRY row so
+     * statistics stay possible, and statistics never read the staging table.
+     *
+     * `original_record_id` is deliberately left: it is the source system's own reference
+     * and the per-MDA idempotency key, so clearing it would let a re-import recreate the
+     * person this erasure just removed.
+     */
+    private function redactStagingRows(Beneficiary $beneficiary): void
+    {
+        $strip = array_unique([
+            ...(array) config('privacy.anonymization.direct', []),
+            ...(array) config('privacy.anonymization.quasi', []),
+        ]);
+
+        ImportRow::query()
+            ->where('beneficiary_id', $beneficiary->id)
+            ->each(function (ImportRow $row) use ($strip): void {
+                $payload = $row->payload ?? [];
+                foreach ($strip as $field) {
+                    unset($payload[$field]);
+                }
+                $row->forceFill(['payload' => $payload])->saveQuietly();
+            });
     }
 
     /**

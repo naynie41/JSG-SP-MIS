@@ -2,7 +2,7 @@
 
 // odsl-/var/www/html/app/Http/Controllers/Api/V1/Sync/SyncController.php-PHPStan\BetterReflection\Reflection\ReflectionClass-App\Http\Controllers\Api\V1\Sync\SyncController
 return \PHPStan\Cache\CacheItem::__set_state(array(
-   'variableKey' => 'v2-6.70.0.1-8.3.31-cab94b7cf357e1072740ea336c2b4f609ae55517e6691917a73b5326d84920ff',
+   'variableKey' => 'v2-6.70.0.1-8.3.31-8a6ac1ae5340093319b8d7dcc8aab283983030d36f507f122dc55ceb98989a91',
    'data' => 
   array (
     'locatedSource' => 
@@ -31,8 +31,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
     'attributes' => 
     array (
     ),
-    'startLine' => 32,
-    'endLine' => 174,
+    'startLine' => 33,
+    'endLine' => 218,
     'startColumn' => 1,
     'endColumn' => 1,
     'parentClassName' => 'App\\Http\\Controllers\\Controller',
@@ -67,8 +67,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         'attributes' => 
         array (
         ),
-        'startLine' => 34,
-        'endLine' => 34,
+        'startLine' => 35,
+        'endLine' => 35,
         'startColumn' => 33,
         'endColumn' => 67,
         'isPromoted' => true,
@@ -105,8 +105,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             'attributes' => 
             array (
             ),
-            'startLine' => 34,
-            'endLine' => 34,
+            'startLine' => 35,
+            'endLine' => 35,
             'startColumn' => 33,
             'endColumn' => 67,
             'parameterIndex' => 0,
@@ -119,8 +119,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         array (
         ),
         'docComment' => NULL,
-        'startLine' => 34,
-        'endLine' => 34,
+        'startLine' => 35,
+        'endLine' => 35,
         'startColumn' => 5,
         'endColumn' => 71,
         'couldThrow' => false,
@@ -158,8 +158,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             'attributes' => 
             array (
             ),
-            'startLine' => 37,
-            'endLine' => 37,
+            'startLine' => 38,
+            'endLine' => 38,
             'startColumn' => 32,
             'endColumn' => 47,
             'parameterIndex' => 0,
@@ -180,8 +180,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         array (
         ),
         'docComment' => '/** Configured connectors + their status. */',
-        'startLine' => 37,
-        'endLine' => 50,
+        'startLine' => 38,
+        'endLine' => 54,
         'startColumn' => 5,
         'endColumn' => 5,
         'couldThrow' => false,
@@ -219,8 +219,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             'attributes' => 
             array (
             ),
-            'startLine' => 53,
-            'endLine' => 53,
+            'startLine' => 57,
+            'endLine' => 57,
             'startColumn' => 26,
             'endColumn' => 41,
             'parameterIndex' => 0,
@@ -241,8 +241,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         array (
         ),
         'docComment' => '/** Recent sync runs (the status surfaced to admins). */',
-        'startLine' => 53,
-        'endLine' => 59,
+        'startLine' => 57,
+        'endLine' => 63,
         'startColumn' => 5,
         'endColumn' => 5,
         'couldThrow' => false,
@@ -280,8 +280,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             'attributes' => 
             array (
             ),
-            'startLine' => 62,
-            'endLine' => 62,
+            'startLine' => 66,
+            'endLine' => 66,
             'startColumn' => 25,
             'endColumn' => 35,
             'parameterIndex' => 0,
@@ -302,8 +302,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         array (
         ),
         'docComment' => '/** One run with its full per-record outcome log. */',
-        'startLine' => 62,
-        'endLine' => 67,
+        'startLine' => 66,
+        'endLine' => 71,
         'startColumn' => 5,
         'endColumn' => 5,
         'couldThrow' => false,
@@ -341,8 +341,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             'attributes' => 
             array (
             ),
-            'startLine' => 74,
-            'endLine' => 74,
+            'startLine' => 78,
+            'endLine' => 78,
             'startColumn' => 29,
             'endColumn' => 45,
             'parameterIndex' => 0,
@@ -367,8 +367,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             'attributes' => 
             array (
             ),
-            'startLine' => 74,
-            'endLine' => 74,
+            'startLine' => 78,
+            'endLine' => 78,
             'startColumn' => 48,
             'endColumn' => 80,
             'parameterIndex' => 1,
@@ -392,8 +392,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
  * The connector\'s mapping screen: a live sample from the source, suggestions, and
  * whether the source\'s shape has moved since the mapping was approved.
  */',
-        'startLine' => 74,
-        'endLine' => 79,
+        'startLine' => 78,
+        'endLine' => 83,
         'startColumn' => 5,
         'endColumn' => 5,
         'couldThrow' => false,
@@ -431,8 +431,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             'attributes' => 
             array (
             ),
-            'startLine' => 88,
-            'endLine' => 88,
+            'startLine' => 92,
+            'endLine' => 92,
             'startColumn' => 36,
             'endColumn' => 74,
             'parameterIndex' => 0,
@@ -457,8 +457,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             'attributes' => 
             array (
             ),
-            'startLine' => 88,
-            'endLine' => 88,
+            'startLine' => 92,
+            'endLine' => 92,
             'startColumn' => 77,
             'endColumn' => 93,
             'parameterIndex' => 1,
@@ -483,8 +483,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             'attributes' => 
             array (
             ),
-            'startLine' => 88,
-            'endLine' => 88,
+            'startLine' => 92,
+            'endLine' => 92,
             'startColumn' => 96,
             'endColumn' => 128,
             'parameterIndex' => 2,
@@ -511,8 +511,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
  * nobody to ask. It is bounded by the source\'s shape: if the fields change, the
  * connector stops until someone re-confirms.
  */',
-        'startLine' => 88,
-        'endLine' => 99,
+        'startLine' => 92,
+        'endLine' => 103,
         'startColumn' => 5,
         'endColumn' => 5,
         'couldThrow' => false,
@@ -550,8 +550,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             'attributes' => 
             array (
             ),
-            'startLine' => 108,
-            'endLine' => 108,
+            'startLine' => 112,
+            'endLine' => 112,
             'startColumn' => 32,
             'endColumn' => 47,
             'parameterIndex' => 0,
@@ -576,8 +576,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             'attributes' => 
             array (
             ),
-            'startLine' => 108,
-            'endLine' => 108,
+            'startLine' => 112,
+            'endLine' => 112,
             'startColumn' => 50,
             'endColumn' => 66,
             'parameterIndex' => 1,
@@ -602,8 +602,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             'attributes' => 
             array (
             ),
-            'startLine' => 108,
-            'endLine' => 108,
+            'startLine' => 112,
+            'endLine' => 112,
             'startColumn' => 69,
             'endColumn' => 101,
             'parameterIndex' => 2,
@@ -630,8 +630,106 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
  * same guard as the run, applied at configuration time so the refusal lands where
  * the decision is made rather than silently at 02:00.
  */',
-        'startLine' => 108,
-        'endLine' => 125,
+        'startLine' => 112,
+        'endLine' => 129,
+        'startColumn' => 5,
+        'endColumn' => 5,
+        'couldThrow' => false,
+        'isClosure' => false,
+        'isGenerator' => false,
+        'isVariadic' => false,
+        'modifiers' => 1,
+        'namespace' => 'App\\Http\\Controllers\\Api\\V1\\Sync',
+        'declaringClassName' => 'App\\Http\\Controllers\\Api\\V1\\Sync\\SyncController',
+        'implementingClassName' => 'App\\Http\\Controllers\\Api\\V1\\Sync\\SyncController',
+        'currentClassName' => 'App\\Http\\Controllers\\Api\\V1\\Sync\\SyncController',
+        'aliasName' => NULL,
+      ),
+      'setActivity' => 
+      array (
+        'name' => 'setActivity',
+        'parameters' => 
+        array (
+          'request' => 
+          array (
+            'name' => 'request',
+            'default' => NULL,
+            'type' => 
+            array (
+              'class' => 'PHPStan\\BetterReflection\\Reflection\\ReflectionNamedType',
+              'data' => 
+              array (
+                'name' => 'Illuminate\\Http\\Request',
+                'isIdentifier' => false,
+              ),
+            ),
+            'isVariadic' => false,
+            'byRef' => false,
+            'isPromoted' => false,
+            'attributes' => 
+            array (
+            ),
+            'startLine' => 143,
+            'endLine' => 143,
+            'startColumn' => 33,
+            'endColumn' => 48,
+            'parameterIndex' => 0,
+            'isOptional' => false,
+          ),
+          'connector' => 
+          array (
+            'name' => 'connector',
+            'default' => NULL,
+            'type' => 
+            array (
+              'class' => 'PHPStan\\BetterReflection\\Reflection\\ReflectionNamedType',
+              'data' => 
+              array (
+                'name' => 'string',
+                'isIdentifier' => true,
+              ),
+            ),
+            'isVariadic' => false,
+            'byRef' => false,
+            'isPromoted' => false,
+            'attributes' => 
+            array (
+            ),
+            'startLine' => 143,
+            'endLine' => 143,
+            'startColumn' => 51,
+            'endColumn' => 67,
+            'parameterIndex' => 1,
+            'isOptional' => false,
+          ),
+        ),
+        'returnsReference' => false,
+        'returnType' => 
+        array (
+          'class' => 'PHPStan\\BetterReflection\\Reflection\\ReflectionNamedType',
+          'data' => 
+          array (
+            'name' => 'Illuminate\\Http\\JsonResponse',
+            'isIdentifier' => false,
+          ),
+        ),
+        'attributes' => 
+        array (
+        ),
+        'docComment' => '/**
+ * Set the activity synced rows bind to (activity-first, FR-DSH-02).
+ *
+ * The connector\'s equivalent of the activity an officer picks when uploading a file,
+ * and a standing decision for the same reason the column mapping is: nobody is
+ * present at 02:00 to choose one.
+ *
+ * The activity must belong to the connector\'s OWN MDA. A connector ingests into that
+ * MDA\'s registry, so binding to another MDA\'s activity would attribute the delivery
+ * to an agency that never ran it — and the enrolling actor is that activity\'s
+ * creator, who could not serve those records anyway.
+ */',
+        'startLine' => 143,
+        'endLine' => 164,
         'startColumn' => 5,
         'endColumn' => 5,
         'couldThrow' => false,
@@ -669,8 +767,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             'attributes' => 
             array (
             ),
-            'startLine' => 127,
-            'endLine' => 127,
+            'startLine' => 166,
+            'endLine' => 166,
             'startColumn' => 29,
             'endColumn' => 44,
             'parameterIndex' => 0,
@@ -695,8 +793,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             'attributes' => 
             array (
             ),
-            'startLine' => 127,
-            'endLine' => 127,
+            'startLine' => 166,
+            'endLine' => 166,
             'startColumn' => 47,
             'endColumn' => 63,
             'parameterIndex' => 1,
@@ -721,8 +819,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             'attributes' => 
             array (
             ),
-            'startLine' => 127,
-            'endLine' => 127,
+            'startLine' => 166,
+            'endLine' => 166,
             'startColumn' => 66,
             'endColumn' => 98,
             'parameterIndex' => 2,
@@ -743,8 +841,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         array (
         ),
         'docComment' => NULL,
-        'startLine' => 127,
-        'endLine' => 144,
+        'startLine' => 166,
+        'endLine' => 188,
         'startColumn' => 5,
         'endColumn' => 5,
         'couldThrow' => false,
@@ -782,8 +880,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             'attributes' => 
             array (
             ),
-            'startLine' => 150,
-            'endLine' => 150,
+            'startLine' => 194,
+            'endLine' => 194,
             'startColumn' => 34,
             'endColumn' => 61,
             'parameterIndex' => 0,
@@ -808,8 +906,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             'attributes' => 
             array (
             ),
-            'startLine' => 150,
-            'endLine' => 150,
+            'startLine' => 194,
+            'endLine' => 194,
             'startColumn' => 64,
             'endColumn' => 81,
             'parameterIndex' => 1,
@@ -833,8 +931,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
  * Flush an offline-captured batch (FR-REG-08). Runs the SAME pipeline as import;
  * per-record idempotency keys mean re-flushing the same batch never double-inserts.
  */',
-        'startLine' => 150,
-        'endLine' => 173,
+        'startLine' => 194,
+        'endLine' => 217,
         'startColumn' => 5,
         'endColumn' => 5,
         'couldThrow' => false,

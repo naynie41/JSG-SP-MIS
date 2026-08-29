@@ -14,6 +14,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         array (
           'mda' => 'App\\Domain\\Access\\Models\\Mda',
           'user' => 'App\\Domain\\Access\\Models\\User',
+          'mdascope' => 'App\\Domain\\Access\\Scopes\\MdaScope',
+          'activity' => 'App\\Domain\\Programme\\Models\\Activity',
           'registrationsource' => 'App\\Domain\\Registry\\Enums\\RegistrationSource',
           'conflictpolicy' => 'App\\Domain\\Sync\\Enums\\ConflictPolicy',
           'syncconnectorfactory' => 'Database\\Factories\\SyncConnectorFactory',
@@ -692,6 +694,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         array (
           'mda' => 'App\\Domain\\Access\\Models\\Mda',
           'user' => 'App\\Domain\\Access\\Models\\User',
+          'mdascope' => 'App\\Domain\\Access\\Scopes\\MdaScope',
+          'activity' => 'App\\Domain\\Programme\\Models\\Activity',
           'registrationsource' => 'App\\Domain\\Registry\\Enums\\RegistrationSource',
           'conflictpolicy' => 'App\\Domain\\Sync\\Enums\\ConflictPolicy',
           'syncconnectorfactory' => 'Database\\Factories\\SyncConnectorFactory',
@@ -713,6 +717,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
           array (
             'mda' => 'App\\Domain\\Access\\Models\\Mda',
             'user' => 'App\\Domain\\Access\\Models\\User',
+            'mdascope' => 'App\\Domain\\Access\\Scopes\\MdaScope',
+            'activity' => 'App\\Domain\\Programme\\Models\\Activity',
             'registrationsource' => 'App\\Domain\\Registry\\Enums\\RegistrationSource',
             'conflictpolicy' => 'App\\Domain\\Sync\\Enums\\ConflictPolicy',
             'syncconnectorfactory' => 'Database\\Factories\\SyncConnectorFactory',
@@ -755,6 +761,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         array (
           'mda' => 'App\\Domain\\Access\\Models\\Mda',
           'user' => 'App\\Domain\\Access\\Models\\User',
+          'mdascope' => 'App\\Domain\\Access\\Scopes\\MdaScope',
+          'activity' => 'App\\Domain\\Programme\\Models\\Activity',
           'registrationsource' => 'App\\Domain\\Registry\\Enums\\RegistrationSource',
           'conflictpolicy' => 'App\\Domain\\Sync\\Enums\\ConflictPolicy',
           'syncconnectorfactory' => 'Database\\Factories\\SyncConnectorFactory',
@@ -776,6 +784,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
           array (
             'mda' => 'App\\Domain\\Access\\Models\\Mda',
             'user' => 'App\\Domain\\Access\\Models\\User',
+            'mdascope' => 'App\\Domain\\Access\\Scopes\\MdaScope',
+            'activity' => 'App\\Domain\\Programme\\Models\\Activity',
             'registrationsource' => 'App\\Domain\\Registry\\Enums\\RegistrationSource',
             'conflictpolicy' => 'App\\Domain\\Sync\\Enums\\ConflictPolicy',
             'syncconnectorfactory' => 'Database\\Factories\\SyncConnectorFactory',
@@ -818,6 +828,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         array (
           'mda' => 'App\\Domain\\Access\\Models\\Mda',
           'user' => 'App\\Domain\\Access\\Models\\User',
+          'mdascope' => 'App\\Domain\\Access\\Scopes\\MdaScope',
+          'activity' => 'App\\Domain\\Programme\\Models\\Activity',
           'registrationsource' => 'App\\Domain\\Registry\\Enums\\RegistrationSource',
           'conflictpolicy' => 'App\\Domain\\Sync\\Enums\\ConflictPolicy',
           'syncconnectorfactory' => 'Database\\Factories\\SyncConnectorFactory',
@@ -839,6 +851,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
           array (
             'mda' => 'App\\Domain\\Access\\Models\\Mda',
             'user' => 'App\\Domain\\Access\\Models\\User',
+            'mdascope' => 'App\\Domain\\Access\\Scopes\\MdaScope',
+            'activity' => 'App\\Domain\\Programme\\Models\\Activity',
             'registrationsource' => 'App\\Domain\\Registry\\Enums\\RegistrationSource',
             'conflictpolicy' => 'App\\Domain\\Sync\\Enums\\ConflictPolicy',
             'syncconnectorfactory' => 'Database\\Factories\\SyncConnectorFactory',
@@ -881,6 +895,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         array (
           'mda' => 'App\\Domain\\Access\\Models\\Mda',
           'user' => 'App\\Domain\\Access\\Models\\User',
+          'mdascope' => 'App\\Domain\\Access\\Scopes\\MdaScope',
+          'activity' => 'App\\Domain\\Programme\\Models\\Activity',
           'registrationsource' => 'App\\Domain\\Registry\\Enums\\RegistrationSource',
           'conflictpolicy' => 'App\\Domain\\Sync\\Enums\\ConflictPolicy',
           'syncconnectorfactory' => 'Database\\Factories\\SyncConnectorFactory',
@@ -902,6 +918,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
           array (
             'mda' => 'App\\Domain\\Access\\Models\\Mda',
             'user' => 'App\\Domain\\Access\\Models\\User',
+            'mdascope' => 'App\\Domain\\Access\\Scopes\\MdaScope',
+            'activity' => 'App\\Domain\\Programme\\Models\\Activity',
             'registrationsource' => 'App\\Domain\\Registry\\Enums\\RegistrationSource',
             'conflictpolicy' => 'App\\Domain\\Sync\\Enums\\ConflictPolicy',
             'syncconnectorfactory' => 'Database\\Factories\\SyncConnectorFactory',
@@ -944,6 +962,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         array (
           'mda' => 'App\\Domain\\Access\\Models\\Mda',
           'user' => 'App\\Domain\\Access\\Models\\User',
+          'mdascope' => 'App\\Domain\\Access\\Scopes\\MdaScope',
+          'activity' => 'App\\Domain\\Programme\\Models\\Activity',
           'registrationsource' => 'App\\Domain\\Registry\\Enums\\RegistrationSource',
           'conflictpolicy' => 'App\\Domain\\Sync\\Enums\\ConflictPolicy',
           'syncconnectorfactory' => 'Database\\Factories\\SyncConnectorFactory',
@@ -965,6 +985,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
           array (
             'mda' => 'App\\Domain\\Access\\Models\\Mda',
             'user' => 'App\\Domain\\Access\\Models\\User',
+            'mdascope' => 'App\\Domain\\Access\\Scopes\\MdaScope',
+            'activity' => 'App\\Domain\\Programme\\Models\\Activity',
             'registrationsource' => 'App\\Domain\\Registry\\Enums\\RegistrationSource',
             'conflictpolicy' => 'App\\Domain\\Sync\\Enums\\ConflictPolicy',
             'syncconnectorfactory' => 'Database\\Factories\\SyncConnectorFactory',
@@ -1007,6 +1029,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         array (
           'mda' => 'App\\Domain\\Access\\Models\\Mda',
           'user' => 'App\\Domain\\Access\\Models\\User',
+          'mdascope' => 'App\\Domain\\Access\\Scopes\\MdaScope',
+          'activity' => 'App\\Domain\\Programme\\Models\\Activity',
           'registrationsource' => 'App\\Domain\\Registry\\Enums\\RegistrationSource',
           'conflictpolicy' => 'App\\Domain\\Sync\\Enums\\ConflictPolicy',
           'syncconnectorfactory' => 'Database\\Factories\\SyncConnectorFactory',
@@ -1028,6 +1052,142 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
           array (
             'mda' => 'App\\Domain\\Access\\Models\\Mda',
             'user' => 'App\\Domain\\Access\\Models\\User',
+            'mdascope' => 'App\\Domain\\Access\\Scopes\\MdaScope',
+            'activity' => 'App\\Domain\\Programme\\Models\\Activity',
+            'registrationsource' => 'App\\Domain\\Registry\\Enums\\RegistrationSource',
+            'conflictpolicy' => 'App\\Domain\\Sync\\Enums\\ConflictPolicy',
+            'syncconnectorfactory' => 'Database\\Factories\\SyncConnectorFactory',
+            'hasuuids' => 'Illuminate\\Database\\Eloquent\\Concerns\\HasUuids',
+            'hasfactory' => 'Illuminate\\Database\\Eloquent\\Factories\\HasFactory',
+            'model' => 'Illuminate\\Database\\Eloquent\\Model',
+            'belongsto' => 'Illuminate\\Database\\Eloquent\\Relations\\BelongsTo',
+            'carbon' => 'Illuminate\\Support\\Carbon',
+          ),
+           'className' => 'App\\Domain\\Sync\\Models\\SyncConnector',
+           'functionName' => NULL,
+           'templatePhpDocNodes' => 
+          array (
+          ),
+           'parent' => NULL,
+           'typeAliasesMap' => 
+          array (
+          ),
+           'bypassTypeAliases' => false,
+           'constUses' => 
+          array (
+          ),
+           'typeAliasClassName' => NULL,
+           'traitData' => NULL,
+        )),
+         'typeAliasesMap' => 
+        array (
+        ),
+         'bypassTypeAliases' => false,
+         'constUses' => 
+        array (
+        ),
+         'typeAliasClassName' => NULL,
+         'traitData' => NULL,
+      )),
+      '208b70f09d65e90404d942df142c809e' => 
+      \PHPStan\Analyser\IntermediaryNameScope::__set_state(array(
+         'namespace' => 'App\\Domain\\Sync\\Models',
+         'uses' => 
+        array (
+          'mda' => 'App\\Domain\\Access\\Models\\Mda',
+          'user' => 'App\\Domain\\Access\\Models\\User',
+          'mdascope' => 'App\\Domain\\Access\\Scopes\\MdaScope',
+          'activity' => 'App\\Domain\\Programme\\Models\\Activity',
+          'registrationsource' => 'App\\Domain\\Registry\\Enums\\RegistrationSource',
+          'conflictpolicy' => 'App\\Domain\\Sync\\Enums\\ConflictPolicy',
+          'syncconnectorfactory' => 'Database\\Factories\\SyncConnectorFactory',
+          'hasuuids' => 'Illuminate\\Database\\Eloquent\\Concerns\\HasUuids',
+          'hasfactory' => 'Illuminate\\Database\\Eloquent\\Factories\\HasFactory',
+          'model' => 'Illuminate\\Database\\Eloquent\\Model',
+          'belongsto' => 'Illuminate\\Database\\Eloquent\\Relations\\BelongsTo',
+          'carbon' => 'Illuminate\\Support\\Carbon',
+        ),
+         'className' => 'App\\Domain\\Sync\\Models\\SyncConnector',
+         'functionName' => 'activity',
+         'templatePhpDocNodes' => 
+        array (
+        ),
+         'parent' => 
+        \PHPStan\Analyser\IntermediaryNameScope::__set_state(array(
+           'namespace' => 'App\\Domain\\Sync\\Models',
+           'uses' => 
+          array (
+            'mda' => 'App\\Domain\\Access\\Models\\Mda',
+            'user' => 'App\\Domain\\Access\\Models\\User',
+            'mdascope' => 'App\\Domain\\Access\\Scopes\\MdaScope',
+            'activity' => 'App\\Domain\\Programme\\Models\\Activity',
+            'registrationsource' => 'App\\Domain\\Registry\\Enums\\RegistrationSource',
+            'conflictpolicy' => 'App\\Domain\\Sync\\Enums\\ConflictPolicy',
+            'syncconnectorfactory' => 'Database\\Factories\\SyncConnectorFactory',
+            'hasuuids' => 'Illuminate\\Database\\Eloquent\\Concerns\\HasUuids',
+            'hasfactory' => 'Illuminate\\Database\\Eloquent\\Factories\\HasFactory',
+            'model' => 'Illuminate\\Database\\Eloquent\\Model',
+            'belongsto' => 'Illuminate\\Database\\Eloquent\\Relations\\BelongsTo',
+            'carbon' => 'Illuminate\\Support\\Carbon',
+          ),
+           'className' => 'App\\Domain\\Sync\\Models\\SyncConnector',
+           'functionName' => NULL,
+           'templatePhpDocNodes' => 
+          array (
+          ),
+           'parent' => NULL,
+           'typeAliasesMap' => 
+          array (
+          ),
+           'bypassTypeAliases' => false,
+           'constUses' => 
+          array (
+          ),
+           'typeAliasClassName' => NULL,
+           'traitData' => NULL,
+        )),
+         'typeAliasesMap' => 
+        array (
+        ),
+         'bypassTypeAliases' => false,
+         'constUses' => 
+        array (
+        ),
+         'typeAliasClassName' => NULL,
+         'traitData' => NULL,
+      )),
+      'bae342c635a65d5eff25da8d8e939f89' => 
+      \PHPStan\Analyser\IntermediaryNameScope::__set_state(array(
+         'namespace' => 'App\\Domain\\Sync\\Models',
+         'uses' => 
+        array (
+          'mda' => 'App\\Domain\\Access\\Models\\Mda',
+          'user' => 'App\\Domain\\Access\\Models\\User',
+          'mdascope' => 'App\\Domain\\Access\\Scopes\\MdaScope',
+          'activity' => 'App\\Domain\\Programme\\Models\\Activity',
+          'registrationsource' => 'App\\Domain\\Registry\\Enums\\RegistrationSource',
+          'conflictpolicy' => 'App\\Domain\\Sync\\Enums\\ConflictPolicy',
+          'syncconnectorfactory' => 'Database\\Factories\\SyncConnectorFactory',
+          'hasuuids' => 'Illuminate\\Database\\Eloquent\\Concerns\\HasUuids',
+          'hasfactory' => 'Illuminate\\Database\\Eloquent\\Factories\\HasFactory',
+          'model' => 'Illuminate\\Database\\Eloquent\\Model',
+          'belongsto' => 'Illuminate\\Database\\Eloquent\\Relations\\BelongsTo',
+          'carbon' => 'Illuminate\\Support\\Carbon',
+        ),
+         'className' => 'App\\Domain\\Sync\\Models\\SyncConnector',
+         'functionName' => 'activityBindingBlocker',
+         'templatePhpDocNodes' => 
+        array (
+        ),
+         'parent' => 
+        \PHPStan\Analyser\IntermediaryNameScope::__set_state(array(
+           'namespace' => 'App\\Domain\\Sync\\Models',
+           'uses' => 
+          array (
+            'mda' => 'App\\Domain\\Access\\Models\\Mda',
+            'user' => 'App\\Domain\\Access\\Models\\User',
+            'mdascope' => 'App\\Domain\\Access\\Scopes\\MdaScope',
+            'activity' => 'App\\Domain\\Programme\\Models\\Activity',
             'registrationsource' => 'App\\Domain\\Registry\\Enums\\RegistrationSource',
             'conflictpolicy' => 'App\\Domain\\Sync\\Enums\\ConflictPolicy',
             'syncconnectorfactory' => 'Database\\Factories\\SyncConnectorFactory',
@@ -1070,6 +1230,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         array (
           'mda' => 'App\\Domain\\Access\\Models\\Mda',
           'user' => 'App\\Domain\\Access\\Models\\User',
+          'mdascope' => 'App\\Domain\\Access\\Scopes\\MdaScope',
+          'activity' => 'App\\Domain\\Programme\\Models\\Activity',
           'registrationsource' => 'App\\Domain\\Registry\\Enums\\RegistrationSource',
           'conflictpolicy' => 'App\\Domain\\Sync\\Enums\\ConflictPolicy',
           'syncconnectorfactory' => 'Database\\Factories\\SyncConnectorFactory',
@@ -1091,6 +1253,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
           array (
             'mda' => 'App\\Domain\\Access\\Models\\Mda',
             'user' => 'App\\Domain\\Access\\Models\\User',
+            'mdascope' => 'App\\Domain\\Access\\Scopes\\MdaScope',
+            'activity' => 'App\\Domain\\Programme\\Models\\Activity',
             'registrationsource' => 'App\\Domain\\Registry\\Enums\\RegistrationSource',
             'conflictpolicy' => 'App\\Domain\\Sync\\Enums\\ConflictPolicy',
             'syncconnectorfactory' => 'Database\\Factories\\SyncConnectorFactory',
@@ -1129,7 +1293,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
     ),
     1 => 
     array (
-      '/var/www/html/app/Domain/Sync/Models/SyncConnector.php' => 'f9e490a293e041a3f856e561fe4a89d848fc8ca02d6ff8ad54eac56edef1357a',
+      '/var/www/html/app/Domain/Sync/Models/SyncConnector.php' => '6f6086e2fd4fee61b9f398252bfde6282b6b8a03508881c0c2e94c538b7a2c2d',
       '/var/www/html/vendor/composer/../laravel/framework/src/Illuminate/Database/Eloquent/Factories/HasFactory.php' => 'b6cb2b164e90168e80963a5549541f5f3188a3ec8cfd368bf3611bd94fbd46a7',
       '/var/www/html/vendor/composer/../laravel/framework/src/Illuminate/Database/Eloquent/Concerns/HasUuids.php' => 'f75b8db33aafd61f17652a5e4bb5b8989e62197b306e9f7ae60bb3ac2c34d534',
       '/var/www/html/vendor/composer/../laravel/framework/src/Illuminate/Database/Eloquent/Concerns/HasUniqueStringIds.php' => '3d5612d3c0a56c6c9f19e628b02085d4d68a64d9d07656742725cec78d4a79c5',

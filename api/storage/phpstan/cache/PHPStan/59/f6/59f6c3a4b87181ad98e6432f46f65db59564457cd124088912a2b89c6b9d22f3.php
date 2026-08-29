@@ -7,7 +7,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
   array (
     '/var/www/html/vendor/nette/schema/src/Schema/Context.php' => 
     array (
-      0 => '72f67f096a2d6e34022579015060198510a4a40e038b2544af32cb0bd6f8da2e',
+      0 => '9c36b2f1e33ad27e8d168d1bbc51b925d8022670826cbacb690cdec7d6a01f7e',
       1 => 
       array (
         0 => 'nette\\schema\\context',
@@ -38,7 +38,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
     ),
     '/var/www/html/vendor/nette/schema/src/Schema/Elements/AnyOf.php' => 
     array (
-      0 => 'e0447bf78828f9317eb5cb0e376496a7684efd7d26ea112b293adb4e71be72da',
+      0 => '3b9170ef7f7964536053bb84189a76e8c066c04307ee9bcd8636f12f8f9eacfb',
       1 => 
       array (
         0 => 'nette\\schema\\elements\\anyof',
@@ -61,7 +61,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
     ),
     '/var/www/html/vendor/nette/schema/src/Schema/Elements/Base.php' => 
     array (
-      0 => 'e4bd7b50e4e0b6d66fd40d794f6b46cb46f3b95a6b112d0eee9fdf71772af17d',
+      0 => '24d11ccc3eb01cff97bb55c44237ca0cebaff9cf5e1740715c5d35a4a3ec9af6',
       1 => 
       array (
         0 => 'nette\\schema\\elements\\base',
@@ -89,7 +89,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
     ),
     '/var/www/html/vendor/nette/schema/src/Schema/Elements/Structure.php' => 
     array (
-      0 => 'fae34691b458fc918e01094907100142fdaeca9d8d2eaa010e007022190c4730',
+      0 => '20f757084faae6703d53efc6d203815e6eb80f9beed8e2dfccc0cd3d3b147b5f',
       1 => 
       array (
         0 => 'nette\\schema\\elements\\structure',
@@ -116,7 +116,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
     ),
     '/var/www/html/vendor/nette/schema/src/Schema/Elements/Type.php' => 
     array (
-      0 => 'ff6742d47424e09ca5cac25d75ab01c58e25757a0ea5e37a84eb26a41dd047bc',
+      0 => 'e927c4c0148878ddc09218a78e873cc74b277c7a02583ec3e178b4c2a4409309',
       1 => 
       array (
         0 => 'nette\\schema\\elements\\type',
@@ -142,7 +142,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
     ),
     '/var/www/html/vendor/nette/schema/src/Schema/Expect.php' => 
     array (
-      0 => 'b2feada01f484d14fee7890ca7bd2790152c73a6ad7f9e1a3c6407f75395c3a6',
+      0 => 'd2117f5c32316244eab62e87978d7a78eb22de1ea1bf948990056a1329596fbb',
       1 => 
       array (
         0 => 'nette\\schema\\expect',
@@ -164,7 +164,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
     ),
     '/var/www/html/vendor/nette/schema/src/Schema/Helpers.php' => 
     array (
-      0 => 'b778e9a556b07d04ff91bbd78ab5f48cbde143a05825edaad884e9027d4d5157',
+      0 => '7191a9cbbbd38e003b69d9144a0bc50986ba0347027736125ddd3ae77f9b4634',
       1 => 
       array (
         0 => 'nette\\schema\\helpers',
@@ -187,7 +187,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
     ),
     '/var/www/html/vendor/nette/schema/src/Schema/Message.php' => 
     array (
-      0 => 'f9c8c3a747a5b2b850a0efca2c3bbb97257b2313a44c9d2d6b686c5599824f2a',
+      0 => '9f8374d8f5859fd8fb5b6f49371bed0d47c46811dc4632dfd3fe3776c9b7bd8f',
       1 => 
       array (
         0 => 'nette\\schema\\message',
@@ -203,7 +203,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
     ),
     '/var/www/html/vendor/nette/schema/src/Schema/Processor.php' => 
     array (
-      0 => '6e1a6b1347a8ec6298ae17d99d108fbf0c39ee943b89092d3bf1b59899993e0f',
+      0 => '15ffc24113f84697e9a47d87665d8db846f2e22c3b54f7a0eb8a7fe1661d2709',
       1 => 
       array (
         0 => 'nette\\schema\\processor',
@@ -214,7 +214,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         1 => 'nette\\schema\\process',
         2 => 'nette\\schema\\processmultiple',
         3 => 'nette\\schema\\getwarnings',
-        4 => 'nette\\schema\\throwserrors',
+        4 => 'nette\\schema\\throwerrors',
         5 => 'nette\\schema\\createcontext',
       ),
       3 => 
@@ -223,7 +223,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
     ),
     '/var/www/html/vendor/nette/schema/src/Schema/Schema.php' => 
     array (
-      0 => '31311459a89ff12b0c5b71283db32484ae07c2e1f2ed563ef862e4f77f8e0daf',
+      0 => '328cd59c3dfbaa8161c2a576d3549b13a4b5a808adcf17ef00e55d029522b47b',
       1 => 
       array (
         0 => 'nette\\schema\\schema',
@@ -241,7 +241,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
     ),
     '/var/www/html/vendor/nette/schema/src/Schema/ValidationException.php' => 
     array (
-      0 => '730e099e17bcb6fbca9a50662bc2ed2bd8ebfdba85e7c6045288cdd4a3463845',
+      0 => 'cfd3ad7f731fc1bd98def529366578472b10308f9a59c10eca75fe36fc6abfc9',
       1 => 
       array (
         0 => 'nette\\schema\\validationexception',

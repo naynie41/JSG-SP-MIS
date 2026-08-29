@@ -62,3 +62,19 @@ export function useGraduate() {
     },
   })
 }
+
+/* --------------------------------------------------------------------- the record */
+
+/**
+ * The graduation record for one programme (FR-GRD-02).
+ *
+ * The query key is the one {@see useRecordGraduation} already invalidates, so recording
+ * a graduation refreshes the record it belongs in.
+ */
+export function useGraduationEvents(programmeId: string | undefined, enabled = true) {
+  return useQuery({
+    queryKey: ['graduation-events', programmeId],
+    queryFn: () => graduationApi.history({ programme_id: programmeId }),
+    enabled: enabled && Boolean(programmeId),
+  })
+}

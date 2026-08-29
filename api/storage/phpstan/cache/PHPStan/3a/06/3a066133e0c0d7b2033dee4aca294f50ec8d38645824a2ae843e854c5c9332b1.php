@@ -19,8 +19,10 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
           'sharingbasis' => 'App\\Domain\\Sharing\\SharingBasis',
           'controller' => 'App\\Http\\Controllers\\Controller',
           'apiresponse' => 'App\\Support\\ApiResponse',
+          'builder' => 'Illuminate\\Database\\Eloquent\\Builder',
           'jsonresponse' => 'Illuminate\\Http\\JsonResponse',
           'request' => 'Illuminate\\Http\\Request',
+          'carbon' => 'Illuminate\\Support\\Carbon',
           'collection' => 'Illuminate\\Support\\Collection',
         ),
          'className' => 'App\\Http\\Controllers\\Api\\V1\\Sharing\\DataSharingController',
@@ -51,8 +53,10 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
           'sharingbasis' => 'App\\Domain\\Sharing\\SharingBasis',
           'controller' => 'App\\Http\\Controllers\\Controller',
           'apiresponse' => 'App\\Support\\ApiResponse',
+          'builder' => 'Illuminate\\Database\\Eloquent\\Builder',
           'jsonresponse' => 'Illuminate\\Http\\JsonResponse',
           'request' => 'Illuminate\\Http\\Request',
+          'carbon' => 'Illuminate\\Support\\Carbon',
           'collection' => 'Illuminate\\Support\\Collection',
         ),
          'className' => 'App\\Http\\Controllers\\Api\\V1\\Sharing\\DataSharingController',
@@ -72,8 +76,77 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             'sharingbasis' => 'App\\Domain\\Sharing\\SharingBasis',
             'controller' => 'App\\Http\\Controllers\\Controller',
             'apiresponse' => 'App\\Support\\ApiResponse',
+            'builder' => 'Illuminate\\Database\\Eloquent\\Builder',
             'jsonresponse' => 'Illuminate\\Http\\JsonResponse',
             'request' => 'Illuminate\\Http\\Request',
+            'carbon' => 'Illuminate\\Support\\Carbon',
+            'collection' => 'Illuminate\\Support\\Collection',
+          ),
+           'className' => 'App\\Http\\Controllers\\Api\\V1\\Sharing\\DataSharingController',
+           'functionName' => NULL,
+           'templatePhpDocNodes' => 
+          array (
+          ),
+           'parent' => NULL,
+           'typeAliasesMap' => 
+          array (
+          ),
+           'bypassTypeAliases' => false,
+           'constUses' => 
+          array (
+          ),
+           'typeAliasClassName' => NULL,
+           'traitData' => NULL,
+        )),
+         'typeAliasesMap' => 
+        array (
+        ),
+         'bypassTypeAliases' => false,
+         'constUses' => 
+        array (
+        ),
+         'typeAliasClassName' => NULL,
+         'traitData' => NULL,
+      )),
+      '174b06b764507a23f1fdd7106a22b985' => 
+      \PHPStan\Analyser\IntermediaryNameScope::__set_state(array(
+         'namespace' => 'App\\Http\\Controllers\\Api\\V1\\Sharing',
+         'uses' => 
+        array (
+          'mdaaccessgrant' => 'App\\Domain\\Access\\Models\\MdaAccessGrant',
+          'mdascope' => 'App\\Domain\\Access\\Scopes\\MdaScope',
+          'beneficiaryservicegrant' => 'App\\Domain\\Registry\\Models\\BeneficiaryServiceGrant',
+          'datasharingguard' => 'App\\Domain\\Sharing\\DataSharingGuard',
+          'sharingbasis' => 'App\\Domain\\Sharing\\SharingBasis',
+          'controller' => 'App\\Http\\Controllers\\Controller',
+          'apiresponse' => 'App\\Support\\ApiResponse',
+          'builder' => 'Illuminate\\Database\\Eloquent\\Builder',
+          'jsonresponse' => 'Illuminate\\Http\\JsonResponse',
+          'request' => 'Illuminate\\Http\\Request',
+          'carbon' => 'Illuminate\\Support\\Carbon',
+          'collection' => 'Illuminate\\Support\\Collection',
+        ),
+         'className' => 'App\\Http\\Controllers\\Api\\V1\\Sharing\\DataSharingController',
+         'functionName' => 'applyStatus',
+         'templatePhpDocNodes' => 
+        array (
+        ),
+         'parent' => 
+        \PHPStan\Analyser\IntermediaryNameScope::__set_state(array(
+           'namespace' => 'App\\Http\\Controllers\\Api\\V1\\Sharing',
+           'uses' => 
+          array (
+            'mdaaccessgrant' => 'App\\Domain\\Access\\Models\\MdaAccessGrant',
+            'mdascope' => 'App\\Domain\\Access\\Scopes\\MdaScope',
+            'beneficiaryservicegrant' => 'App\\Domain\\Registry\\Models\\BeneficiaryServiceGrant',
+            'datasharingguard' => 'App\\Domain\\Sharing\\DataSharingGuard',
+            'sharingbasis' => 'App\\Domain\\Sharing\\SharingBasis',
+            'controller' => 'App\\Http\\Controllers\\Controller',
+            'apiresponse' => 'App\\Support\\ApiResponse',
+            'builder' => 'Illuminate\\Database\\Eloquent\\Builder',
+            'jsonresponse' => 'Illuminate\\Http\\JsonResponse',
+            'request' => 'Illuminate\\Http\\Request',
+            'carbon' => 'Illuminate\\Support\\Carbon',
             'collection' => 'Illuminate\\Support\\Collection',
           ),
            'className' => 'App\\Http\\Controllers\\Api\\V1\\Sharing\\DataSharingController',
@@ -114,8 +187,10 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
           'sharingbasis' => 'App\\Domain\\Sharing\\SharingBasis',
           'controller' => 'App\\Http\\Controllers\\Controller',
           'apiresponse' => 'App\\Support\\ApiResponse',
+          'builder' => 'Illuminate\\Database\\Eloquent\\Builder',
           'jsonresponse' => 'Illuminate\\Http\\JsonResponse',
           'request' => 'Illuminate\\Http\\Request',
+          'carbon' => 'Illuminate\\Support\\Carbon',
           'collection' => 'Illuminate\\Support\\Collection',
         ),
          'className' => 'App\\Http\\Controllers\\Api\\V1\\Sharing\\DataSharingController',
@@ -135,8 +210,10 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             'sharingbasis' => 'App\\Domain\\Sharing\\SharingBasis',
             'controller' => 'App\\Http\\Controllers\\Controller',
             'apiresponse' => 'App\\Support\\ApiResponse',
+            'builder' => 'Illuminate\\Database\\Eloquent\\Builder',
             'jsonresponse' => 'Illuminate\\Http\\JsonResponse',
             'request' => 'Illuminate\\Http\\Request',
+            'carbon' => 'Illuminate\\Support\\Carbon',
             'collection' => 'Illuminate\\Support\\Collection',
           ),
            'className' => 'App\\Http\\Controllers\\Api\\V1\\Sharing\\DataSharingController',
@@ -177,8 +254,10 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
           'sharingbasis' => 'App\\Domain\\Sharing\\SharingBasis',
           'controller' => 'App\\Http\\Controllers\\Controller',
           'apiresponse' => 'App\\Support\\ApiResponse',
+          'builder' => 'Illuminate\\Database\\Eloquent\\Builder',
           'jsonresponse' => 'Illuminate\\Http\\JsonResponse',
           'request' => 'Illuminate\\Http\\Request',
+          'carbon' => 'Illuminate\\Support\\Carbon',
           'collection' => 'Illuminate\\Support\\Collection',
         ),
          'className' => 'App\\Http\\Controllers\\Api\\V1\\Sharing\\DataSharingController',
@@ -198,8 +277,10 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             'sharingbasis' => 'App\\Domain\\Sharing\\SharingBasis',
             'controller' => 'App\\Http\\Controllers\\Controller',
             'apiresponse' => 'App\\Support\\ApiResponse',
+            'builder' => 'Illuminate\\Database\\Eloquent\\Builder',
             'jsonresponse' => 'Illuminate\\Http\\JsonResponse',
             'request' => 'Illuminate\\Http\\Request',
+            'carbon' => 'Illuminate\\Support\\Carbon',
             'collection' => 'Illuminate\\Support\\Collection',
           ),
            'className' => 'App\\Http\\Controllers\\Api\\V1\\Sharing\\DataSharingController',
@@ -240,8 +321,10 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
           'sharingbasis' => 'App\\Domain\\Sharing\\SharingBasis',
           'controller' => 'App\\Http\\Controllers\\Controller',
           'apiresponse' => 'App\\Support\\ApiResponse',
+          'builder' => 'Illuminate\\Database\\Eloquent\\Builder',
           'jsonresponse' => 'Illuminate\\Http\\JsonResponse',
           'request' => 'Illuminate\\Http\\Request',
+          'carbon' => 'Illuminate\\Support\\Carbon',
           'collection' => 'Illuminate\\Support\\Collection',
         ),
          'className' => 'App\\Http\\Controllers\\Api\\V1\\Sharing\\DataSharingController',
@@ -261,8 +344,77 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             'sharingbasis' => 'App\\Domain\\Sharing\\SharingBasis',
             'controller' => 'App\\Http\\Controllers\\Controller',
             'apiresponse' => 'App\\Support\\ApiResponse',
+            'builder' => 'Illuminate\\Database\\Eloquent\\Builder',
             'jsonresponse' => 'Illuminate\\Http\\JsonResponse',
             'request' => 'Illuminate\\Http\\Request',
+            'carbon' => 'Illuminate\\Support\\Carbon',
+            'collection' => 'Illuminate\\Support\\Collection',
+          ),
+           'className' => 'App\\Http\\Controllers\\Api\\V1\\Sharing\\DataSharingController',
+           'functionName' => NULL,
+           'templatePhpDocNodes' => 
+          array (
+          ),
+           'parent' => NULL,
+           'typeAliasesMap' => 
+          array (
+          ),
+           'bypassTypeAliases' => false,
+           'constUses' => 
+          array (
+          ),
+           'typeAliasClassName' => NULL,
+           'traitData' => NULL,
+        )),
+         'typeAliasesMap' => 
+        array (
+        ),
+         'bypassTypeAliases' => false,
+         'constUses' => 
+        array (
+        ),
+         'typeAliasClassName' => NULL,
+         'traitData' => NULL,
+      )),
+      '62175a14cc3a75a0a7de871feeee5495' => 
+      \PHPStan\Analyser\IntermediaryNameScope::__set_state(array(
+         'namespace' => 'App\\Http\\Controllers\\Api\\V1\\Sharing',
+         'uses' => 
+        array (
+          'mdaaccessgrant' => 'App\\Domain\\Access\\Models\\MdaAccessGrant',
+          'mdascope' => 'App\\Domain\\Access\\Scopes\\MdaScope',
+          'beneficiaryservicegrant' => 'App\\Domain\\Registry\\Models\\BeneficiaryServiceGrant',
+          'datasharingguard' => 'App\\Domain\\Sharing\\DataSharingGuard',
+          'sharingbasis' => 'App\\Domain\\Sharing\\SharingBasis',
+          'controller' => 'App\\Http\\Controllers\\Controller',
+          'apiresponse' => 'App\\Support\\ApiResponse',
+          'builder' => 'Illuminate\\Database\\Eloquent\\Builder',
+          'jsonresponse' => 'Illuminate\\Http\\JsonResponse',
+          'request' => 'Illuminate\\Http\\Request',
+          'carbon' => 'Illuminate\\Support\\Carbon',
+          'collection' => 'Illuminate\\Support\\Collection',
+        ),
+         'className' => 'App\\Http\\Controllers\\Api\\V1\\Sharing\\DataSharingController',
+         'functionName' => 'revocation',
+         'templatePhpDocNodes' => 
+        array (
+        ),
+         'parent' => 
+        \PHPStan\Analyser\IntermediaryNameScope::__set_state(array(
+           'namespace' => 'App\\Http\\Controllers\\Api\\V1\\Sharing',
+           'uses' => 
+          array (
+            'mdaaccessgrant' => 'App\\Domain\\Access\\Models\\MdaAccessGrant',
+            'mdascope' => 'App\\Domain\\Access\\Scopes\\MdaScope',
+            'beneficiaryservicegrant' => 'App\\Domain\\Registry\\Models\\BeneficiaryServiceGrant',
+            'datasharingguard' => 'App\\Domain\\Sharing\\DataSharingGuard',
+            'sharingbasis' => 'App\\Domain\\Sharing\\SharingBasis',
+            'controller' => 'App\\Http\\Controllers\\Controller',
+            'apiresponse' => 'App\\Support\\ApiResponse',
+            'builder' => 'Illuminate\\Database\\Eloquent\\Builder',
+            'jsonresponse' => 'Illuminate\\Http\\JsonResponse',
+            'request' => 'Illuminate\\Http\\Request',
+            'carbon' => 'Illuminate\\Support\\Carbon',
             'collection' => 'Illuminate\\Support\\Collection',
           ),
            'className' => 'App\\Http\\Controllers\\Api\\V1\\Sharing\\DataSharingController',
@@ -303,8 +455,10 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
           'sharingbasis' => 'App\\Domain\\Sharing\\SharingBasis',
           'controller' => 'App\\Http\\Controllers\\Controller',
           'apiresponse' => 'App\\Support\\ApiResponse',
+          'builder' => 'Illuminate\\Database\\Eloquent\\Builder',
           'jsonresponse' => 'Illuminate\\Http\\JsonResponse',
           'request' => 'Illuminate\\Http\\Request',
+          'carbon' => 'Illuminate\\Support\\Carbon',
           'collection' => 'Illuminate\\Support\\Collection',
         ),
          'className' => 'App\\Http\\Controllers\\Api\\V1\\Sharing\\DataSharingController',
@@ -324,8 +478,10 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             'sharingbasis' => 'App\\Domain\\Sharing\\SharingBasis',
             'controller' => 'App\\Http\\Controllers\\Controller',
             'apiresponse' => 'App\\Support\\ApiResponse',
+            'builder' => 'Illuminate\\Database\\Eloquent\\Builder',
             'jsonresponse' => 'Illuminate\\Http\\JsonResponse',
             'request' => 'Illuminate\\Http\\Request',
+            'carbon' => 'Illuminate\\Support\\Carbon',
             'collection' => 'Illuminate\\Support\\Collection',
           ),
            'className' => 'App\\Http\\Controllers\\Api\\V1\\Sharing\\DataSharingController',
@@ -357,7 +513,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
     ),
     1 => 
     array (
-      '/var/www/html/app/Http/Controllers/Api/V1/Sharing/DataSharingController.php' => '28746063a2a3690ba4d7384c9ff19c0dffc17c7a0627cc07cb1f49ce9074645f',
+      '/var/www/html/app/Http/Controllers/Api/V1/Sharing/DataSharingController.php' => '93f78ad45f2f1d5d6c5c648e42b22bc78213b4d6607d27e9e70d108404e20d51',
     ),
   ),
 ));

@@ -180,15 +180,94 @@ class AdminGrantSoftRevokeTest extends TestCase
         $this->assertNotContains($this->ownerMda->id, $this->users['outsider']->fresh()->accessibleMdaIds());
     }
 
-    public function test_a_revoked_grant_disappears_from_the_oversight_view(): void
+    public function test_a_revoked_grant_disappears_from_the_default_oversight_view(): void
     {
         $grant = $this->grant();
         $this->revoke($grant)->assertOk();
 
         $grants = $this->send('admin', 'GET', '/api/v1/data-sharing/grants')->assertOk()->json('data.grants');
 
-        // That report answers "who can read this today", not "who ever could".
+        // Unfiltered, that report answers "who can read this today", not "who ever could".
         $this->assertNotContains($grant->id, array_column($grants, 'id'));
+    }
+
+    /* ------------------------------------------------- active vs revoked (FR-DSH-01) */
+
+    public function test_oversight_can_ask_for_revoked_grants(): void
+    {
+        // "Who could read this, and why" is an audit question as much as a live one. The
+        // revocation row is retained precisely so it can be answered; a report that can
+        // only show current access cannot show that access was ever held, or withdrawn.
+        $grant = $this->grant();
+        $this->revoke($grant, ['reason' => 'Review concluded'])->assertOk();
+
+        $rows = $this->send('admin', 'GET', '/api/v1/data-sharing/grants?status=revoked')
+            ->assertOk()->json('data.grants');
+
+        $row = collect($rows)->firstWhere('id', $grant->id);
+        $this->assertNotNull($row, 'A revoked grant must be reachable under status=revoked.');
+        $this->assertFalse($row['active']);
+        $this->assertNotNull($row['revoked_at']);
+        $this->assertSame('Review concluded', $row['revocation_reason']);
+        $this->assertSame($this->users['admin']->name, $row['revoked_by']['name']);
+    }
+
+    public function test_a_revoked_grant_is_never_reported_as_effective(): void
+    {
+        // The consent column answers "is this access live". On a revoked row it must read
+        // false whatever the beneficiary's consent says — otherwise the report shows
+        // withdrawn access as current, which is the one thing it must never do.
+        $grant = $this->grant();
+        $this->revoke($grant)->assertOk();
+
+        $row = collect($this->send('admin', 'GET', '/api/v1/data-sharing/grants?status=revoked')
+            ->assertOk()->json('data.grants'))->firstWhere('id', $grant->id);
+
+        $this->assertFalse($row['consent']['effective']);
+    }
+
+    public function test_all_shows_both_and_the_summary_counts_them_apart(): void
+    {
+        $revoked = $this->grant();
+        $this->revoke($revoked)->assertOk();
+        $live = $this->grant();
+
+        $body = $this->send('admin', 'GET', '/api/v1/data-sharing/grants?status=all')->assertOk()->json('data');
+        $ids = array_column($body['grants'], 'id');
+
+        $this->assertContains($revoked->id, $ids);
+        $this->assertContains($live->id, $ids);
+        $this->assertSame(1, $body['summary']['revoked']);
+        $this->assertSame(1, $body['summary']['admin_grant'], 'Only the live grant counts as current access.');
+    }
+
+    public function test_an_expired_grant_is_not_reported_as_current_access(): void
+    {
+        // Expiry and revocation are different events, and only one of them is something
+        // an administrator did. Both stop conferring access, so neither belongs in the
+        // unfiltered view — but an expired grant is not "revoked", so it is reachable
+        // only under `all`. Getting this wrong shows a lapsed grant as live.
+        $grant = $this->grant();
+        $grant->forceFill(['expires_at' => now()->subDay()])->save();
+
+        $default = $this->send('admin', 'GET', '/api/v1/data-sharing/grants')->assertOk()->json('data.grants');
+        $this->assertNotContains($grant->id, array_column($default, 'id'));
+
+        $revoked = $this->send('admin', 'GET', '/api/v1/data-sharing/grants?status=revoked')->assertOk()->json('data.grants');
+        $this->assertNotContains($grant->id, array_column($revoked, 'id'), 'Lapsing is not revoking.');
+
+        $all = $this->send('admin', 'GET', '/api/v1/data-sharing/grants?status=all')->assertOk()->json('data.grants');
+        $row = collect($all)->firstWhere('id', $grant->id);
+        $this->assertNotNull($row);
+        $this->assertFalse($row['active']);
+        $this->assertNull($row['revoked_at']);
+    }
+
+    public function test_an_unknown_status_is_refused_rather_than_silently_widening(): void
+    {
+        // A typo must not fall through to "all" and disclose withdrawn access to a
+        // reader who asked for something else.
+        $this->send('admin', 'GET', '/api/v1/data-sharing/grants?status=everything')->assertStatus(422);
     }
 
     /* ------------------------------------------------------------- re-granting */

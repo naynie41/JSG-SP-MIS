@@ -70,6 +70,23 @@ class AppServiceProvider extends ServiceProvider
                 ->by('exports|'.$key);
         });
 
+        /*
+         * Report PREVIEWS — segment and ad-hoc (FR-RPT-03).
+         *
+         * Each one runs a full aggregate query on demand, so unbounded they are a cheap
+         * way to load the database from an ordinary reporting account. Kept deliberately
+         * looser than `exports`: narrowing a filter is what an officer does repeatedly
+         * while composing a report, and throttling that at bulk-egress rates would break
+         * the screen long before it protected anything. Nothing leaves the system here —
+         * the egress ceiling still applies to the export itself.
+         */
+        RateLimiter::for('reports', function (Request $request): Limit {
+            $key = $request->user()?->getAuthIdentifier() ?? $request->ip();
+
+            return Limit::perMinute((int) config('security.rate_limits.report_previews_per_minute', 30))
+                ->by('reports|'.$key);
+        });
+
         // Write-heavy ingestion — bulk imports, offline batches, document uploads.
         RateLimiter::for('imports', function (Request $request): Limit {
             $key = $request->user()?->getAuthIdentifier() ?? $request->ip();

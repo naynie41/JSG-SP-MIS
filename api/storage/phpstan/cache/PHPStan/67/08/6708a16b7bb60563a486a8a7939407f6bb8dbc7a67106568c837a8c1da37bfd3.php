@@ -2,7 +2,7 @@
 
 // odsl-/var/www/html/app/Http/Resources/GraduationEventResource.php-PHPStan\BetterReflection\Reflection\ReflectionClass-App\Http\Resources\GraduationEventResource
 return \PHPStan\Cache\CacheItem::__set_state(array(
-   'variableKey' => 'v2-6.70.0.1-8.3.31-52546880f2d2e0ea034e09b0668d52bb1f4a1942d02ae13055f0b0290d89a4eb',
+   'variableKey' => 'v2-6.70.0.1-8.3.31-c27b62ca7d90193df8f2e5affceae61d08111f7c626ee6e782112cacd6c35895',
    'data' => 
   array (
     'locatedSource' => 
@@ -32,7 +32,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
     array (
     ),
     'startLine' => 17,
-    'endLine' => 38,
+    'endLine' => 59,
     'startColumn' => 1,
     'endColumn' => 1,
     'parentClassName' => 'Illuminate\\Http\\Resources\\Json\\JsonResource',
@@ -99,7 +99,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
  * @return array<string, mixed>
  */',
         'startLine' => 22,
-        'endLine' => 37,
+        'endLine' => 58,
         'startColumn' => 5,
         'endColumn' => 5,
         'couldThrow' => false,
