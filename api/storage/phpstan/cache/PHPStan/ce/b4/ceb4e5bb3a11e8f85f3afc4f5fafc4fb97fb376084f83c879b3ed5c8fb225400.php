@@ -5708,7 +5708,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
     ),
     '/var/www/html/app/Providers/AppServiceProvider.php' => 
     array (
-      0 => '78ee441d7c7554df9a81550d5d1a95e7fc60cb86987d27b754d9f42425bd8d38',
+      0 => '909df71094f908ee537c3a5f604bda61083ce52a6f6b8d67b08e71947486df9a',
       1 => 
       array (
         0 => 'app\\providers\\appserviceprovider',
@@ -6536,7 +6536,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
     ),
     '/var/www/html/app/Domain/Graduation/Models/GraduationEvent.php' => 
     array (
-      0 => '237c6b282631e2a7b9770840974c060601b64bbd3a3c053a410b981bf0b1ca1b',
+      0 => '0157d1ef24618c27cc65c439752caf659f939a388f2d8e5dda49e2a813008d7d',
       1 => 
       array (
         0 => 'app\\domain\\graduation\\models\\graduationevent',
@@ -6547,6 +6547,9 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         1 => 'app\\domain\\graduation\\models\\casts',
         2 => 'app\\domain\\graduation\\models\\enrollment',
         3 => 'app\\domain\\graduation\\models\\beneficiary',
+        4 => 'app\\domain\\graduation\\models\\household',
+        5 => 'app\\domain\\graduation\\models\\decidedby',
+        6 => 'app\\domain\\graduation\\models\\criteria',
       ),
       3 => 
       array (
@@ -6554,7 +6557,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
     ),
     '/var/www/html/app/Domain/Graduation/Services/GraduationProgressService.php' => 
     array (
-      0 => '66e957c93405a3bc6e74d30391034de88e9b2db0416cbe460d8e5070ffb13867',
+      0 => 'b1cf488932ea20578fdd35611e0d865bbf32468bb882d7e0e0e684e0f0640f1d',
       1 => 
       array (
         0 => 'app\\domain\\graduation\\services\\graduationprogressservice',
@@ -6781,7 +6784,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
     ),
     '/var/www/html/app/Domain/Privacy/Services/AnonymizationService.php' => 
     array (
-      0 => '736d5478783905f902bd5249e2ed728c53b93f9c421f674a9449141512111fba',
+      0 => '1462464ef7efaf5e39e15a91f16f841b8fceb8168fa182f4e39488a3081b9074',
       1 => 
       array (
         0 => 'app\\domain\\privacy\\services\\anonymizationservice',
@@ -6790,7 +6793,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
       array (
         0 => 'app\\domain\\privacy\\services\\__construct',
         1 => 'app\\domain\\privacy\\services\\anonymize',
-        2 => 'app\\domain\\privacy\\services\\purgedocuments',
+        2 => 'app\\domain\\privacy\\services\\redactstagingrows',
+        3 => 'app\\domain\\privacy\\services\\purgedocuments',
       ),
       3 => 
       array (
@@ -7876,7 +7880,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
     ),
     '/var/www/html/app/Domain/Sync/Models/SyncConnector.php' => 
     array (
-      0 => 'f9e490a293e041a3f856e561fe4a89d848fc8ca02d6ff8ad54eac56edef1357a',
+      0 => '6f6086e2fd4fee61b9f398252bfde6282b6b8a03508881c0c2e94c538b7a2c2d',
       1 => 
       array (
         0 => 'app\\domain\\sync\\models\\syncconnector',
@@ -7889,7 +7893,9 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         3 => 'app\\domain\\sync\\models\\mappingisconfirmed',
         4 => 'app\\domain\\sync\\models\\ownermda',
         5 => 'app\\domain\\sync\\models\\mappingconfirmedby',
-        6 => 'app\\domain\\sync\\models\\newfactory',
+        6 => 'app\\domain\\sync\\models\\activity',
+        7 => 'app\\domain\\sync\\models\\activitybindingblocker',
+        8 => 'app\\domain\\sync\\models\\newfactory',
       ),
       3 => 
       array (
@@ -7955,7 +7961,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
     ),
     '/var/www/html/app/Domain/Sync/Services/SyncEngine.php' => 
     array (
-      0 => '95943eb132fde4b1b536a11d661a5c48032c39b832d2b8af562ac0c43a5c3b38',
+      0 => '991d0b6a9826c83bf2439e6f9d0749db132323c953bd3c91626acd7912839872',
       1 => 
       array (
         0 => 'app\\domain\\sync\\services\\syncengine',
@@ -7969,11 +7975,12 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         4 => 'app\\domain\\sync\\services\\startrun',
         5 => 'app\\domain\\sync\\services\\execute',
         6 => 'app\\domain\\sync\\services\\process',
-        7 => 'app\\domain\\sync\\services\\processrecord',
-        8 => 'app\\domain\\sync\\services\\stringornull',
-        9 => 'app\\domain\\sync\\services\\applyupdate',
-        10 => 'app\\domain\\sync\\services\\firstregistryreference',
-        11 => 'app\\domain\\sync\\services\\summary',
+        7 => 'app\\domain\\sync\\services\\bind',
+        8 => 'app\\domain\\sync\\services\\processrecord',
+        9 => 'app\\domain\\sync\\services\\stringornull',
+        10 => 'app\\domain\\sync\\services\\applyupdate',
+        11 => 'app\\domain\\sync\\services\\firstregistryreference',
+        12 => 'app\\domain\\sync\\services\\summary',
       ),
       3 => 
       array (
@@ -8076,7 +8083,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
     ),
     '/var/www/html/app/Http/Controllers/Api/V1/Graduation/GraduationController.php' => 
     array (
-      0 => 'ea856315b9ae1fd5d83023db93185cd655f2b83fe134050c2be14607aa64e687',
+      0 => '4775f5f307e7a00e4383b9db9712e2fe9b90904d5e652b4aab88c44b1b873ebe',
       1 => 
       array (
         0 => 'app\\http\\controllers\\api\\v1\\graduation\\graduationcontroller',
@@ -8266,7 +8273,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
     ),
     '/var/www/html/app/Http/Controllers/Api/V1/Sharing/DataSharingController.php' => 
     array (
-      0 => '28746063a2a3690ba4d7384c9ff19c0dffc17c7a0627cc07cb1f49ce9074645f',
+      0 => '93f78ad45f2f1d5d6c5c648e42b22bc78213b4d6607d27e9e70d108404e20d51',
       1 => 
       array (
         0 => 'app\\http\\controllers\\api\\v1\\sharing\\datasharingcontroller',
@@ -8274,10 +8281,12 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
       2 => 
       array (
         0 => 'app\\http\\controllers\\api\\v1\\sharing\\grants',
-        1 => 'app\\http\\controllers\\api\\v1\\sharing\\servicegrants',
-        2 => 'app\\http\\controllers\\api\\v1\\sharing\\servicegrantrow',
-        3 => 'app\\http\\controllers\\api\\v1\\sharing\\admingrants',
-        4 => 'app\\http\\controllers\\api\\v1\\sharing\\mdaref',
+        1 => 'app\\http\\controllers\\api\\v1\\sharing\\applystatus',
+        2 => 'app\\http\\controllers\\api\\v1\\sharing\\servicegrants',
+        3 => 'app\\http\\controllers\\api\\v1\\sharing\\servicegrantrow',
+        4 => 'app\\http\\controllers\\api\\v1\\sharing\\admingrants',
+        5 => 'app\\http\\controllers\\api\\v1\\sharing\\revocation',
+        6 => 'app\\http\\controllers\\api\\v1\\sharing\\mdaref',
       ),
       3 => 
       array (
@@ -8285,7 +8294,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
     ),
     '/var/www/html/app/Http/Controllers/Api/V1/Sync/SyncController.php' => 
     array (
-      0 => 'cab94b7cf357e1072740ea336c2b4f609ae55517e6691917a73b5326d84920ff',
+      0 => '8a6ac1ae5340093319b8d7dcc8aab283983030d36f507f122dc55ceb98989a91',
       1 => 
       array (
         0 => 'app\\http\\controllers\\api\\v1\\sync\\synccontroller',
@@ -8299,8 +8308,9 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         4 => 'app\\http\\controllers\\api\\v1\\sync\\mapping',
         5 => 'app\\http\\controllers\\api\\v1\\sync\\confirmmapping',
         6 => 'app\\http\\controllers\\api\\v1\\sync\\setenabled',
-        7 => 'app\\http\\controllers\\api\\v1\\sync\\trigger',
-        8 => 'app\\http\\controllers\\api\\v1\\sync\\offlinebatch',
+        7 => 'app\\http\\controllers\\api\\v1\\sync\\setactivity',
+        8 => 'app\\http\\controllers\\api\\v1\\sync\\trigger',
+        9 => 'app\\http\\controllers\\api\\v1\\sync\\offlinebatch',
       ),
       3 => 
       array (
@@ -8588,7 +8598,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
     ),
     '/var/www/html/app/Http/Resources/GraduationEventResource.php' => 
     array (
-      0 => '52546880f2d2e0ea034e09b0668d52bb1f4a1942d02ae13055f0b0290d89a4eb',
+      0 => 'c27b62ca7d90193df8f2e5affceae61d08111f7c626ee6e782112cacd6c35895',
       1 => 
       array (
         0 => 'app\\http\\resources\\graduationeventresource',
@@ -8603,7 +8613,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
     ),
     '/var/www/html/app/Http/Resources/SyncConnectorResource.php' => 
     array (
-      0 => 'e01c22f5c49130474dda55c13d4af0b496255df23410ddce52d83b9380bdc163',
+      0 => '03b965984dee79100758b06d50a2c0329645d786ab3eeaa1bb866a5a3ec18872',
       1 => 
       array (
         0 => 'app\\http\\resources\\syncconnectorresource',

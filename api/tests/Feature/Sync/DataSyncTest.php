@@ -68,7 +68,7 @@ class DataSyncTest extends TestCase
 
     private function unmappedConnector(ConflictPolicy $policy = ConflictPolicy::FlagForReview): SyncConnector
     {
-        return SyncConnector::factory()->create([
+        return SyncConnector::factory()->bound()->create([
             'owner_mda_id' => $this->mdaA->id,
             'source' => RegistrationSource::Socu,
             'conflict_policy' => $policy,

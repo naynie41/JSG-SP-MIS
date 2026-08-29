@@ -14,8 +14,10 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         array (
           'mdascoped' => 'App\\Domain\\Access\\Concerns\\MdaScoped',
           'scopedtomda' => 'App\\Domain\\Access\\Concerns\\ScopedToMda',
+          'user' => 'App\\Domain\\Access\\Models\\User',
           'enrollment' => 'App\\Domain\\Programme\\Models\\Enrollment',
           'beneficiary' => 'App\\Domain\\Registry\\Models\\Beneficiary',
+          'household' => 'App\\Domain\\Registry\\Models\\Household',
           'hasuuids' => 'Illuminate\\Database\\Eloquent\\Concerns\\HasUuids',
           'model' => 'Illuminate\\Database\\Eloquent\\Model',
           'belongsto' => 'Illuminate\\Database\\Eloquent\\Relations\\BelongsTo',
@@ -538,8 +540,10 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         array (
           'mdascoped' => 'App\\Domain\\Access\\Concerns\\MdaScoped',
           'scopedtomda' => 'App\\Domain\\Access\\Concerns\\ScopedToMda',
+          'user' => 'App\\Domain\\Access\\Models\\User',
           'enrollment' => 'App\\Domain\\Programme\\Models\\Enrollment',
           'beneficiary' => 'App\\Domain\\Registry\\Models\\Beneficiary',
+          'household' => 'App\\Domain\\Registry\\Models\\Household',
           'hasuuids' => 'Illuminate\\Database\\Eloquent\\Concerns\\HasUuids',
           'model' => 'Illuminate\\Database\\Eloquent\\Model',
           'belongsto' => 'Illuminate\\Database\\Eloquent\\Relations\\BelongsTo',
@@ -557,8 +561,10 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
           array (
             'mdascoped' => 'App\\Domain\\Access\\Concerns\\MdaScoped',
             'scopedtomda' => 'App\\Domain\\Access\\Concerns\\ScopedToMda',
+            'user' => 'App\\Domain\\Access\\Models\\User',
             'enrollment' => 'App\\Domain\\Programme\\Models\\Enrollment',
             'beneficiary' => 'App\\Domain\\Registry\\Models\\Beneficiary',
+            'household' => 'App\\Domain\\Registry\\Models\\Household',
             'hasuuids' => 'Illuminate\\Database\\Eloquent\\Concerns\\HasUuids',
             'model' => 'Illuminate\\Database\\Eloquent\\Model',
             'belongsto' => 'Illuminate\\Database\\Eloquent\\Relations\\BelongsTo',
@@ -597,8 +603,10 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         array (
           'mdascoped' => 'App\\Domain\\Access\\Concerns\\MdaScoped',
           'scopedtomda' => 'App\\Domain\\Access\\Concerns\\ScopedToMda',
+          'user' => 'App\\Domain\\Access\\Models\\User',
           'enrollment' => 'App\\Domain\\Programme\\Models\\Enrollment',
           'beneficiary' => 'App\\Domain\\Registry\\Models\\Beneficiary',
+          'household' => 'App\\Domain\\Registry\\Models\\Household',
           'hasuuids' => 'Illuminate\\Database\\Eloquent\\Concerns\\HasUuids',
           'model' => 'Illuminate\\Database\\Eloquent\\Model',
           'belongsto' => 'Illuminate\\Database\\Eloquent\\Relations\\BelongsTo',
@@ -616,8 +624,10 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
           array (
             'mdascoped' => 'App\\Domain\\Access\\Concerns\\MdaScoped',
             'scopedtomda' => 'App\\Domain\\Access\\Concerns\\ScopedToMda',
+            'user' => 'App\\Domain\\Access\\Models\\User',
             'enrollment' => 'App\\Domain\\Programme\\Models\\Enrollment',
             'beneficiary' => 'App\\Domain\\Registry\\Models\\Beneficiary',
+            'household' => 'App\\Domain\\Registry\\Models\\Household',
             'hasuuids' => 'Illuminate\\Database\\Eloquent\\Concerns\\HasUuids',
             'model' => 'Illuminate\\Database\\Eloquent\\Model',
             'belongsto' => 'Illuminate\\Database\\Eloquent\\Relations\\BelongsTo',
@@ -656,8 +666,10 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         array (
           'mdascoped' => 'App\\Domain\\Access\\Concerns\\MdaScoped',
           'scopedtomda' => 'App\\Domain\\Access\\Concerns\\ScopedToMda',
+          'user' => 'App\\Domain\\Access\\Models\\User',
           'enrollment' => 'App\\Domain\\Programme\\Models\\Enrollment',
           'beneficiary' => 'App\\Domain\\Registry\\Models\\Beneficiary',
+          'household' => 'App\\Domain\\Registry\\Models\\Household',
           'hasuuids' => 'Illuminate\\Database\\Eloquent\\Concerns\\HasUuids',
           'model' => 'Illuminate\\Database\\Eloquent\\Model',
           'belongsto' => 'Illuminate\\Database\\Eloquent\\Relations\\BelongsTo',
@@ -675,8 +687,10 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
           array (
             'mdascoped' => 'App\\Domain\\Access\\Concerns\\MdaScoped',
             'scopedtomda' => 'App\\Domain\\Access\\Concerns\\ScopedToMda',
+            'user' => 'App\\Domain\\Access\\Models\\User',
             'enrollment' => 'App\\Domain\\Programme\\Models\\Enrollment',
             'beneficiary' => 'App\\Domain\\Registry\\Models\\Beneficiary',
+            'household' => 'App\\Domain\\Registry\\Models\\Household',
             'hasuuids' => 'Illuminate\\Database\\Eloquent\\Concerns\\HasUuids',
             'model' => 'Illuminate\\Database\\Eloquent\\Model',
             'belongsto' => 'Illuminate\\Database\\Eloquent\\Relations\\BelongsTo',
@@ -715,8 +729,10 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         array (
           'mdascoped' => 'App\\Domain\\Access\\Concerns\\MdaScoped',
           'scopedtomda' => 'App\\Domain\\Access\\Concerns\\ScopedToMda',
+          'user' => 'App\\Domain\\Access\\Models\\User',
           'enrollment' => 'App\\Domain\\Programme\\Models\\Enrollment',
           'beneficiary' => 'App\\Domain\\Registry\\Models\\Beneficiary',
+          'household' => 'App\\Domain\\Registry\\Models\\Household',
           'hasuuids' => 'Illuminate\\Database\\Eloquent\\Concerns\\HasUuids',
           'model' => 'Illuminate\\Database\\Eloquent\\Model',
           'belongsto' => 'Illuminate\\Database\\Eloquent\\Relations\\BelongsTo',
@@ -734,8 +750,199 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
           array (
             'mdascoped' => 'App\\Domain\\Access\\Concerns\\MdaScoped',
             'scopedtomda' => 'App\\Domain\\Access\\Concerns\\ScopedToMda',
+            'user' => 'App\\Domain\\Access\\Models\\User',
             'enrollment' => 'App\\Domain\\Programme\\Models\\Enrollment',
             'beneficiary' => 'App\\Domain\\Registry\\Models\\Beneficiary',
+            'household' => 'App\\Domain\\Registry\\Models\\Household',
+            'hasuuids' => 'Illuminate\\Database\\Eloquent\\Concerns\\HasUuids',
+            'model' => 'Illuminate\\Database\\Eloquent\\Model',
+            'belongsto' => 'Illuminate\\Database\\Eloquent\\Relations\\BelongsTo',
+            'carbon' => 'Illuminate\\Support\\Carbon',
+          ),
+           'className' => 'App\\Domain\\Graduation\\Models\\GraduationEvent',
+           'functionName' => NULL,
+           'templatePhpDocNodes' => 
+          array (
+          ),
+           'parent' => NULL,
+           'typeAliasesMap' => 
+          array (
+          ),
+           'bypassTypeAliases' => false,
+           'constUses' => 
+          array (
+          ),
+           'typeAliasClassName' => NULL,
+           'traitData' => NULL,
+        )),
+         'typeAliasesMap' => 
+        array (
+        ),
+         'bypassTypeAliases' => false,
+         'constUses' => 
+        array (
+        ),
+         'typeAliasClassName' => NULL,
+         'traitData' => NULL,
+      )),
+      'b55a55ca4a7586ebbbf0dfc3c510539e' => 
+      \PHPStan\Analyser\IntermediaryNameScope::__set_state(array(
+         'namespace' => 'App\\Domain\\Graduation\\Models',
+         'uses' => 
+        array (
+          'mdascoped' => 'App\\Domain\\Access\\Concerns\\MdaScoped',
+          'scopedtomda' => 'App\\Domain\\Access\\Concerns\\ScopedToMda',
+          'user' => 'App\\Domain\\Access\\Models\\User',
+          'enrollment' => 'App\\Domain\\Programme\\Models\\Enrollment',
+          'beneficiary' => 'App\\Domain\\Registry\\Models\\Beneficiary',
+          'household' => 'App\\Domain\\Registry\\Models\\Household',
+          'hasuuids' => 'Illuminate\\Database\\Eloquent\\Concerns\\HasUuids',
+          'model' => 'Illuminate\\Database\\Eloquent\\Model',
+          'belongsto' => 'Illuminate\\Database\\Eloquent\\Relations\\BelongsTo',
+          'carbon' => 'Illuminate\\Support\\Carbon',
+        ),
+         'className' => 'App\\Domain\\Graduation\\Models\\GraduationEvent',
+         'functionName' => 'household',
+         'templatePhpDocNodes' => 
+        array (
+        ),
+         'parent' => 
+        \PHPStan\Analyser\IntermediaryNameScope::__set_state(array(
+           'namespace' => 'App\\Domain\\Graduation\\Models',
+           'uses' => 
+          array (
+            'mdascoped' => 'App\\Domain\\Access\\Concerns\\MdaScoped',
+            'scopedtomda' => 'App\\Domain\\Access\\Concerns\\ScopedToMda',
+            'user' => 'App\\Domain\\Access\\Models\\User',
+            'enrollment' => 'App\\Domain\\Programme\\Models\\Enrollment',
+            'beneficiary' => 'App\\Domain\\Registry\\Models\\Beneficiary',
+            'household' => 'App\\Domain\\Registry\\Models\\Household',
+            'hasuuids' => 'Illuminate\\Database\\Eloquent\\Concerns\\HasUuids',
+            'model' => 'Illuminate\\Database\\Eloquent\\Model',
+            'belongsto' => 'Illuminate\\Database\\Eloquent\\Relations\\BelongsTo',
+            'carbon' => 'Illuminate\\Support\\Carbon',
+          ),
+           'className' => 'App\\Domain\\Graduation\\Models\\GraduationEvent',
+           'functionName' => NULL,
+           'templatePhpDocNodes' => 
+          array (
+          ),
+           'parent' => NULL,
+           'typeAliasesMap' => 
+          array (
+          ),
+           'bypassTypeAliases' => false,
+           'constUses' => 
+          array (
+          ),
+           'typeAliasClassName' => NULL,
+           'traitData' => NULL,
+        )),
+         'typeAliasesMap' => 
+        array (
+        ),
+         'bypassTypeAliases' => false,
+         'constUses' => 
+        array (
+        ),
+         'typeAliasClassName' => NULL,
+         'traitData' => NULL,
+      )),
+      '12f2e888b9f0eed9893bfcf091874bad' => 
+      \PHPStan\Analyser\IntermediaryNameScope::__set_state(array(
+         'namespace' => 'App\\Domain\\Graduation\\Models',
+         'uses' => 
+        array (
+          'mdascoped' => 'App\\Domain\\Access\\Concerns\\MdaScoped',
+          'scopedtomda' => 'App\\Domain\\Access\\Concerns\\ScopedToMda',
+          'user' => 'App\\Domain\\Access\\Models\\User',
+          'enrollment' => 'App\\Domain\\Programme\\Models\\Enrollment',
+          'beneficiary' => 'App\\Domain\\Registry\\Models\\Beneficiary',
+          'household' => 'App\\Domain\\Registry\\Models\\Household',
+          'hasuuids' => 'Illuminate\\Database\\Eloquent\\Concerns\\HasUuids',
+          'model' => 'Illuminate\\Database\\Eloquent\\Model',
+          'belongsto' => 'Illuminate\\Database\\Eloquent\\Relations\\BelongsTo',
+          'carbon' => 'Illuminate\\Support\\Carbon',
+        ),
+         'className' => 'App\\Domain\\Graduation\\Models\\GraduationEvent',
+         'functionName' => 'decidedBy',
+         'templatePhpDocNodes' => 
+        array (
+        ),
+         'parent' => 
+        \PHPStan\Analyser\IntermediaryNameScope::__set_state(array(
+           'namespace' => 'App\\Domain\\Graduation\\Models',
+           'uses' => 
+          array (
+            'mdascoped' => 'App\\Domain\\Access\\Concerns\\MdaScoped',
+            'scopedtomda' => 'App\\Domain\\Access\\Concerns\\ScopedToMda',
+            'user' => 'App\\Domain\\Access\\Models\\User',
+            'enrollment' => 'App\\Domain\\Programme\\Models\\Enrollment',
+            'beneficiary' => 'App\\Domain\\Registry\\Models\\Beneficiary',
+            'household' => 'App\\Domain\\Registry\\Models\\Household',
+            'hasuuids' => 'Illuminate\\Database\\Eloquent\\Concerns\\HasUuids',
+            'model' => 'Illuminate\\Database\\Eloquent\\Model',
+            'belongsto' => 'Illuminate\\Database\\Eloquent\\Relations\\BelongsTo',
+            'carbon' => 'Illuminate\\Support\\Carbon',
+          ),
+           'className' => 'App\\Domain\\Graduation\\Models\\GraduationEvent',
+           'functionName' => NULL,
+           'templatePhpDocNodes' => 
+          array (
+          ),
+           'parent' => NULL,
+           'typeAliasesMap' => 
+          array (
+          ),
+           'bypassTypeAliases' => false,
+           'constUses' => 
+          array (
+          ),
+           'typeAliasClassName' => NULL,
+           'traitData' => NULL,
+        )),
+         'typeAliasesMap' => 
+        array (
+        ),
+         'bypassTypeAliases' => false,
+         'constUses' => 
+        array (
+        ),
+         'typeAliasClassName' => NULL,
+         'traitData' => NULL,
+      )),
+      '171b75754a57a83eb76def3233ca8893' => 
+      \PHPStan\Analyser\IntermediaryNameScope::__set_state(array(
+         'namespace' => 'App\\Domain\\Graduation\\Models',
+         'uses' => 
+        array (
+          'mdascoped' => 'App\\Domain\\Access\\Concerns\\MdaScoped',
+          'scopedtomda' => 'App\\Domain\\Access\\Concerns\\ScopedToMda',
+          'user' => 'App\\Domain\\Access\\Models\\User',
+          'enrollment' => 'App\\Domain\\Programme\\Models\\Enrollment',
+          'beneficiary' => 'App\\Domain\\Registry\\Models\\Beneficiary',
+          'household' => 'App\\Domain\\Registry\\Models\\Household',
+          'hasuuids' => 'Illuminate\\Database\\Eloquent\\Concerns\\HasUuids',
+          'model' => 'Illuminate\\Database\\Eloquent\\Model',
+          'belongsto' => 'Illuminate\\Database\\Eloquent\\Relations\\BelongsTo',
+          'carbon' => 'Illuminate\\Support\\Carbon',
+        ),
+         'className' => 'App\\Domain\\Graduation\\Models\\GraduationEvent',
+         'functionName' => 'criteria',
+         'templatePhpDocNodes' => 
+        array (
+        ),
+         'parent' => 
+        \PHPStan\Analyser\IntermediaryNameScope::__set_state(array(
+           'namespace' => 'App\\Domain\\Graduation\\Models',
+           'uses' => 
+          array (
+            'mdascoped' => 'App\\Domain\\Access\\Concerns\\MdaScoped',
+            'scopedtomda' => 'App\\Domain\\Access\\Concerns\\ScopedToMda',
+            'user' => 'App\\Domain\\Access\\Models\\User',
+            'enrollment' => 'App\\Domain\\Programme\\Models\\Enrollment',
+            'beneficiary' => 'App\\Domain\\Registry\\Models\\Beneficiary',
+            'household' => 'App\\Domain\\Registry\\Models\\Household',
             'hasuuids' => 'Illuminate\\Database\\Eloquent\\Concerns\\HasUuids',
             'model' => 'Illuminate\\Database\\Eloquent\\Model',
             'belongsto' => 'Illuminate\\Database\\Eloquent\\Relations\\BelongsTo',
@@ -770,7 +977,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
     ),
     1 => 
     array (
-      '/var/www/html/app/Domain/Graduation/Models/GraduationEvent.php' => '237c6b282631e2a7b9770840974c060601b64bbd3a3c053a410b981bf0b1ca1b',
+      '/var/www/html/app/Domain/Graduation/Models/GraduationEvent.php' => '0157d1ef24618c27cc65c439752caf659f939a388f2d8e5dda49e2a813008d7d',
       '/var/www/html/vendor/composer/../laravel/framework/src/Illuminate/Database/Eloquent/Concerns/HasUuids.php' => 'f75b8db33aafd61f17652a5e4bb5b8989e62197b306e9f7ae60bb3ac2c34d534',
       '/var/www/html/vendor/composer/../laravel/framework/src/Illuminate/Database/Eloquent/Concerns/HasUniqueStringIds.php' => '3d5612d3c0a56c6c9f19e628b02085d4d68a64d9d07656742725cec78d4a79c5',
       '/var/www/html/app/Domain/Access/Concerns/ScopedToMda.php' => '71fc767929ce4cf3fedf8bf8371e29b9fd1102308666d911286f798b453ab3b6',

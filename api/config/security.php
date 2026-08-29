@@ -71,6 +71,9 @@ return [
     'rate_limits' => [
         'exports_per_minute' => (int) env('RATE_LIMIT_EXPORTS_PER_MINUTE', 10),
         'imports_per_minute' => (int) env('RATE_LIMIT_IMPORTS_PER_MINUTE', 12),
+        // Report previews run aggregate queries but release nothing, so this sits above
+        // the egress ceiling — composing a report is normal work, exporting it is not.
+        'report_previews_per_minute' => (int) env('RATE_LIMIT_REPORT_PREVIEWS_PER_MINUTE', 30),
     ],
 
 ];

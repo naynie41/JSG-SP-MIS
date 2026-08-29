@@ -52,6 +52,12 @@ class ScopeBypassSurfaceTest extends TestCase
             'Domain/Reporting/Listeners/DeliverScheduledReport.php',
             'Domain/Sync/Jobs/RunSyncConnector.php',
             'Domain/Sync/Services/SyncEngine.php',
+            // The connector's target activity (activity-first). Resolved on the queue,
+            // where there is no authenticated user for the scope to resolve against, so
+            // the implicit scope would hide the activity from the engine that must bind
+            // to it. It widens nothing: the activity is constrained to the connector's
+            // OWN MDA when it is set, and the relation reads a name and a creator id.
+            'Domain/Sync/Models/SyncConnector.php',
             'Domain/Notification/Listeners/NotificationSubscriber.php',
             'Domain/Notification/Services/BroadcastService.php',
             'Domain/Privacy/Services/RetentionService.php',

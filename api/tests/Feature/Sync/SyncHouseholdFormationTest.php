@@ -57,7 +57,7 @@ class SyncHouseholdFormationTest extends TestCase
 
     private function connector(): SyncConnector
     {
-        return $this->confirmConnectorMapping(SyncConnector::factory()->create([
+        return $this->confirmConnectorMapping(SyncConnector::factory()->bound()->create([
             'owner_mda_id' => $this->mda->id,
             'source' => RegistrationSource::Socu,
         ]), $this->officer);

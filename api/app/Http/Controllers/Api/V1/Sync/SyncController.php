@@ -22,6 +22,7 @@ use App\Support\ApiResponse;
 use DomainException;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
+use Illuminate\Validation\Rule;
 
 /**
  * Data-synchronization administration (FR-DSH-02, FR-REG-08). Read the configured
@@ -42,6 +43,9 @@ class SyncController extends Controller
                 // Who gave the standing approval — a mapping status without a name
                 // beside it is not accountability.
                 'mappingConfirmedBy' => fn ($query) => $query->withoutGlobalScopes()->select('id', 'name'),
+                // The other standing decision. Shown beside the mapping so a stalled
+                // connector says which of the two it is waiting on.
+                'activity' => fn ($query) => $query->select('id', 'name'),
             ])
             ->latest('created_at')
             ->get();
@@ -124,6 +128,41 @@ class SyncController extends Controller
         return ApiResponse::success((new SyncConnectorResource($model->fresh()))->resolve());
     }
 
+    /**
+     * Set the activity synced rows bind to (activity-first, FR-DSH-02).
+     *
+     * The connector's equivalent of the activity an officer picks when uploading a file,
+     * and a standing decision for the same reason the column mapping is: nobody is
+     * present at 02:00 to choose one.
+     *
+     * The activity must belong to the connector's OWN MDA. A connector ingests into that
+     * MDA's registry, so binding to another MDA's activity would attribute the delivery
+     * to an agency that never ran it — and the enrolling actor is that activity's
+     * creator, who could not serve those records anyway.
+     */
+    public function setActivity(Request $request, string $connector): JsonResponse
+    {
+        $model = SyncConnector::query()->findOrFail($connector);
+
+        $validated = $request->validate([
+            'activity_id' => [
+                'present',
+                'nullable',
+                'uuid',
+                Rule::exists('activities', 'id')->where('owner_mda_id', $model->owner_mda_id),
+            ],
+        ]);
+
+        $model->update(['activity_id' => $validated['activity_id']]);
+
+        $this->audit->record('sync.connector_activity_set', $model, after: [
+            'connector_id' => $model->id,
+            'activity_id' => $validated['activity_id'],
+        ], actor: $request->user());
+
+        return ApiResponse::success((new SyncConnectorResource($model->fresh()->load('activity')))->resolve());
+    }
+
     public function trigger(Request $request, string $connector, ConnectorMappingService $mappings): JsonResponse
     {
         $model = SyncConnector::query()->findOrFail($connector);
@@ -136,6 +175,11 @@ class SyncController extends Controller
         // to the person who pressed the button rather than failing on the queue.
         if (($blocked = $mappings->blockedReason($model)) !== null) {
             return ApiResponse::error('MAPPING_NOT_CONFIRMED', $blocked, [], 422);
+        }
+
+        // Same for the activity binding, and for the same reason.
+        if (($unbound = $model->activityBindingBlocker()) !== null) {
+            return ApiResponse::error('ACTIVITY_NOT_BOUND', $unbound, [], 422);
         }
 
         RunSyncConnector::dispatch($model->id, SyncTrigger::Manual->value, $request->user()->id);

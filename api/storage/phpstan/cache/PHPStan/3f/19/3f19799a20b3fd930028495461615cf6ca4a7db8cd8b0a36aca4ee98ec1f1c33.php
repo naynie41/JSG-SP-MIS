@@ -2,7 +2,7 @@
 
 // odsl-/var/www/html/app/Domain/Privacy/Services/AnonymizationService.php-PHPStan\BetterReflection\Reflection\ReflectionClass-App\Domain\Privacy\Services\AnonymizationService
 return \PHPStan\Cache\CacheItem::__set_state(array(
-   'variableKey' => 'v2-6.70.0.1-8.3.31-736d5478783905f902bd5249e2ed728c53b93f9c421f674a9449141512111fba',
+   'variableKey' => 'v2-6.70.0.1-8.3.31-1462464ef7efaf5e39e15a91f16f841b8fceb8168fa182f4e39488a3081b9074',
    'data' => 
   array (
     'locatedSource' => 
@@ -40,8 +40,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
     'attributes' => 
     array (
     ),
-    'startLine' => 29,
-    'endLine' => 103,
+    'startLine' => 30,
+    'endLine' => 143,
     'startColumn' => 1,
     'endColumn' => 1,
     'parentClassName' => NULL,
@@ -65,20 +65,20 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
           'code' => '[\'first_name\', \'last_name\']',
           'attributes' => 
           array (
-            'startLine' => 32,
-            'endLine' => 32,
-            'startTokenPos' => 63,
-            'startFilePos' => 1310,
-            'endTokenPos' => 68,
-            'endFilePos' => 1336,
+            'startLine' => 33,
+            'endLine' => 33,
+            'startTokenPos' => 68,
+            'startFilePos' => 1352,
+            'endTokenPos' => 73,
+            'endFilePos' => 1378,
           ),
         ),
         'docComment' => '/** Beneficiary identity columns that are NOT NULL — redacted, not nulled. */',
         'attributes' => 
         array (
         ),
-        'startLine' => 32,
-        'endLine' => 32,
+        'startLine' => 33,
+        'endLine' => 33,
         'startColumn' => 5,
         'endColumn' => 64,
       ),
@@ -105,8 +105,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         'attributes' => 
         array (
         ),
-        'startLine' => 34,
-        'endLine' => 34,
+        'startLine' => 35,
+        'endLine' => 35,
         'startColumn' => 33,
         'endColumn' => 67,
         'isPromoted' => true,
@@ -143,8 +143,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             'attributes' => 
             array (
             ),
-            'startLine' => 34,
-            'endLine' => 34,
+            'startLine' => 35,
+            'endLine' => 35,
             'startColumn' => 33,
             'endColumn' => 67,
             'parameterIndex' => 0,
@@ -157,8 +157,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         array (
         ),
         'docComment' => NULL,
-        'startLine' => 34,
-        'endLine' => 34,
+        'startLine' => 35,
+        'endLine' => 35,
         'startColumn' => 5,
         'endColumn' => 71,
         'couldThrow' => false,
@@ -196,8 +196,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             'attributes' => 
             array (
             ),
-            'startLine' => 40,
-            'endLine' => 40,
+            'startLine' => 41,
+            'endLine' => 41,
             'startColumn' => 9,
             'endColumn' => 32,
             'parameterIndex' => 0,
@@ -211,12 +211,12 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
               'code' => 'false',
               'attributes' => 
               array (
-                'startLine' => 41,
-                'endLine' => 41,
-                'startTokenPos' => 109,
-                'startFilePos' => 1608,
-                'endTokenPos' => 109,
-                'endFilePos' => 1612,
+                'startLine' => 42,
+                'endLine' => 42,
+                'startTokenPos' => 114,
+                'startFilePos' => 1650,
+                'endTokenPos' => 114,
+                'endFilePos' => 1654,
               ),
             ),
             'type' => 
@@ -234,8 +234,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             'attributes' => 
             array (
             ),
-            'startLine' => 41,
-            'endLine' => 41,
+            'startLine' => 42,
+            'endLine' => 42,
             'startColumn' => 9,
             'endColumn' => 31,
             'parameterIndex' => 1,
@@ -249,12 +249,12 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
               'code' => 'null',
               'attributes' => 
               array (
-                'startLine' => 42,
-                'endLine' => 42,
-                'startTokenPos' => 119,
-                'startFilePos' => 1644,
-                'endTokenPos' => 119,
-                'endFilePos' => 1647,
+                'startLine' => 43,
+                'endLine' => 43,
+                'startTokenPos' => 124,
+                'startFilePos' => 1686,
+                'endTokenPos' => 124,
+                'endFilePos' => 1689,
               ),
             ),
             'type' => 
@@ -291,8 +291,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             'attributes' => 
             array (
             ),
-            'startLine' => 42,
-            'endLine' => 42,
+            'startLine' => 43,
+            'endLine' => 43,
             'startColumn' => 9,
             'endColumn' => 33,
             'parameterIndex' => 2,
@@ -306,12 +306,12 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
               'code' => 'null',
               'attributes' => 
               array (
-                'startLine' => 43,
-                'endLine' => 43,
-                'startTokenPos' => 129,
-                'startFilePos' => 1673,
-                'endTokenPos' => 129,
-                'endFilePos' => 1676,
+                'startLine' => 44,
+                'endLine' => 44,
+                'startTokenPos' => 134,
+                'startFilePos' => 1715,
+                'endTokenPos' => 134,
+                'endFilePos' => 1718,
               ),
             ),
             'type' => 
@@ -348,8 +348,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             'attributes' => 
             array (
             ),
-            'startLine' => 43,
-            'endLine' => 43,
+            'startLine' => 44,
+            'endLine' => 44,
             'startColumn' => 9,
             'endColumn' => 27,
             'parameterIndex' => 3,
@@ -363,12 +363,12 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
               'code' => 'null',
               'attributes' => 
               array (
-                'startLine' => 44,
-                'endLine' => 44,
-                'startTokenPos' => 139,
-                'startFilePos' => 1705,
-                'endTokenPos' => 139,
-                'endFilePos' => 1708,
+                'startLine' => 45,
+                'endLine' => 45,
+                'startTokenPos' => 144,
+                'startFilePos' => 1747,
+                'endTokenPos' => 144,
+                'endFilePos' => 1750,
               ),
             ),
             'type' => 
@@ -405,8 +405,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             'attributes' => 
             array (
             ),
-            'startLine' => 44,
-            'endLine' => 44,
+            'startLine' => 45,
+            'endLine' => 45,
             'startColumn' => 9,
             'endColumn' => 30,
             'parameterIndex' => 4,
@@ -429,8 +429,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         'docComment' => '/**
  * @param  bool  $keepQuasi  true for `aggregate` (keep de-identified quasi fields)
  */',
-        'startLine' => 39,
-        'endLine' => 83,
+        'startLine' => 40,
+        'endLine' => 85,
         'startColumn' => 5,
         'endColumn' => 5,
         'couldThrow' => false,
@@ -438,6 +438,86 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         'isGenerator' => false,
         'isVariadic' => false,
         'modifiers' => 1,
+        'namespace' => 'App\\Domain\\Privacy\\Services',
+        'declaringClassName' => 'App\\Domain\\Privacy\\Services\\AnonymizationService',
+        'implementingClassName' => 'App\\Domain\\Privacy\\Services\\AnonymizationService',
+        'currentClassName' => 'App\\Domain\\Privacy\\Services\\AnonymizationService',
+        'aliasName' => NULL,
+      ),
+      'redactStagingRows' => 
+      array (
+        'name' => 'redactStagingRows',
+        'parameters' => 
+        array (
+          'beneficiary' => 
+          array (
+            'name' => 'beneficiary',
+            'default' => NULL,
+            'type' => 
+            array (
+              'class' => 'PHPStan\\BetterReflection\\Reflection\\ReflectionNamedType',
+              'data' => 
+              array (
+                'name' => 'App\\Domain\\Registry\\Models\\Beneficiary',
+                'isIdentifier' => false,
+              ),
+            ),
+            'isVariadic' => false,
+            'byRef' => false,
+            'isPromoted' => false,
+            'attributes' => 
+            array (
+            ),
+            'startLine' => 107,
+            'endLine' => 107,
+            'startColumn' => 40,
+            'endColumn' => 63,
+            'parameterIndex' => 0,
+            'isOptional' => false,
+          ),
+        ),
+        'returnsReference' => false,
+        'returnType' => 
+        array (
+          'class' => 'PHPStan\\BetterReflection\\Reflection\\ReflectionNamedType',
+          'data' => 
+          array (
+            'name' => 'void',
+            'isIdentifier' => true,
+          ),
+        ),
+        'attributes' => 
+        array (
+        ),
+        'docComment' => '/**
+ * Redact the person out of the import rows that created them.
+ *
+ * Every beneficiary here arrived through an import, and the staging row keeps the
+ * payload it was built from — name, NIN, BVN, phone, address, as the MDA supplied
+ * them. Clearing the registry row while that payload survives de-identifies nobody:
+ * the values are still queryable and still joined to the same person by
+ * `beneficiary_id`. Worse, the record now REPORTS itself as anonymized, so every
+ * downstream check believes an erasure that did not happen.
+ *
+ * The row itself is kept and only its identifying keys are removed. It records that
+ * this batch produced this record; deleting it would rewrite provenance and silently
+ * change import tallies that were already reported. Both the direct and the quasi
+ * lists go, whatever the mode: `aggregate` keeps quasi fields on the REGISTRY row so
+ * statistics stay possible, and statistics never read the staging table.
+ *
+ * `original_record_id` is deliberately left: it is the source system\'s own reference
+ * and the per-MDA idempotency key, so clearing it would let a re-import recreate the
+ * person this erasure just removed.
+ */',
+        'startLine' => 107,
+        'endLine' => 123,
+        'startColumn' => 5,
+        'endColumn' => 5,
+        'couldThrow' => false,
+        'isClosure' => false,
+        'isGenerator' => false,
+        'isVariadic' => false,
+        'modifiers' => 4,
         'namespace' => 'App\\Domain\\Privacy\\Services',
         'declaringClassName' => 'App\\Domain\\Privacy\\Services\\AnonymizationService',
         'implementingClassName' => 'App\\Domain\\Privacy\\Services\\AnonymizationService',
@@ -468,8 +548,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             'attributes' => 
             array (
             ),
-            'startLine' => 90,
-            'endLine' => 90,
+            'startLine' => 130,
+            'endLine' => 130,
             'startColumn' => 37,
             'endColumn' => 60,
             'parameterIndex' => 0,
@@ -494,8 +574,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
  * from the private disk and the rows are hard-deleted (their filenames can
  * themselves be identifying). Controlled by config; on by default.
  */',
-        'startLine' => 90,
-        'endLine' => 102,
+        'startLine' => 130,
+        'endLine' => 142,
         'startColumn' => 5,
         'endColumn' => 5,
         'couldThrow' => false,

@@ -57,7 +57,7 @@ class SyncConflictMatrixTest extends TestCase
 
     private function connector(ConflictPolicy $policy, bool $enabled = true): SyncConnector
     {
-        return $this->confirmConnectorMapping(SyncConnector::factory()->create([
+        return $this->confirmConnectorMapping(SyncConnector::factory()->bound()->create([
             'owner_mda_id' => $this->mdaA->id,
             'source' => RegistrationSource::Socu,
             'conflict_policy' => $policy,
@@ -188,7 +188,7 @@ class SyncConflictMatrixTest extends TestCase
     public function test_the_same_source_id_under_a_different_mda_is_a_different_record(): void
     {
         $a = $this->connector(ConflictPolicy::FlagForReview);
-        $b = $this->confirmConnectorMapping(SyncConnector::factory()->create([
+        $b = $this->confirmConnectorMapping(SyncConnector::factory()->bound()->create([
             'owner_mda_id' => $this->mdaB->id,
             'source' => RegistrationSource::Socu,
             'conflict_policy' => ConflictPolicy::FlagForReview,

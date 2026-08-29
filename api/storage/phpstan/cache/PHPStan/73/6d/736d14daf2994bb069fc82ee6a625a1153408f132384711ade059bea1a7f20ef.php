@@ -84,7 +84,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
     ),
     1 => 
     array (
-      '/var/www/html/app/Http/Resources/GraduationEventResource.php' => '52546880f2d2e0ea034e09b0668d52bb1f4a1942d02ae13055f0b0290d89a4eb',
+      '/var/www/html/app/Http/Resources/GraduationEventResource.php' => 'c27b62ca7d90193df8f2e5affceae61d08111f7c626ee6e782112cacd6c35895',
     ),
   ),
 ));

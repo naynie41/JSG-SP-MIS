@@ -42,6 +42,17 @@ class SyncConnectorResource extends JsonResource
                 'stale_reason' => $this->mapping_stale_reason,
                 'can_enable' => $this->mappingIsConfirmed() && ! $this->mappingIsStale(),
             ],
+            /*
+             * The activity synced rows bind to (activity-first). Reported alongside the
+             * mapping because they are the two standing decisions a connector cannot run
+             * without, and an administrator looking at a stalled feed needs to see which
+             * of them is missing — `blocker` is the same sentence the held run records.
+             */
+            'activity' => [
+                'id' => $this->activity_id,
+                'name' => $this->whenLoaded('activity', fn () => $this->activity?->name),
+                'blocker' => $this->activityBindingBlocker(),
+            ],
         ];
     }
 }

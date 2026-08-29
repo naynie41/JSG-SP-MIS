@@ -3394,7 +3394,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
     ),
     1 => 
     array (
-      '/var/www/html/vendor/symfony/console/Style/SymfonyStyle.php' => '1096a5d98d8d2807672727083ade4eca571ea8e90e6ba895b595924697fac479',
+      '/var/www/html/vendor/symfony/console/Style/SymfonyStyle.php' => 'affa961a5476a0449bf0e07b371d5e9a409847e668796864405ecb2c36ebc08a',
     ),
   ),
 ));

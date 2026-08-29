@@ -51,6 +51,7 @@ const connectorRows: SyncConnector[] = [
     owner_mda: { id: 'm1', name: 'MDA A' }, conflict_policy: 'flag_for_review',
     enabled: true, schedule: 'daily', last_run_at: new Date().toISOString(),
     mapping: confirmedMapping,
+    activity: { id: 'a1', name: 'Q3 cash transfer', blocker: null },
   },
   {
     id: 'c2', name: 'Legacy registry', source: 'government_system', owner_mda_id: 'm2',
@@ -61,6 +62,8 @@ const connectorRows: SyncConnector[] = [
       confirmed_at: null, confirmed_by: null, stale_at: null, stale_reason: null,
       can_enable: false,
     },
+    // Unbound as well as unmapped: the listing must say which decision is missing.
+    activity: { id: null, name: null, blocker: 'This connector has no target activity.' },
   },
 ]
 

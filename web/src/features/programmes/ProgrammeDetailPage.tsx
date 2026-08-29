@@ -17,6 +17,7 @@ import { formatNaira } from '@/lib/utils/money'
 import { summariseLocations } from '@/features/reference/format'
 import { cn } from '@/lib/utils/cn'
 import { GraduationCriteriaCard } from '@/features/graduation/GraduationCriteriaCard'
+import { GraduationHistoryCard } from '@/features/graduation/GraduationHistoryCard'
 import { GraduationModal } from '@/features/graduation/GraduationModal'
 import { ProgrammeFormModal } from './ProgrammeFormModal'
 import { ActivityFormModal } from './ActivityFormModal'
@@ -223,7 +224,12 @@ export function ProgrammeDetailPage() {
             ),
           },
           ...(canViewGraduation && id
-            ? [{ id: 'graduation', label: 'Graduation', content: <GraduationCriteriaCard programmeId={id} /> }]
+            ? [{ id: 'graduation', label: 'Graduation', content: (
+                <>
+                  <GraduationCriteriaCard programmeId={id} />
+                  <GraduationHistoryCard programmeId={id} />
+                </>
+              ) }]
             : []),
         ]}
       />

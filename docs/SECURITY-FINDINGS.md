@@ -1,7 +1,7 @@
 # Security Hardening Pass — Findings & Remediation (Phase 7)
 
 > Executed against `SECURITY.md`, **NFR-SEC-01/02**, **NFR-AUD-01** on 2026-07-21;
-> **re-verified 2026-08-10** (pass 2 — §0 below).
+> **re-verified 2026-08-10** (pass 2) and **2026-08-29** (pass 3 — §0 below).
 > This pass **verifies and strengthens** — no control was weakened. Each finding lists
 > its status: **FIXED** (this pass), **VERIFIED** (already in place, now covered by
 > tests), **TRACKED EXCEPTION** (accepted with rationale + owner), or **PEN-TEST /
@@ -9,7 +9,127 @@
 
 ---
 
-## 0. Re-verification pass — 2026-08-10
+
+## 0. Re-verification pass — 2026-08-29 (pass 3)
+
+Re-run against a codebase that has moved substantially since pass 2: the Data Import &
+Mapping layer, the duplicate queue, the segment/report builder, connector activity
+binding, the data-sharing active-vs-revoked report, the graduation record, and a **new
+unauthenticated public landing page** at `/`. Pass-2 controls were re-checked and **all
+still hold**. Three findings are new.
+
+### F-08 — 21 dependency advisories, 8 of them HIGH — **FIXED** (HIGH)
+
+`composer audit` reported 21 advisories across four packages. The high ones:
+
+| Package | Was | Now | High advisories |
+|---|---|---|---|
+| `phpoffice/phpspreadsheet` | 5.8.0 | 5.9.0 | 3 |
+| `league/commonmark` | 2.8.x | 2.10.0 | 4 |
+| `guzzlehttp/guzzle` | 7.15.x | 7.15.5 | 1 |
+| `dompdf/dompdf` | 3.1.x | v3.1.6 | 0 (4 medium, 2 low) |
+
+The PHPSpreadsheet ones matter most here: SP-MIS parses MDA-supplied spreadsheets in the
+import pipeline, so CVE-2026-59933 (XLS/OLE sector-chain self-loop) and CVE-2026-59932
+(unbounded gzip expansion in the Gnumeric reader) are reachable by uploading a crafted
+file — memory exhaustion on the import worker. CVE-2026-59931 is an SSRF bypass in
+`WEBSERVICE()`.
+
+Resolved inside the existing `composer.json` constraints — **only `composer.lock`
+changed**, no constraint was widened. `composer audit` is now clean; `npm audit` reports
+0 vulnerabilities.
+
+**This is the third consecutive pass where a clean audit went stale.** Pass 2 recorded 17
+new advisories three weeks after pass 1 reported clean; this pass found 21 more nineteen
+days later. OPS-07 (scheduled audit) is not optional housekeeping — it is the control.
+
+### F-09 — Beneficiary document download had no rate limit — **FIXED** (HIGH)
+
+`GET /beneficiaries/{b}/documents/{d}/download` streams the most sensitive artefact the
+system holds: an uploaded identity document is the ID itself, not a field derived from
+it. Every other bulk-PII path carried the `exports` per-user ceiling; this one did not,
+so a compromised account could pull documents one request at a time as fast as the
+network allowed — precisely the scripted exfiltration the export limiter exists to turn
+into noise and an audit trail.
+
+Authorization was never the gap (the policy resolves through `DataSharingGuard`, and a
+cross-MDA document 404s on the scope before authorization is reached). The gap was rate.
+Now `throttle:exports`.
+
+### F-10 — Report preview endpoints had no rate limit — **FIXED** (MEDIUM)
+
+`POST /reports/segments/preview` and `POST /reports/adhoc/preview` each run a full
+aggregate query on demand, and both were added after pass 2. Unbounded, they are a cheap
+way to load the database from an ordinary `reporting.view` account.
+
+Given a new `reports` limiter (`RATE_LIMIT_REPORT_PREVIEWS_PER_MINUTE`, default 30)
+rather than the export ceiling: narrowing a filter is what an officer does repeatedly
+while composing a report, and throttling that at bulk-egress rates would break the screen
+long before it protected anything. Nothing leaves the system on a preview — the export
+itself is still bounded by `exports` (10/min). A test asserts the preview ceiling stays
+strictly above the export ceiling, so the two cannot quietly converge.
+
+### F-11 — Anonymization left a complete copy in the import staging table — **FIXED** (HIGH)
+
+`AnonymizationService` cleared the `beneficiaries` row and purged attached documents, but
+never touched `import_rows.payload` — the staged copy of the row the person was created
+from, holding first name, last name, NIN, BVN, phone and address exactly as the MDA
+supplied them, still joined to the same person by `beneficiary_id`.
+
+Every beneficiary in this system arrives through an import, so this was not an edge case:
+**no anonymized record was actually de-identified.** The identifiers stayed queryable by
+anyone who could read an import batch, and the record simultaneously reported itself as
+erased — `anonymized_at` set, an audit entry saying it happened, and every downstream
+check believing it. An erasure that leaves a full copy one table away is worse than no
+erasure, because it stops anyone looking.
+
+Anonymization now redacts the direct AND quasi lists out of the staging payload, in the
+same transaction. Three deliberate boundaries:
+
+- **The row survives.** Only its identifying keys are removed. It records that this batch
+  produced this record; deleting it would rewrite provenance and silently change import
+  tallies already reported.
+- **Only this person's rows.** A batch holds many people; anonymizing one must not erase
+  the rest of the file.
+- **`original_record_id` is kept.** It is the source system's own reference and the
+  per-MDA idempotency key — clearing it would let a re-import recreate the very person
+  the erasure removed.
+
+Both lists go regardless of mode: `aggregate` keeps quasi fields on the REGISTRY row so
+de-identified statistics stay possible, and statistics never read the staging table.
+
+`tests/Feature/Privacy/AnonymizationStagingResidueTest.php` — 5 tests, including a sweep
+that fails if any table still holds the erased NIN, so a new payload-bearing table cannot
+be added without someone noticing that anonymization has to reach it.
+
+**Not covered, and needs a DPO decision (see OPS-08):** the ORIGINAL UPLOADED FILE
+(`import_batches.stored_path`) still contains every person in it. CLAUDE.md §11 forbids
+mutating the raw file, and a file cannot be surgically edited for one subject without
+destroying its value as evidence for everyone else in it. The answer is a retention period
+on the FILE — delete batch files after N days — which is a legal period this system must
+not invent.
+
+### Re-verified with no change (pass 3)
+
+- NIN/BVN encrypted at rest + keyed-hash lookup; TOTP secrets encrypted.
+- Audit log hash-chained, append-only, tamper detected by the verifier.
+- Deny-by-default RBAC; a role-less user is denied everywhere.
+- Central MDA scoping: the `withoutGlobalScope` allow-list still passes, now including
+  the connector→activity relation added for activity-first sync (registered with its
+  reason, not merged silently).
+- Export matrix + import upload limits.
+- **The new public landing page reads nothing from the API** and renders no authenticated
+  layout — asserted by a `fetch` spy and a numeral scan in the frontend suite, so an
+  anonymous visitor cannot reach system data through the one route that needs no session.
+
+### Test coverage added by pass 3
+
+`tests/Feature/Security/EgressRateLimitTest.php` — 3 tests: document download ceiling,
+report preview ceiling, and the invariant that preview stays looser than export.
+
+---
+
+## 0b. Re-verification pass — 2026-08-10 (pass 2)
 
 Pass 1's controls were re-checked against the current codebase (materially changed
 since: the data-sharing framework gained an administrative-grant basis, cross-MDA reads
@@ -216,6 +336,10 @@ from audit diffs entirely.
   origin before go-live, or obtain DPO sign-off for a named third-party host and extend
   `img-src` in `docker/nginx/prod.conf.template` to exactly that host. Leaving it unset
   ships working maps in dev and blank maps in production.
+- **OPS-08 — Retention period for RAW IMPORT FILES** (F-11): anonymising a subject
+  cannot edit the spreadsheet they arrived in without destroying it as evidence for
+  everyone else in that file. A batch-file retention period is a legal value the DPO must
+  supply; until then, uploaded files keep every identity they contained.
 - **OPS-07 — Recurring dependency audit**: F-06 was entirely new advisories published
   three weeks after a pass that reported clean. A point-in-time audit has a shelf life;
   run `composer audit` + `npm audit` on a schedule (CI weekly and pre-release) and treat

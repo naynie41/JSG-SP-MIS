@@ -6,6 +6,8 @@ namespace App\Domain\Sync\Models;
 
 use App\Domain\Access\Models\Mda;
 use App\Domain\Access\Models\User;
+use App\Domain\Access\Scopes\MdaScope;
+use App\Domain\Programme\Models\Activity;
 use App\Domain\Registry\Enums\RegistrationSource;
 use App\Domain\Sync\Enums\ConflictPolicy;
 use Database\Factories\SyncConnectorFactory;
@@ -24,6 +26,7 @@ use Illuminate\Support\Carbon;
  * @property string $name
  * @property RegistrationSource $source
  * @property string $owner_mda_id
+ * @property string|null $activity_id
  * @property ConflictPolicy $conflict_policy
  * @property string|null $credentials_ref
  * @property bool $enabled
@@ -36,6 +39,7 @@ use Illuminate\Support\Carbon;
  * @property Carbon|null $mapping_stale_at
  * @property string|null $mapping_stale_reason
  * @property-read User|null $mappingConfirmedBy
+ * @property-read Activity|null $activity
  */
 class SyncConnector extends Model
 {
@@ -51,6 +55,7 @@ class SyncConnector extends Model
         'name',
         'source',
         'owner_mda_id',
+        'activity_id',
         'conflict_policy',
         'credentials_ref',
         'enabled',
@@ -131,6 +136,50 @@ class SyncConnector extends Model
     public function mappingConfirmedBy(): BelongsTo
     {
         return $this->belongsTo(User::class, 'mapping_confirmed_by');
+    }
+
+    /**
+     * The activity every synced row binds to (activity-first).
+     *
+     * The connector's equivalent of the activity an officer picks when uploading a file.
+     * Unscoped, because the engine runs on the queue with no authenticated user to
+     * resolve a scope from; the activity is constrained to the connector's own MDA at
+     * configuration time instead, which is where the decision belongs.
+     *
+     * @return BelongsTo<Activity, $this>
+     */
+    public function activity(): BelongsTo
+    {
+        return $this->belongsTo(Activity::class, 'activity_id')->withoutGlobalScope(MdaScope::class);
+    }
+
+    /**
+     * Why this connector may not sync yet, or null when it may.
+     *
+     * Activity-first is not advisory here: without an activity there is nothing to
+     * attribute a synced delivery to, so the run is HELD rather than allowed to put
+     * people into the register unattached. The activity's creator is who the engine
+     * enrols as, so an activity whose creator has since been removed holds too — it can
+     * no longer answer "who did this", and recording an intervention with no actor would
+     * lose exactly the accountability the binding exists to keep.
+     */
+    public function activityBindingBlocker(): ?string
+    {
+        if ($this->activity_id === null) {
+            return 'This connector has no target activity. Synced records bind to an activity exactly '
+                .'as an uploaded file does, so set one on the connector before it can run.';
+        }
+
+        $activity = $this->activity()->first();
+        if ($activity === null) {
+            return 'The target activity for this connector no longer exists. Point it at a current one.';
+        }
+        if ($activity->created_by === null) {
+            return 'The target activity has no recorded creator, so a synced delivery could not be '
+                .'attributed to anyone. Point this connector at a current activity.';
+        }
+
+        return null;
     }
 
     protected static function newFactory(): SyncConnectorFactory
