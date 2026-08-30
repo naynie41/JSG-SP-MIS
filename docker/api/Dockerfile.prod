@@ -1,14 +1,45 @@
 # syntax=docker/dockerfile:1
 # =============================================================================
-# SP-MIS API — PRODUCTION image (php-fpm). Used by both the `api` and `worker`
-# services (worker = same image, different CMD). Multi-stage: composer installs
-# prod-only deps in a build stage; the final image is slim, self-contained
-# (vendor + code baked in — no runtime `composer install`), runs as the
-# non-root www-data user, and carries NO secrets or .env.
+# SP-MIS API — PRODUCTION image (php-fpm). Used by the `api`, `worker` and
+# `scheduler` services (same image, different CMD). The final image is slim,
+# self-contained (vendor + code baked in — no runtime `composer install`), runs
+# as the non-root www-data user, and carries NO secrets or .env.
+#
+# ── Why a shared base stage ──────────────────────────────────────────────────
+# `composer install` used to run in the stock `composer:2` image while the
+# extensions were installed only in the runtime stage. Those are two different
+# PHP platforms, so composer resolved against an environment the application
+# never runs in — and `php-amqplib` hard-requires `ext-sockets`, which
+# `composer:2` does not ship. The build failed on a dependency that is perfectly
+# satisfied at runtime.
+#
+# Declaring the extension in `config.platform` would have silenced it, but that
+# tells composer to ASSUME a platform rather than check one, and the next
+# extension the builder lacks fails the same way. Building both stages from one
+# base means the platform composer resolves against IS the platform that runs.
+# The extension layer is built once and reused by both stages.
 # =============================================================================
 
-# --- Stage 1: composer (no dev) ---------------------------------------------
-FROM composer:2 AS vendor
+# --- Stage 1: base — the PHP platform, defined exactly once ------------------
+FROM php:8.3-fpm-alpine AS base
+
+# Extensions the application and its dependencies require. `pdo_pgsql`/`pgsql`
+# for PostgreSQL, `sockets` for the RabbitMQ client (php-amqplib), `gd`/`zip`
+# for PhpSpreadsheet, `intl` for formatting, `bcmath` for money, `pcntl` for the
+# queue worker's signal handling, `opcache` for throughput.
+ADD https://github.com/mlocati/docker-php-extension-installer/releases/latest/download/install-php-extensions /usr/local/bin/
+RUN chmod +x /usr/local/bin/install-php-extensions && \
+    install-php-extensions \
+        pdo_pgsql pgsql sockets intl zip gd bcmath pcntl opcache && \
+    rm -rf /var/cache/apk/*
+
+# --- Stage 2: vendor — prod-only dependencies, on the runtime platform -------
+FROM base AS vendor
+
+# Composer itself is a build tool, not a runtime dependency: taken from the
+# official image and left behind in this stage.
+COPY --from=composer:2 /usr/bin/composer /usr/bin/composer
+
 WORKDIR /app
 # Install deps first (cached) using only the manifest + lock…
 COPY api/composer.json api/composer.lock ./
@@ -18,18 +49,12 @@ RUN composer install --no-dev --prefer-dist --no-scripts --optimize-autoloader \
 COPY api/ ./
 RUN composer dump-autoload --optimize --no-scripts --no-interaction
 
-# --- Stage 2: runtime (slim, non-root) --------------------------------------
-FROM php:8.3-fpm-alpine AS runtime
+# --- Stage 3: runtime (slim, non-root) --------------------------------------
+FROM base AS runtime
 
-# PHP extensions (same set as dev) + minimal runtime tools:
-#   postgresql-client → pg_isready wait + backups; fcgi → fpm healthcheck ping;
-#   procps → worker healthcheck (pgrep).
-ADD https://github.com/mlocati/docker-php-extension-installer/releases/latest/download/install-php-extensions /usr/local/bin/
-RUN chmod +x /usr/local/bin/install-php-extensions && \
-    install-php-extensions \
-        pdo_pgsql pgsql sockets intl zip gd bcmath pcntl opcache && \
-    apk add --no-cache postgresql-client fcgi procps && \
-    rm -rf /var/cache/apk/*
+# Minimal runtime tools: postgresql-client → pg_isready wait + backups;
+# fcgi → fpm healthcheck ping; procps → worker healthcheck (pgrep).
+RUN apk add --no-cache postgresql-client fcgi procps && rm -rf /var/cache/apk/*
 
 # Production PHP + fpm pool (pool runs as www-data, exposes /ping for healthcheck,
 # clear_env=no so the container environment reaches PHP).
@@ -38,7 +63,8 @@ COPY docker/api/www.conf /usr/local/etc/php-fpm.d/www.conf
 
 WORKDIR /var/www/html
 
-# App + vendor from the build stage, owned by the runtime user.
+# App + vendor from the build stage, owned by the runtime user. Composer is NOT
+# copied across — the image ships the resolved vendor tree, not the tool.
 COPY --from=vendor --chown=www-data:www-data /app /var/www/html
 COPY --chown=www-data:www-data docker/api/entrypoint.prod.sh /usr/local/bin/entrypoint
 
