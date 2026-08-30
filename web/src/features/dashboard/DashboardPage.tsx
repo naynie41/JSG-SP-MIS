@@ -1,7 +1,7 @@
 import { Badge } from '@/components/Badge/Badge'
 import { Card, KpiPanel } from '@/components/Card/Card'
 import { useAuth } from '@/lib/auth/AuthProvider'
-import styles from './Dashboard.module.css'
+import styles from './dashboard.module.css'
 
 export function DashboardPage() {
   const { user } = useAuth()
