@@ -13,6 +13,11 @@ api/storage/framework/cache/*
 api/storage/framework/sessions/*
 api/storage/framework/views/*
 api/storage/app/private/*
+# Laravel's discovered-package + service caches are GENERATED, and a copy made on a
+# dev machine lists dev-only providers (laravel/pail). The image installs --no-dev, so
+# a stale cache makes `package:discover` fail on a class that is not there. The
+# directory itself is recreated in the Dockerfile; only its contents are excluded.
+api/bootstrap/cache/*
 **/*.md
 docker-compose.yml
 docker-compose.prod.yml
