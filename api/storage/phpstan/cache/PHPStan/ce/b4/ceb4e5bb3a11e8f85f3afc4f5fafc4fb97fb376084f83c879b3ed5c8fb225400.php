@@ -938,16 +938,17 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
     ),
     '/var/www/html/app/Domain/Benefit/Services/BeneficiaryRevealPresenter.php' => 
     array (
-      0 => '606e5f7450c76e5b2398af381b8308136037fee4ce11da84929cac0740e81594',
+      0 => '8ab42b9d3c30184a7be28b5b850ec63172ff85018851689586b0bf69bc1a8a79',
       1 => 
       array (
         0 => 'app\\domain\\benefit\\services\\beneficiaryrevealpresenter',
       ),
       2 => 
       array (
-        0 => 'app\\domain\\benefit\\services\\sections',
-        1 => 'app\\domain\\benefit\\services\\programmes',
-        2 => 'app\\domain\\benefit\\services\\benefits',
+        0 => 'app\\domain\\benefit\\services\\preload',
+        1 => 'app\\domain\\benefit\\services\\sections',
+        2 => 'app\\domain\\benefit\\services\\programmes',
+        3 => 'app\\domain\\benefit\\services\\benefits',
       ),
       3 => 
       array (
@@ -7255,16 +7256,17 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
     ),
     '/var/www/html/app/Domain/Registry/Services/MatchRevealAssembler.php' => 
     array (
-      0 => 'd9d81e21365fe0fdba9f6f88c5fb04569c37d65e8d6bc6f18f47c541bef3e201',
+      0 => 'a0224e73738e68d59e97c2441c15f4a89af0c93b23ad675b8c6387fd32e310bc',
       1 => 
       array (
         0 => 'app\\domain\\registry\\services\\matchrevealassembler',
       ),
       2 => 
       array (
-        0 => 'app\\domain\\registry\\services\\attach',
-        1 => 'app\\domain\\registry\\services\\registryreveal',
-        2 => 'app\\domain\\registry\\services\\peerreveal',
+        0 => 'app\\domain\\registry\\services\\__construct',
+        1 => 'app\\domain\\registry\\services\\attach',
+        2 => 'app\\domain\\registry\\services\\registryreveal',
+        3 => 'app\\domain\\registry\\services\\peerreveal',
       ),
       3 => 
       array (

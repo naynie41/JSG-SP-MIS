@@ -14,7 +14,57 @@ every flow.
 
 ---
 
-## 1. Findings fixed in this pass
+## 0. Re-audit — 2026-08-30 (pass 2, automated against the running app)
+
+Pass 1 was a code-and-design review. This pass ran **axe-core against the live app in a
+real browser, behind a real session**, because contrast and focus do not exist until the
+CSS is applied — they cannot be audited from source.
+
+**Coverage: 26 page/viewport combinations** — 13 routes × desktop (1440×900) and mobile
+(390×844), signed in as MDA Admin and System Administrator, plus the two unauthenticated
+routes. Ruleset: `wcag2a, wcag2aa, wcag21a, wcag21aa`.
+
+Routes: public landing, login, MDA overview, import, duplicate resolution, benefit
+recording, referrals, grievances, MDA reports, beneficiaries, GIS, admin overview,
+admin access.
+
+### Result
+
+| Check | Method | Result |
+|---|---|---|
+| WCAG 2.1 A/AA (axe-core) | 26 page/viewport runs | **0 violations** after the fix below |
+| Lime "dark text only" (§2) | computed colour on every lime surface, 10 routes | **PASS** — no light text on any lime background |
+| Keyboard operability | tab-walk of every focus stop, 9 core flows | **PASS** — every page reachable, 1–18 stops each |
+| Reduced motion | `prefers-reduced-motion: reduce` emulated | **PASS** — nothing animates beyond 50 ms |
+
+### A11Y-04 — Scrollable table region not keyboard-focusable (2.1.1) — FIXED
+
+axe found four instances of `scrollable-region-focusable`, all **mobile only**, all the
+same element: the `DataTable` horizontal-scroll wrapper on referrals, grievances,
+beneficiaries and admin access.
+
+On a narrow screen the table overflows sideways and the wrapper scrolls. It had no
+`tabindex`, so it could only be scrolled by dragging — meaning a keyboard-only user could
+not reach the right-hand columns, which on these tables is where status and the row
+actions live. The content was rendered and unreachable.
+
+Fixed in `DataTable.tsx`: the wrapper is now `tabIndex={0}` with `role="region"` and
+`aria-label={caption}`, so it is a focus stop that announces which table it belongs to
+rather than an unnamed box. `DataTable.module.css` gives it a `:focus-visible` ring — a
+new focus stop without a visible indicator would have traded one violation for another.
+
+### Not a defect — recorded so it is not re-investigated
+
+A single focus stop on **benefit recording** was flagged as having no visible indicator in
+one sequential multi-page run. It did not reproduce when that page was tabbed in
+isolation, and the underlying rule is demonstrably correct: focusing the control directly
+shows `outline: 2px solid` from t=0 plus a `box-shadow` that settles to `0 0 0 3px` within
+100 ms. Treated as a measurement artefact of the automated walk, **not** as a finding — no
+code was changed for it.
+
+---
+
+## 1. Findings fixed in pass 1 (code review)
 
 ### A11Y-01 — Input focus invisible in forced-colors mode (2.4.7, 1.4.11) — FIXED
 `.control:focus` used `outline: none` with only a low-alpha `box-shadow` for the focus
@@ -87,6 +137,32 @@ The app's responsiveness comes from shared primitives, so each core flow inherit
 | GIS coverage | ✓ | ⚠ manual | table fallback responsive; map needs device check |
 
 ---
+
+### Automated responsive re-check — 2026-08-30
+
+Eleven routes × three viewports (phone 390×844, tablet 768×1024, desktop 1440×900),
+signed in, against the running app.
+
+| Check | Result |
+|---|---|
+| Body scrolls horizontally | **None** — no route, no viewport. Wide content scrolls inside its own container, never the page. |
+| Core flows reachable on a phone | All eleven render and are operable |
+| Controls under 32 px tall (phone) | 10 found, **all inline text links — not violations**; see below |
+
+**On the short controls.** Every one is an inline text link: seven footer links, the
+hero's "What is SP-MIS?", the GRM "Learn about grievance redress", and a breadcrumb.
+WCAG 2.1 AA — the standard this system targets — has **no** minimum target-size
+criterion; 2.5.5 Target Size is AAA, and 2.5.8 (WCAG 2.2, AA) explicitly exempts targets
+that sit inline in a block of text. So the 32 px bar the check used is stricter than both
+the standard and the intent of DESIGN.md §6, whose 44 px minimum is about controls, not
+prose links. Nothing was changed: inflating footer links to 44 px would make the page
+worse for no accessibility gain.
+
+One judgement call left open rather than decided unilaterally: the landing page's footer
+links render 18 px tall on a phone. Conformant and conventional, but small for a thumb.
+Worth raising the footer's line spacing if the communications team wants it — a design
+preference, not a defect.
+
 
 ## 4. Tracked exceptions — manual AT / device sign-off before go-live
 

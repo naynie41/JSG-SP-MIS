@@ -9,6 +9,7 @@ use App\Domain\Benefit\Enums\BenefitStatus;
 use App\Domain\Benefit\Models\Benefit;
 use App\Domain\Programme\Models\Enrollment;
 use App\Domain\Registry\Models\Beneficiary;
+use Illuminate\Database\Eloquent\Collection;
 
 /**
  * Builds the programme(s) + benefits-received sections of the FR-DUP-04 match
@@ -25,6 +26,39 @@ class BeneficiaryRevealPresenter
     /**
      * @return array{programmes: list<array<string, mixed>>, benefits: array<string, mixed>}
      */
+    /**
+     * Eager-load what {@see sections()} needs for a WHOLE set of beneficiaries.
+     *
+     * `sections()` costs two queries per subject — enrollments and benefits. That is
+     * fine for one reveal and quadratic on a page of them: the duplicate queue resolves
+     * a reveal per flagged row, so a backlog of 25 cost 50 queries the moment it was
+     * read, and the queue is read precisely when the backlog is large.
+     *
+     * Callers that already hold the whole set preload here, and `sections()` then reads
+     * the loaded relations instead of querying. Callers that hold one subject need
+     * change nothing — the fallback query still runs.
+     *
+     * The eager loads mirror the fallbacks exactly, including the reversed-benefit
+     * exclusion; if they ever drift, the reveal would silently differ depending on which
+     * screen asked for it.
+     *
+     * @param  Collection<int|string, Beneficiary>  $beneficiaries
+     */
+    public function preload(Collection $beneficiaries): void
+    {
+        $beneficiaries->loadMissing([
+            'enrollments' => fn ($q) => $q->withoutGlobalScopes()->with([
+                'programme' => fn ($p) => $p->withoutGlobalScopes(),
+                'mda' => fn ($m) => $m->withoutGlobalScopes()->select('id', 'name'),
+            ]),
+            'benefits' => fn ($q) => $q->withoutGlobalScopes()
+                ->where('status', '!=', BenefitStatus::Reversed->value)
+                ->with(['mda' => fn ($m) => $m->withoutGlobalScopes()->select('id', 'name')])
+                ->latest('delivery_date')
+                ->latest('id'),
+        ]);
+    }
+
     public function sections(Beneficiary $beneficiary, ?User $viewer): array
     {
         $canSeeValue = $viewer !== null
@@ -43,14 +77,18 @@ class BeneficiaryRevealPresenter
     {
         // Programmes are a global catalog (§10); the MDA shown is the one running it
         // for this beneficiary — the enrolling MDA on the enrollment, not a programme owner.
-        return Enrollment::query()
-            ->withoutGlobalScopes()
-            ->where('beneficiary_id', $beneficiary->id)
-            ->with([
-                'programme' => fn ($q) => $q->withoutGlobalScopes(),
-                'mda' => fn ($m) => $m->withoutGlobalScopes()->select('id', 'name'),
-            ])
-            ->get()
+        $enrollments = $beneficiary->relationLoaded('enrollments')
+            ? $beneficiary->getRelation('enrollments')
+            : Enrollment::query()
+                ->withoutGlobalScopes()
+                ->where('beneficiary_id', $beneficiary->id)
+                ->with([
+                    'programme' => fn ($q) => $q->withoutGlobalScopes(),
+                    'mda' => fn ($m) => $m->withoutGlobalScopes()->select('id', 'name'),
+                ])
+                ->get();
+
+        return $enrollments
             ->map(fn (Enrollment $e) => [
                 'programme_id' => $e->programme_id,
                 'name' => $e->programme->name,
@@ -65,14 +103,16 @@ class BeneficiaryRevealPresenter
      */
     private function benefits(Beneficiary $beneficiary, bool $canSeeValue): array
     {
-        $benefits = Benefit::query()
-            ->withoutGlobalScopes()
-            ->where('beneficiary_id', $beneficiary->id)
-            ->where('status', '!=', BenefitStatus::Reversed->value)
-            ->with(['mda' => fn ($m) => $m->withoutGlobalScopes()->select('id', 'name')])
-            ->latest('delivery_date')
-            ->latest('id')
-            ->get();
+        $benefits = $beneficiary->relationLoaded('benefits')
+            ? $beneficiary->getRelation('benefits')
+            : Benefit::query()
+                ->withoutGlobalScopes()
+                ->where('beneficiary_id', $beneficiary->id)
+                ->where('status', '!=', BenefitStatus::Reversed->value)
+                ->with(['mda' => fn ($m) => $m->withoutGlobalScopes()->select('id', 'name')])
+                ->latest('delivery_date')
+                ->latest('id')
+                ->get();
 
         $items = $benefits->take(self::MAX_ITEMS)->map(fn (Benefit $b) => [
             'benefit_type' => $b->benefit_type->value,

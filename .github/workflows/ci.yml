@@ -1,0 +1,171 @@
+name: CI
+
+# Proves that `main` is always deployable: the full suite, lint, static analysis, and a
+# Docker BUILD of the production images.
+#
+# It pushes NOTHING. Publishing is a deliberate act — cut a tag and release.yml builds
+# and pushes the artefact the VPS pulls. For a system holding personal data, "merged"
+# and "released" should not be the same event.
+#
+# The build job exists because a green test suite does not prove an image builds: a
+# missing extension or a broken multi-stage copy only shows up here, and finding that at
+# release time means finding it when you wanted to deploy.
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+  workflow_dispatch: {}
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  backend:
+    name: Backend — tests, lint, static analysis
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: "8.4"
+          # sqlite3/pdo_sqlite: the suite runs on an in-memory SQLite database.
+          # gd + zip: PhpSpreadsheet (XLSX import/export). bcmath: money arithmetic.
+          extensions: mbstring, pdo_sqlite, sqlite3, gd, zip, bcmath, intl
+          coverage: none
+
+      - name: Cache Composer packages
+        uses: actions/cache@v4
+        with:
+          path: ~/.composer/cache
+          key: composer-${{ runner.os }}-${{ hashFiles('api/composer.lock') }}
+          restore-keys: composer-${{ runner.os }}-
+
+      - name: Install dependencies
+        working-directory: api
+        run: composer install --no-interaction --prefer-dist --no-progress
+
+      - name: Prepare the environment
+        working-directory: api
+        run: |
+          cp .env.example .env
+          php artisan key:generate
+
+      # Formatting first: it is the fastest signal and the easiest to fix.
+      - name: Pint (code style)
+        working-directory: api
+        run: php vendor/bin/pint --test
+
+      - name: PHPStan (static analysis)
+        working-directory: api
+        run: php -d memory_limit=1G vendor/bin/phpstan analyse --no-progress
+
+      - name: Test suite
+        working-directory: api
+        run: php artisan test
+
+      # A point-in-time audit has a shelf life — three passes in this project have found
+      # a previously-clean audit gone stale. High/critical is release-blocking.
+      - name: Composer security audit
+        working-directory: api
+        run: composer audit --abandoned=ignore
+
+  frontend:
+    name: Frontend — tests, types, lint
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+          cache: npm
+          cache-dependency-path: web/package-lock.json
+
+      - name: Install dependencies
+        working-directory: web
+        run: npm ci
+
+      - name: TypeScript
+        working-directory: web
+        run: npm run typecheck
+
+      - name: Lint
+        working-directory: web
+        run: npx oxlint src
+
+      # The design tokens are mirrored into web/DESIGN.md; drift means the two describe
+      # different systems.
+      - name: Design tokens in sync
+        working-directory: web
+        run: npm run check:design
+
+      - name: Test suite
+        working-directory: web
+        run: npx vitest run
+
+      - name: npm security audit
+        working-directory: web
+        run: npm audit --audit-level=high
+
+  images:
+    name: Images build (no push)
+    runs-on: ubuntu-latest
+    # Only worth the minutes once the code is known good.
+    needs: [backend, frontend]
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - service: api
+            dockerfile: docker/api/Dockerfile.prod
+          - service: web
+            dockerfile: docker/web/Dockerfile.prod
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Buildx
+        uses: docker/setup-buildx-action@v3
+
+      # push: false — this job proves the image BUILDS. Publishing happens on a tag,
+      # in release.yml, and nowhere else. Cache is shared with release.yml by scope, so
+      # cutting a tag from a CI-green commit is mostly a cache hit.
+      - name: Build ${{ matrix.service }}
+        uses: docker/build-push-action@v6
+        with:
+          context: .
+          file: ${{ matrix.dockerfile }}
+          push: false
+          platforms: linux/amd64
+          cache-from: type=gha,scope=spmis-${{ matrix.service }}
+          cache-to: type=gha,mode=max,scope=spmis-${{ matrix.service }}
+          provenance: false
+
+  summary:
+    name: Deployability
+    runs-on: ubuntu-latest
+    needs: [backend, frontend, images]
+    if: ${{ always() }}
+    steps:
+      - name: Report
+        run: |
+          echo "## SP-MIS CI" >> "$GITHUB_STEP_SUMMARY"
+          echo "" >> "$GITHUB_STEP_SUMMARY"
+          echo "| Job | Result |" >> "$GITHUB_STEP_SUMMARY"
+          echo "|---|---|" >> "$GITHUB_STEP_SUMMARY"
+          echo "| Backend | ${{ needs.backend.result }} |" >> "$GITHUB_STEP_SUMMARY"
+          echo "| Frontend | ${{ needs.frontend.result }} |" >> "$GITHUB_STEP_SUMMARY"
+          echo "| Images build | ${{ needs.images.result }} |" >> "$GITHUB_STEP_SUMMARY"
+          echo "" >> "$GITHUB_STEP_SUMMARY"
+          echo "Nothing was pushed. To release: \`git tag vX.Y.Z && git push origin vX.Y.Z\`." >> "$GITHUB_STEP_SUMMARY"
+      - name: Fail if any job failed
+        if: ${{ contains(needs.*.result, 'failure') }}
+        run: exit 1

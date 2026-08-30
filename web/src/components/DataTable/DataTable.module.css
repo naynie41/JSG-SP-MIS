@@ -10,6 +10,14 @@
   overflow-x: auto;
 }
 
+/* The scroll region is a focus stop (see DataTable.tsx), so it needs a visible ring
+   like every other one — an invisible focus stop is a keyboard user losing their place. */
+.scroll:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: -2px;
+  border-radius: var(--radius-sm);
+}
+
 .table {
   width: 100%;
   border-collapse: collapse;

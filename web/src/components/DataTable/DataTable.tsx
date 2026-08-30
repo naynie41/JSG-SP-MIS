@@ -100,7 +100,17 @@ export function DataTable<T>({
 
   return (
     <div className={styles.container}>
-      <div className={styles.scroll}>
+      {/*
+        Focusable because it scrolls (WCAG 2.1.1).
+
+        On a narrow screen the table overflows horizontally, and a region that can only
+        be scrolled by dragging is a region a keyboard-only user cannot read the right-
+        hand columns of — on this table that is where status and actions sit. `tabindex`
+        makes it a focus stop so the arrow keys reach them; `role="region"` plus the
+        caption as its name means the stop announces WHICH table it is rather than
+        landing the reader on an unnamed box.
+      */}
+      <div className={styles.scroll} tabIndex={0} role="region" aria-label={caption}>
         <table className={styles.table}>
           <caption className="sr-only">{caption}</caption>
           <thead>

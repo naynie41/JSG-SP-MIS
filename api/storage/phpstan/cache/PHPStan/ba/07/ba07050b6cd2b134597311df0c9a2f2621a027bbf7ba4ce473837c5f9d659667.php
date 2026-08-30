@@ -17,6 +17,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
           'benefit' => 'App\\Domain\\Benefit\\Models\\Benefit',
           'enrollment' => 'App\\Domain\\Programme\\Models\\Enrollment',
           'beneficiary' => 'App\\Domain\\Registry\\Models\\Beneficiary',
+          'collection' => 'Illuminate\\Database\\Eloquent\\Collection',
         ),
          'className' => 'App\\Domain\\Benefit\\Services\\BeneficiaryRevealPresenter',
          'functionName' => NULL,
@@ -24,6 +25,61 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         array (
         ),
          'parent' => NULL,
+         'typeAliasesMap' => 
+        array (
+        ),
+         'bypassTypeAliases' => false,
+         'constUses' => 
+        array (
+        ),
+         'typeAliasClassName' => NULL,
+         'traitData' => NULL,
+      )),
+      'b5dd5278e7bd90055e10b2ea0f0cfa4e' => 
+      \PHPStan\Analyser\IntermediaryNameScope::__set_state(array(
+         'namespace' => 'App\\Domain\\Benefit\\Services',
+         'uses' => 
+        array (
+          'user' => 'App\\Domain\\Access\\Models\\User',
+          'benefitstatus' => 'App\\Domain\\Benefit\\Enums\\BenefitStatus',
+          'benefit' => 'App\\Domain\\Benefit\\Models\\Benefit',
+          'enrollment' => 'App\\Domain\\Programme\\Models\\Enrollment',
+          'beneficiary' => 'App\\Domain\\Registry\\Models\\Beneficiary',
+          'collection' => 'Illuminate\\Database\\Eloquent\\Collection',
+        ),
+         'className' => 'App\\Domain\\Benefit\\Services\\BeneficiaryRevealPresenter',
+         'functionName' => 'preload',
+         'templatePhpDocNodes' => 
+        array (
+        ),
+         'parent' => 
+        \PHPStan\Analyser\IntermediaryNameScope::__set_state(array(
+           'namespace' => 'App\\Domain\\Benefit\\Services',
+           'uses' => 
+          array (
+            'user' => 'App\\Domain\\Access\\Models\\User',
+            'benefitstatus' => 'App\\Domain\\Benefit\\Enums\\BenefitStatus',
+            'benefit' => 'App\\Domain\\Benefit\\Models\\Benefit',
+            'enrollment' => 'App\\Domain\\Programme\\Models\\Enrollment',
+            'beneficiary' => 'App\\Domain\\Registry\\Models\\Beneficiary',
+            'collection' => 'Illuminate\\Database\\Eloquent\\Collection',
+          ),
+           'className' => 'App\\Domain\\Benefit\\Services\\BeneficiaryRevealPresenter',
+           'functionName' => NULL,
+           'templatePhpDocNodes' => 
+          array (
+          ),
+           'parent' => NULL,
+           'typeAliasesMap' => 
+          array (
+          ),
+           'bypassTypeAliases' => false,
+           'constUses' => 
+          array (
+          ),
+           'typeAliasClassName' => NULL,
+           'traitData' => NULL,
+        )),
          'typeAliasesMap' => 
         array (
         ),
@@ -44,6 +100,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
           'benefit' => 'App\\Domain\\Benefit\\Models\\Benefit',
           'enrollment' => 'App\\Domain\\Programme\\Models\\Enrollment',
           'beneficiary' => 'App\\Domain\\Registry\\Models\\Beneficiary',
+          'collection' => 'Illuminate\\Database\\Eloquent\\Collection',
         ),
          'className' => 'App\\Domain\\Benefit\\Services\\BeneficiaryRevealPresenter',
          'functionName' => 'sections',
@@ -60,6 +117,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             'benefit' => 'App\\Domain\\Benefit\\Models\\Benefit',
             'enrollment' => 'App\\Domain\\Programme\\Models\\Enrollment',
             'beneficiary' => 'App\\Domain\\Registry\\Models\\Beneficiary',
+            'collection' => 'Illuminate\\Database\\Eloquent\\Collection',
           ),
            'className' => 'App\\Domain\\Benefit\\Services\\BeneficiaryRevealPresenter',
            'functionName' => NULL,
@@ -97,6 +155,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
           'benefit' => 'App\\Domain\\Benefit\\Models\\Benefit',
           'enrollment' => 'App\\Domain\\Programme\\Models\\Enrollment',
           'beneficiary' => 'App\\Domain\\Registry\\Models\\Beneficiary',
+          'collection' => 'Illuminate\\Database\\Eloquent\\Collection',
         ),
          'className' => 'App\\Domain\\Benefit\\Services\\BeneficiaryRevealPresenter',
          'functionName' => 'programmes',
@@ -113,6 +172,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             'benefit' => 'App\\Domain\\Benefit\\Models\\Benefit',
             'enrollment' => 'App\\Domain\\Programme\\Models\\Enrollment',
             'beneficiary' => 'App\\Domain\\Registry\\Models\\Beneficiary',
+            'collection' => 'Illuminate\\Database\\Eloquent\\Collection',
           ),
            'className' => 'App\\Domain\\Benefit\\Services\\BeneficiaryRevealPresenter',
            'functionName' => NULL,
@@ -150,6 +210,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
           'benefit' => 'App\\Domain\\Benefit\\Models\\Benefit',
           'enrollment' => 'App\\Domain\\Programme\\Models\\Enrollment',
           'beneficiary' => 'App\\Domain\\Registry\\Models\\Beneficiary',
+          'collection' => 'Illuminate\\Database\\Eloquent\\Collection',
         ),
          'className' => 'App\\Domain\\Benefit\\Services\\BeneficiaryRevealPresenter',
          'functionName' => 'benefits',
@@ -166,6 +227,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             'benefit' => 'App\\Domain\\Benefit\\Models\\Benefit',
             'enrollment' => 'App\\Domain\\Programme\\Models\\Enrollment',
             'beneficiary' => 'App\\Domain\\Registry\\Models\\Beneficiary',
+            'collection' => 'Illuminate\\Database\\Eloquent\\Collection',
           ),
            'className' => 'App\\Domain\\Benefit\\Services\\BeneficiaryRevealPresenter',
            'functionName' => NULL,
@@ -196,7 +258,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
     ),
     1 => 
     array (
-      '/var/www/html/app/Domain/Benefit/Services/BeneficiaryRevealPresenter.php' => '606e5f7450c76e5b2398af381b8308136037fee4ce11da84929cac0740e81594',
+      '/var/www/html/app/Domain/Benefit/Services/BeneficiaryRevealPresenter.php' => '8ab42b9d3c30184a7be28b5b850ec63172ff85018851689586b0bf69bc1a8a79',
     ),
   ),
 ));

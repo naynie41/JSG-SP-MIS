@@ -16202,6 +16202,19 @@ return [
       ),
     ),
   ),
+  '/var/www/html/app/Domain/Registry/Services/MatchRevealAssembler.php' => 
+  array (
+    'PHPStan\\Rules\\DeadCode\\ConstructorWithoutImpurePointsCollector' => 
+    array (
+      0 => 
+      array (
+        0 => 'App\\Domain\\Registry\\Services\\MatchRevealAssembler',
+        1 => 
+        array (
+        ),
+      ),
+    ),
+  ),
   '/var/www/html/app/Domain/Registry/Services/NullBeneficiaryRouter.php' => 
   array (
     'PHPStan\\Rules\\DeadCode\\MethodWithoutImpurePointsCollector' => 
@@ -25773,10 +25786,11 @@ return [
   ),
   '/var/www/html/app/Domain/Benefit/Services/BeneficiaryRevealPresenter.php' => 
   array (
-    'fileHash' => '606e5f7450c76e5b2398af381b8308136037fee4ce11da84929cac0740e81594',
+    'fileHash' => '8ab42b9d3c30184a7be28b5b850ec63172ff85018851689586b0bf69bc1a8a79',
     'dependentFiles' => 
     array (
-      0 => '/var/www/html/app/Http/Resources/BeneficiaryRevealResource.php',
+      0 => '/var/www/html/app/Domain/Registry/Services/MatchRevealAssembler.php',
+      1 => '/var/www/html/app/Http/Resources/BeneficiaryRevealResource.php',
     ),
   ),
   '/var/www/html/app/Domain/Benefit/Services/BenefitRecorder.php' => 
@@ -28675,7 +28689,7 @@ return [
   ),
   '/var/www/html/app/Domain/Registry/Services/MatchRevealAssembler.php' => 
   array (
-    'fileHash' => 'd9d81e21365fe0fdba9f6f88c5fb04569c37d65e8d6bc6f18f47c541bef3e201',
+    'fileHash' => 'a0224e73738e68d59e97c2441c15f4a89af0c93b23ad675b8c6387fd32e310bc',
     'dependentFiles' => 
     array (
       0 => '/var/www/html/app/Http/Controllers/Api/V1/Registry/DuplicateQueueController.php',
@@ -45065,6 +45079,7 @@ return [
           'benefit' => 'App\\Domain\\Benefit\\Models\\Benefit',
           'enrollment' => 'App\\Domain\\Programme\\Models\\Enrollment',
           'beneficiary' => 'App\\Domain\\Registry\\Models\\Beneficiary',
+          'collection' => 'Illuminate\\Database\\Eloquent\\Collection',
         ),
          'constUses' => 
         array (
@@ -45086,11 +45101,26 @@ return [
       array (
         0 => 
         \PHPStan\Dependency\ExportedNode\ExportedMethodNode::__set_state(array(
-           'name' => 'sections',
+           'name' => 'preload',
            'phpDoc' => 
           \PHPStan\Dependency\ExportedNode\ExportedPhpDocNode::__set_state(array(
              'phpDocString' => '/**
-     * @return array{programmes: list<array<string, mixed>>, benefits: array<string, mixed>}
+     * Eager-load what {@see sections()} needs for a WHOLE set of beneficiaries.
+     *
+     * `sections()` costs two queries per subject — enrollments and benefits. That is
+     * fine for one reveal and quadratic on a page of them: the duplicate queue resolves
+     * a reveal per flagged row, so a backlog of 25 cost 50 queries the moment it was
+     * read, and the queue is read precisely when the backlog is large.
+     *
+     * Callers that already hold the whole set preload here, and `sections()` then reads
+     * the loaded relations instead of querying. Callers that hold one subject need
+     * change nothing — the fallback query still runs.
+     *
+     * The eager loads mirror the fallbacks exactly, including the reversed-benefit
+     * exclusion; if they ever drift, the reveal would silently differ depending on which
+     * screen asked for it.
+     *
+     * @param  Collection<int|string, Beneficiary>  $beneficiaries
      */',
              'namespace' => 'App\\Domain\\Benefit\\Services',
              'uses' => 
@@ -45100,11 +45130,43 @@ return [
               'benefit' => 'App\\Domain\\Benefit\\Models\\Benefit',
               'enrollment' => 'App\\Domain\\Programme\\Models\\Enrollment',
               'beneficiary' => 'App\\Domain\\Registry\\Models\\Beneficiary',
+              'collection' => 'Illuminate\\Database\\Eloquent\\Collection',
             ),
              'constUses' => 
             array (
             ),
           )),
+           'byRef' => false,
+           'public' => true,
+           'private' => false,
+           'abstract' => false,
+           'final' => false,
+           'static' => false,
+           'returnType' => 'void',
+           'parameters' => 
+          array (
+            0 => 
+            \PHPStan\Dependency\ExportedNode\ExportedParameterNode::__set_state(array(
+               'name' => 'beneficiaries',
+               'type' => 'Illuminate\\Database\\Eloquent\\Collection',
+               'byRef' => false,
+               'variadic' => false,
+               'hasDefault' => false,
+               'attributes' => 
+              array (
+              ),
+               'phpDoc' => NULL,
+               'flags' => 0,
+            )),
+          ),
+           'attributes' => 
+          array (
+          ),
+        )),
+        1 => 
+        \PHPStan\Dependency\ExportedNode\ExportedMethodNode::__set_state(array(
+           'name' => 'sections',
+           'phpDoc' => NULL,
            'byRef' => false,
            'public' => true,
            'private' => false,
@@ -80311,6 +80373,7 @@ return [
          'uses' => 
         array (
           'mdascope' => 'App\\Domain\\Access\\Scopes\\MdaScope',
+          'beneficiaryrevealpresenter' => 'App\\Domain\\Benefit\\Services\\BeneficiaryRevealPresenter',
           'beneficiary' => 'App\\Domain\\Registry\\Models\\Beneficiary',
           'importbatch' => 'App\\Domain\\Registry\\Models\\ImportBatch',
           'importrow' => 'App\\Domain\\Registry\\Models\\ImportRow',
@@ -80337,6 +80400,37 @@ return [
       array (
         0 => 
         \PHPStan\Dependency\ExportedNode\ExportedMethodNode::__set_state(array(
+           'name' => '__construct',
+           'phpDoc' => NULL,
+           'byRef' => false,
+           'public' => true,
+           'private' => false,
+           'abstract' => false,
+           'final' => false,
+           'static' => false,
+           'returnType' => NULL,
+           'parameters' => 
+          array (
+            0 => 
+            \PHPStan\Dependency\ExportedNode\ExportedParameterNode::__set_state(array(
+               'name' => 'reveals',
+               'type' => 'App\\Domain\\Benefit\\Services\\BeneficiaryRevealPresenter',
+               'byRef' => false,
+               'variadic' => false,
+               'hasDefault' => false,
+               'attributes' => 
+              array (
+              ),
+               'phpDoc' => NULL,
+               'flags' => 68,
+            )),
+          ),
+           'attributes' => 
+          array (
+          ),
+        )),
+        1 => 
+        \PHPStan\Dependency\ExportedNode\ExportedMethodNode::__set_state(array(
            'name' => 'attach',
            'phpDoc' => 
           \PHPStan\Dependency\ExportedNode\ExportedPhpDocNode::__set_state(array(
@@ -80351,6 +80445,7 @@ return [
              'uses' => 
             array (
               'mdascope' => 'App\\Domain\\Access\\Scopes\\MdaScope',
+              'beneficiaryrevealpresenter' => 'App\\Domain\\Benefit\\Services\\BeneficiaryRevealPresenter',
               'beneficiary' => 'App\\Domain\\Registry\\Models\\Beneficiary',
               'importbatch' => 'App\\Domain\\Registry\\Models\\ImportBatch',
               'importrow' => 'App\\Domain\\Registry\\Models\\ImportRow',

@@ -107,7 +107,37 @@ consent settings are env-driven and need a restart.
   is accepted as free text — see `KnownWard`.
 
 ---
-## CI: build & push images (GitHub)
+## CI/CD: two workflows, one deliberate release
+
+The pipeline is **VS Code → GitHub → Actions → GHCR → the VPS pulls**. The VPS never runs
+`docker build`; it only ever pulls an image someone decided to release.
+
+| Workflow | Fires on | Does | Pushes |
+|---|---|---|---|
+| `.github/workflows/ci.yml` | push / PR to `main` | Backend suite, Pint, PHPStan, `composer audit`; frontend suite, `tsc`, oxlint, design-token check, `npm audit`; then **builds both production images** | **Nothing** |
+| `.github/workflows/release.yml` | tag `v*` (or manual dispatch) | Builds and pushes the production images | `ghcr.io/<owner>/spmis-{api,web}` |
+
+**Why merging is not releasing.** `main` being green means it *could* ship; a tag means
+someone decided it *should*. For a system holding personal data, keeping those separate
+is worth the extra step — and it is what makes rollback trivial, because the previous
+release is still a tag you can pull. Wanting continuous deploy later is a one-line trigger
+change in `release.yml`; the default is deliberate.
+
+**Why CI builds images it throws away.** A green suite does not prove an image builds. A
+missing PHP extension or a broken multi-stage copy only appears at build time, and finding
+that when you are trying to cut a release means finding it at the worst moment. The build
+cache is shared with `release.yml` by scope, so tagging a CI-green commit is mostly a
+cache hit.
+
+**PHPStan runs against a baseline.** `api/phpstan-baseline.neon` records 18 pre-existing
+findings so CI fails on *new* ones instead of failing on the backlog from day one. Shrink
+it deliberately; never regenerate it to silence a fresh error.
+
+**There is no `worker` image.** The worker and scheduler run the `spmis-api` image with a
+different command — same code, same dependencies, one artefact to build, scan and roll
+back. A third identical image would only be a third thing to keep in step.
+
+### Cutting a release
 
 Images build automatically when you push a version tag:
 
@@ -466,3 +496,185 @@ and RPO/RTO are in [SCALE-AND-AVAILABILITY.md](SCALE-AND-AVAILABILITY.md).
   stable managed secrets (rotating `APP_KEY` orphans encrypted data/backups —
   re-encrypt first, see SECURITY-FINDINGS.md).
 - TLS enforced (HTTP→HTTPS 301, HSTS) with the full security-header set at the edge.
+
+---
+
+## 8. Monitoring & alerting
+
+Monitoring lives **outside the application**. SP-MIS deliberately shows no system-health
+widgets in its console (CLAUDE.md §8): an operator watching the thing that is down learns
+nothing, and a dashboard that renders "all healthy" from inside a broken stack is worse
+than no dashboard. These run alongside the app on the VPS, or off it.
+
+Three essentials. Everything past them is optional and can wait.
+
+### 8.1 Uptime & container liveness
+
+**Uptime Kuma** (self-hosted, ~100 MB) or any external checker. Monitor:
+
+| Check | Target | Expect |
+|---|---|---|
+| Public health | `https://<domain>/healthz` | 200, < 2 s |
+| API readiness | `https://<domain>/api/v1/health` | 200 with dependency states |
+| TLS expiry | the domain | alert at 21 days |
+
+```bash
+# Alongside the stack, on its own port, not published through nginx.
+docker run -d --restart unless-stopped \
+  -p 127.0.0.1:3001:3001 \
+  -v uptime-kuma:/app/data \
+  --name uptime-kuma louislam/uptime-kuma:1
+```
+
+Bind it to `127.0.0.1` and reach it over an SSH tunnel
+(`ssh -L 3001:127.0.0.1:3001 <vps>`). Publishing a monitoring UI on the public interface
+adds an unauthenticated-by-default surface next to a system holding personal data.
+
+`/api/v1/health` already reports per-dependency state (database, cache, queue), so a
+degraded-but-up stack is distinguishable from a dead one. Alert to whatever the team
+actually reads — email, Telegram and Slack are all built in.
+
+### 8.2 Application errors
+
+**Sentry**, or any equivalent. Two DSNs, because the two runtimes fail differently:
+
+```dotenv
+# api/.env  (Laravel)
+SENTRY_LARAVEL_DSN=https://…
+SENTRY_TRACES_SAMPLE_RATE=0.1
+
+# web build-time (Vite)
+VITE_SENTRY_DSN=https://…
+```
+
+> **Scrub before you ship.** An exception payload can carry request bodies, and a request
+> body here can carry a NIN. Enable Sentry's data-scrubbing, set
+> `send_default_pii=false`, and confirm on staging that a deliberately-failed import
+> reports a stack trace and **no beneficiary data**. This is the same rule the audit log
+> already follows (SECURITY.md §3) — an error tracker is not exempt from it.
+
+### 8.3 Backup success — a dead man's switch
+
+The one that matters most, because **a backup that stops running is silent**. Nothing
+fails, nothing alerts, and you discover it when you need a restore.
+
+Invert it: the backup pings a service on success, and *that service* alerts when the ping
+does not arrive.
+
+```bash
+# Healthchecks.io (hosted) or self-hosted. Create a check on a daily schedule with a
+# grace period longer than the backup takes, then:
+BACKUP_HEARTBEAT_URL=https://hc-ping.com/<uuid>
+```
+
+Wire it to the scheduled backup so the ping only fires on success:
+
+```bash
+docker compose -f docker-compose.prod.yml exec -T api php artisan backup:run \
+  && curl -fsS --retry 3 "$BACKUP_HEARTBEAT_URL" \
+  || curl -fsS --retry 3 "$BACKUP_HEARTBEAT_URL/fail"
+```
+
+A restore drill is proven in the suite (`BackupDrillTest`), but a green test proves the
+CODE restores. Only the heartbeat proves it **ran last night**.
+
+### 8.4 Logs
+
+Every service caps its logs in `docker-compose.prod.yml` (`json-file`, 10 MB × 5). This is
+not housekeeping: Docker's default is unbounded, and the first symptom of a full disk is
+Postgres refusing writes — a data-loss-shaped failure caused by logging.
+
+```bash
+docker compose -f docker-compose.prod.yml logs -f --tail=100 api
+docker compose -f docker-compose.prod.yml logs --since 1h nginx
+docker compose -f docker-compose.prod.yml exec api tail -f storage/logs/laravel.log
+docker system df   # disk used by images, containers, volumes
+```
+
+> Laravel's own log is a separate file inside the container and is **not** covered by the
+> Docker rotation. Set `LOG_CHANNEL=daily` in production; a single un-rotated channel
+> reached 77 MB in development.
+
+### 8.5 What is deliberately not here
+
+Prometheus, Grafana and Loki are the right answer at multi-node scale and the wrong one
+for a single VPS: they cost more RAM than the app tier and add a stack to maintain
+alongside the one you are trying to keep up. Add them when there is a second node to
+compare, not before.
+
+---
+
+## 9. Go-live readiness — NFR → evidence
+
+Every row names the evidence, not an opinion. **Machine** rows are proven by something
+that runs; **human** rows cannot be closed by code and are the real gate.
+
+> **Do not load real beneficiary data until every human-owned row is signed off.** Once
+> production PII exists, several of these stop being reversible — an unencrypted volume
+> cannot be retrospectively encrypted for data already written to it, and a pen test
+> against live personal data is a different risk conversation entirely.
+
+### Machine-verifiable
+
+| NFR | Requirement | Evidence | State |
+|---|---|---|---|
+| NFR-SEC-01 | Encryption at rest for NIN/BVN/TOTP | `SecurityHardeningTest` — ciphertext + keyed-hash lookup | ✅ |
+| NFR-SEC-02 | Central MDA scoping, no ad-hoc bypass | `ScopeBypassSurfaceTest` — file allow-list, new bypass fails CI | ✅ |
+| NFR-SEC-02 | Deny-by-default RBAC | `SecurityHardeningTest` — role-less user denied everywhere | ✅ |
+| NFR-AUD-01 | Tamper-evident audit | `audit:verify-chain` — 2,858 entries verified; forged row detected | ✅ |
+| NFR-PRV-01 | Cross-MDA sharing governed | `DataSharingGovernanceTest` — one guard, four bases, denial audited | ✅ |
+| NFR-PRV-01 | Anonymisation is complete | `AnonymizationStagingResidueTest` — sweep fails if any table retains the erased NIN | ✅ |
+| NFR-PERF-01 | No N+1 on hot paths | `QueryEfficiencyTest`, `HotPathEfficiencyTest` — growth, not ceiling | ✅ |
+| NFR-PERF-01 | Duplicate < 5 s, pages < 3 s | `perf:benchmark` — **dev stack only, 832 records** | ⚠️ unproven at volume |
+| NFR-AVAIL-01 | Encrypted offsite backup + restore | `BackupDrillTest` — 6 tests incl. tamper detection, restore within RTO | ✅ |
+| NFR-AVAIL-01 | Health endpoints | `HealthTest` — readiness reports dependencies; metrics gated, no PII | ✅ |
+| NFR-USE-01 | WCAG 2.1 AA | axe-core, 26 page/viewport runs — 0 violations | ✅ |
+| NFR-USE-01 | Keyboard + mobile | tab-walk 9 flows; 11 routes × 3 viewports, no horizontal scroll | ✅ |
+| NFR-MAINT-01 | `main` is always deployable | `ci.yml` — suite, lint, analysis, image build, pushes nothing | ✅ |
+| NFR-MAINT-01 | Release is deliberate | `release.yml` — tag-triggered, GHCR push, rollback by previous tag | ✅ |
+| NFR-SCAL-01 | Stateless app tier | sessions/cache in Redis; queue in RabbitMQ; workers scale horizontally | ✅ |
+
+### Deployment gates — verify on the VPS, not in CI
+
+| Check | How to prove it | Owner |
+|---|---|---|
+| GHCR pull works | `docker compose -f docker-compose.prod.yml pull` after `docker login ghcr.io` (§2.2) | DevOps |
+| Only 80/443 public | `ss -tlnp` on the host shows nothing else bound externally | DevOps |
+| TLS valid + HSTS | `curl -sI https://<domain> \| grep -i strict-transport` | DevOps |
+| HTTP → HTTPS | `curl -sI http://<domain>` returns 301 | DevOps |
+| Migrations applied | `php artisan migrate --force` then `migrate:status` | DevOps |
+| Queue consuming | §3.2 | DevOps |
+| Uptime monitor live | a deliberate `docker stop nginx` raises an alert | DevOps |
+| Backup heartbeat live | skip one scheduled run; the dead-man's switch alerts (§8.3) | DevOps |
+| Restore rehearsed | restore last night's artefact into a scratch database and diff row counts | DevOps |
+
+### Human-owned — the real gate
+
+| Gate | Owner | Blocks |
+|---|---|---|
+| **PT-01** external penetration test on staging | Security | Real PII |
+| **PT-02** DPO sign-off: consent model, retention schedule, anonymisation lists, export matrix | DPO | Real PII |
+| **OPS-01** TLS 1.2+ and certificate management | DevOps | Go-live |
+| **OPS-02** encrypted DB volume + encrypted offsite backups | DevOps | Real PII |
+| **OPS-03** egress allow-list for sync workers | DevOps | Live connectors |
+| **OPS-04** `audit:verify-chain` scheduled + alerting on failure | DevOps | Go-live |
+| **OPS-05** per-environment `APP_KEY`; rotation runbook incl. NIN/BVN re-encryption | DevOps | Go-live |
+| **OPS-06** `VITE_MAP_TILE_URL` set to an approved origin | DevOps | Working maps |
+| **OPS-07** scheduled dependency audit, high/critical release-blocking | DevOps | Ongoing |
+| **OPS-08** retention period for RAW IMPORT FILES — no mechanism exists until supplied | DPO | Real PII |
+| Retention policies configured | DPO | Real PII |
+| Matching thresholds + SLAs confirmed | SP Coordination | Go-live |
+| Ward dataset completed (162 of ~287; 6 LGAs have none) | SP Coordination | Ward validation |
+| Load test at volume on staging | DevOps | Perf sign-off |
+
+### Known state at the time of writing
+
+- **Boundaries:** 27 LGA outlines ship and load. **Ward boundaries do not** — the GIS ward
+  layer falls back to a ranked table, which is a degradation, not a failure.
+- **Wards:** 162 of roughly 287. Ward validation is per-LGA, so an LGA with no list accepts
+  free text rather than rejecting every ward in it — the gap degrades quietly.
+- **Sync:** runs on `MockSyncSource` until real SOCU/government endpoints are supplied.
+- **Retention:** disabled with an empty policy list. Nothing is aged out until the DPO acts.
+
+---
+
