@@ -13,6 +13,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
          'uses' => 
         array (
           'mdascope' => 'App\\Domain\\Access\\Scopes\\MdaScope',
+          'beneficiaryrevealpresenter' => 'App\\Domain\\Benefit\\Services\\BeneficiaryRevealPresenter',
           'beneficiary' => 'App\\Domain\\Registry\\Models\\Beneficiary',
           'importbatch' => 'App\\Domain\\Registry\\Models\\ImportBatch',
           'importrow' => 'App\\Domain\\Registry\\Models\\ImportRow',
@@ -35,12 +36,70 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
          'typeAliasClassName' => NULL,
          'traitData' => NULL,
       )),
+      '0d86ba974d3bfbd47ae92acf3c5ef818' => 
+      \PHPStan\Analyser\IntermediaryNameScope::__set_state(array(
+         'namespace' => 'App\\Domain\\Registry\\Services',
+         'uses' => 
+        array (
+          'mdascope' => 'App\\Domain\\Access\\Scopes\\MdaScope',
+          'beneficiaryrevealpresenter' => 'App\\Domain\\Benefit\\Services\\BeneficiaryRevealPresenter',
+          'beneficiary' => 'App\\Domain\\Registry\\Models\\Beneficiary',
+          'importbatch' => 'App\\Domain\\Registry\\Models\\ImportBatch',
+          'importrow' => 'App\\Domain\\Registry\\Models\\ImportRow',
+          'beneficiaryrevealresource' => 'App\\Http\\Resources\\BeneficiaryRevealResource',
+          'collection' => 'Illuminate\\Support\\Collection',
+        ),
+         'className' => 'App\\Domain\\Registry\\Services\\MatchRevealAssembler',
+         'functionName' => '__construct',
+         'templatePhpDocNodes' => 
+        array (
+        ),
+         'parent' => 
+        \PHPStan\Analyser\IntermediaryNameScope::__set_state(array(
+           'namespace' => 'App\\Domain\\Registry\\Services',
+           'uses' => 
+          array (
+            'mdascope' => 'App\\Domain\\Access\\Scopes\\MdaScope',
+            'beneficiaryrevealpresenter' => 'App\\Domain\\Benefit\\Services\\BeneficiaryRevealPresenter',
+            'beneficiary' => 'App\\Domain\\Registry\\Models\\Beneficiary',
+            'importbatch' => 'App\\Domain\\Registry\\Models\\ImportBatch',
+            'importrow' => 'App\\Domain\\Registry\\Models\\ImportRow',
+            'beneficiaryrevealresource' => 'App\\Http\\Resources\\BeneficiaryRevealResource',
+            'collection' => 'Illuminate\\Support\\Collection',
+          ),
+           'className' => 'App\\Domain\\Registry\\Services\\MatchRevealAssembler',
+           'functionName' => NULL,
+           'templatePhpDocNodes' => 
+          array (
+          ),
+           'parent' => NULL,
+           'typeAliasesMap' => 
+          array (
+          ),
+           'bypassTypeAliases' => false,
+           'constUses' => 
+          array (
+          ),
+           'typeAliasClassName' => NULL,
+           'traitData' => NULL,
+        )),
+         'typeAliasesMap' => 
+        array (
+        ),
+         'bypassTypeAliases' => false,
+         'constUses' => 
+        array (
+        ),
+         'typeAliasClassName' => NULL,
+         'traitData' => NULL,
+      )),
       '057db7436bb0c4bccd1d636f3e7db286' => 
       \PHPStan\Analyser\IntermediaryNameScope::__set_state(array(
          'namespace' => 'App\\Domain\\Registry\\Services',
          'uses' => 
         array (
           'mdascope' => 'App\\Domain\\Access\\Scopes\\MdaScope',
+          'beneficiaryrevealpresenter' => 'App\\Domain\\Benefit\\Services\\BeneficiaryRevealPresenter',
           'beneficiary' => 'App\\Domain\\Registry\\Models\\Beneficiary',
           'importbatch' => 'App\\Domain\\Registry\\Models\\ImportBatch',
           'importrow' => 'App\\Domain\\Registry\\Models\\ImportRow',
@@ -58,6 +117,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
            'uses' => 
           array (
             'mdascope' => 'App\\Domain\\Access\\Scopes\\MdaScope',
+            'beneficiaryrevealpresenter' => 'App\\Domain\\Benefit\\Services\\BeneficiaryRevealPresenter',
             'beneficiary' => 'App\\Domain\\Registry\\Models\\Beneficiary',
             'importbatch' => 'App\\Domain\\Registry\\Models\\ImportBatch',
             'importrow' => 'App\\Domain\\Registry\\Models\\ImportRow',
@@ -96,6 +156,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
          'uses' => 
         array (
           'mdascope' => 'App\\Domain\\Access\\Scopes\\MdaScope',
+          'beneficiaryrevealpresenter' => 'App\\Domain\\Benefit\\Services\\BeneficiaryRevealPresenter',
           'beneficiary' => 'App\\Domain\\Registry\\Models\\Beneficiary',
           'importbatch' => 'App\\Domain\\Registry\\Models\\ImportBatch',
           'importrow' => 'App\\Domain\\Registry\\Models\\ImportRow',
@@ -113,6 +174,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
            'uses' => 
           array (
             'mdascope' => 'App\\Domain\\Access\\Scopes\\MdaScope',
+            'beneficiaryrevealpresenter' => 'App\\Domain\\Benefit\\Services\\BeneficiaryRevealPresenter',
             'beneficiary' => 'App\\Domain\\Registry\\Models\\Beneficiary',
             'importbatch' => 'App\\Domain\\Registry\\Models\\ImportBatch',
             'importrow' => 'App\\Domain\\Registry\\Models\\ImportRow',
@@ -151,6 +213,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
          'uses' => 
         array (
           'mdascope' => 'App\\Domain\\Access\\Scopes\\MdaScope',
+          'beneficiaryrevealpresenter' => 'App\\Domain\\Benefit\\Services\\BeneficiaryRevealPresenter',
           'beneficiary' => 'App\\Domain\\Registry\\Models\\Beneficiary',
           'importbatch' => 'App\\Domain\\Registry\\Models\\ImportBatch',
           'importrow' => 'App\\Domain\\Registry\\Models\\ImportRow',
@@ -168,6 +231,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
            'uses' => 
           array (
             'mdascope' => 'App\\Domain\\Access\\Scopes\\MdaScope',
+            'beneficiaryrevealpresenter' => 'App\\Domain\\Benefit\\Services\\BeneficiaryRevealPresenter',
             'beneficiary' => 'App\\Domain\\Registry\\Models\\Beneficiary',
             'importbatch' => 'App\\Domain\\Registry\\Models\\ImportBatch',
             'importrow' => 'App\\Domain\\Registry\\Models\\ImportRow',
@@ -203,7 +267,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
     ),
     1 => 
     array (
-      '/var/www/html/app/Domain/Registry/Services/MatchRevealAssembler.php' => 'd9d81e21365fe0fdba9f6f88c5fb04569c37d65e8d6bc6f18f47c541bef3e201',
+      '/var/www/html/app/Domain/Registry/Services/MatchRevealAssembler.php' => 'a0224e73738e68d59e97c2441c15f4a89af0c93b23ad675b8c6387fd32e310bc',
     ),
   ),
 ));

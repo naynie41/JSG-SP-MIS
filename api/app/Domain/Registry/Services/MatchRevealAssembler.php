@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Domain\Registry\Services;
 
 use App\Domain\Access\Scopes\MdaScope;
+use App\Domain\Benefit\Services\BeneficiaryRevealPresenter;
 use App\Domain\Registry\Models\Beneficiary;
 use App\Domain\Registry\Models\ImportBatch;
 use App\Domain\Registry\Models\ImportRow;
@@ -24,6 +25,8 @@ use Illuminate\Support\Collection;
  */
 class MatchRevealAssembler
 {
+    public function __construct(private readonly BeneficiaryRevealPresenter $reveals) {}
+
     /**
      * Attach `match_view` to every row, resolving matched records in ONE query for the
      * whole collection rather than per row.
@@ -45,6 +48,12 @@ class MatchRevealAssembler
             ->whereIn('id', $registryIds)
             ->get()
             ->keyBy('id');
+
+        // The reveal's programme/benefit sections cost two queries per subject. Loaded
+        // here for the whole page instead: this assembler serves the duplicate QUEUE,
+        // which is read when the backlog is large, so per-subject work is exactly the
+        // cost that grows with the thing the screen exists to clear.
+        $this->reveals->preload($beneficiaries);
 
         // Within-batch peers are resolved against rows of the SAME batch: a candidate
         // reference is a row number, which only means anything inside its own file.

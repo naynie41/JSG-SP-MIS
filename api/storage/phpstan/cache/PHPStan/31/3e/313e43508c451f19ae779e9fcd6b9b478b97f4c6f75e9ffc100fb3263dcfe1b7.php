@@ -2,7 +2,7 @@
 
 // odsl-/var/www/html/app/Domain/Registry/Services/MatchRevealAssembler.php-PHPStan\BetterReflection\Reflection\ReflectionClass-App\Domain\Registry\Services\MatchRevealAssembler
 return \PHPStan\Cache\CacheItem::__set_state(array(
-   'variableKey' => 'v2-6.70.0.1-8.3.31-d9d81e21365fe0fdba9f6f88c5fb04569c37d65e8d6bc6f18f47c541bef3e201',
+   'variableKey' => 'v2-6.70.0.1-8.3.31-a0224e73738e68d59e97c2441c15f4a89af0c93b23ad675b8c6387fd32e310bc',
    'data' => 
   array (
     'locatedSource' => 
@@ -36,8 +36,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
     'attributes' => 
     array (
     ),
-    'startLine' => 25,
-    'endLine' => 134,
+    'startLine' => 26,
+    'endLine' => 143,
     'startColumn' => 1,
     'endColumn' => 1,
     'parentClassName' => NULL,
@@ -52,9 +52,93 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
     ),
     'immediateProperties' => 
     array (
+      'reveals' => 
+      array (
+        'declaringClassName' => 'App\\Domain\\Registry\\Services\\MatchRevealAssembler',
+        'implementingClassName' => 'App\\Domain\\Registry\\Services\\MatchRevealAssembler',
+        'name' => 'reveals',
+        'modifiers' => 132,
+        'type' => 
+        array (
+          'class' => 'PHPStan\\BetterReflection\\Reflection\\ReflectionNamedType',
+          'data' => 
+          array (
+            'name' => 'App\\Domain\\Benefit\\Services\\BeneficiaryRevealPresenter',
+            'isIdentifier' => false,
+          ),
+        ),
+        'default' => NULL,
+        'docComment' => NULL,
+        'attributes' => 
+        array (
+        ),
+        'startLine' => 28,
+        'endLine' => 28,
+        'startColumn' => 33,
+        'endColumn' => 84,
+        'isPromoted' => true,
+        'declaredAtCompileTime' => true,
+        'immediateVirtual' => false,
+        'immediateHooks' => 
+        array (
+        ),
+      ),
     ),
     'immediateMethods' => 
     array (
+      '__construct' => 
+      array (
+        'name' => '__construct',
+        'parameters' => 
+        array (
+          'reveals' => 
+          array (
+            'name' => 'reveals',
+            'default' => NULL,
+            'type' => 
+            array (
+              'class' => 'PHPStan\\BetterReflection\\Reflection\\ReflectionNamedType',
+              'data' => 
+              array (
+                'name' => 'App\\Domain\\Benefit\\Services\\BeneficiaryRevealPresenter',
+                'isIdentifier' => false,
+              ),
+            ),
+            'isVariadic' => false,
+            'byRef' => false,
+            'isPromoted' => true,
+            'attributes' => 
+            array (
+            ),
+            'startLine' => 28,
+            'endLine' => 28,
+            'startColumn' => 33,
+            'endColumn' => 84,
+            'parameterIndex' => 0,
+            'isOptional' => false,
+          ),
+        ),
+        'returnsReference' => false,
+        'returnType' => NULL,
+        'attributes' => 
+        array (
+        ),
+        'docComment' => NULL,
+        'startLine' => 28,
+        'endLine' => 28,
+        'startColumn' => 5,
+        'endColumn' => 88,
+        'couldThrow' => false,
+        'isClosure' => false,
+        'isGenerator' => false,
+        'isVariadic' => false,
+        'modifiers' => 1,
+        'namespace' => 'App\\Domain\\Registry\\Services',
+        'declaringClassName' => 'App\\Domain\\Registry\\Services\\MatchRevealAssembler',
+        'implementingClassName' => 'App\\Domain\\Registry\\Services\\MatchRevealAssembler',
+        'currentClassName' => 'App\\Domain\\Registry\\Services\\MatchRevealAssembler',
+        'aliasName' => NULL,
+      ),
       'attach' => 
       array (
         'name' => 'attach',
@@ -79,8 +163,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             'attributes' => 
             array (
             ),
-            'startLine' => 34,
-            'endLine' => 34,
+            'startLine' => 37,
+            'endLine' => 37,
             'startColumn' => 28,
             'endColumn' => 43,
             'parameterIndex' => 0,
@@ -105,8 +189,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             'attributes' => 
             array (
             ),
-            'startLine' => 34,
-            'endLine' => 34,
+            'startLine' => 37,
+            'endLine' => 37,
             'startColumn' => 46,
             'endColumn' => 64,
             'parameterIndex' => 1,
@@ -133,8 +217,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
  * @param  Collection<int, ImportRow>  $rows
  * @param  Collection<string, ImportBatch>  $batches  keyed by id; each row\'s own batch
  */',
-        'startLine' => 34,
-        'endLine' => 91,
+        'startLine' => 37,
+        'endLine' => 100,
         'startColumn' => 5,
         'endColumn' => 5,
         'couldThrow' => false,
@@ -172,8 +256,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             'attributes' => 
             array (
             ),
-            'startLine' => 97,
-            'endLine' => 97,
+            'startLine' => 106,
+            'endLine' => 106,
             'startColumn' => 37,
             'endColumn' => 61,
             'parameterIndex' => 0,
@@ -198,8 +282,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             'attributes' => 
             array (
             ),
-            'startLine' => 97,
-            'endLine' => 97,
+            'startLine' => 106,
+            'endLine' => 106,
             'startColumn' => 64,
             'endColumn' => 73,
             'parameterIndex' => 1,
@@ -242,8 +326,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
  * @param  Collection<string, Beneficiary>  $beneficiaries
  * @return array<string, mixed>|null
  */',
-        'startLine' => 97,
-        'endLine' => 102,
+        'startLine' => 106,
+        'endLine' => 111,
         'startColumn' => 5,
         'endColumn' => 5,
         'couldThrow' => false,
@@ -281,8 +365,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             'attributes' => 
             array (
             ),
-            'startLine' => 111,
-            'endLine' => 111,
+            'startLine' => 120,
+            'endLine' => 120,
             'startColumn' => 33,
             'endColumn' => 49,
             'parameterIndex' => 0,
@@ -307,8 +391,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             'attributes' => 
             array (
             ),
-            'startLine' => 111,
-            'endLine' => 111,
+            'startLine' => 120,
+            'endLine' => 120,
             'startColumn' => 52,
             'endColumn' => 69,
             'parameterIndex' => 1,
@@ -333,8 +417,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             'attributes' => 
             array (
             ),
-            'startLine' => 111,
-            'endLine' => 111,
+            'startLine' => 120,
+            'endLine' => 120,
             'startColumn' => 72,
             'endColumn' => 85,
             'parameterIndex' => 2,
@@ -380,8 +464,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
  * @param  Collection<int, ImportRow>  $peers
  * @return array<string, mixed>|null
  */',
-        'startLine' => 111,
-        'endLine' => 133,
+        'startLine' => 120,
+        'endLine' => 142,
         'startColumn' => 5,
         'endColumn' => 5,
         'couldThrow' => false,

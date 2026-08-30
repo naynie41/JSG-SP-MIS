@@ -2,7 +2,7 @@
 
 // odsl-/var/www/html/app/Domain/Benefit/Services/BeneficiaryRevealPresenter.php-PHPStan\BetterReflection\Reflection\ReflectionClass-App\Domain\Benefit\Services\BeneficiaryRevealPresenter
 return \PHPStan\Cache\CacheItem::__set_state(array(
-   'variableKey' => 'v2-6.70.0.1-8.3.31-606e5f7450c76e5b2398af381b8308136037fee4ce11da84929cac0740e81594',
+   'variableKey' => 'v2-6.70.0.1-8.3.31-8ab42b9d3c30184a7be28b5b850ec63172ff85018851689586b0bf69bc1a8a79',
    'data' => 
   array (
     'locatedSource' => 
@@ -33,8 +33,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
     'attributes' => 
     array (
     ),
-    'startLine' => 21,
-    'endLine' => 95,
+    'startLine' => 22,
+    'endLine' => 135,
     'startColumn' => 1,
     'endColumn' => 1,
     'parentClassName' => NULL,
@@ -58,20 +58,20 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
           'code' => '10',
           'attributes' => 
           array (
-            'startLine' => 23,
-            'endLine' => 23,
-            'startTokenPos' => 56,
-            'startFilePos' => 772,
-            'endTokenPos' => 56,
-            'endFilePos' => 773,
+            'startLine' => 24,
+            'endLine' => 24,
+            'startTokenPos' => 61,
+            'startFilePos' => 817,
+            'endTokenPos' => 61,
+            'endFilePos' => 818,
           ),
         ),
         'docComment' => NULL,
         'attributes' => 
         array (
         ),
-        'startLine' => 23,
-        'endLine' => 23,
+        'startLine' => 24,
+        'endLine' => 24,
         'startColumn' => 5,
         'endColumn' => 33,
       ),
@@ -81,6 +81,84 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
     ),
     'immediateMethods' => 
     array (
+      'preload' => 
+      array (
+        'name' => 'preload',
+        'parameters' => 
+        array (
+          'beneficiaries' => 
+          array (
+            'name' => 'beneficiaries',
+            'default' => NULL,
+            'type' => 
+            array (
+              'class' => 'PHPStan\\BetterReflection\\Reflection\\ReflectionNamedType',
+              'data' => 
+              array (
+                'name' => 'Illuminate\\Database\\Eloquent\\Collection',
+                'isIdentifier' => false,
+              ),
+            ),
+            'isVariadic' => false,
+            'byRef' => false,
+            'isPromoted' => false,
+            'attributes' => 
+            array (
+            ),
+            'startLine' => 47,
+            'endLine' => 47,
+            'startColumn' => 29,
+            'endColumn' => 53,
+            'parameterIndex' => 0,
+            'isOptional' => false,
+          ),
+        ),
+        'returnsReference' => false,
+        'returnType' => 
+        array (
+          'class' => 'PHPStan\\BetterReflection\\Reflection\\ReflectionNamedType',
+          'data' => 
+          array (
+            'name' => 'void',
+            'isIdentifier' => true,
+          ),
+        ),
+        'attributes' => 
+        array (
+        ),
+        'docComment' => '/**
+ * Eager-load what {@see sections()} needs for a WHOLE set of beneficiaries.
+ *
+ * `sections()` costs two queries per subject — enrollments and benefits. That is
+ * fine for one reveal and quadratic on a page of them: the duplicate queue resolves
+ * a reveal per flagged row, so a backlog of 25 cost 50 queries the moment it was
+ * read, and the queue is read precisely when the backlog is large.
+ *
+ * Callers that already hold the whole set preload here, and `sections()` then reads
+ * the loaded relations instead of querying. Callers that hold one subject need
+ * change nothing — the fallback query still runs.
+ *
+ * The eager loads mirror the fallbacks exactly, including the reversed-benefit
+ * exclusion; if they ever drift, the reveal would silently differ depending on which
+ * screen asked for it.
+ *
+ * @param  Collection<int|string, Beneficiary>  $beneficiaries
+ */',
+        'startLine' => 47,
+        'endLine' => 60,
+        'startColumn' => 5,
+        'endColumn' => 5,
+        'couldThrow' => false,
+        'isClosure' => false,
+        'isGenerator' => false,
+        'isVariadic' => false,
+        'modifiers' => 1,
+        'namespace' => 'App\\Domain\\Benefit\\Services',
+        'declaringClassName' => 'App\\Domain\\Benefit\\Services\\BeneficiaryRevealPresenter',
+        'implementingClassName' => 'App\\Domain\\Benefit\\Services\\BeneficiaryRevealPresenter',
+        'currentClassName' => 'App\\Domain\\Benefit\\Services\\BeneficiaryRevealPresenter',
+        'aliasName' => NULL,
+      ),
       'sections' => 
       array (
         'name' => 'sections',
@@ -105,8 +183,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             'attributes' => 
             array (
             ),
-            'startLine' => 28,
-            'endLine' => 28,
+            'startLine' => 62,
+            'endLine' => 62,
             'startColumn' => 30,
             'endColumn' => 53,
             'parameterIndex' => 0,
@@ -150,8 +228,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             'attributes' => 
             array (
             ),
-            'startLine' => 28,
-            'endLine' => 28,
+            'startLine' => 62,
+            'endLine' => 62,
             'startColumn' => 56,
             'endColumn' => 68,
             'parameterIndex' => 1,
@@ -171,11 +249,9 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         'attributes' => 
         array (
         ),
-        'docComment' => '/**
- * @return array{programmes: list<array<string, mixed>>, benefits: array<string, mixed>}
- */',
-        'startLine' => 28,
-        'endLine' => 37,
+        'docComment' => NULL,
+        'startLine' => 62,
+        'endLine' => 71,
         'startColumn' => 5,
         'endColumn' => 5,
         'couldThrow' => false,
@@ -213,8 +289,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             'attributes' => 
             array (
             ),
-            'startLine' => 42,
-            'endLine' => 42,
+            'startLine' => 76,
+            'endLine' => 76,
             'startColumn' => 33,
             'endColumn' => 56,
             'parameterIndex' => 0,
@@ -237,8 +313,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         'docComment' => '/**
  * @return list<array<string, mixed>>
  */',
-        'startLine' => 42,
-        'endLine' => 61,
+        'startLine' => 76,
+        'endLine' => 99,
         'startColumn' => 5,
         'endColumn' => 5,
         'couldThrow' => false,
@@ -276,8 +352,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             'attributes' => 
             array (
             ),
-            'startLine' => 66,
-            'endLine' => 66,
+            'startLine' => 104,
+            'endLine' => 104,
             'startColumn' => 31,
             'endColumn' => 54,
             'parameterIndex' => 0,
@@ -302,8 +378,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             'attributes' => 
             array (
             ),
-            'startLine' => 66,
-            'endLine' => 66,
+            'startLine' => 104,
+            'endLine' => 104,
             'startColumn' => 57,
             'endColumn' => 73,
             'parameterIndex' => 1,
@@ -326,8 +402,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         'docComment' => '/**
  * @return array<string, mixed>
  */',
-        'startLine' => 66,
-        'endLine' => 94,
+        'startLine' => 104,
+        'endLine' => 134,
         'startColumn' => 5,
         'endColumn' => 5,
         'couldThrow' => false,
