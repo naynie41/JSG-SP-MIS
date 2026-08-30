@@ -27,16 +27,31 @@ class SuppliedDivisionsDatasetTest extends TestCase
 {
     use RefreshDatabase;
 
-    private const PATH = 'storage/app/reference/jigawa-administrative-divisions.csv';
-
     /** LGAs the source described in prose, without naming any ward. */
     private const WARDS_NOT_SUPPLIED = [
         'maigatari', 'malam_madori', 'roni', 'sule_tankarkar', 'taura', 'yankwashi',
     ];
 
+    /**
+     * Load the dataset from the SAME path the application uses.
+     *
+     * This previously hard-coded `storage/app/reference/…`, where the file was first
+     * dropped by hand. That directory is gitignored, so the test passed on any machine
+     * that still had the working copy and failed on a clean checkout — it was green
+     * locally and red in CI, which is the least useful way for a test to be wrong.
+     *
+     * Reading `config('reference.divisions.path')` means the test can only ever check the
+     * file the seeder and `reference:load-divisions` actually read. If that path moves
+     * again, this follows it instead of silently testing a stale copy.
+     */
     private function load(): void
     {
-        app(AdministrativeDivisionLoader::class)->loadFromFile(base_path(self::PATH));
+        app(AdministrativeDivisionLoader::class)->loadFromFile($this->datasetPath());
+    }
+
+    private function datasetPath(): string
+    {
+        return (string) config('reference.divisions.path');
     }
 
     public function test_the_shipped_file_loads_and_covers_every_jigawa_lga(): void
