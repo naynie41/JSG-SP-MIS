@@ -1,5 +1,8 @@
 includes:
     - vendor/larastan/larastan/extension.neon
+    # 18 pre-existing findings, recorded so CI fails on NEW ones rather than on the
+    # backlog. Shrink it deliberately; never regenerate it to silence a fresh error.
+    - phpstan-baseline.neon
 
 parameters:
     level: 5

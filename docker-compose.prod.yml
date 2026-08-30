@@ -12,11 +12,24 @@
 
 x-restart: &restart unless-stopped
 
+# Log rotation, applied to every service.
+#
+# Docker's json-file driver is UNBOUNDED by default: a chatty container fills the VPS
+# disk, and the first symptom is Postgres refusing writes — a data-loss-shaped failure
+# caused by logging. Capped here rather than in daemon.json so the limit travels with
+# the stack instead of depending on how the host was set up.
+x-logging: &logging
+  driver: json-file
+  options:
+    max-size: "10m"
+    max-file: "5"
+
 services:
   # ---- Data services (official images, named volumes, internal-only) --------
   postgres:
     image: postgis/postgis:16-3.4
     restart: *restart
+    logging: *logging
     environment:
       POSTGRES_DB: ${POSTGRES_DB:-spmis}
       POSTGRES_USER: ${POSTGRES_USER:-spmis}
@@ -37,6 +50,7 @@ services:
   redis:
     image: redis:7-alpine
     restart: *restart
+    logging: *logging
     command: ["redis-server", "--appendonly", "yes", "--requirepass", "${REDIS_PASSWORD:?REDIS_PASSWORD is required}"]
     environment:
       REDIS_PASSWORD: ${REDIS_PASSWORD} # exposed to the container so the healthcheck can auth
@@ -56,6 +70,7 @@ services:
   rabbitmq:
     image: rabbitmq:3-management-alpine
     restart: *restart
+    logging: *logging
     environment:
       RABBITMQ_DEFAULT_USER: ${RABBITMQ_USER:-spmis}
       RABBITMQ_DEFAULT_PASS: ${RABBITMQ_PASSWORD:?RABBITMQ_PASSWORD is required}
@@ -79,6 +94,7 @@ services:
   api:
     image: ghcr.io/${GHCR_OWNER}/spmis-api:${IMAGE_TAG:?set IMAGE_TAG to the release tag}
     restart: *restart
+    logging: *logging
     env_file: [.env]
     environment:
       RUN_MIGRATIONS: "true" # the api role owns schema migration on boot
@@ -102,6 +118,7 @@ services:
   worker:
     image: ghcr.io/${GHCR_OWNER}/spmis-api:${IMAGE_TAG:?set IMAGE_TAG to the release tag}
     restart: *restart
+    logging: *logging
     command: ["php", "artisan", "queue:work", "rabbitmq", "--tries=3", "--max-time=3600", "--sleep=3"]
     env_file: [.env]
     environment:
@@ -125,6 +142,7 @@ services:
   scheduler:
     image: ghcr.io/${GHCR_OWNER}/spmis-api:${IMAGE_TAG:?set IMAGE_TAG to the release tag}
     restart: *restart
+    logging: *logging
     # Runs the Laravel scheduler in-container: encrypted offsite BACKUPS (daily),
     # the restore drill, data-retention, SLA sweeps, dashboard snapshots, sync.
     command: ["php", "artisan", "schedule:work"]
@@ -149,6 +167,7 @@ services:
   web:
     image: ghcr.io/${GHCR_OWNER}/spmis-web:${IMAGE_TAG:?set IMAGE_TAG to the release tag}
     restart: *restart
+    logging: *logging
     networks: [internal]
     healthcheck:
       test: ["CMD-SHELL", "wget -q -O /dev/null http://127.0.0.1:8080/healthz || exit 1"]
@@ -164,6 +183,7 @@ services:
   nginx:
     image: nginx:1.27-alpine
     restart: *restart
+    logging: *logging
     ports:
       - "80:80"
       - "443:443"

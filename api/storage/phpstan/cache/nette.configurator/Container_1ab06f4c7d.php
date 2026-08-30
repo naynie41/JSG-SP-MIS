@@ -8,7 +8,7 @@
 
 declare(strict_types=1);
 
-class Container_d013ad43cb extends _PHPStan_48ec32058\Nette\DI\Container
+class Container_1ab06f4c7d extends _PHPStan_48ec32058\Nette\DI\Container
 {
 	protected $tags = [
 		'phpstan.broker.allowedSubTypesClassReflectionExtension' => ['017' => true, '018' => true],
@@ -2653,6 +2653,7 @@ class Container_d013ad43cb extends _PHPStan_48ec32058\Nette\DI\Container
 				'phar:///var/www/html/vendor/phpstan/phpstan/phpstan.phar/conf/config.level0.neon',
 				'/var/www/html/phpstan.neon',
 				'/var/www/html/vendor/larastan/larastan/extension.neon',
+				'/var/www/html/phpstan-baseline.neon',
 			],
 			null,
 			[
@@ -5892,7 +5893,90 @@ class Container_d013ad43cb extends _PHPStan_48ec32058\Nette\DI\Container
 
 	public function createService0459(): PHPStan\Analyser\Ignore\IgnoredErrorHelper
 	{
-		return new PHPStan\Analyser\Ignore\IgnoredErrorHelper($this->getService('041'), [], true);
+		return new PHPStan\Analyser\Ignore\IgnoredErrorHelper(
+			$this->getService('041'),
+			[
+				[
+					'message' => '#^Cannot instantiate interface Throwable\.$#',
+					'identifier' => 'new.interface',
+					'count' => 1,
+					'path' => '/var/www/html/app/Console/Commands/PerfBenchmark.php',
+				],
+				[
+					'message' => '#^Offset \'threshold\' on array\{type\: string, threshold\: float\|int\} on left side of \?\? always exists and is not nullable\.$#',
+					'identifier' => 'nullCoalesce.offset',
+					'count' => 1,
+					'path' => '/var/www/html/app/Domain/Graduation/Services/GraduationProgressService.php',
+				],
+				[
+					'message' => '#^Offset \'type\' on array\{type\: string, threshold\: float\|int\} on left side of \?\? always exists and is not nullable\.$#',
+					'identifier' => 'nullCoalesce.offset',
+					'count' => 1,
+					'path' => '/var/www/html/app/Domain/Graduation/Services/GraduationProgressService.php',
+				],
+				[
+					'message' => '#^Strict comparison using \!\=\= between string and null will always evaluate to true\.$#',
+					'identifier' => 'notIdentical.alwaysTrue',
+					'count' => 1,
+					'path' => '/var/www/html/app/Domain/Privacy/Services/AnonymizationService.php',
+				],
+				[
+					'message' => '#^Using nullsafe method call on non\-nullable type Illuminate\\\Support\\\Carbon\. Use \-\> instead\.$#',
+					'identifier' => 'nullsafe.neverNull',
+					'count' => 5,
+					'path' => '/var/www/html/app/Domain/Privacy/Services/SubjectAccessAssembler.php',
+				],
+				[
+					'message' => '#^Using nullsafe property access on non\-nullable type App\\\Domain\\\Access\\\Models\\\Mda\. Use \-\> instead\.$#',
+					'identifier' => 'nullsafe.neverNull',
+					'count' => 1,
+					'path' => '/var/www/html/app/Domain/Privacy/Services/SubjectAccessAssembler.php',
+				],
+				[
+					'message' => '#^Using nullsafe property access on non\-nullable type App\\\Domain\\\Registry\\\Enums\\\ConsentStatus\. Use \-\> instead\.$#',
+					'identifier' => 'nullsafe.neverNull',
+					'count' => 1,
+					'path' => '/var/www/html/app/Domain/Privacy/Services/SubjectAccessAssembler.php',
+				],
+				[
+					'message' => '#^Using nullsafe property access "\?\-\>status" on left side of \?\? is unnecessary\. Use \-\> instead\.$#',
+					'identifier' => 'nullsafe.neverNull',
+					'count' => 1,
+					'path' => '/var/www/html/app/Domain/Registry/Services/ConsentService.php',
+				],
+				[
+					'message' => '#^Strict comparison using \!\=\= between App\\\Domain\\\Programme\\\Models\\\Programme and null will always evaluate to true\.$#',
+					'identifier' => 'notIdentical.alwaysTrue',
+					'count' => 1,
+					'path' => '/var/www/html/app/Http/Resources/ActivityDetailResource.php',
+				],
+				[
+					'message' => '#^Offset \'threshold\' on array\{type\: string, threshold\: float\|int\} in isset\(\) always exists and is not nullable\.$#',
+					'identifier' => 'isset.offset',
+					'count' => 1,
+					'path' => '/var/www/html/app/Http/Resources/GraduationCriteriaResource.php',
+				],
+				[
+					'message' => '#^Offset \'type\' on array\{type\: string, threshold\: float\|int\} on left side of \?\? always exists and is not nullable\.$#',
+					'identifier' => 'nullCoalesce.offset',
+					'count' => 2,
+					'path' => '/var/www/html/app/Http/Resources/GraduationCriteriaResource.php',
+				],
+				[
+					'message' => '#^Using nullsafe method call on non\-nullable type Illuminate\\\Support\\\Carbon\. Use \-\> instead\.$#',
+					'identifier' => 'nullsafe.neverNull',
+					'count' => 1,
+					'path' => '/var/www/html/app/Http/Resources/GraduationEventResource.php',
+				],
+				[
+					'message' => '#^Strict comparison using \!\=\= between int and null will always evaluate to true\.$#',
+					'identifier' => 'notIdentical.alwaysTrue',
+					'count' => 1,
+					'path' => '/var/www/html/app/Http/Resources/ImportBatchResource.php',
+				],
+			],
+			true
+		);
 	}
 
 
@@ -5902,7 +5986,7 @@ class Container_d013ad43cb extends _PHPStan_48ec32058\Nette\DI\Container
 			private $container;
 
 
-			public function __construct(Container_d013ad43cb $container)
+			public function __construct(Container_1ab06f4c7d $container)
 			{
 				$this->container = $container;
 			}
@@ -5950,7 +6034,7 @@ class Container_d013ad43cb extends _PHPStan_48ec32058\Nette\DI\Container
 			private $container;
 
 
-			public function __construct(Container_d013ad43cb $container)
+			public function __construct(Container_1ab06f4c7d $container)
 			{
 				$this->container = $container;
 			}
@@ -6008,7 +6092,7 @@ class Container_d013ad43cb extends _PHPStan_48ec32058\Nette\DI\Container
 			private $container;
 
 
-			public function __construct(Container_d013ad43cb $container)
+			public function __construct(Container_1ab06f4c7d $container)
 			{
 				$this->container = $container;
 			}
@@ -6075,7 +6159,7 @@ class Container_d013ad43cb extends _PHPStan_48ec32058\Nette\DI\Container
 			private $container;
 
 
-			public function __construct(Container_d013ad43cb $container)
+			public function __construct(Container_1ab06f4c7d $container)
 			{
 				$this->container = $container;
 			}
@@ -6095,7 +6179,7 @@ class Container_d013ad43cb extends _PHPStan_48ec32058\Nette\DI\Container
 			private $container;
 
 
-			public function __construct(Container_d013ad43cb $container)
+			public function __construct(Container_1ab06f4c7d $container)
 			{
 				$this->container = $container;
 			}
@@ -6120,7 +6204,7 @@ class Container_d013ad43cb extends _PHPStan_48ec32058\Nette\DI\Container
 			private $container;
 
 
-			public function __construct(Container_d013ad43cb $container)
+			public function __construct(Container_1ab06f4c7d $container)
 			{
 				$this->container = $container;
 			}
@@ -6140,7 +6224,7 @@ class Container_d013ad43cb extends _PHPStan_48ec32058\Nette\DI\Container
 			private $container;
 
 
-			public function __construct(Container_d013ad43cb $container)
+			public function __construct(Container_1ab06f4c7d $container)
 			{
 				$this->container = $container;
 			}
@@ -6160,7 +6244,7 @@ class Container_d013ad43cb extends _PHPStan_48ec32058\Nette\DI\Container
 			private $container;
 
 
-			public function __construct(Container_d013ad43cb $container)
+			public function __construct(Container_1ab06f4c7d $container)
 			{
 				$this->container = $container;
 			}
@@ -9628,7 +9712,7 @@ class Container_d013ad43cb extends _PHPStan_48ec32058\Nette\DI\Container
 	}
 
 
-	public function createServiceContainer(): Container_d013ad43cb
+	public function createServiceContainer(): Container_1ab06f4c7d
 	{
 		return $this;
 	}
@@ -9862,6 +9946,7 @@ class Container_d013ad43cb extends _PHPStan_48ec32058\Nette\DI\Container
 				'phar:///var/www/html/vendor/phpstan/phpstan/phpstan.phar/conf/config.level0.neon',
 				'/var/www/html/phpstan.neon',
 				'/var/www/html/vendor/larastan/larastan/extension.neon',
+				'/var/www/html/phpstan-baseline.neon',
 			],
 			$this->getService('012'),
 			$this->getService('simpleRelativePathHelper')
@@ -10107,7 +10192,86 @@ class Container_d013ad43cb extends _PHPStan_48ec32058\Nette\DI\Container
 			'tipsOfTheDay' => true,
 			'reportMagicMethods' => true,
 			'reportMagicProperties' => true,
-			'ignoreErrors' => [],
+			'ignoreErrors' => [
+				[
+					'message' => '#^Cannot instantiate interface Throwable\.$#',
+					'identifier' => 'new.interface',
+					'count' => 1,
+					'path' => '/var/www/html/app/Console/Commands/PerfBenchmark.php',
+				],
+				[
+					'message' => '#^Offset \'threshold\' on array\{type\: string, threshold\: float\|int\} on left side of \?\? always exists and is not nullable\.$#',
+					'identifier' => 'nullCoalesce.offset',
+					'count' => 1,
+					'path' => '/var/www/html/app/Domain/Graduation/Services/GraduationProgressService.php',
+				],
+				[
+					'message' => '#^Offset \'type\' on array\{type\: string, threshold\: float\|int\} on left side of \?\? always exists and is not nullable\.$#',
+					'identifier' => 'nullCoalesce.offset',
+					'count' => 1,
+					'path' => '/var/www/html/app/Domain/Graduation/Services/GraduationProgressService.php',
+				],
+				[
+					'message' => '#^Strict comparison using \!\=\= between string and null will always evaluate to true\.$#',
+					'identifier' => 'notIdentical.alwaysTrue',
+					'count' => 1,
+					'path' => '/var/www/html/app/Domain/Privacy/Services/AnonymizationService.php',
+				],
+				[
+					'message' => '#^Using nullsafe method call on non\-nullable type Illuminate\\\Support\\\Carbon\. Use \-\> instead\.$#',
+					'identifier' => 'nullsafe.neverNull',
+					'count' => 5,
+					'path' => '/var/www/html/app/Domain/Privacy/Services/SubjectAccessAssembler.php',
+				],
+				[
+					'message' => '#^Using nullsafe property access on non\-nullable type App\\\Domain\\\Access\\\Models\\\Mda\. Use \-\> instead\.$#',
+					'identifier' => 'nullsafe.neverNull',
+					'count' => 1,
+					'path' => '/var/www/html/app/Domain/Privacy/Services/SubjectAccessAssembler.php',
+				],
+				[
+					'message' => '#^Using nullsafe property access on non\-nullable type App\\\Domain\\\Registry\\\Enums\\\ConsentStatus\. Use \-\> instead\.$#',
+					'identifier' => 'nullsafe.neverNull',
+					'count' => 1,
+					'path' => '/var/www/html/app/Domain/Privacy/Services/SubjectAccessAssembler.php',
+				],
+				[
+					'message' => '#^Using nullsafe property access "\?\-\>status" on left side of \?\? is unnecessary\. Use \-\> instead\.$#',
+					'identifier' => 'nullsafe.neverNull',
+					'count' => 1,
+					'path' => '/var/www/html/app/Domain/Registry/Services/ConsentService.php',
+				],
+				[
+					'message' => '#^Strict comparison using \!\=\= between App\\\Domain\\\Programme\\\Models\\\Programme and null will always evaluate to true\.$#',
+					'identifier' => 'notIdentical.alwaysTrue',
+					'count' => 1,
+					'path' => '/var/www/html/app/Http/Resources/ActivityDetailResource.php',
+				],
+				[
+					'message' => '#^Offset \'threshold\' on array\{type\: string, threshold\: float\|int\} in isset\(\) always exists and is not nullable\.$#',
+					'identifier' => 'isset.offset',
+					'count' => 1,
+					'path' => '/var/www/html/app/Http/Resources/GraduationCriteriaResource.php',
+				],
+				[
+					'message' => '#^Offset \'type\' on array\{type\: string, threshold\: float\|int\} on left side of \?\? always exists and is not nullable\.$#',
+					'identifier' => 'nullCoalesce.offset',
+					'count' => 2,
+					'path' => '/var/www/html/app/Http/Resources/GraduationCriteriaResource.php',
+				],
+				[
+					'message' => '#^Using nullsafe method call on non\-nullable type Illuminate\\\Support\\\Carbon\. Use \-\> instead\.$#',
+					'identifier' => 'nullsafe.neverNull',
+					'count' => 1,
+					'path' => '/var/www/html/app/Http/Resources/GraduationEventResource.php',
+				],
+				[
+					'message' => '#^Strict comparison using \!\=\= between int and null will always evaluate to true\.$#',
+					'identifier' => 'notIdentical.alwaysTrue',
+					'count' => 1,
+					'path' => '/var/www/html/app/Http/Resources/ImportBatchResource.php',
+				],
+			],
 			'internalErrorsCountLimit' => 50,
 			'cache' => [
 				'nodesByStringCountMax' => 256,
@@ -10274,82 +10438,30 @@ class Container_d013ad43cb extends _PHPStan_48ec32058\Nette\DI\Container
 				'phar:///var/www/html/vendor/phpstan/phpstan/phpstan.phar/conf/config.level0.neon',
 				'/var/www/html/phpstan.neon',
 				'/var/www/html/vendor/larastan/larastan/extension.neon',
+				'/var/www/html/phpstan-baseline.neon',
 			],
 			'composerAutoloaderProjectPaths' => ['/var/www/html'],
 			'generateBaselineFile' => null,
 			'usedLevel' => '5',
 			'cliAutoloadFile' => null,
 			'env' => [
-				'LOG_STACK' => 'single',
-				'REDIS_PORT' => '6379',
-				'CORS_SUPPORTS_CREDENTIALS' => 'true',
-				'LOG_LEVEL' => 'debug',
-				'DB_CONNECTION' => 'pgsql',
-				'APP_DEBUG' => 'false',
-				'MAIL_USERNAME' => 'null',
-				'HOSTNAME' => 'e361cc9d8e2b',
-				'PHP_INI_DIR' => '/usr/local/etc/php',
-				'APP_URL' => 'http://localhost:8080',
-				'DB_PORT' => '5432',
-				'MAIL_FROM_ADDRESS' => 'no-reply@spmis.local',
-				'SHLVL' => '1',
-				'HOME' => '/root',
-				'REDIS_CLIENT' => 'predis',
-				'MAIL_FROM_NAME' => 'SP-MIS',
-				'PHP_LDFLAGS' => '-Wl,-O1 -pie',
-				'DB_DATABASE' => 'spmis',
-				'SESSION_PATH' => '/',
-				'PHP_CFLAGS' => '-fstack-protector-strong -fpic -fpie -O2 -D_LARGEFILE_SOURCE -D_FILE_OFFSET_BITS=64',
-				'APP_NAME' => 'SP-MIS',
-				'RABBITMQ_QUEUE' => 'default',
-				'PHP_VERSION' => '8.3.31',
-				'SESSION_DRIVER' => 'redis',
-				'GPG_KEYS' => '1198C0117593497A5EC5C199286AF1F9897469DC C28D937575603EB4ABB725861C0779DC5C0A9DE4 AFD8691FDAEDF03BDF6E460563F15A9B715376CA',
-				'SHELL_VERBOSITY' => '0',
-				'LOG_CHANNEL' => 'stack',
-				'DB_USERNAME' => 'spmis',
-				'PHP_CPPFLAGS' => '-fstack-protector-strong -fpic -fpie -O2 -D_LARGEFILE_SOURCE -D_FILE_OFFSET_BITS=64',
-				'PHP_ASC_URL' => 'https://www.php.net/distributions/php-8.3.31.tar.xz.asc',
-				'RABBITMQ_PASSWORD' => 'change-me-rabbitmq',
-				'PHP_URL' => 'https://www.php.net/distributions/php-8.3.31.tar.xz',
-				'COLUMNS' => '80',
-				'RABBITMQ_HOST' => 'rabbitmq',
-				'RABBITMQ_USER' => 'spmis',
-				'CORS_ALLOWED_ORIGINS' => 'http://localhost:5173,http://localhost:3000',
-				'CORS_MAX_AGE' => '0',
 				'PATH' => '/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin',
-				'MAIL_PASSWORD' => 'null',
-				'SESSION_ENCRYPT' => 'false',
-				'APP_FAKER_LOCALE' => 'en_US',
-				'RABBITMQ_PORT' => '5672',
-				'FILESYSTEM_DISK' => 'local',
-				'MAIL_HOST' => '127.0.0.1',
-				'MFA_ENFORCE' => 'false',
-				'RABBITMQ_VHOST' => '/',
-				'APP_MAINTENANCE_DRIVER' => 'file',
-				'BCRYPT_ROUNDS' => '12',
-				'SESSION_LIFETIME' => '120',
-				'BROADCAST_CONNECTION' => 'log',
-				'APP_FALLBACK_LOCALE' => 'en',
-				'REDIS_PASSWORD' => 'null',
-				'LOG_DEPRECATIONS_CHANNEL' => 'null',
-				'CACHE_STORE' => 'redis',
-				'SESSION_DOMAIN' => 'null',
-				'MAIL_MAILER' => 'log',
-				'MAIL_PORT' => '2525',
-				'PHPIZE_DEPS' => "autoconf \t\tdpkg-dev dpkg \t\tfile \t\tg++ \t\tgcc \t\tlibc-dev \t\tmake \t\tpkgconf \t\tre2c",
-				'APP_ENV' => 'local',
-				'APP_KEY' => 'base64:RKZzWxKzqVXtH2kfUrkHI3yTuW/Nu3Xw/3M/oRnIh8o=',
-				'DB_PASSWORD' => 'change-me-postgres',
-				'REDIS_HOST' => 'redis',
-				'PWD' => '/var/www/html',
-				'PHP_SHA256' => '66410cee07f4b2baeb0843140bb2a2b52ef930b5cf9b3d6e6d158b33aae8fa37',
-				'LINES' => '50',
-				'DB_HOST' => 'postgres',
-				'QUEUE_CONNECTION' => 'rabbitmq',
-				'APP_LOCALE' => 'en',
-				'SANCTUM_STATEFUL_DOMAINS' => 'localhost:5173,localhost:3000',
+				'HOSTNAME' => 'e361cc9d8e2b',
 				'RUN_MIGRATIONS' => 'true',
+				'PHPIZE_DEPS' => "autoconf \t\tdpkg-dev dpkg \t\tfile \t\tg++ \t\tgcc \t\tlibc-dev \t\tmake \t\tpkgconf \t\tre2c",
+				'PHP_INI_DIR' => '/usr/local/etc/php',
+				'PHP_CFLAGS' => '-fstack-protector-strong -fpic -fpie -O2 -D_LARGEFILE_SOURCE -D_FILE_OFFSET_BITS=64',
+				'PHP_CPPFLAGS' => '-fstack-protector-strong -fpic -fpie -O2 -D_LARGEFILE_SOURCE -D_FILE_OFFSET_BITS=64',
+				'PHP_LDFLAGS' => '-Wl,-O1 -pie',
+				'GPG_KEYS' => '1198C0117593497A5EC5C199286AF1F9897469DC C28D937575603EB4ABB725861C0779DC5C0A9DE4 AFD8691FDAEDF03BDF6E460563F15A9B715376CA',
+				'PHP_VERSION' => '8.3.31',
+				'PHP_URL' => 'https://www.php.net/distributions/php-8.3.31.tar.xz',
+				'PHP_ASC_URL' => 'https://www.php.net/distributions/php-8.3.31.tar.xz.asc',
+				'PHP_SHA256' => '66410cee07f4b2baeb0843140bb2a2b52ef930b5cf9b3d6e6d158b33aae8fa37',
+				'HOME' => '/root',
+				'LINES' => '50',
+				'COLUMNS' => '80',
+				'SHELL_VERBOSITY' => '0',
 			],
 		];
 	}
