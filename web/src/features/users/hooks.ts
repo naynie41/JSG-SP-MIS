@@ -56,7 +56,9 @@ export function useForcePasswordReset() {
   const toast = useToast()
   return useMutation({
     mutationFn: (id: string) => userApi.forcePasswordReset(id),
-    onSuccess: () => toast.success('Password reset triggered', 'The user must sign in again.'),
+    // No toast on success: the caller shows the temporary password in a dialog, and
+    // a toast that disappears is the wrong place for a credential you must copy.
+    onSuccess: () => undefined,
     onError: () => toast.error('Action failed', 'Please try again.'),
   })
 }

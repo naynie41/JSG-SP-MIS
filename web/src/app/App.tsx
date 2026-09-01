@@ -27,6 +27,7 @@ import { ProtectedRoute } from './ProtectedRoute'
 const DashboardPage = lazy(() => import('@/features/dashboard/DashboardPage').then((m) => ({ default: m.DashboardPage })))
 const MdaDashboardPage = lazy(() => import('@/features/dashboard/MdaDashboardPage').then((m) => ({ default: m.MdaDashboardPage })))
 
+const ChangePasswordRequiredPage = lazy(() => import('@/features/auth/ChangePasswordRequiredPage').then((m) => ({ default: m.ChangePasswordRequiredPage })))
 const AdminLayout = lazy(() => import('@/features/admin/AdminLayout').then((m) => ({ default: m.AdminLayout })))
 const AdminOverviewPage = lazy(() => import('@/features/admin/AdminOverviewPage').then((m) => ({ default: m.AdminOverviewPage })))
 const AdminAccessPage = lazy(() => import('@/features/admin/AdminAccessPage').then((m) => ({ default: m.AdminAccessPage })))
@@ -168,6 +169,20 @@ export function App() {
           <PublicOnlyRoute>
             <LoginPage />
           </PublicOnlyRoute>
+        }
+      />
+
+      {/*
+        Deliberately OUTSIDE the AppLayout group. A user with a forced password
+        change can call nothing but the change endpoint, so rendering the app shell
+        around this page would fill it with navigation that 403s.
+      */}
+      <Route
+        path="/change-password"
+        element={
+          <ProtectedRoute>
+            <ChangePasswordRequiredPage />
+          </ProtectedRoute>
         }
       />
 

@@ -9,12 +9,14 @@ import type { Column } from '@/components/DataTable/DataTable'
 import { Menu } from '@/components/Menu/Menu'
 import type { MenuAction } from '@/components/Menu/Menu'
 import { ConfirmDialog } from '@/components/Modal/ConfirmDialog'
+import { Modal } from '@/components/Modal/Modal'
 import { useAuth } from '@/lib/auth/AuthProvider'
 import { ApiError } from '@/types/api'
 import { UserFormModal } from './UserFormModal'
 import { useForcePasswordReset, useResetMfa, useUserStatus, useUsers } from './hooks'
 import type { ManagedUser } from './types'
 import layout from '@/features/shared/formLayout.module.css'
+import styles from './users.module.css'
 
 interface ConfirmState {
   title: string
@@ -43,6 +45,9 @@ export function UserListPage({ embedded = false }: UserListPageProps = {}) {
 
   const [formState, setFormState] = useState<{ open: boolean; user: ManagedUser | null }>({ open: false, user: null })
   const [confirm, setConfirm] = useState<ConfirmState | null>(null)
+  // A temporary password is returned exactly once by the API; it lives here only
+  // until the administrator dismisses the dialog.
+  const [issued, setIssued] = useState<{ name: string; password: string } | null>(null)
   const busy = statusMutation.isPending || passwordReset.isPending || resetMfa.isPending
 
   if (!canView) {
@@ -114,10 +119,16 @@ export function UserListPage({ embedded = false }: UserListPageProps = {}) {
           danger: false,
           body: (
             <>
-              <strong>{user.name}</strong> will be signed out and must set a new password.
+              <strong>{user.name}</strong> will be signed out and given a temporary
+              password, which you must pass to them directly. They choose their own on
+              the next sign-in.
             </>
           ),
-          run: () => passwordReset.mutateAsync(user.id),
+          run: async () => {
+            const result = await passwordReset.mutateAsync(user.id)
+            // Shown once and never retrievable again — hold it until dismissed.
+            setIssued({ name: user.name, password: result.temporary_password })
+          },
         }),
     })
 
@@ -261,6 +272,36 @@ export function UserListPage({ embedded = false }: UserListPageProps = {}) {
       >
         {confirm?.body}
       </ConfirmDialog>
+
+      {/*
+        The temporary password is returned by the API exactly once and is not stored
+        in readable form anywhere, so this dialog is the only chance to copy it.
+        Closing it without copying means running the reset again.
+      */}
+      <Modal
+        open={issued !== null}
+        onClose={() => setIssued(null)}
+        title="Temporary password"
+        footer={<Button onClick={() => setIssued(null)}>Done</Button>}
+      >
+        <p>
+          Give this to <strong>{issued?.name}</strong> directly. They must change it
+          when they next sign in, and can do nothing else until they do.
+        </p>
+        <p className={layout.alert} role="status">
+          It is shown only now. If you close this without copying it, run the reset
+          again.
+        </p>
+        <code className={styles.secret}>{issued?.password}</code>
+        <Button
+          variant="secondary"
+          onClick={() => {
+            if (issued) void navigator.clipboard?.writeText(issued.password)
+          }}
+        >
+          Copy to clipboard
+        </Button>
+      </Modal>
     </div>
   )
 }

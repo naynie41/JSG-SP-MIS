@@ -12,6 +12,7 @@ use App\Http\Middleware\AssignCorrelationId;
 use App\Http\Middleware\CheckPermission;
 use App\Http\Middleware\CheckRole;
 use App\Http\Middleware\EnforceIdleTimeout;
+use App\Http\Middleware\RequirePasswordChange;
 use App\Http\Middleware\SecurityHeaders;
 use App\Support\ApiResponse;
 use Illuminate\Auth\AuthenticationException;
@@ -72,9 +73,12 @@ return Application::configure(basePath: dirname(__DIR__))
     ->withMiddleware(function (Middleware $middleware): void {
         // Correlation id first (so it is available to everything), security
         // headers on every API response.
+        // RequirePasswordChange is global (not per-route-group) so a route added
+        // later is protected by default; it allow-lists auth/MFA by route name.
         $middleware->api(prepend: [
             AssignCorrelationId::class,
         ], append: [
+            RequirePasswordChange::class,
             SecurityHeaders::class,
         ]);
 

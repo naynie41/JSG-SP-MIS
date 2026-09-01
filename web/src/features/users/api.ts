@@ -17,8 +17,16 @@ export const userApi = {
   changeStatus(id: string, action: UserStatusAction) {
     return apiRequest<ManagedUser>({ method: 'POST', url: `/users/${id}/${action}` })
   },
+  /**
+   * Issues a one-time temporary password (FR-UAM-06). `temporary_password` is
+   * returned ONCE and is never retrievable again — show it to the administrator
+   * immediately or it is lost and the reset must be repeated.
+   */
   forcePasswordReset(id: string) {
-    return apiRequest<{ message: string }>({ method: 'POST', url: `/users/${id}/force-password-reset` })
+    return apiRequest<{ message: string; temporary_password: string }>({
+      method: 'POST',
+      url: `/users/${id}/force-password-reset`,
+    })
   },
   resetMfa(id: string) {
     return apiRequest<{ message: string }>({ method: 'POST', url: `/users/${id}/reset-mfa` })
