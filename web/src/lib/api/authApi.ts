@@ -67,7 +67,14 @@ export const authApi = {
     return apiRequest<{ message: string }>({
       method: 'POST',
       url: '/auth/password',
-      data: { current_password: currentPassword, password },
+      data: {
+        current_password: currentPassword,
+        password,
+        // REQUIRED. PasswordRules::default() carries Laravel's `confirmed` rule, so
+        // the server rejects the request outright without this field. Omitting it
+        // made every password change fail with a bare "The request is invalid."
+        password_confirmation: password,
+      },
     })
   },
 
