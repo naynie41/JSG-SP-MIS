@@ -110,6 +110,10 @@ class AuthController extends Controller
     {
         $user = $request->user();
         $user->password = $request->validated()['password'];
+        // Clears any administrator-forced reset: the account holder has now chosen a
+        // password only they know (FR-UAM-06). forceFill because the flag is not
+        // fillable by design.
+        $user->forceFill(['must_change_password' => false]);
         $user->save();
 
         return ApiResponse::success([

@@ -205,4 +205,51 @@ describe('protected routing', () => {
       ['Dashboard', 'Coverage map'],
     )
   })
+
+  /*
+   * Forced password change (FR-UAM-06). The API refuses every route but the change
+   * endpoint while this flag is set, so the SPA must send the user there instead of
+   * rendering a shell whose every request 403s.
+   */
+  describe('forced password change', () => {
+    it('sends a flagged user to the change-password page instead of their workspace', async () => {
+      tokenStore.set('tok-abc')
+      me.mockResolvedValue(
+        makeUser({
+          role: { key: 'system_administrator', name: 'System Administrator' },
+          must_change_password: true,
+        }),
+      )
+
+      renderWithProviders(<App />, '/')
+
+      expect(await screen.findByText('Choose a new password')).toBeInTheDocument()
+      // And the console they would normally land on is NOT rendered.
+      expect(screen.queryByText('User & Access')).not.toBeInTheDocument()
+    })
+
+    it('keeps a flagged user there even when they aim at a specific page', async () => {
+      tokenStore.set('tok-abc')
+      me.mockResolvedValue(makeUser({ must_change_password: true }))
+
+      renderWithProviders(<App />, '/users')
+
+      expect(await screen.findByText('Choose a new password')).toBeInTheDocument()
+    })
+
+    it('lets an unflagged user through as normal', async () => {
+      tokenStore.set('tok-abc')
+      me.mockResolvedValue(
+        makeUser({
+          role: { key: 'sp_coordination', name: 'SP Coordination' },
+          must_change_password: false,
+        }),
+      )
+
+      renderWithProviders(<App />, '/')
+
+      expect(await screen.findByText('Your access')).toBeInTheDocument()
+      expect(screen.queryByText('Choose a new password')).not.toBeInTheDocument()
+    })
+  })
 })

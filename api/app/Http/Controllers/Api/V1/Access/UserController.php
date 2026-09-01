@@ -6,6 +6,7 @@ namespace App\Http\Controllers\Api\V1\Access;
 
 use App\Domain\Access\Enums\UserStatus;
 use App\Domain\Access\Models\User;
+use App\Domain\Access\Services\TemporaryPasswordIssuer;
 use App\Domain\Audit\Services\AuditLogger;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Access\StoreUserRequest;
@@ -34,6 +35,11 @@ class UserController extends Controller
     public function store(StoreUserRequest $request): JsonResponse
     {
         $user = User::create($request->validated());
+
+        // The ADMINISTRATOR chose this password and must hand it over, so it is a
+        // shared secret from the moment it is set. The account holder changes it on
+        // first sign-in before doing anything else.
+        $user->forceFill(['must_change_password' => true])->save();
 
         return ApiResponse::success(
             (new UserResource($user->load('role.permissions', 'mda')))->resolve(),
@@ -72,13 +78,25 @@ class UserController extends Controller
      * Force the user to set a new password: revoke their tokens (immediate
      * logout) and audit the request. Delivery of the reset link is a later phase.
      */
-    public function forcePasswordReset(User $user): JsonResponse
+    /**
+     * Reset a user to a one-time temporary password (FR-UAM-06, SECURITY.md §2).
+     *
+     * This previously only revoked tokens — the user signed back in with the SAME
+     * password, which meant a forgotten password could not be recovered by anyone.
+     *
+     * The plaintext is returned ONCE for out-of-band handover (there is no mail
+     * dependency in the auth flow by design) and is never audited or logged.
+     */
+    public function forcePasswordReset(User $user, TemporaryPasswordIssuer $issuer): JsonResponse
     {
-        $user->tokens()->delete();
+        $temporaryPassword = $issuer->issueFor($user);
 
         $this->audit->record('user.password_reset_forced', $user);
 
-        return ApiResponse::success(['message' => 'Password reset triggered; the user must sign in again and set a new password.']);
+        return ApiResponse::success([
+            'message' => 'Temporary password issued. Give it to the user directly — it is shown only once, and they must change it at next sign-in.',
+            'temporary_password' => $temporaryPassword,
+        ]);
     }
 
     /**

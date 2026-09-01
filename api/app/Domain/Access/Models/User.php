@@ -25,6 +25,7 @@ use Laravel\Sanctum\HasApiTokens;
  * @property string $email
  * @property Carbon|null $email_verified_at
  * @property string $password
+ * @property bool $must_change_password
  * @property string|null $mda_id
  * @property string|null $role_id
  * @property UserStatus $status
@@ -128,6 +129,9 @@ class User extends Authenticatable implements MdaScoped
         return [
             'email_verified_at' => 'datetime',
             'password' => 'hashed',
+            // Deliberately NOT in $fillable: set only via forceFill, so no request
+            // payload can clear a pending forced password change (SECURITY.md §2).
+            'must_change_password' => 'boolean',
             'status' => UserStatus::class,
             'mfa_secret' => 'encrypted', // encrypted at rest (SECURITY.md §2)
             'mfa_recovery_codes' => 'encrypted:array', // one-time codes, encrypted at rest
