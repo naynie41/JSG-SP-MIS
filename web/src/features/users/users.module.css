@@ -1,0 +1,20 @@
+/*
+ * A one-time temporary password (FR-UAM-06). Set in monospace at a comfortable
+ * size and allowed to wrap: it is read aloud or copied by hand as often as it is
+ * copied to the clipboard, and a generated password contains characters that are
+ * easy to confuse in a proportional face.
+ */
+.secret {
+  display: block;
+  margin: var(--space-4) 0;
+  padding: var(--space-4);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  background-color: var(--surface-mint);
+  font-family: var(--font-mono);
+  font-size: 1rem;
+  line-height: 1.6;
+  letter-spacing: 0.02em;
+  overflow-wrap: anywhere;
+  user-select: all;
+}

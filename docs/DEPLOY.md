@@ -181,13 +181,22 @@ echo "$GHCR_READ_TOKEN" | docker login ghcr.io -u <github-username> --password-s
 ### 2.3 Create the environment file (root-owned, gitignored)
 ```bash
 cp .env.prod.example .env
-# Generate the app key + backup key from the pulled image (no local PHP needed):
-docker run --rm ghcr.io/<owner>/spmis-api:v1.0.0 php artisan key:generate --show
-docker run --rm ghcr.io/<owner>/spmis-api:v1.0.0 php artisan backup:keygen
+# Generate the app key + backup key from the pulled image (no local PHP needed).
+# --entrypoint php is REQUIRED: the image entrypoint refuses to start without APP_KEY,
+# so without it these two commands cannot run to produce the APP_KEY they need.
+docker run --rm --entrypoint php ghcr.io/<owner>/spmis-api:<tag> artisan key:generate --show
+docker run --rm --entrypoint php ghcr.io/<owner>/spmis-api:<tag> artisan backup:keygen
 # Paste APP_KEY and BACKUP_ENCRYPTION_KEY into .env, then fill DB/Redis/RabbitMQ
 # passwords, NGINX_SERVER_NAME, mail + S3 backup creds. Set GHCR_OWNER + IMAGE_TAG.
-sudo chown root:root .env && sudo chmod 600 .env
+# Owned by the account that RUNS the stack, readable by nobody else.
+chmod 600 .env
 ```
+> **Do not `chown root:root .env`.** Every `docker compose` command below runs as the
+> deploy user (that is why it is in the `docker` group), and compose reads `.env` with
+> the invoking user's privileges. Root-owned mode 600 makes it unreadable to `deploy`,
+> and every compose command fails. Mode 600 owned by `deploy` is the correct control:
+> no other unprivileged account can read it.
+
 `.env` is gitignored and never enters an image (it feeds the containers via
 `env_file` / compose interpolation only).
 
@@ -195,10 +204,33 @@ sudo chown root:root .env && sudo chmod 600 .env
 Obtain the cert into `/etc/letsencrypt` before the first `up` (nginx needs it to
 serve 443):
 ```bash
-sudo certbot certonly --standalone -d spmis.example.gov.ng   # port 80 must be free
+sudo apt-get install -y certbot                              # not installed by provision.sh
+dig +short <domain>                                          # MUST resolve to this server first
+sudo certbot certonly --standalone -d <domain>               # port 80 must be free
 ```
-Or drop a provided cert at the `NGINX_SSL_CERTIFICATE*` paths in `.env`. Create the
-ACME webroot for future renewals: `mkdir -p /opt/spmis/acme`.
+Or drop a provided cert at the `NGINX_SSL_CERTIFICATE*` paths in `.env`.
+
+> **Then switch renewal off standalone — this is not optional.** The first issuance uses
+> `--standalone`, which binds port 80 itself, and certbot records that method in
+> `/etc/letsencrypt/renewal/<domain>.conf` and enables `certbot.timer`. From the moment
+> nginx starts it owns port 80, so every future renewal fails — silently, on a timer,
+> with the first symptom being the whole site going down on an expired certificate ~90
+> days later. Edit that file:
+>
+> ```
+> authenticator = webroot
+> webroot_path = /opt/spmis/acme,
+> renew_hook = cd /opt/spmis && docker compose -f docker-compose.prod.yml exec -T nginx nginx -s reload
+>
+> [[webroot_map]]
+> <domain> = /opt/spmis/acme
+> ```
+>
+> nginx already serves that directory at `/.well-known/acme-challenge/` (see
+> `prod.conf.template`), so webroot renewal works with the stack up. `scripts/verify.sh`
+> fails if the authenticator is still `standalone`. Confirm with
+> `sudo certbot renew --dry-run` **after** the stack is running — it cannot pass before
+> nginx is up to serve the challenge.
 
 ### 2.5 Pull and start
 ```bash
@@ -609,10 +641,16 @@ compare, not before.
 Every row names the evidence, not an opinion. **Machine** rows are proven by something
 that runs; **human** rows cannot be closed by code and are the real gate.
 
-> **Do not load real beneficiary data until every human-owned row is signed off.** Once
-> production PII exists, several of these stop being reversible — an unencrypted volume
-> cannot be retrospectively encrypted for data already written to it, and a pen test
-> against live personal data is a different risk conversation entirely.
+> **Go-live decision, 2026-08-31.** The system owner has elected to go live with real
+> beneficiary data with **PT-01, PT-02 and the retention gates accepted as open risk**.
+> Those rows moved to *Accepted at go-live* below; they are not closed, and lifting them
+> changed no control in the system. Everything still listed under *Human-owned* remains a
+> blocker.
+>
+> **OPS-02 has not been lifted and should not be.** Of all these rows it is the only one
+> that stops being fixable the moment real PII is written: a volume that was not encrypted
+> at rest cannot be retrospectively encrypted for data already on it. Confirm OPS-02 before
+> the first real import, not after.
 
 ### Machine-verifiable
 
@@ -652,8 +690,6 @@ that runs; **human** rows cannot be closed by code and are the real gate.
 
 | Gate | Owner | Blocks |
 |---|---|---|
-| **PT-01** external penetration test on staging | Security | Real PII |
-| **PT-02** DPO sign-off: consent model, retention schedule, anonymisation lists, export matrix | DPO | Real PII |
 | **OPS-01** TLS 1.2+ and certificate management | DevOps | Go-live |
 | **OPS-02** encrypted DB volume + encrypted offsite backups | DevOps | Real PII |
 | **OPS-03** egress allow-list for sync workers | DevOps | Live connectors |
@@ -661,11 +697,32 @@ that runs; **human** rows cannot be closed by code and are the real gate.
 | **OPS-05** per-environment `APP_KEY`; rotation runbook incl. NIN/BVN re-encryption | DevOps | Go-live |
 | **OPS-06** `VITE_MAP_TILE_URL` set to an approved origin | DevOps | Working maps |
 | **OPS-07** scheduled dependency audit, high/critical release-blocking | DevOps | Ongoing |
-| **OPS-08** retention period for RAW IMPORT FILES — no mechanism exists until supplied | DPO | Real PII |
-| Retention policies configured | DPO | Real PII |
 | Matching thresholds + SLAs confirmed | SP Coordination | Go-live |
 | Ward dataset completed (162 of ~287; 6 LGAs have none) | SP Coordination | Ward validation |
 | Load test at volume on staging | DevOps | Perf sign-off |
+
+### Accepted at go-live — open risk, carried knowingly
+
+Lifted by the system owner on **2026-08-31** so the system could go live with real
+beneficiary data. **Lifting a gate changed nothing in the system** — no control was
+weakened, added, or removed. These are recorded rather than deleted because an
+undocumented gap is indistinguishable from one nobody noticed, and NDPA accountability
+rests on being able to show what was decided and when.
+
+| Gate | Owner | Exposure carried | To close |
+|---|---|---|---|
+| **PT-01** external penetration test | Security | No independent adversarial testing. Internal controls are test-covered (see *Machine-verifiable*), which is evidence of intent, not of resistance to attack. | Commission against staging; treat findings as release-blocking |
+| **PT-02** DPO sign-off on consent model, retention schedule, anonymisation lists, export matrix | DPO | Personal data is processed under defaults this project chose, not under a schedule the DPO approved. | DPO review of `config/privacy.php` + SECURITY.md §3–§4 |
+| **OPS-08** retention period for raw import files | DPO | Uploaded source files retain full PII indefinitely. No mechanism ages them out. | Supply a period; build the sweep |
+| Retention policies configured | DPO | `PRIVACY_RETENTION_ENABLED=false`, empty policy list — nothing is ever aged out or anonymised. | DPO supplies periods per cohort; set the env var |
+
+**On the retention rows specifically:** the shipped default is fail-safe, not fragile.
+Retention off means nothing is deleted, anonymised, or aggregated — no data is at risk of
+being destroyed by going live in this state. The exposure is the opposite one: personal
+data accumulates indefinitely, which is a storage-limitation problem under NDPA rather
+than an operational one. Both switches are runtime configuration, so retention can be
+enabled later **without a redeploy and without a migration** — nothing about going live
+now forecloses it.
 
 ### Known state at the time of writing
 
@@ -675,6 +732,8 @@ that runs; **human** rows cannot be closed by code and are the real gate.
   free text rather than rejecting every ward in it — the gap degrades quietly.
 - **Sync:** runs on `MockSyncSource` until real SOCU/government endpoints are supplied.
 - **Retention:** disabled with an empty policy list. Nothing is aged out until the DPO acts.
+  Accepted as open risk at go-live (2026-08-31) — see *Accepted at go-live* above.
+- **Pen test / DPO sign-off:** not performed. Accepted as open risk at the same date.
 
 ---
 

@@ -34,6 +34,9 @@ class UserResource extends JsonResource
             // Whether the ROLE mandates MFA (FR-UAM-04) — the enforcement policy, so an
             // administrator can see compliance (required vs actually enrolled).
             'mfa_required' => $this->mfaRequired(),
+            // Drives the SPA's forced change-password screen; the API enforces it
+            // independently in RequirePasswordChange (FR-UAM-06).
+            'must_change_password' => (bool) $this->must_change_password,
             'last_login_at' => $this->last_login_at?->toIso8601String(),
             'mda' => $this->mda ? [
                 'id' => $this->mda->id,
