@@ -6,6 +6,7 @@
 # PHP / Laravel
 /api/vendor/
 /api/storage/*.key
+/api/storage/phpstan/
 /api/.phpunit.result.cache
 /api/.phpunit.cache/
 

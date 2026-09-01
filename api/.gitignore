@@ -18,6 +18,10 @@
 /public/storage
 /storage/*.key
 /storage/pail
+# PHPStan's tmpDir (see phpstan.neon). Analysis cache + result cache: machine-local
+# build artefacts that are rewritten on every run, so tracking them puts thousands of
+# churning files into unrelated commits.
+/storage/phpstan
 /vendor
 Homestead.json
 Homestead.yaml
