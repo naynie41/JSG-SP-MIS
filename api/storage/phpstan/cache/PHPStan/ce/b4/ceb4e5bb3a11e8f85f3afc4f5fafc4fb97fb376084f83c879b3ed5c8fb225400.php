@@ -308,7 +308,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
     ),
     '/var/www/html/app/Domain/Access/Models/User.php' => 
     array (
-      0 => 'cb5dc1613afedc1a9fd1192af8b727a89fed98e76081a1b015be235aaa3d0e9a',
+      0 => 'eb2a1e2e92ce2b655ab785249bfe313ffc1083dd2f1f3551eafd1c0660850c27',
       1 => 
       array (
         0 => 'app\\domain\\access\\models\\user',
@@ -3879,7 +3879,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
     ),
     '/var/www/html/app/Http/Controllers/Api/V1/Access/UserController.php' => 
     array (
-      0 => '43d44f96ff1713f4d921ab04efad2612e72dbe442c58709fa54c48e39c9726a6',
+      0 => '4e57a10a8efefa38b0fec255d0054bada740ab1d94a76eea4c14bf9be09ef1a3',
       1 => 
       array (
         0 => 'app\\http\\controllers\\api\\v1\\access\\usercontroller',
@@ -3904,7 +3904,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
     ),
     '/var/www/html/app/Http/Controllers/Api/V1/AuthController.php' => 
     array (
-      0 => '32b23f3f6e7c8b13457e68a81c3aad585b6e819d3bae83cc6921126f77ddfb18',
+      0 => '6246e612d06d50f6312e5682b24b8672e4507a5575b9772845c2c239e48eac60',
       1 => 
       array (
         0 => 'app\\http\\controllers\\api\\v1\\authcontroller',
@@ -5694,7 +5694,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
     ),
     '/var/www/html/app/Http/Resources/UserResource.php' => 
     array (
-      0 => '5b388404228015cf8c0bbf4f1de22679319b6bd04796a4ac7318279a2c0dafed',
+      0 => '587112d187af0fe4bcd04ea8c55ec6573b61b549d5632447a5ac532d32050642',
       1 => 
       array (
         0 => 'app\\http\\resources\\userresource',
@@ -8653,6 +8653,37 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
       2 => 
       array (
         0 => 'app\\logging\\__invoke',
+      ),
+      3 => 
+      array (
+      ),
+    ),
+    '/var/www/html/app/Domain/Access/Services/TemporaryPasswordIssuer.php' => 
+    array (
+      0 => 'c9a671658d27f33034187969767948cae7210b9ea14495240868e0fa37cc6981',
+      1 => 
+      array (
+        0 => 'app\\domain\\access\\services\\temporarypasswordissuer',
+      ),
+      2 => 
+      array (
+        0 => 'app\\domain\\access\\services\\issuefor',
+        1 => 'app\\domain\\access\\services\\generate',
+      ),
+      3 => 
+      array (
+      ),
+    ),
+    '/var/www/html/app/Http/Middleware/RequirePasswordChange.php' => 
+    array (
+      0 => 'bf3ab26c0d11132ad0399708e9c030e9346d57dff1436b91474719d0740b7126',
+      1 => 
+      array (
+        0 => 'app\\http\\middleware\\requirepasswordchange',
+      ),
+      2 => 
+      array (
+        0 => 'app\\http\\middleware\\handle',
       ),
       3 => 
       array (

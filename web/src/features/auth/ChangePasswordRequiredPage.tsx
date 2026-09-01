@@ -45,7 +45,15 @@ export function ChangePasswordRequiredPage() {
       // let them sign in with the password only they now know.
       await logout()
     } catch (err) {
-      setError(err instanceof ApiError ? err.message : 'Could not change your password.')
+      // Prefer the FIELD-level message. The envelope's top-level text for a 422 is
+      // the generic "The request is invalid.", which tells the user nothing about
+      // which rule they tripped — "not a breached password", say, or a mismatch.
+      if (err instanceof ApiError) {
+        const fields = Object.values(err.fieldErrors())
+        setError(fields.length > 0 ? fields.join(' ') : err.message)
+      } else {
+        setError('Could not change your password.')
+      }
     } finally {
       setSaving(false)
     }

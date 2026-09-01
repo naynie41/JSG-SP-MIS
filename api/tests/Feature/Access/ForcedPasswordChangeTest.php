@@ -174,6 +174,28 @@ class ForcedPasswordChangeTest extends TestCase
         $this->withToken($fresh)->getJson('/api/v1/auth/me')->assertOk();
     }
 
+    /**
+     * Pins the request CONTRACT the SPA must satisfy.
+     *
+     * PasswordRules carries Laravel's `confirmed` rule, so omitting
+     * `password_confirmation` fails the whole request — which is exactly the bug that
+     * reached production: the client sent only `current_password` and `password`, and
+     * every change died with a generic "The request is invalid."
+     */
+    public function test_password_change_requires_the_confirmation_field(): void
+    {
+        $this->officer->forceFill(['must_change_password' => true])->save();
+
+        $this->withToken($this->token($this->officer))->postJson('/api/v1/auth/password', [
+            'current_password' => 'password',
+            'password' => 'An0ther!Str0ngPass',
+            // password_confirmation deliberately omitted
+        ])->assertStatus(422);
+
+        // The reset must still stand: a rejected change cannot clear the flag.
+        $this->assertTrue((bool) $this->officer->fresh()->must_change_password);
+    }
+
     public function test_flag_cannot_be_cleared_by_mass_assignment(): void
     {
         $this->officer->forceFill(['must_change_password' => true])->save();

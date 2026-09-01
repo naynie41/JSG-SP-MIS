@@ -125,7 +125,7 @@ Core entities and key relationships (detailed schema is designed per phase):
 | Household   | id, head, members, address, LGA/Ward                                           | has many Beneficiaries |
 | MDA         | id, name, type, contact                                                        | owns Activities, Beneficiaries, Users |
 | Programme   | id, name, objective, type (HH/individual), benefit_category, standard_eligibility | GLOBAL catalog (System-Admin-created, not MDA-owned); has many Activities |
-| Activity    | id, programme_id, owner_mda_id, target, location (LGA/Ward), schedule, budget, funding_source, period, eligibility | MDA-owned; belongs to a catalog Programme; has many Benefits |
+| Activity    | id, programme_id, owner_mda_id, funding_partner_id (nullable), involves_beneficiaries, target_beneficiaries, target, location (LGA/Ward), schedule, budget, funding_source, period, eligibility | MDA-owned; belongs to a catalog Programme; funding_partner for reporting attribution only (not data access); has many Benefits |
 | Benefit     | id, beneficiary_id, programme_id, activity_id, mda_id, type, quantity, value, funding_source, delivery_date, status, verification | the benefit ledger |
 | Referral    | id, beneficiary_id, from_mda, to_mda, need, status, outcome, timestamps        | across MDAs (outbound) |
 | Service Request | id, beneficiary_id, requesting_mda_id, owner_mda_id, activity_id, status (pending/accepted/declined), decided_by, decision_reason, timestamps | request-to-serve (inbound); state machine |
@@ -168,6 +168,23 @@ Jobs must be idempotent and safe to retry; surface progress/results to the user.
 - **Scale path (toward NFR-SCAL-01 / NFR-AVAIL-01):** split PostgreSQL onto its own host
   (or managed Postgres), run 2+ API/worker nodes behind a load balancer, move document storage
   to S3-compatible object storage. A single VPS cannot meet 99.5% availability — plan for this.
+
+### Deployment pipeline (CI/CD — GHCR-based; built in Phase 7.8)
+
+```
+VS Code → GitHub → GitHub Actions → GHCR → VPS (pull) → monitoring + backup
+```
+- **On push/PR to `main` (ci.yml):** run tests + lint + static analysis + a Docker build (build only) —
+  pushes nothing; keeps main always deployable.
+- **On a version tag `v*` (release.yml):** build slim, non-root, multi-stage images (api/web/worker),
+  tag by git-tag + SHA, push to `ghcr.io/<owner>/spmis-<service>`. The tag is the release artifact.
+  Deliberate release model (not deploy-on-every-merge) → gives a clean rollback (pull previous tag).
+- **VPS pulls only** — `docker-compose.prod.yml` has no `build:` contexts; the VPS runs
+  `docker login ghcr.io` once (read-only token) then `docker compose pull && up -d`. Only nginx
+  publishes 80/443; data services are internal.
+- **Monitoring lives at the ops layer, outside the app** (uptime/health + app-error + backup-success
+  alerting) — the application never renders system-health widgets (that boundary is DevOps, not the app).
+  Backups are automated, encrypted, offsite, with a tested restore drill (7.6).
 
 ---
 
@@ -216,3 +233,23 @@ responsive & accessible UI · tamper-evident audit · API-first · containerised
   live on the Activity.
 - One programme → many MDAs → separate activities. Interventions reference (beneficiary, programme,
   activity, delivering MDA). Beneficiary ownership is unchanged.
+
+### 12.5 Reporting suites & admin console (read/compose layers)
+
+These are read/composition layers over the existing data — they add no new write path or ownership:
+
+- **Phase 6E — Executive Reporting Suite** and **Phase 6P — Funding Partner Reporting Suite** are
+  read-only, aggregate-only views over the Phase 6 aggregation layer, scoped by role (Executive =
+  statewide; Partner = funded programmes only). Headline = net unique beneficiaries, never gross
+  registrations; coverage is absolute counts (no denominator loaded). See their prompt files.
+- **Partner funding attribution:** `activity.funding_partner_id` resolves an activity to a Development
+  Partner for 6P scoping. It attaches to the activity (never the programme) and grants reporting
+  visibility only — never beneficiary-data access.
+- **Phase Admin — System Administrator Console** is a governance/config/oversight surface that
+  **composes existing modules** (users/audit Ph1, registry Ph2, matching Ph3, catalog Ph4, reports Ph6,
+  sync Ph7) into a System-Administrator-scoped console. It reimplements nothing, holds no second data
+  path, and excludes infrastructure/system-health monitoring (DevOps) and programme-delivery operations
+  (MDAs / SP Coordination). Integrations composes the Phase 7 sync engine and degrades to a pending state
+  until Phase 7 exists.
+- Dashboard UI for all three follows `DESIGN-SYSTEM.md` §5.11–§5.12 (executive-grade craft; tokens win
+  over the skill).

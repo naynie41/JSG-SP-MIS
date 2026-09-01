@@ -1,14 +1,14 @@
 <?php
-// source: phar://C:\Users\ACER\Desktop\JSG-SP-MIS\JSG-SP-MIS\api\vendor\phpstan\phpstan\phpstan.phar/conf/config.neon
-// source: phar://C:\Users\ACER\Desktop\JSG-SP-MIS\JSG-SP-MIS\api\vendor\phpstan\phpstan\phpstan.phar/conf/config.level5.neon
-// source: C:\Users\ACER\Desktop\JSG-SP-MIS\JSG-SP-MIS\api\phpstan.neon
+// source: phar:///var/www/html/vendor/phpstan/phpstan/phpstan.phar/conf/config.neon
+// source: phar:///var/www/html/vendor/phpstan/phpstan/phpstan.phar/conf/config.level5.neon
+// source: /var/www/html/phpstan.neon
 // source: array
 
 /** @noinspection PhpParamsInspection,PhpMethodMayBeStaticInspection */
 
 declare(strict_types=1);
 
-class Container_981a246e04 extends _PHPStan_48ec32058\Nette\DI\Container
+class Container_4a1d58b87b extends _PHPStan_48ec32058\Nette\DI\Container
 {
 	protected $tags = [
 		'phpstan.broker.allowedSubTypesClassReflectionExtension' => ['017' => true, '018' => true],
@@ -2640,27 +2640,28 @@ class Container_981a246e04 extends _PHPStan_48ec32058\Nette\DI\Container
 			$this->getService('0459'),
 			$this->getService('0145'),
 			$this->getParameter('analysedPaths'),
-			'C:\Users\ACER\Desktop\JSG-SP-MIS\JSG-SP-MIS\api',
+			'/var/www/html',
 			($this->getParameter('sysGetTempDir')) . '/phpstan-fixer',
-			['C:/Users/ACER/Desktop/JSG-SP-MIS/JSG-SP-MIS/api'],
+			['/var/www/html'],
 			[
-				'phar://C:\Users\ACER\Desktop\JSG-SP-MIS\JSG-SP-MIS\api\vendor\phpstan\phpstan\phpstan.phar\conf\parametersSchema.neon',
-				'phar://C:\Users\ACER\Desktop\JSG-SP-MIS\JSG-SP-MIS\api\vendor\phpstan\phpstan\phpstan.phar\conf\config.level5.neon',
-				'phar://C:\Users\ACER\Desktop\JSG-SP-MIS\JSG-SP-MIS\api\vendor\phpstan\phpstan\phpstan.phar\conf\config.level4.neon',
-				'phar://C:\Users\ACER\Desktop\JSG-SP-MIS\JSG-SP-MIS\api\vendor\phpstan\phpstan\phpstan.phar\conf\config.level3.neon',
-				'phar://C:\Users\ACER\Desktop\JSG-SP-MIS\JSG-SP-MIS\api\vendor\phpstan\phpstan\phpstan.phar\conf\config.level2.neon',
-				'phar://C:\Users\ACER\Desktop\JSG-SP-MIS\JSG-SP-MIS\api\vendor\phpstan\phpstan\phpstan.phar\conf\config.level1.neon',
-				'phar://C:\Users\ACER\Desktop\JSG-SP-MIS\JSG-SP-MIS\api\vendor\phpstan\phpstan\phpstan.phar\conf\config.level0.neon',
-				'C:\Users\ACER\Desktop\JSG-SP-MIS\JSG-SP-MIS\api\phpstan.neon',
-				'C:\Users\ACER\Desktop\JSG-SP-MIS\JSG-SP-MIS\api\vendor\larastan\larastan\extension.neon',
+				'phar:///var/www/html/vendor/phpstan/phpstan/phpstan.phar/conf/parametersSchema.neon',
+				'phar:///var/www/html/vendor/phpstan/phpstan/phpstan.phar/conf/config.level5.neon',
+				'phar:///var/www/html/vendor/phpstan/phpstan/phpstan.phar/conf/config.level4.neon',
+				'phar:///var/www/html/vendor/phpstan/phpstan/phpstan.phar/conf/config.level3.neon',
+				'phar:///var/www/html/vendor/phpstan/phpstan/phpstan.phar/conf/config.level2.neon',
+				'phar:///var/www/html/vendor/phpstan/phpstan/phpstan.phar/conf/config.level1.neon',
+				'phar:///var/www/html/vendor/phpstan/phpstan/phpstan.phar/conf/config.level0.neon',
+				'/var/www/html/phpstan.neon',
+				'/var/www/html/vendor/larastan/larastan/extension.neon',
+				'/var/www/html/phpstan-baseline.neon',
 			],
 			null,
 			[
-				'phar://C:\Users\ACER\Desktop\JSG-SP-MIS\JSG-SP-MIS\api\vendor\phpstan\phpstan\phpstan.phar\stubs\runtime\ReflectionUnionType.php',
-				'phar://C:\Users\ACER\Desktop\JSG-SP-MIS\JSG-SP-MIS\api\vendor\phpstan\phpstan\phpstan.phar\stubs\runtime\ReflectionAttribute.php',
-				'phar://C:\Users\ACER\Desktop\JSG-SP-MIS\JSG-SP-MIS\api\vendor\phpstan\phpstan\phpstan.phar\stubs\runtime\Attribute85.php',
-				'phar://C:\Users\ACER\Desktop\JSG-SP-MIS\JSG-SP-MIS\api\vendor\phpstan\phpstan\phpstan.phar\stubs\runtime\ReflectionIntersectionType.php',
-				'C:\Users\ACER\Desktop\JSG-SP-MIS\JSG-SP-MIS\api\vendor\larastan\larastan\bootstrap.php',
+				'phar:///var/www/html/vendor/phpstan/phpstan/phpstan.phar/stubs/runtime/ReflectionUnionType.php',
+				'phar:///var/www/html/vendor/phpstan/phpstan/phpstan.phar/stubs/runtime/ReflectionAttribute.php',
+				'phar:///var/www/html/vendor/phpstan/phpstan/phpstan.phar/stubs/runtime/Attribute85.php',
+				'phar:///var/www/html/vendor/phpstan/phpstan/phpstan.phar/stubs/runtime/ReflectionIntersectionType.php',
+				'/var/www/html/vendor/larastan/larastan/bootstrap.php',
 			],
 			null,
 			'5',
@@ -2724,7 +2725,7 @@ class Container_981a246e04 extends _PHPStan_48ec32058\Nette\DI\Container
 
 	public function createService09(): PHPStan\Php\PhpVersionFactoryFactory
 	{
-		return new PHPStan\Php\PhpVersionFactoryFactory(null, ['C:/Users/ACER/Desktop/JSG-SP-MIS/JSG-SP-MIS/api']);
+		return new PHPStan\Php\PhpVersionFactoryFactory(null, ['/var/www/html']);
 	}
 
 
@@ -2742,7 +2743,7 @@ class Container_981a246e04 extends _PHPStan_48ec32058\Nette\DI\Container
 
 	public function createService012(): PHPStan\Php\ComposerPhpVersionFactory
 	{
-		return new PHPStan\Php\ComposerPhpVersionFactory(['C:/Users/ACER/Desktop/JSG-SP-MIS/JSG-SP-MIS/api']);
+		return new PHPStan\Php\ComposerPhpVersionFactory(['/var/www/html']);
 	}
 
 
@@ -2895,7 +2896,7 @@ class Container_981a246e04 extends _PHPStan_48ec32058\Nette\DI\Container
 			[],
 			[],
 			$this->getParameter('analysedPaths'),
-			['C:/Users/ACER/Desktop/JSG-SP-MIS/JSG-SP-MIS/api'],
+			['/var/www/html'],
 			$this->getParameter('analysedPathsFromConfig'),
 			false,
 			$this->getParameter('singleReflectionFile')
@@ -2993,7 +2994,7 @@ class Container_981a246e04 extends _PHPStan_48ec32058\Nette\DI\Container
 
 	public function createService041(): PHPStan\File\FileHelper
 	{
-		return new PHPStan\File\FileHelper('C:\Users\ACER\Desktop\JSG-SP-MIS\JSG-SP-MIS\api');
+		return new PHPStan\File\FileHelper('/var/www/html');
 	}
 
 
@@ -3681,14 +3682,11 @@ class Container_981a246e04 extends _PHPStan_48ec32058\Nette\DI\Container
 	public function createService0126(): PHPStan\DependencyInjection\DerivativeContainerFactory
 	{
 		return new PHPStan\DependencyInjection\DerivativeContainerFactory(
-			'C:\Users\ACER\Desktop\JSG-SP-MIS\JSG-SP-MIS\api',
-			'C:\Users\ACER\Desktop\JSG-SP-MIS\JSG-SP-MIS\api\storage\phpstan',
-			[
-				'phar://C:\Users\ACER\Desktop\JSG-SP-MIS\JSG-SP-MIS\api\vendor\phpstan\phpstan\phpstan.phar/conf/config.level5.neon',
-				'C:\Users\ACER\Desktop\JSG-SP-MIS\JSG-SP-MIS\api\phpstan.neon',
-			],
+			'/var/www/html',
+			'/var/www/html/storage/phpstan',
+			['phar:///var/www/html/vendor/phpstan/phpstan/phpstan.phar/conf/config.level5.neon', '/var/www/html/phpstan.neon'],
 			$this->getParameter('analysedPaths'),
-			['C:/Users/ACER/Desktop/JSG-SP-MIS/JSG-SP-MIS/api'],
+			['/var/www/html'],
 			$this->getParameter('analysedPathsFromConfig'),
 			'5',
 			null,
@@ -3820,38 +3818,38 @@ class Container_981a246e04 extends _PHPStan_48ec32058\Nette\DI\Container
 			$this->getService('0125'),
 			$this->getService('041'),
 			[
-				'phar://C:\Users\ACER\Desktop\JSG-SP-MIS\JSG-SP-MIS\api\vendor\phpstan\phpstan\phpstan.phar\stubs\Memcached.stub',
-				'phar://C:\Users\ACER\Desktop\JSG-SP-MIS\JSG-SP-MIS\api\vendor\phpstan\phpstan\phpstan.phar\stubs\Redis.stub',
-				'phar://C:\Users\ACER\Desktop\JSG-SP-MIS\JSG-SP-MIS\api\vendor\phpstan\phpstan\phpstan.phar\stubs\ReflectionAttribute.stub',
-				'phar://C:\Users\ACER\Desktop\JSG-SP-MIS\JSG-SP-MIS\api\vendor\phpstan\phpstan\phpstan.phar\stubs\ReflectionClassConstant.stub',
-				'phar://C:\Users\ACER\Desktop\JSG-SP-MIS\JSG-SP-MIS\api\vendor\phpstan\phpstan\phpstan.phar\stubs\ReflectionFunctionAbstract.stub',
-				'phar://C:\Users\ACER\Desktop\JSG-SP-MIS\JSG-SP-MIS\api\vendor\phpstan\phpstan\phpstan.phar\stubs\ReflectionMethod.stub',
-				'phar://C:\Users\ACER\Desktop\JSG-SP-MIS\JSG-SP-MIS\api\vendor\phpstan\phpstan\phpstan.phar\stubs\ReflectionParameter.stub',
-				'phar://C:\Users\ACER\Desktop\JSG-SP-MIS\JSG-SP-MIS\api\vendor\phpstan\phpstan\phpstan.phar\stubs\ReflectionProperty.stub',
-				'phar://C:\Users\ACER\Desktop\JSG-SP-MIS\JSG-SP-MIS\api\vendor\phpstan\phpstan\phpstan.phar\stubs\iterable.stub',
-				'phar://C:\Users\ACER\Desktop\JSG-SP-MIS\JSG-SP-MIS\api\vendor\phpstan\phpstan\phpstan.phar\stubs\ArrayObject.stub',
-				'phar://C:\Users\ACER\Desktop\JSG-SP-MIS\JSG-SP-MIS\api\vendor\phpstan\phpstan\phpstan.phar\stubs\WeakReference.stub',
-				'phar://C:\Users\ACER\Desktop\JSG-SP-MIS\JSG-SP-MIS\api\vendor\phpstan\phpstan\phpstan.phar\stubs\ext-ds.stub',
-				'phar://C:\Users\ACER\Desktop\JSG-SP-MIS\JSG-SP-MIS\api\vendor\phpstan\phpstan\phpstan.phar\stubs\ImagickPixel.stub',
-				'phar://C:\Users\ACER\Desktop\JSG-SP-MIS\JSG-SP-MIS\api\vendor\phpstan\phpstan\phpstan.phar\stubs\PDOStatement.stub',
-				'phar://C:\Users\ACER\Desktop\JSG-SP-MIS\JSG-SP-MIS\api\vendor\phpstan\phpstan\phpstan.phar\stubs\date.stub',
-				'phar://C:\Users\ACER\Desktop\JSG-SP-MIS\JSG-SP-MIS\api\vendor\phpstan\phpstan\phpstan.phar\stubs\ibm_db2.stub',
-				'phar://C:\Users\ACER\Desktop\JSG-SP-MIS\JSG-SP-MIS\api\vendor\phpstan\phpstan\phpstan.phar\stubs\mysqli.stub',
-				'phar://C:\Users\ACER\Desktop\JSG-SP-MIS\JSG-SP-MIS\api\vendor\phpstan\phpstan\phpstan.phar\stubs\zip.stub',
-				'phar://C:\Users\ACER\Desktop\JSG-SP-MIS\JSG-SP-MIS\api\vendor\phpstan\phpstan\phpstan.phar\stubs\dom.stub',
-				'phar://C:\Users\ACER\Desktop\JSG-SP-MIS\JSG-SP-MIS\api\vendor\phpstan\phpstan\phpstan.phar\stubs\spl.stub',
-				'phar://C:\Users\ACER\Desktop\JSG-SP-MIS\JSG-SP-MIS\api\vendor\phpstan\phpstan\phpstan.phar\stubs\SplObjectStorage.stub',
-				'phar://C:\Users\ACER\Desktop\JSG-SP-MIS\JSG-SP-MIS\api\vendor\phpstan\phpstan\phpstan.phar\stubs\Exception.stub',
-				'phar://C:\Users\ACER\Desktop\JSG-SP-MIS\JSG-SP-MIS\api\vendor\phpstan\phpstan\phpstan.phar\stubs\arrayFunctions.stub',
-				'phar://C:\Users\ACER\Desktop\JSG-SP-MIS\JSG-SP-MIS\api\vendor\phpstan\phpstan\phpstan.phar\stubs\core.stub',
-				'phar://C:\Users\ACER\Desktop\JSG-SP-MIS\JSG-SP-MIS\api\vendor\phpstan\phpstan\phpstan.phar\stubs\typeCheckingFunctions.stub',
-				'phar://C:\Users\ACER\Desktop\JSG-SP-MIS\JSG-SP-MIS\api\vendor\phpstan\phpstan\phpstan.phar\stubs\Countable.stub',
-				'phar://C:\Users\ACER\Desktop\JSG-SP-MIS\JSG-SP-MIS\api\vendor\phpstan\phpstan\phpstan.phar\stubs\file.stub',
-				'phar://C:\Users\ACER\Desktop\JSG-SP-MIS\JSG-SP-MIS\api\vendor\phpstan\phpstan\phpstan.phar\stubs\stream_socket_client.stub',
-				'phar://C:\Users\ACER\Desktop\JSG-SP-MIS\JSG-SP-MIS\api\vendor\phpstan\phpstan\phpstan.phar\stubs\stream_socket_server.stub',
-				'phar://C:\Users\ACER\Desktop\JSG-SP-MIS\JSG-SP-MIS\api\vendor\phpstan\phpstan\phpstan.phar\stubs\ctype.stub',
+				'phar:///var/www/html/vendor/phpstan/phpstan/phpstan.phar/stubs/Memcached.stub',
+				'phar:///var/www/html/vendor/phpstan/phpstan/phpstan.phar/stubs/Redis.stub',
+				'phar:///var/www/html/vendor/phpstan/phpstan/phpstan.phar/stubs/ReflectionAttribute.stub',
+				'phar:///var/www/html/vendor/phpstan/phpstan/phpstan.phar/stubs/ReflectionClassConstant.stub',
+				'phar:///var/www/html/vendor/phpstan/phpstan/phpstan.phar/stubs/ReflectionFunctionAbstract.stub',
+				'phar:///var/www/html/vendor/phpstan/phpstan/phpstan.phar/stubs/ReflectionMethod.stub',
+				'phar:///var/www/html/vendor/phpstan/phpstan/phpstan.phar/stubs/ReflectionParameter.stub',
+				'phar:///var/www/html/vendor/phpstan/phpstan/phpstan.phar/stubs/ReflectionProperty.stub',
+				'phar:///var/www/html/vendor/phpstan/phpstan/phpstan.phar/stubs/iterable.stub',
+				'phar:///var/www/html/vendor/phpstan/phpstan/phpstan.phar/stubs/ArrayObject.stub',
+				'phar:///var/www/html/vendor/phpstan/phpstan/phpstan.phar/stubs/WeakReference.stub',
+				'phar:///var/www/html/vendor/phpstan/phpstan/phpstan.phar/stubs/ext-ds.stub',
+				'phar:///var/www/html/vendor/phpstan/phpstan/phpstan.phar/stubs/ImagickPixel.stub',
+				'phar:///var/www/html/vendor/phpstan/phpstan/phpstan.phar/stubs/PDOStatement.stub',
+				'phar:///var/www/html/vendor/phpstan/phpstan/phpstan.phar/stubs/date.stub',
+				'phar:///var/www/html/vendor/phpstan/phpstan/phpstan.phar/stubs/ibm_db2.stub',
+				'phar:///var/www/html/vendor/phpstan/phpstan/phpstan.phar/stubs/mysqli.stub',
+				'phar:///var/www/html/vendor/phpstan/phpstan/phpstan.phar/stubs/zip.stub',
+				'phar:///var/www/html/vendor/phpstan/phpstan/phpstan.phar/stubs/dom.stub',
+				'phar:///var/www/html/vendor/phpstan/phpstan/phpstan.phar/stubs/spl.stub',
+				'phar:///var/www/html/vendor/phpstan/phpstan/phpstan.phar/stubs/SplObjectStorage.stub',
+				'phar:///var/www/html/vendor/phpstan/phpstan/phpstan.phar/stubs/Exception.stub',
+				'phar:///var/www/html/vendor/phpstan/phpstan/phpstan.phar/stubs/arrayFunctions.stub',
+				'phar:///var/www/html/vendor/phpstan/phpstan/phpstan.phar/stubs/core.stub',
+				'phar:///var/www/html/vendor/phpstan/phpstan/phpstan.phar/stubs/typeCheckingFunctions.stub',
+				'phar:///var/www/html/vendor/phpstan/phpstan/phpstan.phar/stubs/Countable.stub',
+				'phar:///var/www/html/vendor/phpstan/phpstan/phpstan.phar/stubs/file.stub',
+				'phar:///var/www/html/vendor/phpstan/phpstan/phpstan.phar/stubs/stream_socket_client.stub',
+				'phar:///var/www/html/vendor/phpstan/phpstan/phpstan.phar/stubs/stream_socket_server.stub',
+				'phar:///var/www/html/vendor/phpstan/phpstan/phpstan.phar/stubs/ctype.stub',
 			],
-			['C:/Users/ACER/Desktop/JSG-SP-MIS/JSG-SP-MIS/api']
+			['/var/www/html']
 		);
 	}
 
@@ -5252,7 +5250,7 @@ class Container_981a246e04 extends _PHPStan_48ec32058\Nette\DI\Container
 
 	public function createService0371(): PHPStan\Analyser\ResultCache\ResultCacheClearer
 	{
-		return new PHPStan\Analyser\ResultCache\ResultCacheClearer('C:\Users\ACER\Desktop\JSG-SP-MIS\JSG-SP-MIS\api\storage\phpstan/resultCache.php');
+		return new PHPStan\Analyser\ResultCache\ResultCacheClearer('/var/www/html/storage/phpstan/resultCache.php');
 	}
 
 
@@ -5895,7 +5893,90 @@ class Container_981a246e04 extends _PHPStan_48ec32058\Nette\DI\Container
 
 	public function createService0459(): PHPStan\Analyser\Ignore\IgnoredErrorHelper
 	{
-		return new PHPStan\Analyser\Ignore\IgnoredErrorHelper($this->getService('041'), [], true);
+		return new PHPStan\Analyser\Ignore\IgnoredErrorHelper(
+			$this->getService('041'),
+			[
+				[
+					'message' => '#^Cannot instantiate interface Throwable\.$#',
+					'identifier' => 'new.interface',
+					'count' => 1,
+					'path' => '/var/www/html/app/Console/Commands/PerfBenchmark.php',
+				],
+				[
+					'message' => '#^Offset \'threshold\' on array\{type\: string, threshold\: float\|int\} on left side of \?\? always exists and is not nullable\.$#',
+					'identifier' => 'nullCoalesce.offset',
+					'count' => 1,
+					'path' => '/var/www/html/app/Domain/Graduation/Services/GraduationProgressService.php',
+				],
+				[
+					'message' => '#^Offset \'type\' on array\{type\: string, threshold\: float\|int\} on left side of \?\? always exists and is not nullable\.$#',
+					'identifier' => 'nullCoalesce.offset',
+					'count' => 1,
+					'path' => '/var/www/html/app/Domain/Graduation/Services/GraduationProgressService.php',
+				],
+				[
+					'message' => '#^Strict comparison using \!\=\= between string and null will always evaluate to true\.$#',
+					'identifier' => 'notIdentical.alwaysTrue',
+					'count' => 1,
+					'path' => '/var/www/html/app/Domain/Privacy/Services/AnonymizationService.php',
+				],
+				[
+					'message' => '#^Using nullsafe method call on non\-nullable type Illuminate\\\Support\\\Carbon\. Use \-\> instead\.$#',
+					'identifier' => 'nullsafe.neverNull',
+					'count' => 5,
+					'path' => '/var/www/html/app/Domain/Privacy/Services/SubjectAccessAssembler.php',
+				],
+				[
+					'message' => '#^Using nullsafe property access on non\-nullable type App\\\Domain\\\Access\\\Models\\\Mda\. Use \-\> instead\.$#',
+					'identifier' => 'nullsafe.neverNull',
+					'count' => 1,
+					'path' => '/var/www/html/app/Domain/Privacy/Services/SubjectAccessAssembler.php',
+				],
+				[
+					'message' => '#^Using nullsafe property access on non\-nullable type App\\\Domain\\\Registry\\\Enums\\\ConsentStatus\. Use \-\> instead\.$#',
+					'identifier' => 'nullsafe.neverNull',
+					'count' => 1,
+					'path' => '/var/www/html/app/Domain/Privacy/Services/SubjectAccessAssembler.php',
+				],
+				[
+					'message' => '#^Using nullsafe property access "\?\-\>status" on left side of \?\? is unnecessary\. Use \-\> instead\.$#',
+					'identifier' => 'nullsafe.neverNull',
+					'count' => 1,
+					'path' => '/var/www/html/app/Domain/Registry/Services/ConsentService.php',
+				],
+				[
+					'message' => '#^Strict comparison using \!\=\= between App\\\Domain\\\Programme\\\Models\\\Programme and null will always evaluate to true\.$#',
+					'identifier' => 'notIdentical.alwaysTrue',
+					'count' => 1,
+					'path' => '/var/www/html/app/Http/Resources/ActivityDetailResource.php',
+				],
+				[
+					'message' => '#^Offset \'threshold\' on array\{type\: string, threshold\: float\|int\} in isset\(\) always exists and is not nullable\.$#',
+					'identifier' => 'isset.offset',
+					'count' => 1,
+					'path' => '/var/www/html/app/Http/Resources/GraduationCriteriaResource.php',
+				],
+				[
+					'message' => '#^Offset \'type\' on array\{type\: string, threshold\: float\|int\} on left side of \?\? always exists and is not nullable\.$#',
+					'identifier' => 'nullCoalesce.offset',
+					'count' => 2,
+					'path' => '/var/www/html/app/Http/Resources/GraduationCriteriaResource.php',
+				],
+				[
+					'message' => '#^Using nullsafe method call on non\-nullable type Illuminate\\\Support\\\Carbon\. Use \-\> instead\.$#',
+					'identifier' => 'nullsafe.neverNull',
+					'count' => 1,
+					'path' => '/var/www/html/app/Http/Resources/GraduationEventResource.php',
+				],
+				[
+					'message' => '#^Strict comparison using \!\=\= between int and null will always evaluate to true\.$#',
+					'identifier' => 'notIdentical.alwaysTrue',
+					'count' => 1,
+					'path' => '/var/www/html/app/Http/Resources/ImportBatchResource.php',
+				],
+			],
+			true
+		);
 	}
 
 
@@ -5905,7 +5986,7 @@ class Container_981a246e04 extends _PHPStan_48ec32058\Nette\DI\Container
 			private $container;
 
 
-			public function __construct(Container_981a246e04 $container)
+			public function __construct(Container_4a1d58b87b $container)
 			{
 				$this->container = $container;
 			}
@@ -5953,7 +6034,7 @@ class Container_981a246e04 extends _PHPStan_48ec32058\Nette\DI\Container
 			private $container;
 
 
-			public function __construct(Container_981a246e04 $container)
+			public function __construct(Container_4a1d58b87b $container)
 			{
 				$this->container = $container;
 			}
@@ -6011,7 +6092,7 @@ class Container_981a246e04 extends _PHPStan_48ec32058\Nette\DI\Container
 			private $container;
 
 
-			public function __construct(Container_981a246e04 $container)
+			public function __construct(Container_4a1d58b87b $container)
 			{
 				$this->container = $container;
 			}
@@ -6078,7 +6159,7 @@ class Container_981a246e04 extends _PHPStan_48ec32058\Nette\DI\Container
 			private $container;
 
 
-			public function __construct(Container_981a246e04 $container)
+			public function __construct(Container_4a1d58b87b $container)
 			{
 				$this->container = $container;
 			}
@@ -6098,7 +6179,7 @@ class Container_981a246e04 extends _PHPStan_48ec32058\Nette\DI\Container
 			private $container;
 
 
-			public function __construct(Container_981a246e04 $container)
+			public function __construct(Container_4a1d58b87b $container)
 			{
 				$this->container = $container;
 			}
@@ -6123,7 +6204,7 @@ class Container_981a246e04 extends _PHPStan_48ec32058\Nette\DI\Container
 			private $container;
 
 
-			public function __construct(Container_981a246e04 $container)
+			public function __construct(Container_4a1d58b87b $container)
 			{
 				$this->container = $container;
 			}
@@ -6143,7 +6224,7 @@ class Container_981a246e04 extends _PHPStan_48ec32058\Nette\DI\Container
 			private $container;
 
 
-			public function __construct(Container_981a246e04 $container)
+			public function __construct(Container_4a1d58b87b $container)
 			{
 				$this->container = $container;
 			}
@@ -6163,7 +6244,7 @@ class Container_981a246e04 extends _PHPStan_48ec32058\Nette\DI\Container
 			private $container;
 
 
-			public function __construct(Container_981a246e04 $container)
+			public function __construct(Container_4a1d58b87b $container)
 			{
 				$this->container = $container;
 			}
@@ -6178,18 +6259,18 @@ class Container_981a246e04 extends _PHPStan_48ec32058\Nette\DI\Container
 					$this->container->getService('0145'),
 					$this->container->getService('041'),
 					$this->container->getService('0792'),
-					'C:\Users\ACER\Desktop\JSG-SP-MIS\JSG-SP-MIS\api\storage\phpstan/resultCache.php',
+					'/var/www/html/storage/phpstan/resultCache.php',
 					$this->container->getParameter('analysedPaths'),
 					$this->container->getParameter('analysedPathsFromConfig'),
-					['C:/Users/ACER/Desktop/JSG-SP-MIS/JSG-SP-MIS/api'],
+					['/var/www/html'],
 					'5',
 					null,
 					[
-						'phar://C:\Users\ACER\Desktop\JSG-SP-MIS\JSG-SP-MIS\api\vendor\phpstan\phpstan\phpstan.phar\stubs\runtime\ReflectionUnionType.php',
-						'phar://C:\Users\ACER\Desktop\JSG-SP-MIS\JSG-SP-MIS\api\vendor\phpstan\phpstan\phpstan.phar\stubs\runtime\ReflectionAttribute.php',
-						'phar://C:\Users\ACER\Desktop\JSG-SP-MIS\JSG-SP-MIS\api\vendor\phpstan\phpstan\phpstan.phar\stubs\runtime\Attribute85.php',
-						'phar://C:\Users\ACER\Desktop\JSG-SP-MIS\JSG-SP-MIS\api\vendor\phpstan\phpstan\phpstan.phar\stubs\runtime\ReflectionIntersectionType.php',
-						'C:\Users\ACER\Desktop\JSG-SP-MIS\JSG-SP-MIS\api\vendor\larastan\larastan\bootstrap.php',
+						'phar:///var/www/html/vendor/phpstan/phpstan/phpstan.phar/stubs/runtime/ReflectionUnionType.php',
+						'phar:///var/www/html/vendor/phpstan/phpstan/phpstan.phar/stubs/runtime/ReflectionAttribute.php',
+						'phar:///var/www/html/vendor/phpstan/phpstan/phpstan.phar/stubs/runtime/Attribute85.php',
+						'phar:///var/www/html/vendor/phpstan/phpstan/phpstan.phar/stubs/runtime/ReflectionIntersectionType.php',
+						'/var/www/html/vendor/larastan/larastan/bootstrap.php',
 					],
 					[],
 					[],
@@ -7372,7 +7453,7 @@ class Container_981a246e04 extends _PHPStan_48ec32058\Nette\DI\Container
 
 	public function createService0623(): PHPStan\Rules\Variables\DefinedVariableRule
 	{
-		return new PHPStan\Rules\Variables\DefinedVariableRule(false, true);
+		return new PHPStan\Rules\Variables\DefinedVariableRule(true, true);
 	}
 
 
@@ -8044,11 +8125,7 @@ class Container_981a246e04 extends _PHPStan_48ec32058\Nette\DI\Container
 
 	public function createService0730(): PHPStan\Rules\Keywords\RequireFileExistsRule
 	{
-		return new PHPStan\Rules\Keywords\RequireFileExistsRule(
-			'C:\Users\ACER\Desktop\JSG-SP-MIS\JSG-SP-MIS\api',
-			$this->getService('06'),
-			false
-		);
+		return new PHPStan\Rules\Keywords\RequireFileExistsRule('/var/www/html', $this->getService('06'), false);
 	}
 
 
@@ -8453,10 +8530,7 @@ class Container_981a246e04 extends _PHPStan_48ec32058\Nette\DI\Container
 
 	public function createService0792(): PHPStan\Dependency\PackageDependencyResolver
 	{
-		return new PHPStan\Dependency\PackageDependencyResolver(
-			['C:/Users/ACER/Desktop/JSG-SP-MIS/JSG-SP-MIS/api'],
-			$this->getService('041')
-		);
+		return new PHPStan\Dependency\PackageDependencyResolver(['/var/www/html'], $this->getService('041'));
 	}
 
 
@@ -9280,7 +9354,7 @@ class Container_981a246e04 extends _PHPStan_48ec32058\Nette\DI\Container
 
 	public function createService0913(): Larastan\Larastan\Properties\MigrationCache
 	{
-		return new Larastan\Larastan\Properties\MigrationCache('C:\Users\ACER\Desktop\JSG-SP-MIS\JSG-SP-MIS\api\storage\phpstan', false);
+		return new Larastan\Larastan\Properties\MigrationCache('/var/www/html/storage/phpstan', false);
 	}
 
 
@@ -9634,11 +9708,11 @@ class Container_981a246e04 extends _PHPStan_48ec32058\Nette\DI\Container
 
 	public function createServiceCacheStorage(): PHPStan\Cache\FileCacheStorage
 	{
-		return new PHPStan\Cache\FileCacheStorage('C:\Users\ACER\Desktop\JSG-SP-MIS\JSG-SP-MIS\api\storage\phpstan/cache/PHPStan');
+		return new PHPStan\Cache\FileCacheStorage('/var/www/html/storage/phpstan/cache/PHPStan');
 	}
 
 
-	public function createServiceContainer(): Container_981a246e04
+	public function createServiceContainer(): Container_4a1d58b87b
 	{
 		return $this;
 	}
@@ -9815,7 +9889,7 @@ class Container_981a246e04 extends _PHPStan_48ec32058\Nette\DI\Container
 
 	public function createServiceParentDirectoryRelativePathHelper(): PHPStan\File\ParentDirectoryRelativePathHelper
 	{
-		return new PHPStan\File\ParentDirectoryRelativePathHelper('C:\Users\ACER\Desktop\JSG-SP-MIS\JSG-SP-MIS\api');
+		return new PHPStan\File\ParentDirectoryRelativePathHelper('/var/www/html');
 	}
 
 
@@ -9861,17 +9935,18 @@ class Container_981a246e04 extends _PHPStan_48ec32058\Nette\DI\Container
 			$this->getService('011'),
 			null,
 			$this->getService('041'),
-			['C:/Users/ACER/Desktop/JSG-SP-MIS/JSG-SP-MIS/api'],
+			['/var/www/html'],
 			[
-				'phar://C:\Users\ACER\Desktop\JSG-SP-MIS\JSG-SP-MIS\api\vendor\phpstan\phpstan\phpstan.phar\conf\parametersSchema.neon',
-				'phar://C:\Users\ACER\Desktop\JSG-SP-MIS\JSG-SP-MIS\api\vendor\phpstan\phpstan\phpstan.phar\conf\config.level5.neon',
-				'phar://C:\Users\ACER\Desktop\JSG-SP-MIS\JSG-SP-MIS\api\vendor\phpstan\phpstan\phpstan.phar\conf\config.level4.neon',
-				'phar://C:\Users\ACER\Desktop\JSG-SP-MIS\JSG-SP-MIS\api\vendor\phpstan\phpstan\phpstan.phar\conf\config.level3.neon',
-				'phar://C:\Users\ACER\Desktop\JSG-SP-MIS\JSG-SP-MIS\api\vendor\phpstan\phpstan\phpstan.phar\conf\config.level2.neon',
-				'phar://C:\Users\ACER\Desktop\JSG-SP-MIS\JSG-SP-MIS\api\vendor\phpstan\phpstan\phpstan.phar\conf\config.level1.neon',
-				'phar://C:\Users\ACER\Desktop\JSG-SP-MIS\JSG-SP-MIS\api\vendor\phpstan\phpstan\phpstan.phar\conf\config.level0.neon',
-				'C:\Users\ACER\Desktop\JSG-SP-MIS\JSG-SP-MIS\api\phpstan.neon',
-				'C:\Users\ACER\Desktop\JSG-SP-MIS\JSG-SP-MIS\api\vendor\larastan\larastan\extension.neon',
+				'phar:///var/www/html/vendor/phpstan/phpstan/phpstan.phar/conf/parametersSchema.neon',
+				'phar:///var/www/html/vendor/phpstan/phpstan/phpstan.phar/conf/config.level5.neon',
+				'phar:///var/www/html/vendor/phpstan/phpstan/phpstan.phar/conf/config.level4.neon',
+				'phar:///var/www/html/vendor/phpstan/phpstan/phpstan.phar/conf/config.level3.neon',
+				'phar:///var/www/html/vendor/phpstan/phpstan/phpstan.phar/conf/config.level2.neon',
+				'phar:///var/www/html/vendor/phpstan/phpstan/phpstan.phar/conf/config.level1.neon',
+				'phar:///var/www/html/vendor/phpstan/phpstan/phpstan.phar/conf/config.level0.neon',
+				'/var/www/html/phpstan.neon',
+				'/var/www/html/vendor/larastan/larastan/extension.neon',
+				'/var/www/html/phpstan-baseline.neon',
 			],
 			$this->getService('012'),
 			$this->getService('simpleRelativePathHelper')
@@ -9901,7 +9976,7 @@ class Container_981a246e04 extends _PHPStan_48ec32058\Nette\DI\Container
 	{
 		return new PHPStan\File\FuzzyRelativePathHelper(
 			$this->getService('parentDirectoryRelativePathHelper'),
-			'C:\Users\ACER\Desktop\JSG-SP-MIS\JSG-SP-MIS\api',
+			'/var/www/html',
 			$this->getParameter('analysedPaths')
 		);
 	}
@@ -9933,7 +10008,7 @@ class Container_981a246e04 extends _PHPStan_48ec32058\Nette\DI\Container
 
 	public function createServiceSimpleRelativePathHelper(): PHPStan\File\SimpleRelativePathHelper
 	{
-		return new PHPStan\File\SimpleRelativePathHelper('C:\Users\ACER\Desktop\JSG-SP-MIS\JSG-SP-MIS\api');
+		return new PHPStan\File\SimpleRelativePathHelper('/var/www/html');
 	}
 
 
@@ -10002,15 +10077,15 @@ class Container_981a246e04 extends _PHPStan_48ec32058\Nette\DI\Container
 	{
 		return [
 			'bootstrapFiles' => [
-				'phar://C:\Users\ACER\Desktop\JSG-SP-MIS\JSG-SP-MIS\api\vendor\phpstan\phpstan\phpstan.phar\stubs\runtime\ReflectionUnionType.php',
-				'phar://C:\Users\ACER\Desktop\JSG-SP-MIS\JSG-SP-MIS\api\vendor\phpstan\phpstan\phpstan.phar\stubs\runtime\ReflectionAttribute.php',
-				'phar://C:\Users\ACER\Desktop\JSG-SP-MIS\JSG-SP-MIS\api\vendor\phpstan\phpstan\phpstan.phar\stubs\runtime\Attribute85.php',
-				'phar://C:\Users\ACER\Desktop\JSG-SP-MIS\JSG-SP-MIS\api\vendor\phpstan\phpstan\phpstan.phar\stubs\runtime\ReflectionIntersectionType.php',
-				'C:\Users\ACER\Desktop\JSG-SP-MIS\JSG-SP-MIS\api\vendor\larastan\larastan\bootstrap.php',
+				'phar:///var/www/html/vendor/phpstan/phpstan/phpstan.phar/stubs/runtime/ReflectionUnionType.php',
+				'phar:///var/www/html/vendor/phpstan/phpstan/phpstan.phar/stubs/runtime/ReflectionAttribute.php',
+				'phar:///var/www/html/vendor/phpstan/phpstan/phpstan.phar/stubs/runtime/Attribute85.php',
+				'phar:///var/www/html/vendor/phpstan/phpstan/phpstan.phar/stubs/runtime/ReflectionIntersectionType.php',
+				'/var/www/html/vendor/larastan/larastan/bootstrap.php',
 			],
 			'excludePaths' => ['analyseAndScan' => [], 'analyse' => []],
 			'level' => 5,
-			'paths' => ['C:\Users\ACER\Desktop\JSG-SP-MIS\JSG-SP-MIS\api\app'],
+			'paths' => ['/var/www/html/app'],
 			'exceptions' => [
 				'implicitThrows' => true,
 				'reportUncheckedExceptionDeadCatch' => true,
@@ -10117,7 +10192,86 @@ class Container_981a246e04 extends _PHPStan_48ec32058\Nette\DI\Container
 			'tipsOfTheDay' => true,
 			'reportMagicMethods' => true,
 			'reportMagicProperties' => true,
-			'ignoreErrors' => [],
+			'ignoreErrors' => [
+				[
+					'message' => '#^Cannot instantiate interface Throwable\.$#',
+					'identifier' => 'new.interface',
+					'count' => 1,
+					'path' => '/var/www/html/app/Console/Commands/PerfBenchmark.php',
+				],
+				[
+					'message' => '#^Offset \'threshold\' on array\{type\: string, threshold\: float\|int\} on left side of \?\? always exists and is not nullable\.$#',
+					'identifier' => 'nullCoalesce.offset',
+					'count' => 1,
+					'path' => '/var/www/html/app/Domain/Graduation/Services/GraduationProgressService.php',
+				],
+				[
+					'message' => '#^Offset \'type\' on array\{type\: string, threshold\: float\|int\} on left side of \?\? always exists and is not nullable\.$#',
+					'identifier' => 'nullCoalesce.offset',
+					'count' => 1,
+					'path' => '/var/www/html/app/Domain/Graduation/Services/GraduationProgressService.php',
+				],
+				[
+					'message' => '#^Strict comparison using \!\=\= between string and null will always evaluate to true\.$#',
+					'identifier' => 'notIdentical.alwaysTrue',
+					'count' => 1,
+					'path' => '/var/www/html/app/Domain/Privacy/Services/AnonymizationService.php',
+				],
+				[
+					'message' => '#^Using nullsafe method call on non\-nullable type Illuminate\\\Support\\\Carbon\. Use \-\> instead\.$#',
+					'identifier' => 'nullsafe.neverNull',
+					'count' => 5,
+					'path' => '/var/www/html/app/Domain/Privacy/Services/SubjectAccessAssembler.php',
+				],
+				[
+					'message' => '#^Using nullsafe property access on non\-nullable type App\\\Domain\\\Access\\\Models\\\Mda\. Use \-\> instead\.$#',
+					'identifier' => 'nullsafe.neverNull',
+					'count' => 1,
+					'path' => '/var/www/html/app/Domain/Privacy/Services/SubjectAccessAssembler.php',
+				],
+				[
+					'message' => '#^Using nullsafe property access on non\-nullable type App\\\Domain\\\Registry\\\Enums\\\ConsentStatus\. Use \-\> instead\.$#',
+					'identifier' => 'nullsafe.neverNull',
+					'count' => 1,
+					'path' => '/var/www/html/app/Domain/Privacy/Services/SubjectAccessAssembler.php',
+				],
+				[
+					'message' => '#^Using nullsafe property access "\?\-\>status" on left side of \?\? is unnecessary\. Use \-\> instead\.$#',
+					'identifier' => 'nullsafe.neverNull',
+					'count' => 1,
+					'path' => '/var/www/html/app/Domain/Registry/Services/ConsentService.php',
+				],
+				[
+					'message' => '#^Strict comparison using \!\=\= between App\\\Domain\\\Programme\\\Models\\\Programme and null will always evaluate to true\.$#',
+					'identifier' => 'notIdentical.alwaysTrue',
+					'count' => 1,
+					'path' => '/var/www/html/app/Http/Resources/ActivityDetailResource.php',
+				],
+				[
+					'message' => '#^Offset \'threshold\' on array\{type\: string, threshold\: float\|int\} in isset\(\) always exists and is not nullable\.$#',
+					'identifier' => 'isset.offset',
+					'count' => 1,
+					'path' => '/var/www/html/app/Http/Resources/GraduationCriteriaResource.php',
+				],
+				[
+					'message' => '#^Offset \'type\' on array\{type\: string, threshold\: float\|int\} on left side of \?\? always exists and is not nullable\.$#',
+					'identifier' => 'nullCoalesce.offset',
+					'count' => 2,
+					'path' => '/var/www/html/app/Http/Resources/GraduationCriteriaResource.php',
+				],
+				[
+					'message' => '#^Using nullsafe method call on non\-nullable type Illuminate\\\Support\\\Carbon\. Use \-\> instead\.$#',
+					'identifier' => 'nullsafe.neverNull',
+					'count' => 1,
+					'path' => '/var/www/html/app/Http/Resources/GraduationEventResource.php',
+				],
+				[
+					'message' => '#^Strict comparison using \!\=\= between int and null will always evaluate to true\.$#',
+					'identifier' => 'notIdentical.alwaysTrue',
+					'count' => 1,
+					'path' => '/var/www/html/app/Http/Resources/ImportBatchResource.php',
+				],
+			],
 			'internalErrorsCountLimit' => 50,
 			'cache' => [
 				'nodesByStringCountMax' => 256,
@@ -10129,40 +10283,40 @@ class Container_981a246e04 extends _PHPStan_48ec32058\Nette\DI\Container
 			'typeAliases' => [],
 			'universalObjectCratesClasses' => ['stdClass', 'Illuminate\Http\Request', 'Illuminate\Support\Optional'],
 			'stubFiles' => [
-				'phar://C:\Users\ACER\Desktop\JSG-SP-MIS\JSG-SP-MIS\api\vendor\phpstan\phpstan\phpstan.phar\stubs\Memcached.stub',
-				'phar://C:\Users\ACER\Desktop\JSG-SP-MIS\JSG-SP-MIS\api\vendor\phpstan\phpstan\phpstan.phar\stubs\Redis.stub',
-				'phar://C:\Users\ACER\Desktop\JSG-SP-MIS\JSG-SP-MIS\api\vendor\phpstan\phpstan\phpstan.phar\stubs\ReflectionAttribute.stub',
-				'phar://C:\Users\ACER\Desktop\JSG-SP-MIS\JSG-SP-MIS\api\vendor\phpstan\phpstan\phpstan.phar\stubs\ReflectionClassConstant.stub',
-				'phar://C:\Users\ACER\Desktop\JSG-SP-MIS\JSG-SP-MIS\api\vendor\phpstan\phpstan\phpstan.phar\stubs\ReflectionFunctionAbstract.stub',
-				'phar://C:\Users\ACER\Desktop\JSG-SP-MIS\JSG-SP-MIS\api\vendor\phpstan\phpstan\phpstan.phar\stubs\ReflectionMethod.stub',
-				'phar://C:\Users\ACER\Desktop\JSG-SP-MIS\JSG-SP-MIS\api\vendor\phpstan\phpstan\phpstan.phar\stubs\ReflectionParameter.stub',
-				'phar://C:\Users\ACER\Desktop\JSG-SP-MIS\JSG-SP-MIS\api\vendor\phpstan\phpstan\phpstan.phar\stubs\ReflectionProperty.stub',
-				'phar://C:\Users\ACER\Desktop\JSG-SP-MIS\JSG-SP-MIS\api\vendor\phpstan\phpstan\phpstan.phar\stubs\iterable.stub',
-				'phar://C:\Users\ACER\Desktop\JSG-SP-MIS\JSG-SP-MIS\api\vendor\phpstan\phpstan\phpstan.phar\stubs\ArrayObject.stub',
-				'phar://C:\Users\ACER\Desktop\JSG-SP-MIS\JSG-SP-MIS\api\vendor\phpstan\phpstan\phpstan.phar\stubs\WeakReference.stub',
-				'phar://C:\Users\ACER\Desktop\JSG-SP-MIS\JSG-SP-MIS\api\vendor\phpstan\phpstan\phpstan.phar\stubs\ext-ds.stub',
-				'phar://C:\Users\ACER\Desktop\JSG-SP-MIS\JSG-SP-MIS\api\vendor\phpstan\phpstan\phpstan.phar\stubs\ImagickPixel.stub',
-				'phar://C:\Users\ACER\Desktop\JSG-SP-MIS\JSG-SP-MIS\api\vendor\phpstan\phpstan\phpstan.phar\stubs\PDOStatement.stub',
-				'phar://C:\Users\ACER\Desktop\JSG-SP-MIS\JSG-SP-MIS\api\vendor\phpstan\phpstan\phpstan.phar\stubs\date.stub',
-				'phar://C:\Users\ACER\Desktop\JSG-SP-MIS\JSG-SP-MIS\api\vendor\phpstan\phpstan\phpstan.phar\stubs\ibm_db2.stub',
-				'phar://C:\Users\ACER\Desktop\JSG-SP-MIS\JSG-SP-MIS\api\vendor\phpstan\phpstan\phpstan.phar\stubs\mysqli.stub',
-				'phar://C:\Users\ACER\Desktop\JSG-SP-MIS\JSG-SP-MIS\api\vendor\phpstan\phpstan\phpstan.phar\stubs\zip.stub',
-				'phar://C:\Users\ACER\Desktop\JSG-SP-MIS\JSG-SP-MIS\api\vendor\phpstan\phpstan\phpstan.phar\stubs\dom.stub',
-				'phar://C:\Users\ACER\Desktop\JSG-SP-MIS\JSG-SP-MIS\api\vendor\phpstan\phpstan\phpstan.phar\stubs\spl.stub',
-				'phar://C:\Users\ACER\Desktop\JSG-SP-MIS\JSG-SP-MIS\api\vendor\phpstan\phpstan\phpstan.phar\stubs\SplObjectStorage.stub',
-				'phar://C:\Users\ACER\Desktop\JSG-SP-MIS\JSG-SP-MIS\api\vendor\phpstan\phpstan\phpstan.phar\stubs\Exception.stub',
-				'phar://C:\Users\ACER\Desktop\JSG-SP-MIS\JSG-SP-MIS\api\vendor\phpstan\phpstan\phpstan.phar\stubs\arrayFunctions.stub',
-				'phar://C:\Users\ACER\Desktop\JSG-SP-MIS\JSG-SP-MIS\api\vendor\phpstan\phpstan\phpstan.phar\stubs\core.stub',
-				'phar://C:\Users\ACER\Desktop\JSG-SP-MIS\JSG-SP-MIS\api\vendor\phpstan\phpstan\phpstan.phar\stubs\typeCheckingFunctions.stub',
-				'phar://C:\Users\ACER\Desktop\JSG-SP-MIS\JSG-SP-MIS\api\vendor\phpstan\phpstan\phpstan.phar\stubs\Countable.stub',
-				'phar://C:\Users\ACER\Desktop\JSG-SP-MIS\JSG-SP-MIS\api\vendor\phpstan\phpstan\phpstan.phar\stubs\file.stub',
-				'phar://C:\Users\ACER\Desktop\JSG-SP-MIS\JSG-SP-MIS\api\vendor\phpstan\phpstan\phpstan.phar\stubs\stream_socket_client.stub',
-				'phar://C:\Users\ACER\Desktop\JSG-SP-MIS\JSG-SP-MIS\api\vendor\phpstan\phpstan\phpstan.phar\stubs\stream_socket_server.stub',
-				'phar://C:\Users\ACER\Desktop\JSG-SP-MIS\JSG-SP-MIS\api\vendor\phpstan\phpstan\phpstan.phar\stubs\ctype.stub',
+				'phar:///var/www/html/vendor/phpstan/phpstan/phpstan.phar/stubs/Memcached.stub',
+				'phar:///var/www/html/vendor/phpstan/phpstan/phpstan.phar/stubs/Redis.stub',
+				'phar:///var/www/html/vendor/phpstan/phpstan/phpstan.phar/stubs/ReflectionAttribute.stub',
+				'phar:///var/www/html/vendor/phpstan/phpstan/phpstan.phar/stubs/ReflectionClassConstant.stub',
+				'phar:///var/www/html/vendor/phpstan/phpstan/phpstan.phar/stubs/ReflectionFunctionAbstract.stub',
+				'phar:///var/www/html/vendor/phpstan/phpstan/phpstan.phar/stubs/ReflectionMethod.stub',
+				'phar:///var/www/html/vendor/phpstan/phpstan/phpstan.phar/stubs/ReflectionParameter.stub',
+				'phar:///var/www/html/vendor/phpstan/phpstan/phpstan.phar/stubs/ReflectionProperty.stub',
+				'phar:///var/www/html/vendor/phpstan/phpstan/phpstan.phar/stubs/iterable.stub',
+				'phar:///var/www/html/vendor/phpstan/phpstan/phpstan.phar/stubs/ArrayObject.stub',
+				'phar:///var/www/html/vendor/phpstan/phpstan/phpstan.phar/stubs/WeakReference.stub',
+				'phar:///var/www/html/vendor/phpstan/phpstan/phpstan.phar/stubs/ext-ds.stub',
+				'phar:///var/www/html/vendor/phpstan/phpstan/phpstan.phar/stubs/ImagickPixel.stub',
+				'phar:///var/www/html/vendor/phpstan/phpstan/phpstan.phar/stubs/PDOStatement.stub',
+				'phar:///var/www/html/vendor/phpstan/phpstan/phpstan.phar/stubs/date.stub',
+				'phar:///var/www/html/vendor/phpstan/phpstan/phpstan.phar/stubs/ibm_db2.stub',
+				'phar:///var/www/html/vendor/phpstan/phpstan/phpstan.phar/stubs/mysqli.stub',
+				'phar:///var/www/html/vendor/phpstan/phpstan/phpstan.phar/stubs/zip.stub',
+				'phar:///var/www/html/vendor/phpstan/phpstan/phpstan.phar/stubs/dom.stub',
+				'phar:///var/www/html/vendor/phpstan/phpstan/phpstan.phar/stubs/spl.stub',
+				'phar:///var/www/html/vendor/phpstan/phpstan/phpstan.phar/stubs/SplObjectStorage.stub',
+				'phar:///var/www/html/vendor/phpstan/phpstan/phpstan.phar/stubs/Exception.stub',
+				'phar:///var/www/html/vendor/phpstan/phpstan/phpstan.phar/stubs/arrayFunctions.stub',
+				'phar:///var/www/html/vendor/phpstan/phpstan/phpstan.phar/stubs/core.stub',
+				'phar:///var/www/html/vendor/phpstan/phpstan/phpstan.phar/stubs/typeCheckingFunctions.stub',
+				'phar:///var/www/html/vendor/phpstan/phpstan/phpstan.phar/stubs/Countable.stub',
+				'phar:///var/www/html/vendor/phpstan/phpstan/phpstan.phar/stubs/file.stub',
+				'phar:///var/www/html/vendor/phpstan/phpstan/phpstan.phar/stubs/stream_socket_client.stub',
+				'phar:///var/www/html/vendor/phpstan/phpstan/phpstan.phar/stubs/stream_socket_server.stub',
+				'phar:///var/www/html/vendor/phpstan/phpstan/phpstan.phar/stubs/ctype.stub',
 			],
 			'earlyTerminatingMethodCalls' => [],
 			'earlyTerminatingFunctionCalls' => ['abort', 'dd'],
-			'resultCachePath' => 'C:\Users\ACER\Desktop\JSG-SP-MIS\JSG-SP-MIS\api\storage\phpstan/resultCache.php',
+			'resultCachePath' => '/var/www/html/storage/phpstan/resultCache.php',
 			'resultCacheSkipIfOlderThanDays' => 7,
 			'resultCacheChecksProjectExtensionFilesDependencies' => false,
 			'dynamicConstantNames' => [
@@ -10263,115 +10417,104 @@ class Container_981a246e04 extends _PHPStan_48ec32058\Nette\DI\Container
 			'checkAuthCallsWhenInRequestScope' => false,
 			'parseModelCastsMethod' => false,
 			'enableMigrationCache' => false,
-			'tmpDir' => 'C:\Users\ACER\Desktop\JSG-SP-MIS\JSG-SP-MIS\api\storage\phpstan',
+			'tmpDir' => '/var/www/html/storage/phpstan',
 			'debugMode' => true,
 			'productionMode' => false,
-			'tempDir' => 'C:\Users\ACER\Desktop\JSG-SP-MIS\JSG-SP-MIS\api\storage\phpstan',
-			'rootDir' => 'C:\Users\ACER\Desktop\JSG-SP-MIS\JSG-SP-MIS\api\vendor\phpstan\phpstan',
-			'currentWorkingDirectory' => 'C:\Users\ACER\Desktop\JSG-SP-MIS\JSG-SP-MIS\api',
-			'cliArgumentsVariablesRegistered' => false,
+			'tempDir' => '/var/www/html/storage/phpstan',
+			'rootDir' => '/var/www/html/vendor/phpstan/phpstan',
+			'currentWorkingDirectory' => '/var/www/html',
+			'cliArgumentsVariablesRegistered' => true,
 			'additionalConfigFiles' => [
-				'phar://C:\Users\ACER\Desktop\JSG-SP-MIS\JSG-SP-MIS\api\vendor\phpstan\phpstan\phpstan.phar/conf/config.level5.neon',
-				'C:\Users\ACER\Desktop\JSG-SP-MIS\JSG-SP-MIS\api\phpstan.neon',
+				'phar:///var/www/html/vendor/phpstan/phpstan/phpstan.phar/conf/config.level5.neon',
+				'/var/www/html/phpstan.neon',
 			],
 			'allConfigFiles' => [
-				'phar://C:\Users\ACER\Desktop\JSG-SP-MIS\JSG-SP-MIS\api\vendor\phpstan\phpstan\phpstan.phar\conf\parametersSchema.neon',
-				'phar://C:\Users\ACER\Desktop\JSG-SP-MIS\JSG-SP-MIS\api\vendor\phpstan\phpstan\phpstan.phar\conf\config.level5.neon',
-				'phar://C:\Users\ACER\Desktop\JSG-SP-MIS\JSG-SP-MIS\api\vendor\phpstan\phpstan\phpstan.phar\conf\config.level4.neon',
-				'phar://C:\Users\ACER\Desktop\JSG-SP-MIS\JSG-SP-MIS\api\vendor\phpstan\phpstan\phpstan.phar\conf\config.level3.neon',
-				'phar://C:\Users\ACER\Desktop\JSG-SP-MIS\JSG-SP-MIS\api\vendor\phpstan\phpstan\phpstan.phar\conf\config.level2.neon',
-				'phar://C:\Users\ACER\Desktop\JSG-SP-MIS\JSG-SP-MIS\api\vendor\phpstan\phpstan\phpstan.phar\conf\config.level1.neon',
-				'phar://C:\Users\ACER\Desktop\JSG-SP-MIS\JSG-SP-MIS\api\vendor\phpstan\phpstan\phpstan.phar\conf\config.level0.neon',
-				'C:\Users\ACER\Desktop\JSG-SP-MIS\JSG-SP-MIS\api\phpstan.neon',
-				'C:\Users\ACER\Desktop\JSG-SP-MIS\JSG-SP-MIS\api\vendor\larastan\larastan\extension.neon',
+				'phar:///var/www/html/vendor/phpstan/phpstan/phpstan.phar/conf/parametersSchema.neon',
+				'phar:///var/www/html/vendor/phpstan/phpstan/phpstan.phar/conf/config.level5.neon',
+				'phar:///var/www/html/vendor/phpstan/phpstan/phpstan.phar/conf/config.level4.neon',
+				'phar:///var/www/html/vendor/phpstan/phpstan/phpstan.phar/conf/config.level3.neon',
+				'phar:///var/www/html/vendor/phpstan/phpstan/phpstan.phar/conf/config.level2.neon',
+				'phar:///var/www/html/vendor/phpstan/phpstan/phpstan.phar/conf/config.level1.neon',
+				'phar:///var/www/html/vendor/phpstan/phpstan/phpstan.phar/conf/config.level0.neon',
+				'/var/www/html/phpstan.neon',
+				'/var/www/html/vendor/larastan/larastan/extension.neon',
+				'/var/www/html/phpstan-baseline.neon',
 			],
-			'composerAutoloaderProjectPaths' => ['C:/Users/ACER/Desktop/JSG-SP-MIS/JSG-SP-MIS/api'],
+			'composerAutoloaderProjectPaths' => ['/var/www/html'],
 			'generateBaselineFile' => null,
 			'usedLevel' => '5',
 			'cliAutoloadFile' => null,
 			'env' => [
-				'AI_AGENT' => 'claude-code_2-1-240_agent',
-				'ALLUSERSPROFILE' => 'C:\ProgramData',
-				'APPDATA' => 'C:\Users\ACER\AppData\Roaming',
-				'CHROME_CRASHPAD_PIPE_NAME' => '\\\.\pipe\crashpad_15612_RTIQYYYULRFYLSAG',
-				'CLAUDECODE' => '1',
-				'CLAUDE_AGENT_SDK_VERSION' => '0.3.240',
-				'CLAUDE_CODE_CHILD_SESSION' => '1',
-				'CLAUDE_CODE_ENABLE_SDK_FILE_CHECKPOINTING' => 'true',
-				'CLAUDE_CODE_ENABLE_TASKS' => '0',
-				'CLAUDE_CODE_ENTRYPOINT' => 'claude-vscode',
-				'CLAUDE_CODE_EXECPATH' => 'C:\Users\ACER\.vscode\extensions\anthropic.claude-code-2.1.240-win32-x64\resources\native-binary\claude.exe',
-				'CLAUDE_CODE_MESSAGING_SOCKET' => '\\\.\pipe\LOCAL\cc-msg-e45e8300f55b30bda539ff9b20167743',
-				'CLAUDE_CODE_MESSAGING_TOKEN' => 'b1b5f109c71c87a074b220704fcb8e26',
-				'CLAUDE_CODE_SESSION_ID' => '71bdfd08-53a2-4d53-94aa-60c9dfb41448',
-				'CLAUDE_EFFORT' => 'high',
-				'CLAUDE_PID' => '20728',
-				'COLUMNS' => '120',
-				'COMMONPROGRAMFILES' => 'C:\Program Files\Common Files',
-				'COMPUTERNAME' => 'NITRO-5',
-				'COMSPEC' => 'C:\Windows\system32\cmd.exe',
-				'COREPACK_ENABLE_AUTO_PIN' => '0',
-				'CommonProgramFiles(x86)' => 'C:\Program Files (x86)\Common Files',
-				'CommonProgramW6432' => 'C:\Program Files\Common Files',
-				'DriverData' => 'C:\Windows\System32\Drivers\DriverData',
-				'ELECTRON_RUN_AS_NODE' => '1',
-				'EXEPATH' => 'C:\Program Files\Git\bin',
-				'FPS_BROWSER_APP_PROFILE_STRING' => 'Internet Explorer',
-				'FPS_BROWSER_USER_PROFILE_STRING' => 'Default',
-				'GIT_EDITOR' => 'true',
-				'HOME' => 'C:\Users\ACER',
-				'HOMEDRIVE' => 'C:',
-				'HOMEPATH' => '\Users\ACER',
-				'LINES' => '9001',
-				'LOCALAPPDATA' => 'C:\Users\ACER\AppData\Local',
-				'LOGONSERVER' => '\\\NITRO-5',
-				'MCP_CONNECTION_NONBLOCKING' => 'true',
-				'MSYSTEM' => 'MINGW64',
-				'NUMBER_OF_PROCESSORS' => '8',
-				'NoDefaultCurrentDirectoryInExePath' => '1',
-				'OLDPWD' => 'C:/Users/ACER/Desktop/JSG-SP-MIS/JSG-SP-MIS/api',
-				'OS' => 'Windows_NT',
-				'OneDrive' => 'C:\Users\ACER\OneDrive',
-				'PATH' => 'C:\Users\ACER\bin;C:\Program Files\Git\mingw64\bin;C:\Program Files\Git\usr\local\bin;C:\Program Files\Git\usr\bin;C:\Program Files\Git\usr\bin;C:\Program Files\Git\mingw64\bin;C:\Program Files\Git\usr\bin;C:\Users\ACER\bin;C:\Program Files\Microsoft SDKs\Azure\CLI2\wbin;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0;C:\Windows\System32\OpenSSH;C:\Program Files (x86)\NVIDIA Corporation\PhysX\Common;C:\Program Files\Git\cmd;C:\Program Files\cursor\resources\app\bin;C:\ProgramData\ComposerSetup\bin;C:\Program Files\nodejs;C:\Program Files\PuTTY;C:\Program Files\gs\gs10.04.0\bin;C:\Program Files\dotnet;C:\Program Files\Docker\Docker\resources\bin;C:\Users\ACER\AppData\Local\Microsoft\WindowsApps;C:\Users\ACER\AppData\Local\Programs\Microsoft VS Code\bin;C:\Users\ACER\.azure-kubectl;C:\Users\ACER\.azure-kubelogin;C:\Users\ACER\Downloads\php-8.5.1-nts-Win32-vs17-x64;C:\Users\ACER\AppData\Roaming\Composer\vendor\bin;C:\Users\ACER\AppData\Roaming\npm;C:\Users\ACER\AppData\Local\Programs\Ollama;C:\Users\ACER\.local\bin;C:\Program Files\gs\gs10.04.0\bin;C:\Program Files\Git\usr\bin\vendor_perl;C:\Program Files\Git\usr\bin\core_perl',
-				'PATHEXT' => '.COM;.EXE;.BAT;.CMD;.VBS;.VBE;.JS;.JSE;.WSF;.WSH;.MSC',
-				'PLINK_PROTOCOL' => 'ssh',
-				'PROCESSOR_ARCHITECTURE' => 'AMD64',
-				'PROCESSOR_IDENTIFIER' => 'Intel64 Family 6 Model 158 Stepping 10, GenuineIntel',
-				'PROCESSOR_LEVEL' => '6',
-				'PROCESSOR_REVISION' => '9e0a',
-				'PROGRAMFILES' => 'C:\Program Files',
-				'PSModulePath' => 'C:\Program Files\WindowsPowerShell\Modules;C:\Windows\system32\WindowsPowerShell\v1.0\Modules',
-				'PUBLIC' => 'C:\Users\Public',
-				'PWD' => 'C:/Users/ACER/Desktop/JSG-SP-MIS/JSG-SP-MIS/api',
-				'ProgramData' => 'C:\ProgramData',
-				'ProgramFiles(x86)' => 'C:\Program Files (x86)',
-				'ProgramW6432' => 'C:\Program Files',
-				'SESSIONNAME' => 'Console',
-				'SHELL' => 'C:\Program Files\Git\bin\bash.exe',
-				'SHELL_VERBOSITY' => '0',
+				'LOG_STACK' => 'single',
+				'REDIS_PORT' => '6379',
+				'CORS_SUPPORTS_CREDENTIALS' => 'true',
+				'LOG_LEVEL' => 'debug',
+				'DB_CONNECTION' => 'pgsql',
+				'APP_DEBUG' => 'false',
+				'MAIL_USERNAME' => 'null',
+				'HOSTNAME' => 'e361cc9d8e2b',
+				'PHP_INI_DIR' => '/usr/local/etc/php',
+				'APP_URL' => 'http://localhost:8080',
+				'DB_PORT' => '5432',
+				'MAIL_FROM_ADDRESS' => 'no-reply@spmis.local',
 				'SHLVL' => '1',
-				'SYSTEMDRIVE' => 'C:',
-				'SYSTEMROOT' => 'C:\Windows',
-				'TEMP' => 'C:\Users\ACER\AppData\Local\Temp',
-				'TERM' => 'xterm-256color',
-				'TMP' => 'C:\Users\ACER\AppData\Local\Temp',
-				'USERDOMAIN' => 'NITRO-5',
-				'USERDOMAIN_ROAMINGPROFILE' => 'NITRO-5',
-				'USERNAME' => 'ACER',
-				'USERPROFILE' => 'C:\Users\ACER',
-				'VSCODE_CODE_CACHE_PATH' => 'C:\Users\ACER\AppData\Roaming\Code\CachedData\4fe60c8b1cdac1c4c174f2fb180d0d758272d713',
-				'VSCODE_CRASH_REPORTER_PROCESS_TYPE' => 'extensionHost',
-				'VSCODE_CWD' => 'C:\Users\ACER\AppData\Local\Programs\Microsoft VS Code',
-				'VSCODE_DOTNET_INSTALL_TOOL_ORIGINAL_HOME' => 'undefined',
-				'VSCODE_ESM_ENTRYPOINT' => 'vs/workbench/api/node/extensionHostProcess',
-				'VSCODE_HANDLES_UNCAUGHT_ERRORS' => 'true',
-				'VSCODE_IPC_HOOK' => '\\\.\pipe\e4ee10c7-1.127.0-main-sock',
-				'VSCODE_L10N_BUNDLE_LOCATION' => '',
-				'VSCODE_NLS_CONFIG' => '{"userLocale":"en-us","osLocale":"en-us","resolvedLanguage":"en","defaultMessagesFile":"C:\\\Users\\\ACER\\\AppData\\\Local\\\Programs\\\Microsoft VS Code\\\4fe60c8b1c\\\resources\\\app\\\out\\\nls.messages.json","locale":"en-us","availableLanguages":{}}',
-				'VSCODE_PID' => '15612',
-				'WINDIR' => 'C:\Windows',
-				'ZES_ENABLE_SYSMAN' => '1',
-				'_' => 'C:/Users/ACER/Downloads/php-8.5.1-nts-Win32-vs17-x64/php',
+				'HOME' => '/root',
+				'REDIS_CLIENT' => 'predis',
+				'MAIL_FROM_NAME' => 'SP-MIS',
+				'PHP_LDFLAGS' => '-Wl,-O1 -pie',
+				'DB_DATABASE' => 'spmis',
+				'SESSION_PATH' => '/',
+				'PHP_CFLAGS' => '-fstack-protector-strong -fpic -fpie -O2 -D_LARGEFILE_SOURCE -D_FILE_OFFSET_BITS=64',
+				'APP_NAME' => 'SP-MIS',
+				'RABBITMQ_QUEUE' => 'default',
+				'PHP_VERSION' => '8.3.31',
+				'SESSION_DRIVER' => 'redis',
+				'GPG_KEYS' => '1198C0117593497A5EC5C199286AF1F9897469DC C28D937575603EB4ABB725861C0779DC5C0A9DE4 AFD8691FDAEDF03BDF6E460563F15A9B715376CA',
+				'SHELL_VERBOSITY' => '0',
+				'LOG_CHANNEL' => 'stack',
+				'DB_USERNAME' => 'spmis',
+				'PHP_CPPFLAGS' => '-fstack-protector-strong -fpic -fpie -O2 -D_LARGEFILE_SOURCE -D_FILE_OFFSET_BITS=64',
+				'PHP_ASC_URL' => 'https://www.php.net/distributions/php-8.3.31.tar.xz.asc',
+				'RABBITMQ_PASSWORD' => 'change-me-rabbitmq',
+				'PHP_URL' => 'https://www.php.net/distributions/php-8.3.31.tar.xz',
+				'COLUMNS' => '80',
+				'RABBITMQ_HOST' => 'rabbitmq',
+				'RABBITMQ_USER' => 'spmis',
+				'CORS_ALLOWED_ORIGINS' => 'http://localhost:5173,http://localhost:3000',
+				'CORS_MAX_AGE' => '0',
+				'PATH' => '/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin',
+				'MAIL_PASSWORD' => 'null',
+				'SESSION_ENCRYPT' => 'false',
+				'APP_FAKER_LOCALE' => 'en_US',
+				'RABBITMQ_PORT' => '5672',
+				'FILESYSTEM_DISK' => 'local',
+				'MAIL_HOST' => '127.0.0.1',
+				'MFA_ENFORCE' => 'false',
+				'RABBITMQ_VHOST' => '/',
+				'APP_MAINTENANCE_DRIVER' => 'file',
+				'BCRYPT_ROUNDS' => '12',
+				'SESSION_LIFETIME' => '120',
+				'BROADCAST_CONNECTION' => 'log',
+				'APP_FALLBACK_LOCALE' => 'en',
+				'REDIS_PASSWORD' => 'null',
+				'LOG_DEPRECATIONS_CHANNEL' => 'null',
+				'CACHE_STORE' => 'redis',
+				'SESSION_DOMAIN' => 'null',
+				'MAIL_MAILER' => 'log',
+				'MAIL_PORT' => '2525',
+				'PHPIZE_DEPS' => "autoconf \t\tdpkg-dev dpkg \t\tfile \t\tg++ \t\tgcc \t\tlibc-dev \t\tmake \t\tpkgconf \t\tre2c",
+				'APP_ENV' => 'local',
+				'APP_KEY' => 'base64:RKZzWxKzqVXtH2kfUrkHI3yTuW/Nu3Xw/3M/oRnIh8o=',
+				'DB_PASSWORD' => 'change-me-postgres',
+				'REDIS_HOST' => 'redis',
+				'PWD' => '/var/www/html',
+				'PHP_SHA256' => '66410cee07f4b2baeb0843140bb2a2b52ef930b5cf9b3d6e6d158b33aae8fa37',
+				'LINES' => '50',
+				'DB_HOST' => 'postgres',
+				'QUEUE_CONNECTION' => 'rabbitmq',
+				'APP_LOCALE' => 'en',
+				'SANCTUM_STATEFUL_DOMAINS' => 'localhost:5173,localhost:3000',
+				'RUN_MIGRATIONS' => 'true',
 			],
 		];
 	}

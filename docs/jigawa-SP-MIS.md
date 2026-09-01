@@ -3,7 +3,7 @@
 
 *A unified platform for coordinating, monitoring, and managing social protection programmes across MDAs and partners*
 
-**Version 1.3 · Draft for Review**
+**Version 1.8 · Draft for Review**
 **Prepared by:** Project Team
 **Date:** July 2026
 
@@ -19,6 +19,11 @@
 | 1.1 | June 2026 | Project Team | Restructured into a full PRD: added goals/non-goals, requirement IDs and priorities, non-functional requirements, data model, user flows, success targets, risks, and a phased roadmap. |
 | 1.2 | July 2026 | Project Team | Duplicate-matching default cascade and adjudication rules made explicit; identity-field validation tightened to row-level rejection; request-to-serve gated by Owner-MDA approval with cross-MDA read access on acceptance; activity-first upload flow introduced. See Change Log (v1.2). |
 | 1.3 | July 2026 | Project Team | Programme model revised: programmes become a global, centrally-managed catalog (System Administrator / SP Coordination) rather than MDA-owned. MDAs no longer create programmes; they create MDA-owned activities that select a catalog programme. Budget and funding source moved from Programme to Activity. One programme may be delivered by multiple MDAs through separate activities. Beneficiary ownership model unchanged. See Change Log (v1.3). Revises FR-PRG-01, FR-PRG-02; adds FR-PRG-06. |
+| 1.4 | July 2026 | Project Team | Activity creation may include an optional inline beneficiary-upload step: when a file is provided, validation and duplicate verification run in preview before the activity is saved; on confirm the activity saves with new beneficiaries under it and a pending Service Request for each served duplicate (intervention deferred until approval). Beneficiary upload is optional per activity. See Change Log (v1.4). Clarifies FR-REG-10, FR-PRG-05, §8.1; adds FR-REG-11. |
+| 1.5 | July 2026 | Project Team | Activity beneficiary-involvement made conditional (an activity declares whether it involves beneficiaries; if yes, a target count and beneficiary upload are required; if no, none) with a View Activity detail view. Export of beneficiary data governed by a permission matrix (distinct `export` + `export.reveal_pii`). Activities may be attributed to a funding partner for reporting (reporting-visibility only). Executive & Partner reporting suites and the System Administrator Console described. See Change Log (v1.5). Revises FR-REG-11, §6.4, §8.1; adds FR-PRG-07, FR-RPT-05/06/07/08, FR-UAM-07. |
+| 1.6 | July 2026 | Project Team | **MDA Officer role removed.** Consolidated into a single MDA role (MDA Admin) that performs all MDA operational work. All user management is centralized with the System Administrator (MDAs do not manage users). See Change Log (v1.6). Revises FR-UAM-01, §4, FR-RPT-05, §8 flows. |
+| 1.7 | July 2026 | Project Team | **Data Import & Mapping** module added (canonical schema, column mapping, learnable per-source templates, value normalization, mapping/validation preview) with a hard rule that identity-field mappings (NIN/BVN/name/phone) are confirmed every import. **Grant revocation** added: cross-MDA read access granted on request-to-serve acceptance is revocable by the Owner MDA. See Change Log (v1.7). Adds §6.5, FR-REG-12..17, FR-OWN-08; revises §8.1. |
+| 1.8 | July 2026 | Project Team | **Provenance** (SOCU vs self-sourced; per-record SOCU/source ID; source distinct from owner). **Concrete field-format validation** (NIN/BVN = 11 digits, etc.). **Self-owned re-upload** blocks the duplicate but allows a new intervention. **Multi-LGA/multi-ward activity locations** (wards optional per LGA; descriptive) on **LGA/Ward reference-data lookups**. **Request-to-serve email** to the owner MDA (no PII in body). **Filtered report builder** (schema-driven filters, export-matrix-scoped, cell-size guard) + **Overview dashboard summary**. **Sync-connector** identity mapping confirmed at config time. See Change Log (v1.8). Adds FR-REG-18..20, FR-DUP-10, FR-PRG-08, FR-NOT-03, FR-RPT-09/10; revises FR-REG-05, FR-PRG-02, §9. |
 
 ### Approvals
 
@@ -30,7 +35,7 @@
 | Data Protection Officer | | | |
 
 **Status legend (priorities use MoSCoW):** Must = required for launch, Should = important but not launch-blocking, Could = desirable, Won't (this release) = explicitly deferred.
-Markers: ▸ = new/revised in v1.2 · ◆ = new/revised in v1.3.
+Markers: ▸ = v1.2 · ◆ = v1.3 · ✦ = v1.4 · ✚ = v1.5 · ✱ = v1.6 · ✜ = v1.7 · ❖ = v1.8.
 
 ---
 
@@ -54,6 +59,58 @@ Markers: ▸ = new/revised in v1.2 · ◆ = new/revised in v1.3.
 | 2 | **Activities are MDA-owned and select a catalog programme.** An MDA creates and owns activities under a chosen catalog programme, capturing target, location, schedule, budget, funding source, period, and eligibility. A single programme may be delivered by multiple MDAs through their own separate activities. | §7.7, §9; FR-PRG-02 (revised) |
 | 3 | **Budget and funding source move to the Activity.** Programme-level budget is now an aggregate of its activities' budgets across MDAs; each MDA funds its own activity. | §7.7, §9; FR-PRG-02, FR-PRG-04 (clarified) |
 | 4 | **Beneficiary data ownership is unchanged.** First-importer ownership (FR-OWN-01) and MDA data isolation remain exactly as in v1.2. Only *programme* ownership changed. | FR-OWN-01 (unchanged, noted) |
+
+---
+
+## Change Log (v1.4)
+
+| # | Change | Affected requirements |
+|---|--------|-----------------------|
+| 1 | **Optional inline beneficiary upload in activity creation.** Activity creation may end with an optional beneficiary-upload step. When a file is provided, validation and duplicate verification run in preview *before* the activity is saved; on confirm, the activity is saved with new beneficiaries recorded under it and a **pending Service Request** created (under the activity) for each duplicate the officer chooses to serve — the intervention is deferred until Owner-MDA approval. | §6.4, §8.1; FR-REG-10 (clarified), FR-REG-11 (new), FR-PRG-05 (clarified) |
+| 2 | **Beneficiary upload is optional per activity.** Not every activity has beneficiary data; an activity may be created with no upload, and data may be uploaded later via the Import Center (bound to that activity). | §6.4; FR-REG-10, FR-REG-11 |
+
+---
+
+## Change Log (v1.5)
+
+| # | Change | Affected requirements |
+|---|--------|-----------------------|
+| 1 | **Conditional beneficiary involvement per activity.** Activity creation asks whether the activity involves beneficiaries. If yes, a target-beneficiaries count and a beneficiary upload are **required** (not optional), dedup runs in preview before save, and pending Service Requests attach for served duplicates. If no, no target and no upload. Every activity has a **View Activity** detail view. | §6.4, §8.1; FR-REG-11 (revised), FR-PRG-05 (clarified) |
+| 2 | **Export of beneficiary data governed by a permission matrix.** Distinct `export` permission (System Admin all; SP Coordination cross-MDA; MDA Admin own MDA; MDA Officer only if granted; Partners/Executives aggregates only) + a separate `export.reveal_pii` for unmasked NIN/BVN (System Admin only). Exports inherit scope, mask PII by default, audited. Per-grid "export this list" reuses the export service. | FR-RPT-05 (new), FR-RPT-06 (new); NFR-SEC/PRV |
+| 3 | **Funding-partner attribution on activities (reporting).** An activity may be attributed to a Development Partner (on the activity, never the programme) so partner reporting scopes to funded programmes. Attribution is reporting-visibility only — never beneficiary-data access. | §9; FR-PRG-07 (new), FR-RPT-02 |
+| 4 | **Executive & Partner reporting suites; System Administrator Console.** Executive/partner dashboards elaborated into multi-tab suites (headline = net unique beneficiaries, never gross; coverage absolute where no denominator; partner funding = delivery value vs budget, not expenditure). A System Administrator Console composes existing modules for governance/config/oversight (no infrastructure or delivery operations). | FR-RPT-01/02 (elaborated), FR-RPT-07 (new), FR-RPT-08 (new), FR-UAM-07 (new) |
+
+---
+
+## Change Log (v1.6)
+
+| # | Change | Affected requirements |
+|---|--------|-----------------------|
+| 1 | **MDA Officer role removed.** The MDA Officer and MDA Admin roles are consolidated into a single **MDA Admin** role that performs all MDA operational work (activity creation, import, benefit delivery, referrals, request-to-serve including approving incoming ones, ownership decisions, and MDA-scoped export). | §4; FR-UAM-01 (revised), FR-RPT-05 (revised), §8 flows |
+| 2 | **User management centralized.** All user management (creating/assigning any role, including MDA users) is performed by the System Administrator; MDAs do not manage users. | §4; FR-UAM-02, FR-UAM-07 |
+
+---
+
+## Change Log (v1.7)
+
+| # | Change | Affected requirements |
+|---|--------|-----------------------|
+| 1 | **Data Import & Mapping module.** A layer between raw MDA upload and validation/dedup: MDAs map their own columns to a canonical SP-MIS schema, values are normalized (for comparison, preserving originals), and a preview runs before commit. Mappings are learnable per source (templates). **Identity-field mappings (NIN, BVN, name, phone) must be explicitly confirmed on every import** — never silently guessed; the raw file is never mutated. Feeds the existing validation (FR-REG-05/09) and duplicate cascade (FR-DUP-08) unchanged. | §6.5 (new); FR-REG-12..17 (new); §8.1 (revised) |
+| 2 | **Grant revocation.** Cross-MDA read access granted on request-to-serve acceptance (FR-OWN-07) is revocable by the Owner MDA (System Administrator override). Revocation is immediate, audited, and notified; it withdraws ongoing read access only — it does not delete recorded interventions or change ownership. | §8.4 (revised); FR-OWN-08 (new) |
+
+---
+
+## Change Log (v1.8)
+
+| # | Change | Affected requirements |
+|---|--------|-----------------------|
+| 1 | **Data provenance (source ≠ owner).** An upload is tagged SOCU (mined) or self-sourced; SOCU records carry a per-record SOCU/source ID. Source is stored separately from owner — ownership remains first-importer (FR-OWN-01); SOCU provenance never changes ownership. | FR-REG-18 (new); §9 |
+| 2 | **Concrete field-format validation.** Identity formats are explicit and configurable (NIN/BVN = exactly 11 numeric digits; phone = valid Nigerian number; real non-future dates). Malformed identity fields reject the row (FR-REG-05) with a specific reason. | FR-REG-19 (new); FR-REG-05 (sharpened) |
+| 3 | **Self-owned re-upload.** When an MDA re-uploads a beneficiary it already owns, the system blocks the duplicate record and raises no request-to-serve, but allows a new intervention on the existing beneficiary. | FR-DUP-10 (new) |
+| 4 | **Multi-LGA / multi-ward activity locations.** An activity targets one or more LGAs, with zero or more wards per LGA (no wards = whole LGA); descriptive for planning/coverage, not enforced against beneficiary locations. Backed by LGA/Ward reference-data lookups. | FR-PRG-08 (new); FR-PRG-02 (revised); §9 |
+| 5 | **Request-to-serve email.** The owner MDA is emailed (action-required) when a request-to-serve is raised; the email carries no beneficiary PII and links to the in-app request. | FR-NOT-03 (new); FR-NOT-02 |
+| 6 | **Filtered report builder + Overview summary.** A self-service report builder filters on segmentable canonical fields (identity fields excluded from filtering, masked in output), returns a table + export + optional chart, enforces the export matrix + scoping, and applies a minimum cell-size guard on aggregate/cross-MDA tiers. An Overview summary card expands into the full Reports dashboard. | FR-RPT-09/10 (new) |
+| 7 | **Sync-connector mapping.** Because sync runs unattended, identity-field mapping is confirmed once at connector configuration time and re-confirmed on source schema change (never per import). | FR-REG-20 (new) |
 
 ---
 
@@ -126,9 +183,9 @@ The system serves several distinct user groups. Access is governed by role-based
 |------------|-----|------------------------|
 | Executive Users | Governor, Deputy Governor, Commissioners, Permanent Secretaries, Executive Council | View state-wide dashboards, coverage, and performance; consume high-level reports. Read-only. |
 | SP Coordination Unit | State SP Coordination Office; Monitoring & Evaluation Officers | Coordinate across MDAs, **maintain the programme catalog** and matching rules, monitor performance, run M&E and reporting. |
-| MDA Users | Programme officers and MDA administrators | Register beneficiaries (via bulk import), **manage activities (selecting from the programme catalog)**, validate duplicates, deliver services, raise/accept referrals, raise/approve request-to-serve, generate reports. ◆ MDAs do not create or configure programmes. |
-| Development Partners | Funding and implementing partners | Monitor funded programmes, track budget utilization, view performance, generate reports (scoped to their programmes). |
-| System Administrators | Platform/IT team | Manage users and MDAs, **own and configure the programme catalog** and matching rules, run data synchronization, monitor system health. |
+| MDA Users (MDA Admin) ✱ | A single MDA role (no separate Officer) | Register beneficiaries (via bulk import), **manage activities (selecting from the programme catalog)**, validate duplicates, deliver services, raise/accept referrals, raise/**approve** request-to-serve, and generate MDA-scoped reports. MDAs do not create or configure programmes, and do not manage users (that is centralized with the System Administrator). |
+| Development Partners | Funding and implementing partners | Monitor their **funded programmes** (scoped via activity funding attribution, FR-PRG-07) — reach, budget-vs-delivered value, coverage, programme overlap — via a partner reporting suite; aggregates only, never beneficiary PII. |
+| System Administrators | Platform/IT team | Manage users and MDAs, **own and configure the programme catalog** and matching rules, run data synchronization, and administer the platform via the **System Administrator Console** (governance, configuration, oversight — not infrastructure monitoring or delivery operations). |
 
 ---
 
@@ -146,6 +203,8 @@ The system serves several distinct user groups. Access is governed by role-based
 | Document Management | Data Sharing | Data Synchronization |
 
 Household Registry is supported as an optional capability for programmes that operate at household level.
+
+Reporting is delivered through role-based suites — an Executive Reporting Suite, a Funding Partner Reporting Suite, and a System Administrator Console — over the shared data (see §7.11, FR-RPT-07/08, and FR-UAM-07).
 
 ### 5.2 Out of Scope / Deferred
 See Section 2.3 (Non-Goals) and Section 16 (Future Enhancements) for capabilities deliberately deferred to later releases.
@@ -178,10 +237,37 @@ This cascade is the default configuration only, not hard-coded logic: which fiel
 
 **Where the officer decides (v1.2).** The officer adjudicates whether a candidate is truly the same person only for probable (fuzzy-band) matches (FR-DUP-09). An exact NIN/BVN match is treated as a definitive duplicate and is not adjudicated. In every case where a match exists, the officer still chooses what to do next — discard the incoming duplicate row (keeping the existing beneficiary) or provide a service to the existing beneficiary via request-to-serve. Nothing is ever silently auto-merged.
 
-### 6.4 Activity-First Upload (v1.2)
-Beneficiary data is uploaded in the context of a registered activity. An MDA first creates an activity (selecting a programme from the central catalog ◆), then uploads the beneficiary data for that activity. Each row, once resolved (saved as new, or served against an existing beneficiary), yields an intervention recorded under that activity in the benefit ledger. See FR-REG-10, FR-PRG-05, and the flow in §8.1.
+### 6.4 Activity Beneficiary Involvement & Upload (v1.2, revised v1.5)
+Beneficiary data is uploaded in the context of a registered activity. During activity creation the MDA selects a catalog programme, enters the activity details, and declares **whether the activity involves beneficiaries** (✚):
+- **If yes:** a **required target-beneficiaries count** is captured and a **beneficiary upload is mandatory** — the officer must provide the data. Validation and duplicate verification run in preview **before the activity is saved**; on confirm, the activity is saved with its new beneficiaries (interventions recorded under it) and a **pending Service Request** under it for each served duplicate (see §8.1).
+- **If no:** there is no target field and no upload step; the activity is saved alone.
+Data for an involving activity may also be uploaded later via the Import Center bound to that activity. Every activity has a **View Activity** detail view (programme, fields, target vs actual counts, beneficiaries/interventions, import summary, and pending service requests). See FR-REG-10, FR-REG-11, FR-PRG-05, and the flow in §8.1.
 
 ---
+
+### 6.5 Data Import & Mapping ✜ (v1.7)
+
+MDAs keep their own file formats; SP-MIS keeps one **canonical beneficiary schema**. Between a raw upload
+and validation/dedup sits a mapping + normalization layer:
+
+- **Column mapping.** On upload the system detects the file's columns and suggests mappings to canonical
+  fields (name, phone, NIN, BVN, DOB, gender, address, LGA/Ward, household ref). The raw file is never
+  altered; a canonical representation is produced for processing.
+- **Identity-field confirmation (hard rule).** Mappings for **NIN, BVN, full name, and phone** must be
+  explicitly confirmed (or marked "not present") on **every** import before any row is processed —
+  suggestions are never silently applied. This prevents, e.g., a column named `ID` being misread as NIN.
+- **Learnable templates.** A confirmed mapping is saved per MDA + source format and pre-fills future
+  uploads of the same shape — but identity fields still require confirmation, and a changed format
+  triggers re-mapping.
+- **Normalization.** Names (case/whitespace), phones (country code/leading zero), dates, and NIN/BVN
+  (spacing/hyphens) are normalized for **comparison** by the duplicate engine, while the **original**
+  value is stored on the record for display and audit.
+- **Preview.** Before commit, the user sees mapped canonical columns, normalized-vs-original samples, and
+  which rows will reject (malformed identity, FR-REG-05).
+
+The canonical rows then flow into the existing validation and the default duplicate cascade unchanged
+(exact NIN → exact BVN → fuzzy name/phone, FR-DUP-08). Both upload paths (activity wizard and Import
+Center) share this one stage. See FR-REG-12..17 and the revised flow in §8.1.
 
 ## 7. Functional Requirements
 
@@ -191,12 +277,13 @@ Requirements are grouped by module. Each has a unique ID for traceability and a 
 
 | ID | Requirement | Priority |
 |----|-------------|----------|
-| FR-UAM-01 | The system shall provide role-based access control with predefined roles (Executive, SP Coordination, M&E Officer, MDA Officer, MDA Admin, Development Partner, System Administrator). | Must |
+| FR-UAM-01 | The system shall provide role-based access control with predefined roles (Executive, SP Coordination, M&E Officer, MDA Admin, Development Partner, System Administrator) ✱. | Must |
 | FR-UAM-02 | Administrators shall create, edit, suspend, and deactivate user accounts and assign each user to an MDA and role. | Must |
 | FR-UAM-03 | Each user shall be scoped to data belonging to their MDA, except where cross-MDA access is explicitly granted (including read access granted via an accepted request-to-serve, per FR-OWN-07). | Must |
 | FR-UAM-04 | Authentication shall enforce strong passwords and support multi-factor authentication (MFA) for administrative and executive roles. | Must |
 | FR-UAM-05 | Permissions shall be configurable at module and action level (view, create, edit, approve, export). | Should |
 | FR-UAM-06 | The system shall enforce session timeout and lock accounts after repeated failed login attempts. | Should |
+| ✚ FR-UAM-07 | The System Administrator role shall have a governance console that composes existing capabilities (user/access, organizations, programme catalog, registry & data quality, matching rules, integrations, audit & security, reports, and platform settings) for administration, configuration, and oversight. The console shall not include infrastructure/system-health monitoring or programme-delivery operations. | Should |
 
 ### 7.2 Beneficiary Registry (Hybrid)
 
@@ -211,7 +298,19 @@ Requirements are grouped by module. Each has a unique ID for traceability and a 
 | FR-REG-07 | The system shall allow supporting documents to be attached to a beneficiary record. | Should |
 | FR-REG-08 | The system shall support offline data capture that synchronizes when connectivity is restored. | Could |
 | ▸ FR-REG-09 | For non-identity fields that fail validation, the system shall exclude (or null) the offending field for that row, note the issue in the row's validation report, and still save the row. Identity fields (name, phone, NIN, BVN) shall never be partially saved — see FR-REG-05. | Should |
-| ▸ FR-REG-10 | Beneficiary data shall be uploaded in the context of a registered activity selected before upload; the activity must already exist (FR-PRG-05). The beneficiary still enters the shared registry under the first-importer ownership rule (FR-OWN-01). | Must |
+| ▸✦ FR-REG-10 | Beneficiary data shall be uploaded in the context of a registered activity; the upload may occur inline during activity creation (FR-REG-11) or later via bulk import bound to the activity. Upload occurs only for activities that involve beneficiaries (FR-REG-11). The beneficiary still enters the shared registry under the first-importer ownership rule (FR-OWN-01). | Must |
+| ✦✚ FR-REG-11 | An activity shall declare whether it involves beneficiaries. If it does, a target-beneficiaries count and a beneficiary upload are **required**: validation (FR-REG-05/09) and duplicate verification (FR-DUP-08) run in preview **before the activity is saved**; on confirm, the activity is saved, new (non-duplicate) beneficiaries are recorded under it with their interventions, and a pending Service Request (FR-OWN-06) is created under the activity for each served duplicate (intervention deferred until acceptance, FR-BEN-06). If the activity does not involve beneficiaries, no target and no upload are captured. Data for an involving activity may also be uploaded later via bulk import bound to it. Every activity has a View Activity detail view. | Must |
+
+| ✜ FR-REG-12 | The system shall maintain a canonical beneficiary schema (aligned to FR-REG-04) that the validation and duplicate engine consume, independent of any MDA's source format. | Must |
+| ✜ FR-REG-13 | On import the system shall detect source columns and suggest mappings to canonical fields; the raw file shall never be mutated. | Must |
+| ✜ FR-REG-14 | Mappings for identity fields (NIN, BVN, full name, phone) shall be explicitly confirmed (or marked absent) on **every** import before processing; the system shall never auto-apply an identity-field mapping without confirmation. | Must |
+| ✜ FR-REG-15 | The system shall save confirmed mappings as per-MDA, per-source-format templates that pre-fill subsequent imports; identity-field confirmation shall still be required, and a changed source format shall trigger re-mapping. | Should |
+| ✜ FR-REG-16 | The system shall normalize values for comparison (name case/whitespace, phone country-code/leading-zero, date formats, NIN/BVN spacing) while preserving and storing the original value; matching operates on normalized values, display/audit uses originals. | Must |
+| ✜ FR-REG-17 | The system shall present an import preview (mapped columns, normalized-vs-original samples, and rows that will reject per FR-REG-05) before commit. Both upload paths (activity wizard, Import Center) share the mapping+normalization stage. | Should |
+
+| ❖ FR-REG-18 | Each import shall be tagged with a data source (SOCU/mined or self-sourced by the MDA); SOCU records shall carry a per-record source ID (the beneficiary's original record ID in SOCU, stored as `source_record_id`). The registration source and the owner MDA are distinct: ownership is set by first import (FR-OWN-01) and SOCU provenance never confers or changes ownership. | Must |
+| ❖ FR-REG-19 | Identity-field validation shall apply concrete, configurable formats: NIN and BVN = exactly 11 numeric digits; phone = a valid Nigerian number (after normalization); dates = real, non-future where applicable. A present-but-malformed identity field rejects the row (FR-REG-05) and the row-level error report shall state which field failed and why. | Must |
+| ❖ FR-REG-20 | For unattended sync ingestion, identity-field mapping shall be confirmed once at connector **configuration** time (not per import), and re-confirmed when the source schema changes; a connector with an unconfirmed or stale mapping shall not sync. | Should |
 
 ### 7.3 Duplicate Verification
 
@@ -227,6 +326,8 @@ Requirements are grouped by module. Each has a unique ID for traceability and a 
 | ▸ FR-DUP-08 | The system shall ship a default matching cascade (configurable, not hard-coded): exact NIN, then exact BVN, then fuzzy name/phone (with other configured signals). Evaluation shall stop at the first exact (deterministic) match; where an identifier is absent, that stage is skipped and the record falls through to the next. | Must |
 | ▸ FR-DUP-09 | The officer shall adjudicate a candidate as "same person / not the same person" only for probable (fuzzy-band) matches. Exact matches shall be treated as definitive duplicates without adjudication. In all match cases the discard-or-serve action still applies, and no record shall be silently auto-merged. | Must |
 
+| ❖ FR-DUP-10 | When duplicate verification finds a confirmed match whose owner is the **uploading MDA itself**, the system shall resolve it as "already owned" — it shall not create a duplicate record and shall not raise a request-to-serve (an MDA does not request to serve its own beneficiary). It shall offer to record a new intervention on the existing beneficiary under the current activity. | Must |
+
 ### 7.4 Beneficiary Ownership
 
 | ID | Requirement | Priority |
@@ -238,6 +339,8 @@ Requirements are grouped by module. Each has a unique ID for traceability and a 
 | FR-OWN-05 | Ownership transfer shall require Owner MDA approval and shall be logged. | Should |
 | ▸ FR-OWN-06 | A non-owner MDA's request-to-serve shall require Owner-MDA approval (accept, or decline with optional reason). The requesting MDA may record interventions against the existing beneficiary only after acceptance. Every request and decision shall be logged (FR-AUD-01). | Must |
 | ▸ FR-OWN-07 | Upon acceptance of a request-to-serve, the requesting MDA shall be granted read access to the full beneficiary record. Ownership and edit rights remain solely with the Owner MDA. | Must |
+
+| ✜ FR-OWN-08 | Cross-MDA read access granted on request-to-serve acceptance (FR-OWN-07) shall be **revocable by the Owner MDA** (System Administrator override). Revocation shall take effect immediately (all read/serve gates deny), be audited (FR-AUD-01) and notify the affected serving MDA. Revocation withdraws ongoing read access only — it shall not delete interventions already recorded, nor change ownership. | Must |
 
 ### 7.5 Referral & Linkage
 
@@ -267,11 +370,14 @@ Requirements are grouped by module. Each has a unique ID for traceability and a 
 | ID | Requirement | Priority |
 |----|-------------|----------|
 | ◆ FR-PRG-01 | The System Administrator (and optionally the SP Coordination Unit) shall create and maintain a **global catalog of programmes**, each capturing type-level attributes only: name, objective, type (household/individual), benefit category, and standard eligibility. Programmes are shared across all MDAs and are not owned by any single MDA; they are readable by all MDAs for selection. MDA roles (Officer, MDA Admin) shall not create, edit, or delete programmes. | Must |
-| ◆ FR-PRG-02 | An MDA shall create and **own activities** under a selected catalog programme, capturing target, location (LGA/Ward), schedule, budget, funding source, period, and activity-level eligibility. The same catalog programme may be delivered by multiple MDAs, each through its own separate activity. | Must |
+| ◆❖ FR-PRG-02 | An MDA shall create and **own activities** under a selected catalog programme, capturing target, **location (a set of LGAs with optional wards per LGA — see FR-PRG-08)**, schedule, budget, funding source, period, and activity-level eligibility. The same catalog programme may be delivered by multiple MDAs, each through its own separate activity. | Must |
 | FR-PRG-03 | The system shall allow beneficiaries to be enrolled or assigned to programmes and activities. | Should |
 | ◆ FR-PRG-04 | The system shall track budget allocated versus utilized **per activity**, and aggregate to the programme level as the sum of its activities across MDAs. | Should |
-| ▸ FR-PRG-05 | An activity must exist before beneficiaries can be uploaded to it (FR-REG-10). Beneficiary upload is bound to a selected registered activity, and interventions produced by that upload roll up to the activity and its (catalog) programme. | Must |
+| ▸✦ FR-PRG-05 | An activity must exist before beneficiaries can be uploaded to it (FR-REG-10). Beneficiary upload is bound to a selected registered activity, and interventions produced by that upload roll up to the activity and its (catalog) programme. When the activity involves beneficiaries, activity creation includes the mandatory inline upload (FR-REG-11), and the activity is created and the rows bind to it within the same commit. | Must |
 | ◆ FR-PRG-06 | The programme catalog shall be globally readable by all authenticated roles for activity creation and reporting, while create/edit/delete is restricted to the System Administrator (optionally SP Coordination). Programmes shall not be MDA-scoped. | Must |
+| ✚ FR-PRG-07 | An activity may be attributed to a funding **Development Partner** (a property of the activity, never the programme) so partner reporting can scope to funded programmes. Funding attribution confers reporting-visibility only and shall never grant access to beneficiary records. | Should |
+
+| ❖ FR-PRG-08 | An activity's location shall be a **set**: one or more LGAs, each with zero or more wards (no wards for an LGA = the whole LGA). Locations reference LGA/Ward **reference-data lookups** (not free text). The location set is descriptive — for planning and coverage reporting — and is **not** enforced against beneficiary locations. This revises the single-location FR-PRG-02. | Should |
 
 ### 7.8 Grievance Redress (GRM)
 
@@ -295,6 +401,8 @@ Requirements are grouped by module. Each has a unique ID for traceability and a 
 | FR-NOT-01 | The system shall provide in-app notifications for referrals, approvals (including request-to-serve decisions), grievances, and key system events. | Must |
 | FR-NOT-02 | The system shall support email notifications, with SMS/WhatsApp in a later phase. | Should |
 
+| ❖ FR-NOT-03 | When a request-to-serve is raised, the system shall email the owner MDA (action-required: log in to review and accept/decline). The email shall contain no beneficiary PII (NIN/BVN/full identity) and shall link to the in-app request. In-app notification (FR-NOT-01) also applies. | Should |
+
 ### 7.11 Reporting & Analytics
 
 | ID | Requirement | Priority |
@@ -303,6 +411,15 @@ Requirements are grouped by module. Each has a unique ID for traceability and a 
 | FR-RPT-02 | The system shall provide MDA and Partner dashboards scoped to permitted data. | Must |
 | FR-RPT-03 | The system shall generate standard and ad-hoc reports and export to PDF, Excel, and CSV. | Must |
 | FR-RPT-04 | The system shall support scheduled, automated report generation and distribution. | Should |
+| ✚ FR-RPT-05 | Export of beneficiary data shall be governed by a permission matrix: a distinct `export` permission (System Administrator = all; SP Coordination/M&E = cross-MDA; MDA Admin = own MDA; Development Partners and Executives = aggregate reports only, never the beneficiary registry). Exports inherit the caller's scope, mask NIN/BVN by default, and are audited. | Must |
+| ✚ FR-RPT-06 | Unmasked NIN/BVN export shall require a separate `export.reveal_pii` permission (System Administrator only by default; granting otherwise is a DPO decision). A data grid may expose an "export this list" of its current filtered view, reusing the export service and honouring the matrix. | Must |
+| ✚ FR-RPT-07 | The executive dashboard (FR-RPT-01) shall be delivered as a multi-tab reporting suite (overview, programmes, registry, coordination, coverage map), read-only and aggregate-only. The headline measure shall be **net unique beneficiaries** (never gross registrations); coverage shall be shown as absolute counts where no population/eligibility denominator is loaded. | Should |
+| ✚ FR-RPT-08 | The partner dashboard (FR-RPT-02) shall be delivered as a multi-tab reporting suite scoped to the partner's funded programmes (via activity funding attribution, FR-PRG-07). Funding shall be presented as allocated (activity budget) → delivered (benefit value) → remaining, labelled as delivery value versus budget — not treasury expenditure (§2.3). | Should |
+
+**Reporting principles (v1.5).** Executive/partner/admin reporting is read-only and aggregate-only (no raw PII on dashboards); the headline is net unique beneficiaries, not gross registrations; coverage is absolute until a denominator exists; partner funding is delivery-value-vs-budget, not expenditure; all exports obey the FR-RPT-05/06 matrix.
+
+| ❖ FR-RPT-09 | The system shall provide a filtered report builder whose filterable dimensions are derived from the canonical schema (segmentable fields only — e.g. gender, age band, LGA/ward, programme, activity, source, date range, status; identity fields are excluded from filtering and masked in output). It shall return a table with export (CSV/Excel/PDF) and an optional chart, enforce the export permission matrix and role/MDA scoping (never a bypass), audit every run, and apply a configurable **minimum cell-size guard** on aggregate/cross-MDA tiers so small groups cannot re-identify individuals (the guard does not restrict an MDA segmenting its own beneficiaries). | Should |
+| ❖ FR-RPT-10 | The Overview page shall show a summary of the reporting dashboard (read from the same aggregation source as the full page) that expands/deep-links into the full dashboard in the Reports section. | Should |
 
 ### 7.12 GIS Dashboard
 
@@ -323,14 +440,14 @@ Requirements are grouped by module. Each has a unique ID for traceability and a 
 
 ## 8. Key User Flows
 
-### 8.1 Register a Beneficiary with Duplicate Check ▸ (revised v1.2)
-1. An MDA officer registers (or selects) an activity under a catalog programme (FR-PRG-05, FR-PRG-02).
-2. The officer uploads beneficiary data for that activity from a source (Excel, CSV, SOCU, Kobo Collect, ODK, REST API, or an existing government system). There is no manual single-record entry.
-3. The system validates each row. Rows whose identity fields (name, phone, NIN, BVN) are present but malformed are rejected to the error report and not saved (FR-REG-05); non-identity field errors are dropped/flagged while the row saves (FR-REG-09).
+### 8.1 Register a Beneficiary with Duplicate Check ▸ (revised v1.2) ✦ (extended v1.4)
+1. An MDA Admin creates (or selects) an activity under a catalog programme (FR-PRG-05, FR-PRG-02) and declares whether it involves beneficiaries. If it does NOT, the activity is saved and this flow ends. If it does, a target-beneficiaries count is required and beneficiary data must be uploaded — as the activity's mandatory upload step (FR-REG-11) or later via the Import Center bound to that activity. The upload passes through the Data Import & Mapping layer (§6.5): columns are mapped to the canonical schema (identity-field mappings confirmed, FR-REG-14), values normalized (FR-REG-16), and previewed **before** validation and duplicate detection run on the canonical rows.
+2. The officer uploads beneficiary data for the activity from a source (Excel, CSV, SOCU, Kobo Collect, ODK, REST API, or an existing government system). There is no manual single-record entry.
+3. The system validates each row **in preview, before the activity is committed**. Rows whose identity fields (name, phone, NIN, BVN) are present but malformed are rejected to the error report and not saved (FR-REG-05); non-identity field errors are dropped/flagged while the row saves (FR-REG-09).
 4. For each valid row the system runs duplicate verification using the configured cascade — exact NIN → exact BVN → fuzzy name/phone (FR-DUP-08), stopping at the first exact match.
-5. If no match: the record is saved, the uploading MDA becomes the Owner MDA, and the intervention for the activity is recorded under the new beneficiary.
-6. If a match is found: the system reveals the existing beneficiary, owner MDA, source, programmes, and benefits received (FR-DUP-04). For probable matches the officer first adjudicates same-person / not (FR-DUP-09); exact matches are definitive.
-7. The officer then chooses discard (drop the incoming duplicate row; the existing beneficiary is untouched) or provide a service. Choosing to provide a service raises a request-to-serve to the Owner MDA (§8.4). Every decision is logged (FR-DUP-06).
+5. For probable matches the officer first adjudicates same-person / not (FR-DUP-09); exact matches are definitive. For each match the system reveals the existing beneficiary, owner MDA, source, programmes, and benefits received (FR-DUP-04).
+6. The officer resolves each row — discard (drop the incoming duplicate; the existing beneficiary is untouched) or provide a service (request-to-serve).
+7. On confirm, the system commits atomically: the **activity is saved**; each no-match row is saved as a new beneficiary owned by the uploading MDA (FR-OWN-01) with its intervention recorded under the activity; and each served duplicate creates a **pending Service Request under the activity** (§8.4) — the intervention deferred until the Owner MDA accepts (FR-BEN-06). Every decision is logged (FR-DUP-06).
 
 ### 8.2 Refer a Beneficiary to Another MDA
 1. Owner MDA identifies a need outside its mandate (e.g. Women Affairs identifies a health need).
@@ -351,6 +468,7 @@ Requirements are grouped by module. Each has a unique ID for traceability and a 
 3. The Owner MDA accepts or declines (a decline may carry a reason). The decision is logged (FR-OWN-06, FR-AUD-01).
 4. On acceptance: the requesting MDA gains read access to the full beneficiary record (FR-OWN-07) and may record its intervention against the existing beneficiary under its activity (FR-BEN-06). Ownership is unchanged.
 5. On decline: no intervention is recorded; the requesting MDA is notified. It may re-request with additional justification if appropriate.
+6. **Revocation (FR-OWN-08):** at any time after acceptance the Owner MDA (or a System Administrator) may revoke the serving MDA's read access. Revocation is immediate, audited, and notifies the serving MDA; interventions already recorded remain, and ownership is unchanged.
 
 ---
 
@@ -360,11 +478,12 @@ The following core entities and relationships describe the conceptual data model
 
 | Entity | Description | Key Attributes |
 |--------|-------------|----------------|
-| Beneficiary | Individual served by one or more programmes. | ID, NIN, BVN, name, DOB, gender, phone, address, LGA/Ward, owner MDA, source, registration date, status. |
+| Beneficiary ❖ | Individual served by one or more programmes. Source and owner are distinct (owner = first importer). | ID, NIN, BVN, name, DOB, gender, phone, address, LGA/Ward, owner MDA, **registration_source (incl. SOCU)**, **source_record_id (SOCU/original ID, nullable)**, registration date, status. |
 | Household | Optional grouping of beneficiaries. | Household ID, head, members, address, LGA/Ward. |
+| ❖ LGA / Ward (reference data) | Administrative geography lookups (Jigawa: 27 LGAs, ~287 wards). | LGA (id, name, code); Ward (id, lga_id, name, code); optional PostGIS geometry for GIS. |
 | ◆ MDA | Ministry, Department, or Agency. | ID, name, type, contact, activities owned. |
 | ◆ Programme | **Global catalog** service type, created centrally (System Admin / SP Coordination). Not MDA-owned. | ID, name, objective, type (HH/individual), benefit_category, standard_eligibility, status. |
-| ◆ Activity | **MDA-owned** unit of work under a catalog programme; must exist before beneficiaries are uploaded to it. | ID, programme (catalog), owner MDA, target, location (LGA/Ward), schedule, budget, funding_source, period, eligibility, status. |
+| ◆✚❖ Activity | **MDA-owned** unit of work under a catalog programme; must exist before beneficiaries are uploaded to it; may be attributed to a funding partner (reporting only). | ID, programme (catalog), owner MDA, funding_partner (nullable), involves_beneficiaries, target_beneficiaries, target, **location set → activity_locations (lga_id, ward_id nullable; multi-LGA, wards optional per LGA, descriptive)**, schedule, budget, funding_source, period, eligibility, status. |
 | ▸◆ Benefit / Intervention | A benefit delivered to a beneficiary; programme-typed, delivered via an MDA activity; may be delivered by a non-owner MDA under an accepted request-to-serve. | ID, beneficiary, programme (catalog), activity (MDA-owned), delivering MDA, type, quantity, value, funding source, delivery date, status, verification. |
 | Referral | A request to serve a beneficiary across MDAs (outbound). | ID, beneficiary, from MDA, to MDA, need, status, outcome, timestamps. |
 | ▸ Service Request (Request-to-Serve) | An inbound request by a non-owner MDA to deliver an intervention to an existing beneficiary. | ID, beneficiary, requesting MDA, owner MDA, activity, status (pending/accepted/declined), decided_by, decision reason, timestamps. |
@@ -516,3 +635,6 @@ The table above is the conceptual roadmap. Detailed, sequential build phasing an
 | ▸ Intervention | A service/benefit delivered to a beneficiary and recorded in the benefit ledger; programme-typed, delivered via an activity; may be delivered by a non-owner MDA under an accepted request-to-serve. |
 | ▸ Request-to-Serve / Service Request | An inbound request by a non-owner MDA for the Owner MDA's approval to deliver an intervention to an existing beneficiary. Distinct from a Referral. |
 | ▸ Matching Cascade | The default, configurable evaluation order for duplicate detection: exact NIN → exact BVN → fuzzy name/phone. |
+| ✚ Funding-partner attribution | An activity's link to a funding Development Partner, used to scope partner reporting; reporting-visibility only, never data access. |
+| ✚ Export permission matrix | The role-based governance of beneficiary-data export (`export`), with a separate `export.reveal_pii` for unmasked NIN/BVN. |
+| ✚ Reporting suite / Admin console | Role-based multi-tab views (Executive, Partner) and the System Administrator governance console, all read/compose layers over existing data. |

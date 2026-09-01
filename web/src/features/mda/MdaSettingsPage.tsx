@@ -137,7 +137,15 @@ function SecurityPanel() {
       // leaving the user on a page whose next request will 401.
       await logout()
     } catch (err) {
-      setError(err instanceof ApiError ? err.message : 'Could not change your password.')
+      // Show the FIELD-level message: a 422's top-level text is the generic "The
+      // request is invalid.", which hides the rule actually tripped — most often
+      // "must not be a password known to have been breached".
+      if (err instanceof ApiError) {
+        const fields = Object.values(err.fieldErrors())
+        setError(fields.length > 0 ? fields.join(' ') : err.message)
+      } else {
+        setError('Could not change your password.')
+      }
     } finally {
       setSaving(false)
     }

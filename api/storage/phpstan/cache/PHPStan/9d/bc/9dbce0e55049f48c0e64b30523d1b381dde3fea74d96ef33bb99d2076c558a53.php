@@ -442,7 +442,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
     ),
     1 => 
     array (
-      '/var/www/html/app/Http/Controllers/Api/V1/AuthController.php' => '32b23f3f6e7c8b13457e68a81c3aad585b6e819d3bae83cc6921126f77ddfb18',
+      '/var/www/html/app/Http/Controllers/Api/V1/AuthController.php' => '6246e612d06d50f6312e5682b24b8672e4507a5575b9772845c2c239e48eac60',
       '/var/www/html/app/Http/Controllers/Concerns/AuthResponses.php' => '7667385dda4e1e79049e0e5548d395e0bccb4835c3d5bb8f84700606f42c2237',
     ),
   ),

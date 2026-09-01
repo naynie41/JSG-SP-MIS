@@ -2,7 +2,7 @@
 
 // osfsl-/var/www/html/database/factories/SyncConnectorFactory.php-PHPStan\BetterReflection\Reflection\ReflectionClass-Database\Factories\SyncConnectorFactory
 return \PHPStan\Cache\CacheItem::__set_state(array(
-   'variableKey' => 'v2-7af0691e93083e5b70ea2749b8f8da1e8403c6e7051dafded5564ac55a29bed1-8.3.31-6.70.0.1',
+   'variableKey' => 'v2-142a2ecbcd2c92bb967b4c9d910a66463501275794de77d8e0b33df3aa5c3eb7-8.3.31-6.70.0.1',
    'data' => 
   array (
     'locatedSource' => 
@@ -29,7 +29,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
     array (
     ),
     'startLine' => 21,
-    'endLine' => 72,
+    'endLine' => 89,
     'startColumn' => 1,
     'endColumn' => 1,
     'parentClassName' => 'Illuminate\\Database\\Eloquent\\Factories\\Factory',
@@ -105,7 +105,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
  * @return array<string, mixed>
  */',
         'startLine' => 28,
-        'endLine' => 51,
+        'endLine' => 50,
         'startColumn' => 5,
         'endColumn' => 5,
         'couldThrow' => false,
@@ -119,22 +119,53 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         'currentClassName' => 'Database\\Factories\\SyncConnectorFactory',
         'aliasName' => NULL,
       ),
-      'activityFor' => 
+      'bound' => 
       array (
-        'name' => 'activityFor',
+        'name' => 'bound',
         'parameters' => 
         array (
-          'ownerMdaId' => 
+          'activity' => 
           array (
-            'name' => 'ownerMdaId',
-            'default' => NULL,
+            'name' => 'activity',
+            'default' => 
+            array (
+              'code' => 'null',
+              'attributes' => 
+              array (
+                'startLine' => 57,
+                'endLine' => 57,
+                'startTokenPos' => 193,
+                'startFilePos' => 2020,
+                'endTokenPos' => 193,
+                'endFilePos' => 2023,
+              ),
+            ),
             'type' => 
             array (
-              'class' => 'PHPStan\\BetterReflection\\Reflection\\ReflectionNamedType',
+              'class' => 'PHPStan\\BetterReflection\\Reflection\\ReflectionUnionType',
               'data' => 
               array (
-                'name' => 'mixed',
-                'isIdentifier' => true,
+                'types' => 
+                array (
+                  0 => 
+                  array (
+                    'class' => 'PHPStan\\BetterReflection\\Reflection\\ReflectionNamedType',
+                    'data' => 
+                    array (
+                      'name' => 'App\\Domain\\Programme\\Models\\Activity',
+                      'isIdentifier' => false,
+                    ),
+                  ),
+                  1 => 
+                  array (
+                    'class' => 'PHPStan\\BetterReflection\\Reflection\\ReflectionNamedType',
+                    'data' => 
+                    array (
+                      'name' => 'null',
+                      'isIdentifier' => true,
+                    ),
+                  ),
+                ),
               ),
             ),
             'isVariadic' => false,
@@ -145,10 +176,10 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             ),
             'startLine' => 57,
             'endLine' => 57,
-            'startColumn' => 34,
-            'endColumn' => 50,
+            'startColumn' => 27,
+            'endColumn' => 52,
             'parameterIndex' => 0,
-            'isOptional' => false,
+            'isOptional' => true,
           ),
         ),
         'returnsReference' => false,
@@ -157,26 +188,27 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
           'class' => 'PHPStan\\BetterReflection\\Reflection\\ReflectionNamedType',
           'data' => 
           array (
-            'name' => 'string',
-            'isIdentifier' => true,
+            'name' => 'static',
+            'isIdentifier' => false,
           ),
         ),
         'attributes' => 
         array (
         ),
         'docComment' => '/**
- * An active activity owned by the connector\'s MDA, with a creator in that MDA —
- * the engine enrols as that user, so one without a creator would hold the run.
+ * A connector that can actually sync: bound to an active activity in its own MDA,
+ * created by an officer of that MDA. The engine enrols as that creator, so an
+ * activity without one would hold the run.
  */',
         'startLine' => 57,
-        'endLine' => 71,
+        'endLine' => 88,
         'startColumn' => 5,
         'endColumn' => 5,
         'couldThrow' => false,
         'isClosure' => false,
         'isGenerator' => false,
         'isVariadic' => false,
-        'modifiers' => 4,
+        'modifiers' => 1,
         'namespace' => 'Database\\Factories',
         'declaringClassName' => 'Database\\Factories\\SyncConnectorFactory',
         'implementingClassName' => 'Database\\Factories\\SyncConnectorFactory',

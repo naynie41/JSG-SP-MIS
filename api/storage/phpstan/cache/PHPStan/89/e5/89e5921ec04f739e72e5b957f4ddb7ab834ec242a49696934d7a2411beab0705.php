@@ -2,7 +2,7 @@
 
 // odsl-/var/www/html/app/Http/Controllers/Api/V1/AuthController.php-PHPStan\BetterReflection\Reflection\ReflectionClass-App\Http\Controllers\Api\V1\AuthController
 return \PHPStan\Cache\CacheItem::__set_state(array(
-   'variableKey' => 'v2-6.70.0.1-8.3.31-32b23f3f6e7c8b13457e68a81c3aad585b6e819d3bae83cc6921126f77ddfb18',
+   'variableKey' => 'v2-6.70.0.1-8.3.31-6246e612d06d50f6312e5682b24b8672e4507a5575b9772845c2c239e48eac60',
    'data' => 
   array (
     'locatedSource' => 
@@ -27,7 +27,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
     array (
     ),
     'startLine' => 22,
-    'endLine' => 148,
+    'endLine' => 152,
     'startColumn' => 1,
     'endColumn' => 1,
     'parentClassName' => 'App\\Http\\Controllers\\Controller',
@@ -429,7 +429,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
  * invalidates every existing token (handled on the User model).
  */',
         'startLine' => 109,
-        'endLine' => 118,
+        'endLine' => 122,
         'startColumn' => 5,
         'endColumn' => 5,
         'couldThrow' => false,
@@ -467,8 +467,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             'attributes' => 
             array (
             ),
-            'startLine' => 123,
-            'endLine' => 123,
+            'startLine' => 127,
+            'endLine' => 127,
             'startColumn' => 40,
             'endColumn' => 49,
             'parameterIndex' => 0,
@@ -493,8 +493,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             'attributes' => 
             array (
             ),
-            'startLine' => 123,
-            'endLine' => 123,
+            'startLine' => 127,
+            'endLine' => 127,
             'startColumn' => 52,
             'endColumn' => 67,
             'parameterIndex' => 1,
@@ -517,8 +517,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         'docComment' => '/**
  * Build the standard full-login response (token + user).
  */',
-        'startLine' => 123,
-        'endLine' => 132,
+        'startLine' => 127,
+        'endLine' => 136,
         'startColumn' => 5,
         'endColumn' => 5,
         'couldThrow' => false,
@@ -575,8 +575,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             'attributes' => 
             array (
             ),
-            'startLine' => 137,
-            'endLine' => 137,
+            'startLine' => 141,
+            'endLine' => 141,
             'startColumn' => 42,
             'endColumn' => 52,
             'parameterIndex' => 0,
@@ -601,8 +601,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             'attributes' => 
             array (
             ),
-            'startLine' => 137,
-            'endLine' => 137,
+            'startLine' => 141,
+            'endLine' => 141,
             'startColumn' => 55,
             'endColumn' => 70,
             'parameterIndex' => 1,
@@ -625,8 +625,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         'docComment' => '/**
  * Constant-ish time credential check that also enforces account status.
  */',
-        'startLine' => 137,
-        'endLine' => 147,
+        'startLine' => 141,
+        'endLine' => 151,
         'startColumn' => 5,
         'endColumn' => 5,
         'couldThrow' => false,

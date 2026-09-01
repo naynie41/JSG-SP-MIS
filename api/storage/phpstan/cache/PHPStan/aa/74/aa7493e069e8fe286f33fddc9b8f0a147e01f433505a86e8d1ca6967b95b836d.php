@@ -1,22 +1,24 @@
 <?php declare(strict_types = 1);
 
-// ftm-/var/www/html/app/Http/Resources/UserResource.php
+// ftm-/var/www/html/app/Http/Middleware/RequirePasswordChange.php
 return \PHPStan\Cache\CacheItem::__set_state(array(
    'variableKey' => 'v5-2.3.2',
    'data' => 
   array (
     0 => 
     array (
-      'f619833b9c66f3867476875848c6946f' => 
+      'f802bcb52b2b5e1179d0cd55c35dadb8' => 
       \PHPStan\Analyser\IntermediaryNameScope::__set_state(array(
-         'namespace' => 'App\\Http\\Resources',
+         'namespace' => 'App\\Http\\Middleware',
          'uses' => 
         array (
-          'user' => 'App\\Domain\\Access\\Models\\User',
+          'apiresponse' => 'App\\Support\\ApiResponse',
+          'closure' => 'Closure',
           'request' => 'Illuminate\\Http\\Request',
-          'jsonresource' => 'Illuminate\\Http\\Resources\\Json\\JsonResource',
+          'personalaccesstoken' => 'Laravel\\Sanctum\\PersonalAccessToken',
+          'response' => 'Symfony\\Component\\HttpFoundation\\Response',
         ),
-         'className' => 'App\\Http\\Resources\\UserResource',
+         'className' => 'App\\Http\\Middleware\\RequirePasswordChange',
          'functionName' => NULL,
          'templatePhpDocNodes' => 
         array (
@@ -32,30 +34,34 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
          'typeAliasClassName' => NULL,
          'traitData' => NULL,
       )),
-      '2b5e4529fcf47606872d404e308b7d85' => 
+      '1c89ab74a38ed880edade1c47fcfb445' => 
       \PHPStan\Analyser\IntermediaryNameScope::__set_state(array(
-         'namespace' => 'App\\Http\\Resources',
+         'namespace' => 'App\\Http\\Middleware',
          'uses' => 
         array (
-          'user' => 'App\\Domain\\Access\\Models\\User',
+          'apiresponse' => 'App\\Support\\ApiResponse',
+          'closure' => 'Closure',
           'request' => 'Illuminate\\Http\\Request',
-          'jsonresource' => 'Illuminate\\Http\\Resources\\Json\\JsonResource',
+          'personalaccesstoken' => 'Laravel\\Sanctum\\PersonalAccessToken',
+          'response' => 'Symfony\\Component\\HttpFoundation\\Response',
         ),
-         'className' => 'App\\Http\\Resources\\UserResource',
-         'functionName' => 'toArray',
+         'className' => 'App\\Http\\Middleware\\RequirePasswordChange',
+         'functionName' => 'handle',
          'templatePhpDocNodes' => 
         array (
         ),
          'parent' => 
         \PHPStan\Analyser\IntermediaryNameScope::__set_state(array(
-           'namespace' => 'App\\Http\\Resources',
+           'namespace' => 'App\\Http\\Middleware',
            'uses' => 
           array (
-            'user' => 'App\\Domain\\Access\\Models\\User',
+            'apiresponse' => 'App\\Support\\ApiResponse',
+            'closure' => 'Closure',
             'request' => 'Illuminate\\Http\\Request',
-            'jsonresource' => 'Illuminate\\Http\\Resources\\Json\\JsonResource',
+            'personalaccesstoken' => 'Laravel\\Sanctum\\PersonalAccessToken',
+            'response' => 'Symfony\\Component\\HttpFoundation\\Response',
           ),
-           'className' => 'App\\Http\\Resources\\UserResource',
+           'className' => 'App\\Http\\Middleware\\RequirePasswordChange',
            'functionName' => NULL,
            'templatePhpDocNodes' => 
           array (
@@ -84,7 +90,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
     ),
     1 => 
     array (
-      '/var/www/html/app/Http/Resources/UserResource.php' => '587112d187af0fe4bcd04ea8c55ec6573b61b549d5632447a5ac532d32050642',
+      '/var/www/html/app/Http/Middleware/RequirePasswordChange.php' => 'bf3ab26c0d11132ad0399708e9c030e9346d57dff1436b91474719d0740b7126',
     ),
   ),
 ));

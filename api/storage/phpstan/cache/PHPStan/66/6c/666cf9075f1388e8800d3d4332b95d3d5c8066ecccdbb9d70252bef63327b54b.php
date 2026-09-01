@@ -102,7 +102,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
          'typeAliasClassName' => NULL,
          'traitData' => NULL,
       )),
-      '15b56e8fe8c586f1d99b10631106c32f' => 
+      'e0c522d16ef6cf590c11bc0ec3562f0e' => 
       \PHPStan\Analyser\IntermediaryNameScope::__set_state(array(
          'namespace' => 'Database\\Factories',
          'uses' => 
@@ -119,7 +119,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
           'factory' => 'Illuminate\\Database\\Eloquent\\Factories\\Factory',
         ),
          'className' => 'Database\\Factories\\SyncConnectorFactory',
-         'functionName' => 'activityFor',
+         'functionName' => 'bound',
          'templatePhpDocNodes' => 
         array (
         ),
@@ -168,7 +168,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
     ),
     1 => 
     array (
-      '/var/www/html/database/factories/SyncConnectorFactory.php' => '7af0691e93083e5b70ea2749b8f8da1e8403c6e7051dafded5564ac55a29bed1',
+      '/var/www/html/database/factories/SyncConnectorFactory.php' => '142a2ecbcd2c92bb967b4c9d910a66463501275794de77d8e0b33df3aa5c3eb7',
     ),
   ),
 ));
