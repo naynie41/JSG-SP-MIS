@@ -2,7 +2,7 @@
 
 // odsl-/var/www/html/app/Domain/Access/Models/User.php-PHPStan\BetterReflection\Reflection\ReflectionClass-App\Domain\Access\Models\User
 return \PHPStan\Cache\CacheItem::__set_state(array(
-   'variableKey' => 'v2-6.70.0.1-8.3.31-cb5dc1613afedc1a9fd1192af8b727a89fed98e76081a1b015be235aaa3d0e9a',
+   'variableKey' => 'v2-6.70.0.1-8.3.31-eb2a1e2e92ce2b655ab785249bfe313ffc1083dd2f1f3551eafd1c0660850c27',
    'data' => 
   array (
     'locatedSource' => 
@@ -28,6 +28,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
  * @property string $email
  * @property Carbon|null $email_verified_at
  * @property string $password
+ * @property bool $must_change_password
  * @property string|null $mda_id
  * @property string|null $role_id
  * @property UserStatus $status
@@ -43,8 +44,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
     'attributes' => 
     array (
     ),
-    'startLine' => 40,
-    'endLine' => 342,
+    'startLine' => 41,
+    'endLine' => 346,
     'startColumn' => 1,
     'endColumn' => 1,
     'parentClassName' => 'Illuminate\\Foundation\\Auth\\User',
@@ -79,12 +80,12 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
           'code' => '[\'name\', \'email\', \'password\', \'mda_id\', \'role_id\', \'status\', \'mfa_enabled\']',
           'attributes' => 
           array (
-            'startLine' => 90,
-            'endLine' => 98,
+            'startLine' => 91,
+            'endLine' => 99,
             'startTokenPos' => 229,
-            'startFilePos' => 2661,
+            'startFilePos' => 2701,
             'endTokenPos' => 252,
-            'endFilePos' => 2798,
+            'endFilePos' => 2838,
           ),
         ),
         'docComment' => '/**
@@ -97,8 +98,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         'attributes' => 
         array (
         ),
-        'startLine' => 90,
-        'endLine' => 98,
+        'startLine' => 91,
+        'endLine' => 99,
         'startColumn' => 5,
         'endColumn' => 6,
         'isPromoted' => false,
@@ -120,12 +121,12 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
           'code' => '[\'status\' => \\App\\Domain\\Access\\Enums\\UserStatus::Active->value, \'mfa_enabled\' => false, \'failed_login_attempts\' => 0]',
           'attributes' => 
           array (
-            'startLine' => 106,
-            'endLine' => 110,
+            'startLine' => 107,
+            'endLine' => 111,
             'startTokenPos' => 263,
-            'startFilePos' => 3009,
+            'startFilePos' => 3049,
             'endTokenPos' => 290,
-            'endFilePos' => 3132,
+            'endFilePos' => 3172,
           ),
         ),
         'docComment' => '/**
@@ -137,8 +138,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         'attributes' => 
         array (
         ),
-        'startLine' => 106,
-        'endLine' => 110,
+        'startLine' => 107,
+        'endLine' => 111,
         'startColumn' => 5,
         'endColumn' => 6,
         'isPromoted' => false,
@@ -160,12 +161,12 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
           'code' => '[\'password\', \'remember_token\', \'mfa_secret\']',
           'attributes' => 
           array (
-            'startLine' => 117,
-            'endLine' => 121,
+            'startLine' => 118,
+            'endLine' => 122,
             'startTokenPos' => 301,
-            'startFilePos' => 3286,
+            'startFilePos' => 3326,
             'endTokenPos' => 312,
-            'endFilePos' => 3360,
+            'endFilePos' => 3400,
           ),
         ),
         'docComment' => '/**
@@ -176,8 +177,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         'attributes' => 
         array (
         ),
-        'startLine' => 117,
-        'endLine' => 121,
+        'startLine' => 118,
+        'endLine' => 122,
         'startColumn' => 5,
         'endColumn' => 6,
         'isPromoted' => false,
@@ -226,12 +227,12 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
           'code' => 'null',
           'attributes' => 
           array (
-            'startLine' => 256,
-            'endLine' => 256,
-            'startTokenPos' => 941,
-            'startFilePos' => 7515,
-            'endTokenPos' => 941,
-            'endFilePos' => 7518,
+            'startLine' => 260,
+            'endLine' => 260,
+            'startTokenPos' => 952,
+            'startFilePos' => 7773,
+            'endTokenPos' => 952,
+            'endFilePos' => 7776,
           ),
         ),
         'docComment' => '/**
@@ -243,8 +244,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         'attributes' => 
         array (
         ),
-        'startLine' => 256,
-        'endLine' => 256,
+        'startLine' => 260,
+        'endLine' => 260,
         'startColumn' => 5,
         'endColumn' => 47,
         'isPromoted' => false,
@@ -293,12 +294,12 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
           'code' => 'null',
           'attributes' => 
           array (
-            'startLine' => 291,
-            'endLine' => 291,
-            'startTokenPos' => 1068,
-            'startFilePos' => 8505,
-            'endTokenPos' => 1068,
-            'endFilePos' => 8508,
+            'startLine' => 295,
+            'endLine' => 295,
+            'startTokenPos' => 1079,
+            'startFilePos' => 8763,
+            'endTokenPos' => 1079,
+            'endFilePos' => 8766,
           ),
         ),
         'docComment' => '/**
@@ -310,8 +311,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         'attributes' => 
         array (
         ),
-        'startLine' => 291,
-        'endLine' => 291,
+        'startLine' => 295,
+        'endLine' => 295,
         'startColumn' => 5,
         'endColumn' => 49,
         'isPromoted' => false,
@@ -346,8 +347,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         'docComment' => '/**
  * Users are MDA-scoped on their `mda_id` column (not the Phase 2 default).
  */',
-        'startLine' => 48,
-        'endLine' => 51,
+        'startLine' => 49,
+        'endLine' => 52,
         'startColumn' => 5,
         'endColumn' => 5,
         'couldThrow' => false,
@@ -387,8 +388,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
  *
  * @return list<string>
  */',
-        'startLine' => 60,
-        'endLine' => 71,
+        'startLine' => 61,
+        'endLine' => 72,
         'startColumn' => 5,
         'endColumn' => 5,
         'couldThrow' => false,
@@ -426,8 +427,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
  *
  * @return list<string>
  */',
-        'startLine' => 78,
-        'endLine' => 81,
+        'startLine' => 79,
+        'endLine' => 82,
         'startColumn' => 5,
         'endColumn' => 5,
         'couldThrow' => false,
@@ -463,8 +464,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         'docComment' => '/**
  * @return array<string, string>
  */',
-        'startLine' => 126,
-        'endLine' => 139,
+        'startLine' => 127,
+        'endLine' => 143,
         'startColumn' => 5,
         'endColumn' => 5,
         'couldThrow' => false,
@@ -505,8 +506,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
  * the control is always on regardless of the flag, so it can never be weakened
  * (SECURITY.md §2/§12).
  */',
-        'startLine' => 149,
-        'endLine' => 156,
+        'startLine' => 153,
+        'endLine' => 160,
         'startColumn' => 5,
         'endColumn' => 5,
         'couldThrow' => false,
@@ -542,8 +543,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         'docComment' => '/**
  * Whether the account is currently locked out (FR-UAM-06).
  */',
-        'startLine' => 161,
-        'endLine' => 164,
+        'startLine' => 165,
+        'endLine' => 168,
         'startColumn' => 5,
         'endColumn' => 5,
         'couldThrow' => false,
@@ -581,8 +582,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
  * backoff once the configured threshold is reached. Returns true if this
  * attempt caused (or extended) a lock.
  */',
-        'startLine' => 171,
-        'endLine' => 191,
+        'startLine' => 175,
+        'endLine' => 195,
         'startColumn' => 5,
         'endColumn' => 5,
         'couldThrow' => false,
@@ -618,8 +619,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         'docComment' => '/**
  * Clear lockout state after a successful authentication.
  */',
-        'startLine' => 196,
-        'endLine' => 206,
+        'startLine' => 200,
+        'endLine' => 210,
         'startColumn' => 5,
         'endColumn' => 5,
         'couldThrow' => false,
@@ -657,8 +658,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             'attributes' => 
             array (
             ),
-            'startLine' => 212,
-            'endLine' => 212,
+            'startLine' => 216,
+            'endLine' => 216,
             'startColumn' => 41,
             'endColumn' => 52,
             'parameterIndex' => 0,
@@ -682,8 +683,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
  * Consume a one-time recovery code if it matches. Returns true and removes
  * the code on success; false otherwise (constant-time comparison).
  */',
-        'startLine' => 212,
-        'endLine' => 227,
+        'startLine' => 216,
+        'endLine' => 231,
         'startColumn' => 5,
         'endColumn' => 5,
         'couldThrow' => false,
@@ -721,8 +722,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
  *
  * @return BelongsTo<Mda, $this>
  */',
-        'startLine' => 234,
-        'endLine' => 237,
+        'startLine' => 238,
+        'endLine' => 241,
         'startColumn' => 5,
         'endColumn' => 5,
         'couldThrow' => false,
@@ -761,8 +762,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
  *
  * @return BelongsTo<Role, $this>
  */',
-        'startLine' => 245,
-        'endLine' => 248,
+        'startLine' => 249,
+        'endLine' => 252,
         'startColumn' => 5,
         'endColumn' => 5,
         'couldThrow' => false,
@@ -800,8 +801,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
  *
  * @return list<string>
  */',
-        'startLine' => 263,
-        'endLine' => 266,
+        'startLine' => 267,
+        'endLine' => 270,
         'startColumn' => 5,
         'endColumn' => 5,
         'couldThrow' => false,
@@ -839,8 +840,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
             'attributes' => 
             array (
             ),
-            'startLine' => 271,
-            'endLine' => 271,
+            'startLine' => 275,
+            'endLine' => 275,
             'startColumn' => 35,
             'endColumn' => 45,
             'parameterIndex' => 0,
@@ -863,8 +864,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         'docComment' => '/**
  * Whether the user has a given `module.action` permission.
  */',
-        'startLine' => 271,
-        'endLine' => 274,
+        'startLine' => 275,
+        'endLine' => 278,
         'startColumn' => 5,
         'endColumn' => 5,
         'couldThrow' => false,
@@ -901,8 +902,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
  * Whether the user may see data across all MDAs (FR-UAM-03 bypass). Granted
  * by the `cross-mda.view` permission to oversight roles.
  */',
-        'startLine' => 280,
-        'endLine' => 283,
+        'startLine' => 284,
+        'endLine' => 287,
         'startColumn' => 5,
         'endColumn' => 5,
         'couldThrow' => false,
@@ -938,8 +939,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         'docComment' => '/**
  * @return list<string>
  */',
-        'startLine' => 296,
-        'endLine' => 313,
+        'startLine' => 300,
+        'endLine' => 317,
         'startColumn' => 5,
         'endColumn' => 5,
         'couldThrow' => false,
@@ -977,8 +978,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
  *
  * @return HasMany<MdaAccessGrant, $this>
  */',
-        'startLine' => 320,
-        'endLine' => 323,
+        'startLine' => 324,
+        'endLine' => 327,
         'startColumn' => 5,
         'endColumn' => 5,
         'couldThrow' => false,
@@ -1012,8 +1013,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         array (
         ),
         'docComment' => NULL,
-        'startLine' => 325,
-        'endLine' => 328,
+        'startLine' => 329,
+        'endLine' => 332,
         'startColumn' => 5,
         'endColumn' => 5,
         'couldThrow' => false,
@@ -1050,8 +1051,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
  * Invalidate all access tokens whenever the password changes
  * (SECURITY.md §2: invalidate tokens on password change).
  */',
-        'startLine' => 334,
-        'endLine' => 341,
+        'startLine' => 338,
+        'endLine' => 345,
         'startColumn' => 5,
         'endColumn' => 5,
         'couldThrow' => false,

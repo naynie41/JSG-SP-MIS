@@ -14,6 +14,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         array (
           'userstatus' => 'App\\Domain\\Access\\Enums\\UserStatus',
           'user' => 'App\\Domain\\Access\\Models\\User',
+          'temporarypasswordissuer' => 'App\\Domain\\Access\\Services\\TemporaryPasswordIssuer',
           'auditlogger' => 'App\\Domain\\Audit\\Services\\AuditLogger',
           'controller' => 'App\\Http\\Controllers\\Controller',
           'storeuserrequest' => 'App\\Http\\Requests\\Access\\StoreUserRequest',
@@ -45,6 +46,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         array (
           'userstatus' => 'App\\Domain\\Access\\Enums\\UserStatus',
           'user' => 'App\\Domain\\Access\\Models\\User',
+          'temporarypasswordissuer' => 'App\\Domain\\Access\\Services\\TemporaryPasswordIssuer',
           'auditlogger' => 'App\\Domain\\Audit\\Services\\AuditLogger',
           'controller' => 'App\\Http\\Controllers\\Controller',
           'storeuserrequest' => 'App\\Http\\Requests\\Access\\StoreUserRequest',
@@ -65,6 +67,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
           array (
             'userstatus' => 'App\\Domain\\Access\\Enums\\UserStatus',
             'user' => 'App\\Domain\\Access\\Models\\User',
+            'temporarypasswordissuer' => 'App\\Domain\\Access\\Services\\TemporaryPasswordIssuer',
             'auditlogger' => 'App\\Domain\\Audit\\Services\\AuditLogger',
             'controller' => 'App\\Http\\Controllers\\Controller',
             'storeuserrequest' => 'App\\Http\\Requests\\Access\\StoreUserRequest',
@@ -106,6 +109,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         array (
           'userstatus' => 'App\\Domain\\Access\\Enums\\UserStatus',
           'user' => 'App\\Domain\\Access\\Models\\User',
+          'temporarypasswordissuer' => 'App\\Domain\\Access\\Services\\TemporaryPasswordIssuer',
           'auditlogger' => 'App\\Domain\\Audit\\Services\\AuditLogger',
           'controller' => 'App\\Http\\Controllers\\Controller',
           'storeuserrequest' => 'App\\Http\\Requests\\Access\\StoreUserRequest',
@@ -126,6 +130,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
           array (
             'userstatus' => 'App\\Domain\\Access\\Enums\\UserStatus',
             'user' => 'App\\Domain\\Access\\Models\\User',
+            'temporarypasswordissuer' => 'App\\Domain\\Access\\Services\\TemporaryPasswordIssuer',
             'auditlogger' => 'App\\Domain\\Audit\\Services\\AuditLogger',
             'controller' => 'App\\Http\\Controllers\\Controller',
             'storeuserrequest' => 'App\\Http\\Requests\\Access\\StoreUserRequest',
@@ -167,6 +172,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         array (
           'userstatus' => 'App\\Domain\\Access\\Enums\\UserStatus',
           'user' => 'App\\Domain\\Access\\Models\\User',
+          'temporarypasswordissuer' => 'App\\Domain\\Access\\Services\\TemporaryPasswordIssuer',
           'auditlogger' => 'App\\Domain\\Audit\\Services\\AuditLogger',
           'controller' => 'App\\Http\\Controllers\\Controller',
           'storeuserrequest' => 'App\\Http\\Requests\\Access\\StoreUserRequest',
@@ -187,6 +193,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
           array (
             'userstatus' => 'App\\Domain\\Access\\Enums\\UserStatus',
             'user' => 'App\\Domain\\Access\\Models\\User',
+            'temporarypasswordissuer' => 'App\\Domain\\Access\\Services\\TemporaryPasswordIssuer',
             'auditlogger' => 'App\\Domain\\Audit\\Services\\AuditLogger',
             'controller' => 'App\\Http\\Controllers\\Controller',
             'storeuserrequest' => 'App\\Http\\Requests\\Access\\StoreUserRequest',
@@ -228,6 +235,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         array (
           'userstatus' => 'App\\Domain\\Access\\Enums\\UserStatus',
           'user' => 'App\\Domain\\Access\\Models\\User',
+          'temporarypasswordissuer' => 'App\\Domain\\Access\\Services\\TemporaryPasswordIssuer',
           'auditlogger' => 'App\\Domain\\Audit\\Services\\AuditLogger',
           'controller' => 'App\\Http\\Controllers\\Controller',
           'storeuserrequest' => 'App\\Http\\Requests\\Access\\StoreUserRequest',
@@ -248,6 +256,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
           array (
             'userstatus' => 'App\\Domain\\Access\\Enums\\UserStatus',
             'user' => 'App\\Domain\\Access\\Models\\User',
+            'temporarypasswordissuer' => 'App\\Domain\\Access\\Services\\TemporaryPasswordIssuer',
             'auditlogger' => 'App\\Domain\\Audit\\Services\\AuditLogger',
             'controller' => 'App\\Http\\Controllers\\Controller',
             'storeuserrequest' => 'App\\Http\\Requests\\Access\\StoreUserRequest',
@@ -289,6 +298,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         array (
           'userstatus' => 'App\\Domain\\Access\\Enums\\UserStatus',
           'user' => 'App\\Domain\\Access\\Models\\User',
+          'temporarypasswordissuer' => 'App\\Domain\\Access\\Services\\TemporaryPasswordIssuer',
           'auditlogger' => 'App\\Domain\\Audit\\Services\\AuditLogger',
           'controller' => 'App\\Http\\Controllers\\Controller',
           'storeuserrequest' => 'App\\Http\\Requests\\Access\\StoreUserRequest',
@@ -309,6 +319,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
           array (
             'userstatus' => 'App\\Domain\\Access\\Enums\\UserStatus',
             'user' => 'App\\Domain\\Access\\Models\\User',
+            'temporarypasswordissuer' => 'App\\Domain\\Access\\Services\\TemporaryPasswordIssuer',
             'auditlogger' => 'App\\Domain\\Audit\\Services\\AuditLogger',
             'controller' => 'App\\Http\\Controllers\\Controller',
             'storeuserrequest' => 'App\\Http\\Requests\\Access\\StoreUserRequest',
@@ -350,6 +361,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         array (
           'userstatus' => 'App\\Domain\\Access\\Enums\\UserStatus',
           'user' => 'App\\Domain\\Access\\Models\\User',
+          'temporarypasswordissuer' => 'App\\Domain\\Access\\Services\\TemporaryPasswordIssuer',
           'auditlogger' => 'App\\Domain\\Audit\\Services\\AuditLogger',
           'controller' => 'App\\Http\\Controllers\\Controller',
           'storeuserrequest' => 'App\\Http\\Requests\\Access\\StoreUserRequest',
@@ -370,6 +382,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
           array (
             'userstatus' => 'App\\Domain\\Access\\Enums\\UserStatus',
             'user' => 'App\\Domain\\Access\\Models\\User',
+            'temporarypasswordissuer' => 'App\\Domain\\Access\\Services\\TemporaryPasswordIssuer',
             'auditlogger' => 'App\\Domain\\Audit\\Services\\AuditLogger',
             'controller' => 'App\\Http\\Controllers\\Controller',
             'storeuserrequest' => 'App\\Http\\Requests\\Access\\StoreUserRequest',
@@ -411,6 +424,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         array (
           'userstatus' => 'App\\Domain\\Access\\Enums\\UserStatus',
           'user' => 'App\\Domain\\Access\\Models\\User',
+          'temporarypasswordissuer' => 'App\\Domain\\Access\\Services\\TemporaryPasswordIssuer',
           'auditlogger' => 'App\\Domain\\Audit\\Services\\AuditLogger',
           'controller' => 'App\\Http\\Controllers\\Controller',
           'storeuserrequest' => 'App\\Http\\Requests\\Access\\StoreUserRequest',
@@ -431,6 +445,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
           array (
             'userstatus' => 'App\\Domain\\Access\\Enums\\UserStatus',
             'user' => 'App\\Domain\\Access\\Models\\User',
+            'temporarypasswordissuer' => 'App\\Domain\\Access\\Services\\TemporaryPasswordIssuer',
             'auditlogger' => 'App\\Domain\\Audit\\Services\\AuditLogger',
             'controller' => 'App\\Http\\Controllers\\Controller',
             'storeuserrequest' => 'App\\Http\\Requests\\Access\\StoreUserRequest',
@@ -472,6 +487,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         array (
           'userstatus' => 'App\\Domain\\Access\\Enums\\UserStatus',
           'user' => 'App\\Domain\\Access\\Models\\User',
+          'temporarypasswordissuer' => 'App\\Domain\\Access\\Services\\TemporaryPasswordIssuer',
           'auditlogger' => 'App\\Domain\\Audit\\Services\\AuditLogger',
           'controller' => 'App\\Http\\Controllers\\Controller',
           'storeuserrequest' => 'App\\Http\\Requests\\Access\\StoreUserRequest',
@@ -492,6 +508,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
           array (
             'userstatus' => 'App\\Domain\\Access\\Enums\\UserStatus',
             'user' => 'App\\Domain\\Access\\Models\\User',
+            'temporarypasswordissuer' => 'App\\Domain\\Access\\Services\\TemporaryPasswordIssuer',
             'auditlogger' => 'App\\Domain\\Audit\\Services\\AuditLogger',
             'controller' => 'App\\Http\\Controllers\\Controller',
             'storeuserrequest' => 'App\\Http\\Requests\\Access\\StoreUserRequest',
@@ -533,6 +550,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         array (
           'userstatus' => 'App\\Domain\\Access\\Enums\\UserStatus',
           'user' => 'App\\Domain\\Access\\Models\\User',
+          'temporarypasswordissuer' => 'App\\Domain\\Access\\Services\\TemporaryPasswordIssuer',
           'auditlogger' => 'App\\Domain\\Audit\\Services\\AuditLogger',
           'controller' => 'App\\Http\\Controllers\\Controller',
           'storeuserrequest' => 'App\\Http\\Requests\\Access\\StoreUserRequest',
@@ -553,6 +571,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
           array (
             'userstatus' => 'App\\Domain\\Access\\Enums\\UserStatus',
             'user' => 'App\\Domain\\Access\\Models\\User',
+            'temporarypasswordissuer' => 'App\\Domain\\Access\\Services\\TemporaryPasswordIssuer',
             'auditlogger' => 'App\\Domain\\Audit\\Services\\AuditLogger',
             'controller' => 'App\\Http\\Controllers\\Controller',
             'storeuserrequest' => 'App\\Http\\Requests\\Access\\StoreUserRequest',
@@ -594,6 +613,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         array (
           'userstatus' => 'App\\Domain\\Access\\Enums\\UserStatus',
           'user' => 'App\\Domain\\Access\\Models\\User',
+          'temporarypasswordissuer' => 'App\\Domain\\Access\\Services\\TemporaryPasswordIssuer',
           'auditlogger' => 'App\\Domain\\Audit\\Services\\AuditLogger',
           'controller' => 'App\\Http\\Controllers\\Controller',
           'storeuserrequest' => 'App\\Http\\Requests\\Access\\StoreUserRequest',
@@ -614,6 +634,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
           array (
             'userstatus' => 'App\\Domain\\Access\\Enums\\UserStatus',
             'user' => 'App\\Domain\\Access\\Models\\User',
+            'temporarypasswordissuer' => 'App\\Domain\\Access\\Services\\TemporaryPasswordIssuer',
             'auditlogger' => 'App\\Domain\\Audit\\Services\\AuditLogger',
             'controller' => 'App\\Http\\Controllers\\Controller',
             'storeuserrequest' => 'App\\Http\\Requests\\Access\\StoreUserRequest',
@@ -655,6 +676,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         array (
           'userstatus' => 'App\\Domain\\Access\\Enums\\UserStatus',
           'user' => 'App\\Domain\\Access\\Models\\User',
+          'temporarypasswordissuer' => 'App\\Domain\\Access\\Services\\TemporaryPasswordIssuer',
           'auditlogger' => 'App\\Domain\\Audit\\Services\\AuditLogger',
           'controller' => 'App\\Http\\Controllers\\Controller',
           'storeuserrequest' => 'App\\Http\\Requests\\Access\\StoreUserRequest',
@@ -675,6 +697,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
           array (
             'userstatus' => 'App\\Domain\\Access\\Enums\\UserStatus',
             'user' => 'App\\Domain\\Access\\Models\\User',
+            'temporarypasswordissuer' => 'App\\Domain\\Access\\Services\\TemporaryPasswordIssuer',
             'auditlogger' => 'App\\Domain\\Audit\\Services\\AuditLogger',
             'controller' => 'App\\Http\\Controllers\\Controller',
             'storeuserrequest' => 'App\\Http\\Requests\\Access\\StoreUserRequest',
@@ -712,7 +735,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
     ),
     1 => 
     array (
-      '/var/www/html/app/Http/Controllers/Api/V1/Access/UserController.php' => '43d44f96ff1713f4d921ab04efad2612e72dbe442c58709fa54c48e39c9726a6',
+      '/var/www/html/app/Http/Controllers/Api/V1/Access/UserController.php' => '4e57a10a8efefa38b0fec255d0054bada740ab1d94a76eea4c14bf9be09ef1a3',
     ),
   ),
 ));
