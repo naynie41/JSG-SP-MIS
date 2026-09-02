@@ -1,0 +1,674 @@
+{
+  "mdas": [
+    {
+      "name": "State Universal Basic Education Board",
+      "programmes": [
+        {
+          "name": "Integrated Quranic Tsangaya Education Programme",
+          "target": "Almajiris",
+          "automated": false
+        },
+        {
+          "name": "Gifted Education Programme",
+          "target": "Talented Pupils",
+          "automated": false
+        },
+        {
+          "name": "Free Education for Girls at all levels",
+          "target": "Girls",
+          "automated": false
+        },
+        {
+          "name": "World bank Supported Global Education Programme (girls education cash transfer and educational support)",
+          "target": "Girls",
+          "automated": true
+        },
+        {
+          "name": "Federal Government supported Home grown School feeding programme (P 1-3 by FGN and P4- 6 by JSG)",
+          "target": "Pupils",
+          "automated": false
+        },
+        {
+          "name": "N-power programme (N-Teach)",
+          "target": "Youth",
+          "automated": false
+        },
+        {
+          "name": "Scholarship",
+          "target": "Students",
+          "automated": false
+        },
+        {
+          "name": "UBEC Intervention",
+          "target": "Pupils",
+          "automated": false
+        },
+        {
+          "name": "J – Teach primary",
+          "target": "Youth",
+          "automated": false
+        },
+        {
+          "name": "Distribution of uniform to pupils",
+          "target": "Students",
+          "automated": false
+        },
+        {
+          "name": "All babies are equal",
+          "target": "Pupils",
+          "automated": false
+        },
+        {
+          "name": "Distribution of school material to pupils",
+          "target": "Pupils",
+          "automated": false
+        }
+      ]
+    },
+    {
+      "name": "Ministry of Health",
+      "programmes": [
+        {
+          "name": "Free Maternal and Child Healthcare Programme (Pregnant Women and Children U5)",
+          "target": "Pregnant women and U5 Children",
+          "automated": true
+        },
+        {
+          "name": "Deferral and Exemption Drug Programme",
+          "target": "Poor and vulnerable",
+          "automated": true
+        },
+        {
+          "name": "State Health Insurance Scheme",
+          "target": "Civil Servants",
+          "automated": true
+        },
+        {
+          "name": "Mental Health Services (Free medication for mentally affected persons)",
+          "target": "Mentally Affected",
+          "automated": true
+        },
+        {
+          "name": "HIV Aids Support",
+          "target": "HIV patients",
+          "automated": true
+        },
+        {
+          "name": "TV and Leprosy support (Free drugs for these patients)",
+          "target": "Patients",
+          "automated": true
+        },
+        {
+          "name": "Rollback Malaria Programme",
+          "target": "Childrens",
+          "automated": true
+        },
+        {
+          "name": "Primary Eyecare programme",
+          "target": "Eye Patients",
+          "automated": true
+        },
+        {
+          "name": "NTDS (Neglected Tropical Diseases Support) programme",
+          "target": "NTDS Patients",
+          "automated": true
+        },
+        {
+          "name": "N-power programme (J-health)",
+          "target": "Youth",
+          "automated": true
+        },
+        {
+          "name": "Medical students bonding (Scholarship)",
+          "target": "Medical Students",
+          "automated": true
+        },
+        {
+          "name": "Maternal and Neonatal child Care Emergency transport (MANCET)",
+          "target": "Childrens",
+          "automated": true
+        }
+      ]
+    },
+    {
+      "name": "Ministry of Women Affairs",
+      "programmes": [
+        {
+          "name": "Orphaned & Vulnerable Children Support",
+          "target": "Orphaned & Vulnerable Children",
+          "automated": false
+        },
+        {
+          "name": "Women Economic Empowerment Initiative",
+          "target": "Women",
+          "automated": false
+        },
+        {
+          "name": "Home-based support to orphans and Care givers (Support to abandoned children and their care givers)",
+          "target": "Orphaned & Vulnerable Children and Care givers",
+          "automated": false
+        },
+        {
+          "name": "Goat breading and rearing programming",
+          "target": "Women",
+          "automated": false
+        },
+        {
+          "name": "MSE Support to  women",
+          "target": "Women",
+          "automated": false
+        },
+        {
+          "name": "Support to Caregivers",
+          "target": "Care givers",
+          "automated": false
+        },
+        {
+          "name": "Elderly Contributor's social protection scheme",
+          "target": "Elderly",
+          "automated": false
+        },
+        {
+          "name": "Elderly Persons social protection scheme",
+          "target": "Elderly",
+          "automated": false
+        },
+        {
+          "name": "Palliative shop for civil servants",
+          "target": "Civil Servants",
+          "automated": false
+        },
+        {
+          "name": "Save motherhood initiative",
+          "target": "Women",
+          "automated": false
+        },
+        {
+          "name": "National cash transfer to poor and vulnerable",
+          "target": "Poor and vulnerable",
+          "automated": false
+        },
+        {
+          "name": "State cash transfer (J-CARES)",
+          "target": "Poor and vulnerable",
+          "automated": false
+        },
+        {
+          "name": "Livelihood programme (J - CARES)",
+          "target": "Women",
+          "automated": false
+        }
+      ]
+    },
+    {
+      "name": "State Housing Authority",
+      "programmes": [
+        {
+          "name": "Low Cost Housing Scheme",
+          "target": "Civil Servants",
+          "automated": false
+        }
+      ]
+    },
+    {
+      "name": "Youth Empowerment and Employment Agency",
+      "programmes": [
+        {
+          "name": "Micro-finance loans",
+          "target": "Youth",
+          "automated": false
+        },
+        {
+          "name": "Youth Empowerment programme",
+          "target": "Youth",
+          "automated": false
+        },
+        {
+          "name": "Mafita programme",
+          "target": "Women",
+          "automated": false
+        },
+        {
+          "name": "Civil Servant support programme (Keke and tricycles loan)",
+          "target": "Civil Servants",
+          "automated": false
+        },
+        {
+          "name": "Lafiya Jari Programme (Loan to unemployed CHEWS for establishing a chemist at communities).",
+          "target": "Youth",
+          "automated": false
+        },
+        {
+          "name": "Scrap dealers empowerment programme",
+          "target": "Youth",
+          "automated": false
+        },
+        {
+          "name": "Mobile welding empowerment",
+          "target": "Youth",
+          "automated": false
+        },
+        {
+          "name": "NURTW loan programme (Buses loan)",
+          "target": "Drivers",
+          "automated": false
+        },
+        {
+          "name": "Youth in Agriculture cluster farming",
+          "target": "Youth",
+          "automated": false
+        },
+        {
+          "name": "Poultry empowerment programme",
+          "target": "Women",
+          "automated": false
+        },
+        {
+          "name": "Pastoralist empowerment scheme.",
+          "target": "Farmers",
+          "automated": false
+        },
+        {
+          "name": "Fish farming empowerment.",
+          "target": "Farmers",
+          "automated": false
+        },
+        {
+          "name": "Women's food vendor support.",
+          "target": "Women",
+          "automated": false
+        },
+        {
+          "name": "Goat revolving fund support",
+          "target": "Women",
+          "automated": false
+        },
+        {
+          "name": "Inmate correctional skill acquisition",
+          "target": "Inmate",
+          "automated": false
+        },
+        {
+          "name": "Skills acquisition centers training for youth and women",
+          "target": "Youth/Women",
+          "automated": false
+        },
+        {
+          "name": "Empowerment for SMEs",
+          "target": "SMEs",
+          "automated": false
+        },
+        {
+          "name": "Cash transfer to poor and vulnerable groups",
+          "target": "Poor and vulnerable",
+          "automated": false
+        },
+        {
+          "name": "Livelihood Programme (J - CARES)",
+          "target": "Poor and vulnerable",
+          "automated": false
+        }
+      ]
+    },
+    {
+      "name": "Emirate Councils and Directorate of Religious Affairs",
+      "programmes": [
+        {
+          "name": "Emirate Council based Zakkat (annual charity) Programmes",
+          "target": "Poor and vulnerable",
+          "automated": false
+        },
+        {
+          "name": "Waqaf (Surrendering of building asset for the use of common people for free)",
+          "target": "Poor and vulnerable",
+          "automated": false
+        }
+      ]
+    },
+    {
+      "name": "Justice Sector and Law Reform Commission",
+      "programmes": [
+        {
+          "name": "Community Law centers for mediation and alternative means of dispute resolutions",
+          "target": "Poor and vulnerable",
+          "automated": false
+        }
+      ]
+    },
+    {
+      "name": "Ministry of Commerce",
+      "programmes": [
+        {
+          "name": "SMEs support",
+          "target": "SMEs",
+          "automated": false
+        },
+        {
+          "name": "Subsides shop rent scheme for business",
+          "target": "SMEs",
+          "automated": false
+        },
+        {
+          "name": "Support to Cooperative societies by J - CARES",
+          "target": "SMEs",
+          "automated": false
+        }
+      ]
+    },
+    {
+      "name": "SEMA",
+      "programmes": [
+        {
+          "name": "Emergency response and Preparedness Response Plan",
+          "target": "Victims",
+          "automated": false
+        },
+        {
+          "name": "Food transfer during Ramadan",
+          "target": "Poor and vulnerable",
+          "automated": false
+        },
+        {
+          "name": "Cash assistance to poor and vulnerable",
+          "target": "Poor and vulnerable",
+          "automated": false
+        }
+      ]
+    },
+    {
+      "name": "State Rehabilitation Board",
+      "programmes": [
+        {
+          "name": "Provision of cash and food grants for the core-poor",
+          "target": "Core - poor",
+          "automated": false
+        },
+        {
+          "name": "Expansion of cash transfer to the disabled in the state.",
+          "target": "PWDs",
+          "automated": false
+        },
+        {
+          "name": "Social security allowance",
+          "target": "PWDs/Old aged",
+          "automated": false
+        },
+        {
+          "name": "Jigawa state maternal and childcare cash transfer programme (JMCCTP)",
+          "target": "Poor and vulnerable",
+          "automated": false
+        },
+        {
+          "name": "Food transfer for disable",
+          "target": "PWDS",
+          "automated": false
+        },
+        {
+          "name": "PWDs mobility support",
+          "target": "PWDS",
+          "automated": false
+        },
+        {
+          "name": "Old age social protection scheme",
+          "target": "Old aged",
+          "automated": false
+        },
+        {
+          "name": "Disability fund",
+          "target": "PWDS",
+          "automated": false
+        }
+      ]
+    },
+    {
+      "name": "JICHMA",
+      "programmes": [
+        {
+          "name": "Community based health care insurance",
+          "target": "General Public",
+          "automated": false
+        },
+        {
+          "name": "Basic health care provision fund",
+          "target": "General Public",
+          "automated": false
+        },
+        {
+          "name": "Old age non-contributory health scheme",
+          "target": "Old aged",
+          "automated": false
+        },
+        {
+          "name": "Health insurance scheme",
+          "target": "Civil Servants",
+          "automated": false
+        },
+        {
+          "name": "Employee contribution scheme",
+          "target": "Civil Servants",
+          "automated": false
+        }
+      ]
+    },
+    {
+      "name": "Contributory Pension",
+      "programmes": [
+        {
+          "name": "Formal sector contributions",
+          "target": "Civil Servants",
+          "automated": false
+        },
+        {
+          "name": "8% pension scheme",
+          "target": "Civil Servants",
+          "automated": false
+        },
+        {
+          "name": "Payment of pension",
+          "target": "Pensioners",
+          "automated": false
+        }
+      ]
+    },
+    {
+      "name": "Ministry of Budget and Economic Planning",
+      "programmes": [
+        {
+          "name": "Generating and Mainteanance of Poor and Vulnerables register by (SOCU)",
+          "target": "Poor and vulnerable",
+          "automated": false
+        },
+        {
+          "name": "Coordination of NG - CARES Programme",
+          "target": "Poor and vulnerable",
+          "automated": false
+        }
+      ]
+    },
+    {
+      "name": "Ministry for Higher Education",
+      "programmes": [
+        {
+          "name": "Free girl’s child education",
+          "target": "Girls",
+          "automated": false
+        },
+        {
+          "name": "AGILE",
+          "target": "Girls",
+          "automated": false
+        },
+        {
+          "name": "Scholarship to students",
+          "target": "Students",
+          "automated": false
+        },
+        {
+          "name": "First class graduate student automatic employment",
+          "target": "Fisrt Class Graduate",
+          "automated": false
+        },
+        {
+          "name": "Mentorship programme",
+          "target": "Teachers",
+          "automated": false
+        },
+        {
+          "name": "Santami acquisition training",
+          "target": "Students",
+          "automated": false
+        },
+        {
+          "name": "Distribution of uniform to pupils",
+          "target": "Students",
+          "automated": false
+        }
+      ]
+    },
+    {
+      "name": "NOMADIC",
+      "programmes": [
+        {
+          "name": "Free school uniform for Nomads",
+          "target": "Nomads",
+          "automated": false
+        },
+        {
+          "name": "Distribution of school materials to nomads",
+          "target": "Nomads",
+          "automated": false
+        }
+      ]
+    },
+    {
+      "name": "Ministry of Agric",
+      "programmes": [
+        {
+          "name": "Goat revolving scheme",
+          "target": "Women",
+          "automated": false
+        },
+        {
+          "name": "Agric inputs support for vulnerable",
+          "target": "Farmers",
+          "automated": false
+        },
+        {
+          "name": "Cluster farming system",
+          "target": "Farmers",
+          "automated": false
+        },
+        {
+          "name": "Food stuff price subsidy for poor and vulnerable",
+          "target": "Poor and vulnerable",
+          "automated": false
+        }
+      ]
+    },
+    {
+      "name": "JARDA",
+      "programmes": [
+        {
+          "name": "Goat revolving scheme",
+          "target": "Women",
+          "automated": false
+        },
+        {
+          "name": "Agric inputs support for vulnerable",
+          "target": "Poor and vulnerable",
+          "automated": false
+        },
+        {
+          "name": "Cluster farming system",
+          "target": "Farmers",
+          "automated": false
+        },
+        {
+          "name": "J – Agro",
+          "target": "Extension Agents",
+          "automated": false
+        }
+      ]
+    },
+    {
+      "name": "FADAMA",
+      "programmes": [
+        {
+          "name": "Distribution of Agric inputs and Services (J - CARES)",
+          "target": "Farmers",
+          "automated": false
+        },
+        {
+          "name": "Distrbution of Agriculral Assets (J - CARES)",
+          "target": "Farmers",
+          "automated": false
+        },
+        {
+          "name": "Food Transfer Programme (J - CARES)",
+          "target": "Poor and vulnerable",
+          "automated": false
+        }
+      ]
+    },
+    {
+      "name": "SIP",
+      "programmes": [
+        {
+          "name": "Government Enterprises Empowerment Programme (GEEP)",
+          "target": "SMEs",
+          "automated": false
+        },
+        {
+          "name": "N – POWER",
+          "target": "Youth",
+          "automated": false
+        }
+      ]
+    },
+    {
+      "name": "MINISTRY OF ENVIRONMENT",
+      "programmes": [
+        {
+          "name": "Acresal program for emergency respond to flood victims",
+          "target": "Poor and vulnerable",
+          "automated": false
+        }
+      ]
+    },
+    {
+      "name": "MINISTRY OF HUMANITARIAN AND SPECIAL DUTIES",
+      "programmes": [
+        {
+          "name": "Boarding school feeding",
+          "target": "Students",
+          "automated": false
+        }
+      ]
+    },
+    {
+      "name": "PRIMARY HEALTH CARE DEVELOPMENT AGENCY",
+      "programmes": [
+        {
+          "name": "Provision of community transport services for PHC",
+          "target": "Communities",
+          "automated": true
+        },
+        {
+          "name": "State Nutrition Support Programme (E.g. Purchase and distribution of RUTF)",
+          "target": "Childrens",
+          "automated": true
+        },
+        {
+          "name": "Immunization programme",
+          "target": "Childrens",
+          "automated": true
+        },
+        {
+          "name": "DFID Supported CDGP Programme (Nutrition Sensitive)",
+          "target": "Childrens",
+          "automated": true
+        }
+      ]
+    }
+  ]
+}
