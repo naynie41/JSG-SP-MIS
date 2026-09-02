@@ -302,7 +302,9 @@ class AdHocReportBuilder
         }
 
         return [
-            'programme' => $ids['programme'] === [] ? [] : Programme::query()->withoutGlobalScope(MdaScope::class)
+            // withArchived: label lookup for rows that already exist — an archived
+            // programme must still resolve to its name in historical output.
+            'programme' => $ids['programme'] === [] ? [] : Programme::query()->withArchived()->withoutGlobalScope(MdaScope::class)
                 ->whereIn('id', array_unique($ids['programme']))->pluck('name', 'id')->all(),
             'mda' => $ids['mda'] === [] ? [] : Mda::query()->withoutGlobalScopes()
                 ->whereIn('id', array_unique($ids['mda']))->pluck('name', 'id')->all(),

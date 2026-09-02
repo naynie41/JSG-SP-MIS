@@ -6,6 +6,7 @@ namespace App\Http\Requests\Registry;
 
 use App\Domain\Access\Scopes\MdaScope;
 use App\Domain\Programme\Models\Activity;
+use App\Domain\Programme\Rules\IsRunnableProgramme;
 use App\Domain\Registry\Imports\Adapters\SourceAdapterRegistry;
 use Closure;
 use Illuminate\Contracts\Validation\Validator;
@@ -57,7 +58,7 @@ class UploadImportRequest extends FormRequest
             // without it an activity-only upload fails on a uuid check against nothing.
             // `required_without` is an implicit rule and still fires, so "neither given"
             // is refused.
-            'programme_id' => ['nullable', 'required_without:activity_id', 'uuid', 'exists:programmes,id'],
+            'programme_id' => ['nullable', 'required_without:activity_id', 'uuid', 'exists:programmes,id', new IsRunnableProgramme],
             'activity_id' => ['nullable', 'uuid', $this->usableActivityRule()],
         ];
     }

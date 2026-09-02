@@ -5,8 +5,8 @@ declare(strict_types=1);
 namespace App\Http\Controllers\Api\V1\Programme;
 
 use App\Domain\Benefit\Services\LedgerAggregator;
-use App\Domain\Programme\Enums\ProgrammeStatus;
 use App\Domain\Programme\Models\Programme;
+use App\Domain\Programme\Services\ProgrammeArchiver;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Programme\StoreProgrammeRequest;
 use App\Http\Requests\Programme\UpdateProgrammeRequest;
@@ -87,7 +87,9 @@ class ProgrammeController extends Controller
 
     public function show(string $programme): JsonResponse
     {
-        $model = Programme::query()->withCount($this->usageCounts())->findOrFail($programme);
+        // withArchived: an archived programme must remain viewable — activities,
+        // ledger entries and graduation events still point at it.
+        $model = Programme::query()->withArchived()->withCount($this->usageCounts())->findOrFail($programme);
 
         $this->authorize('view', $model);
 
@@ -109,21 +111,68 @@ class ProgrammeController extends Controller
     /** Budget: allocated vs utilised, derived from the benefit ledger (FR-PRG-04). */
     public function budget(string $programme, LedgerAggregator $aggregator): JsonResponse
     {
-        $model = Programme::query()->findOrFail($programme);
+        // withArchived: the historical spend under an archived programme is exactly
+        // what someone reviewing the archive needs to see.
+        $model = Programme::query()->withArchived()->findOrFail($programme);
         $this->authorize('view', $model);
 
         return ApiResponse::success($aggregator->programmeBudget($model));
     }
 
-    /** Archive the catalog entry (catalog admin only) — reversible status change, not a delete. */
-    public function archive(string $programme): JsonResponse
+    /**
+     * Archive the catalog entry — the "delete" for a record carrying history
+     * (PRD §10). Never destroys: the programme, its activities, ledger entries and
+     * graduation events all remain, queryable through the history endpoint.
+     *
+     * Refused with 409 while activities still run under it (see ProgrammeArchiver).
+     */
+    public function archive(Request $request, string $programme, ProgrammeArchiver $archiver): JsonResponse
     {
-        $model = Programme::query()->findOrFail($programme);
+        $model = Programme::query()->withArchived()->findOrFail($programme);
 
         $this->authorize('update', $model);
 
-        $model->update(['status' => ProgrammeStatus::Archived]);
+        $validated = $request->validate([
+            'reason' => ['nullable', 'string', 'max:500'],
+        ]);
 
-        return ApiResponse::success((new ProgrammeResource($model->fresh()))->resolve());
+        // ProgrammeHasActiveActivities is Responsable — Laravel renders its 409 with
+        // the blocking activities listed, so no try/catch is needed here.
+        $model = $archiver->archive($model, $request->user(), $validated['reason'] ?? null);
+
+        return ApiResponse::success((new ProgrammeResource($model))->resolve());
+    }
+
+    /** Restore an archived catalog entry (catalog admin only). Audited. */
+    public function unarchive(Request $request, string $programme, ProgrammeArchiver $archiver): JsonResponse
+    {
+        $model = Programme::query()->withArchived()->findOrFail($programme);
+
+        $this->authorize('update', $model);
+
+        return ApiResponse::success(
+            (new ProgrammeResource($archiver->unarchive($model, $request->user())))->resolve()
+        );
+    }
+
+    /**
+     * The archive itself — retained entries, for audit and historical reporting.
+     * Separate from index() because the whole point of archiving is that these do
+     * NOT appear in the lists people select from.
+     */
+    public function archived(Request $request): JsonResponse
+    {
+        $this->authorize('viewAny', Programme::class);
+
+        $perPage = min(max($request->integer('per_page', 25), 1), 100);
+
+        $page = Programme::query()
+            ->onlyArchived()
+            ->withCount($this->usageCounts())
+            ->latest('archived_at')
+            ->latest('id')
+            ->paginate($perPage);
+
+        return ApiResponse::paginated(ProgrammeResource::collection($page->items())->resolve(), $page);
     }
 }

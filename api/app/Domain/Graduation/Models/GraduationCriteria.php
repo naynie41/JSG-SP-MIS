@@ -10,6 +10,7 @@ use App\Domain\Access\Models\Mda;
 use App\Domain\Audit\Concerns\Auditable;
 use App\Domain\Graduation\Enums\CriteriaLogic;
 use App\Domain\Programme\Models\Programme;
+use App\Domain\Shared\Concerns\Archivable;
 use Database\Factories\GraduationCriteriaFactory;
 use Illuminate\Database\Eloquent\Concerns\HasUuids;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -34,7 +35,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 class GraduationCriteria extends Model implements MdaScoped
 {
     /** @use HasFactory<GraduationCriteriaFactory> */
-    use Auditable, HasFactory, HasUuids, ScopedToMda;
+    use Archivable, Auditable, HasFactory, HasUuids, ScopedToMda;
 
     protected $table = 'graduation_criteria';
 

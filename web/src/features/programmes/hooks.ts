@@ -3,6 +3,7 @@ import { useToast } from '@/components/Toast/ToastProvider'
 import { activityApi, enrollmentApi, programmeApi } from './api'
 import type { ProgrammeListParams } from './api'
 import type { ActivityInput, ProgrammeInput } from './types'
+import { ApiError } from '@/types/api'
 
 /* ------------------------------------------------------------------ programmes */
 
@@ -46,6 +47,20 @@ export function useArchiveProgramme() {
       qc.invalidateQueries({ queryKey: ['programmes'] })
       qc.invalidateQueries({ queryKey: ['programme', programme.id] })
       toast.success('Programme archived', programme.name)
+    },
+    // The server refuses with 409 and NAMES the activities still running under the
+    // programme. Without this the refusal was swallowed and the button just appeared
+    // to do nothing — the blocking list is the whole point of the block.
+    onError: (error) => {
+      if (error instanceof ApiError && error.code === 'PROGRAMME_HAS_ACTIVE_ACTIVITIES') {
+        const blockers = error.details.map((d) => d.message).join('; ')
+        toast.error('Cannot archive yet', blockers !== '' ? blockers : error.message)
+        return
+      }
+      toast.error(
+        'Could not archive',
+        error instanceof ApiError ? error.message : 'Please try again.',
+      )
     },
   })
 }

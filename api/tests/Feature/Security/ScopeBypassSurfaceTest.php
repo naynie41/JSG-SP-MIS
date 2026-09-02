@@ -116,6 +116,16 @@ class ScopeBypassSurfaceTest extends TestCase
             // reads the beneficiary's owner unscoped precisely to compare against it —
             // it widens nothing; it is the check that decides who may act.
             'Domain/Registry/Policies/OwnerMdaPolicy.php',
+            // Archiving a global catalog programme must first see EVERY activity still
+            // running under it — and those almost always belong to other MDAs. Scoped,
+            // a catalog admin would see none, archive the programme, and strand all of
+            // them against an entry nobody can select. Like OwnerMdaPolicy this widens
+            // nothing: it is the check that BLOCKS an action. It releases an activity
+            // name, status and owning-MDA name to a catalog admin (System Administrator
+            // / SP Coordination) — both of which already hold `cross-mda.view`, so the
+            // implicit scope would not have constrained them anyway. No beneficiary
+            // data is touched.
+            'Domain/Programme/Services/ProgrammeArchiver.php',
             'Http/Controllers/Api/V1/Registry/BeneficiaryController.php',
             'Http/Controllers/Api/V1/Registry/ServiceRequestController.php',
             'Http/Controllers/Api/V1/Registry/OwnershipTransferController.php',
@@ -186,7 +196,26 @@ class ScopeBypassSurfaceTest extends TestCase
             if ($file->getExtension() !== 'php') {
                 continue;
             }
-            if (! str_contains((string) File::get($file->getRealPath()), 'withoutGlobalScope')) {
+            $source = (string) File::get($file->getRealPath());
+
+            // This test guards the MDA boundary specifically. Removing the ARCHIVED
+            // scope is a different concern — it releases retired rows into a history
+            // view, never another MDA's data — so those calls are discounted before
+            // looking for a bypass. They are stripped rather than allow-listed so the
+            // ALLOWED list keeps meaning "reviewed cross-MDA read"; filling it with
+            // entries that never crossed an MDA boundary would dilute the signal it
+            // exists to give.
+            //
+            // Everything else still counts, including `withoutGlobalScopes()` (which
+            // drops ALL scopes, MdaScope among them) and any call whose argument is
+            // not literally ArchivedScope::class.
+            $source = str_replace(
+                ['withoutGlobalScope(ArchivedScope::class)', 'withoutGlobalScope(\App\Domain\Shared\Scopes\ArchivedScope::class)'],
+                '',
+                $source,
+            );
+
+            if (! str_contains($source, 'withoutGlobalScope')) {
                 continue;
             }
             $found[] = str_replace('\\', '/', substr($file->getRealPath(), strlen(app_path()) + 1));

@@ -72,7 +72,9 @@ class ImportCommitter
             ? null
             : Activity::query()->withoutGlobalScope(MdaScope::class)->find($batch->activity_id);
 
-        $programme = Programme::query()->find($activity->programme_id ?? $batch->programme_id);
+        // withArchived: committing an import uploaded before the programme was
+        // archived must still resolve it, or a part-done batch cannot finish.
+        $programme = Programme::query()->withArchived()->find($activity->programme_id ?? $batch->programme_id);
 
         $batch->update(['status' => ImportStatus::Committing]);
 

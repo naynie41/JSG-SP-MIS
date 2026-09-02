@@ -180,6 +180,13 @@ A task is done only when **all** of these are true:
   interface and tell me what real access is required.
 - Never introduce off-palette colors, ad-hoc fonts/spacing, or a duplicate of a component that
   already exists in `docs/DESIGN-SYSTEM.md`.
+- **Never hard-delete a record that carries history.** Programmes, activities, enrolments, ledger
+  entries, graduation events and the criteria they reference are ARCHIVED, never destroyed: the row
+  survives for audit and historical reporting, drops out of default queries via the `Archivable`
+  concern, and stops accepting new work. Archiving a programme is BLOCKED while draft or active
+  activities run under it. Archive/un-archive are audited and reversible by an authorised role. Do not
+  add a `DELETE` endpoint for these, and do not let a plain update set an archived state — that
+  bypasses the block. History views opt back in explicitly with `withArchived()`.
 - Never add a manual single-record create path for beneficiaries or households — in the API or the
   UI. Ingestion is **bulk/source-only** (Excel/CSV, Kobo, ODK, REST API, SOCU, existing government
   systems), matching PRD §8.1. Editing/correcting an existing imported record (owner-only) is a
@@ -200,34 +207,19 @@ A task is done only when **all** of these are true:
   but malformed, reject the whole row to the error report; do not save it (FR-REG-05). Absent
   optional NIN/BVN is valid. Non-identity fields that fail validation are dropped/flagged for that
   row and the row still saves (FR-REG-09). Never partial-save an identity field.
-  The concrete SHAPES live in one place — `config/registry.php` → `identity` (NIN/BVN digit
-  counts, phone national length, earliest date of birth) — and are read by the rule objects in
-  `app/Domain/Registry/Support/`. Never scatter a format literal into a request, importer, or
-  connector; and never expose these as admin-editable — they are national identifier standards,
-  not stakeholder preferences. Ward is the exception that proves the rule: it resolves against
-  the `wards` lookup only once an authoritative division list is loaded, because enforcing an
-  empty list would null every ward on every import (see GEO.1).
-- **A self-owned match is never a request-to-serve.** When dedup matches a record the UPLOADING
-  MDA already owns (a re-upload of its own data), there is no second record and no Service Request —
-  an MDA does not ask permission to serve its own beneficiary. The row resolves as "already in your
-  registry" and the EXISTING person receives a new intervention under the batch's programme/activity:
-  the duplicate ROW is blocked, the person is not. Which outcome applies is decided by OWNERSHIP of
-  the matched record and re-derived at commit — never trusted from a stored label, because
-  `ServiceRequestService::request()` refuses a self-owned target and would abort the whole commit.
 - **Request-to-serve requires Owner-MDA approval.** A non-owner MDA that matches a duplicate must
   raise a Service Request; the Owner MDA accepts/declines (FR-OWN-06). Interventions may be recorded
   ONLY after acceptance. On acceptance the requester gains READ access to the full beneficiary
   record (FR-OWN-07); ownership/edit rights never move. This is distinct from a Referral (FR-REF,
   outbound). Log every request and decision (FR-AUD-01).
-- **Programme-first upload** *(revised — supersedes the earlier activity-first rule).* Every upload
-  names a **catalog programme**, and MAY additionally name an **activity** the caller's MDA owns.
-  Registering people under a programme is a complete act: the intervention is an enrollment into that
-  programme, with a null activity when none applies. An activity, when given, records *which MDA-run
-  instance* delivered to them (FR-REG-10, FR-PRG-05) and must run the selected programme — a
-  contradiction between the two is refused. Requiring an activity previously forced officers to
-  invent placeholder activities, and a placeholder is a worse record than an honest absence.
-  Beneficiaries still enter the shared registry under first-importer ownership (FR-OWN-01).
-  The activity-creation wizard's own upload is unchanged: it always creates its activity.
+- **Activity-first upload.** An activity must exist before beneficiaries are uploaded to it; every
+  upload is bound to a selected registered activity, and the resulting intervention is recorded
+  under it (FR-REG-10, FR-PRG-05). Beneficiaries still enter the shared registry under first-importer
+  ownership (FR-OWN-01).
+  - **Sync ingestion (Phase 7):** activity-first still holds. A sync connector runs unattended (no
+    officer to pick an activity), so it must carry a **default/target activity in its configuration**;
+    synced rows bind to that activity exactly as an upload binds to a selected one. Sync never ingests
+    activity-less rows — data with no activity can't be attributed and breaks the reporting roll-up.
 
 ---
 
@@ -265,8 +257,16 @@ A task is done only when **all** of these are true:
 - **Every activity has a "View Activity" action** opening a full detail view: programme, activity
   fields, target vs actual counts, beneficiaries/interventions under it, import summary, and pending
   service requests.
-- **Never** expose programme creation/editing to an MDA role, and never make a programme MDA-scoped —
-  it is a shared catalog.
+- **Programmes are a global shared catalog, never MDA-scoped.** An MDA Admin MAY **propose** a programme
+  (full CRUD on its own proposals), but proposals enter as **pending** and are not runnable until the
+  **System Administrator approves** them into the catalog (approval is the anti-duplication gate — approve-
+  as-new or link to an existing catalog programme). Never let an MDA create a *live* programme directly,
+  never make a programme MDA-owned, and never let an MDA edit another MDA's proposal or an approved
+  catalog entry. Budget/funding/target stay on activities.
+- **Archive, never hard-delete, anything with history.** "Delete" for programmes, graduated data, access
+  grants, and any record carrying activities/beneficiary/ledger/graduation history = **archive** (soft,
+  audited, reversible where appropriate), excluded from active lists but retained for audit/history.
+  Block archiving a programme that still has ACTIVE activities. No hard-delete path for these.
 
 ---
 
@@ -290,19 +290,7 @@ A task is done only when **all** of these are true:
 - **Never** headline executive/reporting outputs with *gross registrations*, and never show a coverage
   **percentage** or index without a real denominator loaded. The headline is **net unique beneficiaries**;
   coverage is absolute counts until a population/eligibility denominator exists. (See Phase 6E.)
-- **Report filters are DERIVED from the canonical schema, never hand-listed** (FR-RPT-03). A field is
-  offered as a segment filter only if `CanonicalSchema::FIELDS` declares a `segment` spec on it, and
-  an IDENTITY field is excluded structurally regardless of what is declared — NIN, BVN, phone and
-  name pick out individuals, not segments, and are masked in output. A new segmentable field appears
-  as a filter with no code change in the reporting layer, the API, or the UI.
-- **The segment builder is not a bypass of the export matrix.** Rows-vs-counts is decided by
-  `beneficiary.export` (SECURITY.md §3): Partners and Executives get aggregates only, an MDA Admin
-  gets its own MDA, SP Coordination goes cross-MDA. Scope is applied to the query BEFORE any user
-  filter, so a filter can only narrow within it. Identifiers stay masked without `export.reveal_pii`.
-- **Minimum cell size on aggregate output** (`reporting.min_cell_size`, default 5, NFR-PRV-01). A
-  count of 1 in a narrow segment identifies a person, so groups below N publish no count and say they
-  were withheld. It does NOT apply to an MDA segmenting its OWN beneficiaries — it holds those
-  records already — and a total is suppressed only where the caller cannot see the rows anyway.- **Never** auto-map identity columns on import. Raw MDA files pass through the Data Import & Mapping layer
+- **Never** auto-map identity columns on import. Raw MDA files pass through the Data Import & Mapping layer
   (canonical schema + normalization) before validation/dedup. Column mappings for **NIN, BVN, name, phone**
   must be **explicitly confirmed every import** (templates may pre-fill but never skip confirmation), the
   raw file is never mutated, and normalization is for comparison only — the original value is always stored.

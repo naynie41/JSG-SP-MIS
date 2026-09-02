@@ -62,7 +62,10 @@ class ReportBuilder
     private function benefitsByProgramme(DashboardScope $scope): ReportData
     {
         $groups = $this->ledger->scopedGroup('programme', $scope->mdaIds, $scope->programmeIds);
-        $names = Programme::query()->withoutGlobalScope(MdaScope::class)
+        // withArchived: a report over historical data must be able to NAME the
+        // programme those rows belong to, archived or not — otherwise past reporting
+        // develops blanks as the catalog is tidied.
+        $names = Programme::query()->withArchived()->withoutGlobalScope(MdaScope::class)
             ->whereIn('id', array_column($groups, 'key'))->pluck('name', 'id')->all();
 
         return $this->benefitGroupReport('benefits_by_programme', 'Benefits by programme', 'Programme', $scope, $groups,

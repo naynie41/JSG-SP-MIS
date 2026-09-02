@@ -225,7 +225,10 @@ class SyncEngine
          * would have clicked "upload". `runConnector` refuses to start when that user is
          * gone, so by here it resolves or the activity is absent entirely.
          */
-        $binding = $activity?->programme_id === null ? null : Programme::query()->find($activity->programme_id);
+        // withArchived: an existing connector is bound to an existing activity. If its
+        // programme is archived the sync must keep working on the records already
+        // there — unattended ingestion failing silently is the worst outcome here.
+        $binding = $activity?->programme_id === null ? null : Programme::query()->withArchived()->find($activity->programme_id);
         $actor = $activity?->created_by === null ? null : User::query()->find($activity->created_by);
 
         $fetched = 0;

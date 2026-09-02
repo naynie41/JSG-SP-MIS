@@ -61,7 +61,9 @@ class CommitBenefitImport implements ShouldQueue
 
         $batch->update(['status' => ImportStatus::Committing]);
 
-        $programme = Programme::query()->withoutGlobalScope(MdaScope::class)->findOrFail($batch->programme_id);
+        // withArchived: this batch was created while the programme was live. Archiving
+        // it mid-flight must not strand an import that is already part-committed.
+        $programme = Programme::query()->withArchived()->withoutGlobalScope(MdaScope::class)->findOrFail($batch->programme_id);
 
         $batch->rows()
             ->where('is_valid', true)

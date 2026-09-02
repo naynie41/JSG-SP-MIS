@@ -23,6 +23,11 @@ export interface Programme {
   eligibility: EligibilityCriterion[]
   enforce_eligibility: boolean
   status: ProgrammeStatus
+  /** Archive provenance (§10). Archiving is the "delete" for a catalog entry: it is
+   *  hidden from selectable lists and blocks new activities, but never destroyed. */
+  is_archived?: boolean
+  archived_at?: string | null
+  archive_reason?: string | null
   activities_count?: number
   /** Catalog USAGE: distinct MDAs running an activity for this programme (§10). */
   mdas_count?: number
