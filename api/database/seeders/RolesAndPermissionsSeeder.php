@@ -107,6 +107,14 @@ class RolesAndPermissionsSeeder extends Seeder
             RoleKey::Executive->value,
         ];
 
+        // Roles that are MDA-SCOPED and must be assigned one (FR-UAM-02/03).
+        // Exactly one: MDA Officer was merged into MDA Admin, which already held a
+        // superset of its permissions. Every other role — including M&E Officer —
+        // works at state level and must NOT be tied to a single MDA.
+        $mdaScopedRoles = [
+            RoleKey::MdaAdmin->value,
+        ];
+
         foreach (RoleKey::cases() as $roleKey) {
             $role = Role::updateOrCreate(
                 ['key' => $roleKey->value],
@@ -114,6 +122,7 @@ class RolesAndPermissionsSeeder extends Seeder
                     'name' => $roleKey->label(),
                     'is_system' => true,
                     'requires_mfa' => in_array($roleKey->value, $mfaRequiredRoles, true),
+                    'requires_mda' => in_array($roleKey->value, $mdaScopedRoles, true),
                 ],
             );
 
