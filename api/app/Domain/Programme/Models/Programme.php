@@ -8,6 +8,7 @@ use App\Domain\Access\Models\User;
 use App\Domain\Audit\Concerns\Auditable;
 use App\Domain\Programme\Enums\ProgrammeStatus;
 use App\Domain\Programme\Enums\ProgrammeType;
+use App\Domain\Shared\Concerns\Archivable;
 use Database\Factories\ProgrammeFactory;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Concerns\HasUuids;
@@ -30,9 +31,14 @@ use Illuminate\Support\Carbon;
  * @property string|null $objective
  * @property ProgrammeType $type
  * @property string|null $benefit_category
+ * @property string|null $target_group
+ * @property bool $is_automated
  * @property array<int, array<string, mixed>>|null $eligibility
  * @property bool $enforce_eligibility
  * @property ProgrammeStatus $status
+ * @property Carbon|null $archived_at
+ * @property string|null $archived_by
+ * @property string|null $archive_reason
  * @property string|null $created_by
  * @property Carbon|null $created_at
  * @property Carbon|null $updated_at
@@ -41,7 +47,7 @@ use Illuminate\Support\Carbon;
 class Programme extends Model
 {
     /** @use HasFactory<ProgrammeFactory> */
-    use Auditable, HasFactory, HasUuids, SoftDeletes;
+    use Archivable, Auditable, HasFactory, HasUuids, SoftDeletes;
 
     protected $table = 'programmes';
 
@@ -53,6 +59,8 @@ class Programme extends Model
         'objective',
         'type',
         'benefit_category',
+        'target_group',
+        'is_automated',
         'eligibility',
         'enforce_eligibility',
         'status',
@@ -75,6 +83,8 @@ class Programme extends Model
         return [
             'type' => ProgrammeType::class,
             'status' => ProgrammeStatus::class,
+            'archived_at' => 'datetime',
+            'is_automated' => 'boolean',
             'eligibility' => 'array',
             'enforce_eligibility' => 'boolean',
         ];

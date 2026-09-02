@@ -68,7 +68,10 @@ class BenefitController extends Controller
     /** Record a benefit delivery against an enrolled beneficiary (§8.3). */
     public function store(RecordBenefitRequest $request): JsonResponse
     {
-        $programme = Programme::query()->withoutGlobalScope(MdaScope::class)->findOrFail($request->input('programme_id'));
+        // withArchived: beneficiaries already enrolled under an archived programme may
+        // still have final payments to record. The archive stops NEW activities, not
+        // the ledger for work already delivered.
+        $programme = Programme::query()->withArchived()->withoutGlobalScope(MdaScope::class)->findOrFail($request->input('programme_id'));
         $this->authorize('record', [Benefit::class, $programme]);
 
         if (($badActivity = $this->activityMismatch($programme, $request->input('activity_id'))) !== null) {

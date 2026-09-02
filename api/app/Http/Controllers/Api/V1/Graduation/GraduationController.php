@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Http\Controllers\Api\V1\Graduation;
 
+use App\Domain\Audit\Services\AuditLogger;
 use App\Domain\Graduation\Enums\CriteriaLogic;
 use App\Domain\Graduation\Models\GraduationCriteria;
 use App\Domain\Graduation\Models\GraduationEvent;
@@ -33,6 +34,7 @@ class GraduationController extends Controller
     public function __construct(
         private readonly GraduationProgressService $progress,
         private readonly GraduationService $graduation,
+        private readonly AuditLogger $audit,
     ) {}
 
     /** The MDA's criteria sets for a programme. */
@@ -98,11 +100,25 @@ class GraduationController extends Controller
     }
 
     /** Remove a criteria set. */
-    public function criteriaDestroy(GraduationCriteria $criterion): JsonResponse
+    /**
+     * Retire a criteria set — ARCHIVE, never delete (PRD §10, FR-GRD-01).
+     *
+     * `graduation_events.criteria_id` is `nullOnDelete`, so the previous hard delete
+     * silently nulled the reference on every graduation decided by this set, erasing
+     * the record of WHY those people were graduated. Archiving keeps every one of
+     * those references intact while removing the set from selection.
+     */
+    public function criteriaDestroy(Request $request, GraduationCriteria $criterion): JsonResponse
     {
-        $criterion->delete();
+        $criterion->forceFill([
+            'archived_at' => now(),
+            'archived_by' => $request->user()?->id,
+            'is_active' => false,
+        ])->save();
 
-        return ApiResponse::success(['message' => 'Graduation criteria removed.']);
+        $this->audit->record('graduation.criteria_archived', $criterion, actor: $request->user());
+
+        return ApiResponse::success(['message' => 'Graduation criteria archived. Past graduations still reference it.']);
     }
 
     /** A beneficiary/household's progress toward graduation + this enrolment's history. */
