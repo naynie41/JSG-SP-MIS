@@ -8,6 +8,8 @@ export interface RoleOption {
   key: string
   name: string
   requires_mfa: boolean
+  /** Whether the role is MDA-scoped and must be assigned one (FR-UAM-02/03). */
+  requires_mda: boolean
 }
 
 export interface CreateUserInput {

@@ -20,6 +20,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsToMany;
  * @property string|null $description
  * @property bool $is_system
  * @property bool $requires_mfa
+ * @property bool $requires_mda
  * @property-read Collection<int, Permission> $permissions
  */
 class Role extends Model
@@ -35,6 +36,7 @@ class Role extends Model
         'description',
         'is_system',
         'requires_mfa',
+        'requires_mda',
     ];
 
     /**
@@ -45,6 +47,7 @@ class Role extends Model
         return [
             'is_system' => 'boolean',
             'requires_mfa' => 'boolean',
+            'requires_mda' => 'boolean',
         ];
     }
 
