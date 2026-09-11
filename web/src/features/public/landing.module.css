@@ -226,6 +226,38 @@
   max-width: 1200px;
   width: 100%;
   margin: 0 auto;
+  /* Copy left, crest right. `auto` on the second track lets the crest take its
+     intrinsic size and give the rest back, rather than a fixed split that would
+     strand the heading in a narrow column on mid-size screens. */
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: center;
+  gap: var(--space-7);
+}
+
+.heroCopy {
+  min-width: 0;
+}
+
+.heroCrest {
+  /* Scales with the viewport between the stacking breakpoint and the max width, so
+     it never overpowers the heading on a laptop nor shrinks to a token on a wide
+     monitor. The upper bound is the artwork's natural size — past that it softens. */
+  width: clamp(180px, 26vw, 360px);
+  height: auto;
+  justify-self: end;
+}
+
+@media (max-width: 900px) {
+  .heroInner {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  /* Hidden, not shrunk. At phone width the crest either crowds the heading or
+     becomes an unreadable smudge; the sticky header carries it at every size. */
+  .heroCrest {
+    display: none;
+  }
 }
 
 .eyebrow {

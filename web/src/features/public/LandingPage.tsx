@@ -1,5 +1,5 @@
 import { ArrowRight, ShieldCheck } from 'lucide-react'
-import { ButtonLink, Icon } from '@/components'
+import { BrandMark, ButtonLink, Icon } from '@/components'
 import { IllustrativeMap } from './IllustrativeMap'
 import { LandingHeader } from './LandingHeader'
 import { HERO_IMAGE_ALT, HERO_IMAGE_URL, LOGIN_PATH } from './landingConfig'
@@ -53,20 +53,33 @@ export function LandingPage() {
           <div className={styles.heroOverlay} aria-hidden="true" />
 
           <div className={styles.heroInner}>
-            <p className={styles.eyebrow}>Jigawa State Government</p>
-            <h1 className={styles.heroTitle}>Social Protection Management Information System</h1>
-            <p className={styles.heroLead}>
-              Connecting people, programmes and services across every ministry, department and agency
-              delivering social protection in Jigawa State.
-            </p>
-            <div className={styles.heroActions}>
-              <ButtonLink to={LOGIN_PATH} size="lg" rightIcon={ArrowRight}>
-                Login
-              </ButtonLink>
-              <a href="#about" className={styles.heroSecondary}>
-                What is SP-MIS?
-              </a>
+            <div className={styles.heroCopy}>
+              <p className={styles.eyebrow}>Jigawa State Government</p>
+              <h1 className={styles.heroTitle}>Social Protection Management Information System</h1>
+              <p className={styles.heroLead}>
+                Connecting people, programmes and services across every ministry, department and agency
+                delivering social protection in Jigawa State.
+              </p>
+              <div className={styles.heroActions}>
+                <ButtonLink to={LOGIN_PATH} size="lg" rightIcon={ArrowRight}>
+                  Login
+                </ButtonLink>
+                <a href="#about" className={styles.heroSecondary}>
+                  What is SP-MIS?
+                </a>
+              </div>
             </div>
+
+            {/*
+             * The state crest. Decorative here: the heading and eyebrow already say
+             * whose system this is, so announcing the coat of arms would repeat the
+             * same identity to a screen reader.
+             *
+             * Hidden below the stacking breakpoint rather than shrunk — at phone
+             * width it would either crowd the heading or shrink to a smudge, and the
+             * header already carries the crest on every screen.
+             */}
+            <BrandMark size={360} className={styles.heroCrest} />
           </div>
         </section>
 

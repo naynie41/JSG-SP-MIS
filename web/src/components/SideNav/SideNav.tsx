@@ -1,6 +1,7 @@
 import { useEffect, useRef } from 'react'
 import type { ReactNode } from 'react'
 import { NavLink } from 'react-router-dom'
+import { BrandMark } from '../BrandMark/BrandMark'
 import type { LucideIcon } from 'lucide-react'
 import { cn } from '@/lib/utils/cn'
 import { Icon } from '@/components/Icon/Icon'
@@ -99,9 +100,7 @@ export function SideNav({ sections, footer, open = false, onClose }: SideNavProp
         tabIndex={-1}
       >
         <div className={styles.brand}>
-          <span className={styles.brandMark} aria-hidden="true">
-            SP
-          </span>
+          <BrandMark size={32} />
           <span>
             <span className={styles.brandName}>SP-MIS</span>
             <br />

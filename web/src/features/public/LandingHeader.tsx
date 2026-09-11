@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 import { Menu as MenuIcon, X } from 'lucide-react'
-import { ButtonLink, Icon } from '@/components'
+import { BrandMark, ButtonLink, Icon } from '@/components'
 import { LOGIN_PATH } from './landingConfig'
 import { NAV_LINKS } from './landingContent'
 import styles from './landing.module.css'
@@ -28,9 +28,7 @@ export function LandingHeader() {
     <header className={styles.header} data-solid={scrolled || menuOpen}>
       <div className={styles.headerInner}>
         <a href="#top" className={styles.wordmark}>
-          <span className={styles.wordmarkBadge} aria-hidden="true">
-            SP
-          </span>
+          <BrandMark size={34} />
           <span className={styles.wordmarkText}>
             <strong>SP-MIS</strong>
             <span className={styles.wordmarkSub}>Jigawa State</span>
