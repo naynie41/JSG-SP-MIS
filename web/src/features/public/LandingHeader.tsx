@@ -28,7 +28,7 @@ export function LandingHeader() {
     <header className={styles.header} data-solid={scrolled || menuOpen}>
       <div className={styles.headerInner}>
         <a href="#top" className={styles.wordmark}>
-          <BrandMark size={34} />
+          <BrandMark size={44} className={styles.wordmarkMark} />
           <span className={styles.wordmarkText}>
             <strong>SP-MIS</strong>
             <span className={styles.wordmarkSub}>Jigawa State</span>

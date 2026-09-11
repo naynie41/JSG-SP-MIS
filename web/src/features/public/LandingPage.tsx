@@ -266,9 +266,7 @@ export function LandingPage() {
       <footer className={styles.footer} id="privacy">
         <div className={styles.footerInner}>
           <div className={styles.footerBrand}>
-            <span className={styles.wordmarkBadge} aria-hidden="true">
-              SP
-            </span>
+            <BrandMark size={44} className={styles.wordmarkMark} />
             <p className={styles.footerAbout}>
               The Jigawa State Social Protection Management Information System. It is the shared record
               through which the state’s ministries, departments and agencies coordinate, deliver and

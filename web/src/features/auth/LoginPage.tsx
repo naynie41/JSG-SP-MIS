@@ -116,7 +116,7 @@ export function LoginPage() {
     <div className={styles.page}>
       <aside className={styles.brand}>
         <div className={styles.brandTop}>
-          <BrandMark size={40} />
+          <BrandMark size={64} />
           <span className={styles.brandWord}>SP-MIS</span>
         </div>
         <h1 className={styles.headline}>

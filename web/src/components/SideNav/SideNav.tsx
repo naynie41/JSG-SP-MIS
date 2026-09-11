@@ -100,7 +100,7 @@ export function SideNav({ sections, footer, open = false, onClose }: SideNavProp
         tabIndex={-1}
       >
         <div className={styles.brand}>
-          <BrandMark size={32} />
+          <BrandMark size={40} />
           <span>
             <span className={styles.brandName}>SP-MIS</span>
             <br />
