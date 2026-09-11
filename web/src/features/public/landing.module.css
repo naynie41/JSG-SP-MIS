@@ -16,6 +16,10 @@
    ============================================================================= */
 
 .page {
+  /* Header crest size. The hero's negative margin is derived from it, so the two
+     cannot drift; change it here and both follow. */
+  --landing-mark-size: 44px;
+
   background: var(--bg);
   color: var(--ink);
   font-family: var(--font-body);
@@ -71,18 +75,19 @@
   color: var(--bg);
   border-radius: var(--radius-sm);
 }
-.wordmarkBadge {
-  display: grid;
-  place-items: center;
-  width: 34px;
-  height: 34px;
-  flex: none;
-  border-radius: var(--radius-md);
-  background: var(--accent);
-  color: var(--ink); /* never white on lime */
-  font-family: var(--font-display);
-  font-weight: 700;
-  font-size: var(--fs-ui);
+/*
+ * The crest in the header. 44px, not the 34px the old lettermark used: the artwork
+ * is a map containing an eagle, two horses, a shield and a banner, and below about
+ * 40px those collapse into a smudge that reads as noise beside the wordmark rather
+ * than as a mark.
+ *
+ * The size is a variable because the hero pulls itself up under this header by
+ * exactly its height — see .hero margin-top. Hardcoding it in both places is how
+ * the two silently drift apart.
+ */
+.wordmarkMark {
+  width: var(--landing-mark-size);
+  height: var(--landing-mark-size);
 }
 .wordmarkText {
   display: grid;
@@ -175,7 +180,7 @@
   display: grid;
   align-items: center;
   /* Pulled under the transparent sticky header. */
-  margin-top: calc(-1 * (34px + var(--space-3) * 2 + 2px));
+  margin-top: calc(-1 * (var(--landing-mark-size) + var(--space-3) * 2 + 2px));
   padding: var(--space-8) var(--space-5) var(--space-8);
   padding-top: calc(var(--space-8) * 2);
   background: var(--forest);
@@ -226,6 +231,38 @@
   max-width: 1200px;
   width: 100%;
   margin: 0 auto;
+  /* Copy left, crest right. `auto` on the second track lets the crest take its
+     intrinsic size and give the rest back, rather than a fixed split that would
+     strand the heading in a narrow column on mid-size screens. */
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: center;
+  gap: var(--space-7);
+}
+
+.heroCopy {
+  min-width: 0;
+}
+
+.heroCrest {
+  /* Scales with the viewport between the stacking breakpoint and the max width, so
+     it never overpowers the heading on a laptop nor shrinks to a token on a wide
+     monitor. The upper bound is the artwork's natural size — past that it softens. */
+  width: clamp(180px, 26vw, 360px);
+  height: auto;
+  justify-self: end;
+}
+
+@media (max-width: 900px) {
+  .heroInner {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  /* Hidden, not shrunk. At phone width the crest either crowds the heading or
+     becomes an unreadable smudge; the sticky header carries it at every size. */
+  .heroCrest {
+    display: none;
+  }
 }
 
 .eyebrow {

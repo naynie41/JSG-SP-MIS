@@ -4,6 +4,7 @@ import { zodResolver } from '@hookform/resolvers/zod'
 import { z } from 'zod'
 import { useLocation, useNavigate } from 'react-router-dom'
 import { ArrowRight, ShieldCheck } from 'lucide-react'
+import { BrandMark } from '@/components/BrandMark/BrandMark'
 import { Button } from '@/components/Button/Button'
 import { TextField } from '@/components/Field/TextField'
 import { authApi } from '@/lib/api/authApi'
@@ -115,9 +116,7 @@ export function LoginPage() {
     <div className={styles.page}>
       <aside className={styles.brand}>
         <div className={styles.brandTop}>
-          <span className={styles.brandMark} aria-hidden="true">
-            SP
-          </span>
+          <BrandMark size={64} />
           <span className={styles.brandWord}>SP-MIS</span>
         </div>
         <h1 className={styles.headline}>

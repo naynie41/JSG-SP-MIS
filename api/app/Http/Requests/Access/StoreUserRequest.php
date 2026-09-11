@@ -7,6 +7,7 @@ namespace App\Http\Requests\Access;
 use App\Domain\Access\Enums\UserStatus;
 use App\Domain\Access\Support\PasswordRules;
 use App\Http\Requests\Access\Concerns\ValidatesUserAssignment;
+use Illuminate\Contracts\Validation\Validator;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Rule;
 
@@ -24,14 +25,14 @@ class StoreUserRequest extends FormRequest
      */
     public function rules(): array
     {
-        $actor = $this->user();
-
         return [
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'email', 'max:255', Rule::unique('users', 'email')],
             'password' => PasswordRules::default(),
+            // Nullable here; the role decides whether it is actually required, checked
+            // in withValidator() because an ABSENT field skips rules entirely.
             'mda_id' => [
-                $actor !== null && $actor->canAccessAllMdas() ? 'nullable' : 'required',
+                'nullable',
                 'uuid',
                 'exists:mdas,id',
                 $this->accessibleMdaRule(),
@@ -39,5 +40,17 @@ class StoreUserRequest extends FormRequest
             'role_id' => ['required', 'uuid', 'exists:roles,id', $this->assignableRoleRule()],
             'status' => ['sometimes', Rule::enum(UserStatus::class)],
         ];
+    }
+
+    /** An MDA-scoped role must have an MDA; a state-level role must not (FR-UAM-02/03). */
+    public function withValidator(Validator $validator): void
+    {
+        $validator->after(function (Validator $validator): void {
+            $this->assertMdaMatchesRole(
+                $validator,
+                $this->input('role_id'),
+                $this->input('mda_id'),
+            );
+        });
     }
 }

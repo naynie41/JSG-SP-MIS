@@ -6,6 +6,7 @@ namespace App\Http\Requests\Registry;
 
 use App\Domain\Programme\Enums\ActivityStatus;
 use App\Domain\Programme\Rules\IsFundingPartner;
+use App\Domain\Programme\Rules\IsRunnableProgramme;
 use App\Domain\Registry\Imports\Adapters\SourceAdapterRegistry;
 use App\Http\Requests\Programme\Concerns\ValidatesLocationSet;
 use Illuminate\Contracts\Validation\Validator;
@@ -55,7 +56,7 @@ class UploadActivityImportRequest extends FormRequest
 
         return [
             // The draft activity (mirrors StoreActivityRequest; persisted only on confirm).
-            'programme_id' => ['required', 'uuid', 'exists:programmes,id'],
+            'programme_id' => ['required', 'uuid', 'exists:programmes,id', new IsRunnableProgramme],
             'name' => ['required', 'string', 'max:255'],
             'description' => ['nullable', 'string', 'max:2000'],
             // Involvement is implied by this endpoint; a target is mandatory here.

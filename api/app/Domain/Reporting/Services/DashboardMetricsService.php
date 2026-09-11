@@ -112,7 +112,8 @@ class DashboardMetricsService
         $base = $this->beneficiaryBase($scope);
 
         $programmeIds = $this->programmeIdsInScope($scope);
-        $programmes = Programme::query()->whereIn('id', $programmeIds)
+        // withArchived: ids come from existing rows; archived entries must still label.
+        $programmes = Programme::query()->withArchived()->whereIn('id', $programmeIds)
             ->orderBy('name')->get(['id', 'name'])
             ->map(fn (Programme $p) => ['id' => $p->id, 'name' => $p->name])->all();
 
@@ -505,7 +506,9 @@ class DashboardMetricsService
         $activitySpent = collect($this->ledger->scopedGroup('activity', $scope->mdaIds, $programmeIds, $lf))
             ->keyBy('key')
             ->map(fn (array $g) => (int) $g['total_value']);
-        $programmes = Programme::query()->whereIn('id', $programmeIds)->get(['id', 'name', 'status'])->keyBy('id');
+        // withArchived: these ids come from existing activities/ledger rows, so the
+        // lookup must resolve archived entries or the data loses its labels.
+        $programmes = Programme::query()->withArchived()->whereIn('id', $programmeIds)->get(['id', 'name', 'status'])->keyBy('id');
 
         $green = (float) config('reporting.programme_traffic_light.green_min', 0.8);
         $yellow = (float) config('reporting.programme_traffic_light.yellow_min', 0.5);
@@ -1050,7 +1053,8 @@ class DashboardMetricsService
         $valueByAct = collect($this->ledger->scopedGroup('activity', null, null, $lf))->keyBy('key');
 
         $programmeIds = $activities->pluck('programme_id')->unique()->values()->all();
-        $programmes = Programme::query()->whereIn('id', $programmeIds)->get(['id', 'name', 'type', 'status'])->keyBy('id');
+        // withArchived: label lookup for ids drawn from existing rows.
+        $programmes = Programme::query()->withArchived()->whereIn('id', $programmeIds)->get(['id', 'name', 'type', 'status'])->keyBy('id');
         $mdaNames = Mda::query()
             ->whereIn('id', $activities->pluck('owner_mda_id')->filter()->unique()->all())
             ->pluck('name', 'id');
@@ -1419,7 +1423,9 @@ class DashboardMetricsService
             ->flatMap(fn (Activity $a) => $a->locations->map(fn ($loc) => [$a->programme_id.'|'.$loc->lga_id, $a]))
             ->groupBy(fn (array $pair): string => $pair[0])
             ->map(fn ($pairs) => $pairs->map(fn (array $pair): Activity => $pair[1])->unique('id')->values());
-        $names = Programme::query()->whereIn('id', $fundedProgrammeIds)->pluck('name', 'id');
+        // withArchived: a partner's funded programmes stay on their report after the
+        // catalog entry is archived — the funding happened.
+        $names = Programme::query()->withArchived()->whereIn('id', $fundedProgrammeIds)->pluck('name', 'id');
         $lgaNames = Lga::query()
             ->whereIn('id', array_map(fn (string $cell): string => explode('|', $cell, 2)[1], $partnerCells))
             ->pluck('name', 'id');
@@ -1638,7 +1644,11 @@ class DashboardMetricsService
         $expr = LedgerAggregator::monthKeyExpr('created_at');
         $since = Carbon::now()->startOfMonth()->subMonths(max(0, $months - 1))->toDateString();
 
+        // withArchived: this is a CREATED-PER-MONTH trend. A programme created in
+        // March and archived in August still happened in March; excluding it would
+        // make past months shrink every time the catalog is tidied.
         return Programme::query()
+            ->withArchived()
             ->whereIn('id', $ids)
             ->whereDate('created_at', '>=', $since)
             ->selectRaw("{$expr} as m, count(*) as c")
@@ -1667,7 +1677,10 @@ class DashboardMetricsService
             $ids = $this->applyActivityFilter(Activity::query()->withoutGlobalScope(MdaScope::class))
                 ->distinct()->pluck('programme_id')->all();
         } else {
-            $ids = Programme::query()->pluck('id')->all();
+            // withArchived: the id set that scopes every metric below. Excluding
+            // archived here would silently drop all historical ledger and enrolment
+            // data recorded under them.
+            $ids = Programme::query()->withArchived()->pluck('id')->all();
         }
 
         if ($this->filter->programmeId !== null) {

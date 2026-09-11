@@ -387,6 +387,10 @@ Route::prefix('v1')->group(function (): void {
         */
         Route::get('/programmes', [ProgrammeController::class, 'index'])
             ->middleware('permission:programme.view')->name('programmes.index');
+        // The archive, for audit + historical reporting. Declared BEFORE
+        // /programmes/{programme} so "archived" is not swallowed as an id.
+        Route::get('/programmes/archived', [ProgrammeController::class, 'archived'])
+            ->middleware('permission:programme.view')->name('programmes.archived');
         Route::post('/programmes', [ProgrammeController::class, 'store'])
             ->middleware('permission:programme.create')->name('programmes.store');
         Route::get('/programmes/{programme}/budget', [ProgrammeController::class, 'budget'])
@@ -395,8 +399,13 @@ Route::prefix('v1')->group(function (): void {
             ->middleware('permission:programme.view')->name('programmes.show');
         Route::match(['put', 'patch'], '/programmes/{programme}', [ProgrammeController::class, 'update'])
             ->middleware('permission:programme.edit')->name('programmes.update');
+        // Archive IS the delete for a programme — it carries activities, ledger and
+        // graduation history, so nothing is ever destroyed (PRD §10). There is
+        // deliberately no DELETE route here.
         Route::post('/programmes/{programme}/archive', [ProgrammeController::class, 'archive'])
             ->middleware('permission:programme.edit')->name('programmes.archive');
+        Route::post('/programmes/{programme}/unarchive', [ProgrammeController::class, 'unarchive'])
+            ->middleware('permission:programme.edit')->name('programmes.unarchive');
 
         Route::get('/activities', [ActivityController::class, 'index'])
             ->middleware('permission:activity.view')->name('activities.index');

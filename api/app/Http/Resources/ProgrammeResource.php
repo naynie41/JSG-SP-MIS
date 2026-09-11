@@ -27,6 +27,11 @@ class ProgrammeResource extends JsonResource
             'eligibility' => $this->eligibility ?? [],
             'enforce_eligibility' => $this->enforce_eligibility,
             'status' => $this->status->value,
+            // Archive provenance (§10). `is_archived` reads off the authoritative
+            // timestamp, not the status enum, so the two can never disagree here.
+            'is_archived' => $this->isArchived(),
+            'archived_at' => $this->archived_at?->toIso8601String(),
+            'archive_reason' => $this->archive_reason,
             'activities_count' => $this->whenCounted('activities'),
             // Catalog USAGE: distinct MDAs running an activity for this programme (§10 —
             // one global programme, many MDAs, each through its own activity).

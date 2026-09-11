@@ -9,6 +9,8 @@ export { Badge } from './Badge/Badge'
 export type { BadgeProps, BadgeVariant } from './Badge/Badge'
 export { STATUS_VARIANTS, statusVariant } from './Badge/statusVariant'
 export { Avatar } from './Avatar/Avatar'
+export { BrandMark } from './BrandMark/BrandMark'
+export type { BrandMarkProps } from './BrandMark/BrandMark'
 
 export { FieldShell } from './Field/FieldShell'
 export { TextField } from './Field/TextField'

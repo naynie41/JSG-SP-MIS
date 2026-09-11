@@ -1,0 +1,18 @@
+/*
+ * The state crest (DESIGN.md — brand).
+ *
+ * The artwork is 600x522 with transparency, so it is contained rather than cropped:
+ * a coat of arms must never be cut off at the edges. `object-fit: contain` inside a
+ * square box keeps the silhouette intact at every size the app asks for.
+ */
+.mark {
+  display: block;
+  object-fit: contain;
+  /* The source is wider than it is tall; the box is square, so height follows the
+     width prop and the artwork letterboxes inside it rather than distorting. */
+  aspect-ratio: 1;
+  flex: none;
+  /* Crisp at the small end. Browsers downscaling a 600px raster to 32px otherwise
+     soften the keyline that makes the crest read on the dark sidebar. */
+  image-rendering: -webkit-optimize-contrast;
+}

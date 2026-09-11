@@ -155,7 +155,10 @@ class EnrollmentController extends Controller
     /** Resolve the programme without the owner scope so the policy is the boundary. */
     private function programme(string $id): Programme
     {
-        return Programme::query()->withoutGlobalScope(MdaScope::class)->findOrFail($id);
+        // withArchived: this resolver serves enrolment READS and exits for people
+        // already in the programme. New activities are gated by IsRunnableProgramme;
+        // hiding the programme here would break the records of everyone in it.
+        return Programme::query()->withArchived()->withoutGlobalScope(MdaScope::class)->findOrFail($id);
     }
 
     private function typeMismatch(Programme $programme, bool $isBeneficiary): ?JsonResponse

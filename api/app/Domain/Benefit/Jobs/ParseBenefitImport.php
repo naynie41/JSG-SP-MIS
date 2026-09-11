@@ -55,7 +55,9 @@ class ParseBenefitImport implements ShouldQueue
             return;
         }
 
-        $programme = Programme::query()->withoutGlobalScope(MdaScope::class)->findOrFail($batch->programme_id);
+        // withArchived: an in-flight batch must still parse if the programme was
+        // archived after the upload.
+        $programme = Programme::query()->withArchived()->withoutGlobalScope(MdaScope::class)->findOrFail($batch->programme_id);
 
         DB::transaction(function () use ($batch, $parsed, $validator, $programme): void {
             $batch->rows()->delete(); // idempotent re-parse

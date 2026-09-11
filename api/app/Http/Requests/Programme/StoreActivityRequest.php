@@ -6,6 +6,7 @@ namespace App\Http\Requests\Programme;
 
 use App\Domain\Programme\Enums\ActivityStatus;
 use App\Domain\Programme\Rules\IsFundingPartner;
+use App\Domain\Programme\Rules\IsRunnableProgramme;
 use App\Http\Requests\Programme\Concerns\ValidatesLocationSet;
 use Illuminate\Contracts\Validation\Validator;
 use Illuminate\Foundation\Http\FormRequest;
@@ -42,7 +43,7 @@ class StoreActivityRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'programme_id' => ['required', 'uuid', 'exists:programmes,id'],
+            'programme_id' => ['required', 'uuid', 'exists:programmes,id', new IsRunnableProgramme],
             'involves_beneficiaries' => ['required', 'boolean'],
             'name' => ['required', 'string', 'max:255'],
             'description' => ['nullable', 'string', 'max:2000'],

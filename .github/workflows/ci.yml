@@ -1,7 +1,11 @@
 name: CI
 
-# Proves that `main` is always deployable: the full suite, lint, static analysis, and a
-# Docker BUILD of the production images.
+# Proves that the branches we RELEASE FROM are always deployable: the full suite, lint,
+# static analysis, and a Docker BUILD of the production images.
+#
+# `Dev` is included because release.yml triggers on a TAG from any branch, and tags are
+# cut from Dev. Running only on main meant the branch that actually ships was never
+# checked — every release so far was tagged from unverified commits.
 #
 # It pushes NOTHING. Publishing is a deliberate act — cut a tag and release.yml builds
 # and pushes the artefact the VPS pulls. For a system holding personal data, "merged"
@@ -13,9 +17,9 @@ name: CI
 
 on:
   push:
-    branches: [main]
+    branches: [main, Dev]
   pull_request:
-    branches: [main]
+    branches: [main, Dev]
   workflow_dispatch: {}
 
 permissions:

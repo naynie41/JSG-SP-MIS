@@ -17,20 +17,6 @@
   padding: var(--space-5);
 }
 
-.brandMark {
-  width: 32px;
-  height: 32px;
-  border-radius: var(--radius-sm);
-  background-color: var(--accent);
-  color: var(--ink);
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  font-family: var(--font-display);
-  font-weight: 700;
-  flex: 0 0 auto;
-}
-
 .brandName {
   font-family: var(--font-display);
   font-weight: 600;

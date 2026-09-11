@@ -33,7 +33,27 @@ class UpdateProgrammeRequest extends FormRequest
             'eligibility' => ['nullable', 'array'],
             'eligibility.*' => ['array'],
             'enforce_eligibility' => ['nullable', 'boolean'],
-            'status' => ['sometimes', 'required', Rule::enum(ProgrammeStatus::class)],
+            // Archived is EXCLUDED here on purpose. Archiving has rules — it is
+            // blocked while active activities run, and it records who/when/why — and
+            // all of that lives in ProgrammeArchiver behind POST /archive. Leaving
+            // `archived` settable on a general update made the block bypassable by
+            // sending a plain PATCH, which would have left the whole feature
+            // decorative. Un-archiving likewise goes through POST /unarchive.
+            'status' => [
+                'sometimes',
+                'required',
+                Rule::enum(ProgrammeStatus::class)->except([ProgrammeStatus::Archived]),
+            ],
+        ];
+    }
+
+    /**
+     * @return array<string, string>
+     */
+    public function messages(): array
+    {
+        return [
+            'status' => 'To archive a programme use the archive action, which checks for active activities first.',
         ];
     }
 }

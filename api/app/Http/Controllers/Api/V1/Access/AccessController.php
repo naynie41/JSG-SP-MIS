@@ -58,6 +58,9 @@ class AccessController extends Controller
                 'name' => $role->name,
                 'description' => $role->description,
                 'requires_mfa' => $role->requires_mfa,
+                // Drives the user form's MDA dropdown, so the client never needs its
+                // own list of which roles are MDA-scoped (two lists would drift).
+                'requires_mda' => $role->requires_mda,
                 'permissions' => $role->permissions->pluck('key')->values(),
             ]);
 
