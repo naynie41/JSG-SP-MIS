@@ -163,3 +163,53 @@ export interface SegmentPreview {
   page_size: number
   breakdown: SegmentBreakdown | null
 }
+
+/* -------------------------------------------------------- duplicate review (FR-DUP) */
+
+export type DuplicateBand = 'exact' | 'probable'
+export type DuplicateDecision = 'new' | 'link' | 'own' | 'skip'
+
+/** Narrowing for the duplicate review report. Absent keys mean "all". */
+export interface DuplicateReviewFilterInput {
+  date_from?: string
+  date_to?: string
+  band?: DuplicateBand
+}
+
+/** One upload that produced matches. Counts only — never a matched person's identity. */
+export interface DuplicateReviewBatch {
+  id: string
+  file: string
+  activity: string | null
+  mda: string | null
+  source: string
+  status: string
+  uploaded_at: string | null
+  matches: number
+  exact: number
+  probable: number
+  decided: number
+  awaiting: number
+  /** Undecided rows in an upload that has completed or failed, so can take no decision. */
+  closed_undecided: number
+}
+
+export interface DuplicateReviewReport {
+  scope: { kind: string; label: string }
+  filters: DuplicateReviewFilterInput
+  totals: {
+    surfaced: number
+    exact: number
+    probable: number
+    decided: number
+    awaiting: number
+    closed_undecided: number
+  }
+  decisions: Record<DuplicateDecision, number>
+  waiting: { key: string; label: string; count: number }[]
+  /** Median hours from a match being found to its decision; null before any decision. */
+  median_hours_to_decide: number | null
+  batches: DuplicateReviewBatch[]
+  batches_total: number
+  computed_at: string
+}

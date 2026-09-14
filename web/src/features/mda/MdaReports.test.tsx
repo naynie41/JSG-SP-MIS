@@ -30,9 +30,18 @@ vi.mock('@/features/reports/api', () => ({
     createSchedule: vi.fn(),
     updateSchedule: vi.fn(),
     deleteSchedule: vi.fn(),
+    segmentDimensions: vi.fn(),
+    segmentPreview: vi.fn(),
+    exportSegment: vi.fn(),
+    duplicateReview: vi.fn(),
+    exportDuplicateReview: vi.fn(),
   },
 }))
 vi.mock('@/lib/api/exportList', () => ({ exportListFile: vi.fn() }))
+// The Dashboard tab has its own tests; here it only needs to stay quiet.
+vi.mock('@/features/dashboard/api', () => ({
+  dashboardApi: { get: vi.fn(() => new Promise(() => {})), opsMetrics: vi.fn(), export: vi.fn() },
+}))
 
 const perms = { value: [] as string[] }
 vi.mock('@/lib/auth/AuthProvider', () => ({
@@ -47,6 +56,9 @@ const preview = reportsApi.preview as Mock
 const exportAdHoc = reportsApi.exportAdHoc as Mock
 const runs = reportsApi.runs as Mock
 const schedules = reportsApi.schedules as Mock
+const segmentDimensions = reportsApi.segmentDimensions as Mock
+const exportSegment = reportsApi.exportSegment as Mock
+const duplicateReview = reportsApi.duplicateReview as Mock
 const listExport = exportListFile as Mock
 
 const dataset = (key: string, label: string, admin = false): AdHocDataset => ({
@@ -122,6 +134,25 @@ describe('MDA console — Reports', () => {
     runs.mockResolvedValue({ items: [], pagination: { page: 1, per_page: 20, total: 0, total_pages: 1 } })
     schedules.mockResolvedValue([])
     listExport.mockResolvedValue({ queued: false })
+    segmentDimensions.mockResolvedValue({
+      dimensions: [],
+      tier: 'rows',
+      reveal_pii: false,
+      cell_size_guard: false,
+      minimum_cell_size: 5,
+    })
+    exportSegment.mockResolvedValue({ id: 'run-1', status: 'pending' })
+    duplicateReview.mockResolvedValue({
+      scope: { kind: 'mda', label: 'Ministry of Health' },
+      filters: {},
+      totals: { surfaced: 3, exact: 1, probable: 2, decided: 1, awaiting: 2, closed_undecided: 0 },
+      decisions: { new: 0, link: 1, own: 0, skip: 0 },
+      waiting: [{ key: 'recent', label: 'Under 7 days', count: 2 }],
+      median_hours_to_decide: 5,
+      batches: [],
+      batches_total: 0,
+      computed_at: '2026-09-14T09:00:00+01:00',
+    })
   })
 
   /* ------------------------------------------------------------ the six types */
@@ -140,27 +171,69 @@ describe('MDA console — Reports', () => {
     return within(panel).getByLabelText(/what are you reporting on/i) as HTMLSelectElement
   }
 
-  it('offers exactly the report subjects the server released', async () => {
+  it('offers the report subjects the server released', async () => {
     const user = userEvent.setup()
     renderPage()
     await ready()
 
     const picker = await subjectPicker(user)
-    for (const label of ['Benefits (ledger)', 'Beneficiaries (registry)', 'Activities (delivery)', 'Referrals', 'Duplicate review']) {
+    for (const label of ['Benefits (ledger)', 'Activities (delivery)', 'Referrals', 'Duplicate review']) {
       expect(within(picker).getByRole('option', { name: label })).toBeInTheDocument()
     }
   })
 
-  it('offers one subject per dataset, never two for the same one', async () => {
-    // "Programme" and "Benefit" were two doors onto `benefits` — a choice that was not
-    // a choice. The extra option is the registry itself, which is not a dataset.
+  it('does not offer the registry dataset that "People in the registry" already answers', async () => {
+    // `beneficiaries` grouped the registry by LGA, ward, status and source. The People
+    // builder filters and breaks down by all of those and more, and its export carries
+    // the counts as a summary — a second door onto the same people is not a choice.
     const user = userEvent.setup()
     renderPage()
     await ready()
 
     const picker = await subjectPicker(user)
-    expect(within(picker).getAllByRole('option')).toHaveLength(MDA_DATASETS.length + 1)
+    expect(within(picker).queryByRole('option', { name: 'Beneficiaries (registry)' })).not.toBeInTheDocument()
     expect(within(picker).getByRole('option', { name: 'People in the registry' })).toBeInTheDocument()
+  })
+
+  it('offers one subject per dataset, never two for the same one', async () => {
+    // "Programme" and "Benefit" were two doors onto `benefits` — a choice that was not
+    // a choice. People replaces the one dataset it covers, so the count is unchanged.
+    const user = userEvent.setup()
+    renderPage()
+    await ready()
+
+    const picker = await subjectPicker(user)
+    expect(within(picker).getAllByRole('option')).toHaveLength(MDA_DATASETS.length)
+  })
+
+  it('reports on duplicate review with a purpose-built report, not a group-by builder', async () => {
+    const user = userEvent.setup()
+    renderPage()
+    await ready()
+
+    const panel = await openDatasetBuilder(user, 'duplicates')
+
+    expect(await within(panel).findByRole('heading', { name: 'Duplicate review' })).toBeInTheDocument()
+    await waitFor(() => expect(duplicateReview).toHaveBeenCalled())
+    expect(within(panel).queryByRole('checkbox')).not.toBeInTheDocument()
+    expect(within(panel).queryByText(/group by/i)).not.toBeInTheDocument()
+    expect(within(panel).queryByLabelText('Dataset')).not.toBeInTheDocument()
+  })
+
+  it('exports people with a summary under the crest', async () => {
+    const user = userEvent.setup()
+    renderPage()
+    await ready()
+
+    const panel = await openTab(user, 'Build a report')
+    await user.selectOptions(await within(panel).findByLabelText('Export as'), 'pdf')
+    expect(within(panel).getByText(/opens with the state crest and a summary/i)).toBeInTheDocument()
+
+    await user.click(within(panel).getByRole('button', { name: 'Export' }))
+
+    await waitFor(() =>
+      expect(exportSegment).toHaveBeenCalledWith({ filters: {}, breakdown: null }, 'pdf', { summary: true }),
+    )
   })
 
   it('lists a dataset the old hardcoded set left out', async () => {

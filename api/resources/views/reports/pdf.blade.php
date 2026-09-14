@@ -1,6 +1,6 @@
 {{-- Branded report template (PRD FR-RPT-03). Design-system colours; DejaVu Sans for --}}
-{{-- the ₦ + masking glyphs. The crest slot is a placeholder for the state crest / --}}
-{{-- letterhead image — drop the crest in `.crest` when supplied by the design owner. --}}
+{{-- the ₦ + masking glyphs. `$crest` is the state crest as a data URI (Dompdf runs with --}}
+{{-- remote loading off); reports that do not ask for it keep the placeholder slot. --}}
 <!DOCTYPE html>
 <html>
 <head>
@@ -16,11 +16,23 @@
             text-align: center; color: #52564A; font-size: 7px; letter-spacing: 0.08em;
         }
         .crest span { display: inline-block; padding-top: 24px; text-transform: uppercase; }
+        .crest-img { width: 64px; height: auto; }
         .org { font-size: 9px; letter-spacing: 0.14em; text-transform: uppercase; color: #46551F; }
         .title { font-size: 18px; font-weight: bold; color: #2C3512; margin: 2px 0; }
         .sub { font-size: 10px; color: #52564A; }
 
         .rule { height: 4px; background: #C6F135; margin: 8px 0 14px 0; }
+
+        table.summary { width: 100%; border-collapse: collapse; margin-bottom: 16px; }
+        table.summary td.section { width: 33%; vertical-align: top; padding: 0 22px 12px 0; }
+        table.summary td.section:last-child { padding-right: 0; }
+        .section-title {
+            font-size: 9px; font-weight: bold; letter-spacing: 0.08em; text-transform: uppercase;
+            color: #46551F; border-bottom: 1px solid #C9CBC1; padding-bottom: 3px; margin-bottom: 2px;
+        }
+        table.items { width: 100%; border-collapse: collapse; }
+        table.items td { padding: 3px 0; font-size: 10px; border-bottom: 1px solid #E2E3DD; }
+        table.items td.value { text-align: right; font-weight: bold; color: #2C3512; }
 
         table.data { width: 100%; border-collapse: collapse; }
         table.data th {
@@ -42,7 +54,11 @@
     <table class="letterhead">
         <tr>
             <td style="width: 72px;">
-                <div class="crest"><span>State<br>Crest</span></div>
+                @if (! empty($crest))
+                    <img class="crest-img" src="{{ $crest }}" alt="Jigawa State crest">
+                @else
+                    <div class="crest"><span>State<br>Crest</span></div>
+                @endif
             </td>
             <td>
                 <div class="org">Jigawa State · Social Protection MIS</div>
@@ -53,6 +69,32 @@
     </table>
 
     <div class="rule"></div>
+
+    @if ($data->summary !== [])
+        {{-- Three sections to a row: Dompdf lays out tables reliably, flex not at all. --}}
+        <table class="summary">
+            @foreach (array_chunk($data->summary, 3) as $sections)
+                <tr>
+                    @foreach ($sections as $section)
+                        <td class="section">
+                            <div class="section-title">{{ $section->title }}</div>
+                            <table class="items">
+                                @foreach ($section->items as $item)
+                                    <tr>
+                                        <td>{{ $item['label'] }}</td>
+                                        <td class="value">{{ $item['value'] }}</td>
+                                    </tr>
+                                @endforeach
+                            </table>
+                        </td>
+                    @endforeach
+                    @for ($i = count($sections); $i < 3; $i++)
+                        <td class="section"></td>
+                    @endfor
+                </tr>
+            @endforeach
+        </table>
+    @endif
 
     <table class="data">
         <thead>

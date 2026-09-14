@@ -8,6 +8,8 @@ use App\Domain\Access\Models\User;
 use App\Domain\Access\Scopes\MdaScope;
 use App\Domain\Audit\Services\AuditLogger;
 use App\Domain\Registry\Export\BeneficiaryListExport;
+use App\Domain\Reporting\DuplicateReview\DuplicateReviewFilter;
+use App\Domain\Reporting\DuplicateReview\DuplicateReviewReport;
 use App\Domain\Reporting\Events\ReportReady;
 use App\Domain\Reporting\Export\ReportExporterRegistry;
 use App\Domain\Reporting\Export\ReportFormat;
@@ -41,7 +43,7 @@ class GenerateReport implements ShouldQueue
 
     public function __construct(public readonly string $runId) {}
 
-    public function handle(ReportBuilder $builder, AdHocReportBuilder $adHoc, ReportExporterRegistry $exporters, AuditLogger $audit, BeneficiaryListExport $beneficiaryExport, SegmentReportService $segments, SegmentDimensionRegistry $dimensions): void
+    public function handle(ReportBuilder $builder, AdHocReportBuilder $adHoc, ReportExporterRegistry $exporters, AuditLogger $audit, BeneficiaryListExport $beneficiaryExport, SegmentReportService $segments, SegmentDimensionRegistry $dimensions, DuplicateReviewReport $duplicateReview): void
     {
         $run = ReportRun::query()->find($this->runId);
         if ($run === null) {
@@ -64,6 +66,11 @@ class GenerateReport implements ShouldQueue
                 $run->report_key === 'segment' => $segments->toReportData(
                     SegmentDefinition::fromArray((array) ($run->definition ?? []), $dimensions),
                     SegmentAccess::fromParams((array) ($run->params ?? []), $scope),
+                    withSummary: (bool) (((array) ($run->params ?? []))['summary'] ?? false),
+                ),
+                $run->report_key === ReportRun::KEY_DUPLICATE_REVIEW => $duplicateReview->toReportData(
+                    $scope,
+                    DuplicateReviewFilter::fromArray((array) (((array) ($run->params ?? []))['filters'] ?? [])),
                 ),
                 default => $builder->build($run->report_key, $scope),
             };

@@ -17,6 +17,8 @@ final readonly class ReportData
     /**
      * @param  list<ReportColumn>  $columns
      * @param  list<array<string, scalar|null>>  $rows  keyed by column key
+     * @param  list<ReportSummarySection>  $summary  headline counts printed above the table
+     * @param  bool  $crest  print the state crest on the letterhead
      */
     public function __construct(
         public string $reportKey,
@@ -26,6 +28,8 @@ final readonly class ReportData
         public Carbon $generatedAt,
         public array $columns,
         public array $rows,
+        public array $summary = [],
+        public bool $crest = false,
     ) {}
 
     public function rowCount(): int

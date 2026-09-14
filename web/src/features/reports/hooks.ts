@@ -1,8 +1,14 @@
-import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query'
+import { keepPreviousData, useMutation, useQuery, useQueryClient } from '@tanstack/react-query'
 import { useToast } from '@/components/Toast/ToastProvider'
 import { ApiError } from '@/types/api'
 import { reportsApi } from './api'
-import type { AdHocDefinitionInput, ReportFormat, ReportRun, SegmentDefinitionInput } from './types'
+import type {
+  AdHocDefinitionInput,
+  DuplicateReviewFilterInput,
+  ReportFormat,
+  ReportRun,
+  SegmentDefinitionInput,
+} from './types'
 
 const DATASETS_KEY = ['report-datasets']
 const CATALOGUE_KEY = ['report-catalogue']
@@ -136,8 +142,46 @@ export function useExportSegment() {
   const toast = useToast()
 
   return useMutation({
-    mutationFn: ({ definition, format }: { definition: SegmentDefinitionInput; format: ReportFormat }) =>
-      reportsApi.exportSegment(definition, format),
+    mutationFn: ({
+      definition,
+      format,
+      summary = false,
+    }: {
+      definition: SegmentDefinitionInput
+      format: ReportFormat
+      summary?: boolean
+    }) =>
+      // Only a caller that asks for the summary sends the flag, so every other export
+      // request is byte-for-byte what it was.
+      summary ? reportsApi.exportSegment(definition, format, { summary: true }) : reportsApi.exportSegment(definition, format),
+    onSuccess: () => {
+      void qc.invalidateQueries({ queryKey: RUNS_KEY })
+      toast.success('Export queued', 'It appears under Recent exports as soon as it is ready.')
+    },
+    onError: (error) => toast.error('Could not start the export', message(error, 'Please try again.')),
+  })
+}
+
+/* ------------------------------------------------------ duplicate review (FR-DUP) */
+
+export function useDuplicateReview(filter: DuplicateReviewFilterInput, enabled = true) {
+  return useQuery({
+    queryKey: ['report-duplicate-review', filter],
+    queryFn: () => reportsApi.duplicateReview(filter),
+    enabled,
+    // Keep the last figures on screen while a new narrowing loads, rather than
+    // flashing the whole report away on every date change.
+    placeholderData: keepPreviousData,
+  })
+}
+
+export function useExportDuplicateReview() {
+  const qc = useQueryClient()
+  const toast = useToast()
+
+  return useMutation({
+    mutationFn: ({ filter, format }: { filter: DuplicateReviewFilterInput; format: ReportFormat }) =>
+      reportsApi.exportDuplicateReview(filter, format),
     onSuccess: () => {
       void qc.invalidateQueries({ queryKey: RUNS_KEY })
       toast.success('Export queued', 'It appears under Recent exports as soon as it is ready.')

@@ -5,6 +5,8 @@ import type {
   AdHocDataset,
   AdHocDefinitionInput,
   AdHocPreview,
+  DuplicateReviewFilterInput,
+  DuplicateReviewReport,
   SegmentDefinitionInput,
   SegmentDimensionCatalogue,
   SegmentPreview,
@@ -55,9 +57,34 @@ export const reportsApi = {
     return apiRequest<SegmentPreview>({ method: 'POST', url: '/reports/segments/preview', data: definition })
   },
 
-  /** Queue a segment export; the file is fetched once the run is ready. */
-  exportSegment(definition: SegmentDefinitionInput, format: ReportFormat): Promise<ReportRun> {
-    return apiRequest<ReportRun>({ method: 'POST', url: '/reports/segments/export', data: { ...definition, format } })
+  /**
+   * Queue a segment export; the file is fetched once the run is ready. `summary` opens
+   * the file with headline counts under the state crest.
+   */
+  exportSegment(
+    definition: SegmentDefinitionInput,
+    format: ReportFormat,
+    options?: { summary?: boolean },
+  ): Promise<ReportRun> {
+    return apiRequest<ReportRun>({
+      method: 'POST',
+      url: '/reports/segments/export',
+      data: { ...definition, format, ...(options?.summary ? { summary: true } : {}) },
+    })
+  },
+
+  /** Where the duplicate review queue stands, within the caller's scope. */
+  duplicateReview(filter: DuplicateReviewFilterInput): Promise<DuplicateReviewReport> {
+    return apiRequest<DuplicateReviewReport>({ method: 'GET', url: '/reports/duplicate-review', params: filter })
+  },
+
+  /** Queue the duplicate review report as a file, with the same narrowing. */
+  exportDuplicateReview(filter: DuplicateReviewFilterInput, format: ReportFormat): Promise<ReportRun> {
+    return apiRequest<ReportRun>({
+      method: 'POST',
+      url: '/reports/duplicate-review/export',
+      data: { ...filter, format },
+    })
   },
 
   /** Queue a standard catalogue report. */

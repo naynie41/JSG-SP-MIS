@@ -10,9 +10,21 @@ import { useReportDatasets } from '@/features/reports/hooks'
 import { ReportsLoading } from '@/features/reports/ReportPanels'
 import { ReportBuilderPanel } from '@/features/reports/ReportBuilderPanel'
 import { ReportHistoryPanel } from '@/features/reports/ReportHistoryPanel'
-import { ReportsDashboardPanel } from '@/features/reports/ReportsDashboardPanel'
 import reportStyles from '@/features/reports/reports.module.css'
+import { DuplicateReviewReport } from './DuplicateReviewReport'
+import { MdaReportsDashboard } from './MdaReportsDashboard'
 import styles from './mda.module.css'
+
+/**
+ * Datasets the server releases that this console does not offer as a subject.
+ *
+ * `beneficiaries` grouped and counted the registry by LGA, ward, status and source.
+ * "People in the registry" filters and breaks down by all of those and more (gender,
+ * household role, age) and its export carries the same counts as a summary, while the
+ * row-level list lives under History. A second door onto the same people asked the
+ * officer to know which engine answers their question.
+ */
+const COVERED_BY_PEOPLE = new Set(['beneficiaries'])
 
 /* --------------------------------------------------------- beneficiary list export */
 
@@ -122,7 +134,7 @@ export function MdaReportsPage() {
     )
   }
 
-  const datasets = data ?? []
+  const datasets = (data ?? []).filter((dataset) => !COVERED_BY_PEOPLE.has(dataset.key))
 
   return (
     <div className={styles.page}>
@@ -148,7 +160,7 @@ export function MdaReportsPage() {
               // The full reporting dashboard — what the Overview summary expands into.
               id: 'dashboard',
               label: 'Dashboard',
-              content: <ReportsDashboardPanel />,
+              content: <MdaReportsDashboard canExport={canExport} />,
             },
             {
               // ONE builder. Reporting on PEOPLE (filter the registry, list or count
@@ -157,7 +169,18 @@ export function MdaReportsPage() {
               // question before they had asked it. The subject picker inside decides.
               id: 'build',
               label: 'Build a report',
-              content: <ReportBuilderPanel datasets={datasets} canExport={canExport} />,
+              //
+              // A People export opens with a summary under the crest, and the duplicate
+              // review subject is its own report rather than a group-by builder. Both are
+              // switched on here only, so the administration console is unchanged.
+              content: (
+                <ReportBuilderPanel
+                  datasets={datasets}
+                  canExport={canExport}
+                  exportSummary
+                  subjectPanels={{ duplicates: <DuplicateReviewReport canExport={canExport} /> }}
+                />
+              ),
             },
             {
               id: 'history',

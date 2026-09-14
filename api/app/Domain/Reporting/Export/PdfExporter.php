@@ -24,7 +24,10 @@ class PdfExporter implements ReportExporter
 
     public function render(ReportData $data): string
     {
-        $html = View::make('reports.pdf', ['data' => $data])->render();
+        $html = View::make('reports.pdf', [
+            'data' => $data,
+            'crest' => $data->crest ? $this->crest() : null,
+        ])->render();
 
         $options = new Options;
         $options->set('defaultFont', 'DejaVu Sans');
@@ -36,5 +39,18 @@ class PdfExporter implements ReportExporter
         $dompdf->render();
 
         return (string) $dompdf->output();
+    }
+
+    /**
+     * The crest, inlined. Remote loading stays off — a report renderer that fetches URLs
+     * is a server-side request forgery surface — so the image travels inside the HTML.
+     */
+    private function crest(): ?string
+    {
+        $path = resource_path('brand/jigawa-crest.png');
+
+        return is_file($path)
+            ? 'data:image/png;base64,'.base64_encode((string) file_get_contents($path))
+            : null;
     }
 }

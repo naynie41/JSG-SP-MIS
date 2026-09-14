@@ -46,6 +46,7 @@ use App\Http\Controllers\Api\V1\Reporting\AdminSettingsController;
 use App\Http\Controllers\Api\V1\Reporting\AdminSummaryController;
 use App\Http\Controllers\Api\V1\Reporting\DashboardController;
 use App\Http\Controllers\Api\V1\Reporting\DashboardExportController;
+use App\Http\Controllers\Api\V1\Reporting\DuplicateReviewReportController;
 use App\Http\Controllers\Api\V1\Reporting\GisController;
 use App\Http\Controllers\Api\V1\Reporting\MdaActionRequiredController;
 use App\Http\Controllers\Api\V1\Reporting\ReportController;
@@ -688,6 +689,13 @@ Route::prefix('v1')->group(function (): void {
             ->middleware('permission:reporting.view', 'throttle:reports')->name('reports.segments.preview');
         Route::post('/reports/segments/export', [SegmentReportController::class, 'export'])
             ->middleware(['permission:reporting.export', 'throttle:exports'])->name('reports.segments.export');
+
+        // Duplicate review (FR-DUP): the state of the match queue, not a builder. Counts
+        // only; available to exactly the scopes the `duplicates` dataset is.
+        Route::get('/reports/duplicate-review', [DuplicateReviewReportController::class, 'show'])
+            ->middleware('permission:reporting.view', 'throttle:reports')->name('reports.duplicate-review.show');
+        Route::post('/reports/duplicate-review/export', [DuplicateReviewReportController::class, 'export'])
+            ->middleware(['permission:reporting.export', 'throttle:exports'])->name('reports.duplicate-review.export');
         Route::get('/reports/adhoc/datasets', [AdHocReportController::class, 'datasets'])
             ->middleware('permission:reporting.view')->name('reports.adhoc.datasets');
         Route::post('/reports/adhoc/preview', [AdHocReportController::class, 'preview'])

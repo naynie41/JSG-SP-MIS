@@ -1,0 +1,704 @@
+/*
+ * MDA Reports: the Dashboard tab and the Duplicate review report.
+ *
+ * Laid out after the reference the MDA supplied: a heading row with its narrowing on the
+ * right, a white band pairing headline figures with a panel of measured bars, then paired
+ * cards and a two-column grid of breakdowns. Tokens only (DESIGN.md §2–4).
+ */
+
+.dash {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-6);
+  min-width: 0;
+}
+
+.loading {
+  display: grid;
+  place-items: center;
+  padding: var(--space-8);
+}
+
+/* ------------------------------------------------------------- heading row ---- */
+
+.head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: var(--space-4) var(--space-6);
+}
+
+.headCopy {
+  display: grid;
+  gap: var(--space-1);
+  min-width: 0;
+  max-width: 62ch;
+}
+
+.title {
+  margin: 0;
+  font-family: var(--font-display);
+  font-size: var(--fs-h2);
+  line-height: var(--lh-h2);
+  font-weight: 600;
+  color: var(--ink);
+  text-wrap: balance;
+}
+
+.lead {
+  margin: 0;
+  color: var(--text-muted-strong);
+  font-size: var(--fs-ui);
+  line-height: var(--lh-ui);
+}
+
+.controls {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  gap: var(--space-3);
+}
+
+.control {
+  width: 9.5rem;
+}
+
+.controlWide {
+  width: 13rem;
+}
+
+@media (max-width: 640px) {
+  .controls {
+    width: 100%;
+  }
+
+  .control,
+  .controlWide {
+    width: calc(50% - var(--space-2));
+  }
+}
+
+.updating {
+  align-self: center;
+  color: var(--text-muted-strong);
+  font-size: var(--fs-caption);
+}
+
+/* ---------------------------------------------------------------- the band ---- */
+
+.band {
+  display: grid;
+  grid-template-columns: minmax(0, 24rem) minmax(0, 1fr);
+  overflow: hidden;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--elev-sm);
+}
+
+@media (max-width: 960px) {
+  .band {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+/*
+ * Headline figures: a 2-column grid of cells divided by hairlines, on the paper tone so
+ * the band reads as two halves — the counts, and the measure beside them.
+ */
+.figures {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  margin: 0;
+  background: var(--bg);
+  border-right: 1px solid var(--border);
+}
+
+@media (max-width: 960px) {
+  .figures {
+    border-right: 0;
+    border-bottom: 1px solid var(--border);
+  }
+}
+
+/* Label first in the DOM (dt before dd, for screen readers); value first on screen. */
+.figure {
+  display: flex;
+  flex-direction: column-reverse;
+  justify-content: flex-end;
+  gap: var(--space-1);
+  min-width: 0;
+  padding: var(--space-5);
+  border-bottom: 1px solid var(--border);
+}
+
+.figure:nth-child(odd) {
+  border-right: 1px solid var(--border);
+}
+
+.figure:nth-last-child(-n + 2):nth-child(odd),
+.figure:last-child {
+  border-bottom: 0;
+}
+
+.figureLabel {
+  color: var(--text-muted-strong);
+  font-size: var(--fs-label);
+  line-height: var(--lh-label);
+}
+
+.figureValue {
+  margin: 0;
+  font-family: var(--font-display);
+  font-size: var(--fs-h1);
+  line-height: 1.05;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  font-variant-numeric: tabular-nums;
+  color: var(--ink);
+}
+
+.figureWorded {
+  margin: 0;
+  font-family: var(--font-display);
+  font-size: var(--fs-h2);
+  line-height: 1.2;
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+  color: var(--ink);
+}
+
+.figureHeld {
+  margin: 0;
+  font-family: var(--font-display);
+  font-size: var(--fs-h2);
+  line-height: 1.2;
+  font-weight: 500;
+  color: var(--text-muted-strong);
+}
+
+.panelBody {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-5);
+  min-width: 0;
+  padding: var(--space-5) var(--space-6);
+}
+
+.panelHead {
+  display: grid;
+  gap: var(--space-1);
+}
+
+.panelTitle {
+  margin: 0;
+  font-family: var(--font-display);
+  font-size: var(--fs-h3);
+  line-height: var(--lh-h3);
+  font-weight: 600;
+  color: var(--ink);
+}
+
+.panelSub {
+  margin: 0;
+  color: var(--text-muted-strong);
+  font-size: var(--fs-label);
+  line-height: var(--lh-label);
+}
+
+/* ------------------------------------------------------------ measured bars ---- */
+
+.meters {
+  display: grid;
+  gap: var(--space-4);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.meter {
+  display: grid;
+  grid-template-columns: minmax(8rem, 13rem) minmax(0, 1fr) 3.5rem;
+  align-items: center;
+  gap: var(--space-4);
+}
+
+.meterName {
+  font-size: var(--fs-ui);
+  font-weight: 500;
+  color: var(--ink);
+}
+
+.meterHint {
+  display: block;
+  color: var(--text-muted-strong);
+  font-size: var(--fs-caption);
+  font-weight: 400;
+  line-height: 1.35;
+}
+
+.meterTrack {
+  display: block;
+  height: 1.25rem;
+  overflow: hidden;
+  border-radius: var(--radius-sm);
+  background: var(--border);
+}
+
+.meterFill,
+.meterFillWeak {
+  display: block;
+  height: 100%;
+  border-radius: var(--radius-sm);
+  background: var(--chart-1);
+}
+
+/* The weakest measure, named in the sentence beneath — never by colour alone. */
+.meterFillWeak {
+  background: var(--warning);
+}
+
+.meterValue {
+  text-align: right;
+  font-family: var(--font-display);
+  font-size: var(--fs-body);
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+  color: var(--ink);
+}
+
+@media (max-width: 640px) {
+  .meter {
+    grid-template-columns: minmax(0, 1fr) auto;
+  }
+
+  .meterTrack {
+    grid-column: 1 / -1;
+    grid-row: 2;
+  }
+}
+
+.insight {
+  margin: 0;
+  color: var(--ink);
+  font-size: var(--fs-ui);
+  line-height: var(--lh-ui);
+}
+
+/* ------------------------------------------------------------ paired cards ---- */
+
+.section {
+  display: grid;
+  gap: var(--space-3);
+  min-width: 0;
+}
+
+.sectionTitle {
+  margin: 0;
+  font-family: var(--font-display);
+  font-size: var(--fs-body);
+  font-weight: 600;
+  color: var(--ink);
+}
+
+.pair {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--elev-sm);
+}
+
+.pairItem {
+  display: grid;
+  align-content: start;
+  gap: var(--space-4);
+  min-width: 0;
+  padding: var(--space-5) var(--space-6);
+}
+
+.pairItem + .pairItem {
+  border-left: 1px solid var(--border);
+}
+
+@media (max-width: 960px) {
+  .pair {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .pairItem + .pairItem {
+    border-left: 0;
+    border-top: 1px solid var(--border);
+  }
+}
+
+.pairHead {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: var(--space-1) var(--space-3);
+}
+
+.pairName {
+  margin: 0;
+  font-family: var(--font-display);
+  font-size: var(--fs-h3);
+  font-weight: 600;
+  color: var(--forest);
+}
+
+.pairMeta {
+  color: var(--text-muted-strong);
+  font-size: var(--fs-ui);
+}
+
+.big {
+  display: grid;
+  gap: var(--space-1);
+}
+
+.bigValue {
+  font-family: var(--font-display);
+  font-size: var(--fs-kpi);
+  line-height: 1;
+  font-weight: 700;
+  letter-spacing: -0.03em;
+  font-variant-numeric: tabular-nums;
+  color: var(--forest);
+}
+
+.bigLabel {
+  color: var(--text-muted-strong);
+  font-size: var(--fs-label);
+}
+
+.stats {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(6.5rem, 1fr));
+  margin: 0;
+  overflow: hidden;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+}
+
+.stat {
+  display: flex;
+  flex-direction: column-reverse;
+  justify-content: flex-end;
+  gap: var(--space-2);
+  min-width: 0;
+  padding: var(--space-4);
+  box-shadow: -1px 0 0 var(--border);
+}
+
+.statLabel {
+  color: var(--text-muted-strong);
+  font-size: var(--fs-label);
+}
+
+.statValue {
+  margin: 0;
+  font-family: var(--font-display);
+  font-size: var(--fs-h2);
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+  color: var(--ink);
+}
+
+/* ------------------------------------------------------------ breakdown grid ---- */
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--space-5);
+}
+
+@media (max-width: 960px) {
+  .grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+  min-width: 0;
+  padding: var(--space-5) var(--space-6);
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--elev-sm);
+}
+
+.bars {
+  display: grid;
+  gap: var(--space-3);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.bar {
+  display: grid;
+  grid-template-columns: minmax(6rem, 11rem) minmax(0, 1fr) auto;
+  align-items: center;
+  gap: var(--space-3);
+  font-size: var(--fs-ui);
+}
+
+.barLabel {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  color: var(--ink);
+}
+
+.barTrack {
+  display: block;
+  height: 0.625rem;
+  overflow: hidden;
+  border-radius: var(--radius-sm);
+  background: var(--border);
+}
+
+.barFill {
+  display: block;
+  height: 100%;
+  border-radius: var(--radius-sm);
+  background: var(--chart-1);
+}
+
+/* A withheld group keeps its row, hatched: an absent bar would read as zero. */
+.barFillHeld {
+  display: block;
+  height: 100%;
+  background: repeating-linear-gradient(
+    45deg,
+    var(--border-strong) 0,
+    var(--border-strong) 3px,
+    transparent 3px,
+    transparent 7px
+  );
+}
+
+.barValue {
+  min-width: 3ch;
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+  color: var(--text-muted-strong);
+}
+
+.empty {
+  margin: 0;
+  color: var(--text-muted-strong);
+  font-size: var(--fs-ui);
+}
+
+.note {
+  margin: 0;
+  color: var(--text-muted-strong);
+  font-size: var(--fs-label);
+  line-height: var(--lh-label);
+}
+
+/* ------------------------------------------------------------ month columns ---- */
+
+.columns {
+  display: grid;
+  grid-auto-columns: minmax(0, 1fr);
+  grid-auto-flow: column;
+  align-items: end;
+  gap: 2px;
+  height: 11rem;
+  padding-top: var(--space-5);
+  border-bottom: 1px solid var(--border-strong);
+}
+
+.column {
+  position: relative;
+  height: 100%;
+}
+
+.columnFill {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  min-height: 2px;
+  border-radius: var(--radius-sm) var(--radius-sm) 0 0;
+  background: var(--chart-1);
+}
+
+.column:hover .columnFill {
+  background: var(--forest-2);
+}
+
+.columnValue {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  color: var(--ink);
+  font-size: var(--fs-caption);
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+
+.columnAxis {
+  display: grid;
+  grid-auto-columns: minmax(0, 1fr);
+  grid-auto-flow: column;
+  gap: 2px;
+  color: var(--text-muted-strong);
+  font-size: var(--fs-caption);
+  text-align: center;
+}
+
+.srOnly {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+}
+
+/* ----------------------------------------------------------- review progress ---- */
+
+.progress {
+  display: flex;
+  gap: 2px;
+  height: 1.5rem;
+  overflow: hidden;
+  border-radius: var(--radius-sm);
+  background: var(--border);
+}
+
+.progressPart {
+  display: block;
+  height: 100%;
+}
+
+.partDecided {
+  background: var(--chart-1);
+}
+
+.partAwaiting {
+  background: var(--chart-3);
+}
+
+.partClosed {
+  background: var(--chart-other);
+}
+
+.legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2) var(--space-5);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  font-size: var(--fs-ui);
+}
+
+.legendItem {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  color: var(--ink);
+}
+
+.swatch {
+  flex: none;
+  width: 12px;
+  height: 12px;
+  border-radius: var(--radius-swatch);
+}
+
+.legendValue {
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+}
+
+.link {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-1);
+  color: var(--forest);
+  font-weight: 600;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+.link:focus-visible {
+  outline: var(--focus-ring);
+  outline-offset: var(--focus-offset);
+  border-radius: var(--radius-sm);
+}
+
+/* ------------------------------------------------------------ uploads table ---- */
+
+.tableWrap {
+  overflow-x: auto;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--elev-sm);
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: var(--fs-ui);
+  font-variant-numeric: tabular-nums;
+}
+
+.table th {
+  padding: var(--space-3) var(--space-3);
+  background: var(--bg);
+  border-bottom: 1px solid var(--border);
+  color: var(--text-muted-strong);
+  font-family: var(--font-mono);
+  font-size: var(--fs-caption);
+  font-weight: 400;
+  /* Tighter than the caption default: nine columns have to fit a laptop screen. */
+  letter-spacing: 0.06em;
+  text-align: left;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+.table td {
+  padding: var(--space-3) var(--space-3);
+  border-bottom: 1px solid var(--border);
+  color: var(--ink);
+  white-space: nowrap;
+}
+
+.table tbody tr:last-child td {
+  border-bottom: 0;
+}
+
+.table tbody tr:hover td {
+  background: var(--surface-mint);
+}
+
+.table th.num,
+.table td.num {
+  text-align: right;
+}
+
+.fileCell {
+  max-width: 14rem;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* Activity names run long; they wrap rather than push the counts off screen. */
+.table td.wrapCell {
+  min-width: 10rem;
+  max-width: 16rem;
+  white-space: normal;
+}
