@@ -44,13 +44,25 @@ class PdfExporter implements ReportExporter
     /**
      * The crest, inlined. Remote loading stays off — a report renderer that fetches URLs
      * is a server-side request forgery surface — so the image travels inside the HTML.
+     *
+     * Dompdf cannot place a PNG without the GD extension, and it fails the whole render
+     * when it tries. A missing logo must never cost someone their export, so without GD
+     * the letterhead keeps its placeholder slot and the report is otherwise unchanged.
      */
     private function crest(): ?string
     {
         $path = resource_path('brand/jigawa-crest.png');
 
-        return is_file($path)
-            ? 'data:image/png;base64,'.base64_encode((string) file_get_contents($path))
-            : null;
+        if (! $this->canEmbedImages() || ! is_file($path)) {
+            return null;
+        }
+
+        return 'data:image/png;base64,'.base64_encode((string) file_get_contents($path));
+    }
+
+    /** Whether this PHP can rasterise an image into a PDF. */
+    protected function canEmbedImages(): bool
+    {
+        return extension_loaded('gd');
     }
 }

@@ -166,6 +166,24 @@ class SegmentExportSummaryTest extends TestCase
         $this->assertStringNotContainsString('/Subtype /Image', $plain, 'reports that did not ask for the crest keep the placeholder');
     }
 
+    public function test_a_php_without_gd_still_produces_the_pdf_without_the_crest(): void
+    {
+        // Dompdf throws when asked to place a PNG without GD. That once failed an MDA's
+        // export outright on a worker built before GD was installed.
+        $exporter = new class extends PdfExporter
+        {
+            protected function canEmbedImages(): bool
+            {
+                return false;
+            }
+        };
+
+        $pdf = $exporter->render($this->exportData('mdaAdmin'));
+
+        $this->assertStringStartsWith('%PDF', $pdf);
+        $this->assertStringNotContainsString('/Subtype /Image', $pdf);
+    }
+
     public function test_excel_puts_the_summary_on_its_own_first_sheet(): void
     {
         $bytes = app(ExcelExporter::class)->render($this->exportData('mdaAdmin'));
