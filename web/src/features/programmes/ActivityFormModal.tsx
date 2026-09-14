@@ -8,6 +8,8 @@ import { Button } from '@/components/Button/Button'
 import { TextField } from '@/components/Field/TextField'
 import { TextareaField } from '@/components/Field/TextareaField'
 import { SelectField } from '@/components/Field/SelectField'
+import { SearchableSelectField } from '@/components/Field/SearchableSelectField'
+import { Checkbox } from '@/components/Field/Checkbox'
 import { Icon } from '@/components/Icon/Icon'
 import { applyApiErrors } from '@/lib/forms/applyApiErrors'
 import { koboToNaira, nairaToKobo } from '@/lib/utils/money'
@@ -15,9 +17,10 @@ import { LocationSetField } from '@/features/reference/LocationSetField'
 import type { LocationSetEntry } from '@/features/reference/types'
 import { usePreviewActivityImport } from '@/features/registry/hooks'
 import { ACTIVITY_STATUS_OPTIONS } from './constants'
+import { FUNDING_TYPE_OPTIONS } from './funding'
 import { activitySchema } from './schema'
 import type { ActivityFormValues } from './schema'
-import { useProgrammeCatalog, useSaveActivity } from './hooks'
+import { useFundingPartners, useProgrammeCatalog, useSaveActivity } from './hooks'
 import type { Activity, ActivityInput } from './types'
 import formStyles from '@/features/shared/formLayout.module.css'
 import styles from './programmes.module.css'
@@ -31,7 +34,7 @@ interface ActivityFormModalProps {
   activity?: Activity | null
 }
 
-const KNOWN = ['programme_id', 'involves_beneficiaries', 'name', 'description', 'target_beneficiaries', 'location_description', 'budget_naira', 'funding_source', 'starts_on', 'ends_on', 'status'] as const
+const KNOWN = ['programme_id', 'involves_beneficiaries', 'name', 'description', 'target_beneficiaries', 'location_description', 'budget_naira', 'funding_type', 'funding_partner_id', 'co_funded_by_government', 'starts_on', 'ends_on', 'status'] as const
 
 /** The saved location set, back into the shape the picker edits. */
 function toEntries(activity?: Activity | null): LocationSetEntry[] {
@@ -113,7 +116,9 @@ export function ActivityFormModal({ open, onClose, programmeId, activity }: Acti
       target_beneficiaries: activity?.target_beneficiaries != null ? String(activity.target_beneficiaries) : '',
       location_description: activity?.location_description ?? '',
       budget_naira: koboToNaira(activity?.budget_amount),
-      funding_source: activity?.funding_source ?? '',
+      funding_type: activity?.funding_type ?? '',
+      funding_partner_id: activity?.funding_partner_id ?? '',
+      co_funded_by_government: activity?.co_funded_by_government ?? false,
       starts_on: activity?.starts_on ?? '',
       ends_on: activity?.ends_on ?? '',
       status: (activity?.status as ActivityFormValues['status']) ?? 'draft',
@@ -121,6 +126,20 @@ export function ActivityFormModal({ open, onClose, programmeId, activity }: Acti
   })
 
   const involves = watch('involves_beneficiaries') === 'yes'
+
+  const fundingType = watch('funding_type')
+  const partnerId = watch('funding_partner_id')
+  const partners = useFundingPartners(open && fundingType === 'partner')
+  const partnerOptions = [
+    { value: '', label: partners.isPending ? 'Loading partners…' : 'Select a partner' },
+    ...(partners.data ?? []).map((partner) => ({ value: partner.id, label: partner.name })),
+  ]
+  // A partner already linked to this activity stays selectable even if their account has
+  // since been deactivated — otherwise opening the form would silently drop the link.
+  if (activity?.funding_partner && !partnerOptions.some((option) => option.value === activity.funding_partner?.id)) {
+    partnerOptions.push({ value: activity.funding_partner.id, label: `${activity.funding_partner.name} (inactive)` })
+  }
+  const legacyFunding = !activity?.funding_type && activity?.funding_source ? activity.funding_source : null
 
   function buildInput(values: ActivityFormValues): ActivityInput {
     const involvesBeneficiaries = values.involves_beneficiaries === 'yes'
@@ -141,7 +160,11 @@ export function ActivityFormModal({ open, onClose, programmeId, activity }: Acti
       })),
       location_description: values.location_description || null,
       budget_amount: nairaToKobo(values.budget_naira) ?? null,
-      funding_source: values.funding_source || null,
+      // The three funding fields always travel together (the API requires it). Leaving
+      // "partner" clears the partner and the co-funding with it.
+      funding_type: values.funding_type ? (values.funding_type as ActivityInput['funding_type']) : null,
+      funding_partner_id: values.funding_type === 'partner' && values.funding_partner_id ? values.funding_partner_id : null,
+      co_funded_by_government: values.funding_type === 'partner' && values.co_funded_by_government,
       starts_on: values.starts_on || null,
       ends_on: values.ends_on || null,
       status: values.status,
@@ -286,19 +309,49 @@ export function ActivityFormModal({ open, onClose, programmeId, activity }: Acti
               error={errors.involves_beneficiaries?.message}
               {...register('involves_beneficiaries')}
             />
-            <TextField label="Name" required error={errors.name?.message} {...register('name')} />
-            <TextareaField label="Description" rows={2} error={errors.description?.message} {...register('description')} />
+            <TextField label="Name of activity" required error={errors.name?.message} {...register('name')} />
+            <TextareaField label="Description of the activity" rows={2} error={errors.description?.message} {...register('description')} />
             {involves ? (
               <div className={formStyles.grid2}>
                 <TextField label="Target beneficiaries" required type="number" min={1} error={errors.target_beneficiaries?.message} {...register('target_beneficiaries')} />
-                <TextField label="Budget (₦)" type="number" min={0} step="0.01" error={errors.budget_naira?.message} {...register('budget_naira')} />
+                <TextField label="Budget of the activity (₦)" type="number" min={0} step="0.01" error={errors.budget_naira?.message} {...register('budget_naira')} />
               </div>
             ) : (
-              <TextField label="Budget (₦)" type="number" min={0} step="0.01" error={errors.budget_naira?.message} {...register('budget_naira')} />
+              <TextField label="Budget of the activity (₦)" type="number" min={0} step="0.01" error={errors.budget_naira?.message} {...register('budget_naira')} />
             )}
             <LocationSetField value={locations} onChange={setLocations} errors={locationErrors} disabled={busy} />
             <TextField label="Location detail" helper="Free description: a landmark or route, not an admin area." error={errors.location_description?.message} {...register('location_description')} />
-            <TextField label="Funding source" error={errors.funding_source?.message} {...register('funding_source')} />
+            <SelectField
+              label="Funding source"
+              required
+              placeholder="Select how this activity is funded"
+              options={FUNDING_TYPE_OPTIONS}
+              helper={legacyFunding ? `Previously recorded as “${legacyFunding}”. Choose the type that matches it.` : undefined}
+              error={errors.funding_type?.message}
+              {...register('funding_type')}
+            />
+            {fundingType === 'partner' && (
+              <div className={formStyles.form}>
+                <SearchableSelectField
+                  label="Social protection partner"
+                  required
+                  options={partnerOptions}
+                  pinnedValue={partnerId}
+                  searchLabel="Filter partners"
+                  // Linking decides who can see this activity, so the form says so here.
+                  helper="This partner will see this activity’s budget, what has been delivered, and who it reached, in their view."
+                  error={errors.funding_partner_id?.message}
+                  {...register('funding_partner_id')}
+                />
+                {partners.isError && (
+                  <p className={formStyles.alert} role="alert">The partner list could not be loaded. Close the form and try again.</p>
+                )}
+                {partners.data?.length === 0 && (
+                  <p className={styles.note}>No partner accounts exist yet. A System Administrator creates one for each partner.</p>
+                )}
+                <Checkbox label="Co-funded with government" {...register('co_funded_by_government')} />
+              </div>
+            )}
             <div className={formStyles.grid2}>
               <TextField label="Start date" type="date" error={errors.starts_on?.message} {...register('starts_on')} />
               <TextField label="End date" type="date" error={errors.ends_on?.message} {...register('ends_on')} />

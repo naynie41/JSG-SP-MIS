@@ -8,8 +8,10 @@ use App\Domain\Access\Concerns\MdaScoped;
 use App\Domain\Access\Concerns\ScopedToMda;
 use App\Domain\Access\Models\Mda;
 use App\Domain\Access\Models\User;
+use App\Domain\Access\Scopes\MdaScope;
 use App\Domain\Audit\Concerns\Auditable;
 use App\Domain\Programme\Enums\ActivityStatus;
+use App\Domain\Programme\Enums\FundingType;
 use Database\Factories\ActivityFactory;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Collection;
@@ -43,7 +45,9 @@ use Illuminate\Support\Str;
  * @property Carbon|null $ends_on
  * @property int|null $budget_amount
  * @property string|null $funding_source
+ * @property FundingType|null $funding_type
  * @property string|null $funding_partner_id
+ * @property bool $co_funded_by_government
  * @property ActivityStatus $status
  * @property string|null $created_by
  * @property Carbon|null $created_at
@@ -76,7 +80,9 @@ class Activity extends Model implements MdaScoped
         'ends_on',
         'budget_amount',
         'funding_source',
+        'funding_type',
         'funding_partner_id',
+        'co_funded_by_government',
         'status',
         'created_by',
     ];
@@ -86,6 +92,7 @@ class Activity extends Model implements MdaScoped
      */
     protected $attributes = [
         'status' => ActivityStatus::Draft->value,
+        'co_funded_by_government' => false,
     ];
 
     /**
@@ -95,6 +102,8 @@ class Activity extends Model implements MdaScoped
     {
         return [
             'status' => ActivityStatus::class,
+            'funding_type' => FundingType::class,
+            'co_funded_by_government' => 'boolean',
             'involves_beneficiaries' => 'boolean',
             'schedule' => 'array',
             'starts_on' => 'date',
@@ -137,11 +146,15 @@ class Activity extends Model implements MdaScoped
      * The Development Partner funding this activity (Phase 6P), or null when it is
      * state-funded / not partner-attributed. Drives the partner-funding scope + metrics.
      *
+     * Read without the MDA scope: a partner account belongs to no MDA, so the scope would
+     * hide the partner from the very MDA whose activity names them. The relation reads
+     * one account by the id already on this activity, and callers present its name only.
+     *
      * @return BelongsTo<User, $this>
      */
     public function fundingPartner(): BelongsTo
     {
-        return $this->belongsTo(User::class, 'funding_partner_id');
+        return $this->belongsTo(User::class, 'funding_partner_id')->withoutGlobalScope(MdaScope::class);
     }
 
     /**

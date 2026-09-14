@@ -13,6 +13,7 @@ import { useAuth } from '@/lib/auth/AuthProvider'
 import { summariseLocations } from '@/features/reference/format'
 import { ActivityFormModal } from '@/features/programmes/ActivityFormModal'
 import { useActivities, useProgramme } from '@/features/programmes/hooks'
+import { describeFunding } from '@/features/programmes/funding'
 import type { Activity } from '@/features/programmes/types'
 import { titleCase } from './format'
 import styles from './mda.module.css'
@@ -97,7 +98,8 @@ export function MdaProgrammeDetailPage() {
       render: (a) => (a.involves_beneficiaries ? (a.target_beneficiaries ?? 0).toLocaleString() : '—'),
     },
     { key: 'budget', header: 'Budget', align: 'right', render: (a) => naira(a.budget_amount) },
-    { key: 'funding', header: 'Funding', render: (a) => titleCase(a.funding_source) },
+    // An activity recorded before the funding type existed keeps its old free text.
+    { key: 'funding', header: 'Funding', render: (a) => (a.funding_type ? describeFunding(a) : titleCase(a.funding_source)) },
     {
       key: 'status',
       header: 'Status',

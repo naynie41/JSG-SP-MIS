@@ -767,7 +767,7 @@ class DashboardMetricsService
 
         $activities = $this->applyActivityFilter(
             Activity::query()->withoutGlobalScope(MdaScope::class)->where('funding_partner_id', $partnerId)
-        )->get(['id', 'programme_id', 'owner_mda_id', 'name', 'budget_amount', 'target_beneficiaries', 'status', 'starts_on', 'ends_on']);
+        )->get(['id', 'programme_id', 'owner_mda_id', 'name', 'budget_amount', 'target_beneficiaries', 'status', 'starts_on', 'ends_on', 'co_funded_by_government']);
 
         $activityIds = $activities->pluck('id')->all();
         $allocated = (int) $activities->sum('budget_amount');
@@ -1097,6 +1097,10 @@ class DashboardMetricsService
                     'name' => $a->name,
                     'mda' => $mdaNames[$a->owner_mda_id] ?? null,
                     'status' => $a->status->value,
+                    'starts_on' => $a->starts_on?->toDateString(),
+                    'ends_on' => $a->ends_on?->toDateString(),
+                    // The partner still sees the whole budget; this only says who shares it.
+                    'co_funded_by_government' => (bool) $a->co_funded_by_government,
                     'target' => $aTarget,
                     'reached' => $aReached,
                     'completion_rate' => $aCompletion,

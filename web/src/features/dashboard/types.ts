@@ -220,6 +220,11 @@ export interface PartnerProgrammeActivity {
   name: string | null
   mda: string | null
   status: string
+  /** Optional: a dashboard snapshot computed before these were added lacks them. */
+  starts_on?: string | null
+  ends_on?: string | null
+  /** The partner still sees the whole activity; this says government shares the funding. */
+  co_funded_by_government?: boolean
   target: number
   reached: number
   completion_rate: number | null

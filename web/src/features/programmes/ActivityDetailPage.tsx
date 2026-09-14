@@ -13,6 +13,7 @@ import { useAuth } from '@/lib/auth/AuthProvider'
 import { formatNaira } from '@/lib/utils/money'
 import { titleCase } from '@/features/registry/constants'
 import type { ServiceRequest } from '@/features/registry/types'
+import { describeFunding } from './funding'
 import { useActivity } from './hooks'
 import type { ActivityBeneficiary } from './types'
 import layout from '@/features/shared/formLayout.module.css'
@@ -165,7 +166,7 @@ export function ActivityDetailPage() {
           <dt>Budget</dt>
           <dd className={styles.mono}>{formatNaira(activity.budget_amount)}</dd>
           <dt>Funding</dt>
-          <dd>{activity.funding_source ?? '—'}</dd>
+          <dd>{describeFunding(activity)}</dd>
           <dt>Period</dt>
           <dd>{activity.starts_on ?? '—'} → {activity.ends_on ?? '—'}</dd>
           <dt>Beneficiaries</dt>

@@ -23,6 +23,7 @@ use App\Http\Controllers\Api\V1\MfaController;
 use App\Http\Controllers\Api\V1\Notification\BroadcastController;
 use App\Http\Controllers\Api\V1\Notification\NotificationController;
 use App\Http\Controllers\Api\V1\Programme\ActivityController;
+use App\Http\Controllers\Api\V1\Programme\ActivityFundingPartnerController;
 use App\Http\Controllers\Api\V1\Programme\EnrollmentController;
 use App\Http\Controllers\Api\V1\Programme\ProgrammeController;
 use App\Http\Controllers\Api\V1\Reference\AdministrativeDivisionController;
@@ -412,6 +413,10 @@ Route::prefix('v1')->group(function (): void {
             ->middleware('permission:activity.view')->name('activities.index');
         Route::post('/activities', [ActivityController::class, 'store'])
             ->middleware('permission:activity.create')->name('activities.store');
+        // The partners an activity can be linked to (names only). Before the
+        // /activities/{activity} wildcard; open to anyone who can create or edit one.
+        Route::get('/activities/funding-partners', [ActivityFundingPartnerController::class, 'index'])
+            ->middleware('permission:activity.create,activity.edit')->name('activities.funding-partners');
         Route::get('/activities/{activity}/budget', [ActivityController::class, 'budget'])
             ->middleware('permission:activity.view')->name('activities.budget');
         Route::get('/activities/{activity}', [ActivityController::class, 'show'])

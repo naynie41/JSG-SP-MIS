@@ -80,6 +80,16 @@ export function useAllActivities(enabled = true) {
   return useQuery({ queryKey: ['activities', 'all'], queryFn: () => activityApi.list(), enabled })
 }
 
+/** The partners an activity can be linked to. Fetched only once "partner" is chosen. */
+export function useFundingPartners(enabled = true) {
+  return useQuery({
+    queryKey: ['activity-funding-partners'],
+    queryFn: () => activityApi.fundingPartners(),
+    enabled,
+    staleTime: 5 * 60_000,
+  })
+}
+
 export function useActivity(id: string | undefined, enabled = true) {
   return useQuery({ queryKey: ['activity', id], queryFn: () => activityApi.get(id!), enabled: enabled && Boolean(id) })
 }

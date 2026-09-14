@@ -15,6 +15,7 @@ import {
   TrendingUp,
 } from 'lucide-react'
 import type { LucideIcon } from 'lucide-react'
+import { Badge } from '@/components/Badge/Badge'
 import { Icon } from '@/components/Icon/Icon'
 import { formatNaira } from '@/lib/utils/money'
 import type {
@@ -116,8 +117,11 @@ function ActivityTable({ rows }: { rows: PartnerProgrammeActivity[] }) {
           <tr>
             <th scope="col">Activity</th>
             <th scope="col">MDA</th>
+            <th scope="col">Period</th>
             <th scope="col">Score</th>
+            <th scope="col" className={styles.numHead}>Budget</th>
             <th scope="col" className={styles.numHead}>Delivered</th>
+            <th scope="col" className={styles.numHead}>Remaining</th>
             <th scope="col" className={styles.numHead}>Reached</th>
             <th scope="col" className={styles.numHead}>Completion</th>
           </tr>
@@ -125,14 +129,25 @@ function ActivityTable({ rows }: { rows: PartnerProgrammeActivity[] }) {
         <tbody>
           {rows.map((a) => (
             <tr key={a.activity_id}>
-              <td>{a.name ?? '—'}</td>
+              <td>
+                {a.name ?? '—'}
+                {a.co_funded_by_government && (
+                  <>
+                    <br />
+                    <Badge variant="info">Co-funded with government</Badge>
+                  </>
+                )}
+              </td>
               <td>{a.mda ?? '—'}</td>
+              <td>{a.starts_on || a.ends_on ? `${a.starts_on ?? '—'} to ${a.ends_on ?? '—'}` : '—'}</td>
               <td>
                 <span className={styles.dot} data-light={a.traffic_light} />
                 <span className={styles.srOnly}>{lightLabel[a.traffic_light]}</span>
                 <span className={styles.dotLabel}>{a.status}</span>
               </td>
+              <td className={styles.numCell}>{formatNaira(a.allocated)}</td>
               <td className={styles.numCell}>{formatNaira(a.delivered_value)}</td>
+              <td className={styles.numCell}>{formatNaira(a.remaining)}</td>
               <td className={styles.numCell}>{num(a.reached)}</td>
               <td className={styles.numCell}>{a.completion_rate === null ? '—' : `${pct(a.completion_rate)}%`}</td>
             </tr>

@@ -29,10 +29,20 @@ export const activitySchema = z
     // can actually be checked against the reference data.
     location_description: z.string().max(255).optional().or(z.literal('')),
     budget_naira: z.string().optional().or(z.literal('')),
-    funding_source: z.string().max(255).optional().or(z.literal('')),
+    // How the activity is funded. A partner activity names its partner, and only a
+    // partner activity can be co-funded with government; the API enforces the same.
+    funding_type: z
+      .string()
+      .refine((v) => ['government', 'partner', 'individual'].includes(v), 'Choose how this activity is funded'),
+    funding_partner_id: z.string().optional().or(z.literal('')),
+    co_funded_by_government: z.boolean(),
     starts_on: optionalDate,
     ends_on: optionalDate,
     status: z.enum(['draft', 'active', 'completed']),
+  })
+  .refine((v) => v.funding_type !== 'partner' || !!v.funding_partner_id, {
+    path: ['funding_partner_id'],
+    message: 'Choose the partner funding this activity',
   })
   .refine((v) => !v.starts_on || !v.ends_on || v.ends_on >= v.starts_on, {
     path: ['ends_on'],

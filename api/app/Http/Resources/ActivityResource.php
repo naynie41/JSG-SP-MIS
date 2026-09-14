@@ -35,8 +35,15 @@ class ActivityResource extends JsonResource
             'starts_on' => $this->starts_on?->toDateString(),
             'ends_on' => $this->ends_on?->toDateString(),
             'budget_amount' => $this->budget_amount, // minor units (kobo, NGN)
+            // Free text from before the funding type existed; shown until the type is set.
             'funding_source' => $this->funding_source,
+            'funding_type' => $this->funding_type?->value,
             'funding_partner_id' => $this->funding_partner_id,
+            // The partner's NAME only — the account's email and the rest stay with it.
+            'funding_partner' => $this->funding_partner_id === null
+                ? null
+                : ['id' => $this->funding_partner_id, 'name' => $this->fundingPartner?->name],
+            'co_funded_by_government' => (bool) $this->co_funded_by_government,
             'status' => $this->status->value,
             'created_by' => $this->created_by,
             'created_at' => $this->created_at?->toIso8601String(),

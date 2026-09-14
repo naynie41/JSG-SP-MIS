@@ -77,6 +77,14 @@ export const activityApi = {
   budget(id: string): Promise<Budget> {
     return apiRequest<Budget>({ method: 'GET', url: `/activities/${id}/budget` })
   },
+  /** Active social protection partner accounts an activity can be linked to (names only). */
+  async fundingPartners(): Promise<import('./types').FundingPartnerOption[]> {
+    const { partners } = await apiRequest<{ partners: import('./types').FundingPartnerOption[] }>({
+      method: 'GET',
+      url: '/activities/funding-partners',
+    })
+    return partners
+  },
 }
 
 export const enrollmentApi = {

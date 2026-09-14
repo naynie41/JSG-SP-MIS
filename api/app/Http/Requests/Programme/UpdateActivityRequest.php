@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace App\Http\Requests\Programme;
 
 use App\Domain\Programme\Enums\ActivityStatus;
-use App\Domain\Programme\Rules\IsFundingPartner;
+use App\Http\Requests\Programme\Concerns\ValidatesFunding;
 use App\Http\Requests\Programme\Concerns\ValidatesLocationSet;
 use Illuminate\Contracts\Validation\Validator;
 use Illuminate\Foundation\Http\FormRequest;
@@ -19,7 +19,7 @@ use Illuminate\Validation\Rule;
  */
 class UpdateActivityRequest extends FormRequest
 {
-    use ValidatesLocationSet;
+    use ValidatesFunding, ValidatesLocationSet;
 
     public function authorize(): bool
     {
@@ -36,7 +36,10 @@ class UpdateActivityRequest extends FormRequest
 
     public function withValidator(Validator $validator): void
     {
-        $validator->after(fn (Validator $v) => $this->validateLocationSet($v));
+        $validator->after(function (Validator $v): void {
+            $this->validateLocationSet($v);
+            $this->validateFunding($v);
+        });
     }
 
     /**
@@ -57,7 +60,8 @@ class UpdateActivityRequest extends FormRequest
             'ends_on' => ['nullable', 'date', 'after_or_equal:starts_on'],
             'budget_amount' => ['nullable', 'integer', 'min:0'],
             'funding_source' => ['nullable', 'string', 'max:255'],
-            'funding_partner_id' => ['nullable', 'uuid', new IsFundingPartner],
+            // Sent together or not at all — see ValidatesFunding.
+            ...$this->fundingRules(),
             'status' => ['sometimes', 'required', Rule::enum(ActivityStatus::class)],
         ];
     }

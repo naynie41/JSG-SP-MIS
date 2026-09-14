@@ -74,11 +74,25 @@ export interface Activity {
   starts_on: string | null
   ends_on: string | null
   budget_amount: number | null
+  /** Free text from before the funding type existed. */
   funding_source: string | null
+  funding_type?: FundingType | null
+  funding_partner_id?: string | null
+  /** The linked partner's name only. */
+  funding_partner?: FundingPartnerOption | null
+  co_funded_by_government?: boolean
   status: ActivityStatus
   created_by: string | null
   created_at: string | null
   updated_at: string | null
+}
+
+export type FundingType = 'government' | 'partner' | 'individual'
+
+/** A social protection partner an activity can be linked to (an active partner account). */
+export interface FundingPartnerOption {
+  id: string
+  name: string
 }
 
 /** A beneficiary/intervention recorded under an activity (identifiers masked). */
@@ -133,6 +147,10 @@ export interface ActivityInput {
   ends_on?: string | null
   budget_amount?: number | null
   funding_source?: string | null
+  /** Sent together: a partner only with type `partner`, co-funding only with a partner. */
+  funding_type?: FundingType | null
+  funding_partner_id?: string | null
+  co_funded_by_government?: boolean
   status?: ActivityStatus
 }
 

@@ -234,7 +234,7 @@ describe('MDA console — Programmes', () => {
     // own field set, and the catalogue picker it locks when pinned. A bespoke
     // in-context form would have none of these.
     expect(within(dialog).getByLabelText(/does this activity involve beneficiaries/i)).toBeInTheDocument()
-    expect(within(dialog).getByLabelText('Name')).toBeInTheDocument()
+    expect(within(dialog).getByLabelText('Name of activity')).toBeInTheDocument()
     expect(within(dialog).getByLabelText(/^programme$/i)).toBeDisabled()
   })
 
