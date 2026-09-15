@@ -12,9 +12,16 @@ use App\Domain\Benefit\Models\Benefit;
 use App\Domain\Programme\Models\Activity;
 use App\Domain\Programme\Models\Programme;
 use App\Domain\Registry\Models\Beneficiary;
+use App\Domain\Reporting\Export\MdaDashboardExportBuilder;
+use App\Domain\Reporting\Export\ReportColumn;
+use App\Domain\Reporting\Export\ReportData;
+use App\Domain\Reporting\Export\ReportSummarySection;
+use App\Domain\Reporting\Services\DashboardService;
 use App\Domain\Reporting\Services\DashboardSnapshotService;
+use App\Domain\Reporting\Support\DashboardFilter;
 use Database\Seeders\RolesAndPermissionsSeeder;
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use Illuminate\Support\Facades\View;
 use Illuminate\Testing\TestResponse;
 use Tests\TestCase;
 
@@ -102,5 +109,92 @@ class DashboardExportTest extends TestCase
         $noRole = User::factory()->create(['mda_id' => $this->mda->id, 'role_id' => null]);
 
         $this->download($noRole, '?format=csv')->assertStatus(403);
+    }
+
+    /* ----------------------------------------------------------- MDA dashboard */
+
+    public function test_an_mda_exports_its_dashboard_as_a_branded_pdf(): void
+    {
+        $response = $this->download($this->user($this->mda, RoleKey::MdaAdmin), '?format=pdf')->assertOk();
+
+        $this->assertStringContainsString('application/pdf', (string) $response->headers->get('content-type'));
+        $this->assertStringContainsString('mda-dashboard-', (string) $response->headers->get('content-disposition'));
+
+        $pdf = $response->streamedContent();
+        $this->assertStringStartsWith('%PDF', $pdf);
+        $this->assertStringContainsString('/Subtype /Image', $pdf, 'the crest is on the letterhead');
+    }
+
+    public function test_an_mda_dashboard_exports_only_as_pdf(): void
+    {
+        $officer = $this->user($this->mda, RoleKey::MdaAdmin);
+
+        $this->download($officer, '?format=csv')->assertStatus(422)->assertJsonPath('error.code', 'PDF_ONLY');
+        $this->download($officer, '?format=xlsx')->assertStatus(422);
+        // With no format asked for, a PDF is what an MDA gets.
+        $this->download($officer)->assertOk();
+    }
+
+    public function test_the_mda_pdf_reads_the_same_figures_as_the_dashboard(): void
+    {
+        $officer = $this->user($this->mda, RoleKey::MdaAdmin);
+        $dashboard = app(DashboardService::class)->forUser($officer);
+
+        $data = app(MdaDashboardExportBuilder::class)->build($dashboard, DashboardFilter::none());
+
+        $this->assertSame('MDA dashboard', $data->title);
+        $this->assertTrue($data->crest);
+        $this->assertSame('All periods · All programmes · All LGAs', $data->subtitle);
+
+        $glance = $this->section($data, 'At a glance');
+        // The tile on screen reads registry.beneficiaries.total under this label.
+        $this->assertSame(
+            number_format($dashboard['metrics']['registry']['beneficiaries']['total']),
+            $glance['Net-unique beneficiaries'],
+        );
+        $this->assertArrayHasKey('Value delivered', $glance);
+
+        $titles = array_map(static fn (ReportSummarySection $s): string => $s->title, $data->summary);
+        foreach (['Women and men', 'Age groups', 'Status of records', 'Largest LGAs'] as $expected) {
+            $this->assertContains($expected, $titles);
+        }
+
+        $this->assertSame(['Programme', 'Reached', 'Target', 'Progress', 'Value delivered', 'Budget', 'Status'], array_map(
+            static fn (ReportColumn $c): string => $c->label,
+            $data->columns,
+        ));
+        $this->assertNotEmpty($data->rows);
+    }
+
+    public function test_the_mda_pdf_states_the_filters_it_was_exported_with(): void
+    {
+        $officer = $this->user($this->mda, RoleKey::MdaAdmin);
+        $filter = new DashboardFilter(year: 2026, quarter: 3, programmeId: $this->programme->id, lga: 'dutse');
+
+        $data = app(MdaDashboardExportBuilder::class)->build(app(DashboardService::class)->forUser($officer, $filter), $filter);
+
+        $this->assertSame("Q3 2026 · {$this->programme->name} · Dutse", $data->subtitle);
+    }
+
+    public function test_the_mda_pdf_never_carries_a_beneficiarys_identity(): void
+    {
+        $officer = $this->user($this->mda, RoleKey::MdaAdmin);
+        $data = app(MdaDashboardExportBuilder::class)->build(app(DashboardService::class)->forUser($officer), DashboardFilter::none());
+
+        $html = View::make('reports.pdf', ['data' => $data])->render();
+        $this->assertStringNotContainsString('Secretname', $html);
+        $this->assertStringNotContainsString('Zzxq', $html);
+    }
+
+    /** @return array<string, string> label => value */
+    private function section(ReportData $data, string $title): array
+    {
+        foreach ($data->summary as $section) {
+            if ($section->title === $title) {
+                return array_column($section->items, 'value', 'label');
+            }
+        }
+
+        $this->fail("No “{$title}” section");
     }
 }

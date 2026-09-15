@@ -33,6 +33,21 @@ enum RegistrationSource: string
     case Socu = 'socu';
     case GovernmentSystem = 'government_system';
 
+    /** How an officer names the source — the same words the registry screens use. */
+    public function label(): string
+    {
+        return match ($this) {
+            self::Manual => 'Manual entry (historical)',
+            self::Excel => 'Excel upload',
+            self::Csv => 'CSV upload',
+            self::Kobo => 'Kobo Collect',
+            self::Odk => 'ODK',
+            self::Api => 'REST API',
+            self::Socu => 'SOCU',
+            self::GovernmentSystem => 'Government system',
+        };
+    }
+
     /** Whether a NEW record may be written with this provenance. */
     public function isAssignable(): bool
     {

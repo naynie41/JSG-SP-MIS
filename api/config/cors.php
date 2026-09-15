@@ -27,7 +27,9 @@ return [
 
     'allowed_headers' => ['Accept', 'Authorization', 'Content-Type', 'X-Requested-With', 'X-XSRF-TOKEN'],
 
-    'exposed_headers' => [],
+    // A file download names itself in Content-Disposition; without exposing it, a
+    // cross-origin SPA cannot read the name and saves the file under a generic one.
+    'exposed_headers' => ['Content-Disposition'],
 
     'max_age' => (int) env('CORS_MAX_AGE', 0),
 

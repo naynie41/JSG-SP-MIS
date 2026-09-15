@@ -273,24 +273,28 @@ describe('MdaReportsDashboard', () => {
     await waitFor(() => expect(coverage).toHaveBeenCalledWith('lga', expect.objectContaining({ lga: 'dutse' })))
   })
 
-  it('exports the dashboard in the chosen format, with the filter in force', async () => {
+  it('exports the dashboard as a PDF only, with the filter in force', async () => {
     const user = userEvent.setup()
     ;(dashboardApi.export as Mock).mockResolvedValue(undefined)
     renderDashboard()
     await screen.findByRole('heading', { name: 'Ministry of Health' })
 
-    await user.selectOptions(screen.getByLabelText('LGA'), 'gumel')
-    await user.selectOptions(screen.getByLabelText('Export as'), 'xlsx')
-    await user.click(screen.getByRole('button', { name: 'Export' }))
+    // No format choice: the export is this dashboard on paper.
+    expect(screen.queryByLabelText('Export as')).not.toBeInTheDocument()
 
-    await waitFor(() => expect(dashboardApi.export).toHaveBeenCalledWith('xlsx', expect.objectContaining({ lga: 'gumel' })))
+    await user.selectOptions(screen.getByLabelText('LGA'), 'gumel')
+    await user.click(screen.getByRole('button', { name: 'Export PDF' }))
+
+    await waitFor(() =>
+      expect(dashboardApi.export).toHaveBeenCalledWith('pdf', expect.objectContaining({ lga: 'gumel' }), 'mda-dashboard.pdf'),
+    )
   })
 
   it('offers the export only to a caller who may export', async () => {
     renderDashboard(false)
     await screen.findByRole('heading', { name: 'Ministry of Health' })
 
-    expect(screen.queryByRole('button', { name: /^export$/i })).not.toBeInTheDocument()
+    expect(screen.queryByRole('button', { name: /export pdf/i })).not.toBeInTheDocument()
   })
 
   it('withholds small groups on a tier where the server publishes a minimum', async () => {

@@ -9,6 +9,7 @@ use App\Domain\Access\Scopes\MdaScope;
 use App\Domain\Registry\Enums\BeneficiaryStatus;
 use App\Domain\Registry\Enums\Gender;
 use App\Domain\Registry\Enums\Lga;
+use App\Domain\Registry\Enums\RegistrationSource;
 use App\Domain\Registry\Models\Beneficiary;
 use App\Domain\Registry\Models\HouseholdMembership;
 use App\Domain\Reporting\Export\ReportColumn;
@@ -226,7 +227,7 @@ class SegmentReportService
 
         $sources = [];
         foreach ($this->countsBy($base, 'registration_source') as $value => $n) {
-            $sources[self::SOURCE_LABELS[$value] ?? Str::headline($value)] = $n;
+            $sources[RegistrationSource::tryFrom($value)?->label() ?? Str::headline($value)] = $n;
         }
         arsort($sources);
 
@@ -249,18 +250,6 @@ class SegmentReportService
             new ReportSummarySection('Local government area', $items($lgas)),
         ];
     }
-
-    /** Registration sources as an officer names them, matching the registry screens. */
-    private const SOURCE_LABELS = [
-        'manual' => 'Manual entry (historical)',
-        'excel' => 'Excel upload',
-        'csv' => 'CSV upload',
-        'kobo' => 'Kobo Collect',
-        'odk' => 'ODK',
-        'api' => 'REST API',
-        'socu' => 'SOCU',
-        'government_system' => 'Government system',
-    ];
 
     /**
      * @param  Builder<Beneficiary>  $base

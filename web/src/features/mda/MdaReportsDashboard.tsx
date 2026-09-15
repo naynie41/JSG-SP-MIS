@@ -1,9 +1,9 @@
 import { useState } from 'react'
+import { FileDown } from 'lucide-react'
 import { Button } from '@/components/Button/Button'
 import { SelectField } from '@/components/Field/SelectField'
 import { Spinner } from '@/components/Spinner/Spinner'
 import { dashboardApi, filterParams } from '@/features/dashboard/api'
-import type { DashboardExportFormat } from '@/features/dashboard/api'
 import { BandChoroplethMap } from '@/features/dashboard/BandChoroplethMap'
 import { useDashboard } from '@/features/dashboard/hooks'
 import { summariseReporting } from '@/features/dashboard/reportingSummary'
@@ -109,7 +109,6 @@ function share(value: number, total: number): string {
  */
 export function MdaReportsDashboard({ canExport }: { canExport: boolean }) {
   const [filter, setFilter] = useState<DashboardFilterValue>(EMPTY_FILTER)
-  const [format, setFormat] = useState<DashboardExportFormat>('pdf')
   const [exporting, setExporting] = useState(false)
   const [exportFailed, setExportFailed] = useState(false)
   const active = !isEmptyFilter(filter)
@@ -119,7 +118,8 @@ export function MdaReportsDashboard({ canExport }: { canExport: boolean }) {
     setExporting(true)
     setExportFailed(false)
     try {
-      await dashboardApi.export(format, active ? filter : undefined)
+      // PDF only: the file is this dashboard laid out on paper, with the same figures.
+      await dashboardApi.export('pdf', active ? filter : undefined, 'mda-dashboard.pdf')
     } catch {
       setExportFailed(true)
     } finally {
@@ -203,23 +203,9 @@ export function MdaReportsDashboard({ canExport }: { canExport: boolean }) {
             />
           </div>
           {canExport && (
-            <>
-              <div className={styles.control}>
-                <SelectField
-                  label="Export as"
-                  value={format}
-                  onChange={(event) => setFormat(event.target.value as DashboardExportFormat)}
-                  options={[
-                    { value: 'pdf', label: 'PDF' },
-                    { value: 'xlsx', label: 'Excel' },
-                    { value: 'csv', label: 'CSV' },
-                  ]}
-                />
-              </div>
-              <Button variant="secondary" loading={exporting} onClick={() => void runExport()}>
-                Export
-              </Button>
-            </>
+            <Button variant="secondary" leftIcon={FileDown} loading={exporting} onClick={() => void runExport()}>
+              Export PDF
+            </Button>
           )}
           <span className={styles.updating} aria-live="polite">
             {isFetching ? 'Updating…' : ''}

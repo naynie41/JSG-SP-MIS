@@ -323,14 +323,6 @@ class DuplicateReviewReport
 
     private static function sourceLabel(string $source): string
     {
-        return match (RegistrationSource::tryFrom($source)) {
-            RegistrationSource::Csv => 'CSV upload',
-            RegistrationSource::Excel => 'Excel upload',
-            RegistrationSource::Kobo => 'Kobo Collect',
-            RegistrationSource::Odk => 'ODK',
-            RegistrationSource::Api => 'REST API',
-            RegistrationSource::Socu => 'SOCU',
-            default => Str::headline($source),
-        };
+        return RegistrationSource::tryFrom($source)?->label() ?? Str::headline($source);
     }
 }
