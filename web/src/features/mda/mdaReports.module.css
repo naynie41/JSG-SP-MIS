@@ -207,78 +207,6 @@
   line-height: var(--lh-label);
 }
 
-/* ------------------------------------------------------------ measured bars ---- */
-
-.meters {
-  display: grid;
-  gap: var(--space-4);
-  margin: 0;
-  padding: 0;
-  list-style: none;
-}
-
-.meter {
-  display: grid;
-  grid-template-columns: minmax(8rem, 13rem) minmax(0, 1fr) 3.5rem;
-  align-items: center;
-  gap: var(--space-4);
-}
-
-.meterName {
-  font-size: var(--fs-ui);
-  font-weight: 500;
-  color: var(--ink);
-}
-
-.meterHint {
-  display: block;
-  color: var(--text-muted-strong);
-  font-size: var(--fs-caption);
-  font-weight: 400;
-  line-height: 1.35;
-}
-
-.meterTrack {
-  display: block;
-  height: 1.25rem;
-  overflow: hidden;
-  border-radius: var(--radius-sm);
-  background: var(--border);
-}
-
-.meterFill,
-.meterFillWeak {
-  display: block;
-  height: 100%;
-  border-radius: var(--radius-sm);
-  background: var(--chart-1);
-}
-
-/* The weakest measure, named in the sentence beneath — never by colour alone. */
-.meterFillWeak {
-  background: var(--warning);
-}
-
-.meterValue {
-  text-align: right;
-  font-family: var(--font-display);
-  font-size: var(--fs-body);
-  font-weight: 600;
-  font-variant-numeric: tabular-nums;
-  color: var(--ink);
-}
-
-@media (max-width: 640px) {
-  .meter {
-    grid-template-columns: minmax(0, 1fr) auto;
-  }
-
-  .meterTrack {
-    grid-column: 1 / -1;
-    grid-row: 2;
-  }
-}
-
 .insight {
   margin: 0;
   color: var(--ink);
@@ -286,7 +214,7 @@
   line-height: var(--lh-ui);
 }
 
-/* ------------------------------------------------------------ paired cards ---- */
+/* ---------------------------------------------------------------- sections ---- */
 
 .section {
   display: grid;
@@ -299,111 +227,6 @@
   font-family: var(--font-display);
   font-size: var(--fs-body);
   font-weight: 600;
-  color: var(--ink);
-}
-
-.pair {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  background: var(--surface);
-  border: 1px solid var(--border);
-  border-radius: var(--radius-lg);
-  box-shadow: var(--elev-sm);
-}
-
-.pairItem {
-  display: grid;
-  align-content: start;
-  gap: var(--space-4);
-  min-width: 0;
-  padding: var(--space-5) var(--space-6);
-}
-
-.pairItem + .pairItem {
-  border-left: 1px solid var(--border);
-}
-
-@media (max-width: 960px) {
-  .pair {
-    grid-template-columns: minmax(0, 1fr);
-  }
-
-  .pairItem + .pairItem {
-    border-left: 0;
-    border-top: 1px solid var(--border);
-  }
-}
-
-.pairHead {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: baseline;
-  gap: var(--space-1) var(--space-3);
-}
-
-.pairName {
-  margin: 0;
-  font-family: var(--font-display);
-  font-size: var(--fs-h3);
-  font-weight: 600;
-  color: var(--forest);
-}
-
-.pairMeta {
-  color: var(--text-muted-strong);
-  font-size: var(--fs-ui);
-}
-
-.big {
-  display: grid;
-  gap: var(--space-1);
-}
-
-.bigValue {
-  font-family: var(--font-display);
-  font-size: var(--fs-kpi);
-  line-height: 1;
-  font-weight: 700;
-  letter-spacing: -0.03em;
-  font-variant-numeric: tabular-nums;
-  color: var(--forest);
-}
-
-.bigLabel {
-  color: var(--text-muted-strong);
-  font-size: var(--fs-label);
-}
-
-.stats {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(6.5rem, 1fr));
-  margin: 0;
-  overflow: hidden;
-  border: 1px solid var(--border);
-  border-radius: var(--radius-md);
-}
-
-.stat {
-  display: flex;
-  flex-direction: column-reverse;
-  justify-content: flex-end;
-  gap: var(--space-2);
-  min-width: 0;
-  padding: var(--space-4);
-  box-shadow: -1px 0 0 var(--border);
-}
-
-.statLabel {
-  color: var(--text-muted-strong);
-  font-size: var(--fs-label);
-}
-
-.statValue {
-  margin: 0;
-  font-family: var(--font-display);
-  font-size: var(--fs-h2);
-  font-weight: 600;
-  font-variant-numeric: tabular-nums;
   color: var(--ink);
 }
 
@@ -502,67 +325,6 @@
   color: var(--text-muted-strong);
   font-size: var(--fs-label);
   line-height: var(--lh-label);
-}
-
-/* ------------------------------------------------------------ month columns ---- */
-
-.columns {
-  display: grid;
-  grid-auto-columns: minmax(0, 1fr);
-  grid-auto-flow: column;
-  align-items: end;
-  gap: 2px;
-  height: 11rem;
-  padding-top: var(--space-5);
-  border-bottom: 1px solid var(--border-strong);
-}
-
-.column {
-  position: relative;
-  height: 100%;
-}
-
-.columnFill {
-  position: absolute;
-  right: 0;
-  bottom: 0;
-  left: 0;
-  min-height: 2px;
-  border-radius: var(--radius-sm) var(--radius-sm) 0 0;
-  background: var(--chart-1);
-}
-
-.column:hover .columnFill {
-  background: var(--forest-2);
-}
-
-.columnValue {
-  position: absolute;
-  left: 50%;
-  transform: translateX(-50%);
-  color: var(--ink);
-  font-size: var(--fs-caption);
-  font-variant-numeric: tabular-nums;
-  white-space: nowrap;
-}
-
-.columnAxis {
-  display: grid;
-  grid-auto-columns: minmax(0, 1fr);
-  grid-auto-flow: column;
-  gap: 2px;
-  color: var(--text-muted-strong);
-  font-size: var(--fs-caption);
-  text-align: center;
-}
-
-.srOnly {
-  position: absolute;
-  width: 1px;
-  height: 1px;
-  overflow: hidden;
-  clip: rect(0 0 0 0);
-  white-space: nowrap;
 }
 
 /* ----------------------------------------------------------- review progress ---- */
@@ -701,4 +463,263 @@
   min-width: 10rem;
   max-width: 16rem;
   white-space: normal;
+}
+
+/* ============================================================================
+   Dashboard board (charts)
+   ============================================================================ */
+
+.board {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-6);
+  transition: opacity var(--transition);
+}
+
+/* Refetch keeps the frame: the last picture stays, dimmed, until the new one lands. */
+.boardUpdating {
+  opacity: 0.6;
+}
+
+.subhead {
+  margin: 0 0 var(--space-2);
+  color: var(--ink);
+  font-size: var(--fs-ui);
+  font-weight: 600;
+}
+
+.stack {
+  display: grid;
+  gap: var(--space-5);
+}
+
+/* ---- headline tiles ---- */
+
+.tiles {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: var(--space-4);
+  margin: 0;
+}
+
+@media (max-width: 960px) {
+  .tiles {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 560px) {
+  .tiles {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+.tile {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+  min-width: 0;
+  padding: var(--space-4) var(--space-5);
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--elev-sm);
+}
+
+/* The one dark panel on the page: the headline figure (DESIGN.md §5.5). */
+.tileLead {
+  background: var(--forest);
+  border-color: var(--forest);
+}
+
+.tileLabel {
+  color: var(--text-muted-strong);
+  font-size: var(--fs-label);
+}
+
+.tileLead .tileLabel,
+.tileLead .tileNote {
+  color: var(--surface-mint);
+}
+
+.tileValue {
+  margin: 0;
+  font-family: var(--font-body);
+  font-size: var(--fs-h1);
+  line-height: 1.1;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  color: var(--ink);
+}
+
+.tileLead .tileValue {
+  font-size: var(--fs-kpi);
+  color: var(--bg);
+}
+
+.tileHeld {
+  margin: 0;
+  font-size: var(--fs-h2);
+  font-weight: 500;
+  color: var(--text-muted-strong);
+}
+
+.tileNote {
+  margin: 0;
+  color: var(--text-muted-strong);
+  font-size: var(--fs-label);
+}
+
+.tileSpark {
+  margin: var(--space-2) 0 0;
+}
+
+/* ---- grids ---- */
+
+.split21 {
+  display: grid;
+  grid-template-columns: minmax(0, 2fr) minmax(0, 1fr);
+  align-items: start;
+  gap: var(--space-5);
+}
+
+.grid3 {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  align-items: start;
+  gap: var(--space-5);
+}
+
+@media (max-width: 1180px) {
+  .split21 {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .grid3 {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 760px) {
+  .grid3 {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+/* ---- map key ---- */
+
+.bandKey {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2) var(--space-4);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  color: var(--ink);
+  font-size: var(--fs-label);
+}
+
+.bandKey li {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+}
+
+.bandSwatch {
+  width: 12px;
+  height: 12px;
+  border-radius: var(--radius-swatch);
+}
+
+.bandRange {
+  color: var(--text-muted-strong);
+}
+
+/* ---- programmes ---- */
+
+.programmes {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(18rem, 1fr));
+  gap: var(--space-4);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.programme {
+  display: grid;
+  gap: var(--space-3);
+  padding: var(--space-4);
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+}
+
+.programmeHead {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: var(--space-3);
+}
+
+.programmeName {
+  min-width: 0;
+  color: var(--ink);
+  font-size: var(--fs-ui);
+  font-weight: 600;
+}
+
+.light {
+  display: inline-flex;
+  flex: none;
+  align-items: center;
+  gap: var(--space-1);
+  color: var(--text-muted-strong);
+  font-size: var(--fs-caption);
+  white-space: nowrap;
+}
+
+.lightDot {
+  width: 8px;
+  height: 8px;
+  border-radius: var(--radius-full);
+}
+
+.programmeMeter {
+  display: grid;
+  grid-template-columns: 5rem minmax(0, 1fr);
+  align-items: center;
+  gap: var(--space-1) var(--space-3);
+  font-size: var(--fs-label);
+}
+
+.programmeMeterLabel {
+  color: var(--text-muted-strong);
+}
+
+.programmeMeterTrack {
+  display: block;
+  height: 8px;
+  overflow: hidden;
+  border-radius: var(--radius-sm);
+  background: var(--surface-mint);
+}
+
+.programmeMeterFill {
+  display: block;
+  height: 100%;
+  border-radius: var(--radius-sm);
+  background: var(--chart-1);
+}
+
+.programmeMeterText {
+  grid-column: 2;
+  color: var(--ink);
+  font-variant-numeric: tabular-nums;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .board {
+    transition: none;
+  }
 }

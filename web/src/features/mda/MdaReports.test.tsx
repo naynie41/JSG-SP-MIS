@@ -41,7 +41,9 @@ vi.mock('@/lib/api/exportList', () => ({ exportListFile: vi.fn() }))
 // The Dashboard tab has its own tests; here it only needs to stay quiet.
 vi.mock('@/features/dashboard/api', () => ({
   dashboardApi: { get: vi.fn(() => new Promise(() => {})), opsMetrics: vi.fn(), export: vi.fn() },
+  filterParams: () => ({}),
 }))
+vi.mock('@/features/dashboard/BandChoroplethMap', () => ({ BandChoroplethMap: () => null }))
 
 const perms = { value: [] as string[] }
 vi.mock('@/lib/auth/AuthProvider', () => ({
