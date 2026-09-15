@@ -6,28 +6,43 @@ namespace App\Domain\Reporting\Export;
 
 use App\Domain\Programme\Models\Programme;
 use App\Domain\Registry\Enums\RegistrationSource;
+use App\Domain\Reporting\Export\Charts\SvgChart;
 use App\Domain\Reporting\Support\DashboardFilter;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Str;
 
 /**
- * The MDA Reports dashboard as a PDF: the page the officer was looking at, on paper.
+ * The MDA Reports dashboard as a PDF: the page the officer was looking at, on paper —
+ * headline tiles, the same charts and the LGA map, then the programme table.
  *
- * It replaced the executive export for MDA scopes, which printed a different report
- * under different words — "Net-unique beneficiaries" there was another figure from the
- * tile of the same name on screen. Here every block reads the SAME fields the dashboard
- * renders (the tiles' figures are the ones `summariseReporting()` shows), in the same
- * words, so a number quoted from the PDF is the number on the screen.
+ * Every figure reads the SAME fields the dashboard renders, in the same words, so a
+ * number quoted from the PDF is the number on the screen. Charts are drawn server-side
+ * ({@see SvgChart}) and each prints its values beside it.
  *
  * Aggregates only. The small-cell rule the dashboard publishes (`min_cell_size`) is
  * applied to every count here as it is on screen; it is null for an MDA's own data.
  */
 class MdaDashboardExportBuilder
 {
-    private const STATUS_LABELS = [
-        'active' => 'Active',
-        'flagged' => 'Flagged for review',
-        'suspended' => 'Suspended',
+    /** Chart widths in the PDF's px: half a content column, and the full column. */
+    private const HALF = 330;
+
+    private const CATEGORY_COLORS = ['#008300', '#2A78D6', '#EDA100', '#E87BA4'];
+
+    private const OTHER_COLOR = '#9A9C93';
+
+    private const STATUSES = [
+        'active' => ['Active', '#2F7D3B'],
+        'flagged' => ['Flagged for review', '#B23A31'],
+        'suspended' => ['Suspended', '#B4791E'],
+    ];
+
+    /** Mirrors the web map's band fills (web/src/features/gis/choropleth.ts). */
+    private const BANDS = [
+        'green' => ['High', '#2F7D3B'],
+        'yellow' => ['Moderate', '#B4791E'],
+        'red' => ['Low', '#B23A31'],
+        'grey' => ['No coverage', '#C9CBC1'],
     ];
 
     private const LIGHT_LABELS = [
@@ -37,7 +52,7 @@ class MdaDashboardExportBuilder
         'unrated' => 'No target set',
     ];
 
-    private const HOUSEHOLD_BANDS = ['1' => '1 person', '2-3' => '2 to 3 people', '4-6' => '4 to 6 people', '7+' => '7 or more people'];
+    private const HOUSEHOLD_BANDS = ['1' => '1 person', '2-3' => '2–3 people', '4-6' => '4–6 people', '7+' => '7+ people'];
 
     private const LGA_LIMIT = 10;
 
@@ -46,24 +61,13 @@ class MdaDashboardExportBuilder
     /**
      * @param  array<string, mixed>  $dashboard  the payload `DashboardService::forUser()` returns
      * @param  string|null  $scopeLabel  the MDA's name for the letterhead; the scope's own label otherwise
+     * @param  array{rows: list<array<string, mixed>>, boundaries: list<array{code: string, name: string, geometry: mixed}>}|null  $map
+     *                                                                                                                                   LGA coverage and boundary shapes; null when no boundaries are loaded
      */
-    public function build(array $dashboard, DashboardFilter $filter, ?string $scopeLabel = null): ReportData
+    public function build(array $dashboard, DashboardFilter $filter, ?string $scopeLabel = null, ?array $map = null): ReportData
     {
         $m = (array) ($dashboard['metrics'] ?? []);
         $this->minimum = isset($dashboard['min_cell_size']) ? (int) $dashboard['min_cell_size'] : null;
-
-        $summary = array_values(array_filter([
-            $this->atAGlance($m),
-            $this->quality($m),
-            $this->gender($m),
-            $this->ages($m),
-            $this->households($m),
-            $this->sources($m),
-            $this->statuses($m),
-            $this->benefits($m),
-            $this->lgas($m),
-            $this->trend($m),
-        ]));
 
         [$columns, $rows] = $this->programmes($m);
 
@@ -75,207 +79,331 @@ class MdaDashboardExportBuilder
             generatedAt: Carbon::now(),
             columns: $columns,
             rows: $rows,
-            summary: $summary,
             crest: true,
+            highlights: $this->highlights($m),
+            figures: [
+                $this->registrations($m),
+                $this->valueDelivered($m),
+                $this->quality($m),
+                $this->gender($m),
+                $this->ages($m),
+                $this->households($m),
+                $this->coverageMap($map),
+                $this->largestLgas($m),
+                $this->benefits($m),
+                $this->records($m),
+            ],
         );
     }
 
-    /* ------------------------------------------------------------------ blocks */
+    /* ---------------------------------------------------------------- tiles */
 
-    /** @param array<string, mixed> $m */
-    private function atAGlance(array $m): ReportSummarySection
+    /**
+     * The dashboard's headline tiles, same labels and same fields.
+     *
+     * @param  array<string, mixed>  $m
+     * @return list<array{label: string, value: string, note?: string}>
+     */
+    private function highlights(array $m): array
     {
         $population = (array) ($m['population'] ?? []);
 
-        $items = [
-            $this->item('Net-unique beneficiaries', $this->count($m['registry']['beneficiaries']['total'] ?? 0)),
-            $this->item('Households', $this->count($m['registry']['households']['total'] ?? 0)),
-            $this->item('Active programmes', $this->count($m['programmes']['active'] ?? 0)),
-            $this->item('Active activities', $this->count($m['programmes']['activities_active'] ?? 0)),
-            $this->item('Benefit deliveries', $this->count($m['benefits']['disbursed']['benefit_count'] ?? 0)),
-            $this->item('Value delivered', $this->naira($m['benefits']['disbursed']['total_value'] ?? 0)),
-            $this->item('Duplicates surfaced', $this->count($m['duplicates']['matches_surfaced'] ?? 0)),
+        $tiles = [
+            ['label' => 'Net-unique beneficiaries', 'value' => $this->count($m['registry']['beneficiaries']['total'] ?? 0)],
+            ['label' => 'Households', 'value' => $this->count($m['registry']['households']['total'] ?? 0)],
+            ['label' => 'Active programmes', 'value' => $this->count($m['programmes']['active'] ?? 0), 'note' => 'of '.number_format((int) ($m['programmes']['total'] ?? 0)).' in view'],
+            ['label' => 'Active activities', 'value' => $this->count($m['programmes']['activities_active'] ?? 0), 'note' => 'of '.number_format((int) ($m['programmes']['activities_total'] ?? 0)).' in view'],
+            ['label' => 'Benefit deliveries', 'value' => $this->count($m['benefits']['disbursed']['benefit_count'] ?? 0)],
+            ['label' => 'Value delivered', 'value' => $this->naira($m['benefits']['disbursed']['total_value'] ?? 0)],
+            ['label' => 'Duplicates surfaced', 'value' => $this->count($m['duplicates']['matches_surfaced'] ?? 0), 'note' => 'Possible matches in your uploads'],
         ];
 
         if ($population !== []) {
-            $items[] = $this->item(
-                'New in the last '.(int) ($population['period_days'] ?? 0).' days',
-                $this->count($population['new_registrations_period'] ?? 0),
-            );
+            $tiles[] = [
+                'label' => 'New registrations',
+                'value' => $this->count($population['new_registrations_period'] ?? 0),
+                'note' => 'in the last '.(int) ($population['period_days'] ?? 0).' days',
+            ];
         }
 
-        return new ReportSummarySection('At a glance', $items);
+        return $tiles;
+    }
+
+    /* -------------------------------------------------------------- figures */
+
+    /** @param array<string, mixed> $m */
+    private function registrations(array $m): ReportFigure
+    {
+        $points = $this->points($m['trends']['registrations'] ?? []);
+        $chart = SvgChart::area($points, self::HALF, 170, static fn (float $v): string => SvgChart::compact($v), static fn (float $v): string => number_format($v));
+
+        return $this->figure('New registrations by month', 'People newly registered in each month', $chart, $this->trendItems($points, fn (float $v): string => $this->count($v)), 'No registrations recorded in this period.');
     }
 
     /** @param array<string, mixed> $m */
-    private function quality(array $m): ?ReportSummarySection
+    private function valueDelivered(array $m): ReportFigure
+    {
+        $points = $this->points($m['trends']['disbursement'] ?? []);
+        $chart = SvgChart::area($points, self::HALF, 170, static fn (float $v): string => SvgChart::compactNaira($v), static fn (float $v): string => SvgChart::compactNaira($v));
+
+        return $this->figure('Value delivered by month', 'Recorded value of benefits delivered each month', $chart, $this->trendItems($points, fn (float $v): string => $this->naira($v)), 'No benefits delivered in this period.');
+    }
+
+    /** @param array<string, mixed> $m */
+    private function quality(array $m): ReportFigure
     {
         $quality = (array) ($m['registry_quality'] ?? []);
         $total = (int) ($quality['total'] ?? 0);
         if ($total === 0) {
-            return null;
+            return new ReportFigure('Quality of your records', note: 'No records in this view yet, so there is nothing to measure.');
         }
 
-        return new ReportSummarySection('Quality of your records', [
-            $this->item('Verified', $this->percent(($quality['verified'] ?? 0) / $total)),
-            $this->item('NIN recorded', $this->percent($quality['nin_completeness'] ?? null)),
-            $this->item('Phone recorded', $this->percent($quality['phone_completeness'] ?? null)),
-            $this->item('Overall completeness', $this->percent($quality['data_completeness'] ?? null)),
-        ]);
+        $meters = [
+            ['label' => 'Verified', 'ratio' => ($quality['verified'] ?? 0) / $total],
+            ['label' => 'NIN recorded', 'ratio' => $this->ratio($quality['nin_completeness'] ?? null)],
+            ['label' => 'Phone recorded', 'ratio' => $this->ratio($quality['phone_completeness'] ?? null)],
+            ['label' => 'Overall completeness', 'ratio' => $this->ratio($quality['data_completeness'] ?? null)],
+        ];
+
+        // The weakest single detail, not "overall", which averages the others.
+        $weakest = null;
+        foreach (array_slice($meters, 0, 3) as $meter) {
+            if ($meter['ratio'] !== null && $meter['ratio'] < 1 && ($weakest === null || $meter['ratio'] < $weakest['ratio'])) {
+                $weakest = $meter;
+            }
+        }
+
+        $chart = SvgChart::rings(array_map(static fn (array $meter): array => [
+            'label' => $meter['label'],
+            'ratio' => $meter['ratio'],
+            'weakest' => $weakest !== null && $meter['label'] === $weakest['label'],
+        ], $meters), self::HALF);
+
+        return $this->figure(
+            'Quality of your records',
+            'Share of your '.number_format($total).' records carrying each detail',
+            $chart,
+            [],
+            null,
+            $weakest !== null ? "{$weakest['label']} is the weakest detail at ".$this->percent($weakest['ratio']).'.' : 'Every record carries each of these details.',
+        );
     }
 
     /** @param array<string, mixed> $m */
-    private function gender(array $m): ?ReportSummarySection
+    private function gender(array $m): ReportFigure
     {
         $demographics = (array) ($m['demographics'] ?? []);
-        if ($demographics === []) {
-            return null;
-        }
-
         $by = (array) ($demographics['by_gender'] ?? []);
         $women = (int) ($by['female'] ?? 0);
         $men = (int) ($by['male'] ?? 0);
-        $other = (int) ($by['other'] ?? 0);
 
-        $items = [
-            $this->item('Women', $this->count($women)),
-            $this->item('Men', $this->count($men)),
+        $slices = [
+            ['label' => 'Women', 'value' => $women, 'color' => self::CATEGORY_COLORS[0]],
+            ['label' => 'Men', 'value' => $men, 'color' => self::CATEGORY_COLORS[1]],
         ];
-        if ($other > 0) {
-            $items[] = $this->item('Other', $this->count($other));
+        if ((int) ($by['other'] ?? 0) > 0) {
+            $slices[] = ['label' => 'Other', 'value' => (int) $by['other'], 'color' => self::CATEGORY_COLORS[2]];
         }
-        $items[] = $this->item('Not recorded', $this->count($by['unspecified'] ?? 0));
-        // A share computed from a withheld count would give the count back.
-        $items[] = $this->item('Share who are women', $this->held($women) || $this->held($men) ? '—' : $this->percent($demographics['female_pct'] ?? null));
+        $slices[] = ['label' => 'Not recorded', 'value' => (int) ($by['unspecified'] ?? 0), 'color' => self::OTHER_COLOR];
 
-        return new ReportSummarySection('Women and men', $items);
+        // A share computed from a withheld count would give the count back.
+        $shareHidden = $this->held($women) || $this->held($men);
+        $chart = SvgChart::donut($slices, 140, $shareHidden ? '—' : $this->percent($demographics['female_pct'] ?? null), 'are women');
+
+        return $this->figure(
+            'Women and men',
+            number_format((int) ($demographics['gender_known'] ?? 0)).' with a recorded gender',
+            $chart,
+            $this->shareItems($slices),
+            'No genders recorded in this view yet.',
+        );
     }
 
     /** @param array<string, mixed> $m */
-    private function ages(array $m): ?ReportSummarySection
+    private function ages(array $m): ReportFigure
     {
         $bands = (array) ($m['demographics']['age_bands'] ?? []);
-        if ($bands === []) {
-            return null;
-        }
 
-        $items = [];
+        $rows = [];
         foreach ((array) config('reporting.age_bands', []) as $key => $range) {
             [$min, $max] = $range;
             $ages = $max === null ? "{$min}+" : $min.'–'.((int) $max - 1);
-            $items[] = $this->item(Str::headline((string) $key)." ({$ages})", $this->count($bands[$key] ?? 0));
+            $rows[] = ['label' => Str::headline((string) $key).' '.$ages, 'count' => (int) ($bands[$key] ?? 0)];
         }
-        $items[] = $this->item('Not recorded', $this->count($bands['unknown'] ?? 0));
+        $rows[] = ['label' => 'Not recorded', 'count' => (int) ($bands['unknown'] ?? 0)];
 
-        return new ReportSummarySection('Age groups', $items);
+        return $this->figure(
+            'Age groups',
+            'From date of birth, in the bands the state reports on',
+            SvgChart::columns($rows, self::HALF, 170, $this->minimum),
+            [],
+            'No dates of birth recorded in this view yet.',
+        );
     }
 
     /** @param array<string, mixed> $m */
-    private function households(array $m): ?ReportSummarySection
+    private function households(array $m): ReportFigure
     {
         $sizes = (array) ($m['household_size'] ?? []);
         $split = (array) ($m['demographics']['household_vs_individual'] ?? []);
-        if ($sizes === [] && $split === []) {
-            return null;
-        }
 
-        $items = [$this->item('Households', $this->count($sizes['total_households'] ?? 0))];
-        if (isset($sizes['average_size'])) {
-            $items[] = $this->item('People per household, on average', number_format((float) $sizes['average_size'], 1));
-        }
+        $rows = [];
         foreach (self::HOUSEHOLD_BANDS as $key => $label) {
-            $items[] = $this->item("Households of {$label}", $this->count($sizes['bands'][$key] ?? 0));
+            $rows[] = ['label' => $label, 'count' => (int) ($sizes['bands'][$key] ?? 0)];
         }
-        $items[] = $this->item('People in a household', $this->count($split['in_household'] ?? 0));
-        $items[] = $this->item('Registered as individuals', $this->count($split['individual'] ?? 0));
 
-        return new ReportSummarySection('Household size', $items);
+        $subtitle = number_format((int) ($sizes['total_households'] ?? 0)).' households';
+        if (isset($sizes['average_size'])) {
+            $subtitle .= ' · '.number_format((float) $sizes['average_size'], 1).' people on average';
+        }
+
+        return $this->figure(
+            'Household size',
+            $subtitle,
+            SvgChart::columns($rows, self::HALF, 150, $this->minimum),
+            [
+                $this->item('People in a household', $this->count($split['in_household'] ?? 0)),
+                $this->item('Registered as individuals', $this->count($split['individual'] ?? 0)),
+            ],
+            'No households in this view yet.',
+        );
     }
 
-    /** @param array<string, mixed> $m */
-    private function sources(array $m): ?ReportSummarySection
+    /**
+     * @param  array{rows: list<array<string, mixed>>, boundaries: list<array{code: string, name: string, geometry: mixed}>}|null  $map
+     */
+    private function coverageMap(?array $map): ReportFigure
     {
-        $bySource = (array) ($m['registry']['beneficiaries']['by_source'] ?? []);
-        if ($bySource === []) {
-            return null;
+        $title = 'Coverage across your LGAs';
+        $subtitle = 'Each LGA shaded by how many of your beneficiaries live there';
+
+        if ($map === null || $map['boundaries'] === []) {
+            return new ReportFigure($title, $subtitle, note: 'The LGA boundary map is not loaded on this server, so coverage is listed under Largest LGAs.');
         }
-        arsort($bySource);
+
+        $bandByCode = [];
+        foreach ($map['rows'] as $row) {
+            $bandByCode[(string) ($row['key'] ?? '')] = (string) ($row['band'] ?? 'grey');
+        }
+
+        $areas = [];
+        $counts = array_fill_keys(array_keys(self::BANDS), 0);
+        foreach ($map['boundaries'] as $boundary) {
+            $band = $bandByCode[$boundary['code']] ?? 'grey';
+            $band = isset(self::BANDS[$band]) ? $band : 'grey';
+            $counts[$band]++;
+            $geometry = is_string($boundary['geometry']) ? (array) json_decode($boundary['geometry'], true) : (array) $boundary['geometry'];
+            $areas[] = ['geometry' => $geometry, 'color' => self::BANDS[$band][1]];
+        }
+
+        $green = (int) config('reporting.coverage_bands.green_min', 1000);
+        $yellow = (int) config('reporting.coverage_bands.yellow_min', 250);
+        $ranges = [
+            'green' => number_format($green).' or more',
+            'yellow' => number_format($yellow).'–'.number_format($green - 1),
+            'red' => '1–'.number_format($yellow - 1),
+            'grey' => 'no',
+        ];
 
         $items = [];
-        foreach ($bySource as $value => $n) {
-            $items[] = $this->item(RegistrationSource::tryFrom((string) $value)?->label() ?? Str::headline((string) $value), $this->count($n));
+        foreach (self::BANDS as $band => [$label, $color]) {
+            $items[] = ['label' => "{$label} · {$ranges[$band]} beneficiaries", 'value' => $counts[$band].($counts[$band] === 1 ? ' LGA' : ' LGAs'), 'color' => $color];
         }
 
-        return new ReportSummarySection('How records came in', $items);
+        return $this->figure($title, $subtitle, SvgChart::map($areas, self::HALF, 280), $items, 'No boundary shapes to draw.');
     }
 
     /** @param array<string, mixed> $m */
-    private function statuses(array $m): ReportSummarySection
+    private function largestLgas(array $m): ReportFigure
     {
-        $byStatus = (array) ($m['registry']['beneficiaries']['by_status'] ?? []);
+        $byLga = (array) ($m['registry']['beneficiaries']['by_lga'] ?? []);
+        arsort($byLga);
 
-        $items = [];
-        foreach (self::STATUS_LABELS as $key => $label) {
-            $items[] = $this->item($label, $this->count($byStatus[$key] ?? 0));
+        $rows = [];
+        foreach (array_slice($byLga, 0, self::LGA_LIMIT, true) as $lga => $n) {
+            $rows[] = ['label' => $lga === 'unspecified' ? 'Not recorded' : Str::headline((string) $lga), 'count' => (int) $n];
         }
+        $rest = array_slice($byLga, self::LGA_LIMIT, null, true);
 
-        return new ReportSummarySection('Status of records', $items);
+        return $this->figure(
+            'Largest LGAs',
+            'Beneficiaries by local government area',
+            SvgChart::bars($rows, self::HALF, $this->minimum),
+            [],
+            'No beneficiaries recorded in this view yet.',
+            $rest !== [] ? 'And '.count($rest).' more LGAs with '.$this->count(array_sum($rest)).' beneficiaries between them.' : null,
+        );
     }
 
     /** @param array<string, mixed> $m */
-    private function benefits(array $m): ?ReportSummarySection
+    private function benefits(array $m): ReportFigure
     {
         $groups = (array) ($m['benefits']['by_type'] ?? []);
-        if ($groups === []) {
-            return null;
-        }
         usort($groups, static fn (array $a, array $b): int => ($b['benefit_count'] ?? 0) <=> ($a['benefit_count'] ?? 0));
 
+        $rows = [];
         $items = [];
         foreach ($groups as $group) {
             $label = isset($group['key']) && $group['key'] !== '' ? Str::headline((string) $group['key']) : 'Unspecified';
-            $items[] = $this->item($label, $this->count($group['benefit_count'] ?? 0).' · '.$this->naira($group['total_value'] ?? 0));
+            $rows[] = ['label' => $label, 'count' => (int) ($group['benefit_count'] ?? 0)];
+            $items[] = $this->item("{$label} · value delivered", $this->naira($group['total_value'] ?? 0));
         }
 
-        return new ReportSummarySection('Benefits delivered', $items);
+        return $this->figure(
+            'Benefits delivered',
+            'Deliveries recorded, by type of benefit',
+            SvgChart::bars($rows, self::HALF, $this->minimum),
+            $items,
+            'No benefits delivered in this view yet.',
+        );
     }
 
     /** @param array<string, mixed> $m */
-    private function lgas(array $m): ?ReportSummarySection
+    private function records(array $m): ReportFigure
     {
-        $byLga = (array) ($m['registry']['beneficiaries']['by_lga'] ?? []);
-        if ($byLga === []) {
-            return null;
-        }
-        arsort($byLga);
+        $bySource = (array) ($m['registry']['beneficiaries']['by_source'] ?? []);
+        arsort($bySource);
+        $byStatus = (array) ($m['registry']['beneficiaries']['by_status'] ?? []);
 
-        $items = [];
-        foreach (array_slice($byLga, 0, self::LGA_LIMIT, true) as $lga => $n) {
-            $items[] = $this->item($lga === 'unspecified' ? 'Not recorded' : Str::headline((string) $lga), $this->count($n));
+        $sources = [];
+        $index = 0;
+        $other = 0;
+        foreach ($bySource as $value => $n) {
+            if ($index < count(self::CATEGORY_COLORS)) {
+                $sources[] = [
+                    'label' => RegistrationSource::tryFrom((string) $value)?->label() ?? Str::headline((string) $value),
+                    'value' => (int) $n,
+                    'color' => self::CATEGORY_COLORS[$index],
+                ];
+            } else {
+                $other += (int) $n;
+            }
+            $index++;
         }
-        $rest = array_slice($byLga, self::LGA_LIMIT, null, true);
-        if ($rest !== []) {
-            $items[] = $this->item(count($rest).' other LGAs', $this->count(array_sum($rest)));
+        if ($other > 0) {
+            $sources[] = ['label' => 'Other sources', 'value' => $other, 'color' => self::OTHER_COLOR];
         }
 
-        return new ReportSummarySection('Largest LGAs', $items);
+        $statuses = [];
+        foreach (self::STATUSES as $key => [$label, $color]) {
+            $statuses[] = ['label' => $label, 'value' => (int) ($byStatus[$key] ?? 0), 'color' => $color];
+        }
+
+        $chart = SvgChart::splitBars([
+            ['title' => 'How they were registered', 'segments' => $sources],
+            ['title' => 'Status of records', 'segments' => $statuses],
+        ], self::HALF);
+
+        return $this->figure(
+            'Records',
+            'How they came in, and where they stand',
+            $chart,
+            [...$this->shareItems($sources), ...$this->shareItems($statuses)],
+            'No records in this view yet.',
+        );
     }
 
-    /** @param array<string, mixed> $m */
-    private function trend(array $m): ?ReportSummarySection
-    {
-        $points = array_slice((array) ($m['trends']['registrations'] ?? []), -12);
-        if ($points === []) {
-            return null;
-        }
-
-        $items = [];
-        foreach ($points as $point) {
-            $items[] = $this->item(Carbon::createFromFormat('Y-m', (string) $point['month'])->format('M Y'), $this->count($point['value'] ?? 0));
-        }
-
-        return new ReportSummarySection('New registrations by month', $items);
-    }
+    /* ---------------------------------------------------------------- table */
 
     /**
      * The programme table: reached against target, value delivered against budget.
@@ -338,10 +466,86 @@ class MdaDashboardExportBuilder
         ]);
     }
 
+    /**
+     * @param  array{uri: string, width: int, height: int}|null  $chart
+     * @param  list<array{label: string, value: string, color?: string}>  $items
+     */
+    private function figure(string $title, string $subtitle, ?array $chart, array $items, ?string $emptyNote, ?string $note = null): ReportFigure
+    {
+        if ($chart === null) {
+            return new ReportFigure($title, $subtitle, note: $emptyNote);
+        }
+
+        return new ReportFigure($title, $subtitle, $chart['uri'], $chart['width'], $chart['height'], $items, $note);
+    }
+
+    /**
+     * @param  mixed  $raw
+     * @return list<array{month: string, value: float}>
+     */
+    private function points($raw): array
+    {
+        return array_values(array_map(
+            static fn (array $point): array => ['month' => (string) ($point['month'] ?? ''), 'value' => (float) ($point['value'] ?? 0)],
+            array_slice(array_filter((array) $raw, 'is_array'), -12),
+        ));
+    }
+
+    /**
+     * Latest, highest and total, so the chart's shape comes with its numbers.
+     *
+     * @param  list<array{month: string, value: float}>  $points
+     * @param  callable(float): string  $format
+     * @return list<array{label: string, value: string}>
+     */
+    private function trendItems(array $points, callable $format): array
+    {
+        if ($points === []) {
+            return [];
+        }
+
+        $values = array_map(static fn (array $p): float => $p['value'], $points);
+        $latest = $points[count($points) - 1];
+        $highest = $points[(int) array_search(max($values), $values, true)];
+
+        return [
+            $this->item('Latest, '.$this->monthLong($latest['month']), $format($latest['value'])),
+            $this->item('Highest, '.$this->monthLong($highest['month']), $format($highest['value'])),
+            $this->item('Last '.count($points).' months', $format(array_sum($values))),
+        ];
+    }
+
+    /**
+     * @param  list<array{label: string, value: int, color: string}>  $parts
+     * @return list<array{label: string, value: string, color: string}>
+     */
+    private function shareItems(array $parts): array
+    {
+        $total = array_sum(array_map(static fn (array $p): int => $p['value'], $parts));
+
+        return array_map(fn (array $part): array => [
+            'label' => $part['label'],
+            'value' => $this->count($part['value']).($this->held($part['value']) || $total === 0 ? '' : ' · '.round($part['value'] / $total * 100).'%'),
+            'color' => $part['color'],
+        ], $parts);
+    }
+
     /** @return array{label: string, value: string} */
     private function item(string $label, string $value): array
     {
         return ['label' => $label, 'value' => $value];
+    }
+
+    private function monthLong(string $ym): string
+    {
+        $date = Carbon::createFromFormat('Y-m', $ym);
+
+        return $date === null ? $ym : $date->format('M Y');
+    }
+
+    private function ratio(mixed $value): ?float
+    {
+        return $value === null ? null : (float) $value;
     }
 
     private function held(int $n): bool

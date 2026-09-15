@@ -9,6 +9,8 @@ use App\Domain\Reporting\Export\ExecutiveExportBuilder;
 use App\Domain\Reporting\Export\MdaDashboardExportBuilder;
 use App\Domain\Reporting\Export\ReportExporterRegistry;
 use App\Domain\Reporting\Export\ReportFormat;
+use App\Domain\Reporting\Gis\GeoBoundary;
+use App\Domain\Reporting\Gis\GisCoverageService;
 use App\Domain\Reporting\Services\DashboardScopeResolver;
 use App\Domain\Reporting\Services\DashboardService;
 use App\Domain\Reporting\Support\DashboardFilter;
@@ -33,6 +35,7 @@ class DashboardExportController extends Controller
         private readonly DashboardScopeResolver $resolver,
         private readonly ExecutiveExportBuilder $builder,
         private readonly MdaDashboardExportBuilder $mdaBuilder,
+        private readonly GisCoverageService $coverage,
         private readonly ReportExporterRegistry $exporters,
         private readonly AuditLogger $audit,
     ) {}
@@ -79,7 +82,20 @@ class DashboardExportController extends Controller
 
         // The letterhead names the MDA ("Ministry of Health"), not the scope's generic label.
         $mdaName = $request->user()->mda?->name;
-        $data = $this->mdaBuilder->build($this->dashboard->forUser($request->user(), $filter), $filter, is_string($mdaName) ? $mdaName : null);
+
+        // The map: the same scoped LGA coverage and boundary shapes the dashboard's map uses.
+        $boundaries = GeoBoundary::query()->where('level', GeoBoundary::LEVEL_LGA)->get(['code', 'name', 'geometry']);
+        $map = $boundaries->isEmpty() ? null : [
+            'rows' => $this->coverage->coverage($scope, GeoBoundary::LEVEL_LGA, $filter),
+            'boundaries' => $boundaries->map(static fn (GeoBoundary $b): array => ['code' => $b->code, 'name' => $b->name, 'geometry' => $b->geometry])->all(),
+        ];
+
+        $data = $this->mdaBuilder->build(
+            $this->dashboard->forUser($request->user(), $filter),
+            $filter,
+            is_string($mdaName) ? $mdaName : null,
+            $map,
+        );
         $bytes = $this->exporters->for(ReportFormat::Pdf)->render($data);
 
         $this->audit->record('dashboard.exported', after: [
