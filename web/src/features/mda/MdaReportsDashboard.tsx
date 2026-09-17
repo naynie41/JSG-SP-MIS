@@ -156,7 +156,8 @@ export function MdaReportsDashboard({ canExport }: { canExport: boolean }) {
           <h2 className={styles.title}>{data.scope.label}</h2>
           <p className={styles.lead}>
             Overall picture of the people your MDA has registered and the benefits it has delivered.{' '}
-            {formatCount(data.metrics.registry.beneficiaries.total, minimum)} beneficiaries in view. Computed{' '}
+            {formatCount(data.metrics.registry.beneficiaries.total, minimum)} beneficiaries in view, each person
+            counted once however many programmes they are in. Figures as at{' '}
             {computedAt(data.computed_at)}.
           </p>
         </div>
@@ -291,7 +292,7 @@ function HeadlineTiles({ data }: { data: DashboardResponse }) {
       spark: m.trends?.disbursement,
       note: `${compactNaira(m.benefits.disbursed.total_value)} delivered in total`,
     },
-    duplicates: { note: 'Possible matches found in your uploads' },
+    duplicates: { note: 'people who may already be registered' },
   }
 
   return (
@@ -395,7 +396,7 @@ function QualityCard({ data }: { data: DashboardResponse }) {
         { key: 'verified', name: 'Verified', hint: 'Active, not flagged or suspended', ratio: quality.total > 0 ? quality.verified / quality.total : null },
         { key: 'nin', name: 'NIN recorded', hint: 'Carry a National Identification Number', ratio: quality.nin_completeness },
         { key: 'phone', name: 'Phone recorded', hint: 'Have a number to reach the person on', ratio: quality.phone_completeness },
-        { key: 'overall', name: 'Overall completeness', hint: 'Identifier, phone, birth date, gender and LGA', ratio: quality.data_completeness },
+        { key: 'overall', name: 'All details recorded', hint: 'Identifier, phone, birth date, gender and LGA', ratio: quality.data_completeness },
       ]
     : []
 

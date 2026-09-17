@@ -209,7 +209,7 @@ describe('System Administrator console', () => {
     const registry = screen.getByRole('region', { name: 'Registry snapshot' })
     expect(within(registry).getByText('Failed imports')).toBeInTheDocument()
     expect(within(registry).getByText('94%')).toBeInTheDocument() // validation rate
-    expect(within(registry).getByText('Duplicates surfaced')).toBeInTheDocument()
+    expect(within(registry).getByText('Possible duplicates found')).toBeInTheDocument()
 
     // Alerts.
     const alerts = screen.getByRole('region', { name: 'Administrative alerts' })

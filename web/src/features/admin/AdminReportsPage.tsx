@@ -41,7 +41,7 @@ export function AdminReportsPage() {
         </p>
       </header>
 
-      {isLoading && <ReportsLoading label="Loading report datasets" />}
+      {isLoading && <ReportsLoading label="Loading report subjects" />}
       {error && <p className={styles.muted}>Could not load the report catalogue. Please try again.</p>}
 
       {!isLoading && !error && (

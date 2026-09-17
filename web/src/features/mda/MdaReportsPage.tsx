@@ -148,7 +148,7 @@ export function MdaReportsPage() {
         </p>
       </header>
 
-      {isLoading && <ReportsLoading label="Loading report datasets" />}
+      {isLoading && <ReportsLoading label="Loading report subjects" />}
       {error && <p className={styles.muted}>Could not load the report catalogue. Please try again.</p>}
 
       {!isLoading && !error && (
@@ -207,9 +207,9 @@ export function MdaReportsPage() {
         </div>
         <Card>
           <p className={styles.muted}>
-            <Icon icon={Download} size={14} /> Aggregate reports contain no personal records, so anyone in your MDA
+            <Icon icon={Download} size={14} /> Summary reports contain no personal records, so anyone in your MDA
             who can run a report can export one. A row-level beneficiary export is different: it is an MDA
-            Administrator permission, limited to your own MDA, with NIN and BVN masked unless a separate reveal
+            Administrator permission, limited to your own MDA, with NIN and BVN hidden unless a separate reveal
             permission has been granted.
           </p>
           <p className={styles.footnote}>

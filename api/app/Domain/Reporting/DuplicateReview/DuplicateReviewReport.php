@@ -109,7 +109,7 @@ class DuplicateReviewReport
             new ReportSummarySection('Review progress', [
                 ['label' => 'Decided', 'value' => $number($totals['decided'])],
                 ['label' => 'Awaiting a decision', 'value' => $number($totals['awaiting'])],
-                ['label' => 'Upload closed without a decision', 'value' => $number($totals['closed_undecided'])],
+                ['label' => 'Upload finished before a decision', 'value' => $number($totals['closed_undecided'])],
                 ['label' => 'Median time to decide', 'value' => self::duration($report['median_hours_to_decide'])],
             ]),
             new ReportSummarySection('Decisions taken', $decisions),

@@ -84,7 +84,7 @@ describe('DuplicateReviewReport', () => {
     expect(screen.queryByText(/group by/i)).not.toBeInTheDocument()
     expect(screen.queryByText(/measures/i)).not.toBeInTheDocument()
     expect(screen.getByLabelText('Found from')).toBeInTheDocument()
-    expect(screen.getByLabelText('Match band')).toBeInTheDocument()
+    expect(screen.getByLabelText('Match type')).toBeInTheDocument()
   })
 
   it('states where the queue stands', async () => {
@@ -129,7 +129,7 @@ describe('DuplicateReviewReport', () => {
     renderReport()
     await screen.findByText('Review progress')
 
-    await user.selectOptions(screen.getByLabelText('Match band'), 'probable')
+    await user.selectOptions(screen.getByLabelText('Match type'), 'probable')
 
     await waitFor(() => expect(review).toHaveBeenLastCalledWith({ band: 'probable' }))
   })
@@ -152,7 +152,7 @@ describe('DuplicateReviewReport', () => {
     renderReport()
     await screen.findByText('Review progress')
 
-    await user.selectOptions(screen.getByLabelText('Match band'), 'exact')
+    await user.selectOptions(screen.getByLabelText('Match type'), 'exact')
     await user.selectOptions(screen.getByLabelText('Export as'), 'xlsx')
     await user.click(screen.getByRole('button', { name: 'Export' }))
 

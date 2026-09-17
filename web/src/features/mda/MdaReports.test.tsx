@@ -80,9 +80,9 @@ const dataset = (key: string, label: string, admin = false): AdHocDataset => ({
  * `duplicates` (the `mda_scopable` exception), and NOT users/audit/organizations.
  */
 const MDA_DATASETS: AdHocDataset[] = [
-  dataset('benefits', 'Benefits (ledger)'),
-  dataset('beneficiaries', 'Beneficiaries (registry)'),
-  dataset('activities', 'Activities (delivery)'),
+  dataset('benefits', 'Benefits delivered'),
+  dataset('beneficiaries', 'Beneficiaries'),
+  dataset('activities', 'Activities'),
   dataset('referrals', 'Referrals'),
   dataset('duplicates', 'Duplicate review', true),
 ]
@@ -179,7 +179,7 @@ describe('MDA console — Reports', () => {
     await ready()
 
     const picker = await subjectPicker(user)
-    for (const label of ['Benefits (ledger)', 'Activities (delivery)', 'Referrals', 'Duplicate review']) {
+    for (const label of ['Benefits delivered', 'Activities', 'Referrals', 'Duplicate review']) {
       expect(within(picker).getByRole('option', { name: label })).toBeInTheDocument()
     }
   })
@@ -193,7 +193,7 @@ describe('MDA console — Reports', () => {
     await ready()
 
     const picker = await subjectPicker(user)
-    expect(within(picker).queryByRole('option', { name: 'Beneficiaries (registry)' })).not.toBeInTheDocument()
+    expect(within(picker).queryByRole('option', { name: 'Beneficiaries' })).not.toBeInTheDocument()
     expect(within(picker).getByRole('option', { name: 'People in the registry' })).toBeInTheDocument()
   })
 
@@ -260,7 +260,7 @@ describe('MDA console — Reports', () => {
 
     const picker = await subjectPicker(user)
     expect(within(picker).queryByRole('option', { name: 'Duplicate review' })).not.toBeInTheDocument()
-    expect(within(picker).getByRole('option', { name: 'Benefits (ledger)' })).toBeInTheDocument()
+    expect(within(picker).getByRole('option', { name: 'Benefits delivered' })).toBeInTheDocument()
   })
 
   it('names the dimensions a dataset can be grouped by', async () => {
@@ -282,7 +282,7 @@ describe('MDA console — Reports', () => {
 
   it('previews and exports through the shared engine', async () => {
     preview.mockResolvedValue({
-      title: 'Benefits (ledger) by programme',
+      title: 'Benefits delivered by programme',
       columns: [{ label: 'Programme', numeric: false }, { label: 'Count', numeric: true }],
       rows: [['Cash Transfer', '2']],
       row_count: 1,
@@ -296,7 +296,7 @@ describe('MDA console — Reports', () => {
 
     // Choosing the subject seeds the builder with that dataset.
     const builder = await openDatasetBuilder(user, 'activities')
-    expect(within(builder).getByLabelText('Dataset')).toHaveValue('activities')
+    expect(within(builder).getByLabelText('Subject')).toHaveValue('activities')
 
     await user.click(within(builder).getByRole('checkbox', { name: 'Count' }))
     await user.click(within(builder).getByRole('button', { name: 'Preview' }))
@@ -308,7 +308,7 @@ describe('MDA console — Reports', () => {
 
   it('shows the scope the engine reported on the preview', async () => {
     preview.mockResolvedValue({
-      title: 'Benefits (ledger) by programme',
+      title: 'Benefits delivered by programme',
       columns: [{ label: 'Programme', numeric: false }],
       rows: [['Cash Transfer']],
       row_count: 1,

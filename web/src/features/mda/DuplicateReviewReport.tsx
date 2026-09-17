@@ -104,13 +104,13 @@ export function DuplicateReviewReport({ canExport }: { canExport: boolean }) {
           </div>
           <div className={styles.control}>
             <SelectField
-              label="Match band"
+              label="Match type"
               value={band}
               onChange={(e) => setBand(e.target.value as '' | DuplicateBand)}
               options={[
                 { value: '', label: 'All matches' },
-                { value: 'exact', label: 'Exact' },
-                { value: 'probable', label: 'Probable' },
+                { value: 'exact', label: 'Exact match' },
+                { value: 'probable', label: 'Possible match' },
               ]}
             />
           </div>
@@ -166,7 +166,7 @@ function ReportBody({ report }: { report: Report }) {
     { key: 'awaiting', label: 'Awaiting a decision', count: totals.awaiting, className: styles.partAwaiting },
     {
       key: 'closed',
-      label: 'Upload closed without a decision',
+      label: 'Upload finished before a decision',
       count: totals.closed_undecided,
       className: styles.partClosed,
     },

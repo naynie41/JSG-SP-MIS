@@ -164,7 +164,7 @@ class SegmentReportService
 
         return new ReportData(
             reportKey: 'segment',
-            title: 'Beneficiary segment',
+            title: 'People report',
             subtitle: $definition->label(),
             scopeLabel: $access->scope->label,
             generatedAt: $generatedAt,
@@ -328,7 +328,7 @@ class SegmentReportService
 
         return new ReportData(
             reportKey: 'segment',
-            title: 'Beneficiary segment (aggregate)',
+            title: 'People report (counts only)',
             subtitle: $definition->label(),
             scopeLabel: $access->scope->label,
             generatedAt: $generatedAt,

@@ -132,6 +132,6 @@ describe('ReportsDashboardPanel', () => {
     renderPanel()
 
     expect(await screen.findByText('< 5')).toBeInTheDocument()
-    expect(screen.getByText(/cannot be identified from a count/i)).toBeInTheDocument()
+    expect(screen.getByText(/identified from a count/i)).toBeInTheDocument()
   })
 })

@@ -75,11 +75,12 @@ export function ReportsDashboardPanel() {
         ))}
       </dl>
 
+      <p className={styles.dashMeta}>Each person is counted once, however many programmes they are in.</p>
+
       {summary.suppressedCount > 0 && (
         <p className={styles.dashNote}>
-          {summary.suppressedCount} figure{summary.suppressedCount === 1 ? '' : 's'} withheld:
-          groups smaller than {summary.minCellSize} are not published, so individuals cannot be
-          identified from a count.
+          {summary.suppressedCount} figure{summary.suppressedCount === 1 ? '' : 's'} hidden: groups smaller than {summary.minCellSize} are not
+          shown, so no one can be identified from a count.
         </p>
       )}
 

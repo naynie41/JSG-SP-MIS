@@ -74,7 +74,7 @@ class DashboardExportTest extends TestCase
         $body = $response->streamedContent();
 
         // Aggregate metric labels are present…
-        $this->assertStringContainsString('Net-unique beneficiaries', $body);
+        $this->assertStringContainsString('Total beneficiaries', $body);
         $this->assertStringContainsString('Active programmes', $body);
 
         // …and NO raw beneficiary-level data leaks (never a name or id column).
@@ -102,7 +102,7 @@ class DashboardExportTest extends TestCase
         $body = $this->download($this->user(null, RoleKey::Executive), '?format=csv&programme_id='.$other->id)->assertOk()->streamedContent();
 
         // The unfiltered export has "…,1" for net-unique; the filtered one has 0.
-        $this->assertMatchesRegularExpression('/Net-unique beneficiaries.*0/', $body);
+        $this->assertMatchesRegularExpression('/Total beneficiaries.*0/', $body);
     }
 
     public function test_export_requires_the_reporting_export_permission(): void
@@ -150,7 +150,7 @@ class DashboardExportTest extends TestCase
 
         $tiles = array_column($data->highlights, 'value', 'label');
         // The tile on screen reads registry.beneficiaries.total under this label.
-        $this->assertSame(number_format($dashboard['metrics']['registry']['beneficiaries']['total']), $tiles['Net-unique beneficiaries']);
+        $this->assertSame(number_format($dashboard['metrics']['registry']['beneficiaries']['total']), $tiles['Total beneficiaries']);
         $this->assertArrayHasKey('Value delivered', $tiles);
 
         $this->assertSame([

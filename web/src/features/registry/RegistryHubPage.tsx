@@ -30,7 +30,7 @@ function RegistryMetrics() {
       items={[
         { icon: UserSquare2, label: 'Beneficiaries', value: m.registry.beneficiaries.total.toLocaleString(), tone: 'forest' },
         { icon: Home, label: 'Households', value: (m.registry.households?.total ?? 0).toLocaleString(), tone: 'info' },
-        { icon: ScanSearch, label: 'Duplicates surfaced', value: (m.duplicates?.matches_surfaced ?? 0).toLocaleString(), tone: 'warning' },
+        { icon: ScanSearch, label: 'Possible duplicates found', value: (m.duplicates?.matches_surfaced ?? 0).toLocaleString(), tone: 'warning' },
         { icon: CheckCircle2, label: 'Served', value: (m.duplicates?.resolved_served ?? 0).toLocaleString(), tone: 'success' },
       ]}
     />

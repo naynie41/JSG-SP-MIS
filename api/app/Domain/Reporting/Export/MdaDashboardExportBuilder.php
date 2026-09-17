@@ -109,13 +109,13 @@ class MdaDashboardExportBuilder
         $population = (array) ($m['population'] ?? []);
 
         $tiles = [
-            ['label' => 'Net-unique beneficiaries', 'value' => $this->count($m['registry']['beneficiaries']['total'] ?? 0)],
+            ['label' => 'Total beneficiaries', 'value' => $this->count($m['registry']['beneficiaries']['total'] ?? 0), 'note' => 'each person counted once'],
             ['label' => 'Households', 'value' => $this->count($m['registry']['households']['total'] ?? 0)],
             ['label' => 'Active programmes', 'value' => $this->count($m['programmes']['active'] ?? 0), 'note' => 'of '.number_format((int) ($m['programmes']['total'] ?? 0)).' in view'],
             ['label' => 'Active activities', 'value' => $this->count($m['programmes']['activities_active'] ?? 0), 'note' => 'of '.number_format((int) ($m['programmes']['activities_total'] ?? 0)).' in view'],
             ['label' => 'Benefit deliveries', 'value' => $this->count($m['benefits']['disbursed']['benefit_count'] ?? 0)],
             ['label' => 'Value delivered', 'value' => $this->naira($m['benefits']['disbursed']['total_value'] ?? 0)],
-            ['label' => 'Duplicates surfaced', 'value' => $this->count($m['duplicates']['matches_surfaced'] ?? 0), 'note' => 'Possible matches in your uploads'],
+            ['label' => 'Possible duplicates found', 'value' => $this->count($m['duplicates']['matches_surfaced'] ?? 0), 'note' => 'people who may already be registered'],
         ];
 
         if ($population !== []) {
@@ -162,7 +162,7 @@ class MdaDashboardExportBuilder
             ['label' => 'Verified', 'ratio' => ($quality['verified'] ?? 0) / $total],
             ['label' => 'NIN recorded', 'ratio' => $this->ratio($quality['nin_completeness'] ?? null)],
             ['label' => 'Phone recorded', 'ratio' => $this->ratio($quality['phone_completeness'] ?? null)],
-            ['label' => 'Overall completeness', 'ratio' => $this->ratio($quality['data_completeness'] ?? null)],
+            ['label' => 'All details recorded', 'ratio' => $this->ratio($quality['data_completeness'] ?? null)],
         ];
 
         // The weakest single detail, not "overall", which averages the others.

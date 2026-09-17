@@ -78,7 +78,7 @@ export function ReportBuilderPanel({ datasets, canExport, exportSummary = false,
               ? 'Filter the people in your scope, then export the result.'
               : customPanel
                 ? 'See where this stands, narrow it if you need to, then export it.'
-                : 'Group and total this dataset, then export the result.'
+                : 'Group and count this data, then export the result.'
           }
         />
       </div>
@@ -137,17 +137,17 @@ function SegmentBuilder({ exportSummary }: { exportSummary: boolean }) {
     <div className={styles.segment}>
       <div className={styles.segmentNotice}>
         <Badge variant={tier === 'rows' ? 'info' : 'neutral'}>
-          {tier === 'rows' ? 'You can see beneficiary rows' : 'Counts only, no beneficiary rows'}
+          {tier === 'rows' ? 'You can see individual records' : 'Counts only — no individual records'}
         </Badge>
-        {catalogue.data?.reveal_pii === false && <Badge variant="neutral">NIN and BVN masked</Badge>}
-        {guardOn && <Badge variant="neutral">Groups under {minimum} withheld</Badge>}
+        {catalogue.data?.reveal_pii === false && <Badge variant="neutral">NIN and BVN hidden</Badge>}
+        {guardOn && <Badge variant="neutral">Small groups hidden (fewer than {minimum} people)</Badge>}
       </div>
 
       <SegmentFilters dimensions={dimensions} value={filters} onChange={setFilters} />
 
       <div className={styles.segmentRun}>
         <SelectField
-          label="Chart breakdown"
+          label="Break down by"
           value={breakdown}
           onChange={(event) => setBreakdown(event.target.value)}
           options={[
@@ -216,8 +216,8 @@ function SegmentResult({
         <p className={styles.resultTotal}>
           {result.total_suppressed ? (
             <>
-              Fewer than {result.minimum_cell_size} people match. The count is withheld so
-              individuals cannot be identified.
+              Fewer than {result.minimum_cell_size} people match, so the count is hidden
+              to protect them.
             </>
           ) : (
             <>
@@ -237,8 +237,8 @@ function SegmentResult({
 
       {result.tier === 'aggregate' ? (
         <p className={styles.muted}>
-          Your role receives aggregate reporting: counts and breakdowns, never the beneficiary
-          registry itself.
+          Your account sees counts and breakdowns, not the list of people
+          themselves.
         </p>
       ) : result.rows.length === 0 ? (
         <p className={styles.muted}>No beneficiaries match these filters.</p>
@@ -294,7 +294,7 @@ function BreakdownChart({ breakdown }: { breakdown: SegmentBreakdown }) {
       </ul>
       {breakdown.suppressed_groups > 0 && (
         <p className={styles.muted}>
-          {breakdown.suppressed_groups} group{breakdown.suppressed_groups === 1 ? '' : 's'} withheld
+          {breakdown.suppressed_groups} group{breakdown.suppressed_groups === 1 ? '' : 's'} hidden
           — fewer than {breakdown.minimum} people each.
         </p>
       )}

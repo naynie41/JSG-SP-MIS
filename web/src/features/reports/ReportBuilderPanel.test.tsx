@@ -87,7 +87,7 @@ function previewResult(overrides: Record<string, unknown> = {}) {
 const datasets: AdHocDataset[] = [
   {
     key: 'benefits',
-    label: 'Benefits (ledger)',
+    label: 'Benefits delivered',
     dimensions: [{ key: 'programme', label: 'Programme' }],
     measures: [{ key: 'count', label: 'Deliveries' }],
     filters: [],
@@ -126,7 +126,7 @@ describe('ReportBuilderPanel', () => {
 
     const subject = await screen.findByLabelText(/what are you reporting on/i)
     expect(subject).toHaveValue('__people__')
-    expect(within(subject as HTMLSelectElement).getByText('Benefits (ledger)')).toBeInTheDocument()
+    expect(within(subject as HTMLSelectElement).getByText('Benefits delivered')).toBeInTheDocument()
   })
 
   it('shows no filters until one is added', async () => {
@@ -212,7 +212,7 @@ describe('ReportBuilderPanel', () => {
     renderPanel()
 
     expect(await screen.findByText(/counts only/i)).toBeInTheDocument()
-    expect(screen.getByText(/groups under 5 withheld/i)).toBeInTheDocument()
+    expect(screen.getByText(/small groups hidden .fewer than 5 people./i)).toBeInTheDocument()
   })
 
   it('closes to a pill that still says what it filters', async () => {
@@ -255,7 +255,7 @@ describe('ReportBuilderPanel', () => {
     await userEvent.click(await screen.findByRole('button', { name: /add filter/i }))
     expect(screen.getByRole('menuitem', { name: new RegExp('^Household role', 'i') })).toBeInTheDocument()
 
-    const chart = screen.getByLabelText(/chart breakdown/i)
+    const chart = screen.getByLabelText(/break down by/i)
     expect(within(chart).queryByRole('option', { name: 'Household role' })).not.toBeInTheDocument()
     expect(within(chart).getByRole('option', { name: 'Gender' })).toBeInTheDocument()
   })

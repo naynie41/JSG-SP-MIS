@@ -217,7 +217,7 @@
     @endif
 
     <div class="foot">
-        SP-MIS — de-identified aggregate report, scoped to the requester. Confidential; not for redistribution.
+        SP-MIS — counts only; contains no personal records. Scoped to the requester. Confidential; not for redistribution.
     </div>
 </body>
 </html>

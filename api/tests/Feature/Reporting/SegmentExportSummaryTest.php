@@ -193,11 +193,11 @@ class SegmentExportSummaryTest extends TestCase
         $book = IOFactory::load($path);
         @unlink($path);
 
-        $this->assertSame(['Summary', 'Beneficiary segment'], $book->getSheetNames());
+        $this->assertSame(['Summary', 'People report'], $book->getSheetNames());
         $this->assertSame('Summary', $book->getActiveSheet()->getTitle());
         $this->assertCount(1, $book->getSheet(0)->getDrawingCollection(), 'the crest is on the summary sheet');
         // The data sheet keeps its header block and table where a filter expects them.
-        $this->assertSame('Beneficiary segment', $book->getSheet(1)->getCell('A1')->getValue());
+        $this->assertSame('People report', $book->getSheet(1)->getCell('A1')->getValue());
         $this->assertSame('First name', $book->getSheet(1)->getCell('A5')->getValue());
     }
 
