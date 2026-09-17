@@ -139,6 +139,12 @@ export function ActivityDetailPage() {
         <dl className={styles.dl}>
           <dt>Programme</dt>
           <dd>{activity.programme?.name ?? '—'}</dd>
+          {activity.description && (
+            <>
+              <dt>Description</dt>
+              <dd>{activity.description}</dd>
+            </>
+          )}
           <dt>Areas covered</dt>
           <dd>
             {activity.locations.length === 0 ? (

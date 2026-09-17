@@ -127,6 +127,23 @@ describe('ActivityDetailPage', () => {
     expect(within(details).getAllByText('—').length).toBeGreaterThan(0)
   })
 
+  it('shows the description the officer wrote for the activity', () => {
+    activityData = { ...activity, description: 'Quarterly grant disbursement to registered women.' }
+    renderPage()
+
+    const details = screen.getByText('Areas covered').closest('dl') as HTMLElement
+    expect(within(details).getByText('Description')).toBeInTheDocument()
+    expect(within(details).getByText('Quarterly grant disbursement to registered women.')).toBeInTheDocument()
+  })
+
+  it('leaves the description row out when the activity has none', () => {
+    // An empty row would read as a description nobody wrote.
+    activityData = { ...activity, description: null }
+    renderPage()
+
+    expect(screen.queryByText('Description')).not.toBeInTheDocument()
+  })
+
   it('shows no beneficiary sections for an activity that does not involve beneficiaries', () => {
     activityData = { ...activity, involves_beneficiaries: false, beneficiaries: [], import_summary: null, service_requests: [], counts: { target: null, actual: 0, pending_service_requests: 0 } }
 
