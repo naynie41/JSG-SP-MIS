@@ -21,9 +21,9 @@ final class ReportCatalogue
         ['key' => 'benefits_by_programme', 'label' => 'Benefits by programme', 'coordination' => false],
         ['key' => 'benefits_by_mda', 'label' => 'Benefits by MDA', 'coordination' => false],
         ['key' => 'benefits_by_lga', 'label' => 'Benefits by LGA', 'coordination' => false],
-        ['key' => 'budget_utilization', 'label' => 'Budget utilisation', 'coordination' => false],
+        ['key' => 'budget_utilization', 'label' => 'Budget used', 'coordination' => false],
         ['key' => 'referral_completion', 'label' => 'Referral completion', 'coordination' => true],
-        ['key' => 'grievance_sla', 'label' => 'Grievance SLA', 'coordination' => true],
+        ['key' => 'grievance_sla', 'label' => 'Grievance response times', 'coordination' => true],
     ];
 
     public static function has(string $key): bool

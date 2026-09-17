@@ -89,7 +89,7 @@ describe('FundingPartnerRegistryTab', () => {
     expect(screen.getByText('Households')).toBeInTheDocument()
     expect(screen.getByText('Verified')).toBeInTheDocument()
     expect(screen.getByText('Pending review')).toBeInTheDocument()
-    expect(screen.getByText('Duplicate records')).toBeInTheDocument()
+    expect(screen.getByText('Possible duplicate records')).toBeInTheDocument()
     expect(screen.getByText('New registrations')).toBeInTheDocument()
     expect(screen.getByText('Updated records')).toBeInTheDocument()
     expect(screen.getByText('Suspended')).toBeInTheDocument()
@@ -99,7 +99,7 @@ describe('FundingPartnerRegistryTab', () => {
   it('renders the REDUCED targeting funnel with an inert Eligible→Selected slot', () => {
     render(<FundingPartnerRegistryTab data={buildPayload(makeRegistry())} />)
 
-    const funnel = screen.getByRole('region', { name: 'Targeting funnel' })
+    const funnel = screen.getByRole('region', { name: 'From registered to receiving' })
     expect(within(funnel).getByText('Registered')).toBeInTheDocument()
     expect(within(funnel).getByText('Enrolled')).toBeInTheDocument()
     expect(within(funnel).getByText('Receiving benefits')).toBeInTheDocument()
@@ -132,10 +132,10 @@ describe('FundingPartnerRegistryTab', () => {
     render(<FundingPartnerRegistryTab data={buildPayload(makeRegistry())} />)
 
     const quality = screen.getByRole('region', { name: 'Data quality' })
-    expect(within(quality).getByText('Verification rate')).toBeInTheDocument()
+    expect(within(quality).getByText('Share verified')).toBeInTheDocument()
     expect(within(quality).getByText('Linked to NIN')).toBeInTheDocument()
-    expect(within(quality).getByText('Data completeness')).toBeInTheDocument()
-    expect(within(quality).getByText('Duplicate rate')).toBeInTheDocument()
+    expect(within(quality).getByText('All details recorded')).toBeInTheDocument()
+    expect(within(quality).getByText('Possible duplicates')).toBeInTheDocument()
     expect(within(quality).getByText('Missing data')).toBeInTheDocument()
     expect(within(quality).getByText('98%')).toBeInTheDocument() // verification rate 0.975 → 98%
 

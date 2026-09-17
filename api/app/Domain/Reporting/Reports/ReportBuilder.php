@@ -125,11 +125,11 @@ class ReportBuilder
             'rate' => $rate === null ? '—' : round($rate * 100).'%',
         ]];
 
-        return $this->data('budget_utilization', 'Budget utilisation', $scope, [
+        return $this->data('budget_utilization', 'Budget used', $scope, [
             new ReportColumn('allocated', 'Allocated (₦)', numeric: true),
-            new ReportColumn('utilised', 'Utilised (₦)', numeric: true),
+            new ReportColumn('utilised', 'Value delivered (₦)', numeric: true),
             new ReportColumn('remaining', 'Remaining (₦)', numeric: true),
-            new ReportColumn('rate', 'Utilisation'),
+            new ReportColumn('rate', '% of budget used'),
         ], $rows);
     }
 
@@ -144,7 +144,7 @@ class ReportBuilder
             ['metric' => 'Completed', 'value' => (int) $r['completed']],
             ['metric' => 'Completion rate', 'value' => $r['completion_rate'] === null ? '—' : round($r['completion_rate'] * 100).'%'],
             ['metric' => 'Overdue', 'value' => (int) $r['overdue']],
-            ['metric' => 'Avg completion (days)', 'value' => $r['avg_completion_days'] ?? '—'],
+            ['metric' => 'Average days to complete', 'value' => $r['avg_completion_days'] ?? '—'],
         ];
 
         return $this->data('referral_completion', 'Referral completion', $scope, [
@@ -161,11 +161,11 @@ class ReportBuilder
 
         $rows = [
             ['metric' => 'Total grievances', 'value' => (int) $g['total']],
-            ['metric' => 'SLA breaches', 'value' => (int) $g['sla_breaches']],
-            ['metric' => 'Avg resolution (days)', 'value' => $g['avg_resolution_days'] ?? '—'],
+            ['metric' => 'Past the deadline', 'value' => (int) $g['sla_breaches']],
+            ['metric' => 'Average days to resolve', 'value' => $g['avg_resolution_days'] ?? '—'],
         ];
 
-        return $this->data('grievance_sla', 'Grievance SLA', $scope, [
+        return $this->data('grievance_sla', 'Grievance response times', $scope, [
             new ReportColumn('metric', 'Metric'),
             new ReportColumn('value', 'Value', numeric: true),
         ], $rows);

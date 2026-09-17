@@ -184,7 +184,7 @@ describe('FundingPartnerProgrammesTab', () => {
   it('renders OUTPUT indicators (outputs only) by benefit type and captured demographic', () => {
     render(<FundingPartnerProgrammesTab data={buildPayload(buildPf())} canDrill={false} />)
 
-    const outputs = screen.getByRole('region', { name: 'Output indicators' })
+    const outputs = screen.getByRole('region', { name: 'What was delivered' })
     expect(within(outputs).getByText('Cash')).toBeInTheDocument()
     expect(within(outputs).getByText('Food')).toBeInTheDocument()
     expect(within(outputs).getAllByText('Women').length).toBeGreaterThan(0)

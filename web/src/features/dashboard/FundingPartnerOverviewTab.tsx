@@ -68,7 +68,7 @@ function buildAlerts(pf: PartnerFunding): PartnerAlert[] {
       id: 'coverage',
       severity: 'info',
       title: `${num(red)} low-coverage ${red === 1 ? 'LGA' : 'LGAs'}`,
-      detail: `Below the target coverage band (under ${num(pf.coverage_bands.thresholds.yellow_min)} beneficiaries).`,
+      detail: `Below the target level of coverage (fewer than ${num(pf.coverage_bands.thresholds.yellow_min)} people reached).`,
     })
   }
   return out
@@ -166,12 +166,12 @@ export function FundingPartnerOverviewTab({ data, onDrill }: FundingPartnerOverv
           <KpiPanel headline icon={PackageCheck} label="Value delivered" value={formatNaira(pf.delivered_value)} hint="benefits delivered under funded activities" />
           <KpiPanel icon={Wallet} label="Allocated" value={formatNaira(pf.allocated)} hint="committed funding" />
           <KpiPanel icon={HandCoins} label="Remaining" value={formatNaira(pf.remaining)} />
-          <KpiPanel icon={Users} label="Net-unique reached" value={num(pf.net_unique_reached)} hint="distinct persons served" onClick={onDrill ? () => onDrill('registry') : undefined} />
+          <KpiPanel icon={Users} label="People reached" value={num(pf.net_unique_reached)} hint="each person counted once" onClick={onDrill ? () => onDrill('registry') : undefined} />
         </div>
 
         <span className={styles.groupLabel}>Portfolio</span>
         <div className={styles.figureGrid}>
-          <Figure icon={Percent} label="Utilisation" value={`${pct(pf.utilization_rate)}%`} hint="delivered ÷ allocated" />
+          <Figure icon={Percent} label="Budget used" value={`${pct(pf.utilization_rate)}%`} hint="of the budget" />
           <Figure icon={ClipboardList} label="Funded programmes" value={num(pf.funded_programmes)} onClick={onDrill ? () => onDrill('programmes') : undefined} />
           <Figure icon={Building2} label="Implementing MDAs" value={num(pf.implementing_mdas)} />
           <Figure icon={Layers} label="Active activities" value={num(pf.active_activities)} hint={`of ${num(pf.funded_activities)} funded`} />

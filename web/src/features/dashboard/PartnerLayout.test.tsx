@@ -140,7 +140,7 @@ describe('PartnerLayout (funding-partner suite shell + routed pages)', () => {
     expect(screen.getByLabelText('Year')).toBeInTheDocument() // the shared filter bar
     // Overview page body (from the outlet).
     expect(screen.getByText('Value delivered')).toBeInTheDocument()
-    expect(screen.getByText('Net-unique reached')).toBeInTheDocument()
+    expect(screen.getByText('People reached')).toBeInTheDocument()
   })
 
   it('renders a non-index child page WITHOUT the hero, but keeps the shared filter (Registry)', async () => {
@@ -149,7 +149,7 @@ describe('PartnerLayout (funding-partner suite shell + routed pages)', () => {
 
     // Registry page body renders...
     expect(await screen.findByText('Individuals')).toBeInTheDocument()
-    expect(screen.getByText(/Targeting funnel/i)).toBeInTheDocument()
+    expect(screen.getByText(/From registered to receiving/i)).toBeInTheDocument()
     // ...but the money-first hero card is Overview-only.
     expect(screen.queryByRole('heading', { name: /at work.*in Jigawa/i })).toBeNull()
     // The cross-cutting filter bar is still shared across inner pages.

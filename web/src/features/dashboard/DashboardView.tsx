@@ -175,7 +175,7 @@ export function DashboardView({ eyebrow, title, lead, beneficiariesLabel = 'Bene
       {/* Gauges: budget utilisation + referral completion (coordination scope only) */}
       <div className={styles.gauges}>
         <Gauge
-          label="Budget utilisation"
+          label="Budget used"
           value={budgetPct}
           caption={`${formatNaira(budget.utilized_value)} of ${formatNaira(budget.allocated)}${overBudget ? ' · over budget' : ''}`}
           tone={overBudget ? 'danger' : 'forest'}
@@ -238,7 +238,7 @@ export function DashboardView({ eyebrow, title, lead, beneficiariesLabel = 'Bene
               </div>
               <div className={styles.stat}>
                 <span className={cn(styles.statValue, m.grievances.sla_breaches > 0 && styles.statDanger)}>{m.grievances.sla_breaches.toLocaleString()}</span>
-                <span className={styles.statLabel}>SLA breaches</span>
+                <span className={styles.statLabel}>Past the deadline</span>
               </div>
               <div className={styles.stat}>
                 <span className={styles.statValue}>{m.grievances.avg_resolution_days ?? '—'}</span>

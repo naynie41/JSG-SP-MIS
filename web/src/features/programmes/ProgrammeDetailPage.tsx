@@ -34,7 +34,7 @@ function BudgetHeadline({ budget }: { budget: Budget }) {
     <>
       <div className={styles.kpiRow}>
         <KpiPanel label="Allocated" value={formatNaira(budget.allocated)} />
-        <KpiPanel label="Utilised" value={formatNaira(budget.utilized_value)} hint={`${budget.benefit_count} deliveries`} />
+        <KpiPanel label="Value delivered" value={formatNaira(budget.utilized_value)} hint={`${budget.benefit_count} deliveries`} />
         <KpiPanel label="Remaining" value={budget.allocated != null ? formatNaira(budget.remaining) : '—'} hint={budget.allocated != null ? `${Math.round(rate * 100)}% used` : 'No budget set'} />
       </div>
       {budget.allocated != null && (

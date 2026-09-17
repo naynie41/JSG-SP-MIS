@@ -73,7 +73,7 @@ describe('ExecutiveLayout (briefing suite shell + routed pages)', () => {
     renderAt('/executive')
 
     expect(await screen.findByRole('heading', { name: /state of social protection/i })).toBeInTheDocument()
-    expect(screen.getByText('Net-unique beneficiaries reached')).toBeInTheDocument()
+    expect(screen.getByText('People reached')).toBeInTheDocument()
     // Net-unique (8,420) is the headline — deliberately below the gross delivery count.
     expect(screen.getAllByText('8,420').length).toBeGreaterThan(0)
     expect(screen.getByRole('button', { name: /export/i })).toBeInTheDocument()
@@ -86,7 +86,7 @@ describe('ExecutiveLayout (briefing suite shell + routed pages)', () => {
 
     const { unmount } = renderAt('/executive/registry')
     expect(await screen.findByRole('heading', { name: 'Data quality' })).toBeInTheDocument()
-    expect(screen.getByText('Verification rate')).toBeInTheDocument()
+    expect(screen.getByText('Share verified')).toBeInTheDocument()
     expect(screen.queryByRole('heading', { name: /state of social protection/i })).toBeNull()
     expect(screen.getByLabelText('Year')).toBeInTheDocument()
     unmount()

@@ -53,7 +53,7 @@ export function buildInsights(m: DashboardMetrics): Insight[] {
     out.push({
       id: 'reach',
       tone: 'neutral',
-      text: `${num(pop.net_unique_served)} net-unique beneficiaries have been reached across ${num(
+      text: `${num(pop.net_unique_served)} people have been reached across ${num(
         m.programmes.active,
       )} active programmes and ${num(pop.lgas_covered)} LGAs.`,
     })
@@ -99,15 +99,15 @@ export function buildInsights(m: DashboardMetrics): Insight[] {
       out.push({
         id: 'coverage-gap',
         tone: 'attention',
-        text: `${num(bands.summary.red)} of ${num(total)} LGAs are below the target coverage band (under ${num(
+        text: `${num(bands.summary.red)} of ${num(total)} LGAs are below the target level of coverage (fewer than ${num(
           bands.thresholds.yellow_min,
-        )} beneficiaries).`,
+        )} people reached).`,
       })
     } else if (total > 0) {
       out.push({
         id: 'coverage-ok',
         tone: 'positive',
-        text: `All ${num(total)} covered LGAs are at or above the minimum coverage band.`,
+        text: `All ${num(total)} covered LGAs are at or above the minimum level of coverage.`,
       })
     }
   }
@@ -169,7 +169,7 @@ export function buildAlerts(m: DashboardMetrics): Alert[] {
         id: `budget-${p.programme_id}`,
         severity: 'warning',
         title: `Budget nearly exhausted: ${programmeName(p)}`,
-        detail: `${pct(p.budget.utilization_rate)}% utilised, ${formatNaira(p.budget.remaining)} remaining.`,
+        detail: `${pct(p.budget.utilization_rate)}% of budget used, ${formatNaira(p.budget.remaining)} remaining.`,
       })
     })
 
@@ -188,7 +188,7 @@ export function buildAlerts(m: DashboardMetrics): Alert[] {
     out.push({
       id: 'duplicates',
       severity: 'info',
-      title: `${num(rq.duplicates_detected)} potential duplicates surfaced`,
+      title: `${num(rq.duplicates_detected)} possible duplicates found`,
       detail: 'Flagged during import matching and awaiting resolution.',
     })
   }

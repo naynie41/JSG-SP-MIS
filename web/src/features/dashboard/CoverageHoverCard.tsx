@@ -95,9 +95,9 @@ export function CoverageHoverCard({ area, areaWord, lead = null }: CoverageHover
             <Stat label="Beneficiaries" value={count(area.beneficiary_count)} />
             <Stat label="Households" value={count(area.households)} />
             {/* Net-unique is the headline figure everywhere else in the product. */}
-            <Stat label="Net-unique served" value={count(area.served)} />
+            <Stat label="People served" value={count(area.served)} />
             <Stat label="Deliveries" value={count(area.benefit_count)} />
-            <Stat label="Delivered value" value={naira(area.benefit_value)} />
+            <Stat label="Value delivered" value={naira(area.benefit_value)} />
             <Stat
               label="Programmes"
               value={`${count(area.active_programmes)} · ${count(area.active_activities)} activities`}

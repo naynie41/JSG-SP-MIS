@@ -52,7 +52,7 @@ const STATUS: Record<ProgrammeStatus, { label: string; icon: LucideIcon }> = {
   on_track: { label: 'On Track', icon: TrendingUp },
   at_risk: { label: 'At Risk', icon: AlertTriangle },
   delayed: { label: 'Delayed', icon: Clock },
-  unrated: { label: 'Unrated', icon: CircleDashed },
+  unrated: { label: 'No target set', icon: CircleDashed },
 }
 
 const STATUS_ORDER: ProgrammeStatus[] = ['completed', 'on_track', 'at_risk', 'delayed', 'unrated']
@@ -109,7 +109,7 @@ function OutputTable({ rows }: { rows: OutputIndicator[] }) {
 }
 
 function ActivityTable({ rows }: { rows: PartnerProgrammeActivity[] }) {
-  const lightLabel: Record<TrafficLight, string> = { green: 'On target', yellow: 'Behind', red: 'Off target', unrated: 'Unrated' }
+  const lightLabel: Record<TrafficLight, string> = { green: 'On target', yellow: 'Behind', red: 'Off target', unrated: 'No target set' }
   return (
     <div className={styles.tableWrap}>
       <table className={styles.table}>
@@ -252,7 +252,7 @@ function ProgrammeCard({ p, canDrill }: { p: PartnerProgramme; canDrill: boolean
       {p.output_indicators.length > 0 && (
         <div className={styles.outputs}>
           <span className={styles.blockLabel}>
-            Output indicators <span className={styles.blockHint}>interventions delivered, outputs only</span>
+            What was delivered <span className={styles.blockHint}>interventions delivered, outputs only</span>
           </span>
           <OutputTable rows={p.output_indicators} />
         </div>
@@ -337,10 +337,10 @@ export function FundingPartnerProgrammesTab({ data, canDrill }: FundingPartnerPr
       </section>
 
       {/* ---------- OUTPUT INDICATORS (ROLLED UP) ---------- */}
-      <section className={shell.section} aria-label="Output indicators">
+      <section className={shell.section} aria-label="What was delivered">
         <div className={shell.sectionHead}>
           <Icon icon={PackageCheck} size={16} />
-          <h2 className={shell.sectionTitle}>Output indicators</h2>
+          <h2 className={shell.sectionTitle}>What was delivered</h2>
           <span className={shell.sectionSub}>Outputs only · rolled up</span>
         </div>
         <div className={shell.panel}>

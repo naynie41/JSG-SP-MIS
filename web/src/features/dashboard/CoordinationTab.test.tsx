@@ -25,7 +25,7 @@ describe('CoordinationTab', () => {
     expect(screen.getByText('Referral completion')).toBeInTheDocument()
     expect(screen.getByText('75%')).toBeInTheDocument() // referral completion_rate
 
-    expect(screen.getByText('Request-to-serve approval')).toBeInTheDocument()
+    expect(screen.getByText('Requests to serve approved')).toBeInTheDocument()
     expect(screen.getByText('83%')).toBeInTheDocument() // approval_rate 0.833
     expect(screen.getByText(/avg turnaround 19h/i)).toBeInTheDocument() // 18.5h → 19h
   })
