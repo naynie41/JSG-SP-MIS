@@ -408,6 +408,15 @@ Route::prefix('v1')->group(function (): void {
             ->middleware('permission:programme.edit')->name('programmes.archive');
         Route::post('/programmes/{programme}/unarchive', [ProgrammeController::class, 'unarchive'])
             ->middleware('permission:programme.edit')->name('programmes.unarchive');
+        // A programme an MDA created for itself waits for the System Administrator
+        // (§10, revised). `submit` is the MDA re-offering one that was sent back;
+        // approve/reject are the decision, gated further by the policy.
+        Route::post('/programmes/{programme}/submit', [ProgrammeController::class, 'submit'])
+            ->middleware('permission:programme.edit')->name('programmes.submit');
+        Route::post('/programmes/{programme}/approve', [ProgrammeController::class, 'approve'])
+            ->middleware('permission:programme.approve')->name('programmes.approve');
+        Route::post('/programmes/{programme}/reject', [ProgrammeController::class, 'reject'])
+            ->middleware('permission:programme.approve')->name('programmes.reject');
 
         Route::get('/activities', [ActivityController::class, 'index'])
             ->middleware('permission:activity.view')->name('activities.index');

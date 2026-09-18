@@ -28,7 +28,7 @@ same check for navigation, but the server is the authority.
 | 1 | **Overview** | `AdminSummaryService` (governance KPIs, adoption trend, registry snapshot, alerts, recent activity) + Quick Actions that navigate into existing flows | 1–6 (read-only roll-up) |
 | 2 | **User & Access** | `UserListPage`, `RolesPage`, `PermissionsPage`, `LoginActivityService` (projected from the audit log) | Phase 1 (FR-UAM-01/03/05) |
 | 3 | **Organization** | `MdaListPage`, partner users, `AdminOrganizationService` roll-up, activities by organization | Phase 1 + Phase 4 |
-| 4 | **Programme Catalog** | `ProgrammeListPage` + `usageCounts()` on the existing `/programmes` endpoint | Phase 4 / v1.3 (§10 — global, unowned catalogue) |
+| 4 | **Programme Catalog** | `ProgrammeListPage` + `usageCounts()` on the existing `/programmes` endpoint | Phase 4 / v1.3 (§10 — central catalogue + approvals for MDA-created programmes) |
 | 5 | **Registry & Data Quality** | `ImportListPage` (read-only), registry statistics, duplicate statistics, `BeneficiaryRules` | Phase 2 + Phase 3 (READ-ONLY) |
 | 6 | **Integrations** | `/sync/*` connectors, runs and manual trigger when the sync engine answers; a pending state when it does not. Import logs reuse Phase 2 history | Phase 7 (runtime-detected) + Phase 2 |
 | 7 | **Matching Rules & Registry Config** | `MatchingConfigPage` — the existing versioned, audited matching engine | Phase 3 (FR-REG-05) |

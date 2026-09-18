@@ -43,6 +43,13 @@ export const STATUS_VARIANTS: Record<string, BadgeVariant> = {
   'programme.closed': 'warning',
   'programme.archived': 'neutral',
 
+  // Whether a programme an MDA created has been cleared for use (§10, revised).
+  // Separate from the lifecycle above: a programme can be "active" and still be
+  // waiting for the System Administrator.
+  'approval.pending': 'warning',
+  'approval.approved': 'success',
+  'approval.rejected': 'danger',
+
   // Programme type
   'type.individual': 'info',
   'type.household': 'accent',

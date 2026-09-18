@@ -79,6 +79,11 @@ export function MdaProgrammeDetailPage() {
     return <MdaLoadError subject="this programme" onRetry={() => void refetch()} />
   }
 
+  // A programme this MDA created for itself, still pending or sent back (§10,
+  // revised). Central catalogue entries are approved by definition, so this is false
+  // for every programme that existed before MDAs could create their own.
+  const awaitingDecision = programme.approval_status !== 'approved'
+
   const rows: Activity[] = activities?.items ?? []
   const withTarget = rows.filter((a) => a.involves_beneficiaries)
   const totalTarget = withTarget.reduce((sum, a) => sum + (a.target_beneficiaries ?? 0), 0)
@@ -130,10 +135,26 @@ export function MdaProgrammeDetailPage() {
         <div className={styles.choiceRow}>
           <Badge variant="neutral">{titleCase(programme.type)}</Badge>
           {programme.benefit_category && <Badge variant="neutral">{titleCase(programme.benefit_category)}</Badge>}
-          <Badge variant={statusVariant(`programme.${programme.status}`)} dot>
-            {titleCase(programme.status)}
-          </Badge>
+          {/* A programme of this MDA's own that has not been decided yet shows the
+              decision instead of the lifecycle: the lifecycle is not what is stopping
+              work under it (§10, revised). */}
+          {awaitingDecision ? (
+            <Badge variant={statusVariant(`approval.${programme.approval_status}`)} dot>
+              {programme.approval_status === 'pending' ? 'Waiting for approval' : 'Sent back'}
+            </Badge>
+          ) : (
+            <Badge variant={statusVariant(`programme.${programme.status}`)} dot>
+              {titleCase(programme.status)}
+            </Badge>
+          )}
         </div>
+        {awaitingDecision && (
+          <p className={styles.muted}>
+            {programme.approval_status === 'pending'
+              ? 'The System Administrator is reviewing this programme. You can add activities once it has been approved.'
+              : `Sent back${programme.decision_note ? `: ${programme.decision_note}` : ''} Edit it on the programmes page and send it again.`}
+          </p>
+        )}
       </header>
 
       <div className={styles.actionBar}>
@@ -141,7 +162,10 @@ export function MdaProgrammeDetailPage() {
           <Icon icon={ArrowLeft} size={15} />
           All programmes
         </button>
-        {canCreate && (
+        {/* No Create activity while the decision is open: the server refuses an
+            activity under an unapproved programme, and a button that only produces a
+            validation error is worse than no button. */}
+        {canCreate && !awaitingDecision && (
           <button type="button" className={styles.action} onClick={() => setWizardOpen(true)}>
             <Icon icon={Plus} size={15} />
             Create activity
@@ -189,9 +213,11 @@ export function MdaProgrammeDetailPage() {
           getRowId={(a) => a.id}
           getRowLabel={(a) => a.name}
           loading={activitiesLoading}
-          emptyTitle="No activities under this programme yet"
+          emptyTitle={
+            awaitingDecision ? 'No activities yet — this programme is still waiting for approval' : 'No activities under this programme yet'
+          }
           emptyAction={
-            canCreate ? (
+            canCreate && !awaitingDecision ? (
               <Button size="sm" leftIcon={Plus} onClick={() => setWizardOpen(true)}>
                 Create activity
               </Button>

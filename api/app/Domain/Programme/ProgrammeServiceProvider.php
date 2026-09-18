@@ -25,8 +25,9 @@ class ProgrammeServiceProvider extends ServiceProvider
     {
         $this->app->make(PermissionRegistry::class)
             ->register('programme', PermissionAction::View, 'View the programme catalog')
-            ->register('programme', PermissionAction::Create, 'Create catalog programmes (catalog admin)')
-            ->register('programme', PermissionAction::Edit, 'Edit/archive catalog programmes (catalog admin)')
+            ->register('programme', PermissionAction::Create, 'Create programmes — the central catalog (catalog admin), or one owned by your own MDA')
+            ->register('programme', PermissionAction::Edit, 'Edit/archive programmes — the catalog, or your own MDA while it waits for approval')
+            ->register('programme', PermissionAction::Approve, 'Approve or send back a programme an MDA created (System Administrator)')
             ->register('activity', PermissionAction::View, 'View activities')
             ->register('activity', PermissionAction::Create, 'Create MDA-owned activities')
             ->register('activity', PermissionAction::Edit, 'Edit/archive activities (owner MDA only)')

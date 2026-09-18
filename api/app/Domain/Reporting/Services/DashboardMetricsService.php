@@ -202,7 +202,9 @@ class DashboardMetricsService
             $ids = (clone $activities)->distinct()->pluck('programme_id')->all();
         }
 
-        $query = Programme::query();
+        // Approved only: a submission still waiting on a decision is not yet one of
+        // the state's programmes.
+        $query = Programme::query()->approved();
         if ($ids !== null) {
             $query->whereIn('id', $ids);
         }
@@ -1684,7 +1686,7 @@ class DashboardMetricsService
             // withArchived: the id set that scopes every metric below. Excluding
             // archived here would silently drop all historical ledger and enrolment
             // data recorded under them.
-            $ids = Programme::query()->withArchived()->pluck('id')->all();
+            $ids = Programme::query()->withArchived()->approved()->pluck('id')->all();
         }
 
         if ($this->filter->programmeId !== null) {

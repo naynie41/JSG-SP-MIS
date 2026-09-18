@@ -63,9 +63,13 @@ class RolesAndPermissionsSeeder extends Seeder
             // created directly (CLAUDE.md §8). `household.edit` covers correcting one
             // and managing its membership.
             'beneficiary-lookup.view', 'household.view', 'household.edit',
-            // Programmes are a global catalog (§10) — MDAs read but never create/edit them;
-            // they run programmes through their own MDA-owned activities.
-            'programme.view',
+            // The CENTRAL catalog (§10) stays read-only here — an MDA can neither edit
+            // nor archive a shared entry. What an MDA may do is create a programme OF
+            // ITS OWN: `programme.create` makes one owned by this MDA, waiting for the
+            // System Administrator, and `programme.edit` lets the MDA correct it while
+            // that decision is open. ProgrammePolicy enforces both limits; the
+            // permission alone never reaches another MDA's programme or the catalog.
+            'programme.view', 'programme.create', 'programme.edit',
             'activity.view', 'activity.create', 'activity.edit',
             'enrollment.view', 'enrollment.create', 'enrollment.edit',
             'benefit.view', 'benefit.create', 'benefit.approve',

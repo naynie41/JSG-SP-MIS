@@ -22,15 +22,26 @@ interface ProgrammeFormModalProps {
   open: boolean
   onClose: () => void
   programme?: Programme | null
+  /**
+   * An MDA creating a programme of its own (§10, revised) rather than a catalog
+   * administrator creating a shared entry. Same fields either way — what changes is
+   * what happens next, and the form says so rather than leaving it a surprise.
+   */
+  forApproval?: boolean
 }
 
 const KNOWN = ['name', 'objective', 'type', 'benefit_category', 'status'] as const
 
 /**
- * Create or configure a GLOBAL catalog programme (§10) — type-level attributes only.
- * Catalog-admin only (server-enforced); budget/funding/period live on activities.
+ * Create or configure a catalog programme (§10) — type-level attributes only;
+ * budget, funding and period live on activities.
+ *
+ * The same form serves both kinds of entry. A catalog administrator creates the
+ * shared, central one; an MDA creates one for itself, which goes for approval
+ * (`forApproval`). WHICH it is comes from the caller's role on the server, never
+ * from this form — the flag only changes what the form tells the user.
  */
-export function ProgrammeFormModal({ open, onClose, programme }: ProgrammeFormModalProps) {
+export function ProgrammeFormModal({ open, onClose, programme, forApproval = false }: ProgrammeFormModalProps) {
   const save = useSaveProgramme()
   const [formError, setFormError] = useState<string | null>(null)
   const [criteria, setCriteria] = useState<EligibilityCriterion[]>(programme?.eligibility ?? [])
@@ -85,7 +96,7 @@ export function ProgrammeFormModal({ open, onClose, programme }: ProgrammeFormMo
             Cancel
           </Button>
           <Button type="submit" form="programme-form" loading={isSubmitting}>
-            {programme ? 'Save changes' : 'Create programme'}
+            {programme ? 'Save changes' : forApproval ? 'Send for approval' : 'Create programme'}
           </Button>
         </>
       }
@@ -94,6 +105,13 @@ export function ProgrammeFormModal({ open, onClose, programme }: ProgrammeFormMo
         {formError && (
           <p className={formStyles.alert} role="alert">
             {formError}
+          </p>
+        )}
+
+        {forApproval && !programme && (
+          <p className={styles.note}>
+            This programme belongs to your MDA alone — no other MDA will see it. It goes to the System Administrator for
+            approval, and you can add activities under it once it has been approved.
           </p>
         )}
 

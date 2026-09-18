@@ -67,7 +67,7 @@ Module detail: [web/src/features/mda/README.md](../web/src/features/mda/README.m
 | ✅ | Discard-or-serve remains available at **every** band | `ImportResolutionTest` |
 | ✅ | "Not the same person" requires a justification, recorded | `ImportResolutionTest` · `MdaDuplicateResolution.test.tsx` |
 | ✅ | Ownership never transfers — accepted request-to-serve and completed referral both leave `owner_mda_id` | `MdaServiceDeliveryModuleTest` |
-| ✅ | Programmes stay global and unowned; no create/edit affordance | `MdaProgrammes.test.tsx` |
+| ✅ | The central catalogue stays read-only to an MDA; an MDA creates only its own, which waits for approval (§10, revised 2026-09-17) | `MdaProgrammes.test.tsx` |
 | ✅ | Delivery value is programme data, never expenditure | `MdaServiceDelivery.test.tsx` |
 
 ## 6. Export matrix (SECURITY.md §3)

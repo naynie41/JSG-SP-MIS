@@ -1,6 +1,6 @@
 import { beforeEach, describe, expect, it, vi } from 'vitest'
 import type { Mock } from 'vitest'
-import { render, screen, within } from '@testing-library/react'
+import { render, screen, waitFor, within } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 import { MemoryRouter } from 'react-router-dom'
@@ -12,7 +12,17 @@ import type { Programme } from '@/features/programmes/types'
 // The section must COMPOSE the Phase 4 catalog module — mock the catalog api layer and
 // assert the section drives it, rather than introducing a console-local catalog.
 vi.mock('@/features/programmes/api', () => ({
-  programmeApi: { list: vi.fn(), get: vi.fn(), create: vi.fn(), update: vi.fn(), archive: vi.fn(), active: vi.fn() },
+  programmeApi: {
+    list: vi.fn(),
+    get: vi.fn(),
+    create: vi.fn(),
+    update: vi.fn(),
+    archive: vi.fn(),
+    active: vi.fn(),
+    submit: vi.fn(),
+    approve: vi.fn(),
+    reject: vi.fn(),
+  },
 }))
 
 const perms = { value: [] as string[] }
@@ -32,6 +42,7 @@ const programme = (over: Partial<Programme> & { id: string; name: string }): Pro
   eligibility: [],
   enforce_eligibility: false,
   status: 'active',
+  approval_status: 'approved',
   activities_count: 0,
   mdas_count: 0,
   created_by: null,
@@ -128,12 +139,76 @@ describe('Admin console — Programme Catalog (composes Phase 4 / v1.3)', () => 
 
   /* -------------------------------------------------------- permission gating */
 
-  it('hides catalog writes from a viewer — MDAs can never create programmes', async () => {
-    perms.value = ['programme.view'] // an MDA role: read the catalog, never write it
+  it('hides catalog writes from a role without programme.create', async () => {
+    perms.value = ['programme.view'] // read the catalog, never write it
     renderPage()
     await screen.findByText('Conditional Cash Transfer')
 
     expect(screen.queryByRole('button', { name: /create programme/i })).not.toBeInTheDocument()
+  })
+
+  /* ------------------------------------------------------ approvals (§10 rev) */
+
+  it('counts what is waiting on the Approvals tab and decides it there', async () => {
+    const user = userEvent.setup()
+    perms.value = [...perms.value, 'programme.approve']
+    const waiting = programme({
+      id: 'p9',
+      name: 'Maternal Cash Support',
+      approval_status: 'pending',
+      is_central: false,
+      owner_mda: { id: 'm1', name: 'Ministry of Health' },
+      submitted_at: '2026-09-01T00:00:00Z',
+    })
+    // The page asks twice: the catalog list, and the pending queue.
+    list.mockImplementation((params: { approval?: string }) =>
+      Promise.resolve(
+        params.approval === 'pending'
+          ? { items: [waiting], pagination: { page: 1, per_page: 100, total: 1, total_pages: 1 } }
+          : { items: catalog, pagination: { page: 1, per_page: 100, total: catalog.length, total_pages: 1 } },
+      ),
+    )
+    ;(programmeApi.approve as Mock).mockResolvedValue({ ...waiting, approval_status: 'approved' })
+
+    renderPage()
+
+    // The count rides on the tab: an unopened queue stalls that MDA's whole programme.
+    const tab = await screen.findByRole('tab', { name: /approvals \(1\)/i })
+    await user.click(tab)
+
+    expect(await screen.findByText('Maternal Cash Support')).toBeInTheDocument()
+    expect(screen.getByText('Ministry of Health')).toBeInTheDocument()
+
+    await user.click(screen.getByRole('button', { name: /approve/i }))
+    await waitFor(() => expect(programmeApi.approve).toHaveBeenCalledWith('p9', undefined))
+  })
+
+  it('refuses to send a programme back without a reason', async () => {
+    const user = userEvent.setup()
+    perms.value = [...perms.value, 'programme.approve']
+    const waiting = programme({ id: 'p9', name: 'Maternal Cash Support', approval_status: 'pending', is_central: false })
+    list.mockImplementation((params: { approval?: string }) =>
+      Promise.resolve(
+        params.approval === 'pending'
+          ? { items: [waiting], pagination: { page: 1, per_page: 100, total: 1, total_pages: 1 } }
+          : { items: catalog, pagination: { page: 1, per_page: 100, total: catalog.length, total_pages: 1 } },
+      ),
+    )
+    ;(programmeApi.reject as Mock).mockResolvedValue({ ...waiting, approval_status: 'rejected' })
+
+    renderPage()
+    await user.click(await screen.findByRole('tab', { name: /approvals/i }))
+    await user.click(await screen.findByRole('button', { name: /send back/i }))
+
+    const dialog = await screen.findByRole('dialog')
+    // The reason is the only thing the MDA has to work from, so the control stays
+    // disabled until there is one.
+    expect(within(dialog).getByRole('button', { name: /send back/i })).toBeDisabled()
+
+    await user.type(within(dialog).getByLabelText(/why it is being sent back/i), 'Name it after the benefit.')
+    await user.click(within(dialog).getByRole('button', { name: /send back/i }))
+
+    await waitFor(() => expect(programmeApi.reject).toHaveBeenCalledWith('p9', 'Name it after the benefit.'))
   })
 
   it('blocks the catalog entirely without programme.view', async () => {

@@ -16,8 +16,8 @@ use Illuminate\Testing\TestResponse;
 use Tests\TestCase;
 
 /**
- * Programme Catalog section of the administration console. The catalog stays GLOBAL and
- * unowned (CLAUDE.md §10): only catalog administrators write to it, MDAs never can, and
+ * Programme Catalog section of the administration console. The CENTRAL catalog stays
+ * global and unowned (CLAUDE.md §10): only catalog administrators write to it, and
  * the console composes the existing `/programmes` endpoints rather than adding a second
  * catalog. Adds cross-MDA USAGE (`mdas_count`) alongside the activity count that already
  * existed — both derived from the same `activities` relation, so they inherit the same
@@ -102,14 +102,14 @@ class AdminCatalogTest extends TestCase
             ->assertOk()->assertJsonPath('data.status', 'archived');
     }
 
-    public function test_mdas_can_never_create_or_edit_catalog_programmes(): void
+    public function test_mdas_can_never_edit_the_central_catalog(): void
     {
         $programme = Programme::factory()->individual()->create(['status' => 'active']);
 
-        // Neither an MDA officer nor an MDA administrator may write to the catalog —
-        // it is global and unowned (§10). They may still READ it to select a programme.
+        // An MDA may create a programme OF ITS OWN (§10, revised), but the CENTRAL
+        // catalog stays read-only to it: no rename, no archive. They still READ it to
+        // select a programme for an activity.
         foreach (['officer', 'mdaAdmin'] as $key) {
-            $this->as($key, 'POST', '/api/v1/programmes', $this->catalogPayload())->assertStatus(403);
             $this->as($key, 'PATCH', "/api/v1/programmes/{$programme->id}", ['name' => 'Renamed'])->assertStatus(403);
             $this->as($key, 'POST', "/api/v1/programmes/{$programme->id}/archive")->assertStatus(403);
 
@@ -117,6 +117,7 @@ class AdminCatalogTest extends TestCase
         }
 
         $this->assertSame('active', $programme->fresh()->status->value);
+        $this->assertSame($programme->name, $programme->fresh()->name);
     }
 
     public function test_sp_coordination_co_administers_the_catalog(): void
@@ -183,13 +184,16 @@ class AdminCatalogTest extends TestCase
         $this->assertSame(1, $officerRow['mdas_count']);
     }
 
-    public function test_programmes_remain_global_and_unowned(): void
+    public function test_the_central_catalog_stays_unowned_and_readable_by_every_mda(): void
     {
         $programme = Programme::factory()->individual()->create(['status' => 'active']);
 
-        // The catalog carries no owning MDA — every MDA can read it to build activities.
+        // A CENTRAL entry carries no owning MDA — every MDA reads it to build
+        // activities, which is the whole point of a shared catalog.
         $body = $this->as('officer', 'GET', "/api/v1/programmes/{$programme->id}")->assertOk()->json('data');
-        $this->assertArrayNotHasKey('owner_mda_id', $body);
+        $this->assertNull($body['owner_mda_id']);
+        $this->assertTrue($body['is_central']);
+        $this->assertSame('approved', $body['approval_status']);
         $this->assertArrayNotHasKey('mda', $body);
     }
 }

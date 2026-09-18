@@ -38,6 +38,33 @@ export function useSaveProgramme() {
   })
 }
 
+/**
+ * Decide an MDA's programme, or offer it again. One mutation for the three moves
+ * so every one of them refreshes the same lists — the queue the System
+ * Administrator is looking at, and the MDA's own programmes page.
+ */
+export function useProgrammeDecision() {
+  const qc = useQueryClient()
+  const toast = useToast()
+  return useMutation({
+    mutationFn: ({ id, action, note }: { id: string; action: 'approve' | 'reject' | 'submit'; note?: string }) => {
+      if (action === 'approve') return programmeApi.approve(id, note)
+      if (action === 'reject') return programmeApi.reject(id, note ?? '')
+      return programmeApi.submit(id)
+    },
+    onSuccess: (programme, { action }) => {
+      qc.invalidateQueries({ queryKey: ['programmes'] })
+      qc.invalidateQueries({ queryKey: ['programme', programme.id] })
+      qc.invalidateQueries({ queryKey: ['programme-catalog'] })
+      const said = action === 'approve' ? 'Programme approved' : action === 'reject' ? 'Programme sent back' : 'Sent for approval'
+      toast.success(said, programme.name)
+    },
+    onError: (error) => {
+      toast.error('Could not save the decision', error instanceof ApiError ? error.message : 'Please try again.')
+    },
+  })
+}
+
 export function useArchiveProgramme() {
   const qc = useQueryClient()
   const toast = useToast()

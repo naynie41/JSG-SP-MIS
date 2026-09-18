@@ -46,7 +46,9 @@ class RbacTest extends TestCase
             'beneficiary.view', 'beneficiary.create', 'beneficiary.edit', 'beneficiary.approve', 'beneficiary.export',
             'beneficiary.access_request',
             'beneficiary-lookup.view', 'household.view', 'household.edit',
-            'programme.view',
+            // An MDA creates programmes OF ITS OWN (§10, revised) — the central catalog
+            // stays read-only; ProgrammePolicy holds that line, not the permission.
+            'programme.view', 'programme.create', 'programme.edit',
             'activity.view', 'activity.create', 'activity.edit',
             'enrollment.view', 'enrollment.create', 'enrollment.edit',
             'benefit.view', 'benefit.create', 'benefit.approve',
