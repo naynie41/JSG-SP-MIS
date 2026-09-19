@@ -184,11 +184,15 @@ final class SvgChart
      * @param  list<array{label: string, count: int}>  $rows
      * @return array{uri: string, width: int, height: int}|null
      */
-    public static function bars(array $rows, int $width, ?int $minimum = null): ?array
+    public static function bars(array $rows, int $width, ?int $minimum = null, ?callable $format = null): ?array
     {
         if ($rows === [] || max(array_map(static fn (array $r): int => $r['count'], $rows)) <= 0) {
             return null;
         }
+
+        // Counts are the common case; a money bar passes a formatter, because "177,800"
+        // sitting where a headcount usually sits reads as 177,800 people.
+        $format ??= static fn (int $value): string => number_format($value);
 
         $rowHeight = 20;
         $labelWidth = (int) min(130, $width * 0.38);
@@ -209,7 +213,7 @@ final class SvgChart
             $body .= self::text(0, $cy + 3, $label, 9, self::INK, 'start');
             $body .= '<rect x="'.$trackX.'" y="'.self::n($cy - 3.5).'" width="'.self::n($trackWidth).'" height="7" rx="3.5" fill="'.self::GRID.'"/>';
             $body .= '<rect x="'.$trackX.'" y="'.self::n($cy - 3.5).'" width="'.self::n($fill).'" height="7" rx="3.5" fill="'.($held ? self::AXIS : self::SERIES).'"/>';
-            $body .= self::text($width, $cy + 3, $held ? '< '.$minimum : number_format($row['count']), 9, self::INK, 'end', true);
+            $body .= self::text($width, $cy + 3, $held ? '< '.$minimum : $format($row['count']), 9, self::INK, 'end', true);
         }
 
         return self::image($width, count($rows) * $rowHeight, $body);

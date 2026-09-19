@@ -27,8 +27,18 @@ export const dashboardApi = {
   /**
    * Download the CURRENT (scoped + filtered) dashboard as an aggregate file. The server
    * names the file; `fileName` is only the fallback if that header cannot be read.
+   *
+   * `view: 'board'` asks for the reporting BOARD — the page itself, charts and map
+   * included, as a PDF. Without it a state-wide caller gets the executive suite's
+   * sectioned CSV/Excel/PDF, which is a different document for a different reader. An
+   * MDA has only the board, so its console need not ask.
    */
-  export(format: DashboardExportFormat, filter?: DashboardFilterValue, fileName = `executive-dashboard.${format}`): Promise<void> {
-    return downloadFile('/dashboard/export', { ...filterParams(filter), format }, fileName)
+  export(
+    format: DashboardExportFormat,
+    filter?: DashboardFilterValue,
+    fileName = `executive-dashboard.${format}`,
+    view?: 'board',
+  ): Promise<void> {
+    return downloadFile('/dashboard/export', { ...filterParams(filter), format, ...(view ? { view } : {}) }, fileName)
   },
 }

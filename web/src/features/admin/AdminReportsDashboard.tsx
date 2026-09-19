@@ -64,7 +64,9 @@ export function AdminReportsDashboard({ canExport }: { canExport: boolean }) {
     setExporting(true)
     setExportFailed(false)
     try {
-      await dashboardApi.export('pdf', active ? filter : undefined, 'state-dashboard.pdf')
+      // 'board' asks for the page itself — tiles, charts and the map — not the
+      // executive suite's sectioned export off the same endpoint.
+      await dashboardApi.export('pdf', active ? filter : undefined, 'state-dashboard.pdf', 'board')
     } catch {
       setExportFailed(true)
     } finally {

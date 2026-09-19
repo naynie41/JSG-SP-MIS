@@ -12,8 +12,14 @@ use Illuminate\Support\Carbon;
 use Illuminate\Support\Str;
 
 /**
- * The MDA Reports dashboard as a PDF: the page the officer was looking at, on paper —
- * headline tiles, the same charts and the LGA map, then the programme table.
+ * A reporting BOARD as a PDF: the page the reader was looking at, on paper — headline
+ * tiles, the same charts and the LGA map, then the programme table.
+ *
+ * One builder serves both boards, because they are the same board at different scopes:
+ * an MDA's Reports dashboard, and the administration console's state-wide one. The
+ * state-wide export additionally carries the cross-agency comparison, which only that
+ * scope has (`mda_delivery`); everything else is identical, so the two PDFs cannot
+ * drift into presenting the same figure two ways.
  *
  * Every figure reads the SAME fields the dashboard renders, in the same words, so a
  * number quoted from the PDF is the number on the screen. Charts are drawn server-side
@@ -26,6 +32,9 @@ class DashboardBoardExportBuilder
 {
     /** Chart widths in the PDF's px: half a content column, and the full column. */
     private const HALF = 330;
+
+    /** A4 content is ~730px at 96dpi; this leaves the card its padding. */
+    private const FULL = 686;
 
     private const CATEGORY_COLORS = ['#008300', '#2A78D6', '#EDA100', '#E87BA4'];
 
@@ -63,17 +72,27 @@ class DashboardBoardExportBuilder
      * @param  string|null  $scopeLabel  the MDA's name for the letterhead; the scope's own label otherwise
      * @param  array{rows: list<array<string, mixed>>, boundaries: list<array{code: string, name: string, geometry: mixed}>}|null  $map
      *                                                                                                                                   LGA coverage and boundary shapes; null when no boundaries are loaded
+     * @param  bool  $stateWide  the administration console's board rather than one MDA's
      */
-    public function build(array $dashboard, DashboardFilter $filter, ?string $scopeLabel = null, ?array $map = null): ReportData
-    {
+    public function build(
+        array $dashboard,
+        DashboardFilter $filter,
+        ?string $scopeLabel = null,
+        ?array $map = null,
+        bool $stateWide = false,
+    ): ReportData {
         $m = (array) ($dashboard['metrics'] ?? []);
         $this->minimum = isset($dashboard['min_cell_size']) ? (int) $dashboard['min_cell_size'] : null;
 
         [$columns, $rows] = $this->programmes($m);
 
+        // The cross-agency comparison sits where it sits on screen: after the trend and
+        // quality pair, before the demographics. Absent at any other scope.
+        $byMda = $stateWide ? $this->mdaDelivery($m) : null;
+
         return new ReportData(
-            reportKey: 'mda-dashboard',
-            title: 'MDA dashboard',
+            reportKey: $stateWide ? 'state-dashboard' : 'mda-dashboard',
+            title: $stateWide ? 'State-wide dashboard' : 'MDA dashboard',
             subtitle: $this->filterLabel($filter),
             scopeLabel: $scopeLabel ?? (string) ($dashboard['scope']['label'] ?? ''),
             generatedAt: Carbon::now(),
@@ -81,10 +100,11 @@ class DashboardBoardExportBuilder
             rows: $rows,
             crest: true,
             highlights: $this->highlights($m),
-            figures: [
+            figures: array_values(array_filter([
                 $this->registrations($m),
                 $this->valueDelivered($m),
                 $this->quality($m),
+                $byMda,
                 $this->gender($m),
                 $this->ages($m),
                 $this->households($m),
@@ -92,8 +112,63 @@ class DashboardBoardExportBuilder
                 $this->largestLgas($m),
                 $this->benefits($m),
                 $this->records($m),
-            ],
+            ])),
         );
+    }
+
+    /**
+     * Delivery by MDA — the state-wide board's cross-agency comparison.
+     *
+     * A WIDE figure: agency names need the room, and at half width the ranking is the
+     * first thing to become unreadable. The note carries the caveat the card carries
+     * on screen — per-MDA reach counts a shared person once in each row, so the column
+     * does not sum to the state headline.
+     *
+     * @param  array<string, mixed>  $m
+     */
+    private function mdaDelivery(array $m): ?ReportFigure
+    {
+        /** @var list<array<string, mixed>> $rows */
+        $rows = (array) ($m['mda_delivery'] ?? []);
+        if ($rows === []) {
+            return null;
+        }
+
+        // Bars carry kobo and print it as money; passing naira and labelling it as a
+        // count would put "177,800" where a headcount usually sits.
+        $bars = array_map(static fn (array $row): array => [
+            'label' => (string) ($row['mda'] ?? 'Unnamed MDA'),
+            'count' => (int) ($row['delivered_value'] ?? 0),
+        ], $rows);
+
+        $items = array_map(fn (array $row): array => [
+            'label' => (string) ($row['mda'] ?? 'Unnamed MDA'),
+            'value' => $this->naira((int) ($row['delivered_value'] ?? 0))
+                .' · '.$this->budgetShare($row)
+                .' · '.$this->count((int) ($row['reached'] ?? 0)).' reached',
+        ], $rows);
+
+        return $this->figure(
+            'Delivery by MDA',
+            'Value delivered by each agency, and how much of its own budget that is',
+            SvgChart::bars($bars, self::FULL, null, static fn (int $kobo): string => SvgChart::compactNaira($kobo)),
+            $items,
+            'No agency has delivered anything in this view yet.',
+            'A person served by two MDAs is counted once by each, so the people reached '
+                .'here add up to more than the state total.',
+            wide: true,
+        );
+    }
+
+    /** How much of its OWN budget an agency has delivered — the qualifier on its bar. */
+    private function budgetShare(array $row): string
+    {
+        $allocated = (int) ($row['allocated'] ?? 0);
+        if ($allocated <= 0) {
+            return 'no budget set';
+        }
+
+        return round(((int) ($row['delivered_value'] ?? 0)) / $allocated * 100).'% of its budget';
     }
 
     /* ---------------------------------------------------------------- tiles */
@@ -470,13 +545,20 @@ class DashboardBoardExportBuilder
      * @param  array{uri: string, width: int, height: int}|null  $chart
      * @param  list<array{label: string, value: string, color?: string}>  $items
      */
-    private function figure(string $title, string $subtitle, ?array $chart, array $items, ?string $emptyNote, ?string $note = null): ReportFigure
-    {
+    private function figure(
+        string $title,
+        string $subtitle,
+        ?array $chart,
+        array $items,
+        ?string $emptyNote,
+        ?string $note = null,
+        bool $wide = false,
+    ): ReportFigure {
         if ($chart === null) {
-            return new ReportFigure($title, $subtitle, note: $emptyNote);
+            return new ReportFigure($title, $subtitle, note: $emptyNote, wide: $wide);
         }
 
-        return new ReportFigure($title, $subtitle, $chart['uri'], $chart['width'], $chart['height'], $items, $note);
+        return new ReportFigure($title, $subtitle, $chart['uri'], $chart['width'], $chart['height'], $items, $note, $wide);
     }
 
     /**
