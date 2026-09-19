@@ -179,6 +179,8 @@ export interface PartnerContribution {
 export interface MdaDeliveryRow {
   mda_id: string
   mda: string | null
+  /** Government body or an implementing development partner; null if unresolved. */
+  kind: 'government' | 'partner' | null
   delivered_value: number // kobo
   deliveries: number // gross, not net
   reached: number // net-unique within this MDA

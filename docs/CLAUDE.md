@@ -287,7 +287,21 @@ A task is done only when **all** of these are true:
   §10. UX may let an officer set one partner across several activities, but it is stored per-activity.
 - **Funding attribution confers REPORTING VISIBILITY ONLY — never beneficiary-data access.** A partner
   funding an activity gains aggregate reporting on their funded programmes; it grants no read access to
-  beneficiary records. Development Partners never see registry PII.
+  beneficiary records. The Development Partner ROLE never sees registry PII — see the next bullet for
+  what that means once a partner also implements.
+- **A development partner may also IMPLEMENT** (stakeholder decision, 2026-09-20). Such an organisation
+  exists TWICE, as two accounts, and that separation is what keeps the rule above true:
+  - as a **delivery organisation** — an `mdas` row of type `partner`, whose staff are ordinary MDA
+    Admins. It owns programmes, activities and beneficiaries through `owner_mda_id`, so MDA scoping,
+    duplicate detection, request-to-serve, imports and the ledger all apply unchanged. Its beneficiary
+    data IS visible to government oversight, and its people DO join state-wide duplicate screening.
+  - as a **funder** — the existing Development Partner account, read-only and funded-scope, which
+    `activities.funding_partner_id` points at. `mdas.funder_user_id` links the two.
+  Never merge the two into one login: the funder role's "no PII" guarantee depends on them being
+  separate. **Government never funds a partner organisation's own activity** — `funding_type` may not be
+  `government`, and `co_funded_by_government` may not be set, on an activity a partner org owns.
+  In the interface "MDA" still means government; **"implementing agency"** is the umbrella that covers
+  both, and a partner organisation is tagged as such wherever it appears beside one.
 - **"Super Admin" = the existing System Administrator role, not a new tier.** The System Administrator
   Console (`docs/PHASE-ADMIN-BUILD-PROMPTS.md`) is a governance/config/oversight surface that **composes
   existing modules** (users/audit Ph1, registry Ph2, matching Ph3, catalog Ph4, reports Ph6, sync Ph7) —

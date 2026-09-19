@@ -45,8 +45,8 @@ const payload = (over: Partial<DashboardResponse['metrics']> = {}): DashboardRes
     grievances: null,
     coverage: [],
     mda_delivery: [
-      { mda_id: 'm1', mda: 'Ministry of Health', delivered_value: 40_000_000, deliveries: 9, reached: 900, allocated: 50_000_000, activities_total: 4, activities_active: 3 },
-      { mda_id: 'm2', mda: 'Ministry of Education', delivered_value: 0, deliveries: 0, reached: 0, allocated: 20_000_000, activities_total: 2, activities_active: 1 },
+      { mda_id: 'm1', mda: 'Ministry of Health', kind: 'government' as const, delivered_value: 40_000_000, deliveries: 9, reached: 900, allocated: 50_000_000, activities_total: 4, activities_active: 3 },
+      { mda_id: 'm2', mda: 'Ministry of Education', kind: 'government' as const, delivered_value: 0, deliveries: 0, reached: 0, allocated: 20_000_000, activities_total: 2, activities_active: 1 },
     ],
     ...over,
   },

@@ -186,6 +186,18 @@ class ScopeBypassSurfaceTest extends TestCase
             'Http/Controllers/Api/V1/Registry/HouseholdController.php',
             'Http/Controllers/Api/V1/Registry/HouseholdMemberController.php',
             'Http/Resources/ActivityDetailResource.php',
+            // A partner organisation's FUNDER account, for an org that both funds and
+            // implements. The account is state-level and holds no MDA, so a scoped
+            // relation returns nothing to the very organisation it belongs to. It
+            // reads one user row whose id the organisation already stores, and is
+            // presented as a name — never an email, never as access to that account.
+            'Domain/Access/Models/Mda.php',
+            // Resolving the organisation that will OWN an activity, to refuse
+            // government funding of a partner's own work. On an edit the owner is the
+            // stored activity's, which the caller's scope would hide from the check
+            // precisely when the check matters; the lookup reads ownership and type
+            // only, and its single output is a validation error.
+            'Http/Requests/Programme/Concerns/ValidatesFunding.php',
         ],
     ];
 

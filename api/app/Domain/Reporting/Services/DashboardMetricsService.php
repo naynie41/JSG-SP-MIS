@@ -675,14 +675,19 @@ class DashboardMetricsService
             return [];
         }
 
-        $names = Mda::query()->withoutGlobalScope(MdaScope::class)->whereIn('id', $ids)->pluck('name', 'id');
+        // Name AND kind: a partner organisation delivers alongside government here,
+        // and a table that cannot tell them apart reads as if the state ran it all.
+        $agencies = Mda::query()->withoutGlobalScope(MdaScope::class)
+            ->whereIn('id', $ids)->get(['id', 'name', 'type'])->keyBy('id');
 
         $rows = [];
         foreach ($ids as $id) {
             $activity = $activities->get($id);
+            $agency = $agencies->get($id);
             $rows[] = [
                 'mda_id' => $id,
-                'mda' => $names[$id] ?? null,
+                'mda' => $agency?->name,
+                'kind' => $agency === null ? null : ($agency->isGovernment() ? 'government' : 'partner'),
                 'delivered_value' => (int) ($delivered[$id]['total_value'] ?? 0),
                 'deliveries' => (int) ($delivered[$id]['benefit_count'] ?? 0),
                 'reached' => (int) ($reach[$id] ?? 0),

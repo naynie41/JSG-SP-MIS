@@ -1,4 +1,10 @@
-export type MdaType = 'ministry' | 'department' | 'agency'
+/**
+ * The kind of organisation that DELIVERS. The first three are government — the
+ * "MDA" the module is named after. 'partner' is a development partner that
+ * implements its own programmes rather than only funding someone else's; it owns
+ * records exactly as an MDA does, but must never read as government.
+ */
+export type MdaType = 'ministry' | 'department' | 'agency' | 'partner'
 export type MdaStatus = 'active' | 'inactive'
 
 export interface Mda {
