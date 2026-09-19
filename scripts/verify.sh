@@ -84,6 +84,22 @@ if [[ -n "${DOMAIN}" ]]; then
     bad "API health" "endpoint unreachable over HTTPS"
   fi
 
+  # The SPA itself, over HTTPS. Everything above this line can pass while the site
+  # is down: the HTTP check only exercises nginx's own redirect, the health check
+  # only the php-fpm upstream, and nginx adds HSTS to its 502 page too. When nginx
+  # held a stale IP for `web` after v1.4.0, all three stayed green while every
+  # visitor got "502 Bad Gateway". So this asks for the app shell and insists on
+  # both a 200 and something only the real document carries.
+  spa_code="$(curl -s -o /tmp/spmis-spa.html -w '%{http_code}' -m 20 "https://${DOMAIN}/" 2>/dev/null)"
+  if [[ "${spa_code}" == "200" ]] && grep -qi '<div id="root"' /tmp/spmis-spa.html 2>/dev/null; then
+    ok "SPA served" "200 + app shell"
+  elif [[ "${spa_code}" == "200" ]]; then
+    bad "SPA served" "200 but the response is not the app shell"
+  else
+    bad "SPA served" "got ${spa_code:-no response} — nginx cannot reach the web upstream"
+  fi
+  rm -f /tmp/spmis-spa.html
+
   hsts="$(curl -sI -m 15 "https://${DOMAIN}/" 2>/dev/null | grep -ci 'strict-transport-security')"
   if (( hsts > 0 )); then
     ok "HSTS header present"

@@ -96,6 +96,15 @@ log "Starting the stack"
 # migration race between the three.
 $DC up -d
 
+# nginx resolves `api:9000` and `web:8080` ONCE, when its config loads. Recreating
+# api/web above hands them new container IPs, and a long-lived nginx keeps proxying
+# to the old ones — every SPA request then 502s while every container still reports
+# healthy. That took the site down after v1.4.0. Restarting nginx last re-resolves
+# both upstreams; it costs a sub-second blip during a deploy that is already
+# swapping containers.
+log "Restarting nginx so it re-resolves the recreated upstreams"
+$DC restart nginx
+
 # --- 5. Wait for health, then verify ----------------------------------------
 log "Waiting up to ${HEALTH_TIMEOUT}s for services to report healthy"
 deadline=$(( $(date +%s) + HEALTH_TIMEOUT ))
