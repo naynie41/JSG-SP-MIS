@@ -50,15 +50,25 @@ final class DashboardFilter
             'mda_id' => ['nullable', 'uuid'],
         ]);
 
+        // CAST, do not pass through. `validate()` hands back what the request carried,
+        // and a query string carries "1", not 1 — the `integer` rule accepts a numeric
+        // string without converting it. Under strict_types that string reaching an
+        // `?int` parameter is a TypeError, which is a 500 on every filtered request.
         return new self(
-            year: $v['year'] ?? null,
-            quarter: $v['quarter'] ?? null,
-            month: $v['month'] ?? null,
+            year: self::int($v['year'] ?? null),
+            quarter: self::int($v['quarter'] ?? null),
+            month: self::int($v['month'] ?? null),
             programmeId: $v['programme_id'] ?? null,
             lga: $v['lga'] ?? null,
             ward: $v['ward'] ?? null,
             mdaId: $v['mda_id'] ?? null,
         );
+    }
+
+    /** An already-validated numeric value as an int, keeping "not given" as null. */
+    private static function int(mixed $value): ?int
+    {
+        return $value === null || $value === '' ? null : (int) $value;
     }
 
     public function isEmpty(): bool
