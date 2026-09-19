@@ -81,7 +81,7 @@ export function MdaDeliveryCard({ rows, minimum }: { rows: MdaDeliveryRow[]; min
         })}
       </ul>
       <p className={styles.footnote}>
-        A person served by two MDAs is counted once by each, so the people reached here add up to more than the
+        A person served by two agencies is counted once by each, so the people reached here add up to more than the
         state total
       </p>
     </ChartCard>

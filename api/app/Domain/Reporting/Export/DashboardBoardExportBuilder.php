@@ -117,7 +117,7 @@ class DashboardBoardExportBuilder
     }
 
     /**
-     * Delivery by MDA — the state-wide board's cross-agency comparison.
+     * Delivery by agency — the state-wide board's cross-agency comparison.
      *
      * A WIDE figure: agency names need the room, and at half width the ranking is the
      * first thing to become unreadable. The note carries the caveat the card carries
@@ -137,24 +137,28 @@ class DashboardBoardExportBuilder
         // Bars carry kobo and print it as money; passing naira and labelling it as a
         // count would put "177,800" where a headcount usually sits.
         $bars = array_map(static fn (array $row): array => [
-            'label' => (string) ($row['mda'] ?? 'Unnamed MDA'),
+            'label' => (string) ($row['mda'] ?? 'Unnamed agency'),
             'count' => (int) ($row['delivered_value'] ?? 0),
         ], $rows);
 
+        // A partner is marked in the printed list as it is badged on screen. Paper has
+        // no badge, so the word rides in the label — without it an NGO's delivery reads
+        // as the state's, which is the one thing this card must not do.
         $items = array_map(fn (array $row): array => [
-            'label' => (string) ($row['mda'] ?? 'Unnamed MDA'),
+            'label' => (string) ($row['mda'] ?? 'Unnamed agency')
+                .(($row['kind'] ?? null) === 'partner' ? ' (partner)' : ''),
             'value' => $this->naira((int) ($row['delivered_value'] ?? 0))
                 .' · '.$this->budgetShare($row)
                 .' · '.$this->count((int) ($row['reached'] ?? 0)).' reached',
         ], $rows);
 
         return $this->figure(
-            'Delivery by MDA',
+            'Delivery by agency',
             'Value delivered by each agency, and how much of its own budget that is',
             SvgChart::bars($bars, self::FULL, null, static fn (int $kobo): string => SvgChart::compactNaira($kobo)),
             $items,
             'No agency has delivered anything in this view yet.',
-            'A person served by two MDAs is counted once by each, so the people reached '
+            'A person served by two agencies is counted once by each, so the people reached '
                 .'here add up to more than the state total.',
             wide: true,
         );
