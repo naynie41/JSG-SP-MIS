@@ -13,6 +13,10 @@ use App\Domain\Grievance\Events\GrievanceSlaBreached;
 use App\Domain\Grievance\Models\Grievance;
 use App\Domain\Notification\Services\Notifier;
 use App\Domain\Notification\Support\NotificationMessage;
+use App\Domain\Programme\Events\ProgrammeApproved;
+use App\Domain\Programme\Events\ProgrammeRejected;
+use App\Domain\Programme\Events\ProgrammeSubmitted;
+use App\Domain\Programme\Models\Programme;
 use App\Domain\Referral\Events\ReferralSlaBreached;
 use App\Domain\Referral\Events\ReferralStatusChanged;
 use App\Domain\Referral\Models\Referral;
@@ -463,9 +467,116 @@ class NotificationSubscriber
     /**
      * @return array<class-string, string>
      */
+    /**
+     * An MDA has submitted a programme of its own (§10, revised).
+     *
+     * ACTION REQUIRED, because nothing the MDA planned can start until someone
+     * decides: no activity, no enrolment and no benefit may reference an unapproved
+     * programme, so a submission left unread is a programme that never runs.
+     */
+    public function handleProgrammeSubmitted(ProgrammeSubmitted $event): void
+    {
+        $programme = $event->programme;
+        $mda = $programme->ownerMda()->withoutGlobalScopes()->value('name') ?? 'An MDA';
+
+        $this->notifier->notify(
+            new NotificationMessage(
+                type: 'programme.submitted',
+                subject: 'Action required: a programme is waiting for approval',
+                body: $mda.' has created the programme “'.$programme->name.'” and it is waiting for your approval. '
+                    .'It cannot carry any activities, enrolments or benefits until you decide.',
+                related: $programme,
+                actionPath: '/admin/catalog',
+                actionLabel: 'Review the programme',
+            ),
+            $this->holdersOf('programme.approve'),
+        );
+    }
+
+    public function handleProgrammeApproved(ProgrammeApproved $event): void
+    {
+        $programme = $event->programme;
+
+        $this->notifier->notify(
+            new NotificationMessage(
+                type: 'programme.approved',
+                subject: 'Programme approved: '.$programme->name,
+                body: 'Your programme “'.$programme->name.'” has been approved. '
+                    .'You can now create activities under it and record what you deliver.',
+                related: $programme,
+                actionPath: '/mda/programmes',
+                actionLabel: 'Open the programme',
+            ),
+            $this->programmeOwners($programme),
+        );
+    }
+
+    public function handleProgrammeRejected(ProgrammeRejected $event): void
+    {
+        $programme = $event->programme;
+
+        $this->notifier->notify(
+            new NotificationMessage(
+                type: 'programme.rejected',
+                subject: 'Programme sent back: '.$programme->name,
+                body: 'Your programme “'.$programme->name.'” was sent back'
+                    .($programme->decision_note !== null ? ': '.$programme->decision_note : '.')
+                    .' Make the changes and submit it again.',
+                related: $programme,
+                actionPath: '/mda/programmes',
+                actionLabel: 'Open the programme',
+            ),
+            $this->programmeOwners($programme),
+        );
+    }
+
+    /**
+     * Everyone who may act on a programme decision anywhere — the System
+     * Administrators. Unlike {@see approversIn} this is not tied to an MDA: the
+     * approver sits at state level and usually has no MDA of their own.
+     *
+     * @return Collection<int, User>
+     */
+    private function holdersOf(string $permission): Collection
+    {
+        return User::query()
+            ->withoutGlobalScope(MdaScope::class)
+            ->get()
+            ->filter(fn (User $user): bool => $user->hasPermission($permission))
+            ->values();
+    }
+
+    /**
+     * Who to tell about a decision: the person who submitted it, plus the MDA's
+     * programme editors — a decision that reaches only a colleague who has left is
+     * a decision nobody acts on.
+     *
+     * @return Collection<int, User>
+     */
+    private function programmeOwners(Programme $programme): Collection
+    {
+        if ($programme->owner_mda_id === null) {
+            return new Collection;
+        }
+
+        $recipients = $this->approversIn($programme->owner_mda_id, 'programme.edit');
+
+        if ($programme->created_by !== null) {
+            $author = User::query()->withoutGlobalScope(MdaScope::class)->find($programme->created_by);
+            if ($author !== null) {
+                $recipients = $recipients->push($author);
+            }
+        }
+
+        return $recipients->unique('id')->values();
+    }
+
     public function subscribe(Dispatcher $events): array
     {
         return [
+            ProgrammeSubmitted::class => 'handleProgrammeSubmitted',
+            ProgrammeApproved::class => 'handleProgrammeApproved',
+            ProgrammeRejected::class => 'handleProgrammeRejected',
             ServiceRequestRaised::class => 'handleServiceRequestRaised',
             ServiceRequestAccepted::class => 'handleServiceRequestAccepted',
             ServiceRequestDeclined::class => 'handleServiceRequestDeclined',

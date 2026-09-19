@@ -307,16 +307,16 @@ export function ForecastCards({ forecast }: { forecast: ExecutiveForecast }) {
         {budget && (
           <ForecastCard
             icon={Wallet}
-            title="Budget runway"
+            title="When the budget runs out"
             tone={budget.status === 'over' ? 'bad' : budget.status === 'exhausting' ? 'warn' : undefined}
             value={
               budget.status === 'over'
                 ? 'Fully committed'
                 : budget.status === 'idle'
-                  ? 'No active burn'
+                  ? 'No recent delivery'
                   : `Runs out ~${budget.exhaustionMonth ? monthLong(budget.exhaustionMonth) : '—'}`
             }
-            note={budget.monthsRemaining !== null && budget.status !== 'over' ? `${budget.monthsRemaining} months at current burn` : undefined}
+            note={budget.monthsRemaining !== null && budget.status !== 'over' ? `${budget.monthsRemaining} months at the current rate` : undefined}
             assumption={budget.assumption}
           />
         )}

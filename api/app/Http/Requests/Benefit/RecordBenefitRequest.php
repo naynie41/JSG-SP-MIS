@@ -6,6 +6,7 @@ namespace App\Http\Requests\Benefit;
 
 use App\Domain\Benefit\Enums\BenefitType;
 use App\Domain\Benefit\Enums\VerificationMethod;
+use App\Domain\Programme\Rules\IsAvailableProgramme;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Rule;
 
@@ -28,7 +29,7 @@ class RecordBenefitRequest extends FormRequest
     {
         return [
             'beneficiary_id' => ['required', 'uuid', 'exists:beneficiaries,id'],
-            'programme_id' => ['required', 'uuid', 'exists:programmes,id'],
+            'programme_id' => ['required', 'uuid', 'exists:programmes,id', new IsAvailableProgramme],
             'activity_id' => ['nullable', 'uuid', 'exists:activities,id'],
             'benefit_type' => ['required', Rule::enum(BenefitType::class)],
             'quantity' => ['nullable', 'numeric', 'min:0'],

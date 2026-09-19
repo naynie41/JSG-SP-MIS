@@ -84,7 +84,7 @@ class AdminSummaryService
             'development_partners' => $partnerRoleId === null
                 ? 0
                 : (int) User::query()->where('role_id', $partnerRoleId)->count(),
-            'programmes_catalog' => (int) Programme::query()->count(),
+            'programmes_catalog' => (int) Programme::query()->approved()->count(),
             'activities_active' => (int) Activity::query()->withoutGlobalScope(MdaScope::class)
                 ->where('status', ActivityStatus::Active->value)->count(),
             'beneficiaries_registered' => (int) Beneficiary::query()->withoutGlobalScope(MdaScope::class)->count(),

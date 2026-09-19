@@ -6,9 +6,16 @@ namespace App\Domain\Reporting\Segments;
 
 use App\Domain\Access\Models\Mda;
 use App\Domain\Access\Scopes\MdaScope;
+use App\Domain\Registry\Enums\BeneficiaryStatus;
+use App\Domain\Registry\Enums\Gender;
+use App\Domain\Registry\Enums\Lga;
+use App\Domain\Registry\Enums\RegistrationSource;
 use App\Domain\Registry\Models\Beneficiary;
+use App\Domain\Registry\Models\HouseholdMembership;
 use App\Domain\Reporting\Export\ReportColumn;
 use App\Domain\Reporting\Export\ReportData;
+use App\Domain\Reporting\Export\ReportSummarySection;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Str;
 
@@ -137,12 +144,13 @@ class SegmentReportService
      * The exportable payload. Rows for an entitled tier; the breakdown otherwise, so a
      * partner or executive still gets a real file — an aggregate one.
      */
-    public function toReportData(SegmentDefinition $definition, SegmentAccess $access): ReportData
+    public function toReportData(SegmentDefinition $definition, SegmentAccess $access, bool $withSummary = false): ReportData
     {
         $generatedAt = Carbon::now();
+        $summary = $withSummary ? $this->summary($definition, $access) : [];
 
         if (! $access->showsRows()) {
-            return $this->aggregateReportData($definition, $access, $generatedAt);
+            return $this->aggregateReportData($definition, $access, $generatedAt, $summary, $withSummary);
         }
 
         $rows = [];
@@ -156,16 +164,147 @@ class SegmentReportService
 
         return new ReportData(
             reportKey: 'segment',
-            title: 'Beneficiary segment',
+            title: 'People report',
             subtitle: $definition->label(),
             scopeLabel: $access->scope->label,
             generatedAt: $generatedAt,
             columns: $this->columns($access),
             rows: $rows,
+            summary: $summary,
+            crest: $withSummary,
         );
     }
 
-    private function aggregateReportData(SegmentDefinition $definition, SegmentAccess $access, Carbon $generatedAt): ReportData
+    /**
+     * Headline counts for the top of an exported segment: how many people, and how they
+     * divide by gender, age group, household, status, source and LGA.
+     *
+     * Counted from the SAME query as the rows, so the summary describes exactly the
+     * people in the table beneath it. The small-cell guard applies to each count on the
+     * same terms as the chart breakdown; when the whole segment is too small to publish,
+     * only the withheld total is printed — a divided-up small group is the disclosure the
+     * guard exists to prevent.
+     *
+     * @return list<ReportSummarySection>
+     */
+    public function summary(SegmentDefinition $definition, SegmentAccess $access): array
+    {
+        $base = $this->queries->query($definition, $access->scope)->reorder();
+        $total = (clone $base)->count();
+        $withheld = '< '.$this->guard->minimum();
+
+        if ($this->guard->totalIsSuppressed($total, $access->cellSizeGuard && ! $access->showsRows())) {
+            return [new ReportSummarySection('Overview', [['label' => 'People in this report', 'value' => $withheld]])];
+        }
+
+        $count = fn (int $n): string => $this->guard->totalIsSuppressed($n, $access->cellSizeGuard) ? $withheld : number_format($n);
+        $items = static function (array $counts) use ($count): array {
+            $out = [];
+            foreach ($counts as $label => $n) {
+                $out[] = ['label' => (string) $label, 'value' => $count((int) $n)];
+            }
+
+            return $out;
+        };
+
+        $inHousehold = (clone $base)
+            ->whereIn('beneficiaries.id', HouseholdMembership::query()->whereNull('left_at')->select('beneficiary_id'))
+            ->count();
+
+        $byGender = $this->countsBy($base, 'gender');
+        $gender = [
+            'Women' => $byGender[Gender::Female->value] ?? 0,
+            'Men' => $byGender[Gender::Male->value] ?? 0,
+            Gender::Other->label() => $byGender[Gender::Other->value] ?? 0,
+            'Not recorded' => $byGender[''] ?? 0,
+        ];
+
+        $byStatus = $this->countsBy($base, 'status');
+        $status = [];
+        foreach (BeneficiaryStatus::cases() as $case) {
+            $status[$case->label()] = $byStatus[$case->value] ?? 0;
+        }
+
+        $sources = [];
+        foreach ($this->countsBy($base, 'registration_source') as $value => $n) {
+            $sources[RegistrationSource::tryFrom($value)?->label() ?? Str::headline($value)] = $n;
+        }
+        arsort($sources);
+
+        $lgas = [];
+        foreach ($this->countsBy($base, 'lga') as $value => $n) {
+            $lgas[$value === '' ? 'Not recorded' : (Lga::tryFrom($value)?->label() ?? Str::headline($value))] = $n;
+        }
+        arsort($lgas);
+
+        return [
+            new ReportSummarySection('Overview', $items([
+                'People in this report' => $total,
+                'In a household' => $inHousehold,
+                'Registered as individuals' => max(0, $total - $inHousehold),
+            ])),
+            new ReportSummarySection('Gender', $items($gender)),
+            new ReportSummarySection('Age group', $items($this->ageGroups($base))),
+            new ReportSummarySection('Status', $items($status)),
+            new ReportSummarySection('How they were registered', $items($sources)),
+            new ReportSummarySection('Local government area', $items($lgas)),
+        ];
+    }
+
+    /**
+     * @param  Builder<Beneficiary>  $base
+     * @return array<string, int> keyed by stored value; a missing value is keyed ''
+     */
+    private function countsBy(Builder $base, string $column): array
+    {
+        $out = [];
+        $rows = (clone $base)->toBase()
+            ->selectRaw("beneficiaries.{$column} as k, count(*) as c")
+            ->groupBy("beneficiaries.{$column}")
+            ->get();
+
+        foreach ($rows as $row) {
+            $out[(string) ($row->k ?? '')] = (int) $row->c;
+        }
+
+        return $out;
+    }
+
+    /**
+     * The configured age bands (`reporting.age_bands`), labelled with their ages. Bands
+     * are computed as birth-date boundaries so the edges are exact on every driver.
+     *
+     * @param  Builder<Beneficiary>  $base
+     * @return array<string, int>
+     */
+    private function ageGroups(Builder $base): array
+    {
+        $today = Carbon::today();
+        $out = [];
+
+        foreach ((array) config('reporting.age_bands', []) as $key => $range) {
+            [$min, $max] = $range;
+            $query = (clone $base)
+                ->whereNotNull('beneficiaries.date_of_birth')
+                ->whereDate('beneficiaries.date_of_birth', '<=', $today->copy()->subYears((int) $min)->toDateString());
+
+            if ($max !== null) {
+                $query->whereDate('beneficiaries.date_of_birth', '>', $today->copy()->subYears((int) $max)->toDateString());
+            }
+
+            $ages = $max === null ? "{$min}+" : $min.'–'.((int) $max - 1);
+            $out[Str::headline((string) $key)." ({$ages})"] = $query->count();
+        }
+
+        $out['Not recorded'] = (clone $base)->whereNull('beneficiaries.date_of_birth')->count();
+
+        return $out;
+    }
+
+    /**
+     * @param  list<ReportSummarySection>  $summary
+     */
+    private function aggregateReportData(SegmentDefinition $definition, SegmentAccess $access, Carbon $generatedAt, array $summary = [], bool $crest = false): ReportData
     {
         $breakdown = $definition->breakdown === null ? [] : $this->breakdown($definition, $access);
         $rows = [];
@@ -189,7 +328,7 @@ class SegmentReportService
 
         return new ReportData(
             reportKey: 'segment',
-            title: 'Beneficiary segment (aggregate)',
+            title: 'People report (counts only)',
             subtitle: $definition->label(),
             scopeLabel: $access->scope->label,
             generatedAt: $generatedAt,
@@ -198,6 +337,8 @@ class SegmentReportService
                 new ReportColumn('count', 'Beneficiaries'),
             ],
             rows: $rows,
+            summary: $summary,
+            crest: $crest,
         );
     }
 

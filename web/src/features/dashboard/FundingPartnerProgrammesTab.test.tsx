@@ -184,7 +184,7 @@ describe('FundingPartnerProgrammesTab', () => {
   it('renders OUTPUT indicators (outputs only) by benefit type and captured demographic', () => {
     render(<FundingPartnerProgrammesTab data={buildPayload(buildPf())} canDrill={false} />)
 
-    const outputs = screen.getByRole('region', { name: 'Output indicators' })
+    const outputs = screen.getByRole('region', { name: 'What was delivered' })
     expect(within(outputs).getByText('Cash')).toBeInTheDocument()
     expect(within(outputs).getByText('Food')).toBeInTheDocument()
     expect(within(outputs).getAllByText('Women').length).toBeGreaterThan(0)
@@ -219,6 +219,43 @@ describe('FundingPartnerProgrammesTab', () => {
     expect(screen.queryByText('Q1 disbursement')).toBeNull()
     await user.click(toggle)
     expect(screen.getByText('Q1 disbursement')).toBeInTheDocument()
+  })
+
+  it('shows each funded activity’s period, whole budget, remaining and co-funding', async () => {
+    const user = userEvent.setup()
+    const coFunded = makeProgramme({
+      programme_id: 'p9',
+      name: 'Joint Cash Transfer',
+      activities: [
+        {
+          activity_id: 'a9',
+          name: 'Joint round',
+          mda: 'Ministry of Health',
+          status: 'active',
+          starts_on: '2026-01-01',
+          ends_on: '2026-06-30',
+          co_funded_by_government: true,
+          target: 10,
+          reached: 5,
+          completion_rate: 0.5,
+          coverage_absolute: 5,
+          allocated: 1_000_000,
+          delivered_value: 400_000,
+          remaining: 600_000,
+          cost_per_beneficiary: 80_000,
+          traffic_light: 'yellow',
+        },
+      ],
+    })
+    render(<FundingPartnerProgrammesTab data={buildPayload(buildPf({ programmes: [coFunded] }))} canDrill={true} />)
+
+    await user.click(screen.getByRole('button', { name: /funded activit/i }))
+
+    expect(screen.getByText('Joint round')).toBeInTheDocument()
+    expect(screen.getByText('Co-funded with government')).toBeInTheDocument()
+    expect(screen.getByText('2026-01-01 to 2026-06-30')).toBeInTheDocument()
+    expect(screen.getByRole('columnheader', { name: 'Budget' })).toBeInTheDocument()
+    expect(screen.getByRole('columnheader', { name: 'Remaining' })).toBeInTheDocument()
   })
 
   it('shows an empty state when no funded programmes are attributed', () => {

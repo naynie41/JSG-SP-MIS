@@ -55,7 +55,7 @@ export function ExecutiveOverviewTab({ data }: ExecutiveOverviewTabProps) {
         <div className={styles.figureGrid} data-cols="3">
           <Figure
             icon={Coins}
-            label="Disbursed"
+            label="Value delivered"
             value={formatNaira(budget.utilized_value)}
             hint={`${pct(budget.utilization_rate)}% of allocated budget`}
           />

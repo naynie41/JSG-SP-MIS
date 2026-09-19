@@ -59,6 +59,69 @@ function state(): LocationSetEntry[] {
   return JSON.parse(screen.getByTestId('state').textContent || '[]')
 }
 
+describe('LocationSetField — all LGAs (statewide)', () => {
+  beforeEach(() => {
+    vi.clearAllMocks()
+    lgas.mockResolvedValue(LGAS)
+    wards.mockImplementation((lgaId: string) => Promise.resolve(WARDS[lgaId] ?? { wards: [] }))
+  })
+
+  it('declares every LGA as whole-LGA coverage in one tick, and clears them again', async () => {
+    const user = userEvent.setup()
+    renderField(<Harness />)
+
+    const tick = await screen.findByLabelText('All LGAs (statewide)')
+    await waitFor(() => expect(tick).toBeEnabled())
+    await user.click(tick)
+
+    expect(state()).toEqual([
+      { lga_id: 'lga-dutse', ward_ids: [], whole_lga: true },
+      { lga_id: 'lga-kiyawa', ward_ids: [], whole_lga: true },
+    ])
+    expect(screen.getByText(/All 2 LGAs, whole-LGA coverage/)).toBeInTheDocument()
+    expect(screen.queryByLabelText('Add an LGA')).toBeNull()
+
+    await user.click(screen.getByLabelText('All LGAs (statewide)'))
+
+    expect(state()).toEqual([])
+    expect(screen.getByLabelText('Add an LGA')).toBeInTheDocument()
+  })
+
+  it('warns that ticking it replaces wards picked by hand', async () => {
+    renderField(<Harness initial={[{ lga_id: 'lga-dutse', ward_ids: ['w-dutse-limawa'], whole_lga: false }]} />)
+
+    expect(await screen.findByText(/replaces the wards chosen below/i)).toBeInTheDocument()
+  })
+
+  it('shows as ticked when every LGA is already declared whole', async () => {
+    renderField(
+      <Harness
+        initial={[
+          { lga_id: 'lga-dutse', ward_ids: [], whole_lga: true },
+          { lga_id: 'lga-kiyawa', ward_ids: [], whole_lga: true },
+        ]}
+      />,
+    )
+
+    await waitFor(() => expect(screen.getByLabelText('All LGAs (statewide)')).toBeChecked())
+  })
+
+  it('does not collapse to statewide just because every LGA was added by hand', async () => {
+    // Freshly added LGAs have no wards chosen yet; the officer still needs their blocks.
+    renderField(
+      <Harness
+        initial={[
+          { lga_id: 'lga-dutse', ward_ids: [], whole_lga: false },
+          { lga_id: 'lga-kiyawa', ward_ids: [], whole_lga: false },
+        ]}
+      />,
+    )
+
+    expect(await screen.findByRole('region', { name: 'Dutse' })).toBeInTheDocument()
+    expect(screen.getByLabelText('All LGAs (statewide)')).not.toBeChecked()
+  })
+})
+
 async function addLga(user: ReturnType<typeof userEvent.setup>, id: string) {
   const name = LGAS.lgas.find((lga) => lga.id === id)!.name
   const add = await screen.findByLabelText('Add an LGA')

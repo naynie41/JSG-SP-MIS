@@ -39,7 +39,7 @@ describe('CoverageHoverCard', () => {
     const { container } = render(<CoverageHoverCard area={area()} areaWord="LGA" />)
     const text = (container.textContent ?? '').toLowerCase()
 
-    expect(text).toContain('delivered value')
+    expect(text).toContain('value delivered')
     for (const word of ['spent', 'spend', 'disbursed', 'expenditure']) {
       expect(text).not.toContain(word)
     }

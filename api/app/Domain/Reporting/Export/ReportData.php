@@ -17,6 +17,10 @@ final readonly class ReportData
     /**
      * @param  list<ReportColumn>  $columns
      * @param  list<array<string, scalar|null>>  $rows  keyed by column key
+     * @param  list<ReportSummarySection>  $summary  headline counts printed above the table
+     * @param  bool  $crest  print the state crest on the letterhead
+     * @param  list<array{label: string, value: string, note?: string}>  $highlights  headline tiles
+     * @param  list<ReportFigure>  $figures  chart cards, printed before the table
      */
     public function __construct(
         public string $reportKey,
@@ -26,7 +30,47 @@ final readonly class ReportData
         public Carbon $generatedAt,
         public array $columns,
         public array $rows,
+        public array $summary = [],
+        public bool $crest = false,
+        public array $highlights = [],
+        public array $figures = [],
     ) {}
+
+    /**
+     * Figures grouped into printed rows: a wide figure alone, the rest two to a row, in
+     * the order given.
+     *
+     * @return list<list<ReportFigure>>
+     */
+    public function figureRows(): array
+    {
+        $rows = [];
+        $pair = [];
+
+        foreach ($this->figures as $figure) {
+            if ($figure->wide) {
+                if ($pair !== []) {
+                    $rows[] = $pair;
+                    $pair = [];
+                }
+                $rows[] = [$figure];
+
+                continue;
+            }
+
+            $pair[] = $figure;
+            if (count($pair) === 2) {
+                $rows[] = $pair;
+                $pair = [];
+            }
+        }
+
+        if ($pair !== []) {
+            $rows[] = $pair;
+        }
+
+        return $rows;
+    }
 
     public function rowCount(): int
     {

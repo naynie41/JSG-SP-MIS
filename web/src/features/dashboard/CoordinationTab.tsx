@@ -180,7 +180,7 @@ export function CoordinationTab({ data }: CoordinationTabProps) {
               <Icon icon={Users} size={20} />
               <span className={styles.bigValue}>{num(c.cross_mda_beneficiaries)}</span>
               <span className={styles.bigLabel}>Joint beneficiaries</span>
-              <span className={styles.bigNote}>served across agency lines (net-unique)</span>
+              <span className={styles.bigNote}>served across agency lines, each person counted once</span>
             </div>
           </div>
 
@@ -194,7 +194,7 @@ export function CoordinationTab({ data }: CoordinationTabProps) {
           </div>
 
           <div className={styles.panel}>
-            <RingBlock value={pct(rts.approval_rate)} tone="good" title="Request-to-serve approval" note={`avg turnaround ${turnaround(rts.avg_turnaround_hours)}`}>
+            <RingBlock value={pct(rts.approval_rate)} tone="good" title="Requests to serve approved" note={`avg turnaround ${turnaround(rts.avg_turnaround_hours)}`}>
               <ul className={styles.pills}>
                 <li className={styles.pill} data-tone="good">
                   <Icon icon={CheckCircle2} size={12} /> {num(rts.accepted)} accepted

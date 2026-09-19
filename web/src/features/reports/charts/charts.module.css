@@ -1,0 +1,535 @@
+/*
+ * Chart primitives for the MDA Reports dashboard. Marks follow the dataviz specs: thin
+ * marks, 4px rounded data ends, 2px lines, hairline solid grid, a 2px surface gap
+ * between touching fills, and text in ink tokens — never in a series colour.
+ */
+
+/* ------------------------------------------------------------------- card */
+
+.card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+  min-width: 0;
+  padding: var(--space-5) var(--space-6);
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--elev-sm);
+}
+
+@media (max-width: 640px) {
+  .card {
+    padding: var(--space-4);
+  }
+}
+
+.cardHead {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: var(--space-3);
+}
+
+.cardTitles {
+  display: grid;
+  gap: var(--space-1);
+  min-width: 0;
+}
+
+.cardTitle {
+  margin: 0;
+  font-family: var(--font-display);
+  font-size: var(--fs-h3);
+  line-height: var(--lh-h3);
+  font-weight: 600;
+  color: var(--ink);
+}
+
+.cardSub {
+  margin: 0;
+  color: var(--text-muted-strong);
+  font-size: var(--fs-label);
+  line-height: var(--lh-label);
+}
+
+.cardActions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-2);
+}
+
+.viewToggle {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-1);
+  min-height: 32px;
+  padding: 0 var(--space-3);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-full);
+  background: var(--surface);
+  color: var(--text-muted-strong);
+  font-size: var(--fs-caption);
+  font-weight: 600;
+  cursor: pointer;
+  transition: background var(--transition), color var(--transition);
+}
+
+.viewToggle:hover {
+  background: var(--surface-mint);
+  color: var(--ink);
+}
+
+.viewToggle[aria-pressed='true'] {
+  border-color: var(--forest);
+  background: var(--forest);
+  color: var(--bg);
+}
+
+.segmented {
+  display: inline-flex;
+  gap: 2px;
+  padding: 2px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-full);
+  background: var(--bg);
+}
+
+.segment {
+  min-height: 30px;
+  padding: 0 var(--space-3);
+  border: 0;
+  border-radius: var(--radius-full);
+  background: transparent;
+  color: var(--text-muted-strong);
+  font-size: var(--fs-caption);
+  font-weight: 600;
+  cursor: pointer;
+  transition: background var(--transition), color var(--transition);
+}
+
+.segment:hover {
+  color: var(--ink);
+}
+
+.segment[aria-pressed='true'] {
+  background: var(--surface);
+  color: var(--ink);
+  box-shadow: var(--elev-sm);
+}
+
+.viewToggle:focus-visible,
+.segment:focus-visible {
+  outline: var(--focus-ring);
+  outline-offset: var(--focus-offset);
+}
+
+.empty {
+  margin: 0;
+  color: var(--text-muted-strong);
+  font-size: var(--fs-ui);
+}
+
+/* ------------------------------------------------------------- table view */
+
+.tableWrap {
+  overflow-x: auto;
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: var(--fs-ui);
+  font-variant-numeric: tabular-nums;
+}
+
+.caption {
+  padding-bottom: var(--space-2);
+  color: var(--text-muted-strong);
+  font-size: var(--fs-label);
+  text-align: left;
+}
+
+.table th,
+.table td {
+  padding: var(--space-2) var(--space-3);
+  border-bottom: 1px solid var(--border);
+  text-align: left;
+  white-space: nowrap;
+}
+
+.table th {
+  color: var(--text-muted-strong);
+  font-size: var(--fs-label);
+  font-weight: 600;
+}
+
+.table .num {
+  text-align: right;
+}
+
+/* ---------------------------------------------------------- plot chrome */
+
+.plot {
+  position: relative;
+  width: 100%;
+  min-width: 0;
+}
+
+.svg {
+  display: block;
+  overflow: visible;
+}
+
+.svg:focus-visible {
+  outline: var(--focus-ring);
+  outline-offset: 4px;
+  border-radius: var(--radius-sm);
+}
+
+.grid {
+  stroke: var(--border);
+  stroke-width: 1;
+}
+
+.axis {
+  stroke: var(--border-strong);
+  stroke-width: 1;
+}
+
+.axisText {
+  fill: var(--text-muted-strong);
+  font-family: var(--font-body);
+  font-size: var(--fs-caption);
+}
+
+.valueText {
+  fill: var(--ink);
+  font-family: var(--font-body);
+  font-size: var(--fs-caption);
+  font-weight: 600;
+}
+
+.mark {
+  outline: none;
+  cursor: default;
+}
+
+/* ------------------------------------------------------------- area chart */
+
+.area {
+  fill: var(--chart-1);
+  fill-opacity: 0.1;
+}
+
+.line {
+  fill: none;
+  stroke: var(--chart-1);
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.dot {
+  fill: var(--chart-1);
+  stroke: var(--surface);
+  stroke-width: 2;
+}
+
+.crosshair {
+  stroke: var(--text-muted);
+  stroke-width: 1;
+}
+
+/* ---------------------------------------------------------------- columns */
+
+.column {
+  fill: var(--chart-1);
+  transition: opacity var(--transition);
+}
+
+.hit {
+  fill: transparent;
+}
+
+.columns:hover .columnGroup:not(:hover) .column {
+  opacity: 0.55;
+}
+
+.columnGroup:focus-within .column {
+  stroke: var(--ink);
+  stroke-width: 2;
+}
+
+/* ----------------------------------------------------------------- tooltip */
+
+.tip {
+  position: absolute;
+  z-index: 5;
+  display: grid;
+  gap: 2px;
+  min-width: 7rem;
+  padding: var(--space-2) var(--space-3);
+  transform: translate(-50%, calc(-100% - 12px));
+  border-radius: var(--radius-sm);
+  background: var(--ink);
+  box-shadow: var(--elev-md);
+  pointer-events: none;
+  white-space: nowrap;
+}
+
+.tipTitle {
+  margin: 0;
+  color: var(--border-strong);
+  font-size: var(--fs-caption);
+}
+
+.tipRow {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  margin: 0;
+  font-size: var(--fs-label);
+}
+
+/* A short stroke keys the series in a tooltip row; a filled box would be data-weight ink. */
+.tipKey {
+  flex: none;
+  width: 12px;
+  height: 2px;
+}
+
+.tipValue {
+  color: var(--bg);
+  font-weight: 700;
+}
+
+.tipLabel {
+  color: var(--border-strong);
+}
+
+/* ------------------------------------------------------------------- donut */
+
+/* The legend sits beside the ring when the card is wide enough, and wraps below it
+   when not — a narrow card must never squeeze the labels down to nothing. */
+.donut {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-5);
+}
+
+.donut > .legend {
+  flex: 1 1 12rem;
+}
+
+.slice {
+  stroke: var(--surface);
+  stroke-width: 2;
+  transition: opacity var(--transition);
+}
+
+.donutRing:hover .slice:not(:hover) {
+  opacity: 0.55;
+}
+
+.slice:focus-visible {
+  stroke: var(--ink);
+}
+
+.donutValue {
+  fill: var(--ink);
+  font-family: var(--font-body);
+  font-size: var(--fs-h2);
+  font-weight: 700;
+}
+
+.donutLabel {
+  fill: var(--text-muted-strong);
+  font-family: var(--font-body);
+  font-size: var(--fs-caption);
+}
+
+.legend {
+  display: grid;
+  gap: var(--space-2);
+  width: 100%;
+  min-width: 0;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.legendRow {
+  display: grid;
+  grid-template-columns: 12px minmax(0, 1fr) auto auto;
+  align-items: center;
+  gap: var(--space-2);
+  font-size: var(--fs-ui);
+}
+
+.swatch {
+  width: 12px;
+  height: 12px;
+  border-radius: var(--radius-swatch);
+}
+
+.legendName {
+  overflow: hidden;
+  color: var(--ink);
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.legendValue {
+  color: var(--ink);
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+  text-align: right;
+}
+
+.legendShare {
+  min-width: 4ch;
+  color: var(--text-muted-strong);
+  font-variant-numeric: tabular-nums;
+  text-align: right;
+}
+
+/* ------------------------------------------------------------------- rings */
+
+.rings {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--space-3);
+}
+
+.ring {
+  display: grid;
+  justify-items: center;
+  align-content: start;
+  gap: var(--space-1);
+  padding: var(--space-3) var(--space-2);
+  border-radius: var(--radius-md);
+  background: var(--bg);
+  text-align: center;
+}
+
+.ringTrack {
+  stroke: var(--surface-mint);
+}
+
+.ringFill {
+  stroke: var(--chart-1);
+}
+
+.ringWeak {
+  stroke: var(--warning);
+}
+
+.ringValue {
+  fill: var(--ink);
+  font-family: var(--font-body);
+  font-size: var(--fs-h3);
+  font-weight: 700;
+}
+
+.ringLabel {
+  color: var(--ink);
+  font-size: var(--fs-ui);
+  font-weight: 600;
+}
+
+.ringHint {
+  color: var(--text-muted-strong);
+  font-size: var(--fs-caption);
+  line-height: 1.35;
+}
+
+.ringFlag {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-1);
+  padding: 0 var(--space-2);
+  border-radius: var(--radius-full);
+  background: var(--warning-soft);
+  color: var(--warning-ink);
+  font-size: var(--fs-caption);
+  font-weight: 600;
+}
+
+/* --------------------------------------------------------------- split bar */
+
+.split {
+  display: grid;
+  gap: var(--space-3);
+}
+
+.splitTrack {
+  display: flex;
+  gap: 2px;
+  height: 14px;
+  overflow: hidden;
+  border-radius: var(--radius-sm);
+}
+
+.splitPart {
+  min-width: 4px;
+  height: 100%;
+  transition: opacity var(--transition);
+}
+
+.splitTrack:hover .splitPart:not(:hover) {
+  opacity: 0.55;
+}
+
+.splitPart:focus-visible {
+  outline: 2px solid var(--ink);
+  outline-offset: -2px;
+}
+
+/* --------------------------------------------------------------- sparkline */
+
+.spark {
+  color: var(--chart-1);
+}
+
+.sparkOnDark {
+  color: var(--accent);
+}
+
+.sparkLine {
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.sparkArea {
+  fill: currentColor;
+  fill-opacity: 0.14;
+}
+
+.sparkDot {
+  fill: currentColor;
+  stroke: var(--surface);
+  stroke-width: 2;
+}
+
+.sparkOnDark .sparkDot {
+  stroke: var(--forest);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .column,
+  .slice,
+  .splitPart,
+  .viewToggle,
+  .segment {
+    transition: none;
+  }
+}

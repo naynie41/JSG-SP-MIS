@@ -169,6 +169,24 @@ export interface PartnerContribution {
   funding_allocated: number // kobo
 }
 
+/**
+ * What one MDA has delivered, for the state-wide cross-agency comparison.
+ *
+ * `reached` counts each person once PER MDA, so the column compares agencies and
+ * does not decompose the state headline: a person served by two MDAs appears in
+ * both rows and once in the total.
+ */
+export interface MdaDeliveryRow {
+  mda_id: string
+  mda: string | null
+  delivered_value: number // kobo
+  deliveries: number // gross, not net
+  reached: number // net-unique within this MDA
+  allocated: number // kobo, from the MDA's own activities
+  activities_total: number
+  activities_active: number
+}
+
 export interface CoordinationMetrics {
   active_mdas: number
   joint_programmes: number // run by ≥2 MDAs
@@ -220,6 +238,11 @@ export interface PartnerProgrammeActivity {
   name: string | null
   mda: string | null
   status: string
+  /** Optional: a dashboard snapshot computed before these were added lacks them. */
+  starts_on?: string | null
+  ends_on?: string | null
+  /** The partner still sees the whole activity; this says government shares the funding. */
+  co_funded_by_government?: boolean
   target: number
   reached: number
   completion_rate: number | null
@@ -417,6 +440,8 @@ export interface DashboardMetrics {
   programme_scoring?: ProgrammeScoring
   registry_quality?: RegistryQuality
   coordination?: CoordinationMetrics | null
+  /** Cross-agency comparison; state-wide scope only, null everywhere else. */
+  mda_delivery?: MdaDeliveryRow[] | null
   partner_funding?: PartnerFunding | null
   coverage_bands?: CoverageBands
   trends?: TrendMetrics

@@ -106,8 +106,9 @@ Phase 3 = Duplicate Verification; and so on per the list below.)
    manual entry), provenance, ownership rules.
 3. **Duplicate Verification** — deterministic + fuzzy matching engine, pre-save check,
    match UI, request-to-serve flow.
-4. **Programmes, Activities & Benefit Ledger** — global programme catalog (System-Admin-owned) +
-   MDA-owned activities, enrollment, benefit ledger, double-dipping flags. (See §10.)
+4. **Programmes, Activities & Benefit Ledger** — programme catalog (central, System-Admin-owned, plus
+   MDA-owned programmes the System Administrator approves) + MDA-owned activities, enrollment,
+   benefit ledger, double-dipping flags. (See §10.)
 5. **Referrals, Grievances & Notifications** — referral lifecycle, GRM, in-app + email.
 6. **Dashboards, Reporting & GIS** — executive/MDA/partner dashboards, exports, PostGIS maps.
 7. **Sync, Data Sharing, Graduation & Hardening** — sync jobs, data-sharing governance,
@@ -225,12 +226,21 @@ A task is done only when **all** of these are true:
 
 ## 10. Locked decisions — Programme catalog & activity ownership (revises FR-PRG-01/02)
 
-- **A Programme is a GLOBAL catalog entry, created only by the System Administrator** (optionally SP
-  Coordination per PRD §4). It is a shared service *type* (e.g. Cash Transfer, Skills Training),
-  **not owned by any MDA**, and is readable by all MDAs so they can select it. It holds type-level
-  attributes only: name, objective, type (HH/individual), benefit category, standard eligibility.
-  **MDAs cannot create, edit, or delete programmes** — remove programme create/edit from the MDA
-  officer AND MDA admin views.
+- **The CENTRAL catalog is created only by the System Administrator** (optionally SP Coordination per
+  PRD §4). It is a shared service *type* (e.g. Cash Transfer, Skills Training), **owned by no MDA**
+  (`owner_mda_id` NULL), readable by all MDAs so they can select it. It holds type-level attributes
+  only: name, objective, type (HH/individual), benefit category, standard eligibility. **No MDA may
+  create, edit, archive or delete a central entry.**
+- **An MDA MAY create a programme OF ITS OWN** (stakeholder decision, 2026-09-17, supersedes the
+  "propose into the catalog" wording below). It carries `owner_mda_id` = that MDA and starts
+  `approval_status = pending`. **No other MDA can ever see it** — enforced by the MDA scope on the
+  model (`SharedWhenUnowned`), not by a controller filter; oversight roles with `cross-mda.view` do
+  see it, and must, to decide it and to report on the state. It **carries no work until approved**:
+  activity, import, routing and enrolment all refuse an unapproved programme through the one
+  `IsRunnableProgramme` rule. **Only the System Administrator approves or sends it back**
+  (`programme.approve`), a rejection MUST carry a reason, and the MDA may edit and re-submit while the
+  decision is open but not after approval. Approval is also the anti-duplication gate: approve it, or
+  send it back pointing at the central entry that already covers it.
 - **An Activity is MDA-owned** (`owner_mda_id`, `ScopedToMda`) and is created by MDA Admins.
   Activity creation begins by **selecting a programme from a dropdown of available catalog
   programmes**, then captures the MDA-specific execution details: location (LGA/Ward), schedule,
@@ -257,12 +267,11 @@ A task is done only when **all** of these are true:
 - **Every activity has a "View Activity" action** opening a full detail view: programme, activity
   fields, target vs actual counts, beneficiaries/interventions under it, import summary, and pending
   service requests.
-- **Programmes are a global shared catalog, never MDA-scoped.** An MDA Admin MAY **propose** a programme
-  (full CRUD on its own proposals), but proposals enter as **pending** and are not runnable until the
-  **System Administrator approves** them into the catalog (approval is the anti-duplication gate — approve-
-  as-new or link to an existing catalog programme). Never let an MDA create a *live* programme directly,
-  never make a programme MDA-owned, and never let an MDA edit another MDA's proposal or an approved
-  catalog entry. Budget/funding/target stay on activities.
+- **~~Programmes are a global shared catalog, never MDA-scoped.~~** SUPERSEDED 2026-09-17 by the
+  ownership bullet at the top of this section: an MDA's own programme IS MDA-scoped and stays that way
+  after approval — approval clears it for use, it does not promote it into the shared catalog. What
+  survives unchanged: an MDA never creates a *live* programme directly, never sees or edits another
+  MDA's programme, never edits a central catalog entry, and budget/funding/target stay on activities.
 - **Archive, never hard-delete, anything with history.** "Delete" for programmes, graduated data, access
   grants, and any record carrying activities/beneficiary/ledger/graduation history = **archive** (soft,
   audited, reversible where appropriate), excluded from active lists but retained for audit/history.

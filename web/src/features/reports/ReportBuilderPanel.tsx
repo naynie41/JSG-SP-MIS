@@ -1,4 +1,5 @@
 import { useMemo, useState } from 'react'
+import type { ReactNode } from 'react'
 import { BarChart3, Table2 } from 'lucide-react'
 import { Button } from '@/components/Button/Button'
 import { Badge } from '@/components/Badge/Badge'
@@ -30,6 +31,17 @@ interface ReportBuilderPanelProps {
   /** Whitelisted aggregate datasets available to the caller's scope. */
   datasets: AdHocDataset[]
   canExport: boolean
+  /**
+   * Open a People export with headline counts under the state crest. Off by default,
+   * so a console that does not ask for it produces the same files it always did.
+   */
+  exportSummary?: boolean
+  /**
+   * A purpose-built report for a subject, shown instead of the generic group-and-total
+   * builder. For subjects where "group by" and "measure" are not the questions anyone
+   * brings — the duplicate review queue, for one.
+   */
+  subjectPanels?: Partial<Record<string, ReactNode>>
 }
 
 /**
@@ -41,8 +53,9 @@ interface ReportBuilderPanelProps {
  * aggregator"; they arrive with a question about a subject. So the subject is the first
  * choice, and the right builder follows from it.
  */
-export function ReportBuilderPanel({ datasets, canExport }: ReportBuilderPanelProps) {
+export function ReportBuilderPanel({ datasets, canExport, exportSummary = false, subjectPanels }: ReportBuilderPanelProps) {
   const [subject, setSubject] = useState<string>(PEOPLE)
+  const customPanel = subject === PEOPLE ? undefined : subjectPanels?.[subject]
 
   const subjects = useMemo(
     () => [
@@ -63,7 +76,9 @@ export function ReportBuilderPanel({ datasets, canExport }: ReportBuilderPanelPr
           helper={
             subject === PEOPLE
               ? 'Filter the people in your scope, then export the result.'
-              : 'Group and total this dataset, then export the result.'
+              : customPanel
+                ? 'See where this stands, narrow it if you need to, then export it.'
+                : 'Group and count this data, then export the result.'
           }
         />
       </div>
@@ -71,7 +86,10 @@ export function ReportBuilderPanel({ datasets, canExport }: ReportBuilderPanelPr
       {subject === PEOPLE ? (
         // Filtering the registry only previews until Export is pressed, and the server
         // gates that, so this stays available on `reporting.view` as it always has.
-        <SegmentBuilder />
+        <SegmentBuilder exportSummary={exportSummary} />
+      ) : customPanel ? (
+        // The panel gates its own export on the permission it needs.
+        customPanel
       ) : canExport ? (
         <BuilderPanel datasets={datasets} initialDataset={subject} key={subject} />
       ) : (
@@ -85,7 +103,7 @@ export function ReportBuilderPanel({ datasets, canExport }: ReportBuilderPanelPr
 
 /* ------------------------------------------------------------ the people builder */
 
-function SegmentBuilder() {
+function SegmentBuilder({ exportSummary }: { exportSummary: boolean }) {
   const catalogue = useSegmentDimensions()
   const preview = useSegmentPreview()
   const exportSegment = useExportSegment()
@@ -119,17 +137,17 @@ function SegmentBuilder() {
     <div className={styles.segment}>
       <div className={styles.segmentNotice}>
         <Badge variant={tier === 'rows' ? 'info' : 'neutral'}>
-          {tier === 'rows' ? 'You can see beneficiary rows' : 'Counts only, no beneficiary rows'}
+          {tier === 'rows' ? 'You can see individual records' : 'Counts only — no individual records'}
         </Badge>
-        {catalogue.data?.reveal_pii === false && <Badge variant="neutral">NIN and BVN masked</Badge>}
-        {guardOn && <Badge variant="neutral">Groups under {minimum} withheld</Badge>}
+        {catalogue.data?.reveal_pii === false && <Badge variant="neutral">NIN and BVN hidden</Badge>}
+        {guardOn && <Badge variant="neutral">Small groups hidden (fewer than {minimum} people)</Badge>}
       </div>
 
       <SegmentFilters dimensions={dimensions} value={filters} onChange={setFilters} />
 
       <div className={styles.segmentRun}>
         <SelectField
-          label="Chart breakdown"
+          label="Break down by"
           value={breakdown}
           onChange={(event) => setBreakdown(event.target.value)}
           options={[
@@ -153,12 +171,20 @@ function SegmentBuilder() {
         </Button>
         <Button
           variant="secondary"
-          onClick={() => exportSegment.mutate({ definition, format })}
+          onClick={() => exportSegment.mutate({ definition, format, summary: exportSummary })}
           loading={exportSegment.isPending}
         >
           Export
         </Button>
       </div>
+
+      {exportSummary && (
+        <p className={styles.segmentIdle}>
+          {format === 'csv'
+            ? 'A CSV file carries the rows only. Choose Excel or PDF for a file that opens with the state crest and a summary of the people in it.'
+            : 'The file opens with the state crest and a summary: how many people, then gender, age group, household, status, how they were registered and LGA.'}
+        </p>
+      )}
 
       {result ? (
         <SegmentResult
@@ -190,8 +216,8 @@ function SegmentResult({
         <p className={styles.resultTotal}>
           {result.total_suppressed ? (
             <>
-              Fewer than {result.minimum_cell_size} people match. The count is withheld so
-              individuals cannot be identified.
+              Fewer than {result.minimum_cell_size} people match, so the count is hidden
+              to protect them.
             </>
           ) : (
             <>
@@ -211,8 +237,8 @@ function SegmentResult({
 
       {result.tier === 'aggregate' ? (
         <p className={styles.muted}>
-          Your role receives aggregate reporting: counts and breakdowns, never the beneficiary
-          registry itself.
+          Your account sees counts and breakdowns, not the list of people
+          themselves.
         </p>
       ) : result.rows.length === 0 ? (
         <p className={styles.muted}>No beneficiaries match these filters.</p>
@@ -268,7 +294,7 @@ function BreakdownChart({ breakdown }: { breakdown: SegmentBreakdown }) {
       </ul>
       {breakdown.suppressed_groups > 0 && (
         <p className={styles.muted}>
-          {breakdown.suppressed_groups} group{breakdown.suppressed_groups === 1 ? '' : 's'} withheld
+          {breakdown.suppressed_groups} group{breakdown.suppressed_groups === 1 ? '' : 's'} hidden
           — fewer than {breakdown.minimum} people each.
         </p>
       )}

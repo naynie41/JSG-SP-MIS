@@ -15,6 +15,8 @@ export interface ProgrammeListParams {
    * fall beyond the first page.
    */
   participating?: boolean
+  /** Limit to programmes waiting for a decision (the System Administrator's queue). */
+  approval?: 'pending' | 'approved' | 'rejected'
 }
 
 export const programmeApi = {
@@ -29,6 +31,7 @@ export const programmeApi = {
         'filter[status]': params.status || undefined,
         'filter[type]': params.type || undefined,
         'filter[participating]': params.participating ? 1 : undefined,
+        'filter[approval]': params.approval || undefined,
       },
     })
   },
@@ -47,6 +50,17 @@ export const programmeApi = {
   },
   archive(id: string): Promise<Programme> {
     return apiRequest<Programme>({ method: 'POST', url: `/programmes/${id}/archive` })
+  },
+  /** Offer a programme that was sent back to the System Administrator again. */
+  submit(id: string): Promise<Programme> {
+    return apiRequest<Programme>({ method: 'POST', url: `/programmes/${id}/submit` })
+  },
+  approve(id: string, note?: string): Promise<Programme> {
+    return apiRequest<Programme>({ method: 'POST', url: `/programmes/${id}/approve`, data: { decision_note: note || undefined } })
+  },
+  /** Send it back. The reason is mandatory — the server refuses one without it. */
+  reject(id: string, note: string): Promise<Programme> {
+    return apiRequest<Programme>({ method: 'POST', url: `/programmes/${id}/reject`, data: { decision_note: note } })
   },
   budget(id: string): Promise<Budget> {
     return apiRequest<Budget>({ method: 'GET', url: `/programmes/${id}/budget` })
@@ -76,6 +90,14 @@ export const activityApi = {
   },
   budget(id: string): Promise<Budget> {
     return apiRequest<Budget>({ method: 'GET', url: `/activities/${id}/budget` })
+  },
+  /** Active social protection partner accounts an activity can be linked to (names only). */
+  async fundingPartners(): Promise<import('./types').FundingPartnerOption[]> {
+    const { partners } = await apiRequest<{ partners: import('./types').FundingPartnerOption[] }>({
+      method: 'GET',
+      url: '/activities/funding-partners',
+    })
+    return partners
   },
 }
 

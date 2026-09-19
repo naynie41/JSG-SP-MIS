@@ -5,7 +5,7 @@ import { useReportDatasets } from '@/features/reports/hooks'
 import { ReportsLoading } from '@/features/reports/ReportPanels'
 import { ReportBuilderPanel } from '@/features/reports/ReportBuilderPanel'
 import { ReportHistoryPanel } from '@/features/reports/ReportHistoryPanel'
-import { ReportsDashboardPanel } from '@/features/reports/ReportsDashboardPanel'
+import { AdminReportsDashboard } from './AdminReportsDashboard'
 import styles from './admin.module.css'
 
 /**
@@ -41,7 +41,7 @@ export function AdminReportsPage() {
         </p>
       </header>
 
-      {isLoading && <ReportsLoading label="Loading report datasets" />}
+      {isLoading && <ReportsLoading label="Loading report subjects" />}
       {error && <p className={styles.muted}>Could not load the report catalogue. Please try again.</p>}
 
       {!isLoading && !error && (
@@ -52,7 +52,7 @@ export function AdminReportsPage() {
             {
               id: 'dashboard',
               label: 'Dashboard',
-              content: <ReportsDashboardPanel />,
+              content: <AdminReportsDashboard canExport={canExport} />,
             },
             {
               // One builder. The subject picker inside it replaces what used to be a

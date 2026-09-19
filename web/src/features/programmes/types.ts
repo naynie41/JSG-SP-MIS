@@ -10,9 +10,16 @@ export interface EligibilityCriterion {
   label?: string
 }
 
+/** Whether a programme has been cleared for use (§10, revised). */
+export type ProgrammeApproval = 'pending' | 'approved' | 'rejected'
+
 /**
- * A GLOBAL catalog programme (§10) — type-level attributes only; not owned by any
- * MDA. Budget, funding and period live on the Activity.
+ * A catalog programme (§10) — type-level attributes only; budget, funding and
+ * period live on the Activity.
+ *
+ * Two kinds. A CENTRAL entry has no `owner_mda` and every MDA reads it. One an MDA
+ * created for itself names its owner, is invisible to every other MDA, and carries
+ * no activities until a System Administrator approves it.
  */
 export interface Programme {
   id: string
@@ -23,6 +30,17 @@ export interface Programme {
   eligibility: EligibilityCriterion[]
   enforce_eligibility: boolean
   status: ProgrammeStatus
+  /** Ownership (§10, revised). Null owner = the central catalog every MDA reads. */
+  owner_mda_id?: string | null
+  owner_mda?: { id: string | null; name: string | null }
+  is_central?: boolean
+  /** The decision, separate from `status`, which is the delivery lifecycle. */
+  approval_status: ProgrammeApproval
+  approval_label?: string
+  submitted_at?: string | null
+  approved_at?: string | null
+  /** Why it was sent back — what the owning MDA has to address. */
+  decision_note?: string | null
   /** Archive provenance (§10). Archiving is the "delete" for a catalog entry: it is
    *  hidden from selectable lists and blocks new activities, but never destroyed. */
   is_archived?: boolean
@@ -74,11 +92,25 @@ export interface Activity {
   starts_on: string | null
   ends_on: string | null
   budget_amount: number | null
+  /** Free text from before the funding type existed. */
   funding_source: string | null
+  funding_type?: FundingType | null
+  funding_partner_id?: string | null
+  /** The linked partner's name only. */
+  funding_partner?: FundingPartnerOption | null
+  co_funded_by_government?: boolean
   status: ActivityStatus
   created_by: string | null
   created_at: string | null
   updated_at: string | null
+}
+
+export type FundingType = 'government' | 'partner' | 'individual'
+
+/** A social protection partner an activity can be linked to (an active partner account). */
+export interface FundingPartnerOption {
+  id: string
+  name: string
 }
 
 /** A beneficiary/intervention recorded under an activity (identifiers masked). */
@@ -133,6 +165,10 @@ export interface ActivityInput {
   ends_on?: string | null
   budget_amount?: number | null
   funding_source?: string | null
+  /** Sent together: a partner only with type `partner`, co-funding only with a partner. */
+  funding_type?: FundingType | null
+  funding_partner_id?: string | null
+  co_funded_by_government?: boolean
   status?: ActivityStatus
 }
 

@@ -38,6 +38,9 @@ class SegmentReportRequest extends FormRequest
             'breakdown' => ['sometimes', 'nullable', 'string', 'max:64'],
             'page' => ['sometimes', 'integer', 'min:1'],
             'format' => ['sometimes', Rule::enum(ReportFormat::class)],
+            // Print headline counts (gender, age group, status…) and the crest above the
+            // exported table. Off unless asked, so an existing caller's file is unchanged.
+            'summary' => ['sometimes', 'boolean'],
         ];
     }
 }

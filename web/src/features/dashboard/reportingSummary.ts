@@ -9,7 +9,7 @@ import type { DashboardResponse } from './types'
  * its own totals would eventually disagree with the page it summarises, and the version
  * a person quotes in a meeting would be whichever one they happened to open.
  *
- * Net-unique beneficiaries is the headline, never gross registrations (CLAUDE.md §11).
+ * Total beneficiaries is the headline, never gross registrations (CLAUDE.md §11).
  */
 export interface SummaryTile {
   key: string
@@ -52,7 +52,7 @@ export function summariseReporting(data: DashboardResponse): ReportingSummary {
   const raw: { key: string; label: string; value: number; hint: string }[] = [
     {
       key: 'beneficiaries',
-      label: 'Net-unique beneficiaries',
+      label: 'Total beneficiaries',
       value: m.registry.beneficiaries.total,
       hint: 'Registry',
     },
@@ -82,7 +82,7 @@ export function summariseReporting(data: DashboardResponse): ReportingSummary {
     },
     {
       key: 'duplicates',
-      label: 'Duplicates surfaced',
+      label: 'Possible duplicates found',
       value: m.duplicates?.matches_surfaced ?? 0,
       hint: 'Duplicates',
     },

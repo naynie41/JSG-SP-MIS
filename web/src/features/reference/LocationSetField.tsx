@@ -44,6 +44,17 @@ export function LocationSetField({ value, onChange, errors = {}, disabled }: Loc
   const chosen = new Set(value.map((entry) => entry.lga_id))
   const available = all.filter((lga) => !chosen.has(lga.id))
 
+  // Statewide = every LGA declared, each EXPLICITLY as the whole LGA. An LGA just added
+  // with no wards ticked yet does not count: treating it as statewide would collapse the
+  // blocks before the officer has had a chance to pick that LGA's wards.
+  const statewide = all.length > 0 && value.length === all.length && value.every((entry) => entry.whole_lga)
+  const hasWardPicks = value.some((entry) => !entry.whole_lga && entry.ward_ids.length > 0)
+
+  function setStatewide(checked: boolean) {
+    onChange(checked ? all.map((lga) => ({ lga_id: lga.id, ward_ids: [], whole_lga: true })) : [])
+    setOpenLga(null)
+  }
+
   function addLga(lgaId: string) {
     if (!lgaId || chosen.has(lgaId)) return
     onChange([...value, { lga_id: lgaId, ward_ids: [], whole_lga: false }])
@@ -69,6 +80,26 @@ export function LocationSetField({ value, onChange, errors = {}, disabled }: Loc
 
       {errors.locations && <p className={styles.error} role="alert">{errors.locations}</p>}
 
+      <Checkbox
+        label="All LGAs (statewide)"
+        checked={statewide}
+        disabled={lgas.isPending || all.length === 0}
+        onChange={(event) => setStatewide(event.target.checked)}
+      />
+      {!statewide && hasWardPicks && (
+        <p className={styles.muted}>
+          Ticking this replaces the wards chosen below with whole-LGA coverage in every LGA.
+        </p>
+      )}
+
+      {statewide ? (
+        // 27 identical "whole LGA" blocks say less than one sentence does.
+        <p className={styles.empty}>
+          <Icon icon={MapPin} size={16} aria-hidden="true" /> All {all.length} LGAs, whole-LGA coverage. Untick to
+          choose LGAs and wards yourself.
+        </p>
+      ) : (
+      <>
       <div className={styles.blocks}>
         {value.map((entry, index) => (
           <LgaBlock
@@ -99,6 +130,8 @@ export function LocationSetField({ value, onChange, errors = {}, disabled }: Loc
         value=""
         onChange={(event) => addLga(event.target.value)}
       />
+      </>
+      )}
     </fieldset>
   )
 }

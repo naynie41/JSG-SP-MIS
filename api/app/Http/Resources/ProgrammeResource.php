@@ -27,6 +27,20 @@ class ProgrammeResource extends JsonResource
             'eligibility' => $this->eligibility ?? [],
             'enforce_eligibility' => $this->enforce_eligibility,
             'status' => $this->status->value,
+            // Ownership (§10, revised). NULL is the central catalog every MDA reads;
+            // a named MDA is a programme only that MDA (and oversight) can see.
+            'owner_mda' => $this->whenLoaded('ownerMda', fn () => [
+                'id' => $this->ownerMda?->id,
+                'name' => $this->ownerMda?->name,
+            ]),
+            'owner_mda_id' => $this->owner_mda_id,
+            'is_central' => $this->isCentral(),
+            // The decision, kept apart from the delivery lifecycle above.
+            'approval_status' => $this->approval_status->value,
+            'approval_label' => $this->approval_status->label(),
+            'submitted_at' => $this->submitted_at?->toIso8601String(),
+            'approved_at' => $this->approved_at?->toIso8601String(),
+            'decision_note' => $this->decision_note,
             // Archive provenance (§10). `is_archived` reads off the authoritative
             // timestamp, not the status enum, so the two can never disagree here.
             'is_archived' => $this->isArchived(),

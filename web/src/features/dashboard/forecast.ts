@@ -103,7 +103,7 @@ export function budgetRunway(allocated: number, spent: number, disbursement: Tre
     return { monthlyBurn: burn, monthsRemaining: 0, exhaustionMonth: null, status: 'over', assumption: 'The allocation is already fully committed.' }
   }
   if (burn <= 0) {
-    return { monthlyBurn: 0, monthsRemaining: null, exhaustionMonth: null, status: 'idle', assumption: 'No recent disbursement, so no burn rate to project from.' }
+    return { monthlyBurn: 0, monthsRemaining: null, exhaustionMonth: null, status: 'idle', assumption: 'No benefits delivered recently, so there is nothing to project from.' }
   }
 
   const monthsRemaining = remaining / burn
@@ -115,7 +115,7 @@ export function budgetRunway(allocated: number, spent: number, disbursement: Tre
     monthsRemaining: Math.round(monthsRemaining * 10) / 10,
     exhaustionMonth,
     status: monthsRemaining < 6 ? 'exhausting' : 'on-track',
-    assumption: `Assumes disbursement continues at the recent average of ${recent.length} month${recent.length === 1 ? '' : 's'}.`,
+    assumption: `Assumes delivery continues at the recent average of ${recent.length} month${recent.length === 1 ? '' : 's'}.`,
   }
 }
 

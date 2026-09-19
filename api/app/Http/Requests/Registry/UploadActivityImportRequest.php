@@ -5,9 +5,9 @@ declare(strict_types=1);
 namespace App\Http\Requests\Registry;
 
 use App\Domain\Programme\Enums\ActivityStatus;
-use App\Domain\Programme\Rules\IsFundingPartner;
 use App\Domain\Programme\Rules\IsRunnableProgramme;
 use App\Domain\Registry\Imports\Adapters\SourceAdapterRegistry;
+use App\Http\Requests\Programme\Concerns\ValidatesFunding;
 use App\Http\Requests\Programme\Concerns\ValidatesLocationSet;
 use Illuminate\Contracts\Validation\Validator;
 use Illuminate\Foundation\Http\FormRequest;
@@ -24,7 +24,7 @@ use Illuminate\Validation\Rule;
  */
 class UploadActivityImportRequest extends FormRequest
 {
-    use ValidatesLocationSet;
+    use ValidatesFunding, ValidatesLocationSet;
 
     public function authorize(): bool
     {
@@ -44,7 +44,10 @@ class UploadActivityImportRequest extends FormRequest
         // The location set is validated at PREVIEW, not deferred to confirm: a wizard
         // that accepts a bad set here would fail after the file has been parsed and
         // previewed, which is the worst possible moment to report it.
-        $validator->after(fn (Validator $v) => $this->validateLocationSet($v));
+        $validator->after(function (Validator $v): void {
+            $this->validateLocationSet($v);
+            $this->validateFunding($v);
+        });
     }
 
     /**
@@ -68,7 +71,8 @@ class UploadActivityImportRequest extends FormRequest
             'ends_on' => ['nullable', 'date', 'after_or_equal:starts_on'],
             'budget_amount' => ['nullable', 'integer', 'min:0'],
             'funding_source' => ['nullable', 'string', 'max:255'],
-            'funding_partner_id' => ['nullable', 'uuid', new IsFundingPartner],
+            // Stashed in the draft and written on confirm, so the same rules as a direct create.
+            ...$this->fundingRules(),
             'status' => ['nullable', Rule::enum(ActivityStatus::class)],
 
             // The optional-upload payload (required at THIS endpoint — no file → use POST /activities).

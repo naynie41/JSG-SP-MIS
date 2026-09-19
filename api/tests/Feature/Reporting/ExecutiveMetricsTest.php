@@ -182,6 +182,38 @@ class ExecutiveMetricsTest extends TestCase
         $this->assertSame(2, $a['activities_active']);
     }
 
+    /* --------------------------------------------------------- delivery by MDA */
+
+    public function test_delivery_by_mda_compares_agencies_state_wide(): void
+    {
+        $rows = $this->metricsFor('exec')['mda_delivery'];
+
+        // Ordered by value delivered: A (200k + 200k) ahead of B (150k + 50k).
+        $this->assertSame(['MDA A', 'MDA B'], array_column($rows, 'mda'));
+        $this->assertSame(400_000, $rows[0]['delivered_value']);
+        $this->assertSame(200_000, $rows[1]['delivered_value']);
+
+        // Net-unique per MDA: A served benA1 twice and benA2 once → 2 people, 3
+        // deliveries. B served one of its own and one of A's → 2 people. The reached
+        // column therefore does not sum to the state headline, and must never be
+        // presented as if it did.
+        $this->assertSame(2, $rows[0]['reached']);
+        $this->assertSame(3, $rows[0]['deliveries']);
+        $this->assertSame(2, $rows[1]['reached']);
+
+        // Budget comes from the MDA's own activities, not the catalog programme.
+        $this->assertSame(1_000_000, $rows[0]['allocated']);
+        $this->assertSame(2, $rows[0]['activities_total']);
+    }
+
+    public function test_only_a_state_wide_scope_gets_the_cross_mda_comparison(): void
+    {
+        // An MDA console would only ever see its own row, so the table is not offered
+        // there at all — and a partner never sees other agencies' delivery.
+        $this->assertNull($this->metricsFor('officerA')['mda_delivery']);
+        $this->assertNull($this->metricsFor('partner')['mda_delivery']);
+    }
+
     /* ----------------------------------------------------------------- demographics */
 
     public function test_demographics_from_existing_fields(): void

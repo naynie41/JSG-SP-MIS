@@ -71,7 +71,7 @@ export function ReportingSummaryCard() {
   const age = hoursSince(summary.computedAt)
   const stale = age !== null && age > STALE_AFTER_HOURS
 
-  // Net-unique beneficiaries is THE headline (CLAUDE.md §11) and carries the weight;
+  // Total beneficiaries is THE headline (CLAUDE.md §11) and carries the weight;
   // the rest support it. Six figures at one size is a list, not a summary.
   const [headline, ...supporting] = summary.tiles
 
@@ -96,7 +96,7 @@ export function ReportingSummaryCard() {
       <dl className={styles.figures}>
         {headline && (
           // dt before dd: a description list requires that order, and it is also how a
-          // screen reader should hear it ("Net-unique beneficiaries, 62"). CSS lifts the
+          // screen reader should hear it ("Total beneficiaries, 62"). CSS lifts the
           // value above the label visually.
           <div className={`${styles.figure} ${styles.headline}`}>
             <dt className={styles.headlineLabel}>{headline.label}</dt>
@@ -136,8 +136,8 @@ export function ReportingSummaryCard() {
 
         {summary.suppressedCount > 0 && (
           <span>
-            {summary.suppressedCount} figure{summary.suppressedCount === 1 ? '' : 's'} withheld —
-            groups smaller than {summary.minCellSize} are not published.
+            {summary.suppressedCount} figure{summary.suppressedCount === 1 ? '' : 's'} hidden — groups smaller
+            than {summary.minCellSize} are not shown.
           </span>
         )}
       </div>

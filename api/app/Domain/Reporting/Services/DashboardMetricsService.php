@@ -90,6 +90,10 @@ class DashboardMetricsService
             ],
             'registry_quality' => $this->registryQuality($scope),
             'coordination' => $coordination ? $this->coordination($scope) : null,
+            // Cross-MDA comparison — state-wide only, because it is the one question
+            // an MDA console cannot ask: an MDA sees its own row and nothing else, so
+            // offering it there would be a table of one.
+            'mda_delivery' => $scope->isStateWide() ? $this->mdaDelivery($scope) : null,
             // Phase 6P — activity-precise partner-funding aggregates (partner scope only).
             'partner_funding' => $scope->isPartner() ? $this->partnerFunding($scope) : null,
             'coverage_bands' => $this->coverageBands($coverage),
@@ -202,7 +206,9 @@ class DashboardMetricsService
             $ids = (clone $activities)->distinct()->pluck('programme_id')->all();
         }
 
-        $query = Programme::query();
+        // Approved only: a submission still waiting on a decision is not yet one of
+        // the state's programmes.
+        $query = Programme::query()->approved();
         if ($ids !== null) {
             $query->whereIn('id', $ids);
         }
@@ -626,6 +632,72 @@ class DashboardMetricsService
     }
 
     /**
+     * DELIVERY BY MDA — what each agency has delivered, for the state-wide dashboard's
+     * cross-agency comparison (FR-DSH-01).
+     *
+     * Rows are a COMPARISON, never a decomposition: a person served by two MDAs counts
+     * once in each row and once in the state headline, so the column does not sum to
+     * the total and is labelled accordingly. Ordered by value delivered, and every MDA
+     * with an activity appears — including one that has delivered nothing, which is
+     * exactly what an oversight reader is looking for.
+     *
+     * Person counts are returned raw and formatted against the published
+     * `min_cell_size` by the client, as every other breakdown in this payload is.
+     *
+     * @return list<array<string, mixed>>
+     */
+    private function mdaDelivery(DashboardScope $scope): array
+    {
+        $programmeIds = $this->programmeIdsInScope($scope);
+        $filters = $this->filter->ledgerFilters();
+
+        $delivered = [];
+        foreach ($this->ledger->scopedGroup('mda', $scope->mdaIds, $programmeIds, $filters) as $row) {
+            $delivered[(string) $row['key']] = $row;
+        }
+        $reach = $this->ledger->scopedReachByMda($scope->mdaIds, $programmeIds, $filters);
+
+        // Activities anchor the list: an MDA that planned work and delivered none is a
+        // finding, and starting from the ledger alone would hide it.
+        $activities = $this->applyActivityFilter(
+            Activity::query()->withoutGlobalScope(MdaScope::class)
+                ->when($scope->mdaIds !== null, fn ($q) => $q->whereIn('owner_mda_id', $scope->mdaIds))
+        )
+            ->selectRaw('owner_mda_id, count(*) as total')
+            ->selectRaw('sum(case when status = ? then 1 else 0 end) as active', [ActivityStatus::Active->value])
+            ->selectRaw('coalesce(sum(budget_amount), 0) as allocated')
+            ->groupBy('owner_mda_id')
+            ->get()
+            ->keyBy('owner_mda_id');
+
+        $ids = array_values(array_unique([...array_keys($delivered), ...$activities->keys()->all()]));
+        if ($ids === []) {
+            return [];
+        }
+
+        $names = Mda::query()->withoutGlobalScope(MdaScope::class)->whereIn('id', $ids)->pluck('name', 'id');
+
+        $rows = [];
+        foreach ($ids as $id) {
+            $activity = $activities->get($id);
+            $rows[] = [
+                'mda_id' => $id,
+                'mda' => $names[$id] ?? null,
+                'delivered_value' => (int) ($delivered[$id]['total_value'] ?? 0),
+                'deliveries' => (int) ($delivered[$id]['benefit_count'] ?? 0),
+                'reached' => (int) ($reach[$id] ?? 0),
+                'allocated' => (int) ($activity?->getAttribute('allocated') ?? 0),
+                'activities_total' => (int) ($activity?->getAttribute('total') ?? 0),
+                'activities_active' => (int) ($activity?->getAttribute('active') ?? 0),
+            ];
+        }
+
+        usort($rows, fn (array $a, array $b) => [$b['delivered_value'], $b['reached']] <=> [$a['delivered_value'], $a['reached']]);
+
+        return $rows;
+    }
+
+    /**
      * Coordination across agencies: active delivering MDAs, cross-MDA (joint, served
      * by a non-owner) beneficiaries — net-unique, referral throughput, request-to-serve,
      * partner contributions, and sync/API health.
@@ -767,7 +839,7 @@ class DashboardMetricsService
 
         $activities = $this->applyActivityFilter(
             Activity::query()->withoutGlobalScope(MdaScope::class)->where('funding_partner_id', $partnerId)
-        )->get(['id', 'programme_id', 'owner_mda_id', 'name', 'budget_amount', 'target_beneficiaries', 'status', 'starts_on', 'ends_on']);
+        )->get(['id', 'programme_id', 'owner_mda_id', 'name', 'budget_amount', 'target_beneficiaries', 'status', 'starts_on', 'ends_on', 'co_funded_by_government']);
 
         $activityIds = $activities->pluck('id')->all();
         $allocated = (int) $activities->sum('budget_amount');
@@ -1097,6 +1169,10 @@ class DashboardMetricsService
                     'name' => $a->name,
                     'mda' => $mdaNames[$a->owner_mda_id] ?? null,
                     'status' => $a->status->value,
+                    'starts_on' => $a->starts_on?->toDateString(),
+                    'ends_on' => $a->ends_on?->toDateString(),
+                    // The partner still sees the whole budget; this only says who shares it.
+                    'co_funded_by_government' => (bool) $a->co_funded_by_government,
                     'target' => $aTarget,
                     'reached' => $aReached,
                     'completion_rate' => $aCompletion,
@@ -1680,7 +1756,7 @@ class DashboardMetricsService
             // withArchived: the id set that scopes every metric below. Excluding
             // archived here would silently drop all historical ledger and enrolment
             // data recorded under them.
-            $ids = Programme::query()->withArchived()->pluck('id')->all();
+            $ids = Programme::query()->withArchived()->approved()->pluck('id')->all();
         }
 
         if ($this->filter->programmeId !== null) {

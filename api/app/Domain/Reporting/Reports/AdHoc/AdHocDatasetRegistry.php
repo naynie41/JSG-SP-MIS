@@ -43,7 +43,7 @@ final class AdHocDatasetRegistry
      */
     public const DATASETS = [
         'benefits' => [
-            'label' => 'Benefits (ledger)',
+            'label' => 'Benefits delivered',
             'coordination' => false,
             'model' => Benefit::class,
             'exclude_reversed' => true,
@@ -72,7 +72,7 @@ final class AdHocDatasetRegistry
             ],
         ],
         'beneficiaries' => [
-            'label' => 'Beneficiaries (registry)',
+            'label' => 'Beneficiaries',
             'coordination' => false,
             'model' => Beneficiary::class,
             'exclude_reversed' => false,
@@ -107,7 +107,7 @@ final class AdHocDatasetRegistry
          * delivery, it does not move money.
          */
         'activities' => [
-            'label' => 'Activities (delivery)',
+            'label' => 'Activities',
             'coordination' => false,
             'model' => Activity::class,
             'exclude_reversed' => false,
@@ -277,7 +277,7 @@ final class AdHocDatasetRegistry
             'model' => ImportRow::class,
             'exclude_reversed' => false,
             'dimensions' => [
-                'match_band' => ['label' => 'Match band', 'column' => 'match_band', 'render' => 'title'],
+                'match_band' => ['label' => 'Match type', 'column' => 'match_band', 'render' => 'title'],
                 'resolution' => ['label' => 'Resolution', 'column' => 'resolution', 'render' => 'title'],
             ],
             'measures' => [
@@ -313,7 +313,7 @@ final class AdHocDatasetRegistry
             ],
         ],
         'imports' => [
-            'label' => 'Import batches',
+            'label' => 'Data uploads',
             'coordination' => false,
             'admin' => true,
             'model' => ImportBatch::class,

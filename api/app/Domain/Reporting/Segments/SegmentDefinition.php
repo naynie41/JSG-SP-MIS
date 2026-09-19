@@ -135,7 +135,7 @@ final readonly class SegmentDefinition
     public function label(): string
     {
         if ($this->filters === []) {
-            return 'Segment: all beneficiaries in scope';
+            return 'People: everyone in your scope';
         }
 
         $parts = [];
@@ -145,6 +145,6 @@ final readonly class SegmentDefinition
                 : implode('/', $filter['values']));
         }
 
-        return 'Segment: '.implode(', ', $parts);
+        return 'People: '.implode(', ', $parts);
     }
 }

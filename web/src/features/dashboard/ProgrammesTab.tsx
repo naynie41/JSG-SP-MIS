@@ -19,7 +19,7 @@ const SCORE_LABEL: Record<TrafficLight, string> = {
   green: 'On track',
   yellow: 'Lagging',
   red: 'Off track',
-  unrated: 'Unrated',
+  unrated: 'No target set',
 }
 
 /** Accessible traffic-light: a colored dot + a label that is always in the DOM for
@@ -108,7 +108,7 @@ function FinancialDashboard({ data, programmes }: { data: DashboardResponse; pro
 
       <div className={styles.figureGrid}>
         <Figure icon={Wallet} label="Allocated" value={formatNaira(budget.allocated)} />
-        <Figure icon={Coins} label="Disbursed" value={formatNaira(budget.utilized_value)} />
+        <Figure icon={Coins} label="Value delivered" value={formatNaira(budget.utilized_value)} />
         <Figure icon={HandCoins} label="Remaining" value={formatNaira(budget.remaining)} />
         <Figure icon={Percent} label="Cost / beneficiary" value={costPerBeneficiary === null ? '—' : formatNaira(costPerBeneficiary)} />
       </div>
@@ -125,14 +125,14 @@ function FinancialDashboard({ data, programmes }: { data: DashboardResponse; pro
         </span>
 
         <table className={styles.budgetTable}>
-          <caption className="sr-only">Budget versus actual disbursement by programme</caption>
+          <caption className="sr-only">Budget and value delivered by programme</caption>
           <thead>
             <tr>
               <th scope="col">Programme</th>
               <th scope="col">Allocated</th>
-              <th scope="col">Disbursed</th>
+              <th scope="col">Value delivered</th>
               <th scope="col" className={styles.barCol}>
-                Utilisation
+                Budget used
               </th>
             </tr>
           </thead>
@@ -240,7 +240,7 @@ function ActivityTable({ activities }: { activities: ActivityPerformance[] }) {
             <th scope="col">Target</th>
             <th scope="col">Reached</th>
             <th scope="col">Completion</th>
-            <th scope="col">Disbursed</th>
+            <th scope="col">Value delivered</th>
             <th scope="col">Score</th>
           </tr>
         </thead>
@@ -355,7 +355,7 @@ const SCORING_LEGEND: { light: TrafficLight; note: (s?: ProgrammeScoring) => str
   { light: 'green', note: (s) => `On track ≥ ${pct(s?.green_min)}%` },
   { light: 'yellow', note: (s) => `Lagging ≥ ${pct(s?.yellow_min)}%` },
   { light: 'red', note: (s) => `Off track < ${pct(s?.yellow_min)}%` },
-  { light: 'unrated', note: () => 'Unrated (no target set)' },
+  { light: 'unrated', note: () => 'No target set' },
 ]
 
 export interface ProgrammesTabProps {
@@ -398,7 +398,7 @@ export function ProgrammesTab({ data, onDrill }: ProgrammesTabProps) {
           page name at all. */}
       <h1 className="t-h1">Programmes &amp; delivery</h1>
 
-      <div className={styles.legend} role="note" aria-label="Traffic-light scoring">
+      <div className={styles.legend} role="note" aria-label="How programmes are scored">
         <span className={styles.legendTitle}>Performance score</span>
         {SCORING_LEGEND.map((item) => (
           <span key={item.light} className={styles.legendItem}>
@@ -417,7 +417,7 @@ export function ProgrammesTab({ data, onDrill }: ProgrammesTabProps) {
           <Figure icon={ClipboardList} label="Active programmes" value={num(m.programmes.active)} hint={`of ${num(m.programmes.total)}`} />
           <Figure icon={Layers} label="Active activities" value={num(m.programmes.activities_active)} hint={`of ${num(m.programmes.activities_total)}`} />
           <Figure icon={Wallet} label="Budget allocated" value={formatNaira(budget.allocated)} />
-          <Figure icon={Coins} label="Disbursed" value={formatNaira(budget.utilized_value)} hint={`${pct(budget.utilization_rate)}% utilised`} />
+          <Figure icon={Coins} label="Value delivered" value={formatNaira(budget.utilized_value)} hint={`${pct(budget.utilization_rate)}% of budget used`} />
           <Figure icon={HandCoins} label="Remaining" value={formatNaira(budget.remaining)} />
           <Figure icon={Percent} label="Cost / beneficiary" value={costPerBeneficiary === null ? '—' : formatNaira(costPerBeneficiary)} />
         </div>
@@ -439,7 +439,7 @@ export function ProgrammesTab({ data, onDrill }: ProgrammesTabProps) {
         <section className={styles.section} aria-label="Delivery trends">
           <h2 className={styles.sectionTitle}>Delivery trends</h2>
           <div className={styles.trendGrid}>
-            <TrendCard title="Monthly disbursement" points={m.trends.disbursement} format={formatNaira} />
+            <TrendCard title="Value delivered each month" points={m.trends.disbursement} format={formatNaira} />
             <TrendCard title="Programme growth" points={m.trends.programme_growth} format={num} />
           </div>
         </section>

@@ -237,7 +237,7 @@ export function FundingPartnerCoordinationTab({ data, onDrill }: FundingPartnerC
             </div>
             <div className={styles.dsFig}>
               <span className={styles.dsVal}>{num(ds.connectors)}</span>
-              <span className={styles.dsLabel}>Connectors</span>
+              <span className={styles.dsLabel}>Data connections</span>
             </div>
             <div className={styles.dsFig}>
               <span className={styles.dsVal}>{num(ds.succeeded)}</span>

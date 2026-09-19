@@ -12,9 +12,17 @@ use App\Domain\Benefit\Models\Benefit;
 use App\Domain\Programme\Models\Activity;
 use App\Domain\Programme\Models\Programme;
 use App\Domain\Registry\Models\Beneficiary;
+use App\Domain\Reporting\Export\Charts\SvgChart;
+use App\Domain\Reporting\Export\DashboardBoardExportBuilder;
+use App\Domain\Reporting\Export\ReportColumn;
+use App\Domain\Reporting\Export\ReportData;
+use App\Domain\Reporting\Export\ReportFigure;
+use App\Domain\Reporting\Services\DashboardService;
 use App\Domain\Reporting\Services\DashboardSnapshotService;
+use App\Domain\Reporting\Support\DashboardFilter;
 use Database\Seeders\RolesAndPermissionsSeeder;
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use Illuminate\Support\Facades\View;
 use Illuminate\Testing\TestResponse;
 use Tests\TestCase;
 
@@ -66,7 +74,7 @@ class DashboardExportTest extends TestCase
         $body = $response->streamedContent();
 
         // Aggregate metric labels are present…
-        $this->assertStringContainsString('Net-unique beneficiaries', $body);
+        $this->assertStringContainsString('Total beneficiaries', $body);
         $this->assertStringContainsString('Active programmes', $body);
 
         // …and NO raw beneficiary-level data leaks (never a name or id column).
@@ -94,7 +102,7 @@ class DashboardExportTest extends TestCase
         $body = $this->download($this->user(null, RoleKey::Executive), '?format=csv&programme_id='.$other->id)->assertOk()->streamedContent();
 
         // The unfiltered export has "…,1" for net-unique; the filtered one has 0.
-        $this->assertMatchesRegularExpression('/Net-unique beneficiaries.*0/', $body);
+        $this->assertMatchesRegularExpression('/Total beneficiaries.*0/', $body);
     }
 
     public function test_export_requires_the_reporting_export_permission(): void
@@ -102,5 +110,150 @@ class DashboardExportTest extends TestCase
         $noRole = User::factory()->create(['mda_id' => $this->mda->id, 'role_id' => null]);
 
         $this->download($noRole, '?format=csv')->assertStatus(403);
+    }
+
+    /* ----------------------------------------------------------- MDA dashboard */
+
+    public function test_an_mda_exports_its_dashboard_as_a_branded_pdf(): void
+    {
+        $response = $this->download($this->user($this->mda, RoleKey::MdaAdmin), '?format=pdf')->assertOk();
+
+        $this->assertStringContainsString('application/pdf', (string) $response->headers->get('content-type'));
+        $this->assertStringContainsString('mda-dashboard-', (string) $response->headers->get('content-disposition'));
+
+        $pdf = $response->streamedContent();
+        $this->assertStringStartsWith('%PDF', $pdf);
+        $this->assertStringContainsString('/Subtype /Image', $pdf, 'the crest is on the letterhead');
+    }
+
+    public function test_an_mda_dashboard_exports_only_as_pdf(): void
+    {
+        $officer = $this->user($this->mda, RoleKey::MdaAdmin);
+
+        $this->download($officer, '?format=csv')->assertStatus(422)->assertJsonPath('error.code', 'PDF_ONLY');
+        $this->download($officer, '?format=xlsx')->assertStatus(422);
+        // With no format asked for, a PDF is what an MDA gets.
+        $this->download($officer)->assertOk();
+    }
+
+    public function test_the_mda_pdf_reads_the_same_figures_as_the_dashboard(): void
+    {
+        $officer = $this->user($this->mda, RoleKey::MdaAdmin);
+        $dashboard = app(DashboardService::class)->forUser($officer);
+
+        $data = app(DashboardBoardExportBuilder::class)->build($dashboard, DashboardFilter::none(), 'MDA A');
+
+        $this->assertSame('MDA dashboard', $data->title);
+        $this->assertSame('MDA A', $data->scopeLabel);
+        $this->assertTrue($data->crest);
+        $this->assertSame('All periods · All programmes · All LGAs', $data->subtitle);
+
+        $tiles = array_column($data->highlights, 'value', 'label');
+        // The tile on screen reads registry.beneficiaries.total under this label.
+        $this->assertSame(number_format($dashboard['metrics']['registry']['beneficiaries']['total']), $tiles['Total beneficiaries']);
+        $this->assertArrayHasKey('Value delivered', $tiles);
+
+        $this->assertSame([
+            'New registrations by month', 'Value delivered by month',
+            'Quality of your records', 'Women and men',
+            'Age groups', 'Household size',
+            'Coverage across your LGAs', 'Largest LGAs',
+            'Benefits delivered', 'Records',
+        ], array_map(static fn (ReportFigure $f): string => $f->title, $data->figures));
+
+        $this->assertSame(['Programme', 'Reached', 'Target', 'Progress', 'Value delivered', 'Budget', 'Status'], array_map(
+            static fn (ReportColumn $c): string => $c->label,
+            $data->columns,
+        ));
+        $this->assertNotEmpty($data->rows);
+    }
+
+    public function test_every_chart_in_the_mda_pdf_is_a_drawn_image_with_its_values(): void
+    {
+        $officer = $this->user($this->mda, RoleKey::MdaAdmin);
+        $data = app(DashboardBoardExportBuilder::class)->build(app(DashboardService::class)->forUser($officer), DashboardFilter::none());
+
+        $gender = $this->figure($data, 'Women and men');
+        $this->assertStringStartsWith('data:image/svg+xml;base64,', (string) $gender->image);
+        $this->assertGreaterThan(0, $gender->imageWidth);
+
+        $records = $this->figure($data, 'Records');
+        $this->assertContains('Active', array_column($records->items, 'label'));
+
+        // Charts are laid out two to a row in the order given.
+        $this->assertSame([2, 2, 2, 2, 2], array_map('count', $data->figureRows()));
+    }
+
+    public function test_the_mda_pdf_draws_the_lga_map_shaded_by_band(): void
+    {
+        $officer = $this->user($this->mda, RoleKey::MdaAdmin);
+        $square = static fn (float $lon, float $lat): array => ['type' => 'Polygon', 'coordinates' => [[[$lon, $lat], [$lon + 0.3, $lat], [$lon + 0.3, $lat + 0.3], [$lon, $lat + 0.3], [$lon, $lat]]]];
+        $map = [
+            'rows' => [['key' => 'dutse', 'band' => 'red'], ['key' => 'gumel', 'band' => 'green']],
+            'boundaries' => [
+                ['code' => 'dutse', 'name' => 'Dutse', 'geometry' => $square(9.3, 11.7)],
+                ['code' => 'gumel', 'name' => 'Gumel', 'geometry' => $square(9.4, 12.6)],
+                ['code' => 'auyo', 'name' => 'Auyo', 'geometry' => $square(9.9, 12.3)],
+            ],
+        ];
+
+        $data = app(DashboardBoardExportBuilder::class)->build(app(DashboardService::class)->forUser($officer), DashboardFilter::none(), null, $map);
+
+        $figure = $this->figure($data, 'Coverage across your LGAs');
+        $svg = base64_decode(substr((string) $figure->image, strlen('data:image/svg+xml;base64,')));
+        $this->assertSame(3, substr_count($svg, '<path'));
+        $this->assertStringContainsString('#B23A31', $svg); // Dutse, low
+        $this->assertStringContainsString('#2F7D3B', $svg); // Gumel, high
+        $this->assertStringContainsString('#C9CBC1', $svg); // Auyo, no coverage
+        $this->assertSame('1 LGA', array_column($figure->items, 'value')[0]);
+    }
+
+    public function test_without_boundaries_the_map_card_says_so(): void
+    {
+        $officer = $this->user($this->mda, RoleKey::MdaAdmin);
+        $data = app(DashboardBoardExportBuilder::class)->build(app(DashboardService::class)->forUser($officer), DashboardFilter::none());
+
+        $figure = $this->figure($data, 'Coverage across your LGAs');
+        $this->assertNull($figure->image);
+        $this->assertStringContainsString('boundary map is not loaded', (string) $figure->note);
+    }
+
+    public function test_chart_text_is_escaped_inside_the_svg(): void
+    {
+        $chart = SvgChart::bars([['label' => 'Food & <Shelter>', 'count' => 3]], 330);
+
+        $svg = base64_decode(substr((string) $chart['uri'], strlen('data:image/svg+xml;base64,')));
+        $this->assertStringContainsString('Food &amp; &lt;Shelter&gt;', $svg);
+    }
+
+    public function test_the_mda_pdf_states_the_filters_it_was_exported_with(): void
+    {
+        $officer = $this->user($this->mda, RoleKey::MdaAdmin);
+        $filter = new DashboardFilter(year: 2026, quarter: 3, programmeId: $this->programme->id, lga: 'dutse');
+
+        $data = app(DashboardBoardExportBuilder::class)->build(app(DashboardService::class)->forUser($officer, $filter), $filter);
+
+        $this->assertSame("Q3 2026 · {$this->programme->name} · Dutse", $data->subtitle);
+    }
+
+    public function test_the_mda_pdf_never_carries_a_beneficiarys_identity(): void
+    {
+        $officer = $this->user($this->mda, RoleKey::MdaAdmin);
+        $data = app(DashboardBoardExportBuilder::class)->build(app(DashboardService::class)->forUser($officer), DashboardFilter::none());
+
+        $html = View::make('reports.pdf', ['data' => $data])->render();
+        $this->assertStringNotContainsString('Secretname', $html);
+        $this->assertStringNotContainsString('Zzxq', $html);
+    }
+
+    private function figure(ReportData $data, string $title): ReportFigure
+    {
+        foreach ($data->figures as $figure) {
+            if ($figure->title === $title) {
+                return $figure;
+            }
+        }
+
+        $this->fail("No “{$title}” figure");
     }
 }

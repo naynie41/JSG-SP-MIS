@@ -74,7 +74,7 @@ const ADMIN_DATASETS: AdHocDataset[] = [
   // A non-admin dataset the server also returns — the catalogue must not list it.
   {
     key: 'benefits',
-    label: 'Benefits (ledger)',
+    label: 'Benefits delivered',
     admin: false,
     dimensions: [{ key: 'lga', label: 'LGA' }],
     measures: [{ key: 'count', label: 'Deliveries' }],
@@ -161,7 +161,7 @@ describe('Admin console — Reports', () => {
 
     // `benefits` came back from the server but is not an admin dataset.
     const picker = await screen.findByLabelText(/what are you reporting on/i)
-    expect(within(picker).queryByRole('option', { name: 'Benefits (ledger)' })).not.toBeInTheDocument()
+    expect(within(picker).queryByRole('option', { name: 'Benefits delivered' })).not.toBeInTheDocument()
   })
 
   /* ----------------------------------------------------------------- builder */

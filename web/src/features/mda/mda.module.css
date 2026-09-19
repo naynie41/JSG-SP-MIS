@@ -31,6 +31,14 @@
   display: grid;
   gap: var(--space-2);
 }
+/* The page-level control sits under the lead, not beside the title: at phone width
+   a header row would squeeze the title into two words a line. */
+.pageActions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+  margin-top: var(--space-1);
+}
 .eyebrow {
   font-family: var(--font-mono);
   font-size: var(--fs-caption);
@@ -449,6 +457,17 @@
 
 /* ------------------------------------------------------------ table support */
 
+/* A second line inside a table cell — the reason a programme was sent back sits
+   under its name, where the person reading the row is already looking. */
+.rowNote {
+  display: block;
+  margin-top: 2px;
+  max-width: 34ch;
+  font-size: var(--fs-caption);
+  line-height: 1.35;
+  color: var(--text-muted-strong);
+  white-space: normal;
+}
 .rowActions {
   display: flex;
   align-items: center;

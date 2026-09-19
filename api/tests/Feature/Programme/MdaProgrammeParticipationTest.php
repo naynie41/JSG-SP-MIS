@@ -150,20 +150,17 @@ class MdaProgrammeParticipationTest extends TestCase
 
     /* ------------------------------------------------- catalog stays read-only */
 
-    public function test_an_mda_can_never_create_or_edit_a_catalog_programme(): void
+    public function test_an_mda_can_never_edit_a_catalog_programme(): void
     {
+        // An MDA creating a programme of its own (§10, revised) never reaches the
+        // CENTRAL catalog: the shared entry it runs stays untouchable.
         foreach (['officerA', 'adminA'] as $who) {
-            $this->send($who, 'POST', '/api/v1/programmes', [
-                'name' => 'Sneaky Programme', 'type' => 'individual', 'objective' => 'x',
-            ])->assertStatus(403);
-
             $this->send($who, 'PATCH', "/api/v1/programmes/{$this->runByA->id}", ['name' => 'Renamed'])
                 ->assertStatus(403);
 
             $this->send($who, 'POST', "/api/v1/programmes/{$this->runByA->id}/archive")->assertStatus(403);
         }
 
-        $this->assertDatabaseMissing('programmes', ['name' => 'Sneaky Programme']);
         $this->assertDatabaseHas('programmes', ['id' => $this->runByA->id, 'name' => 'Cash Transfer']);
     }
 

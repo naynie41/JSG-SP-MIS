@@ -30,7 +30,7 @@ so it can see who belongs to it, and nothing more.
 | # | Module | Composes | Source phase |
 | --- | --- | --- | --- |
 | 1 | **Overview** | Phase 6 `/dashboard` aggregation (MDA-scoped) for KPIs; `GET /mda/action-required` for the live queue; Phase 5 notification feed for recent activity; Quick Actions that navigate into existing flows | Phase 6 + Phase 5 |
-| 2 | **Programmes** | `useProgrammes` with server-side `filter[participating]`; `ActivityFormModal` — the same conditional wizard `/activities` uses | Phase 4 (§10 — global, unowned catalogue) |
+| 2 | **Programmes** | `useProgrammes` with server-side `filter[participating]`; `ActivityFormModal` — the same conditional wizard `/activities` uses | Phase 4 (§10 — central catalogue + the MDA’s own, approved centrally) |
 | 3 | **Beneficiaries** | `BeneficiaryListPage`, `HouseholdListPage`, `ImportListPage` — all `embedded` | Phase 2 (FR-REG) + Phase 3 screening |
 | 4 | **Service Delivery** | `RecordBenefitPage` (§8.3), `DeliveriesTab` / `AggregateTab` / `FlagsTab` from `BenefitLedgerPage`, `BenefitsPanel`, `ReferralTable` both directions, `ServiceRequestsPage` | Phase 4 benefits + Phase 5 referrals + Phase 2/3 request-to-serve |
 | 5 | **Duplicate Resolution** | `ResolveRowControls` (the FR-DUP-09 gate lives there, not here), `MatchComparison`, `MatchRevealPanel`, `MatchStrengthBand`, `DuplicateSearchPage` | Phase 3 (FR-DUP) |
@@ -77,8 +77,10 @@ Pinned by `MdaRoleMatrixTest` (server) and `MdaGating.test.tsx` (UI).
   (FR-DUP-09).
 - **Ownership never transfers.** A referral routes a need; an accepted request-to-serve
   opens read access. Both leave `owner_mda_id` untouched (FR-OWN-02).
-- **Programmes are never created here.** The catalogue is state-wide and unowned;
-  an MDA delivers through its own activities (CLAUDE.md §10).
+- **The state catalogue is never edited here.** It is state-wide and unowned, and an MDA
+  delivers through its own activities. What an MDA *can* create here is a programme of its
+  own: invisible to every other MDA, and unusable until the System Administrator approves
+  it (CLAUDE.md §10, revised 2026-09-17).
 - **Delivery value is not expenditure.** A recorded benefit is programme data — SP-MIS
   does not move money. Never "spent", "disbursed" or "expenditure".
 

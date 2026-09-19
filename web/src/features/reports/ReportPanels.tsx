@@ -72,8 +72,8 @@ export function ReportsLoading({ label }: { label: string }) {
 export function BuilderPanel({
   datasets,
   initialDataset,
-  /** Copy for the "aggregate only" reassurance, which differs per console. */
-  eyebrow = 'Aggregate only, no personal records',
+  /** Copy for the "counts only" reassurance, which differs per console. */
+  eyebrow = 'Counts only, no personal records',
 }: {
   datasets: AdHocDataset[]
   initialDataset?: string
@@ -94,7 +94,7 @@ export function BuilderPanel({
   const canRun = datasetKey !== '' && measures.length > 0
 
   /**
-   * A readable label for the run list — "Benefits (ledger) by programme, LGA".
+   * A readable label for the run list — "Benefits delivered by programme, LGA".
    * Without one the engine falls back to a generic "Ad-hoc report" for every export.
    */
   const derivedName = useMemo(() => {
@@ -122,7 +122,7 @@ export function BuilderPanel({
       <Card titleAs="h2" title="Build a report" eyebrow={eyebrow}>
         <div className={styles.filterBar}>
           <SelectField
-            label="Dataset"
+            label="Subject"
             value={datasetKey}
             onChange={(e) => chooseDataset(e.target.value)}
             options={datasets.map((d) => ({ value: d.key, label: d.label }))}

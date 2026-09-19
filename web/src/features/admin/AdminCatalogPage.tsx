@@ -7,6 +7,7 @@ import { Spinner } from '@/components/Spinner/Spinner'
 import { Tabs } from '@/components/Tabs/Tabs'
 import { statusVariant } from '@/components/Badge/statusVariant'
 import { useAuth } from '@/lib/auth/AuthProvider'
+import { ProgrammeApprovalsPanel } from '@/features/programmes/ProgrammeApprovalsPanel'
 import { ProgrammeListPage } from '@/features/programmes/ProgrammeListPage'
 import { useProgrammes } from '@/features/programmes/hooks'
 import type { Programme } from '@/features/programmes/types'
@@ -109,28 +110,40 @@ function UsagePanel() {
  *
  *  - **Catalog** renders the existing {@link ProgrammeListPage}: create/edit with the
  *    programme category (type), benefit category, standard eligibility and status, all
- *    through `/programmes` and the existing `ProgrammePolicy`. Writes stay restricted to
- *    catalog administrators — an MDA can never create a programme (CLAUDE.md §10).
+ *    through `/programmes` and the existing `ProgrammePolicy`. Writes to the CENTRAL
+ *    catalog stay restricted to catalog administrators (CLAUDE.md §10).
+ *  - **Approvals** decides the programmes MDAs have created for themselves. Until one
+ *    is decided the MDA can do nothing with it, so the count rides on the tab.
  *  - **Usage across MDAs** reports uptake from the same endpoint.
  *
- * Programmes remain GLOBAL and unowned; this section adds no second catalog and no
- * parallel lifecycle.
+ * The central catalog is still one shared, unowned list; an MDA's own programme is a
+ * separate row on the same table, not a second catalog with its own lifecycle.
  */
 export function AdminCatalogPage() {
+  const { hasPermission } = useAuth()
+  // The count is on the tab because a queue nobody opens is a queue that stalls an
+  // MDA's whole programme — they cannot deliver anything until it is decided.
+  const { data: pending } = useProgrammes({ approval: 'pending', per_page: 100 }, hasPermission('programme.approve'))
+  const waiting = pending?.items.length ?? 0
+  const pendingLabel = waiting > 0 ? `Approvals (${waiting})` : 'Approvals'
+
   return (
     <div className={styles.page}>
       <header className={styles.pageHead}>
         <span className={styles.eyebrow}>Administration console</span>
         <h1 className={styles.pageTitle}>Programme Catalog</h1>
         <p className={styles.lead}>
-          The global catalog of social-protection programme types, with their categories, standard eligibility and
-          status, plus how widely each is run across MDAs. Programmes are unowned; MDAs deliver them through their own activities.
+          The state catalog of social-protection programme types, with their categories, standard eligibility and
+          status, plus how widely each is run across MDAs. Catalog entries are unowned and every MDA delivers them
+          through its own activities. An MDA may also create a programme for itself — those wait here for your
+          approval, and no other MDA ever sees them.
         </p>
       </header>
 
       <Tabs
         items={[
           { id: 'catalog', label: 'Catalog', content: <ProgrammeListPage embedded /> },
+          { id: 'approvals', label: pendingLabel, content: <ProgrammeApprovalsPanel /> },
           { id: 'usage', label: 'Usage across MDAs', content: <UsagePanel /> },
         ]}
       />

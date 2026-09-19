@@ -47,7 +47,7 @@ describe('ProgrammesTab', () => {
 
     expect(screen.getByRole('heading', { name: 'Financials' })).toBeInTheDocument()
     expect(screen.getAllByText('Allocated').length).toBeGreaterThan(0) // figure label + table header
-    expect(screen.getAllByText('Disbursed').length).toBeGreaterThan(0)
+    expect(screen.getAllByText('Value delivered').length).toBeGreaterThan(0)
     expect(screen.getAllByText('Cost / beneficiary').length).toBeGreaterThan(0)
     expect(screen.getByText('73%')).toBeInTheDocument() // overall utilisation ribbon
   })
@@ -62,7 +62,7 @@ describe('ProgrammesTab', () => {
     // Scores render as labelled dots (never color alone): green/red/unrated present.
     expect(screen.getAllByText('On track').length).toBeGreaterThan(0) // cash_transfer (green)
     expect(screen.getAllByText('Off track').length).toBeGreaterThan(0) // school_feeding (red)
-    expect(screen.getAllByText('Unrated').length).toBeGreaterThan(0) // conditional_grants
+    expect(screen.getAllByText('No target set').length).toBeGreaterThan(0) // conditional_grants
   })
 
   it('drills down to activity level when permitted', async () => {

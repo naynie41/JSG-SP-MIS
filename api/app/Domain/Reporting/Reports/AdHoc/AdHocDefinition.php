@@ -59,6 +59,6 @@ final class AdHocDefinition
 
     public function label(): string
     {
-        return $this->name ?? 'Ad-hoc report';
+        return $this->name ?? 'Custom report';
     }
 }

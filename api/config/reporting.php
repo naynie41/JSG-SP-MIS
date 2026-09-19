@@ -62,6 +62,14 @@ return [
         'elderly' => [60, null],
     ],
 
+    // Duplicate review report: how long flagged import rows have waited for a decision,
+    // split at these day counts — "under 7 days", "7 to 30 days", "over 30 days".
+    // A reporting band, not a service level: nothing is escalated or blocked by it.
+    'duplicate_review_waiting_days' => [
+        (int) env('REPORTING_DUPLICATE_WAIT_SHORT_DAYS', 7),
+        (int) env('REPORTING_DUPLICATE_WAIT_LONG_DAYS', 30),
+    ],
+
     // Programme traffic-light by completion (reached ÷ target): green ≥ green_min,
     // yellow ≥ yellow_min, else red. A programme with no target scores "unrated".
     'programme_traffic_light' => [

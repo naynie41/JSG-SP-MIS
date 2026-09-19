@@ -5,8 +5,8 @@ declare(strict_types=1);
 namespace App\Http\Requests\Programme;
 
 use App\Domain\Programme\Enums\ActivityStatus;
-use App\Domain\Programme\Rules\IsFundingPartner;
 use App\Domain\Programme\Rules\IsRunnableProgramme;
+use App\Http\Requests\Programme\Concerns\ValidatesFunding;
 use App\Http\Requests\Programme\Concerns\ValidatesLocationSet;
 use Illuminate\Contracts\Validation\Validator;
 use Illuminate\Foundation\Http\FormRequest;
@@ -22,7 +22,7 @@ use Illuminate\Validation\Rule;
  */
 class StoreActivityRequest extends FormRequest
 {
-    use ValidatesLocationSet;
+    use ValidatesFunding, ValidatesLocationSet;
 
     public function authorize(): bool
     {
@@ -59,8 +59,9 @@ class StoreActivityRequest extends FormRequest
             'starts_on' => ['nullable', 'date'],
             'ends_on' => ['nullable', 'date', 'after_or_equal:starts_on'],
             'budget_amount' => ['nullable', 'integer', 'min:0'],
+            // Free text kept for activities recorded before the funding type existed.
             'funding_source' => ['nullable', 'string', 'max:255'],
-            'funding_partner_id' => ['nullable', 'uuid', new IsFundingPartner],
+            ...$this->fundingRules(),
             'status' => ['nullable', Rule::enum(ActivityStatus::class)],
         ];
     }
@@ -69,6 +70,7 @@ class StoreActivityRequest extends FormRequest
     {
         $validator->after(function (Validator $validator): void {
             $this->validateLocationSet($validator);
+            $this->validateFunding($validator);
 
             // A beneficiary-involving activity MUST come through the upload wizard,
             // which requires a mandatory beneficiary file (§10). This metadata-only

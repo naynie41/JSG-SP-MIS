@@ -24,9 +24,13 @@ export interface ProgrammeListPageProps {
 }
 
 export function ProgrammeListPage({ embedded = false }: ProgrammeListPageProps = {}) {
-  const { hasPermission } = useAuth()
+  const { hasPermission, user } = useAuth()
   const canView = hasPermission('programme.view')
   const canCreate = hasPermission('programme.create')
+  // A catalog administrator creates the SHARED entry; anyone else with the permission
+  // (an MDA Admin) creates one owned by their own MDA, which goes for approval. The
+  // server decides which from the caller's role — this only keeps the label honest.
+  const isCatalogAdmin = user?.role?.key === 'system_administrator' || user?.role?.key === 'sp_coordination'
 
   const [page, setPage] = useState(1)
   const [search, setSearch] = useState('')
@@ -73,7 +77,7 @@ export function ProgrammeListPage({ embedded = false }: ProgrammeListPageProps =
         )}
         {canCreate && (
           <Button leftIcon={Plus} onClick={() => setCreateOpen(true)}>
-            Create programme
+            {isCatalogAdmin ? 'Create programme' : 'New programme for your MDA'}
           </Button>
         )}
       </div>
@@ -99,7 +103,7 @@ export function ProgrammeListPage({ embedded = false }: ProgrammeListPageProps =
         }
       />
 
-      <ProgrammeFormModal open={createOpen} onClose={() => setCreateOpen(false)} />
+      <ProgrammeFormModal open={createOpen} onClose={() => setCreateOpen(false)} forApproval={!isCatalogAdmin} />
     </div>
   )
 }

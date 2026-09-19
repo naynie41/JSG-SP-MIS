@@ -155,7 +155,7 @@ export function ExecutiveLayout() {
           <div className={styles.heroFigures}>
             <div className={styles.marquee}>
               <span className={styles.marqueeValue}>{num(pop?.net_unique_served)}</span>
-              <span className={styles.marqueeLabel}>Net-unique beneficiaries reached</span>
+              <span className={styles.marqueeLabel}>People reached</span>
             </div>
             <div className={`${styles.marquee} ${styles.marqueeSub}`}>
               <span className={styles.marqueeValue}>{formatNaira(budget.utilized_value)}</span>

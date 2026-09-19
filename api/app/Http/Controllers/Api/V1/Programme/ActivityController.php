@@ -38,9 +38,9 @@ class ActivityController extends Controller
         $status = $request->input('filter.status');
 
         $page = Activity::query()
-            // Eager-loaded because ActivityResource renders the location set for every
-            // row — without this the list is an N+1 over three tables.
-            ->with(['locations.lga', 'locations.ward'])
+            // Eager-loaded because ActivityResource renders the location set and the
+            // funding partner's name for every row — without this the list is an N+1.
+            ->with(['locations.lga', 'locations.ward', 'fundingPartner:id,name'])
             ->when(is_string($programmeId) && $programmeId !== '', fn ($q) => $q->where('programme_id', $programmeId))
             ->when(is_string($status) && $status !== '', fn ($q) => $q->where('status', $status))
             ->latest('created_at')
@@ -90,7 +90,7 @@ class ActivityController extends Controller
     public function show(string $activity): JsonResponse
     {
         $model = Activity::query()
-            ->with(['programme', 'locations.lga', 'locations.ward'])
+            ->with(['programme', 'locations.lga', 'locations.ward', 'fundingPartner:id,name'])
             ->findOrFail($activity);
 
         $this->authorize('view', $model);

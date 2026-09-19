@@ -26,7 +26,7 @@ function CoordinationMetrics() {
         { icon: Split, label: 'Referrals', value: (referrals?.total ?? 0).toLocaleString(), tone: 'info' },
         { icon: Clock, label: 'Overdue referrals', value: (referrals?.overdue ?? 0).toLocaleString(), tone: 'warning' },
         { icon: LifeBuoy, label: 'Grievances', value: (grievances?.total ?? 0).toLocaleString(), tone: 'info' },
-        { icon: AlertTriangle, label: 'SLA breaches', value: (grievances?.sla_breaches ?? 0).toLocaleString(), tone: 'danger' },
+        { icon: AlertTriangle, label: 'Past the deadline', value: (grievances?.sla_breaches ?? 0).toLocaleString(), tone: 'danger' },
       ]}
     />
   )

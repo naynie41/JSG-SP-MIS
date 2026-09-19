@@ -59,6 +59,10 @@ class EnrollmentController extends Controller
         $model = $this->programme($programme);
         $this->authorize('create', [Enrollment::class, $model]);
 
+        if (($unavailable = $this->unavailable($model)) !== null) {
+            return $unavailable;
+        }
+
         $isBeneficiary = $request->filled('beneficiary_id');
         if (($mismatch = $this->typeMismatch($model, $isBeneficiary)) !== null) {
             return $mismatch;
@@ -88,6 +92,10 @@ class EnrollmentController extends Controller
     {
         $model = $this->programme($programme);
         $this->authorize('create', [Enrollment::class, $model]);
+
+        if (($unavailable = $this->unavailable($model)) !== null) {
+            return $unavailable;
+        }
 
         $isBeneficiary = count((array) $request->input('beneficiary_ids', [])) > 0;
         if (($mismatch = $this->typeMismatch($model, $isBeneficiary)) !== null) {
@@ -159,6 +167,35 @@ class EnrollmentController extends Controller
         // already in the programme. New activities are gated by IsRunnableProgramme;
         // hiding the programme here would break the records of everyone in it.
         return Programme::query()->withArchived()->withoutGlobalScope(MdaScope::class)->findOrFail($id);
+    }
+
+    /**
+     * NEW enrolments need a programme the caller may actually use (§10, revised).
+     *
+     * {@see Programme()} resolves unscoped so reads keep working for everyone already
+     * enrolled, which means the id alone would otherwise reach another MDA's
+     * programme, or one still waiting for approval. Reading is fine; enrolling into
+     * it is not. Archived is deliberately NOT checked here — a final enrolment change
+     * under an archived programme has always been allowed.
+     */
+    private function unavailable(Programme $programme): ?JsonResponse
+    {
+        $visible = Programme::query()->withArchived()->whereKey($programme->id)->exists();
+
+        if (! $visible) {
+            return ApiResponse::error('PROGRAMME_NOT_AVAILABLE', 'That programme is not available to your MDA.', [], 404);
+        }
+
+        if (! $programme->isApproved()) {
+            return ApiResponse::error(
+                'PROGRAMME_NOT_APPROVED',
+                'That programme is still waiting for approval and cannot be used yet.',
+                [],
+                422,
+            );
+        }
+
+        return null;
     }
 
     private function typeMismatch(Programme $programme, bool $isBeneficiary): ?JsonResponse

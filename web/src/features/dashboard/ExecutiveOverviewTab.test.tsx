@@ -8,7 +8,7 @@ describe('ExecutiveOverviewTab', () => {
     render(<ExecutiveOverviewTab data={makeExecutivePayload()} />)
 
     // Is the money moving, does it reach the state, is it still growing.
-    expect(screen.getByText('Disbursed')).toBeInTheDocument()
+    expect(screen.getByText('Value delivered')).toBeInTheDocument()
     expect(screen.getByText('LGAs covered')).toBeInTheDocument()
     expect(screen.getByText('New this period')).toBeInTheDocument()
   })
@@ -30,7 +30,7 @@ describe('ExecutiveOverviewTab', () => {
   it('renders rule-based insights and severity-ordered alerts', () => {
     render(<ExecutiveOverviewTab data={makeExecutivePayload()} />)
 
-    expect(screen.getByText(/net-unique beneficiaries have been reached/i)).toBeInTheDocument()
+    expect(screen.getByText(/people have been reached/i)).toBeInTheDocument()
     expect(screen.getByText(/Cash Transfer reached 90% of its target/i)).toBeInTheDocument()
 
     expect(screen.getByText(/Low delivery: School Feeding/i)).toBeInTheDocument()
@@ -42,7 +42,7 @@ describe('ExecutiveOverviewTab', () => {
     render(<ExecutiveOverviewTab data={makeExecutivePayload()} />)
 
     expect(screen.getByText('Beneficiaries reached (cumulative)')).toBeInTheDocument()
-    expect(screen.queryByText('Monthly disbursement')).toBeNull()
+    expect(screen.queryByText('Value delivered each month')).toBeNull()
     expect(screen.queryByText('Programme growth')).toBeNull()
   })
 

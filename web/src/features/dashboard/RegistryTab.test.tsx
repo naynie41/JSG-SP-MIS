@@ -31,13 +31,13 @@ describe('RegistryTab', () => {
   it('renders the data-quality panel with derived rates', () => {
     render(<RegistryTab data={makeExecutivePayload()} />)
 
-    expect(screen.getByText('Verification rate')).toBeInTheDocument()
+    expect(screen.getByText('Share verified')).toBeInTheDocument()
     expect(screen.getByText('95%')).toBeInTheDocument() // 8,600 / 9,100
 
-    expect(screen.getByText('Data completeness')).toBeInTheDocument()
+    expect(screen.getByText('All details recorded')).toBeInTheDocument()
     expect(screen.getByText('76%')).toBeInTheDocument()
 
-    expect(screen.getByText('Duplicate rate')).toBeInTheDocument()
+    expect(screen.getByText('Possible duplicates')).toBeInTheDocument()
 
     expect(screen.getByText('Missing NIN')).toBeInTheDocument()
     expect(screen.getByText('18%')).toBeInTheDocument() // 1 - 0.82

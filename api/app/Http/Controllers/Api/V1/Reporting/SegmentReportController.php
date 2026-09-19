@@ -99,11 +99,13 @@ class SegmentReportController extends Controller
         }
 
         $format = ReportFormat::from((string) $request->input('format', 'csv'));
-        $run = $this->reports->queueSegmentExport($request->user(), $definition, $access, $format);
+        $withSummary = $request->boolean('summary');
+        $run = $this->reports->queueSegmentExport($request->user(), $definition, $access, $format, $withSummary);
 
         $audit->record('report.segment_exported', $run, after: [
             'definition' => $definition->toArray(),
             'format' => $format->value,
+            'summary' => $withSummary,
             'tier' => $access->tier,
             'scope_kind' => $access->scope->kind,
             'scope_label' => $access->scope->label,

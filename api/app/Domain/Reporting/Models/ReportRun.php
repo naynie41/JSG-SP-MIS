@@ -56,6 +56,8 @@ class ReportRun extends Model
 
     public const KEY_SEGMENT = 'segment';
 
+    public const KEY_DUPLICATE_REVIEW = 'duplicate_review';
+
     protected $table = 'report_runs';
 
     /**

@@ -176,7 +176,7 @@ export function RegistryTab({ data }: RegistryTabProps) {
           <KpiPanel icon={Clock} label="Pending" value={num(rq?.pending)} hint="flagged for review" />
         </div>
         <div className={styles.figureGrid}>
-          <Figure icon={CopyCheck} label="Duplicates detected" value={num(rq?.duplicates_detected)} hint="surfaced at import" />
+          <Figure icon={CopyCheck} label="Possible duplicates found" value={num(rq?.duplicates_detected)} hint="found when data was uploaded" />
           <Figure icon={CalendarPlus} label="New this period" value={num(pop?.new_registrations_period)} hint={`last ${num(pop?.period_days)} days`} />
           <Figure icon={UsersRound} label="Suspended" value={num(rq?.suspended)} />
           {/* Relocated from the Overview: a composition question about the
@@ -208,9 +208,9 @@ export function RegistryTab({ data }: RegistryTabProps) {
           <h2 className={styles.sectionTitle}>Data quality</h2>
         </div>
         <div className={styles.qualityGrid}>
-          <Meter icon={ShieldCheck} label="Verification rate" rate={verificationRate} tone="good" hint="records marked active" />
-          <Meter icon={ClipboardCheck} label="Data completeness" rate={rq?.data_completeness ?? null} tone="good" hint="key fields present" />
-          <Meter icon={CopyCheck} label="Duplicate rate" rate={duplicateRate} tone="risk" hint="of total records" />
+          <Meter icon={ShieldCheck} label="Share verified" rate={verificationRate} tone="good" hint="records marked active" />
+          <Meter icon={ClipboardCheck} label="All details recorded" rate={rq?.data_completeness ?? null} tone="good" hint="key fields present" />
+          <Meter icon={CopyCheck} label="Possible duplicates" rate={duplicateRate} tone="risk" hint="of total records" />
           <Meter icon={IdCard} label="Missing NIN" rate={missingNin} tone="risk" hint="no NIN on file" />
           <Meter icon={Phone} label="Missing phone" rate={missingPhone} tone="risk" hint="no phone on file" />
         </div>

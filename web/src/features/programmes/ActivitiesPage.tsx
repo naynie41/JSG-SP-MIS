@@ -20,7 +20,7 @@ import styles from './programmes.module.css'
 /**
  * The MDA's activities across the catalog (PRD §10, FR-PRG-02). Creating an activity
  * begins by picking a catalog programme from a dropdown; the programme shows as a
- * read-only catalog label on each row — MDAs never edit the catalog itself.
+ * read-only programme label on each row — an MDA never edits a catalog entry (§10).
  */
 export function ActivitiesPage() {
   const { hasPermission } = useAuth()

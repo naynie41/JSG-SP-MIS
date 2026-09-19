@@ -18,7 +18,7 @@ class ExecutiveExportBuilder
     /**
      * @param  array<string, mixed>  $m  the dashboard metric bundle (scoped + filtered)
      */
-    public function build(array $m, string $scopeLabel, string $subtitle = 'Aggregate metrics · de-identified'): ReportData
+    public function build(array $m, string $scopeLabel, string $subtitle = 'Counts only · no personal records'): ReportData
     {
         $rows = [];
         $add = function (string $section, string $metric, string $value) use (&$rows): void {
@@ -30,18 +30,18 @@ class ExecutiveExportBuilder
         $pct = fn ($rate): string => $rate === null ? '—' : round((float) $rate * 100).'%';
 
         $pop = $m['population'] ?? [];
-        $add('Reach', 'Net-unique beneficiaries', $count($pop['net_unique_served'] ?? 0));
-        $add('Reach', 'Total households', $count($pop['total_households'] ?? 0));
-        $add('Reach', 'Total individuals', $count($pop['total_individuals'] ?? 0));
-        $add('Reach', 'New registrations (period)', $count($pop['new_registrations_period'] ?? 0));
+        $add('People', 'Total beneficiaries', $count($pop['net_unique_served'] ?? 0));
+        $add('People', 'Total households', $count($pop['total_households'] ?? 0));
+        $add('People', 'Total individuals', $count($pop['total_individuals'] ?? 0));
+        $add('People', 'New registrations in the period', $count($pop['new_registrations_period'] ?? 0));
         $add('Coverage', 'LGAs covered', $count($pop['lgas_covered'] ?? 0));
         $add('Coverage', 'Wards covered', $count($pop['wards_covered'] ?? 0));
 
         $b = $m['benefits']['budget'] ?? [];
         $add('Budget', 'Allocated', $naira($b['allocated'] ?? 0));
-        $add('Budget', 'Disbursed', $naira($b['utilized_value'] ?? 0));
+        $add('Budget', 'Value delivered', $naira($b['utilized_value'] ?? 0));
         $add('Budget', 'Remaining', $naira($b['remaining'] ?? 0));
-        $add('Budget', 'Utilisation', $pct($b['utilization_rate'] ?? null));
+        $add('Budget', 'Budget used', $pct($b['utilization_rate'] ?? null));
 
         $prog = $m['programmes'] ?? [];
         $add('Programmes', 'Active programmes', $count($prog['active'] ?? 0));
@@ -61,16 +61,16 @@ class ExecutiveExportBuilder
         $add('Demographics', 'Elderly (60+)', $count($ab['elderly'] ?? 0));
 
         $cb = $m['coverage_bands']['summary'] ?? [];
-        $add('Coverage bands', 'High (green) areas', $count($cb['green'] ?? 0));
-        $add('Coverage bands', 'Moderate (yellow) areas', $count($cb['yellow'] ?? 0));
-        $add('Coverage bands', 'Low (red) areas', $count($cb['red'] ?? 0));
+        $add('Coverage by LGA', 'LGAs with high coverage', $count($cb['green'] ?? 0));
+        $add('Coverage by LGA', 'LGAs with moderate coverage', $count($cb['yellow'] ?? 0));
+        $add('Coverage by LGA', 'LGAs with low coverage', $count($cb['red'] ?? 0));
 
         $rq = $m['registry_quality'] ?? [];
-        $add('Registry quality', 'Verified', $count($rq['verified'] ?? 0));
-        $add('Registry quality', 'Pending', $count($rq['pending'] ?? 0));
-        $add('Registry quality', 'Duplicates detected', $count($rq['duplicates_detected'] ?? 0));
-        $add('Registry quality', 'NIN completeness', $pct($rq['nin_completeness'] ?? null));
-        $add('Registry quality', 'Data completeness', $pct($rq['data_completeness'] ?? null));
+        $add('Record quality', 'Verified', $count($rq['verified'] ?? 0));
+        $add('Record quality', 'Awaiting review', $count($rq['pending'] ?? 0));
+        $add('Record quality', 'Possible duplicates found', $count($rq['duplicates_detected'] ?? 0));
+        $add('Record quality', 'NIN recorded', $pct($rq['nin_completeness'] ?? null));
+        $add('Record quality', 'All details recorded', $pct($rq['data_completeness'] ?? null));
 
         $c = $m['coordination'] ?? null;
         if (is_array($c)) {

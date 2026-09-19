@@ -30,7 +30,7 @@ function BandLegend({ thresholds }: { thresholds: { green_min: number; yellow_mi
     grey: 'No coverage',
   }
   return (
-    <div className={styles.legend} role="note" aria-label="Coverage bands">
+    <div className={styles.legend} role="note" aria-label="How coverage is grouped">
       <span className={styles.legendTitle}>Beneficiaries / area</span>
       {BAND_ORDER.map((b) => (
         <span key={b} className={styles.legendItem}>

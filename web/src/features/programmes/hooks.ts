@@ -38,6 +38,33 @@ export function useSaveProgramme() {
   })
 }
 
+/**
+ * Decide an MDA's programme, or offer it again. One mutation for the three moves
+ * so every one of them refreshes the same lists — the queue the System
+ * Administrator is looking at, and the MDA's own programmes page.
+ */
+export function useProgrammeDecision() {
+  const qc = useQueryClient()
+  const toast = useToast()
+  return useMutation({
+    mutationFn: ({ id, action, note }: { id: string; action: 'approve' | 'reject' | 'submit'; note?: string }) => {
+      if (action === 'approve') return programmeApi.approve(id, note)
+      if (action === 'reject') return programmeApi.reject(id, note ?? '')
+      return programmeApi.submit(id)
+    },
+    onSuccess: (programme, { action }) => {
+      qc.invalidateQueries({ queryKey: ['programmes'] })
+      qc.invalidateQueries({ queryKey: ['programme', programme.id] })
+      qc.invalidateQueries({ queryKey: ['programme-catalog'] })
+      const said = action === 'approve' ? 'Programme approved' : action === 'reject' ? 'Programme sent back' : 'Sent for approval'
+      toast.success(said, programme.name)
+    },
+    onError: (error) => {
+      toast.error('Could not save the decision', error instanceof ApiError ? error.message : 'Please try again.')
+    },
+  })
+}
+
 export function useArchiveProgramme() {
   const qc = useQueryClient()
   const toast = useToast()
@@ -78,6 +105,16 @@ export function useActivities(programmeId: string | undefined, enabled = true) {
 /** All activities the caller's MDA owns, across catalog programmes. */
 export function useAllActivities(enabled = true) {
   return useQuery({ queryKey: ['activities', 'all'], queryFn: () => activityApi.list(), enabled })
+}
+
+/** The partners an activity can be linked to. Fetched only once "partner" is chosen. */
+export function useFundingPartners(enabled = true) {
+  return useQuery({
+    queryKey: ['activity-funding-partners'],
+    queryFn: () => activityApi.fundingPartners(),
+    enabled,
+    staleTime: 5 * 60_000,
+  })
 }
 
 export function useActivity(id: string | undefined, enabled = true) {

@@ -159,7 +159,7 @@ function RegistrySnapshot({ registry }: { registry: AdminSummary['registry'] }) 
     { label: 'In progress', value: num(registry.imports_in_progress) },
     { label: 'Rows processed', value: num(registry.rows_total) },
     { label: 'Validation rate', value: pct(registry.validation_rate), hint: `${num(registry.rows_invalid)} rejected` },
-    { label: 'Duplicates surfaced', value: num(registry.duplicates_surfaced), hint: `${num(registry.duplicates_pending)} pending` },
+    { label: 'Possible duplicates found', value: num(registry.duplicates_surfaced), hint: `${num(registry.duplicates_pending)} pending` },
   ]
   return (
     <section className={styles.section} aria-label="Registry snapshot">

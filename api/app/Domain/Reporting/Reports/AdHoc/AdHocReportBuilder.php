@@ -119,7 +119,7 @@ class AdHocReportBuilder
         return new ReportData(
             'adhoc',
             $definition->label(),
-            'Ad-hoc report — '.((string) $config['label']),
+            'Custom report — '.((string) $config['label']),
             $scope->label,
             Carbon::now(),
             $columns,

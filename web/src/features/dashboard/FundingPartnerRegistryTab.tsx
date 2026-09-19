@@ -133,7 +133,7 @@ export function FundingPartnerRegistryTab({ data }: FundingPartnerRegistryTabPro
   const funnelStages = [
     { key: 'registered', label: 'Registered', value: reg.funnel.registered, hint: 'on record for funded activities' },
     { key: 'enrolled', label: 'Enrolled', value: reg.funnel.enrolled, hint: 'enrolled into a funded programme' },
-    { key: 'receiving', label: 'Receiving benefits', value: reg.funnel.receiving, hint: 'net-unique served' },
+    { key: 'receiving', label: 'Receiving benefits', value: reg.funnel.receiving, hint: 'each person counted once' },
   ]
   const hh = reg.demographics.household_size
 
@@ -143,13 +143,13 @@ export function FundingPartnerRegistryTab({ data }: FundingPartnerRegistryTabPro
       <section className={shell.reveal} aria-label="Registry indicators">
         <span className={shell.groupLabel}>Funded-programme registry</span>
         <div className={shell.kpiBand}>
-          <Kpi headline icon={Users} label="Individuals" value={num(reg.total_individuals)} hint="distinct beneficiaries" />
+          <Kpi headline icon={Users} label="Individuals" value={num(reg.total_individuals)} hint="each person counted once" />
           <Kpi icon={House} label="Households" value={num(reg.total_households)} />
           <Kpi icon={BadgeCheck} label="Verified" value={num(reg.verified)} hint="registry status: active" />
           <Kpi icon={Hourglass} label="Pending review" value={num(reg.pending)} />
         </div>
         <div className={shell.figureGrid}>
-          <Figure icon={CopyCheck} label="Duplicate records" value={num(reg.duplicate_records)} hint="potential matches surfaced" />
+          <Figure icon={CopyCheck} label="Possible duplicate records" value={num(reg.duplicate_records)} hint="people who may already be registered" />
           <Figure icon={CalendarPlus} label="New registrations" value={num(reg.new_registrations)} hint={`last ${num(reg.period_days)} days`} />
           <Figure icon={PenLine} label="Updated records" value={num(reg.updated_records)} hint={`last ${num(reg.period_days)} days`} />
           <Figure icon={ShieldCheck} label="Suspended" value={num(reg.suspended)} />
@@ -157,10 +157,10 @@ export function FundingPartnerRegistryTab({ data }: FundingPartnerRegistryTabPro
       </section>
 
       {/* ---------- REDUCED TARGETING FUNNEL ---------- */}
-      <section className={`${shell.section} ${shell.reveal}`} aria-label="Targeting funnel">
+      <section className={`${shell.section} ${shell.reveal}`} aria-label="From registered to receiving">
         <div className={shell.sectionHead}>
           <Icon icon={Users} size={16} />
-          <h2 className={shell.sectionTitle}>Targeting funnel</h2>
+          <h2 className={shell.sectionTitle}>From registered to receiving</h2>
           <span className={shell.sectionSub}>the stages we track</span>
         </div>
         <div className={shell.panel}>
@@ -223,10 +223,10 @@ export function FundingPartnerRegistryTab({ data }: FundingPartnerRegistryTabPro
         </div>
         <div className={shell.panel}>
           <div className={styles.meters}>
-            <Meter label="Verification rate" rate={reg.quality.verification_rate} hint="active ÷ total" />
-            <Meter label="Linked to NIN" rate={reg.quality.nin_linkage} hint="identity linkage" />
-            <Meter label="Data completeness" rate={reg.quality.data_completeness} hint="across captured fields" />
-            <Meter label="Duplicate rate" rate={reg.quality.duplicate_rate} hint="matches ÷ total (lower is better)" />
+            <Meter label="Share verified" rate={reg.quality.verification_rate} hint="of all records" />
+            <Meter label="Linked to NIN" rate={reg.quality.nin_linkage} hint="have a NIN recorded" />
+            <Meter label="All details recorded" rate={reg.quality.data_completeness} hint="across the details we hold" />
+            <Meter label="Possible duplicates" rate={reg.quality.duplicate_rate} hint="of all records (lower is better)" />
           </div>
 
           <span className={styles.blockLabel}>Missing data</span>

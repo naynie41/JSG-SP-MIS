@@ -698,3 +698,193 @@
   color: var(--danger-ink);
   font-weight: 500;
 }
+
+/* ==========================================================================
+   The band under the hero — three answers, not twelve numbers
+   ========================================================================== */
+
+.band {
+  display: grid;
+  grid-template-columns: 1.1fr 1fr;
+  gap: var(--space-3);
+}
+
+.bandCard {
+  display: grid;
+  align-content: start;
+  gap: var(--space-3);
+  padding: clamp(var(--space-4), 3vw, var(--space-5));
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  background: var(--surface);
+  box-shadow: var(--elev-sm);
+}
+
+/* The money card leads, on forest — one card carries the weight rather than a row
+   of tiles competing at the same size. */
+.bandLead {
+  border-color: transparent;
+  background:
+    radial-gradient(120% 140% at 90% -20%, rgba(198, 241, 53, 0.22), transparent 55%),
+    linear-gradient(160deg, var(--forest-tint), var(--forest));
+  color: var(--bg);
+}
+
+.bandLabel,
+.bandLabelInk {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  font-family: var(--font-mono);
+  font-size: var(--fs-caption);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+.bandLabel {
+  color: rgba(245, 245, 241, 0.78);
+}
+.bandLabelInk {
+  color: var(--text-muted-strong);
+}
+
+.bandValue,
+.bandValueInk,
+.bandValueButton {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: clamp(1.5rem, 3.2vw, 2.1rem);
+  line-height: 1.05;
+  letter-spacing: -0.02em;
+  font-variant-numeric: tabular-nums;
+}
+.bandValue {
+  color: var(--accent);
+}
+.bandValueInk {
+  color: var(--ink);
+}
+
+/* A drillable figure is a button, so it is reachable by keyboard and announced as
+   one — it must not look like a bare number that happens to respond to a click. */
+.bandValueButton {
+  justify-self: start;
+  padding: 0;
+  border: none;
+  background: none;
+  color: var(--accent);
+  cursor: pointer;
+  text-decoration: underline;
+  text-decoration-color: rgba(198, 241, 53, 0.45);
+  text-underline-offset: 4px;
+}
+.bandValueButton:hover {
+  text-decoration-color: var(--accent);
+}
+
+.bandTrack,
+.bandTrackInk {
+  display: block;
+  height: 10px;
+  overflow: hidden;
+  border-radius: var(--radius-full);
+}
+.bandTrack {
+  background: rgba(245, 245, 241, 0.18);
+}
+.bandTrackInk {
+  background: var(--surface-mint);
+}
+
+.bandFill,
+.bandFillInk {
+  display: block;
+  height: 100%;
+  border-radius: var(--radius-full);
+}
+.bandFill {
+  background: var(--accent);
+}
+.bandFillInk {
+  background: linear-gradient(90deg, var(--forest-2), var(--accent));
+}
+
+.bandMeta,
+.bandMetaInk {
+  margin: 0;
+  font-size: var(--fs-label);
+  line-height: 1.45;
+}
+.bandMeta {
+  color: rgba(245, 245, 241, 0.72);
+}
+.bandMetaInk {
+  color: var(--text-muted-strong);
+}
+
+.bandList {
+  display: grid;
+  gap: var(--space-3);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.bandRow {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  align-items: baseline;
+  gap: var(--space-2) var(--space-3);
+  font-size: var(--fs-ui);
+}
+
+.bandRowButton {
+  display: grid;
+  grid-template-columns: subgrid;
+  grid-column: 1 / -1;
+  align-items: baseline;
+  gap: var(--space-2) var(--space-3);
+  padding: 0;
+  border: none;
+  background: none;
+  font: inherit;
+  text-align: left;
+  cursor: pointer;
+}
+
+.bandRowLabel {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  color: var(--text-muted-strong);
+}
+
+.bandRowValue {
+  font-variant-numeric: tabular-nums;
+  font-weight: 600;
+  color: var(--ink);
+  white-space: nowrap;
+}
+
+/* Only where the value is a part of a whole; a bare count gets no track, because a
+   full bar under an absolute number would invent a target it does not have. */
+.bandRowTrack {
+  grid-column: 1 / -1;
+  display: block;
+  height: 4px;
+  overflow: hidden;
+  border-radius: var(--radius-full);
+  background: var(--surface-mint);
+}
+
+.bandRowFill {
+  display: block;
+  height: 100%;
+  border-radius: var(--radius-full);
+  background: var(--forest-2);
+}
+
+@media (max-width: 60rem) {
+  .band {
+    grid-template-columns: 1fr;
+  }
+}

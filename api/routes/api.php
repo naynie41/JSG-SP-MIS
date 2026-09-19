@@ -23,6 +23,7 @@ use App\Http\Controllers\Api\V1\MfaController;
 use App\Http\Controllers\Api\V1\Notification\BroadcastController;
 use App\Http\Controllers\Api\V1\Notification\NotificationController;
 use App\Http\Controllers\Api\V1\Programme\ActivityController;
+use App\Http\Controllers\Api\V1\Programme\ActivityFundingPartnerController;
 use App\Http\Controllers\Api\V1\Programme\EnrollmentController;
 use App\Http\Controllers\Api\V1\Programme\ProgrammeController;
 use App\Http\Controllers\Api\V1\Reference\AdministrativeDivisionController;
@@ -46,6 +47,7 @@ use App\Http\Controllers\Api\V1\Reporting\AdminSettingsController;
 use App\Http\Controllers\Api\V1\Reporting\AdminSummaryController;
 use App\Http\Controllers\Api\V1\Reporting\DashboardController;
 use App\Http\Controllers\Api\V1\Reporting\DashboardExportController;
+use App\Http\Controllers\Api\V1\Reporting\DuplicateReviewReportController;
 use App\Http\Controllers\Api\V1\Reporting\GisController;
 use App\Http\Controllers\Api\V1\Reporting\MdaActionRequiredController;
 use App\Http\Controllers\Api\V1\Reporting\ReportController;
@@ -406,11 +408,24 @@ Route::prefix('v1')->group(function (): void {
             ->middleware('permission:programme.edit')->name('programmes.archive');
         Route::post('/programmes/{programme}/unarchive', [ProgrammeController::class, 'unarchive'])
             ->middleware('permission:programme.edit')->name('programmes.unarchive');
+        // A programme an MDA created for itself waits for the System Administrator
+        // (§10, revised). `submit` is the MDA re-offering one that was sent back;
+        // approve/reject are the decision, gated further by the policy.
+        Route::post('/programmes/{programme}/submit', [ProgrammeController::class, 'submit'])
+            ->middleware('permission:programme.edit')->name('programmes.submit');
+        Route::post('/programmes/{programme}/approve', [ProgrammeController::class, 'approve'])
+            ->middleware('permission:programme.approve')->name('programmes.approve');
+        Route::post('/programmes/{programme}/reject', [ProgrammeController::class, 'reject'])
+            ->middleware('permission:programme.approve')->name('programmes.reject');
 
         Route::get('/activities', [ActivityController::class, 'index'])
             ->middleware('permission:activity.view')->name('activities.index');
         Route::post('/activities', [ActivityController::class, 'store'])
             ->middleware('permission:activity.create')->name('activities.store');
+        // The partners an activity can be linked to (names only). Before the
+        // /activities/{activity} wildcard; open to anyone who can create or edit one.
+        Route::get('/activities/funding-partners', [ActivityFundingPartnerController::class, 'index'])
+            ->middleware('permission:activity.create,activity.edit')->name('activities.funding-partners');
         Route::get('/activities/{activity}/budget', [ActivityController::class, 'budget'])
             ->middleware('permission:activity.view')->name('activities.budget');
         Route::get('/activities/{activity}', [ActivityController::class, 'show'])
@@ -688,6 +703,13 @@ Route::prefix('v1')->group(function (): void {
             ->middleware('permission:reporting.view', 'throttle:reports')->name('reports.segments.preview');
         Route::post('/reports/segments/export', [SegmentReportController::class, 'export'])
             ->middleware(['permission:reporting.export', 'throttle:exports'])->name('reports.segments.export');
+
+        // Duplicate review (FR-DUP): the state of the match queue, not a builder. Counts
+        // only; available to exactly the scopes the `duplicates` dataset is.
+        Route::get('/reports/duplicate-review', [DuplicateReviewReportController::class, 'show'])
+            ->middleware('permission:reporting.view', 'throttle:reports')->name('reports.duplicate-review.show');
+        Route::post('/reports/duplicate-review/export', [DuplicateReviewReportController::class, 'export'])
+            ->middleware(['permission:reporting.export', 'throttle:exports'])->name('reports.duplicate-review.export');
         Route::get('/reports/adhoc/datasets', [AdHocReportController::class, 'datasets'])
             ->middleware('permission:reporting.view')->name('reports.adhoc.datasets');
         Route::post('/reports/adhoc/preview', [AdHocReportController::class, 'preview'])

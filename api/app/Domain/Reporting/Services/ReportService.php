@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Domain\Reporting\Services;
 
 use App\Domain\Access\Models\User;
+use App\Domain\Reporting\DuplicateReview\DuplicateReviewFilter;
 use App\Domain\Reporting\Export\ReportFormat;
 use App\Domain\Reporting\Jobs\GenerateReport;
 use App\Domain\Reporting\Models\ReportRun;
@@ -89,14 +90,27 @@ class ReportService
      * suppression applied. Recording only the filters would leave the most important
      * question about an export unanswerable after the fact.
      */
-    public function queueSegmentExport(User $user, SegmentDefinition $definition, SegmentAccess $access, ReportFormat $format): ReportRun
+    public function queueSegmentExport(User $user, SegmentDefinition $definition, SegmentAccess $access, ReportFormat $format, bool $withSummary = false): ReportRun
     {
         return $this->createRun($format, [
             'report_key' => ReportRun::KEY_SEGMENT,
             'report_label' => $definition->label(),
             'definition' => $definition->toArray(),
-            'params' => $access->toParams(),
+            'params' => $withSummary ? [...$access->toParams(), 'summary' => true] : $access->toParams(),
         ], $access->scope, $user->id, $user->mda_id);
+    }
+
+    /**
+     * Queue the duplicate review report. The caller has already checked the scope may
+     * have it; the scope is captured on the run like every other report.
+     */
+    public function queueDuplicateReviewExport(User $user, DashboardScope $scope, DuplicateReviewFilter $filter, ReportFormat $format): ReportRun
+    {
+        return $this->createRun($format, [
+            'report_key' => ReportRun::KEY_DUPLICATE_REVIEW,
+            'report_label' => 'Duplicate review',
+            'params' => ['filters' => $filter->toArray()],
+        ], $scope, $user->id, $user->mda_id);
     }
 
     /**

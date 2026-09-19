@@ -24,8 +24,11 @@ export const dashboardApi = {
   opsMetrics(): Promise<OpsMetricsResponse> {
     return apiRequest<OpsMetricsResponse>({ method: 'GET', url: '/health/metrics' })
   },
-  /** Download the CURRENT (scoped + filtered) dashboard as an aggregate CSV/Excel/PDF. */
-  export(format: DashboardExportFormat, filter?: DashboardFilterValue): Promise<void> {
-    return downloadFile('/dashboard/export', { ...filterParams(filter), format }, `executive-dashboard.${format}`)
+  /**
+   * Download the CURRENT (scoped + filtered) dashboard as an aggregate file. The server
+   * names the file; `fileName` is only the fallback if that header cannot be read.
+   */
+  export(format: DashboardExportFormat, filter?: DashboardFilterValue, fileName = `executive-dashboard.${format}`): Promise<void> {
+    return downloadFile('/dashboard/export', { ...filterParams(filter), format }, fileName)
   },
 }

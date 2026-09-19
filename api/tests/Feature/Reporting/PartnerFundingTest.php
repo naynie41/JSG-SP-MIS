@@ -249,14 +249,19 @@ class PartnerFundingTest extends TestCase
     {
         $token = $this->users['officerA']->createToken('t')->plainTextToken;
 
-        // The owning MDA can (re)attribute the activity to a Development Partner.
+        // The owning MDA can (re)attribute the activity to a Development Partner. The
+        // partner travels with the funding type it belongs to (ActivityFundingTest).
         $this->withToken($token)->patchJson("/api/v1/activities/{$this->actA1->id}", [
+            'funding_type' => 'partner',
             'funding_partner_id' => $this->users['partnerB']->id,
+            'co_funded_by_government' => false,
         ])->assertOk()->assertJsonPath('data.funding_partner_id', $this->users['partnerB']->id);
 
         // A non–Development-Partner user is rejected.
         $this->withToken($token)->patchJson("/api/v1/activities/{$this->actA1->id}", [
+            'funding_type' => 'partner',
             'funding_partner_id' => $this->users['officerA']->id,
+            'co_funded_by_government' => false,
         ])->assertStatus(422)->assertJsonPath('error.code', 'VALIDATION_ERROR');
     }
 

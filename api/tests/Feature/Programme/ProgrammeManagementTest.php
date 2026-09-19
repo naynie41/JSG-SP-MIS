@@ -15,9 +15,11 @@ use Illuminate\Testing\TestResponse;
 use Tests\TestCase;
 
 /**
- * Programme CATALOG management (PRD §10, ARCH §12.4). Programmes are a global,
- * unowned catalog: only catalog admins (System Administrator / SP Coordination)
- * create/edit them; every authenticated role reads them; MDAs never mutate them.
+ * Programme CATALOG management (PRD §10, ARCH §12.4). The CENTRAL catalog is global and
+ * unowned: only catalog admins (System Administrator / SP Coordination) create or edit
+ * it, and every authenticated role reads it. An MDA creating a programme of its own is
+ * a different thing entirely and lives in {@see MdaOwnedProgrammeTest}; what this file
+ * holds is that the central half did not change when that arrived.
  */
 class ProgrammeManagementTest extends TestCase
 {
@@ -79,8 +81,12 @@ class ProgrammeManagementTest extends TestCase
             ->assertJsonPath('data.name', 'Conditional Cash Transfer')
             ->assertJsonPath('data.type', 'individual')
             ->assertJsonPath('data.benefit_category', 'cash')
-            // A catalog entry has no owning MDA, and no budget/funding on the programme.
-            ->assertJsonMissingPath('data.owner_mda_id')
+            // A CENTRAL catalog entry has no owning MDA, and no budget/funding on the
+            // programme. Created by a catalog admin, it needs no further approval —
+            // the administrator creating it is the approval.
+            ->assertJsonPath('data.owner_mda_id', null)
+            ->assertJsonPath('data.is_central', true)
+            ->assertJsonPath('data.approval_status', 'approved')
             ->assertJsonMissingPath('data.budget_amount');
 
         $programme = Programme::query()->firstOrFail();
@@ -93,18 +99,31 @@ class ProgrammeManagementTest extends TestCase
         ]);
     }
 
-    public function test_mdas_cannot_create_or_edit_programmes(): void
+    public function test_an_mda_creates_a_programme_of_its_own_never_a_catalog_entry(): void
     {
-        // An MDA Officer (and MDA Admin) can never create a catalog programme.
-        $this->send('officerA', 'POST', '/api/v1/programmes', $this->validPayload())
-            ->assertStatus(403);
-        $this->assertSame(0, Programme::query()->count());
+        // What an MDA creates is owned BY THAT MDA and waits for a decision. The
+        // owner comes from the authenticated user: naming another MDA in the body
+        // changes nothing.
+        $this->send('officerA', 'POST', '/api/v1/programmes', $this->validPayload([
+            'owner_mda_id' => $this->mdaB->id,
+        ]))
+            ->assertCreated()
+            ->assertJsonPath('data.owner_mda_id', $this->mdaA->id)
+            ->assertJsonPath('data.is_central', false)
+            ->assertJsonPath('data.approval_status', 'pending');
 
-        // Nor edit/archive one.
-        $programme = Programme::factory()->create();
-        $this->send('officerA', 'PATCH', "/api/v1/programmes/{$programme->id}", ['name' => 'Hijacked'])->assertStatus(403);
-        $this->send('officerA', 'POST', "/api/v1/programmes/{$programme->id}/archive")->assertStatus(403);
-        $this->assertSame($programme->name, $programme->fresh()->name);
+        $programme = Programme::query()->firstOrFail();
+        $this->assertSame($this->mdaA->id, $programme->owner_mda_id);
+        $this->assertNotNull($programme->submitted_at);
+    }
+
+    public function test_an_mda_can_never_edit_or_archive_the_central_catalog(): void
+    {
+        $central = Programme::factory()->create();
+
+        $this->send('officerA', 'PATCH', "/api/v1/programmes/{$central->id}", ['name' => 'Hijacked'])->assertStatus(403);
+        $this->send('officerA', 'POST', "/api/v1/programmes/{$central->id}/archive")->assertStatus(403);
+        $this->assertSame($central->name, $central->fresh()->name);
     }
 
     public function test_non_admin_roles_cannot_create(): void

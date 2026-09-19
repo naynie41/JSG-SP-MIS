@@ -164,6 +164,15 @@ class ScopeBypassSurfaceTest extends TestCase
         // resolve catalogue/partner/household references that are not MDA-scoped.
         'global catalogue + unowned references' => [
             'Domain/Programme/Rules/IsFundingPartner.php',
+            // An activity's funding partner is a Development Partner account, which
+            // belongs to no MDA — scoped, the relation would return nothing to the MDA
+            // whose activity names that partner. It reads the one account whose id is
+            // already on the activity; callers present the name only.
+            'Domain/Programme/Models/Activity.php',
+            // The partner picker on the activity form. Lists active Development Partner
+            // accounts (id and name, never email) to a user who can create or edit an
+            // activity; partners hold no MDA, so the scope would list none of them.
+            'Http/Controllers/Api/V1/Programme/ActivityFundingPartnerController.php',
             'Domain/Programme/Services/EnrollmentService.php',
             'Domain/Programme/Services/ProgrammeMatcher.php',
             'Domain/Programme/Services/ProgrammeMatchingRouter.php',

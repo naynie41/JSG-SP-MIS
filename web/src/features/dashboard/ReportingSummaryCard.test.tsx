@@ -131,7 +131,7 @@ describe('ReportingSummaryCard', () => {
   })
 
   it('gives the headline figure more weight than the ones supporting it', async () => {
-    // Net-unique beneficiaries is THE headline (CLAUDE.md §11). Six numbers at one size
+    // Total beneficiaries is THE headline (CLAUDE.md §11). Six numbers at one size
     // is a list, and a list makes the reader do the ranking the page should have done.
     const payload = response()
     get.mockResolvedValue(payload)
@@ -197,9 +197,9 @@ describe('ReportingSummaryCard', () => {
     )
     renderCard()
 
-    const tile = (await screen.findByText('Duplicates surfaced')).closest('div')!
+    const tile = (await screen.findByText('Possible duplicates found')).closest('div')!
     expect(within(tile).getByText('< 5')).toBeInTheDocument()
-    expect(screen.getByText(/1 figure withheld/i)).toBeInTheDocument()
+    expect(screen.getByText(/1 figure hidden/i)).toBeInTheDocument()
   })
 
   it('does not withhold anything for an MDA reading its own data', async () => {
@@ -216,7 +216,7 @@ describe('ReportingSummaryCard', () => {
     )
     renderCard()
 
-    const tile = (await screen.findByText('Duplicates surfaced')).closest('div')!
+    const tile = (await screen.findByText('Possible duplicates found')).closest('div')!
     expect(within(tile).getByText('2')).toBeInTheDocument()
     expect(screen.queryByText(/withheld/i)).not.toBeInTheDocument()
   })
@@ -237,7 +237,7 @@ describe('ReportingSummaryCard', () => {
     )
     renderCard()
 
-    const tile = (await screen.findByText('Duplicates surfaced')).closest('div')!
+    const tile = (await screen.findByText('Possible duplicates found')).closest('div')!
     expect(within(tile).getByText('0')).toBeInTheDocument()
   })
 })

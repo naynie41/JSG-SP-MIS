@@ -131,7 +131,7 @@ describe('FundingPartnerCoordinationTab', () => {
 
     const ds = screen.getByRole('region', { name: 'Data sharing' })
     expect(within(ds).getByText('Agencies integrated')).toBeInTheDocument()
-    expect(within(ds).getByText('Connectors')).toBeInTheDocument()
+    expect(within(ds).getByText('Data connections')).toBeInTheDocument()
     expect(within(ds).getByText('Runs failed')).toBeInTheDocument()
     expect(within(ds).getByText('API registrations')).toBeInTheDocument()
     expect(within(ds).getByText('Api')).toBeInTheDocument() // a source chip (humanised)
