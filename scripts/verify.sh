@@ -182,6 +182,16 @@ else
   note "no ward data" "ward validation stands down; ward accepted as free text"
 fi
 
+# Reference geometry for the coverage choropleths. An empty table is not an outage —
+# every map degrades to the LGA list beside it — but it IS silent, so it gets a line
+# here rather than being discovered by someone wondering where the map went.
+lgas="$($ART tinker --execute="echo App\\Domain\\Reporting\\Gis\\GeoBoundary::query()->where('level','lga')->count();" 2>/dev/null | tr -d '\r' | tail -1)"
+if [[ "${lgas}" =~ ^[0-9]+$ ]] && (( lgas > 0 )); then
+  ok "LGA boundary geometry" "${lgas} LGAs — coverage maps draw"
+else
+  note "no LGA boundaries" "maps fall back to the LGA list; php artisan gis:load-boundaries lga database/data/jigawa-lga-boundaries.geojson"
+fi
+
 # ------------------------------------------------------------------- audit
 head_ "Audit + backups"
 if $ART audit:verify-chain 2>/dev/null | grep -qi 'intact'; then
