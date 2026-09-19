@@ -79,7 +79,7 @@ describe('GrantsPage', () => {
     await user.click(screen.getByRole('button', { name: 'Grant access' }))
     const dialog = screen.getByRole('dialog')
     await user.selectOptions(within(dialog).getByLabelText('User'), 'u-1')
-    await user.selectOptions(within(dialog).getByLabelText('MDA to grant access to'), 'm-2')
+    await user.selectOptions(within(dialog).getByLabelText('Agency to grant access to'), 'm-2')
     await user.click(within(dialog).getByRole('button', { name: /^grant access$/i }))
 
     await waitFor(() =>

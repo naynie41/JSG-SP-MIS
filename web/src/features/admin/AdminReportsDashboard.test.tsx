@@ -89,7 +89,7 @@ describe('AdminReportsDashboard', () => {
     renderBoard()
     await screen.findByText('Across the whole state')
 
-    const mda = screen.getByLabelText('MDA')
+    const mda = screen.getByLabelText('Agency')
     expect(within(mda).getByRole('option', { name: 'Ministry of Health' })).toBeInTheDocument()
 
     await user.selectOptions(mda, 'm1')
@@ -100,7 +100,7 @@ describe('AdminReportsDashboard', () => {
     renderBoard()
     await screen.findByText('Across the whole state')
 
-    const card = screen.getByRole('region', { name: 'Delivery by MDA' })
+    const card = screen.getByRole('region', { name: 'Delivery by agency' })
     expect(within(card).getByText('Ministry of Health')).toBeInTheDocument()
     expect(within(card).getByText('₦400,000.00')).toBeInTheDocument()
     expect(card).toHaveTextContent(/80% of its ₦500K budget/)
@@ -118,9 +118,9 @@ describe('AdminReportsDashboard', () => {
     renderBoard()
     await screen.findByText('Across the whole state')
 
-    await user.click(screen.getByRole('button', { name: /show delivery by mda as a table/i }))
+    await user.click(screen.getByRole('button', { name: /show delivery by agency as a table/i }))
 
-    const table = screen.getByRole('table', { name: /delivery by mda/i })
+    const table = screen.getByRole('table', { name: /delivery by agency/i })
     expect(within(table).getByRole('columnheader', { name: 'Budget used' })).toBeInTheDocument()
     expect(within(table).getByText('3 of 4')).toBeInTheDocument()
   })
@@ -130,7 +130,7 @@ describe('AdminReportsDashboard', () => {
     renderBoard()
     await screen.findByText('Across the whole state')
 
-    expect(screen.queryByRole('region', { name: 'Delivery by MDA' })).toBeNull()
+    expect(screen.queryByRole('region', { name: 'Delivery by agency' })).toBeNull()
   })
 
   it('exports the board as a PDF, and only with the permission', async () => {

@@ -117,7 +117,7 @@ function ConnectorsPanel({ canRun }: { canRun: boolean }) {
   const columns: Column<SyncConnector>[] = [
     { key: 'name', header: 'System', render: (c) => <strong>{c.name}</strong> },
     { key: 'source', header: 'Source', render: (c) => <Badge variant="neutral" mono>{c.source}</Badge> },
-    { key: 'mda', header: 'Owner MDA', render: (c) => c.owner_mda?.name ?? '—' },
+    { key: 'mda', header: 'Owning agency', render: (c) => c.owner_mda?.name ?? '—' },
     {
       key: 'enabled',
       header: 'Status',

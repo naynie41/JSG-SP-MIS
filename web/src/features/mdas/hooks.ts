@@ -16,7 +16,7 @@ export function useCreateMda() {
     mutationFn: (input: MdaInput) => mdaApi.create(input),
     onSuccess: (mda) => {
       qc.invalidateQueries({ queryKey: MDAS_KEY })
-      toast.success('MDA created', `${mda.name} was added.`)
+      toast.success('Agency added', `${mda.name} was added.`)
     },
   })
 }
@@ -28,7 +28,7 @@ export function useUpdateMda() {
     mutationFn: ({ id, input }: { id: string; input: Partial<MdaInput> }) => mdaApi.update(id, input),
     onSuccess: (mda) => {
       qc.invalidateQueries({ queryKey: MDAS_KEY })
-      toast.success('MDA updated', `${mda.name} was saved.`)
+      toast.success('Agency updated', `${mda.name} was saved.`)
     },
   })
 }
@@ -41,7 +41,7 @@ export function useMdaStatus() {
       action === 'activate' ? mdaApi.activate(id) : mdaApi.deactivate(id),
     onSuccess: (mda) => {
       qc.invalidateQueries({ queryKey: MDAS_KEY })
-      toast.success(mda.status === 'active' ? 'MDA activated' : 'MDA deactivated', mda.name)
+      toast.success(mda.status === 'active' ? 'Agency activated' : 'Agency deactivated', mda.name)
     },
     onError: () => toast.error('Action failed', 'Please try again.'),
   })

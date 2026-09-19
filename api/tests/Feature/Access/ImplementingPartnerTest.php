@@ -234,6 +234,55 @@ class ImplementingPartnerTest extends TestCase
         $this->assertSame('partner', $kinds['Save the Children']);
     }
 
+    /* ------------------------------------------------- linking the two identities */
+
+    public function test_an_administrator_links_a_partner_organisation_to_its_funder_account(): void
+    {
+        $funder = $this->user(null, RoleKey::DevelopmentPartner);
+        $this->users['admin'] = $this->user(null, RoleKey::SystemAdministrator);
+
+        $body = $this->send('admin', 'POST', '/api/v1/mdas', [
+            'name' => 'Mercy Corps',
+            'type' => 'partner',
+            'funder_user_id' => $funder->id,
+        ])->assertCreated()->json('data');
+
+        $this->assertSame($funder->id, $body['funder_user_id']);
+        $this->assertFalse($body['is_government']);
+        $this->assertSame('Development partner', $body['type_label']);
+    }
+
+    public function test_only_a_partner_organisation_may_hold_a_funder_account(): void
+    {
+        $this->users['admin'] = $this->user(null, RoleKey::SystemAdministrator);
+        $funder = $this->user(null, RoleKey::DevelopmentPartner);
+
+        // A ministry has no funder identity; allowing the link would make "is this
+        // government?" answerable two contradictory ways.
+        $this->send('admin', 'POST', '/api/v1/mdas', [
+            'name' => 'Ministry of Works',
+            'type' => 'ministry',
+            'funder_user_id' => $funder->id,
+        ])
+            ->assertStatus(422)
+            ->assertJsonFragment(['field' => 'funder_user_id']);
+    }
+
+    public function test_a_funder_account_belongs_to_one_organisation(): void
+    {
+        $this->users['admin'] = $this->user(null, RoleKey::SystemAdministrator);
+
+        // The database says so too, but a unique-constraint violation is a 500; an
+        // administrator deserves to be told which organisation already has it.
+        $this->send('admin', 'POST', '/api/v1/mdas', [
+            'name' => 'Another NGO',
+            'type' => 'partner',
+            'funder_user_id' => $this->users['funder']->id,
+        ])
+            ->assertStatus(422)
+            ->assertJsonFragment(['field' => 'funder_user_id']);
+    }
+
     /* ---------------------------------------------------------------- helpers */
 
     private function user(?Mda $mda, RoleKey $role): User

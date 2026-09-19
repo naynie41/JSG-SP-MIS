@@ -106,7 +106,7 @@ export function ActivityDetailPage() {
 
   const srColumns: Column<ServiceRequest>[] = [
     { key: 'beneficiary', header: 'Beneficiary', render: (r) => r.beneficiary_name ?? <span className={styles.mono}>#{r.beneficiary_id.slice(0, 8)}</span> },
-    { key: 'owner', header: 'Owner MDA', render: (r) => r.owner_mda?.name ?? '—' },
+    { key: 'owner', header: 'Owning agency', render: (r) => r.owner_mda?.name ?? '—' },
     { key: 'status', header: 'Status', render: (r) => <Badge variant={statusVariant(`service_request.${r.status}`)} dot>{r.status}</Badge> },
     { key: 'raised', header: 'Raised', align: 'right', render: (r) => <span className={styles.mono}>{r.created_at?.slice(0, 10) ?? '—'}</span> },
   ]

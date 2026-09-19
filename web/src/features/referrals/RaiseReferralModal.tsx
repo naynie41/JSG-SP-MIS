@@ -136,9 +136,9 @@ export function RaiseReferralModal({ open, onClose, onCreated }: RaiseReferralMo
         )}
 
         <SelectField
-          label="Receiving MDA"
+          label="Receiving agency"
           required
-          placeholder={mdas.isLoading ? 'Loading MDAs…' : 'Select an MDA'}
+          placeholder={mdas.isLoading ? 'Loading agencies…' : 'Select an agency'}
           options={otherMdas.map((m) => ({ value: m.id, label: m.name }))}
           value={toMda}
           onChange={(e) => setToMda(e.target.value)}

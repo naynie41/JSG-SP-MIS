@@ -115,7 +115,7 @@ describe('FundingPartnerOverviewTab — the band', () => {
 
     const band = screen.getByRole('region', { name: 'Funded-scope indicators' })
     expect(within(band).getByText('Funded programmes')).toBeInTheDocument()
-    expect(within(band).getByText('Implementing MDAs')).toBeInTheDocument()
+    expect(within(band).getByText('Implementing agencies')).toBeInTheDocument()
     // "5 of 6" rather than a bare 5 beside a separate "6 funded" elsewhere.
     expect(within(band).getByText('5 of 6')).toBeInTheDocument()
     expect(within(band).getByText('LGAs covered')).toBeInTheDocument()

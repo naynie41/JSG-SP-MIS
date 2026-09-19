@@ -64,7 +64,7 @@ export function UserFormModal({ open, onClose, user }: UserFormModalProps) {
 
   const roleOptions: SelectOption[] = roles.map((r) => ({ value: r.id, label: r.name }))
   const mdaOptions: SelectOption[] = [
-    { value: '', label: 'Select an MDA' },
+    { value: '', label: 'Select an agency' },
     ...mdas.map((m) => ({ value: m.id, label: m.name })),
   ]
 

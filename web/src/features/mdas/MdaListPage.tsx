@@ -12,6 +12,7 @@ import { ConfirmDialog } from '@/components/Modal/ConfirmDialog'
 import { useAuth } from '@/lib/auth/AuthProvider'
 import { ApiError } from '@/types/api'
 import { MdaFormModal } from './MdaFormModal'
+import { AGENCY_TYPE_LABELS, isGovernmentAgency } from './agency'
 import { useMdaStatus, useMdas } from './hooks'
 import type { Mda } from './types'
 import layout from '@/features/shared/formLayout.module.css'
@@ -37,14 +38,25 @@ export function MdaListPage({ embedded = false }: MdaListPageProps = {}) {
   if (!canView) {
     return (
       <Card>
-        <p className={layout.forbidden}>You do not have permission to view MDAs.</p>
+        <p className={layout.forbidden}>You do not have permission to view agencies.</p>
       </Card>
     )
   }
 
   const columns: Column<Mda>[] = [
     { key: 'name', header: 'Name', sortable: false, render: (m) => m.name },
-    { key: 'type', header: 'Type', render: (m) => <span style={{ textTransform: 'capitalize' }}>{m.type}</span> },
+    {
+      key: 'type',
+      header: 'Type',
+      // A partner is tagged, not just named: in a list that holds ministries and
+      // NGOs together, which is which decides what the row is allowed to do.
+      render: (m) =>
+        isGovernmentAgency(m.type) ? (
+          AGENCY_TYPE_LABELS[m.type]
+        ) : (
+          <Badge variant="accent">{AGENCY_TYPE_LABELS[m.type]}</Badge>
+        ),
+    },
     {
       key: 'status',
       header: 'Status',
@@ -78,32 +90,32 @@ export function MdaListPage({ embedded = false }: MdaListPageProps = {}) {
         {!embedded && (
           <div className={layout.pageTitle}>
             <span className="eyebrow">02 · Administration</span>
-            <h1 className="t-h1">MDAs</h1>
+            <h1 className="t-h1">Implementing agencies</h1>
           </div>
         )}
         {canCreate && (
           <Button leftIcon={Plus} onClick={() => setFormState({ open: true, mda: null })}>
-            Create MDA
+            Add agency
           </Button>
         )}
       </div>
 
       {error instanceof ApiError && error.status === 403 ? (
         <Card>
-          <p className={layout.forbidden}>You do not have permission to view MDAs.</p>
+          <p className={layout.forbidden}>You do not have permission to view agencies.</p>
         </Card>
       ) : (
         <DataTable
-          caption="MDAs"
+          caption="Implementing agencies"
           columns={columns}
           rows={mdas}
           getRowId={(m) => m.id}
           loading={isLoading}
-          emptyTitle="No MDAs yet"
+          emptyTitle="No agencies yet"
           emptyAction={
             canCreate ? (
               <Button size="sm" leftIcon={Plus} onClick={() => setFormState({ open: true, mda: null })}>
-                Create MDA
+                Add agency
               </Button>
             ) : undefined
           }
@@ -119,7 +131,7 @@ export function MdaListPage({ embedded = false }: MdaListPageProps = {}) {
       <ConfirmDialog
         open={confirm !== null}
         danger={confirm?.action === 'deactivate'}
-        title={confirm?.action === 'deactivate' ? 'Deactivate MDA?' : 'Activate MDA?'}
+        title={confirm?.action === 'deactivate' ? 'Deactivate agency?' : 'Activate agency?'}
         confirmLabel={confirm?.action === 'deactivate' ? 'Deactivate' : 'Activate'}
         loading={statusMutation.isPending}
         onCancel={() => setConfirm(null)}

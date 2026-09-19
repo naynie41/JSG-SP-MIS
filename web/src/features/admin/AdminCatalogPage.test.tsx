@@ -108,7 +108,7 @@ describe('Admin console — Programme Catalog (composes Phase 4 / v1.3)', () => 
     renderPage()
     await screen.findByText('Conditional Cash Transfer')
 
-    await user.click(screen.getByRole('tab', { name: /usage across mdas/i }))
+    await user.click(screen.getByRole('tab', { name: /usage across agencies/i }))
 
     expect(await screen.findByText('MDAs running it')).toBeInTheDocument()
 
@@ -127,7 +127,7 @@ describe('Admin console — Programme Catalog (composes Phase 4 / v1.3)', () => 
     const user = userEvent.setup()
     renderPage()
     await screen.findByText('Conditional Cash Transfer')
-    await user.click(screen.getByRole('tab', { name: /usage across mdas/i }))
+    await user.click(screen.getByRole('tab', { name: /usage across agencies/i }))
 
     expect(await screen.findByText('Catalog programmes')).toBeInTheDocument()
     expect(screen.getByText('Adopted by an MDA')).toBeInTheDocument()

@@ -11,6 +11,11 @@ export interface Mda {
   id: string
   name: string
   type: MdaType
+  type_label?: string
+  is_government?: boolean
+  /** The Development Partner account a partner organisation funds through. */
+  funder_user_id?: string | null
+  funder_name?: string | null
   status: MdaStatus
   contact_person: string | null
   contact_email: string | null
@@ -23,6 +28,8 @@ export interface Mda {
 export interface MdaInput {
   name: string
   type: MdaType
+  /** Null for a government body, and to clear a link when the type changes. */
+  funder_user_id?: string | null
   contact_person?: string
   contact_email?: string
   contact_phone?: string

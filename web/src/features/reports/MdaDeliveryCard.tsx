@@ -1,3 +1,4 @@
+import { Badge } from '@/components/Badge/Badge'
 import { formatNaira } from '@/lib/utils/money'
 import { ChartCard } from './charts/ChartCard'
 import { compactNaira } from './charts/geometry'
@@ -11,7 +12,7 @@ function used(row: MdaDeliveryRow): number | null {
 }
 
 /**
- * Delivery by MDA — the cross-agency comparison, state-wide scope only.
+ * Delivery by agency — the cross-agency comparison, state-wide scope only.
  *
  * Two things are encoded per row, because either alone misleads: the BAR is value
  * delivered against the largest delivering agency, which answers "who is delivering
@@ -28,10 +29,11 @@ export function MdaDeliveryCard({ rows, minimum }: { rows: MdaDeliveryRow[]; min
   const max = Math.max(1, ...rows.map((row) => row.delivered_value))
 
   const table = {
-    caption: 'Delivery by MDA',
-    columns: ['MDA', 'Value delivered', 'Budget used', 'People reached', 'Active activities'],
+    caption: 'Delivery by agency',
+    columns: ['Agency', 'Type', 'Value delivered', 'Budget used', 'People reached', 'Active activities'],
     rows: rows.map((row) => [
-      row.mda ?? 'Unnamed MDA',
+      row.mda ?? 'Unnamed agency',
+      row.kind === 'partner' ? 'Development partner' : 'Government',
       formatNaira(row.delivered_value),
       used(row) === null ? '—' : `${used(row)}%`,
       formatCount(row.reached, minimum),
@@ -41,14 +43,14 @@ export function MdaDeliveryCard({ rows, minimum }: { rows: MdaDeliveryRow[]; min
 
   return (
     <ChartCard
-      title="Delivery by MDA"
+      title="Delivery by agency"
       sub="Value delivered by each agency, and how much of its own budget that is"
       table={table}
     >
       <ul className={styles.agencies}>
         {rows.map((row) => {
           const pct = used(row)
-          const name = row.mda ?? 'Unnamed MDA'
+          const name = row.mda ?? 'Unnamed agency'
           const reached = formatCount(row.reached, minimum)
 
           return (
@@ -56,6 +58,9 @@ export function MdaDeliveryCard({ rows, minimum }: { rows: MdaDeliveryRow[]; min
               <div className={styles.agencyHead}>
                 <span className={styles.agencyName} title={name}>
                   {name}
+                  {/* Only the partner is tagged. Government is the norm here, and
+                      badging every row would make the exception invisible again. */}
+                  {row.kind === 'partner' && <Badge variant="accent">Partner</Badge>}
                 </span>
                 <span className={styles.agencyValue}>{formatNaira(row.delivered_value)}</span>
               </div>

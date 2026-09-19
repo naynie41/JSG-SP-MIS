@@ -93,7 +93,7 @@ function UsagePanel() {
           rows={programmes}
           columns={columns}
           getRowId={(p) => p.id}
-          caption="Catalog usage across MDAs"
+          caption="Catalog usage across agencies"
         />
       </Card>
 
@@ -114,7 +114,7 @@ function UsagePanel() {
  *    catalog stay restricted to catalog administrators (CLAUDE.md §10).
  *  - **Approvals** decides the programmes MDAs have created for themselves. Until one
  *    is decided the MDA can do nothing with it, so the count rides on the tab.
- *  - **Usage across MDAs** reports uptake from the same endpoint.
+ *  - **Usage across agencies** reports uptake from the same endpoint.
  *
  * The central catalog is still one shared, unowned list; an MDA's own programme is a
  * separate row on the same table, not a second catalog with its own lifecycle.
@@ -144,7 +144,7 @@ export function AdminCatalogPage() {
         items={[
           { id: 'catalog', label: 'Catalog', content: <ProgrammeListPage embedded /> },
           { id: 'approvals', label: pendingLabel, content: <ProgrammeApprovalsPanel /> },
-          { id: 'usage', label: 'Usage across MDAs', content: <UsagePanel /> },
+          { id: 'usage', label: 'Usage across agencies', content: <UsagePanel /> },
         ]}
       />
     </div>

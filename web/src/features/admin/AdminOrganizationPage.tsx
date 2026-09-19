@@ -128,7 +128,7 @@ function PartnersPanel() {
     },
     { key: 'programmes', header: 'Funded programmes', align: 'right', render: (p) => num(p.funded_programmes) },
     { key: 'activities', header: 'Funded activities', align: 'right', render: (p) => num(p.funded_activities) },
-    { key: 'mdas', header: 'Implementing MDAs', align: 'right', render: (p) => num(p.implementing_mdas) },
+    { key: 'mdas', header: 'Implementing agencies', align: 'right', render: (p) => num(p.implementing_mdas) },
   ]
 
   return (

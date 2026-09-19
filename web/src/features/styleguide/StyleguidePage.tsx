@@ -74,7 +74,7 @@ export function StyleguidePage() {
   const columns: Column<Beneficiary>[] = [
     { key: 'name', header: 'Name', sortable: true, render: (r) => r.name },
     { key: 'nin', header: 'NIN', render: (r) => <span className="mono">{r.nin}</span> },
-    { key: 'mda', header: 'Owner MDA', render: (r) => r.mda },
+    { key: 'mda', header: 'Owning agency', render: (r) => r.mda },
     {
       key: 'status',
       header: 'Status',
@@ -195,8 +195,8 @@ export function StyleguidePage() {
             <TextField label="NIN" error="NIN must be 11 digits." defaultValue="123" />
             <TextField label="Disabled" disabled value="Read only" />
             <SelectField
-              label="Owner MDA"
-              placeholder="Select an MDA"
+              label="Owning agency"
+              placeholder="Select an agency"
               options={[
                 { value: 'health', label: 'Ministry of Health' },
                 { value: 'women', label: 'Women Affairs' },

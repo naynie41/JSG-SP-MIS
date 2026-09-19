@@ -59,7 +59,7 @@ export function MatchRevealPanel({ reveal, eyebrow = 'Existing record' }: MatchR
       </div>
 
       <dl className={styles.dl}>
-        <dt>Owner MDA</dt>
+        <dt>Owning agency</dt>
         <dd>{reveal.owner_mda?.name ?? '—'}</dd>
         <dt>Data source</dt>
         <dd>{source}</dd>

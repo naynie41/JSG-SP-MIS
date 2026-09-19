@@ -134,11 +134,11 @@ export function AdminReportsDashboard({ canExport }: { canExport: boolean }) {
           {(options?.mdas.length ?? 0) > 0 && (
             <div className={styles.controlWide}>
               <SelectField
-                label="MDA"
+                label="Agency"
                 value={filter.mda_id ?? ''}
                 onChange={(event) => set('mda_id', event.target.value)}
                 options={[
-                  { value: '', label: 'All MDAs' },
+                  { value: '', label: 'All agencies' },
                   ...(options?.mdas ?? []).map((mda) => ({ value: mda.id, label: mda.name })),
                 ]}
               />

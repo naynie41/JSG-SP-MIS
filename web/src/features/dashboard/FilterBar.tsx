@@ -141,8 +141,8 @@ export function FilterBar({ value, options, onChange, live }: FilterBarProps) {
             ))}
           </Field>
 
-          <Field label="MDA" value={value.mda_id ?? ''} onChange={(v) => set('mda_id', v)}>
-            <option value="">All MDAs</option>
+          <Field label="Agency" value={value.mda_id ?? ''} onChange={(v) => set('mda_id', v)}>
+            <option value="">All agencies</option>
             {options.mdas.map((m) => (
               <option key={m.id} value={m.id}>
                 {m.name}

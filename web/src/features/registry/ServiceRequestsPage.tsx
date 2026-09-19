@@ -166,7 +166,7 @@ export function ServiceRequestsPage({ embedded = false }: ServiceRequestsPagePro
 
   const outboxColumns: Column<ServiceRequest>[] = [
     { key: 'ben', header: 'Beneficiary', render: (r) => <BeneficiaryCell request={r} /> },
-    { key: 'to', header: 'Owner MDA', render: (r) => <MdaCell mda={r.owner_mda} id={r.to_mda_id} /> },
+    { key: 'to', header: 'Owning agency', render: (r) => <MdaCell mda={r.owner_mda} id={r.to_mda_id} /> },
     { key: 'reason', header: 'Reason', render: (r) => r.reason ?? <span className={styles.cellSub}>—</span> },
     { key: 'status', header: 'Status', render: (r) => <StatusChip status={r.status} /> },
     {
@@ -293,7 +293,7 @@ export function ServiceRequestsPage({ embedded = false }: ServiceRequestsPagePro
         even slightly out of step. One headline, owned by whoever is authoritative.
       */}
       <Card
-        eyebrow="Owner MDA · action required"
+        eyebrow="Owning agency · action required"
         title={!embedded && awaitingUs > 0 ? `Approval inbox: ${awaitingUs} awaiting you` : 'Approval inbox'}
         variant={!embedded && awaitingUs > 0 ? 'mint' : undefined}
       >

@@ -198,6 +198,12 @@ class ScopeBypassSurfaceTest extends TestCase
             // precisely when the check matters; the lookup reads ownership and type
             // only, and its single output is a validation error.
             'Http/Requests/Programme/Concerns/ValidatesFunding.php',
+            // Checking that a funder account is not already claimed by ANOTHER
+            // organisation, which by definition is one the caller cannot see. It
+            // reads a single name to put in the error message, and only for an
+            // account id the administrator just chose from a list they may already
+            // read; its one output is a validation message.
+            'Http/Requests/Access/Concerns/LinksFunderAccount.php',
         ],
     ];
 
