@@ -5,8 +5,8 @@ declare(strict_types=1);
 namespace App\Http\Controllers\Api\V1\Reporting;
 
 use App\Domain\Audit\Services\AuditLogger;
-use App\Domain\Reporting\Export\ExecutiveExportBuilder;
 use App\Domain\Reporting\Export\DashboardBoardExportBuilder;
+use App\Domain\Reporting\Export\ExecutiveExportBuilder;
 use App\Domain\Reporting\Export\ReportExporterRegistry;
 use App\Domain\Reporting\Export\ReportFormat;
 use App\Domain\Reporting\Gis\GeoBoundary;
@@ -34,7 +34,7 @@ class DashboardExportController extends Controller
         private readonly DashboardService $dashboard,
         private readonly DashboardScopeResolver $resolver,
         private readonly ExecutiveExportBuilder $builder,
-        private readonly DashboardBoardExportBuilder $mdaBuilder,
+        private readonly DashboardBoardExportBuilder $boardBuilder,
         private readonly GisCoverageService $coverage,
         private readonly ReportExporterRegistry $exporters,
         private readonly AuditLogger $audit,
@@ -45,8 +45,12 @@ class DashboardExportController extends Controller
         $scope = $this->resolver->forUser($request->user());
         $filter = DashboardFilter::fromRequest($request);
 
-        if ($scope->kind === DashboardScope::KIND_MDA) {
-            return $this->mdaExport($request, $scope, $filter);
+        // A BOARD export is the reporting dashboard as a page — tiles, charts, map.
+        // An MDA has no other kind. A state-wide caller does: the executive suite
+        // exports the same endpoint as CSV/Excel/PDF sections, so the console asks for
+        // the board explicitly rather than having it inferred from the scope.
+        if ($scope->kind === DashboardScope::KIND_MDA || $request->query('view') === 'board') {
+            return $this->boardExport($request, $scope, $filter);
         }
 
         $format = ReportFormat::tryFrom((string) $request->query('format', 'csv')) ?? ReportFormat::Csv;
@@ -71,17 +75,24 @@ class DashboardExportController extends Controller
     }
 
     /**
-     * An MDA's dashboard, as the page it was exported from: PDF only, laid out as the
-     * dashboard is and reading the same figures (see DashboardBoardExportBuilder).
+     * A reporting dashboard as the page it was exported from: PDF only, laid out as the
+     * board is and reading the same figures (see DashboardBoardExportBuilder).
+     *
+     * PDF only, deliberately. This export is a picture of a page — its charts and its
+     * map are the point — and CSV cannot carry any of that. A caller who wants the
+     * figures as rows has the report builder, which is what it is for.
      */
-    private function mdaExport(Request $request, DashboardScope $scope, DashboardFilter $filter): StreamedResponse|JsonResponse
+    private function boardExport(Request $request, DashboardScope $scope, DashboardFilter $filter): StreamedResponse|JsonResponse
     {
         if ((string) $request->query('format', ReportFormat::Pdf->value) !== ReportFormat::Pdf->value) {
-            return ApiResponse::error('PDF_ONLY', 'The MDA dashboard exports as a PDF.', [], 422);
+            return ApiResponse::error('PDF_ONLY', 'The dashboard exports as a PDF.', [], 422);
         }
 
-        // The letterhead names the MDA ("Ministry of Health"), not the scope's generic label.
-        $mdaName = $request->user()->mda?->name;
+        $stateWide = $scope->kind !== DashboardScope::KIND_MDA;
+
+        // The letterhead names the MDA ("Ministry of Health"), not the scope's generic
+        // label. A state-wide board has no single agency to name, so it keeps the scope's.
+        $mdaName = $stateWide ? null : $request->user()->mda?->name;
 
         // The map: the same scoped LGA coverage and boundary shapes the dashboard's map uses.
         $boundaries = GeoBoundary::query()->where('level', GeoBoundary::LEVEL_LGA)->get(['code', 'name', 'geometry']);
@@ -90,16 +101,17 @@ class DashboardExportController extends Controller
             'boundaries' => $boundaries->map(static fn (GeoBoundary $b): array => ['code' => $b->code, 'name' => $b->name, 'geometry' => $b->geometry])->all(),
         ];
 
-        $data = $this->mdaBuilder->build(
+        $data = $this->boardBuilder->build(
             $this->dashboard->forUser($request->user(), $filter),
             $filter,
             is_string($mdaName) ? $mdaName : null,
             $map,
+            $stateWide,
         );
         $bytes = $this->exporters->for(ReportFormat::Pdf)->render($data);
 
         $this->audit->record('dashboard.exported', after: [
-            'report' => 'mda_dashboard',
+            'report' => $stateWide ? 'state_dashboard' : 'mda_dashboard',
             'scope' => $scope->key(),
             'tier' => $scope->tier(),
             'format' => ReportFormat::Pdf->value,
@@ -107,8 +119,10 @@ class DashboardExportController extends Controller
             'rows' => $data->rowCount(),
         ]);
 
+        $name = ($stateWide ? 'state-dashboard-' : 'mda-dashboard-').now()->format('Ymd-His').'.pdf';
+
         return response()->streamDownload(static function () use ($bytes): void {
             echo $bytes;
-        }, 'mda-dashboard-'.now()->format('Ymd-His').'.pdf', ['Content-Type' => ReportFormat::Pdf->mimeType()]);
+        }, $name, ['Content-Type' => ReportFormat::Pdf->mimeType()]);
     }
 }

@@ -201,4 +201,35 @@ class ExecutiveFilterTest extends TestCase
         // Out-of-range period is rejected by validation.
         $this->withToken($token)->getJson('/api/v1/dashboard?year=1999')->assertStatus(422);
     }
+
+    /**
+     * A PERIOD filter over the wire, which is where this broke in the browser while
+     * every unit test passed.
+     *
+     * A query string carries "1", not 1. The `integer` rule accepts a numeric string
+     * without converting it, so the raw string reached an `?int` parameter and, under
+     * strict_types, 500'd every filtered request. The tests that existed built the
+     * filter object directly with real ints, and the one endpoint test filtered by a
+     * programme id (a string) and an out-of-range year (rejected before the
+     * constructor) — so nothing ever sent a VALID period through the HTTP layer.
+     */
+    public function test_a_period_filter_survives_the_query_string(): void
+    {
+        $token = $this->users['exec']->createToken('t')->plainTextToken;
+
+        foreach (['year=2026', 'quarter=1', 'month=6', 'year=2026&quarter=2'] as $query) {
+            $this->withToken($token)->getJson('/api/v1/dashboard?'.$query)
+                ->assertOk()
+                ->assertJsonPath('data.live', true);
+        }
+
+        // The echoed filter is typed, not the strings the request carried.
+        $filters = $this->withToken($token)->getJson('/api/v1/dashboard?year=2026&quarter=2')
+            ->assertOk()->json('data.filters');
+        $this->assertSame(2026, $filters['year']);
+        $this->assertSame(2, $filters['quarter']);
+
+        // The export parses the SAME filter, so it broke the same way.
+        $this->withToken($token)->get('/api/v1/dashboard/export?format=csv&quarter=1')->assertOk();
+    }
 }

@@ -246,6 +246,77 @@ class DashboardExportTest extends TestCase
         $this->assertStringNotContainsString('Zzxq', $html);
     }
 
+    /* ------------------------------------------- the administration console's board */
+
+    public function test_the_admin_console_exports_the_whole_board_not_the_executive_sections(): void
+    {
+        $admin = $this->user(null, RoleKey::SystemAdministrator);
+
+        $response = $this->download($admin, '?format=pdf&view=board')->assertOk();
+        $this->assertSame('application/pdf', $response->headers->get('Content-Type'));
+        $this->assertStringContainsString('state-dashboard-', (string) $response->headers->get('Content-Disposition'));
+
+        // Same endpoint WITHOUT the board marker is still the executive suite's
+        // sectioned export — that page must keep its CSV and Excel.
+        $this->download($admin, '?format=csv')->assertOk();
+        $this->download($admin, '?format=xlsx')->assertOk();
+    }
+
+    public function test_the_state_wide_board_is_pdf_only(): void
+    {
+        $admin = $this->user(null, RoleKey::SystemAdministrator);
+
+        $this->download($admin, '?format=csv&view=board')->assertStatus(422)->assertJsonPath('error.code', 'PDF_ONLY');
+        $this->download($admin, '?format=xlsx&view=board')->assertStatus(422);
+    }
+
+    public function test_the_state_wide_pdf_carries_every_chart_the_board_shows(): void
+    {
+        $admin = $this->user(null, RoleKey::SystemAdministrator);
+        $data = app(DashboardBoardExportBuilder::class)->build(
+            app(DashboardService::class)->forUser($admin),
+            DashboardFilter::none(),
+            null,
+            null,
+            true,
+        );
+
+        $this->assertSame('State-wide dashboard', $data->title);
+        $this->assertTrue($data->crest);
+
+        // The same cards as the MDA board, in the same order, plus the cross-agency
+        // comparison after the trend/quality pair.
+        $this->assertSame([
+            'New registrations by month', 'Value delivered by month',
+            'Quality of your records', 'Delivery by MDA',
+            'Women and men', 'Age groups',
+            'Household size', 'Coverage across your LGAs',
+            'Largest LGAs', 'Benefits delivered', 'Records',
+        ], array_map(static fn (ReportFigure $f): string => $f->title, $data->figures));
+
+        $byMda = $this->figure($data, 'Delivery by MDA');
+        $this->assertStringStartsWith('data:image/svg+xml;base64,', (string) $byMda->image);
+        // It takes the full width: agency names are the first thing to become
+        // unreadable in a half-width card.
+        $this->assertTrue($byMda->wide);
+        // Each agency's own budget share rides with its value, as on screen.
+        $this->assertStringContainsString('MDA A', $byMda->items[0]['label']);
+        $this->assertStringContainsString('of its budget', $byMda->items[0]['value']);
+        $this->assertStringContainsString('add up to more than the state total', (string) $byMda->note);
+    }
+
+    public function test_an_mda_board_never_carries_the_cross_agency_comparison(): void
+    {
+        $officer = $this->user($this->mda, RoleKey::MdaAdmin);
+        $data = app(DashboardBoardExportBuilder::class)->build(
+            app(DashboardService::class)->forUser($officer),
+            DashboardFilter::none(),
+        );
+
+        $titles = array_map(static fn (ReportFigure $f): string => $f->title, $data->figures);
+        $this->assertNotContains('Delivery by MDA', $titles);
+    }
+
     private function figure(ReportData $data, string $title): ReportFigure
     {
         foreach ($data->figures as $figure) {

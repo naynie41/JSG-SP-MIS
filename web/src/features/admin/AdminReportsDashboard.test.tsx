@@ -139,7 +139,9 @@ describe('AdminReportsDashboard', () => {
     await screen.findByText('Across the whole state')
 
     await user.click(screen.getByRole('button', { name: /export pdf/i }))
-    expect(dashboardApi.export).toHaveBeenCalledWith('pdf', undefined, 'state-dashboard.pdf')
+    // 'board' is what makes this the page-with-charts PDF and not the executive
+    // suite's sectioned export off the same endpoint.
+    expect(dashboardApi.export).toHaveBeenCalledWith('pdf', undefined, 'state-dashboard.pdf', 'board')
 
     const qc = new QueryClient({ defaultOptions: { queries: { retry: false } } })
     rerender(
