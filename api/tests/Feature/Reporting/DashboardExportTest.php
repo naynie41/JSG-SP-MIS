@@ -13,7 +13,7 @@ use App\Domain\Programme\Models\Activity;
 use App\Domain\Programme\Models\Programme;
 use App\Domain\Registry\Models\Beneficiary;
 use App\Domain\Reporting\Export\Charts\SvgChart;
-use App\Domain\Reporting\Export\MdaDashboardExportBuilder;
+use App\Domain\Reporting\Export\DashboardBoardExportBuilder;
 use App\Domain\Reporting\Export\ReportColumn;
 use App\Domain\Reporting\Export\ReportData;
 use App\Domain\Reporting\Export\ReportFigure;
@@ -141,7 +141,7 @@ class DashboardExportTest extends TestCase
         $officer = $this->user($this->mda, RoleKey::MdaAdmin);
         $dashboard = app(DashboardService::class)->forUser($officer);
 
-        $data = app(MdaDashboardExportBuilder::class)->build($dashboard, DashboardFilter::none(), 'MDA A');
+        $data = app(DashboardBoardExportBuilder::class)->build($dashboard, DashboardFilter::none(), 'MDA A');
 
         $this->assertSame('MDA dashboard', $data->title);
         $this->assertSame('MDA A', $data->scopeLabel);
@@ -171,7 +171,7 @@ class DashboardExportTest extends TestCase
     public function test_every_chart_in_the_mda_pdf_is_a_drawn_image_with_its_values(): void
     {
         $officer = $this->user($this->mda, RoleKey::MdaAdmin);
-        $data = app(MdaDashboardExportBuilder::class)->build(app(DashboardService::class)->forUser($officer), DashboardFilter::none());
+        $data = app(DashboardBoardExportBuilder::class)->build(app(DashboardService::class)->forUser($officer), DashboardFilter::none());
 
         $gender = $this->figure($data, 'Women and men');
         $this->assertStringStartsWith('data:image/svg+xml;base64,', (string) $gender->image);
@@ -197,7 +197,7 @@ class DashboardExportTest extends TestCase
             ],
         ];
 
-        $data = app(MdaDashboardExportBuilder::class)->build(app(DashboardService::class)->forUser($officer), DashboardFilter::none(), null, $map);
+        $data = app(DashboardBoardExportBuilder::class)->build(app(DashboardService::class)->forUser($officer), DashboardFilter::none(), null, $map);
 
         $figure = $this->figure($data, 'Coverage across your LGAs');
         $svg = base64_decode(substr((string) $figure->image, strlen('data:image/svg+xml;base64,')));
@@ -211,7 +211,7 @@ class DashboardExportTest extends TestCase
     public function test_without_boundaries_the_map_card_says_so(): void
     {
         $officer = $this->user($this->mda, RoleKey::MdaAdmin);
-        $data = app(MdaDashboardExportBuilder::class)->build(app(DashboardService::class)->forUser($officer), DashboardFilter::none());
+        $data = app(DashboardBoardExportBuilder::class)->build(app(DashboardService::class)->forUser($officer), DashboardFilter::none());
 
         $figure = $this->figure($data, 'Coverage across your LGAs');
         $this->assertNull($figure->image);
@@ -231,7 +231,7 @@ class DashboardExportTest extends TestCase
         $officer = $this->user($this->mda, RoleKey::MdaAdmin);
         $filter = new DashboardFilter(year: 2026, quarter: 3, programmeId: $this->programme->id, lga: 'dutse');
 
-        $data = app(MdaDashboardExportBuilder::class)->build(app(DashboardService::class)->forUser($officer, $filter), $filter);
+        $data = app(DashboardBoardExportBuilder::class)->build(app(DashboardService::class)->forUser($officer, $filter), $filter);
 
         $this->assertSame("Q3 2026 · {$this->programme->name} · Dutse", $data->subtitle);
     }
@@ -239,7 +239,7 @@ class DashboardExportTest extends TestCase
     public function test_the_mda_pdf_never_carries_a_beneficiarys_identity(): void
     {
         $officer = $this->user($this->mda, RoleKey::MdaAdmin);
-        $data = app(MdaDashboardExportBuilder::class)->build(app(DashboardService::class)->forUser($officer), DashboardFilter::none());
+        $data = app(DashboardBoardExportBuilder::class)->build(app(DashboardService::class)->forUser($officer), DashboardFilter::none());
 
         $html = View::make('reports.pdf', ['data' => $data])->render();
         $this->assertStringNotContainsString('Secretname', $html);

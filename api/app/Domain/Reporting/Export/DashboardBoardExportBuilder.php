@@ -22,7 +22,7 @@ use Illuminate\Support\Str;
  * Aggregates only. The small-cell rule the dashboard publishes (`min_cell_size`) is
  * applied to every count here as it is on screen; it is null for an MDA's own data.
  */
-class MdaDashboardExportBuilder
+class DashboardBoardExportBuilder
 {
     /** Chart widths in the PDF's px: half a content column, and the full column. */
     private const HALF = 330;

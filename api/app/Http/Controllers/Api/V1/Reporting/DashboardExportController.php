@@ -6,7 +6,7 @@ namespace App\Http\Controllers\Api\V1\Reporting;
 
 use App\Domain\Audit\Services\AuditLogger;
 use App\Domain\Reporting\Export\ExecutiveExportBuilder;
-use App\Domain\Reporting\Export\MdaDashboardExportBuilder;
+use App\Domain\Reporting\Export\DashboardBoardExportBuilder;
 use App\Domain\Reporting\Export\ReportExporterRegistry;
 use App\Domain\Reporting\Export\ReportFormat;
 use App\Domain\Reporting\Gis\GeoBoundary;
@@ -34,7 +34,7 @@ class DashboardExportController extends Controller
         private readonly DashboardService $dashboard,
         private readonly DashboardScopeResolver $resolver,
         private readonly ExecutiveExportBuilder $builder,
-        private readonly MdaDashboardExportBuilder $mdaBuilder,
+        private readonly DashboardBoardExportBuilder $mdaBuilder,
         private readonly GisCoverageService $coverage,
         private readonly ReportExporterRegistry $exporters,
         private readonly AuditLogger $audit,
@@ -72,7 +72,7 @@ class DashboardExportController extends Controller
 
     /**
      * An MDA's dashboard, as the page it was exported from: PDF only, laid out as the
-     * dashboard is and reading the same figures (see MdaDashboardExportBuilder).
+     * dashboard is and reading the same figures (see DashboardBoardExportBuilder).
      */
     private function mdaExport(Request $request, DashboardScope $scope, DashboardFilter $filter): StreamedResponse|JsonResponse
     {
