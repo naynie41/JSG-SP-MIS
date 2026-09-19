@@ -138,9 +138,10 @@ describe('PartnerLayout (funding-partner suite shell + routed pages)', () => {
     expect(screen.getByRole('button', { name: /export/i })).toBeInTheDocument()
     expect(screen.getByRole('button', { name: /refresh/i })).toBeInTheDocument()
     expect(screen.getByLabelText('Year')).toBeInTheDocument() // the shared filter bar
-    // Overview page body (from the outlet).
-    expect(screen.getByText('Value delivered')).toBeInTheDocument()
+    // Overview page body (from the outlet). The band under the hero leads on reach,
+    // not on money — the hero above is the funding statement.
     expect(screen.getByText('People reached')).toBeInTheDocument()
+    expect(screen.getByText('Delivered through')).toBeInTheDocument()
   })
 
   it('renders a non-index child page WITHOUT the hero, but keeps the shared filter (Registry)', async () => {

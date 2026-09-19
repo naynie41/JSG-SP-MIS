@@ -22,6 +22,7 @@ import {
   RecordsCard,
   TrendCard,
 } from '@/features/reports/BoardCards'
+import { MdaDeliveryCard } from '@/features/reports/MdaDeliveryCard'
 import styles from '@/features/reports/reportBoard.module.css'
 
 /* -------------------------------------------------------------------- helpers */
@@ -40,17 +41,19 @@ function computedAt(iso: string): string {
 /* ---------------------------------------------------------------------- page */
 
 /**
- * The Dashboard tab of the MDA's Reports (PRD FR-DSH-01, FR-RPT-02).
+ * The Dashboard tab of the administration console's Reports (PRD FR-DSH-01).
  *
- * Headline tiles, then activity over time beside the quality of the records behind it,
- * then who is registered, where they are, and how delivery and programmes are going.
+ * The same board an MDA reads, at STATE-WIDE scope — the cards are shared
+ * (`features/reports/BoardCards`), so the two consoles cannot drift into showing
+ * the same figure two ways.
  *
- * Every figure comes from the scoped dashboard query (plus the scoped LGA coverage the
- * map needs), and the tiles run through `summariseReporting()` — the derivation the
- * Overview card uses — so both pages show the same numbers by construction. Each chart
- * prints its values, answers hover and keyboard focus, and has a table view.
+ * What this console adds is the question an MDA console structurally cannot ask:
+ * how agencies compare. It sees across MDAs, so delivery by MDA leads the second
+ * half of the board, and the filter bar carries an MDA filter the MDA board has no
+ * use for. The demographic and quality cards follow, describing the state's whole
+ * registry rather than one agency's.
  */
-export function MdaReportsDashboard({ canExport }: { canExport: boolean }) {
+export function AdminReportsDashboard({ canExport }: { canExport: boolean }) {
   const [filter, setFilter] = useState<DashboardFilterValue>(EMPTY_FILTER)
   const [exporting, setExporting] = useState(false)
   const [exportFailed, setExportFailed] = useState(false)
@@ -61,8 +64,7 @@ export function MdaReportsDashboard({ canExport }: { canExport: boolean }) {
     setExporting(true)
     setExportFailed(false)
     try {
-      // PDF only: the file is this dashboard laid out on paper, with the same figures.
-      await dashboardApi.export('pdf', active ? filter : undefined, 'mda-dashboard.pdf')
+      await dashboardApi.export('pdf', active ? filter : undefined, 'state-dashboard.pdf')
     } catch {
       setExportFailed(true)
     } finally {
@@ -91,17 +93,17 @@ export function MdaReportsDashboard({ canExport }: { canExport: boolean }) {
 
   const options = data.filter_options
   const minimum = data.min_cell_size ?? null
+  const byMda = data.metrics.mda_delivery ?? []
 
   return (
     <div className={styles.dash}>
       <div className={styles.head}>
         <div className={styles.headCopy}>
-          <h2 className={styles.title}>{data.scope.label}</h2>
+          <h2 className={styles.title}>Across the whole state</h2>
           <p className={styles.lead}>
-            Overall picture of the people your MDA has registered and the benefits it has delivered.{' '}
+            Everyone registered in Jigawa and the benefits delivered to them, across every MDA.{' '}
             {formatCount(data.metrics.registry.beneficiaries.total, minimum)} beneficiaries in view, each person
-            counted once however many programmes they are in. Figures as at{' '}
-            {computedAt(data.computed_at)}.
+            counted once however many MDAs or programmes they are in. Figures as at {computedAt(data.computed_at)}.
           </p>
         </div>
 
@@ -125,6 +127,21 @@ export function MdaReportsDashboard({ canExport }: { canExport: boolean }) {
               options={[{ value: '', label: 'All quarters' }, ...[1, 2, 3, 4].map((q) => ({ value: String(q), label: `Q${q}` }))]}
             />
           </div>
+          {/* The MDA filter is this console's own: only a state-wide scope has more
+              than one agency to choose between. */}
+          {(options?.mdas.length ?? 0) > 0 && (
+            <div className={styles.controlWide}>
+              <SelectField
+                label="MDA"
+                value={filter.mda_id ?? ''}
+                onChange={(event) => set('mda_id', event.target.value)}
+                options={[
+                  { value: '', label: 'All MDAs' },
+                  ...(options?.mdas ?? []).map((mda) => ({ value: mda.id, label: mda.name })),
+                ]}
+              />
+            </div>
+          )}
           {(options?.programmes.length ?? 0) > 0 && (
             <div className={styles.controlWide}>
               <SelectField
@@ -133,12 +150,12 @@ export function MdaReportsDashboard({ canExport }: { canExport: boolean }) {
                 onChange={(event) => set('programme_id', event.target.value)}
                 options={[
                   { value: '', label: 'All programmes' },
-                  ...(options?.programmes ?? []).map((p) => ({ value: p.id, label: titleCase(p.name) })),
+                  ...(options?.programmes ?? []).map((programme) => ({ value: programme.id, label: programme.name })),
                 ]}
               />
             </div>
           )}
-          <div className={styles.control}>
+          <div className={styles.controlWide}>
             <SelectField
               label="LGA"
               value={filter.lga ?? ''}
@@ -172,8 +189,18 @@ export function MdaReportsDashboard({ canExport }: { canExport: boolean }) {
           <QualityCard data={data} />
         </div>
 
-        <section className={styles.section} aria-labelledby="mda-reports-who">
-          <h3 id="mda-reports-who" className={styles.sectionTitle}>
+        {/* The governance question first: who is delivering, and how much. */}
+        {byMda.length > 0 && (
+          <section className={styles.section} aria-labelledby="admin-reports-agencies">
+            <h3 id="admin-reports-agencies" className={styles.sectionTitle}>
+              How the agencies compare
+            </h3>
+            <MdaDeliveryCard rows={byMda} minimum={minimum} />
+          </section>
+        )}
+
+        <section className={styles.section} aria-labelledby="admin-reports-who">
+          <h3 id="admin-reports-who" className={styles.sectionTitle}>
             Who is registered
           </h3>
           <div className={styles.grid3}>
@@ -183,8 +210,8 @@ export function MdaReportsDashboard({ canExport }: { canExport: boolean }) {
           </div>
         </section>
 
-        <section className={styles.section} aria-labelledby="mda-reports-where">
-          <h3 id="mda-reports-where" className={styles.sectionTitle}>
+        <section className={styles.section} aria-labelledby="admin-reports-where">
+          <h3 id="admin-reports-where" className={styles.sectionTitle}>
             Where they are
           </h3>
           <div className={styles.split21}>
@@ -193,8 +220,8 @@ export function MdaReportsDashboard({ canExport }: { canExport: boolean }) {
           </div>
         </section>
 
-        <section className={styles.section} aria-labelledby="mda-reports-delivery">
-          <h3 id="mda-reports-delivery" className={styles.sectionTitle}>
+        <section className={styles.section} aria-labelledby="admin-reports-delivery">
+          <h3 id="admin-reports-delivery" className={styles.sectionTitle}>
             Delivery and records
           </h3>
           <div className={styles.grid}>
@@ -207,4 +234,3 @@ export function MdaReportsDashboard({ canExport }: { canExport: boolean }) {
     </div>
   )
 }
-

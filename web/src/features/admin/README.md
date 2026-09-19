@@ -33,7 +33,7 @@ same check for navigation, but the server is the authority.
 | 6 | **Integrations** | `/sync/*` connectors, runs and manual trigger when the sync engine answers; a pending state when it does not. Import logs reuse Phase 2 history | Phase 7 (runtime-detected) + Phase 2 |
 | 7 | **Matching Rules & Registry Config** | `MatchingConfigPage` — the existing versioned, audited matching engine | Phase 3 (FR-REG-05) |
 | 8 | **Audit & Security** | `AuditQueryService` over the immutable hash-chained log; export via the Phase 6 exporters | Phase 1 (FR-AUD-01) READ-ONLY |
-| 9 | **Reports** | The Phase 6 ad-hoc engine with ADMINISTRATIVE datasets added to its whitelist; schedules, runs and downloads unchanged | Phase 6 (FR-RPT-03/04) |
+| 9 | **Reports** | A state-wide chart board (`AdminReportsDashboard`, over the shared `features/reports` cards) plus the Phase 6 ad-hoc engine with ADMINISTRATIVE datasets added to its whitelist; schedules, runs and downloads unchanged | Phase 6 (FR-RPT-03/04) |
 | — | **Settings** (gear, not a nav link) | Effective configuration (read-only) + the permission matrix editor + system broadcast | Phase 1 RBAC + Phase 5 notifier |
 
 ## Settings

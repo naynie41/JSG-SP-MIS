@@ -5,8 +5,8 @@ import styles from './charts.module.css'
 interface RingMeterProps {
   label: string
   hint: string
-  /** 0..1, or null when there is nothing to measure. */
-  ratio: number | null
+  /** 0..1, or null/absent when there is nothing to measure. */
+  ratio: number | null | undefined
   /** The weakest of a set: warning tone, and said in words beside it. */
   weakest?: boolean
 }
@@ -21,7 +21,10 @@ const STROKE = 9
  * warning tone and is labelled "Weakest", never marked by colour alone.
  */
 export function RingMeter({ label, hint, ratio, weakest = false }: RingMeterProps) {
-  const percent = ratio === null ? null : Math.round(ratio * 100)
+  // `== null` on purpose: a payload that omits the measure entirely (an older
+  // snapshot, a scope that does not compute it) must read "—" like an explicit null,
+  // not "NaN%".
+  const percent = ratio == null ? null : Math.round(ratio * 100)
   const circumference = 2 * Math.PI * RADIUS
   const filled = circumference * Math.min(1, Math.max(0, ratio ?? 0))
 

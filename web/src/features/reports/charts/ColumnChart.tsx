@@ -1,6 +1,6 @@
 import { useId } from 'react'
-import { formatCount, isHeld } from '../mdaReportFormat'
-import type { CountRow } from '../MdaReportWidgets'
+import { formatCount, isHeld } from '../counts'
+import type { CountRow } from '../counts'
 import { ChartTooltip } from './ChartCard'
 import { columnPath } from './geometry'
 import { useChartWidth, useTooltip } from './hooks'

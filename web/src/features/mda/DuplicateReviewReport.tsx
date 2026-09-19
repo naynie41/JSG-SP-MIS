@@ -15,8 +15,8 @@ import type {
   DuplicateReviewReport as Report,
   ReportFormat,
 } from '@/features/reports/types'
-import { Bars, Figure, Panel } from './MdaReportWidgets'
-import styles from './mdaReports.module.css'
+import { Bars, Figure, Panel } from '@/features/reports/BoardWidgets'
+import styles from '@/features/reports/reportBoard.module.css'
 
 /** The words the resolution screen and the exported file use for each decision. */
 const DECISIONS: { key: DuplicateDecision; label: string }[] = [

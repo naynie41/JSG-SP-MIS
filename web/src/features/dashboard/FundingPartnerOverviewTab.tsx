@@ -5,21 +5,15 @@ import {
   Building2,
   CheckCircle2,
   ClipboardList,
-  Coins,
   GitBranch,
-  HandCoins,
   House,
   Info,
   Layers,
   Lock,
   Map,
   MapPin,
-  PackageCheck,
-  Percent,
-  Target,
   UserRound,
   Users,
-  Wallet,
 } from 'lucide-react'
 import type { LucideIcon } from 'lucide-react'
 import { Icon } from '@/components/Icon/Icon'
@@ -76,47 +70,50 @@ function buildAlerts(pf: PartnerFunding): PartnerAlert[] {
 
 /* --------------------------------------------------------------- components */
 
-function KpiPanel({ icon, label, value, hint, headline, onClick }: { icon: LucideIcon; label: string; value: string; hint?: string; headline?: boolean; onClick?: () => void }) {
-  const className = headline ? `${styles.kpi} ${styles.kpiHeadline}` : styles.kpi
+/**
+ * One line of the "Delivered through" card. `ratio` draws a hairline under the row
+ * where the value is a part of a whole (activities running of activities funded),
+ * so the proportion reads without the reader dividing two numbers themselves.
+ */
+function BandRow({
+  icon,
+  label,
+  value,
+  ratio,
+  onClick,
+}: {
+  icon: LucideIcon
+  label: string
+  value: string
+  ratio?: number | null
+  onClick?: () => void
+}) {
   const body = (
     <>
-      <span className={styles.kpiLabel}>
+      <span className={styles.bandRowLabel}>
         <Icon icon={icon} size={14} />
         {label}
       </span>
-      <span className={styles.kpiValue}>{value}</span>
-      {hint && <span className={styles.kpiHint}>{hint}</span>}
+      <span className={styles.bandRowValue}>{value}</span>
+      {ratio !== null && ratio !== undefined && (
+        <span className={styles.bandRowTrack} aria-hidden="true">
+          <span className={styles.bandRowFill} style={{ width: `${Math.max(2, Math.round(ratio * 100))}%` }} />
+        </span>
+      )}
     </>
   )
-  if (onClick) {
-    return (
-      <button type="button" className={`${className} ${styles.drillable}`} onClick={onClick}>
-        {body}
-      </button>
-    )
-  }
-  return <div className={className}>{body}</div>
-}
 
-function Figure({ icon, label, value, hint, onClick }: { icon: LucideIcon; label: string; value: string; hint?: string; onClick?: () => void }) {
-  const body = (
-    <>
-      <span className={styles.figureLabel}>
-        <Icon icon={icon} size={14} />
-        {label}
-      </span>
-      <span className={styles.figureValue}>{value}</span>
-      {hint && <span className={styles.figureHint}>{hint}</span>}
-    </>
-  )
   if (onClick) {
     return (
-      <button type="button" className={`${styles.figure} ${styles.drillable}`} onClick={onClick}>
-        {body}
-      </button>
+      <li className={styles.bandRow}>
+        <button type="button" className={`${styles.bandRowButton} ${styles.drillable}`} onClick={onClick}>
+          {body}
+        </button>
+      </li>
     )
   }
-  return <div className={styles.figure}>{body}</div>
+
+  return <li className={styles.bandRow}>{body}</li>
 }
 
 function ReachStat({ icon, label, value, hint }: { icon: LucideIcon; label: string; value: string; hint?: string }) {
@@ -159,27 +156,65 @@ export function FundingPartnerOverviewTab({ data, onDrill }: FundingPartnerOverv
 
   return (
     <div className={styles.tabBody}>
-      {/* ---------- KPI BAND ---------- */}
-      <section className={styles.reveal} aria-label="Funded-scope indicators">
-        <span className={styles.groupLabel}>Funding</span>
-        <div className={styles.kpiBand}>
-          <KpiPanel headline icon={PackageCheck} label="Value delivered" value={formatNaira(pf.delivered_value)} hint="benefits delivered under funded activities" />
-          <KpiPanel icon={Wallet} label="Allocated" value={formatNaira(pf.allocated)} hint="committed funding" />
-          <KpiPanel icon={HandCoins} label="Remaining" value={formatNaira(pf.remaining)} />
-          <KpiPanel icon={Users} label="People reached" value={num(pf.net_unique_reached)} hint="each person counted once" onClick={onDrill ? () => onDrill('registry') : undefined} />
-        </div>
+      {/* ---------- THE BAND ----------
+          Two answers, not twelve numbers: who the funding reached, and through whom.
+          It carries no money headline ON PURPOSE. The hero directly above already
+          states value delivered against committed funding, with the same bar, and the
+          Funding lifecycle below breaks it into allocated → delivered → remaining; a
+          third statement between the two would be the same figure a reader has to
+          reconcile with itself. Target appears here only as the denominator that makes
+          reach mean something, and cost per person rides with it — the one money
+          figure nothing else on the page states. */}
+      <section className={styles.band} aria-label="Funded-scope indicators">
+        <article className={`${styles.bandCard} ${styles.bandLead}`}>
+          <span className={styles.bandLabel}>
+            <Icon icon={Users} size={14} />
+            People reached
+          </span>
+          {onDrill ? (
+            <button type="button" className={styles.bandValueButton} onClick={() => onDrill('registry')}>
+              {num(pf.net_unique_reached)}
+            </button>
+          ) : (
+            <span className={styles.bandValue}>{num(pf.net_unique_reached)}</span>
+          )}
+          <span
+            className={styles.bandTrack}
+            role="img"
+            aria-label={`${pct(pf.reach_vs_target)}% of the target reached`}
+          >
+            <span className={styles.bandFill} style={{ width: `${Math.max(1, reachPctOfTarget)}%` }} />
+          </span>
+          <p className={styles.bandMeta}>
+            {pct(pf.reach_vs_target)}% of the {num(pf.target)} you targeted
+            {pf.cost_per_beneficiary !== null && <> · {formatNaira(pf.cost_per_beneficiary)} delivered per person</>}
+            . Each person is counted once, however many funded programmes they are in.
+          </p>
+        </article>
 
-        <span className={styles.groupLabel}>Portfolio</span>
-        <div className={styles.figureGrid}>
-          <Figure icon={Percent} label="Budget used" value={`${pct(pf.utilization_rate)}%`} hint="of the budget" />
-          <Figure icon={ClipboardList} label="Funded programmes" value={num(pf.funded_programmes)} onClick={onDrill ? () => onDrill('programmes') : undefined} />
-          <Figure icon={Building2} label="Implementing MDAs" value={num(pf.implementing_mdas)} />
-          <Figure icon={Layers} label="Active activities" value={num(pf.active_activities)} hint={`of ${num(pf.funded_activities)} funded`} />
-          <Figure icon={Target} label="Target beneficiaries" value={num(pf.target)} />
-          <Figure icon={Coins} label="Value / beneficiary" value={pf.cost_per_beneficiary === null ? '—' : formatNaira(pf.cost_per_beneficiary)} />
-          <Figure icon={MapPin} label="LGAs covered" value={num(pf.lgas_covered)} />
-          <Figure icon={Map} label="Wards covered" value={num(pf.wards_covered)} />
-        </div>
+        <article className={styles.bandCard}>
+          <span className={styles.bandLabelInk}>
+            <Icon icon={GitBranch} size={14} />
+            Delivered through
+          </span>
+          <ul className={styles.bandList}>
+            <BandRow
+              icon={ClipboardList}
+              label="Funded programmes"
+              value={num(pf.funded_programmes)}
+              onClick={onDrill ? () => onDrill('programmes') : undefined}
+            />
+            <BandRow icon={Building2} label="Implementing MDAs" value={num(pf.implementing_mdas)} />
+            <BandRow
+              icon={Layers}
+              label="Activities running"
+              value={`${num(pf.active_activities)} of ${num(pf.funded_activities)}`}
+              ratio={pf.funded_activities > 0 ? pf.active_activities / pf.funded_activities : null}
+            />
+            <BandRow icon={MapPin} label="LGAs covered" value={num(pf.lgas_covered)} />
+            <BandRow icon={Map} label="Wards covered" value={num(pf.wards_covered)} />
+          </ul>
+        </article>
       </section>
 
       {/* ---------- FUNDING LIFECYCLE ---------- */}

@@ -90,6 +90,10 @@ class DashboardMetricsService
             ],
             'registry_quality' => $this->registryQuality($scope),
             'coordination' => $coordination ? $this->coordination($scope) : null,
+            // Cross-MDA comparison — state-wide only, because it is the one question
+            // an MDA console cannot ask: an MDA sees its own row and nothing else, so
+            // offering it there would be a table of one.
+            'mda_delivery' => $scope->isStateWide() ? $this->mdaDelivery($scope) : null,
             // Phase 6P — activity-precise partner-funding aggregates (partner scope only).
             'partner_funding' => $scope->isPartner() ? $this->partnerFunding($scope) : null,
             'coverage_bands' => $this->coverageBands($coverage),
@@ -625,6 +629,72 @@ class DashboardMetricsService
             ->when($scope->mdaIds !== null, fn ($q) => $q->whereIn('import_batches.owner_mda_id', $scope->mdaIds))
             ->whereIn('import_rows.match_band', ['exact', 'probable'])
             ->count();
+    }
+
+    /**
+     * DELIVERY BY MDA — what each agency has delivered, for the state-wide dashboard's
+     * cross-agency comparison (FR-DSH-01).
+     *
+     * Rows are a COMPARISON, never a decomposition: a person served by two MDAs counts
+     * once in each row and once in the state headline, so the column does not sum to
+     * the total and is labelled accordingly. Ordered by value delivered, and every MDA
+     * with an activity appears — including one that has delivered nothing, which is
+     * exactly what an oversight reader is looking for.
+     *
+     * Person counts are returned raw and formatted against the published
+     * `min_cell_size` by the client, as every other breakdown in this payload is.
+     *
+     * @return list<array<string, mixed>>
+     */
+    private function mdaDelivery(DashboardScope $scope): array
+    {
+        $programmeIds = $this->programmeIdsInScope($scope);
+        $filters = $this->filter->ledgerFilters();
+
+        $delivered = [];
+        foreach ($this->ledger->scopedGroup('mda', $scope->mdaIds, $programmeIds, $filters) as $row) {
+            $delivered[(string) $row['key']] = $row;
+        }
+        $reach = $this->ledger->scopedReachByMda($scope->mdaIds, $programmeIds, $filters);
+
+        // Activities anchor the list: an MDA that planned work and delivered none is a
+        // finding, and starting from the ledger alone would hide it.
+        $activities = $this->applyActivityFilter(
+            Activity::query()->withoutGlobalScope(MdaScope::class)
+                ->when($scope->mdaIds !== null, fn ($q) => $q->whereIn('owner_mda_id', $scope->mdaIds))
+        )
+            ->selectRaw('owner_mda_id, count(*) as total')
+            ->selectRaw('sum(case when status = ? then 1 else 0 end) as active', [ActivityStatus::Active->value])
+            ->selectRaw('coalesce(sum(budget_amount), 0) as allocated')
+            ->groupBy('owner_mda_id')
+            ->get()
+            ->keyBy('owner_mda_id');
+
+        $ids = array_values(array_unique([...array_keys($delivered), ...$activities->keys()->all()]));
+        if ($ids === []) {
+            return [];
+        }
+
+        $names = Mda::query()->withoutGlobalScope(MdaScope::class)->whereIn('id', $ids)->pluck('name', 'id');
+
+        $rows = [];
+        foreach ($ids as $id) {
+            $activity = $activities->get($id);
+            $rows[] = [
+                'mda_id' => $id,
+                'mda' => $names[$id] ?? null,
+                'delivered_value' => (int) ($delivered[$id]['total_value'] ?? 0),
+                'deliveries' => (int) ($delivered[$id]['benefit_count'] ?? 0),
+                'reached' => (int) ($reach[$id] ?? 0),
+                'allocated' => (int) ($activity?->getAttribute('allocated') ?? 0),
+                'activities_total' => (int) ($activity?->getAttribute('total') ?? 0),
+                'activities_active' => (int) ($activity?->getAttribute('active') ?? 0),
+            ];
+        }
+
+        usort($rows, fn (array $a, array $b) => [$b['delivered_value'], $b['reached']] <=> [$a['delivered_value'], $a['reached']]);
+
+        return $rows;
     }
 
     /**

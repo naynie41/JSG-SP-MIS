@@ -723,3 +723,55 @@
     transition: none;
   }
 }
+
+/* ------------------------------------------------------- delivery by agency */
+
+.agencies {
+  display: grid;
+  gap: var(--space-4);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.agency {
+  display: grid;
+  gap: var(--space-2);
+}
+
+.agencyHead {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: var(--space-3);
+}
+
+.agencyName {
+  overflow: hidden;
+  font-size: var(--fs-ui);
+  font-weight: 600;
+  color: var(--ink);
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.agencyValue {
+  font-variant-numeric: tabular-nums;
+  font-size: var(--fs-ui);
+  color: var(--ink);
+  white-space: nowrap;
+}
+
+/* The qualifiers that keep the bar honest: a long bar on a spent budget and a long
+   bar on a barely-touched one mean opposite things. */
+.agencyMeta {
+  margin: 0;
+  font-size: var(--fs-caption);
+  color: var(--text-muted-strong);
+}
+
+.footnote {
+  margin: var(--space-4) 0 0;
+  font-size: var(--fs-caption);
+  color: var(--text-muted-strong);
+}

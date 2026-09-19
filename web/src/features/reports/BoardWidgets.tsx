@@ -1,18 +1,13 @@
 import { useId } from 'react'
 import type { ReactNode } from 'react'
-import { formatCount, isHeld } from './mdaReportFormat'
-import styles from './mdaReports.module.css'
+import { formatCount, isHeld } from '@/features/reports/counts'
+import type { CountRow } from '@/features/reports/counts'
+import styles from './reportBoard.module.css'
 
 /*
  * The small pieces the MDA report screens are built from. Presentational only: every
  * figure arrives from a feature hook, already scoped by the server.
  */
-
-export interface CountRow {
-  key: string
-  label: string
-  count: number
-}
 
 /**
  * One headline figure in the band's grid. `worded` is for a value that is a phrase

@@ -214,6 +214,28 @@ class LedgerAggregator
     }
 
     /**
+     * Net-unique beneficiaries reached per DELIVERING MDA (distinct served), for the
+     * cross-MDA comparison on the state-wide reporting dashboard.
+     *
+     * Summing these does NOT give the state total: a person served by two MDAs counts
+     * once in each row and once in the state figure. The comparison is between MDAs,
+     * never a decomposition of the headline.
+     *
+     * @param  list<string>|null  $mdaIds
+     * @param  list<string>|null  $programmeIds
+     * @return array<string, int>
+     */
+    public function scopedReachByMda(?array $mdaIds, ?array $programmeIds, array $filters = []): array
+    {
+        return $this->scopedLedger($mdaIds, $programmeIds, $filters)
+            ->selectRaw('mda_id, count(distinct beneficiary_id) as reached')
+            ->groupBy('mda_id')
+            ->get()
+            ->mapWithKeys(fn (Benefit $r) => [(string) $r->getAttribute('mda_id') => (int) $r->getAttribute('reached')])
+            ->all();
+    }
+
+    /**
      * Net-unique beneficiaries reached per ACTIVITY (distinct served), for the
      * activity-level drill-down under programme performance.
      *
