@@ -192,10 +192,26 @@ button.lgaChip:focus-visible {
   background: var(--surface);
 }
 .agencyName {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-2);
   font-family: var(--font-display);
   font-weight: 600;
   font-size: var(--fs-ui);
   color: var(--ink);
+}
+/* Type marker, not emphasis — quieter than .youBadge, which says "this is you". */
+.partnerTag {
+  padding: 1px var(--space-2);
+  border-radius: var(--radius-full);
+  background: var(--surface-mint);
+  color: var(--forest);
+  font-family: var(--font-mono);
+  font-size: var(--fs-caption);
+  font-weight: 500;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
 }
 .agencyMeta {
   font-size: var(--fs-label);

@@ -1339,11 +1339,16 @@ class DashboardMetricsService
 
     /**
      * PARTNER COORDINATION (Phase 6P "Coordination" tab) — the actor landscape AROUND a
-     * partner's funded programmes: the funding organisations, government agencies (MDAs)
-     * and implementing agencies active in them; a funding-by-partner table (amounts for
-     * the CALLER only — a partner never sees another funder's money); and the MDA
-     * landscape. Programme overlap (the tab's headline) is served by
-     * {@see programmeOverlap()} on the same block.
+     * partner's funded programmes: the funding organisations and the agencies active in
+     * them; a funding-by-partner table (amounts for the CALLER only — a partner never
+     * sees another funder's money); and the per-agency breakdown. Programme overlap (the
+     * tab's headline) is served by {@see programmeOverlap()} on the same block.
+     *
+     * Two agency counts, and they are NOT the same set: `implementing_agencies` OWN
+     * activities in these programmes; `delivering_agencies` have actually paid benefits
+     * out under the caller's own funded activities. Neither is government-only — a
+     * development partner owns and delivers exactly as an MDA does — so every agency row
+     * carries a `kind`, and the label must never say "government" without checking it.
      *
      * Deliberately NOT here: sync/integration health. Connectors belong to the MDAs, are
      * operated by them, and a funder can do nothing about a failed run — it was noise on
@@ -1357,7 +1362,7 @@ class DashboardMetricsService
     private function partnerCoordination(string $partnerId, array $fundedProgrammeIds, array $selfTotals, array $callerActivityIds): array
     {
         $empty = [
-            'landscape' => ['funders' => 0, 'government_agencies' => 0, 'implementing_agencies' => 0],
+            'landscape' => ['funders' => 0, 'implementing_agencies' => 0, 'delivering_agencies' => 0],
             'funding_by_partner' => [],
             'agencies' => [],
         ];
@@ -1412,26 +1417,39 @@ class DashboardMetricsService
             ];
         }
 
-        // Government agencies (MDAs) implementing activities in the funded programmes.
+        // Implementing agencies: whoever OWNS an activity in the funded programmes. A
+        // development partner can own one, so the type is carried through — a row here is
+        // not government by default, and the view must be able to say which it is.
+        // withoutGlobalScope: Mda is itself ScopedToMda, and the caller is a partner with no
+        // mda_id — scoped, this returns nothing and every agency renders as a nameless
+        // "Agency". It only ever looked right because the snapshot is built from the console,
+        // where no user is authenticated and the scope no-ops; a live request showed blanks.
+        // Nothing is disclosed that the payload does not already carry: these agencies are
+        // listed by id regardless, and naming who implements in your own funded programmes
+        // is the entire point of the tab.
         $mdaIds = $acts->pluck('owner_mda_id')->filter()->unique()->values()->all();
-        $mdaNames = Mda::query()->whereIn('id', $mdaIds)->pluck('name', 'id');
+        $mdaRows = Mda::query()->withoutGlobalScope(MdaScope::class)
+            ->whereIn('id', $mdaIds)->get(['id', 'name', 'type'])->keyBy('id');
         $agencies = [];
         foreach ($acts->groupBy('owner_mda_id') as $rawMid => $mdaActs) {
             $mid = (string) $rawMid;
             if ($mid === '') {
                 continue;
             }
+            $agency = $mdaRows[$mid] ?? null;
             $agencies[] = [
                 'id' => $mid,
-                'name' => $mdaNames[$mid] ?? null,
+                'name' => $agency?->name,
+                'kind' => $agency === null ? null : ($agency->isGovernment() ? 'government' : 'partner'),
                 'activities' => $mdaActs->count(),
                 'programmes' => $mdaActs->pluck('programme_id')->unique()->count(),
             ];
         }
         usort($agencies, fn (array $a, array $b): int => $b['activities'] <=> $a['activities']);
 
-        // Implementing agencies = distinct MDAs DELIVERING benefits under the caller's funded activities.
-        $implementing = $callerActivityIds === [] ? 0 : (int) Benefit::query()->withoutGlobalScope(MdaScope::class)
+        // Delivering agencies = those that have actually PAID BENEFITS out under the
+        // caller's own funded activities. A subset of the above, and the stricter signal.
+        $delivering = $callerActivityIds === [] ? 0 : (int) Benefit::query()->withoutGlobalScope(MdaScope::class)
             ->where('status', '!=', BenefitStatus::Reversed->value)
             ->whereIn('activity_id', $callerActivityIds)
             ->distinct()->count('mda_id');
@@ -1439,8 +1457,8 @@ class DashboardMetricsService
         return [
             'landscape' => [
                 'funders' => count($funderProgrammes),
-                'government_agencies' => count($mdaIds),
-                'implementing_agencies' => $implementing,
+                'implementing_agencies' => count($mdaIds),
+                'delivering_agencies' => $delivering,
             ],
             'funding_by_partner' => $fundingByPartner,
             'agencies' => $agencies,

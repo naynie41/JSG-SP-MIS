@@ -5,12 +5,15 @@ import type { DashboardResponse, PartnerCoordination, PartnerFunding } from './t
 
 function makeCoordination(over: Partial<PartnerCoordination> = {}): PartnerCoordination {
   return {
-    landscape: { funders: 3, government_agencies: 2, implementing_agencies: 1 },
+    landscape: { funders: 3, implementing_agencies: 2, delivering_agencies: 1 },
     funding_by_partner: [
       { partner_id: 'u-self', name: 'World Bank', is_self: true, allocated: 200_000_000, delivered_value: 60_000_000, net_unique_reached: 800, funded_programmes: 2, shared_programmes: 2 },
       { partner_id: 'u-2', name: 'UNICEF', is_self: false, allocated: null, delivered_value: null, net_unique_reached: null, funded_programmes: null, shared_programmes: 1 },
     ],
-    agencies: [{ id: 'm1', name: 'Ministry of Humanitarian Affairs', activities: 3, programmes: 2 }],
+    agencies: [
+      { id: 'm1', name: 'Ministry of Humanitarian Affairs', kind: 'government', activities: 3, programmes: 2 },
+      { id: 'm2', name: 'Save the Children', kind: 'partner', activities: 1, programmes: 1 },
+    ],
     ...over,
   }
 }
@@ -80,14 +83,28 @@ function buildPayload(pf: PartnerFunding): DashboardResponse {
 }
 
 describe('FundingPartnerCoordinationTab', () => {
-  it('renders the partner landscape (funders, government agencies, implementing agencies)', () => {
+  it('renders the partner landscape (funders, implementing agencies, delivering agencies)', () => {
     render(<FundingPartnerCoordinationTab data={buildPayload(buildPf(makeCoordination()))} />)
 
     const landscape = screen.getByRole('region', { name: 'Partner landscape' })
     expect(within(landscape).getByText('Funding organisations')).toBeInTheDocument()
-    expect(within(landscape).getByText('Government agencies (MDAs)')).toBeInTheDocument()
     expect(within(landscape).getByText('Implementing agencies')).toBeInTheDocument()
+    expect(within(landscape).getByText('Delivering agencies')).toBeInTheDocument()
     expect(within(landscape).getByText('3')).toBeInTheDocument() // funders
+    // Never "government": a development partner owns and delivers here too.
+    expect(within(landscape).queryByText(/government/i)).not.toBeInTheDocument()
+  })
+
+  // An NGO owning an activity is normal now, so the list cannot call everyone government
+  // — and a funder coordinating across it has to see which rows are not the state.
+  it('tags a partner in the implementing-agency list and never calls it government', () => {
+    render(<FundingPartnerCoordinationTab data={buildPayload(buildPf(makeCoordination()))} />)
+
+    const agencies = screen.getByRole('region', { name: 'Implementing agencies' })
+    expect(within(agencies).getByText('Ministry of Humanitarian Affairs')).toBeInTheDocument()
+    expect(within(agencies).getByText('Save the Children')).toBeInTheDocument()
+    expect(within(agencies).getByText('Partner')).toBeInTheDocument()
+    expect(within(agencies).queryByText(/government/i)).not.toBeInTheDocument()
   })
 
   it('surfaces PROGRAMME OVERLAP as a table + LGA map indicator', () => {

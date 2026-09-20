@@ -75,7 +75,7 @@ const partnerFunding: PartnerFunding = {
     quality: { verification_rate: 0.975, duplicate_rate: 0.006, data_completeness: 0.88, nin_linkage: 0.9, missing: { nin: 80, phone: 40, date_of_birth: 10, gender: 0, lga: 0 } },
   },
   coordination: {
-    landscape: { funders: 2, government_agencies: 3, implementing_agencies: 2 },
+    landscape: { funders: 2, implementing_agencies: 3, delivering_agencies: 2 },
     funding_by_partner: [{ partner_id: 'u-1', name: 'World Bank', is_self: true, allocated: 200_000_000, delivered_value: 60_000_000, net_unique_reached: 800, funded_programmes: 2, shared_programmes: 2 }],
     agencies: [],
   },

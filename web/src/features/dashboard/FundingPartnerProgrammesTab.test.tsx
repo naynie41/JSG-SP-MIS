@@ -113,7 +113,7 @@ function buildPf(over: Partial<PartnerFunding> = {}): PartnerFunding {
       quality: { verification_rate: null, duplicate_rate: null, data_completeness: null, nin_linkage: null, missing: { nin: 0, phone: 0, date_of_birth: 0, gender: 0, lga: 0 } },
     },
     coordination: {
-      landscape: { funders: 0, government_agencies: 0, implementing_agencies: 0 },
+      landscape: { funders: 0, implementing_agencies: 0, delivering_agencies: 0 },
       funding_by_partner: [],
       agencies: [],
     },

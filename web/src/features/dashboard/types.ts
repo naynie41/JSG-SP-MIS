@@ -335,12 +335,16 @@ export interface PartnerCoordinationFunder {
 export interface PartnerCoordinationAgency {
   id: string
   name: string | null
+  /** An owning agency is not government by default — a development partner implements too. */
+  kind: 'government' | 'partner' | null
   activities: number
   programmes: number
 }
 
 export interface PartnerCoordination {
-  landscape: { funders: number; government_agencies: number; implementing_agencies: number }
+  /** `implementing_agencies` OWN activities here; `delivering_agencies` have actually
+   *  paid benefits out under your funded activities. The second is a subset of the first. */
+  landscape: { funders: number; implementing_agencies: number; delivering_agencies: number }
   funding_by_partner: PartnerCoordinationFunder[]
   agencies: PartnerCoordinationAgency[]
 }

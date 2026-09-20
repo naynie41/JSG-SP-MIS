@@ -140,8 +140,8 @@ export function FundingPartnerCoordinationTab({ data, onDrill }: FundingPartnerC
         <span className={shell.groupLabel}>Partner landscape · your funded programmes</span>
         <div className={styles.landscape}>
           <LandscapeCard icon={HandCoins} label="Funding organisations" value={num(c.landscape.funders)} hint="funders active here (incl. you)" />
-          <LandscapeCard icon={Building2} label="Government agencies (MDAs)" value={num(c.landscape.government_agencies)} hint="implementing activities" />
-          <LandscapeCard icon={Waypoints} label="Implementing agencies" value={num(c.landscape.implementing_agencies)} hint="delivering on your activities" />
+          <LandscapeCard icon={Building2} label="Implementing agencies" value={num(c.landscape.implementing_agencies)} hint="running activities in these programmes" />
+          <LandscapeCard icon={Waypoints} label="Delivering agencies" value={num(c.landscape.delivering_agencies)} hint="have paid benefits on your activities" />
         </div>
       </section>
 
@@ -190,18 +190,25 @@ export function FundingPartnerCoordinationTab({ data, onDrill }: FundingPartnerC
         </div>
       </section>
 
-      {/* ---------- GOVERNMENT AGENCIES (MDAs) ---------- */}
+      {/* ---------- IMPLEMENTING AGENCIES ---------- */}
       {c.agencies.length > 0 && (
         <section className={`${shell.section} ${shell.reveal}`} aria-label="Implementing agencies">
           <div className={shell.sectionHead}>
             <Icon icon={Building2} size={16} />
-            <h2 className={shell.sectionTitle}>Government agencies</h2>
-            <span className={shell.sectionSub}>{num(c.agencies.length)} implementing</span>
+            <h2 className={shell.sectionTitle}>Implementing agencies</h2>
+            <span className={shell.sectionSub}>
+              {num(c.agencies.length)} running activities
+            </span>
           </div>
           <div className={styles.agencyGrid}>
+            {/* A partner is tagged, never assumed. This list holds ministries and NGOs
+                side by side, and a funder coordinating here has to know which is which. */}
             {c.agencies.map((a) => (
               <div key={a.id} className={styles.agency}>
-                <span className={styles.agencyName}>{a.name ?? 'Agency'}</span>
+                <span className={styles.agencyName}>
+                  {a.name ?? 'Agency'}
+                  {a.kind === 'partner' && <span className={styles.partnerTag}>Partner</span>}
+                </span>
                 <span className={styles.agencyMeta}>
                   {num(a.activities)} {a.activities === 1 ? 'activity' : 'activities'} · {num(a.programmes)}{' '}
                   {a.programmes === 1 ? 'programme' : 'programmes'}
