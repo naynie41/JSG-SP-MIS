@@ -24,3 +24,33 @@ Thumbs.db
 
 # Docker
 *.local
+
+# Documentation artefacts — generated or duplicated, nothing reads them.
+#
+# Scoped to docs/ on purpose: the real brand assets live at
+# api/resources/brand/jigawa-crest.png and web/public/brand/jigawa-logo.png and
+# ARE used (the PDF crest, the SPA header). The copies under docs/ are originals
+# kept for reference.
+#
+# Binary drops into docs/ are the recurring accident here — a beneficiary
+# spreadsheet was committed this way once — so the rule covers the file types
+# rather than only today's filenames.
+docs/*.pdf
+docs/*.png
+docs/*.jpg
+docs/*.jpeg
+docs/*.xlsx
+docs/*.xls
+docs/*.docx
+docs/*.pptx
+docs/*.csv
+
+# …except the GHCR runbook: scripts/deploy.sh and scripts/provision.sh point
+# operators at it, so it has to travel with a server checkout.
+!docs/GHCR-Setup-Runbook.pdf
+
+# NOTE: docs/DEPLOYMENT-RUNBOOK.pdf and "docs/Jigawa Logo 1.png" are matched by
+# the rules above but remain TRACKED — .gitignore does not untrack anything. They
+# are left in git deliberately (decision 2026-09-20). To drop them later:
+#   git rm --cached "docs/DEPLOYMENT-RUNBOOK.pdf" "docs/Jigawa Logo 1.png"
+# which removes them from the remote for everyone on the next push.
