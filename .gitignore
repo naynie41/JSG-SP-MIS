@@ -25,32 +25,32 @@ Thumbs.db
 # Docker
 *.local
 
-# Documentation artefacts — generated or duplicated, nothing reads them.
+# Internal documentation — kept on disk, out of the repository (decision 2026-09-20).
 #
-# Scoped to docs/ on purpose: the real brand assets live at
-# api/resources/brand/jigawa-crest.png and web/public/brand/jigawa-logo.png and
-# ARE used (the PDF crest, the SPA header). The copies under docs/ are originals
-# kept for reference.
+# The repository is PUBLIC and stays so; this is about what is published, not secrecy.
+# Nothing under docs/ is read at build or run time — the code only cites these files in
+# comments — so removing them changes nothing about how the app behaves locally or in
+# production.
 #
-# Binary drops into docs/ are the recurring accident here — a beneficiary
-# spreadsheet was committed this way once — so the rule covers the file types
-# rather than only today's filenames.
-docs/*.pdf
-docs/*.png
-docs/*.jpg
-docs/*.jpeg
-docs/*.xlsx
-docs/*.xls
-docs/*.docx
-docs/*.pptx
-docs/*.csv
+# Ignore everything under docs/, then name the exceptions back in.
+/docs/*
 
-# …except the GHCR runbook: scripts/deploy.sh and scripts/provision.sh point
-# operators at it, so it has to travel with a server checkout.
-!docs/GHCR-Setup-Runbook.pdf
+# The deploy process genuinely needs these ON THE SERVER: /opt/spmis is a git checkout,
+# and scripts/deploy.sh + provision.sh print these paths to an operator mid-deploy. They
+# are not documentation-for-reading, they are part of the runbook the scripts assume.
+!/docs/DEPLOY.md
+!/docs/GHCR-Setup-Runbook.pdf
 
-# NOTE: docs/DEPLOYMENT-RUNBOOK.pdf and "docs/Jigawa Logo 1.png" are matched by
-# the rules above but remain TRACKED — .gitignore does not untrack anything. They
-# are left in git deliberately (decision 2026-09-20). To drop them later:
-#   git rm --cached "docs/DEPLOYMENT-RUNBOOK.pdf" "docs/Jigawa Logo 1.png"
-# which removes them from the remote for everyone on the next push.
+# k6 load-test script — tooling, not prose.
+!/docs/perf/
+
+# Deliberately NOT excepted, so they stay out: the brand copies under docs/ duplicate the
+# assets that are actually used (api/resources/brand/jigawa-crest.png for the PDF crest,
+# web/public/brand/jigawa-logo.png for the SPA header), and DEPLOYMENT-RUNBOOK.pdf
+# duplicates DEPLOY.md.
+#
+# To publish one of these again: git add -f docs/<file>
+#
+# WARNING — docs/CLAUDE.md is in here. It carries the locked stakeholder decisions and is
+# cited by ~84 source files. Once untracked it survives only in a working tree; back it up
+# somewhere that is not this repository.
