@@ -20,6 +20,7 @@ import { Card } from '@/components/Card/Card'
 import { Icon } from '@/components/Icon/Icon'
 import { MdaForbidden, MdaLoadError, MdaLoading } from './MdaLoadState'
 import { useAuth } from '@/lib/auth/AuthProvider'
+import { useWorkspaceIdentity } from './workspaceIdentity'
 import { useDashboard } from '@/features/dashboard/hooks'
 import { ReportingSummaryCard } from '@/features/dashboard/ReportingSummaryCard'
 import { useNotifications } from '@/features/notifications/hooks'
@@ -104,6 +105,7 @@ function ActionCard({
   /** Counts arrive on their own request; the card keeps its shape while they do. */
   loading: boolean
 }) {
+  const identity = useWorkspaceIdentity()
   const outstanding = !loading && count > 0
   return (
     <Link
@@ -120,7 +122,7 @@ function ActionCard({
         <span className={styles.actionCount}>{loading ? '—' : num(count)}</span>
         <span className={styles.actionLabel}>{label}</span>
         <span className={styles.actionHint}>
-          {loading ? 'Checking…' : outstanding ? hint : 'Nothing waiting on your MDA'}
+          {loading ? 'Checking…' : outstanding ? hint : `Nothing waiting on your ${identity.org}`}
         </span>
       </span>
       <Icon icon={ChevronRight} size={18} className={styles.actionChevron} />
@@ -147,16 +149,17 @@ function ActionCard({
  */
 export function MdaOverviewPage() {
   const { user, hasPermission } = useAuth()
+  const identity = useWorkspaceIdentity()
   const canView = hasPermission('dashboard.view')
 
   const { data, isLoading, isError, refetch } = useDashboard(undefined, canView)
   const { data: actions, isLoading: actionsLoading } = useMdaActionRequired(canView)
   const { data: notifications } = useNotifications(true)
 
-  if (!canView) return <MdaForbidden what="the MDA dashboard" />
+  if (!canView) return <MdaForbidden what={`the ${identity.org} dashboard`} />
 
   const m = data?.metrics
-  const mdaName = user?.mda?.name ?? 'your MDA'
+  const mdaName = user?.mda?.name ?? `your ${identity.org}`
 
   // Operational alerts, all derived from real scoped figures in the snapshot.
   const alerts: { id: string; severity: 'warning' | 'info'; title: string; detail: string }[] = []
@@ -165,7 +168,7 @@ export function MdaOverviewPage() {
       id: 'overdue-referrals',
       severity: 'warning',
       title: `${num(m?.referrals?.overdue)} referrals past their SLA`,
-      detail: 'Referrals your MDA has not completed within the agreed response time.',
+      detail: `Referrals your ${identity.org} has not completed within the agreed response time.`,
     })
   }
   if ((m?.grievances?.sla_breaches ?? 0) > 0) {
@@ -173,7 +176,7 @@ export function MdaOverviewPage() {
       id: 'grievance-sla',
       severity: 'warning',
       title: `${num(m?.grievances?.sla_breaches)} grievances past their SLA`,
-      detail: 'Cases in your MDA that have breached the resolution window.',
+      detail: `Cases in your ${identity.org} that have breached the resolution window.`,
     })
   }
   const unresolved =
@@ -193,11 +196,11 @@ export function MdaOverviewPage() {
   return (
     <div className={styles.page}>
       <header className={styles.pageHead}>
-        <span className={styles.eyebrow}>MDA workspace</span>
+        <span className={styles.eyebrow}>{identity.workspace}</span>
         <h1 className={styles.pageTitle}>Overview</h1>
         <p className={styles.lead}>
           {mdaName} — the programmes you deliver, the people you have registered, and the work waiting on your team.
-          Everything here is scoped to your MDA.
+          Everything here is scoped to your {identity.org}.
         </p>
       </header>
 
@@ -222,7 +225,7 @@ export function MdaOverviewPage() {
         <div className={styles.sectionHead}>
           <Icon icon={Inbox} size={16} />
           <h2 className={styles.sectionTitle}>Action required</h2>
-          <span className={styles.sectionSub}>live · waiting on your MDA</span>
+          <span className={styles.sectionSub}>live · waiting on your {identity.org}</span>
         </div>
         {/* Rendered unconditionally: the counts load on a separate request, and
             swapping a spinner for the grid shifted everything below it down the
@@ -233,7 +236,7 @@ export function MdaOverviewPage() {
             loading={actionsLoading}
             count={actions?.pending_referrals ?? 0}
             label="Referrals awaiting your response"
-            hint="Another MDA referred a beneficiary to you."
+            hint="Another agency referred a beneficiary to you."
             to="/mda/service-delivery?tab=referrals"
           />
           <ActionCard
@@ -241,7 +244,7 @@ export function MdaOverviewPage() {
             loading={actionsLoading}
             count={actions?.pending_service_requests ?? 0}
             label="Request-to-serve approvals"
-            hint="Another MDA wants to serve a beneficiary you own."
+            hint="Another agency wants to serve a beneficiary you own."
             to="/mda/service-delivery?tab=service-requests"
           />
           {/*
@@ -257,7 +260,7 @@ export function MdaOverviewPage() {
             hint={
               (actions?.breached_grievances ?? 0) > 0
                 ? `${actions?.breached_grievances} past their SLA.`
-                : 'Complaints your MDA is handling, each on an SLA.'
+                : `Complaints your ${identity.org} is handling, each on an SLA.`
             }
             to="/mda/service-delivery?tab=grievances"
           />
@@ -274,11 +277,11 @@ export function MdaOverviewPage() {
           // the officer their MDA was clear when nothing had been checked.
           <MdaLoadError subject="your alerts" onRetry={() => void refetch()} />
         ) : isLoading ? (
-          <MdaLoading label="Checking your MDA for overdue work" />
+          <MdaLoading label={`Checking your ${identity.org} for overdue work`} />
         ) : alerts.length === 0 ? (
           <p className={styles.allClear}>
             <Icon icon={ShieldCheck} size={15} />
-            Nothing overdue or unresolved in your MDA.
+            Nothing overdue or unresolved in your {identity.org}.
           </p>
         ) : (
           <div className={styles.alerts}>
@@ -326,7 +329,7 @@ export function MdaOverviewPage() {
             </div>
           )}
           <p className={styles.footnote}>
-            Drawn from your notification inbox, the same feed as the bell in the header, not an MDA-wide audit
+            Drawn from your notification inbox, the same feed as the bell in the header, not an organisation-wide audit
             trail
           </p>
         </Card>

@@ -6,6 +6,7 @@ import { Icon } from '@/components/Icon/Icon'
 import { Tabs } from '@/components/Tabs/Tabs'
 import { DataTableExport } from '@/components/DataTable/DataTableExport'
 import { useAuth } from '@/lib/auth/AuthProvider'
+import { useWorkspaceIdentity } from './workspaceIdentity'
 import { useReportDatasets } from '@/features/reports/hooks'
 import { ReportsLoading } from '@/features/reports/ReportPanels'
 import { ReportBuilderPanel } from '@/features/reports/ReportBuilderPanel'
@@ -43,6 +44,7 @@ const COVERED_BY_PEOPLE = new Set(['beneficiaries'])
  */
 function BeneficiaryExportPanel() {
   const { hasPermission } = useAuth()
+  const identity = useWorkspaceIdentity()
   const canExport = hasPermission('beneficiary.export')
   const canReveal = hasPermission('export.reveal_pii')
 
@@ -54,7 +56,7 @@ function BeneficiaryExportPanel() {
         eyebrow="Personal records · permission-controlled"
       >
         <p className={styles.queueNote}>
-          A row-level export of the beneficiaries your MDA owns. It is the only export here that contains personal records.
+          A row-level export of the beneficiaries your {identity.org} owns. It is the only export here that contains personal records.
           It carries the same scope and filters as the registry list it comes from.
         </p>
 
@@ -81,8 +83,8 @@ function BeneficiaryExportPanel() {
           </div>
         ) : (
           <p className={styles.muted}>
-            <Icon icon={Lock} size={13} /> Bulk export of personal records is an MDA Administrator permission. An
-            administrator can grant it to your account if your work requires it, and it stays limited to your own MDA.
+            <Icon icon={Lock} size={13} /> Bulk export of personal records is an {identity.orgLabel} Administrator permission. An
+            administrator can grant it to your account if your work requires it, and it stays limited to your own {identity.org}.
           </p>
         )}
 
@@ -119,6 +121,7 @@ function BeneficiaryExportPanel() {
  * reporting or leak a PII path to everyone who can run a report.
  */
 export function MdaReportsPage() {
+  const identity = useWorkspaceIdentity()
   const { hasPermission } = useAuth()
   const canView = hasPermission('reporting.view')
   const canExport = hasPermission('reporting.export')
@@ -139,10 +142,10 @@ export function MdaReportsPage() {
   return (
     <div className={styles.page}>
       <header className={styles.pageHead}>
-        <span className={styles.eyebrow}>MDA workspace</span>
+        <span className={styles.eyebrow}>{identity.workspace}</span>
         <h1 className={styles.pageTitle}>Reports</h1>
         <p className={styles.lead}>
-          Reporting over your MDA&apos;s own data: programmes you deliver, activities you run, people you have
+          Reporting over your {identity.orgPossessive} own data: programmes you deliver, activities you run, people you have
           registered, benefits delivered, referrals and duplicate review. Generated, scheduled and exported by the
           shared reporting engine.
         </p>
@@ -188,7 +191,7 @@ export function MdaReportsPage() {
               content: (
                 <ReportHistoryPanel
                   canManage={canExport}
-                  scheduleFootnote="A scheduled report is delivered only to recipients whose own scope covers it, so a schedule can never carry your MDA's data to someone who could not have run the report themselves"
+                  scheduleFootnote={`A scheduled report is delivered only to recipients whose own scope covers it, so a schedule can never carry your ${identity.orgPossessive} data to someone who could not have run the report themselves`}
                 >
                   <section>
                     <h3 className={reportStyles.historySectionTitle}>Beneficiary export</h3>
@@ -207,9 +210,9 @@ export function MdaReportsPage() {
         </div>
         <Card>
           <p className={styles.muted}>
-            <Icon icon={Download} size={14} /> Summary reports contain no personal records, so anyone in your MDA
-            who can run a report can export one. A row-level beneficiary export is different: it is an MDA
-            Administrator permission, limited to your own MDA, with NIN and BVN hidden unless a separate reveal
+            <Icon icon={Download} size={14} /> Summary reports contain no personal records, so anyone in your {identity.org}
+            who can run a report can export one. A row-level beneficiary export is different: it is an {identity.orgLabel}
+            Administrator permission, limited to your own {identity.org}, with NIN and BVN hidden unless a separate reveal
             permission has been granted.
           </p>
           <p className={styles.footnote}>

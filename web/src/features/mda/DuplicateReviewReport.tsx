@@ -21,7 +21,7 @@ import styles from '@/features/reports/reportBoard.module.css'
 /** The words the resolution screen and the exported file use for each decision. */
 const DECISIONS: { key: DuplicateDecision; label: string }[] = [
   { key: 'new', label: 'Created as a new person' },
-  { key: 'link', label: 'Linked to another MDA’s record' },
+  { key: 'link', label: 'Linked to another agency’s record' },
   { key: 'own', label: 'Already your beneficiary' },
   { key: 'skip', label: 'Skipped' },
 ]

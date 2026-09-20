@@ -8,6 +8,7 @@ import { TopBar } from '@/components/TopBar/TopBar'
 import { Breadcrumbs } from '@/components/Breadcrumbs/Breadcrumbs'
 import { Icon } from '@/components/Icon/Icon'
 import { NotificationBell } from '@/features/notifications/NotificationBell'
+import { workspaceIdentity } from '@/features/mda/workspaceIdentity'
 import { useAuth } from '@/lib/auth/AuthProvider'
 import { NAV_CONFIG, navSectionsFor } from './nav'
 import styles from './AppLayout.module.css'
@@ -104,7 +105,7 @@ export function AppLayout() {
         <TopBar
           left={<Breadcrumbs items={[{ label: 'SP-MIS', to: '/' }, { label: currentLabel }]} />}
           userName={user?.name ?? 'User'}
-          userRole={user?.role?.name ?? '—'}
+          userRole={workspaceIdentity(user).roleName}
           userMda={user?.mda?.name}
           notifications={<NotificationBell />}
           onOpenMenu={() => setDrawerOpen(true)}

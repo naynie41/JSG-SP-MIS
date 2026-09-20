@@ -112,7 +112,7 @@ describe('DuplicateReviewReport', () => {
     expect(within(waited).getByText('Over 30 days')).toBeInTheDocument()
 
     const decisions = screen.getByRole('heading', { name: 'Decisions taken' }).closest('section')!
-    expect(within(decisions).getByText('Linked to another MDA’s record').parentElement).toHaveTextContent('3')
+    expect(within(decisions).getByText('Linked to another agency’s record').parentElement).toHaveTextContent('3')
   })
 
   it('lists the uploads the matches came from', async () => {
