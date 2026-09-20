@@ -84,4 +84,4 @@ jobs:
         run: |
           echo "## SP-MIS images" >> "$GITHUB_STEP_SUMMARY"
           echo "Owner: \`${GITHUB_REPOSITORY_OWNER,,}\` · Ref: \`${GITHUB_REF_NAME}\`" >> "$GITHUB_STEP_SUMMARY"
-          echo "Pulled on the VPS via IMAGE_TAG in docker-compose.prod.yml (see the deployment runbook)." >> "$GITHUB_STEP_SUMMARY"
+          echo "Pulled on the VPS via IMAGE_TAG in docker-compose.prod.yml (see docs/DEPLOY.md)." >> "$GITHUB_STEP_SUMMARY"

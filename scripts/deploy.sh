@@ -32,7 +32,7 @@ TAG="${1:-}"
 MODE="${2:-}"
 [[ -n "${TAG}" ]] || die "Usage: ./deploy.sh <tag> [--rollback|--no-backup]   e.g. ./deploy.sh v1.1.0"
 [[ -f "${COMPOSE_FILE}" ]] || die "${COMPOSE_FILE} not found — run from the compose directory."
-[[ -f "${ENV_FILE}" ]]     || die "${ENV_FILE} not found. See the deployment runbook §2.3 (kept outside this repository)."
+[[ -f "${ENV_FILE}" ]]     || die "${ENV_FILE} not found. See docs/DEPLOY.md §2.3."
 
 GHCR_OWNER="$(grep -E '^GHCR_OWNER=' "${ENV_FILE}" | head -1 | cut -d= -f2- | tr -d '"'"'")"
 [[ -n "${GHCR_OWNER}" ]] || die "GHCR_OWNER is not set in ${ENV_FILE}."
@@ -54,7 +54,7 @@ Either the tag was never pushed, or this host is not authenticated to GHCR.
   • Confirm the release workflow succeeded for ${TAG}
   • Confirm login:  echo \$TOKEN | docker login ghcr.io -u <user> --password-stdin
   • If you use sudo for docker, note root has its OWN ~/.docker/config.json
-The GHCR setup runbook is kept outside this repository — ask the project owner.
+See docs/GHCR-Setup-Runbook.pdf.
 EOF
 )"
   echo "    ✓ ${img}"
@@ -66,7 +66,7 @@ done
 if [[ "${MODE}" == "--rollback" ]]; then
   warn "Rollback mode — skipping the pre-deploy backup."
   warn "If the release you are leaving ran a destructive migration, restore the"
-  warn "database from the backup taken before IT was deployed (deployment runbook §5)."
+  warn "database from the backup taken before IT was deployed (DEPLOY.md §5)."
 elif [[ "${MODE}" == "--no-backup" ]]; then
   warn "--no-backup given. Proceeding without a restore point."
 else
@@ -156,7 +156,7 @@ if [[ -x "${VERIFY}" ]]; then
     exit 1
   }
 else
-  warn "verify.sh not found at ${VERIFY} — verify manually (deployment runbook §2.7)."
+  warn "verify.sh not found at ${VERIFY} — verify manually (DEPLOY.md §2.7)."
 fi
 
 log "Deployed ${TAG}."

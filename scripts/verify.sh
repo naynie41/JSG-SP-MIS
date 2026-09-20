@@ -202,7 +202,7 @@ fi
 
 # A backup that stopped running is silent until you need a restore. Backup age lives
 # behind the AUTHENTICATED metrics endpoint, so this points at it rather than guessing
-# from container state — and the dead-man's switch (deployment runbook §8.3) is what actually
+# from container state — and the dead-man's switch (DEPLOY.md §8.3) is what actually
 # alerts when a run is missed.
 note "backup freshness" "check GET /api/v1/health/metrics (backup age vs RPO)"
 
