@@ -123,9 +123,18 @@ regardless of role:
 |------|--------------------------|-------|
 | System Administrator | Yes | All MDAs. Audited. |
 | SP Coordination / M&E Officer | Yes | Cross-MDA (their M&E mandate). |
-| MDA Admin | Yes | Own MDA only. |
-| Development Partner | **No** | Aggregate reports/dashboards for funded programmes only — never the beneficiary registry. |
+| MDA Admin | Yes | Own organisation only — whether that organisation is a government MDA or a partner (see below). |
+| Development Partner (funder account) | **No** | Aggregate reports/dashboards for funded programmes only — never the beneficiary registry. |
 | Executive | **No** | Read-only dashboards and aggregate reports only. |
+
+**A partner organisation that implements does not weaken this matrix — provided the two accounts stay
+separate.** A development partner that runs its own programmes exists twice (PRD §6.6, FR-UAM-08): a
+delivery organisation of type `partner` whose staff are ordinary **MDA Admins** and therefore export
+their own organisation's data under the MDA Admin row above; and the **funder account**, which keeps
+the **No** on its own row. The funder's no-PII guarantee is carried entirely by that separation — a
+single login holding both would export registry rows under a role documented as never seeing them.
+`mdas.funder_user_id` links the two for reporting and confers no access in either direction. **Never
+merge them, and never grant the Development Partner role a `beneficiary.*` permission to compensate.**
 
 **`export.reveal_pii` (unmasked NIN/BVN) — System Administrator only by default.** It is a separate,
 rarer permission from `export`. It must never be bundled into a role by default, requires a documented

@@ -3,9 +3,9 @@
 
 *A unified platform for coordinating, monitoring, and managing social protection programmes across MDAs and partners*
 
-**Version 1.8 · Draft for Review**
+**Version 2.0 · Draft for Review**
 **Prepared by:** Project Team
-**Date:** July 2026
+**Date:** September 2026
 
 ---
 
@@ -24,6 +24,8 @@
 | 1.6 | July 2026 | Project Team | **MDA Officer role removed.** Consolidated into a single MDA role (MDA Admin) that performs all MDA operational work. All user management is centralized with the System Administrator (MDAs do not manage users). See Change Log (v1.6). Revises FR-UAM-01, §4, FR-RPT-05, §8 flows. |
 | 1.7 | July 2026 | Project Team | **Data Import & Mapping** module added (canonical schema, column mapping, learnable per-source templates, value normalization, mapping/validation preview) with a hard rule that identity-field mappings (NIN/BVN/name/phone) are confirmed every import. **Grant revocation** added: cross-MDA read access granted on request-to-serve acceptance is revocable by the Owner MDA. See Change Log (v1.7). Adds §6.5, FR-REG-12..17, FR-OWN-08; revises §8.1. |
 | 1.8 | July 2026 | Project Team | **Provenance** (SOCU vs self-sourced; per-record SOCU/source ID; source distinct from owner). **Concrete field-format validation** (NIN/BVN = 11 digits, etc.). **Self-owned re-upload** blocks the duplicate but allows a new intervention. **Multi-LGA/multi-ward activity locations** (wards optional per LGA; descriptive) on **LGA/Ward reference-data lookups**. **Request-to-serve email** to the owner MDA (no PII in body). **Filtered report builder** (schema-driven filters, export-matrix-scoped, cell-size guard) + **Overview dashboard summary**. **Sync-connector** identity mapping confirmed at config time. See Change Log (v1.8). Adds FR-REG-18..20, FR-DUP-10, FR-PRG-08, FR-NOT-03, FR-RPT-09/10; revises FR-REG-05, FR-PRG-02, §9. |
+| 1.9 | September 2026 | Project Team | **MDA-owned programmes with central approval** (stakeholder decision, 2026-09-17). An MDA may propose its own programme; it stays MDA-scoped and requires System Administrator approval before use — approval clears it for use, it does **not** promote it into the shared catalog. This supersedes the v1.3 rule that programmes are never MDA-owned; what survives is that an MDA never creates a *live* programme directly, never sees another MDA's programme, never edits a central catalog entry, and budget/funding/target stay on the activity. **Archive, never hard-delete** for any record carrying history. See Change Log (v1.9). Revises FR-PRG-01, FR-PRG-06; adds FR-PRG-09, FR-PRG-10. |
+| 2.0 | September 2026 | Project Team | **A development partner may also IMPLEMENT** (stakeholder decision, 2026-09-20). A partner that runs its own programmes exists as **two accounts**: a delivery organisation (an MDA-table row of type `partner`, owning programmes, activities and beneficiaries exactly as an MDA does) and the existing read-only funder account, linked by `funder_user_id`. Partner-owned beneficiaries join state-wide duplicate screening and are visible to government oversight; **government may not fund a partner organisation's own activity**. In the interface "MDA" keeps meaning government and **"implementing agency"** becomes the umbrella term. See Change Log (v2.0). Adds FR-UAM-08, FR-PRG-11, FR-RPT-11; revises §4, FR-UAM-01, FR-RPT-08, §9. |
 
 ### Approvals
 
@@ -35,7 +37,7 @@
 | Data Protection Officer | | | |
 
 **Status legend (priorities use MoSCoW):** Must = required for launch, Should = important but not launch-blocking, Could = desirable, Won't (this release) = explicitly deferred.
-Markers: ▸ = v1.2 · ◆ = v1.3 · ✦ = v1.4 · ✚ = v1.5 · ✱ = v1.6 · ✜ = v1.7 · ❖ = v1.8.
+Markers: ▸ = v1.2 · ◆ = v1.3 · ✦ = v1.4 · ✚ = v1.5 · ✱ = v1.6 · ✜ = v1.7 · ❖ = v1.8 · ✪ = v1.9 · ⬢ = v2.0.
 
 ---
 
@@ -114,6 +116,28 @@ Markers: ▸ = v1.2 · ◆ = v1.3 · ✦ = v1.4 · ✚ = v1.5 · ✱ = v1.6 · �
 
 ---
 
+## Change Log (v1.9)
+
+| # | Change | Affected requirements |
+|---|--------|-----------------------|
+| 1 | **An MDA may create its own programme, subject to central approval.** An MDA proposes a programme; it is **MDA-scoped** and cannot be used until the System Administrator approves it. Approval **clears it for use — it does not move it into the shared catalog**, and the programme stays owned by and visible to that MDA alone. The central catalog remains centrally created and globally readable. This supersedes the v1.3 statement that MDAs can never create programmes. | §7.7; FR-PRG-01 (revised), FR-PRG-06 (revised), FR-PRG-09 (new) |
+| 2 | **What v1.3 keeps.** An MDA still never creates a *live* programme directly, never sees or edits another MDA's programme, never edits a central catalog entry, and **budget, funding source and target remain on the activity** — not the programme. | FR-PRG-02, FR-PRG-04 (unchanged, noted) |
+| 3 | **Archive, never hard-delete.** For any record carrying history — programmes, activities, access grants, graduation data — "delete" means **archive**: soft, audited, excluded from active lists, retained for audit. Archiving a programme that still has active activities is blocked. There is no hard-delete path for these. | FR-PRG-10 (new); FR-AUD-01 |
+
+---
+
+## Change Log (v2.0)
+
+| # | Change | Affected requirements |
+|---|--------|-----------------------|
+| 1 | **A development partner may also implement.** A partner that runs its own programmes — rather than only funding someone else's — exists in SP-MIS as **two accounts**, and that separation is what keeps the v1.5 no-PII guarantee true: a **delivery organisation** (a row in the MDA table of type `partner`, whose staff are ordinary MDA Admins) which owns programmes, activities and beneficiaries through the normal ownership column; and the existing **funder account** (read-only, funded-scope, no PII), which activity funding attribution points at. `funder_user_id` links the two. They are never merged into one login. | §4, §6.6 (new); FR-UAM-01 (revised), FR-UAM-08 (new) |
+| 2 | **A partner organisation is scoped, screened and overseen exactly like an MDA.** Because it owns records through the same column, MDA scoping, duplicate detection, request-to-serve, imports and the benefit ledger all apply unchanged. Its beneficiaries **do** join state-wide duplicate screening, and its data **is** visible to government oversight. | FR-UAM-03, FR-DUP-01, FR-OWN-01 (unchanged, noted) |
+| 3 | **Government does not fund a partner organisation's own activity.** On an activity owned by a partner organisation, the funding type may not be `government` and the government co-funding flag may not be set. | FR-PRG-11 (new); FR-PRG-02 |
+| 4 | **"Implementing agency" is the umbrella term.** In the interface "MDA" continues to mean a government body. Where a row may be either, it reads **implementing agency**, and a partner organisation is tagged as such wherever it appears beside a government one — on screen and in exported PDFs, which have no badge and so carry the word in the label. Reporting distinguishes agencies that **implement** (own activities) from those that **deliver** (have paid benefits out); they are different sets. | FR-RPT-11 (new); FR-RPT-08 (revised) |
+| 5 | **Sync/integration health removed from the partner coordination view.** Connectors belong to the implementing agencies and are operated by them; a funder can act on none of it, so it is neither shown nor computed on the partner's coordination tab. The MDA and state-wide coordination views keep their own data-sharing panel. | FR-RPT-08 (revised); FR-DSH-02 (unchanged) |
+
+---
+
 ## 1. Executive Summary
 
 The State Social Protection Management Information System (SP-MIS) is a centralized digital platform for coordinating, monitoring, and managing social protection programmes delivered by Ministries, Departments, and Agencies (MDAs), development partners, and other stakeholders across the state.
@@ -183,8 +207,9 @@ The system serves several distinct user groups. Access is governed by role-based
 |------------|-----|------------------------|
 | Executive Users | Governor, Deputy Governor, Commissioners, Permanent Secretaries, Executive Council | View state-wide dashboards, coverage, and performance; consume high-level reports. Read-only. |
 | SP Coordination Unit | State SP Coordination Office; Monitoring & Evaluation Officers | Coordinate across MDAs, **maintain the programme catalog** and matching rules, monitor performance, run M&E and reporting. |
-| MDA Users (MDA Admin) ✱ | A single MDA role (no separate Officer) | Register beneficiaries (via bulk import), **manage activities (selecting from the programme catalog)**, validate duplicates, deliver services, raise/accept referrals, raise/**approve** request-to-serve, and generate MDA-scoped reports. MDAs do not create or configure programmes, and do not manage users (that is centralized with the System Administrator). |
-| Development Partners | Funding and implementing partners | Monitor their **funded programmes** (scoped via activity funding attribution, FR-PRG-07) — reach, budget-vs-delivered value, coverage, programme overlap — via a partner reporting suite; aggregates only, never beneficiary PII. |
+| MDA Users (MDA Admin) ✱✪ | A single MDA role (no separate Officer) | Register beneficiaries (via bulk import), **manage activities (selecting a programme)**, **propose their own MDA-scoped programme for System Administrator approval (✪ FR-PRG-09)**, validate duplicates, deliver services, raise/accept referrals, raise/**approve** request-to-serve, and generate scoped reports. MDAs do not edit the central catalog, do not use a programme before it is approved, and do not manage users (that is centralized with the System Administrator). |
+| Development Partners (funder account) | Funding partners | Monitor their **funded programmes** (scoped via activity funding attribution, FR-PRG-07) — reach, budget-vs-delivered value, coverage, programme overlap — via a partner reporting suite; aggregates only, **never beneficiary PII**. Read-only. |
+| ⬢ Partner organisations (implementing) | A development partner that runs its own programmes | Work in the **same delivery workspace as an MDA**, through a **separate** account: staff hold the MDA Admin role against an organisation of type `partner`. They own programmes, activities and beneficiaries, and are scoped, duplicate-screened and overseen identically. This is deliberately **not** the funder account above — merging them would break its no-PII guarantee (⬢ FR-UAM-08). |
 | System Administrators | Platform/IT team | Manage users and MDAs, **own and configure the programme catalog** and matching rules, run data synchronization, and administer the platform via the **System Administrator Console** (governance, configuration, oversight — not infrastructure monitoring or delivery operations). |
 
 ---
@@ -197,7 +222,7 @@ The system serves several distinct user groups. Access is governed by role-based
 |--------|--------|--------|
 | User & Access Management | Beneficiary Registry (Hybrid) | Duplicate Verification |
 | Beneficiary Ownership | Referral & Linkage | Benefit Tracking (Ledger) |
-| Programme Catalog (central) | Activity Management (MDA) | Graduation Management |
+| Programme Catalog (central) ✪ + MDA-proposed | Activity Management (MDA) | Graduation Management |
 | Grievance Redress (GRM) | Notifications | Reports & Analytics |
 | Executive / MDA / Partner Dashboards | GIS Dashboard | Audit Logs |
 | Document Management | Data Sharing | Data Synchronization |
@@ -269,6 +294,40 @@ The canonical rows then flow into the existing validation and the default duplic
 (exact NIN → exact BVN → fuzzy name/phone, FR-DUP-08). Both upload paths (activity wizard and Import
 Center) share this one stage. See FR-REG-12..17 and the revised flow in §8.1.
 
+### 6.6 Implementing Agencies ⬢ (v2.0)
+
+Not every organisation that delivers a programme is a government body. A development partner may run
+its own programmes, with its own activities and its own beneficiaries, as well as funding programmes
+an MDA delivers. SP-MIS models that **without a second delivery mechanism**.
+
+**One organisation, two accounts.** A partner that both funds and implements exists twice:
+
+| | Delivery organisation | Funder account |
+|---|---|---|
+| What it is | A row in the MDA table of **type `partner`** | The existing Development Partner user |
+| Who signs in | Its own staff, holding the **MDA Admin** role | The partner's reporting contact |
+| What it owns | Programmes, activities, beneficiaries — through the ordinary ownership column | Nothing; it is read-only |
+| What it sees | Its own records, scoped exactly as an MDA's are | Aggregates for the activities it funds |
+| Beneficiary PII | Yes, for records it owns | **Never** |
+
+The two are linked (`funder_user_id`) so reporting can tell they are the same organisation, and are
+**never merged into one login**. The funder role's "no PII" guarantee (FR-RPT-05, §7.1) depends
+entirely on that separation.
+
+**Consequences that follow automatically.** Because the delivery organisation owns records through the
+same column an MDA uses, everything built on ownership applies with no special case: MDA scoping
+(FR-UAM-03), duplicate verification (FR-DUP-01) — so a partner's beneficiaries **do** join state-wide
+duplicate screening — request-to-serve (FR-OWN-06), imports, and the benefit ledger. Government
+oversight sees partner-owned data as it sees any MDA's.
+
+**What is different.** Government does not fund a partner organisation's own activity (FR-PRG-11).
+
+**What it is called.** "MDA" keeps meaning a government body. Where a row may be either, the interface
+says **implementing agency**, and a partner organisation is tagged as such wherever it appears beside a
+government one. Reporting further distinguishes an agency that **implements** (owns activities here)
+from one that **delivers** (has actually paid benefits out) — these are different sets, and the second
+is a subset of the first.
+
 ## 7. Functional Requirements
 
 Requirements are grouped by module. Each has a unique ID for traceability and a MoSCoW priority. "Must" items define the minimum viable product. Items new or revised in v1.2 are marked ▸; in v1.3, ◆.
@@ -284,6 +343,7 @@ Requirements are grouped by module. Each has a unique ID for traceability and a 
 | FR-UAM-05 | Permissions shall be configurable at module and action level (view, create, edit, approve, export). | Should |
 | FR-UAM-06 | The system shall enforce session timeout and lock accounts after repeated failed login attempts. | Should |
 | ✚ FR-UAM-07 | The System Administrator role shall have a governance console that composes existing capabilities (user/access, organizations, programme catalog, registry & data quality, matching rules, integrations, audit & security, reports, and platform settings) for administration, configuration, and oversight. The console shall not include infrastructure/system-health monitoring or programme-delivery operations. | Should |
+| ⬢ FR-UAM-08 | An organisation in the MDA table shall carry a **type**, one value of which is `partner` — a development partner that implements its own programmes. A partner organisation shall be scoped, duplicate-screened, audited and overseen **identically to a government MDA**; its staff hold the ordinary MDA Admin role. It may be linked to the Development Partner **funder** account that funds through it (`funder_user_id`), for reporting only. The two accounts shall never be merged: the funder account stays read-only and never sees beneficiary PII (FR-RPT-05). The interface shall not describe a partner organisation as government (see §6.6). | Must |
 
 ### 7.2 Beneficiary Registry (Hybrid)
 
@@ -369,15 +429,19 @@ Requirements are grouped by module. Each has a unique ID for traceability and a 
 
 | ID | Requirement | Priority |
 |----|-------------|----------|
-| ◆ FR-PRG-01 | The System Administrator (and optionally the SP Coordination Unit) shall create and maintain a **global catalog of programmes**, each capturing type-level attributes only: name, objective, type (household/individual), benefit category, and standard eligibility. Programmes are shared across all MDAs and are not owned by any single MDA; they are readable by all MDAs for selection. MDA roles (Officer, MDA Admin) shall not create, edit, or delete programmes. | Must |
+| ◆✪ FR-PRG-01 | The System Administrator (and optionally the SP Coordination Unit) shall create and maintain a **central catalog of programmes**, each capturing type-level attributes only: name, objective, type (household/individual), benefit category, and standard eligibility. Catalog programmes are shared, owned by no single MDA, and readable by all for selection. **An MDA shall not create, edit or delete a catalog entry** — but it may propose its own MDA-scoped programme under FR-PRG-09 (✪, revising the v1.3 prohibition on MDA-created programmes). | Must |
 | ◆❖ FR-PRG-02 | An MDA shall create and **own activities** under a selected catalog programme, capturing target, **location (a set of LGAs with optional wards per LGA — see FR-PRG-08)**, schedule, budget, funding source, period, and activity-level eligibility. The same catalog programme may be delivered by multiple MDAs, each through its own separate activity. | Must |
 | FR-PRG-03 | The system shall allow beneficiaries to be enrolled or assigned to programmes and activities. | Should |
 | ◆ FR-PRG-04 | The system shall track budget allocated versus utilized **per activity**, and aggregate to the programme level as the sum of its activities across MDAs. | Should |
 | ▸✦ FR-PRG-05 | An activity must exist before beneficiaries can be uploaded to it (FR-REG-10). Beneficiary upload is bound to a selected registered activity, and interventions produced by that upload roll up to the activity and its (catalog) programme. When the activity involves beneficiaries, activity creation includes the mandatory inline upload (FR-REG-11), and the activity is created and the rows bind to it within the same commit. | Must |
-| ◆ FR-PRG-06 | The programme catalog shall be globally readable by all authenticated roles for activity creation and reporting, while create/edit/delete is restricted to the System Administrator (optionally SP Coordination). Programmes shall not be MDA-scoped. | Must |
+| ◆✪ FR-PRG-06 | The **central catalog** shall be globally readable by all authenticated roles for activity creation and reporting, while create/edit/delete of a catalog entry is restricted to the System Administrator (optionally SP Coordination). A **programme an MDA proposed under FR-PRG-09 is MDA-scoped** and stays so after approval — it is visible to its owning MDA (and to oversight), never to another MDA, and approval does not move it into the catalog. (✪ This revises the v1.3 statement that programmes are never MDA-scoped.) | Must |
 | ✚ FR-PRG-07 | An activity may be attributed to a funding **Development Partner** (a property of the activity, never the programme) so partner reporting can scope to funded programmes. Funding attribution confers reporting-visibility only and shall never grant access to beneficiary records. | Should |
 
 | ❖ FR-PRG-08 | An activity's location shall be a **set**: one or more LGAs, each with zero or more wards (no wards for an LGA = the whole LGA). Locations reference LGA/Ward **reference-data lookups** (not free text). The location set is descriptive — for planning and coverage reporting — and is **not** enforced against beneficiary locations. This revises the single-location FR-PRG-02. | Should |
+
+| ✪ FR-PRG-09 | An MDA shall be able to **propose its own programme**. The proposal is MDA-scoped, requires **System Administrator approval** before any activity may use it, and remains MDA-scoped after approval — approval clears it for use and shall **not** promote it into the central catalog (FR-PRG-06). An MDA shall never create a *live* programme directly, and shall never see or edit another MDA's programme. Budget, funding source and target remain on the activity (FR-PRG-02), not the programme. | Must |
+| ✪ FR-PRG-10 | Any record carrying history — programmes, activities, access grants, graduation data — shall be **archived, never hard-deleted**: the archive is soft, audited (FR-AUD-01), excluded from active lists and retained for history. Archiving a programme that still has **active** activities shall be blocked. No hard-delete path shall exist for these records. | Must |
+| ⬢ FR-PRG-11 | **Government shall not fund a partner organisation's own activity.** On an activity whose owning organisation is of type `partner` (FR-UAM-08), the funding type may not be `government` and the government co-funding flag may not be set; the system shall reject the attempt with a reason naming the alternative (partner or individual funding). A partner organisation's activity may still be funded by a Development Partner, including the partner's own funder account. | Must |
 
 ### 7.8 Grievance Redress (GRM)
 
@@ -414,12 +478,13 @@ Requirements are grouped by module. Each has a unique ID for traceability and a 
 | ✚ FR-RPT-05 | Export of beneficiary data shall be governed by a permission matrix: a distinct `export` permission (System Administrator = all; SP Coordination/M&E = cross-MDA; MDA Admin = own MDA; Development Partners and Executives = aggregate reports only, never the beneficiary registry). Exports inherit the caller's scope, mask NIN/BVN by default, and are audited. | Must |
 | ✚ FR-RPT-06 | Unmasked NIN/BVN export shall require a separate `export.reveal_pii` permission (System Administrator only by default; granting otherwise is a DPO decision). A data grid may expose an "export this list" of its current filtered view, reusing the export service and honouring the matrix. | Must |
 | ✚ FR-RPT-07 | The executive dashboard (FR-RPT-01) shall be delivered as a multi-tab reporting suite (overview, programmes, registry, coordination, coverage map), read-only and aggregate-only. The headline measure shall be **net unique beneficiaries** (never gross registrations); coverage shall be shown as absolute counts where no population/eligibility denominator is loaded. | Should |
-| ✚ FR-RPT-08 | The partner dashboard (FR-RPT-02) shall be delivered as a multi-tab reporting suite scoped to the partner's funded programmes (via activity funding attribution, FR-PRG-07). Funding shall be presented as allocated (activity budget) → delivered (benefit value) → remaining, labelled as delivery value versus budget — not treasury expenditure (§2.3). | Should |
+| ✚⬢ FR-RPT-08 | The partner dashboard (FR-RPT-02) shall be delivered as a multi-tab reporting suite scoped to the partner's funded programmes (via activity funding attribution, FR-PRG-07). Funding shall be presented as allocated (activity budget) → delivered (benefit value) → remaining, labelled as delivery value versus budget — not treasury expenditure (§2.3). ⬢ The suite shall **not** show sync/integration health: connectors belong to the implementing agencies and are operated by them, so a funder can act on none of it (the MDA and state-wide coordination views keep theirs). | Should |
 
 **Reporting principles (v1.5).** Executive/partner/admin reporting is read-only and aggregate-only (no raw PII on dashboards); the headline is net unique beneficiaries, not gross registrations; coverage is absolute until a denominator exists; partner funding is delivery-value-vs-budget, not expenditure; all exports obey the FR-RPT-05/06 matrix.
 
 | ❖ FR-RPT-09 | The system shall provide a filtered report builder whose filterable dimensions are derived from the canonical schema (segmentable fields only — e.g. gender, age band, LGA/ward, programme, activity, source, date range, status; identity fields are excluded from filtering and masked in output). It shall return a table with export (CSV/Excel/PDF) and an optional chart, enforce the export permission matrix and role/MDA scoping (never a bypass), audit every run, and apply a configurable **minimum cell-size guard** on aggregate/cross-MDA tiers so small groups cannot re-identify individuals (the guard does not restrict an MDA segmenting its own beneficiaries). | Should |
 | ❖ FR-RPT-10 | The Overview page shall show a summary of the reporting dashboard (read from the same aggregation source as the full page) that expands/deep-links into the full dashboard in the Reports section. | Should |
+| ⬢ FR-RPT-11 | Wherever a report, dashboard or export lists organisations that may be either government or partner, it shall use the umbrella term **implementing agency** and shall carry each row's **kind**, tagging a partner organisation as such. Exported documents have no badge, so the tag shall appear in the label itself. Reporting shall further distinguish agencies that **implement** (own activities in scope) from those that **deliver** (have paid benefits out under the caller's scope) — these are different sets and shall not share a label. No aggregate shall describe a partner organisation's delivery as government delivery. | Must |
 
 ### 7.12 GIS Dashboard
 
@@ -481,8 +546,8 @@ The following core entities and relationships describe the conceptual data model
 | Beneficiary ❖ | Individual served by one or more programmes. Source and owner are distinct (owner = first importer). | ID, NIN, BVN, name, DOB, gender, phone, address, LGA/Ward, owner MDA, **registration_source (incl. SOCU)**, **source_record_id (SOCU/original ID, nullable)**, registration date, status. |
 | Household | Optional grouping of beneficiaries. | Household ID, head, members, address, LGA/Ward. |
 | ❖ LGA / Ward (reference data) | Administrative geography lookups (Jigawa: 27 LGAs, ~287 wards). | LGA (id, name, code); Ward (id, lga_id, name, code); optional PostGIS geometry for GIS. |
-| ◆ MDA | Ministry, Department, or Agency. | ID, name, type, contact, activities owned. |
-| ◆ Programme | **Global catalog** service type, created centrally (System Admin / SP Coordination). Not MDA-owned. | ID, name, objective, type (HH/individual), benefit_category, standard_eligibility, status. |
+| ◆⬢ MDA / Implementing agency | A government Ministry, Department or Agency — **or**, at `type = partner`, a development partner that implements (⬢ §6.6, FR-UAM-08). Both own records through the same column, so scoping, dedup and the ledger treat them alike. | ID, name, **type (ministry / department / agency / partner)**, **funder_user_id (nullable — the Development Partner funder account this organisation funds through; reporting link only)**, contact, activities owned. |
+| ◆✪ Programme | A service type. Either a **central catalog** entry (created by System Admin / SP Coordination, readable by all, owned by none) **or** an ✪ **MDA-proposed programme** that is MDA-scoped and needs System Administrator approval before use — and stays MDA-scoped after it (FR-PRG-09). | ID, name, objective, type (HH/individual), benefit_category, standard_eligibility, **owner MDA (null for a catalog entry)**, **approval status**, status. |
 | ◆✚❖ Activity | **MDA-owned** unit of work under a catalog programme; must exist before beneficiaries are uploaded to it; may be attributed to a funding partner (reporting only). | ID, programme (catalog), owner MDA, funding_partner (nullable), involves_beneficiaries, target_beneficiaries, target, **location set → activity_locations (lga_id, ward_id nullable; multi-LGA, wards optional per LGA, descriptive)**, schedule, budget, funding_source, period, eligibility, status. |
 | ▸◆ Benefit / Intervention | A benefit delivered to a beneficiary; programme-typed, delivered via an MDA activity; may be delivered by a non-owner MDA under an accepted request-to-serve. | ID, beneficiary, programme (catalog), activity (MDA-owned), delivering MDA, type, quantity, value, funding source, delivery date, status, verification. |
 | Referral | A request to serve a beneficiary across MDAs (outbound). | ID, beneficiary, from MDA, to MDA, need, status, outcome, timestamps. |
@@ -620,9 +685,13 @@ The table above is the conceptual roadmap. Detailed, sequential build phasing an
 | Term | Meaning |
 |------|---------|
 | SP-MIS | Social Protection Management Information System. |
-| MDA | Ministry, Department, or Agency. |
-| Owner MDA | The MDA that first registers a beneficiary and controls the core profile. |
+| MDA | Ministry, Department, or Agency — always a **government** body. |
+| ⬢ Implementing agency | The umbrella term for any organisation that delivers: a government MDA **or** a partner organisation. Used wherever a row may be either. |
+| ⬢ Partner organisation | A development partner that implements its own programmes — an organisation of type `partner`, owning records exactly as an MDA does. Distinct from, and linked to, the read-only **funder account** of the same partner (§6.6). |
+| ⬢ Delivering agency | An implementing agency that has actually paid benefits out under a given scope. A subset of the agencies implementing there; the two are counted separately (FR-RPT-11). |
+| Owner MDA | The organisation that first registers a beneficiary and controls the core profile. May be a partner organisation. |
 | Programme (catalog) | ◆ A shared, centrally-created service type (e.g. Cash Transfer); not owned by any MDA. |
+| ✪ Programme (MDA-proposed) | A programme an MDA created for itself. MDA-scoped, needs System Administrator approval before use, and stays MDA-scoped afterwards — approval is not promotion into the catalog (FR-PRG-09). |
 | Activity | ◆ An MDA-owned unit of work delivering a catalog programme, carrying its own budget, funding, schedule, and location. |
 | SOCU | Social Operations / data source feeding beneficiary data. |
 | Kobo Collect / ODK | Mobile data-collection tools used for field registration. |
@@ -638,3 +707,4 @@ The table above is the conceptual roadmap. Detailed, sequential build phasing an
 | ✚ Funding-partner attribution | An activity's link to a funding Development Partner, used to scope partner reporting; reporting-visibility only, never data access. |
 | ✚ Export permission matrix | The role-based governance of beneficiary-data export (`export`), with a separate `export.reveal_pii` for unmasked NIN/BVN. |
 | ✚ Reporting suite / Admin console | Role-based multi-tab views (Executive, Partner) and the System Administrator governance console, all read/compose layers over existing data. |
+| ✪ Archive | The only form of "delete" for a record carrying history: soft, audited, reversible where appropriate, excluded from active lists, retained (FR-PRG-10). |

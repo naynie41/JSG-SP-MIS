@@ -214,12 +214,34 @@ scope, nested under `metrics.partner_funding`):
 | allocated / delivered_value / remaining / utilization_rate, funded programmes/activities, implementing MDAs, net-unique reached, target, cost/beneficiary, `reach` (households/women/children), `coverage_bands` | **Overview** | delivery value; captured demographics only; coverage **absolute** |
 | `programmes[]` (activity-precise per funded programme: budget→delivered→remaining, target/reached, **absolute** coverage, completion, interventions, avg benefit value, delivery-rate series, 4-state `status_light`, `output_indicators`, activity drill-down) + rolled-up `output_indicators` | **Programmes & Results** | absorbs M&E; **OUTPUTS ONLY** (interventions × benefit type × captured demographic) |
 | `registry` (funded-cohort KPIs, reduced funnel **Registered→Enrolled→Receiving**, captured demographics, data quality) | **Registry** | cohort = enrolled ∪ served via funded activities |
-| `coordination` (landscape, funding-by-partner **amounts for self only**, MDA landscape, data sharing/sync) + `programme_overlap` | **Coordination** | overlap = same programme × LGA, different funder/MDA; a co-funder's money never leaks |
+| `coordination` (landscape, funding-by-partner **amounts for self only**, per-agency breakdown) + `programme_overlap` | **Coordination** | overlap = same programme × LGA, different funder/MDA; a co-funder's money never leaks. **No sync health** — see below |
 | `GisCoverageService` `funding_allocated` per area (activity-precise) + coverage | **Investment Map** | funding-density choropleth + quadrant analysis + LGA drill-down; table fallback |
 
 **Status model** (`programme_status` config): On Track / At Risk / Delayed / Completed
 from completion (reached ÷ target) + timeline (delivery end date) — configurable, never a
 fabricated %.
+
+**Coordination: two agency counts, and they are not the same set** (FR-RPT-11). `landscape
+.implementing_agencies` counts organisations that **own** activities in the funded programmes;
+`landscape.delivering_agencies` counts those that have actually **paid benefits out** under the
+caller's own funded activities. The second is a subset of the first, and the two were previously
+named `government_agencies` / `implementing_agencies` — which both conflated the sets *and* called a
+partner organisation government. Every row in `coordination.agencies[]` now carries `kind`
+(`government | partner | null`), and the view tags a partner. See PRD §6.6 / FR-UAM-08.
+
+**No data-sharing / sync health here** (PRD v2.0, FR-RPT-08). Connectors belong to the implementing
+MDAs and are operated by them; a funder can act on nothing in a failed run, so the block is neither
+rendered nor computed — it cost six queries per partner dashboard load, one of them plucking every
+beneficiary id across every funded activity just to count API registrations. The **MDA and state-wide**
+coordination views keep their own data-sharing panel: different payload, different reader, and there
+it is the reader's own plumbing.
+
+> **Scoping trap.** `Mda` is `ScopedToMda` and a partner holds no `mda_id`, so the agency-name lookup
+> in `partnerCoordination()` must run `withoutGlobalScope(MdaScope::class)` — scoped, every agency
+> renders as a nameless "Agency". It went unnoticed for a long time because the snapshot is built from
+> the console, where the scope no-ops. A test for this must authenticate **and** drop the snapshot
+> (`PartnerFundingTest::test_agency_names_survive_the_partner_request_scope`); with either half
+> missing it passes against the broken code.
 
 **Cross-cutting (FR-RPT-02/03):**
 - **Filters** — the shared `DashboardFilter` (year/quarter/month, programme, LGA, ward,

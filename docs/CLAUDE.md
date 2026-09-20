@@ -302,6 +302,22 @@ A task is done only when **all** of these are true:
   `government`, and `co_funded_by_government` may not be set, on an activity a partner org owns.
   In the interface "MDA" still means government; **"implementing agency"** is the umbrella that covers
   both, and a partner organisation is tagged as such wherever it appears beside one.
+- **Naming, once and in one place (2026-09-20).** `MdaType::isGovernment()` is the only predicate —
+  never list type cases at a call site. On the frontend `workspaceIdentity()` derives the workspace
+  name, the role label and the noun for "your …" from the signed-in user's organisation type; screens
+  ask it rather than hard-coding "MDA", so a partner reads *Partner workspace / Partner Admin / scoped
+  to your organisation* and a ministry sees byte-for-byte what it saw before. **Display only** — the
+  role key stays `mda_admin` and permissions are untouched; renaming the Role row would relabel every
+  government admin, since one row is shared by all its holders. Where a row refers to *another*
+  organisation, say **agency** ("another agency referred a beneficiary to you") — "another MDA" is
+  simply wrong once the other party can be an NGO.
+- **Implementing ≠ delivering in reporting.** Count agencies that OWN activities in scope separately
+  from those that have actually PAID BENEFITS OUT; the second is a subset. Never share a label between
+  them, and never let an aggregate describe a partner's delivery as government delivery.
+- **No sync/integration health on the partner coordination view** (2026-09-20). Connectors belong to
+  the implementing agencies and are operated by them — a funder can act on nothing there. Removed from
+  the payload as well as the screen, and it does not come back with a future sync feature. The MDA and
+  state-wide coordination views keep theirs: there it is the reader's own plumbing.
 - **"Super Admin" = the existing System Administrator role, not a new tier.** The System Administrator
   Console (`docs/PHASE-ADMIN-BUILD-PROMPTS.md`) is a governance/config/oversight surface that **composes
   existing modules** (users/audit Ph1, registry Ph2, matching Ph3, catalog Ph4, reports Ph6, sync Ph7) —

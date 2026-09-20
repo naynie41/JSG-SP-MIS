@@ -123,8 +123,8 @@ Core entities and key relationships (detailed schema is designed per phase):
 |-------------|--------------------------------------------------------------------------------|---------------|
 | Beneficiary | id, NIN, BVN, name, DOB, gender, phone, address, LGA/Ward, owner_mda, source, registration_date, status | belongs to Household (opt), Owner MDA; has many Benefits, Referrals |
 | Household   | id, head, members, address, LGA/Ward                                           | has many Beneficiaries |
-| MDA         | id, name, type, contact                                                        | owns Activities, Beneficiaries, Users |
-| Programme   | id, name, objective, type (HH/individual), benefit_category, standard_eligibility | GLOBAL catalog (System-Admin-created, not MDA-owned); has many Activities |
+| MDA / implementing agency | id, name, **type (ministry\|department\|agency\|partner)**, **funder_user_id (nullable)**, contact | owns Activities, Beneficiaries, Users. `partner` = a development partner that implements; it owns records through the same column, so scoping/dedup/ledger are unchanged. `funder_user_id` links it to the read-only funder account it funds through (reporting only) — see §12.6 |
+| Programme   | id, name, objective, type (HH/individual), benefit_category, standard_eligibility, **owner_mda_id (null = central catalog)**, **approval status** | Either a central catalog entry (System-Admin-created, globally readable, MDA-owned by nobody) **or** an MDA-proposed programme that stays MDA-scoped and needs approval before use; has many Activities |
 | Activity    | id, programme_id, owner_mda_id, funding_partner_id (nullable), involves_beneficiaries, target_beneficiaries, target, location (LGA/Ward), schedule, budget, funding_source, period, eligibility | MDA-owned; belongs to a catalog Programme; funding_partner for reporting attribution only (not data access); has many Benefits |
 | Benefit     | id, beneficiary_id, programme_id, activity_id, mda_id, type, quantity, value, funding_source, delivery_date, status, verification | the benefit ledger |
 | Referral    | id, beneficiary_id, from_mda, to_mda, need, status, outcome, timestamps        | across MDAs (outbound) |
@@ -223,16 +223,22 @@ responsive & accessible UI · tamper-evident audit · API-first · containerised
   activity; resolved rows produce interventions (benefit ledger) attributed to that activity and the
   delivering MDA. Beneficiary ownership is still set by first import (owner_mda_id).
 
-### 12.4 Programme catalog & activity ownership (revises FR-PRG-01/02)
+### 12.4 Programme ownership & activity ownership (revises FR-PRG-01/02/06)
 
-- **Programme = global catalog**, created only by the System Administrator (optionally SP Coordination).
-  Not MDA-owned; globally readable; holds type-level attributes (name, objective, type, benefit
-  category, standard eligibility). MDAs cannot create/edit programmes.
-- **Activity = MDA-owned** (`owner_mda_id`, `ScopedToMda`), created by MDA officers/admins by selecting
-  a catalog programme, then supplying location/schedule/budget/funding/period/targets. Budget + funding
-  live on the Activity.
+- **Central catalog** — created only by the System Administrator (optionally SP Coordination). Owned by
+  nobody, globally readable, holds type-level attributes (name, objective, type, benefit category,
+  standard eligibility). An MDA can never create or edit a catalog entry.
+- **MDA-proposed programme** (2026-09-17, PRD v1.9 / FR-PRG-09) — an MDA may propose its own programme.
+  It is **MDA-scoped** (`owner_mda_id`, `ScopedToMda`) and unusable until the System Administrator
+  approves it. **Approval clears it for use; it does not promote it into the catalog** and does not
+  widen its visibility. An MDA never creates a *live* programme directly and never sees another MDA's.
+- **Activity = MDA-owned** (`owner_mda_id`, `ScopedToMda`): select a programme, then supply
+  location/schedule/budget/funding/period/targets. **Budget and funding live on the Activity**, never
+  the programme — that did not change in v1.9.
 - One programme → many MDAs → separate activities. Interventions reference (beneficiary, programme,
-  activity, delivering MDA). Beneficiary ownership is unchanged.
+  activity, delivering agency). Beneficiary ownership is unchanged.
+- **Archive, never hard-delete** (FR-PRG-10) for anything carrying history; archiving a programme with
+  active activities is blocked.
 
 ### 12.5 Reporting suites & admin console (read/compose layers)
 
@@ -245,6 +251,14 @@ These are read/composition layers over the existing data — they add no new wri
 - **Partner funding attribution:** `activity.funding_partner_id` resolves an activity to a Development
   Partner for 6P scoping. It attaches to the activity (never the programme) and grants reporting
   visibility only — never beneficiary-data access.
+- **Two agency counts, not one** (FR-RPT-11). Reporting distinguishes agencies that **implement** (own
+  activities in scope) from those that **deliver** (have actually paid benefits out under the caller's
+  scope). The second is a subset of the first; they are named separately because conflating them
+  overstates delivery. Every agency row carries a `kind` so a partner is never reported as government.
+- **No sync health on the partner view.** Connectors belong to the implementing agencies and are
+  operated by them, so the partner coordination tab neither shows nor computes them. The MDA and
+  state-wide coordination views keep their own data-sharing panel — there it is the reader's own
+  plumbing.
 - **Phase Admin — System Administrator Console** is a governance/config/oversight surface that
   **composes existing modules** (users/audit Ph1, registry Ph2, matching Ph3, catalog Ph4, reports Ph6,
   sync Ph7) into a System-Administrator-scoped console. It reimplements nothing, holds no second data
@@ -253,3 +267,31 @@ These are read/composition layers over the existing data — they add no new wri
   until Phase 7 exists.
 - Dashboard UI for all three follows `DESIGN-SYSTEM.md` §5.11–§5.12 (executive-grade craft; tokens win
   over the skill).
+
+### 12.6 Partner organisations that implement (2026-09-20, PRD v2.0 / §6.6)
+
+A development partner may run its own programmes as well as fund someone else's. The design goal was
+to add **no second delivery mechanism** — and the way that is achieved is worth stating, because it is
+why so little code changed:
+
+- **The delivery organisation is an `mdas` row of type `partner`.** It owns programmes, activities and
+  beneficiaries through the same `owner_mda_id`, so `MdaScope`, the duplicate cascade, request-to-serve,
+  the import pipeline and the benefit ledger all apply with **no special case**. A partner's
+  beneficiaries join state-wide duplicate screening; its data is visible to government oversight.
+- **Its staff hold the ordinary MDA Admin role.** No new role, no new permission.
+- **The funder account is a different account.** Read-only, funded-scope, no PII — the account
+  `activities.funding_partner_id` points at. `mdas.funder_user_id` links the two for reporting.
+  **They are never merged**: the funder role's no-PII guarantee depends on the separation, so a single
+  login that both owns registry records and reports as a funder would silently void it.
+- **The one behavioural rule:** government does not fund a partner organisation's own activity
+  (FR-PRG-11) — `funding_type` may not be `government`, nor may the government co-funding flag be set.
+- **Naming.** `MdaType::isGovernment()` is the single predicate; "MDA" still means government and
+  **implementing agency** is the umbrella. On the frontend `workspaceIdentity()` derives the workspace
+  name, role label and the noun for "your …" from the signed-in user's organisation type — display
+  only, with the role key and permissions untouched.
+
+> **Scoping trap worth remembering.** `Mda` is itself `ScopedToMda`. A partner user holds no `mda_id`,
+> so any agency-name lookup inside a partner request must use `withoutGlobalScope(MdaScope::class)` or
+> it silently returns nothing. This hid for a long time because dashboard snapshots are built from the
+> console, where no user is authenticated and the scope no-ops — only a live in-request compute showed
+> the blanks. Tests for it must both authenticate **and** drop the snapshot, or they pass regardless.

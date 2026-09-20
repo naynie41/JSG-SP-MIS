@@ -16,7 +16,7 @@ Source of truth: `docs/jigawa-SP-MIS.md` (PRD), `docs/CLAUDE.md §5` (phases).
 
 | Requirement | Delivered | Where | Tests |
 | --- | --- | --- | --- |
-| **FR-UAM-01** — RBAC with 7 predefined roles | 7 roles seeded as data | `RolesAndPermissionsSeeder`, `Enums/RoleKey` | `RbacTest`, `SeederTest` |
+| **FR-UAM-01** — RBAC with predefined roles | **6** roles seeded as data (7 at Phase 1; MDA Officer was merged into MDA Admin in PRD v1.6) | `RolesAndPermissionsSeeder`, `Enums/RoleKey` | `RbacTest`, `SeederTest`, `MdaRoleMatrixTest` |
 | **FR-UAM-02** — admin create/edit/suspend/deactivate users; assign MDA + role | `/api/v1/users` (+ MDAs) admin screens & API | `Access/UserController`, `web/features/users` | `UserManagementTest`, `UserListPage.test` |
 | **FR-UAM-03** — users scoped to their MDA unless granted | Central global query scope + cross-MDA grants | `Scopes/MdaScope`, `Concerns/ScopedToMda`, `MdaAccessGrant` | `MdaScopingTest` |
 | **FR-UAM-04** — strong passwords + MFA for admin/executive | Password policy (min 12 + breached check); TOTP MFA, mandatory for privileged roles | `Support/PasswordRules`, `Services/MfaService`, `MfaController` | `AuthTest`, `MfaTest` |

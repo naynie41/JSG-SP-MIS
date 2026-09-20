@@ -7,14 +7,17 @@ Module detail: [web/src/features/mda/README.md](../web/src/features/mda/README.m
 
 ---
 
-## 1. One navigation, two roles
+## 1. One navigation, one role — and two kinds of organisation
 
 | ✔ | Criterion | Evidence |
 | --- | --- | --- |
 | ✅ | Six modules — Overview, Programmes, Beneficiaries, Service Delivery, Duplicate Resolution, Reports | `MdaConsole.test.tsx` · `MdaGating.test.tsx` |
-| ✅ | Officer and Admin get the **identical** rail; items gate on permission, never on role | `MdaGating.test.tsx` |
-| ✅ | Officer permissions are a strict **subset** of Admin's — the premise of one rail | `MdaRoleMatrixTest` |
-| ✅ | The Admin-only difference is exactly six permissions, pinned against seeder drift | `MdaRoleMatrixTest` |
+| ✅ | **MDA Officer no longer exists** (merged into MDA Admin, PRD v1.6) — absent from `RoleKey` and the seeded roles | `MdaRoleMatrixTest::test_mda_officer_no_longer_exists` |
+| ✅ | Items gate on **permission, never on role name** — the shape that let the role merge land without touching navigation | `MdaGating.test.tsx` |
+| ✅ | The MDA Admin permission set is pinned against seeder drift | `MdaRoleMatrixTest` |
+| ✅ | A **partner organisation** (`type = partner`) uses this same console, same role, same scoping — no branch on organisation type | `MdaConsole.test.tsx` · `ImplementingPartnerTest` |
+| ✅ | Wording is derived, not hard-coded: a partner sees *Partner workspace / Partner Admin / scoped to your organisation*; a government MDA sees the original wording unchanged | `MdaConsole.test.tsx` (`names the workspace after the organisation standing in it`) |
+| ✅ | The partner label is **display only** — role key and permissions untouched | `workspaceIdentity.ts` · `MdaRoleMatrixTest` |
 | ✅ | Settings is a header affordance, never a rail item | `MdaGating.test.tsx` |
 | ✅ | A module the user cannot reach disappears rather than showing a dead link | `MdaConsole.test.tsx` |
 | ✅ | The console is closed to non-MDA roles; the generic operator rail is closed to MDA roles | `MdaConsole.test.tsx` |
@@ -74,9 +77,9 @@ Module detail: [web/src/features/mda/README.md](../web/src/features/mda/README.m
 
 | ✔ | Criterion | Evidence |
 | --- | --- | --- |
-| ✅ | Aggregate reports ride `reporting.export`; both roles hold it | `MdaReportsModuleTest` · `MdaRoleMatrixTest` |
-| ✅ | Bulk beneficiary export rides `beneficiary.export` — Admin yes, Officer **denied** | `MdaReportsModuleTest` · `MdaRoleMatrixTest` |
-| ✅ | Granting the Officer role export works, and does **not** widen scope | `MdaRoleMatrixTest` |
+| ✅ | Aggregate reports ride `reporting.export`; MDA Admin holds it | `MdaReportsModuleTest` · `MdaRoleMatrixTest` |
+| ✅ | Bulk beneficiary export rides `beneficiary.export`, scoped to the caller's own organisation | `MdaReportsModuleTest` · `MdaRoleMatrixTest` |
+| ✅ | Granting export to a role works, and does **not** widen scope | `MdaRoleMatrixTest` |
 | ✅ | NIN/BVN masked without `export.reveal_pii`; no MDA role can hold it | `MdaReportsModuleTest` · `MdaGating.test.tsx` |
 | ✅ | No identifier column is selectable in an aggregate report at all | `MdaReportsModuleTest` |
 | ✅ | Every export audited with actor, scope, filters, format, row count, reveal flag | `MdaReportsModuleTest` |
@@ -139,8 +142,8 @@ Recorded rather than papered over.
 
 - **Per-user permission grants do not exist.** `docs/SECURITY.md` §3 says
   `beneficiary.export` "may be granted per user"; permissions resolve from
-  `role_permission` only, so in practice an administrator grants it to the *MDA Officer
-  role* through the permission-matrix editor. Documented in `MdaRoleMatrixTest`.
+  `role_permission` only, so in practice an administrator grants it to a *role* through
+  the permission-matrix editor. Documented in `MdaRoleMatrixTest`.
 - **`export.reveal_pii` masking is asserted, not exercised end-to-end.** It is in
   `NEVER_ROLE_GRANTABLE`, so no MDA role can hold it and there is no legitimate way to
   construct a revealing MDA export. Tests assert masking holds and that neither role
