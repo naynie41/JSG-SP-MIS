@@ -1,5 +1,5 @@
 # =============================================================================
-# SP-MIS edge reverse proxy — TLS termination + security headers (SECURITY.md §5).
+# SP-MIS edge reverse proxy — TLS termination + security headers (see the security notes kept with the project docs, §5).
 # Rendered by the nginx image's envsubst: only ${NGINX_*} / ${API_UPSTREAM} /
 # ${WEB_UPSTREAM} are substituted (they are set as env vars); nginx runtime
 # variables ($host, $uri, $request_uri, …) are NOT env vars and are left intact.

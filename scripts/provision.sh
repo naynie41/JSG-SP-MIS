@@ -620,7 +620,7 @@ if (( SWAP_GB > 0 )); then
 fi
 
 # ---- App directory ---------------------------------------------------------
-# DEPLOY.md §2.1 clones the repo here; §2.4 serves ACME challenges from ./acme.
+# The deployment runbook §2.1 clones the repo here; §2.4 serves ACME challenges from ./acme.
 log "STAGE 3: Preparing ${APP_DIR}"
 install -d -m 755 -o "${DEPLOY_USER}" -g "${DEPLOY_USER}" "${APP_DIR}"
 install -d -m 755 -o "${DEPLOY_USER}" -g "${DEPLOY_USER}" "${APP_DIR}/acme"
@@ -678,7 +678,8 @@ ${REBOOT_NOTE}
      'baseline-hardened-docker'. Clean rollback point before app config.
 
   4. Stage 4: authenticate to GHCR and pull the images.
-     Follow docs/GHCR-Setup-Runbook.pdf, then docs/DEPLOY.md §2.3 onward.
+     Follow the GHCR setup runbook, then the deployment runbook §2.3 onward.
+     Both are kept outside this repository — ask the project owner for them.
      The app directory is ready at ${APP_DIR} (with ./acme for Let's Encrypt).
   ------------------------------------------------------------------
 

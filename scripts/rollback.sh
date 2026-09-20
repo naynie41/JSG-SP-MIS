@@ -10,7 +10,7 @@
 # does not know about — code is almost always the thing that needs undoing. Restoring
 # data is a different act with different risk (it discards every registration,
 # benefit, grievance and audit entry written since the dump), so it stays a manual,
-# deliberate operation rather than a flag on the emergency script. See DEPLOY.md §5.
+# deliberate operation rather than a flag on the emergency script. See the deployment runbook §5.
 #
 # USAGE (from the compose directory, as the deploy user):
 #   ./scripts/rollback.sh              # → the previously deployed tag
@@ -119,7 +119,7 @@ if [[ -x "${VERIFY}" ]]; then
     exit 1
   fi
 else
-  warn "verify.sh not found at ${VERIFY} — verify manually (DEPLOY.md §2.7)."
+  warn "verify.sh not found at ${VERIFY} — verify manually (deployment runbook §2.7)."
 fi
 
 log "Rolled back to ${TARGET_TAG}."

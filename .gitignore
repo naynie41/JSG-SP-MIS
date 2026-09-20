@@ -25,32 +25,21 @@ Thumbs.db
 # Docker
 *.local
 
-# Documentation artefacts — generated or duplicated, nothing reads them.
+# Internal documentation — kept on disk, out of the repository (decision 2026-09-20).
 #
-# Scoped to docs/ on purpose: the real brand assets live at
-# api/resources/brand/jigawa-crest.png and web/public/brand/jigawa-logo.png and
-# ARE used (the PDF crest, the SPA header). The copies under docs/ are originals
-# kept for reference.
+# Nothing in docs/ is read at build or run time; the code only CITES these files in
+# comments. The brand assets that are actually used live elsewhere and are unaffected:
+# api/resources/brand/jigawa-crest.png (the PDF crest) and
+# web/public/brand/jigawa-logo.png (the SPA header).
 #
-# Binary drops into docs/ are the recurring accident here — a beneficiary
-# spreadsheet was committed this way once — so the rule covers the file types
-# rather than only today's filenames.
-docs/*.pdf
-docs/*.png
-docs/*.jpg
-docs/*.jpeg
-docs/*.xlsx
-docs/*.xls
-docs/*.docx
-docs/*.pptx
-docs/*.csv
-
-# …except the GHCR runbook: scripts/deploy.sh and scripts/provision.sh point
-# operators at it, so it has to travel with a server checkout.
-!docs/GHCR-Setup-Runbook.pdf
-
-# NOTE: docs/DEPLOYMENT-RUNBOOK.pdf and "docs/Jigawa Logo 1.png" are matched by
-# the rules above but remain TRACKED — .gitignore does not untrack anything. They
-# are left in git deliberately (decision 2026-09-20). To drop them later:
-#   git rm --cached "docs/DEPLOYMENT-RUNBOOK.pdf" "docs/Jigawa Logo 1.png"
-# which removes them from the remote for everyone on the next push.
+# Consequences, so nobody rediscovers them the hard way:
+#   - A fresh clone has NO docs/. That includes docs/CLAUDE.md, which carries the
+#     project's locked decisions and is cited by ~84 source files. Keep a copy
+#     somewhere durable — losing your working tree loses it.
+#   - The operational runbooks (DEPLOY.md, GHCR-Setup-Runbook.pdf) are therefore NOT
+#     on a server checkout. scripts/deploy.sh and scripts/provision.sh no longer point
+#     at them; they say where the runbooks are kept instead.
+#
+# To put a single file back under version control, force it past this rule:
+#   git add -f docs/CLAUDE.md
+/docs/
