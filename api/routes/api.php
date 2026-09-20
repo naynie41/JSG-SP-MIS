@@ -18,6 +18,8 @@ use App\Http\Controllers\Api\V1\Graduation\GraduationController;
 use App\Http\Controllers\Api\V1\Grievance\GrievanceController;
 use App\Http\Controllers\Api\V1\Grievance\GrievanceSlaPolicyController;
 use App\Http\Controllers\Api\V1\HealthController;
+use App\Http\Controllers\Api\V1\Library\LibraryItemController;
+use App\Http\Controllers\Api\V1\Library\PublicLibraryController;
 use App\Http\Controllers\Api\V1\Matching\MatchingConfigController;
 use App\Http\Controllers\Api\V1\MfaController;
 use App\Http\Controllers\Api\V1\Notification\BroadcastController;
@@ -95,6 +97,38 @@ Route::prefix('v1')->group(function (): void {
             Route::post('/password', [AuthController::class, 'changePassword'])->name('auth.password');
             Route::post('/mfa/disable', [MfaController::class, 'disable'])->name('auth.mfa.disable');
         });
+    });
+
+    /*
+    |--------------------------------------------------------------------------
+    | PUBLIC — no authentication (FR-RES-04)
+    |--------------------------------------------------------------------------
+    |
+    | The resource library, served to anyone. Read the warning before adding to
+    | this group: apart from /health and login, these are the ONLY endpoints in
+    | SP-MIS that answer without a token, so anything placed here is on the open
+    | internet by definition.
+    |
+    | Three things hold the line, and all three are deliberate:
+    |   - PublicLibraryController queries only through LibraryItem::published(),
+    |     so a draft is never reachable, not even by its id;
+    |   - PublicLibraryItemResource is a separate class from the admin one, so
+    |     internal fields cannot leak by a forgotten condition;
+    |   - `throttle:library` bounds scraping and stops the download counter from
+    |     being inflated for free.
+    |
+    | Nothing here writes anything a visitor controls. The one write is an atomic
+    | increment of download_count.
+    */
+    Route::prefix('public')->middleware('throttle:library')->group(function (): void {
+        Route::get('/library', [PublicLibraryController::class, 'index'])
+            ->name('public.library.index');
+
+        Route::get('/library/{libraryItem}/download', [PublicLibraryController::class, 'download'])
+            ->name('public.library.download');
+
+        Route::get('/library/{libraryItem}/thumbnail', [PublicLibraryController::class, 'thumbnail'])
+            ->name('public.library.thumbnail');
     });
 
     /*
@@ -749,5 +783,25 @@ Route::prefix('v1')->group(function (): void {
             ->middleware('permission:reporting.view')->name('reports.show');
         Route::get('/reports/{report}/download', [ReportController::class, 'download'])
             ->middleware(['permission:reporting.export', 'throttle:exports'])->name('reports.download');
+
+        /*
+        | Resource library administration (FR-RES-02/03). System Administrator only
+        | in practice, because only that role holds `library.*`.
+        |
+        | There is no `library.publish`: publishing is a status change made by
+        | whoever may edit the item, and a permission that no role is ever denied
+        | describes a distinction the system does not draw.
+        |
+        | The PUBLIC side of this feature is the `public/library` group far above —
+        | different controller, different API resource, no authentication.
+        */
+        Route::get('/library', [LibraryItemController::class, 'index'])
+            ->middleware('permission:library.view')->name('library.index');
+        Route::post('/library', [LibraryItemController::class, 'store'])
+            ->middleware('permission:library.create')->name('library.store');
+        Route::match(['put', 'patch'], '/library/{libraryItem}', [LibraryItemController::class, 'update'])
+            ->middleware('permission:library.edit')->name('library.update');
+        Route::delete('/library/{libraryItem}', [LibraryItemController::class, 'destroy'])
+            ->middleware('permission:library.edit')->name('library.destroy');
     });
 });

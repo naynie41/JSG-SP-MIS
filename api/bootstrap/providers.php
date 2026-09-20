@@ -4,6 +4,7 @@ use App\Domain\Access\AccessServiceProvider;
 use App\Domain\Benefit\BenefitServiceProvider;
 use App\Domain\Graduation\GraduationServiceProvider;
 use App\Domain\Grievance\GrievanceServiceProvider;
+use App\Domain\Library\LibraryServiceProvider;
 use App\Domain\Matching\MatchingServiceProvider;
 use App\Domain\Notification\NotificationServiceProvider;
 use App\Domain\Ops\OpsServiceProvider;
@@ -30,4 +31,5 @@ return [
     SyncServiceProvider::class,
     GraduationServiceProvider::class,
     OpsServiceProvider::class,
+    LibraryServiceProvider::class,
 ];

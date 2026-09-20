@@ -61,6 +61,24 @@ class AppServiceProvider extends ServiceProvider
             return Limit::perMinute(60)->by('intake|'.$key);
         });
 
+        /*
+         * The PUBLIC resource library (FR-RES-04).
+         *
+         * Keyed on IP, because there is no user — this is the only throttle in the
+         * application that protects endpoints nobody has authenticated to. It is
+         * doing two jobs: bounding a scrape of the library, and making the download
+         * counter cost something, since an unauthenticated increment is otherwise
+         * free to inflate.
+         *
+         * Set generously. The public page loads a list and then a thumbnail per
+         * card, so a single visitor legitimately makes tens of requests in a few
+         * seconds, and a limit tuned for the download endpoint alone would break the
+         * page on first paint.
+         */
+        RateLimiter::for('library', fn (Request $request): Limit => Limit::perMinute(
+            (int) config('security.rate_limits.public_library_per_minute', 120)
+        )->by('library|'.$request->ip()));
+
         // Bulk PII egress — beneficiary/report exports (SECURITY.md export matrix).
         // A tight per-user ceiling turns a scripted mass-export into noise + audit.
         RateLimiter::for('exports', function (Request $request): Limit {
