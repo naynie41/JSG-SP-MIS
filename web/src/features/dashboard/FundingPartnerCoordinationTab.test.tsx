@@ -11,7 +11,6 @@ function makeCoordination(over: Partial<PartnerCoordination> = {}): PartnerCoord
       { partner_id: 'u-2', name: 'UNICEF', is_self: false, allocated: null, delivered_value: null, net_unique_reached: null, funded_programmes: null, shared_programmes: 1 },
     ],
     agencies: [{ id: 'm1', name: 'Ministry of Humanitarian Affairs', activities: 3, programmes: 2 }],
-    data_sharing: { agencies_integrated: 1, connectors: 2, sources: ['api', 'csv'], total_runs: 10, succeeded: 8, failed: 2, last_run_at: new Date().toISOString(), api_registrations: 120 },
     ...over,
   }
 }
@@ -126,15 +125,14 @@ describe('FundingPartnerCoordinationTab', () => {
     expect(within(funding).getByText(/your own funding only/i)).toBeInTheDocument()
   })
 
-  it('renders data sharing / sync health', () => {
+  // Sync health is the MDAs' operational concern; a funder can act on none of it, so it
+  // has no place on a coordination tab. Asserted so it does not drift back in.
+  it('shows no data-sharing / sync health panel', () => {
     render(<FundingPartnerCoordinationTab data={buildPayload(buildPf(makeCoordination()))} />)
 
-    const ds = screen.getByRole('region', { name: 'Data sharing' })
-    expect(within(ds).getByText('Agencies integrated')).toBeInTheDocument()
-    expect(within(ds).getByText('Data connections')).toBeInTheDocument()
-    expect(within(ds).getByText('Runs failed')).toBeInTheDocument()
-    expect(within(ds).getByText('API registrations')).toBeInTheDocument()
-    expect(within(ds).getByText('Api')).toBeInTheDocument() // a source chip (humanised)
+    expect(screen.queryByRole('region', { name: 'Data sharing' })).not.toBeInTheDocument()
+    expect(screen.queryByText(/agencies integrated/i)).not.toBeInTheDocument()
+    expect(screen.queryByText(/last sync/i)).not.toBeInTheDocument()
   })
 
   it('omits meetings + reporting-compliance modules (inert slots only)', () => {

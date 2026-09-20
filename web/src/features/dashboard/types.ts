@@ -343,16 +343,6 @@ export interface PartnerCoordination {
   landscape: { funders: number; government_agencies: number; implementing_agencies: number }
   funding_by_partner: PartnerCoordinationFunder[]
   agencies: PartnerCoordinationAgency[]
-  data_sharing: {
-    agencies_integrated: number
-    connectors: number
-    sources: string[]
-    total_runs: number
-    succeeded: number
-    failed: number
-    last_run_at: string | null
-    api_registrations: number
-  }
 }
 
 /** Phase 6P — activity-precise funding aggregates for a Development Partner. Money is

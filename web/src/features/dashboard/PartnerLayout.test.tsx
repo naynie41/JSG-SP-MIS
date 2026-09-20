@@ -78,7 +78,6 @@ const partnerFunding: PartnerFunding = {
     landscape: { funders: 2, government_agencies: 3, implementing_agencies: 2 },
     funding_by_partner: [{ partner_id: 'u-1', name: 'World Bank', is_self: true, allocated: 200_000_000, delivered_value: 60_000_000, net_unique_reached: 800, funded_programmes: 2, shared_programmes: 2 }],
     agencies: [],
-    data_sharing: { agencies_integrated: 1, connectors: 2, sources: ['api'], total_runs: 5, succeeded: 4, failed: 1, last_run_at: null, api_registrations: 30 },
   },
 }
 

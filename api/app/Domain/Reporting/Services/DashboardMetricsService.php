@@ -1341,9 +1341,13 @@ class DashboardMetricsService
      * PARTNER COORDINATION (Phase 6P "Coordination" tab) — the actor landscape AROUND a
      * partner's funded programmes: the funding organisations, government agencies (MDAs)
      * and implementing agencies active in them; a funding-by-partner table (amounts for
-     * the CALLER only — a partner never sees another funder's money); the MDA landscape;
-     * and data-sharing / sync health for the implementing agencies. Programme overlap
-     * (the tab's headline) is served by {@see programmeOverlap()} on the same block.
+     * the CALLER only — a partner never sees another funder's money); and the MDA
+     * landscape. Programme overlap (the tab's headline) is served by
+     * {@see programmeOverlap()} on the same block.
+     *
+     * Deliberately NOT here: sync/integration health. Connectors belong to the MDAs, are
+     * operated by them, and a funder can do nothing about a failed run — it was noise on
+     * a coordination tab, bought with six queries per load.
      *
      * @param  list<string>  $fundedProgrammeIds
      * @param  array{allocated:int,delivered_value:int,net_unique_reached:int,funded_programmes:int}  $selfTotals
@@ -1356,7 +1360,6 @@ class DashboardMetricsService
             'landscape' => ['funders' => 0, 'government_agencies' => 0, 'implementing_agencies' => 0],
             'funding_by_partner' => [],
             'agencies' => [],
-            'data_sharing' => ['agencies_integrated' => 0, 'connectors' => 0, 'sources' => [], 'total_runs' => 0, 'succeeded' => 0, 'failed' => 0, 'last_run_at' => null, 'api_registrations' => 0],
         ];
         if ($fundedProgrammeIds === []) {
             return $empty;
@@ -1433,19 +1436,6 @@ class DashboardMetricsService
             ->whereIn('activity_id', $callerActivityIds)
             ->distinct()->count('mda_id');
 
-        // Data sharing / sync health for the implementing MDAs (Phase 7 sync status, reused).
-        $apiRegistrations = 0;
-        if ($callerActivityIds !== []) {
-            $servedIds = Benefit::query()->withoutGlobalScope(MdaScope::class)
-                ->where('status', '!=', BenefitStatus::Reversed->value)
-                ->whereIn('activity_id', $callerActivityIds)->distinct()->pluck('beneficiary_id')->all();
-            $apiRegistrations = $servedIds === [] ? 0 : Beneficiary::query()->withoutGlobalScope(MdaScope::class)
-                ->whereIn('id', $servedIds)->where('registration_source', 'api')->count();
-        }
-        $connectorBase = SyncConnector::query()->withoutGlobalScopes()->whereIn('owner_mda_id', $mdaIds);
-        $runBase = SyncRun::query()->withoutGlobalScopes()->whereIn('owner_mda_id', $mdaIds);
-        $lastRun = $mdaIds === [] ? null : (clone $runBase)->latest('created_at')->first();
-
         return [
             'landscape' => [
                 'funders' => count($funderProgrammes),
@@ -1454,16 +1444,6 @@ class DashboardMetricsService
             ],
             'funding_by_partner' => $fundingByPartner,
             'agencies' => $agencies,
-            'data_sharing' => [
-                'agencies_integrated' => $mdaIds === [] ? 0 : (int) (clone $connectorBase)->distinct()->count('owner_mda_id'),
-                'connectors' => $mdaIds === [] ? 0 : (clone $connectorBase)->count(),
-                'sources' => $mdaIds === [] ? [] : (clone $connectorBase)->distinct()->pluck('source')->filter()->values()->all(),
-                'total_runs' => $mdaIds === [] ? 0 : (clone $runBase)->count(),
-                'succeeded' => $mdaIds === [] ? 0 : (clone $runBase)->where('status', 'completed')->count(),
-                'failed' => $mdaIds === [] ? 0 : (clone $runBase)->where('status', 'failed')->count(),
-                'last_run_at' => $lastRun?->created_at?->toIso8601String(),
-                'api_registrations' => $apiRegistrations,
-            ],
         ];
     }
 
