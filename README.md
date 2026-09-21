@@ -371,6 +371,38 @@ not run programme delivery.
 
 ---
 
+## Public resource library
+
+A **Resources** page at **`/resources`**, open to anyone — no account, no login. Policies,
+guidelines, tools and reports, each either a downloadable document or a link elsewhere,
+searchable and filterable by category, with a pinned *Key Content* band. The System
+Administrator publishes them from the tenth console section at **`/admin/library`**.
+
+It is the only part of SP-MIS that serves content without authentication, so the boundary is
+explicit rather than implied:
+
+- only **published** resources are served — a draft or withdrawn item is unreachable even by
+  its id, and so is its thumbnail;
+- the public response is a **separate class** from the administrative one, so internal fields
+  cannot leak through a forgotten condition;
+- uploads are restricted by **extension and content type** to document formats. HTML, SVG and
+  XML are refused: this endpoint has nobody authenticated in front of it, and a document that
+  renders from the State's own origin is a stored-XSS vector whatever headers accompany it;
+- files are stored on the **private** disk and streamed as attachments, never served
+  statically — which is also what makes withdrawal immediate rather than advisory;
+- both public endpoints are rate-limited by IP.
+
+Withdrawing a resource **archives** it, keeping the record and its download count; deletion is
+reserved for something added in error. Categories are configuration
+(`api/config/library.php`), not a table, so adding one is a config change and a deploy.
+
+> **No malware scanning exists in this stack** — administrator-only upload is the control, and
+> that is a recorded, accepted risk. See PRD §7.14 (FR-RES-01..05) and `docs/SECURITY.md`.
+> A release carrying this feature must run `RolesAndPermissionsSeeder`, not just the migration:
+> `permissions:sync` creates the permission rows but does not attach them to the role.
+
+---
+
 ## MDA console
 
 The delivery workspace for an implementing agency — **six task-based modules** (Overview,
