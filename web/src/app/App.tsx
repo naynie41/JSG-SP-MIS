@@ -39,6 +39,8 @@ const AdminAuditPage = lazy(() => import('@/features/admin/AdminAuditPage').then
 const AdminIntegrationsPage = lazy(() => import('@/features/admin/AdminIntegrationsPage').then((m) => ({ default: m.AdminIntegrationsPage })))
 const AdminReportsPage = lazy(() => import('@/features/admin/AdminReportsPage').then((m) => ({ default: m.AdminReportsPage })))
 const AdminSettingsPage = lazy(() => import('@/features/admin/AdminSettingsPage').then((m) => ({ default: m.AdminSettingsPage })))
+const LibraryAdminPage = lazy(() => import('@/features/library/LibraryAdminPage').then((m) => ({ default: m.LibraryAdminPage })))
+const ResourcesPage = lazy(() => import('@/features/library/ResourcesPage').then((m) => ({ default: m.ResourcesPage })))
 
 const MdaLayout = lazy(() => import('@/features/mda/MdaLayout').then((m) => ({ default: m.MdaLayout })))
 const MdaOverviewPage = lazy(() => import('@/features/mda/MdaOverviewPage').then((m) => ({ default: m.MdaOverviewPage })))
@@ -163,6 +165,14 @@ export function App() {
     <Routes>
       <Route path="/" element={<RootRoute />} />
 
+      {/*
+        PUBLIC. Not wrapped in PublicOnlyRoute — unlike /login, this page is for
+        everyone: an anonymous visitor and a signed-in officer both have reason to
+        open it, and bouncing an authenticated user to /home would break any link
+        to a published resource shared inside government.
+      */}
+      <Route path="/resources" element={<ResourcesPage />} />
+
       <Route
         path="/login"
         element={
@@ -205,6 +215,7 @@ export function App() {
           <Route path="matching" element={<AdminMatchingPage />} />
           <Route path="audit" element={<AdminAuditPage />} />
           <Route path="reports" element={<AdminReportsPage />} />
+          <Route path="library" element={<LibraryAdminPage />} />
           <Route path="settings" element={<AdminSettingsPage />} />
         </Route>
         <Route path="/mda" element={<MdaLayout />}>

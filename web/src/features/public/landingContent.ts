@@ -205,9 +205,17 @@ export const FOOTER_LINKS: { heading: string; links: { label: string; to: string
 ]
 
 /** Header navigation — anchors to sections on this page, never to authenticated routes. */
+/**
+ * Header navigation.
+ *
+ * Mostly in-page anchors, because the landing page is one long document. `/resources`
+ * is the exception — a real route — and LandingHeader routes anything that does not
+ * start with `#` through the router rather than reloading the application.
+ */
 export const NAV_LINKS = [
   { label: 'About', to: '#about' },
   { label: 'Programmes', to: '#programmes' },
+  { label: 'Resources', to: '/resources' },
   { label: 'Grievance redress', to: '#grievance-redress' },
   { label: 'Contact', to: '#contact' },
 ]

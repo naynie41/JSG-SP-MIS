@@ -1,0 +1,362 @@
+/*
+ * Resource library — the public page and the administration section.
+ *
+ * The public page is the only surface in SP-MIS a member of the public sees with
+ * content on it, so it is built from the same tokens as the signed-in product
+ * rather than a separate look: a citizen and an officer should recognise the same
+ * system. Everything here is token-driven; no raw colours, no off-ramp values.
+ */
+
+/* ------------------------------------------------------------ administration */
+
+.adminLede {
+  margin: 0;
+  max-width: 62ch;
+  color: var(--text-muted-strong);
+  font-size: var(--fs-ui);
+}
+
+.cellTitle {
+  display: grid;
+  gap: 2px;
+}
+.cellName {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-2);
+  font-weight: 600;
+  color: var(--ink);
+}
+.cellMeta {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-1);
+  font-size: var(--fs-caption);
+  color: var(--text-muted-strong);
+}
+
+.featuredRow {
+  display: grid;
+  gap: var(--space-1);
+}
+.featuredHint {
+  margin: 0;
+  padding-left: calc(var(--space-6) + var(--space-1));
+  font-size: var(--fs-caption);
+  color: var(--text-muted-strong);
+}
+
+/* -------------------------------------------------------------- public page */
+
+.publicPage {
+  min-height: 100vh;
+  background: var(--bg);
+}
+
+.publicHero {
+  padding: calc(var(--space-8) * 2) var(--space-5) var(--space-8);
+  text-align: center;
+  background: var(--surface);
+  border-bottom: 1px solid var(--border);
+}
+
+.heroEyebrow {
+  display: inline-block;
+  padding: var(--space-1) var(--space-3);
+  border-radius: var(--radius-full);
+  background: var(--surface-mint);
+  color: var(--forest);
+  font-family: var(--font-mono);
+  font-size: var(--fs-caption);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.heroTitle {
+  margin: var(--space-4) 0 var(--space-3);
+  font-family: var(--font-display);
+  /* Clamped rather than stepped at a breakpoint: this is the largest type in the
+     product and a hard jump at 768px is visible on a tablet rotation. */
+  font-size: clamp(2.2rem, 6vw, 3.4rem);
+  font-weight: 700;
+  color: var(--ink);
+  text-wrap: balance;
+}
+
+.heroLede {
+  margin: 0 auto;
+  max-width: 58ch;
+  color: var(--text-muted-strong);
+  font-size: var(--fs-h3);
+  line-height: 1.5;
+  text-wrap: pretty;
+}
+
+/* --- filters --- */
+
+.filterBar {
+  position: sticky;
+  /* Sticks under the fixed landing header rather than at 0, or it slides beneath it. */
+  top: 72px;
+  z-index: 5;
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-3);
+  padding: var(--space-4) var(--space-5);
+  background: var(--surface);
+  border-bottom: 1px solid var(--border);
+}
+
+.searchWrap {
+  position: relative;
+  flex: 1 1 320px;
+  display: flex;
+  align-items: center;
+}
+.searchIcon {
+  position: absolute;
+  left: var(--space-3);
+  color: var(--text-muted-strong);
+  pointer-events: none;
+}
+.searchInput {
+  width: 100%;
+  padding: var(--space-3) var(--space-3) var(--space-3) calc(var(--space-6) + var(--space-2));
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  background: var(--bg);
+  color: var(--ink);
+  font: inherit;
+  font-size: var(--fs-ui);
+}
+.searchInput:focus-visible {
+  outline: var(--focus-ring);
+  outline-offset: var(--focus-offset);
+  border-color: var(--forest);
+}
+
+.categoryWrap {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  padding: 0 var(--space-3);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  background: var(--bg);
+  color: var(--text-muted-strong);
+}
+.categorySelect {
+  padding: var(--space-3) var(--space-1);
+  border: 0;
+  background: transparent;
+  color: var(--ink);
+  font: inherit;
+  font-size: var(--fs-ui);
+}
+.categorySelect:focus-visible {
+  outline: var(--focus-ring);
+  outline-offset: var(--focus-offset);
+}
+
+/* --- sections --- */
+
+.publicBody {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: var(--space-8) var(--space-5) calc(var(--space-8) * 2);
+}
+
+.section + .section {
+  margin-top: var(--space-8);
+}
+
+.sectionHead {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: var(--space-4);
+  margin-bottom: var(--space-4);
+}
+
+.sectionTitle {
+  margin: 0;
+  padding-left: var(--space-3);
+  border-left: 3px solid var(--accent);
+  font-family: var(--font-display);
+  font-size: var(--fs-h2);
+  font-weight: 700;
+  color: var(--ink);
+}
+
+.sectionCount {
+  font-size: var(--fs-label);
+  color: var(--text-muted-strong);
+  font-variant-numeric: tabular-nums;
+}
+
+.centered {
+  display: grid;
+  place-items: center;
+  padding: var(--space-8);
+}
+
+.emptyPanel {
+  padding: var(--space-8);
+  text-align: center;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  background: var(--surface);
+}
+.emptyTitle {
+  margin: 0 0 var(--space-2);
+  font-weight: 600;
+  color: var(--ink);
+}
+.emptyNote {
+  margin: 0;
+  color: var(--text-muted-strong);
+}
+
+/* --- cards --- */
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: var(--space-4);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  overflow: hidden;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  background: var(--surface);
+  transition: var(--transition);
+}
+.card:hover {
+  border-color: var(--border-strong);
+  box-shadow: var(--elev-sm);
+}
+
+.cover {
+  position: relative;
+  aspect-ratio: 16 / 9;
+  display: grid;
+  place-items: center;
+  background: var(--surface-mint);
+  border-bottom: 1px solid var(--border);
+}
+.coverImage {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.coverFallback {
+  display: grid;
+  justify-items: center;
+  gap: var(--space-2);
+  color: var(--forest);
+  font-family: var(--font-mono);
+  font-size: var(--fs-caption);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+.coverTag {
+  position: absolute;
+  top: var(--space-2);
+  right: var(--space-2);
+  padding: 2px var(--space-2);
+  border-radius: var(--radius-sm);
+  background: var(--forest);
+  color: var(--bg);
+  font-family: var(--font-mono);
+  font-size: var(--fs-caption);
+  letter-spacing: 0.06em;
+}
+
+.cardBody {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  /* Grows so every Download button in a row lines up, whatever the text length. */
+  flex: 1;
+  padding: var(--space-4);
+}
+
+.cardCategory {
+  font-family: var(--font-mono);
+  font-size: var(--fs-caption);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--text-muted-strong);
+}
+
+.cardTitle {
+  margin: 0;
+  font-family: var(--font-display);
+  font-size: var(--fs-h3);
+  font-weight: 600;
+  color: var(--ink);
+  text-wrap: balance;
+}
+
+.cardText {
+  margin: 0;
+  color: var(--text-muted-strong);
+  font-size: var(--fs-label);
+  line-height: 1.5;
+}
+
+.cardMeta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-3);
+  margin-top: auto;
+  padding-top: var(--space-2);
+  font-size: var(--fs-caption);
+  color: var(--text-muted-strong);
+  font-variant-numeric: tabular-nums;
+}
+
+.cardAction {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-2);
+  padding: var(--space-3);
+  border-radius: var(--radius-sm);
+  background: var(--forest);
+  color: var(--bg);
+  font-size: var(--fs-ui);
+  font-weight: 600;
+  text-decoration: none;
+  transition: var(--transition);
+}
+.cardAction:hover {
+  background: var(--forest-2);
+}
+.cardAction:focus-visible {
+  outline: var(--focus-ring);
+  outline-offset: var(--focus-offset);
+}
+
+@media (max-width: 640px) {
+  .publicHero {
+    padding: calc(var(--space-8) + var(--space-5)) var(--space-4) var(--space-6);
+  }
+  .publicBody {
+    padding: var(--space-6) var(--space-4) var(--space-8);
+  }
+  .filterBar {
+    padding: var(--space-3) var(--space-4);
+  }
+  .grid {
+    grid-template-columns: 1fr;
+  }
+}
