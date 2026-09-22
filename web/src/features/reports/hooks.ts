@@ -162,6 +162,21 @@ export function useExportSegment() {
   })
 }
 
+/** "People in the register" — one PDF of the whole scope, no options (FR-RPT-12). */
+export function useRegisterProfile() {
+  const qc = useQueryClient()
+  const toast = useToast()
+
+  return useMutation({
+    mutationFn: () => reportsApi.registerProfile(),
+    onSuccess: () => {
+      void qc.invalidateQueries({ queryKey: RUNS_KEY })
+      toast.success('Report queued', 'The PDF appears under Recent exports as soon as it is ready.')
+    },
+    onError: (error) => toast.error('Could not start the report', message(error, 'Please try again.')),
+  })
+}
+
 /* ------------------------------------------------------ duplicate review (FR-DUP) */
 
 export function useDuplicateReview(filter: DuplicateReviewFilterInput, enabled = true) {

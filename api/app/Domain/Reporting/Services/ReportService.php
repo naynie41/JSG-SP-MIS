@@ -101,6 +101,24 @@ class ReportService
     }
 
     /**
+     * Queue "People in the register" — charts of the whole scope (FR-RPT-12).
+     *
+     * No definition is stored, because there is nothing to capture: the report always
+     * means "everyone this requester could see". The ENTITLEMENT is captured, exactly
+     * as the segment export captures it, so the file is built against the access the
+     * requester held when they asked rather than whatever their roles are by the time
+     * the queue reaches it.
+     */
+    public function queueRegisterProfile(User $user, SegmentAccess $access): ReportRun
+    {
+        return $this->createRun(ReportFormat::Pdf, [
+            'report_key' => ReportRun::KEY_REGISTER_PROFILE,
+            'report_label' => 'People in the register',
+            'params' => $access->toParams(),
+        ], $access->scope, $user->id, $user->mda_id);
+    }
+
+    /**
      * Queue the duplicate review report. The caller has already checked the scope may
      * have it; the scope is captured on the run like every other report.
      */

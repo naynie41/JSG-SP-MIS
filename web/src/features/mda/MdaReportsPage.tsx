@@ -181,6 +181,8 @@ export function MdaReportsPage() {
                   datasets={datasets}
                   canExport={canExport}
                   exportSummary
+
+                  peopleProfileOnly
                   subjectPanels={{ duplicates: <DuplicateReviewReport canExport={canExport} /> }}
                 />
               ),
@@ -210,10 +212,13 @@ export function MdaReportsPage() {
         </div>
         <Card>
           <p className={styles.muted}>
-            <Icon icon={Download} size={14} /> Summary reports contain no personal records, so anyone in your {identity.org}
-            who can run a report can export one. A row-level beneficiary export is different: it is an {identity.orgLabel}
-            Administrator permission, limited to your own {identity.org}, with NIN and BVN hidden unless a separate reveal
-            permission has been granted.
+            {/* The `{' '}` are load-bearing: JSX drops whitespace adjacent to an
+                expression across a line break, so `{identity.org}` followed by a
+                newline renders as "your MDAwho can run a report". */}
+            <Icon icon={Download} size={14} /> Summary reports contain no personal records, so anyone in your{' '}
+            {identity.org} who can run a report can export one. A row-level beneficiary export is different: it is an{' '}
+            {identity.orgLabel} Administrator permission, limited to your own {identity.org}, with NIN and BVN hidden
+            unless a separate reveal permission has been granted.
           </p>
           <p className={styles.footnote}>
             You can only ever export what you could already see. An export inherits the scope and filters of the

@@ -58,6 +58,13 @@ class ReportRun extends Model
 
     public const KEY_DUPLICATE_REVIEW = 'duplicate_review';
 
+    /**
+     * "People in the register" — charts of the whole scope, no filters and no rows.
+     * Carries no definition: there is nothing to capture, because it always means
+     * everyone the requester could see.
+     */
+    public const KEY_REGISTER_PROFILE = 'register_profile';
+
     protected $table = 'report_runs';
 
     /**

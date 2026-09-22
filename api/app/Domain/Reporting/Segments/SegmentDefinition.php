@@ -30,6 +30,18 @@ final readonly class SegmentDefinition
     ) {}
 
     /**
+     * No filters, no breakdown — the caller's whole scope.
+     *
+     * Named rather than left as `new SegmentDefinition()` at call sites, so a report
+     * that means "everyone" says so, and cannot be mistaken for one whose filters were
+     * dropped on the way in.
+     */
+    public static function empty(): self
+    {
+        return new self;
+    }
+
+    /**
      * Parse and validate a client payload against the dimension catalogue.
      *
      * Anything not in the catalogue is REFUSED rather than ignored. A silently dropped

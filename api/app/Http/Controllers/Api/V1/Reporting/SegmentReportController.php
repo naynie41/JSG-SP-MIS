@@ -117,6 +117,29 @@ class SegmentReportController extends Controller
         return ApiResponse::success((new ReportRunResource($run))->resolve(), status: 202);
     }
 
+    /**
+     * "People in the register" — a chart-led PDF of the whole scope (FR-RPT-12).
+     *
+     * No request body at all, and that is the design: there is nothing to filter, no
+     * breakdown to pick and no format to choose. It produces no rows, so it carries no
+     * personal data and needs no entitlement beyond the one that lets the caller export
+     * an aggregate report.
+     */
+    public function registerProfile(Request $request, AuditLogger $audit): JsonResponse
+    {
+        $access = $this->accessFor($request);
+        $run = $this->reports->queueRegisterProfile($request->user(), $access);
+
+        $audit->record('report.register_profile_exported', $run, after: [
+            'tier' => $access->tier,
+            'scope_kind' => $access->scope->kind,
+            'scope_label' => $access->scope->label,
+            'cell_size_guard' => $access->cellSizeGuard,
+        ], actor: $request->user());
+
+        return ApiResponse::success((new ReportRunResource($run))->resolve(), status: 202);
+    }
+
     private function accessFor(Request $request): SegmentAccess
     {
         $user = $request->user();

@@ -738,6 +738,12 @@ Route::prefix('v1')->group(function (): void {
         Route::post('/reports/segments/export', [SegmentReportController::class, 'export'])
             ->middleware(['permission:reporting.export', 'throttle:exports'])->name('reports.segments.export');
 
+        // "People in the register" (FR-RPT-12): the whole scope as charts, PDF only.
+        // Takes no body — no filters, no breakdown, no format — and produces no rows,
+        // so it is an aggregate export and rides `reporting.export` like the rest.
+        Route::post('/reports/register-profile', [SegmentReportController::class, 'registerProfile'])
+            ->middleware(['permission:reporting.export', 'throttle:exports'])->name('reports.register-profile');
+
         // Duplicate review (FR-DUP): the state of the match queue, not a builder. Counts
         // only; available to exactly the scopes the `duplicates` dataset is.
         Route::get('/reports/duplicate-review', [DuplicateReviewReportController::class, 'show'])

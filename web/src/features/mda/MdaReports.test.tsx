@@ -33,6 +33,7 @@ vi.mock('@/features/reports/api', () => ({
     segmentDimensions: vi.fn(),
     segmentPreview: vi.fn(),
     exportSegment: vi.fn(),
+    registerProfile: vi.fn(),
     duplicateReview: vi.fn(),
     exportDuplicateReview: vi.fn(),
   },
@@ -60,6 +61,7 @@ const runs = reportsApi.runs as Mock
 const schedules = reportsApi.schedules as Mock
 const segmentDimensions = reportsApi.segmentDimensions as Mock
 const exportSegment = reportsApi.exportSegment as Mock
+const registerProfile = reportsApi.registerProfile as Mock
 const duplicateReview = reportsApi.duplicateReview as Mock
 const listExport = exportListFile as Mock
 
@@ -144,6 +146,7 @@ describe('MDA console — Reports', () => {
       minimum_cell_size: 5,
     })
     exportSegment.mockResolvedValue({ id: 'run-1', status: 'pending' })
+    registerProfile.mockResolvedValue({ id: 'run-2', status: 'pending' })
     duplicateReview.mockResolvedValue({
       scope: { kind: 'mda', label: 'Ministry of Health' },
       filters: {},
@@ -222,20 +225,28 @@ describe('MDA console — Reports', () => {
     expect(within(panel).queryByLabelText('Dataset')).not.toBeInTheDocument()
   })
 
-  it('exports people with a summary under the crest', async () => {
+  /**
+   * "People in the register" is one act with no parameters: a PDF of charts covering the
+   * whole scope. The filters, the breakdown picker and the format select were removed
+   * because the only question the subject answers has no options — and their absence is
+   * asserted, so they cannot quietly return.
+   */
+  it('offers one PDF of the whole register, with nothing to configure', async () => {
     const user = userEvent.setup()
     renderPage()
     await ready()
 
     const panel = await openTab(user, 'Build a report')
-    await user.selectOptions(await within(panel).findByLabelText('Export as'), 'pdf')
-    expect(within(panel).getByText(/opens with the state crest and a summary/i)).toBeInTheDocument()
 
-    await user.click(within(panel).getByRole('button', { name: 'Export' }))
+    await user.click(await within(panel).findByRole('button', { name: /download the pdf/i }))
+    await waitFor(() => expect(registerProfile).toHaveBeenCalledTimes(1))
 
-    await waitFor(() =>
-      expect(exportSegment).toHaveBeenCalledWith({ filters: {}, breakdown: null }, 'pdf', { summary: true }),
-    )
+    // Nothing to compose beforehand, and no rows produced.
+    expect(within(panel).queryByLabelText('Export as')).not.toBeInTheDocument()
+    expect(within(panel).queryByLabelText('Break down by')).not.toBeInTheDocument()
+    expect(within(panel).queryByRole('button', { name: 'Run report' })).not.toBeInTheDocument()
+    expect(within(panel).queryByRole('button', { name: 'Add filter' })).not.toBeInTheDocument()
+    expect(exportSegment).not.toHaveBeenCalled()
   })
 
   it('lists a dataset the old hardcoded set left out', async () => {

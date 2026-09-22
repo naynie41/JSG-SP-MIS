@@ -32,6 +32,25 @@ final class SvgChart
 
     public const WEAK = '#B4791E';
 
+    /**
+     * The two gender series, for the register pyramid.
+     *
+     * Both are existing brand colours — the chart series green and the nav-rail forest
+     * — rather than a new pair invented for this chart. They were checked, not eyeballed:
+     * ΔE is 25 for normal vision and 22 under simulated deuteranopia (the floor is 8),
+     * and contrast on white is 4.95 and 12.92.
+     *
+     * Lime was the obvious "brand" choice and was rejected on measurement: it separates
+     * from forest beautifully (ΔE 49) but sits at 1.31 contrast on white, so a lime bar
+     * has almost no edge against the page.
+     *
+     * Colour is never the only signal here — each side is labelled and each bar carries
+     * its own percentage.
+     */
+    public const FEMALE = '#008300';
+
+    public const MALE = '#2C3512';
+
     private const FONT = 'DejaVu Sans';
 
     /**
@@ -250,6 +269,123 @@ final class SvgChart
         }
 
         return $y === 0 ? null : self::image($width, $y, $body);
+    }
+
+    /**
+     * A population pyramid: age bands down the middle, women left, men right.
+     *
+     * The one chart here that reads as a picture of a population rather than a list of
+     * numbers — the shape itself says whether the register skews young, or female, or
+     * neither, before anyone reads a figure.
+     *
+     * Bars are scaled against the LARGEST SINGLE BAR on either side, not against each
+     * side's own total. Scaling per side would draw both wings the same width whatever
+     * the split, which is the one thing a reader takes from this chart at a glance.
+     *
+     * Percentages are of the CHARTED population — everyone who appears somewhere on the
+     * chart — so left and right together make 100%. That has to be said out loud,
+     * because the charted population is not the whole register: anyone without a
+     * recorded date of birth cannot be placed on an age axis, and in a register where
+     * most dates are missing, percentages of everyone would render every bar as a
+     * sliver and the chart would say nothing. The caller states the coverage beneath.
+     *
+     * @param  list<array{band: string, female: int, male: int}>  $rows  oldest first
+     * @return array{uri: string, width: int, height: int}|null
+     */
+    public static function pyramid(array $rows, int $width, ?int $minimum = null): ?array
+    {
+        $rows = array_values(array_filter($rows, static fn (array $r): bool => $r['female'] > 0 || $r['male'] > 0));
+        if ($rows === []) {
+            return null;
+        }
+
+        $female = (int) array_sum(array_column($rows, 'female'));
+        $male = (int) array_sum(array_column($rows, 'male'));
+        $charted = $female + $male;
+
+        $peak = 0;
+        foreach ($rows as $row) {
+            $peak = max($peak, $row['female'], $row['male']);
+        }
+        if ($charted <= 0 || $peak <= 0) {
+            return null;
+        }
+
+        $labelWidth = 112.0;   // the centre column of age-band names
+        $gutter = 10.0;        // breathing room either side of the labels
+        // Space reserved OUTSIDE each bar for its percentage. Without it the longest
+        // bar — which by definition reaches the edge — has its caption clipped off.
+        $caption = 34.0;
+        $wing = ($width - $labelWidth - 2 * $gutter - 2 * $caption) / 2;
+        $rowHeight = 26.0;
+        $barHeight = 15.0;
+        $headerHeight = 44.0;
+
+        $centreLeft = $caption + $wing + $gutter;
+        $centreRight = $centreLeft + $labelWidth;
+        $share = static fn (int $n): string => self::trim($n / $charted * 100).'%';
+
+        /* ---- header: each side's swatch and label at the outer edge, total by the spine ---- */
+        $body = '<rect x="0" y="4" width="10" height="10" rx="2" fill="'.self::FEMALE.'"/>';
+        $body .= self::text(16, 13, 'Female', 9.5, self::MUTED, 'start');
+        $body .= self::text($centreLeft - $gutter, 13, number_format($female).' · '.$share($female), 11, self::INK, 'end', true);
+
+        $body .= '<rect x="'.self::n($width - 10).'" y="4" width="10" height="10" rx="2" fill="'.self::MALE.'"/>';
+        $body .= self::text($width - 16, 13, 'Male', 9.5, self::MUTED, 'end');
+        $body .= self::text($centreRight + $gutter, 13, number_format($male).' · '.$share($male), 11, self::INK, 'start', true);
+
+        $body .= '<line x1="0" y1="'.self::n($headerHeight - 14).'" x2="'.$width.'" y2="'.self::n($headerHeight - 14)
+            .'" stroke="'.self::GRID.'" stroke-width="1"/>';
+
+        /* ---- the bands ---- */
+        $y = $headerHeight;
+        foreach ($rows as $row) {
+            $mid = $y + $rowHeight / 2;
+            $barY = $mid - $barHeight / 2;
+
+            $body .= self::text($centreLeft + $labelWidth / 2, $mid + 3.5, $row['band'], 9, self::INK, 'middle');
+
+            foreach ([['female', self::FEMALE, -1], ['male', self::MALE, 1]] as [$key, $colour, $direction]) {
+                $count = $row[$key];
+                if ($count <= 0) {
+                    continue;
+                }
+
+                $length = max(2.0, $count / $peak * $wing);
+                $x = $direction < 0 ? $centreLeft - $gutter - $length : $centreRight + $gutter;
+
+                // Rounded on the outer end only, so the bars read as growing away from
+                // the centre spine rather than as free-floating lozenges.
+                $body .= '<path d="'.self::wingPath($x, $barY, $length, $barHeight, $direction < 0).'" fill="'.$colour.'"/>';
+
+                // A suppressed band is marked rather than silently drawn short.
+                $label = self::held($count, $minimum) ? '‹'.$minimum : $share($count);
+                $labelX = $direction < 0 ? $x - 6 : $x + $length + 6;
+                $body .= self::text($labelX, $mid + 3.5, $label, 8.5, self::MUTED, $direction < 0 ? 'end' : 'start');
+            }
+
+            $y += $rowHeight;
+        }
+
+        return self::image($width, (int) ceil($y + 6), $body);
+    }
+
+    /** A bar rounded on one end only — the end pointing away from the centre spine. */
+    private static function wingPath(float $x, float $y, float $length, float $height, bool $leftward): string
+    {
+        $r = min(3.0, $length, $height / 2);
+
+        return $leftward
+            ? 'M'.self::n($x + $length).','.self::n($y).' H'.self::n($x + $r)
+                .' Q'.self::n($x).','.self::n($y).' '.self::n($x).','.self::n($y + $r)
+                .' V'.self::n($y + $height - $r)
+                .' Q'.self::n($x).','.self::n($y + $height).' '.self::n($x + $r).','.self::n($y + $height)
+                .' H'.self::n($x + $length).' Z'
+            : 'M'.self::n($x).','.self::n($y).' H'.self::n($x + $length - $r)
+                .' Q'.self::n($x + $length).','.self::n($y).' '.self::n($x + $length).','.self::n($y + $r)
+                .' V'.self::n($y + $height - $r)
+                .' Q'.self::n($x + $length).','.self::n($y + $height).' '.self::n($x + $length - $r).','.self::n($y + $height)
+                .' H'.self::n($x).' Z';
     }
 
     /**

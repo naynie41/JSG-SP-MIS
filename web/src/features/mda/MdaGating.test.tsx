@@ -205,11 +205,13 @@ describe('MDA console — permission gating for the single MDA role', () => {
     expect(screen.getByText('Not permitted')).toBeInTheDocument()
 
     // The two gates are separate: aggregate reporting rides `reporting.export`, which is
-    // untouched. Conflating them would either block reporting or open a PII path.
+    // untouched. Conflating them would either block reporting or open a PII path. The
+    // register profile is the aggregate side — it produces charts and no rows, so losing
+    // the row-level export permission must not take it away.
     await user.click(screen.getByRole('tab', { name: 'Build a report' }))
     await screen.findByLabelText(/what are you reporting on/i)
     expect(screen.queryByText(/needs the reporting export permission/i)).not.toBeInTheDocument()
-    expect(screen.getByRole('button', { name: 'Export' })).toBeInTheDocument()
+    expect(screen.getByRole('button', { name: /download the pdf/i })).toBeInTheDocument()
   })
 
   it('masks identifiers for the MDA role — reveal is never an MDA permission', async () => {

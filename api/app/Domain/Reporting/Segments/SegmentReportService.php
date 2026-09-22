@@ -252,6 +252,71 @@ class SegmentReportService
     }
 
     /**
+     * The population a definition describes, as a query for a caller to aggregate.
+     *
+     * Exposed for chart-led reports that need to count the same population several ways
+     * ({@see RegisterProfileExportBuilder}) rather than materialise it. Returns a
+     * scoped, unordered builder — every consumer clones it before adding conditions.
+     *
+     * @return Builder<Beneficiary>
+     */
+    public function baseQuery(SegmentDefinition $definition, SegmentAccess $access): Builder
+    {
+        return $this->queries->query($definition, $access->scope)->reorder();
+    }
+
+    /** The smallest group that may be published, for callers marking suppressed bars. */
+    public function minimumCellSize(): int
+    {
+        return $this->guard->minimum();
+    }
+
+    /**
+     * Gender against age band, for the register pyramid (FR-RPT-12).
+     *
+     * Returned OLDEST FIRST, because that is how a population pyramid is read — the
+     * elderly at the top, children at the base. `config('reporting.age_bands')` is
+     * written youngest first for every other consumer, so it is reversed here rather
+     * than the config being reordered under them.
+     *
+     * "Not recorded" is deliberately absent: a band with no age is not a position on an
+     * age axis, and drawing it as one would put a bar where no reader can place it. The
+     * count is reported in the figures beside the chart instead.
+     *
+     * @param  Builder<Beneficiary>  $base
+     * @return list<array{band: string, female: int, male: int}>
+     */
+    public function genderByAge(Builder $base): array
+    {
+        $today = Carbon::today();
+        $bands = array_reverse((array) config('reporting.age_bands', []), true);
+        $out = [];
+
+        foreach ($bands as $key => $range) {
+            [$min, $max] = $range;
+
+            $inBand = (clone $base)
+                ->whereNotNull('beneficiaries.date_of_birth')
+                ->whereDate('beneficiaries.date_of_birth', '<=', $today->copy()->subYears((int) $min)->toDateString());
+
+            if ($max !== null) {
+                $inBand->whereDate('beneficiaries.date_of_birth', '>', $today->copy()->subYears((int) $max)->toDateString());
+            }
+
+            $byGender = $this->countsBy($inBand, 'gender');
+            $ages = $max === null ? "{$min}+" : $min.'–'.((int) $max - 1);
+
+            $out[] = [
+                'band' => Str::headline((string) $key)." ({$ages})",
+                'female' => (int) ($byGender[Gender::Female->value] ?? 0),
+                'male' => (int) ($byGender[Gender::Male->value] ?? 0),
+            ];
+        }
+
+        return $out;
+    }
+
+    /**
      * @param  Builder<Beneficiary>  $base
      * @return array<string, int> keyed by stored value; a missing value is keyed ''
      */
