@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { KeyRound, Mail, ShieldCheck, UserCircle } from 'lucide-react'
+import { KeyRound, Mail, UserCircle } from 'lucide-react'
 import { Badge } from '@/components/Badge/Badge'
 import { Button } from '@/components/Button/Button'
 import { Card } from '@/components/Card/Card'
@@ -99,17 +99,18 @@ function PreferencesPanel() {
 /* -------------------------------------------------------------------- security */
 
 /**
- * Password change and MFA state. Both are the existing auth endpoints:
- * `POST /auth/password` (verifies the current password, applies the policy, then
- * invalidates the session) and `POST /auth/mfa/disable` (refused for a role whose MFA is
- * mandatory — the server decides, and this page reports what it decided).
+ * Password change, via the existing `POST /auth/password` (verifies the current
+ * password, applies the policy, then invalidates the session).
  *
- * First-time MFA *enrolment* is not reachable from here: it runs on the login flow behind
- * a short-lived setup token, so a signed-in session has no way to start it. Said plainly
- * rather than offered as a control that could not work.
+ * **No two-factor panel here** (owner's decision 2026-09-22). MFA is mandatory for the
+ * System Administrator alone and is managed in the administration console; no role that
+ * reaches this page can enrol in it, so a panel here could only ever have reported
+ * "Not enabled" beside an explanation of why nothing could be done about it. The server
+ * still decides — `POST /auth/mfa/disable` exists and is still refused for a role whose
+ * MFA is mandatory — this screen simply no longer asks the question.
  */
 function SecurityPanel() {
-  const { user, logout } = useAuth()
+  const { logout } = useAuth()
   const toast = useToast()
 
   const [current, setCurrent] = useState('')
@@ -117,13 +118,6 @@ function SecurityPanel() {
   const [confirm, setConfirm] = useState('')
   const [error, setError] = useState<string | null>(null)
   const [saving, setSaving] = useState(false)
-
-  const [mfaCode, setMfaCode] = useState('')
-  const [mfaError, setMfaError] = useState<string | null>(null)
-  const [disabling, setDisabling] = useState(false)
-
-  const mfaEnabled = user?.mfa_enabled ?? false
-  const mfaRequired = user?.mfa_required ?? false
 
   async function submitPassword() {
     setError(null)
@@ -150,20 +144,6 @@ function SecurityPanel() {
       }
     } finally {
       setSaving(false)
-    }
-  }
-
-  async function submitDisableMfa() {
-    setMfaError(null)
-    setDisabling(true)
-    try {
-      await authApi.mfaDisable(mfaCode)
-      toast.success('Two-factor authentication turned off')
-      setMfaCode('')
-    } catch (err) {
-      setMfaError(err instanceof ApiError ? err.message : 'Could not turn off two-factor authentication.')
-    } finally {
-      setDisabling(false)
     }
   }
 
@@ -216,52 +196,6 @@ function SecurityPanel() {
         </div>
       </Card>
 
-      <Card titleAs="h3" title="Two-factor authentication" eyebrow="Security">
-        <div className={styles.choiceRow}>
-          <Badge variant={mfaEnabled ? 'success' : 'warning'} dot>
-            {mfaEnabled ? 'Enabled' : 'Not enabled'}
-          </Badge>
-          {mfaRequired && <Badge variant="neutral" dot>Required for your role</Badge>}
-        </div>
-
-        {mfaRequired ? (
-          <p className={styles.queueNote}>
-            <Icon icon={ShieldCheck} size={14} /> Your role requires two-factor authentication, so it cannot be turned
-            off. If you need to move it to a new device, an administrator can reset your enrolment.
-          </p>
-        ) : mfaEnabled ? (
-          <div className={layout.form}>
-            {mfaError && (
-              <p className={layout.alert} role="alert">
-                {mfaError}
-              </p>
-            )}
-            <TextField
-              label="Authentication code"
-              inputMode="numeric"
-              autoComplete="one-time-code"
-              value={mfaCode}
-              onChange={(event) => setMfaCode(event.target.value)}
-              helper="Confirm with a current code from your authenticator app."
-            />
-            <div>
-              <Button variant="danger" loading={disabling} disabled={mfaCode.trim() === ''} onClick={submitDisableMfa}>
-                Turn off two-factor authentication
-              </Button>
-            </div>
-          </div>
-        ) : (
-          <p className={styles.queueNote}>
-            <Icon icon={ShieldCheck} size={14} /> Two-factor authentication is set up when you sign in, not from here.
-            An administrator can require it for your account.
-          </p>
-        )}
-
-        <p className={styles.footnote}>
-          Whether two-factor authentication may be turned off is decided by your role on the server. This page reports
-          that decision rather than making it
-        </p>
-      </Card>
     </div>
   )
 }

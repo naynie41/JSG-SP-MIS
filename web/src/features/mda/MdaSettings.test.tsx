@@ -180,44 +180,30 @@ describe('MDA console — Settings', () => {
     expect(logout).not.toHaveBeenCalled()
   })
 
-  it('lets an optional MFA enrolment be turned off with a code', async () => {
+  /**
+   * MFA left this screen on 2026-09-22: it is mandatory for the System Administrator
+   * alone and managed in the administration console. No role that can reach this page
+   * is able to enrol, so a panel here could only report "Not enabled" beside an
+   * explanation of why nothing could be done about it.
+   *
+   * Asserted as an absence so it cannot drift back in, and so that anyone restoring it
+   * has to decide deliberately rather than by copying an older file.
+   */
+  it('offers no two-factor controls at all', async () => {
     account.mfa_enabled = true
     const user = userEvent.setup()
     renderPage()
     await screen.findByRole('tabpanel')
 
     const panel = await openTab(user, 'Security')
-    expect(within(panel).getByText('Enabled')).toBeInTheDocument()
 
-    await user.type(within(panel).getByLabelText('Authentication code'), '123456')
-    await user.click(within(panel).getByRole('button', { name: /turn off two-factor/i }))
-
-    await waitFor(() => expect(mfaDisable).toHaveBeenCalledWith('123456'))
-  })
-
-  it('will not offer to turn off MFA when the role requires it', async () => {
-    account.mfa_enabled = true
-    account.mfa_required = true
-    const user = userEvent.setup()
-    renderPage()
-    await screen.findByRole('tabpanel')
-
-    const panel = await openTab(user, 'Security')
-    expect(within(panel).getByText('Required for your role')).toBeInTheDocument()
-    // The server refuses with MFA_REQUIRED; the UI does not offer a control that fails.
+    expect(within(panel).queryByText(/two-factor/i)).not.toBeInTheDocument()
     expect(within(panel).queryByRole('button', { name: /turn off two-factor/i })).not.toBeInTheDocument()
-    expect(within(panel).getByText(/cannot be turned off/i)).toBeInTheDocument()
-  })
+    expect(within(panel).queryByLabelText('Authentication code')).not.toBeInTheDocument()
+    expect(mfaDisable).not.toHaveBeenCalled()
 
-  it('says plainly that first-time enrolment happens at sign-in', async () => {
-    const user = userEvent.setup()
-    renderPage()
-    await screen.findByRole('tabpanel')
-
-    // Enrolment runs behind a short-lived setup token on the login flow, so a signed-in
-    // session cannot start it — better said than offered as a broken button.
-    const panel = await openTab(user, 'Security')
-    expect(within(panel).getByText(/set up when you sign in, not from here/i)).toBeInTheDocument()
+    // The panel is still there and still does its actual job.
+    expect(within(panel).getByRole('button', { name: /change password/i })).toBeInTheDocument()
   })
 
   it('writes no MDA or platform configuration', async () => {

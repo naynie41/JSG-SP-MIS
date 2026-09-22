@@ -38,9 +38,20 @@ class SeederTest extends TestCase
             $this->assertDatabaseHas('roles', ['key' => $roleKey->value, 'is_system' => true]);
         }
 
-        // MFA is mandatory for the privileged roles.
-        $this->assertTrue(Role::where('key', RoleKey::SystemAdministrator->value)->firstOrFail()->requires_mfa);
-        $this->assertTrue(Role::where('key', RoleKey::Executive->value)->firstOrFail()->requires_mfa);
+        // MFA is mandatory for the System Administrator and for NOBODY ELSE (owner's
+        // decision 2026-09-22; it previously also bound Executive). Asserted as an
+        // exhaustive sweep rather than one role at a time, so adding a role cannot
+        // quietly opt it into mandatory MFA — or out of it.
+        foreach (RoleKey::cases() as $roleKey) {
+            $role = Role::where('key', $roleKey->value)->firstOrFail();
+            $expected = $roleKey === RoleKey::SystemAdministrator;
+
+            $this->assertSame(
+                $expected,
+                (bool) $role->requires_mfa,
+                "Role {$roleKey->value} should ".($expected ? '' : 'not ').'require MFA.',
+            );
+        }
 
         // All registered permissions are synced and System Administrator holds them all.
         $this->assertGreaterThanOrEqual(13, Permission::count());
