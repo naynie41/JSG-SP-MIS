@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { Ban, CheckCircle2, KeyRound, PauseCircle, Pencil, Plus, ShieldOff } from 'lucide-react'
+import { Ban, CheckCircle2, KeyRound, LockOpen, PauseCircle, Pencil, Plus, ShieldOff } from 'lucide-react'
 import { Button } from '@/components/Button/Button'
 import { Badge } from '@/components/Badge/Badge'
 import { statusVariant } from '@/components/Badge/statusVariant'
@@ -13,7 +13,7 @@ import { Modal } from '@/components/Modal/Modal'
 import { useAuth } from '@/lib/auth/AuthProvider'
 import { ApiError } from '@/types/api'
 import { UserFormModal } from './UserFormModal'
-import { useForcePasswordReset, useResetMfa, useUserStatus, useUsers } from './hooks'
+import { useForcePasswordReset, useResetMfa, useUnlockUser, useUserStatus, useUsers } from './hooks'
 import type { ManagedUser } from './types'
 import layout from '@/features/shared/formLayout.module.css'
 import styles from './users.module.css'
@@ -42,13 +42,14 @@ export function UserListPage({ embedded = false }: UserListPageProps = {}) {
   const statusMutation = useUserStatus()
   const passwordReset = useForcePasswordReset()
   const resetMfa = useResetMfa()
+  const unlockMutation = useUnlockUser()
 
   const [formState, setFormState] = useState<{ open: boolean; user: ManagedUser | null }>({ open: false, user: null })
   const [confirm, setConfirm] = useState<ConfirmState | null>(null)
   // A temporary password is returned exactly once by the API; it lives here only
   // until the administrator dismisses the dialog.
   const [issued, setIssued] = useState<{ name: string; password: string } | null>(null)
-  const busy = statusMutation.isPending || passwordReset.isPending || resetMfa.isPending
+  const busy = statusMutation.isPending || passwordReset.isPending || resetMfa.isPending || unlockMutation.isPending
 
   if (!canView) {
     return (
@@ -62,6 +63,33 @@ export function UserListPage({ embedded = false }: UserListPageProps = {}) {
     const actions: MenuAction[] = [
       { label: 'Edit', icon: Pencil, onSelect: () => setFormState({ open: true, user }) },
     ]
+
+    // Offered FIRST when it applies, and only then. A lockout is the one state the
+    // list already flagged but gave nobody a way to clear — an admin looking at a
+    // locked row is almost certainly here to fix exactly that.
+    //
+    // Deliberately separate from Activate: a locked account is usually still `active`,
+    // so reactivating it would appear to do nothing while the real block remained.
+    if (user.is_locked) {
+      actions.push({
+        label: 'Unlock account',
+        icon: LockOpen,
+        onSelect: () =>
+          setConfirm({
+            title: 'Unlock this account?',
+            confirmLabel: 'Unlock',
+            danger: false,
+            body: (
+              <>
+                <strong>{user.name}</strong> was locked after repeated failed sign-ins. Unlocking clears the lock and
+                the attempt count so they can sign in again straight away. Their password is unchanged — if they have
+                forgotten it, force a password reset instead.
+              </>
+            ),
+            run: () => unlockMutation.mutateAsync(user.id),
+          }),
+      })
+    }
 
     if (user.status !== 'active') {
       actions.push({

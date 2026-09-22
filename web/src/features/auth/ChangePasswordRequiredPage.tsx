@@ -19,6 +19,14 @@ import styles from './ChangePasswordRequired.module.css'
  * Separate from the settings page's change-password card because the situation is
  * different: the user did not choose to be here, the "current password" is one
  * somebody handed them, and there is nowhere else to navigate.
+ *
+ * "Nowhere else to navigate" is not the same as "no way out", and that distinction was
+ * missed the first time. Someone who opens this page without the temporary password to
+ * hand — it is in an email they have not found, or it was read to them and misheard —
+ * had no exit at all: no back, no sign out, every other route redirected straight back
+ * here. Clearing site data was the only escape. There is now a sign-out, which is the
+ * honest option for "I cannot do this right now" and costs nothing: the account still
+ * carries `must_change_password`, so the next sign-in lands here again.
  */
 export function ChangePasswordRequiredPage() {
   const { user, logout } = useAuth()
@@ -101,10 +109,21 @@ export function ChangePasswordRequiredPage() {
               onChange={(event) => setConfirm(event.target.value)}
             />
 
-            <Button type="submit" disabled={saving}>
-              {saving ? 'Saving…' : 'Set password and sign in again'}
-            </Button>
+            <div className={styles.actions}>
+              <Button type="submit" disabled={saving}>
+                {saving ? 'Saving…' : 'Set password and sign in again'}
+              </Button>
+              <Button type="button" variant="secondary" disabled={saving} onClick={() => void logout()}>
+                Sign out
+              </Button>
+            </div>
           </form>
+
+          <p className={styles.escape}>
+            Do not have the temporary password to hand? Sign out and come back to it — the
+            account keeps waiting for a new password, and an administrator can issue
+            another temporary one.
+          </p>
         </Card>
       </div>
     </div>

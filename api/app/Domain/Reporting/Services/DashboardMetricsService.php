@@ -392,11 +392,56 @@ class DashboardMetricsService
             'gender_known' => $knownGender,
             'female_pct' => $knownGender > 0 ? round($female / $knownGender, 4) : null,
             'age_bands' => $this->ageBands($base),
+            // Gender AGAINST age, for the population pyramid. A separate block rather
+            // than a reshaping of the two above, because `by_gender` and `age_bands`
+            // count everyone while this counts only people with BOTH recorded — the
+            // three do not reconcile, and pretending otherwise would be the bug.
+            'gender_by_age' => $this->genderByAge($base),
             'household_vs_individual' => [
                 'in_household' => $inHousehold,
                 'individual' => max(0, $total - $inHousehold),
             ],
         ];
+    }
+
+    /**
+     * Gender × age band, oldest first — the shape a population pyramid is read in.
+     *
+     * Only women and men are returned. "Other" and unrecorded genders are real and are
+     * reported in `by_gender`, but a pyramid has exactly two wings; putting a third
+     * category somewhere on the axis would invent a position for it. The card states
+     * the coverage instead.
+     *
+     * @param  Builder<Beneficiary>  $base
+     * @return list<array{key: string, band: string, female: int, male: int}>
+     */
+    private function genderByAge(Builder $base): array
+    {
+        $today = Carbon::today();
+        $out = [];
+
+        foreach (array_reverse((array) config('reporting.age_bands', []), true) as $key => $range) {
+            [$min, $max] = $range;
+
+            $inBand = (clone $base)
+                ->whereNotNull('date_of_birth')
+                ->whereDate('date_of_birth', '<=', $today->copy()->subYears((int) $min)->toDateString());
+
+            if ($max !== null) {
+                $inBand->whereDate('date_of_birth', '>', $today->copy()->subYears((int) $max)->toDateString());
+            }
+
+            $byGender = $this->countBy($inBand, 'gender');
+
+            $out[] = [
+                'key' => (string) $key,
+                'band' => $max === null ? "{$min}+" : $min.'–'.((int) $max - 1),
+                'female' => (int) ($byGender['female'] ?? 0),
+                'male' => (int) ($byGender['male'] ?? 0),
+            ];
+        }
+
+        return $out;
     }
 
     /**

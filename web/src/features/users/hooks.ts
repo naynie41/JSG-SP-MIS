@@ -63,6 +63,22 @@ export function useForcePasswordReset() {
   })
 }
 
+/** Lift a lockout after repeated failed sign-ins (FR-UAM-06). */
+export function useUnlockUser() {
+  const qc = useQueryClient()
+  const toast = useToast()
+  return useMutation({
+    mutationFn: (id: string) => userApi.unlock(id),
+    onSuccess: (result) => {
+      qc.invalidateQueries({ queryKey: USERS_KEY })
+      // The server's own words: it distinguishes "was locked, now unlocked" from
+      // "was not locked, attempts cleared", and the admin should hear which happened.
+      toast.success('Account unlocked', result.message)
+    },
+    onError: () => toast.error('Could not unlock the account', 'Please try again.'),
+  })
+}
+
 export function useResetMfa() {
   const qc = useQueryClient()
   const toast = useToast()

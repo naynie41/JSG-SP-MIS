@@ -59,12 +59,29 @@ export interface PopulationMetrics {
   period_days: number
 }
 
+/** One age band of the population pyramid — women and men counted separately. */
+export interface GenderAgeBand {
+  key: string
+  /** The range as it is read: "18–34", "60+". */
+  band: string
+  female: number
+  male: number
+}
+
 export interface DemographicsMetrics {
   total: number
   by_gender: Record<string, number>
   gender_known: number
   female_pct: number | null // 0..1, over KNOWN genders
   age_bands: Record<string, number> // children/youth/adults/elderly/unknown
+  /**
+   * Gender AGAINST age, oldest band first, for the population pyramid.
+   *
+   * Does NOT reconcile with `by_gender` or `age_bands`, by design: those count
+   * everyone, this counts only people with both recorded. Women and men only — a
+   * pyramid has two wings, and other/unrecorded genders have no position on it.
+   */
+  gender_by_age?: GenderAgeBand[]
   household_vs_individual: { in_household: number; individual: number }
 }
 

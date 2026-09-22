@@ -35,21 +35,25 @@ final class SvgChart
     /**
      * The two gender series, for the register pyramid.
      *
-     * Both are existing brand colours — the chart series green and the nav-rail forest
-     * — rather than a new pair invented for this chart. They were checked, not eyeballed:
-     * ΔE is 25 for normal vision and 22 under simulated deuteranopia (the floor is 8),
-     * and contrast on white is 4.95 and 12.92.
+     * These are the design system's own categorical pair (`--chart-1`, `--chart-2`) —
+     * the same two colours the dashboard's gender chart uses on screen. One measure,
+     * one colour, on paper and in the browser: this report and that card describe the
+     * same people, and having them disagree is the drift that makes a reader wonder
+     * whether the figures disagree too.
      *
-     * Lime was the obvious "brand" choice and was rejected on measurement: it separates
-     * from forest beautifully (ΔE 49) but sits at 1.31 contrast on white, so a lime bar
-     * has almost no edge against the page.
+     * Measured, not eyeballed: ΔE 29 for normal vision and 28 under simulated
+     * deuteranopia against a floor of 8, with contrast on white of 4.95 and 4.42.
      *
-     * Colour is never the only signal here — each side is labelled and each bar carries
-     * its own percentage.
+     * Forest was tried first and is worse on both counts (ΔE 25/22). Lime was the
+     * obvious "brand" answer and is worse still: it separates beautifully but sits at
+     * 1.31 contrast on white, so the bar has almost no edge against the page.
+     *
+     * Colour is never the only signal — each side is labelled and each bar carries its
+     * own percentage.
      */
     public const FEMALE = '#008300';
 
-    public const MALE = '#2C3512';
+    public const MALE = '#2A78D6';
 
     private const FONT = 'DejaVu Sans';
 

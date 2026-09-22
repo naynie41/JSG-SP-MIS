@@ -16,7 +16,7 @@ import { AreaTrendChart } from './charts/AreaTrendChart'
 import { ChartCard } from './charts/ChartCard'
 import type { ChartTable } from './charts/ChartCard'
 import { ColumnChart } from './charts/ColumnChart'
-import { DonutChart } from './charts/DonutChart'
+import { PyramidChart } from './charts/PyramidChart'
 import { RingMeter } from './charts/RingMeter'
 import { Sparkline } from './charts/Sparkline'
 import { SplitBar } from './charts/SplitBar'
@@ -265,41 +265,71 @@ export function QualityCard({ data }: { data: DashboardResponse }) {
 
 /* ------------------------------------------------------------ who is registered */
 
+/**
+ * Gender against age, as a population pyramid.
+ *
+ * This was a donut of the gender split. A donut of two categories can say exactly one
+ * thing — the share of women — and says it in the shape least suited to reading a
+ * proportion. The pyramid carries that same number in its wings AND the age structure
+ * underneath it, which is what anyone planning a programme actually came for.
+ *
+ * The honesty problem it inherits: only people with BOTH a gender and a date of birth
+ * can be placed on the chart at all. Where date-of-birth coverage is poor the pyramid
+ * describes a minority of the register, so the card says how many it left out rather
+ * than letting the shape stand unqualified. The table view still carries every gender,
+ * including Other and Not recorded, which a two-winged chart has no position for.
+ */
 export function GenderCard({ data }: { data: DashboardResponse }) {
   const minimum = data.min_cell_size ?? null
   const demographics = data.metrics.demographics
   if (!demographics) return null
 
   const count = (key: string) => demographics.by_gender[key] ?? 0
-  const slices = [
-    { key: 'female', label: 'Women', value: count('female'), color: 'var(--chart-1)' },
-    { key: 'male', label: 'Men', value: count('male'), color: 'var(--chart-2)' },
-    ...(count('other') > 0 ? [{ key: 'other', label: 'Other', value: count('other'), color: 'var(--chart-3)' }] : []),
-    { key: 'unspecified', label: 'Not recorded', value: count('unspecified'), color: OTHER_COLOR },
+  const bands = demographics.gender_by_age ?? []
+
+  const charted = bands.reduce((sum, b) => sum + b.female + b.male, 0)
+  const total = demographics.total ?? 0
+  const missing = Math.max(0, total - charted)
+
+  const genders = [
+    { key: 'female', label: 'Women', value: count('female') },
+    { key: 'male', label: 'Men', value: count('male') },
+    ...(count('other') > 0 ? [{ key: 'other', label: 'Other', value: count('other') }] : []),
+    { key: 'unspecified', label: 'Not recorded', value: count('unspecified') },
   ]
-  const total = slices.reduce((sum, slice) => sum + slice.value, 0)
-  // A share computed from a withheld count would give the count back.
-  const shareHidden = isHeld(count('female'), minimum) || isHeld(count('male'), minimum)
+  const genderTotal = genders.reduce((sum, g) => sum + g.value, 0)
 
   return (
     <ChartCard
-      title="Women and men"
-      sub={`${formatCount(demographics.gender_known, minimum)} with a recorded gender`}
+      title="Women and men by age"
+      sub={
+        missing > 0
+          ? `${formatCount(charted, minimum)} of ${formatCount(total, minimum)} — the rest have no date of birth recorded`
+          : `${formatCount(charted, minimum)} with a gender and date of birth recorded`
+      }
       headingLevel="h4"
       table={{
-        caption: 'People by gender',
-        columns: ['Gender', 'People', 'Share'],
-        rows: slices.map((slice) => [slice.label, formatCount(slice.value, minimum), isHeld(slice.value, minimum) ? '—' : share(slice.value, total)]),
+        caption: 'People by gender and age',
+        columns: ['Age', 'Women', 'Men'],
+        rows: [
+          ...bands.map((b) => [b.band, formatCount(b.female, minimum), formatCount(b.male, minimum)]),
+          // Every gender, including the two the pyramid cannot place — the table is
+          // where the full picture lives.
+          ...genders.map((g) => [
+            g.label,
+            formatCount(g.value, minimum),
+            isHeld(g.value, minimum) ? '—' : share(g.value, genderTotal),
+          ]),
+        ],
       }}
     >
-      <DonutChart
-        label="People by gender"
-        slices={slices}
-        centerValue={shareHidden ? '—' : percent(demographics.female_pct)}
-        centerLabel="are women"
-        unit="people"
+      <PyramidChart
+        label="People by gender and age"
+        bands={bands}
+        femaleColor="var(--chart-1)"
+        maleColor="var(--chart-2)"
         minimum={minimum}
-        emptyText="No genders recorded in this view yet."
+        emptyText="No dates of birth recorded yet, so people cannot be placed on an age band."
       />
     </ChartCard>
   )

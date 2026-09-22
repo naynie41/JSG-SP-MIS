@@ -194,6 +194,11 @@ Route::prefix('v1')->group(function (): void {
             ->middleware('permission:user.edit')->name('users.force-password-reset');
         Route::post('/users/{user}/reset-mfa', [UserController::class, 'resetMfa'])
             ->middleware('permission:user.edit')->name('users.reset-mfa');
+        // Lift a failed-sign-in lockout (FR-UAM-06). Separate from activate: status and
+        // lockout are independent, and clearing one as a side effect of the other would
+        // undo a live brute-force defence without anyone meaning to.
+        Route::post('/users/{user}/unlock', [UserController::class, 'unlock'])
+            ->middleware('permission:user.edit')->name('users.unlock');
 
         // Cross-MDA access grants (admin-managed, logged).
         Route::get('/mda-access-grants', [MdaAccessGrantController::class, 'index'])

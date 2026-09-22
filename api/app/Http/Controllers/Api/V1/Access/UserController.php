@@ -118,6 +118,40 @@ class UserController extends Controller
         return ApiResponse::success(['message' => 'MFA has been reset for the user.']);
     }
 
+    /**
+     * Lift a lockout from repeated failed sign-ins (FR-UAM-06).
+     *
+     * A lockout is a rate limit, not a sanction: it exists to make password guessing
+     * expensive, and it expires on its own. But the backoff is exponential and capped
+     * in hours, so a user who fat-fingers their password five times can be shut out for
+     * the rest of the working day with nobody able to help them — the admin console
+     * showed "locked" and offered nothing to do about it.
+     *
+     * This clears the counter and the timer, and nothing else. It is deliberately NOT
+     * folded into `activate`: status and lockout are independent, and clearing a lock as
+     * a side effect of a status change would mean an admin reactivating a suspended
+     * account silently undid a live brute-force defence.
+     *
+     * Tokens are left alone. The user has no valid session — they could not sign in —
+     * and revoking tokens they do not have would only sign out any parallel session
+     * they legitimately still hold.
+     */
+    public function unlock(User $user): JsonResponse
+    {
+        $wasLocked = $user->isLocked();
+
+        $user->clearLockout();
+
+        $this->audit->record('user.unlocked', $user, before: ['was_locked' => $wasLocked]);
+
+        return ApiResponse::success([
+            'message' => $wasLocked
+                ? 'The account is unlocked. The user can sign in again now.'
+                : 'The account was not locked. Any failed sign-in attempts have been cleared.',
+            'user' => (new UserResource($user->fresh()->load('role.permissions', 'mda')))->resolve(),
+        ]);
+    }
+
     private function changeStatus(User $user, UserStatus $status): JsonResponse
     {
         $user->update(['status' => $status]);

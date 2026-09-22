@@ -533,3 +533,104 @@
     transition: none;
   }
 }
+
+/* ------------------------------------------------------------------- pyramid */
+
+/*
+ * Women left, men right, age bands down the middle. Three columns so the centre
+ * spine stays put regardless of bar length — a grid rather than flex, because the
+ * band labels must align to each other and not to whatever is beside them.
+ */
+.pyramid {
+  display: grid;
+  gap: var(--space-2);
+}
+
+.pyramidRow {
+  display: grid;
+  /* The centre column is sized to the longest band label ("35–59"), and the wings
+     share what is left equally so the two sides are directly comparable. */
+  grid-template-columns: 1fr 5.5rem 1fr;
+  align-items: center;
+  gap: var(--space-2);
+}
+
+.pyramidWingLeft,
+.pyramidWingRight {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  min-width: 0;
+}
+
+/* The left wing runs right-to-left so its bar grows away from the spine. */
+.pyramidWingLeft {
+  flex-direction: row-reverse;
+}
+
+.pyramidBar {
+  height: 14px;
+  border-radius: var(--radius-sm);
+  transition: opacity var(--transition);
+}
+
+.pyramid:hover .pyramidBar:not(:hover) {
+  opacity: 0.55;
+}
+
+.pyramidBand {
+  text-align: center;
+  font-size: var(--fs-caption);
+  color: var(--text-muted-strong);
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+
+.pyramidValue {
+  flex: none;
+  font-size: var(--fs-caption);
+  color: var(--text-muted-strong);
+  font-variant-numeric: tabular-nums;
+}
+
+@media (max-width: 420px) {
+  .pyramidRow {
+    grid-template-columns: 1fr 4.25rem 1fr;
+  }
+  /* The share labels are the first thing to go when there is no room — the bars
+     still carry the comparison, and the table view carries the numbers. */
+  .pyramidValue {
+    display: none;
+  }
+}
+
+/* The two wings named, with their totals against the spine. */
+.pyramidLegend {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: var(--space-3);
+  margin-bottom: var(--space-3);
+  padding-bottom: var(--space-3);
+  border-bottom: 1px solid var(--border);
+  font-size: var(--fs-label);
+  color: var(--text-muted-strong);
+}
+
+.pyramidLegendItem {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+}
+
+.pyramidLegendItem strong {
+  color: var(--ink);
+  font-variant-numeric: tabular-nums;
+}
+
+.pyramidSwatch {
+  width: 10px;
+  height: 10px;
+  border-radius: 2px;
+  flex: none;
+}

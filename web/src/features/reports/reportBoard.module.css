@@ -775,3 +775,28 @@
   font-size: var(--fs-caption);
   color: var(--text-muted-strong);
 }
+
+/*
+ * A pyramid needs width: it is two wings plus a centre column, so at a third of a
+ * row the bars collapse to stubs and the shape — the whole reason to draw one —
+ * stops being legible. The gender card takes the full row and the other two
+ * demographic cards sit beneath it.
+ */
+.gridPyramid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: var(--space-5);
+}
+
+.gridPyramidPair {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  align-items: start;
+  gap: var(--space-5);
+}
+
+@media (max-width: 860px) {
+  .gridPyramidPair {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
