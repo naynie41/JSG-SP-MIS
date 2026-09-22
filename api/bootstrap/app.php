@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 use App\Domain\Grievance\Jobs\EscalateOverdueGrievances;
 use App\Domain\Privacy\Jobs\EnforceDataRetention;
+use App\Domain\Programme\Jobs\CompleteEndedActivities;
 use App\Domain\Referral\Jobs\EscalateOverdueReferrals;
 use App\Domain\Reporting\Jobs\RefreshDashboardSnapshots;
 use App\Domain\Reporting\Jobs\RunDueReportSchedules;
@@ -56,6 +57,12 @@ return Application::configure(basePath: dirname(__DIR__))
         // every enabled connector each hour. Per-connector jobs are unique so ticks
         // never overlap a running sync.
         $schedule->job(RunDueSyncConnectors::class)->hourly()->withoutOverlapping();
+
+        // Activity lifecycle (PRD §10): mark an activity completed once its timeline
+        // has ended. Completes only — archiving stays a human decision — and skips
+        // anything still awaiting a request-to-serve decision. Runs after the retention
+        // sweep so the two never contend for the same rows on a busy night.
+        $schedule->job(CompleteEndedActivities::class)->dailyAt('02:30')->withoutOverlapping();
 
         // Data-retention enforcement (NFR-PRV-01): apply the DPO's retention policies
         // daily. A no-op unless retention is enabled + policies are configured; the

@@ -473,6 +473,9 @@ Route::prefix('v1')->group(function (): void {
             ->middleware('permission:activity.edit')->name('activities.update');
         Route::post('/activities/{activity}/archive', [ActivityController::class, 'archive'])
             ->middleware('permission:activity.edit')->name('activities.archive');
+        // An archive is a filing decision, and filing decisions are sometimes wrong.
+        Route::post('/activities/{activity}/restore', [ActivityController::class, 'restore'])
+            ->middleware('permission:activity.edit')->name('activities.restore');
 
         // Activity-creation wizard — OPTIONAL inline upload (§10). Preview stages an
         // UNBOUND import batch (dedup runs before saving) reusing the /beneficiaries/
