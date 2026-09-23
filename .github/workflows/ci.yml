@@ -1,11 +1,26 @@
 name: CI
 
-# Proves that the branches we RELEASE FROM are always deployable: the full suite, lint,
+# Proves that the branch we RELEASE FROM is always deployable: the full suite, lint,
 # static analysis, and a Docker BUILD of the production images.
 #
-# `Dev` is included because release.yml triggers on a TAG from any branch, and tags are
-# cut from Dev. Running only on main meant the branch that actually ships was never
-# checked — every release so far was tagged from unverified commits.
+# Runs on `main` only (owner's decision, 2026-09-22). It previously also ran on every
+# push to `Dev`, which was noisy — day-to-day work does not need the full matrix on
+# each commit.
+#
+# What still protects the release path, and why this is safe:
+#
+#   - Every release tag to date sits on a commit that exists on BOTH branches: Dev is
+#     merged into main, and the tag is cut from the merge commit. So the commit that
+#     ships is always one main has tested.
+#   - `pull_request` into main still runs the full matrix, so a Dev → main PR is
+#     checked BEFORE it lands, not after.
+#   - Merging locally and pushing main directly also triggers it, and tagging is a
+#     separate deliberate act afterwards — so a red main is visible before a release.
+#
+# THE ONE WAY TO GET THIS WRONG: tagging `v*` from Dev without merging to main first.
+# release.yml triggers on a tag from ANY branch, so that commit would build and publish
+# having never been tested. If that is ever needed, run this workflow on the branch by
+# hand first — `workflow_dispatch` accepts any ref.
 #
 # It pushes NOTHING. Publishing is a deliberate act — cut a tag and release.yml builds
 # and pushes the artefact the VPS pulls. For a system holding personal data, "merged"
@@ -17,9 +32,9 @@ name: CI
 
 on:
   push:
-    branches: [main, Dev]
+    branches: [main]
   pull_request:
-    branches: [main, Dev]
+    branches: [main]
   workflow_dispatch: {}
 
 permissions:
