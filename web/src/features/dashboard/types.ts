@@ -59,12 +59,29 @@ export interface PopulationMetrics {
   period_days: number
 }
 
+/** One age band of the population pyramid — women and men counted separately. */
+export interface GenderAgeBand {
+  key: string
+  /** The range as it is read: "18–34", "60+". */
+  band: string
+  female: number
+  male: number
+}
+
 export interface DemographicsMetrics {
   total: number
   by_gender: Record<string, number>
   gender_known: number
   female_pct: number | null // 0..1, over KNOWN genders
   age_bands: Record<string, number> // children/youth/adults/elderly/unknown
+  /**
+   * Gender AGAINST age, oldest band first, for the population pyramid.
+   *
+   * Does NOT reconcile with `by_gender` or `age_bands`, by design: those count
+   * everyone, this counts only people with both recorded. Women and men only — a
+   * pyramid has two wings, and other/unrecorded genders have no position on it.
+   */
+  gender_by_age?: GenderAgeBand[]
   household_vs_individual: { in_household: number; individual: number }
 }
 
@@ -179,6 +196,8 @@ export interface PartnerContribution {
 export interface MdaDeliveryRow {
   mda_id: string
   mda: string | null
+  /** Government body or an implementing development partner; null if unresolved. */
+  kind: 'government' | 'partner' | null
   delivered_value: number // kobo
   deliveries: number // gross, not net
   reached: number // net-unique within this MDA
@@ -333,24 +352,18 @@ export interface PartnerCoordinationFunder {
 export interface PartnerCoordinationAgency {
   id: string
   name: string | null
+  /** An owning agency is not government by default — a development partner implements too. */
+  kind: 'government' | 'partner' | null
   activities: number
   programmes: number
 }
 
 export interface PartnerCoordination {
-  landscape: { funders: number; government_agencies: number; implementing_agencies: number }
+  /** `implementing_agencies` OWN activities here; `delivering_agencies` have actually
+   *  paid benefits out under your funded activities. The second is a subset of the first. */
+  landscape: { funders: number; implementing_agencies: number; delivering_agencies: number }
   funding_by_partner: PartnerCoordinationFunder[]
   agencies: PartnerCoordinationAgency[]
-  data_sharing: {
-    agencies_integrated: number
-    connectors: number
-    sources: string[]
-    total_runs: number
-    succeeded: number
-    failed: number
-    last_run_at: string | null
-    api_registrations: number
-  }
 }
 
 /** Phase 6P — activity-precise funding aggregates for a Development Partner. Money is

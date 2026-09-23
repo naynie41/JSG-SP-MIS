@@ -96,6 +96,15 @@ log "Starting the stack"
 # migration race between the three.
 $DC up -d
 
+# nginx resolves `api:9000` and `web:8080` ONCE, when its config loads. Recreating
+# api/web above hands them new container IPs, and a long-lived nginx keeps proxying
+# to the old ones — every SPA request then 502s while every container still reports
+# healthy. That took the site down after v1.4.0. Restarting nginx last re-resolves
+# both upstreams; it costs a sub-second blip during a deploy that is already
+# swapping containers.
+log "Restarting nginx so it re-resolves the recreated upstreams"
+$DC restart nginx
+
 # --- 5. Wait for health, then verify ----------------------------------------
 log "Waiting up to ${HEALTH_TIMEOUT}s for services to report healthy"
 deadline=$(( $(date +%s) + HEALTH_TIMEOUT ))
@@ -113,6 +122,27 @@ while :; do
   fi
   sleep 5
 done
+
+# --- 6. Reference data that must exist for the maps to draw -----------------
+# LGA boundaries are reference geometry shipped inside the image, not user data, and
+# `gis:load-boundaries` upserts by level + code. Nothing else loads them: migrations
+# create the table empty, and the only automatic loader is a demo-data seeder that
+# never runs in production. So a host provisioned from scratch renders every
+# choropleth as "boundary map is not available" until someone remembers this command
+# — which is exactly what happened to prod between go-live and v1.4.0.
+#
+# Guarded on the table being EMPTY, so a normal deploy pays nothing and a fresh or
+# restored host heals itself.
+BOUNDARY_FILE="database/data/jigawa-lga-boundaries.geojson"
+boundary_rows="$($DC exec -T api php artisan tinker --execute \
+  'echo App\Domain\Reporting\Gis\GeoBoundary::query()->count();' 2>/dev/null | tr -dc '0-9')"
+if [[ "${boundary_rows:-0}" == "0" ]]; then
+  log "No LGA boundaries loaded — loading them so the coverage maps can draw"
+  $DC exec -T api php artisan gis:load-boundaries lga "${BOUNDARY_FILE}" \
+    || warn "Boundary load failed. Maps will fall back to the LGA list; fix with: $DC exec -T api php artisan gis:load-boundaries lga ${BOUNDARY_FILE}"
+else
+  log "LGA boundaries already loaded (${boundary_rows})."
+fi
 
 # Resolved against THIS script's directory, not the working directory: deploy.sh is
 # run from the compose dir (/opt/spmis) but lives in /opt/spmis/scripts, so `./verify.sh`

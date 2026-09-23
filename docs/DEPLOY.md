@@ -301,7 +301,7 @@ Then open the domain — the SPA loads and you can sign in.
 
 ```bash
 cd /opt/spmis
-git fetch --tags && git checkout v1.1.0        # refresh compose/nginx config
+git fetch --tags && git checkout v1.1.0        # refresh compose/nginx config AND scripts/
 # edit .env → IMAGE_TAG=v1.1.0
 docker compose -f docker-compose.prod.yml pull
 docker compose -f docker-compose.prod.yml up -d   # recreates changed services; api re-migrates
@@ -309,6 +309,26 @@ docker compose -f docker-compose.prod.yml ps
 ```
 Take a backup first (§5). Migrations are forward-only; a redeploy applies any new
 ones automatically.
+
+> **`git checkout` updates `scripts/` too, and that matters.** `scripts/deploy.sh` and
+> `scripts/verify.sh` run *from the checkout*, so a server left on an old tag keeps
+> running the old scripts and re-introduces bugs already fixed in the repo. Pull before
+> you deploy, not after.
+
+### 3.0 What `scripts/deploy.sh` does that a bare `up -d` does not
+
+- **Restarts nginx last.** nginx resolves `api:9000` and `web:8080` **once, when its config
+  loads**. Recreating a container gives it a new IP, and nginx keeps proxying to the old
+  one — which presents as a **502 on every request** while `docker compose ps` shows every
+  service healthy. The restart is not optional tidying; it is the fix.
+- **Loads the LGA boundaries when the table is empty.** Counts `GeoBoundary`, and if zero
+  runs `gis:load-boundaries lga database/data/jigawa-lga-boundaries.geojson`. Without it a
+  fresh database serves the coverage map as a ranked-table fallback and nobody knows why.
+  A failure warns rather than aborting the deploy.
+- **`scripts/verify.sh` actually fetches the SPA** — `GET https://<domain>/` expecting 200
+  **and** the app shell (`<div id="root">`), plus a boundary count. Before that it checked
+  only API endpoints, so all three checks passed green through the 502 above: the API was
+  fine, the site was down, and verification said nothing.
 
 ### 3.1 One-time: LGA/Ward reference data before the activity-locations migration
 
@@ -726,8 +746,9 @@ now forecloses it.
 
 ### Known state at the time of writing
 
-- **Boundaries:** 27 LGA outlines ship and load. **Ward boundaries do not** — the GIS ward
-  layer falls back to a ranked table, which is a degradation, not a failure.
+- **Boundaries:** 27 LGA outlines ship and are loaded automatically by `scripts/deploy.sh`
+  when the table is empty (§3.0). **Ward boundaries do not exist** — the GIS ward layer
+  falls back to a ranked table, which is a degradation, not a failure.
 - **Wards:** 162 of roughly 287. Ward validation is per-LGA, so an LGA with no list accepts
   free text rather than rejecting every ward in it — the gap degrades quietly.
 - **Sync:** runs on `MockSyncSource` until real SOCU/government endpoints are supplied.

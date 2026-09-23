@@ -55,9 +55,9 @@ function ProfileTab({ beneficiary }: { beneficiary: Beneficiary }) {
 
       <Card title="Provenance" eyebrow="Origin" variant="mint">
         <dl className={styles.dl}>
-          {/* Owner MDA leads: it is the field that decides who may edit this
+          {/* Owning agency leads: it is the field that decides who may edit this
               record and who must request to serve (Principle 1). */}
-          <dt>Owner MDA</dt>
+          <dt>Owning agency</dt>
           <dd>{beneficiary.owner_mda?.name ?? '—'}</dd>
           <dt>Source</dt>
           <dd>{REGISTRATION_SOURCE_LABELS[beneficiary.registration_source] ?? beneficiary.registration_source}</dd>
@@ -164,7 +164,7 @@ export function BeneficiaryDetailPage() {
               Edit
             </Button>
           ) : (
-            // A non-owner previously got no Owner MDA, no Edit and no request
+            // A non-owner previously got no Owning agency, no Edit and no request
             // affordance — three absences to interpret. Principle 1: ownership
             // is stated, never discovered by hitting a permission error.
             !isOwner && (

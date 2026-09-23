@@ -22,7 +22,9 @@ class MdaController extends Controller
 {
     public function index(): JsonResponse
     {
-        $mdas = Mda::query()->orderBy('name')->get();
+        // The funder account is named on the row, so load it with the list rather than
+        // once per organisation.
+        $mdas = Mda::query()->with('funderAccount:id,name')->orderBy('name')->get();
 
         return ApiResponse::success(['mdas' => MdaResource::collection($mdas)->resolve()]);
     }

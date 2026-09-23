@@ -10,6 +10,7 @@ import { Icon } from '@/components/Icon/Icon'
 import { Tabs } from '@/components/Tabs/Tabs'
 import { TextField } from '@/components/Field/TextField'
 import { useAuth } from '@/lib/auth/AuthProvider'
+import { useWorkspaceIdentity } from './workspaceIdentity'
 import { RecordBenefitPage } from '@/features/benefits/RecordBenefitPage'
 import { AggregateTab, DeliveriesTab, FlagsTab } from '@/features/benefits/BenefitLedgerPage'
 import { BenefitsPanel } from '@/features/benefits/BenefitsPanel'
@@ -79,6 +80,7 @@ function Queue({
  * someone has already been served elsewhere.
  */
 function InterventionHistory() {
+  const identity = useWorkspaceIdentity()
   const [query, setQuery] = useState('')
   const [subject, setSubject] = useState<Beneficiary | null>(null)
   const results = useBeneficiaries({ page: 1, search: query }, query.trim().length > 0 && !subject)
@@ -94,7 +96,7 @@ function InterventionHistory() {
           </Button>
         </div>
         <p className={styles.queueNote}>
-          Every intervention recorded for this person, by any MDA. This is what makes duplicate support visible.
+          Every intervention recorded for this person, by any agency. This is what makes duplicate support visible.
         </p>
         <BenefitsPanel beneficiaryId={subject.id} />
       </div>
@@ -108,7 +110,7 @@ function InterventionHistory() {
         placeholder="Search by name"
         value={query}
         onChange={(event) => setQuery(event.target.value)}
-        helper="Your MDA's records, plus any you have been granted access to."
+        helper={`Your ${identity.orgPossessive} records, plus any you have been granted access to.`}
       />
       <div className={styles.activity}>
         {(results.data?.items ?? []).slice(0, 8).map((b) => (
@@ -158,6 +160,7 @@ function BenefitsGroup() {
 
 function ReferralsGroup({ pending }: { pending: number | null }) {
   const { hasPermission } = useAuth()
+  const identity = useWorkspaceIdentity()
   const canCreate = hasPermission('referral.create')
   const [raising, setRaising] = useState(false)
 
@@ -185,7 +188,7 @@ function ReferralsGroup({ pending }: { pending: number | null }) {
         icon={Inbox}
         title="Referrals received"
         count={pending}
-        note="Another MDA referred a beneficiary to you. Open one to accept, reject, request more information, or drive it through to completion. It is the same lifecycle both parties see."
+        note="Another agency referred a beneficiary to you. Open one to accept, reject, request more information, or drive it through to completion. It is the same lifecycle both parties see."
       >
         <ReferralTable direction="incoming" />
       </Queue>
@@ -196,7 +199,7 @@ function ReferralsGroup({ pending }: { pending: number | null }) {
           <h3 className={styles.queueTitle}>Referrals sent</h3>
         </div>
         <p className={styles.queueNote}>
-          Referrals your MDA raised, with the receiving MDA&apos;s progress and any SLA breach. Referring never
+          Referrals your {identity.org} raised, with the receiving agency&apos;s progress and any SLA breach. Referring never
           transfers ownership. The beneficiary stays yours throughout.
         </p>
         <ReferralTable direction="outgoing" />
@@ -235,6 +238,7 @@ function ReferralsGroup({ pending }: { pending: number | null }) {
  */
 export function MdaServiceDeliveryPage() {
   const { hasPermission } = useAuth()
+  const identity = useWorkspaceIdentity()
   const canViewBenefits = hasPermission('benefit.view')
   const canViewGrievances = hasPermission('grievance.view')
   const [params, setParams] = useSearchParams()
@@ -258,11 +262,11 @@ export function MdaServiceDeliveryPage() {
   return (
     <div className={styles.page}>
       <header className={styles.pageHead}>
-        <span className={styles.eyebrow}>MDA workspace</span>
+        <span className={styles.eyebrow}>{identity.workspace}</span>
         <h1 className={styles.pageTitle}>Service Delivery</h1>
         <p className={styles.lead}>
-          What your MDA delivered, and the coordination around it: referrals in both directions and request-to-serve
-          decisions on the people you own. Items waiting on your MDA are marked as such.
+          What your {identity.org} delivered, and the coordination around it: referrals in both directions and request-to-serve
+          decisions on the people you own. Items waiting on your {identity.org} are marked as such.
         </p>
       </header>
 
@@ -314,9 +318,9 @@ export function MdaServiceDeliveryPage() {
               <div className={styles.section}>
                 <Queue
                   icon={ShieldCheck}
-                  title="Approvals awaiting your MDA"
+                  title={`Approvals awaiting your ${identity.org}`}
                   count={pendingApprovals}
-                  note="Another MDA has asked to serve a beneficiary you own. Accepting grants them READ access to the record and authorises delivery. Declining blocks it. Either way, ownership stays with you."
+                  note="Another agency has asked to serve a beneficiary you own. Accepting grants them READ access to the record and authorises delivery. Declining blocks it. Either way, ownership stays with you."
                 >
                   <ServiceRequestsPage embedded />
                 </Queue>
@@ -333,7 +337,7 @@ export function MdaServiceDeliveryPage() {
         </div>
         <Card>
           <p className={styles.muted}>
-            <Icon icon={Split} size={14} /> You may always record a delivery for a beneficiary your MDA owns. For
+            <Icon icon={Split} size={14} /> You may always record a delivery for a beneficiary your {identity.org} owns. For
             anyone else, an accepted request-to-serve or an accepted referral is required. The server refuses the
             delivery otherwise, and no page can grant it.
           </p>

@@ -30,7 +30,7 @@ const when = (iso: string | null): string => {
  * placed on the owner's own record because that is where the person accountable for the
  * data is already looking.
  *
- * **Owner MDA only** (plus all-MDA oversight). The panel is not rendered for anyone
+ * **Owning agency only** (plus all-MDA oversight). The panel is not rendered for anyone
  * else: a serving MDA seeing the list would learn which *other* MDAs hold access to a
  * record it does not own. The server enforces the same boundary
  * (`BeneficiaryPolicy::viewGrants`), so this is presentation, not protection.

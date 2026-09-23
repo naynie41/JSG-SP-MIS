@@ -192,26 +192,32 @@
         </table>
     @endif
 
-    <table class="data">
-        <thead>
-            <tr>
-                @foreach ($data->columns as $column)
-                    <th class="{{ $column->numeric ? 'num' : '' }}">{{ $column->label }}</th>
-                @endforeach
-            </tr>
-        </thead>
-        <tbody>
-            @forelse ($data->rows as $row)
+    {{-- A report with no COLUMNS has no table — it is figures only, like "People in the
+         register". Without this guard such a report ends on a lone "No data for this
+         scope.", which reads as a failure on a page that is in fact complete. A report
+         that HAS columns and no rows still says so: that genuinely is an empty result. --}}
+    @if ($data->columns !== [])
+        <table class="data">
+            <thead>
                 <tr>
                     @foreach ($data->columns as $column)
-                        <td class="{{ $column->numeric ? 'num' : '' }}">{{ $data->cell($row, $column) }}</td>
+                        <th class="{{ $column->numeric ? 'num' : '' }}">{{ $column->label }}</th>
                     @endforeach
                 </tr>
-            @empty
-                <tr><td class="empty" colspan="{{ max(1, count($data->columns)) }}">No data for this scope.</td></tr>
-            @endforelse
-        </tbody>
-    </table>
+            </thead>
+            <tbody>
+                @forelse ($data->rows as $row)
+                    <tr>
+                        @foreach ($data->columns as $column)
+                            <td class="{{ $column->numeric ? 'num' : '' }}">{{ $data->cell($row, $column) }}</td>
+                        @endforeach
+                    </tr>
+                @empty
+                    <tr><td class="empty" colspan="{{ max(1, count($data->columns)) }}">No data for this scope.</td></tr>
+                @endforelse
+            </tbody>
+        </table>
+    @endif
     @if ($keepTogether)
         </div>
     @endif

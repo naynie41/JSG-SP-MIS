@@ -6,9 +6,9 @@ namespace App\Http\Controllers\Api\V1\Programme;
 
 use App\Domain\Access\Scopes\MdaScope;
 use App\Domain\Benefit\Services\LedgerAggregator;
-use App\Domain\Programme\Enums\ActivityStatus;
 use App\Domain\Programme\Models\Activity;
 use App\Domain\Programme\Models\Programme;
+use App\Domain\Programme\Services\ActivityArchiver;
 use App\Domain\Programme\Services\ActivityLocationService;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Programme\StoreActivityRequest;
@@ -129,15 +129,43 @@ class ActivityController extends Controller
         return ApiResponse::success($aggregator->activityBudget($model));
     }
 
-    /** Archive the activity (owner MDA only) — reversible status change, not a delete. */
-    public function archive(string $activity): JsonResponse
+    /**
+     * Archive the activity (owner MDA only) — reversible, audited, never a delete.
+     *
+     * Routed through {@see ActivityArchiver} rather than writing the status here. This
+     * used to be `update(['status' => Archived])`, which left no timestamp, no actor,
+     * no reason and no audit entry: an activity could be filed away and afterwards
+     * there was no way to say who did it.
+     *
+     * Refuses while a request-to-serve is still awaiting a decision (422), so another
+     * MDA's request cannot be stranded against work nobody is looking at.
+     */
+    public function archive(Request $request, string $activity, ActivityArchiver $archiver): JsonResponse
     {
         $model = Activity::query()->withoutGlobalScope(MdaScope::class)->findOrFail($activity);
 
         $this->authorize('update', $model);
 
-        $model->update(['status' => ActivityStatus::Archived]);
+        $archived = $archiver->archive($model, $request->user(), $request->input('reason'));
 
-        return ApiResponse::success((new ActivityResource($model->fresh()))->resolve());
+        return ApiResponse::success((new ActivityResource($archived))->resolve());
+    }
+
+    /**
+     * Take an activity back out of the archive (owner MDA only).
+     *
+     * An archive is a filing decision, and filing decisions are sometimes wrong. It
+     * returns to COMPLETED rather than active: whether the work should resume is for
+     * the owning agency to decide, not a side effect of undoing the filing.
+     */
+    public function restore(Request $request, string $activity, ActivityArchiver $archiver): JsonResponse
+    {
+        $model = Activity::query()->withoutGlobalScope(MdaScope::class)->findOrFail($activity);
+
+        $this->authorize('update', $model);
+
+        $restored = $archiver->restore($model, $request->user());
+
+        return ApiResponse::success((new ActivityResource($restored))->resolve());
     }
 }

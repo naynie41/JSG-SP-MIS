@@ -105,10 +105,23 @@ class RolesAndPermissionsSeeder extends Seeder
         $permissionIds = Permission::pluck('id', 'key');
         $allKeys = $permissionIds->keys()->all();
 
-        // Roles for which MFA is mandatory (PRD FR-UAM-04).
+        /*
+         * Roles for which MFA is mandatory (PRD FR-UAM-04, revised 2026-09-22).
+         *
+         * The System Administrator alone. That account can grant any permission to any
+         * role, reach every MDA's data and unmask identifiers, so a stolen password on
+         * it compromises the whole system — MFA there is not negotiable.
+         *
+         * Executive was removed on the owner's instruction. Mitigating it: the Executive
+         * role is read-only and aggregate-only and never reaches beneficiary PII
+         * (SECURITY.md export matrix), so a compromised executive account exposes
+         * published-quality figures rather than personal data.
+         *
+         * This list is the ONLY place the rule lives — `User::mfaRequired()` reads
+         * `roles.requires_mfa`, nothing hard-codes a role name.
+         */
         $mfaRequiredRoles = [
             RoleKey::SystemAdministrator->value,
-            RoleKey::Executive->value,
         ];
 
         // Roles that are MDA-SCOPED and must be assigned one (FR-UAM-02/03).

@@ -52,10 +52,9 @@ function buildPf(registry: PartnerRegistry): PartnerFunding {
     output_indicators: [],
     registry,
     coordination: {
-      landscape: { funders: 0, government_agencies: 0, implementing_agencies: 0 },
+      landscape: { funders: 0, implementing_agencies: 0, delivering_agencies: 0 },
       funding_by_partner: [],
       agencies: [],
-      data_sharing: { agencies_integrated: 0, connectors: 0, sources: [], total_runs: 0, succeeded: 0, failed: 0, last_run_at: null, api_registrations: 0 },
     },
   }
 }

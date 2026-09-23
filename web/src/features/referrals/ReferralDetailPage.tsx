@@ -165,9 +165,9 @@ export function ReferralDetailPage() {
             <dl className={styles.dl}>
               <dt>Beneficiary</dt>
               <dd className={styles.mono}>#{referral.beneficiary_id.slice(0, 8)}</dd>
-              <dt>Referring MDA</dt>
+              <dt>Referring agency</dt>
               <dd className={styles.mono}>#{referral.from_mda_id.slice(0, 8)}</dd>
-              <dt>Receiving MDA</dt>
+              <dt>Receiving agency</dt>
               <dd className={styles.mono}>#{referral.to_mda_id.slice(0, 8)}</dd>
               <dt>Need</dt>
               <dd>{referral.need}</dd>

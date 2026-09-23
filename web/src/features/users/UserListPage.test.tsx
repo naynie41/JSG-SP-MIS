@@ -17,6 +17,7 @@ vi.mock('./api', () => ({
     changeStatus: vi.fn(),
     forcePasswordReset: vi.fn(),
     resetMfa: vi.fn(),
+    unlock: vi.fn(),
   },
   roleApi: { list: vi.fn() },
 }))
@@ -113,5 +114,79 @@ describe('UserListPage — create flow', () => {
     fireEvent.submit(document.getElementById('user-form')!)
 
     expect(await within(dialog).findByText('This password has appeared in a data breach.')).toBeInTheDocument()
+  })
+})
+
+/**
+ * A lockout is the one account state the list already flagged and gave nobody a way to
+ * clear. The backoff is exponential and capped in hours, so a user who mistypes their
+ * password five times could be shut out for the rest of the day with an administrator
+ * watching a "locked" badge and holding no control that would help.
+ */
+describe('UserListPage — unlocking a locked account', () => {
+  const unlock = userApi.unlock as Mock
+
+  const locked = {
+    id: 'u-9',
+    name: 'Amina Bello',
+    email: 'amina@example.test',
+    status: 'active',
+    is_locked: true,
+    mfa_enabled: false,
+    role: { id: 'r1', key: 'mda_admin', name: 'MDA Admin' },
+    mda: { id: 'm1', name: 'Ministry of Health' },
+  }
+
+  beforeEach(() => {
+    vi.clearAllMocks()
+    listRoles.mockResolvedValue([])
+    listMdas.mockResolvedValue([])
+    unlock.mockResolvedValue({ message: 'The account is unlocked.', user: { ...locked, is_locked: false } })
+  })
+
+  it('offers Unlock on a locked row and clears the lock', async () => {
+    listUsers.mockResolvedValue([locked])
+    const user = userEvent.setup()
+    renderPage(<UserListPage />)
+
+    await screen.findByText('Amina Bello')
+    await user.click(screen.getByRole('button', { name: /actions for/i }))
+    await user.click(await screen.findByText('Unlock account'))
+
+    const dialog = await screen.findByRole('dialog')
+    // The dialog has to distinguish this from a password reset, or an admin will reach
+    // for the wrong one: unlocking does not change the password.
+    expect(within(dialog).getByText(/password is unchanged/i)).toBeInTheDocument()
+    await user.click(within(dialog).getByRole('button', { name: 'Unlock' }))
+
+    await waitFor(() => expect(unlock).toHaveBeenCalledWith('u-9'))
+  })
+
+  it('does not offer Unlock on an account that is not locked', async () => {
+    listUsers.mockResolvedValue([{ ...locked, is_locked: false }])
+    const user = userEvent.setup()
+    renderPage(<UserListPage />)
+
+    await screen.findByText('Amina Bello')
+    await user.click(screen.getByRole('button', { name: /actions for/i }))
+
+    expect(await screen.findByText('Force password reset')).toBeInTheDocument()
+    expect(screen.queryByText('Unlock account')).not.toBeInTheDocument()
+  })
+
+  /**
+   * A locked account is usually still `active`, so "Activate" would appear to do
+   * something while the real block remained. The two are separate controls.
+   */
+  it('keeps unlock separate from the status actions', async () => {
+    listUsers.mockResolvedValue([locked])
+    const user = userEvent.setup()
+    renderPage(<UserListPage />)
+
+    await screen.findByText('Amina Bello')
+    await user.click(screen.getByRole('button', { name: /actions for/i }))
+
+    expect(await screen.findByText('Unlock account')).toBeInTheDocument()
+    expect(screen.queryByText('Activate')).not.toBeInTheDocument()
   })
 })

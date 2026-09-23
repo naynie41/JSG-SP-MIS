@@ -73,6 +73,17 @@ export const reportsApi = {
     })
   },
 
+  /**
+   * Queue "People in the register" — the whole scope as charts.
+   *
+   * Takes no arguments at all, and that is the contract: no filters, no breakdown, no
+   * format. The server fixes it to PDF, because the report is a set of charts and a CSV
+   * of them would be a table of totals with none of the shape.
+   */
+  registerProfile(): Promise<ReportRun> {
+    return apiRequest<ReportRun>({ method: 'POST', url: '/reports/register-profile' })
+  },
+
   /** Where the duplicate review queue stands, within the caller's scope. */
   duplicateReview(filter: DuplicateReviewFilterInput): Promise<DuplicateReviewReport> {
     return apiRequest<DuplicateReviewReport>({ method: 'GET', url: '/reports/duplicate-review', params: filter })

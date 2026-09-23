@@ -1,6 +1,6 @@
 import { useMemo, useState } from 'react'
 import type { ReactNode } from 'react'
-import { BarChart3, Table2 } from 'lucide-react'
+import { BarChart3, FileDown, Table2 } from 'lucide-react'
 import { Button } from '@/components/Button/Button'
 import { Badge } from '@/components/Badge/Badge'
 import { SelectField } from '@/components/Field/SelectField'
@@ -8,7 +8,7 @@ import { Spinner } from '@/components/Spinner/Spinner'
 import { Icon } from '@/components/Icon/Icon'
 import { BuilderPanel } from './ReportPanels'
 import { SegmentFilters } from './SegmentFilters'
-import { useExportSegment, useSegmentDimensions, useSegmentPreview } from './hooks'
+import { useExportSegment, useRegisterProfile, useSegmentDimensions, useSegmentPreview } from './hooks'
 import type {
   AdHocDataset,
   ReportFormat,
@@ -37,6 +37,17 @@ interface ReportBuilderPanelProps {
    */
   exportSummary?: boolean
   /**
+   * Reduce the People subject to one act: download a PDF picture of the whole register.
+   *
+   * No filters, no breakdown, no format choice and no row preview — the question is
+   * "who is on the register", and the answer is a set of charts. The ad-hoc segment
+   * builder still exists for anyone who needs to filter; it is simply not what this
+   * console offers here.
+   *
+   * Off by default, so the administration console keeps the full builder.
+   */
+  peopleProfileOnly?: boolean
+  /**
    * A purpose-built report for a subject, shown instead of the generic group-and-total
    * builder. For subjects where "group by" and "measure" are not the questions anyone
    * brings — the duplicate review queue, for one.
@@ -53,7 +64,7 @@ interface ReportBuilderPanelProps {
  * aggregator"; they arrive with a question about a subject. So the subject is the first
  * choice, and the right builder follows from it.
  */
-export function ReportBuilderPanel({ datasets, canExport, exportSummary = false, subjectPanels }: ReportBuilderPanelProps) {
+export function ReportBuilderPanel({ datasets, canExport, exportSummary = false, peopleProfileOnly = false, subjectPanels }: ReportBuilderPanelProps) {
   const [subject, setSubject] = useState<string>(PEOPLE)
   const customPanel = subject === PEOPLE ? undefined : subjectPanels?.[subject]
 
@@ -75,7 +86,9 @@ export function ReportBuilderPanel({ datasets, canExport, exportSummary = false,
           options={subjects}
           helper={
             subject === PEOPLE
-              ? 'Filter the people in your scope, then export the result.'
+              ? peopleProfileOnly
+                ? 'A PDF picture of everyone on your register — gender and age, status, source and location.'
+                : 'Filter the people in your scope, then export the result.'
               : customPanel
                 ? 'See where this stands, narrow it if you need to, then export it.'
                 : 'Group and count this data, then export the result.'
@@ -84,9 +97,13 @@ export function ReportBuilderPanel({ datasets, canExport, exportSummary = false,
       </div>
 
       {subject === PEOPLE ? (
-        // Filtering the registry only previews until Export is pressed, and the server
-        // gates that, so this stays available on `reporting.view` as it always has.
-        <SegmentBuilder exportSummary={exportSummary} />
+        peopleProfileOnly ? (
+          <RegisterProfilePanel canExport={canExport} />
+        ) : (
+          // Filtering the registry only previews until Export is pressed, and the server
+          // gates that, so this stays available on `reporting.view` as it always has.
+          <SegmentBuilder exportSummary={exportSummary} />
+        )
       ) : customPanel ? (
         // The panel gates its own export on the permission it needs.
         customPanel
@@ -97,6 +114,53 @@ export function ReportBuilderPanel({ datasets, canExport, exportSummary = false,
           Generating and exporting reports needs the reporting export permission.
         </p>
       )}
+    </div>
+  )
+}
+
+/* --------------------------------------------------- people in the register (PDF) */
+
+/**
+ * One button, and deliberately nothing else.
+ *
+ * The question this answers — who is on our register — has no parameters. Offering
+ * filters, a breakdown picker and a format select for it invited an officer to compose
+ * something before they could ask the only question the screen exists for, and the
+ * answer was a spreadsheet of totals rather than a picture.
+ *
+ * What it produces is charts: gender against age first, then status, source and
+ * location. It carries no personal records at all, which is why it needs nothing beyond
+ * the ordinary reporting export permission.
+ */
+function RegisterProfilePanel({ canExport }: { canExport: boolean }) {
+  const profile = useRegisterProfile()
+
+  if (!canExport) {
+    return <p className={styles.muted}>Generating this report needs the reporting export permission.</p>
+  }
+
+  return (
+    <div className={styles.segment}>
+      <div className={styles.segmentNotice}>
+        <Badge variant="neutral">Counts only — no individual records</Badge>
+        <Badge variant="neutral">PDF</Badge>
+      </div>
+
+      <p className={styles.segmentIdle}>
+        A PDF of everyone on your register as charts: the gender and age pyramid, then status, how people were
+        registered, and where they are. It opens with the state crest and ends with the full breakdown in figures.
+      </p>
+
+      <div>
+        <Button leftIcon={FileDown} onClick={() => profile.mutate()} loading={profile.isPending}>
+          Download the PDF
+        </Button>
+      </div>
+
+      <p className={styles.segmentIdle}>
+        No filters and no options — this report always covers your whole scope. To report on part of it, choose another
+        subject above.
+      </p>
     </div>
   )
 }

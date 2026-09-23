@@ -24,3 +24,33 @@ Thumbs.db
 
 # Docker
 *.local
+
+# Internal documentation — kept on disk, out of the repository (decision 2026-09-20).
+#
+# The repository is PUBLIC and stays so; this is about what is published, not secrecy.
+# Nothing under docs/ is read at build or run time — the code only cites these files in
+# comments — so removing them changes nothing about how the app behaves locally or in
+# production.
+#
+# Ignore everything under docs/, then name the exceptions back in.
+/docs/*
+
+# The deploy process genuinely needs these ON THE SERVER: /opt/spmis is a git checkout,
+# and scripts/deploy.sh + provision.sh print these paths to an operator mid-deploy. They
+# are not documentation-for-reading, they are part of the runbook the scripts assume.
+!/docs/DEPLOY.md
+!/docs/GHCR-Setup-Runbook.pdf
+
+# k6 load-test script — tooling, not prose.
+!/docs/perf/
+
+# Deliberately NOT excepted, so they stay out: the brand copies under docs/ duplicate the
+# assets that are actually used (api/resources/brand/jigawa-crest.png for the PDF crest,
+# web/public/brand/jigawa-logo.png for the SPA header), and DEPLOYMENT-RUNBOOK.pdf
+# duplicates DEPLOY.md.
+#
+# To publish one of these again: git add -f docs/<file>
+#
+# WARNING — docs/CLAUDE.md is in here. It carries the locked stakeholder decisions and is
+# cited by ~84 source files. Once untracked it survives only in a working tree; back it up
+# somewhere that is not this repository.

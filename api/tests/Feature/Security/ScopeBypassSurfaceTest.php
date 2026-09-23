@@ -38,6 +38,12 @@ class ScopeBypassSurfaceTest extends TestCase
             'Domain/Benefit/Jobs/CommitBenefitImport.php',
             'Domain/Benefit/Jobs/ParseBenefitImport.php',
             'Domain/Grievance/Jobs/EscalateOverdueGrievances.php',
+            // The nightly activity-lifecycle sweep. It runs on the scheduler with no
+            // authenticated user, and its whole job is to look at EVERY MDA's ended
+            // activities — scoped, it would see none and silently do nothing. It writes
+            // only a status transition, reads no beneficiary data, and refuses anything
+            // with an unanswered request-to-serve.
+            'Domain/Programme/Jobs/CompleteEndedActivities.php',
             'Domain/Referral/Jobs/EscalateOverdueReferrals.php',
             'Domain/Registry/Jobs/CommitImportBatch.php',
             'Domain/Registry/Jobs/ParseImportBatch.php',
@@ -126,6 +132,13 @@ class ScopeBypassSurfaceTest extends TestCase
             // implicit scope would not have constrained them anyway. No beneficiary
             // data is touched.
             'Domain/Programme/Services/ProgrammeArchiver.php',
+            // The same shape for activities. It counts unanswered requests-to-serve on
+            // an activity, and those are raised BY OTHER MDAs — scoped, the owner would
+            // count zero and file the activity away with another agency's request still
+            // queued against it. Like the archiver above, the bypass feeds a check that
+            // BLOCKS an action and never widens one, and it reads a count only: no
+            // beneficiary row, field or identifier is returned.
+            'Domain/Programme/Services/ActivityArchiver.php',
             'Http/Controllers/Api/V1/Registry/BeneficiaryController.php',
             'Http/Controllers/Api/V1/Registry/ServiceRequestController.php',
             'Http/Controllers/Api/V1/Registry/OwnershipTransferController.php',
@@ -186,6 +199,24 @@ class ScopeBypassSurfaceTest extends TestCase
             'Http/Controllers/Api/V1/Registry/HouseholdController.php',
             'Http/Controllers/Api/V1/Registry/HouseholdMemberController.php',
             'Http/Resources/ActivityDetailResource.php',
+            // A partner organisation's FUNDER account, for an org that both funds and
+            // implements. The account is state-level and holds no MDA, so a scoped
+            // relation returns nothing to the very organisation it belongs to. It
+            // reads one user row whose id the organisation already stores, and is
+            // presented as a name — never an email, never as access to that account.
+            'Domain/Access/Models/Mda.php',
+            // Resolving the organisation that will OWN an activity, to refuse
+            // government funding of a partner's own work. On an edit the owner is the
+            // stored activity's, which the caller's scope would hide from the check
+            // precisely when the check matters; the lookup reads ownership and type
+            // only, and its single output is a validation error.
+            'Http/Requests/Programme/Concerns/ValidatesFunding.php',
+            // Checking that a funder account is not already claimed by ANOTHER
+            // organisation, which by definition is one the caller cannot see. It
+            // reads a single name to put in the error message, and only for an
+            // account id the administrator just chose from a list they may already
+            // read; its one output is a validation message.
+            'Http/Requests/Access/Concerns/LinksFunderAccount.php',
         ],
     ];
 

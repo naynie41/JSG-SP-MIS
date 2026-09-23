@@ -204,7 +204,7 @@ export function FundingPartnerOverviewTab({ data, onDrill }: FundingPartnerOverv
               value={num(pf.funded_programmes)}
               onClick={onDrill ? () => onDrill('programmes') : undefined}
             />
-            <BandRow icon={Building2} label="Implementing MDAs" value={num(pf.implementing_mdas)} />
+            <BandRow icon={Building2} label="Implementing agencies" value={num(pf.implementing_mdas)} />
             <BandRow
               icon={Layers}
               label="Activities running"

@@ -31,6 +31,13 @@ export const userApi = {
   resetMfa(id: string) {
     return apiRequest<{ message: string }>({ method: 'POST', url: `/users/${id}/reset-mfa` })
   },
+  /**
+   * Lift a failed-sign-in lockout (FR-UAM-06). Distinct from `status('activate')`:
+   * a locked account is usually still `active`, and the two are cleared separately.
+   */
+  unlock(id: string) {
+    return apiRequest<{ message: string; user: ManagedUser }>({ method: 'POST', url: `/users/${id}/unlock` })
+  },
 }
 
 export const roleApi = {

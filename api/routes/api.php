@@ -18,6 +18,8 @@ use App\Http\Controllers\Api\V1\Graduation\GraduationController;
 use App\Http\Controllers\Api\V1\Grievance\GrievanceController;
 use App\Http\Controllers\Api\V1\Grievance\GrievanceSlaPolicyController;
 use App\Http\Controllers\Api\V1\HealthController;
+use App\Http\Controllers\Api\V1\Library\LibraryItemController;
+use App\Http\Controllers\Api\V1\Library\PublicLibraryController;
 use App\Http\Controllers\Api\V1\Matching\MatchingConfigController;
 use App\Http\Controllers\Api\V1\MfaController;
 use App\Http\Controllers\Api\V1\Notification\BroadcastController;
@@ -98,6 +100,38 @@ Route::prefix('v1')->group(function (): void {
     });
 
     /*
+    |--------------------------------------------------------------------------
+    | PUBLIC — no authentication (FR-RES-04)
+    |--------------------------------------------------------------------------
+    |
+    | The resource library, served to anyone. Read the warning before adding to
+    | this group: apart from /health and login, these are the ONLY endpoints in
+    | SP-MIS that answer without a token, so anything placed here is on the open
+    | internet by definition.
+    |
+    | Three things hold the line, and all three are deliberate:
+    |   - PublicLibraryController queries only through LibraryItem::published(),
+    |     so a draft is never reachable, not even by its id;
+    |   - PublicLibraryItemResource is a separate class from the admin one, so
+    |     internal fields cannot leak by a forgotten condition;
+    |   - `throttle:library` bounds scraping and stops the download counter from
+    |     being inflated for free.
+    |
+    | Nothing here writes anything a visitor controls. The one write is an atomic
+    | increment of download_count.
+    */
+    Route::prefix('public')->middleware('throttle:library')->group(function (): void {
+        Route::get('/library', [PublicLibraryController::class, 'index'])
+            ->name('public.library.index');
+
+        Route::get('/library/{libraryItem}/download', [PublicLibraryController::class, 'download'])
+            ->name('public.library.download');
+
+        Route::get('/library/{libraryItem}/thumbnail', [PublicLibraryController::class, 'thumbnail'])
+            ->name('public.library.thumbnail');
+    });
+
+    /*
     | RBAC administration (read-only). Every endpoint declares the permission it
     | requires; the `permission` middleware denies by default (FR-UAM-05).
     */
@@ -160,6 +194,11 @@ Route::prefix('v1')->group(function (): void {
             ->middleware('permission:user.edit')->name('users.force-password-reset');
         Route::post('/users/{user}/reset-mfa', [UserController::class, 'resetMfa'])
             ->middleware('permission:user.edit')->name('users.reset-mfa');
+        // Lift a failed-sign-in lockout (FR-UAM-06). Separate from activate: status and
+        // lockout are independent, and clearing one as a side effect of the other would
+        // undo a live brute-force defence without anyone meaning to.
+        Route::post('/users/{user}/unlock', [UserController::class, 'unlock'])
+            ->middleware('permission:user.edit')->name('users.unlock');
 
         // Cross-MDA access grants (admin-managed, logged).
         Route::get('/mda-access-grants', [MdaAccessGrantController::class, 'index'])
@@ -434,6 +473,9 @@ Route::prefix('v1')->group(function (): void {
             ->middleware('permission:activity.edit')->name('activities.update');
         Route::post('/activities/{activity}/archive', [ActivityController::class, 'archive'])
             ->middleware('permission:activity.edit')->name('activities.archive');
+        // An archive is a filing decision, and filing decisions are sometimes wrong.
+        Route::post('/activities/{activity}/restore', [ActivityController::class, 'restore'])
+            ->middleware('permission:activity.edit')->name('activities.restore');
 
         // Activity-creation wizard — OPTIONAL inline upload (§10). Preview stages an
         // UNBOUND import batch (dedup runs before saving) reusing the /beneficiaries/
@@ -704,6 +746,12 @@ Route::prefix('v1')->group(function (): void {
         Route::post('/reports/segments/export', [SegmentReportController::class, 'export'])
             ->middleware(['permission:reporting.export', 'throttle:exports'])->name('reports.segments.export');
 
+        // "People in the register" (FR-RPT-12): the whole scope as charts, PDF only.
+        // Takes no body — no filters, no breakdown, no format — and produces no rows,
+        // so it is an aggregate export and rides `reporting.export` like the rest.
+        Route::post('/reports/register-profile', [SegmentReportController::class, 'registerProfile'])
+            ->middleware(['permission:reporting.export', 'throttle:exports'])->name('reports.register-profile');
+
         // Duplicate review (FR-DUP): the state of the match queue, not a builder. Counts
         // only; available to exactly the scopes the `duplicates` dataset is.
         Route::get('/reports/duplicate-review', [DuplicateReviewReportController::class, 'show'])
@@ -749,5 +797,25 @@ Route::prefix('v1')->group(function (): void {
             ->middleware('permission:reporting.view')->name('reports.show');
         Route::get('/reports/{report}/download', [ReportController::class, 'download'])
             ->middleware(['permission:reporting.export', 'throttle:exports'])->name('reports.download');
+
+        /*
+        | Resource library administration (FR-RES-02/03). System Administrator only
+        | in practice, because only that role holds `library.*`.
+        |
+        | There is no `library.publish`: publishing is a status change made by
+        | whoever may edit the item, and a permission that no role is ever denied
+        | describes a distinction the system does not draw.
+        |
+        | The PUBLIC side of this feature is the `public/library` group far above —
+        | different controller, different API resource, no authentication.
+        */
+        Route::get('/library', [LibraryItemController::class, 'index'])
+            ->middleware('permission:library.view')->name('library.index');
+        Route::post('/library', [LibraryItemController::class, 'store'])
+            ->middleware('permission:library.create')->name('library.store');
+        Route::match(['put', 'patch'], '/library/{libraryItem}', [LibraryItemController::class, 'update'])
+            ->middleware('permission:library.edit')->name('library.update');
+        Route::delete('/library/{libraryItem}', [LibraryItemController::class, 'destroy'])
+            ->middleware('permission:library.edit')->name('library.destroy');
     });
 });

@@ -3,6 +3,7 @@ import { Button } from '@/components/Button/Button'
 import { Card } from '@/components/Card/Card'
 import { Icon } from '@/components/Icon/Icon'
 import { Spinner } from '@/components/Spinner/Spinner'
+import { useWorkspaceIdentity } from './workspaceIdentity'
 import styles from './mda.module.css'
 
 /**
@@ -30,6 +31,8 @@ interface MdaLoadErrorProps {
 }
 
 export function MdaLoadError({ subject, onRetry }: MdaLoadErrorProps) {
+  const identity = useWorkspaceIdentity()
+
   return (
     <Card>
       <div className={styles.loadError} role="alert">
@@ -38,7 +41,7 @@ export function MdaLoadError({ subject, onRetry }: MdaLoadErrorProps) {
           <p className={styles.loadErrorTitle}>Could not load {subject}.</p>
           <p className={styles.loadErrorNote}>
             This is a connection or server problem, not an empty result. The figures on this
-            page are not showing what your MDA has.
+            page are not showing what your {identity.org} has.
           </p>
         </div>
         {onRetry && (
@@ -53,11 +56,13 @@ export function MdaLoadError({ subject, onRetry }: MdaLoadErrorProps) {
 
 /** Permission refusals, so every guard reads the same and names the next step. */
 export function MdaForbidden({ what }: { what: string }) {
+  const identity = useWorkspaceIdentity()
+
   return (
     <Card>
       <p className={styles.forbidden}>You do not have permission to view {what}.</p>
       <p className={styles.forbiddenNote}>
-        Your MDA administrator or a System Administrator can grant it.
+        Your {identity.orgLabel} administrator or a System Administrator can grant it.
       </p>
     </Card>
   )

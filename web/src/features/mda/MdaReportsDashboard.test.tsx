@@ -49,6 +49,15 @@ function response(overrides: Partial<DashboardResponse> = {}, metrics: Record<st
         gender_known: 48,
         female_pct: 0.625,
         age_bands: { children: 10, youth: 20, adults: 15, elderly: 5, unknown: 0 },
+        // Deliberately sums to 48, not 50: the two unspecified genders cannot be placed
+        // on a pyramid, and the card has to account for the difference rather than
+        // quietly imply everyone is shown.
+        gender_by_age: [
+          { key: 'elderly', band: '60+', female: 3, male: 2 },
+          { key: 'adults', band: '35–59', female: 9, male: 6 },
+          { key: 'youth', band: '18–34', female: 12, male: 8 },
+          { key: 'children', band: '0–17', female: 6, male: 2 },
+        ],
         household_vs_individual: { in_household: 40, individual: 10 },
       },
       household_size: { total_households: 12, households_with_members: 12, average_size: 3.33, bands: { '1': 2, '2-3': 5, '4-6': 3, '7+': 2 } },
@@ -212,9 +221,15 @@ describe('MdaReportsDashboard', () => {
   it('shows who is registered: gender, age and household size', async () => {
     renderDashboard()
 
-    const gender = await card('Women and men')
-    expect(within(gender).getByText('63%')).toBeInTheDocument()
-    expect(within(gender).getByText('Women').parentElement).toHaveTextContent('30')
+    // A pyramid, not a donut: gender AND age in one shape, with both wings named so
+    // identity never rests on colour alone.
+    const gender = await card('Women and men by age')
+    expect(within(gender).getByRole('group', { name: 'People by gender and age' })).toBeInTheDocument()
+    expect(within(gender).getByText('Female')).toBeInTheDocument()
+    expect(within(gender).getByText('Male')).toBeInTheDocument()
+    expect(within(gender).getByText('18–34')).toBeInTheDocument()
+    // 48 of 50 can be placed; the card says so rather than implying it shows everyone.
+    expect(within(gender).getByText(/48 of 50/)).toBeInTheDocument()
 
     const age = screen.getByRole('region', { name: 'Age groups' })
     expect(within(age).getByRole('group', { name: 'People by age group' })).toBeInTheDocument()

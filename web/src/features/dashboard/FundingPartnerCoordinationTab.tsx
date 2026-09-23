@@ -5,9 +5,7 @@ import {
   ClipboardX,
   HandCoins,
   MapPin,
-  Network,
   Radar,
-  RefreshCw,
   Waypoints,
 } from 'lucide-react'
 import type { LucideIcon } from 'lucide-react'
@@ -21,16 +19,6 @@ import styles from './partnerCoordination.module.css'
 
 const num = (n: number | null | undefined): string => (n ?? 0).toLocaleString()
 const cap = (s: string): string => s.charAt(0).toUpperCase() + s.slice(1)
-
-function asOf(iso: string | null): string {
-  if (!iso) return 'never'
-  const mins = Math.round((Date.now() - new Date(iso).getTime()) / 60000)
-  if (mins < 1) return 'moments ago'
-  if (mins < 60) return `${mins} min ago`
-  const hrs = Math.round(mins / 60)
-  if (hrs < 24) return `${hrs}h ago`
-  return new Date(iso).toLocaleDateString(undefined, { day: 'numeric', month: 'short', year: 'numeric' })
-}
 
 /* --------------------------------------------------------------- components */
 
@@ -130,8 +118,11 @@ export interface FundingPartnerCoordinationTabProps {
  * active in them; a funding-by-partner table (amounts for YOUR OWN funding only — a
  * partner never sees another funder's money); PROGRAMME OVERLAP (the headline: same
  * catalog programme run in the same LGA by different funders/MDAs — table + map indicator,
- * to expose duplication / reallocation); and data sharing / sync health. Coordination
- * meetings and reporting-compliance are omitted (no such module) — inert slots only.
+ * to expose duplication / reallocation). Coordination meetings and reporting-compliance
+ * are omitted (no such module) — inert slots only.
+ *
+ * Sync/integration health is deliberately absent: the connectors belong to the MDAs and a
+ * funder can act on none of it. It is an operations concern, not a coordination one.
  */
 export function FundingPartnerCoordinationTab({ data, onDrill }: FundingPartnerCoordinationTabProps) {
   const pf = data.metrics.partner_funding
@@ -141,7 +132,6 @@ export function FundingPartnerCoordinationTab({ data, onDrill }: FundingPartnerC
   }
 
   const c = pf.coordination
-  const ds = c.data_sharing
 
   return (
     <div className={shell.tabBody}>
@@ -150,8 +140,8 @@ export function FundingPartnerCoordinationTab({ data, onDrill }: FundingPartnerC
         <span className={shell.groupLabel}>Partner landscape · your funded programmes</span>
         <div className={styles.landscape}>
           <LandscapeCard icon={HandCoins} label="Funding organisations" value={num(c.landscape.funders)} hint="funders active here (incl. you)" />
-          <LandscapeCard icon={Building2} label="Government agencies (MDAs)" value={num(c.landscape.government_agencies)} hint="implementing activities" />
-          <LandscapeCard icon={Waypoints} label="Implementing agencies" value={num(c.landscape.implementing_agencies)} hint="delivering on your activities" />
+          <LandscapeCard icon={Building2} label="Implementing agencies" value={num(c.landscape.implementing_agencies)} hint="running activities in these programmes" />
+          <LandscapeCard icon={Waypoints} label="Delivering agencies" value={num(c.landscape.delivering_agencies)} hint="have paid benefits on your activities" />
         </div>
       </section>
 
@@ -200,18 +190,25 @@ export function FundingPartnerCoordinationTab({ data, onDrill }: FundingPartnerC
         </div>
       </section>
 
-      {/* ---------- GOVERNMENT AGENCIES (MDAs) ---------- */}
+      {/* ---------- IMPLEMENTING AGENCIES ---------- */}
       {c.agencies.length > 0 && (
         <section className={`${shell.section} ${shell.reveal}`} aria-label="Implementing agencies">
           <div className={shell.sectionHead}>
             <Icon icon={Building2} size={16} />
-            <h2 className={shell.sectionTitle}>Government agencies</h2>
-            <span className={shell.sectionSub}>{num(c.agencies.length)} implementing</span>
+            <h2 className={shell.sectionTitle}>Implementing agencies</h2>
+            <span className={shell.sectionSub}>
+              {num(c.agencies.length)} running activities
+            </span>
           </div>
           <div className={styles.agencyGrid}>
+            {/* A partner is tagged, never assumed. This list holds ministries and NGOs
+                side by side, and a funder coordinating here has to know which is which. */}
             {c.agencies.map((a) => (
               <div key={a.id} className={styles.agency}>
-                <span className={styles.agencyName}>{a.name ?? 'Agency'}</span>
+                <span className={styles.agencyName}>
+                  {a.name ?? 'Agency'}
+                  {a.kind === 'partner' && <span className={styles.partnerTag}>Partner</span>}
+                </span>
                 <span className={styles.agencyMeta}>
                   {num(a.activities)} {a.activities === 1 ? 'activity' : 'activities'} · {num(a.programmes)}{' '}
                   {a.programmes === 1 ? 'programme' : 'programmes'}
@@ -221,56 +218,6 @@ export function FundingPartnerCoordinationTab({ data, onDrill }: FundingPartnerC
           </div>
         </section>
       )}
-
-      {/* ---------- DATA SHARING ---------- */}
-      <section className={`${shell.section} ${shell.reveal}`} aria-label="Data sharing">
-        <div className={shell.sectionHead}>
-          <Icon icon={Network} size={16} />
-          <h2 className={shell.sectionTitle}>Data sharing</h2>
-          <span className={shell.sectionSub}>integrations &amp; sync health</span>
-        </div>
-        <div className={shell.panel}>
-          <div className={styles.dsGrid}>
-            <div className={styles.dsFig}>
-              <span className={styles.dsVal}>{num(ds.agencies_integrated)}</span>
-              <span className={styles.dsLabel}>Agencies integrated</span>
-            </div>
-            <div className={styles.dsFig}>
-              <span className={styles.dsVal}>{num(ds.connectors)}</span>
-              <span className={styles.dsLabel}>Data connections</span>
-            </div>
-            <div className={styles.dsFig}>
-              <span className={styles.dsVal}>{num(ds.succeeded)}</span>
-              <span className={styles.dsLabel}>Runs succeeded</span>
-            </div>
-            <div className={styles.dsFig} data-tone={ds.failed > 0 ? 'warn' : undefined}>
-              <span className={styles.dsVal}>{num(ds.failed)}</span>
-              <span className={styles.dsLabel}>Runs failed</span>
-            </div>
-            <div className={styles.dsFig}>
-              <span className={styles.dsVal}>{num(ds.api_registrations)}</span>
-              <span className={styles.dsLabel}>API registrations</span>
-            </div>
-            <div className={styles.dsFig}>
-              <span className={styles.dsValSm}>
-                <Icon icon={RefreshCw} size={13} /> {asOf(ds.last_run_at)}
-              </span>
-              <span className={styles.dsLabel}>Last sync</span>
-            </div>
-          </div>
-          {ds.sources.length > 0 && (
-            <div className={styles.sources}>
-              <span className={styles.sourcesLabel}>Sources</span>
-              {ds.sources.map((s) => (
-                <span key={s} className={styles.sourceChip}>{cap(s)}</span>
-              ))}
-            </div>
-          )}
-          {ds.connectors === 0 && ds.total_runs === 0 && (
-            <p className={styles.muted}>No data-sharing integrations for the implementing agencies yet.</p>
-          )}
-        </div>
-      </section>
 
       {/* ---------- OMITTED (inert) ---------- */}
       <section className={`${shell.section} ${shell.reveal}`} aria-label="Not tracked here">

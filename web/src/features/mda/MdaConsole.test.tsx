@@ -65,10 +65,14 @@ vi.mock('@/features/notifications/api', () => ({
   },
 }))
 
-const auth = { roleKey: 'mda_admin', perms: [] as string[], mda: 'Ministry of Health' }
+const auth = { roleKey: 'mda_admin', perms: [] as string[], mda: 'Ministry of Health', mdaType: 'ministry' }
 vi.mock('@/lib/auth/AuthProvider', () => ({
   useAuth: () => ({
-    user: { name: 'Amina', role: { key: auth.roleKey, name: 'MDA Admin' }, mda: { id: 'm1', name: auth.mda } },
+    user: {
+      name: 'Amina',
+      role: { key: auth.roleKey, name: 'MDA Admin' },
+      mda: { id: 'm1', name: auth.mda, type: auth.mdaType },
+    },
     hasPermission: (p: string) => auth.perms.includes(p),
   }),
 }))
@@ -138,6 +142,8 @@ describe('MDA console — shell + Overview', () => {
     vi.clearAllMocks()
     auth.roleKey = 'mda_admin'
     auth.perms = MDA
+    auth.mda = 'Ministry of Health'
+    auth.mdaType = 'ministry'
     getDashboard.mockResolvedValue({ metrics: METRICS, scope: { kind: 'mda', label: 'Ministry of Health' }, tier: 'operational', live: false, filters: {}, filter_options: {} })
     actionRequired.mockResolvedValue({ pending_referrals: 3, pending_service_requests: 2, open_grievances: 0, breached_grievances: 0, mda_id: 'm1' })
     listNotifications.mockResolvedValue({ items: [], pagination: { page: 1, per_page: 20, total: 0, total_pages: 1 } })
@@ -158,10 +164,35 @@ describe('MDA console — shell + Overview', () => {
       auth.roleKey = outsider
       const view = renderAt()
 
-      expect(await screen.findByText(/available to MDA Administrators/i)).toBeInTheDocument()
+      expect(await screen.findByText(/available to agency administrators/i)).toBeInTheDocument()
       expect(screen.queryByRole('heading', { name: 'Overview' })).not.toBeInTheDocument()
       view.unmount()
     }
+  })
+
+  /* ------------------------------------------------- whose workspace is this */
+
+  /**
+   * A development partner implements in this same workspace, so the screens have to stop
+   * calling it an MDA. Only the WORDS differ — the role key, the permissions and the
+   * server-side scoping are identical for both kinds of organisation.
+   */
+  it('names the workspace after the organisation standing in it', async () => {
+    const gov = renderAt()
+    expect(await screen.findByRole('heading', { name: 'Overview' })).toBeInTheDocument()
+    expect(screen.getByText('MDA workspace')).toBeInTheDocument()
+    expect(screen.getByText(/scoped to your MDA/i)).toBeInTheDocument()
+    gov.unmount()
+
+    auth.mda = 'Save the Children'
+    auth.mdaType = 'partner'
+    renderAt()
+
+    expect(await screen.findByText('Partner workspace')).toBeInTheDocument()
+    expect(screen.getByText(/scoped to your organisation/i)).toBeInTheDocument()
+    // The word an NGO must never see applied to itself.
+    expect(screen.queryByText(/your MDA/i)).not.toBeInTheDocument()
+    expect(screen.queryByText('MDA workspace')).not.toBeInTheDocument()
   })
 
   /* ------------------------------------------------------------------ nav */

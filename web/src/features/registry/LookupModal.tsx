@@ -55,7 +55,7 @@ export function LookupModal({ open, onClose }: LookupModalProps) {
 
   const columns: Column<RevealMatch>[] = [
     { key: 'name', header: 'Name', render: (m) => m.full_name },
-    { key: 'owner', header: 'Owner MDA', render: (m) => m.owner_mda?.name ?? '—' },
+    { key: 'owner', header: 'Owning agency', render: (m) => m.owner_mda?.name ?? '—' },
     {
       key: 'source',
       header: 'Source',

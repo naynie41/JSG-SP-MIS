@@ -67,7 +67,7 @@ describe('navSectionsFor', () => {
     }
   })
 
-  it('gives a System Administrator the nine console pages, not the generic rail', () => {
+  it('gives a System Administrator the ten console pages, not the generic rail', () => {
     const items = navSectionsFor('system_administrator', all).flatMap((s) => s.items)
 
     expect(items.map((i) => i.label)).toEqual([
@@ -80,8 +80,11 @@ describe('navSectionsFor', () => {
       'Matching Rules & Registry Config',
       'Audit & Security',
       'Reports',
+      // Last on purpose: the only section whose output is published to the public
+      // resources page rather than consumed inside the console.
+      'Resource Library',
     ])
-    expect(items).toHaveLength(9)
+    expect(items).toHaveLength(10)
     expect(items.every((i) => i.to.startsWith('/admin'))).toBe(true)
 
     // Settings is NOT a nav link — it opens from the gear/account affordance.

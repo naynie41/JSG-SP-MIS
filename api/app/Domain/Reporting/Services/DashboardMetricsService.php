@@ -392,11 +392,56 @@ class DashboardMetricsService
             'gender_known' => $knownGender,
             'female_pct' => $knownGender > 0 ? round($female / $knownGender, 4) : null,
             'age_bands' => $this->ageBands($base),
+            // Gender AGAINST age, for the population pyramid. A separate block rather
+            // than a reshaping of the two above, because `by_gender` and `age_bands`
+            // count everyone while this counts only people with BOTH recorded — the
+            // three do not reconcile, and pretending otherwise would be the bug.
+            'gender_by_age' => $this->genderByAge($base),
             'household_vs_individual' => [
                 'in_household' => $inHousehold,
                 'individual' => max(0, $total - $inHousehold),
             ],
         ];
+    }
+
+    /**
+     * Gender × age band, oldest first — the shape a population pyramid is read in.
+     *
+     * Only women and men are returned. "Other" and unrecorded genders are real and are
+     * reported in `by_gender`, but a pyramid has exactly two wings; putting a third
+     * category somewhere on the axis would invent a position for it. The card states
+     * the coverage instead.
+     *
+     * @param  Builder<Beneficiary>  $base
+     * @return list<array{key: string, band: string, female: int, male: int}>
+     */
+    private function genderByAge(Builder $base): array
+    {
+        $today = Carbon::today();
+        $out = [];
+
+        foreach (array_reverse((array) config('reporting.age_bands', []), true) as $key => $range) {
+            [$min, $max] = $range;
+
+            $inBand = (clone $base)
+                ->whereNotNull('date_of_birth')
+                ->whereDate('date_of_birth', '<=', $today->copy()->subYears((int) $min)->toDateString());
+
+            if ($max !== null) {
+                $inBand->whereDate('date_of_birth', '>', $today->copy()->subYears((int) $max)->toDateString());
+            }
+
+            $byGender = $this->countBy($inBand, 'gender');
+
+            $out[] = [
+                'key' => (string) $key,
+                'band' => $max === null ? "{$min}+" : $min.'–'.((int) $max - 1),
+                'female' => (int) ($byGender['female'] ?? 0),
+                'male' => (int) ($byGender['male'] ?? 0),
+            ];
+        }
+
+        return $out;
     }
 
     /**
@@ -675,14 +720,19 @@ class DashboardMetricsService
             return [];
         }
 
-        $names = Mda::query()->withoutGlobalScope(MdaScope::class)->whereIn('id', $ids)->pluck('name', 'id');
+        // Name AND kind: a partner organisation delivers alongside government here,
+        // and a table that cannot tell them apart reads as if the state ran it all.
+        $agencies = Mda::query()->withoutGlobalScope(MdaScope::class)
+            ->whereIn('id', $ids)->get(['id', 'name', 'type'])->keyBy('id');
 
         $rows = [];
         foreach ($ids as $id) {
             $activity = $activities->get($id);
+            $agency = $agencies->get($id);
             $rows[] = [
                 'mda_id' => $id,
-                'mda' => $names[$id] ?? null,
+                'mda' => $agency?->name,
+                'kind' => $agency === null ? null : ($agency->isGovernment() ? 'government' : 'partner'),
                 'delivered_value' => (int) ($delivered[$id]['total_value'] ?? 0),
                 'deliveries' => (int) ($delivered[$id]['benefit_count'] ?? 0),
                 'reached' => (int) ($reach[$id] ?? 0),
@@ -1334,11 +1384,20 @@ class DashboardMetricsService
 
     /**
      * PARTNER COORDINATION (Phase 6P "Coordination" tab) — the actor landscape AROUND a
-     * partner's funded programmes: the funding organisations, government agencies (MDAs)
-     * and implementing agencies active in them; a funding-by-partner table (amounts for
-     * the CALLER only — a partner never sees another funder's money); the MDA landscape;
-     * and data-sharing / sync health for the implementing agencies. Programme overlap
-     * (the tab's headline) is served by {@see programmeOverlap()} on the same block.
+     * partner's funded programmes: the funding organisations and the agencies active in
+     * them; a funding-by-partner table (amounts for the CALLER only — a partner never
+     * sees another funder's money); and the per-agency breakdown. Programme overlap (the
+     * tab's headline) is served by {@see programmeOverlap()} on the same block.
+     *
+     * Two agency counts, and they are NOT the same set: `implementing_agencies` OWN
+     * activities in these programmes; `delivering_agencies` have actually paid benefits
+     * out under the caller's own funded activities. Neither is government-only — a
+     * development partner owns and delivers exactly as an MDA does — so every agency row
+     * carries a `kind`, and the label must never say "government" without checking it.
+     *
+     * Deliberately NOT here: sync/integration health. Connectors belong to the MDAs, are
+     * operated by them, and a funder can do nothing about a failed run — it was noise on
+     * a coordination tab, bought with six queries per load.
      *
      * @param  list<string>  $fundedProgrammeIds
      * @param  array{allocated:int,delivered_value:int,net_unique_reached:int,funded_programmes:int}  $selfTotals
@@ -1348,10 +1407,9 @@ class DashboardMetricsService
     private function partnerCoordination(string $partnerId, array $fundedProgrammeIds, array $selfTotals, array $callerActivityIds): array
     {
         $empty = [
-            'landscape' => ['funders' => 0, 'government_agencies' => 0, 'implementing_agencies' => 0],
+            'landscape' => ['funders' => 0, 'implementing_agencies' => 0, 'delivering_agencies' => 0],
             'funding_by_partner' => [],
             'agencies' => [],
-            'data_sharing' => ['agencies_integrated' => 0, 'connectors' => 0, 'sources' => [], 'total_runs' => 0, 'succeeded' => 0, 'failed' => 0, 'last_run_at' => null, 'api_registrations' => 0],
         ];
         if ($fundedProgrammeIds === []) {
             return $empty;
@@ -1404,61 +1462,51 @@ class DashboardMetricsService
             ];
         }
 
-        // Government agencies (MDAs) implementing activities in the funded programmes.
+        // Implementing agencies: whoever OWNS an activity in the funded programmes. A
+        // development partner can own one, so the type is carried through — a row here is
+        // not government by default, and the view must be able to say which it is.
+        // withoutGlobalScope: Mda is itself ScopedToMda, and the caller is a partner with no
+        // mda_id — scoped, this returns nothing and every agency renders as a nameless
+        // "Agency". It only ever looked right because the snapshot is built from the console,
+        // where no user is authenticated and the scope no-ops; a live request showed blanks.
+        // Nothing is disclosed that the payload does not already carry: these agencies are
+        // listed by id regardless, and naming who implements in your own funded programmes
+        // is the entire point of the tab.
         $mdaIds = $acts->pluck('owner_mda_id')->filter()->unique()->values()->all();
-        $mdaNames = Mda::query()->whereIn('id', $mdaIds)->pluck('name', 'id');
+        $mdaRows = Mda::query()->withoutGlobalScope(MdaScope::class)
+            ->whereIn('id', $mdaIds)->get(['id', 'name', 'type'])->keyBy('id');
         $agencies = [];
         foreach ($acts->groupBy('owner_mda_id') as $rawMid => $mdaActs) {
             $mid = (string) $rawMid;
             if ($mid === '') {
                 continue;
             }
+            $agency = $mdaRows[$mid] ?? null;
             $agencies[] = [
                 'id' => $mid,
-                'name' => $mdaNames[$mid] ?? null,
+                'name' => $agency?->name,
+                'kind' => $agency === null ? null : ($agency->isGovernment() ? 'government' : 'partner'),
                 'activities' => $mdaActs->count(),
                 'programmes' => $mdaActs->pluck('programme_id')->unique()->count(),
             ];
         }
         usort($agencies, fn (array $a, array $b): int => $b['activities'] <=> $a['activities']);
 
-        // Implementing agencies = distinct MDAs DELIVERING benefits under the caller's funded activities.
-        $implementing = $callerActivityIds === [] ? 0 : (int) Benefit::query()->withoutGlobalScope(MdaScope::class)
+        // Delivering agencies = those that have actually PAID BENEFITS out under the
+        // caller's own funded activities. A subset of the above, and the stricter signal.
+        $delivering = $callerActivityIds === [] ? 0 : (int) Benefit::query()->withoutGlobalScope(MdaScope::class)
             ->where('status', '!=', BenefitStatus::Reversed->value)
             ->whereIn('activity_id', $callerActivityIds)
             ->distinct()->count('mda_id');
 
-        // Data sharing / sync health for the implementing MDAs (Phase 7 sync status, reused).
-        $apiRegistrations = 0;
-        if ($callerActivityIds !== []) {
-            $servedIds = Benefit::query()->withoutGlobalScope(MdaScope::class)
-                ->where('status', '!=', BenefitStatus::Reversed->value)
-                ->whereIn('activity_id', $callerActivityIds)->distinct()->pluck('beneficiary_id')->all();
-            $apiRegistrations = $servedIds === [] ? 0 : Beneficiary::query()->withoutGlobalScope(MdaScope::class)
-                ->whereIn('id', $servedIds)->where('registration_source', 'api')->count();
-        }
-        $connectorBase = SyncConnector::query()->withoutGlobalScopes()->whereIn('owner_mda_id', $mdaIds);
-        $runBase = SyncRun::query()->withoutGlobalScopes()->whereIn('owner_mda_id', $mdaIds);
-        $lastRun = $mdaIds === [] ? null : (clone $runBase)->latest('created_at')->first();
-
         return [
             'landscape' => [
                 'funders' => count($funderProgrammes),
-                'government_agencies' => count($mdaIds),
-                'implementing_agencies' => $implementing,
+                'implementing_agencies' => count($mdaIds),
+                'delivering_agencies' => $delivering,
             ],
             'funding_by_partner' => $fundingByPartner,
             'agencies' => $agencies,
-            'data_sharing' => [
-                'agencies_integrated' => $mdaIds === [] ? 0 : (int) (clone $connectorBase)->distinct()->count('owner_mda_id'),
-                'connectors' => $mdaIds === [] ? 0 : (clone $connectorBase)->count(),
-                'sources' => $mdaIds === [] ? [] : (clone $connectorBase)->distinct()->pluck('source')->filter()->values()->all(),
-                'total_runs' => $mdaIds === [] ? 0 : (clone $runBase)->count(),
-                'succeeded' => $mdaIds === [] ? 0 : (clone $runBase)->where('status', 'completed')->count(),
-                'failed' => $mdaIds === [] ? 0 : (clone $runBase)->where('status', 'failed')->count(),
-                'last_run_at' => $lastRun?->created_at?->toIso8601String(),
-                'api_registrations' => $apiRegistrations,
-            ],
         ];
     }
 

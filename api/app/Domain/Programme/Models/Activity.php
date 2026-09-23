@@ -12,6 +12,7 @@ use App\Domain\Access\Scopes\MdaScope;
 use App\Domain\Audit\Concerns\Auditable;
 use App\Domain\Programme\Enums\ActivityStatus;
 use App\Domain\Programme\Enums\FundingType;
+use App\Domain\Programme\Services\ActivityArchiver;
 use Database\Factories\ActivityFactory;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Collection;
@@ -108,9 +109,32 @@ class Activity extends Model implements MdaScoped
             'schedule' => 'array',
             'starts_on' => 'date',
             'ends_on' => 'date',
+            // Timestamps, not dates: these record when the system acted, where
+            // starts_on/ends_on record what was planned.
+            'completed_at' => 'datetime',
+            'archived_at' => 'datetime',
             'target_beneficiaries' => 'integer',
             'budget_amount' => 'integer',
         ];
+    }
+
+    /**
+     * Lifecycle provenance is deliberately ABSENT from $fillable.
+     *
+     * `completed_at`, `archived_at`, `archived_by` and `archive_reason` are written by
+     * {@see ActivityArchiver} and nothing else, so a
+     * status can never be changed without the record of who changed it and when. The
+     * same rule keeps ProgrammeArchiver the only writer of a programme's archive state.
+     */
+    public function isArchived(): bool
+    {
+        return $this->status === ActivityStatus::Archived;
+    }
+
+    /** Whether the planned timeline has run out, as of now. */
+    public function hasEnded(): bool
+    {
+        return $this->ends_on !== null && $this->ends_on->isPast();
     }
 
     protected static function newFactory(): ActivityFactory

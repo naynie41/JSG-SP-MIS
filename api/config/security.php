@@ -74,6 +74,10 @@ return [
         // Report previews run aggregate queries but release nothing, so this sits above
         // the egress ceiling — composing a report is normal work, exporting it is not.
         'report_previews_per_minute' => (int) env('RATE_LIMIT_REPORT_PREVIEWS_PER_MINUTE', 30),
+        // The public resource library, keyed on IP because there is no user. Loading
+        // the page is one list call plus a thumbnail per card, so this has to sit well
+        // above a per-download figure or the page breaks on first paint.
+        'public_library_per_minute' => (int) env('RATE_LIMIT_PUBLIC_LIBRARY_PER_MINUTE', 120),
     ],
 
 ];

@@ -26,7 +26,11 @@ export function MdaLayout() {
   if (!isMdaRole(user?.role?.key)) {
     return (
       <Card>
-        <p className={styles.forbidden}>The MDA workspace is available to MDA Administrators.</p>
+        {/* Deliberately not derived from the caller's organisation: whoever sees this is
+            not in the workspace, so naming THEIR organisation would explain nothing. */}
+        <p className={styles.forbidden}>
+          The delivery workspace is available to agency administrators.
+        </p>
       </Card>
     )
   }

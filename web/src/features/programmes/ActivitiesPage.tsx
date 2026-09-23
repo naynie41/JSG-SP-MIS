@@ -1,6 +1,6 @@
 import { useMemo, useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
-import { Archive, Eye, Pencil, Plus } from 'lucide-react'
+import { Archive, ArchiveRestore, Eye, Pencil, Plus } from 'lucide-react'
 import { Button } from '@/components/Button/Button'
 import { Badge } from '@/components/Badge/Badge'
 import { statusVariant } from '@/components/Badge/statusVariant'
@@ -12,7 +12,7 @@ import { useAuth } from '@/lib/auth/AuthProvider'
 import { formatNaira } from '@/lib/utils/money'
 import { summariseLocations } from '@/features/reference/format'
 import { ActivityFormModal } from './ActivityFormModal'
-import { useAllActivities, useArchiveActivity, useProgrammeCatalog } from './hooks'
+import { useAllActivities, useArchiveActivity, useProgrammeCatalog, useRestoreActivity } from './hooks'
 import type { Activity } from './types'
 import layout from '@/features/shared/formLayout.module.css'
 import styles from './programmes.module.css'
@@ -31,6 +31,7 @@ export function ActivitiesPage() {
   const activities = useAllActivities(canView)
   const catalog = useProgrammeCatalog(canView)
   const archive = useArchiveActivity()
+  const restore = useRestoreActivity()
 
   const [form, setForm] = useState<{ open: boolean; activity: Activity | null }>({ open: false, activity: null })
 
@@ -62,10 +63,17 @@ export function ActivitiesPage() {
           {canManage && (
             <Menu
               label={`Actions for ${a.name}`}
-              actions={[
-                { label: 'Edit', icon: Pencil, onSelect: () => setForm({ open: true, activity: a }) },
-                { label: 'Archive', icon: Archive, danger: true, onSelect: () => archive.mutate(a.id) },
-              ]}
+              // Archive and Restore are the same decision in two directions, so only
+              // the applicable one is offered. An archive that could not be undone
+              // would be a delete wearing a softer word.
+              actions={
+                a.status === 'archived'
+                  ? [{ label: 'Restore', icon: ArchiveRestore, onSelect: () => restore.mutate(a.id) }]
+                  : [
+                      { label: 'Edit', icon: Pencil, onSelect: () => setForm({ open: true, activity: a }) },
+                      { label: 'Archive', icon: Archive, danger: true, onSelect: () => archive.mutate(a.id) },
+                    ]
+              }
             />
           )}
         </div>

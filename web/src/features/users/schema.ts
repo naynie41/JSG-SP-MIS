@@ -29,7 +29,7 @@ export function userSchema(mode: UserFormMode, mdaScopedRoleIds: readonly string
       const needsMda = mdaScopedRoleIds.includes(data.role_id)
 
       if (needsMda && !data.mda_id) {
-        // Distinct from the select's own "Select an MDA" placeholder, so the error
+        // Distinct from the select's own "Select an agency" placeholder, so the error
         // and the empty option can never be mistaken for one another.
         ctx.addIssue({ path: ['mda_id'], code: 'custom', message: 'Choose the MDA this user belongs to' })
       }

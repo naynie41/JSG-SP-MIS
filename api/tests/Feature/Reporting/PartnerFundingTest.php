@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Tests\Feature\Reporting;
 
+use App\Domain\Access\Enums\MdaType;
 use App\Domain\Access\Enums\RoleKey;
 use App\Domain\Access\Models\Mda;
 use App\Domain\Access\Models\Role;
@@ -15,6 +16,7 @@ use App\Domain\Programme\Models\Programme;
 use App\Domain\Registry\Models\Beneficiary;
 use App\Domain\Registry\Models\Household;
 use App\Domain\Registry\Models\HouseholdMembership;
+use App\Domain\Reporting\Models\DashboardSnapshot;
 use App\Domain\Reporting\Services\DashboardMetricsService;
 use App\Domain\Reporting\Services\DashboardScopeResolver;
 use App\Domain\Reporting\Services\DashboardService;
@@ -458,9 +460,14 @@ class PartnerFundingTest extends TestCase
         $c = $this->funding('partnerA')['coordination'];
 
         // Partner landscape — actors around the funded programmes.
-        $this->assertSame(2, $c['landscape']['funders']);               // partnerA + partnerB
-        $this->assertSame(2, $c['landscape']['government_agencies']);   // MDA A + MDA B run activities in these programmes
-        $this->assertSame(1, $c['landscape']['implementing_agencies']); // only MDA A delivers on partnerA's funded activities
+        $this->assertSame(2, $c['landscape']['funders']);                // partnerA + partnerB
+        $this->assertSame(2, $c['landscape']['implementing_agencies']);  // MDA A + MDA B own activities in these programmes
+        $this->assertSame(1, $c['landscape']['delivering_agencies']);    // only MDA A has paid benefits on partnerA's activities
+
+        // Every agency row says which it is. Owning an activity no longer implies government.
+        foreach ($c['agencies'] as $agency) {
+            $this->assertSame('government', $agency['kind']);
+        }
 
         // Funding-by-partner — amounts for the CALLER only; a co-funder's money never leaks.
         $byPartner = collect($c['funding_by_partner'])->keyBy('partner_id');
@@ -478,7 +485,7 @@ class PartnerFundingTest extends TestCase
         $this->assertNull($coFunder['net_unique_reached']);
         $this->assertSame(1, $coFunder['shared_programmes']); // the shared programme
 
-        // Government-agency (MDA) landscape — counts only, never money.
+        // Implementing-agency landscape — counts only, never money.
         $agencies = collect($c['agencies'])->keyBy('id');
         $this->assertSame(2, $agencies[$this->mdaA->id]['activities']); // actA1 + actA2
         $this->assertSame(1, $agencies[$this->mdaB->id]['activities']); // actB1
@@ -490,6 +497,54 @@ class PartnerFundingTest extends TestCase
         // Omitted modules are absent from the payload (inert slots only, rendered client-side).
         $this->assertArrayNotHasKey('meetings', $c);
         $this->assertArrayNotHasKey('reporting_compliance', $c);
+
+        // Sync health is the MDAs' own plumbing — a funder can act on none of it, so it
+        // is neither served nor computed here.
+        $this->assertArrayNotHasKey('data_sharing', $c);
+    }
+
+    /**
+     * A development partner implements as well as funds, so it can own an activity inside
+     * someone else's funded programme and appear in this list beside the ministries. The
+     * row must carry its own kind — a funder coordinating here needs to know that one of
+     * these "agencies" is another NGO, not the state.
+     */
+    public function test_a_partner_owned_agency_is_not_reported_as_government(): void
+    {
+        $this->mdaB->update(['type' => MdaType::Partner]);
+
+        $agencies = collect($this->computeFunding($this->users['partnerA'])['coordination']['agencies'])
+            ->keyBy('name');
+
+        $this->assertSame('government', $agencies['MDA A']['kind']);
+        $this->assertSame('partner', $agencies['MDA B']['kind']);
+    }
+
+    /**
+     * Through a REAL authenticated request, not a bare service call. Mda is itself
+     * ScopedToMda and a partner holds no mda_id, so a scoped lookup returns nothing and
+     * every agency renders as a nameless "Agency". The bug hid for exactly as long as it
+     * did because the snapshot is built from the console, where no user is authenticated
+     * and the scope no-ops — so only a live request ever showed the blanks.
+     */
+    public function test_agency_names_survive_the_partner_request_scope(): void
+    {
+        // Drop the snapshot setUp() built. Serving it would compute nothing in-request and
+        // reproduce the very console context that hid the bug — the test has to make the
+        // request itself do the work.
+        DashboardSnapshot::query()->delete();
+
+        $token = $this->users['partnerA']->createToken('t')->plainTextToken;
+
+        $agencies = $this->withToken($token)->getJson('/api/v1/dashboard')
+            ->assertOk()->json('data.metrics.partner_funding.coordination.agencies');
+
+        $this->assertNotEmpty($agencies);
+        foreach ($agencies as $agency) {
+            $this->assertNotNull($agency['name'], 'An agency came back nameless — the MDA lookup was scoped away.');
+            $this->assertNotNull($agency['kind']);
+        }
+        $this->assertEqualsCanonicalizing(['MDA A', 'MDA B'], array_column($agencies, 'name'));
     }
 
     /* -------------------------------------------- registry (funded cohort, tab 3) */

@@ -64,7 +64,7 @@ export function useRecordConsent() {
 }
 
 /**
- * Who holds cross-MDA read access to this record (FR-OWN-07). Owner MDA only, so the
+ * Who holds cross-MDA read access to this record (FR-OWN-07). Owning agency only, so the
  * caller passes `enabled` rather than the hook guessing — a non-owner must not fire a
  * request that will 403.
  */

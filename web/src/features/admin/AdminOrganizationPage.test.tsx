@@ -74,7 +74,7 @@ describe('Admin console — Organization (composes Phase 1 + Phase 4)', () => {
     // The section drove the Phase 1 api layer.
     expect(listMdas).toHaveBeenCalled()
     // Create/edit affordances come from that existing page.
-    expect(screen.getAllByRole('button', { name: /create mda/i }).length).toBeGreaterThan(0)
+    expect(screen.getAllByRole('button', { name: /add agency/i }).length).toBeGreaterThan(0)
     expect(screen.getAllByRole('button', { name: /actions for/i }).length).toBeGreaterThan(0)
   })
 
@@ -126,7 +126,7 @@ describe('Admin console — Organization (composes Phase 1 + Phase 4)', () => {
 
     expect(await screen.findByText('World Bank')).toBeInTheDocument()
     expect(screen.getByText('Funded programmes')).toBeInTheDocument()
-    expect(screen.getByText('Implementing MDAs')).toBeInTheDocument()
+    expect(screen.getByText('Implementing agencies')).toBeInTheDocument()
   })
 
   /* --------------------------------------------------------- permission gating */
@@ -136,7 +136,7 @@ describe('Admin console — Organization (composes Phase 1 + Phase 4)', () => {
     renderPage()
     await screen.findByText('Ministry of Health')
 
-    expect(screen.queryByRole('button', { name: /create mda/i })).not.toBeInTheDocument()
+    expect(screen.queryByRole('button', { name: /add agency/i })).not.toBeInTheDocument()
     expect(screen.queryByRole('button', { name: /actions for/i })).not.toBeInTheDocument()
   })
 

@@ -4,6 +4,7 @@ import {
   ClipboardList,
   DatabaseZap,
   FileBarChart,
+  FolderOpen,
   GaugeCircle,
   HandHeart,
   LibraryBig,
@@ -136,6 +137,9 @@ export const NAV_CONFIG: NavConfigSection[] = [
       { label: 'Matching Rules & Registry Config', to: '/admin/matching', icon: SlidersHorizontal },
       { label: 'Audit & Security', to: '/admin/audit', icon: ShieldCheck },
       { label: 'Reports', to: '/admin/reports', icon: FileBarChart },
+      // The only console section whose output is PUBLIC, hence last and named for
+      // what a visitor sees rather than for the table behind it.
+      { label: 'Resource Library', to: '/admin/library', icon: FolderOpen, permission: 'library.view' },
     ],
   },
 ]

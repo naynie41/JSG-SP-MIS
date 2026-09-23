@@ -6,7 +6,9 @@ import { Button } from '@/components/Button/Button'
 import { TextField } from '@/components/Field/TextField'
 import { TextareaField } from '@/components/Field/TextareaField'
 import { SelectField } from '@/components/Field/SelectField'
+import { SearchableSelectField } from '@/components/Field/SearchableSelectField'
 import { applyApiErrors } from '@/lib/forms/applyApiErrors'
+import { useFundingPartners } from '@/features/programmes/hooks'
 import { useCreateMda, useUpdateMda } from './hooks'
 import { MDA_TYPE_OPTIONS, mdaSchema } from './schema'
 import type { MdaFormValues } from './schema'
@@ -19,7 +21,7 @@ interface MdaFormModalProps {
   mda?: Mda | null
 }
 
-const KNOWN_FIELDS = ['name', 'type', 'contact_person', 'contact_email', 'contact_phone', 'address'] as const
+const KNOWN_FIELDS = ['name', 'type', 'funder_user_id', 'contact_person', 'contact_email', 'contact_phone', 'address'] as const
 
 function toPayload(values: MdaFormValues): MdaInput {
   const clean = (value?: string) => {
@@ -29,6 +31,9 @@ function toPayload(values: MdaFormValues): MdaInput {
   return {
     name: values.name.trim(),
     type: values.type,
+    // Only a partner organisation has one; sending null for the rest clears any
+    // stale link if the type was changed away from partner.
+    funder_user_id: values.type === 'partner' ? (values.funder_user_id || null) : null,
     contact_person: clean(values.contact_person),
     contact_email: clean(values.contact_email),
     contact_phone: clean(values.contact_phone),
@@ -44,6 +49,7 @@ export function MdaFormModal({ open, onClose, mda }: MdaFormModalProps) {
 
   const {
     register,
+    watch,
     handleSubmit,
     setError,
     formState: { errors, isSubmitting },
@@ -52,12 +58,19 @@ export function MdaFormModal({ open, onClose, mda }: MdaFormModalProps) {
     defaultValues: {
       name: mda?.name ?? '',
       type: mda?.type ?? 'ministry',
+      funder_user_id: mda?.funder_user_id ?? '',
       contact_person: mda?.contact_person ?? '',
       contact_email: mda?.contact_email ?? '',
       contact_phone: mda?.contact_phone ?? '',
       address: mda?.address ?? '',
     },
   })
+
+  // Only a partner organisation has a funding account, so the list is fetched only
+  // once that type is chosen.
+  const type = watch('type')
+  const funders = useFundingPartners(open && type === 'partner')
+  const funderOptions = (funders.data ?? []).map((partner) => ({ value: partner.id, label: partner.name }))
 
   const onSubmit = handleSubmit(async (values) => {
     setFormError(null)
@@ -78,14 +91,14 @@ export function MdaFormModal({ open, onClose, mda }: MdaFormModalProps) {
     <Modal
       open={open}
       onClose={onClose}
-      title={isEdit ? 'Edit MDA' : 'Create MDA'}
+      title={isEdit ? 'Edit agency' : 'Add agency'}
       footer={
         <>
           <Button variant="tertiary" onClick={onClose} disabled={isSubmitting}>
             Cancel
           </Button>
           <Button type="submit" form="mda-form" loading={isSubmitting}>
-            {isEdit ? 'Save changes' : 'Create MDA'}
+            {isEdit ? 'Save changes' : 'Add agency'}
           </Button>
         </>
       }
@@ -98,6 +111,28 @@ export function MdaFormModal({ open, onClose, mda }: MdaFormModalProps) {
         )}
         <TextField label="Name" required error={errors.name?.message} {...register('name')} />
         <SelectField label="Type" required options={MDA_TYPE_OPTIONS} error={errors.type?.message} {...register('type')} />
+
+        {/* Only a partner organisation funds through an account of its own, so the
+            field appears only once that type is chosen — and the server refuses the
+            pairing anyway if it is sent for a ministry. */}
+        {type === 'partner' && (
+          <>
+            <SearchableSelectField
+              label="Funding account"
+              options={funderOptions}
+              pinnedValue={mda?.funder_user_id ?? ''}
+              searchLabel="Filter accounts"
+              helper="The Development Partner login this organisation funds through. Linking it never gives that account access to the records this organisation owns — the two stay separate on purpose."
+              error={errors.funder_user_id?.message}
+              {...register('funder_user_id')}
+            />
+            {funders.isError && (
+              <p className={formStyles.alert} role="alert">
+                The account list could not be loaded. Close the form and try again.
+              </p>
+            )}
+          </>
+        )}
         <div className={formStyles.grid2}>
           <TextField label="Contact person" error={errors.contact_person?.message} {...register('contact_person')} />
           <TextField

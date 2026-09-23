@@ -12,6 +12,7 @@ FR-UAM-04 (MFA), FR-UAM-05 (module+action permissions), FR-UAM-06 (lockout), FR-
 | --- | --- |
 | Models | `Models/` — `User`, `Mda`, `Role`, `Permission`, `MdaAccessGrant` (UUID PKs) |
 | Enums | `Enums/` — `RoleKey`, `PermissionAction`, `UserStatus`, `MdaType`, `MdaStatus` |
+| Request concerns | `Http/Requests/Access/Concerns/LinksFunderAccount` — only a `partner` organisation may hold a funder account, and one account belongs to one organisation |
 | Auth services | `Services/AuthTokenIssuer` (issues full/MFA-challenge/MFA-setup tokens, audits `auth.login`), `Services/MfaService` (TOTP + recovery codes) |
 | RBAC | `Support/PermissionRegistry` (modules register permissions), `Services/PermissionSynchronizer` (registry → DB), `AccessServiceProvider` (registers permissions + the `Gate::before` bridge) |
 | Scoping | `Concerns/ScopedToMda` (+ `MdaScoped` interface) applies `Scopes/MdaScope` |
@@ -43,6 +44,28 @@ FR-UAM-04 (MFA), FR-UAM-05 (module+action permissions), FR-UAM-06 (lockout), FR-
   (`$registry->register('module', PermissionAction::View, '…')`), then `php artisan permissions:sync`
   (the seeder does this). Assign it to roles in `RolesAndPermissionsSeeder`.
 
+## Organisation types — government and partner (FR-UAM-08)
+
+`MdaType` is `ministry | department | agency | partner`. The first three are government; **`partner`
+is a development partner that implements its own programmes**. `MdaType::isGovernment()` is the single
+predicate — never test the type by listing cases at a call site.
+
+A partner organisation owns records through the same `owner_mda_id` as any MDA, so scoping, the
+duplicate cascade, request-to-serve, imports and the ledger apply **with no special case**, and its
+staff hold the ordinary `mda_admin` role. `Mda::funder_user_id` links it to the **Development Partner
+funder account** that funds through it — for reporting only, conferring no access either way.
+`Mda::funderAccount()` resolves it (`withoutGlobalScopes()`, since the funder holds no `mda_id`).
+
+> The two accounts are **never merged.** The funder role's "never sees beneficiary PII" guarantee in
+> `docs/SECURITY.md` is carried entirely by that separation.
+
+One behavioural rule, enforced in `Http/Requests/Programme/Concerns/ValidatesFunding`: **government
+does not fund a partner organisation's own activity** (FR-PRG-11).
+
+`MdaFactory` builds **government** types only; use `->partner()` for a partner organisation. It used
+to pick from `MdaType::cases()`, which the moment `Partner` was added made roughly a quarter of every
+factory-built MDA in the suite a partner — failing funding tests on a dice roll.
+
 ## MDA data-scoping (FR-UAM-03, FR-DSH-01)
 
 - A model becomes MDA-scoped by `use ScopedToMda` (and `implements MdaScoped`). Default ownership
@@ -50,6 +73,11 @@ FR-UAM-04 (MFA), FR-UAM-05 (module+action permissions), FR-UAM-06 (lockout), FR-
 - The global `MdaScope` restricts every query to the caller's own MDA **plus active cross-MDA
   grants**, unless the user holds `cross-mda.view` (oversight bypass). Enforced centrally — never
   re-implement scoping in controllers.
+- **`Mda` is itself scoped** (`mdaOwnershipColumn()` → `id`). A Development Partner holds no `mda_id`,
+  so a scoped `Mda::query()` inside a partner request returns **nothing**. Any lookup that names other
+  organisations for such a caller must pass `withoutGlobalScope(MdaScope::class)` and justify it. This
+  is easy to miss because dashboard snapshots are computed from the console, where no user is
+  authenticated and the scope no-ops — the blanks appear only on a live in-request compute.
 - Cross-MDA access is admin-managed via `POST /api/v1/mda-access-grants` (permission
   `mda-access.create`) and audited.
 

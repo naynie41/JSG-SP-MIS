@@ -38,21 +38,40 @@ so it can see who belongs to it, and nothing more.
 | — | **Settings** (gear, not a nav link) | `/auth/me`, `/auth/password`, `/auth/mfa/disable`, `/notifications/preferences` | Phase 1 auth + Phase 5 notifier |
 | — | **Notifications** (header bell) | Phase 5 `Notifier`; role-aware deep-links via `linkFor` | Phase 5 (FR-NOT-01) |
 
-## Officer vs Admin
+## One role, and why the rail is still permission-gated
 
-Officer's permissions are a **strict subset** of Admin's, which is what makes one shared
-rail sound — an Officer can never do something an Admin cannot. The difference is exactly
-six permissions:
+There is exactly **one** role here: `mda_admin`. MDA Officer was merged into it (PRD v1.6,
+FR-UAM-01) — its permissions were already a strict subset — and it is gone from `RoleKey`
+and from the seeded roles, asserted by `MdaRoleMatrixTest::test_mda_officer_no_longer_exists`.
 
-| Permission | Where it bites in this console |
-| --- | --- |
-| `beneficiary.approve` | Accept/decline an incoming request-to-serve (Service Delivery) |
-| `beneficiary.export` | Bulk beneficiary export (Reports, Beneficiaries) |
-| `beneficiary.access_request` | DSAR — not surfaced in this console; admin flow |
-| `user.create`, `user.edit`, `role.view` | User/role administration — the System Administrator console, not here |
+The rail nevertheless gates each item on **permission, not role name**. That was the right
+shape when there were two roles and it is what let the merge land without touching
+navigation; it also means permissions can be re-granted per role without a code change.
+Never reintroduce a role-name branch here.
 
-Both roles see the approval **queue** and the Overview counter; only an Admin can action
-it. That is deliberate: the MDA's workload is shared information, the decision is not.
+## Two kinds of organisation, one workspace
+
+A government MDA and a **partner organisation** (a development partner that implements —
+PRD §6.6, FR-UAM-08) both work in this console. A partner's staff hold the same
+`mda_admin` role against an organisation of `type = partner`, own records through the same
+`owner_mda_id`, and are scoped, duplicate-screened and audited identically. Nothing in this
+feature branches on it.
+
+What does differ is **wording**, and it comes from one place: `workspaceIdentity.ts` reads
+the signed-in user's organisation type and returns the workspace name, the role label and
+the noun for "your …". Screens ask it instead of writing "MDA", so a partner reads *Partner
+workspace / Partner Admin / scoped to your organisation* while a ministry sees exactly what
+it always saw.
+
+Three rules when adding copy here:
+
+- **Never hard-code "MDA"** for the signed-in user's own organisation — use `identity.org`
+  / `identity.orgLabel` / `identity.orgPossessive`.
+- **Say "agency" for a third party.** "Another MDA referred a beneficiary to you" is wrong
+  once the other party can be an NGO.
+- **This is display only.** The role key and permissions are untouched; the partner role
+  label is a mapping keyed on role key, because one `Role` row is shared by every holder
+  and renaming it would relabel every government admin too.
 
 `export.reveal_pii` is held by **neither** role and is in
 `RolePermissionService::NEVER_ROLE_GRANTABLE`, so identifiers are masked in every export

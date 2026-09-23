@@ -89,8 +89,8 @@ export function GrantFormModal({ open, onClose }: Props) {
           required
         />
         <SelectField
-          label="MDA to grant access to"
-          placeholder="Select an MDA"
+          label="Agency to grant access to"
+          placeholder="Select an agency"
           options={(mdas.data ?? []).map((m) => ({ value: m.id, label: m.name }))}
           value={mdaId}
           onChange={(e) => setMdaId(e.target.value)}

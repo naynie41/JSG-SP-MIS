@@ -22,6 +22,11 @@ class MdaResource extends JsonResource
             'id' => $this->id,
             'name' => $this->name,
             'type' => $this->type->value,
+            'type_label' => $this->type->label(),
+            'is_government' => $this->isGovernment(),
+            // The Development Partner account a partner organisation funds through.
+            'funder_user_id' => $this->funder_user_id,
+            'funder_name' => $this->whenLoaded('funderAccount', fn () => $this->funderAccount?->name),
             'status' => $this->status->value,
             'contact_person' => $this->contact_person,
             'contact_email' => $this->contact_email,

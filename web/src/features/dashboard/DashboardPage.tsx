@@ -21,7 +21,7 @@ export function DashboardPage() {
       <div className={styles.kpis}>
         <KpiPanel label="Beneficiaries" value="—" hint="Registry, Phase 2" />
         <KpiPanel label="Active programmes" value="—" hint="Programmes, Phase 4" />
-        <KpiPanel label="MDAs onboarded" value="—" hint="Administration" />
+        <KpiPanel label="Agencies onboarded" value="—" hint="Administration" />
       </div>
 
       <Card eyebrow="Account" title="Your access">

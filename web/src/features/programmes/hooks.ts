@@ -145,8 +145,26 @@ export function useArchiveActivity() {
     mutationFn: (id: string) => activityApi.archive(id),
     onSuccess: () => {
       qc.invalidateQueries({ queryKey: ['activities'] })
-      toast.success('Activity archived')
+      toast.success('Activity archived', 'It is filed away, not deleted. You can restore it.')
     },
+    // The server refuses while a request-to-serve is unanswered, and names the count.
+    // Showing its message beats a generic failure the officer cannot act on.
+    onError: (error) =>
+      toast.error('Could not archive this activity', error instanceof ApiError ? error.message : 'Please try again.'),
+  })
+}
+
+/** Undo an archive. The activity returns to COMPLETED, never straight back to active. */
+export function useRestoreActivity() {
+  const qc = useQueryClient()
+  const toast = useToast()
+  return useMutation({
+    mutationFn: (id: string) => activityApi.restore(id),
+    onSuccess: () => {
+      qc.invalidateQueries({ queryKey: ['activities'] })
+      toast.success('Activity restored', 'It is back in the list as completed.')
+    },
+    onError: (error) => toast.error('Could not restore this activity', error instanceof ApiError ? error.message : 'Please try again.'),
   })
 }
 

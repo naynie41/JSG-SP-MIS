@@ -134,11 +134,11 @@ export function AdminReportsDashboard({ canExport }: { canExport: boolean }) {
           {(options?.mdas.length ?? 0) > 0 && (
             <div className={styles.controlWide}>
               <SelectField
-                label="MDA"
+                label="Agency"
                 value={filter.mda_id ?? ''}
                 onChange={(event) => set('mda_id', event.target.value)}
                 options={[
-                  { value: '', label: 'All MDAs' },
+                  { value: '', label: 'All agencies' },
                   ...(options?.mdas ?? []).map((mda) => ({ value: mda.id, label: mda.name })),
                 ]}
               />
@@ -205,11 +205,13 @@ export function AdminReportsDashboard({ canExport }: { canExport: boolean }) {
           <h3 id="admin-reports-who" className={styles.sectionTitle}>
             Who is registered
           </h3>
-          <div className={styles.grid3}>
+          <div className={styles.gridPyramid}>
             <GenderCard data={data} />
-            <AgeCard data={data} />
-            <HouseholdCard data={data} />
-          </div>
+            <div className={styles.gridPyramidPair}>
+              <AgeCard data={data} />
+              <HouseholdCard data={data} />
+            </div>
+            </div>
         </section>
 
         <section className={styles.section} aria-labelledby="admin-reports-where">

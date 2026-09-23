@@ -288,13 +288,13 @@ class DashboardExportTest extends TestCase
         // comparison after the trend/quality pair.
         $this->assertSame([
             'New registrations by month', 'Value delivered by month',
-            'Quality of your records', 'Delivery by MDA',
+            'Quality of your records', 'Delivery by agency',
             'Women and men', 'Age groups',
             'Household size', 'Coverage across your LGAs',
             'Largest LGAs', 'Benefits delivered', 'Records',
         ], array_map(static fn (ReportFigure $f): string => $f->title, $data->figures));
 
-        $byMda = $this->figure($data, 'Delivery by MDA');
+        $byMda = $this->figure($data, 'Delivery by agency');
         $this->assertStringStartsWith('data:image/svg+xml;base64,', (string) $byMda->image);
         // It takes the full width: agency names are the first thing to become
         // unreadable in a half-width card.
@@ -314,7 +314,7 @@ class DashboardExportTest extends TestCase
         );
 
         $titles = array_map(static fn (ReportFigure $f): string => $f->title, $data->figures);
-        $this->assertNotContains('Delivery by MDA', $titles);
+        $this->assertNotContains('Delivery by agency', $titles);
     }
 
     private function figure(ReportData $data, string $title): ReportFigure

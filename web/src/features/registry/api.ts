@@ -83,7 +83,7 @@ export const beneficiaryApi = {
   },
   /**
    * Record or withdraw the beneficiary's consent for a purpose (NFR-PRV-01).
-   * Owner MDA only — the server enforces it. The change appends to an immutable
+   * Owning agency only — the server enforces it. The change appends to an immutable
    * consent history and is audited; withdrawing immediately closes any cross-MDA
    * grant that depended on it.
    */
@@ -91,7 +91,7 @@ export const beneficiaryApi = {
     return apiRequest<Beneficiary>({ method: 'PUT', url: `/beneficiaries/${id}/consent`, data: input })
   },
   /**
-   * Who holds cross-MDA read access to this record (FR-OWN-07). Owner MDA only — this
+   * Who holds cross-MDA read access to this record (FR-OWN-07). Owning agency only — this
    * is NOT the platform-wide `/data-sharing/grants` oversight report, which sits behind
    * `cross-mda.view` and no MDA role holds.
    */

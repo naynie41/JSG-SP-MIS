@@ -48,7 +48,7 @@ export function ReferralTable({ direction }: { direction: ReferralDirection }) {
   const [status, setStatus] = useState('')
   const { data, isLoading } = useReferrals({ direction, status: status || undefined })
 
-  const counterpartyHeader = direction === 'incoming' ? 'Referring MDA' : 'Receiving MDA'
+  const counterpartyHeader = direction === 'incoming' ? 'Referring agency' : 'Receiving agency'
   const counterpartyId = (r: Referral) => (direction === 'incoming' ? r.from_mda_id : r.to_mda_id)
 
   const columns: Column<Referral>[] = [

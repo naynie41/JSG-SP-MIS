@@ -10,6 +10,7 @@ import { Icon } from '@/components/Icon/Icon'
 import { MdaForbidden, MdaLoadError, MdaLoading } from './MdaLoadState'
 import { statusVariant } from '@/components/Badge/statusVariant'
 import { useAuth } from '@/lib/auth/AuthProvider'
+import { useWorkspaceIdentity } from './workspaceIdentity'
 import { summariseLocations } from '@/features/reference/format'
 import { ActivityFormModal } from '@/features/programmes/ActivityFormModal'
 import { useActivities, useProgramme } from '@/features/programmes/hooks'
@@ -58,6 +59,7 @@ function timeline(a: Activity): string {
 export function MdaProgrammeDetailPage() {
   const { id } = useParams<{ id: string }>()
   const { hasPermission } = useAuth()
+  const identity = useWorkspaceIdentity()
   const navigate = useNavigate()
 
   const canView = hasPermission('programme.view')
@@ -129,7 +131,7 @@ export function MdaProgrammeDetailPage() {
   return (
     <div className={styles.page}>
       <header className={styles.pageHead}>
-        <span className={styles.eyebrow}>MDA workspace · programme</span>
+        <span className={styles.eyebrow}>{identity.workspace} · programme</span>
         <h1 className={styles.pageTitle}>{programme.name}</h1>
         <p className={styles.lead}>{programme.objective ?? 'No objective recorded for this catalogue programme.'}</p>
         <div className={styles.choiceRow}>

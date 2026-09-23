@@ -88,6 +88,10 @@ export const activityApi = {
   archive(id: string): Promise<Activity> {
     return apiRequest<Activity>({ method: 'POST', url: `/activities/${id}/archive` })
   },
+  /** Undo an archive. Returns the activity to COMPLETED, never straight to active. */
+  restore(id: string): Promise<Activity> {
+    return apiRequest<Activity>({ method: 'POST', url: `/activities/${id}/restore` })
+  },
   budget(id: string): Promise<Budget> {
     return apiRequest<Budget>({ method: 'GET', url: `/activities/${id}/budget` })
   },

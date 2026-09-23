@@ -78,7 +78,7 @@ function AreaDetail({ row, areaWord, onDrillTab }: { row: CoverageRow | null; ar
       </dl>
       <div className={styles.detailMdas}>
         <span className={styles.detailMdaLabel}>
-          <Icon icon={Building2} size={13} /> Implementing MDAs
+          <Icon icon={Building2} size={13} /> Implementing agencies
         </span>
         {row.mdas.length === 0 ? <span className={styles.detailMuted}>—</span> : <span>{row.mdas.join(', ')}</span>}
       </div>

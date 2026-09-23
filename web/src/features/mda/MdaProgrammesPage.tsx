@@ -9,6 +9,7 @@ import type { Column } from '@/components/DataTable/DataTable'
 import { Icon } from '@/components/Icon/Icon'
 import { statusVariant } from '@/components/Badge/statusVariant'
 import { useAuth } from '@/lib/auth/AuthProvider'
+import { useWorkspaceIdentity } from './workspaceIdentity'
 import { ProgrammeFormModal } from '@/features/programmes/ProgrammeFormModal'
 import { useProgrammeDecision, useProgrammes } from '@/features/programmes/hooks'
 import type { Programme } from '@/features/programmes/types'
@@ -27,6 +28,7 @@ import styles from './mda.module.css'
  * for having no activities yet.
  */
 export function MdaProgrammesPage() {
+  const identity = useWorkspaceIdentity()
   const { hasPermission } = useAuth()
   const canView = hasPermission('programme.view')
   const canCreate = hasPermission('programme.create')
@@ -67,7 +69,7 @@ export function MdaProgrammesPage() {
     {
       key: 'owner',
       header: 'Created by',
-      render: (p) => (p.is_central === false ? 'Your MDA' : 'State catalogue'),
+      render: (p) => (p.is_central === false ? `Your ${identity.org}` : 'State catalogue'),
     },
     { key: 'category', header: 'Category', render: (p) => titleCase(p.benefit_category) },
     { key: 'type', header: 'Type', render: (p) => titleCase(p.type) },
@@ -124,11 +126,11 @@ export function MdaProgrammesPage() {
   return (
     <div className={styles.page}>
       <header className={styles.pageHead}>
-        <span className={styles.eyebrow}>MDA workspace</span>
+        <span className={styles.eyebrow}>{identity.workspace}</span>
         <h1 className={styles.pageTitle}>Programmes</h1>
         <p className={styles.lead}>
-          The programmes your MDA delivers — those you run activities under from the state catalogue, and any you have
-          created for your own MDA. Open one to see your activities, their budgets and targets, and to create another.
+          The programmes your {identity.org} delivers — those you run activities under from the state catalogue, and any you have
+          created for your own {identity.org}. Open one to see your activities, their budgets and targets, and to create another.
         </p>
         {canCreate && (
           <div className={styles.pageActions}>
@@ -149,7 +151,7 @@ export function MdaProgrammesPage() {
 
       <Card flush>
         <DataTable
-          caption="Programmes your MDA delivers"
+          caption={`Programmes your ${identity.org} delivers`}
           rows={programmes}
           columns={columns}
           getRowId={(p) => p.id}
@@ -167,8 +169,8 @@ export function MdaProgrammesPage() {
         <Card>
           <p className={styles.muted}>
             <Icon icon={ClipboardList} size={14} /> The state catalogue is shared — the same programme may be run by
-            several MDAs, each through its own activities, and it is maintained by the System Administrator and SP
-            Coordination. A programme you create here belongs to your MDA alone: no other MDA can see it, and the
+            several agencies, each through its own activities, and it is maintained by the System Administrator and SP
+            Coordination. A programme you create here belongs to your {identity.org} alone: no other agency can see it, and the
             System Administrator approves it before you can deliver under it.
           </p>
           <p className={styles.footnote}>

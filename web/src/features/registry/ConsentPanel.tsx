@@ -53,7 +53,7 @@ const PRESENTATION: Record<ConsentStatus, { label: string; variant: 'success' | 
  * cross-MDA read and every new intervention. What was missing was any way to SEE or SET
  * it, so a gate could refuse an operation with no in-product way to resolve the refusal.
  *
- * **Owner MDA only.** Consent belongs to the data controller — the MDA that owns the
+ * **Owning agency only.** Consent belongs to the data controller — the MDA that owns the
  * record (FR-OWN-02 semantics). Everyone else sees the status read-only, because
  * whether they may act on this record depends on it.
  *

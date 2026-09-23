@@ -126,7 +126,9 @@ can use geometry/geography columns.
 
 `--seed` (run automatically on first boot) creates:
 
-- the **seven roles** and their permissions (FR-UAM-01/05),
+- the **six roles** and their permissions (FR-UAM-01/05) — Executive, SP Coordination,
+  M&E Officer, MDA Admin, Development Partner, System Administrator (MDA Officer was
+  merged into MDA Admin in PRD v1.6),
 - **two sample MDAs** (Ministry of Health; Ministry of Women Affairs & Social Development),
 - **one System Administrator** account for first login (below),
 - **sample MDA staff** (an admin + officer per sample MDA — local only), and synthetic
@@ -168,7 +170,7 @@ Signed in as the admin:
 1. **Create an MDA** — side rail → **MDAs** → **Create MDA** (name + type). It appears in the
    scoped list; use the row menu to **Edit** or **Deactivate/Activate**.
 2. **Create a user** — side rail → **Users** → **Create user**. Set name/email, **assign the MDA**
-   you just created and a **role** (e.g. *MDA Officer*), and a temporary password. Validation errors
+   you just created and a **role** (e.g. *MDA Admin*), and a temporary password. Validation errors
    from the API render inline; success shows a toast.
 3. **See scoping & RBAC in action** — sign out and sign in as the new user. They only see data for
    their MDA, and the navigation only shows sections their role permits. Actions they can't perform
@@ -218,9 +220,13 @@ tuning guide) and the completion checklist in [docs/PHASE-3-CHECKLIST.md](docs/P
 
 ### Phase 4 — Programmes, Activities & Benefit Ledger
 
-MDAs configure **programmes** (individual or household) and **activities** under
-**04 · Programmes**, then **enroll** individuals/households (single + bulk, with
-eligibility flags). Officers **record benefit deliveries** (§8.3) — select
+Programmes come from two places: the **central catalog** (System-Administrator-owned,
+readable by everyone) and an MDA's **own proposed programme**, which stays MDA-scoped and
+needs System Administrator approval before any activity may use it — approval clears it
+for use, it does not promote it into the catalog (PRD v1.9, FR-PRG-09). Under
+**04 · Programmes** an MDA picks or proposes a programme, creates **activities** under it,
+then **enrolls** individuals/households (single + bulk, with eligibility flags). Anything
+carrying history is **archived, never hard-deleted** (FR-PRG-10). Officers **record benefit deliveries** (§8.3) — select
 beneficiary → programme/activity → type/quantity/value/funding/date → **verify**
 (field-confirmation or signature; OTP/biometric stubbed) → save — or **bulk-deliver**
 from a distribution list. A serving MDA can deliver to a beneficiary it does not own.
@@ -365,18 +371,64 @@ not run programme delivery.
 
 ---
 
+## Public resource library
+
+A **Resources** page at **`/resources`**, open to anyone — no account, no login. Policies,
+guidelines, tools and reports, each either a downloadable document or a link elsewhere,
+searchable and filterable by category, with a pinned *Key Content* band. The System
+Administrator publishes them from the tenth console section at **`/admin/library`**.
+
+It is the only part of SP-MIS that serves content without authentication, so the boundary is
+explicit rather than implied:
+
+- only **published** resources are served — a draft or withdrawn item is unreachable even by
+  its id, and so is its thumbnail;
+- the public response is a **separate class** from the administrative one, so internal fields
+  cannot leak through a forgotten condition;
+- uploads are restricted by **extension and content type** to document formats. HTML, SVG and
+  XML are refused: this endpoint has nobody authenticated in front of it, and a document that
+  renders from the State's own origin is a stored-XSS vector whatever headers accompany it;
+- files are stored on the **private** disk and streamed as attachments, never served
+  statically — which is also what makes withdrawal immediate rather than advisory;
+- both public endpoints are rate-limited by IP.
+
+Withdrawing a resource **archives** it, keeping the record and its download count; deletion is
+reserved for something added in error. Categories are configuration
+(`api/config/library.php`), not a table, so adding one is a config change and a deploy.
+
+> **No malware scanning exists in this stack** — administrator-only upload is the control, and
+> that is a recorded, accepted risk. See PRD §7.14 (FR-RES-01..05) and `docs/SECURITY.md`.
+> A release carrying this feature must run `RolesAndPermissionsSeeder`, not just the migration:
+> `permissions:sync` creates the permission rows but does not attach them to the role.
+
+---
+
 ## MDA console
 
-The delivery workspace for an MDA — **six task-based modules** (Overview, Programmes,
-Beneficiaries, Service Delivery, Duplicate Resolution, Reports) plus a header carrying
-notifications and Settings.
+The delivery workspace for an implementing agency — **six task-based modules** (Overview,
+Programmes, Beneficiaries, Service Delivery, Duplicate Resolution, Reports) plus a header
+carrying notifications and Settings.
 
-**One navigation serves both MDA roles**, gated per item by permission rather than
-branched by role. That works because MDA Officer's permissions are a strict subset of MDA
-Admin's; the difference is exactly six, of which two matter inside this console —
-`beneficiary.approve` (decide an incoming request-to-serve) and `beneficiary.export`
-(bulk beneficiary export). Both roles *see* the approval queue and the Overview counter;
-only an Admin can action it. Everything is MDA-scoped on the server.
+**One role operates it** — MDA Admin. (MDA Officer was merged into it in PRD v1.6, its
+permissions already being a strict subset.) The rail is still built once and gates each
+item on **permission**, not role name, which is what let the merge happen without
+touching navigation. Everything is scoped on the server regardless of what the UI renders.
+
+**Two kinds of organisation work in it.** A government MDA, and a **partner organisation**
+— a development partner that implements its own programmes (PRD §6.6, FR-UAM-08). A
+partner's staff hold the same MDA Admin role against an organisation of type `partner`,
+own records through the same `owner_mda_id`, and are therefore scoped, duplicate-screened
+and audited identically. Only the words differ: `workspaceIdentity()` derives the
+workspace name, the role label and the noun for "your …" from the signed-in user's
+organisation type, so Save the Children reads *Partner workspace / Partner Admin / scoped
+to your organisation* while a ministry sees exactly what it always saw. The role key is
+unchanged — this is display, not permissions.
+
+> This is deliberately **not** the same account as that partner's **funder** login. The
+> funder account is read-only, funded-scope and never sees beneficiary PII; the whole
+> guarantee rests on the two being separate. `mdas.funder_user_id` links them for
+> reporting only. Government may not fund a partner organisation's own activity
+> (FR-PRG-11).
 
 Like the administration console it is a **composition layer**: each module arranges
 screens that already exist — Phase 2 registry, Phase 3 matching, Phase 4 programmes and
@@ -396,8 +448,8 @@ counts only.
 > `Database\Seeders\MdaConsoleDemoSeeder` seeds an MDA with participated programmes,
 > activities that do and do not register beneficiaries, imported beneficiaries and
 > households, delivered benefits, referrals both ways, request-to-serve both ways and a
-> duplicate case — plus the Officer and Admin accounts — so every module renders for both
-> roles (`php artisan db:seed --class=MdaConsoleDemoSeeder`). Synthetic only. Details:
+> duplicate case — plus the staff accounts — so every module renders
+> (`php artisan db:seed --class=MdaConsoleDemoSeeder`). Synthetic only. Details:
 > [web/src/features/mda/README.md](web/src/features/mda/README.md) and the checklist in
 > [docs/PHASE-MDA-CHECKLIST.md](docs/PHASE-MDA-CHECKLIST.md).
 

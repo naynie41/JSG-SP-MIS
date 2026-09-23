@@ -86,8 +86,19 @@
  * the two silently drift apart.
  */
 .wordmarkMark {
-  width: var(--landing-mark-size);
-  height: var(--landing-mark-size);
+  /*
+   * The fallback is load-bearing. `--landing-mark-size` is declared on `.page`, so
+   * it exists only on the landing page itself — this header is also used standalone
+   * on /resources, where an unresolved var() leaves the crest at its intrinsic SVG
+   * size and it renders about 500px tall, shoving the page down a screen.
+   *
+   * The literal duplicates .page's value on purpose: the hero derives its negative
+   * margin from that one, so it is the number the two of THEM must agree on. This
+   * copy only has to be a sane standalone default.
+   */
+  width: var(--landing-mark-size, 44px);
+  height: var(--landing-mark-size, 44px);
+  flex: none;
 }
 .wordmarkText {
   display: grid;

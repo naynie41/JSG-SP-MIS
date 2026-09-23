@@ -13,6 +13,7 @@ import { Tabs } from '@/components/Tabs/Tabs'
 import { useToast } from '@/components/Toast/ToastProvider'
 import { statusVariant } from '@/components/Badge/statusVariant'
 import { useAuth } from '@/lib/auth/AuthProvider'
+import { useWorkspaceIdentity } from './workspaceIdentity'
 import { useDuplicateQueue, useResolveMatch } from '@/features/registry/hooks'
 import type { DuplicateQueueRow } from '@/features/registry/types'
 import { MATCH_BAND_LABELS, RESOLUTION_LABELS } from '@/features/registry/constants'
@@ -565,6 +566,7 @@ function QueuePager({
  * stays `probable` on the wire — this module does not introduce a third name for it.
  */
 export function MdaDuplicateResolutionPage() {
+  const identity = useWorkspaceIdentity()
   const { hasPermission } = useAuth()
   const canView = hasPermission('beneficiary.view')
   const canResolve = hasPermission('beneficiary.create')
@@ -640,7 +642,7 @@ export function MdaDuplicateResolutionPage() {
   return (
     <div className={styles.page}>
       <header className={styles.pageHead}>
-        <span className={styles.eyebrow}>MDA workspace</span>
+        <span className={styles.eyebrow}>{identity.workspace}</span>
         <h1 className={styles.pageTitle}>Duplicate Resolution</h1>
         <p className={styles.lead}>
           Every match the screening engine surfaced against your imports, and what was decided about it. An exact

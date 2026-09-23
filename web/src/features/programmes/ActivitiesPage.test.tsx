@@ -21,6 +21,7 @@ vi.mock('./hooks', () => ({
   useAllActivities: () => ({ data: { items: [activityRow] }, isLoading: false }),
   useProgrammeCatalog: () => ({ data: { items: [{ id: 'p-1', name: 'Cash Transfer' }] } }),
   useArchiveActivity: () => ({ mutate: vi.fn() }),
+  useRestoreActivity: () => ({ mutate: vi.fn() }),
 }))
 
 describe('ActivitiesPage', () => {

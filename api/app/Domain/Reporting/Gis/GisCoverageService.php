@@ -294,7 +294,15 @@ class GisCoverageService
      */
     private function activityBreakdown(DashboardScope $scope, string $column, DashboardFilter $filter): array
     {
-        $query = Activity::query()->withoutGlobalScope(MdaScope::class)->where('status', ActivityStatus::Active->value);
+        // NOT ARCHIVED, rather than active.
+        //
+        // This answers "where do we operate", and a completed activity still covered
+        // the LGA it ran in — dropping it would shrink the coverage map every time the
+        // nightly sweep completes something, which is a map that gets quietly less
+        // true over time. Archived is excluded because that IS the filing decision
+        // that says the work is done with.
+        $query = Activity::query()->withoutGlobalScope(MdaScope::class)
+            ->whereNotIn('status', [ActivityStatus::Draft->value, ActivityStatus::Archived->value]);
         if ($scope->isPartner()) {
             $query->where('funding_partner_id', $scope->partnerId);
         } elseif ($scope->mdaIds !== null) {

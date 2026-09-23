@@ -13,17 +13,29 @@ use Database\Factories\MdaFactory;
 use Illuminate\Database\Eloquent\Concerns\HasUuids;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Support\Carbon;
 
 /**
- * A Ministry, Department or Agency. Owns its users and (later) the beneficiary
- * records it originates.
+ * An organisation that DELIVERS social protection, and owns the records it
+ * originates. Usually a Ministry, Department or Agency — hence the name — but a
+ * development partner that implements its own programmes is one too
+ * ({@see MdaType::Partner}).
+ *
+ * A partner organisation is deliberately modelled here rather than as a separate
+ * kind of thing: ownership, MDA scoping, duplicate detection, request-to-serve and
+ * the benefit ledger all key off `owner_mda_id`, so a partner that owns records
+ * inherits every one of those rules for free. `funder_user_id` ties such an
+ * organisation to the Development Partner ACCOUNT that funds through it; the two
+ * are separate logins on purpose, so the funder role still never reaches PII
+ * (CLAUDE.md §11).
  *
  * @property string $id
  * @property string $name
  * @property MdaType $type
+ * @property string|null $funder_user_id
  * @property MdaStatus $status
  * @property string|null $contact_person
  * @property string|null $contact_email
@@ -54,6 +66,7 @@ class Mda extends Model implements MdaScoped
     protected $fillable = [
         'name',
         'type',
+        'funder_user_id',
         'contact_person',
         'contact_email',
         'contact_phone',
@@ -97,6 +110,26 @@ class Mda extends Model implements MdaScoped
     public function accessGrants(): HasMany
     {
         return $this->hasMany(MdaAccessGrant::class);
+    }
+
+    /**
+     * The Development Partner ACCOUNT this organisation funds through, for a partner
+     * that both funds and implements. Null for every government MDA.
+     *
+     * Read without the MDA scope: the funder account carries no `mda_id` of its own
+     * (it is state-level, funded-scope), so a scoped read would find nothing.
+     *
+     * @return BelongsTo<User, $this>
+     */
+    public function funderAccount(): BelongsTo
+    {
+        return $this->belongsTo(User::class, 'funder_user_id')->withoutGlobalScopes();
+    }
+
+    /** A government body, as opposed to a partner organisation that implements. */
+    public function isGovernment(): bool
+    {
+        return $this->type->isGovernment();
     }
 
     protected static function newFactory(): MdaFactory
