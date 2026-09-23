@@ -145,10 +145,12 @@ class PublicLibraryController extends Controller
         /** @var array<string, string> $configured */
         $configured = config('library.categories', []);
 
-        return array_values(array_map(
+        // array_map over TWO arrays ignores their keys and returns a list already, so
+        // there is nothing for array_values to do here.
+        return array_map(
             static fn (string $key, string $label): array => ['key' => $key, 'label' => $label],
             array_keys($configured),
             $configured,
-        ));
+        );
     }
 }

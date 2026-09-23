@@ -90,9 +90,14 @@ class RegisterProfileExportBuilder
      * in the same breath. A reader who takes "70% female" from a chart covering 12% of
      * the register has been misled by the report, not by their own carelessness.
      *
+     * Always returns a figure, unlike the bar charts beside it. When there is nothing to
+     * draw it returns one carrying the explanation instead — the absence of an age
+     * pyramid is itself a finding about the register's data quality, and dropping the
+     * figure silently would hide it.
+     *
      * @param  Builder<Beneficiary>  $base
      */
-    private function pyramid($base, int $total, int $noAge, ?int $minimum): ?ReportFigure
+    private function pyramid($base, int $total, int $noAge, ?int $minimum): ReportFigure
     {
         $rows = $this->segments->genderByAge($base);
         $chart = SvgChart::pyramid($rows, self::FULL, $minimum);
