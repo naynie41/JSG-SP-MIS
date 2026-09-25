@@ -46,7 +46,7 @@ describe('public landing page', () => {
     expect(screen.getByText(/connecting people, programmes and services/i)).toBeInTheDocument()
   })
 
-  it('carries all ten sections in order', async () => {
+  it('carries all eleven sections in order', async () => {
     renderWithProviders(<App />, '/')
     await screen.findByRole('heading', { level: 1 })
 
@@ -59,12 +59,13 @@ describe('public landing page', () => {
       /built for every local government area/i, // 6. across the state
       /your voice matters/i, // 7. grievance redress
       /connecting the ecosystem/i, // 8. stakeholders
-      /access sp-mis/i, // 9. CTA
+      /questions people ask/i, // 9. FAQs
+      /access sp-mis/i, // 10. CTA
     ]) {
       expect(headings.some((h) => expected.test(h))).toBe(true)
     }
 
-    // 1. header, 2. hero, 10. footer — landmarks rather than headings.
+    // 1. header, 2. hero, 11. footer — landmarks rather than headings.
     expect(screen.getByRole('banner')).toBeInTheDocument()
     expect(screen.getByRole('main')).toBeInTheDocument()
     expect(screen.getByRole('contentinfo')).toBeInTheDocument()
@@ -81,6 +82,60 @@ describe('public landing page', () => {
     expect(screen.getByText('05')).toBeInTheDocument()
     expect(screen.getByText(/a programme is defined/i)).toBeInTheDocument()
     expect(screen.getByText(/insight comes back/i)).toBeInTheDocument()
+  })
+
+  /* ------------------------------------------------------------------- FAQs */
+
+  it('answers the questions a visitor actually arrives with, collapsed until asked', async () => {
+    const user = userEvent.setup()
+    renderWithProviders(<App />, '/')
+    await screen.findByRole('heading', { level: 1 })
+
+    // Native <details>: the question is a summary, and the answer is in the DOM but
+    // closed. That is what makes it keyboard-operable with no ARIA of our own.
+    const question = screen.getByText(/can i create an account\?/i)
+    const disclosure = question.closest('details')
+    expect(disclosure).not.toBeNull()
+    expect(disclosure).not.toHaveAttribute('open')
+
+    await user.click(question)
+    expect(disclosure).toHaveAttribute('open')
+
+    // The answer that matters most: there is no public sign-up, and we say so.
+    expect(within(disclosure!).getByText(/no public sign-up/i)).toBeInTheDocument()
+  })
+
+  it('points every question back at the agency, never at a public form or a phone number', async () => {
+    // The page collects nothing and publishes no contact route. An FAQ is exactly where
+    // an invented mailbox or hotline would creep in, so this asserts their absence
+    // rather than trusting the copy to stay disciplined.
+    renderWithProviders(<App />, '/')
+    await screen.findByRole('heading', { level: 1 })
+
+    const faqs = screen.getByRole('heading', { name: /questions people ask/i }).closest('section')
+    expect(faqs).not.toBeNull()
+
+    expect(within(faqs!).queryByRole('textbox')).not.toBeInTheDocument()
+    expect(within(faqs!).queryByRole('button')).not.toBeInTheDocument()
+    for (const link of within(faqs!).getAllByRole('link')) {
+      expect(link.getAttribute('href')).not.toMatch(/^(tel:|mailto:)/)
+    }
+
+    // And the register/lookup expectations are answered, not left to be discovered.
+    expect(within(faqs!).getByText(/there is no public lookup/i)).toBeInTheDocument()
+    expect(within(faqs!).getByText(/it is not a place to apply/i)).toBeInTheDocument()
+  })
+
+  it('sends the resources question to the Resources route through the router', async () => {
+    renderWithProviders(<App />, '/')
+    await screen.findByRole('heading', { level: 1 })
+
+    const faqs = screen.getByRole('heading', { name: /questions people ask/i }).closest('section')
+    const resources = within(faqs!).getByRole('link', { name: /open resources/i })
+
+    // A real route, so it must be a router link — an <a href="/resources"> would reload
+    // the whole application to reach a page the SPA already holds.
+    expect(resources).toHaveAttribute('href', '/resources')
   })
 
   /* --------------------------------------------------------- no system data */

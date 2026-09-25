@@ -646,7 +646,77 @@
   color: var(--text-muted-strong);
 }
 
-/* --------------------------------------------------------------- 9. CTA band */
+/* --------------------------------------------------- 9. questions people ask */
+
+/* A rule-separated list rather than a stack of cards. Nine cards would read as nine
+   competing objects; nine rules read as one list you scan down, which is what an FAQ
+   is for. The measure is wider than a card's but still capped — an answer running the
+   full 1200px would be unreadable. */
+.faqs {
+  list-style: none;
+  max-width: 88ch;
+  margin: var(--space-7) 0 0;
+  padding: 0;
+  border-top: 1px solid var(--border);
+}
+.faq {
+  border-bottom: 1px solid var(--border);
+}
+
+.faqQuestion {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-5);
+  padding: var(--space-5) 0;
+  cursor: pointer;
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: var(--fs-h3);
+  line-height: 1.35;
+  color: var(--forest);
+  /* Both of these remove the browser's own disclosure triangle — Firefox honours
+     `list-style`, WebKit needs its pseudo-element. Ours is .faqChevron, which sits on
+     the right where the eye returns after reading the question. */
+  list-style: none;
+}
+.faqQuestion::-webkit-details-marker {
+  display: none;
+}
+.faqQuestion:hover {
+  color: var(--forest-2);
+}
+
+/* Drawn from two borders rather than imported as an icon: it inherits the question's
+   colour for free, so the hover state needs no second rule. */
+.faqChevron {
+  flex: none;
+  width: 9px;
+  height: 9px;
+  border-right: 2px solid currentColor;
+  border-bottom: 2px solid currentColor;
+  transform: translateY(-3px) rotate(45deg);
+  transition: transform var(--transition);
+}
+.faq[open] .faqChevron {
+  transform: translateY(2px) rotate(-135deg);
+}
+
+.faqAnswer {
+  display: grid;
+  justify-items: start;
+  gap: var(--space-4);
+  max-width: 68ch;
+  padding: 0 0 var(--space-6);
+}
+.faqAnswer p {
+  margin: 0;
+  font-size: var(--fs-body);
+  line-height: 1.65;
+  color: var(--text-muted-strong);
+}
+
+/* --------------------------------------------------------------- 10. CTA band */
 
 .cta {
   padding: clamp(var(--space-8), 9vw, calc(var(--space-8) * 1.5)) var(--space-5);
@@ -752,8 +822,12 @@
 
 /* ------------------------------------------------------------------- focus */
 
-/* One visible focus treatment for every interactive element on the page (§6). */
+/* One visible focus treatment for every interactive element on the page (§6).
+   `summary` is in the list because it is focusable and operable by keyboard but is
+   neither an <a> nor a <button>, so the two selectors below would have skipped the
+   FAQ questions entirely and left a keyboard user with no visible position. */
 .page a:focus-visible,
+.page summary:focus-visible,
 .page button:focus-visible {
   outline: 2px solid var(--accent);
   outline-offset: 3px;
@@ -781,7 +855,8 @@
    ----------------------------------------------------------------------------------- */
 
 @media (prefers-reduced-motion: reduce) {
-  .skipLink {
+  .skipLink,
+  .faqChevron {
     transition: none;
   }
 }

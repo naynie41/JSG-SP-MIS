@@ -1,9 +1,10 @@
 import { ArrowRight, ShieldCheck } from 'lucide-react'
+import { Link } from 'react-router-dom'
 import { BrandMark, ButtonLink, Icon } from '@/components'
 import { IllustrativeMap } from './IllustrativeMap'
 import { LandingHeader } from './LandingHeader'
 import { HERO_IMAGE_ALT, HERO_IMAGE_URL, LOGIN_PATH } from './landingConfig'
-import { CAPABILITIES, FOOTER_LINKS, GRIEVANCE_FLOW, PILLARS, STAKEHOLDERS, STEPS } from './landingContent'
+import { CAPABILITIES, FAQS, FOOTER_LINKS, GRIEVANCE_FLOW, PILLARS, STAKEHOLDERS, STEPS } from './landingContent'
 import styles from './landing.module.css'
 
 /**
@@ -240,7 +241,58 @@ export function LandingPage() {
           </div>
         </section>
 
-        {/* ───────────────────────────────────────────────── 9. Access CTA ── */}
+        {/* ─────────────────────────────────────────── 9. Questions people ask ── */}
+        <section className={styles.section} id="faq" aria-labelledby="faq-heading">
+          <div className={styles.sectionInner}>
+            <p className={styles.eyebrowDark}>Answers</p>
+            <h2 className={styles.sectionTitle} id="faq-heading">
+              Questions people ask
+            </h2>
+            <p className={styles.sectionLead}>
+              Most of what someone wants from social protection happens with the agency running the
+              programme, not on this site. These answers say where each thing actually happens.
+            </p>
+
+            <ul className={styles.faqs}>
+              {FAQS.map((faq) => (
+                <li key={faq.question}>
+                  {/*
+                   * A native <details>, not a scripted accordion. It opens with no
+                   * JavaScript, it is keyboard-operable and announced correctly without a
+                   * line of ARIA of our own, and browsers that search inside closed
+                   * details will find these answers. A hand-rolled one buys nothing here
+                   * and is one more thing to get wrong for a screen-reader user.
+                   */}
+                  <details className={styles.faq}>
+                    <summary className={styles.faqQuestion}>
+                      <span>{faq.question}</span>
+                      <span className={styles.faqChevron} aria-hidden="true" />
+                    </summary>
+                    <div className={styles.faqAnswer}>
+                      <p>{faq.answer}</p>
+                      {faq.link &&
+                        (faq.link.to.startsWith('#') ? (
+                          <a href={faq.link.to} className={styles.textLink}>
+                            {faq.link.label}
+                            <Icon icon={ArrowRight} size={15} aria-hidden="true" />
+                          </a>
+                        ) : (
+                          // A real route: through the router, or the SPA reloads itself
+                          // to reach a page it already has.
+                          <Link to={faq.link.to} className={styles.textLink}>
+                            {faq.link.label}
+                            <Icon icon={ArrowRight} size={15} aria-hidden="true" />
+                          </Link>
+                        ))}
+                    </div>
+                  </details>
+                </li>
+              ))}
+            </ul>
+          </div>
+        </section>
+
+        {/* ──────────────────────────────────────────────── 10. Access CTA ── */}
         <section className={styles.cta} aria-labelledby="access-heading">
           <div className={styles.ctaInner}>
             <p className={styles.eyebrow}>Access</p>
@@ -262,7 +314,7 @@ export function LandingPage() {
         </section>
       </main>
 
-      {/* ───────────────────────────────────────────────────── 10. Footer ── */}
+      {/* ───────────────────────────────────────────────────── 11. Footer ── */}
       <footer className={styles.footer} id="privacy">
         <div className={styles.footerInner}>
           <div className={styles.footerBrand}>

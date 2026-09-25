@@ -183,7 +183,96 @@ export const GRIEVANCE_FLOW = [
   'Resolution',
 ]
 
-/** Section 10 — footer link groups. Anchors stay on this page; the rest are real routes. */
+export interface Faq {
+  question: string
+  answer: string
+  /** An optional onward route. Only for answers where the next step is a real page. */
+  link?: { label: string; to: string }
+}
+
+/**
+ * Section 9 — the questions a member of the public actually arrives with.
+ *
+ * Most of these are answered by saying what the system does NOT do, and that is the
+ * point: the commonest expectations of a government portal — sign up, look yourself up,
+ * apply here — are all wrong for this one, and leaving a visitor to discover that by
+ * hunting for a button is worse than telling them plainly.
+ *
+ * Two rules bind this copy, both inherited from the page itself:
+ *
+ *  - **No figures.** Not a count, not a coverage percentage, and not a timeframe. A
+ *    "resolved within N days" answer would be an SLA commitment invented on a landing
+ *    page; the real ones live with the agencies. `LandingPage.test.tsx` enforces the
+ *    absence of digits, so a number added here fails the suite rather than shipping.
+ *  - **No contact details.** No phone number, address or mailbox appears anywhere on
+ *    this page, so no answer may imply one. Every route out of a question ends at the
+ *    agency that holds the record, which is the body actually accountable for it.
+ */
+export const FAQS: Faq[] = [
+  {
+    question: 'Who is SP-MIS for?',
+    answer:
+      'It is a working system for the ministries, departments and agencies that deliver social ' +
+      'protection in Jigawa State, and for the bodies that oversee them. This page is the public ' +
+      'explanation of what it does; the system behind it is not open to the public.',
+  },
+  {
+    question: 'Can I create an account?',
+    answer:
+      'No. SP-MIS has no public sign-up. Accounts are issued by the ministry, department or agency ' +
+      'you work for, and each one carries a role that decides what its holder may see and do.',
+  },
+  {
+    question: 'How do I register for a social protection programme?',
+    answer:
+      'Not here. Registration happens through the agency running the programme, as part of its own ' +
+      'activity — in the field, or from records it already holds. SP-MIS records that registration; ' +
+      'it is not a place to apply.',
+  },
+  {
+    question: 'I am already registered. Can I look up my own record on this site?',
+    answer:
+      'No. Nothing about a registered person is published here, and there is no public lookup. Ask ' +
+      'the agency that registered you: it holds your record and is the body accountable for it.',
+  },
+  {
+    question: 'How do I raise a complaint or ask about a programme?',
+    answer:
+      'Through the agency delivering it — its grievance officer or intake desk. From there the ' +
+      'matter is logged in SP-MIS and followed until it reaches an outcome, so nothing depends on ' +
+      'who happened to take the call.',
+    link: { label: 'How a grievance travels', to: '#grievance-redress' },
+  },
+  {
+    question: 'Why does this page show no beneficiary numbers or coverage figures?',
+    answer:
+      'Because those are operational information about real people who never consented to a public ' +
+      'page. They belong to the officers and oversight bodies accountable for them, and they are ' +
+      'read inside the system, by the roles entitled to read them.',
+  },
+  {
+    question: 'Where can I find policies, guidelines, tools and reports?',
+    answer:
+      'On the Resources page. Everything published there can be read and downloaded by anyone, ' +
+      'without an account and without signing in.',
+    link: { label: 'Open Resources', to: '/resources' },
+  },
+  {
+    question: 'Is personal information kept safe?',
+    answer:
+      'Access is role-based, so a user reaches only the records their role allows, and every action ' +
+      'taken on a record is written to an audit trail. Identifying details stay masked unless ' +
+      'someone has been specifically permitted to see them.',
+  },
+  {
+    question: 'Who runs SP-MIS?',
+    answer:
+      'The Jigawa State Government. The programme catalogue and the rules every agency works to are ' +
+      'maintained centrally, while each agency owns and runs its own delivery.',
+  },
+]
+
+/** Section 11 — footer link groups. Anchors stay on this page; the rest are real routes. */
 export const FOOTER_LINKS: { heading: string; links: { label: string; to: string }[] }[] = [
   {
     heading: 'Quick links',
@@ -197,6 +286,7 @@ export const FOOTER_LINKS: { heading: string; links: { label: string; to: string
   {
     heading: 'Support',
     links: [
+      { label: 'FAQs', to: '#faq' },
       { label: 'Help', to: '#contact' },
       { label: 'Privacy', to: '#privacy' },
       { label: 'Security', to: '#privacy' },
@@ -217,5 +307,6 @@ export const NAV_LINKS = [
   { label: 'Programmes', to: '#programmes' },
   { label: 'Resources', to: '/resources' },
   { label: 'Grievance redress', to: '#grievance-redress' },
+  { label: 'FAQs', to: '#faq' },
   { label: 'Contact', to: '#contact' },
 ]
