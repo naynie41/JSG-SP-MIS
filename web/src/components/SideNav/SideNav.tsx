@@ -102,7 +102,7 @@ export function SideNav({ sections, footer, open = false, onClose }: SideNavProp
         <div className={styles.brand}>
           <BrandMark size={40} />
           <span>
-            <span className={styles.brandName}>SP-MIS</span>
+            <span className={styles.brandName}>JIG-SPOTS</span>
             <br />
             <span className={styles.brandSub}>Jigawa State</span>
           </span>

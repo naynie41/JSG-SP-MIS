@@ -1,6 +1,6 @@
 # syntax=docker/dockerfile:1
 # =============================================================================
-# SP-MIS web — PRODUCTION image. Multi-stage: build the React/Vite SPA in a node
+# JIG-SPOTS web — PRODUCTION image. Multi-stage: build the React/Vite SPA in a node
 # stage, then serve the static bundle from a slim, NON-ROOT nginx. The API base
 # URL defaults to the same-origin "/api/v1" (the reverse proxy serves both the
 # SPA and the API), so one image works for every environment — no secrets baked.
@@ -14,7 +14,7 @@ RUN npm ci
 COPY web/ ./
 # Same-origin API by default; override at build time only if truly split-origin.
 ARG VITE_API_BASE_URL=/api/v1
-ARG VITE_APP_NAME=SP-MIS
+ARG VITE_APP_NAME=JIG-SPOTS
 ENV VITE_API_BASE_URL=$VITE_API_BASE_URL \
     VITE_APP_NAME=$VITE_APP_NAME
 RUN npm run build

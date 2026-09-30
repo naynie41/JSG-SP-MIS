@@ -30,7 +30,7 @@ export function NotificationPreferencesPage() {
           <span className="eyebrow">Account</span>
           <h1 className="t-h1">Notification preferences</h1>
           <p className={styles.note}>
-            Choose how SP-MIS reaches you. These settings apply to your account only.
+            Choose how JIG-SPOTS reaches you. These settings apply to your account only.
           </p>
         </div>
       </div>

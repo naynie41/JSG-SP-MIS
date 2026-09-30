@@ -37,14 +37,14 @@ people on the same screen may legitimately see different data.
 
 ## Product Purpose
 
-SP-MIS is the single environment in which every social protection programme in
+JIG-SPOTS is the single environment in which every social protection programme in
 Jigawa State is coordinated, delivered, and reported on. Today each MDA runs its
 own register and its own tools, so the same person is enrolled many times, no
 agency can see who is already being served, and there is no reliable way to
 refer, coordinate, or report across programmes. The result is duplicated spend
 and weak oversight.
 
-SP-MIS replaces that with shared data under clear ownership: MDAs deliver
+JIG-SPOTS replaces that with shared data under clear ownership: MDAs deliver
 programmes through their own activities, register beneficiaries, track every
 benefit, coordinate referrals, and generate evidence — while each MDA keeps
 ownership of the records it originated.
@@ -146,8 +146,9 @@ MDA · LGA / Ward · GRM · NIN / BVN · SOCU.
 
 ## Brand Commitments
 
-- **Name:** Jigawa State SP-MIS (State Social Protection Management Information
-  System).
+- **Name:** JIG-SPOTS (Jigawa Social Protection Operations and Tracking System).
+  Renamed from SP-MIS on 2026-09-30; the acronym now carries "Jigawa", so it is
+  never prefixed with "Jigawa State".
 - **A binding brand guide already exists** — *Jigawa Social-Protection MIS Design
   System V1.0* — and its foundations (color, type, spacing, radius, elevation)
   and primitives are recorded as non-negotiable in
@@ -155,7 +156,7 @@ MDA · LGA / Ward · GRM · NIN / BVN · SOCU.
   source of visual truth. Tokens marked `[inferred]` in that file were derived
   rather than specified and are still pending confirmation by the design owner.
 - The brand's **marketing** components (hero banners, testimonials, demo CTAs)
-  are explicitly not used; only its tokens carry over. SP-MIS is a dense, form-
+  are explicitly not used; only its tokens carry over. JIG-SPOTS is a dense, form-
   and table-heavy government application, not a marketing site.
 - Implemented as a shared component library under
   [web/src/components/](web/src/components/) with a single token stylesheet at

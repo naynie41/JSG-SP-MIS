@@ -103,7 +103,7 @@ final class AdHocDatasetRegistry
          * "what are we running, and under which programme" without the catalogue itself
          * ever being reportable to a non-governance scope.
          *
-         * `budget_amount` is an activity BUDGET figure, not expenditure — SP-MIS records
+         * `budget_amount` is an activity BUDGET figure, not expenditure — JIG-SPOTS records
          * delivery, it does not move money.
          */
         'activities' => [

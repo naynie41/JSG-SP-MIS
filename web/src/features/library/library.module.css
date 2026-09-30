@@ -1,7 +1,7 @@
 /*
  * Resource library — the public page and the administration section.
  *
- * The public page is the only surface in SP-MIS a member of the public sees with
+ * The public page is the only surface in JIG-SPOTS a member of the public sees with
  * content on it, so it is built from the same tokens as the signed-in product
  * rather than a separate look: a citizen and an officer should recognise the same
  * system. Everything here is token-driven; no raw colours, no off-ramp values.

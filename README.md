@@ -1,6 +1,6 @@
-# Jigawa State SP-MIS
+# JIG-SPOTS
 
-State Social Protection Management Information System — a unified platform for
+Jigawa Social Protection Operations and Tracking System — a unified platform for
 coordinating, registering, and tracking social protection beneficiaries and
 benefits across MDAs.
 
@@ -76,7 +76,7 @@ connectivity and that PostGIS is enabled:
 {
   "data": {
     "status": "ok",
-    "service": "SP-MIS",
+    "service": "JIG-SPOTS",
     "environment": "local",
     "time": "2026-06-29T12:00:00+00:00",
     "checks": {
@@ -236,7 +236,7 @@ KPI panel). **Double-dipping** across MDAs is flagged (configurable, never block
 the duplicate-match reveal now shows real programmes + benefits, and **auto-route**
 suggests-then-confirms a matching programme.
 
-> **Records delivery, not payment (§2.3):** SP-MIS never moves money — every
+> **Records delivery, not payment (§2.3):** JIG-SPOTS never moves money — every
 > monetary value is data (kobo, NGN). See
 > [api/app/Domain/Programme/README.md](api/app/Domain/Programme/README.md),
 > [api/app/Domain/Benefit/README.md](api/app/Domain/Benefit/README.md) (double-dipping
@@ -378,7 +378,7 @@ guidelines, tools and reports, each either a downloadable document or a link els
 searchable and filterable by category, with a pinned *Key Content* band. The System
 Administrator publishes them from the tenth console section at **`/admin/library`**.
 
-It is the only part of SP-MIS that serves content without authentication, so the boundary is
+It is the only part of JIG-SPOTS that serves content without authentication, so the boundary is
 explicit rather than implied:
 
 - only **published** resources are served — a draft or withdrawn item is unreachable even by

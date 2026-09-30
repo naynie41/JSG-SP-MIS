@@ -223,7 +223,7 @@
     @endif
 
     <div class="foot">
-        SP-MIS — counts only; contains no personal records. Scoped to the requester. Confidential; not for redistribution.
+        JIG-SPOTS — counts only; contains no personal records. Scoped to the requester. Confidential; not for redistribution.
     </div>
 </body>
 </html>

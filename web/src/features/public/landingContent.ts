@@ -178,7 +178,7 @@ export const STAKEHOLDERS: Stakeholder[] = [
 export const GRIEVANCE_FLOW = [
   'Grievance officer',
   'MDA intake',
-  'SP-MIS',
+  'JIG-SPOTS',
   'MDA administrator',
   'Resolution',
 ]
@@ -210,7 +210,7 @@ export interface Faq {
  */
 export const FAQS: Faq[] = [
   {
-    question: 'Who is SP-MIS for?',
+    question: 'Who is JIG-SPOTS for?',
     answer:
       'It is a working system for the ministries, departments and agencies that deliver social ' +
       'protection in Jigawa State, and for the bodies that oversee them. This page is the public ' +
@@ -219,14 +219,14 @@ export const FAQS: Faq[] = [
   {
     question: 'Can I create an account?',
     answer:
-      'No. SP-MIS has no public sign-up. Accounts are issued by the ministry, department or agency ' +
+      'No. JIG-SPOTS has no public sign-up. Accounts are issued by the ministry, department or agency ' +
       'you work for, and each one carries a role that decides what its holder may see and do.',
   },
   {
     question: 'How do I register for a social protection programme?',
     answer:
       'Not here. Registration happens through the agency running the programme, as part of its own ' +
-      'activity — in the field, or from records it already holds. SP-MIS records that registration; ' +
+      'activity — in the field, or from records it already holds. JIG-SPOTS records that registration; ' +
       'it is not a place to apply.',
   },
   {
@@ -239,7 +239,7 @@ export const FAQS: Faq[] = [
     question: 'How do I raise a complaint or ask about a programme?',
     answer:
       'Through the agency delivering it — its grievance officer or intake desk. From there the ' +
-      'matter is logged in SP-MIS and followed until it reaches an outcome, so nothing depends on ' +
+      'matter is logged in JIG-SPOTS and followed until it reaches an outcome, so nothing depends on ' +
       'who happened to take the call.',
     link: { label: 'How a grievance travels', to: '#grievance-redress' },
   },
@@ -265,7 +265,7 @@ export const FAQS: Faq[] = [
       'someone has been specifically permitted to see them.',
   },
   {
-    question: 'Who runs SP-MIS?',
+    question: 'Who runs JIG-SPOTS?',
     answer:
       'The Jigawa State Government. The programme catalogue and the rules every agency works to are ' +
       'maintained centrally, while each agency owns and runs its own delivery.',

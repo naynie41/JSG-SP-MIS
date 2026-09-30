@@ -65,7 +65,7 @@ use Illuminate\Support\Facades\Route;
 | API v1
 |--------------------------------------------------------------------------
 |
-| All SP-MIS endpoints live under the /api/v1 prefix (URI versioning).
+| All JIG-SPOTS endpoints live under the /api/v1 prefix (URI versioning).
 | Keep new resources inside this group so a future v2 can coexist.
 |
 */
@@ -106,7 +106,7 @@ Route::prefix('v1')->group(function (): void {
     |
     | The resource library, served to anyone. Read the warning before adding to
     | this group: apart from /health and login, these are the ONLY endpoints in
-    | SP-MIS that answer without a token, so anything placed here is on the open
+    | JIG-SPOTS that answer without a token, so anything placed here is on the open
     | internet by definition.
     |
     | Three things hold the line, and all three are deliberate:

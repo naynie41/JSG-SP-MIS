@@ -44,14 +44,14 @@ class NotificationMail extends Mailable implements ShouldQueue
             // The whole point of an action-required email: somewhere to go. Rendered as
             // a link AND as plain text, because a mail client that strips the anchor
             // would otherwise leave the reader with an instruction and no address.
-            $label = e($this->message->actionLabel ?? 'Open SP-MIS');
+            $label = e($this->message->actionLabel ?? 'Open JIG-SPOTS');
             $safeUrl = e($url);
             $html .= "<p><a href=\"{$safeUrl}\">{$label}</a></p>"
                 .'<p style="color:#555;font-size:12px">If the link does not open, paste this into your browser:<br>'
                 ."{$safeUrl}</p>";
         }
 
-        $html .= '<p>— Jigawa State SP-MIS</p>'.$this->footer();
+        $html .= '<p>— JIG-SPOTS</p>'.$this->footer();
 
         return $this->subject($this->message->subject)->html($html);
     }
@@ -71,7 +71,7 @@ class NotificationMail extends Mailable implements ShouldQueue
         );
 
         return '<hr><p style="color:#555;font-size:12px">'
-            .'You are receiving this because your SP-MIS account is set to get email notifications. '
+            .'You are receiving this because your JIG-SPOTS account is set to get email notifications. '
             ."You can turn them off in <a href=\"{$url}\">your notification preferences</a>.</p>";
     }
 }

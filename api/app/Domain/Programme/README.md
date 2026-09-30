@@ -19,7 +19,7 @@ the sibling [Benefit domain](../Benefit/README.md). **Status: Phase 4 complete.*
 | **FR-BEN-01→05** | Benefit ledger, recording, verification, aggregation, double-dipping | see [Benefit domain](../Benefit/README.md) |
 | **FR-DUP-04** | Match reveal now shows real programmes + benefits | `Benefit/Services/BeneficiaryRevealPresenter` |
 
-> **Boundary — records delivery, NOT payment (§2.3):** SP-MIS records that a benefit
+> **Boundary — records delivery, NOT payment (§2.3):** JIG-SPOTS records that a benefit
 > was *delivered*; it never moves money. Every monetary value (programme/activity
 > budget, benefit value) is descriptive data in integer minor units (kobo, NGN).
 > There is **no disbursement/wallet/transaction logic anywhere**.

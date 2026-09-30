@@ -1,6 +1,6 @@
 # syntax=docker/dockerfile:1
 # =============================================================================
-# SP-MIS API — PRODUCTION image (php-fpm). Used by the `api`, `worker` and
+# JIG-SPOTS API — PRODUCTION image (php-fpm). Used by the `api`, `worker` and
 # `scheduler` services (same image, different CMD). The final image is slim,
 # self-contained (vendor + code baked in — no runtime `composer install`), runs
 # as the non-root www-data user, and carries NO secrets or .env.

@@ -59,7 +59,7 @@ class LocalDevSeeder extends Seeder
         // side is its MDA, not its role.
         $this->seedUser(
             (string) env('SEED_MDA_OFFICER_EMAIL', 'officer@spmis.local'),
-            'SP-MIS MDA Admin (requesting side)',
+            'JIG-SPOTS MDA Admin (requesting side)',
             (string) env('SEED_MDA_OFFICER_PASSWORD', 'ChangeMe!Officer12345'),
             RoleKey::MdaAdmin,
             $women,
@@ -68,7 +68,7 @@ class LocalDevSeeder extends Seeder
         // Owning side: an admin who can accept/decline the serve requests.
         $this->seedUser(
             (string) env('SEED_MDA_ADMIN_EMAIL', 'mda.admin@spmis.local'),
-            'SP-MIS MDA Admin',
+            'JIG-SPOTS MDA Admin',
             (string) env('SEED_MDA_ADMIN_PASSWORD', 'ChangeMe!MdaAdmin12345'),
             RoleKey::MdaAdmin,
             $health,
@@ -78,7 +78,7 @@ class LocalDevSeeder extends Seeder
         // Not MDA-bound (state-wide scope); MFA already relaxed on the role above.
         $this->seedUser(
             (string) env('SEED_EXECUTIVE_EMAIL', 'executive@spmis.local'),
-            'SP-MIS Executive',
+            'JIG-SPOTS Executive',
             (string) env('SEED_EXECUTIVE_PASSWORD', 'ChangeMe!Exec12345'),
             RoleKey::Executive,
             null,

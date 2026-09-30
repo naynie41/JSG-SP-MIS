@@ -241,7 +241,7 @@ export function ImportMappingPanel({ batchId }: { batchId: string }) {
         )}
 
         <p className={styles.note}>
-          Your file’s columns are listed against the fields SP-MIS uses. Suggestions are a starting
+          Your file’s columns are listed against the fields JIG-SPOTS uses. Suggestions are a starting
           point only. Your MDA is not required to name its columns our way.
         </p>
 

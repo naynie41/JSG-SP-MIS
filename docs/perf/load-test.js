@@ -1,4 +1,4 @@
-// SP-MIS HTTP load test (NFR-PERF-01) — k6.
+// JIG-SPOTS HTTP load test (NFR-PERF-01) — k6.
 //
 // Exercises the latency-critical paths under concurrent load and asserts the perf
 // targets as k6 thresholds: duplicate check < 5s, standard pages < 3s (95th pct).

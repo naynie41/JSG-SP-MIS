@@ -105,9 +105,9 @@ rounded:
   full: 999px
 ---
 
-# DESIGN.md — SP-MIS UI Reference
+# DESIGN.md — JIG-SPOTS UI Reference
 
-> The single source of truth for how SP-MIS looks and behaves. Every UI prompt and every screen
+> The single source of truth for how JIG-SPOTS looks and behaves. Every UI prompt and every screen
 > Claude Code builds must derive its colors, type, spacing, and components from this file. Combine
 > it with the **`frontend-design`** skill (the skill guides layout, hierarchy, and polish; the
 > tokens below are non-negotiable). **Never hand-roll a component that already exists here** —
@@ -118,7 +118,7 @@ rounded:
 > guide. Items marked **[inferred]** were not specified in the guide and were derived to be
 > accessible and on-palette — flag them to the design owner for confirmation.
 >
-> **Context:** SP-MIS is a dense, form- and table-heavy government application, not a marketing
+> **Context:** JIG-SPOTS is a dense, form- and table-heavy government application, not a marketing
 > site. The brand's marketing components (hero banners, testimonials, demo CTAs) are **not** used;
 > their tokens are. Spend boldness in one place — the **lime accent** — and keep everything else
 > quiet and disciplined.

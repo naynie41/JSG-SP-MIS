@@ -34,7 +34,7 @@ describe('CoverageHoverCard', () => {
   })
 
   it('never calls delivered value spending', () => {
-    // The ledger records the VALUE OF BENEFITS DELIVERED. SP-MIS does not move money,
+    // The ledger records the VALUE OF BENEFITS DELIVERED. JIG-SPOTS does not move money,
     // so a card that says "spent" turns a delivery record into a treasury claim.
     const { container } = render(<CoverageHoverCard area={area()} areaWord="LGA" />)
     const text = (container.textContent ?? '').toLowerCase()

@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# Entrypoint for the SP-MIS api/worker containers.
+# Entrypoint for the JIG-SPOTS api/worker containers.
 # Makes a fresh clone "just work": prepares .env, installs deps, waits for the
 # database, and (for the api role) runs migrations before handing off to CMD.
 #

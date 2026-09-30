@@ -24,7 +24,7 @@ const me = authApi.me as Mock
  * The public landing page at `/`.
  *
  * The load-bearing property is what it does NOT do: an anonymous visitor is entitled to
- * know what SP-MIS is for, not what is in it. Everything in it is personal data about
+ * know what JIG-SPOTS is for, not what is in it. Everything in it is personal data about
  * people who never consented to a public page, so the landing page reads nothing from
  * the API and renders none of the authenticated shell (NDPA/NDPR).
  */
@@ -41,7 +41,7 @@ describe('public landing page', () => {
     renderWithProviders(<App />, '/')
 
     expect(
-      await screen.findByRole('heading', { level: 1, name: /social protection management information system/i }),
+      await screen.findByRole('heading', { level: 1, name: /social protection operations and tracking system/i }),
     ).toBeInTheDocument()
     expect(screen.getByText(/connecting people, programmes and services/i)).toBeInTheDocument()
   })
@@ -53,14 +53,14 @@ describe('public landing page', () => {
     // Named by their headings, which is also how a screen-reader user finds them.
     const headings = screen.getAllByRole('heading', { level: 2 }).map((h) => h.textContent ?? '')
     for (const expected of [
-      /one record of social protection/i, // 3. what is SP-MIS
-      /what sp-mis provides/i, // 4. capabilities
+      /one record of social protection/i, // 3. what is JIG-SPOTS
+      /what jig-spots provides/i, // 4. capabilities
       /from a programme to the evidence/i, // 5. how it works
       /built for every local government area/i, // 6. across the state
       /your voice matters/i, // 7. grievance redress
       /connecting the ecosystem/i, // 8. stakeholders
       /questions people ask/i, // 9. FAQs
-      /access sp-mis/i, // 10. CTA
+      /access jig-spots/i, // 10. CTA
     ]) {
       expect(headings.some((h) => expected.test(h))).toBe(true)
     }
@@ -233,7 +233,7 @@ describe('public landing page', () => {
 
     await screen.findByText(/loading|mda|dashboard/i, undefined, { timeout: 3000 }).catch(() => undefined)
     expect(
-      screen.queryByRole('heading', { level: 1, name: /social protection management information system/i }),
+      screen.queryByRole('heading', { level: 1, name: /social protection operations and tracking system/i }),
     ).not.toBeInTheDocument()
   })
 

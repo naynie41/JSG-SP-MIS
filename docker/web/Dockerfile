@@ -1,4 +1,4 @@
-# SP-MIS web (React + TypeScript) — Vite dev server for local development.
+# JIG-SPOTS web (React + TypeScript) — Vite dev server for local development.
 FROM node:24-alpine
 
 WORKDIR /app

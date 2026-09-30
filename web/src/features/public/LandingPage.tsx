@@ -8,7 +8,7 @@ import { CAPABILITIES, FAQS, FOOTER_LINKS, GRIEVANCE_FLOW, PILLARS, STAKEHOLDERS
 import styles from './landing.module.css'
 
 /**
- * The public face of SP-MIS (unauthenticated).
+ * The public face of JIG-SPOTS (unauthenticated).
  *
  * This page reads NOTHING from the API. No query hooks, no counts, no coverage, no
  * programme names — an anonymous visitor is entitled to know what the system is for, not
@@ -56,7 +56,7 @@ export function LandingPage() {
           <div className={styles.heroInner}>
             <div className={styles.heroCopy}>
               <p className={styles.eyebrow}>Jigawa State Government</p>
-              <h1 className={styles.heroTitle}>Social Protection Management Information System</h1>
+              <h1 className={styles.heroTitle}>Jigawa Social Protection Operations and Tracking System</h1>
               <p className={styles.heroLead}>
                 Connecting people, programmes and services across every ministry, department and agency
                 delivering social protection in Jigawa State.
@@ -66,7 +66,7 @@ export function LandingPage() {
                   Login
                 </ButtonLink>
                 <a href="#about" className={styles.heroSecondary}>
-                  What is SP-MIS?
+                  What is JIG-SPOTS?
                 </a>
               </div>
             </div>
@@ -84,7 +84,7 @@ export function LandingPage() {
           </div>
         </section>
 
-        {/* ──────────────────────────────────────────────── 3. What is SP-MIS ── */}
+        {/* ──────────────────────────────────────────────── 3. What is JIG-SPOTS ── */}
         <section className={styles.section} id="about" aria-labelledby="about-heading">
           <div className={styles.sectionInner}>
             <p className={styles.eyebrowDark}>About</p>
@@ -93,7 +93,7 @@ export function LandingPage() {
             </h2>
             <p className={styles.sectionLead}>
               Each agency used to keep its own list, which meant the same household could be enrolled
-              several times over while no one could see it happening. SP-MIS replaces those separate
+              several times over while no one could see it happening. JIG-SPOTS replaces those separate
               lists with shared data under clear ownership.
             </p>
 
@@ -111,12 +111,12 @@ export function LandingPage() {
           </div>
         </section>
 
-        {/* ──────────────────────────────────────── 4. What SP-MIS provides ── */}
+        {/* ──────────────────────────────────────── 4. What JIG-SPOTS provides ── */}
         <section className={styles.sectionMint} id="programmes" aria-labelledby="provides-heading">
           <div className={styles.sectionInner}>
             <p className={styles.eyebrowDark}>Capabilities</p>
             <h2 className={styles.sectionTitle} id="provides-heading">
-              What SP-MIS provides
+              What JIG-SPOTS provides
             </h2>
 
             <ul className={styles.capabilities}>
@@ -187,7 +187,7 @@ export function LandingPage() {
             <p className={styles.sectionLead}>
               If you have a question or a complaint about a social protection programme, raise it with
               the agency delivering it, through its grievance officer or intake desk. From there it is
-              logged in SP-MIS and followed until it reaches an outcome, so nothing depends on who
+              logged in JIG-SPOTS and followed until it reaches an outcome, so nothing depends on who
               happened to take the call.
             </p>
 
@@ -297,11 +297,11 @@ export function LandingPage() {
           <div className={styles.ctaInner}>
             <p className={styles.eyebrow}>Access</p>
             <h2 className={styles.ctaTitle} id="access-heading">
-              Access SP-MIS
+              Access JIG-SPOTS
             </h2>
             <p className={styles.ctaLead}>
               Authorised users can access the platform using their assigned credentials. Accounts are
-              issued by your ministry, department or agency. SP-MIS has no public sign-up.
+              issued by your ministry, department or agency. JIG-SPOTS has no public sign-up.
             </p>
             <ButtonLink to={LOGIN_PATH} size="lg" rightIcon={ArrowRight}>
               Login
@@ -320,7 +320,7 @@ export function LandingPage() {
           <div className={styles.footerBrand}>
             <BrandMark size={44} className={styles.wordmarkMark} />
             <p className={styles.footerAbout}>
-              The Jigawa State Social Protection Management Information System. It is the shared record
+              The Jigawa Social Protection Operations and Tracking System. It is the shared record
               through which the state’s ministries, departments and agencies coordinate, deliver and
               report on social protection.
             </p>

@@ -107,7 +107,7 @@ export function RecordBenefitPage({ embedded = false }: RecordBenefitPageProps =
 
       <div className={styles.notice} style={{ marginBottom: 'var(--space-5)' }}>
         <Icon icon={BadgeInfo} size={18} />
-        <span>This records a benefit <strong>delivery</strong> — SP-MIS does not move money. The monetary value is captured as data only.</span>
+        <span>This records a benefit <strong>delivery</strong> — JIG-SPOTS does not move money. The monetary value is captured as data only.</span>
       </div>
 
       <div className={styles.stack}>

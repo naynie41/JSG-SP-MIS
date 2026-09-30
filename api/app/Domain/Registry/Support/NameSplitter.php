@@ -27,7 +27,7 @@ use App\Domain\Registry\Imports\ColumnMapper;
  *
  * A single token yields no last name rather than a guessed one. `last_name` is required
  * (and is the fuzzy blocking key), so such a row is rejected by validation — which is
- * the honest outcome: SP-MIS cannot invent a surname it was not given.
+ * the honest outcome: JIG-SPOTS cannot invent a surname it was not given.
  *
  * Explicit `first_name` / `last_name` columns always win; this only fills what they left
  * empty. See {@see ColumnMapper::apply()}.

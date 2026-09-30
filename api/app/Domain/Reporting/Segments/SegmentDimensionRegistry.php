@@ -23,7 +23,7 @@ use Illuminate\Support\Str;
  *    is filterable in one report and missing from another is how a segment silently
  *    stops meaning what people think it means.
  *
- *  - SYSTEM dimensions are attributes SP-MIS stamps rather than receives: which
+ *  - SYSTEM dimensions are attributes JIG-SPOTS stamps rather than receives: which
  *    programme or activity a person is enrolled in, where their record came from, when
  *    it was registered, its status, whether they sit in a household. They cannot come
  *    from the canonical schema because no source file supplies them.
@@ -37,7 +37,7 @@ use Illuminate\Support\Str;
 final class SegmentDimensionRegistry
 {
     /**
-     * Attributes SP-MIS stamps on a record, which no source file provides.
+     * Attributes JIG-SPOTS stamps on a record, which no source file provides.
      *
      * @var array<string, array<string, mixed>>
      */

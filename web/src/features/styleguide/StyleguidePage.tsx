@@ -100,7 +100,7 @@ export function StyleguidePage() {
     <div className={styles.page}>
       <div>
         <span className="eyebrow">System · Style guide</span>
-        <h1 className="t-h1">SP-MIS design system</h1>
+        <h1 className="t-h1">JIG-SPOTS design system</h1>
       </div>
 
       <Section eyebrow="Foundations" title="Color tokens">
@@ -268,7 +268,7 @@ export function StyleguidePage() {
           </Card>
           <KpiPanel label="Beneficiaries" value="128,540" hint="+3.2% this month" />
         </div>
-        <Breadcrumbs items={[{ label: 'SP-MIS', to: '/' }, { label: 'Registry', to: '/' }, { label: 'Amina Bello' }]} />
+        <Breadcrumbs items={[{ label: 'JIG-SPOTS', to: '/' }, { label: 'Registry', to: '/' }, { label: 'Amina Bello' }]} />
         <Tabs
           items={[
             { id: 'profile', label: 'Profile', content: <p className="t-muted">Profile tab content.</p> },

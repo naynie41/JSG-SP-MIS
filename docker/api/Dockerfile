@@ -1,4 +1,4 @@
-# SP-MIS API image (PHP 8.3 FPM). Used by both the `api` and `worker` services.
+# JIG-SPOTS API image (PHP 8.3 FPM). Used by both the `api` and `worker` services.
 FROM php:8.3-fpm-alpine
 
 # System deps + PHP extensions via the helper installer.

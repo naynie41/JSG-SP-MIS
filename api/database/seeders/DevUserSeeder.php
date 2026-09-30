@@ -28,7 +28,7 @@ class DevUserSeeder extends Seeder
         User::updateOrCreate(
             ['email' => (string) env('SEED_ADMIN_EMAIL', 'admin@spmis.local')],
             [
-                'name' => 'SP-MIS Administrator',
+                'name' => 'JIG-SPOTS Administrator',
                 'password' => (string) env('SEED_ADMIN_PASSWORD', 'ChangeMe!Admin12345'),
                 'role_id' => $adminRole?->id,
                 'status' => UserStatus::Active,

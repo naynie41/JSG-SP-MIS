@@ -256,7 +256,7 @@ class ImportMappingService
             throw new DomainException(
                 'First name and last name are both mapped to “'.$first.'”, which would store the whole name twice. '
                 .'Map that column to “Full name (one column)” instead and leave first and last name not present — '
-                .'SP-MIS will split it.'
+                .'JIG-SPOTS will split it.'
             );
         }
 

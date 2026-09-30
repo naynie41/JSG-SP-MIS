@@ -73,7 +73,7 @@ class ImportMappingTest extends TestCase
         return $response;
     }
 
-    /** An MDA file whose headers are its OWN, not SP-MIS's canonical names. */
+    /** An MDA file whose headers are its OWN, not JIG-SPOTS's canonical names. */
     private function mdaShapedCsv(): string
     {
         return implode("\n", [

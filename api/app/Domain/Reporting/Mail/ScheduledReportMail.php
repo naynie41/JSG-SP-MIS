@@ -31,7 +31,7 @@ class ScheduledReportMail extends Mailable implements ShouldQueue
         $name = e($this->recipientName);
         $label = e($this->run->report_label);
         $format = strtoupper($this->run->format);
-        $html = "<p>Hello {$name},</p><p>Your scheduled report \"{$label}\" ({$format}) is attached.</p><p>— Jigawa State SP-MIS</p>";
+        $html = "<p>Hello {$name},</p><p>Your scheduled report \"{$label}\" ({$format}) is attached.</p><p>— JIG-SPOTS</p>";
 
         $mail = $this->subject('Scheduled report: '.$this->run->report_label)->html($html);
 

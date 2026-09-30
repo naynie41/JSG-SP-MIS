@@ -1,6 +1,6 @@
 # DEPLOY.md — Production Deployment (GHCR + docker-compose)
 
-Production runbook for SP-MIS on the provided VPS. The CI pipeline
+Production runbook for JIG-SPOTS on the provided VPS. The CI pipeline
 (`.github/workflows/release.yml`) builds and pushes images to GHCR on a version
 tag; **the VPS only ever PULLS images — it never runs `docker build`.** Companion:
 [SCALE-AND-AVAILABILITY.md](SCALE-AND-AVAILABILITY.md), [SECURITY.md](SECURITY.md).
@@ -25,7 +25,7 @@ network. Uploaded documents and the data services persist in named volumes.
 
 ---
 
-## 1. Pre-go-live checklist — decisions and secrets SP-MIS cannot supply for itself
+## 1. Pre-go-live checklist — decisions and secrets JIG-SPOTS cannot supply for itself
 
 Work through this **before** §2. Nothing here can be defaulted safely: each item is
 either a real credential, a value that depends on your domain, or a policy decision that
@@ -278,7 +278,7 @@ $C db:seed --class=GrievanceSlaSeeder --force
 > awaiting stakeholder sign-off — see §1.4.
 
 ```bash
-$C spmis:create-admin admin@spmis.example.gov.ng --name="SP-MIS Administrator"
+$C spmis:create-admin admin@spmis.example.gov.ng --name="JIG-SPOTS Administrator"
 # Prompts for a strong password (policy-checked, never an argument or env var, so it
 # stays out of shell history). MFA enrolment is forced at first login.
 ```
@@ -553,7 +553,7 @@ and RPO/RTO are in [SCALE-AND-AVAILABILITY.md](SCALE-AND-AVAILABILITY.md).
 
 ## 8. Monitoring & alerting
 
-Monitoring lives **outside the application**. SP-MIS deliberately shows no system-health
+Monitoring lives **outside the application**. JIG-SPOTS deliberately shows no system-health
 widgets in its console (CLAUDE.md §8): an operator watching the thing that is down learns
 nothing, and a dashboard that renders "all healthy" from inside a broken stack is worse
 than no dashboard. These run alongside the app on the VPS, or off it.

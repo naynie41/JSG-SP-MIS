@@ -140,7 +140,7 @@ function PublicOnlyRoute({ children }: { children: ReactNode }) {
 /**
  * The site root.
  *
- * Anonymous visitors get the PUBLIC landing page — a document about what SP-MIS is,
+ * Anonymous visitors get the PUBLIC landing page — a document about what JIG-SPOTS is,
  * reading nothing from the API (NDPA/NDPR: an anonymous visitor is entitled to know what
  * the system is for, not what is in it). Signed-in users are sent straight on to their
  * role dashboard, so the landing page never stands between someone and their work.

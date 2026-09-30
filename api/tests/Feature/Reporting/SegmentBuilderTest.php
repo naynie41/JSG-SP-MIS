@@ -116,7 +116,7 @@ class SegmentBuilderTest extends TestCase
             $this->assertContains($field, $keys);
         }
 
-        // ...alongside the attributes SP-MIS stamps rather than receives.
+        // ...alongside the attributes JIG-SPOTS stamps rather than receives.
         foreach (['programme', 'activity', 'registration_source', 'registration_date', 'status', 'household'] as $system) {
             $this->assertContains($system, $keys);
         }
