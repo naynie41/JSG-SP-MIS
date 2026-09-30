@@ -34,6 +34,7 @@ vi.mock('@/features/reports/api', () => ({
     segmentPreview: vi.fn(),
     exportSegment: vi.fn(),
     registerProfile: vi.fn(),
+    monthlyProject: vi.fn(),
     duplicateReview: vi.fn(),
     exportDuplicateReview: vi.fn(),
   },
@@ -62,6 +63,7 @@ const schedules = reportsApi.schedules as Mock
 const segmentDimensions = reportsApi.segmentDimensions as Mock
 const exportSegment = reportsApi.exportSegment as Mock
 const registerProfile = reportsApi.registerProfile as Mock
+const monthlyProject = reportsApi.monthlyProject as Mock
 const duplicateReview = reportsApi.duplicateReview as Mock
 const listExport = exportListFile as Mock
 
@@ -247,6 +249,60 @@ describe('MDA console — Reports', () => {
     expect(within(panel).queryByRole('button', { name: 'Run report' })).not.toBeInTheDocument()
     expect(within(panel).queryByRole('button', { name: 'Add filter' })).not.toBeInTheDocument()
     expect(exportSegment).not.toHaveBeenCalled()
+  })
+
+  /* --------------------------------------------------- monthly project report */
+
+  it('generates a monthly project report for a chosen month', async () => {
+    const user = userEvent.setup()
+    renderPage()
+    await ready()
+
+    const panel = await openTab(user, 'Monthly report')
+
+    const month = within(panel).getByLabelText('Month') as HTMLSelectElement
+    const chosen = month.value
+    await user.click(within(panel).getByRole('button', { name: /generate report/i }))
+
+    await waitFor(() => expect(monthlyProject).toHaveBeenCalledTimes(1))
+
+    // Sent as a year/month pair, not a formatted string the server would have to parse.
+    const [year, monthNumber] = chosen.split('-').map(Number)
+    expect(monthlyProject).toHaveBeenCalledWith({ year, month: monthNumber })
+  })
+
+  it('never offers the month still in progress', async () => {
+    // A part-month against a full one makes every project look like it is collapsing,
+    // so the current month is absent from the list rather than disabled in it.
+    const user = userEvent.setup()
+    renderPage()
+    await ready()
+
+    const panel = await openTab(user, 'Monthly report')
+    const options = within(panel)
+      .getAllByRole('option')
+      .map((o) => o.textContent ?? '')
+
+    const now = new Date()
+    const thisMonth = now.toLocaleDateString(undefined, { month: 'long', year: 'numeric' })
+    expect(options).not.toContain(thisMonth)
+
+    // And it opens on the month that just ended.
+    const previous = new Date(now.getFullYear(), now.getMonth() - 1, 1)
+    expect(options[0]).toBe(previous.toLocaleDateString(undefined, { month: 'long', year: 'numeric' }))
+  })
+
+  it('offers no format choice on the monthly report', async () => {
+    // Charts plus a per-project traffic light; a CSV of that is a grid with none of the
+    // reading. Same reasoning as "People in the register".
+    const user = userEvent.setup()
+    renderPage()
+    await ready()
+
+    const panel = await openTab(user, 'Monthly report')
+
+    expect(within(panel).queryByLabelText('Export as')).not.toBeInTheDocument()
+    expect(within(panel).queryByLabelText('Format')).not.toBeInTheDocument()
   })
 
   it('lists a dataset the old hardcoded set left out', async () => {
@@ -438,6 +494,19 @@ describe('MDA console — Reports', () => {
     const builder = await openDatasetBuilder(user, 'benefits')
     expect(within(builder).getByText(/needs the reporting export permission/i)).toBeInTheDocument()
     expect(within(builder).queryByRole('button', { name: 'Preview' })).not.toBeInTheDocument()
+  })
+
+  it('withholds the monthly report without reporting.export', async () => {
+    // The endpoint requires the permission, so the button must not be offered — a
+    // control that only fails at the server teaches the officer nothing.
+    perms.value = ['reporting.view']
+    const user = userEvent.setup()
+    renderPage()
+    await ready()
+
+    const panel = await openTab(user, 'Monthly report')
+    expect(within(panel).getByText(/needs the reporting export permission/i)).toBeInTheDocument()
+    expect(within(panel).queryByRole('button', { name: /generate report/i })).not.toBeInTheDocument()
   })
 
   it('refuses the module without reporting.view', async () => {

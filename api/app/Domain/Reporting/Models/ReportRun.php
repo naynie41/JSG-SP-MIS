@@ -65,6 +65,16 @@ class ReportRun extends Model
      */
     public const KEY_REGISTER_PROFILE = 'register_profile';
 
+    /**
+     * "Monthly project report" — one month of activity performance for the scope.
+     *
+     * Its params carry `year` and `month`. They are OPTIONAL: an unattended run from a
+     * monthly schedule names no month, and the job then takes the last complete month
+     * as of the day it runs. That is why the month is resolved at generation time
+     * rather than being frozen when the schedule was created.
+     */
+    public const KEY_MONTHLY_PROJECT = 'monthly_project';
+
     protected $table = 'report_runs';
 
     /**

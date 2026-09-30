@@ -752,6 +752,13 @@ Route::prefix('v1')->group(function (): void {
         Route::post('/reports/register-profile', [SegmentReportController::class, 'registerProfile'])
             ->middleware(['permission:reporting.export', 'throttle:exports'])->name('reports.register-profile');
 
+        // Monthly project report (FR-RPT-12b): one month of activity performance for the
+        // caller's scope, PDF only. Optional `year`+`month`; omitted means the last
+        // COMPLETE month, never the one in progress. Activity-level counts, no rows
+        // about people, so it rides `reporting.export` like the other aggregate exports.
+        Route::post('/reports/monthly-project', [ReportController::class, 'monthlyProject'])
+            ->middleware(['permission:reporting.export', 'throttle:exports'])->name('reports.monthly-project');
+
         // Duplicate review (FR-DUP): the state of the match queue, not a builder. Counts
         // only; available to exactly the scopes the `duplicates` dataset is.
         Route::get('/reports/duplicate-review', [DuplicateReviewReportController::class, 'show'])

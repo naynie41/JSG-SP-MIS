@@ -167,6 +167,14 @@ class ScopeBypassSurfaceTest extends TestCase
             'Domain/Reporting/Services/DashboardScopeResolver.php',
             'Domain/Reporting/Services/DashboardSnapshotService.php',
             'Domain/Reporting/Services/MdaActionRequiredService.php',
+            // Monthly project report. Same reason as the segment builder: it runs on the
+            // queue with no authenticated user, so the implicit MDA scope would resolve
+            // to nothing and the report would come out empty. It replaces it with the
+            // DashboardScope captured on the run, applied as an explicit
+            // `whereIn(owner_mda_id, scope->mdaIds)` before anything else — so the widest
+            // it can ever read is exactly the scope the requester held when they asked.
+            // `test_another_mdas_activity_never_appears` pins that.
+            'Domain/Reporting/Services/MonthlyProjectService.php',
             'Domain/Reporting/Services/ReportScheduleService.php',
             'Domain/Benefit/Services/LedgerAggregator.php',
             'Domain/Benefit/Services/DoubleDippingDetector.php',

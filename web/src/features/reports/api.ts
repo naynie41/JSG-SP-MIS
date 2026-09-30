@@ -84,6 +84,20 @@ export const reportsApi = {
     return apiRequest<ReportRun>({ method: 'POST', url: '/reports/register-profile' })
   },
 
+  /**
+   * Queue the monthly project report — one month of activity performance.
+   *
+   * The period is optional and both halves travel together: send neither and the
+   * server takes the last COMPLETE month, which is what the plain button does.
+   */
+  monthlyProject(period?: { year: number; month: number }): Promise<ReportRun> {
+    return apiRequest<ReportRun>({
+      method: 'POST',
+      url: '/reports/monthly-project',
+      data: period ?? {},
+    })
+  },
+
   /** Where the duplicate review queue stands, within the caller's scope. */
   duplicateReview(filter: DuplicateReviewFilterInput): Promise<DuplicateReviewReport> {
     return apiRequest<DuplicateReviewReport>({ method: 'GET', url: '/reports/duplicate-review', params: filter })

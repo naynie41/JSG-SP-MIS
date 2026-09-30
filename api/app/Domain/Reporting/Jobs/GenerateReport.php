@@ -11,6 +11,7 @@ use App\Domain\Registry\Export\BeneficiaryListExport;
 use App\Domain\Reporting\DuplicateReview\DuplicateReviewFilter;
 use App\Domain\Reporting\DuplicateReview\DuplicateReviewReport;
 use App\Domain\Reporting\Events\ReportReady;
+use App\Domain\Reporting\Export\MonthlyProjectReportBuilder;
 use App\Domain\Reporting\Export\RegisterProfileExportBuilder;
 use App\Domain\Reporting\Export\ReportExporterRegistry;
 use App\Domain\Reporting\Export\ReportFormat;
@@ -21,6 +22,7 @@ use App\Domain\Reporting\Segments\SegmentAccess;
 use App\Domain\Reporting\Segments\SegmentDefinition;
 use App\Domain\Reporting\Segments\SegmentDimensionRegistry;
 use App\Domain\Reporting\Segments\SegmentReportService;
+use App\Domain\Reporting\Services\MonthlyProjectService;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
@@ -44,7 +46,7 @@ class GenerateReport implements ShouldQueue
 
     public function __construct(public readonly string $runId) {}
 
-    public function handle(ReportBuilder $builder, AdHocReportBuilder $adHoc, ReportExporterRegistry $exporters, AuditLogger $audit, BeneficiaryListExport $beneficiaryExport, SegmentReportService $segments, SegmentDimensionRegistry $dimensions, DuplicateReviewReport $duplicateReview, RegisterProfileExportBuilder $registerProfile): void
+    public function handle(ReportBuilder $builder, AdHocReportBuilder $adHoc, ReportExporterRegistry $exporters, AuditLogger $audit, BeneficiaryListExport $beneficiaryExport, SegmentReportService $segments, SegmentDimensionRegistry $dimensions, DuplicateReviewReport $duplicateReview, RegisterProfileExportBuilder $registerProfile, MonthlyProjectReportBuilder $monthlyProject): void
     {
         $run = ReportRun::query()->find($this->runId);
         if ($run === null) {
@@ -79,6 +81,15 @@ class GenerateReport implements ShouldQueue
                 $run->report_key === ReportRun::KEY_REGISTER_PROFILE => $registerProfile->build(
                     SegmentAccess::fromParams((array) ($run->params ?? []), $scope),
                 ),
+                // The month comes from the run when a person asked for one. A SCHEDULED
+                // run carries none — it is created by the monthly sweep with no period
+                // — so it resolves the last complete month as of today. Resolving it
+                // here rather than at schedule time is what makes one schedule produce
+                // a different month each time it fires.
+                $run->report_key === ReportRun::KEY_MONTHLY_PROJECT => $monthlyProject->build(
+                    $scope,
+                    ...$this->reportMonth((array) ($run->params ?? [])),
+                ),
                 default => $builder->build($run->report_key, $scope),
             };
             $bytes = $exporters->for($format)->render($data);
@@ -108,6 +119,25 @@ class GenerateReport implements ShouldQueue
 
             throw $e;
         }
+    }
+
+    /**
+     * The [year, month] a monthly run covers: what was asked for, or the last complete
+     * month when nothing was.
+     *
+     * @param  array<string, mixed>  $params
+     * @return array{int, int}
+     */
+    private function reportMonth(array $params): array
+    {
+        $year = isset($params['year']) ? (int) $params['year'] : null;
+        $month = isset($params['month']) ? (int) $params['month'] : null;
+
+        if ($year === null || $month === null || $month < 1 || $month > 12) {
+            return MonthlyProjectService::lastCompleteMonth();
+        }
+
+        return [$year, $month];
     }
 
     private function requester(ReportRun $run): ?User

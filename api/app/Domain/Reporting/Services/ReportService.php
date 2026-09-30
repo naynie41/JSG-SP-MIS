@@ -42,11 +42,27 @@ class ReportService
             throw new RuntimeException('This report is not available for your scope.');
         }
 
-        return $this->createRun($format, [
+        return $this->createRun($this->formatFor($reportKey, $format), [
             'report_key' => $reportKey,
             'report_label' => ReportCatalogue::label($reportKey),
             'params' => $params === [] ? null : $params,
         ], $scope, $user->id, $user->mda_id);
+    }
+
+    /**
+     * Some catalogue reports are a DOCUMENT, not a table, and a spreadsheet of one is a
+     * grid with the reading stripped out.
+     *
+     * The monthly project report is the case: its charts, its month-on-month comparison
+     * and its "needs attention" list live in the figures and summary sections, none of
+     * which a CSV carries. A schedule set to Excel would deliver something that looked
+     * like the report every month and was missing most of it — silently, which is the
+     * bad part. So the format is pinned rather than validated: a caller asking for CSV
+     * gets the report, not an error about a choice they had no reason to know was wrong.
+     */
+    private function formatFor(string $reportKey, ReportFormat $requested): ReportFormat
+    {
+        return $reportKey === ReportRun::KEY_MONTHLY_PROJECT ? ReportFormat::Pdf : $requested;
     }
 
     /**
@@ -119,6 +135,22 @@ class ReportService
     }
 
     /**
+     * Queue the monthly project report (FR-RPT-12b).
+     *
+     * The month is stored on the run rather than resolved later, so a queue backlog
+     * cannot change which month a requested report describes. The scheduled path
+     * deliberately does NOT pass one — see {@see ReportRun::KEY_MONTHLY_PROJECT}.
+     */
+    public function queueMonthlyProject(User $user, DashboardScope $scope, int $year, int $month): ReportRun
+    {
+        return $this->createRun(ReportFormat::Pdf, [
+            'report_key' => ReportRun::KEY_MONTHLY_PROJECT,
+            'report_label' => 'Monthly project report',
+            'params' => ['year' => $year, 'month' => $month],
+        ], $scope, $user->id, $user->mda_id);
+    }
+
+    /**
      * Queue the duplicate review report. The caller has already checked the scope may
      * have it; the scope is captured on the run like every other report.
      */
@@ -140,7 +172,7 @@ class ReportService
     public function runFromSchedule(ReportSchedule $schedule): ReportRun
     {
         return $this->createRun(
-            ReportFormat::from($schedule->format),
+            $this->formatFor((string) $schedule->report_key, ReportFormat::from($schedule->format)),
             [
                 ...$this->scheduleReportAttributes($schedule),
                 'schedule_id' => $schedule->id,
