@@ -261,13 +261,20 @@ class LedgerAggregator
      * @param  list<string>|null  $programmeIds
      * @return array<string, int>
      */
-    public function scopedDisbursementSeries(?array $mdaIds, ?array $programmeIds, int $months, array $filters = []): array
+    public function scopedDisbursementSeries(?array $mdaIds, ?array $programmeIds, int $months, array $filters = [], ?Carbon $endingAt = null): array
     {
         $expr = self::monthKeyExpr('delivery_date');
-        $since = Carbon::now()->startOfMonth()->subMonths(max(0, $months - 1))->toDateString();
+
+        // `$endingAt` exists for reports ABOUT a past month. Anchored on `now()` the
+        // window always runs to today, so a report covering August, generated in
+        // October, would draw a trend with September and October on the end of it —
+        // months the report does not describe and whose figures nobody checked.
+        $last = ($endingAt ?? Carbon::now())->copy()->endOfMonth();
+        $since = $last->copy()->startOfMonth()->subMonths(max(0, $months - 1))->toDateString();
 
         return $this->scopedLedger($mdaIds, $programmeIds, $filters)
             ->whereDate('delivery_date', '>=', $since)
+            ->whereDate('delivery_date', '<=', $last->toDateString())
             ->selectRaw("{$expr} as m, coalesce(sum(monetary_value), 0) as v")
             ->groupByRaw($expr)
             ->get()

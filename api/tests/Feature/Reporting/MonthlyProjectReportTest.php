@@ -251,6 +251,112 @@ class MonthlyProjectReportTest extends TestCase
         $this->assertSame('Cash to households', $data->rows[0]['name']);
     }
 
+    /* ------------------------------------------------------------- charts */
+
+    public function test_no_figure_ever_silently_disappears_when_there_is_nothing_to_plot(): void
+    {
+        // THE REGRESSION THIS FILE EXISTS FOR. The first version returned null from a
+        // figure when its data was empty, and the card vanished — so an empty scope and
+        // a broken builder produced an identical page. Every figure must now render and
+        // say why it is empty.
+        $this->activity(['name' => 'Nothing delivered yet']);
+
+        $scope = app(DashboardScopeResolver::class)->forUser($this->admin());
+        $data = app(MonthlyProjectReportBuilder::class)->build($scope, 2026, 8);
+
+        $this->assertCount(4, $data->figures, 'all four figures render regardless of data');
+
+        foreach ($data->figures as $figure) {
+            $this->assertNotSame('', $figure->title);
+            if ($figure->image === null) {
+                $this->assertNotNull($figure->note, "«{$figure->title}» drew nothing and must explain why");
+            }
+        }
+    }
+
+    public function test_the_month_on_month_comparison_survives_a_month_with_no_reach(): void
+    {
+        // The exact failure reported: value moved but nobody was counted as reached, so
+        // the old two-bar chart of REACH drew nothing and the comparison disappeared.
+        // It now lives in a tile, which always renders.
+        $activity = $this->activity();
+        $this->deliver($activity, '2026-07-10', 400_000);
+        $this->deliver($activity, '2026-08-10', 600_000);
+
+        $scope = app(DashboardScopeResolver::class)->forUser($this->admin());
+        $data = app(MonthlyProjectReportBuilder::class)->build($scope, 2026, 8);
+
+        $labels = array_column($data->highlights, 'label');
+        $this->assertContains('People reached', $labels);
+        $this->assertContains('Value delivered', $labels);
+
+        $value = collect($data->highlights)->firstWhere('label', 'Value delivered');
+        $this->assertStringContainsString('6,000.00', (string) $value['value']);
+        // 400k -> 600k is +50%, and the note names the month it is measured against.
+        $this->assertStringContainsString('+50% on July 2026', (string) $value['note']);
+    }
+
+    public function test_a_rise_from_nothing_is_not_reported_as_a_percentage(): void
+    {
+        // Dividing by a zero baseline is where percentage deltas go wrong; it is said
+        // in words instead.
+        $activity = $this->activity();
+        $this->deliver($activity, '2026-08-10', 500_000);
+
+        $scope = app(DashboardScopeResolver::class)->forUser($this->admin());
+        $data = app(MonthlyProjectReportBuilder::class)->build($scope, 2026, 8);
+
+        $value = collect($data->highlights)->firstWhere('label', 'Value delivered');
+        $this->assertStringNotContainsString('%', (string) $value['note']);
+        $this->assertStringContainsString('July 2026', (string) $value['note']);
+    }
+
+    public function test_the_trend_ends_on_the_month_reported_not_today(): void
+    {
+        // A report about August, generated later, must not draw September onward.
+        Carbon::setTestNow(Carbon::parse('2026-12-15'));
+
+        $activity = $this->activity(['starts_on' => '2025-01-01']);
+        $this->deliver($activity, '2025-09-15', 250_000);  // far edge of the window
+        $this->deliver($activity, '2026-08-10', 100_000);  // the reported month
+        $this->deliver($activity, '2026-11-10', 900_000);  // after the reported month
+
+        $scope = app(DashboardScopeResolver::class)->forUser($this->admin());
+        $d = app(MonthlyProjectService::class)->build($scope, 2026, 8);
+
+        $byMonth = array_column($d['trend'], 'value', 'month');
+
+        $this->assertCount(12, $byMonth);
+        $this->assertArrayHasKey('2025-09', $byMonth, 'the window runs twelve months back from the reported month');
+        $this->assertArrayNotHasKey('2026-11', $byMonth, 'and stops at it');
+
+        // These two are what the `endingAt` window actually buys, and the labels alone
+        // would not catch either: the service builds the month keys itself, so they
+        // read correctly even when the QUERY behind them is anchored on today.
+        //   - the old September 2025 delivery sits before a now-anchored `since` and
+        //     would have been queried away, leaving a zero;
+        //   - the November delivery sits after the reported month and would have been
+        //     counted into it.
+        $this->assertSame(250_000, $byMonth['2025-09'], 'data at the far edge of the window survives');
+        $this->assertSame(100_000, $byMonth['2026-08']);
+        $this->assertSame(350_000, array_sum($byMonth), 'and nothing from outside the window leaks in');
+    }
+
+    public function test_only_projects_with_a_target_are_rated_in_the_standing(): void
+    {
+        $this->activity(['name' => 'Rated', 'target_beneficiaries' => 100]);
+        $this->activity(['name' => 'No target', 'target_beneficiaries' => null]);
+        $this->activity(['name' => 'Not people', 'involves_beneficiaries' => false, 'target_beneficiaries' => null]);
+
+        $scope = app(DashboardScopeResolver::class)->forUser($this->admin());
+        $d = app(MonthlyProjectService::class)->build($scope, 2026, 8);
+
+        // Three activities, one standing: "unrated" is not a standing and must not be
+        // folded into a slice.
+        $this->assertSame(3, $d['totals']['activities']);
+        $this->assertSame(1, array_sum($d['standing']));
+    }
+
     /* ----------------------------------------------------------- endpoint */
 
     public function test_the_endpoint_queues_a_run_for_the_callers_own_scope(): void

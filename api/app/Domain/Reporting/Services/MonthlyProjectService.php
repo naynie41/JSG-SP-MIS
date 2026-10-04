@@ -59,6 +59,9 @@ class MonthlyProjectService
     /**
      * @return array{
      *     period: array{year: int, month: int, label: string, starts_on: string, ends_on: string},
+     *     standing: array{green: int, yellow: int, red: int},
+     *     delivering: int,
+     *     trend: list<array{month: string, value: int}>,
      *     previous: array{year: int, month: int, label: string},
      *     totals: array{activities: int, active: int, reached: int, value: int},
      *     previous_totals: array{reached: int, value: int},
@@ -145,6 +148,16 @@ class MonthlyProjectService
         usort($projects, static fn (array $a, array $b): int => ($b['month']['value'] <=> $a['month']['value'])
             ?: strcmp((string) $a['name'], (string) $b['name']));
 
+        // Counts for the standing donut. Only rated projects are counted: an activity
+        // with no target has no standing, and folding it into any slice would invent a
+        // judgement the data does not support.
+        $standing = ['green' => 0, 'yellow' => 0, 'red' => 0];
+        foreach ($projects as $p) {
+            if (isset($standing[(string) $p['traffic_light']])) {
+                $standing[(string) $p['traffic_light']]++;
+            }
+        }
+
         return [
             'period' => [
                 'year' => $year,
@@ -153,6 +166,11 @@ class MonthlyProjectService
                 'starts_on' => $start->toDateString(),
                 'ends_on' => $start->copy()->endOfMonth()->toDateString(),
             ],
+            'standing' => $standing,
+            'delivering' => count(array_filter($projects, static fn (array $p): bool => (int) $p['month']['value'] > 0 || (int) ($p['month']['reached'] ?? 0) > 0)),
+            // Twelve months ENDING on the report month, zero-filled so a quiet month is
+            // a gap in the line rather than a missing point that shortens the axis.
+            'trend' => $this->trend($mdaIds, $programmeIds, $start),
             'previous' => [
                 'year' => (int) $previous->year,
                 'month' => (int) $previous->month,
@@ -175,6 +193,33 @@ class MonthlyProjectService
     }
 
     /* ------------------------------------------------------------------ internals */
+
+    /**
+     * Delivered value for the twelve months ending on the report month.
+     *
+     * Zero-filled: the aggregator returns only months that HAVE deliveries, and an area
+     * chart drawn from those alone silently closes the gaps, turning two active months
+     * either side of a dead quarter into one smooth climb. The zeros are the truth.
+     *
+     * @param  list<string>|null  $mdaIds
+     * @param  list<string>|null  $programmeIds
+     * @return list<array{month: string, value: int}>
+     */
+    private function trend(?array $mdaIds, ?array $programmeIds, Carbon $reportMonth): array
+    {
+        $months = 12;
+        $series = $this->ledger->scopedDisbursementSeries($mdaIds, $programmeIds, $months, [], $reportMonth);
+
+        $out = [];
+        $cursor = $reportMonth->copy()->startOfMonth()->subMonths($months - 1);
+        for ($i = 0; $i < $months; $i++) {
+            $key = $cursor->format('Y-m');
+            $out[] = ['month' => $key, 'value' => (int) ($series[$key] ?? 0)];
+            $cursor->addMonth();
+        }
+
+        return $out;
+    }
 
     /**
      * Activities the scope may see.
