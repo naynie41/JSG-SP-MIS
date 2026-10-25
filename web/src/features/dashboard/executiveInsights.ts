@@ -24,6 +24,14 @@ export interface Alert {
   severity: AlertSeverity
   title: string
   detail: string
+  /**
+   * The executive section that explains this alert, for the drill-through.
+   *
+   * An alert an executive cannot act on is decoration. Naming the owning tab is what
+   * turns "5 referrals are overdue" from a fact into a next step, and it is why these
+   * rules live here rather than in the panel: the rule knows which page answers it.
+   */
+  tab?: 'programmes' | 'registry' | 'coordination' | 'coverage'
 }
 
 const pct = (rate: number | null | undefined): number => Math.round((rate ?? 0) * 100)
@@ -200,6 +208,88 @@ export function buildAlerts(m: DashboardMetrics): Alert[] {
       severity: 'warning',
       title: `${num(rq.pending)} records pending verification`,
       detail: 'Beneficiaries flagged for review before they can be served.',
+    })
+  }
+
+  /*
+   * Everything below was visible only to someone who opened the tab that owned it.
+   * On a screen built for a reader with sixty seconds, a problem nobody scrolls to is
+   * a problem nobody knows about — these are the facts an executive would most want
+   * to be told without asking.
+   */
+
+  // Referrals past their SLA. A referral is one agency asking another to serve a
+  // person: an overdue one is a specific person waiting, not a slipped metric.
+  const ref = m.referrals
+  if (ref && ref.overdue > 0) {
+    const share = ref.total > 0 ? ref.overdue / ref.total : 0
+    out.push({
+      id: 'referrals-overdue',
+      severity: share >= 0.5 ? 'critical' : 'warning',
+      title: `${num(ref.overdue)} referral${ref.overdue === 1 ? '' : 's'} past the response time`,
+      detail: `Of ${num(ref.total)} raised. Each one is a person an agency accepted and has not yet served.`,
+      tab: 'coordination',
+    })
+  }
+
+  // Grievances past their SLA — the complaint route the public is told to use.
+  const gr = m.grievances
+  if (gr && gr.sla_breaches > 0) {
+    out.push({
+      id: 'grievance-sla',
+      severity: 'warning',
+      title: `${num(gr.sla_breaches)} grievance${gr.sla_breaches === 1 ? '' : 's'} past the response time`,
+      detail: `Of ${num(gr.total)} raised, averaging ${gr.avg_resolution_days ?? 0} days to resolve.`,
+      tab: 'coordination',
+    })
+  }
+
+  // Coverage: how much of the state is under-served. Reported as a share rather than
+  // a count, because "27 areas" means nothing without knowing there are 27.
+  if (bands?.summary) {
+    const { green = 0, yellow = 0, red = 0 } = bands.summary
+    const total = green + yellow + red
+    if (total > 0 && red === total) {
+      out.push({
+        id: 'coverage-all-red',
+        severity: 'critical',
+        title: `Every local government area is below the coverage threshold`,
+        detail: `All ${num(total)} areas fall in the lowest band. None has reached the level the threshold is set at.`,
+        tab: 'coverage',
+      })
+    } else if (total > 0 && red / total >= 0.5) {
+      out.push({
+        id: 'coverage-red',
+        severity: 'warning',
+        title: `${num(red)} of ${num(total)} areas are below the coverage threshold`,
+        detail: 'Delivery is concentrated in a minority of the state.',
+        tab: 'coverage',
+      })
+    }
+  }
+
+  // A budget barely touched is as much a finding as one overspent — it usually means
+  // the money was committed but the delivery never started.
+  if (budget.allocated > 0 && (budget.utilization_rate ?? 0) < 0.25) {
+    out.push({
+      id: 'budget-idle',
+      severity: 'warning',
+      title: `Only ${pct(budget.utilization_rate)}% of the allocated budget has been delivered`,
+      detail: `${formatNaira(budget.remaining)} of ${formatNaira(budget.allocated)} is still unspent.`,
+      tab: 'programmes',
+    })
+  }
+
+  // Programmes catalogued but never turned into activity. A programme with no
+  // activity delivers to nobody, however good it looks in the catalogue.
+  const prog = m.programmes
+  if (prog && prog.active > 0 && prog.activities_active === 0) {
+    out.push({
+      id: 'no-activities',
+      severity: 'critical',
+      title: 'No activity is currently running',
+      detail: `${num(prog.active)} programmes are active in the catalogue, but none has a running activity.`,
+      tab: 'programmes',
     })
   }
 

@@ -98,6 +98,44 @@
   background: var(--surface);
   overflow: hidden;
 }
+/* `data-cols` was being set in the markup but never styled, so a row of three
+   figures sat in a six-column grid and filled only its left half. Honouring the
+   attribute fixes that and lets a band declare its own width; the tabs that set
+   no attribute keep the six-column default. */
+.figureGrid[data-cols='3'] {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+.figureGrid[data-cols='4'] {
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+}
+.figureGrid[data-cols='5'] {
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+}
+@media (max-width: 1100px) {
+  .figureGrid[data-cols='4'],
+  .figureGrid[data-cols='5'] {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  /* Only the first of each row keeps a flush left edge once they wrap. */
+  .figureGrid[data-cols='4'] .figure:nth-child(odd),
+  .figureGrid[data-cols='5'] .figure:nth-child(odd) {
+    border-left: none;
+  }
+}
+@media (max-width: 620px) {
+  .figureGrid[data-cols='3'],
+  .figureGrid[data-cols='4'],
+  .figureGrid[data-cols='5'] {
+    grid-template-columns: 1fr;
+  }
+  .figureGrid[data-cols] .figure {
+    border-left: none;
+    border-top: 1px solid var(--border);
+  }
+  .figureGrid[data-cols] .figure:first-child {
+    border-top: none;
+  }
+}
 .figure {
   padding: clamp(var(--space-3), 2.4vw, var(--space-5));
   border-left: 1px solid var(--border);
@@ -731,6 +769,179 @@
 
 @media (max-width: 900px) {
   .ministryGrid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ============================================ packed overview: bands + cards */
+
+/* The interpretation, reduced from a panel to a strip. Three lines across, one
+   per line on a narrow screen — it is context for the figures below, so it must
+   not occupy the weight a panel gave it. */
+.insightStrip {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: var(--space-4);
+  margin: 0;
+  padding: var(--space-4) var(--space-5);
+  list-style: none;
+  background: var(--surface-mint);
+  border-radius: var(--radius-md);
+}
+
+/* The drill-through on an alert row. Quiet until hovered: the row's words are the
+   content, and a loud button on every line would turn a list of problems into a
+   list of buttons. */
+.alertGo {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  flex: none;
+  padding: 4px var(--space-3);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-full);
+  background: transparent;
+  color: var(--forest);
+  font-size: var(--fs-label);
+  font-weight: 500;
+  cursor: pointer;
+  transition: background var(--transition), border-color var(--transition);
+}
+.alertGo:hover {
+  background: var(--surface-mint);
+  border-color: var(--forest);
+}
+
+/* Four section cards. Two across on a laptop rather than four, because four
+   columns of four figures is sixteen numbers on one line — the wall this layout
+   exists to avoid. */
+.sectionCards {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--space-5);
+}
+
+.sectionCard {
+  position: relative;
+  display: grid;
+  gap: var(--space-3);
+  padding: clamp(var(--space-4), 3vw, var(--space-5));
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  transition: border-color var(--transition), box-shadow var(--transition);
+}
+.sectionCard:hover {
+  border-color: var(--border-strong);
+  box-shadow: var(--elev-sm);
+}
+
+.sectionCardLink {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-3);
+  padding: 0;
+  border: 0;
+  background: none;
+  color: var(--forest);
+  cursor: pointer;
+  text-align: left;
+  font: inherit;
+}
+/* The whole card is the hit area, but only the heading is the control — so the
+   figures stay readable as their own elements rather than being swallowed into
+   one long accessible name. */
+.sectionCardLink::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: var(--radius-md);
+}
+
+.sectionCardHead {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+}
+.sectionCardTitle {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: var(--fs-h3);
+  letter-spacing: -0.01em;
+}
+.sectionCardGo {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  flex: none;
+  font-size: var(--fs-label);
+  font-weight: 500;
+  color: var(--text-muted-strong);
+}
+.sectionCard:hover .sectionCardGo {
+  color: var(--forest);
+}
+
+.sectionCardQuestion {
+  margin: 0;
+  font-size: var(--fs-ui);
+  line-height: 1.5;
+  color: var(--text-muted-strong);
+}
+
+.sectionFigures {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--space-4);
+  margin: var(--space-2) 0 0;
+}
+
+.sectionFigure {
+  display: grid;
+  gap: 2px;
+  align-content: start;
+  padding-top: var(--space-3);
+  border-top: 1px solid var(--border);
+}
+
+.sectionFigureLabel {
+  margin: 0;
+  font-size: var(--fs-label);
+  color: var(--text-muted-strong);
+}
+.sectionFigureValue {
+  margin: 0;
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: var(--fs-h3);
+  font-variant-numeric: tabular-nums;
+  line-height: 1.1;
+  color: var(--ink);
+}
+.sectionFigureHint {
+  margin: 0;
+  font-size: var(--fs-caption);
+  line-height: 1.4;
+  color: var(--text-muted-strong);
+}
+
+/* Tone is carried on the VALUE, not the whole cell: a red card reads as a broken
+   section, where what is actually wrong is one number in it. */
+.sectionFigure[data-tone='warn'] .sectionFigureValue {
+  color: var(--warning-ink);
+}
+.sectionFigure[data-tone='bad'] .sectionFigureValue {
+  color: var(--danger-ink);
+}
+
+@media (max-width: 1100px) {
+  .sectionCards {
+    grid-template-columns: 1fr;
+  }
+}
+@media (max-width: 760px) {
+  .insightStrip {
     grid-template-columns: 1fr;
   }
 }
