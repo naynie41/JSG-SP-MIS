@@ -4,7 +4,7 @@ export interface BrandMarkProps {
   /** Rendered size in px. The crest is square-padded, so this is both edges. */
   size?: number
   /**
-   * Only set this where the crest stands alone. Beside the SP-MIS wordmark it is
+   * Only set this where the crest stands alone. Beside the JIG-SPOTS wordmark it is
    * decorative — announcing "Jigawa State coat of arms" there makes a screen reader
    * read the same identity twice.
    */

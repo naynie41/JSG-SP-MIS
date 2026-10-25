@@ -22,6 +22,11 @@ final class ReportCatalogue
         ['key' => 'benefits_by_mda', 'label' => 'Benefits by MDA', 'coordination' => false],
         ['key' => 'benefits_by_lga', 'label' => 'Benefits by LGA', 'coordination' => false],
         ['key' => 'budget_utilization', 'label' => 'Budget used', 'coordination' => false],
+        // Listed here so it can be SCHEDULED (ReportScheduleService gates on this
+        // catalogue). Its generation does not route through ReportBuilder — GenerateReport
+        // matches the key first — because it needs a month, which a catalogue report's
+        // (key, scope) signature has nowhere to carry.
+        ['key' => 'monthly_project', 'label' => 'Monthly project report', 'coordination' => false],
         ['key' => 'referral_completion', 'label' => 'Referral completion', 'coordination' => true],
         ['key' => 'grievance_sla', 'label' => 'Grievance response times', 'coordination' => true],
     ];

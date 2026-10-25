@@ -177,6 +177,21 @@ export function useRegisterProfile() {
   })
 }
 
+/** The monthly project report — how projects did in one month (FR-RPT-12b). */
+export function useMonthlyProjectReport() {
+  const qc = useQueryClient()
+  const toast = useToast()
+
+  return useMutation({
+    mutationFn: (period?: { year: number; month: number }) => reportsApi.monthlyProject(period),
+    onSuccess: () => {
+      void qc.invalidateQueries({ queryKey: RUNS_KEY })
+      toast.success('Report queued', 'The PDF appears under Recent exports as soon as it is ready.')
+    },
+    onError: (error) => toast.error('Could not start the report', message(error, 'Please try again.')),
+  })
+}
+
 /* ------------------------------------------------------ duplicate review (FR-DUP) */
 
 export function useDuplicateReview(filter: DuplicateReviewFilterInput, enabled = true) {

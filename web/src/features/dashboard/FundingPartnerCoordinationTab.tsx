@@ -226,13 +226,13 @@ export function FundingPartnerCoordinationTab({ data, onDrill }: FundingPartnerC
             <span className={styles.inertLabel}>
               <Icon icon={CalendarX} size={13} /> Coordination meetings &amp; action items
             </span>
-            <span className={styles.inertNote}>No meetings module. Not tracked in SP-MIS.</span>
+            <span className={styles.inertNote}>No meetings module. Not tracked in JIG-SPOTS.</span>
           </div>
           <div className={styles.inert}>
             <span className={styles.inertLabel}>
               <Icon icon={ClipboardX} size={13} /> Reporting compliance
             </span>
-            <span className={styles.inertNote}>No reporting workflow. Not tracked in SP-MIS.</span>
+            <span className={styles.inertNote}>No reporting workflow. Not tracked in JIG-SPOTS.</span>
           </div>
         </div>
       </section>

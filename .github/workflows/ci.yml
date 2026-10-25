@@ -176,7 +176,7 @@ jobs:
     steps:
       - name: Report
         run: |
-          echo "## SP-MIS CI" >> "$GITHUB_STEP_SUMMARY"
+          echo "## JIG-SPOTS CI" >> "$GITHUB_STEP_SUMMARY"
           echo "" >> "$GITHUB_STEP_SUMMARY"
           echo "| Job | Result |" >> "$GITHUB_STEP_SUMMARY"
           echo "|---|---|" >> "$GITHUB_STEP_SUMMARY"

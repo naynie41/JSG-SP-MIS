@@ -9,7 +9,7 @@ import type { PublicResource } from './types'
 import styles from './library.module.css'
 
 /**
- * The public resource library (FR-RES-04) — the only page in SP-MIS that renders
+ * The public resource library (FR-RES-04) — the only page in JIG-SPOTS that renders
  * real content to someone who is not signed in.
  *
  * Written for a member of the public, not an officer: no jargon, no system state,
@@ -51,7 +51,7 @@ export function ResourcesPage() {
       <LandingHeader solid />
 
       <header className={styles.publicHero}>
-        <span className={styles.heroEyebrow}>SP-MIS resource library</span>
+        <span className={styles.heroEyebrow}>JIG-SPOTS resource library</span>
         <h1 className={styles.heroTitle}>Resources</h1>
         <p className={styles.heroLede}>
           Policies, guidelines, tools and reports supporting social protection across Jigawa State. Free to read and

@@ -138,7 +138,7 @@ describe('FundingPartnerRegistryTab', () => {
     expect(within(quality).getByText('Missing data')).toBeInTheDocument()
     expect(within(quality).getByText('98%')).toBeInTheDocument() // verification rate 0.975 → 98%
 
-    // SP-MIS is not a payment engine — no bank / mobile-money verification METER
+    // JIG-SPOTS is not a payment engine — no bank / mobile-money verification METER
     // (the footnote names them only to explain their absence).
     expect(screen.queryByText('Bank verified')).toBeNull()
     expect(screen.queryByText('Mobile money verified')).toBeNull()

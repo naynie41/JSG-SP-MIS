@@ -8,7 +8,7 @@ use Illuminate\Contracts\Pagination\LengthAwarePaginator;
 use Illuminate\Http\JsonResponse;
 
 /**
- * Central factory for the SP-MIS API response envelopes.
+ * Central factory for the JIG-SPOTS API response envelopes.
  *
  * Every endpoint MUST return through here so the success/error shapes stay
  * identical across the whole API (see docs/CONVENTIONS.md §4). JSON keys are

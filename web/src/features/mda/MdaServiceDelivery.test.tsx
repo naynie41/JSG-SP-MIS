@@ -241,7 +241,7 @@ describe('MDA console — Service Delivery', () => {
     // what proves which screen is mounted.
     expect(await screen.findByText('Beneficiary')).toBeInTheDocument()
     expect(screen.getByText('Programme & activity')).toBeInTheDocument()
-    expect(screen.getByText(/SP-MIS does not move money/i)).toBeInTheDocument()
+    expect(screen.getByText(/JIG-SPOTS does not move money/i)).toBeInTheDocument()
 
     await user.click(screen.getByRole('tab', { name: 'Benefits delivered' }))
     await waitFor(() => expect(listBenefits).toHaveBeenCalled())

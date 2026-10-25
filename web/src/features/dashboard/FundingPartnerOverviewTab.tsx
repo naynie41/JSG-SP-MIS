@@ -137,7 +137,7 @@ export interface FundingPartnerOverviewTabProps {
  * Funding Partner Overview (Phase 6P, tab 1) — pure tab content under the partner shell
  * (which owns the hero + Refresh). A funder reads money-first: the lifecycle leads with
  * DELIVERED VALUE against committed funding — deliberately labelled "delivery value",
- * never treasury expenditure (SP-MIS records value as data; it never moves money).
+ * never treasury expenditure (JIG-SPOTS records value as data; it never moves money).
  * Everything is the partner's FUNDED scope only, read-only, aggregate — no raw PII.
  * Only captured demographics show; outcomes/impact are an external slot.
  */
@@ -247,7 +247,7 @@ export function FundingPartnerOverviewTab({ data, onDrill }: FundingPartnerOverv
             <span className={styles.lifecycleDelivered} style={{ width: `${reachPctOfBudget}%` }} />
           </div>
           <p className={styles.deliveryNote}>
-            <strong>Delivery value</strong>, not treasury expenditure. It is the recorded value of benefits delivered under funded activities (programme data). SP-MIS records value. It does not move money.
+            <strong>Delivery value</strong>, not treasury expenditure. It is the recorded value of benefits delivered under funded activities (programme data). JIG-SPOTS records value. It does not move money.
           </p>
         </div>
       </section>

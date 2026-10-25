@@ -100,7 +100,7 @@ Pinned by `MdaRoleMatrixTest` (server) and `MdaGating.test.tsx` (UI).
   delivers through its own activities. What an MDA *can* create here is a programme of its
   own: invisible to every other MDA, and unusable until the System Administrator approves
   it (CLAUDE.md §10, revised 2026-09-17).
-- **Delivery value is not expenditure.** A recorded benefit is programme data — SP-MIS
+- **Delivery value is not expenditure.** A recorded benefit is programme data — JIG-SPOTS
   does not move money. Never "spent", "disbursed" or "expenditure".
 
 ## Why one new endpoint

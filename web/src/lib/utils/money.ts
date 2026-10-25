@@ -1,6 +1,6 @@
 /**
  * Money helpers. The API stores monetary amounts as integer minor units (kobo),
- * currency NGN — this records delivered/allocated value as data; SP-MIS never
+ * currency NGN — this records delivered/allocated value as data; JIG-SPOTS never
  * moves money. The UI collects Naira and converts at the edge.
  */
 

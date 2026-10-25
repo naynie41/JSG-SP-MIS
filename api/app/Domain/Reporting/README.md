@@ -183,7 +183,7 @@ import-matched duplicate so every panel renders.
 | Outcome / M&E indicators | Needs survey/outcome integration | Wire **M&E outcomes**; fill `deferred.outcome_indicators` |
 | Identity verification rate | No explicit identity-verification field (today: review-status proxy) | Add an **identity-verification field**; fill `deferred.identity_verification` |
 | Map overlay layers (schools, health, IDP camps, flood) | Data supplied later | `registerMapLayer()` an **external GeoJSON** source (framework + example: `web/.../gis/mapLayers.ts`) |
-| Meetings / attendance / action items | **Not part of SP-MIS** | Track in an **external coordination tool** (noted as a slot; not built here) |
+| Meetings / attendance / action items | **Not part of JIG-SPOTS** | Track in an **external coordination tool** (noted as a slot; not built here) |
 | Heat maps (FR-GIS-02) | Extension point | Query the PostGIS `geom` column |
 
 Phase 6E tests: `tests/Feature/Reporting/{ExecutiveMetrics,ExecutiveFilter,Dashboard-
@@ -203,7 +203,7 @@ sees **only their own funded data**, enforced server-side by `DashboardScopeReso
 **Labelling (non-negotiable):** money is **DELIVERY VALUE** — the recorded value of
 benefits delivered under funded activities — on an **Allocated → Delivered → Remaining**
 lifecycle. It is **never** treasury expenditure; the words *spent / disbursed /
-expenditure / committed-vs-disbursed / grant / audit* are never shown or faked. *SP-MIS
+expenditure / committed-vs-disbursed / grant / audit* are never shown or faked. *JIG-SPOTS
 records value as data; it never moves money.*
 
 **Aggregation** (`DashboardMetricsService::partnerFunding()`, computed only for a partner
@@ -265,12 +265,12 @@ render meaningfully (never real PII). Run: `php artisan db:seed --class=PartnerD
 
 | Item | Why omitted | Switch-on condition |
 | --- | --- | --- |
-| Committed vs **disbursed**, **grant** lifecycle | SP-MIS is not a grants ledger; it holds committed budget + delivery value only | Add a **grant module** (award → disbursement schedule); then a Committed→Disbursed lifecycle can sit beside Allocated→Delivered |
+| Committed vs **disbursed**, **grant** lifecycle | JIG-SPOTS is not a grants ledger; it holds committed budget + delivery value only | Add a **grant module** (award → disbursement schedule); then a Committed→Disbursed lifecycle can sit beside Allocated→Delivered |
 | Treasury **expenditure** + audit | No expenditure/audit data is held (delivery value ≠ money moved) | Integrate **treasury expenditure + audit** feeds; only then show spend (still labelled distinctly from delivery value) |
 | Eligible → Selected funnel steps | No eligible-population **denominator** / selection model | Load an **eligible-population denominator** + a selection/PMT model; the reduced funnel then extends upstream (today: inert slot) |
 | Outcome indicators (poverty ↓, income, attendance, food security, employment) & Outcomes→Impact | Need external evaluation data | Wire **outcome M&E** / evaluation data; fill the greyed external slot (today: **outputs only**) |
 | PWD / vulnerability / poverty demographics | **No such field captured** | Add registry field(s); extend `registry.demographics` (panels **absent**, not empty) |
-| Coordination meetings / action items, reporting-compliance | **Not part of SP-MIS** (no meetings/reporting-workflow module) | Track in an **external coordination tool** (inert slots only) |
+| Coordination meetings / action items, reporting-compliance | **Not part of JIG-SPOTS** (no meetings/reporting-workflow module) | Track in an **external coordination tool** (inert slots only) |
 | Map overlay layers (schools, health, IDP camps, flood) | External data supplied later | `registerMapLayer()` an **external GeoJSON** (framework: `web/.../gis/mapLayers.ts`) |
 
 Phase 6P tests: `tests/Feature/Reporting/{PartnerFunding,PartnerDemoSeeder,GisCoverage}Test.php`

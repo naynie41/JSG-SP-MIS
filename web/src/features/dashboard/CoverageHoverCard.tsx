@@ -27,7 +27,7 @@ const BAND_LABEL: Record<CoverageBand, string> = {
 const count = (n: number) => n.toLocaleString()
 
 /**
- * Kobo → naira. This is the recorded VALUE OF BENEFITS DELIVERED — SP-MIS records
+ * Kobo → naira. This is the recorded VALUE OF BENEFITS DELIVERED — JIG-SPOTS records
  * delivery and does not move money, so it is never "spent" or "disbursed".
  */
 const naira = (kobo: number) => `₦${Math.round(kobo / 100).toLocaleString()}`

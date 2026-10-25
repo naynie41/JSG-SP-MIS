@@ -33,7 +33,7 @@ return [
         // DISABLE that enforcement OUTSIDE production (local dev/testing) — see
         // User::mfaRequired(). In production the control is always on regardless.
         'enforce' => (bool) env('MFA_ENFORCE', true),
-        'issuer' => env('MFA_ISSUER', env('APP_NAME', 'SP-MIS')),
+        'issuer' => env('MFA_ISSUER', env('APP_NAME', 'JIG-SPOTS')),
         'recovery_code_count' => (int) env('MFA_RECOVERY_CODE_COUNT', 8),
         // TOTP verification window (number of 30s steps tolerated each side).
         'window' => (int) env('MFA_WINDOW', 1),

@@ -228,7 +228,7 @@ export function ReferralDetailPage() {
                 <dd>{formatNaira(referral.ledger.benefit_value_total)}</dd>
               </dl>
               <p className={styles.note} style={{ marginTop: 'var(--space-3)' }}>
-                Deliveries the receiving MDA recorded for this beneficiary since acceptance. SP-MIS records delivery, not payment.
+                Deliveries the receiving MDA recorded for this beneficiary since acceptance. JIG-SPOTS records delivery, not payment.
               </p>
             </Card>
           )}

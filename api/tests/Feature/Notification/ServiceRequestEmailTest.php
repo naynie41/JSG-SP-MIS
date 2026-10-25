@@ -19,6 +19,7 @@ use App\Domain\Registry\Services\ServiceRequestService;
 use Database\Seeders\RolesAndPermissionsSeeder;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Str;
 use Illuminate\Testing\TestResponse;
 use Tests\TestCase;
 
@@ -77,11 +78,25 @@ class ServiceRequestEmailTest extends TestCase
         ]);
     }
 
+    /**
+     * Staff names are PINNED, not left to the factory's faker.
+     *
+     * The no-PII tests below assert that the beneficiary's names — "Hauwa", "Ibrahim" —
+     * never appear in the email body. The body legitimately greets its RECIPIENT by
+     * name, so a faker that rolls a staff member called Ibrahim fails the suite with a
+     * PII alarm about a beneficiary who was never named. That happened: a run reported
+     * «“Ibrahim” must never leave in the body» against "Hello Ibrahim Hackett,".
+     *
+     * A randomly-failing privacy assertion is worse than a noisy one — it trains people
+     * to re-run the suite until it passes, which is exactly how a real leak gets waved
+     * through. Pinning the name removes the collision entirely.
+     */
     private function user(Mda $mda, RoleKey $role): User
     {
         return User::factory()->create([
             'mda_id' => $mda->id,
             'role_id' => Role::where('key', $role->value)->firstOrFail()->id,
+            'name' => 'Staff Member '.$role->value.' '.Str::random(6),
         ]);
     }
 

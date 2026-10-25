@@ -22,7 +22,7 @@ use Illuminate\Support\Facades\Validator;
  */
 class CreateAdminUser extends Command
 {
-    protected $signature = 'spmis:create-admin {email} {--name=SP-MIS Administrator}';
+    protected $signature = 'spmis:create-admin {email} {--name=JIG-SPOTS Administrator}';
 
     protected $description = 'Create the initial System Administrator (password prompted, not passed as an argument)';
 

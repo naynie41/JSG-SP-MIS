@@ -1,5 +1,5 @@
 /* =============================================================================
-   SP-MIS theme — single source of design tokens (DESIGN.md).
+   JIG-SPOTS theme — single source of design tokens (DESIGN.md).
    Every color/type/spacing/radius/elevation value lives here as a CSS variable.
    Components reference var(--token) only; no hard-coded hex/spacing elsewhere.
    ============================================================================= */

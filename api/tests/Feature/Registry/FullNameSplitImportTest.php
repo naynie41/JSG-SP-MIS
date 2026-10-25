@@ -165,7 +165,7 @@ class FullNameSplitImportTest extends TestCase
 
     public function test_a_single_token_name_yields_no_surname_and_the_row_is_rejected(): void
     {
-        // SP-MIS cannot invent a surname. `last_name` is required, so the row fails —
+        // JIG-SPOTS cannot invent a surname. `last_name` is required, so the row fails —
         // which is the honest outcome rather than a fabricated blocking key.
         $batch = $this->upload($this->oneNameColumnCsv());
         $this->send('PUT', "/api/v1/beneficiaries/imports/{$batch->id}/mapping", ['column_map' => $this->fullNameMap()]);

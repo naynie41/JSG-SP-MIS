@@ -1,5 +1,5 @@
 #!/bin/sh
-# Production entrypoint for the SP-MIS api/worker containers. Runs entirely as the
+# Production entrypoint for the JIG-SPOTS api/worker containers. Runs entirely as the
 # unprivileged www-data user (set via USER in the Dockerfile). Unlike the dev
 # entrypoint it NEVER installs dependencies, copies an .env, or generates an app
 # key at runtime — production config comes from the container environment and the

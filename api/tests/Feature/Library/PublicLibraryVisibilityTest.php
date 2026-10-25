@@ -15,7 +15,7 @@ use Tests\TestCase;
  * What an ANONYMOUS visitor can and cannot reach (FR-RES-04).
  *
  * This is the file that matters most in the feature. `public/library` is, apart
- * from /health and login, the only part of SP-MIS that answers without a token, so
+ * from /health and login, the only part of JIG-SPOTS that answers without a token, so
  * every test here is a negative one: the failure mode is not "the page is broken",
  * it is "something reached the internet that should not have".
  */

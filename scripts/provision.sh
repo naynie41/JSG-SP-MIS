@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 #
-# provision.sh — Bare Ubuntu VPS → hardened, firewalled, Docker-ready host for SP-MIS.
+# provision.sh — Bare Ubuntu VPS → hardened, firewalled, Docker-ready host for JIG-SPOTS.
 #
 # Covers deployment Stages 1–3:
 #   1. System update + non-root deploy user
@@ -255,7 +255,7 @@ log "Provisioning $(hostname) — deploy user: ${DEPLOY_USER}, app dir: ${APP_DI
 TOTAL_RAM_MB=$(( $(awk '/MemTotal/ {print $2}' /proc/meminfo) / 1024 ))
 log "Detected RAM: ${TOTAL_RAM_MB} MB"
 if (( TOTAL_RAM_MB < MIN_RAM_MB )); then
-  warn "SP-MIS's docker-compose.prod.yml declares ${MIN_RAM_MB}M of container memory limits."
+  warn "JIG-SPOTS's docker-compose.prod.yml declares ${MIN_RAM_MB}M of container memory limits."
   warn "This host has ${TOTAL_RAM_MB} MB — the stack CANNOT fit, even before the OS."
   warn "Resize to at least ${RECOMMENDED_RAM_MB} MB before deploying."
   if [[ "${CHECK_ONLY}" != "yes" ]]; then
@@ -482,7 +482,7 @@ fi
 ufw status verbose
 
 warn "Docker publishes ports by writing iptables rules directly and BYPASSES UFW."
-warn "SP-MIS's docker-compose.prod.yml is built for this: only nginx has a 'ports:'"
+warn "JIG-SPOTS's docker-compose.prod.yml is built for this: only nginx has a 'ports:'"
 warn "entry. Postgres, Redis, RabbitMQ, php-fpm, the worker, the scheduler and the SPA"
 warn "are internal-only. If you ever add a 'ports:' to a data service, UFW will NOT"
 warn "protect it — bind it to 127.0.0.1 explicitly instead."

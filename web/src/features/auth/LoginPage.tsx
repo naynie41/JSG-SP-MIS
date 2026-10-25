@@ -117,7 +117,7 @@ export function LoginPage() {
       <aside className={styles.brand}>
         <div className={styles.brandTop}>
           <BrandMark size={64} />
-          <span className={styles.brandWord}>SP-MIS</span>
+          <span className={styles.brandWord}>JIG-SPOTS</span>
         </div>
         <h1 className={styles.headline}>
           Coordinated social protection for <span className={styles.accentText}>Jigawa State</span>.
@@ -134,7 +134,7 @@ export function LoginPage() {
             <div className={styles.heading}>
               <span className="eyebrow">01 · Sign in</span>
               <h2 className={styles.title}>Welcome back</h2>
-              <p className={styles.subtitle}>Sign in to your SP-MIS account.</p>
+              <p className={styles.subtitle}>Sign in to your JIG-SPOTS account.</p>
             </div>
 
             {formError && (

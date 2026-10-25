@@ -32,6 +32,28 @@ final class SvgChart
 
     public const WEAK = '#B4791E';
 
+    /*
+     * The three-way standing scale: on track / behind / well behind.
+     *
+     * NOT the design system's --success/--warning/--danger trio, which is built for
+     * badges and fails as a chart palette: amber against the green separates by only
+     * 5.1 ΔE under protanopia, and red against amber by 14.9 even with full colour
+     * vision — below the 15 floor. On a printed page there is no tooltip to recover
+     * the difference.
+     *
+     * These three are design-system values too — chart-1, chart-3 and --danger — chosen
+     * because they measure as distinct: 16.2 ΔE protan on the worst adjacent pair, 27.4
+     * normal vision. Re-check with the dataviz validator before changing any of them.
+     *
+     * Colour is never the only signal regardless: every slice is printed with its label
+     * and count beside it.
+     */
+    public const STANDING_GOOD = '#008300';
+
+    public const STANDING_FAIR = '#EDA100';
+
+    public const STANDING_POOR = '#B23A31';
+
     /**
      * The two gender series, for the register pyramid.
      *

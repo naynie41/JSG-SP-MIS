@@ -12,6 +12,7 @@ use App\Domain\Reporting\Services\DashboardScopeResolver;
 use App\Domain\Reporting\Services\ReportService;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Reporting\GenerateReportRequest;
+use App\Http\Requests\Reporting\MonthlyProjectReportRequest;
 use App\Http\Resources\ReportRunResource;
 use App\Support\ApiResponse;
 use Illuminate\Database\Eloquent\Builder;
@@ -70,6 +71,35 @@ class ReportController extends Controller
         }
 
         return ApiResponse::success((new ReportRunResource($run))->resolve(), status: 201);
+    }
+
+    /**
+     * "How are my projects doing" for one month (FR-RPT-12b).
+     *
+     * Its own endpoint rather than a `report_key` through `store()`, for the same
+     * reason "People in the register" has one: it takes a period and no format, so
+     * routing it through the generic generate-request would mean validating a format
+     * nobody may choose and a `params` bag nobody may shape.
+     *
+     * The scope is the caller's own, resolved here and captured on the run — an MDA
+     * user gets their MDA's activities and no one else's, enforced by the scope rather
+     * than by anything this method does.
+     */
+    public function monthlyProject(MonthlyProjectReportRequest $request): JsonResponse
+    {
+        [$year, $month] = $request->period();
+        $scope = $this->resolver->forUser($request->user());
+
+        $run = $this->reports->queueMonthlyProject($request->user(), $scope, $year, $month);
+
+        $this->audit->record('report.monthly_project_requested', $run, after: [
+            'year' => $year,
+            'month' => $month,
+            'scope_kind' => $scope->kind,
+            'scope_label' => $scope->label,
+        ], actor: $request->user());
+
+        return ApiResponse::success((new ReportRunResource($run))->resolve(), status: 202);
     }
 
     public function show(Request $request, string $report): JsonResponse

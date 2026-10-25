@@ -1,5 +1,5 @@
 # =============================================================================
-# SP-MIS PRODUCTION stack — PULL-ONLY. The VPS never runs `docker build`; app
+# JIG-SPOTS PRODUCTION stack — PULL-ONLY. The VPS never runs `docker build`; app
 # images are pulled from GHCR (built by .github/workflows/release.yml).
 #
 #   docker compose -f docker-compose.prod.yml pull

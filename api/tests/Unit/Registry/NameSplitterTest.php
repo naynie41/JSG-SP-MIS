@@ -32,7 +32,7 @@ class NameSplitterTest extends TestCase
             ['Nura Bichi Musa Adamu', 'Nura', 'Bichi Musa Adamu'],
 
             // One token: no surname is invented. `last_name` is required, so the row is
-            // rejected downstream — the honest outcome for a name SP-MIS was not given.
+            // rejected downstream — the honest outcome for a name JIG-SPOTS was not given.
             ['Amina', 'Amina', null],
 
             // Spreadsheet whitespace: double spaces, tabs, leading/trailing padding and

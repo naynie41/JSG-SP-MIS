@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 #
-# verify.sh — Prove a deployed SP-MIS stack is actually working.
+# verify.sh — Prove a deployed JIG-SPOTS stack is actually working.
 #
 # Run after a first deploy, after every redeploy, and after a rollback. It checks the
 # things whose failure is SILENT — where the stack looks healthy and is not:

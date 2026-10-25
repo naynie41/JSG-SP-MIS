@@ -114,7 +114,7 @@ export interface FundingPartnerRegistryTabProps {
  * targeting funnel (Registered → Enrolled → Receiving; the eligible→selected steps are an
  * inert slot needing an eligible-population denominator + a selection model), and data
  * quality (verification, duplicate rate, missing data, completeness, NIN linkage — no
- * bank/mobile-money verification, since SP-MIS is not a payment engine). Read-only.
+ * bank/mobile-money verification, since JIG-SPOTS is not a payment engine). Read-only.
  */
 export function FundingPartnerRegistryTab({ data }: FundingPartnerRegistryTabProps) {
   const pf = data.metrics.partner_funding
@@ -254,7 +254,7 @@ export function FundingPartnerRegistryTab({ data }: FundingPartnerRegistryTabPro
           </div>
 
           <p className={styles.qualityFoot}>
-            Bank and mobile-money verification is not shown. SP-MIS records value as data and is not a payment engine, so
+            Bank and mobile-money verification is not shown. JIG-SPOTS records value as data and is not a payment engine, so
             no such field is captured.
           </p>
         </div>

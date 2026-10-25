@@ -82,11 +82,11 @@ export function LandingHeader({ solid = false }: LandingHeaderProps = {}) {
           to={solid ? '/' : '#top'}
           label=""
           className={styles.wordmark}
-          aria-label="SP-MIS Jigawa State — home"
+          aria-label="JIG-SPOTS Jigawa State — home"
         >
           <BrandMark size={44} className={styles.wordmarkMark} />
           <span className={styles.wordmarkText}>
-            <strong>SP-MIS</strong>
+            <strong>JIG-SPOTS</strong>
             <span className={styles.wordmarkSub}>Jigawa State</span>
           </span>
         </NavItem>

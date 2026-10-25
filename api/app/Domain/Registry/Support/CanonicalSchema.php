@@ -11,9 +11,9 @@ use App\Domain\Registry\Imports\ImportRowValidator;
 use App\Domain\Registry\Services\HouseholdIngestionService;
 
 /**
- * The canonical SP-MIS beneficiary schema (PRD FR-REG-04).
+ * The canonical JIG-SPOTS beneficiary schema (PRD FR-REG-04).
  *
- * This is SP-MIS's INTERNAL standard, not a demand on the MDAs. A source file may use
+ * This is JIG-SPOTS's INTERNAL standard, not a demand on the MDAs. A source file may use
  * any column names it likes; the Data Import & Mapping layer maps whatever arrives onto
  * these fields, and everything downstream — validation, the duplicate cascade, household
  * formation, the registrar — speaks only this vocabulary.

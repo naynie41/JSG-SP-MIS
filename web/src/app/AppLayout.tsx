@@ -58,7 +58,7 @@ export function AppLayout() {
     if (best) return best.label
     // Functional pages reached from a hub aren't in the rail — title-case the first segment.
     const segment = location.pathname.split('/').filter(Boolean)[0]
-    if (!segment) return 'SP-MIS'
+    if (!segment) return 'JIG-SPOTS'
     return segment.replace(/-/g, ' ').replace(/\b\w/g, (c) => c.toUpperCase())
   }, [location.pathname])
 
@@ -103,7 +103,7 @@ export function AppLayout() {
 
       <div className={styles.main}>
         <TopBar
-          left={<Breadcrumbs items={[{ label: 'SP-MIS', to: '/' }, { label: currentLabel }]} />}
+          left={<Breadcrumbs items={[{ label: 'JIG-SPOTS', to: '/' }, { label: currentLabel }]} />}
           userName={user?.name ?? 'User'}
           userRole={workspaceIdentity(user).roleName}
           userMda={user?.mda?.name}

@@ -1,13 +1,14 @@
 import { ArrowRight, ShieldCheck } from 'lucide-react'
+import { Link } from 'react-router-dom'
 import { BrandMark, ButtonLink, Icon } from '@/components'
 import { IllustrativeMap } from './IllustrativeMap'
 import { LandingHeader } from './LandingHeader'
 import { HERO_IMAGE_ALT, HERO_IMAGE_URL, LOGIN_PATH } from './landingConfig'
-import { CAPABILITIES, FOOTER_LINKS, GRIEVANCE_FLOW, PILLARS, STAKEHOLDERS, STEPS } from './landingContent'
+import { CAPABILITIES, FAQS, FOOTER_LINKS, GRIEVANCE_FLOW, PILLARS, STAKEHOLDERS, STEPS } from './landingContent'
 import styles from './landing.module.css'
 
 /**
- * The public face of SP-MIS (unauthenticated).
+ * The public face of JIG-SPOTS (unauthenticated).
  *
  * This page reads NOTHING from the API. No query hooks, no counts, no coverage, no
  * programme names — an anonymous visitor is entitled to know what the system is for, not
@@ -55,7 +56,7 @@ export function LandingPage() {
           <div className={styles.heroInner}>
             <div className={styles.heroCopy}>
               <p className={styles.eyebrow}>Jigawa State Government</p>
-              <h1 className={styles.heroTitle}>Social Protection Management Information System</h1>
+              <h1 className={styles.heroTitle}>Jigawa Social Protection Operations and Tracking System</h1>
               <p className={styles.heroLead}>
                 Connecting people, programmes and services across every ministry, department and agency
                 delivering social protection in Jigawa State.
@@ -65,7 +66,7 @@ export function LandingPage() {
                   Login
                 </ButtonLink>
                 <a href="#about" className={styles.heroSecondary}>
-                  What is SP-MIS?
+                  What is JIG-SPOTS?
                 </a>
               </div>
             </div>
@@ -83,7 +84,7 @@ export function LandingPage() {
           </div>
         </section>
 
-        {/* ──────────────────────────────────────────────── 3. What is SP-MIS ── */}
+        {/* ──────────────────────────────────────────────── 3. What is JIG-SPOTS ── */}
         <section className={styles.section} id="about" aria-labelledby="about-heading">
           <div className={styles.sectionInner}>
             <p className={styles.eyebrowDark}>About</p>
@@ -92,7 +93,7 @@ export function LandingPage() {
             </h2>
             <p className={styles.sectionLead}>
               Each agency used to keep its own list, which meant the same household could be enrolled
-              several times over while no one could see it happening. SP-MIS replaces those separate
+              several times over while no one could see it happening. JIG-SPOTS replaces those separate
               lists with shared data under clear ownership.
             </p>
 
@@ -110,12 +111,12 @@ export function LandingPage() {
           </div>
         </section>
 
-        {/* ──────────────────────────────────────── 4. What SP-MIS provides ── */}
+        {/* ──────────────────────────────────────── 4. What JIG-SPOTS provides ── */}
         <section className={styles.sectionMint} id="programmes" aria-labelledby="provides-heading">
           <div className={styles.sectionInner}>
             <p className={styles.eyebrowDark}>Capabilities</p>
             <h2 className={styles.sectionTitle} id="provides-heading">
-              What SP-MIS provides
+              What JIG-SPOTS provides
             </h2>
 
             <ul className={styles.capabilities}>
@@ -186,7 +187,7 @@ export function LandingPage() {
             <p className={styles.sectionLead}>
               If you have a question or a complaint about a social protection programme, raise it with
               the agency delivering it, through its grievance officer or intake desk. From there it is
-              logged in SP-MIS and followed until it reaches an outcome, so nothing depends on who
+              logged in JIG-SPOTS and followed until it reaches an outcome, so nothing depends on who
               happened to take the call.
             </p>
 
@@ -240,16 +241,67 @@ export function LandingPage() {
           </div>
         </section>
 
-        {/* ───────────────────────────────────────────────── 9. Access CTA ── */}
+        {/* ─────────────────────────────────────────── 9. Questions people ask ── */}
+        <section className={styles.section} id="faq" aria-labelledby="faq-heading">
+          <div className={styles.sectionInner}>
+            <p className={styles.eyebrowDark}>Answers</p>
+            <h2 className={styles.sectionTitle} id="faq-heading">
+              Questions people ask
+            </h2>
+            <p className={styles.sectionLead}>
+              Most of what someone wants from social protection happens with the agency running the
+              programme, not on this site. These answers say where each thing actually happens.
+            </p>
+
+            <ul className={styles.faqs}>
+              {FAQS.map((faq) => (
+                <li key={faq.question}>
+                  {/*
+                   * A native <details>, not a scripted accordion. It opens with no
+                   * JavaScript, it is keyboard-operable and announced correctly without a
+                   * line of ARIA of our own, and browsers that search inside closed
+                   * details will find these answers. A hand-rolled one buys nothing here
+                   * and is one more thing to get wrong for a screen-reader user.
+                   */}
+                  <details className={styles.faq}>
+                    <summary className={styles.faqQuestion}>
+                      <span>{faq.question}</span>
+                      <span className={styles.faqChevron} aria-hidden="true" />
+                    </summary>
+                    <div className={styles.faqAnswer}>
+                      <p>{faq.answer}</p>
+                      {faq.link &&
+                        (faq.link.to.startsWith('#') ? (
+                          <a href={faq.link.to} className={styles.textLink}>
+                            {faq.link.label}
+                            <Icon icon={ArrowRight} size={15} aria-hidden="true" />
+                          </a>
+                        ) : (
+                          // A real route: through the router, or the SPA reloads itself
+                          // to reach a page it already has.
+                          <Link to={faq.link.to} className={styles.textLink}>
+                            {faq.link.label}
+                            <Icon icon={ArrowRight} size={15} aria-hidden="true" />
+                          </Link>
+                        ))}
+                    </div>
+                  </details>
+                </li>
+              ))}
+            </ul>
+          </div>
+        </section>
+
+        {/* ──────────────────────────────────────────────── 10. Access CTA ── */}
         <section className={styles.cta} aria-labelledby="access-heading">
           <div className={styles.ctaInner}>
             <p className={styles.eyebrow}>Access</p>
             <h2 className={styles.ctaTitle} id="access-heading">
-              Access SP-MIS
+              Access JIG-SPOTS
             </h2>
             <p className={styles.ctaLead}>
               Authorised users can access the platform using their assigned credentials. Accounts are
-              issued by your ministry, department or agency. SP-MIS has no public sign-up.
+              issued by your ministry, department or agency. JIG-SPOTS has no public sign-up.
             </p>
             <ButtonLink to={LOGIN_PATH} size="lg" rightIcon={ArrowRight}>
               Login
@@ -262,13 +314,13 @@ export function LandingPage() {
         </section>
       </main>
 
-      {/* ───────────────────────────────────────────────────── 10. Footer ── */}
+      {/* ───────────────────────────────────────────────────── 11. Footer ── */}
       <footer className={styles.footer} id="privacy">
         <div className={styles.footerInner}>
           <div className={styles.footerBrand}>
             <BrandMark size={44} className={styles.wordmarkMark} />
             <p className={styles.footerAbout}>
-              The Jigawa State Social Protection Management Information System. It is the shared record
+              The Jigawa Social Protection Operations and Tracking System. It is the shared record
               through which the state’s ministries, departments and agencies coordinate, deliver and
               report on social protection.
             </p>

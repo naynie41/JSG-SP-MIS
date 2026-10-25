@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 #
-# deploy.sh — Deploy or roll back an SP-MIS release on the VPS. PULL-ONLY.
+# deploy.sh — Deploy or roll back an JIG-SPOTS release on the VPS. PULL-ONLY.
 #
 # The VPS never builds. This pulls a tag that GitHub Actions already built and
 # published to GHCR, brings the stack up, waits for health, and verifies.

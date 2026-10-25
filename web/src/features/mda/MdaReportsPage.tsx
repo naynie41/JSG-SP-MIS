@@ -13,6 +13,7 @@ import { ReportBuilderPanel } from '@/features/reports/ReportBuilderPanel'
 import { ReportHistoryPanel } from '@/features/reports/ReportHistoryPanel'
 import reportStyles from '@/features/reports/reports.module.css'
 import { DuplicateReviewReport } from './DuplicateReviewReport'
+import { MdaMonthlyReportCard } from './MdaMonthlyReportCard'
 import { MdaReportsDashboard } from './MdaReportsDashboard'
 import styles from './mda.module.css'
 
@@ -164,6 +165,22 @@ export function MdaReportsPage() {
               id: 'dashboard',
               label: 'Dashboard',
               content: <MdaReportsDashboard canExport={canExport} />,
+            },
+            {
+              // Its own tab rather than a card on the Dashboard: the dashboard answers
+              // "where do we stand now", and this produces a document about a month that
+              // has closed. Mixing a live view with a historical deliverable on one
+              // screen made it unclear which period anything referred to.
+              id: 'monthly',
+              label: 'Monthly report',
+              content: canExport ? (
+                <MdaMonthlyReportCard />
+              ) : (
+                <p className={styles.muted}>
+                  Generating this report needs the reporting export permission, which your role does not
+                  hold. Your {identity.org} administrator can request it.
+                </p>
+              ),
             },
             {
               // ONE builder. Reporting on PEOPLE (filter the registry, list or count

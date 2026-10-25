@@ -602,7 +602,7 @@ class PartnerFundingTest extends TestCase
         $this->assertEqualsWithDelta(0.6667, $reg['quality']['nin_linkage'], 0.0001); // 2 of 3 have NIN
         $this->assertSame(1, $reg['quality']['missing']['nin']);                        // servedOnly
         $this->assertNotNull($reg['quality']['data_completeness']);
-        // SP-MIS is not a payment engine — no bank/mobile-money verification field.
+        // JIG-SPOTS is not a payment engine — no bank/mobile-money verification field.
         $this->assertArrayNotHasKey('bank_verified', $reg['quality']);
         $this->assertArrayNotHasKey('mobile_money_verified', $reg['quality']);
     }

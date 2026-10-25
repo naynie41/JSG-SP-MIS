@@ -1,7 +1,7 @@
 # Benefit domain — the benefit ledger
 
 The benefit ledger and manual delivery recording (PRD **FR-BEN-01**, **FR-BEN-02**,
-**FR-BEN-04**, §8.3). It records **delivery**, not disbursement — **SP-MIS does not
+**FR-BEN-04**, §8.3). It records **delivery**, not disbursement — **JIG-SPOTS does not
 move money** (§2.3); `monetary_value` is descriptive data (integer minor units,
 kobo/NGN). **Status: Phase 4 — recording + verification + per-beneficiary ledger.**
 Aggregation/budget (FR-BEN-03/FR-PRG-04) and double-dipping (FR-BEN-05) build on it.

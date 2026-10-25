@@ -136,7 +136,7 @@ export interface CoordinationTabProps {
  * collaboration (joint beneficiaries, referral throughput, request-to-serve approval
  * + turnaround), and data sharing (agencies integrated, API/sync health, registry
  * sync status). The meetings/attendance/action-items module is intentionally NOT
- * built — it is not part of SP-MIS (noted as a future/external slot). Scoped +
+ * built — it is not part of JIG-SPOTS (noted as a future/external slot). Scoped +
  * de-identified from the reporting aggregation layer.
  */
 export function CoordinationTab({ data }: CoordinationTabProps) {
@@ -321,7 +321,7 @@ export function CoordinationTab({ data }: CoordinationTabProps) {
       {/* ---------- OMITTED MODULE (future/external slot) ---------- */}
       <p className={styles.slotNote}>
         <Icon icon={CalendarClock} size={14} />
-        Meetings, attendance and action items are not part of SP-MIS. Coordinate those in your external meeting tool. Reserved as a future or external slot.
+        Meetings, attendance and action items are not part of JIG-SPOTS. Coordinate those in your external meeting tool. Reserved as a future or external slot.
       </p>
     </div>
   )

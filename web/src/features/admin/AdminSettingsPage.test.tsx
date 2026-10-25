@@ -33,7 +33,7 @@ const updateRolePermissions = accessApi.updateRolePermissions as Mock
 
 const SETTINGS: AdminSettings = {
   general: [
-    { label: 'Application name', value: 'SP-MIS', source: 'APP_NAME' },
+    { label: 'Application name', value: 'JIG-SPOTS', source: 'APP_NAME' },
     { label: 'Environment', value: 'production', source: 'APP_ENV' },
   ],
   security: {
@@ -99,7 +99,7 @@ describe('Admin console — Settings', () => {
     renderPage()
 
     expect(await screen.findByText('Application name')).toBeInTheDocument()
-    expect(screen.getByText('SP-MIS')).toBeInTheDocument()
+    expect(screen.getByText('JIG-SPOTS')).toBeInTheDocument()
     expect(screen.getByText('APP_NAME')).toBeInTheDocument()
     expect(screen.getByText('APP_ENV')).toBeInTheDocument()
   })

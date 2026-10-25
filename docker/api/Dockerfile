@@ -1,5 +1,9 @@
-# SP-MIS API image (PHP 8.3 FPM). Used by both the `api` and `worker` services.
-FROM php:8.3-fpm-alpine
+# JIG-SPOTS API image (PHP 8.3 FPM). Used by both the `api` and `worker` services.
+# PINNED, not the floating 8.3 tag — see docker/api/Dockerfile.prod for the full
+# reasoning. Short version: 8.3.36 carries the PHP2Shell fixes (CVE-2026-109618 /
+# CVE-2026-109619, both unauthenticated RCE), and a floating tag lets a cached local
+# base layer rebuild a vulnerable image without anyone noticing.
+FROM php:8.3.36-fpm-alpine
 
 # System deps + PHP extensions via the helper installer.
 ADD https://github.com/mlocati/docker-php-extension-installer/releases/latest/download/install-php-extensions /usr/local/bin/

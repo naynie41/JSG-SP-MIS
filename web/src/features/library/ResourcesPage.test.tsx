@@ -61,7 +61,7 @@ function renderPage() {
 }
 
 /**
- * The public resources page — the only screen in SP-MIS a member of the public
+ * The public resources page — the only screen in JIG-SPOTS a member of the public
  * sees with content on it. These tests are written from a visitor's side: can they
  * find a thing, and can they tell what it is before they commit to downloading it.
  */
