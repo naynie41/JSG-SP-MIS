@@ -650,3 +650,87 @@
   font-size: var(--fs-ui);
   padding: var(--space-3) 0;
 }
+
+/* ------------------------------------------------- leading ministries brief */
+
+/* Three across, collapsing to one at the same breakpoint as the other grids on
+   this page, so the whole overview reflows as a unit rather than in stages. */
+.ministryGrid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: var(--space-5);
+}
+
+.ministryName {
+  margin: 0;
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: var(--fs-h3);
+  line-height: 1.25;
+  letter-spacing: -0.01em;
+  color: var(--forest);
+  text-wrap: balance;
+}
+
+.ministryReach {
+  margin: var(--space-2) 0 var(--space-4);
+  font-size: var(--fs-ui);
+  color: var(--text-muted-strong);
+}
+.ministryReach strong {
+  font-family: var(--font-display);
+  font-size: var(--fs-h2);
+  font-variant-numeric: tabular-nums;
+  color: var(--ink);
+  margin-right: var(--space-2);
+}
+
+.ministryProgrammes {
+  display: grid;
+  gap: var(--space-3);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  counter-reset: programme;
+}
+
+/* The rank is information — these are the three LARGEST — so it is numbered
+   rather than bulleted, and the number is drawn from the list order instead of
+   being written into the markup. */
+.ministryProgramme {
+  display: grid;
+  gap: 2px;
+  padding-top: var(--space-3);
+  border-top: 1px solid var(--border);
+  counter-increment: programme;
+}
+.ministryProgramme::before {
+  content: counter(programme);
+  font-family: var(--font-mono);
+  font-size: var(--fs-caption);
+  color: var(--text-muted-strong);
+}
+
+.ministryProgrammeName {
+  font-size: var(--fs-ui);
+  font-weight: 500;
+  color: var(--ink);
+}
+
+.ministryProgrammeFigures {
+  font-size: var(--fs-label);
+  font-variant-numeric: tabular-nums;
+  color: var(--text-muted-strong);
+}
+
+.ministryEmpty {
+  margin: 0;
+  font-size: var(--fs-label);
+  color: var(--text-muted-strong);
+}
+
+@media (max-width: 900px) {
+  .ministryGrid {
+    grid-template-columns: 1fr;
+  }
+}

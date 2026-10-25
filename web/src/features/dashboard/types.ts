@@ -206,6 +206,28 @@ export interface MdaDeliveryRow {
   activities_active: number
 }
 
+/**
+ * One of the three ministries that reached the most people, with its largest active
+ * programmes. State-wide scope only — inside one ministry it would rank an agency
+ * against itself.
+ */
+export interface MinistryBriefRow {
+  mda_id: string
+  mda: string
+  /** Net-unique within this ministry. NOT addable across ministries: a person served
+   *  by two of them is one person to each, and one person to the state. */
+  reached: number
+  programmes: MinistryBriefProgramme[]
+}
+
+export interface MinistryBriefProgramme {
+  programme_id: string
+  name: string
+  /** Net-unique within this ministry — never the sum of the programme's activities. */
+  reached: number
+  allocated: number // kobo, from this ministry's activities on this programme
+}
+
 export interface CoordinationMetrics {
   active_mdas: number
   joint_programmes: number // run by ≥2 MDAs
@@ -455,6 +477,8 @@ export interface DashboardMetrics {
   coordination?: CoordinationMetrics | null
   /** Cross-agency comparison; state-wide scope only, null everywhere else. */
   mda_delivery?: MdaDeliveryRow[] | null
+  /** Top ministries brief; state-wide scope only, null everywhere else. */
+  ministry_brief?: MinistryBriefRow[] | null
   partner_funding?: PartnerFunding | null
   coverage_bands?: CoverageBands
   trends?: TrendMetrics

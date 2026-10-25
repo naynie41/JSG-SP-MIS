@@ -27,6 +27,61 @@ describe('ExecutiveOverviewTab', () => {
     expect(screen.queryByRole('heading', { name: 'Projections' })).toBeNull()
   })
 
+  /* ------------------------------------------------------- ministry brief */
+
+  it('briefs on the leading ministries and what each is running', () => {
+    const data = makeExecutivePayload()
+    data.metrics.ministry_brief = [
+      {
+        mda_id: 'm1',
+        mda: 'Ministry of Health',
+        reached: 1200,
+        programmes: [
+          { programme_id: 'p1', name: 'Cash Transfer', reached: 800, allocated: 1_250_000_000 },
+          { programme_id: 'p2', name: 'Maternal Vouchers', reached: 400, allocated: 300_000_000 },
+        ],
+      },
+      { mda_id: 'm2', mda: 'Ministry of Education', reached: 900, programmes: [] },
+    ]
+
+    render(<ExecutiveOverviewTab data={data} />)
+
+    expect(screen.getByRole('heading', { name: 'Leading ministries' })).toBeInTheDocument()
+    expect(screen.getByText('Ministry of Health')).toBeInTheDocument()
+    expect(screen.getByText('Cash Transfer')).toBeInTheDocument()
+    expect(screen.getByText(/800 reached/)).toBeInTheDocument()
+    expect(screen.getByText(/₦12,500,000/)).toBeInTheDocument()
+
+    // A ministry with nothing running says so rather than showing an empty card.
+    expect(screen.getByText(/no active programme has reached anyone yet/i)).toBeInTheDocument()
+  })
+
+  it('does not present a ministry total that invites adding the rows up', () => {
+    // Reach is net-unique WITHIN a ministry and within the state. A person served by
+    // Health and Education is one to each and one to the state, so these rows must
+    // never be totalled — and the page must not look like it has totalled them.
+    const data = makeExecutivePayload()
+    data.metrics.ministry_brief = [
+      { mda_id: 'm1', mda: 'Ministry of Health', reached: 1200, programmes: [] },
+      { mda_id: 'm2', mda: 'Ministry of Education', reached: 900, programmes: [] },
+    ]
+
+    render(<ExecutiveOverviewTab data={data} />)
+
+    expect(screen.queryByText('2,100')).toBeNull()
+    expect(screen.queryByText(/total across ministries/i)).toBeNull()
+  })
+
+  it('shows nothing where the scope has no brief', () => {
+    // MDA and partner scopes get null — the comparison is meaningless inside one.
+    const data = makeExecutivePayload()
+    data.metrics.ministry_brief = null
+
+    render(<ExecutiveOverviewTab data={data} />)
+
+    expect(screen.queryByRole('heading', { name: 'Leading ministries' })).toBeNull()
+  })
+
   it('renders rule-based insights and severity-ordered alerts', () => {
     render(<ExecutiveOverviewTab data={makeExecutivePayload()} />)
 

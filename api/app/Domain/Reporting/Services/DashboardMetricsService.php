@@ -12,6 +12,7 @@ use App\Domain\Benefit\Models\Benefit;
 use App\Domain\Benefit\Services\LedgerAggregator;
 use App\Domain\Grievance\Models\Grievance;
 use App\Domain\Programme\Enums\ActivityStatus;
+use App\Domain\Programme\Enums\ProgrammeStatus;
 use App\Domain\Programme\Models\Activity;
 use App\Domain\Programme\Models\Enrollment;
 use App\Domain\Programme\Models\Programme;
@@ -94,6 +95,9 @@ class DashboardMetricsService
             // an MDA console cannot ask: an MDA sees its own row and nothing else, so
             // offering it there would be a table of one.
             'mda_delivery' => $scope->isStateWide() ? $this->mdaDelivery($scope) : null,
+            // Same scope rule, same reason: a brief comparing ministries is meaningless
+            // inside one of them, where it would rank an agency against itself.
+            'ministry_brief' => $scope->isStateWide() ? $this->ministryBrief($scope) : null,
             // Phase 6P — activity-precise partner-funding aggregates (partner scope only).
             'partner_funding' => $scope->isPartner() ? $this->partnerFunding($scope) : null,
             'coverage_bands' => $this->coverageBands($coverage),
@@ -691,6 +695,125 @@ class DashboardMetricsService
      *
      * @return list<array<string, mixed>>
      */
+    /**
+     * A brief on the ministries doing the most, for the executive overview.
+     *
+     * The three government agencies that have reached the most people, each with its
+     * three largest ACTIVE programmes by reach and the budget allocated to them.
+     *
+     * WHY THIS IS NOT DERIVED ON THE CLIENT. `programme_performance` already carries
+     * per-activity `mda`, `reached` and `budget`, so the obvious move is to group those
+     * in the browser. It would be wrong: activity reach is NET-UNIQUE per activity, so
+     * adding a programme's activities together counts anyone served by two of them
+     * twice. Deduplication is the one thing this register exists to do, and the
+     * Governor's screen is the worst possible place to publish an inflated figure. So
+     * reach is asked of the ledger as `count(distinct beneficiary)` per programme
+     * WITHIN one ministry, which is the only way to get it right. Budget has no such
+     * problem — money allocated to two activities is twice the money — so it is summed.
+     *
+     * Ranked rather than configured: naming the ministries in code would hard-code a
+     * stakeholder decision (CLAUDE.md §8) and would quietly break when an agency is
+     * renamed. Development partners are excluded — they deliver alongside government,
+     * but a brief headed "ministries" that lists one reads as if the state ran it.
+     *
+     * @return list<array<string, mixed>>
+     */
+    private function ministryBrief(DashboardScope $scope): array
+    {
+        $programmeIds = $this->programmeIdsInScope($scope);
+        if ($programmeIds === []) {
+            return [];
+        }
+
+        $filters = $this->filter->ledgerFilters();
+
+        $reachByMda = $this->ledger->scopedReachByMda($scope->mdaIds, $programmeIds, $filters);
+        arsort($reachByMda);
+
+        $agencies = Mda::query()->withoutGlobalScope(MdaScope::class)
+            ->whereIn('id', array_keys($reachByMda))->get(['id', 'name', 'type'])->keyBy('id');
+
+        $ministries = [];
+        foreach ($reachByMda as $mdaId => $reached) {
+            $agency = $agencies->get((string) $mdaId);
+            if ($agency === null || ! $agency->isGovernment()) {
+                continue;
+            }
+
+            $ministries[] = [
+                'mda_id' => (string) $mdaId,
+                'mda' => (string) $agency->name,
+                'reached' => (int) $reached,
+                'programmes' => $this->ministryProgrammes((string) $mdaId, $programmeIds, $filters),
+            ];
+
+            if (count($ministries) === 3) {
+                break;
+            }
+        }
+
+        return $ministries;
+    }
+
+    /**
+     * One ministry's three largest active programmes, by net-unique reach.
+     *
+     * @param  list<string>  $programmeIds
+     * @param  array<string, mixed>  $filters
+     * @return list<array<string, mixed>>
+     */
+    private function ministryProgrammes(string $mdaId, array $programmeIds, array $filters): array
+    {
+        // Net-unique WITHIN this ministry: the same person served by two ministries is
+        // one person to each of them, and one person to the state. Summing these rows
+        // across ministries would therefore be wrong, which is why nothing does.
+        $reach = $this->ledger->scopedReachByProgramme([$mdaId], $programmeIds, $filters);
+        arsort($reach);
+
+        // Active only, per the brief. A closed programme's numbers are history and
+        // would push a running one off a list of three.
+        $active = Programme::query()->withoutGlobalScope(MdaScope::class)
+            ->whereIn('id', array_keys($reach))
+            ->where('status', ProgrammeStatus::Active->value)
+            ->pluck('name', 'id');
+
+        // Budget this ministry put behind each programme. Draft and archived activities
+        // are excluded on the same terms as everywhere else: one is not committed yet
+        // and the other is over.
+        $allocated = $this->applyActivityFilter(
+            Activity::query()->withoutGlobalScope(MdaScope::class)
+                ->where('owner_mda_id', $mdaId)
+                ->whereIn('programme_id', $active->keys()->all())
+                ->whereNotIn('status', [ActivityStatus::Draft->value, ActivityStatus::Archived->value])
+        )
+            ->selectRaw('programme_id, coalesce(sum(budget_amount), 0) as allocated')
+            ->groupBy('programme_id')
+            ->get()
+            ->mapWithKeys(fn (Activity $a) => [(string) $a->getAttribute('programme_id') => (int) $a->getAttribute('allocated')])
+            ->all();
+
+        $out = [];
+        foreach ($reach as $programmeId => $reached) {
+            $name = $active->get((string) $programmeId);
+            if ($name === null) {
+                continue;
+            }
+
+            $out[] = [
+                'programme_id' => (string) $programmeId,
+                'name' => (string) $name,
+                'reached' => (int) $reached,
+                'allocated' => (int) ($allocated[(string) $programmeId] ?? 0),
+            ];
+
+            if (count($out) === 3) {
+                break;
+            }
+        }
+
+        return $out;
+    }
+
     private function mdaDelivery(DashboardScope $scope): array
     {
         $programmeIds = $this->programmeIdsInScope($scope);

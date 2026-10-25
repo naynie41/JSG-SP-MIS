@@ -5,6 +5,7 @@ import { formatNaira } from '@/lib/utils/money'
 import { buildAlerts, buildInsights } from './executiveInsights'
 import type { InsightTone } from './executiveInsights'
 import { Figure, TrendCard } from './executiveWidgets'
+import { MinistryBrief } from './MinistryBrief'
 import { num, pct } from './executiveFormat'
 import type { DashboardResponse, DrillFn } from './types'
 import styles from './executiveOverview.module.css'
@@ -43,6 +44,7 @@ export function ExecutiveOverviewTab({ data }: ExecutiveOverviewTabProps) {
   const pop = m.population
   const budget = m.benefits.budget
   const trends = m.trends
+  const ministries = m.ministry_brief ?? null
 
   const insights = buildInsights(m)
   const alerts = buildAlerts(m)
@@ -123,6 +125,11 @@ export function ExecutiveOverviewTab({ data }: ExecutiveOverviewTabProps) {
           )}
         </div>
       </section>
+
+      {/* Who is actually delivering, and what. Sits after the interpretation and
+          before the trend: an executive asks "is it working" first, then "who is
+          doing it", then "which way is it going". */}
+      {ministries !== null && ministries.length > 0 && <MinistryBrief ministries={ministries} />}
 
       {/* One trend: the headline's trajectory. The disbursement, registration and
           programme-growth series live with their own sections. */}
