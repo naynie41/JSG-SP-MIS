@@ -21,7 +21,26 @@
 # =============================================================================
 
 # --- Stage 1: base — the PHP platform, defined exactly once ------------------
-FROM php:8.3-fpm-alpine AS base
+# PINNED TO AN EXACT PATCH, deliberately, against this project's own convention of
+# floating minor tags elsewhere (node:24-alpine, redis:7-alpine).
+#
+# 8.3.36 (2026-10-22) is the first 8.3 release carrying the PHP2Shell fixes:
+#   CVE-2026-109618 — hash-table flaw reachable from an UNAUTHENTICATED POST, during
+#                     request initialisation, before any application code runs. No
+#                     amount of application auth helps.
+#   CVE-2026-109619 — use-after-free via session upload progress, confirmed on
+#                     PHP-FPM, which is what this image runs.
+# Both CVSS 9.2, both remote code execution, exploited in the wild before disclosure.
+#
+# Floating `8.3-fpm-alpine` would have picked this up too — but only on a build that
+# actually re-pulls. `docker build` without `--pull` happily reuses a cached local
+# base, so "we rebuilt it" and "we are patched" are not the same statement. An exact
+# tag makes the patched version a fact about the Dockerfile rather than a property of
+# whoever's machine ran the build, and an auditor can read it.
+#
+# The cost is that security updates now need a deliberate bump. That is the trade
+# being made: reproducible and provable over automatic and unverifiable.
+FROM php:8.3.36-fpm-alpine AS base
 
 # Extensions the application and its dependencies require. `pdo_pgsql`/`pgsql`
 # for PostgreSQL, `sockets` for the RabbitMQ client (php-amqplib), `gd`/`zip`
