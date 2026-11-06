@@ -78,7 +78,12 @@ describe('ExecutiveLayout (briefing suite shell + routed pages)', () => {
     expect(screen.getAllByText('8,420').length).toBeGreaterThan(0)
     expect(screen.getByRole('button', { name: /export/i })).toBeInTheDocument()
     expect(screen.getByRole('button', { name: /refresh/i })).toBeInTheDocument()
-    expect(screen.getByLabelText('Year')).toBeInTheDocument() // shared filter bar
+
+    // No filter bar HERE. The Overview answers "how is the state doing, right now"
+    // at a glance; a period control above the figures only raises the question of
+    // which period is being shown when the answer is "all of it". The detail pages
+    // keep it — asserted in the next test.
+    expect(screen.queryByLabelText('Year')).toBeNull()
   })
 
   it('renders each inner page from its own route WITHOUT the hero, keeping the shared filter', async () => {
@@ -114,8 +119,12 @@ describe('ExecutiveLayout (briefing suite shell + routed pages)', () => {
   it('applies the cross-cutting filter (refetches with params) — shared across pages', async () => {
     get.mockResolvedValue(makeExecutivePayload())
     const user = userEvent.setup()
-    renderAt('/executive')
-    await screen.findByRole('heading', { name: /state of social protection/i })
+
+    // From a DETAIL page, not the Overview: the Overview no longer carries the
+    // filter bar. The filter itself is still owned by the layout and still shared
+    // across the four pages that do show it.
+    renderAt('/executive/registry')
+    await screen.findByRole('heading', { name: 'Data quality' })
 
     await user.click(screen.getByRole('button', { name: /more filters/i }))
     await user.selectOptions(screen.getByLabelText('LGA'), 'dutse')

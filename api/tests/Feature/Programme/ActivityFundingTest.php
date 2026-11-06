@@ -20,6 +20,7 @@ use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Testing\TestResponse;
+use Tests\Concerns\AssignsProgrammes;
 use Tests\TestCase;
 
 /**
@@ -32,7 +33,7 @@ use Tests\TestCase;
  */
 class ActivityFundingTest extends TestCase
 {
-    use RefreshDatabase;
+    use AssignsProgrammes, RefreshDatabase;
 
     private Mda $mda;
 
@@ -51,6 +52,9 @@ class ActivityFundingTest extends TestCase
         $this->officer = $this->user($this->mda, RoleKey::MdaAdmin, ['name' => 'Health Officer']);
         $this->partner = $this->user(null, RoleKey::DevelopmentPartner, ['name' => 'UNICEF Nigeria', 'email' => 'unicef.partner@example.test']);
         $this->programme = Programme::factory()->create();
+        // Assigned to this MDA (§10, revised 2026-11-05) — the subject here is funding
+        // attribution, and the assignment gate is covered in ProgrammeAssignmentTest.
+        $this->assignProgrammes($this->mda, $this->programme);
     }
 
     /* ------------------------------------------------------------ direct create */

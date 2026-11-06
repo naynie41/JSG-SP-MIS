@@ -77,6 +77,9 @@ export function ActivityFormModal({ open, onClose, programmeId, activity }: Acti
   const catalog = useProgrammeCatalog(open)
   const lockProgramme = Boolean(activity) || Boolean(programmeId) // fixed when editing / page-scoped
   const programmeOptions = (catalog.data?.items ?? []).map((p) => ({ value: p.id, label: p.name }))
+  // Distinguished from "still loading": an empty list once loaded is a real state the
+  // officer has to be told about, and it is fixed by an administrator, not here.
+  const noneAssigned = !catalog.isLoading && programmeOptions.length === 0 && !lockProgramme
 
   const [step, setStep] = useState<1 | 2>(1)
   const [file, setFile] = useState<File | null>(null)
@@ -290,10 +293,21 @@ export function ActivityFormModal({ open, onClose, programmeId, activity }: Acti
             <SelectField
               label="Programme"
               required
-              placeholder="Select a catalog programme"
+              placeholder={noneAssigned ? 'No programmes assigned to your MDA' : 'Select a catalog programme'}
               options={programmeOptions}
-              disabled={lockProgramme}
-              helper="The catalog programme this activity delivers."
+              disabled={lockProgramme || noneAssigned}
+              /*
+                The dropdown holds the programmes assigned to this MDA (§10, revised
+                2026-11-05), not the whole state catalogue. When that list is empty the
+                control says why: an officer facing an empty required dropdown has no
+                way to tell a configuration gap from a broken page, and the thing they
+                need to do is not on this screen.
+              */
+              helper={
+                noneAssigned
+                  ? 'Your MDA has not been assigned any programmes yet. Ask the System Administrator or SP Coordination to assign the ones you deliver.'
+                  : 'The programmes assigned to your MDA. Ask an administrator if one you deliver is missing.'
+              }
               error={errors.programme_id?.message}
               {...register('programme_id')}
             />

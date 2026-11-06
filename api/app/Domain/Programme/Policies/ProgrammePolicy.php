@@ -89,6 +89,26 @@ class ProgrammePolicy
     }
 
     /**
+     * Assign catalog programmes to an MDA (§10, revised 2026-11-05).
+     *
+     * Both catalog administrators, by stakeholder decision (2026-11-05): assigning is
+     * catalog administration — deciding which organisation offers which shared service
+     * — and SP Coordination already co-administers the catalog. It is NOT a decision on
+     * another MDA's submission, which stays the System Administrator's alone in
+     * {@see decide()}.
+     *
+     * No new permission was minted for it. `programme.edit` is the permission that
+     * already means "write to the catalog", and it is held by the two catalog admins
+     * and by MDA Admins — whom `isCatalogAdmin()` excludes here. A new permission would
+     * have to reach production through the role seeder before this endpoint worked at
+     * all, and would be a second thing to keep in step with no second decision behind it.
+     */
+    public function assign(User $user): bool
+    {
+        return $user->hasPermission('programme.edit') && $this->isCatalogAdmin($user);
+    }
+
+    /**
      * Decide an MDA's submission. System Administrator only, and never on a central
      * entry — there is nothing to decide about one.
      */

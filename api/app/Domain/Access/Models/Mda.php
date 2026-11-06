@@ -9,11 +9,14 @@ use App\Domain\Access\Concerns\ScopedToMda;
 use App\Domain\Access\Enums\MdaStatus;
 use App\Domain\Access\Enums\MdaType;
 use App\Domain\Audit\Concerns\Auditable;
+use App\Domain\Programme\Models\Programme;
+use App\Domain\Programme\Models\ProgrammeAssignment;
 use Database\Factories\MdaFactory;
 use Illuminate\Database\Eloquent\Concerns\HasUuids;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Support\Carbon;
@@ -100,6 +103,29 @@ class Mda extends Model implements MdaScoped
     public function users(): HasMany
     {
         return $this->hasMany(User::class);
+    }
+
+    /**
+     * The catalog programmes this MDA has been ASSIGNED and may therefore deliver
+     * (§10, revised 2026-11-05).
+     *
+     * The assignment is what the MDA's programme pickers are built from, so this is
+     * the answer to "what does this organisation offer" — not every programme in the
+     * state catalog, which is what those pickers used to show.
+     *
+     * Deliberately NOT ownership: an assigned programme stays a central catalog entry
+     * (`owner_mda_id` NULL) that several MDAs may be assigned, each running it through
+     * its own activities. Removing an assignment removes permission to start new work,
+     * never the programme and never the history under it.
+     *
+     * @return BelongsToMany<Programme, $this, ProgrammeAssignment, 'pivot'>
+     */
+    public function assignedProgrammes(): BelongsToMany
+    {
+        return $this->belongsToMany(Programme::class, 'mda_programme', 'mda_id', 'programme_id')
+            ->using(ProgrammeAssignment::class)
+            ->withPivot(['id', 'source', 'assigned_by'])
+            ->withTimestamps();
     }
 
     /**

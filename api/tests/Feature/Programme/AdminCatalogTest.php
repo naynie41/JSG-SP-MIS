@@ -13,6 +13,7 @@ use App\Domain\Programme\Models\Programme;
 use Database\Seeders\RolesAndPermissionsSeeder;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Testing\TestResponse;
+use Tests\Concerns\AssignsProgrammes;
 use Tests\TestCase;
 
 /**
@@ -25,7 +26,7 @@ use Tests\TestCase;
  */
 class AdminCatalogTest extends TestCase
 {
-    use RefreshDatabase;
+    use AssignsProgrammes, RefreshDatabase;
 
     private Mda $health;
 
@@ -167,6 +168,11 @@ class AdminCatalogTest extends TestCase
     public function test_usage_follows_the_callers_existing_mda_scope(): void
     {
         $programme = Programme::factory()->individual()->create(['name' => 'Scoped Programme', 'status' => 'active']);
+        // Both are assigned it — the row has to be in the officer's catalog at all
+        // before the question "whose take-up does the count report" can be asked
+        // (§10, revised 2026-11-05).
+        $this->assignProgrammes($this->health, $programme);
+        $this->assignProgrammes($this->women, $programme);
         Activity::factory()->forProgramme($programme, $this->health)->create();
         Activity::factory()->forProgramme($programme, $this->women)->create();
 

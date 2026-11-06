@@ -1,6 +1,17 @@
 import { apiRequest, apiRequestList } from '@/lib/api/client'
 import type { Paginated } from '@/lib/api/client'
-import type { Activity, ActivityDetail, ActivityInput, Budget, BulkEnrollResult, Enrollment, Programme, ProgrammeInput } from './types'
+import type {
+  Activity,
+  ActivityDetail,
+  ActivityInput,
+  AssignmentResult,
+  Budget,
+  BulkEnrollResult,
+  Enrollment,
+  MdaProgrammeAssignments,
+  Programme,
+  ProgrammeInput,
+} from './types'
 
 export interface ProgrammeListParams {
   page?: number
@@ -64,6 +75,32 @@ export const programmeApi = {
   },
   budget(id: string): Promise<Budget> {
     return apiRequest<Budget>({ method: 'GET', url: `/programmes/${id}/budget` })
+  },
+}
+
+/**
+ * Which catalogue programmes an MDA is assigned, and may therefore deliver
+ * (§10, revised 2026-11-05). Catalogue administrators only — the server narrows it to
+ * them, and there is deliberately no call here by which an MDA assigns itself.
+ */
+export const assignmentApi = {
+  forMda(mdaId: string): Promise<MdaProgrammeAssignments> {
+    return apiRequest<MdaProgrammeAssignments>({ method: 'GET', url: `/mdas/${mdaId}/programmes` })
+  },
+  /**
+   * Replace the whole list. Sending the intended end state rather than a diff is what
+   * makes two administrators with the page open safe: the second save sets what that
+   * person chose, instead of applying a diff against a list that has since moved.
+   */
+  set(mdaId: string, programmeIds: string[]): Promise<AssignmentResult> {
+    return apiRequest<AssignmentResult>({
+      method: 'PUT',
+      url: `/mdas/${mdaId}/programmes`,
+      data: { programme_ids: programmeIds },
+    })
+  },
+  remove(mdaId: string, programmeId: string): Promise<{ removed: boolean }> {
+    return apiRequest<{ removed: boolean }>({ method: 'DELETE', url: `/mdas/${mdaId}/programmes/${programmeId}` })
   },
 }
 

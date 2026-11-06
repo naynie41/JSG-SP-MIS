@@ -11,6 +11,7 @@ use App\Domain\Programme\Models\Activity;
 use App\Domain\Programme\Models\Enrollment;
 use App\Domain\Programme\Models\Programme;
 use App\Domain\Programme\Services\EnrollmentService;
+use App\Domain\Programme\Services\ProgrammeAssignmentService;
 use App\Domain\Registry\Models\Beneficiary;
 use App\Domain\Registry\Models\Household;
 use App\Http\Controllers\Controller;
@@ -54,12 +55,12 @@ class EnrollmentController extends Controller
         return ApiResponse::paginated(EnrollmentResource::collection($page->items())->resolve(), $page);
     }
 
-    public function store(StoreEnrollmentRequest $request, string $programme): JsonResponse
+    public function store(StoreEnrollmentRequest $request, string $programme, ProgrammeAssignmentService $assignments): JsonResponse
     {
         $model = $this->programme($programme);
         $this->authorize('create', [Enrollment::class, $model]);
 
-        if (($unavailable = $this->unavailable($model)) !== null) {
+        if (($unavailable = $this->unavailable($model, $assignments)) !== null) {
             return $unavailable;
         }
 
@@ -88,12 +89,12 @@ class EnrollmentController extends Controller
         };
     }
 
-    public function bulk(BulkEnrollmentRequest $request, string $programme): JsonResponse
+    public function bulk(BulkEnrollmentRequest $request, string $programme, ProgrammeAssignmentService $assignments): JsonResponse
     {
         $model = $this->programme($programme);
         $this->authorize('create', [Enrollment::class, $model]);
 
-        if (($unavailable = $this->unavailable($model)) !== null) {
+        if (($unavailable = $this->unavailable($model, $assignments)) !== null) {
             return $unavailable;
         }
 
@@ -177,8 +178,15 @@ class EnrollmentController extends Controller
      * programme, or one still waiting for approval. Reading is fine; enrolling into
      * it is not. Archived is deliberately NOT checked here — a final enrolment change
      * under an archived programme has always been allowed.
+     *
+     * The ASSIGNMENT check (§10, revised 2026-11-05) belongs here for the same reason
+     * it belongs in `IsRunnableProgramme`: enrolling a person into a programme is new
+     * work, and §10 lists enrolment alongside activity, import and routing. This
+     * endpoint cannot use that rule — the programme arrives in the PATH, not in the
+     * body — so it asks the same service the rule asks, rather than re-deciding what
+     * "assigned" means.
      */
-    private function unavailable(Programme $programme): ?JsonResponse
+    private function unavailable(Programme $programme, ProgrammeAssignmentService $assignments): ?JsonResponse
     {
         $visible = Programme::query()->withArchived()->whereKey($programme->id)->exists();
 
@@ -190,6 +198,18 @@ class EnrollmentController extends Controller
             return ApiResponse::error(
                 'PROGRAMME_NOT_APPROVED',
                 'That programme is still waiting for approval and cannot be used yet.',
+                [],
+                422,
+            );
+        }
+
+        if (! $assignments->mayUse(request()->user(), $programme->id, $programme->owner_mda_id)) {
+            return ApiResponse::error(
+                'PROGRAMME_NOT_ASSIGNED',
+                sprintf(
+                    'The programme "%s" is not assigned to your MDA, so you cannot enrol anyone into it. Ask an administrator to assign it.',
+                    $programme->name,
+                ),
                 [],
                 422,
             );

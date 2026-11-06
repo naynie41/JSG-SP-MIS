@@ -18,6 +18,21 @@ use Illuminate\Contracts\Validation\ValidationRule;
  * while fixing a different one. Every entry point that creates work still needs
  * these two checks, because `exists:programmes,id` reads the table directly and so
  * sees past the MDA scope entirely.
+ *
+ * The MDA-ASSIGNMENT check (§10, revised 2026-11-05) deliberately does NOT appear
+ * here, only in {@see IsRunnableProgramme}.
+ *
+ * It is the same argument the archive check already settles, and the two must answer
+ * the same way or the split is meaningless. This rule governs finishing work in
+ * flight — recording a benefit for someone already enrolled — and an administrator
+ * unassigning a programme is a statement about what the MDA may START, not an
+ * instruction to abandon a payment owed to a beneficiary already on the register.
+ * Blocking it here would strand exactly the case the split exists for, and would hide
+ * the consequence inside an unrelated administrative action.
+ *
+ * The benefit-recording picker is narrowed all the same: it reads `/programmes`, which
+ * returns the MDA's assigned catalog. A programme no longer offered therefore does not
+ * appear for NEW delivery, while delivery under an existing enrolment still completes.
  */
 class IsAvailableProgramme implements ValidationRule
 {

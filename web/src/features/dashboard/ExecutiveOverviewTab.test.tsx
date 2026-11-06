@@ -38,39 +38,35 @@ describe('ExecutiveOverviewTab', () => {
 
   /* --------------------------------------------- packed, organised overview */
 
-  it('leads with what needs attention, before the figures', () => {
-    // The only part of this page an executive can act on. Numbers first is the
-    // conventional order and it buries the problems under a reassuring band.
-    render(<ExecutiveOverviewTab data={makeExecutivePayload()} />)
-
-    const attention = screen.getByRole('heading', { name: /needs attention/i })
-    const firstFigure = screen.getByText('Budget used')
-
-    // DOM order, not heading order: the figures band carries no heading of its own.
-    expect(attention.compareDocumentPosition(firstFigure) & Node.DOCUMENT_POSITION_FOLLOWING).toBeTruthy()
-  })
-
-  it('surfaces problems that previously lived only on other tabs', () => {
+  it('carries no alerts list — the section cards flag what is wrong', () => {
+    // The "Needs attention" band was removed on the owner's instruction: in practice
+    // it filled with one near-identical "Low delivery: X — reached 0% of target" row
+    // per programme, which crowded out the figures without telling anyone anything
+    // they could not see on the card beside it.
+    //
+    // The warnings did not vanish with it. The same facts are on the section cards,
+    // carried by the FIGURE rather than a sentence: referrals overdue and areas
+    // below the threshold render in the danger tone, grievances past SLA in the
+    // warning tone. See the tone test below.
     const data = makeExecutivePayload()
     data.metrics.referrals = { ...data.metrics.referrals!, total: 7, overdue: 5 }
-    data.metrics.grievances = {
-      by_status: {},
-      avg_resolution_days: 5,
-      ...data.metrics.grievances,
-      total: 6,
-      sla_breaches: 2,
-    }
-    data.metrics.coverage_bands = {
-      ...data.metrics.coverage_bands!,
-      summary: { green: 0, yellow: 0, red: 27 },
-    }
 
     render(<ExecutiveOverviewTab data={data} />)
 
-    // Each of these was invisible to an executive who did not open its tab.
-    expect(screen.getByText(/5 referrals past the response time/i)).toBeInTheDocument()
-    expect(screen.getByText(/2 grievances past the response time/i)).toBeInTheDocument()
-    expect(screen.getByText(/every local government area is below the coverage threshold/i)).toBeInTheDocument()
+    expect(screen.queryByRole('heading', { name: /needs attention/i })).toBeNull()
+    expect(screen.queryByText(/past the response time/i)).toBeNull()
+  })
+
+  it('marks a bad figure on the card it belongs to', () => {
+    const data = makeExecutivePayload()
+    data.metrics.referrals = { ...data.metrics.referrals!, total: 7, overdue: 5 }
+
+    render(<ExecutiveOverviewTab data={data} />)
+
+    // The number an executive must notice carries the tone, not the whole card:
+    // a red card reads as a broken section, where one figure is what is wrong.
+    const overdue = screen.getByText('Referrals overdue').closest('[data-tone]')
+    expect(overdue).toHaveAttribute('data-tone', 'bad')
   })
 
   it('gives every section a card that leads to the page explaining it', async () => {
@@ -164,15 +160,15 @@ describe('ExecutiveOverviewTab', () => {
     expect(screen.queryByRole('heading', { name: 'Leading ministries' })).toBeNull()
   })
 
-  it('renders rule-based insights and severity-ordered alerts', () => {
+  it('renders rule-based insights, condensed to three', () => {
     render(<ExecutiveOverviewTab data={makeExecutivePayload()} />)
 
     expect(screen.getByText(/people have been reached/i)).toBeInTheDocument()
     expect(screen.getByText(/Cash Transfer reached 90% of its target/i)).toBeInTheDocument()
 
-    expect(screen.getByText(/Low delivery: School Feeding/i)).toBeInTheDocument()
-    expect(screen.getByText(/Budget nearly exhausted: Cash Transfer/i)).toBeInTheDocument()
-    expect(screen.getByText(/records pending verification/i)).toBeInTheDocument()
+    // The alerts this test also covered are gone with the "Needs attention" band.
+    expect(screen.queryByText(/Low delivery: School Feeding/i)).toBeNull()
+    expect(screen.queryByText(/records pending verification/i)).toBeNull()
   })
 
   it('shows one trend — the headline trajectory, not four competing series', () => {

@@ -22,6 +22,8 @@ use App\Domain\Registry\Models\ServiceRequest;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Collection;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Str;
 
 /**
  * MDA-console demo data — enough for all SIX modules plus the header to render something
@@ -113,6 +115,20 @@ class MdaConsoleDemoSeeder extends Seeder
         if ($programme === null) {
             return;
         }
+
+        // The home MDA must be ASSIGNED the programme it runs this under (§10, revised
+        // 2026-11-05), or the demo stack shows an MDA with activities and an empty
+        // programme catalogue. This seeder builds the activity by hand rather than
+        // through ActivityFactory::forProgramme(), which records the pair itself.
+        DB::table('mda_programme')->insertOrIgnore([
+            'id' => (string) Str::uuid(),
+            'mda_id' => $home->id,
+            'programme_id' => $programme->id,
+            'source' => 'derived',
+            'assigned_by' => null,
+            'created_at' => now(),
+            'updated_at' => now(),
+        ]);
 
         Activity::query()->withoutGlobalScope(MdaScope::class)->firstOrCreate(
             ['name' => 'Caseworker Training — Cohort 2', 'owner_mda_id' => $home->id],

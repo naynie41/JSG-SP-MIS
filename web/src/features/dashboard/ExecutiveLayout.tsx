@@ -172,7 +172,19 @@ export function ExecutiveLayout() {
         </header>
       )}
 
-      {data.filter_options && (
+      {/*
+        No filter on the Overview.
+
+        That page answers "how is the state doing, right now" at a glance; an
+        executive reading it is not narrowing to a quarter, and a filter bar above
+        the figures invites the question of which period they are looking at when
+        the answer is "all of it". The four detail pages keep it, because someone
+        who has drilled into Programmes or Coverage usually does want a period.
+
+        The filter itself still lives here and still round-trips through the query
+        string, so a filtered link into a detail page keeps working.
+      */}
+      {!isOverview && data.filter_options && (
         <FilterBar value={filter} options={data.filter_options} onChange={setFilter} live={data.live} />
       )}
 

@@ -9,18 +9,27 @@ use App\Domain\Programme\Enums\ProgrammeType;
 use App\Domain\Programme\Models\Enrollment;
 use App\Domain\Programme\Models\Programme;
 use App\Domain\Registry\Models\Beneficiary;
+use Illuminate\Support\Facades\Auth;
 
 /**
  * Programme matching for auto-routing (PRD FR-OWN-04). Given a beneficiary and an
- * optional identified need, it SUGGESTS active programmes across MDAs whose type
- * fits and whose eligibility the beneficiary meets — ranked eligible-first. It only
- * suggests; assignment is an explicit, separate, audited step (never silent).
+ * optional identified need, it SUGGESTS active programmes whose type fits and whose
+ * eligibility the beneficiary meets — ranked eligible-first. It only suggests;
+ * assignment is an explicit, separate, audited step (never silent).
+ *
+ * "Across MDAs" until 2026-11-05: the suggestions are now narrowed to the programmes
+ * the CALLER's MDA has been assigned, because the caller is the MDA that would enrol
+ * the beneficiary, and §10 no longer lets it enrol into a programme it does not
+ * deliver. Oversight roles still see the whole catalog.
  */
 class ProgrammeMatcher
 {
     private const MAX_SUGGESTIONS = 20;
 
-    public function __construct(private readonly EligibilityEvaluator $eligibility) {}
+    public function __construct(
+        private readonly EligibilityEvaluator $eligibility,
+        private readonly ProgrammeAssignmentService $assignments,
+    ) {}
 
     /**
      * @return list<array<string, mixed>>
@@ -34,8 +43,14 @@ class ProgrammeMatcher
             ->pluck('programme_id')
             ->all();
 
-        // The global catalog: suggest any active individual programme.
-        $programmes = Programme::query()
+        // The catalog the CALLER may deliver: suggest any active individual programme
+        // assigned to their MDA (§10, revised 2026-11-05).
+        //
+        // Narrowed here as well as at the confirm step, because suggest-then-confirm
+        // only works if the two agree: offering a programme the assignment check then
+        // refuses turns a suggestion into a dead end, and the officer has no way to
+        // tell which of the twenty suggestions are real.
+        $programmes = $this->assignments->narrow(Programme::query(), Auth::user())
             ->where('type', ProgrammeType::Individual) // routing an individual beneficiary
             ->where('status', ProgrammeStatus::Active)
             ->whereNotIn('id', $alreadyEnrolled)

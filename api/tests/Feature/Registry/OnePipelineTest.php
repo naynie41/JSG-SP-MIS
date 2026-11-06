@@ -23,6 +23,7 @@ use Database\Seeders\RolesAndPermissionsSeeder;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Http\UploadedFile;
 use Illuminate\Testing\TestResponse;
+use Tests\Concerns\AssignsProgrammes;
 use Tests\Concerns\ConfirmsImportMapping;
 use Tests\TestCase;
 
@@ -43,7 +44,7 @@ use Tests\TestCase;
  */
 class OnePipelineTest extends TestCase
 {
-    use ConfirmsImportMapping, RefreshDatabase;
+    use AssignsProgrammes, ConfirmsImportMapping, RefreshDatabase;
 
     /**
      * Row 1 carries a NIN so a seeded record with the same NIN produces a DETERMINISTIC
@@ -74,6 +75,8 @@ class OnePipelineTest extends TestCase
         ]);
 
         $this->programme = Programme::factory()->individual()->create(['status' => 'active']);
+        // The MDA is assigned the programme it imports under (§10, revised 2026-11-05).
+        $this->assignProgrammes($this->mda, $this->programme);
         $this->activity = Activity::factory()->forProgramme($this->programme, $this->mda)
             ->create(['name' => 'Existing activity', 'involves_beneficiaries' => true]);
     }

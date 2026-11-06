@@ -728,3 +728,91 @@
   border-top: 1px solid var(--border);
   line-height: 1.6;
 }
+
+/* ------------------------------------------------- programme assignment (§10) */
+
+/* The checklist of what an organisation offers. A long list — 115 catalogue rows —
+   so the row is kept to one line of information plus its provenance, and the
+   assigned ones sort to the top rather than being colour-coded in place. */
+.assignSummary {
+  display: grid;
+  gap: var(--space-1);
+}
+.assignCount {
+  font-size: var(--fs-body);
+  color: var(--text-muted-strong);
+}
+.assignCount strong {
+  font-family: var(--font-display);
+  font-size: var(--fs-h3);
+  color: var(--forest);
+  font-variant-numeric: tabular-nums;
+}
+/* Nothing assigned is a real, deliberate state, not an error — it reads as a caution
+   because it has a consequence the administrator should know about, not as a failure. */
+.assignWarn {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  font-size: var(--fs-label);
+  color: var(--warning-ink);
+}
+/* Unsaved edits. Said in words next to the figure rather than only by enabling the
+   button, because the figure above already moved and would otherwise look saved. */
+.assignDirty {
+  font-size: var(--fs-label);
+  color: var(--danger-ink);
+  font-weight: 500;
+}
+.assignList {
+  display: grid;
+  gap: 2px;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  max-height: 32rem;
+  overflow-y: auto;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  background: var(--surface);
+}
+.assignRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-4);
+  padding: var(--space-2) var(--space-3);
+  border-bottom: 1px solid var(--border);
+}
+.assignRow:last-child {
+  border-bottom: none;
+}
+.assignRow[data-on] {
+  background: var(--surface-mint);
+}
+.assignMeta {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-3);
+  flex-shrink: 0;
+}
+/* Where the assignment came from. Quiet by design: it matters at the moment someone
+   is about to untick a row, and not before. */
+.assignSource {
+  font-size: var(--fs-caption);
+  color: var(--text-muted-strong);
+  cursor: help;
+}
+/* What is already running under it — the thing that will refuse the removal. */
+.assignRunning {
+  font-family: var(--font-mono);
+  font-size: var(--fs-caption);
+  color: var(--forest);
+  font-variant-numeric: tabular-nums;
+}
+@media (max-width: 640px) {
+  .assignRow {
+    flex-wrap: wrap;
+    gap: var(--space-2);
+  }
+}

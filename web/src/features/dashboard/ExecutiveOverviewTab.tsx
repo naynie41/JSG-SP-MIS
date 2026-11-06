@@ -1,12 +1,10 @@
 import {
   AlertTriangle,
-  ArrowRight,
   Building2,
   CalendarPlus,
   CheckCircle2,
   ClipboardList,
   Coins,
-  Info,
   Lightbulb,
   MapPin,
   Network,
@@ -16,7 +14,7 @@ import {
 import type { LucideIcon } from 'lucide-react'
 import { Icon } from '@/components/Icon/Icon'
 import { formatNaira } from '@/lib/utils/money'
-import { buildAlerts, buildInsights } from './executiveInsights'
+import { buildInsights } from './executiveInsights'
 import type { InsightTone } from './executiveInsights'
 import { Figure, TrendCard } from './executiveWidgets'
 import { ExecutiveSectionCard } from './ExecutiveSectionCard'
@@ -65,53 +63,8 @@ export function ExecutiveOverviewTab({ data, onDrill }: ExecutiveOverviewTabProp
   // the figures MEAN, which is the thing an executive is short of — but it no longer
   // gets a full panel, because the sections below need the room more.
   const insights = buildInsights(m).slice(0, 3)
-  const alerts = buildAlerts(m)
-
   return (
     <div className={styles.page}>
-      {/*
-        NEEDS ATTENTION COMES FIRST, above the figures.
-
-        An executive with a minute on this page can act on exactly one part of it:
-        the things that are wrong. The figures are context for those, not the other
-        way round — so putting the numbers first, as a dashboard conventionally
-        does, buries the only actionable content under a band that is usually
-        reassuring. Every row names the section that explains it and goes there.
-      */}
-      <section className={styles.reveal} aria-labelledby="attention-heading">
-        <div className={styles.sectionHead}>
-          <Icon icon={AlertTriangle} size={18} />
-          <h2 className={styles.sectionTitle} id="attention-heading">
-            Needs attention
-          </h2>
-        </div>
-        {alerts.length === 0 ? (
-          <p className={styles.allClear}>
-            <Icon icon={CheckCircle2} size={16} /> Nothing is outside its threshold. All indicators are within range.
-          </p>
-        ) : (
-          <ul className={styles.alerts}>
-            {alerts.map((a) => (
-              <li key={a.id} className={styles.alert} data-severity={a.severity}>
-                <Icon icon={a.severity === 'info' ? Info : AlertTriangle} size={16} className={styles.alertIcon} />
-                <span className={styles.alertBody}>
-                  <span className={styles.alertTitle}>{a.title}</span>
-                  <span className={styles.alertDetail}>{a.detail}</span>
-                </span>
-                {a.tab && onDrill && (
-                  <button type="button" className={styles.alertGo} onClick={() => onDrill(a.tab!, {})}>
-                    Open<Icon icon={ArrowRight} size={13} aria-hidden="true" />
-                  </button>
-                )}
-                <span className={styles.alertBadge} data-severity={a.severity}>
-                  {a.severity}
-                </span>
-              </li>
-            ))}
-          </ul>
-        )}
-      </section>
-
       {/*
         Four figures, and none of them repeats the hero.
 

@@ -27,11 +27,15 @@
 
 /* ---------------------------------------------------------------- HERO ---- */
 
+/* Sized down on the owner's instruction: the briefing was taking most of the first
+   screen, which pushed the figures and section cards below the fold on a laptop —
+   the opposite of a page meant to be read at a glance. It keeps its weight as the
+   page's banner; it no longer competes with the content for the first screenful. */
 .hero {
   position: relative;
   overflow: hidden;
   border-radius: var(--radius-lg);
-  padding: clamp(var(--space-6), 5vw, var(--space-8));
+  padding: clamp(var(--space-5), 3vw, var(--space-6));
   color: var(--bg);
   background:
     radial-gradient(120% 140% at 88% -10%, rgba(198, 241, 53, 0.16), transparent 45%),
@@ -93,11 +97,11 @@
 .heroTitle {
   font-family: var(--font-display);
   font-weight: 600;
-  font-size: clamp(2rem, 4.4vw, 3.4rem);
-  line-height: 1.04;
+  font-size: clamp(var(--fs-h2), 2.6vw, var(--fs-h1));
+  line-height: 1.1;
   letter-spacing: -0.02em;
-  max-width: 18ch;
-  margin: clamp(var(--space-5), 4vw, var(--space-7)) 0 var(--space-6);
+  max-width: 24ch;
+  margin: var(--space-4) 0 var(--space-5);
   text-wrap: balance;
 }
 .heroTitle em {
@@ -107,9 +111,9 @@
 .heroFigures {
   display: flex;
   align-items: flex-end;
-  gap: clamp(var(--space-6), 6vw, var(--space-8));
+  gap: clamp(var(--space-5), 4vw, var(--space-7));
   flex-wrap: wrap;
-  padding-top: var(--space-5);
+  padding-top: var(--space-4);
   border-top: 1px solid rgba(245, 245, 241, 0.14);
 }
 .marquee {
@@ -119,15 +123,17 @@
 .marqueeValue {
   font-family: var(--font-display);
   font-weight: 700;
-  font-size: clamp(2.8rem, 8vw, 5rem);
-  line-height: 0.95;
+  /* On the documented ramp: --fs-kpi exists for exactly this figure. It replaces a
+     literal 5rem that was nearly double the largest documented step. */
+  font-size: clamp(var(--fs-h1), 4.4vw, var(--fs-kpi));
+  line-height: 0.98;
   letter-spacing: -0.03em;
   color: var(--accent);
   font-variant-numeric: tabular-nums;
 }
 .marqueeSub .marqueeValue {
   color: var(--bg);
-  font-size: clamp(1.8rem, 4.5vw, 2.8rem);
+  font-size: clamp(var(--fs-h2), 2.8vw, var(--fs-h1));
 }
 .marqueeLabel {
   font-family: var(--font-mono);

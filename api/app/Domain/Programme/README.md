@@ -38,11 +38,46 @@ the sibling [Benefit domain](../Benefit/README.md). **Status: Phase 4 complete.*
 | `Policies/*` | **Owner-MDA-only mutation**; oversight (`cross-mda.view`) reads across MDAs but never mutates. |
 | `ProgrammeServiceProvider` | Registers the module permissions and binds the policies. |
 
+## Assignment — which programmes an MDA may deliver (§10, revised 2026-11-05)
+
+The catalog is shared and holds 115 programmes; no MDA runs more than nineteen. A
+catalog administrator (**System Administrator or SP Coordination**) records which ones
+each MDA offers, and that assignment is what every MDA-facing programme picker shows
+and what every entry point creating new work enforces. Before this, all of them offered
+the entire catalog.
+
+| Piece | Role |
+| --- | --- |
+| `mda_programme` + `Models/ProgrammeAssignment` | The assignment row. `source` distinguishes four kinds of claim: `inventory` (the seeded MDA inventory), `derived` (inferred from an activity already running under it), `mda` (written when an MDA's own programme was approved), `assignment` (a catalog administrator chose it — `assigned_by` names them). |
+| `Services/ProgrammeAssignmentService` | The ONE implementation of *does this caller narrow*, *to what*, and *may it use this programme*. Also the only writer, and the owner of the in-use refusal. |
+| `Policies/ProgrammePolicy::assign` | Catalog administrators only. No new permission: `programme.edit` already means "write to the catalog". |
+| `MdaProgrammeAssignmentController` | `GET/PUT /mdas/{mda}/programmes`, `DELETE /mdas/{mda}/programmes/{programme}`. |
+
+- **Administrator-push only.** No endpoint lets an MDA assign itself a programme or
+  request one. An MDA that wants one it has not been assigned creates its own and
+  submits it for approval — the flow below, unchanged by this.
+- **Not ownership.** An assigned programme stays central (`owner_mda_id` NULL) and may
+  be assigned to many MDAs, each running it through its own activities.
+- **Enforced on NEW work only**, in `IsRunnableProgramme` — deliberately *not* in
+  `IsAvailableProgramme`, so a final benefit to someone already enrolled still completes
+  after an assignment is withdrawn. The same split the archive check already makes.
+- **Withdrawal is refused (409 `PROGRAMME_ASSIGNMENT_IN_USE`) while that MDA has a
+  draft or active activity under the programme**, with the blocking activities named.
+  Completed and archived ones do not block.
+- **Nothing assigned → nothing offered**, and the MDA cannot create an activity or run
+  an import. Deliberate; every empty state says so.
+- **Oversight (`cross-mda.view`) and partner organisations are never narrowed.**
+- `ActivityFactory::forProgramme()` records the assignment it implies, so a fixture
+  cannot build an activity into a state the application would refuse to reach. Tests
+  arrange assignments with `Tests\Concerns\AssignsProgrammes`.
+
 ## Ownership & scoping
 
 - **List/show** are MDA-scoped by the model's global `MdaScope` — an MDA sees its
   own; oversight roles (`cross-mda.view`) see all. A different MDA gets **404** on
-  a record it can't see.
+  a record it can't see. `GET /programmes` is additionally narrowed to the caller's
+  ASSIGNED programmes plus its own (see above); `GET /programmes/{id}` is not, so a
+  historical activity's programme stays viewable.
 - **Create/update/archive** are **owner-MDA only** (policy). A non-owner attempting
   a mutation gets **403** (the record is resolved without the owner scope so the
   policy — not a 404 — is the boundary, consistent with the registry).

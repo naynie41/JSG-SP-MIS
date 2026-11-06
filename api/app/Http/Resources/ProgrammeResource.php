@@ -46,6 +46,16 @@ class ProgrammeResource extends JsonResource
             'is_archived' => $this->isArchived(),
             'archived_at' => $this->archived_at?->toIso8601String(),
             'archive_reason' => $this->archive_reason,
+            // Where this MDA's assignment came from, when the programme was read
+            // through the assignment relation (§10, revised 2026-11-05). Only the
+            // assignment console loads the pivot, so this is absent everywhere else
+            // rather than null — nothing has to distinguish "not assigned" from
+            // "assignment not asked for".
+            'assignment' => $this->whenPivotLoaded('mda_programme', fn () => [
+                'source' => $this->pivot->source,
+                'assigned_by' => $this->pivot->assigned_by,
+                'assigned_at' => $this->pivot->created_at?->toIso8601String(),
+            ]),
             'activities_count' => $this->whenCounted('activities'),
             // Catalog USAGE: distinct MDAs running an activity for this programme (§10 —
             // one global programme, many MDAs, each through its own activity).

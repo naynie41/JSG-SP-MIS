@@ -21,6 +21,40 @@ export type ProgrammeApproval = 'pending' | 'approved' | 'rejected'
  * created for itself names its owner, is invisible to every other MDA, and carries
  * no activities until a System Administrator approves it.
  */
+/**
+ * How an MDA came to be assigned a programme (§10, revised 2026-11-05). The four
+ * values are a real distinction, not a log level — an administrator reads it before
+ * changing anything:
+ *
+ * - `inventory` — from the MDA programme inventory the catalogue was seeded from.
+ * - `derived`   — inferred from an activity the MDA had already built under it.
+ * - `mda`       — written when the System Administrator approved the MDA's own programme.
+ * - `assignment`— a catalogue administrator chose it, and `assigned_by` names them.
+ */
+export type AssignmentSource = 'inventory' | 'derived' | 'mda' | 'assignment'
+
+export interface ProgrammeAssignment {
+  source: AssignmentSource
+  /** Only an `assignment` has one — the other three record no deciding person. */
+  assigned_by: string | null
+  assigned_at: string | null
+}
+
+/** What one MDA has been assigned, as the assignment console reads it. */
+export interface MdaProgrammeAssignments {
+  mda: { id: string; name: string }
+  programmes: Programme[]
+}
+
+/** What a save changed, so the console can say so rather than just succeeding. */
+export interface AssignmentResult {
+  mda: { id: string; name: string }
+  assigned: string[]
+  unassigned: string[]
+  unchanged: number
+  total: number
+}
+
 export interface Programme {
   id: string
   name: string
@@ -49,6 +83,12 @@ export interface Programme {
   activities_count?: number
   /** Catalog USAGE: distinct MDAs running an activity for this programme (§10). */
   mdas_count?: number
+  /**
+   * Where THIS MDA's assignment came from (§10, revised 2026-11-05). Present only when
+   * the programme was read through an MDA's assignment list, so a missing value means
+   * "not asked for", never "not assigned".
+   */
+  assignment?: ProgrammeAssignment
   created_by: string | null
   created_at: string | null
   updated_at: string | null

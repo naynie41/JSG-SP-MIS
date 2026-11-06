@@ -10,6 +10,7 @@ use App\Domain\Benefit\Services\LedgerAggregator;
 use App\Domain\Programme\Models\Programme;
 use App\Domain\Programme\Services\ProgrammeApprovalService;
 use App\Domain\Programme\Services\ProgrammeArchiver;
+use App\Domain\Programme\Services\ProgrammeAssignmentService;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Programme\DecideProgrammeRequest;
 use App\Http\Requests\Programme\StoreProgrammeRequest;
@@ -34,7 +35,7 @@ use Illuminate\Support\Facades\DB;
  */
 class ProgrammeController extends Controller
 {
-    public function index(Request $request): JsonResponse
+    public function index(Request $request, ProgrammeAssignmentService $assignments): JsonResponse
     {
         $this->authorize('viewAny', Programme::class);
 
@@ -51,7 +52,16 @@ class ProgrammeController extends Controller
         $approval = $request->input('filter.approval');
         $mine = $request->user()?->mda_id;
 
-        $page = Programme::query()
+        // The catalog an MDA reads is the one it was ASSIGNED (§10, revised
+        // 2026-11-05) — not a filter it opts into, the default and only view it gets.
+        //
+        // This replaces browsing all 115 entries. That was defensible while any MDA
+        // could run any programme; now that it cannot, an unnarrowed list would offer
+        // 100-odd programmes the API refuses, which is worse than not showing them.
+        // No `filter[assigned]=0` escape hatch exists for the same reason.
+        //
+        // Oversight roles and partner accounts are unaffected — see the service.
+        $page = $assignments->narrow(Programme::query(), $request->user())
             ->with('ownerMda:id,name')
             ->withCount($this->usageCounts())
             // "Participating" also covers a programme the MDA created for itself,
@@ -246,13 +256,15 @@ class ProgrammeController extends Controller
      * Separate from index() because the whole point of archiving is that these do
      * NOT appear in the lists people select from.
      */
-    public function archived(Request $request): JsonResponse
+    public function archived(Request $request, ProgrammeAssignmentService $assignments): JsonResponse
     {
         $this->authorize('viewAny', Programme::class);
 
         $perPage = min(max($request->integer('per_page', 25), 1), 100);
 
-        $page = Programme::query()
+        // Narrowed like index(): an MDA's archive is the archive of what IT ran, not a
+        // hundred retired entries from across the state that it never touched.
+        $page = $assignments->narrow(Programme::query(), $request->user())
             ->onlyArchived()
             ->with('ownerMda:id,name')
             ->withCount($this->usageCounts())

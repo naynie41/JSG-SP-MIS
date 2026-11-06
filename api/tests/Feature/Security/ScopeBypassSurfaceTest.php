@@ -225,6 +225,24 @@ class ScopeBypassSurfaceTest extends TestCase
             // account id the administrator just chose from a list they may already
             // read; its one output is a validation message.
             'Http/Requests/Access/Concerns/LinksFunderAccount.php',
+            // Assigning catalogue programmes to MDAs (§10, revised 2026-11-05). Two
+            // unscoped reads, both of them the point of the feature rather than a way
+            // around it:
+            //
+            //  - the MDA being configured, which is by definition not the caller's own
+            //    (an administrator holds no `mda_id` at all), resolved only AFTER
+            //    ProgrammePolicy::assign has restricted this to catalogue admins;
+            //  - the activities that block an unassignment, which usually belong to
+            //    ANOTHER organisation. Scoped, a catalogue admin would see an empty
+            //    list, unassign the programme, and strand every one of them — the same
+            //    reason ProgrammeArchiver drops the scope for the same check.
+            //
+            // Neither releases beneficiary data: the reads are an organisation's name
+            // and type, and activity names with their status. This is also the surface
+            // that NARROWS what an MDA may deliver, so its own queries are scoped on
+            // `mda_id` explicitly everywhere it matters.
+            'Domain/Programme/Services/ProgrammeAssignmentService.php',
+            'Http/Controllers/Api/V1/Programme/MdaProgrammeAssignmentController.php',
         ],
     ];
 

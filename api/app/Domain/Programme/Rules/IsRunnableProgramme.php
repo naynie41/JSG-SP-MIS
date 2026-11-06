@@ -4,9 +4,12 @@ declare(strict_types=1);
 
 namespace App\Domain\Programme\Rules;
 
+use App\Domain\Access\Models\User;
 use App\Domain\Programme\Models\Programme;
+use App\Domain\Programme\Services\ProgrammeAssignmentService;
 use Closure;
 use Illuminate\Contracts\Validation\ValidationRule;
+use Illuminate\Support\Facades\Auth;
 
 /**
  * A programme that can carry NEW work (PRD §10): available to the caller, cleared
@@ -63,6 +66,23 @@ class IsRunnableProgramme implements ValidationRule
         if (! $programme->isApproved()) {
             $fail(sprintf(
                 'The programme "%s" is still waiting for approval and cannot be used yet.',
+                $programme->name,
+            ));
+
+            return;
+        }
+
+        // Assigned to the caller's MDA (§10, revised 2026-11-05). The picker only
+        // offers assigned programmes, but the picker is not the boundary — this rule
+        // is, for the same reason the archive check lives here rather than in a list
+        // query. The programme's name is safe to use: an unassigned CENTRAL entry is
+        // still readable, so naming it confirms nothing the caller could not look up,
+        // and a refusal that does not say which programme is one nobody can act on.
+        $user = Auth::user();
+
+        if ($user instanceof User && ! app(ProgrammeAssignmentService::class)->mayUse($user, $programme->id, $programme->owner_mda_id)) {
+            $fail(sprintf(
+                'The programme "%s" is not assigned to your MDA. Ask an administrator to assign it, or create a programme of your own for approval.',
                 $programme->name,
             ));
         }

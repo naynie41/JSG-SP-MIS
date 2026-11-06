@@ -18,6 +18,7 @@ use App\Domain\Registry\Models\Beneficiary;
 use Database\Seeders\RolesAndPermissionsSeeder;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Testing\TestResponse;
+use Tests\Concerns\AssignsProgrammes;
 use Tests\TestCase;
 
 /**
@@ -26,7 +27,7 @@ use Tests\TestCase;
  */
 class ActivityLocationSetTest extends TestCase
 {
-    use RefreshDatabase;
+    use AssignsProgrammes, RefreshDatabase;
 
     private Mda $mda;
 
@@ -53,6 +54,11 @@ class ActivityLocationSetTest extends TestCase
         ]);
 
         $this->programme = Programme::factory()->create();
+        // Assigned to this MDA (§10, revised 2026-11-05): since that revision an MDA
+        // may only build activities under a programme an administrator assigned it, so
+        // the arrangement has to say so. The gate is tested in ProgrammeAssignmentTest;
+        // here it is setup, and the subject is the location set.
+        $this->assignProgrammes($this->mda, $this->programme);
 
         $this->dutse = Lga::factory()->forEnum(LgaEnum::Dutse)->create();
         $this->kiyawa = Lga::factory()->forEnum(LgaEnum::Kiyawa)->create();

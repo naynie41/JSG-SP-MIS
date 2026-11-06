@@ -13,6 +13,8 @@ use App\Domain\Reference\Models\Lga;
 use App\Domain\Reference\Models\Ward;
 use App\Domain\Registry\Enums\Lga as LgaEnum;
 use Illuminate\Database\Eloquent\Factories\Factory;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Str;
 
 /**
  * Synthetic activities (§10). `owner_mda_id` is the activity's OWN creating MDA —
@@ -52,6 +54,16 @@ class ActivityFactory extends Factory
     /**
      * Run an existing catalog programme. Pass the owning MDA (the MDA creating the
      * activity); omit it to let the factory mint a fresh MDA.
+     *
+     * Also records that the MDA is ASSIGNED the programme (§10, revised 2026-11-05) —
+     * which is what this method's name already claims, not a side effect bolted on.
+     *
+     * An activity owned by an MDA under a programme means that MDA delivers that
+     * programme; the API enforces the assignment before it will create one, and the
+     * migration that introduced assignments backfills exactly this pair from existing
+     * activities. A fixture that built the activity without the assignment would be
+     * describing a state the application cannot reach, and the MDA console would show
+     * an empty catalogue beside activities it is plainly running.
      */
     public function forProgramme(Programme $programme, Mda|string|null $owner = null): static
     {
@@ -62,7 +74,42 @@ class ActivityFactory extends Factory
             }
 
             return $state;
+        })->afterCreating(function (Activity $activity) use ($programme): void {
+            $this->recordAssignment($activity->owner_mda_id, $programme->id);
         });
+    }
+
+    /**
+     * The (MDA, programme) assignment behind an activity. Idempotent — the unique index
+     * on the pair is the real guarantee; this read only avoids using an exception for
+     * control flow, as the catalog seeder does.
+     */
+    private function recordAssignment(?string $mdaId, string $programmeId): void
+    {
+        if ($mdaId === null) {
+            return;
+        }
+
+        $exists = DB::table('mda_programme')
+            ->where('mda_id', $mdaId)
+            ->where('programme_id', $programmeId)
+            ->exists();
+
+        if ($exists) {
+            return;
+        }
+
+        DB::table('mda_programme')->insert([
+            'id' => (string) Str::uuid(),
+            // 'derived': the assignment is inferred from the activity, the same
+            // provenance the backfill migration uses for the same inference.
+            'source' => 'derived',
+            'mda_id' => $mdaId,
+            'programme_id' => $programmeId,
+            'assigned_by' => null,
+            'created_at' => now(),
+            'updated_at' => now(),
+        ]);
     }
 
     /**

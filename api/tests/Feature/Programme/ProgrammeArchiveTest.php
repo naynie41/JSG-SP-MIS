@@ -15,6 +15,7 @@ use App\Domain\Programme\Models\Programme;
 use Database\Seeders\RolesAndPermissionsSeeder;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Support\Facades\Http;
+use Tests\Concerns\AssignsProgrammes;
 use Tests\TestCase;
 
 /**
@@ -26,7 +27,7 @@ use Tests\TestCase;
  */
 class ProgrammeArchiveTest extends TestCase
 {
-    use RefreshDatabase;
+    use AssignsProgrammes, RefreshDatabase;
 
     private User $admin;
 
@@ -58,7 +59,15 @@ class ProgrammeArchiveTest extends TestCase
 
     private function programme(array $attributes = []): Programme
     {
-        return Programme::factory()->create($attributes + ['status' => ProgrammeStatus::Active]);
+        $programme = Programme::factory()->create($attributes + ['status' => ProgrammeStatus::Active]);
+
+        // Assigned to this MDA (§10, revised 2026-11-05). Every programme in this file
+        // is one the MDA works under, so the helper arranges it: without the assignment
+        // the archive gate under test would never be reached, because the MDA could not
+        // create the activity that blocks archiving in the first place.
+        $this->assignProgrammes($this->mda, $programme);
+
+        return $programme;
     }
 
     private function activity(Programme $programme, ActivityStatus $status): Activity

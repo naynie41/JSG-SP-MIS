@@ -138,12 +138,22 @@ describe('MDA console — Programmes', () => {
 
   /* ----------------------------------------------------------- participation */
 
-  it('asks the SERVER for participated programmes, not the whole catalogue', async () => {
+  it('asks the SERVER for this MDA’s assigned catalogue, with no participation filter', async () => {
     renderAt('/mda/programmes')
     await screen.findByText('Conditional Cash Transfer')
 
-    // Filtering client-side on activities_count would drop matches past page one.
-    expect(listProgrammes).toHaveBeenCalledWith(expect.objectContaining({ participating: true }))
+    // CHANGED 2026-11-05. This used to require `participating: true`, which meant
+    // "programmes this MDA has activities under" — the only way to tell what an MDA
+    // ran while every MDA could see all 115 catalogue entries.
+    //
+    // The server now returns the MDA's ASSIGNED catalogue by default, so the filter is
+    // not just redundant, it is wrong: it would hide every newly assigned programme,
+    // which is exactly the one an officer has come here to find an activity for.
+    // Narrowing still happens server-side — filtering client-side on activities_count
+    // would drop matches past page one, which is why it never did.
+    expect(listProgrammes).toHaveBeenCalled()
+    const params = listProgrammes.mock.calls[0]?.[0] ?? {}
+    expect(params).not.toHaveProperty('participating', true)
   })
 
   it('shows the catalogue facts and this MDA’s activity count', async () => {

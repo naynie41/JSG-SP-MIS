@@ -1,6 +1,6 @@
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query'
 import { useToast } from '@/components/Toast/ToastProvider'
-import { activityApi, enrollmentApi, programmeApi } from './api'
+import { activityApi, assignmentApi, enrollmentApi, programmeApi } from './api'
 import type { ProgrammeListParams } from './api'
 import type { ActivityInput, ProgrammeInput } from './types'
 import { ApiError } from '@/types/api'
@@ -34,6 +34,54 @@ export function useSaveProgramme() {
       qc.invalidateQueries({ queryKey: ['programmes'] })
       qc.invalidateQueries({ queryKey: ['programme', programme.id] })
       toast.success('Programme saved', programme.name)
+    },
+  })
+}
+
+/* ----------------------------------------------------------------- assignment */
+
+/** What one MDA is assigned (§10, revised 2026-11-05). Catalogue administrators only. */
+export function useMdaAssignments(mdaId: string | undefined, enabled = true) {
+  return useQuery({
+    queryKey: ['mda-assignments', mdaId],
+    queryFn: () => assignmentApi.forMda(mdaId!),
+    enabled: enabled && Boolean(mdaId),
+  })
+}
+
+/**
+ * Save an MDA's assignments.
+ *
+ * Invalidates `programmes` and `programme-catalog` as well as the assignment list:
+ * assigning changes what the MDA's own pages and every programme dropdown show, and
+ * an administrator who assigns a programme then switches to that MDA's console should
+ * not be looking at the list from before they saved.
+ *
+ * A 409 (the MDA still runs something being unassigned) is deliberately NOT toasted
+ * here. It names the blocking activities, and the caller shows them in place — a toast
+ * would say "failed" and throw away the only part the administrator can act on.
+ */
+export function useSaveMdaAssignments() {
+  const qc = useQueryClient()
+  const toast = useToast()
+  return useMutation({
+    mutationFn: ({ mdaId, programmeIds }: { mdaId: string; programmeIds: string[] }) =>
+      assignmentApi.set(mdaId, programmeIds),
+    onSuccess: (result) => {
+      qc.invalidateQueries({ queryKey: ['mda-assignments', result.mda.id] })
+      qc.invalidateQueries({ queryKey: ['programmes'] })
+      qc.invalidateQueries({ queryKey: ['programme-catalog'] })
+
+      const added = result.assigned.length
+      const removed = result.unassigned.length
+      if (added === 0 && removed === 0) {
+        toast.success('No change', `${result.mda.name} already offered exactly these ${result.total} programmes.`)
+        return
+      }
+      const parts = []
+      if (added > 0) parts.push(`${added} assigned`)
+      if (removed > 0) parts.push(`${removed} removed`)
+      toast.success(`${result.mda.name} updated`, `${parts.join(', ')} · now offering ${result.total}.`)
     },
   })
 }

@@ -12,6 +12,7 @@ use App\Domain\Programme\Models\Programme;
 use Database\Seeders\RolesAndPermissionsSeeder;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Testing\TestResponse;
+use Tests\Concerns\AssignsProgrammes;
 use Tests\TestCase;
 
 /**
@@ -23,7 +24,7 @@ use Tests\TestCase;
  */
 class ProgrammeManagementTest extends TestCase
 {
-    use RefreshDatabase;
+    use AssignsProgrammes, RefreshDatabase;
 
     private Mda $mdaA;
 
@@ -146,17 +147,30 @@ class ProgrammeManagementTest extends TestCase
             ->assertJsonFragment(['field' => 'type']);
     }
 
-    public function test_the_catalog_is_globally_visible_to_every_role(): void
+    public function test_the_catalog_is_visible_to_oversight_and_assigned_to_mdas(): void
     {
-        Programme::factory()->create();
-        Programme::factory()->count(2)->create();
+        // REVERSED on 2026-11-05. This asserted that every authenticated role saw the
+        // whole catalog, which was the behaviour the owner asked to change: an MDA now
+        // sees the programmes an administrator ASSIGNED it. The half that survives is
+        // that the catalog is not MDA-OWNED — an oversight role still sees all of it,
+        // and an assignment is not ownership.
+        $programmes = Programme::factory()->count(3)->create();
 
-        // No MDA scoping — every authenticated role sees the whole catalog.
-        foreach (['officerA', 'officerB', 'viewer', 'oversight'] as $key) {
-            $this->send($key, 'GET', '/api/v1/programmes')
-                ->assertOk()
-                ->assertJsonCount(3, 'data');
+        // Oversight (M&E, Executive) holds cross-mda.view: the whole catalog.
+        foreach (['viewer', 'oversight'] as $key) {
+            $this->send($key, 'GET', '/api/v1/programmes')->assertOk()->assertJsonCount(3, 'data');
         }
+
+        // An MDA sees nothing until it is assigned something, then exactly that.
+        $this->send('officerA', 'GET', '/api/v1/programmes')->assertOk()->assertJsonCount(0, 'data');
+
+        $this->assignProgrammes($this->mdaA, [$programmes[0], $programmes[1]]);
+
+        $this->send('officerA', 'GET', '/api/v1/programmes')->assertOk()->assertJsonCount(2, 'data');
+        // The same entries stay invisible to the MDA that was not assigned them,
+        // without either of them being owned by anyone.
+        $this->send('officerB', 'GET', '/api/v1/programmes')->assertOk()->assertJsonCount(0, 'data');
+        $this->assertNull($programmes[0]->fresh()->owner_mda_id);
     }
 
     public function test_catalog_admin_can_update_and_archive(): void

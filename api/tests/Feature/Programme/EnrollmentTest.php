@@ -18,6 +18,7 @@ use App\Domain\Registry\Models\ServiceRequest;
 use Database\Seeders\RolesAndPermissionsSeeder;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Testing\TestResponse;
+use Tests\Concerns\AssignsProgrammes;
 use Tests\TestCase;
 
 /**
@@ -27,7 +28,7 @@ use Tests\TestCase;
  */
 class EnrollmentTest extends TestCase
 {
-    use RefreshDatabase;
+    use AssignsProgrammes, RefreshDatabase;
 
     private Mda $mdaA;
 
@@ -54,6 +55,17 @@ class EnrollmentTest extends TestCase
 
         $this->individualA = Programme::factory()->individual()->create(['eligibility' => null]);
         $this->householdA = Programme::factory()->household()->create(['eligibility' => null]);
+
+        // BOTH MDAs are assigned both programmes (§10, revised 2026-11-05).
+        //
+        // Not incidental setup: the serve-seam case below has MDA B enrol a beneficiary
+        // OWNED BY A, and that is a question about whose BENEFICIARY it is. Whose
+        // PROGRAMME it is, is the separate question assignment answers — so B holds the
+        // assignment and the serve seam is still what decides the case, exactly as it
+        // did before. The assignment gate itself is covered in ProgrammeAssignmentTest.
+        foreach ([$this->mdaA, $this->mdaB] as $mda) {
+            $this->assignProgrammes($mda, [$this->individualA, $this->householdA]);
+        }
     }
 
     private function user(Mda $mda, RoleKey $role): User
@@ -191,6 +203,9 @@ class EnrollmentTest extends TestCase
             'eligibility' => [['attribute' => 'lga', 'value' => 'dutse']],
             'enforce_eligibility' => false,
         ]);
+        // Its own programme, so its own assignment: the subject here is eligibility,
+        // and an unassigned programme would refuse before eligibility was consulted.
+        $this->assignProgrammes($this->mdaA, $programme);
         $ineligible = Beneficiary::factory()->create(['owner_mda_id' => $this->mdaA->id, 'lga' => 'gumel']);
 
         // Advisory: enrolled but flagged.

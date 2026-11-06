@@ -21,6 +21,7 @@ use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Testing\TestResponse;
+use Tests\Concerns\AssignsProgrammes;
 use Tests\Concerns\ConfirmsImportMapping;
 use Tests\TestCase;
 
@@ -32,7 +33,7 @@ use Tests\TestCase;
  */
 class ActivityInlineUploadTest extends TestCase
 {
-    use ConfirmsImportMapping, RefreshDatabase;
+    use AssignsProgrammes, ConfirmsImportMapping, RefreshDatabase;
 
     private Mda $mdaA; // importing MDA
 
@@ -56,6 +57,10 @@ class ActivityInlineUploadTest extends TestCase
             'role_id' => Role::where('key', RoleKey::MdaAdmin->value)->firstOrFail()->id,
         ]);
         $this->programme = Programme::factory()->individual()->create(['eligibility' => null]);
+        // The uploading MDA is assigned it (§10, revised 2026-11-05). Only MDA A: the
+        // duplicate this test turns on is a beneficiary owned by B, which is about
+        // record ownership and has nothing to do with B's catalogue.
+        $this->assignProgrammes($this->mdaA, $this->programme);
     }
 
     private function token(): string

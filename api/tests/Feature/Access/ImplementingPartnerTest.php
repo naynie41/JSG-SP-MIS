@@ -21,6 +21,7 @@ use Database\Seeders\MatchingConfigSeeder;
 use Database\Seeders\RolesAndPermissionsSeeder;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Testing\TestResponse;
+use Tests\Concerns\AssignsProgrammes;
 use Tests\TestCase;
 
 /**
@@ -40,7 +41,7 @@ use Tests\TestCase;
  */
 class ImplementingPartnerTest extends TestCase
 {
-    use RefreshDatabase;
+    use AssignsProgrammes, RefreshDatabase;
 
     private Mda $partnerOrg;
 
@@ -176,6 +177,11 @@ class ImplementingPartnerTest extends TestCase
     public function test_a_ministry_may_still_be_government_funded(): void
     {
         $programme = Programme::factory()->individual()->create(['status' => 'active']);
+        // A government MDA's catalogue is narrowed to its assignments (§10, revised
+        // 2026-11-05), so the ministry has to be assigned the programme before it can
+        // build an activity under it. The partner cases below need no such line — a
+        // partner organisation is not narrowed, which is the point of that exemption.
+        $this->assignProgrammes($this->ministry, $programme);
 
         $this->send('ministryStaff', 'POST', '/api/v1/activities', [
             'programme_id' => $programme->id,

@@ -20,6 +20,7 @@ use Illuminate\Database\Eloquent\Concerns\HasUuids;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Support\Carbon;
@@ -64,6 +65,9 @@ use Illuminate\Support\Carbon;
  * @property Carbon|null $created_at
  * @property Carbon|null $updated_at
  * @property-read Collection<int, Activity> $activities
+ * @property-read ProgrammeAssignment|null $pivot the assignment row, present ONLY when
+ *   this model was loaded through {@see Mda::assignedProgrammes()}; null otherwise, which
+ *   is why every reader guards on `whenPivotLoaded`
  */
 class Programme extends Model implements SharedWhenUnowned
 {
@@ -151,6 +155,30 @@ class Programme extends Model implements SharedWhenUnowned
     public function ownerMda(): BelongsTo
     {
         return $this->belongsTo(Mda::class, 'owner_mda_id');
+    }
+
+    /**
+     * The MDAs an administrator has ASSIGNED this programme to — the MDAs that may
+     * select it (§10, revised 2026-11-05).
+     *
+     * Distinct from `activities`, which says who has actually built work under it.
+     * Assignment is declared and comes first; activities follow from it. The two
+     * disagree legitimately: a freshly assigned programme has no activities yet, and
+     * that is precisely the gap this relation exists to close.
+     *
+     * Mda is itself MDA-scoped on its own key, so an MDA user reading this sees only
+     * their own row in it — the same narrowing `mdas_count` already has, and correct
+     * here: one MDA has no business enumerating which others were assigned a
+     * programme.
+     *
+     * @return BelongsToMany<Mda, $this, ProgrammeAssignment, 'pivot'>
+     */
+    public function assignedMdas(): BelongsToMany
+    {
+        return $this->belongsToMany(Mda::class, 'mda_programme', 'programme_id', 'mda_id')
+            ->using(ProgrammeAssignment::class)
+            ->withPivot(['id', 'source', 'assigned_by'])
+            ->withTimestamps();
     }
 
     /**

@@ -27,6 +27,7 @@ use App\Http\Controllers\Api\V1\Notification\NotificationController;
 use App\Http\Controllers\Api\V1\Programme\ActivityController;
 use App\Http\Controllers\Api\V1\Programme\ActivityFundingPartnerController;
 use App\Http\Controllers\Api\V1\Programme\EnrollmentController;
+use App\Http\Controllers\Api\V1\Programme\MdaProgrammeAssignmentController;
 use App\Http\Controllers\Api\V1\Programme\ProgrammeController;
 use App\Http\Controllers\Api\V1\Reference\AdministrativeDivisionController;
 use App\Http\Controllers\Api\V1\Referral\ReferralController;
@@ -174,6 +175,20 @@ Route::prefix('v1')->group(function (): void {
             ->middleware('permission:mda.edit')->name('mdas.deactivate');
         Route::post('/mdas/{mda}/activate', [MdaController::class, 'activate'])
             ->middleware('permission:mda.edit')->name('mdas.activate');
+
+        /*
+        | Which catalog programmes an MDA is assigned, and may therefore deliver
+        | (§10, revised 2026-11-05). Gated on `programme.edit` — this writes to the
+        | catalog, not to the organisation — and narrowed to catalog administrators by
+        | ProgrammePolicy::assign. Administrator-push only: there is deliberately no
+        | route by which an MDA assigns itself a programme.
+        */
+        Route::get('/mdas/{mda}/programmes', [MdaProgrammeAssignmentController::class, 'index'])
+            ->middleware('permission:programme.view')->name('mdas.programmes.index');
+        Route::put('/mdas/{mda}/programmes', [MdaProgrammeAssignmentController::class, 'sync'])
+            ->middleware('permission:programme.edit')->name('mdas.programmes.sync');
+        Route::delete('/mdas/{mda}/programmes/{programme}', [MdaProgrammeAssignmentController::class, 'destroy'])
+            ->middleware('permission:programme.edit')->name('mdas.programmes.destroy');
 
         // User management (PRD FR-UAM-02, FR-UAM-03). List/show are MDA-scoped.
         Route::get('/users', [UserController::class, 'index'])

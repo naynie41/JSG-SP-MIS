@@ -23,6 +23,7 @@ use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Testing\TestResponse;
+use Tests\Concerns\AssignsProgrammes;
 use Tests\TestCase;
 
 /**
@@ -35,7 +36,7 @@ use Tests\TestCase;
  */
 class ProgrammeOnlyImportTest extends TestCase
 {
-    use RefreshDatabase;
+    use AssignsProgrammes, RefreshDatabase;
 
     private Mda $mda;
 
@@ -58,6 +59,11 @@ class ProgrammeOnlyImportTest extends TestCase
         ]);
 
         $this->programme = Programme::factory()->individual()->create(['name' => 'Cash Transfer']);
+        // Assigned to the importing MDA (§10, revised 2026-11-05). Deliberately only
+        // this one: the contradiction case below creates a SECOND programme that stays
+        // unassigned, and must still be refused on `activity_id` — the mismatch — which
+        // is what that test is for.
+        $this->assignProgrammes($this->mda, $this->programme);
     }
 
     private function csv(): string

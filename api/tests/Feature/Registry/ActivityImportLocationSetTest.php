@@ -18,6 +18,7 @@ use Database\Seeders\RolesAndPermissionsSeeder;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Facades\Storage;
+use Tests\Concerns\AssignsProgrammes;
 use Tests\TestCase;
 
 /**
@@ -28,7 +29,7 @@ use Tests\TestCase;
  */
 class ActivityImportLocationSetTest extends TestCase
 {
-    use RefreshDatabase;
+    use AssignsProgrammes, RefreshDatabase;
 
     private User $officer;
 
@@ -51,6 +52,8 @@ class ActivityImportLocationSetTest extends TestCase
         ]);
 
         $this->programme = Programme::factory()->create();
+        // Assigned to the uploading MDA (§10, revised 2026-11-05).
+        $this->assignProgrammes($mda, $this->programme);
         $this->dutse = Lga::factory()->forEnum(LgaEnum::Dutse)->create();
         $this->limawa = Ward::factory()->create(['lga_id' => $this->dutse->id, 'code' => 'limawa', 'name' => 'Limawa']);
     }

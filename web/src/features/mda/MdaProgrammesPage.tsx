@@ -19,13 +19,18 @@ import styles from './mda.module.css'
 /**
  * Programmes — what THIS MDA delivers, of two kinds.
  *
- * Most rows are shared catalogue programmes the MDA participates in, meaning it has
- * activities under them; the catalogue itself is owned centrally and read-only here.
+ * Most rows are shared catalogue programmes an administrator ASSIGNED to this MDA
+ * (§10, revised 2026-11-05) — what it offers. The catalogue itself is owned centrally
+ * and read-only here, and an MDA is never assigned the whole of it.
+ *
  * The rest are programmes this MDA created FOR ITSELF (§10, revised): no other MDA
  * sees them, and each waits for the System Administrator before it can carry any
- * activity. Both come from the same list — the server includes the MDA's own
- * programmes in `filter[participating]`, which a brand-new one would otherwise fail
- * for having no activities yet.
+ * activity. Both come from the same list — the server returns the assigned catalogue
+ * plus the MDA's own programmes, including one still waiting for a decision, which
+ * has no assignment row yet because approval is what writes it.
+ *
+ * An empty page therefore means one of two things, and the empty state says which:
+ * nothing has been assigned to this organisation yet.
  */
 export function MdaProgrammesPage() {
   const identity = useWorkspaceIdentity()
@@ -37,7 +42,16 @@ export function MdaProgrammesPage() {
   const [editing, setEditing] = useState<Programme | null>(null)
   const decide = useProgrammeDecision()
 
-  const { data, isLoading } = useProgrammes({ participating: true, per_page: 100 }, canView)
+  // No `participating` filter any more.
+  //
+  // It meant "programmes this MDA has activities under", which was the only way to
+  // tell what an MDA ran while every MDA could see the whole catalogue. Since §10's
+  // 2026-11-05 revision the server returns the MDA's ASSIGNED catalogue by default,
+  // which is the better answer to the same question: a programme an administrator
+  // assigned belongs on this page from the moment it is assigned, not from the moment
+  // someone builds the first activity under it. Keeping the filter would have hidden
+  // every newly assigned programme — exactly the ones an officer is looking for.
+  const { data, isLoading } = useProgrammes({ per_page: 100 }, canView)
 
   if (!canView) {
     return (
@@ -129,8 +143,9 @@ export function MdaProgrammesPage() {
         <span className={styles.eyebrow}>{identity.workspace}</span>
         <h1 className={styles.pageTitle}>Programmes</h1>
         <p className={styles.lead}>
-          The programmes your {identity.org} delivers — those you run activities under from the state catalogue, and any you have
-          created for your own {identity.org}. Open one to see your activities, their budgets and targets, and to create another.
+          The programmes your {identity.org} delivers — those assigned to you from the state catalogue, and any you
+          have created for your own {identity.org}. Open one to see your activities, their budgets and targets, and to
+          create another.
         </p>
         {canCreate && (
           <div className={styles.pageActions}>
@@ -157,7 +172,18 @@ export function MdaProgrammesPage() {
           getRowId={(p) => p.id}
           getRowLabel={(p) => p.name}
           loading={isLoading}
-          emptyTitle="No programmes yet"
+          emptyTitle="No programmes assigned yet"
+          emptyAction={
+            /* An organisation with nothing assigned offers nothing and cannot create
+               an activity — a deliberate state (owner, 2026-11-05), not a fault. The
+               empty table alone would read as "the system lost my programmes", so it
+               says what happened and what to do about it. */
+            <p className={styles.muted}>
+              Your {identity.org} has not been assigned any catalogue programmes. Ask the System Administrator or SP
+              Coordination to assign the ones you deliver — or create a programme of your own below, which they
+              approve before you can deliver under it.
+            </p>
+          }
         />
       </Card>
 
@@ -170,8 +196,10 @@ export function MdaProgrammesPage() {
           <p className={styles.muted}>
             <Icon icon={ClipboardList} size={14} /> The state catalogue is shared — the same programme may be run by
             several agencies, each through its own activities, and it is maintained by the System Administrator and SP
-            Coordination. A programme you create here belongs to your {identity.org} alone: no other agency can see it, and the
-            System Administrator approves it before you can deliver under it.
+            Coordination. You see the programmes assigned to your {identity.org}, which is what you can choose when
+            creating an activity or recording delivery; ask them to assign one you deliver but cannot find. A
+            programme you create here belongs to your {identity.org} alone: no other agency can see it, and the System
+            Administrator approves it before you can deliver under it.
           </p>
           <p className={styles.footnote}>
             Budget, funding and targets belong to your activity, never to the programme

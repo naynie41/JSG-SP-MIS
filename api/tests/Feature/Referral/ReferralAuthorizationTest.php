@@ -18,6 +18,7 @@ use App\Domain\Registry\Models\ServiceRequest;
 use Database\Seeders\RolesAndPermissionsSeeder;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Testing\TestResponse;
+use Tests\Concerns\AssignsProgrammes;
 use Tests\TestCase;
 
 /**
@@ -28,7 +29,7 @@ use Tests\TestCase;
  */
 class ReferralAuthorizationTest extends TestCase
 {
-    use RefreshDatabase;
+    use AssignsProgrammes, RefreshDatabase;
 
     private Mda $fromMda; // owner / originating
 
@@ -54,6 +55,16 @@ class ReferralAuthorizationTest extends TestCase
 
         $this->beneficiary = Beneficiary::factory()->create(['owner_mda_id' => $this->fromMda->id]);
         $this->toProgramme = Programme::factory()->individual()->create(['eligibility' => null]);
+
+        // The RECEIVING MDA is assigned the programme it will deliver (§10, revised
+        // 2026-11-05) — it is the one enrolling, under its own programme.
+        //
+        // Named `toProgramme` for exactly this reason, and only the receiver is
+        // assigned: what these tests establish is that an ACCEPTED REFERRAL is what
+        // authorises serving someone another MDA owns. Assignment answers a different
+        // question — whose programme it is — and giving the receiver its own programme
+        // leaves the referral gate as the thing under test.
+        $this->assignProgrammes($this->toMda, $this->toProgramme);
     }
 
     private function user(Mda $mda, RoleKey $role): User

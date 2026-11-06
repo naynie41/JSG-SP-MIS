@@ -13,16 +13,23 @@ use App\Domain\Programme\Models\Programme;
 use Database\Seeders\RolesAndPermissionsSeeder;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Testing\TestResponse;
+use Tests\Concerns\AssignsProgrammes;
 use Tests\TestCase;
 
 /**
  * "Participation" for the MDA console's Programmes module: the catalog programmes this
  * MDA runs activities under. The catalog itself stays global and read-only for an MDA
  * (CLAUDE.md §10) — participation is a VIEW over it, never ownership.
+ *
+ * Participation and ASSIGNMENT (§10, revised 2026-11-05) are two different questions,
+ * and both still exist. Assignment is what an administrator declared the MDA offers;
+ * participation is what it has actually built activities under. A freshly assigned
+ * programme is assigned but not yet participated in, which is why the console lists
+ * assignments and shows the activity count beside each.
  */
 class MdaProgrammeParticipationTest extends TestCase
 {
-    use RefreshDatabase;
+    use AssignsProgrammes, RefreshDatabase;
 
     private Mda $mdaA;
 
@@ -53,6 +60,12 @@ class MdaProgrammeParticipationTest extends TestCase
         $this->runByA = Programme::factory()->individual()->create(['name' => 'Cash Transfer', 'status' => 'active']);
         $this->runByB = Programme::factory()->individual()->create(['name' => 'Skills Training', 'status' => 'active']);
         $this->runByNobody = Programme::factory()->individual()->create(['name' => 'Unused Programme', 'status' => 'active']);
+
+        // Each MDA is assigned the programme it runs, plus the spare one it has not
+        // built anything under yet — the assigned-but-not-participating case that
+        // keeps the two ideas apart below (§10, revised 2026-11-05).
+        $this->assignProgrammes($this->mdaA, [$this->runByA, $this->runByNobody]);
+        $this->assignProgrammes($this->mdaB, [$this->runByB, $this->runByNobody]);
 
         Activity::factory()->forProgramme($this->runByA, $this->mdaA)->create(['name' => 'A-1']);
         Activity::factory()->forProgramme($this->runByA, $this->mdaA)->create(['name' => 'A-2']);
@@ -94,17 +107,25 @@ class MdaProgrammeParticipationTest extends TestCase
         $this->assertSame(['Skills Training'], $namesB);
     }
 
-    public function test_the_unfiltered_catalog_still_shows_everything(): void
+    public function test_the_unfiltered_catalog_is_what_this_mda_was_assigned(): void
     {
-        // Participation is a view, not a restriction: an MDA must still be able to
-        // browse the whole catalog to pick a programme when creating an activity.
+        // REVERSED on 2026-11-05. This test used to assert that an MDA browsing the
+        // unfiltered catalog saw everything in it, on the reasoning that it had to in
+        // order to pick a programme for an activity. The owner overturned that: an MDA
+        // picks from what it OFFERS, and 115 state-wide entries in a dropdown is the
+        // problem, not the feature.
+        //
+        // Participation is still a view rather than a restriction — within the
+        // assignment. The distinction the old test was protecting survives as the
+        // first assertion: a programme assigned but not yet participated in is listed.
         $names = array_column(
             $this->send('officerA', 'GET', '/api/v1/programmes')->assertOk()->json('data'),
             'name',
         );
 
-        $this->assertContains('Unused Programme', $names);
-        $this->assertContains('Skills Training', $names);
+        $this->assertContains('Unused Programme', $names, 'assigned but not yet run is still part of this MDA catalog');
+        $this->assertContains('Cash Transfer', $names);
+        $this->assertNotContains('Skills Training', $names, "another MDA's assignment must not appear");
     }
 
     public function test_activity_counts_are_scoped_to_the_callers_mda(): void
@@ -113,8 +134,11 @@ class MdaProgrammeParticipationTest extends TestCase
         $rows = collect($this->send('officerA', 'GET', '/api/v1/programmes')->assertOk()->json('data'))->keyBy('name');
 
         $this->assertSame(2, $rows['Cash Transfer']['activities_count']);
-        $this->assertSame(0, $rows['Skills Training']['activities_count'], "another MDA's activity must not be counted");
         $this->assertSame(0, $rows['Unused Programme']['activities_count']);
+        // Skills Training used to appear here with a count of 0, which proved another
+        // MDA's activity was not counted. It is no longer in A's catalog at all — a
+        // stronger form of the same guarantee, and now asserted as absence.
+        $this->assertArrayNotHasKey('Skills Training', $rows->all());
     }
 
     public function test_an_oversight_role_sees_participation_across_all_mdas(): void

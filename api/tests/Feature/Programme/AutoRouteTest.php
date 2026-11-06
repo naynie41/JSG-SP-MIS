@@ -17,6 +17,7 @@ use App\Domain\Registry\Models\ServiceRequest;
 use Database\Seeders\RolesAndPermissionsSeeder;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Testing\TestResponse;
+use Tests\Concerns\AssignsProgrammes;
 use Tests\TestCase;
 
 /**
@@ -26,7 +27,7 @@ use Tests\TestCase;
  */
 class AutoRouteTest extends TestCase
 {
-    use RefreshDatabase;
+    use AssignsProgrammes, RefreshDatabase;
 
     private Mda $mdaA; // owns the beneficiary
 
@@ -57,10 +58,18 @@ class AutoRouteTest extends TestCase
             'eligibility' => [['attribute' => 'lga', 'value' => 'dutse']],
         ]);
         // …and a non-matching one (wrong LGA + unrelated need).
-        Programme::factory()->individual()->create([
+        $housing = Programme::factory()->individual()->create([
             'name' => 'Housing Support', 'status' => 'active',
             'eligibility' => [['attribute' => 'lga', 'value' => 'gumel']],
         ]);
+
+        // Both MDAs are assigned both programmes (§10, revised 2026-11-05), so what
+        // the suggestions filter on here is still TYPE and ELIGIBILITY — which is what
+        // these tests are about. Suggestions are now narrowed to the caller's
+        // assignment as well; that narrowing is covered in ProgrammeAssignmentTest.
+        foreach ([$this->mdaA, $this->mdaB] as $mda) {
+            $this->assignProgrammes($mda, [$this->cashProgramme, $housing]);
+        }
     }
 
     private function user(Mda $mda, RoleKey $role): User

@@ -15,16 +15,22 @@ use App\Domain\Registry\Enums\Lga as LgaEnum;
 use Database\Seeders\RolesAndPermissionsSeeder;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Testing\TestResponse;
+use Tests\Concerns\AssignsProgrammes;
 use Tests\TestCase;
 
 /**
- * Activity management (PRD §10, ARCH §12.4, FR-PRG-02): any MDA may create an
- * activity that runs a GLOBAL catalog programme; it is owned by the creating MDA
- * and scoped to it (owner-only mutation). Covers CRUD, RBAC, validation and audit.
+ * Activity management (PRD §10, ARCH §12.4, FR-PRG-02): an MDA creates an activity
+ * that runs a catalog programme it has been ASSIGNED; the activity is owned by the
+ * creating MDA and scoped to it (owner-only mutation). Covers CRUD, RBAC, validation
+ * and audit.
+ *
+ * "Any MDA may run any global catalog programme" until 2026-11-05. Both MDAs here are
+ * assigned the catalog programme in setUp, so every case below tests what it was
+ * written to test; the assignment gate itself is covered in ProgrammeAssignmentTest.
  */
 class ActivityManagementTest extends TestCase
 {
-    use RefreshDatabase;
+    use AssignsProgrammes, RefreshDatabase;
 
     private Mda $mdaA;
 
@@ -50,6 +56,10 @@ class ActivityManagementTest extends TestCase
         $this->users['oversight'] = $this->user($this->mdaB, RoleKey::Executive);
 
         $this->programmeA = Programme::factory()->create(); // a global catalog programme
+        // Both MDAs are assigned it: one catalog programme, many MDAs, separate
+        // activities (§10) — which is what test_any_mda_can_run... below asserts.
+        $this->assignProgrammes($this->mdaA, $this->programmeA);
+        $this->assignProgrammes($this->mdaB, $this->programmeA);
         $this->lga = Lga::factory()->forEnum(LgaEnum::Dutse)->create();
     }
 
@@ -134,9 +144,15 @@ class ActivityManagementTest extends TestCase
         ]);
     }
 
-    public function test_any_mda_can_run_the_global_catalog_programme(): void
+    public function test_several_mdas_can_run_the_same_catalog_programme(): void
     {
         // A different MDA runs the same catalog programme through its OWN activity.
+        //
+        // Renamed from "any MDA can run the global catalog programme": since
+        // 2026-11-05 an MDA runs what it was ASSIGNED, and both are assigned this one
+        // in setUp. What the test is for survives the change intact and matters more
+        // now — §10's "one programme, many MDAs, separate activities" must not have
+        // become one-MDA-per-programme by way of the assignment gate.
         $this->send('officerB', 'POST', '/api/v1/activities', $this->payload())
             ->assertCreated()
             ->assertJsonPath('data.owner_mda_id', $this->mdaB->id);

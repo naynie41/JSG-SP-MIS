@@ -7,6 +7,7 @@ import { Spinner } from '@/components/Spinner/Spinner'
 import { Tabs } from '@/components/Tabs/Tabs'
 import { statusVariant } from '@/components/Badge/statusVariant'
 import { useAuth } from '@/lib/auth/AuthProvider'
+import { AdminAssignmentsPanel } from './AdminAssignmentsPanel'
 import { ProgrammeApprovalsPanel } from '@/features/programmes/ProgrammeApprovalsPanel'
 import { ProgrammeListPage } from '@/features/programmes/ProgrammeListPage'
 import { useProgrammes } from '@/features/programmes/hooks'
@@ -112,9 +113,17 @@ function UsagePanel() {
  *    programme category (type), benefit category, standard eligibility and status, all
  *    through `/programmes` and the existing `ProgrammePolicy`. Writes to the CENTRAL
  *    catalog stay restricted to catalog administrators (CLAUDE.md §10).
+ *  - **Assign to agencies** records which catalogue programmes each organisation
+ *    actually offers (§10, revised 2026-11-05). That assignment is what every MDA-facing
+ *    programme picker is built from, so this tab decides what each MDA can select.
  *  - **Approvals** decides the programmes MDAs have created for themselves. Until one
  *    is decided the MDA can do nothing with it, so the count rides on the tab.
  *  - **Usage across agencies** reports uptake from the same endpoint.
+ *
+ * Assigning and approving are deliberately separate tabs because they are separate
+ * decisions: assigning says which organisation delivers a SHARED programme, approving
+ * decides an MDA's OWN submission. Both catalogue administrators may assign; only the
+ * System Administrator approves.
  *
  * The central catalog is still one shared, unowned list; an MDA's own programme is a
  * separate row on the same table, not a second catalog with its own lifecycle.
@@ -143,6 +152,7 @@ export function AdminCatalogPage() {
       <Tabs
         items={[
           { id: 'catalog', label: 'Catalog', content: <ProgrammeListPage embedded /> },
+          { id: 'assignments', label: 'Assign to agencies', content: <AdminAssignmentsPanel /> },
           { id: 'approvals', label: pendingLabel, content: <ProgrammeApprovalsPanel /> },
           { id: 'usage', label: 'Usage across agencies', content: <UsagePanel /> },
         ]}
